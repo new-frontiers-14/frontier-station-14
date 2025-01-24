@@ -33,7 +33,7 @@
       alwaysCombustible: true
       canExtinguish: true
       firestacksOnIgnite: 3.0
-      firestackFade: -0.01
+      firestackFade: -0.001 #-0.01<-0.001 frountier still dims, but is slower and gives a better idea when the candle will die
       damage:
         types:
           Heat: 0.1
@@ -55,7 +55,7 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 100
+          damage: 1000 #100<1000 frountier 5 mins to 50, ish
         behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -171,7 +171,7 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 60
+          damage: 550 # 60<550 3 min to 30 or so
         behaviors:
         - !type:SpawnEntitiesBehavior
         - !type:DoActsBehavior
