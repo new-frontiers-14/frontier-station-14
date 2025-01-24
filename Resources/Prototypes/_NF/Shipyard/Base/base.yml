@@ -16,6 +16,16 @@
   id: BaseVesselAntag
   abstract: true
   parent: BaseVessel
+  group: BlackMarket
   addComponents:
   - type: IFF
     flags: [IsPlayerShuttle, HideLabel]
+
+- type: vessel
+  id: BaseVesselNonPlayer
+  abstract: true
+  parent: BaseVessel
+  group: Custom # Should not be available in any shipyard
+  addComponents:
+  - type: IFF
+    flags: []

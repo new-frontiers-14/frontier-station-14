@@ -60,10 +60,26 @@
 - type: entity
   parent: AirlockGlassShuttle
   id: AirlockExternalGlassShuttleTransit
-  suffix: External, PubTrans, Glass, Docking
+  suffix: External, Bus (R1), Glass, Docking
   components:
   - type: PriorityDock
     tag: DockTransit
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleTransitTradeExpress
+  suffix: External, Bus (R2), Glass, Docking
+  components:
+  - type: PriorityDock
+    tag: TradeExpress
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleTransitMinorPOI
+  suffix: External, Route (R3), Glass, Docking
+  components:
+  - type: PriorityDock
+    tag: MinorPOIs
 
 - type: entity
   parent: AirlockGlassShuttle

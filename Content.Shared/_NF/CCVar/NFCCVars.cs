@@ -59,12 +59,6 @@ public sealed class NFCCVars
     public static readonly CVarDef<float> PublicTransitWaitTime =
         CVarDef.Create("nf14.publictransit.wait_time", 180f, CVar.SERVERONLY);
 
-    /// <summary>
-    /// The amount of time the flies through FTL space.
-    /// </summary>
-    public static readonly CVarDef<float> PublicTransitFlyTime =
-        CVarDef.Create("nf14.publictransit.fly_time", 50f, CVar.SERVERONLY);
-
     /*
      *  World Gen
      */
