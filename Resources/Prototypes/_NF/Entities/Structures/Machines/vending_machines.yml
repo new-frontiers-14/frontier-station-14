@@ -686,24 +686,25 @@
 
 - type: entity
   parent: [BaseStructureDisableAnchoring, VendingMachine]
-  id: VendingMachineCargo
-  name: CargoVend
+  id: VendingMachineShipping
+  name: HaulVend
   description: A one stop shop for space truckers.
   components:
   - type: VendingMachine
-    pack: CargoVendInventory
+    pack: ShippingVendInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
   - type: Sprite
-    sprite: _NF/Structures/Machines/VendingMachines/astrovend.rsi
+    sprite: Structures/Machines/VendingMachines/cargodrobe.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
+    - state: "normal-unshaded"
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
+      sprite: _NF/Structures/Machines/VendingMachines/shippingvend.rsi
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
