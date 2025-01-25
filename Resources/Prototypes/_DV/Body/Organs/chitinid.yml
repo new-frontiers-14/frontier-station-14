@@ -1,6 +1,6 @@
 - type: entity
   id: OrganChitinidStomach
-  parent: [OrganAnimalStomach, OrganHumanStomach]
+  parent: OrganHumanStomach
   name: stomach
   description: "Gross. This is hard to stomach."
   components:
@@ -31,3 +31,37 @@
     groups:
     - id: Food
     - id: Drink
+
+- type: entity
+  id: OrganChitinidLiver
+  parent: BaseAnimalOrgan
+  name: liver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Organ
+    slotId: liver # Shitmed
+    onAdd:
+    - type: UnpoweredFlashlight
+    - type: PointLight
+      enabled: false
+      radius: 3
+      softness: 5
+      color: "#2CFA1F"
+      autoRot: true
+  - type: Sprite
+    state: liver
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [ Animal ]
+    groups:
+    - id: Alcohol
+      rateModifier: 0.1
+  - type: Liver # Shitmed
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Liver
+  - type: Item
+    size: Small
+    heldPrefix: liver
