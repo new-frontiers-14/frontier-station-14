@@ -41,7 +41,7 @@ namespace Content.IntegrationTests.Tests
             // Admin
             "/Maps/_NF/Shuttles/Admin/fishbowl.yml",
             // Bus
-            "/Maps/_NF/Shuttles/Bus/publicts.yml",
+            "/Maps/_NF/Shuttles/Bus/cheetah.yml",
         };
 
         private static readonly string[] GameMaps = FrontierConstants.GameMapPrototypes; // Frontier: not inline constants

@@ -57,12 +57,12 @@ public sealed class PublicTransitSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<StationTransitComponent, MapInitEvent>(OnStationMapInit);
+        SubscribeLocalEvent<StationTransitComponent, ComponentStartup>(OnStationStartup);
         SubscribeLocalEvent<StationTransitComponent, ComponentRemove>(OnStationRemove);
-        SubscribeLocalEvent<TransitShuttleComponent, MapInitEvent>(OnShuttleMapInit);
+        SubscribeLocalEvent<TransitShuttleComponent, ComponentStartup>(OnShuttleStartup);
         SubscribeLocalEvent<TransitShuttleComponent, FTLCompletedEvent>(OnShuttleArrival);
         SubscribeLocalEvent<TransitShuttleComponent, FTLTagEvent>(OnShuttleTag);
-        SubscribeLocalEvent<StationBusDepotComponent, MapInitEvent>(OnBusDepotMapInit);
+        SubscribeLocalEvent<StationBusDepotComponent, ComponentStartup>(OnBusDepotStartup);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
@@ -113,7 +113,7 @@ public sealed class PublicTransitSystem : EntitySystem
     /// Checks to make sure the grid is on the appropriate playfield, i.e., not in mapping space being worked on.
     /// If so, adds the grid to the list of bus stops, but only if its not already there
     /// </summary>
-    private void OnStationMapInit(Entity<StationTransitComponent> ent, ref MapInitEvent args)
+    private void OnStationStartup(Entity<StationTransitComponent> ent, ref ComponentStartup args)
     {
         UpdateRouteList(ent);
     }
@@ -150,7 +150,7 @@ public sealed class PublicTransitSystem : EntitySystem
     /// Again, this can and likely should be instructed to mappers to do, but just in case it was either forgotten or we are doing admemes,
     /// we make sure that the bus is (mostly) griefer protected and that it cant be hijacked
     /// </summary>
-    private void OnShuttleMapInit(Entity<TransitShuttleComponent> ent, ref MapInitEvent args)
+    private void OnShuttleStartup(Entity<TransitShuttleComponent> ent, ref ComponentStartup args)
     {
         var stationName = Loc.GetString(ent.Comp.Name);
 
@@ -381,7 +381,7 @@ public sealed class PublicTransitSystem : EntitySystem
     /// <remarks>
     /// Bus scheduling may be clumped if disabled and reenabled with enough stops to require additional buses.
     /// </remarks>
-    private void OnBusDepotMapInit(Entity<StationBusDepotComponent> entity, ref MapInitEvent args)
+    private void OnBusDepotStartup(Entity<StationBusDepotComponent> entity, ref ComponentStartup args)
     {
         if (!TryComp<StationDataComponent>(entity, out var stationData))
             return;
@@ -394,7 +394,8 @@ public sealed class PublicTransitSystem : EntitySystem
         var transit = EnsureComp<StationTransitComponent>(grid.Value);
         foreach (var route in _proto.EnumeratePrototypes<PublicTransitRoutePrototype>())
         {
-            transit.Routes.Add(route.ID);
+            // The bus depot should start each route.
+            transit.Routes.Insert(0, route.ID);
         }
         UpdateRouteList((grid.Value, transit));
     }
