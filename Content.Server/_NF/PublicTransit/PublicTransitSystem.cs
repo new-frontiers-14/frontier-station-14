@@ -306,6 +306,8 @@ public sealed class PublicTransitSystem : EntitySystem
             busesByRoute[transit.RouteID].Add(ent);
         }
 
+        var shuttleOffset = 500.0f;
+        var shuttleArrivalOffset = 5.0f;
         var dummyMapEnt = _map.CreateMap(out var dummyMap);
 
         // For each route: find out the number of buses we need on it, then add more buses until we get to that count.
@@ -320,7 +322,6 @@ public sealed class PublicTransitSystem : EntitySystem
             if (route.Prototype.StationsPerBus > 0)
                 neededBuses += route.GridStops.Count / route.Prototype.StationsPerBus;
 
-            var shuttleOffset = 500.0f;
 
             if (numBuses >= neededBuses)
                 continue;
@@ -358,10 +359,11 @@ public sealed class PublicTransitSystem : EntitySystem
                 int index = numBuses * route.GridStops.Count / neededBuses;
 
                 //we set up a default in case the second time we call it fails for some reason
-                _shuttles.FTLToDock(shuttleUids[0], shuttleComp, route.GridStops[index], hyperspaceTime: 5f, priorityTag: transitComp.DockTag);
-                transitComp.NextTransfer = _timing.CurTime + route.Prototype.WaitTime;
+                _shuttles.FTLToDock(shuttleUids[0], shuttleComp, route.GridStops[index], hyperspaceTime: shuttleArrivalOffset, priorityTag: transitComp.DockTag);
+                transitComp.NextTransfer = _timing.CurTime + route.Prototype.WaitTime + TimeSpan.FromSeconds(shuttleArrivalOffset);
 
                 numBuses++;
+                shuttleArrivalOffset += 5.0f;
             }
         }
 
