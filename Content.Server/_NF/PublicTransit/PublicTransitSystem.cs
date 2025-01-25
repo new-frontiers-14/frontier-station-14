@@ -152,11 +152,6 @@ public sealed class PublicTransitSystem : EntitySystem
     /// </summary>
     private void OnShuttleStartup(Entity<TransitShuttleComponent> ent, ref ComponentStartup args)
     {
-        var stationName = Loc.GetString(ent.Comp.Name);
-
-        var meta = EnsureComp<MetaDataComponent>(ent);
-        _meta.SetEntityName(ent, stationName, meta);
-
         _renameWarps.SyncWarpPointsToGrid(ent);
     }
 
@@ -354,6 +349,10 @@ public sealed class PublicTransitSystem : EntitySystem
                 transitComp.RouteID = route.Prototype.ID;
                 transitComp.DockTag = route.Prototype.DockTag;
                 var shuttleName = Loc.GetString("public-transit-shuttle-name", ("number", route.Prototype.RouteNumber), ("suffix", neededBuses > 1 ? (char)('A' + numBuses) : ""));
+                _meta.SetEntityName(shuttleUids[0], shuttleName);
+                var shuttleStation = _station.GetOwningStation(shuttleUids[0]);
+                if (shuttleStation != null)
+                    _meta.SetEntityName(shuttleStation.Value, shuttleName);
 
                 // Space each bus out in the schedule.
                 int index = numBuses * route.GridStops.Count / neededBuses;

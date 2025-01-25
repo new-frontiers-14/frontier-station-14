@@ -12,12 +12,6 @@ namespace Content.Server._NF.PublicTransit.Components;
 [RegisterComponent, Access(typeof(PublicTransitSystem)), AutoGenerateComponentPause]
 public sealed partial class TransitShuttleComponent : Component
 {
-    /// <summary>
-    ///     The name for the bus
-    /// </summary>
-    [DataField]
-    public LocId Name = "public-transit-shuttle-name";
-
     [DataField]
     public EntityUid CurrentGrid;
 
