@@ -12,5 +12,6 @@ public sealed partial class StationTransitComponent : Component
     /// <summary>
     /// The list of routes that will service this station.
     /// </summary>
+    [DataField]
     public List<ProtoId<PublicTransitRoutePrototype>> Routes = new();
 }
