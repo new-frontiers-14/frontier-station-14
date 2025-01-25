@@ -202,7 +202,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
         // If not in array, move to first item (-1 to 0).  If in array, move to next item (if last, revert to first).
         var currentIndex = route.GridStops.FindIndex(ent => ent == currentGrid);
-        nextGrid = route.GridStops[currentIndex + 1 % route.GridStops.Count];
+        nextGrid = route.GridStops[(currentIndex + 1) % route.GridStops.Count];
 
         return true;
     }
