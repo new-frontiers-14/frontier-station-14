@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.StationEvents.Components;
+using Content.Shared.Bank.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mind;
@@ -93,8 +94,8 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
         List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> reparentEntities = new();
         HashSet<EntityUid> handledEntities = new();
 
-        // Get humanoids
-        var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+        // Get player characters
+        var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, BankAccountComponent, TransformComponent>();
         while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
         {
             handledEntities.Add(mobUid);

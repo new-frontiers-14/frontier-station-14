@@ -59,37 +59,38 @@ public sealed class GasPressurePumpSystem : SharedGasPressurePumpSystem
     }
 
     // Frontier: server-side pump accessors
-    public void SetPumpDirection(Entity<GasPressurePumpComponent> pump, bool inwards, EntityUid actor)
+    public void SetPumpDirection(Entity<GasPressurePumpComponent> ent, bool inwards, EntityUid actor)
     {
-        if (!pump.Comp.SettableDirection || pump.Comp.PumpingInwards == inwards)
+        if (!ent.Comp.SettableDirection || ent.Comp.PumpingInwards == inwards)
             return;
 
-        var temp = pump.Comp.OutletName;
-        pump.Comp.OutletName = pump.Comp.InletName;
-        pump.Comp.InletName = temp;
+        (ent.Comp.OutletName, ent.Comp.InletName) = (ent.Comp.InletName, ent.Comp.OutletName);
 
-        pump.Comp.PumpingInwards = inwards;
-        _adminLogger.Add(LogType.AtmosDirectionChanged, LogImpact.Medium,
-            $"{ToPrettyString(actor):player} set the direction on {ToPrettyString(pump.Owner):device} to {(inwards ? "in" : "out")}");
-        Dirty(pump.Owner, pump.Comp);
-        UpdateAppearance(pump.Owner, pump.Comp);
+        ent.Comp.PumpingInwards = inwards;
+        _adminLogger.Add(LogType.AtmosDirectionChanged,
+            LogImpact.Medium,
+            $"{ToPrettyString(actor):player} set the direction on {ToPrettyString(ent):device} to {(inwards ? "in" : "out")}");
+        Dirty(ent);
+        UpdateAppearance(ent, ent.Comp);
     }
 
-    public void SetPumpPressure(Entity<GasPressurePumpComponent> pump, float pressure, EntityUid actor)
+    public void SetPumpPressure(Entity<GasPressurePumpComponent> ent, float pressure, EntityUid actor)
     {
-        pump.Comp.TargetPressure = Math.Clamp(pressure, 0f, Atmospherics.MaxOutputPressure);
-        _adminLogger.Add(LogType.AtmosPressureChanged, LogImpact.Medium,
-            $"{ToPrettyString(actor):player} set the pressure on {ToPrettyString(pump.Owner):device} to {pressure}kPa");
-        Dirty(pump.Owner, pump.Comp);
+        ent.Comp.TargetPressure = Math.Clamp(pressure, 0f, Atmospherics.MaxOutputPressure);
+        _adminLogger.Add(LogType.AtmosPressureChanged,
+            LogImpact.Medium,
+            $"{ToPrettyString(actor):player} set the pressure on {ToPrettyString(ent):device} to {pressure}kPa");
+        Dirty(ent, ent.Comp);
     }
 
-    public void SetPumpStatus(Entity<GasPressurePumpComponent> pump, bool enabled, EntityUid actor)
+    public void SetPumpStatus(Entity<GasPressurePumpComponent> ent, bool enabled, EntityUid actor)
     {
-        pump.Comp.Enabled = enabled;
-        _adminLogger.Add(LogType.AtmosPowerChanged, LogImpact.Medium,
-            $"{ToPrettyString(actor):player} set the power on {ToPrettyString(pump.Owner):device} to {enabled}");
-        Dirty(pump.Owner, pump.Comp);
-        UpdateAppearance(pump.Owner, pump.Comp);
+        ent.Comp.Enabled = enabled;
+        _adminLogger.Add(LogType.AtmosPowerChanged,
+            LogImpact.Medium,
+            $"{ToPrettyString(actor):player} set the power on {ToPrettyString(ent):device} to {enabled}");
+        Dirty(ent);
+        UpdateAppearance(ent, ent.Comp);
     }
     // End Frontier: server-side pump accessors
 }
