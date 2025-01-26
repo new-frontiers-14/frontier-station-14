@@ -40,14 +40,14 @@
   components:
   - type: Organ
 #    slotId: liver # Shitmed
-    onAdd:
-    - type: UnpoweredFlashlight
-    - type: PointLight
-      enabled: false
-      radius: 3
-      softness: 5
-      color: "#2CFA1F"
-      autoRot: true
+#    onAdd:  # Shitmed: Need to fix this in some otherway.
+#    - type: UnpoweredFlashlight
+#    - type: PointLight
+#      enabled: false
+#      radius: 3
+#      softness: 5
+#      color: "#2CFA1F"
+#      autoRot: true
   - type: Sprite
     state: liver
   - type: Metabolizer
@@ -60,7 +60,7 @@
   - type: Tag # goob edit
     tags:
     - Meat
-    - Organ
+#    - Organ # Shitmed
 #    - Liver # Shitmed
   - type: Item
     size: Small
