@@ -85,12 +85,12 @@
 
 - type: entity
   parent: BaseSecurityPDA
-  id: SecurityGuardPDA
-  name: security guard PDA
+  id: CivilGuardPDA
+  name: civil guard PDA
   description: Red to hide the stains of passenger blood.
   components:
   - type: Pda
-    id: SecurityGuardIDCard
+    id: CivilGuardIDCard
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
@@ -478,6 +478,6 @@
     - NotekeeperCartridge
     - NewsReaderCartridge
     - BountyContractsCartridge
-    - AstroNavCartridge    
+    - AstroNavCartridge
     - LedgerCartridge
     - MedTekCartridge #medtek preloaded. Should be ok.

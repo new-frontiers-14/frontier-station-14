@@ -11,7 +11,7 @@ job-name-pilot = Pilot
 job-name-pirate = Pirate
 job-name-pirate-captain = Pirate Captain
 job-name-pirate-first-mate = Pirate First Mate
-job-name-security-guard = Security Guard
+job-name-security-guard = Civil Guard
 job-name-sheriff = Sheriff
 job-name-stc = Station Traffic Controller
 job-name-sr = Station Representative
@@ -28,7 +28,7 @@ JobPilot = Pilot
 JobPirate = Pirate
 JobPirateCaptain = Pirate Captain
 JobPirateFirstMate = Pirate First Mate
-JobSecurityGuard = Security Guard
+JobCivilGuard = Civil Guard
 JobSTC = Station Traffic Controller
 
 # Upstream Removed

@@ -1,14 +1,14 @@
 - type: job
-  id: SecurityGuard
+  id: CivilGuard
   name: job-name-security-guard
   description: job-description-security-guard
-  playTimeTracker: JobSecurityGuard
+  playTimeTracker: JobCivilGuard
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000 # Frontier - 10 hrs
-  startingGear: SecurityGuardGear
+  startingGear: CivilGuardGear
   alwaysUseSpawner: true
-  icon: "JobIconSecurityGuard"
+  icon: "JobIconCivilGuard"
   supervisors: job-supervisors-sr
   weight: 80
   displayWeight: 20 # Second from the bottom
@@ -30,7 +30,7 @@
     prototype: FrontierBirthdayGift
 
 - type: startingGear
-  id: SecurityGuardGear
+  id: CivilGuardGear
   equipment:
     eyes: ClothingEyesGlassesSunglasses #ClothingEyesGlassesSecurity
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
