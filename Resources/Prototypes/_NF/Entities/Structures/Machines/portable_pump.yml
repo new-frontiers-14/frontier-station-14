@@ -20,18 +20,17 @@
         layer:
         - MachineLayer
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/Portable/portable_scrubber.rsi
+    sprite: _NF\Structures\Machines\portable_pump.rsi
     noRot: true
     layers:
-    - state: icon
+    - state: base
       map: ["enum.PortableScrubberVisualLayers.IsRunning"]
-    - state: unlit
-      shader: unshaded
+    - state: pumping
       map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: draining
+    - state: powered
       shader: unshaded
-      visible: false
-      map: ["enum.PortableScrubberVisualLayers.IsDraining"]
+    #  visible: false
+    #  map: ["enum.PortableScrubberVisualLayers.IsDraining"]
   - type: Appearance
   - type: GenericVisualizer
     visuals:
