@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Numerics;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared._NF.CrateMachine;
 using Content.Shared._NF.CrateMachine.Components;
