@@ -16,7 +16,6 @@ namespace Content.Server._NF.CrateMachine;
 /// </summary>
 public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly EntityStorageSystem _storage = default!;
@@ -30,7 +29,7 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
     /// <returns>False if not occupied, true if it is.</returns>
     public bool IsOccupied(EntityUid crateMachineUid, CrateMachineComponent component, bool ignoreAnimation = false)
     {
-        if (!_entityManager.TryGetComponent<TransformComponent>(crateMachineUid, out var crateMachineTransform))
+        if (!EntityManager.TryGetComponent<TransformComponent>(crateMachineUid, out var crateMachineTransform))
             return true;
         var tileRef = crateMachineTransform.Coordinates.GetTileRef(EntityManager, _mapManager);
         if (tileRef == null)
@@ -41,7 +40,7 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
 
         // Finally check if there is a crate intersecting the crate machine.
         return _lookup.GetLocalEntitiesIntersecting(tileRef.Value, flags: LookupFlags.All | LookupFlags.Approximate)
-            .Any(entity => _entityManager.GetComponent<MetaDataComponent>(entity).EntityPrototype?.ID ==
+            .Any(entity => EntityManager.GetComponent<MetaDataComponent>(entity).EntityPrototype?.ID ==
                            component.CratePrototype);
     }
 
