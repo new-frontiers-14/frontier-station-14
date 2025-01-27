@@ -51,5 +51,8 @@ public sealed partial class MakeSentient : EntityEffect
         ghostRole.RoleName = entityData.EntityName;
         ghostRole.RoleDescription = Loc.GetString("ghost-role-information-cognizine-description");
         ghostRole.RoleRules = Loc.GetString("ghost-role-information-freeagent-rules"); // Frontier
+        List<EntProtoId> mindRoles = new();
+        mindRoles.Add("MindRoleGhostRoleFreeAgent");
+        ghostRole.MindRoles = mindRoles; // Frontier
     }
 }
