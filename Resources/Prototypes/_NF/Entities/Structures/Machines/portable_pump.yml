@@ -24,13 +24,15 @@
     noRot: true
     layers:
     - state: base
-      map: ["enum.PortableScrubberVisualLayers.IsRunning"]
+      map: ["enum.AdvDrainVisualState.IsRunning"]
     - state: pumping
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      map: ["enum.AdvDrainVisualState.IsDraining"]
     - state: powered
       shader: unshaded
-    #  visible: false
-    #  map: ["enum.PortableScrubberVisualLayers.IsDraining"]
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: voiding
+      shader: unshaded
+      map: ["enum.AdvDrainVisualState.IsVoiding"]
   - type: Appearance
   - type: GenericVisualizer
     visuals:

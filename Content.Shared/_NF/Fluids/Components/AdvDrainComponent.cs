@@ -1,8 +1,9 @@
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
+using Content.Shared.Fluids;
 
-namespace Content.Shared.Fluids.Components;
+namespace Content.Shared._NF.Fluids.Components;
 
 /// <summary>
 /// A Drain allows an entity to absorb liquid in a disposal goal. Drains can be filled manually (with the Empty verb)

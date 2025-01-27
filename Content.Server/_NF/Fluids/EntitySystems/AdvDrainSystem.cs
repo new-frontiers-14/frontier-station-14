@@ -11,6 +11,8 @@ using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
+using Content.Shared._NF.Fluids.Components;
+using Content.Server.Fluids.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
@@ -20,7 +22,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 
-namespace Content.Server.Fluids.EntitySystems;
+namespace Content.Server._NF.Fluids.EntitySystems;
 
 public sealed class AdvDrainSystem : SharedDrainSystem
 {
@@ -36,6 +38,7 @@ public sealed class AdvDrainSystem : SharedDrainSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
 
     private readonly HashSet<Entity<PuddleComponent>> _puddles = new();
 
@@ -136,6 +139,8 @@ public sealed class AdvDrainSystem : SharedDrainSystem
             if (!TryComp(uid, out TransformComponent? xform) || !xform.Anchored)
             {
                 _ambientSoundSystem.SetAmbience(uid, false);
+                _appearanceSystem.SetData(uid, AdvDrainVisualState.IsRunning, false);
+                _appearanceSystem.SetData(uid, AdvDrainVisualState.IsDraining, false);
                 continue;
             }
 
@@ -143,6 +148,8 @@ public sealed class AdvDrainSystem : SharedDrainSystem
             if (!_powerCell.HasCharge(uid, drain.Wattage))
             {
                 _ambientSoundSystem.SetAmbience(uid, false);
+                _appearanceSystem.SetData(uid, AdvDrainVisualState.IsRunning, false);
+                _appearanceSystem.SetData(uid, AdvDrainVisualState.IsDraining, false);
                 continue;
             }
 
@@ -152,7 +159,7 @@ public sealed class AdvDrainSystem : SharedDrainSystem
                 continue;
             }
             drain.Accumulator -= drain.DrainFrequency;
-
+            _appearanceSystem.SetData(uid, AdvDrainVisualState.IsRunning, true);
 
             // Disable ambient sound from emptying manually
             if (!drain.AutoDrain)
@@ -177,7 +184,12 @@ public sealed class AdvDrainSystem : SharedDrainSystem
             // Remove a bit from the buffer
             if (drainSolution.Volume > drain.UnitsDestroyedThreshold)
             {
+                _appearanceSystem.SetData(uid, AdvDrainVisualState.IsVoiding, true);
                 _solutionContainerSystem.SplitSolution(drain.Solution.Value, Math.Min(drain.UnitsDestroyedPerSecond * drain.DrainFrequency, (float)drainSolution.Volume - drain.UnitsDestroyedThreshold));
+            }
+            else
+            {
+                _appearanceSystem.SetData(uid, AdvDrainVisualState.IsVoiding, false);
             }
 
             // This will ensure that UnitsPerSecond is per second...
@@ -196,6 +208,7 @@ public sealed class AdvDrainSystem : SharedDrainSystem
 
             // only use power if it's actively draining puddles
             _powerCell.TryUseCharge(uid, drain.Wattage * drain.DrainFrequency);
+            _appearanceSystem.SetData(uid, AdvDrainVisualState.IsDraining, true);
             amount /= _puddles.Count;
 
             foreach (var puddle in _puddles)
@@ -240,6 +253,4 @@ public sealed class AdvDrainSystem : SharedDrainSystem
         var text = Loc.GetString("adv-drain-component-examine-volume", ("volume", drainSolution.Volume), ("maxvolume", drain.UnitsDestroyedThreshold));
         args.PushMarkup(text);
     }
-
-
 }
