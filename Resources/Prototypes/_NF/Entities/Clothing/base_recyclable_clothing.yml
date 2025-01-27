@@ -38,19 +38,6 @@
     - id: MaterialCloth1
       amount: 2
 
-- type: entity
-  id: RecyclableItemClothSmall
-  abstract: true
-  components:
-  - type: PhysicalComposition
-    materialComposition:
-      Cloth: 75
-  - type: Butcherable # Yields more if it rounds to whole up
-    butcheringType: Knife
-    spawned:
-    - id: MaterialCloth1
-      amount: 1
-
 - type: entity # Coats and jackets
   id: RecyclableItemClothDurable
   abstract: true
