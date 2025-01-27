@@ -142,7 +142,7 @@ public sealed class PaperSystem : EntitySystem
             if (editable)
             {
                 // Frontier - Restrict writing to entities with ActorComponent, players only
-                if (!TryComp<ActorComponent>(args.User, out var actor))
+                if (!HasComp<ActorComponent>(args.User))
                 {
                     args.Handled = true;
                     return;
