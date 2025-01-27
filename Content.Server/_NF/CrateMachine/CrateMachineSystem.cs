@@ -50,10 +50,13 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
     /// <param name="from">The Uid of the entity to find the nearest crate machine from</param>
     /// <param name="maxDistance">The maximum distance to search for a crate machine</param>
     /// <param name="machineUid">The Uid of the nearest unoccupied crate machine, or null if none found</param>
+    /// <returns>True if a crate machine was found, false if not</returns>
     public bool FindNearestUnoccupied(EntityUid from, int maxDistance, [NotNullWhen(true)] out EntityUid? machineUid)
     {
         machineUid = null;
-        if (maxDistance < 0)
+
+        // Stop here if we don't have a grid.
+        if (Transform(from).GridUid == null || maxDistance < 0)
             return false;
 
         var crateMachineQuery = AllEntityQuery<CrateMachineComponent, TransformComponent>();

@@ -31,10 +31,6 @@ public sealed partial class MarketSystem
             marketMod = marketModComponent.Mod;
         }
 
-        // Stop here if we don't have a grid.
-        if (Transform(consoleUid).GridUid == null)
-            return;
-
         if (!_crateMachine.FindNearestUnoccupied(consoleUid, component.MaxCrateMachineDistance, out var machineUid) || !_entityManager.TryGetComponent<CrateMachineComponent> (machineUid, out var comp))
         {
             _popup.PopupEntity(Loc.GetString("market-no-crate-machine-available"), consoleUid, Filter.PvsExcept(consoleUid), true);
