@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Numerics;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared._NF.CrateMachine.Components;
 using Content.Shared.Maps;
@@ -80,9 +81,8 @@ public sealed partial class CrateMachineSystem
             // Skip crate machines that are not on the same grid.
             if (Transform(crateMachineUid).GridUid!.Value != consoleGridUid)
                 continue;
-            var currentDistance = CalculateDistance(compXform.Coordinates, Transform(from).Coordinates);
 
-            var isTooFarAway = currentDistance > maxDistance;
+            var isTooFarAway = Vector2.Distance(compXform.Coordinates.Position, Transform(from).Coordinates.Position) > maxDistance;
             var isBusy = IsOccupied(crateMachineUid, comp);
 
             if (!compXform.Anchored || isTooFarAway || isBusy)
