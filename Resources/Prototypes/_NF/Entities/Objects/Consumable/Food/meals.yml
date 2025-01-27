@@ -1,9 +1,24 @@
 - type: entity
   name: crispy
   id: MobCatCrispy
-  parent: FoodMealFries
+  parent: EdibleBase
   description: Mistakes were made.
   components:
+  - type: FlavorProfile
+    flavors:
+    - potatoes
+    - salty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 5
   - type: Sprite
     noRot: true
     drawdepth: Mobs
