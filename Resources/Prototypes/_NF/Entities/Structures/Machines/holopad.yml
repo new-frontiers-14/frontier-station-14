@@ -1,48 +1,29 @@
 - type: entity
-  name: long-range holopad
-  description: "An experimental floor-mounted device for projecting holographic images via bluespace."
-  parent: Holopad
+  parent: HolopadLongRange
   id: NFHolopadShip
   suffix: Ship
   components:
   - type: Telephone
-    ringTone: /Audio/Machines/double_ring.ogg #change me to something funny
+    ringTone: /Audio/Machines/double_ring.ogg # change me to something funny
     listeningRange: 4
-    speakerVolume: Speak
-    transmissionRange: Map
-    compatibleRanges:
-    - Grid
-    - Map
-    - Unlimited
-    ignoreTelephonesOnSameGrid: true
-  - type: Holopad
-    hologramProtoId: HolopadHologram
-    useStationName: true
-  - type: AccessReader
-    access: [ [ "HeadOfSecurity" ] ]
-
-- type: entity
-  name: long-range holopad
-  description: "An experimental floor-mounted device for projecting holographic images via bluespace."
-  parent: Holopad
-  id: NFHolopadPoiBase
-  suffix: POI
-  abstract: true
-  components:
-  - type: Telephone
-    ringTone: /Audio/Machines/double_ring.ogg #change me to something funny
-    listeningRange: 4
-    speakerVolume: Speak
-    transmissionRange: Map
     compatibleRanges:
     - Grid
     - Map
     - Unlimited
     ignoreTelephonesOnSameGrid: false
   - type: Holopad
-    hologramProtoId: HolopadHologram
+    useStationName: true
   - type: AccessReader
     access: [ [ "HeadOfSecurity" ] ]
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, NFHolopadShip]
+  id: NFHolopadPoiBase
+  suffix: POI
+  abstract: true
+  components:
+  - type: Holopad
+    useStationName: false
 
 # Mapping Prototypes below
 - type: entity

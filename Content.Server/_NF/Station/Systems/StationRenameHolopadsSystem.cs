@@ -1,14 +1,15 @@
+using Content.Server.Labels;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
-using Content.Shared.Fax.Components;
+using Content.Server.Station.Systems;
 using Content.Shared.Holopad;
-using Content.Shared.Labels.Components;
 
-namespace Content.Server.Station.Systems;
+namespace Content.Server._NF.Station.Systems;
 
 public sealed class StationRenameHolopadsSystem : EntitySystem
 {
     [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly LabelSystem _label = default!; // TODO: use LabelSystem directly instead of this.
 
     public override void Initialize()
     {
@@ -34,22 +35,35 @@ public sealed class StationRenameHolopadsSystem : EntitySystem
             if (padStationUid != stationUid)
                 continue;
 
-            var padName = "";
-
-            if (!string.IsNullOrEmpty(pad.StationNamePrefix))
-            {
-                padName += pad.StationNamePrefix + " ";
-            }
-
-            padName += Name(padStationUid.Value);
-
-            if (!string.IsNullOrEmpty(pad.StationNameSuffix))
-            {
-                padName += " " + pad.StationNameSuffix;
-            }
-
-            var padLabel = EnsureComp<LabelComponent>(uid);
-            padLabel.CurrentLabel = padName;
+            SyncHolopad((uid, pad), padStationUid);
         }
-}
+    }
+
+    public void SyncHolopad(Entity<HolopadComponent> holopad, EntityUid? padStationUid = null)
+    {
+        if (!holopad.Comp.UseStationName)
+            return;
+
+        padStationUid ??= _stationSystem.GetOwningStation(holopad);
+        if (padStationUid == null)
+        {
+            return;
+        }
+
+        var padName = "";
+
+        if (!string.IsNullOrEmpty(holopad.Comp.StationNamePrefix))
+        {
+            padName += holopad.Comp.StationNamePrefix + " ";
+        }
+
+        padName += Name(padStationUid.Value);
+
+        if (!string.IsNullOrEmpty(holopad.Comp.StationNameSuffix))
+        {
+            padName += " " + holopad.Comp.StationNameSuffix;
+        }
+
+        _label.Label(holopad, padName);
+    }
 }
