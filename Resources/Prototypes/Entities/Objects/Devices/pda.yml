@@ -28,7 +28,7 @@
     state: pda
   - type: Pda
     paiSlot:
-      priority: -2
+      priority: -3 # Frontier: -2<-3
       whitelist:
         components:
         - PAI
@@ -38,13 +38,15 @@
       whitelist:
         tags:
         - Write
-    bookSlot: # Frontier
+    # Frontier: space law slot
+    bookSlot:
       startingItem: HyperlinkBookSpaceLaw
       priority: -2
       whitelist:
         tags:
         - BookSpaceLaw
         - BookNfsdSop
+    # End Frontier: space law slot
     idSlot:
       name: access-id-card-component-default
       ejectSound: /Audio/Machines/id_swipe.ogg
@@ -138,6 +140,7 @@
   - type: ToggleableGhostRole # Frontier: Literally only for the wipe verb and nothing else.
     wipeVerbText: pda-wipe-device-verb-text # Frontier
     wipeVerbPopup: pda-wiped-device # Frontier
+    mindRoles: [] # Frontier: no default value here
 
 - type: entity
   parent: BasePDA
