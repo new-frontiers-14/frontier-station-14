@@ -1026,3 +1026,23 @@
     entity: VendingMachineChemicals
   - type: StaticPrice
     price: 2000
+
+    #DoC Console
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationAdministrationConsoleFlatpack
+  name: station administration console flatpack
+  description: A flatpack used for constructing a station administration console for Medical Dispatch.
+  components:
+  - type: Flatpack
+    entity: ComputerTabletopStationAdminBankATMMedical
+  - type: Sprite
+    layers:
+    - state: medical_console
+  - type: StaticPrice
+    price: 0
+  - type: CargoSellBlacklist
+  - type: Item
+    shape:
+    - 0,0,1,1
