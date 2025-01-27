@@ -5,6 +5,7 @@ using Content.Server.Storage.EntitySystems;
 using Content.Shared._NF.CrateMachine;
 using Content.Shared._NF.CrateMachine.Components;
 using Content.Shared.Maps;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 
 namespace Content.Server._NF.CrateMachine;
@@ -12,13 +13,13 @@ namespace Content.Server._NF.CrateMachine;
 /// <summary>
 /// The crate machine system can be used to make a crate machine open and spawn crates.
 /// When calling <see cref="OpenFor"/>, the machine will open the door and give a callback to the given
-/// <see cref="ICrateMachineDelegate"/> when it is done opening.
 /// </summary>
 public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly EntityStorageSystem _storage = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
 
     /// <summary>
     /// Checks if there is a crate on the crate machine.
@@ -29,7 +30,7 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
     /// <returns>False if not occupied, true if it is.</returns>
     public bool IsOccupied(EntityUid crateMachineUid, CrateMachineComponent component, bool ignoreAnimation = false)
     {
-        if (!EntityManager.TryGetComponent<TransformComponent>(crateMachineUid, out var crateMachineTransform))
+        if (!TryComp(crateMachineUid, out TransformComponent? crateMachineTransform))
             return true;
         var tileRef = crateMachineTransform.Coordinates.GetTileRef(EntityManager, _mapManager);
         if (tileRef == null)
@@ -40,12 +41,12 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
 
         // Finally check if there is a crate intersecting the crate machine.
         return _lookup.GetLocalEntitiesIntersecting(tileRef.Value, flags: LookupFlags.All | LookupFlags.Approximate)
-            .Any(entity => EntityManager.GetComponent<MetaDataComponent>(entity).EntityPrototype?.ID ==
+            .Any(entity => MetaData(entity).EntityPrototype?.ID ==
                            component.CratePrototype);
     }
 
     /// <summary>
-    /// Find the nearest unoccupied crate machine, that is anchored.
+    /// Find the nearest unoccupied anchored crate machine on the same grid.
     /// </summary>
     /// <param name="from">The Uid of the entity to find the nearest crate machine from</param>
     /// <param name="maxDistance">The maximum distance to search for a crate machine</param>
@@ -55,22 +56,24 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
     {
         machineUid = null;
 
-        // Stop here if we don't have a grid.
-        if (Transform(from).GridUid == null || maxDistance < 0)
+        if (maxDistance < 0)
+            return false;
+
+        var fromXform = Transform(from);
+        if (fromXform.GridUid == null)
             return false;
 
         var crateMachineQuery = AllEntityQuery<CrateMachineComponent, TransformComponent>();
-        var consoleGridUid = Transform(from).GridUid!.Value;
         while (crateMachineQuery.MoveNext(out var crateMachineUid, out var comp, out var compXform))
         {
             // Skip crate machines that aren't mounted on a grid.
-            if (Transform(crateMachineUid).GridUid == null)
+            if (compXform.GridUid == null)
                 continue;
             // Skip crate machines that are not on the same grid.
-            if (Transform(crateMachineUid).GridUid!.Value != consoleGridUid)
+            if (compXform.GridUid != fromXform.GridUid)
                 continue;
 
-            var isTooFarAway = Vector2.Distance(compXform.Coordinates.Position, Transform(from).Coordinates.Position) > maxDistance;
+            var isTooFarAway = !_transform.InRange(compXform.Coordinates, fromXform.Coordinates, maxDistance);
             var isBusy = IsOccupied(crateMachineUid, comp);
 
             if (!compXform.Anchored || isTooFarAway || isBusy)
