@@ -41,6 +41,12 @@ namespace Content.Shared.Chemistry
     }
 
     [Serializable, NetSerializable]
+    public enum ChemMasterVisualState : byte // Frontier
+    {
+        BeakerInserted
+    }
+
+    [Serializable, NetSerializable]
     public sealed class ChemMasterReagentAmountButtonMessage : BoundUserInterfaceMessage
     {
         public readonly ReagentId ReagentId;
