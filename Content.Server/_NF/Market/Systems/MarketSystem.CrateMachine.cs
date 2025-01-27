@@ -7,7 +7,7 @@ using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
-using CrateMachineComponent = Content.Shared._NF.CrateMachine.Components.CrateMachineComponent;
+using Content.Shared._NF.CrateMachine.Components;
 
 namespace Content.Server._NF.Market.Systems;
 
@@ -108,7 +108,7 @@ public sealed partial class MarketSystem
         }
     }
 
-    public void OnCrateMachineOpened(EntityUid uid, CrateMachineComponent component, CrateMachineOpenedEvent args)
+    private void OnCrateMachineOpened(EntityUid uid, CrateMachineComponent component, CrateMachineOpenedEvent args)
     {
         if (!TryComp<MarketItemSpawnerComponent>(uid, out var itemSpawner))
             return;
