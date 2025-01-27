@@ -45,21 +45,6 @@ public sealed partial class CrateMachineSystem
     }
 
     /// <summary>
-    /// Calculates distance between two EntityCoordinates on the same grid.
-    /// Used to check for cargo pallets around the console instead of on the grid.
-    /// </summary>
-    /// <param name="point1">the first point</param>
-    /// <param name="point2">the second point</param>
-    /// <returns></returns>
-    private static double CalculateDistance(EntityCoordinates point1, EntityCoordinates point2)
-    {
-        var xDifference = point2.X - point1.X;
-        var yDifference = point2.Y - point1.Y;
-
-        return Math.Sqrt(xDifference * xDifference + yDifference * yDifference);
-    }
-
-    /// <summary>
     /// Find the nearest unoccupied crate machine, that is anchored.
     /// </summary>
     /// <param name="from">The Uid of the entity to find the nearest crate machine from</param>
