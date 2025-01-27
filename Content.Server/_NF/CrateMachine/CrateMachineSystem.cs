@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared._NF.CrateMachine;
 using Content.Shared._NF.CrateMachine.Components;
 using Content.Shared.Maps;
 using Robust.Shared.Map;
@@ -13,7 +14,7 @@ namespace Content.Server._NF.CrateMachine;
 /// When calling <see cref="OpenFor"/>, the machine will open the door and give a callback to the given
 /// <see cref="ICrateMachineDelegate"/> when it is done opening.
 /// </summary>
-public sealed partial class CrateMachineSystem
+public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
