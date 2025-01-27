@@ -1,8 +1,7 @@
-using Content.Client.Bank.UI;
 using Content.Shared.Bank.BUI;
 using Content.Shared.Bank.Events;
 
-namespace Content.Client.Cargo.BUI;
+namespace Content.Client._NF.Bank.UI;
 
 public sealed class WithdrawBankATMMenuBoundUserInterface : BoundUserInterface
 {

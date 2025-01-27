@@ -31,7 +31,7 @@ using Content.Shared.Database;
 using Content.Shared.Preferences;
 using static Content.Shared._NF.Shipyard.Components.ShuttleDeedComponent;
 using Content.Server.Shuttles.Components;
-using Content.Server.Station.Components;
+using Content.Server._NF.Station.Components;
 using System.Text.RegularExpressions;
 using Content.Server._NF.ShuttleRecords;
 using Content.Shared.UserInterface;

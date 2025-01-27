@@ -1,4 +1,4 @@
-namespace Content.Server.Station.Components;
+namespace Content.Server._NF.Station.Components;
 
 /// <summary>
 /// Copy deep of a ship to a new card

@@ -4,7 +4,7 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Configuration;
 using static Content.Shared.CryoSleep.SharedCryoSleepSystem;
 
-namespace Content.Client.CryoSleep;
+namespace Content._NF.Client.CryoSleep;
 
 public sealed class CryosleepWakeupWindow : DefaultWindow, IEntityEventSubscriber
 {

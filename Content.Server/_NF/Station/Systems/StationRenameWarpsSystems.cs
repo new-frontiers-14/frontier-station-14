@@ -1,9 +1,10 @@
 using System.Linq;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
+using Content.Server.Station.Systems;
 using Content.Server.Warps;
 
-namespace Content.Server.Station.Systems;
+namespace Content.Server._NF.Station.Systems;
 
 public sealed class StationRenameWarpsSystems : EntitySystem
 {

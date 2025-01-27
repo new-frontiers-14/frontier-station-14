@@ -1,7 +1,7 @@
 using Content.Shared.DoAfter;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.CryoSleep;
+namespace Content._NF.Shared.CryoSleep;
 
 public abstract partial class SharedCryoSleepSystem : EntitySystem
 {

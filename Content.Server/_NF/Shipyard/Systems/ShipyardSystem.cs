@@ -9,18 +9,16 @@ using Content.Shared.GameTicking;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
-using Content.Shared.CCVar;
 using Content.Shared._NF.CCVar;
 using Robust.Shared.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
-using Content.Shared.Coordinates;
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
-using Content.Server._NF.Smuggling.Components;
 using Robust.Shared.Map.Components;
+using Content.Server._NF.Station.Components;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
