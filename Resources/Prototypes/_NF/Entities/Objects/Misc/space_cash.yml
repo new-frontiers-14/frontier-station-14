@@ -114,3 +114,15 @@
   cash: 
     1: SpaceCashCounterfeit
   canWithdraw: true # I guess?
+
+- type: entity
+  parent: SpaceCashCounterfeit
+  id: SpaceCashCounterfeit200000
+  suffix: 200000
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Objects/Economy/counterfeit_cash.rsi
+    state: cash_100000
+  - type: Stack
+    count: 200000
