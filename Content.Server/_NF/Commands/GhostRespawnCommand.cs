@@ -1,4 +1,4 @@
-using Content.Server._NF.Corvax.Respawn;
+using Content.Server._Corvax.Respawn;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Shared.Administration;
