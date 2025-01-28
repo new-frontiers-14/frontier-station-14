@@ -17,6 +17,7 @@ using Content.Shared.Salvage;
 using Content.Server.Maps.NameGenerators;
 using Content.Server.StationEvents.Events;
 using Content.Server._NF.Station.Systems;
+using Content.Server._NF.StationEvents.Components;
 
 namespace Content.Server._NF.StationEvents.Events;
 
