@@ -6,6 +6,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
+using Content.Client._NF.CryoSleep;
 
 namespace Content.Client.UserInterface.Systems.Ghost.Widgets;
 
@@ -32,7 +33,7 @@ public sealed partial class GhostGui : UIWidget
 
         TargetWindow = new GhostTargetWindow();
         RulesWindow = new GhostRespawnRulesWindow();
-        CryosleepWakeupWindow = new CryosleepWakeupWindow();
+        CryosleepWakeupWindow = new CryosleepWakeupWindow(); // Frontier
         RulesWindow.RespawnButton.OnPressed += _ => GhostRespawnPressed?.Invoke();
 
         MouseFilter = MouseFilterMode.Ignore;
