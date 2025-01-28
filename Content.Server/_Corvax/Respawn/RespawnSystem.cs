@@ -9,7 +9,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration; // Frontier
-using Content.Server.CryoSleep; // Frontier
+using Content.Server._NF.CryoSleep; // Frontier
 using Robust.Shared.Player; // Frontier
 using Content.Shared.Ghost; // Frontier
 using Content.Server.Administration.Managers; // Frontier
