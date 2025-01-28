@@ -9,7 +9,7 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
-using Content.Shared.Shipyard.Components; // Frontier
+using Content.Shared._NF.Shipyard.Components; // Frontier
 
 namespace Content.Client.Access.UI
 {
