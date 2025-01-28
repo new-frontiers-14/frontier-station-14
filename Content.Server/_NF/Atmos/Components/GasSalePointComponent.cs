@@ -1,9 +1,9 @@
-using Content.Server._NF.Atmos.EntitySystems;
+using Content.Shared._NF.Atmos.Systems;
 using Content.Shared.Atmos;
 
 namespace Content.Server._NF.Atmos.Components;
 
-[RegisterComponent, Access(typeof(GasDepositSystem))]
+[RegisterComponent, Access(typeof(SharedGasDepositSystem))]
 public sealed partial class GasSalePointComponent : Component
 {
     [DataField]

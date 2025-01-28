@@ -5,14 +5,10 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.Atmos.BUI;
 
-public sealed class GasSaleConsoleBoundUserInterface : BoundUserInterface
+public sealed class GasSaleConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [ViewVariables]
     private GasSaleMenu? _menu;
-
-    public GasSaleConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
 
     protected override void Open()
     {
