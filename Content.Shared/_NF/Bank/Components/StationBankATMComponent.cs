@@ -34,5 +34,6 @@ public enum SectorBankAccount : byte
 {
     Invalid, // No assigned account.
     Frontier,
-    Nfsd
+    Nfsd,
+    Medical,
 }
