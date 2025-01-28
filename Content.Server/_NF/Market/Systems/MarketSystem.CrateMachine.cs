@@ -5,7 +5,7 @@ using Content.Server.Power.Components;
 using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.Components;
 using Content.Shared._NF.Market.Events;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Content.Shared.Prototypes;

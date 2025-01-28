@@ -1,6 +1,6 @@
 using Content.Server.Cargo.Components;
 using Content.Server.Mind;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared.Species.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Zombies;

@@ -3,7 +3,7 @@ using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Shipyard.Components;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared._NF.Shipyard.Prototypes;

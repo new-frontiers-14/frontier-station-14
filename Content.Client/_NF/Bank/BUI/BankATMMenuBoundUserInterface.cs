@@ -1,6 +1,6 @@
 using Content.Client._NF.Bank.UI;
-using Content.Shared.Bank.BUI;
-using Content.Shared.Bank.Events;
+using Content.Shared._NF.Bank.BUI;
+using Content.Shared._NF.Bank.Events;
 
 namespace Content.Client.Cargo.BUI;
 

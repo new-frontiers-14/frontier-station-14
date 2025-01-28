@@ -4,7 +4,7 @@ using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using Content.Shared.Access;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components;
 
 namespace Content.Shared._NF.Shipyard.Components;
 
