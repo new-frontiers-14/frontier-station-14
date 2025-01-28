@@ -2,7 +2,7 @@
 using Content.Shared.Construction.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Power.Components;
+namespace Content.Server._NF.Power.Components;
 
 /// <summary>
 /// This is used for machines whose power draw
@@ -37,5 +37,3 @@ public sealed partial class UpgradePowerDrawComponent : Component
     [DataField("scaling", required: true), ViewVariables(VVAccess.ReadWrite)]
     public MachineUpgradeScalingType Scaling;
 }
-
-

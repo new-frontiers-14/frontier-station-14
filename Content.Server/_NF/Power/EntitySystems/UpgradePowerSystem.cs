@@ -2,7 +2,7 @@ using Content.Server.Construction;
 using Content.Server.Construction.Components;
 using Content.Server.Power.Components;
 
-namespace Content.Server.Power.EntitySystems;
+namespace Content.Server._NF.Power.EntitySystems;
 
 /// <summary>
 /// This handles using upgraded machine parts
