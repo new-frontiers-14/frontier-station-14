@@ -219,7 +219,7 @@ namespace Content.Server.Lathe
             // Frontier: handle batches
             var batch = component.Queue.First();
             batch.ItemsPrinted++;
-            if (batch.ItemsPrinted > batch.ItemsRequested || batch.ItemsPrinted < 0) // Rollover sanity check
+            if (batch.ItemsPrinted >= batch.ItemsRequested || batch.ItemsPrinted < 0) // Rollover sanity check
                 component.Queue.RemoveAt(0);
             var recipe = batch.Recipe;
             // End Frontier
