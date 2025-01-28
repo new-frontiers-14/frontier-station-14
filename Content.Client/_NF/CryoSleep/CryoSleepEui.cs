@@ -3,7 +3,7 @@ using Content.Shared._NF.CryoSleep;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
 
-namespace Content._NF.Client.CryoSleep;
+namespace Content.Client._NF.CryoSleep;
 
 [UsedImplicitly]
 public sealed class CryoSleepEui : BaseEui

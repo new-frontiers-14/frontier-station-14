@@ -2,9 +2,9 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Configuration;
-using static Content.Shared.CryoSleep.SharedCryoSleepSystem;
+using static Content.Shared._NF.CryoSleep.SharedCryoSleepSystem;
 
-namespace Content._NF.Client.CryoSleep;
+namespace Content.Client._NF.CryoSleep;
 
 public sealed class CryosleepWakeupWindow : DefaultWindow, IEntityEventSubscriber
 {
