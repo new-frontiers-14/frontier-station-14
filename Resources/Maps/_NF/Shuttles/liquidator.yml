@@ -1286,6 +1286,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,1.5
       parent: 1
+- proto: ChemicalBarrelSpaceCleaner
+  entities:
+  - uid: 97
+    components:
+    - type: Transform
+      pos: 2.5,2.5
+      parent: 1
 - proto: ClosetRadiationSuitFilled
   entities:
   - uid: 188
@@ -1336,19 +1343,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-6.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: ConveyorBelt
   entities:
   - uid: 139
@@ -1356,13 +1350,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,-2.5
-      parent: 1
-- proto: CrateSpaceCleaner
-  entities:
-  - uid: 97
-    components:
-    - type: Transform
-      pos: 2.5,2.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -2290,6 +2277,13 @@ entities:
     - type: Transform
       pos: 5.5,-1.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 287
+    components:
+    - type: Transform
+      pos: -2.5,0.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 202
@@ -2332,12 +2326,8 @@ entities:
     - type: Transform
       pos: 2.5,-5.5
       parent: 1
-    - type: FuelGenerator
-      on: False
     - type: MaterialStorageMagnetPickup
       magnetEnabled: True
-    - type: Physics
-      bodyType: Static
 - proto: PosterLegitCleanliness
   entities:
   - uid: 296
@@ -3130,7 +3120,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-4.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 228
     components:
