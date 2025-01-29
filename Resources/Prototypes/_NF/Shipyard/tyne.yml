@@ -7,17 +7,20 @@
 # Discord: Tych0
 
 # Shuttle Notes:
-#
+# Inspired by the Tyne-Class lifeboat: https://en.wikipedia.org/wiki/Tyne-class_lifeboat
 - type: vessel
   id: Tyne
+  parent: BaseVessel
   name: SBB Tyne
   description: A small, agile lifeboat with an exterior deck and survivor cabin for search and rescue operations.
-  price: 20750 #~6% markup as it's a med ship. Appraises at ~19350.
+  price: 23000 #~5% markup as it's a med ship. Appraises at ~22474.
   category: Small
-  group: Shipyard
+  group: Medical
   shuttlePath: /Maps/_NF/Shuttles/tyne.yml
   class:
   - Medical
+  engine:
+  - Plasma
 
 - type: gameMap
   id: Tyne

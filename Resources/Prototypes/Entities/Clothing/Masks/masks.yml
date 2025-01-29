@@ -319,8 +319,7 @@
     unequipDelay: 3
   - type: IngestionBlocker
   - type: AddAccentClothing
-    accent: ReplacementAccent
-    replacement: mumble
+    accent: MumbleAccent
   - type: Construction
     graph: Muzzle
     node: muzzle
@@ -379,13 +378,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.90
-        Slash: 0.90
+        Blunt: 0.95 # Frontier 0.90<0.95
+        Slash: 0.95 # Frontier 0.90<0.95
         Piercing: 0.95
         Heat: 0.95
 
 - type: entity
-  parent: ClothingMaskGasExplorer # Frontier: removed BaseRestrictedContraband
+  parent: [ ClothingMaskGas ] # Frontier: Removed BaseSecurityCargoContraband
   id: ClothingMaskGasMercenary # Frontier: Merc to Mercenary
   name: mercenary gas mask
   description: Slightly outdated, but reliable military-style gas mask.
@@ -397,8 +396,8 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.90
-        Slash: 0.90
+        Blunt: 0.95 # Frontier 0.90<0.95
+        Slash: 0.95 # Frontier 0.90<0.95
         Piercing: 0.95
         Heat: 0.95
   - type: PirateBountyItem # Frontier
