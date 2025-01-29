@@ -99,11 +99,11 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                             gridName = _salvage.GetFTLName(dataset, _random.Next());
                             break;
                         case BluespaceDatasetNameType.Nanotrasen:
-                            gridName = _nameGenerator.FormatName(_random.Pick(dataset.Values) + " {1}"); // We need the prefix.
+                            gridName = _nameGenerator.FormatName(Loc.GetString(_random.Pick(dataset.Values)) + " {1}"); // We need the prefix.
                             break;
                         case BluespaceDatasetNameType.Verbatim:
                         default:
-                            gridName = _random.Pick(dataset.Values);
+                            gridName = Loc.GetString(_random.Pick(dataset.Values));
                             break;
                     }
 
@@ -255,7 +255,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
                 foreach (var mob in playerMobs)
                 {
-                    _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
+                    _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.MapPosition));
                 }
 
                 foreach (var (account, rewardCoeff) in component.RewardAccounts)
