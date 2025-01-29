@@ -3,19 +3,12 @@ using Content.Server._NF.Roles;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Roles;
-using Content.Shared.Administration;
 using Content.Shared.Humanoid;
-using Content.Shared.Mind.Components;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.GameTicking.Rules;
 
 public sealed class NFPirateRuleSystem : GameRuleSystem<NFPirateRuleComponent>
 {
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string DefaultNFPirateRule = "NFPirate";
-
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
 
     public override void Initialize()
@@ -25,8 +18,6 @@ public sealed class NFPirateRuleSystem : GameRuleSystem<NFPirateRuleComponent>
         SubscribeLocalEvent<NFPirateRuleComponent, AfterAntagEntitySelectedEvent>(AfterAntagSelected);
 
         SubscribeLocalEvent<NFPirateRoleComponent, GetBriefingEvent>(OnGetBriefing);
-
-        SubscribeLocalEvent<NFPirateComponent, ComponentInit>(OnComponentInit);
     }
 
     // Greeting upon pirate activation
@@ -57,15 +48,5 @@ public sealed class NFPirateRuleSystem : GameRuleSystem<NFPirateRuleComponent>
             briefing += "\n \n" + Loc.GetString("pirate-role-greeting-equipment") + "\n";
 
         return briefing;
-    }
-
-    private void OnComponentInit(EntityUid uid, NFPirateComponent component, ref ComponentInit args)
-    {
-        if (!HasComp<MindContainerComponent>(uid) || !TryComp<ActorComponent>(uid, out var targetActor))
-            return;
-
-        var targetPlayer = targetActor.PlayerSession;
-
-        _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, DefaultNFPirateRule); // Frontier
     }
 }
