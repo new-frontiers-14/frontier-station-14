@@ -87,16 +87,30 @@ public sealed partial class BountyContractSystem
         return new BountyContractCreateUiState(bountyTargets.ToList(), vessels.ToList());
     }
 
-    private bool IsAllowedCreateBounties(EntityUid loaderUid, CartridgeLoaderComponent? component = null)
+    private bool IsAllowedCreateBounties(EntityUid loaderUid, CartridgeLoaderComponent? component = null, BountyContractRequest? request = null)
     {
         if (!Resolve(loaderUid, ref component) || component.ActiveProgram == null)
             return false;
 
-        return _accessReader.IsAllowed(loaderUid, component.ActiveProgram.Value);
+        if (request == null || _accessReader.IsAllowed(loaderUid, component.ActiveProgram.Value))
+            return true;
+
+        return (request.Value.Category != BountyContractCategory.Criminal);
     }
 
-    private bool IsAllowedDeleteBounties(EntityUid loaderUid, CartridgeLoaderComponent? component = null)
+    private bool IsAllowedDeleteBounties(EntityUid loaderUid, CartridgeLoaderComponent? component = null, uint? request = null)
     {
+        if (!Resolve(loaderUid, ref component) || component.ActiveProgram == null)
+            return false;
+
+        if (request == null || _accessReader.IsAllowed(loaderUid, component.ActiveProgram.Value))
+            return true;
+
+        if (!TryGetContract(request.Value, out var contract))
+            return false;
+
+        //TODO: CHECK CREATOR ETC.
+
         return IsAllowedCreateBounties(loaderUid, component);
     }
 
@@ -128,7 +142,7 @@ public sealed partial class BountyContractSystem
 
     private void OnTryCreateContract(EntityUid uid, CartridgeLoaderComponent component, BountyContractTryCreateMsg args)
     {
-        if (!IsAllowedCreateBounties(_entManager.GetEntity(args.Entity)))
+        if (!IsAllowedCreateBounties(_entManager.GetEntity(args.Entity), null, args.Contract))
             return;
 
         var c = args.Contract;
@@ -145,7 +159,7 @@ public sealed partial class BountyContractSystem
 
     private void OnRemoveContract(EntityUid uid, CartridgeLoaderComponent component, BountyContractTryRemoveUiMsg args)
     {
-        if (!IsAllowedDeleteBounties(_entManager.GetEntity(args.Entity)))
+        if (!IsAllowedDeleteBounties(_entManager.GetEntity(args.Entity), null, args.ContractId))
             return;
 
         RemoveBountyContract(args.ContractId);
