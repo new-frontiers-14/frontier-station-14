@@ -1150,12 +1150,19 @@ entities:
     - type: Transform
       pos: 2.4442196,6.7073812
       parent: 1
+- proto: BoxColoredLightbulb
+  entities:
+  - uid: 425
+    components:
+    - type: Transform
+      pos: -5.2183113,2.8168216
+      parent: 1
 - proto: BoxTrashbag
   entities:
   - uid: 520
     components:
     - type: Transform
-      pos: -5.1977873,2.4574437
+      pos: -5.207895,2.295988
       parent: 1
 - proto: Bucket
   entities:
@@ -1766,7 +1773,7 @@ entities:
   - uid: 359
     components:
     - type: Transform
-      pos: -3.4765725,6.8129745
+      pos: -5.7495613,2.7126548
       parent: 1
 - proto: ClothingOuterWinterChef
   entities:
@@ -1796,6 +1803,20 @@ entities:
     - type: Transform
       pos: 4.5,1.5
       parent: 1
+- proto: CondimentCupDispenser10
+  entities:
+  - uid: 468
+    components:
+    - type: Transform
+      pos: -1.9035354,1.4283969
+      parent: 1
+- proto: CondimentDispenser
+  entities:
+  - uid: 465
+    components:
+    - type: Transform
+      pos: -2.5,1.5
+      parent: 1
 - proto: CrateFreezer
   entities:
   - uid: 298
@@ -1813,10 +1834,10 @@ entities:
       parent: 1
 - proto: DeskBell
   entities:
-  - uid: 585
+  - uid: 50
     components:
     - type: Transform
-      pos: -1.7157099,1.7737031
+      pos: 2.7585018,1.4345448
       parent: 1
 - proto: DrinkGlass
   entities:
@@ -3285,6 +3306,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,8.5
       parent: 1
+- proto: Icebox
+  entities:
+  - uid: 461
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,3.5
+      parent: 1
 - proto: JukeboxWallmountShip
   entities:
   - uid: 30
@@ -3403,6 +3432,13 @@ entities:
     components:
     - type: Transform
       pos: 2.71875,1.6569037
+      parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 538
+    components:
+    - type: Transform
+      pos: -0.5,8.5
       parent: 1
 - proto: NFPosterContrabandFsbLogo
   entities:
@@ -3614,6 +3650,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,3.5
       parent: 1
+- proto: PoweredlightBlack
+  entities:
+  - uid: 522
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,2.5
+      parent: 1
+    - type: PoweredLight
+      on: False
+  - uid: 530
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,2.5
+      parent: 1
+    - type: PoweredLight
+      on: False
 - proto: PoweredlightGreen
   entities:
   - uid: 329
@@ -3630,66 +3684,32 @@ entities:
       rot: 3.141592653589793 rad
       pos: -6.5,6.5
       parent: 1
-- proto: PoweredStrobeLightEmpty
+- proto: PoweredStrobeCyan
   entities:
-  - uid: 50
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,2.5
-      parent: 1
-    - type: ApcPowerReceiver
-      powerLoad: 0
-    - type: DamageOnInteract
-      isDamageActive: False
-  - uid: 263
+  - uid: 266
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,-3.5
       parent: 1
-    - type: ApcPowerReceiver
-      powerLoad: 0
-    - type: DamageOnInteract
-      isDamageActive: False
-  - uid: 266
-    components:
-    - type: Transform
-      pos: -3.5,0.5
-      parent: 1
-    - type: ApcPowerReceiver
-      powerLoad: 0
-    - type: DamageOnInteract
-      isDamageActive: False
   - uid: 300
-    components:
-    - type: Transform
-      pos: 4.5,0.5
-      parent: 1
-    - type: ApcPowerReceiver
-      powerLoad: 0
-    - type: DamageOnInteract
-      isDamageActive: False
-  - uid: 425
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-3.5
       parent: 1
-    - type: ApcPowerReceiver
-      powerLoad: 0
-    - type: DamageOnInteract
-      isDamageActive: False
-  - uid: 436
+- proto: PoweredStrobePink
+  entities:
+  - uid: 263
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,2.5
+      pos: 4.5,0.5
       parent: 1
-    - type: ApcPowerReceiver
-      powerLoad: 0
-    - type: DamageOnInteract
-      isDamageActive: False
+  - uid: 328
+    components:
+    - type: Transform
+      pos: -3.5,0.5
+      parent: 1
 - proto: RagItem
   entities:
   - uid: 438
@@ -4157,27 +4177,31 @@ entities:
         - Pressed: Toggle
         81:
         - Pressed: Toggle
-        266:
+        328:
         - Pressed: Toggle
-        315:
+        263:
         - Pressed: Toggle
-        50:
+        260:
         - Pressed: Toggle
-        436:
-        - Pressed: Toggle
-        430:
-        - Pressed: Toggle
-        300:
+        259:
         - Pressed: Toggle
         262:
         - Pressed: Toggle
         318:
         - Pressed: Toggle
-        425:
+        266:
         - Pressed: Toggle
         480:
         - Pressed: Toggle
-        263:
+        300:
+        - Pressed: Toggle
+        522:
+        - Pressed: Toggle
+        530:
+        - Pressed: Toggle
+        315:
+        - Pressed: Toggle
+        430:
         - Pressed: Toggle
   - uid: 639
     components:
@@ -4249,7 +4273,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,7.5
       parent: 1
-  - uid: 328
+  - uid: 436
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -4547,7 +4571,7 @@ entities:
   - uid: 317
     components:
     - type: Transform
-      pos: -5.3540373,2.6345272
+      pos: -5.7287283,2.2855716
       parent: 1
 - proto: VendingMachineSeeds
   entities:
