@@ -3548,13 +3548,6 @@ entities:
     - type: Transform
       pos: 1.4998418,4.4436564
       parent: 70
-- proto: HolopadLongRange
-  entities:
-  - uid: 594
-    components:
-    - type: Transform
-      pos: -0.5,-13.5
-      parent: 70
 - proto: LockerBoozeFilled
   entities:
   - uid: 129
@@ -3634,27 +3627,11 @@ entities:
       parent: 70
 - proto: NFHolopadShip
   entities:
-  - uid: 126
+  - uid: 594
     components:
     - type: Transform
-      pos: 1.5,-11.5
+      pos: -0.5,-13.5
       parent: 70
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 0.33275002
-            position: 0,0
-          mask:
-          - Impassable
-          - LowImpassable
-          layer:
-          - LowImpassable
-          density: 1
-          hard: False
-          restitution: 0
-          friction: 0.4
-    - type: ScaleVisuals
 - proto: NitrogenCanister
   entities:
   - uid: 46
@@ -4455,6 +4432,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-11.5
+      parent: 70
+  - uid: 541
+    components:
+    - type: Transform
+      pos: 1.5,-11.5
       parent: 70
   - uid: 542
     components:
