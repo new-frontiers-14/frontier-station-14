@@ -361,37 +361,37 @@ entities:
             0: 59647
           0,-1:
             0: 61440
-            2: 128
+            1: 128
           -1,0:
             0: 51375
-            2: 4096
+            1: 4096
           0,1:
             0: 61182
           -1,1:
             0: 52428
-            2: 1
+            1: 1
           0,2:
             0: 10100
-            1: 32768
+            2: 32768
           0,3:
-            1: 5
+            2: 5
           -1,2:
-            1: 32768
-            2: 98
+            2: 32768
+            1: 98
           1,0:
             0: 4135
-            2: 16384
+            1: 16384
           1,1:
             0: 4369
-            2: 4
+            1: 4
           1,2:
-            2: 50
+            1: 50
           1,-1:
             0: 28672
-            2: 112
+            1: 112
           -1,-1:
             0: 61440
-            2: 240
+            1: 240
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -409,7 +409,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -424,7 +424,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          immutable: True
+          temperature: 293.15
           moles:
           - 0
           - 0
@@ -1938,6 +1938,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,2.5
+      parent: 2
+- proto: NFHolopadShip
+  entities:
+  - uid: 365
+    components:
+    - type: Transform
+      pos: 3.5,4.5
       parent: 2
 - proto: NFSignDock
   entities:
