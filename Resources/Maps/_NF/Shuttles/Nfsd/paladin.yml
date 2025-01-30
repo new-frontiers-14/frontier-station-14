@@ -341,6 +341,50 @@ entities:
     - type: Transform
       pos: -1.5,-4.5
       parent: 1
+- proto: BlastDoorOpen
+  entities:
+  - uid: 203
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,1.5
+      parent: 1
+  - uid: 204
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,0.5
+      parent: 1
+  - uid: 205
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,1.5
+      parent: 1
+  - uid: 206
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,1.5
+      parent: 1
+  - uid: 207
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,0.5
+      parent: 1
+  - uid: 208
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-4.5
+      parent: 1
+  - uid: 209
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-4.5
+      parent: 1
 - proto: ButtonFrameCaution
   entities:
   - uid: 37
@@ -362,6 +406,14 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,3.5
+      parent: 1
+- proto: ButtonFrameGrey
+  entities:
+  - uid: 89
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-0.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -693,18 +745,16 @@ entities:
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 89
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-0.5
-      parent: 1
-- proto: ExtinguisherCabinetFilled
-  entities:
   - uid: 202
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      pos: 0.5,1.5
+      parent: 1
+- proto: ExtinguisherCabinetFilled
+  entities:
+  - uid: 26
+    components:
+    - type: Transform
       pos: -1.5,1.5
       parent: 1
 - proto: FaxMachineShip
@@ -1059,11 +1109,11 @@ entities:
       parent: 1
 - proto: LockerWallEVAColorNfsdFilled
   entities:
-  - uid: 26
+  - uid: 210
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,1.5
+      rot: 1.5707963267948966 rad
+      pos: -1.5,3.5
       parent: 1
 - proto: MagazineGrenadeEMP
   entities:
@@ -1229,6 +1279,30 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,4.5
       parent: 1
+- proto: SignalButton
+  entities:
+  - uid: 211
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-0.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        203:
+        - Pressed: Toggle
+        209:
+        - Pressed: Toggle
+        208:
+        - Pressed: Toggle
+        206:
+        - Pressed: Toggle
+        207:
+        - Pressed: Toggle
+        205:
+        - Pressed: Toggle
+        204:
+        - Pressed: Toggle
 - proto: SmallGyroscopeNfsd
   entities:
   - uid: 108
