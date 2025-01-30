@@ -1,0 +1,14 @@
+- type: constructionGraph
+  id: CraftShoesClothwarp
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftShoesClothwarp
+      steps:
+      - material: Cloth
+        amount: 1
+        doAfter: 4
+
+  - node: CraftShoesClothwarp
+    entity: ClothingShoesClothwarp
