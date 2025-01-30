@@ -1,0 +1,34 @@
+# Shuttle info! :3
+- type: vessel
+  id: Orca
+  parent: BaseVessel
+  name: SV Orca
+  description: An obselete military troop transport ship that has been retrofitted for salvage and mining operations.
+  price: 27000 #Ship is about 25500, upped to 27000 for markup and cost
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/orca.yml
+  class:
+  - Salvage
+  engine:
+  - Uranium
+  
+- type: gameMap
+  id: Orca
+  mapName: 'SV Orca'
+  mapPath: /Maps/_NF/Shuttles/Orca.yml
+  minPlayers: 0
+  stations:
+    Orca:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Orca {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
