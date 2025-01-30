@@ -4,7 +4,7 @@ namespace Content.Shared._NF.Market.Components;
 
 [RegisterComponent]
 [NetworkedComponent]
-public sealed partial class MarketItemSpawnerComponent: Component
+public sealed partial class MarketItemSpawnerComponent : Component
 {
 
     [NonSerialized]

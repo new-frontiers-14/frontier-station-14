@@ -9,7 +9,7 @@ namespace Content.Server._NF.CrateMachine;
 /// Handles starting the opening animation.
 /// Updates the time remaining on the component.
 /// </summary>
-public sealed partial class CrateMachineSystem: SharedCrateMachineSystem
+public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
 {
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
 
