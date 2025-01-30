@@ -29,11 +29,11 @@ entities:
     components:
     - type: MetaData
       name: Empress
-    - type: BecomesStation
-      id: Empress
     - type: Transform
       pos: -0.46484375,0.90625
       parent: invalid
+    - type: BecomesStation
+      id: Empress
     - type: MapGrid
       chunks:
         0,0:
@@ -1061,7 +1061,7 @@ entities:
             1: 14
           4,1:
             0: 16
-            5: 61152
+            2: 61152
           -4,0:
             0: 65471
           -4,-1:
@@ -1103,18 +1103,18 @@ entities:
             0: 61164
           -8,1:
             1: 32800
-            2: 136
+            3: 136
           -7,0:
             0: 36863
           -8,2:
             1: 8
           -7,1:
             1: 61440
-            3: 34
+            4: 34
             0: 136
           -7,2:
             1: 1
-            4: 14
+            5: 14
           -7,-1:
             0: 61917
           -6,0:
@@ -1123,7 +1123,7 @@ entities:
             0: 3392
             1: 4096
           -6,2:
-            4: 1
+            5: 1
             0: 8
           -6,-1:
             0: 64185
@@ -1135,24 +1135,24 @@ entities:
           4,0:
             0: 61152
           4,2:
-            5: 14
+            2: 14
           5,0:
             0: 48056
           5,1:
             0: 1161
-            5: 4352
+            2: 4352
             1: 49152
           5,-1:
             0: 65263
           5,2:
-            4: 12
+            5: 12
           6,0:
             0: 59278
           6,1:
             1: 61440
             0: 238
           6,2:
-            4: 3
+            5: 3
             1: 12
           6,-1:
             0: 61679
@@ -1185,51 +1185,51 @@ entities:
             0: 56560
           -7,-3:
             1: 8955
-            4: 4356
+            5: 4356
             0: 16384
           -7,-4:
             1: 35840
-            4: 16384
+            5: 16384
           -6,-4:
             1: 256
-            4: 61440
+            5: 61440
           -6,-3:
             1: 15
-            4: 16
+            5: 16
             0: 56320
           -6,-2:
             0: 56797
           -5,-4:
-            4: 4096
+            5: 4096
             1: 24576
           -5,-3:
             1: 8739
-            4: 17476
+            5: 17476
           -5,-2:
             0: 13104
           4,-4:
             1: 12288
-            4: 49152
+            5: 49152
           4,-3:
-            4: 4369
+            5: 4369
             1: 8750
             0: 34816
           4,-2:
             0: 3808
           5,-4:
-            4: 28672
+            5: 28672
             1: 35840
           5,-3:
             1: 143
             0: 28928
-            4: 64
+            5: 64
           5,-2:
             0: 28276
           6,-4:
             1: 256
-            4: 4096
+            5: 4096
           6,-3:
-            4: 17409
+            5: 17409
             1: 8822
             0: 4096
           6,-2:
@@ -1268,55 +1268,55 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 2500
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 2500
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
           temperature: 235
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 2500
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 2500
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -1384,6 +1384,13 @@ entities:
     components:
     - type: Transform
       pos: 21.5,-8.5
+      parent: 1
+- proto: AirlockChemistryGlassLocked
+  entities:
+  - uid: 644
+    components:
+    - type: Transform
+      pos: -2.5,5.5
       parent: 1
 - proto: AirlockEngineeringGlass
   entities:
@@ -1494,11 +1501,6 @@ entities:
       parent: 1
 - proto: AirlockMedicalGlassLockedSecurity
   entities:
-  - uid: 644
-    components:
-    - type: Transform
-      pos: -2.5,5.5
-      parent: 1
   - uid: 678
     components:
     - type: Transform
@@ -12594,7 +12596,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,8.5
       parent: 1
-- proto: PoweredlightColoredFrostyBlue
+- proto: PoweredlightCyan
   entities:
   - uid: 2109
     components:
