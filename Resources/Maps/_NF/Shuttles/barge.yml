@@ -3632,6 +3632,29 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-18.5
       parent: 70
+- proto: NFHolopadShip
+  entities:
+  - uid: 126
+    components:
+    - type: Transform
+      pos: 1.5,-11.5
+      parent: 70
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.33275002
+            position: 0,0
+          mask:
+          - Impassable
+          - LowImpassable
+          layer:
+          - LowImpassable
+          density: 1
+          hard: False
+          restitution: 0
+          friction: 0.4
+    - type: ScaleVisuals
 - proto: NitrogenCanister
   entities:
   - uid: 46
@@ -4432,11 +4455,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-11.5
-      parent: 70
-  - uid: 541
-    components:
-    - type: Transform
-      pos: 1.5,-11.5
       parent: 70
   - uid: 542
     components:
