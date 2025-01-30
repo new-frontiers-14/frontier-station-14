@@ -5,7 +5,6 @@
   parent: NFBaseDebris
   abstract: true
   components:
-    - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorTileset:
       - FloorAsteroidSand
@@ -24,7 +23,6 @@
             orGroup: rock
             prob: 0.0002
     - type: IFF
-      flags: HideLabel
       color: "#d67e27"
     - type: RandomEntityPopulator
       entries: &gasDeposits
@@ -59,7 +57,7 @@
 # region Snow Table
 - type: entity
   id: NFBaseAsteroidIceDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -87,7 +85,7 @@
 # region Andesite Table
 - type: entity
   id: NFBaseAsteroidAndesiteDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -115,7 +113,7 @@
 # region Basalt Table
 - type: entity
   id: NFBaseAsteroidBasaltDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -143,7 +141,7 @@
 # region Sand Table
 - type: entity
   id: NFBaseAsteroidSandDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -171,7 +169,7 @@
 # region Chromite Table
 - type: entity
   id: NFBaseAsteroidChromiteDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -199,7 +197,7 @@
 # region AsteroidRock Table
 - type: entity
   id: NFBaseAsteroidRockDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -227,7 +225,7 @@
 # region Scrap Table
 - type: entity
   id: NFBaseAsteroidScrapDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder

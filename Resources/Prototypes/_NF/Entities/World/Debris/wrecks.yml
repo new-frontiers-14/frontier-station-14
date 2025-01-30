@@ -3,7 +3,6 @@
   parent: NFBaseDebris
   abstract: true
   components:
-  - type: MapGrid
   - type: BlobFloorPlanBuilder
     floorTileset:
       - Plating
@@ -96,12 +95,11 @@
         - id: GrilleBroken
           prob: 0.25
   - type: IFF
-    flags: HideLabel
     color: "#88b0d1"
 
 - type: entity
   id: NFBaseScrapDebrisBrass
-  parent: NFBaseScrapDebris
+  parent: NFBaseDebris
   abstract: true
   components:
   - type: BlobFloorPlanBuilder
