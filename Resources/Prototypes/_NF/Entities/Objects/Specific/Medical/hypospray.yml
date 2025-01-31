@@ -221,3 +221,65 @@
           Quantity: 5
   - type: Tag
     tags: []
+
+- type: entity
+  name: polypyryliumoligomers auto-injector
+  parent: ChemicalMedipen
+  id: PolyAutoInjector
+  description: A rapid dose of Polyp... Polypyryl... Polypyryliu.... It contains extract of Space Trumpet. Intended to address brute damage and asphixiation.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: polypen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: polypen_empty
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+    onlyAffectsMobs: false
+    injectOnly: true
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: PolypyryliumOligomers
+          Quantity: 15
+  - type: Tag
+    tags: []
+
+- type: entity
+  name: barkeeper's friend auto-injector
+  parent: ChemicalMedipen
+  id: EthylredoxrazineAutoInjector
+  description: A rapid dose of ethynol neutralizers and anti-toxins for customers who have maybe had enough for the night. Contains Ethylredoxrazine and Dylovene.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: barkeepersfriend
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: barkeepersfriend_empty
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+    onlyAffectsMobs: false
+    injectOnly: true
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Ethylredoxrazine
+          Quantity: 15
+        - ReagentId: Dylovene
+          Quantity: 5
+  - type: Tag
+    tags: []
