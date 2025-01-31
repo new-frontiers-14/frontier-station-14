@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Managers;
+using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
@@ -28,6 +29,7 @@ namespace Content.Server.GameTicking
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
+        [Dependency] private readonly AdminSystem _admin = default!;
         [Dependency] private readonly RespawnSystem _respawn = default!; // Frontier
 
         [ValidatePrototypeId<EntityPrototype>]
@@ -224,8 +226,6 @@ namespace Content.Server.GameTicking
             _mind.SetUserId(newMind, data.UserId);
 
             var jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
-            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype:jobId);
-            var jobName = _jobs.MindTryGetJobName(newMind);
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
@@ -242,6 +242,10 @@ namespace Content.Server.GameTicking
             var mob = mobMaybe!.Value;
 
             _mind.TransferTo(newMind, mob);
+
+            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype:jobId);
+            var jobName = _jobs.MindTryGetJobName(newMind);
+            _admin.UpdatePlayerList(player);
 
             if (lateJoin && !silent)
             {
