@@ -194,6 +194,7 @@ namespace Content.Server.Lathe
                 var adjustedAmount = recipe.ApplyMaterialDiscount
                     ? (int) (-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
                     : -amount;
+                adjustedAmount *= quantity; // Frontier
 
                 _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
             }
