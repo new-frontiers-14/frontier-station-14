@@ -74,6 +74,7 @@ public sealed partial class CargoSystem : SharedCargoSystem
         InitializeBounty();
         // Frontier: add specific initialization calls here.
         InitializePirateBounty();
+        InitializeShipmentPrice();
         // End Frontier
     }
 
