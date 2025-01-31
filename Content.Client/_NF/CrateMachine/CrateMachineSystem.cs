@@ -1,14 +1,13 @@
-﻿using Content.Shared._NF.Market;
+﻿using Content.Shared._NF.CrateMachine;
+using Content.Shared._NF.CrateMachine.Components;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Audio.Systems;
-using static Content.Shared._NF.Market.Components.CrateMachineComponent;
-using CrateMachineComponent = Content.Shared._NF.Market.Components.CrateMachineComponent;
 
-namespace Content.Client._NF.Market.Systems;
+namespace Content.Client._NF.CrateMachine;
 
-public sealed class MarketSystem : SharedMarketSystem
+public sealed class CrateMachineSystem : SharedCrateMachineSystem
 {
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly AnimationPlayerSystem _animationSystem = default!;
