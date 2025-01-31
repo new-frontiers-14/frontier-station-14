@@ -20,6 +20,8 @@ entities:
     components:
     - type: MetaData
       name: Sprinter
+    - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -1660,8 +1662,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,0.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaRight
   entities:
   - uid: 359
@@ -1670,8 +1670,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,0.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoor
   entities:
   - uid: 64
@@ -4056,6 +4054,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-8.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 604
+    components:
+    - type: Transform
+      pos: -1.5,9.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 113
@@ -5669,7 +5674,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-2.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 923
     components:
