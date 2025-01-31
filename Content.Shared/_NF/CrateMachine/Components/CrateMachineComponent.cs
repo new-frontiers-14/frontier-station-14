@@ -1,23 +1,18 @@
 ﻿using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 
-namespace Content.Shared._NF.Market.Components;
+namespace Content.Shared._NF.CrateMachine.Components;
 
 [RegisterComponent]
 [NetworkedComponent]
-[Access(typeof(SharedMarketSystem))]
+[Access(typeof(SharedCrateMachineSystem))]
 public sealed partial class CrateMachineComponent: Component
 {
-
-    [NonSerialized]
-    public List<MarketData> ItemsToSpawn;
-
+    /// <summary>
+    /// Used by the animation code to determine whether the next action is opening or closing
+    /// </summary>
     [NonSerialized]
     public bool DidTakeCrate = true;
-
-    [ViewVariables, DataField]
-    public bool Powered;
 
     /// <summary>
     /// Sounds played when the door is opening and crate coming out.
@@ -89,21 +84,6 @@ public sealed partial class CrateMachineComponent: Component
     /// </summary>
     [DataField]
     public string ClosedSpriteState = "opening";
-
-    [Serializable, NetSerializable]
-    public enum CrateMachineVisuals : byte
-    {
-        VisualState
-    }
-
-    [Serializable, NetSerializable]
-    public enum CrateMachineVisualState : byte
-    {
-        Open,
-        Closed,
-        Opening,
-        Closing
-    }
 
     #endregion
 }
