@@ -3,7 +3,7 @@
   id: Scream
   name: chat-emote-name-scream
   category: Vocal
-  icon: Interface/Emotes/scream.png
+  icon: Interface/Actions/scream.png
   whitelist:
     components:
     - Vocal
@@ -228,6 +228,8 @@
     - claps
     - clapping
     - clapped
+    - saluted # Frontier
+    - saluting # Frontier
 
 - type: emote
   id: Snap
@@ -316,8 +318,8 @@
     components:
     - MobState
   chatMessages: ["chat-emote-msg-deathgasp"]
-  chatTriggers:
-  - deathgasp
+  # chatTriggers: # DeltaV - Remove from the emote wheel
+  # - deathgasp
 
 - type: emote
   id: MonkeyDeathgasp
@@ -341,6 +343,7 @@
     - buzz
     - buzzed
     - buzzes
+    - buzzedtwice # Frontier
 
 - type: emote
   id: Weh
@@ -433,7 +436,6 @@
     - buzzes twice
     - buzzing twice
     - buzzed twice
-    - buzzedtwice # Frontier
 
 - type: emote
   id: Ping
