@@ -14,6 +14,7 @@
     bodyType: Static
     canCollide: False
   - type: Fixtures
+  - type: GasDeposit
   - type: RandomGasDeposit
   - type: Sprite
     drawdepth: FloorTiles
@@ -128,13 +129,13 @@
   suffix: DEBUG
   components:
   - type: Pinpointer
-    component: RandomGasDeposit
-    targetName: RandomGasDeposit
+    component: GasDeposit
+    targetName: GasDeposit
 
 - type: entity
-  id: DepositLocatorUnpowered
+  id: GasDepositLocatorUnpowered
   parent: BaseItem
-  name: deposit locator
+  name: gas deposit locator
   description: A scanner that checks the nearby area for gas deposits.
   suffix: Unpowered
   components:
@@ -159,7 +160,7 @@
     range: 20
     criteria:
       components:
-      - RandomGasDeposit
+      - GasDeposit
   - type: Beeper
     isMuted: true
     minBeepInterval: 0.15
@@ -171,8 +172,8 @@
         volume: -8
 
 - type: entity
-  id: DepositLocator
-  parent: [ DepositLocatorUnpowered, PowerCellSlotSmallItem ]
+  id: GasDepositLocator
+  parent: [ GasDepositLocatorUnpowered, PowerCellSlotSmallItem ]
   suffix: Powered
   components:
   - type: PowerCellDraw
@@ -181,8 +182,8 @@
   - type: ToggleCellDraw
 
 - type: entity
-  id: DepositLocatorEmpty
-  parent: DepositLocator
+  id: GasDepositLocatorEmpty
+  parent: GasDepositLocator
   suffix: Empty
   components:
   - type: ItemSlots

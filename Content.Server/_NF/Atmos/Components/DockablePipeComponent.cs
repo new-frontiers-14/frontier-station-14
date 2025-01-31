@@ -1,6 +1,8 @@
+using Content.Server._NF.Atmos.Systems;
+
 namespace Content.Server._NF.Atmos.Components;
 
-[RegisterComponent]
+[RegisterComponent, Access(typeof(DockablePipeSystem))]
 public sealed partial class DockablePipeComponent : Component
 {
     /// <summary>

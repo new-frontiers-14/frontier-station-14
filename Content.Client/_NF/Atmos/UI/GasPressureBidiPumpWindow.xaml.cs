@@ -12,7 +12,7 @@ namespace Content.Client._NF.Atmos.UI;
 public sealed partial class GasPressureBidiPumpWindow : FancyWindow
 {
     public bool PumpStatus = true;
-    public bool PumpInwards = false;
+    public bool PumpInwards;
 
     public event Action? ToggleStatusButtonPressed;
     public event Action? ToggleDirectionButtonPressed;
@@ -64,26 +64,16 @@ public sealed partial class GasPressureBidiPumpWindow : FancyWindow
     public void SetPumpStatus(bool enabled)
     {
         PumpStatus = enabled;
-        if (enabled)
-        {
-            ToggleStatusButton.Text = Loc.GetString("comp-gas-pump-ui-status-enabled");
-        }
-        else
-        {
-            ToggleStatusButton.Text = Loc.GetString("comp-gas-pump-ui-status-disabled");
-        }
+        ToggleStatusButton.Text = Loc.GetString(enabled
+            ? "comp-gas-pump-ui-status-enabled"
+            : "comp-gas-pump-ui-status-disabled");
     }
 
     public void SetPumpDirection(bool inwards)
     {
         PumpInwards = inwards;
-        if (inwards)
-        {
-            ToggleDirectionButton.Text = Loc.GetString("comp-gas-pump-ui-direction-in");
-        }
-        else
-        {
-            ToggleDirectionButton.Text = Loc.GetString("comp-gas-pump-ui-direction-out");
-        }
+        ToggleDirectionButton.Text = Loc.GetString(inwards
+            ? "comp-gas-pump-ui-direction-in"
+            : "comp-gas-pump-ui-direction-out");
     }
 }
