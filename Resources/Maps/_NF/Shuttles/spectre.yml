@@ -781,7 +781,7 @@ entities:
       pos: 6.5,7.5
       parent: 3
     - type: Door
-      secondsUntilStateChange: -4163.5547
+      secondsUntilStateChange: -4439.459
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -3177,6 +3177,11 @@ entities:
         - 0
         - 0
         - 0
+  - uid: 1268
+    components:
+    - type: Transform
+      pos: -1.5,7.5
+      parent: 3
 - proto: ComfyChair
   entities:
   - uid: 1054
@@ -3291,6 +3296,18 @@ entities:
     components:
     - type: Transform
       pos: 7.5,4.5
+      parent: 3
+- proto: CrateEmptySpawner
+  entities:
+  - uid: 1265
+    components:
+    - type: Transform
+      pos: -6.5,3.5
+      parent: 3
+  - uid: 1266
+    components:
+    - type: Transform
+      pos: -0.5,-8.5
       parent: 3
 - proto: CurtainsPurpleOpen
   entities:
@@ -5705,10 +5722,25 @@ entities:
       parent: 3
 - proto: PottedPlantRandom
   entities:
+  - uid: 460
+    components:
+    - type: Transform
+      pos: 10.5,0.5
+      parent: 3
+  - uid: 472
+    components:
+    - type: Transform
+      pos: -9.5,0.5
+      parent: 3
   - uid: 1152
     components:
     - type: Transform
       pos: -1.5,15.5
+      parent: 3
+  - uid: 1267
+    components:
+    - type: Transform
+      pos: 2.5,7.5
       parent: 3
 - proto: PowerCellRecharger
   entities:
@@ -6393,6 +6425,23 @@ entities:
     - type: Transform
       pos: 3.5,-3.5
       parent: 3
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 344
+    components:
+    - type: Transform
+      pos: 2.5,16.5
+      parent: 3
+  - uid: 356
+    components:
+    - type: Transform
+      pos: 2.5,17.5
+      parent: 3
+  - uid: 447
+    components:
+    - type: Transform
+      pos: 2.5,18.5
+      parent: 3
 - proto: StorageCanister
   entities:
   - uid: 1067
@@ -6580,6 +6629,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -10.5,-2.5
+      parent: 3
+  - uid: 1264
+    components:
+    - type: Transform
+      pos: -4.5,0.5
       parent: 3
 - proto: TelecomServerFilledShuttle
   entities:
