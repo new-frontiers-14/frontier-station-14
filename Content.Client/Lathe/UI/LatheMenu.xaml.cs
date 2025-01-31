@@ -230,7 +230,10 @@ public sealed partial class LatheMenu : DefaultWindow
             queuedRecipeBox.AddChild(GetRecipeDisplayControl(batch.Recipe));
 
             var queuedRecipeLabel = new Label();
-            queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})"; // 
+            if (batch.ItemsRequested > 1)
+                queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
+            else
+                queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
             // End Frontier
             queuedRecipeBox.AddChild(queuedRecipeLabel);
             QueueList.AddChild(queuedRecipeBox);

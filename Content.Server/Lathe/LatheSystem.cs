@@ -186,7 +186,7 @@ namespace Content.Server.Lathe
                 return false;
             // Frontier: argument check
 
-            if (!CanProduce(uid, recipe, quantity, component))
+            if (!CanProduce(uid, recipe, quantity, component)) // Frontier: 1<quantity
                 return false;
 
             foreach (var (mat, amount) in recipe.Materials)
@@ -305,7 +305,7 @@ namespace Content.Server.Lathe
             if (!Resolve(uid, ref component))
                 return;
 
-            var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault()?.Recipe; // Frontier
+            var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault()?.Recipe; // Frontier: add ?.Recipe
 
             var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing);
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
@@ -420,6 +420,7 @@ namespace Content.Server.Lathe
                         LogImpact.Low,
                         $"{ToPrettyString(args.Actor):player} queued {args.Quantity} {GetRecipeName(recipe)} at {ToPrettyString(uid):lathe}");
                 }
+                // End Frontier
             }
             TryStartProducing(uid, component);
             UpdateUserInterfaceState(uid, component);
