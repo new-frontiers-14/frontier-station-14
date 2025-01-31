@@ -130,7 +130,7 @@ namespace Content.Client.HealthAnalyzer.UI
             if (msg.Uncloneable == true)
                 AlertsContainer.AddChild(new RichTextLabel
                 {
-                    Text = Loc.GetString("health-analyzer-window-entity-unclonable-text"),
+                    Text = Loc.GetString("health-analyzer-window-entity-uncloneable-text"),
                     Margin = new Thickness(0, 4),
                     MaxWidth = 300
                 });
