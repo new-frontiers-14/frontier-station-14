@@ -31,12 +31,6 @@
         - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
           state: smes-open
     - type: Smes
-    - type: UpgradeBattery
-      maxChargeMultiplier: 2
-      baseMaxCharge: 8000000
-    - type: UpgradePowerSupplyRamping
-      scaling: Linear
-      supplyRampingMultiplier: 1     
     - type: Appearance
     - type: Battery
       startingCharge: 0
@@ -97,6 +91,14 @@
       sendBroadcastAttemptEvent: true
       examinableAddress: true
     - type: WiredNetworkConnection
+    # Frontier: upgradable SMES
+    - type: UpgradeBattery
+      maxChargeMultiplier: 2
+      baseMaxCharge: 8000000
+    - type: UpgradePowerSupplyRamping
+      scaling: Linear
+      supplyRampingMultiplier: 1
+    # End Frontier: upgradable SMES
 
 # SMES' in use
 
@@ -153,6 +155,10 @@
     collectionName: smes
     sprite: Structures/Power/smes.rsi
     state: advancedsmes-static
+  # Frontier: upgradable SMES
+  - type: UpgradeBattery
+    baseMaxCharge: 16000000
+  # End Frontier: upgradable SMES
 
 - type: entity
   parent: SMESAdvanced

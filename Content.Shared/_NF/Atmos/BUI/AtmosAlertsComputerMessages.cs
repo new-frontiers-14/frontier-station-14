@@ -3,40 +3,24 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._NF.Atmos.BUI;
 
 [Serializable, NetSerializable]
-public sealed class RemoteGasPressurePumpChangePumpDirectionMessage : BoundUserInterfaceMessage
+public sealed class RemoteGasPressurePumpChangePumpDirectionMessage(NetEntity pump, bool inwards)
+    : BoundUserInterfaceMessage
 {
-    public NetEntity Pump { get; }
-    public bool Inwards { get; }
-
-    public RemoteGasPressurePumpChangePumpDirectionMessage(NetEntity pump, bool inwards)
-    {
-        Pump = pump;
-        Inwards = inwards;
-    }
+    public NetEntity Pump { get; } = pump;
+    public bool Inwards { get; } = inwards;
 }
 
 [Serializable, NetSerializable]
-public sealed class RemoteGasPressurePumpChangeOutputPressureMessage : BoundUserInterfaceMessage
+public sealed class RemoteGasPressurePumpChangeOutputPressureMessage(NetEntity pump, float pressure)
+    : BoundUserInterfaceMessage
 {
-    public NetEntity Pump { get; }
-    public float Pressure { get; }
-
-    public RemoteGasPressurePumpChangeOutputPressureMessage(NetEntity pump, float pressure)
-    {
-        Pump = pump;
-        Pressure = pressure;
-    }
+    public NetEntity Pump { get; } = pump;
+    public float Pressure { get; } = pressure;
 }
 
 [Serializable, NetSerializable]
-public sealed class RemoteGasPressurePumpToggleStatusMessage : BoundUserInterfaceMessage
+public sealed class RemoteGasPressurePumpToggleStatusMessage(NetEntity pump, bool enabled) : BoundUserInterfaceMessage
 {
-    public NetEntity Pump { get; }
-    public bool Enabled { get; }
-
-    public RemoteGasPressurePumpToggleStatusMessage(NetEntity pump, bool enabled)
-    {
-        Pump = pump;
-        Enabled = enabled;
-    }
+    public NetEntity Pump { get; } = pump;
+    public bool Enabled { get; } = enabled;
 }

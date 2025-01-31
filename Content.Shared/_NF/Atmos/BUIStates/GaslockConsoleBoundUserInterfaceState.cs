@@ -4,25 +4,15 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._NF.Atmos.BUIStates;
 
 [Serializable, NetSerializable]
-public sealed class GaslockConsoleBoundUserInterfaceState : BoundUserInterfaceState
+public sealed class GaslockConsoleBoundUserInterfaceState(NetCoordinates coords, GaslockState state)
+    : BoundUserInterfaceState
 {
-    public NetCoordinates Coords;
-    public GaslockState State;
-
-    public GaslockConsoleBoundUserInterfaceState(NetCoordinates coords, GaslockState state)
-    {
-        Coords = coords;
-        State = state;
-    }
+    public NetCoordinates Coords = coords;
+    public GaslockState State = state;
 }
 
 [Serializable, NetSerializable]
-public sealed class GaslockState
+public sealed class GaslockState(Dictionary<NetEntity, List<GaslockPortState>> docks)
 {
-    public Dictionary<NetEntity, List<GaslockPortState>> Docks;
-
-    public GaslockState(Dictionary<NetEntity, List<GaslockPortState>> docks)
-    {
-        Docks = docks;
-    }
+    public Dictionary<NetEntity, List<GaslockPortState>> Docks = docks;
 }
