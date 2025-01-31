@@ -74,6 +74,7 @@
     solutionName: pen
     onlyAffectsMobs: false
     injectOnly: true
+    transferAmount: 15 # Explicitly redefined in case parent changes
   - type: Tag
     tags: []
 
@@ -165,8 +166,6 @@
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     emptySpriteName: lacerpen_empty
-  - type: Hypospray
-    transferAmount: 15
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -190,8 +189,6 @@
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     emptySpriteName: bruizpen_empty
-  - type: Hypospray
-    transferAmount: 15
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -215,8 +212,6 @@
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     emptySpriteName: polypen_empty
-  - type: Hypospray
-    transferAmount: 15
   - type: SolutionContainerManager
     solutions:
       pen:
