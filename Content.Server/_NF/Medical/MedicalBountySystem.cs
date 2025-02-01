@@ -7,7 +7,6 @@ using Content.Server.Body.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
-using Content.Server.Traits.Assorted;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Medical;
 using Content.Shared._NF.Medical.Prototypes;
@@ -18,13 +17,13 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Power;
-using Content.Shared.Stacks;
 using Content.Shared.UserInterface;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Server._NF.Traits.Assorted;
 
 namespace Content.Server._NF.Medical;
 

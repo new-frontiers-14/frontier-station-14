@@ -8,6 +8,7 @@ using Content.Shared.Timing;
 using JetBrains.Annotations;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
+using Content.Server._NF.Power.Components; // Frontier
 
 namespace Content.Server.Power.EntitySystems
 {
