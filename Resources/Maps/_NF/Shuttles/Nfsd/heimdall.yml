@@ -310,55 +310,70 @@ entities:
         tiles:
           0,0:
             0: 12607
-            1: 2048
+            2: 2048
           0,-1:
             0: 65315
-            1: 8
+            2: 8
           -1,0:
             0: 32911
-            1: 768
+            2: 768
           0,1:
             0: 4915
-            1: 16384
+            2: 16384
           -1,1:
             0: 2184
-            1: 16384
+            2: 16384
           0,2:
             0: 17
-            2: 512
+            1: 512
           -1,2:
-            2: 2048
+            1: 2048
           1,0:
-            1: 18688
+            2: 18688
             0: 6
           1,-1:
             0: 29184
-            1: 2113
+            2: 2113
           1,1:
-            1: 8
+            2: 8
           -2,0:
             0: 12
-            1: 16896
+            2: 16896
           -2,1:
-            1: 2
+            2: 2
           -2,-1:
             0: 51200
-            1: 576
+            2: 576
           -1,-1:
             0: 65416
-            1: 3
+            2: 3
           0,-2:
             0: 8192
-            1: 16384
+            2: 16384
           -1,-2:
             0: 32768
-            1: 16384
+            2: 16384
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -384,24 +399,32 @@ entities:
           - 0
           - 0
           - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+- proto: AirAlarm
+  entities:
+  - uid: 53
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,5.5
+      parent: 2
+    - type: DeviceList
+      devices:
+      - 18
+      - 1
+      - 106
+      - 151
+      - 20
+      - 154
+      - 149
+      - 152
+      - 153
+      - 147
+      - 150
+      - 155
+      - 182
 - proto: AirlockExternalGlassNfsdLocked
   entities:
   - uid: 3
@@ -428,7 +451,7 @@ entities:
       parent: 2
 - proto: AirlockNfsdLocked
   entities:
-  - uid: 7
+  - uid: 24
     components:
     - type: Transform
       pos: 0.5,2.5
@@ -802,7 +825,7 @@ entities:
       parent: 2
 - proto: CableHV
   entities:
-  - uid: 24
+  - uid: 7
     components:
     - type: Transform
       pos: 2.5,6.5
@@ -817,20 +840,20 @@ entities:
     - type: Transform
       pos: 0.5,6.5
       parent: 2
-  - uid: 53
-    components:
-    - type: Transform
-      pos: 1.5,6.5
-      parent: 2
   - uid: 55
     components:
     - type: Transform
       pos: -0.5,5.5
       parent: 2
-  - uid: 56
+  - uid: 178
     components:
     - type: Transform
       pos: 0.5,5.5
+      parent: 2
+  - uid: 198
+    components:
+    - type: Transform
+      pos: 1.5,6.5
       parent: 2
 - proto: CableMV
   entities:
@@ -989,7 +1012,7 @@ entities:
     - type: Transform
       pos: 5.5,-2.5
       parent: 2
-  - uid: 230
+  - uid: 246
     components:
     - type: Transform
       pos: 2.5,6.5
@@ -1023,14 +1046,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,9.5
-      parent: 2
-- proto: CableTerminal
-  entities:
-  - uid: 90
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,4.5
       parent: 2
 - proto: CarpetPurple
   entities:
@@ -1128,11 +1143,11 @@ entities:
       parent: 2
 - proto: ComputerIFF
   entities:
-  - uid: 106
+  - uid: 111
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,6.5
+      rot: -1.5707963267948966 rad
+      pos: 1.5,6.5
       parent: 2
 - proto: ComputerShuttle
   entities:
@@ -1204,10 +1219,10 @@ entities:
       parent: 2
 - proto: ExtinguisherCabinetFilled
   entities:
-  - uid: 111
+  - uid: 172
     components:
     - type: Transform
-      pos: -1.5,3.5
+      pos: -1.5,1.5
       parent: 2
 - proto: FaxMachineShip
   entities:
@@ -1223,6 +1238,35 @@ entities:
     - type: Transform
       pos: -4.5,-1.5
       parent: 2
+- proto: Firelock
+  entities:
+  - uid: 1
+    components:
+    - type: Transform
+      pos: 0.5,2.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
+- proto: FirelockEdge
+  entities:
+  - uid: 18
+    components:
+    - type: Transform
+      pos: 0.5,7.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
+  - uid: 20
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-0.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
 - proto: GasMixerOnFlipped
   entities:
   - uid: 113
@@ -1402,6 +1446,13 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 349
+    components:
+    - type: Transform
+      pos: -0.5,3.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasPipeTJunction
   entities:
   - uid: 137
@@ -1492,6 +1543,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-3.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 149
@@ -1500,6 +1554,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-0.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 150
@@ -1507,6 +1564,9 @@ entities:
     - type: Transform
       pos: 2.5,0.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 151
@@ -1515,6 +1575,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,3.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 182
@@ -1523,16 +1586,32 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-0.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
   entities:
+  - uid: 106
+    components:
+    - type: Transform
+      pos: -0.5,4.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 152
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,-1.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 153
@@ -1541,6 +1620,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-3.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 154
@@ -1549,6 +1631,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,0.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 155
@@ -1557,13 +1642,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,0.5
       parent: 2
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 156
-    components:
-    - type: Transform
-      pos: -0.5,3.5
-      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -1650,10 +1731,10 @@ entities:
       parent: 2
 - proto: GyroscopeNfsd
   entities:
-  - uid: 172
+  - uid: 237
     components:
     - type: Transform
-      pos: 1.5,6.5
+      pos: -0.5,3.5
       parent: 2
 - proto: LockableButtonSecurity
   entities:
@@ -1693,17 +1774,9 @@ entities:
     - type: Transform
       pos: 3.5,-1.5
       parent: 2
-- proto: LockerWallEVAColorNfsdFilled
-  entities:
-  - uid: 237
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,-2.5
-      parent: 2
 - proto: LockerWallMaterialsFuelPlasmaFilled
   entities:
-  - uid: 178
+  - uid: 90
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -1716,6 +1789,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.636641,-0.22515792
+      parent: 2
+- proto: NFHolopadShip
+  entities:
+  - uid: 56
+    components:
+    - type: Transform
+      pos: -0.5,6.5
       parent: 2
 - proto: NitrogenCanister
   entities:
@@ -1765,6 +1845,8 @@ entities:
     - type: Transform
       pos: -0.5,4.5
       parent: 2
+    - type: FuelGenerator
+      targetPower: 17000
 - proto: PosterLegitDoNotQuestion
   entities:
   - uid: 187
@@ -1841,11 +1923,6 @@ entities:
     - type: Transform
       pos: 2.5,3.5
       parent: 2
-  - uid: 198
-    components:
-    - type: Transform
-      pos: -1.5,6.5
-      parent: 2
   - uid: 199
     components:
     - type: Transform
@@ -1855,6 +1932,11 @@ entities:
     components:
     - type: Transform
       pos: -5.5,1.5
+      parent: 2
+  - uid: 267
+    components:
+    - type: Transform
+      pos: -1.5,6.5
       parent: 2
 - proto: ReinforcedPlasmaWindow
   entities:
@@ -2072,13 +2154,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-2.5
       parent: 2
-- proto: SMESBasic
-  entities:
-  - uid: 228
-    components:
-    - type: Transform
-      pos: -0.5,5.5
-      parent: 2
 - proto: SteelBench
   entities:
   - uid: 229
@@ -2089,18 +2164,18 @@ entities:
       parent: 2
 - proto: SubstationWallBasic
   entities:
-  - uid: 18
+  - uid: 228
     components:
     - type: Transform
       pos: 2.5,6.5
       parent: 2
 - proto: SuitStorageWallmountDeputy
   entities:
-  - uid: 267
+  - uid: 156
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -2.5,-2.5
+      pos: -3.5,-2.5
       parent: 2
 - proto: SuitStorageWallmountEVAPrisoner
   entities:
@@ -2193,10 +2268,10 @@ entities:
       parent: 2
 - proto: ToolboxMechanicalFilled
   entities:
-  - uid: 246
+  - uid: 348
     components:
     - type: Transform
-      pos: -0.6235466,3.6469312
+      pos: -0.6212498,5.274525
       parent: 2
 - proto: ToyFigurineDetective
   entities:
@@ -2506,12 +2581,13 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 2
-- proto: WallWeaponCapacitorRechargerOmnidirectional
+- proto: WallWeaponCapacitorRecharger
   entities:
-  - uid: 1
+  - uid: 230
     components:
     - type: Transform
-      pos: -1.5,1.5
+      rot: 3.141592653589793 rad
+      pos: -2.5,-2.5
       parent: 2
 - proto: WarpPoint
   entities:
