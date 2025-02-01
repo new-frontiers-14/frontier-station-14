@@ -3,11 +3,11 @@ using Content.Shared._NF.Bank.Events;
 
 namespace Content.Client._NF.Bank.UI;
 
-public sealed class WithdrawBankATMMenuBoundUserInterface : BoundUserInterface
+public sealed class BankATMWithdrawOnlyMenuBoundUserInterface : BoundUserInterface
 {
     private WithdrawBankATMMenu? _menu;
 
-    public WithdrawBankATMMenuBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) {}
+    public BankATMWithdrawOnlyMenuBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) {}
 
     protected override void Open()
     {
