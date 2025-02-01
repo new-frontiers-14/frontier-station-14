@@ -5,14 +5,14 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Birdcage
+  id: Perch
   parent: BaseVessel
-  name: Birdcage
+  name: Perch
   description: A compact but comfortable shuttle specialized for Vox, featuring salvage capabilities and a relaxation lounge.
   price: 22000 # ~Sells for about 19500, premium taxation
   category: Small
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/birdcage.yml
+  shuttlePath: /Maps/_NF/Shuttles/perch.yml
   guidebookPage: Null
   class:
   - Civilian
@@ -20,16 +20,16 @@
   - Plasma
 
 - type: gameMap
-  id: Birdcage
-  mapName: 'Birdcage'
-  mapPath: /Maps/_NF/Shuttles/birdcage.yml
+  id: Perch
+  mapName: 'Perch'
+  mapPath: /Maps/_NF/Shuttles/perch.yml
   minPlayers: 0
   stations:
-    Birdcage:
+    Perch:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Birdcage {1}'
+          mapNameTemplate: 'Perch {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
