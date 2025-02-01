@@ -1,6 +1,5 @@
 using Content.Server.Cargo.Components;
 using Content.Shared.Stacks;
-using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -10,7 +9,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Audio;
 using Content.Server._NF.Cargo.Components; // Frontier
-using Content.Shared.Bank.Components; // Frontier
+using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared.Mobs; // Frontier
 
 namespace Content.Server.Cargo.Systems;
