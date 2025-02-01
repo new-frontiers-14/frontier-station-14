@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: arimah
+# Discord: arimah
+
+# Maintainer Info
+# GitHub: arimah
+# Discord: arimah
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: BBOX
+  parent: BaseVessel
+  name: SBB Birdcage
+  description: A cozy medium-size library for travellers who wish to relax with a book or perhaps a board game.
+  price: 17000 # ~29476 after purchase + ~5% markup
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/BBOX.yml
+  guidebookPage: ShipyardBookworm
+  class:
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: BBOX
+  mapName: 'SBB Birdcage'
+  mapPath: /Maps/_NF/Shuttles/BBOX.yml
+  minPlayers: 0
+  stations:
+    BBOX:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Birdcage {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
