@@ -4,7 +4,7 @@ from yaml import SafeLoader
 from typing import List, Union
 from logging import Logger, getLogger
 
-from config import ILLEGAL_MATCHES, CONDITIONALLY_ILLEGAL_MATCHES
+from config import ILLEGAL_MATCHES, LEGAL_OVERRIDES, CONDITIONALLY_ILLEGAL_MATCHES
 
 
 def get_logger(debug: bool = False) -> Logger:
