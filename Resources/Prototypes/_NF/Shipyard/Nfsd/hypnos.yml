@@ -9,31 +9,31 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Wendigo
+  id: Hypnos
   parent: BaseVessel
-  name: NSF Wendigo
-  description: A light medium ship with a recommended crew of 2 to 3 officers, the Wendigo is a dedicated interdiction vessel outfitted with a powerful EMP device for tackling escaping vessels.
+  name: NSF Hypnos
+  description: A light medium ship with a recommended crew of 2 to 3 officers, the Hypnos is a dedicated interdiction vessel outfitted with a powerful EMP device for tackling escaping vessels.
   price: 34500
   category: Medium
   group: Security
   access: Sergeant
-  shuttlePath: /Maps/_NF/Shuttles/Nfsd/wendigo.yml
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/hypnos.yml
   class:
   - Pursuit
   engine:
   - Uranium
 
 - type: gameMap
-  id: Wendigo
-  mapName: 'NSF Wendigo'
-  mapPath: /Maps/_NF/Shuttles/Nfsd/wendigo.yml
+  id: Hypnos
+  mapName: 'NSF Hypnos'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/hypnos.yml
   minPlayers: 0
   stations:
-    Wendigo:
+    Hypnos:
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Wendigo {1}'
+          mapNameTemplate: 'Hypnos {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
