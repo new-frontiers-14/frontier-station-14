@@ -1,82 +1,183 @@
 - type: entity
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachinePowered, ConstructibleMachine, BaseC2ContrabandUnredeemable]
-  id: M_Emp
-  name: M_EMP Generator
-  description: Mobile EMP generator.
+  id: MEMPGenerator
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseC2ContrabandUnredeemable, BaseMachinePowered]
+  name: mobile emp generator
+  description: A major EMP blast pulse to disable shuttles.
+  placement:
+    mode: AlignTileAny
   components:
-  - type: Sprite
-    sprite: _NF/Structures/Machines/m_emp.rsi
-    layers:
-    - state: m_emp
-    - state: m_emp-ready
-      visible: false
-      map: [ "ready" ]
-    - state: m_emp-ready-blinking
-      visible: false
-      map: [ "readyBlinking" ]
-    - state: m_emp-unready
-      visible: false
-      map: [ "unready" ]
-    - state: m_emp-unready-blinking
-      visible: false
-      map: [ "unreadyBlinking" ]
-    - state: m_emp-o4
-      map: ["chargeState"]
-      shader: unshaded
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.M_EmpGeneratorVisuals.ChargeState:
-        chargeState:
-          0: { state: m_emp-o0, shader: "unshaded", visible: false }
-          1: { state: m_emp-o0, shader: "unshaded", visible: true }
-          2: { state: m_emp-o1, shader: "unshaded", visible: true }
-          3: { state: m_emp-o2, shader: "unshaded", visible: true }
-          4: { state: m_emp-o3, shader: "unshaded", visible: true }
-          5: { state: m_emp-o4, shader: "unshaded", visible: true }
-      enum.M_EmpGeneratorVisuals.Ready:
-        ready:
-          False: { state: m_emp-ready, visible: false, shader: "unshaded" }
-          True: { state: m_emp-ready, visible: true, shader: "unshaded" }
-      enum.M_EmpGeneratorVisuals.ReadyBlinking:
-        readyBlinking:
-          False: { state: m_emp-ready-blinking, visible: false, shader: "unshaded" }
-          True: { state: m_emp-ready-blinking, visible: true, shader: "unshaded" }
-      enum.M_EmpGeneratorVisuals.Unready:
-        unready:
-          False: { state: m_emp-unready, visible: false, shader: "unshaded" }
-          True: { state: m_emp-unready, visible: true, shader: "unshaded" }
-      enum.M_EmpGeneratorVisuals.UnreadyBlinking:
-        unreadyBlinking:
-          False: { state: m_emp-unready-blinking, visible: false, shader: "unshaded" }
-          True: { state: m_emp-unready-blinking, visible: true, shader: "unshaded" }
-  - type: Rotatable
+  - type: StationAiWhitelist
+  - type: AmbientSound
+    enabled: false
+    volume: -6
+    range: 7
+    sound:
+      path: /Audio/Ambience/Objects/gravity_gen_hum.ogg
   - type: Transform
-    noRot: false
+    anchored: true
+  - type: ApcPowerReceiver
+    powerLoad: 2500
+  - type: ExtensionCableReceiver
+  - type: Physics
+    bodyType: Static
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 5
+  - type: PowerCharge
+    windowTitle: gravity-generator-window-title
+    idlePower: 50
+    activePower: 2500
+    activateUI: true
+  - type: GravityGenerator
+    lightRadiusMin: 0.75
+    lightRadiusMax: 2.5
+    spriteMap:
+      broken: "broken"
+      unpowered: "off"
+      off: "off"
+      on: "on"
+  - type: ActivatableUI
+    key: enum.PowerChargeUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.PowerChargeUiKey.Key:
+        type: PowerChargeBoundUserInterface
+  - type: Appearance
+  - type: PointLight
+    radius: 2.5
+    energy: 0.5
+    # Gravity generator is a large machine, not casting shadows is fine within the radius set above.
+    castShadows: false
+    color: "#a8ffd9"
+  - type: Sprite
+    sprite: Structures/Machines/gravity_generator_mini.rsi
+    snapCardinals: true
+    layers:
+      - state: on
+        map: ["enum.GravityGeneratorVisualLayers.Base"]
+      - sprite: Structures/Machines/gravity_generator_core.rsi
+        state: activated
+        shader: unshaded
+        map: ["enum.GravityGeneratorVisualLayers.Core"]
+        scale: "0.4,0.4"
+        offset: "0,0.2"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 3125
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MachineFrameDestroyed:
+            min: 1
+            max: 1
+  - type: WiresPanel
+  - type: Machine
+    board: MEMPMachineCircuitboard
+  - type: StaticPrice
+    price: 300
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     channels:
     - Nfsd
-  - type: M_EmpGenerator
-  - type: ActivatableUI
-    key: enum.M_EmpUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.M_EmpUiKey.Key:
-        type: M_EmpBoundUserInterface
-  - type: ApcPowerReceiver
-    powerLoad: 2500 # TODO change this to a HV power draw that really hits the grid hard WHEN active
-  - type: Machine
-    board: M_EmpMachineCircuitboard
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
-  - type: WirelessNetworkConnection
-    range: 200
-  - type: DeviceLinkSink
-    ports:
-      - On
-  - type: EmpDescription
-    range: 100
-    energyConsumption: 2700000
-    disableDuration: 60
+
+# - type: entity
+  # parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachinePowered, ConstructibleMachine, BaseC2ContrabandUnredeemable]
+  # id: M_Emp
+  # name: M_EMP Generator
+  # description: Mobile EMP generator.
+  # components:
+  # - type: Sprite
+    # sprite: _NF/Structures/Machines/m_emp.rsi
+    # layers:
+    # - state: m_emp
+    # - state: m_emp-ready
+      # visible: false
+      # map: [ "ready" ]
+    # - state: m_emp-ready-blinking
+      # visible: false
+      # map: [ "readyBlinking" ]
+    # - state: m_emp-unready
+      # visible: false
+      # map: [ "unready" ]
+    # - state: m_emp-unready-blinking
+      # visible: false
+      # map: [ "unreadyBlinking" ]
+    # - state: m_emp-o4
+      # map: ["chargeState"]
+      # shader: unshaded
+  # - type: Appearance
+  # - type: GenericVisualizer
+    # visuals:
+      # enum.M_EmpGeneratorVisuals.ChargeState:
+        # chargeState:
+          # 0: { state: m_emp-o0, shader: "unshaded", visible: false }
+          # 1: { state: m_emp-o0, shader: "unshaded", visible: true }
+          # 2: { state: m_emp-o1, shader: "unshaded", visible: true }
+          # 3: { state: m_emp-o2, shader: "unshaded", visible: true }
+          # 4: { state: m_emp-o3, shader: "unshaded", visible: true }
+          # 5: { state: m_emp-o4, shader: "unshaded", visible: true }
+      # enum.M_EmpGeneratorVisuals.Ready:
+        # ready:
+          # False: { state: m_emp-ready, visible: false, shader: "unshaded" }
+          # True: { state: m_emp-ready, visible: true, shader: "unshaded" }
+      # enum.M_EmpGeneratorVisuals.ReadyBlinking:
+        # readyBlinking:
+          # False: { state: m_emp-ready-blinking, visible: false, shader: "unshaded" }
+          # True: { state: m_emp-ready-blinking, visible: true, shader: "unshaded" }
+      # enum.M_EmpGeneratorVisuals.Unready:
+        # unready:
+          # False: { state: m_emp-unready, visible: false, shader: "unshaded" }
+          # True: { state: m_emp-unready, visible: true, shader: "unshaded" }
+      # enum.M_EmpGeneratorVisuals.UnreadyBlinking:
+        # unreadyBlinking:
+          # False: { state: m_emp-unready-blinking, visible: false, shader: "unshaded" }
+          # True: { state: m_emp-unready-blinking, visible: true, shader: "unshaded" }
+  # - type: Rotatable
+  # - type: Transform
+    # noRot: false
+  # - type: IntrinsicRadioReceiver
+  # - type: ActiveRadio
+    # channels:
+    # - Nfsd
+  # - type: M_EmpGenerator
+  # - type: ActivatableUI
+    # key: enum.M_EmpUiKey.Key
+  # - type: UserInterface
+    # interfaces:
+      # enum.M_EmpUiKey.Key:
+        # type: M_EmpBoundUserInterface
+  # - type: ApcPowerReceiver
+    # powerLoad: 2500 # TODO change this to a HV power draw that really hits the grid hard WHEN active
+  # - type: Machine
+    # board: M_EmpMachineCircuitboard
+  # - type: DeviceNetwork
+    # deviceNetId: Wireless
+    # receiveFrequencyId: BasicDevice
+  # - type: WirelessNetworkConnection
+    # range: 200
+  # - type: DeviceLinkSink
+    # ports:
+      # - On
+  # - type: EmpDescription
+    # range: 100
+    # energyConsumption: 2700000
+    # disableDuration: 60
