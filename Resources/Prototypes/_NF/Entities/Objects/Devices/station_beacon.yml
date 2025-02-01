@@ -198,6 +198,24 @@
   - type: NavMapBeacon
     defaultText: station-beacon-atmos-collector
 
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconFrontierLobby
+  suffix: Lobby
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-lobby
+    color: "#add8e6"
+
+- type: entity
+  parent: DefaultStationBeaconFrontierSROffice
+  id: DefaultStationBeaconFrontierDoCOffice
+  suffix: DoC's Office
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-doc-office
+    color: "#add8e6"
+
 # Docks
 - type: entity
   parent: DefaultStationBeacon

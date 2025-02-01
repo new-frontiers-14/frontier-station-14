@@ -2,17 +2,18 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Managers;
+using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
 using Content.Shared.Database;
+using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
-using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
@@ -20,7 +21,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server.Corvax.Respawn; // Frontier
+using Content.Server._Corvax.Respawn; // Frontier
 
 namespace Content.Server.GameTicking
 {
@@ -28,6 +29,7 @@ namespace Content.Server.GameTicking
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
+        [Dependency] private readonly AdminSystem _admin = default!;
         [Dependency] private readonly RespawnSystem _respawn = default!; // Frontier
 
         [ValidatePrototypeId<EntityPrototype>]
@@ -224,8 +226,6 @@ namespace Content.Server.GameTicking
             _mind.SetUserId(newMind, data.UserId);
 
             var jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
-            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype:jobId);
-            var jobName = _jobs.MindTryGetJobName(newMind);
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
@@ -242,6 +242,10 @@ namespace Content.Server.GameTicking
             var mob = mobMaybe!.Value;
 
             _mind.TransferTo(newMind, mob);
+
+            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype:jobId);
+            var jobName = _jobs.MindTryGetJobName(newMind);
+            _admin.UpdatePlayerList(player);
 
             if (lateJoin && !silent)
             {
@@ -467,72 +471,5 @@ namespace Content.Server.GameTicking
         }
 
         #endregion
-    }
-
-    /// <summary>
-    ///     Event raised broadcast before a player is spawned by the GameTicker.
-    ///     You can use this event to spawn a player off-station on late-join but also at round start.
-    ///     When this event is handled, the GameTicker will not perform its own player-spawning logic.
-    /// </summary>
-    [PublicAPI]
-    public sealed class PlayerBeforeSpawnEvent : HandledEntityEventArgs
-    {
-        public ICommonSession Player { get; }
-        public HumanoidCharacterProfile Profile { get; }
-        public string? JobId { get; }
-        public bool LateJoin { get; }
-        public EntityUid Station { get; }
-
-        public PlayerBeforeSpawnEvent(ICommonSession player,
-            HumanoidCharacterProfile profile,
-            string? jobId,
-            bool lateJoin,
-            EntityUid station)
-        {
-            Player = player;
-            Profile = profile;
-            JobId = jobId;
-            LateJoin = lateJoin;
-            Station = station;
-        }
-    }
-
-    /// <summary>
-    ///     Event raised both directed and broadcast when a player has been spawned by the GameTicker.
-    ///     You can use this to handle people late-joining, or to handle people being spawned at round start.
-    ///     Can be used to give random players a role, modify their equipment, etc.
-    /// </summary>
-    [PublicAPI]
-    public sealed class PlayerSpawnCompleteEvent : EntityEventArgs
-    {
-        public EntityUid Mob { get; }
-        public ICommonSession Player { get; }
-        public string? JobId { get; }
-        public bool LateJoin { get; }
-        public bool Silent { get; }
-        public EntityUid Station { get; }
-        public HumanoidCharacterProfile Profile { get; }
-
-        // Ex. If this is the 27th person to join, this will be 27.
-        public int JoinOrder { get; }
-
-        public PlayerSpawnCompleteEvent(EntityUid mob,
-            ICommonSession player,
-            string? jobId,
-            bool lateJoin,
-            bool silent,
-            int joinOrder,
-            EntityUid station,
-            HumanoidCharacterProfile profile)
-        {
-            Mob = mob;
-            Player = player;
-            JobId = jobId;
-            LateJoin = lateJoin;
-            Silent = silent;
-            Station = station;
-            Profile = profile;
-            JoinOrder = joinOrder;
-        }
     }
 }

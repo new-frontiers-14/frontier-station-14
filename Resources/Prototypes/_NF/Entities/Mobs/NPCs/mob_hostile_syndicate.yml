@@ -485,6 +485,7 @@
   parent:
   - MobHumanoidHostileBase
   - MobHumanoidHostileAISimpleMelee
+  - NFMobRestrictions
   id: MobExperimentationVictim
   categories: [ HideSpawnMenu ]
   components:
@@ -501,6 +502,10 @@
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
+    - type: NFSalvageMobRestrictions
+      despawnIfOffLinkedGrid: false
+      addComponentsOnDeath: []
+      removeComponentsOnDeath: []
 
 # Syndicate Commander, "armed" with AK
 - type: entity

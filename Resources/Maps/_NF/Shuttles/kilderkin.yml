@@ -889,7 +889,6 @@ entities:
       parent: 1
     - type: Physics
       canCollide: False
-      bodyType: Static
     - type: Fixtures
       fixtures: {}
 - proto: BenchSofaLeft
@@ -900,8 +899,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,1.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaMiddle
   entities:
   - uid: 121
@@ -910,8 +907,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,1.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaRight
   entities:
   - uid: 122
@@ -920,8 +915,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,2.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoor
   entities:
   - uid: 278
@@ -1702,19 +1695,6 @@ entities:
     - type: Transform
       pos: 2.5,1.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 321
@@ -3187,6 +3167,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,3.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 622
+    components:
+    - type: Transform
+      pos: 5.5,5.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 290
@@ -3228,19 +3215,11 @@ entities:
     - type: Transform
       pos: -4.5,-4.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
   - uid: 320
     components:
     - type: Transform
       pos: -3.5,-4.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PottedPlantRandom
   entities:
   - uid: 363
@@ -3448,7 +3427,7 @@ entities:
     - type: Transform
       pos: -1.5,5.5
       parent: 1
-- proto: ShadowTree01
+- proto: ShadowTree
   entities:
   - uid: 189
     components:
@@ -4498,7 +4477,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,-6.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 496
     components:
@@ -4560,11 +4539,43 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-5.5
       parent: 1
+- proto: WoodenBarrel
+  entities:
+  - uid: 620
+    components:
+    - type: Transform
+      pos: -5.5,3.5
+      parent: 1
+  - uid: 621
+    components:
+    - type: Transform
+      pos: -5.5,2.5
+      parent: 1
+- proto: WoodenKegBeer
+  entities:
+  - uid: 617
+    components:
+    - type: Transform
+      pos: -4.5,3.5
+      parent: 1
+- proto: WoodenKegWine
+  entities:
+  - uid: 618
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,1.5
+      parent: 1
 - proto: Wrench
   entities:
   - uid: 554
     components:
     - type: Transform
       pos: -4.203125,-4.8230324
+      parent: 1
+  - uid: 619
+    components:
+    - type: Transform
+      pos: -4.5121074,1.5808618
       parent: 1
 ...
