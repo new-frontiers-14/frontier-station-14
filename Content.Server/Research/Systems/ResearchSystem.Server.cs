@@ -11,8 +11,6 @@ public sealed partial class ResearchSystem
         SubscribeLocalEvent<ResearchServerComponent, ComponentStartup>(OnServerStartup);
         SubscribeLocalEvent<ResearchServerComponent, ComponentShutdown>(OnServerShutdown);
         SubscribeLocalEvent<ResearchServerComponent, TechnologyDatabaseModifiedEvent>(OnServerDatabaseModified);
-
-        SubscribeLocalEvent<ResearchServerComponent, AnchorStateChangedEvent>(OnServerAnchorChanged); // Frontier
     }
 
     private void OnServerStartup(EntityUid uid, ResearchServerComponent component, ComponentStartup args)
@@ -38,19 +36,6 @@ public sealed partial class ResearchSystem
             RaiseLocalEvent(client, ref args);
         }
     }
-
-    // Frontier: unanchor function
-    private void OnServerAnchorChanged(EntityUid uid, ResearchServerComponent component, ref AnchorStateChangedEvent args)
-    {
-        if (args.Anchored)
-            return;
-
-        foreach (var client in new List<EntityUid>(component.Clients))
-        {
-            UnregisterClient(client, uid, serverComponent: component, dirtyServer: false);
-        }
-    }
-    // End Frontier: unanchor function
 
     private bool CanRun(EntityUid uid)
     {
