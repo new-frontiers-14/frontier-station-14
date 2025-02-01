@@ -770,20 +770,6 @@ entities:
     - type: Transform
       pos: 9.5,4.5
       parent: 1
-- proto: Pen
-  entities:
-  - uid: 471
-    components:
-    - type: Transform
-      rot: -28.27433388230815 rad
-      pos: -1.3030288,-3.779652
-      parent: 1
-  - uid: 472
-    components:
-    - type: Transform
-      rot: -21.991148575128555 rad
-      pos: 2.3636386,-3.758803
-      parent: 1
 - proto: Bed
   entities:
   - uid: 148
@@ -2207,6 +2193,13 @@ entities:
     - type: Transform
       pos: -0.5,9.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 473
+    components:
+    - type: Transform
+      pos: 1.5,10.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 220
@@ -2255,6 +2248,20 @@ entities:
     components:
     - type: Transform
       pos: -0.5,7.5
+      parent: 1
+- proto: Pen
+  entities:
+  - uid: 471
+    components:
+    - type: Transform
+      rot: -28.27433388230815 rad
+      pos: -1.3030288,-3.779652
+      parent: 1
+  - uid: 472
+    components:
+    - type: Transform
+      rot: -21.991148575128555 rad
+      pos: 2.3636386,-3.758803
       parent: 1
 - proto: PlastitaniumWindow
   entities:
@@ -2337,10 +2344,6 @@ entities:
     - type: Transform
       pos: 6.5,-0.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandHackingGuide
   entities:
   - uid: 258
@@ -3268,7 +3271,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,1.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 365
     components:
