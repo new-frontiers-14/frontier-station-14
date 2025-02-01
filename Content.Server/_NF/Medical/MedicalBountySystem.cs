@@ -173,8 +173,15 @@ public sealed partial class MedicalBountySystem : EntitySystem
             }
         }
 
-        // Spawn cash on the machine
-        if (bountyPayout > 0)
+        if (TryComp<MedicalBountyBankPaymentComponent>(ev.Actor, out var bankPayment))
+        {
+            // Pay tax accounts the entire payment + tax
+            foreach (var (account, taxCoeff) in component.TaxAccounts)
+            {
+                _bank.TrySectorDeposit(account, (int)(bountyPayout * (1.0f + taxCoeff)), LedgerEntryType.MedicalBountyTax);
+            }
+        }
+        else if (bountyPayout > 0)
         {
             // Use SpawnMultiple in case spesos ever have a limit.
             _stack.SpawnMultiple("SpaceCash", bountyPayout, Transform(uid).Coordinates);

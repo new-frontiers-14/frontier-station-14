@@ -17,6 +17,7 @@ medical-bounty-redemption-redeem-label-no-bounty = No bounty detected.
 medical-bounty-redemption-redeem-label-too-much-damage = Body too damaged to redeem bounty.
 medical-bounty-redemption-redeem-label-not-alive = Must revive body before redeeming bounty.
 medical-bounty-redemption-redeem-label-valid-bounty = Value: {$amount}.
+medical-bounty-redemption-redeem-label-valid-bounty-to-station = Value: {$amount} (will pay to station account).
 
 medical-bounty-redemption-ui-sell-button = Redeem
 medical-bounty-console-flavor-left = Treat all bodies as though they're family.
