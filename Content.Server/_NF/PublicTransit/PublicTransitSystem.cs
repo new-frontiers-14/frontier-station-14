@@ -13,8 +13,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Content.Server.Warps;
-using Content.Server.Station.Systems;
+using Content.Server._NF.Station.Systems;
 
 namespace Content.Server._NF.PublicTransit;
 
