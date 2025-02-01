@@ -3,17 +3,17 @@ using Content.Shared._NF.Bank.Events;
 
 namespace Content.Client._NF.Bank.UI;
 
-public sealed class StationBankATMMenuBoundUserInterface : BoundUserInterface
+public sealed class StationAdminConsoleBoundUserInterface : BoundUserInterface
 {
-    private StationBankATMMenu? _menu;
+    private StationAdminConsoleMenu? _menu;
 
-    public StationBankATMMenuBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) {}
+    public StationAdminConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) {}
 
     protected override void Open()
     {
         base.Open();
 
-        _menu = new StationBankATMMenu();
+        _menu = new StationAdminConsoleMenu();
         _menu.WithdrawRequest += OnWithdraw;
         _menu.DepositRequest += OnDeposit;
         _menu.OnClose += Close;

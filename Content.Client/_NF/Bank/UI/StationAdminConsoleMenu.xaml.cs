@@ -7,7 +7,7 @@ using Robust.Client.UserInterface.XAML;
 namespace Content.Client._NF.Bank.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class StationBankATMMenu : FancyWindow
+public sealed partial class StationAdminConsoleMenu : FancyWindow
 {
     // TODO: reduce redundancy
     public Action? WithdrawRequest;
@@ -38,7 +38,7 @@ public sealed partial class StationBankATMMenu : FancyWindow
         ("assetssold", Loc.GetString("station-bank-assets-sold")),
         ("other", Loc.GetString("station-bank-other"))
     };
-    public StationBankATMMenu()
+    public StationAdminConsoleMenu()
     {
         RobustXamlLoader.Load(this);
         DepositButton.OnPressed += OnDepositPressed;
