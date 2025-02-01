@@ -25,7 +25,6 @@ if __name__ == "__main__":
         default=[
             "Resources/Prototypes/Entities",  # Upstream
             "Resources/Prototypes/_NF/Entities",  # NF
-            "Resources/Prototypes/_Nyano/Entities",  # Nyanotrasen
             "Resources/Prototypes/Nyanotrasen/Entities",  # Nyanotrasen, again
             "Resources/Prototypes/_DV/Entities",  # DeltaV
         ]
