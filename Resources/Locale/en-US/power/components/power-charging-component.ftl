@@ -20,3 +20,6 @@ power-charge-window-power-label = { $draw } / { $max } W
 
 power-charge-window-eta-none = N/A
 power-charge-window-eta-value = { TOSTRING($left, "m\\:ss") }
+
+power-charge-window-power-activate = Activate
+power-charge-window-activate = Activate:
