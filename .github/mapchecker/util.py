@@ -49,6 +49,13 @@ def check_prototype(proto_id: str, proto_name: str, proto_suffixes: List[str]) -
     - False if the prototype is globally illegal (matched by ILLEGAL_MATCHES)
     - A list of shipyard keys if the prototype is conditionally illegal (matched by CONDITIONALLY_ILLEGAL_MATCHES)
     """
+    # Check against LEGAL_OVERRIDES (no suffix!)
+    for legal_match in LEGAL_OVERRIDES:
+        if legal_match.lower() in proto_name.lower():
+            return True
+
+        if legal_match.lower() in proto_id.lower():
+            return True
 
     # Check against ILLEGAL_MATCHES.
     for illegal_match in ILLEGAL_MATCHES:
