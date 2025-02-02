@@ -1,4 +1,4 @@
-using Content.Server.Corvax.Respawn;
+using Content.Server._Corvax.Respawn;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Shared.Administration;
@@ -13,7 +13,7 @@ using Robust.Shared.Console;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
-namespace Content.Server.NF14.Commands;
+namespace Content.Server._NF.Commands;
 
 [AnyCommand()]
 public sealed class GhostRespawnCommand : IConsoleCommand

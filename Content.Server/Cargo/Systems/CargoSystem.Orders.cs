@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Server._NF.Bank; // Frontier
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
-using Content.Shared.Bank.Components; // Frontier
+using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Server.Station.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;

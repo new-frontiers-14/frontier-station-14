@@ -1599,10 +1599,11 @@ entities:
       parent: 1
 - proto: ComputerTabletopStationRecords
   entities:
-  - uid: 361
+  - uid: 62
     components:
     - type: Transform
-      pos: 1.5,3.5
+      rot: 3.141592653589793 rad
+      pos: 0.5,-1.5
       parent: 1
 - proto: ConveyorBelt
   entities:
@@ -2918,6 +2919,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 12.5,0.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 361
+    components:
+    - type: Transform
+      pos: 1.5,3.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 477
@@ -3142,7 +3150,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-2.5
       parent: 1
-- proto: PoweredlightColoredBlack
+- proto: PoweredlightBlack
   entities:
   - uid: 351
     components:
@@ -3155,19 +3163,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,-3.5
-      parent: 1
-- proto: PoweredlightColoredRed
-  entities:
-  - uid: 442
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -10.5,0.5
-      parent: 1
-  - uid: 657
-    components:
-    - type: Transform
-      pos: 0.5,-6.5
       parent: 1
 - proto: PoweredlightGreen
   entities:
@@ -3184,6 +3179,17 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -8.5,3.5
+      parent: 1
+  - uid: 442
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -10.5,0.5
+      parent: 1
+  - uid: 657
+    components:
+    - type: Transform
+      pos: 0.5,-6.5
       parent: 1
 - proto: PoweredSmallLight
   entities:
@@ -3427,16 +3433,6 @@ entities:
     - type: Transform
       pos: -0.41324377,-1.3236005
       parent: 1
-  - uid: 434
-    components:
-    - type: Transform
-      pos: 0.05550623,-1.4329755
-      parent: 1
-  - uid: 435
-    components:
-    - type: Transform
-      pos: 0.6180062,-1.3079755
-      parent: 1
   - uid: 438
     components:
     - type: Transform
@@ -3534,11 +3530,6 @@ entities:
       parent: 1
 - proto: TableReinforced
   entities:
-  - uid: 62
-    components:
-    - type: Transform
-      pos: 1.5,3.5
-      parent: 1
   - uid: 292
     components:
     - type: Transform

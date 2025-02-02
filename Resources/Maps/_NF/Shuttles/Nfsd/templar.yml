@@ -19,11 +19,11 @@ entities:
     components:
     - type: MetaData
       name: Templar
-    - type: BecomesStation
-      id: Templar
     - type: Transform
       pos: -0.4761362,-0.4642291
       parent: invalid
+    - type: BecomesStation
+      id: Templar
     - type: MapGrid
       chunks:
         0,0:
@@ -927,6 +927,13 @@ entities:
     - type: Transform
       pos: 2.5,-0.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 172
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 54
@@ -1028,7 +1035,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,5.5
       parent: 1
-- proto: PoweredlightColoredRed
+- proto: PoweredlightRed
   entities:
   - uid: 28
     components:
@@ -1326,7 +1333,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-4.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 98
     components:
