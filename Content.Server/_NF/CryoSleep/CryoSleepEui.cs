@@ -1,8 +1,8 @@
 using Content.Server.EUI;
-using Content.Shared.CryoSleep;
+using Content.Shared._NF.CryoSleep;
 using Content.Shared.Eui;
 
-namespace Content.Server.CryoSleep;
+namespace Content.Server._NF.CryoSleep;
 
 public sealed class CryoSleepEui : BaseEui
 {

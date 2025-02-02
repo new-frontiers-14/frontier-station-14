@@ -13,7 +13,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;

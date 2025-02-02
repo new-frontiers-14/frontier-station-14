@@ -48,7 +48,7 @@ using Content.Server._NF.Bank; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Server.Station.Components; // Frontier
 using Robust.Shared.Enums; // Frontier
-using Content.Shared.Bank.Components; // Frontier
+using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared._NF.Bank.BUI; // Frontier
 
 namespace Content.Server._DV.Mail.EntitySystems
