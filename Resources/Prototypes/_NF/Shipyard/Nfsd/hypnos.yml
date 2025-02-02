@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: MagnusCrowe
+# Discord: MagnusCrowe
+
+# Maintainer Info
+# GitHub: MagnusCrowe
+# Discord: MagnusCrowe
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Hypnos
+  parent: BaseVessel
+  name: NSF Hypnos
+  description: A light medium ship with a recommended crew of 2 to 3 officers, the Hypnos is a dedicated interdiction vessel outfitted with a powerful EMP device for tackling escaping vessels.
+  price: 34500
+  category: Medium
+  group: Security
+  access: Sergeant
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/hypnos.yml
+  class:
+  - Pursuit
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Hypnos
+  mapName: 'NSF Hypnos'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/hypnos.yml
+  minPlayers: 0
+  stations:
+    Hypnos:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Hypnos {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

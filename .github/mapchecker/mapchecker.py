@@ -25,9 +25,8 @@ if __name__ == "__main__":
         default=[
             "Resources/Prototypes/Entities",  # Upstream
             "Resources/Prototypes/_NF/Entities",  # NF
-            "Resources/Prototypes/_Nyano/Entities",  # Nyanotrasen
-            "Resources/Prototypes/Nyanotrasen/Entities",  # Nyanotrasen, again
-            "Resources/Prototypes/DeltaV/Entities",  # DeltaV
+            "Resources/Prototypes/Nyanotrasen/Entities",  # Nyanotrasen
+            "Resources/Prototypes/_DV/Entities",  # DeltaV
         ]
     )
     parser.add_argument(
@@ -39,7 +38,7 @@ if __name__ == "__main__":
         required=False,
         default=[
             "Resources/Prototypes/_NF/Maps/Outpost",  # Frontier Outpost
-            "Resources/Prototypes/_NF/Maps/POI",  # Points of interest
+            "Resources/Prototypes/_NF/PointsOfInterest",  # Points of interest
             "Resources/Prototypes/_NF/Shipyard",  # Shipyard ships.
         ]
     )
@@ -168,15 +167,19 @@ if __name__ == "__main__":
             # specific group.
             shipyard_override = None
 
+            # FIXME: this breaks down with multiple descriptions in one file.
             for item in file_data:
                 if item["type"] == "gameMap":
                     # This yaml entry is the map descriptor. Collect its file location and map name.
                     if "id" in item.keys():
                         map_name = item["id"]
                     map_file_location = item["mapPath"] if "mapPath" in item.keys() else None
-                if item["type"] == "vessel":
+                elif item["type"] == "vessel":
                     # This yaml entry is a vessel descriptor!
                     shipyard_group = item["group"] if "group" in item.keys() else None
+                    shipyard_override = item["mapchecker_group_override"] if "mapchecker_group_override" in item.keys() else None
+                elif item["type"] == "pointOfInterest":
+                    shipyard_group = "PointOfInterest"
                     shipyard_override = item["mapchecker_group_override"] if "mapchecker_group_override" in item.keys() else None
 
             if map_file_location is None:

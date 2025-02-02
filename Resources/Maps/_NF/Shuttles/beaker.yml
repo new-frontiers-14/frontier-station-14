@@ -459,8 +459,6 @@ entities:
     - type: Transform
       pos: 3.5,-2.5
       parent: 1
-    - type: Apc
-      hasAccess: True
   - uid: 350
     components:
     - type: Transform
@@ -1312,8 +1310,8 @@ entities:
       pos: -4.5,0.5
       parent: 1
     - type: GasMixer
-      inletOneConcentration: 0.79
       inletTwoConcentration: 0.21
+      inletOneConcentration: 0.79
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -1904,6 +1902,13 @@ entities:
     - type: Transform
       pos: -5.5501204,-3.5460114
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 253
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 371
@@ -1939,10 +1944,6 @@ entities:
     - type: Transform
       pos: 2.5,-10.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterLegitSafetyMothEpi
   entities:
   - uid: 219
@@ -1965,7 +1966,7 @@ entities:
     - type: Transform
       pos: -6.5,-3.5
       parent: 1
-- proto: PoweredlightColoredFrostyBlue
+- proto: PoweredlightCyan
   entities:
   - uid: 210
     components:
@@ -2961,7 +2962,7 @@ entities:
     - type: Transform
       pos: 4.5,-1.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 378
     components:
