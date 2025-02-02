@@ -2,6 +2,7 @@ using Content.Server.Instruments;
 using Content.Server.Speech.Components;
 using Content.Server.UserInterface;
 using Content.Shared.Instruments;
+using Content.Shared.Instruments.UI;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage;
@@ -16,9 +17,9 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.UserInterface;
 using Content.Shared.Zombies;
+using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared._DV.Harpy.Components;
 
 namespace Content.Server._DV.Harpy
 {
@@ -29,7 +30,6 @@ namespace Content.Server._DV.Harpy
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly ActionBlockerSystem _blocker = default!;
         [Dependency] private readonly IPrototypeManager _prototype = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
         public override void Initialize()
         {
@@ -43,8 +43,6 @@ namespace Content.Server._DV.Harpy
             SubscribeLocalEvent<InstrumentComponent, SleepStateChangedEvent>(OnSleep);
             SubscribeLocalEvent<InstrumentComponent, StatusEffectAddedEvent>(OnStatusEffect);
             SubscribeLocalEvent<InstrumentComponent, DamageChangedEvent>(OnDamageChanged);
-            SubscribeLocalEvent<HarpySingerComponent, BoundUIClosedEvent>(OnBoundUIClosed);
-            SubscribeLocalEvent<HarpySingerComponent, BoundUIOpenedEvent>(OnBoundUIOpened);
 
             // This is intended to intercept the UI event and stop the MIDI UI from opening if the
             // singer is unable to sing. Thus it needs to run before the ActivatableUISystem.
@@ -131,10 +129,9 @@ namespace Content.Server._DV.Harpy
         private void CloseMidiUi(EntityUid uid)
         {
             if (HasComp<ActiveInstrumentComponent>(uid) &&
-                TryComp<ActorComponent>(uid, out var actor) &&
-                actor.PlayerSession.AttachedEntity is {} player)
+                TryComp<ActorComponent>(uid, out var actor))
             {
-                _instrument.ToggleInstrumentUi(uid, player);
+                _instrument.ToggleInstrumentUi(uid, uid);
             }
         }
 
@@ -158,25 +155,6 @@ namespace Content.Server._DV.Harpy
             // Tell the user that they can not sing.
             if (args.Handled)
                 _popupSystem.PopupEntity(Loc.GetString("no-sing-while-no-speak"), uid, uid, PopupType.Medium);
-        }
-
-        private void OnBoundUIClosed(EntityUid uid, HarpySingerComponent component, BoundUIClosedEvent args)
-        {
-            if (args.UiKey is not InstrumentUiKey)
-                return;
-
-            TryComp(uid, out AppearanceComponent? appearance);
-            _appearance.SetData(uid, HarpyVisualLayers.Singing, SingingVisualLayer.False, appearance);
-        }
-
-        private void OnBoundUIOpened(EntityUid uid, HarpySingerComponent component, BoundUIOpenedEvent args)
-        {
-            if (args.UiKey is not InstrumentUiKey)
-                return;
-
-            TryComp(uid, out AppearanceComponent? appearance);
-            _appearance.SetData(uid, HarpyVisualLayers.Singing, SingingVisualLayer.True, appearance);
-
         }
     }
 }
