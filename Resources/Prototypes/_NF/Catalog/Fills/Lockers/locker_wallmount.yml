@@ -258,3 +258,18 @@
   - LockerChemistryFilled
   name: chemistry wall locker
 # endregion
+
+# region Departments
+- type: entity
+  id: LockerWallColorHydroponicsFilled
+  suffix: Filled, Frontier
+  parent: [LockerWallColorHydroponics, LockerBotanistFilled]
+
+- type: entity
+  id: LockerWallColorHydroponicsEmpty
+  suffix: Empty, Frontier
+  parent:
+  - LockerWallColorHydroponics
+  - BaseStructureWallmount  
+  name: botanist wall locker
+# endregion
