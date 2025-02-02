@@ -543,6 +543,15 @@
       state: tech_key
 
 - type: entity
+  parent: [BaseStructureComputerTabletop, ComputerMarketConsoleNFNormal]
+  id: ComputerTabletopMarketConsoleNFNormal
+  suffix: Normal, Tabletop
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers: *cargoMarketSprite
+
+- type: entity
   parent: [BaseStructureComputerTabletop, ComputerMarketConsoleNFHigh]
   id: ComputerTabletopMarketConsoleNFHigh
   suffix: High, Tabletop
@@ -576,6 +585,15 @@
   parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerPalletConsoleNFNormalMarket]
   id: ComputerTabletopPalletConsoleNFNormalMarket
   suffix: Normal, Tabletop
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers: *cargoPalletSprite
+
+- type: entity
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerPalletConsoleNFNormalTradeCrate]
+  id: ComputerTabletopPalletConsoleNFNormalTradeCrate
+  suffix: Trade Crates, Normal, Tabletop
   components:
   - type: Sprite
     drawdepth: SmallObjects

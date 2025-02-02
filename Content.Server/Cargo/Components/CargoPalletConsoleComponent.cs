@@ -1,5 +1,6 @@
 using Content.Server.Cargo.Systems;
 using Content.Shared.Stacks;
+using Content.Shared.Whitelist;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Cargo.Components;
@@ -16,4 +17,10 @@ public sealed partial class CargoPalletConsoleComponent : Component
     // Can be modified individually when mapping, so that consoles have a further reach
     [DataField("palletDistance")]
     public int PalletDistance = 8;
+
+    // The distance in a radius around the console to check for cargo pallets
+    // Can be modified individually when mapping, so that consoles have a further reach
+    [DataField]
+    public EntityWhitelist? Whitelist;
+    // End Frontier
 }
