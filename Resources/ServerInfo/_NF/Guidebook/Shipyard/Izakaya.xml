@@ -1,18 +1,26 @@
 <Document>
-  # OMAKASE-CLASS RESTAURANT SHUTTLE
+  # IZAKAYA-CLASS RESTAURANT SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="SignKitchen"/>
-  <GuideEntityEmbed Entity="LockerFreezerBase"/>
-  <GuideEntityEmbed Entity="KitchenKnife"/>
-  <GuideEntityEmbed Entity="KitchenMicrowave"/>
-  <GuideEntityEmbed Entity="KitchenElectricGrill"/>
+  <GuideEntityEmbed Entity="SignKitchen" Caption=""/>
+  <GuideEntityEmbed Entity="KitchenAssembler" Caption=""/>
+  <GuideEntityEmbed Entity="KitchenMicrowave" Caption=""/>
+  <GuideEntityEmbed Entity="KitchenDeepFryer" Caption=""/>
+  <GuideEntityEmbed Entity="KitchenElectricRange" Caption=""/>
+  <GuideEntityEmbed Entity="SignKitchen" Caption=""/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="ShuttleMapOmakase" Caption=""/>
+  <GuideEntityEmbed Entity="ShuttleMapIzakaya" Caption=""/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="SignBar" Caption=""/>
+  <GuideEntityEmbed Entity="BoozeDispenser" Caption=""/>
+  <GuideEntityEmbed Entity="VendingMachineBooze" Caption=""/>
+  <GuideEntityEmbed Entity="SodaDispenser" Caption=""/>
+  <GuideEntityEmbed Entity="SignBar" Caption=""/>
   </Box>
     [color=#a4885c]Ship Size:[/color] Medium
 
-  [color=#a4885c]Recommended Crew:[/color] 2-8
+  [color=#a4885c]Recommended Crew:[/color] 4-8
 
   [color=#a4885c]Power Gen Type:[/color] Uranium
 
@@ -20,24 +28,16 @@
 
   [color=#a4885c]IFF Console:[/color] None
 
-  "A medium-size, high-end restaurant ship with a large dining area, and equally large kitchen."
+  "A medium-size, japanese-style restaurant/pub ship with a large dining area, and equally large kitchen."
 
-  "This shuttle seats up to 28 customers in the dining area, thus having the capability to handle food rushes,
-  the Omakase-class Restaurant Shuttle however lacks any restroom, and thus we recommend employing atleast 1 janitor."
+  "This restaurant shuttle seats up to 44 customers in the dining area, providing the shuttle the capability to seat people all over the sector at once."
+
+  "The kitchen has a main cooking area can be used by up to 2 chefs comfortably, a separate beverages area to be used by a bartender, a food storage to store ingredients,
+  a freezer to butcher meats and store ingredients long-term, a deep-frying area, and tool storage."
+
+  "The in-house botany has 6 hydrophonics tray and a single cow pen, it is located near the kitchen for ease of transport"
 
   [italic]Brought to you by Settler's LLC.[/italic]
-
-  # Recommended Staffing
-
-  <Box>
-  <GuideEntityEmbed Entity="ToyFigurineChef" Caption="2 Chef"/>
-  <GuideEntityEmbed Entity="ToyFigurineBotanist" Caption="2 Botanist"/>
-  <GuideEntityEmbed Entity="ToyFigurineBartender" Caption="2 Waiter"/>
-  </Box>
-  <Box>
-  <GuideEntityEmbed Entity="ToyFigurineEngineer" Caption="1 Engineer"/>
-  <GuideEntityEmbed Entity="ToyFigurineJanitor" Caption="1 Janitor"/>
-  </Box>
 
   # PREFLIGHT CHECKLIST
 
@@ -58,7 +58,7 @@
   ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator unit
   <Box>
   <GuideEntityEmbed Entity="PortableGeneratorSuperPacmanShuttle"/>
-  <GuideEntityEmbed Entity="SheetUranium"/>
+  <GuideEntityEmbed Entity="FuelUranium"/>
   </Box>
 
   - Check that the S.U.P.E.R.P.A.C.M.A.N. generators units are anchored to the floor.
@@ -77,7 +77,7 @@
   </Box>
 
   - Check that the O2 canister is anchored to connector port.
-  - Check that the N2 canister is anchored to connector port.
+  - Check that both N2 canister is anchored to connector port.
   - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
   - Check that the gas mixer is set to 101kPa.
   - Ensure that the gas mixer is enabled.

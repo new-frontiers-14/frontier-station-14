@@ -5,30 +5,31 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Omakase
-  name: SSS Omakase
-  description: A medium-size, high-end japanese-style restaurant ship with a large dining area, and equally large kitchen.
-  price: 91000 # ~79000 after purchase, ~15% markup
+  id: Izakaya
+  parent: BaseVessel
+  name: SSS Izakaya
+  description: A medium-size, japanese-style restaurant/pub ship with a large dining area, and equally large kitchen.
+  price: 80000 # ~69500 after purchase, ~15% markup
   category: Medium
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/omakase.yml
-  guidebookPage: ShipyardOmakase
+  shuttlePath: /Maps/_NF/Shuttles/izakaya.yml
+  guidebookPage: ShipyardIzakaya
   class:
   - Kitchen
   engine:
   - Uranium
 
 - type: gameMap
-  id: Omakase
-  mapName: 'SSS Omakase'
-  mapPath: /Maps/_NF/Shuttles/omakase.yml
+  id: Izakaya
+  mapName: 'SSS Izakaya'
+  mapPath: /Maps/_NF/Shuttles/izakaya.yml
   minPlayers: 0
   stations:
-    Omakase:
+    Izakaya:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Omakase {1}'
+          mapNameTemplate: 'Izakaya {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
