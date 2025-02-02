@@ -1,27 +1,29 @@
+using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.PublicTransit.Components;
+using Content.Server._NF.PublicTransit.Prototypes;
+using Content.Server._NF.Station.Components;
+using Content.Server._NF.Station.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
-using Content.Shared.GameTicking;
+using Content.Server.Station.Components;
+using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
+using Content.Shared._NF.Shipyard.Prototypes;
+using Content.Shared.GameTicking;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Tiles;
-using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
-using Robust.Shared.Timing;
-using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Content.Server._NF.Station.Systems;
-using Robust.Shared.Prototypes;
-using Content.Server._NF.PublicTransit.Prototypes;
-using System.Diagnostics.CodeAnalysis;
+using Robust.Server.GameObjects;
 using Robust.Server.Maps;
-using System.Numerics;
 using Robust.Shared.Map.Components;
-using Content.Shared.Shipyard.Prototypes;
-using Content.Server._NF.GameTicking.Events;
-using Content.Server.Station.Components;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Spawners;
+using Robust.Shared.Timing;
+using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 
 namespace Content.Server._NF.PublicTransit;
 
@@ -350,11 +352,15 @@ public sealed class PublicTransitSystem : EntitySystem
                 var transitComp = EnsureComp<TransitShuttleComponent>(shuttleUids[0]);
                 transitComp.RouteID = route.Prototype.ID;
                 transitComp.DockTag = route.Prototype.DockTag;
+                // setting up any stations if we have a matching game map prototype to allow late joins directly onto the vessel
                 var shuttleName = Loc.GetString("public-transit-shuttle-name", ("number", route.Prototype.RouteNumber), ("suffix", neededBuses > 1 ? (char)('A' + numBuses) : ""));
-                _meta.SetEntityName(shuttleUids[0], shuttleName);
-                var shuttleStation = _station.GetOwningStation(shuttleUids[0]);
-                if (shuttleStation != null)
+                if (_proto.TryIndex<GameMapPrototype>(busVessel.ID, out var stationProto))
+                {
+                    shuttleStation = _station.InitializeNewStation(stationProto.Stations[vessel.ID], shuttleUids);
                     _meta.SetEntityName(shuttleStation.Value, shuttleName);
+                }
+                // Set both the bus grid and station name
+                _meta.SetEntityName(shuttleUids[0], shuttleName);
 
                 // Space each bus out in the schedule.
                 int index = numBuses * route.GridStops.Count / neededBuses;

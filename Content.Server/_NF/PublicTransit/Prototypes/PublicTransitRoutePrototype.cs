@@ -1,4 +1,4 @@
-using Content.Shared.Shipyard.Prototypes;
+using Content.Shared._NF.Shipyard.Prototypes;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.PublicTransit.Prototypes;
