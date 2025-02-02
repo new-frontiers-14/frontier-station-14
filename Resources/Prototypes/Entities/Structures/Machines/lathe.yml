@@ -1009,6 +1009,7 @@
       - BlankMediPen # Frontier
       - MedicalAppraisalTool # Frontier
       - HandheldCrewMonitor # Frontier
+      - Bloodpack # Frontier
     dynamicRecipes:
       - ChemicalPayload
       - CryostasisBeaker
@@ -1027,7 +1028,14 @@
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
-    stealGroup: MedicalTechFabCircuitboard
+    stealGroup: MedicalTechFabCircuitboard 
+  - type: MaterialStorage # Frontier
+    whitelist: # Frontier
+      tags: # Frontier
+        - Sheet # Frontier
+        - RawMaterial # Frontier
+        - Ingot # Frontier
+        - Biomass # Frontier
 
 - type: entity
   parent: BaseLathe
