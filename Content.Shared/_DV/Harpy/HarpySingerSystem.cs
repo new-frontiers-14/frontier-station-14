@@ -25,4 +25,3 @@ namespace Content.Shared._DV.Harpy
         }
     }
 }
-
