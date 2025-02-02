@@ -17,20 +17,24 @@ public sealed class SignalTimerBoundUserInterfaceState : BoundUserInterfaceState
     public string CurrentText;
     public string CurrentDelayMinutes;
     public string CurrentDelaySeconds;
+    public bool CurrentRepeat;
     public bool ShowText;
     public TimeSpan TriggerTime;
     public bool TimerStarted;
     public bool HasAccess;
 
-    public SignalTimerBoundUserInterfaceState(string currentText,
+    public SignalTimerBoundUserInterfaceState(
+        string currentText,
         string currentDelayMinutes,
         string currentDelaySeconds,
+        bool currentRepeat,
         bool showText,
         TimeSpan triggerTime,
         bool timerStarted,
         bool hasAccess)
     {
         CurrentText = currentText;
+        CurrentRepeat = currentRepeat;
         CurrentDelayMinutes = currentDelayMinutes;
         CurrentDelaySeconds = currentDelaySeconds;
         ShowText = showText;
@@ -48,6 +52,17 @@ public sealed class SignalTimerTextChangedMessage : BoundUserInterfaceMessage
     public SignalTimerTextChangedMessage(string text)
     {
         Text = text;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class SignalTimerRepeatToggled : BoundUserInterfaceMessage
+{
+    public bool Repeat { get; }
+
+    public SignalTimerRepeatToggled(bool repeat)
+    {
+        Repeat = repeat;
     }
 }
 
