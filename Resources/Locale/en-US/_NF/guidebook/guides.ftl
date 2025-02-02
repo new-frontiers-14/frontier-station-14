@@ -38,6 +38,7 @@ guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-barge = Barge
 guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
+guide-entry-shipyard-bodkin = Bodkin
 guide-entry-shipyard-bookworm = Bookworm
 guide-entry-shipyard-bounty = Bounty
 guide-entry-shipyard-brigand = Brigand

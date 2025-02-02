@@ -1,7 +1,7 @@
 using Content.Client.UserInterface.Controls;
 using Content.Client.VendingMachines.UI;
 using Content.Shared.VendingMachines;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components; // Frontier
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
 using System.Linq;
