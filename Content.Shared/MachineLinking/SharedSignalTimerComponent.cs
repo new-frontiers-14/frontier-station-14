@@ -23,8 +23,7 @@ public sealed class SignalTimerBoundUserInterfaceState : BoundUserInterfaceState
     public bool TimerStarted;
     public bool HasAccess;
 
-    public SignalTimerBoundUserInterfaceState(
-        string currentText,
+    public SignalTimerBoundUserInterfaceState(string currentText,
         string currentDelayMinutes,
         string currentDelaySeconds,
         bool currentRepeat, //Frontier
