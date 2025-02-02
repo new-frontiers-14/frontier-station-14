@@ -22,11 +22,11 @@ entities:
     components:
     - type: MetaData
       name: Bookworm
-    - type: BecomesStation
-      id: Bookworm
     - type: Transform
       pos: -0.53125,-0.55733174
       parent: invalid
+    - type: BecomesStation
+      id: Bookworm
     - type: MapGrid
       chunks:
         0,0:
@@ -1470,19 +1470,6 @@ entities:
     - type: Transform
       pos: -4.5,-4.5
       parent: 2
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: CrateServiceGuidebooks
   entities:
   - uid: 73
@@ -1584,13 +1571,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5,2.5
-      parent: 2
-- proto: filingCabinetDrawerRandom
-  entities:
-  - uid: 296
-    components:
-    - type: Transform
-      pos: -5.5,4.5
       parent: 2
 - proto: Firelock
   entities:
@@ -2535,6 +2515,13 @@ entities:
     - type: Transform
       pos: 6.2763557,-3.4680002
       parent: 2
+- proto: NFHolopadShip
+  entities:
+  - uid: 296
+    components:
+    - type: Transform
+      pos: -5.5,4.5
+      parent: 2
 - proto: NitrogenCanister
   entities:
   - uid: 80
@@ -2658,10 +2645,6 @@ entities:
     - type: Transform
       pos: -3.5,-2.5
       parent: 2
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandWehWatches
   entities:
   - uid: 524
@@ -3823,7 +3806,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,-5.5
       parent: 2
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 411
     components:

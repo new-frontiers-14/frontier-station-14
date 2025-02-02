@@ -4,10 +4,11 @@ using Content.Shared.Dataset;
 using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components;
 using Robust.Shared.Map;
+using Content.Server._NF.StationEvents.Events;
 
-namespace Content.Server.StationEvents.Components;
+namespace Content.Server._NF.StationEvents.Components;
 
 [RegisterComponent, Access(typeof(BluespaceErrorRule), typeof(ShuttleSystem))]
 public sealed partial class BluespaceErrorRuleComponent : Component
