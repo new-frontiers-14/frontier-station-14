@@ -3110,25 +3110,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -21.5,24.5
       parent: 1
-- proto: AirlockExternalGlassShuttleTransit
-  entities:
-  - uid: 169
-    components:
-    - type: Transform
-      pos: 1.5,-3.5
-      parent: 1
-  - uid: 170
-    components:
-    - type: Transform
-      pos: 0.5,-3.5
-      parent: 1
-    - type: Docking
-      name: dock-label-bus
-  - uid: 171
-    components:
-    - type: Transform
-      pos: -0.5,-3.5
-      parent: 1
 - proto: AirlockFrontierCommandEngineeringLocked
   entities:
   - uid: 22
@@ -3143,7 +3124,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,16.5
       parent: 1
-- proto: AirlockGlassShuttle
+- proto: AirlockExternalGlassShuttleTransit
   entities:
   - uid: 151
     components:
@@ -3258,6 +3239,23 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -29.5,4.5
+      parent: 1
+  - uid: 169
+    components:
+    - type: Transform
+      pos: 1.5,-3.5
+      parent: 1
+  - uid: 170
+    components:
+    - type: Transform
+      pos: 0.5,-3.5
+      parent: 1
+    - type: Docking
+      name: dock-label-bus
+  - uid: 171
+    components:
+    - type: Transform
+      pos: -0.5,-3.5
       parent: 1
   - uid: 219
     components:

@@ -240,6 +240,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
             // FTL to next station if it exists.  Do this before the print.
             _shuttles.FTLToDock(uid, shuttle, nextGrid.Value, hyperspaceTime: route.Prototype.TravelTime.Seconds, priorityTag: comp.DockTag); // TODO: Unhard code the priorityTag as it should be added from the system.
+            comp.CurrentGrid = nextGrid.Value;
 
             if (!TryComp(nextGrid, out MetaDataComponent? metadata))
                 continue;
@@ -360,6 +361,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
                 //we set up a default in case the second time we call it fails for some reason
                 _shuttles.FTLToDock(shuttleUids[0], shuttleComp, route.GridStops[index], hyperspaceTime: shuttleArrivalOffset, priorityTag: transitComp.DockTag);
+                transitComp.CurrentGrid = route.GridStops[index];
                 transitComp.NextTransfer = _timing.CurTime + route.Prototype.WaitTime + TimeSpan.FromSeconds(shuttleArrivalOffset);
 
                 numBuses++;
