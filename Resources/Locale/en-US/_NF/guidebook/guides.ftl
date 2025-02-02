@@ -13,6 +13,7 @@ guide-entry-nfsd-smuggling = Smuggling
 
 # Medical entries
 guide-entry-medical-bounties = Medical Bounties
+guide-entry-medical-doc = Director of Care
 
 # Reference entries
 guide-entry-medicalrecipes = Medical Recipes
@@ -37,6 +38,7 @@ guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-barge = Barge
 guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
+guide-entry-shipyard-bodkin = Bodkin
 guide-entry-shipyard-bookworm = Bookworm
 guide-entry-shipyard-brigand = Brigand
 guide-entry-shipyard-bulker = Bulker

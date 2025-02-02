@@ -12,7 +12,8 @@ using static Content.Shared.Paper.PaperComponent;
 using Content.Shared.Timing; // Frontier
 using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Verbs; // Frontier
-using Content.Shared.Ghost; // Frontier
+using Content.Shared.Ghost;
+using Content.Shared.Mobs; // Frontier
 
 namespace Content.Shared.Paper;
 
@@ -134,42 +135,52 @@ public sealed class PaperSystem : EntitySystem
     private void OnInteractUsing(Entity<PaperComponent> entity, ref InteractUsingEvent args)
     {
         // only allow editing if there are no stamps or when using a cyberpen
-        var editable = entity.Comp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps");
-        if (_tagSystem.HasTag(args.Used, "Write") && editable)
+        var editable = entity.Comp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps")
+                       || _tagSystem.HasTag(args.Used, "NFWriteIgnoreUnprotectedStamps") && !_tagSystem.HasTag(entity, "NFPaperStampProtected"); // Frontier: protected stamps
+        if (_tagSystem.HasTag(args.Used, "Write"))
         {
-            if (entity.Comp.EditingDisabled)
+            if (editable)
             {
-                var paperEditingDisabledMessage = Loc.GetString("paper-tamper-proof-modified-message");
-                _popupSystem.PopupEntity(paperEditingDisabledMessage, entity, args.User);
+                // Frontier - Restrict writing to entities with ActorComponent, players only
+                if (!HasComp<ActorComponent>(args.User))
+                {
+                    args.Handled = true;
+                    return;
+                }
+                // End Frontier
 
+                if (entity.Comp.EditingDisabled)
+                {
+                    var paperEditingDisabledMessage = Loc.GetString("paper-tamper-proof-modified-message");
+                    _popupSystem.PopupEntity(paperEditingDisabledMessage, entity, args.User);
+
+                    args.Handled = true;
+                    return;
+                }
+                var writeEvent = new PaperWriteEvent(entity, args.User);
+                RaiseLocalEvent(args.Used, ref writeEvent);
+
+                entity.Comp.Mode = PaperAction.Write;
+                _uiSystem.OpenUi(entity.Owner, PaperUiKey.Key, args.User);
+                UpdateUserInterface(entity);
                 args.Handled = true;
                 return;
             }
-            var writeEvent = new PaperWriteEvent(entity, args.User);
-            RaiseLocalEvent(args.Used, ref writeEvent);
-
-            // Frontier - Restrict writing to entities with ActorComponent, players only
-            if (!TryComp<ActorComponent>(args.User, out var actor))
-                return;
-
-            entity.Comp.Mode = PaperAction.Write;
-            _uiSystem.OpenUi(entity.Owner, PaperUiKey.Key, args.User);
-            UpdateUserInterface(entity);
-            args.Handled = true;
-            return;
         }
 
         // If a stamp, attempt to stamp paper
         if (TryComp<StampComponent>(args.Used, out var stampComp) &&
             !StampDelayed(args.Used)) // Frontier: check stamp is delayed, defer TryStamp
         {
-            var stampInfo = GetStampInfo(stampComp); // Frontier: assign DisplayStampInfo before stamp
+            // Frontier: assign DisplayStampInfo before stamp
+            var stampInfo = GetStampInfo(stampComp);
             if (_tagSystem.HasTag(args.Used, "Write"))
             {
                 TrySign(entity, args.User, args.Used);
             }
             else if (TryStamp(entity, stampInfo, stampComp.StampState))
-            { // End Frontier
+            {
+                // End Frontier: assign DisplayStampInfo before stamp
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
                         ("user", args.User),
@@ -184,9 +195,15 @@ public sealed class PaperSystem : EntitySystem
 
                 _audio.PlayPredicted(stampComp.Sound, entity, args.User);
 
-                UpdateUserInterface(entity);
+                // Frontier: stamp delay and protection
+                DelayStamp(args.Used);
 
-                DelayStamp(args.Used); // Frontier: prevent stamp spam
+                // Note: mode is not changed here, anyone with an open paper may still save changes.
+                if (stampComp.Protected)
+                    _tagSystem.AddTag(entity, "NFPaperStampProtected");
+                // End Frontier
+
+                UpdateUserInterface(entity);
             } // Frontier: added an indent level
         }
     }

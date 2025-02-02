@@ -232,6 +232,7 @@
     stealthy: true
   - type: ToggleClothing
     action: ActionToggleNinjaGloves
+    disableOnUnequip: true
   - type: NinjaGloves
     abilities:
     - components:
@@ -286,7 +287,7 @@
     fiberColor: fibers-black
 
 - type: entity
-  parent: ClothingHandsGlovesCombat
+  parent: ClothingHandsGlovesCombat # Frontier: Removed BaseSecurityCargoContraband
   id: ClothingHandsMercenaryGlovesCombat # Frontier - Merc to Mercenary
   name: mercenary combat gloves
   description: High-quality combat gloves to protect hands from mechanical damage during combat.
@@ -417,7 +418,7 @@
     price: 0
 
 - type: entity
-  parent: ClothingHandsBase
+  parent: [ClothingHandsBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: ClothingHandsGlovesForensic
   name: forensic gloves
   description: Do not leave fibers or fingerprints. If you work without them, you're A TERRIBLE DETECTIVE.

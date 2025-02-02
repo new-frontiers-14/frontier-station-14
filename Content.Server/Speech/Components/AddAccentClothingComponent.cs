@@ -25,4 +25,9 @@ public sealed partial class AddAccentClothingComponent : Component
     ///     Is that clothing is worn and affecting someones accent?
     /// </summary>
     public bool IsActive = false;
+
+    /// <summary>
+    ///     Who is currently wearing the item?
+    /// </summary>
+    public EntityUid Wearer; // Frontier
 }
