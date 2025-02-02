@@ -10,13 +10,3 @@ public abstract partial class SharedDrainSystem : EntitySystem
     {
     }
 }
-
-// Start Frontier: portable pump visual state
-[Serializable, NetSerializable]
-public enum AdvDrainVisualState : byte
-{
-    IsRunning,
-    IsDraining,
-    IsVoiding
-}
-// End Frontier
