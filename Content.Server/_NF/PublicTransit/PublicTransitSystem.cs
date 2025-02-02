@@ -12,7 +12,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Content.Server.Station.Systems;
+using Content.Server._NF.Station.Systems;
 using Robust.Shared.Prototypes;
 using Content.Server._NF.PublicTransit.Prototypes;
 using System.Diagnostics.CodeAnalysis;
