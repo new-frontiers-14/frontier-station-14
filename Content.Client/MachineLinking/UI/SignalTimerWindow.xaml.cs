@@ -15,6 +15,7 @@ public sealed partial class SignalTimerWindow : DefaultWindow
     private const int MaxTextLength = 5;
 
     public event Action<string>? OnCurrentTextChanged;
+    public event Action<bool>? OnCurrentRepeatChanged;
     public event Action<string>? OnCurrentDelayMinutesChanged;
     public event Action<string>? OnCurrentDelaySecondsChanged;
 
@@ -30,6 +31,7 @@ public sealed partial class SignalTimerWindow : DefaultWindow
         IoCManager.InjectDependencies(this);
 
         CurrentTextEdit.OnTextChanged += e => OnCurrentTextChange(e.Text);
+        CurrentRepeatEdit.OnToggled += e => OnCurrentRepeatChange(e.Pressed);
         CurrentDelayEditMinutes.OnTextChanged += e => OnCurrentDelayMinutesChange(e.Text);
         CurrentDelayEditSeconds.OnTextChanged += e => OnCurrentDelaySecondsChange(e.Text);
         StartTimer.OnPressed += _ => StartTimerWeh();
@@ -75,6 +77,11 @@ public sealed partial class SignalTimerWindow : DefaultWindow
             CurrentTextEdit.CursorPosition = MaxTextLength;
         }
         OnCurrentTextChanged?.Invoke(text);
+    }
+
+    public void OnCurrentRepeatChange(bool toggled)
+    {
+        OnCurrentRepeatChanged?.Invoke(toggled);
     }
 
     public void OnCurrentDelayMinutesChange(string text)
@@ -140,6 +147,11 @@ public sealed partial class SignalTimerWindow : DefaultWindow
     public void SetCurrentText(string text)
     {
         CurrentTextEdit.Text = text;
+    }
+
+    public void SetCurrentRepeat(bool repeat)
+    {
+        CurrentRepeatEdit.Pressed = repeat;
     }
 
     public void SetCurrentDelayMinutes(string delay)

@@ -29,6 +29,12 @@ public sealed partial class SignalTimerComponent : Component
     public int MaxLength = 5;
 
     /// <summary>
+    ///     Repeat toggle, if toggled on, the timer will automatically start a new countdown when triggered.
+    /// </summary>
+    [DataField]
+    public bool Repeat = false;
+
+    /// <summary>
     ///     The port that gets signaled when the timer triggers.
     /// </summary>
     [DataField]
