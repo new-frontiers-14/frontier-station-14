@@ -38,7 +38,7 @@
 
 - type: gameMap
   id: CargoDepot
-  mapName: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+  mapName: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem
   mapPath: /Maps/_NF/POI/cargodepotalt.yml
   minPlayers: 0
   stations:
@@ -46,11 +46,13 @@
       stationProto: MarketFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+          mapNameTemplate: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem
+        - type: TradeCrateDestination
+          destinationProto: CargoA # Redefined in PointOfInterestSystem
 
 - type: gameMap
   id: CargoDepotAlt
-  mapName: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+  mapName: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem
   mapPath: /Maps/_NF/POI/cargodepotalt.yml
   minPlayers: 0
   stations:
@@ -58,4 +60,6 @@
       stationProto: MarketFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+          mapNameTemplate: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem
+        - type: TradeCrateDestination
+          destinationProto: CargoA # Redefined in PointOfInterestSystem
