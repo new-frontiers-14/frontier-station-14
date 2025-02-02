@@ -18,11 +18,11 @@ entities:
     components:
     - type: MetaData
       name: bottleneck
-    - type: BecomesStation
-      id: Bottleneck
     - type: Transform
       pos: -0.53125,-0.5
       parent: invalid
+    - type: BecomesStation
+      id: Bottleneck
     - type: MapGrid
       chunks:
         0,0:
@@ -1160,6 +1160,13 @@ entities:
     - type: Transform
       pos: -1.2964802,2.453908
       parent: 2
+- proto: NFHolopadShip
+  entities:
+  - uid: 236
+    components:
+    - type: Transform
+      pos: 0.5,5.5
+      parent: 2
 - proto: NitrogenCanister
   entities:
   - uid: 223
@@ -1215,10 +1222,7 @@ entities:
       pos: 1.5,5.5
       parent: 2
     - type: FuelGenerator
-      on: False
       targetPower: 10000
-    - type: Physics
-      bodyType: Static
 - proto: PosterLegitNanotrasenLogo
   entities:
   - uid: 123
@@ -1760,7 +1764,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,4.5
       parent: 2
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 226
     components:

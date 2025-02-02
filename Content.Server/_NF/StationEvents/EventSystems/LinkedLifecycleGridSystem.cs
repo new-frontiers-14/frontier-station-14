@@ -1,6 +1,6 @@
 using System.Numerics;
 using Content.Server.StationEvents.Components;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mind;

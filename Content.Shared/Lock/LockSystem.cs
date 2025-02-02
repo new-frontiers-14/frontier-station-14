@@ -16,10 +16,7 @@ using Content.Shared.Wires;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
-using Content.Shared._NF.Trade.Components;
 using Content.Shared.Emag.Components;
-using System.Text;
-using Content.Shared.Storage;
 using Robust.Shared.Audio; // Frontier - DEMAG
 
 namespace Content.Shared.Lock;

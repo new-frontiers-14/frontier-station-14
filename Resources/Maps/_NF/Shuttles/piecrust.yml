@@ -291,36 +291,51 @@ entities:
             0: 32768
           0,-1:
             0: 30464
-            3: 6
+            1: 6
           -1,1:
             0: 46
-            1: 26112
+            2: 26112
           -1,2:
-            2: 129
-            3: 96
+            3: 129
+            1: 96
           0,0:
             0: 63359
           0,1:
             0: 65287
           0,2:
             0: 7
-            2: 128
+            3: 128
           1,0:
             0: 30583
           1,1:
             0: 30503
           1,2:
-            3: 48
-            2: 8
+            1: 48
+            3: 8
           1,-1:
             0: 30576
-            2: 8
+            3: 8
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -348,21 +363,6 @@ entities:
           - 0
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          immutable: True
           moles:
           - 0
           - 0
@@ -1864,6 +1864,13 @@ entities:
     components:
     - type: Transform
       pos: 1.0368968,1.5472217
+      parent: 8756
+- proto: NFHolopadShip
+  entities:
+  - uid: 359
+    components:
+    - type: Transform
+      pos: 2.5,7.5
       parent: 8756
 - proto: NitrogenCanister
   entities:
