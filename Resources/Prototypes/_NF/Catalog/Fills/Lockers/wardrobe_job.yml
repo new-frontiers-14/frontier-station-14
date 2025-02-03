@@ -13,8 +13,7 @@
 - type: entity
   id: NFSDWardrobePrisonFilled
   suffix: Filled
-  parent: WardrobePrisonFilled
-  description: "Contains a selection of nice orange clothes for people enjoying their stay in the brig."
+  parent: NFSDWardrobePrison
   components:
   - type: StorageFill
     contents:
@@ -30,7 +29,7 @@
         amount: 2
 
 - type: entity
-  id: NFSDPrisonClosetWallOrangeFilled
+  id: NFSDPrisonerClosetWallOrangeFilled
   parent:
   - NFSDPrisonerClosetWallOrange
   - BaseStructureWallmount
