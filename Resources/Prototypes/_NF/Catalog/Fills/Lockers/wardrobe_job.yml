@@ -1,9 +1,40 @@
 - type: entity
   id: ClosetWallOrangeFilled
-  parent: 
+  parent:
   - ClosetWallOrange
   - BaseStructureWallmount
   - WardrobePrisonFilled
+  components:
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+      paper_label: !type:ContainerSlot
+
+- type: entity
+  id: NFSDWardrobePrisonFilled
+  suffix: Filled
+  parent: WardrobePrisonFilled
+  description: "Contains a selection of nice orange clothes for people enjoying their stay in the brig."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingUniformJumpsuitPrisoner
+        amount: 2
+      - id: ClothingUniformJumpskirtPrisoner
+        amount: 2
+      - id: ClothingShoesColorBlack
+        amount: 2
+      - id: ClothingMaskMuzzle
+        amount: 2
+      - id: ClothingHeadsetGrey
+        amount: 2
+
+- type: entity
+  id: NFSDPrisonClosetWallOrangeFilled
+  parent:
+  - NFSDPrisonerClosetWallOrange
+  - BaseStructureWallmount
+  - NFSDWardrobePrisonFilled
   components:
   - type: ContainerContainer
     containers:
