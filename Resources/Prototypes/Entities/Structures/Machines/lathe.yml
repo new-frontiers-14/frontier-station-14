@@ -157,6 +157,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - DimLightBulb
+      - WarmLightBulb
       - SodiumLightBulb # Frontier
       - ExteriorLightBulb #Frontier
       - Bucket
@@ -366,6 +368,7 @@
       - JugBluespace # Frontier
       - VialBluespace # Frontier
       - Jug
+      - ReinforcedJug # Frontier
       - WeaponCrusher
       - WeaponCrusherDagger
       - WeaponCrusherGlaive
@@ -501,6 +504,8 @@
     - OreProcessorMachineCircuitboard
     - ElectrolysisUnitMachineCircuitboard
     - CentrifugeMachineCircuitboard
+    # - ChemDispenserMachineCircuitboard # Frontier
+    # - ChemMasterMachineCircuitboard # Frontier
     - CondenserMachineCircuitBoard
     - HotplateMachineCircuitboard
     - UniformPrinterMachineCircuitboard
@@ -514,7 +519,7 @@
     - SodaDispenserMachineCircuitboard
     - SpaceHeaterMachineCircuitBoard
     - CutterMachineCircuitboard
-    - StationAnchorCircuitboard
+    # - StationAnchorCircuitboard # Frontier
     # - SalvageMagnetMachineCircuitboard # Frontier
     - SalvageTechFabCircuitboardNF # Frontier
     - NFScrapProcessorCircuitboard # Frontier
@@ -529,8 +534,6 @@
       - CryoPodMachineCircuitboard
       - VaccinatorMachineCircuitboard
       - DiagnoserMachineCircuitboard
-      - ChemMasterMachineCircuitboard
-      - ChemDispenserMachineCircuitboard
       - BiomassReclaimerMachineCircuitboard
       - BiogeneratorMachineCircuitboard # Frontier BiofabricatorMachineCircuitboard<BiogeneratorMachineCircuitboard
       - SurveillanceCameraRouterCircuitboard
@@ -544,20 +547,15 @@
       - SolarControlComputerCircuitboard
       - SolarTrackerElectronics
       - TurboItemRechargerCircuitboard
-      - PowerComputerCircuitboard
       - AutolatheHyperConvectionMachineCircuitboard
       - ProtolatheHyperConvectionMachineCircuitboard
-      - ReagentGrinderMachineCircuitboard
-      - HotplateMachineCircuitboard
-      - MicrowaveMachineCircuitboard
-      - ElectricGrillMachineCircuitboard
       - CircuitImprinterHyperConvectionMachineCircuitboard
       - FatExtractorMachineCircuitboard
       - FlatpackerMachineCircuitboard
       - SheetifierMachineCircuitboard
       - ShuttleConsoleCircuitboard
       - RadarConsoleCircuitboard
-      # - TechDiskComputerCircuitboard # Frontier: no tech disks
+      # - TechDiskComputerCircuitboard # Frontier
       - DawInstrumentMachineCircuitboard
       - CloningConsoleComputerCircuitboard
       - StasisBedMachineCircuitboard
@@ -590,17 +588,16 @@
       - APECircuitboard
       - ArtifactAnalyzerMachineCircuitboard
       - ArtifactCrusherMachineCircuitboard
-      - BoozeDispenserMachineCircuitboard
-      - SodaDispenserMachineCircuitboard
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
       - ReagentGrinderIndustrialMachineCircuitboard
       - JukeboxCircuitBoard
+      - SMESAdvancedMachineCircuitboard
+      # - HolopadMachineCircuitboard # Frontier: needs work before use
       - DoorElectronics # Nyano
       - FireAlarmElectronics # Nyano
       - FirelockElectronics # Nyano
       - IntercomElectronics # Nyano
-      - MailingUnitElectronics # Nyano
       - StationMapElectronics # Nyano
       - DeepFryerMachineCircuitboard # Nyano
       - SmallThrusterMachineCircuitboard # Frontier
@@ -608,12 +605,22 @@
       - MedicalAssemblerMachineCircuitboard # Frontier
       - KitchenAssemblerMachineCircuitboard # Frontier
       - ElectricRangeMachineCircuitboard # Frontier
+      - ChemDispenserMachineCircuitboard # Frontier
+      - ChemMasterMachineCircuitboard # Frontier
+      - ReagentGrinderMachineCircuitboard # Frontier
+      - HotplateMachineCircuitboard # Frontier
+      - MicrowaveMachineCircuitboard # Frontier
+      - ElectricGrillMachineCircuitboard # Frontier
+      - BoozeDispenserMachineCircuitboard # Frontier
+      - SodaDispenserMachineCircuitboard # Frontier
+      - MiniStationAnchorCircuitboard # Frontier
   - type: EmagLatheRecipes
     emagDynamicRecipes:
-      - ShuttleGunDusterCircuitboard
-      - ShuttleGunFriendshipCircuitboard
-      - ShuttleGunPerforatorCircuitboard
-      - ShuttleGunSvalinnMachineGunCircuitboard
+      # - ShuttleGunDusterCircuitboard # Frontier
+      # - ShuttleGunFriendshipCircuitboard # Frontier
+      # - ShuttleGunPerforatorCircuitboard # Frontier
+      # - ShuttleGunSvalinnMachineGunCircuitboard # Frontier
+      - ShuttleGunKineticCircuitboard # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
@@ -661,11 +668,6 @@
     - BorgModuleFireExtinguisher
     - BorgModuleRadiationDetection
     - BorgModuleTool
-    - BorgModuleAppraisal
-    - BorgModuleConstruction
-    - BorgModuleService
-    - BorgModuleTreatment
-    - BorgModuleCleaning
     - CyborgEndoskeleton
     - LeftArmBorg
     - RightArmBorg
@@ -673,50 +675,15 @@
     - RightLegBorg
     - LightHeadBorg
     - TorsoBorg
-    - LeftArmBorgEngineer
-    - RightArmBorgEngineer
-    - LeftLegBorgEngineer
-    - RightLegBorgEngineer
-    - HeadBorgEngineer
-    - TorsoBorgEngineer
-    - LeftLegBorgJanitor
-    - RightLegBorgJanitor
-    - HeadBorgJanitor
-    - TorsoBorgJanitor
-    - LeftArmBorgMedical
-    - RightArmBorgMedical
-    - LeftLegBorgMedical
-    - RightLegBorgMedical
-    - HeadBorgMedical
-    - TorsoBorgMedical
-    - LeftArmBorgMining
-    - RightArmBorgMining
-    - LeftLegBorgMining
-    - RightLegBorgMining
-    - HeadBorgMining
-    - TorsoBorgMining
-    - LeftArmBorgService
-    - RightArmBorgService
-    - LeftLegBorgService
-    - RightLegBorgService
-    - HeadBorgService
-    - TorsoBorgService
     dynamicRecipes:
     - ProximitySensor
-    - BorgModuleLightReplacer
     - BorgModuleAdvancedCleaning
-    - BorgModuleMining
-    - BorgModuleGrapplingGun
     - BorgModuleAdvancedTool
     - BorgModuleGPS
-    - BorgModuleRCD
     - BorgModuleArtifact
     - BorgModuleAnomaly
     - BorgModuleGardening
     - BorgModuleHarvesting
-    - BorgModuleMusique
-    - BorgModuleClowning
-    - BorgModuleDiagnosis
     - BorgModuleDefibrillator
     - BorgModuleAdvancedTreatment
     - BorgModuleAdvancedParamedic # Frontier
@@ -1047,6 +1014,7 @@
       - CryostasisBeaker
       - BluespaceBeaker
       - JugBluespace # Frontier
+      - ReinforcedJug # Frontier
       - SyringeBluespace
       - Jug
       - SyringeCryostasis
@@ -1236,6 +1204,25 @@
       - FloorCarpetItemSkyBlue # Frontier
       - CarpetCyan
       - CarpetWhite
+      # Bedsheets
+      - BedsheetBlack
+      - BedsheetBlue
+      - BedsheetBrown
+      - BedsheetGreen
+      - BedsheetGrey
+      - BedsheetOrange
+      - BedsheetPurple
+      - BedsheetRed
+      - BedsheetWhite
+      - BedsheetYellow
+      - BedsheetClown
+      - BedsheetCosmos
+      - BedsheetIan
+      - BedsheetMedical
+      - BedsheetMime
+      - BedsheetNT
+      - BedsheetRainbow
+      - BedsheetBrigmedic
       - FloorTileItemCarpetClown # Frontier
       - FloorTileItemCarpetOffice # Frontier
       - FloorTileItemEighties # Frontier
@@ -1244,6 +1231,7 @@
       - FloorTileItemArcadeRed # Frontier
   - type: EmagLatheRecipes
     emagStaticRecipes:
+      # Clothing
 #      - ClothingHeadHatCentcomcap # Frontier
 #      - ClothingHeadHatCentcom # Frontier
 #      - ClothingUniformJumpsuitCentcomAgent # Frontier
@@ -1266,6 +1254,8 @@
 #      - ClothingOuterWinterCentcom # Frontier
       - ClothingOuterWinterSyndie
       - ClothingOuterWinterSyndieCap
+      # Bedsheets
+      - BedsheetSyndie
   - type: MaterialStorage
     whitelist:
       tags:
@@ -1396,7 +1386,7 @@
       staticRecipes:
         - SheetSteel
         - SheetGlass1
-        # - SheetRGlass # Frontier: incentivize players to print base mats
+        # - SheetRGlassRaw # Frontier: incentivize players to print base mats
         - SheetPlasma1
         # - SheetPGlass1 # Frontier: incentivize players to print base mats
         # - SheetRPGlass1 # Frontier: incentivize players to print base mats
@@ -1425,7 +1415,7 @@
     staticRecipes:
       - SheetSteel
       - SheetGlass1
-      - SheetRGlass
+      - SheetRGlassRaw
       - SheetPlasma1
       - SheetPGlass1
       - SheetRPGlass1

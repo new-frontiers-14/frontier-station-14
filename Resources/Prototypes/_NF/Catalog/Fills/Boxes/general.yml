@@ -112,7 +112,7 @@
 #      - state: wet_floor_sign
 
 - type: entity
-  name: nfsd encryption key box
+  name: NFSD encryption key box
   parent: BoxEncryptionKeySecurity
   id: BoxEncryptionKeyNfsd
   components:
@@ -207,3 +207,30 @@
     whitelist:
       components:
       - LightBulb
+
+- type: entity
+  name: navigation lighttube box
+  parent: BoxCardboard
+  id: BoxColoredNavigationLighttube
+  description: This box is shaped on the inside so that only light tubes and bulbs fit. It is full of red and green lights. Festive!
+  components:
+  - type: StorageFill
+    contents:
+      - id: LightTubeCrystalRed
+        amount: 6
+      - id: LightTubeCrystalGreen
+        amount: 6
+  - type: Sprite
+    layers:
+      - state: box
+      - state: lighttube
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,3
+    whitelist:
+      components:
+      - LightBulb
+  - type: Tag
+    tags:
+      - DroneUsable

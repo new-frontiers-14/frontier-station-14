@@ -35,6 +35,10 @@ namespace Content.Shared.Humanoid.Markings
         [DataField("sprites", required: true)]
         public List<SpriteSpecifier> Sprites { get; private set; } = default!;
 
+        // impstation edit - allow markings to support shaders
+		[DataField("shader")]
+		public string? Shader { get; private set; } = null;
+        // end impstation edit
         public Marking AsMarking()
         {
             return new Marking(ID, Sprites.Count);

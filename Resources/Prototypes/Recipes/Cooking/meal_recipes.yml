@@ -27,6 +27,15 @@
     PoppySeeds: 1
   recipeType: Oven # Frontier
 
+- type: microwaveMealRecipe
+  id: RecipeBagelCotton
+  name: cotton bagel recipe
+  result: FoodBagelCotton
+  time: 5
+  solids:
+    FoodDoughCottonRope: 1
+  recipeType: Oven # Frontier
+
 #Burgers
 
 - type: microwaveMealRecipe
@@ -504,6 +513,18 @@
     Blackpepper: 5
   solids:
     FoodDough: 1
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeBaguetteCotton
+  name: baguette recipe
+  result: FoodBreadBaguetteCotton
+  time: 15
+  reagents:
+    TableSalt: 5
+    Blackpepper: 5
+  solids:
+    FoodDoughCotton: 1
   recipeType: Oven # Frontier
 
 - type: microwaveMealRecipe
@@ -1337,6 +1358,41 @@
   solids:
     FoodCarrot: 1
   recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeNachos
+  name: nachos recipe
+  result: FoodMealNachos
+  time: 10
+  reagents:
+    TableSalt: 1
+  solids:
+    FoodDoughTortillaFlat: 1
+    FoodPlateSmall: 1
+
+- type: microwaveMealRecipe
+  id: RecipeNachosCheesy
+  name: cheesy nachos recipe
+  result: FoodMealNachosCheesy
+  time: 10
+  reagents:
+    TableSalt: 1
+  solids:
+    FoodCheeseSlice: 1
+    FoodDoughTortillaFlat: 1
+    FoodPlateSmall: 1
+
+- type: microwaveMealRecipe
+  id: RecipeNachosCuban
+  name: cuban nachos recipe
+  result: FoodMealNachosCuban
+  time: 10
+  reagents:
+    Ketchup: 5
+  solids:
+    FoodChiliPepper: 1
+    FoodDoughTortillaFlat: 1
+    FoodPlateSmall: 1
 
 - type: microwaveMealRecipe
   id: RecipePopcorn
@@ -2275,6 +2331,16 @@
   - Oven # Frontier
 
 - type: microwaveMealRecipe
+  id: RecipeCroissantCotton
+  name: cotton croissant recipe
+  result: FoodBakedCroissantCotton
+  time: 5
+  solids:
+    FoodCroissantRawCotton: 1
+    FoodButterSlice: 1
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
   id: RecipeThrowingCroissant
   name: throwing croissant recipe
   result: WeaponCroissant
@@ -2286,3 +2352,27 @@
     ShardGlass: 1
   recipeType: Oven # Frontier
 
+
+- type: microwaveMealRecipe
+  id: RecipeInertAnomalyMeat
+  name: inert meat anomaly recipe
+  result: FoodMeatAnomaly
+  time: 5
+  solids:
+    AnomalyCoreFleshInert: 1
+
+- type: microwaveMealRecipe
+  id: RecipeAnomalyMeat
+  name: meat anomaly recipe
+  result: FoodMeatAnomaly
+  time: 5
+  solids:
+    AnomalyCoreFlesh: 1
+
+- type: microwaveMealRecipe
+  id: RecipeAnomalyMeatCooked
+  name: cooked meat anomaly recipe
+  result: FoodMeatAnomalyCooked
+  time: 5
+  solids:
+    FoodMeatAnomaly: 1
