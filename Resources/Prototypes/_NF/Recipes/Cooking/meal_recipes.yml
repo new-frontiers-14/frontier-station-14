@@ -76,6 +76,18 @@
   recipeType:
   - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedChevreChaudCotton
+  name: cotton chevre chaud recipe
+  result: FoodBakedChevreChaudCotton
+  time: 5
+  solids:
+    FoodChevreSlice: 1
+    FoodBreadBaguetteCottonSlice: 1
+  recipeType:
+  - Oven
+  - Microwave
+
 # Sushi
 
 - type: microwaveMealRecipe
@@ -138,6 +150,21 @@
     FoodCucumber: 1
     FoodAvocado: 1
     FoodTomato: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeCottonSalad
+  name: cotton salad recipe
+  result: FoodMothCottonSalad
+  time: 5
+  reagents:
+    OilOlive: 5
+  solids:
+    FoodBowlBig: 1
+    FoodBreadCottonSlice: 1
+    FoodCheeseSlice: 1
+    FoodAmbrosiaVulgaris: 3
   recipeType:
   - Assembler
 
@@ -705,7 +732,7 @@
     FoodBowlBig: 1
     FoodNoodlesBoiled: 1
     FoodCorn: 1
-  reagents:    
+  reagents:
     Water: 20
   recipeType:
   - Oven
@@ -733,7 +760,7 @@
   result: FoodMealSpicyNoodles
   time: 20
   solids:
-    FoodBowlBig: 1 
+    FoodBowlBig: 1
     FoodNoodlesBoiled: 1
     FoodTofuSlice: 1
     FoodChiliPepper: 1
@@ -749,7 +776,7 @@
   result: FoodMealTonkatsuNoodles
   time: 20
   solids:
-    FoodBowlBig: 1   
+    FoodBowlBig: 1
     FoodNoodlesBoiled: 1
     FoodSoybeans: 1
     FoodGarlic: 1
