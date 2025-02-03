@@ -5,6 +5,8 @@ using Robust.Client.GameObjects;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
 using Content.Shared._NF.NFSprayPainter.Prototypes; // Frontier
+using Content.Shared.Tools.Components; // Frontier
+using Content.Client.Wires.Visualizers; // Frontier
 
 namespace Content.Client.Doors;
 
@@ -12,6 +14,16 @@ public sealed class DoorSystem : SharedDoorSystem
 {
     [Dependency] private readonly AnimationPlayerSystem _animationSystem = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
+
+    // Frontier: paintable door layers
+    private readonly object[] _doorLayers = [
+        DoorVisualLayers.Base,
+        DoorVisualLayers.BaseUnlit,
+        WeldableLayers.BaseWelded,
+        DoorVisualLayers.BaseBolted,
+        DoorVisualLayers.BaseEmergencyAccess,
+        WiresVisualLayers.MaintenancePanel,
+    ];
 
     public override void Initialize()
     {
@@ -94,8 +106,13 @@ public sealed class DoorSystem : SharedDoorSystem
             var proto = Spawn(prototype);
 
             if (TryComp<SpriteComponent>(proto, out var sprite))
-                foreach (var layer in args.Sprite.AllLayers)
-                    layer.Rsi = sprite.BaseRSI;
+            {
+                foreach (var layer in _doorLayers)
+                {
+                    if (args.Sprite.LayerMapTryGet(layer, out var index))
+                        args.Sprite.LayerSetRSI(index, sprite.BaseRSI);
+                }
+            }
 
             Del(proto);
         }

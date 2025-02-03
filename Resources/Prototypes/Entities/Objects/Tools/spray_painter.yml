@@ -10,12 +10,12 @@
   - type: Item
     sprite: Objects/Tools/spray_painter.rsi
   - type: ActivatableUI
-    key: enum.SprayPainterUiKey.Key
+    key: enum.NFSprayPainterUiKey.Key # Frontier: add NF prefix 
   - type: UserInterface
     interfaces:
-      enum.SprayPainterUiKey.Key:
-        type: SprayPainterBoundUserInterface
-  - type: NFSprayPainter # Frontier SprayPainter<NFSprayPainter
+      enum.NFSprayPainterUiKey.Key: # Frontier: add NF prefix
+        type: NFSprayPainterExtendedBoundUserInterface # Frontier: add NF prefix, "Extended" suffix
+  - type: NFSprayPainter # Frontier: add NF prefix
     colorPalette:
       red: '#FF1212FF'
       yellow: '#B3A234FF'

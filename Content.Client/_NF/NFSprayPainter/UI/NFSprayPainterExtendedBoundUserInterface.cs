@@ -5,12 +5,12 @@ using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._NF.NFSprayPainter.UI;
 
-public sealed class NFSprayPainterBoundUserInterface : BoundUserInterface
+public sealed class NFSprayPainterExtendedBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
     private NFSprayPainterWindow? _window;
 
-    public NFSprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    public NFSprayPainterExtendedBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
 
