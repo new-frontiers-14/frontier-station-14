@@ -15,10 +15,23 @@ public sealed partial class ForceAnchorSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ForceAnchorComponent, MapInitEvent>(OnPreventGridAnchorMapInit);
+        SubscribeLocalEvent<ForceAnchorComponent, MapInitEvent>(OnForceAnchorMapInit);
+        SubscribeLocalEvent<ForceAnchorPostFTLComponent, FTLCompletedEvent>(OnForceAnchorPostFTLCompleted);
     }
 
-    private void OnPreventGridAnchorMapInit(Entity<ForceAnchorComponent> ent, ref MapInitEvent args)
+    private void OnForceAnchorMapInit(Entity<ForceAnchorComponent> ent, ref MapInitEvent args)
+    {
+        if (TryComp<PhysicsComponent>(ent, out var physics))
+        {
+            _physics.SetBodyType(ent, BodyType.Static, body: physics);
+            _physics.SetBodyStatus(ent, physics, BodyStatus.OnGround);
+            _physics.SetFixedRotation(ent, true, body: physics);
+        }
+        _shuttle.Disable(ent);
+        EnsureComp<PreventGridAnchorChangesComponent>(ent);
+    }
+
+    private void OnForceAnchorPostFTLCompleted(Entity<ForceAnchorPostFTLComponent> ent, ref FTLCompletedEvent args)
     {
         if (TryComp<PhysicsComponent>(ent, out var physics))
         {
