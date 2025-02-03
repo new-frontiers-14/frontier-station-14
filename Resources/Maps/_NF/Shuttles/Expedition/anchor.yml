@@ -2177,24 +2177,18 @@ entities:
     - type: Transform
       pos: 0.5,-16.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 78
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,-17.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 79
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-18.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpMiddle
   entities:
   - uid: 80
@@ -2202,8 +2196,6 @@ entities:
     - type: Transform
       pos: -0.5,-16.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpRight
   entities:
   - uid: 81
@@ -2211,24 +2203,18 @@ entities:
     - type: Transform
       pos: -1.5,-16.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 82
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,-18.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 83
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-17.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoor
   entities:
   - uid: 872
@@ -5445,13 +5431,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,1.5
-      parent: 1
-- proto: filingCabinetDrawerRandom
-  entities:
-  - uid: 719
-    components:
-    - type: Transform
-      pos: 5.5,1.5
       parent: 1
 - proto: filingCabinetRandom
   entities:
@@ -9100,6 +9079,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,-22.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: IntercomMedical
   entities:
   - uid: 676
@@ -9108,6 +9089,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 18.5,-15.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: LampGold
   entities:
   - uid: 692
@@ -9241,6 +9224,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 13.5,-22.5
+      parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 719
+    components:
+    - type: Transform
+      pos: 5.5,1.5
       parent: 1
 - proto: NFPosterLegitMagnusWatching
   entities:
@@ -10753,6 +10743,20 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,-14.5
+      parent: 1
+- proto: StructureGunRack
+  entities:
+  - uid: 1811
+    components:
+    - type: Transform
+      pos: -5.5,-1.5
+      parent: 1
+- proto: StructurePistolRack
+  entities:
+  - uid: 1376
+    components:
+    - type: Transform
+      pos: -4.5,-0.5
       parent: 1
 - proto: SubstationBasic
   entities:
@@ -12879,7 +12883,7 @@ entities:
     - type: Transform
       pos: 11.5,-25.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 1767
     components:
@@ -12904,20 +12908,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-3.5
-      parent: 1
-- proto: StructureGunRack
-  entities:
-  - uid: 1811
-    components:
-    - type: Transform
-      pos: -5.5,-1.5
-      parent: 1
-- proto: StructurePistolRack
-  entities:
-  - uid: 1376
-    components:
-    - type: Transform
-      pos: -4.5,-0.5
       parent: 1
 - proto: Windoor
   entities:
