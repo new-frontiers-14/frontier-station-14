@@ -11,10 +11,10 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using System.Linq;
-using Content.Server.Shipyard.Systems;
-using Content.Shared.Shipyard.Components;
+using Content.Server._NF.Shipyard.Systems; // Frontier
+using Content.Shared._NF.Shipyard.Components; // Frontier
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
-using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
+using static Content.Shared._NF.Shipyard.Components.ShuttleDeedComponent; // Frontier
 using Content.Shared.Access;
 
 namespace Content.Server.Access.Systems;
