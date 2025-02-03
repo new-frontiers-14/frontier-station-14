@@ -446,3 +446,38 @@
       enum.PdaVisuals.PdaType:
         !type:String
         pda-janitor
+
+- type: entity
+  parent: CMOPDA
+  id: DocPDA
+  name: director of care PDA
+  description: It smells like disinfectant.
+  components:
+  - type: Pda
+    id: DocIDCard
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: PdaBorderColor
+    borderColor: "#789876"
+    accentHColor: "#447987"
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-doc
+  - type: Icon
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-doc
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - BountyContractsCartridge
+    - AstroNavCartridge    
+    - LedgerCartridge
+    - MedTekCartridge #medtek preloaded. Should be ok.

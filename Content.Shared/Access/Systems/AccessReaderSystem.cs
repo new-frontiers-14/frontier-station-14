@@ -16,7 +16,7 @@ using Content.Shared.IdentityManagement;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared._NF.Trade.Components;
+using Content.Shared._NF.Trade;
 
 namespace Content.Shared.Access.Systems;
 
@@ -124,25 +124,25 @@ public sealed class AccessReaderSystem : EntitySystem
         return false;
     }
 
-    public bool GetMainAccessReader(EntityUid uid, [NotNullWhen(true)] out AccessReaderComponent? component)
+    public bool GetMainAccessReader(EntityUid uid, [NotNullWhen(true)] out Entity<AccessReaderComponent>? ent)
     {
-        component = null;
-        if (!TryComp(uid, out AccessReaderComponent? accessReader))
+        ent = null;
+        if (!TryComp<AccessReaderComponent>(uid, out var accessReader))
             return false;
 
-        component = accessReader;
+        ent = (uid, accessReader);
 
-        if (component.ContainerAccessProvider == null)
+        if (ent.Value.Comp.ContainerAccessProvider == null)
             return true;
 
-        if (!_containerSystem.TryGetContainer(uid, component.ContainerAccessProvider, out var container))
+        if (!_containerSystem.TryGetContainer(uid, ent.Value.Comp.ContainerAccessProvider, out var container))
             return true;
 
         foreach (var entity in container.ContainedEntities)
         {
-            if (TryComp(entity, out AccessReaderComponent? containedReader))
+            if (TryComp<AccessReaderComponent>(entity, out var containedReader))
             {
-                component = containedReader;
+                ent = (entity, containedReader);
                 return true;
             }
         }

@@ -176,12 +176,17 @@ namespace Content.Server.Lathe
             return component.StaticRecipes.Union(component.DynamicRecipes).ToList();
         }
 
-        public bool TryAddToQueue(EntityUid uid, LatheRecipePrototype recipe, LatheComponent? component = null)
+        public bool TryAddToQueue(EntityUid uid, LatheRecipePrototype recipe, int quantity, LatheComponent? component = null) // Frontier: add quantity
         {
             if (!Resolve(uid, ref component))
                 return false;
 
-            if (!CanProduce(uid, recipe, 1, component))
+            // Frontier: argument check
+            if (quantity <= 0)
+                return false;
+            // Frontier: argument check
+
+            if (!CanProduce(uid, recipe, quantity, component)) // Frontier: 1<quantity
                 return false;
 
             foreach (var (mat, amount) in recipe.Materials)
@@ -189,10 +194,18 @@ namespace Content.Server.Lathe
                 var adjustedAmount = recipe.ApplyMaterialDiscount
                     ? (int) (-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
                     : -amount;
+                adjustedAmount *= quantity; // Frontier
 
                 _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
             }
-            component.Queue.Add(recipe);
+
+            // Frontier: queue up a batch
+            if (component.Queue.Count > 0 && component.Queue[^1].Recipe.ID == recipe.ID)
+                component.Queue[^1].ItemsRequested += quantity;
+            else
+                component.Queue.Add(new LatheRecipeBatch(recipe, 0, quantity));
+            // End Frontier
+            // component.Queue.Add(recipe); // Frontier
 
             return true;
         }
@@ -204,8 +217,13 @@ namespace Content.Server.Lathe
             if (component.CurrentRecipe != null || component.Queue.Count <= 0 || !this.IsPowered(uid, EntityManager))
                 return false;
 
-            var recipe = component.Queue.First();
-            component.Queue.RemoveAt(0);
+            // Frontier: handle batches
+            var batch = component.Queue.First();
+            batch.ItemsPrinted++;
+            if (batch.ItemsPrinted >= batch.ItemsRequested || batch.ItemsPrinted < 0) // Rollover sanity check
+                component.Queue.RemoveAt(0);
+            var recipe = batch.Recipe;
+            // End Frontier
 
             var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
 
@@ -288,7 +306,7 @@ namespace Content.Server.Lathe
             if (!Resolve(uid, ref component))
                 return;
 
-            var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault();
+            var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault()?.Recipe; // Frontier: add ?.Recipe
 
             var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing);
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
@@ -396,20 +414,14 @@ namespace Content.Server.Lathe
         {
             if (_proto.TryIndex(args.ID, out LatheRecipePrototype? recipe))
             {
-                var count = 0;
-                for (var i = 0; i < args.Quantity; i++)
-                {
-                    if (TryAddToQueue(uid, recipe, component))
-                        count++;
-                    else
-                        break;
-                }
-                if (count > 0)
+                // Frontier: batching recipes
+                if (TryAddToQueue(uid, recipe, args.Quantity, component))
                 {
                     _adminLogger.Add(LogType.Action,
                         LogImpact.Low,
-                        $"{ToPrettyString(args.Actor):player} queued {count} {GetRecipeName(recipe)} at {ToPrettyString(uid):lathe}");
+                        $"{ToPrettyString(args.Actor):player} queued {args.Quantity} {GetRecipeName(recipe)} at {ToPrettyString(uid):lathe}");
                 }
+                // End Frontier
             }
             TryStartProducing(uid, component);
             UpdateUserInterfaceState(uid, component);
