@@ -1,5 +1,6 @@
 flavor-base-basic = basic
 flavor-base-earthy = earthy
+flavor-base-dill = dill
 
 flavor-complex-avocado = like avocado
 flavor-complex-cucumber = crisp and refreshing
@@ -11,15 +12,13 @@ flavor-complex-torpedo = like convoy raiding
 flavor-complex-bees = like buzzing and honey
 flavor-complex-wassail = warm and comforting
 flavor-complex-cargosauce = like minimum wage
-flavor-complex-honeybbq = like sweet and spicy
 flavor-complex-buffalosauce = like spicy wings
 flavor-complex-lizardsauce = like liquid lava
 flavor-complex-nukesauce = like frozen hellfire
 flavor-complex-peppermint = like spicy mint
 flavor-complex-relish = like dill and vinegar
 flavor-complex-sourcream = like sour milk
-flavor-complex-tartar = dill and fish
 flavor-complex-thousandisland = like creamy, sweet, tangy, and salty
 flavor-complex-fine-noodles = like fine noodles
-flavor-complex-rich-broth = rich broth
+flavor-complex-rich-broth = like rich broth
 flavor-complex-tangy = tangy

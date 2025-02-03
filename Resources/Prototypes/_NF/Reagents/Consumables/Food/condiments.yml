@@ -9,16 +9,6 @@
   recognizable: true
 
 - type: reagent
-  id: HoneyBBQ
-  name: reagent-name-honeybbq
-  group: Foods
-  desc: reagent-desc-honeybbq
-  physicalDesc: reagent-physical-desc-tangy
-  flavor: honeybbq
-  color: "#D2793A"
-  recognizable: true
-
-- type: reagent
   id: BuffaloSauce
   name: reagent-name-buffalosauce
   group: Foods
@@ -27,6 +17,12 @@
   flavor: buffalosauce
   color: "#F58521"
   recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:AdjustReagent
+        reagent: CapsaicinOil
+        amount: 0.20
 
 - type: reagent
   id: LizardSauce
@@ -37,6 +33,22 @@
   flavor: lizardsauce
   color: "#a76df3"
   recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:AdjustReagent
+        reagent: CapsaicinOil
+        amount: 0.20
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+           max: 293.13
+        amount: 100000 # thermal energy, not temperature!
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          min: 293.15
+        amount: -10000
 
 - type: reagent
   id: Mint
@@ -57,6 +69,22 @@
   flavor: nukesauce
   color: "#00008B"
   recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:AdjustReagent
+        reagent: CapsaicinOil
+        amount: 0.20
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+           max: 293.13
+        amount: 10000 # thermal energy, not temperature!
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          min: 293.15
+        amount: -100000
 
 - type: reagent
   id: Peppermint
@@ -89,21 +117,21 @@
   recognizable: true
 
 - type: reagent
-  id: Tartar
-  name: reagent-name-tartar
-  group: Foods
-  desc: reagent-desc-tartar
-  physicalDesc: reagent-physical-desc-thick-and-grainy
-  flavor: tartar
-  color: "#F5FFFA"
-  recognizable: true
-
-- type: reagent
   id: ThousandIsland
   name: reagent-name-thousandisland
   group: Foods
   desc: reagent-desc-thousandisland
   physicalDesc: reagent-physical-desc-creamy
   flavor: thousandisland
+  color: "#FAEBD7"
+  recognizable: true
+
+- type: reagent
+  id: JuicePickle
+  name: reagent-name-picklejuice
+  group: Foods
+  desc: reagent-desc-picklejuice
+  physicalDesc: reagent-physical-desc-tangy
+  flavor: dill
   color: "#FAEBD7"
   recognizable: true

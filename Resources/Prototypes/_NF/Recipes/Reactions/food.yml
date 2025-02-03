@@ -1,5 +1,6 @@
 - type: reaction
   id: CookingAstrotame
+  minTemp: 350
   reactants:
     Chlorine:
       amount: 3
@@ -10,19 +11,21 @@
 
 - type: reaction
   id: CookingBechamel
+  requiredMixerCategories:
+  - Stir
   reactants:
     Butter:
       amount: 1
     Flour:
-      amount: 5
+      amount: 1
     Milk:
-      amount: 10
+      amount: 1
   products:
-    Bechamel: 15
+    Bechamel: 3
 
 - type: reaction
-  minTemp: 320
   id: CookingBlackPepper
+  minTemp: 375
   reactants:
     CapsaicinOil:
       amount: 1
@@ -32,8 +35,9 @@
     Blackpepper: 2
 
 - type: reaction
-  minTemp: 320
   id: CookingCargoSauce
+  requiredMixerCategories:
+  - Stir
   reactants:
     Ketchunaise:
       amount: 1
@@ -43,17 +47,9 @@
     CargoSauce: 2
 
 - type: reaction
-  id: CookingHoneyBBQ
-  reactants:
-    Honey:
-      amount: 1
-    BbqSauce: 
-      amount: 1
-  products:
-    HoneyBBQ: 2
-
-- type: reaction
   id: CookingHorseradishSauce
+  requiredMixerCategories:
+  - Stir
   reactants:
     Mayo:
       amount: 2
@@ -66,17 +62,21 @@
 
 - type: reaction
   id: CookingBuffaloSauce
+  requiredMixerCategories:
+  - Stir
   reactants:
     Hotsauce:
       amount: 1
     CapsaicinOil:
       amount: 1
+    Butter:
+      amount: 1
   products:
-    BuffaloSauce: 2
+    BuffaloSauce: 3
 
 - type: reaction
-  minTemp: 350
   id: CookingLizardSauce
+  minTemp: 350
   reactants:
     BuffaloSauce:
       amount: 1
@@ -87,6 +87,8 @@
 
 - type: reaction
   id: CookingMint
+  requiredMixerCategories:
+  - Stir
   reactants:
     Frostoil:
       amount: 1
@@ -96,18 +98,20 @@
     Mint: 2
 
 - type: reaction
-  minTemp: 340
   id: CookingNukeSauce
+  minTemp: 340
   reactants:
     Mint:
       amount: 1
     LizardSauce:
       amount: 1
   products:
-    NukeSauce: 3
+    NukeSauce: 2
 
 - type: reaction
   id: CookingPeppermint
+  requiredMixerCategories:
+  - Stir
   reactants:
     Mint:
       amount: 1
@@ -117,9 +121,10 @@
     Peppermint: 2
 
 - type: reaction
-  id: CookingRelish
+  id: CookingRelish # would rather be a microwave/oven recipy.
+  minTemp: 340
   reactants:
-    Saline: # change to pickle juice at some point
+    JuicePickle:
       amount: 1
     Sugar:
       amount: 3
@@ -131,7 +136,7 @@
 - type: reaction
   id: CookingSourCream
   reactants:
-    Milk:
+    Cream:
       amount: 2
     SulfuricAcid:  
       amount: 1  
@@ -140,19 +145,9 @@
     SourCream: 2
 
 - type: reaction
-  id: CookingTartar
-  reactants:
-    Relish:
-      amount: 2
-    SourCream:
-      amount: 2
-    Vinegar:
-      amount: 1 
-  products:
-    Tartar: 5
-
-- type: reaction
   id: CookingThousandIsland
+  requiredMixerCategories:
+  - Stir
   reactants:
     Relish:
       amount: 2
@@ -160,3 +155,31 @@
       amount: 1
   products:
     ThousandIsland: 3
+
+- type: reaction
+  id: CookingTomatoSauce
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    JuiceTomato:
+      amount: 5
+    TableSalt:
+      amount: 2
+    OilOlive:
+      amount: 5
+  products:
+    TomatoSauce: 10
+
+- type: reaction
+  id: CookingPesto  # would rather be a microwave/oven recipy.
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    Nutriment:
+      amount: 1
+    OilOlive:
+      amount: 1
+    Allicin:
+      amount: 1
+  products:
+    Pesto: 3
