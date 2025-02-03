@@ -24,6 +24,7 @@ using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Server.Maps;
 
 namespace Content.Server._NF.PublicTransit;
 
@@ -64,7 +65,6 @@ public sealed class PublicTransitSystem : EntitySystem
         SubscribeLocalEvent<TransitShuttleComponent, ComponentStartup>(OnShuttleStartup);
         SubscribeLocalEvent<TransitShuttleComponent, FTLCompletedEvent>(OnShuttleArrival);
         SubscribeLocalEvent<TransitShuttleComponent, FTLTagEvent>(OnShuttleTag);
-        SubscribeLocalEvent<StationBusDepotComponent, ComponentStartup>(OnBusDepotStartup);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
@@ -128,13 +128,13 @@ public sealed class PublicTransitSystem : EntitySystem
         // Add each present route
         foreach (var route in ent.Comp.Routes)
         {
-            if (!_routeList.ContainsKey(route))
+            if (!_routeList.ContainsKey(route.Key))
             {
-                if (!_proto.TryIndex<PublicTransitRoutePrototype>(route.Id, out var routeProto))
+                if (!_proto.TryIndex(route.Key, out var routeProto))
                     continue;
-                _routeList.Add(route, new PublicTransitRoute(routeProto));
+                _routeList.Add(route.Key, new PublicTransitRoute(routeProto));
             }
-            _routeList[route].GridStops.Add(ent); //add it to the list (TODO: add priority - stations could have a relative order)
+            _routeList[route.Key].GridStops.Add(route.Value, ent); //add it to the list
         }
     }
 
@@ -144,7 +144,11 @@ public sealed class PublicTransitSystem : EntitySystem
     private void OnStationRemove(Entity<StationTransitComponent> ent, ref ComponentRemove args)
     {
         foreach (var route in _routeList.Values)
-            route.GridStops.Remove(ent);
+        {
+            var index = route.GridStops.IndexOfValue(ent);
+            if (index != -1)
+                route.GridStops.RemoveAt(index);
+        }
         // TODO: could add logic to rebalance the buses here.
     }
 
@@ -198,8 +202,8 @@ public sealed class PublicTransitSystem : EntitySystem
             return false;
 
         // If not in array, move to first item (-1 to 0).  If in array, move to next item (if last, revert to first).
-        var currentIndex = route.GridStops.FindIndex(ent => ent == currentGrid);
-        nextGrid = route.GridStops[(currentIndex + 1) % route.GridStops.Count];
+        var currentIndex = route.GridStops.IndexOfValue(currentGrid);
+        nextGrid = route.GridStops.GetValueAtIndex((currentIndex + 1) % route.GridStops.Count);
 
         return true;
     }
@@ -309,6 +313,35 @@ public sealed class PublicTransitSystem : EntitySystem
             busesByRoute[transit.RouteID].Add(ent);
         }
 
+        // Set up bus depot
+        // NOTE: this only works with one depot at the moment.
+        foreach (var route in _routeList.Values)
+        {
+            route.GridStops.Remove(0);
+        }
+        var busDepotEnumerator = EntityQueryEnumerator<StationBusDepotComponent>();
+        while (busDepotEnumerator.MoveNext(out var depotStation, out _))
+        {
+            if (!TryComp<StationDataComponent>(depotStation, out var stationData))
+                continue;
+
+            // Assuming the largest grid is the depot.
+            var depotGrid = _station.GetLargestGrid(stationData);
+            if (depotGrid == null)
+                continue;
+
+            var transit = EnsureComp<StationTransitComponent>(depotGrid.Value);
+            transit.Routes.Clear();
+            foreach (var route in _routeList.Values)
+            {
+                if (route.GridStops.Count <= 0)
+                    continue;
+
+                route.GridStops.Add(0, depotGrid.Value);
+                transit.Routes[route.Prototype.ID] = 0;
+            }
+        }
+
         var shuttleOffset = 500.0f;
         var shuttleArrivalOffset = 5.0f;
         var dummyMapEnt = _map.CreateMap(out var dummyMap);
@@ -324,7 +357,6 @@ public sealed class PublicTransitSystem : EntitySystem
             var neededBuses = 1;
             if (route.Prototype.StationsPerBus > 0)
                 neededBuses += route.GridStops.Count / route.Prototype.StationsPerBus;
-
 
             if (numBuses >= neededBuses)
                 continue;
@@ -352,12 +384,12 @@ public sealed class PublicTransitSystem : EntitySystem
                 var transitComp = EnsureComp<TransitShuttleComponent>(shuttleUids[0]);
                 transitComp.RouteID = route.Prototype.ID;
                 transitComp.DockTag = route.Prototype.DockTag;
-                // setting up any stations if we have a matching game map prototype to allow late joins directly onto the vessel
+                // If this thing should be a station, set up the station.
                 var shuttleName = Loc.GetString("public-transit-shuttle-name", ("number", route.Prototype.RouteNumber), ("suffix", neededBuses > 1 ? (char)('A' + numBuses) : ""));
                 if (_proto.TryIndex<GameMapPrototype>(busVessel.ID, out var stationProto))
                 {
-                    shuttleStation = _station.InitializeNewStation(stationProto.Stations[vessel.ID], shuttleUids);
-                    _meta.SetEntityName(shuttleStation.Value, shuttleName);
+                    var shuttleStation = _station.InitializeNewStation(stationProto.Stations[busVessel.ID], shuttleUids);
+                    _meta.SetEntityName(shuttleStation, shuttleName);
                 }
                 // Set both the bus grid and station name
                 _meta.SetEntityName(shuttleUids[0], shuttleName);
@@ -366,8 +398,9 @@ public sealed class PublicTransitSystem : EntitySystem
                 int index = numBuses * route.GridStops.Count / neededBuses;
 
                 //we set up a default in case the second time we call it fails for some reason
-                _shuttles.FTLToDock(shuttleUids[0], shuttleComp, route.GridStops[index], hyperspaceTime: shuttleArrivalOffset, priorityTag: transitComp.DockTag);
-                transitComp.CurrentGrid = route.GridStops[index];
+                var nextGrid = route.GridStops.GetValueAtIndex(index);
+                _shuttles.FTLToDock(shuttleUids[0], shuttleComp, nextGrid, hyperspaceTime: shuttleArrivalOffset, priorityTag: transitComp.DockTag);
+                transitComp.CurrentGrid = nextGrid;
                 transitComp.NextTransfer = _timing.CurTime + route.Prototype.WaitTime + TimeSpan.FromSeconds(shuttleArrivalOffset);
 
                 numBuses++;
@@ -381,33 +414,6 @@ public sealed class PublicTransitSystem : EntitySystem
         timer.Lifetime = 15f;
         RoutesCreated = true;
     }
-
-    /// <summary>
-    /// Here is where we handle setting up the transit system, including sanity checks.
-    /// This is called multiple times, from a few different sources, to ensure that if the system is activated dynamically
-    /// it will still function as intended
-    /// </summary>
-    /// <remarks>
-    /// Bus scheduling may be clumped if disabled and reenabled with enough stops to require additional buses.
-    /// </remarks>
-    private void OnBusDepotStartup(Entity<StationBusDepotComponent> entity, ref ComponentStartup args)
-    {
-        if (!TryComp<StationDataComponent>(entity, out var stationData))
-            return;
-
-        // Assuming the largest grid is the depot.
-        var grid = _station.GetLargestGrid(stationData);
-        if (grid == null)
-            return;
-
-        var transit = EnsureComp<StationTransitComponent>(grid.Value);
-        foreach (var route in _proto.EnumeratePrototypes<PublicTransitRoutePrototype>())
-        {
-            // The bus depot should start each route.
-            transit.Routes.Insert(0, route.ID);
-        }
-        UpdateRouteList((grid.Value, transit));
-    }
 }
 
 sealed class PublicTransitRoute(PublicTransitRoutePrototype prototype)
@@ -420,5 +426,5 @@ sealed class PublicTransitRoute(PublicTransitRoutePrototype prototype)
     /// <summary>
     /// The list of grids this route stops at.
     /// </summary>
-    public List<EntityUid> GridStops = new();
+    public SortedList<int, EntityUid> GridStops = new();
 }

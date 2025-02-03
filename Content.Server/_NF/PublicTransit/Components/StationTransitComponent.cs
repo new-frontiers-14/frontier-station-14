@@ -10,8 +10,9 @@ namespace Content.Server._NF.PublicTransit.Components;
 public sealed partial class StationTransitComponent : Component
 {
     /// <summary>
-    /// The list of routes that will service this station.
+    /// The list of routes that will service this station and the relative stop order along that route.
+    /// Stops are ordered in increasing value (lower numbers, earlier on the list)
     /// </summary>
     [DataField]
-    public List<ProtoId<PublicTransitRoutePrototype>> Routes = new();
+    public Dictionary<ProtoId<PublicTransitRoutePrototype>, int> Routes = new();
 }
