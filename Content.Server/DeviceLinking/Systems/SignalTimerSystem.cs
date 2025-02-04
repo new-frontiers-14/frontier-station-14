@@ -67,12 +67,7 @@ public sealed class SignalTimerSystem : EntitySystem
     /// </summary>
     public void Trigger(EntityUid uid, SignalTimerComponent signalTimer)
     {
-        // Frontier: Do not remove component if repeat is on
-        if (!signalTimer.Repeat)
-        {
-            RemComp<ActiveSignalTimerComponent>(uid);
-        }
-        //End Frontier
+        RemComp<ActiveSignalTimerComponent>(uid);
 
         _audio.PlayPvs(signalTimer.DoneSound, uid);
         _signalSystem.InvokePort(uid, signalTimer.TriggerPort);
@@ -89,8 +84,8 @@ public sealed class SignalTimerSystem : EntitySystem
                 true));
         }
 
-        // Frontier: Start new time if repeat is on
-        if (signalTimer.Repeat)
+        // Frontier: Start new timer if repeat is on and not set to 0 seconds
+        if (signalTimer.Repeat && signalTimer.Delay > 0)
         {
             OnStartTimer(uid, signalTimer);
         }
