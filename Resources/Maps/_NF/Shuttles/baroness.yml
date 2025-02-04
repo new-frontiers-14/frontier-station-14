@@ -25,8 +25,6 @@ entities:
     components:
     - type: MetaData
       name: Baroness
-    - type: BecomesStation
-      id: Baroness
     - type: Transform
       pos: -0.546875,-0.53125
       parent: invalid
@@ -453,6 +451,8 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: BecomesStation
+      id: Baroness
 - proto: AirAlarm
   entities:
   - uid: 160
@@ -1924,6 +1924,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -5.022292,-6.3433766
+      parent: 2
+- proto: NFHolopadShip
+  entities:
+  - uid: 267
+    components:
+    - type: Transform
+      pos: -0.5,5.5
       parent: 2
 - proto: NFPosterLegitBahamaMama
   entities:
