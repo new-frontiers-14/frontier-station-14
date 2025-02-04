@@ -77,7 +77,7 @@
 #Empty blue
 - type: entity
   id: JetpackBlue
-  parent: NFBaseJetpackBackMount # Frontier: BaseJetpack<NFBaseJetpackBackMount
+  parent: BaseJetpack
   name: jetpack
   suffix: Empty
   components:
@@ -110,7 +110,7 @@
 #Empty black
 - type: entity
   id: JetpackBlack
-  parent: [NFBaseJetpackBackMount, BaseC3SyndicateContraband] # Frontier: BaseJetpack<NFBaseJetpackBackMount, BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseJetpack, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   name: jetpack
   suffix: Empty
   components:
@@ -145,7 +145,7 @@
 #Empty captain
 - type: entity
   id: JetpackCaptain
-  parent: NFBaseJetpackBackMount # Frontier: remove BaseGrandTheftContraband, BaseJetpack<NFBaseJetpackBackMount
+  parent: BaseJetpack # Frontier: remove BaseGrandTheftContraband
   name: captain's jetpack
   suffix: Empty
   components:
@@ -186,7 +186,7 @@
 #Empty mini
 - type: entity
   id: JetpackMini
-  parent: NFBaseJetpackBackMount # Frontier: BaseJetpack<NFBaseJetpackBackMount
+  parent: BaseJetpack
   name: mini jetpack
   description: It's a jetpack. It can hold 1.5 L of gas.
   suffix: Empty
@@ -228,7 +228,7 @@
 #Empty security
 - type: entity
   id: JetpackSecurity
-  parent: [NFBaseJetpackBackMount, BaseC2ContrabandUnredeemable] # Frontier: BaseJetpack<NFBaseJetpackBackMount, BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseJetpack, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   name: security jetpack
   suffix: Empty
   components:
@@ -263,7 +263,7 @@
 #Empty void
 - type: entity
   id: JetpackVoid
-  parent: NFBaseJetpackBackMount # Frontier: BaseJetpack<NFBaseJetpackBackMount
+  parent: BaseJetpack
   name: void jetpack
   suffix: Empty
   components:
