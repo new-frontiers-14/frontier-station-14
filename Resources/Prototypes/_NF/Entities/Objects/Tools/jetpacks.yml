@@ -1,4 +1,12 @@
-#Empty security
+# Base back-mounted jetpack (e.g. not syndie magboots)
+- type: entity
+  id: NFBaseJetpackBackMount
+  parent: BaseJetpack
+  abstract: true
+  components:
+  - type: NFBorgJetpack
+
+# Empty security
 - type: entity
   id: JetpackNfsd
   parent: JetpackSecurity
@@ -12,7 +20,7 @@
   - type: Clothing
     sprite: _NF/Objects/Tanks/Jetpacks/nfsd.rsi
 
-#Filled security
+# Filled security
 - type: entity
   id: JetpackNfsdFilled
   parent: JetpackSecurityFilled
