@@ -24,3 +24,29 @@
       state: computer_wallmount
     - map: ["computerLayerScreen"]
       state: screen_radar
+
+- type: entity
+  parent: [BaseStructureComputerWallmount, ComputerStationRecords]
+  id: ComputerWallmountStationRecords
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Structures/Machines/computer_wallmount.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_wallmount
+    - map: ["computerLayerScreen"]
+      state: screen_records
+
+- type: entity
+  parent: [BaseStructureComputerWallmount, ComputerCrewMonitoring]
+  id: ComputerWallmountCrewMonitoring
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Structures/Machines/computer_wallmount.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_wallmount
+    - map: ["computerLayerScreen"]
+      state: screen_crew
