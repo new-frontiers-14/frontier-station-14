@@ -69,7 +69,8 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         if (stationUid is EntityUid station)
         {
             // Frontier: check access - hack because we don't have an AccessReaderComponent, it's the station
-            if (TryComp(stationUid, out StationJobsComponent? stationJobs))
+            if (TryComp(stationUid, out StationJobsComponent? stationJobs) &&
+                (stationJobs.Groups.Count > 0 || stationJobs.Tags.Count > 0))
             {
                 var accessSources = _access.FindPotentialAccessItems(msg.Actor);
                 var access = _access.FindAccessTags(msg.Actor, accessSources);
