@@ -4,7 +4,7 @@ using Content.Server._NF.Market.Extensions;
 using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.Components;
 using Content.Shared._NF.Market.Events;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Content.Shared._NF.CrateMachine.Components;

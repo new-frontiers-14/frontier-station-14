@@ -1,8 +1,8 @@
 using System.Text;
 using Content.Shared._NF.Bank;
 using Content.Shared._NF.Bank.BUI;
-using Content.Shared.Bank;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.Components;
 
 namespace Content.Server._NF.Bank;
 

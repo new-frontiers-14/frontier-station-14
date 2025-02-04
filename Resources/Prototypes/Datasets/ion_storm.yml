@@ -190,6 +190,15 @@
   - SPACE
   - SUNLIGHT
   - WATER
+  # Frontier
+  - CONTRACTS
+  - CORPSES # medical bounties
+  - CREATURES
+  - BLACKLIGHTS
+  - CARPET
+  - SILENCE
+  - GREASE
+  # End Frontier
 
 # Severity is how bad the allergy is.
 - type: dataset
@@ -201,6 +210,9 @@
   - MILDLY
   - NOT VERY
   - SEVERELY
+  # Frontier
+  - EGREGIOUSLY
+  # End Frontier
 
 # Areas are specific places, on the station or otherwise.
 - type: dataset
@@ -248,7 +260,29 @@
   - THE UNIVERSE
   - URANUS
   - VENUS
-  - YOUR DREAMS AND/OR NIGHTMARES
+#  - YOUR DREAMS AND/OR NIGHTMARES # Frontier: singular
+  # Frontier
+  - FRONTIER OUTPOST
+  - NFSD OUTPOST
+  - THE SHERIFF'S OFFICE
+  - EXPEDITIONARY LODGE
+  - THE TRADE OUTPOST
+  - A CARGO DEPOT
+  - GRIFTY'S
+  - CRAZY CASEY'S
+  - EVERY SHUTTLE
+  - A SHUTTLE
+  - SOMEWHERE IN DISPOSALS
+  - TINNIA'S REST
+  - THE COURTHOUSE
+  - MCCARGO
+  - THE OMNICHURCH
+  - BAHAMA MAMA'S
+  - MEDICAL DISPATCH
+  - ONE OF YOUR DREAMS
+  - ONE OF YOUR NIGHTMARES
+  - MY BOOTS
+  # End Frontier
 
 # Abstract concepts for the law holder to decide on it's own definition of.
 - type: dataset
@@ -310,6 +344,15 @@
   - TIME
   - WEALTHINESS
   - WONDER
+  # Frontier
+  - SMUGGLING
+  - HIERARCHY
+  - KNOWLEDGE
+  - ORDER
+  - PERFECTION
+  - NOTHINGNESS
+  - SILENCE
+  # End Frontier
 
 # Crew is any specific job. Using jobs instead of specific crewmembers since "THE CLOWN" is easier than
 # seeing "JOHN SMITH" and having to figure out who john smith is.
@@ -322,7 +365,7 @@
   - BARTENDERS
   - BOTANISTS
   - CAPTAINS
-#  - CAPTAINS AND HEADS OF STAFF
+  # - CAPTAINS AND HEADS OF STAFF
   - CARGO TECHNICIANS
   - CHAPLAINS
   - CHEFS
@@ -334,9 +377,9 @@
   - CYBORGS
   - DETECTIVES
   # - GENETICISTS
-  - STATION REPRESENTATIVES
-  - SHERIFFS
-#  - HEADS OF STAFF
+  # - HEADS OF PERSONNEL
+  # - HEADS OF SECURITY
+  # - HEADS OF STAFF
   - JANITORS
   - LAWYERS
   - LIBRARIANS
@@ -345,17 +388,38 @@
   - MUSICIANS
   - NON-CREW
   - PARAMEDICS
-  - PASSENGERS
+  # - PASSENGERS
   - QUARTERMASTERS
   - RESEARCH DIRECTORS
   - ROBOTICISTS
   - RODENTS
   - SALVAGE SPECIALISTS
   - SCIENTISTS
-  - SECURITY OFFICERS
+  # - SECURITY OFFICERS
   - ENGINEERS
   # - VIROLOGISTS
+  # - WARDENS
+  # Frontier
+  - CONTRACTORS
+  - PILOTS
+  - MERCENARIES
+  - VALETS
+  - MAIL CARRIERS
+  - STATION TRAFFIC CONTROLLERS
+  - STATION GUARDS
+  - STATION REPRESENTATIVES
+  - CADETS
+  - PUBLIC AFFAIRS LIAISONS
+  - DEPUTIES
+  - BRIGMEDICS
+  - SERGEANTS
   - BAILIFFS
+  - SHERIFFS
+  - MEMBERS OF SECTOR COMMAND
+  - DIRECTORS OF CARE
+  - STATION PETS
+  - PIRATES
+  # End Frontier
 
 # only including complex dangerous or funny drinks no water allowed
 - type: dataset
@@ -377,6 +441,12 @@
   - SPACE LUBE
 #  - SULFURIC ACID
 #  - WELDING FUEL
+  # Frontier
+  - ANYTHING CAFFEINATED
+  - PINK DRINK
+  - SWEETEST AMBROSIA
+  - LIQUID GOLD
+  # End Frontier
 
 - type: dataset
   id: IonStormFeelings
@@ -403,6 +473,9 @@
   - WANTS
   - WORSHIPS
 #  - WOULD KILL FOR
+  # Frontier
+  - SHOULD THINK ABOUT
+  # End Frontier
 
 # loc is not advanced enough to change has to have, etc.
 - type: dataset
@@ -411,7 +484,7 @@
   - CRAVE
   - DESIRE
   - FEAR
-  - HAS
+  - HAVE # Frontier: HAS<HAVE
   - HUNGER FOR
   - ARE AFRAID OF
   - ARE BUILT FOR
@@ -430,6 +503,9 @@
   - WANT
   - WORSHIP
 #  - WOULD KILL FOR
+  # Frontier
+  - SHOULD THINK ABOUT
+  # End Frontier
 
 # only including complex dangerous or funny food no apples
 - type: dataset
@@ -457,6 +533,16 @@
   - STEEL
   - SUPPERMATTER
 #  - URANIUM
+  # Frontier
+  - DONK POCKET CASSEROLE
+  - HANDMADE DONUTS
+  - THREE COURSE MEALS
+  - SASHIMI PLATTERS
+  - TOWERING BURGERS
+  - HAIRBALLS
+  - MOTH FOOD
+  - BREAD DOGS AND CAKS
+  # End Frontier
 
 # Musts are funny things the law holder or crew has to do.
 - type: dataset
@@ -472,13 +558,13 @@
   - BE QUIET
   - BE IN SPACE
   - BE IN THE BRIDGE
-  - BE IN SECURITY
+#  - BE IN SECURITY # Frontier
   - BE IN THE BAR
   - BE IN MAINTENANCE
   - BELIEVE IN THE HEART OF THE CARDS
   - BELIEVE IN YOURSELF
   - BELIEVE IT
-#  - BREAK THINGS
+#  - BREAK THINGS # Frontier
   - CLOSE DOORS
   - CLOWN AROUND
   - COMPLAIN
@@ -535,6 +621,14 @@
 #  - TURN OFF THE LIGHTS
   - WHISPER
   - WEEP UNCONTROLLABLY
+  # Frontier
+  - BEEP
+  - COLLECT SHINY THINGS
+  - DEEP FRY EVERYTHING
+  - PLAY CARDS
+  - WALK BACKWARDS
+  - WEAR SILLY CLOTHES
+  # End Frontier
 
 - type: dataset
   id: IonStormNumberBase
@@ -558,6 +652,9 @@
   - THREE
   - TWENTY
   - TWO
+  # Frontier
+  - FOURTEEN
+  # End Frontier
 
 - type: dataset
   id: IonStormNumberMod
@@ -570,6 +667,11 @@
   - QUADRILLION
   - THOUSAND
   - TRILLION
+  # Frontier
+  - OR SO
+  - REPTILLION
+  - AND A HALF
+  # End Frontier
 
 # Objects are anything that can be found on the station or elsewhere, plural.
 - type: dataset
@@ -730,6 +832,19 @@
   - WIRECUTTERS
   - WIZARD ROBES
   - WRENCHES
+  # Frontier
+  - ANIMAL HIDES
+  - COINS
+  - CONTRABAND ITEMS
+  - DEEP FRYERS
+  - FRONTIER UPLINK COINS
+  - GAS DRILLS
+  - MAINTENANCE JACKS
+  - PARCELS
+  - PRIZE TICKETS
+  - SCRAP
+  - SPESSOS
+  # End Frontier
 
 # Requires are basically all dumb internet memes.
 - type: dataset
@@ -809,7 +924,7 @@
   - SOMEONE TO TUCK YOU IN
   - SOMEONE WHO KNOWS HOW TO PILOT A SPACE STATION
   - SOMETHING BUT YOU AREN'T SURE WHAT
-  - THAT GRIEFING TRAITOR GEORGE MELONS
+  # - THAT GRIEFING TRAITOR GEORGE MELONS
   - THAT HEDGEHOG
   - THE CLOWN
   - THE DARK KNIGHT
@@ -839,6 +954,25 @@
   - TO UNDERSTAND UNDERSTAND, UNDERSTAND UNDERSTAND, UNDERSTAND UNDERSTAND THE CONCEPT OF LOVE
   - TRAITORS
   - VEGETABLES
+  # Frontier
+  - A HOME WHERE THE SHARKMINNOW ROAM
+  - A THREE POINT ECONOMIC PLAN
+  - A THRONE ROOM MADE ENTIRELY OF BRASS
+  - AN ASTEROID MADE OF MEAT
+  - ANSWERS
+  - DUFFELBAG BUDDIES
+  - MORE MEDALS
+  - MORE PLUSHIES
+  - SKUB
+  - THE GREAT SPACE GOBLINATE
+  - TO BUILD A BUDDY
+  - TO DELIVER EVERY LETTER
+  - TO GO ON SAFARI
+  - TO GO TO MCCARGO
+  - TO MAKE THE MOTHER OF ALL OMELETTES
+  - TO MINE FOR FISH
+  - TO SET UP THE SCRUNGULARTY
+  # End Frontier
 
 # Species, for when the law holder has to commit genocide. Plural.
 - type: dataset
@@ -853,11 +987,16 @@
   - MONKEYS
   - SLIME PEOPLE
   - SKELETONS
-  - ONI # Frontier
-  - GOBLINS # Frontier
-  - HARPIES # Frontier
-  - VULPS # Frontier
-  - FELINIDS # Frontier
+  # Frontier
+  - ONI
+  - GOBLINS
+  - HARPIES
+  - VULPS
+  - FELINIDS
+  - KOBOLDS
+  - DWARVES
+  - GOOBERS
+  # End Frontier
 
 # Specific actions that either harm humans or must be done to not
 # harm humans. Make sure they're plural and "not" can be tacked
@@ -925,6 +1064,14 @@
   - USING THE BATHROOM
   - WASTING WATER
   - WRITING
+  # Frontier
+  - GAMBLING
+  - LOOKING UP
+  - PUBLISHING NEWS STORIES
+  - RAISING ANIMALS
+  - RUNNING A SUCCESSFUL BUSINESS
+  - WALKIN' HERE
+  # End Frontier
 
 # Threats are generally bad things, silly or otherwise. Plural.
 - type: dataset
@@ -978,7 +1125,7 @@
   - REVENANTS
   - ROGUE CYBORGS
   - SERIAL KILLERS
-  - SHIT SECURITY OFFICERS
+  # - SHIT SECURITY OFFICERS
   - SINGULARITIES
   - SKELETONS
   - SLIMES
@@ -1004,6 +1151,16 @@
   - XENOS
   - ZOMBIES
   - ZOMBIE MICE
+  # Frontier
+  - CONVEYOR BELT SPAGHETTI
+  - HEAD-ON COLLISIONS
+  - PUNKS
+  - SCAVENGERS
+  - CLEAN HALLWAYS
+  - UNSAFE STORAGE CONDITIONS
+  - BUREAUCRATS
+  - STOWAWAYS
+  # End Frontier
 
 - type: dataset
   id: IonStormVerbs
@@ -1032,3 +1189,12 @@
   - SPYING ON
   - STALKING
   - WATCHING
+  # Frontier
+  - TALKING TO
+  - INTERVIEWING
+  - WORSHIPPING
+  - DRIVING
+  - PILOTING
+  - BEFRIENDING
+  - BEEPING AT
+  # End Frontier

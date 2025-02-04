@@ -13,7 +13,7 @@ tilemap:
   114: FloorWhiteMono
   121: Lattice
   122: Plating
-  3: PlatingBurnt
+  3: PlatingDamaged
 entities:
 - proto: ""
   entities:
@@ -2088,13 +2088,6 @@ entities:
     - type: Transform
       pos: 2.5,9.5
       parent: 1
-- proto: filingCabinetRandom
-  entities:
-  - uid: 678
-    components:
-    - type: Transform
-      pos: 2.5,7.5
-      parent: 1
 - proto: FireAlarm
   entities:
   - uid: 576
@@ -3552,6 +3545,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 13.5,-5.5
+      parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 678
+    components:
+    - type: Transform
+      pos: 2.5,7.5
       parent: 1
 - proto: NFSignDock
   entities:
