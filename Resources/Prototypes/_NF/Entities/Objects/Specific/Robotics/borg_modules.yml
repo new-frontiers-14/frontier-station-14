@@ -13,9 +13,13 @@
     - MiningDrillDiamond
     - Shovel
     - AdvancedMineralScannerUnpowered
-    - OreBagOfHolding
     - JawsOfLife
     - RadioHandheldNF
+    droppableItems:
+    - id: OreBagOfHolding
+      whitelist:
+        components:
+        - NFOreBag
   - type: BorgModuleIcon
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-drill-module }
 
@@ -53,7 +57,10 @@
       sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
   - type: BorgJetpack
   - type: ItemBorgModule
-    items:
-    - JetpackBlueFilled
+    droppableItems:
+    - id: JetpackBlueFilled
+      whitelist:
+        components:
+        - Jetpack
   - type: BorgModuleIcon
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: jetpack-module }

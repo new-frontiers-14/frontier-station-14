@@ -3,14 +3,14 @@
  * Copyright (c) 2024 New Frontiers Contributors
  * See AGPLv3.txt for details.
  */
-using Content.Shared.Bank;
-using Content.Shared.Bank.Components;
-using Content.Shared.Bank.Events;
+using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.Components;
+using Content.Shared._NF.Bank.Events;
 using Content.Shared.Coordinates;
 using Content.Shared.Stacks;
 using Content.Server.Station.Systems;
 using Content.Server.Cargo.Systems;
-using Content.Shared.Bank.BUI;
+using Content.Shared._NF.Bank.BUI;
 using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Robust.Shared.Containers;
