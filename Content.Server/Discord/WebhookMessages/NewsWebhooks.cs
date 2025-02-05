@@ -104,12 +104,63 @@ public sealed class NewsWebhooks : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Deletes a news post from Discord using its stored message ID.
+    /// </summary>
+    public async Task DeleteNewsFromDiscord(string articleTitle)
+    {
+        _sawmill.Info($"Attempting to delete news post: {articleTitle}");
+
+        // Log all stored message IDs
+        if (_messageIds.Count == 0)
+        {
+            _sawmill.Warning("No stored message IDs exist.");
+        }
+        else
+        {
+            foreach (var entry in _messageIds)
+            {
+                _sawmill.Info($"Stored Message ID - Title: {entry.Key}, ID: {entry.Value}");
+            }
+        }
+
+        // Attempt to find the stored message ID
+        if (!_messageIds.TryGetValue(articleTitle, out var messageId))
+        {
+            _sawmill.Warning($"No stored message ID found for article: {articleTitle}. Deletion skipped.");
+            return;
+        }
+
+        var webhookUrl = _cfg.GetCVar(CCVars.DiscordNewsWebhook);
+        if (string.IsNullOrWhiteSpace(webhookUrl))
+        {
+            _sawmill.Warning("Discord webhook URL is not configured. Skipping deletion.");
+            return;
+        }
+
+        if (!TryParseWebhookUrl(webhookUrl, out var webhookId, out var webhookToken))
+        {
+            _sawmill.Error($"Invalid Discord webhook URL format: {webhookUrl}");
+            return;
+        }
+
+        _sawmill.Info($"Sending delete request to Discord for article '{articleTitle}' with Message ID: {messageId}");
+
+        var response = await _discord.DeleteMessage(new WebhookIdentifier(webhookId, webhookToken), messageId);
+
+        if (response.IsSuccessStatusCode)
+        {
+            _sawmill.Info($"Successfully deleted Discord message for article: {articleTitle}");
+            _messageIds.Remove(articleTitle); // Remove from storage after deletion
         }
         else
         {
             var errorMessage = await response.Content.ReadAsStringAsync();
-            _sawmill.Error($"[NewsWebhooks] Failed to send news to Discord. Status Code: {response.StatusCode}, Response: {errorMessage}");
+            _sawmill.Error($"Failed to delete Discord message. Status Code: {response.StatusCode}, Response: {errorMessage}");
         }
+    }
+
+    /// <summary>
     }
 }
 
