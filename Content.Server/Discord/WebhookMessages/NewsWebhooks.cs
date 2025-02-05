@@ -110,19 +110,6 @@ public sealed class NewsWebhooks : EntitySystem
     {
         _sawmill.Info($"Attempting to delete news post: {articleTitle}");
 
-        // Log all stored message IDs
-        if (_messageIds.Count == 0)
-        {
-            _sawmill.Warning("No stored message IDs exist.");
-        }
-        else
-        {
-            foreach (var entry in _messageIds)
-            {
-                _sawmill.Info($"Stored Message ID - Title: {entry.Key}, ID: {entry.Value}");
-            }
-        }
-
         // Attempt to find the stored message ID
         if (!_messageIds.TryGetValue(articleTitle, out var messageId))
         {
