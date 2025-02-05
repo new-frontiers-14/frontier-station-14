@@ -161,6 +161,20 @@ public sealed class NewsWebhooks : EntitySystem
     }
 
     /// <summary>
+    /// Parses a Discord webhook URL into its ID and token.
+    /// </summary>
+    private bool TryParseWebhookUrl(string url, out string id, out string token)
+    {
+        id = string.Empty;
+        token = string.Empty;
+
+        var parts = url.Split('/');
+        if (parts.Length < 7) // Ensure the URL has enough segments
+            return false;
+
+        id = parts[5];   // The 6th element is the webhook ID
+        token = parts[6]; // The 7th element is the webhook token
+        return true;
     }
 }
 
