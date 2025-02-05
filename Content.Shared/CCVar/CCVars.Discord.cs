@@ -41,16 +41,20 @@ public sealed partial class CCVars
     public static readonly CVarDef<string> DiscordVoteWebhook =
         CVarDef.Create("discord.vote_webhook", string.Empty, CVar.SERVERONLY);
     /// <summary>
+    ///     URL of the Discord webhook which will relay all votekick votes. If left empty, disables the webhook.
+    /// </summary>
+    public static readonly CVarDef<string> DiscordVotekickWebhook =
+        CVarDef.Create("discord.votekick_webhook", string.Empty, CVar.SERVERONLY);
+    /// <summary>
     ///     URL of the Discord webhook which will forward news articles
     /// </summary>
     public static readonly CVarDef<string> DiscordNewsWebhook =
         CVarDef.Create("discord.news_webhook", string.Empty, CVar.SERVERONLY);
     /// <summary>
-    ///     URL of the Discord webhook which will relay all votekick votes. If left empty, disables the webhook.
+    ///     Boolean for live posting of articles, false by default.
     /// </summary>
-    public static readonly CVarDef<string> DiscordVotekickWebhook =
-        CVarDef.Create("discord.votekick_webhook", string.Empty, CVar.SERVERONLY);
-
+    public static readonly CVarDef<bool> DiscordLiveNewsPosting =
+        CVarDef.Create("discord.live_news_posting", false, CVar.SERVERONLY);
     /// <summary>
     ///     URL of the Discord webhook which will relay round restart messages.
     /// </summary>
