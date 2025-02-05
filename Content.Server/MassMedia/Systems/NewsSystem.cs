@@ -20,6 +20,7 @@ using Robust.Shared.Audio.Systems;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Timing;
 using Content.Shared.GameTicking; // Frontier
+using Content.Server.Discord.WebhookMessages;
 
 namespace Content.Server.MassMedia.Systems;
 
@@ -35,6 +36,8 @@ public sealed class NewsSystem : SharedNewsSystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly NewsWebhooks _newsWebhooks = default!;
+
 
     public override void Initialize()
     {
@@ -197,6 +200,7 @@ public sealed class NewsSystem : SharedNewsSystem
         }
 
         UpdateWriterDevices();
+        _newsWebhooks.HandleNewsPublished(article);
     }
     #endregion
 

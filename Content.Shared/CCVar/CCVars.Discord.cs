@@ -41,6 +41,8 @@ public sealed partial class CCVars
     public static readonly CVarDef<string> DiscordVoteWebhook =
         CVarDef.Create("discord.vote_webhook", string.Empty, CVar.SERVERONLY);
 
+    public static readonly CVarDef<string> DiscordNewsWebhook =
+        CVarDef.Create("discord.news_webhook", string.Empty, CVar.SERVERONLY);
     /// <summary>
     ///     URL of the Discord webhook which will relay all votekick votes. If left empty, disables the webhook.
     /// </summary>
