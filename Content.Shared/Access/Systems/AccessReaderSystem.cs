@@ -16,7 +16,7 @@ using Content.Shared.IdentityManagement;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared._NF.Trade.Components;
+using Content.Shared._NF.Trade;
 
 namespace Content.Shared.Access.Systems;
 
