@@ -188,13 +188,25 @@ public static class SS14ToDiscordFormatter
         if (string.IsNullOrEmpty(body))
             return string.Empty;
 
-        // Convert headings (maps [head=1-3] to bold, since Discord has no true headings)
-        body = Regex.Replace(body, @"\[head=\d\](.*?)\[/head\]", "**$1**");
+        // Convert headings ([head=1], [head=2], etc.)
+        body = Regex.Replace(body, @"\[head=(\d+)\](.*?)\[/head\]", match =>
+        {
+            int level = int.Parse(match.Groups[1].Value);
+            string text = match.Groups[2].Value;
 
-        // Convert color tags (Discord does not support colored text, so remove them)
+            return level switch
+            {
+                1 => $"# {text}", // Largest
+                2 => $"## {text}", // Medium
+                3 => $"### {text}", // Smallest
+                _ => text // Fallback (remove if unknown)
+            };
+        });
+
+        // Remove unsupported color tags
         body = Regex.Replace(body, @"\[color=[^\]]+\](.*?)\[/color\]", "$1");
 
-        // Convert italic, bold, and bullet point tags
+        // Convert bold, italic, and bullet points
         body = Regex.Replace(body, @"\[italic\](.*?)\[/italic\]", "*$1*");
         body = Regex.Replace(body, @"\[bold\](.*?)\[/bold\]", "**$1**");
         body = Regex.Replace(body, @"\[bullet\](.*?)\[/bullet\]", "- $1");
