@@ -25,7 +25,6 @@ public sealed class NewsWebhooks : EntitySystem
     {
         base.Initialize();
         _sawmill = _log.GetSawmill("discord-news");
-
         _sawmill.Info("[NewsWebhooks] Initialized and ready to receive articles.");
     }
 
@@ -33,31 +32,8 @@ public sealed class NewsWebhooks : EntitySystem
     /// Handles a published news article and sends it to Discord.
     /// This is called directly from NewsSystem.cs.
     /// </summary>
-    public void HandleNewsPublished(NewsArticle article)
+    public async Task SendNewsToDiscord(NewsArticle article)
     {
-        _sawmill.Info($"[NewsWebhooks] Directly received article: {article.Title} by {article.Author}");
-
-        SendNewsToDiscord(article);
-    }
-
-    private bool TryParseWebhookUrl(string url, out string id, out string token)
-    {
-        id = string.Empty;
-        token = string.Empty;
-
-        // Discord webhook format: https://discord.com/api/webhooks/{id}/{token}
-        var parts = url.Split('/');
-        if (parts.Length < 7) // Ensure the URL has enough segments
-            return false;
-
-        id = parts[5];   // The 6th element is the webhook ID
-        token = parts[6]; // The 7th element is the webhook token
-        return true;
-    }
-
-    private async Task SendNewsToDiscord(NewsArticle article)
-    {
-        // Fetch the webhook URL from config
         var webhookUrl = _cfg.GetCVar(CCVars.DiscordNewsWebhook);
         if (string.IsNullOrWhiteSpace(webhookUrl))
         {
@@ -65,19 +41,14 @@ public sealed class NewsWebhooks : EntitySystem
             return;
         }
 
-        // Extract ID and Token
         if (!TryParseWebhookUrl(webhookUrl, out var webhookId, out var webhookToken))
         {
             _sawmill.Error($"Invalid Discord webhook URL format: {webhookUrl}");
             return;
         }
 
-        _sawmill.Info($"[NewsWebhooks] Attempting to send news to Discord: {article.Title}");
+        _sawmill.Info($"Attempting to send news to Discord: {article.Title}");
 
-        // Format content using SS14ToDiscordFormatter
-        string formattedContent = SS14ToDiscordFormatter.ConvertToDiscordMarkup(article.Content);
-
-        // Construct payload
         var payload = new WebhookPayload
         {
             Username = "NewsBot",
@@ -86,22 +57,53 @@ public sealed class NewsWebhooks : EntitySystem
                 new()
                 {
                     Title = article.Title,
-                    Description = formattedContent,
-                    Color = 3447003, // Discord blue
-                    Footer = new WebhookEmbedFooter
-                    {
-                        Text = $"Written by: {article.Author ?? "Unknown"}"
-                    }
+                    Description = SS14ToDiscordFormatter.ConvertToDiscordMarkup(article.Content),
+                    Color = 3447003,
+                    Footer = new WebhookEmbedFooter { Text = $"Written by: {article.Author ?? "Unknown"}" }
                 }
             }
         };
 
-        // Send webhook with the correct identifier
         var response = await _discord.CreateMessage(new WebhookIdentifier(webhookId, webhookToken), payload);
 
         if (response.IsSuccessStatusCode)
         {
-            _sawmill.Info($"[NewsWebhooks] Successfully sent news to Discord: {article.Title}");
+            var content = await response.Content.ReadAsStringAsync();
+
+            using var doc = JsonDocument.Parse(content);
+            if (doc.RootElement.TryGetProperty("id", out var idElement))
+            {
+                string? messageIdString = idElement.GetString(); // Extract ID as a nullable string
+
+                if (string.IsNullOrEmpty(messageIdString))
+                {
+                    _sawmill.Error("Failed to retrieve message ID from Discord response.");
+                    return;
+                }
+
+                if (ulong.TryParse(messageIdString, out ulong messageId))
+                {
+                    _messageIds[article.Title] = messageId;
+                    _sawmill.Info($"Successfully stored message ID: {messageId} for article: {article.Title}");
+                }
+                else
+                {
+                    _sawmill.Error($"Failed to parse message ID: {messageIdString} from Discord response.");
+                }
+            }
+            else
+            {
+                _sawmill.Error("Discord response did not contain a message ID. Cannot store for deletion.");
+            }
+
+        }
+        else
+        {
+            var errorMessage = await response.Content.ReadAsStringAsync();
+            _sawmill.Error($"Failed to send news to Discord. Status Code: {response.StatusCode}, Response: {errorMessage}");
+        }
+    }
+
         }
         else
         {
