@@ -19,6 +19,7 @@ public sealed class NewsWebhooks : EntitySystem
     [Dependency] private readonly ILogManager _log = default!;
 
     private ISawmill _sawmill = default!;
+    private readonly Dictionary<string, ulong> _messageIds = new(); // Store message IDs
 
     public override void Initialize()
     {
