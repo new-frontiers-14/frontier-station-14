@@ -115,6 +115,8 @@ public sealed class NewsSystem : SharedNewsSystem
         var article = articles[msg.ArticleNum];
         if (CanUse(msg.Actor, ent.Owner))
         {
+            _newsWebhooks.DeleteNewsFromDiscord(article.Title);
+            
             _adminLogger.Add(
                 LogType.Chat, LogImpact.Medium,
                 $"{ToPrettyString(msg.Actor):actor} deleted news article {article.Title} by {article.Author}: {article.Content}"
@@ -200,7 +202,7 @@ public sealed class NewsSystem : SharedNewsSystem
         }
 
         UpdateWriterDevices();
-        _newsWebhooks.HandleNewsPublished(article);
+        _newsWebhooks.SendNewsToDiscord(article);
     }
     #endregion
 
