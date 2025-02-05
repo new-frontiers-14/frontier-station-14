@@ -65,6 +65,7 @@ public sealed class NewsSystem : SharedNewsSystem
         SubscribeLocalEvent<NewsReaderCartridgeComponent, NewsArticleDeletedEvent>(OnArticleDeleted);
         SubscribeLocalEvent<NewsReaderCartridgeComponent, CartridgeMessageEvent>(OnReaderUiMessage);
         SubscribeLocalEvent<NewsReaderCartridgeComponent, CartridgeUiReadyEvent>(OnReaderUiReady);
+        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndHandleNews);
     }
  
     // Frontier: article lifecycle management
@@ -357,5 +358,11 @@ public sealed class NewsSystem : SharedNewsSystem
     private void OnRequestArticleDraftMessage(Entity<NewsWriterComponent> ent, ref NewsWriterRequestDraftMessage msg)
     {
         UpdateWriterUi(ent);
+    }
+
+    private void OnRoundEndHandleNews(RoundEndTextAppendEvent ev)
+    {
+        Logger.Info("[NewsSystem] Round ending - sending stored news articles.");
+        _newsWebhooks.OnRoundEndHandleNews();
     }
 }
