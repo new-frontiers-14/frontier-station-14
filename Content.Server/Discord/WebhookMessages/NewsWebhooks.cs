@@ -19,20 +19,30 @@ public sealed class NewsWebhooks : EntitySystem
 
     private ISawmill _sawmill = default!;
     private readonly Dictionary<string, ulong> _messageIds = new(); // Store message IDs
+    private readonly List<NewsArticle> _roundEndNewsBuffer = new(); // Store News Buffer for End of Round Posting
+    private bool _liveNewsPosting = false;
 
     public override void Initialize()
     {
         base.Initialize();
         _sawmill = _log.GetSawmill("discord-news");
         _sawmill.Info("[NewsWebhooks] Initialized and ready to receive articles.");
+        _liveNewsPosting = _cfg.GetCVar(CCVars.DiscordLiveNewsPosting); // Override if different.
     }
 
     /// <summary>
     /// Handles a published news article and sends it to Discord.
     /// This is called directly from NewsSystem.cs.
     /// </summary>
-    public async Task SendNewsToDiscord(NewsArticle article)
+    public async Task SendNewsToDiscord(NewsArticle article, bool roundEnd = false)
     {
+        if (!_liveNewsPosting && !roundEnd)
+        {
+            _roundEndNewsBuffer.Add(article);
+            _sawmill.Info($"{article.Title} added to _roundEndNewsBuffer");
+            return;
+        }
+
         var webhookUrl = _cfg.GetCVar(CCVars.DiscordNewsWebhook);
         if (string.IsNullOrWhiteSpace(webhookUrl))
         {
@@ -94,7 +104,6 @@ public sealed class NewsWebhooks : EntitySystem
             {
                 _sawmill.Error("Discord response did not contain a message ID. Cannot store for deletion.");
             }
-
         }
         else
         {
@@ -106,11 +115,18 @@ public sealed class NewsWebhooks : EntitySystem
     /// <summary>
     /// Deletes a news post from Discord using its stored message ID.
     /// </summary>
-    public async Task DeleteNewsFromDiscord(string articleTitle)
+    public async Task DeleteNewsFromDiscord(NewsArticle article)
     {
+        if (!_liveNewsPosting)
+        {
+            _roundEndNewsBuffer.Remove(article);
+            _sawmill.Info($"{article.Title} removed from _roundEndNewsBuffer");
+            return;
+        }
+
+        string articleTitle = article.Title;
         _sawmill.Info($"Attempting to delete news post: {articleTitle}");
 
-        // Attempt to find the stored message ID
         if (!_messageIds.TryGetValue(articleTitle, out var messageId))
         {
             _sawmill.Warning($"No stored message ID found for article: {articleTitle}. Deletion skipped.");
@@ -161,6 +177,35 @@ public sealed class NewsWebhooks : EntitySystem
         id = parts[5];   // The 6th element is the webhook ID
         token = parts[6]; // The 7th element is the webhook token
         return true;
+    }
+
+    public async Task OnRoundEndHandleNews()
+    {
+        if (_liveNewsPosting)
+        {
+            _sawmill.Info("[NewsWebhooks] Live posting enabled. Clearing buffer without posting.");
+            _roundEndNewsBuffer.Clear(); // Clear the buffer pending new round
+            return;
+        }
+
+        if (_roundEndNewsBuffer.Count == 0)
+        {
+            _sawmill.Info("[NewsWebhooks] No stored articles to post at round end.");
+            return;
+        }
+
+        _sawmill.Info($"[NewsWebhooks] Posting {_roundEndNewsBuffer.Count} articles to Discord at round end.");
+
+        // Copy the list to avoid modification exceptions
+        var articlesToSend = _roundEndNewsBuffer.ToArray();
+
+        foreach (var article in articlesToSend)
+        {
+            await SendNewsToDiscord(article, true);
+        }
+
+        // Clear the buffer after all articles are sent
+        _roundEndNewsBuffer.Clear();
     }
 }
 
