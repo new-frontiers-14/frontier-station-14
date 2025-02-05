@@ -115,7 +115,7 @@ public sealed class NewsSystem : SharedNewsSystem
         var article = articles[msg.ArticleNum];
         if (CanUse(msg.Actor, ent.Owner))
         {
-            _newsWebhooks.DeleteNewsFromDiscord(article.Title);
+            _newsWebhooks.DeleteNewsFromDiscord(article);
             
             _adminLogger.Add(
                 LogType.Chat, LogImpact.Medium,
