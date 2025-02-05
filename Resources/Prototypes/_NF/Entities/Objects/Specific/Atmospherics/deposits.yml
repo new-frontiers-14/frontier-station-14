@@ -1,0 +1,192 @@
+# TODO move all of this to tiles once tile smoothing is supported
+- type: entity
+  id: BaseGasDeposit
+  name: gas deposit
+  description: Solidified deposits of an element, normally a gas at room temperature, can be drilled, heated and piped out.
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+    canCollide: False
+  - type: Fixtures
+  - type: GasDeposit
+  - type: RandomGasDeposit
+  - type: Sprite
+    drawdepth: FloorTiles
+    sprite: _NF/Objects/Specific/Atmospherics/deposit.rsi
+    layers:
+    - state: deposit
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositOxygen
+  suffix: Oxygen
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyOxygen
+  - type: Sprite
+    color: "#DDDDEE"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositNitrogen
+  suffix: Nitrogen
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyNitrogen
+  - type: Sprite
+    color: "#FFCCCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositCarbonDioxide
+  suffix: Carbon Dioxide
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyCarbonDioxide
+  - type: Sprite
+    color: "#CCCCCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositPlasma
+  suffix: Plasma
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyPlasma
+  - type: Sprite
+    color: "#FFCCFF"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositAmmonia
+  suffix: Ammonia
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyAmmonia
+  - type: Sprite
+    color: "#FFFFCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositWaterVapor
+  suffix: Water Vapor
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyWaterVapor
+  - type: Sprite
+    color: "#DDEEEE"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositNitrousOxide
+  suffix: Nitrous Oxide
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyNitrousOxide
+  - type: Sprite
+    color: "#EEDDDD"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositAir
+  suffix: Air-like
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: AirLike
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositMuddleEven
+  suffix: Muddled, Even
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MuddleEven
+  - type: Sprite
+    color: "#DDEEDD"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositMuddlePlasma
+  suffix: Muddled, Plasma-heavy
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MuddlePlasma
+  - type: Sprite
+    color: "#F0DDF0"
+
+# Debug item for detecting gas deposits
+- type: entity
+  parent: PinpointerSyndicateNuclear
+  id: PinpointerGasDeposit
+  name: gas deposit pinpointer
+  description: Pointing to the nearest gas deposit.
+  suffix: DEBUG
+  components:
+  - type: Pinpointer
+    component: GasDeposit
+    targetName: GasDeposit
+
+- type: entity
+  id: GasDepositLocatorUnpowered
+  parent: BaseItem
+  name: gas deposit locator
+  description: A scanner that checks the nearby area for gas deposits.
+  suffix: Unpowered
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Atmospherics/locator.rsi
+    layers:
+      - state: icon
+      - state: screen
+        shader: unshaded
+        visible: false
+        map: ["enum.ToggleVisuals.Layer"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ItemToggle
+  - type: ProximityBeeper
+  - type: ProximityDetector
+    range: 20
+    criteria:
+      components:
+      - GasDeposit
+  - type: Beeper
+    isMuted: true
+    minBeepInterval: 0.15
+    maxBeepInterval: 1.00
+    beepSound:
+      path: "/Audio/Items/locator_beep.ogg"
+      params:
+        maxDistance: 1
+        volume: -8
+
+- type: entity
+  id: GasDepositLocator
+  parent: [ GasDepositLocatorUnpowered, PowerCellSlotSmallItem ]
+  suffix: Powered
+  components:
+  - type: PowerCellDraw
+    drawRate: 1
+    useRate: 0
+  - type: ToggleCellDraw
+
+- type: entity
+  id: GasDepositLocatorEmpty
+  parent: GasDepositLocator
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

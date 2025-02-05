@@ -163,7 +163,7 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
         else
         {
             _battery.SetCharge(entity.Owner, battery.CurrentCharge + entity.Comp.ChargingWattage * frameTime * entity.Comp.ChargingEfficiency, battery);
-            if (battery.IsFullyCharged)
+            if (_battery.IsFull(entity, battery))
             {
                 if (TryComp<ApcPowerReceiverComponent>(entity.Owner, out var receiver))
                 {
@@ -183,8 +183,12 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
         if (!TryComp<ApcPowerReceiverComponent>(entity.Owner, out var receiver))
             return;
 
-        if (!TryComp<AlertLevelComponent>(_station.GetOwningStation(entity.Owner), out var alerts))
+        // Frontier: sector-wide alerts
+        // if (!TryComp<AlertLevelComponent>(_station.GetOwningStation(entity.Owner), out var alerts))
+        //     return;
+        if (!TryComp<AlertLevelComponent>(_sectorService.GetServiceEntity(), out var alerts))
             return;
+        // End Frontier
 
         if (alerts.AlertLevels == null || !alerts.AlertLevels.Levels.TryGetValue(alerts.CurrentLevel, out var details))
         {

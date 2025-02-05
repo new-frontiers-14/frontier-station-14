@@ -39,6 +39,16 @@
     sprite: _NF/Structures/Wallmounts/posters.rsi
     state: nf_poster4_legit
 
+- type: entity
+  parent: PosterBase
+  id: NFPosterLegitWantedClarpy
+  name: "Wanted: Clarpy"
+  description: Wanted for piracy and assault. If you can help end this biting spree, please contact the NFSD.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster5_legit
+
 # Contraband posters
 - type: entity
   parent: PosterBase
@@ -191,3 +201,13 @@
   - type: Sprite
     sprite: _NF/Structures/Wallmounts/posters.rsi
     state: nf_poster15_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandFsbRubicon
+  name: "Far Star Biotech Rubicon Station"
+  description: "The FSB Rubicon! Guiding you through the afterlife and back into productive service!"
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster16_contraband

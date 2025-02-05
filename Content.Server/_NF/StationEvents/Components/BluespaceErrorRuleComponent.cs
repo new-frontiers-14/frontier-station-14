@@ -4,10 +4,11 @@ using Content.Shared.Dataset;
 using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components;
 using Robust.Shared.Map;
+using Content.Server._NF.StationEvents.Events;
 
-namespace Content.Server.StationEvents.Components;
+namespace Content.Server._NF.StationEvents.Components;
 
 [RegisterComponent, Access(typeof(BluespaceErrorRule), typeof(ShuttleSystem))]
 public sealed partial class BluespaceErrorRuleComponent : Component
@@ -69,7 +70,7 @@ public interface IBluespaceSpawnGroup
     /// A dataset to pick a random name from.
     /// </summary>
 
-    public ProtoId<DatasetPrototype>? NameDataset { get; }
+    public ProtoId<LocalizedDatasetPrototype>? NameDataset { get; }
 
     /// <summary>
     /// The type of name the dataset holds.
@@ -130,7 +131,7 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
     public List<LocId> NameLoc { get; } = new();
 
     /// <inheritdoc />
-    public ProtoId<DatasetPrototype>? NameDataset { get; }
+    public ProtoId<LocalizedDatasetPrototype>? NameDataset { get; }
 
     /// <inheritdoc />
     public BluespaceDatasetNameType NameDatasetType { get; set; } = BluespaceDatasetNameType.FTL;
@@ -165,7 +166,7 @@ public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
     /// <inheritdoc />
     public float MaximumDistance { get; }
     public List<LocId> NameLoc { get; } = new();
-    public ProtoId<DatasetPrototype>? NameDataset { get; }
+    public ProtoId<LocalizedDatasetPrototype>? NameDataset { get; }
 
     /// <inheritdoc />
     public BluespaceDatasetNameType NameDatasetType { get; set; } = BluespaceDatasetNameType.FTL;
