@@ -1,8 +1,9 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server._NF.Trade;
+using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Station.Systems;
-using Content.Server.GameTicking;
 using Content.Shared._NF.CCVar;
 using Content.Shared.GameTicking;
 using Robust.Server.GameObjects;
@@ -11,6 +12,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Server._NF.Station.Systems;
 
 namespace Content.Server._NF.GameRule;
 
@@ -84,6 +86,15 @@ public sealed class PointOfInterestSystem : EntitySystem
                 overrideName += $" {i + 1}"; // " 27", " 28"...
             if (TrySpawnPoiGrid(mapUid, proto, offset, out var depotUid, overrideName: overrideName) && depotUid is { Valid: true } depot)
             {
+                // Nasty jank: set up destination in the station.
+                var depotStation = _station.GetOwningStation(depot);
+                if (TryComp<TradeCrateDestinationComponent>(depotStation, out var destComp))
+                {
+                    if (i < 26)
+                        destComp.DestinationProto = $"Cargo{(char)('A' + i)}";
+                    else
+                        destComp.DestinationProto = "CargoOther";
+                }
                 depotStations.Add(depot);
                 AddStationCoordsToSet(offset); // adjust list of actual station coords
             }
