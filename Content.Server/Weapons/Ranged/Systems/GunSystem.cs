@@ -163,7 +163,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     var dir = mapDirection.Normalized();
 
                     // Frontier: if direction isn't near one (standing on top of target), default to a given direction
-                    if (dir.LengthSquared() < 0.95 || dir.LengthSquared() > 1.05)
+                    if (!MathHelper.CloseToPercent(dir.LengthSquared(), 1))
                         dir = new Vector2(1, 0);
                     // End Frontier
 
