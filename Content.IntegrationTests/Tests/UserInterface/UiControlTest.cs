@@ -5,6 +5,7 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.ContentPack;
 using Robust.Shared.IoC;
 using Robust.Shared.Reflection;
+using Content.Client._NF.CryoSleep; // Frontier
 
 namespace Content.IntegrationTests.Tests.UserInterface;
 
@@ -16,6 +17,7 @@ public sealed class UiControlTest
     {
         typeof(EmotesMenu),
         typeof(LateJoinGui),
+        typeof(CryosleepWakeupWindow), // Frontier: FIXME - refactor this window into EUI(?) pattern, this thing subscribes to events
     };
 
     /// <summary>
