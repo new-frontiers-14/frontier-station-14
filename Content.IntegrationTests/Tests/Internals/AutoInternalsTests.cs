@@ -10,6 +10,7 @@ namespace Content.IntegrationTests.Tests.Internals;
 public sealed class AutoInternalsTests
 {
     [Test]
+    [Ignore("Not relevant for Frontier")] // Frontier
     public async Task TestInternalsAutoActivateInSpaceForStationSpawn()
     {
         await using var pair = await PoolManager.GetServerClient();
@@ -36,6 +37,7 @@ public sealed class AutoInternalsTests
     }
 
     [Test]
+    [Ignore("Not relevant for Frontier")] // Frontier
     public async Task TestInternalsAutoActivateInSpaceForEntitySpawn()
     {
         await using var pair = await PoolManager.GetServerClient();
