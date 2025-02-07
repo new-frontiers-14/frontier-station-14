@@ -26,6 +26,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Random;
 using Robust.Shared.Map;
 using Content.Shared.Shuttles.Components; // Frontier
+using Robust.Shared.Configuration; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -35,8 +36,9 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 5;
+    private const int MissionLimit = 3;
     [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly IConfigurationManager _cfgManager = default!; // Frontier
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
@@ -332,8 +334,11 @@ public sealed partial class SalvageSystem
 
     private void GiveRewards(SalvageExpeditionComponent comp)
     {
+        if (!_cfgManager.GetCVar(NFCCVars.SalvageExpeditionRewardsEnabled))
+            return;
+
         var palletList = new List<EntityUid>();
-        var pallets = EntityQueryEnumerator<CargoPalletComponent>();
+        var pallets = EntityQueryEnumerator<SalvageExpeditionConsoleComponent>(); // Frontier CargoPalletComponent<SalvageExpeditionConsoleComponent
         while (pallets.MoveNext(out var pallet, out var palletComp))
         {
             if (_stationSystem.GetOwningStation(pallet) == comp.Station)

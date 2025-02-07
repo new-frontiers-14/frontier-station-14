@@ -87,12 +87,12 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
 
             switch (missionParams.Difficulty)
             {
-                case DifficultyRating.Minimal:
-                    difficultyColor = Color.FromHex("#52B4E996");
-                    break;
-                case DifficultyRating.Minor:
-                    difficultyColor = Color.FromHex("#9FED5896");
-                    break;
+                //case DifficultyRating.Minimal: // Frontier
+                //difficultyColor = Color.FromHex("#52B4E996"); // Frontier
+                //break; // Frontier
+                //case DifficultyRating.Minor: // Frontier
+                //difficultyColor = Color.FromHex("#9FED5896"); // Frontier
+                //break; // Frontier
                 case DifficultyRating.Moderate:
                     difficultyColor = Color.FromHex("#EFB34196");
                     break;
@@ -195,8 +195,8 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
             });
 
-            // Frontier: wrap in rewards > 0 , otherwise dont show "rewards" text
-            if (mission.Rewards.Count > 0)
+            // Frontier: wrap in cvar, otherwise dont show "rewards" text
+            if (_cfgManager.GetCVar(NFCCVars.SalvageExpeditionRewardsEnabled))
             {
                 lBox.AddChild(new Label()
                 {
