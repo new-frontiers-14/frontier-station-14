@@ -239,7 +239,8 @@ namespace Content.IntegrationTests.Tests
                 "MapGrid",
                 "StationEvent",
                 "TimedDespawn",
-                "TransferMindOnDespawnComponent", // Frontier
+                "TransferMindOnDespawn", // Frontier
+                "BluespaceErrorRule", // Frontier
 
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",
@@ -359,6 +360,7 @@ namespace Content.IntegrationTests.Tests
                 "BiomeSelection", // Whaddya know, requires config.
                 "ActivatableUI", // Frontier: Requires enum key
                 "AlertLevel", // Frontier: requires alert set
+                "BluespaceErrorRule", // Frontier
             };
 
             // TODO TESTS
