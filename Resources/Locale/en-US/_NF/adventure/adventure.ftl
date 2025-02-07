@@ -11,6 +11,10 @@ adventure-webhook-top-loss = lost a total of {$amount}.
 
 adventure-webhook-ledger-start = Ledger Summary
 
+adventure-webhook-footer =
+    Server: {$server}
+    Round: #{$round}
+
 nf-adventure-title = Adventure
 nf-adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
 

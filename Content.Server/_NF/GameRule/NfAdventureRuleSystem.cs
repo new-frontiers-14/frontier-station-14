@@ -8,6 +8,7 @@ using Content.Server._NF.Bank;
 using Content.Server._NF.GameRule.Components;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server.Cargo.Components;
+using Content.Server.Discord;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules;
@@ -15,6 +16,7 @@ using Content.Shared._NF.Bank;
 using Content.Shared._NF.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
+using Robust.Server;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -35,6 +37,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly PointOfInterestSystem _poi = default!;
+    [Dependency] private readonly IBaseServer _baseServer = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -277,6 +280,12 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
                     Title = Loc.GetString("adventure-webhook-ledger-start"),
                     Description = ledgerPrintout,
                     Color = color,
+                    Footer = new WebhookEmbedFooter
+                    {
+                        Text = Loc.GetString("news-discord-footer",
+                        ("server", _baseServer.ServerName),
+                        ("round", _ticker.RoundId))
+                     }
                 },
             },
         };
