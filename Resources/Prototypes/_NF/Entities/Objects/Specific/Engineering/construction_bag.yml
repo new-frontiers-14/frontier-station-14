@@ -7,7 +7,17 @@
   - type: MagnetPickup
   - type: Sprite
     sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
-    state: icon
+    layers:
+    - state: icon
+    - state: icon-on
+      visible: false
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
   - type: Clothing
     sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
     quickEquip: false
@@ -35,6 +45,16 @@
   - type: Dumpable
   - type: StaticPrice
     price: 55.5
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+  - type: ItemToggleExamine
+    on: magnet-pickup-component-magnet-on
+    off: magnet-pickup-component-magnet-off
+  - type: Appearance
 
 - type: entity
   parent: ConstructionBag
@@ -51,6 +71,9 @@
     - state: icon-bluespace-overlay
     - state: icon-bluespace-overlay-unshaded
       shader: unshaded
+    - state: icon-on-bluespace
+      visible: false
+      map: [ "enum.ToggleVisuals.Layer" ]
   - type: Item
     size: Ginormous
     inhandVisuals:

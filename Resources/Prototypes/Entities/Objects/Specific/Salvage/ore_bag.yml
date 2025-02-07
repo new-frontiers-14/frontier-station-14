@@ -7,10 +7,13 @@
   - type: MagnetPickup
   - type: Sprite
     sprite: Objects/Specific/Mining/ore_bag.rsi
-    #state: icon # DeltaV: use a layer instead
-    layers: # DeltaV
+    # Frontier: layered sprite
+    layers:
     - state: icon
+    - state: icon-on
+      visible: False
       map: [ "enum.ToggleVisuals.Layer" ]
+    # End Frontier
   - type: Clothing
     sprite: Objects/Specific/Mining/ore_bag.rsi
     quickEquip: false
@@ -45,7 +48,7 @@
     visuals:
       enum.ToggleVisuals.Toggled:
         enum.ToggleVisuals.Layer:
-          True: { state: icon_on }
-          False: { state: icon }
+          True: { visible: True }
+          False: { visible: False }
   # End DeltaV Additions
   

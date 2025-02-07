@@ -6,7 +6,13 @@
   components:
     - type: Sprite
       sprite: Objects/Specific/Library/Equipment/books_bag.rsi
-      state: icon
+      # Frontier: layered sprite
+      layers:
+      - state: icon
+      - state: icon-on
+        visible: False
+        map: [ "enum.ToggleVisuals.Layer" ]
+      # End Frontier
     - type: Clothing
       sprite: Objects/Specific/Library/Equipment/books_bag.rsi
       quickEquip: false
@@ -30,3 +36,21 @@
     - type: Dumpable
     - type: MagnetPickup # Frontier
     - type: NFBookBag # Frontier
+    # Begin Frontier Additions: toggle magnet from White Dream
+    - type: ItemToggle
+      soundActivate: &soundActivate
+        collection: sparks
+        params:
+          variation: 0.25
+      soundDeactivate: *soundActivate
+    - type: ItemToggleExamine
+      on: magnet-pickup-component-magnet-on
+      off: magnet-pickup-component-magnet-off
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ToggleVisuals.Toggled:
+          enum.ToggleVisuals.Layer:
+            True: { visible: True }
+            False: { visible: False }
+    # End Frontier Additions
