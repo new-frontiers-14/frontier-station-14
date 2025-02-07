@@ -23,6 +23,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._NF.GameRule;
 
@@ -38,6 +39,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly PointOfInterestSystem _poi = default!;
     [Dependency] private readonly IBaseServer _baseServer = default!;
+    [Dependency] private readonly IEntitySystemManager _entSys = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -271,6 +273,10 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
             return;
         Logger.InfoS("discord", ledgerPrintout);
 
+        var serverName = _baseServer.ServerName;
+        var gameTicker = _entSys.GetEntitySystemOrNull<GameTicker>();
+        var runId = gameTicker != null ? gameTicker.RoundId : 0;
+
         var payload = new WebhookPayload
         {
             Embeds = new List<Embed>
@@ -280,12 +286,13 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
                     Title = Loc.GetString("adventure-webhook-ledger-start"),
                     Description = ledgerPrintout,
                     Color = color,
-                    Footer = new WebhookEmbedFooter
+                    Footer = new EmbedFooter
                     {
-                        Text = Loc.GetString("news-discord-footer",
-                        ("server", _baseServer.ServerName),
-                        ("round", _ticker.RoundId))
-                     }
+                        Text = Loc.GetString(
+                            "adventure-webhook-footer",
+                            ("serverName", serverName),
+                            ("roundId", runId)),
+                    },
                 },
             },
         };
