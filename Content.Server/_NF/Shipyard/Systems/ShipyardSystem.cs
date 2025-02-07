@@ -187,7 +187,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 _sawmill.Error($"Unable to spawn shuttle {shuttlePath}, too many grids present in file");
 
                 foreach (var gridElem in gridList)
-                    Del(gridElem);
+                    QueueDel(gridElem);
             }
 
             return false;
@@ -269,7 +269,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         bill = (int)_pricing.AppraiseGrid(shuttleUid);
-        Del(shuttleUid);
+        QueueDel(shuttleUid);
         _sawmill.Info($"Sold shuttle {shuttleUid} for {bill}");
 
         // Update all record UI (skip records, no new records)
