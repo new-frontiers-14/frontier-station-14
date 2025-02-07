@@ -81,7 +81,7 @@ namespace Content.IntegrationTests.Tests
         }
 
         [Test]
-        [Ignore("Preventing CI tests from failing")] // Frontier: FIXME - these take forever to run and fail.
+        //[Ignore("Preventing CI tests from failing")] // Frontier: FIXME - these take forever to run and fail.
         public async Task SpawnAndDeleteAllEntitiesInTheSameSpot()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
@@ -140,7 +140,7 @@ namespace Content.IntegrationTests.Tests
         ///     all components on every entity.
         /// </summary>
         [Test]
-        [Ignore("Preventing CI tests from failing")] // Frontier: FIXME - these take forever to run and fail.
+        //[Ignore("Preventing CI tests from failing")] // Frontier: FIXME - these take forever to run and fail.
         public async Task SpawnAndDirtyAllEntities()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
