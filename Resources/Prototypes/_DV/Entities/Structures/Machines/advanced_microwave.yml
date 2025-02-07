@@ -1,0 +1,25 @@
+- type: entity
+  parent: KitchenMicrowave
+  id: AdvancedMicrowave
+  name: Advanced Microwave
+  description: Don't stand too close to this thing, definitely dont put anything metal in.
+  components:
+  - type: Microwave
+    cookTimeMultiplier: 0.5
+    capacity: 30
+    canMicrowaveIdsSafely: false # No AA farm
+  - type: Sprite
+    sprite: _DV/Structures/Machines/advanced_microwave.rsi
+  - type: Machine
+    board: AdvancedMicrowaveMachineCircuitBoard
+  - type: Explosive
+    explosionType: Radioactive
+    maxIntensity: 60
+    totalIntensity: 50
+    intensitySlope: 10
+    canCreateVacuum: false
+    deleteAfterExplosion: false
+  - type: FoodRecipeProvider
+    providedRecipes: # if any new unique foods get added this will need updating
+    - RecipeBaguetteSword
+    - RecipeThrowingCroissant
