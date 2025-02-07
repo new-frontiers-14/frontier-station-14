@@ -247,6 +247,10 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         if (webhookUrl == string.Empty)
             return;
 
+        var serverName = _baseServer.ServerName;
+        var gameTicker = _entSys.GetEntitySystemOrNull<GameTicker>();
+        var runId = gameTicker != null ? gameTicker.RoundId : 0;
+
         var payload = new WebhookPayload
         {
             Embeds = new List<Embed>
@@ -256,6 +260,13 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
                     Title = Loc.GetString("adventure-webhook-list-start"),
                     Description = message,
                     Color = color,
+                    Footer = new EmbedFooter
+                    {
+                        Text = Loc.GetString(
+                            "adventure-webhook-footer",
+                            ("serverName", serverName),
+                            ("roundId", runId)),
+                    },
                 },
             },
         };
