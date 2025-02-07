@@ -98,18 +98,6 @@
     mod: 0.50
 
 - type: entity
-  parent: ComputerPalletConsoleNFNormalMarket
-  id: ComputerPalletConsoleNFNormalTradeCrate
-  name: trade crate sale computer
-  suffix: Trade Crates, Normal
-  description: Used to sell trade crates loaded onto cargo pallets.
-  components:
-  - type: CargoPalletConsole
-    whitelist:
-      components:
-      - TradeCrate
-
-- type: entity
   name: contraband exchange computer
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerContrabandPalletConsole

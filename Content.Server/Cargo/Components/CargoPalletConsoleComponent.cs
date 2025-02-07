@@ -18,8 +18,7 @@ public sealed partial class CargoPalletConsoleComponent : Component
     [DataField("palletDistance")]
     public int PalletDistance = 8;
 
-    // The distance in a radius around the console to check for cargo pallets
-    // Can be modified individually when mapping, so that consoles have a further reach
+    // The whitelist that determines what goods can be sold.  Accepts everything if null.
     [DataField]
     public EntityWhitelist? Whitelist;
     // End Frontier
