@@ -10,7 +10,7 @@ namespace Content.IntegrationTests.Tests.Internals;
 public sealed class AutoInternalsTests
 {
     [Test]
-    [Ignore("Frontier: currently broken, loadout mask won't autoequip")] // Frontier
+    [Ignore("Frontier: Changes to StationSpawningSystem breaks this")] // Frontier
     public async Task TestInternalsAutoActivateInSpaceForStationSpawn()
     {
         await using var pair = await PoolManager.GetServerClient();
@@ -68,7 +68,6 @@ public sealed class AutoInternalsTests
 - type: startingGear
   id: InternalsDummyGear
   equipment:
-    outerClothing: ClothingOuterHardsuitBasic # Frontier: brother how are you getting suit storage on a butt naked man
     mask: ClothingMaskBreath
     suitstorage: OxygenTankFilled
 
