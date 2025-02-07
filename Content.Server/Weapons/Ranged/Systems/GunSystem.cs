@@ -162,11 +162,6 @@ public sealed partial class GunSystem : SharedGunSystem
                     var fromEffect = fromCoordinates;
                     var dir = mapDirection.Normalized();
 
-                    // Frontier: if direction isn't near one (standing on top of target), default to a given direction
-                    if (!MathHelper.CloseToPercent(dir.LengthSquared(), 1))
-                        dir = new Vector2(1, 0);
-                    // End Frontier
-
                     //in the situation when user == null, means that the cannon fires on its own (via signals). And we need the gun to not fire by itself in this case
                     var lastUser = user ?? gunUid;
 
