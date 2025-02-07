@@ -42,6 +42,7 @@ using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Robust.Shared.Utility;
 using Content.Shared._NF.Kitchen.Components; // Frontier
+using Content.Shared.Radiation.Components; // Frontier
 
 namespace Content.Server.Kitchen.EntitySystems
 {
@@ -69,6 +70,7 @@ namespace Content.Server.Kitchen.EntitySystems
         [Dependency] private readonly IPrototypeManager _prototype = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly SharedSuicideSystem _suicide = default!;
+        [Dependency] private readonly PointLightSystem _pointLight = default!; // Frontier - Rads glow
 
         [ValidatePrototypeId<EntityPrototype>]
         private const string MalfunctionSpark = "Spark";
@@ -120,6 +122,8 @@ namespace Content.Server.Kitchen.EntitySystems
 
             microwaveComponent.PlayingStream =
                 _audio.PlayPvs(microwaveComponent.LoopingSound, ent, AudioParams.Default.WithLoop(true).WithMaxDistance(5))?.Entity;
+
+            TryUpdateMicrowaveRadiation(ent, true, microwaveComponent); // Frontier
         }
 
         private void OnCookStop(Entity<ActiveMicrowaveComponent> ent, ref ComponentShutdown args)
@@ -129,7 +133,38 @@ namespace Content.Server.Kitchen.EntitySystems
 
             SetAppearance(ent.Owner, MicrowaveVisualState.Idle, microwaveComponent);
             microwaveComponent.PlayingStream = _audio.Stop(microwaveComponent.PlayingStream);
+
+            TryUpdateMicrowaveRadiation(ent, false, microwaveComponent); // Frontier
         }
+
+
+        // Frontier: radioactive microwaves
+        public void TryUpdateMicrowaveRadiation(EntityUid uid, bool on, MicrowaveComponent component)
+        {
+            if (!TryComp<RadiationSourceComponent>(uid, out var radiation))
+                return;
+
+            radiation.Enabled = on;
+
+            if (on)
+            {
+                // Cant have the slope too crazy but can have it too low
+                float radiationSlope = 0.5f / component.CookTimeMultiplier;
+
+                radiation.Intensity = radiationSlope;
+                radiation.Slope = Math.Max(0.5f, radiationSlope * 3); // Slope should always be at least 0.5 (typical for bananium)
+
+                EnsureComp<PointLightComponent>(uid, out var light);
+                _pointLight.SetColor(uid, component.LightColor, light); // Add glow - on
+                _pointLight.SetRadius(uid, 1 + component.LightRadius);
+                _pointLight.SetEnergy(uid, 2 / component.CookTimeMultiplier);
+            }
+            else
+            {
+                RemComp<PointLightComponent>(uid); // Remove glow - off
+            }
+        }
+        // End Frontier
 
         private void OnActiveMicrowaveInsert(Entity<ActiveMicrowaveComponent> ent, ref EntInsertedIntoContainerMessage args)
         {
