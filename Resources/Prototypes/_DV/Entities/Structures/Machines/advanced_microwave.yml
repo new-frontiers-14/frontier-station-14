@@ -1,13 +1,11 @@
 - type: entity
-  parent: KitchenMicrowave
+  parent: SyndicateMicrowave
   id: AdvancedMicrowave
   name: Advanced Microwave
   description: Don't stand too close to this thing, definitely dont put anything metal in.
   components:
   - type: Microwave
-    cookTimeMultiplier: 0.5
     capacity: 30
-    canMicrowaveIdsSafely: false # No AA farm
   - type: Sprite
     sprite: _DV/Structures/Machines/advanced_microwave.rsi
   - type: Machine
@@ -19,7 +17,3 @@
     intensitySlope: 10
     canCreateVacuum: false
     deleteAfterExplosion: false
-  - type: FoodRecipeProvider
-    providedRecipes: # if any new unique foods get added this will need updating
-    - RecipeBaguetteSword
-    - RecipeThrowingCroissant
