@@ -1,5 +1,5 @@
 - type: entity
-  name: books bag
+  name: book bag # Frontier: books bag<book bag
   id: BooksBag
   parent: BaseStorageItem
   description: A refined bag to carry your own library.
@@ -44,8 +44,8 @@
           variation: 0.25
       soundDeactivate: *soundActivate
     - type: ItemToggleExamine
-      on: magnet-pickup-component-magnet-on
-      off: magnet-pickup-component-magnet-off
+      on: item-toggle-examine-magnet-on
+      off: item-toggle-examine-magnet-off
     - type: Appearance
     - type: GenericVisualizer
       visuals:
