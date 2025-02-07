@@ -45,8 +45,8 @@
   - Check that the AME core is properly shielded.
   - Check that the AME controller unit is anchored to the floor.
   - Check the AME controller unit Fuel Status.
-  - Check the AME controller unit Injection Amount.
-  - Toggle Injection.
+  - Check the AME controller unit Injection Amount (2 injections per core).
+  - Toggle Injection if needed.
 
   ## 2. Atmospherics
 
@@ -61,16 +61,16 @@
   
   - Check that the O2 canister is anchored to connector port.
   - Check that the N2 canister is anchored to connector port.
-  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
+  - Check that the gas mixer is set to the correct mixing ratio (primary port (Nitrogen): 79%, side port (Oxygen) 21%).
   - Check that the gas mixer is set to 101kPa.
-  - Enable gas mixer.
+  - Enable gas mixer if needed.
   
-  ## 2.2. [Cargo Bay] Waste Loop
+  ## 2.2. [EVA Access] Waste Loop
   <Box>
   <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
     
-  - Enable waste loop pump.
+  - Enable waste loop pump if needed.
   
   ## 3. Other checks
   <Box>
@@ -79,17 +79,17 @@
   <GuideEntityEmbed Entity="BlastDoor"/>
   </Box>
   
-  - [Enginer Pods] Check that the gyroscopes are anchored, powered, and enabled.
+  - [Engineering] Check that the gyroscopes are anchored, powered, and enabled.
   - [Engineering] Check that the mini gravity generator is anchored, powered, and enabled.
   - [Cargo Bay] Check that the blast doors are closed.
   
   ## Sidenotes
   
-  - Raven-class shuttles are equipped with two wallmount substations (one outside Engineering, one on the Bridge) and three APC units (one outside Engineering, one in the Cargo Bay, one on the Bridge). Consult the Power Monitoring Computer on the Bridge for exact locations.
+  - Raven-class shuttles are equipped with two wallmount substations (one in Engineering, one on the Bridge) and three APC units (one in Engineering, one in the Cargo Bay, one on the Bridge). Consult the Power Monitoring Computer on the Bridge for exact locations.
   - Power consumption chart for an unmodified Raven-class shuttle:
-  -- 29.5 kW with full SMES units
-  -- 44 kW with one empty SMES unit
-  -- 69 kW with two empty SMES units
-  -- 89 kW with two empty SMES units and empty substations
+  -- 29 kW with full SMES units
+  -- 42 kW with one empty SMES unit
+  -- 67 kW with two empty SMES units
+  -- 87 kW with two empty SMES units and empty substations
 
 </Document>
