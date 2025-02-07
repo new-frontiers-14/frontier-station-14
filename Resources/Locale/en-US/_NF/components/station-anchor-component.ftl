@@ -1,0 +1,1 @@
+station-anchor-teardown-failed = Can't tear down an active station anchor.

@@ -98,7 +98,7 @@ public sealed class GravityGeneratorSystem : EntitySystem
             if (quality == "Prying")
             {
                 _popupSystem.PopupEntity(
-                    Loc.GetString("gravity-generator-unanchoring-failed"),
+                    Loc.GetString("gravity-generator-teardown-failed"),
                      ent,
                      args.User,
                      PopupType.Medium);

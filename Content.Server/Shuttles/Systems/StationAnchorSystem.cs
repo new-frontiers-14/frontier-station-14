@@ -75,7 +75,7 @@ public sealed class StationAnchorSystem : EntitySystem
             if (quality == "Prying")
             {
                 _popupSystem.PopupEntity(
-                    Loc.GetString("station-anchor-unanchoring-failed"),
+                    Loc.GetString("station-anchor-teardown-failed"),
                      ent,
                      args.User,
                      PopupType.Medium);
