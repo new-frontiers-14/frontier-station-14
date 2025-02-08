@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: CloudOfNeutronFlux (https://github.com/CloudOfNeutronFlux)
+# Discord: @clauvyuga
+
+# Maintainer Info
+# GitHub: CloudOfNeutronFlux (https://github.com/CloudOfNeutronFlux)
+# Discord: @clauvyuga
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Raven
+  parent: BaseVessel
+  name: SWS Raven
+  description: Silkworm Shipyards' first venture into shipbuilding, the Raven is a versatile expedition-capable vessel with a very distinct profile.
+  price: 66560 # ~51200 on mapinit +30% markup
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/raven.yml
+  guidebookPage: ShipyardRaven
+  class:
+  - Expedition
+  engine:
+  - AME
+
+- type: gameMap
+  id: Raven
+  mapName: 'SWS Raven'
+  mapPath: /Maps/_NF/Shuttles/Expedition/raven.yml
+  minPlayers: 0
+  stations:
+    Raven:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Raven {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
