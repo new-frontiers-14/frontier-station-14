@@ -94,14 +94,14 @@
 #   - type: Contraband
 #     allowedDepartments: [ Cargo ]
 
-# # multiple departments restricted contraband
-# - type: entity
-#   id: BaseCentcommCommandContraband
-#   parent: BaseRestrictedContraband
-#   abstract: true
-#   components:
-#   - type: Contraband
-#     allowedDepartments: [ CentralCommand, Command ]
+# multiple departments restricted contraband
+- type: entity
+  id: BaseCentcommCommandContraband
+  parent: BaseC2ContrabandUnredeemable # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ CentralCommand, Command ]
 
 # - type: entity
 #   id: BaseSecurityCommandContraband
