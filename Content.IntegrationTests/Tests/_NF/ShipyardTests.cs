@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Server.Cargo.Systems;
-using Content.Shared.Shipyard.Prototypes;
+using Content.Shared._NF.Shipyard.Prototypes;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
