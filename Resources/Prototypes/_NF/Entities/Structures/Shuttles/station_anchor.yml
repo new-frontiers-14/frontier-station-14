@@ -25,7 +25,13 @@
         layer:
         - WallLayer
   - type: Sprite
-    scale: 0.5, 0.5
+    sprite: _NF/Structures/Machines/mini_station_anchor.rsi
+    layers:
+    - state: station_anchor
+      map: ["base"]
+    - state: station_anchor_unlit
+      shader: unshaded
+      map: ["unlit"]
 
 - type: entity
   parent: MiniStationAnchor
