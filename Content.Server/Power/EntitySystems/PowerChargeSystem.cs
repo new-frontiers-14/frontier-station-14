@@ -1,4 +1,4 @@
-﻿using Content.Server.Administration.Logs;
+using Content.Server.Administration.Logs;
 using Content.Server.Audio;
 using Content.Server.Emp;
 using Content.Server.Power.Components;
@@ -30,6 +30,7 @@ public sealed class PowerChargeSystem : EntitySystem
         SubscribeLocalEvent<PowerChargeComponent, SwitchChargingMachineMessage>(OnSwitchGenerator);
 
         SubscribeLocalEvent<PowerChargeComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: emp code
+        SubscribeLocalEvent<PowerChargeComponent, ActivateMachineMessage>(ActivateGenerator); // Frontier
     }
 
     private void OnAnchorStateChange(EntityUid uid, PowerChargeComponent component, AnchorStateChangedEvent args)
@@ -53,6 +54,11 @@ public sealed class PowerChargeSystem : EntitySystem
     private void OnSwitchGenerator(EntityUid uid, PowerChargeComponent component, SwitchChargingMachineMessage args)
     {
         SetSwitchedOn(uid, component, args.On, user: args.Actor);
+    }
+
+    private void ActivateGenerator(EntityUid uid, PowerChargeComponent component, ActivateMachineMessage args)
+    {
+        OnActivate(uid, component, user: args.Actor);
     }
 
     private void OnUIOpenAttempt(EntityUid uid, PowerChargeComponent component, ActivatableUIOpenAttemptEvent args)
@@ -93,6 +99,22 @@ public sealed class PowerChargeSystem : EntitySystem
 
         component.SwitchedOn = on;
         UpdatePowerState(component, powerReceiver);
+        component.NeedUIUpdate = true;
+    }
+
+    private void OnActivate(EntityUid uid, PowerChargeComponent component,
+    ApcPowerReceiverComponent? powerReceiver = null, EntityUid? user = null)
+    {
+        if (!Resolve(uid, ref powerReceiver))
+            return;
+
+        if (user is { })
+            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(user):player} set ${ToPrettyString(uid):target}");
+
+        //        ActivateButton.Visible = false;
+
+        //component.SwitchedOn = on;
+        //UpdatePowerState(component, powerReceiver);
         component.NeedUIUpdate = true;
     }
 

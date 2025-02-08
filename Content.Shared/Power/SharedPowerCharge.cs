@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Serialization;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Power;
 
@@ -14,6 +14,14 @@ public sealed class SwitchChargingMachineMessage : BoundUserInterfaceMessage
     {
         On = on;
     }
+}
+
+/// <summary>
+///     Frontier: Sent to the server to set whether the machine should be on or off
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class ActivateMachineMessage : BoundUserInterfaceMessage
+{
 }
 
 [Serializable, NetSerializable]

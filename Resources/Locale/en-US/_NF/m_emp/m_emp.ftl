@@ -27,3 +27,5 @@ m_emp-menu-note3 = By discharging this weapon,
 m_emp-menu-note4 = you agree to be held accountable.
 m_emp-request-button = Request Approval
 m_emp-activate-button = Activate M_EMP
+
+memp-generator-window-title = Mobile EMP Generator
