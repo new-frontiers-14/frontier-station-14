@@ -20,6 +20,7 @@ using Robust.Shared.Audio.Systems;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Timing;
 using Content.Shared.GameTicking; // Frontier
+using Content.Server.Discord.WebhookMessages;
 
 namespace Content.Server.MassMedia.Systems;
 
@@ -35,6 +36,8 @@ public sealed class NewsSystem : SharedNewsSystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly NewsWebhooks _newsWebhooks = default!;
+
 
     public override void Initialize()
     {
@@ -62,6 +65,7 @@ public sealed class NewsSystem : SharedNewsSystem
         SubscribeLocalEvent<NewsReaderCartridgeComponent, NewsArticleDeletedEvent>(OnArticleDeleted);
         SubscribeLocalEvent<NewsReaderCartridgeComponent, CartridgeMessageEvent>(OnReaderUiMessage);
         SubscribeLocalEvent<NewsReaderCartridgeComponent, CartridgeUiReadyEvent>(OnReaderUiReady);
+        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndHandleNews);
     }
  
     // Frontier: article lifecycle management
@@ -112,6 +116,8 @@ public sealed class NewsSystem : SharedNewsSystem
         var article = articles[msg.ArticleNum];
         if (CanUse(msg.Actor, ent.Owner))
         {
+            _newsWebhooks.DeleteNewsFromDiscord(article);
+            
             _adminLogger.Add(
                 LogType.Chat, LogImpact.Medium,
                 $"{ToPrettyString(msg.Actor):actor} deleted news article {article.Title} by {article.Author}: {article.Content}"
@@ -197,6 +203,7 @@ public sealed class NewsSystem : SharedNewsSystem
         }
 
         UpdateWriterDevices();
+        _newsWebhooks.SendNewsToDiscord(article);
     }
     #endregion
 
@@ -351,5 +358,11 @@ public sealed class NewsSystem : SharedNewsSystem
     private void OnRequestArticleDraftMessage(Entity<NewsWriterComponent> ent, ref NewsWriterRequestDraftMessage msg)
     {
         UpdateWriterUi(ent);
+    }
+
+    private void OnRoundEndHandleNews(RoundEndTextAppendEvent ev)
+    {
+        Logger.Info("[NewsSystem] Round ending - sending stored news articles.");
+        _newsWebhooks.OnRoundEndHandleNews();
     }
 }
