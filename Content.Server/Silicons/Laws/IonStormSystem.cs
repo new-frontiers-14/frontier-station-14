@@ -129,7 +129,8 @@ public sealed class IonStormSystem : EntitySystem
             {
                 LawString = newLaw,
                 Order = -1,
-                LawIdentifierOverride = Loc.GetString("ion-storm-law-scrambled-number", ("length", _robustRandom.Next(5, 10)))
+                LawIdentifierOverride = Loc.GetString("ion-storm-law-scrambled-number", ("length", _robustRandom.Next(5, 10))),
+                LawPrintOverride = Loc.GetString("silicon-law-error") // Frontier
             });
         }
 
@@ -173,8 +174,8 @@ public sealed class IonStormSystem : EntitySystem
         var verb = Pick(Verbs);
         var number = Pick(NumberBase) + " " + Pick(NumberMod);
         var area = Pick(Areas);
-        var feeling = Pick(Feelings);
-        var feelingPlural = Pick(FeelingsPlural);
+        var feeling = Pick(FeelingsPlural); // Frontier: Feelings < FeelingsPlural (not plural subjects, "with an S")
+        var feelingPlural = Pick(Feelings); // Frontier: FeelingsPlural < Feelings (not plural subjects, "with an S")
         var must = Pick(Musts);
         var require = Pick(Requires);
         var action = Pick(Actions);

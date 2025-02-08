@@ -78,7 +78,7 @@ public sealed class NFCCVars
     /// The number of Cargo Depots to spawn in every round
     /// </summary>
     public static readonly CVarDef<int> CargoDepots =
-        CVarDef.Create("nf14.worldgen.cargo_depots", 2, CVar.SERVERONLY);
+        CVarDef.Create("nf14.worldgen.cargo_depots", 4, CVar.SERVERONLY);
 
     /// <summary>
     /// The number of Optional Points Of Interest to spawn in every round

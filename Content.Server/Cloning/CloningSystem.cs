@@ -38,9 +38,10 @@ using Robust.Shared.Random;
 using Content.Shared.Emag.Systems;
 using Content.Server.Popups;
 using Content.Server.Traits.Assorted;
-using Content.Shared._NF.Cloning;
-using Content.Shared.Bank.Components;
 using Robust.Shared.Serialization.Manager;
+using Content.Shared._NF.Cloning; // Frontier
+using Content.Shared._NF.Bank.Components; // Frontier
+using Content.Server._NF.Traits.Assorted; // Frontier
 
 namespace Content.Server.Cloning
 {
