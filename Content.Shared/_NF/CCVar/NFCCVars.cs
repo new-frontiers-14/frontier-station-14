@@ -78,7 +78,7 @@ public sealed class NFCCVars
     /// The number of Cargo Depots to spawn in every round
     /// </summary>
     public static readonly CVarDef<int> CargoDepots =
-        CVarDef.Create("nf14.worldgen.cargo_depots", 2, CVar.SERVERONLY);
+        CVarDef.Create("nf14.worldgen.cargo_depots", 4, CVar.SERVERONLY);
 
     /// <summary>
     /// The number of Optional Points Of Interest to spawn in every round
@@ -112,6 +112,12 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<bool> Shipyard =
         CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Base sell rate (multiplier: 0.75 = 75%)
+    /// </summary>
+    public static readonly CVarDef<float> ShipyardSellRate =
+        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.75f, CVar.SERVERONLY);
 
     /*
      * Salvage

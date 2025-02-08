@@ -25,7 +25,7 @@ namespace Content.Shared.Lathe
         /// The lathe's construction queue
         /// </summary>
         [DataField]
-        public List<LatheRecipePrototype> Queue = new();
+        public List<LatheRecipeBatch> Queue = new(); // Frontier: LatheRecipePrototype<LatheRecipeBatch
 
         /// <summary>
         /// The sound that plays when the lathe is producing an item, if any
@@ -140,6 +140,23 @@ namespace Content.Shared.Lathe
             getUnavailable = forced;
         }
     }
+
+    // Frontier: batch lathe recipes
+    [Serializable]
+    public sealed partial class LatheRecipeBatch : EntityEventArgs
+    {
+        public LatheRecipePrototype Recipe;
+        public int ItemsPrinted;
+        public int ItemsRequested;
+
+        public LatheRecipeBatch(LatheRecipePrototype recipe, int itemsPrinted, int itemsRequested)
+        {
+            Recipe = recipe;
+            ItemsPrinted = itemsPrinted;
+            ItemsRequested = itemsRequested;
+        }
+    }
+    // End Frontier
 
     /// <summary>
     /// Event raised on a lathe when it starts producing a recipe.
