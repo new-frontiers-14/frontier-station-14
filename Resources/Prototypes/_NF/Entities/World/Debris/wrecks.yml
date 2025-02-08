@@ -1,9 +1,8 @@
 ﻿- type: entity
-  id: NFBaseScrapDebris
+  id: NFBaseWreckDebris
   parent: NFBaseDebris
   abstract: true
   components:
-  - type: MapGrid
   - type: BlobFloorPlanBuilder
     floorTileset:
       - Plating
@@ -96,12 +95,11 @@
         - id: GrilleBroken
           prob: 0.25
   - type: IFF
-    flags: HideLabel
     color: "#88b0d1"
 
 - type: entity
-  id: NFBaseScrapDebrisBrass
-  parent: NFBaseScrapDebris
+  id: NFBaseWreckDebrisBrass
+  parent: NFBaseDebris
   abstract: true
   components:
   - type: BlobFloorPlanBuilder
@@ -161,77 +159,124 @@
   - type: IFF
     color: "#E1C16E"
 
+# region Wreck Sizes
 - type: entity
-  id: NFScrapDebrisSmall
-  parent: NFBaseScrapDebris
-  name: scrap debris small
+  id: NFBaseWreckSmall
+  name: wreck debris small
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 52
     radius: 12
 
 - type: entity
-  id: NFScrapDebrisMedium
-  parent: NFBaseScrapDebris
-  name: scrap debris medium
+  id: NFBaseWreckMedium
+  name: wreck debris medium
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 72
     radius: 14
 
 - type: entity
-  id: NFScrapDebrisLarge
-  parent: NFBaseScrapDebris
-  name: scrap debris large
+  id: NFBaseWreckLarge
+  name: wreck debris large
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 96
     radius: 16
 
 - type: entity
-  id: NFScrapDebrisExtraLarge
-  parent: NFBaseScrapDebris
-  name: scrap debris large extra large
+  id: NFBaseWreckExtraLarge
+  name: wreck debris large extra large
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 124
     radius: 18
 
 - type: entity
-  id: NFScrapDebrisHuge
-  parent: NFBaseScrapDebris
-  name: scrap debris huge
+  id: NFBaseWreckHuge
+  name: wreck debris huge
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 156
     radius: 20
 
 - type: entity
-  id: NFScrapDebrisExtraHuge
-  parent: NFBaseScrapDebris
-  name: scrap debris extra huge
+  id: NFBaseWreckExtraHuge
+  name: wreck debris extra huge
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 192
     radius: 22
 
 - type: entity
-  id: NFScrapDebrisEnormous
-  parent: NFBaseScrapDebris
-  name: scrap debris enormous
+  id: NFBaseWreckEnormous
+  name: wreck debris enormous
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
   - type: BlobFloorPlanBuilder
     floorPlacements: 232
     radius: 24
+# endregion Wreck Sizes
+
+# region Wrecks
+- type: entity
+  id: NFWreckDebrisSmall
+  parent: [NFBaseWreckDebris, NFBaseWreckSmall]
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  id: NFScrapDebrisBrassLarge
-  parent: [NFBaseScrapDebrisBrass, NFScrapDebrisLarge]
+  id: NFWreckDebrisMedium
+  parent: [NFBaseWreckDebris, NFBaseWreckMedium]
   categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFWreckDebrisLarge
+  parent: [NFBaseWreckDebris, NFBaseWreckLarge]
+  name: scrap debris large
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFWreckDebrisExtraLarge
+  parent: [NFBaseWreckDebris, NFBaseWreckExtraLarge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFWreckDebrisHuge
+  parent: [NFBaseWreckDebris, NFBaseWreckHuge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFWreckDebrisExtraHuge
+  parent: [NFBaseWreckDebris, NFBaseWreckExtraHuge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFWreckDebrisEnormous
+  parent: [NFBaseWreckDebris, NFBaseWreckEnormous]
+  categories: [ HideSpawnMenu ]
+# endregion Wrecks
+
+# region Brass Wrecks
+- type: entity
+  id: NFWreckDebrisBrassLarge
+  parent: [NFBaseWreckDebrisBrass, NFBaseWreckLarge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFWreckDebrisBrassExtraLarge
+  parent: [NFBaseWreckDebrisBrass, NFBaseWreckExtraLarge]
+  categories: [ HideSpawnMenu ]
+# endregion Brass Wrecks

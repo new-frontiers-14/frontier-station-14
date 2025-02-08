@@ -3584,6 +3584,29 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-15.5
       parent: 70
+- proto: NFHolopadShip
+  entities:
+  - uid: 126
+    components:
+    - type: Transform
+      pos: 1.5,-11.5
+      parent: 70
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.33275002
+            position: 0,0
+          mask:
+          - Impassable
+          - LowImpassable
+          layer:
+          - LowImpassable
+          density: 1
+          hard: False
+          restitution: 0
+          friction: 0.4
+    - type: ScaleVisuals
 - proto: NitrogenCanister
   entities:
   - uid: 46
@@ -3646,17 +3669,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-17.5
-      parent: 70
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
-- proto: PowerCellRecharger
-  entities:
-  - uid: 126
-    components:
-    - type: Transform
-      pos: 1.5,-11.5
       parent: 70
 - proto: Poweredlight
   entities:
@@ -4363,11 +4375,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-11.5
       parent: 70
-  - uid: 541
-    components:
-    - type: Transform
-      pos: 1.5,-11.5
-      parent: 70
   - uid: 542
     components:
     - type: Transform
@@ -4934,7 +4941,7 @@ entities:
     - type: Transform
       pos: -4.5,4.5
       parent: 70
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 599
     components:
