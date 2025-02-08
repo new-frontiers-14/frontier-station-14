@@ -1,0 +1,73 @@
+# Author Info
+# GitHub: Cheackraze?
+# Discord: Checkraze?
+
+# Maintainer Info
+# GitHub: dvir001
+# Discord: dvir001
+
+# Shuttle Notes:
+# Minimal definition, should not be an actual shipyard entry.
+# Named it cheetah because it's _so fast_.
+- type: vessel
+  id: BaseCheetah
+  parent: BaseVesselNonPlayer
+  shuttlePath: /Maps/_NF/Shuttles/Bus/cheetah.yml
+  abstract: true
+  addComponents:
+  - type: PreventPilot
+  - type: ProtectedGrid
+    preventArtifactTriggers: true
+    preventEmpEvents: true
+    preventExplosions: true
+    preventFloorPlacement: true
+    preventFloorRemoval: true
+    preventRCDUse: true
+    killHostileMobs: true
+  - type: LinkedLifecycleGridParent
+
+- type: vessel
+  id: CheetahRed
+  parent: BaseCheetah
+  shuttlePath: /Maps/_NF/Shuttles/Bus/cheetah_red.yml
+
+- type: vessel
+  id: CheetahGreen
+  parent: BaseCheetah
+  shuttlePath: /Maps/_NF/Shuttles/Bus/cheetah_green.yml
+
+- type: vessel
+  id: CheetahBlue
+  parent: BaseCheetah
+  shuttlePath: /Maps/_NF/Shuttles/Bus/cheetah_blue.yml
+
+- type: gameMap
+  id: CheetahRed
+  mapName: 'CheetahRed'
+  mapPath: /Maps/_NF/Shuttles/Bus/cheetah_red.yml
+  minPlayers: 0
+  stations:
+    CheetahRed: &cheetahParams
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bus {1}' # Will be overwritten
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+
+- type: gameMap
+  id: CheetahGreen
+  mapName: 'CheetahGreen'
+  mapPath: /Maps/_NF/Shuttles/Bus/cheetah_green.yml
+  minPlayers: 0
+  stations:
+    CheetahGreen: *cheetahParams
+
+- type: gameMap
+  id: CheetahBlue
+  mapName: 'CheetahBlue'
+  mapPath: /Maps/_NF/Shuttles/Bus/cheetah_blue.yml
+  minPlayers: 0
+  stations:
+    CheetahBlue: *cheetahParams
