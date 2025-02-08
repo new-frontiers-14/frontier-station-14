@@ -51,27 +51,9 @@
   id: PrettyBurgerRed
   description: It's so pretty... red?
   components:
-  - type: FlavorProfile
-    flavors:
-      - bun
-      - meaty
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/burger.rsi
     state: plainred
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 3
-  - type: Tag
-    tags:
-    - Meat
 
 - type: entity
   name: orange pretty burger
@@ -79,27 +61,9 @@
   id: PrettyBurgerOrange
   description: It's so pretty... orange?
   components:
-  - type: FlavorProfile
-    flavors:
-      - bun
-      - meaty
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/burger.rsi
     state: plainorange
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 3
-  - type: Tag
-    tags:
-    - Meat
 
 - type: entity
   name: yellow pretty burger
@@ -107,27 +71,9 @@
   id: PrettyBurgerYellow
   description: It's so pretty... yellow?
   components:
-  - type: FlavorProfile
-    flavors:
-      - bun
-      - meaty
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/burger.rsi
     state: plainyellow
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 3
-  - type: Tag
-    tags:
-    - Meat
 
 - type: entity
   name: green pretty burger
@@ -135,27 +81,9 @@
   id: PrettyBurgerGreen
   description: It's so pretty... green?
   components:
-  - type: FlavorProfile
-    flavors:
-      - bun
-      - meaty
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/burger.rsi
     state: plaingreen
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 3
-  - type: Tag
-    tags:
-    - Meat
 
 - type: entity
   name: blue pretty burger
@@ -163,80 +91,36 @@
   id: PrettyBurgerBlue
   description: It's so pretty... blue?
   components:
-  - type: FlavorProfile
-    flavors:
-      - bun
-      - meaty
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/burger.rsi
     state: plainblue
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 3
-  - type: Tag
-    tags:
-    - Meat
 
 - type: entity
   name: purple pretty burger
-  parent: FoodBurgerBase
+  parent: FoodBurgerPlain
   id: PrettyBurgerPurple
   description: It's so pretty... purple?
   components:
-  - type: FlavorProfile
-    flavors:
-      - bun
-      - meaty
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/burger.rsi
     state: plainpurple
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 3
-  - type: Tag
-    tags:
-    - Meat
 
 - type: entity
   name: black and white pretty burger
-  parent: FoodBurgerBase
-  id: PrettyBurgerBnW
-  description: It's so pretty... colorless?
+  parent: FoodBurgerPlain
+  id: PrettyBurgerBlack
+  description: It's so pretty... black?
   components:
-  - type: FlavorProfile
-    flavors:
-      - bun
-      - meaty
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/burger.rsi
-    state: plainbnw
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Protein
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 3
-  - type: Tag
-    tags:
-    - Meat
+    state: plainblack
+
+- type: entity
+  name: white pretty burger
+  parent: FoodBurgerPlain
+  id: PrettyBurgerWhite
+  description: It's so pretty... colorless?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/burger.rsi
+    state: plainwhite
