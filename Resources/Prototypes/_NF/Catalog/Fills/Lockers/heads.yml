@@ -47,6 +47,19 @@
       - id: Demag # Frontier
 
 - type: entity
+  id: LockerNfsdSheriffFilled
+  suffix: Filled
+  parent: LockerNfsdSheriff
+  components:
+  - type: StorageFill
+    contents:
+      - id: ShriffIDCard
+      - id: BoxHandcuff # Frontier
+      - id: CommsComputerCircuitboard # Frontier
+      - id: MedalCaseNfsd # Frontier
+      - id: Demag # Frontier
+
+- type: entity
   parent: GunSafe
   id: GunSafeSr
   name: SR's gun safe
