@@ -4,6 +4,7 @@ using Content.Shared.Materials;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Content.Server.Storage.Components; // Frontier
+using Content.Server.Cargo.Systems; // Frontier
 using Content.Server.Power.Components;
 using Content.Server.Stack;
 using Content.Shared.ActionBlocker;
@@ -32,6 +33,7 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
     {
         base.Initialize();
         SubscribeLocalEvent<MaterialStorageComponent, MachineDeconstructedEvent>(OnDeconstructed);
+        SubscribeLocalEvent<MaterialStorageComponent, PriceCalculationEvent>(OnPriceCalculation); // Frontier
 
         SubscribeAllEvent<EjectMaterialMessage>(OnEjectMessage);
     }
@@ -46,6 +48,21 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
             SpawnMultipleFromMaterial(amount, material, Transform(uid).Coordinates);
         }
     }
+
+    // Start Frontier: add value of contents to appraisal price
+    private void OnPriceCalculation(EntityUid uid, MaterialStorageComponent component, ref PriceCalculationEvent ev)
+    {
+        foreach (var (materialProto, amount) in component.Storage)
+        {
+            if (!_prototypeManager.TryIndex<MaterialPrototype>(materialProto, out var material))
+            {
+                Log.Error("Failed to index material prototype " + materialProto);
+                continue;
+            }
+            ev.Price += material.Price * amount;
+        }
+    }
+    // End Frontier: add value of contents to appraisal price
 
     private void OnEjectMessage(EjectMaterialMessage msg, EntitySessionEventArgs args)
     {

@@ -11,7 +11,9 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Power;
 using Content.Shared.Stacks;
 using Content.Shared.Storage;
+using Content.Shared.Materials;
 using Robust.Shared.Prototypes;
+
 
 namespace Content.Server._NF.Market.Systems;
 
@@ -47,7 +49,9 @@ public sealed partial class MarketSystem
 
         foreach (var sold in entitySoldEvent.Sold)
         {
-            if (_entityManager.TryGetComponent<StorageComponent>(sold, out var storageComponent))
+            if (_entityManager.TryGetComponent<MaterialStorageComponent>(sold, out var materialStorageComponent))
+                UpsertMaterialStorage(market, materialStorageComponent);
+            else if (_entityManager.TryGetComponent<StorageComponent>(sold, out var storageComponent))
                 UpsertStorage(market, storageComponent);
             else if (_entityManager.TryGetComponent<EntityStorageComponent>(sold, out var entityStorageComponent))
                 UpsertEntityStorage(market, entityStorageComponent);
@@ -161,6 +165,26 @@ public sealed partial class MarketSystem
     }
 
     /// <summary>
+    /// Inserts market data for materialprototypes contained within an MaterialStorageComponent.
+    /// </summary>
+    /// <param name="marketDataComponent"></param>
+    /// <param name="materialStorageComponent"></param>
+    private void UpsertMaterialStorage(CargoMarketDataComponent marketDataComponent, MaterialStorageComponent materialStorageComponent)
+    {
+        foreach (var (materialProto, amount) in materialStorageComponent.Storage)
+        {
+            if (!_prototypeManager.TryIndex<MaterialPrototype>(materialProto, out var material))
+            {
+                Log.Error("Failed to index material prototype " + materialProto);
+                continue;
+            }
+            // Increase the count in the MarketData for this material
+            // Assuming the quantity to increase is 1 for each sold material
+            marketDataComponent.MarketDataList.Upsert(materialProto, amount, material.Price, material.StackEntity);
+        }
+    }
+
+    /// <summary>
     /// Calculates the total number of entities in the market data list, taking into account the maximum stack count for stackable items.
     /// </summary>
     /// <param name="marketDataList">The list of market data to calculate the total entity count from.</param>
@@ -175,7 +199,7 @@ public sealed partial class MarketSystem
             {
                 var maxStackCount = stackPrototype.MaxCount;
                 if (maxStackCount != null)
-                    count += (int) Math.Ceiling((double) data.Quantity / int.Max(1, maxStackCount.Value)); // Ensure denominator is positive
+                    count += (int)Math.Ceiling((double)data.Quantity / int.Max(1, maxStackCount.Value)); // Ensure denominator is positive
                 else
                     count += 1;
             }
