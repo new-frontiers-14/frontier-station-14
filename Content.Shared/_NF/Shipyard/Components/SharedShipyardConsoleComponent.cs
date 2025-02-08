@@ -61,4 +61,10 @@ public sealed partial class ShipyardConsoleComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<SectorBankAccount, float> TaxAccounts = new();
+
+    /// <summary>
+    /// If true, the base sale rate is ignored before calculating taxes.
+    /// </summary>
+    [DataField]
+    public bool IgnoreBaseSaleRate;
 }
