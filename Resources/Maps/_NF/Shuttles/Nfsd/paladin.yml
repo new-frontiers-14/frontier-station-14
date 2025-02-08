@@ -1279,7 +1279,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,4.5
       parent: 1
-- proto: SignalButton
+- proto: SignalButtonDirectional
   entities:
   - uid: 211
     components:
@@ -1289,19 +1289,19 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
+        204:
+        - Pressed: Toggle
         203:
+        - Pressed: Toggle
+        205:
+        - Pressed: Toggle
+        207:
+        - Pressed: Toggle
+        206:
         - Pressed: Toggle
         209:
         - Pressed: Toggle
         208:
-        - Pressed: Toggle
-        206:
-        - Pressed: Toggle
-        207:
-        - Pressed: Toggle
-        205:
-        - Pressed: Toggle
-        204:
         - Pressed: Toggle
 - proto: SmallGyroscopeNfsd
   entities:
