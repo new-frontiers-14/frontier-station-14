@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Configuration;
+using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
 
@@ -44,7 +44,7 @@ public sealed partial class CCVars
     ///     Whether or not the storage UI is static and bound to the hotbar, or unbound and allowed to be dragged anywhere.
     /// </summary>
     public static readonly CVarDef<bool> StaticStorageUI =
-        CVarDef.Create("control.static_storage_ui", false, CVar.CLIENTONLY | CVar.ARCHIVE); // Frontier: false
+        CVarDef.Create("control.static_storage_ui", true, CVar.CLIENTONLY | CVar.ARCHIVE); // Frontier: FIXME, setting this to false actully breaks StorageInteractionTest, since its client settings we can let it be.
 
     /// <summary>
     ///     Whether or not the storage window uses a transparent or opaque sprite.
