@@ -30,6 +30,7 @@ public sealed class AdvDrainSystem : SharedDrainSystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
@@ -38,7 +39,6 @@ public sealed class AdvDrainSystem : SharedDrainSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
 
     private readonly HashSet<Entity<PuddleComponent>> _puddles = new();
 
@@ -185,6 +185,7 @@ public sealed class AdvDrainSystem : SharedDrainSystem
             if (drainSolution.Volume > drain.UnitsDestroyedThreshold)
             {
                 _appearanceSystem.SetData(uid, AdvDrainVisualState.IsVoiding, true);
+                _appearanceSystem.SetData(uid, AdvDrainVisualState.IsRunning, false); //they use the same indicator light, and cause artifacts when on at the same time
                 _solutionContainerSystem.SplitSolution(drain.Solution.Value, Math.Min(drain.UnitsDestroyedPerSecond * drain.DrainFrequency, (float)drainSolution.Volume - drain.UnitsDestroyedThreshold));
             }
             else
@@ -201,6 +202,7 @@ public sealed class AdvDrainSystem : SharedDrainSystem
             if (_puddles.Count == 0)
             {
                 _ambientSoundSystem.SetAmbience(uid, false);
+                _appearanceSystem.SetData(uid, AdvDrainVisualState.IsDraining, false);
                 continue;
             }
 
