@@ -8,6 +8,7 @@ using Content.Shared.Timing;
 using JetBrains.Annotations;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
+using Content.Server._NF.Power.Components; // Frontier
 
 namespace Content.Server.Power.EntitySystems
 {
@@ -89,8 +90,8 @@ namespace Content.Server.Power.EntitySystems
             var query = EntityQueryEnumerator<BatterySelfRechargerComponent, BatteryComponent>();
             while (query.MoveNext(out var uid, out var comp, out var batt))
             {
-                if (!comp.AutoRecharge) continue;
-                if (batt.IsFullyCharged) continue;
+                if (!comp.AutoRecharge || IsFull(uid, batt))
+                    continue;
 
                 if (comp.AutoRechargePause)
                 {
@@ -239,14 +240,14 @@ namespace Content.Server.Power.EntitySystems
         }
 
         /// <summary>
-        /// Returns whether the battery is at least 99% charged, basically full.
+        /// Returns whether the battery is full.
         /// </summary>
         public bool IsFull(EntityUid uid, BatteryComponent? battery = null)
         {
             if (!Resolve(uid, ref battery))
                 return false;
 
-            return battery.CurrentCharge / battery.MaxCharge >= 0.99f;
+            return battery.CurrentCharge >= battery.MaxCharge;
         }
     }
 }
