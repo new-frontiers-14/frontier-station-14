@@ -4136,6 +4136,10 @@ entities:
         - Pressed: Toggle
         536:
         - Pressed: Toggle
+        150:
+        - Pressed: Toggle
+        741:
+        - Pressed: Toggle
 - proto: SignCargoDock
   entities:
   - uid: 561
@@ -4346,7 +4350,8 @@ entities:
   - uid: 592
     components:
     - type: Transform
-      pos: -2.5,-5.5
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-5.5
       parent: 70
 - proto: StoolBar
   entities:
@@ -4570,6 +4575,12 @@ entities:
     components:
     - type: Transform
       pos: -5.5,5.5
+      parent: 70
+  - uid: 741
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,7.5
       parent: 70
 - proto: ToolboxElectricalFilled
   entities:
