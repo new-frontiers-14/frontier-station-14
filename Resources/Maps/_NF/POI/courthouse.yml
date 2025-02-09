@@ -20,6 +20,7 @@ entities:
     components:
     - type: MetaData
     - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -56,18 +57,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -3628,11 +3622,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,4.5
       parent: 1
-  - uid: 579
-    components:
-    - type: Transform
-      pos: -3.5,8.5
-      parent: 1
   - uid: 690
     components:
     - type: Transform
@@ -3684,11 +3673,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5,-11.5
-      parent: 1
-  - uid: 1160
-    components:
-    - type: Transform
-      pos: 1.5,8.5
       parent: 1
 - proto: ChairBrass
   entities:
@@ -8856,6 +8840,20 @@ entities:
     components:
     - type: Transform
       pos: 8.5,-8.5
+      parent: 1
+- proto: NFHolopadCourthouseDefendant
+  entities:
+  - uid: 579
+    components:
+    - type: Transform
+      pos: -3.5,8.5
+      parent: 1
+- proto: NFHolopadCourthouseWitness
+  entities:
+  - uid: 1160
+    components:
+    - type: Transform
+      pos: 1.5,8.5
       parent: 1
 - proto: NitrogenCanister
   entities:

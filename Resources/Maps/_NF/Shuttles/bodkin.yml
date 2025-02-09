@@ -976,8 +976,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.5,-2.5
       parent: 2
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpRight
   entities:
   - uid: 206
@@ -986,8 +984,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.5,-1.5
       parent: 2
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoor
   entities:
   - uid: 10
@@ -1041,6 +1037,17 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,-6.5
+      parent: 2
+  - uid: 452
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-3.5
+      parent: 2
+  - uid: 453
+    components:
+    - type: Transform
+      pos: 1.5,6.5
       parent: 2
 - proto: ButtonFrameCautionSecurity
   entities:
@@ -1490,26 +1497,20 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,4.5
       parent: 2
-- proto: ComputerWallmountWithdrawBankATM
+- proto: ComputerWallmountRadar
   entities:
   - uid: 163
     components:
     - type: Transform
       pos: -3.5,-4.5
       parent: 2
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
+- proto: ComputerWallmountWithdrawBankATM
+  entities:
+  - uid: 440
+    components:
+    - type: Transform
+      pos: 4.5,-4.5
+      parent: 2
 - proto: ConveyorBelt
   entities:
   - uid: 65
@@ -1657,13 +1658,6 @@ entities:
     - type: Transform
       pos: -0.5,3.5
       parent: 2
-- proto: filingCabinetDrawerRandom
-  entities:
-  - uid: 145
-    components:
-    - type: Transform
-      pos: 1.5,5.5
-      parent: 2
 - proto: FirelockEdge
   entities:
   - uid: 438
@@ -1700,6 +1694,13 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 83
+- proto: FolderSpawner
+  entities:
+  - uid: 456
+    components:
+    - type: Transform
+      pos: 1.3455672,4.655131
+      parent: 2
 - proto: GasMixerOn
   entities:
   - uid: 272
@@ -2470,6 +2471,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.6934373,4.4512644
       parent: 2
+- proto: NFHolopadShip
+  entities:
+  - uid: 145
+    components:
+    - type: Transform
+      pos: 1.5,5.5
+      parent: 2
 - proto: NFSignDock
   entities:
   - uid: 410
@@ -2552,10 +2560,6 @@ entities:
     - type: Transform
       pos: 4.5,-3.5
       parent: 2
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterLegitCarpMount
   entities:
   - uid: 426
@@ -2739,6 +2743,73 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-9.5
       parent: 2
+- proto: ShuttersNormalOpen
+  entities:
+  - uid: 441
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,3.5
+      parent: 2
+  - uid: 442
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,4.5
+      parent: 2
+  - uid: 443
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,4.5
+      parent: 2
+  - uid: 444
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,3.5
+      parent: 2
+  - uid: 445
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,7.5
+      parent: 2
+  - uid: 446
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,8.5
+      parent: 2
+  - uid: 447
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,7.5
+      parent: 2
+  - uid: 448
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,8.5
+      parent: 2
+  - uid: 449
+    components:
+    - type: Transform
+      pos: 0.5,9.5
+      parent: 2
+  - uid: 450
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-1.5
+      parent: 2
+  - uid: 451
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-2.5
+      parent: 2
 - proto: ShuttleWindow
   entities:
   - uid: 51
@@ -2822,6 +2893,33 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,9.5
       parent: 2
+- proto: SignalButton
+  entities:
+  - uid: 455
+    components:
+    - type: Transform
+      pos: 1.5,6.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        443:
+        - Pressed: Toggle
+        444:
+        - Pressed: Toggle
+        442:
+        - Pressed: Toggle
+        441:
+        - Pressed: Toggle
+        445:
+        - Pressed: Toggle
+        446:
+        - Pressed: Toggle
+        449:
+        - Pressed: Toggle
+        448:
+        - Pressed: Toggle
+        447:
+        - Pressed: Toggle
 - proto: SignalButtonDirectional
   entities:
   - uid: 68
@@ -2861,6 +2959,18 @@ entities:
         10:
         - Pressed: Toggle
         13:
+        - Pressed: Toggle
+  - uid: 454
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-3.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        451:
+        - Pressed: Toggle
+        450:
         - Pressed: Toggle
 - proto: SignAtmos
   entities:
@@ -3051,21 +3161,21 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         65:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         276:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         158:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         151:
-        - Left: Reverse
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Right: Forward
   - uid: 222
     components:
     - type: Transform
@@ -3074,12 +3184,12 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         93:
-        - Right: Forward
-        - Left: Reverse
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         343:
-        - Right: Forward
-        - Left: Reverse
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
   - uid: 274
     components:
@@ -3089,20 +3199,20 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         157:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         156:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         275:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         66:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
 - proto: VendingMachineSalvage
   entities:
@@ -3474,7 +3584,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-10.5
       parent: 2
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 402
     components:
