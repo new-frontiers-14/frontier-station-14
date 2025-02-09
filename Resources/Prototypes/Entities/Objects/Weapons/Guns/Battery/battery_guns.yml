@@ -57,14 +57,29 @@
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - PowerCell
-            - PowerCellSmall
+          - PowerCell
+          - PowerCellSmall
   - type: Appearance
   - type: StaticPrice
     price: 500
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
+
+#Laser rebalance test entry, need finalize values and to learn how to put it into files properly before PR
+- type: entity
+  id: BaseWeaponPowerCellSmallBurst #Frontier: Make the Svalinn more interesting and viable, will split into a separate weapon if necessary
+  parent: BaseWeaponPowerCellSmall
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 1
+    maxAngle: 6
+    angleIncrease: 1.5
+    angleDecay: 6
+    selectedMode: Burst
+    availableModes:
+    - Burst
 
 - type: entity
   id: BaseWeaponBatterySmall
@@ -104,7 +119,7 @@
 
 - type: entity
   name: svalinn laser pistol
-  parent: [ BaseWeaponPowerCellSmall, BaseC1Contraband ] # Frontier: BaseMajorContraband<BaseC1Contraband
+  parent: [ BaseWeaponPowerCellSmallBurst, BaseC1Contraband ] # Frontier: BaseMajorContraband<BaseC1Contraband, Burstfire
   id: WeaponLaserSvalinn
   description: A cheap and widely used laser pistol.
   components:
@@ -195,7 +210,7 @@
         variation: 0.2
   - type: ProjectileBatteryAmmoProvider
     proto: TeslaGunBullet
-    fireCost: 300
+    fireCost: 200
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -219,12 +234,13 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
   - type: Gun
-    selectedMode: SemiAuto
+    selectedMode: Burst #Frontier: SemiAuto > Burst
+    shotsPerBurst: 2
     availableModes:
-    - SemiAuto
+    - Burst #Frontier: SemiAuto > Burst
   - type: HitscanBatteryAmmoProvider
     proto: RedLaserPractice
-    fireCost: 62.5
+    fireCost: 33.3 #Frontier: 62.5 > 33.3
   - type: StaticPrice
     price: 300
 
@@ -238,7 +254,7 @@
     price: 420
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
-    fireCost: 62.5
+    fireCost: 33.3 #Frontier: 62.5 > 33.3
 
 - type: entity
   name: pulse pistol
@@ -344,12 +360,15 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
   - type: Gun
-    fireRate: 1.5
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 250
+    fireCost: 200
   - type: Battery
     maxCharge: 4000
     startingCharge: 4000
@@ -403,11 +422,15 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/xray.rsi
   - type: Gun
+    fireRate: 2
+    selectedMode: Burst
+    availableModes:
+      - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: XrayLaser
-    fireCost: 200
+    fireCost: 166
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -751,15 +774,15 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletLaserSpread
-    fireCost: 150
+    fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: BulletLaserSpread
-      fireCost: 150
+      fireCost: 100
     - proto: BulletLaserSpreadNarrow
-      fireCost: 200
+      fireCost: 100
     - proto: BulletDisablerSmgSpread
-      fireCost: 120
+      fireCost: 100
   - type: Item
     size: Large
     shape:

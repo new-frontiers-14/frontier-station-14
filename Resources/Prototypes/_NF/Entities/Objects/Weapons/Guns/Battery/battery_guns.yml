@@ -90,6 +90,9 @@
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 80
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40
   - type: Gun
     selectedMode: FullAuto
     availableModes:
@@ -132,6 +135,12 @@
       - state: inhand-right
       - state: inhand-right-unshaded
         shader: unshaded
+  #Basic laser pistol capacity and RoF test
+  - type: Gun
+    fireRate: 3
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 40 #83.3 > 40 (12 to 25 shots)
 
 - type: entity
   id: NFWeaponHoloflareGun

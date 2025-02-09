@@ -960,7 +960,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
-    lifetime: 5
+    lifetime: 3 #Frontier 5 < 3
   - type: Sprite
     sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
     layers:
@@ -976,8 +976,8 @@
   - type: LightningArcShooter
     arcDepth: 1
     maxLightningArc: 3
-    shootMinInterval: 2.5
-    shootMaxInterval: 4.5
+    shootMinInterval: 0.5 #Frontier 2.5 < 0.5
+    shootMaxInterval: 2.5 #Frontier 4.5 < 2.5
     shootRange: 5
     lightningPrototype: Lightning
   - type: Electrified
