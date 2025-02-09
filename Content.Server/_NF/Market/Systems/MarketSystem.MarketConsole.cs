@@ -178,9 +178,24 @@ public sealed partial class MarketSystem
                 Log.Error("Failed to index material prototype " + materialProto);
                 continue;
             }
+
+            if (amount <= 0 || material.StackEntity == null)
+                continue;
+
+            var entProto = _prototypeManager.Index<EntityPrototype>(material.StackEntity);
+            if (!entProto.TryGetComponent<PhysicalCompositionComponent>(out var composition))
+                continue;
+
+            var materialPerStack = composition.MaterialComposition[material.ID];
+            var amountToSpawn = amount / materialPerStack;
+            var price = material.Price * materialPerStack;
+
+            if (amountToSpawn == 0)
+                continue;
+
             // Increase the count in the MarketData for this material
             // Assuming the quantity to increase is 1 for each sold material
-            marketDataComponent.MarketDataList.Upsert(materialProto, amount, material.Price, material.StackEntity);
+            marketDataComponent.MarketDataList.Upsert(entProto.ID, amountToSpawn, price, material.StackEntity);
         }
     }
 
