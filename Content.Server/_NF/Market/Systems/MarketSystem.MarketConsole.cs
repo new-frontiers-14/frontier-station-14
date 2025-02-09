@@ -19,6 +19,8 @@ namespace Content.Server._NF.Market.Systems;
 
 public sealed partial class MarketSystem
 {
+
+    [Dependency] private readonly SharedMaterialStorageSystem _sharedMaterialStorageSystem = default!;
     private void InitializeConsole()
     {
         SubscribeLocalEvent<EntitySoldEvent>(OnEntitySoldEvent);
@@ -50,7 +52,7 @@ public sealed partial class MarketSystem
         foreach (var sold in entitySoldEvent.Sold)
         {
             if (_entityManager.TryGetComponent<MaterialStorageComponent>(sold, out var materialStorageComponent))
-                UpsertMaterialStorage(market, materialStorageComponent);
+                UpsertMaterialStorage(market, materialStorageComponent, sold);
             else if (_entityManager.TryGetComponent<StorageComponent>(sold, out var storageComponent))
                 UpsertStorage(market, storageComponent);
             else if (_entityManager.TryGetComponent<EntityStorageComponent>(sold, out var entityStorageComponent))
@@ -169,7 +171,7 @@ public sealed partial class MarketSystem
     /// </summary>
     /// <param name="marketDataComponent"></param>
     /// <param name="materialStorageComponent"></param>
-    private void UpsertMaterialStorage(CargoMarketDataComponent marketDataComponent, MaterialStorageComponent materialStorageComponent)
+    private void UpsertMaterialStorage(CargoMarketDataComponent marketDataComponent, MaterialStorageComponent materialStorageComponent, EntityUid sold)
     {
         foreach (var (materialProto, amount) in materialStorageComponent.Storage)
         {
@@ -192,6 +194,10 @@ public sealed partial class MarketSystem
 
             if (amountToSpawn == 0)
                 continue;
+
+            var overflowMaterial = amount - amountToSpawn * materialPerStack;
+            _sharedMaterialStorageSystem.TrySetMaterialAmount(sold, materialProto, overflowMaterial, materialStorageComponent);
+
 
             // Increase the count in the MarketData for this material
             // Assuming the quantity to increase is 1 for each sold material
