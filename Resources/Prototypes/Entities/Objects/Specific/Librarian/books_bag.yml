@@ -35,6 +35,8 @@
           - Write
     - type: Dumpable
     - type: MagnetPickup # Frontier
+      magnetEnabled: false # Frontier
+      magnetCanBeEnabled: false # Frontier
     - type: NFBookBag # Frontier
     # Begin Frontier Additions: toggle magnet from White Dream
     - type: ItemToggle
@@ -43,6 +45,9 @@
         params:
           variation: 0.25
       soundDeactivate: *soundActivate
+      onUse: false
+      onAltUse: true
+      onActivate: false
     - type: ItemToggleExamine
       on: item-toggle-examine-magnet-on
       off: item-toggle-examine-magnet-off

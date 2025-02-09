@@ -5,6 +5,8 @@
   description: A robust bag for construction specialists and engineers alike to carry large amounts of construction materials. Magnetises any nearby construction materials when attached to a belt.
   components:
   - type: MagnetPickup
+    magnetEnabled: false
+    magnetCanBeEnabled: false
   - type: Sprite
     sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
     layers:
@@ -51,6 +53,9 @@
       params:
         variation: 0.25
     soundDeactivate: *soundActivate
+    onUse: false
+    onAltUse: true
+    onActivate: false
   - type: ItemToggleExamine
     on: item-toggle-examine-magnet-on
     off: item-toggle-examine-magnet-off

@@ -1,10 +1,14 @@
 using Content.Server.Storage.Components;
+using Content.Shared.Examine;
+using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle; // DeltaV
+using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -31,12 +35,68 @@ public sealed class MagnetPickupSystem : EntitySystem
         base.Initialize();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         SubscribeLocalEvent<MagnetPickupComponent, MapInitEvent>(OnMagnetMapInit);
+        SubscribeLocalEvent<MagnetPickupComponent, ExaminedEvent>(OnExamined); // Frontier
+        SubscribeLocalEvent<MagnetPickupComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleMagnetVerb); // Frontier
     }
 
     private void OnMagnetMapInit(EntityUid uid, MagnetPickupComponent component, MapInitEvent args)
     {
         component.NextScan = _timing.CurTime;
     }
+
+
+    // Frontier, used to add the magnet toggle to the context menu
+    private void AddToggleMagnetVerb(EntityUid uid, MagnetPickupComponent component, GetVerbsEvent<AlternativeVerb> args)
+    {
+        // Magnet run by other means (e.g. toggles)
+        if (!component.MagnetCanBeEnabled)
+            return;
+
+        if (!args.CanAccess || !args.CanInteract)
+            return;
+
+        if (!HasComp<HandsComponent>(args.User))
+            return;
+
+        AlternativeVerb verb = new()
+        {
+            Act = () =>
+            {
+                ToggleMagnet(uid, component);
+            },
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
+            Text = Loc.GetString("magnet-pickup-component-toggle-verb"),
+            Priority = component.MagnetTogglePriority
+        };
+
+        args.Verbs.Add(verb);
+    }
+
+    // Frontier: togglable magnets
+    // Show the magnet state on examination
+    private void OnExamined(EntityUid uid, MagnetPickupComponent component, ExaminedEvent args)
+    {
+        // Magnet run by other means (e.g. toggles)
+        if (!component.MagnetCanBeEnabled)
+            return;
+
+        args.PushMarkup(Loc.GetString("magnet-pickup-component-on-examine-main",
+                        ("stateText", Loc.GetString(component.MagnetEnabled
+                        ? "magnet-pickup-component-magnet-on"
+                        : "magnet-pickup-component-magnet-off"))));
+    }
+
+    //Toggles the magnet on the ore bag/box
+    public void ToggleMagnet(EntityUid uid, MagnetPickupComponent comp)
+    {
+        // Magnet run by other means (e.g. toggles)
+        if (!comp.MagnetCanBeEnabled)
+            return;
+
+        comp.MagnetEnabled = !comp.MagnetEnabled;
+        Dirty(uid, comp);
+    }
+    // End Frontier: togglable magnets
 
     public override void Update(float frameTime)
     {
@@ -52,8 +112,16 @@ public sealed class MagnetPickupSystem : EntitySystem
             comp.NextScan += ScanDelay;
 
             // Begin DeltaV Addition: Make ore bags use ItemToggle
-            if (!_toggle.IsActivated(uid))
-                continue;
+            if (comp.MagnetCanBeEnabled)
+            {
+                if (!comp.MagnetEnabled)
+                    continue;
+            }
+            else
+            {
+                if (!_toggle.IsActivated(uid))
+                    continue;
+            }
             // End DeltaV Addition
 
             // Begin DeltaV Removals: Allow ore bags to work inhand
