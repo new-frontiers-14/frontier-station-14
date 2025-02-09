@@ -98,10 +98,11 @@
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
-        maxVol: 2500
+        maxVol: 1200
   - type: DrainableSolution
     solution: drainBuffer
   - type: AdvDrain
+    unitsDestroyedThreshold: 600
   - type: DumpableSolution
     solution: drainBuffer
   - type: PowerCellSlot
