@@ -1,4 +1,4 @@
-using Content.Server.Storage.Components;
+using Content.Shared.Storage.Components; // Frontier
 using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
@@ -45,7 +45,7 @@ public sealed class MagnetPickupSystem : EntitySystem
     }
 
 
-    // Frontier, used to add the magnet toggle to the context menu
+    // Frontier: togglable magnets
     private void AddToggleMagnetVerb(EntityUid uid, MagnetPickupComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
         // Magnet run by other means (e.g. toggles)
@@ -72,7 +72,6 @@ public sealed class MagnetPickupSystem : EntitySystem
         args.Verbs.Add(verb);
     }
 
-    // Frontier: togglable magnets
     // Show the magnet state on examination
     private void OnExamined(EntityUid uid, MagnetPickupComponent component, ExaminedEvent args)
     {
