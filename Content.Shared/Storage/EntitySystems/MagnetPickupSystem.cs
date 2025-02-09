@@ -110,7 +110,7 @@ public sealed class MagnetPickupSystem : EntitySystem
 
             comp.NextScan += ScanDelay;
 
-            // Begin DeltaV Addition: Make ore bags use ItemToggle
+            // Frontier: combine DeltaV/White Dream's magnet toggle with old system
             if (comp.MagnetCanBeEnabled)
             {
                 if (!comp.MagnetEnabled)
@@ -121,7 +121,7 @@ public sealed class MagnetPickupSystem : EntitySystem
                 if (!_toggle.IsActivated(uid))
                     continue;
             }
-            // End DeltaV Addition
+            // End Frontier
 
             // Begin DeltaV Removals: Allow ore bags to work inhand
             //if (!_inventory.TryGetContainingSlot((uid, xform, meta), out var slotDef))
