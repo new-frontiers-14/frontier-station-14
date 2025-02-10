@@ -19,7 +19,7 @@ shipyard-console-sale-organic-aboard = All crew must disembark. {$name} is still
 shipyard-console-sale-invalid-ship = Ship is invalid and cannot be sold.
 shipyard-console-sale-unknown-reason = Ship cannot be sold: {reason}
 shipyard-console-deed-label = Registered Ship:
-shipyard-console-appraisal-label = Shuttle Estimated Value:{" "}
+shipyard-console-appraisal-label = Shuttle Resale Value:{" "}
 shipyard-console-no-voucher-redemptions = All voucher redemptions have been used.
 shipyard-console-invalid-voucher-type = This voucher cannot be used at this console.
 
