@@ -9,6 +9,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
+using Content.Shared.Containers.ItemSlots; // Frontier
 
 namespace Content.Shared.VendingMachines;
 
@@ -21,6 +22,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] protected readonly IRobustRandom Randomizer = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] protected readonly ItemSlotsSystem ItemSlots = default!; // Frontier
 
     public override void Initialize()
     {
@@ -34,6 +36,11 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     protected virtual void OnMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
     {
         RestockInventoryFromPrototype(uid, component, component.InitialStockQuality);
+
+        // Frontier: create the cash slot if this entity has one
+        if (component.CashSlot != null && component.CashSlotName != null)
+            ItemSlots.AddItemSlot(uid, component.CashSlotName, component.CashSlot);
+        // End Frontier
     }
 
     public void RestockInventoryFromPrototype(EntityUid uid,
