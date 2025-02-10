@@ -66,7 +66,9 @@ internal sealed class NFPowerSolarSystem : EntitySystem
     {
         // Initialize the sun to something random
         TowardsSun = MathHelper.TwoPi * _robustRandom.NextDouble();
-        SunAngularVelocity = Angle.FromDegrees(0.1 + ((_robustRandom.NextDouble() - 0.5) * 0.05));
+        SunAngularVelocity = Angle.FromDegrees(0.125 + (_robustRandom.NextDouble() - 0.5) * 0.1); // 0.075/s - 0.175/s (4800s - ~2000s per orbit)
+        if (_robustRandom.Prob(0.5f))
+            SunAngularVelocity = -SunAngularVelocity; // retrograde rotation(?)
     }
 
     private void OnMapInit(EntityUid uid, NFSolarPanelComponent component, MapInitEvent args)
