@@ -1,12 +1,13 @@
+using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._NF.SectorServices;
 using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Systems;
-using Content.Server.GameTicking.Events;
 using Content.Server.StationRecords.Systems;
 using Content.Shared._NF.BountyContracts;
 using Content.Shared.Access.Systems;
-using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.BountyContracts;
 
@@ -18,47 +19,41 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     private ISawmill _sawmill = default!;
 
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
+    [Dependency] private readonly SectorServiceSystem _sectorServices = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly PrototypeManager _proto = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         _sawmill = Logger.GetSawmill("bounty.contracts");
 
-        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
+        SubscribeLocalEvent<BountyContractDataComponent, ComponentInit>(ContractInit);
         InitializeUi();
     }
 
-    private void OnRoundStarting(RoundStartingEvent ev)
+    private void ContractInit(Entity<BountyContractDataComponent> ent, ref ComponentInit ev)
     {
-        // TODO: move to in-game server like RD?
-
-        // delete all existing data component
-        // just in case someone added it on map or previous round ended weird
-        var query = EntityQuery<BountyContractDataComponent>();
-        foreach (var bnt in query)
+        Dictionary<ProtoId<BountyContractCollectionPrototype>, Dictionary<uint, BountyContract>> contracts = new();
+        foreach (var proto in _proto.EnumeratePrototypes<BountyContractCollectionPrototype>())
         {
-            RemCompDeferred(bnt.Owner, bnt);
+            contracts[proto.ID] = new();
         }
-
-        // use nullspace entity to store all information about contracts
-        var uid = Spawn(null, MapCoordinates.Nullspace);
-        EnsureComp<BountyContractDataComponent>(uid);
+        ent.Comp.Contracts = contracts.ToFrozenDictionary();
     }
 
     private BountyContractDataComponent? GetContracts()
     {
-        // we assume that there is only one bounty database for round
-        // if it doesn't exist - game should work fine
-        // but players wouldn't able to create/get contracts
-        return EntityQuery<BountyContractDataComponent>().FirstOrDefault();
+        TryComp(_sectorServices.GetServiceEntity(), out BountyContractDataComponent? bountyContracts);
+        return bountyContracts;
     }
 
     /// <summary>
     ///     Try to create a new bounty contract and put it in bounties list.
     /// </summary>
+    /// <param name="collection">Bounty contract collection (command, public, etc.)</param>
     /// <param name="category">Bounty contract category (bounty head, construction, etc.)</param>
     /// <param name="name">IC name for the contract bounty head. Can be players IC name or custom string.</param>
     /// <param name="reward">Cash reward for completing bounty. Can be zero.</param>
@@ -68,7 +63,8 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     /// <param name="author">Optional bounty poster IC name.</param>
     /// <param name="postToRadio">Should radio message about contract be posted in general radio channel?</param>
     /// <returns>New bounty contract. Null if contract creation failed.</returns>
-    public BountyContract? CreateBountyContract(BountyContractCategory category,
+    public BountyContract? CreateBountyContract(ProtoId<BountyContractCollectionPrototype> collection,
+        BountyContractCategory category,
         string name, int reward,
         string? description = null, string? vessel = null,
         string? dna = null, string? author = null,
@@ -78,13 +74,16 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         if (data == null)
             return null;
 
+        if (!data.Contracts.TryGetValue(collection, out var contracts))
+            return null;
+
         // create a new contract
         var contractId = data.LastId++;
         var contract = new BountyContract(contractId, category, name, reward,
             dna, vessel, description, author);
 
         // try to save it
-        if (!data.Contracts.TryAdd(contractId, contract))
+        if (!contracts.TryAdd(contractId, contract))
         {
             _sawmill.Error($"Failed to create bounty contract with {contractId}! LastId: {data.LastId}.");
             return null;
@@ -116,19 +115,29 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         if (data == null)
             return false;
 
-        return data.Contracts.TryGetValue(contractId, out contract);
+        // Linear w.r.t. collections, but should be a small collection
+        foreach (var collection in data.Contracts.Values)
+        {
+            if (collection.TryGetValue(contractId, out contract))
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>
-    ///     Try to get all bounty contracts available.
+    ///     Try to get all bounty contracts available within a particular collection.
     /// </summary>
-    public IEnumerable<BountyContract> GetAllContracts()
+    public IEnumerable<BountyContract> GetAllContracts(ProtoId<BountyContractCollectionPrototype> collection)
     {
         var data = GetContracts();
         if (data == null)
             return Enumerable.Empty<BountyContract>();
 
-        return data.Contracts.Values;
+        if (!data.Contracts.TryGetValue(collection, out var contracts))
+            return Enumerable.Empty<BountyContract>();
+
+        return contracts.Values;
     }
 
     /// <summary>
@@ -141,12 +150,13 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         if (data == null)
             return false;
 
-        if (!data.Contracts.Remove(contractId))
+        foreach (var collection in data.Contracts.Values)
         {
-            _sawmill.Warning($"Failed to remove bounty contract with {contractId}!");
-            return false;
+            if (collection.Remove(contractId))
+                return true;
         }
 
+        _sawmill.Warning($"Failed to remove bounty contract with {contractId}!");
         return true;
     }
 }

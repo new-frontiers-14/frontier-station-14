@@ -1,3 +1,4 @@
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.BountyContracts;
@@ -44,6 +45,7 @@ public struct BountyContractTargetInfo
 [NetSerializable, Serializable]
 public struct BountyContractRequest
 {
+    public ProtoId<BountyContractCollectionPrototype> Collection;
     public BountyContractCategory Category;
     public string Name;
     public string? DNA;
@@ -94,20 +96,15 @@ public sealed class BountyContractCreateUiState : BoundUserInterfaceState
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractListUiState : BoundUserInterfaceState
+public sealed class BountyContractListUiState(ProtoId<BountyContractCollectionPrototype> collection,
+        List<BountyContract> contracts,
+        bool isAllowedCreateBounties,
+        bool isAllowedRemoveBounties) : BoundUserInterfaceState
 {
-    public readonly List<BountyContract> Contracts;
-    public readonly bool IsAllowedCreateBounties;
-    public readonly bool IsAllowedRemoveBounties;
-
-    public BountyContractListUiState(List<BountyContract> contracts,
-        bool isAllowedCreateBounties, bool isAllowedRemoveBounties)
-    {
-        Contracts = contracts;
-        IsAllowedCreateBounties = isAllowedCreateBounties;
-        IsAllowedRemoveBounties = isAllowedRemoveBounties;
-    }
-
+    public readonly ProtoId<BountyContractCollectionPrototype> Collection = collection;
+    public readonly List<BountyContract> Contracts = contracts;
+    public readonly bool IsAllowedCreateBounties = isAllowedCreateBounties;
+    public readonly bool IsAllowedRemoveBounties = isAllowedRemoveBounties;
 }
 
 [NetSerializable, Serializable]
@@ -126,25 +123,15 @@ public sealed class BountyContractCloseCreateUiMsg : BoundUserInterfaceMessage
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractTryRemoveUiMsg : BoundUserInterfaceMessage
+public sealed class BountyContractTryRemoveUiMsg(uint contractId) : BoundUserInterfaceMessage
 {
-    public readonly uint ContractId;
-
-    public BountyContractTryRemoveUiMsg(uint contractId)
-    {
-        ContractId = contractId;
-    }
+    public readonly uint ContractId = contractId;
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractTryCreateMsg : BoundUserInterfaceMessage
+public sealed class BountyContractTryCreateMsg(BountyContractRequest contract) : BoundUserInterfaceMessage
 {
-    public readonly BountyContractRequest Contract;
-
-    public BountyContractTryCreateMsg(BountyContractRequest contract)
-    {
-        Contract = contract;
-    }
+    public readonly BountyContractRequest Contract = contract;
 }
 
 public abstract class SharedBountyContractSystem : EntitySystem

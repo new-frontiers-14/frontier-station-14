@@ -1,0 +1,27 @@
+- type: bountyContractCollection
+  id: Command
+  name: bounty-contract-type-name-command
+  writeAccess:
+  - HeadOfPersonnel
+  - HeadOfSecurity
+  deleteAccess:
+  - HeadOfPersonnel
+  - HeadOfSecurity
+  categories:
+  - Criminal
+  - Vacancy
+  - Construction
+  - Service
+  - Other
+
+- type: bountyContractCollection
+  id: Public
+  name: bounty-contract-type-name-public
+  deleteAccess:
+  - HeadOfPersonnel
+  - HeadOfSecurity
+  categories:
+  - Vacancy
+  - Construction
+  - Service
+  - Other
