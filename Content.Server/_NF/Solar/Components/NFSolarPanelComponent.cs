@@ -6,7 +6,7 @@ namespace Content.Server._NF.Solar.Components;
 ///     This is a solar panel.
 ///     It updates with grid-based tracking information.
 ///     It generates power from the sun based on coverage.
-///     Largely based on 
+///     Largely based on Space Station 14's SolarPanelComponent.
 /// </summary>
 [RegisterComponent]
 [Access(typeof(NFPowerSolarSystem))]
