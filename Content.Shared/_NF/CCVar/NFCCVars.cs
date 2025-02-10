@@ -113,6 +113,12 @@ public sealed class NFCCVars
     public static readonly CVarDef<bool> Shipyard =
         CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
 
+    /// <summary>
+    /// Base sell rate (multiplier: 0.75 = 75%)
+    /// </summary>
+    public static readonly CVarDef<float> ShipyardSellRate =
+        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.75f, CVar.SERVERONLY);
+
     /*
      * Salvage
      */
