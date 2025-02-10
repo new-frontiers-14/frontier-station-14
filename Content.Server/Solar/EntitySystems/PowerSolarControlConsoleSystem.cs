@@ -3,7 +3,8 @@ using Content.Server.UserInterface;
 using Content.Shared.Solar;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
-using Content.Shared._NF.Solar.Components; // Frontier
+using Content.Server._NF.Solar.Components; // Frontier
+using Content.Server._NF.Solar.EntitySystems; // Frontier
 
 namespace Content.Server.Solar.EntitySystems
 {
@@ -13,7 +14,7 @@ namespace Content.Server.Solar.EntitySystems
     [UsedImplicitly]
     internal sealed class PowerSolarControlConsoleSystem : EntitySystem
     {
-        [Dependency] private readonly PowerSolarSystem _powerSolarSystem = default!;
+        [Dependency] private readonly NFPowerSolarSystem _powerSolarSystem = default!; // Frontier: use NF variant.
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
         /// <summary>
