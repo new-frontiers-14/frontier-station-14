@@ -7,6 +7,8 @@ using JetBrains.Annotations;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Content.Shared._NF.Solar.Components; // Frontier
+using Robust.Shared.Timing; // Frontier
 
 namespace Content.Server.Solar.EntitySystems
 {
@@ -19,6 +21,7 @@ namespace Content.Server.Solar.EntitySystems
         [Dependency] private readonly IRobustRandom _robustRandom = default!;
         [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private readonly IGameTiming _gameTiming = default!; // Frontier
 
         /// <summary>
         /// Maximum panel angular velocity range - used to stop people rotating panels fast enough that the lag prevention becomes noticable
@@ -101,6 +104,7 @@ namespace Content.Server.Solar.EntitySystems
 
             if (_updateQueue.Count > 0)
             {
+                UpdateSolarGridRotations(false, frameTime); // Frontier
                 var panel = _updateQueue.Dequeue();
                 if (panel.Comp.Running)
                     UpdatePanelCoverage(panel);
@@ -108,16 +112,50 @@ namespace Content.Server.Solar.EntitySystems
             else
             {
                 TotalPanelPower = 0;
+                UpdateSolarGridRotations(true, frameTime); // Frontier
 
                 var query = EntityQueryEnumerator<SolarPanelComponent, TransformComponent>();
                 while (query.MoveNext(out var uid, out var panel, out var xform))
                 {
                     TotalPanelPower += panel.MaxSupply * panel.Coverage;
-                    _transformSystem.SetWorldRotation(xform, TargetPanelRotation);
+                    // Frontier: lookup powered grid component
+                    if (xform.GridUid != null)
+                    {
+                        var poweredGridComp = EnsureComp<SolarPoweredGridComponent>(xform.GridUid.Value);
+                        poweredGridComp.TotalPanelPower += panel.MaxSupply * panel.Coverage;
+                        poweredGridComp.LastUpdatedTick = _gameTiming.CurTick.Value;
+                        _transformSystem.SetWorldRotation(xform, poweredGridComp.TargetPanelRotation);
+                    }
+                    // _transformSystem.SetWorldRotation(xform, TargetPanelRotation);
+                    // End Frontier
                     _updateQueue.Enqueue((uid, panel));
                 }
+
+                // Frontier: cull grid set
+                var gridQuery = EntityQueryEnumerator<SolarPoweredGridComponent>();
+                while (gridQuery.MoveNext(out var uid, out var gridPower))
+                {
+                    if (gridPower.LastUpdatedTick != _gameTiming.CurTick.Value)
+                        RemCompDeferred<SolarPoweredGridComponent>(uid);
+                }
+                // End Frontier: cull grid set
             }
         }
+
+        // Frontier: adjust powered grid angles
+        private void UpdateSolarGridRotations(bool resetPower, float dt)
+        {
+            var gridQuery = EntityQueryEnumerator<SolarPoweredGridComponent>();
+            while (gridQuery.MoveNext(out _, out var grid))
+            {
+                if (resetPower)
+                    grid.TotalPanelPower = 0;
+
+                grid.TargetPanelRotation += grid.TargetPanelVelocity * dt;
+                grid.TargetPanelRotation = grid.TargetPanelRotation.Reduced();
+            }
+        }
+        // End Frontier
 
         private void UpdatePanelCoverage(Entity<SolarPanelComponent> panel)
         {
