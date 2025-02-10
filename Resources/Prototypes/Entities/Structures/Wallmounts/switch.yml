@@ -15,7 +15,7 @@
   - type: Physics
     canCollide: false
   - type: Sprite
-    drawdepth: SmallObjects
+    drawdepth: WallMountedItems # Frontier: SmallObjects<WallMountedItems
     sprite: Structures/Wallmounts/switch.rsi
     state: on
   - type: SignalSwitch
@@ -58,7 +58,7 @@
   - type: Physics
     canCollide: false
   - type: Sprite
-    drawdepth: SmallObjects
+    drawdepth: WallMountedItems # Frontier: SmallObjects<WallMountedItems
     sprite: Structures/Wallmounts/switch.rsi
     state: dead
   - type: UseDelay
@@ -123,7 +123,7 @@
     - type: Transform
       anchored: true
     - type: Sprite
-      drawdepth: SmallObjects
+      drawdepth: WallMountedItems # Frontier: SmallObjects<WallMountedItems
       sprite: Structures/Wallmounts/switch.rsi
       state: on
     - type: Rotatable
