@@ -248,6 +248,28 @@
       price: 40
 
 - type: entity
+  id: PortableGeneratorProfPacmanMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: P.R.O.F.P.A.C.M.A.N.-type portable generator
+  description: A machine printed circuit board for a P.R.O.F.P.A.C.M.A.N.-type portable generator.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: PortableGeneratorProfPacman
+      requirements:
+        Capacitor: 2
+      stackRequirements:
+        CableHV: 10
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 200
+      chemicalComposition:
+        Silicon: 20
+    - type: StaticPrice
+      price: 40
+
+- type: entity
   id: BlueprintLithographMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: blueprint lithograph machine board
