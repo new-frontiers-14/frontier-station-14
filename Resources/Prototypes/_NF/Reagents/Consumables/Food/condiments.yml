@@ -1,0 +1,137 @@
+- type: reagent
+  id: CargoSauce
+  name: reagent-name-cargosauce
+  group: Foods
+  desc: reagent-desc-cargosauce
+  physicalDesc: reagent-physical-desc-creamy
+  flavor: cargosauce
+  color: "#f0ddd4"
+  recognizable: true
+
+- type: reagent
+  id: BuffaloSauce
+  name: reagent-name-buffalosauce
+  group: Foods
+  desc: reagent-desc-buffalosauce
+  physicalDesc: reagent-physical-desc-burning
+  flavor: buffalosauce
+  color: "#F58521"
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:AdjustReagent
+        reagent: CapsaicinOil
+        amount: 0.20
+
+- type: reagent
+  id: LizardSauce
+  name: reagent-name-lizardsauce
+  group: Foods
+  desc: reagent-desc-lizardsauce
+  physicalDesc: reagent-physical-desc-lizardsauce
+  flavor: lizardsauce
+  color: "#a76df3"
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:AdjustReagent
+        reagent: CapsaicinOil
+        amount: 0.20
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+           max: 293.13
+        amount: 100000 # thermal energy, not temperature!
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          min: 293.15
+        amount: -10000
+
+- type: reagent
+  id: Mint
+  name: reagent-name-mint
+  group: Foods
+  desc: reagent-desc-mint
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: minty
+  color: "#3EB489"
+  recognizable: true
+
+- type: reagent
+  id: NukeSauce
+  name: reagent-name-nukesauce
+  group: Foods
+  desc: reagent-desc-nukesauce
+  physicalDesc: reagent-physical-desc-coldfire
+  flavor: nukesauce
+  color: "#00008B"
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:AdjustReagent
+        reagent: CapsaicinOil
+        amount: 0.20
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+           max: 293.13
+        amount: 10000 # thermal energy, not temperature!
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          min: 293.15
+        amount: -100000
+
+- type: reagent
+  id: Peppermint
+  name: reagent-name-peppermint
+  group: Foods
+  desc: reagent-desc-peppermint
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: peppermint
+  color: "#3CB371"
+  recognizable: true
+
+- type: reagent
+  id: Relish
+  name: reagent-name-relish
+  group: Foods
+  desc: reagent-desc-relish
+  physicalDesc: reagent-physical-desc-thick-and-grainy
+  flavor: relish
+  color: green
+  recognizable: true
+
+- type: reagent
+  id: SourCream
+  name: reagent-name-sourcream
+  group: Foods
+  desc: reagent-desc-sourcream
+  physicalDesc: reagent-physical-desc-sour
+  flavor: sourcream
+  color: "#fffff3"
+  recognizable: true
+
+- type: reagent
+  id: ThousandIsland
+  name: reagent-name-thousandisland
+  group: Foods
+  desc: reagent-desc-thousandisland
+  physicalDesc: reagent-physical-desc-creamy
+  flavor: thousandisland
+  color: "#FAEBD7"
+  recognizable: true
+
+- type: reagent
+  id: JuicePickle
+  name: reagent-name-picklejuice
+  group: Foods
+  desc: reagent-desc-picklejuice
+  physicalDesc: reagent-physical-desc-tangy
+  flavor: dill
+  color: "#FAEBD7"
+  recognizable: true
