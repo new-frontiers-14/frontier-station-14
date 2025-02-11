@@ -9,9 +9,9 @@
     state: icon
   - type: Item
     sprite: Objects/Tools/appraisal-tool.rsi
-  - type: PriceGun
+#  - type: PriceGun # Frontier
   - type: UseDelay
-    delay: 3
+    delay: 1 # Frontier 3<1
   - type: Clothing
     sprite: Objects/Tools/appraisal-tool.rsi
     quickEquip: false
@@ -24,6 +24,41 @@
     tags:
     - AppraisalTool
     - Sidearm
+    # Frontier changes start
   # - type: GuideHelp # Frontier: guidebook entry removed
   #   guides: # Frontier: guidebook entry removed
   #   - Cargo # Frontier: guidebook entry removed
+  - type: ComponentCycler
+    statusShowBehavior: true
+    entries:
+      - components:
+        - type: PriceGun
+        sprite:
+          sprite: Objects/Tools/appraisal-tool.rsi
+          state: icon
+        useSound:
+          path: /Audio/Items/drill_use.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - components:
+        - type: ContrabandPriceGun
+        sprite:
+          sprite: _NF/Objects/Tools/appraisal-tool.rsi
+          state: icon
+        useSound:
+          path: /Audio/Items/drill_use.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - components:
+        - type: MedicalPriceGun
+        sprite:
+          sprite: _NF/Objects/Tools/medical-appraisal-tool.rsi
+          layers:
+          - state: icon
+          - state: icon-unlit
+            shader: unshaded
+        useSound:
+          path: /Audio/Items/drill_use.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+    # Frontier changes end
