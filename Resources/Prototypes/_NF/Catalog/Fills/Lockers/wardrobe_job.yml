@@ -1,41 +1,31 @@
-- type: entity
-  id: ClosetWallOrangeFilled
-  parent:
-  - ClosetWallOrange
-  - BaseStructureWallmount
-  - WardrobePrisonFilled
-  components:
-  - type: ContainerContainer
-    containers:
-      entity_storage: !type:Container
-      paper_label: !type:ContainerSlot
+- type: entityTable
+  id: NFLockerFillPrisonWardrobe
+  table: !type:AllSelector
+    rolls: !type:ConstantNumberSelector
+      value: 2 # 2 of everything under this
+    children:
+    - id: ClothingUniformJumpsuitPrisoner
+    - id: ClothingUniformJumpskirtPrisoner
+    - id: ClothingShoesColorBlack
+    - id: ClothingMaskMuzzle
+    - id: ClothingHeadsetPrison
 
 - type: entity
-  id: NFSDWardrobePrisonFilled
+  id: NFWardrobePrisonFilled
+  parent: NFWardrobePrison
   suffix: Filled
-  parent: NFSDWardrobePrison
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingUniformJumpsuitPrisoner
-        amount: 2
-      - id: ClothingUniformJumpskirtPrisoner
-        amount: 2
-      - id: ClothingShoesColorBlack
-        amount: 2
-      - id: ClothingMaskMuzzle
-        amount: 2
-      - id: ClothingHeadsetGrey
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: NFLockerFillPrisonWardrobe
 
 - type: entity
-  id: NFSDPrisonerClosetWallOrangeFilled
-  parent:
-  - NFSDPrisonerClosetWallOrange
-  - BaseStructureWallmount
-  - NFSDWardrobePrisonFilled
+  id: NFPrisonerClosetWallOrangeFilled
+  parent: NFPrisonerClosetWallOrange
+  suffix: Filled
   components:
-  - type: ContainerContainer
+  - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:Container
-      paper_label: !type:ContainerSlot
+      entity_storage: !type:NestedSelector
+        tableId: NFLockerFillPrisonWardrobe
