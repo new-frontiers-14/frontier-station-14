@@ -1,7 +1,7 @@
 - type: ghostRole
   id: BabyDragon
-  name: ghost-role-information-syndicate-kobold-reinforcement-name
-  description: ghost-role-information-syndicate-kobold-reinforcement-description
+  name: ghost-role-information-baby-dragon-name
+  description: ghost-role-information-baby-dragon-description
   rules: ghost-role-information-emotional-support-rules
   entityPrototype: DragonEgg # Unsure if this should be MobDragonPet (the actual dragon) - no ghost role component
   whitelisted: true
@@ -49,6 +49,14 @@
   whitelisted: true
 
 - type: ghostRole
+  id: CatBloodCult
+  name: ghost-role-information-cult-cat-name
+  description: ghost-role-information-cult-cat-description
+  rules:  ghost-role-information-emotional-support-rules
+  entityPrototype: MobCatBloodCult
+  whitelisted: true
+
+- type: ghostRole
   id: MonkeyPunpun
   name: ghost-role-information-punpun-name
   description: ghost-role-information-punpun-description
@@ -70,4 +78,12 @@
   description: ghost-role-information-yipyip-description
   rules: ghost-role-information-nonantagonist-rules
   entityPrototype: MobKoboldYipyip
+  whitelisted: true
+
+- type: ghostRole
+  id: NFBuddy
+  name: nf-ghost-role-information-buddy-name
+  description: nf-ghost-role-information-buddy-description
+  rules: ghost-role-information-nonantagonist-rules
+  entityPrototype: NFMobHumanBuddy
   whitelisted: true

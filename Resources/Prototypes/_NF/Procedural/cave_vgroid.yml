@@ -106,7 +106,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRock
-      entity: WallCobblebrickNF
+      entity: NFWallCobblebrick
       count: 100
       minGroupSize: 6
       maxGroupSize: 16
@@ -135,7 +135,7 @@
     # - !type:OreDunGen
       # tileMask:
       # - FloorCaveDrought
-      # entity: FloraRockSolid01
+      # entity: FloraRockSolid
       # count: 20
       # minGroupSize: 1
       # maxGroupSize: 1
@@ -144,7 +144,7 @@
       tileMask:
       - FloorCaveDrought
       entity: SpawnMobExplorerT3
-      count: 25
+      count: 5
       minGroupSize: 1
       maxGroupSize: 1
 
@@ -205,7 +205,7 @@
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: SalvageOutpost
+    proto: NFSalvageOutpost
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
@@ -241,6 +241,12 @@
     maxCount: 15
     groups:
     - id: SpawnMobExplorerT2
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 0
+    maxCount: 1
+    groups:
+    - id: SpawnMobExplorerBoss # Boss
       amount: 1
 
 #- type: dungeonConfig
@@ -292,12 +298,7 @@
       allowedTiles:
       - FloorCaveDrought
       entities:
-      - FloraStalagmite1
-      - FloraStalagmite2
-      - FloraStalagmite3
-      - FloraStalagmite4
-      - FloraStalagmite5
-      - FloraStalagmite6
+      - FloraStalagmite
     - !type:BiomeEntityLayer
       threshold: -0.5
       invert: true

@@ -36,6 +36,8 @@
 
 - type: npcFaction
   id: Cat
+  hostile:
+  - Mouse
 
 - type: npcFaction
   id: Chicken
@@ -165,7 +167,7 @@
   - MercenariesExpeditionNF
   - SiliconsExpeditionNF
   - AberrantFleshExpeditionNF
-  - ContrabandClothing
+  # - ContrabandClothing
   - ContrabandDetection
 
 - type: npcFaction
@@ -411,30 +413,6 @@
 - type: npcFaction
   id: ContrabandDetection
   hostile:
-  ## SS14 factions
-  #- NanoTrasen
-  - Syndicate
-  - SimpleHostile
-  #- SimpleNeutral
-  #- Passive
-  #- PetsNT
-  - Zombie
-  - Revolutionary
-  - Xeno
-  ## Frontier Factions
-  #- Monkey
-  #- Goblin
-  - SyndicateNF
-  - WizFedFaction
-  - BloodCultNF
-  - PirateNF
-  - ExplorersExpeditionNF
-  - ArtifactConstruct
-  - StreetGangNF
-  - DinosaursNF
-  - MercenariesExpeditionNF
-  - SiliconsExpeditionNF
-  - AberrantFleshExpeditionNF
   - ContrabandClothing
 
 - type: npcFaction
@@ -442,15 +420,20 @@
   hostile:
   ## SS14 factions
   - NanoTrasen
-  - Syndicate
-  - SimpleHostile
-  - SimpleNeutral
+  - Dragon
+  - Mouse
   - Passive
   - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
   - Zombie
   - Revolutionary
-  - Xeno
   ## Frontier Factions
+  - Cat
+  - Dwarf
+  - Harpy
   - Monkey
   - Goblin
   - SyndicateNF
@@ -465,3 +448,4 @@
   - SiliconsExpeditionNF
   - AberrantFleshExpeditionNF
   - ContrabandClothing
+  - ContrabandDetection

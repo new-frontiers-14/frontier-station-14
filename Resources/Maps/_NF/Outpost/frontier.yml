@@ -134,7 +134,7 @@ entities:
           version: 6
         3,1:
           ind: 3,1
-          tiles: XAAAAAAAfQAAAAAAfQAAAAAAawAAAAAAawAAAAAAawAAAAAAfQAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAfQAAAAAAfQAAAAAAYwAAAAAAYwAAAAAAYwAAAAAAfQAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAADfQAAAAAAfQAAAAAAYwAAAAAAfQAAAAAAYwAAAAAAfQAAAAAAfAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAACfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAABXAAAAAAAXAAAAAABXAAAAAACXAAAAAADXAAAAAABfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAABXAAAAAAAXAAAAAAAXAAAAAABXAAAAAACXAAAAAABfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAXAAAAAACXAAAAAADXAAAAAACXAAAAAAAXAAAAAADXAAAAAAAXAAAAAAAawAAAAAAXAAAAAAAXAAAAAADXAAAAAACawAAAAAAaQAAAAACawAAAAAAAAAAAAAAAAAAAAAAXAAAAAACXAAAAAABXAAAAAAAXAAAAAACXAAAAAACXAAAAAAAXAAAAAABawAAAAAAXAAAAAADXAAAAAACXAAAAAABawAAAAAAaQAAAAAAawAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAXAAAAAADXAAAAAAAXAAAAAABXAAAAAABXAAAAAACXAAAAAADawAAAAAAXAAAAAAAXAAAAAABXAAAAAACawAAAAAAaQAAAAADawAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAawAAAAAAawAAAAAAawAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAagAAAAADagAAAAAAagAAAAABfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAawAAAAAAawAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          tiles: XAAAAAAAfQAAAAAAfQAAAAAAawAAAAAAawAAAAAAawAAAAAAfQAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAfQAAAAAAfQAAAAAAYwAAAAAAYwAAAAAAYwAAAAAAfQAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAADfQAAAAAAfQAAAAAAYwAAAAAAfQAAAAAAYwAAAAAAfQAAAAAAfAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAACfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAawAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAABXAAAAAAAXAAAAAABXAAAAAACXAAAAAADXAAAAAABfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAABXAAAAAAAXAAAAAAAXAAAAAABXAAAAAACXAAAAAABfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAXAAAAAACXAAAAAADXAAAAAACXAAAAAAAXAAAAAADXAAAAAAAXAAAAAAAawAAAAAAXAAAAAAAXAAAAAADXAAAAAACawAAAAAAaQAAAAACawAAAAAAAAAAAAAAAAAAAAAAXAAAAAACXAAAAAABXAAAAAAAXAAAAAACXAAAAAACXAAAAAAAXAAAAAABawAAAAAAXAAAAAADXAAAAAACXAAAAAABawAAAAAAaQAAAAAAawAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAXAAAAAADXAAAAAAAXAAAAAABXAAAAAABXAAAAAACXAAAAAADawAAAAAAXAAAAAAAXAAAAAABXAAAAAACawAAAAAAaQAAAAADawAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAawAAAAAAawAAAAAAawAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAagAAAAADagAAAAAAagAAAAABfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAawAAAAAAawAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
           version: 6
         -1,-1:
           ind: -1,-1
@@ -154,17 +154,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
+    - type: ForceAnchor
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -3172,6 +3166,7 @@ entities:
             2235: 36,21
             2236: 37,21
             2438: -40,14
+            2498: 52,4
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -3296,6 +3291,7 @@ entities:
             2239: 37,21
             2240: 36,21
             2432: -40,16
+            2499: 52,4
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -3960,6 +3956,9 @@ entities:
       id: Frontier
     - type: StationTransit
     - type: ProtectedGrid
+      hostileMobKillSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/holy.ogg
+      killHostileMobs: True
       preventArtifactTriggers: True
       preventExplosions: True
       preventEmpEvents: True
@@ -4319,7 +4318,7 @@ entities:
       pos: -16.5,15.5
       parent: 2173
     - type: Docking
-      name: Bus Dock
+      name: dock-label-bus
   - uid: 532
     components:
     - type: Transform
@@ -4327,7 +4326,7 @@ entities:
       pos: -8.5,15.5
       parent: 2173
     - type: Docking
-      name: Bus Dock
+      name: dock-label-bus
   - uid: 935
     components:
     - type: Transform
@@ -4335,7 +4334,7 @@ entities:
       pos: -16.5,16.5
       parent: 2173
     - type: Docking
-      name: Bus Dock
+      name: dock-label-bus
   - uid: 936
     components:
     - type: Transform
@@ -4343,7 +4342,7 @@ entities:
       pos: -8.5,16.5
       parent: 2173
     - type: Docking
-      name: Bus Dock
+      name: dock-label-bus
 - proto: AirlockFrontierBridgeGlassLocked
   entities:
   - uid: 453
@@ -4628,7 +4627,7 @@ entities:
       pos: 2.5,30.5
       parent: 2173
     - type: Docking
-      name: 6C
+      name: dock-label-station-six-c
   - uid: 1999
     components:
     - type: Transform
@@ -4636,7 +4635,7 @@ entities:
       pos: 0.5,30.5
       parent: 2173
     - type: Docking
-      name: 6C
+      name: dock-label-station-six-c
   - uid: 2011
     components:
     - type: Transform
@@ -4644,7 +4643,7 @@ entities:
       pos: 27.5,28.5
       parent: 2173
     - type: Docking
-      name: 6B
+      name: dock-label-station-six-b
   - uid: 2170
     components:
     - type: Transform
@@ -4652,7 +4651,7 @@ entities:
       pos: -33.5,-25.5
       parent: 2173
     - type: Docking
-      name: 2A
+      name: dock-label-station-two-a
   - uid: 2171
     components:
     - type: Transform
@@ -4660,7 +4659,7 @@ entities:
       pos: -33.5,-26.5
       parent: 2173
     - type: Docking
-      name: 2A
+      name: dock-label-station-two-a
   - uid: 2172
     components:
     - type: Transform
@@ -4668,14 +4667,14 @@ entities:
       pos: -33.5,-27.5
       parent: 2173
     - type: Docking
-      name: 2A
+      name: dock-label-station-two-a
   - uid: 2175
     components:
     - type: Transform
       pos: -28.5,-30.5
       parent: 2173
     - type: Docking
-      name: 2B
+      name: dock-label-station-two-b
   - uid: 2176
     components:
     - type: Transform
@@ -4683,7 +4682,7 @@ entities:
       pos: -25.5,-27.5
       parent: 2173
     - type: Docking
-      name: 2C
+      name: dock-label-station-two-c
   - uid: 2177
     components:
     - type: Transform
@@ -4691,7 +4690,7 @@ entities:
       pos: -25.5,-26.5
       parent: 2173
     - type: Docking
-      name: 2C
+      name: dock-label-station-two-c
   - uid: 2178
     components:
     - type: Transform
@@ -4699,42 +4698,42 @@ entities:
       pos: -25.5,-25.5
       parent: 2173
     - type: Docking
-      name: 2C
+      name: dock-label-station-two-c
   - uid: 2179
     components:
     - type: Transform
       pos: -1.5,-0.5
       parent: 2173
     - type: Docking
-      name: 6A
+      name: dock-label-station-six-a
   - uid: 2180
     components:
     - type: Transform
       pos: 0.5,-0.5
       parent: 2173
     - type: Docking
-      name: 6A
+      name: dock-label-station-six-a
   - uid: 2181
     components:
     - type: Transform
       pos: 27.5,-30.5
       parent: 2173
     - type: Docking
-      name: 3B
+      name: dock-label-station-three-b
   - uid: 2182
     components:
     - type: Transform
       pos: 28.5,-30.5
       parent: 2173
     - type: Docking
-      name: 3B
+      name: dock-label-station-three-b
   - uid: 2183
     components:
     - type: Transform
       pos: 29.5,-30.5
       parent: 2173
     - type: Docking
-      name: 3B
+      name: dock-label-station-three-b
   - uid: 2184
     components:
     - type: Transform
@@ -4742,7 +4741,7 @@ entities:
       pos: 24.5,-27.5
       parent: 2173
     - type: Docking
-      name: 3A
+      name: dock-label-station-three-a
   - uid: 2185
     components:
     - type: Transform
@@ -4750,7 +4749,7 @@ entities:
       pos: 24.5,-26.5
       parent: 2173
     - type: Docking
-      name: 3A
+      name: dock-label-station-three-a
   - uid: 2186
     components:
     - type: Transform
@@ -4758,7 +4757,7 @@ entities:
       pos: 24.5,-25.5
       parent: 2173
     - type: Docking
-      name: 3A
+      name: dock-label-station-three-a
   - uid: 2187
     components:
     - type: Transform
@@ -4766,7 +4765,7 @@ entities:
       pos: 32.5,-27.5
       parent: 2173
     - type: Docking
-      name: 3C
+      name: dock-label-station-three-c
   - uid: 2188
     components:
     - type: Transform
@@ -4774,7 +4773,7 @@ entities:
       pos: 32.5,-26.5
       parent: 2173
     - type: Docking
-      name: 3C
+      name: dock-label-station-three-c
   - uid: 2189
     components:
     - type: Transform
@@ -4782,7 +4781,7 @@ entities:
       pos: 32.5,-25.5
       parent: 2173
     - type: Docking
-      name: 3C
+      name: dock-label-station-three-c
   - uid: 2190
     components:
     - type: Transform
@@ -4790,7 +4789,7 @@ entities:
       pos: 61.5,1.5
       parent: 2173
     - type: Docking
-      name: 4B
+      name: dock-label-station-four-b
   - uid: 2191
     components:
     - type: Transform
@@ -4798,7 +4797,7 @@ entities:
       pos: 61.5,2.5
       parent: 2173
     - type: Docking
-      name: 4B
+      name: dock-label-station-four-b
   - uid: 2192
     components:
     - type: Transform
@@ -4806,49 +4805,49 @@ entities:
       pos: 61.5,3.5
       parent: 2173
     - type: Docking
-      name: 4B
+      name: dock-label-station-four-b
   - uid: 2193
     components:
     - type: Transform
       pos: 58.5,-1.5
       parent: 2173
     - type: Docking
-      name: 4A
+      name: dock-label-station-four-a
   - uid: 2194
     components:
     - type: Transform
       pos: 57.5,-1.5
       parent: 2173
     - type: Docking
-      name: 4A
+      name: dock-label-station-four-a
   - uid: 2195
     components:
     - type: Transform
       pos: 56.5,-1.5
       parent: 2173
     - type: Docking
-      name: 4A
+      name: dock-label-station-four-a
   - uid: 2202
     components:
     - type: Transform
       pos: -57.5,-1.5
       parent: 2173
     - type: Docking
-      name: 1B
+      name: dock-label-station-one-b
   - uid: 2203
     components:
     - type: Transform
       pos: -58.5,-1.5
       parent: 2173
     - type: Docking
-      name: 1B
+      name: dock-label-station-one-b
   - uid: 2204
     components:
     - type: Transform
       pos: -59.5,-1.5
       parent: 2173
     - type: Docking
-      name: 1B
+      name: dock-label-station-one-b
   - uid: 2205
     components:
     - type: Transform
@@ -4856,7 +4855,7 @@ entities:
       pos: -62.5,1.5
       parent: 2173
     - type: Docking
-      name: 1A
+      name: dock-label-station-one-a
   - uid: 2206
     components:
     - type: Transform
@@ -4864,7 +4863,7 @@ entities:
       pos: -62.5,2.5
       parent: 2173
     - type: Docking
-      name: 1A
+      name: dock-label-station-one-a
   - uid: 2207
     components:
     - type: Transform
@@ -4872,7 +4871,7 @@ entities:
       pos: -62.5,3.5
       parent: 2173
     - type: Docking
-      name: 1A
+      name: dock-label-station-one-a
   - uid: 2587
     components:
     - type: Transform
@@ -4880,7 +4879,7 @@ entities:
       pos: 56.5,29.5
       parent: 2173
     - type: Docking
-      name: 5B
+      name: dock-label-station-five-b
   - uid: 2589
     components:
     - type: Transform
@@ -4888,7 +4887,7 @@ entities:
       pos: 29.5,28.5
       parent: 2173
     - type: Docking
-      name: 6B
+      name: dock-label-station-six-b
   - uid: 3770
     components:
     - type: Transform
@@ -4896,7 +4895,7 @@ entities:
       pos: 61.5,26.5
       parent: 2173
     - type: Docking
-      name: 5A
+      name: dock-label-station-five-a
   - uid: 3919
     components:
     - type: Transform
@@ -4904,7 +4903,7 @@ entities:
       pos: 58.5,29.5
       parent: 2173
     - type: Docking
-      name: 5B
+      name: dock-label-station-five-b
   - uid: 3920
     components:
     - type: Transform
@@ -4912,7 +4911,7 @@ entities:
       pos: 57.5,29.5
       parent: 2173
     - type: Docking
-      name: 5B
+      name: dock-label-station-five-b
   - uid: 4982
     components:
     - type: Transform
@@ -4920,7 +4919,7 @@ entities:
       pos: 61.5,24.5
       parent: 2173
     - type: Docking
-      name: 5A
+      name: dock-label-station-five-a
   - uid: 4983
     components:
     - type: Transform
@@ -4928,21 +4927,21 @@ entities:
       pos: 61.5,25.5
       parent: 2173
     - type: Docking
-      name: 5A
+      name: dock-label-station-five-a
   - uid: 5801
     components:
     - type: Transform
       pos: -29.5,-30.5
       parent: 2173
     - type: Docking
-      name: 2B
+      name: dock-label-station-two-b
   - uid: 5805
     components:
     - type: Transform
       pos: -30.5,-30.5
       parent: 2173
     - type: Docking
-      name: 2B
+      name: dock-label-station-two-b
 - proto: AirlockJanitorLocked
   entities:
   - uid: 2754
@@ -4966,6 +4965,16 @@ entities:
     components:
     - type: Transform
       pos: 34.5,20.5
+      parent: 2173
+  - uid: 2135
+    components:
+    - type: Transform
+      pos: 48.5,21.5
+      parent: 2173
+  - uid: 2169
+    components:
+    - type: Transform
+      pos: 52.5,4.5
       parent: 2173
   - uid: 3012
     components:
@@ -5001,21 +5010,10 @@ entities:
     - type: Transform
       pos: -19.5,11.5
       parent: 2173
-  - uid: 2597
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 48.5,21.5
-      parent: 2173
   - uid: 4130
     components:
     - type: Transform
       pos: -29.5,6.5
-      parent: 2173
-  - uid: 4132
-    components:
-    - type: Transform
-      pos: 52.5,4.5
       parent: 2173
 - proto: AirlockMedical
   entities:
@@ -5629,6 +5627,11 @@ entities:
       parent: 2173
 - proto: BannerMedical
   entities:
+  - uid: 2132
+    components:
+    - type: Transform
+      pos: -45.5,11.5
+      parent: 2173
   - uid: 2444
     components:
     - type: Transform
@@ -14310,16 +14313,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,22.5
       parent: 2173
-    - type: ContainerContainer
-      containers:
-        ShuttleRecordsConsole-targetId: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: ComputerStationRecords
   entities:
   - uid: 4053
@@ -17661,6 +17654,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 23.5,11.5
       parent: 2173
+  - uid: 1559
+    components:
+    - type: Transform
+      pos: 52.5,4.5
+      parent: 2173
+  - uid: 2136
+    components:
+    - type: Transform
+      pos: 48.5,21.5
+      parent: 2173
 - proto: FirelockGlass
   entities:
   - uid: 711
@@ -18186,11 +18189,6 @@ entities:
     components:
     - type: Transform
       pos: 55.5,26.5
-      parent: 2173
-  - uid: 5842
-    components:
-    - type: Transform
-      pos: 48.5,21.5
       parent: 2173
 - proto: Fireplace
   entities:
@@ -26508,12 +26506,7 @@ entities:
   - uid: 661
     components:
     - type: Transform
-      pos: 53.5,19.5
-      parent: 2173
-  - uid: 662
-    components:
-    - type: Transform
-      pos: 52.5,19.5
+      pos: 50.5,19.5
       parent: 2173
   - uid: 663
     components:
@@ -27617,7 +27610,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 33.5,17.5
       parent: 2173
-- proto: MachineCryoSleepPod
+- proto: MachineCryoSleepPodFallback
   entities:
   - uid: 1394
     components:
@@ -27643,18 +27636,6 @@ entities:
     components:
     - type: Transform
       pos: -54.5,18.5
-      parent: 2173
-- proto: MachineMedicalBountyRedemption
-  entities:
-  - uid: 2132
-    components:
-    - type: Transform
-      pos: -45.5,11.5
-      parent: 2173
-  - uid: 2133
-    components:
-    - type: Transform
-      pos: -45.5,9.5
       parent: 2173
 - proto: MailBag
   entities:
@@ -27906,6 +27887,27 @@ entities:
     - type: Transform
       pos: 27.744509,16.401314
       parent: 2173
+- proto: NFHolopadFrontierOutpostLobby
+  entities:
+  - uid: 1234
+    components:
+    - type: Transform
+      pos: -0.5,12.5
+      parent: 2173
+- proto: NFHolopadFrontierOutpostSR
+  entities:
+  - uid: 2197
+    components:
+    - type: Transform
+      pos: 6.5,19.5
+      parent: 2173
+- proto: NFHolopadFrontierOutpostSTC
+  entities:
+  - uid: 2133
+    components:
+    - type: Transform
+      pos: 15.5,13.5
+      parent: 2173
 - proto: NFSignBus
   entities:
   - uid: 2096
@@ -28084,6 +28086,13 @@ entities:
     components:
     - type: Transform
       pos: -4.5,24.5
+      parent: 2173
+- proto: NFTelecomServerFilled
+  entities:
+  - uid: 2775
+    components:
+    - type: Transform
+      pos: 19.5,16.5
       parent: 2173
 - proto: NFVendingMachineCart
   entities:
@@ -29016,7 +29025,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 39.5,22.5
       parent: 2173
-- proto: PoweredlightColoredBlack
+- proto: PoweredlightBlack
   entities:
   - uid: 2064
     components:
@@ -29081,6 +29090,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 36.5,11.5
+      parent: 2173
+  - uid: 2196
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -37.5,6.5
       parent: 2173
   - uid: 2613
     components:
@@ -29171,11 +29186,6 @@ entities:
     components:
     - type: Transform
       pos: -41.5,6.5
-      parent: 2173
-  - uid: 5800
-    components:
-    - type: Transform
-      pos: -36.5,6.5
       parent: 2173
 - proto: Rack
   entities:
@@ -30212,12 +30222,7 @@ entities:
   - uid: 1233
     components:
     - type: Transform
-      pos: 52.5,19.5
-      parent: 2173
-  - uid: 1234
-    components:
-    - type: Transform
-      pos: 53.5,19.5
+      pos: 50.5,19.5
       parent: 2173
   - uid: 1235
     components:
@@ -31418,11 +31423,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,13.5
       parent: 2173
-- proto: SignCloning
+- proto: SignCryo
   entities:
-  - uid: 5695
+  - uid: 2158
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -50.5,10.5
       parent: 2173
 - proto: SignCryogenicsMed
@@ -31885,6 +31891,23 @@ entities:
     - type: Transform
       pos: 27.5,18.5
       parent: 2173
+- proto: SpawnPointBorg
+  entities:
+  - uid: 5230
+    components:
+    - type: Transform
+      pos: 6.5,28.5
+      parent: 2173
+  - uid: 5244
+    components:
+    - type: Transform
+      pos: 51.5,15.5
+      parent: 2173
+  - uid: 5248
+    components:
+    - type: Transform
+      pos: 30.5,5.5
+      parent: 2173
 - proto: SpawnPointContractor
   entities:
   - uid: 411
@@ -32107,7 +32130,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 37.5,8.5
       parent: 2173
-- proto: StationAdminBankATM
+- proto: StationAdminBankATMFrontier
   entities:
   - uid: 5749
     components:
@@ -33027,13 +33050,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 22.5,9.5
-      parent: 2173
-- proto: TelecomServerFilled
-  entities:
-  - uid: 2775
-    components:
-    - type: Transform
-      pos: 19.5,16.5
       parent: 2173
 - proto: TintedWindow
   entities:
@@ -34575,6 +34591,11 @@ entities:
     - type: Transform
       pos: 38.5,19.5
       parent: 2173
+  - uid: 662
+    components:
+    - type: Transform
+      pos: 53.5,19.5
+      parent: 2173
   - uid: 664
     components:
     - type: Transform
@@ -34588,7 +34609,7 @@ entities:
   - uid: 671
     components:
     - type: Transform
-      pos: 50.5,19.5
+      pos: 52.5,19.5
       parent: 2173
   - uid: 672
     components:
@@ -35003,12 +35024,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,14.5
       parent: 2173
-  - uid: 1559
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 50.5,21.5
-      parent: 2173
   - uid: 1571
     components:
     - type: Transform
@@ -35136,6 +35151,16 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 26.5,18.5
+      parent: 2173
+  - uid: 2167
+    components:
+    - type: Transform
+      pos: 49.5,21.5
+      parent: 2173
+  - uid: 2168
+    components:
+    - type: Transform
+      pos: 50.5,21.5
       parent: 2173
   - uid: 2223
     components:
@@ -35861,12 +35886,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 35.5,21.5
-      parent: 2173
-  - uid: 4980
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 49.5,21.5
       parent: 2173
   - uid: 5001
     components:
@@ -36772,7 +36791,7 @@ entities:
     - type: Transform
       pos: 46.5,16.5
       parent: 2173
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 5714
     components:

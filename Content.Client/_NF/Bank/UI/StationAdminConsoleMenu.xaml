@@ -1,0 +1,54 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+            xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+            SetSize="360 315"
+            MinSize="360 315">
+    <BoxContainer Margin="10 2 10 2" Orientation="Vertical" VerticalExpand="True">
+        <GridContainer Columns="2" HorizontalExpand="True">
+            <Label Text="{Loc 'bank-atm-menu-balance-label'}"
+                StyleClasses="LabelKeyText"
+                HorizontalAlignment="Right" />
+            <Label Name="BalanceLabel"
+                Text="{Loc 'bank-atm-menu-no-bank'}" />
+
+            <Label Text="{Loc 'bank-atm-menu-amount-label'}"
+                StyleClasses="LabelKeyText"
+                HorizontalAlignment="Right" />
+            <LineEdit Name="WithdrawEdit" MinSize="120 0" HorizontalExpand="True"/>
+
+            <Label Text="{Loc 'bank-atm-reason-label'}"
+                HorizontalAlignment="Right" />
+            <OptionButton Name="WithdrawalReasons"
+                        HorizontalExpand="True"/>
+
+            <Label Text="{Loc 'bank-atm-description-label'}"
+                HorizontalAlignment="Right" />
+            <LineEdit Name="WithdrawalAmountDescription" MinSize="120 0" HorizontalExpand="True"/>
+
+            <BoxContainer/> <!-- Skip an element -->
+            <Button Name="WithdrawButton"
+                    Text="{Loc 'bank-atm-menu-withdraw-button'}"
+                    HorizontalExpand="True"/>
+
+            <Label Text="{Loc 'bank-atm-menu-deposit-label'}"
+                StyleClasses="LabelKeyText"
+                HorizontalAlignment="Right" />
+            <Label Name="DepositLabel"
+                Text="{Loc 'bank-atm-menu-no-deposit'}" />
+
+            <Label Text="{Loc 'bank-atm-reason-label'}"
+                HorizontalAlignment="Right" />
+            <OptionButton Name="DepositReasons"
+                        HorizontalExpand="True"/>
+
+            <Label Text="{Loc 'bank-atm-description-label'}"
+                HorizontalAlignment="Right" />
+            <LineEdit Name="DepositAmountDescription" MinSize="120 0" HorizontalExpand="True"/>
+
+            <BoxContainer/> <!-- Skip an element -->
+            <Button Name="DepositButton"
+                    Text="{Loc 'bank-atm-menu-deposit-button'}"
+                    HorizontalExpand="True"/>
+        </GridContainer>
+    </BoxContainer>
+</controls:FancyWindow>

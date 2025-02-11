@@ -373,7 +373,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: harbormaster
+      id: Harbormaster
 - proto: AirAlarm
   entities:
   - uid: 250
@@ -678,10 +678,10 @@ entities:
       parent: 1
 - proto: BoxFolderBlue
   entities:
-  - uid: 7
+  - uid: 254
     components:
     - type: Transform
-      pos: -5.657484,3.1305754
+      pos: -5.8715925,3.5784767
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -1008,14 +1008,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5,0.5
-      parent: 1
-- proto: ComputerTabletopRadar
-  entities:
-  - uid: 273
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -5.5,2.5
       parent: 1
 - proto: ComputerTabletopShuttle
   entities:
@@ -1435,6 +1427,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-3.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 7
+    components:
+    - type: Transform
+      pos: -5.5,2.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 118
@@ -1462,19 +1461,11 @@ entities:
     - type: Transform
       pos: -3.5,-3.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
   - uid: 163
     components:
     - type: Transform
       pos: -2.5,-3.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PoweredlightLED
   entities:
   - uid: 203
@@ -1724,12 +1715,6 @@ entities:
       parent: 1
 - proto: TableReinforced
   entities:
-  - uid: 254
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,2.5
-      parent: 1
   - uid: 255
     components:
     - type: Transform
@@ -2085,7 +2070,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-1.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 249
     components:

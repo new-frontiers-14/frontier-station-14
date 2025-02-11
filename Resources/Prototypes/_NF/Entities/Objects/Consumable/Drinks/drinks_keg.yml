@@ -1,20 +1,25 @@
 - type: entity
   parent: BaseItem
   id: DrinkKegBase
-  name: keg
+  name: cask
   abstract: true
-  description: I don't have a drinking problem - the keg solved it.
+  description: I don't have a drinking problem, the cask solved it.
   components:
   - type: Sprite
     sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
     state: icon
+    scale: 0.8, 0.8
     layers:
     - state: icon
+    - state: stopper
+      visible: true
       map: ["enum.OpenableVisuals.Layer"]
     - state: paper
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: Item
-    size: Huge
+    size: Large
+    shape:
+    - 0,0,2,2
   - type: Clothing
     sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
     quickEquip: false
@@ -25,7 +30,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 600
+        maxVol: 300
   - type: Drink
   - type: DrawableSolution
     solution: drink
@@ -34,7 +39,7 @@
   - type: DrainableSolution
     solution: drink
   - type: SolutionTransfer
-    transferAmount: 50
+    transferAmount: 100
     maxTransferAmount: 100
     minTransferAmount: 10
     canChangeTransferAmount: true
@@ -48,8 +53,8 @@
     visuals:
       enum.OpenableVisuals.Opened:
         enum.OpenableVisuals.Layer:
-          True: { state: "icon_open" }
-          False: { state: "icon" }
+          True: { visible: false }
+          False: { visible: true }
       enum.PaperLabelVisuals.HasLabel:
         enum.PaperLabelVisuals.Layer:
           True: { visible: true }
@@ -84,7 +89,7 @@
 - type: entity
   parent: DrinkKegBase
   id: DrinkKegSteel
-  suffix: Steel
+  name: steel cask
   components:
   - type: Sprite
     sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
@@ -97,7 +102,7 @@
 - type: entity
   parent: DrinkKegBase
   id: DrinkKegWood
-  suffix: Wood
+  name: wood cask
   components:
   - type: Sprite
     sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
@@ -110,7 +115,7 @@
 - type: entity
   parent: DrinkKegBase
   id: DrinkKegPlastic
-  suffix: Plastic
+  name: plastic cask
   components:
   - type: Sprite
     sprite: _NF/Objects/Consumable/Drinks/keg_plastic.rsi

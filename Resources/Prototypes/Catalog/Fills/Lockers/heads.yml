@@ -17,6 +17,7 @@
     - id: RubberStampApproved
     - id: RubberStampDenied
     - id: RubberStampQm
+#    - id: AstroNavCartridge # Frontier
     - id: ClothingBeltUtilityEngineering # Frontier
 
 - type: entity
@@ -227,8 +228,10 @@
     - id: HypoMini # Frontier
 #    - id: MedicalTechFabCircuitboard # Frontier - bloat
 #    - id: MedkitFilled # Frontier - bloat
-    - id: RubberStampCMO
+#    - id: RubberStampCMO # Frontier - MOM stamp
     - id: MedTekCartridge
+    - id: ClothingBeltMedicalFilled # Frontier - add more bloat
+    - id: RubberStampDoctor # Frontier
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -272,6 +275,7 @@
   id: LockerFillResearchDirectorNoHardsuit
   table: !type:AllSelector
     children:
+#    - id: Intellicard # Frontier
 #    - id: BoxEncryptionKeyScience # Frontier
 #    - id: CircuitImprinterMachineCircuitboard # Frontier
     - id: ClothingBeltUtilityEngineering # Frontier: ClothingBeltUtilityFilled<ClothingBeltUtilityEngineering

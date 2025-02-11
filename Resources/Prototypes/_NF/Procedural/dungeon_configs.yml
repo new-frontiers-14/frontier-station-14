@@ -1,17 +1,17 @@
-# Base dungeon prototypes
+# Base configs
 - type: dungeonConfig
-  id: Everything
+  id: NFPlanetBase
   layers:
   - !type:PrefabDunGen
     presets:
-      - Bucket
-      - Wow
-      - SpaceShip
-      - Tall
+    - Bucket
+    - Wow
+    - SpaceShip
+    - Tall
 
   - !type:CorridorDunGen
     width: 3
-  
+
   - !type:DungeonEntranceDunGen
     count: 2
 
@@ -34,50 +34,405 @@
 
   - !type:CornerClutterDunGen
 
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+
+# Setups
+- type: dungeonConfig
+  id: NFExperiment
   data:
+    colors:
+      Decals: "#D381C996"
     entities:
       Cabling: CableApcExtension
       CornerWalls: WallReinforced
       Walls: WallSolid
     spawnGroups:
-      CornerClutter: BaseClutterNF
-      Entrance: BaseAirlockNF
-      EntranceFlank: BaseWindowNF
-      Junction: BaseAirlockNF
-      WallMounts: BaseWallMountsNF
-      Window: BaseWindowNF
+      CornerClutter: NFBaseClutter
+      Entrance: NFBaseAirlock
+      EntranceFlank: NFBaseWindow
+      Junction: NFBaseAirlock
+      WallMounts: NFScienceLabsWalls
+      Window: NFBaseWindow
     tiles:
       FallbackTile: FloorSteel
     whitelists:
       Rooms:
         tags:
-        - CaveFactory
-        - LavaBrig
-        - LavaMercenary
-        - SalvageExperiment
-        - VirologyLab
-        - SalvageOutpost
+        - NFSalvageExperiment
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFPlanetBase
+
+- type: dungeonConfig
+  id: NFHaunted
+  data:
+    entities:
+      Walls: WallRock
+    tiles:
+      FallbackTile: FloorCaveDrought
+    whitelists:
+      Rooms:
+        tags:
+        - NFMineshaft
+  layers:
+  - !type:PrefabDunGen
+    presets:
+    - Bucket
+    - Wow
+    - SpaceShip
+    - Tall
+
+  - !type:WormCorridorDunGen
+    width: 3
+
+  - !type:CorridorClutterDunGen
+    contents:
+    - id: FloraStalagmite
+
+  - !type:BoundaryWallDunGen
+
+- type: dungeonConfig
+  id: NFLavaBrig
+  data:
+    colors:
+      Decals: "#DE3A3A96"
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallReinforced
+      Walls: WallSolid
+    spawnGroups:
+      CornerClutter: NFBaseClutter
+      Entrance: NFLavaBrigEntrance
+      EntranceFlank: NFBaseWindow
+      Junction: NFBaseAirlock
+      WallMounts: NFNanoTrasenFacilityWallmounts
+      Window: NFBaseWindow
+    tiles:
+      FallbackTile: FloorDark
+    whitelists:
+      Rooms:
+        tags:
+        - NFLavaBrig
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFPlanetBase
+
+- type: dungeonConfig
+  id: NFMineshaft
+  data:
+    entities:
+      Walls: WallRock
+      CornerWalls: WallRock
+      Cabling: Catwalk
+    spawnGroups:
+      CornerClutter: NFMineshaftClutter
+      Entrance: NFBaseWoodWall
+      EntranceFlank: NFBaseWoodWall
+      Junction: NFBaseWoodSupport
+      WallMounts: NFNanoTrasenFacilityWallmounts
+      Window: NFBaseWoodWall
+    tiles:
+      FallbackTile: FloorCaveDrought
+    whitelists:
+      Rooms:
+        tags:
+        - NFMineshaft
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFPlanetBase
+
+- type: dungeonConfig
+  id: NFSnowyLabs
+  data:
+    colors:
+      Decals: "#4cc7aa96"
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallSilver
+      Walls: WallSilver
+    spawnGroups:
+      CornerClutter: NFBaseClutter
+      Entrance: NFSnowyLabsEntrance
+      EntranceFlank: NFBaseWindow
+      Junction: NFBaseAirlock
+      WallMounts: NFSnowyLabsWalls
+      Window: NFBaseWindow
+    tiles:
+      FallbackTile: FloorSteel
+    whitelists:
+      Rooms:
+        tags:
+        - NFSnowyLabs
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFPlanetBase
+
+# Science lab
+- type: entitySpawnEntry
+  id: NFScienceLabsWalls
+  entries:
+  # Posters
+  - id: RandomPosterLegit
+    orGroup: content
+  - id: ExtinguisherCabinetFilled
+    prob: 0.2
+    orGroup: content
+  - id: RandomPainting
+    prob: 0.05
+    orGroup: content
+  - id: IntercomCommon
+    prob: 0.1
+    orGroup: content
+
+# Snowy labs
+- type: entitySpawnEntry
+  id: NFSnowyLabsEntrance
+  entries:
+  - id: CableApcExtension
+  - id: AirlockFreezer
 
 - type: entitySpawnEntry
-  id: BaseClutterNF
+  id: NFSnowyLabsWalls
+  entries:
+  # Posters
+  - id: RandomPosterLegit
+    orGroup: content
+  - id: ExtinguisherCabinetFilled
+    prob: 0.2
+    orGroup: content
+  - id: RandomPainting
+    prob: 0.05
+    orGroup: content
+  - id: IntercomScience
+    prob: 0.1
+    orGroup: content
+
+# CaveFactory prototypes
+- type: dungeonConfig
+  id: NFCaveFactory
+  data:
+    colors:
+      Decals: "#ab803bff"
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallReinforced
+      Walls: WallSolid
+    spawnGroups:
+      CornerClutter: NFBaseClutter
+      Entrance: NFBaseAirlock
+      EntranceFlank: NFBaseWindow
+      Junction: NFBaseAirlock
+      WallMounts: NFCaveFactoryWallMounts
+      Window: NFBaseWindow
+    tiles:
+      FallbackTile: FloorSteel
+    whitelists:
+      Rooms:
+        tags:
+        - NFCaveFactory
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFPlanetBase
+
+- type: entitySpawnEntry
+  id: NFCaveFactoryWallMounts
+  entries:
+    # Posters
+    - id: RandomPosterLegit
+      orGroup: content
+    - id: ExtinguisherCabinetFilled
+      prob: 0.2
+      orGroup: content
+    - id: RandomPainting
+      prob: 0.05
+      orGroup: content
+
+# MedSci prototypes
+- type: dungeonConfig
+  id: NFMedSci
+  data:
+    colors:
+      Decals: "#D381C996"
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallReinforced
+      Walls: WallSolid
+    spawnGroups:
+      CornerClutter: NFBaseClutter
+      Entrance: NFBaseAirlock
+      EntranceFlank: NFBaseWindow
+      Junction: NFBaseAirlock
+      WallMounts: NFMedSciWallMounts
+      Window: NFBaseWindow
+    tiles:
+      FallbackTile: FloorWhite
+    whitelists:
+      Rooms:
+        tags:
+        - NFSalvageExperiment
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFPlanetBase
+
+# FactoryDorms prototypes
+- type: dungeonConfig
+  id: NFFactoryDorms
+  data:
+    colors:
+      Decals: "#efb34196"
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallReinforced
+      Walls: WallSolid
+    spawnGroups:
+      CornerClutter: NFBaseClutter
+      Entrance: NFBaseAirlock
+      EntranceFlank: NFBaseWindow
+      Junction: NFBaseAirlock
+      WallMounts: NFBaseWallMounts
+      Window: NFBaseWindow
+    tiles:
+      FallbackTile: FloorDark
+    whitelists:
+      Rooms:
+        tags:
+        - NFCaveFactory
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFPlanetBase
+
+# NFLavaMercenary prototypes
+- type: dungeonConfig
+  id: NFLavaMercenary
+  data:
+    colors:
+      Decals: "#5E7C16"
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallReinforced
+      Walls: WallSolid
+    spawnGroups:
+      CornerClutter: NFBaseClutter
+      Entrance: NFMercenaryAirlock
+      EntranceFlank: NFBaseWindow
+      Junction: NFMercenaryAirlock
+      WallMounts: NFLavaMercenaryWallMounts
+      Window: NFBaseWindow
+    tiles:
+      FallbackTile: FloorDark
+    whitelists:
+      Rooms:
+        tags:
+        - NFLavaMercenary
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFPlanetBase
+
+# VirologyLab prototypes
+- type: dungeonConfig
+  id: NFVirologyLab
+  data:
+    colors:
+      Decals: "#467b41"
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallReinforced
+      Walls: WallSolid
+    spawnGroups:
+      CornerClutter: NFBaseClutter
+      Entrance: NFVirologyAirlock
+      EntranceFlank: NFBaseWindow
+      Junction: NFVirologyAirlock
+      WallMounts: NFBaseWallMounts
+      Window: NFBaseWindow
+    tiles:
+      FallbackTile: FloorSteel
+    whitelists:
+      Rooms:
+        tags:
+        - NFVirologyLab
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFPlanetBase
+
+# NFSalvageOutpost prototypes
+- type: dungeonConfig
+  id: NFSalvageOutpost
+  data:
+    colors:
+      Decals: "#9A54BF"
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallMining
+      Walls: WallMining
+    spawnGroups:
+      CornerClutter: NFBaseClutter
+      Entrance: NFMiningAirlock
+      EntranceFlank: NFMiningWindow
+      WallMounts: NFBaseWallMounts
+      Window: NFMiningWindow
+    tiles:
+      FallbackTile: FloorDark
+    whitelists:
+      Rooms:
+        tags:
+        - NFSalvageOutpost
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFPlanetBase
+
+# Spawn groups
+# Basic
+- type: entitySpawnEntry
+  id: NFBaseClutter
   entries:
   - id: PottedPlantRandom
     amount: 1
 
 - type: entitySpawnEntry
-  id: BaseAirlockNF
+  id: NFBaseAirlock
   entries:
   - id: CableApcExtension
   - id: AirlockGlassDungeon
 
 - type: entitySpawnEntry
-  id: BaseWindowNF
+  id: NFBaseWindow
   entries:
   - id: GrilleDungeon
   - id: WindowDungeon
 
 - type: entitySpawnEntry
-  id: BaseWallMountsNF
+  id: NFNanoTrasenFacilityWallmounts
+  entries:
+  - id: RandomPosterLegit
+    orGroup: content
+  - id: ExtinguisherCabinetFilled
+    prob: 0.2
+    orGroup: content
+  - id: IntercomCommon
+    prob: 0.1
+    orGroup: content
+  - id: DefibrillatorCabinetFilled
+    prob: 0.05
+    orGroup: content
+
+- type: entitySpawnEntry
+  id: NFBaseWallMounts
   entries:
     # Posters
     - id: RandomPosterLegit
@@ -92,45 +447,79 @@
       prob: 0.1
       orGroup: content
 
-# CaveFactory prototypes
-- type: dungeonConfig
-  id: CaveFactory
-  data:
-    colors:
-      Decals: "#ffa64d96"
-    spawnGroups:
-      WallMounts: CaveFactoryWallMountsNF
-    whitelists:
-      Rooms:
-        tags:
-          - CaveFactory
+# Lava brig
+- type: entitySpawnEntry
+  id: NFLavaBrigEntrance
+  entries:
+  - id: CableApcExtension
+  - id: AirlockSecurityGlassDungeon
 
-  layers:
-  - !type:PrototypeDunGen
-    proto: Everything
-
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
+# Mineshaft
+- type: entitySpawnEntry
+  id: NFBaseWoodWall
+  entries:
+  - id: RandomWoodenWall
 
 - type: entitySpawnEntry
-  id: CaveFactoryWallMountsNF
+  id: NFBaseWoodSupport
+  entries:
+  - id: RandomWoodenSupport
+
+- type: entitySpawnEntry
+  id: NFMineshaftClutter
+  entries:
+  - id: RandomStalagmiteOrCrystal
+    amount: 1
+
+- type: entitySpawnEntry
+  id: NFMineshaftWalls
+  entries:
+  # Ore
+  - id: WallRockSalt
+    prob: 0.6
+    orGroup: content
+  - id: WallRockCoal
+    prob: 0.6
+    orGroup: content
+  - id: WallRockTin
+    prob: 0.4
+    orGroup: content
+  - id: WallMining
+    prob: 0.8
+    orGroup: content
+
+# Virology
+- type: entitySpawnEntry
+  id: NFVirologyAirlock
+  entries:
+    - id: CableApcExtension
+    - id: AirlockVirologyGlassDungeon
+
+# Mining
+- type: entitySpawnEntry
+  id: NFMiningAirlock
+  entries:
+    - id: CableApcExtension
+    - id: AirlockMiningGlassDungeon
+
+- type: entitySpawnEntry
+  id: NFMiningWindow
+  entries:
+    - id: GrilleDungeon
+    - id: MiningWindowDungeon
+
+# Mercenary
+- type: entitySpawnEntry
+  id: NFMercenaryAirlock
+  entries:
+    - id: CableApcExtension
+    - id: AirlockMercenaryGlassDungeon
+
+- type: entitySpawnEntry
+  id: NFLavaMercenaryWallMounts
   entries:
     # Posters
-    - id: RandomPosterLegit
+    - id: RandomPosterContraband
       orGroup: content
     - id: ExtinguisherCabinetFilled
       prob: 0.2
@@ -139,23 +528,9 @@
       prob: 0.05
       orGroup: content
 
-# MedSci prototypes
-- type: dungeonConfig
-  id: MedSci
-  data:
-    spawnGroups:
-      WallMounts: MedSciWallMountsNF
-    whitelists:
-      Rooms:
-        tags:
-          - SalvageExperiment
-
-  layers:
-  - !type:PrototypeDunGen
-    proto: Everything
-
+# MedSci
 - type: entitySpawnEntry
-  id: MedSciWallMountsNF
+  id: NFMedSciWallMounts
   entries:
     - id: RandomPosterLegit
       orGroup: content
@@ -168,182 +543,3 @@
     - id: DefibrillatorCabinetFilled
       prob: 0.2
       orGroup: content
-
-# FactoryDorms prototypes
-- type: dungeonConfig
-  id: FactoryDorms
-  data:
-    whitelists:
-      Rooms:
-        tags:
-          - CaveFactory
-  layers:
-  - !type:PrototypeDunGen
-    proto: Everything
-
-# LavaMercenary prototypes
-- type: dungeonConfig
-  id: LavaMercenary
-  data:
-    colors:
-      Decals: "#5E7C16"
-    entities:
-      Cabling: CableApcExtension
-      CornerWalls: WallReinforced
-      Walls: WallSolid
-    spawnGroups:
-      CornerClutter: BaseClutter
-      Entrance: MercenaryAirlockNF
-      EntranceFlank: BaseWindow
-      Junction: MercenaryAirlockNF
-      WallMounts: LavaMercenaryWallMountsNF
-      Window: BaseWindow
-    whitelists:
-      Rooms:
-        tags:
-          - LavaMercenary
-  layers:
-  - !type:PrototypeDunGen
-    proto: Everything
-
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
-
-- type: entitySpawnEntry
-  id: MercenaryAirlockNF
-  entries:
-    - id: CableApcExtension
-    - id: AirlockMercenaryGlassDungeon
-
-- type: entitySpawnEntry
-  id: LavaMercenaryWallMountsNF
-  entries:
-    # Posters
-    - id: RandomPosterContraband
-      orGroup: content
-    - id: ExtinguisherCabinetFilled
-      prob: 0.2
-      orGroup: content
-    - id: RandomPainting
-      prob: 0.05
-      orGroup: content
-
-# VirologyLab prototypes
-- type: dungeonConfig
-  id: VirologyLab
-  data:
-    colors:
-      Decals: "#467b41"
-    spawnGroups:
-      Entrance: VirologyAirlockNF
-    whitelists:
-      Rooms:
-        tags:
-          - VirologyLab
-
-  layers:
-  - !type:PrototypeDunGen
-    proto: Everything
-
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
-
-- type: entitySpawnEntry
-  id: VirologyAirlockNF
-  entries:
-    - id: CableApcExtension
-    - id: AirlockVirologyGlassDungeon
-
-# SalvageOutpost prototypes
-- type: dungeonConfig
-  id: SalvageOutpost
-  data:
-    colors:
-      Decals: "#9A54BF"
-    entities:
-      CornerWalls: WallMining
-      Walls: WallMining
-    spawnGroups:
-      Entrance: MiningAirlockNF
-      EntranceFlank: MiningWindowNF
-      Window: MiningWindowNF
-    whitelists:
-      Rooms:
-        tags:
-          - SalvageOutpost
-  layers:
-  - !type:PrototypeDunGen
-    proto: Everything
-
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
-
-- type: entitySpawnEntry
-  id: MiningAirlockNF
-  entries:
-    - id: CableApcExtension
-    - id: AirlockMiningGlassDungeon
-
-- type: entitySpawnEntry
-  id: MiningWindowNF
-  entries:
-    - id: GrilleDungeon
-    - id: MiningWindowDungeon
-
-## Wallmounts
-- type: entitySpawnEntry
-  id: NanoTrasenFacilityWallmounts
-  entries:
-  - id: RandomPosterLegit
-    orGroup: content
-  - id: ExtinguisherCabinetFilled
-    prob: 0.2
-    orGroup: content
-  - id: IntercomCommon
-    prob: 0.1
-    orGroup: content
-  - id: DefibrillatorCabinetFilled
-    prob: 0.05
-    orGroup: content

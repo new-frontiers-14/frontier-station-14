@@ -1,5 +1,6 @@
 - type: vessel
   id: Construct
+  parent: BaseVessel
   name: NT Construct
   description: A technically spacefaring vessel.  No livery.
   price: 10500
@@ -21,13 +22,12 @@
     Construct:
       stationProto: StandardFrontierVessel
       components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Construct {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+      - type: StationNameSetup
+        mapNameTemplate: 'Construct {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Contractor: [ 0, 0 ]
+          Pilot: [ 0, 0 ]
+          Mercenary: [ 0, 0 ]

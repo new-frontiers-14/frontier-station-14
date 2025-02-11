@@ -16,6 +16,8 @@ entities:
     - type: Transform
       pos: -0.15940452,-1.515625
       parent: invalid
+    - type: BecomesStation
+      id: Fighter
     - type: MapGrid
       chunks:
         0,0:
@@ -535,6 +537,13 @@ entities:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 107
+    components:
+    - type: Transform
+      pos: 1.5,0.5
+      parent: 1
 - proto: PlastitaniumWindow
   entities:
   - uid: 17
@@ -785,7 +794,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,0.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 101
     components:

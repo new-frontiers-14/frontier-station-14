@@ -7,6 +7,7 @@
     - PetsNT
     - Zombie
     - Revolutionary
+    - AllHostile
     - WizFedFaction # Frontier
     - BloodCultNF # Frontier
     - PirateNF # Frontier
@@ -28,6 +29,8 @@
   - Xeno
   - Zombie
   - Revolutionary
+  - Dragon
+  - AllHostile
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
   - PirateNF # Frontier
@@ -44,6 +47,7 @@
   id: Mouse
   hostile:
   - PetsNT
+  - AllHostile
 
 - type: npcFaction
   id: Passive
@@ -52,20 +56,10 @@
   id: PetsNT
   hostile:
   - Mouse
-  - SimpleHostile
-  - Zombie
-  - Xeno
-  - WizFedFaction # Frontier
-  - BloodCultNF # Frontier
-  - PirateNF # Frontier
-  - ExplorersExpeditionNF # Frontier
-  - ArtifactConstruct # Frontier
-  - StreetGangNF # Frontier
-  - DinosaursNF # Frontier
-  - MercenariesExpeditionNF # Frontier
-  - SiliconsExpeditionNF # Frontier
-  - AberrantFleshExpeditionNF # Frontier
-  - ContrabandClothing # Frontier
+  # - SimpleHostile # Frontier
+  # - Zombie # Frontier
+  # - Xeno # Frontier
+  # - AllHostile # Frontier
 
 - type: npcFaction
   id: SimpleHostile
@@ -76,6 +70,7 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - AllHostile
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
   - PirateNF # Frontier
@@ -102,6 +97,8 @@
   - Xeno
   - PetsNT
   - Zombie
+  - Dragon
+  - AllHostile
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
   - PirateNF # Frontier
@@ -124,6 +121,7 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - AllHostile
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
   - PirateNF # Frontier
@@ -147,6 +145,7 @@
   - Passive
   - PetsNT
   - Revolutionary
+  - AllHostile
   - WizFedFaction # Frontier
   - BloodCultNF # Frontier
   - PirateNF # Frontier
@@ -179,3 +178,19 @@
   - AberrantFleshExpeditionNF # Frontier
   - ContrabandClothing # Frontier
   - ContrabandDetection # Frontier
+  - AllHostile
+
+- type: npcFaction
+  id: AllHostile # Frontier: use HostileUniversally
+  hostile:
+  - NanoTrasen
+  - Dragon
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary

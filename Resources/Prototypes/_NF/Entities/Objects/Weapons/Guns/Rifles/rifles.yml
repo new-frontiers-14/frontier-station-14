@@ -24,6 +24,32 @@
           tags:
             - CartridgeRifle
 
+#Delta-V
+- type: entity
+  name: Vulcan
+  parent: WeaponRifleVulcan
+  id: WeaponRifleVulcanRubber
+  suffix: Non-lethal
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleRubber
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleRubber
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+
 # Frontier
 - type: entity
   name: Gestio
@@ -51,7 +77,7 @@
     availableModes:
       - Burst
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/rifle3.ogg
+      path: /Audio/_NF/Weapons/Guns/Gunshots/rifle.ogg
       params:
         volume: -5
   - type: Wieldable

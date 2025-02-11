@@ -38,9 +38,10 @@ using Robust.Shared.Random;
 using Content.Shared.Emag.Systems;
 using Content.Server.Popups;
 using Content.Server.Traits.Assorted;
-using Content.Shared._NF.Cloning;
-using Content.Shared.Bank.Components;
 using Robust.Shared.Serialization.Manager;
+using Content.Shared._NF.Cloning; // Frontier
+using Content.Shared._NF.Bank.Components; // Frontier
+using Content.Server._NF.Traits.Assorted; // Frontier
 
 namespace Content.Server.Cloning
 {
@@ -291,7 +292,7 @@ namespace Content.Server.Cloning
 
             // TODO: Ideally, components like this should be components on the mind entity so this isn't necessary.
             // Add on special job components to the mob.
-            if (_jobs.MindTryGetJob(mindEnt, out _, out var prototype))
+            if (_jobs.MindTryGetJob(mindEnt, out var prototype))
             {
                 foreach (var special in prototype.Special)
                 {

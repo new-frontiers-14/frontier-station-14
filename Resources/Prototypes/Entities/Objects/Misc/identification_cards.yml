@@ -22,6 +22,7 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
+    - WhitelistChameleonIdCard
   - type: StealTarget
     stealGroup: IDCard
   - type: StaticPrice # Frontier
@@ -119,6 +120,7 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
+    - WhitelistChameleonIdCard
     - HighRiskItem
   - type: StealTarget
     stealGroup: CaptainIDCard
@@ -318,6 +320,9 @@
     - type: PresetIdCard
       job: Bartender
       name: Pun Pun
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+      - DoorBumpOpener
 
 - type: entity
   parent: IDCardStandard
@@ -447,7 +452,7 @@
     - state: default
     - state: idvisitor
   - type: IdCard
-    jobTitle: Visitor
+    jobTitle: job-title-visitor
     jobIcon: JobIconVisitor
   - type: PresetIdCard
     job: Visitor
@@ -606,6 +611,7 @@
   - type: ChameleonClothing
     slot: [idcard]
     default: ContractorIDCard # Frontier: PassengerIDCard<ContractorIDCard
+    requireTag: WhitelistChameleonIdCard
   - type: UserInterface
     interfaces:
       enum.AgentIDCardUiKey.Key:
@@ -751,7 +757,7 @@
     - state: default
     - state: idcluwne
   - type: IdCard
-    jobTitle: Cluwne
+    jobTitle: job-title-cluwne
   - type: Unremoveable
 
 - type: entity
@@ -813,7 +819,7 @@
   - type: Item
     heldPrefix: green
   - type: IdCard
-    jobTitle: Universal
+    jobTitle: job-title-universal
     jobIcon: JobIconAdmin
   - type: Access
     groups:
@@ -822,3 +828,7 @@
     - CentralCommand
     - NuclearOperative
     - SyndicateAgent
+    - Wizard
+  - type: Tag #  Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener

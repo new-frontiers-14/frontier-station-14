@@ -27,6 +27,15 @@
     PoppySeeds: 1
   recipeType: Oven # Frontier
 
+- type: microwaveMealRecipe
+  id: RecipeBagelCotton
+  name: cotton bagel recipe
+  result: FoodBagelCotton
+  time: 5
+  solids:
+    FoodDoughCottonRope: 1
+  recipeType: Oven # Frontier
+
 #Burgers
 
 - type: microwaveMealRecipe
@@ -504,6 +513,18 @@
     Blackpepper: 5
   solids:
     FoodDough: 1
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeBaguetteCotton
+  name: baguette recipe
+  result: FoodBreadBaguetteCotton
+  time: 15
+  reagents:
+    TableSalt: 5
+    Blackpepper: 5
+  solids:
+    FoodDoughCotton: 1
   recipeType: Oven # Frontier
 
 - type: microwaveMealRecipe
@@ -1166,6 +1187,17 @@
     FoodPlateTin: 1
   recipeType: Oven # Frontier
 
+- type: microwaveMealRecipe
+  id: RecipePumpkinPie
+  name: pumpkin pie recipe
+  result: FoodPiePumpkin
+  time: 15
+  solids:
+    FoodDoughPie: 1
+    FoodPumpkin: 1
+    FoodPlateTin: 1
+  recipeType: Oven # Frontier
+
 #- type: microwaveMealRecipe
 #  id: RecipePlumpPie
 #  name: plump pie recipe
@@ -1326,6 +1358,41 @@
   solids:
     FoodCarrot: 1
   recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeNachos
+  name: nachos recipe
+  result: FoodMealNachos
+  time: 10
+  reagents:
+    TableSalt: 1
+  solids:
+    FoodDoughTortillaFlat: 1
+    FoodPlateSmall: 1
+
+- type: microwaveMealRecipe
+  id: RecipeNachosCheesy
+  name: cheesy nachos recipe
+  result: FoodMealNachosCheesy
+  time: 10
+  reagents:
+    TableSalt: 1
+  solids:
+    FoodCheeseSlice: 1
+    FoodDoughTortillaFlat: 1
+    FoodPlateSmall: 1
+
+- type: microwaveMealRecipe
+  id: RecipeNachosCuban
+  name: cuban nachos recipe
+  result: FoodMealNachosCuban
+  time: 10
+  reagents:
+    Ketchup: 5
+  solids:
+    FoodChiliPepper: 1
+    FoodDoughTortillaFlat: 1
+    FoodPlateSmall: 1
 
 - type: microwaveMealRecipe
   id: RecipePopcorn
@@ -1948,6 +2015,72 @@
     FoodAmbrosiaVulgaris: 1
   recipeType: Assembler # Frontier
 
+# Muffins
+
+- type: microwaveMealRecipe
+  id: RecipeMuffin
+  name: muffin recipe
+  result: FoodBakedMuffin
+  time: 15
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughSlice: 1
+  reagents:
+    Sugar: 10
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeMuffinChocolate
+  name: chocolate muffin recipe
+  result: FoodBakedMuffinChocolate
+  time: 15
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughSlice: 1
+    FoodSnackChocolateBar: 1
+  reagents:
+    Sugar: 10
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeMuffinBerry
+  name: berry muffin recipe
+  result: FoodBakedMuffinBerry
+  time: 15
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughSlice: 1
+    FoodBerries: 1
+  reagents:
+    Sugar: 10
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeMuffinBanana
+  name: banana muffin recipe
+  result: FoodBakedMuffinBanana
+  time: 15
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughSlice: 1
+    FoodBanana: 1
+  reagents:
+    Sugar: 10
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeMuffinCherry
+  name: cherry muffin recipe
+  result: FoodBakedMuffinCherry
+  time: 15
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughSlice: 1
+    FoodCherry: 3
+  reagents:
+    Sugar: 10
+  recipeType: Oven # Frontier
+
 # NOT ACTUAL FOOD
 
 - type: microwaveMealRecipe
@@ -2198,6 +2331,16 @@
   - Oven # Frontier
 
 - type: microwaveMealRecipe
+  id: RecipeCroissantCotton
+  name: cotton croissant recipe
+  result: FoodBakedCroissantCotton
+  time: 5
+  solids:
+    FoodCroissantRawCotton: 1
+    FoodButterSlice: 1
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
   id: RecipeThrowingCroissant
   name: throwing croissant recipe
   result: WeaponCroissant
@@ -2208,3 +2351,28 @@
     FoodButterSlice: 1
     ShardGlass: 1
   recipeType: Oven # Frontier
+
+
+- type: microwaveMealRecipe
+  id: RecipeInertAnomalyMeat
+  name: inert meat anomaly recipe
+  result: FoodMeatAnomaly
+  time: 5
+  solids:
+    AnomalyCoreFleshInert: 1
+
+- type: microwaveMealRecipe
+  id: RecipeAnomalyMeat
+  name: meat anomaly recipe
+  result: FoodMeatAnomaly
+  time: 5
+  solids:
+    AnomalyCoreFlesh: 1
+
+- type: microwaveMealRecipe
+  id: RecipeAnomalyMeatCooked
+  name: cooked meat anomaly recipe
+  result: FoodMeatAnomalyCooked
+  time: 5
+  solids:
+    FoodMeatAnomaly: 1

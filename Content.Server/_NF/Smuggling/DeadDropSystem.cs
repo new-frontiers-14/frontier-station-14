@@ -5,7 +5,7 @@ using Content.Server._NF.SectorServices;
 using Content.Server._NF.Smuggling.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Radio.EntitySystems;
-using Content.Server.Shipyard.Systems;
+using Content.Server._NF.Shipyard.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
@@ -28,6 +28,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server._NF.Station.Systems;
 
 namespace Content.Server._NF.Smuggling;
 
@@ -590,15 +591,26 @@ public sealed class DeadDropSystem : EntitySystem
                         output = Loc.GetString(messageLoc, ("location", MetaData(sender).EntityName));
                         break;
                     case SmugglingReportMessageType.DeadDropStationWithRandomAlt:
+                        var actualStationName = MetaData(sender).EntityName;
                         if (sectorDeadDrop is not null)
                         {
-                            string[] names = [MetaData(sender).EntityName, _random.Pick<string>(sectorDeadDrop.DeadDropStationNames.Values)];
-                            _random.Shuffle(names);
-                            output = Loc.GetString(messageLoc, ("location1", names[0]), ("location2", names[1]));
+                            var otherStationList = sectorDeadDrop.DeadDropStationNames.Values.Where(x => x != actualStationName).ToList();
+                            if (otherStationList.Count > 0)
+                            {
+                                string[] names = [actualStationName, _random.Pick<string>(otherStationList)];
+                                _random.Shuffle(names);
+                                output = Loc.GetString(messageLoc, ("location1", names[0]), ("location2", names[1]));
+                            }
+                            else
+                            {
+                                // No valid alternate, just output where the dead drop is
+                                output = Loc.GetString(messageLoc, ("location1", actualStationName));
+                            }
                         }
                         else
                         {
-                            output = Loc.GetString(messageLoc, ("location1", MetaData(sender).EntityName)); // Looks strange, but still has a proper value.
+                            // No valid alternate, just output where the dead drop is
+                            output = Loc.GetString(messageLoc, ("location1", actualStationName));
                         }
                         break;
                     case SmugglingReportMessageType.PodLocation:

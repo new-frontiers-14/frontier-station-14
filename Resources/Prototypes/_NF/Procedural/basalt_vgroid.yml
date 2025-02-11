@@ -106,7 +106,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockBasalt
-      entity: WallBasaltCobblebrickNF
+      entity: NFWallBasaltCobblebrick
       count: 100
       minGroupSize: 6
       maxGroupSize: 16
@@ -135,7 +135,7 @@
     # - !type:OreDunGen
       # tileMask:
       # - FloorBasalt
-      # entity: FloraRockSolid01
+      # entity: FloraRockSolid
       # count: 20
       # minGroupSize: 1
       # maxGroupSize: 1
@@ -144,7 +144,7 @@
       tileMask:
       - FloorBasalt
       entity: SpawnMobMercenaryT3
-      count: 25
+      count: 5
       minGroupSize: 1
       maxGroupSize: 1
 
@@ -205,7 +205,7 @@
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: LavaMercenary
+    proto: NFLavaMercenary
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
@@ -241,6 +241,18 @@
     maxCount: 15
     groups:
     - id: SpawnMobMercenaryT2
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 3
+    groups:
+    - id: SpawnMobMercenaryT3
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 0
+    maxCount: 1
+    groups:
+    - id: SpawnMobMercenaryCaptain
       amount: 1
 
 #- type: dungeonConfig
@@ -309,9 +321,9 @@
       allowedTiles:
         - FloorBasalt
       entities:
-        - FloraRockSolid01
-        - FloraRockSolid02
-        - FloraRockSolid03
+        - FloraRockSolid
+        - FloraRockSolid
+        - FloraRockSolid
         - CrystalOrange
     - !type:BiomeEntityLayer
       threshold: 0.2

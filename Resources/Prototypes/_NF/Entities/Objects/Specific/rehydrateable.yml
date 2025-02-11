@@ -19,3 +19,32 @@
     - MobDuckMallard
     - MobDuckWhite
     - MobDuckBrown
+
+- type: entity
+  parent: MonkeyCube
+  id: PigCube
+  name: pig cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobPig
+
+- type: entity
+  parent: DehydratedSpaceCarp
+  id: DehydratedSharkMinnow
+  name: dehydrated sharkminnow
+  description: Looks like a plush toy sharkminnow, but just add water and it becomes a real-life sharkminnow!
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobShark
+  - type: Sprite
+    sprite: _NF/Objects/Fun/sharkminnow.rsi
+    state: sharkminnowplush
+  - type: Item
+    heldPrefix: sharkminnowplush
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right

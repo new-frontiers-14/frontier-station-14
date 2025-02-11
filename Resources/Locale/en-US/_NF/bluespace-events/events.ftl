@@ -3,6 +3,10 @@ station-event-bluespace-dungeon-start-announcement = Signatures of a large inbou
 station-event-bluespace-dungeon-warning-announcement = Bluespace instability detected on foreign object, five minutes until estimated departure.
 station-event-bluespace-dungeon-end-announcement = Critical bluespace instability detected, the foreign object has exited the sector.
 
+station-event-bluespace-scrap-start-announcement = Storms detected in bluespace lanes, expect inbound wreckage shortly. Wrecked ships are valid salvage targets.
+station-event-bluespace-scrap-warning-announcement = Bluespace instability detected on wreckage, five minutes until expected departure.
+station-event-bluespace-scrap-end-announcement = Critical bluespace instability detected, storm wreckage has exited the sector.
+
 station-event-bluespace-vault-start-announcement = A NanoTrasen armored vault is inbound to the sector. The NFSD may declare the vault a No Fly Zone. Station accounts will be rewarded for its safe return.
 station-event-bluespace-vault-warning-announcement = Remote FTL procedures initialized, five minutes until vault extraction.
 station-event-bluespace-vault-end-announcement = We have retrieved the vault from your sector. Station accounts have been paid.

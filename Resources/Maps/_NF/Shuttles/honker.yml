@@ -18,6 +18,8 @@ entities:
     - type: Transform
       pos: -0.6250305,0.875
       parent: invalid
+    - type: BecomesStation
+      id: Honker
     - type: MapGrid
       chunks:
         0,0:
@@ -1114,6 +1116,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,10.5
       parent: 2
+- proto: NFHolopadShip
+  entities:
+  - uid: 183
+    components:
+    - type: Transform
+      pos: 2.5,10.5
+      parent: 2
 - proto: NitrogenCanister
   entities:
   - uid: 143
@@ -1172,10 +1181,6 @@ entities:
     - type: Transform
       pos: 5.5,11.5
       parent: 2
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandClown
   entities:
   - uid: 197
@@ -1677,7 +1682,7 @@ entities:
     - type: Transform
       pos: -0.5,4.5
       parent: 2
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 209
     components:

@@ -18,6 +18,8 @@ entities:
     - type: Transform
       pos: -0.47058776,-0.52941173
       parent: invalid
+    - type: BecomesStation
+      id: Disciple
     - type: MapGrid
       chunks:
         0,0:
@@ -1006,6 +1008,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-0.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 103
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
+      parent: 1
 - proto: PlushieRatvar
   entities:
   - uid: 94
@@ -1020,10 +1029,6 @@ entities:
     - type: Transform
       pos: 4.5,-0.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandBreadLies
   entities:
   - uid: 190
@@ -1050,7 +1055,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-1.5
       parent: 1
-- proto: PoweredlightColoredRed
+- proto: PoweredlightRed
   entities:
   - uid: 109
     components:
@@ -1487,15 +1492,13 @@ entities:
     - type: Transform
       pos: 4.5,0.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 139
     components:
     - type: Transform
       pos: 2.5,1.5
       parent: 1
-    - type: BecomesStation
-      id: disciple
 - proto: Window
   entities:
   - uid: 18

@@ -54,7 +54,8 @@ reagent-desc-barozine = A potent chemical that prevents pressure damage. Causes 
 reagent-name-phalanximine = phalanximine
 reagent-desc-phalanximine = An advanced chemical used in the treatment of cancer. Causes moderate radiation poisoning on organics and vomiting. Can potentially remove the death gene on plants.
 
-reagent-name-polypyrylium-oligomers = Polypyrylium Oligomers
+# Frontier: no caps
+reagent-name-polypyrylium-oligomers = polypyrylium oligomers
 reagent-desc-polypyrylium-oligomers = A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. Heals asphyxiation and brute damage. Stops bleeding over time.
 
 reagent-name-ambuzol = ambuzol
@@ -97,7 +98,8 @@ reagent-name-ethylredoxrazine = ethylredoxrazine
 reagent-desc-ethylredoxrazine = Neutralises the effects of alcohol in the blood stream. Though it is commonly needed, it is rarely requested.
 
 reagent-name-cognizine = cognizine
-reagent-desc-cognizine = A mysterious chemical which is able to make any non-sentient creature sentient.
+# Frontier: edited description
+reagent-desc-cognizine = A mysterious chemical which is able to make any non-sentient creature sentient. Known to cause unpredictable behavior, apply with caution.
 
 reagent-name-ethyloxyephedrine = ethyloxyephedrine
 reagent-desc-ethyloxyephedrine = A mildly unstable medicine derived from desoxyephedrine, primarily used to combat narcolepsy.

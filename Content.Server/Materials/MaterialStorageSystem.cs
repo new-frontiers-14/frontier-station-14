@@ -3,6 +3,7 @@ using Content.Server.Administration.Logs;
 using Content.Shared.Materials;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
+using Content.Server.Storage.Components; // Frontier
 using Content.Server.Power.Components;
 using Content.Server.Stack;
 using Content.Shared.ActionBlocker;
@@ -80,6 +81,14 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
 
         if (volume <= 0 || !TryChangeMaterialAmount(uid, msg.Material, -volume))
             return;
+
+        // Frontier
+        // If we made it this far, turn off the magnet before spawning materials
+        if (TryComp<MaterialStorageMagnetPickupComponent>(uid, out var magnet))
+        {
+            magnet.MagnetEnabled = false;
+        }
+        // end Frontier
 
         var mats = SpawnMultipleFromMaterial(volume, material, Transform(uid).Coordinates, out _);
         foreach (var mat in mats.Where(mat => !TerminatingOrDeleted(mat)))
@@ -175,6 +184,10 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
         var materialPerStack = composition.MaterialComposition[materialProto.ID];
         var amountToSpawn = amount / materialPerStack;
         overflowMaterial = amount - amountToSpawn * materialPerStack;
+
+        if (amountToSpawn == 0)
+            return new List<EntityUid>();
+
         return _stackSystem.SpawnMultiple(materialProto.StackEntity, amountToSpawn, coordinates);
     }
 

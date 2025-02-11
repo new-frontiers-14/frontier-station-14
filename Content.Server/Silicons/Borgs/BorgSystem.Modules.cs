@@ -2,7 +2,9 @@ using System.Linq;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
+using Content.Shared._NF.Interaction.Components; // Frontier
 
 namespace Content.Server.Silicons.Borgs;
 
@@ -60,6 +62,10 @@ public sealed partial class BorgSystem
 
         if (_actions.AddAction(chassis, ref component.ModuleSwapActionEntity, out var action, component.ModuleSwapActionId, uid))
         {
+            if(TryComp<BorgModuleIconComponent>(uid, out var moduleIconComp))
+            {
+                action.Icon = moduleIconComp.Icon;
+            };
             action.EntityIcon = uid;
             Dirty(component.ModuleSwapActionEntity.Value, action);
         }
@@ -220,6 +226,63 @@ public sealed partial class BorgSystem
             component.ProvidedItems.Add(handId, item);
         }
 
+        // Frontier: droppable cyborg items
+        foreach (var itemProto in component.DroppableItems)
+        {
+            EntityUid item;
+
+            if (!component.ItemsCreated)
+            {
+                item = Spawn(itemProto.ID, xform.Coordinates);
+                var placeComp = EnsureComp<HandPlaceholderRemoveableComponent>(item);
+                placeComp.Whitelist = itemProto.Whitelist;
+                placeComp.Prototype = itemProto.ID;
+                Dirty(item, placeComp);
+            }
+            else
+            {
+                item = component.ProvidedContainer.ContainedEntities
+                    .FirstOrDefault(ent => _whitelistSystem.IsWhitelistPassOrNull(itemProto.Whitelist, ent) || TryComp<HandPlaceholderComponent>(ent, out var placeholder));
+                if (!item.IsValid())
+                {
+                    Log.Debug($"no items found: {component.ProvidedContainer.ContainedEntities.Count}");
+                    continue;
+                }
+
+                // Just in case, make sure the borg can't drop the placeholder.
+                if (!HasComp<HandPlaceholderComponent>(item))
+                {
+                    var placeComp = EnsureComp<HandPlaceholderRemoveableComponent>(item);
+                    placeComp.Whitelist = itemProto.Whitelist;
+                    placeComp.Prototype = itemProto.ID;
+                    Dirty(item, placeComp);
+                }
+            }
+
+            if (!item.IsValid())
+            {
+                Log.Debug("no valid item");
+                continue;
+            }
+
+            var handId = $"{uid}-item{component.HandCounter}";
+            component.HandCounter++;
+            _hands.AddHand(chassis, handId, HandLocation.Middle, hands);
+            _hands.DoPickup(chassis, hands.Hands[handId], item, hands);
+            if (hands.Hands[handId].HeldEntity != item)
+            {
+                // If we didn't pick up our expected item, delete the hand.  No free hands!
+                _hands.RemoveHand(chassis, handId);
+            }
+            else if (HasComp<HandPlaceholderComponent>(item))
+            {
+                // Placeholders can't be put down, must be changed after picked up (otherwise it'll fail to pick up)
+                EnsureComp<UnremoveableComponent>(item);
+            }
+            component.DroppableProvidedItems.Add(handId, (item, itemProto));
+        }
+        // End Frontier: droppable cyborg items
+
         component.ItemsCreated = true;
     }
 
@@ -239,6 +302,14 @@ public sealed partial class BorgSystem
                 _hands.RemoveHand(chassis, hand, hands);
             }
             component.ProvidedItems.Clear();
+            // Frontier: droppable items
+            foreach (var (hand, item) in component.DroppableProvidedItems)
+            {
+                QueueDel(item.Item1);
+                _hands.RemoveHand(chassis, hand, hands);
+            }
+            component.DroppableProvidedItems.Clear();
+            // End Frontier: droppable items
             return;
         }
 
@@ -252,6 +323,20 @@ public sealed partial class BorgSystem
             _hands.RemoveHand(chassis, handId, hands);
         }
         component.ProvidedItems.Clear();
+        // Frontier: remove all items from borg hands directly, not from the provided items set
+        foreach (var (handId, _) in component.DroppableProvidedItems)
+        {
+            _hands.TryGetHand(chassis, handId, out var hand, hands);
+            if (hand?.HeldEntity != null)
+            {
+                RemComp<UnremoveableComponent>(hand.HeldEntity.Value);
+                _container.Insert(hand.HeldEntity.Value, component.ProvidedContainer);
+            }
+
+            _hands.RemoveHand(chassis, handId, hands);
+        }
+        component.DroppableProvidedItems.Clear();
+        // End Frontier
     }
 
     /// <summary>
@@ -292,6 +377,24 @@ public sealed partial class BorgSystem
                 }
             }
         }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Check if a module can be removed from a borg.
+    /// </summary>
+    /// <param name="borg">The borg that the module is being removed from.</param>
+    /// <param name="module">The module to remove from the borg.</param>
+    /// <param name="user">The user attempting to remove the module.</param>
+    /// <returns>True if the module can be removed.</returns>
+    public bool CanRemoveModule(
+        Entity<BorgChassisComponent> borg,
+        Entity<BorgModuleComponent> module,
+        EntityUid? user = null)
+    {
+        if (module.Comp.DefaultModule)
+            return false;
 
         return true;
     }
@@ -364,5 +467,25 @@ public sealed partial class BorgSystem
         moduleComponent.InstalledEntity = null;
         var ev = new BorgModuleUninstalledEvent(uid);
         RaiseLocalEvent(module, ref ev);
+    }
+
+    /// <summary>
+    /// Sets <see cref="BorgChassisComponent.MaxModules"/>.
+    /// </summary>
+    /// <param name="ent">The borg to modify.</param>
+    /// <param name="maxModules">The new max module count.</param>
+    public void SetMaxModules(Entity<BorgChassisComponent> ent, int maxModules)
+    {
+        ent.Comp.MaxModules = maxModules;
+    }
+
+    /// <summary>
+    /// Sets <see cref="BorgChassisComponent.ModuleWhitelist"/>.
+    /// </summary>
+    /// <param name="ent">The borg to modify.</param>
+    /// <param name="whitelist">The new module whitelist.</param>
+    public void SetModuleWhitelist(Entity<BorgChassisComponent> ent, EntityWhitelist? whitelist)
+    {
+        ent.Comp.ModuleWhitelist = whitelist;
     }
 }

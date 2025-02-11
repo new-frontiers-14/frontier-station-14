@@ -168,6 +168,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepClown
+      params:
+        variation: 0.17
   - type: Mech
     maxEquipmentAmount: 2
     baseState: honker
@@ -273,10 +275,13 @@
     baseState: vim
     openState: vim-open
     brokenState: vim-broken
-    maxEquipmentAmount: 0
+    maxEquipmentAmount: 2 # Frontier 0<2
     # keep mouse safe
     mechToPilotDamageMultiplier: 0.1
     airtight: true
+    equipmentWhitelist: # Frontier
+      tags: # Frontier
+      - SmallMech # Frontier
     pilotWhitelist:
       tags:
       - VimPilot
@@ -290,6 +295,11 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6
+  - type: Access
+    groups: # Frontier: contractor access
+    - GeneralAccess # Frontier
+    # tags: # Frontier
+    # - Maintenance # Frontier
   # TOOD: buzz / chime actions
   # TODO: builtin flashlight
 

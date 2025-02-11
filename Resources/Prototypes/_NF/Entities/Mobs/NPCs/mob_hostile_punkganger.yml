@@ -188,6 +188,7 @@
   - MobHostileBossBase
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
+  - NFMobBossRestrictions
   name: punk gang leader
   description: It takes a formidable figure to lead a pack of street trash. These leaders usually wield scavenged SMGs and wear armor taken from unfortunate security forces. Usually high on meth and booze.
   categories: [ HideSpawnMenu ]
@@ -225,6 +226,8 @@
     rules: ghost-role-information-dungeon-boss-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
   - type: GhostTakeoverAvailable
   - type: ActionGun
     action: ActionThrowPartyNade

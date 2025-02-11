@@ -5,6 +5,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared._NF.Bank.Components; // Frontier
+using Content.Shared.Containers.ItemSlots; // Frontier
 
 namespace Content.Shared.VendingMachines
 {
@@ -67,6 +69,7 @@ namespace Content.Shared.VendingMachines
         [DataField, AutoNetworkedField]
         public Dictionary<string, VendingMachineInventoryEntry> ContrabandInventory = new();
 
+        [DataField, AutoNetworkedField]
         public bool Contraband;
 
         public bool Ejecting;
@@ -112,12 +115,13 @@ namespace Content.Shared.VendingMachines
         ///     Sound that plays when ejecting an item
         /// </summary>
         [DataField("soundVend")]
-        // Grabbed from: https://github.com/discordia-space/CEV-Eris/blob/f702afa271136d093ddeb415423240a2ceb212f0/sound/machines/vending_drop.ogg
+        // Grabbed from: https://github.com/tgstation/tgstation/blob/d34047a5ae911735e35cd44a210953c9563caa22/sound/machines/machine_vend.ogg
         public SoundSpecifier SoundVend = new SoundPathSpecifier("/Audio/Machines/machine_vend.ogg")
         {
             Params = new AudioParams
             {
-                Volume = -2f
+                Volume = -4f,
+                Variation = 0.15f
             }
         };
 
@@ -202,6 +206,35 @@ namespace Content.Shared.VendingMachines
         [DataField("loopDeny")]
         public bool LoopDenyAnimation = true;
         #endregion
+
+        // Frontier: taxes, cash slot
+        // Accounts to receive some proportion of each sale via taxation.
+        [DataField(serverOnly: true), ViewVariables(VVAccess.ReadWrite)]
+        public Dictionary<SectorBankAccount, float> TaxAccounts = new();
+
+        // Optional item slot for cash
+        [DataField]
+        public ItemSlot? CashSlot = null;
+
+        /// <summary>
+        /// Name of the cash slot, if there is one.  Null if there isn't.
+        /// </summary>
+        [DataField]
+        public string? CashSlotName;
+
+        /// <summary>
+        /// The type of currency to accept in the item slot.
+        /// </summary>
+        [DataField]
+        public string? CurrencyStackType;
+
+        /// <summary>
+        /// The current balance in the cash slot.
+        /// Kept for 
+        /// </summary>
+        [DataField, AutoNetworkedField]
+        public int CashSlotBalance;
+        // End Frontier: taxes, cash slot
     }
 
     [Serializable, NetSerializable]

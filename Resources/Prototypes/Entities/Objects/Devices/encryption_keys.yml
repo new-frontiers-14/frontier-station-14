@@ -7,6 +7,7 @@
   components:
   - type: EncryptionKey
   - type: Item
+    size: Tiny # Frontier
     sprite: Objects/Devices/encryption_keys.rsi
   - type: Sprite
     sprite: Objects/Devices/encryption_keys.rsi
@@ -24,6 +25,7 @@
     - Common
     defaultChannel: Common
   - type: Sprite
+    sprite: _NF/Objects/Devices/encryption_keys.rsi # Frontier
     layers:
     - state: crypt_gray
     - state: common_label
@@ -243,7 +245,7 @@
   - type: Sprite
     layers:
     - state: crypt_silver
-    - state: borg_label
+    - state: ai_label
 
 - type: entity
   parent: [ EncryptionKey, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
@@ -258,7 +260,7 @@
   - type: Sprite
     layers:
     - state: crypt_red
-    - state: borg_label
+    - state: ai_label
 
 - type: entity
   parent: [EncryptionKey, BaseC3PirateContraband] # Frontier: added BaseC3PirateContraband

@@ -1,12 +1,13 @@
 ### Special messages used by internal localizer stuff.
 
 # Used internally by the PRESSURE() function.
+# Frontier: PBa<PPa
 zzzz-fmt-pressure = { TOSTRING($divided, "F1") } { $places ->
     [0] kPa
     [1] MPa
     [2] GPa
     [3] TPa
-    [4] PBa
+    [4] PPa
     *[5] ???
 }
 
@@ -31,3 +32,6 @@ zzzz-fmt-power-joules = { TOSTRING($divided, "F1") } { $places ->
     [4] TJ
     *[5] ???
 }
+
+# Used internally by the PLAYTIME() function.
+zzzz-fmt-playtime = {$hours}H {$minutes}M

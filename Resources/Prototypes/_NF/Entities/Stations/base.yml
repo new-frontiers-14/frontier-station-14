@@ -17,6 +17,12 @@
   abstract: true
   components:
   - type: StationRenameFaxes
+  
+- type: entity
+  id: BaseStationRenameHolopads
+  abstract: true
+  components:
+  - type: StationRenameHolopads
 
 - type: entity
   id: BaseStationRenameWarpPoints
@@ -57,7 +63,6 @@
       - Metal
       - Ingot
       - RawMaterial
-      - ClothMade
       - CrystalRed
       - CrystalGreen
       - CrystalPink
@@ -71,6 +76,8 @@
       - MachinePart
       - VendingMachineRestock
       - Seed
+      - MachineBoard
+      - ComputerBoard
     blacklist:
       tags:
       - Trash
@@ -96,11 +103,9 @@
       - RCD # Dup charges
       - Storage # Till fixed
       - StorageFill # Till fixed
-      - ContainerContainer # Till fixed
-    overrideList:
-      matchParents: true
-      id:
-      - SheetUranium # Counts as food
+    whitelistOverride:
+      components:
+      - UraniumMaterials # Counts as food
 
 - type: entity
   id: BaseStationDeadDrops

@@ -106,7 +106,7 @@
     - type: StaticPrice
       price: 150
     - type: AccessReader
-      access: [ [ "Engineering" ] ]
+      access: [ [ "Maintenance" ] ] # Frontier: Engineering<Maintenance
     - type: PryUnpowered
       pryModifier: 0.5
     - type: PointLight
@@ -115,6 +115,7 @@
       color: Red
       enabled: false
       castShadows: false
+    - type: NavMapDoor
 
 - type: entity
   id: Firelock
