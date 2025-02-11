@@ -28,11 +28,11 @@ entities:
     components:
     - type: MetaData
       name: Falcon
-    - type: BecomesStation
-      id: Falcon
     - type: Transform
       pos: -1.078125,-0.46875
       parent: invalid
+    - type: BecomesStation
+      id: Falcon
     - type: MapGrid
       chunks:
         0,0:
@@ -1834,28 +1834,16 @@ entities:
     - type: Transform
       pos: 5.286945,-7.6460857
       parent: 3
-    - type: ItemSlots
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot {}
   - uid: 236
     components:
     - type: Transform
       pos: 5.5473614,-7.3856688
       parent: 3
-    - type: ItemSlots
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot {}
   - uid: 239
     components:
     - type: Transform
       pos: 5.7348614,-7.6669188
       parent: 3
-    - type: ItemSlots
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot {}
 - proto: DrinkRumBottleFull
   entities:
   - uid: 228
@@ -2591,6 +2579,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-10.5
       parent: 3
+- proto: HandLabeler
+  entities:
+  - uid: 399
+    components:
+    - type: Transform
+      pos: 4.503951,-9.348075
+      parent: 3
 - proto: HarmonicaInstrument
   entities:
   - uid: 453
@@ -2701,6 +2696,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 3
+- proto: NFHolopadShipFlatpack
+  entities:
+  - uid: 560
+    components:
+    - type: Transform
+      pos: 4.300826,-9.5512
+      parent: 3
 - proto: NitrogenCanister
   entities:
   - uid: 98
@@ -2773,19 +2775,11 @@ entities:
     - type: Transform
       pos: -1.5,-8.5
       parent: 3
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
   - uid: 124
     components:
     - type: Transform
       pos: -0.5,-8.5
       parent: 3
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterLegitCarpMount
   entities:
   - uid: 225
@@ -2860,7 +2854,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 3
-- proto: PoweredlightColoredFrostyBlue
+- proto: PoweredlightCyan
   entities:
   - uid: 493
     components:
@@ -3807,7 +3801,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-5.5
       parent: 3
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 527
     components:
