@@ -65,6 +65,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
 
+    private static readonly Regex DeedRegex = new(@"\s*\([^()]*\)");
+
     public void InitializeConsole()
     {
 
@@ -272,8 +274,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
                 sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!));
 
-            var tax = CalculateTotalSalesTax(component, sellValue);
-            sellValue -= tax;
+            sellValue = CalculateShipResaleValue((shipyardConsoleUid, component), sellValue);
         }
 
         SendPurchaseMessage(shipyardConsoleUid, player, name, component.ShipyardChannel, secret: false);
@@ -282,9 +283,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         PlayConfirmSound(player, shipyardConsoleUid, component);
         if (voucherUsed)
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} with a voucher via {ToPrettyString(component.Owner)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} with a voucher via {ToPrettyString(shipyardConsoleUid)}");
         else
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} for {vessel.Price} credits via {ToPrettyString(shipyardConsoleUid)}");
 
         // Adding the record to the shuttle records system makes them eligible to be copied.
         // Can be set on the component of the shipyard.
@@ -411,6 +412,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (!voucherUsed)
         {
+            if (!component.IgnoreBaseSaleRate)
+                bill = (int)(bill * _baseSaleRate);
+
             int originalBill = bill;
             foreach (var (account, taxCoeff) in component.TaxAccounts)
             {
@@ -432,9 +436,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         EntityUid? refreshId = targetId;
 
         if (voucherUsed)
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to sell {shuttleName} (purchased with voucher) via {ToPrettyString(component.Owner)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to sell {shuttleName} (purchased with voucher) via {ToPrettyString(uid)}");
         else
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to sell {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to sell {shuttleName} for {bill} credits via {ToPrettyString(uid)}");
 
         // No uses on the voucher left, destroy it.
         if (voucher != null
@@ -481,9 +485,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         int sellValue = 0;
         if (deed?.ShuttleUid != null)
+        {
             sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!));
-
-        sellValue -= CalculateTotalSalesTax(component, sellValue);
+            sellValue = CalculateShipResaleValue((uid, component), sellValue);
+        }
 
         var fullName = deed != null ? GetFullName(deed) : null;
         RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
@@ -573,9 +578,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             int sellValue = 0;
             if (deed?.ShuttleUid != null)
-                sellValue = (int) _pricing.AppraiseGrid(deed.ShuttleUid.Value);
-
-            sellValue -= CalculateTotalSalesTax(component, sellValue);
+            {
+                sellValue = (int)_pricing.AppraiseGrid(deed.ShuttleUid.Value);
+                sellValue = CalculateShipResaleValue((uid, component), sellValue);
+            }
 
             var fullName = deed != null ? GetFullName(deed) : null;
             RefreshState(uid,
@@ -754,17 +760,72 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             ((byte)uiKey),
             GetAvailableShuttles(uid, uiKey, targetId: targetId),
             uiKey.ToString(),
-            freeListings);
+            freeListings,
+            CalculateSellRate(uid));
 
         _ui.SetUiState(uid, uiKey, newState);
     }
 
+    #region Deed Assignment
     void AssignShuttleDeedProperties(ShuttleDeedComponent deed, EntityUid? shuttleUid, string? shuttleName, string? shuttleOwner, bool purchasedWithVoucher)
     {
         deed.ShuttleUid = shuttleUid;
         TryParseShuttleName(deed, shuttleName!);
         deed.ShuttleOwner = shuttleOwner;
         deed.PurchasedWithVoucher = purchasedWithVoucher;
+    }
+
+    private void OnInitDeedSpawner(EntityUid uid, StationDeedSpawnerComponent component, MapInitEvent args)
+    {
+        if (!HasComp<IdCardComponent>(uid)) // Test if the deed on an ID
+            return;
+
+        var xform = Transform(uid); // Get the grid the card is on
+        if (xform.GridUid == null)
+            return;
+
+        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null  || ShipyardMap == null)
+            return;
+
+        var output = DeedRegex.Replace($"{shuttleDeed.ShuttleOwner}", ""); // Removes content inside parentheses along with parentheses and a preceding space
+        _idSystem.TryChangeFullName(uid, output); // Update the card with owner name
+
+        var deedID = EnsureComp<ShuttleDeedComponent>(uid);
+        AssignShuttleDeedProperties(deedID, shuttleDeed.ShuttleUid, shuttleDeed.ShuttleName, shuttleDeed.ShuttleOwner, shuttleDeed.PurchasedWithVoucher);
+    }
+    #endregion
+
+    #region Ship Pricing
+    // Calculates the sell rate of a given shipyard console
+    private float CalculateSellRate(Entity<ShipyardConsoleComponent?> console)
+    {
+        if (!Resolve(console, ref console.Comp))
+            return 0.0f;
+
+        var taxRate = 0.0f;
+        foreach (var taxAccount in console.Comp.TaxAccounts)
+        {
+            taxRate += taxAccount.Value;
+        }
+        taxRate = 1.0f - taxRate;  // Return the value minus the taxes
+
+        if (console.Comp.IgnoreBaseSaleRate)
+            return taxRate;
+        else
+            return _baseSaleRate * taxRate;
+    }
+
+    private int CalculateShipResaleValue(Entity<ShipyardConsoleComponent?> console, int baseAppraisal)
+    {
+        if (!Resolve(console, ref console.Comp))
+            return 0;
+
+        int resaleValue = baseAppraisal;
+        if (!console.Comp.IgnoreBaseSaleRate)
+            resaleValue = (int)(_baseSaleRate * resaleValue);
+
+        resaleValue -= CalculateTotalSalesTax(console.Comp, resaleValue);
+        return resaleValue;
     }
 
     // Calculates total sales tax over all accounts.
@@ -780,28 +841,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     private int CalculateSalesTax(int sellValue, float taxRate)
     {
         if (float.IsFinite(taxRate) && taxRate > 0f)
-        {
             return (int)(sellValue * taxRate);
-        }
         return 0;
     }
-
-    private void OnInitDeedSpawner(EntityUid uid, StationDeedSpawnerComponent component, MapInitEvent args)
-    {
-        if (!HasComp<IdCardComponent>(uid)) // Test if the deed on an ID
-            return;
-
-        var xform = Transform(uid); // Get the grid the card is on
-        if (xform.GridUid == null)
-            return;
-
-        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null  || ShipyardMap == null)
-            return;
-
-        var output = Regex.Replace($"{shuttleDeed.ShuttleOwner}", @"\s*\([^()]*\)", ""); // Removes content inside parentheses along with parentheses and a preceding space
-        _idSystem.TryChangeFullName(uid, output); // Update the card with owner name
-
-        var deedID = EnsureComp<ShuttleDeedComponent>(uid);
-        AssignShuttleDeedProperties(deedID, shuttleDeed.ShuttleUid, shuttleDeed.ShuttleName, shuttleDeed.ShuttleOwner, shuttleDeed.PurchasedWithVoucher);
-    }
+    #endregion Ship Pricing
 }

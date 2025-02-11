@@ -17,6 +17,7 @@ public sealed class SignalTimerBoundUserInterfaceState : BoundUserInterfaceState
     public string CurrentText;
     public string CurrentDelayMinutes;
     public string CurrentDelaySeconds;
+    public bool CurrentRepeat; //Frontier
     public bool ShowText;
     public TimeSpan TriggerTime;
     public bool TimerStarted;
@@ -25,6 +26,7 @@ public sealed class SignalTimerBoundUserInterfaceState : BoundUserInterfaceState
     public SignalTimerBoundUserInterfaceState(string currentText,
         string currentDelayMinutes,
         string currentDelaySeconds,
+        bool currentRepeat, //Frontier
         bool showText,
         TimeSpan triggerTime,
         bool timerStarted,
@@ -33,6 +35,7 @@ public sealed class SignalTimerBoundUserInterfaceState : BoundUserInterfaceState
         CurrentText = currentText;
         CurrentDelayMinutes = currentDelayMinutes;
         CurrentDelaySeconds = currentDelaySeconds;
+        CurrentRepeat = currentRepeat; //Frontier
         ShowText = showText;
         TriggerTime = triggerTime;
         TimerStarted = timerStarted;
@@ -50,6 +53,19 @@ public sealed class SignalTimerTextChangedMessage : BoundUserInterfaceMessage
         Text = text;
     }
 }
+
+//Frontier: SignalTimerRepeatToggled class
+[Serializable, NetSerializable]
+public sealed class SignalTimerRepeatToggled : BoundUserInterfaceMessage
+{
+    public bool Repeat { get; }
+
+    public SignalTimerRepeatToggled(bool repeat)
+    {
+        Repeat = repeat;
+    }
+}
+//End Frontier
 
 [Serializable, NetSerializable]
 public sealed class SignalTimerDelayChangedMessage : BoundUserInterfaceMessage
