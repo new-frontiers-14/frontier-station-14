@@ -135,8 +135,8 @@
 - type: entity
   id: GasDepositLocatorUnpowered
   parent: BaseItem
-  name: gas deposit locator
-  description: A scanner that checks the nearby area for gas deposits.
+  name: gas deposit scanner
+  description: A scanner that both checks the nearby area for gas deposits and estimates the composition of deposits.
   suffix: Unpowered
   components:
   - type: Sprite
@@ -154,6 +154,10 @@
         enum.ToggleVisuals.Layer:
           True: { visible: true }
           False: { visible: false }
+      enum.GasAnalyzerVisuals.Enabled:
+        enum.ToggleVisuals.Layer:
+          True: { state: data }
+          False: { state: screen }
   - type: ItemToggle
   - type: ProximityBeeper
   - type: ProximityDetector
@@ -170,6 +174,11 @@
       params:
         maxDistance: 1
         volume: -8
+  - type: GasDepositScanner
+  - type: UserInterface
+    interfaces:
+      enum.GasDepositScannerUiKey.Key:
+        type: GasDepositScannerBoundUserInterface
 
 - type: entity
   id: GasDepositLocator
