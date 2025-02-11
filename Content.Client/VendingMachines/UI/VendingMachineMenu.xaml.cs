@@ -12,7 +12,6 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using FancyWindow = Content.Client.UserInterface.Controls.FancyWindow;
 using Robust.Client.UserInterface;
-using Content.Client.UserInterface.Controls;
 using Content.Shared.IdentityManagement;
 using Robust.Client.Graphics;
 
@@ -23,6 +22,7 @@ namespace Content.Client.VendingMachines.UI
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private readonly IComponentFactory _componentFactory = default!; // Frontier
 
         private readonly Dictionary<EntProtoId, EntityUid> _dummies = [];
 
@@ -84,9 +84,10 @@ namespace Content.Client.VendingMachines.UI
         /// Populates the list of available items on the vending machine interface
         /// and sets icons based on their prototypes
         /// </summary>
-        public void Populate(List<VendingMachineInventoryEntry> inventory, float priceModifier, int balance) // Frontier: add balance
+        public void Populate(List<VendingMachineInventoryEntry> inventory, float priceModifier, int balance, int? cashSlotBalance) // Frontier: add balance, cashSlotBalance
         {
-            BalanceLabel.Text = BankSystemExtensions.ToSpesoString(balance); // Frontier
+            UpdateBalance(balance); // Frontier
+            UpdateCashSlotBalance(cashSlotBalance); // Frontier
 
             if (inventory.Count == 0 && VendingContents.Visible)
             {
@@ -137,28 +138,29 @@ namespace Content.Client.VendingMachines.UI
                 // determined dynamically by their contents/inventory), it then falls back to the default mystery
                 // hardcoded value of 20xMarketModifier.
                 var cost = 20;
-                if (prototype != null && prototype.TryGetComponent<StaticPriceComponent>(out var priceComponent))
+                if (prototype != null && prototype.TryGetComponent<StaticPriceComponent>(out var priceComponent, _componentFactory))
                 {
                     if (priceComponent.Price != 0)
                     {
                         var price = (float)priceComponent.Price;
-                        cost = (int) (price * priceModifier);
+                        cost = (int)(price * priceModifier);
                     }
                     else
                     {
-                        if (prototype.TryGetComponent<StackPriceComponent>(out var stackPrice) && prototype.TryGetComponent<StackComponent>(out var stack))
+                        if (prototype.TryGetComponent<StackPriceComponent>(out var stackPrice, _componentFactory)
+                            && prototype.TryGetComponent<StackComponent>(out var stack, _componentFactory))
                         {
                             var price = stackPrice.Price * stack.Count;
-                            cost = (int) (price * priceModifier);
+                            cost = (int)(price * priceModifier);
                         }
                         else
-                            cost = (int) (cost * priceModifier);
+                            cost = (int)(cost * priceModifier);
                     }
                 }
                 else
-                    cost = (int) (cost * priceModifier);
+                    cost = (int)(cost * priceModifier);
 
-                if (prototype != null && prototype.TryGetComponent<SolutionContainerManagerComponent>(out var priceSolutions))
+                if (prototype != null && prototype.TryGetComponent<SolutionContainerManagerComponent>(out var priceSolutions, _componentFactory))
                 {
                     if (priceSolutions.Solutions != null)
                     {
@@ -171,30 +173,32 @@ namespace Content.Client.VendingMachines.UI
                                     continue;
 
                                 // TODO check ReagentData for price information?
-                                var costReagent = (float) quantity * reagentProto.PricePerUnit;
-                                cost += (int) (costReagent * priceModifier);
+                                var costReagent = quantity.Float() * reagentProto.PricePerUnit;
+                                cost += (int)(costReagent * priceModifier);
                             }
                         }
                     }
                 }
+                // End Frontier: item pricing
 
                 // Frontier: calculate vending price (this duplicates Content.Server.PricingSystem.GetVendPrice - this should be moved to Content.Shared if possible)
                 if (prototype != null)
                 {
                     var price = 0.0;
 
-                    if (prototype.TryGetComponent<StaticPriceComponent>(out var staticComp) && staticComp.VendPrice > 0.0)
+                    if (prototype.TryGetComponent<StaticPriceComponent>(out var staticComp, _componentFactory) && staticComp.VendPrice > 0.0)
                     {
                         price += staticComp.VendPrice;
                     }
-                    else if (prototype.TryGetComponent<StackPriceComponent>(out var stackComp) && stackComp.VendPrice > 0.0)
+                    else if (prototype.TryGetComponent<StackPriceComponent>(out var stackComp, _componentFactory) && stackComp.VendPrice > 0.0)
                     {
                         price += stackComp.VendPrice;
                     }
 
                     // If there is anything that explicitly sets vending price - higher OR lower, override the base.
-                    if (price > 0.0) {
-                        cost = (int) price;
+                    if (price > 0.0)
+                    {
+                        cost = (int)price;
                     }
                 }
                 // End Frontier
@@ -202,14 +206,12 @@ namespace Content.Client.VendingMachines.UI
                 var itemName = Identity.Name(dummy, _entityManager);
                 string itemText;
 
-                // New Frontiers - Unlimited vending - support items with unlimited vending stock.
-                // This code is licensed under AGPLv3. See AGPLv3.txt
+                // Frontier: unlimited vending
                 if (entry.Amount != uint.MaxValue)
                     itemText = $"[{BankSystemExtensions.ToSpesoString(cost)}] {itemName} [{entry.Amount}]";
                 else
                     itemText = $"[{BankSystemExtensions.ToSpesoString(cost)}] {itemName}";
-                // End of modified code
-                // End Frontier: item pricing
+                // End Frontier: unlimited vending
 
 
                 if (itemText.Length > longestEntry.Length)
@@ -227,6 +229,13 @@ namespace Content.Client.VendingMachines.UI
         public void UpdateBalance(int balance)
         {
             BalanceLabel.Text = BankSystemExtensions.ToSpesoString(balance);
+        }
+
+        public void UpdateCashSlotBalance(int? balance)
+        {
+            CashSlotControls.Visible = balance != null;
+            if (balance != null)
+                CashSlotLabel.Text = BankSystemExtensions.ToSpesoString(balance.Value);
         }
         // End Frontier
 
