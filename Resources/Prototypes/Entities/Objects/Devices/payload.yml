@@ -21,7 +21,7 @@
 
 - type: entity
   name: explosive payload
-  parent: BasePayload
+  parent: [BasePayload, BaseC2ContrabandUnredeemable] # Frontier: Added BaseC2ContrabandUnredeemable
   id: ExplosivePayload
   components:
   - type: Sprite
@@ -87,7 +87,7 @@
 
 - type: entity
   name: flash payload
-  parent: BasePayload
+  parent: [BasePayload, BaseC2ContrabandUnredeemable] # Frontier: Added BaseC2ContrabandUnredeemable
   id: FlashPayload
   description: A single-use flash payload.
   components:
