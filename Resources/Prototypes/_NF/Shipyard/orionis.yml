@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: Tych0theSynth
+# Discord: Tych0
+
+# Maintainer Info
+# GitHub: Tych0theSynth
+# Discord: Tych0
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Orionis
+  parent: BaseVessel
+  name: SBB Orionis
+  description: A small science vessel with a shop front for selling weaponry.
+  price: 35000 # Appraises at ~31300. Markup of ~10%.
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/orionis.yml
+  guidebookPage: Null
+  class:
+  - Science
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Orionis
+  mapName: 'SBB Orionis'
+  mapPath: /Maps/_NF/Shuttles/orionis.yml
+  minPlayers: 0
+  stations:
+    Orionis:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Orionis {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
