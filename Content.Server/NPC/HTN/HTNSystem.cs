@@ -264,7 +264,7 @@ public sealed class HTNSystem : EntitySystem
             return true;
         if (TryComp(entity, out TransformComponent? xform) && xform.GridUid == null)// if NPC not on a grid return false
             return false;
-            var chunk = _world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(transform)).Floored(), transform.MapUid.Value, worldComponent);
+        var chunk = _world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(transform)).Floored(), transform.MapUid.Value, worldComponent);
 
         return _loadedQuery.TryGetComponent(chunk, out var loaded) && loaded.Loaders is not null;
     }
