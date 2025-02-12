@@ -167,7 +167,7 @@ public sealed partial class MarketSystem
     }
 
     /// <summary>
-    /// Inserts market data for materialprototypes contained within an MaterialStorageComponent.
+    /// Inserts market data for all materials contained within a MaterialStorageComponent.
     /// </summary>
     /// <param name="marketDataComponent"></param>
     /// <param name="materialStorageComponent"></param>
