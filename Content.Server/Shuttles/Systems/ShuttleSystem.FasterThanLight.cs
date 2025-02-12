@@ -818,20 +818,28 @@ public sealed partial class ShuttleSystem
         var grids = new List<Entity<MapGridComponent>>();
         const float minMargin = 8.0f;
         const float maxMargin = 32.0f;
+
+        // Pick a cardinal direction to move in.
+        // true: axis-positive movement
+        // false: axis-negative movement
+        // null: no movement in axis
         var direction = _random.Next(8);
-        bool? positiveX = null;
-        bool? positiveY = null;
+        bool? positiveX;
+        bool? positiveY;
+        // Nasty but readable
         switch (direction)
         {
             case 0:
             default:
                 positiveX = true;
+                positiveY = null;
                 break;
             case 1:
                 positiveX = true;
                 positiveY = true;
                 break;
             case 2:
+                positiveX = null;
                 positiveY = true;
                 break;
             case 3:
@@ -840,12 +848,14 @@ public sealed partial class ShuttleSystem
                 break;
             case 4:
                 positiveX = false;
+                positiveY = null;
                 break;
             case 5:
                 positiveX = false;
                 positiveY = false;
                 break;
             case 6:
+                positiveX = null;
                 positiveY = false;
                 break;
             case 7:
@@ -855,11 +865,12 @@ public sealed partial class ShuttleSystem
         }
         while (iteration < FTLProximityIterations)
         {
+            grids.Clear();
             _mapManager.FindGridsIntersecting(targetXform.MapID, targetAABB, ref grids);
             if (grids.Count == 0)
                 break;
 
-            // Adjust our position based off of grids
+            // Adjust our requested position to be clear of intersecting grids along our randomly chosen direction.
             foreach (var grid in grids)
             {
                 var collidingBox = _transform.GetWorldMatrix(grid).TransformBox(Comp<MapGridComponent>(grid).LocalAABB);
