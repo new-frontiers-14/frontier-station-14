@@ -200,7 +200,6 @@ public sealed partial class MarketSystem
 
 
             // Increase the count in the MarketData for this material
-            // Assuming the quantity to increase is 1 for each sold material
             marketDataComponent.MarketDataList.Upsert(entProto.ID, amountToSpawn, price, material.StackEntity);
         }
     }
