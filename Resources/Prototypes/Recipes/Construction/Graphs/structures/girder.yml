@@ -40,6 +40,19 @@
               amount: 2
               doAfter: 2
 
+        - to: diagonalWall # Eclipse
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+            - tool: Welding
+              doAfter: 6
+
         - to: reinforcedGirder
           completed:
             - !type:SnapToGrid
@@ -161,6 +174,18 @@
           steps:
             - tool: Welding
               doAfter: 10
+
+    - node: diagonalWall #Eclipse
+      entity: WallSolidDiagonal
+      edges:
+        - to: girder
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 1
+          steps:
+            - tool: Welding
+              doAfter: 4
 
     - node: uraniumWall
       entity: WallUranium
@@ -287,6 +312,22 @@
               amount: 2
               doAfter: 1
 
+        - to: diagonalReinforcedWall #Eclipse
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: MetalRod
+              amount: 2
+              doAfter: 1
+            - tool: Welding
+              doAfter: 4
+            - material: Plasteel
+              amount: 1
+              doAfter: 1
+
         - to: shuttleWall
           completed:
             - !type:SnapToGrid
@@ -303,7 +344,7 @@
               amount: 2
               doAfter: 1
 
-        - to: diagonalshuttleWall
+        - to: diagonalShuttleWall #Eclipse
           completed:
             - !type:SnapToGrid
               southRotation: false
@@ -384,6 +425,58 @@
             - tool: Cutting
               doAfter: 1
 
+    - node: diagonalReinforcedWall #Eclipse
+      entity: WallReinforcedDiagonal
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+              #completed:
+              #  - !type:VisualizerDataInt
+              #    key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+              #    data: 5
+            - tool: Screwing
+              doAfter: 1
+            - tool: Welding
+              doAfter: 5
+              #completed:
+              #  - !type:VisualizerDataInt
+              #    key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+              #    data: 4
+            - tool: Prying
+              doAfter: 1
+            - tool: Anchoring
+              doAfter: 1
+              #completed:
+              #  - !type:VisualizerDataInt
+              #    key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+              #    data: 3
+            - tool: Welding
+              doAfter: 10
+              #completed:
+              #  - !type:VisualizerDataInt
+              #    key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+              #    data: 2
+            - tool: Prying
+              doAfter: 1
+              #completed:
+              #  - !type:VisualizerDataInt
+              #    key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+              #    data: 1
+            - tool: Screwing
+              doAfter: 1
+              #completed:
+              #  - !type:VisualizerDataInt
+              #    key: "enum.ReinforcedWallVisuals.DeconstructionStage"
+              #    data: 0
+            - tool: Cutting
+              doAfter: 1
+
     - node: shuttleWall
       entity: WallShuttle
       edges:
@@ -441,7 +534,7 @@
             - tool: Cutting
               doAfter: 4
 
-    - node: diagonalshuttleWall
+    - node: diagonalShuttleWall #Eclipse
       entity: WallShuttleDiagonal
       edges:
         - to: reinforcedGirder

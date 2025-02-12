@@ -1,0 +1,214 @@
+# Base Diagonal Wall
+- type: entity
+  id: BaseWallDiagonal
+  abstract: true
+  name: basewall
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Tag
+      tags:
+        - Wall
+    - type: Clickable
+    - type: Sprite
+      drawdepth: Walls
+      state: state0
+    - type: IconSmooth
+      mode: Diagonal
+      key: walls
+      base: state
+    - type: Icon
+      state: state0
+    - type: Airtight
+      noAirWhenFullyAirBlocked: false
+      airBlockedDirection:
+        - South
+        - East
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            vertices:
+              - "-0.5,-0.5"
+              - "0.5,0.5"
+              - "0.5,-0.5"
+          mask:
+            - FullTileMask
+          layer:
+            - BulletImpassable
+            - LowImpassable
+            - MidImpassable
+            - HighImpassable
+            - Opaque
+    - type: Occluder
+      enabled: False
+
+- type: entity
+  id: WallShuttleDiagonal
+  parent: [BaseWallDiagonal, WallShuttle]
+  name: shuttle wall
+  suffix: Diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      drawdepth: Walls
+      sprite: Structures/Walls/shuttle_diagonal.rsi
+      state: state0
+    - type: Construction
+      graph: Girder
+      node: diagonalShuttleWall
+    - type: Icon
+      sprite: Structures/Walls/shuttle_diagonal.rsi
+      state: state0
+
+- type: entity
+  id: WallPlastitaniumDiagonal
+  parent: [BaseWallDiagonal, WallPlastitanium]
+  name: plastitanium wall
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      drawdepth: Walls
+      sprite: Structures/Walls/plastitanium_diagonal.rsi
+      state: state0
+    - type: Icon
+      sprite: Structures/Walls/plastitanium_diagonal.rsi
+      state: state0
+
+- type: entity
+  id: WallPlastitaniumDiagonalIndestructible
+  parent: [BaseWallDiagonal, WallPlastitaniumIndestructible]
+  name: plastitanium wall
+  suffix: diagonal, indestructible
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      drawdepth: Walls
+      sprite: Structures/Walls/plastitanium_diagonal.rsi
+      state: state0
+    - type: Icon
+      sprite: Structures/Walls/plastitanium_diagonal.rsi
+      state: state0
+
+- type: entity
+  id: WallSolidDiagonal
+  parent: [BaseWallDiagonal, WallSolid]
+  name: solid wall
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      drawdepth: Walls
+      sprite: Structures/Walls/solid_diagonal.rsi
+      state: state0
+    - type: Construction
+      graph: Girder
+      node: diagonalWall
+    - type: Icon
+      sprite: Structures/Walls/solid_diagonal.rsi
+      state: state0
+    - type: IconSmooth
+      mode: Diagonal
+      key: walls
+      base: state
+
+- type: entity
+  id: WallReinforcedDiagonal
+  parent: [BaseWallDiagonal, WallReinforced]
+  name: reinforced wall
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      drawdepth: Walls
+      sprite: _NF/Structures/Walls/reinforced_diagonal.rsi # Frontier: _NF folder
+      state: state0
+    - type: Construction
+      graph: Girder
+      node: diagonalReinforcedWall
+    - type: Icon
+      sprite: _NF/Structures/Walls/reinforced_diagonal.rsi # Frontier: _NF folder
+      state: state0
+    - type: IconSmooth
+      mode: DiagonalNF # Frontier: Diagonal<DiagonalNF
+      key: walls
+      base: state
+
+- type: entity
+  id: WallMiningDiagonal
+  parent: [BaseWallDiagonal, WallMining]
+  name: mining wall
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      drawdepth: Walls
+      sprite: Structures/Walls/mining_diagonal.rsi
+      state: state0
+    - type: Icon
+      sprite: Structures/Walls/mining_diagonal.rsi
+      state: state0
+
+- type: entity
+  id: WallWoodDiagonal
+  parent: [BaseWallDiagonal, WallWood]
+  name: wood wall
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      drawdepth: Walls
+      sprite: _NF/Structures/Walls/wood_diagonal.rsi
+      state: state0
+    - type: IconSmooth
+      mode: DiagonalNF
+      key: woods
+      base: state
+    - type: Icon
+      sprite: _NF/Structures/Walls/wood_diagonal.rsi
+      state: state0
+
+- type: entity
+  id: WallUraniumDiagonal
+  parent: [BaseWallDiagonal, WallUranium]
+  name: uranium wall
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      drawdepth: Walls
+      sprite: _NF/Structures/Walls/uranium_diagonal.rsi
+      state: state0
+    - type: IconSmooth
+      mode: DiagonalNF
+      key: walls
+      base: state
+    - type: Icon
+      sprite: _NF/Structures/Walls/uranium_diagonal.rsi
+      state: state0
