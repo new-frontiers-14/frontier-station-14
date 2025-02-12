@@ -67,7 +67,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// How many times we try to proximity warp close to something before falling back to map-wideAABB.
     /// </summary>
-    private const int FTLProximityIterations = 10; // Frontier: 5<10
+    private const int FTLProximityIterations = 15; // Frontier: 5<15
 
     private readonly HashSet<EntityUid> _lookupEnts = new();
     private readonly HashSet<EntityUid> _immuneEnts = new();
@@ -796,7 +796,7 @@ public sealed partial class ShuttleSystem
 
         // We essentially expand the Box2 of the target area until nothing else is added then we know it's valid.
         // Can't just get an AABB of every grid as we may spawn very far away.
-        var nearbyGrids = new HashSet<EntityUid>();
+        //var nearbyGrids = new HashSet<EntityUid>(); // Frontier
         var shuttleAABB = Comp<MapGridComponent>(shuttleUid).LocalAABB;
 
         // Start with small point.
@@ -805,31 +805,103 @@ public sealed partial class ShuttleSystem
 
         // How much we expand the target AABB be.
         // We half it because we only need the width / height in each direction if it's placed at a particular spot.
-        var expansionAmount = MathF.Max(shuttleAABB.Width / 2f, shuttleAABB.Height / 2f);
+        var expansionAmount = MathF.Max(shuttleAABB.Width * 0.72f, shuttleAABB.Height * 0.72f); // Frontier: a bit over sqrt 2, worst case for AABB shenanigans
 
         // Expand the starter AABB so we have something to query to start with.
         var targetAABB = _transform.GetWorldMatrix(targetXform)
             .TransformBox(targetLocalAABB)
             .Enlarged(expansionAmount);
 
-        // Frontier: replace union jank with outward step jank
+        // Frontier: our world is very dense in places, very sparse overall, and very large.
+        // Running a mapwise union results in ships sent very far away.
         var iteration = 0;
-        var mapId = targetXform.MapID;
         var grids = new List<Entity<MapGridComponent>>();
-        // Find a direction to push this box outwards
-        Angle outwardsAngle = targetAABB.Center.ToWorldAngle();
-        if (!double.IsFinite(outwardsAngle.Theta))
-            outwardsAngle = Angle.Zero;
-        Vector2 outwardsDirection = outwardsAngle.ToWorldVec();
-        float stepSize = float.Min(200, (targetAABB.Height + targetAABB.Width) / 2 + maxOffset);
+        const float minMargin = 8.0f;
+        const float maxMargin = 32.0f;
+        var direction = _random.Next(8);
+        bool? positiveX = null;
+        bool? positiveY = null;
+        switch (direction)
+        {
+            case 0:
+            default:
+                positiveX = true;
+                break;
+            case 1:
+                positiveX = true;
+                positiveY = true;
+                break;
+            case 2:
+                positiveY = true;
+                break;
+            case 3:
+                positiveX = false;
+                positiveY = true;
+                break;
+            case 4:
+                positiveX = false;
+                break;
+            case 5:
+                positiveX = false;
+                positiveY = false;
+                break;
+            case 6:
+                positiveY = false;
+                break;
+            case 7:
+                positiveX = true;
+                positiveY = false;
+                break;
+        }
         while (iteration < FTLProximityIterations)
         {
-            _mapManager.FindGridsIntersecting(mapId, targetAABB.Enlarged(maxOffset), ref grids);
-
+            _mapManager.FindGridsIntersecting(targetXform.MapID, targetAABB, ref grids);
             if (grids.Count == 0)
                 break;
-            targetAABB.BottomLeft += outwardsDirection * stepSize;
-            targetAABB.TopRight += outwardsDirection * stepSize;
+
+            // Adjust our position based off of grids
+            foreach (var grid in grids)
+            {
+                var collidingBox = _transform.GetWorldMatrix(grid).TransformBox(Comp<MapGridComponent>(grid).LocalAABB);
+
+                if (positiveX == true)
+                {
+                    var newLeft = Math.Max(targetAABB.Left, collidingBox.Right + _random.NextFloat(minMargin, maxMargin));
+                    targetAABB.Right = newLeft + targetAABB.Width;
+                    targetAABB.Left = newLeft;
+                }
+                else if (positiveX == false)
+                {
+                    var newRight = Math.Min(targetAABB.Right, collidingBox.Left - _random.NextFloat(minMargin, maxMargin));
+                    targetAABB.Left = newRight - targetAABB.Width;
+                    targetAABB.Right = newRight;
+                }
+                else
+                {
+                    var margin = _random.NextFloat(-maxMargin, maxMargin);
+                    targetAABB.Left += margin;
+                    targetAABB.Right += margin;
+                }
+
+                if (positiveY == true)
+                {
+                    var newBottom = Math.Max(targetAABB.Bottom, collidingBox.Top + _random.NextFloat(minMargin, maxMargin));
+                    targetAABB.Top = newBottom + targetAABB.Height;
+                    targetAABB.Bottom = newBottom;
+                }
+                else if (positiveY == false)
+                {
+                    var newTop = Math.Min(targetAABB.Top, collidingBox.Bottom - _random.NextFloat(minMargin, maxMargin));
+                    targetAABB.Bottom = newTop - targetAABB.Height;
+                    targetAABB.Top = newTop;
+                }
+                else
+                {
+                    var margin = _random.NextFloat(-maxMargin, maxMargin);
+                    targetAABB.Bottom += margin;
+                    targetAABB.Top += margin;
+                }
+            }
             iteration++;
         }
         // End Frontier
@@ -843,8 +915,10 @@ public sealed partial class ShuttleSystem
             _physics.SetAngularVelocity(shuttleUid, 0f, body: shuttleBody);
         }
 
+        // Frontier: spawn in our AABB
         // TODO: This should prefer the position's angle instead.
         // TODO: This is pretty crude for multiple landings.
+        /*
         if (nearbyGrids.Count > 1 || !HasComp<MapComponent>(targetXform.GridUid))
         {
             // Pick a random angle
@@ -862,6 +936,9 @@ public sealed partial class ShuttleSystem
         {
             spawnPos = _transform.GetWorldPosition(targetXform);
         }
+        */
+        spawnPos = targetAABB.Center;
+        // End Frontier
 
         var offset = Vector2.Zero;
 
