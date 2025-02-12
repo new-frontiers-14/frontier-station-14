@@ -791,8 +791,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,-0.5
       parent: 1
-    - type: Apc
-      hasAccess: True
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 63
@@ -1473,11 +1471,11 @@ entities:
       parent: 1
 - proto: ComputerTabletopStationRecords
   entities:
-  - uid: 228
+  - uid: 191
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,8.5
+      rot: 3.141592653589793 rad
+      pos: -0.5,1.5
       parent: 1
 - proto: ComputerWallmountWithdrawBankATM
   entities:
@@ -1487,17 +1485,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-0.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
 - proto: CrateChemistryD
   entities:
   - uid: 163
@@ -2303,16 +2290,6 @@ entities:
     - type: Transform
       pos: -2.5,7.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerWallColorMedicalDoctorFilled
   entities:
   - uid: 245
@@ -2321,16 +2298,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,2.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerWallEVAColorParamedicFilled
   entities:
   - uid: 141
@@ -2364,7 +2331,7 @@ entities:
   - uid: 251
     components:
     - type: Transform
-      pos: -2.3657346,9.161771
+      pos: -2.1803885,9.500854
       parent: 1
 - proto: MachineCentrifuge
   entities:
@@ -2387,20 +2354,6 @@ entities:
     - type: Transform
       pos: 3.5,3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        microwave_entity_container: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: MedicalBed
   entities:
   - uid: 178
@@ -2420,20 +2373,13 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
+- proto: NFHolopadShip
+  entities:
+  - uid: 228
+    components:
+    - type: Transform
+      pos: -2.5,8.5
+      parent: 1
 - proto: NFPosterContrabandFsbApothecary
   entities:
   - uid: 289
@@ -2494,14 +2440,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: PaperBin10
-  entities:
-  - uid: 191
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.7045135,9.029007
-      parent: 1
 - proto: PaperBin20
   entities:
   - uid: 218
@@ -3086,11 +3024,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,9.5
       parent: 1
-  - uid: 302
-    components:
-    - type: Transform
-      pos: -2.5,8.5
-      parent: 1
   - uid: 320
     components:
     - type: Transform
@@ -3144,10 +3077,10 @@ entities:
       parent: 1
 - proto: ToyFigurineLawyer
   entities:
-  - uid: 318
+  - uid: 302
     components:
     - type: Transform
-      pos: -2.324068,9.276354
+      pos: -2.0553885,9.797729
       parent: 1
 - proto: VendingMachineMedical
   entities:
@@ -3506,7 +3439,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,-4.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 304
     components:

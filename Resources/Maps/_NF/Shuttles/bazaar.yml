@@ -1367,7 +1367,6 @@ entities:
       parent: 1
     - type: Physics
       canCollide: False
-      bodyType: Static
     - type: Fixtures
       fixtures: {}
 - proto: BenchSofaCorpLeft
@@ -1377,8 +1376,6 @@ entities:
     - type: Transform
       pos: 9.5,9.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpMiddle
   entities:
   - uid: 597
@@ -1386,8 +1383,6 @@ entities:
     - type: Transform
       pos: 8.5,9.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpRight
   entities:
   - uid: 596
@@ -1396,8 +1391,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,8.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoor
   entities:
   - uid: 82
@@ -2872,37 +2865,11 @@ entities:
     - type: Transform
       pos: 4.5,-3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
   - uid: 387
     components:
     - type: Transform
       pos: -3.5,-3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: ConveyorBelt
   entities:
   - uid: 348
@@ -5115,6 +5082,13 @@ entities:
     - type: Transform
       pos: 3.280076,1.401608
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 531
+    components:
+    - type: Transform
+      pos: 1.5,10.5
+      parent: 1
 - proto: NFSignDock
   entities:
   - uid: 604
@@ -5189,23 +5163,15 @@ entities:
     - type: Transform
       pos: -10.5,9.5
       parent: 1
-    - type: FuelGenerator
-      on: False
     - type: MaterialStorageMagnetPickup
       magnetEnabled: True
-    - type: Physics
-      bodyType: Static
   - uid: 961
     components:
     - type: Transform
       pos: -10.5,7.5
       parent: 1
-    - type: FuelGenerator
-      on: False
     - type: MaterialStorageMagnetPickup
       magnetEnabled: True
-    - type: Physics
-      bodyType: Static
 - proto: PosterLegitCarpMount
   entities:
   - uid: 522
@@ -6191,16 +6157,16 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         352:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         351:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         353:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
   - uid: 650
     components:
@@ -7064,7 +7030,7 @@ entities:
     - type: Transform
       pos: -6.5,10.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 475
     components:
