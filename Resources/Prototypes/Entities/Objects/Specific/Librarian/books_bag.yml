@@ -1,12 +1,18 @@
 - type: entity
-  name: books bag
+  name: book bag # Frontier: books bag<book bag
   id: BooksBag
   parent: BaseStorageItem
   description: A refined bag to carry your own library.
   components:
     - type: Sprite
       sprite: Objects/Specific/Library/Equipment/books_bag.rsi
-      state: icon
+      # Frontier: layered sprite
+      layers:
+      - state: icon
+      - state: icon-on
+        visible: False
+        map: [ "enum.ToggleVisuals.Layer" ]
+      # End Frontier
     - type: Clothing
       sprite: Objects/Specific/Library/Equipment/books_bag.rsi
       quickEquip: false
@@ -29,4 +35,27 @@
           - Write
     - type: Dumpable
     - type: MagnetPickup # Frontier
+      magnetEnabled: false # Frontier
+      magnetCanBeEnabled: false # Frontier
     - type: NFBookBag # Frontier
+    # Begin Frontier Additions: toggle magnet from White Dream
+    - type: ItemToggle
+      soundActivate: &soundActivate
+        collection: sparks
+        params:
+          variation: 0.25
+      soundDeactivate: *soundActivate
+      onUse: false
+      onAltUse: true
+      onActivate: false
+    - type: ItemToggleExamine
+      on: item-toggle-examine-magnet-on
+      off: item-toggle-examine-magnet-off
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ToggleVisuals.Toggled:
+          enum.ToggleVisuals.Layer:
+            True: { visible: True }
+            False: { visible: False }
+    # End Frontier Additions
