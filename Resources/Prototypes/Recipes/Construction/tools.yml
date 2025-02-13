@@ -52,3 +52,15 @@
   description: A memory cell for signals.
   icon: { sprite: Objects/Devices/gates.rsi, state: memory_cell }
   objectType: Item
+
+# Frontier: RNG device, powered by real dice!
+- type: construction
+  name: rng device
+  id: RngDevice
+  graph: LogicGate
+  startNode: start
+  targetNode: rng_device
+  category: construction-category-tools
+  description: An random number generator for signals.
+  icon: { sprite: Objects/Devices/gates.rsi, state: edge_detector }
+  objectType: Item

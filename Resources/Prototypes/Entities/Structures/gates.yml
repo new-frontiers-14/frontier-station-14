@@ -290,3 +290,28 @@
     - Output
   - type: Construction
     node: memory_cell
+
+# Frontier: RNG device, powered by real dice!
+- type: entity
+  parent: BaseLogicItem
+  id: RngDevice
+  name: rng device
+  description: Sends a signal to a random output port.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: edge_detector
+  - type: RngDevice
+  - type: DeviceLinkSink
+    ports:
+    - Input
+  - type: DeviceLinkSource
+    ports:
+    - OutputHigh
+    - OutputLow
+    lastSignals:
+      OutputHigh: false
+      OutputLow: false
+  - type: Construction
+    node: rng_device

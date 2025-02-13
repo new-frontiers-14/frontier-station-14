@@ -1,4 +1,4 @@
-﻿- type: constructionGraph
+- type: constructionGraph
   id: LogicGate
   start: start
   graph:
@@ -51,6 +51,16 @@
       - material: Cable
         amount: 2
         doAfter: 1
+    - to: rng_device # Frontier: RNG device, powered by real dice!
+      steps:
+      - tag: Dice
+        icon:
+          sprite: Objects/Fun/dice.rsi
+          state: icon
+        name: a dice
+      - material: Cable
+        amount: 2
+        doAfter: 1
   - node: logic_gate
     entity: LogicGateOr
     edges:
@@ -99,6 +109,20 @@
       completed:
       - !type:SpawnPrototype
         prototype: CapacitorStockPart
+      - !type:SpawnPrototype
+        prototype: CableApcStack1
+        amount: 2
+  - node: rng_device # Frontier: RNG device, powered by real dice!
+    entity: RngDevice
+    edges:
+    - to: empty
+      steps:
+      - tool: Prying
+        doAfter: 2
+      completed:
+      - !type:SpawnPrototype
+        prototype: d6Dice # Frontier: Not sure how to get back the same type of dice you put in? So for now this magically transforms any dice to d6 i guess.
+        amount: 2
       - !type:SpawnPrototype
         prototype: CableApcStack1
         amount: 2
