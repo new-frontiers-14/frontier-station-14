@@ -1,6 +1,7 @@
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._NF.Access;
 using Content.Server._NF.SectorServices;
 using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Systems;
@@ -18,12 +19,12 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
 {
     private ISawmill _sawmill = default!;
 
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
-    [Dependency] private readonly SectorServiceSystem _sectorServices = default!;
+    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly NFAccessSystemUtilities _accessUtils = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly PrototypeManager _proto = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {
@@ -46,8 +47,56 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
 
     private BountyContractDataComponent? GetContracts()
     {
-        TryComp(_sectorServices.GetServiceEntity(), out BountyContractDataComponent? bountyContracts);
+        TryComp(_sectorService.GetServiceEntity(), out BountyContractDataComponent? bountyContracts);
         return bountyContracts;
+    }
+
+    private bool HasReadAccess(EntityUid user, ProtoId<BountyContractCollectionPrototype> collection, BountyContractDataComponent? bounties = null)
+    {
+        if (bounties == null)
+        {
+            bounties = GetContracts();
+            // Nothing to read from, no read access
+            if (bounties == null)
+                return false;
+        }
+
+        if (!_proto.TryIndex(collection, out var collectionProto))
+            return false;
+
+        return _accessUtils.IsAllowed(_accessReader.FindAccessTags(user), collectionProto.ReadAccess, collectionProto.ReadGroups);
+    }
+
+    private bool HasWriteAccess(EntityUid user, ProtoId<BountyContractCollectionPrototype> collection, BountyContractDataComponent? bounties = null)
+    {
+        if (bounties == null)
+        {
+            bounties = GetContracts();
+            // Nothing to write to, no write access
+            if (bounties == null)
+                return false;
+        }
+
+        if (!_proto.TryIndex(collection, out var collectionProto))
+            return false;
+
+        return _accessUtils.IsAllowed(_accessReader.FindAccessTags(user), collectionProto.WriteAccess, collectionProto.WriteGroups);
+    }
+
+    private bool HasDeleteAccess(EntityUid user, ProtoId<BountyContractCollectionPrototype> collection, BountyContractDataComponent? bounties = null)
+    {
+        if (bounties == null)
+        {
+            bounties = GetContracts();
+            // Nothing to delete from, no write access
+            if (bounties == null)
+                return false;
+        }
+
+        if (!_proto.TryIndex(collection, out var collectionProto))
+            return false;
+
+        return _accessUtils.IsAllowed(_accessReader.FindAccessTags(user), collectionProto.DeleteAccess, collectionProto.DeleteGroups);
     }
 
     /// <summary>
@@ -128,16 +177,35 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     /// <summary>
     ///     Try to get all bounty contracts available within a particular collection.
     /// </summary>
-    public IEnumerable<BountyContract> GetAllContracts(ProtoId<BountyContractCollectionPrototype> collection)
+    public IEnumerable<BountyContract> GetPermittedContracts(Entity<BountyContractsCartridgeComponent> cartridge, EntityUid loader, out ProtoId<BountyContractCollectionPrototype>? newCollection)
     {
+        newCollection = null;
         var data = GetContracts();
+
         if (data == null)
             return Enumerable.Empty<BountyContract>();
 
-        if (!data.Contracts.TryGetValue(collection, out var contracts))
-            return Enumerable.Empty<BountyContract>();
+        if (cartridge.Comp.Collection != null)
+        {
+            if (data.Contracts.TryGetValue(cartridge.Comp.Collection.Value, out var contracts)
+                && HasReadAccess(loader, cartridge.Comp.Collection.Value, data))
+            {
+                newCollection = cartridge.Comp.Collection.Value;
+                return contracts.Values;
+            }
+        }
 
-        return contracts.Values;
+        foreach (var collection in data.Contracts.Keys)
+        {
+            if (HasReadAccess(loader, collection, data))
+            {
+                newCollection = collection;
+                return data.Contracts[collection].Values;
+            }
+        }
+
+        // No valid permitted contracts to get
+        return Enumerable.Empty<BountyContract>();
     }
 
     /// <summary>

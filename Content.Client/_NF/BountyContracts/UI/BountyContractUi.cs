@@ -1,7 +1,7 @@
 using Content.Client.UserInterface.Fragments;
 using Content.Shared._NF.BountyContracts;
+using Content.Shared.CartridgeLoader;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.BountyContracts.UI;
@@ -30,13 +30,9 @@ public sealed partial class BountyContractUi : UIFragment
             return;
 
         if (state is BountyContractListUiState listState)
-        {
             ShowListState(listState);
-        }
         else if (state is BountyContractCreateUiState createState)
-        {
             ShowCreateState(createState);
-        }
     }
 
     private void UnloadPreviousState()
@@ -73,28 +69,40 @@ public sealed partial class BountyContractUi : UIFragment
         _fragment?.AddChild(list);
     }
 
+    // UI event handlers
     private void OnRemovePressed(BountyContract obj)
     {
-        _userInterface?.SendMessage(new BountyContractTryRemoveUiMsg(obj.ContractId));
+        SendMessage(new BountyContractTryRemoveMessageEvent(obj.ContractId));
     }
 
     private void OnRefreshListPressed()
     {
-        _userInterface?.SendMessage(new BountyContractRefreshListUiMsg());
+        SendMessage(MakeCommand(BountyContractCommand.RefreshList));
     }
 
     private void OnOpenCreateUiPressed()
     {
-        _userInterface?.SendMessage(new BountyContractOpenCreateUiMsg());
+        SendMessage(MakeCommand(BountyContractCommand.OpenCreateUi));
     }
 
     private void OnCancelCreatePressed()
     {
-        _userInterface?.SendMessage(new BountyContractCloseCreateUiMsg());
+        SendMessage(MakeCommand(BountyContractCommand.CloseCreateUi));
     }
 
     private void OnTryCreatePressed(BountyContractRequest contract)
     {
-        _userInterface?.SendMessage(new BountyContractTryCreateMsg(contract));
+        SendMessage(new BountyContractTryCreateMessageEvent(contract));
+    }
+
+    // Convenience functions for message creation
+    private BountyContractCommandMessageEvent MakeCommand(BountyContractCommand command)
+    {
+        return new BountyContractCommandMessageEvent(command);
+    }
+
+    private void SendMessage(CartridgeMessageEvent msg)
+    {
+        _userInterface?.SendMessage(new CartridgeUiMessage(msg));
     }
 }

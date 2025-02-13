@@ -18,8 +18,8 @@ public sealed partial class BountyContractDataComponent : Component
     public uint LastId;
 
     /// <summary>
-    ///     All open bounty contracts by their contract id.
+    ///     All open bounty contracts, grouped by collection, listed by their contract id.
     /// </summary>
     [DataField]
-    public FrozenDictionary<ProtoId<BountyContractCollectionPrototype>, Dictionary<uint, BountyContract>> Contracts;
+    public FrozenDictionary<ProtoId<BountyContractCollectionPrototype>, Dictionary<uint, BountyContract>> Contracts = default!;
 }

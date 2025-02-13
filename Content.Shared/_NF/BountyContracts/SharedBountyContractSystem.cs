@@ -1,3 +1,4 @@
+using Content.Shared.CartridgeLoader;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -96,40 +97,38 @@ public sealed class BountyContractCreateUiState : BoundUserInterfaceState
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractListUiState(ProtoId<BountyContractCollectionPrototype> collection,
+public sealed class BountyContractListUiState(ProtoId<BountyContractCollectionPrototype>? collection,
         List<BountyContract> contracts,
         bool isAllowedCreateBounties,
         bool isAllowedRemoveBounties) : BoundUserInterfaceState
 {
-    public readonly ProtoId<BountyContractCollectionPrototype> Collection = collection;
+    public readonly ProtoId<BountyContractCollectionPrototype>? Collection = collection;
     public readonly List<BountyContract> Contracts = contracts;
     public readonly bool IsAllowedCreateBounties = isAllowedCreateBounties;
     public readonly bool IsAllowedRemoveBounties = isAllowedRemoveBounties;
 }
 
-[NetSerializable, Serializable]
-public sealed class BountyContractOpenCreateUiMsg : BoundUserInterfaceMessage
+public enum BountyContractCommand : byte
 {
+    OpenCreateUi = 0,
+    CloseCreateUi = 1,
+    RefreshList = 2,
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractRefreshListUiMsg : BoundUserInterfaceMessage
+public sealed class BountyContractCommandMessageEvent(BountyContractCommand command) : CartridgeMessageEvent
 {
+    public readonly BountyContractCommand Command = command;
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractCloseCreateUiMsg : BoundUserInterfaceMessage
-{
-}
-
-[NetSerializable, Serializable]
-public sealed class BountyContractTryRemoveUiMsg(uint contractId) : BoundUserInterfaceMessage
+public sealed class BountyContractTryRemoveMessageEvent(uint contractId) : CartridgeMessageEvent
 {
     public readonly uint ContractId = contractId;
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractTryCreateMsg(BountyContractRequest contract) : BoundUserInterfaceMessage
+public sealed class BountyContractTryCreateMessageEvent(BountyContractRequest contract) : CartridgeMessageEvent
 {
     public readonly BountyContractRequest Contract = contract;
 }
