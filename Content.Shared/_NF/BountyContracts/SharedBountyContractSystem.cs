@@ -98,11 +98,13 @@ public sealed class BountyContractCreateUiState : BoundUserInterfaceState
 
 [NetSerializable, Serializable]
 public sealed class BountyContractListUiState(ProtoId<BountyContractCollectionPrototype>? collection,
+        List<ProtoId<BountyContractCollectionPrototype>> collections,
         List<BountyContract> contracts,
         bool isAllowedCreateBounties,
         bool isAllowedRemoveBounties) : BoundUserInterfaceState
 {
     public readonly ProtoId<BountyContractCollectionPrototype>? Collection = collection;
+    public readonly List<ProtoId<BountyContractCollectionPrototype>> Collections = collections;
     public readonly List<BountyContract> Contracts = contracts;
     public readonly bool IsAllowedCreateBounties = isAllowedCreateBounties;
     public readonly bool IsAllowedRemoveBounties = isAllowedRemoveBounties;
@@ -116,8 +118,9 @@ public enum BountyContractCommand : byte
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractCommandMessageEvent(BountyContractCommand command) : CartridgeMessageEvent
+public sealed class BountyContractCommandMessageEvent(BountyContractCommand command, ProtoId<BountyContractCollectionPrototype>? collection) : CartridgeMessageEvent
 {
+    public readonly ProtoId<BountyContractCollectionPrototype>? Collection = collection;
     public readonly BountyContractCommand Command = command;
 }
 

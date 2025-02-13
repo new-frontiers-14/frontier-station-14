@@ -1,7 +1,5 @@
 using System.Linq;
-using Content.Shared._NF.BountyContracts;
 using Content.Shared.Access;
-using Content.Shared.Access.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Access;
@@ -15,7 +13,7 @@ namespace Content.Server._NF.Access;
 /// </remarks>
 public sealed partial class NFAccessSystemUtilities : EntitySystem
 {
-    [Dependency] PrototypeManager _proto = default!;
+    [Dependency] IPrototypeManager _proto = default!;
 
     public bool IsAllowed(ICollection<ProtoId<AccessLevelPrototype>>? targetTags, ICollection<ProtoId<AccessLevelPrototype>>? accessTags, ICollection<ProtoId<AccessGroupPrototype>>? accessGroups)
     {

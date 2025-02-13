@@ -1,8 +1,10 @@
+using System.Linq;
 using Content.Client.UserInterface.Fragments;
 using Content.Shared._NF.BountyContracts;
 using Content.Shared.CartridgeLoader;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client._NF.BountyContracts.UI;
 
@@ -11,6 +13,7 @@ public sealed partial class BountyContractUi : UIFragment
 {
     private BountyContractUiFragment? _fragment;
     private BoundUserInterface? _userInterface;
+    private ProtoId<BountyContractCollectionPrototype>? _lastCollection;
 
     public override Control GetUIFragmentRoot()
     {
@@ -57,16 +60,34 @@ public sealed partial class BountyContractUi : UIFragment
     private void ShowListState(BountyContractListUiState state)
     {
         UnloadPreviousState();
+        var tabs = new BountyContractUiFragmentTabSet();
+        tabs.OnSelectCollection += OnSelectCollection;
+        foreach (var collection in state.Collections)
+        {
+            int newTabIndex = tabs.Children.Count();
+            if (collection == state.Collection)
+            {
+                var list = new BountyContractUiFragmentList();
+                list.OnCreateButtonPressed += OnOpenCreateUiPressed;
+                list.OnRefreshButtonPressed += OnRefreshListPressed;
+                list.OnRemoveButtonPressed += OnRemovePressed;
 
-        var list = new BountyContractUiFragmentList();
-        list.OnCreateButtonPressed += OnOpenCreateUiPressed;
-        list.OnRefreshButtonPressed += OnRefreshListPressed;
-        list.OnRemoveButtonPressed += OnRemovePressed;
+                list.SetContracts(state.Contracts, state.IsAllowedRemoveBounties);
+                list.SetCanCreate(state.IsAllowedCreateBounties);
+                tabs.Children.Add(list);
 
-        list.SetContracts(state.Contracts, state.IsAllowedRemoveBounties);
-        list.SetCanCreate(state.IsAllowedCreateBounties);
+                tabs.CurrentTab = newTabIndex;
+                tabs.SetTabCollection(newTabIndex, collection);
+            }
+            else
+            {
+                var placeholder = new BountyContractUiFragmentListPlaceholder();
+                tabs.Children.Add(placeholder);
+            }
+        }
 
-        _fragment?.AddChild(list);
+        _fragment?.AddChild(tabs);
+        _lastCollection = state.Collection;
     }
 
     // UI event handlers
@@ -75,19 +96,24 @@ public sealed partial class BountyContractUi : UIFragment
         SendMessage(new BountyContractTryRemoveMessageEvent(obj.ContractId));
     }
 
+    private void OnSelectCollection(ProtoId<BountyContractCollectionPrototype> collection)
+    {
+        SendMessage(MakeCommand(BountyContractCommand.RefreshList, collection));
+    }
+
     private void OnRefreshListPressed()
     {
-        SendMessage(MakeCommand(BountyContractCommand.RefreshList));
+        SendMessage(MakeCommand(BountyContractCommand.RefreshList, _lastCollection));
     }
 
     private void OnOpenCreateUiPressed()
     {
-        SendMessage(MakeCommand(BountyContractCommand.OpenCreateUi));
+        SendMessage(MakeCommand(BountyContractCommand.OpenCreateUi, _lastCollection));
     }
 
     private void OnCancelCreatePressed()
     {
-        SendMessage(MakeCommand(BountyContractCommand.CloseCreateUi));
+        SendMessage(MakeCommand(BountyContractCommand.CloseCreateUi, _lastCollection));
     }
 
     private void OnTryCreatePressed(BountyContractRequest contract)
@@ -96,9 +122,9 @@ public sealed partial class BountyContractUi : UIFragment
     }
 
     // Convenience functions for message creation
-    private BountyContractCommandMessageEvent MakeCommand(BountyContractCommand command)
+    private BountyContractCommandMessageEvent MakeCommand(BountyContractCommand command, ProtoId<BountyContractCollectionPrototype>? collection)
     {
-        return new BountyContractCommandMessageEvent(command);
+        return new BountyContractCommandMessageEvent(command, collection);
     }
 
     private void SendMessage(CartridgeMessageEvent msg)

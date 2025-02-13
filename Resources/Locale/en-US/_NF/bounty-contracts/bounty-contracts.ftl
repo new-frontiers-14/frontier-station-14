@@ -17,6 +17,10 @@ bounty-contracts-program-name = Bounty Contracts
 bounty-contracts-radio-name = Bounty Contracts Service
 bounty-contracts-radio-create = New bounty placed for "{$target}". Reward: {$reward}$.
 
+## Contract collection names
+bounty-contract-collection-name-command = Command
+bounty-contract-collection-name-public = Public
+
 ## UI - List contracts
 bounty-contracts-ui-list-no-contracts = No bounties posted yet...
 bounty-contracts-ui-list-no-description = No additional description provided...
@@ -26,6 +30,7 @@ bounty-contracts-ui-list-category = Category: {$category}
 bounty-contracts-ui-list-vessel = Vessel: {$vessel}
 bounty-contracts-ui-list-author = Posted by: {$author}
 bounty-contracts-ui-list-remove = Remove
+bounty-contracts-ui-list-loading = Loading...
 
 ## UI - Create contract
 bounty-contracts-ui-create-category = Category:{" "}

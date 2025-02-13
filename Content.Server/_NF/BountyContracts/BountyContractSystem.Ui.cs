@@ -48,20 +48,15 @@ public sealed partial class BountyContractSystem
     private BountyContractListUiState GetListState(Entity<BountyContractsCartridgeComponent> cartridge, EntityUid loaderUid)
     {
         var contracts = GetPermittedContracts(cartridge, loaderUid, out var newCollection).ToList();
-        var isAllowedCreate = false;
-        var isAllowedRemove = false;
-        if (newCollection != null)
-        {
-            isAllowedCreate = HasWriteAccess(loaderUid, newCollection.Value);
-            isAllowedRemove = HasDeleteAccess(loaderUid, newCollection.Value);
-        }
+        var isAllowedCreate = newCollection != null ? HasWriteAccess(loaderUid, newCollection.Value) : false;
+        var isAllowedRemove = newCollection != null ? HasDeleteAccess(loaderUid, newCollection.Value) : false;
         if (cartridge.Comp.Collection != newCollection)
         {
             cartridge.Comp.Collection = newCollection;
             Dirty(cartridge);
         }
 
-        return new BountyContractListUiState(newCollection, contracts, isAllowedCreate, isAllowedRemove);
+        return new BountyContractListUiState(newCollection, GetReadableCollections(loaderUid), contracts, isAllowedCreate, isAllowedRemove);
     }
 
     private BountyContractCreateUiState GetCreateState()
@@ -74,7 +69,7 @@ public sealed partial class BountyContractSystem
         var allStations = EntityQuery<StationRecordsComponent, MetaDataComponent>();
         foreach (var (records, meta) in allStations)
         {
-            // get station IC name - it's vessel name
+            // get station IC name - its vessel name
             var name = meta.EntityName;
             vessels.Add(name);
 

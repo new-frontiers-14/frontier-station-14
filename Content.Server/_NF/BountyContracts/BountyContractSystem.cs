@@ -51,6 +51,33 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         return bountyContracts;
     }
 
+    // Returns a list of all readable collections that a user can see.
+    private List<ProtoId<BountyContractCollectionPrototype>> GetReadableCollections(EntityUid user, BountyContractDataComponent? bounties = null)
+    {
+        var returnList = new List<ProtoId<BountyContractCollectionPrototype>>();
+        if (bounties == null)
+        {
+            bounties = GetContracts();
+            // Nothing to read from, no read access
+            if (bounties == null)
+                return returnList;
+        }
+
+        if (bounties.Contracts == null)
+            return returnList;
+
+        var accessTags = _accessReader.FindAccessTags(user);
+        foreach (var collection in bounties.Contracts.Keys)
+        {
+            if (!_proto.TryIndex(collection, out var collectionProto))
+                continue;
+
+            if (_accessUtils.IsAllowed(accessTags, collectionProto.ReadAccess, collectionProto.ReadGroups))
+                returnList.Add(collection);
+        }
+        return returnList;
+    }
+
     private bool HasReadAccess(EntityUid user, ProtoId<BountyContractCollectionPrototype> collection, BountyContractDataComponent? bounties = null)
     {
         if (bounties == null)
@@ -120,11 +147,12 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         bool postToRadio = true)
     {
         var data = GetContracts();
-        if (data == null)
+        if (data == null
+            || data.Contracts == null
+            || !data.Contracts.TryGetValue(collection, out var contracts))
+        {
             return null;
-
-        if (!data.Contracts.TryGetValue(collection, out var contracts))
-            return null;
+        }
 
         // create a new contract
         var contractId = data.LastId++;
@@ -161,7 +189,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     {
         contract = null;
         var data = GetContracts();
-        if (data == null)
+        if (data == null || data.Contracts == null)
             return false;
 
         // Linear w.r.t. collections, but should be a small collection
@@ -182,7 +210,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         newCollection = null;
         var data = GetContracts();
 
-        if (data == null)
+        if (data == null || data.Contracts == null)
             return Enumerable.Empty<BountyContract>();
 
         if (cartridge.Comp.Collection != null)
@@ -215,7 +243,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     public bool RemoveBountyContract(uint contractId)
     {
         var data = GetContracts();
-        if (data == null)
+        if (data == null || data.Contracts == null)
             return false;
 
         foreach (var collection in data.Contracts.Values)
