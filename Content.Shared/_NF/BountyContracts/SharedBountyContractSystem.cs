@@ -84,26 +84,29 @@ public sealed class BountyContract
 [NetSerializable, Serializable]
 public sealed class BountyContractCreateUiState : BoundUserInterfaceState
 {
+    public readonly ProtoId<BountyContractCollectionPrototype> Collection;
     public readonly List<BountyContractTargetInfo> Targets;
     public readonly List<string> Vessels;
 
     public BountyContractCreateUiState(
+        ProtoId<BountyContractCollectionPrototype> collection,
         List<BountyContractTargetInfo> targets,
         List<string> vessels)
     {
+        Collection = collection;
         Targets = targets;
         Vessels = vessels;
     }
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractListUiState(ProtoId<BountyContractCollectionPrototype>? collection,
+public sealed class BountyContractListUiState(ProtoId<BountyContractCollectionPrototype> collection,
         List<ProtoId<BountyContractCollectionPrototype>> collections,
         List<BountyContract> contracts,
         bool isAllowedCreateBounties,
         bool isAllowedRemoveBounties) : BoundUserInterfaceState
 {
-    public readonly ProtoId<BountyContractCollectionPrototype>? Collection = collection;
+    public readonly ProtoId<BountyContractCollectionPrototype> Collection = collection;
     public readonly List<ProtoId<BountyContractCollectionPrototype>> Collections = collections;
     public readonly List<BountyContract> Contracts = contracts;
     public readonly bool IsAllowedCreateBounties = isAllowedCreateBounties;
@@ -118,9 +121,9 @@ public enum BountyContractCommand : byte
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractCommandMessageEvent(BountyContractCommand command, ProtoId<BountyContractCollectionPrototype>? collection) : CartridgeMessageEvent
+public sealed class BountyContractCommandMessageEvent(BountyContractCommand command, ProtoId<BountyContractCollectionPrototype> collection) : CartridgeMessageEvent
 {
-    public readonly ProtoId<BountyContractCollectionPrototype>? Collection = collection;
+    public readonly ProtoId<BountyContractCollectionPrototype> Collection = collection;
     public readonly BountyContractCommand Command = command;
 }
 

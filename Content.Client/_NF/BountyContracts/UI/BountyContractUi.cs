@@ -13,7 +13,7 @@ public sealed partial class BountyContractUi : UIFragment
 {
     private BountyContractUiFragment? _fragment;
     private BoundUserInterface? _userInterface;
-    private ProtoId<BountyContractCollectionPrototype>? _lastCollection;
+    private ProtoId<BountyContractCollectionPrototype> _lastCollection = "Command"; //FIXME: nasty.
 
     public override Control GetUIFragmentRoot()
     {
@@ -47,7 +47,7 @@ public sealed partial class BountyContractUi : UIFragment
     {
         UnloadPreviousState();
 
-        var create = new BountyContractUiFragmentCreate();
+        var create = new BountyContractUiFragmentCreate(state.Collection);
         create.OnCancelPressed += OnCancelCreatePressed;
         create.OnCreatePressed += OnTryCreatePressed;
 
@@ -83,6 +83,7 @@ public sealed partial class BountyContractUi : UIFragment
             {
                 var placeholder = new BountyContractUiFragmentListPlaceholder();
                 tabs.Children.Add(placeholder);
+                tabs.SetTabCollection(newTabIndex, collection);
             }
         }
 
@@ -122,7 +123,7 @@ public sealed partial class BountyContractUi : UIFragment
     }
 
     // Convenience functions for message creation
-    private BountyContractCommandMessageEvent MakeCommand(BountyContractCommand command, ProtoId<BountyContractCollectionPrototype>? collection)
+    private BountyContractCommandMessageEvent MakeCommand(BountyContractCommand command, ProtoId<BountyContractCollectionPrototype> collection)
     {
         return new BountyContractCommandMessageEvent(command, collection);
     }
