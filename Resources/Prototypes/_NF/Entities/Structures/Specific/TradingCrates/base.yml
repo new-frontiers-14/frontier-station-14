@@ -6,6 +6,8 @@
   - type: Transform
     noRot: true
   - type: TradeCrate
+    valueAtDestination: 1500
+    valueElsewhere: 400
   - type: Icon
     sprite: Structures/Storage/Crates/secure.rsi
     state: icon
@@ -18,6 +20,16 @@
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       map: ["enum.PaperLabelVisuals.Layer"]
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_other
+      offset: 0.275,-0.265
+      map: ["enum.TradeCrateVisualLayers.Icon"]
+      visible: false
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_priority_inactive
+      offset: 0.025,-0.265
+      map: ["enum.TradeCrateVisualLayers.Priority"]
+      visible: false
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: StrongMetallic
@@ -83,3 +95,35 @@
       paper_label: !type:ContainerSlot
   - type: ItemSlots
   - type: RequireProjectileTarget
+
+- type: entity
+  parent:
+  - CrateTradeBaseSecure
+  - BaseC3SyndicateContraband
+  id: CrateTradeBaseSecureContraband
+  name: Syndicate contraband crate
+  description: Contains goods made in the Spinward sector, ready to be smuggled to a cargo depot for profit. MAKE SURE THE CRATE IS INTACT.
+  abstract: true
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 400 # Very heavy
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: Contraband
+    turnInValues:
+      FrontierUplinkCoin: 3
+      Doubloon: 2
+  - type: DisableShipyardSale
+    reason: shipyard-console-contraband-onboard
+    allowedShipyardTypes:
+    - Syndicate
+    - BlackMarket
+  - type: PirateBountyItem
+    id: ContrabandCrate
