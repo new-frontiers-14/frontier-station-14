@@ -52,7 +52,8 @@ internal sealed class NFPowerSolarSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<NFSolarPanelComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<NFSolarPanelComponent, MapInitEvent>(OnPanelMapInit);
+        SubscribeLocalEvent<SolarPoweredGridComponent, MapInitEvent>(OnSolarPoweredGridMapInit);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(Reset);
         RandomizeSun();
     }
@@ -71,9 +72,18 @@ internal sealed class NFPowerSolarSystem : EntitySystem
             SunAngularVelocity = -SunAngularVelocity; // retrograde rotation(?)
     }
 
-    private void OnMapInit(EntityUid uid, NFSolarPanelComponent component, MapInitEvent args)
+    private void OnPanelMapInit(EntityUid uid, NFSolarPanelComponent component, MapInitEvent args)
     {
         UpdateSupply(uid, component);
+    }
+
+    private void OnSolarPoweredGridMapInit(EntityUid uid, SolarPoweredGridComponent component, MapInitEvent args)
+    {
+        if (component.TrackOnInit)
+        {
+            component.TargetPanelRotation = TowardsSun;
+            component.TargetPanelVelocity = SunAngularVelocity;
+        }
     }
 
     public override void Update(float frameTime)
@@ -109,8 +119,11 @@ internal sealed class NFPowerSolarSystem : EntitySystem
             var gridQuery = EntityQueryEnumerator<SolarPoweredGridComponent>();
             while (gridQuery.MoveNext(out var uid, out var gridPower))
             {
-                if (gridPower.LastUpdatedTick != _gameTiming.CurTick.Value)
+                if (!gridPower.DoNotCull &&
+                    gridPower.LastUpdatedTick != _gameTiming.CurTick.Value)
+                {
                     RemCompDeferred<SolarPoweredGridComponent>(uid);
+                }
             }
         }
     }

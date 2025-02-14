@@ -31,4 +31,18 @@ public sealed partial class SolarPoweredGridComponent : Component
     /// </summary>
     [DataField]
     public uint LastUpdatedTick = 0;
+
+    /// <summary>
+    /// If true, will initialize to the angle and velocity of the sun.
+    /// Useful to keep POIs running where players might not touch the solars.
+    /// </summary>
+    [DataField]
+    public bool TrackOnInit;
+
+    /// <summary>
+    /// If true, this component will not be culled.
+    /// Again, useful for POIs where tracking is expected.
+    /// </summary>
+    [DataField]
+    public bool DoNotCull;
 }
