@@ -1,6 +1,6 @@
 # BASE
 - type: entity
-  parent: [ MobNonHumanHostileBase, NFMobRestrictions ]
+  parent: [ NFMobRestrictions, MobNonHumanHostileBase ]
   id: BaseMobXenoExpeditions
   name: xeno
   description: They mostly come at night. Mostly.
@@ -86,6 +86,14 @@
     speechVerb: LargeMob
   - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
     molsPerSecondPerUnitMass: 0.0005
+  - type: Body # Needed for meat spike
+    prototype: Animal
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger # Needed to remove organs from body definition
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true
   - type: Tag
     tags:
     - CannotSuicide
@@ -293,4 +301,6 @@
     name: ghost-role-information-xeno-name
     description: ghost-role-information-xeno-description
     rules: ghost-role-information-xeno-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
   - type: GhostTakeoverAvailable

@@ -57,3 +57,91 @@
     Glass: 200
     Plastic: 100
     Steel: 100
+
+- type: latheRecipe
+  id: CondimentCupDispenser
+  result: CondimentCupDispenser
+  parent: BaseServiceItemsRecipe
+  applyMaterialDiscount: false
+
+- type: latheRecipe
+  id: CondimentCup
+  result: CondimentCup
+  parent: BaseServiceItemsRecipe
+  completetime: 0.1
+  applyMaterialDiscount: false
+  materials:
+    Steel: 10
+
+- type: latheRecipe
+  id: FoodCondimentSqueezeBottleClear
+  result: FoodCondimentSqueezeBottleClear
+  parent: BaseServiceItemsRecipe
+  applyMaterialDiscount: false
+  materials:
+    Plastic: 50
+
+- type: latheRecipe
+  id: SodiumLightBulb
+  result: SodiumLightBulb
+  category: Lights
+  completetime: 2
+  materials:
+    Steel: 50
+    Glass: 50
+
+- type: latheRecipe
+  id: ExteriorLightBulb
+  result: ExteriorLightBulb
+  category: Lights
+  completetime: 2
+  materials:
+    Steel: 50
+    Glass: 50
+
+- type: latheRecipe
+  id: DrinkIceBucketEmpty
+  result: DrinkIceBucketEmpty
+  parent: BaseServiceItemsRecipe
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: DeskBell
+  result: DeskBell
+  parent: BaseServiceItemsRecipe
+  completetime: 2
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  id: BrbSign
+  result: BrbSign
+  parent: BaseServiceItemsRecipe
+  materials:
+    Cardboard: 200
+
+- type: latheRecipe
+  id: DrinkKegSteel
+  name: lathe-recipe-DrinkKegSteel-name
+  result: DrinkKegSteel
+  completetime: 2
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  id: DrinkKegPlastic
+  name: lathe-recipe-DrinkKegPlastic-name
+  result: DrinkKegPlastic
+  completetime: 2
+  materials:
+    Plastic: 300
+
+- type: latheRecipe
+  id: DrinkKegWood
+  name: lathe-recipe-DrinkKegWood-name
+  result: DrinkKegWood
+  completetime: 2
+  materials:
+    Wood: 300

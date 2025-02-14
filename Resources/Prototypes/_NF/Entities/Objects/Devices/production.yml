@@ -88,8 +88,8 @@
 - type: entity
   id: NfsdTechFabCircuitboard
   parent: SecurityTechFabCircuitboard
-  name: nfsd techfab machine board
-  description: A machine printed circuit board for an nfsd techfab.
+  name: NFSD techfab machine board
+  description: A machine printed circuit board for an NFSD techfab.
   components:
     - type: Sprite
       sprite: _NF/Objects/Misc/module.rsi
@@ -113,7 +113,7 @@
 - type: entity
   id: ThrusterNfsdMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: nfsd thruster machine board
+  name: NFSD thruster machine board
   components:
   - type: MachineBoard
     prototype: ThrusterNfsd
@@ -171,7 +171,7 @@
 - type: entity
   id: GyroscopeNfsdMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: nfsd gyroscope machine board
+  name: NFSD gyroscope machine board
   components:
   - type: MachineBoard
     prototype: GyroscopeNfsd
@@ -184,7 +184,7 @@
 - type: entity
   id: SmallGyroscopeNfsdMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: small nfsd gyroscope machine board
+  name: small NFSD gyroscope machine board
   components:
   - type: MachineBoard
     prototype: SmallGyroscopeNfsd
@@ -348,3 +348,30 @@
       stackRequirements:
         Steel: 5
         Plastic: 5
+
+- type: entity
+  id: CondimentDispenserCircuitboard
+  parent: BaseMachineCircuitboard  
+  name: condiment dispenser machine board
+  description: A machine printed circuit board for a condiment dispenser.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: CondimentDispenserEmpty
+      requirements:
+        MatterBin: 1
+      stackRequirements:
+        Steel: 5
+      tagRequirements:
+          GlassBeaker:
+            amount: 1
+            defaultPrototype: Beaker
+
+- type: entity
+  parent: StationAnchorCircuitboard
+  id: MiniStationAnchorCircuitboard
+  name: mini station anchor machine board
+  components:
+  - type: MachineBoard
+    prototype: MiniStationAnchor

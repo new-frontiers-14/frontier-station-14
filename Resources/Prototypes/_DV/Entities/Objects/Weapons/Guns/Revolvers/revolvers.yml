@@ -1,0 +1,67 @@
+- type: entity
+  name: Fitz Special
+  parent: [BaseWeaponRevolver, BaseC1Contraband]
+  id: WeaponRevolverFitz
+  description: A compact and concealable self defence snub revolver. Uses .45 ammo.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/fitz.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/fitz.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.75
+    availableModes:
+    - SemiAuto
+  - type: RevolverAmmoProvider
+    proto: CartridgeMagnum
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+  - type: StaticPrice
+    price: 340
+
+- type: entity
+  name: Faith
+  parent: [BaseWeaponRevolver, BaseC1Contraband]
+  id: WeaponRevolverFaith
+  description: Delivers blessings in bullet form. Uses .45 ammo.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/faith.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/faith.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.5
+    availableModes:
+    - SemiAuto
+  - type: RevolverAmmoProvider
+    proto: CartridgeMagnum
+    capacity: 4
+    chambers: [ True, True, True, True ]
+    ammoSlots: [ null, null, null, null ]
+  - type: StaticPrice
+    price: 240
+
+- type: entity
+  name: Lucky 37
+  parent: [BaseWeaponRevolver, BaseC1Contraband]
+  id: WeaponRevolverLucky
+  description: Luck always beats skill, ya weasel. Uses .45 ammo.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/lucky.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/lucky.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 2
+    availableModes:
+    - SemiAuto
+  - type: RevolverAmmoProvider
+    proto: CartridgeMagnum
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+  - type: StaticPrice
+    price: 750
