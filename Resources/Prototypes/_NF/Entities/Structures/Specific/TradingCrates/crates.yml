@@ -1,0 +1,139 @@
+- type: entity
+  parent: CrateTradeBaseSecure
+  id: CrateTradeBaseSecureNormal
+  abstract: true
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/tradedark.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/tradedark.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 150 # Heavy
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  parent: CrateTradeBaseSecure
+  id: CrateTradeBaseSecureHigh
+  abstract: true
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/tradelight.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/tradelight.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 400 # Very heavy
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
+  parent:
+  - CrateTradeBaseSecure
+  - BaseC3SyndicateContraband
+  id: CrateTradeBaseSecureContraband
+  name: Syndicate contraband crate
+  description: Contains goods made in the Spinward sector, ready to be smuggled to a cargo depot for profit. MAKE SURE THE CRATE IS INTACT.
+  abstract: true
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 400 # Very heavy
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: Contraband
+    turnInValues:
+      FrontierUplinkCoin: 3
+      Doubloon: 2
+  - type: DisableShipyardSale
+    reason: shipyard-console-contraband-onboard
+    allowedShipyardTypes:
+    - Syndicate
+    - BlackMarket
+  - type: PirateBountyItem
+    id: ContrabandCrate
+
+- type: entity
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/contraband1_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/contraband1_crate.rsi
+  - type: StaticPrice
+    price: 3000
+
+- type: entity
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/contraband2_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/contraband2_crate.rsi
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/contraband3_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/contraband3_crate.rsi
+  - type: StaticPrice
+    price: 7500
+
+- type: entity
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure4
+  name: Donk Co. contraband crate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
+  - type: StaticPrice
+    price: 15000
+
+- type: entity
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure5
+  name: Cybersun Industries contraband crate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
+  - type: StaticPrice
+    price: 15000
