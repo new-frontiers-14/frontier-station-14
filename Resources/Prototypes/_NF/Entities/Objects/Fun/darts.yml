@@ -3,6 +3,8 @@
   id: NFDartTracking
   parent: Dart
   components:
+  - type: ThrowingAngle
+    angle: 0
   - type: EmbeddableProjectile
     embedOnThrow: false
     sound: /Audio/Weapons/star_hit.ogg
@@ -20,6 +22,7 @@
     muzzleFlash: null
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Projectiles/tracking_dart.rsi
+    rotation: -45
     layers:
     - state: icon
       map: [ base ]
