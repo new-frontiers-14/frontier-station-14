@@ -27,7 +27,7 @@
     - type: RandomEntityPopulator
       entries:
       - params:
-          prob: 0.66
+          prob: 0.5
           min: 1
           max: 2
           canBeAirSealed: true
@@ -77,12 +77,18 @@
       - params:
           prob: 0.66
           min: 1
-          max: 2
+          max: 4
           canBeAirSealed: true
         entries:
+        - id: GasDepositOxygen
+          orGroup: deposit
         - id: GasDepositOxygenLarge
           orGroup: deposit
+        - id: GasDepositNitrogen
+          orGroup: deposit
         - id: GasDepositNitrogenLarge
+          orGroup: deposit
+        - id: GasDepositAir
           orGroup: deposit
         - id: GasDepositAirLarge
           orGroup: deposit
@@ -239,7 +245,7 @@
     - type: RandomEntityPopulator
       entries:
       - params:
-          prob: 0.5
+          prob: 0.6
           min: 1
           max: 1
           canBeAirSealed: true
@@ -281,7 +287,7 @@
     - type: RandomEntityPopulator
       entries:
       - params:
-          prob: 0.5
+          prob: 0.4
           min: 2
           max: 6
           canBeAirSealed: true
