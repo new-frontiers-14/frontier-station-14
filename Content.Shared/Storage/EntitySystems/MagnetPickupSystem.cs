@@ -1,9 +1,9 @@
-using Content.Shared.Storage.Components; // Frontier
+using Content.Shared.Storage.Components; // Frontier: Server<Shared
 using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle; // DeltaV
-using Content.Shared.Verbs;
+using Content.Shared.Verbs; // Frontier
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
@@ -66,7 +66,7 @@ public sealed class MagnetPickupSystem : EntitySystem
             },
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
             Text = Loc.GetString("magnet-pickup-component-toggle-verb"),
-            Priority = component.MagnetTogglePriority
+            Priority = component.MagnetTogglePriority // Frontier: 3 < component.MagnetTogglePriority
         };
 
         args.Verbs.Add(verb);
@@ -108,7 +108,7 @@ public sealed class MagnetPickupSystem : EntitySystem
             if (comp.NextScan > currentTime)
                 continue;
 
-            comp.NextScan += ScanDelay;
+            comp.NextScan = currentTime + ScanDelay; // Frontier: no need to rerun if built late in-round
 
             // Frontier: combine DeltaV/White Dream's magnet toggle with old system
             if (comp.MagnetCanBeEnabled)

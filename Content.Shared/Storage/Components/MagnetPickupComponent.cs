@@ -1,7 +1,7 @@
 using Content.Shared.Inventory;
 using Robust.Shared.GameStates; // Frontier
 
-namespace Content.Shared.Storage.Components;
+namespace Content.Shared.Storage.Components; // Frontier: Server<Shared
 
 /// <summary>
 /// Applies an ongoing pickup area around the attached entity.
