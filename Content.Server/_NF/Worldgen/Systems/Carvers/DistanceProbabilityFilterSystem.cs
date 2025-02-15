@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Server._NF.Worldgen.Components.Carvers;
 using Content.Server.Worldgen.Systems.Debris;
@@ -17,7 +18,17 @@ public sealed class PointSetDistanceCarverSystem : EntitySystem
     /// <inheritdoc />
     public override void Initialize()
     {
+        SubscribeLocalEvent<WorldGenDistanceCarverComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<PointSetDistanceCarverComponent, PrePlaceDebrisFeatureEvent>(OnPrePlaceDebris);
+    }
+
+    private void OnInit(Entity<WorldGenDistanceCarverComponent> ent,
+        ref ComponentInit args)
+    {
+        ent.Comp.SquaredDistanceThresholds = ent.Comp.DistanceThresholds
+        .OrderByDescending(x => x.MaxDistance)
+        .Select(x => new WorldGenDistanceThreshold { MaxDistance = x.MaxDistance * x.MaxDistance, Prob = x.Prob })
+        .ToList();
     }
 
     private void OnPrePlaceDebris(EntityUid uid, PointSetDistanceCarverComponent component,
@@ -34,14 +45,17 @@ public sealed class PointSetDistanceCarverSystem : EntitySystem
         var query = EntityQueryEnumerator<WorldGenDistanceCarverComponent, TransformComponent>();
         while (query.MoveNext(out _, out var carver, out var xform))
         {
-            var distanceSquared = Vector2.Distance(_transform.ToMapCoordinates(xform.Coordinates).Position, coords.Position);
-            if (distanceSquared < carver.MinDistance)
+            var distanceSquared = Vector2.DistanceSquared(_transform.ToMapCoordinates(xform.Coordinates).Position, coords.Position);
+            float? newProb = null;
+            foreach (var threshold in carver.SquaredDistanceThresholds)
             {
-                args.Handled = true;
-                return;
+                if (distanceSquared > threshold.MaxDistance)
+                    break;
+
+                newProb = threshold.Prob;
             }
-            if (distanceSquared < carver.MaxDistance)
-                prob = Math.Min(prob, (distanceSquared - carver.MinDistance) / (carver.MaxDistance - carver.MinDistance));
+            if (newProb != null)
+                prob = float.Min(prob, newProb.Value);
         }
 
         if (!_random.Prob(prob))
