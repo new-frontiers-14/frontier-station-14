@@ -51,13 +51,13 @@
   name: H.Y.P.E.R.P.A.C.M.A.N.-type portable generator
   description: |-
     Next gen generator for powering stations.
-    Runs off bananium and is rated for up to 100 kW.
+    Runs off bananium and is rated for up to 120 kW.
     Very radioactive without protection.
   parent:
   - PortableGeneratorSuperPacman
   - BaseC3Contraband # Why will you have this thing?
   id: PortableGeneratorHyperPacman
-  suffix: Bananium, 60 kW
+  suffix: Bananium, 80 kW
   components:
     - type: Sprite
       sprite: _NF/Structures/Power/Generation/portable_generator.rsi
@@ -82,9 +82,9 @@
       board: PortableGeneratorHyperPacmanMachineCircuitboard
     - type: FuelGenerator
       minTargetPower: 10000
-      maxTargetPower: 100000
-      targetPower: 60000
-      optimalPower: 60000
+      maxTargetPower: 120000
+      targetPower: 80000
+      optimalPower: 80000
       # 15 minutes per stack at full power
       optimalBurnRate: 0.005
       # still decent power curve
