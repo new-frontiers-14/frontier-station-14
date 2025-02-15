@@ -76,6 +76,8 @@ namespace Content.Server.IoC
             IoCManager.Register<PlayerRateLimitManager>();
             IoCManager.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             IoCManager.Register<MappingManager>();
+            IoCManager.Register<IWatchlistWebhookManager, WatchlistWebhookManager>();
+            IoCManager.Register<ConnectionManager>();
             IoCManager.Register<MiniAuthManager>(); //Frontier
             IoCManager.Register<RMCDiscordManager>(); // RMC14
             IoCManager.Register<MentorManager>(); // RMC14
