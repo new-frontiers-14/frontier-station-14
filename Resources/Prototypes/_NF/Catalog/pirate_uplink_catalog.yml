@@ -139,6 +139,25 @@
         - PirateCaptain
 
 - type: listing
+  id: UplinkPirateTechfab
+  name: uplink-pirate-techfab-name
+  description: uplink-pirate-techfab-desc
+  productEntity: PirateTechFabCircuitboardNF
+  icon: { sprite: _NF/Objects/Misc/module.rsi, state: pirate }
+  cost:
+    Doubloon: 5
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - PirateCaptain
+
+- type: listing
   id: UplinkPirateBlunderbuss
   name:  uplink-pirate-blunderbuss-name
   description: uplink-pirate-blunderbuss-desc

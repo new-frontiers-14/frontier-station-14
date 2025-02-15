@@ -1056,6 +1056,215 @@
       - MagazineBoxRifleUranium
 
 - type: entity
+  id: PirateTechFab
+  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  name: pirate techfab
+  description: Prints the bare essentials any budget pirate could need. Nothin’ fancy, just the basics to get the job done!
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: pirate
+    - state: unlit-p
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel-p
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: PirateTechFabCircuitboardNF
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+      ## Basic tools
+      - Wirecutter
+      - Screwdriver
+      - Welder
+      - Wrench
+      - CrowbarGreen
+      - Multitool
+      - HandLabeler
+      - Signaller
+      - ClothingMaskWeldingGas
+      - AppraisalTool
+      ## Basic parts
+      - CableStack
+      - LightTube
+      - LedLightTube
+      - LightTubeCrystalRed
+      - SodiumLightTube
+      - ExteriorLightTube
+      - LightBulb
+      - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
+      - ConveyorBeltAssembly
+      - PowerCellSmall
+      - PowerCellMedium
+      ## Basic electronics
+      - SignalTimerElectronics
+      - CellRechargerCircuitboard
+      - BorgChargerCircuitboard
+      - WeaponCapacitorRechargerCircuitboard
+      - AirTank
+      # Pirate techfab
+      ## Utilities
+      - PinpointerUniversalNF
+      ## Tool
+      - Bucket
+      - Beaker
+      - MopItem
+      - HandHeldMassScanner
+      ## Clothing / Armor
+      - ClothingNeckIFFRed
+      - ClothingHandsGlovesCombat
+      - ClothingShoesBootsPirate
+      - ClothingUniformJumpsuitPirate
+      - ClothingUniformJumpsuitPirateSlops
+      - ClothingOuterCoatPirate
+      - ClothingHeadHatPirates
+      - ClothingHeadHatPirate
+      - ClothingEyesEyepatch
+      - Handcuffs
+      - Zipties
+      - ClothingEyesGlassesSunglasses
+      - UtilityBelt
+      - ClothingMaskGasExplorer
+      - ClothingBeltBandolier
+      - ClothingBeltHolster
+      ## Parts
+      - MicroManipulatorStockPart
+      - MatterBinStockPart
+      - CapacitorStockPart
+      - Igniter
+      - CableMVStack
+      - CableHVStack
+      ## Storage
+      - MedkitCombat
+      - WeaponCaseShort
+      - WeaponCaseLong
+      - WeaponCaseHeavy
+      - WeaponCaseShortAmmo
+      - WeaponCaseShortExplosives
+      ## Weapons
+      - BolaNF
+      - WeaponGrapplingGun
+      - WeaponLaserSvalinn
+      - WeaponLaserGun
+      - CombatKnife
+      - Cutlass
+      - WeaponRifleNovaliteC1
+      - WeaponRifleGestio
+      - Stunbaton
+      ## Ammo boxes
+      - BoxLethalshot
+      - BoxShotgunSlug
+      - MagazineBoxMagnum
+      - MagazineBoxLightRifle
+      - MagazineBoxRifle
+      - MagazineBoxPistol
+      - MagazineBoxLightRifleRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxRifleRubber
+      ## Mags / Speedloaders / Clips
+      - MagazineShotgun
+      - MagazineShotgunEmpty
+      - MagazineShotgunSlug
+      - MagazineShotgunBeanbag
+      - MagazineNovaliteC1Empty
+      - MagazineNovaliteC1
+      - MagazineLightRifleLowCapacityEmpty
+      - MagazineLightRifleLowCapacity
+      - MagazineLightRifleLowCapacityRubber
+      - MagazineLightRifle
+      - MagazineLightRifleEmpty
+      - MagazineRifle
+      - MagazineRifleEmpty
+      - MagazinePistol
+      - MagazinePistolEmpty
+      - SpeedLoaderRifleHeavy
+      - SpeedLoaderRifleHeavyEmpty
+      - SpeedLoaderRifleHeavyRubber
+      - SpeedLoaderMagnum
+      - SpeedLoaderMagnumEmpty
+      - SpeedLoaderMagnumRubber
+      - MagazineRifleRubber
+      - BoxBeanbag
+      - MagazinePistolRubber
+      - MagazineLightRifleRubber
+      ## Misc
+      - BodyBag
+    dynamicRecipes:
+      ## EVA / Hardsuits
+      - ClothingShoesBootsMagCombat
+      ## Clothing
+      - ClothingBackpackHolding
+      - ClothingBackpackSatchelHolding
+      - ClothingBackpackDuffelHolding
+      - ClothingBackpackMessengerHolding
+      ## Advanced tools
+      - JetpackVoid
+      - PowerCellHigh
+      - PowerCellMicroreactor
+      ## Utilities
+      - FlashlightSecliteNF
+      - ShipyardRCD
+      - ShipyardRCDAmmo
+      ## Weapons
+      - WeaponAntiqueLaserNF
+      - PortableRecharger
+      - WeaponAdvancedLaser
+      - WeaponXrayCannon
+      - WeaponLaserCannon
+      - KukriKnifeNF
+      - ChemicalPayload
+      - FlashPayload
+      - ExplosivePayload
+      - SignalTrigger
+      - VoiceTrigger
+      - TimerTrigger
+      - KatanaNF
+      - WeaponShotgunKammererNF
+      - WeaponLaserCarbine
+      - WeaponDisablerSMG
+      - PowerCageRechargerCircuitboard
+      - PowerCageHigh
+      - PowerCageMedium
+      - PowerCageSmall
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+      - CannonBallEmpNF
+      - CannonBallNF
+      - CannonBallGlassshotNF
+      - CannonBallGrapeshotNF
+      - BoxShotgunIncendiary
+      - BoxShotgunUranium
+      - MagazineBoxLightRifleIncendiary
+      - MagazineBoxLightRifleUranium
+      - MagazineBoxMagnumIncendiary
+      - MagazineBoxMagnumUranium
+      - MagazineBoxPistolIncendiary
+      - MagazineBoxPistolUranium
+      - MagazineBoxRifleIncendiary
+      - MagazineBoxRifleUranium
+      - MagazineLightRifleIncendiary
+      - MagazineLightRifleUranium
+      - MagazinePistolIncendiary
+      - MagazinePistolUranium
+      - MagazineRifleIncendiary
+      - MagazineRifleUranium
+      - MagazineShotgunIncendiary
+      - SpeedLoaderMagnumIncendiary
+      - SpeedLoaderMagnumUranium
+      - SpeedLoaderRifleHeavyIncendiary
+      - SpeedLoaderRifleHeavyUranium
+
+- type: entity
   parent: [BaseStructureDisableToolUse, BaseLathe]
   id: PrizeCounter
   name: prize counter

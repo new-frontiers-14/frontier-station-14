@@ -838,6 +838,23 @@
 
 - type: entity
   parent: UniformPrinterFlatpack
+  id: PirateTechFabFlatpack
+  name: pirate techfab flatpack
+  description: A flatpack soaked in rum, meant for buildin’ a Pirate Techfab.
+  components:
+  - type: Sprite
+    layers:
+    - state: pirate_lathe
+  - type: Flatpack
+    entity: PirateTechFab
+  - type: StaticPrice
+    price: 250
+  - type: Item
+    shape:
+    - 0,0,1,1
+
+- type: entity
+  parent: UniformPrinterFlatpack
   id: JukeboxFlatpack
   name: jukebox flatpack
   description: A flatpack used for constructing a jukebox.

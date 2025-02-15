@@ -1,0 +1,32 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseWeaponRecipe
+  id: NFBaseWeaponRecipe
+  applyMaterialDiscount: false
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseWeaponRecipeLong
+  id: NFBaseWeaponRecipeLong
+  applyMaterialDiscount: false
+
+# Recipes
+
+- type: latheRecipe
+  parent: NFBaseWeaponRecipeLong
+  id: NFWeaponLaserGun
+  result: WeaponLaserGun
+  materials:
+    Steel: 1500
+    Glass: 500
+    Plastic: 450
+
+- type: latheRecipe
+  parent: NFBaseWeaponRecipe
+  id: Cutlass
+  result: Cutlass
+  materials:
+    Steel: 250
+    Plastic: 100

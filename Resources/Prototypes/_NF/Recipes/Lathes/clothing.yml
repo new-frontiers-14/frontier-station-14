@@ -16,6 +16,13 @@
 
 - type: latheRecipe
   abstract: true
+  id: NFBaseHatRecipe
+  parent: BaseHatRecipe
+  category: ClothesNF
+  applyMaterialDiscount: false
+
+- type: latheRecipe
+  abstract: true
   id: NFBaseBeltRecipe
   parent: NFBaseJumpsuitRecipe
   materials:
@@ -40,6 +47,17 @@
 
 # Recipes
 
+# Hat
+- type: latheRecipe
+  id: ClothingHeadHatPirates
+  parent: NFBaseHatRecipe
+  result: ClothingHeadHatPirates
+
+- type: latheRecipe
+  id: ClothingHeadHatPirate
+  parent: NFBaseHatRecipe
+  result: ClothingHeadHatPirate
+
 # Jumpsuits
 - type: latheRecipe
   id: ClothingUniformRandomPunkTanktop
@@ -61,6 +79,16 @@
   parent: NFBaseJumpsuitRecipe
   result: ClothingUniformRandomPunkCroptopShorts
 
+- type: latheRecipe
+  id: ClothingUniformJumpsuitPirate
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitPirate
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitPirateSlops
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitPirateSlops
+
 # Coats
 - type: latheRecipe
   id: ClothingOuterCoatBomberRandomized
@@ -71,6 +99,11 @@
   id: ClothingOuterCoatLettermanRandomized
   parent: NFBaseCoatRecipe
   result: ClothingOuterCoatLettermanRandomized
+
+- type: latheRecipe
+  id: ClothingOuterCoatPirate
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatPirate
 
 # Belts / Webbings
 - type: latheRecipe
@@ -97,6 +130,11 @@
   id: ClothingBeltPunkRandomized
   parent: NFBaseBeltRecipe
   result: ClothingBeltPunkRandomized
+
+- type: latheRecipe
+  id: ClothingBeltHolster
+  parent: NFBaseBeltRecipe
+  result: ClothingBeltHolster
 
 # Gloves
 - type: latheRecipe
@@ -130,6 +168,11 @@
   parent: NFBaseBootRecipe
   result: ClothingShoesBootsPunkRandomized
 
+- type: latheRecipe
+  id: ClothingShoesBootsPirate
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsPirate   
+
 # Glasses
 - type: latheRecipe
   id: ClothingEyesGlassesMercenary
@@ -155,3 +198,12 @@
   id: ClothingEyesPunkInfoShades
   parent: NFBaseWearableDeviceRecipe
   result: ClothingEyesPunkInfoShades
+
+# Eye misc
+- type: latheRecipe
+  id: ClothingEyesEyepatch
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingEyesEyepatch
+  completetime: 2
+  materials:
+    Cloth: 100
