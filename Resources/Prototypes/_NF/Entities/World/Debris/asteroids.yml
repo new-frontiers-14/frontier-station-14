@@ -25,10 +25,10 @@
     - type: IFF
       color: "#d67e27"
     - type: RandomEntityPopulator
-      entries: &gasDeposits
+      entries:
       - params:
           prob: 0.5
-          min: 0
+          min: 1
           max: 2
           canBeAirSealed: true
         entries:
@@ -39,12 +39,6 @@
         - id: GasDepositCarbonDioxide
           orGroup: deposit
         - id: GasDepositPlasma
-          orGroup: deposit
-        - id: GasDepositAmmonia
-          orGroup: deposit
-        - id: GasDepositWaterVapor
-          orGroup: deposit
-        - id: GasDepositNitrousOxide
           orGroup: deposit
         - id: GasDepositAir
           orGroup: deposit
@@ -79,7 +73,29 @@
     - type: IFF
       color: "#d6fffc"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.66
+          min: 1
+          max: 4
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositOxygen
+          orGroup: deposit
+        - id: GasDepositOxygenLarge
+          orGroup: deposit
+        - id: GasDepositNitrogen
+          orGroup: deposit
+        - id: GasDepositNitrogenLarge
+          orGroup: deposit
+        - id: GasDepositAir
+          orGroup: deposit
+        - id: GasDepositAirLarge
+          orGroup: deposit
+        - id: GasDepositWaterVaporVeryLarge
+          orGroup: deposit
+        - id: GasDepositWaterVaporLarge
+          orGroup: deposit
 # endregion Snow Table
 
 # region Andesite Table
@@ -107,7 +123,19 @@
     - type: IFF
       color: "#95c280"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.33
+          min: 1
+          max: 1
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositNitrousOxide
+          orGroup: deposit
+        - id: GasDepositCarbonDioxide
+          orGroup: deposit
+        - id: GasDepositAmmonia
+          orGroup: deposit
 # endregion Andesite Table
 
 # region Basalt Table
@@ -135,7 +163,19 @@
     - type: IFF
       color: "#b5b5b5"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.5
+          min: 4
+          max: 6
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositPlasmaVerySmall
+          orGroup: deposit
+        - id: GasDepositMuddlePlasmaVerySmall
+          orGroup: deposit
+        - id: GasDepositMuddleEvenVerySmall
+          orGroup: deposit
 # endregion Basalt Table
 
 # region Sand Table
@@ -163,7 +203,19 @@
     - type: IFF
       color: "#cad17b"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.5
+          min: 2
+          max: 4
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositCarbonDioxideSmall
+          orGroup: deposit
+        - id: GasDepositAmmonia
+          orGroup: deposit
+        - id: GasDepositNitrogenLarge
+          orGroup: deposit
 # endregion Sand Table
 
 # region Chromite Table
@@ -191,7 +243,21 @@
     - type: IFF
       color: "#8178cc"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.6
+          min: 1
+          max: 1
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositOxygenVeryLarge
+          orGroup: deposit
+        - id: GasDepositMuddleEvenVeryLarge
+          orGroup: deposit
+        - id: GasDepositNitrogenVeryLarge
+          orGroup: deposit
+        - id: GasDepositAirVeryLarge
+          orGroup: deposit
 # endregion Chromite Table
 
 # region AsteroidRock Table
@@ -219,7 +285,21 @@
     - type: IFF
       color: "#BF8C5C"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.4
+          min: 2
+          max: 6
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositNitrousOxideSmall
+          orGroup: deposit
+        - id: GasDepositMuddleEvenSmall
+          orGroup: deposit
+        - id: GasDepositCarbonDioxideSmall
+          orGroup: deposit
+        - id: GasDepositAirSmall
+          orGroup: deposit
 # endregion AsteroidRock Table
 
 # region Scrap Table
