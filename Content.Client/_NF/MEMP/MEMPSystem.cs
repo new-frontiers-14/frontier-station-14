@@ -14,7 +14,7 @@ public sealed partial class MEMPSystem : EntitySystem
     }
 
     /// <summary>
-    /// Ensures that the visible state of gravity generators are synced with their sprites.
+    /// Ensures that the visible state of mobile emps are synced with their sprites.
     /// </summary>
     private void OnAppearanceChange(EntityUid uid, SharedMEMPGeneratorComponent comp, ref AppearanceChangeEvent args)
     {

@@ -12,7 +12,7 @@ namespace Content.Server._NF.MEMP
         [DataField("lightRadiusMax")] public float LightRadiusMax { get; set; }
 
         /// <summary>
-        /// Is the gravity generator currently "producing" gravity?
+        /// Is the mobile emp currently "producing" gravity?
         /// </summary>
         [ViewVariables]
         public bool MEMPActive { get; set; } = false;
