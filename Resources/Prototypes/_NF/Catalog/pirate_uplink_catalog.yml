@@ -34,6 +34,25 @@
         - PirateCaptain
 
 - type: listing
+  id: UplinkPirateHardsuitCaptain
+  name:  uplink-pirate-accessconfigurator-captain-name
+  description: uplink-pirate-accessconfigurator-captain-desc
+  productEntity: AccessConfiguratorAntag
+  icon: { sprite: _NF/Objects/Tools/antag_access_configurator.rsi, state: icon }
+  cost:
+    Doubloon: 3
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - PirateCaptain
+
+- type: listing
   id: UplinkPirateHardsuitElite
   name:  uplink-pirate-hardsuit-elite-name
   description: uplink-pirate-hardsuit-elite-desc
