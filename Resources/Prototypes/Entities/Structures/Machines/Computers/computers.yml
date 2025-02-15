@@ -678,6 +678,7 @@
     title: comms-console-announcement-title-station
     global: true #SR WILL NOT BE IGNORED
   - type: DeviceNetwork
+    deviceNetId: Wireless # Frontier
     transmitFrequencyId: ShuttleTimer
   - type: ActivatableUI
     key: enum.CommunicationsConsoleUiKey.Key
@@ -743,6 +744,7 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi # Frontier
       state: solar_screen
     - map: ["computerLayerKeys"]
       state: generic_keys

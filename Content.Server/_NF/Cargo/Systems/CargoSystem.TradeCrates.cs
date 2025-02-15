@@ -1,5 +1,6 @@
 using System.Threading;
 using Content.Server._NF.Trade;
+using Content.Server.GameTicking;
 using Content.Shared._NF.Trade;
 using Content.Shared.Examine;
 using Timer = Robust.Shared.Timing.Timer;
@@ -8,6 +9,7 @@ namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
 
 public sealed partial class CargoSystem
 {
+    [Dependency] private GameTicker _gameTicker = default!;
     private readonly List<EntityUid> _destinations = new();
 
     private void InitializeTradeCrates()
@@ -87,7 +89,8 @@ public sealed partial class CargoSystem
             Loc.GetString("trade-crate-priority-active") :
             Loc.GetString("trade-crate-priority-inactive"));
 
-        ev.PushMarkup(Loc.GetString("trade-crate-priority-time", ("time", ent.Comp.ExpressDeliveryTime.Value.ToString(@"hh\:mm\:ss"))));
+        var shiftTime = ent.Comp.ExpressDeliveryTime - _gameTicker.RoundStartTimeSpan;
+        ev.PushMarkup(Loc.GetString("trade-crate-priority-time", ("time", shiftTime.Value.ToString(@"hh\:mm\:ss"))));
     }
 
     private void DisableTradeCratePriority(EntityUid uid)

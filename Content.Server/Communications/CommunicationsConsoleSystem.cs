@@ -284,6 +284,17 @@ namespace Content.Server.Communications
             if (!TryComp<DeviceNetworkComponent>(uid, out var net))
                 return;
 
+            // Frontier: check access for broadcast
+            if (message.Actor is { Valid: true } mob)
+            {
+                if (!CanUse(mob, uid))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("comms-console-permission-denied"), uid, message.Actor);
+                    return;
+                }
+            }
+            // End Frontier
+
             var payload = new NetworkPayload
             {
                 [ScreenMasks.Text] = message.Message
