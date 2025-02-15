@@ -28,7 +28,7 @@
     idlePower: 50
     activePower: 2500
     activateUI: true
-  - type: GravityGenerator
+  - type: MEMPGenerator
     lightRadiusMin: 0.75
     lightRadiusMax: 2.5
     spriteMap:
@@ -55,11 +55,11 @@
     snapCardinals: true
     layers:
       - state: on
-        map: ["enum.GravityGeneratorVisualLayers.Base"]
+        map: ["enum.MEMPGeneratorVisualLayers.Base"]
       - sprite: Structures/Machines/gravity_generator_core.rsi
         state: activated
         shader: unshaded
-        map: ["enum.GravityGeneratorVisualLayers.Core"]
+        map: ["enum.MEMPGeneratorVisualLayers.Core"]
         scale: "0.4,0.4"
         offset: "0,0.2"
   - type: Fixtures
@@ -94,10 +94,6 @@
     board: MEMPMachineCircuitboard
   - type: StaticPrice
     price: 300
-  - type: IntrinsicRadioReceiver
-  - type: ActiveRadio
-    channels:
-    - Nfsd
 
 # - type: entity
   # parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachinePowered, ConstructibleMachine, BaseC2ContrabandUnredeemable]

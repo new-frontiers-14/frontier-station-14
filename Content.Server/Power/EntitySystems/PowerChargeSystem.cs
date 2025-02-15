@@ -102,7 +102,7 @@ public sealed class PowerChargeSystem : EntitySystem
         component.NeedUIUpdate = true;
     }
 
-    private void OnActivate(EntityUid uid, PowerChargeComponent component,
+    private void OnActivate(EntityUid uid, PowerChargeComponent component, // Frontier
     ApcPowerReceiverComponent? powerReceiver = null, EntityUid? user = null)
     {
         if (!Resolve(uid, ref powerReceiver))
@@ -234,6 +234,7 @@ public sealed class PowerChargeSystem : EntitySystem
 
         var state = new PowerChargeState(
             component.SwitchedOn,
+            component.ActivateUI, // Frontier
             (byte) (component.Charge * 255),
             status,
             (short) Math.Round(powerReceiver.PowerReceived),

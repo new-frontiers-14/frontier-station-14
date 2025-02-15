@@ -37,6 +37,9 @@ public sealed partial class PowerChargeWindow : FancyWindow
         else
             OffButton.Pressed = true;
 
+        ActivateButton.Visible = state.Activate; // Frontier
+        ActivateButtonText.Visible = state.Activate; // Frontier
+
         PowerLabel.Text = Loc.GetString(
             "power-charge-window-power-label",
             ("draw", state.PowerDraw),
