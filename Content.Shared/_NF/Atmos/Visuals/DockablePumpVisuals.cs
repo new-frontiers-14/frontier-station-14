@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Atmos.Visuals;
+namespace Content.Shared._NF.Atmos.Visuals;
 
 [Serializable, NetSerializable]
 public enum DockablePipeVisuals : byte

@@ -10,7 +10,7 @@ tilemap:
   2: FloorGlass
   78: FloorReinforced
   90: FloorSteel
-  91: FloorSteelBurnt
+  91: FloorSteelDamaged
   97: FloorSteelDirty
   101: FloorSteelMono
   1: FloorTechMaint
@@ -24,11 +24,11 @@ entities:
     components:
     - type: MetaData
       name: Investigator
-    - type: BecomesStation
-      id: Investigator
     - type: Transform
       pos: -2.6107569,3.2554395
       parent: invalid
+    - type: BecomesStation
+      id: Investigator
     - type: MapGrid
       chunks:
         0,0:
@@ -1232,8 +1232,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-2.5
       parent: 2
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaRight
   entities:
   - uid: 296
@@ -1242,8 +1240,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-2.5
       parent: 2
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoor
   entities:
   - uid: 47
@@ -2714,19 +2710,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,0.5
       parent: 2
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: ConveyorBelt
   entities:
   - uid: 3
@@ -3785,6 +3768,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,0.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: LockerPilot
   entities:
   - uid: 537
@@ -3812,6 +3797,13 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-2.5
+      parent: 2
+- proto: NFHolopadShip
+  entities:
+  - uid: 458
+    components:
+    - type: Transform
+      pos: -2.5,-6.5
       parent: 2
 - proto: NFSignDock
   entities:
@@ -3881,19 +3873,11 @@ entities:
     - type: Transform
       pos: -2.5,2.5
       parent: 2
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
   - uid: 519
     components:
     - type: Transform
       pos: -1.5,2.5
       parent: 2
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PottedPlantRandom
   entities:
   - uid: 281
@@ -5281,7 +5265,7 @@ entities:
     - type: Transform
       pos: -5.5,0.5
       parent: 2
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 328
     components:

@@ -1,14 +1,28 @@
 - type: entity
   parent: [BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, CrateBaseWeldable]
   id: CrateTradeBaseSecure
+  abstract: true
   categories: [ HideSpawnMenu ]
   components:
   - type: TradeCrate
+    valueAtDestination: 1500
+    valueElsewhere: 400
   - type: AccessReader
     access: [["NuclearOperative"]]
   - type: Icon
     sprite: Structures/Storage/Crates/secure.rsi
-    state: icon
+    layers:
+    - state: icon
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_other
+      offset: 0.275,-0.265
+      map: ["enum.TradeCrateVisualLayers.Icon"]
+      visible: false
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_priority_inactive
+      offset: 0.025,-0.265
+      map: ["enum.TradeCrateVisualLayers.Priority"]
+      visible: false
   - type: Sprite
     sprite: Structures/Storage/Crates/secure.rsi
   - type: Damageable
@@ -35,3 +49,7 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.01 # 100 trade crates = 1 animal
+  - type: Appearance
+  - type: EntityStorage
+    capacity: 0 # stores nothing
+  - type: IgnoreMarketModifier
