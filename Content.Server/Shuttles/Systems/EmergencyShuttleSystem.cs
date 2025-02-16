@@ -388,14 +388,24 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             _deviceNetworkSystem.QueuePacket(shuttle.Value, null, payload, netComp.TransmitFrequency);
         }
 
-        // Play announcement audio.
+            _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle {ToPrettyString(stationUid)} docked with stations");
+            // TODO: Need filter extensions or something don't blame me.
+            _audio.PlayGlobal("/Audio/_NF/Announcements/PocketSizedAndy/andy1_shift_end.ogg", Filter.Broadcast(), true); // Frontier
+        }
+        else
+        {
+            if (TryComp<TransformComponent>(targetGrid.Value, out var targetXform))
+            {
+                var angle = _dock.GetAngle(stationShuttle.EmergencyShuttle.Value, xform, targetGrid.Value, targetXform, xformQuery);
+                var direction = ContentLocalizationManager.FormatDirection(angle.GetDir());
+                var location = FormattedMessage.RemoveMarkup(_navMap.GetNearestBeaconString((stationShuttle.EmergencyShuttle.Value, xform)));
+                _chatSystem.DispatchStationAnnouncement(stationUid, Loc.GetString("emergency-shuttle-nearby", ("time", $"{_consoleAccumulator:0}"), ("direction", direction), ("location", location)), playDefaultSound: false);
+            }
 
-        var audioFile = result.ResultType == ShuttleDockResultType.NoDock
-            ? "/Audio/Misc/notice1.ogg"
-            : "/Audio/Announcements/shuttle_dock.ogg";
-
-        // TODO: Need filter extensions or something don't blame me.
-        _audio.PlayGlobal(audioFile, Filter.Broadcast(), true);
+            _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle {ToPrettyString(stationUid)} unable to find a valid docking port for {ToPrettyString(stationUid)}");
+            // TODO: Need filter extensions or something don't blame me.
+            _audio.PlayGlobal("/Audio/Misc/notice1.ogg", Filter.Broadcast(), true);
+        }
     }
 
     private void OnStationInit(EntityUid uid, StationCentcommComponent component, MapInitEvent args)

@@ -120,6 +120,8 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_breaker_flip.ogg
     weight: 7
     earliestStart: 15 # Frontier
     duration: 1
@@ -271,7 +273,7 @@
     startAnnouncement: station-event-gas-leak-nf-start-announcement # Frontier: add nf-
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    endAnnouncement: station-event-gas-leak-nf-end-announcement # Frontier: add nf-
+    endAnnouncement: station-event-gas-leak-end-announcement
     weight: 8
     earliestStart: 15 # Frontier
   - type: GasLeakRule
@@ -292,7 +294,6 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    weight: 5
     earliestStart: 15 # Frontier
     startAnnouncement: station-event-power-grid-check-nf-start-announcement # Frontier: add nf-
     endAnnouncement: station-event-power-grid-check-nf-end-announcement # Frontier: add nf-
@@ -300,6 +301,13 @@
       path: /Audio/Announcements/power_off.ogg
       params:
         volume: -4
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_power_offnf.ogg
+    endAnnouncement: station-event-power-grid-check-end-announcement
+  #  endAudio:
+  #    path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_power_onnf.ogg  ##PowerGridCheckRule handles end audio, leaving this incase that breaks
+  #    params:
+  #     volume: -4
+    weight: 5
     duration: 60
     maxDuration: 120
   - type: PowerGridCheckRule
@@ -309,13 +317,16 @@
   id: SolarFlare
   components:
   - type: StationEvent
+    earliestStart: 15
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_solar_flare_start.ogg
     weight: 4
     earliestStart: 15 # Frontier
     reoccurrenceDelay: 45 # Frontier
     startAnnouncement: station-event-solar-flare-nf-start-announcement # Frontier: add nf-
     endAnnouncement: station-event-solar-flare-nf-end-announcement # Frontier: add nf-
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_solar_flare_end.ogg
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
@@ -343,7 +354,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-nf-start-announcement # Frontier: add nf-
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_vent_clog.ogg
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
@@ -544,12 +555,14 @@
   id: IonStorm
   components:
   - type: StationEvent
-    earliestStart: 15 # Frontier
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_ion_stormnf.ogg
+    earliestStart: 15
     weight: 8
     reoccurrenceDelay: 120 # Frontier: 20<120
     duration: 1
   - type: IonStormRule
-
+  
 # - type: entity
 #   id: MimicVendorRule
 #   parent: BaseGameRule
@@ -602,3 +615,4 @@
 #      min: 1
 #      max: 1
 #      pickPlayer: false
+
