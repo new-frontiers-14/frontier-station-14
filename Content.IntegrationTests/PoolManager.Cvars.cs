@@ -40,9 +40,10 @@ public static partial class PoolManager
         (CVars.NetBufferSize.Name, "0"),
         (CCVars.InteractionRateLimitCount.Name, "9999999"),
         (CCVars.InteractionRateLimitPeriod.Name, "0.1"),
-        (CCVars.GameLobbyDefaultPreset.Name, "secret"),// Frontier: Adventure takes ages, default to secret
         (RMCCVars.RMCMentorHelpRateLimitPeriod.Name, "2.0"), // Frontier: postinject seems to fail
         (RMCCVars.RMCMentorHelpRateLimitCount.Name, "10") // Frontier: postinject seems to fail
+        (CCVars.GameLobbyDefaultPreset.Name, "secret"), // Frontier: Adventure takes ages, default to secret
+        (CCVars.StaticStorageUI.Name, "true")// Frontier: causes storage test failures
     };
 
     public static async Task SetupCVars(RobustIntegrationTest.IntegrationInstance instance, PoolSettings settings)
