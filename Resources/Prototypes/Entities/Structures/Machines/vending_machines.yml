@@ -104,17 +104,30 @@
     price: 1000 # Frontier: 100<1000
   - type: Appearance
   - type: WiresVisuals
-  - type: MarketModifier # Frontier
-    mod: 10 # Frontier
-  - type: PotentialDeadDrop # Frontier
-    hintText: dead-drop-hint-vendor # Frontier
-  - type: VendingMachine # Frontier
-    pack: "" # Frontier
-    taxAccounts: # Frontier
-      Frontier: 0.25 # Frontier
-      Nfsd: 0.15 # Frontier
-  - type: PirateBountyItem # Frontier
-    id: VendingMachine # Frontier
+  # Frontier: vending machine modifications
+  - type: MarketModifier
+    mod: 10
+  - type: PotentialDeadDrop
+    hintText: dead-drop-hint-vendor
+  - type: VendingMachine
+    pack: "" # Mandatory value
+    taxAccounts:
+      Frontier: 0.25
+      Nfsd: 0.15
+    cashSlot:
+      whitelistFailPopup: bank-ATM-cashSlot-item-wont-fit
+      whitelist:
+        components:
+        - Cash
+    cashSlotName: cash_slot
+    currencyStackType: Credit
+  - type: PirateBountyItem
+    id: VendingMachine
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+  # End Frontier
 
 - type: entity
   parent: VendingMachine
