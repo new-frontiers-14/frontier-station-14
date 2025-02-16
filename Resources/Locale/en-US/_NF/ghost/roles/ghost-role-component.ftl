@@ -17,7 +17,7 @@ ghost-role-information-clarpy-rules = You are a [color=red][bold]Team Antagonist
 
 ghost-role-information-cult-cat-name = Blood Cult Cat
 ghost-role-information-cult-cat-description = Founded the Blood Cult out of boredom.
-ghost-role-information-cult-cat-rules = You are a [color=red][bold]Free Agent[/bold][/color] and free to choose your course of actions.
+ghost-role-information-cult-cat-rules = You are a [color=yellow][bold]Free Agent[/bold][/color] and free to choose your course of actions.
                                         Please note that [color=yellow]all server rules still apply.[/color] Additionally:
                                         - [color=red]DO NOT[/color] damage player shuttles or their contents.
                                         - [color=red]DO NOT[/color] gib players. Once they're dead, leave them be.
