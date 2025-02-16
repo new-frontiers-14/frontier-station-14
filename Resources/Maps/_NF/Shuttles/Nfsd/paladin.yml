@@ -1113,12 +1113,12 @@ entities:
   - uid: 199
     components:
     - type: Transform
-      pos: 0.06988621,-2.7058449
+      pos: -0.49433672,-2.4821463
       parent: 1
   - uid: 200
     components:
     - type: Transform
-      pos: 0.8667612,-2.7214813
+      pos: -0.6193367,-2.5968091
       parent: 1
 - proto: NFHolopadShip
   entities:
@@ -1225,6 +1225,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-1.5
       parent: 1
+- proto: Rack
+  entities:
+  - uid: 215
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-2.5
+      parent: 1
 - proto: Railing
   entities:
   - uid: 57
@@ -1244,8 +1252,7 @@ entities:
   - uid: 170
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.3969773,-0.13097924
+      pos: 0.9276624,0.65155137
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -1322,18 +1329,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-  - uid: 195
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-2.5
-      parent: 1
-  - uid: 196
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-2.5
-      parent: 1
 - proto: StructureGunRackWallmountedNfsd
   entities:
   - uid: 77
@@ -1350,16 +1345,16 @@ entities:
       parent: 1
 - proto: SuitStorageWallmountDeputy
   entities:
-  - uid: 112
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,-2.5
-      parent: 1
   - uid: 123
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 3.141592653589793 rad
+      pos: -1.5,-2.5
+      parent: 1
+  - uid: 125
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
       pos: 2.5,-2.5
       parent: 1
 - proto: TableReinforced
@@ -1368,7 +1363,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 0.5,-0.5
+      pos: 1.5,-2.5
       parent: 1
   - uid: 53
     components:
@@ -1549,10 +1544,11 @@ entities:
       parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
-  - uid: 125
+  - uid: 112
     components:
     - type: Transform
-      pos: 0.5,-0.5
+      rot: 3.141592653589793 rad
+      pos: 1.5,-2.5
       parent: 1
 - proto: WindoorSecureSecurityLocked
   entities:
@@ -1561,6 +1557,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-2.5
+      parent: 1
+  - uid: 196
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,-0.5
       parent: 1
 - proto: WindowReinforcedDirectional
   entities:
@@ -1575,5 +1577,33 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
+      parent: 1
+  - uid: 195
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,0.5
+      parent: 1
+  - uid: 212
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
+      parent: 1
+  - uid: 213
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 1
+  - uid: 214
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
+- proto: Wrench
+  entities:
+  - uid: 216
+    components:
+    - type: Transform
+      pos: -0.44718593,-2.575961
       parent: 1
 ...
