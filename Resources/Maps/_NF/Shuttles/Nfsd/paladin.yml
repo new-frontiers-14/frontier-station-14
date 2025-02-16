@@ -205,6 +205,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-1.5
       parent: 1
+    - type: Door
+      secondsUntilStateChange: -376.33298
+      state: Opening
+    - type: DeviceLinkSource
+      lastSignals:
+        DoorStatus: True
 - proto: AirlockNfsdGlassLocked
   entities:
   - uid: 33
@@ -710,17 +716,17 @@ entities:
       parent: 1
 - proto: ChairPilotSeat
   entities:
-  - uid: 79
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-0.5
-      parent: 1
   - uid: 120
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-0.5
+      parent: 1
+  - uid: 214
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-0.5
       parent: 1
 - proto: ComputerRadar
   entities:
@@ -731,10 +737,10 @@ entities:
       parent: 1
 - proto: ComputerTabletopIFF
   entities:
-  - uid: 54
+  - uid: 196
     components:
     - type: Transform
-      pos: 1.5,0.5
+      pos: 0.5,0.5
       parent: 1
 - proto: ComputerTabletopShuttle
   entities:
@@ -759,10 +765,10 @@ entities:
       parent: 1
 - proto: FaxMachineShip
   entities:
-  - uid: 121
+  - uid: 80
     components:
     - type: Transform
-      pos: 0.5,0.5
+      pos: 1.5,0.5
       parent: 1
 - proto: Firelock
   entities:
@@ -825,13 +831,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 80
-    components:
-    - type: Transform
-      pos: 1.5,-1.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 101
     components:
     - type: Transform
@@ -849,6 +848,13 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 121
+    components:
+    - type: Transform
+      pos: -0.5,-0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasPipeStraight
   entities:
   - uid: 51
@@ -913,11 +919,11 @@ entities:
   - uid: 81
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-0.5
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-1.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#990000FF'
+      color: '#0055CCFF'
   - uid: 86
     components:
     - type: Transform
@@ -970,6 +976,13 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 217
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
 - proto: GasVentScrubber
   entities:
   - uid: 85
@@ -993,6 +1006,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 218
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-0.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -1252,7 +1273,7 @@ entities:
   - uid: 170
     components:
     - type: Transform
-      pos: 0.9276624,0.65155137
+      pos: 1.097856,0.62436783
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -1558,19 +1579,29 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-2.5
       parent: 1
-  - uid: 196
+  - uid: 213
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,-0.5
+      pos: 1.5,-0.5
       parent: 1
 - proto: WindowReinforcedDirectional
   entities:
+  - uid: 54
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
   - uid: 55
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-2.5
+      parent: 1
+  - uid: 79
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,-0.5
       parent: 1
   - uid: 106
     components:
@@ -1588,16 +1619,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-0.5
-      parent: 1
-  - uid: 213
-    components:
-    - type: Transform
-      pos: 1.5,-0.5
-      parent: 1
-  - uid: 214
-    components:
-    - type: Transform
-      pos: 0.5,-0.5
       parent: 1
 - proto: Wrench
   entities:
