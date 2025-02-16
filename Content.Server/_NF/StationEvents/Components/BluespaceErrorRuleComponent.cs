@@ -38,6 +38,12 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     public List<MapId> MapsUid = new();
 
     /// <summary>
+    /// If true, the grids are anchored after warping in.
+    /// </summary>
+    [DataField]
+    public bool AnchorAfterWarp = true;
+
+    /// <summary>
     /// If true, the grids are deleted at the end of the event.  If false, the grids are left in the map.
     /// </summary>
     [DataField]

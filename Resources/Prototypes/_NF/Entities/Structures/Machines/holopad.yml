@@ -15,6 +15,17 @@
     useStationName: true
   - type: AccessReader
     access: [ [ "HeadOfSecurity" ] ]
+  - type: PowerSwitch
+
+- type: entity
+  parent: NFHolopadShip
+  id: NFHolopadShipAntag
+  suffix: Ship, Antag
+  components:
+  - type: Holopad
+    useStationName: false
+  - type: ApcPowerReceiver
+    powerDisabled: true #starts off
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, NFHolopadShip]
