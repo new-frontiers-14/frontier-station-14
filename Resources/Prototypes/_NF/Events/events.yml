@@ -298,11 +298,10 @@
     startAnnouncement: station-event-power-grid-check-nf-start-announcement # Frontier: add nf-
     endAnnouncement: station-event-power-grid-check-nf-end-announcement # Frontier: add nf-
     startAudio:
-      path: /Audio/Announcements/power_off.ogg
       params:
         volume: -4
       path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_power_offnf.ogg
-    endAnnouncement: station-event-power-grid-check-end-announcement
+
   #  endAudio:
   #    path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_power_onnf.ogg  ##PowerGridCheckRule handles end audio, leaving this incase that breaks
   #    params:
@@ -317,7 +316,7 @@
   id: SolarFlare
   components:
   - type: StationEvent
-    earliestStart: 15
+
     startAudio:
       path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_solar_flare_start.ogg
     weight: 4
