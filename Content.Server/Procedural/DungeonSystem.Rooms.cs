@@ -45,6 +45,7 @@ public sealed partial class DungeonSystem
                 continue;
 
             if (maxSize is not null && (proto.Size.X > maxSize.Value.X || proto.Size.Y > maxSize.Value.Y))
+                continue;
 
             if (whitelist == null)
             {
