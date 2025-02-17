@@ -1,0 +1,45 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Retort
+  parent: BaseVessel
+  name: FSB Retort
+  description: A medium logistics and engineering vessel designed and deployed by the Far Star Biotech corporation to provide material assistance and infrastructure support for deep space operations.
+  price: 56000 # Appraises at ~52660, margin of ~6% TODO: fix this value, getting tests to pass - Whatstone
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/retort.yml
+  guidebookPage: ShipyardStasis
+  class:
+  - Cargo
+  - Atmospherics
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Retort
+  mapName: 'FSB Retort'
+  mapPath: /Maps/_NF/Shuttles/retort.yml
+  minPlayers: 0
+  stations:
+    Retort:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Retort {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
