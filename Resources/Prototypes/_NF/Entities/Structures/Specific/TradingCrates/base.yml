@@ -1,6 +1,7 @@
 - type: entity
   parent: [BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructure]
   id: CrateTradeBaseSecure
+  abstract: true
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
@@ -8,6 +9,7 @@
   - type: TradeCrate
     valueAtDestination: 1500
     valueElsewhere: 400
+  - type: IgnoreMarketModifier
   - type: Icon
     sprite: Structures/Storage/Crates/secure.rsi
     state: icon
@@ -15,8 +17,7 @@
     noRot: true
     sprite: Structures/Storage/Crates/secure.rsi
     layers:
-    - state: base
-    - state: closed
+    - state: icon
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       map: ["enum.PaperLabelVisuals.Layer"]
@@ -41,9 +42,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: Construction
-    graph: CrateSecure
-    node: cratesecure
   - type: Reflect
     reflects:
     - Energy
