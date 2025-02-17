@@ -1,9 +1,10 @@
 - type: entity
   id: ClothingHeadsetCommon
+  parent: BaseClearContraband
   name: headset
   description: An updated, modular intercom that fits over the head. Takes encryption keys.
   abstract: true
-  components:
+  components: &commonFill
   - type: ContainerFill
     containers:
       key_slots:
