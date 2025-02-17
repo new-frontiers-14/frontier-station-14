@@ -31,7 +31,7 @@ public sealed class MailToCommand : LocalizedCommands // Frontier: IConsoleComma
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args) // Frontier: async < override
     {
-        if (args.Length < 2)
+        if (args.Length < 2) // Frontier: 4<2 - optional arguments
         {
             shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
             return;
