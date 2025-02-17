@@ -456,17 +456,19 @@
   parent: BaseWall
   id: WallPlastitaniumIndestructible
   name: plastitanium wall
-  description: Skub knows this wall is too hard to destroy  #NF
+  description: Skub knows this wall is too hard to destroy.  # Frontier colors the Plastitanium wall that cant be destroyed  
   suffix: indestructible
+  
   components:
     - type: Tag
       tags:
         - Wall
     - type: Sprite
       sprite: Structures/Walls/plastitanium.rsi
+      color: "#cdf3cd" 
     - type: Icon
       sprite: Structures/Walls/plastitanium.rsi
-    - type: IconSmooth
+    - type: IconSmooth 
       key: walls
       base: plastitanium
 
@@ -474,9 +476,12 @@
   parent: WallPlastitaniumIndestructible
   id: WallPlastitanium
   name: plastitanium wall
-  description: Keeps the air in and the greytide out. #NF needed because we changed its parent
+  description: Keeps the air in and the greytide out. 
   suffix: ""
   components:
+    - type: Sprite 
+      sprite: Structures/Walls/plastitanium.rsi
+      color: "#ffffff" #Frontier end 
     - type: Tag
       tags:
         - Wall
@@ -544,7 +549,7 @@
   id: WallPlastitaniumDiagonalIndestructible
   name: plastitanium wall
   suffix: diagonal, indestructible
-  description: Keeps the air in and the greytide out.
+  description: Skub knows this wall is too hard to destroy.  # Frontier colors the Plastitanium wall that cant be destroyed  
   placement:
     mode: SnapgridCenter
     snap:
@@ -557,6 +562,7 @@
     tags:
     - Wall
   - type: Sprite
+    color: "#cdf3cd"  # Frontier
     drawdepth: Walls
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
