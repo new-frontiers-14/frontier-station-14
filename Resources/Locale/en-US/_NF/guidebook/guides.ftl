@@ -5,6 +5,7 @@ guide-entry-piloting = Piloting
 guide-entry-startinggear = Starting Equipment
 guide-entry-hiring = Hiring Crew
 guide-entry-expeditions = Expeditions
+guide-entry-cargo-hauling = Cargo Hauling
 guide-entry-shipyard = Shipyard
 guide-entry-frontier-rules = Server Rules
 
@@ -38,6 +39,7 @@ guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-barge = Barge
 guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
+guide-entry-shipyard-bodkin = Bodkin
 guide-entry-shipyard-bookworm = Bookworm
 guide-entry-shipyard-brigand = Brigand
 guide-entry-shipyard-bulker = Bulker
