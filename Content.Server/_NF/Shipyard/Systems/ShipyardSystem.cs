@@ -6,6 +6,7 @@ using Content.Server.Station.Systems;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard;
 using Content.Shared.GameTicking;
+using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
@@ -33,6 +34,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public MapId? ShipyardMap { get; private set; }
     private float _shuttleIndex;
@@ -198,11 +201,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     }
 
     /// <summary>
-    /// Checks a shuttle to make sure that it is docked to the given station, and that there are no lifeforms aboard. Then it appraises the grid, outputs to the server log, and deletes the grid
+    /// Checks a shuttle to make sure that it is docked to the given station, and that there are no lifeforms aboard. Then it teleports tagged items to a location, appraises the grid, outputs to the server log, and deletes the grid
     /// </summary>
     /// <param name="stationUid">The ID of the station that the shuttle is docked to</param>
     /// <param name="shuttleUid">The grid ID of the shuttle to be appraised and sold</param>
-    public ShipyardSaleResult TrySellShuttle(EntityUid stationUid, EntityUid shuttleUid, out int bill)
+    /// <param name="consoleUid">The ID of the console being used to sell the ship</param>
+    public ShipyardSaleResult TrySellShuttle(EntityUid stationUid, EntityUid shuttleUid, EntityUid consoleUid, out int bill)
     {
         ShipyardSaleResult result = new ShipyardSaleResult();
         bill = 0;
@@ -268,6 +272,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             _station.DeleteStation(shuttleStationUid);
         }
 
+        CleanGrid(shuttleUid, consoleUid);
+
         bill = (int)_pricing.AppraiseGrid(shuttleUid);
         QueueDel(shuttleUid);
         _sawmill.Info($"Sold shuttle {shuttleUid} for {bill}");
@@ -277,6 +283,25 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         result.Error = ShipyardSaleError.Success;
         return result;
+    }
+
+    private void CleanGrid(EntityUid grid, EntityUid destination, Func<EntityUid, bool>? predicate = null, Action<EntityUid, double>? afterPredicate = null)
+    {
+        if (!TryComp<ShipyardConsoleComponent>(destination, out var comp))
+        {
+            return;
+        }
+        var preserveList = comp.PreserveList;
+        var xform = Transform(grid);
+        var enumerator = xform.ChildEnumerator;
+
+        while (enumerator.MoveNext(out var child))
+        {
+            if (_whitelistSystem.IsWhitelistPass(preserveList, child))
+            {
+                _transform.SetCoordinates(child, new EntityCoordinates(destination, 0, 0));
+            }
+        }
     }
 
     private void CleanupShipyard()

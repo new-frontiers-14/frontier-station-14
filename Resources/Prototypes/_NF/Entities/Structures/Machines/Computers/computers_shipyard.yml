@@ -28,6 +28,12 @@
         - IdCard
         - ShipyardVoucher
     newAccessLevels: [Captain]
+    preserveList:
+      components:
+        - Currency # No selling money.
+        - IdCard
+        - PAI
+        - Pda
   - type: ActivatableUI
     singleUser: true
     key: enum.ShipyardConsoleUiKey.Shipyard
@@ -214,7 +220,7 @@
       state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
-      
+
 - type: entity
   id: ComputerShipyardMedical
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
