@@ -44,6 +44,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     private bool _enabled;
     private float _baseSaleRate;
 
+    private EntityWhitelist? _preserveList;
+
     // The type of error from the attempted sale of a ship.
     public enum ShipyardSaleError
     {
@@ -272,9 +274,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             _station.DeleteStation(shuttleStationUid);
         }
 
-        CleanGrid(shuttleUid, consoleUid);
+        if (TryComp<ShipyardConsoleComponent>(consoleUid, out var comp))
+        {
+            _preserveList = comp.PreserveList;
+            CleanGrid(shuttleUid, consoleUid);
+        }
 
-        bill = (int)_pricing.AppraiseGrid(shuttleUid);
+        bill = (int)_pricing.AppraiseGrid(shuttleUid, CheckNotPreserveList);
         QueueDel(shuttleUid);
         _sawmill.Info($"Sold shuttle {shuttleUid} for {bill}");
 
@@ -285,25 +291,26 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         return result;
     }
 
-    private void CleanGrid(EntityUid grid, EntityUid destination, Func<EntityUid, bool>? predicate = null, Action<EntityUid, double>? afterPredicate = null)
+    private void CleanGrid(EntityUid grid, EntityUid destination)
     {
-        if (!TryComp<ShipyardConsoleComponent>(destination, out var comp))
-        {
-            return;
-        }
-        var preserveList = comp.PreserveList;
         var xform = Transform(grid);
         var enumerator = xform.ChildEnumerator;
 
         while (enumerator.MoveNext(out var child))
         {
-            if (_whitelistSystem.IsWhitelistPass(preserveList, child))
+            if (CheckPreserveList(child))
             {
                 _transform.SetCoordinates(child, new EntityCoordinates(destination, 0, 0));
             }
         }
     }
 
+    private bool CheckPreserveList(EntityUid uid){
+        return _whitelistSystem.IsWhitelistPass(_preserveList, uid);
+    }
+    private bool CheckNotPreserveList(EntityUid uid){
+        return _whitelistSystem.IsWhitelistFailOrNull(_preserveList, uid);
+    }
     private void CleanupShipyard()
     {
         if (ShipyardMap == null || !_mapManager.MapExists(ShipyardMap.Value))

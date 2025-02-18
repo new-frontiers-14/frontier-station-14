@@ -272,7 +272,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!voucherUsed)
         {
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
-                sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!));
+            {
+                _preserveList = component.PreserveList;
+                sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!), CheckNotPreserveList);
+            }
 
             sellValue = CalculateShipResaleValue((shipyardConsoleUid, component), sellValue);
         }
@@ -486,7 +489,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         int sellValue = 0;
         if (deed?.ShuttleUid != null)
         {
-            sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!));
+            _preserveList = component.PreserveList;
+            sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!), CheckNotPreserveList);
             sellValue = CalculateShipResaleValue((uid, component), sellValue);
         }
 
@@ -579,7 +583,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             int sellValue = 0;
             if (deed?.ShuttleUid != null)
             {
-                sellValue = (int)_pricing.AppraiseGrid(deed.ShuttleUid.Value);
+                _preserveList = component.PreserveList;
+                sellValue = (int)_pricing.AppraiseGrid(deed.ShuttleUid.Value, CheckNotPreserveList);
                 sellValue = CalculateShipResaleValue((uid, component), sellValue);
             }
 
@@ -784,7 +789,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (xform.GridUid == null)
             return;
 
-        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null  || ShipyardMap == null)
+        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null || ShipyardMap == null)
             return;
 
         var output = DeedRegex.Replace($"{shuttleDeed.ShuttleOwner}", ""); // Removes content inside parentheses along with parentheses and a preceding space
