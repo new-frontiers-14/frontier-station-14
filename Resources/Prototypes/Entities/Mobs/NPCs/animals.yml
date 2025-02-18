@@ -1475,7 +1475,7 @@
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian
-    allowedEmotes: ['Thump', 'ReptilianHiss'] # Imp
+    allowedEmotes: ['Thump', 'ReptilianHiss'] # Imp: add ReptilianHiss
   - type: Vocal
     sounds:
       Male: MaleReptilian
@@ -1935,17 +1935,19 @@
   id: MobLizard
   description: A harmless dragon.
   components:
-  - type: ReplacementAccent # Imp
-    accent: kobold # Imp
-  - type: Speech # Imp
-    speechSounds: Lizard # Imp
-    speechVerb: Reptilian # Imp
-    allowedEmotes: ['ReptilianHiss'] # Imp, Can't thump tail because no body component
-  - type: Vocal # Imp
-    sounds: # Imp
-      Male: MaleReptilian # Imp
-      Female: FemaleReptilian # Imp
-      Unsexed: MaleReptilian # Imp
+  # Imp: kobold accent, reptilian vocal sounds, and ReptilianHiss emote
+  - type: ReplacementAccent
+    accent: kobold
+  - type: Speech
+    speechSounds: Lizard
+    speechVerb: Reptilian
+    allowedEmotes: ['ReptilianHiss'] # Can't thump tail because no body component
+  - type: Vocal
+    sounds:
+      Male: MaleReptilian
+      Female: FemaleReptilian
+      Unsexed: MaleReptilian
+  # End Imp: kobold accent, reptilian vocal sounds, and ReptilianHiss emote
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
