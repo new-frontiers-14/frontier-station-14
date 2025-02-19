@@ -142,7 +142,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     /// <param name="entity"></param>
     /// <param name="materials"></param>
     /// <returns>If the amount can be changed</returns>
-    public bool CanChangeMaterialAmount(Entity<MaterialStorageComponent?> entity, Dictionary<string,int> materials)
+    public bool CanChangeMaterialAmount(Entity<MaterialStorageComponent?> entity, Dictionary<string, int> materials)
     {
         if (!Resolve(entity, ref entity.Comp))
             return false;
@@ -196,7 +196,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     /// <param name="entity"></param>
     /// <param name="materials"></param>
     /// <returns>If the amount can be changed</returns>
-    public bool TryChangeMaterialAmount(Entity<MaterialStorageComponent?> entity, Dictionary<string,int> materials)
+    public bool TryChangeMaterialAmount(Entity<MaterialStorageComponent?> entity, Dictionary<string, int> materials)
     {
         if (!Resolve(entity, ref entity.Comp))
             return false;
@@ -296,6 +296,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     // Begin Frontier : Automatically split stacks if they don't fit
     /// <summary>
     /// Tries to insert as much of an entity as possible into the material storage.
+    /// Only happens if there is a storage limit.
     /// </summary>
     public virtual bool TryInsertMaxPossibleMaterialEntity(EntityUid user,
         EntityUid toInsert,
@@ -317,22 +318,16 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
             return false;
 
         int multiplier;
-        bool partialStack = false;
-        if (storage.StorageLimit is not null && HasComp<StackComponent>(toInsert))
+        if (storage.StorageLimit is null || !HasComp<StackComponent>(toInsert)) // this function only runs if insterting already failed somehow, only consider splitting if the storage has a storage limit
+            return false;
+
+        var availableVolume = (int)storage.StorageLimit - GetTotalMaterialAmount(receiver, storage);
+        var volumePerSheet = 0;
+        foreach (var (_, vol) in composition.MaterialComposition)
         {
-            var availableVolume = (int)storage.StorageLimit - GetTotalMaterialAmount(receiver, storage);
-            var volumePerSheet = 0;
-            foreach (var (_, vol) in composition.MaterialComposition)
-            {
-                volumePerSheet += vol;
-            }
-            multiplier = availableVolume / volumePerSheet;
-            partialStack = true;
+            volumePerSheet += vol;
         }
-        else
-        {
-            multiplier = TryComp<StackComponent>(toInsert, out var stackComponent) ? stackComponent.Count : 1;
-        }
+        multiplier = availableVolume / volumePerSheet;
 
         // Material Whitelist checked implicitly by CanChangeMaterialAmount();
 
@@ -362,10 +357,9 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
         _appearance.SetData(receiver, MaterialStorageVisuals.Inserting, true);
         Dirty(receiver, insertingComp);
 
-        if (partialStack)
-        {
-            _sharedStackSystem.Use(toInsert, multiplier);
-        }
+
+        _sharedStackSystem.Use(toInsert, multiplier);
+
 
         var ev = new MaterialEntityInsertedEvent(material);
         RaiseLocalEvent(receiver, ref ev);
