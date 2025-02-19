@@ -80,7 +80,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     /// <summary>
     /// Tries to start processing an item via a <see cref="MaterialReclaimerComponent"/>.
     /// </summary>
-    public bool TryStartProcessItem(EntityUid uid, EntityUid item, MaterialReclaimerComponent? component = null, EntityUid? user = null, bool predictSound = true) // Frontier: add forceSound
+    public bool TryStartProcessItem(EntityUid uid, EntityUid item, MaterialReclaimerComponent? component = null, EntityUid? user = null, bool predictSound = true) // Frontier: add predictSound
     {
         if (!Resolve(uid, ref component))
             return false;
