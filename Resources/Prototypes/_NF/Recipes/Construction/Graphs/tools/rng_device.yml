@@ -1,5 +1,5 @@
 - type: constructionGraph
-  id: LogicGate
+  id: RngDevice
   start: start
   graph:
   - node: start
@@ -10,7 +10,7 @@
         amount: 3
         doAfter: 1
   - node: empty
-    entity: LogicEmptyCircuit
+    entity: RngEmptyCircuit
     edges:
     - to: start
       steps:
@@ -21,49 +21,55 @@
         prototype: SheetSteel1
         amount: 3
       - !type:DeleteEntity {}
-    - to: logic_gate
+    - to: rng_device_d2
       steps:
-      - material: Cable
-        amount: 2
-        doAfter: 1
-    - to: edge_detector
-      steps:
-      - material: Glass
-        amount: 2
-        doAfter: 1
-      - material: Cable
-        amount: 2
-        doAfter: 1
-    - to: power_sensor
-      steps:
-      - tag: Multitool
+      - tag: PercentileDie
+        name: d2
         icon:
-          sprite: _NF/Objects/Tools/multitool.rsi # Frontier: separate sprites (add _NF folder)
-          state: icon
-        name: a multitool
+          sprite: Objects/Fun/dice.rsi
+          state: percentile_50
+        doAfter: 1
       - material: Cable
         amount: 2
         doAfter: 1
-    - to: memory_cell
+    - to: rng_device_d4
       steps:
-      - material: Capacitor
+      - tag: d4Dice
+        name: d4
+        icon:
+          sprite: Objects/Fun/dice.rsi
+          state: d4_4
+        doAfter: 1
+      - material: Cable
+        amount: 2
+        doAfter: 1
+    - to: rng_device_d6
+      steps:
+      - tag: d6Dice
+        name: d6
+        icon:
+          sprite: Objects/Fun/dice.rsi
+          state: d4_4
+        doAfter: 1
+      - material: Cable
+        amount: 2
+        doAfter: 1
+  - node: rng_device_d2
+    entity: RngDeviceD2
+    edges:
+    - to: empty
+      steps:
+      - tool: Prying
+        doAfter: 2
+      completed:
+      - !type:SpawnPrototype
+        prototype: d4Dice
         amount: 1
-      - material: Cable
-        amount: 2
-        doAfter: 1
-  - node: logic_gate
-    entity: LogicGateOr
-    edges:
-    - to: empty
-      steps:
-      - tool: Prying
-        doAfter: 2
-      completed:
       - !type:SpawnPrototype
         prototype: CableApcStack1
         amount: 2
-  - node: edge_detector
-    entity: EdgeDetector
+  - node: rng_device_d4
+    entity: RngDeviceD4
     edges:
     - to: empty
       steps:
@@ -71,13 +77,13 @@
         doAfter: 2
       completed:
       - !type:SpawnPrototype
-        prototype: SheetGlass1
-        amount: 2
+        prototype: d4Dice
+        amount: 1
       - !type:SpawnPrototype
         prototype: CableApcStack1
         amount: 2
-  - node: power_sensor
-    entity: PowerSensor
+  - node: rng_device_d6
+    entity: RngDeviceD6
     edges:
     - to: empty
       steps:
@@ -85,20 +91,8 @@
         doAfter: 2
       completed:
       - !type:SpawnPrototype
-        prototype: Multitool
-      - !type:SpawnPrototype
-        prototype: CableApcStack1
-        amount: 2
-  - node: memory_cell
-    entity: MemoryCell
-    edges:
-    - to: empty
-      steps:
-      - tool: Prying
-        doAfter: 2
-      completed:
-      - !type:SpawnPrototype
-        prototype: CapacitorStockPart
+        prototype: d6Dice
+        amount: 1
       - !type:SpawnPrototype
         prototype: CableApcStack1
         amount: 2

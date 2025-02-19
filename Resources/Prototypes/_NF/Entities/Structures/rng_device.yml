@@ -1,0 +1,117 @@
+- type: entity
+  parent: BaseItem
+  id: RngEmptyCircuit
+  name: empty rng device
+  description: Add a dice to create a RNG device.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Devices/rng.rsi
+    layers:
+    - state: base
+    - state: icon_question
+  - type: Anchorable
+  - type: Rotatable
+  - type: Construction
+    graph: RngDevice
+    node: empty
+
+- type: entity
+  abstract: true
+  parent: RngEmptyCircuit
+  id: BaseRngItem
+  components:
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+
+- type: entity
+  parent: BaseRngItem
+  id: RngDeviceD2
+  name: rng device
+  description: Sends a signal to a random output port.
+  suffix: D2
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: percentile_50
+  - type: RngDevice
+    outputs: 2
+  - type: DeviceLinkSink
+    ports:
+    - RngInput
+  - type: DeviceLinkSource
+    ports:
+    - RngOutput1
+    - RngOutput2
+    lastSignals:
+      RngOutput1: false
+      RngOutput2: false
+  - type: Construction
+    node: rng_device_d2
+
+- type: entity
+  parent: BaseRngItem
+  id: RngDeviceD4
+  name: rng device
+  description: Sends a signal to a random output port.
+  suffix: D4
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: d4_4
+  - type: RngDevice
+    outputs: 4
+  - type: DeviceLinkSink
+    ports:
+    - RngInput
+  - type: DeviceLinkSource
+    ports:
+    - RngOutput1
+    - RngOutput2
+    - RngOutput3
+    - RngOutput4
+    lastSignals:
+      RngOutput1: false
+      RngOutput2: false
+      RngOutput3: false
+      RngOutput4: false
+  - type: Construction
+    node: rng_device_d4
+
+- type: entity
+  parent: BaseRngItem
+  id: RngDeviceD6
+  name: rng device
+  description: Sends a signal to a random output port.
+  suffix: D6
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: d6_6
+  - type: RngDevice
+    outputs: 6
+  - type: DeviceLinkSink
+    ports:
+    - RngInput
+  - type: DeviceLinkSource
+    ports:
+    - RngOutput1
+    - RngOutput2
+    - RngOutput3
+    - RngOutput4
+    - RngOutput5
+    - RngOutput6
+    lastSignals:
+      RngOutput1: false
+      RngOutput2: false
+      RngOutput3: false
+      RngOutput4: false
+      RngOutput5: false
+      RngOutput6: false
+  - type: Construction
+    node: rng_device_d6
