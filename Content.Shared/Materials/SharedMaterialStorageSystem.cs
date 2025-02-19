@@ -328,7 +328,11 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
                 volumePerSheet += vol;
             }
             multiplier = availableVolume / volumePerSheet;
-            empty = stack.Count <= multiplier;
+            if (multiplier > stack.Count)
+            {
+                empty = true;
+                multiplier = stack.Count;
+            }
         }
         else
         {
@@ -393,12 +397,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     {
         if (args.Handled || !component.InsertOnInteract)
             return;
-        // Frontier: split functions
-        if (HasComp<StackComponent>(args.Used))
-            args.Handled = TryInsertMaxPossibleMaterialEntity(args.User, args.Used, uid, out _, component); // Frontier: ignore empty
-        else
-            args.Handled = TryInsertMaterialEntity(args.User, args.Used, uid, component);
-        // End Frontier
+        args.Handled = TryInsertMaxPossibleMaterialEntity(args.User, args.Used, uid, out _, component); // Frontier: use autosplit version
     }
 
     private void OnDatabaseModified(Entity<MaterialStorageComponent> ent, ref TechnologyDatabaseModifiedEvent args)

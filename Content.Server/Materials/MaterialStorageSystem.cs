@@ -156,21 +156,19 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
         if (TryComp<ApcPowerReceiverComponent>(receiver, out var power) && !power.Powered)
             return false;
         // Cache old count
-        TryComp<StackComponent>(toInsert, out var stack);
-        var initialCount = stack?.Count ?? 1;
+        var initialCount = TryComp<StackComponent>(toInsert, out var stack) ? stack.Count : 1;
         if (!base.TryInsertMaxPossibleMaterialEntity(user, toInsert, receiver, out empty, storage, material, composition))
             return false;
         _audio.PlayPvs(storage.InsertingSound, receiver);
         _popup.PopupEntity(Loc.GetString("machine-insert-item", ("user", user), ("machine", receiver),
             ("item", toInsert)), receiver);
-        //QueueDel(toInsert); // Frontier
 
         // Logging
         var newCount = stack?.Count ?? 0;
         _adminLogger.Add(LogType.Action, LogImpact.Low,
-            $"{ToPrettyString(user):player} inserted {initialCount - newCount} {ToPrettyString(toInsert):inserted} into {ToPrettyString(receiver):receiver}");
+            $"{ToPrettyString(user):player} inserted {initialCount - newCount} item(s) from {ToPrettyString(toInsert):inserted} into {ToPrettyString(receiver):receiver}");
         if (empty)
-            Del(toInsert); // Frontier: delete immediately, don't queue
+            Del(toInsert);
         return true;
     }
     // End Frontier: partial stack insertion
