@@ -27,7 +27,6 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     private readonly SharedTransformSystem _transformSystem;
     private readonly SpriteSystem _spriteSystem;
-	private readonly SharedTransformSystem _transformSystem; // Frontier modification
 
     private NetEntity? _trackedEntity;
     private bool _tryToScrollToListFocus;
@@ -40,7 +39,6 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
 
         _transformSystem = _entManager.System<SharedTransformSystem>();
         _spriteSystem = _entManager.System<SpriteSystem>();
-		_transformSystem = _entManager.System<SharedTransformSystem>(); // Frontier modification
 
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
     }
@@ -278,10 +276,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
                 jobContainer.AddChild(jobIcon);
             }
 
-            // Job name area
-			// Frontier modification
-			// Made in its name appear location name as its much more convenient
-			// While job icons should do good enough job of conveying job
+            // Frontier: show location instead of job label
             var jobLabel = new Label()
             {
                 Text = sensor.LocationName,
@@ -290,13 +285,14 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             };
 
             jobContainer.AddChild(jobLabel);
+            // End Frontier
 
             // Add user coordinates to the navmap
             if (coordinates != null && NavMap.Visible && _blipTexture != null)
             {
                 NavMap.TrackedEntities.TryAdd(sensor.SuitSensorUid,
                     new NavMapBlip
-                    (CoordinatesToLocal(coordinates.Value),
+                    (CoordinatesToMap(coordinates.Value), // Frontier: Local<Map
                     _blipTexture,
                     (_trackedEntity == null || sensor.SuitSensorUid == _trackedEntity) ? Color.LimeGreen : Color.LimeGreen * Color.DimGray,
                     sensor.SuitSensorUid == _trackedEntity));
@@ -362,7 +358,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             if (NavMap.TrackedEntities.TryGetValue(castSensor.SuitSensorUid, out var data))
             {
                 data = new NavMapBlip
-                    (CoordinatesToLocal(data.Coordinates),
+                    (CoordinatesToMap(data.Coordinates), // Frontier: Local<Map
                     data.Texture,
                     (currTrackedEntity == null || castSensor.SuitSensorUid == currTrackedEntity) ? Color.LimeGreen : Color.LimeGreen * Color.DimGray,
                     castSensor.SuitSensorUid == currTrackedEntity);
@@ -427,25 +423,19 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
         return false;
     }
 
+    // Frontier: all crew monitoring happens in map coords.
     /// <summary>
-    /// Converts the input coordinates to an EntityCoordinates which are in
-    /// reference to the grid that the map is displaying. This is a stylistic
-    /// choice; this window deliberately limits the rate that blips update,
-    /// but if the blip is attached to another grid which is moving, that
-    /// blip will move smoothly, unlike the others. By converting the
-    /// coordinates, we are back in control of the blip movement.
+    /// report all 
     /// </summary>
-    private EntityCoordinates CoordinatesToLocal(EntityCoordinates refCoords)
+    private EntityCoordinates CoordinatesToMap(EntityCoordinates refCoords)
     {
-        if (NavMap.MapUid != null)
-        {
-            return _transformSystem.WithEntityId(refCoords, (EntityUid)NavMap.MapUid);
-        }
+        var mapUid = _transformSystem.GetMap(refCoords);
+        if (mapUid != null)
+            return _transformSystem.WithEntityId(refCoords, mapUid.Value);
         else
-        {
             return refCoords;
-        }
     }
+    // End Frontier
 
     private void ClearOutDatedData()
     {

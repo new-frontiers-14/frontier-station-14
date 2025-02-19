@@ -29,7 +29,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<VendingMachineComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
-        SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnUnemagged); // Frontier
+        SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
 
         SubscribeLocalEvent<VendingMachineRestockComponent, AfterInteractEvent>(OnAfterInteract);
     }

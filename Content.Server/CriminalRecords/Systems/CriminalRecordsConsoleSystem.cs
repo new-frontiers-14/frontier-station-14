@@ -224,7 +224,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         if (console.FilterStatus != SecurityStatus.None)
         {
             listing = listing
-                .Where(x => _records.TryGetRecord<CriminalRecord>(new StationRecordKey(x.Key, owningStation.Value), out var record) && record.Status == console.FilterStatus)
+                .Where(x => _records.TryGetRecord<CriminalRecord>(new StationRecordKey(x.Key, owningStation), out var record) && record.Status == console.FilterStatus) // Frontier: owningStation.Value<owningStation
                 .ToDictionary(x => x.Key, x => x.Value);
         }
 

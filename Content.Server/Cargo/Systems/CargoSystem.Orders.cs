@@ -152,7 +152,8 @@ namespace Content.Server.Cargo.Systems
 
             // No station to deduct from.
             // Frontier: no checks for StationData/StationBankAccount.
-            if (!TryGetOrderDatabase(uid, out var dbUid, out var orderDatabase, component))
+            if (station == null
+                || !TryGetOrderDatabase(uid, out var dbUid, out var orderDatabase, component))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-station-not-found"));
                 PlayDenySound(uid, component);
@@ -507,7 +508,7 @@ namespace Content.Server.Cargo.Systems
         private bool TryAddOrder(EntityUid dbUid, CargoOrderData data, StationCargoOrderDatabaseComponent component)
         {
             component.Orders.Add(data);
-            UpdateOrders(dbUid, component);
+            UpdateOrders(dbUid);
             return true;
         }
 
@@ -525,7 +526,7 @@ namespace Content.Server.Cargo.Systems
             {
                 orderDB.Orders.RemoveAt(sequenceIdx);
             }
-            UpdateOrders(dbUid, orderDB);
+            UpdateOrders(dbUid);
         }
 
         public void ClearOrders(StationCargoOrderDatabaseComponent component)
