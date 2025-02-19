@@ -338,6 +338,26 @@
     inHandsMaxFillLevels: 3
     inHandsFillBaseName: -fill-
 
+- type: entity
+  parent: NFReagentBag
+  id: PrefilledReagentBag
+  abstract: true
+
+- type: entity
+  id: ReagentBagUniversalBlood
+  parent: PrefilledReagentBag
+  suffix: universal blood
+  name: universal blood
+  components:
+  - type: Label
+    currentLabel: universal blood
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        reagents:
+          - ReagentId: UniversalBlood
+            Quantity: 50
+
 #Reinforced Jug chem fills.
 
 - type: entity
