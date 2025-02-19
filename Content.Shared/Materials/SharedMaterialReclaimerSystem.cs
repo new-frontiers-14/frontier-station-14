@@ -80,7 +80,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     /// <summary>
     /// Tries to start processing an item via a <see cref="MaterialReclaimerComponent"/>.
     /// </summary>
-    public bool TryStartProcessItem(EntityUid uid, EntityUid item, MaterialReclaimerComponent? component = null, EntityUid? user = null)
+    public bool TryStartProcessItem(EntityUid uid, EntityUid item, MaterialReclaimerComponent? component = null, EntityUid? user = null, bool predictSound = true) // Frontier: add forceSound
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -107,12 +107,15 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
 
         if (Timing.CurTime > component.NextSound)
         {
-            // Frontier: tear down previous stream just in case
+            // Frontier: tear down previous stream just in case, allow non-predicted audio
             if (component.Stream != null)
                 _audio.Stop(component.Stream);
-            // End Frontier
 
-            component.Stream = _audio.PlayPredicted(component.Sound, uid, user)?.Entity;
+            if (predictSound)
+                component.Stream = _audio.PlayPredicted(component.Sound, uid, user)?.Entity;
+            else
+                component.Stream = _audio.PlayPvs(component.Sound, uid)?.Entity;
+            // End Frontier
             component.NextSound = Timing.CurTime + component.SoundCooldown;
         }
 
