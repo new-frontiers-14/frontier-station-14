@@ -299,6 +299,45 @@
   - type: StaticPrice
     vendPrice: 0
 
+#Reagent Bag
+
+- type: entity
+  name: reagent bag
+  parent: BaseSyringe
+  description: A bag meant to contain fluids. Maybe your fluids. Has a small injection port to be filled via syringe.
+  id: NFReagentBag
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medical.rsi
+    layers:
+      - state: reagentbag-base-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+      - state: reagentbag-base
+        map: ["enum.SolutionContainerLayers.Base"]
+  - type: Icon
+    sprite: _NF/Objects/Specific/Medical/medical.rsi
+    state: "reagentbag-base"
+  - type: Item
+    size: Tiny
+    sprite: _NF/Objects/Specific/Medical/medical.rsi
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 50
+  - type: Injector
+    injectOnly: true
+    toggleState: Inject
+    minTransferAmount: 1
+    maxTransferAmount: 5
+  - type: InjectableSolution
+    solution: injector
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: reagentbag-base-
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+
 #Reinforced Jug chem fills.
 
 - type: entity
