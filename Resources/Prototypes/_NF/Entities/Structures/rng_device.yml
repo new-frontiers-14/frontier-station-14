@@ -5,10 +5,11 @@
   description: Add a dice to create a RNG device.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Devices/rng.rsi
     layers:
-    - state: base
-    - state: icon_question
+    - sprite: Objects/Devices/gates.rsi
+      state: base
+    - sprite: Objects/Misc/books.rsi
+      state: icon_question
   - type: Anchorable
   - type: Rotatable
   - type: Construction
@@ -35,8 +36,10 @@
   components:
   - type: Sprite
     layers:
-    - state: base
-    - state: percentile_50
+    - sprite: Objects/Devices/gates.rsi
+      state: base
+    - sprite: Objects/Fun/dice.rsi
+      state: percentile_50
   - type: RngDevice
     outputs: 2
   - type: DeviceLinkSink
@@ -61,8 +64,10 @@
   components:
   - type: Sprite
     layers:
-    - state: base
-    - state: d4_4
+    - sprite: Objects/Devices/gates.rsi
+      state: base
+    - sprite: Objects/Fun/dice.rsi
+      state: d4_4
   - type: RngDevice
     outputs: 4
   - type: DeviceLinkSink
@@ -91,8 +96,10 @@
   components:
   - type: Sprite
     layers:
-    - state: base
-    - state: d6_6
+    - sprite: Objects/Devices/gates.rsi
+      state: base
+    - sprite: Objects/Fun/dice.rsi
+      state: d6_6
   - type: RngDevice
     outputs: 6
   - type: DeviceLinkSink
