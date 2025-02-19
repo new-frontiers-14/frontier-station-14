@@ -170,6 +170,21 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
         args.Handled = true;
     }
 
+    protected void OnUnemagged(EntityUid uid, CryoPodComponent? cryoPodComponent, ref GotUnEmaggedEvent args)
+    {
+        if (!Resolve(uid, ref cryoPodComponent))
+            return;
+
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!cryoPodComponent.PermaLocked)
+            return;
+
+        cryoPodComponent.PermaLocked = false;
+        cryoPodComponent.Locked = false;
+        args.Handled = true;
+    }
     protected void OnCryoPodPryFinished(EntityUid uid, CryoPodComponent cryoPodComponent, CryoPodPryFinished args)
     {
         if (args.Cancelled)

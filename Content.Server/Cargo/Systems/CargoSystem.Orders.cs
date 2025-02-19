@@ -140,10 +140,19 @@ namespace Content.Server.Cargo.Systems
                 return;
             }
 
-            if (!TryComp<BankAccountComponent>(player, out var bankAccount)) return;
+            var station = _station.GetOwningStation(uid);
+
+            // Frontier: orders require a bank account.
+            if (!TryComp<BankAccountComponent>(player, out var bankAccount))
+            {
+                ConsolePopup(args.Actor, Loc.GetString("cargo-console-nf-no-bank-account"));
+                PlayDenySound(uid, component);
+                return;
+            }
 
             // No station to deduct from.
-            if (!TryGetOrderDatabase(uid, out var dbUid, out var orderDatabase, component) ||  bankAccount == null)
+            // Frontier: no checks for StationData/StationBankAccount.
+            if (!TryGetOrderDatabase(uid, out var dbUid, out var orderDatabase, component))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-station-not-found"));
                 PlayDenySound(uid, component);
@@ -196,7 +205,8 @@ namespace Content.Server.Cargo.Systems
                 return;
             }
 
-            //var ev = new FulfillCargoOrderEvent((station.Value, stationData), order, (uid, component)); // Frontier
+            // Frontier: no cargo fulfillment check
+            //var ev = new FulfillCargoOrderEvent((station.Value, stationData), order, (uid, component));
             //RaiseLocalEvent(ref ev); // Frontier
             //ev.FulfillmentEntity ??= station.Value; // Frontier
 
@@ -211,6 +221,7 @@ namespace Content.Server.Cargo.Systems
             //         return;
             //     }
             // }
+            // End Frontier
 
             order.Approved = true;
             _audio.PlayPvs(component.ConfirmSound, uid);
@@ -438,7 +449,7 @@ namespace Content.Server.Cargo.Systems
         /// Updates all of the cargo-related consoles for a particular station.
         /// This should be called whenever orders change.
         /// </summary>
-        private void UpdateOrders(EntityUid dbUid, StationCargoOrderDatabaseComponent _)
+        private void UpdateOrders(EntityUid dbUid)
         {
             // Order added so all consoles need updating.
             var orderQuery = AllEntityQuery<CargoOrderConsoleComponent>();

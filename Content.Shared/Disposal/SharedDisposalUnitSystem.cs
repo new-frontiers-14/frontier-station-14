@@ -113,6 +113,20 @@ public abstract class SharedDisposalUnitSystem : EntitySystem
         args.Handled = true;
     }
 
+    // Frontier: demag
+    protected void OnUnemagged(EntityUid uid, SharedDisposalUnitComponent component, ref GotUnEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!component.DisablePressure)
+            return;
+
+        component.DisablePressure = false;
+        args.Handled = true;
+    }
+    // End Frontier: demag
+
     public virtual bool CanInsert(EntityUid uid, SharedDisposalUnitComponent component, EntityUid entity)
     {
         if (!Transform(uid).Anchored)

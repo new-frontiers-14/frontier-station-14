@@ -142,19 +142,27 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
     private void OnUnEmagged(EntityUid uid, DoorComponent door, ref GotUnEmaggedEvent args) // Frontier - Added DEMUG
     {
-        if (TryComp<AirlockComponent>(uid, out var airlockComponent))
+        if (!_emag.CompareFlag(args.Type, EmagType.Access))
+            return;
+
+        if (!TryComp<AirlockComponent>(uid, out var airlock))
+            return;
+
+        if (!airlock.Powered)
+            return;
+
+        if (!_emag.CheckFlag(uid, EmagType.Access))
+            return;
+
+        if (TryComp<DoorBoltComponent>(uid, out var doorBolt)
+            && IsBolted(uid, doorBolt))
         {
-            if (HasComp<EmaggedComponent>(uid))
-            {
-                if (TryComp<DoorBoltComponent>(uid, out var doorBoltComponent))
-                {
-                    SetBoltsDown((uid, doorBoltComponent), !doorBoltComponent.BoltsDown, null, true);
-                    SetState(uid, DoorState.Closing, door);
-                }
-                Audio.PlayPredicted(door.SparkSound, uid, args.UserUid, AudioParams.Default.WithVolume(8));
-                args.Handled = true;
-            }
+            SetBoltsDown((uid, doorBolt), false, args.UserUid, true);
         }
+        SetState(uid, DoorState.Closing, door);
+
+        Audio.PlayPredicted(door.SparkSound, uid, args.UserUid, AudioParams.Default.WithVolume(8));
+        args.Handled = true;
     }
 
     #region StateManagement

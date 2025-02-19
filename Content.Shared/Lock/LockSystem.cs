@@ -320,14 +320,13 @@ public sealed class LockSystem : EntitySystem
 
     private void OnUnEmagged(EntityUid uid, LockComponent component, ref GotUnEmaggedEvent args) // Frontier - DEMAG
     {
-        if (HasComp<EmaggedComponent>(uid))
-        {
-            _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
-            _appearanceSystem.SetData(uid, LockVisuals.Locked, true);
-            //EnsureComp<LockComponent>(uid); //Literally addes the lock as a tell it was emagged
-            component.Locked = true;
-            args.Handled = true;
-        }
+        if (args.Handled || !_emag.CheckFlag(uid, EmagType.Access))
+            return;
+
+        _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
+        _appearanceSystem.SetData(uid, LockVisuals.Locked, true);
+        component.Locked = true;
+        args.Handled = true;
     }
 
     private void OnDoAfterLock(EntityUid uid, LockComponent component, LockDoAfter args)

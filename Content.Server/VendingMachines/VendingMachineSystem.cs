@@ -9,15 +9,12 @@ using Content.Server.Cargo.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Actions;
 using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
-using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Popups;
@@ -88,8 +85,6 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnDoAfter);
 
             SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
-
-            SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMAG
         }
 
         private void OnVendingPrice(EntityUid uid, VendingMachineComponent component, ref PriceCalculationEvent args)
@@ -150,20 +145,6 @@ namespace Content.Server.VendingMachines
             vendComponent.Broken = true;
             TryUpdateVisualState(uid, vendComponent);
         }
-
-        // FRONTIER MERGE: UNEMAG?
-        private void OnEmagged(EntityUid uid, VendingMachineComponent component, ref GotEmaggedEvent args)
-        {
-            // only emag if there are emag-only items
-            args.Handled = component.EmaggedInventory.Count > 0;
-        }
-
-        private void OnUnEmagged(EntityUid uid, VendingMachineComponent component, ref GotUnEmaggedEvent args) // Frontier - Added DEMUG
-        {
-            // only unemag if there are emag-only items
-            args.Handled = component.EmaggedInventory.Count > 0;
-        }
-        // END FRONTIER MERGE: UNEMAG?
 
         private void OnDamageChanged(EntityUid uid, VendingMachineComponent component, DamageChangedEvent args)
         {

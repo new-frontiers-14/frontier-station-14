@@ -29,6 +29,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<VendingMachineComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnUnemagged); // Frontier
 
         SubscribeLocalEvent<VendingMachineRestockComponent, AfterInteractEvent>(OnAfterInteract);
     }
@@ -71,6 +72,20 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         // only emag if there are emag-only items
         args.Handled = component.EmaggedInventory.Count > 0;
     }
+
+    // Frontier: demag
+    private void OnUnemagged(EntityUid uid, VendingMachineComponent component, ref GotUnEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        // only emag if there are emag-only items
+        args.Handled = component.EmaggedInventory.Count > 0;
+    }
+    // End Frontier
 
     /// <summary>
     /// Returns all of the vending machine's inventory. Only includes emagged and contraband inventories if
