@@ -328,7 +328,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
                 volumePerSheet += vol;
             }
             multiplier = availableVolume / volumePerSheet;
-            if (multiplier > stack.Count)
+            if (multiplier >= stack.Count)
             {
                 empty = true;
                 multiplier = stack.Count;
