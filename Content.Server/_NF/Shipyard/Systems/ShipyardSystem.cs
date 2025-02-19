@@ -282,7 +282,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             CleanGrid(shuttleUid, consoleUid);
         }
 
-        bill = (int)_pricing.AppraiseGrid(shuttleUid, CheckNotPreserveList);
+        bill = (int)_pricing.AppraiseGrid(shuttleUid, LacksPreserveOnSaleComp);
         QueueDel(shuttleUid);
         _sawmill.Info($"Sold shuttle {shuttleUid} for {bill}");
 
@@ -301,7 +301,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         while (enumerator.MoveNext(out var child))
         {
-            NestedHasComp(child, ref entitiesToPreserve);
+            HasPreserveOnSaleComp(child, ref entitiesToPreserve);
         }
         foreach (var ent in entitiesToPreserve)
         {
@@ -309,8 +309,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
     }
 
-    // checks if something has a component and if it does, adds it to the list
-    private void NestedHasComp(EntityUid entity, ref List<EntityUid> output)
+    // checks if something has the ShipyardPreserveOnSaleComponent and if it does, adds it to the list
+    private void HasPreserveOnSaleComp(EntityUid entity, ref List<EntityUid> output)
     {
         if (HasComp<ShipyardPreserveOnSaleComponent>(entity))
         {
@@ -322,13 +322,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 foreach (var ent in container.ContainedEntities)
                 {
-                    NestedHasComp(ent, ref output);
+                    HasPreserveOnSaleComp(ent, ref output);
                 }
             }
         }
     }
 
-    private bool CheckNotPreserveList(EntityUid uid)
+    // returns false if it has ShipyardPreserveOnSaleComponent, true otherwise
+    private bool LacksPreserveOnSaleComp(EntityUid uid)
     {
         return !HasComp<ShipyardPreserveOnSaleComponent>(uid);
     }

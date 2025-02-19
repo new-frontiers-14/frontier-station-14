@@ -274,7 +274,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             {
                 _preserveList = component.PreserveList;
-                sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!), CheckNotPreserveList);
+                sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!), LacksPreserveOnSaleComp);
             }
 
             sellValue = CalculateShipResaleValue((shipyardConsoleUid, component), sellValue);
@@ -490,7 +490,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (deed?.ShuttleUid != null)
         {
             _preserveList = component.PreserveList;
-            sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!), CheckNotPreserveList);
+            sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!), LacksPreserveOnSaleComp);
             sellValue = CalculateShipResaleValue((uid, component), sellValue);
         }
 
@@ -584,7 +584,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (deed?.ShuttleUid != null)
             {
                 _preserveList = component.PreserveList;
-                sellValue = (int)_pricing.AppraiseGrid(deed.ShuttleUid.Value, CheckNotPreserveList);
+                sellValue = (int)_pricing.AppraiseGrid(deed.ShuttleUid.Value, LacksPreserveOnSaleComp);
                 sellValue = CalculateShipResaleValue((uid, component), sellValue);
             }
 
