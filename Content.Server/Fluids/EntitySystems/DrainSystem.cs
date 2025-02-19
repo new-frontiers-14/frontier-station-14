@@ -141,7 +141,7 @@ public sealed class DrainSystem : SharedDrainSystem
             if (!_solutionContainerSystem.ResolveSolution((uid, manager), DrainComponent.SolutionName, ref drain.Solution, out var drainSolution))
                 continue;
 
-            if (drainSolution.AvailableVolume <= 0)
+            if (drainSolution.Volume <= 0) // Frontier: AvailableVolume<Volume
             {
                 _ambientSoundSystem.SetAmbience(uid, false);
                 continue;
