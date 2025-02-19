@@ -26,7 +26,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] protected readonly SharedAmbientSoundSystem AmbientSound = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] protected readonly SharedAudioSystem _audio = default!; // Frontier: private<protected
     [Dependency] protected readonly SharedContainerSystem Container = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
@@ -107,6 +107,11 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
 
         if (Timing.CurTime > component.NextSound)
         {
+            // Frontier: tear down previous stream just in case
+            if (component.Stream != null)
+                _audio.Stop(component.Stream);
+            // End Frontier
+
             component.Stream = _audio.PlayPredicted(component.Sound, uid, user)?.Entity;
             component.NextSound = Timing.CurTime + component.SoundCooldown;
         }
