@@ -9,6 +9,9 @@
       - material: Steel
         amount: 3
         doAfter: 1
+      - material: Cable
+        amount: 2
+        doAfter: 1
   - node: empty
     entity: RngEmptyCircuit
     edges:
@@ -20,6 +23,9 @@
       - !type:SpawnPrototype
         prototype: SheetSteel1
         amount: 3
+      - !type:SpawnPrototype
+        prototype: CableApcStack1
+        amount: 2
       - !type:DeleteEntity {}
     - to: rng_device_d2
       steps:
@@ -29,9 +35,6 @@
           sprite: Objects/Fun/dice.rsi
           state: percentile_50
         doAfter: 1
-      - material: Cable
-        amount: 2
-        doAfter: 1
     - to: rng_device_d4
       steps:
       - tag: d4Dice
@@ -39,9 +42,6 @@
         icon:
           sprite: Objects/Fun/dice.rsi
           state: d4_4
-        doAfter: 1
-      - material: Cable
-        amount: 2
         doAfter: 1
     - to: rng_device_d6
       steps:
@@ -51,48 +51,37 @@
           sprite: Objects/Fun/dice.rsi
           state: d4_4
         doAfter: 1
-      - material: Cable
-        amount: 2
-        doAfter: 1
   - node: rng_device_d2
     entity: RngDeviceD2
     edges:
     - to: empty
       steps:
       - tool: Prying
-        doAfter: 2
+        doAfter: 1
       completed:
       - !type:SpawnPrototype
-        prototype: d4Dice
+        prototype: PercentileDie
         amount: 1
-      - !type:SpawnPrototype
-        prototype: CableApcStack1
-        amount: 2
   - node: rng_device_d4
     entity: RngDeviceD4
     edges:
     - to: empty
       steps:
       - tool: Prying
-        doAfter: 2
+        doAfter: 1
       completed:
       - !type:SpawnPrototype
         prototype: d4Dice
         amount: 1
-      - !type:SpawnPrototype
-        prototype: CableApcStack1
-        amount: 2
   - node: rng_device_d6
     entity: RngDeviceD6
     edges:
     - to: empty
       steps:
       - tool: Prying
-        doAfter: 2
+        doAfter: 1
       completed:
       - !type:SpawnPrototype
         prototype: d6Dice
         amount: 1
-      - !type:SpawnPrototype
-        prototype: CableApcStack1
-        amount: 2
+
