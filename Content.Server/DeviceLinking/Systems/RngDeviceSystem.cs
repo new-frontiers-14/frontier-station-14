@@ -26,8 +26,6 @@ public sealed class RngDeviceSystem : EntitySystem
 
     private void OnInit(EntityUid uid, RngDeviceComponent comp, ComponentInit args)
     {
-
-        //_adminLogger.Add(LogType.Action, LogImpact.Low, $"built rng device {ToPrettyString(uid):entity} with nr outputs: {comp.Outputs}");
         _deviceLink.EnsureSinkPorts(uid, comp.InputPort);
         if(comp.Outputs == 2)
         {
@@ -41,19 +39,32 @@ public sealed class RngDeviceSystem : EntitySystem
         {
             _deviceLink.EnsureSourcePorts(uid, comp.Output1Port, comp.Output2Port, comp.Output3Port, comp.Output4Port, comp.Output5Port, comp.Output6Port);
         }
-
     }
 
     private void OnSignalReceived(EntityUid uid, RngDeviceComponent comp, ref SignalReceivedEvent args)
     {
-        var roll = _random.Next(1, 3); //TO DO: Configure number of output ports
-        if (roll == 1)
+        var roll = _random.Next(1, comp.Outputs + 1);
+        switch (roll)
         {
-            _deviceLink.InvokePort(uid, comp.Output1Port);
-        }
-        else if (roll == 2)
-        {
-            _deviceLink.InvokePort(uid, comp.Output2Port);
+            case 1:
+                _deviceLink.InvokePort(uid, comp.Output1Port);
+                break;
+            case 2:
+                _deviceLink.InvokePort(uid, comp.Output2Port);
+                break;
+            case 3:
+                _deviceLink.InvokePort(uid, comp.Output3Port);
+                break;
+            case 4:
+                _deviceLink.InvokePort(uid, comp.Output4Port);
+                break;
+            case 5:
+                _deviceLink.InvokePort(uid, comp.Output5Port);
+                break;
+            case 6:
+                _deviceLink.InvokePort(uid, comp.Output6Port);
+                break;
         }
     }
+
 }
