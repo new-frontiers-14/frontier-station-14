@@ -7,7 +7,6 @@ using Content.Shared._NF.Shipyard.Components;
 using Content.Server._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard;
 using Content.Shared.GameTicking;
-using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
@@ -21,7 +20,6 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Content.Server._NF.Station.Components;
-using Robust.Shared.Toolshed.Commands.Values;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -36,7 +34,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public MapId? ShipyardMap { get; private set; }
@@ -45,8 +42,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     private ISawmill _sawmill = default!;
     private bool _enabled;
     private float _baseSaleRate;
-
-    private EntityWhitelist? _preserveList;
 
     // The type of error from the attempted sale of a ship.
     public enum ShipyardSaleError
@@ -278,7 +273,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (TryComp<ShipyardConsoleComponent>(consoleUid, out var comp))
         {
-            _preserveList = comp.PreserveList;
             CleanGrid(shuttleUid, consoleUid);
         }
 
