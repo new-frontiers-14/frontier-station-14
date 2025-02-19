@@ -283,7 +283,7 @@ public sealed class PricingSystem : EntitySystem
         return price;
     }
 
-    // Frontier Begin - GetPrice variant that uses predicate
+    // Begin Frontier - GetPrice variant that uses predicate
     /// <summary>
     /// Appraises an entity, returning it's price. Respects predicate.
     /// </summary>
@@ -334,6 +334,7 @@ public sealed class PricingSystem : EntitySystem
         }
         return price;
     }
+    // End Frontier - GetPrice variant that uses predicate
 
     private double GetMaterialsPrice(EntityUid uid)
     {
