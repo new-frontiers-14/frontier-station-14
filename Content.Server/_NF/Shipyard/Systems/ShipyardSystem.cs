@@ -328,14 +328,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
     }
 
-
-    private bool CheckPreserveList(EntityUid uid)
-    {
-        return _whitelistSystem.IsWhitelistPass(_preserveList, uid);
-    }
     private bool CheckNotPreserveList(EntityUid uid)
     {
-        return _whitelistSystem.IsWhitelistFailOrNull(_preserveList, uid);
+        return !HasComp<ShipyardPreserveOnSaleComponent>(uid);
     }
     private void CleanupShipyard()
     {

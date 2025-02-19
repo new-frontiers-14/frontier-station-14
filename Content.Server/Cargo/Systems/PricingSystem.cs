@@ -103,7 +103,7 @@ public sealed class PricingSystem : EntitySystem
         var totalPartsPresent = partList.Sum(_ => 1);
         var totalParts = partList.Count;
 
-        var partRatio = totalPartsPresent / (double) totalParts;
+        var partRatio = totalPartsPresent / (double)totalParts;
         var partPenalty = component.Price * (1 - partRatio) * component.MissingBodyPartPenalty;
 
         args.Price += (component.Price - partPenalty) * (_mobStateSystem.IsAlive(uid, state) ? 1.0 : component.DeathPenalty) * (HasComp<LabGrownComponent>(uid) ? 1.0 : component.LabGrownPenalty); // Frontier - LabGrown
@@ -125,7 +125,7 @@ public sealed class PricingSystem : EntitySystem
                     continue;
 
                 // TODO check ReagentData for price information?
-                price += (float) quantity * reagentProto.PricePerUnit;
+                price += (float)quantity * reagentProto.PricePerUnit;
             }
         }
 
@@ -144,7 +144,7 @@ public sealed class PricingSystem : EntitySystem
                     continue;
 
                 // TODO check ReagentData for price information?
-                price += (float) quantity * reagentProto.PricePerUnit;
+                price += (float)quantity * reagentProto.PricePerUnit;
             }
         }
 
@@ -283,6 +283,58 @@ public sealed class PricingSystem : EntitySystem
         return price;
     }
 
+    // Frontier Begin - GetPrice variant that uses predicate
+    /// <summary>
+    /// Appraises an entity, returning it's price. Respects predicate.
+    /// </summary>
+    /// <param name="uid">The entity to appraise.</param>
+    /// <param name="includeContents">Whether to examine contents</param>
+    /// <param name="predicate">An optional predicate that controls whether or not the entity is counted toward the total.</param>
+    /// <returns>The price of the entity.</returns>
+    /// <remarks>
+    /// This fires off an event to calculate the price.
+    /// Calculating the price of an entity that somehow contains itself will likely hang.
+    /// </remarks>
+    public double GetPriceConditional(EntityUid uid, bool includeContents = true, Func<EntityUid, bool>? predicate = null)
+    {
+        var ev = new PriceCalculationEvent();
+        ev.Price = 0; // Structs doesnt initialize doubles when called by constructor.
+        RaiseLocalEvent(uid, ref ev);
+
+        if (ev.Handled)
+            return ev.Price;
+
+        var price = ev.Price;
+        if (predicate is null || predicate(uid))
+        {
+            //TODO: Add an OpaqueToAppraisal component or similar for blocking the recursive descent into containers, or preventing material pricing.
+            // DO NOT FORGET TO UPDATE ESTIMATED PRICING
+            price += GetMaterialsPrice(uid);
+            price += GetSolutionsPrice(uid);
+
+            // Can't use static price with stackprice
+            var oldPrice = price;
+            price += GetStackPrice(uid);
+
+            if (oldPrice.Equals(price))
+            {
+                price += GetStaticPrice(uid);
+            }
+        }
+
+        if (includeContents && TryComp<ContainerManagerComponent>(uid, out var containers))
+        {
+            foreach (var container in containers.Containers.Values)
+            {
+                foreach (var ent in container.ContainedEntities)
+                {
+                    price += GetPriceConditional(ent, true, predicate);
+                }
+            }
+        }
+        return price;
+    }
+
     private double GetMaterialsPrice(EntityUid uid)
     {
         double price = 0;
@@ -307,12 +359,12 @@ public sealed class PricingSystem : EntitySystem
         if (prototype.Components.ContainsKey(_factory.GetComponentName(typeof(MaterialComponent))) &&
             prototype.Components.TryGetValue(_factory.GetComponentName(typeof(PhysicalCompositionComponent)), out var composition))
         {
-            var compositionComp = (PhysicalCompositionComponent) composition.Component;
+            var compositionComp = (PhysicalCompositionComponent)composition.Component;
             var matPrice = GetMaterialPrice(compositionComp);
 
             if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StackComponent)), out var stackProto))
             {
-                matPrice *= ((StackComponent) stackProto.Component).Count;
+                matPrice *= ((StackComponent)stackProto.Component).Count;
             }
 
             price += matPrice;
@@ -339,7 +391,7 @@ public sealed class PricingSystem : EntitySystem
 
         if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(SolutionContainerManagerComponent)), out var solManager))
         {
-            var solComp = (SolutionContainerManagerComponent) solManager.Component;
+            var solComp = (SolutionContainerManagerComponent)solManager.Component;
             price += GetSolutionPrice(solComp);
         }
 
@@ -368,8 +420,8 @@ public sealed class PricingSystem : EntitySystem
             prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StackComponent)), out var stackProto) &&
             !prototype.Components.ContainsKey(_factory.GetComponentName(typeof(MaterialComponent))))
         {
-            var stackPrice = (StackPriceComponent) stackpriceProto.Component;
-            var stack = (StackComponent) stackProto.Component;
+            var stackPrice = (StackPriceComponent)stackpriceProto.Component;
+            var stack = (StackComponent)stackProto.Component;
             price += stack.Count * stackPrice.Price;
         }
 
@@ -394,7 +446,7 @@ public sealed class PricingSystem : EntitySystem
 
         if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StaticPriceComponent)), out var staticProto))
         {
-            var staticPrice = (StaticPriceComponent) staticProto.Component;
+            var staticPrice = (StaticPriceComponent)staticProto.Component;
             price += staticPrice.Price;
         }
 
@@ -410,13 +462,13 @@ public sealed class PricingSystem : EntitySystem
         // Prefer static price to stack price component, take the first positive value read.
         if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StaticPriceComponent)), out var staticProto))
         {
-            var staticComp = (StaticPriceComponent) staticProto.Component;
+            var staticComp = (StaticPriceComponent)staticProto.Component;
             if (staticComp.VendPrice > 0.0)
                 price += staticComp.VendPrice;
         }
         if (price == 0.0 && prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StackPriceComponent)), out var stackProto))
         {
-            var stackComp = (StackPriceComponent) stackProto.Component;
+            var stackComp = (StackPriceComponent)stackProto.Component;
             if (stackComp.VendPrice > 0.0)
                 price += stackComp.VendPrice;
         }
@@ -441,7 +493,7 @@ public sealed class PricingSystem : EntitySystem
         {
             if (predicate is null || predicate(child))
             {
-                var subPrice = GetPrice(child);
+                var subPrice = GetPriceConditional(child, true, predicate);
                 price += subPrice;
                 afterPredicate?.Invoke(child, subPrice);
             }
