@@ -340,6 +340,10 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
             empty = true;
         }
 
+        // Inserting into a full container (or with a lingering stack)
+        if (multiplier <= 0)
+            return false;
+
         // Material Whitelist checked implicitly by CanChangeMaterialAmount();
 
         var totalVolume = 0;
