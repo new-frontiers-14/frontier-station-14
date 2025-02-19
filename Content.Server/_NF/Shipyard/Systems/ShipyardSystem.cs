@@ -4,6 +4,7 @@ using Content.Server.Station.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.Shipyard.Components;
+using Content.Server._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard;
 using Content.Shared.GameTicking;
 using Content.Shared.Whitelist;
@@ -311,11 +312,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     // checks if something has a component and if it does, adds it to the list
     private void NestedHasComp(EntityUid entity, ref List<EntityUid> output)
     {
-        if (CheckPreserveList(entity))
+        if (HasComp<ShipyardPreserveOnSaleComponent>(entity))
         {
             output.Add(entity);
         }
-        if (TryComp<ContainerManagerComponent>(entity, out var containers))
+        else if (TryComp<ContainerManagerComponent>(entity, out var containers))
         {
             foreach (var container in containers.Containers.Values)
             {
