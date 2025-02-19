@@ -20,6 +20,7 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Content.Server._NF.Station.Components;
+using Robust.Shared.Toolshed.Commands.Values;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -295,20 +296,44 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     {
         var xform = Transform(grid);
         var enumerator = xform.ChildEnumerator;
+        var entitiesToPreserve = new List<EntityUid>();
 
         while (enumerator.MoveNext(out var child))
         {
-            if (CheckPreserveList(child))
+            NestedHasComp(child, ref entitiesToPreserve);
+        }
+        foreach (var ent in entitiesToPreserve)
+        {
+            _transform.SetCoordinates(ent, new EntityCoordinates(destination, 0, 0));
+        }
+    }
+
+    // checks if something has a component and if it does, adds it to the list
+    private void NestedHasComp(EntityUid entity, ref List<EntityUid> output)
+    {
+        if (CheckPreserveList(entity))
+        {
+            output.Add(entity);
+        }
+        if (TryComp<ContainerManagerComponent>(entity, out var containers))
+        {
+            foreach (var container in containers.Containers.Values)
             {
-                _transform.SetCoordinates(child, new EntityCoordinates(destination, 0, 0));
+                foreach (var ent in container.ContainedEntities)
+                {
+                    NestedHasComp(ent, ref output);
+                }
             }
         }
     }
 
-    private bool CheckPreserveList(EntityUid uid){
+
+    private bool CheckPreserveList(EntityUid uid)
+    {
         return _whitelistSystem.IsWhitelistPass(_preserveList, uid);
     }
-    private bool CheckNotPreserveList(EntityUid uid){
+    private bool CheckNotPreserveList(EntityUid uid)
+    {
         return _whitelistSystem.IsWhitelistFailOrNull(_preserveList, uid);
     }
     private void CleanupShipyard()
