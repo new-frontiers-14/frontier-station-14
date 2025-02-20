@@ -108,6 +108,8 @@ public sealed partial class ResearchSystem
         UpdateConsoleInterface(uid, component);
     }
 
+    // Frontier: unneeded emag call
+    /*
     private void OnEmagged(Entity<ResearchConsoleComponent> ent, ref GotEmaggedEvent args)
     {
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
@@ -118,5 +120,7 @@ public sealed partial class ResearchSystem
 
         args.Handled = true;
     }
+    */
+    // End Frontier: unneeded emag call
 
 }

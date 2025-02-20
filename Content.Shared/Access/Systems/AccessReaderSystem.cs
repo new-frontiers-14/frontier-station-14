@@ -35,7 +35,6 @@ public sealed class AccessReaderSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<AccessReaderComponent, GotEmaggedEvent>(OnEmagged);
-        SubscribeLocalEvent<AccessReaderComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - DEMAG
         SubscribeLocalEvent<AccessReaderComponent, LinkAttemptEvent>(OnLinkAttempt);
 
         SubscribeLocalEvent<AccessReaderComponent, ComponentGetState>(OnGetState);
@@ -77,6 +76,7 @@ public sealed class AccessReaderSystem : EntitySystem
             args.Cancel();
     }
 
+    // Frontier: TODO - cache for demag?
     private void OnEmagged(EntityUid uid, AccessReaderComponent reader, ref GotEmaggedEvent args)
     {
         if (!_emag.CompareFlag(args.Type, EmagType.Access))
@@ -97,15 +97,6 @@ public sealed class AccessReaderSystem : EntitySystem
         accessReader.Value.Comp.AccessLog.Clear();
         Dirty(uid, reader);
     }
-
-    // Frontier: DEMAG
-    private void OnUnEmagged(EntityUid uid, AccessReaderComponent reader, ref GotUnEmaggedEvent args)
-    {
-        args.Handled = true;
-        reader.Enabled = true;
-        Dirty(uid, reader);
-    }
-    // End Frontier: DEMAG
 
     /// <summary>
     /// Searches the source for access tags

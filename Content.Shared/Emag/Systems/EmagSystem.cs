@@ -108,9 +108,6 @@ public sealed class EmagSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        if (_tag.HasTag(target, ent.Comp.EmagImmuneTag))
-            return false;
-
         if (!HasComp<EmaggedComponent>(target))
             return false;
 
@@ -121,28 +118,32 @@ public sealed class EmagSystem : EntitySystem
             return false;
         }
 
-        var emaggedEvent = new GotEmaggedEvent(user, ent.Comp.EmagType);
+        var emaggedEvent = new GotUnEmaggedEvent(user, ent.Comp.EmagType);
         RaiseLocalEvent(target, ref emaggedEvent);
 
         if (!emaggedEvent.Handled)
             return false;
 
-        // TODO: define demag-success
-        _popup.PopupPredicted(Loc.GetString("demag-success", ("target", Identity.Entity(target, EntityManager))), user, user, PopupType.Medium);
+        _popup.PopupPredicted(Loc.GetString("emag-success", ("target", Identity.Entity(target, EntityManager))), user, user, PopupType.Medium);
 
         _audio.PlayPredicted(ent.Comp.EmagSound, ent, ent);
 
         _adminLogger.Add(LogType.Emag, LogImpact.Medium, $"{ToPrettyString(user):player} demagged {ToPrettyString(target):target} with flag(s): {ent.Comp.EmagType}");
 
-        if (charges != null  && emaggedEvent.Handled)
+        if (charges != null && emaggedEvent.Handled)
             _charges.UseCharge(ent, charges);
 
         if (!emaggedEvent.Repeatable)
         {
-            EnsureComp<EmaggedComponent>(target, out var emaggedComp);
-
-            emaggedComp.EmagType |= ent.Comp.EmagType;
-            Dirty(target, emaggedComp);
+            // Query the emag component after the event is handled in case anything changes during the event.
+            if (TryComp<EmaggedComponent>(target, out var emaggedComp))
+            {
+                emaggedComp.EmagType &= ~ent.Comp.EmagType;
+                if (emaggedComp.EmagType == EmagType.None)
+                    RemComp<EmaggedComponent>(target);
+                else
+                    Dirty(target, emaggedComp);
+            }
         }
 
         return emaggedEvent.Handled;
@@ -200,6 +201,7 @@ public enum EmagType : byte
 [ByRefEvent]
 public record struct GotEmaggedEvent(EntityUid UserUid, EmagType Type, bool Handled = false, bool Repeatable = false);
 
-
+// Frontier: demag
 [ByRefEvent]
-public record struct GotUnEmaggedEvent(EntityUid UserUid, EmagType Type, bool Handled = false, bool Repeatable = false); // Frontier
+public record struct GotUnEmaggedEvent(EntityUid UserUid, EmagType Type, bool Handled = false, bool Repeatable = false);
+// End Frontier

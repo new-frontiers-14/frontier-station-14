@@ -77,12 +77,6 @@ public sealed partial class LockComponent : Component
     [DataField]
     [AutoNetworkedField]
     public TimeSpan UnlockTime;
-
-    /// <summary>
-    /// Frontier - Whether or not its emag immune.
-    /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool ImmuneToEmag;
 }
 
 /// <summary>
