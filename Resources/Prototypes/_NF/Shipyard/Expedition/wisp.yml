@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: Vide Noir (https://github.com/EaglePhntm)
+# Discord: @_videnoir_
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Wisp
+  parent: BaseVessel
+  name: NTC Wisp
+  description: A small, fast salvage and expedition ship.
+  price: 27480 # not worth this at all tbh.
+  category: Small
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/wisp.yml
+  guidebookPage: Null
+  class:
+  - Expedition
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Wisp
+  mapName: 'NTC Wisp'
+  mapPath: /Maps/_NF/Shuttles/Expedition/wisp.yml
+  minPlayers: 0
+  stations:
+    Wisp:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Wisp {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
