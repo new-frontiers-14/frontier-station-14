@@ -442,6 +442,11 @@ entities:
     - type: Transform
       pos: 0.5,-10.5
       parent: 1
+  - uid: 347
+    components:
+    - type: Transform
+      pos: 5.5,-10.5
+      parent: 1
 - proto: AirlockCommand
   entities:
   - uid: 100
@@ -580,7 +585,7 @@ entities:
       pos: -5.5,-3.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -625.7365
+      secondsUntilStateChange: -2276.6648
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1065,7 +1070,7 @@ entities:
     - type: Transform
       pos: 4.5,-3.5
       parent: 1
-  - uid: 126
+  - uid: 232
     components:
     - type: Transform
       pos: 6.5,-15.5
@@ -3506,9 +3511,9 @@ entities:
         - 0
         - 0
         - 0
-- proto: LockerWallMedicalDoctorFilled
+- proto: LockerWallMedical
   entities:
-  - uid: 347
+  - uid: 126
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -3579,13 +3584,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: PlushieGhost
-  entities:
-  - uid: 738
-    components:
-    - type: Transform
-      pos: 0.4636078,-13.408944
-      parent: 1
 - proto: PowerCellRecharger
   entities:
   - uid: 499
@@ -3989,6 +3987,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-15.5
       parent: 1
+    - type: UserInterface
+      actors:
+        enum.StorageUiKey.Key:
+        - invalid
+    - type: ActiveUserInterface
 - proto: ShuttersWindowOpen
   entities:
   - uid: 115
