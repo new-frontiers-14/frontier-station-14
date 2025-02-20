@@ -34,6 +34,7 @@ namespace Content.Server.Nutrition.EntitySystems
             SubscribeLocalEvent<VapeComponent, AfterInteractEvent>(OnVapeInteraction);
             SubscribeLocalEvent<VapeComponent, VapeDoAfterEvent>(OnVapeDoAfter);
             SubscribeLocalEvent<VapeComponent, GotEmaggedEvent>(OnEmagged);
+            SubscribeLocalEvent<VapeComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
         }
 
         private void OnVapeInteraction(Entity<VapeComponent> entity, ref AfterInteractEvent args)
@@ -173,5 +174,18 @@ namespace Content.Server.Nutrition.EntitySystems
 
             args.Handled = true;
         }
+
+        // Frontier: demag
+        private void OnUnemagged(Entity<VapeComponent> entity, ref GotUnEmaggedEvent args)
+        {
+            if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+                return;
+
+            if (!_emag.CheckFlag(entity, EmagType.Interaction))
+                return;
+
+            args.Handled = true;
+        }
+        // End Frontier
     }
 }

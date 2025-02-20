@@ -35,6 +35,7 @@ public sealed class FatExtractorSystem : EntitySystem
         SubscribeLocalEvent<FatExtractorComponent, UpgradeExamineEvent>(OnUpgradeExamine);
 //        SubscribeLocalEvent<FatExtractorComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<FatExtractorComponent, GotEmaggedEvent>(OnGotEmagged);
+        SubscribeLocalEvent<FatExtractorComponent, GotUnEmaggedEvent>(OnGotUnemagged); // Frontier
         SubscribeLocalEvent<FatExtractorComponent, StorageAfterCloseEvent>(OnClosed);
         SubscribeLocalEvent<FatExtractorComponent, StorageAfterOpenEvent>(OnOpen);
         SubscribeLocalEvent<FatExtractorComponent, PowerChangedEvent>(OnPowerChanged);
@@ -66,6 +67,19 @@ public sealed class FatExtractorSystem : EntitySystem
 
         args.Handled = true;
     }
+
+    // Frontier: demag
+    private void OnGotUnemagged(EntityUid uid, FatExtractorComponent component, ref GotUnEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        args.Handled = true;
+    }
+    // End Frontier
 
     private void OnClosed(EntityUid uid, FatExtractorComponent component, ref StorageAfterCloseEvent args)
     {

@@ -37,6 +37,7 @@ public sealed class ApcSystem : EntitySystem
         SubscribeLocalEvent<ApcComponent, ChargeChangedEvent>(OnBatteryChargeChanged);
         SubscribeLocalEvent<ApcComponent, ApcToggleMainBreakerMessage>(OnToggleMainBreaker);
         SubscribeLocalEvent<ApcComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<ApcComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
 
         SubscribeLocalEvent<ApcComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<ApcComponent, EmpDisabledRemoved>(OnEmpDisabledRemoved); // Frontier: Upstream - #28984
@@ -123,6 +124,19 @@ public sealed class ApcSystem : EntitySystem
 
         args.Handled = true;
     }
+
+    // Frontier: demag
+    private void OnUnemagged(EntityUid uid, ApcComponent comp, ref GotUnEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        args.Handled = true;
+    }
+    // End Frontier
 
     public void UpdateApcState(EntityUid uid,
         ApcComponent? apc = null,

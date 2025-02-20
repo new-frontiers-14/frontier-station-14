@@ -88,6 +88,7 @@ namespace Content.Server.Cloning
             SubscribeLocalEvent<CloningPodComponent, AnchorStateChangedEvent>(OnAnchor);
             SubscribeLocalEvent<CloningPodComponent, ExaminedEvent>(OnExamined);
             SubscribeLocalEvent<CloningPodComponent, GotEmaggedEvent>(OnEmagged);
+            SubscribeLocalEvent<CloningPodComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
         }
 
         private void OnComponentInit(EntityUid uid, CloningPodComponent clonePod, ComponentInit args)
@@ -349,6 +350,23 @@ namespace Content.Server.Cloning
             _popupSystem.PopupEntity(Loc.GetString("cloning-pod-component-upgrade-emag-requirement"), uid);
             args.Handled = true;
         }
+
+        // Frontier: demag
+        private void OnUnemagged(EntityUid uid, CloningPodComponent clonePod, ref GotUnEmaggedEvent args)
+        {
+            if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+                return;
+
+            if (!_emag.CheckFlag(uid, EmagType.Interaction))
+                return;
+
+            if (!this.IsPowered(uid, EntityManager))
+                return;
+
+            _popupSystem.PopupEntity(Loc.GetString("cloning-pod-component-upgrade-emag-requirement"), uid);
+            args.Handled = true;
+        }
+        // End Frontier
 
         public void Eject(EntityUid uid, CloningPodComponent? clonePod)
         {

@@ -27,6 +27,7 @@ public abstract class SharedLatheSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<EmagLatheRecipesComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<EmagLatheRecipesComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
         SubscribeLocalEvent<LatheComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
 
@@ -79,6 +80,19 @@ public abstract class SharedLatheSystem : EntitySystem
 
         args.Handled = true;
     }
+
+    // Frontier: demag
+    private void OnUnemagged(EntityUid uid, EmagLatheRecipesComponent component, ref GotUnEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        args.Handled = true;
+    }
+    // End Frontier: demag
 
     public static int AdjustMaterial(int original, bool reduce, float multiplier)
         => reduce ? (int) MathF.Ceiling(original * multiplier) : original;
