@@ -19,11 +19,11 @@
   name: uplink-revolver-python-name
   description: uplink-revolver-python-desc
   productEntity: WeaponRevolverPythonAP
-  discountCategory: usualDiscounts
+  discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 2
   cost:
-    Telecrystal: 8 # Originally was 13 TC but was not used due to high cost
+    Telecrystal: 4 # Originally was 13 and then 8 TC but was not used due to high cost
   categories:
   - UplinkWeaponry
 
@@ -1148,21 +1148,23 @@
         # tags:
           # - NukeOpsUplink
 
-# - type: listing # Frontier
-  # id: UplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns another nuclear operative without the uplink.
-  # name: uplink-reinforcement-radio-nukeops-name
-  # description: uplink-reinforcement-radio-nukeops-desc
-  # productEntity: ReinforcementRadioSyndicateNukeops
-  # icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-nukeop }
-  # cost:
-    # Telecrystal: 35
-  # categories:
-  # - UplinkAllies
-  # conditions:
-    # - !type:StoreWhitelistCondition
-      # whitelist:
-        # tags:
-          # - NukeOpsUplink
+# Frontier: no reinforcements
+# - type: listing
+#   id: UplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns another nuclear operative without the uplink.
+#   name: uplink-reinforcement-radio-nukeops-name
+#   description: uplink-reinforcement-radio-nukeops-desc
+#   productEntity: ReinforcementRadioSyndicateNukeops
+#   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-nukeop }
+#   cost:
+#     Telecrystal: 30
+#   categories:
+#   - UplinkAllies
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - NukeOpsUplink
+# End Frontier
 
 # - type: listing # Frontier
   # id: UplinkReinforcementRadioSyndicateCyborgAssault
@@ -1963,11 +1965,11 @@
   name: uplink-revolver-cap-gun-fake-name
   description: uplink-revolver-cap-gun-fake-desc
   productEntity: RevolverCapGunFake
-  discountCategory: usualDiscounts
+  discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 3
   cost:
-    Telecrystal: 9
+    Telecrystal: 5
   categories:
   - UplinkWeaponry # Frontier: UplinkJob<UplinkWeaponry
   # conditions: # Frontier: no mimes or clowns
@@ -2136,8 +2138,11 @@
   description: uplink-combat-bakery-desc
   icon: { sprite:  Objects/Consumable/Food/Baked/bread.rsi, state: baguette}
   productEntity: CombatBakeryKit
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
   cost:
-    Telecrystal: 6
+    Telecrystal: 4
   categories:
   - UplinkWeaponry # Frontier: UplinkJob<UplinkWeaponry
   # conditions: # Frontier: no chefs or mimes

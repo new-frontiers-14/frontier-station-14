@@ -124,6 +124,7 @@
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
+<<<<<<< HEAD
     staticRecipes:
       - Wirecutter
       - Igniter
@@ -242,6 +243,24 @@
       - SpeedLoaderMagnumEmpty
       - SpeedLoaderRifleHeavy # Frontier
       - SpeedLoaderRifleHeavyEmpty # Frontier
+=======
+    staticPacks:
+    - ToolsStatic
+    - PartsStatic
+    - AtmosStatic
+    - CablesStatic
+    - CargoStatic
+    - MaterialsStatic
+    - BasicChemistryStatic
+    - RollerBedsStatic
+    - LightsStatic
+    - ServiceStatic
+    - PowerCellsStatic
+    - ElectronicsStatic
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - SecurityAmmoStatic
+>>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -300,6 +319,7 @@
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
+<<<<<<< HEAD
     staticRecipes:
     - LargeBeaker
     - Dropper
@@ -461,6 +481,31 @@
       - LauncherSyringe
       - MiniSyringe
       # End DeltaV additions
+=======
+    staticPacks:
+    - ChemistryStatic
+    - SurgeryStatic
+    dynamicPacks:
+    - AdvancedTools
+    - ScienceEquipment
+    - ScienceClothing
+    - PowerCells
+    - ScienceWeapons
+    - Mining
+    - AtmosTools
+    - EngineeringWeapons
+    - Chemistry
+    - Janitor
+    - Instruments
+    - Equipment
+    - FauxTiles
+  - type: EmagLatheRecipes
+    emagDynamicPacks:
+    - SecurityAmmo
+    - SecurityExplosives
+    - SecurityEquipment
+    - SecurityWeapons
+>>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -496,6 +541,7 @@
     producingSound: /Audio/Machines/circuitprinter.ogg
     idleState: icon
     runningState: building
+<<<<<<< HEAD
     staticRecipes:
     - ProtolatheMachineCircuitboard
     - AutolatheMachineCircuitboard
@@ -621,6 +667,27 @@
       # - ShuttleGunPerforatorCircuitboard # Frontier
       # - ShuttleGunSvalinnMachineGunCircuitboard # Frontier
       - ShuttleGunKineticCircuitboard # Frontier
+=======
+    staticPacks:
+    - ScienceBoardsStatic
+    - ServiceBoardsStatic
+    - CargoBoardsStatic
+    - MedicalBoardsStatic
+    - EngineeringBoardsStatic
+    - CircuitFloorsStatic
+    dynamicPacks:
+    - EngineeringBoards
+    - CargoBoards
+    - MedicalBoards
+    - ServiceBoards
+    - ScienceBoards
+    - CameraBoards
+    - MechBoards
+    - ShuttleBoards
+  - type: EmagLatheRecipes
+    emagDynamicPacks:
+    - SecurityBoards
+>>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
   - type: MaterialStorage
     whitelist:
       tags:
@@ -660,6 +727,7 @@
   - type: Lathe
     idleState: fab-idle
     runningState: fab-active
+<<<<<<< HEAD
     staticRecipes:
     - MMI
     - PositronicBrain
@@ -708,6 +776,17 @@
     - HamtrLLeg
     - HamtrRLeg
     - VimHarness
+=======
+    staticPacks:
+    - RoboticsStatic
+    - BorgModulesStatic
+    - BorgLimbsStatic
+    dynamicPacks:
+    - Robotics
+    - BorgModules
+    - MechParts
+    - MechEquipment
+>>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
   - type: MaterialStorage
     whitelist:
       tags:
@@ -752,19 +831,11 @@
   - type: Lathe
     idleState: icon
     runningState: building
-    staticRecipes:
-    - MonkeyCube
-    - KoboldCube
-    - CowCube
-    - GoatCube
-    - MothroachCube
-    - MouseCube
-    - CockroachCube
+    staticPacks:
+    - FriendlyCubesStatic
   - type: EmagLatheRecipes
-    emagStaticRecipes:
-    - AbominationCube
-    - SpaceCarpCube
-    - SpaceTickCube
+    emagStaticPacks:
+    - HostileCubesStatic
 
 - type: entity
   id: SecurityTechFab
@@ -791,98 +862,17 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticRecipes:
-      - BoxLethalshot
-      - BoxShotgunPractice
-      - BoxShotgunSlug
-      - ClothingEyesHudSecurity
-      - CombatKnife
-      - Flash
-      - ForensicPad
-      - Handcuffs
-      - MagazineBoxLightRifle
-      - MagazineBoxLightRiflePractice
-      - MagazineBoxMagnum
-      - MagazineBoxMagnumPractice
-      - MagazineBoxPistol
-      - MagazineBoxPistolPractice
-      - MagazineBoxRifle
-      - MagazineBoxRiflePractice
-      - MagazineLightRifle
-      - MagazineLightRifleEmpty
-      - MagazinePistol
-      - MagazinePistolEmpty
-      - MagazinePistolSubMachineGun
-      - MagazinePistolSubMachineGunEmpty
-      - MagazinePistolSubMachineGunTopMounted
-      - MagazinePistolSubMachineGunTopMountedEmpty
-      - MagazineRifle
-      - MagazineRifleEmpty
-      - MagazineShotgun
-      - MagazineShotgunEmpty
-      - MagazineShotgunSlug
-      - RiotShield
-      - SpeedLoaderMagnum
-      - SpeedLoaderMagnumEmpty
-      - Stunbaton
-      - TargetClown
-      - TargetHuman
-      - TargetSyndicate
-      - WeaponDisablerPractice
-      - WeaponFlareGunSecurity
-      - WeaponLaserCarbinePractice
-      - Zipties
-    dynamicRecipes:
-      - BoxBeanbag
-      - BoxShotgunIncendiary
-      - BoxShotgunUranium
-      - BoxShellTranquilizer
-      - ClothingBackpackElectropack
-      - ExplosivePayload
-      - FlashPayload
-      - GrenadeBlast
-      - GrenadeEMP
-      - GrenadeFlash
-      - HoloprojectorSecurity
-      - MagazineBoxLightRifleIncendiary
-      - MagazineBoxLightRifleUranium
-      - MagazineBoxMagnumIncendiary
-      - MagazineBoxMagnumUranium
-      - MagazineBoxPistolIncendiary
-      - MagazineBoxPistolUranium
-      - MagazineBoxRifleIncendiary
-      - MagazineBoxRifleUranium
-      - MagazineGrenadeEmpty
-      - MagazineLightRifleIncendiary
-      - MagazineLightRifleUranium
-      - MagazinePistolIncendiary
-      - MagazinePistolUranium
-      - MagazineRifleIncendiary
-      - MagazineRifleUranium
-      - MagazineShotgunBeanbag
-      - MagazineShotgunIncendiary
-      - PortableRecharger
-      - PowerCageHigh
-      - PowerCageMedium
-      - PowerCageSmall
-      - ShuttleGunDusterCircuitboard
-      - ShuttleGunFriendshipCircuitboard
-      - ShuttleGunPerforatorCircuitboard
-      - ShuttleGunSvalinnMachineGunCircuitboard
-      - Signaller
-      - SignalTrigger
-      - SpeedLoaderMagnumIncendiary
-      - SpeedLoaderMagnumUranium
-      - TelescopicShield
-      - TimerTrigger
-      - Truncheon
-      - VoiceTrigger
-      - WeaponAdvancedLaser
-      - WeaponDisabler
-      - WeaponDisablerSMG
-      - WeaponLaserCannon
-      - WeaponLaserCarbine
-      - WeaponXrayCannon
+    staticPacks:
+    - SecurityEquipmentStatic
+    - SecurityPracticeStatic
+    - SecurityAmmoStatic
+    - SecurityWeaponsStatic
+    dynamicPacks:
+    - SecurityEquipment
+    - SecurityBoards
+    - SecurityExplosives
+    - SecurityAmmo
+    - SecurityWeapons
   - type: MaterialStorage
     whitelist:
       tags:
@@ -914,6 +904,7 @@
     - type: Lathe
       idleState: icon
       runningState: icon
+<<<<<<< HEAD
       staticRecipes:
         - BoxLethalshot
         - BoxShotgunSlug
@@ -935,6 +926,10 @@
         - SpeedLoaderMagnumEmpty
         - SpeedLoaderRifleHeavy # Frontier
         - SpeedLoaderRifleHeavyEmpty # Frontier
+=======
+      staticPacks:
+      - SecurityAmmoStatic
+>>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
     - type: MaterialStorage
       whitelist:
         tags:
@@ -964,6 +959,7 @@
   - type: Lathe
     idleState: icon
     runningState: icon
+<<<<<<< HEAD
     staticRecipes:
       - Brutepack
       - Ointment
@@ -1025,6 +1021,18 @@
       - LauncherSyringe
       - MiniSyringe
       # End DeltaV additions
+=======
+    staticPacks:
+    - TopicalsStatic
+    - ChemistryStatic
+    - MedicalStatic
+    - RollerBedsStatic
+    - MedicalClothingStatic
+    - EmptyMedkitsStatic
+    - SurgeryStatic
+    dynamicPacks:
+    - Chemistry
+>>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -1050,6 +1058,7 @@
     producingSound: /Audio/Machines/uniformprinter.ogg
     idleState: icon
     runningState: building
+<<<<<<< HEAD
     staticRecipes:
       - ClothingUniformJumpsuitColorGrey
       - ClothingUniformJumpskirtColorGrey
@@ -1257,6 +1266,26 @@
       - ClothingOuterWinterSyndieCap
       # Bedsheets
       - BedsheetSyndie
+=======
+    staticPacks:
+    - ClothingCivilian
+    - ClothingCargo
+    - ClothingCommand
+    - ClothingEngineering
+    - ClothingMedical
+    - ClothingScience
+    - ClothingSecurity
+    - ClothingService
+    - WinterCoats
+    - Ties
+    - Scarves
+    - Carpets
+    - Bedsheets
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - ClothingCentComm
+    - ClothingSyndie
+>>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
   - type: MaterialStorage
     whitelist:
       tags:
@@ -1303,6 +1332,7 @@
     reagentOutputSlotId: beaker_slot
     idleState: icon
     runningState: building
+<<<<<<< HEAD
     staticRecipes:
     - BioGenMilk
     - BioGenMilkSoy
@@ -1407,6 +1437,11 @@
     - SpaceCarpCube # Frontier
     - SpaceTickCube # Frontier
     - NFBioGenFlyAmanitaSeeds #Frontier
+=======
+    staticPacks:
+    - BioGenIngredientsStatic
+    - BioGenMaterialsStatic
+>>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
 
 - type: entity
   parent: BaseLathe
@@ -1437,6 +1472,7 @@
       idleState: icon
       runningState: building
       defaultProductionAmount: 10
+<<<<<<< HEAD
       productValueModifier: null # Frontier
       staticRecipes:
         - SheetSteel
@@ -1453,6 +1489,11 @@
         - BluespaceCrystal #Nyano - Summary: Bluespace Crystals can be created here.
     - type: PlaceableSurface # DeltaV: Allow ore bags to dump into it directly
       isPlaceable: false # but not place on it if you just click it with a random item
+=======
+      staticPacks:
+      - OreSmelting
+      - RGlassSmelting
+>>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
 
 - type: entity
   parent: OreProcessor
@@ -1467,6 +1508,7 @@
   - type: Lathe
     materialUseMultiplier: 0.75
     timeMultiplier: 0.5
+<<<<<<< HEAD
     staticRecipes:
       - SheetSteel
       - SheetGlass1
@@ -1483,6 +1525,12 @@
       - MaterialBananium1
       - MaterialDiamond
       - BluespaceCrystal #Nyano - Summary: Bluespace Crystals can be created here.
+=======
+    staticPacks:
+    - OreSmelting
+    - RGlassSmelting
+    - AdvancedSmelting
+>>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
 
 - type: entity
   parent: BaseLathe
@@ -1511,9 +1559,8 @@
   - type: Lathe
     idleState: base_machine
     runningState: base_machine_processing
-    staticRecipes:
-    - MaterialSheetMeat
-    - SheetPaper
+    staticPacks:
+    - SheetifierStatic
 
 - type: entity
   parent: BaseLathe
@@ -1540,6 +1587,7 @@
     producingSound: /Audio/Machines/cutter.ogg
     idleState: icon
     runningState: building
+<<<<<<< HEAD
     staticRecipes:
       - FloorTileItemDark
       - FloorTileItemDarkDiagonalMini
@@ -1633,6 +1681,10 @@
   - type: EmagLatheRecipes # Frontier
     emagStaticRecipes: # Frontier
     - FloorTileItemFlesh # Frontier
+=======
+    staticPacks:
+    - FloorTilesStatic
+>>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
   - type: MaterialStorage
     whitelist:
       tags:

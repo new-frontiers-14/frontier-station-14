@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseMagazineBoxAntiMateriel
+  id: MagazineBoxAntiMaterielBig
+  name: ammunition box (.60 anti-materiel)
+  suffix: 30
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeAntiMateriel
+  - type: Icon # Frontier
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi # Frontier
+    state: bigdisplay # Frontier
+  - type: Sprite
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
