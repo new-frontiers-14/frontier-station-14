@@ -37,7 +37,7 @@ namespace Content.Server.Bed
             SubscribeLocalEvent<StasisBedComponent, UnstrappedEvent>(OnStasisUnstrapped);
             SubscribeLocalEvent<StasisBedComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<StasisBedComponent, GotEmaggedEvent>(OnEmagged);
-            SubscribeLocalEvent<StasisBedComponent, GotUnEmaggedEvent>(OnUnemagged);
+            SubscribeLocalEvent<StasisBedComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
             SubscribeLocalEvent<StasisBedComponent, RefreshPartsEvent>(OnRefreshParts); // Frontier
             SubscribeLocalEvent<StasisBedComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier
         }
@@ -133,7 +133,7 @@ namespace Content.Server.Bed
             args.Handled = true;
         }
 
-        // Frontier: unemag
+        // Frontier: demag
         private void OnUnemagged(EntityUid uid, StasisBedComponent component, ref GotUnEmaggedEvent args)
         {
             if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
@@ -148,7 +148,7 @@ namespace Content.Server.Bed
             UpdateMetabolisms(uid, component, true);
             args.Handled = true;
         }
-        // End Frontier: unemag
+        // End Frontier: demag
 
         private void UpdateMetabolisms(EntityUid uid, StasisBedComponent component, bool shouldApply)
         {

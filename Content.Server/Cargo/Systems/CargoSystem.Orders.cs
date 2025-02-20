@@ -49,6 +49,7 @@ namespace Content.Server.Cargo.Systems
             //SubscribeLocalEvent<CargoOrderConsoleComponent, InteractUsingEvent>(OnInteractUsing); //Frontier Disabled
             SubscribeLocalEvent<CargoOrderConsoleComponent, BankBalanceUpdatedEvent>(OnOrderBalanceUpdated);
             SubscribeLocalEvent<CargoOrderConsoleComponent, GotEmaggedEvent>(OnEmagged);
+            SubscribeLocalEvent<CargoOrderConsoleComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
             Reset();
         }
 
@@ -97,6 +98,19 @@ namespace Content.Server.Cargo.Systems
 
             args.Handled = true;
         }
+
+        // Frontier: demag
+        private void OnUnemagged(Entity<CargoOrderConsoleComponent> ent, ref GotUnEmaggedEvent args)
+        {
+            if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+                return;
+
+            if (!_emag.CheckFlag(ent, EmagType.Interaction))
+                return;
+
+            args.Handled = true;
+        }
+        // End Frontier: demag
 
         private void UpdateConsole(float frameTime)
         {

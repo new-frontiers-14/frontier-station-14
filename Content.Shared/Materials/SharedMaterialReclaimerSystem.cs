@@ -29,7 +29,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] protected readonly SharedContainerSystem Container = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
+    //[Dependency] private readonly EmagSystem _emag = default!; // Frontier: no point
 
     public const string ActiveReclaimerContainerId = "active-material-reclaimer-container";
 
@@ -38,7 +38,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     {
         SubscribeLocalEvent<MaterialReclaimerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<MaterialReclaimerComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<MaterialReclaimerComponent, GotEmaggedEvent>(OnEmagged);
+        //SubscribeLocalEvent<MaterialReclaimerComponent, GotEmaggedEvent>(OnEmagged); // Frontier: no point
         SubscribeLocalEvent<MaterialReclaimerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<CollideMaterialReclaimerComponent, StartCollideEvent>(OnCollide);
         SubscribeLocalEvent<ActiveMaterialReclaimerComponent, ComponentStartup>(OnActiveStartup);
@@ -59,6 +59,8 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
         args.PushMarkup(Loc.GetString("recycler-count-items", ("items", component.ItemsProcessed)));
     }
 
+    // Frontier: no point
+    /*
     private void OnEmagged(EntityUid uid, MaterialReclaimerComponent component, ref GotEmaggedEvent args)
     {
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
@@ -69,6 +71,8 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
 
         args.Handled = true;
     }
+    */
+    // End Frontier: no point
 
     private void OnCollide(EntityUid uid, CollideMaterialReclaimerComponent component, ref StartCollideEvent args)
     {

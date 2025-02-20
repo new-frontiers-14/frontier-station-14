@@ -50,7 +50,7 @@ public sealed class LockSystem : EntitySystem
         SubscribeLocalEvent<LockComponent, LockDoAfter>(OnDoAfterLock);
         SubscribeLocalEvent<LockComponent, UnlockDoAfter>(OnDoAfterUnlock);
         SubscribeLocalEvent<LockComponent, StorageInteractAttemptEvent>(OnStorageInteractAttempt);
-        SubscribeLocalEvent<LockComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMUG
+        SubscribeLocalEvent<LockComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - demag
 
         SubscribeLocalEvent<LockedWiresPanelComponent, LockToggleAttemptEvent>(OnLockToggleAttempt);
         SubscribeLocalEvent<LockedWiresPanelComponent, AttemptChangePanelEvent>(OnAttemptChangePanel);
@@ -318,16 +318,27 @@ public sealed class LockSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnUnEmagged(EntityUid uid, LockComponent component, ref GotUnEmaggedEvent args) // Frontier - DEMAG
+    // Frontier: demag ("let me lock this without access?")
+    private void OnUnEmagged(EntityUid uid, LockComponent component, ref GotUnEmaggedEvent args)
     {
         if (args.Handled || !_emag.CheckFlag(uid, EmagType.Access))
             return;
 
-        _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
-        _appearanceSystem.SetData(uid, LockVisuals.Locked, true);
+        if (component.Locked)
+            return;
+
+        _audio.PlayPredicted(component.UnlockSound, uid, args.UserUid);
+
         component.Locked = true;
+        _appearanceSystem.SetData(uid, LockVisuals.Locked, true);
+        Dirty(uid, component);
+
+        var ev = new LockToggledEvent(true);
+        RaiseLocalEvent(uid, ref ev, true);
+
         args.Handled = true;
     }
+    // End Frontier: demag
 
     private void OnDoAfterLock(EntityUid uid, LockComponent component, LockDoAfter args)
     {

@@ -170,6 +170,7 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
         args.Handled = true;
     }
 
+    // Frontier: demag
     protected void OnUnemagged(EntityUid uid, CryoPodComponent? cryoPodComponent, ref GotUnEmaggedEvent args)
     {
         if (!Resolve(uid, ref cryoPodComponent))
@@ -185,6 +186,8 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
         cryoPodComponent.Locked = false;
         args.Handled = true;
     }
+    // End Frontier: demag
+
     protected void OnCryoPodPryFinished(EntityUid uid, CryoPodComponent cryoPodComponent, CryoPodPryFinished args)
     {
         if (args.Cancelled)

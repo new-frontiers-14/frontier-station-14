@@ -65,6 +65,7 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
         SubscribeLocalEvent<DisposalUnitComponent, PreventCollideEvent>(OnPreventCollide);
         SubscribeLocalEvent<DisposalUnitComponent, CanDropTargetEvent>(OnCanDragDropOn);
         SubscribeLocalEvent<DisposalUnitComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<DisposalUnitComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
 
         // Shouldn't need re-anchoring.
         SubscribeLocalEvent<DisposalUnitComponent, AnchorStateChangedEvent>(OnAnchorChanged);

@@ -20,6 +20,7 @@ public abstract class SharedPinpointerSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<PinpointerComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<PinpointerComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
         SubscribeLocalEvent<PinpointerComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<PinpointerComponent, ExaminedEvent>(OnExamined);
         // Frontier
@@ -186,6 +187,23 @@ public abstract class SharedPinpointerSystem : EntitySystem
         args.Handled = true;
         component.CanRetarget = true;
     }
+
+    // Frontier: demag
+    private void OnUnEmagged(EntityUid uid, PinpointerComponent component, ref GotEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        if (!component.CanRetarget)
+            return;
+
+        args.Handled = true;
+        component.CanRetarget = false;
+    }
+    // End Frontier: demag
 }
 
 // Frontier - do-after
