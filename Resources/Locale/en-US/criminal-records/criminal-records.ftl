@@ -3,7 +3,9 @@ criminal-records-console-records-list-title = Crewmembers
 criminal-records-console-select-record-info = Select a record.
 criminal-records-console-no-records = No records found!
 criminal-records-console-no-record-found = No record was found for the selected person.
-criminal-records-console-flavor-left = Arrest first! Ask questions later.
+# Frontier: no fun allowed
+# criminal-records-console-flavor-left = Arrest first! Ask questions later.
+criminal-records-console-flavor-left = Uphold the law! It's your burden to bear.
 criminal-records-console-flavor-right = v2.1
 criminal-records-console-show-all = All
 
