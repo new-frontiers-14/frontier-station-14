@@ -4,7 +4,6 @@
   name: job-name-ertleader
   description: job-description-ertleader
   playTimeTracker: JobERTLeader
-  whitelisted: false
   setPreference: false
   startingGear: ERTLeaderGearEVA
   icon: "JobIconNanotrasen"
@@ -14,6 +13,7 @@
   - AllAccess
   access:
   - CentralCommand
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTLeaderGear
@@ -108,6 +108,7 @@
   - !type:AddComponentSpecial
     components:
     - type: BibleUser #Lets them heal with bibles
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTChaplainGear
@@ -177,7 +178,6 @@
   name: job-name-ertengineer
   description: job-description-ertengineer
   playTimeTracker: JobERTEngineer
-  whitelisted: true
   setPreference: false
   startingGear: ERTEngineerGearEVA
   icon: "JobIconNanotrasen"
@@ -187,6 +187,7 @@
   - AllAccess
   access:
   - CentralCommand
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTEngineerGear
@@ -250,7 +251,6 @@
   name: job-name-ertsecurity
   description: job-description-ertsecurity
   playTimeTracker: JobERTSecurity
-  whitelisted: true
   setPreference: false
   startingGear: ERTEngineerGearEVA
   icon: "JobIconNanotrasen"
@@ -260,6 +260,7 @@
   - AllAccess
   access:
   - CentralCommand
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTSecurityGear
@@ -274,7 +275,7 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
+    pocket1: WeaponPistolMk58
     pocket2: FlashlightSeclite
   storage:
     back:
@@ -298,7 +299,7 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
+    pocket1: WeaponPistolMk58
     pocket2: FlashlightSeclite
   storage:
     back:
@@ -341,7 +342,6 @@
   name: job-name-ertmedic
   description: job-description-ertmedic
   playTimeTracker: JobERTMedical
-  whitelisted: true
   setPreference: false
   startingGear: ERTMedicalGearEVA
   icon: "JobIconNanotrasen"
@@ -351,6 +351,7 @@
   - AllAccess
   access:
   - CentralCommand
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTMedicalGear
@@ -369,7 +370,8 @@
   storage:
     back:
     - Hypospray
-    - MedkitAdvancedFilled
+    - MedkitCombatFilled
+    - MedkitCombatFilled
     - CrowbarRed
     - OmnizineChemistryBottle
     - EpinephrineChemistryBottle
@@ -392,7 +394,8 @@
   storage:
     back:
     - Hypospray
-    - MedkitAdvancedFilled
+    - MedkitCombatFilled
+    - MedkitCombatFilled
     - CrowbarRed
     - OmnizineChemistryBottle
     - EpinephrineChemistryBottle
@@ -404,7 +407,6 @@
   name: job-name-ertjanitor
   description: job-description-ertjanitor
   playTimeTracker: JobERTJanitor
-  whitelisted: true
   setPreference: false
   startingGear: ERTJanitorGearEVA
   icon: "JobIconNanotrasen"
@@ -414,6 +416,7 @@
   - AllAccess
   access:
   - CentralCommand
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTJanitorGear
@@ -441,7 +444,7 @@
   id: ERTJanitorGearEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTJanitor
-    back: ClothingBackpackERTJanitor # Frontier: ClothingBackpackERTJanitorFille<ClothingBackpackERTJanitor
+    back: ClothingBackpackERTJanitor
     shoes: ClothingShoesBootsMagGaloshes # Frontier
     mask: ClothingMaskGasERT
     gloves: ClothingHandsGlovesColorPurple
