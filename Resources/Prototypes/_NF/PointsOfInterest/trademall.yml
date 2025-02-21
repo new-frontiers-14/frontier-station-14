@@ -22,6 +22,9 @@
   - type: StationTransit
   - type: ProtectedGrid
     preventArtifactTriggers: true
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: TradeMall
@@ -36,3 +39,5 @@
           mapNameTemplate: 'Trade Mall'
         - type: StationDeadDrop
           maxDeadDrops: 2 # A few, its not as big as the original trade outpost
+        - type: TradeCrateDestination
+          destinationProto: Trade

@@ -1,0 +1,174 @@
+- type: entity
+  parent: HolopadLongRange
+  id: NFHolopadShip
+  suffix: Ship
+  components:
+  - type: Telephone
+    ringTone: /Audio/Machines/double_ring.ogg # change me to something funny
+    listeningRange: 4
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    ignoreTelephonesOnSameGrid: false
+  - type: Holopad
+    useStationName: true
+  - type: AccessReader
+    access: [ [ "HeadOfSecurity" ] ]
+  - type: PowerSwitch
+
+- type: entity
+  parent: NFHolopadShip
+  id: NFHolopadShipAntag
+  suffix: Ship, Antag
+  components:
+  - type: Holopad
+    useStationName: false
+  - type: ApcPowerReceiver
+    powerDisabled: true #starts off
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, NFHolopadShip]
+  id: NFHolopadPoiBase
+  suffix: POI
+  abstract: true
+  components:
+  - type: Holopad
+    useStationName: false
+
+# Mapping Prototypes below
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadLaboratory
+  suffix: Anomalous Laboratory, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-laboratory
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadBahama
+  suffix: Bahama Mama, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-bahama
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadCourthouseWitness
+  suffix: Courthouse Witness Stand, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-courthouse-witness
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadCourthouseDefendant
+  suffix: Courthouse Defendent, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-courthouse-defendant
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadExpeditionLodge
+  suffix: Expedition Lodge, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-expedition-lodge
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadFrontierOutpostSTC
+  suffix: Frontier Outpost STC, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-frontier-outpost-stc
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadFrontierOutpostLobby
+  suffix: Frontier Outpost Lobby, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-frontier-outpost-lobby
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadFrontierOutpostSR
+  suffix: Frontier Outpost Station Rep, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-frontier-outpost-station-rep
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadTradeStationSTC
+  suffix: Trade Station STC, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-trade-station-stc
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadTradeStationCafeteria
+  suffix: Trade Station Cafeteria, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-trade-station-cafeteria
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadMedicalDispatch
+  suffix: Medical Dispatch, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-medical-dispatch
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadMedicalDispatchDoC
+  suffix: Medical Dispatch DoC, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-medical-dispatch-doc
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadNFSDReception
+  suffix: NFSD Reception, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-nfsd-reception
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadNFSDSheriff
+  suffix: NFSD Sheriff, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-nfsd-sheriff-office
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadNFSDLobby
+  suffix: NFSD Lobby, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-nfsd-lobby
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadEdisonReception
+  suffix: Edison Reception, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-edison-reception
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadTinnia
+  suffix: Tinnia's Rest, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-tinnia

@@ -27,3 +27,229 @@
   components:
   - type: GasVolumePump
     startOnMapInit: true
+
+# All entities for gas transfer between grids should be based off this.
+- type: entity
+  parent: BaseStructure
+  id: BaseGaslock
+  abstract: true
+  name: gaslock
+  components:
+  - type: Docking
+    radarColor: darkcyan
+    highlightedRadarColor: cyan
+    dockType: Gas
+  - type: DockingSignalControl
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
+        density: 100
+        mask:
+          - FullTileMask
+        layer:
+          - WallLayer
+      docking:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+          position: "0,-0.5"
+        hard: false
+  - type: WiresVisuals
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+  - type: Appearance
+  - type: PipeColorVisuals
+  - type: InteractionOutline
+  - type: AtmosDevice
+    joinSystem: true # Any pipe system on an asteroid should update.
+  - type: Tag
+    tags:
+      - Unstackable
+      - Pipe
+  - type: PipeRestrictOverlap
+  - type: AtmosUnsafeUnanchor
+  - type: AtmosPipeColor
+  - type: StationAiWhitelist
+
+- type: entity
+  parent: BaseGaslock
+  id: BasePressurePumpGaslock
+  abstract: true
+  name: external gaslock
+  description: Connects gas pipes on separate ships or stations together to allow gas transfer. Both sides must be docked and pumping in the same direction to accept flow.
+  components:
+  - type: Transform
+    noRot: false
+  - type: DeviceLinkSource
+    ports:
+      - DockStatus
+  - type: Wires
+    layoutId: Docking # TODO: rework these
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: ExtensionCableReceiver
+  - type: GasPressurePump
+    enabled: false
+    uiKey: BidiKey
+    settableDirection: true
+  - type: NodeContainer
+    nodes:
+      inlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: North
+      outlet:
+        !type:DockablePipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: UserInterface
+    interfaces:
+        enum.GasPressurePumpUiKey.BidiKey:
+          type: GasPressureBidiPumpBoundUserInterface
+  - type: ActivatableUI
+    key: enum.GasPressurePumpUiKey.BidiKey
+  - type: DockablePipe
+    dockNodeName: outlet
+    internalNodeName: inlet
+  - type: AmbientSound
+    enabled: false
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/gas_pump.ogg
+  - type: PipeAppearance
+  - type: Tag
+    tags:
+      - Unstackable
+      - Pipe
+      - ForceNoFixRotations
+  - type: AtmosAlertsDevice
+    group: Gaslock
+  - type: AtmosAlarmable
+  - type: DeviceNetwork
+    deviceNetId: AtmosDevices
+    receiveFrequencyId: AtmosMonitor
+    transmitFrequencyId: AtmosMonitor
+    sendBroadcastAttemptEvent: true
+    examinableAddress: true
+    prefix: device-address-prefix-gaslock
+
+- type: entity
+  parent: BasePressurePumpGaslock
+  id: Gaslock
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Airtight
+  - type: RadiationBlocker
+    resistance: 3
+  - type: Occluder
+  - type: Sprite
+    sprite: _NF/Structures/Piping/Atmospherics/gaslock.rsi
+    drawdepth: Doors
+    layers:
+    - state: closed
+    - state: closed_unlit
+      shader: unshaded
+      map: ["docked-unlit"]
+      visible: false
+    - state: pipeStraight
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pumpPressure
+    - state: pumpPressureOnOut
+      map: [ "enabled-unlit" ]
+      shader: unshaded
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PumpVisuals.Enabled:
+        enabled-unlit:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DockablePipeVisuals.Docked:
+        docked-unlit:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PumpVisuals.PumpingInwards:
+        enabled-unlit:
+          True: { state: pumpPressureOnIn }
+          False: { state: pumpPressureOnOut }
+  - type: StaticPrice
+    price: 350
+  - type: BlockWeather
+  - type: PlacementReplacement
+    key: walls # For construction if this eventually supports it.
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+
+- type: entity
+  parent: [BaseStructureDynamic, BasePressurePumpGaslock]
+  id: GaslockFrame
+  name: portable gaslock
+  description: Pumps gas through. Accepts docking, but cannot dock. Both sides must be docked and pumping in the same direction for gas to flow.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: false
+  - type: Anchorable
+  - type: Rotatable
+  - type: Sprite
+    sprite: _NF/Structures/Piping/Atmospherics/portable_gaslock.rsi
+    drawdepth: Doors
+    layers:
+    - state: base
+    - state: closed_unlit
+      shader: unshaded
+      map: ["docked-unlit"]
+      visible: false
+    - state: pipeStraight
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pumpPressure
+    - state: pumpPressureOnOut
+      map: [ "enabled-unlit" ]
+      shader: unshaded
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PumpVisuals.Enabled:
+        enabled-unlit:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DockablePipeVisuals.Docked:
+        docked-unlit:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PumpVisuals.PumpingInwards:
+        enabled-unlit:
+          True: { state: pumpPressureOnIn }
+          False: { state: pumpPressureOnOut }
+  - type: StaticPrice
+    price: 100
+  - type: Docking
+    receiveOnly: true
+  - type: DeviceNetwork
+    prefix: device-address-prefix-portable-gaslock
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.49,0.25,0.25" # narrow enough to fit through doors when pulled
+        density: 100
+        mask:
+          - FullTileMask
+        layer:
+          - AirlockLayer
+      docking:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+          position: "0,-0.5"
+        hard: false

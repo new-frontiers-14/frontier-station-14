@@ -68,6 +68,9 @@
       - NFFoodBoxNuggetEmpty
       - NFFoodContainerEggEmpty
       - NFFoodBoxSushi
+      - DrinkKegSteel
+      - DrinkKegPlastic
+      - DrinkKegWood
     ## Basic parts
       - CableStack
       - LightTube
@@ -158,6 +161,8 @@
       - ClothingHeadHatCone
       - FireExtinguisher
       - WetFloorSign
+      - DeskBell
+      - BrbSign
     dynamicRecipes:
     # Shared lathe recipes
     ## Advanced tools
@@ -265,6 +270,7 @@
       - WelderIndustrialAdvanced
       - HolofanProjector
       - FireExtinguisher
+      - GasDepositLocator
     ## Parts
       - MicroManipulatorStockPart
       - MatterBinStockPart
@@ -296,6 +302,7 @@
       - ThrusterMachineCircuitboard
       - GyroscopeMachineCircuitboard
       - MiniGravityGeneratorCircuitboard
+      - MiniStationAnchorCircuitboard
     ## Clothing
       - UtilityBelt
       - ConstructionBag
@@ -561,15 +568,33 @@
       - ContrabandAppraisalTool
       - HoloprojectorNfsd
       - ClothingBackpackElectropack
+      - PowerCageRechargerCircuitboard
+      - PowerCageHigh
+      - PowerCageMedium
+      - PowerCageSmall
     dynamicRecipes:
-      - BoxShotgunIncendiary
-      - BoxShotgunUranium
       - BoxShellTranquilizer
       - ExplosivePayload
       - FlashPayload
       - GrenadeBlast
       - GrenadeEMP
       - GrenadeFlash
+      - PortableRecharger
+      - Signaller
+      - SignalTrigger
+      - TelescopicShield
+      - TimerTrigger
+      - Truncheon
+      - VoiceTrigger
+      - WeaponAdvancedLaser
+      - WeaponDisablerSMG
+      - WeaponLaserCannon
+      - WeaponLaserCarbine
+      - WeaponXrayCannon
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+      - BoxShotgunIncendiary
+      - BoxShotgunUranium
       - MagazineBoxLightRifleIncendiary
       - MagazineBoxLightRifleUranium
       - MagazineBoxMagnumIncendiary
@@ -586,27 +611,8 @@
       - MagazineRifleIncendiary
       - MagazineRifleUranium
       - MagazineShotgunIncendiary
-      - PortableRecharger
-      - PowerCageHigh
-      - PowerCageMedium
-      - PowerCageSmall
-      - ShuttleGunDusterCircuitboard
-      - ShuttleGunFriendshipCircuitboard
-      - ShuttleGunPerforatorCircuitboard
-      - ShuttleGunSvalinnMachineGunCircuitboard
-      - Signaller
-      - SignalTrigger
       - SpeedLoaderMagnumIncendiary
       - SpeedLoaderMagnumUranium
-      - TelescopicShield
-      - TimerTrigger
-      - Truncheon
-      - VoiceTrigger
-      - WeaponAdvancedLaser
-      - WeaponDisablerSMG
-      - WeaponLaserCannon
-      - WeaponLaserCarbine
-      - WeaponXrayCannon
       - SpeedLoaderRifleHeavyIncendiary
       - SpeedLoaderRifleHeavyUranium
 
@@ -719,6 +725,7 @@
       - WeaponRifleGestio
       - BaseBallBatNF
       - CrossbowModern
+      - WeaponPistolPollock
     ## Ammo boxes
       - BoxLethalshot
       - MagazineBoxLightRifle
@@ -790,7 +797,7 @@
       - ClothingOuterHardsuitMercenary
       - ClothingOuterHardsuitPrivateSecurity
       - ClothingOuterHardsuitScaf
-      - ClothingShoesBootsMagCombat
+      - ClothingShoesBootsMagSecurity
       - ClothingShoesBootsMagMercenary
     ## Utilities
       - ForensicPad
@@ -823,7 +830,9 @@
       - WeaponAntiqueLaserNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
       - WeaponLaserCarbine
       - WeaponDisabler
-    ## Mags / Speedloaders / Clips
+      - WeaponDisablerSMG
+      - WeaponLaserCannon
+      - WeaponXrayCannon
     ## Ammo boxes
       - BoxBeanbag
       - BoxShellTranquilizer
@@ -832,6 +841,30 @@
       - MagazineBoxPistolRubber
       - MagazineBoxRifleRubber
       - MagazineShotgunBeanbag
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+      - BoxShotgunIncendiary
+      - BoxShotgunUranium
+      - MagazineBoxLightRifleIncendiary
+      - MagazineBoxLightRifleUranium
+      - MagazineBoxMagnumIncendiary
+      - MagazineBoxMagnumUranium
+      - MagazineBoxPistolIncendiary
+      - MagazineBoxPistolUranium
+      - MagazineBoxRifleIncendiary
+      - MagazineBoxRifleUranium
+      - MagazineGrenadeEmpty
+      - MagazineLightRifleIncendiary
+      - MagazineLightRifleUranium
+      - MagazinePistolIncendiary
+      - MagazinePistolUranium
+      - MagazineRifleIncendiary
+      - MagazineRifleUranium
+      - MagazineShotgunIncendiary
+      - SpeedLoaderMagnumIncendiary
+      - SpeedLoaderMagnumUranium
+      - SpeedLoaderRifleHeavyIncendiary
+      - SpeedLoaderRifleHeavyUranium
 
 - type: entity
   id: MercenaryTechFabHacked
@@ -980,7 +1013,7 @@
       - ClothingOuterHardsuitMercenary
       - ClothingOuterHardsuitPrivateSecurity
       - ClothingOuterHardsuitScaf
-      - ClothingShoesBootsMagCombat
+      - ClothingShoesBootsMagSecurity
       - ClothingShoesBootsMagMercenary
     ## Utilities
       - PinpointerUniversalNF
@@ -1289,3 +1322,13 @@
     - ScrapCableHVStack1
     - ScrapCableMVStack1
     - ScrapCableApcStack1
+
+- type: entity
+  id: BiogeneratorFill
+  parent: Biogenerator
+  name: biogenerator
+  suffix: Biomass, 50
+  components:
+  - type: MaterialStorage
+    storage:
+      Biomass: 50
