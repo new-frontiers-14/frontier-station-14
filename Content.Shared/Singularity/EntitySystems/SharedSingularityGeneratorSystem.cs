@@ -19,6 +19,7 @@ public abstract class SharedSingularityGeneratorSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<SingularityGeneratorComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<SingularityGeneratorComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
     }
 
     private void OnEmagged(EntityUid uid, SingularityGeneratorComponent component, ref GotEmaggedEvent args)
@@ -35,4 +36,20 @@ public abstract class SharedSingularityGeneratorSystem : EntitySystem
         component.FailsafeDisabled = true;
         args.Handled = true;
     }
+
+    // Frontier: demag
+    private void OnUnemagged(EntityUid uid, SingularityGeneratorComponent component, ref GotUnEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        if (component.FailsafeDisabled)
+            component.FailsafeDisabled = false;
+
+        args.Handled = true;
+    }
+    // End Frontier: demag
 }

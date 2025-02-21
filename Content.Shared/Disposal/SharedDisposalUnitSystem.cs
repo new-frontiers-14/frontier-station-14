@@ -119,10 +119,11 @@ public abstract class SharedDisposalUnitSystem : EntitySystem
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
             return;
 
-        if (!component.DisablePressure)
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
             return;
 
-        component.DisablePressure = false;
+        if (component.DisablePressure)
+            component.DisablePressure = false;
         args.Handled = true;
     }
     // End Frontier: demag

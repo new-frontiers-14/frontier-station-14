@@ -179,11 +179,14 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
             return;
 
-        if (!cryoPodComponent.PermaLocked)
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
             return;
 
-        cryoPodComponent.PermaLocked = false;
-        cryoPodComponent.Locked = false;
+        if (cryoPodComponent.PermaLocked)
+        {
+            cryoPodComponent.PermaLocked = false;
+            cryoPodComponent.Locked = false;
+        }
         args.Handled = true;
     }
     // End Frontier: demag

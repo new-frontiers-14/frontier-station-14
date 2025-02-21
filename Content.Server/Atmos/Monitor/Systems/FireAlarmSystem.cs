@@ -103,12 +103,12 @@ public sealed class FireAlarmSystem : EntitySystem
         if (!_emag.CheckFlag(uid, EmagType.Interaction))
             return;
 
-        if (HasComp<AtmosAlarmableComponent>(uid))
-            return;
-
-        // Restore the atmos alarmable component to this device.
-        var alarmable = EnsureComp<AtmosAlarmableComponent>(uid);
-        _atmosAlarmable.Reset(uid, alarmable);
+        if (!HasComp<AtmosAlarmableComponent>(uid))
+        {
+            // Restore the atmos alarmable component to this device.
+            var alarmable = EnsureComp<AtmosAlarmableComponent>(uid);
+            _atmosAlarmable.Reset(uid, alarmable);
+        }
         args.Handled = true;
     }
     // End Frontier

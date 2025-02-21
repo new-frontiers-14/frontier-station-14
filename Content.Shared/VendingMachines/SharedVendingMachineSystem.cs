@@ -82,8 +82,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         if (!_emag.CheckFlag(uid, EmagType.Interaction))
             return;
 
-        // only emag if there are emag-only items
-        args.Handled = component.EmaggedInventory.Count > 0;
+        // Always demag if emagged.
+        args.Handled = true;
     }
     // End Frontier
 

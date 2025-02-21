@@ -321,13 +321,13 @@ public sealed class LockSystem : EntitySystem
     // Frontier: demag ("let me lock this without access?")
     private void OnUnEmagged(EntityUid uid, LockComponent component, ref GotUnEmaggedEvent args)
     {
-        if (args.Handled || !_emag.CheckFlag(uid, EmagType.Access))
+        if (!_emag.CompareFlag(args.Type, EmagType.Access))
             return;
 
         if (component.Locked)
             return;
 
-        _audio.PlayPredicted(component.UnlockSound, uid, args.UserUid);
+        _audio.PlayPredicted(component.LockSound, uid, args.UserUid);
 
         component.Locked = true;
         _appearanceSystem.SetData(uid, LockVisuals.Locked, true);
