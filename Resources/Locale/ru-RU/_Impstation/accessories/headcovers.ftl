@@ -1,0 +1,32 @@
+marking-BurqaSolid = Бурка
+marking-BurqaSolidThaven = Бурка
+marking-BurqaSolidLizard = Бурка
+marking-BurqaSolidLizard-burqasolidlizard = Бурка
+
+marking-HijabFashionable = Хиджаб (Модный)
+marking-HijabFashionableLizard = Хиджаб (Модный)
+marking-HijabFashionableLizard-hijabchiclizard = Хиджаб (Модный)
+marking-HijabFashionableVox = Хиджаб (Модный)
+marking-HijabFashionableVox-hijabchicvox = Хиджаб (Модный)
+
+marking-HijabSimple = Хиджаб (Простой)
+marking-HijabSimpleLizard = Хиджаб (Простой)
+marking-HijabSimpleLizard-hijabsimplelizard = Хиджаб (Простой)
+marking-HijabSimpleVox = Хиджаб (Простой)
+marking-HijabSimpleVox-hijabsimplevox = Хиджаб (Простой)
+
+marking-Niqab = Пиджак
+marking-NiqabLizard = Пиджак
+marking-NiqabLizard-niqablizard = Пиджак
+
+marking-TichelFashionable = Тихель (Модный)
+marking-TichelFashionableLizard = Тихель (Модный)
+marking-TichelFashionableLizard-tichelfashionablelizard = Тихель (Модный)
+marking-TichelFashionableVox = Тихель (Модный)
+marking-TichelFashionableVox-tichelfashionablevox = Тихель (Модный)
+
+marking-TichelSimple = Тихель (Простой)
+marking-TichelSimpleLizard = Тихель (Простой)
+marking-TichelSimpleLizard-tichelsimplelizard = Тихель (Простой)
+marking-TichelSimpleVox = Тихель (Простой)
+marking-TichelSimpleVox-tichelsimplevox = Тихель (Простой)

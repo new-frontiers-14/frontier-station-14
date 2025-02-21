@@ -11,7 +11,7 @@
 - type: pointOfInterest
   id: Trade
   parent: BasePOI
-  name: Trade Outpost
+  name: 'Торговый аванпост'
   minimumDistance: 1500
   maximumDistance: 2500
   spawnGroup: MarketStation
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Trade
-  mapName: 'Trade Outpost'
+  mapName: 'Торговый аванпост'
   mapPath: /Maps/_NF/POI/trade.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: MarketFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Trade Outpost'
+          mapNameTemplate: 'Торговый аванпост'
         - type: StationDeadDrop
           maxDeadDrops: 3 # Many here, it's huge.
         - type: TradeCrateDestination

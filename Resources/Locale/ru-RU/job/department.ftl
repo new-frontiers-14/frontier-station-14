@@ -1,0 +1,10 @@
+department-Cargo = Снабжение
+department-Civilian = Гражданские
+# department-Command = Command # Frontier: redefined in _NF
+department-CentralCommand = Центральное Командование
+department-Engineering = Инженерный
+department-Medical = Медицинский
+# department-Security = Security # Frontier: redefined in _NF
+department-Science = Научный
+department-Silicon = Роботы
+department-Specific = Специфические должности
