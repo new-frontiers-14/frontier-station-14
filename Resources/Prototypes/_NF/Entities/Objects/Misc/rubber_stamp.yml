@@ -79,7 +79,7 @@
   - type: Sprite
     sprite: _NF/Objects/Misc/stamps.rsi
     state: stamp-pal
-        
+
 - type: entity
   name: director of care's rubber stamp
   parent: RubberStampBase
@@ -93,3 +93,17 @@
   - type: Sprite
     sprite: _NF/Objects/Misc/stamps.rsi
     state: stamp-doc
+
+- type: entity
+  name: bailiff's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampBailiff
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-bailiff
+    stampedColor: "#51703b"
+    stampState: "paper_stamp-nf-bailiff"
+  - type: Sprite
+    sprite: _NF/Objects/Misc/stamps.rsi
+    state: stamp-bailiff
