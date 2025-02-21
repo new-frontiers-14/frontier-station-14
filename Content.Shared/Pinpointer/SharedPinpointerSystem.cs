@@ -189,7 +189,7 @@ public abstract class SharedPinpointerSystem : EntitySystem
     }
 
     // Frontier: demag
-    private void OnUnEmagged(EntityUid uid, PinpointerComponent component, ref GotEmaggedEvent args)
+    private void OnUnemagged(EntityUid uid, PinpointerComponent component, ref GotUnEmaggedEvent args)
     {
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
             return;
