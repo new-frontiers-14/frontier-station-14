@@ -13,23 +13,13 @@ namespace Content.Server.Procedural;
 public sealed partial class DungeonSystem
 {
     // Temporary caches.
+    private readonly HashSet<EntityUid> _entitySet = new();
     private readonly List<DungeonRoomPrototype> _availableRooms = new();
 
     /// <summary>
     /// Gets a random dungeon room matching the specified area, whitelist and size.
     /// </summary>
     public DungeonRoomPrototype? GetRoomPrototype(Random random, EntityWhitelist? whitelist = null, Vector2i? size = null)
-    {
-        return GetRoomPrototype(random, whitelist, minSize: size, maxSize: size);
-    }
-
-    /// <summary>
-    /// Gets a random dungeon room matching the specified area and whitelist and size range
-    /// </summary>
-    public DungeonRoomPrototype? GetRoomPrototype(Random random,
-        EntityWhitelist? whitelist = null,
-        Vector2i? minSize = null,
-        Vector2i? maxSize = null)
     {
         return GetRoomPrototype(random, whitelist, minSize: size, maxSize: size);
     }
