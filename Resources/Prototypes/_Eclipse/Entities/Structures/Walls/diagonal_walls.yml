@@ -155,7 +155,8 @@
 
 - type: entity
   id: WallMiningDiagonal
-  parent: [BaseWallDiagonal, WallMining]
+  # Deriving from WallMining causes sprite issues
+  parent: [BaseWallDiagonal, BaseWall]
   name: mining wall
   suffix: diagonal
   placement:
@@ -163,6 +164,9 @@
     snap:
       - Wall
   components:
+    - type: Tag
+      tags:
+        - Wall
     - type: Sprite
       drawdepth: Walls
       sprite: Structures/Walls/mining_diagonal.rsi
@@ -170,6 +174,22 @@
     - type: Icon
       sprite: Structures/Walls/mining_diagonal.rsi
       state: state0
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 700
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: IconSmooth
+      mode: Diagonal
+      key: walls
+      base: state
+    - type: RandomIconSmooth
+      randomStates:
+        - state
+    - type: Appearance
 
 - type: entity
   id: WallWoodDiagonal
