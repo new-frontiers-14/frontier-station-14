@@ -271,11 +271,14 @@ public sealed class ThrusterSystem : EntitySystem
 
     private void OnThrusterInit(EntityUid uid, ThrusterComponent component, ComponentInit args)
     {
-<<<<<<< HEAD
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0) { component.OriginalLoad = apcPower.Load; } // Frontier
-=======
+        // Frontier: togglable thrusters
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0)
+        {
+            component.OriginalLoad = apcPower.Load;
+        }
+        // End Frontier: togglable thrusters
+
         component.NextFire = _timing.CurTime + component.FireCooldown;
->>>>>>> 7f8f1bfb94c3da84b1edeb444aa463bdfdc70cfa
 
         _ambient.SetAmbience(uid, false);
 
