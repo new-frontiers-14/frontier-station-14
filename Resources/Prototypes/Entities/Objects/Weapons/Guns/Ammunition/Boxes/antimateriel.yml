@@ -17,7 +17,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi # Frontier: _NF prefix
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -32,9 +32,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeAntiMateriel
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi # Frontier
-    state: display # Frontier
   - type: Sprite
     layers:
     - state: base

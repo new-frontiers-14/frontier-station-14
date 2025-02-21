@@ -17,7 +17,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/caseless_rifle.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/caseless_rifle.rsi # Frontier: add _NF prefix
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -32,9 +32,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeCaselessRifle
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/caseless_rifle.rsi # Frontier
-    state: display # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -49,9 +46,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeCaselessRiflePractice
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/caseless_rifle.rsi # Frontier
-    state: practicedisplay # Frontier
   - type: Sprite
     layers:
     - state: base

@@ -25,9 +25,6 @@
         - BulletFoam
     capacity: 40
     proto: BulletFoam
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Storage/boxes.rsi # Frontier
-    state: foamdartsdisplay # Frontier
   - type: Sprite
     sprite: Objects/Storage/boxes.rsi
     layers:
@@ -42,15 +39,12 @@
   - type: BallisticAmmoProvider
     proto: CartridgeCap
     capacity: 20
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi # Frontier
-    state: capdisplay # Frontier
   - type: MagazineVisuals
     magState: mag-cap
     steps: 4
     zeroVisible: false
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi # Frontier: add _NF prefix
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
