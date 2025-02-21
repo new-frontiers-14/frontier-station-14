@@ -378,7 +378,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var shuttleName = ToPrettyString(shuttleUid); // Grab the name before it gets 1984'd
 
         // Check for shipyard blacklisting components
-        var disableSaleQuery = GetEntityQuery<DisableShipyardSaleComponent>();
+        var disableSaleQuery = GetEntityQuery<ShipyardSellConditionComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
         var disableSaleMsg = FindDisableShipyardSaleObjects(shuttleUid, (ShipyardConsoleUiKey)args.UiKey, disableSaleQuery, xformQuery);
         if (disableSaleMsg != null)
@@ -635,7 +635,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// <param name="mobQuery">A query to get the MobState from an entity</param>
     /// <param name="xformQuery">A query to get the transform component of an entity</param>
     /// <returns>The name of the sapient being if one was found, null otherwise.</returns>
-    public string? FindDisableShipyardSaleObjects(EntityUid shuttle, ShipyardConsoleUiKey key, EntityQuery<DisableShipyardSaleComponent> disableSaleQuery, EntityQuery<TransformComponent> xformQuery)
+    public string? FindDisableShipyardSaleObjects(EntityUid shuttle, ShipyardConsoleUiKey key, EntityQuery<ShipyardSellConditionComponent> disableSaleQuery, EntityQuery<TransformComponent> xformQuery)
     {
         var xform = xformQuery.GetComponent(shuttle);
         var childEnumerator = xform.ChildEnumerator;
@@ -643,8 +643,17 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         while (childEnumerator.MoveNext(out var child))
         {
             if (disableSaleQuery.TryGetComponent(child, out var disableSale)
+                && disableSale.BlockSale is true
                 && !disableSale.AllowedShipyardTypes.Contains(key))
-                return disableSale.Reason;
+                if (disableSale.Reason is null)
+                {
+                    return "shipyard-console-fallback-prevent-sale";
+                }
+                else
+                {
+                    return disableSale.Reason;
+                }
+
         }
 
         return null;

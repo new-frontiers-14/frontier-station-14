@@ -306,7 +306,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     // checks if something has the ShipyardPreserveOnSaleComponent and if it does, adds it to the list
     private void HasPreserveOnSaleComp(EntityUid entity, ref List<EntityUid> output)
     {
-        if (HasComp<ShipyardPreserveOnSaleComponent>(entity))
+        if (TryComp<ShipyardSellConditionComponent>(entity, out var comp) && comp.PreserveOnSale == true)
         {
             output.Add(entity);
         }
@@ -325,7 +325,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     // returns false if it has ShipyardPreserveOnSaleComponent, true otherwise
     private bool LacksPreserveOnSaleComp(EntityUid uid)
     {
-        return !HasComp<ShipyardPreserveOnSaleComponent>(uid);
+        return !TryComp<ShipyardSellConditionComponent>(uid, out var comp) || comp.PreserveOnSale == false;
     }
     private void CleanupShipyard()
     {
