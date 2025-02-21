@@ -3,10 +3,11 @@
 concurrency:
   group: publish-testing
 
-on:
-  workflow_dispatch:
-  schedule:
-  - cron: '0 10 * * *'
+# Frontier: disabled
+# on:
+#   workflow_dispatch:
+#   schedule:
+#   - cron: '0 10 * * *'
 
 jobs:
   build:
