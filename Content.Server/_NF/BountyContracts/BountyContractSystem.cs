@@ -8,6 +8,8 @@ using Content.Server.Chat.Systems;
 using Content.Server.StationRecords.Systems;
 using Content.Shared._NF.BountyContracts;
 using Content.Shared.Access.Systems;
+using Content.Shared.CartridgeLoader;
+using Content.Shared.Guidebook;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.BountyContracts;
@@ -137,14 +139,14 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     /// <param name="vessel">IC name of last known bounty vessel. Can be station/ship name or custom string.</param>
     /// <param name="dna">Optional DNA of the bounty head.</param>
     /// <param name="author">Optional bounty poster IC name.</param>
-    /// <param name="postToRadio">Should radio message about contract be posted in general radio channel?</param>
+    /// <param name="pdaAlert">Should PDAs send a localized alert?</param>
     /// <returns>New bounty contract. Null if contract creation failed.</returns>
     public BountyContract? CreateBountyContract(ProtoId<BountyContractCollectionPrototype> collection,
         BountyContractCategory category,
         string name, int reward,
         string? description = null, string? vessel = null,
         string? dna = null, string? author = null,
-        bool postToRadio = true)
+        bool pdaAlert = true)
     {
         var data = GetContracts();
         if (data == null
@@ -166,7 +168,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
             return null;
         }
 
-        if (postToRadio)
+        if (pdaAlert)
         {
             // TODO: move this to radio in future?
             var sender = Loc.GetString("bounty-contracts-radio-name");
@@ -175,8 +177,15 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
                 : contract.Name;
             var msg = Loc.GetString("bounty-contracts-radio-create",
                 ("target", target), ("reward", contract.Reward));
-            var color = Color.FromHex("#D7D7BE");
-            _chat.DispatchGlobalAnnouncement(sender, msg, false, colorOverride: color);
+
+            var pdaList = EntityQueryEnumerator<CartridgeLoaderComponent>();
+            while (pdaList.MoveNext(out var loaderUid, out var loaderComp))
+            {
+                if (_cartridgeLoader.HasProgram<BountyContractsCartridgeComponent>(loaderUid, true, loaderComp))
+                {
+                    _cartridgeLoader.SendNotification(loaderUid, sender, msg, loaderComp);
+                }
+            }
         }
 
         return contract;
