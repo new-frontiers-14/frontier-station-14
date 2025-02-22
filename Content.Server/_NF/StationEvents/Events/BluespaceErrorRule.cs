@@ -14,12 +14,12 @@ using Content.Server.GameTicking;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
 using Content.Shared.Salvage;
-using Content.Server.Warps;
-using Content.Server.Station.Systems;
 using Content.Server.Maps.NameGenerators;
-using Content.Shared.Dataset;
+using Content.Server.StationEvents.Events;
+using Content.Server._NF.Station.Systems;
+using Content.Server._NF.StationEvents.Components;
 
-namespace Content.Server.StationEvents.Events;
+namespace Content.Server._NF.StationEvents.Events;
 
 public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
 {

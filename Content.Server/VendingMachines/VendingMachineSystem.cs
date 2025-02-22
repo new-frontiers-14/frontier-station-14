@@ -13,7 +13,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
@@ -36,6 +36,9 @@ using Content.Server.Administration.Logs; // Frontier
 using Content.Shared.Database; // Frontier
 using Content.Shared._NF.Bank.BUI; // Frontier
 using Content.Server._NF.Contraband.Systems; // Frontier
+using Content.Shared.Stacks; // Frontier
+using Content.Server.Stack;
+using Robust.Shared.Containers; // Frontier
 
 namespace Content.Server.VendingMachines
 {
@@ -56,6 +59,7 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly PopupSystem _popupSystem = default!; // Frontier
         [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Frontier
         [Dependency] private readonly ContrabandTurnInSystem _contraband = default!; // Frontier
+        [Dependency] private readonly StackSystem _stack = default!; // Frontier
 
         private const float WallVendEjectDistanceFromWall = 1f;
 
@@ -69,6 +73,8 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamageChanged);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             //SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
+            SubscribeLocalEvent<VendingMachineComponent, EntInsertedIntoContainerMessage>(OnEntityInserted); // Frontier
+            SubscribeLocalEvent<VendingMachineComponent, EntRemovedFromContainerMessage>(OnEntityRemoved); // Frontier
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
 
@@ -277,7 +283,7 @@ namespace Content.Server.VendingMachines
         /// <param name="itemId">The prototype ID of the item</param>
         /// <param name="throwItem">Whether the item should be thrown in a random direction after ejection</param>
         /// <param name="vendComponent"></param>
-        public bool TryEjectVendorItem(EntityUid uid, InventoryType type, string itemId, bool throwItem, int balance, VendingMachineComponent? vendComponent = null)
+        public bool TryEjectVendorItem(EntityUid uid, InventoryType type, string itemId, bool throwItem, VendingMachineComponent? vendComponent = null)
         {
             if (!Resolve(uid, ref vendComponent))
                 return false;
@@ -317,19 +323,19 @@ namespace Content.Server.VendingMachines
             if (TryComp(uid, out SpeakOnUIClosedComponent? speakComponent))
                 _speakOnUIClosed.TrySetFlag((uid, speakComponent));
 
-            // New Frontiers - Unlimited vending - support items with unlimited vending stock.
-            // This code is licensed under AGPLv3. See AGPLv3.txt
-
+            // Frontier: unlimited vending
             // Infinite supplies must stay infinite.
             if (entry.Amount != uint.MaxValue)
                 entry.Amount--;
-            // End of modified code
+            // End Frontier
+
             Dirty(uid, vendComponent);
             TryUpdateVisualState(uid, vendComponent);
             Audio.PlayPvs(vendComponent.SoundVend, uid);
             return true;
         }
 
+        // Frontier: custom vending check
         /// <summary>
         /// Checks whether the user is authorized to use the vending machine, then ejects the provided item if true
         /// </summary>
@@ -340,9 +346,6 @@ namespace Content.Server.VendingMachines
         /// <param name="component"></param>
         public void AuthorizedVend(EntityUid uid, EntityUid sender, InventoryType type, string itemId, VendingMachineComponent component)
         {
-            if (!TryComp<BankAccountComponent>(sender, out var bank))
-                return;
-
             if (!_prototypeManager.TryIndex<EntityPrototype>(itemId, out var proto))
                 return;
 
@@ -360,41 +363,71 @@ namespace Content.Server.VendingMachines
 
             var totalPrice = (int) price;
 
-            // Frontier: if any price has a vendor price, explicitly use its value - higher OR lower, over others.
+            // If any price has a vendor price, explicitly use its value - higher OR lower, over others.
             var priceVend = _pricing.GetEstimatedVendPrice(proto);
             if (priceVend > 0.0) // if vending price exists, overwrite it.
                 totalPrice = (int) priceVend;
-            // End Frontier
 
             if (IsAuthorized(uid, sender, component))
             {
-                // Frontier
-                if (totalPrice > bank.Balance)
+                int bankBalance = 0;
+                if (TryComp<BankAccountComponent>(sender, out var bank))
+                    bankBalance = bank.Balance;
+
+                int cashSlotBalance = 0;
+                Entity<StackComponent>? cashEntity = null;
+                if (component.CashSlotName != null
+                    && component.CurrencyStackType != null
+                    && ItemSlots.TryGetSlot(uid, component.CashSlotName, out var cashSlot)
+                    && TryComp<StackComponent>(cashSlot?.ContainerSlot?.ContainedEntity, out var stackComp)
+                    && stackComp!.StackTypeId == component.CurrencyStackType)
+                {
+                    cashSlotBalance = stackComp!.Count;
+                    cashEntity = (cashSlot!.ContainerSlot!.ContainedEntity.Value, stackComp!);
+                }
+
+                if (totalPrice > bankBalance + cashSlotBalance)
                 {
                     _popupSystem.PopupEntity(Loc.GetString("bank-insufficient-funds"), uid);
                     Deny(uid, component);
                     return;
                 }
 
-                if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component) &&
-                    _bankSystem.TryBankWithdraw(sender, totalPrice))
+                bool paidFully = false;
+                if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, component))
                 {
-                    // Frontier: tax cargo purchases
-                    foreach (var (account, taxCoeff) in component.TaxAccounts)
+                    if (cashEntity != null)
                     {
-                        if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
-                            continue;
-                        var tax = (int)Math.Floor(totalPrice * taxCoeff);
-                        _bankSystem.TrySectorDeposit(account, tax, LedgerEntryType.VendorTax);
+                        var newCashSlotBalance = Math.Max(cashSlotBalance - totalPrice, 0);
+                        _stack.SetCount(cashEntity.Value.Owner, newCashSlotBalance, cashEntity.Value.Comp);
+                        component.CashSlotBalance = newCashSlotBalance;
+                        paidFully = true; // Either we paid fully with cash, or we need to withdraw the remainder
+                    }
+                    if (totalPrice > cashSlotBalance)
+                    {
+                        paidFully = _bankSystem.TryBankWithdraw(sender, totalPrice - cashSlotBalance);
                     }
 
+                    // If we paid completely, pay our station taxes
+                    if (paidFully)
+                    {
+                        foreach (var (account, taxCoeff) in component.TaxAccounts)
+                        {
+                            if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
+                                continue;
+                            var tax = (int)Math.Floor(totalPrice * taxCoeff);
+                            _bankSystem.TrySectorDeposit(account, tax, LedgerEntryType.VendorTax);
+                        }
+                    }
+
+                    // Something was ejected, update the vending component's state
                     Dirty(uid, component);
 
-                    _adminLogger.Add(LogType.Action, LogImpact.Low, // Frontier - Vending machine log
-                        $"{ToPrettyString(sender):user} bought from [vendingMachine:{ToPrettyString(uid!)}, product:{proto.Name}, cost:{totalPrice},  with balance at {bank.Balance}"); // Frontier - Vending machine log
+                    _adminLogger.Add(LogType.Action, LogImpact.Low,
+                        $"{ToPrettyString(sender):user} bought from [vendingMachine:{ToPrettyString(uid!)}, product:{proto.Name}, cost:{totalPrice},  with ${cashSlotBalance} in the cash slot and ${bankBalance} in the bank.");
                 }
-                // End Frontier
             }
+            // End Frontier
         }
 
         /// <summary>
@@ -472,7 +505,7 @@ namespace Content.Server.VendingMachines
                 EjectItem(uid, vendComponent, forceEject);
             }
             else
-                TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
+                TryEjectVendorItem(uid, item.Type, item.ID, throwItem, vendComponent);
             vendComponent.EjectRandomCounter -= 1;
         }
 
@@ -647,5 +680,30 @@ namespace Content.Server.VendingMachines
         //        component.NextEmpEject = _timing.CurTime;
         //    }
         //}
+
+        // Frontier: cash slot logic
+        private void OnEntityInserted(Entity<VendingMachineComponent> ent, ref EntInsertedIntoContainerMessage args)
+        {
+            if (ent.Comp.CashSlotName != null
+            && ent.Comp.CurrencyStackType != null
+            && ItemSlots.TryGetSlot(ent, ent.Comp.CashSlotName, out var slot)
+            && TryComp<StackComponent>(slot?.ContainerSlot?.ContainedEntity, out var stack)
+            && stack.StackTypeId == ent.Comp.CurrencyStackType)
+            {
+                ent.Comp.CashSlotBalance = stack.Count;
+            }
+            else
+            {
+                ent.Comp.CashSlotBalance = 0;
+            }
+            Dirty(ent, ent.Comp);
+        }
+
+        private void OnEntityRemoved(Entity<VendingMachineComponent> ent, ref EntRemovedFromContainerMessage args)
+        {
+            ent.Comp.CashSlotBalance = 0;
+            Dirty(ent, ent.Comp);
+        }
+        // End Frontier: cash slot logic
     }
 }

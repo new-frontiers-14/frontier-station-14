@@ -68,6 +68,9 @@
       - NFFoodBoxNuggetEmpty
       - NFFoodContainerEggEmpty
       - NFFoodBoxSushi
+      - DrinkKegSteel
+      - DrinkKegPlastic
+      - DrinkKegWood
     ## Basic parts
       - CableStack
       - LightTube
@@ -158,6 +161,8 @@
       - ClothingHeadHatCone
       - FireExtinguisher
       - WetFloorSign
+      - DeskBell
+      - BrbSign
     dynamicRecipes:
     # Shared lathe recipes
     ## Advanced tools
@@ -566,7 +571,7 @@
       - PowerCageRechargerCircuitboard
       - PowerCageHigh
       - PowerCageMedium
-      - PowerCageSmall 
+      - PowerCageSmall
     dynamicRecipes:
       - BoxShellTranquilizer
       - ExplosivePayload
@@ -792,7 +797,7 @@
       - ClothingOuterHardsuitMercenary
       - ClothingOuterHardsuitPrivateSecurity
       - ClothingOuterHardsuitScaf
-      - ClothingShoesBootsMagCombat
+      - ClothingShoesBootsMagSecurity
       - ClothingShoesBootsMagMercenary
     ## Utilities
       - ForensicPad
@@ -1008,7 +1013,7 @@
       - ClothingOuterHardsuitMercenary
       - ClothingOuterHardsuitPrivateSecurity
       - ClothingOuterHardsuitScaf
-      - ClothingShoesBootsMagCombat
+      - ClothingShoesBootsMagSecurity
       - ClothingShoesBootsMagMercenary
     ## Utilities
       - PinpointerUniversalNF
@@ -1317,3 +1322,13 @@
     - ScrapCableHVStack1
     - ScrapCableMVStack1
     - ScrapCableApcStack1
+
+- type: entity
+  id: BiogeneratorFill
+  parent: Biogenerator
+  name: biogenerator
+  suffix: Biomass, 50
+  components:
+  - type: MaterialStorage
+    storage:
+      Biomass: 50

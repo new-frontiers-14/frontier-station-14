@@ -679,13 +679,11 @@
     state: power_mod
   - type: MachineBoard
     prototype: SMESAdvancedEmpty
+    requirements: # Frontier
+        Capacitor: 2 # Frontier stackRequirements<requirements
+        PowerCell: 8 # Frontier componentRequirements<requirements, 4<8
     stackRequirements:
-      Capacitor: 2
       CableHV: 20
-    componentRequirements:
-      PowerCell:
-        amount: 4
-        defaultPrototype: PowerCellMedium
 
 - type: entity
   id: CellRechargerCircuitboard
