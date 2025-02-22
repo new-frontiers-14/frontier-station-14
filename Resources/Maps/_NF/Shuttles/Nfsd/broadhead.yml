@@ -26,10 +26,10 @@ entities:
     components:
     - type: MetaData
       name: Broadhead
-    - type: BecomesStation
-      id: Broadhead
     - type: Transform
       parent: invalid
+    - type: BecomesStation
+      id: Broadhead
     - type: MapGrid
       chunks:
         0,0:
@@ -3661,13 +3661,6 @@ entities:
         - Pressed: Toggle
         3:
         - Pressed: DoorBolt
-- proto: LockerNfsdSilverDetectiveFilled
-  entities:
-  - uid: 439
-    components:
-    - type: Transform
-      pos: -2.5,-3.5
-      parent: 2
 - proto: LockerNfsdEvidence
   entities:
   - uid: 31
@@ -3684,6 +3677,13 @@ entities:
     components:
     - type: Transform
       pos: 7.5,-9.5
+      parent: 2
+- proto: LockerNfsdSilverDetectiveFilled
+  entities:
+  - uid: 439
+    components:
+    - type: Transform
+      pos: -2.5,-3.5
       parent: 2
 - proto: LockerWallEVAColorNfsdFilled
   entities:
@@ -3733,6 +3733,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,-18.5
+      parent: 2
+- proto: NFHolopadShip
+  entities:
+  - uid: 743
+    components:
+    - type: Transform
+      pos: 7.5,-1.5
       parent: 2
 - proto: NitrogenCanister
   entities:
@@ -3804,9 +3811,6 @@ entities:
       parent: 2
     - type: FuelGenerator
       targetPower: 21000
-      on: False
-    - type: Physics
-      bodyType: Static
   - uid: 389
     components:
     - type: Transform
@@ -3814,9 +3818,6 @@ entities:
       parent: 2
     - type: FuelGenerator
       targetPower: 21000
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandMissingGloves
   entities:
   - uid: 748
@@ -4313,13 +4314,6 @@ entities:
     - type: Transform
       pos: -0.5,-13.5
       parent: 2
-- proto: SignNfsdInterrogation
-  entities:
-  - uid: 742
-    components:
-    - type: Transform
-      pos: 3.5,-7.5
-      parent: 2
 - proto: SignMorgue
   entities:
   - uid: 510
@@ -4350,6 +4344,13 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-11.5
+      parent: 2
+- proto: SignNfsdInterrogation
+  entities:
+  - uid: 742
+    components:
+    - type: Transform
+      pos: 3.5,-7.5
       parent: 2
 - proto: SignSpace
   entities:
@@ -4397,6 +4398,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-10.5
+      parent: 2
+- proto: StructurePistolRackNfsd
+  entities:
+  - uid: 260
+    components:
+    - type: Transform
+      pos: 7.5,-3.5
       parent: 2
 - proto: SubstationBasic
   entities:
@@ -5518,7 +5526,7 @@ entities:
     - type: Transform
       pos: -0.5,-5.5
       parent: 2
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 700
     components:
@@ -5544,13 +5552,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-13.5
-      parent: 2
-- proto: StructurePistolRackNfsd
-  entities:
-  - uid: 260
-    components:
-    - type: Transform
-      pos: 7.5,-3.5
       parent: 2
 - proto: WindoorSecureBrigLocked
   entities:

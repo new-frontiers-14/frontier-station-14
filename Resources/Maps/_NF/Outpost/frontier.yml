@@ -154,17 +154,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
+    - type: ForceAnchor
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -3962,13 +3956,15 @@ entities:
       id: Frontier
     - type: StationTransit
     - type: ProtectedGrid
+      hostileMobKillSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/holy.ogg
+      killHostileMobs: True
       preventArtifactTriggers: True
       preventExplosions: True
       preventEmpEvents: True
       preventRCDUse: True
       preventFloorPlacement: True
       preventFloorRemoval: True
-      killHostileMobs: True
     - type: SpreaderGrid
     - type: IFF
       readOnly: True
@@ -18249,22 +18245,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: GasMinerNitrogenStation
-  entities:
-  - uid: 1703
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -36.5,16.5
-      parent: 2173
-- proto: GasMinerOxygenStation
-  entities:
-  - uid: 1082
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -34.5,16.5
-      parent: 2173
 - proto: GasMixerOn
   entities:
   - uid: 1124
@@ -27891,6 +27871,27 @@ entities:
     - type: Transform
       pos: 27.744509,16.401314
       parent: 2173
+- proto: NFHolopadFrontierOutpostLobby
+  entities:
+  - uid: 1234
+    components:
+    - type: Transform
+      pos: -0.5,12.5
+      parent: 2173
+- proto: NFHolopadFrontierOutpostSR
+  entities:
+  - uid: 2197
+    components:
+    - type: Transform
+      pos: 6.5,19.5
+      parent: 2173
+- proto: NFHolopadFrontierOutpostSTC
+  entities:
+  - uid: 2133
+    components:
+    - type: Transform
+      pos: 15.5,13.5
+      parent: 2173
 - proto: NFSignBus
   entities:
   - uid: 2096
@@ -29008,7 +29009,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 39.5,22.5
       parent: 2173
-- proto: PoweredlightColoredBlack
+- proto: PoweredlightBlack
   entities:
   - uid: 2064
     components:
@@ -31873,6 +31874,23 @@ entities:
     components:
     - type: Transform
       pos: 27.5,18.5
+      parent: 2173
+- proto: SpawnPointBorg
+  entities:
+  - uid: 5230
+    components:
+    - type: Transform
+      pos: 6.5,28.5
+      parent: 2173
+  - uid: 5244
+    components:
+    - type: Transform
+      pos: 51.5,15.5
+      parent: 2173
+  - uid: 5248
+    components:
+    - type: Transform
+      pos: 30.5,5.5
       parent: 2173
 - proto: SpawnPointContractor
   entities:

@@ -216,20 +216,25 @@ public sealed partial class LatheMenu : DefaultWindow
     /// Populates the build queue list with all queued items
     /// </summary>
     /// <param name="queue"></param>
-    public void PopulateQueueList(List<LatheRecipePrototype> queue)
+    public void PopulateQueueList(List<LatheRecipeBatch> queue) // Frontier: LatheRecipePrototype<LatheRecipeBatch
     {
         QueueList.DisposeAllChildren();
 
         var idx = 1;
-        foreach (var recipe in queue)
+        foreach (var batch in queue) // Frontier: recipe<batch
         {
             var queuedRecipeBox = new BoxContainer();
             queuedRecipeBox.Orientation = BoxContainer.LayoutOrientation.Horizontal;
 
-            queuedRecipeBox.AddChild(GetRecipeDisplayControl(recipe));
+            // Frontier: batch handling
+            queuedRecipeBox.AddChild(GetRecipeDisplayControl(batch.Recipe));
 
             var queuedRecipeLabel = new Label();
-            queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(recipe)}";
+            if (batch.ItemsRequested > 1)
+                queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
+            else
+                queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
+            // End Frontier
             queuedRecipeBox.AddChild(queuedRecipeLabel);
             QueueList.AddChild(queuedRecipeBox);
             idx++;
