@@ -159,6 +159,18 @@
   id: MobCarpSalvage
   parent: [NFMobRestrictions, MobCarp] # Frontier: add NFMobRestrictions, remove components
   suffix: "Salvage Ruleset"
+  components:
+  - type: Fixtures # Frontier: for some reason they get stuck on doorways without this
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
 
 - type: entity
   name: space carp
