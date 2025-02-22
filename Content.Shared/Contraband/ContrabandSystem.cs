@@ -65,7 +65,7 @@ public sealed class ContrabandSystem : EntitySystem
         var localizedDepartments = component.AllowedDepartments.Select(p => Loc.GetString("contraband-department-plural", ("department", Loc.GetString(_proto.Index(p).Name))));
         var localizedJobs = component.AllowedJobs.Select(p => Loc.GetString("contraband-job-plural", ("job", _proto.Index(p).LocalizedName)));
         var severity = _proto.Index(component.Severity);
-        String departmentExamineMessage;
+        String? departmentExamineMessage = null;
         if (severity.ShowDepartmentsAndJobs)
         {
             //creating a combined list of jobs and departments for the restricted text
@@ -73,10 +73,12 @@ public sealed class ContrabandSystem : EntitySystem
             // department restricted text
             departmentExamineMessage = Loc.GetString("contraband-examine-text-Restricted-department", ("departments", list));
         }
-        else
-        {
-            departmentExamineMessage = Loc.GetString(severity.ExamineText);
-        }
+        // Frontier: 
+        // else
+        // {
+        //     departmentExamineMessage = Loc.GetString(severity.ExamineText);
+        // }
+        // End Frontier: 
 
         // text based on ID card
         List<ProtoId<DepartmentPrototype>> departments = new();
@@ -103,7 +105,7 @@ public sealed class ContrabandSystem : EntitySystem
             carryingMessage = Loc.GetString("contraband-examine-text-avoid-carrying-around");
         }
 
-        var examineMarkup = GetContrabandExamine(departmentExamineMessage, carryingMessage, !component.HideCarryStatus); // Frontier: pass HideCarryStatus
+        var examineMarkup = GetContrabandExamine(Loc.GetString(severity.ExamineText), departmentExamineMessage, carryingMessage, !component.HideCarryStatus); // Frontier: pass HideCarryStatus
         _examine.AddDetailedExamineVerb(args,
             component,
             examineMarkup,
@@ -112,15 +114,23 @@ public sealed class ContrabandSystem : EntitySystem
             Loc.GetString("contraband-examinable-verb-message"));
     }
 
-    private FormattedMessage GetContrabandExamine(String deptMessage, String carryMessage, bool showCarry = true) // Frontier: add showCarry
+    private FormattedMessage GetContrabandExamine(String severity, String? deptMessage, String carryMessage, bool showCarry = true) // Frontier: add showCarry
     {
         var msg = new FormattedMessage();
-        msg.AddMarkupOrThrow(deptMessage);
+
+        // Frontier: severity, department message, hide carry status
+        msg.AddMarkupOrThrow(severity);
+        if (!string.IsNullOrEmpty(deptMessage))
+        {
+            msg.PushNewline();
+            msg.AddMarkupOrThrow(deptMessage);
+        }
         if (showCarry)
         {
             msg.PushNewline();
             msg.AddMarkupOrThrow(carryMessage);
         }
+        // End Frontier: severity, department message, hide carry status
         return msg;
     }
 
