@@ -15,14 +15,13 @@
           true
     - type: NpcFactionMember
       factions:
-      - Dragon
+        - SimpleHostile
     - type: Sprite
       drawdepth: Mobs
       sprite: Mobs/Aliens/Carps/space.rsi
       layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
         state: alive
-    - type: Carriable #DeltaV - this is for you, deltanedas o7
     - type: CombatMode
     - type: Physics
     - type: Fixtures
@@ -30,7 +29,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.4
+            radius: 0.35 # Frontier 0.40<0.35 Lowered the value, to allow them to fit through the airlocks
           density: 80
           mask:
             - FlyingMobMask
@@ -40,10 +39,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        40: Dead
-    - type: MovementSpeedModifier
-      baseWalkSpeed: 2.5
-      baseSprintSpeed: 3.5
+        50: Dead
     - type: Stamina
       critThreshold: 100
     - type: DamageStateVisuals
@@ -58,9 +54,6 @@
       spawned:
         - id: FoodMeatFish
           amount: 2
-        - id: MaterialToothSpaceCarp1
-          amount: 1
-          maxAmount: 4
     - type: MeleeWeapon
       altDisarm: false
       angle: 0
@@ -69,8 +62,8 @@
         path: /Audio/Effects/bite.ogg
       damage:
         types:
-          Blunt: 5
-          Slash: 5 # Frontier: 7<5
+          Piercing: 5
+          Slash: 10
     - type: TypingIndicator
       proto: alien
     - type: Tag
@@ -86,6 +79,7 @@
       interactFailureString: petting-failure-carp
       interactFailureSound:
         path: /Audio/Effects/bite.ogg
+    - type: Carriable # DeltaV
 
 - type: entity
   parent: BaseMobCarp
@@ -133,7 +127,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.5
+            radius: 0.35 # Frontier 0.40<0.35 Lowered the value, to allow them to fit through the airlocks
           density: 10
           mask:
             - MobMask
@@ -157,8 +151,11 @@
 
 - type: entity
   id: MobCarpSalvage
-  parent: [NFMobRestrictions, MobCarp] # Frontier: add NFMobRestrictions, remove components
+  parent: MobCarp
   suffix: "Salvage Ruleset"
+  categories: [ HideSpawnMenu ] # Frontier
+  components:
+    - type: NFSalvageMobRestrictions # Frontier: SalvageMobRestrictions<NFSalvageMobRestrictions
 
 - type: entity
   name: space carp
@@ -173,11 +170,6 @@
       makeSentient: true
       name: ghost-role-information-sentient-carp-name
       description: ghost-role-information-sentient-carp-description
-      rules: ghost-role-information-space-dragon-summoned-carp-rules
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
-      raffle:
-        settings: short
     - type: GhostTakeoverAvailable
     - type: HTN
       rootTask:
@@ -214,7 +206,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.45 #Frontier: 0.55 < 0.45
+            radius: 0.35 # Frontier 0.40<0.35 Lowered the value, to allow them to fit through the airlocks
           density: 100
           mask:
             - FlyingMobMask
@@ -223,7 +215,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        80: Dead # Frontier: 150<80
+        180: Dead
     - type: Stamina
       critThreshold: 150
     - type: DamageStateVisuals
@@ -241,17 +233,16 @@
       spawned:
         - id: FoodMeatFish
           amount: 4
-        - id: MaterialToothSharkminnow1
-          amount: 1
-          maxAmount: 3
     - type: MeleeWeapon
       damage:
         types:
-          Slash: 7 # Frontier: 10<7
+          Slash: 12
           Bloodloss: 5
 
 - type: entity
   id: MobSharkSalvage
-  parent: [NFMobRestrictions, MobShark] # Frontier: add NFMobRestrictions
+  parent: MobShark
   suffix: "Salvage Ruleset"
   categories: [ HideSpawnMenu ] # Frontier
+  components:
+    - type: NFSalvageMobRestrictions # Frontier: SalvageMobRestrictions<NFSalvageMobRestrictions
