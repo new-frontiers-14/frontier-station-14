@@ -17,10 +17,26 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [NFMobRestrictions, MobNonHumanHostileBase, MobHumanoidHostileAISimpleMelee, MobXeno]
+  parent: [NFMobRestrictions, MobNonHumanHostileBase, MobHumanoidHostileAISimpleMelee, MobXenoQueen]
   id: NFMobXenoQueen
   suffix: Frontier
   categories: [ HideSpawnMenu ]
+  components:
+  - type: ReplacementAccent
+    accent: xeno
+  - type: GhostRole
+    prob: 1
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-xeno-name
+    description: ghost-role-information-xeno-description
+    rules: ghost-role-information-xeno-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
 
 - type: entity
   parent: [NFMobRestrictions, MobNonHumanHostileBase, MobHumanoidHostileAISimpleMelee, MobXenoRavager]

@@ -148,6 +148,7 @@
     - type: Tool
     - type: Prying
     - type: MovementIgnoreGravity
+    - type: Access
     addComponentsOnRevival:
 #    - type: Pullable # TODO: This makes the mob stuck to your hand if it dies when you pull it
     - type: Carriable # Carrying system from nyanotrasen.
@@ -155,14 +156,12 @@
       speedModifier: 1.5
       qualities:
         - Prying
-    - type: Prying
-      pryPowered: !type:Bool
-        true
-      force: !type:Bool
-        true
+    - type: Prying # Open door from xeno.yml.
+      pryPowered: true
+      force: true
+      speedModifier: 1.5
       useSound:
         path: /Audio/Items/crowbar.ogg
-      speedModifier: 10.0
     - type: MovementIgnoreGravity
     removeComponentsOnRevival:
     - type: Strippable
@@ -239,16 +238,14 @@
     qualities:
       - Prying
   - type: Prying
-    pryPowered: !type:Bool
-      true
-    force: !type:Bool
-      true
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
-    speedModifier: 10.0
-  #- type: Access # Turning AA off for the time being
-    #groups:
-    #- AllAccess
+#  - type: Access
+#    groups:
+#    - AllAccess
 
 - type: entity
   abstract: true
