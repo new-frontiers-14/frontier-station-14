@@ -157,20 +157,8 @@
 
 - type: entity
   id: MobCarpSalvage
-  parent: [MobCarp, NFMobRestrictions] # Frontier: add NFMobRestrictions, remove components
+  parent: [NFMobRestrictions, MobCarp] # Frontier: add NFMobRestrictions, remove components
   suffix: "Salvage Ruleset"
-  components:
-  - type: Fixtures # Frontier: for some reason without this they cannon fit between doors
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 80
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
 
 - type: entity
   name: space carp
