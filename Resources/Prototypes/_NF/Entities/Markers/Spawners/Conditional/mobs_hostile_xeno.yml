@@ -12,7 +12,7 @@
         state: running
   - type: ConditionalSpawner
     prototypes:
-    - NFMobXenoBurrower
+    - NFMobXeno
 
 - type: entity
   id: NFSpawnMobXenoDrone
@@ -124,7 +124,7 @@
     - state: ai
   - type: RandomSpawner
     prototypes:
-    - NFMobXenoBurrower
+    - NFMobXeno
     - NFMobXenoDrone
     rarePrototypes:
     - NFMobXenoPraetorian
@@ -139,7 +139,7 @@
   components:
   - type: RandomSpawner
     prototypes:
-    - NFMobXenoBurrower
+    - NFMobXeno
     - NFMobXenoPraetorian
     - NFMobXenoDrone
     - NFMobXenoRunner
@@ -161,5 +161,5 @@
     - NFMobXenoRavager
     rarePrototypes:
     - NFMobXenoDrone
-    - NFMobXenoBurrower
+    - NFMobXeno
     rareChance: 0.10
