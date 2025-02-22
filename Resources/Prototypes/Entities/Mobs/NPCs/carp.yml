@@ -30,7 +30,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.5 # frontier trying to get them to not teleport into shuttles
+            radius: 0.4
           density: 80
           mask:
             - FlyingMobMask
@@ -159,18 +159,6 @@
   id: MobCarpSalvage
   parent: [NFMobRestrictions, MobCarp] # Frontier: add NFMobRestrictions, remove components
   suffix: "Salvage Ruleset"
-  components:
-  - type: Fixtures # Frontier: for some reason they get stuck on doorways without this
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 80
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
 
 - type: entity
   name: space carp
@@ -226,7 +214,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.55
+            radius: 0.45 #Frontier: 0.55 < 0.45
           density: 100
           mask:
             - FlyingMobMask
@@ -267,16 +255,3 @@
   parent: [NFMobRestrictions, MobShark] # Frontier: add NFMobRestrictions
   suffix: "Salvage Ruleset"
   categories: [ HideSpawnMenu ] # Frontier
-  components:
-  - type: Fixtures # Frontier: same issue as salvage carp mobs
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.45
-        density: 100
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
-
