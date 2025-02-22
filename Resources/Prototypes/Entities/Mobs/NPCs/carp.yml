@@ -267,3 +267,16 @@
   parent: [NFMobRestrictions, MobShark] # Frontier: add NFMobRestrictions
   suffix: "Salvage Ruleset"
   categories: [ HideSpawnMenu ] # Frontier
+  components:
+  - type: Fixtures # Frontier: same issue as salvage carp mobs
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 100
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+
