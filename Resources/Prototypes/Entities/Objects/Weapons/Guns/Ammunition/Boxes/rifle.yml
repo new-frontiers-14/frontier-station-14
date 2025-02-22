@@ -35,12 +35,12 @@
     proto: CartridgeRifle
   - type: Sprite
     layers:
-    - state: base-big
+    - state: base-b # Frontier: base-big<base-b
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-big-1
+    - state: magb-1 # Frontier: mag-big-1<magb-1
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
-    magState: mag-big
+    magState: magb # Frontier: mag-big<magb
     steps: 4
     zeroVisible: false
   - type: Appearance
