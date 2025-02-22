@@ -3,10 +3,9 @@
 concurrency:
   group: publish-testing
 
-# Frontier: disabled
-# on:
-#   workflow_dispatch:
-#   schedule:
+on:
+  workflow_dispatch:
+#   schedule: # Frontier: disable auto-schedule
 #   - cron: '0 10 * * *'
 
 jobs:
