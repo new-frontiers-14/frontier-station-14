@@ -272,11 +272,14 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         if (profile != null)
         {
+            // Frontier: allow pseudonyms
+            var name = (loadout != null) && !string.IsNullOrEmpty(loadout.EntityName) ? loadout.EntityName : profile.Name;
+            // End Frontier
             if (prototype != null)
-                SetPdaAndIdCardData(entity.Value, profile.Name, prototype, station);
+                SetPdaAndIdCardData(entity.Value, name, prototype, station); // Frontier: profile.Name<name
 
             _humanoidSystem.LoadProfile(entity.Value, profile);
-            _metaSystem.SetEntityName(entity.Value, profile.Name);
+            _metaSystem.SetEntityName(entity.Value, name); // Frontier: profile.Name<name
             if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
             {
                 AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
