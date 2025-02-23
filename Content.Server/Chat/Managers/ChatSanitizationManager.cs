@@ -91,7 +91,7 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { "(':", "chatsan-tearfully-smiles" },
         { "[':", "chatsan-tearfully-smiles" },
         { "('=", "chatsan-tearfully-smiles" },
-        { "['=", "chatsan-tearfully-smiles" }
+        { "['=", "chatsan-tearfully-smiles" },
         // Corvax-Localization-Start
         { "хд", "chatsan-laughs" },
         { "о-о", "chatsan-wide-eyed" }, // cyrillic о
