@@ -173,7 +173,7 @@ public sealed partial class BountyContractSystem
         var contract = data.Contracts[collectionId.Value][args.ContractId];
 
         // Check the delete access for the user on this collection.
-        if (!HasDeleteAccess(entityUid, collectionId.Value, data) || !(GetEntity(contract.AuthorUid) == entityUid))
+        if (!HasDeleteAccess(entityUid, collectionId.Value, data) && GetEntity(contract.AuthorUid) != entityUid)
             return;
 
         data.Contracts[collectionId.Value].Remove(args.ContractId);
