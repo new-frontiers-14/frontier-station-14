@@ -26,15 +26,16 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         IoCManager.InjectDependencies(this);
         CategorySelector.OnItemSelected += opt => OnCategorySelected(opt.Id);
         NameSelector.OnItemSelected += opt => OnNameSelected(opt.Id);
-        VeselSelector.OnItemSelected += opt => OnVesselSelected(opt.Id);
+        VesselSelector.OnItemSelected += opt => OnVesselSelected(opt.Id);
 
         CustomNameButton.OnToggled += args => OnCustomNameToggle(args.Pressed);
-        CustomVeselButton.OnToggled += args =>  OnCustomVeselToggle(args.Pressed);
-        NameEdit.OnTextChanged += NameEditOnTextChanged;
-        RewardEdit.OnTextChanged += OnPriceChanged;
+        CustomVesselButton.OnToggled += args => OnCustomVesselToggle(args.Pressed);
+        NameEdit.OnTextChanged += _ => UpdateDisclaimer();
+        RewardEdit.OnTextChanged += _ => UpdateDisclaimer();
 
         var descPlaceholder = Loc.GetString("bounty-contracts-ui-create-description-placeholder");
         DescriptionEdit.Placeholder = new Rope.Leaf(descPlaceholder);
+        DescriptionEdit.OnTextChanged += _ => UpdateDisclaimer();
         RewardEdit.Text = SharedBountyContractSystem.DefaultReward.ToString();
 
         CreateButton.OnPressed += _ => OnCreatePressed?.Invoke(GetBountyContract());
@@ -43,16 +44,6 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         _collection = collection;
 
         FillCategories();
-        UpdateDisclaimer();
-    }
-
-    private void OnPriceChanged(LineEdit.LineEditEventArgs obj)
-    {
-        UpdateDisclaimer();
-    }
-
-    private void NameEditOnTextChanged(LineEdit.LineEditEventArgs obj)
-    {
         UpdateDisclaimer();
     }
 
@@ -82,10 +73,10 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         _vessels = vessels;
 
         // update ships dropdown
-        VeselSelector.Clear();
+        VesselSelector.Clear();
         for (var i = 0; i < _vessels.Count; i++)
         {
-            VeselSelector.AddItem(_vessels[i], i);
+            VesselSelector.AddItem(_vessels[i], i);
         }
 
         // set vessel to unknown
@@ -139,12 +130,12 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         if (itemIndex >= _vessels.Count)
             return;
 
-        VeselSelector.SelectId(itemIndex);
+        VesselSelector.SelectId(itemIndex);
     }
 
     private void OnCategorySelected(int objId)
     {
-        var cat = (BountyContractCategory) objId;
+        var cat = (BountyContractCategory)objId;
         CustomNameButton.Pressed = cat != BountyContractCategory.Criminal;
         OnCustomNameToggle(CustomNameButton.Pressed);
 
@@ -160,10 +151,10 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         UpdateDisclaimer();
     }
 
-    private void OnCustomVeselToggle(bool isPressed)
+    private void OnCustomVesselToggle(bool isPressed)
     {
-        VeselSelector.Visible = !isPressed;
-        VeselEdit.Visible = isPressed;
+        VesselSelector.Visible = !isPressed;
+        VesselEdit.Visible = isPressed;
 
         OnVesselSelected(0);
     }
@@ -185,6 +176,30 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         if (name == "")
         {
             var err = Loc.GetString("bounty-contracts-ui-create-error-no-name");
+            DisclaimerLabel.SetMessage(err);
+            CreateButton.Disabled = true;
+            return;
+        }
+
+        if (name.Length > SharedBountyContractSystem.MaxNameLength)
+        {
+            var err = Loc.GetString("bounty-contracts-ui-create-error-name-too-long");
+            DisclaimerLabel.SetMessage(err);
+            CreateButton.Disabled = true;
+            return;
+        }
+
+        if (VesselEdit.Text.Length > SharedBountyContractSystem.MaxVesselLength)
+        {
+            var err = Loc.GetString("bounty-contracts-ui-create-vessel-name-too-long");
+            DisclaimerLabel.SetMessage(err);
+            CreateButton.Disabled = true;
+            return;
+        }
+
+        if (DescriptionEdit.TextLength > SharedBountyContractSystem.MaxDescriptionLength)
+        {
+            var err = Loc.GetString("bounty-contracts-ui-create-error-description-too-long");
             DisclaimerLabel.SetMessage(err);
             CreateButton.Disabled = true;
             return;
@@ -238,15 +253,15 @@ public sealed partial class BountyContractUiFragmentCreate : Control
     {
         var vessel = "";
 
-        if (!CustomVeselButton.Pressed)
+        if (!CustomVesselButton.Pressed)
         {
-            var id = VeselSelector.SelectedId;
+            var id = VesselSelector.SelectedId;
             if (id < _vessels.Count)
                 vessel = _vessels[id];
         }
         else
         {
-            vessel = VeselEdit.Text;
+            vessel = VesselEdit.Text;
         }
 
         return vessel;
@@ -254,7 +269,7 @@ public sealed partial class BountyContractUiFragmentCreate : Control
 
     public BountyContractCategory GetCategory()
     {
-        return (BountyContractCategory) CategorySelector.SelectedId;
+        return (BountyContractCategory)CategorySelector.SelectedId;
     }
 
     public BountyContractRequest GetBountyContract()

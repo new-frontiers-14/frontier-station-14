@@ -178,10 +178,10 @@ public sealed partial class BountyContractSystem
 
     private void OnTryCreateMessage(Entity<BountyContractsCartridgeComponent> cartridge, ref BountyContractTryCreateMessageEvent args)
     {
-        if (!HasWriteAccess(args.Actor, args.Contract.Collection))
-            return;
-
         var loader = GetEntity(args.LoaderUid);
+
+        if (!HasWriteAccess(loader, args.Contract.Collection))
+            return;
 
         var c = args.Contract;
         var author = GetContractAuthor(loader);

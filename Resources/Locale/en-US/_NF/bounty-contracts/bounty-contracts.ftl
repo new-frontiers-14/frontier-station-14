@@ -29,6 +29,7 @@ bounty-contracts-ui-list-refresh = Refresh
 bounty-contracts-ui-list-category = Category: {$category}
 bounty-contracts-ui-list-vessel = Vessel: {$vessel}
 bounty-contracts-ui-list-author = Posted by: {$author}
+bounty-contracts-ui-list-unknown-author = Unknown
 bounty-contracts-ui-list-remove = Remove
 bounty-contracts-ui-list-loading = Loading...
 
@@ -49,6 +50,9 @@ bounty-contracts-ui-create-button-cancel = Cancel
 bounty-contracts-ui-create-button-create = Create
 bounty-contracts-ui-create-error-invalid-price = Error: Invalid price!
 bounty-contracts-ui-create-error-no-name = Error: Invalid bounty name!
+bounty-contracts-ui-create-error-name-too-long = Error: Name too long!
+bounty-contracts-ui-create-error-vessel-too-long = Error: Vessel too long!
+bounty-contracts-ui-create-error-description-too-long = Error: Description too long!
 bounty-contracts-ui-create-ready = Your contract is ready to be published!
 
 

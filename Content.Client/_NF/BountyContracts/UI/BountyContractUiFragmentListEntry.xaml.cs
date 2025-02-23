@@ -23,15 +23,17 @@ public sealed partial class BountyContractUiFragmentListEntry : Control
         BountyVessel.Text = vesselMsg;
 
         // bounty description
-        var desc = !string.IsNullOrEmpty(contract.Description) ? contract.Description : Loc.GetString("bounty-contracts-ui-list-no-description");
-        BountyDescription.SetMessage(desc);
+        if (string.IsNullOrWhiteSpace(contract.Description))
+            BountyDescription.Visible = false;
+        else
+            BountyDescription.SetMessage(contract.Description);
 
         // author
-        if (!string.IsNullOrEmpty(contract.Author))
-        {
-            var author = Loc.GetString("bounty-contracts-ui-list-author", ("author", contract.Author));
-            BountyAuthor.Text = author;
-        }
+        string author = contract.Author ?? "";
+        if (string.IsNullOrWhiteSpace(contract.Author))
+            author = Loc.GetString("bounty-contracts-ui-list-unknown-author");
+
+        BountyAuthor.Text = Loc.GetString("bounty-contracts-ui-list-author", ("author", author));
 
         // bounty reward
         BountyReward.Text = BankSystemExtensions.ToSpesoString(contract.Reward);
@@ -39,13 +41,12 @@ public sealed partial class BountyContractUiFragmentListEntry : Control
         // remove button
         RemoveButton.OnPressed += _ => OnRemoveButtonPressed?.Invoke(contract);
         RemoveButton.Disabled = !canRemoveContracts;
-        // color
+
+        // Get category
         var meta = SharedBountyContractSystem.CategoriesMeta[contract.Category];
         BountyPanel.ModulateSelfOverride = meta.UiColor;
 
-        // category
-        var category = Loc.GetString(meta.Name);
-        BountyCategory.Text = Loc.GetString("bounty-contracts-ui-list-category",
-            ("category", category));
+        var category = Loc.GetString("bounty-contracts-ui-list-category", ("category", Loc.GetString(meta.Name))); 
+        BountyCategory.Text = category;
     }
 }

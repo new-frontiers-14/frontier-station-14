@@ -6,6 +6,7 @@ using Content.Server._NF.SectorServices;
 using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Systems;
 using Content.Server.StationRecords.Systems;
+using Content.Shared._NF.Bank;
 using Content.Shared._NF.BountyContracts;
 using Content.Shared.Access.Systems;
 using Content.Shared.CartridgeLoader;
@@ -158,6 +159,13 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
             return null;
         }
 
+        if (name.Length > MaxNameLength)
+            name = name.Substring(0, MaxNameLength);
+        if (vessel != null && vessel.Length > MaxVesselLength)
+            vessel = vessel.Substring(0, MaxVesselLength);
+        if (description != null && description.Length > MaxDescriptionLength)
+            description = description.Substring(0, MaxDescriptionLength);
+
         // create a new contract
         var contractId = data.LastId++;
         var contract = new BountyContract(contractId, category, name, reward, GetNetEntity(authorUid),
@@ -177,7 +185,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
                 ? $"{contract.Name} ({contract.Vessel})"
                 : contract.Name;
             var msg = Loc.GetString("bounty-contracts-radio-create",
-                ("target", target), ("reward", contract.Reward));
+                ("target", target), ("reward", BankSystemExtensions.ToSpesoString(contract.Reward)));
 
             var pdaList = EntityQueryEnumerator<CartridgeLoaderComponent>();
             while (pdaList.MoveNext(out var loaderUid, out var loaderComp))
