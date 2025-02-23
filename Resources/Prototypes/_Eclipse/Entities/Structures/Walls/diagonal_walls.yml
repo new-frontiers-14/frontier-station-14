@@ -89,6 +89,7 @@
   id: WallPlastitaniumDiagonalIndestructible
   parent: [BaseWallDiagonal, WallPlastitaniumIndestructible]
   name: plastitanium wall
+  description: Skub knows this wall is too hard to destroy. # Frontier
   suffix: diagonal, indestructible
   placement:
     mode: SnapgridCenter
@@ -96,6 +97,7 @@
       - Wall
   components:
     - type: Sprite
+      color: "#cdf3cd" # Frontier
       drawdepth: Walls
       sprite: Structures/Walls/plastitanium_diagonal.rsi
       state: state0
