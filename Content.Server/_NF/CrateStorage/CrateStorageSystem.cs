@@ -22,7 +22,7 @@ public sealed class CrateStorageSystem: EntitySystem
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
 
     // Define a static range.
-    private const float Range = 1.5f;
+    private const float Range = 0.5f;
 
     // Dictionary where the key is the entity id of the crate storage and the value is the entity id of the crate.
     private readonly Dictionary<EntityUid, List<EntityUid>> _storedCrates = new();
