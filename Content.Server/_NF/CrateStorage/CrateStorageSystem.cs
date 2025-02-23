@@ -52,6 +52,16 @@ public sealed class CrateStorageSystem: EntitySystem
         CheckIntersectingCrates(crateMachineUid);
     }
 
+    private bool IsStorageFull(EntityUid crateStorageUid)
+    {
+        // Get the crate storage component.
+        if (!TryComp(crateStorageUid, out CrateStorageComponent? crateStorageComponent))
+            return true;
+        if (!_storedCrates.TryGetValue(crateStorageUid, out var storedCrates))
+            return true;
+        return crateStorageComponent.Capacity == 0 || storedCrates.Count >= crateStorageComponent.Capacity;
+    }
+
     /// <summary>
     /// Processes a signal received event to open a crate storage.
     /// </summary>
@@ -96,9 +106,13 @@ public sealed class CrateStorageSystem: EntitySystem
     {
         if (!_storedCrates.TryGetValue(crateStorageUid, out var storedCrates))
         {
-            storedCrates = new List<EntityUid>();
+            storedCrates = [];
             _storedCrates.Add(crateStorageUid, storedCrates);
         }
+        // Do nothing if the storage is full.
+        if (IsStorageFull(crateStorageUid))
+            return;
+
         storedCrates.Add(crateUid);
         _transformSystem.SetCoordinates(crateUid, new EntityCoordinates(GetStorageMap(), Vector2.Zero));
     }
