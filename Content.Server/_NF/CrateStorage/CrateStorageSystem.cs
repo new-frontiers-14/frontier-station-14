@@ -139,17 +139,13 @@ public sealed class CrateStorageSystem: EntitySystem
     /// <param name="crateStorageUid">the EntityUid of the crate storage</param>
     private void CheckIntersectingCrates(EntityUid crateStorageUid)
     {
-        foreach (var near in _lookup.GetEntitiesInRange(crateStorageUid, Range, LookupFlags.Dynamic))
+        foreach (var near in _lookup.GetEntitiesInRange(crateStorageUid, Range, LookupFlags.Dynamic).Where(near => TryComp(near, out TradeCrateComponent? _)))
         {
-            // Check if this is a trade crate
-            if (TryComp(near, out TradeCrateComponent? _))
-            {
-                StoreCrate(crateStorageUid, near);
-                return; // We found a crate and moved it, so we can stop here.
-            }
+            StoreCrate(crateStorageUid, near);
+            return; // We found a crate and moved it, so we can stop here.
         }
 
-        // At this point we havent found any crates, so we should eject one.
+        // At this point we haven't found any crates, so we should eject one.
         EjectCrate(crateStorageUid);
     }
 }
