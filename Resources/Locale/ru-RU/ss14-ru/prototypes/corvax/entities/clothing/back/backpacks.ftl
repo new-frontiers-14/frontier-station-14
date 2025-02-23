@@ -1,0 +1,17 @@
+ent-ClothingMilitaryBackpack = армейский рюкзак
+    .desc = Просторный рюкзак с множеством карманов, который носят военные структуры.
+ent-ClothingMilitaryBackpackFilled = { ent-ClothingMilitaryBackpack }
+    .suffix = Заполненный
+    .desc = { ent-ClothingMilitaryBackpack.desc }
+ent-ClothingBackpackDuffelMilitary = армейский вещмешок
+    .desc = Большой вещмешок для хранения любых армейских вещей.
+ent-ClothingBackpackDuffelMilitaryFilled = { ent-ClothingMilitaryBackpack }
+    .suffix = Заполненный
+    .desc = { ent-ClothingMilitaryBackpack.desc }
+ent-ClothingMilitaryMessenger = армейский мессенджер
+    .desc = Тактический мессенджер для нужд армии.
+ent-ClothingBackpackMilitarySatchel = армейская сумка
+    .desc = Тактическая сумка для армейских нужд.
+ent-ClothingBackpackMilitarySatchelFilled = { ent-ClothingMilitaryBackpack }
+    .suffix = Заполненный
+    .desc = { ent-ClothingMilitaryBackpack.desc }

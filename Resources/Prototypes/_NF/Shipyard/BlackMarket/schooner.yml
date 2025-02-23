@@ -1,8 +1,8 @@
 - type: vessel
   id: Schooner
   parent: BaseVesselAntag
-  name: Schooner
-  description: A small wooden ship with 2 central cargo bays.
+  name: Шхуна
+  description: Среднегабаритный пиратский шаттл. Рекомендованный состав команды 2-4 человека.
   price: 60000
   category: Medium
   group: BlackMarket
@@ -15,7 +15,7 @@
 
 - type: gameMap
   id: Schooner
-  mapName: 'Schooner'
+  mapName: 'Шхуна'
   mapPath: /Maps/_NF/Shuttles/BlackMarket/schooner.yml
   minPlayers: 0
   stations:
@@ -23,7 +23,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Schooner {1}'
+          mapNameTemplate: 'Шхуна {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

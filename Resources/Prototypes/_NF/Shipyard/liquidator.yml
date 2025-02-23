@@ -11,8 +11,8 @@
 - type: vessel
   id: Liquidator
   parent: BaseVessel
-  name: LVHI Liquidator
-  description: A small vessel equipped with everything you need to make even the dirtiest ship squeaky clean (ducky slippers included). Manufactured by Langstad-Voigt Heavy Industries.
+  name: NT Подметатор
+  description: Малогабаритный уборочный шаттл. Рекомендованный размер команды 1 человек.
   price: 30750 # ~26590$ on mapinit + 15% markup
   category: Small
   group: Shipyard
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Liquidator
-  mapName: 'Liquidator'
+  mapName: 'NT Подметатор'
   mapPath: /Maps/_NF/Shuttles/liquidator.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Liquidator {1}'
+          mapNameTemplate: 'Подметатор {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

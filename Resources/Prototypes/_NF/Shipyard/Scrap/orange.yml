@@ -1,8 +1,8 @@
 - type: vessel
   id: Orange
   parent: BaseVessel
-  name: SV Orange
-  description: A cargo slash salvage shuttle made from scavenged wrecks, comes with some damage.
+  name: SV Обломок
+  description: Малогабаритный кусок мусора. Рекомендованный состав команды 1-2 человека.
   price: 18000 #Appraisal is 15800, +5% margin - TODO: fix this value, getting tests to pass - Whatstone
   category: Small
   group: Scrap
@@ -17,7 +17,7 @@
 
 - type: gameMap
   id: Orange
-  mapName: 'SV Orange'
+  mapName: 'SV Обломок'
   mapPath: /Maps/_NF/Shuttles/Scrap/orange.yml
   minPlayers: 0
   stations:
@@ -25,7 +25,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Orange {1}'
+          mapNameTemplate: 'Обломок {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

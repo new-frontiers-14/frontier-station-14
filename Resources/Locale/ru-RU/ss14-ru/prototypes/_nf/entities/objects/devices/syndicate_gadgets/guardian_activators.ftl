@@ -1,0 +1,15 @@
+ent-HoloparasiteInjectorAI = { ent-HoloparasiteInjector }
+    .suffix = Призрак, AI
+    .desc = { ent-HoloparasiteInjector.desc }
+ent-HoloClownInjectorAI = { ent-HoloClownInjector }
+    .suffix = Призрак, AI
+    .desc = { ent-HoloClownInjector.desc }
+ent-MagicalLampAI = { ent-MagicalLamp }
+    .suffix = Призрак, AI
+    .desc = { ent-MagicalLamp.desc }
+ent-BoxHoloparasiteAI = { ent-BoxHoloparasite }
+    .suffix = Призрак, AI
+    .desc = { ent-BoxHoloparasite.desc }
+ent-BoxHoloclownAI = { ent-BoxHoloclown }
+    .suffix = Призрак, AI
+    .desc = { ent-BoxHoloclown.desc }

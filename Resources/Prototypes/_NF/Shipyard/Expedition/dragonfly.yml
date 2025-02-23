@@ -7,12 +7,12 @@
 # Discord: ???
 
 # Shuttle Notes:
-# 
+#
 - type: vessel
   id: Dragonfly
   parent: BaseVessel
-  name: DYS Dragonfly
-  description: Highly modular salvaging vessel welded together from smaller re-purposed hulls.
+  name: DYS Стрекоза
+  description: Среднегабаритный экспедиционный шаттл. Рекомендованный размер команды 2-5 человек.
   price: 81000 # ~62075$ on mapinit + ~18650$ from 30% markup
   category: Medium
   group: Expedition
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Dragonfly
-  mapName: 'DYS Dragonfly'
+  mapName: 'DYS Стрекоза'
   mapPath: /Maps/_NF/Shuttles/Expedition/dragonfly.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Dragonfly {1}'
+          mapNameTemplate: 'Стрекоза {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

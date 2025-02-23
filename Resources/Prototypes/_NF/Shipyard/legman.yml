@@ -11,8 +11,8 @@
 - type: vessel
   id: Legman
   parent: BaseVessel
-  name: LVHI Legman
-  description: A small maneuverable shuttle with low operational costs for reporters who want to be first on a scene. Manufactured by Langstad-Voigt Heavy Industries.
+  name: NC Интервьюер
+  description: Малогабаритный репортёрский шаттл. Рекомендованный размер команды 1 человек.
   price: 13000 # 12135$ on mapinit + 5% markup
   category: Small
   group: Shipyard
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Legman
-  mapName: 'Legman'
+  mapName: 'NC Интервьюер'
   mapPath: /Maps/_NF/Shuttles/legman.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Legman {1}'
+          mapNameTemplate: 'Интервьюер {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -1,8 +1,8 @@
 - type: vessel
   id: Stellaris
   parent: BaseVessel
-  name: NT Stellaris
-  description: A mobile theatre perfect for putting on any show.
+  name: NT Межзвёздный
+  description: Среднегабаритный шаттл-ресторан с театром. Рекомендованный состав команды 2-5 человек.
   price: 48000 # Appraises for 45469, margin of 7% - TODO: fix this value, getting tests to pass - Whatstone
   category: Medium
   group: Shipyard
@@ -15,7 +15,7 @@
 
 - type: gameMap
   id: Stellaris
-  mapName: 'NT Stellaris'
+  mapName: 'NT Межзвёздный'
   mapPath: /Maps/_NF/Shuttles/stellaris.yml
   minPlayers: 0
   stations:
@@ -23,7 +23,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Stellaris {1}'
+          mapNameTemplate: 'Межзвёздный {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

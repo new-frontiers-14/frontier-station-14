@@ -11,8 +11,8 @@
 - type: vessel
   id: Hammer
   parent: BaseVessel
-  name: SBB Hammer
-  description: A mobile engineering platform for deep-space repairs, upgrades and remodelling.
+  name: SBB Наковальня
+  description: Среднегабаритный инженерный шаттл. Рекомендованный состав команды 2-4 человека.
   price: 44000 # Appraises at 38257, ~15% markup
   category: Medium
   group: Shipyard
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Hammer
-  mapName: 'SBB Hammer'
+  mapName: 'SBB Наковальня'
   mapPath: /Maps/_NF/Shuttles/hammer.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Hammer {1}'
+          mapNameTemplate: 'Наковальня {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

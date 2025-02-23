@@ -11,8 +11,8 @@
 - type: vessel
   id: Sprinter
   parent: BaseVessel
-  name: KC Sprinter
-  description: A light freighter often picked by bounty hunters due to its quick acceleration, expedition capable.
+  name: KC Спринтер
+  description: Среднегабаритный экспедиционный шаттл. Рекомендованный состав команды 3-6 человек.
   price: 56800 # ~$43700 on mapinit plus ~30% markup
   category: Medium
   group: Expedition
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Sprinter
-  mapName: 'KC Sprinter'
+  mapName: 'KC Спринтер'
   mapPath: /Maps/_NF/Shuttles/Expedition/sprinter.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Sprinter {1}'
+          mapNameTemplate: 'Спринтер {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -1,8 +1,8 @@
 - type: vessel
   id: Point
   parent: BaseVessel
-  name: SV Point
-  description: Two wrecks welded together that are somehow capable of research. 
+  name: SV Пунктир
+  description: Разрушенный научный шаттл. Рекомендованный состав команды 1-2 человека.
   price: 16100
   category: Small
   group: Scrap
@@ -16,7 +16,7 @@
 
 - type: gameMap
   id: Point
-  mapName: 'SV Point'
+  mapName: 'SV Пунктир'
   mapPath: /Maps/_NF/Shuttles/Scrap/point.yml
   minPlayers: 0
   stations:
@@ -24,7 +24,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Point {1}'
+          mapNameTemplate: 'Пунктир {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

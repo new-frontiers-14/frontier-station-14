@@ -1,0 +1,13 @@
+ent-ClothingHeadHelmetBombSuitSyndie = сапёрный шлем синдиката
+    .desc = { ent-ClothingHeadHelmetBombSuit.desc }
+ent-ClothingHeadHatHoodBioArmoredSyndicate = капюшон биозащитного костюма
+    .desc = Капюшон, защищающий голову и лицо от биологического заражения.
+    .suffix = Синдикат
+ent-ClothingHeadHelmetHardsuitSyndieEliteUnremoveable = { ent-ClothingHeadHelmetHardsuitSyndieElite }
+    .desc = { ent-ClothingHeadHelmetHardsuitSyndieElite.desc }
+ent-ClothingHeadHelmetHardsuitSyndieUnremoveable = { ent-ClothingHeadHelmetHardsuitSyndie }
+    .desc = { ent-ClothingHeadHelmetHardsuitSyndie.desc }
+ent-ClothingHeadHelmetHardsuitSyndieMedicUnremoveable = { ent-ClothingHeadHelmetHardsuitSyndieMedic }
+    .desc = { ent-ClothingHeadHelmetHardsuitSyndieMedic.desc }
+ent-ClothingHeadHatHoodWinterSyndieUnremoveable = капюшон плаща синдиката
+    .desc = { ent-ClothingHeadHatHoodWinterSyndie.desc }

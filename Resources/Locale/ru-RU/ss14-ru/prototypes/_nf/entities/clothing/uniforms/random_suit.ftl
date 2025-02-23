@@ -1,0 +1,14 @@
+ent-ClothingSkirtRandomSpawner = случапйный разноцветный костюм
+    .desc = { ent-ClothingUniformRandom.desc }
+ent-ClothingSkirtUniformRandomArmless = разноцветный костюм без рукавов
+    .suffix = Юбка
+    .desc = { ent-ClothingUniformRandom.desc }
+ent-ClothingSkirtUniformRandomStandard = разноцветный костюм
+    .suffix = Юбка
+    .desc = { ent-ClothingUniformRandom.desc }
+ent-ClothingSkirtUniformRandomBra = разноцветный бра
+    .suffix = Юбка
+    .desc = { ent-ClothingUniformRandom.desc }
+ent-ClothingSkirtUniformRandomShorts = разноцветная юбка
+    .suffix = Юбка
+    .desc = { ent-ClothingUniformRandom.desc }

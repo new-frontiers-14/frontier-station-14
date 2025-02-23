@@ -11,8 +11,8 @@
 - type: vessel
   id: Crescent
   parent: BaseVessel
-  name: KC Crescent
-  description: The Crescent, named for its exterior shape, is a vessel focused on providing service, medical aide, and scientific breakthroughs for smaller vessels.
+  name: KC Полумесяц
+  description: Крупногабаритный многоцелевой шаттл. Рекомендованный размер команды 6+ человек.
   price: 350020 # It do be like this.
   category: Large
   group: Shipyard
@@ -27,7 +27,7 @@
 
 - type: gameMap
   id: Crescent
-  mapName: 'KC Crescent'
+  mapName: 'KC Полумесяц'
   mapPath: /Maps/_NF/Shuttles/crescent.yml
   minPlayers: 0
   stations:
@@ -35,7 +35,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Crescent {1}'
+          mapNameTemplate: 'Полумесяц {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

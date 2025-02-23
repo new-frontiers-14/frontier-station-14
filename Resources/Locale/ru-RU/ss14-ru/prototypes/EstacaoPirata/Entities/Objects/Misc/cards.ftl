@@ -1,0 +1,1 @@
+ent-CardDeckBlack = колода карт

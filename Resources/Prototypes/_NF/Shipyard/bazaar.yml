@@ -7,12 +7,12 @@
 # Discord: ???
 
 # Shuttle Notes:
-# 
+#
 - type: vessel
   id: Bazaar
   parent: BaseVessel
-  name: SLI Bazaar
-  description: The Bazaar is a personal service vessel designed to provide a platform for merchants to sell their goods, it features two locking cargo docks, a spacious cargo hold, and a mercenary post for shop security.
+  name: SLI Барахолка
+  description: Среднегабаритный торговый шаттл. Рекомендованный размер команды 2-4 человека.
   price: 80000 # TODO: fix this number, just getting tests to pass - Whatstone
   category: Medium
   group: Shipyard
@@ -26,15 +26,15 @@
 
 - type: gameMap
   id: Bazaar
-  mapName: 'SLI Bazaar'
+  mapName: 'SLI Барахолка'
   mapPath: /Maps/_NF/Shuttles/bazaar.yml
   minPlayers: 0
-  stations: 
+  stations:
     Bazaar:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'SLI Bazaar {1}'
+          mapNameTemplate: 'Барахолка {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

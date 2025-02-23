@@ -1,0 +1,16 @@
+ent-ClothingNeckMedalNfsdStarGold = звезда доблести
+    .desc = За смелые поступки, самоотверженность и преданность долгу в тяжелейших обстоятельствах.
+ent-ClothingNeckMedalNfsdShieldGold = щит мужества
+    .desc = За образцовое мужество и лидерские качества, превосходящие все ожидания в бою с врагом.
+ent-ClothingNeckMedalNfsdShieldSilver = щит храбрости
+    .desc = За выдающиеся подвиги в борьбе с врагами Фронтира.
+ent-ClothingNeckMedalNfsdShieldBronze = щит заслуг
+    .desc = За выдающееся и достойное поведение при исполнении служебных обязанностей.
+ent-ClothingNeckMedalNfsdCivStarSilver = друг фронтира
+    .desc = В знак признания исключительной и почетной гражданской службы.
+ent-ClothingNeckMedalNfsdCivShieldGold = медаль щитоносца
+    .desc = За чрезвычайную гражданскую помощь перед лицом опасности.
+ent-ClothingNeckMedalNfsdBloodDrop = знак жертвоприношения
+    .desc = За тяжкие ранения, полученные при исполнении служебных обязанностей.
+ent-ClothingNeckMedalGloriousOrder = славный орден границы 1-й степени
+    .desc = За недвусмысленную предприимчивость и мрачность против неисправимого правдоподобия.

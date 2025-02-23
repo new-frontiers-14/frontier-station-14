@@ -11,8 +11,8 @@
 - type: vessel
   id: Apothecary
   parent: BaseVessel
-  name: FSB Apothecary
-  description: A small medical and chemistry support vessel. Deployed by the Far Star Biotech company to provide aid and medical services to the Frontier.
+  name: NM Апотекарий
+  description: Малогабаритный медицинский шаттл. Рекомендованный состав команды 1-2 человека.
   price: 36500 # Appraises at ~34k, 7% margin; TODO: fix this value, gettings to pass - Whatstone
   category: Small
   group: Medical
@@ -26,7 +26,7 @@
 
 - type: gameMap
   id: Apothecary
-  mapName: 'FSB Apothecary'
+  mapName: 'NM Апотекарий'
   mapPath: /Maps/_NF/Shuttles/apothecary.yml
   minPlayers: 0
   stations:
@@ -34,7 +34,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Apothecary {1}'
+          mapNameTemplate: 'Апотекарий {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

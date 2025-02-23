@@ -7,12 +7,12 @@
 # Discord: ???
 
 # Shuttle Notes:
-# 
+#
 - type: vessel
   id: Barge
   parent: BaseVessel
-  name: NC Barge
-  description: A medium shipping vessel repurposed into a salvage bar.
+  name: NC Баржа
+  description: Среднегабаритный добывающий шаттл. Рекомендованный размер команды 3-6 человек.
   price: 49000 # Appraises for 42901, margin of ~10% - TODO: fix these values, getting tests to pass - Whatstone
   category: Medium
   group: Shipyard
@@ -27,7 +27,7 @@
 
 - type: gameMap
   id: Barge
-  mapName: 'NC Barge'
+  mapName: 'NC Баржа'
   mapPath: /Maps/_NF/Shuttles/barge.yml
   minPlayers: 0
   stations:
@@ -35,7 +35,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Barge {1}'
+          mapNameTemplate: 'Баржа {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -7,12 +7,12 @@
 # Discord: erhardsteinhauer
 
 # Shuttle Notes:
-# 
+#
 - type: vessel
   id: Garden
   parent: BaseVessel
-  name: HS Garden
-  description: A small botany vessel dedicated to horiticultural experimentation.
+  name: HS Розарий
+  description: Малогабаритный ботанический шаттл. Рекомендованный размер команды 1-2 человека.
   price: 28000
   category: Small
   group: Shipyard
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Garden
-  mapName: 'HS Garden'
+  mapName: 'HS Розарий'
   mapPath: /Maps/_NF/Shuttles/garden.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Garden {1}'
+          mapNameTemplate: 'Розарий {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

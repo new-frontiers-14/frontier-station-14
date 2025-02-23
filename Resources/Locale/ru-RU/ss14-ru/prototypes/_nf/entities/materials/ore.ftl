@@ -1,0 +1,14 @@
+ent-ScrapOre = куски лома
+  .desc = Различные части бывшей в употреблении техники. Необходимо отсортировать или обработать для использования.
+ent-ScrapOre1 = { ent-ScrapOre }
+  .suffix = Один
+  .desc = { ent-ScrapOre.desc }
+ent-ScrapOre3 = { ent-ScrapOre }
+  .suffix = 3
+  .desc = { ent-ScrapOre.desc }
+ent-ScrapOre20 = { ent-ScrapOre }
+  .suffix = 20
+  .desc = { ent-ScrapOre.desc }
+materials-raw-scrap = несортированный лом
+materials-scrap = лом
+ent-SpawnRandomRefinedScrap = очищенный лом

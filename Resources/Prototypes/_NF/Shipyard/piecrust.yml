@@ -11,8 +11,8 @@
 - type: vessel
   id: Piecrust
   parent: BaseVessel
-  name: NC Piecrust
-  description: A combination animal ranch and pie bakery
+  name: NC Пирожок
+  description: Малогабаритный шаттл ресторан с зоопарком. Рекомендованный состав команды 1-2 человека.
   price: 35000 # TODO: fix this value, getting tests to pass - Whatstone
   category: Small
   group: Shipyard
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Piecrust
-  mapName: 'NT Piecrust'
+  mapName: 'NC Пирожок'
   mapPath: /Maps/_NF/Shuttles/piecrust.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Piecrust {1}'
+          mapNameTemplate: 'Пирожок {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

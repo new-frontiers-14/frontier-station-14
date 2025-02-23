@@ -7,8 +7,8 @@
 - type: vessel
   id: Eagle
   parent: BaseVessel
-  name: NM Eagle
-  description: "A modern, medium-sized engineering & medical vessel. Focused on responding to shuttle distress, the Eagle comes equipped to restore most crew and shuttles to good health."
+  name: NM Орлан
+  description: Среднегабаритный медико-инженерный шаттл. Рекомендованный размер команды 3-5 человек.
   price: 60000
   category: Medium
   group: Medical
@@ -22,7 +22,7 @@
 
 - type: gameMap
   id: Eagle
-  mapName: 'NM Eagle'
+  mapName: 'NM Орлан'
   mapPath: /Maps/_NF/Shuttles/eagle.yml
   minPlayers: 0
   stations:
@@ -30,7 +30,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Eagle {1}'
+          mapNameTemplate: 'Орлан {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

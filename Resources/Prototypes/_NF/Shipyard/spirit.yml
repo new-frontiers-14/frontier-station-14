@@ -11,8 +11,8 @@
 - type: vessel
   id: Spirit
   parent: BaseVessel
-  name: FSB Spirit
-  description: A tiny medical search and rescue shuttle, as nimble as it is cramped. Running costs guaranteed* to be 5% lower than competing models!
+  name: NM Дух
+  description: Крошечный медицинский поисково-спасательный шаттл, столь же маневренный, сколь и тесный. Эксплуатационные расходы гарантированно* будут на 5% ниже, чем у конкурирующих моделей!
   price: 18500
   category: Small
   group: Medical
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Spirit
-  mapName: 'FSB Spirit'
+  mapName: 'NM Дух'
   mapPath: /Maps/_NF/Shuttles/spirit.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Spirit {1}'
+          mapNameTemplate: 'Дух {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

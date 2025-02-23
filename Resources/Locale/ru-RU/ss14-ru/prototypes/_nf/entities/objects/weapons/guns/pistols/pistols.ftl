@@ -1,0 +1,10 @@
+ent-WeaponPistolMk58Nonlethal = { ent-WeaponPistolMk58 }
+    .suffix = Травматический
+    .desc = { ent-WeaponPistolMk58.desc }
+ent-WeaponPistolN1984Nonlethal = N1984
+    .suffix = Травматический
+    .desc = { ent-WeaponPistolN1984.desc }
+ent-WeaponPistolUniversal = Мк32 "Универсальный"
+    .desc = Боевой пистолет Mark 32, выпускаемый подразделением стрелкового оружия NanoTrasen. Использует патроны калибра .35 авто.
+ent-WeaponPistolPollock = Сайра
+    .desc = Компактный боевой пистолет массового производства. Использует патроны калибра .35 авто.

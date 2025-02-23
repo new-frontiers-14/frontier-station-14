@@ -1,8 +1,8 @@
 - type: vessel
   id: Beaker
   parent: BaseVessel
-  name: SBI Beaker
-  description: "A fully functional Chemistry Lab. Perfect for the prospecting chemist or high school chemistry teachers. Yeah, Science!"
+  name: SBI Мензурка
+  description: Малогабаритная химическая лаборатория. Рекомендованный состав команды 1-2 человека.
   price: 65000
   category: Small
   group: Medical
@@ -15,7 +15,7 @@
 
 - type: gameMap
   id: Beaker
-  mapName: 'SBI Beaker'
+  mapName: 'SBI Мензурка'
   mapPath: /Maps/_NF/Shuttles/beaker.yml
   minPlayers: 0
   stations:
@@ -23,7 +23,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Beaker {1}'
+          mapNameTemplate: 'Мензурка {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

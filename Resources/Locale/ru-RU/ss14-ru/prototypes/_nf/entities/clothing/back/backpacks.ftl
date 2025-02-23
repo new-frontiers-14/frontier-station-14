@@ -1,0 +1,12 @@
+ent-ClothingBackpackArcadia = аркадианский рюкзак
+    .desc = Рюкзак производства Arcadia Industries
+ent-ClothingBackpackPilot = рюкзак пилота
+    .desc = Рюкзак настоящего аса.
+ent-ClothingBackpackERTMailCarrier = рюкзак почтальона ОБР
+    .desc = Просторный рюкзак с множеством карманов, который носят почтальоны из Отряда Быстрого Реагирования.
+ent-ClothingBackpackClippy = рюкзак Скрепки
+    .desc = Сделан из настоящего кота по имени Скрепка.
+ent-ClothingBackpackNfsdBrown = рюкзак ДСБФ
+    .desc = { ent-ClothingBackpackSecurity.desc }
+ent-ClothingBackpackNfsdCream = { ent-ClothingBackpackNfsdBrown }
+    .desc = { ent-ClothingBackpackNfsdBrown.desc }

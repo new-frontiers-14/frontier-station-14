@@ -11,8 +11,8 @@
 - type: vessel
   id: Phoenix
   parent: BaseVessel
-  name: NR Phoenix
-  description: A research and salvage vessel designed for deep space exploration.
+  name: NR Феникс
+  description: Среднегабаритный ксеноархеологический шаттл. Рекомендуемый состав команды 2-4 человека.
   price: 64000 # TODO - fix this value, getting tests to pass - Whatstone
   category: Medium
   group: Shipyard
@@ -26,7 +26,7 @@
 
 - type: gameMap
   id: Phoenix
-  mapName: 'NR Phoenix'
+  mapName: 'NR Феникс'
   mapPath: /Maps/_NF/Shuttles/phoenix.yml
   minPlayers: 0
   stations:
@@ -34,7 +34,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Phoenix {1}'
+        mapNameTemplate: 'Феникс {1}'
         nameGenerator: !type:NanotrasenNameGenerator
           prefixCreator: '14'
       - type: StationJobs

@@ -1,0 +1,16 @@
+ent-ReinforcedSecretDoorAssembly = каркас укреплённой потайной двери
+    .desc = { ent-BaseSecretDoorAssembly.desc }
+ent-SolidReinforcedSecretDoor = укреплённая стена
+    .desc = { ent-BaseSecretDoor.desc }
+ent-WoodSecretDoorAssembly = каркас деревянной потайной двери
+    .desc = { ent-BaseSecretDoorAssembly.desc }
+ent-WoodSecretDoor = деревянная стена
+    .desc = { ent-BaseSecretDoor.desc }
+ent-UraniumSecretDoorAssembly = каркас урановой потайной двери
+    .desc = { ent-BaseSecretDoorAssembly.desc }
+ent-UraniumSecretDoor = урановая стена
+    .desc = { ent-BaseSecretDoor.desc }
+ent-ShuttleSecretDoorAssembly = каркас потайной двери шаттла
+    .desc = { ent-BaseSecretDoorAssembly.desc }
+ent-ShuttleSecretDoor = стена шаттла
+    .desc = { ent-BaseSecretDoor.desc }

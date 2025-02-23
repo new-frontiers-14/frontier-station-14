@@ -1,0 +1,16 @@
+ent-StandardFrontierStation = { ent-BaseStation }
+    .desc = { ent-BaseStation.desc }
+ent-StandardFrontierOutpost = { ent-BaseStation }
+    .desc = { ent-BaseStation.desc }
+ent-SecurityFrontierOutpost = { ent-BaseStation }
+    .desc = { ent-BaseStation.desc }
+ent-PirateFrontierOutpost = { ent-BaseStation }
+    .desc = { ent-BaseStation.desc }
+ent-StandardFrontierVessel = { ent-BaseStation }
+    .desc = { ent-BaseStation.desc }
+ent-StandardFrontierSecurityVessel = { ent-BaseStation }
+    .desc = { ent-BaseStation.desc }
+ent-StandardFrontierSecurityExpeditionVessel = { ent-BaseStation }
+    .desc = { ent-BaseStation.desc }
+ent-StandardFrontierExpeditionVessel = { ent-BaseStation }
+    .desc = { ent-BaseStation.desc }

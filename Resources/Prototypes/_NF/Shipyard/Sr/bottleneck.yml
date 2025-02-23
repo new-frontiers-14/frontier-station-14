@@ -11,8 +11,8 @@
 - type: vessel
   id: Bottleneck
   parent: BaseVessel
-  name: NT Bottleneck
-  description: A personal transport and mobile office for the station representative.
+  name: NT Пробка
+  description: Персональный шаттл Представителя Фронтира.
   price: 18000 # TODO: fix this value, getting tests to pass - Whatstone
   category: Small
   group: Sr
@@ -26,7 +26,7 @@
 
 - type: gameMap
   id: Bottleneck
-  mapName: 'NT Bottleneck'
+  mapName: 'NT Пробка'
   mapPath: /Maps/_NF/Shuttles/Sr/bottleneck.yml
   minPlayers: 0
   stations:
@@ -34,7 +34,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Bottleneck {1}'
+          mapNameTemplate: 'Пробка {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

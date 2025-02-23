@@ -1,0 +1,14 @@
+ent-BaseStationSiliconLawFrontierStation = { "" }
+    .desc = { "" }
+ent-BaseStationSiliconLawFrontierShips = { "" }
+    .desc = { "" }
+ent-BaseStationRenameFaxes = { "" }
+    .desc = { "" }
+ent-BaseStationRenameWarpPoints = { "" }
+    .desc = { "" }
+ent-BaseStationEmpImmune = { "" }
+    .desc = { "" }
+ent-BaseStationSectorNews = { "" }
+    .desc = { "" }
+ent-BaseStationSectorServices = { "" }
+    .desc = { "" }

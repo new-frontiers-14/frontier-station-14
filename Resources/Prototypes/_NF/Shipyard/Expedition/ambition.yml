@@ -7,12 +7,12 @@
 # Discord: ???
 
 # Shuttle Notes:
-# 
+#
 - type: vessel
   id: Ambition
   parent: BaseVessel
-  name: UAC Ambition
-  description: Declassified gas production and distribution platform seized in a hostile takeover of an Atmosian conglomerate. For the ultimate insurgent.
+  name: UAC Амбициозный
+  description: Промышленная газодобывающая платформа, расчитанная на экипаж 8+ человек.
   price: 156000 # ~120000$ on mapinit + ~36000$ from 30% markup
   category: Large
   group: Expedition
@@ -26,7 +26,7 @@
 
 - type: gameMap
   id: Ambition
-  mapName: 'UAC Ambition'
+  mapName: 'UAC Амбициозный'
   mapPath: /Maps/_NF/Shuttles/Expedition/ambition.yml
   minPlayers: 0
   stations:
@@ -34,7 +34,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Ambition {1}'
+          mapNameTemplate: 'Амбициозный {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

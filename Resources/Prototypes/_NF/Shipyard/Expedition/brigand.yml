@@ -11,8 +11,8 @@
 - type: vessel
   id: Brigand
   parent: BaseVessel
-  name: LVHI Brigand
-  description: Civilian conversion of an old military light frigate from the early days of humanity's expansion to the stars, predating FTL technology. Manufactured by Langstad-Voigt Heavy Industries.
+  name: NT Разбойник
+  description: Среднегабаритный экспедиционный шаттл. Рекомендованный размер команды 3-6 человек.
   price: 55500 # ~42645$ on mapinit + ~12800$ from 30% markup
   category: Medium
   group: Expedition
@@ -25,15 +25,15 @@
 
 - type: gameMap
   id: Brigand
-  mapName: 'Brigand'
+  mapName: 'NT Разбойник'
   mapPath: /Maps/_NF/Shuttles/Expedition/brigand.yml
   minPlayers: 0
-  stations: 
+  stations:
     Brigand:
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Brigand {1}'
+          mapNameTemplate: 'Разбойник {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

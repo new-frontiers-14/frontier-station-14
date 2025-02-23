@@ -1,0 +1,9 @@
+ent-JukeboxShip = { ent-Jukebox  }
+    .suffix = Шаттл
+    .desc = { ent-Jukebox .desc }
+ent-JukeboxWallmount = { ent-Jukebox  }
+    .suffix = Настенный
+    .desc = { ent-Jukebox .desc }
+ent-JukeboxWallmountShip = { ent-Jukebox  }
+    .suffix = Настенный, Шаттл
+    .desc = { ent-Jukebox .desc }

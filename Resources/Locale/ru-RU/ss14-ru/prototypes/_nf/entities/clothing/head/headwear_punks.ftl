@@ -1,0 +1,10 @@
+ent-ClothingHeadHatHoodAcidRaincoat = капюшон кислотного дождевика
+    .desc = Почти прозрачный капюшон дождевика, изготовленный из кислотостойких полимеров.
+ent-ClothingHeadHatHoodAcidRaincoatBlue = { ent-ClothingHeadHatHoodAcidRaincoat }
+    .desc = { ent-ClothingHeadHatHoodAcidRaincoat.desc }
+ent-ClothingHeadHatHoodAcidRaincoatGreen = { ent-ClothingHeadHatHoodAcidRaincoat }
+    .desc = { ent-ClothingHeadHatHoodAcidRaincoat.desc }
+ent-ClothingHeadHatHoodAcidRaincoatMagenta = { ent-ClothingHeadHatHoodAcidRaincoat }
+    .desc = { ent-ClothingHeadHatHoodAcidRaincoat.desc }
+ent-ClothingHeadHatHoodAcidRaincoatYellow = { ent-ClothingHeadHatHoodAcidRaincoat }
+    .desc = { ent-ClothingHeadHatHoodAcidRaincoat.desc }
