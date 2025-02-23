@@ -1,0 +1,16 @@
+﻿- type: entity
+  id: CrateStorage
+  name: crate storage
+  description: Where do they go?
+  parent: CrateMachine
+  components:
+  - type: CrateStorage
+  - type: ItemPlacer
+    whitelist:
+      # Should match crates.
+      components:
+      - EntityStorage
+  - type: TriggerOnSignal
+  - type: DeviceLinkSink
+    ports:
+      - Trigger

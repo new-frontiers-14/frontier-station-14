@@ -21,10 +21,10 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<CrateMachineComponent, ApcPowerReceiverComponent>();
-        while (query.MoveNext(out var uid, out var crateMachine, out var receiver))
+        var query = EntityQueryEnumerator<CrateMachineComponent>();
+        while (query.MoveNext(out var uid, out var crateMachine))
         {
-            if (!receiver.Powered)
+            if (!crateMachine.Powered)
                 continue;
 
             ProcessOpeningAnimation(uid, frameTime, crateMachine);
@@ -43,7 +43,7 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
         if (comp.OpeningTimeRemaining <= 0)
             return;
 
-        comp.OpeningTimeRemaining -= frameTime;
+        comp.OpeningTimeRemaining = Math.Max(0, comp.OpeningTimeRemaining - frameTime);
 
         // Automatically start closing after it finishes open animation.
         if (comp.OpeningTimeRemaining <= 0)
@@ -70,7 +70,7 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
             comp.ClosingTimeRemaining = comp.ClosingTime;
         }
 
-        comp.ClosingTimeRemaining -= frameTime;
+        comp.ClosingTimeRemaining = Math.Max(0, comp.ClosingTimeRemaining - frameTime);
         UpdateVisualState(uid, comp);
     }
 
@@ -99,8 +99,11 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
     /// </summary>
     /// <param name="crateMachineUid">The Uid of the crate machine</param>
     /// <param name="component">The crate machine component</param>
-    public void OpenFor(EntityUid crateMachineUid, CrateMachineComponent component)
+    public void StartOpening(EntityUid crateMachineUid, CrateMachineComponent component)
     {
+        // If the crate machine is opening or closing, ignore.
+        if (component.OpeningTimeRemaining > 0f || component.ClosingTimeRemaining > 0f)
+            return;
         component.OpeningTimeRemaining = component.OpeningTime;
         UpdateVisualState(crateMachineUid, component);
     }

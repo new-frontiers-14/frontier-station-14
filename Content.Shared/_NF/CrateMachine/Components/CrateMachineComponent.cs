@@ -3,8 +3,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._NF.CrateMachine.Components;
 
-[RegisterComponent]
-[NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedCrateMachineSystem))]
 public sealed partial class CrateMachineComponent: Component
 {
@@ -52,6 +51,12 @@ public sealed partial class CrateMachineComponent: Component
     /// </summary>
     [NonSerialized]
     public float ClosingTimeRemaining;
+
+    /// <summary>
+    /// Wether the machine is powered or not
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public bool Powered;
 
     #region Graphics
 
