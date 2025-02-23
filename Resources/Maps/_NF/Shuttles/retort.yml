@@ -1317,6 +1317,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-9.5
       parent: 1
+  - uid: 212
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-9.5
+      parent: 1
   - uid: 505
     components:
     - type: Transform
@@ -2354,14 +2360,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-2.5
-      parent: 1
-- proto: ClothingShoesBootsMag
-  entities:
-  - uid: 594
-    components:
-    - type: Transform
-      rot: -6.283185307179586 rad
-      pos: -1.9043028,-9.603508
       parent: 1
 - proto: ComfyChair
   entities:
@@ -4537,9 +4535,15 @@ entities:
     - type: Transform
       pos: 1.5,-9.5
       parent: 1
-- proto: LockerWallEVAColorSalvageFilled
+- proto: LockerWallEVAColorFsbFilled
   entities:
-  - uid: 212
+  - uid: 587
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-10.5
+      parent: 1
+  - uid: 594
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -4549,7 +4553,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 3.5,-10.5
+      pos: -2.5,-10.5
       parent: 1
 - proto: LockerWallMaterialsFuelUraniumFilled2
   entities:
@@ -5614,13 +5618,6 @@ entities:
     components:
     - type: Transform
       pos: -6.5,-9.5
-      parent: 1
-- proto: SuitStorageQuartermaster
-  entities:
-  - uid: 587
-    components:
-    - type: Transform
-      pos: -2.5,-9.5
       parent: 1
 - proto: TableCounterMetal
   entities:
