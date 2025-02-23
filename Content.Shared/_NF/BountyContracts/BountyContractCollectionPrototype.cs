@@ -21,6 +21,12 @@ public sealed partial class BountyContractCollectionPrototype : IPrototype
     public LocId Name { get; private set; } = default!;
 
     /// <summary>
+    /// The order to show in the tabbed bounty collections. Lower appears first.
+    /// </summary>
+    [DataField]
+    public int Order { get; private set; } = 0;
+
+    /// <summary>
     /// Localized name to describe the bounty contract type.
     /// </summary>
     [DataField]

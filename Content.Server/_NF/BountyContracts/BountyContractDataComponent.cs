@@ -22,4 +22,10 @@ public sealed partial class BountyContractDataComponent : Component
     /// </summary>
     [DataField]
     public FrozenDictionary<ProtoId<BountyContractCollectionPrototype>, Dictionary<uint, BountyContract>>? Contracts = null;
+
+    /// <summary>
+    ///     A cached list of prototype IDs by their order
+    /// </summary>
+    [DataField]
+    public List<ProtoId<BountyContractCollectionPrototype>> OrderedCollections = new();
 }

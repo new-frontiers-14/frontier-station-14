@@ -40,12 +40,15 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
 
     private void ContractInit(Entity<BountyContractDataComponent> ent, ref ComponentInit ev)
     {
+        SortedList<int, ProtoId<BountyContractCollectionPrototype>> orderedCollections = new();
         Dictionary<ProtoId<BountyContractCollectionPrototype>, Dictionary<uint, BountyContract>> contracts = new();
         foreach (var proto in _proto.EnumeratePrototypes<BountyContractCollectionPrototype>())
         {
             contracts[proto.ID] = new();
+            orderedCollections[proto.Order] = proto.ID;
         }
         ent.Comp.Contracts = contracts.ToFrozenDictionary();
+        ent.Comp.OrderedCollections = orderedCollections.Values.ToList();
     }
 
     private BountyContractDataComponent? GetContracts()
@@ -70,7 +73,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
             return returnList;
 
         var accessTags = _accessReader.FindAccessTags(user);
-        foreach (var collection in bounties.Contracts.Keys)
+        foreach (var collection in bounties.OrderedCollections)
         {
             if (!_proto.TryIndex(collection, out var collectionProto))
                 continue;
@@ -210,7 +213,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         if (data == null || data.Contracts == null)
             return false;
 
-        // Linear w.r.t. collections, but should be a small collection
+        // Linear w.r.t. collections, but should be a small set
         foreach (var collection in data.Contracts.Values)
         {
             if (collection.TryGetValue(contractId, out contract))
