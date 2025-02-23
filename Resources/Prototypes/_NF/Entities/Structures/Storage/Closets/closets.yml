@@ -12,3 +12,17 @@
     stateBaseClosed: o2n2
     stateDoorOpen: o2n2_open
     stateDoorClosed: o2n2_door
+
+- type: entity
+  id: ClosetFsbEva
+  name: FSB EVA suit closet
+  parent: ClosetSteelBase
+  description: It's a storage unit that could contain a Far Star Biotech EVA suit. It may also contain other things.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/closet.rsi
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: fsb
+    stateDoorOpen: fsb_open
+    stateDoorClosed: fsb_door
