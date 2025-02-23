@@ -9,6 +9,4 @@ ent-ScrapOre3 = { ent-ScrapOre }
 ent-ScrapOre20 = { ent-ScrapOre }
   .suffix = 20
   .desc = { ent-ScrapOre.desc }
-materials-raw-scrap = несортированный лом
-materials-scrap = лом
 ent-SpawnRandomRefinedScrap = очищенный лом
