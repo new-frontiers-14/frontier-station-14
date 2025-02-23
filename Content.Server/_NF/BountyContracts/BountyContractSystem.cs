@@ -160,7 +160,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
 
         // create a new contract
         var contractId = data.LastId++;
-        var contract = new BountyContract(contractId, category, name, reward,  authorUid,
+        var contract = new BountyContract(contractId, category, name, reward, GetNetEntity(authorUid),
             dna, vessel, description, author);
 
         // try to save it

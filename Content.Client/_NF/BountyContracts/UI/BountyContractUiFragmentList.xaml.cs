@@ -8,12 +8,14 @@ namespace Content.Client._NF.BountyContracts.UI;
 [GenerateTypedNameReferences]
 public sealed partial class BountyContractUiFragmentList : Control
 {
+    [Dependency] private readonly IEntityManager _entMan = default!;
     public event Action? OnCreateButtonPressed;
     public event Action? OnRefreshButtonPressed;
     public event Action<BountyContract>? OnRemoveButtonPressed;
     public BountyContractUiFragmentList()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
         CreateButton.OnPressed += _ => OnCreateButtonPressed?.Invoke();
         RefreshButton.OnPressed += _ => OnRefreshButtonPressed?.Invoke();
     }
@@ -31,7 +33,7 @@ public sealed partial class BountyContractUiFragmentList : Control
         NoContractsLabel.Visible = false;
         foreach (var contract in listStateContracts)
         {
-            var entry = new BountyContractUiFragmentListEntry(contract, canRemove || contract.AuthorUid == authorUid);
+            var entry = new BountyContractUiFragmentListEntry(contract, canRemove || _entMan.GetEntity(contract.AuthorUid) == authorUid);
             entry.OnRemoveButtonPressed += c => OnRemoveButtonPressed?.Invoke(c);
             BountiesContainer.AddChild(entry);
         }

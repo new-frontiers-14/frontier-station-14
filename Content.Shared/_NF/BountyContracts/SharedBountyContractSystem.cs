@@ -62,14 +62,14 @@ public sealed class BountyContract
     public readonly BountyContractCategory Category;
     public readonly string Name;
     public readonly int Reward;
-    public readonly EntityUid AuthorUid;
+    public readonly NetEntity AuthorUid;
     public readonly string? DNA;
     public readonly string? Vessel;
     public readonly string? Description;
     public readonly string? Author;
 
     public BountyContract(uint contractId, BountyContractCategory category, string name,
-        int reward, EntityUid authorUid, string? dna, string? vessel, string? description, string? author)
+        int reward, NetEntity authorUid, string? dna, string? vessel, string? description, string? author)
     {
         ContractId = contractId;
         Category = category;
