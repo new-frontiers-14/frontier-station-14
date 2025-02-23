@@ -151,10 +151,6 @@ public sealed partial class BountyContractSystem
         if (data == null || data.Contracts == null)
             return;
 
-        // TODO: separate out "is this the author of this message" and "does this user have general delete permissions"
-        // if (!HasDeleteAccess(entityUid, null, args.ContractId))
-        //     return;
-
         // TODO: move this out of the UI.
         // Find the given collection this belongs to.
         ProtoId<BountyContractCollectionPrototype>? collectionId = null;
