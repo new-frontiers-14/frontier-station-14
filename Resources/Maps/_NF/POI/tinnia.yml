@@ -68,18 +68,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -865,7 +858,7 @@ entities:
       pos: 14.5,-0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -2677.8772
+      secondsUntilStateChange: -2755.6655
       state: Opening
   - uid: 196
     components:
@@ -11893,6 +11886,13 @@ entities:
       parent: 1
     - type: DisableToolUse
       anchoring: True
+- proto: SellOnlyMothershipComputer
+  entities:
+  - uid: 2250
+    components:
+    - type: Transform
+      pos: -10.5,-7.5
+      parent: 1
 - proto: SignBar
   entities:
   - uid: 1991
