@@ -41,6 +41,7 @@ public sealed class SeedExtractorSystem : EntitySystem
             args.User, PopupType.Medium);
 
         QueueDel(args.Used);
+        args.Handled = true;
 
         var amount = (int) _random.NextFloat(seedExtractor.BaseMinSeeds, seedExtractor.BaseMaxSeeds + 1) * seedExtractor.SeedAmountMultiplier;
         var coords = Transform(uid).Coordinates;

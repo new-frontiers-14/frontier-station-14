@@ -12,6 +12,11 @@
             <LineEdit Name="CurrentDelayEditSeconds" MinWidth="32" />
             <Label Name="DelayInfo" Text=" (mm:ss)" />
         </BoxContainer>
+        <!-- Frontier: Repeat Checkbox -->
+        <BoxContainer Name="RepeatEdit" Orientation="Horizontal">
+            <CheckBox Name="CurrentRepeatEdit" Access="Public" Text="{Loc 'signal-timer-menu-repeat'}" />
+        </BoxContainer>
+        <!-- End Frontier -->
         <Button Name="StartTimer" Text="{Loc signal-timer-menu-start}" />
     </BoxContainer>
 </DefaultWindow>

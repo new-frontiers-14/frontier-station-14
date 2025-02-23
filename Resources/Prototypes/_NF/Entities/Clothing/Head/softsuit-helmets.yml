@@ -680,7 +680,7 @@
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetNfsd
-  name: nfsd EVA helmet
+  name: NFSD EVA helmet
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -707,7 +707,7 @@
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetLvhi
-  name: lvhi EVA helmet
+  name: LVHI EVA helmet
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -755,3 +755,29 @@
         color: "#3e3e48"
       - state: equipped-head-visor
         color: "#8f1717"
+
+#FSB Void suit helmet
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitFSB
+  name: far star biotech voidsuit helmet
+  categories: [ HideSpawnMenu ]
+  description: A lightweight suit helmet that doesn't restrict your head movements. It has a light!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/fsb_eva_helmet.rsi
+  - type: Clothing
+    sprite:  _NF/Clothing/Head/Helmets/fsb_eva_helmet.rsi
+  - type: PointLight
+    color: "#adf1ff"
+    radius: 7
+    energy: 3
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    #- Snout
+    - HeadTop
+    #- HeadSide

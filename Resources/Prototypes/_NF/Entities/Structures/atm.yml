@@ -28,9 +28,10 @@
       ejectSound: /Audio/Machines/tray_eject.ogg
       ejectOnBreak: true
       swap: false
+      whitelistFailPopup: bank-ATM-cashSlot-item-wont-fit
       whitelist:
         components:
-          - Currency
+          - Cash
   - type: ActivatableUI
     key: enum.BankATMMenuUiKey.ATM
   - type: UserInterface
@@ -58,7 +59,7 @@
   - type: UserInterface
     interfaces:
       enum.BankATMMenuUiKey.ATM:
-        type: WithdrawBankATMMenuBoundUserInterface
+        type: BankATMWithdrawOnlyMenuBoundUserInterface
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBankATMDeposit]
@@ -75,7 +76,7 @@
       state: unshaded
 
 - type: entity
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBankATMWithdraw]
+  parent: ComputerBankATMWithdraw
   id: ComputerWithdrawBankATM
   components:
   - type: Sprite
@@ -87,10 +88,12 @@
       state: icon
     - map: ["computerLayerScreen"]
       state: unshaded
+  - type: Computer
+    board: ComputerWithdrawBankATMComputerCircuitboard
 
 - type: entity
   suffix: Wallmount
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureWallmount, ComputerBankATMDeposit]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputerWallmount, ComputerBankATMDeposit]
   id: ComputerWallmountBankATM
   components:
   - type: Sprite
@@ -104,7 +107,7 @@
 
 - type: entity
   suffix: Wallmount
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureWallmount, ComputerBankATMWithdraw]
+  parent: [BaseStructureComputerWallmount, ComputerBankATMWithdraw]
   id: ComputerWallmountWithdrawBankATM
   components:
   - type: Sprite
@@ -115,6 +118,8 @@
         state: icon
       - map: ["computerLayerScreen"]
         state: unshaded
+  - type: Computer
+    board: ComputerWithdrawBankATMComputerCircuitboard
 
 - type: entity
   suffix: BlackMarket
@@ -143,7 +148,7 @@
 
 - type: entity
   suffix: Wallmount, BlackMarket
-  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureWallmount, ComputerBankATMDeposit]
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureComputerWallmount, ComputerBankATMDeposit]
   id: ComputerWallmountBlackMarketBankATM
   description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 30%
   components:
@@ -192,15 +197,16 @@
       ejectSound: /Audio/Machines/tray_eject.ogg
       ejectOnBreak: true
       swap: false
+      whitelistFailPopup: bank-ATM-cashSlot-item-wont-fit
       whitelist:
         components:
-          - Currency
+          - Cash
   - type: ActivatableUI
     key: enum.BankATMMenuUiKey.ATM
   - type: UserInterface
     interfaces:
       enum.BankATMMenuUiKey.ATM:
-        type: StationBankATMMenuBoundUserInterface
+        type: StationAdminConsoleBoundUserInterface
   - type: ActivatableUIRequiresAccess
   - type: ActivatableUIRequiresPower
   - type: ItemSlots
@@ -215,6 +221,7 @@
   parent: BaseStationAdminBankATM
   id: StationAdminBankATMFrontier
   description: Used to transfer funds to and from Frontier Outpost's bank account.
+  suffix: Frontier
   components:
   - type: StationBankATM
     account: Frontier
@@ -223,6 +230,16 @@
   parent: BaseStationAdminBankATM
   id: StationAdminBankATMNfsd
   description: Used to transfer funds to and from NFSD's bank account.
+  suffix: NFSD
   components:
   - type: StationBankATM
     account: Nfsd
+
+- type: entity
+  parent: BaseStationAdminBankATM
+  id: StationAdminBankATMMedical
+  description: Used to transfer funds to and from the medical bank account.
+  suffix: Medical
+  components:
+  - type: StationBankATM
+    account: Medical

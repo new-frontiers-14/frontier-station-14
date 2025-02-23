@@ -47,11 +47,10 @@
   - MercenaryClothingOuterArmorPunkOrange # Punkish (Static visuals)
   - MercenaryClothingOuterArmorPunkRed # Punkish (Static visuals)
   - MercenaryClothingOuterArmorPunkRandomized # Punkish (Randomized visuals)
+  - MercenaryClothingOuterArmorCaptainCarapace
   subgroups:
   - PilotOuterClothing
   - ContractorOuterClothing
-  fallbacks:
-  - ContractorClothingOuterVestTank # Vox-only, default them to have this equipped
 
 - type: loadoutGroup
   id: MercenaryShoes
@@ -60,6 +59,8 @@
   - MercenaryClothingShoesBootsMercenary
   - MercenaryClothingShoesBootsJack
   - MercenaryClothingShoesBootsCombat
+  - MercenaryClothingShoesMagMercenary
+  - MercenaryClothingShoesMagSecurity
   subgroups:
   - PilotShoes
   - ContractorShoes
@@ -75,6 +76,7 @@
   - MercenaryClothingHeadHelmetMercenaryBlack
   - MercenaryClothingHeadBandMercenary
   - MercenaryClothingHeadHatBeretMercenary
+  - MercenaryClothingHeadHatBeretCommander
   - SecurityHelmet
   - SecurityBeret
   subgroups:
@@ -117,7 +119,7 @@
   - ContractorPDA
   fallbacks:
   - MercenaryMercenaryPDA
-  
+
 - type: loadoutGroup
   id: MercenaryGlasses
   name: loadout-group-contractor-glasses

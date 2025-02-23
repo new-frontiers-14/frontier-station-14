@@ -26,25 +26,6 @@
     - Rodentia
 
 - type: loadoutEffectGroup
-  id: PantsCapableNF
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Arachnid
-    - Diona
-    - Dwarf
-    - Human
-    - Moth
-    - Reptilian
-    - SlimePerson
-    - Vox
-    - Goblin
-    - Oni
-    - Felinid
-    - Vulpkanin
-    - Rodentia
-
-- type: loadoutEffectGroup
   id: ShoesCapableNF
   effects:
   - !type:SpeciesLoadoutEffect
@@ -64,16 +45,24 @@
     - Rodentia
 
 - type: loadoutEffectGroup
-  id: NotStcNF
+  id: NFNotDocOrStc
   effects:
   - !type:RoleBlacklistLoadoutEffect
     blacklist:
-      - JobStationTrafficController
+    - JobStationTrafficController
+    - JobDirectorOfCare
+
+- type: loadoutEffectGroup
+  id: NFNotDoc
+  effects:
+  - !type:RoleBlacklistLoadoutEffect
+    blacklist:
+    - JobDirectorOfCare
 
 - type: loadoutEffectGroup
   id: NotFemaleNF
   effects:
   - !type:SexLoadoutEffect
     sex:
-      - Male
-      - Unsexed
+    - Male
+    - Unsexed

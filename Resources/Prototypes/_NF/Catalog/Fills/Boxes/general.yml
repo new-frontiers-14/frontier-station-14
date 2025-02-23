@@ -112,7 +112,7 @@
 #      - state: wet_floor_sign
 
 - type: entity
-  name: nfsd encryption key box
+  name: NFSD encryption key box
   parent: BoxEncryptionKeySecurity
   id: BoxEncryptionKeyNfsd
   components:
@@ -142,3 +142,95 @@
     whitelist:
       components:
       - LightBulb
+
+- type: entity
+  name: colored lighttube box
+  parent: BoxCardboard
+  id: BoxColoredLighttube
+  description: This box is shaped on the inside so that only light tubes and bulbs fit.
+  components:
+  - type: StorageFill
+    contents:
+      - id: LightTubeCrystalCyan
+        amount: 2
+      - id: LightTubeCrystalBlue
+        amount: 2
+      - id: LightTubeCrystalPink
+        amount: 2
+      - id: LightTubeCrystalOrange
+        amount: 2
+      - id: LightTubeCrystalRed
+        amount: 2
+      - id: LightTubeCrystalGreen
+        amount: 2
+  - type: Sprite
+    layers:
+      - state: box
+      - state: lighttube
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,3
+    whitelist:
+      components:
+      - LightBulb
+
+- type: entity
+  name: colored bulbs box
+  parent: BoxLightbulb
+  id: BoxColoredLightbulb
+  description: This box is shaped on the inside so that only light tubes and bulbs fit. It's full of neat colored light bulbs!
+  components:
+  - type: StorageFill
+    contents:
+      - id: LightBulbCrystalCyan
+        amount: 2
+      - id: LightBulbCrystalBlue
+        amount: 2
+      - id: LightBulbCrystalPink
+        amount: 2
+      - id: LightBulbCrystalOrange
+        amount: 2
+      - id: LightBulbCrystalRed
+        amount: 2
+      - id: LightBulbCrystalGreen
+        amount: 2
+  - type: Sprite
+    layers:
+      - state: box
+      - state: light
+        color: "cyan"
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,3
+    whitelist:
+      components:
+      - LightBulb
+
+- type: entity
+  name: navigation lighttube box
+  parent: BoxCardboard
+  id: BoxColoredNavigationLighttube
+  description: This box is shaped on the inside so that only light tubes and bulbs fit. It is full of red and green lights. Festive!
+  components:
+  - type: StorageFill
+    contents:
+      - id: LightTubeCrystalRed
+        amount: 6
+      - id: LightTubeCrystalGreen
+        amount: 6
+  - type: Sprite
+    layers:
+      - state: box
+      - state: lighttube
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,3
+    whitelist:
+      components:
+      - LightBulb
+  - type: Tag
+    tags:
+      - DroneUsable

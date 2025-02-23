@@ -10,6 +10,7 @@ using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Power.Components;
 using Content.Shared.Atmos.Piping.Binary.Components;
+using Content.Shared.Atmos.Piping.Components;
 using Content.Shared.Atmos.Visuals;
 using Content.Shared.Audio;
 using Content.Shared.Database;
@@ -156,7 +157,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
             }
             else
             {
-                _popup.PopupCursor(Loc.GetString("comp-gas-pump-ui-needs-anchor"), args.User);
+                _popup.PopupCursor(Loc.GetString("ui-needs-anchor"), args.User); // Frontier: comp-gas-pump-ui-needs-anchor<ui-needs-anchor
             }
 
             args.Handled = true;
