@@ -208,12 +208,12 @@ namespace Content.Server.Cloning
                 cloningCost = (int) Math.Round(cloningCost * EasyModeCloningCost);
 
             // Check if they have the uncloneable trait
-            if (TryComp<UncloneableComponent>(bodyToClone, out _))
+            if (TryComp<UncloneableComponent>(bodyToClone, out var uncloneable))
             {
                 if (clonePod.ConnectedConsole != null)
                 {
                     _chatSystem.TrySendInGameICMessage(clonePod.ConnectedConsole.Value,
-                        Loc.GetString("cloning-console-uncloneable-trait-error"),
+                        Loc.GetString(uncloneable.ReasonMessage),
                         InGameICChatType.Speak, false);
                 }
 
