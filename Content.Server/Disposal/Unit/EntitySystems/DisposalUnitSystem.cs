@@ -362,6 +362,11 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
 
     private void OnDragDropOn(EntityUid uid, SharedDisposalUnitComponent component, ref DragDropTargetEvent args)
     {
+        // Frontier: check handled
+        if (args.Handled)
+            return;
+        // End Frontier
+
         args.Handled = TryInsert(uid, args.Dragged, args.User);
     }
 
