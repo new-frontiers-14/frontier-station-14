@@ -64,7 +64,7 @@ public sealed partial class BountyContractSystem
         if (cartridge.Comp.Collection != newCollection)
             cartridge.Comp.Collection = newCollection;
 
-        return new BountyContractListUiState(newCollection.Value, GetReadableCollections(loaderUid), contracts, isAllowedCreate, isAllowedRemove);
+        return new BountyContractListUiState(newCollection.Value, GetReadableCollections(loaderUid), contracts, isAllowedCreate, isAllowedRemove, GetNetEntity(loaderUid));
     }
 
     private BountyContractCreateUiState GetCreateState(Entity<BountyContractsCartridgeComponent> cartridge, ProtoId<BountyContractCollectionPrototype> collection)
@@ -170,8 +170,10 @@ public sealed partial class BountyContractSystem
         if (collectionId == null)
             return;
 
+        var contract = data.Contracts[collectionId.Value][args.ContractId];
+
         // Check the delete access for the user on this collection.
-        if (!HasDeleteAccess(entityUid, collectionId.Value, data))
+        if (!HasDeleteAccess(entityUid, collectionId.Value, data) || !(contract.AuthorUid == entityUid))
             return;
 
         data.Contracts[collectionId.Value].Remove(args.ContractId);
@@ -187,7 +189,7 @@ public sealed partial class BountyContractSystem
 
         var c = args.Contract;
         var author = GetContractAuthor(loader);
-        CreateBountyContract(c.Collection, c.Category, c.Name, c.Reward, c.Description, c.Vessel, c.DNA, author);
+        CreateBountyContract(c.Collection, c.Category, c.Name, c.Reward, loader, c.Description, c.Vessel, c.DNA, author);
 
         CartridgeOpenListUi(cartridge, loader);
     }

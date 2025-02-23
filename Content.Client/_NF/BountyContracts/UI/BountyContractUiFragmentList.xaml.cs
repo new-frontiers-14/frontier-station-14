@@ -18,7 +18,7 @@ public sealed partial class BountyContractUiFragmentList : Control
         RefreshButton.OnPressed += _ => OnRefreshButtonPressed?.Invoke();
     }
 
-    public void SetContracts(List<BountyContract> listStateContracts, bool canRemove)
+    public void SetContracts(List<BountyContract> listStateContracts, bool canRemove, EntityUid authorUid)
     {
         BountiesContainer.RemoveAllChildren();
 
@@ -31,7 +31,7 @@ public sealed partial class BountyContractUiFragmentList : Control
         NoContractsLabel.Visible = false;
         foreach (var contract in listStateContracts)
         {
-            var entry = new BountyContractUiFragmentListEntry(contract, canRemove);
+            var entry = new BountyContractUiFragmentListEntry(contract, canRemove || contract.AuthorUid == authorUid);
             entry.OnRemoveButtonPressed += c => OnRemoveButtonPressed?.Invoke(c);
             BountiesContainer.AddChild(entry);
         }

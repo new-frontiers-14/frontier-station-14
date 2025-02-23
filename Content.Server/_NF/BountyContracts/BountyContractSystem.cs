@@ -139,11 +139,13 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     /// <param name="vessel">IC name of last known bounty vessel. Can be station/ship name or custom string.</param>
     /// <param name="dna">Optional DNA of the bounty head.</param>
     /// <param name="author">Optional bounty poster IC name.</param>
+    /// <param name="authorUid">Uid of the cartridge loader that created the bounty</param>
     /// <param name="pdaAlert">Should PDAs send a localized alert?</param>
     /// <returns>New bounty contract. Null if contract creation failed.</returns>
     public BountyContract? CreateBountyContract(ProtoId<BountyContractCollectionPrototype> collection,
         BountyContractCategory category,
         string name, int reward,
+        EntityUid authorUid,
         string? description = null, string? vessel = null,
         string? dna = null, string? author = null,
         bool pdaAlert = true)
@@ -158,7 +160,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
 
         // create a new contract
         var contractId = data.LastId++;
-        var contract = new BountyContract(contractId, category, name, reward,
+        var contract = new BountyContract(contractId, category, name, reward,  authorUid,
             dna, vessel, description, author);
 
         // try to save it
@@ -170,7 +172,6 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
 
         if (pdaAlert)
         {
-            // TODO: move this to radio in future?
             var sender = Loc.GetString("bounty-contracts-radio-name");
             var target = !string.IsNullOrEmpty(contract.Vessel)
                 ? $"{contract.Name} ({contract.Vessel})"

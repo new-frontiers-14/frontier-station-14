@@ -11,9 +11,10 @@ namespace Content.Client._NF.BountyContracts.UI;
 [UsedImplicitly]
 public sealed partial class BountyContractUi : UIFragment
 {
+    [Dependency] private readonly EntityManager _entityManager = default!;//FIXME: nasty.
     private BountyContractUiFragment? _fragment;
     private BoundUserInterface? _userInterface;
-    private ProtoId<BountyContractCollectionPrototype> _lastCollection = "Command"; //FIXME: nasty.
+    private ProtoId<BountyContractCollectionPrototype> _lastCollection = "Command";
 
     public override Control GetUIFragmentRoot()
     {
@@ -71,8 +72,8 @@ public sealed partial class BountyContractUi : UIFragment
                 list.OnCreateButtonPressed += OnOpenCreateUiPressed;
                 list.OnRefreshButtonPressed += OnRefreshListPressed;
                 list.OnRemoveButtonPressed += OnRemovePressed;
-
-                list.SetContracts(state.Contracts, state.IsAllowedRemoveBounties);
+                var contractAuthor = _entityManager.GetEntity(state.AuthorUid);
+                list.SetContracts(state.Contracts, state.IsAllowedRemoveBounties, contractAuthor);
                 list.SetCanCreate(state.IsAllowedCreateBounties);
                 tabs.Children.Add(list);
 

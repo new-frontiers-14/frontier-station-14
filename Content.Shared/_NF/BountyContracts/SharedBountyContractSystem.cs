@@ -62,18 +62,20 @@ public sealed class BountyContract
     public readonly BountyContractCategory Category;
     public readonly string Name;
     public readonly int Reward;
+    public readonly EntityUid AuthorUid;
     public readonly string? DNA;
     public readonly string? Vessel;
     public readonly string? Description;
     public readonly string? Author;
 
     public BountyContract(uint contractId, BountyContractCategory category, string name,
-        int reward, string? dna, string? vessel, string? description, string? author)
+        int reward, EntityUid authorUid, string? dna, string? vessel, string? description, string? author)
     {
         ContractId = contractId;
         Category = category;
         Name = name;
         Reward = reward;
+        AuthorUid = authorUid;
         DNA = dna;
         Vessel = vessel;
         Description = description;
@@ -104,13 +106,15 @@ public sealed class BountyContractListUiState(ProtoId<BountyContractCollectionPr
         List<ProtoId<BountyContractCollectionPrototype>> collections,
         List<BountyContract> contracts,
         bool isAllowedCreateBounties,
-        bool isAllowedRemoveBounties) : BoundUserInterfaceState
+        bool isAllowedRemoveBounties,
+        NetEntity authorUid) : BoundUserInterfaceState
 {
     public readonly ProtoId<BountyContractCollectionPrototype> Collection = collection;
     public readonly List<ProtoId<BountyContractCollectionPrototype>> Collections = collections;
     public readonly List<BountyContract> Contracts = contracts;
     public readonly bool IsAllowedCreateBounties = isAllowedCreateBounties;
     public readonly bool IsAllowedRemoveBounties = isAllowedRemoveBounties;
+    public readonly NetEntity AuthorUid = authorUid;
 }
 
 public enum BountyContractCommand : byte
