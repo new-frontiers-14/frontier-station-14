@@ -57,6 +57,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
+      bodyStatus: InAir
+      angularDamping: 0.05
+      linearDamping: 0.05
+      fixedRotation: False
+      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
@@ -3807,12 +3812,6 @@ entities:
       parent: 1
 - proto: ConveyorBelt
   entities:
-  - uid: 239
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 9.5,-11.5
-      parent: 1
   - uid: 1439
     components:
     - type: Transform
@@ -8826,6 +8825,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -10.5,-2.5
       parent: 1
+- proto: MaterialReclaimer
+  entities:
+  - uid: 240
+    components:
+    - type: Transform
+      pos: 9.5,-11.5
+      parent: 1
 - proto: Mirror
   entities:
   - uid: 362
@@ -9421,14 +9427,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-26.5
-      parent: 1
-- proto: Recycler
-  entities:
-  - uid: 240
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 9.5,-11.5
       parent: 1
 - proto: ReinforcedWindow
   entities:
@@ -10196,10 +10194,6 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         1439:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
-        239:
         - Left: Forward
         - Right: Reverse
         - Middle: Off
