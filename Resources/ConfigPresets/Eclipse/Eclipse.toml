@@ -1,46 +1,137 @@
+[net]
+max_connections = 256
+pvs = true
+pvs_range = 20.0
+pvs_priority_range = 30.0
+pvs_budget = 50
+pvs_enter_budget = 200
+tickrate = 60
+lidgren_log_warning = false
+lidgren_log_error = false
+
 [game]
-hostname = "🌓 Project Eclipse - ФРОНТИР! 🌗"
-#desc             = "Official English Space Station 14 servers. Vanilla, roleplay ruleset."
-lobbyenabled     = true
 maxplayers = 150
-soft_max_players = 80
+soft_max_players = 100
+hostname = "🌒 Project Eclipse - ФРОНТИР! [18+] 🌒"
+desc = "Добро пожаловать на сектор Эклипс.\nНа этом сервере средние требования к RP.\n"
+role_timers = true
+table_bonk = false
+global_status_icons_enabled = true
+debug_coordinates_admin_only = true
+cryo_sleep_rejoining = true
+role_timer_override = ""
+role_whitelist = true
+
+[shuttle]
+auto_call_time = 1440
+auto_call_extension_time = 30
+camera_rotation_locked = false
+
+[atmos]
+space_wind = true
+space_wind_max_velocity = 22.0
 
 [game.panic_bunker]
+enabled = false
+
+[game.baby_jail]
+enabled = false
+
+[lookup]
+enlargement_range = 10.0
+
+[render]
+fov_color = "#000000FF"
+
+[salvage]
+expedition_cooldown = 300.0
+expedition_failed_cooldown = 600.0
+
+[audio]
+attenuation = 16
+z_offset = -5.0
+admin_chat_sound_path = "/Audio/Items/pop.ogg"
+admin_chat_sound_volume = -5.0
+
+[physics]
+broadphase_expand = 2.0
+target_minimum_tickrate = 60
+grid_fixtures = true
+grid_fixture_enlargement = -0.0099999997764826
+relative_movement = true
+tile_friction = 40.0
+stop_speed = 0.100000001490116
+mob_pushing = false
+
+[interface]
+audio = true
+click_sound = "/Audio/UserInterface/click.ogg"
+hover_sound = "/Audio/UserInterface/hover.ogg"
+
+[discord]
+rich_main_icon_id = "devstation"
+rich_second_icon_id = "logo"
+
+[replay]
+client_recording_enabled = false
+
+[netres]
 enabled = true
-min_account_age = 0
-min_overall_minutes = 0
-disable_with_admins = true
-enable_without_admins = true
-show_reason = true
+limit = 3.0
+
+[midi]
+max_events_per_second = 1000
+max_events_per_batch = 60
+
+[ambience]
+range = 8.0
+min_max_sounds_configured = 16
+max_max_sounds_configured = 64
+
+[viewport]
+minimum_width = 15
+maximum_width = 26
+
+[server]
+id = "frontier_main"
+rules_file = "FrontierRuleset"
 
 [infolinks]
 bug_report = "https://github.com/Apxumekm0p/Eclipse-New-Frontier/issues/new/choose"
 discord    = "https://discord.gg/BH39NH4"
-#forum      = "https://forum.spacestation14.io"
+#forum      = ""
 github     = "https://github.com/Apxumekm0p/Eclipse-New-Frontier"
-#patreon    = "https://www.patreon.com/spacestation14"
-#website    = "https://spacestation14.io"
-#wiki       = "https://wiki.spacestation14.io"
-#appeal     = "https://appeal.ss14.io"
-
-[hub]
-advertise = false
-tags = ""
-
-[server]
-rules_file = "StandardRuleset"
-
-[net]
-tickrate = 60
-
-[netres]
-limit = 25.0
+#patreon    = ""
+#website    = ""
+#wiki       = ""
+#appeal     = ""
 
 [admin]
-see_own_notes = true
-deadmin_on_join = true
-new_player_threshold = 600
-alert.min_players_sharing_connection = 2
+see_own_notes = false
+note_fresh_days = 91.31055
+note_stale_days = 365.2422
+message_wait_time = 3.0
+new_player_threshold = 0
+role_ban_default_severity = "medium"
+department_ban_default_severity = "medium"
+server_ban_default_severity = "High"
+server_ban_ip_ban_default = true
+server_ban_hwid_ban_default = true
+server_ban_use_last_details = true
+server_ban_erase_player = false
 
-[auth]
-mode = 1
+[nf14]
+
+[nf14.respawn]
+enabled = true
+time = 300.0
+
+[nf14.uncryo]
+enabled = true
+maxtime = 10800.0
+
+[tippy]
+entity = "TippyClippy"
+
+[console]
+login_host_user = "Apxumekm0p"
