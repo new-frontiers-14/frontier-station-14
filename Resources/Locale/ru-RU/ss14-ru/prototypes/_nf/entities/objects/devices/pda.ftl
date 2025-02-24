@@ -1,7 +1,7 @@
 ent-MusicBasePDA = { "" }
     .desc = { "" }
-ent-NFAdminPDA = { ent-MusicBasePDA }
-    .desc = { ent-MusicBasePDA.desc }
+ent-NFAdminPDA = { ent-AdminPDA }
+    .desc = { ent-AdminPDA.desc }
 ent-MercenaryPDA = КПК наёмника
     .desc = Этот КПК пахнет горелой плазмой и пылью забытых планет. В его памяти скрыты тайные контракты и отчёты о выполненных миссиях. Настоящий арсенал для тех, кто живёт войной и ради войны.
 ent-PilotPDA = КПК пилота
