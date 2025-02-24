@@ -1,6 +1,6 @@
 ## UI
 
-research-console-menu-title = Консоль РнД
+research-console-menu-title = Консоль НИО
 research-console-menu-main-discipline = Основная дисциплина: [color={ $color }]{ $name }[/color]
 research-console-menu-server-research-button = Исследовать
 research-console-available-text = Доступные технологии
