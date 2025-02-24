@@ -19,6 +19,7 @@ public struct BountyContractCategoryMeta
 {
     public string Name;
     public Color UiColor;
+    public LocId? Announcement;
 }
 
 [NetSerializable, Serializable]
@@ -159,27 +160,32 @@ public abstract class SharedBountyContractSystem : EntitySystem
         [BountyContractCategory.Criminal] = new BountyContractCategoryMeta
         {
             Name = "bounty-contracts-category-criminal",
-            UiColor = Color.FromHex("#520c0c")
+            UiColor = Color.FromHex("#520c0c"),
+            Announcement = "bounty-contracts-announcement-criminal-create"
         },
         [BountyContractCategory.Vacancy] = new BountyContractCategoryMeta
         {
             Name = "bounty-contracts-category-vacancy",
-            UiColor = Color.FromHex("#003866")
+            UiColor = Color.FromHex("#003866"),
+            Announcement = "bounty-contracts-announcement-vacancy-create"
         },
         [BountyContractCategory.Construction] = new BountyContractCategoryMeta
         {
             Name = "bounty-contracts-category-construction",
-            UiColor = Color.FromHex("#664a06")
+            UiColor = Color.FromHex("#664a06"),
+            Announcement = "bounty-contracts-announcement-construction-create"
         },
         [BountyContractCategory.Service] = new BountyContractCategoryMeta
         {
             Name = "bounty-contracts-category-service",
-            UiColor = Color.FromHex("#01551e")
+            UiColor = Color.FromHex("#01551e"),
+            Announcement = "bounty-contracts-announcement-service-create"
         },
         [BountyContractCategory.Other] = new BountyContractCategoryMeta
         {
             Name = "bounty-contracts-category-other",
-            UiColor = Color.FromHex("#474747")
+            UiColor = Color.FromHex("#3c3c3c"),
+            Announcement = "bounty-contracts-announcement-generic-create"
         },
     };
 }

@@ -1,5 +1,6 @@
 # General stuff
 bounty-contracts-author = {$name} ({$job})
+bounty-contracts-author-no-job = {$name}
 bounty-contracts-unknown-author-name = Unknown
 bounty-contracts-unknown-author-job = Unknown
 
@@ -13,9 +14,15 @@ bounty-contracts-category-other = Other
 # Cartridge
 bounty-contracts-program-name = Bounty Contracts
 
-## Radio Announcements
-bounty-contracts-radio-name = Bounty Contracts Service
-bounty-contracts-radio-create = New contract placed for "{$target}". Reward: {$reward}.
+## PDA/Radio Announcements
+bounty-contracts-announcement-radio-name = Bounty Contracts Service
+bounty-contracts-announcement-pda-name = Bounty placed:
+
+bounty-contracts-announcement-generic-create = New contract placed for {$target}. Reward: {$reward}.
+bounty-contracts-announcement-criminal-create = New criminal bounty placed on {$target}. Reward: {$reward}.
+bounty-contracts-announcement-vacancy-create = New job vacancy posted for {$target}. Reward: {$reward}.
+bounty-contracts-announcement-construction-create = New construction contract placed for {$target}. Reward: {$reward}.
+bounty-contracts-announcement-service-create = New service contract placed for {$target}. Reward: {$reward}.
 
 ## Contract collection names
 bounty-contract-collection-name-command = Command

@@ -31,6 +31,7 @@ public sealed partial class BountyContractUiFragmentList : Control
         }
 
         NoContractsLabel.Visible = false;
+        listStateContracts.Reverse();
         foreach (var contract in listStateContracts)
         {
             var entry = new BountyContractUiFragmentListEntry(contract, canRemove || contract.AuthorUid == authorUid);

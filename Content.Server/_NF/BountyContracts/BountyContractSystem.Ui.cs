@@ -108,8 +108,11 @@ public sealed partial class BountyContractSystem
 
         TryComp<IdCardComponent>(component.ContainedId, out var id);
         var name = id?.FullName ?? Loc.GetString("bounty-contracts-unknown-author-name");
-        var job = id?.JobTitle ?? Loc.GetString("bounty-contracts-unknown-author-job");
-        return Loc.GetString("bounty-contracts-author", ("name", name), ("job", job));
+        return Loc.GetString("bounty-contracts-author-no-job", ("name", name));
+
+        // TODO: fix this when ID card job titles are working.
+        // var job = id?.JobTitle ?? Loc.GetString("bounty-contracts-unknown-author-job");
+        // return Loc.GetString("bounty-contracts-author", ("name", name), ("job", job));
     }
 
     private void OnUiReady(EntityUid uid, BountyContractsCartridgeComponent component, CartridgeUiReadyEvent args)

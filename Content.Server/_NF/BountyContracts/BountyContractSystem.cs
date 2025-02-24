@@ -2,7 +2,6 @@ using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._NF.Access;
-using Content.Server._NF.SectorServices;
 using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Systems;
 using Content.Server.StationRecords.Systems;
@@ -10,7 +9,6 @@ using Content.Shared._NF.Bank;
 using Content.Shared._NF.BountyContracts;
 using Content.Shared.Access.Systems;
 using Content.Shared.CartridgeLoader;
-using Content.Shared.Guidebook;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.BountyContracts;
@@ -184,13 +182,17 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         if (_proto.TryIndex(collection, out var bountyCollection))
             notificationType = bountyCollection.NotificationType;
 
+        LocId announcement = "bounty-contracts-announcement-generic-create";
+        if (CategoriesMeta.TryGetValue(category, out var categoryMeta) && categoryMeta.Announcement != null)
+            announcement = categoryMeta.Announcement.Value;
+
         if (notificationType == BountyContractNotificationType.PDA)
         {
-            var sender = Loc.GetString("bounty-contracts-radio-name");
-            var target = !string.IsNullOrEmpty(contract.Vessel)
+            var sender = Loc.GetString("bounty-contracts-announcement-pda-name");
+            var target = !string.IsNullOrEmpty(contract.Vessel) && contract.Vessel != Loc.GetString("bounty-contracts-ui-create-vessel-unknown")
                 ? $"{contract.Name} ({contract.Vessel})"
                 : contract.Name;
-            var msg = Loc.GetString("bounty-contracts-radio-create",
+            var msg = Loc.GetString(announcement,
                 ("target", target), ("reward", BankSystemExtensions.ToSpesoString(contract.Reward)));
 
             var pdaList = EntityQueryEnumerator<CartridgeLoaderComponent>();
@@ -205,13 +207,12 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         }
         else if (notificationType == BountyContractNotificationType.Radio)
         {
-            // TODO: move this to radio in future?
-            var sender = Loc.GetString("bounty-contracts-radio-name");
-            var target = !string.IsNullOrEmpty(contract.Vessel)
+            var sender = Loc.GetString("bounty-contracts-announcement-radio-name");
+            var target = !string.IsNullOrEmpty(contract.Vessel) && contract.Vessel != Loc.GetString("bounty-contracts-ui-create-vessel-unknown")
                 ? $"{contract.Name} ({contract.Vessel})"
                 : contract.Name;
-            var msg = Loc.GetString("bounty-contracts-radio-create",
-                ("target", target), ("reward", contract.Reward));
+            var msg = Loc.GetString(announcement,
+                ("target", target), ("reward", BankSystemExtensions.ToSpesoString(contract.Reward)));
             var color = Color.FromHex("#D7D7BE");
             _chat.DispatchGlobalAnnouncement(msg, sender, false, colorOverride: color);
         }

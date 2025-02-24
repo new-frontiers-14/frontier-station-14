@@ -18,9 +18,10 @@ public sealed partial class BountyContractUiFragmentListEntry : Control
         BountyName.Text = contract.Name;
 
         // vessel
-        var vessel = !string.IsNullOrEmpty(contract.Vessel) ? contract.Vessel : Loc.GetString("bounty-contracts-ui-create-vessel-unknown");
-        var vesselMsg = Loc.GetString("bounty-contracts-ui-list-vessel", ("vessel", vessel));
-        BountyVessel.Text = vesselMsg;
+        if (string.IsNullOrEmpty(contract.Vessel) || contract.Vessel == Loc.GetString("bounty-contracts-ui-create-vessel-unknown"))
+            BountyVessel.Visible = false;
+        else
+            BountyVessel.Text = Loc.GetString("bounty-contracts-ui-list-vessel", ("vessel", contract.Vessel));
 
         // bounty description
         if (string.IsNullOrWhiteSpace(contract.Description))
