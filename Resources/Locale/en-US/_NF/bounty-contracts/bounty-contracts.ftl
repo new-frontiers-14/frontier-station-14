@@ -16,7 +16,7 @@ bounty-contracts-program-name = Bounty Contracts
 
 ## PDA/Radio Announcements
 bounty-contracts-announcement-radio-name = Bounty Contracts Service
-bounty-contracts-announcement-pda-name = Bounty placed:
+bounty-contracts-announcement-pda-name = Bounty placed
 
 bounty-contracts-announcement-generic-create = New contract placed for {$target}. Reward: {$reward}.
 bounty-contracts-announcement-criminal-create = New criminal bounty placed on {$target}. Reward: {$reward}.
