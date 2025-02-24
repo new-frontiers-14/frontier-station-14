@@ -151,8 +151,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         string name, int reward,
         EntityUid authorUid,
         string? description = null, string? vessel = null,
-        string? dna = null, string? author = null,
-        bool pdaAlert = true)
+        string? dna = null, string? author = null)
     {
         var data = GetContracts();
         if (data == null
@@ -181,7 +180,11 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
             return null;
         }
 
-        if (pdaAlert)
+        var notificationType = BountyContractNotificationType.None;
+        if (_proto.TryIndex(collection, out var bountyCollection))
+            notificationType = bountyCollection.NotificationType;
+
+        if (notificationType == BountyContractNotificationType.PDA)
         {
             var sender = Loc.GetString("bounty-contracts-radio-name");
             var target = !string.IsNullOrEmpty(contract.Vessel)
@@ -199,6 +202,18 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
                     _cartridgeLoader.SendNotification(loaderUid, sender, msg, loaderComp);
                 }
             }
+        }
+        else if (notificationType == BountyContractNotificationType.Radio)
+        {
+            // TODO: move this to radio in future?
+            var sender = Loc.GetString("bounty-contracts-radio-name");
+            var target = !string.IsNullOrEmpty(contract.Vessel)
+                ? $"{contract.Name} ({contract.Vessel})"
+                : contract.Name;
+            var msg = Loc.GetString("bounty-contracts-radio-create",
+                ("target", target), ("reward", contract.Reward));
+            var color = Color.FromHex("#D7D7BE");
+            _chat.DispatchGlobalAnnouncement(msg, sender, false, colorOverride: color);
         }
 
         return contract;

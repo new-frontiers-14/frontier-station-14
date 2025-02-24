@@ -1,5 +1,6 @@
 using Content.Shared.Access;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.BountyContracts;
 
@@ -25,6 +26,12 @@ public sealed partial class BountyContractCollectionPrototype : IPrototype
     /// </summary>
     [DataField]
     public int Order { get; private set; } = 0;
+
+    /// <summary>
+    /// The type of notification to send off when bounty contract.
+    /// </summary>
+    [DataField]
+    public BountyContractNotificationType NotificationType { get; private set; } = BountyContractNotificationType.None;
 
     /// <summary>
     /// Localized name to describe the bounty contract type.
@@ -67,4 +74,12 @@ public sealed partial class BountyContractCollectionPrototype : IPrototype
     /// </summary>
     [DataField]
     public List<ProtoId<AccessGroupPrototype>> DeleteGroups { get; private set; } = new();
+}
+
+[Serializable, NetSerializable]
+public enum BountyContractNotificationType : byte
+{
+    None = 0,
+    PDA = 1,
+    Radio = 2,
 }
