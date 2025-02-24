@@ -1,4 +1,5 @@
 ## Nyano
+
 flavor-base-acidic = кисло
 flavor-complex-nuggie = как "курица"
 flavor-complex-enthralling = завораживающе
@@ -19,6 +20,7 @@ flavor-complex-bubbletea = как кремовая сладость
 flavor-complex-corncob = как больная шутка
 
 ## Delta
+
 flavor-complex-gunmetal = горько-сливочно
 flavor-complex-lemondrop = освежающе кисло
 flavor-complex-greengrass = как отдых под солнцем

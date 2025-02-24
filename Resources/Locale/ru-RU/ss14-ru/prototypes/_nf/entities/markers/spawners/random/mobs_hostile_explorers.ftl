@@ -1,9 +1,9 @@
 ent-SpawnMobExplorerT1 = спавнер исследователя
-    .suffix = AI, Враждебный, T1
+    .suffix = ИИ, Враждебный, T1
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobExplorerT2 = спавнер исследователя
-    .suffix = AI, Враждебный, T2
+    .suffix = ИИ, Враждебный, T2
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobExplorerT3 = спавнер исследователя
-    .suffix = AI, Враждебный, T3
+    .suffix = ИИ, Враждебный, T3
     .desc = { ent-MarkerBase.desc }

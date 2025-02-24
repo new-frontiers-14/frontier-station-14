@@ -1,3 +1,5 @@
+ent-FoodBaseSushi = { "" }
+    .desc = { "" }
 ent-FoodMealCarpSushi = ролл с карпом
     .desc = Определенно стоит рискнуть.
 ent-FoodMealCarpSushiSlice = ломтик ролла с карпом
@@ -8,5 +10,7 @@ ent-FoodMealAvocadoSushiSlice = ломтик ролла с авокадо
     .desc = { ent-FoodMealAvocadoSushi.desc }
 ent-FoodMealGasSafeSushiSlice = ролл с заправки
     .desc = Стоит ли ради этого рисковать?
+    .suffix = Безопасный
 ent-FoodMealGasBadSushiSlice = { ent-FoodMealGasSafeSushiSlice }
     .desc = { ent-FoodMealGasSafeSushiSlice.desc }
+    .suffix = Плохой

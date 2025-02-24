@@ -3,21 +3,17 @@ medical-bounty-redemption-fail-no-bounty = Награда за товары в �
 medical-bounty-redemption-fail-too-much-damage = Найденное тело было слишком повреждено, чтобы получить за него награду.
 medical-bounty-redemption-fail-not-alive = Тело должно быть реанимировано перед получением вознаграждения.
 medical-bounty-redemption-success = Обмен произведён! Оплата произведена.
-
 medical-bounty-redemption-ui-title = Устройство для извлечения тела
-
 medical-bounty-redemption-body-label-init = Загрузка систем.
 medical-bounty-redemption-body-label-no-items = Тело не обнаружено.
 medical-bounty-redemption-body-label-body-present = Тело присутствует.
 medical-bounty-redemption-body-label-valid-bounty = Найдена награда, которую можно получить.
-
 medical-bounty-redemption-redeem-label-init = Загрузка NT BIOS v72.1...
 medical-bounty-redemption-redeem-label-no-items = Вставьте подлежащее замене тело в капсулу.
 medical-bounty-redemption-redeem-label-no-bounty = Вознаграждение не обнаружено.
 medical-bounty-redemption-redeem-label-too-much-damage = Тело слишком повреждено, чтобы получить за него награду.
 medical-bounty-redemption-redeem-label-not-alive = Тело должно быть реанимировано перед получением вознаграждения.
-medical-bounty-redemption-redeem-label-valid-bounty = Цена: {$amount}.
-
+medical-bounty-redemption-redeem-label-valid-bounty = Цена: { $amount }.
 medical-bounty-redemption-ui-sell-button = Выкуп
 medical-bounty-console-flavor-left = Относитесь ко всем телам как к членам своей семьи.
 medical-bounty-console-flavor-right = v3.1

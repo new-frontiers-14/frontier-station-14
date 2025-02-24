@@ -1,4 +1,5 @@
-﻿## UI
+## UI
+
 rcd-component-missing-id-deed = На этой ID карте не зарегистрировано ни одного шаттла
 rcd-component-can-only-build-authorized-ship = Строительство разрешено только на авторизованных шаттлах!
 rcd-component-no-id-swiped = Проведите идентификационной картой по РСУ для авторизации.

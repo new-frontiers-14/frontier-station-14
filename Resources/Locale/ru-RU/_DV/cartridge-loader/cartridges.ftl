@@ -8,5 +8,5 @@ mail-metrics-unopened = Не открытые
 mail-metrics-count-header = Посылки
 mail-metrics-money-header = Кредиты
 mail-metrics-total = Всего
-mail-metrics-progress = Открыто {$opened} из {$total} посылок!
-mail-metrics-progress-percent = Успешность: {$successRate}%
+mail-metrics-progress = Открыто { $opened } из { $total } посылок!
+mail-metrics-progress-percent = Успешность: { $successRate }%

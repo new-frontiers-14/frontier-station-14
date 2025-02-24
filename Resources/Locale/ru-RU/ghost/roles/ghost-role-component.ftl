@@ -176,6 +176,8 @@ ghost-role-information-syndicate-kobold-reinforcement-name = Агент Синд
 ghost-role-information-syndicate-kobold-reinforcement-description = Кому-то нужно подкрепление. Вы, специально обученный кобольд, поможете им.
 ghost-role-information-syndicate-kobold-reinforcement-rules = Вы [color=red][bold]Командный антагонист[/bold][/color], в команде с агентом, который вас призвал.
 ghost-role-information-syndicate-cyborg-assault-name = Штурмовой киборг Синдиката
+ghost-role-information-derelict-cyborg-name = Derelict Cyborg
+ghost-role-information-derelict-cyborg-description = You are a regular cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station.
 ghost-role-information-syndicate-cyborg-saboteur-name = Саботажный киборг Синдиката
 ghost-role-information-syndicate-cyborg-description = Синдикату нужно подкрепление. Вы, холодная кремниевая машина для убийства, поможете им.
 ghost-role-information-security-name = Служба безопасности
@@ -229,9 +231,15 @@ ghost-role-information-syndie-disaster-victim-name = Жертва катастр
 ghost-role-information-syndie-disaster-victim-description = Вы - обычный пассажир со станции Синдиката. К несчастью, спасательная капсула закинула вас во вражеский сектор...
 ghost-role-information-artifact-name = Разумный артефакт
 ghost-role-information-artifact-description = Осуществляйте свои инопланетные прихоти. Принудительно активируйте свои узлы во благо или во зло.
+ghost-role-information-gingerbread-name = Gingerbread Man
+ghost-role-information-gingerbread-description =
+    A being of pure holiday spirit.
+    Spread molassesy goodness and to all good cheer.
 ghost-role-information-tomatokiller-name = Томат-убийца
 ghost-role-information-tomatokiller-description = Этот маленький помидор будет служить ботанику до конца своей жизни... то есть пару минут.
 # Corvax-start
 ghost-role-information-syndicate-smuggler-name = Контрабандист Синдиката
 ghost-role-information-syndicate-smuggler-description = Вы - специально обученный контрабандист синдиката. Отправляйтесь на поиски выданной вам цели и отыщите её любыми средствами.
+
 # Corvax-end
+

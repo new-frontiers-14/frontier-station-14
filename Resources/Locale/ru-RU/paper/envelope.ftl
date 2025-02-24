@@ -5,5 +5,5 @@ envelope-sealed-examine = [color=gray]{ CAPITALIZE($envelope) } запечата
 envelope-torn-examine = [color=yellow]{ CAPITALIZE($envelope) } порван и непригоден для использования![/color]
 envelope-default-message =
     ОТ:
-
+    
     КОМУ:

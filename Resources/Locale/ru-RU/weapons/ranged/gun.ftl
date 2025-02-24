@@ -6,12 +6,10 @@ gun-disabled = Вы не можете использовать оружие!
 gun-clumsy = Оружие взрывается вам в лицо!
 gun-set-fire-mode = Выбран режим { $mode }
 gun-magazine-whitelist-fail = Это не помещается в оружие!
-
 # SelectiveFire
 gun-SemiAuto = полуавто
 gun-Burst = очередь
 gun-FullAuto = авто
-
 # BallisticAmmoProvider
 gun-ballistic-cycle = Перезарядка
 gun-ballistic-cycled = Перезаряжено
@@ -19,11 +17,9 @@ gun-ballistic-cycled-empty = Разряжено
 gun-ballistic-transfer-invalid = { CAPITALIZE($ammoEntity) } нельзя поместить в { $targetEntity }!
 gun-ballistic-transfer-empty = В { CAPITALIZE($entity) } пусто.
 gun-ballistic-transfer-target-full = { CAPITALIZE($entity) } уже полностью заряжен.
-
 # CartridgeAmmo
 gun-cartridge-spent = Он [color=red]израсходован[/color].
 gun-cartridge-unspent = Он [color=lime]не израсходован[/color].
-
 # BatteryAmmoProvider
 gun-battery-examine =
     Заряда хватит на [color={ $color }]{ $count }[/color] { $count ->
@@ -31,7 +27,6 @@ gun-battery-examine =
         [few] выстрела
        *[other] выстрелов
     }.
-
 # CartridgeAmmoProvider
 gun-chamber-bolt-ammo = Затвор не закрыт
 gun-chamber-bolt = Затвор [color={ $color }]{ $bolt }[/color].
@@ -42,7 +37,6 @@ gun-chamber-bolt-open = Открыть затвор
 gun-chamber-bolt-closed-state = открыт
 gun-chamber-bolt-open-state = закрыт
 gun-chamber-rack = Передёрнуть затвор
-
 # MagazineAmmoProvider
 gun-magazine-examine =
     Тут [color={ $color }]{ $count }[/color] { $count ->
@@ -50,7 +44,6 @@ gun-magazine-examine =
         [few] штуки
        *[other] штук
     }.
-
 # RevolverAmmoProvider
 gun-revolver-empty = Разрядить револьвер
 gun-revolver-full = Револьвер полностью заряжен

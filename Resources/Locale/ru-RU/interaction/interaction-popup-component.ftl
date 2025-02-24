@@ -4,7 +4,6 @@
 
 petting-success-generic = Вы гладите { $target } по голове.
 petting-success-soft-floofy = Вы гладите { $target } по { POSS-ADJ($target) } мягкой пушистой голове.
-
 petting-success-bingus = Вы гладите { $target } по { POSS-ADJ($target) } маленькой морщинистой голове.
 petting-success-bird = Вы гладите { $target } по { POSS-ADJ($target) } милой пернатой голове.
 petting-success-carp = Вы гладите { $target } по { POSS-ADJ($target) } маленькой рыбьей голове.
@@ -32,9 +31,7 @@ petting-success-slimes = Вы гладите { $target } по { POSS-ADJ($target
 petting-success-snake = Вы гладите { $target } по { POSS-ADJ($target) } большой чешуйчатой голове.
 petting-success-monkey = Вы гладите { $target } по { POSS-ADJ($target) } озорной маленькой голове.
 petting-success-nymph = Вы гладите { $target } по { POSS-ADJ($target) } маленькой деревянной голове.
-
 petting-failure-generic = Вы тянетесь погладить { $target }, но { $target } настороженно уклоняется от вас.
-
 petting-failure-bat = Вы тянетесь погладить { $target }, но { $target } очень трудно поймать!
 petting-failure-carp = Вы тянетесь погладить { $target }, но { POSS-ADJ($target) } острые зубки заставляют вас передумать.
 petting-failure-corrupted-corgi = Вы тянетесь погладить { $target }, но решаете, что лучше не надо.
@@ -68,10 +65,9 @@ petting-success-janitor-cyborg = Вы гладите { $target } по { POSS-ADJ
 petting-success-medical-cyborg = Вы гладите { $target } по { POSS-ADJ($target) } стерильной металлической голове.
 petting-success-service-cyborg = Вы гладите { $target } по { POSS-ADJ($target) } нарядной металлической голове.
 petting-success-syndicate-cyborg = Вы гладите { $target } по { POSS-ADJ($target) } угрожающего вида металлической голове.
-petting-success-derelict-cyborg = Вы гладите {THE($target)} по {POSS-ADJ($target)} ржавой металлической голове.
+petting-success-derelict-cyborg = Вы гладите { THE($target) } по { POSS-ADJ($target) } ржавой металлической голове.
 petting-success-recycler = Вы гладите { $target } по { POSS-ADJ($target) } слегка пугающему стальному покрытию.
-petting-success-station-ai = Вы гладите {THE($target)} по {POSS-ADJ($target)} холодному, квадратному экрану.
-
+petting-success-station-ai = Вы гладите { THE($target) } по { POSS-ADJ($target) } холодному, квадратному экрану.
 petting-failure-honkbot = Вы тянетесь погладить { $target }, но { $target } хонкает и уворачивается!
 petting-failure-cleanbot = Вы тянетесь погладить { $target }, но { $target } занимается уборкой!
 petting-failure-mimebot = Вы тянетесь погладить { $target }, но { $target } занимается мимированием!
@@ -84,10 +80,9 @@ petting-failure-janitor-cyborg = Вы тянетесь погладить { $tar
 petting-failure-medical-cyborg = Вы тянетесь погладить { $target }, но { $target } занимается спасением жизней!
 petting-failure-service-cyborg = Вы тянетесь погладить { $target }, но { $target } занимается обслуживанием экипажа!
 petting-failure-syndicate-cyborg = Вы тянетесь погладить { $target }, но предательская натура { $target } заставляет вас передумать.
-petting-failure-derelict-cyborg = Вы тянетесь погладить {THE($target)}, но {POSS-ADJ($target)} ржавая и зазубренная внешность заставляет вас передумать.
-petting-failure-station-ai = Вы тянетесь погладить {THE($target)}, но {SUBJECT($target)} {CONJUGATE-BASIC($target, "zap", "zaps")} отводит вашу руку.
-
-petting-success-station-ai-others = { CAPITALIZE(THE($user)) } гладит {THE($target)} по {POSS-ADJ($target)} холодному, квадратному экрану.
+petting-failure-derelict-cyborg = Вы тянетесь погладить { THE($target) }, но { POSS-ADJ($target) } ржавая и зазубренная внешность заставляет вас передумать.
+petting-failure-station-ai = Вы тянетесь погладить { THE($target) }, но { SUBJECT($target) } { CONJUGATE-BASIC($target, "zap", "zaps") } отводит вашу руку.
+petting-success-station-ai-others = { CAPITALIZE(THE($user)) } гладит { THE($target) } по { POSS-ADJ($target) } холодному, квадратному экрану.
 
 ## Rattling fences
 

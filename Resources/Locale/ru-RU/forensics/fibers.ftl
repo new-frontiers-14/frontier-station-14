@@ -1,6 +1,5 @@
 forensic-fibers = { LOC($material) } волокна
 forensic-fibers-colored = { LOC($color) } { LOC($material) } волокна
-
 fibers-insulative = изолирующие
 fibers-insulative-frayed = протёртые изолирующие
 fibers-synthetic = синтетические
@@ -11,7 +10,6 @@ fibers-nitrile = нитриловые
 fibers-nanomachines = изолирующие наномашинные
 fibers-chameleon = голографические хамелеонные
 fibers-rubber = резиновые
-
 fibers-purple = фиолетовые
 fibers-red = красные
 fibers-black = чёрные

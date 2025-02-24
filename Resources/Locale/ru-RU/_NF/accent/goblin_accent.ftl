@@ -431,7 +431,6 @@ accent-goblin-words-replace-213 = рогат'ками
 accent-goblin-words-214 = шаттл
 accent-goblin-words-replace-214 = байдара
 accent-goblin-words-215 = шаттлы
-
 accent-goblin-words-replace-215 = байдары
 accent-goblin-words-216 = шаттла
 accent-goblin-words-replace-216 = байдары

@@ -1,3 +1,4 @@
+
 ent-ClothingHandsGlovesColorBlackAK = боевые перчатки
     .suffix = АКМС
     .desc = { ent-ClothingHandsGlovesColorBlackSMG.desc }
@@ -52,6 +53,18 @@ ent-ClothingHandsGlovesColorBlackCrossbow = боевые перчатки
 ent-ClothingHandsGlovesColorBlackLaserPistol = боевые перчатки
     .suffix = Лазерный пистолет
     .desc = { ent-ClothingHandsGlovesColorBlackSMG.desc }
+ent-PunkHandsGlovesBaseballBat = панковские перчатки
+    .desc = Разноцветные перчатки, которые не дадут вам поджариться.
+ent-PunkHandsGlovesFireaxe = { ent-PunkHandsGlovesBaseballBat }
+    .desc = { ent-PunkHandsGlovesBaseballBat.desc }
+ent-PunkHandsGlovesSledgehammer = { ent-PunkHandsGlovesBaseballBat }
+    .desc = { ent-PunkHandsGlovesBaseballBat.desc }
+ent-PunkHandsGlovesShotgun = { ent-PunkHandsGlovesBaseballBat }
+    .desc = { ent-PunkHandsGlovesBaseballBat.desc }
+ent-PunkHandsGlovesSmg = { ent-PunkHandsGlovesBaseballBat }
+    .desc = { ent-PunkHandsGlovesBaseballBat.desc }
+ent-PunkHandsGlovesLaserGun = { ent-PunkHandsGlovesBaseballBat }
+    .desc = { ent-PunkHandsGlovesBaseballBat.desc }
 ent-ClothingHandsGlovesWeaponWieldedGlaive = двуручное оружие
     .suffix = Крушитель
     .desc = { ent-ClothingHandsGlovesColorBlackSMG.desc }

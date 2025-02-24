@@ -1,4 +1,4 @@
-﻿drain-component-empty-verb-using-is-empty-message = В { $object } пусто!
+drain-component-empty-verb-using-is-empty-message = В { $object } пусто!
 drain-component-empty-verb-target-is-full-message = Устройство { $object } переполнилось!
 drain-component-empty-verb-inhand = Вылить { $object }
 drain-component-examine-hint-full = [color=cyan]Заполнено до краёв. Может, вантуз поможет?[/color]

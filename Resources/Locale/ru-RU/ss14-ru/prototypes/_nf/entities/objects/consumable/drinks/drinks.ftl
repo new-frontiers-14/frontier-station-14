@@ -16,3 +16,5 @@ ent-DrinkTorpedoJuice = { ent-DrinkGlass }
 ent-DrinkBeesKnees = { ent-DrinkGlass }
     .suffix = пчелиные колени
     .desc = { ent-DrinkGlass.desc }
+ent-CondimentCup = соусница
+    .desc = Непрочная баночка которая может быть наполнена соусами. Гарантия сгорает если наполнена чем-либо ещё.

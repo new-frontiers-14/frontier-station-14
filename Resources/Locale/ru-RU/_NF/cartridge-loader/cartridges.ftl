@@ -2,7 +2,6 @@
 appraisal-program-name = ОцениВСЁ Плюс
 appraisal-label-name = Предмет
 appraisal-label-price = Оценочная стоимость
-
 # Ledger cartridge
 ledger-program-name = ФинансыПлюс
 ledger-header = Доходы и расходы
@@ -12,13 +11,11 @@ ledger-total-expenses = Общие расходы
 ledger-no-expenses = Нет
 ledger-balance = Баланс:
 ledger-no-balance = Н/Д
-
 ledger-tab-Frontier = Аванпост Фронтир
 ledger-tab-Nfsd = ДСБФ
 ledger-tab-Medical = Медицинская диспетчерская
 # Fallback, if this displays, something's wrong.
 ledger-tab-Unknown = Неизвестно
-
 ledger-entry-type-TickingIncome = Субсидии NT
 ledger-entry-type-VendorTax = Налоги с продаж
 ledger-entry-type-CargoTax = Налоги с перевозок

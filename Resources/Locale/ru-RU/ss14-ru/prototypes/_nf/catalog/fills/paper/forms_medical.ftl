@@ -13,3 +13,7 @@ ent-PaperWrittenMedicalFormHealthInsurance = Договор медицинско
 ent-PaperWrittenMedicalFormServiceInvoice = Счет за медицинские услуги
     .suffix = Бумажные шаблоны
     .desc = { ent-Paper.desc }
+ent-PaperWrittenMedicalFormReceiptInvoice = Счет за медицинские услуги
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenMedicalFormRelease = Бланк медицинского заключения
+    .desc = { ent-Paper.desc }

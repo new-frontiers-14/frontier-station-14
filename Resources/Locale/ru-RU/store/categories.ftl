@@ -13,10 +13,8 @@ store-category-implants = Импланты
 store-category-job = Работа
 store-category-pointless = Безделушки
 store-discounted-items = Скидки
-
 # Revenant
 store-category-abilities = Способности
-
 # Wizard
 store-caregory-spellbook-offensive = Атакующие заклинания
 store-caregory-spellbook-defensive = Защитные заклинания

@@ -1,4 +1,4 @@
-﻿# Ejection verb label.
+# Ejection verb label.
 cryo-pod-verb-noun-occupant = Пациент
 # Examine text showing whether there's a beaker in the pod and if it is empty.
 cryo-pod-examine = Здесь находится { $beaker }.

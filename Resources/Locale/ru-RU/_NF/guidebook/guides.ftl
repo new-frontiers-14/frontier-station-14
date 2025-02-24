@@ -8,17 +8,13 @@ guide-entry-expeditions = Экспедиции
 guide-entry-cargo-hauling = Грузоперевозки
 guide-entry-shipyard = Верфь
 guide-entry-frontier-rules = Правила сервера
-
 # Security entries
 guide-entry-nfsd-smuggling = Контрабанда
-
 # Medical entries
 guide-entry-medical-bounties = Медицинские выплаты
 guide-entry-medical-doc = Менеджер медицинских операций
-
 # Reference entries
 guide-entry-medicalrecipes = Медицинские рецепты
-
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Аберрантная плоть
 guide-entry-expedition-argocytes = Аргоциты
@@ -31,7 +27,6 @@ guide-entry-expedition-gangers = Панки
 guide-entry-expedition-silicons = Роботы-изгои
 guide-entry-expedition-syndicate-naval-forces = Синдикат
 guide-entry-expedition-xenos = Ксено
-
 # Shipyard entries
 guide-entry-shipyard-akupara = Черепаха
 guide-entry-shipyard-ambition = Амбициозный
@@ -78,9 +73,10 @@ guide-entry-shipyard-spirit = Дух
 guide-entry-shipyard-stasis = Стазис
 guide-entry-shipyard-tide = Прилив
 guide-entry-shipyard-vagabond = Бродяга
-
 # Rules entries
-guide-entry-frontier-rule-0 =  Режим фронтира
+guide-entry-frontier-rule-zero-tolerance = Нетерпимость
+# Rules entries
+guide-entry-frontier-rule-0 = Режим фронтира
 guide-entry-frontier-rule-1 = 0. Не будь мудаком
 guide-entry-frontier-rule-2 = 1. Нечестная игра
 guide-entry-frontier-rule-3 = 2. Ценность жизни

@@ -1,3 +1,3 @@
 ent-SimpleSpaceSuitMobBase = { ent-SimpleSpaceMobBase }
-    .suffix = AI
+    .suffix = ИИ
     .desc = { ent-SimpleSpaceMobBase.desc }

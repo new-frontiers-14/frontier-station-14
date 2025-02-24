@@ -27,4 +27,3 @@ ent-ClothingOuterCoatArcadiaTrenchOpened = зенитный плащ Аркад�
     .desc = { ent-ClothingOuterCoatArcadiaTrench.desc }
 ent-ClothingUniformJumpsuitMilitaryArcadiaTac = тактический комбинезон от Аркадиа
     .desc = Тактический комбинезон производства Arcadia Industries.
-

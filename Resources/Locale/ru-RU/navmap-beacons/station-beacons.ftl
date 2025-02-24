@@ -1,12 +1,10 @@
 station-beacon-general = Общий
-
 station-beacon-command = Командование
 station-beacon-bridge = Мостик
 station-beacon-vault = Хранилище
 station-beacon-gateway = Врата
 station-beacon-captain = Капитан
 station-beacon-hop = Кабинет ГП
-
 station-beacon-security = Служба безопасности
 station-beacon-brig = Бриг
 station-beacon-brig-med = Бригмед
@@ -18,7 +16,6 @@ station-beacon-detective = Детектив
 station-beacon-courtroom = Зал суда
 station-beacon-law = Офис АВД
 station-beacon-security-checkpoint = КПП СБ
-
 station-beacon-medical = Медицинский отдел
 station-beacon-medbay = Медотсек
 station-beacon-chemistry = Хим. лаборатория
@@ -28,7 +25,6 @@ station-beacon-morgue = Морг
 station-beacon-surgery = Операционная
 station-beacon-psychology = Психолог
 station-beacon-clinic = Клиника
-
 station-beacon-science = Научный отдел
 station-beacon-research-and-development = РНД
 station-beacon-research-server = Серверная
@@ -36,13 +32,11 @@ station-beacon-research-director = Кабинет НР
 station-beacon-robotics = Робототехника
 station-beacon-artifact-lab = Ксеноархеология
 station-beacon-anomaly-gen = Аномалистика
-
 station-beacon-supply = Отдел снабжения
 station-beacon-cargo = Карго
 station-beacon-cargo-bay = Док снабжения
 station-beacon-qm = Кабинет КМ
 station-beacon-salvage = Утилизаторская
-
 station-beacon-engineering = Инженерный отдел
 station-beacon-ce = Кабинет СИ
 station-beacon-ame = ДАМ
@@ -55,19 +49,16 @@ station-beacon-atmos = Атмосферный отсек
 station-beacon-teg = ТЭГ
 station-beacon-tech-vault = Технологическое хранилище
 station-beacon-anchor = Якорь
-
 station-beacon-service = Сервисные помещения
 station-beacon-kitchen = Кухня
 station-beacon-bar = Бар
 station-beacon-botany = Гидропоника
 station-beacon-janitor = Коморка уборщика
-
 station-beacon-ai = ИИ
 station-beacon-ai-sat = Спутник ИИ
 station-beacon-ai-core = Ядро ИИ
 station-beacon-ai-upload = Загрузка ИИ
 station-beacon-ai-power = Питание ИИ
-
 station-beacon-arrivals = Зал прибытия
 station-beacon-evac = Зал эвакуации
 station-beacon-docking-arm = Стыковочный порт

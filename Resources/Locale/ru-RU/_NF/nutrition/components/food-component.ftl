@@ -6,10 +6,7 @@ wipe-face = Вы вытерли лицо с помощью { $food }.
 
 food-system-you-cannot-wipe = Вы не можете это использовать прямо сейчас!
 food-system-you-cannot-wipe-other = Они не могут это использовать прямо сейчас!
-
 food-system-verb-wipe = Вытереть лицо
-
 food-system-wipe = { CAPITALIZE(THE($user)) } пытается вытереть ваше лицо.
 food-system-wipe-success = { CAPITALIZE(THE($user)) } вытер ваше лицо.
 food-system-wipe-success-user = Вы вытерли лицо { THE($target) }.
-

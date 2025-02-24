@@ -40,6 +40,8 @@ ent-VendingMachineDrGibb = торгомат Доктор Гибб
     .desc = Консервированный взрыв всевозможных вкусов именно у этого производителя!
 ent-VendingMachineCoffee = Лучшие горячие напитки Солнечной
     .desc = Подаются кипящими, чтобы оставались горячими всю смену!
+ent-VendingMachineSmite = торгомат Смайт
+    .desc = Популярный среди администраторов.
 ent-VendingMachineMagivend = МагМазин
     .desc = Магический торговый автомат.
 ent-VendingMachineCola = Прохладительные напитки Robust
@@ -141,6 +143,7 @@ ent-VendingMachineHappyHonk = Хэппи Хонк
 ent-VendingMachineTankDispenserEVA = раздатчик газовых баллонов
     .desc = Автомат по выдаче газовых баллонов.
     .suffix = EVA [O2, N2]
+
 ent-VendingMachineTankDispenserEngineering = раздатчик газовых баллонов
     .desc = Автомат по выдаче газовых баллонов. Этот имеет инженерную окраску.
     .suffix = ИНЖ [O2, Плазма]

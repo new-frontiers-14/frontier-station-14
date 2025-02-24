@@ -1,3 +1,3 @@
-ent-ShuttleDeedIDCard = shuttle deed
-    .suffix = DO NOT MAP
+ent-ShuttleDeedIDCard = челнок
+    .suffix = НЕ МАППИТЬ
     .desc = { ent-IDCardStandard.desc }

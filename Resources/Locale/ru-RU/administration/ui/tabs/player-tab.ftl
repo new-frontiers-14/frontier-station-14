@@ -1,4 +1,4 @@
-﻿player-tab-player-count = Игроков: { $count }
+player-tab-player-count = Игроков: { $count }
 player-tab-username = Пользователь
 player-tab-character = Персонаж
 player-tab-job = Должность
@@ -11,4 +11,3 @@ player-tab-entry-tooltip = Игровое время отображается к
 player-tab-filter-line-edit-placeholder = Фильтр
 player-tab-is-antag-yes = ДА
 player-tab-is-antag-no = НЕТ
-

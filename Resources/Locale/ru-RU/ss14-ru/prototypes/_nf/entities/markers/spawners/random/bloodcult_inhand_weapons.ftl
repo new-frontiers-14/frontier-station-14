@@ -5,5 +5,5 @@ ent-SpawnInhandMeleeWeaponBloodCultHigh = спавнер оружие ближн
     .suffix = Кровавый Культ, High
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobBloodCultistAscendedSummons = спавнер призыва культистов
-    .suffix = AI, Вражеский
+    .suffix = ИИ, Вражеский
     .desc = { ent-MarkerBase.desc }

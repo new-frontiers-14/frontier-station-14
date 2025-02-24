@@ -65,19 +65,21 @@ flavor-complex-ketchunaise = как помидоры и майонез
 flavor-complex-mayonnaise = как майонез
 flavor-complex-mustard = как горчица
 
-
 ## Food chemicals. In case you get something that has this inside.
 
 ## Food chemicals. In case you get something that has this inside.
+
 flavor-complex-nutriment = как питательные вещества
 flavor-complex-vitamin = как витамины
 flavor-complex-protein = как протеины
 
 ## Generic food taste. This should be replaced with an actual flavor profile,
 ## if you have food that looks like this.
+
 flavor-complex-food = как еда
 
 ## Basic foodstuffs (ingredients, generic flavors)
+
 flavor-complex-bun = как булочка
 flavor-complex-bread = как хлеб
 flavor-complex-batter = как тесто для торта
@@ -128,6 +130,7 @@ flavor-complex-nettles = как крапива
 flavor-complex-jungle = как джунгли
 flavor-complex-vegetables = как овощи
 flavor-complex-cherry = как вишни
+
 # use it when there multiple types of veggies
 
 ## Complex foodstuffs (cooked foods, joke flavors, etc)
@@ -186,12 +189,14 @@ flavor-complex-compressed-meat = как спрессованное мясо
 # Drink-specific flavors.
 
 ## Generic alcohol/soda taste. This should be replaced with an actual flavor profile.
+
 flavor-complex-alcohol = как алкоголь
 flavor-complex-soda = как газировка
 flavor-complex-juice = как сок
 flavor-complex-rocksandstones = как скалы и камни
 
 ## Basic drinks
+
 flavor-complex-water = как вода
 flavor-complex-beer = как моча
 flavor-complex-ale = как хлеб
@@ -205,6 +210,7 @@ flavor-complex-tequila = как забродившая смерть
 flavor-complex-energy-drink = как аккумуляторная кислота
 flavor-complex-dr-gibb = как халатность
 flavor-complex-ginger-soda = как имбирь
+flavor-complex-lemon-lime-cranberry-soda = like Christmas
 flavor-complex-grape-soda = как виноградная газировка
 flavor-complex-lemon-lime-soda = как лимонно-лаймовая газировка
 flavor-complex-pwr-game-soda = как гейминг
@@ -229,6 +235,7 @@ flavor-complex-mopwata = как застоявшаяся грязная вода
 flavor-complex-gin = как ферментированное зерно с можжевеловыми ягодами
 
 ## Cocktails
+
 flavor-complex-arnold-palmer = как попадание в лунку с первого удара
 flavor-complex-blue-hawaiian = как тропики
 flavor-complex-cosmopolitan = сладко и терпко
@@ -311,8 +318,8 @@ flavor-complex-pilk = как сладкое молоко
 # Medicine/chemical-specific flavors.
 
 ## Generic flavors.
-flavor-complex-medicine = как лекарство
 
+flavor-complex-medicine = как лекарство
 flavor-complex-carpet = как горсть шерсти
 flavor-complex-bee = беспчеловечно
 flavor-complex-sax = как джаз

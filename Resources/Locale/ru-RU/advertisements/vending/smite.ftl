@@ -1,4 +1,4 @@
-﻿advertisement-smite-1 = КАРА! Запретите себе жажду!
+advertisement-smite-1 = КАРА! Запретите себе жажду!
 advertisement-smite-2 = Эдрический взрыв лимона и лайма!
 advertisement-smite-3 = Продано более 1 миллиона напитков!
 advertisement-smite-4 = КАРА! Бросьте 2d8 для определения вкуса.

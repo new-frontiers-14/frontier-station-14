@@ -2,7 +2,6 @@ station-beacon-atm = Банкомат
 station-beacon-shipyard = Верфь
 station-beacon-sr-office = Офис ПС
 station-beacon-sr-quarters = Приёмная ПС
-
 station-beacon-cargobay-one = Грузовой шлюз 1
 station-beacon-cargobay-two = Грузовой шлюз 2
 station-beacon-cargobay-three = Грузовой шлюз 3
@@ -25,7 +24,6 @@ station-beacon-atmos-burn = Камера сгорания
 station-beacon-atmos-collector = Массив газосборников
 station-beacon-lobby = Вестибюль
 station-beacon-doc-office = Офис ММО
-
 station-beacon-eva-access = Хранилище EVA
 station-beacon-dock-one = Док 1
 station-beacon-dock-two = Док 2

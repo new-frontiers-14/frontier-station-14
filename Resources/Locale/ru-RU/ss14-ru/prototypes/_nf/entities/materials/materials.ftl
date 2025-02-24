@@ -1,0 +1,10 @@
+
+ent-MaterialBiomass50 = { ent-MaterialBiomass }
+    .suffix = 50
+    .desc = { ent-MaterialBiomass.desc }
+ent-CrateMaterialBiomass50 = ящик биомассы
+    .desc = 50 единиц биомассы. Ням.
+    .suffix = 50
+ent-CrateMcCargoMaterialBiomass50 = ящик макбиомассы
+    .desc = 50 единиц биомассы. Не для гриля.
+    .suffix = 50

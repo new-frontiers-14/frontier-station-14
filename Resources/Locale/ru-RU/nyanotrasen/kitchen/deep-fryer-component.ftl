@@ -4,17 +4,13 @@ deep-fryer-blacklist-item-failed = { CAPITALIZE(THE($item)) } не удаетс�
 deep-fryer-oil-purity-low = { CAPITALIZE(THE($deepFryer)) } бесполезно булькает.
 deep-fryer-oil-volume-low = { CAPITALIZE(THE($deepFryer)) } загорается и задымляет!
 deep-fryer-oil-no-slag = Осадок отсутствует.
-
 deep-fryer-storage-full = Все корзины заполнены.
 deep-fryer-storage-no-fit = { CAPITALIZE(THE($item)) } не влезает в корзину.
 deep-fryer-interact-using-not-item = Похоже, это не предмет.
-
 deep-fryer-need-liquid-container-in-hand = Нужен сосуд для жидкости, типа колбы или миски, в активной руке.
-
 deep-fryer-thrown-missed = Мимо!
 deep-fryer-thrown-hit-oil = Бульк!
 deep-fryer-thrown-hit-oil-low = Плеск!
-
 deep-fryer-entity-escape = { CAPITALIZE(THE($victim)) } выпрыгивает из { THE($deepFryer) }!
 
 ## DeepFryer UI
@@ -36,19 +32,16 @@ deep-fryer-button-remove-all-items-tooltip = Удалите все предме�
 
 deep-fried-crispy-item = хрустящий { $entity }
 deep-fried-crispy-item-examine = Покрыт хрустящей, жирной корочкой.
-
 deep-fried-fried-item = жареный { $entity }
 deep-fried-fried-item-examine = Обволакивает толстый слой хрустящей корочки.
-
 deep-fried-burned-item = подгорелый { $entity }
 deep-fried-burned-item-examine = Почернел от нагара.
-
 # Frontier: cauldron definitions
-deep-fried-spooky-item = жуткий {$entity}
+deep-fried-spooky-item = жуткий { $entity }
 deep-fried-spooky-item-examine = Он смазан маслом и полупрозрачен.
-
-deep-fried-spectral-item = спектральный {$entity}
+deep-fried-spectral-item = спектральный { $entity }
 deep-fried-spectral-item-examine = Он маслянистый, прозрачный и неестественно легкий.
+
 # Set reuses burned item from above
 # End Frontier
 

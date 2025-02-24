@@ -1,4 +1,4 @@
-﻿advertisement-smartfridge-1 = Привет мир!
+advertisement-smartfridge-1 = Привет мир!
 advertisement-smartfridge-2 = ПОЖАЛУЙСТА, ВЫПУСТИТЕ МЕНЯ
 advertisement-smartfridge-3 = Я могу производить квинтиллион вычислений в секунду. Теперь я холодильник.
 advertisement-smartfridge-4 = Доступно новое обновление прошивки.

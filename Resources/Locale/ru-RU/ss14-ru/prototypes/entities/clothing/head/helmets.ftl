@@ -1,3 +1,5 @@
+ent-ClothingHeadHelmetBase = { ent-ClothingHeadBase }
+    .desc = { ent-ClothingHeadBase.desc }
 ent-ClothingHeadHelmetBasic = шлем
     .desc = Стандартная защитная экипировка. Защищает голову от ударов.
 ent-ClothingHeadHelmetMercenary = шлем наёмника
@@ -50,6 +52,8 @@ ent-ClothingHeadHelmetPodWars = шлем Броненосец II
     .desc = Шлем Броненосец II, реликвия войн подов.
 ent-ClothingHeadHelmetJustice = шлем правосудия
     .desc = Продвинутое снаряжение службы безопасности. Защищает станцию от никчёмных сотрудников.
+ent-ActionToggleJusticeHelm = Переключить шлем правосудия
+    .desc = Включает или выключает шлем правосудия.
 ent-ClothingHeadHelmetJusticeEmpty = { ent-ClothingHeadHelmetJustice }
     .suffix = Пустой
     .desc = { ent-ClothingHeadHelmetJustice.desc }

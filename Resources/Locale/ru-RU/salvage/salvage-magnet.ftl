@@ -3,10 +3,8 @@ salvage-system-announcement-spawn-debris-disintegrated = Обломок дези
 salvage-system-announcement-spawn-no-debris-available = Нет обломков, которые можно притянуть магнитом.
 salvage-system-announcement-arrived = Обломок был притянут для утилизации. Расчётное время удержания: { $timeLeft } секунд.
 salvage-asteroid-name = Астероид
-
 salvage-magnet-window-title = Магнит обломков
 salvage-expedition-window-progression = Прогресс
-
 salvage-magnet-resources =
     { $resource ->
         [OreIron] Железо
@@ -21,7 +19,6 @@ salvage-magnet-resources =
         [OreBananium] Бананиум
        *[other] { $resource }
     }
-
 salvage-magnet-resources-count =
     { $count ->
         [1] (Мало)
@@ -31,16 +28,13 @@ salvage-magnet-resources-count =
         [5] (Много)
        *[other] (Изобилие)
     }
-
 # Debris
 salvage-magnet-debris-ChunkDebris = Космический обломок
-
 # Asteroids
 dungeon-config-proto-BlobAsteroid = Астероидный массив
 dungeon-config-proto-ClusterAsteroid = Астероидный кластер
 dungeon-config-proto-SpindlyAsteroid = Астероидная спираль
 dungeon-config-proto-SwissCheeseAsteroid = Фрагменты астероидов
-
 # Wrecks
 salvage-map-wreck = Обломок для утилизации
 salvage-map-wreck-desc-size = Размер:

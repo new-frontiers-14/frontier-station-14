@@ -17,4 +17,3 @@ ent-PigCubeWrapped = свиной кубик
 ent-CowCubeWrapped = коровий кубик
     .suffix = Завёрнутый
     .desc = Распакуй его, чтобы получить кубик коровы.
-

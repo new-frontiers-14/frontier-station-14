@@ -1,7 +1,7 @@
 ent-CrateNPCEmotionalSupport = ящик с ручными зверушками
     .desc = Ящик, содержащий питомца для эмоциональной поддержки.
 ent-FillNPCEmotionalSupportSafe = { "" }
-    .suffix = Safe
+    .suffix = Безопасный
     .desc = { "" }
 ent-CrateNPCEmotionalSupportSafe = ящик с ручными зверушками
     .suffix = Безопасный
@@ -12,3 +12,4 @@ ent-CrateNPCPoultryCube = ящик птичьих кубиков
     .desc = Ящик, содержащий коробку с полным набором кубиков для создания личного курятника.
 ent-CrateWoodCageClugg = { ent-CrateWoodCage }
     .desc = { ent-CrateWoodCage.desc }
+    .suffix = Заполненный, Упакованный

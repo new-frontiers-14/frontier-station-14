@@ -19,7 +19,6 @@ dock-label-station-six-c = 6В
 dock-label-station-seven-a = 7A
 dock-label-station-seven-b = 7Б
 dock-label-station-seven-c = 7В
-
 dock-label-trade-cargo-bay-one = АБ1
 dock-label-trade-cargo-bay-two = АБ2
 dock-label-trade-cargo-bay-three = АБ3
@@ -40,7 +39,6 @@ dock-label-trade-seven = Г7
 dock-label-trade-seven-a = Г7A
 dock-label-trade-seven-b = Г7Б
 dock-label-trade-seven-c = Г7В
-
 dock-label-bus = Такси
 dock-label-janitor = Сервис
 dock-label-guard = Охрана

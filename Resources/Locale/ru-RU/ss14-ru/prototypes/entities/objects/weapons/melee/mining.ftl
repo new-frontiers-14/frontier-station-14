@@ -1,3 +1,7 @@
+ent-Pickaxe = кирка
+    .desc = Зазубренная до совершенства, чтобы вбивать её в камни.
+ent-MiningDrill = шахтёрский бур
+    .desc = Мощный инструмент, служащий для быстрого бурения горных пород.
 ent-BaseWeaponCrusher = крушитель
     .desc = Ранняя версия протокинетического ускорителя.
 ent-WeaponCrusher = { ent-BaseWeaponCrusher }

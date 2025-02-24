@@ -4,6 +4,7 @@ chem-master-component-activate-no-hands = У вас нет рук.
 chem-master-component-cannot-put-entity-message = Вы не можете поместить это в ХимМастер!
 
 ## Bound UI
+
 chem-master-bound-user-interface-title = ХимМастер 4000
 
 ## UI

@@ -1,3 +1,5 @@
+ent-ReinforcementRadio = радио подкрепления Синдиката
+    .desc = Призовите на помощь агента Синдиката сомнительного качества, мгновенно! Предоставляется только базовое снаряжение.
 ent-ReinforcementRadioSyndicate = радио подкрепления Cиндиката
     .desc = Призовите себе помощника!
 ent-ReinforcementRadioSyndicateNukeops = { ent-ReinforcementRadioSyndicate }

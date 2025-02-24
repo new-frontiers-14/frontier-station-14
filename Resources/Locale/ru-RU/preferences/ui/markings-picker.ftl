@@ -5,12 +5,12 @@ markings-remove = Убрать черту
 markings-rank-up = Вверх
 markings-rank-down = Вниз
 markings-search = Поиск
-marking-points-remaining = Черт осталось: {$points}
-marking-used = {$marking-name}
-marking-used-forced = {$marking-name} (Принудительно)
+marking-points-remaining = Черт осталось: { $points }
+marking-used = { $marking-name }
+marking-used-forced = { $marking-name } (Принудительно)
 marking-slot-add = Добавить
 marking-slot-remove = Удалить
-marking-slot = Черт {$number}
+marking-slot = Черт { $number }
 
 # Categories
 

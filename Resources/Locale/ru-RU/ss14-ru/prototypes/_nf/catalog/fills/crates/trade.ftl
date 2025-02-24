@@ -8,5 +8,3 @@ ent-CrateTradeContrabandSecureDonkFilled = { ent-CrateTradeContrabandSecureDonk 
     .desc = { ent-CrateTradeContrabandSecureDonk.desc }
 ent-CrateTradeContrabandSecureCyberSunFilled = { ent-CrateTradeContrabandSecureCyberSun }
     .desc = { ent-CrateTradeContrabandSecureCyberSun.desc }
-ent-CrateTradeSecureNormalFilledContraband = 
-    .desc = Содержит товары, произведенные в вторичном секторе, готовые к отправке контрабандой на грузовой склад для получения прибыли. УБЕДИТЕСЬ, ЧТО ЯЩИК ЦЕЛ.

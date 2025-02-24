@@ -1,0 +1,12 @@
+ent-NFAdventure = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
+ent-BluespaceEventScheduler = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
+ent-BluespaceDungeonEventScheduler = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
+ent-BluespaceSalvageEventScheduler = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
+ent-SmugglingEventScheduler = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
+ent-FrontierRoundstartVariation = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }

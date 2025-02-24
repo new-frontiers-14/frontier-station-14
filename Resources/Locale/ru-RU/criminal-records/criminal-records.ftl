@@ -13,7 +13,6 @@ criminal-records-status-detained = Под арестом
 criminal-records-status-suspected = Подозревается
 criminal-records-status-discharged = Освобождён
 criminal-records-status-paroled = Освобождён по УДО
-
 criminal-records-console-wanted-reason = [color=gray]Причина розыска[/color]
 criminal-records-console-suspected-reason = [color=gray]Причина подозрения[/color]
 criminal-records-console-reason = Причина
@@ -26,7 +25,6 @@ criminal-records-history-placeholder = Впишите сюда преступл�
 criminal-records-no-history = У этого сотрудника безупречный послужной список.
 criminal-records-add-history = Добавить
 criminal-records-delete-history = Удалить
-
 criminal-records-permission-denied = Отказано в доступе
 
 ## Security channel notifications
@@ -49,5 +47,6 @@ criminal-records-prints-filter = Отпечатки пальцев
 criminal-records-dna-filter = ДНК
 
 ## Arrest auto history lines
+
 criminal-records-console-auto-history = АРЕСТОВАН: { $reason }
 criminal-records-console-unspecified-reason = <причина не указана>

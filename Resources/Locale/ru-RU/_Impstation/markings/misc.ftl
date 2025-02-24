@@ -10,7 +10,6 @@ marking-SpiderEyesMulti-spidereyesmulti1 = Верх
 marking-SpiderEyesMulti-spidereyesmulti2 = Середина верха
 marking-SpiderEyesMulti-spidereyesmulti3 = Середина низа
 marking-SpiderEyesMulti-spidereyesmulti4 = Низ
-
 # diona
 marking-DionaLivingNymph = Живые нимфы
 marking-DionaLivingNymph-dionalivingnymph = Живые нимфы
@@ -24,7 +23,6 @@ marking-DionaFirefly = Светлячки
 marking-DionaFirefly-dionafirefly = Светлячки
 marking-DionaPollenDust = Облако пыльцы
 marking-DionaPollenDust-dionapollendust = Облако пыльцы
-
 # dwarves
 marking-DwarfBearCheeks = Светящиеся щеки
 marking-DwarfBearCheeks-dwarfbearcheeks = Светящиеся щеки
@@ -68,7 +66,6 @@ marking-DwarfMarkCobra = Знак кобры
 marking-DwarfMarkCobra-dwarfmarkcobra = Знак кобры
 marking-DwarfMarkSpider = Знак паука
 marking-DwarfMarkSpider-dwafmarkspider = Знак паука
-
 # humans
 marking-VitiligoHeadL = Витилиго  (Левый глаз)
 marking-VitiligoHeadR = Витилиго  (Правый глаз)
@@ -81,7 +78,6 @@ marking-VitiligoArmL = Витилиго  (Левая рука)
 marking-VitiligoLegL = Витилиго  (Левая нога)
 marking-VitiligoChestF = Распространение витилиго
 marking-VitiligoChestSpots = Пятна витилиго
-
 # moths
 marking-MothTrueButterfly = Крылья (Радужные)
 marking-MothTrueButterfly-mothtruebutterfly1 = Полоски
@@ -120,7 +116,6 @@ marking-MothRhinoBeetle = Крылья жука (Носорог)
 marking-MothRhinoBeetle-rhinobeetle1 = Контур
 marking-MothRhinoBeetle-rhinobeetle2 = Блеск
 marking-MothRhinoBeetle-rhinobeetle3 = Крылья
-
 # slimes
 marking-fizz = Шипучка
 marking-fizz-fizz = Шипучка
@@ -134,12 +129,11 @@ marking-FadingStars = Угасающий звездный свет
 marking-FadingStars-fadingstars1 = Ярчайший
 marking-FadingStars-fadingstars2 = Средний
 marking-FadingStars-fadingstars3 = Темнейший
-
 # vox
 marking-VoxCocktail = Котейль
 marking-VoxCocktail-voxcocktail1 = Перья
 marking-VoxCocktail-voxcocktail2 = Перья
-marking-VoxCocktail-voxcocktail3 =Перья
+marking-VoxCocktail-voxcocktail3 = Перья
 marking-VoxCocktail-voxcocktail4 = Хвост
 marking-VoxTailStripes = Полоски на хвосте
 marking-VoxTailStripes-voxtailstripes = Полоски на хвосте
@@ -211,7 +205,6 @@ marking-VoxTailBalled = Надутый
 marking-VoxTailBalled-voxtailballed = Надутый
 marking-VoxTailSplit = Двойной
 marking-VoxTailSplit-voxtailsplit = Двойной
-
 # upstream vox markings dont have localized names. lmfao
 # these are just straight up broken and shouldnt be visible from the markings menu period but ALAS im not skilled enough to remove them so you get this stupid botch job instead
 marking-VoxBeak = Default Beak [DO NOT USE]

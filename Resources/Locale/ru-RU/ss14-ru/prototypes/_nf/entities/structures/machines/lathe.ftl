@@ -1,3 +1,6 @@
+ent-BlueprintReceiverBase = { "" }
+    .desc = { "" }
+
 ent-PrizeCounter = раздатчик призов
     .desc = Забери свой приз и выиграй несколько игрушек и милых плюшевых мишек!
 ent-TilePrinterNF = Плиточник 5000
@@ -12,6 +15,8 @@ ent-MercenaryTechFabHacked = взломанный техфаб наёмника
     .desc = Печатает снаряжение необходимое каждому наёмнику.
 ent-BlueprintLithograph = литографическая машина
     .desc = Печатает чертежи.
-
+ent-BiogeneratorFill = биогенератор
+    .suffix = Биомасса, 50
+    .desc = { ent-Biogenerator.desc }
 ent-ScrapProcessor = переработчик лома
     .desc = Производит необходимые материалы из старого лома.

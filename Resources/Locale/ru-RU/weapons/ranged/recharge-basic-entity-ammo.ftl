@@ -1,4 +1,4 @@
-﻿recharge-basic-entity-ammo-can-recharge =
+recharge-basic-entity-ammo-can-recharge =
     Боезапас перезарядится через [color=yellow]{ $seconds } { $seconds ->
         [one] секунду
         [few] секунды

@@ -16,7 +16,6 @@ materials-unit-slab = куски
 materials-unit-web = пряди
 # chunks of ore
 materials-unit-chunk = куски руды
-
 # bills of spesos... not very good but they are not (yet?) used for crafting anything
 # also the lathe/atm would need bigger denominations to output...
 materials-unit-bill = банкноты

@@ -1,4 +1,4 @@
-﻿accent-mobster-prefix-1 = Ньехх,
+accent-mobster-prefix-1 = Ньехх,
 accent-mobster-suffix-boss-1 = , видишь?
 accent-mobster-suffix-boss-2 = , дазабей.
 accent-mobster-suffix-boss-3 = , андестенд?

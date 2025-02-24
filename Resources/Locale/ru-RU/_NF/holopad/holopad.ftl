@@ -1,4 +1,4 @@
-﻿# Mapping prototypes
+# Mapping prototypes
 # General
 nf-holopad-general-laboratory = Лаборатория аномалий
 nf-holopad-general-bahama = Ресторан «Багама Мама»
@@ -16,4 +16,4 @@ nf-holopad-general-nfsd-sheriff-office = ДСБФ - Офис Шерифа
 nf-holopad-general-nfsd-reception = ДСБФ - Приёмная
 nf-holopad-general-nfsd-lobby = ДСБФ - Главные доки
 nf-holopad-general-edison-reception = Электростанция «Эдисон» - Приёмная
-nf-holopad-general-tinnia = Ресторан «Тинька»
+nf-holopad-general-tinnia = Ресторан «Триннька»

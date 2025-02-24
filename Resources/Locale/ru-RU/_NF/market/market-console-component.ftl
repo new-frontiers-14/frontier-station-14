@@ -1,4 +1,4 @@
-﻿# Market console computer
+# Market console computer
 market-console-menu-title = Терминал доступа к рынку
 market-item-title = Товар
 market-all = Всё

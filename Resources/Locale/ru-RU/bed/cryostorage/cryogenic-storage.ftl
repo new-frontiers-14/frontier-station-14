@@ -1,4 +1,3 @@
-﻿
 ### Announcement
 
 earlyleave-cryo-job-unknown = Должность неизвестна

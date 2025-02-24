@@ -1,3 +1,5 @@
+ent-PunkHoloGraffitiOverlay = { "" }
+    .desc = { "" }
 ent-SpawnerHoloGraffitiRandom = голограффити
     .suffix = Случайное
     .desc = { ent-MarkerBase.desc }

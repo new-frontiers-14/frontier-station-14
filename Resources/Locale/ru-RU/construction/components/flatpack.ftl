@@ -2,7 +2,6 @@ flatpack-unpack-no-room = Недостаточно места чтобы рас�
 flatpack-examine = Используйте [color=yellow]мультитул[/color] чтобы распаковать это.
 flatpack-entity-name = упакованный { $name }
 flatpack-entity-description = Упаковка, при помощи которой можно создать { $name }.
-
 flatpacker-item-slot-name = Слот машинной платы
 flatpacker-ui-title = Упаковщик 1001
 flatpacker-ui-materials-label = Материалы

@@ -1,6 +1,5 @@
 flavor-base-basic = базовый
 flavor-base-earthy = как земля
-
 flavor-complex-avocado = как авокадо
 flavor-complex-cucumber = хрестяще и освежающе
 flavor-complex-honeycomb = как восковой мёд

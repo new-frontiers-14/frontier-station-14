@@ -10,6 +10,9 @@ ent-AirlockMercenaryGlass = { ent-AirlockGlass }
 ent-AirlockNfsdGlass = { ent-AirlockGlass }
     .suffix = ДСБФ
     .desc = { ent-AirlockGlass.desc }
+ent-AirlockMedicalGlassLockedSecurity = { ent-AirlockMedicalGlass }
+    .suffix = Закрыт, Охрана
+    .desc = { ent-AirlockMedicalGlass.desc }
 ent-AirlockExternalGlassShuttleTransit = { ent-AirlockGlassShuttle }
     .suffix = Внешний, Транспортный, Стеклянный, Стыковочный
     .desc = { ent-AirlockGlassShuttle.desc }
@@ -19,6 +22,4 @@ ent-AirlockExternalGlassShuttleMcCargo = { ent-AirlockGlassShuttle }
 ent-AirlockExternalGlassNfsd = { ent-AirlockExternalGlass }
     .suffix = ДСБФ, Стеклянный
     .desc = { ent-AirlockExternalGlass.desc }
-ent-AirlockExternalGlassNfsdLocked = { ent-AirlockExternalGlass }
-    .suffix = ДСБФ, Стеклянный, Закрыт
-    .desc = { ent-AirlockExternalGlass.desc }
+

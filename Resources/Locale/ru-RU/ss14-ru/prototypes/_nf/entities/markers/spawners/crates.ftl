@@ -1,6 +1,6 @@
 ent-SpawnContrabandCrate = Спавнер контрабандного ящика
-    .suffix = DeadDrop
+    .suffix = Крушение
     .desc = { ent-MarkerBase.desc }
 ent-SpawnEventContrabandCrate = Спавнер контрабандного ящика
-    .suffix = Event
+    .suffix = Ивент
     .desc = { ent-MarkerBase.desc }

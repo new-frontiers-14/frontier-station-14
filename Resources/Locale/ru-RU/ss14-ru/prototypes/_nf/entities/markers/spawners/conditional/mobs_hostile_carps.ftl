@@ -1,0 +1,15 @@
+ent-SpawnMobCarpExpeditions = спавнер карпа
+    .suffix = ИИ, Враждебный
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobCarpMagicExpeditions = спавнер магического карпа
+    .suffix = ИИ, Враждебный
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobCarpHoloExpeditions = спавнер голокарпа
+    .suffix = ИИ, Враждебный
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobSharkExpeditions = спавнер магического карпа
+    .suffix = ИИ, Враждебный
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnMobSnakeExpeditions = спавнер змеи
+    .suffix = ИИ, Враждебный
+    .desc = { ent-MarkerBase.desc }

@@ -48,7 +48,6 @@ job-name-ertjanitor = уборщик ОБР
 job-name-boxer = боксёр
 job-name-zookeeper = зоотехник
 job-name-visitor = посетитель
-
 # unused jobs
 # these are required for the agent ID job icon tooltips
 # I am keeping them for roleplaying opportunities
@@ -59,12 +58,10 @@ job-name-syndicate = синдикат
 job-name-unknown = неизвестно
 job-name-virologist = вирусолог
 job-name-zombie = зомби
-
 # Job titles
 job-title-visitor = Посетитель
 job-title-cluwne = Клоун
 job-title-universal = Универсал
-
 # Role timers - Make these alphabetical or I cut you
 JobAtmosphericTechnician = атмосферный техник
 JobBartender = бармен
@@ -75,7 +72,7 @@ JobCaptain = капитан
 JobCargoTechnician = грузчик
 JobCentralCommandOfficial = представитель Центком
 JobChaplain = священник
-JobChef =  шеф-повар
+JobChef = шеф-повар
 JobChemist = химик
 JobChiefEngineer = старший инженер
 JobChiefMedicalOfficer = главный врач

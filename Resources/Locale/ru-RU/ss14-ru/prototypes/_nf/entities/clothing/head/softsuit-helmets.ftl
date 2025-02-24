@@ -1,3 +1,5 @@
+ent-ClothingHeadEVAHelmetWithLightBase = базовый шлем EVA с подсветкой
+    .desc = { ent-ClothingHeadEVAHelmetBase.desc }
 ent-ClothingHeadEVAHelmetHydro = шлем скафандра EVA ботаника
     .desc = { ent-ClothingHeadEVAHelmetBase.desc }
 ent-ClothingHeadEVAHelmetMailman = шлем скафандра EVA почтальона
@@ -44,3 +46,9 @@ ent-ClothingHeadEVAHelmetPrivateSec = шлем скафандра EVA телох
     .desc = { ent-ClothingHeadEVAHelmetBase.desc }
 ent-ClothingHeadEVAHelmetNfsd = шлем скафандра EVA ДСБФ
     .desc = { ent-ClothingHeadEVAHelmetBase.desc }
+ent-ClothingHeadEVAHelmetLvhi = шлем ЛХВИ EVA
+    .desc = { ent-ClothingHeadEVAHelmetWithLightBase.desc }
+ent-ClothingHeadEVAHelmetArcadia = шлем аркадия EVA
+    .desc = { ent-ClothingHeadEVAHelmetWithLightBase.desc }
+ent-ClothingHeadHelmetHardsuitFSB = пустотный шлем Фар Стар Биотеч
+    .desc = Легкий костюмный шлем, который не стесняет движений головы. Встроенный источник света!

@@ -25,3 +25,5 @@ ent-SpawnPointGhostDragon = { ent-BaseAntagSpawner }
 ent-SpawnPointGhostSpaceNinja = { ent-BaseAntagSpawner }
     .desc = { ent-BaseAntagSpawner.desc }
     .suffix = космический ниндзя
+ent-SpawnPointGhostDerelictCyborg = { ent-BaseAntagSpawner }
+    .desc = { ent-BaseAntagSpawner.desc }

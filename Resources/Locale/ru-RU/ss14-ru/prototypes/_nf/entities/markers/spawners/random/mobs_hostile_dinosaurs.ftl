@@ -1,9 +1,9 @@
 ent-SpawnMobDinosaurSmall = спавнер динозавра
-    .suffix = AI, Враждебный, Малый
+    .suffix = ИИ, Враждебный, Малый
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobDinosaurMedium = спавнер динозавра
-    .suffix = AI, Враждебный, Средний
+    .suffix = ИИ, Враждебный, Средний
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobDinosaurBig = спавнер динозавра
-    .suffix = AI, Враждебный, Большой
+    .suffix = ИИ, Враждебный, Большой
     .desc = { ent-MarkerBase.desc }

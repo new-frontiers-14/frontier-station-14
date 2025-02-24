@@ -20,5 +20,27 @@ ent-MobFleshLoverExpeditions = { ent-BaseMobFleshExpeditions }
     .desc = Ловер — это изящный, но смертельно опасный хищник. Его лёгкое тело позволяет ему скользить по воздуху, как плотоядный бабочка, готовая нанести свой смертельный удар.
 ent-MobHorrorExpeditions = ужас аномальной плоти
     .desc = Ужас — это вершина эволюции аномальной плоти, монстр с острыми, как бритва, костяными лезвиями, способный пробивать броню и разрывать плоть с пугающей лёгкостью. Это живое орудие, созданное для разрушения и хаоса.
+ent-BoneSpikeGun = костяной шип
+    .desc = Выстреливает коротким залпом костяных шипов.
+ent-ActionBoneSpike = [color=yellow]Костяной шип[/color]
+    .desc = Выстрелите коротким залпом костяных шипов, начиненных токсинами. [color=yellow]5-секундная перезарядка.[/color]
 ent-MobMawExpeditions = пасть аномальной плоти
     .desc = Неподвижные чудовища, готовые выпрыгнуть на жертву. Они вгрызаются в плоть, не отпуская, пока их не уничтожат. Эти пасти выглядят так, будто созданы из кошмаров безумного генетика. Не суйте пальцы, если только не хотите добавить немного острых ощущений в свою жизнь...
+ent-BaseMobFleshExpeditionsNewborn = новорожденная аберрантная плоть
+    .desc = С этого новорожденного монстра капает околоплодная жидкость, его движения вялые, но целенаправленные, а конечности, хоть и слабые, но все же смертоносные.
+ent-MobFleshJaredExpeditionsNewborn = { ent-BaseMobFleshExpeditionsNewborn }
+    .desc = { ent-BaseMobFleshExpeditionsNewborn.desc }
+ent-MobFleshJaredOldExpeditionsNewborn = { ent-BaseMobFleshExpeditionsNewborn }
+    .desc = { ent-BaseMobFleshExpeditionsNewborn.desc }
+ent-MobFleshGolemExpeditionsNewborn = { ent-BaseMobFleshExpeditionsNewborn }
+    .desc = { ent-BaseMobFleshExpeditionsNewborn.desc }
+ent-MobFleshGolemAltExpeditionsNewborn = { ent-BaseMobFleshExpeditionsNewborn }
+    .desc = { ent-BaseMobFleshExpeditionsNewborn.desc }
+ent-MobFleshGolemOldExpeditionsNewborn = { ent-BaseMobFleshExpeditionsNewborn }
+    .desc = { ent-BaseMobFleshExpeditionsNewborn.desc }
+ent-MobFleshClampExpeditionsNewborn = { ent-BaseMobFleshExpeditionsNewborn }
+    .desc = { ent-BaseMobFleshExpeditionsNewborn.desc }
+ent-MobFleshClampOldExpeditionsNewborn = { ent-BaseMobFleshExpeditionsNewborn }
+    .desc = { ent-BaseMobFleshExpeditionsNewborn.desc }
+ent-MobFleshLoverExpeditionsNewborn = { ent-BaseMobFleshExpeditionsNewborn }
+    .desc = { ent-BaseMobFleshExpeditionsNewborn.desc }

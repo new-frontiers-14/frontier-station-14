@@ -9,3 +9,5 @@ ent-SoapConjuredBloodCultCluster = мыло
     .desc = { ent-Soap.desc }
 ent-ShellSoapConjuredBloodCultCluster = { ent-SoapConjured }
     .desc = { ent-SoapConjured.desc }
+ent-SoapletBloodCultSpread = { ent-SoapletBloodCult }
+    .desc = { ent-SoapletBloodCult.desc }

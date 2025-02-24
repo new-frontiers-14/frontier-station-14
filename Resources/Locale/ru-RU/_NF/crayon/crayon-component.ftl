@@ -1,1 +1,1 @@
-crayon-drawing-label-unlimited = Чертеж: [color={$color}]{$state}[/color]
+crayon-drawing-label-unlimited = Чертеж: [color={ $color }]{ $state }[/color]

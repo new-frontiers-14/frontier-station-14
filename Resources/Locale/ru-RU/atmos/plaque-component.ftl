@@ -3,7 +3,6 @@ atmos-plaque-component-desc-fea = Эта табличка установлена
 atmos-plaque-component-desc-linda = Эта табличка установлена в память о падении подразделения «Атмос ЛИНДА». В память о всех обугленных, одурманенных и хрупких людях, погибших в его руках.
 atmos-plaque-component-desc-zas = Эта табличка установлена в память о падении подразделения «Атмос ЗАС». В память о всех обугленных, одурманенных и хрупких людях, погибших в его руках.
 atmos-plaque-component-desc-unset = Uhm
-
 atmos-plaque-component-name-zum = Табличка ZUM Atmospherics Division
 atmos-plaque-component-name-fea = Табличка FEA Atmospherics Division
 atmos-plaque-component-name-linda = Табличка LINDA Atmospherics Division

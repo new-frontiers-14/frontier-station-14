@@ -3,3 +3,6 @@ ent-ShipyardRCD = корабельный РСУ
 ent-ShipyardRCDEmpty = { ent-ShipyardRCD }
     .suffix = Пустой
     .desc = { ent-ShipyardRCD.desc }
+ent-ShipyardRCDAmmo = картридж корабельного РСУ
+    .desc = Картридж припасов для корабельного РСУ
+

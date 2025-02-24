@@ -2,22 +2,22 @@
 bounty-contracts-author = { $name } ({ $job })
 bounty-contracts-unknown-author-name = Неизвестно
 bounty-contracts-unknown-author-job = Неизвестно
-
 # Caregories
 bounty-contracts-category-criminal = Разыскивается
 bounty-contracts-category-vacancy = Вакансия
 bounty-contracts-category-construction = Постройка
 bounty-contracts-category-service = Услуга
 bounty-contracts-category-other = Другое
-
 # Cartridge
 bounty-contracts-program-name = Контракты
 
 ## Radio Announcements
+
 bounty-contracts-radio-name = Контракт!
 bounty-contracts-radio-create = Назначена награда за "{ $target }". Вознаграждение: { $reward }$.
 
 ## UI - List contracts
+
 bounty-contracts-ui-list-no-contracts = Контракты пока не объявлены...
 bounty-contracts-ui-list-no-description = Дополнительного описания не предоставлено...
 bounty-contracts-ui-list-create = Новый Контракт
@@ -28,6 +28,7 @@ bounty-contracts-ui-list-author = Опубликовано: { $author }
 bounty-contracts-ui-list-remove = Удалено
 
 ## UI - Create contract
+
 bounty-contracts-ui-create-category = Категория:{ " " }
 bounty-contracts-ui-create-name = Имя:{ " " }
 bounty-contracts-ui-create-custom = Настроить

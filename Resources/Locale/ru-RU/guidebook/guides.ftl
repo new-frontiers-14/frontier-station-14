@@ -51,7 +51,6 @@ guide-entry-technologies = Технологии
 guide-entry-anomalous-research = Исследование аномалий
 guide-entry-command = Командование
 guide-entry-service = Сервис
-
 guide-entry-newplayer = Новичок? Вам сюда!
 guide-entry-charactercreation = Создание персонажа
 guide-entry-scanners-and-vessels = Сканеры и сосуды
@@ -69,8 +68,8 @@ guide-entry-security = ДСБФ
 guide-entry-forensics = Криминалистика
 guide-entry-defusal = Обезвреживание крупной бомбы
 guide-entry-criminal-records = Криминальные записи
+guide-entry-special = Special
 guide-entry-species = Расы
-
 guide-entry-antagonists = Антагонисты
 guide-entry-nuclear-operatives = Ядерные оперативники
 guide-entry-traitors = Предатели
@@ -79,7 +78,6 @@ guide-entry-revolutionaries = Революционеры
 guide-entry-minor-antagonists = Малые антагонисты
 guide-entry-space-ninja = Космический ниндзя
 guide-entry-thieves = Воры
-
 guide-entry-rules = Правила сервера
 guide-entry-rules-core-only = Core Only Ruleset
 guide-entry-rules-lrp = Standard Ruleset
@@ -129,6 +127,8 @@ guide-entry-rules-s7 = S7
 guide-entry-rules-s8 = S8
 guide-entry-rules-s9 = S9
 guide-entry-rules-s10 = S10
+guide-entry-rules-mrp-m0 = MRP Rules
+guide-entry-rules-m1 = M1
 guide-entry-rules-space-law = Space Law
 guide-entry-rules-sl-crime-list = Crime List
 guide-entry-rules-sl-controlled-substances = Controlled Substances
@@ -136,6 +136,5 @@ guide-entry-rules-sl-restricted-gear = Restricted Gear
 guide-entry-rules-sl-restricted-weapons = Restricted Weapons
 guide-entry-rules-ban-types = Ban Types
 guide-entry-rules-ban-durations = Ban Durations
-
 guide-entry-writing = Разметка письма
 guide-entry-glossary = Словарь терминов

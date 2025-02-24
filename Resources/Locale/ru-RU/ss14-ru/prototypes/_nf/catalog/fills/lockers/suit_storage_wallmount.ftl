@@ -82,6 +82,7 @@ ent-SuitStorageWallmountSyndie = { ent-SuitStorageSyndie }
 ent-SuitStorageWallmountPirateCap = { ent-SuitStoragePirateCap }
     .desc = { ent-SuitStoragePirateCap.desc }
     .suffix = Пиратский капитан
+
 ent-SuitStorageWallmountWizard = { ent-SuitStorageWizard }
     .suffix = Волшебник
     .desc = { ent-SuitStorageWizard.desc }

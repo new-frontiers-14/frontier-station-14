@@ -81,7 +81,6 @@ food-sequence-content-anomaly-berry = аномальной ягодой
 # BURGERS
 
 food-sequence-burger-gen = { $content }бургер
-
 food-sequence-burger-content-raw-meat = сыро
 food-sequence-burger-content-meat = мясо
 food-sequence-burger-content-carp = карпо

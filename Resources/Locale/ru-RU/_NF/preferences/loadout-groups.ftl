@@ -17,5 +17,6 @@ loadout-group-contractor-fun = приколы
 loadout-group-contractor-trinkets = безделушки
 loadout-group-contractor-survival-box = наборы выживания
 loadout-group-contractor-encryption-key = ключи шифрования
+loadout-group-contractor-cartridge = PDA cartridges
 loadout-group-contractor-implanter = импланты
 loadout-group-contractor-bureaucracy = бюрократия

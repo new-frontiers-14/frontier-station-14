@@ -1,0 +1,22 @@
+
+ent-SpawnRandomHumanoidCorpseMedicalBountyService = { "" }
+    .suffix = Сервис
+    .desc = { "" }
+ent-SpawnRandomHumanoidCorpseMedicalBountyEngineering = { "" }
+    .suffix = Инженерный
+    .desc = { "" }
+ent-SpawnRandomHumanoidCorpseMedicalBountyCargo = { "" }
+    .suffix = Снабжение
+    .desc = { "" }
+ent-SpawnRandomHumanoidCorpseMedicalBountyMedical = { "" }
+    .suffix = Медицинский
+    .desc = { "" }
+ent-SpawnRandomHumanoidCorpseMedicalBountyScience = { "" }
+    .suffix = Научный
+    .desc = { "" }
+ent-SpawnRandomHumanoidCorpseMedicalBountySecurity = { "" }
+    .suffix = Безопасность
+    .desc = { "" }
+ent-SpawnRandomHumanoidCorpseMedicalBountyCommand = { "" }
+    .suffix = Командование
+    .desc = { "" }

@@ -1,4 +1,4 @@
-﻿reagent-effect-status-effect-Stun = оглушение
+reagent-effect-status-effect-Stun = оглушение
 reagent-effect-status-effect-KnockedDown = нокдаун
 reagent-effect-status-effect-Jitter = дрожь
 reagent-effect-status-effect-TemporaryBlindness = слепота

@@ -34,10 +34,16 @@ ent-BlueprintLithographMachineCircuitboard = литографическая ма
     .desc = Печатная плата машинного типа для литографии.
 ent-KitchenAssemblerMachineCircuitboard = Фуд-О-Мат (машинная плата)
     .desc = Машинная печатная плата Фуд-О-Мат, подходящего для кухни.
+ent-SyndicateElectricRangeMachineCircuitboard = электроплита "donk co." (машинная плата)
+    .desc = Печатная плата машинного типа для электроплиты "donk co.".
 ent-MedicalAssemblerMachineCircuitboard = Мед-О-Мат (машинная плата)
     .desc = Печатная плата машинного типа для Мед-О-Мат`а.
 ent-ElectricRangeMachineCircuitboard = электроплита (машинная плата)
     .desc = Печатная плата машинного типа для электроплиты.
 
+ent-CondimentDispenserCircuitboard = раздатчик соусов (машинная плата)
+    .desc = Печатная плата машинного типа для раздатчика соусов.
+ent-MiniStationAnchorCircuitboard = мини станционный якорь (машинная плата)
+    .desc = { ent-StationAnchorCircuitboard.desc }
 ent-NFScrapProcessorCircuitboard = переработчик лома (машинная плата)
-    .desc =  Печатная плата переработчика лома.
+    .desc = Печатная плата переработчика лома.

@@ -1,4 +1,5 @@
 ent-BasePacifiedZone = Мирная зона
+    .desc = { ent-MarkerBase.desc }
 ent-PacifiedZone10 = Мирная зона
     .suffix = Радиус 10
     .desc = В данной зоне всем игрокам присваивается пацифизм.

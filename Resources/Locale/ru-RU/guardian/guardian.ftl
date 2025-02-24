@@ -18,6 +18,7 @@ guardian-entity-recall = Страж исчезает в воздухе!
 guardian-entity-taking-damage = Ваш страж получает урон!
 
 ## Health warnings
+
 guardian-host-critical-warn = ВАШ ХОЗЯИН РАНЕН!
 guardian-host-death-warn = ВЫ ПЕРЕСТАЁТЕ СУЩЕСТВОВАТЬ
 guardian-death-warn = ВАШЕ ТЕЛО ПРОНЗАЕТ СУБАТОМНАЯ БОЛЬ, КОГДА ОНО РАСПАДАЕТСЯ!

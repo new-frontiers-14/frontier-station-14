@@ -1,5 +1,5 @@
 station-event-ion-storm-start-announcement = Вблизи станции обнаружен ионный шторм. Пожалуйста, проверьте всё оборудование, управляемое ИИ, на наличие ошибок.
-ion-storm-law-scrambled-number = [font="Monospace"][scramble rate=250 length={ $length } chars="@@###$$&%!01"/][/font]
+ion-storm-law-scrambled-number =  [font="Monospace"][scramble rate=250 length={ $length } chars="@@###$$&%!01"/][/font]
 ion-storm-you = ВЫ
 # Frontier: the station < the sector
 ion-storm-the-station = СЕКТОР
@@ -16,7 +16,7 @@ ion-storm-x-and-y = { $x } И { $y }
 # subjects can generally be threats or jobs or objects
 # thing is specified above it
 # Frontier: "on the station" < "in the sector"
-ion-storm-law-on-station = ОБНАРУЖЕНЫ {$joined} {$subjects} В СЕКТОРЕ
+ion-storm-law-on-station = ОБНАРУЖЕНЫ { $joined } { $subjects } В СЕКТОРЕ
 ion-storm-law-no-shuttle = ШАТТЛ НЕ МОЖЕТ БЫТЬ ВЫЗВАН ПО ПРИЧИНЕ ПРИСУТСТВИЯ { $joined } { $subjects } НА СТАНЦИИ
 ion-storm-law-crew-are = ВСЕ { $who } ТЕПЕРЬ { $joined } { $subjects }
 ion-storm-law-subjects-harmful = { $adjective } { $subjects } ПРИЧИНЯЮТ ВРЕД ЗДОРОВЬЮ ЭКИПАЖА
@@ -73,6 +73,7 @@ ion-storm-part =
 ion-storm-law-crew-only-1 = ТОЛЬКО { $who } { $part } ЧЛЕНАМИ ЭКИПАЖА
 ion-storm-law-crew-only-2 = ТОЛЬКО { $who } И { $other } { $part } ЧЛЕНАМИ ЭКИПАЖА
 ion-storm-law-crew-only-subjects = ТОЛЬКО { $adjective } { $subjects } { $part } ЧЛЕНАМИ ЭКИПАЖА
+ion-storm-law-crew-only-species = ТОЛЬКО { $species } { $part } ЧЛЕНАМИ ЭКИПАЖА
 ion-storm-law-crew-must-do = ТОЛЬКО ТЕ, КТО { $must } { $part } ЧЛЕНАМИ ЭКИПАЖА
 ion-storm-law-crew-must-have = ТОЛЬКО ТЕ, У КОГО { $adjective } { $objects } { $part } ЧЛЕНАМИ ЭКИПАЖА
 ion-storm-law-crew-must-eat = ТОЛЬКО ТЕ, КТО ЕДЯТ { $adjective } { $food } { $part } ЧЛЕНАМИ ЭКИПАЖА

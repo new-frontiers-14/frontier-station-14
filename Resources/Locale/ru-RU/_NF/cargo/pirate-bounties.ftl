@@ -33,5 +33,4 @@ pirate-bounty-item-hydrotray = Лоток для растений
 pirate-bounty-item-hypo = Гипоспрей
 pirate-bounty-item-akms = АКМС
 pirate-bounty-item-enforcer = Энфорсер
-
 pirate-bounty-description-generic = Go now, ye goon! Plunder me this!

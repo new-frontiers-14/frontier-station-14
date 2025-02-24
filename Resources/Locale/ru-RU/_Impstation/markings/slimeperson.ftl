@@ -1,47 +1,32 @@
 marking-SlimeNose-nose = Нос (В профиль)
 marking-SlimeNose = Нос (В профиль)
-
 marking-SlimeMouth-mouth = Рот
 marking-SlimeMouth = Рот
-
 marking-SlimeBrain-brain = Мозг
 marking-SlimeBrain = Мозг
-
 marking-SlimeEyeglow-eyeglow = Свечение глаз
 marking-SlimeEyeglow = Свечение глаз
-
 marking-SlimeCore-core = Сердце
 marking-SlimeCore = Сердце
-
 marking-SlimeLungs-lungs = Легкие
 marking-SlimeLungs = Легкие
-
 marking-SlimeBonehead-bonehead = Парящий череп
 marking-SlimeBonehead = Парящий череп
-
 marking-SlimeBonechest-bonechest = Парящая грудь
 marking-SlimeBonechest = Парящая грудь
-
 marking-SlimeBonearmleft-bonearmleft = Парящие кости (Левая рука)
 marking-SlimeBonearmleft = Парящие кости (Левая рука)
-
 marking-SlimeBonearmright-bonearmright = Парящие кости (Правая рука)
 marking-SlimeBonearmright = Парящие кости (Правая рука)
-
 marking-SlimeBonefootleft-bonefootleft = Парящие кости (Левая стопа)
 marking-SlimeBonefootleft = Парящие кости (Левая стопа)
-
 marking-SlimeBonefootright-bonefootright = Парящие кости (Правая стопа)
 marking-SlimeBonefootright = Парящие кости (Правая стопа)
-
 marking-SlimeBonehandleft-bonehandleft = Парящие кости (Левая ладонь)
 marking-SlimeBonehandleft = Парящие кости (Левая ладонь)
-
 marking-SlimeBonehandright-bonehandright = Парящие кости (Правая ладонь)
 marking-SlimeBonehandright = Парящие кости (Правая ладонь)
-
 marking-SlimeBonelegleft-bonelegleft = Парящие кости (Левая нога)
 marking-SlimeBonelegleft = Парящие кости (Левая нога)
-
 marking-SlimeBonelegright-bonelegright = Парящие кости (Правая нога)
 marking-SlimeBonelegright = Парящие кости (Правая нога)

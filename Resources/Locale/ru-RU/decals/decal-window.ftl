@@ -1,4 +1,4 @@
-﻿decal-placer-window-title = Установщик декалей
+decal-placer-window-title = Установщик декалей
 decal-placer-window-use-color = Свой цвет
 decal-placer-window-rotation = Поворот
 decal-placer-window-zindex = С глубиной

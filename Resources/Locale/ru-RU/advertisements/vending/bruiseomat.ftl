@@ -1,4 +1,4 @@
-﻿advertisement-bruiseomat-1 = Я ГОЛОСУЮ ЗА ОБЪЯВЛЕНИЕ ВОЙНЫ!!!
+advertisement-bruiseomat-1 = Я ГОЛОСУЮ ЗА ОБЪЯВЛЕНИЕ ВОЙНЫ!!!
 advertisement-bruiseomat-2 = Есть у кого ТК?
 advertisement-bruiseomat-3 = Кто-нибудь купил ЕМАГ?
 advertisement-bruiseomat-4 = Я хочу вернуться на свою родную станцию....

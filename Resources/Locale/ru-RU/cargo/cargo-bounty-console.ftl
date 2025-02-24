@@ -1,4 +1,4 @@
-﻿bounty-console-menu-title = Консоль запросов
+bounty-console-menu-title = Консоль запросов
 bounty-console-label-button-text = Распечатать этикетку
 bounty-console-skip-button-text = Пропустить
 bounty-console-time-label = Время: [color=orange]{ $time }[/color]
@@ -12,9 +12,7 @@ bounty-console-manifest-entry =
 bounty-console-manifest-reward = Награда: ${ $reward }
 bounty-console-description-label = [color=gray]{ $description }[/color]
 bounty-console-id-label = ID#{ $id }
-
 bounty-console-flavor-left = Запросы, полученные от местных недобросовестных торговцев.
 bounty-console-flavor-right = v1.4
-
 bounty-manifest-header = [font size=14][bold]Официальный манифест запроса[/bold] (ID#{ $id })[/font]
 bounty-manifest-list-start = Манифест:

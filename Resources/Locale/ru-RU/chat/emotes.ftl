@@ -31,7 +31,6 @@ chat-emote-name-monkeyscreeches = Обезьяньи крики
 chat-emote-name-robotbeep = Робот
 chat-emote-name-yawn = Зевать
 chat-emote-name-snore = Храпеть
-
 # Сообщение
 chat-emote-msg-scream = кричит!
 chat-emote-msg-laugh = смеётся
@@ -42,7 +41,7 @@ chat-emote-msg-crying = плачет
 chat-emote-msg-squish = хлюпает
 chat-emote-msg-chitter = щебечет
 chat-emote-msg-squeak = пищит
-chat-emote-msg-thump = ударяет {POSS-ADJ($entity)} хвостом.
+chat-emote-msg-thump = ударяет { POSS-ADJ($entity) } хвостом.
 chat-emote-msg-click = клацает
 chat-emote-msg-clap = хлопает!
 chat-emote-msg-snap = щёлкает пальцами

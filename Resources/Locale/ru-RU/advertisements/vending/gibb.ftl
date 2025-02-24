@@ -1,4 +1,4 @@
-﻿advertisement-gibb-1 = Вкуснятина!
+advertisement-gibb-1 = Вкуснятина!
 advertisement-gibb-2 = Рекомендовано как минимум одним врачом!
 advertisement-gibb-3 = Продано более 1 миллиона напитков!
 advertisement-gibb-4 = Доктор Гибб, что самое худшее может случиться?

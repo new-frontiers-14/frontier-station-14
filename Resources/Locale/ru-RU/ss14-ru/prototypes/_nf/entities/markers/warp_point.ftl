@@ -1,3 +1,9 @@
+ent-WarpPointAdmin = { ent-WarpPoint }
+    .suffix = Только для админов, НЕ МАППИТЬ
+    .desc = { ent-WarpPoint.desc }
+ent-WarpPointDungeon = { ent-WarpPoint }
+    .suffix = Экспедиция
+    .desc = { ent-WarpPoint.desc }
 ent-WarpPointShip = { ent-WarpPoint }
     .suffix = Шаттл
     .desc = { ent-WarpPoint.desc }

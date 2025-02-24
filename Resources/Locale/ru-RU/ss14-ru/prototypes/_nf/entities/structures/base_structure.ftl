@@ -1,5 +1,11 @@
 ent-BaseStructureDisableToolUse = { "" }
     .desc = { "" }
+ent-BaseStructureDisableAnchoring = { "" }
+    .desc = { "" }
+ent-BaseStructureDisablePrying = { "" }
+    .desc = { "" }
+ent-BaseStructureDisableScrewing = { "" }
+    .desc = { "" }
 ent-BaseStructureUnanchorable = { "" }
     .desc = { "" }
 ent-BaseStructureDestructible = { "" }

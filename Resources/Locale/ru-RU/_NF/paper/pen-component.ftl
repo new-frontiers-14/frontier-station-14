@@ -4,6 +4,7 @@ pen-mode-write = Письмо
 pen-mode-sign = Подпись
 
 ## Popups
+
 pen-mode-state = Ручка в режиме { $mode }
 
 ## Examine

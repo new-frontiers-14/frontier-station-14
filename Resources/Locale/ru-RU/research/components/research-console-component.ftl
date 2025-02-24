@@ -16,6 +16,5 @@ research-console-menu-server-selection-button = Список серверов
 research-console-menu-server-sync-button = Синхронизировать
 research-console-prereqs-list-start = Требует:
 research-console-prereqs-list-entry = - [color=orchid]{ $text }[/color]
-
 research-console-no-access-popup = Нет доступа!
 research-console-unlock-technology-radio-broadcast = Пользователь [bold]{ $approver }[/bold] исследовал [bold]{ $technology }[/bold], за [bold]{ $amount }[/bold] очков исследований.

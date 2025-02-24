@@ -1,3 +1,9 @@
+ent-BaseCrowbar = монтировка
+    .desc = { ent-BaseItem.desc }
+ent-Crowbar = { ent-BaseCrowbar }
+    .desc = Многофункциональный инструмент для открывания дверей и борьбы с межпространственными захватчиками.
+ent-CrowbarRed = аварийная монтировка
+    .desc = Аварийный лом, предназначенный для открывания дверей и замков во время отключения электричества.
 ent-CrowbarGreen = зелёная монтировка
     .desc = { ent-BaseCrowbar.desc }
 ent-CrowbarYellow = жёлтая монтировка

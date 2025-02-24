@@ -10,7 +10,6 @@ advertisement-fuelvend-9 = Нужна энергия? Времени в обре
 advertisement-fuelvend-10 = Местное топливо? Ха, шутник! Заправляйся у нас.
 advertisement-fuelvend-11 = Генератор заглох? Срочно заправь его!
 advertisement-fuelvend-12 = Закончилась антиматерия? О, беда...
-
 goodbye-fuelvend-1 = Ещё один "счастливый" клиент.
 goodbye-fuelvend-2 = Вернёшься, никуда не денешься.
 goodbye-fuelvend-3 = Давай, катись отсюда, не трать моё время.

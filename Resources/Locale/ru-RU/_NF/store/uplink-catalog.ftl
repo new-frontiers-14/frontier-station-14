@@ -2,15 +2,12 @@ uplink-emp-grenade-launcher-bundle-name = Набор ЭМИ "Чайна-Лэйк
 uplink-emp-grenade-launcher-bundle-desc = Старый гранатомет "Чайна-Лэйк" в комплекте с 8 ЭМИ зарядами.
 uplink-spaceblade-syndicate-name = Набор "СпейсБлейд"
 uplink-spaceblade-syndicate-desc = Сделано из настоящего металла!
-
 store-category-sechardsuits = EVA-скафандры
 store-category-secweapons = Оружие
 store-category-secutility = Утилиты
 store-category-secammo = Боеприпасы
 store-category-secexplosives = Взрывчатка
 store-category-secbundles = Наборы
-
-
 uplink-security-hardsuit-name = Бронескафандр ДСБФ
 uplink-security-hardsuit-desc = Старый добрый скафандр, который уже лет двадцать носят офицеры ДСБФ. Тяжёлый, но надёжный.
 uplink-security-hardsuit-patrol-name = Патрульный скафандр ДСБФ
@@ -159,13 +156,13 @@ uplink-security-trackingdart-ammo-name = Набор отслеживающих �
 uplink-security-trackingdart-ammo-desc = Ящик, содержащий 4 отслеживающих дротика.
 uplink-security-spaceblade-sec-name = Вихревой диск ДСБФ
 uplink-security-spaceblade-sec-desc = Экзотическое оглушающее оружие ДСБФ.
-
+uplink-security-contraband-forensics-module-name = Модуль оценки контрабанды
+uplink-security-contraband-forensics-module-desc = Программа для сканирования и составления отчетов по контрабандным трупам и капсулам для наград. Вставляется в криминалистический сканер.
 store-category-piratehardsuits = EVA-cкафандры
 store-category-pirateweapons = Оружие
 store-category-pirateutility = Утилиты
 store-category-pirateammo = Боеприпасы
 store-category-pirateexplosives = Взрывчатка
-
 uplink-pirate-hardsuit-name = Пиратский скафандр
 uplink-pirate-hardsuit-desc = Тяжёлый космический костюм, обеспечивающий базовую защиту от холодных и суровых реалий глубокого космоса. Идеальный выбор для начинающего космического пирата, желающего покорить бескрайние просторы вселенной.
 uplink-pirate-hardsuit-captain-name = Скафандр пиратского капитана

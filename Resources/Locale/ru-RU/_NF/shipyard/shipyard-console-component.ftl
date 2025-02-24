@@ -1,9 +1,10 @@
 ## UI
+
 shipyard-console-invalid-vessel = Не удалось приобрести шаттл:
 shipyard-console-menu-title = Меню Верфи
 shipyard-console-menu-listing-free = Бесплатно
-shipyard-console-docking = {$owner} ваш корабль - {$vessel} прибыл.
-shipyard-console-leaving = Корабль {$vessel} капитана {$owner} был продан {$player}.
+shipyard-console-docking = { $owner } ваш корабль - { $vessel } прибыл.
+shipyard-console-leaving = Корабль { $vessel } капитана { $owner } был продан { $player }.
 shipyard-console-docking-secret = Обнаружен вражеский корабль, заходящий сектор.
 shipyard-console-leaving-secret = Обнаружен вражеский шаттл, покидающий сектор.
 shipyard-commands-purchase-desc = Доставляет шаттл к стыковочным докам станции.
@@ -22,25 +23,20 @@ shipyard-console-deed-label = Зарегистрированный шаттл:
 shipyard-console-appraisal-label = Оценочная стоимость шаттла:{ " " }
 shipyard-console-no-voucher-redemptions = Все ваучеры использованы.
 shipyard-console-invalid-voucher-type = Этот ваучер нельзя использовать в этой консоли.
-
 shipyard-console-contraband-onboard = На борту корабля обнаружена контрабанда.
 shipyard-console-station-resources = На бору корабля обнаружены особо ценные предметы станции
 shipyard-console-dangerous-materials = На борту корабля обнаружены опасные материалы.
-
-shipyard-console-menu-size-label = Размер:{" "}
-shipyard-console-menu-class-label = Тип:{" "}
-shipyard-console-menu-engine-label = Топливо:{" "}
-
+shipyard-console-menu-size-label = Размер:{ " " }
+shipyard-console-menu-class-label = Тип:{ " " }
+shipyard-console-menu-engine-label = Топливо:{ " " }
 shipyard-console-purchase-available = Купить
 shipyard-console-guidebook = Руководство
-
 # Keep these in enum order for ease of validation.
 shipyard-console-category-All = Все
 shipyard-console-category-Micro = Миниатюрные
 shipyard-console-category-Small = Маленькие
 shipyard-console-category-Medium = Средние
 shipyard-console-category-Large = Большие
-
 shipyard-console-class-All = All
 shipyard-console-class-Expedition = Экспедиционные
 shipyard-console-class-Scrapyard = Заброшенные
@@ -64,7 +60,6 @@ shipyard-console-class-Detective = Детектив
 shipyard-console-class-Fighter = Истребитель
 shipyard-console-class-Patrol = Патрулирование
 shipyard-console-class-Pursuit = Преследование
-
 shipyard-console-engine-All = Все
 shipyard-console-engine-AME = ДАМ
 shipyard-console-engine-TEG = ТЭГ

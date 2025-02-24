@@ -1,4 +1,4 @@
-﻿norepinephricacid-effect-eyelids = Ваши веки быстро дёргаются.
+norepinephricacid-effect-eyelids = Ваши веки быстро дёргаются.
 norepinephricacid-effect-eyes-itch = Ваши глаза зудят.
 norepinephricacid-effect-vision-fade = Вы чувствуете, как ваше зрение ухудшается.
 norepinephricacid-effect-vision-fail = Вы чувствуете, как ваше зрение подводит вас.

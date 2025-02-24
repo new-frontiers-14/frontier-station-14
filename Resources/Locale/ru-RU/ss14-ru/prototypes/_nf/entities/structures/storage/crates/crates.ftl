@@ -2,6 +2,10 @@ ent-CratePlasticBiodegradable = биоразлагаемый пластиков�
     .desc = { ent-CrateBaseWeldable.desc }
 ent-CrateUranium = ящик урана
     .desc = { ent-CrateBaseSecure.desc }
+ent-CrateTradeSecureNormal = ящик с товарами
+    .desc = Содержит товары, произведенные в секторах Фронтира, готовые к продаже на грузовом складе по высокой цене. ЯЩИК ДОЛЖЕН БЫТЬ ЦЕЛ.
+ent-CrateTradeSecureHigh = ящик с ценными товарами (экспресс)
+    .desc = Содержит ценные товары, произведенные в секторах Фронтира, готовые к эспресс продаже на грузовом складе по высокой цене. ЯЩИК ДОЛЖЕН БЫТЬ ЦЕЛ.
 ent-CrateTradeBaseSecureNormal = стальной торговый ящик
     .desc = { ent-CrateTradeBaseSecure.desc }
 ent-CrateTradeBaseSecureHigh = стальной торговый ящик повышенной ценности
@@ -48,5 +52,3 @@ ent-CrateTradeContrabandSecure4 = Ящик с контрабандой Donk Co.
     .desc = { ent-CrateTradeBaseSecureContraband.desc }
 ent-CrateTradeContrabandSecure5 = { ent-CrateTradeBaseSecureContraband }
     .desc = { ent-CrateTradeBaseSecureContraband.desc }
-
-

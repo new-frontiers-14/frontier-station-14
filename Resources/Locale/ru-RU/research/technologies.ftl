@@ -3,7 +3,6 @@ research-discipline-industrial = Промышленность
 research-discipline-arsenal = Арсенал
 research-discipline-experimental = Экспериментальное
 research-discipline-civilian-services = Обслуживание персонала
-
 research-technology-fulton = Фултоны
 research-technology-salvage-equipment = Снаряжение для утилизации
 research-technology-advanced-powercells = Продвинутые батареи
@@ -21,7 +20,6 @@ research-technology-bluespace-storage = Блюспейс-хранилище
 research-technology-portable-fission = Портативный распад
 research-technology-space-scanning = Сканирование космоса
 research-technology-excavation = Массовые раскопки
-
 research-technology-biochemical-stasis = Биохимический стазис
 research-technology-mechanized-treatment = Механизированная подготовка
 research-technology-bluespace-chemistry = Блюспейс-химия
@@ -37,7 +35,6 @@ research-technology-concentrated-laser-weaponry = Концентрированн
 research-technology-wave-particle-harnessing = Применение волновых частиц
 research-technology-advanced-riot-control = Продвинутое противодействие беспорядкам
 research-technology-portable-microfusion-weaponry = Оруженый портативный микросинтез
-
 research-technology-experimental-battery-ammo = Экспериментальные батарейные боеприпасы
 research-technology-basic-shuttle-armament = Базовое корабельное вооружение
 research-technology-advanced-shuttle-weapon = Продвинутое корабельное оружие
@@ -52,7 +49,6 @@ research-technology-abnormal-artifact-manipulation = Переработка ар
 research-technology-gravity-manipulation = Манипулирование гравитацией
 research-technology-quantum-leaping = Квантовые скачки
 research-technology-advanced-anomaly-research = Продвинутое изучение аномалий
-
 research-technology-rped = Быстрая замена компонентов
 research-technology-super-parts = Суперкомпоненты
 research-technology-deterrence = Технология сдерживания

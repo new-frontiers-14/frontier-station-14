@@ -1,1 +1,1 @@
-gas-fallback = Газ #{number}
+gas-fallback = Газ #{ number }

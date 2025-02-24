@@ -1,6 +1,7 @@
-﻿## Actions Commands loc
+## Actions Commands loc
 
 ## Upgradeaction command loc
+
 upgradeaction-command-need-one-argument = upgradeaction нуждается как минимум в одном аргументе - uid субъекта действия. Вторым необязательным аргументом является указанный уровень.
 upgradeaction-command-max-two-arguments = upgradeaction имеет максимум два аргумента: uid объекта действия и (необязательно) устанавливаемый уровень.
 upgradeaction-command-second-argument-not-number = Второй аргумент upgradeaction может быть только числом.

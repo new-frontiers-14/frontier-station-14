@@ -127,3 +127,4 @@ ent-ClothingUniformJumpsuitMilitaryTurtleneckBlueMercenaryMedic = Синий к�
 ent-ClothingUniformJumpsuitMilitaryTurtleneckBlueMercenaryCaptain = Синий комбинезон наёмника-капитана
     .suffix = Военный, Blue
     .desc = { ent-ClothingUniformJumpsuitMercenary.desc }
+

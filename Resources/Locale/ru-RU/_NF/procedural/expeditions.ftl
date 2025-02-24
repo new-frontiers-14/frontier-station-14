@@ -1,24 +1,19 @@
 salvage-expedition-window-finish = Завершить экспедицию
-salvage-expedition-announcement-early-finish = Экспедиция была окончена. Шаттл покинет планету через {$departTime} секунд.
+salvage-expedition-announcement-early-finish = Экспедиция была окончена. Шаттл покинет планету через { $departTime } секунд.
 salvage-expedition-shuttle-not-found = Не обнаружен шаттл.
-salvage-expedition-not-everyone-aboard = Не вся команда на шаттле! {CAPITALIZE(THE($target))} всё еще отсутствует!
-
+salvage-expedition-not-everyone-aboard = Не вся команда на шаттле! { CAPITALIZE(THE($target)) } всё еще отсутствует!
 # Salvage mods
 salvage-time-mod-standard-time = Нормальная продолжительность
 salvage-time-mod-rush = Уменьшенная продолжительность
-
 salvage-weather-mod-heavy-snowfall = Сильный снегопад
 salvage-weather-mod-rain = Дождь
-
 salvage-biome-mod-shadow = Теневой лес
-
 salvage-dungeon-mod-cave-factory = Пещерная фабрика
 salvage-dungeon-mod-med-sci = Научно-медицинская база
 salvage-dungeon-mod-factory-dorms = Заводские общежития
 salvage-dungeon-mod-lava-mercenary = База наемников над лавой
 salvage-dungeon-mod-virology-lab = Вирусологическая лаборатория
 salvage-dungeon-mod-salvage-outpost = Шахтерский форпост
-
 salvage-air-mod-1 = 82 Азот, 21 Кислород
 salvage-air-mod-2 = 72 Азот, 21 Кислород, 10 Оксид азота
 salvage-air-mod-3 = 72 Азот, 21 Кислород, 10 Водяной пар

@@ -1,3 +1,5 @@
+ent-BaseGeneratorShuttle = { "" }
+    .desc = { "" }
 ent-PortableGeneratorPacmanShuttle = { ent-PortableGeneratorPacman }
     .suffix = Плазма, 15 кВ, Шаттл
     .desc = { ent-PortableGeneratorPacman.desc }

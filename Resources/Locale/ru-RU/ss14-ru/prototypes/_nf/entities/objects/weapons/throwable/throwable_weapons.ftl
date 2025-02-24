@@ -10,3 +10,5 @@ ent-DartAberrantFleshHorrorSpike = костяной шип
     .desc = Осторожно: острее, чем кажется.
 ent-DartAberrantFleshHorrorSpikeCluster = костяной шип
     .desc = Осторожно: острее, чем кажется.
+ent-DartAberrantFleshHorrorSpikeSpread = { ent-DartAberrantFleshHorrorSpike }
+    .desc = { ent-DartAberrantFleshHorrorSpike.desc }

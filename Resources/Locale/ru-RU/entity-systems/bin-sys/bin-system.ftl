@@ -1,1 +1,1 @@
-bin-component-on-examine-text = Похоже, что осталось {$count}.
+bin-component-on-examine-text = Похоже, что осталось { $count }.

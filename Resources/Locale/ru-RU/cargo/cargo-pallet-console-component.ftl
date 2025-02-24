@@ -1,4 +1,3 @@
-
 # Cargo pallet sale console
 cargo-pallet-console-menu-title = Консоль продажи товаров
 cargo-pallet-menu-appraisal-label = Оценочная стоимость:{ " " }

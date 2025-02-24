@@ -4,7 +4,7 @@
 # https://www.reddit.com/r/cyberpunkgame/comments/l0avwd/slang_megathread/
 # https://www.englishclub.com/vocabulary/contractions-informal.php
 # https://7esl.com/informal-contractions/
- 
+
 accent-streetpunk-replaced-1 = a bit
 accent-streetpunk-replaced-2 = a lot of
 accent-streetpunk-replaced-3 = about
@@ -345,10 +345,9 @@ accent-streetpunk-replaced-337 = you
 accent-streetpunk-replaced-338 = you all
 accent-streetpunk-replaced-339 = you are
 accent-streetpunk-replaced-340 = you know
-accent-streetpunk-replaced-341 = you would have 
-accent-streetpunk-replaced-342 = you would’ve 
+accent-streetpunk-replaced-341 = you would have
+accent-streetpunk-replaced-342 = you would’ve
 accent-streetpunk-replaced-343 = you’re
-
 accent-streetpunk-replacement-1 = a lick
 accent-streetpunk-replacement-2 = alotta
 accent-streetpunk-replacement-3 = 'bout

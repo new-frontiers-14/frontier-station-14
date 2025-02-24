@@ -1,33 +1,86 @@
 ent-CardBoxBlack = чёрная упаковка с колодой
     .desc = Картонная коробка для хранения вещей.
-card-examined = Это {$target}.
+card-examined = Это { $target }.
 cards-verb-shuffle = Перемешать
 card-verb-shuffle-success = Карты перемешаны
 cards-verb-draw = Вытянуть карту
 cards-verb-flip = Перевернуть карты
 card-verb-join = Положить в колоду
-card-verb-organize-success = Карты перевёрнуты лицом { $facedown ->
-    [true]   вниз
-    *[false] вверх
-}
+card-verb-organize-success =
+    Карты перевёрнуты лицом { $facedown ->
+        [true] вниз
+       *[false] вверх
+    }
 cards-verb-organize-up = Перевернуть карты лицом вверх
 cards-verb-organize-down = Перевернуть карты лицом вниз
 cards-verb-pickcard = Выбрать карту
-card-stack-examine = { $count ->
-    [one] В этой стопке {$count} карт.
-    *[other] Здесь {$count} карт в стопке.
-}
-cards-stackquantitychange-added = Вы взяли карту (Всего карт: {$quantity})
-cards-stackquantitychange-removed = Кто-то взял карту (Всего карт: {$quantity})
-cards-stackquantitychange-joined = Вы объединили карты (Всего карт: {$quantity})
-cards-stackquantitychange-split = Стопка разделена (Всего карт: {$quantity})
-cards-stackquantitychange-unknown = Изменено количество стеков (Всего карт: {$quantity})
+card-stack-examine =
+    { $count ->
+        [one] В этой стопке { $count } карт.
+       *[other] Здесь { $count } карт в стопке.
+    }
+cards-stackquantitychange-added = Вы взяли карту (Всего карт: { $quantity })
+cards-stackquantitychange-removed = Кто-то взял карту (Всего карт: { $quantity })
+cards-stackquantitychange-joined = Вы объединили карты (Всего карт: { $quantity })
+cards-stackquantitychange-split = Стопка разделена (Всего карт: { $quantity })
+cards-stackquantitychange-unknown = Изменено количество стеков (Всего карт: { $quantity })
 cards-verb-convert-to-deck = Сделать стопкой
 cards-verb-split = Разделить пополам
-
 card-base-name = карта
+card-sc-2-clubs = 2 of clubs
+card-sc-3-clubs = 3 of clubs
+card-sc-4-clubs = 4 of clubs
+card-sc-5-clubs = 5 of clubs
+card-sc-6-clubs = 6 of clubs
+card-sc-7-clubs = 7 of clubs
+card-sc-8-clubs = 8 of clubs
+card-sc-9-clubs = 9 of clubs
+card-sc-10-clubs = 10 of clubs
+card-sc-ace-clubs = ace of clubs
+card-sc-jack-clubs = jack of clubs
+card-sc-king-clubs = king of clubs
+card-sc-queen-clubs = queen of clubs
+card-sc-2-diamonds = 2 of diamonds
+card-sc-3-diamonds = 3 of diamonds
+card-sc-4-diamonds = 4 of diamonds
+card-sc-5-diamonds = 5 of diamonds
+card-sc-6-diamonds = 6 of diamonds
+card-sc-7-diamonds = 7 of diamonds
+card-sc-8-diamonds = 8 of diamonds
+card-sc-9-diamonds = 9 of diamonds
+card-sc-10-diamonds = 10 of diamonds
+card-sc-ace-diamonds = ace of diamonds
+card-sc-jack-diamonds = jack of diamonds
+card-sc-king-diamonds = king of diamonds
+card-sc-queen-diamonds = queen of diamonds
+card-sc-2-hearts = 2 of hearts
+card-sc-3-hearts = 3 of hearts
+card-sc-4-hearts = 4 of hearts
+card-sc-5-hearts = 5 of hearts
+card-sc-6-hearts = 6 of hearts
+card-sc-7-hearts = 7 of hearts
+card-sc-8-hearts = 8 of hearts
+card-sc-9-hearts = 9 of hearts
+card-sc-10-hearts = 10 of hearts
+card-sc-ace-hearts = ace of hearts
+card-sc-jack-hearts = jack of hearts
+card-sc-king-hearts = king of hearts
+card-sc-queen-hearts = queen of hearts
+card-sc-2-spades = 2 of spades
+card-sc-3-spades = 3 of spades
+card-sc-4-spades = 4 of spades
+card-sc-5-spades = 5 of spades
+card-sc-6-spades = 6 of spades
+card-sc-7-spades = 7 of spades
+card-sc-8-spades = 8 of spades
+card-sc-9-spades = 9 of spades
+card-sc-10-spades = 10 of spades
+card-sc-ace-spades = ace of spades
+card-sc-jack-spades = jack of spades
+card-sc-king-spades = king of spades
+card-sc-queen-spades = queen of spades
+card-sc-joker = joker
 card-deck-name = колода карт
-
 card-sc-2-clubs-black = 2 крести
 card-sc-3-clubs-black = 3 крести
 card-sc-4-clubs-black = 4 крести
@@ -41,7 +94,6 @@ card-sc-ace-clubs-black = Туз крести
 card-sc-jack-clubs-black = Валет крести
 card-sc-king-clubs-black = Король крести
 card-sc-queen-clubs-black = Королева крести
-
 card-sc-2-diamonds-black = 2 буби
 card-sc-3-diamonds-black = 3 буби
 card-sc-4-diamonds-black = 4 буби
@@ -55,7 +107,6 @@ card-sc-ace-diamonds-black = Туз буби
 card-sc-jack-diamonds-black = Валет буби
 card-sc-king-diamonds-black = Король буби
 card-sc-queen-diamonds-black = Королева буби
-
 card-sc-2-hearts-black = 2 черви
 card-sc-3-hearts-black = 3 черви
 card-sc-4-hearts-black = 4 черви
@@ -69,7 +120,6 @@ card-sc-ace-hearts-black = Туз черви
 card-sc-jack-hearts-black = Валет черви
 card-sc-king-hearts-black = Король черви
 card-sc-queen-hearts-black = Королева черви
-
 card-sc-2-spades-black = 2 пики
 card-sc-3-spades-black = 3 пики
 card-sc-4-spades-black = 4 пики
@@ -83,8 +133,6 @@ card-sc-ace-spades-black = Туз пики
 card-sc-jack-spades-black = Валет пики
 card-sc-king-spades-black = Король пики
 card-sc-queen-spades-black = Королева пики
-
 card-sc-joker-black = Джокер
-
 container-sealed = На нем стоит голографическая печать безопасности. Если открыть ее, печать исчезнет.
 container-unsealed = Печать, прикрепленная к нему, исчезает.
