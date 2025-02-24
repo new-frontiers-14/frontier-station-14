@@ -10,41 +10,41 @@
 # Basic Cargo Depot selling point for economy and great wealth
 - type: pointOfInterest
   id: CargoDepot
+  parent: BasePOI
   name: Cargo Depot
-  minimumDistance: 4500
-  maximumDistance: 6000
+  minimumDistance: 4000
+  maximumDistance: 5000
   spawnGroup: CargoDepot
   gridPath: /Maps/_NF/POI/cargodepot.yml
   addComponents:
   - type: IFF
     color: "#37C837"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
   - type: ProtectedGrid
     preventArtifactTriggers: true
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: pointOfInterest
   id: CargoDepotAlt
+  parent: BasePOI
   name: Cargo Depot
-  minimumDistance: 4500
-  maximumDistance: 6000
+  minimumDistance: 4000
+  maximumDistance: 5000
   spawnGroup: CargoDepot
   gridPath: /Maps/_NF/POI/cargodepotalt.yml
   addComponents:
   - type: IFF
     color: "#37C837"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
   - type: ProtectedGrid
     preventArtifactTriggers: true
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: CargoDepot
-  mapName: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+  mapName: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem
   mapPath: /Maps/_NF/POI/cargodepotalt.yml
   minPlayers: 0
   stations:
@@ -52,11 +52,13 @@
       stationProto: MarketFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+          mapNameTemplate: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem
+        - type: TradeCrateDestination
+          destinationProto: CargoA # Redefined in PointOfInterestSystem
 
 - type: gameMap
   id: CargoDepotAlt
-  mapName: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+  mapName: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem
   mapPath: /Maps/_NF/POI/cargodepotalt.yml
   minPlayers: 0
   stations:
@@ -64,4 +66,6 @@
       stationProto: MarketFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+          mapNameTemplate: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem
+        - type: TradeCrateDestination
+          destinationProto: CargoA # Redefined in PointOfInterestSystem

@@ -456,6 +456,7 @@
   parent: BaseWall
   id: WallPlastitaniumIndestructible
   name: plastitanium wall
+  description: Skub knows this wall is too hard to destroy. # Frontier
   suffix: indestructible
   components:
     - type: Tag
@@ -463,6 +464,7 @@
         - Wall
     - type: Sprite
       sprite: Structures/Walls/plastitanium.rsi
+      color: "#cdf3cd" # Frontier
     - type: Icon
       sprite: Structures/Walls/plastitanium.rsi
     - type: IconSmooth
@@ -473,8 +475,11 @@
   parent: WallPlastitaniumIndestructible
   id: WallPlastitanium
   name: plastitanium wall
+  description: Keeps the air in and the greytide out. # Frontier: restore base value
   suffix: ""
   components:
+    - type: Sprite # Frontier
+      color: "#ffffff" # Frontier
     - type: Tag
       tags:
         - Wall
@@ -542,7 +547,7 @@
   id: WallPlastitaniumDiagonalIndestructible
   name: plastitanium wall
   suffix: diagonal, indestructible
-  description: Keeps the air in and the greytide out.
+  description: Skub knows this wall is too hard to destroy. # Frontier
   placement:
     mode: SnapgridCenter
     snap:
@@ -555,6 +560,7 @@
     tags:
     - Wall
   - type: Sprite
+    color: "#cdf3cd" # Frontier
     drawdepth: Walls
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
@@ -592,9 +598,9 @@
   name: reinforced wall
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi
+    sprite: _NF/Structures/Walls/solid.rsi # Frontier
   - type: Icon
-    sprite: Structures/Walls/solid.rsi
+    sprite: _NF/Structures/Walls/solid.rsi # Frontier
     state: rgeneric
   - type: Construction
     graph: Girder
@@ -652,7 +658,6 @@
 - type: entity
   parent: WallReinforced
   id: WallReinforcedRust
-  name: reinforced wall
   suffix: rusted
   components:
   - type: Sprite
@@ -670,6 +675,29 @@
     cost: 6 #Frontier
     delay: 8 #Frontier
     fx: EffectRCDDeconstruct8 #Frontier
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
 
 - type: entity
   parent: WallShuttleDiagonal
@@ -1013,13 +1041,13 @@
     tags:
       - Wall
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi
+    sprite: _NF/Structures/Walls/solid.rsi # Frontier
   - type: WallReplacementMarker
   - type: Construction
     graph: Girder
     node: wall
   - type: Icon
-    sprite: Structures/Walls/solid.rsi
+    sprite: _NF/Structures/Walls/solid.rsi # Frontier
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -1075,7 +1103,6 @@
 - type: entity
   parent: WallSolid
   id: WallSolidRust
-  name: solid wall
   suffix: rusted
   components:
   - type: Sprite
@@ -1089,6 +1116,28 @@
   - type: IconSmooth
     key: walls
     base: solid
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   parent: BaseWall
@@ -1138,13 +1187,14 @@
   parent: BaseWall
   id: WallWood
   name: wood wall
+  description: The traditional greytide defense.
   components:
   - type: Sprite
     sprite: Structures/Walls/wood.rsi
   - type: Icon
     sprite: Structures/Walls/wood.rsi
   - type: Construction
-    graph: Girder
+    graph: Barricade
     node: woodWall
   - type: Destructible
     thresholds:
@@ -1165,7 +1215,7 @@
         sound:
           collection: WoodDestroyHeavy
       - !type:ChangeConstructionNodeBehavior
-        node: girder
+        node: Barricade
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth
@@ -1175,6 +1225,8 @@
     cost: 6 #Frontier
     delay: 8 #Frontier
     fx: EffectRCDDeconstruct8 #Frontier
+  - type: StaticPrice # Frontier
+    price: 30 # Frontier
 
 - type: entity
   parent: BaseWall

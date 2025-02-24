@@ -66,6 +66,12 @@
   name: plastitanium window
   parent: PlastitaniumWindowSquareBase
   suffix: indestructible
+  # Frontier: colored indestructible windows
+  description: Skub knows this window is too hard to destroy.
+  components:
+  - type: Sprite 
+    color: "#cdf3cd"
+  # End Frontier
 
 - type: entity
   id: PlastitaniumWindow
@@ -124,10 +130,10 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/plastitanium_window_diagonal.rsi
+    sprite: _NF/Structures/Windows/plastitanium_window_diagonal.rsi # Frontier
     state: state0
   - type: Icon
-    sprite: Structures/Windows/plastitanium_window_diagonal.rsi
+    sprite: _NF/Structures/Windows/plastitanium_window_diagonal.rsi # Frontier
     state: state0
   - type: IconSmooth
     mode: Diagonal
@@ -157,6 +163,12 @@
   name: plastitanium window
   parent: PlastitaniumWindowDiagonalBase
   suffix: diagonal, indestructible
+  # Frontier: colored indestructible windows
+  description: Skub knows this window is too hard to destroy.
+  components:
+  - type: Sprite 
+    color: "#cdf3cd"
+  # End Frontier
 
 - type: entity
   id: PlastitaniumWindowDiagonal

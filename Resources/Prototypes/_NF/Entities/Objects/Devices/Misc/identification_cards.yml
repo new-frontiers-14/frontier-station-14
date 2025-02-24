@@ -61,7 +61,7 @@
 - type: entity
   parent: IDCardStandard
   id: CadetIDCard
-  name: nfsd cadet ID card
+  name: NFSD cadet ID card
   components:
   - type: PresetIdCard
     job: Cadet
@@ -78,7 +78,7 @@
 - type: entity
   parent: CadetIDCard
   id: DeputyIDCard
-  name: nfsd deputy ID card
+  name: NFSD deputy ID card
   components:
   - type: PresetIdCard
     job: Deputy
@@ -91,7 +91,7 @@
 - type: entity
   parent: CadetIDCard
   id: BrigmedicNFIDCard
-  name: nfsd brigmedic ID card
+  name: NFSD brigmedic ID card
   components:
   - type: PresetIdCard
     job: Brigmedic
@@ -104,7 +104,7 @@
 - type: entity
   parent: CadetIDCard
   id: SergeantIDCard
-  name: nfsd sergeant ID card
+  name: NFSD sergeant ID card
   components:
   - type: PresetIdCard
     job: SeniorOfficer
@@ -117,7 +117,7 @@
 - type: entity
   parent: CadetIDCard
   id: BailiffIDCard
-  name: nfsd bailiff ID card
+  name: NFSD bailiff ID card
   components:
   - type: PresetIdCard
     job: Bailiff
@@ -128,9 +128,9 @@
     - state: idnfsdbailiff
 
 - type: entity
-  parent: CadetIDCard
+  parent: [CadetIDCard, BaseCommandContraband]
   id: ShriffIDCard
-  name: nfsd sheriff ID card
+  name: NFSD sheriff ID card
   components:
   - type: PresetIdCard
     job: Sheriff
@@ -145,7 +145,7 @@
 - type: entity
   parent: CadetIDCard
   id: NFDetectiveIDCard
-  name: nfsd detective ID card
+  name: NFSD detective ID card
   components:
   - type: PresetIdCard
     job: NFDetective
@@ -177,7 +177,7 @@
     - state: ert_mailcarrier
 
 - type: entity
-  parent: HoPIDCard
+  parent: [HoPIDCard, BaseCommandContraband]
   id: SrIDCard
   name: station representative ID card
   components:
@@ -267,6 +267,23 @@
   components:
   - type: PresetIdCard
     name: Yip Yip
+
+- type: entity
+  parent: [IDCardStandard, BaseCommandContraband]
+  id: DocIDCard
+  name: director of care ID card
+  components:
+  - type: PresetIdCard
+    job: DirectorOfCare
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: idmedicdoc
+  - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: medic #temporary to OBSERVE
 
 # Cats
 - type: entity

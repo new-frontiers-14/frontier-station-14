@@ -1,6 +1,6 @@
 # Author Info
 # GitHub: RealIHANOfficial (??)
-# Discord: 
+# Discord:
 
 # Maintainer Info
 # GitHub: ???
@@ -10,18 +10,16 @@
 # The local Science lab
 - type: pointOfInterest
   id: AnomalousLab
+  parent: BasePOI
   name: 'Anomalous Lab'
   minimumDistance: 2100
   maximumDistance: 3800
   spawnGroup: ScienceLab
   gridPath: /Maps/_NF/POI/anomalouslab.yml
   addComponents:
-  - type: IFF
-    color: "#ffa600"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: AnomalousLab

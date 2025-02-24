@@ -10,6 +10,7 @@
 #
 - type: pointOfInterest
   id: Nfsd
+  parent: BasePOI
   name: 'NFSD Outpost'
   minimumDistance: 750
   maximumDistance: 1000
@@ -17,11 +18,7 @@
   gridPath: /Maps/_NF/POI/nfsd.yml
   addComponents:
   - type: IFF
-    color: "#8e6444"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
+    color: "#ae7d57"
   - type: ProtectedGrid
     preventEmpEvents: true
 
@@ -52,6 +49,9 @@
             Cadet: [ 0, 0 ]
             # Others:
             PublicAffairsLiaison: [ 1, 1 ]
+          tags:
+          - HeadOfPersonnel
+          - HeadOfSecurity
         - type: StationDeadDropReporting
           messageSet: Nfsd
         - type: StationDeadDropHintExempt

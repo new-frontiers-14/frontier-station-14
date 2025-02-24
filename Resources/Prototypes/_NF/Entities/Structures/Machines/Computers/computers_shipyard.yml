@@ -81,8 +81,8 @@
 - type: entity
   id: ComputerShipyardNfsd
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
-  name: nfsd shipyard console
-  description: Used to buy nfsd patrol vessels
+  name: NFSD shipyard console
+  description: Used to buy NFSD patrol vessels.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -109,7 +109,7 @@
   id: ComputerShipyardSyndicate
   parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyardBase]
   name: syndicate shipyard console
-  description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
+  description: Used to buy ships not available through other means.
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Syndicate
@@ -132,14 +132,15 @@
     shipyardChannel: Syndicate
     secretShipyardChannel: Nfsd
     taxAccounts:
-      Frontier: 0.3 # The scandal!
+      Invalid: 0.30
+    ignoreBaseSaleRate: true # Fixed 70% sale rate.
     canTransferDeed: false
 
 - type: entity
   id: ComputerShipyardBlackMarket
   parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyardBase]
   name: black market shipyard console
-  description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
+  description: Used to buy ships not available through other means.
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.BlackMarket
@@ -162,7 +163,8 @@
     shipyardChannel: Freelance
     secretShipyardChannel: Nfsd
     taxAccounts:
-      Frontier: 0.3 # The scandal!
+      Invalid: 0.30
+    ignoreBaseSaleRate: true # Fixed 70% sale rate.
     canTransferDeed: false
 
 - type: entity
@@ -212,6 +214,30 @@
       state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
+
+- type: entity
+  id: ComputerShipyardMedical
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: medical shipyard console
+  description: Used to purchase and sell medical shuttles
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Medical
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Medical:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_medical
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_medical
+    - map: ["computerLayerKeys"]
+      state: telesci_key
 
 - type: entity
   id: ComputerShipyardSr

@@ -14,3 +14,5 @@ research-technology-arsenal-style = Punk Gear
 research-technology-industrial-medicine = Industrial Medicine
 research-technology-magnets-tech-advanced = Advanced Localized Magnetism
 research-technology-magnets-tech-combat = Localized Magnetism Combat Application
+research-technology-mobile-sanitation = Mobile Sanitation
+research-technology-chemical-dispensary = Chemical Dispensary

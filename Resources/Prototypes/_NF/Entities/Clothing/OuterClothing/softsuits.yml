@@ -1284,7 +1284,7 @@
 - type: entity
   parent: NFClothingOuterEVASuitBase
   id: ClothingOuterEVASuitNfsd
-  name: nfsd EVA suit
+  name: NFSD EVA suit
   description: An EVA suit with a built-in helmet commonly issued to NFSD personnel.
   components:
   - type: Sprite
@@ -1341,7 +1341,7 @@
 - type: entity
   parent: NFClothingOuterEVASuitBase
   id: ClothingOuterEVASuitLvhi
-  name: lvhi EVA suit
+  name: LVHI EVA suit
   description: An EVA suit with a built-in helmet commonly issued to Langstad-Voigt Heavy Industries (LVHI) personnel.
   components:
   - type: Sprite
@@ -1467,3 +1467,23 @@
         color: "#8f1717"
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetArcadia
+
+#FSB suit
+
+- type: entity
+  parent: NFClothingOuterEVASuitBase
+  id: ClothingOuterEVASuitFsb
+  name: FSB EVA suit
+  description: The standard issue EVA suit for Far Star Biotech corporation vessels. It comes with two cupholders.
+  components:
+  - type: Tag
+    tags:
+    - SuitEVA
+    - WhitelistChameleon
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/fsb_voidsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/fsb_voidsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitFSB
+    slot: head

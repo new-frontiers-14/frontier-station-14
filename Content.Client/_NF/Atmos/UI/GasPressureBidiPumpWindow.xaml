@@ -1,0 +1,24 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      SetSize="340 160" MinSize="340 160" Title="Bidirectional Pressure Pump">
+    <BoxContainer Orientation="Vertical" Margin="5 5 5 5" SeparationOverride="10">
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Label Text="{Loc comp-gas-pump-ui-pump-status}" Margin="0 0 5 0" />
+            <Button Name="ToggleStatusButton" />
+            <Control HorizontalExpand="True" />
+            <Button HorizontalAlignment="Right" Name="SetOutputPressureButton"
+                    Text="{Loc comp-gas-pump-ui-pump-set-rate}" Disabled="True" Margin="0 0 5 0" />
+            <Button Name="SetMaxPressureButton" Text="{Loc comp-gas-pump-ui-pump-set-max}" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Label Text="{Loc comp-gas-pump-ui-pump-output-pressure}" />
+            <FloatSpinBox HorizontalExpand="True" Name="PumpPressureOutputInput" MinSize="70 0" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Label Text="{Loc comp-gas-pump-ui-pump-direction}" />
+            <Control MinSize="5 0" />
+            <Button Name="ToggleDirectionButton" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

@@ -38,6 +38,7 @@ public sealed class ItemToggleSystem : EntitySystem
         SubscribeLocalEvent<ItemToggleComponent, ItemWieldedEvent>(TurnOnOnWielded);
         SubscribeLocalEvent<ItemToggleComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<ItemToggleComponent, GetVerbsEvent<ActivationVerb>>(OnActivateVerb);
+        SubscribeLocalEvent<ItemToggleComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternateVerb); // Frontier
         SubscribeLocalEvent<ItemToggleComponent, ActivateInWorldEvent>(OnActivate);
 
         SubscribeLocalEvent<ItemToggleHotComponent, IsHotEvent>(OnIsHotEvent);
@@ -78,13 +79,33 @@ public sealed class ItemToggleSystem : EntitySystem
 
         args.Verbs.Add(new ActivationVerb()
         {
-            Text = !ent.Comp.Activated ? Loc.GetString("item-toggle-activate") : Loc.GetString("item-toggle-deactivate"),
+            Text = !ent.Comp.Activated ? Loc.GetString(ent.Comp.VerbToggleOn) : Loc.GetString(ent.Comp.VerbToggleOff),
             Act = () =>
             {
                 Toggle((ent.Owner, ent.Comp), user, predicted: ent.Comp.Predictable);
             }
         });
     }
+
+    // Frontier: alt-verb toggle
+    private void OnAlternateVerb(Entity<ItemToggleComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || !ent.Comp.OnAltUse)
+            return;
+
+        var user = args.User;
+
+        args.Verbs.Add(new AlternativeVerb()
+        {
+            Text = !ent.Comp.Activated ? Loc.GetString(ent.Comp.VerbToggleOn) : Loc.GetString(ent.Comp.VerbToggleOff),
+            Priority = ent.Comp.AltPriority,
+            Act = () =>
+            {
+                Toggle((ent.Owner, ent.Comp), user, predicted: ent.Comp.Predictable);
+            }
+        });
+    }
+    // End Frontier
 
     private void OnActivate(Entity<ItemToggleComponent> ent, ref ActivateInWorldEvent args)
     {
