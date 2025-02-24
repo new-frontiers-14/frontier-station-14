@@ -1,3 +1,4 @@
+using Content.Server._NF.Shuttles.Components; // Frontier
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Systems;
 using Content.Server.Doors.Systems;
@@ -9,6 +10,7 @@ using Content.Server.Station.Systems;
 using Content.Server.Stunnable;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
@@ -52,6 +54,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedSalvageSystem _salvage = default!;
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StunSystem _stuns = default!;
@@ -131,6 +134,9 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
         if (!EntityManager.TryGetComponent(uid, out PhysicsComponent? physicsComponent))
             return;
 
+        if (HasComp<PreventGridAnchorChangesComponent>(uid)) // Frontier
+            return; // Frontier
+
         component.Enabled = !component.Enabled;
 
         if (component.Enabled)
@@ -148,6 +154,9 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
         if (!Resolve(uid, ref manager, ref component, ref shuttle, false))
             return;
 
+        if (HasComp<PreventGridAnchorChangesComponent>(uid)) // Frontier
+            return; // Frontier
+
         _physics.SetBodyType(uid, BodyType.Dynamic, manager: manager, body: component);
         _physics.SetBodyStatus(uid, component, BodyStatus.InAir);
         _physics.SetFixedRotation(uid, false, manager: manager, body: component);
@@ -159,6 +168,9 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     {
         if (!Resolve(uid, ref manager, ref component, false))
             return;
+
+        if (HasComp<PreventGridAnchorChangesComponent>(uid)) // Frontier
+            return; // Frontier
 
         _physics.SetBodyType(uid, BodyType.Static, manager: manager, body: component);
         _physics.SetBodyStatus(uid, component, BodyStatus.OnGround);

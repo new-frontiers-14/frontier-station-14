@@ -1,12 +1,13 @@
 
 using System.Linq;
+using Content.Server._NF.Bank;
 using Content.Server._NF.Medical.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
-using Content.Server.Traits.Assorted;
+using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Medical;
 using Content.Shared._NF.Medical.Prototypes;
 using Content.Shared.Chemistry.Components;
@@ -16,13 +17,13 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Power;
-using Content.Shared.Stacks;
 using Content.Shared.UserInterface;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Server._NF.Traits.Assorted;
 
 namespace Content.Server._NF.Medical;
 
@@ -39,6 +40,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
     [Dependency] UserInterfaceSystem _ui = default!;
     [Dependency] PowerReceiverSystem _power = default!;
     [Dependency] SharedAppearanceSystem _appearance = default!;
+    [Dependency] BankSystem _bank = default!;
 
     private List<MedicalBountyPrototype> _cachedPrototypes = new();
 
@@ -175,6 +177,12 @@ public sealed partial class MedicalBountySystem : EntitySystem
         {
             // Use SpawnMultiple in case spesos ever have a limit.
             _stack.SpawnMultiple("SpaceCash", bountyPayout, Transform(uid).Coordinates);
+
+            // Pay tax accounts
+            foreach (var (account, taxCoeff) in component.TaxAccounts)
+            {
+                _bank.TrySectorDeposit(account, (int)(bountyPayout * taxCoeff), LedgerEntryType.MedicalBountyTax);
+            }
         }
 
         QueueDel(bountyUid);

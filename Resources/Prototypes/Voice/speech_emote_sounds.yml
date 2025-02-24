@@ -36,6 +36,8 @@
       collection: Weh
     Belch: # Frontier
       collection: Belch # Frontier
+    Hew:
+      collection: Hew
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -78,6 +80,8 @@
       collection: Weh
     Belch: # Frontier
       collection: Belch # Frontier
+    Hew:
+      collection: Hew
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -92,6 +96,8 @@
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
     Laugh:
       path: /Audio/Animals/lizard_happy.ogg
+    ReptilianHiss: # Imp
+      collection: ReptilianHiss # Imp
     Honk:
       collection: BikeHorn
     Whistle:
@@ -100,6 +106,8 @@
       collection: MaleCry
     Weh:
       collection: Weh
+    Hew:
+      collection: Hew
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -114,6 +122,8 @@
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
     Laugh:
       path: /Audio/Animals/lizard_happy.ogg
+    ReptilianHiss: # Imp
+      collection: ReptilianHiss # Imp
     Honk:
       collection: BikeHorn
     Whistle:
@@ -122,6 +132,8 @@
       collection: FemaleCry
     Weh:
       collection: Weh
+    Hew:
+      collection: Hew
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -132,6 +144,10 @@
   sounds:
     Squish:
       collection: Squishes
+    Bubble: # Imp
+      collection: Bubbles # Imp
+    Pop: # Imp
+      collection: Pops # Imp
     Scream:
       collection: MaleScreams
     Laugh:
@@ -162,6 +178,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Hew:
+      collection: Hew
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -174,6 +192,10 @@
   sounds:
     Squish:
       collection: Squishes
+    Bubble: # Imp
+      collection: Bubbles # Imp
+    Pop: # Imp
+      collection: Pops # Imp
     Scream:
       collection: FemaleScreams
     Laugh:
@@ -204,6 +226,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Hew:
+      collection: Hew
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -229,10 +253,14 @@
       path: /Audio/Voice/Diona/diona_scream.ogg
     Laugh:
       collection: DionaLaugh
+    Chirp:
+      path: /Audio/Animals/nymph_chirp.ogg
     Honk:
       collection: BikeHorn
     Weh:
       collection: Weh
+    Hew:
+      collection: Hew
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -255,6 +283,8 @@
       path: /Audio/Voice/Arachnid/arachnid_click.ogg
     Weh:
       collection: Weh
+    Hew:
+      collection: Hew
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -295,6 +325,8 @@
       collection: Weh
     Belch: # Frontier
       collection: Belch # Frontier
+    Hew:
+      collection: Hew
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -338,6 +370,8 @@
       collection: Weh
     Belch: # Frontier
       collection: Belch # Frontier
+    Hew:
+      collection: Hew
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -363,6 +397,8 @@
       path: /Audio/Voice/Moth/moth_squeak.ogg
     Weh:
       collection: Weh
+    Hew:
+      collection: Hew
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -418,6 +454,8 @@
         volume: -6
     Salute:
       collection: Salutes
+    Crack: # Imp
+      collection: Cracks # Imp
 
 - type: emoteSounds
   id: DionaBodyEmotes
@@ -432,7 +470,9 @@
       path: /Audio/Voice/Diona/diona_salute.ogg
       params:
        volume: -5
-       
+    Crack: # Imp
+      collection: Cracks # Imp
+
 - type: emoteSounds
   id: ReptilianBodyEmotes
   sounds:
@@ -448,6 +488,8 @@
         volume: -6
     Salute:
       collection: Salutes
+    Crack: # Imp
+      collection: Cracks # Imp
 
 # mobs
 - type: emoteSounds
@@ -509,5 +551,12 @@
   id: Parrot
   sound:
     path: /Audio/Animals/parrot_raught.ogg
+    params:
+      variation: 0.125
+
+- type: emoteSounds
+  id: Goat
+  sound:
+    path: /Audio/Animals/goat_bah.ogg
     params:
       variation: 0.125

@@ -29,8 +29,11 @@
         - type: IFF
           color: "#E10F9B"
         - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor # Added post-FTL, so anchoring is fine.
         paths:
         - /Maps/_NF/Bluespace/cache.yml
     rewardAccounts:
@@ -66,9 +69,11 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/vault.yml
     rewardAccounts:
@@ -105,9 +110,11 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/vaultsmall.yml
     rewardAccounts:
@@ -142,9 +149,11 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/syndieftlintercept.yml
 
@@ -177,9 +186,11 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/wizardprobealt.yml
 
@@ -212,9 +223,11 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/bloodmoon.yml
 
@@ -245,9 +258,11 @@
           enabled: true
           inherent: true
         - type: IFF
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/cave.yml
 
@@ -278,5 +293,9 @@
         maximumDistance: 2500
         addComponents:
         - type: IFF
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
         paths:
         - /Maps/_NF/Bluespace/mcevent.yml

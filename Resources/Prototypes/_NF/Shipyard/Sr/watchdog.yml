@@ -11,12 +11,14 @@
 
 - type: vessel
   id: Watchdog
+  parent: BaseVessel
   name: SBI Watchdog
   description: "A refurbished and repainted older model of the NSF Templar for use for Mercenaries and 'repurposed' for the Station Guard, mind the gap."
   price: 20000
   category: Small
   group: Sr
   access: Brig # Oddball, matches guard ID, specific enough to exclude cadets
+  mapchecker_group_override: Security  # Treat this as a security vessel for mapchecker purposes
   shuttlePath: /Maps/_NF/Shuttles/Sr/watchdog.yml
   guidebookPage: Null
   class:

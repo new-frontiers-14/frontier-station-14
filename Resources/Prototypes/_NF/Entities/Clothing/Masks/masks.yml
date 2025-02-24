@@ -45,7 +45,7 @@
 - type: entity
   parent: [ BaseC2ContrabandUnredeemable, ClothingMaskGasSecurity ]
   id: ClothingMaskGasNfsd
-  name: nfsd gas mask
+  name: NFSD gas mask
   description: A standard issue NFSD gas mask.
   components:
   - type: Sprite
@@ -57,7 +57,7 @@
 - type: entity
   parent: [ BaseC2ContrabandUnredeemable, ClothingMaskGasSwat ]
   id: ClothingMaskGasSheriff
-  name: nfsd sheriff gas mask
+  name: NFSD sheriff gas mask
   description: A gas mask worthy of a sheriff.
   components:
   - type: Sprite
@@ -115,3 +115,14 @@
         decor-equipped-MASK: CyberpunkNeon
   - type: IdentityBlocker
     coverage: MOUTH
+
+- type: entity
+  parent: ClothingMaskClown
+  id: ClothingMaskClownBald
+  name: clown mask
+  description: If clowning doesn't work out, maybe you can rob a bank.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Mask/clown_bald.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Mask/clown_bald.rsi

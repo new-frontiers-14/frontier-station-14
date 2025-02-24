@@ -1,12 +1,13 @@
 - type: entity
   name: station representative's rubber stamp
-  parent: RubberStampHop
+  parent: [RubberStampHop, BaseCommandContraband]
   id: RubberStampSr
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-sr
     stampedColor: "#6ec0ea"
     stampState: "paper_stamp-hop"
+    protected: True
   - type: Sprite
     state: stamp-hop
 
@@ -26,7 +27,7 @@
 
 - type: entity
   name: sheriff's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, BaseCommandContraband]
   id: RubberStampSheriff
   suffix: DO NOT MAP
   components:
@@ -34,6 +35,7 @@
     stampedName: stamp-component-stamped-name-hos
     stampedColor: "#4c653a"
     stampState: "paper_stamp-nf-sheriff"
+    protected: True
   - type: Sprite
     sprite: _NF/Objects/Misc/stamps.rsi
     state: stamp-sheriff
@@ -42,7 +44,6 @@
   name: doctor's rubber stamp
   parent: RubberStampBase
   id: RubberStampDoctor
-  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-doctor
@@ -50,13 +51,12 @@
     stampState: "paper_stamp-nf-doctor"
   - type: Sprite
     sprite: _NF/Objects/Misc/stamps.rsi
-    state: stamp-doctor # doesn't exist
+    state: stamp-doctor
 
 - type: entity
   name: engineer's rubber stamp
   parent: RubberStampBase
   id: RubberStampEngineer
-  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-engineer
@@ -64,7 +64,7 @@
     stampState: "paper_stamp-nf-engineer"
   - type: Sprite
     sprite: _NF/Objects/Misc/stamps.rsi
-    state: stamp-engineer # doesn't exist
+    state: stamp-engineer
 
 - type: entity
   name: public affairs liaison's rubber stamp
@@ -79,3 +79,31 @@
   - type: Sprite
     sprite: _NF/Objects/Misc/stamps.rsi
     state: stamp-pal
+
+- type: entity
+  name: director of care's rubber stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: RubberStampDoc
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-doc
+    stampedColor: "#5b97bc"
+    stampState: "paper_stamp-cmo"
+  - type: Sprite
+    sprite: _NF/Objects/Misc/stamps.rsi
+    state: stamp-doc
+
+- type: entity
+  name: bailiff's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampBailiff
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-bailiff
+    stampedColor: "#51703b"
+    stampState: "paper_stamp-nf-bailiff"
+  - type: Sprite
+    sprite: _NF/Objects/Misc/stamps.rsi
+    state: stamp-bailiff

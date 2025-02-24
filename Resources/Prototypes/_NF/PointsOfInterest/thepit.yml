@@ -10,18 +10,16 @@
 # Down at your local saloon
 - type: pointOfInterest
   id: ThePit
+  parent: BasePOI
   name: "The Pit"
   minimumDistance: 2200
   maximumDistance: 4200
   spawnGroup: Arena
   gridPath: /Maps/_NF/POI/arena.yml
   addComponents:
-  - type: IFF
-    color: "#ffa600"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: ThePit

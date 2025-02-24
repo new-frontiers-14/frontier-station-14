@@ -5,7 +5,7 @@
   - type: TimedDespawn
     lifetime: 0.4
   - type: Sprite
-    drawdepth: Effects
+    drawdepth: BelowMobs
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]
@@ -309,14 +309,12 @@
       types:
         Heat: 14
   # mining laser real
-#  - type: GatheringProjectile # Frontier
+#  - type: GatheringProjectile # Frontier - if restoring, add MiningGatheringSoft
   - type: Tag
     tags:
     - EmitterBolt
   - type: TimedDespawn
     lifetime: 3
-  - type: Reflective # Frontier
-    reflective: ShuttleKinetic # Frontier
 
 - type: entity
   name: watcher bolt
@@ -405,6 +403,7 @@
   - type: TimedDespawn
     lifetime: 0.4
   - type: GatheringProjectile
+  - type: MiningGatheringSoft # Frontier
 
 - type: entity
   id: BulletKineticShuttle
@@ -414,11 +413,10 @@
   - type: Sprite
     noRot: false
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    color: "#FF8888" # Frontier: color it red vs. handheld bolts
     layers:
     - state: chronobolt
       shader: unshaded
-  - type: Reflective # Frontier
-    reflective: ShuttleKinetic # Frontier
   - type: Projectile
     impactEffect: BulletImpactEffectKinetic
     damage:
@@ -431,9 +429,10 @@
     lifetime: 1 # Frontier 1.5<1
   - type: PointLight
     radius: 2.5
-    color: white
+    color: "#FF8888" # Frontier: white<FF8888
     energy: 0.5
   - type: GatheringProjectile
+  - type: MiningGatheringHard # Frontier
 
 - type: entity
   id: BulletCharge
@@ -468,6 +467,7 @@
   # Short lifespan
   - type: TimedDespawn
     lifetime: 0.4
+  - type: MiningGatheringSoft # Frontier
 
 - type: entity
   parent: BaseBullet
@@ -987,7 +987,7 @@
       - HideContextMenu
 
 - type: entity
-  name: laser bolt 
+  name: laser bolt
   id: BulletLaser
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
@@ -1033,7 +1033,7 @@
   - type: ProjectileSpread
     proto: BulletLaser
     count: 5 #65 heat damage if you hit all your shots, but wide spread
-    spread: 30 
+    spread: 30
 
 - type: entity
   name: narrow laser barrage
@@ -1055,7 +1055,8 @@
   - type: ProjectileSpread
     proto: BulletDisablerSmg
     count: 3 #bit stronger than a disabler if you hit your shots you goober, still not a 2 hit stun though
-    spread: 9 
+    spread: 9
+
 
 # Frontier projectiles
 # The game wont allow them to sit under _NF.
@@ -1093,8 +1094,8 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
-      - state: emp_projectile
-        shader: unshaded
+    - state: emp_projectile
+      shader: unshaded
   - type: EmpOnTrigger
     range: 0.3
     energyConsumption: 2700000
@@ -1115,7 +1116,7 @@
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-      - state: frag-emp
+    - state: frag-emp
   - type: EmpOnTrigger
     range: 4
     energyConsumption: 2700000
@@ -1130,8 +1131,8 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
-      - state: emp_projectile
-        shader: unshaded
+    - state: emp_projectile
+      shader: unshaded
   - type: Ammo
     muzzleFlash: null
   - type: Physics
@@ -1165,9 +1166,9 @@
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-      - state: ball-emp
-      - state: ball-emp-unlit
-        shader: unshaded
+    - state: ball-emp
+    - state: ball-emp-unlit
+      shader: unshaded
   - type: PointLight
     radius: 1
     color: cyan

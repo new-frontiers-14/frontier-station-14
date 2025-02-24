@@ -28,14 +28,30 @@
 
 - type: entity
   parent: CrateTradeBaseSecure
-  id: CrateTradeBaseSecureNormal
-  name: cargo steel crate
-  categories: [ HideSpawnMenu ]
+  id: CrateTradeSecureNormal
+  name: cargo trading crate
+  description: Contains goods made in the Frontier sector, ready to be sold at a cargo depot for higher value. MAKE SURE THE CRATE IS INTACT.
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradedark.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/tradedark.rsi
+    layers:
+    - state: icon
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_other
+      offset: 0.275,-0.265
+      map: ["enum.TradeCrateVisualLayers.Icon"]
+      visible: false
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_priority_inactive
+      offset: 0.025,-0.265
+      map: ["enum.TradeCrateVisualLayers.Priority"]
+      visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: EntityStorage
     deleteContentsOnDestruction: true
   - type: Fixtures
@@ -49,19 +65,39 @@
         - SmallMobMask
         layer:
         - MachineLayer
-  - type: StaticPrice
-    price: 1000
 
 - type: entity
   parent: CrateTradeBaseSecure
-  id: CrateTradeBaseSecureHigh
-  name: high value cargo steel crate
-  categories: [ HideSpawnMenu ]
+  id: CrateTradeSecureHigh
+  name: express cargo trading crate
+  description: An urgent crate of goods made in the Frontier sector, ready to be quickly sold at a cargo depot for higher value. MAKE SURE THE CRATE IS INTACT.
   components:
+  - type: TradeCrate
+    valueAtDestination: 2500
+    valueElsewhere: 1200
+    expressDeliveryDuration: 1680 # twenty-eight minutes, go go (worst distance is ~6.5 km trade-cargo A, then 12 km to cargo b, 15.4 min at 20 m/s, giving ~10 minutes in adverse conditions for cargo pickup and dropoff)
+    expressOnTimeBonus: 1500
+    expressLatePenalty: 1500 # 0/1000
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradelight.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/tradelight.rsi
+    layers:
+    - state: icon
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_other
+      offset: 0.275,-0.265
+      map: ["enum.TradeCrateVisualLayers.Icon"]
+      visible: false
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_priority_inactive
+      offset: 0.025,-0.265
+      map: ["enum.TradeCrateVisualLayers.Priority"]
+      visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: EntityStorage
     deleteContentsOnDestruction: true
   - type: Fixtures
@@ -75,8 +111,6 @@
         - SmallMobMask
         layer:
         - MachineLayer
-  - type: StaticPrice
-    price: 2000
 
 - type: entity
   parent:
@@ -121,8 +155,25 @@
     sprite: _NF/Structures/Storage/Crates/contraband1_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/contraband1_crate.rsi
-  - type: StaticPrice
-    price: 3000
+    layers:
+    - state: icon
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_other
+      offset: 0.275,-0.265
+      map: ["enum.TradeCrateVisualLayers.Icon"]
+      visible: false
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_priority_inactive
+      offset: 0.025,-0.265
+      map: ["enum.TradeCrateVisualLayers.Priority"]
+      visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: TradeCrate
+    valueAtDestination: 5000
+    valueElsewhere: 2500
 
 - type: entity
   parent: CrateTradeBaseSecureContraband
@@ -133,8 +184,28 @@
     sprite: _NF/Structures/Storage/Crates/contraband2_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/contraband2_crate.rsi
-  - type: StaticPrice
-    price: 5000
+    layers:
+    - state: icon
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_other
+      offset: 0.275,-0.265
+      map: ["enum.TradeCrateVisualLayers.Icon"]
+      visible: false
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_priority_inactive
+      offset: 0.025,-0.265
+      map: ["enum.TradeCrateVisualLayers.Priority"]
+      visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: TradeCrate
+    valueAtDestination: 6000
+    valueElsewhere: 2500
+    expressDeliveryDuration: 3600 # one hour, go go (timeout mostly for pirates & NFSD)
+    expressOnTimeBonus: 2000
+    expressLatePenalty: 1500
 
 - type: entity
   parent: CrateTradeBaseSecureContraband
@@ -145,8 +216,28 @@
     sprite: _NF/Structures/Storage/Crates/contraband3_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/contraband3_crate.rsi
-  - type: StaticPrice
-    price: 7500
+    layers:
+    - state: icon
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_other
+      offset: 0.275,-0.265
+      map: ["enum.TradeCrateVisualLayers.Icon"]
+      visible: false
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_priority_inactive
+      offset: 0.025,-0.265
+      map: ["enum.TradeCrateVisualLayers.Priority"]
+      visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: TradeCrate
+    valueAtDestination: 8000
+    valueElsewhere: 4000
+    expressDeliveryDuration: 3600 # one hour, go go (timeout mostly for pirates & NFSD)
+    expressOnTimeBonus: 4000
+    expressLatePenalty: 3000
 
 - type: entity
   parent: CrateTradeBaseSecureContraband
@@ -158,8 +249,28 @@
     sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
-  - type: StaticPrice
-    price: 15000
+    layers:
+    - state: icon
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_other
+      offset: 0.275,-0.265
+      map: ["enum.TradeCrateVisualLayers.Icon"]
+      visible: false
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_priority_inactive
+      offset: 0.025,-0.265
+      map: ["enum.TradeCrateVisualLayers.Priority"]
+      visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: TradeCrate
+    valueAtDestination: 12000
+    valueElsewhere: 5000
+    expressDeliveryDuration: 3600 # one hour, go go (timeout mostly for pirates & NFSD)
+    expressOnTimeBonus: 6000
+    expressLatePenalty: 3000
 
 - type: entity
   parent: CrateTradeBaseSecureContraband
@@ -171,8 +282,28 @@
     sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
-  - type: StaticPrice
-    price: 15000
+    layers:
+    - state: icon
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_other
+      offset: 0.275,-0.265
+      map: ["enum.TradeCrateVisualLayers.Icon"]
+      visible: false
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_priority_inactive
+      offset: 0.025,-0.265
+      map: ["enum.TradeCrateVisualLayers.Priority"]
+      visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: TradeCrate
+    valueAtDestination: 12000
+    valueElsewhere: 6000
+    expressDeliveryDuration: 3600 # one hour, go go (timeout mostly for pirates & NFSD)
+    expressOnTimeBonus: 6000
+    expressLatePenalty: 3000
 
 - type: entity
   parent: CrateSecgear
@@ -189,7 +320,7 @@
 - type: entity
   parent: CrateSecgear
   id: CrateNfsdSecure1
-  name: nfsd crate
+  name: NFSD crate
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/nfsd_secure1.rsi
@@ -201,7 +332,7 @@
 - type: entity
   parent: CrateSecgear
   id: CrateNfsdSecure2
-  name: nfsd crate
+  name: NFSD crate
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/nfsd_secure2.rsi

@@ -1,18 +1,4 @@
 - type: entity
-  id: CrateMaterials
-  parent: CrateGenericSteel
-  name: materials crate
-  description: 1 stack of glass, plastic, steel, plasma and plasteel.
-  components:
-  - type: StorageFill
-    contents:
-      - id: SheetGlass
-      - id: SheetPlastic
-      - id: SheetSteel
-      - id: SheetPlasma
-      - id: SheetPlasteel
-
-- type: entity
   id: CrateMaterialMetalRods
   parent: CrateGenericSteel
   name: metal rods crate
@@ -27,9 +13,24 @@
   id: CrateMaterialBiomass
   parent: CrateFreezer
   name: biomass crate
+  suffix: 300 # Frontier label for distinction
   description: 300 units of biomass. Yum.
   components:
   - type: StorageFill
     contents:
     - id: MaterialBiomass
       amount: 3
+
+# region Materials
+- type: entity
+  parent: [ CrateGenericSteel, StorageFillMaterialsBasic ]
+  id: CrateMaterialsBasicFilled
+  suffix: Filled, Basic Materials (full)
+  name: materials crate
+
+- type: entity
+  parent: [ CrateGenericSteel, StorageFillMaterialsBasic10 ]
+  id: CrateMaterialsBasic10Filled
+  suffix: Filled, Basic Materials (10)
+  name: materials crate
+# endregion Materials

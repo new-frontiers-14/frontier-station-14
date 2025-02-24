@@ -134,8 +134,13 @@
     - state: generic
     - state: icon-fire-extinguisher
   - type: ItemBorgModule
-    items:
-    - FireExtinguisher
+    # Frontier: droppable borg items
+    droppableItems:
+    - id: FireExtinguisher
+      whitelist:
+        tags:
+        - FireExtinguisher
+    # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: extinguisher-module }
 
@@ -187,7 +192,7 @@
     - Screwdriver
     - Wirecutter
     - Multitool
-    - WelderIndustrial
+    - WelderIndustrial # Frontier
     - MaintenanceJack # Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: tool-module }
@@ -222,9 +227,16 @@
     - MiningDrill
     - Shovel
     - MineralScannerUnpowered
-    - OreBag
+    # - OreBag # Frontier
     - Crowbar
     - RadioHandheldNF # Frontier: RadioHandheld<RadioHandheldNF
+    # Frontier: droppable borg items
+    droppableItems:
+    - id: OreBag
+      whitelist:
+        components:
+        - NFOreBag
+    # End Frontier: droppable borg items
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: mining-module }
 
@@ -330,8 +342,15 @@
   - type: ItemBorgModule
     items:
     - MopItem
-    - Bucket
+    # - Bucket # Frontier
     - TrashBag
+    # Frontier: droppable items
+    droppableItems:
+    - id: Bucket
+      whitelist:
+        tags:
+        - Bucket
+    # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
 
@@ -418,10 +437,21 @@
   - type: ItemBorgModule
     items:
     - HandheldHealthAnalyzerUnpowered
-    - Beaker
-    - Beaker
+    # - Beaker # Frontier
+    # - Beaker # Frontier
     - BorgDropper
     - BorgHypo
+    # Frontier: droppable borg items
+    droppableItems:
+    - id: Beaker
+      whitelist:
+        tags:
+        - GlassBeaker
+    - id: Beaker
+      whitelist:
+        tags:
+        - GlassBeaker
+    # End Frontier: droppable borg items
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-diagnosis-module }
 
@@ -474,11 +504,26 @@
   - type: ItemBorgModule
     items:
     - Pen
-    - BooksBag
+    # - BooksBag # Frontier
     - HandLabeler
-    - Lighter
-    - DrinkShaker
+    # - Lighter # Frontier
+    # - DrinkShaker # Frontier
     - BorgDropper
+    # Frontier: droppable 
+    droppableItems:
+    - id: BooksBag
+      whitelist:
+        components:
+        - NFBookBag
+    - id: Lighter
+      whitelist:
+        components:
+        - NFLighter
+    - id: DrinkShaker
+      whitelist:
+        components:
+        - NFShaker
+    # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: service-module }
 
@@ -513,7 +558,14 @@
     - HydroponicsToolMiniHoe
     - HydroponicsToolSpade
     - HydroponicsToolClippers
-    - Bucket
+    # - Bucket # Frontier
+    # Frontier: droppable borg items
+    droppableItems:
+    - id: Bucket
+      whitelist:
+        tags:
+        - Bucket
+    # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
 
@@ -530,7 +582,14 @@
     items:
     - HydroponicsToolScythe
     - HydroponicsToolHatchet
-    - PlantBag
+    # - PlantBag # Frontier
+    # Frontier: droppable borg items
+    droppableItems:
+    - id: PlantBag
+      whitelist:
+        components:
+        - NFPlantBag
+    # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: harvesting-module }
 
@@ -570,7 +629,7 @@
 
 - type: entity
   id: BorgModuleOperative
-  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   name: operative cyborg module
   description: A module that comes with a crowbar, an Emag and a syndicate pinpointer.
   components:
@@ -588,7 +647,7 @@
 
 - type: entity
   id: BorgModuleEsword
-  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   name: energy sword cyborg module
   description: A module that comes with a double energy sword.
   components:
@@ -605,7 +664,7 @@
 
 - type: entity
   id: BorgModuleL6C
-  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   name: L6C ROW cyborg module
   description: A module that comes with a L6C.
   components:
