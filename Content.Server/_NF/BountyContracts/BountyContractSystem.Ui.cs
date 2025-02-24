@@ -7,12 +7,14 @@ using Content.Shared.CartridgeLoader;
 using Content.Shared.PDA;
 using Content.Shared.StationRecords;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._NF.BountyContracts;
 
 public sealed partial class BountyContractSystem
 {
     [Dependency] SectorServiceSystem _sectorService = default!;
+    [Dependency] IGameTiming _timing = default!;
     private void InitializeUi()
     {
         SubscribeLocalEvent<BountyContractsCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
@@ -180,12 +182,18 @@ public sealed partial class BountyContractSystem
     {
         var loader = GetEntity(args.LoaderUid);
 
+        if (!cartridge.Comp.CreateEnabled)
+            return;
+
         if (!HasWriteAccess(loader, args.Contract.Collection))
             return;
 
         var c = args.Contract;
         var author = GetContractAuthor(loader);
         CreateBountyContract(c.Collection, c.Category, c.Name, c.Reward, loader, c.Description, c.Vessel, c.DNA, author);
+
+        cartridge.Comp.CreateEnabled = false;
+        cartridge.Comp.NextCreate = _timing.CurTime + TimeSpan.FromSeconds(cartridge.Comp.CreateCooldown);
 
         CartridgeOpenListUi(cartridge, loader);
     }

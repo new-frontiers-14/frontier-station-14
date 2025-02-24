@@ -276,4 +276,20 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         _sawmill.Warning($"Failed to remove bounty contract with {contractId}!");
         return true;
     }
+
+    public override void Update(float frameTime)
+    {
+        var cartList = EntityQueryEnumerator<BountyContractsCartridgeComponent>();
+        while (cartList.MoveNext(out var loaderUid, out var cartComponent))
+        {
+            if (cartComponent.CreateEnabled)
+                continue;
+
+            if (_timing.CurTime >= cartComponent.NextCreate)
+            {
+                cartComponent.CreateEnabled = true;
+                // TODO: update UI if on the create menu
+            }
+        }
+    }
 }

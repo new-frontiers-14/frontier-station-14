@@ -62,6 +62,7 @@ public sealed partial class BountyContractUi : UIFragment
         UnloadPreviousState();
         var tabs = new BountyContractUiFragmentTabSet();
         tabs.OnSelectCollection += OnSelectCollection;
+        state.Collections.Reverse(); // invert order, show latest first
         foreach (var collection in state.Collections)
         {
             int newTabIndex = tabs.Children.Count();
