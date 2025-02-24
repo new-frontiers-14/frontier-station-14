@@ -66,7 +66,7 @@ public sealed partial class BountyContractSystem
         if (cartridge.Comp.Collection != newCollection)
             cartridge.Comp.Collection = newCollection;
 
-        return new BountyContractListUiState(newCollection.Value, GetReadableCollections(loaderUid), contracts, isAllowedCreate, isAllowedRemove, GetNetEntity(loaderUid));
+        return new BountyContractListUiState(newCollection.Value, GetReadableCollections(loaderUid), contracts, isAllowedCreate, isAllowedRemove, GetNetEntity(loaderUid), cartridge.Comp.NotificationsEnabled);
     }
 
     private BountyContractCreateUiState GetCreateState(Entity<BountyContractsCartridgeComponent> cartridge, ProtoId<BountyContractCollectionPrototype> collection)
@@ -139,6 +139,10 @@ public sealed partial class BountyContractSystem
                 break;
             case BountyContractCommand.RefreshList:
                 CartridgeRefreshListUi(cartridge, GetEntity(args.LoaderUid), args.Collection);
+                break;
+            case BountyContractCommand.ToggleNotifications:
+                cartridge.Comp.NotificationsEnabled = !cartridge.Comp.NotificationsEnabled;
+                CartridgeRefreshListUi(cartridge, GetEntity(args.LoaderUid), args.Collection); // Force UI udpate
                 break;
             default:
                 return; //TODO: print to log?

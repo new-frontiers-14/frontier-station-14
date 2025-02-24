@@ -107,7 +107,8 @@ public sealed class BountyContractListUiState(ProtoId<BountyContractCollectionPr
         List<BountyContract> contracts,
         bool isAllowedCreateBounties,
         bool isAllowedRemoveBounties,
-        NetEntity authorUid) : BoundUserInterfaceState
+        NetEntity authorUid,
+        bool notificationsEnabled) : BoundUserInterfaceState
 {
     public readonly ProtoId<BountyContractCollectionPrototype> Collection = collection;
     public readonly List<ProtoId<BountyContractCollectionPrototype>> Collections = collections;
@@ -115,6 +116,7 @@ public sealed class BountyContractListUiState(ProtoId<BountyContractCollectionPr
     public readonly bool IsAllowedCreateBounties = isAllowedCreateBounties;
     public readonly bool IsAllowedRemoveBounties = isAllowedRemoveBounties;
     public readonly NetEntity AuthorUid = authorUid;
+    public readonly bool NotificationsEnabled = notificationsEnabled;
 }
 
 public enum BountyContractCommand : byte
@@ -122,6 +124,7 @@ public enum BountyContractCommand : byte
     OpenCreateUi = 0,
     CloseCreateUi = 1,
     RefreshList = 2,
+    ToggleNotifications = 3,
 }
 
 [NetSerializable, Serializable]

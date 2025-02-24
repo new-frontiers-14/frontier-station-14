@@ -12,11 +12,14 @@ public sealed partial class BountyContractsCartridgeComponent : Component
     public ProtoId<BountyContractCollectionPrototype>? Collection = null;
 
     [ViewVariables(VVAccess.ReadWrite), DataField]
-    public bool CreateEnabled = true;
+    public bool CreateEnabled;
 
     [ViewVariables(VVAccess.ReadWrite), DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextCreate;
 
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public float CreateCooldown = 20f;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool NotificationsEnabled = true;
 }

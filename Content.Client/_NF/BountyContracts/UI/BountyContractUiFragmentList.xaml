@@ -21,6 +21,12 @@
                 <BoxContainer Orientation="Horizontal"
                               Margin="8,8,8,8"
                               HorizontalExpand="True">
+                    <Button
+                        Name="NotificationSwitch"
+                        ToolTip="{Loc news-reader-ui-mute-tooltip}"
+                        Text="{Loc news-read-ui-notification-on}"
+                        MinWidth="20"
+                        Margin="0,0,5,0"/>
                     <Button Name="RefreshButton" Text="{Loc 'bounty-contracts-ui-list-refresh'}"/>
                     <Control HorizontalExpand="True"/>
                     <Button Name="CreateButton" Text="{Loc 'bounty-contracts-ui-list-create'}"/>

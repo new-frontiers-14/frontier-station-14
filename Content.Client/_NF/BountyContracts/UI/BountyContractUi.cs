@@ -72,8 +72,10 @@ public sealed partial class BountyContractUi : UIFragment
                 list.OnCreateButtonPressed += OnOpenCreateUiPressed;
                 list.OnRefreshButtonPressed += OnRefreshListPressed;
                 list.OnRemoveButtonPressed += OnRemovePressed;
+                list.OnToggleNotificationPressed += OnToggleNotificationPressed;
                 list.SetContracts(state.Contracts, state.IsAllowedRemoveBounties, state.AuthorUid);
                 list.SetCanCreate(state.IsAllowedCreateBounties);
+                list.SetNotificationsEnabled(state.NotificationsEnabled);
                 tabs.Children.Add(list);
 
                 tabs.CurrentTab = newTabIndex;
@@ -115,6 +117,11 @@ public sealed partial class BountyContractUi : UIFragment
     private void OnCancelCreatePressed()
     {
         SendMessage(MakeCommand(BountyContractCommand.CloseCreateUi, _lastCollection));
+    }
+
+    private void OnToggleNotificationPressed()
+    {
+        SendMessage(MakeCommand(BountyContractCommand.ToggleNotifications, _lastCollection));
     }
 
     private void OnTryCreatePressed(BountyContractRequest contract)
