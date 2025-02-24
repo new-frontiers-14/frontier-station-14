@@ -684,34 +684,6 @@
     energy: 1.6
     color: "#4b93ad"
 
-- type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine]
-  id: VendingMachineShipping
-  name: HaulVend
-  description: A one stop shop for space truckers.
-  components:
-  - type: VendingMachine
-    pack: ShippingVendInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/cargodrobe.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "normal-unshaded"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-      sprite: _NF/Structures/Machines/VendingMachines/shippingvend.rsi
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#4b93ad"
-
 # POI versions of upstream machines
 
 - type: entity
