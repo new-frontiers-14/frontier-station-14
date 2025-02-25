@@ -29,15 +29,15 @@
       - !type:DeleteEntity {}
     - to: rng_device_d2
       steps:
-      - tag: PercentileDie
-        name: d2
+      - component: PercentileDie
+        name: percentile die
         icon:
           sprite: Objects/Fun/dice.rsi
           state: percentile_50
         doAfter: 1
     - to: rng_device_d4
       steps:
-      - tag: d4Dice
+      - component: D4Die
         name: d4
         icon:
           sprite: Objects/Fun/dice.rsi
@@ -45,7 +45,7 @@
         doAfter: 1
     - to: rng_device_d6
       steps:
-      - tag: d6Dice
+      - component: D6Die
         name: d6
         icon:
           sprite: Objects/Fun/dice.rsi

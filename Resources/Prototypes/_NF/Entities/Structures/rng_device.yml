@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseItem
   id: RngEmptyCircuit
-  name: empty rng device
-  description: Add a dice to create a RNG device.
+  name: empty RNG device
+  description: Add a die (Percentile, D4, D6) to create an RNG device.
   components:
   - type: Sprite
     layers:
@@ -30,7 +30,7 @@
 - type: entity
   parent: BaseRngItem
   id: RngDeviceD2
-  name: rng device
+  name: RNG device
   description: Sends a signal to a random output port.
   suffix: D2
   components:
@@ -58,7 +58,7 @@
 - type: entity
   parent: BaseRngItem
   id: RngDeviceD4
-  name: rng device
+  name: RNG device
   description: Sends a signal to a random output port.
   suffix: D4
   components:
@@ -90,7 +90,7 @@
 - type: entity
   parent: BaseRngItem
   id: RngDeviceD6
-  name: rng device
+  name: RNG device
   description: Sends a signal to a random output port.
   suffix: D6
   components:
