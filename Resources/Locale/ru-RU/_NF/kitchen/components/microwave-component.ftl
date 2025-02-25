@@ -1,8 +1,8 @@
 ## Entity
 
-microwave-component-range-interact-item-too-big = { CAPITALIZE(THE($item)) } слишком большой, чтобы поместиться в духовке!
-microwave-component-assembler-interact-item-too-big = { CAPITALIZE(THE($item)) } слишком большой, чтобы поместиться в Фуд-О-Мат!
-microwave-component-medical-assembler-interact-item-too-big = { CAPITALIZE(THE($item)) } слишком большой, чтобы поместиться в медицинском ассемблере!
+microwave-component-range-interact-item-too-big = { CAPITALIZE($item) } слишком большой, чтобы поместиться в духовке!
+microwave-component-assembler-interact-item-too-big = { CAPITALIZE($item) } слишком большой, чтобы поместиться в Фуд-О-Мат!
+microwave-component-medical-assembler-interact-item-too-big = { CAPITALIZE($item) } слишком большой, чтобы поместиться в медицинском ассемблере!
 microwave-component-upgrade-cook-time = время приготовления
 microwave-component-assembler-no-valid-recipe = Не найдено ни одного подходящего рецепта!
 

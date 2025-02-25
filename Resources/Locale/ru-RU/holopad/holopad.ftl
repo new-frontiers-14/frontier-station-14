@@ -31,7 +31,7 @@ holopad-window-filter-line-placeholder = Поиск контакта
 holopad-window-flavor-left = ⚠ Не входите, пока проектор активен
 holopad-window-flavor-right = v3.0.9
 # Holograms
-holopad-hologram-name = голограмма { THE($name) }
+holopad-hologram-name = голограмма { $name }
 # Holopad actions
 holopad-activate-projector-verb = Активировать голопроектор
 holopad-ai-is-unable-to-reach-holopad = Вы не можете связаться с источником вызова, он находится слишком далеко от вас.
