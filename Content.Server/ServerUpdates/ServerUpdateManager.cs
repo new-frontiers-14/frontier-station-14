@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Content.Server.Chat.Managers;
+using Content.Shared._Eclipse.CCVar;
 using Content.Shared.CCVar;
 using Robust.Server;
 using Robust.Server.Player;
@@ -37,6 +38,8 @@ public sealed class ServerUpdateManager : IPostInjectInit
 
     private TimeSpan _uptimeRestart;
 
+    private bool _should_restart_when_server_empty;
+
     public void Initialize()
     {
         _watchdog.UpdateReceived += WatchdogOnUpdateReceived;
@@ -45,6 +48,11 @@ public sealed class ServerUpdateManager : IPostInjectInit
         _cfg.OnValueChanged(
             CCVars.ServerUptimeRestartMinutes,
             minutes => _uptimeRestart = TimeSpan.FromMinutes(minutes),
+            true);
+
+        _cfg.OnValueChanged(
+            EclipseCCVars.RestartWhenServerEmpty,
+            value => _should_restart_when_server_empty = value,
             true);
     }
 
@@ -99,7 +107,11 @@ public sealed class ServerUpdateManager : IPostInjectInit
 
     private void WatchdogOnUpdateReceived()
     {
-        _chatManager.DispatchServerAnnouncement(Loc.GetString("server-updates-received"));
+        if (_should_restart_when_server_empty)
+        {
+            _chatManager.DispatchServerAnnouncement(Loc.GetString("server-updates-received"));
+        }
+
         _updateOnRoundEnd = true;
         ServerEmptyUpdateRestartCheck("update notification");
     }
@@ -110,6 +122,12 @@ public sealed class ServerUpdateManager : IPostInjectInit
     /// </summary>
     private void ServerEmptyUpdateRestartCheck(string reason)
     {
+        if (!_should_restart_when_server_empty)
+        {
+            // Restart due to server being empty has been disabled
+            return;
+        }
+
         // Can't simple check the current connected player count since that doesn't update
         // before PlayerStatusChanged gets fired.
         // So in the disconnect handler we'd still see a single player otherwise.
