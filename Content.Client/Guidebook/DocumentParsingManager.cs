@@ -36,15 +36,19 @@ public sealed partial class DocumentParsingManager
             .Assert(_tagControlParsers.ContainsKey, tag => $"unknown tag: {tag}")
             .Bind(tag => _tagControlParsers[tag]);
 
-        _controlParser = OneOf(_tagParser, TryHeaderControl, TryListControl, TextControlParser) // Frontier: ListControlParser<TryListControl
-            .Before(SkipWhitespaces);
+        // Frontier: comment parser        
+        Parser<char, Unit> whitespaceAndCommentParser = SkipWhitespaces.Then(Try(String("<!--").Then(Parser<char>.Any.SkipUntil(String("-->")))).SkipMany());
+
+        _controlParser = OneOf(_tagParser, TryHeaderControl, TryListControl, TextControlParser)
+            .Before(whitespaceAndCommentParser);
+        // End Frontier
 
         foreach (var typ in _reflectionManager.GetAllChildren<IDocumentTag>())
         {
             _tagControlParsers.Add(typ.Name, CreateTagControlParser(typ.Name, typ, _sandboxHelper));
         }
 
-        ControlParser = SkipWhitespaces.Then(_controlParser.Many());
+        ControlParser = whitespaceAndCommentParser.Then(_controlParser.Many()); // Frontier: SkipWhitespaces<whitespaceAndCommentParser
 
         _sawmill = Logger.GetSawmill("Guidebook");
     }
@@ -86,6 +90,42 @@ public sealed partial class DocumentParsingManager
     }
 
     private Parser<char, Control> CreateTagControlParser(string tagId, Type tagType, ISandboxHelper sandbox)
+    {
+        return Map(
+                (args, controls) =>
+                {
+                    try
+                    {
+                        var tag = (IDocumentTag) sandbox.CreateInstance(tagType);
+                        if (!tag.TryParseTag(args, out var control))
+                        {
+                            _sawmill.Error($"Failed to parse {tagId} args");
+                            return new GuidebookError(args.ToString() ?? tagId, $"Failed to parse {tagId} args");
+                        }
+
+                        foreach (var child in controls)
+                        {
+                            control.AddChild(child);
+                        }
+
+                        return control;
+                    }
+                    catch (Exception e)
+                    {
+                        var output = args.Aggregate(string.Empty,
+                            (current, pair) => current + $"{pair.Key}=\"{pair.Value}\" ");
+
+                        _sawmill.Error($"Tag: {tagId} \n Arguments: {output}/>");
+                        return new GuidebookError($"Tag: {tagId}\nArguments: {output}", e.ToString());
+                    }
+                },
+                ParseTagArgs(tagId),
+                TagContentParser(tagId))
+            .Labelled($"{tagId} control");
+    }
+
+    // Frontier: 
+    private Parser<char, Control> CreateCommentParser(string tagId, Type tagType, ISandboxHelper sandbox)
     {
         return Map(
                 (args, controls) =>
