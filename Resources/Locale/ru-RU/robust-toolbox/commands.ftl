@@ -572,4 +572,4 @@ cmd-audio_length-arg-file-name = <file name>
 cmd-pvs-override-info-desc = Prints information about any PVS overrides associated with an entity.
 cmd-pvs-override-info-empty = Entity {$nuid} has no PVS overrides.
 cmd-pvs-override-info-global = Entity {$nuid} has a global override.
-cmd-pvs-override-info-clients = Entity {$nuid} has a session override for {$clients
+cmd-pvs-override-info-clients = Entity {$nuid} has a session override for {$clients}.
