@@ -88,6 +88,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
+      bodyStatus: InAir
+      angularDamping: 0.05
+      linearDamping: 0.05
+      fixedRotation: False
+      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
@@ -7017,6 +7022,12 @@ entities:
       parent: 1
 - proto: DisposalPipe
   entities:
+  - uid: 72
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 12.5,10.5
+      parent: 1
   - uid: 400
     components:
     - type: Transform
@@ -13939,6 +13950,27 @@ entities:
     - type: Transform
       pos: -3.5,7.5
       parent: 1
+- proto: NFSpawnPointDetective
+  entities:
+  - uid: 2699
+    components:
+    - type: Transform
+      pos: 2.5,-2.5
+      parent: 1
+- proto: NFSpawnPointSeniorOfficer
+  entities:
+  - uid: 2700
+    components:
+    - type: Transform
+      pos: 2.5,-3.5
+      parent: 1
+- proto: NFVendingMachineCartNfsd
+  entities:
+  - uid: 934
+    components:
+    - type: Transform
+      pos: -0.5,5.5
+      parent: 1
 - proto: NFWardrobePrisonFilled
   entities:
   - uid: 881
@@ -13973,27 +14005,6 @@ entities:
     components:
     - type: Transform
       pos: 16.5,2.5
-      parent: 1
-- proto: NFSpawnPointDetective
-  entities:
-  - uid: 2699
-    components:
-    - type: Transform
-      pos: 2.5,-2.5
-      parent: 1
-- proto: NFSpawnPointSeniorOfficer
-  entities:
-  - uid: 2700
-    components:
-    - type: Transform
-      pos: 2.5,-3.5
-      parent: 1
-- proto: NFVendingMachineCartNfsd
-  entities:
-  - uid: 934
-    components:
-    - type: Transform
-      pos: -0.5,5.5
       parent: 1
 - proto: NitrogenCanister
   entities:
