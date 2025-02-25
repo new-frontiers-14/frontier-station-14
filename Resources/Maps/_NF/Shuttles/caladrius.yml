@@ -6831,13 +6831,6 @@ entities:
     - type: Transform
       pos: -2.5,5.5
       parent: 1
-- proto: ClosetRadiationSuitFilled
-  entities:
-  - uid: 1761
-    components:
-    - type: Transform
-      pos: -11.762376,-23.472641
-      parent: 1
 - proto: ClosetWallO2N2FilledRandom
   entities:
   - uid: 1867
@@ -7041,6 +7034,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,-0.5
       parent: 1
+- proto: ConstructionBox
+  entities:
+  - uid: 2262
+    components:
+    - type: Transform
+      pos: -6.5,-9.5
+      parent: 1
 - proto: ConveyorBelt
   entities:
   - uid: 133
@@ -7099,12 +7099,19 @@ entities:
     - type: Transform
       pos: 12.5,-5.5
       parent: 1
-- proto: CrateSurgery
+- proto: CrateMaterialsBasicFilled
   entities:
   - uid: 1608
     components:
     - type: Transform
-      pos: 2.5,-10.5
+      pos: -4.5,-9.5
+      parent: 1
+- proto: CrateSurgery
+  entities:
+  - uid: 2011
+    components:
+    - type: Transform
+      pos: 2.5,-11.5
       parent: 1
 - proto: CryoPod
   entities:
@@ -7223,15 +7230,15 @@ entities:
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
+  - uid: 883
+    components:
+    - type: Transform
+      pos: 4.5,-9.5
+      parent: 1
   - uid: 1031
     components:
     - type: Transform
       pos: -9.5,1.5
-      parent: 1
-  - uid: 2011
-    components:
-    - type: Transform
-      pos: 4.5,-9.5
       parent: 1
   - uid: 2446
     components:
@@ -12777,6 +12784,13 @@ entities:
     - type: Transform
       pos: 12.5,-6.5
       parent: 1
+- proto: JerryCanWeldingFuel
+  entities:
+  - uid: 2054
+    components:
+    - type: Transform
+      pos: -3.3495302,-14.832925
+      parent: 1
 - proto: JukeboxWallmountShip
   entities:
   - uid: 95
@@ -12870,6 +12884,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 9.5,-3.5
       parent: 1
+- proto: LockerWallColorL2RadiationFilled
+  entities:
+  - uid: 751
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -9.5,-24.5
+      parent: 1
 - proto: LockerWallEVAColorFsbFilled
   entities:
   - uid: 1074
@@ -12901,20 +12923,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -11.5,-15.5
-      parent: 1
-- proto: LockerWallMaterialsBasicFilled
-  entities:
-  - uid: 713
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,-16.5
-      parent: 1
-  - uid: 883
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,-5.5
       parent: 1
 - proto: LockerWallMaterialsFuelAmeJarFilled
   entities:
@@ -13403,11 +13411,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-  - uid: 1722
-    components:
-    - type: Transform
-      pos: 8.5,-27.5
-      parent: 1
 - proto: OperatingTable
   entities:
   - uid: 1091
@@ -13509,6 +13512,13 @@ entities:
     components:
     - type: Transform
       pos: -8.5,-16.5
+      parent: 1
+- proto: PosterLegitSafetyMothDelam
+  entities:
+  - uid: 887
+    components:
+    - type: Transform
+      pos: -5.5,-16.5
       parent: 1
 - proto: PosterLegitSafetyMothMeth
   entities:
@@ -15637,10 +15647,10 @@ entities:
       parent: 1
 - proto: SignChem
   entities:
-  - uid: 887
+  - uid: 1038
     components:
     - type: Transform
-      pos: 1.5,-8.5
+      pos: 1.5,-5.5
       parent: 1
   - uid: 1422
     components:
@@ -15718,13 +15728,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 10.5,1.5
-      parent: 1
-- proto: SignRadiationMed
-  entities:
-  - uid: 751
-    components:
-    - type: Transform
-      pos: -9.5,-24.5
       parent: 1
 - proto: SignRestroom
   entities:
@@ -15954,18 +15957,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,-19.5
-      parent: 1
-- proto: StorageCanister
-  entities:
-  - uid: 1991
-    components:
-    - type: Transform
-      pos: 8.5,-28.5
-      parent: 1
-  - uid: 2054
-    components:
-    - type: Transform
-      pos: 9.5,-28.5
       parent: 1
 - proto: SubstationBasic
   entities:
@@ -16337,11 +16328,10 @@ entities:
       parent: 1
 - proto: TableReinforcedGlass
   entities:
-  - uid: 1038
+  - uid: 713
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-11.5
+      pos: 2.5,-10.5
       parent: 1
 - proto: TableWood
   entities:
@@ -18726,13 +18716,6 @@ entities:
     components:
     - type: Transform
       pos: -6.5,-1.5
-      parent: 1
-- proto: WelderIndustrialAdvancedEmpty
-  entities:
-  - uid: 2411
-    components:
-    - type: Transform
-      pos: -3.4032516,-14.8882065
       parent: 1
 - proto: WindoorSecure
   entities:
