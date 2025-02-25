@@ -36,12 +36,13 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 3;
+    private const int MissionLimit = 5;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfgManager = default!; // Frontier
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
+    private readonly List<DifficultyRating> _missionDifficulties = [DifficultyRating.Moderate, DifficultyRating.Hazardous, DifficultyRating.Extreme]; // Frontier
     private const double SalvageJobTime = 0.002;
 
     private float _cooldown;
@@ -264,10 +265,20 @@ public sealed partial class SalvageSystem
 
         // this doesn't support having more missions than types of ratings
         // but the previous system didn't do that either.
-        var allDifficulties = Enum.GetValues<DifficultyRating>();
+        var allDifficulties = _missionDifficulties; // Frontier: Enum.GetValues<DifficultyRating>() < _missionDifficulties
         _random.Shuffle(allDifficulties);
         var difficulties = allDifficulties.Take(MissionLimit).ToList();
+        // difficulties.Sort(); // Frontier: sort later
+
+        // Frontier: multiple missions per difficulty
+        // If we support more missions than there are accepted types, pick more until you're up to MissionLimit
+        while (difficulties.Count < MissionLimit)
+        {
+            var difficultyIndex = _random.Next(_missionDifficulties.Count);
+            difficulties.Add(_missionDifficulties[difficultyIndex]);
+        }
         difficulties.Sort();
+        // End Frontier: multiple missions per difficulty
 
         if (configs.Count == 0)
             return;

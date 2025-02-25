@@ -57,10 +57,10 @@ public abstract partial class SharedSalvageSystem : EntitySystem
     {
         switch (rating)
         {
-            //case DifficultyRating.Minimal: // Frontier
-            //return 4; // Frontier
-            //case DifficultyRating.Minor: // Frontier
-            //return 6; // Frontier
+            case DifficultyRating.Minimal:
+                return 4;
+            case DifficultyRating.Minor:
+                return 6;
             case DifficultyRating.Moderate:
                 return 8;
             case DifficultyRating.Hazardous:
@@ -77,24 +77,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
     /// </summary>
     public float GetSpawnCount(DifficultyRating difficulty)
     {
-        // Frontier edit start
-        switch (difficulty)
-        {
-            //case DifficultyRating.Minimal: // Frontier
-            //return 2; // Frontier
-            //case DifficultyRating.Minor: // Frontier
-            //return 4; // Frontier
-            case DifficultyRating.Moderate:
-                return 6;
-            case DifficultyRating.Hazardous:
-                return 8;
-            case DifficultyRating.Extreme:
-                return 10;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(difficulty), difficulty, null);
-        }
-        //return (int) difficulty * 2;
-        // Frontier edit end
+        return ((int)difficulty + 1) * 2; // Frontier: add one to difficulty (no empty expeditions)
     }
 
     public string GetFTLName(LocalizedDatasetPrototype dataset, int seed)
@@ -222,10 +205,10 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         var t5 = "ExpeditionRewardT5"; // Frontier - Update tiers
         switch (rating)
         {
-            //case DifficultyRating.Minimal: // Frontier
-            //return new string[] { t1 }; // Frontier - Update tiers // Frontier
-            //case DifficultyRating.Minor: // Frontier
-            //return new string[] { t2 }; // Frontier - Update tiers // Frontier
+            case DifficultyRating.Minimal:
+                return new string[] { t1 }; // Frontier - Update tiers // Frontier
+            case DifficultyRating.Minor:
+                return new string[] { t2 }; // Frontier - Update tiers // Frontier
             case DifficultyRating.Moderate:
                 return new string[] { t3 }; // Frontier - Update tiers
             case DifficultyRating.Hazardous:
@@ -260,8 +243,8 @@ public enum SalvageMissionType : byte
 [Serializable, NetSerializable]
 public enum DifficultyRating : byte
 {
-    //Minimal,
-    //Minor,
+    Minimal,
+    Minor,
     Moderate,
     Hazardous,
     Extreme,
