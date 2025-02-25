@@ -124,42 +124,6 @@ public sealed partial class DocumentParsingManager
             .Labelled($"{tagId} control");
     }
 
-    // Frontier: 
-    private Parser<char, Control> CreateCommentParser(string tagId, Type tagType, ISandboxHelper sandbox)
-    {
-        return Map(
-                (args, controls) =>
-                {
-                    try
-                    {
-                        var tag = (IDocumentTag) sandbox.CreateInstance(tagType);
-                        if (!tag.TryParseTag(args, out var control))
-                        {
-                            _sawmill.Error($"Failed to parse {tagId} args");
-                            return new GuidebookError(args.ToString() ?? tagId, $"Failed to parse {tagId} args");
-                        }
-
-                        foreach (var child in controls)
-                        {
-                            control.AddChild(child);
-                        }
-
-                        return control;
-                    }
-                    catch (Exception e)
-                    {
-                        var output = args.Aggregate(string.Empty,
-                            (current, pair) => current + $"{pair.Key}=\"{pair.Value}\" ");
-
-                        _sawmill.Error($"Tag: {tagId} \n Arguments: {output}/>");
-                        return new GuidebookError($"Tag: {tagId}\nArguments: {output}", e.ToString());
-                    }
-                },
-                ParseTagArgs(tagId),
-                TagContentParser(tagId))
-            .Labelled($"{tagId} control");
-    }
-
     // Parse a bunch of controls until we encounter a matching closing tag.
     private Parser<char, IEnumerable<Control>> TagContentParser(string tag)
     {
