@@ -271,11 +271,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var sellValue = 0;
         if (!voucherUsed)
         {
+            // Get the price of the ship
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
-            {
                 sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!), LacksPreserveOnSaleComp);
-            }
 
+            // Adjust for taxes
             sellValue = CalculateShipResaleValue((shipyardConsoleUid, component), sellValue);
         }
 
@@ -645,15 +645,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (disableSaleQuery.TryGetComponent(child, out var disableSale)
                 && disableSale.BlockSale is true
                 && !disableSale.AllowedShipyardTypes.Contains(key))
-                if (disableSale.Reason is null)
-                {
-                    return "shipyard-console-fallback-prevent-sale";
-                }
-                else
-                {
-                    return disableSale.Reason;
-                }
-
+            {
+                return disableSale.Reason ?? "shipyard-console-fallback-prevent-sale";
+            }
         }
 
         return null;
