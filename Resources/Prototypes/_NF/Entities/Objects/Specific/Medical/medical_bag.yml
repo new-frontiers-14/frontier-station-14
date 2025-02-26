@@ -1,0 +1,38 @@
+- type: entity
+  name: medical bag
+  id: MedicalBag
+  parent: BaseStorageItem
+  description: A medical bag designed to hold topicals and small reagent containers. For the medic on the go.
+  components:  
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medical_bag.rsi
+    layers:
+    - state: icon  
+  - type: Clothing
+    sprite: _NF/Objects/Specific/Medical/medical_bag.rsi
+    quickEquip: false
+    slots:
+    - belt
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,3
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      components:
+        - Pill
+        - Hypospray
+      tags:
+        - Document
+        - PillCanister
+        - CentrifugeCompatible
+        - Syringe
+        - Ointment
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Bottle
+  - type: Dumpable
