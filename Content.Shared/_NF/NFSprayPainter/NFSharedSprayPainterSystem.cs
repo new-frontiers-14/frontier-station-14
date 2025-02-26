@@ -74,7 +74,7 @@ public abstract class SharedNFSprayPainterSystem : EntitySystem
         Dirty(target, paintable);
 
         Audio.PlayPredicted(ent.Comp.SpraySound, ent, args.Args.User);
-        Appearance.SetData(target, args.Visuals, args.Prototype);
+        Appearance.SetData(target, args.Visuals, args.Data);
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(args.Args.User):user} painted {ToPrettyString(args.Args.Target.Value):target}");
 
         args.Handled = true;
@@ -121,13 +121,12 @@ public abstract class SharedNFSprayPainterSystem : EntitySystem
         if (!group.Duplicates && painter.DoAfters.TryGetValue(group.Category, out _))
             return;
 
-        if (!Targets.ContainsKey(group.Category))
+        if (!Targets.TryGetValue(group.Category, out var target))
             return;
 
-        var target = Targets[group.Category];
         var selected = painter.Indexes.GetValueOrDefault(group.Category, 0);
         var style = target.Styles[selected];
-        if (!group.StylePaths.TryGetValue(style, out var proto))
+        if (!group.AppearanceData.TryGetValue(style, out var proto))
         {
             var msg = Loc.GetString("spray-painter-style-not-available");
             _popup.PopupClient(msg, args.User, args.User);
@@ -138,7 +137,7 @@ public abstract class SharedNFSprayPainterSystem : EntitySystem
         var doAfterEventArgs = new DoAfterArgs(EntityManager,
             args.User,
             time,
-            new NFSprayPainterDoAfterEvent(proto, group.Category, target.Visuals),
+            new NFSprayPainterDoAfterEvent(proto.Data, group.Category, target.Visuals),
             args.Used,
             target: ent,
             used: args.Used)
@@ -184,7 +183,7 @@ public abstract class SharedNFSprayPainterSystem : EntitySystem
                 : new();
 
             groups.Add(proto);
-            foreach (var style in proto.StylePaths.Keys)
+            foreach (var style in proto.AppearanceData.Keys)
             {
                 styles.Add(style);
             }

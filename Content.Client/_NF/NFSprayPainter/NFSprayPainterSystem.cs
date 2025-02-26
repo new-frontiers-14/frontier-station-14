@@ -13,20 +13,19 @@ public sealed class NFSprayPainterSystem : SharedNFSprayPainterSystem
     {
         base.Initialize();
 
-        foreach (var category in Targets.Keys)
+        foreach (var (category, target) in Targets)
         {
-            var target = Targets[category];
             Entries.Add(category, new());
 
             foreach (string style in target.Styles)
             {
                 var group = target.Groups
-                    .FindAll(x => x.StylePaths.ContainsKey(style))
+                    .FindAll(x => x.AppearanceData.ContainsKey(style))
                     .MaxBy(x => x.IconPriority);
 
                 if (group == null ||
-                    !group.StylePaths.TryGetValue(style, out var protoId) ||
-                    !_prototypeManager.TryIndex(protoId, out var proto))
+                    !group.AppearanceData.TryGetValue(style, out var protoId) ||
+                    !_prototypeManager.TryIndex(protoId.DisplayEntity, out var proto))
                 {
                     Entries[category].Add(new NFSprayPainterEntry(style, null));
                     continue;

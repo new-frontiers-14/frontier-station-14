@@ -3,14 +3,14 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.NFSprayPainter.Prototypes;
 
-[Prototype("nFPaintableGroup")]
+[Prototype("NFPaintableGroup")]
 public sealed partial class NFPaintableGroupPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
-    public string Category = String.Empty;
+    public string Category = string.Empty;
 
     [DataField]
     public NFPaintableVisuals Visuals = NFPaintableVisuals.BaseRSI;
@@ -22,7 +22,7 @@ public sealed partial class NFPaintableGroupPrototype : IPrototype
     public float Time = 2.0f;
 
     [DataField(required: true)]
-    public Dictionary<string, EntProtoId> StylePaths = new();
+    public Dictionary<string, NFPaintableData> AppearanceData = new();
 
     [DataField]
     public bool Duplicates = false;
@@ -34,9 +34,17 @@ public sealed partial class NFPaintableGroupPrototype : IPrototype
     public int IconPriority = 0;
 }
 
+[DataDefinition, Serializable, NetSerializable]
+public partial record struct NFPaintableData
+{
+    public EntProtoId DisplayEntity;
+    public string Data;
+}
+
 [Serializable, NetSerializable]
 public enum NFPaintableVisuals
 {
     BaseRSI,
     LockerRSI,
+    CanisterState,
 }

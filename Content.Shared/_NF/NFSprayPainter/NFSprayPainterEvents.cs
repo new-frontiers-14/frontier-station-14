@@ -1,5 +1,4 @@
 using Content.Shared.DoAfter;
-using Content.Shared._NF.NFSprayPainter.Components;
 using Content.Shared._NF.NFSprayPainter.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -54,7 +53,7 @@ public sealed class NFSprayPainterBoundUserInterfaceState : BoundUserInterfaceSt
 public sealed partial class NFSprayPainterDoAfterEvent : DoAfterEvent
 {
     [DataField]
-    public string Prototype;
+    public string Data;
 
     [DataField]
     public string Category;
@@ -62,9 +61,9 @@ public sealed partial class NFSprayPainterDoAfterEvent : DoAfterEvent
     [DataField]
     public NFPaintableVisuals Visuals;
 
-    public NFSprayPainterDoAfterEvent(string prototype, string category, NFPaintableVisuals visuals)
+    public NFSprayPainterDoAfterEvent(string data, string category, NFPaintableVisuals visuals)
     {
-        Prototype = prototype;
+        Data = data;
         Category = category;
         Visuals = visuals;
     }

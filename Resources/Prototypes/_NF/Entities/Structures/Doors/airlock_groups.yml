@@ -1,40 +1,162 @@
-- type: nFPaintableGroup
+- type: NFPaintableGroup
   category: airlocks
   id: AirlockStandard
   iconPriority: 100
   time: 3.0
   state: closed
-  stylePaths:
-    atmospherics: AirlockAtmospherics
-    basic:        Airlock
-    cargo:        AirlockCargo
-    command:      AirlockCommand
-    engineering:  AirlockEngineering
-    freezer:      AirlockFreezer
-    maintenance:  AirlockMaint
-    medical:      AirlockMedical
-    chemistry:    AirlockChemistry
-    science:      AirlockScience
-    security:     AirlockSecurity
-    virology:     AirlockVirology
-    mercenary:    AirlockMercenary
+  appearanceData:
+    atmospherics:
+      displayEntity: AirlockAtmospherics
+      data: AirlockAtmospherics
+    basic:
+      displayEntity: Airlock
+      data: Airlock
+    cargo:
+      displayEntity: AirlockCargo
+      data: AirlockCargo
+    chemistry:
+      displayEntity: AirlockChemistry
+      data: AirlockChemistry
+    command:
+      displayEntity: AirlockCommand
+      data: AirlockCommand
+    engineering:
+      displayEntity: AirlockEngineering
+      data: AirlockEngineering
+    freezer:
+      displayEntity: AirlockFreezer
+      data: AirlockFreezer
+    maintenance:
+      displayEntity: AirlockMaint
+      data: AirlockMaint
+    medical:
+      displayEntity: AirlockMedical
+      data: AirlockMedical
+    mercenary:
+      displayEntity: AirlockMercenary
+      data: AirlockMercenary
+    science:
+      displayEntity: AirlockScience
+      data: AirlockScience
+    security:
+      displayEntity: AirlockSecurity
+      data: AirlockSecurity
+    virology:
+      displayEntity: AirlockVirology
+      data: AirlockVirology
 
-- type: nFPaintableGroup
+- type: NFPaintableGroup
   category: airlocks
   id: AirlockGlass
   iconPriority: 90
   time: 3.0
   state: closed
-  stylePaths:
-    atmospherics: AirlockAtmosphericsGlass
-    basic:        AirlockGlass
-    command:      AirlockCommandGlass
-    science:      AirlockScienceGlass
-    cargo:        AirlockCargoGlass
-    engineering:  AirlockEngineeringGlass
-    maintenance:  AirlockMaintGlass
-    medical:      AirlockMedicalGlass
-    chemistry:    AirlockChemistryGlass
-    security:     AirlockSecurityGlass
-    virology:     AirlockVirologyGlass
-    mercenary:    AirlockMercenary
+  appearanceData:
+    atmospherics:
+      displayEntity: AirlockAtmosphericsGlass
+      data: AirlockAtmosphericsGlass
+    basic:
+      displayEntity: AirlockGlass
+      data: AirlockGlass
+    cargo:
+      displayEntity: AirlockCargoGlass
+      data: AirlockCargoGlass
+    chemistry:
+      displayEntity: AirlockChemistryGlass
+      data: AirlockChemistryGlass
+    command:
+      displayEntity: AirlockCommandGlass
+      data: AirlockCommandGlass
+    engineering:
+      displayEntity: AirlockEngineeringGlass
+      data: AirlockEngineeringGlass
+    maintenance:
+      displayEntity: AirlockMaintGlass
+      data: AirlockMaintGlass
+    medical:
+      displayEntity: AirlockMedicalGlass
+      data: AirlockMedicalGlass
+    mercenary:
+      displayEntity: AirlockMercenaryGlass
+      data: AirlockMercenaryGlass
+    science:
+      displayEntity: AirlockScienceGlass
+      data: AirlockScienceGlass
+    security:
+      displayEntity: AirlockSecurityGlass
+      data: AirlockSecurityGlass
+    virology:
+      displayEntity: AirlockVirologyGlass
+      data: AirlockVirologyGlass
+
+- type: NFPaintableGroup
+  category: canisters
+  id: GasCanister
+  iconPriority: 80
+  time: 3.0
+  state: closed
+  appearanceData:
+    storage:
+      displayEntity: StorageCanister
+      data: storage
+    air:
+      displayEntity: AirCanister
+      data: air
+    nitrogen:
+      displayEntity: NitrogenCanister
+      data: nitrogen
+    liquid nitrogen:
+      displayEntity: LiquidNitrogenCanister
+      data: nitrogen_liquid
+    oxygen:
+      displayEntity: OxygenCanister
+      data: oxygen
+    liquid oxygen:
+      displayEntity: LiquidOxygenCanister
+      data: oxygen_liquid
+    carbon dioxide:
+      displayEntity: CarbonDioxideCanister
+      data: carbon
+    liquid carbon dioxide:
+      displayEntity: LiquidCarbonDioxideCanister
+      data: carbon_liquid
+    plasma:
+      displayEntity: PlasmaCanister
+      data: plasma
+    tritium:
+      displayEntity: TritiumCanister
+      data: tritium
+    ammonia:
+      displayEntity: AmmoniaCanister
+      data: ammonia
+    water vapor:
+      displayEntity: WaterVaporCanister
+      data: water_vapor
+    nitrous oxide:
+      displayEntity: NitrousOxideCanister
+      data: nitrous_oxide
+    frezon:
+      displayEntity: FrezonCanister
+      data: frezon
+
+# - type: NFPaintableGroup
+#   category: lockers
+#   id: Locker
+#   iconPriority: 80
+#   time: 3.0
+#   state: closed
+#   stylePaths:
+#     storage:                StorageCanister
+#     air:                    AirCanister
+#     nitrogen:               NitrogenCanister
+#     liquid nitrogen:        LiquidNitrogenCanister
+#     oxygen:                 OxygenCanister
+#     liquid oxygen:          LiquidOxygenCanister
+#     carbon dioxide:         CarbonDioxideCanister
+#     liquid carbon dioxide:  LiquidCarbonDioxideCanister
+#     plasma:                 PlasmaCanister
+#     tritium:                TritiumCanister
+#     ammonia:                AmmoniaCanister
+#     water vapor:            WaterVaporCanister
+#     nitrous oxide:          NitrousOxideCanister
+#     frezon:                 FrezonCanister
