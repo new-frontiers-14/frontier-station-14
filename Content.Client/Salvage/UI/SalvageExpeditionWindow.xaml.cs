@@ -195,8 +195,8 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
             });
 
-            // Frontier: wrap in rewards > 0 , otherwise dont show "rewards" text
-            if (mission.Rewards.Count > 0)
+            // Frontier: only show rewards if enabled via cvar and not empty
+            if (_cfgManager.GetCVar(NFCCVars.SalvageExpeditionRewardsEnabled) && mission.Rewards.Count > 0)
             {
                 lBox.AddChild(new Label()
                 {
@@ -254,6 +254,7 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
                 PanelOverride = new StyleBoxFlat(new Color(30, 30, 34)),
                 HorizontalExpand = true,
                 Margin = new Thickness(5f, 0f),
+                MinWidth = 280, // Frontier
                 Children =
                 {
                     new BoxContainer

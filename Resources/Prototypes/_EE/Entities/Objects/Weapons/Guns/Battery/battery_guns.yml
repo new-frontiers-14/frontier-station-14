@@ -1,0 +1,15 @@
+- type: entity
+  name: CentComm disabler # Frontier: extra M
+  parent: [BaseC2ContrabandUnredeemable, WeaponDisabler] # Frontier: add BaseC2ContrabandUnredeemable
+  id: WeaponCCDisabler
+  description: An improved self-defense weapon that exhausts organic targets, weakening them until they collapse. Only for the finest officers that we don't trust with lethals.
+  components:
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 20
+  - type: Gun
+    fireRate: 3
+  - type: Sprite
+    sprite: _EE/Objects/Weapons/Guns/Battery/ccdisabler.rsi
+  - type: Clothing
+    sprite: _EE/Objects/Weapons/Guns/Battery/ccdisabler.rsi
