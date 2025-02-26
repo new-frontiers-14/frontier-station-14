@@ -1,2 +1,2 @@
-signal-port-name-rng-input = Input
-signal-port-description-rng-input = Input to the RNG device.
+signal-port-name-rng-input = Trigger
+signal-port-description-rng-input = Trigger the RNG device.
