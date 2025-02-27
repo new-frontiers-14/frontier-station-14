@@ -1,0 +1,19 @@
+- type: entity
+  id: AtmosDeviceFanDirectionalAssembly
+  parent: BaseItem
+  name: directional fan
+  suffix: assembly
+  description: A directional fan assembly. Used to construct a directional fan.
+  components:
+  - type: Tag
+    tags:
+    - FanDirectionalAssembly
+  - type: Sprite
+    sprite: Structures/Piping/Atmospherics/directionalfan.rsi
+    state: loose
+  - type: Construction
+    graph: AtmosDeviceFanDirectional
+    node: item
+  - type: StaticPrice
+    price: 40
+

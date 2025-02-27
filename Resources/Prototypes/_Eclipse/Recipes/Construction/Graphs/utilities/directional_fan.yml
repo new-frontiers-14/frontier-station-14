@@ -1,0 +1,33 @@
+- type: constructionGraph
+  id: AtmosDeviceFanDirectional
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: entity
+          steps:
+            - tag: FanDirectionalAssembly
+              icon:
+                sprite: Structures/Piping/Atmospherics/directionalfan.rsi
+                state: loose
+              name: directional fan assembly
+              doAfter: 2
+    - node: item
+      entity: AtmosDeviceFanDirectionalAssembly
+      actions:
+        - !type:SetAnchor
+          value: false
+    - node: entity
+      entity: AtmosDeviceFanDirectional
+      actions:
+        - !type:SetAnchor
+          value: true
+        - !type:SnapToGrid
+      edges:
+        - to: item
+          steps:
+            - tool: Welding
+              doAfter: 4
+          completed:
+            - !type:SetAnchor
+              value: false
