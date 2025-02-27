@@ -610,10 +610,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         while (childEnumerator.MoveNext(out var child))
         {
+            // Allow dead mobs, but _not_ dead players.
             if (mobQuery.TryGetComponent(child, out var mobState)
                 && !_mobState.IsDead(child, mobState)
-                && _mind.TryGetMind(child, out var mind, out var mindComp)
-                && !_mind.IsCharacterDeadIc(mindComp))
+                || _mind.TryGetMind(child, out var mind, out var mindComp))
                 return mindComp.CharacterName;
             else
             {
