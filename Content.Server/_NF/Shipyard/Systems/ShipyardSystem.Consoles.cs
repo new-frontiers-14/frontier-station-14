@@ -4,13 +4,14 @@ using Content.Server.Radio.EntitySystems;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Shipyard.Components;
 using Content.Shared._NF.Bank.Components;
+using Content.Shared._NF.Shipyard;
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Access.Components;
-using Content.Shared._NF.Shipyard;
+using Content.Shared.Ghost;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -610,10 +611,16 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         while (childEnumerator.MoveNext(out var child))
         {
-            // Allow dead mobs, but _not_ dead players.
-            if (_mind.TryGetMind(child, out var mind, out var mindComp))
+            // Ghosts don't stop a ship sale.
+            if (HasComp<GhostComponent>(child))
+                continue;
+
+            // Check if we have a player entity that's either still around or alive and may come back
+            if (_mind.TryGetMind(child, out var mind, out var mindComp)
+                && (mindComp.Session != null
+                || !_mind.IsCharacterDeadPhysically(mindComp)))
             {
-                return mindComp.CharacterName;
+                return MetaData(child).EntityName;
             }
             else
             {
