@@ -60,6 +60,14 @@ public sealed class BotanySwabSystem : EntitySystem
         if (args.Cancelled || args.Handled || !TryComp<PlantHolderComponent>(args.Args.Target, out var plant))
             return;
 
+        // Frontier: prevent swabbing
+        if (plant.Seed != null && plant.Seed.PreventSwabbing)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("botany-cannot-be-swabbed-message"), args.Args.Target.Value, args.Args.User);
+            return;
+        }
+        // End Frontier
+
         if (swab.SeedData == null)
         {
             // Pick up pollen
