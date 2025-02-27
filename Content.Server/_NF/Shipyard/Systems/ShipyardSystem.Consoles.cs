@@ -629,12 +629,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     }
 
     /// <summary>
-    /// Looks for a living, sapient being aboard a particular entity.
+    /// Looks for any entities marked as preventing sale on a shuttle
     /// </summary>
-    /// <param name="uid">The entity to search (e.g. a shuttle, a station)</param>
-    /// <param name="mobQuery">A query to get the MobState from an entity</param>
+    /// <param name="shuttle">The entity to search (e.g. a shuttle, a station)</param>
+    /// <param name="key">The UI key of the current shipyard console. Used to see if the shipyard should ignore this check</param>
+    /// <param name="disableSaleQuery">A query to get any marked objects from an entity</param>
     /// <param name="xformQuery">A query to get the transform component of an entity</param>
-    /// <returns>The name of the sapient being if one was found, null otherwise.</returns>
+    /// <returns>The reason that a shuttle should be blocked from sale, null otherwise.</returns>
     public string? FindDisableShipyardSaleObjects(EntityUid shuttle, ShipyardConsoleUiKey key, EntityQuery<ShipyardSellConditionComponent> disableSaleQuery, EntityQuery<TransformComponent> xformQuery)
     {
         var xform = xformQuery.GetComponent(shuttle);
@@ -646,7 +647,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 && disableSale.BlockSale is true
                 && !disableSale.AllowedShipyardTypes.Contains(key))
             {
-                return disableSale.Reason ?? "shipyard-console-fallback-prevent-sale";
+                return disableSale.Reason;
             }
 
         }
