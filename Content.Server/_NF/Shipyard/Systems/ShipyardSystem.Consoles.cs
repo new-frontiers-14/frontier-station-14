@@ -645,14 +645,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (disableSaleQuery.TryGetComponent(child, out var disableSale)
                 && disableSale.BlockSale is true
                 && !disableSale.AllowedShipyardTypes.Contains(key))
-                if (disableSale.Reason is null)
-                {
-                    return "shipyard-console-fallback-prevent-sale";
-                }
-                else
-                {
-                    return disableSale.Reason;
-                }
+            {
+                return disableSale.Reason ?? "shipyard-console-fallback-prevent-sale";
+            }
 
         }
 
