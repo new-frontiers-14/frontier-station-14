@@ -5,9 +5,21 @@
   description: A robust bag for construction specialists and engineers alike to carry large amounts of construction materials. Magnetises any nearby construction materials when attached to a belt.
   components:
   - type: MagnetPickup
+    magnetEnabled: false
+    magnetCanBeEnabled: false
   - type: Sprite
     sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
-    state: icon
+    layers:
+    - state: icon
+    - state: icon-on
+      visible: false
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
   - type: Clothing
     sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
     quickEquip: false
@@ -35,6 +47,19 @@
   - type: Dumpable
   - type: StaticPrice
     price: 55.5
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onUse: false
+    onAltUse: true
+    onActivate: false
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+  - type: Appearance
 
 - type: entity
   parent: ConstructionBag
@@ -51,6 +76,9 @@
     - state: icon-bluespace-overlay
     - state: icon-bluespace-overlay-unshaded
       shader: unshaded
+    - state: icon-on-bluespace
+      visible: false
+      map: [ "enum.ToggleVisuals.Layer" ]
   - type: Item
     size: Ginormous
     inhandVisuals:
