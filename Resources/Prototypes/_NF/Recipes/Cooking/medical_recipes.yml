@@ -11,7 +11,7 @@
   reagents:
     Epinephrine: 12
     TranexamicAcid: 3
-  recipeType: MedicalAssembler # Frontier
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeAntiPoisonMedipen
@@ -23,7 +23,7 @@
   reagents:
     Ultravasculine: 10
     Epinephrine: 5
-  recipeType: MedicalAssembler # Frontier
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeBruteAutoInjector
@@ -35,7 +35,7 @@
   reagents:
     Bicaridine: 15
     TranexamicAcid: 5
-  recipeType: MedicalAssembler # Frontier
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeBurnAutoInjector
@@ -47,7 +47,7 @@
   reagents:
     Dermaline: 10
     Leporazine: 10
-  recipeType: MedicalAssembler # Frontier
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeRadAutoInjector
@@ -59,7 +59,7 @@
   reagents:
     Arithrazine: 15
     Bicaridine: 5
-  recipeType: MedicalAssembler # Frontier
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipePunctAutoInjector
@@ -71,8 +71,8 @@
   reagents:
     Puncturase: 10
     TranexamicAcid: 5
-  recipeType: MedicalAssembler # Frontier
-  
+  recipeType: MedicalAssembler
+
 - type: microwaveMealRecipe
   id: RecipePyraAutoInjector
   name: pyrazine auto-injector
@@ -83,7 +83,7 @@
   reagents:
     Pyrazine: 10
     Dermaline: 10
-  recipeType: MedicalAssembler # Frontier
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipeAirlossAutoInjector
@@ -95,7 +95,7 @@
   reagents:
     Saline: 20
     DexalinPlus: 20
-  recipeType: MedicalAssembler # Frontier
+  recipeType: MedicalAssembler
 
 #Frontier pen recipes
 
@@ -109,7 +109,7 @@
   reagents:
     TranexamicAcid: 5
     Saline: 15
-  recipeType: MedicalAssembler # Frontier
+  recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
   id: RecipePenStimulant
@@ -121,8 +121,8 @@
   reagents:
     Desoxyephedrine: 10
     Dylovene: 10
-  recipeType: MedicalAssembler # Frontier
-  
+  recipeType: MedicalAssembler
+
 - type: microwaveMealRecipe
   id: RecipePenCrisisAutoInjector
   name: crisis auto-injector
@@ -133,8 +133,8 @@
   reagents:
     Inaprovaline: 10
     DexalinPlus: 10
-  recipeType: MedicalAssembler # Frontier
-        
+  recipeType: MedicalAssembler
+
 - type: microwaveMealRecipe
   id: RecipePenLacerAutoInjector
   name: lacerinol auto-injector
@@ -145,8 +145,8 @@
   reagents:
     Lacerinol: 10
     TranexamicAcid: 5
-  recipeType: MedicalAssembler # Frontier
-            
+  recipeType: MedicalAssembler
+
 - type: microwaveMealRecipe
   id: RecipePenBruizAutoInjector
   name: bruizine auto-injector
@@ -157,4 +157,125 @@
   reagents:
     Bruizine: 10
     TranexamicAcid: 5
-  recipeType: MedicalAssembler # Frontier
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipePenPolyAutoInjector
+  name: polypyrylium oligomers auto-injector
+  result: PolyAutoInjector
+  time: 5
+  solids:
+    BlankMediPen: 1
+  reagents:
+    PolypyryliumOligomers: 15
+  recipeType: MedicalAssembler
+
+- type: microwaveMealRecipe
+  id: RecipePenEthylredoxrazineAutoInjector
+  name: barkeeper's friend auto-injector
+  result: EthylredoxrazineAutoInjector
+  time: 5
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Ethylredoxrazine: 15
+    Dylovene: 5
+  recipeType: MedicalAssembler
+
+# Microwave meal recipes for making real people.
+# It's so wrong, yet so right.
+
+- type: microwaveMealRecipe
+  id: NFRecipeBuildABuddyHuman
+  name: Build-A-Buddy
+  result: NFMobHumanBuddy
+  time: 20
+  solids:
+    HeadHuman: 1
+    TorsoHuman: 1
+    LeftArmHuman: 1
+    RightArmHuman: 1
+    LeftHandHuman: 1
+    RightHandHuman: 1
+    LeftLegHuman: 1
+    RightLegHuman: 1
+    LeftFootHuman: 1
+    RightFootHuman: 1
+  recipeType: MedicalAssembler
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: NFRecipeBuildABuddyGoblin
+  name: Build-A-Buddy
+  result: NFMobGoblinBuddy
+  time: 20
+  solids:
+    HeadGoblin: 1
+    TorsoGoblin: 1
+    LeftArmGoblin: 1
+    RightArmGoblin: 1
+    LeftHandGoblin: 1
+    RightHandGoblin: 1
+    LeftLegGoblin: 1
+    RightLegGoblin: 1
+    LeftFootGoblin: 1
+    RightFootGoblin: 1
+  recipeType: MedicalAssembler
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: NFRecipeBuildABuddyReptilian
+  name: Build-A-Buddy
+  result: NFMobReptilianBuddy
+  time: 20
+  solids:
+    HeadReptilian: 1
+    TorsoReptilian: 1
+    LeftArmReptilian: 1
+    RightArmReptilian: 1
+    LeftHandReptilian: 1
+    RightHandReptilian: 1
+    LeftLegReptilian: 1
+    RightLegReptilian: 1
+    LeftFootReptilian: 1
+    RightFootReptilian: 1
+  recipeType: MedicalAssembler
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: NFRecipeBuildABuddySlime
+  name: Build-A-Buddy
+  result: NFMobSlimePersonBuddy
+  time: 20
+  solids:
+    HeadSlime: 1
+    TorsoSlime: 1
+    LeftArmSlime: 1
+    RightArmSlime: 1
+    LeftHandSlime: 1
+    RightHandSlime: 1
+    LeftLegSlime: 1
+    RightLegSlime: 1
+    LeftFootSlime: 1
+    RightFootSlime: 1
+  recipeType: MedicalAssembler
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: NFRecipeBuildABuddyVulpkanin
+  name: Build-A-Buddy
+  result: NFMobVulpkaninBuddy
+  time: 20
+  solids:
+    HeadVulpkanin: 1
+    TorsoVulpkanin: 1
+    LeftArmVulpkanin: 1
+    RightArmVulpkanin: 1
+    LeftHandVulpkanin: 1
+    RightHandVulpkanin: 1
+    LeftLegVulpkanin: 1
+    RightLegVulpkanin: 1
+    LeftFootVulpkanin: 1
+    RightFootVulpkanin: 1
+  recipeType: MedicalAssembler
+  hideInGuidebook: true

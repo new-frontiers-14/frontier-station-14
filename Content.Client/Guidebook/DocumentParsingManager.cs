@@ -36,15 +36,19 @@ public sealed partial class DocumentParsingManager
             .Assert(_tagControlParsers.ContainsKey, tag => $"unknown tag: {tag}")
             .Bind(tag => _tagControlParsers[tag]);
 
-        _controlParser = OneOf(_tagParser, TryHeaderControl, TryListControl, TextControlParser) // Frontier: ListControlParser<TryListControl
-            .Before(SkipWhitespaces);
+        // Frontier: comment parser        
+        Parser<char, Unit> whitespaceAndCommentParser = SkipWhitespaces.Then(Try(String("<!--").Then(Parser<char>.Any.SkipUntil(String("-->")))).SkipMany());
+
+        _controlParser = OneOf(_tagParser, TryHeaderControl, TryListControl, TextControlParser)
+            .Before(whitespaceAndCommentParser);
+        // End Frontier
 
         foreach (var typ in _reflectionManager.GetAllChildren<IDocumentTag>())
         {
             _tagControlParsers.Add(typ.Name, CreateTagControlParser(typ.Name, typ, _sandboxHelper));
         }
 
-        ControlParser = SkipWhitespaces.Then(_controlParser.Many());
+        ControlParser = whitespaceAndCommentParser.Then(_controlParser.Many()); // Frontier: SkipWhitespaces<whitespaceAndCommentParser
 
         _sawmill = Logger.GetSawmill("Guidebook");
     }

@@ -88,18 +88,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -8169,22 +8162,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-- proto: GasMinerNitrogen
-  entities:
-  - uid: 1088
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -8.5,14.5
-      parent: 1
-- proto: GasMinerOxygen
-  entities:
-  - uid: 1087
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -8.5,16.5
-      parent: 1
 - proto: GasMixerOn
   entities:
   - uid: 1370
@@ -13719,7 +13696,7 @@ entities:
     - type: Transform
       pos: 7.5,13.5
       parent: 1
-- proto: LockerNfsdSheriff
+- proto: LockerNfsdSheriffFilled
   entities:
   - uid: 218
     components:
@@ -13850,13 +13827,6 @@ entities:
     - type: Transform
       pos: 18.5,23.5
       parent: 1
-- proto: MedalCaseNfsd
-  entities:
-  - uid: 72
-    components:
-    - type: Transform
-      pos: 4.382657,9.643819
-      parent: 1
 - proto: MedicalBed
   entities:
   - uid: 41
@@ -13908,6 +13878,27 @@ entities:
     components:
     - type: Transform
       pos: 13.5,24.5
+      parent: 1
+- proto: NFHolopadNFSDLobby
+  entities:
+  - uid: 2793
+    components:
+    - type: Transform
+      pos: 0.5,-3.5
+      parent: 1
+- proto: NFHolopadNFSDReception
+  entities:
+  - uid: 2794
+    components:
+    - type: Transform
+      pos: -4.5,3.5
+      parent: 1
+- proto: NFHolopadNFSDSheriff
+  entities:
+  - uid: 980
+    components:
+    - type: Transform
+      pos: -3.5,7.5
       parent: 1
 - proto: NFSpawnPointDetective
   entities:
@@ -14803,11 +14794,6 @@ entities:
     components:
     - type: Transform
       pos: -15.5,0.5
-      parent: 1
-  - uid: 980
-    components:
-    - type: Transform
-      pos: -3.5,7.5
       parent: 1
   - uid: 1005
     components:
@@ -16133,43 +16119,43 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         849:
-        - Left: Reverse
+        - Left: Forward
         - Right: Forward
         - Middle: Off
         355:
-        - Left: Reverse
+        - Left: Forward
         - Right: Forward
         - Middle: Off
         356:
-        - Left: Reverse
+        - Left: Forward
         - Right: Forward
         - Middle: Off
         388:
-        - Left: Reverse
+        - Left: Forward
         - Right: Forward
         - Middle: Off
         989:
-        - Left: Reverse
+        - Left: Forward
         - Right: Forward
         - Middle: Off
         751:
-        - Left: Reverse
+        - Left: Forward
         - Right: Forward
         - Middle: Off
         994:
-        - Left: Reverse
+        - Left: Forward
         - Right: Forward
         - Middle: Off
         749:
-        - Left: Reverse
+        - Left: Forward
         - Right: Forward
         - Middle: Off
         999:
-        - Left: Reverse
+        - Left: Forward
         - Right: Forward
         - Middle: Off
         963:
-        - Left: Reverse
+        - Left: Forward
         - Right: Forward
         - Middle: Off
   - uid: 2681

@@ -58,7 +58,7 @@
       collection: IanBark
 
 - type: entity
-  parent: [NFClothingBackpack, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband, ClothingBackpack<NFClothingBackpack
+  parent: [NFClothingBackpack, BaseC1Contraband ] # Frontier: BaseRestrictedContraband<BaseC1Contraband, ClothingBackpack<NFClothingBackpack
   id: ClothingBackpackSecurity
   name: security backpack
   description: It's a very robust backpack.
@@ -194,7 +194,7 @@
 
 #ERT
 - type: entity
-  parent: [ NFClothingBackpack, BaseCentcommContraband ] # Frontier: ClothingBackpack<NFClothingBackpack
+  parent: [ ClothingBackpack, BaseCentcommContraband ] # Frontier - note: NFBackpack sets max size, fails to insert some ERT loadout items
   id: ClothingBackpackERTLeader
   name: ERT leader backpack
   description: A spacious backpack with lots of pockets, worn by the Commander of an Emergency Response Team.
@@ -206,7 +206,7 @@
     - 0,0,10,3
 
 - type: entity
-  parent: NFClothingBackpack # Frontier: ClothingBackpack<NFClothingBackpackERTLeader
+  parent: ClothingBackpackERTLeader
   id: ClothingBackpackERTSecurity
   name: ERT security backpack
   description: A spacious backpack with lots of pockets, worn by Security Officers of an Emergency Response Team.
@@ -215,7 +215,7 @@
     sprite: Clothing/Back/Backpacks/ertsec.rsi
 
 - type: entity
-  parent: NFClothingBackpack # Frontier: ClothingBackpack<NFClothingBackpackERTLeader
+  parent: ClothingBackpackERTLeader
   id: ClothingBackpackERTMedical
   name: ERT medical backpack
   description: A spacious backpack with lots of pockets, worn by Medical Officers of an Emergency Response Team.
@@ -224,7 +224,7 @@
     sprite: Clothing/Back/Backpacks/ertmed.rsi
 
 - type: entity
-  parent: NFClothingBackpack # Frontier: ClothingBackpack<NFClothingBackpackERTLeader
+  parent: ClothingBackpackERTLeader
   id: ClothingBackpackERTEngineer
   name: ERT engineer backpack
   description: A spacious backpack with lots of pockets, worn by Engineers of an Emergency Response Team.
@@ -233,7 +233,7 @@
     sprite: Clothing/Back/Backpacks/erteng.rsi
 
 - type: entity
-  parent: NFClothingBackpack # Frontier: ClothingBackpack<NFClothingBackpackERTLeader
+  parent: ClothingBackpackERTLeader
   id: ClothingBackpackERTJanitor
   name: ERT janitor backpack
   description: A spacious backpack with lots of pockets, worn by Janitors of an Emergency Response Team.
@@ -242,7 +242,7 @@
     sprite: Clothing/Back/Backpacks/ertjanitor.rsi
 
 - type: entity
-  parent: NFClothingBackpack # Frontier: ClothingBackpack<NFClothingBackpackERTLeader
+  parent: ClothingBackpackERTLeader
   id: ClothingBackpackERTClown
   name: ERT clown backpack
   description: A spacious backpack with lots of pockets, worn by Clowns of an Emergency Response Team.
@@ -251,7 +251,7 @@
     sprite: Clothing/Back/Backpacks/ertclown.rsi
 
 - type: entity
-  parent: NFClothingBackpack # Frontier: ClothingBackpack<NFClothingBackpackERTLeader
+  parent: ClothingBackpackERTLeader
   id: ClothingBackpackERTChaplain
   name: ERT chaplain backpack
   description: A spacious backpack with lots of pockets, worn by Chaplains of an Emergency Response Team.
@@ -260,7 +260,7 @@
     sprite: Clothing/Back/Backpacks/ertchaplain.rsi
 
 - type: entity
-  parent: NFClothingBackpack # Frontier: ClothingBackpack<NFClothingBackpackERTSecurity
+  parent: ClothingBackpackERTSecurity
   id: ClothingBackpackDeathSquad
   name: death squad backpack
   description: Holds the kit of CentComm's most feared agents.
