@@ -291,31 +291,35 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     {
         var xform = Transform(grid);
         var enumerator = xform.ChildEnumerator;
+        var entitiesToPreserve = new List<EntityUid>();
 
         while (enumerator.MoveNext(out var child))
         {
-            TeleportPreservedItemsToEntity(child, destination);
+            HasPreserveOnSaleComp(child, ref entitiesToPreserve);
+        }
+        foreach (var ent in entitiesToPreserve)
+        {
+            // Teleport this item and all its children to the floor (or space).
+            _transform.SetCoordinates(ent, new EntityCoordinates(destination, 0, 0));
+            _transform.AttachToGridOrMap(ent);
         }
     }
 
     // checks if something has the ShipyardPreserveOnSaleComponent and if it does, adds it to the list
-    private void TeleportPreservedItemsToEntity(EntityUid entity, EntityUid destination)
+    private void HasPreserveOnSaleComp(EntityUid entity, ref List<EntityUid> output)
     {
         if (TryComp<ShipyardSellConditionComponent>(entity, out var comp) && comp.PreserveOnSale == true)
         {
-            // Teleport this item and all its children to the floor (or space).
-            _transform.SetCoordinates(entity, new EntityCoordinates(destination, 0, 0));
-            _transform.AttachToGridOrMap(entity);
+            output.Add(entity);
             return;
         }
-
-        if (TryComp<ContainerManagerComponent>(entity, out var containers))
+        else if (TryComp<ContainerManagerComponent>(entity, out var containers))
         {
             foreach (var container in containers.Containers.Values)
             {
                 foreach (var ent in container.ContainedEntities)
                 {
-                    TeleportPreservedItemsToEntity(ent, destination);
+                    HasPreserveOnSaleComp(ent, ref output);
                 }
             }
         }
