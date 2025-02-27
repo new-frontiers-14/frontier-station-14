@@ -165,3 +165,8 @@ loadout-group-reporter-jumpsuit = Репортёр, комбинезон
 loadout-group-psychologist-jumpsuit = психолог, комбинезон
 loadout-group-boxer-jumpsuit = Боксёр, комбинезон
 loadout-group-boxer-gloves = Боксёр, перчатки
+
+# Sunrise-edit
+loadout-group-pants = Трусы
+loadout-group-bra = Бюстгальтер
+loadout-group-socks = Носки

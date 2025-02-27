@@ -26,6 +26,10 @@ public enum SlotFlags
     LEGS = 1 << 13,
     FEET = 1 << 14,
     SUITSTORAGE = 1 << 15,
+    PANTS = 1 << 16, // Sunrise-edit
+    BRA = 1 << 17, // Sunrise-edit
+    SOCKS = 1 << 18, // Sunrise-edit
+
     All = ~NONE,
 
     WITHOUT_POCKET = All & ~POCKET

@@ -1,0 +1,22 @@
+- type: entity
+  abstract: true
+  parent: Clothing
+  id: ClothingSocksBase
+  components:
+  - type: Clothing
+    quickEquip: true
+    slots:
+      - SOCKS
+  - type: Sprite
+    state: icon
+
+- type: entity
+  abstract: true
+  parent: ClothingSocksBase
+  id: ClothingSocksBaseButcherable
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 1

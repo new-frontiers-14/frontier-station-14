@@ -1,6 +1,29 @@
 ﻿- type: inventoryTemplate
   id: arachnid
   slots:
+    # Sunrise-start
+    - name: bra
+      slotTexture: bra
+      slotFlags: BRA
+      stripTime: 3
+      uiWindowPos: 3,2
+      strippingWindowPos: 2,1
+      displayName: Bra
+    - name: pants
+      slotTexture: pants
+      slotFlags: PANTS
+      stripTime: 6
+      uiWindowPos: 3,1
+      strippingWindowPos: 2,2
+      displayName: Pants
+    - name: socks
+      slotTexture: socks
+      slotFlags: SOCKS
+      stripTime: 3
+      uiWindowPos: 3,0
+      strippingWindowPos: 2,3
+      displayName: Socks
+    # Sunrise-end
     - name: shoes
       slotTexture: shoes
       slotFlags: FEET
@@ -19,7 +42,7 @@
       slotTexture: gloves
       slotFlags: GLOVES
       uiWindowPos: 2,1
-      strippingWindowPos: 2,2
+      strippingWindowPos: 2,0 # Sunrise-edit
       displayName: Gloves
     - name: neck
       slotTexture: neck
@@ -45,7 +68,7 @@
       slotFlags: EARS
       stripTime: 3
       uiWindowPos: 2,2
-      strippingWindowPos: 2,0
+      strippingWindowPos: 2,-1 # Sunrise-edit
       displayName: Ears
     - name: head
       slotTexture: head
@@ -70,7 +93,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,1
-      strippingWindowPos: 1,5
+      strippingWindowPos: 2,6 # Sunrise-edit
       displayName: Belt
     - name: back
       slotTexture: back
@@ -79,7 +102,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,0
-      strippingWindowPos: 0,5
+      strippingWindowPos: 2,5 # Sunrise-edit
       displayName: Back
 
     - name: pocket4
@@ -135,7 +158,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,0
-      strippingWindowPos: 2,5
+      strippingWindowPos: 0,3 # Sunrise-edit
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
