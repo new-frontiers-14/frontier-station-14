@@ -22,7 +22,7 @@ public sealed partial class ShipyardSellConditionComponent : Component
     ///     The message to print off when a shipyard sale is disabled.
     /// </summary>
     [DataField]
-    public LocId Reason = "shipyard-console-fallback-prevent-sale";
+    public LocId? Reason;
 
     /// <summary>
     ///     The console types that should allow selling this object if BlockSale is true.

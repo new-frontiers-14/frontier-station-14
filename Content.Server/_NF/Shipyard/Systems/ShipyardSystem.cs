@@ -200,7 +200,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     }
 
     /// <summary>
-    /// Checks a shuttle to make sure that it is docked to the given station, and that there are no lifeforms aboard. Then it teleports tagged items to a location, appraises the grid, outputs to the server log, and deletes the grid
+    /// Checks a shuttle to make sure that it is docked to the given station, and that there are no lifeforms aboard. Then it teleports tagged items on top of the console, appraises the grid, outputs to the server log, and deletes the grid
     /// </summary>
     /// <param name="stationUid">The ID of the station that the shuttle is docked to</param>
     /// <param name="shuttleUid">The grid ID of the shuttle to be appraised and sold</param>
@@ -291,32 +291,31 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     {
         var xform = Transform(grid);
         var enumerator = xform.ChildEnumerator;
-        var entitiesToPreserve = new List<EntityUid>();
 
         while (enumerator.MoveNext(out var child))
         {
-            HasPreserveOnSaleComp(child, ref entitiesToPreserve);
-        }
-        foreach (var ent in entitiesToPreserve)
-        {
-            _transform.SetCoordinates(ent, new EntityCoordinates(destination, 0, 0));
+            TeleportPreservedItemsToEntity(child, destination);
         }
     }
 
     // checks if something has the ShipyardPreserveOnSaleComponent and if it does, adds it to the list
-    private void HasPreserveOnSaleComp(EntityUid entity, ref List<EntityUid> output)
+    private void TeleportPreservedItemsToEntity(EntityUid entity, EntityUid destination)
     {
         if (TryComp<ShipyardSellConditionComponent>(entity, out var comp) && comp.PreserveOnSale == true)
         {
-            output.Add(entity);
+            // Teleport this item and all its children to the floor (or space).
+            _transform.SetCoordinates(entity, new EntityCoordinates(destination, 0, 0));
+            _transform.AttachToGridOrMap(entity);
+            return;
         }
-        else if (TryComp<ContainerManagerComponent>(entity, out var containers))
+
+        if (TryComp<ContainerManagerComponent>(entity, out var containers))
         {
             foreach (var container in containers.Containers.Values)
             {
                 foreach (var ent in container.ContainedEntities)
                 {
-                    HasPreserveOnSaleComp(ent, ref output);
+                    TeleportPreservedItemsToEntity(ent, destination);
                 }
             }
         }
