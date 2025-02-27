@@ -47,7 +47,7 @@ public sealed class BotanySwabSystem : EntitySystem
         // Frontier: prevent swabbing
         if (plant.Seed != null && plant.Seed.PreventSwabbing)
         {
-            _popupSystem.PopupEntity(Loc.GetString("botany-cannot-be-swabbed-message"), args.Args.Target.Value, args.Args.User);
+            _popupSystem.PopupEntity(Loc.GetString("botany-cannot-be-swabbed-message"), args.Target.Value, args.User);
             return;
         }
         // End Frontier
