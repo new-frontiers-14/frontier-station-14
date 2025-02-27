@@ -295,7 +295,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         while (enumerator.MoveNext(out var child))
         {
-            HasPreserveOnSaleComp(child, ref entitiesToPreserve);
+            FindEntitiesToPreserve(child, ref entitiesToPreserve);
         }
         foreach (var ent in entitiesToPreserve)
         {
@@ -306,7 +306,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     }
 
     // checks if something has the ShipyardPreserveOnSaleComponent and if it does, adds it to the list
-    private void HasPreserveOnSaleComp(EntityUid entity, ref List<EntityUid> output)
+    private void FindEntitiesToPreserve(EntityUid entity, ref List<EntityUid> output)
     {
         if (TryComp<ShipyardSellConditionComponent>(entity, out var comp) && comp.PreserveOnSale == true)
         {
@@ -319,7 +319,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 foreach (var ent in container.ContainedEntities)
                 {
-                    HasPreserveOnSaleComp(ent, ref output);
+                    FindEntitiesToPreserve(ent, ref output);
                 }
             }
         }
