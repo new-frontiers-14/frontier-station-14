@@ -285,42 +285,18 @@ public sealed class PricingSystem : EntitySystem
 
     // Begin Frontier - GetPrice variant that uses predicate
     /// <summary>
-    /// Appraises an entity, returning it's price. Respects predicate.
+    /// Appraises an entity, returning its price. Respects predicate - an entity that is excluded will be removed from the 
     /// </summary>
     /// <param name="uid">The entity to appraise.</param>
-    /// <param name="includeContents">Whether to examine contents</param>
-    /// <param name="predicate">An optional predicate that controls whether or not the entity is counted toward the total.</param>
+    /// <param name="includeContents">Whether to examine its contents.</param>
+    /// <param name="predicate">An optional predicate that controls whether or not the entity or its children are counted toward the total.</param>
     /// <returns>The price of the entity.</returns>
-    /// <remarks>
-    /// This fires off an event to calculate the price.
-    /// Calculating the price of an entity that somehow contains itself will likely hang.
-    /// </remarks>
     public double GetPriceConditional(EntityUid uid, bool includeContents = true, Func<EntityUid, bool>? predicate = null)
     {
-        var ev = new PriceCalculationEvent();
-        ev.Price = 0; // Structs doesnt initialize doubles when called by constructor.
-        RaiseLocalEvent(uid, ref ev);
+        if (predicate is not null && !predicate(uid))
+            return 0.0;
 
-        if (ev.Handled)
-            return ev.Price;
-
-        var price = ev.Price;
-        if (predicate is null || predicate(uid))
-        {
-            //TODO: Add an OpaqueToAppraisal component or similar for blocking the recursive descent into containers, or preventing material pricing.
-            // DO NOT FORGET TO UPDATE ESTIMATED PRICING
-            price += GetMaterialsPrice(uid);
-            price += GetSolutionsPrice(uid);
-
-            // Can't use static price with stackprice
-            var oldPrice = price;
-            price += GetStackPrice(uid);
-
-            if (oldPrice.Equals(price))
-            {
-                price += GetStaticPrice(uid);
-            }
-        }
+        var price = GetPrice(uid, false);
 
         if (includeContents && TryComp<ContainerManagerComponent>(uid, out var containers))
         {
@@ -494,7 +470,7 @@ public sealed class PricingSystem : EntitySystem
         {
             if (predicate is null || predicate(child))
             {
-                var subPrice = GetPriceConditional(child, true, predicate); // Frontier, recursive predicate use
+                var subPrice = GetPriceConditional(child, true, predicate); // Frontier: GetPrice<GetPriceConditional, add true, predicate
                 price += subPrice;
                 afterPredicate?.Invoke(child, subPrice);
             }
