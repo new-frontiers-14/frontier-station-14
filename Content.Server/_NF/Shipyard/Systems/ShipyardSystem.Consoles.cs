@@ -615,11 +615,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 return mindComp.CharacterName;
             }
-            else if (mobQuery.TryGetComponent(child, out var mobState)
-                && !_mobState.IsDead(child, mobState))
-            {
-                return MetaData(child).EntityName;
-            }
             else
             {
                 var charName = FoundOrganics(child, mobQuery, xformQuery);
