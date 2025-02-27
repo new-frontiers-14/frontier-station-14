@@ -187,8 +187,8 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
             MixTexture.Texture = sysMan.GetEntitySystem<SpriteSystem>().Frame0(primaryCategory.Icon);
         }
 
-        var mixingVerb = ContentLocalizationManager.FormatList(mixingCategories
-            .Select(p => Loc.GetString(p.VerbText)).ToList());
+        var mixingVerb = ContentLocalizationManager.FormatListRu(mixingCategories
+            .Select(p => Loc.GetString(p.VerbText)).ToList());  // Eclipse
 
         var minTemp = prototype?.MinimumTemperature ?? 0;
         var maxTemp = prototype?.MaximumTemperature ?? float.PositiveInfinity;

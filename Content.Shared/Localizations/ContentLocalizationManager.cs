@@ -126,6 +126,21 @@ namespace Content.Shared.Localizations
             };
         }
 
+        // TODO: allow fluent to take in lists of strings so this can be a format function like it should be.
+        /// <summary>
+        /// Formats a list as per russian grammar rules.
+        /// </summary>
+        public static string FormatListRu(List<string> list)
+        {
+            return list.Count switch
+            {
+                <= 0 => string.Empty,
+                1 => list[0],
+                2 => $"{list[0]} и {list[1]}",
+                _ => $"{string.Join(", ", list.GetRange(0, list.Count - 1))} и {list[^1]}"
+            };
+        }
+
         /// <summary>
         /// Formats a list as per english grammar rules, but uses or instead of and.
         /// </summary>
@@ -137,6 +152,20 @@ namespace Content.Shared.Localizations
                 1 => list[0],
                 2 => $"{list[0]} or {list[1]}",
                 _ => $"{string.Join(" or ", list)}"
+            };
+        }
+
+        /// <summary>
+        /// Formats a list as per russian grammar rules, but uses or instead of and.
+        /// </summary>
+        public static string FormatListToOrRu(List<string> list)
+        {
+            return list.Count switch
+            {
+                <= 0 => string.Empty,
+                1 => list[0],
+                2 => $"{list[0]} или {list[1]}",
+                _ => $"{string.Join(", или ", list)}"
             };
         }
 

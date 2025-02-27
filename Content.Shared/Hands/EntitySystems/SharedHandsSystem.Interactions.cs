@@ -226,7 +226,7 @@ public abstract partial class SharedHandsSystem : EntitySystem
 
         var locKey = heldItemNames.Count != 0 ? "comp-hands-examine" : "comp-hands-examine-empty";
         var locUser = ("user", Identity.Entity(examinedUid, EntityManager));
-        var locItems = ("items", ContentLocalizationManager.FormatList(heldItemNames));
+        var locItems = ("items", ContentLocalizationManager.FormatListRu(heldItemNames));  // Eclipse
 
         using (args.PushGroup(nameof(HandsComponent)))
         {

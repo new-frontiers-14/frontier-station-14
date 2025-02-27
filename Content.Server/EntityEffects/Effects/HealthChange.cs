@@ -111,7 +111,7 @@ namespace Content.Server.EntityEffects.Effects
 
             return Loc.GetString("reagent-effect-guidebook-health-change",
                 ("chance", Probability),
-                ("changes", ContentLocalizationManager.FormatList(damages)),
+                ("changes", ContentLocalizationManager.FormatListRu(damages)),  // Eclipse
                 ("healsordeals", healsordeals));
         }
 

@@ -65,7 +65,7 @@ public sealed class ContrabandSystem : EntitySystem
             if (severity.ShowDepartments && ent.Comp is { AllowedDepartments: not null })
             {
                 // TODO shouldn't department prototypes have a localized name instead of just using the ID for this?
-                var list = ContentLocalizationManager.FormatList(ent.Comp.AllowedDepartments.Select(p => Loc.GetString($"department-{p.Id}")).ToList());
+                var list = ContentLocalizationManager.FormatListRu(ent.Comp.AllowedDepartments.Select(p => Loc.GetString($"department-{p.Id}")).ToList());  // Eclipse
 
                 // department restricted text
                 args.PushMarkup(Loc.GetString("contraband-examine-text-Restricted-department", ("departments", list)));

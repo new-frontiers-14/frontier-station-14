@@ -122,9 +122,9 @@ public abstract class SharedLatheSystem : EntitySystem
 
         if (proto.ResultReagents is { } resultReagents)
         {
-            return ContentLocalizationManager.FormatList(resultReagents
+            return ContentLocalizationManager.FormatListRu(resultReagents
                 .Select(p => Loc.GetString("lathe-menu-result-reagent-display", ("reagent", _proto.Index(p.Key).LocalizedName), ("amount", p.Value)))
-                .ToList());
+                .ToList());  // Eclipse
         }
 
         return string.Empty;
