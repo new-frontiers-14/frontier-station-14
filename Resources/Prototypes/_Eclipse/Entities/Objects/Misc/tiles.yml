@@ -1,0 +1,16 @@
+- type: entity
+  id: FloorTileItemAstroSand
+  parent: FloorTileItemBase
+  name: astro-sand
+  description: Fake sand that's as scratchy as the real thing, while being easily removable!
+  components:
+  - type: Sprite
+    state: astrosand
+  - type: Item
+    heldPrefix: sand
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorAstroSand
+  - type: Stack
+    stackType: FloorTileAstroSand
