@@ -7,7 +7,10 @@
   - type: Sprite
     sprite: _NF/Objects/Specific/Medical/medical_bag.rsi
     layers:
-    - state: icon  
+    - state: icon
+    - state: icon-on
+      visible: false
+      map: [ "enum.ToggleVisuals.Layer" ]
   - type: Clothing
     sprite: _NF/Objects/Specific/Medical/medical_bag.rsi
     quickEquip: false
@@ -18,7 +21,7 @@
   - type: Storage
     maxItemSize: Normal
     grid:
-    - 0,0,5,3
+    - 0,0,4,3
     quickInsert: true
     areaInsert: true
     whitelist:
@@ -36,3 +39,27 @@
         - Gauze
         - Bottle
   - type: Dumpable
+  - type: MagnetPickup # Frontier
+    magnetEnabled: false # Frontier
+    magnetCanBeEnabled: false # Frontier
+  # Frontier: toggle magnet from White Dream
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onUse: false
+    onAltUse: true
+    onActivate: false
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: True }
+          False: { visible: False }
+  # End Frontier
