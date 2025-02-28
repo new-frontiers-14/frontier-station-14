@@ -153,7 +153,7 @@ namespace Content.Client._NF.Atmos.UI
                         densityText = Loc.GetString("gas-deposit-scanner-window-deposit-size-large");
                         break;
                     case ApproximateGasDepositSize.Enormous:
-                        densityColor = Color.Blue;
+                        densityColor = Color.DeepSkyBlue;
                         densityText = Loc.GetString("gas-deposit-scanner-window-deposit-size-enormous");
                         break;
                 }
