@@ -4,9 +4,21 @@
   parent: BaseStorageItem
   description: Here's the mail, it never fails...
   components:
+  # Frontier: layered sprite
   - type: Sprite
     sprite: Nyanotrasen/Clothing/Belt/mailbag.rsi
-    state: icon
+    layers:
+    - state: icon
+    - state: icon-on
+      visible: false
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  # End Frontier: layered sprite
   - type: Clothing
     sprite: Nyanotrasen/Clothing/Belt/mailbag.rsi
     quickEquip: false
@@ -28,3 +40,20 @@
         - Paper
         - Book
   - type: MagnetPickup # Frontier
+    magnetEnabled: false
+    magnetCanBeEnabled: false
+  # Frontier: port toggle from White Dream
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onUse: false
+    onAltUse: true
+    onActivate: false
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+  - type: Appearance
+  # End Frontier

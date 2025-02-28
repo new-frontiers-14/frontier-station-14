@@ -189,6 +189,17 @@
   parent: [ LockerWallEVAColorLvhi, StorageFillEVASuitLvhi ]
   id: LockerWallEVAColorLvhiFilled
   suffix: Frontier, Filled
+
+- type: entity
+  parent: [ LockerWallEVAColorFsb, StorageFillEVASuitFsb ]
+  id: LockerWallEVAColorFsbFilled
+  suffix: Frontier, Filled
+
+- type: entity
+  parent: [ LockerWallEVAColorFsb ]
+  id: LockerWallEVAColorFsbEmpty
+  suffix: Frontier, Empty
+
 # endregion
 
 # region Emergency
@@ -257,4 +268,19 @@
   - BaseStructureWallmount
   - LockerChemistryFilled
   name: chemistry wall locker
+# endregion
+
+# region Departments
+- type: entity
+  id: LockerWallColorHydroponicsFilled
+  suffix: Filled, Frontier
+  parent: [LockerWallColorHydroponics, LockerBotanistFilled]
+
+- type: entity
+  id: LockerWallColorHydroponicsEmpty
+  suffix: Empty, Frontier
+  parent:
+  - LockerWallColorHydroponics
+  - BaseStructureWallmount  
+  name: botanist wall locker
 # endregion

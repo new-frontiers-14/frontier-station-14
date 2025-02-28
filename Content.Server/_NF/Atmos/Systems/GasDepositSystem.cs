@@ -17,7 +17,7 @@ using Content.Shared._NF.Atmos.Systems;
 using Content.Shared._NF.Atmos.Visuals;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Binary.Components;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared.Database;
 using Content.Shared.Power;
 using Robust.Server.Audio;
@@ -110,7 +110,9 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
         for (var i = 0; i < depositPrototype.Gases.Length && i < Atmospherics.TotalNumberOfGases; i++)
         {
             var gasRange = depositPrototype.Gases[i];
-            deposit.Deposit.SetMoles(i, gasRange[0] + _random.NextFloat() * (gasRange[1] - gasRange[0]));
+            var gasAmount = gasRange[0] + _random.NextFloat() * (gasRange[1] - gasRange[0]);
+            gasAmount *= ent.Comp.Scale;
+            deposit.Deposit.SetMoles(i, gasAmount);
         }
 
         deposit.LowMoles = deposit.Deposit.TotalMoles * LowMoleCoefficient;
