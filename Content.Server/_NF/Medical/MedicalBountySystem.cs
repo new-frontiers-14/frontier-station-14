@@ -176,7 +176,8 @@ public sealed partial class MedicalBountySystem : EntitySystem
             }
         }
 
-        if (TryComp<MedicalBountyBankPaymentComponent>(ev.Actor, out var bankPayment))
+        var depositToBank = HasComp<MedicalBountyBankPaymentComponent>(ev.Actor);
+        if (depositToBank)
         {
             // Find the fractions of the whole to pay out.
             var sumOfWeights = component.TaxAccounts.Values.Sum();
@@ -202,7 +203,8 @@ public sealed partial class MedicalBountySystem : EntitySystem
 
         QueueDel(bountyUid);
 
-        _popup.PopupEntity(Loc.GetString("medical-bounty-redemption-success"), uid);
+        var successString = depositToBank ? "medical-bounty-redemption-success-bank" : "medical-bounty-redemption-success";
+        _popup.PopupEntity(Loc.GetString(successString), uid);
         _audio.PlayPvs(component.RedeemSound, uid);
         UpdateUserInterface(uid, component);
     }
@@ -234,13 +236,15 @@ public sealed partial class MedicalBountySystem : EntitySystem
         if (!_ui.HasUi(uid, MedicalBountyRedemptionUiKey.Key))
             return;
 
+        var actor = _ui.GetActors(uid, MedicalBountyRedemptionUiKey.Key).FirstOrDefault();
+
         if (!_power.IsPowered(uid))
         {
             _ui.CloseUis(uid);
             return;
         }
 
-        _ui.SetUiState(uid, MedicalBountyRedemptionUiKey.Key, GetUserInterfaceState(uid, component));
+        _ui.SetUiState(uid, MedicalBountyRedemptionUiKey.Key, GetUserInterfaceState(uid, component, actor));
     }
 
     public void OnMobStateChanged(EntityUid uid, MedicalBountyComponent _, MobStateChangedEvent args)
@@ -252,13 +256,14 @@ public sealed partial class MedicalBountySystem : EntitySystem
         }
     }
 
-    private MedicalBountyRedemptionUIState GetUserInterfaceState(EntityUid uid, MedicalBountyRedemptionComponent component)
+    private MedicalBountyRedemptionUIState GetUserInterfaceState(EntityUid uid, MedicalBountyRedemptionComponent component, EntityUid actor)
     {
+        var paidToStation = HasComp<MedicalBountyBankPaymentComponent>(actor);
         // Check that the medical redeemer has a valid medical bounty inside
         if (!_container.TryGetContainer(uid, component.BodyContainer, out var container) ||
             container.ContainedEntities.Count <= 0)
         {
-            return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.NoBody, 0);
+            return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.NoBody, 0, paidToStation);
         }
 
         // Assumption: only one object can be stored in the MedicalBountyRedemption entity
@@ -270,20 +275,20 @@ public sealed partial class MedicalBountySystem : EntitySystem
             !TryComp<DamageableComponent>(bountyUid, out var damageable) ||
             !TryComp<MobStateComponent>(bountyUid, out var mobState))
         {
-            return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.NoBounty, 0);
+            return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.NoBounty, 0, paidToStation);
         }
 
         // Check that the entity inside is sufficiently healed.
         var bounty = medicalBounty.Bounty;
         if (damageable.TotalDamage > bounty.MaximumDamageToRedeem)
         {
-            return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.TooDamaged, 0);
+            return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.TooDamaged, 0, paidToStation);
         }
 
         // Check that the mob is alive.
         if (mobState.CurrentState != Shared.Mobs.MobState.Alive)
         {
-            return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.NotAlive, 0);
+            return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.NotAlive, 0, paidToStation);
         }
 
         // Bounty is redeemable, calculate amount of reward to pay out.
@@ -300,6 +305,6 @@ public sealed partial class MedicalBountySystem : EntitySystem
             }
         }
 
-        return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.Valid, int.Max(bountyPayout, 0));
+        return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.Valid, int.Max(bountyPayout, 0), paidToStation);
     }
 }
