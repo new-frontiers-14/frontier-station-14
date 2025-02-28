@@ -83,6 +83,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
+      bodyStatus: InAir
+      angularDamping: 0.05
+      linearDamping: 0.05
+      fixedRotation: False
+      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
@@ -11819,6 +11824,13 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-5.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 2336
+    components:
+    - type: Transform
+      pos: -5.5,14.5
       parent: 2
     - type: Fixtures
       fixtures: {}
