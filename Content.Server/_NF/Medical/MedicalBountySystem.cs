@@ -2,6 +2,7 @@
 using System.Linq;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Medical.Components;
+using Content.Server.Administration.Logs;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Popups;
@@ -15,6 +16,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Database;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Power;
@@ -42,6 +44,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
     [Dependency] PowerReceiverSystem _power = default!;
     [Dependency] SharedAppearanceSystem _appearance = default!;
     [Dependency] BankSystem _bank = default!;
+    [Dependency] IAdminLogManager _adminLog = default!;
 
     private List<MedicalBountyPrototype> _cachedPrototypes = new();
 
@@ -175,11 +178,14 @@ public sealed partial class MedicalBountySystem : EntitySystem
 
         if (TryComp<MedicalBountyBankPaymentComponent>(ev.Actor, out var bankPayment))
         {
+            // Find the fractions of the whole to pay out.
+            var sumOfWeights = component.TaxAccounts.Values.Sum();
             // Pay tax accounts the entire payment + tax
             foreach (var (account, taxCoeff) in component.TaxAccounts)
             {
-                _bank.TrySectorDeposit(account, (int)(bountyPayout * (1.0f + taxCoeff)), LedgerEntryType.MedicalBountyTax);
+                _bank.TrySectorDeposit(account, (int)(bountyPayout * (taxCoeff / sumOfWeights + taxCoeff)), LedgerEntryType.MedicalBountyTax);
             }
+            _adminLog.Add(LogType.MedicalBountyRedeemed, LogImpact.Low, $"{ToPrettyString(ev.Actor):actor} redeemed the medical bounty for {ToPrettyString(bountyUid):subject}. Base value: {bountyPayout} (paid to station accounts).");
         }
         else if (bountyPayout > 0)
         {
@@ -191,6 +197,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
             {
                 _bank.TrySectorDeposit(account, (int)(bountyPayout * taxCoeff), LedgerEntryType.MedicalBountyTax);
             }
+            _adminLog.Add(LogType.MedicalBountyRedeemed, LogImpact.Low, $"{ToPrettyString(ev.Actor):actor} redeemed the medical bounty for {ToPrettyString(bountyUid):subject}. Base value: {bountyPayout}.");
         }
 
         QueueDel(bountyUid);

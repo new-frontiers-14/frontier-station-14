@@ -453,5 +453,12 @@ public enum LogType
     /// An admin spawns a refund for a player.
     /// </summary>
     AdminRefund = 203,
+    /// <summary>
+    /// An atmos device's direction was changed.
+    /// </summary>
     AtmosDirectionChanged = 204,
+    /// <summary>
+    /// A medical bounty was redeemed.
+    /// </summary>
+    MedicalBountyRedeemed = 205,
 }
