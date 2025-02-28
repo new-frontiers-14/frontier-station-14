@@ -2,16 +2,16 @@ using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
-using Content.Shared.SprayPainter;
-using Content.Shared.SprayPainter.Components;
+using Content.Shared._NF.NFSprayPainter;
+using Content.Shared._NF.NFSprayPainter.Components;
 
-namespace Content.Server.SprayPainter;
+namespace Content.Server._NF.NFSprayPainter;
 
 /// <summary>
 /// Handles spraying pipes using a spray painter.
-/// Airlocks are handled in shared.
+/// Other are handled in shared.
 /// </summary>
-public sealed class SprayPainterSystem : SharedSprayPainterSystem
+public sealed class NFSprayPainterSystem : SharedNFSprayPainterSystem
 {
     [Dependency] private readonly AtmosPipeColorSystem _pipeColor = default!;
 
@@ -19,12 +19,12 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SprayPainterComponent, SprayPainterPipeDoAfterEvent>(OnPipeDoAfter);
+        SubscribeLocalEvent<NFSprayPainterComponent, NFSprayPainterPipeDoAfterEvent>(OnPipeDoAfter);
 
-        //SubscribeLocalEvent<AtmosPipeColorComponent, InteractUsingEvent>(OnPipeInteract); // Frontier
+        SubscribeLocalEvent<AtmosPipeColorComponent, InteractUsingEvent>(OnPipeInteract);
     }
 
-    private void OnPipeDoAfter(Entity<SprayPainterComponent> ent, ref SprayPainterPipeDoAfterEvent args)
+    private void OnPipeDoAfter(Entity<NFSprayPainterComponent> ent, ref NFSprayPainterPipeDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
             return;
@@ -47,13 +47,13 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
         if (args.Handled)
             return;
 
-        if (!TryComp<SprayPainterComponent>(args.Used, out var painter) || painter.PickedColor is not {} colorName)
+        if (!TryComp<NFSprayPainterComponent>(args.Used, out var painter) || painter.PickedColor is not {} colorName)
             return;
 
         if (!painter.ColorPalette.TryGetValue(colorName, out var color))
             return;
 
-        var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, painter.PipeSprayTime, new SprayPainterPipeDoAfterEvent(color), args.Used, target: ent, used: args.Used)
+        var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, painter.PipeSprayTime, new NFSprayPainterPipeDoAfterEvent(color), args.Used, target: ent, used: args.Used)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
