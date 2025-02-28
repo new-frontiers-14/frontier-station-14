@@ -1,4 +1,4 @@
-﻿using Content.Server.Power.EntitySystems;
+using Content.Server.Power.EntitySystems;
 using Content.Shared.Power;
 
 namespace Content.Server.Power.Components;
@@ -63,4 +63,10 @@ public sealed partial class PowerChargeComponent : SharedPowerChargeComponent
 
     [ViewVariables]
     public bool NeedUIUpdate { get; set; }
+
+    /// <summary>
+    /// Frontier: show a activate button on UI
+    /// </summary>
+    [DataField]
+    public bool ActivateUI { get; set; } = false;
 }
