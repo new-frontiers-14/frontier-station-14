@@ -99,7 +99,8 @@ namespace Content.Client._NF.Atmos.UI
             };
             var tableVal = new BoxContainer
             {
-                Orientation = BoxContainer.LayoutOrientation.Vertical
+                Orientation = BoxContainer.LayoutOrientation.Vertical,
+                MinSize = new Vector2(0, 90)
             };
             dataContainer.AddChild(new BoxContainer
             {
