@@ -203,7 +203,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
 
         QueueDel(bountyUid);
 
-        var successString = depositToBank ? "medical-bounty-redemption-success-bank" : "medical-bounty-redemption-success";
+        var successString = depositToBank ? "medical-bounty-redemption-success-to-station" : "medical-bounty-redemption-success";
         _popup.PopupEntity(Loc.GetString(successString), uid);
         _audio.PlayPvs(component.RedeemSound, uid);
         UpdateUserInterface(uid, component);
