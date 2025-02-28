@@ -597,3 +597,128 @@
     - MercenaryTechFabCircuitboardHackedNF
     - MercenaryTechFabHacked
     rareChance: 0.005
+
+- type: entity
+  name: merc UIV loot
+  id: SpawnDungeonLootMercenaryUIV
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Loot"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 0
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - SuperCapacitorStockPart
+    - ClothingEyesHudBountyHunter
+    - Handcuffs
+    - SpawnDungeonLootAmmoRubber
+    - SpawnDungeonLootAmmoLethal
+    - SpawnDungeonLootHardsuitsMercenary
+    - ComputerIFFCircuitboard
+    - SpawnDungeonLootKitsFirstAid
+    - SpawnDungeonLootSpesos
+    - SpawnDungeonLootMercenaryUIVGuns
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootMercenaryRareClutter
+    rareChance: 0.1
+
+- type: entity
+  name: merc uiv guns
+  id: SpawnDungeonLootMercenaryUIVGuns
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Loot"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 4
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortN1984Expedition
+    - WeaponCaseLongAk
+    - WeaponCaseLongWT550Expedition
+    - WeaponCaseLongLaserCarbineExpedition
+    - WeaponCaseLongEnforcerExpedition
+    - WeaponCaseLongVulcanExpedition
+    - WeaponCaseShortMateba
+    - WeaponCaseShortAdvancedLaserExpedition
+    - WeaponCaseLongDrozdExpedition
+    - WeaponCaseShortCobra
+    - WeaponCaseLongKammererExpedition
+    - WeaponCaseLongM90Expedition
+    chance: 0.85
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootMercenaryUIVGunsRare
+    rareChance: 0.1
+
+- type: entity #This just ensures that the high tier syndicate guns have a lower drop rate to differentiate it in feel from the syndi uiv
+  name: rare merc uiv guns
+  id: SpawnDungeonLootMercenaryUIVGunsRare
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Loot, T4, T5"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 4
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseLongTypewriterExpedition
+    - WeaponCaseLongJackdaw
+    - WeaponPulsePistol
+    - WeaponCaseLongEnforcerExpedition
+    - WeaponCaseLongXrayCannonExpedition
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootGunT5
+    - SpawnDungeonLootMeleeT4
+    rareChance: 0.5
+
+- type: entity
+  name: Merc UIV Rare Clutter
+  id: SpawnDungeonLootMercenaryRareClutter
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Loot, T4, T5"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 4
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootAmmoIncendiary
+    - BoxT3SuperCapacitor
+    - SpawnDungeonLootMercenaryUIVGunsRare
+    - QuadraticCapacitorStockPart
+    chance: 1.0
+    offset: 0.0
