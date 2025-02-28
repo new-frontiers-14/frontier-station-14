@@ -1,4 +1,3 @@
-
 gas-deposit-scanner-window-name = Gas Deposit Scanner
 gas-deposit-scanner-window-refresh-button = Refresh
 gas-deposit-scanner-window-no-data = No Data

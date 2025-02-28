@@ -12,6 +12,9 @@ using static Content.Shared._NF.Atmos.Components.GasDepositScannerComponent;
 
 namespace Content.Server._NF.Atmos.EntitySystems;
 
+/// <summary>
+/// Logic for the gas deposit scanner.  Largely based off of the GasAnalyzerSystem.
+/// </summary>
 [UsedImplicitly]
 public sealed class GasDepositScannerSystem : EntitySystem
 {
@@ -22,7 +25,7 @@ public sealed class GasDepositScannerSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
 
     /// <summary>
-    /// Minimum moles of a gas to be sent to the client.
+    /// Minimum moles of a gas to be included in the list.
     /// </summary>
     private const float UIMinMoles = 0.01f;
 
@@ -73,7 +76,7 @@ public sealed class GasDepositScannerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Handles scanner activation logic
+    /// Handles scanner activation logic.
     /// </summary>
     private void ActivateScanner(Entity<GasDepositScannerComponent> entity, EntityUid user, EntityUid? target = null)
     {
@@ -100,7 +103,7 @@ public sealed class GasDepositScannerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Closes the UI, sets the icon to off, and removes it from the update list
+    /// Closes the UI, sets the icon to off, and removes it from the update list.
     /// </summary>
     private void DisableScanner(Entity<GasDepositScannerComponent> entity, EntityUid? user = null)
     {
@@ -121,19 +124,16 @@ public sealed class GasDepositScannerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Fetches fresh data for the analyzer. Should only be called by Update or when the user requests an update via refresh button
+    /// Fetches fresh data for the scanner. Should only be called when the user requests an update.
     /// </summary>
     private bool UpdateScanner(EntityUid uid, GasDepositScannerComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;
 
-        // check if the user has walked away from what they scanned
+        // Check if the user has walked away from what they scanned.
         if (component.Target.HasValue)
         {
-            // Listen! Even if you don't want the gas deposit scanner to work on moving targets, you should use
-            // this code to determine if the object is still generally in range so that the check is consistent with the code
-            // in OnAfterInteract() and also consistent with interaction code in general.
             if (!_interactionSystem.InRangeUnobstructed((component.User, null), (component.Target.Value, null)))
             {
                 if (component.User is { } userId && component.Enabled)
@@ -177,7 +177,7 @@ public sealed class GasDepositScannerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Generates a GasEntry array for a given GasMixture
+    /// Generates a GasEntry array for a given GasMixture.
     /// </summary>
     private GasEntry[] GenerateGasEntryArray(GasMixture? mixture)
     {
