@@ -182,7 +182,7 @@ public sealed class GasDepositScannerSystem : EntitySystem
     private GasEntry[] GenerateGasEntryArray(GasMixture? mixture)
     {
         if (mixture == null)
-            return new();
+            return [];
 
         var gases = new List<GasEntry>();
 
