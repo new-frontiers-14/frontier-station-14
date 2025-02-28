@@ -16,7 +16,7 @@ namespace Content.Server._NF.Atmos.EntitySystems;
 public sealed class GasDepositScannerSystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly AtmosphereSystem _atmo = default!;
+    [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
@@ -181,31 +181,31 @@ public sealed class GasDepositScannerSystem : EntitySystem
     /// </summary>
     private GasEntry[] GenerateGasEntryArray(GasMixture? mixture)
     {
+        if (mixture == null)
+            return new();
+
         var gases = new List<GasEntry>();
 
         for (var i = 0; i < Atmospherics.TotalNumberOfGases; i++)
         {
-            var gas = _atmo.GetGas(i);
+            var gas = _atmos.GetGas(i);
 
-            if (mixture?[i] <= UIMinMoles)
+            if (mixture[i] <= UIMinMoles)
                 continue;
 
-            if (mixture != null)
-            {
-                var gasName = Loc.GetString(gas.Name);
-                ApproximateGasDepositSize depositSize;
-                if (mixture[i] < 500.0)
-                    depositSize = ApproximateGasDepositSize.Trace;
-                if (mixture[i] < 3000.0)
-                    depositSize = ApproximateGasDepositSize.Small;
-                if (mixture[i] < 10000.0)
-                    depositSize = ApproximateGasDepositSize.Medium;
-                if (mixture[i] < 30000.0)
-                    depositSize = ApproximateGasDepositSize.Large;
-                else
-                    depositSize = ApproximateGasDepositSize.Enormous;
-                gases.Add(new GasEntry(gasName, depositSize));
-            }
+            var gasName = Loc.GetString(gas.Name);
+            ApproximateGasDepositSize depositSize;
+            if (mixture[i] < 500.0)
+                depositSize = ApproximateGasDepositSize.Trace;
+            else if (mixture[i] < 3000.0)
+                depositSize = ApproximateGasDepositSize.Small;
+            else if (mixture[i] < 10000.0)
+                depositSize = ApproximateGasDepositSize.Medium;
+            else if (mixture[i] < 30000.0)
+                depositSize = ApproximateGasDepositSize.Large;
+            else
+                depositSize = ApproximateGasDepositSize.Enormous;
+            gases.Add(new GasEntry(gasName, depositSize));
         }
 
         var gasesOrdered = gases.OrderByDescending(gas => gas.Amount);
