@@ -13,13 +13,14 @@ namespace Content.Shared.Pinpointer;
 public abstract class SharedPinpointerSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly IEntityManager _endMan = default!;
+    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!; // Frontier
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<PinpointerComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<PinpointerComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
         SubscribeLocalEvent<PinpointerComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<PinpointerComponent, ExaminedEvent>(OnExamined);
         // Frontier
@@ -50,8 +51,7 @@ public abstract class SharedPinpointerSystem : EntitySystem
         // if (component.UpdateTargetName)
         //     component.TargetName = component.Target == null ? null : Identity.Name(component.Target.Value, EntityManager);
 
-        // Frontier: do-after
-        var daArgs = new DoAfterArgs(_endMan, args.User, TimeSpan.FromSeconds(component.RetargetDoAfter),
+        var daArgs = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(component.RetargetDoAfter),
             new PinpointerDoAfterEvent(), uid, args.Target, uid)
         {
             BreakOnDamage = true,
@@ -62,6 +62,7 @@ public abstract class SharedPinpointerSystem : EntitySystem
             BreakOnMove = true,
         };
         _doAfter.TryStartDoAfter(daArgs);
+        // End Frontier
     }
 
     private void OnPinpointerDoAfter(EntityUid uid, PinpointerComponent component, PinpointerDoAfterEvent args)
@@ -174,9 +175,34 @@ public abstract class SharedPinpointerSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, PinpointerComponent component, ref GotEmaggedEvent args)
     {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        if (component.CanRetarget)
+            return;
+
         args.Handled = true;
         component.CanRetarget = true;
     }
+
+    // Frontier: demag
+    private void OnUnemagged(EntityUid uid, PinpointerComponent component, ref GotUnEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        if (component.CanRetarget)
+            component.CanRetarget = false;
+
+        args.Handled = true;
+    }
+    // End Frontier: demag
 }
 
 // Frontier - do-after
