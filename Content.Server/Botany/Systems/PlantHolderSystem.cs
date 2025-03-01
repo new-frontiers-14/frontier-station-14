@@ -246,6 +246,14 @@ public sealed class PlantHolderSystem : EntitySystem
                 return;
             }
 
+            // Frontier: prevent sampling unsamplable plants
+            if (component.Seed.PreventClipping)
+            {
+                _popup.PopupCursor(Loc.GetString("plant-holder-component-cannot-be-sampled-message"), args.User);
+                return;
+            }
+            // End Frontier
+
             if (component.Sampled)
             {
                 _popup.PopupCursor(Loc.GetString("plant-holder-component-already-sampled-message"), args.User);
