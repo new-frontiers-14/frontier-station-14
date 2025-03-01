@@ -38,4 +38,3 @@ bank-atm-menu-cash-error = ERR: INVALID
 ## ATM entity
 bank-ATM-cashSlot = Cash Slot
 station-bank-ATM-cashSlot = Cash Slot
-bank-ATM-cashSlot-item-wont-fit = It won't fit in the slot!
