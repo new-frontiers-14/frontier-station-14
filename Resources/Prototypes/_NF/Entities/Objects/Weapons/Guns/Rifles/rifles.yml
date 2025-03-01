@@ -215,9 +215,8 @@
 - type: entity
   id: WeaponRifleSVS
   name: SVS-42
-  parent: [ BaseWeaponRifle, BaseC1Contraband ]
-  description: |-
-   Originally designed by Samonov, this old surplus rifle looks like it's seen a few wars. Uses low capacity .30 rifle magazines.
+  parent: [ BaseWeaponRifle, BaseGunMelee, BaseC1Contraband ]
+  description: "Originally designed by Samonov, this old surplus rifle looks like it's seen a few wars. Uses low capacity .30 rifle magazines. Equipped with bayonet."
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
@@ -270,3 +269,7 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 1.5
+    pvsIncrease: 0.15
