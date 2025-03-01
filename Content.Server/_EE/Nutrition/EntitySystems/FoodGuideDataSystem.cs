@@ -99,6 +99,9 @@ public sealed class FoodGuideDataSystem : SharedFoodGuideDataSystem
         // Recipes
         foreach (var recipe in _protoMan.EnumeratePrototypes<FoodRecipePrototype>())
         {
+            if (recipe.HideInGuidebook) // Frontier
+                continue; // Frontier
+
             _sources.GetOrNew(recipe.Result).Add(new FoodRecipeData(recipe)); // Frontier: _sources<_recipes
         }
 
