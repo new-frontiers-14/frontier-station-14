@@ -1,0 +1,36 @@
+# Author Info
+# GitHub: wendyribstonpippin
+# Discord: wendyribstonofpippin
+
+- type: vessel
+  id: Stubjack
+  name: WS Stubjack
+  description: Light and manneuverable, this fighter craft is ideal for small crews of mercs on a budget who want to be the first to the frontlines
+  price: 23500
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/stubjack.yml
+  guidebookPage: ShipyardStubjack
+  class:
+  - Cargo
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Stubjack
+  mapName: 'WS Stubjack'
+  mapPath: /Maps/_NF/Shuttles/stubjack.yml
+  minPlayers: 0
+  stations:
+    Stubjack:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Stubjack {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Contractor: [ 0, 0 ]
+          Pilot: [ 0, 0 ]
+          Mercenary: [ 0, 0 ]
