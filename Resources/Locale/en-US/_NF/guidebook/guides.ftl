@@ -9,6 +9,9 @@ guide-entry-cargo-hauling = Cargo Hauling
 guide-entry-shipyard = Shipyard
 guide-entry-frontier-rules = Server Rules
 
+# Engineering entries
+guide-entry-gas-mining = Gas Mining
+
 # Security entries
 guide-entry-nfsd-smuggling = Smuggling
 
