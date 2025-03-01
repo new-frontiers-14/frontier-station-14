@@ -290,8 +290,8 @@
 - type: entity
   parent: BaseNFFlatpack
   id: NFHolopadShipFlatpack
-  name: long-range holopad flatpack
-  description: A flatpack used for constructing a long-range holopad for ship to ship communication.
+  name: bluespace holopad flatpack
+  description: A flatpack used for constructing a bluespace holopad for ship to ship communication.
   components:
   - type: Flatpack
     entity: NFHolopadShip
@@ -348,6 +348,15 @@
   components:
   - type: Flatpack
     entity: CutterMachine
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: TelevisionFlatpack
+  name: television flatpack
+  description: A flatpack used for constructing a television.
+  components:
+  - type: Flatpack
+    entity: ComputerTelevision
 
 - type: entity
   parent: UniformPrinterFlatpack
