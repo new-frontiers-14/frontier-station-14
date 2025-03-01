@@ -24,13 +24,13 @@ public sealed partial class GasDepositExtractorComponent : Component
     public float BaseExtractionRate;
 
     /// <summary>
-    /// The amount of gas to extract per second, in mol/s.
+    /// The actual amount of gas to extract per second, in mol/s.
     /// </summary>
     [DataField]
     public float ExtractionRate;
 
     /// <summary>
-    /// The amount of gas to extract per second, in mol/s.
+    /// The machine part used to upgrade the extration rate.
     /// </summary>
     [DataField]
     public ProtoId<MachinePartPrototype> ExtractionRateMachinePart = "Manipulator";
