@@ -167,7 +167,6 @@
     - cell_slot
   - type: Lock
     locked: true
-    breakOnEmag: false
     unlockOnClick: false
   - type: ActivatableUIRequiresLock
   - type: LockedWiresPanel
@@ -282,7 +281,8 @@
   components:
   - type: RandomMetadata
     nameSegments:
-      - names_borg
+      # - names_borg # Frontier
+      - NFNamesBorgUnlocalized # Frontier
   - type: NpcFactionMember
     factions:
     - NanoTrasen
