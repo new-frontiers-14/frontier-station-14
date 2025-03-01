@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.DeviceLinking.Components;
 
 /// <summary>
-/// Frontier: A random number generator device that pulses high or low output ports randomly.
+/// Frontier: A random number generator device that triggers a random output port when triggered.
 /// </summary>
 [RegisterComponent, Access(typeof(RngDeviceSystem))]
 public sealed partial class RngDeviceComponent : Component
