@@ -1,6 +1,8 @@
 using Content.Server.DeviceLinking.Components;
 using SignalReceivedEvent = Content.Server.DeviceLinking.Events.SignalReceivedEvent;
 using Robust.Shared.Random;
+using System.Linq;
+using Content.Shared.DeviceLinking;
 
 namespace Content.Server.DeviceLinking.Systems;
 
@@ -20,44 +22,33 @@ public sealed class RngDeviceSystem : EntitySystem
     private void OnInit(EntityUid uid, RngDeviceComponent comp, ComponentInit args)
     {
         _deviceLink.EnsureSinkPorts(uid, comp.InputPort);
-        if(comp.Outputs == 2)
+
+        // Get the appropriate number of output ports based on comp.Outputs
+        var ports = comp.Outputs switch
         {
-            _deviceLink.EnsureSourcePorts(uid, comp.Output1Port, comp.Output2Port);
-        }
-        else if (comp.Outputs == 4)
-        {
-            _deviceLink.EnsureSourcePorts(uid, comp.Output1Port, comp.Output2Port, comp.Output3Port, comp.Output4Port);
-        }
-        else if (comp.Outputs == 6)
-        {
-            _deviceLink.EnsureSourcePorts(uid, comp.Output1Port, comp.Output2Port, comp.Output3Port, comp.Output4Port, comp.Output5Port, comp.Output6Port);
-        }
+            2 => new[] { comp.Output1Port, comp.Output2Port },
+            4 => new[] { comp.Output1Port, comp.Output2Port, comp.Output3Port, comp.Output4Port },
+            6 => new[] { comp.Output1Port, comp.Output2Port, comp.Output3Port, comp.Output4Port, comp.Output5Port, comp.Output6Port },
+            _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
+        };
+
+        _deviceLink.EnsureSourcePorts(uid, ports);
     }
 
     private void OnSignalReceived(EntityUid uid, RngDeviceComponent comp, ref SignalReceivedEvent args)
     {
         var roll = _random.Next(1, comp.Outputs + 1);
-        switch (roll)
+        var outputPort = roll switch
         {
-            case 1:
-                _deviceLink.InvokePort(uid, comp.Output1Port);
-                break;
-            case 2:
-                _deviceLink.InvokePort(uid, comp.Output2Port);
-                break;
-            case 3:
-                _deviceLink.InvokePort(uid, comp.Output3Port);
-                break;
-            case 4:
-                _deviceLink.InvokePort(uid, comp.Output4Port);
-                break;
-            case 5:
-                _deviceLink.InvokePort(uid, comp.Output5Port);
-                break;
-            case 6:
-                _deviceLink.InvokePort(uid, comp.Output6Port);
-                break;
-        }
+            1 => comp.Output1Port,
+            2 => comp.Output2Port,
+            3 => comp.Output3Port,
+            4 => comp.Output4Port,
+            5 => comp.Output5Port,
+            6 => comp.Output6Port,
+            _ => throw new ArgumentOutOfRangeException($"Invalid roll value: {roll}")
+        };
+        
+        _deviceLink.InvokePort(uid, outputPort);
     }
-
 }
