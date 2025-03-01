@@ -102,7 +102,7 @@ public sealed class RandomSpeakSystem : EntitySystem
 }
 
 [ByRefEvent]
-public record struct AttemptRandomSpeakEvent(EntityUid? RandomSpeakr)
+public record struct AttemptRandomSpeakEvent(EntityUid? RandomSpeaker)
 {
     public bool Cancelled = false;
 }
