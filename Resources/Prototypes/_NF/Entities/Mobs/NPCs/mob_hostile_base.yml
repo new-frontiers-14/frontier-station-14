@@ -237,6 +237,7 @@
     speedModifier: 1.5
     qualities:
       - Prying
+    hideQualities: true
   - type: Prying
     pryPowered: true
     force: true
@@ -249,12 +250,10 @@
 
 - type: entity
   abstract: true
+  parent: MobBaseSilentFootsteps
   id: MobIncorporealBase
   description: You can't touch it, but it can touch you.
   components:
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/_NF/Effects/silence.ogg
   - type: CanMoveInAir
   - type: Fixtures
     fixtures:
@@ -493,3 +492,10 @@
     - DoorBumpOpener
     - CannotSuicide
   - type: FTLKnockdownImmune
+
+- type: entity
+  abstract: true
+  id: MobBaseSilentFootsteps
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection: Null
