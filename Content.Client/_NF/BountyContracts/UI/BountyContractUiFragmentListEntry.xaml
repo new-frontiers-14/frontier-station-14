@@ -1,20 +1,24 @@
 <Control xmlns="https://spacestation14.io">
-    <PanelContainer Name="BountyPanel" Margin="8" StyleClasses="AngleRect" >
-        <BoxContainer Orientation="Vertical" Margin="4" >
+    <PanelContainer Name="BountyPanel" Margin="5" StyleClasses="AngleRect" HorizontalExpand="True">
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True">
             <BoxContainer Orientation="Horizontal">
                 <Label Name="BountyName" HorizontalExpand="True" />
                 <Label Name="BountyReward" HorizontalExpand="True"
                        HorizontalAlignment="Right"/>
             </BoxContainer>
             <PanelContainer StyleClasses="HighDivider" />
-            <Label Name="BountyCategory" StyleClasses="WindowFooterText"/>
+            <GridContainer Columns="2" HorizontalExpand="True">
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                    <Label Name="BountyCategory" StyleClasses="LabelSubText" FontColorOverride="#A9A9A9"/>
+                    <Label Name="BountyAuthor" StyleClasses="LabelSubText" FontColorOverride="#A9A9A9"/>
+                    <Label Name="BountyVessel" StyleClasses="LabelSubText" FontColorOverride="#A9A9A9"/>
+                </BoxContainer>
+                <Button Name="RemoveButton" Text="{Loc 'bounty-contracts-ui-list-remove'}"
+                        HorizontalAlignment="Right" VerticalAlignment="Top"/>
+            </GridContainer>
             <BoxContainer HorizontalExpand="True">
                 <RichTextLabel Name="BountyDescription" StyleClasses="LabelSubText"/>
             </BoxContainer>
-            <Label Name="BountyVessel" StyleClasses="WindowFooterText"/>
-            <Label Name="BountyAuthor" StyleClasses="WindowFooterText"/>
-            <Button Name="RemoveButton" Text="{Loc 'bounty-contracts-ui-list-remove'}"
-                    HorizontalAlignment="Right"/>
         </BoxContainer>
     </PanelContainer>
 </Control>
