@@ -63,7 +63,7 @@
   suffix: VeryHigh
   components:
   - type: MarketModifier
-    mod: 1.75
+    mod: 1.50
 
 - type: entity
   parent: ComputerPalletConsoleNFMarket
@@ -71,7 +71,7 @@
   suffix: High
   components:
   - type: MarketModifier
-    mod: 1.50
+    mod: 1.25
 
 - type: entity
   parent: ComputerPalletConsoleNFMarket
@@ -209,6 +209,15 @@
   components:
   - type: MarketModifier
     mod: 4
+
+- type: entity
+  name: cargo market computer
+  parent: ComputerMarketConsoleNFBase
+  id: ComputerMarketConsoleNFNormal
+  suffix: Normal
+  components:
+  - type: MarketModifier
+    mod: 6
 
 - type: entity
   name: cargo market computer
@@ -355,6 +364,34 @@
     board: Null # FIXME
   - type: MarketModifier
     mod: 1
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleVeryHigh
+  components:
+  - type: MarketModifier
+    mod: 1.5
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleHigh
+  components:
+  - type: MarketModifier
+    mod: 1.25
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleLow
+  components:
+  - type: MarketModifier
+    mod: 0.75
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleVeryLow
+  components:
+  - type: MarketModifier
+    mod: 0.5
 
 # Station Traffic Controller consoles
 - type: entity
