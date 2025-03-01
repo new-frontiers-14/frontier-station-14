@@ -1,0 +1,31 @@
+- type: vessel
+  id: Sakuratsu
+  name: TSK Sakuratsu
+  description: A medium sized ship that can do basic salvage, with plenty of space to add additional machines.
+  price: 62500
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/sakuratsu.yml
+  guidebookPage: ShipyardSakuratsu
+  class:
+  - Salvage
+
+- type: gameMap
+  id: Sakuratsu
+  mapName: 'TSK Sakuratsu'
+  mapPath: /Maps/_NF/Shuttles/sakuratsu.yml
+  minPlayers: 0
+  stations:
+    Sakuratsu:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Sakuratsu {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
