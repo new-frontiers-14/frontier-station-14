@@ -128,7 +128,7 @@
     - state: idnfsdbailiff
 
 - type: entity
-  parent: CadetIDCard
+  parent: [CadetIDCard, BaseCommandContraband]
   id: ShriffIDCard
   name: NFSD sheriff ID card
   components:
@@ -177,7 +177,7 @@
     - state: ert_mailcarrier
 
 - type: entity
-  parent: HoPIDCard
+  parent: [HoPIDCard, BaseCommandContraband]
   id: SrIDCard
   name: station representative ID card
   components:
@@ -269,7 +269,7 @@
     name: Yip Yip
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseCommandContraband]
   id: DocIDCard
   name: director of care ID card
   components:

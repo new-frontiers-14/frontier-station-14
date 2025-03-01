@@ -26,9 +26,10 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] protected readonly SharedAmbientSoundSystem AmbientSound = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] protected readonly SharedAudioSystem _audio = default!; // Frontier: private<protected
     [Dependency] protected readonly SharedContainerSystem Container = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    //[Dependency] private readonly EmagSystem _emag = default!; // Frontier: no point
 
     public const string ActiveReclaimerContainerId = "active-material-reclaimer-container";
 
@@ -37,7 +38,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     {
         SubscribeLocalEvent<MaterialReclaimerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<MaterialReclaimerComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<MaterialReclaimerComponent, GotEmaggedEvent>(OnEmagged);
+        //SubscribeLocalEvent<MaterialReclaimerComponent, GotEmaggedEvent>(OnEmagged); // Frontier: no point
         SubscribeLocalEvent<MaterialReclaimerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<CollideMaterialReclaimerComponent, StartCollideEvent>(OnCollide);
         SubscribeLocalEvent<ActiveMaterialReclaimerComponent, ComponentStartup>(OnActiveStartup);
@@ -58,10 +59,20 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
         args.PushMarkup(Loc.GetString("recycler-count-items", ("items", component.ItemsProcessed)));
     }
 
+    // Frontier: no point
+    /*
     private void OnEmagged(EntityUid uid, MaterialReclaimerComponent component, ref GotEmaggedEvent args)
     {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
         args.Handled = true;
     }
+    */
+    // End Frontier: no point
 
     private void OnCollide(EntityUid uid, CollideMaterialReclaimerComponent component, ref StartCollideEvent args)
     {
@@ -80,7 +91,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     /// <summary>
     /// Tries to start processing an item via a <see cref="MaterialReclaimerComponent"/>.
     /// </summary>
-    public bool TryStartProcessItem(EntityUid uid, EntityUid item, MaterialReclaimerComponent? component = null, EntityUid? user = null)
+    public bool TryStartProcessItem(EntityUid uid, EntityUid item, MaterialReclaimerComponent? component = null, EntityUid? user = null, bool predictSound = true) // Frontier: add predictSound
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -107,7 +118,15 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
 
         if (Timing.CurTime > component.NextSound)
         {
-            component.Stream = _audio.PlayPredicted(component.Sound, uid, user)?.Entity;
+            // Frontier: tear down previous stream just in case, allow non-predicted audio
+            if (component.Stream != null)
+                _audio.Stop(component.Stream);
+
+            if (predictSound)
+                component.Stream = _audio.PlayPredicted(component.Sound, uid, user)?.Entity;
+            else
+                component.Stream = _audio.PlayPvs(component.Sound, uid)?.Entity;
+            // End Frontier
             component.NextSound = Timing.CurTime + component.SoundCooldown;
         }
 
@@ -203,12 +222,13 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     /// </summary>
     public bool CanGib(EntityUid uid, EntityUid victim, MaterialReclaimerComponent component)
     {
-        return false; // DeltaV - Kinda LRP
+        return false;
+        // Frontier: disallow player gibbing
         // return component.Powered &&
         //        component.Enabled &&
         //        !component.Broken &&
         //        HasComp<BodyComponent>(victim) &&
-        //        HasComp<EmaggedComponent>(uid);
+        //        _emag.CheckFlag(uid, EmagType.Interaction);
     }
 
     /// <summary>
