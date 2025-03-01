@@ -136,7 +136,7 @@
   parent: BaseSubdermalImplant
   id: DissonantWhispersImplant
   name: dissonant whispers implant
-  description: This implant allows user to emmit dissonant whispers.
+  description: This implant allows user to emit dissonant whispers.
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -148,3 +148,15 @@
       path: /Audio/_NF/Effects/bloodcult/whispers.ogg
       params:
         variation: 0.125
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantFreelance
+  name: radio implant
+  description: This implant grants access to the Freelance channel without a headset.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - Freelance
