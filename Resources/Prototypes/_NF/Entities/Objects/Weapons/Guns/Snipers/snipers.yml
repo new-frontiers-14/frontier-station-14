@@ -10,14 +10,14 @@
 # Frontier
 - type: entity
   name: N2524 Pattern Repeater
-  parent: [ BaseC1Contraband, BaseWeaponSniper, BaseGunWieldable ]
+  parent: [BaseC1Contraband, BaseWeaponSniper, BaseGunWieldable]
   id: WeaponSniperRepeater
   description: A civilian grade lever action firearm, favored by space cowboys across the Frontier for its reliability and stopping power. Uses .45 magnum ammo.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi    
+    sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi
   - type: StaticPrice
     price: 500
   - type: BallisticAmmoProvider
@@ -26,3 +26,27 @@
       - CartridgeMagnum
     capacity: 7
     proto: CartridgeMagnum
+
+- type: entity
+  name: Aspect
+  parent: [BaseWeaponSniper, BaseGunWieldable, BaseC2Contraband]
+  id: WeaponSniperAspect
+  description: Bolt action firearm. uses .60 anti-materiel ammo. most often used by paramilitary organizations.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Snipers/aspect.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Snipers/aspect.rsi
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeAntiMateriel
+    capacity: 3
+    proto: CartridgeAntiMateriel
+  - type: Gun
+    fireRate: 0.65
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
