@@ -295,7 +295,7 @@
         showEnts: False
         occludes: True
         ent: null
-  
+
 - type: entity
   id: ClosetWallN2
   name: emergency nitrogen wall closet
@@ -323,3 +323,15 @@
     stateBaseClosed: o2n2
     stateDoorOpen: o2n2_open
     stateDoorClosed: o2n2_door
+
+- type: entity
+  id: NFPrisonerClosetWallOrange
+  parent: BaseWallCloset
+  name: prisoner wall closet
+  description: It's a storage unit for Space Law compliant prisoner garb.
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: generic
+    stateDoorOpen: generic_open
+    stateDoorClosed: orange_door
