@@ -4,28 +4,28 @@
   name: empty RNG device
   description: Add a die (Percentile, D4, D6) to create an RNG device.
   components:
-  - type: Sprite
-    layers:
-    - sprite: Objects/Devices/gates.rsi
-      state: base
-    - sprite: Objects/Misc/books.rsi
-      state: icon_question
-  - type: Anchorable
-  - type: Rotatable
-  - type: Construction
-    graph: RngDevice
-    node: empty
+    - type: Sprite
+      layers:
+        - sprite: Objects/Devices/gates.rsi
+          state: base
+        - sprite: Objects/Misc/books.rsi
+          state: icon_question
+    - type: Anchorable
+    - type: Rotatable
+    - type: Construction
+      graph: RngDevice
+      node: empty
 
 - type: entity
   abstract: true
   parent: RngEmptyCircuit
   id: BaseRngItem
   components:
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
-  - type: WirelessNetworkConnection
-    range: 200
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+    - type: WirelessNetworkConnection
+      range: 200
 
 - type: entity
   parent: BaseRngItem
@@ -34,26 +34,29 @@
   description: Sends a signal to a random output port.
   suffix: D2
   components:
-  - type: Sprite
-    layers:
-    - sprite: Objects/Devices/gates.rsi
-      state: base
-    - sprite: Objects/Fun/dice.rsi
-      state: percentile_50
-  - type: RngDevice
-    outputs: 2
-  - type: DeviceLinkSink
-    ports:
-    - RngInput
-  - type: DeviceLinkSource
-    ports:
-    - RngOutput1
-    - RngOutput2
-    lastSignals:
-      RngOutput1: false
-      RngOutput2: false
-  - type: Construction
-    node: rng_device_d2
+    - type: Sprite
+      layers:
+        - sprite: Objects/Devices/gates.rsi
+          state: base
+        - sprite: Objects/Fun/dice.rsi
+          map: [dice]
+          state: percentile_10
+    - type: RngDevice
+      outputs: 2
+    - type: DeviceLinkSink
+      ports:
+        - RngInput
+    - type: DeviceLinkSource
+      ports:
+        - RngOutput1
+        - RngOutput2
+      lastSignals:
+        RngOutput1: false
+        RngOutput2: false
+    - type: Construction
+      node: rng_device_d2
+    - type: Appearance
+    - type: RngDeviceVisuals
 
 - type: entity
   parent: BaseRngItem
@@ -62,30 +65,33 @@
   description: Sends a signal to a random output port.
   suffix: D4
   components:
-  - type: Sprite
-    layers:
-    - sprite: Objects/Devices/gates.rsi
-      state: base
-    - sprite: Objects/Fun/dice.rsi
-      state: d4_4
-  - type: RngDevice
-    outputs: 4
-  - type: DeviceLinkSink
-    ports:
-    - RngInput
-  - type: DeviceLinkSource
-    ports:
-    - RngOutput1
-    - RngOutput2
-    - RngOutput3
-    - RngOutput4
-    lastSignals:
-      RngOutput1: false
-      RngOutput2: false
-      RngOutput3: false
-      RngOutput4: false
-  - type: Construction
-    node: rng_device_d4
+    - type: Sprite
+      layers:
+        - sprite: Objects/Devices/gates.rsi
+          state: base
+        - sprite: Objects/Fun/dice.rsi
+          map: [dice]
+          state: d4_1
+    - type: RngDevice
+      outputs: 4
+    - type: DeviceLinkSink
+      ports:
+        - RngInput
+    - type: DeviceLinkSource
+      ports:
+        - RngOutput1
+        - RngOutput2
+        - RngOutput3
+        - RngOutput4
+      lastSignals:
+        RngOutput1: false
+        RngOutput2: false
+        RngOutput3: false
+        RngOutput4: false
+    - type: Construction
+      node: rng_device_d4
+    - type: Appearance
+    - type: RngDeviceVisuals
 
 - type: entity
   parent: BaseRngItem
@@ -94,31 +100,34 @@
   description: Sends a signal to a random output port.
   suffix: D6
   components:
-  - type: Sprite
-    layers:
-    - sprite: Objects/Devices/gates.rsi
-      state: base
-    - sprite: Objects/Fun/dice.rsi
-      state: d6_6
-  - type: RngDevice
-    outputs: 6
-  - type: DeviceLinkSink
-    ports:
-    - RngInput
-  - type: DeviceLinkSource
-    ports:
-    - RngOutput1
-    - RngOutput2
-    - RngOutput3
-    - RngOutput4
-    - RngOutput5
-    - RngOutput6
-    lastSignals:
-      RngOutput1: false
-      RngOutput2: false
-      RngOutput3: false
-      RngOutput4: false
-      RngOutput5: false
-      RngOutput6: false
-  - type: Construction
-    node: rng_device_d6
+    - type: Sprite
+      layers:
+        - sprite: Objects/Devices/gates.rsi
+          state: base
+        - sprite: Objects/Fun/dice.rsi
+          map: [dice]
+          state: d6_1
+    - type: RngDevice
+      outputs: 6
+    - type: DeviceLinkSink
+      ports:
+        - RngInput
+    - type: DeviceLinkSource
+      ports:
+        - RngOutput1
+        - RngOutput2
+        - RngOutput3
+        - RngOutput4
+        - RngOutput5
+        - RngOutput6
+      lastSignals:
+        RngOutput1: false
+        RngOutput2: false
+        RngOutput3: false
+        RngOutput4: false
+        RngOutput5: false
+        RngOutput6: false
+    - type: Construction
+      node: rng_device_d6
+    - type: Appearance
+    - type: RngDeviceVisuals
