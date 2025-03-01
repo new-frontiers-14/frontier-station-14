@@ -11,7 +11,7 @@ public sealed partial class StinkyTraitComponent : Component
     /// <summary>
     /// The random time between incidents, (min, max).
     /// </summary>
-    [DataField("timeBetweenIncidents")]
+    [DataField]
     public Vector2 TimeBetweenIncidents { get; private set; } = new(300, 600);
 
     public float NextIncidentTime;
