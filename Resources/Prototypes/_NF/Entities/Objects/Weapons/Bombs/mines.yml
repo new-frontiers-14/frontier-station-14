@@ -1,0 +1,179 @@
+# Base
+- type: entity
+  parent: BaseItem
+  id: NFConcealedIED
+  suffix: Explosive
+  abstract: true
+  components:
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        layer:
+          - LowImpassable
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 30
+        mask:
+        - ItemMask
+  - type: AmbientSound
+    volume: -11
+    range: 3
+    enabled: true
+    sound:
+      path: /Audio/Items/newton_cradle.ogg
+  - type: LandMine
+    sound:
+      path: /Audio/Effects/beep_landmine.ogg
+      params:
+        maxDistance: 10
+  - type: StepTrigger
+    intersectRatio: 0.2
+    requiredTriggeredSpeed: 0
+    stepOn: true
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: HardBomb  # normally Default and max 5 total 60
+    maxIntensity: 10 # about a ~67.5 total damage
+    totalIntensity: 30 # about a ~3 tile radius
+    canCreateVacuum: false
+  - type: DeleteOnTrigger
+  - type: OnUseTimerTrigger
+    useVerbInstead: true
+    beepInterval: .25
+    beepSound:
+      path: /Audio/Items/Janitor/floor_sign_beep.ogg
+      params:
+        volume: 1
+    examinable: false
+
+# Variations
+- type: entity
+  parent: [ ToolboxMechanical, NFConcealedIED ]
+  id: NFToolboxIED
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: NFConcealedIED
+  id: NFPlushieIED
+  name: plushie
+  description: A stuffed toy to remind adults of what they can no longer have - youth.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Fun/toys.rsi
+      state: plushie_atmosian
+      map: [ "ied_sprite_toy" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      shader: unshaded
+      state: ied_light
+  - type: RandomSprite
+    available:
+      - ied_sprite_toy:
+          carpplush: ""
+          magicplush: ""
+          narplush: ""
+          nuketoy: ""
+          plushie_atmosian: ""
+          plushie_arachnid: ""
+          plushie_diona: ""
+          plushie_h: ""
+          plushie_hampter: ""
+          plushie_lizard: ""
+          plushie_vox: ""
+          plushie_nuke: ""
+          plushie_moth: ""
+          plushie_xeno: ""
+          plushie_slime: ""
+          plushie_rouny: ""
+          plushie_penguin: ""
+
+- type: entity
+  parent: NFConcealedIED
+  id: NFBoxIED
+  name: box
+  description: A box.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Storage/boxicons.rsi
+      state: bodybags
+      map: [ "ied_sprite_box" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      shader: unshaded
+      state: ied_light
+  - type: RandomSprite
+    available:
+      - ied_sprite_box:
+          beaker: ""
+          bodybags: ""
+          box: ""
+          box_of_doom: ""
+          circuit: ""
+          disk_kit: ""
+          donk_kit: ""
+          flashbang: ""
+          glasses: ""
+          mousetraps: ""
+          throwing_knives: ""
+
+- type: entity
+  parent: NFConcealedIED
+  id: NFTrashIED
+  name: discarded wrapper
+  description: A discarded packaging from a food item.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers-trash
+      map: [ "ied_sprite_trash" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      shader: unshaded
+      state: ied_light
+  - type: RandomSprite
+    available:
+      - ied_sprite_trash:
+          cheesiehonkers-trash: ""
+          chocolatebar-trash: ""
+          cnds-trash: ""
+          energybar-trash: ""
+          mre-wrapper: ""
+          pistachio-trash: ""
+          popcorn-trash: ""
+          raisins-trash: ""
+          semki-trash: ""
+          susjerky-trash: ""
+          syndicakes-trash: ""
