@@ -203,8 +203,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 shuttleUid
             };
             shuttleStation = _station.InitializeNewStation(stationProto.Stations[vessel.ID], gridUids);
-            var metaData = MetaData((EntityUid)shuttleStation);
-            name = metaData.EntityName;
+            name = Name(shuttleStation.Value);
         }
 
         if (TryComp<AccessComponent>(targetId, out var newCap))
@@ -621,7 +620,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 && (mindComp.Session != null
                 || !_mind.IsCharacterDeadPhysically(mindComp)))
             {
-                return MetaData(child).EntityName;
+                return Name(child);
             }
             else
             {
