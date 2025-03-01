@@ -3,14 +3,16 @@ using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Shipyard.Components;
+using Content.Server._NF.ShuttleRecords;
+using Content.Server._NF.Smuggling.Components;
 using Content.Shared._NF.Bank.Components;
+using Content.Shared._NF.Shipyard;
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Access.Components;
-using Content.Shared._NF.Shipyard;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -22,7 +24,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Server.Maps;
 using Content.Shared.StationRecords;
 using Content.Server.Chat.Systems;
-using Content.Server.Forensics;
 using Content.Server.Mind;
 using Content.Server.Preferences.Managers;
 using Content.Server.StationRecords;
@@ -33,14 +34,14 @@ using static Content.Shared._NF.Shipyard.Components.ShuttleDeedComponent;
 using Content.Server.Shuttles.Components;
 using Content.Server._NF.Station.Components;
 using System.Text.RegularExpressions;
-using Content.Server._NF.ShuttleRecords;
 using Content.Shared.UserInterface;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Access;
-using Content.Server._NF.Smuggling.Components;
+using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.ShuttleRecords;
 using Content.Server.StationEvents.Components;
-using Content.Shared._NF.Bank.BUI;
+using Content.Server.Forensics;
+using Content.Shared.Forensics.Components;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -271,9 +272,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var sellValue = 0;
         if (!voucherUsed)
         {
+            // Get the price of the ship
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
-                sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!));
+                sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!), LacksPreserveOnSaleComp);
 
+            // Adjust for taxes
             sellValue = CalculateShipResaleValue((shipyardConsoleUid, component), sellValue);
         }
 
@@ -376,7 +379,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var shuttleName = ToPrettyString(shuttleUid); // Grab the name before it gets 1984'd
 
         // Check for shipyard blacklisting components
-        var disableSaleQuery = GetEntityQuery<DisableShipyardSaleComponent>();
+        var disableSaleQuery = GetEntityQuery<ShipyardSellConditionComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
         var disableSaleMsg = FindDisableShipyardSaleObjects(shuttleUid, (ShipyardConsoleUiKey)args.UiKey, disableSaleQuery, xformQuery);
         if (disableSaleMsg != null)
@@ -386,7 +389,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        var saleResult = TrySellShuttle(stationUid, shuttleUid, out var bill);
+        var saleResult = TrySellShuttle(stationUid, shuttleUid, uid, out var bill);
         if (saleResult.Error != ShipyardSaleError.Success)
         {
             switch (saleResult.Error)
@@ -486,7 +489,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         int sellValue = 0;
         if (deed?.ShuttleUid != null)
         {
-            sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!));
+            sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!), LacksPreserveOnSaleComp);
             sellValue = CalculateShipResaleValue((uid, component), sellValue);
         }
 
@@ -579,7 +582,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             int sellValue = 0;
             if (deed?.ShuttleUid != null)
             {
-                sellValue = (int)_pricing.AppraiseGrid(deed.ShuttleUid.Value);
+                sellValue = (int)_pricing.AppraiseGrid(deed.ShuttleUid.Value, LacksPreserveOnSaleComp);
                 sellValue = CalculateShipResaleValue((uid, component), sellValue);
             }
 
@@ -627,13 +630,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     }
 
     /// <summary>
-    /// Looks for a living, sapient being aboard a particular entity.
+    /// Looks for any entities marked as preventing sale on a shuttle
     /// </summary>
-    /// <param name="uid">The entity to search (e.g. a shuttle, a station)</param>
-    /// <param name="mobQuery">A query to get the MobState from an entity</param>
+    /// <param name="shuttle">The entity to search (e.g. a shuttle, a station)</param>
+    /// <param name="key">The UI key of the current shipyard console. Used to see if the shipyard should ignore this check</param>
+    /// <param name="disableSaleQuery">A query to get any marked objects from an entity</param>
     /// <param name="xformQuery">A query to get the transform component of an entity</param>
-    /// <returns>The name of the sapient being if one was found, null otherwise.</returns>
-    public string? FindDisableShipyardSaleObjects(EntityUid shuttle, ShipyardConsoleUiKey key, EntityQuery<DisableShipyardSaleComponent> disableSaleQuery, EntityQuery<TransformComponent> xformQuery)
+    /// <returns>The reason that a shuttle should be blocked from sale, null otherwise.</returns>
+    public string? FindDisableShipyardSaleObjects(EntityUid shuttle, ShipyardConsoleUiKey key, EntityQuery<ShipyardSellConditionComponent> disableSaleQuery, EntityQuery<TransformComponent> xformQuery)
     {
         var xform = xformQuery.GetComponent(shuttle);
         var childEnumerator = xform.ChildEnumerator;
@@ -641,8 +645,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         while (childEnumerator.MoveNext(out var child))
         {
             if (disableSaleQuery.TryGetComponent(child, out var disableSale)
+                && disableSale.BlockSale is true
                 && !disableSale.AllowedShipyardTypes.Contains(key))
-                return disableSale.Reason;
+            {
+                return disableSale.Reason ?? "shipyard-console-fallback-prevent-sale";
+            }
         }
 
         return null;
@@ -784,7 +791,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (xform.GridUid == null)
             return;
 
-        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null  || ShipyardMap == null)
+        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null || ShipyardMap == null)
             return;
 
         var output = DeedRegex.Replace($"{shuttleDeed.ShuttleOwner}", ""); // Removes content inside parentheses along with parentheses and a preceding space
