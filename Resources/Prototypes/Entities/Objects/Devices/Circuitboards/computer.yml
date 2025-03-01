@@ -345,6 +345,17 @@
       prototype: SyndicateComputerTabletopComms # Frontier
 
 - type: entity
+  parent: [ BaseComputerCircuitboard, BaseC3WizardContraband ] # Frontier: BaseSyndicateContraband<BaseC3WizardContraband
+  id: WizardCommsComputerCircuitboard
+  name: wizard communications computer board
+  description: A computer printed circuit board for a wizard communications console.
+  components:
+  - type: Sprite
+    state: cpu_wizard
+  - type: ComputerBoard
+    prototype: WizardComputerComms
+
+- type: entity
   parent: BaseComputerCircuitboard
   id: RadarConsoleCircuitboard
   name: radar console computer board
