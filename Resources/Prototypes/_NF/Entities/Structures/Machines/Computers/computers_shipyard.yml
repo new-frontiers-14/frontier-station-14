@@ -132,8 +132,8 @@
     shipyardChannel: Syndicate
     secretShipyardChannel: Nfsd
     taxAccounts:
-      Invalid: 0.5
-    ignoreBaseSaleRate: true # Fixed 50% sale rate.
+      Invalid: 0.30
+    ignoreBaseSaleRate: true # Fixed 70% sale rate.
     canTransferDeed: false
 
 - type: entity
@@ -163,8 +163,8 @@
     shipyardChannel: Freelance
     secretShipyardChannel: Nfsd
     taxAccounts:
-      Invalid: 0.5
-    ignoreBaseSaleRate: true # Fixed 50% sale rate.
+      Invalid: 0.30
+    ignoreBaseSaleRate: true # Fixed 70% sale rate.
     canTransferDeed: false
 
 - type: entity
@@ -214,7 +214,7 @@
       state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
-      
+
 - type: entity
   id: ComputerShipyardMedical
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
