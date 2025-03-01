@@ -218,3 +218,5 @@ uplink-pirate-graygrenade-name = Gray Pirate Grenade
 uplink-pirate-graygrenade-desc = A solid grenade that feels like a cannonball.
 uplink-pirate-accessconfigurator-captain-name = Black Market Access Configurator
 uplink-pirate-accessconfigurator-captain-desc = An access configurator that is sold on the black market. Lock ya booty behind pirate access today!
+uplink-pirate-radio-implanter-name = Radio Implanter
+uplink-pirate-radio-implanter-desc = Implants a Freelance radio, allowing covert communication without a headset.
