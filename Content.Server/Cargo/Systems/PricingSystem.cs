@@ -283,6 +283,35 @@ public sealed class PricingSystem : EntitySystem
         return price;
     }
 
+    // Begin Frontier - GetPrice variant that uses predicate
+    /// <summary>
+    /// Appraises an entity, returning its price. Respects predicate - an entity that is excluded will be removed from the 
+    /// </summary>
+    /// <param name="uid">The entity to appraise.</param>
+    /// <param name="includeContents">Whether to examine its contents.</param>
+    /// <param name="predicate">An optional predicate that controls whether or not the entity or its children are counted toward the total.</param>
+    /// <returns>The price of the entity.</returns>
+    public double GetPriceConditional(EntityUid uid, bool includeContents = true, Func<EntityUid, bool>? predicate = null)
+    {
+        if (predicate is not null && !predicate(uid))
+            return 0.0;
+
+        var price = GetPrice(uid, false);
+
+        if (includeContents && TryComp<ContainerManagerComponent>(uid, out var containers))
+        {
+            foreach (var container in containers.Containers.Values)
+            {
+                foreach (var ent in container.ContainedEntities)
+                {
+                    price += GetPriceConditional(ent, true, predicate);
+                }
+            }
+        }
+        return price;
+    }
+    // End Frontier - GetPrice variant that uses predicate
+
     private double GetMaterialsPrice(EntityUid uid)
     {
         double price = 0;
@@ -441,7 +470,7 @@ public sealed class PricingSystem : EntitySystem
         {
             if (predicate is null || predicate(child))
             {
-                var subPrice = GetPrice(child);
+                var subPrice = GetPriceConditional(child, true, predicate); // Frontier: GetPrice<GetPriceConditional, add true, predicate
                 price += subPrice;
                 afterPredicate?.Invoke(child, subPrice);
             }
