@@ -36,7 +36,7 @@ public sealed partial class RandomSpeakComponent : Component
     /// The identifier for the sentences dataset prototype.
     /// </summary>
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> Pack { get; private set; }
+    public ProtoId<LocalizedDatasetPrototype>? Pack { get; private set; }
 
     /// <summary>
     /// The next time sentence will be said.
