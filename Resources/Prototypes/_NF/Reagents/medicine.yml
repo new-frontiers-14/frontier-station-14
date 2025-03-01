@@ -43,4 +43,17 @@
             Cellular: 1
           groups:
             Brute: 3
-          
+
+- type: reagent
+  id: UniversalBlood
+  name: reagent-name-universalblood
+  group: Medicine
+  desc: reagent-desc-universalblood
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: metallic
+  color: "#7b4689"
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:ModifyBloodLevel
+          amount: 6
