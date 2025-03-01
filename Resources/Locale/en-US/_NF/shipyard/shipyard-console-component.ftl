@@ -26,6 +26,7 @@ shipyard-console-invalid-voucher-type = This voucher cannot be used at this cons
 shipyard-console-contraband-onboard = Smuggled contraband detected onboard.
 shipyard-console-station-resources = Vital station resources detected onboard.
 shipyard-console-dangerous-materials = Dangerous materials detected onboard.
+shipyard-console-fallback-prevent-sale = YML-class bugs detected onboard. Please file a bug report when possible.
 
 shipyard-console-menu-size-label = Size:{" "}
 shipyard-console-menu-class-label = Class:{" "}
