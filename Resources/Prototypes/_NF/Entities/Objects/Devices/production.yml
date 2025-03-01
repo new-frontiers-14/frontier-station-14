@@ -226,15 +226,37 @@
       Cable: 2
 
 - type: entity
-  id: PortableGeneratorHyperPacmanMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: H.Y.P.E.R.P.A.C.M.A.N.-type portable generator machine board
-  description: A machine printed circuit board for a shredder.
+  id: PortableGeneratorDKMachineCircuitboard
+  parent: [ BaseMachineCircuitboard, BaseC2ContrabandUnredeemable ]
+  name: D-K-type portable generator machine board
+  description: A machine printed circuit board for a D-K-type portable generator.
   components:
     - type: Sprite
       state: engineering
     - type: MachineBoard
-      prototype: PortableGeneratorHyperPacman
+      prototype: PortableGeneratorDK
+      requirements:
+        Capacitor: 2
+      stackRequirements:
+        CableHV: 10
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 200
+      chemicalComposition:
+        Silicon: 20
+    - type: StaticPrice
+      price: 40
+
+- type: entity
+  id: PortableGeneratorDKJrMachineCircuitboard
+  parent: [ BaseMachineCircuitboard, BaseC1Contraband ]
+  name: D-K Jr.-type portable generator machine board
+  description: A machine printed circuit board for a D-K Jr.-type portable generator.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: PortableGeneratorDKJr
       requirements:
         Capacitor: 2
       stackRequirements:
