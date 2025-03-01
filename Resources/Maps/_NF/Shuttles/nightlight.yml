@@ -903,8 +903,6 @@ entities:
       pos: -3.5,-2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
 - proto: APCBasic
@@ -1164,13 +1162,6 @@ entities:
     components:
     - type: Transform
       pos: 7.645155,4.706744
-      parent: 1
-- proto: BoxTrashbag
-  entities:
-  - uid: 76
-    components:
-    - type: Transform
-      pos: 7.426405,4.753619
       parent: 1
 - proto: Bucket
   entities:
@@ -1930,8 +1921,6 @@ entities:
       pos: 3.5,5.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
       - 73
@@ -2894,8 +2883,6 @@ entities:
       pos: -2.5,4.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -2935,8 +2922,6 @@ entities:
       pos: -6.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -2948,8 +2933,6 @@ entities:
       pos: 7.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -2961,8 +2944,6 @@ entities:
       pos: 1.5,-5.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -2974,8 +2955,6 @@ entities:
       pos: 7.5,2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -2995,8 +2974,6 @@ entities:
       pos: -3.5,-4.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -3008,8 +2985,6 @@ entities:
       pos: 2.5,4.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -3040,8 +3015,6 @@ entities:
       pos: -2.5,-4.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -3060,8 +3033,6 @@ entities:
       pos: -6.5,-0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -3073,8 +3044,6 @@ entities:
       pos: 7.5,-0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -3086,8 +3055,6 @@ entities:
       pos: -0.5,-5.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -3106,8 +3073,6 @@ entities:
       pos: 7.5,4.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -3129,8 +3094,6 @@ entities:
       pos: 4.5,2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 244
     - type: AtmosPipeColor
@@ -3363,11 +3326,11 @@ entities:
       parent: 1
 - proto: JukeboxWallmountShip
   entities:
-  - uid: 424
+  - uid: 173
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,2.5
+      rot: 3.141592653589793 rad
+      pos: 0.5,-4.5
       parent: 1
 - proto: KitchenAssembler
   entities:
@@ -3420,11 +3383,6 @@ entities:
       parent: 1
 - proto: LargeBeaker
   entities:
-  - uid: 173
-    components:
-    - type: Transform
-      pos: 2.1278298,4.6454825
-      parent: 1
   - uid: 316
     components:
     - type: Transform
@@ -3508,7 +3466,8 @@ entities:
   - uid: 298
     components:
     - type: Transform
-      pos: 0.5,-4.5
+      rot: 3.141592653589793 rad
+      pos: -1.5,-4.5
       parent: 1
   - uid: 342
     components:
@@ -3519,6 +3478,12 @@ entities:
     components:
     - type: Transform
       pos: 6.5,1.5
+      parent: 1
+  - uid: 424
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-4.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -3606,6 +3571,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,9.5
+      parent: 1
+- proto: PottedPlantBioluminscent
+  entities:
+  - uid: 59
+    components:
+    - type: Transform
+      pos: 0.5,-5.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -3776,7 +3748,7 @@ entities:
       parent: 1
 - proto: ServiceTechFab
   entities:
-  - uid: 59
+  - uid: 76
     components:
     - type: Transform
       pos: 7.5,4.5
