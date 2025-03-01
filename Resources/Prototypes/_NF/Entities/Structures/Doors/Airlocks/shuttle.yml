@@ -37,3 +37,13 @@
   - type: Construction
     graph: AirlockShuttleNfsd
     node: airlock
+
+- type: entity
+  id: AirlockShuttleShipment
+  parent: AirlockShuttle
+  name: shipment external airlock
+  suffix: Cargo, Docking
+  description: Necessary for connecting two space craft together. Accepts docking, but cannot dock.
+  components:
+  - type: Docking
+    receiveOnly: true
