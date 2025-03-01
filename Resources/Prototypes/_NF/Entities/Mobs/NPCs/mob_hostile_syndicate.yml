@@ -32,11 +32,11 @@
     rechargeCooldown: 1
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Advertise
+  - type: RandomSpeak
     pack: syndicatehumanoidchatter
     minimumWait: 30
     maximumWait: 120
-    nextAdvertisementTime: 10
+    nextRandomSpeakTime: 10
   - type: AutoWakeUp
   - type: TriggerOnBeingGibbed
   - type: GibOnTrigger
@@ -44,6 +44,9 @@
     deleteOrgans: true
     gib: false
     useArgumentEntity: true
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
 
 # Humans
 # Syndicate Captain, "armed" with AP Python
@@ -489,23 +492,26 @@
   id: MobExperimentationVictim
   categories: [ HideSpawnMenu ]
   components:
-    - type: NameIdentifier
-      group: GenericNumber
-    - type: NpcFactionMember
-      factions:
-        - SimpleHostile
-    - type: Loadout
-      prototypes:
-        - SyndicateVictimInsaneGear
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
-    - type: NFSalvageMobRestrictions
-      despawnIfOffLinkedGrid: false
-      addComponentsOnDeath: []
-      removeComponentsOnDeath: []
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: Loadout
+    prototypes:
+      - SyndicateVictimInsaneGear
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: NFSalvageMobRestrictions
+    despawnIfOffLinkedGrid: false
+    addComponentsOnDeath: []
+    removeComponentsOnDeath: []
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
 
 # Syndicate Commander, "armed" with AK
 - type: entity
@@ -652,11 +658,11 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 4
       baseSprintSpeed: 6
-    - type: Advertise
+    - type: RandomSpeak
       pack: mimehumanoidchatter
       minimumWait: 120 # 1 * 2
       maximumWait: 240 # 2 * 60
-      nextAdvertisementTime: 0
+      nextRandomSpeakTime: 0
 
 # Syndicate Chemwarrior, shoots healthy mixes of chems
 # Look for chems here: /Resources/Prototypes/_NF/Entities/Objects/Weapons/Ammunition/Projectiles/chem.yml

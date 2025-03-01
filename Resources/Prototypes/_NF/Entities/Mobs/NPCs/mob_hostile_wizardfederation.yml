@@ -35,11 +35,11 @@
     speedModifierThresholds:
       72: 0.7
       96: 0.5
-  - type: Advertise
+  - type: RandomSpeak
     pack: wizardhumanoidchatter
     minimumWait: 30
     maximumWait: 120
-    nextAdvertisementTime: 10
+    nextRandomSpeakTime: 10
   - type: AutoWakeUp
   - type: TriggerOnBeingGibbed
   - type: GibOnTrigger
@@ -47,6 +47,9 @@
     deleteOrgans: true
     gib: false
     useArgumentEntity: true
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
 
 # Humans
 # Blue Wizard, summons 2 Blue Curacao Elementals
@@ -240,3 +243,6 @@
     transferAmount: 10
   - type: Ammo
     muzzleFlash: null
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
