@@ -283,6 +283,7 @@
   name: Space Bear Spawner
   id: SpawnMobBear
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -305,7 +306,7 @@
       sprite: Mobs/Aliens/Carps/space.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobCarp
+    - NFMobCarp # Frontier MobCarp<NFMobCarp
 
 - type: entity
   name: Magicarp Spawner
@@ -319,7 +320,7 @@
       sprite: Mobs/Aliens/Carps/magic.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobCarpMagic
+    - NFMobCarpMagic # Frontier MobCarpMagic<NFMobCarpMagic
 
 - type: entity
   name: Holocarp Spawner
@@ -333,12 +334,13 @@
       sprite: Mobs/Aliens/Carps/holo.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobCarpHolo
+    - NFMobCarpHolo # Frontier MobCarpHolo<NFMobCarpHolo
 
 - type: entity
   name: Space Sharkminnow Spawner
   id: SpawnMobShark
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -409,6 +411,7 @@
   name: Space Kangaroo Spawner
   id: SpawnMobKangaroo
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -437,6 +440,7 @@
   name: Space Spider Spawner
   id: SpawnMobSpaceSpider
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -451,6 +455,7 @@
   name: Space Cobra Spawner
   id: SpawnMobSpaceCobra
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -609,7 +614,7 @@
       sprite: Mobs/Aliens/Xenos/purple_snake.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobPurpleSnake
+    - NFMobPurpleSnake # Frontier MobPurpleSnake<NFMobPurpleSnake
 
 - type: entity
   name: Small Purple Snake Spawner
@@ -623,7 +628,7 @@
       sprite: Mobs/Aliens/Xenos/purple_snake.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobSmallPurpleSnake
+    - NFMobSmallPurpleSnake # Frontier MobSmallPurpleSnake<NFMobSmallPurpleSnake
 
 - type: entity
   name: Slug Spawner
