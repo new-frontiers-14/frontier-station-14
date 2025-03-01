@@ -227,7 +227,7 @@
 
 - type: entity
   id: PortableGeneratorDKMachineCircuitboard
-  parent: BaseMachineCircuitboard
+  parent: [ BaseMachineCircuitboard, BaseC2ContrabandUnredeemable ]
   name: D-K-type portable generator machine board
   description: A machine printed circuit board for a D-K-type portable generator.
   components:
@@ -249,8 +249,8 @@
 
 - type: entity
   id: PortableGeneratorDKJrMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: D-K Jr.-type portable generator
+  parent: [ BaseMachineCircuitboard, BaseC1Contraband ]
+  name: D-K Jr.-type portable generator machine board
   description: A machine printed circuit board for a D-K Jr.-type portable generator.
   components:
     - type: Sprite
