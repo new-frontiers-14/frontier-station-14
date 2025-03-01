@@ -1,226 +1,29 @@
-# BASE
 - type: entity
-  id: BaseMobCarpExpeditions
-  name: carp
-  parent:
-  - MobNonHumanHostileBase
-  - MobHumanoidHostileAISimpleMelee
-  - NFMobRestrictions
-  description: A variant of the common space carp, evolved to "swim" through gravity. Equally dangerous.
-  abstract: true
-  components:
-  - type: NpcFactionMember
-    factions:
-    - SimpleHostile
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Mobs/Aliens/Carps/space.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: alive
-    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-      state: mouth
-      shader: unshaded
-  - type: Butcherable
-    spawned:
-    - id: FoodMeatFish
-      amount: 2
-  - type: MobThresholds # Base value to fall back to
-    thresholds:
-      0: Alive
-      50: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      30: 0.7
-      40: 0.5
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: alive
-        BaseUnshaded: mouth
-      Dead:
-        Base: dead
-        BaseUnshaded: dead_mouth
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35 # Lowered the value, to allow them to fit through the airlocks
-        density: 100
-        mask:
-          - FlyingMobMask
-        layer:
-          - FlyingMobLayer
-  - type: Tag
-    tags:
-    - Carp
-    - DoorBumpOpener
-  - type: MeleeWeapon
-    angle: 0
-    animation: WeaponArcBite
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    damage:
-      types:
-        Piercing: 5
-        Slash: 5
-        Structural: 20
-  - type: TypingIndicator
-    proto: alien
-
-# VARIATIONS
-- type: entity
-  id: MobCarpExpeditions
-  parent: BaseMobCarpExpeditions
-  components:
-  - type: Sprite
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: alive
-    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-      state: mouth
-      shader: unshaded
-  - type: RandomSprite
-    available:
-    - enum.DamageStateVisualLayers.Base:
-        alive: Rainbow
-      enum.DamageStateVisualLayers.BaseUnshaded:
-        mouth: ""
+  id: NFMobCarp
+  parent: [NFMobRestrictions, MobBaseSilentFootsteps, MobNonHumanHostileBase, MobHumanoidHostileAISimpleMelee, MobCarp]
+  suffix: "Frontier"
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  id: MobCarpMagicExpeditions
-  name: magicarp
-  parent: BaseMobCarpExpeditions
-  description: A lesser version of spaceproof giant carp believed to have magic powers. Contrary to popular belief, does not possess magical abilities.
-  components:
-  - type: Sprite
-    sprite: _NF/Mobs/Aliens/Carps/magic.rsi
-  - type: TypingIndicator
-    proto: guardian
+  id: NFMobCarpMagic
+  parent: [NFMobRestrictions, MobBaseSilentFootsteps, MobNonHumanHostileBase, MobHumanoidHostileAISimpleMelee, MobCarpMagic]
+  suffix: "Frontier"
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  id: MobCarpHoloExpeditions
-  name: holocarp
-  parent: BaseMobCarpExpeditions
-  description: Carp made out of holographic energies. Sadly for you, it is very much real.
-  components:
-  - type: Sprite
-    sprite: _NF/Mobs/Aliens/Carps/holo.rsi
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.4
-        density: 10
-        mask:
-        - MobMask
-        layer:
-        - Opaque
-  - type: TypingIndicator
-    proto: robot
+  id: NFMobCarpHolo
+  parent: [NFMobRestrictions, MobBaseSilentFootsteps, MobNonHumanHostileBase, MobHumanoidHostileAISimpleMelee, MobCarpHolo]
+  suffix: "Frontier"
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  id: MobCarpRainbowExpeditions
-  name: rainbow carp
-  parent: BaseMobCarpExpeditions
-  description: |- 
-   "Wow such a shiny fishie!" you might say. Reasonable, but these are deadly nonetheless.
-  components:
-  - type: PointLight
-    radius: 1.5
-    energy: 0.5
-  - type: RgbLightController
-    layers: [ 0 ]
+  id: NFMobCarpRainbow
+  parent: [NFMobRestrictions, MobBaseSilentFootsteps, MobNonHumanHostileBase, MobHumanoidHostileAISimpleMelee, MobCarpRainbow]
+  suffix: "Frontier"
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  id: MobSharkExpeditions
-  name: sharkminnow
-  parent: BaseMobCarpExpeditions
-  description: A dangerous shark from the blackness of endless space, who loves to drink blood.
-  components:
-  - type: Sprite
-    sprite: Mobs/Aliens/Carps/sharkminnow.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: alive
-    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-      state: mouth
-      shader: unshaded
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      80: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      48: 0.7
-      64: 0.5
-  - type: Stamina
-    critThreshold: 150
-  - type: Body
-    prototype: Bloodsucker
-    requiredLegs: 1
-  - type: Butcherable
-    spawned:
-    - id: FoodMeatFish
-      amount: 4
-  - type: MeleeWeapon
-    damage:
-      types:
-        Slash: 7
-        Bloodloss: 7
-
-# Snake
-- type: entity
-  id: MobSnakeExpeditions
-  name: snake
-  parent: BaseMobCarpExpeditions
-  description: A small but menacing poisonous snake, distant relative of purple snake from Kepler-283c.
-  components:
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 100
-        mask:
-        - SmallMobMask
-        layer:
-        - SmallMobLayer # Should allow snakes to pass under the tables
-  - type: Sprite
-    drawdepth: SmallMobs
-    sprite: _NF/Mobs/Aliens/snake.rsi
-  - type: RandomSprite
-    available:
-    - enum.DamageStateVisualLayers.Base:
-        alive: Rainbow
-      enum.DamageStateVisualLayers.BaseUnshaded:
-        mouth: ""
-  - type: Butcherable
-    spawned:
-    - id: FoodMeatSnake
-      amount: 4
-  - type: MeleeWeapon
-    angle: 0
-    animation: WeaponArcBite
-    damage:
-      types:
-        Piercing: 3
-        Slash: 3
-        Structural: 20
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        reagents:
-        - ReagentId: Toxin
-          Quantity: 50
-  - type: MeleeChemicalInjector
-    solution: melee
-  - type: SolutionTransfer
-    maxTransferAmount: 1
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepSnake
+  id: NFMobShark
+  parent: [NFMobRestrictions, MobBaseSilentFootsteps, MobNonHumanHostileBase, MobHumanoidHostileAISimpleMelee, MobShark]
+  suffix: "Frontier"
+#  categories: [ HideSpawnMenu ] # No spawner
