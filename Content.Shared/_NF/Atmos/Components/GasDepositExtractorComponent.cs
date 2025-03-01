@@ -1,7 +1,9 @@
 using Content.Shared._NF.Atmos.Systems;
 using Content.Shared._NF.Atmos.Visuals;
 using Content.Shared.Atmos;
+using Content.Shared.Construction.Prototypes;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._NF.Atmos.Components;
 
@@ -16,10 +18,28 @@ public sealed partial class GasDepositExtractorComponent : Component
     public bool Enabled;
 
     /// <summary>
-    /// The amount of gas to extract per second, in mol/s.
+    /// The base amount of gas to extract per second, in mol/s.
+    /// </summary>
+    [DataField]
+    public float BaseExtractionRate;
+
+    /// <summary>
+    /// The actual amount of gas to extract per second, in mol/s.
     /// </summary>
     [DataField]
     public float ExtractionRate;
+
+    /// <summary>
+    /// The machine part used to upgrade the extration rate.
+    /// </summary>
+    [DataField]
+    public ProtoId<MachinePartPrototype> ExtractionRateMachinePart = "Manipulator";
+
+    /// <summary>
+    /// Extraction rate coefficients for upgradeable extractors.
+    /// </summary>
+    [DataField]
+    public float ExtractionRateMultiplier = 1.0f;
 
     /// <summary>
     /// The maximum pressure output, in kPa.
@@ -39,7 +59,7 @@ public sealed partial class GasDepositExtractorComponent : Component
     /// <summary>
     /// The entity to be extracted from.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public EntityUid? DepositEntity;
 
     [DataField("port")]
