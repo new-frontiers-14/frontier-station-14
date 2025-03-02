@@ -379,13 +379,30 @@
   - type: Sprite
     sprite: _NF/Objects/Storage/Pouches/tobacco_pouch.rsi
     layers:
-      - state: closed
-        color: "#8a4f23" # brown
-      - state: open
-        color: "#8a4f23"
-        map: ["openLayer"]
-        visible: false
-      - state: label
+    - state: closed
+      map: ["closeLayer"]
+      color: "#8a4f23" # brown
+    - state: open
+      map: ["openLayer"]
+      color: "#8a4f23"
+      visible: false
+    - state: fill-tobacco-1
+      map: [ "pouchFill1" ]
+      color: "#b07265"
+      visible: false
+    - state: fill-tobacco-2
+      map: [ "pouchFill2" ]
+      color: "#b07265"
+      visible: false
+    - state: fill-tobacco-3
+      map: [ "pouchFill3" ]
+      color: "#b07265"
+      visible: false
+    - state: fill-tobacco-4
+      map: [ "pouchFill4" ]
+      color: "#b07265"
+      visible: false
+    - state: label
   - type: Item
     inhandVisuals:
       left:

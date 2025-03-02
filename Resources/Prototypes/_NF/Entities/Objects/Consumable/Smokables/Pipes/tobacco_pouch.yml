@@ -22,14 +22,31 @@
   components:
   - type: Sprite
     layers:
-      - state: closed
-        color: "#00d7ff" # blue(ish)
-      - state: open
-        color: "#00d7ff"
-        map: ["openLayer"]
-        visible: false
-      - state: label
-        color: "yellow"
+    - state: closed
+      map: ["closeLayer"]
+      color: "#00d7ff" # blue(ish)
+    - state: open
+      color: "#00d7ff"
+      map: ["openLayer"]
+      visible: false
+    - state: fill-tobacco-1
+      map: [ "pouchFill1" ]
+      color: "#5f4d2e"
+      visible: false
+    - state: fill-tobacco-2
+      map: [ "pouchFill2" ]
+      color: "#5f4d2e"
+      visible: false
+    - state: fill-tobacco-3
+      map: [ "pouchFill3" ]
+      color: "#5f4d2e"
+      visible: false
+    - state: fill-tobacco-4
+      map: [ "pouchFill4" ]
+      color: "#5f4d2e"
+      visible: false
+    - state: label
+      color: "yellow"
   - type: Item
     inhandVisuals:
       left:
@@ -58,14 +75,31 @@
   components:
   - type: Sprite
     layers:
-      - state: closed
-        color: "#07ff00" # green(ish)
-      - state: open
-        color: "#07ff00"
-        map: ["openLayer"]
-        visible: false
-      - state: label
-        color: "#ff0000" # red(ish)
+    - state: closed
+      map: ["closeLayer"]
+      color: "#07ff00" # green(ish)
+    - state: open
+      color: "#07ff00"
+      map: ["openLayer"]
+      visible: false
+    - state: fill-tobacco-1
+      map: [ "pouchFill1" ]
+      color: "#b07265"
+      visible: false
+    - state: fill-tobacco-2
+      map: [ "pouchFill2" ]
+      color: "#b07265"
+      visible: false
+    - state: fill-tobacco-3
+      map: [ "pouchFill3" ]
+      color: "#b07265"
+      visible: false
+    - state: fill-tobacco-4
+      map: [ "pouchFill4" ]
+      color: "#b07265"
+      visible: false
+    - state: label
+      color: "#ff0000" # red(ish)
   - type: Item
     inhandVisuals:
       left:
@@ -94,14 +128,31 @@
   components:
   - type: Sprite
     layers:
-      - state: closed
-        color: "#bd66bd" # lightish purple
-      - state: open
-        color: "#bd66bd"
-        map: ["openLayer"]
-        visible: false
-      - state: label
-        color: "#77bbff" # turns into a grey
+    - state: closed
+      map: ["closeLayer"]
+      color: "#bd66bd" # lightish purple
+    - state: open
+      color: "#bd66bd"
+      map: ["openLayer"]
+      visible: false
+    - state: fill-tobacco-1
+      map: [ "pouchFill1" ]
+      color: "#a865a0"
+      visible: false
+    - state: fill-tobacco-2
+      map: [ "pouchFill2" ]
+      color: "#a865a0"
+      visible: false
+    - state: fill-tobacco-3
+      map: [ "pouchFill3" ]
+      color: "#a865a0"
+      visible: false
+    - state: fill-tobacco-4
+      map: [ "pouchFill4" ]
+      color: "#a865a0"
+      visible: false
+    - state: label
+      color: "#77bbff" # turns into a grey
   - type: Item
     inhandVisuals:
       left:
