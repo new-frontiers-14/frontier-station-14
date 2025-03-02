@@ -53,7 +53,7 @@ public sealed partial class CrateMachineComponent: Component
     public float ClosingTimeRemaining;
 
     /// <summary>
-    /// Wether the machine is powered or not
+    /// Whether the machine is powered or not
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public bool Powered;

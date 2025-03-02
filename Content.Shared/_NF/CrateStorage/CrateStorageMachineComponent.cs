@@ -16,4 +16,16 @@ public sealed partial class CrateStorageMachineComponent: Component
     /// </summary>
     [DataField]
     public int Capacity = 4;
+
+    /// <summary>
+    /// Distance from the machine where crates can be picked up
+    /// </summary>
+    [DataField]
+    public float PickupRange = 0.5f;
+
+    /// <summary>
+    /// Distance from the machine where crates can be picked up
+    /// </summary>
+    [DataField]
+    public float StorageRackSearchRange = 15f;
 }
