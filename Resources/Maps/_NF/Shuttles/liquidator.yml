@@ -1620,7 +1620,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 229
       - 451
@@ -1653,7 +1652,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
-      - invalid
       - invalid
       deviceLists:
       - 229
@@ -2052,7 +2050,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 14
       - 229
@@ -2068,7 +2065,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
-      - invalid
       - invalid
       deviceLists:
       - 439
@@ -2087,7 +2083,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
-      - invalid
       - invalid
       deviceLists:
       - 439
@@ -2160,7 +2155,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
-      - invalid
       - invalid
       deviceLists:
       - 14
@@ -2407,18 +2401,6 @@ entities:
     - type: Transform
       pos: 0.5,-1.5
       parent: 1
-- proto: PoweredLEDLightPostSmall
-  entities:
-  - uid: 203
-    components:
-    - type: Transform
-      pos: -6.5,7.5
-      parent: 1
-  - uid: 226
-    components:
-    - type: Transform
-      pos: 8.5,7.5
-      parent: 1
 - proto: PoweredlightExterior
   entities:
   - uid: 95
@@ -2472,34 +2454,16 @@ entities:
       parent: 1
 - proto: PoweredSmallLight
   entities:
-  - uid: 144
-    components:
-    - type: Transform
-      pos: -1.5,-6.5
-      parent: 1
   - uid: 170
     components:
     - type: Transform
       pos: -2.5,-1.5
       parent: 1
-  - uid: 220
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,-0.5
-      parent: 1
-    - type: Timer
   - uid: 231
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,-2.5
-      parent: 1
-  - uid: 398
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,2.5
       parent: 1
 - proto: Railing
   entities:
