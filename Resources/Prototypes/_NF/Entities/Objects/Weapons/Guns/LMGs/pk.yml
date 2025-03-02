@@ -1,0 +1,56 @@
+- type: entity
+  name: Pulemyot Kalashnikova
+  id: WeaponLightMachineGunPk
+  parent: [BaseWeaponLightMachineGun, BaseC2Contraband]
+  description: The AK47 big child. Uses .30 rifle ammo. often found on ancient ruins and used by mercenaries.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/LMGs/pk.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/LMGs/pk.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    minAngle: 20
+    maxAngle: 40
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 5.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleBoxPk
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLightRifleBox
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.55
+    sprintModifier: 0.55
+  - type: GunRequiresWield
