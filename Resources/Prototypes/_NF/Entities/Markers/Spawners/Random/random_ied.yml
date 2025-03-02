@@ -1,0 +1,28 @@
+- type: entity
+  name: disguised IED spawner
+  id: NFConcealedIEDSpawner
+  parent: MarkerBase
+  suffix: 95
+  components:
+    - type: Sprite
+      layers:
+      - state: red
+      - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+        state: ied_wiring
+      - sprite: Objects/Consumable/Food/snacks.rsi
+        state: cheesiehonkers-trash
+      - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+        state: ied_diplay
+      - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+        shader: unshaded
+        state: ied_light
+    - type: RandomSpawner
+      prototypes:
+      - NFTrashIED
+      - NFBoxIED
+      - NFPlushieIED
+      - NFToolboxIED
+      chance: 0.95
+      rarePrototypes:
+      - WetFloorSignMineExplosive
+      rareChance: 0.05
