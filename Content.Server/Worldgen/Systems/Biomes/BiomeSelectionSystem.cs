@@ -52,12 +52,15 @@ public sealed class BiomeSelectionSystem : BaseWorldSystem
 
     private bool CheckBiomeValidity(EntityUid chunk, BiomePrototype biome, Vector2i coords)
     {
-        if (biome.DistanceRangeSquared != null
-            && (coords.LengthSquared < biome.DistanceRangeSquared.Value.X
-            || coords.LengthSquared > biome.DistanceRangeSquared.Value.Y))
+        // Frontier: check distance
+        if (biome.DistanceRangeSquared != null)
         {
-            return false;
+            var worldspaceCoords = WorldGen.ChunkToWorldCoordsCentered(coords);
+            if (worldspaceCoords.LengthSquared() < biome.DistanceRangeSquared.Value.X
+                || worldspaceCoords.LengthSquared() > biome.DistanceRangeSquared.Value.Y)
+                return false;
         }
+        // End Frontier
 
         foreach (var (noise, ranges) in biome.NoiseRanges)
         {
