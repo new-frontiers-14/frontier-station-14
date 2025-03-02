@@ -48,20 +48,20 @@
             - CartridgeMagnum
 
 - type: entity
-  name: colt
+  name: kolt
   parent: [BaseWeaponPistol, BaseC1Contraband]
-  id: WeaponPistolColt
-  description: The classic colt, a cheap knock-off of the model M1911 rebuild with modern materials, uses .35 auto ammo.
+  id: WeaponPistolKolt
+  description: The classic kolt, a cheap knock-off of the model M1911 rebuild with modern materials, uses .35 auto ammo.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Pistols/colt.rsi
+    sprite: _NF/Objects/Weapons/Guns/Pistols/kolt.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Pistols/colt.rsi
+    sprite: _NF/Objects/Weapons/Guns/Pistols/kolt.rsi
   - type: Gun
     fireRate: 4.5
   - type: ContainerContainer
@@ -70,20 +70,20 @@
       gun_chamber: !type:ContainerSlot
 
 - type: entity
-  name: golden colt
+  name: kolt m2511
   parent: [BaseWeaponPistol, BaseC2Contraband]
-  id: WeaponPistolColtGolden
-  description: The cooler colt, model M2511 redesigned with precise engineering to fit more bullets and shoot faster, uses .35 auto ammo.
+  id: WeaponPistolKoltGolden
+  description: The cooler kolt, model M2511 redesigned with precise engineering to fit more bullets and shoot faster, uses .35 auto ammo.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Pistols/colt_golden.rsi
+    sprite: _NF/Objects/Weapons/Guns/Pistols/kolt_golden.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Pistols/colt_golden.rsi
+    sprite: _NF/Objects/Weapons/Guns/Pistols/kolt_golden.rsi
   - type: Gun
     fireRate: 6.5
     availableModes:
