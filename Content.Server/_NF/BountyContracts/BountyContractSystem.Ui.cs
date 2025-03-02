@@ -1,76 +1,90 @@
 using System.Linq;
+using Content.Server._NF.SectorServices;
 using Content.Server.StationRecords;
 using Content.Shared._NF.BountyContracts;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.PDA;
 using Content.Shared.StationRecords;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._NF.BountyContracts;
 
 public sealed partial class BountyContractSystem
 {
-    [Dependency] private readonly EntityManager _entManager = default!;
+    [Dependency] SectorServiceSystem _sectorService = default!;
+    [Dependency] IGameTiming _timing = default!;
     private void InitializeUi()
     {
         SubscribeLocalEvent<BountyContractsCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
-        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractOpenCreateUiMsg>(OnOpenCreateUi);
-        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractCloseCreateUiMsg>(OnCloseCreateUi);
-        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractTryCreateMsg>(OnTryCreateContract);
-        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractRefreshListUiMsg>(OnRefreshContracts);
-        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractTryRemoveUiMsg>(OnRemoveContract);
+        SubscribeLocalEvent<BountyContractsCartridgeComponent, CartridgeMessageEvent>(OnUiMessage);
     }
 
     /// <summary>
     ///     Show create contract menu on ui cartridge.
     /// </summary>
-    private void CartridgeOpenCreateUi(EntityUid loaderUid)
+    private void CartridgeOpenCreateUi(Entity<BountyContractsCartridgeComponent> cartridge, EntityUid loaderUid, ProtoId<BountyContractCollectionPrototype> collection)
     {
-        var state = GetCreateState();
-        _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
+        var state = GetCreateState(cartridge, collection);
+        _cartridgeLoader.UpdateCartridgeUiState(loaderUid, state);
     }
 
     /// <summary>
     ///     Show list all contracts menu on ui cartridge.
     /// </summary>
-    private void CartridgeOpenListUi(EntityUid loaderUid)
+    private void CartridgeOpenListUi(Entity<BountyContractsCartridgeComponent> cartridge, EntityUid loaderUid, ProtoId<BountyContractCollectionPrototype>? collection = null)
     {
-        var state = GetListState(loaderUid);
-        _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
+        var state = GetListState(cartridge, loaderUid, collection);
+
+        if (state == null)
+            return;
+
+        _cartridgeLoader.UpdateCartridgeUiState(loaderUid, state);
     }
 
-    private void CartridgeRefreshListUi(EntityUid loaderUid)
+    private void CartridgeRefreshListUi(Entity<BountyContractsCartridgeComponent> cartridge, EntityUid loaderUid, ProtoId<BountyContractCollectionPrototype>? collection = null)
     {
         // this will technically refresh it
         // by sending list state again
-        CartridgeOpenListUi(loaderUid);
+        CartridgeOpenListUi(cartridge, loaderUid, collection);
     }
 
-    private BountyContractListUiState GetListState(EntityUid loaderUid)
+    private BountyContractListUiState? GetListState(Entity<BountyContractsCartridgeComponent> cartridge, EntityUid loaderUid, ProtoId<BountyContractCollectionPrototype>? collection = null)
     {
-        var contracts = GetAllContracts().ToList();
-        var isAllowedCreate = IsAllowedCreateBounties(loaderUid);
-        var isAllowedRemove = IsAllowedDeleteBounties(loaderUid);
+        // Set the cartridge's collection if requested.
+        if (collection != null)
+            cartridge.Comp.Collection = collection;
 
-        return new BountyContractListUiState(contracts, isAllowedCreate, isAllowedRemove);
+        var contracts = GetPermittedContracts(cartridge, loaderUid, out var newCollection).ToList();
+        if (newCollection == null)
+            return null;
+
+        var isAllowedCreate = HasWriteAccess(loaderUid, newCollection.Value);
+        var isAllowedRemove = HasDeleteAccess(loaderUid, newCollection.Value);
+
+        if (cartridge.Comp.Collection != newCollection)
+            cartridge.Comp.Collection = newCollection;
+
+        return new BountyContractListUiState(newCollection.Value, GetReadableCollections(loaderUid), contracts, isAllowedCreate, isAllowedRemove, GetNetEntity(loaderUid), cartridge.Comp.NotificationsEnabled);
     }
 
-    private BountyContractCreateUiState GetCreateState()
+    private BountyContractCreateUiState GetCreateState(Entity<BountyContractsCartridgeComponent> cartridge, ProtoId<BountyContractCollectionPrototype> collection)
     {
         var bountyTargets = new HashSet<BountyContractTargetInfo>();
         var vessels = new HashSet<string>();
 
         // TODO: This will show all Stations, not only NT stations
         // TODO: Register all NT characters in some cache component on main station?
-        var allStations = EntityQuery<StationRecordsComponent, MetaDataComponent>();
-        foreach (var (records, meta) in allStations)
+        var allStations = EntityQueryEnumerator<StationRecordsComponent, MetaDataComponent>();
+        while (allStations.MoveNext(out var uid, out _, out var meta))
         {
-            // get station IC name - it's vessel name
+            // get station IC name - its vessel name
             var name = meta.EntityName;
             vessels.Add(name);
 
             // get all characters registered on this station
-            var icRecords = _records.GetRecordsOfType<GeneralStationRecord>(records.Owner);
+            var icRecords = _records.GetRecordsOfType<GeneralStationRecord>(uid);
             foreach (var (_, icRecord) in icRecords)
             {
                 var target = new BountyContractTargetInfo
@@ -84,20 +98,7 @@ public sealed partial class BountyContractSystem
             }
         }
 
-        return new BountyContractCreateUiState(bountyTargets.ToList(), vessels.ToList());
-    }
-
-    private bool IsAllowedCreateBounties(EntityUid loaderUid, CartridgeLoaderComponent? component = null)
-    {
-        if (!Resolve(loaderUid, ref component) || component.ActiveProgram == null)
-            return false;
-
-        return _accessReader.IsAllowed(loaderUid, component.ActiveProgram.Value);
-    }
-
-    private bool IsAllowedDeleteBounties(EntityUid loaderUid, CartridgeLoaderComponent? component = null)
-    {
-        return IsAllowedCreateBounties(loaderUid, component);
+        return new BountyContractCreateUiState(collection, bountyTargets.ToList(), vessels.ToList());
     }
 
     private string? GetContractAuthor(EntityUid loaderUid, PdaComponent? component = null)
@@ -107,48 +108,100 @@ public sealed partial class BountyContractSystem
 
         TryComp<IdCardComponent>(component.ContainedId, out var id);
         var name = id?.FullName ?? Loc.GetString("bounty-contracts-unknown-author-name");
-        var job = id?.JobTitle ?? Loc.GetString("bounty-contracts-unknown-author-job");
-        return Loc.GetString("bounty-contracts-author", ("name", name), ("job", job));
+        return Loc.GetString("bounty-contracts-author-no-job", ("name", name));
+
+        // TODO: fix this when ID card job titles are working.
+        // var job = id?.JobTitle ?? Loc.GetString("bounty-contracts-unknown-author-job");
+        // return Loc.GetString("bounty-contracts-author", ("name", name), ("job", job));
     }
 
     private void OnUiReady(EntityUid uid, BountyContractsCartridgeComponent component, CartridgeUiReadyEvent args)
     {
-        CartridgeOpenListUi(args.Loader);
+        CartridgeOpenListUi((uid, component), args.Loader);
     }
 
-    private void OnOpenCreateUi(EntityUid uid, CartridgeLoaderComponent component, BountyContractOpenCreateUiMsg args)
+    private void OnUiMessage(EntityUid uid, BountyContractsCartridgeComponent component, CartridgeMessageEvent args)
     {
-        CartridgeOpenCreateUi(_entManager.GetEntity(args.Entity));
+        if (args is BountyContractCommandMessageEvent command)
+            OnCommandMessage((uid, component), ref command);
+        else if (args is BountyContractTryRemoveMessageEvent remove)
+            OnTryRemoveMessage((uid, component), ref remove);
+        else if (args is BountyContractTryCreateMessageEvent create)
+            OnTryCreateMessage((uid, component), ref create);
     }
 
-    private void OnCloseCreateUi(EntityUid uid, CartridgeLoaderComponent component, BountyContractCloseCreateUiMsg args)
+    private void OnCommandMessage(Entity<BountyContractsCartridgeComponent> cartridge, ref BountyContractCommandMessageEvent args)
     {
-        CartridgeOpenListUi(_entManager.GetEntity(args.Entity));
+        switch (args.Command)
+        {
+            case BountyContractCommand.OpenCreateUi:
+                CartridgeOpenCreateUi(cartridge, GetEntity(args.LoaderUid), args.Collection);
+                break;
+            case BountyContractCommand.CloseCreateUi:
+                CartridgeOpenListUi(cartridge, GetEntity(args.LoaderUid), args.Collection);
+                break;
+            case BountyContractCommand.RefreshList:
+                CartridgeRefreshListUi(cartridge, GetEntity(args.LoaderUid), args.Collection);
+                break;
+            case BountyContractCommand.ToggleNotifications:
+                cartridge.Comp.NotificationsEnabled = !cartridge.Comp.NotificationsEnabled;
+                CartridgeRefreshListUi(cartridge, GetEntity(args.LoaderUid), args.Collection); // Force UI udpate
+                break;
+            default:
+                return; //TODO: print to log?
+        }
     }
 
-    private void OnTryCreateContract(EntityUid uid, CartridgeLoaderComponent component, BountyContractTryCreateMsg args)
+    private void OnTryRemoveMessage(Entity<BountyContractsCartridgeComponent> cartridge, ref BountyContractTryRemoveMessageEvent args)
     {
-        if (!IsAllowedCreateBounties(_entManager.GetEntity(args.Entity)))
+        var entityUid = GetEntity(args.LoaderUid);
+
+        var data = GetContracts();
+        if (data == null || data.Contracts == null)
+            return;
+
+        // TODO: move this out of the UI.
+        // Find the given collection this belongs to.
+        ProtoId<BountyContractCollectionPrototype>? collectionId = null;
+        foreach (var (collectionKey, collectionValue) in data.Contracts)
+        {
+            if (collectionValue.ContainsKey(args.ContractId))
+            {
+                collectionId = collectionKey;
+                break;
+            }
+        }
+
+        if (collectionId == null)
+            return;
+
+        var contract = data.Contracts[collectionId.Value][args.ContractId];
+
+        // Check the delete access for the user on this collection.
+        if (!HasDeleteAccess(entityUid, collectionId.Value, data) && GetEntity(contract.AuthorUid) != entityUid)
+            return;
+
+        data.Contracts[collectionId.Value].Remove(args.ContractId);
+        CartridgeRefreshListUi(cartridge, entityUid);
+    }
+
+    private void OnTryCreateMessage(Entity<BountyContractsCartridgeComponent> cartridge, ref BountyContractTryCreateMessageEvent args)
+    {
+        var loader = GetEntity(args.LoaderUid);
+
+        if (!cartridge.Comp.CreateEnabled)
+            return;
+
+        if (!HasWriteAccess(loader, args.Contract.Collection))
             return;
 
         var c = args.Contract;
-        var author = GetContractAuthor(_entManager.GetEntity(args.Entity));
-        CreateBountyContract(c.Category, c.Name, c.Reward, c.Description, c.Vessel, c.DNA, author);
+        var author = GetContractAuthor(loader);
+        CreateBountyContract(c.Collection, c.Category, c.Name, c.Reward, loader, c.Description, c.Vessel, c.DNA, author);
 
-        CartridgeOpenListUi(_entManager.GetEntity(args.Entity));
-    }
+        cartridge.Comp.CreateEnabled = false;
+        cartridge.Comp.NextCreate = _timing.CurTime + TimeSpan.FromSeconds(cartridge.Comp.CreateCooldown);
 
-    private void OnRefreshContracts(EntityUid uid, CartridgeLoaderComponent component, BountyContractRefreshListUiMsg args)
-    {
-        CartridgeRefreshListUi(_entManager.GetEntity(args.Entity));
-    }
-
-    private void OnRemoveContract(EntityUid uid, CartridgeLoaderComponent component, BountyContractTryRemoveUiMsg args)
-    {
-        if (!IsAllowedDeleteBounties(_entManager.GetEntity(args.Entity)))
-            return;
-
-        RemoveBountyContract(args.ContractId);
-        CartridgeRefreshListUi(_entManager.GetEntity(args.Entity));
+        CartridgeOpenListUi(cartridge, loader);
     }
 }

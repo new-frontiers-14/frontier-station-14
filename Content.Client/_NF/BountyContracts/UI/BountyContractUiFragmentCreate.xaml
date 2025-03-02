@@ -24,18 +24,18 @@
             </BoxContainer>
             <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
                 <Label Text="{Loc 'bounty-contracts-ui-create-vessel'}" MinWidth="80"/>
-                <OptionButton Name="VeselSelector" HorizontalExpand="True"/>
-                <LineEdit Name="VeselEdit" PlaceHolder="{Loc 'bounty-contracts-ui-create-vessel-placeholder'}"
+                <OptionButton Name="VesselSelector" HorizontalExpand="True"/>
+                <LineEdit Name="VesselEdit" PlaceHolder="{Loc 'bounty-contracts-ui-create-vessel-placeholder'}"
                           HorizontalExpand="True" Visible="False"/>
                 <Control MinSize="8 0" />
-                <Button Name="CustomVeselButton" Text="{Loc 'bounty-contracts-ui-create-custom'}"
+                <Button Name="CustomVesselButton" Text="{Loc 'bounty-contracts-ui-create-custom'}"
                         ToggleMode="True"/>
             </BoxContainer>
             <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
                 <Label Text="{Loc 'bounty-contracts-ui-create-reward'}" MinWidth="80"/>
-                <LineEdit Name="RewardEdit" MinWidth="80"/>
-                <Control MinSize="8 0" />
                 <Label Text="{Loc 'bounty-contracts-ui-create-reward-currency'}"/>
+                <Control MinSize="8 0" />
+                <LineEdit Name="RewardEdit" MinWidth="80"/>
             </BoxContainer>
             <BoxContainer Orientation="Vertical" Margin="4,4,4,4"
                           VerticalExpand="True" >
