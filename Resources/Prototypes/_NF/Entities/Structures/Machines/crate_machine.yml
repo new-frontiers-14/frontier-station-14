@@ -14,7 +14,6 @@
           - PaperLabel
           - ContainerContainer
     - type: CrateMachine
-    - type: MarketItemSpawner
     - type: Sprite
       sprite: _NF/Structures/Machines/crate_machine.rsi
       snapCardinals: true
@@ -26,8 +25,6 @@
           map: ["enum.CrateMachineVisualLayers.Opening"]
         - state: open
           map: [ "enum.CrateMachineVisualLayers.Open" ]
-        - state: crate
-          map: [ "enum.CrateMachineVisualLayers.Crate" ]
         - state: closing
           map: ["enum.CrateMachineVisualLayers.Closing" ]
         - state: closed
@@ -55,7 +52,7 @@
     - type: InteractionOutline
     - type: Appearance
     - type: ApcPowerReceiver
-      powerLoad: 0
+      powerLoad: 250
     - type: Tag
       tags:
         - Structure

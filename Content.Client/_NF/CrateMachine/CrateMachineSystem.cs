@@ -36,9 +36,10 @@ public sealed class CrateMachineSystem : SharedCrateMachineSystem
     /// </summary>
     private void UpdateState(EntityUid uid, CrateMachineComponent component, SpriteComponent sprite, AppearanceComponent appearance)
     {
-        if (!_appearanceSystem.TryGetData<CrateMachineVisualState>(uid, CrateMachineVisuals.VisualState, out var state, appearance))
+        // Get the current animation state, and default to Closed.
+        if (!_appearanceSystem.TryGetData(uid, CrateMachineVisuals.VisualState, out CrateMachineVisualState state, appearance))
         {
-            return;
+            state = CrateMachineVisualState.Closed;
         }
 
         sprite.LayerSetVisible(CrateMachineVisualLayers.Base, true);
@@ -46,89 +47,67 @@ public sealed class CrateMachineSystem : SharedCrateMachineSystem
         sprite.LayerSetVisible(CrateMachineVisualLayers.Opening, state == CrateMachineVisualState.Opening);
         sprite.LayerSetVisible(CrateMachineVisualLayers.Closing, state == CrateMachineVisualState.Closing);
         sprite.LayerSetVisible(CrateMachineVisualLayers.Open, state == CrateMachineVisualState.Open);
-        sprite.LayerSetVisible(CrateMachineVisualLayers.Crate, state == CrateMachineVisualState.Opening);
 
-        if (state == CrateMachineVisualState.Opening && !_animationSystem.HasRunningAnimation(uid, AnimationKey))
+        // If the animation is already running, don't start it again.
+        if (_animationSystem.HasRunningAnimation(uid, AnimationKey))
+            return;
+        // No need to animate open or closed state.
+        if (state is CrateMachineVisualState.Open or CrateMachineVisualState.Closed)
+            return;
+
+        var layer = state switch
         {
-            var openingState = sprite.LayerMapTryGet(CrateMachineVisualLayers.Opening, out var flushLayer)
-                ? sprite.LayerGetState(flushLayer)
-                : new RSI.StateId(component.OpeningSpriteState);
-            var crateState = sprite.LayerMapTryGet(CrateMachineVisualLayers.Crate, out var crateFlushLayer)
-                ? sprite.LayerGetState(crateFlushLayer)
-                : new RSI.StateId(component.CrateSpriteState);
-
-            // Setup the opening animation to play
-            var anim = new Animation
-            {
-                Length = TimeSpan.FromSeconds(component.OpeningTime),
-                AnimationTracks =
-                {
-                    new AnimationTrackSpriteFlick
-                    {
-                        LayerKey = CrateMachineVisualLayers.Opening,
-                        KeyFrames = { new AnimationTrackSpriteFlick.KeyFrame(openingState, 0) },
-                    },
-                    new AnimationTrackSpriteFlick
-                    {
-                        LayerKey = CrateMachineVisualLayers.Crate,
-                        KeyFrames = { new AnimationTrackSpriteFlick.KeyFrame(crateState, 0) },
-                    },
-                }
-            };
-
-            if (component.OpeningSound != null)
-            {
-                anim.AnimationTracks.Add(
-                    new AnimationTrackPlaySound
-                    {
-                        KeyFrames =
-                        {
-                            new AnimationTrackPlaySound.KeyFrame(_audioSystem.GetSound(component.OpeningSound), 0),
-                        }
-                    }
-                );
-            }
-
-            _animationSystem.Play(uid, anim, AnimationKey);
-        }
-        else if (state == CrateMachineVisualState.Closing && !_animationSystem.HasRunningAnimation(uid, AnimationKey))
+            CrateMachineVisualState.Opening => CrateMachineVisualLayers.Opening,
+            CrateMachineVisualState.Closing => CrateMachineVisualLayers.Closing,
+            _ => CrateMachineVisualLayers.Closed
+        };
+        var spriteState = state switch
         {
-            var closingState = sprite.LayerMapTryGet(CrateMachineVisualLayers.Closing, out var flushLayer)
-                ? sprite.LayerGetState(flushLayer)
-                : new RSI.StateId(component.ClosingSpriteState);
-            // Setup the opening animation to play
-            var anim = new Animation
+            CrateMachineVisualState.Opening => component.OpeningSpriteState,
+            CrateMachineVisualState.Closing => component.ClosingSpriteState,
+            _ => component.ClosedSpriteState
+        };
+        var animationState = sprite.LayerMapTryGet(layer, out var layerIndex)
+            ? sprite.LayerGetState(layerIndex)
+            : new RSI.StateId(spriteState);
+
+        var length = state switch
+        {
+            CrateMachineVisualState.Opening => component.OpeningTime,
+            CrateMachineVisualState.Closing => component.ClosingTime,
+            _ => 0,
+        };
+        var animation = new Animation
+        {
+            Length = TimeSpan.FromSeconds(length),
+            AnimationTracks =
             {
-                Length = TimeSpan.FromSeconds(component.ClosingTime),
-                AnimationTracks =
+                new AnimationTrackSpriteFlick
                 {
-                    new AnimationTrackSpriteFlick
-                    {
-                        LayerKey = CrateMachineVisualLayers.Closing,
-                        KeyFrames =
-                        {
-                            // Play the flush animation
-                            new AnimationTrackSpriteFlick.KeyFrame(closingState, 0),
-                        }
-                    },
+                    LayerKey = layer,
+                    KeyFrames = { new AnimationTrackSpriteFlick.KeyFrame(animationState, 0) },
+                },
+            },
+        };
+
+        // Add sound to the animation
+        var sound = state switch
+        {
+            CrateMachineVisualState.Opening => component.OpeningSound,
+            CrateMachineVisualState.Closing => component.ClosingSound,
+            _ => null,
+        };
+        if (sound != null)
+        {
+            animation.AnimationTracks.Add(
+                new AnimationTrackPlaySound
+                {
+                    KeyFrames = { new AnimationTrackPlaySound.KeyFrame(_audioSystem.GetSound(sound), 0f) },
                 }
-            };
-
-            if (component.ClosingSound != null)
-            {
-                anim.AnimationTracks.Add(
-                    new AnimationTrackPlaySound
-                    {
-                        KeyFrames =
-                        {
-                            new AnimationTrackPlaySound.KeyFrame(_audioSystem.GetSound(component.ClosingSound), 0.5f),
-                        }
-                    }
-                );
-            }
-
-            _animationSystem.Play(uid, anim, AnimationKey);
+            );
         }
+
+        _animationSystem.Play(uid, animation, AnimationKey);
     }
 
     private void OnAppearanceChange(EntityUid uid, CrateMachineComponent component, ref AppearanceChangeEvent args)
@@ -147,5 +126,4 @@ public enum CrateMachineVisualLayers : byte
     Open,
     Closing,
     Closed,
-    Crate
 }

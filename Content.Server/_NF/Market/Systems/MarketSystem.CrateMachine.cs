@@ -84,7 +84,7 @@ public sealed partial class MarketSystem
 
         itemSpawner.ItemsToSpawn = consoleComponent.CartDataList;
         consoleComponent.CartDataList = [];
-        _crateMachine.OpenFor(crateMachineUid, component);
+        _crateMachine.StartOpening(crateMachineUid, component);
     }
 
     private void SpawnCrateItems(List<MarketData> spawnList, EntityUid targetCrate)
