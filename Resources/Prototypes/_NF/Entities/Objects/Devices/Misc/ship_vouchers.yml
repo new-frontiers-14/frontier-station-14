@@ -120,3 +120,22 @@
   - type: ShipyardVoucher
     access:
     - Brig # odd, but potentially restricts cadets in lieu of a security guard-only access level
+
+- type: entity
+  parent: BaseShipVoucher
+  id: ShipVoucherCargoShipment
+  name: cargo shipment docket
+  description: Allows for one cargo shipment purchase from the Cargo Shipyard. Destroyed on sale.
+  components:
+  - type: Sprite
+    layers:
+    - state: shipping
+  - type: StaticPrice
+    price: 1000
+    vendPrice: 1000
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    consoleType: Cargo
+    noValue: false
+    access:
+    - Cargo
