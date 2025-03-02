@@ -56,15 +56,43 @@
 
 - type: entity
   parent: WeaponCaseShort
-  id: WeaponCaseShortUniversalExpedition
+  id: WeaponCaseShortUniversal
   suffix: Dungeon, Universal
   categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
-    - id: WeaponPistolUniversalExpedition
+    - id: WeaponPistolUniversal
+      amount: 1
+    - id: MagazinePistolCaselessRifle
+      amount: 1
+    - id: MagazineBoxCaselessRifle10x24
+      amount: 1
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortColtExpedition
+  suffix: Dungeon, Universal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolColtExpedition
       amount: 1
     - id: MagazinePistol
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortColtGolden
+  suffix: Dungeon, Universal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolColtGolden
+      amount: 1
+    - id: MagazinePistolHighCapacity
       amount: 2
 
 - type: entity
