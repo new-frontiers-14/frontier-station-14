@@ -33,16 +33,6 @@ public sealed partial class CrateStorageSystem: SharedCrateStorageMachineSystem
         CheckIntersectingCrates(crateMachineUid, crateStorageMachineComponent.PickupRange, crateStorageMachineComponent.StorageRackSearchRange);
     }
 
-    private bool IsStorageFull(EntityUid crateStorageUid)
-    {
-        // Get the crate storage component.
-        if (!TryComp(crateStorageUid, out CrateStorageMachineComponent? crateStorageComponent))
-            return true;
-        if (!_storedCrates.TryGetValue(crateStorageUid, out var storedCrates))
-            return true;
-        return crateStorageComponent.Capacity == 0 || storedCrates.Count >= crateStorageComponent.Capacity;
-    }
-
     /// <summary>
     /// Processes a signal received event to open a crate storage.
     /// </summary>
@@ -91,16 +81,15 @@ public sealed partial class CrateStorageSystem: SharedCrateStorageMachineSystem
             storedCrates = [];
             _storedCrates.Add(crateStorageUid, storedCrates);
         }
-        // Do nothing if the storage is full.
-        if (IsStorageFull(crateStorageUid))
-            return;
 
         // Attempt to find a storage rack to store the crate in.
         if (!FindCrateStorageRack(crateStorageUid, storageSearchRange, true, out var rackUid))
             return;
-        if (!TryComp<CrateStorageRackComponent>(rackUid, out var rack))
+        if (!TryComp<CrateStorageRackComponent>(rackUid.Value, out var rackComp))
             return;
-        rack.StoredCrates++;
+        rackComp.StoredCrates++;
+        UpdateRackVisualState(rackUid.Value, rackComp);
+        Dirty(rackUid.Value, rackComp);
 
         storedCrates.Add(new StoredCrate { CrateUid = crateUid, CrateStorageRack = rackUid.Value });
         _transformSystem.SetCoordinates(crateUid, new EntityCoordinates(GetStorageMap(), Vector2.Zero));
@@ -121,11 +110,13 @@ public sealed partial class CrateStorageSystem: SharedCrateStorageMachineSystem
             return;
 
         // Attempt to find a storage rack to get a crate from.
-        if (!FindCrateStorageRack(crateStorageUid, storageSearchRange, true, out var rackUid))
+        if (!FindCrateStorageRack(crateStorageUid, storageSearchRange, false, out var rackUid))
             return;
-        if (!TryComp<CrateStorageRackComponent>(rackUid, out var rack))
+        if (!TryComp<CrateStorageRackComponent>(rackUid.Value, out var rackComp))
             return;
-        rack.StoredCrates--;
+        rackComp.StoredCrates--;
+        UpdateRackVisualState(rackUid.Value, rackComp);
+        Dirty(rackUid.Value, rackComp);
 
         _transformSystem.SetCoordinates(storedCrates.First().CrateUid, Transform(crateStorageUid).Coordinates);
     }

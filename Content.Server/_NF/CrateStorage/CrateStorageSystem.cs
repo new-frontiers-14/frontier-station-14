@@ -23,6 +23,7 @@ public sealed partial class CrateStorageSystem: SharedCrateStorageMachineSystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {

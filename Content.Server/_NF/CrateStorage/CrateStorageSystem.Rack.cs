@@ -36,12 +36,10 @@ public sealed partial class CrateStorageSystem: SharedCrateStorageMachineSystem
             // Skip crate storage racks that are not on the same grid.
             if (compXform.GridUid != fromXform.GridUid)
                 continue;
-            switch (isInserting)
-            {
-                case true when IsRackFull(crateMachineUid):
-                case false when IsRackEmpty(crateMachineUid):
-                    continue;
-            }
+            if (isInserting && IsRackFull(crateMachineUid))
+                continue;
+            if (!isInserting && IsRackEmpty(crateMachineUid))
+                continue;
 
             var isTooFarAway = !_transform.InRange(compXform.Coordinates, fromXform.Coordinates, maxDistance);
 
@@ -74,6 +72,14 @@ public sealed partial class CrateStorageSystem: SharedCrateStorageMachineSystem
     {
         component.Powered = args.Powered;
         Dirty(uid, component);
+    }
+
+    private void UpdateRackVisualState(EntityUid uid, CrateStorageRackComponent component)
+    {
+        if (!TryComp(uid, out AppearanceComponent? appearance))
+            return;
+
+        _appearance.SetData(uid, CrateStorageRackVisuals.VisualState, component.StoredCrates);
     }
 
 }
