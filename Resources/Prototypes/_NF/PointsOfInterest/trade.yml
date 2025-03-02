@@ -22,6 +22,14 @@
   - type: StationTransit
   - type: ProtectedGrid
     preventArtifactTriggers: true
+  - type: SolarPoweredGrid # Just in case somebody sets them up
+    trackOnInit: true
+    doNotCull: true
+  - type: WorldGenDistanceCarver
+    distanceThresholds:
+      # Dead zone
+      - maxDistance: 500
+        prob: 0.0
 
 - type: gameMap
   id: Trade
