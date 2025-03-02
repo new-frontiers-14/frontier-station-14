@@ -25,6 +25,14 @@ public sealed partial class BiomePrototype : IPrototype, IInheritingPrototype
     [IdDataField]
     public string ID { get; private set; } = default!;
 
+    // Frontier: distances
+    /// <summary>
+    ///     The valid coordinate range 
+    /// </summary>
+    [DataField]
+    public Vector2? DistanceRangeSquared;
+    // Frontier: distances
+
     /// <summary>
     ///     The valid ranges of noise values under which this biome can be picked.
     /// </summary>

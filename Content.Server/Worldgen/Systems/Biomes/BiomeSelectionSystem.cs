@@ -52,6 +52,13 @@ public sealed class BiomeSelectionSystem : BaseWorldSystem
 
     private bool CheckBiomeValidity(EntityUid chunk, BiomePrototype biome, Vector2i coords)
     {
+        if (biome.DistanceRangeSquared != null
+            && (coords.LengthSquared < biome.DistanceRangeSquared.Value.X
+            || coords.LengthSquared > biome.DistanceRangeSquared.Value.Y))
+        {
+            return false;
+        }
+
         foreach (var (noise, ranges) in biome.NoiseRanges)
         {
             var value = _noiseIdx.Evaluate(chunk, noise, coords);

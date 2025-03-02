@@ -16,7 +16,7 @@
   maximumDistance: 5000
   spawnGroup: CargoDepot
   gridPath: /Maps/_NF/POI/cargodepot.yml
-  addComponents:
+  addComponents: &cargoComponents
   - type: IFF
     color: "#37C837"
   - type: ProtectedGrid
@@ -24,6 +24,11 @@
   - type: SolarPoweredGrid
     trackOnInit: true
     doNotCull: true
+  - type: WorldGenDistanceCarver
+    distanceThresholds:
+      # Dead zone
+      - maxDistance: 500
+        prob: 0.0
 
 - type: pointOfInterest
   id: CargoDepotAlt
@@ -33,14 +38,7 @@
   maximumDistance: 5000
   spawnGroup: CargoDepot
   gridPath: /Maps/_NF/POI/cargodepotalt.yml
-  addComponents:
-  - type: IFF
-    color: "#37C837"
-  - type: ProtectedGrid
-    preventArtifactTriggers: true
-  - type: SolarPoweredGrid
-    trackOnInit: true
-    doNotCull: true
+  addComponents: *cargoComponents
 
 - type: gameMap
   id: CargoDepot
@@ -50,7 +48,7 @@
   stations:
     CargoDepot:
       stationProto: MarketFrontierOutpost
-      components:
+      components: &cargoStationComponents
         - type: StationNameSetup
           mapNameTemplate: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem
         - type: TradeCrateDestination
@@ -64,8 +62,4 @@
   stations:
     CargoDepotAlt:
       stationProto: MarketFrontierOutpost
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem
-        - type: TradeCrateDestination
-          destinationProto: CargoA # Redefined in PointOfInterestSystem
+      components: *cargoStationComponents

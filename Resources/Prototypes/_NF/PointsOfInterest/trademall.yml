@@ -25,6 +25,11 @@
   - type: SolarPoweredGrid
     trackOnInit: true
     doNotCull: true
+  - type: WorldGenDistanceCarver
+    distanceThresholds:
+      # Dead zone
+      - maxDistance: 500
+        prob: 0.0
 
 - type: gameMap
   id: TradeMall
