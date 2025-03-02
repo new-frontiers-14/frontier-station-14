@@ -784,6 +784,9 @@
       reagents:
       - ReagentId: JuicePotato
         Quantity: 10
+  - type: SliceableFood # Frontier
+    count: 1
+    slice: FoodPotatoSlice
   - type: Tag
     tags:
     - Potato
@@ -1252,6 +1255,30 @@
   - type: Tag
     tags:
     - Slice
+
+- type: entity
+  name: sliced potato
+  parent: ProduceSliceBase
+  id: FoodPotatoSlice
+  description: Raw potato sticks ready for deep-frying.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - potatoes
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/potato.rsi
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuicePotato
+        Quantity: 8
+  - type: Tag
+    tags:
+    - Vegetable
+    - Slice
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodMealFries
 
 - type: entity
   name: pineapple slice
