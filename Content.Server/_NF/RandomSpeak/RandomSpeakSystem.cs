@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Server._NF.RandomSpeak.EntitySystems;
+namespace Content.Server._NF.RandomSpeak;
 
 public sealed class RandomSpeakSystem : EntitySystem
 {
