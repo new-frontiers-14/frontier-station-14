@@ -1,10 +1,10 @@
 ﻿- type: entity
-  id: CrateStorage
-  name: crate storage
+  id: CrateStorageMachine
+  name: crate storage machine
   description: Where do they go?
   parent: CrateMachine
   components:
-  - type: CrateStorage
+  - type: CrateStorageMachine
   - type: ItemPlacer
     whitelist:
       # Should match crates.
@@ -13,7 +13,7 @@
   - type: TriggerOnSignal
   - type: DeviceLinkSink
     ports:
-      - Trigger
+    - Trigger
   - type: InteractionOutline
   - type: ApcPowerReceiver
     powerLoad: 1000

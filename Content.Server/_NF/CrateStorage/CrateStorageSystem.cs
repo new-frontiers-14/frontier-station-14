@@ -30,13 +30,13 @@ public sealed class CrateStorageSystem: EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<CrateStorageComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<CrateStorageComponent, ItemPlacedEvent>(OnItemPlacedEvent);
-        SubscribeLocalEvent<CrateStorageComponent, SignalReceivedEvent>(OnSignalReceived);
-        SubscribeLocalEvent<CrateStorageComponent, CrateMachineOpenedEvent>(OnCrateMachineOpened);
+        SubscribeLocalEvent<CrateStorageMachineComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<CrateStorageMachineComponent, ItemPlacedEvent>(OnItemPlacedEvent);
+        SubscribeLocalEvent<CrateStorageMachineComponent, SignalReceivedEvent>(OnSignalReceived);
+        SubscribeLocalEvent<CrateStorageMachineComponent, CrateMachineOpenedEvent>(OnCrateMachineOpened);
     }
 
-    private void OnInit(EntityUid uid, CrateStorageComponent component, ComponentInit args)
+    private void OnInit(EntityUid uid, CrateStorageMachineComponent component, ComponentInit args)
     {
         _signalSystem.EnsureSinkPorts(uid, component.TriggerPort);
     }
@@ -45,9 +45,9 @@ public sealed class CrateStorageSystem: EntitySystem
     /// Once a crate machine is opened we will check if there are any crates intersecting it.
     /// </summary>
     /// <param name="crateMachineUid">the EntityUid of the crate </param>
-    /// <param name="crateStorageComponent">the crate storage component</param>
+    /// <param name="crateStorageMachineComponent">the crate storage component</param>
     /// <param name="args">the arguments for the open event</param>
-    private void OnCrateMachineOpened(EntityUid crateMachineUid, CrateStorageComponent crateStorageComponent, CrateMachineOpenedEvent args)
+    private void OnCrateMachineOpened(EntityUid crateMachineUid, CrateStorageMachineComponent crateStorageMachineComponent, CrateMachineOpenedEvent args)
     {
         CheckIntersectingCrates(crateMachineUid);
     }
@@ -55,7 +55,7 @@ public sealed class CrateStorageSystem: EntitySystem
     private bool IsStorageFull(EntityUid crateStorageUid)
     {
         // Get the crate storage component.
-        if (!TryComp(crateStorageUid, out CrateStorageComponent? crateStorageComponent))
+        if (!TryComp(crateStorageUid, out CrateStorageMachineComponent? crateStorageComponent))
             return true;
         if (!_storedCrates.TryGetValue(crateStorageUid, out var storedCrates))
             return true;
@@ -66,9 +66,9 @@ public sealed class CrateStorageSystem: EntitySystem
     /// Processes a signal received event to open a crate storage.
     /// </summary>
     /// <param name="crateStorageUid">the EntityUid for the crate storage</param>
-    /// <param name="crateStorageComponent">the crate storage component</param>
+    /// <param name="crateStorageMachineComponent">the crate storage component</param>
     /// <param name="args">the args for the signal</param>
-    private void OnSignalReceived(EntityUid crateStorageUid, CrateStorageComponent crateStorageComponent, SignalReceivedEvent args)
+    private void OnSignalReceived(EntityUid crateStorageUid, CrateStorageMachineComponent crateStorageMachineComponent, SignalReceivedEvent args)
     {
         // Get the CrateMachineComponent from the entity.
         if (!TryComp(crateStorageUid, out CrateMachineComponent? crateMachineComponent))
@@ -78,11 +78,11 @@ public sealed class CrateStorageSystem: EntitySystem
         if (!crateMachineComponent.Powered)
             return;
 
-        if (args.Port == crateStorageComponent.TriggerPort)
+        if (args.Port == crateStorageMachineComponent.TriggerPort)
             _crateMachineSystem.StartOpening(crateStorageUid, crateMachineComponent);
     }
 
-    private void OnItemPlacedEvent(EntityUid crateStorageUid, CrateStorageComponent component, ItemPlacedEvent args)
+    private void OnItemPlacedEvent(EntityUid crateStorageUid, CrateStorageMachineComponent component, ItemPlacedEvent args)
     {
         // TODO
     }
