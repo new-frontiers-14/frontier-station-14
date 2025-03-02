@@ -1,0 +1,92 @@
+<Document>
+  # RAVEN-CLASS EXPEDITION SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="WeaponProtoKineticAccelerator"/>
+  <GuideEntityEmbed Entity="SalvageTechfabNF"/>
+  <GuideEntityEmbed Entity="TelecomServerFilledShuttle"/>
+  <GuideEntityEmbed Entity="VendingMachineBooze"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="ShuttleMapRaven" Caption=""/>
+  </Box>
+  [color=#a4885c]Ship Size:[/color] Medium
+
+  [color=#a4885c]Recommended Crew:[/color] 3-7
+
+  [color=#a4885c]Power Gen Type:[/color] AME
+
+  [color=#a4885c]Expeditions:[/color] Yes
+
+  [color=#a4885c]IFF Console:[/color] None
+
+  "Silkworm Shipyards' first venture into shipbuilding, the Raven is a versatile expedition-capable vessel with a very distinct profile."
+
+  # PREFLIGHT CHECKLIST
+
+  ## 1. Power supply
+
+  ## 1.1. [Engineering] Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationWallBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+
+  - Check that the SMES unit is anchored to the floor.
+  - Check that the APC units' Main Breakers are toggled on.
+  - Check the APC units' current Load (W).
+
+  ## 1.2. [Engineering] AME engine
+  <Box>
+  <GuideEntityEmbed Entity="AmeController"/>
+  <GuideEntityEmbed Entity="AmeJar"/>
+  </Box>
+
+  - Check that the AME core is properly shielded.
+  - Check that the AME controller unit is anchored to the floor.
+  - Check "Fuel Status" on the AME controller unit.
+  - Check "Injection Amount" on the AME controller unit (2 injections per core recommended).
+  - Toggle Injection if needed.
+
+  ## 2. Atmospherics
+
+  ## 2.1. [Engineering] Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  </Box>
+  
+  - Check that the O2 canister is anchored to the correct connector port (blue).
+  - Check that the N2 canister is anchored to the correct connector port (red).
+  - Check that the gas mixer is set to the correct mixing ratio (primary port (Nitrogen): 79%, side port (Oxygen) 21%).
+  - Check that the gas mixer is set to 101kPa.
+  - Enable gas mixer if needed.
+  
+  ## 2.2. [EVA Access, starboard] Waste Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+    
+  - Enable waste loop pump if needed.
+  
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  <GuideEntityEmbed Entity="BlastDoor"/>
+  </Box>
+
+  - [Engineering] Check that the gyroscopes are anchored, powered, and enabled.
+  - [Engineering] Check that the mini gravity generator is anchored, powered, and enabled.
+  - [Cargo Bay] Check that the blast doors are closed.
+
+  ## Sidenotes
+
+  - Raven-class shuttles are equipped with two wallmount substations (one in Engineering, one on the Bridge) and three APC units (one outside Engineering, one in the mess corridor, one on the Bridge). Consult the Power Monitoring Computer on the Bridge for exact locations.
+  - Power consumption chart for an unmodified Raven-class shuttle:
+  -- 35 kW with a full SMES unit
+  -- 40 kW with an empty SMES unit
+  -- 65 kW with an empty SMES unit, empty substations and empty APC units
+</Document>
