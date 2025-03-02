@@ -57,6 +57,12 @@
       node: rng_device_d2
     - type: Appearance
     - type: RngDeviceVisuals
+    - type: UserInterface
+      interfaces:
+        enum.RngDeviceUiKey.Key:
+          type: RngDeviceBoundUserInterface
+    - type: ActivatableUI
+      key: enum.RngDeviceUiKey.Key
 
 - type: entity
   parent: BaseRngItem
@@ -92,6 +98,12 @@
       node: rng_device_d4
     - type: Appearance
     - type: RngDeviceVisuals
+    - type: UserInterface
+      interfaces:
+        enum.RngDeviceUiKey.Key:
+          type: RngDeviceBoundUserInterface
+    - type: ActivatableUI
+      key: enum.RngDeviceUiKey.Key
 
 - type: entity
   parent: BaseRngItem
@@ -131,3 +143,9 @@
       node: rng_device_d6
     - type: Appearance
     - type: RngDeviceVisuals
+    - type: UserInterface
+      interfaces:
+        enum.RngDeviceUiKey.Key:
+          type: RngDeviceBoundUserInterface
+    - type: ActivatableUI
+      key: enum.RngDeviceUiKey.Key

@@ -1,6 +1,9 @@
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Prototypes;
+using Content.Server.UserInterface;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 
 namespace Content.Server.DeviceLinking.Components;
 
@@ -13,54 +16,59 @@ public sealed partial class RngDeviceComponent : Component
     /// <summary>
     /// Name of the input port.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<SinkPortPrototype> InputPort = "RngInput";
+    [DataField("inputPort")]
+    public string InputPort = "RngInput";
 
     /// <summary>
-    /// Name of the rising edge output port.
+    /// Output port 1 name
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<SourcePortPrototype> Output1Port = "RngOutput1";
+    [DataField("output1Port")]
+    public string Output1Port = "RngOutput1";
 
     /// <summary>
-    /// Name of the falling edge output port.
+    /// Output port 2 name
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<SourcePortPrototype> Output2Port = "RngOutput2";
+    [DataField("output2Port")]
+    public string Output2Port = "RngOutput2";
 
     /// <summary>
-    /// Name of the rising edge output port.
+    /// Output port 3 name
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<SourcePortPrototype> Output3Port = "RngOutput3";
+    [DataField("output3Port")]
+    public string Output3Port = "RngOutput3";
 
     /// <summary>
-    /// Name of the falling edge output port.
+    /// Output port 4 name
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<SourcePortPrototype> Output4Port = "RngOutput4";
+    [DataField("output4Port")]
+    public string Output4Port = "RngOutput4";
 
     /// <summary>
-    /// Name of the rising edge output port.
+    /// Output port 5 name
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<SourcePortPrototype> Output5Port = "RngOutput5";
+    [DataField("output5Port")]
+    public string Output5Port = "RngOutput5";
 
     /// <summary>
-    /// Name of the falling edge output port.
+    /// Output port 6 name
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<SourcePortPrototype> Output6Port = "RngOutput6";
+    [DataField("output6Port")]
+    public string Output6Port = "RngOutput6";
 
     /// <summary>
     /// Number of output ports.
     /// </summary>
-    [DataField]
-    public int Outputs { get; private set; } = 2;
+    [DataField("outputs")]
+    public int Outputs = 6;
 
-
-    // Initial state
+    /// <summary>
+    /// Initial state
+    /// </summary>
     [DataField]
     public SignalState State = SignalState.Low;
-}
 
+    [DataField("muted")]
+    public bool Muted;
+
+    public BoundUserInterface? UserInterface;
+}
