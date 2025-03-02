@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using Content.Shared._NF.CrateStorage;
 using Content.Shared.Power;
 
@@ -26,6 +27,8 @@ public sealed partial class CrateStorageSystem: SharedCrateStorageMachineSystem
             return false;
 
         var crateMachineQuery = AllEntityQuery<CrateStorageRackComponent, TransformComponent>();
+        KeyValuePair<EntityUid, float>? targetRack = null;
+
         while (crateMachineQuery.MoveNext(out var crateMachineUid, out var comp, out var compXform))
         {
             if (!comp.Powered)
@@ -41,17 +44,26 @@ public sealed partial class CrateStorageSystem: SharedCrateStorageMachineSystem
             if (!isInserting && IsRackEmpty(crateMachineUid))
                 continue;
 
-            var isTooFarAway = !_transform.InRange(compXform.Coordinates, fromXform.Coordinates, maxDistance);
+            // We only need local coordinates for distance calculation since we already check for grid equality.
+            var distance = Vector2.Distance(compXform.Coordinates.Position, fromXform.Coordinates.Position);
 
-            if (!compXform.Anchored || isTooFarAway)
+            if (!compXform.Anchored || distance > maxDistance)
             {
                 continue;
             }
 
+            // If we are inserting, we want the closest rack. If we are removing, we want the furthest rack.
+            if (targetRack != null && (isInserting ? !(distance < targetRack.Value.Value) : !(distance > targetRack.Value.Value)))
+                continue;
+
             machineUid = crateMachineUid;
-            return true;
+            targetRack = new KeyValuePair<EntityUid, float>(crateMachineUid, distance);
         }
-        return false;
+
+        if (targetRack == null)
+            return false;
+        machineUid = targetRack.Value.Key;
+        return true;
     }
 
     private bool IsRackFull(EntityUid rackUid)
@@ -82,4 +94,8 @@ public sealed partial class CrateStorageSystem: SharedCrateStorageMachineSystem
         _appearance.SetData(uid, CrateStorageRackVisuals.VisualState, component.StoredCrates);
     }
 
+}
+
+internal class Pair<T, T1>
+{
 }

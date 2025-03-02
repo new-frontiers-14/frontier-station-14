@@ -12,7 +12,8 @@ namespace Content.Server._NF.CrateStorage;
 
 public sealed partial class CrateStorageSystem: SharedCrateStorageMachineSystem
 {
-    private struct StoredCrate
+    // A Record struct will benefit performance for the dictionary.
+    private record struct StoredCrate
     {
         public EntityUid CrateUid; // The crate.
         public EntityUid CrateStorageRack; // Which rack it is stored in.
@@ -118,7 +119,12 @@ public sealed partial class CrateStorageSystem: SharedCrateStorageMachineSystem
         UpdateRackVisualState(rackUid.Value, rackComp);
         Dirty(rackUid.Value, rackComp);
 
-        _transformSystem.SetCoordinates(storedCrates.First().CrateUid, Transform(crateStorageUid).Coordinates);
+        // Remove it from storedCrates
+        var crate = storedCrates.First();
+        storedCrates.Remove(crate);
+
+        // Transport it to the crate storage machine.
+        _transformSystem.SetCoordinates(crate.CrateUid, Transform(crateStorageUid).Coordinates);
     }
 
     /// <summary>
