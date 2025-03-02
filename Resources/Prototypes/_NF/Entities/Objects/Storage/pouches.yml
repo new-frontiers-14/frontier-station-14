@@ -1,0 +1,333 @@
+# Base
+- type: entity
+  id: NFPouchBase
+  name: pouch
+  parent: [ BaseStorageItem, BaseBagOpenClose, RecyclableItemClothSmall ]
+  description: A pouch for miscelaneous item organization.
+  suffix: Empty
+  abstract: true
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+  - type: Clothing
+    slots: [ belt, pocket ]
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,1
+  - type: StaticPrice
+    price: 50
+
+# Variants
+# Departmental
+- type: entity
+  id: NFPouch
+  parent: NFPouchBase
+  name: utility pouch
+  components:
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,1
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    layers:
+      - state: closed
+        color: "#bf743c"
+      - state: open
+        color: "#bf743c"
+        map: ["openLayer"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#bf743c"
+      right:
+      - state: inhand-right
+        color: "#bf743c"
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#bf743c"
+      pocket:
+      - state: equipped-BELT
+        color: "#bf743c"
+
+- type: entity
+  id: NFPouchEngineering
+  parent: NFPouchBase
+  name: engineer's pouch
+  components:
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,1
+    # whitelist:
+      # tags:
+        # - GasTank
+        # - Multitool
+        # - DoorElectronicsConfigurator
+      # components:
+        # - Tool
+        # - RCD
+        # - RCDAmmo
+        # - MachineBoard
+        # - MachinePart
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    layers:
+      - state: closed
+        color: "#ffde15"
+      - state: decal-01
+        color: "#9e630b"
+      - state: open
+        color: "#ffde15"
+        map: ["openLayer"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#c9a569"
+      right:
+      - state: inhand-right
+        color: "#c9a569"
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#c9a569"
+      pocket:
+      - state: equipped-BELT
+        color: "#c9a569"
+
+- type: entity
+  id: NFPouchScience
+  parent: NFPouchBase
+  name: scientist's pouch
+  components:
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,1
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    layers:
+      - state: closed
+        color: "#c2c2c9"
+      - state: decal-01
+        color: "#a65ca1"
+      - state: open
+        color: "#c2c2c9"
+        map: ["openLayer"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#c2c2c9"
+      right:
+      - state: inhand-right
+        color: "#c2c2c9"
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#c2c2c9"
+      pocket:
+      - state: equipped-BELT
+        color: "#c2c2c9"
+
+- type: entity
+  id: NFPouchChemistry
+  parent: NFPouchBase
+  name: chemist's pouch
+  components:
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,1
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    layers:
+      - state: closed
+        color: "#c2c2c9"
+      - state: decal-01
+        color: "#c56530"
+      - state: open
+        color: "#c2c2c9"
+        map: ["openLayer"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#c2c2c9"
+      right:
+      - state: inhand-right
+        color: "#c2c2c9"
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#c2c2c9"
+      pocket:
+      - state: equipped-BELT
+        color: "#c2c2c9"
+
+- type: entity
+  id: NFPouchFirstAid
+  parent: NFPouchBase
+  name: first aid pouch
+  components:
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,1
+    # whitelist:
+      # tags:
+        # - Bottle
+        # - Brutepack
+        # - Bloodpack
+        # - Gauze
+        # - Ointment
+        # - PillCanister
+        # - DiscreteHealthAnalyzer
+        # - SurgeryTool
+        # - Dropper
+        # - GasTank
+      # components:
+        # - Hypospray
+        # - Injector
+        # - Pill
+        # - Mask
+        # - Geiger
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    layers:
+      - state: closed
+        color: "#990000"
+      - state: cross
+      - state: open
+        color: "#990000"
+        map: ["openLayer"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#990000"
+      right:
+      - state: inhand-right
+        color: "#990000"
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#990000"
+      pocket:
+      - state: equipped-BELT
+        color: "#990000"
+
+- type: entity
+  id: NFPouchFirstAidAlt
+  parent: NFPouchBase
+  name: first aid pouch
+  components:
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,1
+    # whitelist:
+      # tags:
+        # - Bottle
+        # - Brutepack
+        # - Bloodpack
+        # - Gauze
+        # - Ointment
+        # - PillCanister
+        # - DiscreteHealthAnalyzer
+        # - SurgeryTool
+        # - Dropper
+        # - GasTank
+      # components:
+        # - Hypospray
+        # - Injector
+        # - Pill
+        # - Mask
+        # - Geiger
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    layers:
+      - state: closed
+        color: "#357294"
+      - state: cross
+      - state: open
+        color: "#357294"
+        map: ["openLayer"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#357294"
+      right:
+      - state: inhand-right
+        color: "#357294"
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/pouch.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#357294"
+      pocket:
+      - state: equipped-BELT
+        color: "#357294"
+
+# Tobacco
+- type: entity
+  id: NFTobaccoPouch
+  parent: NFPouchBase
+  description: A synth-leather pouch for safe storing pipe tobacco.
+  components:
+  - type: SpaceGarbage
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/tobacco_pouch.rsi
+    layers:
+      - state: closed
+        color: "#8a4f23" # brown
+      - state: open
+        color: "#8a4f23"
+        map: ["openLayer"]
+        visible: false
+      - state: label
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#8a4f23"
+      right:
+      - state: inhand-right
+        color: "#8a4f23"
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/tobacco_pouch.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#8a4f23"
+      pocket:
+      - state: equipped-BELT
+        color: "#8a4f23"
+  - type: Tag
+    tags:
+    - CigPack
+    - Trash
