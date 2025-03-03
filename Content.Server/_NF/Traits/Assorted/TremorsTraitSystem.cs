@@ -26,12 +26,12 @@ public sealed class TremorsTraitSystem : EntitySystem
             _random.NextFloat(component.TimeBetweenIncidents.X, component.TimeBetweenIncidents.Y);
     }
 
-    public void AdjustTremorsTraitTimer(EntityUid uid, int timerReset, TremorsTraitComponent? comp = null)
+    public void AdjustTremorsTraitTimer(EntityUid uid, int timerReset, TremorsTraitComponent? component = null)
     {
-        if (!Resolve(uid, ref comp, false))
+        if (!Resolve(uid, ref component, false))
             return;
 
-        comp.NextIncidentTime = timerReset;
+        component.NextIncidentTime = timerReset;
     }
 
     public override void Update(float frameTime)
