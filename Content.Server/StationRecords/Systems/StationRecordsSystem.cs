@@ -45,7 +45,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
     [Dependency] private readonly ForensicsSystem _forensics = default!; // Frontier
 
-    static readonly ProtoId<JobPrototype>[] FakeJobIds = [ "Contractor", "Pilot", "Mercenary" ]; // Frontier
+    static readonly ProtoId<JobPrototype>[] FakeJobIds = ["Contractor", "Pilot", "Mercenary"]; // Frontier
 
     public override void Initialize()
     {
@@ -118,7 +118,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             if (specialRecord != null
                 && specialRecord.RecordGeneration == RecordGenerationType.FalseRecord)
             {
-                playerJob = _robustRandom.Pick(FakeJobIds);
+                playerJob = _random.Pick(FakeJobIds);
                 fingerprint = _forensics.GenerateFingerprint();
                 dna = _forensics.GenerateDNA();
             }

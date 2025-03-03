@@ -45,36 +45,9 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
         var userPos = _transform.GetWorldPosition(args.User);
         foreach (var target in args.HitEntities)
         {
-<<<<<<< HEAD
-            var hitPos = _transform.GetMapCoordinates(hit).Position;
-            var angle = args.Direction ?? hitPos - mapPos;
-            if (angle == Vector2.Zero)
-                continue;
-
-            if (!CanThrowOnHit(ent, hit))
-                continue;
-
-            if (comp.UnanchorOnHit && HasComp<AnchorableComponent>(hit))
-            {
-                if (_whitelist.IsWhitelistPassOrNull(comp.Whitelist, hit))  // Frontier
-                    _transform.Unanchor(hit, Transform(hit));
-            }
-
-            RemComp<MeleeThrownComponent>(hit);
-            var ev = new MeleeThrowOnHitStartEvent(args.User, ent);
-            RaiseLocalEvent(hit, ref ev);
-            var thrownComp = new MeleeThrownComponent
-            {
-                Velocity = angle.Normalized() * comp.Speed,
-                Lifetime = comp.Lifetime,
-                MinLifetime = comp.MinLifetime
-            };
-            AddComp(hit, thrownComp);
-=======
             var targetPos = _transform.GetMapCoordinates(target).Position;
             var direction = args.Direction ?? targetPos - userPos;
             ThrowOnHitHelper(weapon, args.User, target, direction);
->>>>>>> 4dfd3e5740d316d1c37d38623b8266333bef0945
         }
     }
 

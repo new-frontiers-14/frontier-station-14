@@ -16,7 +16,6 @@ using Content.Shared.Construction.EntitySystems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
-using Content.Server.Labels;
 using Robust.Shared.EntitySerialization.Systems;
 
 namespace Content.Server.Salvage
@@ -24,17 +23,14 @@ namespace Content.Server.Salvage
     public sealed partial class SalvageSystem : SharedSalvageSystem
     {
         [Dependency] private readonly IChatManager _chat = default!;
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly AnchorableSystem _anchorable = default!;
         [Dependency] private readonly BiomeSystem _biome = default!;
-        [Dependency] private readonly CargoSystem _cargo = default!;
         [Dependency] private readonly DungeonSystem _dungeon = default!;
         [Dependency] private readonly GravitySystem _gravity = default!;
-        [Dependency] private readonly LabelSystem _labelSystem = default!;
         [Dependency] private readonly MapLoaderSystem _loader = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
         [Dependency] private readonly RadioSystem _radioSystem = default!;
