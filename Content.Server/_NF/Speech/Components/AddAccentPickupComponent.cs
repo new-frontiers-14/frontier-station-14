@@ -1,4 +1,5 @@
 using Content.Server.Speech.Components;
+using Content.Server.Speech.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server._NF.Speech.Components;
@@ -12,7 +13,7 @@ public sealed partial class AddAccentPickupComponent : Component
     /// <summary>
     ///     Component name for accent that will be applied.
     /// </summary>
-    [DataField("accent", required: true)]
+    [DataField(required: true)]
     public string Accent = default!;
 
     /// <summary>
