@@ -78,6 +78,7 @@ namespace Content.Server.IoC
             IoCManager.Register<MappingManager>();
             IoCManager.Register<IWatchlistWebhookManager, WatchlistWebhookManager>();
             IoCManager.Register<ConnectionManager>();
+            IoCManager.Register<MultiServerKickManager>();
             IoCManager.Register<MiniAuthManager>(); //Frontier
             IoCManager.Register<RMCDiscordManager>(); // RMC14
             IoCManager.Register<MentorManager>(); // RMC14

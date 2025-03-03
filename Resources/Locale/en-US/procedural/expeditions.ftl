@@ -4,7 +4,8 @@ salvage-expedition-structure-remaining = {$count ->
     *[other] {$count} structures remaining.
 }
 
-salvage-expedition-megafauna-remaining = {$count} megafauna remaining.
+# Frontier: megafauna<targets (syndies and robots are not megafauna)
+salvage-expedition-megafauna-remaining = {$count} targets remaining.
 
 salvage-expedition-window-title = Salvage expeditions
 salvage-expedition-window-difficulty = Difficulty:
@@ -23,10 +24,10 @@ salvage-expedition-window-next = Next offer
 salvage-expedition-desc-mining = Collect resources inside the area.
 #  You will be taxed {$tax}% of the resources collected.
 salvage-expedition-desc-structure = {$count ->
-    [one] Destroy {$count} {$structure} inside the area.
-    *[other] Destroy {$count} {MAKEPLURAL($structure)} inside the area.
+    [one] Destroy {$count} {$structure}.
+    *[other] Destroy {$count} {MAKEPLURAL($structure)}.
 }
-salvage-expedition-desc-elimination = Kill a large and dangerous creature inside the area.
+salvage-expedition-desc-elimination = Kill a large and dangerous creature.
 # End Frontier
 
 salvage-expedition-type-Mining = Mining
