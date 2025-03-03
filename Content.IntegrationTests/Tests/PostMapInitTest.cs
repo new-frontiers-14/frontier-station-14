@@ -65,6 +65,7 @@ namespace Content.IntegrationTests.Tests
             // "/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", // Contains syndicate rubber stamp
             "/Maps/_NF/Outpost/frontier.yml", // Contains janitorial bomb suit closet
             "/Maps/_NF/POI/tinnia.yml", // Contains syndicate rubber stamp
+            "/Maps/_NF/POI/lpbravo.yml", // Contains syndicate rubber stamp
             // End Frontier
         };
 
