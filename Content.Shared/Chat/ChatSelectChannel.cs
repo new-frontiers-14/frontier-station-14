@@ -1,4 +1,4 @@
-﻿namespace Content.Shared.Chat
+namespace Content.Shared.Chat
 {
     /// <summary>
     ///     Chat channels that the player can select in the chat box.
@@ -50,6 +50,11 @@
         ///     Admin chat
         /// </summary>
         Admin = ChatChannel.AdminChat,
+
+        /// <summary>
+        ///     RMC14: Mentor chat
+        /// </summary>
+        Mentor = ChatChannel.MentorChat,
 
         Console = ChatChannel.Unspecified
     }
