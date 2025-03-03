@@ -2,7 +2,7 @@
 - type: entity
   parent: BaseLandMine
   id: NFConcealedIED
-  suffix: Explosive
+  suffix: NF, Explosive
   abstract: true
   components:
   - type: AmbientSound
@@ -39,6 +39,22 @@
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       state: ied_wiring
     - sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ WetFloorSign, NFConcealedIED ]
+  id: NFWetFloorSignIED
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
       state: icon
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       state: ied_diplay
