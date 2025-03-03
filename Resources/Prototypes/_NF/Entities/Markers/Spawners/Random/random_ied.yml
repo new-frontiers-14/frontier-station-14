@@ -1,26 +1,32 @@
+- type: entityTable
+  id: NFTableRandomIED
+  table: !type:GroupSelector
+    children:
+    - id: NFTrashIED
+    - id: NFBoxIED
+    - id: NFPlushieIED
+    - id: NFToolboxIED
+    - id: NFWetFloorSignIED
+
 - type: entity
-  name: disguised IED spawner
+  name: random mine spawner
   id: NFConcealedIEDSpawner
   parent: MarkerBase
-  suffix: 95
+  suffix: Frontier
   components:
-    - type: Sprite
-      layers:
-      - state: red
-      - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-        state: ied_wiring
-      - sprite: Objects/Consumable/Food/snacks.rsi
-        state: cheesiehonkers-trash
-      - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-        state: ied_diplay
-      - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-        shader: unshaded
-        state: ied_light
-    - type: RandomSpawner
-      prototypes:
-      - NFTrashIED
-      - NFBoxIED
-      - NFPlushieIED
-      - NFToolboxIED
-      - NFWetFloorSignIED
-      chance: 1.00
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers-trash
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      shader: unshaded
+      state: ied_light
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: NFTableRandomIED
+      prob: 1.00
