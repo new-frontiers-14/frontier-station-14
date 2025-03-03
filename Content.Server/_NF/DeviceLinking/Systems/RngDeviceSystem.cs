@@ -2,15 +2,18 @@ using Content.Server.DeviceLinking.Components;
 using SignalReceivedEvent = Content.Server.DeviceLinking.Events.SignalReceivedEvent;
 using Robust.Shared.Random;
 using System.Linq;
-using Content.Shared.DeviceLinking;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
-using static Content.Shared.DeviceLinking.RngDeviceVisuals;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Server.UserInterface;
 using Robust.Shared.Prototypes;
 using Content.Shared.UserInterface;
+using Content.Shared._NF.DeviceLinking;
+using static Content.Shared._NF.DeviceLinking.RngDeviceVisuals;
+using Content.Shared.DeviceLinking;
+using Content.Shared.DeviceLinking.Components;
+using Content.Shared.Examine;
 
 namespace Content.Server.DeviceLinking.Systems;
 
@@ -29,7 +32,9 @@ public sealed class RngDeviceSystem : EntitySystem
         SubscribeLocalEvent<RngDeviceComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<RngDeviceComponent, SignalReceivedEvent>(OnSignalReceived);
         SubscribeLocalEvent<RngDeviceComponent, RngDeviceToggleMuteMessage>(OnToggleMute);
+        SubscribeLocalEvent<RngDeviceComponent, RngDeviceSetTargetNumberMessage>(OnSetTargetNumber);
         SubscribeLocalEvent<RngDeviceComponent, AfterActivatableUIOpenEvent>(OnAfterActivatableUIOpen);
+        SubscribeLocalEvent<RngDeviceComponent, ExaminedEvent>(OnExamined);
     }
 
     private void OnInit(EntityUid uid, RngDeviceComponent comp, ComponentInit args)
@@ -65,18 +70,40 @@ public sealed class RngDeviceSystem : EntitySystem
         UpdateUserInterface(uid, comp);
     }
 
+    private void OnSetTargetNumber(EntityUid uid, RngDeviceComponent comp, RngDeviceSetTargetNumberMessage args)
+    {
+        if (comp.Outputs != 2)
+            return;
+
+        comp.TargetNumber = Math.Clamp(args.TargetNumber, 1, 100);
+        UpdateUserInterface(uid, comp);
+    }
+
     private void UpdateUserInterface(EntityUid uid, RngDeviceComponent comp)
     {
         if (_userInterfaceSystem.HasUi(uid, RngDeviceUiKey.Key))
         {
-            _userInterfaceSystem.SetUiState(uid, RngDeviceUiKey.Key, new RngDeviceBoundUserInterfaceState(comp.Muted));
+            _userInterfaceSystem.SetUiState(uid, RngDeviceUiKey.Key, new RngDeviceBoundUserInterfaceState(comp.Muted, comp.TargetNumber, comp.Outputs));
         }
     }
 
     private void OnSignalReceived(EntityUid uid, RngDeviceComponent comp, ref SignalReceivedEvent args)
     {
-        var roll = _random.Next(1, comp.Outputs + 1);
-        var outputPort = roll switch
+        int roll;
+        int outputPort;
+        if (comp.Outputs == 2)
+        {
+            // For percentile dice, roll 1-100 and determine which output to trigger based on target number
+            roll = _random.Next(1, 101);
+            outputPort = roll <= comp.TargetNumber ? 1 : 2;
+        }
+        else
+        {
+            roll = _random.Next(1, comp.Outputs + 1);
+            outputPort = roll;
+        }
+
+        var port = outputPort switch
         {
             1 => new ProtoId<SourcePortPrototype>(comp.Output1Port),
             2 => new ProtoId<SourcePortPrototype>(comp.Output2Port),
@@ -84,8 +111,12 @@ public sealed class RngDeviceSystem : EntitySystem
             4 => new ProtoId<SourcePortPrototype>(comp.Output4Port),
             5 => new ProtoId<SourcePortPrototype>(comp.Output5Port),
             6 => new ProtoId<SourcePortPrototype>(comp.Output6Port),
-            _ => throw new ArgumentOutOfRangeException($"Invalid roll value: {roll}")
+            _ => throw new ArgumentOutOfRangeException($"Invalid output port number: {outputPort}")
         };
+
+        // Store the values for future use
+        comp.LastRoll = roll;
+        comp.LastOutputPort = outputPort;
 
         // Update the appearance to show the current roll
         if (TryComp<AppearanceComponent>(uid, out var appearance))
@@ -98,7 +129,9 @@ public sealed class RngDeviceSystem : EntitySystem
                 _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
             };
 
-            var stateNumber = comp.Outputs == 2 ? roll * 10 : roll;  // For percentile die, use 10/20 instead of 1/2
+            var stateNumber = comp.Outputs == 2
+                ? ((roll - 1) / 10) * 10  // Round down to nearest 10 for percentile die
+                : roll;
             _appearance.SetData(uid, RngDeviceVisuals.State, $"{statePrefix}_{stateNumber}", appearance);
 
             // Play the dice rolling sound if not muted
@@ -106,6 +139,17 @@ public sealed class RngDeviceSystem : EntitySystem
                 _audio.PlayPvs(new SoundCollectionSpecifier("Dice"), uid);
         }
 
-        _deviceLink.InvokePort(uid, outputPort);
+        _deviceLink.InvokePort(uid, port);
+    }
+
+    private void OnExamined(EntityUid uid, RngDeviceComponent component, ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        args.PushMarkup(Loc.GetString("rng-device-examine-last-roll", ("roll", component.LastRoll)));
+
+        if (component.Outputs == 2)  // Only show port info for percentile die
+            args.PushMarkup(Loc.GetString("rng-device-examine-last-port", ("port", component.LastOutputPort)));
     }
 }

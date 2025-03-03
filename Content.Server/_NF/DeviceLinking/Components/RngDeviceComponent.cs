@@ -1,9 +1,11 @@
 using Content.Server.DeviceLinking.Systems;
-using Content.Shared.DeviceLinking;
+using Content.Shared._NF.DeviceLinking;
 using Robust.Shared.Prototypes;
 using Content.Server.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
+using Content.Shared.DeviceLinking;
+using Content.Shared.DeviceLinking.Components;
 
 namespace Content.Server.DeviceLinking.Components;
 
@@ -69,6 +71,24 @@ public sealed partial class RngDeviceComponent : Component
 
     [DataField("muted")]
     public bool Muted;
+
+    /// <summary>
+    /// Target number for percentile dice (1-100). Only used when Outputs = 2.
+    /// </summary>
+    [DataField("targetNumber")]
+    public int TargetNumber = 50;
+
+    /// <summary>
+    /// The last value rolled (1-100 for percentile, 1-N for other dice).
+    /// </summary>
+    [DataField("lastRoll")]
+    public int LastRoll;
+
+    /// <summary>
+    /// The last output port that was triggered (1-based).
+    /// </summary>
+    [DataField("lastOutputPort")]
+    public int LastOutputPort;
 
     public BoundUserInterface? UserInterface;
 }

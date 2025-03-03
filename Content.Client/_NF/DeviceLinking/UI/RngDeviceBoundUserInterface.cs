@@ -1,4 +1,4 @@
-using Content.Shared.DeviceLinking;
+using Content.Shared._NF.DeviceLinking;
 using Robust.Client.GameObjects;
 using Content.Client._NF.DeviceLinking.UI;
 using Robust.Client.UserInterface;
@@ -20,12 +20,18 @@ public sealed class RngDeviceBoundUserInterface : BoundUserInterface
 
         _window = this.CreateWindow<RngDeviceWindow>();
         _window.OnMuteToggled += OnMuteToggled;
+        _window.OnTargetNumberChanged += OnTargetNumberChanged;
         _window.OpenCentered();
     }
 
     private void OnMuteToggled(bool muted)
     {
         SendMessage(new RngDeviceToggleMuteMessage(muted));
+    }
+
+    private void OnTargetNumberChanged(int targetNumber)
+    {
+        SendMessage(new RngDeviceSetTargetNumberMessage(targetNumber));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
