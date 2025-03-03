@@ -1,0 +1,69 @@
+- type: entityTable
+  id: SpawnDungeonLootMercenaryUIVTable
+  table: !type:GroupSelector
+    children:
+    # 70% chance of scrap of some kind
+    - !type:GroupSelector
+      weight: 195
+      children:
+      - !type:NestedSelector
+        tableId: DungeonLootMercenaryUIVCommon
+        weight: 70
+      - !type:NestedSelector
+        tableId: DungeonLootMercenaryUIVUncommon
+        weight: 25
+      - !type:NestedSelector
+        tableId: DungeonLootMercenaryUIVRare
+        weight: 5
+    # 4% chance of a gun
+    - !type:NestedSelector
+      tableId: DungeonLootMercenaryUIVGuns
+      weight: 4
+    # 1% chance of a rare gun
+    - !type:GroupSelector
+      weight: 1
+      children:
+      - !type:NestedSelector
+        tableId: DungeonLootMercenaryUIVGunsRare
+
+- type: entity
+  parent: MarkerBase
+  id: DungeonLootMercenaryUIVSpawner
+  name: Mercenary UIV Loot Spawner
+  suffix: UIV
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 4
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: SpawnDungeonLootMercenaryUIVTable
+      prob: 1
+
+- type: entity
+  parent: MarkerBase
+  id: DungeonLootMercenaryUIVGunsSpawner
+  name: Merc UIV Gun Spawner
+  suffix: UIV
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 4
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: DungeonLootMercenaryUIVGuns
+      prob: 1

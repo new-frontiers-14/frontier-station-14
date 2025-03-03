@@ -1,0 +1,86 @@
+- type: entityTable
+  id: DungeonLootMercenaryUIVCommon
+  table: !type:GroupSelector
+    children:
+    - id: ClothingEyesHudBountyHunter
+    - id: SpawnDungeonLootArmoryClutter
+    - id: SpawnDungeonLootArmoryClutterSec
+    - id: SpawnDungeonLootArmoryGuns
+    - id: SpaceCash1000
+    - !type:GroupSelector
+      children:
+      - id: SuperCapacitorStockPart
+      - id: SpawnDungeonLootHardsuitsMercenary
+      - id: SpaceCash2500
+        weight: 0.1
+    - id: SpaceCash5000
+      weight: 0.1
+
+- type: entityTable
+  id: DungeonLootMercenaryUIVUncommon
+  table: !type:GroupSelector
+      children:
+      - id: ComputerIFFCircuitboard
+      - id: SpaceCash2500
+      - !type:GroupSelector
+       children:
+       - id: SpaceCash5000
+         weight: 0.5
+       - id: SpaceCash10000
+         weight: 0.01
+
+- type: entityTable
+  id: DungeonLootMercenaryUIVRare
+  table: !type:GroupSelector
+      children:
+      - id: SpawnDungeonLootAmmoIncendiary
+      - id: BoxT3SuperCapacitor
+      - id: SpaceCash5000
+      - id: OmnizineChemistryBottle
+      - id: QuadraticCapacitorStockPart
+      - !type:GroupSelector
+       children:
+       - id: SpawnDungeonLootHardsuitsMercenary
+       weight: 0.5
+      - id: SpaceCash20000
+        weight: 0.01
+
+- type: entityTable
+  id: DungeonLootMercenaryUIVGuns
+  table: !type:GroupSelector #Intended goal is to put more weight on certain guns while allowing others to still spawn
+      children:
+      - id: WeaponCaseShortN1984Expedition
+      - id: WeaponCaseLongAk
+      - id: WeaponCaseLongWT550Expedition
+      - id: WeaponCaseLongLaserCarbineExpedition
+      - id: WeaponCaseLongEnforcerExpedition
+      - id: WeaponCaseLongVulcanExpedition
+      - id: WeaponCaseShortMateba
+      - id: WeaponCaseShortAdvancedLaserExpedition
+      - id: WeaponCaseLongDrozdExpedition
+      - id: WeaponCaseShortCobra
+      - id: WeaponCaseLongKammererExpedition
+      - id: WeaponCaseLongM90Expedition
+      - id: SpawnDungeonLootGunT3
+      - id: SpawnDungeonLootGunT4
+      - id: SpawnDungeonLootMeleeT3
+      - id: SpawnDungeonLootMeleeT4
+      - !type:GroupSelector
+       children:
+       - id: DungeonLootMercenaryUIVGunsRare
+       weight: 0.1
+
+- type: entityTable
+  id: DungeonLootMercenaryUIVGunsRare  #Intended goal is to make syndicate guns spawn less than other guns
+  table: !type:GroupSelector
+      children:
+      - id: WeaponCaseLongTypewriterExpedition
+      - id: HWeaponCaseLongJackdaw
+      - id: WeaponPulsePistol
+      - id: WeaponCaseLongEnforcerExpedition
+      - id: WeaponCaseLongXrayCannonExpedition
+      - !type:GroupSelector
+       children:
+       - id: SpawnDungeonLootGunT5
+       - id: SpawnDungeonLootMeleeT4
+       weight: 0.5
