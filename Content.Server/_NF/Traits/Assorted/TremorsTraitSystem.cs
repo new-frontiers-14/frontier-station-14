@@ -6,9 +6,9 @@ using Content.Shared.Speech.EntitySystems;
 namespace Content.Server._NF.Traits.Assorted;
 
 /// <summary>
-/// This handles parkinson, causing the affected to shake uncontrollably at a random interval.
+/// This handles the trait, causing the affected to shake uncontrollably at a random interval.
 /// </summary>
-public sealed class ParkinsonTraitSystem : EntitySystem
+public sealed class TremorsTraitSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedStutteringSystem _stuttering = default!;
@@ -17,16 +17,16 @@ public sealed class ParkinsonTraitSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<ParkinsonTraitComponent, ComponentStartup>(SetupParkinsonTrait);
+        SubscribeLocalEvent<TremorsTraitComponent, ComponentStartup>(SetupTremorsTrait);
     }
 
-    private void SetupParkinsonTrait(EntityUid uid, ParkinsonTraitComponent component, ComponentStartup args)
+    private void SetupTremorsTrait(EntityUid uid, TremorsTraitComponent component, ComponentStartup args)
     {
         component.NextIncidentTime =
             _random.NextFloat(component.TimeBetweenIncidents.X, component.TimeBetweenIncidents.Y);
     }
 
-    public void AdjustParkinsonTraitTimer(EntityUid uid, int timerReset, ParkinsonTraitComponent? stinky = null)
+    public void AdjustTremorsTraitTimer(EntityUid uid, int timerReset, TremorsTraitComponent? stinky = null)
     {
         if (!Resolve(uid, ref stinky, false))
             return;
@@ -38,7 +38,7 @@ public sealed class ParkinsonTraitSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<ParkinsonTraitComponent>();
+        var query = EntityQueryEnumerator<TremorsTraitComponent>();
         while (query.MoveNext(out var uid, out var component))
         {
             component.NextIncidentTime -= frameTime;
