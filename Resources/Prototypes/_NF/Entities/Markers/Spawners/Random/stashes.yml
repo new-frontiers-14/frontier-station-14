@@ -2,7 +2,7 @@
 - type: entity
   name: random stash
   id: SpawnDungeonLootStash
-  parent: MarkerBasePlaceFree
+  parent: MarkerBase
   suffix: "Dungeon, Stash"
   components:
   - type: Sprite
@@ -17,10 +17,9 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - DuffelCargoStashCashLow
-    - DuffelCargoStashCashMid
-    chance: 1
+    - DuffelCargoStashValuables
+    chance: 0.97
     offset: 0.0
     rarePrototypes:
-    - DuffelCargoStashCashHigh
-    rareChance: 0.05
+    - DuffelSyndicateStashContraband
+    rareChance: 0.03

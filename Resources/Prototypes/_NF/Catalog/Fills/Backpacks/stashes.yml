@@ -3,34 +3,18 @@
 - type: entity
   abstract: true
   id: StashAnchored
+  placement:
+    mode: SnapgridCenter
   components:
   - type: Transform
     anchored: true
 
 # Cash and valuables
 - type: entity
-  parent: [ StashAnchored, ClothingBackpackDuffelCargo, StorageFillStashCashLow ]
-  id: DuffelCargoStashCashLow
-
-- type: entity
-  parent: [ StashAnchored, ClothingBackpackDuffelCargo, StorageFillStashCashMid ]
-  id: DuffelCargoStashCashMid
-
-- type: entity
-  parent: [ StashAnchored, ClothingBackpackDuffelCargo, StorageFillStashCashHigh ]
-  id: DuffelCargoStashCashHigh
-
-# Cruel jokes
-
+  parent: [ StashAnchored, ClothingBackpackDuffelCargo, StorageFillStashValuables ]
+  id: DuffelCargoStashValuables
 
 # Contraband
 - type: entity
-  parent: ClothingBackpackDuffelCargo
-  #parent: [ StashAnchored, ClothingBackpackDuffelSyndicate ]
+  parent: [ StashAnchored, ClothingBackpackDuffelSyndicate, StorageFillStashContraband ]
   id: DuffelSyndicateStashContraband
-  suffix: Stash, Syndicate
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: StorageFillStashContraband
