@@ -3,10 +3,10 @@ using System.Numerics;
 namespace Content.Server._NF.Traits.Assorted;
 
 /// <summary>
-/// This is used for the parkinson trait.
+/// This is used for the trait.
 /// </summary>
-[RegisterComponent, Access(typeof(ParkinsonTraitSystem))]
-public sealed partial class ParkinsonTraitComponent : Component
+[RegisterComponent, Access(typeof(TremorsTraitSystem))]
+public sealed partial class TremorsTraitComponent : Component
 {
     /// <summary>
     /// The random time between incidents, (min, max).
