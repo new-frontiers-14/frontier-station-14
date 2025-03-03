@@ -154,35 +154,15 @@ public sealed partial class BountyContractSystem
 
     private void OnTryRemoveMessage(Entity<BountyContractsCartridgeComponent> cartridge, ref BountyContractTryRemoveMessageEvent args)
     {
-        var entityUid = GetEntity(args.LoaderUid);
+        var loader = GetEntity(args.LoaderUid);
 
         var data = GetContracts();
         if (data == null || data.Contracts == null)
             return;
 
-        // TODO: move this out of the UI.
-        // Find the given collection this belongs to.
-        ProtoId<BountyContractCollectionPrototype>? collectionId = null;
-        foreach (var (collectionKey, collectionValue) in data.Contracts)
-        {
-            if (collectionValue.ContainsKey(args.ContractId))
-            {
-                collectionId = collectionKey;
-                break;
-            }
-        }
-
-        if (collectionId == null)
-            return;
-
-        var contract = data.Contracts[collectionId.Value][args.ContractId];
-
         // Check the delete access for the user on this collection.
-        if (!HasDeleteAccess(entityUid, collectionId.Value, data) && GetEntity(contract.AuthorUid) != entityUid)
-            return;
-
-        data.Contracts[collectionId.Value].Remove(args.ContractId);
-        CartridgeRefreshListUi(cartridge, entityUid);
+        if (TryRemoveBountyContract(loader, args.Actor, args.ContractId))
+            CartridgeRefreshListUi(cartridge, loader);
     }
 
     private void OnTryCreateMessage(Entity<BountyContractsCartridgeComponent> cartridge, ref BountyContractTryCreateMessageEvent args)
@@ -192,16 +172,16 @@ public sealed partial class BountyContractSystem
         if (!cartridge.Comp.CreateEnabled)
             return;
 
-        if (!HasWriteAccess(loader, args.Contract.Collection))
-            return;
-
         var c = args.Contract;
         var author = GetContractAuthor(loader);
-        CreateBountyContract(c.Collection, c.Category, c.Name, c.Reward, loader, c.Description, c.Vessel, c.DNA, author);
 
-        cartridge.Comp.CreateEnabled = false;
-        cartridge.Comp.NextCreate = _timing.CurTime + TimeSpan.FromSeconds(cartridge.Comp.CreateCooldown);
+        // Try to post a bounty.  If we do, update the requester's UI.
+        if (TryCreateBountyContract(c.Collection, c.Category, c.Name, c.Reward, loader, args.Actor, c.Description, c.Vessel, c.DNA, author) != null)
+        {
+            cartridge.Comp.CreateEnabled = false;
+            cartridge.Comp.NextCreate = _timing.CurTime + TimeSpan.FromSeconds(cartridge.Comp.CreateCooldown);
 
-        CartridgeOpenListUi(cartridge, loader);
+            CartridgeOpenListUi(cartridge, loader);
+        }
     }
 }

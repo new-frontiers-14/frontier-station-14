@@ -2,6 +2,7 @@ using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._NF.Access;
+using Content.Server.Administration.Logs;
 using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Systems;
 using Content.Server.StationRecords.Systems;
@@ -9,6 +10,7 @@ using Content.Shared._NF.Bank;
 using Content.Shared._NF.BountyContracts;
 using Content.Shared.Access.Systems;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.Database;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.BountyContracts;
@@ -26,6 +28,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     [Dependency] private readonly NFAccessSystemUtilities _accessUtils = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
     public override void Initialize()
     {
@@ -143,13 +146,18 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     /// <param name="author">Optional bounty poster IC name.</param>
     /// <param name="authorUid">Uid of the cartridge loader that created the bounty</param>
     /// <param name="pdaAlert">Should PDAs send a localized alert?</param>
+    /// <param name="actor">The entity posting the bounty.</param>
     /// <returns>New bounty contract. Null if contract creation failed.</returns>
-    public BountyContract? CreateBountyContract(ProtoId<BountyContractCollectionPrototype> collection,
+    public BountyContract? TryCreateBountyContract(ProtoId<BountyContractCollectionPrototype> collection,
         BountyContractCategory category,
-        string name, int reward,
+        string name,
+        int reward,
         EntityUid authorUid,
-        string? description = null, string? vessel = null,
-        string? dna = null, string? author = null)
+        EntityUid actor,
+        string? description = null,
+        string? vessel = null,
+        string? dna = null,
+        string? author = null)
     {
         var data = GetContracts();
         if (data == null
@@ -158,6 +166,9 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         {
             return null;
         }
+
+        if (!HasWriteAccess(authorUid, collection))
+            return null;
 
         if (name.Length > MaxNameLength)
             name = name.Substring(0, MaxNameLength);
@@ -216,6 +227,8 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
             var color = Color.FromHex("#D7D7BE");
             _chat.DispatchGlobalAnnouncement(msg, sender, false, colorOverride: color);
         }
+
+        _adminLog.Add(LogType.BountyContractCreated, $"{ToPrettyString(actor):actor} posted a {category} bounty with ID {contractId} in the {collection} collection for ${reward}: {description ?? ""}");
 
         return contract;
     }
@@ -278,20 +291,27 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     ///     Try to remove bounty contract by its id.
     /// </summary>
     /// <returns>True if contract was found and removed.</returns>
-    public bool RemoveBountyContract(uint contractId)
+    public bool TryRemoveBountyContract(EntityUid authorUid, EntityUid actor, uint contractId)
     {
         var data = GetContracts();
         if (data == null || data.Contracts == null)
             return false;
 
-        foreach (var collection in data.Contracts.Values)
+        foreach (var (collectionId, collection) in data.Contracts)
         {
-            if (collection.Remove(contractId))
-                return true;
+            if (!collection.TryGetValue(contractId, out var contract))
+                continue;
+
+            if (!HasDeleteAccess(authorUid, collectionId, data) && authorUid != GetEntity(contract.AuthorUid))
+                return false;
+
+            collection.Remove(contractId);
+            _adminLog.Add(LogType.BountyContractRemoved, $"{ToPrettyString(actor):actor} deleted bounty with ID {contractId}");
+            return true;
         }
 
         _sawmill.Warning($"Failed to remove bounty contract with {contractId}!");
-        return true;
+        return false;
     }
 
     public override void Update(float frameTime)
