@@ -92,6 +92,12 @@ namespace Content.Server.Explosion.Components
         public int Layer = (int) (CollisionGroup.MidImpassable | CollisionGroup.LowImpassable | CollisionGroup.HighImpassable);
 
         /// <summary>
+        /// Frontier: Use Blacklist to trigger
+        /// </summary>
+        [DataField]
+        public EntityWhitelist? Blacklist;
+
+        /// <summary>
         /// Frontier: Use Whitelist to trigger
         /// </summary>
         [DataField]
