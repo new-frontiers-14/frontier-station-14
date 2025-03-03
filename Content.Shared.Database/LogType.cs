@@ -450,6 +450,11 @@ public enum LogType
     /// </summary>
     AtmosDeviceSetting = 97,
 
+    /// <summary>
+    /// Commands related to admemes. Stuff like config changes, etc.
+    /// </summary>
+    AdminCommands = 98,
+
     // Frontier Station Specific
     ATMUsage = 200,
     ShipYardUsage = 201,

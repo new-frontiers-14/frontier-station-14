@@ -1,5 +1,6 @@
 using Content.Shared.Salvage.Expeditions;
 using JetBrains.Annotations;
+using Robust.Client.UserInterface;
 
 namespace Content.Client.Salvage.UI;
 
@@ -16,7 +17,9 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
     protected override void Open()
     {
         base.Open();
-        _window = new SalvageExpeditionWindow();
+        _window = this.CreateWindowCenteredLeft<SalvageExpeditionWindow>(); // Frontier: OfferingWindow<SalvageExpeditionWindow
+        _window.Title = Loc.GetString("salvage-expedition-window-title");
+        // Frontier: handlers
         _window.ClaimMission += index =>
         {
             SendMessage(new ClaimSalvageMessage()
@@ -24,16 +27,8 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
                 Index = index,
             });
         };
-        _window.FinishMission += () => SendMessage(new FinishSalvageMessage()); // Frontier
-        _window.OnClose += Close;
-        _window?.OpenCenteredLeft();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        _window?.Dispose();
-        _window = null;
+        _window.FinishMission += () => SendMessage(new FinishSalvageMessage());
+        // End Frontier
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

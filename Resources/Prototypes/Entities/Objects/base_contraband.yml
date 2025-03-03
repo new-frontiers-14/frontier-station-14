@@ -1,6 +1,14 @@
 # Frontier: keep these commented out - helps highlight errors that need to be fixed when pulling in upstream changes
 
-# non-stealth syndicate stuff
+# # any type of magical items used by wizards and similiar
+# - type: entity
+#   id: BaseMagicalContraband
+#   abstract: true
+#   components:
+#   - type: Contraband
+#     severity: Magical
+
+# # non-stealth syndicate stuff
 # - type: entity
 #   id: BaseSyndicateContraband
 #   abstract: true
@@ -8,7 +16,8 @@
 #   - type: Contraband
 #     severity: Syndicate
 
-# minor contraband not departmentally restricted -- improvised weapons etc
+
+# # minor contraband not departmentally restricted -- improvised weapons etc
 # - type: entity
 #   id: BaseMinorContraband
 #   abstract: true
@@ -16,7 +25,7 @@
 #   - type: Contraband
 #     severity: Minor
 
-# major contraband, for things like guns or weaponry that don't belong to any department and aren't syndicate specific
+# # major contraband, for things like guns or weaponry that don't belong to any department and aren't syndicate specific
 # - type: entity
 #   id: BaseMajorContraband
 #   abstract: true
@@ -24,14 +33,15 @@
 #   - type: Contraband
 #     severity: Major
 
-# minor contraband by default restricted to security only
+# # base department restricted contraband, this should only be used as a parent for other contraband prototypes, not the restricted items themselves.
 # - type: entity
 #   id: BaseRestrictedContraband
 #   abstract: true
 #   components:
 #   - type: Contraband
 #     severity: Restricted
-#     allowedDepartments: [ Security ]
+#     allowedDepartments: [  ]
+#     allowedJobs: [  ]
 
 # one department restricted contraband
 - type: entity
