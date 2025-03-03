@@ -495,7 +495,7 @@
 - type: entity
   parent:
   - BaseC3CultContraband
-  - BaseWeaponTurret
+  - BaseWeaponTurretNF
   #- MobBloodCultistTimedDespawn
   id: BloodCultTurret
   name: blood pylon
@@ -571,3 +571,6 @@
                 ShardCrystalRed:
                   min: 1
                   max: 3
+    - type: ContainerContainer # TODO: parent this off of a ballistic version?
+      containers:
+        ballistic-ammo: !type:Container

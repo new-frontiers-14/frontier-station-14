@@ -41,25 +41,30 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] Grids =
         {
+            // Frontier: no upstream maps, define our own.
+            // "/Maps/centcomm.yml",
+            AdminTestArenaSystem.ArenaMapPath,
             // Admin
             "/Maps/_NF/Shuttles/Admin/fishbowl.yml",
             // Bus
             "/Maps/_NF/Shuttles/Bus/publicts.yml",
-            "/Maps/centcomm.yml",
-            AdminTestArenaSystem.ArenaMapPath
+            // End Frontier
         };
 
         private static readonly string[] DoNotMapWhitelist =
         {
-            "/Maps/centcomm.yml",
-            "/Maps/bagel.yml", // Contains mime's rubber stamp --> Either fix this, remove the category, or remove this comment if intentional.
-            "/Maps/gate.yml", // Contains positronic brain and LSE-1200c "Perforator"
-            "/Maps/meta.yml", // Contains warden's rubber stamp
-            "/Maps/reach.yml", // Contains handheld crew monitor
-            "/Maps/Shuttles/ShuttleEvent/cruiser.yml", // Contains LSE-1200c "Perforator"
-            "/Maps/Shuttles/ShuttleEvent/honki.yml", // Contains golden honker, clown's rubber stamp
-            "/Maps/Shuttles/ShuttleEvent/instigator.yml", // Contains EXP-320g "Friendship"
-            "/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", // Contains syndicate rubber stamp
+            // Frontier: no upstream maps
+            // "/Maps/centcomm.yml",
+            // "/Maps/bagel.yml", // Contains mime's rubber stamp --> Either fix this, remove the category, or remove this comment if intentional.
+            // "/Maps/gate.yml", // Contains positronic brain and LSE-1200c "Perforator"
+            // "/Maps/meta.yml", // Contains warden's rubber stamp
+            // "/Maps/reach.yml", // Contains handheld crew monitor
+            // "/Maps/Shuttles/ShuttleEvent/cruiser.yml", // Contains LSE-1200c "Perforator"
+            // "/Maps/Shuttles/ShuttleEvent/honki.yml", // Contains golden honker, clown's rubber stamp
+            // "/Maps/Shuttles/ShuttleEvent/instigator.yml", // Contains EXP-320g "Friendship"
+            // "/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", // Contains syndicate rubber stamp
+            "/Maps/_NF/Outpost/frontier.yml", // Contains janitorial bomb suit closet
+            // End Frontier
         };
 
         private static readonly string[] GameMaps = FrontierConstants.GameMapPrototypes; // Frontier: not inline constants
