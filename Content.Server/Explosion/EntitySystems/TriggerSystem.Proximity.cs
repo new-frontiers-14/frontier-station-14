@@ -4,7 +4,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
-using Content.Shared.Whitelist;
+using Content.Shared.Whitelist; // Frontier
 
 namespace Content.Server.Explosion.EntitySystems;
 
@@ -70,9 +70,6 @@ public sealed partial class TriggerSystem
     private void OnProximityStartCollide(EntityUid uid, TriggerOnProximityComponent component, ref StartCollideEvent args)
     {
         if (args.OurFixtureId != TriggerOnProximityComponent.FixtureID)
-            return;
-
-        if (_whitelistSystem.IsBlacklistPass(component.Blacklist, args.OtherEntity)) // Frontier
             return;
 
         if (!_whitelistSystem.IsWhitelistPassOrNull(component.Whitelist, args.OtherEntity)) // Frontier
