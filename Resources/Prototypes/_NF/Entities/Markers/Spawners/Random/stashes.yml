@@ -1,0 +1,26 @@
+# Clutter
+- type: entity
+  name: random stash
+  id: SpawnDungeonLootStash
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Stash"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Back/Duffels/cargo.rsi
+        scale: 0.7, 0.7
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - DuffelCargoStashCashLow
+    - DuffelCargoStashCashMid
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - DuffelCargoStashCashHigh
+    rareChance: 0.05

@@ -1,0 +1,90 @@
+# Inventory template fills
+# Cash and valuables
+- type: entity
+  abstract: true
+  id: StorageFillStashCashLow
+  suffix: Stash, 5000 spesos
+  components:
+  - type: StorageFill
+    contents:
+    - id: SpaceCash5000
+
+- type: entity
+  abstract: true
+  id: StorageFillStashCashMid
+  suffix: Stash, 12500 spesos
+  components:
+  - type: StorageFill
+    contents:
+    - id: SpaceCash10000
+    - id: SpaceCash2500
+
+- type: entity
+  abstract: true
+  id: StorageFillStashCashHigh
+  suffix: Stash, 30000 spesos
+  components:
+  - type: StorageFill
+    contents:
+    - id: SpaceCash30000
+
+# Cruel jokes
+- type: entity
+  abstract: true
+  id: StorageFillStashFoodSpoiled
+  suffix: Stash, spoiled food
+  components:
+  - type: StorageFill
+    contents:
+    - id: FoodBurgerBigBiteRotten
+      amount: 2
+    - id: FoodBurgerPlainRotten
+      amount: 2
+
+- type: entity
+  abstract: true
+  id: StorageFillStashCashCounterfeit
+  suffix: Stash, 20000 fake spesos
+  components:
+  - type: StorageFill
+    contents:
+    - id: SpaceCashCounterfeit
+      amount: 20000
+
+# Contraband
+- type: entityTable
+  id: StorageFillStashContraband
+  table: !type:AllSelector
+    children:
+    - id: SyndicateBusinessCard
+    - !type:GroupSelector # Cash
+      children:
+      - id: Telecrystal1
+        weight: 80
+      - id: Telecrystal5
+        weight: 18
+      - id: Telecrystal10
+        weight: 2
+    - !type:GroupSelector
+      children:
+       - !type:GroupSelector # Tools
+          children:
+          - id: CameraBug
+          - id: ClothingMaskGasVoiceChameleon
+          - id: Emag
+          - id: StorageImplanter
+          - id: RadioJammer
+       - !type:GroupSelector # Weapons
+          children:
+          - id: WeaponCaseShortCobra
+          - id: WeaponCaseShortViper
+
+- type: entity
+  abstract: true
+  id: StorageFillStashSyndicate
+  suffix: Stash, Syndicate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: StorageFillStashContraband
