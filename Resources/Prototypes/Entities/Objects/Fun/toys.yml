@@ -1424,7 +1424,7 @@
         volume: -10
 
 - type: entity
-  parent: [ BaseItem, BaseMagicalContraband ]
+  parent: BaseItem # Frontier: remove BaseMagicalContraband
   id: PonderingOrb
   name: pondering orb
   description: Ponderous, man... Really ponderous.
@@ -1444,7 +1444,7 @@
     modifier: 0.001
 
 - type: entity
-  parent: PonderingOrb
+  parent: [PonderingOrb, BaseC3WizardContraband] # Frontier: add BaseC3WizardContraband
   id: PonderingOrbWizard
   name: pondering orb
   description: Ponderous, man... Really ponderous. Magically shows the station's camera network.
