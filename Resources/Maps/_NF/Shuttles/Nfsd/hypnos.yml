@@ -19,10 +19,10 @@ entities:
     components:
     - type: MetaData
       name: Hypnos
-    - type: BecomesStation
-      id: Hypnos
     - type: Transform
       parent: invalid
+    - type: BecomesStation
+      id: Hypnos
     - type: MapGrid
       chunks:
         0,0:
@@ -292,78 +292,78 @@ entities:
             0: 8183
           -1,0:
             0: 49391
-            1: 4096
+            2: 4096
           0,1:
             0: 13095
-            2: 128
+            1: 128
           -1,1:
             0: 34828
-            2: 32
+            1: 32
           0,2:
             0: 13107
-            1: 32768
+            2: 32768
           -1,2:
             0: 34952
-            1: 8192
+            2: 8192
           0,3:
             0: 3
-            2: 72
+            1: 72
           -1,3:
             0: 8
-            2: 66
+            1: 66
           1,0:
             0: 15
-            1: 4608
-            2: 3072
+            2: 4608
+            1: 3072
           1,-1:
             0: 60928
-            2: 9
+            1: 9
           2,0:
             0: 1
-            2: 4352
-            1: 8192
+            1: 4352
+            2: 8192
           2,-1:
             0: 4352
-            1: 1
+            2: 1
           2,1:
-            2: 4625
-            1: 2
+            1: 4625
+            2: 2
           -1,-1:
             0: 3820
-            2: 1
+            1: 1
           0,-2:
-            2: 32768
+            1: 32768
           1,-2:
-            1: 2048
-            2: 32768
+            2: 2048
+            1: 32768
           2,-2:
-            1: 4352
-            2: 512
+            2: 4352
+            1: 512
           -3,0:
             0: 8
-            1: 32768
+            2: 32768
           -3,-1:
             0: 34816
           -2,0:
             0: 47
-            2: 5888
-            1: 2048
-          -3,1:
-            1: 8
+            1: 5888
             2: 2048
+          -3,1:
+            2: 8
+            1: 2048
           -2,1:
-            2: 4113
+            1: 4113
           -2,-1:
             0: 65312
-            1: 1
-            2: 2
+            2: 1
+            1: 2
           -3,-2:
-            2: 2048
+            1: 2048
           -2,-2:
-            1: 4864
-            2: 8192
+            2: 4864
+            1: 8192
           -1,-2:
-            2: 8192
+            1: 8192
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -381,7 +381,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -396,7 +396,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          immutable: True
+          temperature: 293.15
           moles:
           - 0
           - 0
@@ -2200,6 +2200,20 @@ entities:
     - type: Transform
       pos: 1.5,10.5
       parent: 1
+- proto: NFPrisonerClosetWallOrangeFilled
+  entities:
+  - uid: 258
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-1.5
+      parent: 1
+  - uid: 475
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-1.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 220
@@ -2346,11 +2360,11 @@ entities:
       parent: 1
 - proto: PosterContrabandHackingGuide
   entities:
-  - uid: 258
+  - uid: 474
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5002007,-2
+      rot: 1.5707963267948966 rad
+      pos: 3.5,-3.5
       parent: 1
 - proto: PosterLegitEnlist
   entities:
@@ -2365,8 +2379,8 @@ entities:
   - uid: 298
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.5013912,-2
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-3.5
       parent: 1
 - proto: PosterLegitSafetyInternals
   entities:
