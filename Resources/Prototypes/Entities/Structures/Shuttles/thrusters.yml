@@ -21,12 +21,14 @@
       damage:
         types:
           Heat: 40
+      firingDesiredPowerDraw: 2000
+      firingPowerDrawRampDuration: 3
     - type: InteractionOutline
     - type: Sprite
     - type: Appearance
     - type: ThrusterVisuals
     - type: ApcPowerReceiver
-      powerLoad: 1500
+      powerLoad: 500
     - type: ExtensionCableReceiver
     - type: Damageable
       damageContainer: StructuralInorganic
@@ -120,6 +122,8 @@
   components:
   - type: Thruster
     requireSpace: false
+    firingDesiredPowerDraw: 0
+    firingPowerDrawRampDuration: 1
   - type: ApcPowerReceiver
     needsPower: false
     powerLoad: 0
@@ -228,6 +232,8 @@
     requireSpace: false
     baseThrust: 100
     thrust: 100
+    firingDesiredPowerDraw: 0
+    firingPowerDrawRampDuration: 1
   - type: ApcPowerReceiver
     needsPower: false
     powerLoad: 0

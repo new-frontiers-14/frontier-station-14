@@ -9,8 +9,10 @@
     damage:
       types:
         Heat: 40
+    firingDesiredPowerDraw: 500
+    firingPowerDrawRampDuration: 3
   - type: ApcPowerReceiver
-    powerLoad: 500
+    powerLoad: 125
   - type: Sprite
     scale: 0.8, 0.8
     sprite: Structures/Shuttles/thruster.rsi
@@ -52,8 +54,10 @@
     requireSpace: false
     baseThrust: 250
     thrust: 250
+    firingDesiredPowerDraw: 200
+    firingPowerDrawRampDuration: 3
   - type: ApcPowerReceiver
-    powerLoad: 200
+    powerLoad: 50
   - type: Sprite
     scale: 0.8, 0.8
     sprite: Structures/Shuttles/gyroscope.rsi
