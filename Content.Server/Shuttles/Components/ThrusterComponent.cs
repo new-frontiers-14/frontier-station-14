@@ -90,6 +90,19 @@ namespace Content.Server.Shuttles.Components
         [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))] // Frontier
         public string TogglePort = "Toggle"; // Frontier
         // End Frontier: upgradeable parts, togglable thrust
+
+        // Start-Eclipse
+        [DataField]
+        public float FiringDesiredPowerDraw;
+
+        /// <summary>
+        /// The time it takes for power draw to ramp up in seconds
+        /// </summary>
+        [DataField]
+        public float FiringPowerDrawRampDuration;
+
+        public float FiringPowerDrawLoadRampProgress = 0;
+        // End-Eclipse
     }
 
     public enum ThrusterType

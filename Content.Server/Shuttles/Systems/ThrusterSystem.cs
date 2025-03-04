@@ -509,8 +509,10 @@ public sealed class ThrusterSystem : EntitySystem
         var query = EntityQueryEnumerator<ThrusterComponent>();
         var curTime = _timing.CurTime;
 
-        while (query.MoveNext(out var comp))
+        while (query.MoveNext(out var uid, out var comp))
         {
+            UpdatePowerDraw(uid, frameTime, comp);
+
             if (comp.NextFire > curTime)
                 continue;
 
@@ -519,11 +521,38 @@ public sealed class ThrusterSystem : EntitySystem
             if (!comp.Firing || comp.Colliding.Count == 0 || comp.Damage == null)
                 continue;
 
-            foreach (var uid in comp.Colliding.ToArray())
+            foreach (var colUid in comp.Colliding.ToArray())
             {
-                _damageable.TryChangeDamage(uid, comp.Damage);
+                _damageable.TryChangeDamage(colUid, comp.Damage);
             }
         }
+    }
+
+    private void UpdatePowerDraw(EntityUid uid, float frameTime, ThrusterComponent comp)
+    {
+        if (!TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
+            return;
+
+        if (comp.Firing)
+        {
+            comp.FiringPowerDrawLoadRampProgress = Math.Min(comp.FiringPowerDrawLoadRampProgress + frameTime, comp.FiringPowerDrawRampDuration);
+        }
+        else
+        {
+            comp.FiringPowerDrawLoadRampProgress = Math.Max(comp.FiringPowerDrawLoadRampProgress - frameTime, 0);
+        }
+
+        var curveProgress = comp.FiringPowerDrawLoadRampProgress / comp.FiringPowerDrawRampDuration;
+
+        //linear
+        //var curLoad = (comp.FiringDesiredPowerDraw - comp.OriginalLoad) * curveProgress;
+
+        //easeOutQuad
+        var x = curveProgress;
+        var eased = 1 - (1 - x) * (1 - x);
+        var curLoad = (comp.FiringDesiredPowerDraw - comp.OriginalLoad) * eased;
+
+        apcPower.Load = comp.OriginalLoad + (float)curLoad;
     }
 
     private void OnStartCollide(EntityUid uid, ThrusterComponent component, ref StartCollideEvent args)
