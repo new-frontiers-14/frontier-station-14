@@ -4,11 +4,6 @@
   id: NFConcealedMineTrigger
   abstract: true
   components:
-  - type: Transform
-    anchored: false
-  - type: Physics
-    fixedRotation: true
-    canCollide: true
   - type: AmbientSound
     volume: -15
     range: 2
@@ -117,7 +112,7 @@
           mask_null: ""
 
 - type: entity
-  parent: [ WetFloorSign, NFConcealedMineExplosive ]
+  parent: NFConcealedMineExplosive
   id: NFWetFloorSignMineExplosive
   components:
   - type: Sprite
