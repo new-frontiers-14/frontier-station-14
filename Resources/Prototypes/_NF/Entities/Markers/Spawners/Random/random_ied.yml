@@ -6,26 +6,41 @@
     - !type:GroupSelector
       children:
       - id: NFToolboxMineExplosive
+        weight: 2
       - id: NFWetFloorSignMineExplosive
+        weight: 2
       - id: NFPlushieMineExplosive
+        weight: 46
       - id: NFBoxMineExplosive
+        weight: 25
       - id: NFTrashMineExplosive
+        weight: 25
     # Cryo
     - !type:GroupSelector
       children:
       - id: NFToolboxMineCryo
+        weight: 2
       - id: NFWetFloorSignMineCryo
+        weight: 2
       - id: NFPlushieMineCryo
+        weight: 46
       - id: NFBoxMineCryo
+        weight: 25
       - id: NFTrashMineCryo
+        weight: 25
     # Fire
     - !type:GroupSelector
       children:
       - id: NFToolboxMineFire
+        weight: 2
       - id: NFWetFloorSignMineFire
+        weight: 2
       - id: NFPlushieMineFire
+        weight: 46
       - id: NFBoxMineFire
+        weight: 25
       - id: NFTrashMineFire
+        weight: 25
 
 - type: entity
   name: random mine spawner
@@ -37,7 +52,14 @@
     layers:
     - state: red
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_wiring
+      state: ied_wiring1
+      color: "#990000"
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring2
+      color: "#009900"
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring3
+      color: "#000099"
     - sprite: Objects/Consumable/Food/snacks.rsi
       state: cheesiehonkers-trash
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
