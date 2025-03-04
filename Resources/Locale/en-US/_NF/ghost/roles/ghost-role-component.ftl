@@ -17,13 +17,16 @@ ghost-role-information-clarpy-rules = You are a [color=red][bold]Team Antagonist
 
 ghost-role-information-cult-cat-name = Blood Cult Cat
 ghost-role-information-cult-cat-description = Founded the Blood Cult out of boredom.
-ghost-role-information-cult-cat-rules = You are a [color=red][bold]Free Agent[/bold][/color] and free to choose your course of actions.
+ghost-role-information-cult-cat-rules = You are a [color=yellow][bold]Free Agent[/bold][/color] and free to choose your course of actions.
                                         Please note that [color=yellow]all server rules still apply.[/color] Additionally:
                                         - [color=red]DO NOT[/color] damage player shuttles or their contents.
                                         - [color=red]DO NOT[/color] gib players. Once they're dead, leave them be.
 
 ghost-role-information-cappy-name = Cappy
 ghost-role-information-cappy-description = Stop resisting! Certified in lethal-force and defensive tactics.
+
+ghost-role-information-elcapo-name = El Capo
+ghost-role-information-elcapo-description = Found himself in jail after years of cat crimes.
 
 ghost-role-information-crispy-name = Crispy
 ghost-role-information-crispy-description = Mistakes were made.
@@ -70,3 +73,6 @@ ghost-role-information-dungeon-boss-rules = You are a [color=red][bold]Team Anta
                                         - [color=red]DO NOT[/color] leave the planet.
 
 nf-ghost-role-information-derelict-cyborg-description = You are a cyborg that's been stranded on a wreck for years, exposed to countless ion storms.
+
+nf-ghost-role-information-buddy-name = Buddy
+nf-ghost-role-information-buddy-description = You were constructed from a Build-A-Buddy kit. Become someone's best friend today!
