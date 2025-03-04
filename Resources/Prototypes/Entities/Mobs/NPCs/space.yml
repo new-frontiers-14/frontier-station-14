@@ -73,6 +73,7 @@
   id: MobBearSpace
   parent: MobSpaceBasic
   description: It looks friendly. Why don't you give it a hug?
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -113,14 +114,18 @@
 
 - type: entity
   id: MobBearSpaceSalvage
-  parent: [NFMobRestrictions, MobBearSpace] # Frontier: add NFMobRestrictions, remove components
+  parent: MobBearSpace
   suffix: "Salvage Ruleset"
+  categories: [ HideSpawnMenu ] # Frontier
+  components:
+  - type: NFSalvageMobRestrictions # Frontier: SalvageMobRestrictions<NFSalvageMobRestrictions
 
 - type: entity
   name: space kangaroo
   id: MobKangarooSpace
   parent: [MobSpaceBasic, StripableInventoryBase]
   description: It looks friendly. Why don't you give it a hug?
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -165,19 +170,25 @@
       collection: FootstepBounce
   - type: ReplacementAccent
     accent: kangaroo
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
 
 - type: entity
   id: MobKangarooSpaceSalvage
   parent: MobKangarooSpace
   suffix: "Salvage Ruleset"
+  categories: [ HideSpawnMenu ] # Frontier
   components:
-  - type: NFSalvageMobRestrictions # Frontier
+  - type: NFSalvageMobRestrictions # Frontier: SalvageMobRestrictions<NFSalvageMobRestrictions
 
 - type: entity
   name: space spider
   id: MobSpiderSpace
   parent: MobSpaceBasic
   description: It's so glowing, it looks dangerous.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -230,16 +241,16 @@
     damage:
       types:
         Piercing: 6
-        Poison: 2
+        Poison: 4
   - type: SolutionContainerManager
     solutions:
       melee:
         reagents:
         - ReagentId: ChloralHydrate
-          Quantity: 60
+          Quantity: 80
   - type: MeleeChemicalInjector
     solution: melee
-    transferAmount: 3
+    transferAmount: 4
   - type: ReplacementAccent
     accent: xeno
   - type: InteractionPopup
@@ -266,14 +277,18 @@
 
 - type: entity
   id: MobSpiderSpaceSalvage
-  parent: [NFMobRestrictions, MobSpiderSpace] # Frontier: add NFMobRestrictions, remove components
+  parent: MobSpiderSpace
   suffix: "Salvage Ruleset"
+  categories: [ HideSpawnMenu ] # Frontier
+  components:
+  - type: NFSalvageMobRestrictions # Frontier: SalvageMobRestrictions<NFSalvageMobRestrictions
 
 - type: entity
   name: space cobra
   id: MobCobraSpace
   parent: MobSpaceBasic
   description: Long fangs and a glowing hood, and the alluring look begs to come closer.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: Sprite
       drawdepth: Mobs
@@ -361,8 +376,11 @@
 
 - type: entity
   id: MobCobraSpaceSalvage
-  parent: [NFMobRestrictions, MobCobraSpace] # Frontier: add NFMobRestrictions, remove components
+  parent: MobCobraSpace
   suffix: "Salvage Ruleset"
+  categories: [ HideSpawnMenu ] # Frontier
+  components:
+    - type: NFSalvageMobRestrictions # Frontier: SalvageMobRestrictions<NFSalvageMobRestrictions
 
 - type: entity
   parent: SimpleSpaceMobBase
