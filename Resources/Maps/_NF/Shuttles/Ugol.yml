@@ -506,31 +506,31 @@ entities:
     - type: Transform
       pos: 0.5,-7.5
       parent: 1
-  - uid: 11
+  - uid: 7
     components:
     - type: Transform
       pos: 4.5,-7.5
       parent: 1
 - proto: AirlockExternalGlass
   entities:
-  - uid: 7
-    components:
-    - type: Transform
-      pos: 1.5,-3.5
-      parent: 1
   - uid: 8
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,1.5
+      pos: 1.5,-3.5
       parent: 1
   - uid: 9
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 4.5,-4.5
+      pos: 6.5,1.5
       parent: 1
   - uid: 10
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-4.5
+      parent: 1
+  - uid: 11
     components:
     - type: Transform
       pos: 6.5,-0.5
@@ -1781,6 +1781,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,-5.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 333
+    components:
+    - type: Transform
+      pos: 3.5,-0.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 200
@@ -2206,15 +2213,15 @@ entities:
         - Pressed: Toggle
         247:
         - Pressed: Toggle
-        8:
+        9:
         - Pressed: DoorBolt
-        7:
+        8:
         - Pressed: DoorBolt
         251:
         - Pressed: Toggle
         243:
         - Pressed: Toggle
-        9:
+        10:
         - Pressed: DoorBolt
   - uid: 265
     components:
