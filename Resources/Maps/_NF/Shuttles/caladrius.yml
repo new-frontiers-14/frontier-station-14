@@ -2681,6 +2681,7 @@ entities:
       - 1989
       - 918
       - 540
+      - 1746
   - uid: 2426
     components:
     - type: Transform
@@ -7276,6 +7277,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,-14.5
       parent: 1
+  - uid: 1018
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-16.5
+      parent: 1
   - uid: 1420
     components:
     - type: Transform
@@ -7776,6 +7783,12 @@ entities:
     - type: Transform
       pos: 2.5,-17.5
       parent: 1
+  - uid: 2151
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -7.5,-16.5
+      parent: 1
   - uid: 2404
     components:
     - type: Transform
@@ -7881,6 +7894,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,-26.5
       parent: 1
+  - uid: 1761
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -8.5,-4.5
+      parent: 1
   - uid: 1780
     components:
     - type: Transform
@@ -7954,12 +7973,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-3.5
-      parent: 1
-  - uid: 2151
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -8.5,-6.5
       parent: 1
   - uid: 2152
     components:
@@ -8221,10 +8234,11 @@ entities:
   - uid: 1746
     components:
     - type: Transform
-      pos: -8.5,-8.5
+      pos: -8.5,-9.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
+      - 2425
       - 2426
   - uid: 1781
     components:
@@ -13298,6 +13312,11 @@ entities:
     - type: Transform
       pos: -0.5,-24.5
       parent: 1
+  - uid: 1991
+    components:
+    - type: Transform
+      pos: -15.5,4.5
+      parent: 1
   - uid: 2350
     components:
     - type: Transform
@@ -13315,6 +13334,11 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-24.5
+      parent: 1
+  - uid: 1722
+    components:
+    - type: Transform
+      pos: -15.5,3.5
       parent: 1
 - proto: NFPosterContrabandFsbRubicon
   entities:
@@ -13582,11 +13606,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,-15.5
       parent: 1
-  - uid: 269
-    components:
-    - type: Transform
-      pos: -4.5,-3.5
-      parent: 1
   - uid: 276
     components:
     - type: Transform
@@ -13761,11 +13780,6 @@ entities:
     - type: Transform
       pos: 7.5,3.5
       parent: 1
-  - uid: 1018
-    components:
-    - type: Transform
-      pos: -10.5,-4.5
-      parent: 1
   - uid: 1021
     components:
     - type: Transform
@@ -13835,7 +13849,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -8.5,-4.5
+      pos: -8.5,-6.5
       parent: 1
   - uid: 1954
     components:
@@ -14020,6 +14034,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,9.5
+      parent: 1
+- proto: PoweredWarmSmallLight
+  entities:
+  - uid: 269
+    components:
+    - type: Transform
+      pos: -4.5,-3.5
       parent: 1
 - proto: PsychBed
   entities:
