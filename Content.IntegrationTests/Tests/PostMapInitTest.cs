@@ -171,43 +171,48 @@ namespace Content.IntegrationTests.Tests
                 .ToArray();
 
             var v7Maps = new List<ResPath>();
-            foreach (var map in maps)
+            // Frontier: run all the maps
+            Assert.Multiple(() =>
             {
-                var rootedPath = map.ToRootedPath();
-
-                // ReSharper disable once RedundantLogicalConditionalExpressionOperand
-                if (SkipTestMaps && rootedPath.ToString().StartsWith(TestMapsPath, StringComparison.Ordinal))
+                foreach (var map in maps)
                 {
-                    continue;
+                    var rootedPath = map.ToRootedPath();
+
+                    // ReSharper disable once RedundantLogicalConditionalExpressionOperand
+                    if (SkipTestMaps && rootedPath.ToString().StartsWith(TestMapsPath, StringComparison.Ordinal))
+                    {
+                        continue;
+                    }
+
+                    if (!resourceManager.TryContentFileRead(rootedPath, out var fileStream))
+                    {
+                        Assert.Fail($"Map not found: {rootedPath}");
+                    }
+
+                    using var reader = new StreamReader(fileStream);
+                    var yamlStream = new YamlStream();
+
+                    yamlStream.Load(reader);
+
+                    var root = yamlStream.Documents[0].RootNode;
+                    var meta = root["meta"];
+                    var version = meta["format"].AsInt();
+
+                    // TODO MAP TESTS
+                    // Move this to some separate test?
+                    CheckDoNotMap(map, root, protoManager);
+
+                    if (version >= 7)
+                    {
+                        v7Maps.Add(map);
+                        continue;
+                    }
+
+                    var postMapInit = meta["postmapinit"].AsBool();
+                    Assert.That(postMapInit, Is.False, $"Map {map.Filename} was saved postmapinit");
                 }
-
-                if (!resourceManager.TryContentFileRead(rootedPath, out var fileStream))
-                {
-                    Assert.Fail($"Map not found: {rootedPath}");
-                }
-
-                using var reader = new StreamReader(fileStream);
-                var yamlStream = new YamlStream();
-
-                yamlStream.Load(reader);
-
-                var root = yamlStream.Documents[0].RootNode;
-                var meta = root["meta"];
-                var version = meta["format"].AsInt();
-
-                // TODO MAP TESTS
-                // Move this to some separate test?
-                CheckDoNotMap(map, root, protoManager);
-
-                if (version >= 7)
-                {
-                    v7Maps.Add(map);
-                    continue;
-                }
-
-                var postMapInit = meta["postmapinit"].AsBool();
-                Assert.That(postMapInit, Is.False, $"Map {map.Filename} was saved postmapinit");
-            }
+            });
+            // End Frontier
 
             var deps = server.ResolveDependency<IEntitySystemManager>().DependencyCollection;
             foreach (var map in v7Maps)
