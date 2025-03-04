@@ -5,7 +5,6 @@
   parent: NFBaseDebris
   abstract: true
   components:
-    - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorTileset:
       - FloorAsteroidSand
@@ -24,13 +23,12 @@
             orGroup: rock
             prob: 0.0002
     - type: IFF
-      flags: HideLabel
       color: "#d67e27"
     - type: RandomEntityPopulator
-      entries: &gasDeposits
+      entries:
       - params:
           prob: 0.5
-          min: 0
+          min: 1
           max: 2
           canBeAirSealed: true
         entries:
@@ -41,12 +39,6 @@
         - id: GasDepositCarbonDioxide
           orGroup: deposit
         - id: GasDepositPlasma
-          orGroup: deposit
-        - id: GasDepositAmmonia
-          orGroup: deposit
-        - id: GasDepositWaterVapor
-          orGroup: deposit
-        - id: GasDepositNitrousOxide
           orGroup: deposit
         - id: GasDepositAir
           orGroup: deposit
@@ -59,7 +51,7 @@
 # region Snow Table
 - type: entity
   id: NFBaseAsteroidIceDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -81,13 +73,35 @@
     - type: IFF
       color: "#d6fffc"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.66
+          min: 1
+          max: 4
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositOxygen
+          orGroup: deposit
+        - id: GasDepositOxygenLarge
+          orGroup: deposit
+        - id: GasDepositNitrogen
+          orGroup: deposit
+        - id: GasDepositNitrogenLarge
+          orGroup: deposit
+        - id: GasDepositAir
+          orGroup: deposit
+        - id: GasDepositAirLarge
+          orGroup: deposit
+        - id: GasDepositWaterVaporVeryLarge
+          orGroup: deposit
+        - id: GasDepositWaterVaporLarge
+          orGroup: deposit
 # endregion Snow Table
 
 # region Andesite Table
 - type: entity
   id: NFBaseAsteroidAndesiteDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -109,13 +123,25 @@
     - type: IFF
       color: "#95c280"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.33
+          min: 1
+          max: 1
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositNitrousOxide
+          orGroup: deposit
+        - id: GasDepositCarbonDioxide
+          orGroup: deposit
+        - id: GasDepositAmmonia
+          orGroup: deposit
 # endregion Andesite Table
 
 # region Basalt Table
 - type: entity
   id: NFBaseAsteroidBasaltDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -137,13 +163,25 @@
     - type: IFF
       color: "#b5b5b5"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.5
+          min: 4
+          max: 6
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositPlasmaVerySmall
+          orGroup: deposit
+        - id: GasDepositMuddlePlasmaVerySmall
+          orGroup: deposit
+        - id: GasDepositMuddleEvenVerySmall
+          orGroup: deposit
 # endregion Basalt Table
 
 # region Sand Table
 - type: entity
   id: NFBaseAsteroidSandDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -165,13 +203,25 @@
     - type: IFF
       color: "#cad17b"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.5
+          min: 2
+          max: 4
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositCarbonDioxideSmall
+          orGroup: deposit
+        - id: GasDepositAmmonia
+          orGroup: deposit
+        - id: GasDepositNitrogenLarge
+          orGroup: deposit
 # endregion Sand Table
 
 # region Chromite Table
 - type: entity
   id: NFBaseAsteroidChromiteDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -193,13 +243,27 @@
     - type: IFF
       color: "#8178cc"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.6
+          min: 1
+          max: 1
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositOxygenVeryLarge
+          orGroup: deposit
+        - id: GasDepositMuddleEvenVeryLarge
+          orGroup: deposit
+        - id: GasDepositNitrogenVeryLarge
+          orGroup: deposit
+        - id: GasDepositAirVeryLarge
+          orGroup: deposit
 # endregion Chromite Table
 
 # region AsteroidRock Table
 - type: entity
   id: NFBaseAsteroidRockDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -221,13 +285,27 @@
     - type: IFF
       color: "#BF8C5C"
     - type: RandomEntityPopulator
-      entries: *gasDeposits
+      entries:
+      - params:
+          prob: 0.4
+          min: 2
+          max: 6
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositNitrousOxideSmall
+          orGroup: deposit
+        - id: GasDepositMuddleEvenSmall
+          orGroup: deposit
+        - id: GasDepositCarbonDioxideSmall
+          orGroup: deposit
+        - id: GasDepositAirSmall
+          orGroup: deposit
 # endregion AsteroidRock Table
 
 # region Scrap Table
 - type: entity
   id: NFBaseAsteroidScrapDebris
-  parent: NFBaseAsteroidDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: BlobFloorPlanBuilder
@@ -246,558 +324,619 @@
       color: "#fcdec7"
 # endregion Scrap Table
 
-# region Asteroid Entities
+# region Asteroid Sizes
 - type: entity
-  id: NFAsteroidDebrisSmall
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidSmall
   name: asteroid debris small
-  categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 16
       radius: 6
 
 - type: entity
-  id: NFAsteroidDebrisMedium
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidMedium
   name: asteroid debris medium
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 24
       radius: 8
 
 - type: entity
-  id: NFAsteroidDebrisLarge
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidLarge
   name: asteroid debris large
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 36
       radius: 10
 
 - type: entity
-  id: NFAsteroidDebrisExtraLarge
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidExtraLarge
   name: asteroid debris extra large
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 52
       radius: 12
 
 - type: entity
-  id: NFAsteroidDebrisHuge
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidHuge
   name: asteroid debris huge
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 72
       radius: 16
 
 - type: entity
-  id: NFAsteroidDebrisExtraHuge
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidExtraHuge
   name: asteroid debris extra huge
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 96
       radius: 18
 
 - type: entity
-  id: NFAsteroidDebrisEnormous
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidEnormous
   name: asteroid debris enormous
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 124
       radius: 20
 
 - type: entity
-  id: NFAsteroidDebrisExtraEnormous
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidExtraEnormous
   name: asteroid debris extra enormous
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 156
       radius: 22
 
 - type: entity
-  id: NFAsteroidDebrisMassive
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidMassive
   name: asteroid debris massive
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 192
       radius: 24
 
 - type: entity
-  id: NFAsteroidDebrisExtraMassive
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidExtraMassive
   name: asteroid debris extra massive
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 232
       radius: 24
 
 - type: entity
-  id: NFAsteroidDebrisGigantic
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidGigantic
   name: asteroid debris gigantic
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 276
       radius: 26
 
 - type: entity
-  id: NFAsteroidDebrisExtraGigantic
-  parent: NFBaseAsteroidDebris
+  id: NFBaseAsteroidExtraGigantic
   name: asteroid debris extra gigantic
   categories: [ HideSpawnMenu ]
+  abstract: true
   components:
     - type: BlobFloorPlanBuilder
       floorPlacements: 324
       radius: 28
+# endregion Asteroid Sizes
+
+# region Asteroid Entities
+- type: entity
+  id: NFAsteroidDebrisSmall
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidSmall]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidDebrisMedium
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidMedium]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidDebrisLarge
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidLarge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidDebrisExtraLarge
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidExtraLarge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidDebrisHuge
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidHuge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidDebrisExtraHuge
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidExtraHuge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidDebrisEnormous
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidEnormous]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidDebrisExtraEnormous
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidEnormous]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidDebrisMassive
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidMassive]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidDebrisExtraMassive
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidExtraMassive]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidDebrisGigantic
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidGigantic]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidDebrisExtraGigantic
+  parent: [NFBaseAsteroidDebris, NFBaseAsteroidExtraGigantic]
+  categories: [ HideSpawnMenu ]
 # endregion Asteroid Entities
 
 # region Ice Entities
 - type: entity
   id: NFAsteroidIceDebrisSmall
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisSmall]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidSmall]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidIceDebrisMedium
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisMedium]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidMedium]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidIceDebrisLarge
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisLarge]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidIceDebrisExtraLarge
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisExtraLarge]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidExtraLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidIceDebrisHuge
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisHuge]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidIceDebrisExtraHuge
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisExtraHuge]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidExtraHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidIceDebrisEnormous
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisEnormous]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidIceDebrisExtraEnormous
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisExtraEnormous]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidExtraEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidIceDebrisMassive
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisMassive]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidIceDebrisExtraMassive
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisExtraMassive]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidExtraMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidIceDebrisGigantic
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisGigantic]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidGigantic]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidIceDebrisExtraGigantic
-  parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisExtraGigantic]
+  parent: [NFBaseAsteroidIceDebris, NFBaseAsteroidExtraGigantic]
   categories: [ HideSpawnMenu ]
 # endregion Ice Entities
 
 # region Andesite Entities
 - type: entity
   id: NFAsteroidAndesiteDebrisSmall
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisSmall]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidSmall]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidAndesiteDebrisMedium
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisMedium]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidMedium]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidAndesiteDebrisLarge
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisLarge]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidAndesiteDebrisExtraLarge
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisExtraLarge]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidExtraLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidAndesiteDebrisHuge
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisHuge]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidAndesiteDebrisExtraHuge
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisExtraHuge]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidExtraHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidAndesiteDebrisEnormous
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisEnormous]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidAndesiteDebrisExtraEnormous
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisExtraEnormous]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidExtraEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidAndesiteDebrisMassive
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisMassive]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidAndesiteDebrisExtraMassive
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisExtraMassive]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidExtraMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidAndesiteDebrisGigantic
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisGigantic]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidGigantic]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidAndesiteDebrisExtraGigantic
-  parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisExtraGigantic]
+  parent: [NFBaseAsteroidAndesiteDebris, NFBaseAsteroidExtraGigantic]
   categories: [ HideSpawnMenu ]
 # endregion Andesite Entities
 
 # region Basalt Entities
 - type: entity
   id: NFAsteroidBasaltDebrisSmall
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisSmall]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidSmall]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidBasaltDebrisMedium
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisMedium]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidMedium]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidBasaltDebrisLarge
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisLarge]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidBasaltDebrisExtraLarge
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisExtraLarge]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidExtraLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidBasaltDebrisHuge
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisHuge]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidBasaltDebrisExtraHuge
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisExtraHuge]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidExtraHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidBasaltDebrisEnormous
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisEnormous]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidBasaltDebrisExtraEnormous
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisExtraEnormous]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidExtraEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidBasaltDebrisMassive
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisMassive]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidBasaltDebrisExtraMassive
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisExtraMassive]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidExtraMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidBasaltDebrisGigantic
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisGigantic]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidGigantic]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidBasaltDebrisExtraGigantic
-  parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisExtraGigantic]
+  parent: [NFBaseAsteroidBasaltDebris, NFBaseAsteroidExtraGigantic]
   categories: [ HideSpawnMenu ]
 # endregion Basalt Entities
 
 # region Sand Entities
 - type: entity
   id: NFAsteroidSandDebrisSmall
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisSmall]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidSmall]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidSandDebrisMedium
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisMedium]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidMedium]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidSandDebrisLarge
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisLarge]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidSandDebrisExtraLarge
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisExtraLarge]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidExtraLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidSandDebrisHuge
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisHuge]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidSandDebrisExtraHuge
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisExtraHuge]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidExtraHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidSandDebrisEnormous
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisEnormous]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidSandDebrisExtraEnormous
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisExtraEnormous]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidExtraEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidSandDebrisMassive
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisMassive]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidSandDebrisExtraMassive
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisExtraMassive]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidExtraMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidSandDebrisGigantic
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisGigantic]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidGigantic]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidSandDebrisExtraGigantic
-  parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisExtraGigantic]
+  parent: [NFBaseAsteroidSandDebris, NFBaseAsteroidExtraGigantic]
   categories: [ HideSpawnMenu ]
 # endregion Sand Entities
 
 # region Chromite Entities
 - type: entity
   id: NFAsteroidChromiteDebrisSmall
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisSmall]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidSmall]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidChromiteDebrisMedium
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisMedium]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidMedium]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidChromiteDebrisLarge
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisLarge]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidChromiteDebrisExtraLarge
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisExtraLarge]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidExtraLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidChromiteDebrisHuge
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisHuge]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidChromiteDebrisExtraHuge
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisExtraHuge]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidExtraHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidChromiteDebrisEnormous
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisEnormous]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidChromiteDebrisExtraEnormous
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisExtraEnormous]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidExtraEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidChromiteDebrisMassive
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisMassive]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidChromiteDebrisExtraMassive
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisExtraMassive]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidExtraMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidChromiteDebrisGigantic
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisGigantic]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidGigantic]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidChromiteDebrisExtraGigantic
-  parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisExtraGigantic]
+  parent: [NFBaseAsteroidChromiteDebris, NFBaseAsteroidExtraGigantic]
   categories: [ HideSpawnMenu ]
 # endregion Chromite Entities
 
 # region AsteroidRock Entities
 - type: entity
   id: NFAsteroidRockDebrisSmall
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisSmall]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidSmall]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidRockDebrisMedium
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisMedium]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidMedium]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidRockDebrisLarge
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisLarge]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidRockDebrisExtraLarge
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisExtraLarge]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidExtraLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidRockDebrisHuge
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisHuge]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidRockDebrisExtraHuge
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisExtraHuge]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidExtraHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidRockDebrisEnormous
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisEnormous]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidRockDebrisExtraEnormous
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisExtraEnormous]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidExtraEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidRockDebrisMassive
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisMassive]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidRockDebrisExtraMassive
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisExtraMassive]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidExtraMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidRockDebrisGigantic
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisGigantic]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidGigantic]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidRockDebrisExtraGigantic
-  parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisExtraGigantic]
+  parent: [NFBaseAsteroidRockDebris, NFBaseAsteroidExtraGigantic]
   categories: [ HideSpawnMenu ]
 # endregion AsteroidRock Entities
 
 # region Scrap Entities
 - type: entity
   id: NFAsteroidScrapDebrisSmall
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisSmall]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidSmall]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidScrapDebrisMedium
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisMedium]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidMedium]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidScrapDebrisLarge
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisLarge]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidScrapDebrisExtraLarge
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisExtraLarge]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidExtraLarge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidScrapDebrisHuge
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisHuge]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidScrapDebrisExtraHuge
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisExtraHuge]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidExtraHuge]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidScrapDebrisEnormous
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisEnormous]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidScrapDebrisExtraEnormous
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisExtraEnormous]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidExtraEnormous]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidScrapDebrisMassive
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisMassive]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidScrapDebrisExtraMassive
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisExtraMassive]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidExtraMassive]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidScrapDebrisGigantic
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisGigantic]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidGigantic]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFAsteroidScrapDebrisExtraGigantic
-  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisExtraGigantic]
+  parent: [NFBaseAsteroidScrapDebris, NFBaseAsteroidExtraGigantic]
   categories: [ HideSpawnMenu ]
 # endregion Scrap Entities

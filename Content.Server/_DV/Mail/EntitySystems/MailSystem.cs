@@ -1,7 +1,4 @@
 using Content.Server.Access.Systems;
-using Content.Server.Cargo.Components;
-using Content.Server.Cargo.Systems;
-using Content.Server.Chat.Systems;
 using Content.Server.Damage.Components;
 using Content.Server._DV.Cargo.Components;
 using Content.Server._DV.Cargo.Systems;
@@ -12,7 +9,6 @@ using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible;
 using Content.Server.Mind;
 using Content.Server.Popups;
-using Content.Server.Power.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
@@ -48,8 +44,11 @@ using Content.Server._NF.Bank; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Server.Station.Components; // Frontier
 using Robust.Shared.Enums; // Frontier
-using Content.Shared.Bank.Components; // Frontier
+using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared._NF.Bank.BUI; // Frontier
+using Content.Shared.SSDIndicator; // Frontier
+using Content.Server.Power.EntitySystems; // Frontier
+using Content.Server._NF.Mail.Components; // Frontier
 
 namespace Content.Server._DV.Mail.EntitySystems
 {
@@ -72,10 +71,11 @@ namespace Content.Server._DV.Mail.EntitySystems
         [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
         [Dependency] private readonly TagSystem _tagSystem = default!;
+        [Dependency] private readonly LogisticStatsSystem _logisticsStatsSystem = default!;
+        [Dependency] private readonly EmagSystem _emag = default!;
         [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
         [Dependency] private readonly BankSystem _bank = default!; // Frontier
-
-        [Dependency] private readonly LogisticStatsSystem _logisticsStatsSystem = default!;
+        [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!; // Frontier
 
         private ISawmill _sawmill = default!;
 
@@ -101,20 +101,17 @@ namespace Content.Server._DV.Mail.EntitySystems
         {
             base.Update(frameTime);
 
-            var query = EntityQueryEnumerator<MailTeleporterComponent>();
-            while (query.MoveNext(out var uid, out var mailTeleporter))
+            // Frontier: sector-wide mail
+            if (TryComp(_sectorService.GetServiceEntity(), out SectorMailComponent? mail))
             {
-                if (TryComp<ApcPowerReceiverComponent>(uid, out var power) && !power.Powered)
-                    continue;
+                mail.Accumulator += frameTime;
+                if (mail.Accumulator < mail.TeleportInterval.TotalSeconds)
+                    return;
 
-                mailTeleporter.Accumulator += frameTime;
-
-                if (mailTeleporter.Accumulator < mailTeleporter.TeleportInterval.TotalSeconds)
-                    continue;
-
-                mailTeleporter.Accumulator -= (float)mailTeleporter.TeleportInterval.TotalSeconds;
-                SpawnMail(uid, mailTeleporter);
+                mail.Accumulator -= (float)mail.TeleportInterval.TotalSeconds;
+                SpawnMail(mail);
             }
+            // End Frontier
         }
 
         /// <summary>
@@ -123,12 +120,12 @@ namespace Content.Server._DV.Mail.EntitySystems
         private void OnSpawnPlayer(PlayerSpawningEvent args)
         {
             if (args.SpawnResult == null ||
-                args.Job == null )
+                args.Job == null)
             {
                 return;
             }
 
-            //if (!HasComp<StationMailRouterComponent>(station)) # Frontier - We dont need to test this.
+            //if (!HasComp<StationMailRouterComponent>(station)) // Frontier - We dont need to test this.
             //    return;
 
             EnsureComp<MailReceiverComponent>(args.SpawnResult.Value);
@@ -166,16 +163,16 @@ namespace Content.Server._DV.Mail.EntitySystems
             if (!component.IsPriority)
                 return;
 
-                // This is a successful delivery. Keep the failure timer from triggering.
-                component.PriorityCancelToken?.Cancel();
+            // This is a successful delivery. Keep the failure timer from triggering.
+            component.PriorityCancelToken?.Cancel();
 
-                // The priority tape is visually considered to be a part of the
-                // anti-tamper lock, so remove that too.
-                _appearanceSystem.SetData(uid, MailVisuals.IsPriority, false);
+            // The priority tape is visually considered to be a part of the
+            // anti-tamper lock, so remove that too.
+            _appearanceSystem.SetData(uid, MailVisuals.IsPriority, false);
 
-                // The examination code depends on this being false to not show
-                // the priority tape description anymore.
-                component.IsPriority = false;
+            // The examination code depends on this being false to not show
+            // the priority tape description anymore.
+            component.IsPriority = false;
         }
 
         /// <summary>
@@ -202,7 +199,7 @@ namespace Content.Server._DV.Mail.EntitySystems
             if (idCard == null) // Return if we still haven't found an id card.
                 return;
 
-            if (!HasComp<EmaggedComponent>(uid))
+            if (!_emag.CheckFlag(uid, EmagType.Interaction))
             {
                 if (idCard.FullName != component.Recipient /*|| idCard.LocalizedJobTitle != component.RecipientJob*/)  // Frontier - Only match the name
                 {
@@ -223,8 +220,8 @@ namespace Content.Server._DV.Mail.EntitySystems
                 // DeltaV - Add earnings to logistic stats
                 ExecuteForEachLogisticsStats((logisticStats) =>
                 {
-                        _logisticsStatsSystem.AddOpenedMailEarnings(logisticStats,
-                            component.Bounty);
+                    _logisticsStatsSystem.AddOpenedMailEarnings(logisticStats,
+                        component.Bounty);
                 });
             }
 
@@ -350,6 +347,11 @@ namespace Content.Server._DV.Mail.EntitySystems
 
         private void OnMailEmagged(EntityUid uid, MailComponent component, ref GotEmaggedEvent args)
         {
+            // Frontier: emag type check
+            if (args.Handled || !_emag.CheckFlag(uid, EmagType.Access))
+                return;
+            // End Frontier
+
             if (!component.IsLocked)
                 return;
 
@@ -458,7 +460,7 @@ namespace Content.Server._DV.Mail.EntitySystems
         /// <remarks>
         /// This is separate mostly so the unit tests can get to it.
         /// </remarks>
-        public void SetupMail(EntityUid uid, MailTeleporterComponent component, MailRecipient recipient)
+        public void SetupMail(EntityUid uid, SectorMailComponent component, MailRecipient recipient) // Frontier: MailTeleporterComponent<SectorMailComponent
         {
             var mailComp = EnsureComp<MailComponent>(uid);
 
@@ -512,7 +514,7 @@ namespace Content.Server._DV.Mail.EntitySystems
 
                 mailComp.PriorityCancelToken = new CancellationTokenSource();
 
-                Timer.Spawn((int) component.PriorityDuration.TotalMilliseconds,
+                Timer.Spawn((int)component.PriorityDuration.TotalMilliseconds,
                     () =>
                     {
                         if (!mailComp.IsProfitable) // Frontier: only penalize and adjust stats if profitable
@@ -580,10 +582,12 @@ namespace Content.Server._DV.Mail.EntitySystems
 
             while (query.MoveNext(out var uid, out var mailTeleporter))
             {
-                // Frontier: skip station checks
+                // Frontier: skip station checks, ensure teleporter is powered
                 // var teleporterStation = _stationSystem.GetOwningStation(uid);
                 // if (receiverStation != teleporterStation)
                 //     continue;
+                if (!_powerReceiver.IsPowered(uid))
+                    continue;
                 // End Frontier
                 teleporterComponent = mailTeleporter;
                 teleporterUid = uid;
@@ -650,7 +654,7 @@ namespace Content.Server._DV.Mail.EntitySystems
         /// <summary>
         /// Get the list of valid mail recipients for a mail teleporter.
         /// </summary>
-        private List<MailRecipient> GetMailRecipientCandidates(EntityUid uid)
+        private List<MailRecipient> GetMailRecipientCandidates() // Frontier: remove EntityUid arg
         {
             var candidateList = new List<MailRecipient>();
             var query = EntityQueryEnumerator<MailReceiverComponent>();
@@ -665,7 +669,12 @@ namespace Content.Server._DV.Mail.EntitySystems
                 // if (receiverStation != teleporterStation)
                 //     continue;
 
+                // Are you on expedition or in FTL? No mail for you.
                 if (location.MapID != Transform(receiverUid).MapID)
+                    continue;
+
+                // Is this player displaying as SSD? If so, skip 'em.
+                if (TryComp(receiverUid, out SSDIndicatorComponent? ssd) && ssd.IsSSD)
                     continue;
                 // End Frontier
 
@@ -676,31 +685,48 @@ namespace Content.Server._DV.Mail.EntitySystems
             return candidateList;
         }
 
+        // Frontier: sector-wide mail
+        sealed class MailTeleporterSpawnData(Entity<MailTeleporterComponent> entity)
+        {
+            public Entity<MailTeleporterComponent> Entity = entity;
+            public bool HadMail = false;
+        }
+
         /// <summary>
         /// Handle the spawning of all the mail for a mail teleporter.
         /// </summary>
-        private void SpawnMail(EntityUid uid, MailTeleporterComponent? component = null)
+        private void SpawnMail(SectorMailComponent component)
         {
-            if (!Resolve(uid, ref component))
+            // Get list of valid teleporters.
+            List<MailTeleporterSpawnData> validTeleporters = new();
+            var teleporterQuery = EntityQueryEnumerator<MailTeleporterComponent>();
+            while (teleporterQuery.MoveNext(out var uid, out var mailTeleporter))
             {
-                _sawmill.Error($"Tried to SpawnMail on {ToPrettyString(uid)} without a valid MailTeleporterComponent!");
+                if (_powerReceiver.IsPowered(uid)
+                    && GetUndeliveredParcelCount(uid) < mailTeleporter.MaximumUndeliveredParcels)
+                {
+                    validTeleporters.Add(new MailTeleporterSpawnData((uid, mailTeleporter)));
+                }
+            }
+
+            // If list of teleporters is empty, return.
+            if (validTeleporters.Count <= 0)
+            {
+                _sawmill.Info("List of valid mail teleporters was empty!");
                 return;
             }
 
-            if (GetUndeliveredParcelCount(uid) >= component.MaximumUndeliveredParcels)
-                return;
-
-            var candidateList = GetMailRecipientCandidates(uid);
+            var candidateList = GetMailRecipientCandidates();
 
             if (candidateList.Count <= 0)
             {
-                _sawmill.Error("List of mail candidates was empty!");
+                _sawmill.Info("List of mail candidates was empty!");
                 return;
             }
 
             if (!_prototypeManager.TryIndex<MailDeliveryPoolPrototype>(component.MailPool, out var pool))
             {
-                _sawmill.Error($"Can't index {ToPrettyString(uid)}'s MailPool {component.MailPool}!");
+                _sawmill.Error($"Can't find MailPool {component.MailPool}!");
                 return;
             }
 
@@ -748,18 +774,27 @@ namespace Content.Server._DV.Mail.EntitySystems
                     return;
                 }
 
-                var coordinates = Transform(uid).Coordinates;
+                var index = _random.Next(validTeleporters.Count);
+
+                var coordinates = Transform(validTeleporters[index].Entity).Coordinates;
                 var mail = EntityManager.SpawnEntity(chosenParcel, coordinates);
                 SetupMail(mail, component, candidate);
+                validTeleporters[index].HadMail = true;
 
                 _tagSystem.AddTag(mail, "Mail"); // Frontier
             }
 
-            if (_containerSystem.TryGetContainer(uid, "queued", out var queued))
-                _containerSystem.EmptyContainer(queued);
+            for (int i = 0; i < validTeleporters.Count; i++)
+            {
+                // Remove queued contents (e.g. from admemes)
+                if (_containerSystem.TryGetContainer(validTeleporters[i].Entity, "queued", out var queued))
+                    validTeleporters[i].HadMail |= _containerSystem.EmptyContainer(queued).Count > 0;
 
-            _audioSystem.PlayPvs(component.TeleportSound, uid);
+                if (validTeleporters[i].HadMail)
+                    _audioSystem.PlayPvs(validTeleporters[i].Entity.Comp.TeleportSound, validTeleporters[i].Entity);
+            }
         }
+        // End Frontier: sector-wide mail
 
         private void OpenMail(EntityUid uid, MailComponent? component = null, EntityUid? user = null)
         {
@@ -769,7 +804,7 @@ namespace Content.Server._DV.Mail.EntitySystems
             _audioSystem.PlayPvs(component.OpenSound, uid);
 
             if (user != null)
-                _handsSystem.TryDrop((EntityUid) user);
+                _handsSystem.TryDrop((EntityUid)user);
 
             if (!_containerSystem.TryGetContainer(uid, "contents", out var contents))
             {

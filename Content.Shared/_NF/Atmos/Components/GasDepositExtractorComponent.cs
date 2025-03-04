@@ -1,10 +1,12 @@
+using Content.Shared._NF.Atmos.Systems;
 using Content.Shared._NF.Atmos.Visuals;
 using Content.Shared.Atmos;
 using Robust.Shared.GameStates;
 
-namespace Content.Server._NF.Atmos.Components;
+namespace Content.Shared._NF.Atmos.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[Access(typeof(SharedGasDepositSystem))]
 public sealed partial class GasDepositExtractorComponent : Component
 {
     /// <summary>
@@ -37,9 +39,6 @@ public sealed partial class GasDepositExtractorComponent : Component
     /// <summary>
     /// The entity to be extracted from.
     /// </summary>
-    /// <remarks>
-    /// Should abstract into a general GasDepositComponent later.
-    /// </remarks>
     [DataField]
     public EntityUid? DepositEntity;
 

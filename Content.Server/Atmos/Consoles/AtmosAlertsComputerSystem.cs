@@ -10,20 +10,15 @@ using Content.Shared.Atmos.Monitor;
 using Content.Shared.Atmos.Monitor.Components;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Pinpointer;
-using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._NF.Atmos.Components; // Frontier
-using Content.Server.Atmos.Piping.Binary.Components; // Frontier
 using Content.Server.Atmos.Piping.Binary.EntitySystems; // Frontier
 using Content.Server.NodeContainer.EntitySystems; // Frontier
 using Content.Server.NodeContainer.Nodes; // Frontier
 using Content.Shared._NF.Atmos.BUI; // Frontier
-using Content.Shared._NF.Atmos.Piping.Binary.Messages; // Frontier
-using Content.Shared.Atmos.Piping.Binary.Components; // Frontier
 using Content.Shared.Shuttles.Events; // Frontier
 using Content.Server.Shuttles.Systems;
 using Content.Server.Shuttles.Components; // Frontier
@@ -36,11 +31,9 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
     [Dependency] private readonly AirAlarmSystem _airAlarmSystem = default!;
     [Dependency] private readonly AtmosDeviceNetworkSystem _atmosDevNet = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly NavMapSystem _navMapSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly DeviceListSystem _deviceListSystem = default!;
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!; // Frontier
     [Dependency] private readonly GasPressurePumpSystem _pressurePump = default!; // Frontier
@@ -251,7 +244,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
         // Gathering remaining data to be send to the client
         var focusAlarmData = GetFocusAlarmData(uid, GetEntity(component.FocusDevice), gridUid);
 
-        var focusGaslockData = GetFocusGaslockData(uid, GetEntity(component.FocusDevice), gridUid); // Frontier
+        var focusGaslockData = GetFocusGaslockData(GetEntity(component.FocusDevice), gridUid); // Frontier
 
         // Set the UI state
         _userInterfaceSystem.SetUiState(uid, AtmosAlertsComputerUiKey.Key,
@@ -448,7 +441,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
     }
 
     // Frontier: gets gaslock BUI state for a particular entity
-    private AtmosAlertsFocusGaslockData? GetFocusGaslockData(EntityUid uid, EntityUid? focusDevice, EntityUid gridUid)
+    private AtmosAlertsFocusGaslockData? GetFocusGaslockData(EntityUid? focusDevice, EntityUid gridUid)
     {
         if (focusDevice == null)
             return null;
@@ -471,7 +464,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
             if (port.Air.TotalMoles > 1e-8)
             {
                 var totalMoles = port.Air.TotalMoles;
-                for (int i = 0; i < Atmospherics.TotalNumberOfGases; i++)
+                for (var i = 0; i < Atmospherics.TotalNumberOfGases; i++)
                 {
                     var moles = port.Air.GetMoles(i);
                     if (moles < 1e-8)
@@ -493,7 +486,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
     }
 
     // Frontier: message handlers for gaslock state
-    private void OnUndockRequestMessage(EntityUid gridUid, AtmosAlertsComputerComponent comp, UndockRequestMessage args)
+    private void OnUndockRequestMessage(Entity<AtmosAlertsComputerComponent> ent, ref UndockRequestMessage args)
     {
         var dockUid = GetEntity(args.DockEntity);
         if (!HasComp<DockablePipeComponent>(dockUid) ||
@@ -503,7 +496,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
     }
 
     // We want this to be doing whatever the pressure pump is doing, so we're hijacking the GasPressurePumpSystem interface.
-    private void OnPumpDirectionMessage(EntityUid gridUid, AtmosAlertsComputerComponent comp, RemoteGasPressurePumpChangePumpDirectionMessage args)
+    private void OnPumpDirectionMessage(Entity<AtmosAlertsComputerComponent> ent, ref RemoteGasPressurePumpChangePumpDirectionMessage args)
     {
         var pumpUid = GetEntity(args.Pump);
         if (!TryComp<GasPressurePumpComponent>(pumpUid, out var pumpComp) || !pumpComp.SettableDirection)
@@ -511,7 +504,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
         _pressurePump.SetPumpDirection((pumpUid, pumpComp), args.Inwards, args.Actor);
     }
 
-    private void OnPumpPressureMessage(EntityUid gridUid, AtmosAlertsComputerComponent comp, RemoteGasPressurePumpChangeOutputPressureMessage args)
+    private void OnPumpPressureMessage(Entity<AtmosAlertsComputerComponent> ent, ref RemoteGasPressurePumpChangeOutputPressureMessage args)
     {
         var pumpUid = GetEntity(args.Pump);
         if (!TryComp<GasPressurePumpComponent>(pumpUid, out var pumpComp))
@@ -519,7 +512,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
         _pressurePump.SetPumpPressure((pumpUid, pumpComp), args.Pressure, args.Actor);
     }
 
-    private void OnPumpStatusMessage(EntityUid gridUid, AtmosAlertsComputerComponent comp, RemoteGasPressurePumpToggleStatusMessage args)
+    private void OnPumpStatusMessage(Entity<AtmosAlertsComputerComponent> ent, ref RemoteGasPressurePumpToggleStatusMessage args)
     {
         var pumpUid = GetEntity(args.Pump);
         if (!TryComp<GasPressurePumpComponent>(pumpUid, out var pumpComp))

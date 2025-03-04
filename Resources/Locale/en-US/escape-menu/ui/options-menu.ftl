@@ -37,6 +37,7 @@ ui-options-lobby-music = Lobby & Round-end Music
 ui-options-restart-sounds = Round Restart Sounds
 ui-options-event-music = Event Music
 ui-options-admin-sounds = Play Admin Sounds
+ui-options-bwoink-sound = Play AHelp Notification Sound
 ui-options-volume-label = Volume
 
 ## Graphics menu
@@ -143,7 +144,10 @@ ui-options-function-activate-item-in-world = Activate item in world
 ui-options-function-alt-activate-item-in-world = Alternative activate item in world
 ui-options-function-drop = Drop item
 ui-options-function-examine-entity = Examine
-ui-options-function-swap-hands = Swap hands
+# Frontier: add (next)
+ui-options-function-swap-hands = Swap hands (next)
+# Frontier
+ui-options-function-swap-hands-previous = Swap hands (previous)
 ui-options-function-move-stored-item = Move stored item
 ui-options-function-rotate-stored-item = Rotate stored item
 ui-options-function-save-item-location = Save item location

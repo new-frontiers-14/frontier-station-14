@@ -54,6 +54,9 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
 
 # Humans
 ## Tier 1
@@ -226,6 +229,8 @@
     rules: ghost-role-information-dungeon-boss-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
   - type: GhostTakeoverAvailable
   - type: ActionGun
     action: ActionThrowPartyNade

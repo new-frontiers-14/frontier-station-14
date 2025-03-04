@@ -289,6 +289,15 @@
 # Service
 - type: entity
   parent: BaseNFFlatpack
+  id: NFHolopadShipFlatpack
+  name: bluespace holopad flatpack
+  description: A flatpack used for constructing a bluespace holopad for ship to ship communication.
+  components:
+  - type: Flatpack
+    entity: NFHolopadShip
+
+- type: entity
+  parent: BaseNFFlatpack
   id: UniformPrinterFlatpack
   name: uniform printer flatpack
   description: A flatpack used for constructing an uniform printer.
@@ -339,6 +348,15 @@
   components:
   - type: Flatpack
     entity: CutterMachine
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: TelevisionFlatpack
+  name: television flatpack
+  description: A flatpack used for constructing a television.
+  components:
+  - type: Flatpack
+    entity: ComputerTelevision
 
 - type: entity
   parent: UniformPrinterFlatpack
@@ -1026,3 +1044,23 @@
     entity: VendingMachineChemicals
   - type: StaticPrice
     price: 2000
+
+    #DoC Console
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: StationAdministrationConsoleFlatpack
+  name: station administration console flatpack
+  description: A flatpack used for constructing a station administration console for Medical Dispatch.
+  components:
+  - type: Flatpack
+    entity: ComputerTabletopStationAdminBankATMMedical
+  - type: Sprite
+    layers:
+    - state: medical_console
+  - type: StaticPrice
+    price: 0
+  - type: CargoSellBlacklist
+  - type: Item
+    shape:
+    - 0,0,1,1

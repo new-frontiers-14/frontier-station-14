@@ -3,7 +3,7 @@
   id: Scream
   name: chat-emote-name-scream
   category: Vocal
-  icon: Interface/Emotes/scream.png
+  icon: Interface/Actions/scream.png
   whitelist:
     components:
     - Vocal
@@ -224,10 +224,25 @@
     - BorgChassis
   chatMessages: ["chat-emote-msg-clap"]
   chatTriggers:
-    - clap
     - claps
     - clapping
     - clapped
+
+- type: emote
+  id: ClapSingle
+  name: chat-emote-name-clap-single
+  category: Hands
+  icon: Interface/Emotes/clap.png #TODO: Needs a sprite that distinguishes it better from clap
+  whitelist:
+    components:
+    - Hands
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: [ "chat-emote-msg-clap-single" ]
+  chatTriggers:
+    - clap
+    - claps their hands together
 
 - type: emote
   id: Snap
@@ -316,8 +331,8 @@
     components:
     - MobState
   chatMessages: ["chat-emote-msg-deathgasp"]
-  chatTriggers:
-  - deathgasp
+  # chatTriggers: # DeltaV - Remove from the emote wheel
+  # - deathgasp
 
 - type: emote
   id: MonkeyDeathgasp

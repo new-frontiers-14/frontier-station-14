@@ -1,8 +1,7 @@
 using Content.Shared.Inventory;
-using Robust.Shared.GameStates;
+using Robust.Shared.GameStates; // Frontier
 
-// namespace Content.Server.Storage.Components;
-namespace Content.Shared.Storage.Components;    // Frontier
+namespace Content.Shared.Storage.Components; // Frontier: Server<Shared
 
 /// <summary>
 /// Applies an ongoing pickup area around the attached entity.
@@ -15,20 +14,32 @@ public sealed partial class MagnetPickupComponent : Component
     [AutoPausedField]
     public TimeSpan NextScan = TimeSpan.Zero;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("range")]
-    public float Range = 1f;
-
     /// <summary>
-    /// What container slot the magnet needs to be in to work (if not a fixture)
+    /// What container slot the magnet needs to be in to work.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("slotFlags")]
     public SlotFlags SlotFlags = SlotFlags.BELT;
 
-    // Everything below this line is from Frontier
+    [ViewVariables(VVAccess.ReadWrite), DataField("range")]
+    public float Range = 1f;
+
+    // Frontier: togglable magnets
+    /// <summary>
+    /// Is the magnet currently enabled?
+    /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool MagnetEnabled = true;
 
     /// <summary>
     /// Is the magnet currently enabled?
     /// </summary>
-    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField("magnetEnabled")]
-    public bool MagnetEnabled = true;
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool MagnetCanBeEnabled = true;
+
+    /// <summary>
+    /// Is the magnet currently enabled?
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public int MagnetTogglePriority = 3;
+    // End Frontier: togglable magnets
 }

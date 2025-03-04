@@ -78,13 +78,13 @@ public sealed class NFCCVars
     /// The number of Cargo Depots to spawn in every round
     /// </summary>
     public static readonly CVarDef<int> CargoDepots =
-        CVarDef.Create("nf14.worldgen.cargo_depots", 2, CVar.SERVERONLY);
+        CVarDef.Create("nf14.worldgen.cargo_depots", 4, CVar.SERVERONLY);
 
     /// <summary>
     /// The number of Optional Points Of Interest to spawn in every round
     /// </summary>
     public static readonly CVarDef<int> OptionalStations =
-        CVarDef.Create("nf14.worldgen.optional_stations", 8, CVar.SERVERONLY);
+        CVarDef.Create("nf14.worldgen.optional_stations", 6, CVar.SERVERONLY);
 
     /// <summary>
     /// The multiplier to add to distance spawning calculations for a smidge of server setting variance
@@ -113,6 +113,12 @@ public sealed class NFCCVars
     public static readonly CVarDef<bool> Shipyard =
         CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
 
+    /// <summary>
+    /// Base sell rate (multiplier: 0.75 = 75%)
+    /// </summary>
+    public static readonly CVarDef<float> ShipyardSellRate =
+        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.75f, CVar.SERVERONLY);
+
     /*
      * Salvage
      */
@@ -127,6 +133,12 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<float> SalvageExpeditionFailedCooldown =
         CVarDef.Create("salvage.expedition_failed_cooldown", 1200f, CVar.REPLICATED);
+
+    /// <summary>
+    /// Whether salvage expedition rewards is enabled.
+    /// </summary>
+    public static readonly CVarDef<bool> SalvageExpeditionRewardsEnabled =
+        CVarDef.Create("nf14.salvage.expedition_rewards_enabled", false, CVar.REPLICATED);
 
     /*
      * Smuggling

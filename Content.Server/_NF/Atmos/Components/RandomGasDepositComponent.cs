@@ -1,27 +1,23 @@
-using Content.Shared.Atmos;
+using Content.Server._NF.Atmos.Systems;
+using Content.Shared._NF.Atmos.Prototypes;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._NF.Atmos.Components;
+namespace Content.Shared._NF.Atmos.Components;
 
-[RegisterComponent]
+[RegisterComponent, Access(typeof(GasDepositSystem))]
 public sealed partial class RandomGasDepositComponent : Component
 {
     /// <summary>
-    /// The name of the node that is available to dock.
+    /// The name of the prototype used to populate the gas deposit in this entity.
     /// If null or invalid, will be selected from existing set at random.
     /// </summary>
     [DataField]
     public ProtoId<GasDepositPrototype>? DepositPrototype;
 
     /// <summary>
-    /// Gases left in the deposit.
+    /// A scale factor on the deposit's size.
+    /// After each gas is chosen from the deposit prototype, the scale factor is multiplied into the deposit size.
     /// </summary>
-    [ViewVariables]
-    public GasMixture Deposit = new();
-
-    /// <summary>
-    /// The maximum number of moles for this deposit to be considered "mostly depleted".
-    /// </summary>
-    [ViewVariables]
-    public float LowMoles;
+    [DataField]
+    public float Scale = 1.0f;
 }

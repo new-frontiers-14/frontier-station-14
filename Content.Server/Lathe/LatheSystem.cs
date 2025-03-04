@@ -17,8 +17,10 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.UserInterface;
 using Content.Shared.Database;
 using Content.Shared.Emag.Components;
+using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Lathe;
+using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Materials;
 using Content.Shared.Power;
 using Content.Shared.ReagentSpeed;
@@ -46,6 +48,7 @@ namespace Content.Server.Lathe
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly ContainerSystem _container = default!;
+        [Dependency] private readonly EmagSystem _emag = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSys = default!;
         [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
@@ -60,6 +63,7 @@ namespace Content.Server.Lathe
         /// Per-tick cache
         /// </summary>
         private readonly List<GasMixture> _environments = new();
+        private readonly HashSet<ProtoId<LatheRecipePrototype>> _availableRecipes = new();
 
         public override void Initialize()
         {
@@ -163,25 +167,27 @@ namespace Content.Server.Lathe
 
         public List<ProtoId<LatheRecipePrototype>> GetAvailableRecipes(EntityUid uid, LatheComponent component, bool getUnavailable = false)
         {
+            _availableRecipes.Clear();
+            AddRecipesFromPacks(_availableRecipes, component.StaticPacks);
             var ev = new LatheGetRecipesEvent(uid, getUnavailable)
             {
-                Recipes = new HashSet<ProtoId<LatheRecipePrototype>>(component.StaticRecipes)
+                Recipes = _availableRecipes
             };
             RaiseLocalEvent(uid, ev);
             return ev.Recipes.ToList();
         }
 
-        public static List<ProtoId<LatheRecipePrototype>> GetAllBaseRecipes(LatheComponent component)
-        {
-            return component.StaticRecipes.Union(component.DynamicRecipes).ToList();
-        }
-
-        public bool TryAddToQueue(EntityUid uid, LatheRecipePrototype recipe, LatheComponent? component = null)
+        public bool TryAddToQueue(EntityUid uid, LatheRecipePrototype recipe, int quantity, LatheComponent? component = null) // Frontier: add quantity
         {
             if (!Resolve(uid, ref component))
                 return false;
 
-            if (!CanProduce(uid, recipe, 1, component))
+            // Frontier: argument check
+            if (quantity <= 0)
+                return false;
+            // Frontier: argument check
+
+            if (!CanProduce(uid, recipe, quantity, component)) // Frontier: 1<quantity
                 return false;
 
             foreach (var (mat, amount) in recipe.Materials)
@@ -189,10 +195,18 @@ namespace Content.Server.Lathe
                 var adjustedAmount = recipe.ApplyMaterialDiscount
                     ? (int) (-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
                     : -amount;
+                adjustedAmount *= quantity; // Frontier
 
                 _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
             }
-            component.Queue.Add(recipe);
+
+            // Frontier: queue up a batch
+            if (component.Queue.Count > 0 && component.Queue[^1].Recipe.ID == recipe.ID)
+                component.Queue[^1].ItemsRequested += quantity;
+            else
+                component.Queue.Add(new LatheRecipeBatch(recipe, 0, quantity));
+            // End Frontier
+            // component.Queue.Add(recipe); // Frontier
 
             return true;
         }
@@ -204,8 +218,13 @@ namespace Content.Server.Lathe
             if (component.CurrentRecipe != null || component.Queue.Count <= 0 || !this.IsPowered(uid, EntityManager))
                 return false;
 
-            var recipe = component.Queue.First();
-            component.Queue.RemoveAt(0);
+            // Frontier: handle batches
+            var batch = component.Queue.First();
+            batch.ItemsPrinted++;
+            if (batch.ItemsPrinted >= batch.ItemsRequested || batch.ItemsPrinted < 0) // Rollover sanity check
+                component.Queue.RemoveAt(0);
+            var recipe = batch.Recipe;
+            // End Frontier
 
             var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
 
@@ -288,10 +307,26 @@ namespace Content.Server.Lathe
             if (!Resolve(uid, ref component))
                 return;
 
-            var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault();
+            var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault()?.Recipe; // Frontier: add ?.Recipe
 
             var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing);
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
+        }
+
+        /// <summary>
+        /// Adds every unlocked recipe from each pack to the recipes list.
+        /// </summary>
+        public void AddRecipesFromDynamicPacks(ref LatheGetRecipesEvent args, TechnologyDatabaseComponent database, IEnumerable<ProtoId<LatheRecipePackPrototype>> packs)
+        {
+            foreach (var id in packs)
+            {
+                var pack = _proto.Index(id);
+                foreach (var recipe in pack.Recipes)
+                {
+                    if (args.getUnavailable || database.UnlockedRecipes.Contains(recipe))
+                        args.Recipes.Add(recipe);
+                }
+            }
         }
 
         private void OnGetRecipes(EntityUid uid, TechnologyDatabaseComponent component, LatheGetRecipesEvent args)
@@ -299,30 +334,21 @@ namespace Content.Server.Lathe
             if (uid != args.Lathe || !TryComp<LatheComponent>(uid, out var latheComponent))
                 return;
 
-            foreach (var recipe in latheComponent.DynamicRecipes)
-            {
-                if (!(args.getUnavailable || component.UnlockedRecipes.Contains(recipe)) || args.Recipes.Contains(recipe))
-                    continue;
-                args.Recipes.Add(recipe);
-            }
+            AddRecipesFromDynamicPacks(ref args, component, latheComponent.DynamicPacks);
         }
 
         private void GetEmagLatheRecipes(EntityUid uid, EmagLatheRecipesComponent component, LatheGetRecipesEvent args)
         {
-            if (uid != args.Lathe || !TryComp<TechnologyDatabaseComponent>(uid, out var technologyDatabase))
+            if (uid != args.Lathe)
                 return;
-            if (!args.getUnavailable && !HasComp<EmaggedComponent>(uid))
+
+            if (!args.getUnavailable && !_emag.CheckFlag(uid, EmagType.Interaction))
                 return;
-            foreach (var recipe in component.EmagDynamicRecipes)
-            {
-                if (!(args.getUnavailable || technologyDatabase.UnlockedRecipes.Contains(recipe)) || args.Recipes.Contains(recipe))
-                    continue;
-                args.Recipes.Add(recipe);
-            }
-            foreach (var recipe in component.EmagStaticRecipes)
-            {
-                args.Recipes.Add(recipe);
-            }
+
+            AddRecipesFromPacks(args.Recipes, component.EmagStaticPacks);
+
+            if (TryComp<TechnologyDatabaseComponent>(uid, out var database))
+                AddRecipesFromDynamicPacks(ref args, database, component.EmagDynamicPacks);
         }
 
         private void OnHeatStartPrinting(EntityUid uid, LatheHeatProducingComponent component, LatheStartPrintingEvent args)
@@ -396,20 +422,14 @@ namespace Content.Server.Lathe
         {
             if (_proto.TryIndex(args.ID, out LatheRecipePrototype? recipe))
             {
-                var count = 0;
-                for (var i = 0; i < args.Quantity; i++)
-                {
-                    if (TryAddToQueue(uid, recipe, component))
-                        count++;
-                    else
-                        break;
-                }
-                if (count > 0)
+                // Frontier: batching recipes
+                if (TryAddToQueue(uid, recipe, args.Quantity, component))
                 {
                     _adminLogger.Add(LogType.Action,
                         LogImpact.Low,
-                        $"{ToPrettyString(args.Actor):player} queued {count} {GetRecipeName(recipe)} at {ToPrettyString(uid):lathe}");
+                        $"{ToPrettyString(args.Actor):player} queued {args.Quantity} {GetRecipeName(recipe)} at {ToPrettyString(uid):lathe}");
                 }
+                // End Frontier
             }
             TryStartProducing(uid, component);
             UpdateUserInterfaceState(uid, component);
