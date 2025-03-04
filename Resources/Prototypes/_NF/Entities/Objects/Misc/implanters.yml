@@ -39,6 +39,14 @@
   - type: Implanter
     implant: BibleUserImplant
 
+- type: entity
+  id: MimePowersImplanter
+  suffix: mime vow
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: MimePowersImplant
+
 # Labeled implanters (for vendors)
 - type: entity
   id: MedicalTrackingImplanterLabeled
@@ -71,3 +79,13 @@
   components:
   - type: Label
     currentLabel: implanter-label-bike-horn
+
+# Centcomm implanters
+
+- type: entity
+  id: RadioImplanterFreelance
+  suffix: radio Freelance
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: RadioImplantFreelance
