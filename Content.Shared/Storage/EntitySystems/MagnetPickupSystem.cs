@@ -144,7 +144,12 @@ public sealed class MagnetPickupSystem : EntitySystem
 
             foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
             {
-                count++; // Frontier: stop spamming bags
+                // Frontier: stop spamming bags
+                count++;
+
+                if (count > MaxEntitiesToInsert)
+                    break;
+                // End Frontier: stop spamming bags
 
                 if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, near))
                     continue;
@@ -157,8 +162,6 @@ public sealed class MagnetPickupSystem : EntitySystem
                 if (!_storage.HasSlotSpaceFor(uid, near))
                     break;
 
-                if (count > MaxEntitiesToInsert)
-                    break;
                 // FRONTIER - END
 
                 if (!_physicsQuery.TryGetComponent(near, out var physics) || physics.BodyStatus != BodyStatus.OnGround)
