@@ -1,9 +1,13 @@
 # Base
 - type: entity
-  parent: BaseLandMine
+  parent: [ BaseLandMine, BaseItem ]
   id: NFConcealedMineTrigger
   abstract: true
   components:
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    bodyType: Dynamic
   - type: AmbientSound
     volume: -15
     range: 2
@@ -79,7 +83,7 @@
     - sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
       state: icon
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#990000"
       shader: unshaded
@@ -93,7 +97,6 @@
           ied_wiring4: Rainbow
           ied_wiring5: Rainbow
           ied_wiring6: Rainbow
-          mask_null: ""
         ied_wiring2:
           ied_wiring1: Rainbow
           ied_wiring2: Rainbow
@@ -101,7 +104,6 @@
           ied_wiring4: Rainbow
           ied_wiring5: Rainbow
           ied_wiring6: Rainbow
-          mask_null: ""
         ied_wiring3:
           ied_wiring1: Rainbow
           ied_wiring2: Rainbow
@@ -129,7 +131,7 @@
     - sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
       state: icon
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#990000"
       shader: unshaded
@@ -143,7 +145,6 @@
           ied_wiring4: Rainbow
           ied_wiring5: Rainbow
           ied_wiring6: Rainbow
-          mask_null: ""
         ied_wiring2:
           ied_wiring1: Rainbow
           ied_wiring2: Rainbow
@@ -151,7 +152,6 @@
           ied_wiring4: Rainbow
           ied_wiring5: Rainbow
           ied_wiring6: Rainbow
-          mask_null: ""
         ied_wiring3:
           ied_wiring1: Rainbow
           ied_wiring2: Rainbow
@@ -182,7 +182,7 @@
       state: plushie_atmosian
       map: [ "ied_sprite_toy" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#990000"
       shader: unshaded
@@ -218,7 +218,6 @@
           ied_wiring4: Rainbow
           ied_wiring5: Rainbow
           ied_wiring6: Rainbow
-          mask_null: ""
         ied_wiring2:
           ied_wiring1: Rainbow
           ied_wiring2: Rainbow
@@ -226,7 +225,6 @@
           ied_wiring4: Rainbow
           ied_wiring5: Rainbow
           ied_wiring6: Rainbow
-          mask_null: ""
         ied_wiring3:
           ied_wiring1: Rainbow
           ied_wiring2: Rainbow
@@ -257,7 +255,7 @@
       state: bodybags
       map: [ "ied_sprite_box" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#990000"
       shader: unshaded
@@ -283,7 +281,6 @@
           ied_wiring4: Rainbow
           ied_wiring5: Rainbow
           ied_wiring6: Rainbow
-          mask_null: ""
         ied_wiring2:
           ied_wiring1: Rainbow
           ied_wiring2: Rainbow
@@ -291,7 +288,6 @@
           ied_wiring4: Rainbow
           ied_wiring5: Rainbow
           ied_wiring6: Rainbow
-          mask_null: ""
         ied_wiring3:
           ied_wiring1: Rainbow
           ied_wiring2: Rainbow
@@ -322,7 +318,7 @@
       state: cheesiehonkers-trash
       map: [ "ied_sprite_trash" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#990000"
       shader: unshaded
@@ -348,7 +344,6 @@
           ied_wiring4: Rainbow
           ied_wiring5: Rainbow
           ied_wiring6: Rainbow
-          mask_null: ""
         ied_wiring2:
           ied_wiring1: Rainbow
           ied_wiring2: Rainbow
@@ -356,7 +351,73 @@
           ied_wiring4: Rainbow
           ied_wiring5: Rainbow
           ied_wiring6: Rainbow
+        ied_wiring3:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
           mask_null: ""
+
+- type: entity
+  parent: NFConcealedMineExplosive
+  id: NFScrapMineExplosive
+  name: scrap
+  description: Worthless junk. You could probably get some materials out of it though.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: glass-1
+      map: [ "ied_sprite_scrap" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
+      shader: unshaded
+      state: ied_light
+  - type: RandomSprite
+    available:
+      - ied_sprite_scrap:
+          glass-1: ""
+          glass-2: ""
+          glass-3: ""
+          glass-4: ""
+          glass-5: ""
+          glass-6: ""
+          junk-airlock-1: ""
+          junk-fax: ""
+          junk-fireextinguisher: ""
+          junk-pai: ""
+          junk-pai-gold: ""
+          metal-1: ""
+          metal-2: ""
+          metal-3: ""
+          junk-mop-bucket: ""
+        ied_wiring1:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring2:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
         ied_wiring3:
           ied_wiring1: Rainbow
           ied_wiring2: Rainbow
@@ -385,7 +446,7 @@
     - sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
       state: icon
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#009999"
       shader: unshaded
@@ -409,7 +470,7 @@
     - sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
       state: icon
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#009999"
       shader: unshaded
@@ -434,7 +495,7 @@
       state: plushie_atmosian
       map: [ "ied_sprite_toy" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#009999"
       shader: unshaded
@@ -459,7 +520,7 @@
       state: bodybags
       map: [ "ied_sprite_box" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#009999"
       shader: unshaded
@@ -484,7 +545,32 @@
       state: cheesiehonkers-trash
       map: [ "ied_sprite_trash" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineCryo, NFScrapMineExplosive ]
+  id: NFScrapMineCryo
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: glass-1
+      map: [ "ied_sprite_scrap" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#009999"
       shader: unshaded
@@ -509,7 +595,7 @@
     - sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
       state: icon
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#999900"
       shader: unshaded
@@ -533,7 +619,7 @@
     - sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
       state: icon
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#999900"
       shader: unshaded
@@ -558,7 +644,7 @@
       state: plushie_atmosian
       map: [ "ied_sprite_toy" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#999900"
       shader: unshaded
@@ -583,7 +669,7 @@
       state: bodybags
       map: [ "ied_sprite_box" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#999900"
       shader: unshaded
@@ -608,7 +694,32 @@
       state: cheesiehonkers-trash
       map: [ "ied_sprite_trash" ]
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
-      state: ied_diplay
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineFire, NFScrapMineExplosive ]
+  id: NFScrapMineFire
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: glass-1
+      map: [ "ied_sprite_scrap" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       color: "#999900"
       shader: unshaded
