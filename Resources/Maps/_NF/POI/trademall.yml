@@ -172,11 +172,6 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 0.05
-      linearDamping: 0.05
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
@@ -19215,7 +19210,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 29.5,11.5
       parent: 1
-- proto: ComputerTabletopMarketConsoleNFLow
+- proto: ComputerTabletopMarketConsoleNFNormal
   entities:
   - uid: 27
     components:
@@ -19234,7 +19229,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 58.5,-3.5
       parent: 1
-- proto: ComputerTabletopPalletConsoleNFLowMarket
+- proto: ComputerTabletopPalletConsoleNFHighMarket
   entities:
   - uid: 632
     components:
@@ -22962,21 +22957,6 @@ entities:
     components:
     - type: Transform
       pos: 29.514894,10.760558
-      parent: 1
-- proto: GasMinerNitrogenStation
-  entities:
-  - uid: 393
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 10.5,15.5
-      parent: 1
-- proto: GasMinerOxygenStation
-  entities:
-  - uid: 496
-    components:
-    - type: Transform
-      pos: 10.5,17.5
       parent: 1
 - proto: GasMixerOn
   entities:
@@ -42792,14 +42772,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,3.5
       parent: 1
-- proto: WardrobePrison
+- proto: NFWardrobePrison
   entities:
   - uid: 2556
     components:
     - type: Transform
       pos: 25.5,-5.5
       parent: 1
-- proto: WardrobePrisonFilled
+- proto: NFWardrobePrisonFilled
   entities:
   - uid: 3029
     components:
