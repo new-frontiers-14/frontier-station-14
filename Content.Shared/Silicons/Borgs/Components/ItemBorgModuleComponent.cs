@@ -15,7 +15,7 @@ public sealed partial class ItemBorgModuleComponent : Component
     /// <summary>
     /// The items that are provided.
     /// </summary>
-    [DataField("items", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))] // Frontier: removed
+    [DataField("items", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))] // Frontier: removed "required: true"
     public List<string> Items = new();
 
     /// <summary>
