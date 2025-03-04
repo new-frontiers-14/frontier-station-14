@@ -22,6 +22,12 @@ namespace Content.Shared.Toilet.Components
         /// </summary>
         [DataField]
         public SoundSpecifier SeatSound = new SoundPathSpecifier("/Audio/Effects/toilet_seat_down.ogg");
+
+        /// <summary>
+        /// Toggles if an object can become clogged on map init
+        /// </summary>
+        [DataField(serverOnly: true)]
+        public bool NoInitClogged; // Eclipse
     }
 
     [Serializable, NetSerializable]

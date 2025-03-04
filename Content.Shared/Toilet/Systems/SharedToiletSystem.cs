@@ -33,7 +33,7 @@ namespace Content.Shared.Toilet.Systems
             if (_random.Prob(0.5f))
                 component.ToggleSeat = true;
 
-            if (_random.Prob(0.3f))
+            if (!component.NoInitClogged && _random.Prob(0.3f)) // Eclipse
             {
                 TryComp<PlungerUseComponent>(uid, out var plunger);
 
