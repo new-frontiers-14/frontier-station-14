@@ -456,6 +456,7 @@ public enum LogType
     AdminCommands = 98,
 
     // Frontier Station Specific
+
     ATMUsage = 200,
     ShipYardUsage = 201,
     ShuttleRecordsUsage = 202,
@@ -464,13 +465,26 @@ public enum LogType
     /// An admin spawns a refund for a player.
     /// </summary>
     AdminRefund = 203,
+
+    /// <summary>
+    /// A gas lock's direction has been changed.
+    /// </summary>
     AtmosDirectionChanged = 204,
+
     /// <summary>
     /// A player has posted a bounty contract.
     /// </summary>
     BountyContractCreated = 205,
+
     /// <summary>
     /// A player has deleted a bounty contract.
     /// </summary>
     BountyContractRemoved = 206,
+
+    // DeltaV Station Specific
+
+    /// <summary>
+    /// Remove greentexts - Replace with custom responses #2940
+    /// </summary>
+    ObjectiveSummary = 422,
 }
