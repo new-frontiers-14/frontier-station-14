@@ -27,6 +27,7 @@ public sealed class MagnetPickupSystem : EntitySystem
 
 
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
+    private const int MaxEntitiesToInsert = 20; // Frontier
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
 
@@ -139,9 +140,12 @@ public sealed class MagnetPickupSystem : EntitySystem
             var playedSound = false;
             var finalCoords = xform.Coordinates;
             var moverCoords = _transform.GetMoverCoordinates(uid, xform);
+            int count = 0; // Frontier
 
             foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
             {
+                count++; // Frontier: stop spamming bags
+
                 if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, near))
                     continue;
 
@@ -151,7 +155,10 @@ public sealed class MagnetPickupSystem : EntitySystem
                 // Note: Unfortunately, this is still 'expensive' as it checks the entire bag, however its better than
                 // to rotate an item n^n times of every item in the bag to find the best fit, for every xy coordinate it has.
                 if (!_storage.HasSlotSpaceFor(uid, near))
-                    continue;
+                    break;
+
+                if (count > MaxEntitiesToInsert)
+                    break;
                 // FRONTIER - END
 
                 if (!_physicsQuery.TryGetComponent(near, out var physics) || physics.BodyStatus != BodyStatus.OnGround)
