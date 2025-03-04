@@ -1,6 +1,5 @@
 using Content.Server._NF.Radio; // Frontier
 using Content.Server.Administration.Logs;
-using Robust.Shared.Audio.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Radio.Components;
@@ -18,7 +17,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Robust.Shared.Audio;
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -33,7 +31,7 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
+
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
 
@@ -78,7 +76,7 @@ public sealed class RadioSystem : EntitySystem
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
-    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true, SoundSpecifier? radiosound = null) // Frontier: added frequency
+    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true) // Frontier: added frequency
     {
         SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, frequency: frequency, escapeMarkup: escapeMarkup); // Frontier: added frequency
     }
@@ -88,8 +86,7 @@ public sealed class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
-    /// <param name="startRadioaudio">event audio that goes with a event only radio event</param>
-    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true, stationEvent.Radiosound) // Nuclear-14: add frequency
+    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true) // Nuclear-14: add frequency
     {
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
@@ -187,7 +184,6 @@ public sealed class RadioSystem : EntitySystem
                 continue;
 
             // send the message
-            Audio.PlayGlobal(startRadioaudio, Filter.Empty().FromEntities(receiver), true);
             RaiseLocalEvent(receiver, ref ev);
         }
 

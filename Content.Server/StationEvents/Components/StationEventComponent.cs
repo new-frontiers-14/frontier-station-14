@@ -43,9 +43,6 @@ public sealed partial class StationEventComponent : Component
     public SoundSpecifier? StartAudio;
 
     [DataField]
-    public SoundSpecifier? Radiosound;
-
-    [DataField]
     public SoundSpecifier? WarningAudio; // Frontier
 
     [DataField]
