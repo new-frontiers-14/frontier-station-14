@@ -162,13 +162,11 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         var data = GetContracts();
         if (data == null
             || data.Contracts == null
-            || !data.Contracts.TryGetValue(collection, out var contracts))
+            || !data.Contracts.TryGetValue(collection, out var contracts)
+            || !HasWriteAccess(authorUid, collection))
         {
             return null;
         }
-
-        if (!HasWriteAccess(authorUid, collection))
-            return null;
 
         if (name.Length > MaxNameLength)
             name = name.Substring(0, MaxNameLength);
@@ -197,6 +195,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         if (CategoriesMeta.TryGetValue(category, out var categoryMeta) && categoryMeta.Announcement != null)
             announcement = categoryMeta.Announcement.Value;
 
+        // Generate a notification
         if (notificationType == BountyContractNotificationType.PDA)
         {
             var sender = Loc.GetString("bounty-contracts-announcement-pda-name");
@@ -243,7 +242,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
         if (data == null || data.Contracts == null)
             return false;
 
-        // Linear w.r.t. collections, but should be a small set
+        // Linear over # collections, should be a small set
         foreach (var collection in data.Contracts.Values)
         {
             if (collection.TryGetValue(contractId, out contract))

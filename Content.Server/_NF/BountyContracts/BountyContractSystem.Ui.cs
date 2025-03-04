@@ -4,6 +4,7 @@ using Content.Server.StationRecords;
 using Content.Shared._NF.BountyContracts;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.IdentityManagement;
 using Content.Shared.PDA;
 using Content.Shared.StationRecords;
 using Robust.Shared.Prototypes;
@@ -101,20 +102,6 @@ public sealed partial class BountyContractSystem
         return new BountyContractCreateUiState(collection, bountyTargets.ToList(), vessels.ToList());
     }
 
-    private string? GetContractAuthor(EntityUid loaderUid, PdaComponent? component = null)
-    {
-        if (!Resolve(loaderUid, ref component))
-            return null;
-
-        TryComp<IdCardComponent>(component.ContainedId, out var id);
-        var name = id?.FullName ?? Loc.GetString("bounty-contracts-unknown-author-name");
-        return Loc.GetString("bounty-contracts-author-no-job", ("name", name));
-
-        // TODO: fix this when ID card job titles are working.
-        // var job = id?.JobTitle ?? Loc.GetString("bounty-contracts-unknown-author-job");
-        // return Loc.GetString("bounty-contracts-author", ("name", name), ("job", job));
-    }
-
     private void OnUiReady(EntityUid uid, BountyContractsCartridgeComponent component, CartridgeUiReadyEvent args)
     {
         CartridgeOpenListUi((uid, component), args.Loader);
@@ -156,10 +143,6 @@ public sealed partial class BountyContractSystem
     {
         var loader = GetEntity(args.LoaderUid);
 
-        var data = GetContracts();
-        if (data == null || data.Contracts == null)
-            return;
-
         // Check the delete access for the user on this collection.
         if (TryRemoveBountyContract(loader, args.Actor, args.ContractId))
             CartridgeRefreshListUi(cartridge, loader);
@@ -173,9 +156,9 @@ public sealed partial class BountyContractSystem
             return;
 
         var c = args.Contract;
-        var author = GetContractAuthor(loader);
+        var author = Identity.Name(args.Actor, EntityManager);
 
-        // Try to post a bounty.  If we do, update the requester's UI.
+        // Try to post a bounty. If it works, update the requester's UI.
         if (TryCreateBountyContract(c.Collection, c.Category, c.Name, c.Reward, loader, args.Actor, c.Description, c.Vessel, c.DNA, author) != null)
         {
             cartridge.Comp.CreateEnabled = false;

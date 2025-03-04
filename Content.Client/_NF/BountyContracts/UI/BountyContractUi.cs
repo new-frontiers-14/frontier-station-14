@@ -14,6 +14,7 @@ public sealed partial class BountyContractUi : UIFragment
     private BountyContractUiFragment? _fragment;
     private BoundUserInterface? _userInterface;
     private ProtoId<BountyContractCollectionPrototype> _lastCollection = "Command"; //FIXME: nasty.
+    private BoundUserInterfaceState? _lastState = null;
 
     public override Control GetUIFragmentRoot()
     {
@@ -24,6 +25,7 @@ public sealed partial class BountyContractUi : UIFragment
     {
         _fragment = new BountyContractUiFragment();
         _userInterface = userInterface;
+        _lastState = null;
     }
 
 
@@ -36,6 +38,7 @@ public sealed partial class BountyContractUi : UIFragment
             ShowListState(listState);
         else if (state is BountyContractCreateUiState createState)
             ShowCreateState(createState);
+        _lastState = state;
     }
 
     private void UnloadPreviousState()
@@ -45,6 +48,10 @@ public sealed partial class BountyContractUi : UIFragment
 
     private void ShowCreateState(BountyContractCreateUiState state)
     {
+        // If the previous state is already a create state, do not destroy our old state.
+        if (_lastState is BountyContractCreateUiState)
+            return;
+
         UnloadPreviousState();
 
         var create = new BountyContractUiFragmentCreate(state.Collection);
