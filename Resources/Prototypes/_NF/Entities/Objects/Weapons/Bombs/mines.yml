@@ -4,6 +4,11 @@
   id: NFConcealedMineTrigger
   abstract: true
   components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    fixedRotation: true
+    canCollide: true
   - type: AmbientSound
     volume: -15
     range: 2
@@ -115,11 +120,6 @@
   parent: [ WetFloorSign, NFConcealedMineExplosive ]
   id: NFWetFloorSignMineExplosive
   components:
-  - type: Transform
-    anchored: false
-  - type: Physics
-    fixedRotation: true
-    canCollide: false
   - type: Sprite
     layers:
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
