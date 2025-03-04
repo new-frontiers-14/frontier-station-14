@@ -5,6 +5,7 @@ using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
 using Content.Server.Maps;
 using Content.Server.Roles;
+using Content.Shared._Eclipse.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -519,7 +520,7 @@ namespace Content.Server.GameTicking
             }
             else
             {
-                if (_playerManager.PlayerCount == 0)
+                if (!_cfg.GetCVar(EclipseCCVars.StartRoundWithNoPlayers) && _playerManager.PlayerCount == 0)
                     _roundStartCountdownHasNotStartedYetDueToNoPlayers = true;
                 else
                     _roundStartTime = _gameTiming.CurTime + LobbyDuration;
