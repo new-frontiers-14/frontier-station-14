@@ -1,16 +1,35 @@
 - type: entityTable
-  id: NFTableRandomIED
+  id: NFTableRandomConcealedMine
   table: !type:GroupSelector
     children:
-    - id: NFTrashIED
-    - id: NFBoxIED
-    - id: NFPlushieIED
-    - id: NFToolboxIED
-    - id: NFWetFloorSignIED
+    # Explosive
+    - !type:GroupSelector
+      children:
+      - id: NFToolboxMineExplosive
+      - id: NFWetFloorSignMineExplosive
+      - id: NFPlushieMineExplosive
+      - id: NFBoxMineExplosive
+      - id: NFTrashMineExplosive
+    # Cryo
+    - !type:GroupSelector
+      children:
+      - id: NFToolboxMineCryo
+      - id: NFWetFloorSignMineCryo
+      - id: NFPlushieMineCryo
+      - id: NFBoxMineCryo
+      - id: NFTrashMineCryo
+    # Fire
+    - !type:GroupSelector
+      children:
+      - id: NFToolboxMineFire
+      - id: NFWetFloorSignMineFire
+      - id: NFPlushieMineFire
+      - id: NFBoxMineFire
+      - id: NFTrashMineFire
 
 - type: entity
   name: random mine spawner
-  id: NFConcealedIEDSpawner
+  id: NFConcealedMineSpawner
   parent: MarkerBase
   suffix: Frontier
   components:
@@ -28,5 +47,5 @@
       state: ied_light
   - type: EntityTableSpawner
     table: !type:NestedSelector
-      tableId: NFTableRandomIED
+      tableId: NFTableRandomConcealedMine
       prob: 1.00

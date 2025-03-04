@@ -1,8 +1,7 @@
 # Base
 - type: entity
   parent: BaseLandMine
-  id: NFConcealedIED
-  suffix: Frontier, Mine, Explosive
+  id: NFConcealedMineTrigger
   abstract: true
   components:
   - type: AmbientSound
@@ -21,16 +20,48 @@
       params:
         volume: 1
     examinable: false
+
+- type: entity
+  parent: NFConcealedMineTrigger
+  id: NFConcealedMineExplosive
+  suffix: Frontier, Mine, Explosive
+  abstract: true
+  components:
   - type: Explosive
-    explosionType: HardBomb  # normally Default and max 5 total 60
-    maxIntensity: 8
+    explosionType: Default
+    maxIntensity: 20
+    totalIntensity: 30 # about a ~3 tile radius
+    canCreateVacuum: false
+
+- type: entity
+  parent: NFConcealedMineTrigger
+  id: NFConcealedMineCryo
+  suffix: Frontier, Mine, Cryo
+  abstract: true
+  components:
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 10
+    totalIntensity: 30 # about a ~3 tile radius
+    canCreateVacuum: false
+
+- type: entity
+  parent: NFConcealedMineTrigger
+  id: NFConcealedMineFire
+  suffix: Frontier, Mine, Fire
+  abstract: true
+  components:
+  - type: Explosive
+    explosionType: FireBomb
+    maxIntensity: 10
     totalIntensity: 30 # about a ~3 tile radius
     canCreateVacuum: false
 
 # Variations
+# Explosive
 - type: entity
-  parent: NFConcealedIED
-  id: NFToolboxIED
+  parent: NFConcealedMineExplosive
+  id: NFToolboxMineExplosive
   name: mechanical toolbox
   description: A blue box, stocked with mechanical tools.
   components:
@@ -43,12 +74,13 @@
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       state: ied_diplay
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
       shader: unshaded
       state: ied_light
 
 - type: entity
-  parent: [ WetFloorSign, NFConcealedIED ]
-  id: NFWetFloorSignIED
+  parent: [ WetFloorSign, NFConcealedMineExplosive ]
+  id: NFWetFloorSignMineExplosive
   components:
   - type: Sprite
     layers:
@@ -59,12 +91,13 @@
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       state: ied_diplay
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
       shader: unshaded
       state: ied_light
 
 - type: entity
-  parent: NFConcealedIED
-  id: NFPlushieIED
+  parent: NFConcealedMineExplosive
+  id: NFPlushieMineExplosive
   name: plushie
   description: A stuffed toy to remind adults of what they can no longer have - youth.
   components:
@@ -78,6 +111,7 @@
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       state: ied_diplay
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
       shader: unshaded
       state: ied_light
   - type: RandomSprite
@@ -102,8 +136,8 @@
           plushie_penguin: ""
 
 - type: entity
-  parent: NFConcealedIED
-  id: NFBoxIED
+  parent: NFConcealedMineExplosive
+  id: NFBoxMineExplosive
   name: box
   description: A box.
   components:
@@ -117,6 +151,7 @@
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       state: ied_diplay
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
       shader: unshaded
       state: ied_light
   - type: RandomSprite
@@ -135,8 +170,8 @@
           throwing_knives: ""
 
 - type: entity
-  parent: NFConcealedIED
-  id: NFTrashIED
+  parent: NFConcealedMineExplosive
+  id: NFTrashMineExplosive
   name: discarded wrapper
   description: A discarded packaging from a food item.
   components:
@@ -150,6 +185,7 @@
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
       state: ied_diplay
     - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
       shader: unshaded
       state: ied_light
   - type: RandomSprite
@@ -166,3 +202,181 @@
           semki-trash: ""
           susjerky-trash: ""
           syndicakes-trash: ""
+
+# Cryo
+- type: entity
+  parent: [ NFConcealedMineCryo, NFToolboxMineExplosive ]
+  id: NFToolboxMineCryo
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineCryo, NFWetFloorSignMineExplosive ]
+  id: NFWetFloorSignMineCryo
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineCryo, NFPlushieMineExplosive ]
+  id: NFPlushieMineCryo
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Fun/toys.rsi
+      state: plushie_atmosian
+      map: [ "ied_sprite_toy" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineCryo, NFBoxMineExplosive ]
+  id: NFBoxMineCryo
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Storage/boxicons.rsi
+      state: bodybags
+      map: [ "ied_sprite_box" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineCryo, NFTrashMineExplosive ]
+  id: NFTrashMineCryo
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers-trash
+      map: [ "ied_sprite_trash" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+# Fire
+- type: entity
+  parent: [ NFConcealedMineFire, NFToolboxMineExplosive ]
+  id: NFToolboxMineFire
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineFire, NFWetFloorSignMineExplosive ]
+  id: NFWetFloorSignMineFire
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineFire, NFPlushieMineExplosive ]
+  id: NFPlushieMineFire
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Fun/toys.rsi
+      state: plushie_atmosian
+      map: [ "ied_sprite_toy" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineFire, NFBoxMineExplosive ]
+  id: NFBoxMineFire
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Storage/boxicons.rsi
+      state: bodybags
+      map: [ "ied_sprite_box" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineFire, NFTrashMineExplosive ]
+  id: NFTrashMineFire
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers-trash
+      map: [ "ied_sprite_trash" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_diplay
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
