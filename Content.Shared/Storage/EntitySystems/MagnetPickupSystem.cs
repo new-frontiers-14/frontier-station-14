@@ -157,6 +157,7 @@ public sealed class MagnetPickupSystem : EntitySystem
 
                 if (!TryComp<ItemComponent>(near, out var item))
                     continue;
+
                 var itemSize = _item.GetItemShape((near, item)).GetArea();
                 if (itemSize > totalSlots - slotCount)
                     break;
