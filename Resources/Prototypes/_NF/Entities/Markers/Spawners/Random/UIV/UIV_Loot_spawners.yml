@@ -2,9 +2,9 @@
   id: SpawnDungeonLootMercenaryUIVTable
   table: !type:GroupSelector
     children:
-    # 70% chance of scrap of some kind
+    # 95% chance for the loot tables, lower chance for weapons
     - !type:GroupSelector
-      weight: 195
+      weight: 95
       children:
       - !type:NestedSelector
         tableId: DungeonLootMercenaryUIVCommon
