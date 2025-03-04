@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: -
+# Discord: docs.unity3d.com
+# License: CC-BY-NC-ND-3.0
+# Corvax_frontier
+
+# Maintainer Info
+# GitHub: https://github.com/mersen-tyn
+# Discord: mersen
+
+# Shuttle Notes:
+
+- type: vessel
+  id: ZaryaR
+  parent: BaseVessel
+  name: VT-R Заря # Vitezstvi Military Force
+  description: Исследовательское версия боевого шаттла Заря. Рекомендуемый состав команды 3-8 человек.
+  price: 135000 # 40% tax
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/_Corvax/Shuttles/Expedition/ZaryaResearch.yml
+
+- type: gameMap
+  id: ZaryaR
+  mapName: 'VT-R Заря'
+  mapPath: /Maps/_Corvax/Shuttles/Expedition/ZaryaResearch.yml
+  minPlayers: 0
+  stations:
+    ZaryaR:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'VT-R Заря {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

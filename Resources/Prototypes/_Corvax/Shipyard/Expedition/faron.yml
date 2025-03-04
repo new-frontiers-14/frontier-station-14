@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: -
+# Discord: autsaider_m
+# License: CC-BY-NC-ND-3.0
+# Corvax_frontier
+
+# Maintainer Info
+# GitHub: https://github.com/mersen-tyn
+# Discord: mersen
+
+# Shuttle Notes:
+
+- type: vessel
+  id: faron
+  parent: BaseVessel
+  name: NLE Фарон
+  description: Среднегабаритный экспедиционный шаттл. Рекомендуемый состав команды 2-5 человек.
+  price: 78000 # 50% tax
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_Corvax/Shuttles/Expedition/faron.yml
+
+- type: gameMap
+  id: faron
+  mapName: 'NLE Фарон'
+  mapPath: /Maps/_Corvax/Shuttles/Expedition/faron.yml
+  minPlayers: 0
+  stations:
+    faron:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Фарон {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

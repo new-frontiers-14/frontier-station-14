@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: -
+# Discord: autsaider_m
+# License: CC-BY-NC-ND-3.0
+# Corvax_frontier
+
+# Maintainer Info
+# GitHub: https://github.com/mersen-tyn
+# Discord: mersen
+
+# Shuttle Notes:
+
+- type: vessel
+  id: boyaryshnik
+  parent: BaseVessel
+  name: NLE Боярышник
+  description: Среднегабаритный экспедиционный шаттл. Рекомендуемый состав команды 2-5 человек.
+  price: 57000 # 50% tax
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_Corvax/Shuttles/Expedition/boyaryshnik.yml
+
+- type: gameMap
+  id: boyaryshnik
+  mapName: 'NLE Боярышник'
+  mapPath: /Maps/_Corvax/Shuttles/Expedition/boyaryshnik.yml
+  minPlayers: 0
+  stations:
+    boyaryshnik:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Боярышник {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
