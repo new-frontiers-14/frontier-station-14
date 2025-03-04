@@ -57,10 +57,12 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         {
             var message = Loc.GetString(stationEvent.StartRadioAnnouncement);
             var mapUid = MapSystem.GetMap(GameTicker.DefaultMap); // Hack: need a reference to a valid entity on the default map - the map itself works.
-            RadioSystem.SendRadioMessage(uid, message, stationEvent.StartRadioAnnouncementChannel, mapUid, escapeMarkup: false);
+            RadioSystem.SendRadioMessage(uid, message, stationEvent.StartRadioAnnouncementChannel, mapUid, escapeMarkup: false, sound: stationEvent.StartAudio);
         }
-
-        Audio.PlayGlobal(stationEvent.StartAudio, allPlayersInGame, true);
+        else
+        {
+            Audio.PlayGlobal(stationEvent.StartAudio, allPlayersInGame, true);
+        }
     }
 
     /// <inheritdoc/>
