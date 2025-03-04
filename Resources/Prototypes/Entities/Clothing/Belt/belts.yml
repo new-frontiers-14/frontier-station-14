@@ -15,34 +15,35 @@
     # TODO: Fill this out more.
     # whitelist: # Frontier: commented out whitelist
       # tags:
-        # - Powerdrill
-        # - Wirecutter
-        # - Crowbar
-        # - Screwdriver
-        # - Flashlight
-        # - Wrench
-        # - GeigerCounter
-        # - Flare
-        # - CableCoil
-        # - CigPack
-        # - Radio
-        # - HolofanProjector
-        # - Multitool
-        # - AppraisalTool
-        # - JawsOfLife
-        # - GPS
-        # - WeldingMask
+      #   - Powerdrill
+      #   - Wirecutter
+      #   - Crowbar
+      #   - Screwdriver
+      #   - Flashlight
+      #   - Wrench
+      #   - GeigerCounter
+      #   - Flare
+      #   - CableCoil
+      #   - CigPack
+      #   - Radio
+      #   - HolofanProjector
+      #   - Multitool
+      #   - AppraisalTool
+      #   - JawsOfLife
+      #   - GPS
+      #   - WeldingMask
       # components:
-        # - SprayPainter
-        # - NetworkConfigurator
-        # - RCD
-        # - RCDAmmo
-        # - Welder
-        # - PowerCell
-        # - Geiger
-        # - TrayScanner
-        # - GasAnalyzer
-        # - HandLabeler
+      #   - StationMap
+      #   - SprayPainter
+      #   - NetworkConfigurator
+      #   - RCD
+      #   - RCDAmmo
+      #   - Welder
+      #   - PowerCell
+      #   - Geiger
+      #   - TrayScanner
+      #   - GasAnalyzer
+      #   - HandLabeler
   - type: ItemMapper
     mapLayers:
       drill:
@@ -95,34 +96,35 @@
     #- 0,0,9,1 # Frontier
     # TODO: Fill this out more.
     # whitelist: # Frontier: commented out whitelist
-      # tags:
-        # - Wirecutter
-        # - Crowbar
-        # - Screwdriver
-        # - Flashlight
-        # - Wrench
-        # - GeigerCounter
-        # - Flare
-        # - CableCoil
-        # - Powerdrill
-        # - JawsOfLife
-        # - CigPack
-        # - Radio
-        # - HolofanProjector
-        # - Multitool
-        # - AppraisalTool
-      # components:
-        # - SprayPainter
-        # - NetworkConfigurator
-        # - RCD
-        # - RCDAmmo
-        # - Welder
-        # - Flash
-        # - Handcuff
-        # - PowerCell
-        # - Geiger
-        # - TrayScanner
-        # - GasAnalyzer
+    #   tags:
+    #     - Wirecutter
+    #     - Crowbar
+    #     - Screwdriver
+    #     - Flashlight
+    #     - Wrench
+    #     - GeigerCounter
+    #     - Flare
+    #     - CableCoil
+    #     - Powerdrill
+    #     - JawsOfLife
+    #     - CigPack
+    #     - Radio
+    #     - HolofanProjector
+    #     - Multitool
+    #     - AppraisalTool
+    #   components:
+    #     - StationMap
+    #     - SprayPainter
+    #     - NetworkConfigurator
+    #     - RCD
+    #     - RCDAmmo
+    #     - Welder
+    #     - Flash
+    #     - Handcuff
+    #     - PowerCell
+    #     - Geiger
+    #     - TrayScanner
+    #     - GasAnalyzer
   - type: ItemMapper
     mapLayers:
       drill:
@@ -544,7 +546,7 @@
 # Belts without visualizers
 
 - type: entity
-  parent: [ClothingBeltAmmoProviderBase, BaseC1Contraband] # Frontier: BaseRestrictedContraband<BaseC1Contraband
+  parent: [ClothingBeltAmmoProviderBase, BaseC1Contraband] # Frontier: BaseSecurityBartenderContraband<BaseC1Contraband
   id: ClothingBeltBandolier
   name: bandolier
   description: A bandolier for holding shotgun ammunition.
