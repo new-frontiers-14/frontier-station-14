@@ -27,8 +27,6 @@
     interfaces:
       enum.InstrumentUiKey.Key:
         type: InstrumentBoundUserInterface
-      enum.VoiceMaskUIKey.Key:
-        type: VoiceMaskBoundUserInterface
       enum.HumanoidMarkingModifierKey.Key:
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
@@ -40,6 +38,7 @@
       - map: [ "enum.HumanoidVisualLayers.Head" ]
       - map: [ "enum.HumanoidVisualLayers.Snout" ]
       - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ] # Frontier: return to top near LArm
       - map: [ "enum.HumanoidVisualLayers.LArm" ]
       - map: [ "enum.HumanoidVisualLayers.RLeg" ]
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
@@ -74,13 +73,12 @@
         sprite: "Effects/creampie.rsi"
         state: "creampie_human"
         visible: false
-# Yes, RArm has to be down here
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RArmExtension" ] # Frontier
       - map: [ "enum.HumanoidVisualLayers.Hair" ]
       - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
       - map: [ "mask" ]
       - map: [ "head" ]
-      - map: [ "singingLayer" ]
+      - map: [ enum.InstrumentVisuals.Layer ]
         sprite: _DV/Effects/harpysinger.rsi
         state: singing_music_notes
         visible: false
@@ -112,53 +110,39 @@
   - type: Speech
     speechSounds: Harpy
     speechVerb: Harpy
-    # New Frontiers - Expand Harpy Mimicry - includes all harpy sound collections
-    #   as accepted emotes, adds 
-    # This code is licensed under AGPLv3. See LICENSE
-    mimicEmotes: true # Frontier
-    allowedEmotes:
-    - Squish
-    - Chitter
-    - Click
-    - Ring
-    - Pew
-    - Bang
-    - Rev
-    - Caw
-    - Sneeze # Frontier
-    - Cough # Frontier
-    - Hiss # Frontier
-    - Meow # Frontier
-    - Mew # Frontier
-    - Growl # Frontier
-    - Purr # Frontier
-    - Beep # Frontier
-    - Squeak # Frontier
-    - Chirp # Frontier
-    - Snarl # Frontier
-    - Bark # Frontier
-    - Whine # Frontier
-    - Howl # Frontier
-    - Awoo # Frontier
-    - Honk # Frontier
-    - Belch # Frontier
-    # End of modified code
+    allowedEmotes: ['Meow', 'Hiss', 'Mew', 'Purr', 'Growl', 'Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'HarpyHonk', 'HarpyRing', 'HarpyPew', 'HarpyBang', 'HarpyBeep', 'HarpyRev', 'HarpyCaw', 'Squish', 'Chitter', 'Squeak', 'Click', 'Belch', 'Squish'] # Frontier: add Belch, Squish
   - type: Vocal
     sounds:
       Male: SoundsHarpy
       Female: SoundsHarpy
       Unsexed: SoundsHarpy
+  - type: InstrumentVisuals
   - type: GenericVisualizer
     visuals:
-      enum.HarpyVisualLayers.Singing:
-        singingLayer:
-          False:  {visible: false}
-          True:  {visible: true}
+      enum.InstrumentVisuals.Playing:
+        enum.InstrumentVisuals.Layer:
+          False: {visible: false}
+          True: {visible: true}
+  - type: MovementSpeedModifier
+#    baseWalkSpeed: 2.5 # Frontier
+#    baseSprintSpeed: 5.0 # Frontier
+    weightlessAcceleration: 2.5
   - type: Inventory 
     speciesId: harpy
-    templateId: digitigrade
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _DV/Mobs/Species/Harpy/displacement.rsi
+            state: jumpsuit
+    femaleDisplacements: {} # Frontier: female jumpsuit displacement
   - type: HarpyVisuals
   - type: UltraVision
+#  - type: Tag # Frontier
+#    tags: # Frontier
+#    - CanPilot # Frontier
+#    - FootstepSound # Frontier
+#    - DoorBumpOpener # Frontier
 
 - type: entity
   save: false
@@ -172,6 +156,13 @@
     species: Harpy
   - type: Inventory 
     speciesId: harpy
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _DV/Mobs/Species/Harpy/displacement.rsi
+            state: jumpsuit
+    femaleDisplacements: {} # Frontier: female jumpsuit displacement
   - type: Sprite
     scale: 0.9, 0.9
     layers:
@@ -179,6 +170,7 @@
       - map: [ "enum.HumanoidVisualLayers.Head" ]
       - map: [ "enum.HumanoidVisualLayers.Snout" ]
       - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ] # Frontier: return to top near LArm
       - map: [ "enum.HumanoidVisualLayers.LArm" ]
       - map: [ "enum.HumanoidVisualLayers.RLeg" ]
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
@@ -209,8 +201,7 @@
         sprite: "Effects/creampie.rsi"
         state: "creampie_human"
         visible: false
-# Yes, RArm has to be down here
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RArmExtension" ] # Frontier
       - map: [ "enum.HumanoidVisualLayers.Hair" ]
       - map: [ "mask" ]
       - map: [ "head" ]
@@ -219,7 +210,6 @@
   id: ActionHarpyPlayMidi
   name: Play MIDI
   description: Sing your heart out! Right click yourself to set an instrument.
-  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     checkCanInteract: false
@@ -231,7 +221,6 @@
   id: ActionSyrinxChangeVoiceMask
   name: Set name
   description: Change the name others hear to something else.
-  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     icon: _DV/Interface/Actions/harpy_syrinx.png

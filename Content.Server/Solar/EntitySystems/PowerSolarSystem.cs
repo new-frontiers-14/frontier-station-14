@@ -91,7 +91,7 @@ namespace Content.Server.Solar.EntitySystems
             UpdateSupply(uid, component);
         }
 
-        public override void Update(float frameTime)
+        public void UpdateUnused(float frameTime) // Frontier: remove override, hide function
         {
             TowardsSun += SunAngularVelocity * frameTime;
             TowardsSun = TowardsSun.Reduced();

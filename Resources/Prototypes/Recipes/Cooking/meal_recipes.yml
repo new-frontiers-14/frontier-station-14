@@ -34,6 +34,7 @@
   time: 5
   solids:
     FoodDoughCottonRope: 1
+  recipeType: Oven # Frontier
 
 #Burgers
 
@@ -524,6 +525,7 @@
     Blackpepper: 5
   solids:
     FoodDoughCotton: 1
+  recipeType: Oven # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeBaguetteSword
@@ -725,8 +727,7 @@
   reagents:
     Flour: 15
     Egg: 6
-  solids:
-    FoodButter: 1
+    OilOlive: 5
   recipeType: Microwave # Frontier
 
 - type: microwaveMealRecipe
@@ -2336,6 +2337,7 @@
   solids:
     FoodCroissantRawCotton: 1
     FoodButterSlice: 1
+  recipeType: Oven # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeThrowingCroissant
@@ -2357,6 +2359,9 @@
   time: 5
   solids:
     AnomalyCoreFleshInert: 1
+  recipeType: # Frontier
+  - Microwave # Frontier
+  - Oven # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeAnomalyMeat
@@ -2365,6 +2370,9 @@
   time: 5
   solids:
     AnomalyCoreFlesh: 1
+  recipeType: # Frontier
+  - Microwave # Frontier
+  - Oven # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeAnomalyMeatCooked
@@ -2373,3 +2381,18 @@
   time: 5
   solids:
     FoodMeatAnomaly: 1
+  recipeType: # Frontier
+  - Microwave # Frontier
+  - Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeGrilledCheeseSandwich
+  name: grilled cheese sandwich recipe
+  result: FoodBakedGrilledCheeseSandwich
+  time: 10
+  solids:
+    FoodBreadPlainSlice: 2
+    FoodCheeseSlice: 1
+    FoodButterSlice: 1
+  recipeType: Oven # Frontier
+
