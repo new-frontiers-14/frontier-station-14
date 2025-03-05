@@ -125,9 +125,4 @@ public sealed partial class RngDeviceWindow : DefaultWindow
         _updatingControls = false;
     }
 
-    public void SetOutputs(int outputs)
-    {
-        // This method is no longer needed as we handle visibility in UpdateState
-        _targetNumberContainer.Visible = outputs == 2;
-    }
 }
