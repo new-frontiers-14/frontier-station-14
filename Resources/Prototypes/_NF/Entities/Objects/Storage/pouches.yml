@@ -14,6 +14,7 @@
     shape:
     - 0,0,1,1
   - type: Clothing
+    quickEquip: false
     sprite: _NF/Objects/Storage/Pouches/pouch.rsi
     slots: [ belt, pocket ]
   - type: Storage
@@ -21,7 +22,7 @@
     grid:
     - 0,0,2,1
     blacklist:
-      components: [ Storage ]
+      components: [ Storage ] # No bagception
   - type: StaticPrice
     price: 50
   - type: ItemCounter
@@ -51,7 +52,6 @@
           Closed: { visible: true }
 
 # Variants
-# Departmental
 - type: entity
   id: NFPouchUtility
   parent: NFPouchBase
@@ -84,18 +84,22 @@
           fill-util1-1: ""
           fill-util1-2: ""
           fill-util1-3: ""
+          fill-util1-4: ""
         pouchFill2:
           fill-util2-1: ""
           fill-util2-2: ""
           fill-util2-3: ""
+          fill-util2-4: ""
         pouchFill3:
           fill-util3-1: ""
           fill-util3-2: ""
           fill-util3-3: ""
+          fill-util3-4: ""
         pouchFill4:
           fill-util4-1: ""
           fill-util4-2: ""
           fill-util4-3: ""
+          fill-util4-4: ""
   - type: Item
     inhandVisuals:
       left:
@@ -113,6 +117,7 @@
       - state: equipped-BELT
         color: "#bf743c"
 
+# Departmental
 - type: entity
   id: NFPouchEngineering
   parent: NFPouchUtility
@@ -158,21 +163,220 @@
       pocket:
       - state: equipped-BELT
         color: "#ffde15"
- # - type: Storage
-   # maxItemSize: Small
-   # grid:
-   # - 0,0,2,1
-    # whitelist:
-      # tags:
-        # - GasTank
-        # - Multitool
-        # - DoorElectronicsConfigurator
-      # components:
-        # - Tool
-        # - RCD
-        # - RCDAmmo
-        # - MachineBoard
-        # - MachinePart
+
+- type: entity
+  id: NFPouchAtmospherics
+  parent: NFPouchEngineering
+  name: atmostechnician's pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: [ "closeLayer" ]
+      color: "#ffde15"
+    - state: open
+      color: "#ffde15"
+      map: [ "openLayer" ]
+      visible: false
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
+      visible: false
+    - state: fill-util3-1
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: decal-line-01
+      map: [ "decal1" ]
+      color: "#00a9ff"
+
+- type: entity
+  id: NFPouchScience
+  parent: NFPouchUtility
+  name: scientist's pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+      color: "#eeeeee"
+    - state: open
+      color: "#eeeeee"
+      map: ["openLayer"]
+      visible: false
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
+      visible: false
+    - state: fill-util3-1
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: decal-line-01
+      map: [ "decal1" ]
+      color: "#990099"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#eeeeee"
+      right:
+      - state: inhand-right
+        color: "#eeeeee"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#eeeeee"
+      pocket:
+      - state: equipped-BELT
+        color: "#eeeeee"
+
+- type: entity
+  id: NFPouchHydroponics
+  parent: NFPouchUtility
+  name: botanist's pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+      color: "#7dd465"
+    - state: open
+      color: "#7dd465"
+      map: ["openLayer"]
+      visible: false
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
+      visible: false
+    - state: fill-util3-1
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: decal-line-01
+      map: [ "decal1" ]
+      color: "#204bd5"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#7dd465"
+      right:
+      - state: inhand-right
+        color: "#7dd465"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#7dd465"
+      pocket:
+      - state: equipped-BELT
+        color: "#7dd465"
+
+- type: entity
+  id: NFPouchSalvage
+  parent: NFPouchUtility
+  name: salvagers's pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+      color: "#786243"
+    - state: open
+      color: "#786243"
+      map: ["openLayer"]
+      visible: false
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
+      visible: false
+    - state: fill-util3-1
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: decal-line-01
+      map: [ "decal1" ]
+      color: "#66489c"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#786243"
+      right:
+      - state: inhand-right
+        color: "#786243"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#786243"
+      pocket:
+      - state: equipped-BELT
+        color: "#786243"
+
+- type: entity
+  id: NFPouchChaplain
+  parent: NFPouchUtility
+  name: chaplain's pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+      color: "#777b83"
+    - state: open
+      color: "#777b83"
+      map: ["openLayer"]
+      visible: false
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
+      visible: false
+    - state: fill-util3-1
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: decal-religious-cross
+      map: [ "decal1" ]
+      color: "#f6d56a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#3e3e48"
+      right:
+      - state: inhand-right
+        color: "#3e3e48"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#3e3e48"
+      pocket:
+      - state: equipped-BELT
+        color: "#3e3e48"
 
 - type: entity
   id: NFPouchFirstAid
@@ -287,98 +491,6 @@
       pocket:
       - state: equipped-BELT
         color: "#357294"
-
-- type: entity
-  id: NFPouchScience
-  parent: NFPouchUtility
-  name: scientist's pouch
-  components:
-  - type: Sprite
-    layers:
-    - state: closed
-      map: ["closeLayer"]
-      color: "#d8edff"
-    - state: open
-      color: "#d8edff"
-      map: ["openLayer"]
-      visible: false
-    - state: fill-util4-1
-      map: [ "pouchFill4" ]
-      visible: false
-    - state: fill-util3-1
-      map: [ "pouchFill3" ]
-      visible: false
-    - state: fill-util2-1
-      map: [ "pouchFill2" ]
-      visible: false
-    - state: fill-util1-1
-      map: [ "pouchFill1" ]
-      visible: false
-    - state: decal-line-01
-      map: [ "decal1" ]
-      color: "#990099"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#d8edff"
-      right:
-      - state: inhand-right
-        color: "#d8edff"
-  - type: Clothing
-    clothingVisuals:
-      belt:
-      - state: equipped-BELT
-        color: "#d8edff"
-      pocket:
-      - state: equipped-BELT
-        color: "#d8edff"
-
-- type: entity
-  id: NFPouchSalvage
-  parent: NFPouchUtility
-  name: salvagers's pouch
-  components:
-  - type: Sprite
-    layers:
-    - state: closed
-      map: ["closeLayer"]
-      color: "#786243"
-    - state: open
-      color: "#786243"
-      map: ["openLayer"]
-      visible: false
-    - state: fill-util4-1
-      map: [ "pouchFill4" ]
-      visible: false
-    - state: fill-util3-1
-      map: [ "pouchFill3" ]
-      visible: false
-    - state: fill-util2-1
-      map: [ "pouchFill2" ]
-      visible: false
-    - state: fill-util1-1
-      map: [ "pouchFill1" ]
-      visible: false
-    - state: decal-line-01
-      map: [ "decal1" ]
-      color: "#66489c"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#786243"
-      right:
-      - state: inhand-right
-        color: "#786243"
-  - type: Clothing
-    clothingVisuals:
-      belt:
-      - state: equipped-BELT
-        color: "#786243"
-      pocket:
-      - state: equipped-BELT
-        color: "#786243"
 
 # Tobacco
 - type: entity
