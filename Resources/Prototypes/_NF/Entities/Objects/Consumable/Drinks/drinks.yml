@@ -112,3 +112,22 @@
     solutions:
       drink:
         maxVol: 10
+
+# mistery liquid bottle
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ChemistryBottleMisteryLiquid
+  suffix: Mistery liquid
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink: # This solution name and target volume is hard-coded in ChemMasterComponent
+        maxVol: 30
+        reagents:
+        - ReagentId: MisteryLiquid
+          Quantity: 30
+  - type: RandomFillSolution
+    solution: drink
+    weightedRandomId: RandomFillStrangePill
+  - type: PressurizedSolution
+    solution: drink
