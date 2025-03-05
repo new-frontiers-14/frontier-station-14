@@ -2253,6 +2253,7 @@
   name: bungo pit
   parent: FoodInjectableBase
   id: FoodBungoPit
+  description: The humble pit of the humble bungo fruit. Tastes peppery! # Frontier
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/bungo.rsi
@@ -2264,12 +2265,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 7
+        maxVol: 5 # Frontier
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Bungotoxin
-          Quantity: 5
+        - ReagentId: Blackpepper #Frontier
+          Quantity: 5 # Frontier
   - type: Extractable
     grindableSolutionName: food
   - type: Seed
