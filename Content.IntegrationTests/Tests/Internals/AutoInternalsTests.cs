@@ -9,7 +9,8 @@ namespace Content.IntegrationTests.Tests.Internals;
 [TestOf(typeof(InternalsSystem))]
 public sealed class AutoInternalsTests
 {
-    [Ignore("Not relevant for Frontier")] // Frontier
+    [Test]
+    [Ignore("Frontier: Changes to StationSpawningSystem breaks this")] // Frontier
     public async Task TestInternalsAutoActivateInSpaceForStationSpawn()
     {
         await using var pair = await PoolManager.GetServerClient();
@@ -35,7 +36,7 @@ public sealed class AutoInternalsTests
         await pair.CleanReturnAsync();
     }
 
-    [Ignore("Not relevant for Frontier")] // Frontier
+    [Test]
     public async Task TestInternalsAutoActivateInSpaceForEntitySpawn()
     {
         await using var pair = await PoolManager.GetServerClient();

@@ -110,25 +110,19 @@
     sprite: _NF/Structures/Machines/VendingMachines/expeditionaryflatpackvend.rsi
 
 - type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, StorePresetUplink, VendingMachine]
   id: VendingMachineSyndieContraband
   name: ContraVend
   description: Wanted across multiple sectors!
   components:
   - type: VendingMachine
-    pack: ContraVendInventory
-    dispenseOnHitChance: 0
-    dispenseOnHitThreshold: 2
+    cashSlot: Null
     offState: off
     brokenState: broken
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
     screenState: screen
-    ejectDelay: 3
-    ejectRandomMax: 0
-    ejectRandomCounter: 0
-#    initialStockQuality: 0.5
   - type: Advertise
     pack: SyndieDrobeAds
   - type: Sprite
@@ -148,6 +142,15 @@
     radius: 1.5
     energy: 1.3
     color: "#ad2c2b"
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Telecrystal: 5 # Small initial balance
   - type: AccessReader
     access: [["NuclearOperative"], ["SyndicateAgent"]]
 
@@ -735,13 +738,3 @@
   components:
   - type: VendingMachine
     pack: TankDispenserEVAPOIInventory
-
-# Dungeon versions of upstream machines
-
-- type: entity
-  parent: VendingMachineChefvend
-  id: VendingMachineChefvendDungeon
-  suffix: Dungeon
-  components:
-  - type: VendingMachine
-    initialStockQuality: 0 # This isnt actully empty, just always missing stuff.
