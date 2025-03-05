@@ -48,6 +48,7 @@ public sealed class RngDeviceBoundUserInterfaceState : BoundUserInterfaceState
     public int TargetNumber { get; }
     public int Outputs { get; }
     public bool EdgeMode { get; }
+    public string DeviceType { get; }
 
     public RngDeviceBoundUserInterfaceState(bool muted, int targetNumber, int outputs, bool edgeMode)
     {
@@ -55,6 +56,17 @@ public sealed class RngDeviceBoundUserInterfaceState : BoundUserInterfaceState
         TargetNumber = targetNumber;
         Outputs = outputs;
         EdgeMode = edgeMode;
+        DeviceType = outputs switch
+        {
+            2 => "Percentile",
+            4 => "D4",
+            6 => "D6",
+            8 => "D8",
+            10 => "D10",
+            12 => "D12",
+            20 => "D20",
+            _ => "Unknown"
+        };
     }
 }
 

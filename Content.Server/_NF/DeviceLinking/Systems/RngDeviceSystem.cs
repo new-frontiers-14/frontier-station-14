@@ -48,6 +48,40 @@ public sealed class RngDeviceSystem : EntitySystem
             new ProtoId<SourcePortPrototype>(comp.Output6Port)
         }).ToArray();
 
+    private static ProtoId<SourcePortPrototype>[] InitializeEightPortsArray(RngDeviceComponent comp) => InitializeSixPortsArray(comp)
+        .Concat(new[]
+        {
+            new ProtoId<SourcePortPrototype>(comp.Output7Port),
+            new ProtoId<SourcePortPrototype>(comp.Output8Port)
+        }).ToArray();
+
+    private static ProtoId<SourcePortPrototype>[] InitializeTenPortsArray(RngDeviceComponent comp) => InitializeEightPortsArray(comp)
+        .Concat(new[]
+        {
+            new ProtoId<SourcePortPrototype>(comp.Output9Port),
+            new ProtoId<SourcePortPrototype>(comp.Output10Port)
+        }).ToArray();
+
+    private static ProtoId<SourcePortPrototype>[] InitializeTwelvePortsArray(RngDeviceComponent comp) => InitializeTenPortsArray(comp)
+        .Concat(new[]
+        {
+            new ProtoId<SourcePortPrototype>(comp.Output11Port),
+            new ProtoId<SourcePortPrototype>(comp.Output12Port)
+        }).ToArray();
+
+    private static ProtoId<SourcePortPrototype>[] InitializeTwentyPortsArray(RngDeviceComponent comp) => InitializeTwelvePortsArray(comp)
+        .Concat(new[]
+        {
+            new ProtoId<SourcePortPrototype>(comp.Output13Port),
+            new ProtoId<SourcePortPrototype>(comp.Output14Port),
+            new ProtoId<SourcePortPrototype>(comp.Output15Port),
+            new ProtoId<SourcePortPrototype>(comp.Output16Port),
+            new ProtoId<SourcePortPrototype>(comp.Output17Port),
+            new ProtoId<SourcePortPrototype>(comp.Output18Port),
+            new ProtoId<SourcePortPrototype>(comp.Output19Port),
+            new ProtoId<SourcePortPrototype>(comp.Output20Port)
+        }).ToArray();
+
     // Reusable payload for edge mode signals
     private readonly NetworkPayload _edgeModePayload = new();
 
@@ -78,6 +112,10 @@ public sealed class RngDeviceSystem : EntitySystem
             2 => "percentile",
             4 => "d4",
             6 => "d6",
+            8 => "d8",
+            10 => "d10",
+            12 => "d12",
+            20 => "d20",
             _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
         };
 
@@ -91,6 +129,10 @@ public sealed class RngDeviceSystem : EntitySystem
             2 => InitializeTwoPortsArray(comp),
             4 => InitializeFourPortsArray(comp),
             6 => InitializeSixPortsArray(comp),
+            8 => InitializeEightPortsArray(comp),
+            10 => InitializeTenPortsArray(comp),
+            12 => InitializeTwelvePortsArray(comp),
+            20 => InitializeTwentyPortsArray(comp),
             _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
         };
 
@@ -168,9 +210,12 @@ public sealed class RngDeviceSystem : EntitySystem
         if (!TryComp<AppearanceComponent>(uid, out var appearance))
             return;
 
-        var stateNumber = comp.Outputs == 2
-            ? roll == 100 ? 0 : (roll / 10) * 10  // Show "00" for 100, otherwise round down to nearest 10
-            : roll;
+        var stateNumber = comp.Outputs switch
+        {
+            2 => roll == 100 ? 0 : (roll / 10) * 10,  // Show "00" for 100, otherwise round down to nearest 10
+            10 => roll == 10 ? 0 : roll,  // Show "0" for 10
+            _ => roll
+        };
         _appearance.SetData(uid, State, $"{comp.StatePrefix}_{stateNumber}", appearance);
 
         if (!comp.Muted)
@@ -203,7 +248,7 @@ public sealed class RngDeviceSystem : EntitySystem
     /// Gets the ProtoId for the specified output port number
     /// </summary>
     /// <param name="comp">The RNG device component</param>
-    /// <param name="portNumber">The port number (1-6)</param>
+    /// <param name="portNumber">The port number (1-20)</param>
     /// <returns>The ProtoId for the corresponding output port</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when port number is invalid</exception>
     private static ProtoId<SourcePortPrototype> GetOutputPort(RngDeviceComponent comp, int portNumber)
@@ -216,6 +261,20 @@ public sealed class RngDeviceSystem : EntitySystem
             4 => comp.Output4Port,
             5 => comp.Output5Port,
             6 => comp.Output6Port,
+            7 => comp.Output7Port,
+            8 => comp.Output8Port,
+            9 => comp.Output9Port,
+            10 => comp.Output10Port,
+            11 => comp.Output11Port,
+            12 => comp.Output12Port,
+            13 => comp.Output13Port,
+            14 => comp.Output14Port,
+            15 => comp.Output15Port,
+            16 => comp.Output16Port,
+            17 => comp.Output17Port,
+            18 => comp.Output18Port,
+            19 => comp.Output19Port,
+            20 => comp.Output20Port,
             _ => throw new ArgumentOutOfRangeException(nameof(portNumber), $"Invalid output port number: {portNumber}")
         };
         return new ProtoId<SourcePortPrototype>(portName);

@@ -58,6 +58,90 @@ public sealed partial class RngDeviceComponent : Component
     public string Output6Port = "RngOutput6";
 
     /// <summary>
+    /// Output port 7 name
+    /// </summary>
+    [DataField("output7Port")]
+    public string Output7Port = "RngOutput7";
+
+    /// <summary>
+    /// Output port 8 name
+    /// </summary>
+    [DataField("output8Port")]
+    public string Output8Port = "RngOutput8";
+
+    /// <summary>
+    /// Output port 9 name
+    /// </summary>
+    [DataField("output9Port")]
+    public string Output9Port = "RngOutput9";
+
+    /// <summary>
+    /// Output port 10 name
+    /// </summary>
+    [DataField("output10Port")]
+    public string Output10Port = "RngOutput10";
+
+    /// <summary>
+    /// Output port 11 name
+    /// </summary>
+    [DataField("output11Port")]
+    public string Output11Port = "RngOutput11";
+
+    /// <summary>
+    /// Output port 12 name
+    /// </summary>
+    [DataField("output12Port")]
+    public string Output12Port = "RngOutput12";
+
+    /// <summary>
+    /// Output port 13 name
+    /// </summary>
+    [DataField("output13Port")]
+    public string Output13Port = "RngOutput13";
+
+    /// <summary>
+    /// Output port 14 name
+    /// </summary>
+    [DataField("output14Port")]
+    public string Output14Port = "RngOutput14";
+
+    /// <summary>
+    /// Output port 15 name
+    /// </summary>
+    [DataField("output15Port")]
+    public string Output15Port = "RngOutput15";
+
+    /// <summary>
+    /// Output port 16 name
+    /// </summary>
+    [DataField("output16Port")]
+    public string Output16Port = "RngOutput16";
+
+    /// <summary>
+    /// Output port 17 name
+    /// </summary>
+    [DataField("output17Port")]
+    public string Output17Port = "RngOutput17";
+
+    /// <summary>
+    /// Output port 18 name
+    /// </summary>
+    [DataField("output18Port")]
+    public string Output18Port = "RngOutput18";
+
+    /// <summary>
+    /// Output port 19 name
+    /// </summary>
+    [DataField("output19Port")]
+    public string Output19Port = "RngOutput19";
+
+    /// <summary>
+    /// Output port 20 name
+    /// </summary>
+    [DataField("output20Port")]
+    public string Output20Port = "RngOutput20";
+
+    /// <summary>
     /// Number of output ports.
     /// </summary>
     [DataField("outputs")]

@@ -112,6 +112,8 @@ public sealed partial class RngDeviceWindow : DefaultWindow
         _muteCheckBox.Pressed = state.Muted;
         _edgeModeCheckBox.Pressed = state.EdgeMode;
 
+        Title = Loc.GetString("rng-device-window-title", ("type", state.DeviceType));
+
         // Only update values if the slider isn't being dragged
         if (!_targetNumberSlider.Grabbed)
         {

@@ -1,4 +1,4 @@
-rng-device-window-title = RNG Device
+rng-device-window-title = RNG Device ({$type})
 
 # Section titles
 rng-device-section-options = Options
