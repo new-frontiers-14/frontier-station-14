@@ -465,4 +465,12 @@ public enum LogType
     /// </summary>
     AdminRefund = 203,
     AtmosDirectionChanged = 204,
+    /// <summary>
+    /// A player has posted a bounty contract.
+    /// </summary>
+    BountyContractCreated = 205,
+    /// <summary>
+    /// A player has deleted a bounty contract.
+    /// </summary>
+    BountyContractRemoved = 206,
 }
