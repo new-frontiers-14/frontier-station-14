@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server._NF.Market.Components;
 using Content.Server._NF.Trade;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
@@ -95,6 +96,8 @@ public sealed class PointOfInterestSystem : EntitySystem
                     else
                         destComp.DestinationProto = "CargoOther";
                 }
+
+                EnsureComp<DynamicMarketPOIComponent>(depot);
                 depotStations.Add(depot);
                 AddStationCoordsToSet(offset); // adjust list of actual station coords
             }
