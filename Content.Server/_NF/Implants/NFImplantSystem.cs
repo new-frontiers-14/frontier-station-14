@@ -28,7 +28,7 @@ public sealed class NFImplantSystem : EntitySystem
         if (!args.Implanted.HasValue)
             return;
 
-        var bibleUserComp = EnsureComp<BibleUserComponent>(args.Implanted.Value);
+        EnsureComp<BibleUserComponent>(args.Implanted.Value);
     }
 
     // Currently permanent, but should support removal if/when a viable solution is found.
@@ -45,7 +45,8 @@ public sealed class NFImplantSystem : EntitySystem
         if (!args.Implanted.HasValue)
             return;
 
-        var bibleUserComp = EnsureComp<MimePowersComponent>(args.Implanted.Value);
+        var mimeComp = EnsureComp<MimePowersComponent>(args.Implanted.Value);
+        mimeComp.PreventWriting = true;
     }
 
     private void OnMimeRemoved(EntityUid uid, MimePowersImplantComponent component, EntGotRemovedFromContainerMessage args)
