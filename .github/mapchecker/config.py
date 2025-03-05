@@ -1,5 +1,6 @@
 # List of matchers that are always illegal to use. These always supercede CONDITIONALLY_ILLEGAL_MATCHES.
 ILLEGAL_MATCHES = [
+    "DO NOT MAP",
     "DoNotMap",
     "DEBUG",
     "Admeme",

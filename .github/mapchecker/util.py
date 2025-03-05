@@ -70,8 +70,8 @@ def check_prototype(proto_id: str, proto_name: str, proto_suffixes: List[str], p
             if illegal_match.lower() == suffix.lower():
                 return False
 
-        for suffix in proto_categories:
-            if illegal_match.lower() == suffix.lower():
+        for category in proto_categories:
+            if illegal_match.lower() == category.lower():
                 return False
 
     # Check against CONDITIONALLY_ILLEGAL_MATCHES.
@@ -94,8 +94,8 @@ def check_prototype(proto_id: str, proto_name: str, proto_suffixes: List[str], p
                     conditionally_illegal_keys.append(key)
                     break
 
-            for suffix in proto_categories:
-                if cond_illegal_match.lower() == suffix.lower():
+            for category in proto_categories:
+                if cond_illegal_match.lower() == category.lower():
                     conditionally_illegal_keys.append(key)
                     break
 
