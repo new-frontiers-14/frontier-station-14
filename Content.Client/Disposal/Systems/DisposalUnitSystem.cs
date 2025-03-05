@@ -33,6 +33,7 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
         SubscribeLocalEvent<DisposalUnitComponent, PreventCollideEvent>(OnPreventCollide);
         SubscribeLocalEvent<DisposalUnitComponent, CanDropTargetEvent>(OnCanDragDropOn);
         SubscribeLocalEvent<DisposalUnitComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<DisposalUnitComponent, GotUnEmaggedEvent>(OnUnemagged);
 
         SubscribeLocalEvent<DisposalUnitComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<DisposalUnitComponent, AppearanceChangeEvent>(OnAppearanceChange);
