@@ -157,47 +157,67 @@ public sealed class RadioSystem : EntitySystem
 
         if (frequency == null) // Nuclear-14
             frequency = GetFrequency(messageSource, channel); // Nuclear-14
+        var playertarget = Filter.Empty();
 
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
             if (!radio.ReceiveAllChannels)
             {
                 if (!radio.Channels.Contains(channel.ID) || (TryComp<IntercomComponent>(receiver, out var intercom) &&
-                                                             !intercom.SupportedChannels.Contains(channel.ID)))
+                                                                 !intercom.SupportedChannels.Contains(channel.ID)))
                     continue;
             }
 
-            if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency) // Nuclear-14
-                continue; // Nuclear-14
+            if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency)
+                continue;
 
             if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
                 continue;
 
-            // don't need telecom server for long range channels or handheld radios and intercoms
             var needServer = !channel.LongRange && !sourceServerExempt;
             if (needServer && !hasActiveServer)
                 continue;
 
-            // check if message can be sent to specific receiver
             var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);
             RaiseLocalEvent(ref attemptEv);
             RaiseLocalEvent(receiver, ref attemptEv);
             if (attemptEv.Cancelled)
                 continue;
 
-            // send the message
-            Filter playertarget = Filter.Broadcast(); // todo change to Filter by player target found in receiver?
-            Audio.PlayGlobal(sound,playertarget , true);
+            // Send the message
             RaiseLocalEvent(receiver, ref ev);
+
+            // Directly access the parent instead of walking up the hierarchy
+            var parent = receiver;
+            ActorComponent? actor = null;
+
+            if (TryComp<ActorComponent>(parent, out actor))
+            {
+                // We found the actor directly
+                playertarget.AddPlayer(actor.PlayerSession);
+            }
+            else
+            {
+                // We need to check the immediate parent
+                parent = Transform(parent).ParentUid;
+
+                if (TryComp<ActorComponent>(parent, out actor))
+                {
+                    // We found the actor on the parent
+                    playertarget.AddPlayer(actor.PlayerSession);
+                }
+            }
+
+            // Play the radio sound for all collected players
+            Audio.PlayGlobal(sound, playertarget, true);
+            if (name != Name(messageSource))
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
+            else
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
+
+            _replay.RecordServerMessage(chat);
+            _messages.Remove(message);
         }
-
-        if (name != Name(messageSource))
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
-        else
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
-
-        _replay.RecordServerMessage(chat);
-        _messages.Remove(message);
     }
 
     /// <inheritdoc cref="TelecomServerComponent"/>
