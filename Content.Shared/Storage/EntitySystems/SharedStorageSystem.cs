@@ -279,6 +279,15 @@ public abstract class SharedStorageSystem : EntitySystem
             UpdateAppearance((uid, storageComp, null));
             Audio.PlayPredicted(storageComp.StorageCloseSound, uid, args.Actor);
         }
+
+        // Frontier: cherry-pick upstream #37075
+        if (TryComp<RecentlyOpenedStoragesComponent>(args.Actor, out var recently))
+        {
+            recently.OpenedStorages.ForEach(it => it.Remove(GetNetEntity(uid)));
+            recently.OpenedStorages.RemoveAll(it => it.Count == 0);
+            Dirty(args.Actor, recently);
+        }
+        // End Frontier: cherry-pick upstream #37075
     }
 
     private void AddUiVerb(EntityUid uid, StorageComponent component, GetVerbsEvent<ActivationVerb> args)
@@ -358,6 +367,27 @@ public abstract class SharedStorageSystem : EntitySystem
         if (!UI.TryOpenUi(uid, StorageComponent.StorageUiKey.Key, entity))
             return;
 
+        // Frontier: cherry-pick upstream#37075
+        var recently = EnsureComp<RecentlyOpenedStoragesComponent>(entity);
+
+        if (!recently.OpenedStorages.Any(inner => inner.Contains(GetNetEntity(uid))))
+        {
+            if (ContainerSystem.TryGetContainingContainer((uid, null, null), out var container))
+            {
+                var parentList = recently.OpenedStorages.Find(it => it.Contains(GetNetEntity(container.Owner)));
+                if (parentList is null)
+                    recently.OpenedStorages.Add(new() { GetNetEntity(uid) });
+                else
+                    parentList.Add(GetNetEntity(uid));
+            }
+            else
+            {
+                recently.OpenedStorages.Add(new() { GetNetEntity(uid) });
+            }
+            Dirty(entity, recently);
+        }
+        // End Frontier: cherry-pick upstream#37075
+
         if (!silent)
         {
             Audio.PlayPredicted(storageComp.StorageOpenSound, uid, entity);
@@ -430,7 +460,24 @@ public abstract class SharedStorageSystem : EntitySystem
         }
         else
         {
-            OpenStorageUI(uid, args.User, storageComp, false);
+            // Frontier: cherry-pick upstream#37075
+            // OpenStorageUI(uid, args.User, storageComp, false);
+            if (ContainerSystem.TryGetContainingContainer((args.Target, null, null), out var container) &&
+                UI.IsUiOpen(container.Owner, StorageComponent.StorageUiKey.Key, args.User))
+            {
+                _nestedCheck = true;
+                HideStorageWindow(container.Owner, args.User);
+                OpenStorageUI(uid, args.User, storageComp, false);
+                _nestedCheck = false;
+            }
+            else
+            {
+                if (_openStorageLimit == 1)
+                    UI.CloseUserUis<StorageComponent.StorageUiKey>(args.User);
+
+                OpenStorageUI(uid, args.User, storageComp, false);
+            }
+            // End Frontier: cherry-pick upstream#37075
         }
 
         args.Handled = true;
@@ -757,6 +804,35 @@ public abstract class SharedStorageSystem : EntitySystem
         UpdateAppearance((ent.Owner, ent.Comp, null));
     }
 
+    // Frontier: cherry-pick upstream#37075
+    private int CountOpenInterfaces(EntityUid actor, EntityUid? excluding)
+    {
+        var count = 0;
+
+        if (!_userQuery.TryComp(actor, out var userComp))
+        {
+            return count;
+        }
+
+        foreach (var (ui, keys) in userComp.OpenInterfaces)
+        {
+            if (excluding is not null && ui == excluding)
+                continue;
+
+            foreach (var key in keys)
+            {
+                if (key is not StorageComponent.StorageUiKey)
+                    continue;
+
+                count++;
+                break;
+            }
+        }
+
+        return count;
+    }
+    // End Frontier: cherry-pick upstream#37075
+
     private void OnBoundUIAttempt(BoundUserInterfaceMessageAttempt args)
     {
         if (args.UiKey is not StorageComponent.StorageUiKey.Key ||
@@ -767,31 +843,46 @@ public abstract class SharedStorageSystem : EntitySystem
 
         var uid = args.Target;
         var actor = args.Actor;
-        var count = 0;
+        // Frontier: cherry-pick upstream #37075
+        // var count = 0;
 
-        if (_userQuery.TryComp(actor, out var userComp))
+        // if (_userQuery.TryComp(actor, out var userComp))
+        // {
+        //     foreach (var (ui, keys) in userComp.OpenInterfaces)
+        //     {
+        //         if (ui == uid)
+        //             continue;
+
+        //         foreach (var key in keys)
+        //         {
+        //             if (key is not StorageComponent.StorageUiKey)
+        //                 continue;
+
+        //             count++;
+
+        //             if (count >= _openStorageLimit)
+        //             {
+        //                 args.Cancel();
+        //             }
+
+        //             break;
+        //         }
+        //     }
+        // }
+        var openInterfaces = CountOpenInterfaces(actor, uid);
+
+        if (openInterfaces >= _openStorageLimit)
         {
-            foreach (var (ui, keys) in userComp.OpenInterfaces)
+            var comp = EnsureComp<RecentlyOpenedStoragesComponent>(actor);
+            var lastItem = comp.OpenedStorages.Last();
+            comp.OpenedStorages.RemoveAt(comp.OpenedStorages.Count - 1);
+            foreach (var storage in lastItem)
             {
-                if (ui == uid)
-                    continue;
-
-                foreach (var key in keys)
-                {
-                    if (key is not StorageComponent.StorageUiKey)
-                        continue;
-
-                    count++;
-
-                    if (count >= _openStorageLimit)
-                    {
-                        args.Cancel();
-                    }
-
-                    break;
-                }
+                UI.CloseUi(GetEntity(storage), StorageComponent.StorageUiKey.Key, actor);
             }
+            Dirty(actor, comp);
         }
+        // End Frontier: cherry-pick upstream#37075
     }
 
     private void OnEntInserted(Entity<StorageComponent> entity, ref EntInsertedIntoContainerMessage args)
