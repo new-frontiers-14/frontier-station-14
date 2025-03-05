@@ -526,10 +526,11 @@
         collection: RadiationPulse
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 1
-      rechargeSound:
-        path: /Audio/_NF/Effects/silence.ogg
-    - type: BallisticAmmoProvider
+      rechargeSound: Null
+    - type: BasicEntityAmmoProvider
       proto: BulletBloodCultDarkBolt
+      capacity: 3
+      count: 3
     - type: HTN
       rootTask:
         task: TurretCompound
