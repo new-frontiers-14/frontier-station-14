@@ -14,6 +14,17 @@ public sealed class RngDeviceToggleMuteMessage : BoundUserInterfaceMessage
 }
 
 [Serializable, NetSerializable]
+public sealed class RngDeviceToggleEdgeModeMessage : BoundUserInterfaceMessage
+{
+    public bool EdgeMode { get; }
+
+    public RngDeviceToggleEdgeModeMessage(bool edgeMode)
+    {
+        EdgeMode = edgeMode;
+    }
+}
+
+[Serializable, NetSerializable]
 public sealed class RngDeviceSetTargetNumberMessage : BoundUserInterfaceMessage
 {
     public int TargetNumber { get; }
@@ -36,12 +47,14 @@ public sealed class RngDeviceBoundUserInterfaceState : BoundUserInterfaceState
     public bool Muted { get; }
     public int TargetNumber { get; }
     public int Outputs { get; }
+    public bool EdgeMode { get; }
 
-    public RngDeviceBoundUserInterfaceState(bool muted, int targetNumber, int outputs)
+    public RngDeviceBoundUserInterfaceState(bool muted, int targetNumber, int outputs, bool edgeMode)
     {
         Muted = muted;
         TargetNumber = targetNumber;
         Outputs = outputs;
+        EdgeMode = edgeMode;
     }
 }
 

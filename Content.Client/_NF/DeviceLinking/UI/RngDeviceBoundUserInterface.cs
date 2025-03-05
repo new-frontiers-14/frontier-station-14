@@ -20,6 +20,7 @@ public sealed class RngDeviceBoundUserInterface : BoundUserInterface
 
         _window = this.CreateWindow<RngDeviceWindow>();
         _window.OnMuteToggled += OnMuteToggled;
+        _window.OnEdgeModeToggled += OnEdgeModeToggled;
         _window.OnTargetNumberChanged += OnTargetNumberChanged;
         _window.OpenCentered();
     }
@@ -27,6 +28,11 @@ public sealed class RngDeviceBoundUserInterface : BoundUserInterface
     private void OnMuteToggled(bool muted)
     {
         SendMessage(new RngDeviceToggleMuteMessage(muted));
+    }
+
+    private void OnEdgeModeToggled(bool edgeMode)
+    {
+        SendMessage(new RngDeviceToggleEdgeModeMessage(edgeMode));
     }
 
     private void OnTargetNumberChanged(int targetNumber)

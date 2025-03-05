@@ -24,11 +24,10 @@
         </BoxContainer>
 
         <BoxContainer Orientation="Vertical">
-            <Label Text="{Loc rng-device-section-sound}" FontColorOverride="{x:Static s:StyleNano.NanoGold}" StyleClasses="LabelBig"/>
+            <Label Text="{Loc rng-device-section-options}" FontColorOverride="{x:Static s:StyleNano.NanoGold}" StyleClasses="LabelBig"/>
             <BoxContainer Orientation="Horizontal">
-                <Label Text="{Loc rng-device-checkbox-mute}"/>
-                <Control MinWidth="10"/>
-                <CheckBox Name="MuteCheckBox" ToggleMode="True"/>
+                <CheckBox Name="MuteCheckBox" Text="{Loc rng-device-checkbox-mute}"/>
+                <CheckBox Name="EdgeModeCheckBox" Text="{Loc rng-device-checkbox-edge-mode}" Margin="10 0 0 0"/>
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

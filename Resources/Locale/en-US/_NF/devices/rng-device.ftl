@@ -1,11 +1,12 @@
 rng-device-window-title = RNG Device
 
 # Section titles
-rng-device-section-sound = Sound
+rng-device-section-options = Options
 rng-device-section-target = Target Number
 
 # UI elements
 rng-device-checkbox-mute = Mute
+rng-device-checkbox-edge-mode = Edge Mode
 rng-device-input-target = Target Number (%)
 
 # Examine text

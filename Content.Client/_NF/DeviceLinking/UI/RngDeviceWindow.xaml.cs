@@ -19,6 +19,7 @@ namespace Content.Client._NF.DeviceLinking.UI;
 public sealed partial class RngDeviceWindow : DefaultWindow
 {
     private readonly CheckBox _muteCheckBox;
+    private readonly CheckBox _edgeModeCheckBox;
     private readonly SpinBox _targetNumberSpinBox;
     private readonly Slider _targetNumberSlider;
     private readonly BoxContainer _targetNumberContainer;
@@ -28,6 +29,7 @@ public sealed partial class RngDeviceWindow : DefaultWindow
     private bool _updatingControls;
 
     public event Action<bool>? OnMuteToggled;
+    public event Action<bool>? OnEdgeModeToggled;
     public event Action<int>? OnTargetNumberChanged;
 
     public RngDeviceWindow()
@@ -36,7 +38,10 @@ public sealed partial class RngDeviceWindow : DefaultWindow
         Title = Loc.GetString("rng-device-window-title");
 
         _muteCheckBox = MuteCheckBox;
-        _muteCheckBox.OnToggled += OnCheckBoxToggled;
+        _muteCheckBox.OnToggled += OnMuteCheckBoxToggled;
+
+        _edgeModeCheckBox = EdgeModeCheckBox;
+        _edgeModeCheckBox.OnToggled += OnEdgeModeCheckBoxToggled;
 
         _targetNumberContainer = TargetNumberContainer;
 
@@ -59,9 +64,14 @@ public sealed partial class RngDeviceWindow : DefaultWindow
         _targetNumberSpinBox.Value = newValue;
     }
 
-    private void OnCheckBoxToggled(BaseButton.ButtonToggledEventArgs args)
+    private void OnMuteCheckBoxToggled(BaseButton.ButtonToggledEventArgs args)
     {
         OnMuteToggled?.Invoke(args.Pressed);
+    }
+
+    private void OnEdgeModeCheckBoxToggled(BaseButton.ButtonToggledEventArgs args)
+    {
+        OnEdgeModeToggled?.Invoke(args.Pressed);
     }
 
     private void OnTargetNumberSpinBoxChanged(ValueChangedEventArgs args)
@@ -100,6 +110,7 @@ public sealed partial class RngDeviceWindow : DefaultWindow
         _state = state;
         _updatingControls = true;
         _muteCheckBox.Pressed = state.Muted;
+        _edgeModeCheckBox.Pressed = state.EdgeMode;
 
         // Only update values if the slider isn't being dragged
         if (!_targetNumberSlider.Grabbed)

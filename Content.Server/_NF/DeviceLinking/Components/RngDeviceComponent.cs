@@ -79,6 +79,12 @@ public sealed partial class RngDeviceComponent : Component
     public int TargetNumber = 50;
 
     /// <summary>
+    /// When enabled, sends High signal to selected port and Low signals to others.
+    /// </summary>
+    [DataField("edgeMode")]
+    public bool EdgeMode;
+
+    /// <summary>
     /// The last value rolled (1-100 for percentile, 1-N for other dice).
     /// </summary>
     [DataField("lastRoll")]

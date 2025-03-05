@@ -14,6 +14,8 @@ using static Content.Shared._NF.DeviceLinking.RngDeviceVisuals;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Components;
 using Content.Shared.Examine;
+using Content.Shared.DeviceNetwork;
+using Content.Server.DeviceNetwork;
 
 namespace Content.Server.DeviceLinking.Systems;
 
@@ -32,6 +34,7 @@ public sealed class RngDeviceSystem : EntitySystem
         SubscribeLocalEvent<RngDeviceComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<RngDeviceComponent, SignalReceivedEvent>(OnSignalReceived);
         SubscribeLocalEvent<RngDeviceComponent, RngDeviceToggleMuteMessage>(OnToggleMute);
+        SubscribeLocalEvent<RngDeviceComponent, RngDeviceToggleEdgeModeMessage>(OnToggleEdgeMode);
         SubscribeLocalEvent<RngDeviceComponent, RngDeviceSetTargetNumberMessage>(OnSetTargetNumber);
         SubscribeLocalEvent<RngDeviceComponent, AfterActivatableUIOpenEvent>(OnAfterActivatableUIOpen);
         SubscribeLocalEvent<RngDeviceComponent, ExaminedEvent>(OnExamined);
@@ -70,6 +73,12 @@ public sealed class RngDeviceSystem : EntitySystem
         UpdateUserInterface(uid, comp);
     }
 
+    private void OnToggleEdgeMode(EntityUid uid, RngDeviceComponent comp, RngDeviceToggleEdgeModeMessage args)
+    {
+        comp.EdgeMode = args.EdgeMode;
+        UpdateUserInterface(uid, comp);
+    }
+
     private void OnSetTargetNumber(EntityUid uid, RngDeviceComponent comp, RngDeviceSetTargetNumberMessage args)
     {
         if (comp.Outputs != 2)
@@ -83,12 +92,13 @@ public sealed class RngDeviceSystem : EntitySystem
     {
         if (_userInterfaceSystem.HasUi(uid, RngDeviceUiKey.Key))
         {
-            _userInterfaceSystem.SetUiState(uid, RngDeviceUiKey.Key, new RngDeviceBoundUserInterfaceState(comp.Muted, comp.TargetNumber, comp.Outputs));
+            _userInterfaceSystem.SetUiState(uid, RngDeviceUiKey.Key, new RngDeviceBoundUserInterfaceState(comp.Muted, comp.TargetNumber, comp.Outputs, comp.EdgeMode));
         }
     }
 
     private void OnSignalReceived(EntityUid uid, RngDeviceComponent comp, ref SignalReceivedEvent args)
     {
+        // Roll the dice and determine output port
         int roll;
         int outputPort;
         if (comp.Outputs == 2)
@@ -103,6 +113,45 @@ public sealed class RngDeviceSystem : EntitySystem
             outputPort = roll;
         }
 
+        // Store the values for future use
+        comp.LastRoll = roll;
+        comp.LastOutputPort = outputPort;
+
+        // Update visual state and play sound
+        UpdateVisualState(uid, comp, roll);
+
+        // Handle signal output based on mode
+        if (comp.EdgeMode)
+            HandleEdgeModeSignals(uid, comp, outputPort);
+        else
+            HandleNormalModeSignal(uid, comp, outputPort);
+    }
+
+    private void UpdateVisualState(EntityUid uid, RngDeviceComponent comp, int roll)
+    {
+        if (!TryComp<AppearanceComponent>(uid, out var appearance))
+            return;
+
+        var statePrefix = comp.Outputs switch
+        {
+            2 => "percentile",  // Percentile die
+            4 => "d4",         // 4-sided die
+            6 => "d6",         // 6-sided die
+            _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
+        };
+
+        var stateNumber = comp.Outputs == 2
+            ? ((roll - 1) / 10) * 10  // Round down to nearest 10 for percentile die
+            : roll;
+        _appearance.SetData(uid, State, $"{statePrefix}_{stateNumber}", appearance);
+
+        // Play the dice rolling sound if not muted
+        if (!comp.Muted)
+            _audio.PlayPvs(new SoundCollectionSpecifier("Dice"), uid);
+    }
+
+    private void HandleNormalModeSignal(EntityUid uid, RngDeviceComponent comp, int outputPort)
+    {
         var port = outputPort switch
         {
             1 => new ProtoId<SourcePortPrototype>(comp.Output1Port),
@@ -114,32 +163,39 @@ public sealed class RngDeviceSystem : EntitySystem
             _ => throw new ArgumentOutOfRangeException($"Invalid output port number: {outputPort}")
         };
 
-        // Store the values for future use
-        comp.LastRoll = roll;
-        comp.LastOutputPort = outputPort;
+        // Send momentary signal to the selected port
+        _deviceLink.InvokePort(uid, port);
+    }
 
-        // Update the appearance to show the current roll
-        if (TryComp<AppearanceComponent>(uid, out var appearance))
+    private void HandleEdgeModeSignals(EntityUid uid, RngDeviceComponent comp, int selectedPort)
+    {
+        // Get all output ports
+        var allPorts = new List<ProtoId<SourcePortPrototype>>();
+        for (int i = 1; i <= comp.Outputs; i++)
         {
-            var statePrefix = comp.Outputs switch
+            var port = i switch
             {
-                2 => "percentile",  // Percentile die
-                4 => "d4",         // 4-sided die
-                6 => "d6",         // 6-sided die
-                _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
+                1 => new ProtoId<SourcePortPrototype>(comp.Output1Port),
+                2 => new ProtoId<SourcePortPrototype>(comp.Output2Port),
+                3 => new ProtoId<SourcePortPrototype>(comp.Output3Port),
+                4 => new ProtoId<SourcePortPrototype>(comp.Output4Port),
+                5 => new ProtoId<SourcePortPrototype>(comp.Output5Port),
+                6 => new ProtoId<SourcePortPrototype>(comp.Output6Port),
+                _ => throw new ArgumentOutOfRangeException($"Invalid output port number: {i}")
             };
-
-            var stateNumber = comp.Outputs == 2
-                ? ((roll - 1) / 10) * 10  // Round down to nearest 10 for percentile die
-                : roll;
-            _appearance.SetData(uid, RngDeviceVisuals.State, $"{statePrefix}_{stateNumber}", appearance);
-
-            // Play the dice rolling sound if not muted
-            if (!comp.Muted)
-                _audio.PlayPvs(new SoundCollectionSpecifier("Dice"), uid);
+            allPorts.Add(port);
         }
 
-        _deviceLink.InvokePort(uid, port);
+        // Send High signal to selected port and Low signals to others
+        foreach (var port in allPorts)
+        {
+            var state = port == allPorts[selectedPort - 1] ? SignalState.High : SignalState.Low;
+            var payload = new NetworkPayload
+            {
+                { DeviceNetworkConstants.LogicState, state }
+            };
+            _deviceLink.InvokePort(uid, port, payload);
+        }
     }
 
     private void OnExamined(EntityUid uid, RngDeviceComponent component, ExaminedEvent args)
