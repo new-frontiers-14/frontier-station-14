@@ -17,3 +17,7 @@ barsign-prototype-description-the-rune = Reality-shifting drinks.
 ## Whiskey Echoes
 barsign-prototype-name-whiskey-echoes = Whiskey Echoes
 barsign-prototype-description-whiskey-echoes = Wew lad! Sit down and have a drink! No matter your affiliation, the slogan here is 'Death to sobriety!'
+
+## Wyvern Shipyards
+barsign-prototype-name-wyvern-shipyards = Wyvern Shipyards
+barsign-prototype-description-wyvern-shipyards = Have a seat, relax and don't worry, the future can't come any faster!
