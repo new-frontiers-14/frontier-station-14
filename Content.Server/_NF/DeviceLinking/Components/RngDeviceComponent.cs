@@ -16,10 +16,10 @@ namespace Content.Server.DeviceLinking.Components;
 public sealed partial class RngDeviceComponent : Component
 {
     /// <summary>
-    /// Name of the input port.
+    /// The input port that triggers the RNG device
     /// </summary>
     [DataField("inputPort")]
-    public string InputPort = "RngInput";
+    public string InputPort = "Trigger";
 
     /// <summary>
     /// Output port 1 name
@@ -95,6 +95,16 @@ public sealed partial class RngDeviceComponent : Component
     /// </summary>
     [DataField("lastOutputPort")]
     public int LastOutputPort;
+
+    /// <summary>
+    /// Cached state prefix for visual updates
+    /// </summary>
+    public string StatePrefix = string.Empty;
+
+    /// <summary>
+    /// Cached array of output ports
+    /// </summary>
+    public ProtoId<SourcePortPrototype>[]? PortsArray;
 
     public BoundUserInterface? UserInterface;
 }

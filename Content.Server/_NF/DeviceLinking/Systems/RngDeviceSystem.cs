@@ -27,6 +27,14 @@ public sealed class RngDeviceSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
 
+    // Pre-allocated arrays for common output counts
+    private static readonly ProtoId<SourcePortPrototype>[] _twoPortsArray = new ProtoId<SourcePortPrototype>[2];
+    private static readonly ProtoId<SourcePortPrototype>[] _fourPortsArray = new ProtoId<SourcePortPrototype>[4];
+    private static readonly ProtoId<SourcePortPrototype>[] _sixPortsArray = new ProtoId<SourcePortPrototype>[6];
+
+    // Reusable payload for edge mode signals
+    private readonly NetworkPayload _edgeModePayload = new();
+
     public override void Initialize()
     {
         base.Initialize();
@@ -42,24 +50,42 @@ public sealed class RngDeviceSystem : EntitySystem
 
     private void OnInit(EntityUid uid, RngDeviceComponent comp, ComponentInit args)
     {
-        _deviceLink.EnsureSinkPorts(uid, new ProtoId<SinkPortPrototype>(comp.InputPort));
+        // Set up input port using standard Trigger port
+        _deviceLink.EnsureSinkPorts(uid, new ProtoId<SinkPortPrototype>("Trigger"));
 
-        // Get the appropriate number of output ports based on comp.Outputs
-        var ports = comp.Outputs switch
+        // Initialize the ports array based on output count
+        var ports = InitializePortsArray(comp);
+        _deviceLink.EnsureSourcePorts(uid, ports);
+
+        // Cache the state prefix
+        comp.StatePrefix = comp.Outputs switch
         {
-            2 => new[] { new ProtoId<SourcePortPrototype>(comp.Output1Port), new ProtoId<SourcePortPrototype>(comp.Output2Port) },
-            4 => new[] { new ProtoId<SourcePortPrototype>(comp.Output1Port), new ProtoId<SourcePortPrototype>(comp.Output2Port),
-                        new ProtoId<SourcePortPrototype>(comp.Output3Port), new ProtoId<SourcePortPrototype>(comp.Output4Port) },
-            6 => new[] { new ProtoId<SourcePortPrototype>(comp.Output1Port), new ProtoId<SourcePortPrototype>(comp.Output2Port),
-                        new ProtoId<SourcePortPrototype>(comp.Output3Port), new ProtoId<SourcePortPrototype>(comp.Output4Port),
-                        new ProtoId<SourcePortPrototype>(comp.Output5Port), new ProtoId<SourcePortPrototype>(comp.Output6Port) },
+            2 => "percentile",
+            4 => "d4",
+            6 => "d6",
             _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
         };
 
-        _deviceLink.EnsureSourcePorts(uid, ports);
-
-        // Setup UI
         UpdateUserInterface(uid, comp);
+    }
+
+    private ProtoId<SourcePortPrototype>[] InitializePortsArray(RngDeviceComponent comp)
+    {
+        var array = comp.Outputs switch
+        {
+            2 => _twoPortsArray,
+            4 => _fourPortsArray,
+            6 => _sixPortsArray,
+            _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
+        };
+
+        for (int i = 0; i < comp.Outputs; i++)
+        {
+            array[i] = GetOutputPort(comp, i + 1);
+        }
+
+        comp.PortsArray = array;
+        return array;
     }
 
     private void OnAfterActivatableUIOpen(EntityUid uid, RngDeviceComponent comp, AfterActivatableUIOpenEvent args)
@@ -132,70 +158,57 @@ public sealed class RngDeviceSystem : EntitySystem
         if (!TryComp<AppearanceComponent>(uid, out var appearance))
             return;
 
-        var statePrefix = comp.Outputs switch
-        {
-            2 => "percentile",  // Percentile die
-            4 => "d4",         // 4-sided die
-            6 => "d6",         // 6-sided die
-            _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
-        };
-
         var stateNumber = comp.Outputs == 2
-            ? ((roll - 1) / 10) * 10  // Round down to nearest 10 for percentile die
+            ? roll == 100 ? 0 : (roll / 10) * 10  // Show "00" for 100, otherwise round down to nearest 10
             : roll;
-        _appearance.SetData(uid, State, $"{statePrefix}_{stateNumber}", appearance);
+        _appearance.SetData(uid, State, $"{comp.StatePrefix}_{stateNumber}", appearance);
 
-        // Play the dice rolling sound if not muted
         if (!comp.Muted)
             _audio.PlayPvs(new SoundCollectionSpecifier("Dice"), uid);
     }
 
     private void HandleNormalModeSignal(EntityUid uid, RngDeviceComponent comp, int outputPort)
     {
-        var port = outputPort switch
-        {
-            1 => new ProtoId<SourcePortPrototype>(comp.Output1Port),
-            2 => new ProtoId<SourcePortPrototype>(comp.Output2Port),
-            3 => new ProtoId<SourcePortPrototype>(comp.Output3Port),
-            4 => new ProtoId<SourcePortPrototype>(comp.Output4Port),
-            5 => new ProtoId<SourcePortPrototype>(comp.Output5Port),
-            6 => new ProtoId<SourcePortPrototype>(comp.Output6Port),
-            _ => throw new ArgumentOutOfRangeException($"Invalid output port number: {outputPort}")
-        };
-
-        // Send momentary signal to the selected port
+        var port = GetOutputPort(comp, outputPort);
         _deviceLink.InvokePort(uid, port);
     }
 
     private void HandleEdgeModeSignals(EntityUid uid, RngDeviceComponent comp, int selectedPort)
     {
-        // Get all output ports
-        var allPorts = new List<ProtoId<SourcePortPrototype>>();
-        for (int i = 1; i <= comp.Outputs; i++)
-        {
-            var port = i switch
-            {
-                1 => new ProtoId<SourcePortPrototype>(comp.Output1Port),
-                2 => new ProtoId<SourcePortPrototype>(comp.Output2Port),
-                3 => new ProtoId<SourcePortPrototype>(comp.Output3Port),
-                4 => new ProtoId<SourcePortPrototype>(comp.Output4Port),
-                5 => new ProtoId<SourcePortPrototype>(comp.Output5Port),
-                6 => new ProtoId<SourcePortPrototype>(comp.Output6Port),
-                _ => throw new ArgumentOutOfRangeException($"Invalid output port number: {i}")
-            };
-            allPorts.Add(port);
-        }
+        var ports = comp.PortsArray;
+        if (ports == null)
+            return;
 
         // Send High signal to selected port and Low signals to others
-        foreach (var port in allPorts)
+        for (int i = 0; i < ports.Length; i++)
         {
-            var state = port == allPorts[selectedPort - 1] ? SignalState.High : SignalState.Low;
-            var payload = new NetworkPayload
-            {
-                { DeviceNetworkConstants.LogicState, state }
-            };
-            _deviceLink.InvokePort(uid, port, payload);
+            var state = (i + 1) == selectedPort ? SignalState.High : SignalState.Low;
+            _edgeModePayload.Clear();
+            _edgeModePayload.Add(DeviceNetworkConstants.LogicState, state);
+            _deviceLink.InvokePort(uid, ports[i], _edgeModePayload);
         }
+    }
+
+    /// <summary>
+    /// Gets the ProtoId for the specified output port number
+    /// </summary>
+    /// <param name="comp">The RNG device component</param>
+    /// <param name="portNumber">The port number (1-6)</param>
+    /// <returns>The ProtoId for the corresponding output port</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when port number is invalid</exception>
+    private static ProtoId<SourcePortPrototype> GetOutputPort(RngDeviceComponent comp, int portNumber)
+    {
+        var portName = portNumber switch
+        {
+            1 => comp.Output1Port,
+            2 => comp.Output2Port,
+            3 => comp.Output3Port,
+            4 => comp.Output4Port,
+            5 => comp.Output5Port,
+            6 => comp.Output6Port,
+            _ => throw new ArgumentOutOfRangeException(nameof(portNumber), $"Invalid output port number: {portNumber}")
+        };
+        return new ProtoId<SourcePortPrototype>(portName);
     }
 
     private void OnExamined(EntityUid uid, RngDeviceComponent component, ExaminedEvent args)
