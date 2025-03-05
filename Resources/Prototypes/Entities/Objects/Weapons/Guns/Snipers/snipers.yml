@@ -37,9 +37,6 @@
         ents: []
   - type: StaticPrice
     price: 500
-  - type: EyeCursorOffset # Frontier
-    maxOffset: 1.5 # Frontier
-    pvsIncrease: 0.15 # Frontier
 
 - type: entity
   name: Kardashev-Mosin
@@ -49,6 +46,12 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+  - type: CursorOffsetRequiresWield # Frontier
+  - type: EyeCursorOffset # Frontier
+    maxOffset: 1.5 # Frontier
+    pvsIncrease: 0.15 # Frontier
+  - type: AltFireMelee # Frontier
+    attackType: Light # Frontier
 
 - type: entity
   name: Hristov
