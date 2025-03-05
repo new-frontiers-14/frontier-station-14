@@ -1,0 +1,10 @@
+ent-CrateFloorsFun = fun floors tiles crate
+    .desc = A crate full of 30 random tiles, used for decoration.
+ent-CrateFunHoverbikeNF = hoverbike crate
+    .desc = Harder, better, faster, stronger? No, just faster, faster, faster.
+ent-CrateFunHoverbikeNFPirate = hoverbike crate
+    .desc = Harder, better, faster, stronger? No, just faster, faster, faster.
+    .suffix = Pirate
+ent-CrateFunPartyNF = party crate
+    .desc = A corporate-approved party crate. Includes party favors, beverages, and instructions.
+    .suffix = Frontier

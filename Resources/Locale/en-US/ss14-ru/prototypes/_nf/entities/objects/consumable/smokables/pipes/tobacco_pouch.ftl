@@ -1,0 +1,15 @@
+ent-TobaccoPouchBase = tobacco pouch
+    .desc = A synth-leather pouch for safe storing pipe tobacco.
+    .suffix = Empty
+ent-TobaccoPouchBrownFilled = "Galaxy Core Blend" pouch
+    .desc = A fiery collection of exotic tobaccos, each leaf coated with preserving agent. Should you wash it off before smoking?
+    .suffix = Filled
+ent-TobaccoPouchBlueFilled = "Stonecut Leaf" pouch
+    .desc = A label on the packaging proudly declares that the pipe-weed is mixed with the finest dust of rarest minerals, the list of minerals occupies most of the label space.
+    .suffix = Filled
+ent-TobaccoPouchRedFilled = "Fungal Whiff" pouch
+    .desc = Grown deep within the mushroom forests, Fungal Whiff offers a mellow, earthy smoke that's perfect for those contemplative moments spent plotting the next heist.
+    .suffix = Filled
+ent-TobaccoPouchPurpleFilled = "Sweet Dreams" pouch
+    .desc = This tobacco pouch advertises its smokers being "blessed with cozy, restful sleeps", whatever that means.
+    .suffix = Filled

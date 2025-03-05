@@ -2,7 +2,6 @@ ent-BaseWallmount = { ent-BaseStructureUnanchorable }
     .desc = { ent-BaseStructureUnanchorable.desc }
 ent-LockerWallChemistry = настенный шкаф химика
     .desc = { ent-LockerWallMedical.desc }
-
 ent-LockerWallColorBase = { ent-BaseWallCloset }
     .desc = { ent-BaseWallCloset.desc }
     .suffix = Фронтир
@@ -28,7 +27,5 @@ ent-LockerWallColorMaterials = шкаф базовых материалов
     .desc = { ent-BaseWallCloset.desc }
 ent-ClosetWallN2 = аварийный азотный настенный шкаф
     .desc = Это хранилище для аварийных принадлежностей и баллонов с азотом.
-
 ent-ClosetWallO2N2 = { ent-ClosetO2N2 }
     .desc = { ent-ClosetO2N2.desc }
-

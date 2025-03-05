@@ -1,0 +1,14 @@
+ent-CrateVendingMachineRestockAstroVendFilled = AstroVend restock crate
+    .desc = Contains two restock boxes for the AstroVend vending machine.
+ent-CrateVendingMachineRestockAmmoFilled = Liberation restock crate
+    .desc = Contains two restock boxes for the Liberation vending machine.
+ent-CrateVendingMachineRestockCuddlyCritterVendFilled = CuddlyCritterVend restock crate
+    .desc = Contains two restock boxes for a CuddlyCritterVend vending machine.
+ent-CrateVendingMachineRestockLessLethalVendFilled = LessLethalVend restock crate
+    .desc = Contains two restock boxes for the LessLethalVend vending machine.
+ent-CrateVendingMachineRestockNonLethalVendFilled = NonLethalVend restock crate
+    .desc = Contains two restock boxes for the NonLethalVend vending machine.
+ent-CrateVendingMachineRestockAutoTuneVendFilled = AutoTuneVend restock crate
+    .desc = Contains two restock boxes for the AutoTuneVend vending machine.
+ent-CrateVendingMachineRestockPottedPlantVendFilled = Plant-O-Matic restock crate
+    .desc = Contains two restock boxes for the Plant-O-Matic vending machine.

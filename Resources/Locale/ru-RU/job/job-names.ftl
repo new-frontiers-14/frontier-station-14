@@ -53,6 +53,7 @@ job-name-visitor = Посетитель
 # I am keeping them for roleplaying opportunities
 job-name-geneticist = Генетик
 job-name-no-id = без ID
+job-name-prisoner = Заключенный
 job-name-roboticist = Робототехник
 job-name-syndicate = Синдикат
 job-name-unknown = Неизвестно

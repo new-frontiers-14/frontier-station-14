@@ -1,0 +1,11 @@
+ent-BasePlushieMoff = { ent-BasePlushie }
+    .desc = { ent-BasePlushie.desc }
+ent-PlushieMoff = moth plushie
+    .desc = A cute little moff you can hold in the palm of your hand!
+ent-PlushieMoffRandom = moth plushie
+    .desc = A cute little mothperson that you can hold in the palm of your hand.
+    .suffix = Random
+ent-PlushieMoffsician = moth musician plushie
+    .desc = A plushie depicting an adorable mothperson with a tiny synthesizer and tiny glasses.
+ent-PlushieMoffbar = moth bartender plushie
+    .desc = A plushie depicting an adorable mothperson with a tiny tophat and tiny kevlar vest.

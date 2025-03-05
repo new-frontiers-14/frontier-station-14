@@ -1,5 +1,4 @@
 job-name-mail-carrier = Почтальон
-job-name-prisoner = Заключенный
 job-name-valet = Консьерж
 job-name-guard = Тюремный охранник
 job-description-mail-carrier = Доставлять почту. Избегать собак.

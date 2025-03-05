@@ -16,7 +16,7 @@ ent-MobCatBloodCult = кот культа
     .desc = Основал Культ крови от скуки.
 ent-EldritchPushGun = эльдрическое ручное оружие
     .desc = Стреляет из эльдрической руки.
-ent-ActionEldritchPush = [color=yellow]Силовое воздействие[/color]
+ent-ActionEldritchPush =  [color=yellow]Силовое воздействие[/color]
     .desc = Вызовите эльдрическую руку. [color=yellow]5-минутная перезарядка.[/color]
 
 ent-MobCatClugg = Умник

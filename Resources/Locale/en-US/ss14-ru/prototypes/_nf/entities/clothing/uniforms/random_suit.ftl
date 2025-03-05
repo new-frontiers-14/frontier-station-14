@@ -1,0 +1,16 @@
+ent-ClothingSkirtRandomSpawner = random colorful skirt costume
+    .desc = { ent-ClothingUniformRandom.desc }
+ent-ClothingSkirtUniformRandomArmless = colorful sleeveless top and skirt
+    .suffix = Skirt
+    .desc = { ent-ClothingUniformRandom.desc }
+ent-ClothingSkirtUniformRandomStandard = colorful top and skirt
+    .suffix = Skirt
+    .desc = { ent-ClothingUniformRandom.desc }
+ent-ClothingSkirtUniformRandomBra = colorful bra and skirt
+    .suffix = Skirt
+    .desc = { ent-ClothingUniformRandom.desc }
+ent-ClothingSkirtUniformRandomShorts = colorful skirt
+    .suffix = Skirt
+    .desc = { ent-ClothingUniformRandom.desc }
+ent-ClothingSkirtUniformRandomShirt = colorful patterned top and skirt
+    .desc = { ent-ClothingUniformRandom.desc }

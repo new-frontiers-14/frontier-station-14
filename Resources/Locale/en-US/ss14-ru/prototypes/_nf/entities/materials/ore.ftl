@@ -1,0 +1,14 @@
+ent-ScrapOre = scrap chunks
+    .desc = Various bits of previously used machinery. Needs to be sorted or processed to use.
+    .suffix = Full
+ent-ScrapOre1 = { ent-ScrapOre }
+    .suffix = Single
+    .desc = { ent-ScrapOre.desc }
+ent-ScrapOre3 = { ent-ScrapOre }
+    .suffix = 3
+    .desc = { ent-ScrapOre.desc }
+ent-ScrapOre20 = { ent-ScrapOre }
+    .suffix = 20
+    .desc = { ent-ScrapOre.desc }
+ent-SpawnRandomRefinedScrap = refined scrap
+    .desc = { ent-MarkerBasePlaceFree.desc }

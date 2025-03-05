@@ -9,3 +9,6 @@ ent-RadiumChemistryVial = пробирка радия
 ent-ChlorineChemistryVial = пробирка хлора
     .suffix = Хлор
     .desc = { ent-BaseChemistryEmptyVial.desc }
+ent-PlasmaChemistryVial = { ent-BaseChemistryEmptyVial }
+    .suffix = Плазма
+    .desc = { ent-BaseChemistryEmptyVial.desc }

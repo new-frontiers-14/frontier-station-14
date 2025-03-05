@@ -1,0 +1,12 @@
+ent-ClothingOuterArmorPunkGreen = punk armor
+    .desc = { ent-ClothingOuterVestWebMercenary.desc }
+ent-ClothingOuterArmorPunkOrange = punk armor
+    .desc = { ent-ClothingOuterArmorPunkGreen.desc }
+ent-ClothingOuterArmorPunkRed = punk armor
+    .desc = { ent-ClothingOuterArmorPunkGreen.desc }
+ent-ClothingOuterArmorPunkRandomized = punk armor
+    .suffix = Random visuals
+    .desc = { ent-ClothingOuterArmorPunkGreen.desc }
+ent-ClothingOuterArmorElitePunkRandomized = punk heavy armor
+    .suffix = Random visuals
+    .desc = { ent-ClothingOuterStorageBase.desc }

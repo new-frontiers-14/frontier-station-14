@@ -1,0 +1,12 @@
+ent-SalvagePartsT2Spawner = salvage t2 machine parts spawner
+    .suffix = Spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SalvagePartsT3Spawner = salvage t3 machine parts spawner
+    .suffix = Spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SalvagePartsT3T4Spawner = salvage t3/4 machine parts spawner
+    .suffix = Spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SalvagePartsT4Spawner = salvage t4 machine parts spawner
+    .suffix = Spawner
+    .desc = { ent-MarkerBase.desc }

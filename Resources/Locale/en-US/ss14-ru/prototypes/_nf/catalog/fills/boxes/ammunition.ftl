@@ -1,0 +1,12 @@
+ent-BoxMagazineCaselessRifleRubber = box of .25 caseless (rubber) magazines
+    .desc = A box full of
+ent-BoxMagazineLightRifleRubber = box of .30 rifle (rubber) magazines
+    .desc = A box full of .30 rifle (practice) magazines.
+ent-BoxMagazineMagnumSubMachineGunRubber = box of Vector (rubber) magazines
+    .desc = A box full of Vector (rubber) magazines.
+ent-BoxMagazinePistolRubber = box of pistol .35 auto (rubber) magazines
+    .desc = A box full of pistol .35 auto (rubber) magazines.
+ent-BoxMagazinePistolSubMachineGunRubber = box of SMG .35 auto (rubber) magazines
+    .desc = A box full of SMG .35 auto (rubber) magazines.
+ent-BoxMagazineRifleRubber = box of .20 rifle (rubber) magazines
+    .desc = A box full of .20 rifle (rubber) magazines.

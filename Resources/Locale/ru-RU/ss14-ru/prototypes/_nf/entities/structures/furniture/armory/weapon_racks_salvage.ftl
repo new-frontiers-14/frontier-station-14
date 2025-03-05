@@ -16,4 +16,3 @@ ent-WeaponRackPistolBaseSalvage = { ent-WeaponRackPistolBase }
 ent-WeaponRackPistolWallmountedSalvage = { ent-WeaponRackPistolWallmountedBase }
     .suffix = Утилизатор, Настенное
     .desc = { ent-WeaponRackPistolWallmountedBase.desc }
-

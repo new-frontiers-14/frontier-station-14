@@ -1,0 +1,10 @@
+ent-BaseFoodCondimentSqueezeBottle = squeeze bottle
+    .desc = A thin plastic container used to store condiments.
+ent-FoodCondimentSqueezeBottleKetchup = { ent-BaseFoodCondimentSqueezeBottle }
+    .desc = { ent-BaseFoodCondimentSqueezeBottle.desc }
+ent-FoodCondimentSqueezeBottleMustard = { ent-BaseFoodCondimentSqueezeBottle }
+    .desc = { ent-BaseFoodCondimentSqueezeBottle.desc }
+ent-FoodCondimentSqueezeBottleClear = { ent-BaseFoodCondimentSqueezeBottle }
+    .desc = When it comes to squeeze bottles this is the clear choice.
+ent-FoodCondimentBottleSoysauce = soy sauce bottle
+    .desc = Used to season dishes to umami perfection. With extra sodium!

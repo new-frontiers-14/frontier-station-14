@@ -1,0 +1,16 @@
+ent-LockerMercenaryFilled = { ent-LockerMercenary }
+    .suffix = Filled
+    .desc = { ent-LockerMercenary.desc }
+ent-LockerNfsdSilverDetectiveFilled = { ent-LockerNfsdSilver }
+    .suffix = Detective, Filled
+    .desc = { ent-LockerNfsdSilver.desc }
+ent-NFLockerSecurityFilled = { ent-LockerSecurityFilled }
+    .desc = { ent-LockerSecurityFilled.desc }
+ent-NFClosetBombFilled = { ent-ClosetBombFilled }
+    .desc = { ent-ClosetBombFilled.desc }
+ent-GunSafeTurrets = turret safe
+    .suffix = NFSD, Filled
+    .desc = { ent-GunSafe.desc }
+ent-GunSafeTurretsCdet = turret safe
+    .suffix = CDET, Filled
+    .desc = { ent-GunSafe.desc }

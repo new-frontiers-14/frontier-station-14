@@ -1,3 +1,5 @@
+ent-NFMobAtmos = { "" }
+    .desc = { "" }
 ent-MobAtmosNF = { "" }
     .desc = { "" }
 ent-MobPassiveRegenWeak = { "" }
@@ -49,6 +51,8 @@ ent-MobHumanoidHostileAIComplex = { "" }
 ent-MobHumanoidHostileBase = Человек NPC
     .suffix = ИИ, Враждебный
     .desc = { ent-BaseMob.desc }
+ent-MobBaseSilentFootsteps = { "" }
+    .desc = { "" }
 ent-MobNonHumanHostileBase = Существо NPC
     .suffix = ИИ, Враждебный
     .desc = { ent-BaseMob.desc }

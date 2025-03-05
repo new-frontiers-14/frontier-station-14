@@ -28,6 +28,10 @@ ent-PortableGeneratorHyperPacmanMachineCircuitboard = Г.И.П.Е.Р.П.А.К.М
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-MercenaryTechFabCircuitboardNF = техфаб наёмника (машинная плата)
     .desc = { ent-BaseMachineCircuitboard.desc }
+ent-PortableGeneratorDKMachineCircuitboard = машинная плата портативного генератора типа Д-К
+    .desc = Машинная печатная плата для портативного генератора типа Д-К.
+ent-PortableGeneratorDKJrMachineCircuitboard = машинная плата портативного генератора типа Д-К Мл.
+    .desc = Машинная печатная плата для портативного генератора типа Д-К Мл.
 ent-MercenaryTechFabCircuitboardHackedNF = взломанный техфаб наёмника (машинная плата)
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-BlueprintLithographMachineCircuitboard = литографическая машина (машинная плата)
@@ -38,9 +42,9 @@ ent-SyndicateElectricRangeMachineCircuitboard = электроплита "donk c
     .desc = Печатная плата машинного типа для электроплиты "donk co.".
 ent-MedicalAssemblerMachineCircuitboard = Мед-О-Мат (машинная плата)
     .desc = Печатная плата машинного типа для Мед-О-Мат`а.
+
 ent-ElectricRangeMachineCircuitboard = электроплита (машинная плата)
     .desc = Печатная плата машинного типа для электроплиты.
-
 ent-CondimentDispenserCircuitboard = раздатчик соусов (машинная плата)
     .desc = Печатная плата машинного типа для раздатчика соусов.
 ent-MiniStationAnchorCircuitboard = мини станционный якорь (машинная плата)

@@ -1,0 +1,10 @@
+ent-NFBasePDACartridge = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
+ent-BountyContractsCartridge = bounty contracts cartridge
+    .desc = A program for tracking and placing bounty contracts.
+ent-AppraisalCartridge = AppraiseAll cartridge
+    .desc = A program for appraising the monetary value of items.
+ent-LedgerCartridge = SpesoFlow Lite cartridge
+    .desc = A program for keeping track of sector bank accounts.
+ent-ContrabandForensicsModule = contraband forensics module
+    .desc = A program for scanning and reporting contraband dead drops and pods for bounties.

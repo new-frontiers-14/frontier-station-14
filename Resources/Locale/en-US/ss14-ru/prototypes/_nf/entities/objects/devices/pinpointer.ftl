@@ -1,0 +1,12 @@
+ent-PinpointerUniversalDebug = { ent-PinpointerUniversal }
+    .suffix = DEBUG, DO NOT MAP
+    .desc = { ent-PinpointerUniversal.desc }
+ent-PinpointerSyndicatePOI = { ent-PinpointerSyndicateNuclear }
+    .desc = Pointing to some unknown place.
+    .suffix = Syndicate FOB
+ent-PinpointerDeadDropHint = dead drop hint pinpointer
+    .desc = Pointing to a dead drop hint.
+    .suffix = DEBUG
+ent-PinpointerDeadDrop = dead drop pinpointer
+    .desc = Pointing to a hidden dead drop.
+    .suffix = DEBUG

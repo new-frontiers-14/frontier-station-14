@@ -1,0 +1,14 @@
+ent-PaperWrittenPirateScribbles = missing soda
+    .suffix = MappedPaper
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenFrontierFridge = fridge policy
+    .suffix = MappedPaper
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenGriftyScript = grifty's script
+    .suffix = MappedPaper
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenGriftyWindow = note the the boss
+    .suffix = MappedPaper
+    .desc = { ent-PaperOffice.desc }
+ent-PaperWrittenPartyProcedure = official party preparation procedure
+    .desc = { ent-Paper.desc }

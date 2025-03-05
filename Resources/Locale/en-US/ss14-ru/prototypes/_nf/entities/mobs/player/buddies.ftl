@@ -1,0 +1,17 @@
+ent-NFBuddyBase = { "" }
+    .desc = { "" }
+ent-NFMobHumanBuddy = { ent-MobHuman }
+    .suffix = Build-A-Buddy
+    .desc = { ent-MobHuman.desc }
+ent-NFMobGoblinBuddy = { ent-MobGoblin }
+    .suffix = Build-A-Buddy
+    .desc = { ent-MobGoblin.desc }
+ent-NFMobReptilianBuddy = { ent-MobReptilian }
+    .suffix = Build-A-Buddy
+    .desc = { ent-MobReptilian.desc }
+ent-NFMobSlimePersonBuddy = { ent-MobSlimePerson }
+    .suffix = Build-A-Buddy
+    .desc = { ent-MobSlimePerson.desc }
+ent-NFMobVulpkaninBuddy = { ent-MobVulpkanin }
+    .suffix = Build-A-Buddy
+    .desc = { ent-MobVulpkanin.desc }

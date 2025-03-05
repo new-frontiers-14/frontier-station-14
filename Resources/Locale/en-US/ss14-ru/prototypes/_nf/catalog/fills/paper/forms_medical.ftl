@@ -1,0 +1,15 @@
+ent-BoxFolderMedicalDoctor = medical doctor folder
+    .desc = A folder filled with medical paperwork templates.
+    .suffix = Forms
+ent-PaperWrittenMedicalFormPatientInfo = medical patient record
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenMedicalFormPrescription = medical prescription
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenMedicalFormHealthInsurance = health insurance contract
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenMedicalFormServiceInvoice = medical service invoice
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenMedicalFormReceiptInvoice = medical dispatch payment
+    .desc = { ent-Paper.desc }
+ent-PaperWrittenMedicalFormRelease = medical release form
+    .desc = { ent-Paper.desc }

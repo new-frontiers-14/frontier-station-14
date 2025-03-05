@@ -1,0 +1,14 @@
+ent-PaperPirateBountyManifest = pirate bounty reminder
+    .desc = A little scroll reminding you of the bounty you agreed to pilfer. How is it stained?
+ent-BoxFolderClipboardPal = PAL clipboard
+    .desc = The tool of choice for the master of bureaucracy.
+ent-BoxFolderPalGreen = PAL folder
+    .desc = A folder to contain important NFSD forms.
+    .suffix = Green
+ent-BoxFolderPalBrown = PAL folder
+    .desc = A folder to contain important NFSD forms.
+    .suffix = Brown
+ent-PaperDeadDropHint = suspicious note
+    .desc = A crinkled sheet with scribbles on it. Seems to have been written in a hurry.
+ent-PaperDeadDropFax = suspicious fax
+    .desc = A sheet with blurry, crooked text on it. Seems to have been copied in a hurry.

@@ -1,0 +1,10 @@
+ent-HoloprojectorNfsd = NFSD holobarrier projector
+    .desc = Creates a solid but fragile holographic barrier.
+ent-HoloprojectorNfsdEmpty = { ent-HoloprojectorSecurityEmpty }
+    .suffix = Empty
+    .desc = { ent-HoloprojectorSecurityEmpty.desc }
+ent-HoloGraffitiProjector = holograffiti projector
+    .desc = Tag up the sharp end, let 'em know you were here.
+ent-HoloGraffitiProjectorEmpty = { ent-HoloGraffitiProjector }
+    .suffix = Empty
+    .desc = { ent-HoloGraffitiProjector.desc }

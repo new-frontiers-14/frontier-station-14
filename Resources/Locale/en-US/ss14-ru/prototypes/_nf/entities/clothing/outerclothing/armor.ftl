@@ -1,0 +1,9 @@
+ent-ClothingOuterArmorSrCarapace = station representative's carapace
+    .desc = A premium armored chestpiece that provides above average protection for its size. It offers maximum mobility and flexibility thanks to the premium composite materials. Issued only to the station representative.
+ent-ClothingOuterBioArmoredSyndicate = bio suit
+    .desc = Favorite protective gear of any syndicate chemical warfare enjoyers.
+    .suffix = Syndicate
+ent-ClothingOuterArmorNfsd = NFSD armor
+    .desc = Get shot, maybe survive?
+ent-ClothingOuterVestWebMercenaryBlack = { ent-BaseC1Contraband }
+    .desc = { ent-BaseC1Contraband.desc }

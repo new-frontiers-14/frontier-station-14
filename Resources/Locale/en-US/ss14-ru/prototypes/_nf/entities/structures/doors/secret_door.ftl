@@ -1,0 +1,16 @@
+ent-ReinforcedSecretDoorAssembly = secret reinforced door assembly
+    .desc = { ent-BaseSecretDoorAssembly.desc }
+ent-SolidReinforcedSecretDoor = reinforced wall
+    .desc = { ent-BaseSecretDoor.desc }
+ent-WoodSecretDoorAssembly = secret wood door assembly
+    .desc = { ent-BaseSecretDoorAssembly.desc }
+ent-WoodSecretDoor = wood wall
+    .desc = { ent-BaseSecretDoor.desc }
+ent-UraniumSecretDoorAssembly = secret uranium door assembly
+    .desc = { ent-BaseSecretDoorAssembly.desc }
+ent-UraniumSecretDoor = uranium wall
+    .desc = { ent-BaseSecretDoor.desc }
+ent-ShuttleSecretDoorAssembly = secret shuttle door assembly
+    .desc = { ent-BaseSecretDoorAssembly.desc }
+ent-ShuttleSecretDoor = shuttle wall
+    .desc = { ent-BaseSecretDoor.desc }

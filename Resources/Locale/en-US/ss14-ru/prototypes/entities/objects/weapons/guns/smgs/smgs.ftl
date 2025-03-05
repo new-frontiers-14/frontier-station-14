@@ -1,0 +1,10 @@
+ent-BaseWeaponSubMachineGun = BaseSMG
+    .desc = A rooty tooty point and shooty.
+ent-WeaponSubMachineGunAtreides = Atreides
+    .desc = Pla-ket-ket-ket-ket! Uses .35 auto ammo. An illegal firearm often used by Syndicate agents.
+ent-WeaponSubMachineGunC20r = C-20r submachine gun
+    .desc = An illegal firearm that is often used by the infamous nuclear operatives. Uses .35 auto ammo.
+ent-WeaponSubMachineGunDrozd = Drozd
+    .desc = An excellent fully automatic Heavy SMG. An illegal firearm often used by Syndicate agents.
+ent-WeaponSubMachineGunWt550 = WT550
+    .desc = An excellent SMG, produced by NanoTrasen's Small Arms Division. Uses .35 auto ammo. On the receiver is a label that says 'for authorized use only.'

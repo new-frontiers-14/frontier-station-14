@@ -1,0 +1,15 @@
+ent-NFMobCarp = { ent-NFMobRestrictions }
+    .suffix = Frontier
+    .desc = { ent-NFMobRestrictions.desc }
+ent-NFMobCarpMagic = { ent-NFMobRestrictions }
+    .suffix = Frontier
+    .desc = { ent-NFMobRestrictions.desc }
+ent-NFMobCarpHolo = { ent-NFMobRestrictions }
+    .suffix = Frontier
+    .desc = { ent-NFMobRestrictions.desc }
+ent-NFMobCarpRainbow = { ent-NFMobRestrictions }
+    .suffix = Frontier
+    .desc = { ent-NFMobRestrictions.desc }
+ent-NFMobShark = { ent-NFMobRestrictions }
+    .suffix = Frontier
+    .desc = { ent-NFMobRestrictions.desc }

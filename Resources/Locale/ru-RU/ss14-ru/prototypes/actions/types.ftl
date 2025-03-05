@@ -52,5 +52,9 @@ ent-ActionFireStarter = Поджечь
     .desc = Поджигает противников в радиусе вокруг вас.
 ent-ActionToggleEyes = Открыть/закрыть глаза
     .desc = Закройте глаза, чтобы защитить их, или откройте, чтобы насладиться яркими цветами.
+ent-FakeMindShieldToggleAction = [color=green]Переключить имплант фальшивого Щита разума[/color]
+    .desc = Переключить передачу данных имплантата фальшивого Щита разума
+ent-ActionToggleParamedicSiren = Переключить сирену парамедика
+    .desc = Включает и выключает сирену парамедика.
 ent-ActionToggleWagging = action-name-toggle-wagging
     .desc = action-description-toggle-wagging

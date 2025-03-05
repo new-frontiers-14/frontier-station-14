@@ -1,0 +1,12 @@
+ent-StructurePistolRackWallmountedMercenaryFilled = { ent-StructurePistolRackWallmountedMercenary }
+    .suffix = Dunegeon, Mercenary, Filled, Wallmount
+    .desc = { ent-StructurePistolRackWallmountedMercenary.desc }
+ent-StructureMeleeWeaponRackWallmountedSalvageFilled = { ent-StructureMeleeWeaponRackWallmountedSalvage }
+    .suffix = Salvage, Filled, Wallmount
+    .desc = { ent-StructureMeleeWeaponRackWallmountedSalvage.desc }
+ent-StructurePistolRackPiratesFilled = { ent-StructurePistolRackPirates }
+    .suffix = Pirate, Filled
+    .desc = { ent-StructurePistolRackPirates.desc }
+ent-StructureMeleeWeaponRackBloodCultFilled = { ent-StructureMeleeWeaponRackBloodCult }
+    .suffix = Blood Cult, Filled
+    .desc = { ent-StructureMeleeWeaponRackBloodCult.desc }

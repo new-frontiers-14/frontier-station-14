@@ -1,0 +1,16 @@
+ent-FoodBaseSushi = { "" }
+    .desc = { "" }
+ent-FoodMealAvocadoSushi = avocado sushi
+    .desc = Where did the seaweed come from?
+ent-FoodMealAvocadoSushiSlice = avocado sushi
+    .desc = Where did the seaweed come from?
+ent-FoodMealCarpSushi = carp sushi
+    .desc = Certainly worth the risk.
+ent-FoodMealCarpSushiSlice = carp sushi
+    .desc = Certainly worth the smaller risk.
+ent-FoodMealGasSafeSushiSlice = gas station sushi
+    .desc = Is it worth the risk?
+    .suffix = Safe
+ent-FoodMealGasBadSushiSlice = { ent-FoodBaseSushi }
+    .suffix = Bad
+    .desc = { ent-FoodBaseSushi.desc }

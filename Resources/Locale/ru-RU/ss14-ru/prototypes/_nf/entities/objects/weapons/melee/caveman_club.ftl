@@ -1,5 +1,5 @@
 ent-CavemanClub = дубина
     .desc = Большая палка причиняет большую боль.
-ent-CavemanClubCursed = caveman club
+ent-CavemanClubCursed = дубина проклятия
     .desc = Большая палка причиняет большую... не дерево это?
     .suffix = Неснимаемо, Игрушка

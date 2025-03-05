@@ -1,0 +1,15 @@
+ent-ThrusterSecurity = thruster
+    .suffix = Security
+    .desc = { ent-BaseStructureDisableAnchoring.desc }
+ent-DebugThrusterSecurity = thruster
+    .suffix = DEBUG, Security
+    .desc = { ent-BaseStructureDisableToolUse.desc }
+ent-GyroscopeSecurity = { ent-BaseStructureDisableToolUse }
+    .suffix = Security
+    .desc = { ent-BaseStructureDisableToolUse.desc }
+ent-DebugGyroscopeSecurity = gyroscope
+    .suffix = DEBUG, Security
+    .desc = { ent-BaseStructureDisableToolUse.desc }
+ent-SmallGyroscopeSecurity = small gyroscope
+    .suffix = Security
+    .desc = { ent-GyroscopeSecurity.desc }

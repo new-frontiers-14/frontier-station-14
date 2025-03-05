@@ -1,5 +1,5 @@
 ent-ClothingHandsGlovesArcadiaCombat = аркадианские боевые перчатки
-    .desc = Изолированные боевые перчатки производства Arcadia Industries.
+    .desc = Изолированные боевые перчатки производства Аркадиа Индастриз.
 ent-ClothingHandsGlovesPilot = перчатки пилота
     .desc = Изолированные перчатки для управления шаттлами.
 ent-ClothingHandsGlovesCombatNfsdBrown = боевые перчатки ДСБФ

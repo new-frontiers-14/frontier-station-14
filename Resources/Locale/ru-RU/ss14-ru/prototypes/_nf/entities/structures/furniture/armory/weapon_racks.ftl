@@ -1,5 +1,3 @@
-
-
 ent-StructurePistolRackLockSheriff = { ent-StructurePistolRackLock }
     .suffix = Шериф, Пустой
     .desc = { ent-StructurePistolRackLock.desc }
@@ -63,10 +61,10 @@ ent-StructurePistolRackWallmountedNfsd = { ent-StructurePistolRackWallmounted }
 ent-StructureMeleeWeaponRackBloodCult = { ent-StructureMeleeWeaponRack }
     .suffix = Культ крови, Пустой
     .desc = { ent-StructureMeleeWeaponRack.desc }
-
 ent-StructurePistolRackLockSR = стойка с оружием самообороны
     .suffix = ПФ, Пустой
     .desc = { ent-WeaponRackBase.desc }
 ent-StructurePistolRackLockSRWallmounted = стойка с оружием самообороны
     .suffix = ПФ, Пустой, Настенный
     .desc = { ent-WeaponRackBase.desc }
+

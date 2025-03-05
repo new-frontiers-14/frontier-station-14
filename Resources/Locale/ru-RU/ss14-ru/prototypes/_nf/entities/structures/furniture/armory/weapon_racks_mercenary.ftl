@@ -16,4 +16,3 @@ ent-WeaponRackPistolBaseMercenary = { ent-WeaponRackPistolBase }
 ent-WeaponRackPistolWallmountedMercenary = { ent-WeaponRackPistolWallmountedBase }
     .suffix = Наёмник, Настенное
     .desc = { ent-WeaponRackPistolWallmountedBase.desc }
-

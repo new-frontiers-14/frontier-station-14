@@ -1,0 +1,12 @@
+ent-SpesosTreeSeeds = packet of speso seeds
+    .desc = These seeds seem like a miracle, but expert farmers get rich from the kitchen.
+ent-PearSeeds = packet of pear seeds
+    .desc = They are peary good for you.
+ent-CoffeeSeeds = packet of coffee seeds
+    .desc = Perfect for any self-respecting coffee roaster.
+ent-AvocadoSeeds = packet of avocado seeds
+    .desc = These seeds are the pits.
+ent-CucumberSeeds = packet of cucumber seeds
+    .desc = Can you grow water?
+ent-BeeSeeds = jar of bees
+    .desc = Starter kit for a new apiarist.

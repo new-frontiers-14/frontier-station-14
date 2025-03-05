@@ -1,0 +1,17 @@
+ent-GasPressurePumpOn = { ent-GasPressurePump }
+    .suffix = On
+    .desc = { ent-GasPressurePump.desc }
+ent-GasPressurePumpOnMax = { ent-GasPressurePumpOn }
+    .suffix = On, Max
+    .desc = { ent-GasPressurePumpOn.desc }
+ent-GasVolumePumpOn = { ent-GasVolumePump }
+    .suffix = On
+    .desc = { ent-GasVolumePump.desc }
+ent-BaseGaslock = gaslock
+    .desc = { ent-BaseStructure.desc }
+ent-BasePressurePumpGaslock = external gaslock
+    .desc = Connects gas pipes on separate ships or stations together to allow gas transfer. Both sides must be docked and pumping in the same direction to accept flow.
+ent-Gaslock = { ent-BasePressurePumpGaslock }
+    .desc = { ent-BasePressurePumpGaslock.desc }
+ent-GaslockFrame = portable gaslock
+    .desc = Pumps gas through. Accepts docking, but cannot dock. Both sides must be docked and pumping in the same direction for gas to flow.

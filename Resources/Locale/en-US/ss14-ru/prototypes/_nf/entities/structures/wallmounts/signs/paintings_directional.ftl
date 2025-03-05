@@ -1,0 +1,10 @@
+ent-PaintingDirectionalBase = { ent-BaseSignDirectional }
+    .desc = { ent-BaseSignDirectional.desc }
+ent-PaintingFireaxeCabinet = The Fireaxe Cabinet
+    .desc = This painting is a masterfully designed image of a fireaxe cabinet. The artwork relates to the loss of the masterwork ☼fireaxe☼ in the early winter of 2523. Oil. Canvas. Tears.
+ent-PaintingGhostHanging = festive ghost streamers
+    .desc = Decorative wall streamers! They look like the people you've lost to the void!
+ent-PaintingBatHanging = festive bat streamers
+    .desc = Decorative wall streamers! Bats are scary and also important pollinators!
+ent-PaintingPumpkinHanging = festive pumpkin streamers
+    .desc = Decorative wall streamers! It's decorative gourd season!

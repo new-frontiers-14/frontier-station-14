@@ -1,6 +1,6 @@
-ent-BulletBBDamaged = damaged BB
-    .desc = Did you shoot your eye out?
+ent-BulletBBDamaged = поврежденный ВВ
+    .desc = Ты выколол себе глаз?
 ent-BulletRGBB = RGBB
-    .desc = Don't shoot your eye out, gamer.
-ent-BulletRGBBDamaged = damaged RGBB
-    .desc = Did you shoot your eye out, gamer?
+    .desc = Не выколи себе глаз, геймер.
+ent-BulletRGBBDamaged = поврежденный RGBB
+    .desc = Ты выбил себе глаз, геймер?

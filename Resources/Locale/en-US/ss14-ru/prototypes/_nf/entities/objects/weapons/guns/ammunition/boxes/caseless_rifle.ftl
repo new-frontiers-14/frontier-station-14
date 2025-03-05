@@ -1,0 +1,9 @@
+ent-MagazineBoxCaselessRifleBigRubber = ammunition box (.25 caseless rubber)
+    .desc = { ent-BaseMagazineBoxCaselessRifle.desc }
+ent-MagazineBoxCaselessRifleRubber = ammunition box (.25 caseless rubber)
+    .desc = { ent-BaseMagazineBoxCaselessRifle.desc }
+ent-MagazineBoxCaselessRifle10x24 = ammunition box (.25 caseless)
+    .suffix = 200
+    .desc = { ent-BaseMagazineBoxCaselessRifle.desc }
+ent-MagazineBoxCaselessRifleBig = ammunition box (.25 caseless)
+    .desc = { ent-BaseMagazineBoxCaselessRifle.desc }

@@ -1,0 +1,14 @@
+ent-CrateNPCEmotionalSupport = emotional support pet crate
+    .desc = A crate containing a single emotional support pet.
+ent-FillNPCEmotionalSupportSafe = { "" }
+    .suffix = Safe
+    .desc = { "" }
+ent-CrateNPCEmotionalSupportSafe = { ent-FillNPCEmotionalSupportSafe }
+    .desc = { ent-FillNPCEmotionalSupportSafe.desc }
+ent-PetCarrierNPCEmotionalSupportSafe = { ent-PetCarrier }
+    .desc = { ent-PetCarrier.desc }
+ent-CrateWoodCageClugg = { ent-CrateWoodCage }
+    .suffix = Filled, Clugg
+    .desc = { ent-CrateWoodCage.desc }
+ent-CrateNPCPoultryCube = poultry cube crate
+    .desc = A crate containing single box of poultry cubes.

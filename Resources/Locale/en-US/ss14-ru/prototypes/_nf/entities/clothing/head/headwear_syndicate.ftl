@@ -1,0 +1,13 @@
+ent-ClothingHeadHelmetBombSuitSyndie = syndicate bombsuit helmet
+    .desc = { ent-BaseC3SyndicateContrabandUnredeemable.desc }
+ent-ClothingHeadHatHoodBioArmoredSyndicate = bio hood
+    .desc = A hood that protects the head and face from biological contaminants. As well as user's identity.
+    .suffix = Syndicate
+ent-ClothingHeadHelmetHardsuitSyndieEliteUnremoveable = { ent-BaseC3SyndicateContrabandUnredeemable }
+    .desc = { ent-BaseC3SyndicateContrabandUnredeemable.desc }
+ent-ClothingHeadHelmetHardsuitSyndieUnremoveable = { ent-BaseC3SyndicateContrabandUnredeemable }
+    .desc = { ent-BaseC3SyndicateContrabandUnredeemable.desc }
+ent-ClothingHeadHelmetHardsuitSyndieMedicUnremoveable = { ent-BaseC3SyndicateContrabandUnredeemable }
+    .desc = { ent-BaseC3SyndicateContrabandUnredeemable.desc }
+ent-ClothingHeadHatHoodWinterSyndieUnremoveable = syndicate coat hood
+    .desc = { ent-BaseC3SyndicateContrabandUnredeemable.desc }

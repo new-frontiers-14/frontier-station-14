@@ -1,0 +1,16 @@
+ent-ClothingNeckMedalNfsdStarGold = star of valor
+    .desc = For daring acts of selflessness and devotion to duty in dire circumstances.
+ent-ClothingNeckMedalNfsdShieldGold = shield of courage
+    .desc = For exemplary courage and leadership beyond expectation in contact with the enemy.
+ent-ClothingNeckMedalNfsdShieldSilver = shield of gallantry
+    .desc = For acts of conspicuous gallantry against enemies of the Frontier.
+ent-ClothingNeckMedalNfsdShieldBronze = shield of merit
+    .desc = For distinguished and meritorious conduct in the line of duty.
+ent-ClothingNeckMedalNfsdCivStarSilver = friend of the frontier
+    .desc = In recognition of exceptional and honorable civilian service.
+ent-ClothingNeckMedalNfsdCivShieldGold = shieldbearer's medal
+    .desc = For extraordinary civilian assistance in the face of danger.
+ent-ClothingNeckMedalNfsdBloodDrop = badge of sacrifice
+    .desc = For grave wounds obtained in dutiful service.
+ent-ClothingNeckMedalGloriousOrder = the glorious order of the frontier, 1st class
+    .desc = For unequivocal entrepreneurship and lugubriosity against incorrigible verisimilitude.

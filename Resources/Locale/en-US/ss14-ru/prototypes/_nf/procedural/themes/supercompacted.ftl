@@ -1,0 +1,14 @@
+ent-NFChromiteRoomMarker = chromite super compacted marker
+    .desc = { ent-BaseRoomMarker.desc }
+ent-NFSnowRoomMarker = snow super compacted marker
+    .desc = { ent-BaseRoomMarker.desc }
+ent-NFAsteroidRoomMarker = asteroid super compacted marker
+    .desc = { ent-BaseRoomMarker.desc }
+ent-NFAndesiteRoomMarker = andesite super compacted marker
+    .desc = { ent-BaseRoomMarker.desc }
+ent-NFBasaltRoomMarker = basalt super compacted marker
+    .desc = { ent-BaseRoomMarker.desc }
+ent-NFSandRoomMarker = sand super compacted marker
+    .desc = { ent-BaseRoomMarker.desc }
+ent-NFAsteroidRockRoomMarker = asteroid rock super compacted marker
+    .desc = { ent-BaseRoomMarker.desc }
