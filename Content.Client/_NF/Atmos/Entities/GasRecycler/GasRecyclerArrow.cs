@@ -1,0 +1,22 @@
+using Content.Client.Examine;
+using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
+
+namespace Content.Client._NF.Atmos.Entities.GasRecycler;
+
+// Gas recyclers show pipe direction on examine, arrow sprite reused from TEG functionality
+public sealed class GasRecyclerArrow : EntitySystem
+{
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string ArrowPrototype = "TegCirculatorArrow";
+
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<GasRecyclerComponent, ClientExaminedEvent>(RecyclerExamined);
+    }
+
+    private void RecyclerExamined(EntityUid uid, GasRecyclerComponent component, ClientExaminedEvent args)
+    {
+        Spawn(ArrowPrototype, new EntityCoordinates(uid, 0, 0));
+    }
+}
