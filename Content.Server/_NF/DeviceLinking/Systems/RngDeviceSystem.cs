@@ -28,9 +28,25 @@ public sealed class RngDeviceSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
 
     // Pre-allocated arrays for common output counts
-    private static readonly ProtoId<SourcePortPrototype>[] _twoPortsArray = new ProtoId<SourcePortPrototype>[2];
-    private static readonly ProtoId<SourcePortPrototype>[] _fourPortsArray = new ProtoId<SourcePortPrototype>[4];
-    private static readonly ProtoId<SourcePortPrototype>[] _sixPortsArray = new ProtoId<SourcePortPrototype>[6];
+    private static ProtoId<SourcePortPrototype>[] InitializeTwoPortsArray(RngDeviceComponent comp) => new[]
+    {
+        new ProtoId<SourcePortPrototype>(comp.Output1Port),
+        new ProtoId<SourcePortPrototype>(comp.Output2Port)
+    };
+
+    private static ProtoId<SourcePortPrototype>[] InitializeFourPortsArray(RngDeviceComponent comp) => InitializeTwoPortsArray(comp)
+        .Concat(new[]
+        {
+            new ProtoId<SourcePortPrototype>(comp.Output3Port),
+            new ProtoId<SourcePortPrototype>(comp.Output4Port)
+        }).ToArray();
+
+    private static ProtoId<SourcePortPrototype>[] InitializeSixPortsArray(RngDeviceComponent comp) => InitializeFourPortsArray(comp)
+        .Concat(new[]
+        {
+            new ProtoId<SourcePortPrototype>(comp.Output5Port),
+            new ProtoId<SourcePortPrototype>(comp.Output6Port)
+        }).ToArray();
 
     // Reusable payload for edge mode signals
     private readonly NetworkPayload _edgeModePayload = new();
@@ -50,8 +66,7 @@ public sealed class RngDeviceSystem : EntitySystem
 
     private void OnInit(EntityUid uid, RngDeviceComponent comp, ComponentInit args)
     {
-        // Set up input port using standard Trigger port
-        _deviceLink.EnsureSinkPorts(uid, new ProtoId<SinkPortPrototype>("Trigger"));
+        _deviceLink.EnsureSinkPorts(uid, new ProtoId<SinkPortPrototype>(comp.InputPort));
 
         // Initialize the ports array based on output count
         var ports = InitializePortsArray(comp);
@@ -73,16 +88,11 @@ public sealed class RngDeviceSystem : EntitySystem
     {
         var array = comp.Outputs switch
         {
-            2 => _twoPortsArray,
-            4 => _fourPortsArray,
-            6 => _sixPortsArray,
+            2 => InitializeTwoPortsArray(comp),
+            4 => InitializeFourPortsArray(comp),
+            6 => InitializeSixPortsArray(comp),
             _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
         };
-
-        for (int i = 0; i < comp.Outputs; i++)
-        {
-            array[i] = GetOutputPort(comp, i + 1);
-        }
 
         comp.PortsArray = array;
         return array;
