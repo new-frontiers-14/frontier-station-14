@@ -28,34 +28,19 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<HandPlaceholderRemoveableComponent, GotUnequippedHandEvent>(OnUnequipHand);
-        SubscribeLocalEvent<HandPlaceholderRemoveableComponent, DroppedEvent>(OnDropped);
+        SubscribeLocalEvent<HandPlaceholderRemoveableComponent, EntGotRemovedFromContainerMessage>(OnEntityRemovedFromContainer);
 
         SubscribeLocalEvent<HandPlaceholderComponent, AfterInteractEvent>(AfterInteract);
         SubscribeLocalEvent<HandPlaceholderComponent, BeforeRangedInteractEvent>(BeforeRangedInteract);
     }
 
-    private void OnUnequipHand(Entity<HandPlaceholderRemoveableComponent> ent, ref GotUnequippedHandEvent args)
+    private void OnEntityRemovedFromContainer(Entity<HandPlaceholderRemoveableComponent> ent, ref EntGotRemovedFromContainerMessage args)
     {
-        if (args.Handled)
-            return; // If this is happening in practice, this is a bug.
-
-        SpawnAndPickUpPlaceholder(ent, args.User);
+        SpawnAndPickUpPlaceholder(ent, args.Container);
         RemCompDeferred<HandPlaceholderRemoveableComponent>(ent);
-        args.Handled = true;
     }
 
-    private void OnDropped(Entity<HandPlaceholderRemoveableComponent> ent, ref DroppedEvent args)
-    {
-        if (args.Handled)
-            return; // If this is happening in practice, this is a bug.
-
-        SpawnAndPickUpPlaceholder(ent, args.User);
-        RemCompDeferred<HandPlaceholderRemoveableComponent>(ent);
-        args.Handled = true;
-    }
-
-    private void SpawnAndPickUpPlaceholder(Entity<HandPlaceholderRemoveableComponent> ent, EntityUid user)
+    private void SpawnAndPickUpPlaceholder(Entity<HandPlaceholderRemoveableComponent> ent, BaseContainer container)
     {
         if (_net.IsServer)
         {
@@ -70,7 +55,7 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
             if (_proto.TryIndex(ent.Comp.Prototype, out var itemProto))
                 _metadata.SetEntityName(placeholder, itemProto.Name);
 
-            if (!_hands.TryPickup(user, placeholder)) // Can we get the hand this came from?
+            if (!_container.Insert(placeholder, container, force: true))
                 QueueDel(placeholder);
         }
     }
