@@ -7,6 +7,7 @@
   - type: BallisticAmmoProvider
     proto: CartridgePistolRubber
   - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi
     layers:
     - state: rubber
       map: ["enum.GunVisualLayers.Base"]
@@ -21,6 +22,23 @@
   - type: BallisticAmmoProvider
     proto: CartridgePistolRubber
   - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi
+    layers:
+    - state: rubber
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+
+- type: entity
+  id: MagazinePistolHighCapacityRubber
+  name: machine pistol magazine (.35 auto rubber)
+  parent: BaseMagazinePistolHighCapacity
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_high_capacity_mag.rsi
     layers:
     - state: rubber
       map: ["enum.GunVisualLayers.Base"]
@@ -36,8 +54,9 @@
   - type: BallisticAmmoProvider
     proto: CartridgePistolEmp
   - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi
     layers:
-    - state: rubber
+    - state: emp
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
