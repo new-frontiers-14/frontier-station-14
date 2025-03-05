@@ -65,6 +65,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
+      bodyStatus: InAir
+      angularDamping: 0.05
+      linearDamping: 0.05
+      fixedRotation: False
+      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
@@ -10160,6 +10165,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,-8.5
       parent: 1
+  - uid: 1662
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,-23.5
+      parent: 1
 - proto: PoweredlightBlack
   entities:
   - uid: 1607
@@ -12074,16 +12085,16 @@ entities:
     - type: Transform
       pos: 4.5,2.5
       parent: 1
-- proto: VendingMachineBooze
+- proto: VendingMachineBoozePOI
   entities:
-  - uid: 585
+  - uid: 483
     components:
     - type: Transform
       pos: -1.5,-8.5
       parent: 1
-- proto: VendingMachineCigs
+- proto: VendingMachineCigsPOI
   entities:
-  - uid: 893
+  - uid: 540
     components:
     - type: Transform
       pos: -1.5,0.5
@@ -12116,28 +12127,28 @@ entities:
     - type: Transform
       pos: 4.5,1.5
       parent: 1
-- proto: VendingMachineGames
+- proto: VendingMachineGamesPOI
   entities:
   - uid: 546
     components:
     - type: Transform
       pos: 0.5,-6.5
       parent: 1
-- proto: VendingMachineMediDrobe
+- proto: VendingMachineMediDrobePOI
   entities:
-  - uid: 540
-    components:
-    - type: Transform
-      pos: 0.5,-8.5
-      parent: 1
   - uid: 547
     components:
     - type: Transform
       pos: 0.5,-5.5
       parent: 1
-- proto: VendingMachinePottedPlantVend
+  - uid: 585
+    components:
+    - type: Transform
+      pos: 0.5,-8.5
+      parent: 1
+- proto: VendingMachinePottedPlantVendPOI
   entities:
-  - uid: 483
+  - uid: 893
     components:
     - type: Transform
       pos: 0.5,-7.5
