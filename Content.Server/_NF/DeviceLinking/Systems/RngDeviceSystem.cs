@@ -30,56 +30,56 @@ public sealed class RngDeviceSystem : EntitySystem
     // Pre-allocated arrays for common output counts
     private static ProtoId<SourcePortPrototype>[] InitializeTwoPortsArray(RngDeviceComponent comp) => new[]
     {
-        new ProtoId<SourcePortPrototype>(comp.Output1Port),
-        new ProtoId<SourcePortPrototype>(comp.Output2Port)
+        new ProtoId<SourcePortPrototype>(comp.GetOutputPort(1)),
+        new ProtoId<SourcePortPrototype>(comp.GetOutputPort(2))
     };
 
     private static ProtoId<SourcePortPrototype>[] InitializeFourPortsArray(RngDeviceComponent comp) => InitializeTwoPortsArray(comp)
         .Concat(new[]
         {
-            new ProtoId<SourcePortPrototype>(comp.Output3Port),
-            new ProtoId<SourcePortPrototype>(comp.Output4Port)
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(3)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(4))
         }).ToArray();
 
     private static ProtoId<SourcePortPrototype>[] InitializeSixPortsArray(RngDeviceComponent comp) => InitializeFourPortsArray(comp)
         .Concat(new[]
         {
-            new ProtoId<SourcePortPrototype>(comp.Output5Port),
-            new ProtoId<SourcePortPrototype>(comp.Output6Port)
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(5)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(6))
         }).ToArray();
 
     private static ProtoId<SourcePortPrototype>[] InitializeEightPortsArray(RngDeviceComponent comp) => InitializeSixPortsArray(comp)
         .Concat(new[]
         {
-            new ProtoId<SourcePortPrototype>(comp.Output7Port),
-            new ProtoId<SourcePortPrototype>(comp.Output8Port)
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(7)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(8))
         }).ToArray();
 
     private static ProtoId<SourcePortPrototype>[] InitializeTenPortsArray(RngDeviceComponent comp) => InitializeEightPortsArray(comp)
         .Concat(new[]
         {
-            new ProtoId<SourcePortPrototype>(comp.Output9Port),
-            new ProtoId<SourcePortPrototype>(comp.Output10Port)
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(9)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(10))
         }).ToArray();
 
     private static ProtoId<SourcePortPrototype>[] InitializeTwelvePortsArray(RngDeviceComponent comp) => InitializeTenPortsArray(comp)
         .Concat(new[]
         {
-            new ProtoId<SourcePortPrototype>(comp.Output11Port),
-            new ProtoId<SourcePortPrototype>(comp.Output12Port)
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(11)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(12))
         }).ToArray();
 
     private static ProtoId<SourcePortPrototype>[] InitializeTwentyPortsArray(RngDeviceComponent comp) => InitializeTwelvePortsArray(comp)
         .Concat(new[]
         {
-            new ProtoId<SourcePortPrototype>(comp.Output13Port),
-            new ProtoId<SourcePortPrototype>(comp.Output14Port),
-            new ProtoId<SourcePortPrototype>(comp.Output15Port),
-            new ProtoId<SourcePortPrototype>(comp.Output16Port),
-            new ProtoId<SourcePortPrototype>(comp.Output17Port),
-            new ProtoId<SourcePortPrototype>(comp.Output18Port),
-            new ProtoId<SourcePortPrototype>(comp.Output19Port),
-            new ProtoId<SourcePortPrototype>(comp.Output20Port)
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(13)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(14)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(15)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(16)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(17)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(18)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(19)),
+            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(20))
         }).ToArray();
 
     // Reusable payload for edge mode signals
@@ -253,31 +253,10 @@ public sealed class RngDeviceSystem : EntitySystem
     /// <exception cref="ArgumentOutOfRangeException">Thrown when port number is invalid</exception>
     private static ProtoId<SourcePortPrototype> GetOutputPort(RngDeviceComponent comp, int portNumber)
     {
-        var portName = portNumber switch
-        {
-            1 => comp.Output1Port,
-            2 => comp.Output2Port,
-            3 => comp.Output3Port,
-            4 => comp.Output4Port,
-            5 => comp.Output5Port,
-            6 => comp.Output6Port,
-            7 => comp.Output7Port,
-            8 => comp.Output8Port,
-            9 => comp.Output9Port,
-            10 => comp.Output10Port,
-            11 => comp.Output11Port,
-            12 => comp.Output12Port,
-            13 => comp.Output13Port,
-            14 => comp.Output14Port,
-            15 => comp.Output15Port,
-            16 => comp.Output16Port,
-            17 => comp.Output17Port,
-            18 => comp.Output18Port,
-            19 => comp.Output19Port,
-            20 => comp.Output20Port,
-            _ => throw new ArgumentOutOfRangeException(nameof(portNumber), $"Invalid output port number: {portNumber}")
-        };
-        return new ProtoId<SourcePortPrototype>(portName);
+        if (portNumber < 1 || portNumber > 20)
+            throw new ArgumentOutOfRangeException(nameof(portNumber), "Port number must be between 1 and 20");
+
+        return new ProtoId<SourcePortPrototype>(comp.GetOutputPort(portNumber));
     }
 
     private void OnExamined(EntityUid uid, RngDeviceComponent component, ExaminedEvent args)
