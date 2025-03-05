@@ -112,7 +112,7 @@
           weight: 1
         - id: ClothingHandsGlovesConducting
           weight: 0.1
-      # Uncommon Group
+    # Uncommon Group
     - !type:GroupSelector
       weight: 23
       children:
@@ -131,7 +131,7 @@
         children:
         - id: DrinkSpaceGlue
         - id: DrinkSpaceLube
-      # Rare Group
+    # Rare Group
     - !type:GroupSelector
       weight: 2
       children:
@@ -146,6 +146,74 @@
       - id: SpectralLocator
       - id: LidSalami
         weight: 0.05
+
+- type: entityTable
+  id: MaintFluffTableTrimmed
+  table: !type:GroupSelector
+    children:
+    # Common Group
+    - !type:GroupSelector
+      weight: 75
+      children:
+      # Gar glasses
+      - !type:GroupSelector
+        children:
+        - id: ClothingEyesGlassesGar
+        - id: ClothingEyesGlassesGarOrange
+        - id: ClothingEyesGlassesGarGiga
+      - id: Wristwatch
+        weight: 0.5
+      - id: ClothingHeadHatCake
+      - id: ClothingHeadHatSkub
+      - id: ClothingHeadHatCone
+      - id: ClothingNeckBling
+      - id: ClothingShoeSlippersDuck
+      - id: ClothingEyesEyepatch
+      - id: ClothingHandsGlovesLatex
+      - !type:AllSelector
+        children:
+        - id: ClothingOuterCoatJensen
+        - id: ClothingEyesGlassesJensen
+    # Uncommon Group
+    - !type:GroupSelector
+      weight: 23
+      children:
+      - id: ClothingNeckCloakHerald
+      - id: ClothingHeadHelmetTemplar
+      # Cloaks
+      - !type:GroupSelector
+        children:
+        - id: ClothingNeckCloakTrans
+        - id: ClothingNeckCloakMoth
+        - id: ClothingNeckCloakVoid
+        - id: ClothingNeckCloakGoliathCloak
+        - id: ClothingNeckCloakAce
+        - id: ClothingNeckCloakAro
+        - id: ClothingNeckCloakBi
+        - id: ClothingNeckCloakIntersex
+        - id: ClothingNeckCloakLesbian
+        - id: ClothingNeckCloakGay
+        - id: ClothingNeckCloakEnby
+        - id: ClothingNeckCloakPan
+      - id: ToySkeleton
+      # Cult
+      - !type:AllSelector
+        children:
+        - id: ClothingOuterCoatBloodCultRobes
+        - id: ClothingShoesCult
+      - id: ClothingHandsGlovesNitrile
+      - id: ClothingHandsGlovesPowerglove
+    # Rare Group
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: Skub
+      - id: PonderingOrb
+      - id: CluwneHorn
+      - id: ClothingShoesSkates
+      - id: CigarGold
+      - id: WristwatchGold
+      - id: RubberStampGreytide
 
 - type: entityTable
   id: TableStorageFillStashValuables
@@ -167,7 +235,7 @@
         range: 3, 5
     # Maint Fluff
     - !type:NestedSelector
-      tableId: MaintFluffTable
+      tableId: MaintFluffTableTrimmed
       rolls: !type:RangeNumberSelector
         range: 3, 6
     # Food (spoiled)
