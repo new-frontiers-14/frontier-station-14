@@ -66,18 +66,36 @@
       color: "#bf743c"
       map: ["openLayer"]
       visible: false
-    - state: fill-eng-1
-      map: [ "pouchFill1" ]
-      visible: false
-    - state: fill-eng-2
-      map: [ "pouchFill2" ]
-      visible: false
-    - state: fill-eng-3
-      map: [ "pouchFill3" ]
-      visible: false
-    - state: fill-eng-4
+    - state: fill-util4-1
       map: [ "pouchFill4" ]
       visible: false
+    - state: fill-util3-1
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
+      visible: false
+  - type: RandomSprite
+    available:
+      - pouchFill1:
+          fill-util1-1: ""
+          fill-util1-2: ""
+          fill-util1-3: ""
+        pouchFill2:
+          fill-util2-1: ""
+          fill-util2-2: ""
+          fill-util2-3: ""
+        pouchFill3:
+          fill-util3-1: ""
+          fill-util3-2: ""
+          fill-util3-3: ""
+        pouchFill4:
+          fill-util4-1: ""
+          fill-util4-2: ""
+          fill-util4-3: ""
   - type: Item
     inhandVisuals:
       left:
@@ -97,7 +115,7 @@
 
 - type: entity
   id: NFPouchEngineering
-  parent: NFPouchBase
+  parent: NFPouchUtility
   name: engineer's pouch
   components:
   - type: Sprite
@@ -109,17 +127,17 @@
       color: "#ffde15"
       map: [ "openLayer" ]
       visible: false
-    - state: fill-eng-1
-      map: [ "pouchFill1" ]
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
       visible: false
-    - state: fill-eng-2
-      map: [ "pouchFill2" ]
-      visible: false
-    - state: fill-eng-3
+    - state: fill-util3-1
       map: [ "pouchFill3" ]
       visible: false
-    - state: fill-eng-4
-      map: [ "pouchFill4" ]
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
       visible: false
     - state: decal-line-01
       map: [ "decal1" ]
@@ -272,7 +290,7 @@
 
 - type: entity
   id: NFPouchScience
-  parent: NFPouchBase
+  parent: NFPouchUtility
   name: scientist's pouch
   components:
   - type: Sprite
@@ -284,17 +302,17 @@
       color: "#d8edff"
       map: ["openLayer"]
       visible: false
-    - state: fill-eng-1
-      map: [ "pouchFill1" ]
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
       visible: false
-    - state: fill-eng-2
-      map: [ "pouchFill2" ]
-      visible: false
-    - state: fill-eng-3
+    - state: fill-util3-1
       map: [ "pouchFill3" ]
       visible: false
-    - state: fill-eng-4
-      map: [ "pouchFill4" ]
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
       visible: false
     - state: decal-line-01
       map: [ "decal1" ]
@@ -318,7 +336,7 @@
 
 - type: entity
   id: NFPouchSalvage
-  parent: NFPouchBase
+  parent: NFPouchUtility
   name: salvagers's pouch
   components:
   - type: Sprite
@@ -330,17 +348,17 @@
       color: "#786243"
       map: ["openLayer"]
       visible: false
-    - state: fill-eng-1
-      map: [ "pouchFill1" ]
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
       visible: false
-    - state: fill-eng-2
-      map: [ "pouchFill2" ]
-      visible: false
-    - state: fill-eng-3
+    - state: fill-util3-1
       map: [ "pouchFill3" ]
       visible: false
-    - state: fill-eng-4
-      map: [ "pouchFill4" ]
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
       visible: false
     - state: decal-line-01
       map: [ "decal1" ]
