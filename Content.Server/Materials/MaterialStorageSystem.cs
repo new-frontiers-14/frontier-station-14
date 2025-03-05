@@ -141,6 +141,38 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
         return true;
     }
 
+    // Frontier: partial stack insertion
+    public override bool TryInsertMaxPossibleMaterialEntity(EntityUid user,
+        EntityUid toInsert,
+        EntityUid receiver,
+        out bool empty,
+        MaterialStorageComponent? storage = null,
+        MaterialComponent? material = null,
+        PhysicalCompositionComponent? composition = null)
+    {
+        empty = false;
+        if (!Resolve(receiver, ref storage) || !Resolve(toInsert, ref material, ref composition, false))
+            return false;
+        if (TryComp<ApcPowerReceiverComponent>(receiver, out var power) && !power.Powered)
+            return false;
+        // Cache old count
+        var initialCount = TryComp<StackComponent>(toInsert, out var stack) ? stack.Count : 1;
+        if (!base.TryInsertMaxPossibleMaterialEntity(user, toInsert, receiver, out empty, storage, material, composition))
+            return false;
+        _audio.PlayPvs(storage.InsertingSound, receiver);
+        _popup.PopupEntity(Loc.GetString("machine-insert-item", ("user", user), ("machine", receiver),
+            ("item", toInsert)), receiver);
+
+        // Logging
+        var newCount = stack?.Count ?? 0;
+        _adminLogger.Add(LogType.Action, LogImpact.Low,
+            $"{ToPrettyString(user):player} inserted {initialCount - newCount} item(s) from {ToPrettyString(toInsert):inserted} into {ToPrettyString(receiver):receiver}");
+        if (empty)
+            Del(toInsert);
+        return true;
+    }
+    // End Frontier: partial stack insertion
+
     /// <summary>
     ///     Spawn an amount of a material in stack entities.
     ///     Note the 'amount' is material dependent.
