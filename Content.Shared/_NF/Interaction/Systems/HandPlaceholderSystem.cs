@@ -93,6 +93,10 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
         ent.Comp.Enabled = false;
         RemCompDeferred<HandPlaceholderRemoveableComponent>(ent);
 
+        // stop tests failing
+        if (TerminatingOrDeleted(placeholder))
+            return;
+
         SetEnabled(placeholder, false);
         var succeeded = _container.Insert(placeholder, container, force: true);
         DebugTools.Assert(succeeded, $"Failed to insert placeholder {ToPrettyString(placeholder)} of {ToPrettyString(ent)} into container of {ToPrettyString(owner)}");
