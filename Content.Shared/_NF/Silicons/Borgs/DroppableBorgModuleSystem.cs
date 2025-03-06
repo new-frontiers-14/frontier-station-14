@@ -1,11 +1,7 @@
-using System.Linq;
-using Content.Shared._NF.Interaction.Components;
 using Content.Shared._NF.Interaction.Systems;
-using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
@@ -17,7 +13,6 @@ namespace Content.Shared._NF.Silicons.Borgs;
 public sealed class DroppableBorgModuleSystem : EntitySystem
 {
     [Dependency] private readonly HandPlaceholderSystem _placeholder = default!;
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
