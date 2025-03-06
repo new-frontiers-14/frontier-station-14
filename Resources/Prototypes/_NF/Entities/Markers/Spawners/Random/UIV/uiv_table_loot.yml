@@ -2,9 +2,7 @@
   id: DungeonLootMercenaryUIVCommon
   table: !type:GroupSelector
     children:
-    - id: ClothingEyesHudBountyHunter
     - id: SpawnDungeonLootArmoryClutter
-    - id: SpawnDungeonLootArmoryClutterSec
     - id: SpawnDungeonLootArmoryGuns
     - id: SpaceCash1000
     - !type:GroupSelector
@@ -21,7 +19,10 @@
   table: !type:GroupSelector
       children:
       - id: ComputerIFFCircuitboard
+      - id: SpawnDungeonLootArmoryClutterSec
       - id: SpaceCash2500
+      - id: ClothingEyesHudBountyHunter
+      - id: SpawnDungeonLootKitsFirstAid
       - !type:GroupSelector
        children:
        - id: SpaceCash5000
@@ -34,7 +35,6 @@
   table: !type:GroupSelector
       children:
       - id: SpawnDungeonLootAmmoIncendiary
-      - id: BoxT3SuperCapacitor
       - id: SpaceCash5000
       - id: OmnizineChemistryBottle
       - id: QuadraticCapacitorStockPart
@@ -43,7 +43,9 @@
        - id: SpawnDungeonLootHardsuitsMercenary
        weight: 0.5
       - id: SpaceCash20000
-        weight: 0.01
+        weight: 0.1
+      - id: Telecrystal5 #a 0.01 weight telecrystal is fun, gives a bit of continuity between UIVs, might remove this if it takes away from the feel of the UIV
+      weight: 0.01
 
 - type: entityTable
   id: DungeonLootMercenaryUIVGuns
