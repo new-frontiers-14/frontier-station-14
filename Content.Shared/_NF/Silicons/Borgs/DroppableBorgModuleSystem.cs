@@ -52,26 +52,15 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
 
     private void OnCanInsertModule(Entity<DroppableBorgModuleComponent> ent, ref BorgCanInsertModuleEvent args)
     {
-        if (args.Cancelled || args.Handled)
+        if (args.Cancelled)
             return;
-
-        // We need to check both the non-droppable and droppable items to check for equivalence.
-        TryComp<ItemBorgModuleComponent>(ent, out var ourItems);
 
         foreach (var module in args.Chassis.Comp.ModuleContainer.ContainedEntities)
         {
             if (!TryComp<DroppableBorgModuleComponent>(module, out var comp))
                 continue;
 
-            if (!SameItems(comp.Items, ent.Comp.Items))
-                continue;
-
-            // Only one module has an ItemBorgComponent? Not the same.
-            if (!TryComp<ItemBorgModuleComponent>(module, out var otherItems) && ourItems != null)
-                continue;
-
-            // Both modules have ItemBorgComponents but the item list doesn't match? Not the same.
-            if (ourItems != null && otherItems != null && (ourItems.Items.Count != otherItems.Items.Count || !ourItems.Items.All(otherItems.Items.Contains)))
+            if (comp.ModuleId != ent.Comp.ModuleId)
                 continue;
 
             if (args.User is { } user)
@@ -79,9 +68,6 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
             args.Cancelled = true;
             return;
         }
-
-        args.Handled = true;
-        return;
     }
 
     private void OnModuleSelected(Entity<DroppableBorgModuleComponent> ent, ref BorgModuleSelectedEvent args)
@@ -160,24 +146,6 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
     {
         return $"nf-{uid}-item-{i}";
     }
-
-    /// <summary>
-    /// Checks that 2 droppable modules have the same starting items.
-    /// Used for duplicate module check.
-    /// </summary>
-    private static bool SameItems(List<DroppableBorgItem> a, List<DroppableBorgItem> b)
-    {
-        if (a.Count != b.Count)
-            return false;
-
-        for (int i = 0; i < a.Count; i++)
-        {
-            if (a[i].Id != b[i].Id)
-                return false;
-        }
-
-        return true;
-    }
 }
 
 /// <summary>
@@ -185,4 +153,4 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
 /// This should exist upstream but doesn't.
 /// </summary>
 [ByRefEvent]
-public record struct BorgCanInsertModuleEvent(Entity<BorgChassisComponent> Chassis, EntityUid? User, bool Cancelled = false, bool Handled = false);
+public record struct BorgCanInsertModuleEvent(Entity<BorgChassisComponent> Chassis, EntityUid? User, bool Cancelled = false);

@@ -287,8 +287,6 @@ public sealed partial class BorgSystem
         RaiseLocalEvent(module, ref ev);
         if (ev.Cancelled)
             return false;
-        if (ev.Handled)
-            return true;
         // End Frontier
 
         if (TryComp<ItemBorgModuleComponent>(module, out var itemModuleComp))
@@ -298,8 +296,9 @@ public sealed partial class BorgSystem
                 if (!TryComp<ItemBorgModuleComponent>(containedModuleUid, out var containedItemModuleComp))
                     continue;
 
-                if (containedItemModuleComp.Items.Count == itemModuleComp.Items.Count &&
-                    containedItemModuleComp.Items.All(itemModuleComp.Items.Contains))
+                // if (containedItemModuleComp.Items.Count == itemModuleComp.Items.Count && // Frontier: no item check
+                //     containedItemModuleComp.Items.All(itemModuleComp.Items.Contains)) // Frontier
+                if (containedItemModuleComp.ModuleId == itemModuleComp.ModuleId) // Frontier: ID comparison
                 {
                     if (user != null)
                         Popup.PopupEntity(Loc.GetString("borg-module-duplicate"), uid, user.Value);
