@@ -287,6 +287,8 @@ public sealed partial class BorgSystem
         RaiseLocalEvent(module, ref ev);
         if (ev.Cancelled)
             return false;
+        if (ev.Handled)
+            return true;
         // End Frontier
 
         if (TryComp<ItemBorgModuleComponent>(module, out var itemModuleComp))

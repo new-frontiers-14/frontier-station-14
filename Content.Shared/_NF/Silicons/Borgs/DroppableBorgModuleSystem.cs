@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._NF.Interaction.Components;
 using Content.Shared._NF.Interaction.Systems;
 using Content.Shared.Hands;
@@ -51,8 +52,11 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
 
     private void OnCanInsertModule(Entity<DroppableBorgModuleComponent> ent, ref BorgCanInsertModuleEvent args)
     {
-        if (args.Cancelled)
+        if (args.Cancelled || args.Handled)
             return;
+
+        // We need to check both the non-droppable and droppable items to check for equivalence.
+        TryComp<ItemBorgModuleComponent>(ent, out var ourItems);
 
         foreach (var module in args.Chassis.Comp.ModuleContainer.ContainedEntities)
         {
@@ -62,11 +66,22 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
             if (!SameItems(comp.Items, ent.Comp.Items))
                 continue;
 
-            if (args.User is {} user)
+            // Only one module has an ItemBorgComponent? Not the same.
+            if (!TryComp<ItemBorgModuleComponent>(module, out var otherItems) && ourItems != null)
+                continue;
+
+            // Both modules have ItemBorgComponents but the item list doesn't match? Not the same.
+            if (ourItems != null && otherItems != null && (ourItems.Items.Count != otherItems.Items.Count || !ourItems.Items.All(otherItems.Items.Contains)))
+                continue;
+
+            if (args.User is { } user)
                 _popup.PopupEntity(Loc.GetString("borg-module-duplicate"), args.Chassis, user); // event is only raised by server so not using PopupClient
             args.Cancelled = true;
             return;
         }
+
+        args.Handled = true;
+        return;
     }
 
     private void OnModuleSelected(Entity<DroppableBorgModuleComponent> ent, ref BorgModuleSelectedEvent args)
@@ -110,7 +125,7 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
             {
                 var handId = HandId(ent, i);
                 _hands.TryGetHand(chassis, handId, out var hand, hands);
-                if (hand?.HeldEntity is {} item)
+                if (hand?.HeldEntity is { } item)
                     QueueDel(item);
                 else if (!TerminatingOrDeleted(chassis)) // don't care if its empty if the server is shutting down
                     Log.Error($"Borg {ToPrettyString(chassis)} terminated with empty hand {i} in {ToPrettyString(ent)}");
@@ -124,7 +139,7 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
         {
             var handId = HandId(ent, i);
             _hands.TryGetHand(chassis, handId, out var hand, hands);
-            if (hand?.HeldEntity is {} item)
+            if (hand?.HeldEntity is { } item)
             {
                 _placeholder.SetEnabled(item, false);
                 _container.Insert(item, container, force: true);
@@ -170,4 +185,4 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
 /// This should exist upstream but doesn't.
 /// </summary>
 [ByRefEvent]
-public record struct BorgCanInsertModuleEvent(Entity<BorgChassisComponent> Chassis, EntityUid? User, bool Cancelled = false);
+public record struct BorgCanInsertModuleEvent(Entity<BorgChassisComponent> Chassis, EntityUid? User, bool Cancelled = false, bool Handled = false);
