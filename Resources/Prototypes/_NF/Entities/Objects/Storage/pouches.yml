@@ -63,12 +63,12 @@
   - type: Sprite
     layers:
     - state: base
-      color: "#bf743c"
+      color: "#9a733f"
     - state: closed
       map: ["closeLayer"]
-      color: "#bf743c"
+      color: "#9a733f"
     - state: open
-      color: "#bf743c"
+      color: "#9a733f"
       map: ["openLayer"]
       visible: false
     - state: inside
@@ -112,18 +112,18 @@
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#bf743c"
+        color: "#9a733f"
       right:
       - state: inhand-right
-        color: "#bf743c"
+        color: "#9a733f"
   - type: Clothing
     clothingVisuals:
       belt:
       - state: equipped-BELT
-        color: "#bf743c"
+        color: "#9a733f"
       pocket:
       - state: equipped-BELT
-        color: "#bf743c"
+        color: "#9a733f"
 
 # Departmental
 - type: entity
@@ -373,12 +373,12 @@
   - type: Sprite
     layers:
     - state: base
-      color: "#777b83"
+      color: "#3e3e48"
     - state: closed
       map: ["closeLayer"]
-      color: "#777b83"
+      color: "#3e3e48"
     - state: open
-      color: "#777b83"
+      color: "#3e3e48"
       map: ["openLayer"]
       visible: false
     - state: inside
@@ -523,12 +523,12 @@
   - type: Sprite
     layers:
     - state: base
-      color: "#fff4e2"
+      color: "#3e3e48"
     - state: closed
       map: ["closeLayer"]
-      color: "#fff4e2"
+      color: "#777b83"
     - state: open
-      color: "#fff4e2"
+      color: "#777b83"
       map: ["openLayer"]
       visible: false
     - state: inside
@@ -548,23 +548,23 @@
       visible: false
     - state: decal-line-01
       map: [ "decal1" ]
-      color: "#3e3e48"
+      color: "#fff4e2"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#fff4e2"
+        color: "#777b83"
       right:
       - state: inhand-right
-        color: "#fff4e2"
+        color: "#777b83"
   - type: Clothing
     clothingVisuals:
       belt:
       - state: equipped-BELT
-        color: "#fff4e2"
+        color: "#777b83"
       pocket:
       - state: equipped-BELT
-        color: "#fff4e2"
+        color: "#777b83"
 
 - type: entity
   id: NFPouchMailCarrier
@@ -892,6 +892,215 @@
       pocket:
       - state: equipped-BELT
         color: "#357294"
+
+- type: entity
+  id: NFPouchPirate
+  parent: NFPouchUtility
+  name: pirate's pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#5c3714"
+    - state: closed
+      map: ["closeLayer"]
+      color: "#5c3714"
+    - state: open
+      color: "#5c3714"
+      map: ["openLayer"]
+      visible: false
+    - state: inside
+      color: "#990000"
+      map: ["insideLayer"]
+      visible: false
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
+      visible: false
+    - state: fill-util3-1
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: decal-skull
+      map: [ "decal1" ]
+      color: "#bfd5eb"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#5c3714"
+      right:
+      - state: inhand-right
+        color: "#5c3714"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#5c3714"
+      pocket:
+      - state: equipped-BELT
+        color: "#5c3714"
+
+- type: entity
+  id: NFPouchPirateCaptain
+  parent: NFPouchUtility
+  name: pirate captain's pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#5c3714"
+    - state: closed
+      map: ["closeLayer"]
+      color: "#5c3714"
+    - state: open
+      color: "#5c3714"
+      map: ["openLayer"]
+      visible: false
+    - state: inside
+      color: "#990000"
+      map: ["insideLayer"]
+      visible: false
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
+      visible: false
+    - state: fill-util3-1
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: decal-skull
+      map: [ "decal1" ]
+      color: "#f2b833"
+    - state: decal-line-03
+      map: [ "decal2" ]
+      color: "#990000"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#5c3714"
+      right:
+      - state: inhand-right
+        color: "#5c3714"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#5c3714"
+      pocket:
+      - state: equipped-BELT
+        color: "#5c3714"
+
+- type: entity
+  id: NFPouchMime
+  parent: NFPouchUtility
+  name: mime's pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#eeeeee"
+    - state: closed
+      map: ["closeLayer"]
+      color: "#eeeeee"
+    - state: open
+      color: "#eeeeee"
+      map: ["openLayer"]
+      visible: false
+    - state: inside
+      color: "#eeeeee"
+      map: ["insideLayer"]
+      visible: false
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
+      visible: false
+    - state: fill-util3-1
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: decal-mime
+      map: [ "decal1" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#eeeeee"
+      right:
+      - state: inhand-right
+        color: "#eeeeee"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#eeeeee"
+      pocket:
+      - state: equipped-BELT
+        color: "#eeeeee"
+
+- type: entity
+  id: NFPouchClown
+  parent: NFPouchUtility
+  name: clown's pouch
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#00ff00"
+    - state: closed
+      map: ["closeLayer"]
+      color: "#00ff00"
+    - state: open
+      color: "#00ff00"
+      map: ["openLayer"]
+      visible: false
+    - state: inside
+      color: "#00ff00"
+      map: ["insideLayer"]
+      visible: false
+    - state: fill-util4-1
+      map: [ "pouchFill4" ]
+      visible: false
+    - state: fill-util3-1
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-util2-1
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-util1-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: decal-clown
+      map: [ "decal1" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#00ff00"
+      right:
+      - state: inhand-right
+        color: "#00ff00"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#00ff00"
+      pocket:
+      - state: equipped-BELT
+        color: "#00ff00"
 
 # Tobacco
 - type: entity
