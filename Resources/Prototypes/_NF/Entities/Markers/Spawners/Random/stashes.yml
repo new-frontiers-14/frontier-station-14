@@ -1,9 +1,33 @@
-# Clutter
+# Tables
+- type: entityTable
+  id: TableStashVariety
+  table: !type:GroupSelector
+    children:
+    # Normal
+    - !type:GroupSelector
+      weight: 99
+      children:
+      - id: DuffelCargoStashValuables
+      - id: DuffelContractorStashValuables
+      - id: DuffelPilotStashValuables
+      - id: DuffelEngineeringStashValuables
+      - id: DuffelAtmosphericsStashValuables
+      - id: DuffelSalvageStashValuables
+      - id: DuffelMedicalStashValuables
+      - id: DuffelHydroponicsStashValuables
+      - id: DuffelMercenaryStashValuables
+    # Contraband
+    - !type:GroupSelector
+      weight: 1
+      children:
+      - id: DuffelSyndicateStashContraband
+
+#Spawners
 - type: entity
   name: random stash
   id: SpawnDungeonLootStash
   parent: MarkerBase
-  suffix: "Dungeon, Stash"
+  suffix: "Stash, 100"
   components:
   - type: Sprite
     layers:
@@ -15,11 +39,32 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
-  - type: RandomSpawner
-    prototypes:
-    - DuffelCargoStashValuables
-    chance: 0.97
-    offset: 0.0
-    rarePrototypes:
-    - DuffelSyndicateStashContraband
-    rareChance: 0.03
+  - type: EntityTableSpawner
+    offset: 0.4
+    table: !type:NestedSelector
+      tableId: TableStashVariety
+      prob: 1.00
+
+- type: entity
+  name: random stash
+  id: SpawnDungeonLootStash50
+  parent: SpawnDungeonLootStash
+  suffix: "Stash, 50"
+  components:
+  - type: EntityTableSpawner
+    offset: 0.4
+    table: !type:NestedSelector
+      tableId: TableStashVariety
+      prob: 0.5
+
+- type: entity
+  name: random stash
+  id: SpawnDungeonLootStash10
+  parent: SpawnDungeonLootStash
+  suffix: "Stash, 10"
+  components:
+  - type: EntityTableSpawner
+    offset: 0.4
+    table: !type:NestedSelector
+      tableId: TableStashVariety
+      prob: 0.1
