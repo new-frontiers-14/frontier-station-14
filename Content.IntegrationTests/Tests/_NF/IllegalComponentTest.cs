@@ -1,3 +1,4 @@
+using Content.Server.Salvage.Magnet;
 using Content.Server.Solar.Components;
 using Content.Shared.Prototypes;
 using Robust.Shared.Prototypes;
@@ -11,6 +12,7 @@ public sealed class IllegalComponentTest
     private static readonly Type[] IllegalComponents =
     {
         typeof(SolarPanelComponent), // Frontier: use NF variant
+        typeof(SalvageMobRestrictionsComponent), // Frontier: use NF variant
     };
 
     [Test]
