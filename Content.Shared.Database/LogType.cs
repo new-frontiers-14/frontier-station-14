@@ -464,7 +464,15 @@ public enum LogType
     /// </summary>
     AtmosDirectionChanged = 204,
     /// <summary>
+    /// A player has posted a bounty contract.
+    /// </summary>
+    BountyContractCreated = 205,
+    /// <summary>
+    /// A player has deleted a bounty contract.
+    /// </summary>
+    BountyContractRemoved = 206,
+    /// <summary>
     /// A medical bounty was redeemed.
     /// </summary>
-    MedicalBountyRedeemed = 205,
+    MedicalBountyRedeemed = 207,
 }
