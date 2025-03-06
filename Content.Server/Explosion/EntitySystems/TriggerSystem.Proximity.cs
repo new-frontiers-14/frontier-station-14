@@ -72,7 +72,7 @@ public sealed partial class TriggerSystem
         if (args.OurFixtureId != TriggerOnProximityComponent.FixtureID)
             return;
 
-        if (!_whitelistSystem.IsWhitelistPassOrNull(component.Whitelist, args.OtherEntity)) // Frontier
+        if (_whitelistSystem.IsWhitelistFail(component.Whitelist, args.OtherEntity)) // Frontier
             return;
 
         component.Colliding[args.OtherEntity] = args.OtherBody;
