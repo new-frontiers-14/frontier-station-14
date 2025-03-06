@@ -289,9 +289,6 @@
       reagents:
       - ReagentId: Honey
         Quantity: 5
-  - type: Tag
-    tags:
-      - Vegetable
 
 - type: entity
   name: sliced potato
@@ -316,3 +313,26 @@
   - type: DeepFrySpawn
     cycles: 2
     output: FoodMealFries
+
+- type: entity
+  name: everyspice pod
+  parent: FoodProduceBase
+  id: FoodEveryspice
+  description: Long, pale pods that hide exotic flavors
+  components:
+  - type: FlavorProfile
+    flavors:
+      - spices
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Everyspice
+          Quantity: 5
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
+    state: produce
+  - type: Tag
+    tags:
+      - Fruit
