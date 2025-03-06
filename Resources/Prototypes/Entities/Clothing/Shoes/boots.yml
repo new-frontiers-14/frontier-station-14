@@ -14,14 +14,15 @@
   parent: [ClothingShoesMilitaryBase, BaseC1Contraband] # Frontier: BaseRestrictedContraband<BaseC1Contraband
   id: ClothingShoesBootsJack
   name: jackboots
-  description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time.
+  # description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time. # Frontier
+  description: Combat boots for combat scenarios or combat situations. All combat, all the time. # Frontier
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/jackboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/jackboots.rsi
-  - type: ClothingSlowOnDamageModifier
-    modifier: 0.5
+  # - type: ClothingSlowOnDamageModifier # Frontier: weird one-off
+  #   modifier: 0.5 # Frontier: weird one-off
 
 - type: entity
   parent: ClothingShoesBaseButcherable

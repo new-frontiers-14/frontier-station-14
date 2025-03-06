@@ -83,6 +83,18 @@
   - type: GasDepositExtractor
     extractionRate: 50 # 50 mol/s => 20 kmol in ~6.6 min
     port: outlet
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35" # a little smaller, should fit through doors
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
 
 - type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseMachinePowered ]

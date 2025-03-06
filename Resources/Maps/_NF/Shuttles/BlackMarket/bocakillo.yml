@@ -239,7 +239,7 @@ entities:
       parent: 2
     - type: Physics
       bodyType: Static
-- proto: AirlockExternalGlass
+- proto: AirlockExternalGlassPirateLocked
   entities:
   - uid: 11
     components:
@@ -256,7 +256,7 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 2
-- proto: AirlockHatch
+- proto: AirlockHatchPirateLocked
   entities:
   - uid: 58
     components:
@@ -268,7 +268,7 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 2
-- proto: AirlockShuttleSyndicate
+- proto: AirlockShuttleSyndicatePirateLocked
   entities:
   - uid: 56
     components:
@@ -1217,6 +1217,13 @@ entities:
     - type: Transform
       pos: -0.5,5.5
       parent: 2
+- proto: HandLabeler
+  entities:
+  - uid: 199
+    components:
+    - type: Transform
+      pos: -0.35075927,11.096759
+      parent: 2
 - proto: LockerWallMaterialsFuelPlasmaFilled
   entities:
   - uid: 191
@@ -1232,6 +1239,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,1.5
+      parent: 2
+- proto: NFHolopadShipAntag
+  entities:
+  - uid: 192
+    components:
+    - type: Transform
+      pos: -0.5,9.5
       parent: 2
 - proto: PirateFlag
   entities:
@@ -1314,7 +1328,7 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 2
-- proto: PoweredlightColoredBlack
+- proto: PoweredlightBlack
   entities:
   - uid: 7
     components:

@@ -21,6 +21,9 @@
     color: "#37C837"
   - type: ProtectedGrid
     preventArtifactTriggers: true
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: pointOfInterest
   id: CargoDepotAlt
@@ -35,6 +38,9 @@
     color: "#37C837"
   - type: ProtectedGrid
     preventArtifactTriggers: true
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: CargoDepot
@@ -43,7 +49,7 @@
   minPlayers: 0
   stations:
     CargoDepot:
-      stationProto: MarketFrontierOutpost
+      stationProto: StandardFrontierOutpost
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem
@@ -57,7 +63,7 @@
   minPlayers: 0
   stations:
     CargoDepotAlt:
-      stationProto: MarketFrontierOutpost
+      stationProto: StandardFrontierOutpost
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Cargo Depot' # Has a letter appended in PointOfInterestSystem

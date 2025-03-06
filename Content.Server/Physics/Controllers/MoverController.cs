@@ -67,8 +67,8 @@ public sealed class MoverController : SharedMoverController
         {
             var physicsUid = uid;
 
-            if (RelayQuery.HasComponent(uid))
-                continue;
+            // if (RelayQuery.HasComponent(uid)) // Upstream - #34015
+            //     continue; // Upstream - #34015
 
             if (!XformQuery.TryGetComponent(uid, out var xform))
             {
@@ -100,6 +100,14 @@ public sealed class MoverController : SharedMoverController
                 xformMover,
                 frameTime);
         }
+
+        // Upstream - #34016
+        var movementRelayTargetEnumerator = AllEntityQuery<MovementRelayTargetComponent, InputMoverComponent>();
+        while (movementRelayTargetEnumerator.MoveNext(out var uid, out var relay, out var mover))
+        {
+            HandleRelayMovement((uid, relay, mover));
+        }
+        // End Upstream - #34016
 
         HandleShuttleMovement(frameTime);
     }
