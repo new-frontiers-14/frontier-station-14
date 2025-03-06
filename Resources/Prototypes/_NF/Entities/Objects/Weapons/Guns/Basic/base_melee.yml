@@ -1,0 +1,19 @@
+- type: entity
+  id: BaseGunMelee
+  abstract: true
+  components:
+  - type: Sprite
+  - type: MeleeRequiresWield
+  - type: MeleeWeapon
+    attackRate: .85
+    damage:
+      types:
+       Slash: 10
+       Piercing: 5
+    angle: 0
+    wideAnimationRotation: -135
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DisarmMalus
+    malus: 0.225

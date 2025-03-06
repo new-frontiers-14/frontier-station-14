@@ -213,21 +213,20 @@
             - CartridgeRifle
 
 - type: entity
-  id: WeaponRifleSVT
-  name: SVT-40
-  parent: [ BaseWeaponRifle, BaseC1Contraband ]
-  description: |-
-   Once a weapon used in war, now a civilian hunting rifle brought to you by S.E.S.W.C., "Retreating is Considered Treason" is etched on one side.
+  id: WeaponRifleSVS
+  name: SVS-42
+  parent: [ BaseWeaponRifle, BaseGunMelee, BaseC1Contraband ]
+  description: "Originally designed by Samonov, this old surplus rifle looks like it's seen a few wars. Uses low capacity .30 rifle magazines. Equipped with bayonet."
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Rifles/svt40.rsi
+    sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
     layers:
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
       - state: base
         map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Rifles/svt40.rsi
+    sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
     quickEquip: false
     slots:
     - Back
@@ -270,3 +269,7 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 1.5
+    pvsIncrease: 0.15
