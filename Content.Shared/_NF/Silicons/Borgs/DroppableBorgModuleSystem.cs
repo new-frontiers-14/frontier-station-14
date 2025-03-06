@@ -1,10 +1,7 @@
-using Content.Shared._NF.Interaction.Components;
 using Content.Shared._NF.Interaction.Systems;
-using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
@@ -16,7 +13,6 @@ namespace Content.Shared._NF.Silicons.Borgs;
 public sealed class DroppableBorgModuleSystem : EntitySystem
 {
     [Dependency] private readonly HandPlaceholderSystem _placeholder = default!;
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
@@ -59,10 +55,10 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
             if (!TryComp<DroppableBorgModuleComponent>(module, out var comp))
                 continue;
 
-            if (!SameItems(comp.Items, ent.Comp.Items))
+            if (comp.ModuleId != ent.Comp.ModuleId)
                 continue;
 
-            if (args.User is {} user)
+            if (args.User is { } user)
                 _popup.PopupEntity(Loc.GetString("borg-module-duplicate"), args.Chassis, user); // event is only raised by server so not using PopupClient
             args.Cancelled = true;
             return;
@@ -110,7 +106,7 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
             {
                 var handId = HandId(ent, i);
                 _hands.TryGetHand(chassis, handId, out var hand, hands);
-                if (hand?.HeldEntity is {} item)
+                if (hand?.HeldEntity is { } item)
                     QueueDel(item);
                 else if (!TerminatingOrDeleted(chassis)) // don't care if its empty if the server is shutting down
                     Log.Error($"Borg {ToPrettyString(chassis)} terminated with empty hand {i} in {ToPrettyString(ent)}");
@@ -124,7 +120,7 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
         {
             var handId = HandId(ent, i);
             _hands.TryGetHand(chassis, handId, out var hand, hands);
-            if (hand?.HeldEntity is {} item)
+            if (hand?.HeldEntity is { } item)
             {
                 _placeholder.SetEnabled(item, false);
                 _container.Insert(item, container, force: true);
@@ -144,24 +140,6 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
     private static string HandId(EntityUid uid, int i)
     {
         return $"nf-{uid}-item-{i}";
-    }
-
-    /// <summary>
-    /// Checks that 2 droppable modules have the same starting items.
-    /// Used for duplicate module check.
-    /// </summary>
-    private static bool SameItems(List<DroppableBorgItem> a, List<DroppableBorgItem> b)
-    {
-        if (a.Count != b.Count)
-            return false;
-
-        for (int i = 0; i < a.Count; i++)
-        {
-            if (a[i].Id != b[i].Id)
-                return false;
-        }
-
-        return true;
     }
 }
 

@@ -31,7 +31,7 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
     {
         SubscribeLocalEvent<HandPlaceholderRemoveableComponent, EntGotRemovedFromContainerMessage>(OnEntityRemovedFromContainer);
 
-        SubscribeLocalEvent<HandPlaceholderComponent, AfterInteractEvent>(AfterInteract);
+        SubscribeLocalEvent<HandPlaceholderComponent, BeforeRangedInteractEvent>(BeforeRangedInteract);
         SubscribeLocalEvent<HandPlaceholderComponent, ContainerGettingRemovedAttemptEvent>(OnRemoveAttempt);
     }
 
@@ -108,9 +108,9 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
         SwapPlaceholder(ent, args.Container);
     }
 
-    private void AfterInteract(Entity<HandPlaceholderComponent> ent, ref AfterInteractEvent args)
+    private void BeforeRangedInteract(Entity<HandPlaceholderComponent> ent, ref BeforeRangedInteractEvent args)
     {
-        if (args.Handled || !args.CanReach || args.Target is not {} target)
+        if (args.Handled || !args.CanReach || args.Target is not { } target)
             return;
 
         args.Handled = true;
@@ -141,7 +141,7 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
 
         SetEnabled(ent, false); // allow inserting into the source container
 
-        if (ent.Comp.Source is {} source)
+        if (ent.Comp.Source is { } source)
         {
             var container = _container.GetContainer(source, ent.Comp.ContainerId);
             var succeeded = _container.Insert(ent.Owner, container, force: true);

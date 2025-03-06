@@ -29,6 +29,12 @@ public sealed partial class DroppableBorgModuleComponent : Component
     /// </summary>
     [DataField]
     public string PlaceholderContainerId = "nf-item-placeholders";
+
+    /// <summary>
+    /// The ID to check for module equivalence.
+    /// </summary>
+    [DataField(required: true)]
+    public string ModuleId = default!;
 }
 
 [DataDefinition]
