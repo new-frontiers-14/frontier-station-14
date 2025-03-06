@@ -318,7 +318,7 @@
   name: everyspice pod
   parent: FoodProduceBase
   id: FoodEveryspice
-  description: The long, pale pods of the everyspice plant. A flavorful addition to food when powdered.
+  description: The long, pale pods of the everyspice plant. A flavorful addition to food when processed.
   components:
   - type: FlavorProfile
     flavors:
@@ -330,6 +330,11 @@
         reagents:
         - ReagentId: Everyspice
           Quantity: 5
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Blackpepper
+        Quantity: 5
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
     state: produce
