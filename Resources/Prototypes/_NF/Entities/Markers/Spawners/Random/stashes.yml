@@ -40,7 +40,7 @@
         state: questionmark
         color: red
   - type: EntityTableSpawner
-    offset: 0.4
+    offset: 0.0
     table: !type:NestedSelector
       tableId: TableStashVariety
       prob: 1.00
@@ -52,10 +52,22 @@
   suffix: "Stash, 50"
   components:
   - type: EntityTableSpawner
-    offset: 0.4
+    offset: 0.0
     table: !type:NestedSelector
       tableId: TableStashVariety
       prob: 0.5
+
+- type: entity
+  name: random stash
+  id: SpawnDungeonLootStash25
+  parent: SpawnDungeonLootStash
+  suffix: "Stash, 25"
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableStashVariety
+      prob: 0.25
 
 - type: entity
   name: random stash
