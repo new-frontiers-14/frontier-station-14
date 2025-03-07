@@ -1,6 +1,7 @@
 using Content.Shared.Atmos;
-using Content.Shared.Construction.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.Guidebook;
+using Content.Shared.Construction.Prototypes; // Frontier
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype; // Frontier
 
 namespace Content.Server.Atmos.Portable
 {
@@ -67,6 +68,14 @@ namespace Content.Server.Atmos.Portable
         [ViewVariables(VVAccess.ReadWrite)]
         public float TransferRate = 800;
 
+        #region GuidebookData
+
+        [GuidebookData]
+        public float Volume => Air.Volume;
+
+        #endregion
+
+        // Frontier: upgradeable parts
         /// <summary>
         /// The base speed at which gas is scrubbed from the environment.
         /// </summary>
@@ -85,5 +94,6 @@ namespace Content.Server.Atmos.Portable
         /// </summary>
         [DataField("partRatingTransferRateModifier")]
         public float PartRatingTransferRateModifier = 1.4f;
+        // End Frontier
     }
 }
