@@ -206,6 +206,7 @@
   name: cured carp
   result: FoodCuredCarp
   time: 5
+  group: Savory # TODO: move to ingredients
   solids:
     FoodMeatFish: 1
   reagents:
@@ -252,6 +253,7 @@
   name: fresh fish sushi recipe
   result: CuredCarpSushi
   time: 5
+  group: Savory
   solids:
     FoodAvocadoSlice: 2
     FoodCucumberSlice: 2
@@ -347,6 +349,7 @@
   id: RecipeBatteredCuredCarp
   name: battered fish recipe
   result: FoodCuredCarpBattered
+  group: Savory
   time: 5
   reagents:
     Flour: 5
@@ -703,7 +706,7 @@
   name: dragon omelette recipe
   result: FoodMealDragonOmelette
   time: 15
-  group: Savory
+  group: Breakfast
   solids:
     FoodButter: 1
   reagents:
@@ -873,23 +876,7 @@
   recipeType:
   - Oven
 
-# NOT ACTUAL FOOD
-
-- type: microwaveMealRecipe
-  id: RecipeDriedShrooms
-  name: dried shrooms recipe
-  result: ShroomsDried
-  time: 15
-  group: Medicinal
-  solids:
-    FoodSpaceshroom: 1
-    FoodMushroom: 1
-    FoodFlyAmanita: 1
-  recipeType:
-  - Oven
-  - Microwave
-
-# ramen
+# Pasta and Noodles
 
 - type: microwaveMealRecipe
   id: RecipeBasicNoodles
@@ -990,3 +977,19 @@
     Water: 15
   recipeType:
   - Oven
+
+# NOT ACTUAL FOOD
+
+- type: microwaveMealRecipe
+  id: RecipeDriedShrooms
+  name: dried shrooms recipe
+  result: ShroomsDried
+  time: 15
+  group: Medicinal
+  solids:
+    FoodSpaceshroom: 1
+    FoodMushroom: 1
+    FoodFlyAmanita: 1
+  recipeType:
+  - Oven
+  - Microwave
