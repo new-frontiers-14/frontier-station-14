@@ -24,6 +24,15 @@
       params:
         volume: 1
     examinable: false
+  - type: TriggerOnProximity
+    shape:
+      !type:PhysShapeCircle
+        radius: 0.5
+    repeating: false
+    requiresAnchored: false
+    whitelist:
+      components:
+        - Actor
 
 - type: entity
   parent: NFConcealedMineTrigger
