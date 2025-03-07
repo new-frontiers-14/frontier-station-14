@@ -69,7 +69,7 @@ public sealed partial class DungeonSystem
         }
 
         shell.WriteLine(Loc.GetString("cmd-dungen-start", ("seed", seed)));
-        GenerateDungeon(dungeon, dungeon.ID, dungeonUid, dungeonGrid, position, seed); // Frontier: add dungeon.ID
+        GenerateDungeon(dungeon, dungeonUid, dungeonGrid, position, seed);
     }
 
     private CompletionResult CompletionCallback(IConsoleShell shell, string[] args)

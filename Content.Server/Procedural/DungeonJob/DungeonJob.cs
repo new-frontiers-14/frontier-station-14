@@ -55,7 +55,6 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
     private readonly EntityCoordinates? _targetCoordinates;
 
     private readonly ISawmill _sawmill;
-    private readonly string _genId; // Frontier: add ID
 
     public DungeonJob(
         ISawmill sawmill,
@@ -74,7 +73,6 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         EntityUid gridUid,
         int seed,
         Vector2i position,
-        string genID, // Frontier
         EntityCoordinates? targetCoordinates = null,
         CancellationToken cancellation = default) : base(maxTime, cancellation)
     {
@@ -101,7 +99,6 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         _seed = seed;
         _position = position;
         _targetCoordinates = targetCoordinates;
-        _genId = genID; // Frontier
     }
 
     /// <summary>
@@ -147,7 +144,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
 
     protected override async Task<List<Dungeon>?> Process()
     {
-        _sawmill.Info($"Generating dungeon {_genId} with seed {_seed} on {_entManager.ToPrettyString(_gridUid)}"); // Frontier: _gen<_genId
+        _sawmill.Info($"Generating dungeon {_gen} with seed {_seed} on {_entManager.ToPrettyString(_gridUid)}");
         _grid.CanSplit = false;
         var random = new Random(_seed);
         var position = (_position + random.NextPolarVector2(_gen.MinOffset, _gen.MaxOffset)).Floored();
