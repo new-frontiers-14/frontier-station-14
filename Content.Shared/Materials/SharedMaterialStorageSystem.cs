@@ -142,7 +142,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     /// <param name="entity"></param>
     /// <param name="materials"></param>
     /// <returns>If the amount can be changed</returns>
-    public bool CanChangeMaterialAmount(Entity<MaterialStorageComponent?> entity, Dictionary<string,int> materials)
+    public bool CanChangeMaterialAmount(Entity<MaterialStorageComponent?> entity, Dictionary<string, int> materials)
     {
         if (!Resolve(entity, ref entity.Comp))
             return false;
@@ -196,7 +196,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     /// <param name="entity"></param>
     /// <param name="materials"></param>
     /// <returns>If the amount can be changed</returns>
-    public bool TryChangeMaterialAmount(Entity<MaterialStorageComponent?> entity, Dictionary<string,int> materials)
+    public bool TryChangeMaterialAmount(Entity<MaterialStorageComponent?> entity, Dictionary<string, int> materials)
     {
         if (!Resolve(entity, ref entity.Comp))
             return false;
@@ -293,17 +293,19 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
         return true;
     }
 
-    // Begin Frontier : Automatically split stacks if they don't fit
+    // Frontier: partial stack insertion
     /// <summary>
     /// Tries to insert as much of an entity as possible into the material storage.
     /// </summary>
     public virtual bool TryInsertMaxPossibleMaterialEntity(EntityUid user,
         EntityUid toInsert,
         EntityUid receiver,
+        out bool empty,
         MaterialStorageComponent? storage = null,
         MaterialComponent? material = null,
         PhysicalCompositionComponent? composition = null)
     {
+        empty = false;
         if (!Resolve(receiver, ref storage))
             return false;
 
@@ -317,8 +319,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
             return false;
 
         int multiplier;
-        bool partialStack = false;
-        if (storage.StorageLimit is not null && HasComp<StackComponent>(toInsert))
+        if (storage.StorageLimit is not null && TryComp<StackComponent>(toInsert, out var stack))
         {
             var availableVolume = (int)storage.StorageLimit - GetTotalMaterialAmount(receiver, storage);
             var volumePerSheet = 0;
@@ -327,12 +328,21 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
                 volumePerSheet += vol;
             }
             multiplier = availableVolume / volumePerSheet;
-            partialStack = true;
+            if (multiplier >= stack.Count)
+            {
+                empty = true;
+                multiplier = stack.Count;
+            }
         }
         else
         {
             multiplier = TryComp<StackComponent>(toInsert, out var stackComponent) ? stackComponent.Count : 1;
+            empty = true;
         }
+
+        // Inserting into a full container (or with a lingering stack)
+        if (multiplier <= 0)
+            return false;
 
         // Material Whitelist checked implicitly by CanChangeMaterialAmount();
 
@@ -362,16 +372,14 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
         _appearance.SetData(receiver, MaterialStorageVisuals.Inserting, true);
         Dirty(receiver, insertingComp);
 
-        if (partialStack)
-        {
+        if (!empty)
             _sharedStackSystem.Use(toInsert, multiplier);
-        }
 
         var ev = new MaterialEntityInsertedEvent(material);
         RaiseLocalEvent(receiver, ref ev);
         return true;
     }
-    // End Frontier : Automatically split stacks if they don't fit
+    // End Frontier: partial stack insertion
 
     /// <summary>
     /// Broadcasts an event that will collect a list of which materials
@@ -393,9 +401,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     {
         if (args.Handled || !component.InsertOnInteract)
             return;
-        args.Handled = TryInsertMaterialEntity(args.User, args.Used, uid, component);
-        if (!args.Handled)
-            args.Handled = TryInsertMaxPossibleMaterialEntity(args.User, args.Used, uid, component); // Frontier
+        args.Handled = TryInsertMaxPossibleMaterialEntity(args.User, args.Used, uid, out _, component); // Frontier: use autosplit version
     }
 
     private void OnDatabaseModified(Entity<MaterialStorageComponent> ent, ref TechnologyDatabaseModifiedEvent args)

@@ -30,6 +30,8 @@ cargo-console-insufficient-funds = Insufficient funds (require {$cost})
 cargo-console-unfulfilled = No room to fulfill order
 cargo-console-trade-station = Sent to {$destination}
 cargo-console-unlock-approved-order-broadcast = [bold]{$productName} x{$orderAmount}[/bold], which cost [bold]{$cost}[/bold], was approved by [bold]{$approver}[/bold]
+# Frontier
+cargo-console-nf-no-bank-account = No bank account found
 
 cargo-console-paper-print-name = Order #{$orderNumber}
 cargo-console-paper-print-text =
