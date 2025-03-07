@@ -4,6 +4,7 @@ using Content.Server.Station.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.Shipyard.Components;
+using Content.Server._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard;
 using Content.Shared.GameTicking;
 using Robust.Server.GameObjects;
@@ -33,6 +34,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public MapId? ShipyardMap { get; private set; }
     private float _shuttleIndex;
@@ -198,11 +200,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     }
 
     /// <summary>
-    /// Checks a shuttle to make sure that it is docked to the given station, and that there are no lifeforms aboard. Then it appraises the grid, outputs to the server log, and deletes the grid
+    /// Checks a shuttle to make sure that it is docked to the given station, and that there are no lifeforms aboard. Then it teleports tagged items on top of the console, appraises the grid, outputs to the server log, and deletes the grid
     /// </summary>
     /// <param name="stationUid">The ID of the station that the shuttle is docked to</param>
     /// <param name="shuttleUid">The grid ID of the shuttle to be appraised and sold</param>
-    public ShipyardSaleResult TrySellShuttle(EntityUid stationUid, EntityUid shuttleUid, out int bill)
+    /// <param name="consoleUid">The ID of the console being used to sell the ship</param>
+    public ShipyardSaleResult TrySellShuttle(EntityUid stationUid, EntityUid shuttleUid, EntityUid consoleUid, out int bill)
     {
         ShipyardSaleResult result = new ShipyardSaleResult();
         bill = 0;
@@ -268,7 +271,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             _station.DeleteStation(shuttleStationUid);
         }
 
-        bill = (int)_pricing.AppraiseGrid(shuttleUid);
+        if (TryComp<ShipyardConsoleComponent>(consoleUid, out var comp))
+        {
+            CleanGrid(shuttleUid, consoleUid);
+        }
+
+        bill = (int)_pricing.AppraiseGrid(shuttleUid, LacksPreserveOnSaleComp);
         QueueDel(shuttleUid);
         _sawmill.Info($"Sold shuttle {shuttleUid} for {bill}");
 
@@ -279,6 +287,49 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         return result;
     }
 
+    private void CleanGrid(EntityUid grid, EntityUid destination)
+    {
+        var xform = Transform(grid);
+        var enumerator = xform.ChildEnumerator;
+        var entitiesToPreserve = new List<EntityUid>();
+
+        while (enumerator.MoveNext(out var child))
+        {
+            FindEntitiesToPreserve(child, ref entitiesToPreserve);
+        }
+        foreach (var ent in entitiesToPreserve)
+        {
+            // Teleport this item and all its children to the floor (or space).
+            _transform.SetCoordinates(ent, new EntityCoordinates(destination, 0, 0));
+            _transform.AttachToGridOrMap(ent);
+        }
+    }
+
+    // checks if something has the ShipyardPreserveOnSaleComponent and if it does, adds it to the list
+    private void FindEntitiesToPreserve(EntityUid entity, ref List<EntityUid> output)
+    {
+        if (TryComp<ShipyardSellConditionComponent>(entity, out var comp) && comp.PreserveOnSale == true)
+        {
+            output.Add(entity);
+            return;
+        }
+        else if (TryComp<ContainerManagerComponent>(entity, out var containers))
+        {
+            foreach (var container in containers.Containers.Values)
+            {
+                foreach (var ent in container.ContainedEntities)
+                {
+                    FindEntitiesToPreserve(ent, ref output);
+                }
+            }
+        }
+    }
+
+    // returns false if it has ShipyardPreserveOnSaleComponent, true otherwise
+    private bool LacksPreserveOnSaleComp(EntityUid uid)
+    {
+        return !TryComp<ShipyardSellConditionComponent>(uid, out var comp) || comp.PreserveOnSale == false;
+    }
     private void CleanupShipyard()
     {
         if (ShipyardMap == null || !_mapManager.MapExists(ShipyardMap.Value))
