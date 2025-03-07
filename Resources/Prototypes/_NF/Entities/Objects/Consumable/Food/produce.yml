@@ -292,3 +292,27 @@
   - type: Tag
     tags:
       - Vegetable
+
+- type: entity
+  name: sliced potato
+  parent: ProduceSliceBase
+  id: FoodPotatoSlice
+  description: Raw potato sticks ready for the deep fryer.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - potatoes
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/potato.rsi
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuicePotato
+        Quantity: 8
+  - type: Tag
+    tags:
+    - Vegetable
+    - Slice
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodMealFries

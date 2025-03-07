@@ -54,6 +54,70 @@
     cycles: 1
     output: FoodBakedNugget
 
+- type: entity
+  name: raw fish fillet
+  parent: FoodMeatBase
+  id: FoodCuredCarp
+  description: A slice of fresh space fish, safe to eat. Smells like space and fish.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fishy
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: cured-carp
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 9
+        - ReagentId: Fat
+          Quantity: 9
+  
+- type: entity
+  name: battered raw fish fillet
+  parent: FoodCuredCarp
+  id: FoodCuredCarpBattered
+  description: A slice of fresh space fish, dredged in a gloopy flour and egg mixture.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: cured-carp-battered
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodCuredCarpFried
+
+- type: entity
+  name: fried fish
+  parent: FoodCuredCarp
+  id: FoodCuredCarpFried
+  description: A delicious slice of fish, crispy and fried to perfection.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+  - type: FlavorProfile
+    flavors:
+      - oily
+      - fishy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: cured-carp-fried
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Protein
+          Quantity: 9
+
 # Cooked
 
 - type: entity
