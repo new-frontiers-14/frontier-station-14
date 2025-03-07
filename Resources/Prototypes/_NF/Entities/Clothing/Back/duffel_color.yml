@@ -1,7 +1,7 @@
 # DEPARTMENTAL (MISSING UPSTREAM)
 - type: entity
   parent: NFClothingDuffel
-  id: ClothingBackpackDuffelJanitor
+  id: NFClothingBackpackDuffelJanitor
   name: janitor duffel
   description: This bad boy can fit so many cleaning implements!
   components:
@@ -10,12 +10,12 @@
     layers:
     - state: icon-base
       color: "#ebdc36"
-    - state: icon-handle
-      color: "#8c347f"
     - state: icon-sling
       color: "#8c347f"
     - state: icon-decal-straps
       color: "#444444"
+    - state: icon-handle
+      color: "#8c347f"
     - state: icon-zipper
   - type: Clothing
     sprite: _NF/Clothing/Back/Duffels/color.rsi
@@ -23,34 +23,95 @@
       back:
       - state: equipped-BACKPACK-base
         color: "#ebdc36"
-      - state: equipped-BACKPACK-handle
-        color: "#8c347f"
       - state: equipped-BACKPACK-sling
         color: "#8c347f"
       - state: equipped-BACKPACK-decal-straps
         color: "#444444"
+      - state: equipped-BACKPACK-handle
+        color: "#8c347f"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-base
         color: "#ebdc36"
-      - state: inhand-left-handle
-        color: "#8c347f"
       - state: inhand-left-sling
         color: "#8c347f"
       - state: inhand-left-decal-straps
         color: "#444444"
+      - state: inhand-left-handle
+        color: "#8c347f"
       - state: inhand-left-zipper
       right:
       - state: inhand-right-base
         color: "#ebdc36"
-      - state: inhand-right-handle
-        color: "#8c347f"
       - state: inhand-right-sling
         color: "#8c347f"
       - state: inhand-right-decal-straps
         color: "#444444"
+      - state: inhand-right-handle
+        color: "#8c347f"
       - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelChaplain
+  name: chaplain duffel
+  description: Don't forget to extinguish the censer before putting it inside.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#6a6a6a"
+    - state: icon-sling
+      color: "#6d6152"
+    - state: icon-decal-straps
+      color: "#702525"
+    - state: icon-handle
+      color: "#444444"
+    - state: icon-decal-religious-cross
+      color: "#d6a033"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#6a6a6a"
+      - state: equipped-BACKPACK-sling
+        color: "#6d6152"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#702525"
+      - state: equipped-BACKPACK-handle
+        color: "#444444"
+      - state: equipped-BACKPACK-decal-medical-cross
+        color: "#d6a033"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#6a6a6a"
+      - state: inhand-left-sling
+        color: "#6d6152"
+      - state: inhand-left-decal-straps
+        color: "#702525"
+      - state: inhand-left-handle
+        color: "#444444"
+      - state: inhand-left-zipper
+      - state: inhand-left-decal-medical-cross
+        color: "#d6a033"
+      right:
+      - state: inhand-right-base
+        color: "#6a6a6a"
+      - state: inhand-right-sling
+        color: "#6d6152"
+      - state: inhand-right-decal-straps
+        color: "#702525"
+      - state: inhand-right-handle
+        color: "#444444"
+      - state: inhand-right-zipper
+      - state: inhand-right-decal-medical-cross
+        color: "#d6a033"
 
 # FRONTIER SPECIFIC
 - type: entity
@@ -63,48 +124,51 @@
     sprite: _NF/Clothing/Back/Duffels/color.rsi
     layers:
     - state: icon-base
-      color: "#bbbb7a"
-    - state: icon-handle
-      color: "#444444"
+      color: "#6e6e38"
     - state: icon-sling
       color: "#444444"
     - state: icon-decal-straps
       color: "#444444"
+    - state: icon-handle
+      color: "#444444"
     - state: icon-zipper
+      color: "#bbbb7a"
   - type: Clothing
     sprite: _NF/Clothing/Back/Duffels/color.rsi
     clothingVisuals:
       back:
       - state: equipped-BACKPACK-base
-        color: "#bbbb7a"
-      - state: equipped-BACKPACK-handle
-        color: "#444444"
+        color: "#6e6e38"
       - state: equipped-BACKPACK-sling
         color: "#444444"
       - state: equipped-BACKPACK-decal-straps
-        color: "#444444"
+        color: "#49492f"
+      - state: equipped-BACKPACK-handle
+        color: "#49492f"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-base
-        color: "#bbbb7a"
-      - state: inhand-left-handle
-        color: "#444444"
+        color: "#6e6e38"
       - state: inhand-left-sling
         color: "#444444"
       - state: inhand-left-decal-straps
-        color: "#444444"
+        color: "#49492f"
+      - state: inhand-left-handle
+        color: "#49492f"
       - state: inhand-left-zipper
+        color: "#bbbb7a"
       right:
       - state: inhand-right-base
-        color: "#bbbb7a"
-      - state: inhand-right-handle
-        color: "#444444"
+        color: "#6e6e38"
       - state: inhand-right-sling
         color: "#444444"
       - state: inhand-right-decal-straps
-        color: "#444444"
+        color: "#49492f"
+      - state: inhand-right-handle
+        color: "#49492f"
       - state: inhand-right-zipper
+        color: "#bbbb7a"
 
 - type: entity
   parent: NFClothingDuffel
@@ -117,11 +181,11 @@
     layers:
     - state: icon-base
       color: "#3e2516"
-    - state: icon-handle
-      color: "#776756"
     - state: icon-sling
       color: "#444444"
     - state: icon-decal-straps
+      color: "#776756"
+    - state: icon-handle
       color: "#776756"
     - state: icon-zipper
   - type: Clothing
@@ -130,32 +194,32 @@
       back:
       - state: equipped-BACKPACK-base
         color: "#3e2516"
-      - state: equipped-BACKPACK-handle
-        color: "#776756"
       - state: equipped-BACKPACK-sling
         color: "#444444"
       - state: equipped-BACKPACK-decal-straps
+        color: "#776756"
+      - state: equipped-BACKPACK-handle
         color: "#776756"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-base
         color: "#3e2516"
-      - state: inhand-left-handle
-        color: "#776756"
       - state: inhand-left-sling
         color: "#444444"
       - state: inhand-left-decal-straps
+        color: "#776756"
+      - state: inhand-left-handle
         color: "#776756"
       - state: inhand-left-zipper
       right:
       - state: inhand-right-base
         color: "#3e2516"
-      - state: inhand-right-handle
-        color: "#776756"
       - state: inhand-right-sling
         color: "#444444"
       - state: inhand-right-decal-straps
+        color: "#776756"
+      - state: inhand-right-handle
         color: "#776756"
       - state: inhand-right-zipper
 
@@ -169,53 +233,55 @@
     sprite: _NF/Clothing/Back/Duffels/color.rsi
     layers:
     - state: icon-base
-      color: "#990000"
-    - state: icon-handle
-      color: "#444444"
+      color: "#ca4545"
     - state: icon-sling
-      color: "#444444"
+      color: "#4d4d5d"
     - state: icon-decal-straps
-      color: "#444444"
+      color: "#4d4d5d"
+    - state: icon-handle
+      color: "#4d4d5d"
     - state: icon-decal-medical-cross
-      color: "#e0e000"
+      color: "#ede984"
     - state: icon-zipper
   - type: Clothing
     sprite: _NF/Clothing/Back/Duffels/color.rsi
     clothingVisuals:
       back:
       - state: equipped-BACKPACK-base
-        color: "#990000"
-      - state: equipped-BACKPACK-handle
-        color: "#444444"
+        color: "#ca4545"
       - state: equipped-BACKPACK-sling
-        color: "#444444"
+        color: "#4d4d5d"
       - state: equipped-BACKPACK-decal-straps
-        color: "#444444"
+        color: "#4d4d5d"
+      - state: equipped-BACKPACK-handle
+        color: "#4d4d5d"
       - state: equipped-BACKPACK-decal-medical-cross
-        color: "#e0e000"
+        color: "#ede984"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-base
-        color: "#990000"
-      - state: inhand-left-handle
-        color: "#444444"
+        color: "#ca4545"
       - state: inhand-left-sling
-        color: "#444444"
+        color: "#4d4d5d"
       - state: inhand-left-decal-straps
-        color: "#444444"
+        color: "#4d4d5d"
+      - state: inhand-left-handle
+        color: "#4d4d5d"
       - state: inhand-left-decal-medical-cross
-        color: "#e0e000"
+        color: "#ede984"
       - state: inhand-left-zipper
       right:
       - state: inhand-right-base
-        color: "#990000"
-      - state: inhand-right-handle
-        color: "#444444"
+        color: "#ca4545"
       - state: inhand-right-sling
-        color: "#444444"
+        color: "#4d4d5d"
       - state: inhand-right-decal-straps
-        color: "#444444"
+        color: "#4d4d5d"
+      - state: inhand-right-handle
+        color: "#4d4d5d"
       - state: inhand-right-decal-medical-cross
-        color: "#e0e000"
+        color: "#ede984"
       - state: inhand-right-zipper
+
+# RANDOMIZED
