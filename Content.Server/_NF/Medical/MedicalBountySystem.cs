@@ -175,16 +175,12 @@ public sealed partial class MedicalBountySystem : EntitySystem
             }
         }
 
-        var depositToBank = HasComp<MedicalBountyBankPaymentComponent>(ev.Actor);
-        if (depositToBank)
+        string successString = "medical-bounty-redemption-success";
+        if (TryComp<MedicalBountyBankPaymentComponent>(ev.Actor, out var bankPayment))
         {
+            successString = "medical-bounty-redemption-success-to-station";
             // Find the fractions of the whole to pay out.
-            var sumOfWeights = component.TaxAccounts.Values.Sum();
-            // Pay tax accounts the entire payment + tax
-            foreach (var (account, taxCoeff) in component.TaxAccounts)
-            {
-                _bank.TrySectorDeposit(account, (int)(bountyPayout * (taxCoeff / sumOfWeights + taxCoeff)), LedgerEntryType.MedicalBountyTax);
-            }
+            _bank.TrySectorDeposit(bankPayment!.Account, bountyPayout, LedgerEntryType.MedicalBountyTax);
             _adminLog.Add(LogType.MedicalBountyRedeemed, LogImpact.Low, $"{ToPrettyString(ev.Actor):actor} redeemed the medical bounty for {ToPrettyString(bountyUid):subject}. Base value: {bountyPayout} (paid to station accounts).");
         }
         else if (bountyPayout > 0)
@@ -192,17 +188,16 @@ public sealed partial class MedicalBountySystem : EntitySystem
             // Use SpawnMultiple in case spesos ever have a limit.
             _stack.SpawnMultiple("SpaceCash", bountyPayout, Transform(uid).Coordinates);
 
-            // Pay tax accounts
-            foreach (var (account, taxCoeff) in component.TaxAccounts)
-            {
-                _bank.TrySectorDeposit(account, (int)(bountyPayout * taxCoeff), LedgerEntryType.MedicalBountyTax);
-            }
             _adminLog.Add(LogType.MedicalBountyRedeemed, LogImpact.Low, $"{ToPrettyString(ev.Actor):actor} redeemed the medical bounty for {ToPrettyString(bountyUid):subject}. Base value: {bountyPayout}.");
+        }
+        // Pay tax accounts
+        foreach (var (account, taxCoeff) in component.TaxAccounts)
+        {
+            _bank.TrySectorDeposit(account, (int)(bountyPayout * taxCoeff), LedgerEntryType.MedicalBountyTax);
         }
 
         QueueDel(bountyUid);
 
-        var successString = depositToBank ? "medical-bounty-redemption-success-to-station" : "medical-bounty-redemption-success";
         _popup.PopupEntity(Loc.GetString(successString), uid);
         _audio.PlayPvs(component.RedeemSound, uid);
         UpdateUserInterface(uid, component);
