@@ -52,6 +52,9 @@ public sealed partial class GuideMicrowaveGroupEmbed : BoxContainer, IDocumentTa
 
         foreach (var recipe in prototypes)
         {
+            if (recipe.HideInGuidebook) // Frontier: super secret recipes
+                continue; // Frontier: super secret recipes
+
             var embed = new GuideMicrowaveEmbed(recipe);
             AddChild(embed);
         }
