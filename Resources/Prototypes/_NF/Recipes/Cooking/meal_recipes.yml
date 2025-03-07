@@ -199,6 +199,20 @@
   - Oven
   - Microwave
 
+# Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
+
+- type: microwaveMealRecipe
+  id: RecipeCuredCarp
+  name: cured carp
+  result: FoodCuredCarp
+  time: 5
+  solids:
+    FoodMeatFish: 1
+  reagents:
+    Stellibinin: 10
+  recipeType:
+  - Assembler
+
 # Sushi
 
 - type: microwaveMealRecipe
@@ -227,6 +241,21 @@
     FoodAvocadoSlice: 2
     FoodCucumberSlice: 2
     FoodMeatFish: 1
+  reagents:
+    Rice: 15
+    Water: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeCuredCarpSushi
+  name: fresh fish sushi recipe
+  result: CuredCarpSushi
+  time: 5
+  solids:
+    FoodAvocadoSlice: 2
+    FoodCucumberSlice: 2
+    FoodCuredCarp: 1
   reagents:
     Rice: 15
     Water: 10
@@ -314,6 +343,19 @@
   recipeType:
   - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeBatteredCuredCarp
+  name: battered fish recipe
+  result: FoodCuredCarpBattered
+  time: 5
+  reagents:
+    Flour: 5
+    Egg: 6
+  solids:
+    FoodCuredCarp: 1
+  recipeType:
+  - Assembler
+   
 # Donuts (uncooked as well as glazed) - frying handled by DeepFrySpawnComponent per-entity
 
 - type: microwaveMealRecipe
