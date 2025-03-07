@@ -225,6 +225,171 @@
 
 - type: entity
   parent: NFClothingDuffel
+  id: ClothingBackpackDuffelPrivateSecurity
+  name: private security duffel
+  description: A robust duffelbag produced for a rugged operator on a salary.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#2286bd"
+    - state: icon-sling
+      color: "#9d1c1c"
+    - state: icon-decal-straps
+      color: "#935c3f"
+    - state: icon-handle
+      color: "#935c3f"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#2286bd"
+      - state: equipped-BACKPACK-sling
+        color: "#9d1c1c"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#935c3f"
+      - state: equipped-BACKPACK-handle
+        color: "#935c3f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#2286bd"
+      - state: inhand-left-sling
+        color: "#9d1c1c"
+      - state: inhand-left-decal-straps
+        color: "#935c3f"
+      - state: inhand-left-handle
+        color: "#935c3f"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#2286bd"
+      - state: inhand-right-sling
+        color: "#9d1c1c"
+      - state: inhand-right-decal-straps
+        color: "#935c3f"
+      - state: inhand-right-handle
+        color: "#935c3f"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelMailCarrier
+  name: mail carrier duffel
+  description: A robust duffelbag produced for a rugged mail carrier.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#4d9be6"
+    - state: icon-sling
+      color: "#6d6152"
+    - state: icon-decal-straps
+      color: "#b33831"
+    - state: icon-handle
+      color: "#6d6152"
+    - state: icon-zipper
+    - state: icon-decal-mail
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#4d9be6"
+      - state: equipped-BACKPACK-sling
+        color: "#6d6152"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#b33831"
+      - state: equipped-BACKPACK-handle
+        color: "#6d6152"
+      - state: equipped-BACKPACK-decal-mail
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#4d9be6"
+      - state: inhand-left-sling
+        color: "#6d6152"
+      - state: inhand-left-decal-straps
+        color: "#b33831"
+      - state: inhand-left-decal-medical-cross
+        color: "#c7dcd0"
+      - state: inhand-left-handle
+        color: "#6d6152"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#4d9be6"
+      - state: inhand-right-sling
+        color: "#6d6152"
+      - state: inhand-right-decal-straps
+        color: "#b33831"
+      - state: inhand-rigt-decal-medical-cross
+        color: "#c7dcd0"
+      - state: inhand-right-handle
+        color: "#6d6152"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: ClothingBackpackDuffelSr
+  name: station representative duffel
+  description: No expence was spared in crafting of this premium duffelbag.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#2c6a30"
+    - state: icon-sling
+      color: "#fbe6b8"
+    - state: icon-decal-straps
+      color: "#f2b833"
+    - state: icon-handle
+      color: "#fbe6b8"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#2c6a30"
+      - state: equipped-BACKPACK-sling
+        color: "#fbe6b8"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#f2b833"
+      - state: equipped-BACKPACK-handle
+        color: "#fbe6b8"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#2c6a30"
+      - state: inhand-left-sling
+        color: "#fbe6b8"
+      - state: inhand-left-decal-straps
+        color: "#f2b833"
+      - state: inhand-left-handle
+        color: "#fbe6b8"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#2c6a30"
+      - state: inhand-right-sling
+        color: "#fbe6b8"
+      - state: inhand-right-decal-straps
+        color: "#f2b833"
+      - state: inhand-right-handle
+        color: "#fbe6b8"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
   id: ClothingBackpackDuffelTrauma
   name: trauma duffel
   description: A duffelbag produced for an ERT specialist.
