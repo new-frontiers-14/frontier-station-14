@@ -17,8 +17,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio; // frontier
+using Robust.Shared.Audio.Systems; // frontier
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -33,7 +33,7 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
+    [Dependency] protected readonly SharedAudioSystem Audio = default!; // frontier
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
 
@@ -78,7 +78,7 @@ public sealed class RadioSystem : EntitySystem
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
-    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true, SoundSpecifier? sound = null) // Frontier: added frequency
+    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true, SoundSpecifier? sound = null) // Frontier: added frequency , Added Sound modifier for event system
     {
         SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, frequency: frequency, escapeMarkup: escapeMarkup,sound); // Frontier: added frequency
     }
@@ -88,6 +88,7 @@ public sealed class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
+    /// <param name="sound">Sound spesifier for the audio file to be played along with the message</param>  // frontier
     public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true, SoundSpecifier? sound = null) // Nuclear-14: add frequency
     {
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
@@ -187,7 +188,7 @@ public sealed class RadioSystem : EntitySystem
             // Send the message
             RaiseLocalEvent(receiver, ref ev);
 
-            // Directly access the parent instead of walking up the hierarchy
+            // Frontier : handles sound path playing to the people with the radio & handling a odd edge case
             var parent = receiver;
             ActorComponent? actor = null;
 
@@ -198,7 +199,7 @@ public sealed class RadioSystem : EntitySystem
             }
             else
             {
-                // We need to check the immediate parent
+                // Walk exactly 1 transform up
                 parent = Transform(parent).ParentUid;
 
                 if (TryComp<ActorComponent>(parent, out actor))
@@ -209,7 +210,7 @@ public sealed class RadioSystem : EntitySystem
             }
 
             // Play the radio sound for all collected players
-            Audio.PlayGlobal(sound, playertarget, true);
+            Audio.PlayGlobal(sound, playertarget, true); // End of frontier 
             if (name != Name(messageSource))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
             else

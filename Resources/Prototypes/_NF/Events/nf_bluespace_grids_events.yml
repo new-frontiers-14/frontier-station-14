@@ -3,11 +3,14 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    
     startAnnouncement: station-event-bluespace-cache-start-announcement
     startAudio:
       path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_cache_arrival.ogg
     warningAnnouncement: station-event-bluespace-cache-warning-announcement
     endAnnouncement: station-event-bluespace-cache-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_cache_leave.ogg
     earliestStart: 100
     weight: 5
     duration: 1350
@@ -284,6 +287,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+  #Todo Maybe change start & end to unique Voice over audio
     startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
     startAudio:
       path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_ship_arrival.ogg
