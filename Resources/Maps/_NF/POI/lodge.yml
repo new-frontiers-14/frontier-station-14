@@ -94,6 +94,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
+      bodyStatus: InAir
+      angularDamping: 0.05
+      linearDamping: 0.05
+      fixedRotation: False
+      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
@@ -7752,19 +7757,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: -12.5,7.5
       parent: 1
-- proto: ComputerWallmountWithdrawBankATM
+- proto: ComputerWallmountBankATM
   entities:
   - uid: 2517
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,12.5
+      rot: 1.5707963267948966 rad
+      pos: 3.5,12.5
       parent: 1
   - uid: 2518
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,12.5
+      rot: -1.5707963267948966 rad
+      pos: -2.5,12.5
       parent: 1
   - uid: 2519
     components:
