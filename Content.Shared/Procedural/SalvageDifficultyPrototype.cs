@@ -1,3 +1,4 @@
+using Content.Shared.Procedural.Loot; // Frontier
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Procedural;
@@ -12,6 +13,15 @@ public sealed partial class SalvageDifficultyPrototype : IPrototype
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("color")]
     public Color Color = Color.White;
+
+    // Frontier: loot table to use
+    /// <summary>
+    /// The loot table prototype to use for this difficulty.
+    /// If none is specified, the system's default will be used.
+    /// </summary>
+    [DataField]
+    public ProtoId<SalvageLootPrototype>? LootTable;
+    // End Frontier
 
     /// <summary>
     /// How much loot this difficulty is allowed to spawn.

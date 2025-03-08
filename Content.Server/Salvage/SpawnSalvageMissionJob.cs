@@ -247,7 +247,10 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             await SpawnRandomEntry(grid, entry, dungeon, random);
         }
 
-        var allLoot = _prototypeManager.Index<SalvageLootPrototype>(SharedSalvageSystem.ExpeditionsLootProto);
+        // Frontier: difficulty-based loot tables
+        var lootTable = difficultyProto.LootTable ?? SharedSalvageSystem.ExpeditionsLootProto;
+        var allLoot = _prototypeManager.Index<SalvageLootPrototype>(lootTable);
+        // End Frontier
         var lootBudget = difficultyProto.LootBudget;
 
         foreach (var rule in allLoot.LootRules)
