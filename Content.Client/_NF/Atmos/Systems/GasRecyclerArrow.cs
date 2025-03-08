@@ -1,8 +1,9 @@
 using Content.Client.Examine;
+using Content.Client._NF.Atmos.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._NF.Atmos.Entities.GasRecycler;
+namespace Content.Client._NF.Atmos.Systems;
 
 // Gas recyclers show pipe direction on examine, arrow sprite reused from TEG functionality
 public sealed class GasRecyclerArrow : EntitySystem
@@ -12,10 +13,10 @@ public sealed class GasRecyclerArrow : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<GasRecyclerComponent, ClientExaminedEvent>(RecyclerExamined);
+        SubscribeLocalEvent<NFGasRecyclerComponent, ClientExaminedEvent>(RecyclerExamined);
     }
 
-    private void RecyclerExamined(EntityUid uid, GasRecyclerComponent component, ClientExaminedEvent args)
+    private void RecyclerExamined(EntityUid uid, NFGasRecyclerComponent component, ClientExaminedEvent args)
     {
         Spawn(ArrowPrototype, new EntityCoordinates(uid, 0, 0));
     }
