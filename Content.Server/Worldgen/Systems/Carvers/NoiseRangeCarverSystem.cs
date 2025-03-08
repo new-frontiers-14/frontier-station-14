@@ -20,6 +20,11 @@ public sealed class NoiseRangeCarverSystem : EntitySystem
     private void OnPrePlaceDebris(EntityUid uid, NoiseRangeCarverComponent component,
         ref PrePlaceDebrisFeatureEvent args)
     {
+        // Frontier: something handled this, nothing to do
+        if (args.Handled)
+            return;
+        // End Frontier
+
         var coords = WorldGen.WorldToChunkCoords(args.Coords.ToMapPos(EntityManager, _transform));
         var val = _index.Evaluate(uid, component.NoiseChannel, coords);
 
