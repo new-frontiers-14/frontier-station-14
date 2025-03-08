@@ -123,7 +123,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         var difficultyProto = _prototypeManager.Index<SalvageDifficultyPrototype>(difficultyId);
 
         var mission = _entManager.System<SharedSalvageSystem>()
-            .GetMission(difficultyProto, _missionParams.Seed);
+            .GetMission(_missionParams.MissionType, difficultyProto, _missionParams.Seed); // Frontier: add MissionType
 
         var missionBiome = _prototypeManager.Index<SalvageBiomeModPrototype>(mission.Biome);
 

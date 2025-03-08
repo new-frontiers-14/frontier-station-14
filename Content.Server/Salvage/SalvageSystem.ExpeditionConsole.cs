@@ -25,7 +25,7 @@ public sealed partial class SalvageSystem
         SpawnMission(missionparams, station.Value, cdUid);
 
         data.ActiveMission = args.Index;
-        var mission = GetMission(_prototypeManager.Index<SalvageDifficultyPrototype>(missionparams.Difficulty), missionparams.Seed);
+        var mission = GetMission(missionparams.MissionType, _prototypeManager.Index<SalvageDifficultyPrototype>(missionparams.Difficulty), missionparams.Seed); // Frontier: add MissionType
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
 
         _labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>("NamesBorer"), missionparams.Seed));
@@ -71,7 +71,7 @@ public sealed partial class SalvageSystem
         }
         else
         {
-            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>());
+            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>(), component.CanFinish); // Frontier: add CanFinish
         }
 
         _ui.SetUiState(component.Owner, SalvageConsoleUiKey.Expedition, state);
