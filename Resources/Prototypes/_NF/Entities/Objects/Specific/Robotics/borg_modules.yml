@@ -9,13 +9,16 @@
     - state: icon-advancedmining
       sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
+    moduleId: NFAdvancedMining
     items:
     - MiningDrillDiamond
     - Shovel
     - AdvancedMineralScannerUnpowered
     - JawsOfLife
     - RadioHandheldNF
-    droppableItems:
+  - type: DroppableBorgModule
+    moduleId: NFAdvancedMining
+    items:
     - id: OreBagOfHolding
       whitelist:
         components:
@@ -34,6 +37,7 @@
     - state: icon-paramedic
       sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
+    moduleId: NFAdvancedParamedic
     items:
     - HandheldHealthAnalyzerUnpowered
     - Suture10Lingering
@@ -54,8 +58,9 @@
     - state: generic
     - state: icon-jetpack
       sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
-  - type: ItemBorgModule
-    droppableItems:
+  - type: DroppableBorgModule
+    moduleId: NFJetpack
+    items:
     - id: JetpackMiniFilled
       whitelist:
         components:
