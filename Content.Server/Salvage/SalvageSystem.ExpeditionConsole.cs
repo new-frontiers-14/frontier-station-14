@@ -8,6 +8,13 @@ using Content.Shared._NF.CCVar;
 using Content.Server.Station.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Content.Shared.NPC;
+using Content.Server._NF.Salvage;
+using Content.Shared.NPC.Components;
+using Content.Server.Salvage.Expeditions;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mobs.Components;
+using Content.Shared.IdentityManagement;
 
 namespace Content.Server.Salvage;
 
@@ -40,9 +47,9 @@ public sealed partial class SalvageSystem
 
         if (activeExpeditionCount >= _configurationManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
         {
-            PlayDenySound(uid, component);
+            PlayDenySound((uid, component));
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-too-many"), uid, PopupType.MediumCaution);
-            UpdateConsoles(station.Value, data);
+            UpdateConsoles((station.Value, data));
             return;
         }
         // End Frontier
@@ -60,17 +67,17 @@ public sealed partial class SalvageSystem
                 || _station.GetLargestGrid(stationData) is not { Valid: true } ourGrid
                 || !TryComp<MapGridComponent>(ourGrid, out var gridComp))
             {
-                PlayDenySound(uid, component);
+                PlayDenySound((uid, component));
                 _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-invalid"), uid, PopupType.MediumCaution);
-                UpdateConsoles(station.Value, data);
+                UpdateConsoles((station.Value, data));
                 return;
             }
 
             if (HasComp<FTLComponent>(ourGrid))
             {
-                PlayDenySound(uid, component);
+                PlayDenySound((uid, component));
                 _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-recharge"), uid, PopupType.MediumCaution);
-                UpdateConsoles(station.Value, data); // Sure, why not?
+                UpdateConsoles((station.Value, data));
                 return;
             }
 
@@ -88,9 +95,9 @@ public sealed partial class SalvageSystem
                     continue;
                 }
 
-                PlayDenySound(uid, component);
+                PlayDenySound((uid, component));
                 _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
-                UpdateConsoles(station.Value, data);
+                UpdateConsoles((station.Value, data));
                 return;
             }
         }
@@ -101,11 +108,82 @@ public sealed partial class SalvageSystem
         var mission = GetMission(missionparams.MissionType, _prototypeManager.Index<SalvageDifficultyPrototype>(missionparams.Difficulty), missionparams.Seed); // Frontier: add MissionType
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
 
-        _labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>("NamesBorer"), missionparams.Seed));
-        _audio.PlayPvs(component.PrintSound, uid);
+        // _labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>("NamesBorer"), missionparams.Seed)); // Frontier: no disc
+        // _audio.PlayPvs(component.PrintSound, uid); // Frontier: no disc
 
         UpdateConsoles((station.Value, data));
     }
+
+    // Frontier: early expedition end
+    private void OnSalvageFinishMessage(EntityUid entity, SalvageExpeditionConsoleComponent component, FinishSalvageMessage e)
+    {
+        var station = _station.GetOwningStation(entity);
+        if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || !data.CanFinish)
+            return;
+
+        // Based on SalvageSystem.Runner:OnConsoleFTLAttempt
+        if (!TryComp(entity, out TransformComponent? xform)) // Get the console's grid (if you move it, rip you)
+        {
+            PlayDenySound((entity, component));
+            _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-shuttle-not-found"), entity, PopupType.MediumCaution);
+            UpdateConsoles((station.Value, data));
+            return;
+        }
+
+        // Frontier: check if any player characters or friendly ghost roles are outside
+        var query = EntityQueryEnumerator<MindContainerComponent, MobStateComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var mindContainer, out var _, out var mobXform))
+        {
+            if (mobXform.MapUid != xform.MapUid)
+                continue;
+
+            // Not player controlled (ghosted)
+            if (!mindContainer.HasMind)
+                continue;
+
+            // NPC, definitely not a person
+            if (HasComp<ActiveNPCComponent>(uid) || HasComp<NFSalvageMobRestrictionsComponent>(uid))
+                continue;
+
+            // Hostile ghost role, continue
+            if (TryComp(uid, out NpcFactionMemberComponent? npcFaction))
+            {
+                var hostileFactions = npcFaction.HostileFactions;
+                if (hostileFactions.Contains("NanoTrasen")) // Nasty - what if we need pirate expeditions?
+                    continue;
+            }
+
+            // Okay they're on salvage, so are they on the shuttle.
+            if (mobXform.GridUid != xform.GridUid)
+            {
+                PlayDenySound((entity, component));
+                _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-not-everyone-aboard", ("target", Identity.Entity(uid, EntityManager))), entity, PopupType.MediumCaution);
+                UpdateConsoles((station.Value, data));
+                return;
+            }
+        }
+        // End SalvageSystem.Runner:OnConsoleFTLAttempt
+
+        data.CanFinish = false;
+        UpdateConsoles((station.Value, data));
+
+        var map = Transform(entity).MapUid;
+
+        if (!TryComp<SalvageExpeditionComponent>(map, out var expedition))
+            return;
+
+        const int departTime = 20;
+        var newEndTime = _timing.CurTime + TimeSpan.FromSeconds(departTime);
+
+        if (expedition.EndTime <= newEndTime)
+            return;
+
+        expedition.EndTime = newEndTime;
+        expedition.Stage = ExpeditionStage.FinalCountdown;
+
+        Announce(map.Value, Loc.GetString("salvage-expedition-announcement-early-finish", ("departTime", departTime)));
+    }
+    // End Frontier: early expedition end
 
     private void OnSalvageConsoleInit(Entity<SalvageExpeditionConsoleComponent> console, ref ComponentInit args)
     {

@@ -112,7 +112,7 @@ public sealed partial class SalvageSystem
         if (TryComp<SalvageExpeditionDataComponent>(component.Station, out var data))
         {
             data.CanFinish = true;
-            UpdateConsoles(component.Station, data);
+            UpdateConsoles((component.Station, data));
         }
         // End Frontier: early finish
 
