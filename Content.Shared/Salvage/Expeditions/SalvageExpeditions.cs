@@ -40,6 +40,20 @@ public sealed partial class SalvageExpeditionConsoleComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier PrintSound = new SoundPathSpecifier("/Audio/Machines/terminal_insert_disc.ogg");
+
+    // Frontier: add error to FTL warning
+    /// <summary>
+    /// The sound made when an error happens.
+    /// </summary>
+    [DataField("soundError")]
+    public SoundSpecifier ErrorSound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
+
+    /// <summary>
+    /// Debug mode: skips FTL proximity checks
+    /// </summary>
+    [DataField]
+    public bool Debug = false;
+    // End Frontier: 
 }
 
 [Serializable, NetSerializable]
