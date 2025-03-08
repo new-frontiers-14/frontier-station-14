@@ -300,6 +300,18 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapNightlight
+  name: "FSB Nightlight"
+  description: "Detailed map of a Nightlight shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: nightlight
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapPathfinder
   name: "KC Pathfinder"
   description: "Detailed map of a Pathfinder shuttle."
