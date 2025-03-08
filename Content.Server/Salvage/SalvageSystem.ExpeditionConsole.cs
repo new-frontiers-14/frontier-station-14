@@ -222,8 +222,17 @@ public sealed partial class SalvageSystem
         }
         else
         {
-            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>(), component.CanFinish); // Frontier: add CanFinish
+            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>(), false); // Frontier: add false as last arg (cannot finish, not on a mission)
         }
+
+        // Frontier: if we have a lingering FTL component, we cannot start a new mission	
+        if (!TryComp<StationDataComponent>(station, out var stationData) ||
+                _station.GetLargestGrid(stationData) is not { Valid: true } grid ||
+                HasComp<FTLComponent>(grid))
+        {
+            state.Cooldown = true; //Hack: disable buttons	
+        }
+        // End Frontier
 
         _ui.SetUiState(component.Owner, SalvageConsoleUiKey.Expedition, state);
     }
