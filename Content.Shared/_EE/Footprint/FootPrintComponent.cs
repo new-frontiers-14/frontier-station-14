@@ -1,4 +1,4 @@
-﻿using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._EE.FootPrint;
@@ -18,6 +18,6 @@ public sealed partial class FootPrintComponent : Component
     [DataField]
     public string SolutionName = "step";
 
-    [DataField]
+    [ViewVariables]
     public Entity<SolutionComponent>? Solution;
 }
