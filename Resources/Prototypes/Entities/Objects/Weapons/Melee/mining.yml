@@ -160,7 +160,7 @@
     - suitStorage # Frontier
 
 - type: entity
-  parent: [ BaseWeaponCrusher, BaseC1Contraband] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
+  parent: [ BaseKnife, BaseWeaponCrusher, BaseC1Contraband] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
   id: WeaponCrusherDagger
   name: crusher dagger
   description: A scaled down version of a proto-kinetic crusher. Uses kinetic energy to vibrate the blade at high speeds.
@@ -175,9 +175,18 @@
     damage:
       types:
         Slash: 15
-  - type: Tag
-    tags:
-    - Knife
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    offset: -0.15,0.0
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 10
+  - type: DisarmMalus
+    malus: 0.225
+  - type: ThrowingAngle
+    angle: 225
 
 # Like a crusher... but better
 - type: entity

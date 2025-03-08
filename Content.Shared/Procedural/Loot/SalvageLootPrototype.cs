@@ -10,7 +10,7 @@ namespace Content.Shared.Procedural.Loot;
 [Prototype("salvageLoot")]
 public sealed class SalvageLootPrototype : IPrototype
 {
-    [IdDataField] public string ID { get; } = default!;
+    [IdDataField] public string ID { get; private set; } = default!;
 
     /// <summary>
     /// Should this loot always spawn if possible. Used for stuff such as ore.

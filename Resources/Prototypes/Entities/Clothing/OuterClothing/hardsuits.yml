@@ -234,7 +234,7 @@
 
 #Security Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC2ContrabandUnredeemable] # Removed BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ClothingOuterHardsuitBase, BaseC2ContrabandUnredeemable] # Removed BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: ClothingOuterHardsuitSecurity
   name: security hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
@@ -264,7 +264,7 @@
 
 #Brigmedic Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC2ContrabandUnredeemable] # Removed BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ClothingOuterHardsuitBase, BaseC2ContrabandUnredeemable] # Removed BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: ClothingOuterHardsuitBrigmedic
   name: brigmedic hardsuit
   description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
@@ -291,7 +291,7 @@
 
 #Warden's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC2ContrabandUnredeemable] # BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ClothingOuterHardsuitBase, BaseC2ContrabandUnredeemable] # BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: ClothingOuterHardsuitWarden
   name: warden's hardsuit
   description: A specialized riot suit geared to combat low pressure environments.
@@ -493,6 +493,7 @@
   id: ClothingOuterHardsuitLuxury #DO NOT MAP - https://github.com/space-wizards/space-station-14/pull/19738#issuecomment-1703486738
   name: luxury mining hardsuit
   description: A refurbished mining hardsuit, fashioned after the Quartermaster's colors. Graphene lining provides less protection, but is much easier to move.
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/luxury.rsi
@@ -681,7 +682,7 @@
 
 #Wizard Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: added BaseC3WizardContraband, ContrabandClothing as parent
+  parent: [ClothingOuterHardsuitBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: BaseMagicalContraband<BaseC3WizardContraband, ContrabandClothing as parent
   id: ClothingOuterHardsuitWizard
   name: wizard hardsuit
   description: A bizarre gem-encrusted suit that radiates magical energies.

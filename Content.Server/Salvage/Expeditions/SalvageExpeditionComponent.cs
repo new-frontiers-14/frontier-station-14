@@ -56,8 +56,9 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
     /// Song selected on MapInit so we can predict the audio countdown properly.
     /// </summary>
     [DataField]
-    public SoundPathSpecifier SelectedSong;
+    public ResolvedSoundSpecifier SelectedSong;
 
+    // Frontier: expedition difficulty and rewards
     /// <summary>
     /// The difficulty this mission had or, in the future, was selected.
     /// </summary>
@@ -69,4 +70,5 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("rewards", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
     public List<string> Rewards = default!;
+    // End Frontier: expedition difficulty and rewards
 }
