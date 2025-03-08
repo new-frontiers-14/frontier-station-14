@@ -41,12 +41,12 @@ namespace Content.Server.Salvage
         [Dependency] private readonly IChatManager _chat = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly AnchorableSystem _anchorable = default!;
         [Dependency] private readonly BiomeSystem _biome = default!;
-        [Dependency] private readonly CargoSystem _cargo = default!;
         [Dependency] private readonly DungeonSystem _dungeon = default!;
         [Dependency] private readonly GravitySystem _gravity = default!;
         [Dependency] private readonly LabelSystem _labelSystem = default!;
@@ -75,14 +75,6 @@ namespace Content.Server.Salvage
             InitializeMagnet();
             InitializeRunner();
         }
-
-        // Frontier
-        public override void Shutdown()
-        {
-            ShutdownExpeditions();
-            base.Shutdown();
-        }
-        // End Frontier
 
         private void Report(EntityUid source, string channelName, string messageKey, params (string, object)[] args)
         {
