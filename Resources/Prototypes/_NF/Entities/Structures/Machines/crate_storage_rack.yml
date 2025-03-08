@@ -1,0 +1,27 @@
+﻿- type: entity
+  id: CrateStorageRack
+  name: crate storage rack
+  description: Where do they go?
+  parent: BaseMachinePowered
+  components:
+  - type: CrateStorageRack
+  - type: Sprite
+    sprite: _NF/Structures/Storage/crate_storage_rack.rsi
+    snapCardinals: true
+    layers:
+    - state: base
+      map: [ "enum.CrateStorageRackVisualLayers.Base" ]
+    - state: top
+      map: [ "enum.CrateStorageRackVisualLayers.Top" ]
+    - state: bottom
+      map: [ "enum.CrateStorageRackVisualLayers.Bottom" ]
+  - type: Appearance
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+  - type: InteractionOutline
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: ExtensionCableReceiver
+  - type: StaticPrice
+    price: 500
