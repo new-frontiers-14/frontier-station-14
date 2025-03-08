@@ -12,6 +12,11 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Localizations;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Map;
+using Content.Server.GameTicking;
+using Content.Server._NF.Salvage.Expeditions.Structure;
+using Content.Server._NF.Salvage.Expeditions;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Salvage;
 
@@ -22,6 +27,7 @@ public sealed partial class SalvageSystem
      */
 
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!; // Frontier
 
     private void InitializeRunner()
     {
@@ -102,9 +108,17 @@ public sealed partial class SalvageSystem
         if (component.Stage != ExpeditionStage.Added)
             return;
 
+        // Frontier: early finish
+        if (TryComp<SalvageExpeditionDataComponent>(component.Station, out var data))
+        {
+            data.CanFinish = true;
+            UpdateConsoles(component.Station, data);
+        }
+        // End Frontier: early finish
+
         Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", (component.EndTime - _timing.CurTime).Minutes)));
 
-         var directionLocalization = ContentLocalizationManager.FormatDirection(component.DungeonLocation.GetDir()).ToLower();
+        var directionLocalization = ContentLocalizationManager.FormatDirection(component.DungeonLocation.GetDir()).ToLower();
 
         if (component.DungeonLocation != Vector2.Zero)
             Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-dungeon", ("direction", directionLocalization)));
@@ -120,6 +134,8 @@ public sealed partial class SalvageSystem
         {
             return;
         }
+
+        station.CanFinish = false; // Frontier
 
         // Check if any shuttles remain.
         var query = EntityQueryEnumerator<ShuttleComponent, TransformComponent>();
@@ -189,7 +205,52 @@ public sealed partial class SalvageSystem
                             if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
                                 continue;
 
-                            _shuttle.FTLToDock(shuttleUid, shuttle, member, ftlTime);
+                            // Frontier: try to find a potential destination for ship that doesn't collide with other grids.
+                            var mapId = _gameTicker.DefaultMap;
+                            if (!_mapSystem.TryGetMap(mapId, out var mapUid))
+                            {
+                                Log.Error($"Could not get DefaultMap EntityUID, shuttle {shuttleUid} may be stuck on expedition.");
+                                continue;
+                            }
+
+                            // Destination generator parameters (move to CVAR?)
+                            int numRetries = 20; // Maximum number of retries
+                            float minDistance = 200f; // Minimum distance from another object, in meters
+                            float minRange = 750f; // Minimum distance from sector centre, in meters
+                            float maxRange = 3500f; // Maximum distance from sector centre, in meters
+
+                            // Get a list of all grid positions on the destination map
+                            List<Vector2> gridCoords = new();
+                            var gridQuery = EntityManager.AllEntityQueryEnumerator<MapGridComponent, TransformComponent>();
+                            while (gridQuery.MoveNext(out var _, out _, out var xform))
+                            {
+                                if (xform.MapID == mapId)
+                                    gridCoords.Add(_transform.GetWorldPosition(xform));
+                            }
+
+                            Vector2 dropLocation = _random.NextVector2(minRange, maxRange);
+                            for (int i = 0; i < numRetries; i++)
+                            {
+                                bool positionIsValid = true;
+                                foreach (var station in gridCoords)
+                                {
+                                    if (Vector2.Distance(station, dropLocation) < minDistance)
+                                    {
+                                        positionIsValid = false;
+                                        break;
+                                    }
+                                }
+
+                                if (positionIsValid)
+                                    break;
+
+                                // No good position yet, pick another random position.
+                                dropLocation = _random.NextVector2(minRange, maxRange);
+                            }
+
+                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, 5.5f, 50f);
+                            // End Frontier:  try to find a potential destination for ship that doesn't collide with other grids.
+                            //_shuttle.FTLToDock(shuttleUid, shuttle, member, ftlTime); // Frontier: use above instead
                         }
 
                         break;
@@ -202,5 +263,68 @@ public sealed partial class SalvageSystem
                 QueueDel(uid);
             }
         }
+
+        // Frontier: mission-specific logic
+        // Destruction
+        var structureQuery = EntityQueryEnumerator<SalvageDestructionExpeditionComponent, SalvageExpeditionComponent>();
+
+        while (structureQuery.MoveNext(out var uid, out var structure, out var comp))
+        {
+            if (comp.Completed)
+                continue;
+
+            var structureAnnounce = false;
+
+            for (var i = structure.Structures.Count - 1; i >= 0; i--)
+            {
+                var objective = structure.Structures[i];
+
+                if (Deleted(objective))
+                {
+                    structure.Structures.RemoveAt(i);
+                    structureAnnounce = true;
+                }
+            }
+
+            if (structureAnnounce)
+                Announce(uid, Loc.GetString("salvage-expedition-structure-remaining", ("count", structure.Structures.Count)));
+
+            if (structure.Structures.Count == 0)
+            {
+                comp.Completed = true;
+                Announce(uid, Loc.GetString("salvage-expedition-completed"));
+            }
+        }
+
+        // Elimination
+        var eliminationQuery = EntityQueryEnumerator<SalvageEliminationExpeditionComponent, SalvageExpeditionComponent>();
+        while (eliminationQuery.MoveNext(out var uid, out var elimination, out var comp))
+        {
+            if (comp.Completed)
+                continue;
+
+            var announce = false;
+
+            for (var i = elimination.Megafauna.Count - 1; i >= 0; i--)
+            {
+                var mob = elimination.Megafauna[i];
+
+                if (Deleted(mob) || _mobState.IsDead(mob))
+                {
+                    elimination.Megafauna.RemoveAt(i);
+                    announce = true;
+                }
+            }
+
+            if (announce)
+                Announce(uid, Loc.GetString("salvage-expedition-megafauna-remaining", ("count", elimination.Megafauna.Count)));
+
+            if (elimination.Megafauna.Count == 0)
+            {
+                comp.Completed = true;
+                Announce(uid, Loc.GetString("salvage-expedition-completed"));
+            }
+        }
+        // End Frontier: mission-specific logic
     }
 }
