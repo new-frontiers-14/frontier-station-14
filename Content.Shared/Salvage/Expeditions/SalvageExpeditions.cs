@@ -1,6 +1,8 @@
+using Content.Shared.Procedural;
 using Content.Shared.Salvage.Expeditions.Modifiers;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
@@ -46,6 +48,11 @@ public sealed class ClaimSalvageMessage : BoundUserInterfaceMessage
     public ushort Index;
 }
 
+// Frontier: early expedition finish
+[Serializable, NetSerializable]
+public sealed class FinishSalvageMessage : BoundUserInterfaceMessage;
+// End Frontier: early expedition finish
+
 /// <summary>
 /// Added per station to store data on their available salvage missions.
 /// </summary>
@@ -63,6 +70,14 @@ public sealed partial class SalvageExpeditionDataComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("cooldown")]
     public bool Cooldown = false;
+
+    // Frontier: early expedition finish
+    /// <summary>
+    /// Allow early finish.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool CanFinish = false;
+    // End Frontier: early expedition finish
 
     /// <summary>
     /// Nexy time salvage missions are offered.
@@ -106,7 +121,9 @@ public sealed record SalvageMission(
     float Temperature,
     Color? Color,
     TimeSpan Duration,
-    List<string> Modifiers)
+    List<string> Modifiers,
+    ProtoId<SalvageDifficultyPrototype> Difficulty, // Frontier
+    SalvageMissionType MissionType) // Frontier
 {
     /// <summary>
     /// Seed used for the mission.
@@ -152,6 +169,17 @@ public sealed record SalvageMission(
     /// Modifiers (outside of the above) applied to the mission.
     /// </summary>
     public List<string> Modifiers = Modifiers;
+
+    // Frontier: additional parameters
+    /// <summary>
+    /// Difficulty rating.
+    /// </summary>
+    public readonly ProtoId<SalvageDifficultyPrototype> Difficulty = Difficulty;
+    /// <summary>
+    /// Difficulty rating.
+    /// </summary>
+    public readonly SalvageMissionType MissionType = MissionType;
+    // End Frontier: additional parameters
 }
 
 [Serializable, NetSerializable]
