@@ -382,13 +382,6 @@
   - type: StandingState
   - type: RandomHumanoidAppearance
     randomizeName: true
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Critical
-      140: Dead
-  - type: Stamina
-    critThreshold: 100
   - type: SlowOnDamage
     speedModifierThresholds:
       60: 0.7
@@ -466,18 +459,6 @@
     speedModifierThresholds:
       60: 0.7
       80: 0.5
-  - type: MobState
-    allowedStates:
-    - Alive
-    - Critical
-    - Dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      80: Critical
-      120: Dead
-  - type: Stamina
-    critThreshold: 100
   - type: NpcFactionMember
     factions:
     - SimpleHostile
