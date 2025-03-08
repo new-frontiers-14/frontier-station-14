@@ -31,6 +31,7 @@ using Content.Server._NF.Bank; // Frontier
 using Content.Server.Preferences.Managers; // Frontier
 using System.Linq;
 using Content.Shared.NameIdentifier; // Frontier
+using Content.Server.NameIdentifier; // Frontier
 
 namespace Content.Server.Station.Systems;
 
@@ -53,6 +54,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IDependencyCollection _dependencyCollection = default!; // Frontier
     [Dependency] private readonly IServerPreferencesManager _preferences = default!; // Frontier
+    [Dependency] private readonly NameIdentifierSystem _nameIdentifier = default!; // Frontier
 
     [Dependency] private readonly BankSystem _bank = default!; // Frontier
     private bool _randomizeCharacters;
@@ -274,9 +276,18 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (profile != null)
         {
             // Frontier: allow pseudonyms
-            var name = (loadout != null) && !string.IsNullOrEmpty(loadout.EntityName) ? loadout.EntityName : profile.Name;
-            if (TryComp<NameIdentifierComponent>(entity, out var identifier))
+            var name = loadout != null && !string.IsNullOrEmpty(loadout.EntityName) ? loadout.EntityName : profile.Name;
+            // Janky hack for borgs
+            if (TryComp<NameIdentifierComponent>(entity.Value, out var identifier))
+            {
+                // Generate a new name, set up the NameIdentifier with the values we need.
+                var newName = _nameIdentifier.GenerateUniqueName(entity.Value, identifier.Group, out identifier.Identifier);
+                identifier.FullIdentifier = $"({newName})";
+                Dirty(entity.Value, identifier);
+
+                // Append our name identifier (why have a pseudonym for a role that has a complete name identifier group?)
                 name = $"{name} {identifier.FullIdentifier}";
+            }
             // End Frontier
             if (prototype != null)
                 SetPdaAndIdCardData(entity.Value, name, prototype, station); // Frontier: profile.Name<name
