@@ -113,3 +113,18 @@ public abstract partial class SharedSalvageSystem : EntitySystem
     }
 }
 
+// Frontier: salvage mission type
+[Serializable, NetSerializable]
+public enum SalvageMissionType : byte
+{
+    /// <summary>
+    /// Destroy the specified structures in a dungeon.
+    /// </summary>
+    Destruction,
+
+    /// <summary>
+    /// Kill a large creature in a dungeon.
+    /// </summary>
+    Elimination,
+}
+// End Frontier

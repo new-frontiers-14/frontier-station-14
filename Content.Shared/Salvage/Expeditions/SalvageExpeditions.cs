@@ -14,14 +14,16 @@ public sealed class SalvageExpeditionConsoleState : BoundUserInterfaceState
     public bool Cooldown;
     public ushort ActiveMission;
     public List<SalvageMissionParams> Missions;
+    public bool CanFinish; // Frontier
 
-    public SalvageExpeditionConsoleState(TimeSpan nextOffer, bool claimed, bool cooldown, ushort activeMission, List<SalvageMissionParams> missions)
+    public SalvageExpeditionConsoleState(TimeSpan nextOffer, bool claimed, bool cooldown, ushort activeMission, List<SalvageMissionParams> missions, bool canFinish) // Frontier: add canFinish
     {
         NextOffer = nextOffer;
         Claimed = claimed;
         Cooldown = cooldown;
         ActiveMission = activeMission;
         Missions = missions;
+        CanFinish = canFinish; // Frontier
     }
 }
 
@@ -86,6 +88,9 @@ public sealed record SalvageMissionParams
     [ViewVariables(VVAccess.ReadWrite)] public int Seed;
 
     public string Difficulty = string.Empty;
+
+    [ViewVariables(VVAccess.ReadWrite)] // Frontier
+    public SalvageMissionType MissionType; // Frontier
 }
 
 /// <summary>

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._NF.Salvage.UI;
 using Content.Client.Stylesheets;
 using Content.Shared.CCVar;
 using Content.Shared.Procedural;
@@ -16,7 +17,7 @@ namespace Content.Client.Salvage.UI;
 public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
-    private OfferingWindow? _window;
+    private SalvageExpeditionWindow? _window; // Frontier: OfferingWindow<SalvageExpeditionWindow
 
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
@@ -30,8 +31,9 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
     protected override void Open()
     {
         base.Open();
-        _window = this.CreateWindowCenteredLeft<OfferingWindow>();
+        _window = this.CreateWindowCenteredLeft<SalvageExpeditionWindow>();
         _window.Title = Loc.GetString("salvage-expedition-window-title");
+        _window.OnFinishPressed += () => SendMessage(new FinishSalvageMessage()); // Frontier
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -45,6 +47,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
         _window.Cooldown = TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.SalvageExpeditionCooldown));
         _window.NextOffer = current.NextOffer;
         _window.Claimed = current.Claimed;
+        _window.SetFinishDisabled(!state.CanFinish); // Frontier
         _window.ClearOptions();
         var salvage = _entManager.System<SalvageSystem>();
 
@@ -53,9 +56,9 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
             var missionParams = current.Missions[i];
 
             var offering = new OfferingWindowOption();
-            offering.Title = Loc.GetString($"salvage-expedition-type");
+            offering.Title = Loc.GetString($"salvage-expedition-type-{missionParams.MissionType}");
 
-            var difficultyId = "NFModerate"; // Frontier: Moderate<NFModerate
+            var difficultyId = missionParams.Difficulty; // Frontier: Moderate<NFModerate
             var difficultyProto = _protoManager.Index<SalvageDifficultyPrototype>(difficultyId);
             // TODO: Selectable difficulty soon.
             var mission = salvage.GetMission(difficultyProto, missionParams.Seed);
@@ -71,7 +74,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
 
             offering.AddContent(new Label
             {
-                Text = Loc.GetString("salvage-expedition-difficulty-Moderate"),
+                Text = Loc.GetString($"salvage-expedition-difficulty-{missionParams.Difficulty}"), // Frontier: parameterize loc string
                 FontColorOverride = difficultyColor,
                 HorizontalAlignment = Control.HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),

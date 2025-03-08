@@ -2,7 +2,6 @@ using System.Linq;
 using System.Threading;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
-using Content.Shared._NF.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
 using Content.Shared.Procedural;
@@ -14,6 +13,8 @@ using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Content.Server._NF.Salvage; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -231,4 +232,16 @@ public sealed partial class SalvageSystem
     {
         args.PushMarkup(Loc.GetString("salvage-expedition-structure-examine"));
     }
+
+    // Frontier: handle exped spawn job failures gracefully - reset the console
+    private void OnExpeditionSpawnComplete(EntityUid uid, SalvageExpeditionDataComponent component, ExpeditionSpawnCompleteEvent ev)
+    {
+        if (component.ActiveMission == ev.MissionIndex && !ev.Success)
+        {
+            component.ActiveMission = 0;
+            component.Cooldown = false;
+            UpdateConsoles(uid, component);
+        }
+    }
+    // End Frontier
 }
