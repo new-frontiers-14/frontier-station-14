@@ -13,10 +13,10 @@ public sealed class GasRecyclerArrow : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<NFGasRecyclerComponent, ClientExaminedEvent>(RecyclerExamined);
+        SubscribeLocalEvent<NFGasRecyclerVisualsComponent, ClientExaminedEvent>(RecyclerExamined);
     }
 
-    private void RecyclerExamined(EntityUid uid, NFGasRecyclerComponent component, ClientExaminedEvent args)
+    private void RecyclerExamined(EntityUid uid, NFGasRecyclerVisualsComponent component, ClientExaminedEvent args)
     {
         Spawn(ArrowPrototype, new EntityCoordinates(uid, 0, 0));
     }
