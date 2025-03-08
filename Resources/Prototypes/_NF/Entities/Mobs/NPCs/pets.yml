@@ -17,6 +17,7 @@
     description: ghost-role-information-clippy-description
     rules: ghost-role-information-nonantagonist-rules
     prototype: CatClippy
+    mindRoles: [ MindRoleGhostRoleNeutral ]
   - type: Loadout
     prototypes: [ MobClippyGear ]
   - type: RandomMetadata
@@ -67,6 +68,7 @@
     description: ghost-role-information-clarpy-description
     rules: ghost-role-information-clarpy-rules
     prototype: CatClarpy
+    mindRoles: [ MindRoleGhostRoleTeamAntagonist ]
   - type: Loadout
     prototypes: [ MobClarpyGear ]
   - type: ReplacementAccent
@@ -114,6 +116,7 @@
     description: ghost-role-information-cappy-description
     rules: ghost-role-information-nonantagonist-rules
     prototype: CatCappy
+    mindRoles: [ MindRoleGhostRoleNeutral ]
   - type: Loadout
     prototypes: [ MobCappyGear ]
   - type: ReplacementAccent
@@ -158,6 +161,36 @@
   - type: SouthernAccent
 
 - type: entity
+  name: El Capo
+  parent: [NFMobPet, MobBingusGhost]
+  id: MobCatElCapo
+  description: Wanted for countless cat crimes.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: crimecat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: combatcat
+  - type: GhostRole
+    name: ghost-role-information-elcapo-name
+    description: ghost-role-information-elcapo-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles: [ MindRoleGhostRoleFreeAgent ]
+  - type: RandomMetadata
+    nameSegments: [names_cat_elcapo]
+  - type: AutoImplant
+    implants:
+    - TrackingImplant
+  - type: NpcFactionMember
+    factions:
+      - Cat
+
+- type: entity
   name: Clugg
   parent: [NFMobPet, MobCatCaracalGhost]
   id: MobCatClugg
@@ -177,6 +210,7 @@
     name: ghost-role-information-clugg-name
     description: ghost-role-information-clugg-description
     rules: ghost-role-information-nonantagonist-rules
+    mindRoles: [ MindRoleGhostRoleNeutral ]
   - type: RandomMetadata
     nameSegments: [names_cat_clugg]
   - type: NpcFactionMember
@@ -207,6 +241,7 @@
     name: ghost-role-information-mistake-name
     description: ghost-role-information-mistake-description
     rules: ghost-role-information-freeagent-rules
+    mindRoles: [ MindRoleGhostRoleFreeAgent ]
     prototype: CatMistake
   - type: ReplacementAccent
     accent: mistakeCat
@@ -276,6 +311,7 @@
     name: ghost-role-information-cult-cat-name
     description: ghost-role-information-cult-cat-description
     rules: ghost-role-information-cult-cat-rules
+    mindRoles: [ MindRoleGhostRoleFreeAgent ]
     prototype: CatBloodCult
   - type: RandomMetadata
     nameSegments: [ names_cat_cult ]

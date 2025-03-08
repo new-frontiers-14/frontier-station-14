@@ -444,6 +444,12 @@ public enum LogType
     /// A player interacted with a PDA or its cartridge component
     /// </summary>
     PdaInteract = 96,
+
+    /// <summary>
+    /// An atmos networked device (such as a vent or pump) has had its settings changed, usually through an air alarm
+    /// </summary>
+    AtmosDeviceSetting = 97,
+
     // Frontier Station Specific
     ATMUsage = 200,
     ShipYardUsage = 201,
@@ -454,4 +460,12 @@ public enum LogType
     /// </summary>
     AdminRefund = 203,
     AtmosDirectionChanged = 204,
+    /// <summary>
+    /// A player has posted a bounty contract.
+    /// </summary>
+    BountyContractCreated = 205,
+    /// <summary>
+    /// A player has deleted a bounty contract.
+    /// </summary>
+    BountyContractRemoved = 206,
 }
