@@ -16,7 +16,9 @@ using Robust.Shared.Prototypes;
 using Content.Server._NF.Salvage; // Frontier
 using Content.Shared._NF.CCVar;
 using Content.Shared.Salvage;
-using Content.Server._NF.Salvage.Expeditions; // Frontier
+using Content.Server._NF.Salvage.Expeditions;
+using Content.Shared.Shuttles.Components;
+using Content.Server.Station.Components; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -138,7 +140,13 @@ public sealed partial class SalvageSystem
             if (comp.NextOffer > currentTime || comp.Claimed)
                 continue;
 
-            comp.Cooldown = false;
+            // Frontier: disable cooldown when still in FTL
+            if (!TryComp<StationDataComponent>(uid, out var stationData)
+                || !HasComp<FTLComponent>(_station.GetLargestGrid(stationData)))
+            {
+                comp.Cooldown = false;
+            }
+            // End Frontier: disable cooldown when still in FTL
             // comp.NextOffer += TimeSpan.FromSeconds(_cooldown); // Frontier
             comp.NextOffer = currentTime + TimeSpan.FromSeconds(_cooldown); // Frontier
             GenerateMissions(comp);
