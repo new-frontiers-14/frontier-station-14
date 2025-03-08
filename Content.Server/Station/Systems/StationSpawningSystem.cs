@@ -29,7 +29,8 @@ using Content.Server.Spawners.Components;
 using Content.Shared._NF.Bank.Components; // DeltaV
 using Content.Server._NF.Bank; // Frontier
 using Content.Server.Preferences.Managers; // Frontier
-using System.Linq; // Frontier
+using System.Linq;
+using Content.Shared.NameIdentifier; // Frontier
 
 namespace Content.Server.Station.Systems;
 
@@ -274,6 +275,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         {
             // Frontier: allow pseudonyms
             var name = (loadout != null) && !string.IsNullOrEmpty(loadout.EntityName) ? loadout.EntityName : profile.Name;
+            if (TryComp<NameIdentifierComponent>(entity, out var identifier))
+                name = $"{name} {identifier.FullIdentifier}";
             // End Frontier
             if (prototype != null)
                 SetPdaAndIdCardData(entity.Value, name, prototype, station); // Frontier: profile.Name<name
