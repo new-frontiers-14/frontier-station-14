@@ -47,7 +47,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
         _window.Cooldown = TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.SalvageExpeditionCooldown));
         _window.NextOffer = current.NextOffer;
         _window.Claimed = current.Claimed;
-        _window.SetFinishDisabled(!state.CanFinish); // Frontier
+        _window.SetFinishDisabled(!current.CanFinish); // Frontier
         _window.ClearOptions();
         var salvage = _entManager.System<SalvageSystem>();
 
@@ -61,7 +61,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
             var difficultyId = missionParams.Difficulty; // Frontier: Moderate<NFModerate
             var difficultyProto = _protoManager.Index<SalvageDifficultyPrototype>(difficultyId);
             // TODO: Selectable difficulty soon.
-            var mission = salvage.GetMission(difficultyProto, missionParams.Seed);
+            var mission = salvage.GetMission(missionParams.MissionType, difficultyProto, missionParams.Seed); // Frontier: add missionParams.MissionType
 
             // Difficulty
             // Details
