@@ -24,7 +24,7 @@ public abstract class SharedGasDepositSystem : EntitySystem
     {
         base.Initialize();
 
-
+        SubscribeLocalEvent<GasDepositExtractorComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<GasDepositExtractorComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<GasDepositExtractorComponent, AnchorAttemptEvent>(OnAnchorAttempt);
         SubscribeLocalEvent<GasDepositExtractorComponent, ActivateInWorldEvent>(OnPumpActivate);
@@ -38,6 +38,7 @@ public abstract class SharedGasDepositSystem : EntitySystem
         args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined",
             ("statusColor", "lightblue"),
             ("pressure", ent.Comp.TargetPressure)));
+
         if (_net.IsServer && TryComp(ent.Comp.DepositEntity, out GasDepositComponent? deposit))
         {
             float estimatedAmount = MathF.Round(deposit.Deposit.TotalMoles / DrillExamineAmountRound) * DrillExamineAmountRound;
@@ -65,20 +66,19 @@ public abstract class SharedGasDepositSystem : EntitySystem
 
         while (enumerator.MoveNext(out var otherEnt))
         {
-            // Don't match yourself.
-            if (otherEnt == ent)
-                continue;
-
-            // Is another storage entity is already anchored here?
-            if (!HasComp<GasDepositComponent>(otherEnt))
+            // Look for gas deposits, don't match yourself.
+            if (otherEnt == ent || !HasComp<GasDepositComponent>(otherEnt))
                 continue;
 
             ent.Comp.DepositEntity = otherEnt.Value;
             return;
         }
+    }
 
-        _popup.PopupPredicted(Loc.GetString("gas-deposit-drill-no-resources"), ent, args.User);
-        args.Cancel();
+    public void OnAnchorChanged(Entity<GasDepositExtractorComponent> ent, ref AnchorStateChangedEvent args)
+    {
+        if (!args.Anchored)
+            ent.Comp.DepositEntity = null;
     }
 
     private void OnPumpActivate(Entity<GasDepositExtractorComponent> ent, ref ActivateInWorldEvent args)

@@ -3,6 +3,7 @@ research-technology-advanced-personal-propulsion = Advanced Personal Propulsion
 research-technology-rapid-construction = Rapid Construction
 research-technology-hardsuits-basic = Basic Hardsuits
 research-technology-hardsuits-specialized = Specialized Hardsuits
+research-technology-atmospheric-drilling = Atmospheric Drilling
 research-technology-hardsuits-advanced = Advanced Hardsuits
 research-technology-hardsuits-experimental-industrial = Experimental Salvager Hardsuit
 research-technology-hardsuits-armored = Armored Hardsuits
