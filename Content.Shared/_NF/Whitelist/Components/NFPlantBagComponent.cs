@@ -1,4 +1,4 @@
-namespace Content.Server._NF.Whitelist.Components;
+namespace Content.Shared._NF.Whitelist.Components;
 
 /// <summary>
 /// Whitelist component for plant bags to avoid tag redefinition and collisions
