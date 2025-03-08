@@ -53,6 +53,9 @@ public sealed partial class DungeonJob
         if (!ValidateResume())
             return;
 
+        if (cableTiles.Count <= 0) // Frontier: empty check
+            return; // Frontier: empty check
+
         var startNodes = new List<Vector2i>(cableTiles);
         random.Shuffle(startNodes);
         var start = startNodes[0];

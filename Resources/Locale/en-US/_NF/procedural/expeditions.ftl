@@ -42,3 +42,8 @@ salvage-air-mod-unknown = Unknown atmosphere
 salvage-expedition-difficulty-NFModerate = Moderate
 salvage-expedition-difficulty-NFHazardous = Hazardous
 salvage-expedition-difficulty-NFExtreme = Extreme
+
+salvage-expedition-megafauna-remaining = {$count} targets remaining.
+
+salvage-expedition-type-Destruction = Destruction
+salvage-expedition-type-Elimination = Elimination

@@ -22,10 +22,12 @@ salvage-expedition-difficulty-Moderate = Moderate
 salvage-expedition-difficulty-Hazardous = Hazardous
 salvage-expedition-difficulty-Extreme = Extreme
 
-salvage-expedition-difficulty-players = Recommended salvagers:
+# Frontier: salvagers<team size
+salvage-expedition-difficulty-players = Recommended team size:
 
 # Runner
-salvage-expedition-not-all-present = Not all salvagers are aboard the shuttle!
+# Frontier: salvagers<expeditioners
+salvage-expedition-not-all-present = Not all expeditioners are aboard the shuttle!
 
 salvage-expedition-announcement-countdown-minutes = {$duration} minutes remaining to complete the expedition.
 salvage-expedition-announcement-countdown-seconds = {$duration} seconds remaining to complete the expedition.
