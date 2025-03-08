@@ -120,11 +120,16 @@ public enum SalvageMissionType : byte
     /// <summary>
     /// Destroy the specified structures in a dungeon.
     /// </summary>
-    Destruction,
+    Destruction = 0,
 
     /// <summary>
     /// Kill a large creature in a dungeon.
     /// </summary>
-    Elimination,
+    Elimination = 1,
+
+    /// <summary>
+    /// Maximum value for random generation, should not be used directly.
+    /// </summary>
+    Max = Elimination,
 }
 // End Frontier

@@ -14,7 +14,8 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Server._NF.Salvage; // Frontier
-using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared._NF.CCVar;
+using Content.Shared.Salvage; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -188,6 +189,7 @@ public sealed partial class SalvageSystem
             var mission = new SalvageMissionParams
             {
                 Index = component.NextIndex,
+                MissionType = (SalvageMissionType)_random.NextByte((byte)SalvageMissionType.Max + 1), // Frontier
                 Seed = _random.Next(),
                 Difficulty = difficulties[i],
             };
@@ -240,7 +242,7 @@ public sealed partial class SalvageSystem
         {
             component.ActiveMission = 0;
             component.Cooldown = false;
-            UpdateConsoles(uid, component);
+            UpdateConsoles((uid, component));
         }
     }
     // End Frontier
