@@ -60,6 +60,18 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapBounty
+  name: "FSB Bounty"
+  description: "Detailed map of a Bounty shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: bounty
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapBrigand
   name: "NT Brigand"
   description: "Detailed map of a Brigand shuttle."
