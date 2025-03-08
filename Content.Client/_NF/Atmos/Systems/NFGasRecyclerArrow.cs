@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._NF.Atmos.Systems;
 
 // Gas recyclers show pipe direction on examine, arrow sprite reused from TEG functionality
-public sealed class GasRecyclerArrow : EntitySystem
+public sealed class NFGasRecyclerArrow : EntitySystem
 {
     [ValidatePrototypeId<EntityPrototype>]
     private const string ArrowPrototype = "TegCirculatorArrow";
