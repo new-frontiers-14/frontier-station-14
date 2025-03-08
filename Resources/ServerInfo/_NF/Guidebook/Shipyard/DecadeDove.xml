@@ -1,0 +1,91 @@
+<Document>
+  # DOVE-CLASS EXPEDITION SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="OreProcessor"/>
+  <GuideEntityEmbed Entity="MaterialReclaimer"/>
+  <GuideEntityEmbed Entity="TelecomServerFilledShuttle"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="ShuttleMapDecadeDove" Caption=""/>
+  </Box>
+  [color=#a4885c]Ship Size:[/color] Medium
+
+  [color=#a4885c]Recommended Crew:[/color] 3-6
+
+  [color=#a4885c]Power Gen Type:[/color] AME
+
+  [color=#a4885c]Expeditions:[/color] Yes
+
+  [color=#a4885c]IFF Console:[/color] None
+
+  "Versatile expedition-capable multi-purpose light freighter."
+
+  # PREFLIGHT CHECKLIST
+
+  ## 1. Power supply
+
+  ## 1.1. (Engineering) Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationWallBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+  
+  - Check that the SMES unit is anchored to the floor.
+  - Check that the APC unit's Main Breaker is toggled on.
+  - Check the APC unit's current Load* (W).
+  
+  ## 1.2. (Engineering) AME generator unit.
+  <Box>
+  <GuideEntityEmbed Entity="AmeController"/>
+  <GuideEntityEmbed Entity="AmeJar"/>
+  </Box>
+
+  - Check that the AME core is properly shielded.
+  - Check that the AME controller unit is anchored to the floor.
+  - Check "Fuel Status" on the AME controller unit.
+  - Check "Injection Amount" on the AME controller unit (2 injections per core recommended).
+  - Toggle Injection if needed.
+
+  ## 2. Atmospherics
+
+  ## 2.1. (Engineering) Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  </Box>
+
+  - Check that the O2 canister is anchored to the correct connector port (blue).
+  - Check that the N2 canister is anchored to the correct connector port (red).
+  - Check that the gas mixer is set to the correct mixing ratio (primary port (Nitrogen): 79%, side port (Oxygen) 21%).
+  - Check that the gas mixer is set to 101kPa.
+  - Enable gas mixer if needed.
+
+  ## 2.2. (Primary Hold 1) Waste Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+    
+  - Enable waste loop pump if needed.
+  
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  <GuideEntityEmbed Entity="BlastDoor"/>
+  </Box>
+  
+  - (Engineering) Check that the gyroscope is anchored, powered, and enabled.
+  - (Engineering) Check that the mini gravity generator is anchored, powered, and enabled.
+  - (Primary Hold 1) Check that the blast doors are closed.
+  
+  ## Sidenotes
+  
+  - Dove-class expedition shuttles are equipped with one wallmount substation (located in Engineering) and three APC units (one outside Engineering, one in the Primary Hold 1, one in the Cockpit). Consult the Power Monitoring Computer in Engineering for exact locations.
+  - Power consumption chart for an unmodified Dove-class shuttle:
+  -- 43 kW with a full SMES unit
+  -- 48 kW with an empty SMES unit
+  -- 68 kW with an empty SMES unit, empty substation and empty APC units
+</Document>
