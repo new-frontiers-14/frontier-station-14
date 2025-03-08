@@ -16,3 +16,4 @@ research-technology-magnets-tech-advanced = Advanced Localized Magnetism
 research-technology-magnets-tech-combat = Localized Magnetism Combat Application
 research-technology-mobile-sanitation = Mobile Sanitation
 research-technology-chemical-dispensary = Chemical Dispensary
+research-technology-personal-storage-solutions = Personal Storage Solutions
