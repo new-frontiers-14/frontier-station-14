@@ -24,7 +24,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
     /// Main loot table for salvage expeditions.
     /// </summary>
     [ValidatePrototypeId<SalvageLootPrototype>]
-    public const string ExpeditionsLootProto = "SalvageLoot";
+    public const string ExpeditionsLootProto = "NFSalvageLoot"; // Frontier: SalvageLoot<NFSalvageLoot
 
     public string GetFTLName(LocalizedDatasetPrototype dataset, int seed)
     {
