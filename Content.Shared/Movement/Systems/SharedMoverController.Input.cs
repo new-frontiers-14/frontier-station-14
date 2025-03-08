@@ -13,6 +13,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._NF.CCVar; // Frontier
 
 namespace Content.Shared.Movement.Systems
 {
@@ -304,8 +305,15 @@ namespace Content.Shared.Movement.Systems
                 if (MoverQuery.TryGetComponent(entity, out var mover))
                     SetMoveInput((entity, mover), MoveButtons.None);
 
-                if (!_mobState.IsIncapacitated(entity))
-                    HandleDirChange(relayMover.RelayEntity, dir, subTick, state);
+                // Frontier code
+                /*if (!_mobState.IsIncapacitated(entity))
+                    HandleDirChange(relayMover.RelayEntity, dir, subTick, state);*/
+                if (_mobState.IsDead(entity)
+                    || _mobState.IsCritical(entity) && !_configManager.GetCVar(NFCCVars.AllowMovementWhileCrit))
+                    return;
+
+                HandleDirChange(relayMover.RelayEntity, dir, subTick, state);
+                // Frontier code end
 
                 return;
             }
