@@ -387,20 +387,10 @@
     layers:
     - state: engineering
     - state: icon-rcd
-  # Frontier: replace with droppable items
-  - type: DroppableBorgModule
-    moduleId: RCD
+  - type: ItemBorgModule
+    moduleId: RCD # Frontier
     items:
-    - id: ShipyardRCD
-      whitelist:
-        components:
-        - RCD
-    placeholders:
-    - id: RCDAmmo
-      whitelist:
-        components:
-        - RCDAmmo
-  # End Frontier
+    - RCDRecharging
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: rcd-module }
 
