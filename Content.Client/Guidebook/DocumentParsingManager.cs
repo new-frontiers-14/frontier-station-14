@@ -37,7 +37,7 @@ public sealed partial class DocumentParsingManager
             .Bind(tag => _tagControlParsers[tag]);
 
         // Frontier: comment parser        
-        Parser<char, Unit> whitespaceAndCommentParser = SkipWhitespaces.Then(Try(String("<!--").Then(Parser<char>.Any.SkipUntil(String("-->")))).SkipMany());
+        Parser<char, Unit> whitespaceAndCommentParser = SkipWhitespaces.Then(Try(String("<!--").Then(Parser<char>.Any.SkipUntil(Try(String("-->"))))).SkipMany());
 
         _controlParser = OneOf(_tagParser, TryHeaderControl, TryListControl, TextControlParser)
             .Before(whitespaceAndCommentParser);

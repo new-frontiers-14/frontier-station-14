@@ -41,8 +41,16 @@ public sealed class BotanySwabSystem : EntitySystem
     /// </summary>
     private void OnAfterInteract(EntityUid uid, BotanySwabComponent swab, AfterInteractEvent args)
     {
-        if (args.Target == null || !args.CanReach || !HasComp<PlantHolderComponent>(args.Target))
+        if (args.Target == null || !args.CanReach || !TryComp<PlantHolderComponent>(args.Target, out var plant)) // Frontier: HasComp<TryComp
             return;
+
+        // Frontier: prevent swabbing
+        if (plant.Seed != null && plant.Seed.PreventSwabbing)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("botany-cannot-be-swabbed-message"), args.Target.Value, args.User);
+            return;
+        }
+        // End Frontier
 
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, swab.SwabDelay, new BotanySwabDoAfterEvent(), uid, target: args.Target, used: uid)
         {
@@ -59,6 +67,14 @@ public sealed class BotanySwabSystem : EntitySystem
     {
         if (args.Cancelled || args.Handled || !TryComp<PlantHolderComponent>(args.Args.Target, out var plant))
             return;
+
+        // Frontier: prevent swabbing
+        if (plant.Seed != null && plant.Seed.PreventSwabbing)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("botany-cannot-be-swabbed-message"), args.Args.Target.Value, args.Args.User);
+            return;
+        }
+        // End Frontier
 
         if (swab.SeedData == null)
         {

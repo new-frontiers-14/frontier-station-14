@@ -72,6 +72,7 @@ namespace Content.Server._DV.Mail.EntitySystems
         [Dependency] private readonly StationSystem _stationSystem = default!;
         [Dependency] private readonly TagSystem _tagSystem = default!;
         [Dependency] private readonly LogisticStatsSystem _logisticsStatsSystem = default!;
+        [Dependency] private readonly EmagSystem _emag = default!;
         [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
         [Dependency] private readonly BankSystem _bank = default!; // Frontier
         [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!; // Frontier
@@ -198,7 +199,7 @@ namespace Content.Server._DV.Mail.EntitySystems
             if (idCard == null) // Return if we still haven't found an id card.
                 return;
 
-            if (!HasComp<EmaggedComponent>(uid))
+            if (!_emag.CheckFlag(uid, EmagType.Interaction))
             {
                 if (idCard.FullName != component.Recipient /*|| idCard.LocalizedJobTitle != component.RecipientJob*/)  // Frontier - Only match the name
                 {
@@ -346,6 +347,11 @@ namespace Content.Server._DV.Mail.EntitySystems
 
         private void OnMailEmagged(EntityUid uid, MailComponent component, ref GotEmaggedEvent args)
         {
+            // Frontier: emag type check
+            if (args.Handled || !_emag.CheckFlag(uid, EmagType.Access))
+                return;
+            // End Frontier
+
             if (!component.IsLocked)
                 return;
 

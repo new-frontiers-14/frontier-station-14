@@ -23,6 +23,102 @@
   recipeType:
   - Oven
 
+- type: microwaveMealRecipe
+  id: RecipeBurgerRed
+  name: red pretty burger recipe
+  result: PrettyBurgerRed
+  time: 10
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonRed: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerOrange
+  name: orange pretty burger recipe
+  result: PrettyBurgerOrange
+  time: 10
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonOrange: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerYellow
+  name: yellow pretty burger recipe
+  result: PrettyBurgerYellow
+  time: 10
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonYellow: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerGreen
+  name: green pretty burger recipe
+  result: PrettyBurgerGreen
+  time: 10
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonGreen: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerBlue
+  name: blue pretty burger recipe
+  result: PrettyBurgerBlue
+  time: 10
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonBlue: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerPurple
+  name: purple pretty burger recipe
+  result: PrettyBurgerPurple
+  time: 10
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonPurple: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerWhite
+  name: white pretty burger recipe
+  result: PrettyBurgerWhite
+  time: 10
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonWhite: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerBlack
+  name: black pretty burger recipe
+  result: PrettyBurgerBlack
+  time: 10
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonBlack: 1
+  recipeType:
+  - Oven
+
 #Breads & Sandwiches
 
 - type: microwaveMealRecipe
@@ -88,6 +184,20 @@
   - Oven
   - Microwave
 
+# Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
+
+- type: microwaveMealRecipe
+  id: RecipeCuredCarp
+  name: cured carp
+  result: FoodCuredCarp
+  time: 5
+  solids:
+    FoodMeatFish: 1
+  reagents:
+    Stellibinin: 10
+  recipeType:
+  - Assembler
+
 # Sushi
 
 - type: microwaveMealRecipe
@@ -114,6 +224,21 @@
     FoodAvocadoSlice: 2
     FoodCucumberSlice: 2
     FoodMeatFish: 1
+  reagents:
+    Rice: 15
+    Water: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeCuredCarpSushi
+  name: fresh fish sushi recipe
+  result: CuredCarpSushi
+  time: 5
+  solids:
+    FoodAvocadoSlice: 2
+    FoodCucumberSlice: 2
+    FoodCuredCarp: 1
   reagents:
     Rice: 15
     Water: 10
@@ -196,6 +321,19 @@
   recipeType:
   - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeBatteredCuredCarp
+  name: battered fish recipe
+  result: FoodCuredCarpBattered
+  time: 5
+  reagents:
+    Flour: 5
+    Egg: 6
+  solids:
+    FoodCuredCarp: 1
+  recipeType:
+  - Assembler
+   
 # Donuts (uncooked as well as glazed) - frying handled by DeepFrySpawnComponent per-entity
 
 - type: microwaveMealRecipe
@@ -784,101 +922,5 @@
   reagents:
     Soysauce: 5
     Water: 15
-  recipeType:
-  - Oven
-
-- type: microwaveMealRecipe
-  id: RecipeBurgerRed
-  name: red pretty burger recipe
-  result: PrettyBurgerRed
-  time: 10
-  solids:
-    FoodBreadBun: 1
-    FoodMeat: 1
-    CrayonRed: 1
-  recipeType:
-  - Oven
-
-- type: microwaveMealRecipe
-  id: RecipeBurgerOrange
-  name: orange pretty burger recipe
-  result: PrettyBurgerOrange
-  time: 10
-  solids:
-    FoodBreadBun: 1
-    FoodMeat: 1
-    CrayonOrange: 1
-  recipeType:
-  - Oven
-
-- type: microwaveMealRecipe
-  id: RecipeBurgerYellow
-  name: yellow pretty burger recipe
-  result: PrettyBurgerYellow
-  time: 10
-  solids:
-    FoodBreadBun: 1
-    FoodMeat: 1
-    CrayonYellow: 1
-  recipeType:
-  - Oven
-
-- type: microwaveMealRecipe
-  id: RecipeBurgerGreen
-  name: green pretty burger recipe
-  result: PrettyBurgerGreen
-  time: 10
-  solids:
-    FoodBreadBun: 1
-    FoodMeat: 1
-    CrayonGreen: 1
-  recipeType:
-  - Oven
-
-- type: microwaveMealRecipe
-  id: RecipeBurgerBlue
-  name: blue pretty burger recipe
-  result: PrettyBurgerBlue
-  time: 10
-  solids:
-    FoodBreadBun: 1
-    FoodMeat: 1
-    CrayonBlue: 1
-  recipeType:
-  - Oven
-
-- type: microwaveMealRecipe
-  id: RecipeBurgerPurple
-  name: purple pretty burger recipe
-  result: PrettyBurgerPurple
-  time: 10
-  solids:
-    FoodBreadBun: 1
-    FoodMeat: 1
-    CrayonPurple: 1
-  recipeType:
-  - Oven
-
-- type: microwaveMealRecipe
-  id: RecipeBurgerWhite
-  name: white pretty burger recipe
-  result: PrettyBurgerWhite
-  time: 10
-  solids:
-    FoodBreadBun: 1
-    FoodMeat: 1
-    CrayonWhite: 1
-  recipeType:
-  - Oven
-
-- type: microwaveMealRecipe
-  id: RecipeBurgerBlack
-  name: black pretty burger recipe
-  result: PrettyBurgerBlack
-  time: 10
-  solids:
-    FoodBreadBun: 1
-    FoodMeat: 1
-    CrayonBlack: 1
   recipeType:
   - Oven
