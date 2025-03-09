@@ -2293,14 +2293,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#9955CCFF'
-  - uid: 265
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-2.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#9955CCFF'
   - uid: 266
     components:
     - type: Transform
@@ -2772,6 +2764,14 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeTJunction
   entities:
+  - uid: 265
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-2.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#9955CCFF'
   - uid: 323
     components:
     - type: Transform
@@ -2911,6 +2911,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,1.5
       parent: 1
+  - uid: 722
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-2.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#9955CCFF'
 - proto: GasValve
   entities:
   - uid: 341
@@ -3692,6 +3700,13 @@ entities:
       parent: 1
     - type: FuelGenerator
       targetPower: 26000
+- proto: PortableScrubber
+  entities:
+  - uid: 561
+    components:
+    - type: Transform
+      pos: 2.5,-2.5
+      parent: 1
 - proto: PosterContrabandAmbrosiaVulgaris
   entities:
   - uid: 449
@@ -4484,11 +4499,6 @@ entities:
       parent: 1
 - proto: StorageCanister
   entities:
-  - uid: 561
-    components:
-    - type: Transform
-      pos: 2.5,-2.5
-      parent: 1
   - uid: 562
     components:
     - type: Transform
