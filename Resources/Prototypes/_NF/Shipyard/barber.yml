@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: AF-Buyrcsp2
+# Discord: Buyrcsp2
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Barber
+  parent: BaseVessel
+  name: SSS Barber
+  description: A
+  price: 25000 # Appraises for ~21000, margin of ~19%
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/barber.yml
+  guidebookPage: ShipyardBarber
+  class:
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Barber
+  mapName: 'SSS Barber'
+  mapPath: /Maps/_NF/Shuttles/barber.yml
+  minPlayers: 0
+  stations:
+    Barber:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Barber {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

@@ -39,6 +39,7 @@ guide-entry-expedition-xenos = Xenos
 guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
+guide-entry-shipyard-barber = Barber
 guide-entry-shipyard-barge = Barge
 guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
