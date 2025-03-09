@@ -2,7 +2,7 @@
 - type: entity
   name: burrower
   id: MobXeno
-  parent: [NFMobRestrictions, SimpleSpaceMobBase] # Frontier: add NFMobRestrictions
+  parent: SimpleSpaceMobBase
   description: They mostly come at night. Mostly.
   categories: [ HideSpawnMenu ] # Frontier
   components:
@@ -95,7 +95,6 @@
     - id: FoodMeatXeno
       amount: 5
   - type: GhostRole
-    prob: 0 # Frontier
     allowMovement: true
     allowSpeech: true
     makeSentient: true
@@ -104,6 +103,7 @@
     rules: ghost-role-information-xeno-rules
     raffle:
       settings: default
+    prob: 0 # Frontier
   - type: GhostTakeoverAvailable
   - type: TypingIndicator
     proto: alien
@@ -121,8 +121,6 @@
     molsPerSecondPerUnitMass: 0.0005
   - type: Speech
     speechVerb: LargeMob
-  - type: ReplacementAccent # Frontier
-    accent: genericAggressive # Frontier
 
 - type: entity
   name: praetorian
@@ -371,7 +369,7 @@
 
 - type: entity
   name: space adder
-  parent: [NFMobRestrictions, SimpleSpaceMobBase] # Frontier: add NFMobRestrictions
+  parent: SimpleSpaceMobBase
   id: MobPurpleSnake
   description: A menacing purple snake from Kepler-283c.
   categories: [ HideSpawnMenu ] # Frontier
@@ -438,8 +436,6 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
-  - type: ReplacementAccent # Frontier
-    accent: genericAggressive # Frontier
 
 - type: entity
   name: space adder
@@ -447,6 +443,7 @@
   id: MobSmallPurpleSnake
   suffix: small
   description: A smaller version of the menacing purple snake from Kepler-283c.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     drawdepth: Mobs
