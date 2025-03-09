@@ -72,6 +72,12 @@
     guides:
     - ExpandingRepairingStation
   - type: ConstructionMaterials # Frontier
+  # Begin DeltaV Addition
+  - type: Tag
+    tags:
+    # no RodMetal 1 because ???
+    - BorgMaterial
+  # End DeltaV Addition
 
 - type: entity
   parent: PartRodMetal
@@ -82,6 +88,7 @@
   - type: Tag
     tags:
     - RodMetal1
+    - BorgMaterial # DeltaV
   - type: Sprite
     state: rods
   - type: Stack
@@ -96,6 +103,7 @@
   - type: Tag
     tags:
     - RodMetal1
+    - BorgMaterial # DeltaV
   - type: Sprite
     state: rods
   - type: Stack

@@ -117,11 +117,38 @@
   - type: ItemBorgModule
     moduleId: Cables # Frontier
     items:
-    - CableApcStackLingering10
-    - CableMVStackLingering10
-    - CableHVStackLingering10
+    # - CableApcStackLingering10
+    # - CableMVStackLingering10
+    # - CableHVStackLingering10
     - Wirecutter
     - trayScanner
+  # Begin DeltaV Additions - wires module can assemble electronics
+  - type: DroppableBorgModule
+    moduleId: Cables
+    items:
+    - id: CableApcStack
+      whitelist:
+        components:
+        - CablePlacer
+    - id: CableMVStack
+      whitelist:
+        components:
+        - CablePlacer
+    - id: CableHVStack
+      whitelist:
+        components:
+        - CablePlacer
+    - id: APCElectronics
+      whitelist:
+        components:
+        - Electronics
+        - MachineBoard
+    - id: DoorElectronics
+      whitelist:
+        components:
+        - Electronics
+        - MachineBoard
+  # End DeltaV Additions
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: wire-module }
 
@@ -315,13 +342,28 @@
     layers:
     - state: engineering
     - state: icon-construction
-  - type: ItemBorgModule
-    moduleId: Construction # Frontier
-    items:
-    - SheetSteelLingering0
-    - SheetGlassLingering0
-    - PartRodMetalLingering0
-    - FloorTileItemSteelLingering0
+  # Frontier: ItemBorgModule replaced with droppable variants
+  - type: DroppableBorgModule
+    moduleId: Construction
+    items: []
+    placeholders:
+    - id: SheetSteel
+      whitelist:
+        tags:
+        - BorgMaterial
+    - id: SheetGlass
+      whitelist:
+        tags:
+        - BorgMaterial
+    - id: PartRodMetal
+      whitelist:
+        tags:
+        - BorgMaterial
+    - id: FloorTileItemSteel
+      whitelist:
+        components:
+        - FloorTile
+    # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: construction-module }
 
@@ -334,14 +376,15 @@
     layers:
     - state: engineering
     - state: icon-rcd
-  # Frontier: droppable items
+  # Frontier: replace with droppable items
   - type: DroppableBorgModule
-    moduleId: RCD # Frontier
+    moduleId: RCD
     items:
     - id: ShipyardRCD
       whitelist:
         components:
         - RCD
+    placeholders:
     - id: RCDAmmo
       whitelist:
         components:
@@ -470,7 +513,7 @@
     layers:
     - state: medical
     - state: icon-treatment
-  # Frontier: droppable borg modules
+  # Frontier: droppable borg modules (largely from Delta-V#3119, thank you deltanedas)
   - type: ItemBorgModule
     moduleId: Treatment # Frontier
     items:
@@ -613,7 +656,7 @@
     # - Lighter # Frontier
     # - DrinkShaker # Frontier
     - BorgDropper
-  # Frontier: droppable items
+  # Frontier: droppable items - separate this into bureaucracy and bartending module
   - type: DroppableBorgModule
     moduleId: Service
     items:
@@ -654,13 +697,21 @@
     layers:
     - state: service
     - state: icon-musique
-  # Frontier: droppable borg modules
+  # Begin DeltaV Removals - replaced by hands
+  #- type: ItemBorgModule
+  #  moduleId: Music # Frontier
+  #  items:
+  #  - SynthesizerInstrument
+  #  - ElectricGuitarInstrument
+  #  - SaxophoneInstrument
+  # End DeltaV Removals
+  # Begin DeltaV Additions
   - type: DroppableBorgModule
-    moduleId: Music
+    moduleId: Music # Frontier
     items:
     - id: SynthesizerInstrument
       whitelist:
-        requireAll: true
+        requireAll: true # no picking up harpies or grand pianos
         components:
         - Instrument
         - Item
@@ -676,7 +727,7 @@
         components:
         - Instrument
         - Item
-  # End Frontier
+  # End DeltaV Additions
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: musical-module }
 
