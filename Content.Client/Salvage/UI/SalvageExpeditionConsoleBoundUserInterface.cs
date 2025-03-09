@@ -31,7 +31,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
     protected override void Open()
     {
         base.Open();
-        _window = this.CreateWindowCenteredLeft<SalvageExpeditionWindow>();
+        _window = this.CreateWindowCenteredLeft<SalvageExpeditionWindow>(); // Frontier: OfferingWindow<SalvageExpeditionWindow
         _window.Title = Loc.GetString("salvage-expedition-window-title");
         _window.OnFinishPressed += () => SendMessage(new FinishSalvageMessage()); // Frontier
     }
