@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._NF.Standing;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Standing;
@@ -25,6 +26,9 @@ public sealed class StandingStateSystem : EntitySystem
 
         if (!TryComp(uid, out HandsComponent? handsComp))
             return;
+
+        if (HasComp<PreventDropOnDownedComponent>(uid)) // Frontier: stop dropping items when falling over.
+            return; // Frontier
 
         var worldRotation = _transformSystem.GetWorldRotation(uid).ToVec();
         foreach (var hand in handsComp.Hands.Values)

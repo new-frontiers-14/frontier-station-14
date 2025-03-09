@@ -4,11 +4,9 @@ using Content.Server.Station.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.Shipyard.Components;
-using Content.Server._NF.Shipyard.Components;
 using Content.Shared._NF.Shipyard;
 using Content.Shared.GameTicking;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Content.Shared._NF.CCVar;
 using Robust.Shared.Configuration;
@@ -20,6 +18,9 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Content.Server._NF.Station.Components;
+using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.EntitySerialization;
+using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -122,7 +123,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// <param name="stationUid">The ID of the station to dock the shuttle to</param>
     /// <param name="shuttlePath">The path to the shuttle file to load. Must be a grid file!</param>
     /// <param name="shuttleEntityUid">The EntityUid of the shuttle that was purchased</param>
-    public bool TryPurchaseShuttle(EntityUid stationUid, string shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid)
+    public bool TryPurchaseShuttle(EntityUid stationUid, ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid)
     {
         if (!TryComp<StationDataComponent>(stationUid, out var stationData)
             || !TryAddShuttle(shuttlePath, out var shuttleGrid)
@@ -155,47 +156,22 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// </summary>
     /// <param name="shuttlePath">The path to the grid file to load. Must be a grid file!</param>
     /// <returns>Returns the EntityUid of the shuttle</returns>
-    private bool TryAddShuttle(string shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleGrid)
+    private bool TryAddShuttle(ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleGrid)
     {
         shuttleGrid = null;
         SetupShipyardIfNeeded();
         if (ShipyardMap == null)
             return false;
 
-        var loadOptions = new MapLoadOptions()
-        {
-            Offset = new Vector2(500f + _shuttleIndex, 1f)
-        };
-
-        if (!_mapLoader.TryLoad(ShipyardMap.Value, shuttlePath, out var gridList, loadOptions) ||
-            !EntityManager.TryGetComponent<MapGridComponent>(gridList[0], out var grid))
+        if (!_mapLoader.TryLoadGrid(ShipyardMap.Value, shuttlePath, out var grid, offset: new Vector2(500f + _shuttleIndex, 1f)))
         {
             _sawmill.Error($"Unable to spawn shuttle {shuttlePath}");
             return false;
         }
 
-        _shuttleIndex += grid.LocalAABB.Width + ShuttleSpawnBuffer;
+        _shuttleIndex += grid.Value.Comp.LocalAABB.Width + ShuttleSpawnBuffer;
 
-        //only dealing with 1 grid at a time for now, until more is known about multi-grid drifting
-        if (gridList.Count != 1)
-        {
-            if (gridList.Count < 1)
-            {
-                _sawmill.Error($"Unable to spawn shuttle {shuttlePath}, no grid found in file");
-            }
-
-            if (gridList.Count > 1)
-            {
-                _sawmill.Error($"Unable to spawn shuttle {shuttlePath}, too many grids present in file");
-
-                foreach (var gridElem in gridList)
-                    QueueDel(gridElem);
-            }
-
-            return false;
-        }
-
-        shuttleGrid = gridList[0];
+        shuttleGrid = grid.Value.Owner;
         return true;
     }
 
@@ -332,24 +308,24 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     }
     private void CleanupShipyard()
     {
-        if (ShipyardMap == null || !_mapManager.MapExists(ShipyardMap.Value))
+        if (ShipyardMap == null || !_map.MapExists(ShipyardMap.Value))
         {
             ShipyardMap = null;
             return;
         }
 
-        _mapManager.DeleteMap(ShipyardMap.Value);
+        _map.DeleteMap(ShipyardMap.Value);
     }
 
-    private void SetupShipyardIfNeeded()
+    public void SetupShipyardIfNeeded()
     {
-        if (ShipyardMap != null && _mapManager.MapExists(ShipyardMap.Value))
+        if (ShipyardMap != null && _map.MapExists(ShipyardMap.Value))
             return;
 
         _map.CreateMap(out var shipyardMap);
         ShipyardMap = shipyardMap;
 
-        _mapManager.SetMapPaused(ShipyardMap.Value, false);
+        _map.SetPaused(ShipyardMap.Value, false);
     }
 
     // <summary>
