@@ -465,9 +465,38 @@
     - CannotSuicide
   - type: FTLKnockdownImmune
 
+# A simpler base for extending existing mobs (e.g. carp, kangaroos, snakes, xenos)
 - type: entity
+  suffix: Frontier, Hostile
   abstract: true
-  id: MobBaseSilentFootsteps
+  parent:
+  - MobEnhancedMovement
+  - MobHumanoidHostileAISimpleMelee
+  - BaseC3MobCreature
+  id: NFMobSimpleHostileBase
   components:
-  - type: FootstepModifier
-    footstepSoundCollection: Null
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+      Acidic: [Touch, Ingestion]
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+    - Drowsiness
+    - Adrenaline
+  - type: ZombieImmune
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Carriable # Kept for consistency with other mobs
+  - type: FTLKnockdownImmune
