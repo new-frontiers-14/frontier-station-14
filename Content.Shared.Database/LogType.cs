@@ -450,6 +450,11 @@ public enum LogType
     /// </summary>
     AtmosDeviceSetting = 97,
 
+    /// <summary>
+    /// Commands related to admemes. Stuff like config changes, etc.
+    /// </summary>
+    AdminCommands = 98,
+
     // Frontier Station Specific
     ATMUsage = 200,
     ShipYardUsage = 201,
@@ -460,4 +465,12 @@ public enum LogType
     /// </summary>
     AdminRefund = 203,
     AtmosDirectionChanged = 204,
+    /// <summary>
+    /// A player has posted a bounty contract.
+    /// </summary>
+    BountyContractCreated = 205,
+    /// <summary>
+    /// A player has deleted a bounty contract.
+    /// </summary>
+    BountyContractRemoved = 206,
 }

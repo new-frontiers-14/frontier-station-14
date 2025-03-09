@@ -4,14 +4,16 @@
   abstract: true
   id: NFBaseJumpsuitRecipe
   parent: BaseJumpsuitRecipe
-  category: ClothesNF
+  categories:
+  - ClothesNF
   applyMaterialDiscount: false
 
 - type: latheRecipe
   abstract: true
   id: NFBaseCoatRecipe
   parent: BaseCoatRecipe
-  category: ClothesNF
+  categories:
+  - ClothesNF
   applyMaterialDiscount: false
 
 - type: latheRecipe
@@ -60,6 +62,16 @@
   id: ClothingUniformRandomPunkCroptopShorts
   parent: NFBaseJumpsuitRecipe
   result: ClothingUniformRandomPunkCroptopShorts
+
+- type: latheRecipe
+  id: ClothingUniformJumpskirtPrivateSec
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpskirtPrivateSec
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitPrivateSec
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitPrivateSec
 
 # Coats
 - type: latheRecipe
@@ -193,6 +205,15 @@
   id: NFPouchCargo
   parent: NFBaseBeltRecipe
   result: NFPouchCargo
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: UtilityBeltChiefEngineer
+  result: ClothingBeltChiefEngineer
+  completetime: 6
+  materials:
+    Silver: 400
+    Gold: 100
 
 # Gloves
 - type: latheRecipe
