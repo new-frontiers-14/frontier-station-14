@@ -5,6 +5,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Timing; // Frontier
 
 namespace Content.Shared.Anomaly.Components;
 
@@ -259,6 +260,18 @@ public sealed partial class AnomalyComponent : Component
 
     [DataField]
     public bool DeleteEntity = true;
+
+    /// <summary>
+    ///     Frontier: the number of points earned by this anomaly.
+    /// </summary>
+    [ViewVariables]
+    public int PointsEarned = 0;
+
+    /// <summary>
+    ///     Frontier: the last time this anomaly earned points. Prevents double counting.
+    /// </summary>
+    [ViewVariables]
+    public GameTick LastTickPointsEarned = GameTick.Zero;
 }
 
 /// <summary>

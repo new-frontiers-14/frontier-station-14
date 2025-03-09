@@ -69,7 +69,7 @@
 
 - type: entity
   id: BaseAdvancedPen
-  parent: [PenEmbeddable, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
+  parent: PenEmbeddable
   abstract: true
   components:
   - type: Tag
@@ -93,7 +93,8 @@
 
 - type: entity
   name: Cybersun pen
-  parent: [BaseAdvancedPen, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  # parent: [BaseAdvancedPen, BaseSyndicateContraband] # Frontier
+  parent: [NFBaseUnprotectedAdvancedPen, BaseC3SyndicateContraband] # Frontier
   id: CyberPen
   description: A high-tech pen straight from Cybersun's legal department, capable of refracting hard-light at impossible angles through its diamond tip in order to write. So powerful, it's even able to rewrite officially stamped documents should the need arise.
   components:
@@ -104,7 +105,7 @@
 
 - type: entity
   name: CentComm pen
-  parent: [BaseAdvancedPen, BaseCentcommContraband]
+  parent: [BaseAdvancedPen, BaseCentcommCommandContraband] # Frontier: Added BaseCentcommCommandContraband, removed BaseCentcommContraband.
   id: PenCentcom
   description: In an attempt to keep up with the "power" of the cybersun bureaucracy, NT made a replica of cyber pen, in their corporate style.
   components:

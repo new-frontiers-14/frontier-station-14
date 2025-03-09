@@ -585,7 +585,8 @@
     - type: MachineBoard
       prototype: ChemDispenserEmpty
       requirements: # Frontier
-        Capacitor: 1 # Frontier stackRequirements<requirements
+        # Capacitor: 1 # Frontier stackRequirements<requirements
+        MatterBin: 1 # Frontier: upgrades number of stored jugs
       stackRequirements:
         Glass: 1
         Steel: 3
@@ -666,6 +667,23 @@
         PowerCell: 4 # Frontier componentRequirements<requirements
       stackRequirements:
         CableHV: 10
+
+- type: entity
+  id: SMESAdvancedMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: advanced SMES machine board
+  description: A machine printed circuit board for an Advanced SMES.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: power_mod
+  - type: MachineBoard
+    prototype: SMESAdvancedEmpty
+    requirements: # Frontier
+        Capacitor: 2 # Frontier stackRequirements<requirements
+        PowerCell: 8 # Frontier componentRequirements<requirements, 4<8
+    stackRequirements:
+      CableHV: 20
 
 - type: entity
   id: CellRechargerCircuitboard
@@ -1199,6 +1217,8 @@
       state: service
     - type: MachineBoard
       prototype: BoozeDispenserEmpty
+      requirements: # Frontier
+        MatterBin: 1 # Frontier
       stackRequirements:
         Steel: 5
       tagRequirements:
@@ -1231,6 +1251,8 @@
       state: service
     - type: MachineBoard
       prototype: SodaDispenserEmpty
+      requirements: # Frontier
+        MatterBin: 1 # Frontier
       stackRequirements:
         Steel: 5
       tagRequirements:

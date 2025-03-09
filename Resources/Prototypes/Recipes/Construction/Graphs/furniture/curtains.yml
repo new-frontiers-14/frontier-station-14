@@ -17,93 +17,120 @@
           completed:
             - !type:SnapToGrid { }
           steps:
-            - tag: CarpetBlack
-              doAfter: 1
-              name: black carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-black
+            - material: FloorCarpetBlack # Frontier
+              amount: 1 # Frontier
+              doAfter: 1 # Frontier
+            # - tag: CarpetBlack # Frontier
+            #   doAfter: 1 # Frontier
+            #   name: black carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-black # Frontier
         - to: CurtainsBlue
           completed:
             - !type:SnapToGrid { }
           steps:
-            - tag: CarpetBlue
-              doAfter: 1
-              name: blue carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-blue
+            - material: FloorCarpetBlue # Frontier
+              amount: 1 # Frontier
+              doAfter: 1 # Frontier
+            # - tag: CarpetBlue # Frontier
+            #   doAfter: 1 # Frontier
+            #   name: blue carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-blue # Frontier
         - to: CurtainsCyan
           completed:
             - !type:SnapToGrid { }
           steps:
-            - tag: CarpetCyan
-              doAfter: 1
-              name: cyan carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-cyan
+            - material: FloorCarpetCyan # Frontier
+              amount: 1 # Frontier
+              doAfter: 1 # Frontier
+            # - tag: CarpetCyan # Frontier
+            #   doAfter: 1 # Frontier
+            #   name: cyan carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-cyan # Frontier
         - to: CurtainsGreen
           completed:
             - !type:SnapToGrid { }
           steps:
-            - tag: CarpetGreen
-              doAfter: 1
-              name: green carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-green
+            - material: FloorCarpetGreen # Frontier
+              amount: 1 # Frontier
+              doAfter: 1 # Frontier
+            # - tag: CarpetGreen # Frontier
+            #   doAfter: 1 # Frontier
+            #   name: green carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-green # Frontier
         - to: CurtainsOrange
           completed:
             - !type:SnapToGrid { }
           steps:
-            - tag: CarpetOrange
-              doAfter: 1
-              name: orange carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-orange
+            - material: FloorCarpetOrange # Frontier
+              amount: 1 # Frontier
+              doAfter: 1 # Frontier
+            # - tag: CarpetOrange # Frontier
+            #   doAfter: 1 # Frontier
+            #   name: orange carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-orange # Frontier
         - to: CurtainsPink
           completed:
             - !type:SnapToGrid { }
           steps:
-            - tag: CarpetPink
-              doAfter: 1
-              name: pink carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-pink
+            - material: FloorCarpetPink # Frontier
+              amount: 1 # Frontier
+              doAfter: 1 # Frontier
+            # - tag: CarpetPink # Frontier
+            #   doAfter: 1 # Frontier
+            #   name: pink carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-pink # Frontier
         - to: CurtainsPurple
           completed:
             - !type:SnapToGrid { }
           steps:
-            - tag: CarpetPurple
-              doAfter: 1
-              name: purple carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-purple
+            - material: FloorCarpetPurple # Frontier
+              amount: 1 # Frontier
+              doAfter: 1 # Frontier
+            # - tag: CarpetPurple # Frontier
+            #   doAfter: 1 # Frontier
+            #   name: purple carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-purple # Frontier
         - to: CurtainsRed
           completed:
             - !type:SnapToGrid { }
           steps:
-            - tag: CarpetRed
-              doAfter: 1
-              name: red carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-red
+            - material: FloorCarpetRed # Frontier
+              amount: 1 # Frontier
+              doAfter: 1 # Frontier
+            # - tag: CarpetRed # Frontier
+            #   doAfter: 1 # Frontier
+            #   name: red carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-red # Frontier
         - to: CurtainsWhite
           completed:
             - !type:SnapToGrid { }
           steps:
-            - tag: CarpetWhite
-              doAfter: 1
-              name: white carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-white
-              
+            - material: FloorCarpetWhite # Frontier
+              amount: 1 # Frontier
+              doAfter: 1 # Frontier
+            # - tag: CarpetWhite # Frontier
+            #   doAfter: 1 # Frontier
+            #   name: white carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-white # Frontier
+
     - node: Curtains
       entity: HospitalCurtains
       edges:
@@ -126,7 +153,7 @@
           steps:
             - tool: Cutting
               doAfter: 1
-    
+
     - node: CurtainsBlack
       entity: CurtainsBlack
       edges:
@@ -148,8 +175,8 @@
               amount: 1
           steps:
             - tool: Cutting
-              doAfter: 1    
-              
+              doAfter: 1
+
     - node: CurtainsBlue
       entity: CurtainsBlue
       edges:
@@ -172,7 +199,7 @@
           steps:
             - tool: Cutting
               doAfter: 1
-              
+
     - node: CurtainsCyan
       entity: CurtainsCyan
       edges:
@@ -195,7 +222,7 @@
           steps:
             - tool: Cutting
               doAfter: 1
-              
+
     - node: CurtainsGreen
       entity: CurtainsGreen
       edges:
@@ -218,7 +245,7 @@
           steps:
             - tool: Cutting
               doAfter: 1
-              
+
     - node: CurtainsOrange
       entity: CurtainsOrange
       edges:
@@ -241,7 +268,7 @@
           steps:
             - tool: Cutting
               doAfter: 1
-              
+
     - node: CurtainsPink
       entity: CurtainsPink
       edges:
@@ -264,7 +291,7 @@
           steps:
             - tool: Cutting
               doAfter: 1
-              
+
     - node: CurtainsPurple
       entity: CurtainsPurple
       edges:
@@ -287,7 +314,7 @@
           steps:
             - tool: Cutting
               doAfter: 1
-              
+
     - node: CurtainsRed
       entity: CurtainsRed
       edges:
@@ -310,7 +337,7 @@
           steps:
             - tool: Cutting
               doAfter: 1
-              
+
     - node: CurtainsWhite
       entity: CurtainsWhite
       edges:

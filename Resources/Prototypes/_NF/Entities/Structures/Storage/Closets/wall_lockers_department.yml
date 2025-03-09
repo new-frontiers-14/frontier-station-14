@@ -204,6 +204,32 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
 
+- type: entity  
+  id: LockerWallColorHydroponics
+  categories: [ HideSpawnMenu ] # debloat spawn menu
+  parent: LockerWallColorBase
+  name: botanist wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#5fa31e"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#5fa31e"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#074dd1"
+    - state: door-decal-hydro
+      map: [ decal2 ]
+      color: "#074dd1"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
 ## Generic
 - type: entity
   id: LockerWallColorGeneric

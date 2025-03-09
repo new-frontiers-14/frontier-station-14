@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Events;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Emoting;
 using Content.Shared.Examine;
@@ -18,10 +19,12 @@ using Content.Shared.Sound.Components;
 using Content.Shared.Speech;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
+using Content.Shared.Traits.Assorted;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared._NF.Bed.Sleep; // Frontier
 
 namespace Content.Shared.Bed.Sleep;
 
@@ -63,6 +66,8 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<ForcedSleepingComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<SleepingComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
         SubscribeLocalEvent<SleepingComponent, EmoteAttemptEvent>(OnEmoteAttempt);
+
+        SubscribeLocalEvent<SleepingComponent, BeforeForceSayEvent>(OnChangeForceSay, after: new []{typeof(PainNumbnessSystem)});
     }
 
     private void OnUnbuckleAttempt(Entity<SleepingComponent> ent, ref UnbuckleAttemptEvent args)
@@ -261,6 +266,10 @@ public sealed partial class SleepingSystem : EntitySystem
             return false;
 
         EnsureComp<SleepingComponent>(ent);
+        // Frontier: set auto-wakeup time
+        if (TryComp<AutoWakeUpComponent>(ent, out var autoWakeUp))
+            autoWakeUp.NextWakeUp = _gameTiming.CurTime + autoWakeUp.Length;
+        // End Frontier: auto-wakeup
         return true;
     }
 
@@ -317,6 +326,31 @@ public sealed partial class SleepingSystem : EntitySystem
     {
         args.Cancel();
     }
+
+    private void OnChangeForceSay(Entity<SleepingComponent> ent, ref BeforeForceSayEvent args)
+    {
+        args.Prefix = ent.Comp.ForceSaySleepDataset;
+    }
+
+    // Frontier: auto-wakeup
+    /// <summary>
+    /// Handles auto-wakeup
+    /// </summary>
+    public override void Update(float frameTime)
+    {
+        var query = EntityQueryEnumerator<AutoWakeUpComponent, SleepingComponent>();
+        var curTime = _gameTiming.CurTime;
+        while (query.MoveNext(out var uid, out var wakeUp, out var sleeping))
+        {
+            if (curTime >= wakeUp.NextWakeUp)
+            {
+                Wake((uid, sleeping));
+                _statusEffectsSystem.TryRemoveStatusEffect(uid, "Drowsiness");
+            }
+        }
+    }
+    // End Frontier: auto-wakeup
+
 }
 
 

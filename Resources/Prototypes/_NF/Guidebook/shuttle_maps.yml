@@ -96,6 +96,18 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapCharon
+  name: "ITS Apothecary"
+  description: "Detailed map of a Charon shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: charon
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapChisel
   name: "ICR Chisel"
   description: "Detailed map of a Chisel shuttle."
@@ -404,6 +416,18 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: stasis
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapTide
+  name: "Tide"
+  description: "Detailed map of a Tide shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: tide
     scale: 1.2, 1.2
 
 - type: entity

@@ -102,12 +102,7 @@
 
   - !type:CorridorClutterDunGen
     contents:
-    - id: FloraStalagmite1
-    - id: FloraStalagmite2
-    - id: FloraStalagmite3
-    - id: FloraStalagmite4
-    - id: FloraStalagmite5
-    - id: FloraStalagmite6
+    - id: FloraStalagmite
 
   - !type:BoundaryWallDunGen
 
@@ -125,7 +120,7 @@
       Entrance: LavaBrigEntrance
       EntranceFlank: BaseWindow
       Junction: BaseAirlock
-      WallMounts: NanoTrasenFacilityWallmounts # Frontier: ScienceLabsWalls<NanoTrasenFacilityWallmounts
+      WallMounts: ScienceLabsWalls
       Window: BaseWindow
     tiles:
       FallbackTile: FloorDark
@@ -135,21 +130,18 @@
         - LavaBrig
   layers:
   - !type:PrototypeDunGen
-    proto: Everything # Frontier: PlanetBase<Everything
+    proto: PlanetBase
 
 - type: dungeonConfig
   id: Mineshaft
   data:
     entities:
-      Walls: WallRock # Frontier: enclose the mineshaft in rock
-      CornerWalls: WallRock # Frontier: CornerWalls: WallRock
       Cabling: Catwalk
     spawnGroups:
       CornerClutter: MineshaftClutter
       Entrance: BaseWoodWall
       EntranceFlank: BaseWoodWall
       Junction: BaseWoodSupport
-      WallMounts: NanoTrasenFacilityWallmounts # Frontier:added WallMounts: NanoTrasenFacilityWallmounts
       Window: BaseWoodWall
     tiles:
       FallbackTile: FloorCaveDrought
@@ -159,7 +151,7 @@
         - Mineshaft
   layers:
   - !type:PrototypeDunGen
-    proto: Everything # Frontier: PlanetBase<Everything
+    proto: PlanetBase
 
 - type: dungeonConfig
   id: SnowyLabs
@@ -199,20 +191,20 @@
   id: BaseAirlock
   entries:
   - id: CableApcExtension
-  - id: AirlockGlassDungeon # Frontier: AirlockGlass<AirlockGlassDungeon
+  - id: AirlockGlass
 
 - type: entitySpawnEntry
   id: BaseWindow
   entries:
-  - id: GrilleDungeon # Frontier: GrilleDungeon<GrilleDungeon
-  - id: WindowDungeon # Frontier: Window<WindowDungeon
+  - id: Grille
+  - id: Window
 
 # Lava brig
 - type: entitySpawnEntry
   id: LavaBrigEntrance
   entries:
   - id: CableApcExtension
-  - id: AirlockSecurityGlassDungeon # Frontier: AirlockSecurityGlassLocked<AirlockSecurityGlassDungeon
+  - id: AirlockSecurityGlassLocked
 
 # Mineshaft
 - type: entitySpawnEntry
@@ -270,7 +262,7 @@
   id: SnowyLabsEntrance
   entries:
   - id: CableApcExtension
-  - id: AirlockFreezer # Frontier: AirlockFreezerHydroponicsLocked<AirlockFreezer
+  - id: AirlockFreezerHydroponicsLocked
 
 - type: entitySpawnEntry
   id: SnowyLabsWalls

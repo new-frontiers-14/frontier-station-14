@@ -61,7 +61,7 @@
   category: construction-category-structures
   description: Keeps the air in and the greytide out.
   icon:
-    sprite: Structures/Walls/solid.rsi
+    sprite: _NF/Structures/Walls/solid.rsi # Frontier
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -79,7 +79,7 @@
   category: construction-category-structures
   description: Keeps the air in and the greytide out.
   icon:
-    sprite: Structures/Walls/solid.rsi
+    sprite: _NF/Structures/Walls/solid.rsi # Frontier
     state: rgeneric
   objectType: Structure
   placementMode: SnapgridCenter
@@ -105,11 +105,11 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-# here
+
 - type: construction
   name: wood wall
   id: WoodWall
-  graph: Girder
+  graph: Barricade
   startNode: start
   targetNode: woodWall
   category: construction-category-structures
@@ -387,7 +387,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/window.rsi
+    sprite: _NF/Structures/Windows/window.rsi # Frontier
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -406,7 +406,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/window_diagonal.rsi
+    sprite: _NF/Structures/Windows/window_diagonal.rsi # Frontier
     state: state1
   objectType: Structure
   placementMode: SnapgridCenter
@@ -424,7 +424,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/reinforced_window.rsi
+    sprite: _NF/Structures/Windows/reinforced_window.rsi # Frontier
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -443,7 +443,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/reinforced_window_diagonal.rsi
+    sprite: _NF/Structures/Windows/reinforced_window_diagonal.rsi # Frontier
     state: state1
   objectType: Structure
   placementMode: SnapgridCenter
@@ -461,7 +461,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/tinted_window.rsi
+    sprite: _NF/Structures/Windows/tinted_window.rsi # Frontier
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -517,7 +517,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/plasma_window.rsi
+    sprite: _NF/Structures/Windows/plasma_window.rsi # Frontier
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -536,7 +536,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/reinforced_plasma_window.rsi
+    sprite: _NF/Structures/Windows/reinforced_plasma_window.rsi # Frontier
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -574,7 +574,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/plasma_diagonal.rsi
+    sprite: _NF/Structures/Windows/plasma_diagonal.rsi # Frontier
     state: state1
   objectType: Structure
   placementMode: SnapgridCenter
@@ -592,7 +592,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/reinforced_plasma_diagonal.rsi
+    sprite: _NF/Structures/Windows/reinforced_plasma_diagonal.rsi # Frontier
     state: state1
   objectType: Structure
   placementMode: SnapgridCenter
@@ -700,7 +700,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/uranium_window.rsi
+    sprite: _NF/Structures/Windows/uranium_window.rsi # Frontier
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -719,7 +719,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/reinforced_uranium_window.rsi
+    sprite: _NF/Structures/Windows/reinforced_uranium_window.rsi # Frontier
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -738,7 +738,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/uranium_window_diagonal.rsi
+    sprite: _NF/Structures/Windows/uranium_window_diagonal.rsi # Frontier
     state: state1
   objectType: Structure
   placementMode: SnapgridCenter
@@ -756,7 +756,7 @@
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   icon:
-    sprite: Structures/Windows/reinforced_uranium_diagonal.rsi
+    sprite: _NF/Structures/Windows/reinforced_uranium_diagonal.rsi # Frontier
     state: state1
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1481,7 +1481,7 @@
   startNode: start
   targetNode: groundLight
   category: construction-category-structures
-  description: A ground light fixture. Use light bulbs.
+  description: A ground light fixture. Use light tubes.
   icon:
     sprite: Structures/Lighting/LightPosts/small_light_post.rsi
     state: base

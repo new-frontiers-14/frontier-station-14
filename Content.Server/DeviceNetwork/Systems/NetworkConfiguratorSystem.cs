@@ -18,7 +18,7 @@ using JetBrains.Annotations;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
+using Robust.Shared.Map.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -52,6 +52,8 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
         //Verbs
         SubscribeLocalEvent<NetworkConfiguratorComponent, GetVerbsEvent<UtilityVerb>>(OnAddInteractVerb);
         SubscribeLocalEvent<DeviceNetworkComponent, GetVerbsEvent<AlternativeVerb>>(OnAddAlternativeSaveDeviceVerb);
+        SubscribeLocalEvent<DeviceLinkSinkComponent, GetVerbsEvent<AlternativeVerb>>(OnAddAlternativeSinkVerb);     // Frontier
+        SubscribeLocalEvent<DeviceLinkSourceComponent, GetVerbsEvent<AlternativeVerb>>(OnAddAlternativeSourceVerb); // Frontier
         SubscribeLocalEvent<NetworkConfiguratorComponent, GetVerbsEvent<AlternativeVerb>>(OnAddSwitchModeVerb);
 
         //UI
@@ -66,6 +68,46 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
         SubscribeLocalEvent<NetworkConfiguratorComponent, BoundUserInterfaceCheckRangeEvent>(OnUiRangeCheck);
 
         SubscribeLocalEvent<DeviceListComponent, ComponentRemove>(OnComponentRemoved);
+
+        SubscribeLocalEvent<BeforeSerializationEvent>(OnMapSave);
+    }
+
+    private void OnMapSave(BeforeSerializationEvent ev)
+    {
+        var enumerator = AllEntityQuery<NetworkConfiguratorComponent>();
+        while (enumerator.MoveNext(out var uid, out var conf))
+        {
+            if (!TryComp(conf.ActiveDeviceList, out TransformComponent? listXform))
+                continue;
+
+            if (!ev.MapIds.Contains(listXform.MapID))
+                continue;
+
+            // The linked device list is (probably) being saved. Make sure that the configurator is also being saved
+            // (i.e., not in the hands of a mapper/ghost). In the future, map saving should raise a separate event
+            // containing a set of all entities that are about to be saved, which would make checking this much easier.
+            // This is a shitty bandaid, and will force close the UI during auto-saves.
+            // TODO Map serialization refactor
+            // I'm refactoring it now and I still dont know what to do
+
+            var xform = Transform(uid);
+            if (ev.MapIds.Contains(xform.MapID) && IsSaveable(uid))
+                continue;
+
+            _uiSystem.CloseUi(uid, NetworkConfiguratorUiKey.Configure);
+            DebugTools.AssertNull(conf.ActiveDeviceList);
+        }
+
+        bool IsSaveable(EntityUid uid)
+        {
+            while (uid.IsValid())
+            {
+                if (Prototype(uid)?.MapSavable == false)
+                    return false;
+                uid = Transform(uid).ParentUid;
+            }
+            return true;
+        }
     }
 
     private void OnUiRangeCheck(Entity<NetworkConfiguratorComponent> ent, ref BoundUserInterfaceCheckRangeEvent args)
@@ -392,8 +434,21 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
             return;
         }
 
-        if (configurator is { LinkModeActive: true, ActiveDeviceLink: { } }
-        && (HasComp<DeviceLinkSinkComponent>(args.Target) || HasComp<DeviceLinkSourceComponent>(args.Target)))
+        // Frontier: removed check for DeviceSource/DeviceSink into separate verb functions.
+    }
+
+    /// Frontier: DeviceSource/DeviceSink verbs
+    /// <summary>
+    /// Adds link default alt verb to devices with LinkSource components.
+    /// </summary>
+
+    private void OnAddAlternativeSourceVerb(EntityUid uid, DeviceLinkSourceComponent component, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || !args.Using.HasValue
+            || !TryComp<NetworkConfiguratorComponent>(args.Using.Value, out var configurator))
+            return;
+
+        if (configurator is { LinkModeActive: true, ActiveDeviceLink: { } } && HasComp<DeviceLinkSourceComponent>(args.Target))
         {
             AlternativeVerb verb = new()
             {
@@ -405,6 +460,30 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
             args.Verbs.Add(verb);
         }
     }
+
+    /// <summary>
+    /// Adds link default alt verb to devices with LinkSink components if they aren't a LinkSource (to prevent duplicates).
+    /// </summary>
+    private void OnAddAlternativeSinkVerb(EntityUid uid, DeviceLinkSinkComponent component, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || !args.Using.HasValue
+            || !TryComp<NetworkConfiguratorComponent>(args.Using.Value, out var configurator))
+            return;
+
+        if (configurator is { LinkModeActive: true, ActiveDeviceLink: { } }
+        && HasComp<DeviceLinkSinkComponent>(args.Target) && !HasComp<DeviceLinkSourceComponent>(args.Target))
+        {
+            AlternativeVerb verb = new()
+            {
+                Text = Loc.GetString("network-configurator-link-defaults"),
+                Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/in.svg.192dpi.png")),
+                Act = () => TryLinkDefaults(args.Using.Value, configurator, args.Target, args.User),
+                Impact = LogImpact.Low
+            };
+            args.Verbs.Add(verb);
+        }
+    }
+    /// End Frontier: DeviceSource/DeviceSink verbs
 
     private void OnAddSwitchModeVerb(EntityUid uid, NetworkConfiguratorComponent configurator, GetVerbsEvent<AlternativeVerb> args)
     {
@@ -484,6 +563,9 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
 
         if (!TryComp(targetUid, out DeviceListComponent? list))
             return;
+
+        if (TryComp(configurator.ActiveDeviceList, out DeviceListComponent? oldList))
+            oldList.Configurators.Remove(configuratorUid);
 
         list.Configurators.Add(configuratorUid);
         configurator.ActiveDeviceList = targetUid;
@@ -758,7 +840,7 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
                 {
                     if (query.TryGetComponent(device, out var comp))
                     {
-                        component.Devices[addr] = device;
+                        component.Devices.Add(addr, device);
                         comp.Configurators.Add(uid);
                     }
                 }

@@ -5,10 +5,10 @@ using Content.Server.GameTicking;
 using Content.Server.Interaction;
 using Content.Server.Mind;
 using Content.Server.Popups;
-using Content.Server.Shipyard.Systems;
+using Content.Server._NF.Shipyard.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Climbing.Systems;
-using Content.Shared.CryoSleep;
+using Content.Shared._NF.CryoSleep;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
@@ -30,7 +30,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Content.Server.Ghost;
 
-namespace Content.Server.CryoSleep;
+namespace Content.Server._NF.CryoSleep;
 
 public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 {

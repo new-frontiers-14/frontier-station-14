@@ -12,7 +12,7 @@ using Robust.Shared.IoC;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Timing;
-using Content.Server.Corvax.Respawn;
+using Content.Client._Corvax.Respawn; // Frontier
 
 namespace Content.Client.UserInterface.Systems.Ghost;
 

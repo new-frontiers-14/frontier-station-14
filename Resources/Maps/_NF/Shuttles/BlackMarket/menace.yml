@@ -18,6 +18,8 @@ entities:
     - type: Transform
       pos: -0.48958334,-0.5208333
       parent: invalid
+    - type: BecomesStation
+      id: Menace
     - type: MapGrid
       chunks:
         0,0:
@@ -216,7 +218,7 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: AirlockExternalGlass
+- proto: AirlockExternalGlassPirateLocked
   entities:
   - uid: 8
     components:
@@ -248,7 +250,7 @@ entities:
     - type: Transform
       pos: 0.5,-1.5
       parent: 1
-- proto: AirlockGlassShuttle
+- proto: AirlockGlassShuttleSyndicatePirateLocked
   entities:
   - uid: 19
     components:
@@ -1092,6 +1094,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-2.5
       parent: 1
+- proto: HandLabeler
+  entities:
+  - uid: 243
+    components:
+    - type: Transform
+      pos: 2.6809242,-0.52966756
+      parent: 1
 - proto: LockerWallMaterialsFuelPlasmaFilled
   entities:
   - uid: 77
@@ -1105,6 +1114,13 @@ entities:
     components:
     - type: Transform
       pos: 1.1555657,3.5919085
+      parent: 1
+- proto: NFHolopadShipAntag
+  entities:
+  - uid: 146
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -1162,12 +1178,8 @@ entities:
     - type: Transform
       pos: 6.5,1.5
       parent: 1
-    - type: FuelGenerator
-      on: False
     - type: MaterialStorageMagnetPickup
       magnetEnabled: True
-    - type: Physics
-      bodyType: Static
 - proto: Poweredlight
   entities:
   - uid: 155
@@ -1711,7 +1723,7 @@ entities:
     - type: Transform
       pos: -2.5,-1.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 149
     components:

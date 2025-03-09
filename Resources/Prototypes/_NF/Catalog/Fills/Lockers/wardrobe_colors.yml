@@ -1,0 +1,142 @@
+- type: entity
+  id: NFWardrobeMixedFilled
+  suffix: Filled
+  parent: WardrobeMixed
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: NFSalvageWardrobe
+        rolls: !type:RangeNumberSelector
+          range: 3, 7
+
+- type: entityTable
+  id: NFSalvageWardrobe
+  table: !type:GroupSelector
+    children:
+    - id: ClothingShoesColorBlack
+    - id: ClothingShoesColorBrown
+    - id: ClothingShoesColorWhite
+    - id: ClothingOuterCoatBomber
+    - id: ClothingOuterCoatGentle
+    - id: ClothingUniformRandomShorts
+    - id: ClothingUniformRandomArmless
+    - id: ClothingUniformRandomStandard
+    - id: ClothingUniformRandomBra
+    - id: ClothingUniformRandomShirt
+    - id: ClothingBeltStorageWaistbag
+    - id: ClothingBeltBandolier
+    - id: ClothingBeltSuspendersRed
+    - id: ClothingBeltSuspendersBlack
+    - id: ClothingEyesGlassesGar
+    - id: ClothingEyesGlassesGarOrange
+    - id: ClothingEyesGlassesGarGiga
+    - id: ClothingEyesGlasses
+    - id: ClothingEyesGlassesSunglasses
+    - id: ClothingEyesEyepatch
+    - id: ClothingEyesBlindfold
+    - id: ClothingHandsGlovesColorPurple
+    - id: ClothingHandsGlovesColorRed
+    - id: ClothingHandsGlovesColorBlack
+    - id: ClothingHandsGlovesColorBlue
+    - id: ClothingHandsGlovesColorBrown
+    - id: ClothingHandsGlovesColorGray
+    - id: ClothingHandsGlovesColorGreen
+    - id: ClothingHandsGlovesColorLightBrown
+    - id: ClothingHandsGlovesColorOrange
+    - id: ClothingHandsGlovesColorWhite
+    - id: ClothingHandsGlovesColorYellowBudget
+    - id: ClothingHandsGlovesPowerglove
+    - id: ClothingHandsGlovesRobohands
+    - id: ClothingHeadHatAnimalCat
+    - id: ClothingHeadHatAnimalCatBrown
+    - id: ClothingHeadHatAnimalCatBlack
+    - id: ClothingHeadHatAnimalHeadslime
+    - id: ClothingHeadHatAnimalMonkey
+    - id: ClothingHeadBandBlack
+    - id: ClothingHeadBandBlue
+    - id: ClothingHeadBandGrey
+    - id: ClothingHeadBandBrown
+    - id: ClothingHeadHatBeaverHat
+    - id: ClothingHeadHatBeret
+    - id: ClothingHeadHatCasa
+    - id: ClothingHeadHatBowlerHat
+    - id: ClothingHeadHatCardborg
+    - id: ClothingHeadHatFedoraBrown
+    - id: ClothingHeadHatFedoraGrey
+    - id: ClothingHeadHatFez
+    - id: ClothingHeadHatWitch1
+    - id: ClothingHeadHatPaper
+    - id: ClothingHeadHatTophat
+    - id: ClothingHeadHatUshanka
+    - id: ClothingHeadHatWitch
+    - id: ClothingHeadHatTrucker
+    - id: ClothingHeadFishCap
+    - id: ClothingHeadSafari
+    - id: ClothingHeadHatHoodGoliathCloak
+    - id: ClothingHeadHatBluesoft
+    - id: ClothingHeadHatBluesoftFlipped
+    - id: ClothingHeadHatCorpsoft
+    - id: ClothingHeadHatCorpsoftFlipped
+    - id: ClothingHeadHatGreensoft
+    - id: ClothingHeadHatGreensoftFlipped
+    - id: ClothingHeadHatGreysoft
+    - id: ClothingHeadHatGreysoftFlipped
+    - id: ClothingHeadHatOrangesoft
+    - id: ClothingHeadHatOrangesoftFlipped
+    - id: ClothingHeadHatPurplesoft
+    - id: ClothingHeadHatPurplesoftFlipped
+    - id: ClothingMaskRat
+    - id: ClothingMaskFox
+    - id: ClothingMaskBee
+    - id: ClothingMaskBear
+    - id: ClothingMaskRaven
+    - id: ClothingMaskJackal
+    - id: ClothingMaskBat
+    - id: ClothingNeckCloakHerald
+    - id: ClothingNeckCloakTrans
+    - id: ClothingNeckHeadphones
+    - id: ClothingNeckBling
+    - id: ClothingNeckTieRed
+    - id: ClothingNeckTieSci
+    - id: ClothingOuterCoatBomber
+    - id: ClothingOuterCoatGentle
+    - id: ClothingOuterCoatJensen
+    - id: ClothingOuterDameDane
+    - id: ClothingOuterHoodieBlack
+    - id: ClothingOuterHoodieGrey
+    - id: ClothingOuterCardborg
+    - id: ClothingOuterGhostSheet
+    - id: ClothingShoesBootsWork
+    - id: ClothingShoesBootsLaceup
+    - id: ClothingShoesColorBlack
+    - id: ClothingShoesColorBlue
+    - id: ClothingShoesColorBrown
+    - id: ClothingShoesColorGreen
+    - id: ClothingShoesColorOrange
+    - id: ClothingShoesColorPurple
+    - id: ClothingShoesColorRed
+    - id: ClothingShoesColorWhite
+    - id: ClothingShoesColorYellow
+    - id: ClothingShoesFlippers
+    - id: ClothingShoesLeather
+    - id: ClothingShoesSlippers
+    - id: ClothingShoeSlippersDuck
+    - id: ClothingShoesTourist
+    - id: ClothingShoesDameDane
+    - id: ClothingUnderSocksBee
+    - id: ClothingUnderSocksCoder
+    - id: ClothingUniformJumpsuitKimono
+    - id: ClothingUniformOveralls
+    - id: ClothingUniformJumpsuitSafari
+    - id: ClothingUniformJumpsuitDameDane
+    - id: ClothingUniformJumpsuitCossack
+      weight: 0.01
+    - id: ClothingNeckCloakAdmin
+      weight: 0.00001
+    - id: ClothingHeadHatDogEars
+      weight: 0.00001
+    - id: ClothingHeadHatCatEars
+      weight: 0.00001
+    - id: ClothingShoesBootsMagBlinding
+      weight: 0.00001

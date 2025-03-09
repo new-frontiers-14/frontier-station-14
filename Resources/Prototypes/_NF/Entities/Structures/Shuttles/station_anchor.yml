@@ -1,0 +1,42 @@
+﻿- type: entity
+  id: MiniStationAnchor
+  parent: [StationAnchor, BaseMachinePowered, ConstructibleMachine]
+  name: mini station anchor
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: PowerCharge
+    activePower: 500
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: StaticPrice
+    price: 300
+  - type: Machine
+    board: MiniStationAnchorCircuitboard
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 665 # Should have the same mass as the station anchor
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: Sprite
+    sprite: _NF/Structures/Machines/mini_station_anchor.rsi
+    layers:
+    - state: station_anchor
+      map: ["base"]
+    - state: station_anchor_unlit
+      shader: unshaded
+      map: ["unlit"]
+
+- type: entity
+  parent: MiniStationAnchor
+  id: MiniStationAnchorOff
+  suffix: Off
+  components:
+  - type: StationAnchor
+    switchedOn: false

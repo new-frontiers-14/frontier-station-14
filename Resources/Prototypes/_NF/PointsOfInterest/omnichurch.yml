@@ -7,17 +7,15 @@
 # Discord: ???
 
 # Notes:
-# 
+#
 - type: pointOfInterest
   id: Omnichurch
+  parent: BasePOI
   name: "Omnichurch Beacon"
   minimumDistance: 2200
   maximumDistance: 4900
   gridPath: /Maps/_NF/POI/beacon.yml
   addComponents:
-  - type: IFF
-    color: "#ffa600"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true

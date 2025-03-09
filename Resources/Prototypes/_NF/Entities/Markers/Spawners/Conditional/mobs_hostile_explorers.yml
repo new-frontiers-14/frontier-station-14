@@ -1,0 +1,24 @@
+
+- type: entity
+  name: explorer boss spawner
+  id: SpawnMobExplorerBoss
+  parent: MarkerBase
+  suffix: AI, Hostile, Boss
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _NF/Clothing/OuterClothing/Hardsuits/maxim_prototype.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
+      state: off-equipped-HELMET
+    - sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
+      state: inhand-left
+    - sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
+      state: inhand-left-blade
+  - type: ConditionalSpawner
+    prototypes:
+    - MobExplorerBoss

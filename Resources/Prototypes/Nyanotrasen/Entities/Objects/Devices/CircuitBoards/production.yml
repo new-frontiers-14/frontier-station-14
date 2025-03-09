@@ -35,24 +35,6 @@
           defaultPrototype: Beaker
 
 - type: entity
-  id: ScienceTechFabCircuitboard
-  parent: BaseMachineCircuitboard
-  name: science techfab machine board
-  description: A machine printed circuit board for a science techfab
-  components:
-    - type: Sprite
-      state: science
-    - type: MachineBoard
-      prototype: ScienceTechFab
-      requirements: # Frontier
-        MatterBin: 2 # Frontier stackRequirements<requirements
-        Manipulator: 2 # Frontier stackRequirements<requirements
-      tagRequirements:
-        GlassBeaker:
-          amount: 2
-          defaultPrototype: Beaker
-
-- type: entity
   id: DeepFryerMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: deep fryer machine board

@@ -124,7 +124,7 @@
           types:
             Radiation: -3
           groups:
-            Brute: 0.5
+            Brute: 1.5
 
 - type: reagent
   id: Bicaridine
@@ -190,8 +190,6 @@
               # Brute: -4 # Frontier
               # Burn: -6 # Frontier
               # Toxin: -4 # Frontier
-        - !type:ModifyBloodLevel # Frontier
-          amount: 5 # Frontier
 
 - type: reagent
   id: Doxarubixadone
@@ -566,14 +564,29 @@
         min: 4
   metabolisms:
     Medicine:
+      metabolismRate: 0.1
       effects:
       - !type:HealthChange
         damage:
           types:
-            Cellular: -1
-            Radiation: 1
-      - !type:ChemVomit
-        probability: 0.05
+            Cellular: -0.3
+            Radiation: 0.15
+            Caustic: 0.15
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 11
+        damage:
+          types:
+            Radiation: 0.2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Arithrazine
+          min: 1
+        damage:
+          types:
+            Caustic: 0.3
 
 - type: reagent
   id: PolypyryliumOligomers
@@ -979,6 +992,21 @@
         - !type:ReagentThreshold
           min: 30
         probability: 0.02
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Arithrazine
+          min: 1
+        probability: 0.1
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Arithrazine
+          min: 1
+        type: Local
+        visualType: Medium
+        messages: [ "generic-reagent-effect-nauseous" ]
+        probability: 0.2
 
 - type: reagent
   id: Lacerinol
@@ -1081,6 +1109,15 @@
       methods: [ Touch ]
       effects:
       - !type:ExtinguishReaction
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        ignoreResistances: false
+        damage:
+          types:
+            Holy: 0.5
   plantMetabolism:
   - !type:PlantAdjustWater
     amount: 1
@@ -1166,7 +1203,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 12
-          
+
 - type: reagent
   id: Opporozidone #Name based of an altered version of the startreck chem "Opporozine"
   name: reagent-name-opporozidone
@@ -1238,7 +1275,7 @@
             Heat: -3.0
             Shock: -3.0
             Cold: -3.0 # Frontier
-            Caustic: -1.0
+            Caustic: -3.0 # Frontier
 
 - type: reagent
   id : Mannitol # currently this is just a way to create psicodine

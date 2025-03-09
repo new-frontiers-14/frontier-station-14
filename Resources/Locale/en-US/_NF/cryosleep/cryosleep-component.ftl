@@ -11,7 +11,7 @@ cryo-wakeup-window-accept-button = Accept
 cryo-wakeup-window-deny-button = Cancel
 cryo-wakeup-window-rules = You are going to try to return from your cryosleep! You do not know anything that happened since the moment you went to sleep. Accept this and continue?
 cryo-wakeup-result-occupied = The cryopod is occupied! Try waiting a bit.
-cryo-wakeup-result-no-cryopod = The cryopod went missing! Uh oh.
+cryo-wakeup-result-no-cryopod = No cryopods were available to return your body to.
 cryo-wakeup-result-no-body = You do not have a cryosleeping body!
 cryo-wakeup-result-disabled = Returning from cryosleep is disabled on this server.
 

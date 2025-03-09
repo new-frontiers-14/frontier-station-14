@@ -13,8 +13,9 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Content.Server.Warps;
-using Content.Server.Station.Systems;
+using Content.Server._NF.Station.Systems;
+using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Server._NF.PublicTransit;
 
@@ -26,7 +27,7 @@ public sealed class PublicTransitSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -280,39 +281,35 @@ public sealed class PublicTransitSystem : EntitySystem
         }
 
         // Spawn the bus onto a dummy map
-        var dummyMap = _mapManager.CreateMap();
-        var busMap = _cfgManager.GetCVar(NFCCVars.PublicTransitBusMap);
-        if (_loader.TryLoad(dummyMap, busMap, out var shuttleUids))
+        var dummyMapUid = _map.CreateMap(out var dummyMap);
+        var busMap = new ResPath(_cfgManager.GetCVar(NFCCVars.PublicTransitBusMap));
+        if (_loader.TryLoadGrid(dummyMap, busMap, out var shuttleEnt))
         {
-            var shuttleComp = Comp<ShuttleComponent>(shuttleUids[0]);
+            var shuttle = shuttleEnt.Value;
+            var shuttleComp = Comp<ShuttleComponent>(shuttle);
             // Here we are making sure that the shuttle has the TransitShuttle comp onto it, in case of dynamically changing the bus grid
-            var transitComp = EnsureComp<TransitShuttleComponent>(shuttleUids[0]);
+            var transitComp = EnsureComp<TransitShuttleComponent>(shuttle);
 
             //We run our bus station function to try to get a valid station to FTL to. If for some reason, there are no bus stops, we will instead just delete the shuttle
-            if (TryGetNextStation(out var station) && station is { Valid : true } destination)
+            if (TryGetNextStation(out var station) && station is { Valid: true } destination)
             {
                 //we set up a default in case the second time we call it fails for some reason
                 transitComp.NextStation = destination;
-                _shuttles.FTLToDock(shuttleUids[0], shuttleComp, destination, hyperspaceTime: 5f);
+                _shuttles.FTLToDock(shuttle, shuttleComp, destination, hyperspaceTime: 5f);
                 transitComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(NFCCVars.PublicTransitWaitTime));
 
                 //since the initial cached value of the next station is actually the one we are 'starting' from, we need to run the
                 //bus stop list code one more time so that our first trip isnt just Frontier - Frontier
-                if (TryGetNextStation(out var firstStop) && firstStop is { Valid : true } firstDestination)
+                if (TryGetNextStation(out var firstStop) && firstStop is { Valid: true } firstDestination)
                     transitComp.NextStation = firstDestination;
             }
             else
-            {
-                foreach (var shuttle in shuttleUids)
-                {
-                    QueueDel(shuttle);
-                }
-            }
+                QueueDel(shuttle);
         }
 
         // the FTL sequence takes a few seconds to warm up and send the grid, so we give the temp dummy map
         // some buffer time before calling a self-delete
-        var timer = AddComp<TimedDespawnComponent>(_mapManager.GetMapEntityId(dummyMap));
+        var timer = AddComp<TimedDespawnComponent>(dummyMapUid);
         timer.Lifetime = 15f;
     }
 }

@@ -12,7 +12,7 @@ using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
-using Content.Shared.Shipyard.Components;
+using Content.Shared._NF.Shipyard.Components; // Frontier
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Shared.Audio.Systems;

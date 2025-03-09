@@ -35,7 +35,8 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: request
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: cargo_sale
     - map: ["computerLayerKeys"]
       state: tech_key
   - type: PointLight
@@ -62,7 +63,7 @@
   suffix: VeryHigh
   components:
   - type: MarketModifier
-    mod: 1.75
+    mod: 1.50
 
 - type: entity
   parent: ComputerPalletConsoleNFMarket
@@ -70,7 +71,7 @@
   suffix: High
   components:
   - type: MarketModifier
-    mod: 1.50
+    mod: 1.25
 
 - type: entity
   parent: ComputerPalletConsoleNFMarket
@@ -175,6 +176,17 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: cargo_market
+    - map: ["computerLayerKeys"]
+      state: tech_key
   - type: MarketConsole
   - type: ActivatableUI
     key: enum.MarketConsoleUiKey.Default
@@ -197,6 +209,15 @@
   components:
   - type: MarketModifier
     mod: 4
+
+- type: entity
+  name: cargo market computer
+  parent: ComputerMarketConsoleNFBase
+  id: ComputerMarketConsoleNFNormal
+  suffix: Normal
+  components:
+  - type: MarketModifier
+    mod: 6
 
 - type: entity
   name: cargo market computer
@@ -313,6 +334,65 @@
     - type: SalvageExpeditionConsole
       debug: true
 
+- type: entity
+  parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]
+  id: GasSaleConsole
+  name: gas sale console
+  description: Sells gas pumped into a linked gas sale port/point.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: gas_sale_point
+    - map: ["computerLayerKeys"]
+      state: atmos_key
+  - type: GasSaleConsole
+  - type: ActivatableUI
+    key: enum.GasSaleConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.GasSaleConsoleUiKey.Key:
+        type: GasSaleConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: Null # FIXME
+  - type: MarketModifier
+    mod: 1
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleVeryHigh
+  components:
+  - type: MarketModifier
+    mod: 1.5
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleHigh
+  components:
+  - type: MarketModifier
+    mod: 1.25
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleLow
+  components:
+  - type: MarketModifier
+    mod: 0.75
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleVeryLow
+  components:
+  - type: MarketModifier
+    mod: 0.5
+
 # Station Traffic Controller consoles
 - type: entity
   id: BaseComputerTraffic
@@ -355,7 +435,7 @@
 - type: entity
   parent: BaseComputerTrafficLocal
   id: ComputerShuttleFrontierOutpostLocal
-  name: frontier outpost traffic console
+  name: Frontier Outpost traffic console
   description: Monitors the traffic around Frontier Outpost.
   suffix: Local
   components:
@@ -365,7 +445,7 @@
 - type: entity
   parent: BaseComputerTrafficRemote
   id: ComputerShuttleFrontierOutpostRemote
-  name: frontier outpost traffic console
+  name: Frontier Outpost traffic console
   description: Monitors the traffic around Frontier Outpost.
   suffix: Remote
   components:
@@ -375,7 +455,7 @@
 - type: entity
   parent: BaseComputerTrafficLocal
   id: ComputerShuttleTradeOutpostLocal
-  name: trade outpost traffic console
+  name: Trade Outpost traffic console
   suffix: Local
   description: Monitors the traffic around the Trade Outpost.
   components:
@@ -385,7 +465,7 @@
 - type: entity
   parent: BaseComputerTrafficRemote
   id: ComputerShuttleTradeOutpostRemote
-  name: trade outpost traffic console
+  name: Trade Outpost traffic console
   suffix: Remote
   description: Monitors the traffic around the Trade Outpost.
   components:

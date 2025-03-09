@@ -25,6 +25,7 @@ entities:
     components:
     - type: MetaData
     - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -85,11 +86,6 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: IFF
@@ -98,8 +94,6 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: DecalGrid
       chunkCollection:
@@ -1094,7 +1088,7 @@ entities:
     - type: Transform
       pos: 8.5,5.5
       parent: 1
-- proto: AirlockHatch
+- proto: AirlockHatchPirateLocked
   entities:
   - uid: 36
     components:
@@ -1166,7 +1160,7 @@ entities:
     - type: Transform
       pos: 11.5,22.5
       parent: 1
-- proto: AirlockShuttleSyndicate
+- proto: AirlockShuttleSyndicatePirateLocked
   entities:
   - uid: 130
     components:
@@ -4955,31 +4949,11 @@ entities:
     - type: Transform
       pos: -0.5,16.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        ShipyardConsole-targetId: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
   - uid: 1959
     components:
     - type: Transform
       pos: -3.5,16.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        ShipyardConsole-targetId: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: ComputerTabletopIFFPOI
   entities:
   - uid: 1920
@@ -5015,18 +4989,6 @@ entities:
     - type: Transform
       pos: 5.5,2.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-    - type: Physics
-      canCollide: False
 - proto: ContrabandPalletPirate
   entities:
   - uid: 229
@@ -5233,7 +5195,7 @@ entities:
   - uid: 2057
     components:
     - type: Transform
-      pos: -0.37870407,2.5181322
+      pos: -0.345032,2.4970655
       parent: 1
 - proto: DisposalBend
   entities:
@@ -5650,28 +5612,16 @@ entities:
     - type: Transform
       pos: -3.015983,26.135101
       parent: 1
-    - type: ItemSlots
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot {}
   - uid: 1113
     components:
     - type: Transform
       pos: -3.3076496,25.978851
       parent: 1
-    - type: ItemSlots
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot {}
   - uid: 1116
     components:
     - type: Transform
       pos: 2.508083,11.4275875
       parent: 1
-    - type: ItemSlots
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot {}
 - proto: DrinkPremiumRumBottleFull
   entities:
   - uid: 1600
@@ -5899,9 +5849,6 @@ entities:
     - type: Transform
       pos: 7.5,28.5
       parent: 1
-    - type: Door
-      secondsUntilStateChange: -7306.7144
-      state: Opening
 - proto: FenceWoodSmallCorner
   entities:
   - uid: 1763
@@ -7021,6 +6968,30 @@ entities:
     - type: Transform
       pos: 2.4660487,-4.2594047
       parent: 1
+- proto: FuelPlasma
+  entities:
+  - uid: 668
+    components:
+    - type: Transform
+      pos: -2.5992656,13.75297
+      parent: 1
+  - uid: 669
+    components:
+    - type: Transform
+      pos: -2.3700988,13.648731
+      parent: 1
+- proto: FuelUranium
+  entities:
+  - uid: 670
+    components:
+    - type: Transform
+      pos: -1.3180155,13.648731
+      parent: 1
+  - uid: 672
+    components:
+    - type: Transform
+      pos: -1.5471821,13.75297
+      parent: 1
 - proto: GasMixerOnFlipped
   entities:
   - uid: 901
@@ -7837,13 +7808,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,5.5
       parent: 1
-- proto: SyndicateKitchenElectricRange
-  entities:
-  - uid: 774
-    components:
-    - type: Transform
-      pos: 0.5,7.5
-      parent: 1
 - proto: KitchenKnife
   entities:
   - uid: 234
@@ -7984,6 +7948,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5104294,-0.96410155
+      parent: 1
+- proto: NFPillCanisterMannitol
+  entities:
+  - uid: 1911
+    components:
+    - type: Transform
+      pos: -1.4936128,-1.4300365
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -8179,10 +8150,6 @@ entities:
     - type: Transform
       pos: 9.5,17.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PortableScrubber
   entities:
   - uid: 9
@@ -9208,33 +9175,6 @@ entities:
     - type: Transform
       pos: -6.5,5.5
       parent: 1
-- proto: SheetPlasma
-  entities:
-  - uid: 668
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.610289,13.663282
-      parent: 1
-  - uid: 669
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.3394558,13.652866
-      parent: 1
-- proto: SheetUranium
-  entities:
-  - uid: 670
-    components:
-    - type: Transform
-      pos: -1.7080126,13.6587715
-      parent: 1
-  - uid: 672
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.2977891,13.652866
-      parent: 1
 - proto: Shovel
   entities:
   - uid: 1126
@@ -9756,6 +9696,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.4595704,36.201065
+      parent: 1
+- proto: SyndicateKitchenElectricRange
+  entities:
+  - uid: 774
+    components:
+    - type: Transform
+      pos: 0.5,7.5
       parent: 1
 - proto: SyndicateMicrowave
   entities:

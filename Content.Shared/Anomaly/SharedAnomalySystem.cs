@@ -4,6 +4,7 @@ using Content.Shared.Anomaly.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -34,25 +35,32 @@ public abstract class SharedAnomalySystem : EntitySystem
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly SharedAnomalyCoreSystem _anomalyCore = default!; // Frontier
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<AnomalyComponent, MeleeThrowOnHitStartEvent>(OnAnomalyThrowStart);
-        SubscribeLocalEvent<AnomalyComponent, MeleeThrowOnHitEndEvent>(OnAnomalyThrowEnd);
+        SubscribeLocalEvent<AnomalyComponent, LandEvent>(OnLand);
     }
 
     private void OnAnomalyThrowStart(Entity<AnomalyComponent> ent, ref MeleeThrowOnHitStartEvent args)
     {
-        if (!TryComp<CorePoweredThrowerComponent>(args.Used, out var corePowered) || !TryComp<PhysicsComponent>(ent, out var body))
+        if (!TryComp<CorePoweredThrowerComponent>(args.Weapon, out var corePowered) || !TryComp<PhysicsComponent>(ent, out var body))
             return;
+        if (HasComp<InnerBodyAnomalyComponent>(ent.Owner)) // Frontier
+            return; // Frontier
+
+        // anomalies are static by default, so we have set them to dynamic to be throwable
         _physics.SetBodyType(ent, BodyType.Dynamic, body: body);
         ChangeAnomalyStability(ent, Random.NextFloat(corePowered.StabilityPerThrow.X, corePowered.StabilityPerThrow.Y), ent.Comp);
     }
 
-    private void OnAnomalyThrowEnd(Entity<AnomalyComponent> ent, ref MeleeThrowOnHitEndEvent args)
+    private void OnLand(Entity<AnomalyComponent> ent, ref LandEvent args)
     {
+        // revert back to static
         _physics.SetBodyType(ent, BodyType.Static);
     }
 
@@ -189,6 +197,13 @@ public abstract class SharedAnomalySystem : EntitySystem
         {
             var core = Spawn(supercritical ? component.CorePrototype : component.CoreInertPrototype, Transform(uid).Coordinates);
             _transform.PlaceNextTo(core, uid);
+
+            // Frontier: set value to points retrieved
+            if (TryComp<AnomalyCoreComponent>(core, out var coreComp))
+            {
+                _anomalyCore.SetValueFromPointsEarned(core, coreComp, component.PointsEarned);
+            }
+            // End Frontier
         }
 
         if (component.DeleteEntity)
@@ -358,8 +373,11 @@ public abstract class SharedAnomalySystem : EntitySystem
         var amount = (int) (MathHelper.Lerp(settings.MinAmount, settings.MaxAmount, severity * stability * powerModifier) + 0.5f);
 
         var localpos = xform.Coordinates.Position;
-        var tilerefs = grid.GetLocalTilesIntersecting(
-            new Box2(localpos + new Vector2(-settings.MaxRange, -settings.MaxRange), localpos + new Vector2(settings.MaxRange, settings.MaxRange))).ToList();
+        var tilerefs = _map.GetLocalTilesIntersecting(
+            xform.GridUid.Value,
+            grid,
+            new Box2(localpos + new Vector2(-settings.MaxRange, -settings.MaxRange), localpos + new Vector2(settings.MaxRange, settings.MaxRange)))
+            .ToList();
 
         if (tilerefs.Count == 0)
             return null;

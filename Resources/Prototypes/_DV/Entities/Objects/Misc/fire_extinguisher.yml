@@ -1,0 +1,32 @@
+- type: entity
+  name: bluespace fire extinguisher
+  parent: FireExtinguisher
+  id: FireExtinguisherBluespace
+  description: An experimental fire extinguisher that uses bluespace technology to gradually refill itself. The faint blue glow is only slightly disconcerting.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Misc/fire_extinguisher_bluespace.rsi
+    layers:
+    - state: fire_extinguisher_closed
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: Item
+    sprite: _DV/Objects/Misc/fire_extinguisher_bluespace.rsi
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 200
+        reagents:
+        - ReagentId: Water
+          Quantity: 200
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 80
+      Bluespace: 20
+  - type: SolutionRegeneration
+    solution: spray
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 10
+    duration: 10

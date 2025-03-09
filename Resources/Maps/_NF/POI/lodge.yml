@@ -25,6 +25,7 @@ entities:
     components:
     - type: MetaData
     - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -93,18 +94,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -7766,102 +7760,36 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,12.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
   - uid: 2518
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,12.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
   - uid: 2519
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 25.5,-1.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
   - uid: 2520
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -24.5,-1.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
   - uid: 2521
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 19.5,20.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
   - uid: 2522
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -18.5,20.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
 - proto: ConveyorBelt
   entities:
   - uid: 701
@@ -14304,6 +14232,13 @@ entities:
     - type: Transform
       pos: 6.535731,10.07715
       parent: 1
+- proto: NFHolopadExpeditionLodge
+  entities:
+  - uid: 2576
+    components:
+    - type: Transform
+      pos: 6.5,8.5
+      parent: 1
 - proto: NFSignDock
   entities:
   - uid: 360
@@ -14913,8 +14848,6 @@ entities:
     - type: Transform
       pos: -2.5,11.5
       parent: 1
-- proto: RandomPosterContrabandDeadDrop
-  entities:
   - uid: 2510
     components:
     - type: Transform

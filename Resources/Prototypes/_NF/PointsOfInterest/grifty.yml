@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub:
 # Discord: ???
 
 # Maintainer Info
@@ -10,18 +10,16 @@
 # Down at your local saloon
 - type: pointOfInterest
   id: Grifty
+  parent: BasePOI
   name: "Grifty's Gas n Grub"
   minimumDistance: 3250
   maximumDistance: 5600
   spawnGroup: Scrapyard
   gridPath: /Maps/_NF/POI/grifty.yml
   addComponents:
-  - type: IFF
-    color: "#ffa600"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: Grifty

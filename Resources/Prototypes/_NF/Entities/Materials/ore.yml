@@ -2,7 +2,8 @@
 - type: entity
   parent: OreBase
   id: ScrapOre
-  name: scrap ore
+  name: scrap chunks
+  description: Various bits of previously used machinery. Needs to be sorted or processed to use.
   suffix: Full
   components:
   - type: Stack
@@ -46,6 +47,14 @@
   components:
   - type: Stack
     count: 3
+
+- type: entity
+  parent: ScrapOre
+  id: ScrapOre20
+  suffix: 20
+  components:
+  - type: Stack
+    count: 20
 
 - type: material
   id: RawScrap

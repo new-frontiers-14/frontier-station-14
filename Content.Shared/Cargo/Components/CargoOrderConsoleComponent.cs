@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components;
 
 namespace Content.Shared.Cargo.Components;
 

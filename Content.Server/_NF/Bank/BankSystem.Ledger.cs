@@ -1,8 +1,8 @@
 using System.Text;
 using Content.Shared._NF.Bank;
 using Content.Shared._NF.Bank.BUI;
-using Content.Shared.Bank;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.Components;
 
 namespace Content.Server._NF.Bank;
 
@@ -40,19 +40,6 @@ public sealed partial class BankSystem : SharedBankSystem
         public List<(LedgerEntryType Type, int Value)> Expenses = new();
     }
 
-    static string GetAccountName(SectorBankAccount account)
-    {
-        switch (account)
-        {
-            case SectorBankAccount.Frontier:
-                return "Frontier Outpost";
-            case SectorBankAccount.Nfsd:
-                return "NFSD";
-            default:
-                return account.ToString();
-        }
-    }
-
     public string GetLedgerPrintout()
     {
         if (!TryComp(_sectorService.GetServiceEntity(), out SectorBankComponent? ledger))
@@ -87,7 +74,7 @@ public sealed partial class BankSystem : SharedBankSystem
         // Build our printouts
         foreach (var (account, accountInfo) in accountDict)
         {
-            builder.AppendLine(Loc.GetString("ledger-printout-account", ("account", GetAccountName(account))));
+            builder.AppendLine(Loc.GetString("ledger-printout-account", ("account", Loc.GetString($"ledger-tab-{account}"))));
             builder.AppendLine(Loc.GetString("ledger-printout-income-header"));
             foreach (var income in accountInfo.Income)
             {

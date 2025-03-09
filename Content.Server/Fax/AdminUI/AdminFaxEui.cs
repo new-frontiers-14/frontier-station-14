@@ -58,7 +58,7 @@ public sealed class AdminFaxEui : BaseEui
             {
                 var printout = new FaxPrintout(sendData.Content, sendData.Title, null, null, sendData.StampState,
                         new() { new StampDisplayInfo { StampedName = sendData.From, StampedColor = sendData.StampColor } },
-                        locked: sendData.Locked);
+                        locked: sendData.Locked, stampProtected: sendData.StampProtected); // Frontier: add StampProtected
                 _faxSystem.Receive(_entityManager.GetEntity(sendData.Target), printout);
                 break;
             }

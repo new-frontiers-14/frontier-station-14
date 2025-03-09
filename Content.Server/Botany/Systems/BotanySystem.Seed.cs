@@ -10,11 +10,11 @@ using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._NF.Contraband.Systems; // Frontier
 
 namespace Content.Server.Botany.Systems;
 
@@ -25,11 +25,10 @@ public sealed partial class BotanySystem : EntitySystem
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+    [Dependency] private readonly ContrabandTurnInSystem _contraband = default!; // Frontier
 
     public override void Initialize()
     {
@@ -84,7 +83,7 @@ public sealed partial class BotanySystem : EntitySystem
         if (!TryGetSeed(component, out var seed))
             return;
 
-        using (args.PushGroup(nameof(SeedComponent)))
+        using (args.PushGroup(nameof(SeedComponent), 1))
         {
             var name = Loc.GetString(seed.DisplayName);
             args.PushMarkup(Loc.GetString($"seed-component-description", ("seedName", name)));
@@ -101,6 +100,7 @@ public sealed partial class BotanySystem : EntitySystem
     public EntityUid SpawnSeedPacket(SeedData proto, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
     {
         var seed = SpawnAtPosition(proto.PacketPrototype, coords); // Frontier: Spawn<SpawnAtPosition
+        _contraband.ClearContrabandValue(seed); // Frontier
         var seedComp = EnsureComp<SeedComponent>(seed);
         seedComp.Seed = proto;
         seedComp.HealthOverride = healthOverride;
@@ -160,6 +160,7 @@ public sealed partial class BotanySystem : EntitySystem
             var product = _robustRandom.Pick(proto.ProductPrototypes);
 
             var entity = SpawnAtPosition(product, position); // Frontier: Spawn<SpawnAtPosition
+            _contraband.ClearContrabandValue(entity); // Frontier
             _randomHelper.RandomOffset(entity, 0.25f);
             products.Add(entity);
 

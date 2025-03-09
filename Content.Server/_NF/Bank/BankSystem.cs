@@ -1,8 +1,8 @@
 using System.Threading;
 using Content.Server.Preferences.Managers;
 using Content.Server.GameTicking;
-using Content.Shared.Bank;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared.Preferences;
 using Robust.Shared.Player;
 using System.Diagnostics.CodeAnalysis;

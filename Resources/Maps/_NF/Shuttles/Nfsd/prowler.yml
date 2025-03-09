@@ -932,8 +932,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-2.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelRight
   entities:
   - uid: 60
@@ -942,8 +940,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-1.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoorOpen
   entities:
   - uid: 165
@@ -970,6 +966,13 @@ entities:
     components:
     - type: Transform
       pos: 4.5,7.5
+      parent: 1
+- proto: BoxBodyBag
+  entities:
+  - uid: 655
+    components:
+    - type: Transform
+      pos: 1.578125,-0.39549732
       parent: 1
 - proto: ButtonFrameCautionSecurity
   entities:
@@ -2724,7 +2727,7 @@ entities:
       parent: 1
 - proto: LockerNfsdEvidence
   entities:
-  - uid: 346
+  - uid: 426
     components:
     - type: Transform
       pos: 6.5,1.5
@@ -2747,6 +2750,14 @@ entities:
     components:
     - type: Transform
       pos: 9.5,-3.5
+      parent: 1
+- proto: LockerWallColorMedicalFilled
+  entities:
+  - uid: 654
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-0.5
       parent: 1
 - proto: LockerWallEVAColorNfsdFilled
   entities:
@@ -2789,6 +2800,20 @@ entities:
     - type: Transform
       pos: 3.5,-4.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 355
+    components:
+    - type: Transform
+      pos: 2.5,7.5
+      parent: 1
+- proto: NFPrisonerClosetWallOrangeFilled
+  entities:
+  - uid: 346
+    components:
+    - type: Transform
+      pos: 8.5,2.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 370
@@ -2809,13 +2834,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: PaperBin10
-  entities:
-  - uid: 355
-    components:
-    - type: Transform
-      pos: 2.5,7.5
-      parent: 1
 - proto: PlastitaniumWindow
   entities:
   - uid: 356
@@ -2878,7 +2896,7 @@ entities:
     - type: Transform
       pos: 2.5,4.5
       parent: 1
-- proto: PoweredlightColoredRed
+- proto: PoweredlightRed
   entities:
   - uid: 375
     components:
@@ -3045,7 +3063,7 @@ entities:
   - uid: 168
     components:
     - type: Transform
-      pos: 8.5,2.5
+      pos: 9.5,2.5
       parent: 1
   - uid: 169
     components:
@@ -3241,6 +3259,25 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,3.5
       parent: 1
+- proto: StructureGunRackNfsd
+  entities:
+  - uid: 611
+    components:
+    - type: Transform
+      pos: 9.5,-1.5
+      parent: 1
+  - uid: 612
+    components:
+    - type: Transform
+      pos: 10.5,-1.5
+      parent: 1
+- proto: StructurePistolRackNfsd
+  entities:
+  - uid: 593
+    components:
+    - type: Transform
+      pos: 8.5,-1.5
+      parent: 1
 - proto: SubstationWallBasic
   entities:
   - uid: 345
@@ -3301,7 +3338,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraSecurity
       nameSet: True
-      id: Armoury
+      id: Armory
   - uid: 419
     components:
     - type: Transform
@@ -3369,11 +3406,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,8.5
-      parent: 1
-  - uid: 426
-    components:
-    - type: Transform
-      pos: 2.5,7.5
       parent: 1
 - proto: TableReinforcedGlass
   entities:
@@ -4323,14 +4355,7 @@ entities:
     - type: Transform
       pos: 1.5,0.5
       parent: 1
-- proto: WardrobePrisonFilled
-  entities:
-  - uid: 607
-    components:
-    - type: Transform
-      pos: 5.5,1.5
-      parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 608
     components:
@@ -4357,25 +4382,6 @@ entities:
     components:
     - type: Transform
       pos: 6.6953573,-3.539895
-      parent: 1
-- proto: StructureGunRackNfsd
-  entities:
-  - uid: 611
-    components:
-    - type: Transform
-      pos: 9.5,-1.5
-      parent: 1
-  - uid: 612
-    components:
-    - type: Transform
-      pos: 10.5,-1.5
-      parent: 1
-- proto: StructurePistolRackNfsd
-  entities:
-  - uid: 593
-    components:
-    - type: Transform
-      pos: 8.5,-1.5
       parent: 1
 - proto: WindoorSecureBrigLocked
   entities:

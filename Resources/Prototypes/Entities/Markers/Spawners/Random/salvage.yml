@@ -5,6 +5,7 @@
   name: Salvage Material Crate Spawner
   id: SalvageMaterialCrateSpawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier: NFSalvageMaterialCrateSpawner
   components:
     - type: Sprite
       layers:
@@ -13,7 +14,7 @@
           state: icon
     - type: RandomSpawner
       rarePrototypes:
-#        - SalvageHumanCorpse # Frontier
+        - SalvageHumanCorpse
         - CrateMaterialPlasteel
         - CrateMaterialWood
         - CrateMaterialPlastic
@@ -23,7 +24,7 @@
         - CrateServiceJanitorialSupplies
         - CrateHydroponicsSeedsMedicinal
         - CrateEmergencyInternals
-#        - CrateFoodMRE # Frontier
+        - CrateFoodMRE
         - CrateMaterialTextiles
         - CrateMedicalSupplies
         - CrateEngineeringCableBulk
@@ -62,6 +63,7 @@
   id: SalvageMobSpawner
   parent: MarkerBase
   suffix: 25
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: Sprite
       layers:
@@ -91,6 +93,7 @@
   id: SpaceTickSpawner
   parent: MarkerBase
   suffix: 100
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: Sprite
       layers:
@@ -113,12 +116,13 @@
       sprite: Mobs/Animals/bear.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobBearSpaceSalvage
+    - NFMobBearSpace # Frontier MobBearSpaceSalvage<NFMobBearSpace
 
 - type: entity
   id: SalvageMobSpawner75
   parent: SalvageMobSpawner
   suffix: 75
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: RandomSpawner
     rarePrototypes:
@@ -150,7 +154,7 @@
       sprite: Mobs/Animals/kangaroo.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobKangarooSpaceSalvage
+    - NFMobKangarooSpace # Frontier MobKangarooSpaceSalvage<NFMobKangarooSpace
 
 - type: entity
   name: Salvage Space Spider Spawner
@@ -164,7 +168,7 @@
       sprite: Mobs/Animals/spacespider.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobSpiderSpaceSalvage
+    - NFMobSpiderSpace # Frontier MobSpiderSpaceSalvage<NFMobSpiderSpace
 
 - type: entity
   name: Salvage Space Cobra Spawner
@@ -178,13 +182,14 @@
         sprite: Mobs/Animals/spacecobra.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobCobraSpaceSalvage
+    - NFMobCobraSpace # Frontier MobCobraSpaceSalvage<NFMobCobraSpace
 
 - type: entity
   name: Salvage Flesh Spawner
   id: SalvageFleshSpawner
   parent: SalvageMobSpawner
   suffix: 100
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: Sprite
       layers:

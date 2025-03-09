@@ -32,6 +32,7 @@ public sealed class SignalTimerSystem : EntitySystem
         SubscribeLocalEvent<SignalTimerComponent, AfterActivatableUIOpenEvent>(OnAfterActivatableUIOpen);
 
         SubscribeLocalEvent<SignalTimerComponent, SignalTimerTextChangedMessage>(OnTextChangedMessage);
+        SubscribeLocalEvent<SignalTimerComponent, SignalTimerRepeatToggled>(OnRepeatChangedMessage); // Frontier: Repeat toggle event subscribe
         SubscribeLocalEvent<SignalTimerComponent, SignalTimerDelayChangedMessage>(OnDelayChangedMessage);
         SubscribeLocalEvent<SignalTimerComponent, SignalTimerStartMessage>(OnTimerStartMessage);
         SubscribeLocalEvent<SignalTimerComponent, SignalReceivedEvent>(OnSignalReceived);
@@ -53,6 +54,7 @@ public sealed class SignalTimerSystem : EntitySystem
             _ui.SetUiState(uid, SignalTimerUiKey.Key, new SignalTimerBoundUserInterfaceState(component.Label,
                 TimeSpan.FromSeconds(component.Delay).Minutes.ToString("D2"),
                 TimeSpan.FromSeconds(component.Delay).Seconds.ToString("D2"),
+                component.Repeat, // Frontier: Repeat value
                 component.CanEditLabel,
                 time,
                 active != null,
@@ -75,11 +77,19 @@ public sealed class SignalTimerSystem : EntitySystem
             _ui.SetUiState(uid, SignalTimerUiKey.Key, new SignalTimerBoundUserInterfaceState(signalTimer.Label,
                 TimeSpan.FromSeconds(signalTimer.Delay).Minutes.ToString("D2"),
                 TimeSpan.FromSeconds(signalTimer.Delay).Seconds.ToString("D2"),
+                signalTimer.Repeat, // Frontier: Repeat value
                 signalTimer.CanEditLabel,
                 TimeSpan.Zero,
                 false,
                 true));
         }
+
+        // Frontier: Start new timer if repeat is on and not set to 0 seconds
+        if (signalTimer.Repeat && signalTimer.Delay > 0)
+        {
+            OnStartTimer(uid, signalTimer);
+        }
+        // End Frontier
     }
 
     public override void Update(float frameTime)
@@ -152,9 +162,22 @@ public sealed class SignalTimerSystem : EntitySystem
         if (!IsMessageValid(uid, args))
             return;
 
-        component.Delay = args.Delay.TotalSeconds;
+        component.Delay = Math.Min(args.Delay.TotalSeconds, component.MaxDuration);
         _appearanceSystem.SetData(uid, TextScreenVisuals.TargetTime, component.Delay);
     }
+
+    // Frontier: Repeat changed message
+    /// <summary>
+    ///     Called by <see cref="SignalTimerRepeatChangedMessage"/>.
+    /// </summary>
+    private void OnRepeatChangedMessage(EntityUid uid, SignalTimerComponent component, SignalTimerRepeatToggled args)
+    {
+        if (!IsMessageValid(uid, args))
+            return;
+
+        component.Repeat = args.Repeat;
+    }
+    // End Frontier
 
     /// <summary>
     ///     Called by <see cref="SignalTimerStartMessage"/> to instantiate an <see cref="ActiveSignalTimerComponent"/>,

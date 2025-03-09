@@ -128,3 +128,23 @@
   impactFlash:
     sprite: _NF/Effects/wizardbeams.rsi
     state: lightning-hit-01
+
+- type: entity # For blood cult cat
+  parent: BaseBullet
+  id: BulletEldritchHand
+  name: eldritch hand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StaminaDamageOnCollide
+    damage: 100
+  - type: Projectile
+    damage:
+      types:
+        Asphyxiation: 0
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Effects/bloodcultprojectiles.rsi
+    layers:
+    - state: hand
+  - type: Ammo
+    muzzleFlash: null

@@ -37,3 +37,16 @@
       # prototype: ComputerShipyard
     # - type: ComputerTabletopBoard # Frontier
       # prototype: ComputerTabletopShipyard # Frontier
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerWithdrawBankATMComputerCircuitboard
+  name: withdraw only atm computer board
+  description: A computer printed circuit board for a withdraw only atm computer.
+  components:
+  - type: Sprite
+    state: cpu_command
+  - type: ComputerBoard
+    prototype: ComputerWithdrawBankATM
+  - type: ComputerWallmountBoard # Frontier
+    prototype: ComputerWallmountWithdrawBankATM # Frontier

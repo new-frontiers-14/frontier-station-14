@@ -324,10 +324,10 @@
   id: HealingToolbox
   name: healing toolbox
   description: A powerful toolbox imbued with robust energy. It can heal your wounds and fill you with murderous intent.
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/healing_toolbox.rsi
+    sprite: _NF/Objects/Specific/Medical/healing_toolbox.rsi # Frontier: _NF prefix
     state: icon
   - type: Healing
     damageContainers:
@@ -1036,7 +1036,7 @@
   id: SyringeStimulants
   components:
   - type: Label
-    currentLabel: reagent-name-hyperzine
+    currentLabel: reagent-name-stimulants
   - type: SolutionContainerManager
     solutions:
       injector:

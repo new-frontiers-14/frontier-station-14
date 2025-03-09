@@ -1185,7 +1185,6 @@ entities:
       parent: 1
     - type: Physics
       canCollide: False
-      bodyType: Static
     - type: Fixtures
       fixtures: {}
 - proto: BenchSofaCorpLeft
@@ -1195,8 +1194,6 @@ entities:
     - type: Transform
       pos: -1.5,3.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpMiddle
   entities:
   - uid: 533
@@ -1205,8 +1202,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,2.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpRight
   entities:
   - uid: 614
@@ -1215,8 +1210,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,1.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoor
   entities:
   - uid: 110
@@ -4309,20 +4302,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-8.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 699
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,8.5
       parent: 1
-- proto: Lamp
-  entities:
-  - uid: 853
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 7.521994,8.151886
-      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: LockerCaptainFilled
   entities:
   - uid: 241
@@ -4382,6 +4371,10 @@ entities:
           showEnts: False
           occludes: True
           ent: 374
+        item_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: MopItem
   entities:
   - uid: 369
@@ -4396,6 +4389,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.4935539,-0.73429143
+      parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 489
+    components:
+    - type: Transform
+      pos: 7.5,7.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -4453,14 +4453,6 @@ entities:
     - type: Transform
       pos: 1.5,-5.5
       parent: 1
-- proto: PaperCaptainsThoughts
-  entities:
-  - uid: 489
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 7.615744,7.386261
-      parent: 1
 - proto: PaperCargoInvoice
   entities:
   - uid: 513
@@ -4490,11 +4482,11 @@ entities:
       parent: 1
 - proto: PenCap
   entities:
-  - uid: 839
+  - uid: 183
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 7.740744,7.526886
+      pos: 7.826565,8.205877
       parent: 1
 - proto: PinpointerUniversal
   entities:
@@ -5364,12 +5356,6 @@ entities:
       parent: 1
 - proto: TableReinforced
   entities:
-  - uid: 183
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 7.5,7.5
-      parent: 1
   - uid: 385
     components:
     - type: Transform
@@ -6472,7 +6458,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,5.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 454
     components:

@@ -44,7 +44,7 @@ public sealed partial class BorgChassisComponent : Component
     /// <summary>
     /// How many modules can be installed in this borg
     /// </summary>
-    [DataField("maxModules"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField("maxModules"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField] // Frontier: add AutoNetworkedField
     public int MaxModules = 3;
 
     /// <summary>
@@ -89,5 +89,18 @@ public enum BorgVisuals : byte
 [Serializable, NetSerializable]
 public enum BorgVisualLayers : byte
 {
-    Light
+    /// <summary>
+    /// Main borg body layer.
+    /// </summary>
+    Body,
+
+    /// <summary>
+    /// Layer for the borg's mind state.
+    /// </summary>
+    Light,
+
+    /// <summary>
+    /// Layer for the borg flashlight status.
+    /// </summary>
+    LightStatus,
 }

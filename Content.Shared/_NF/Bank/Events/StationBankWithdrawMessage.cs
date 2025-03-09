@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Bank.Events;
+namespace Content.Shared._NF.Bank.Events;
 
 /// <summary>
 /// Raised on a client bank withdrawl

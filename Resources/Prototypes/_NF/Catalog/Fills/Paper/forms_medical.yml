@@ -20,12 +20,15 @@
     - id: PaperWrittenMedicalFormPrescription
     - id: PaperWrittenMedicalFormHealthInsurance
     - id: PaperWrittenMedicalFormServiceInvoice
+    - id: PaperWrittenMedicalFormReceiptInvoice
+    - id: PaperWrittenMedicalFormRelease
     - id: Paper
       prob: 0.5
     - id: Paper
       prob: 0.5
   - type: StaticPrice
     price: 100
+    vendPrice: 500
 
 # Forms
 - type: entity # Loosely based on form made by Scratchie (Nova Howe) for Formal Complaint
@@ -36,15 +39,14 @@
   components:
   - type: Paper
     content: |2
-      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
-      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Medical Patient Record[/head]
 
       [head=3]Patient Information[/head]
           [bold]Name:[/bold] 
           [bold]Species:[/bold] 
-          [bold]Gender:[/bold] 
-          [bold]Occupation:[/bold] 
+          [bold]Occupation:[/bold]
 
       [head=3]Responder Information[/head]
           [bold]Name:[/bold] 
@@ -53,21 +55,35 @@
 
       [head=3]Sustained Injuries[/head]
           [bold]Brute Injuries:[/bold]
-          \[  ] Blunt     \[  ] Slash     \[  ] Piercing
+          Blunt: 0
+          Slash: 0
+          Piercing: 0
 
           [bold]Burn Injuries:[/bold]
-          \[  ] Heat     \[  ] Shock     \[  ] Cold     \[  ] Caustic
+          Heat: 0
+          Shock: 0
+          Cold: 0
+          Caustic: 0
 
           [bold]Toxin Injuries:[/bold]
-          \[  ] Poison     \[  ] Radiation
+          Poison: 0
+          Radiation: 0
+
+          [bold]Genetic Injuries:[/bold]
+          Cellular: 0
 
           [bold]Asphyxiation Injuries:[/bold]
-          \[  ] Bloodloss     \[  ] Airloss
+          Bloodloss: 0
+          Airloss: 0
 
       [head=3]Administered Treatment[/head]
           [bold]Applied Topicals:[/bold]
-          \[  ] Bruise pack     \[  ] Ointment     \[  ] Gauze     \[  ] Blood pack
-          \[  ] Sutures     \[  ] Regenerative mesh
+          Bruise packs: 0
+          Ointment tubes: 0
+          Gauze: 0
+          Blood packs: 0
+          Sutures: 0
+          Regenerative mesh: 0
 
           [bold]Injected Chemicals:[/bold]
           [bullet/] Chemical, dosage: XX u
@@ -92,8 +108,7 @@
       [head=3]Patient Information[/head]
           [bold]Name:[/bold] 
           [bold]Species:[/bold] 
-          [bold]Gender:[/bold] 
-          [bold]Position Title:[/bold] 
+          [bold]Occupation:[/bold] 
           [bold]Vessel IFF:[/bold] 
 
       [head=3]Prescription[/head]
@@ -114,14 +129,13 @@
   components:
   - type: Paper
     content: |2
-      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
-      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Health Insurance Contract[/head]
 
       [head=3]Policy Holder Information[/head]
-          [bold]Name:[/bold] 
-          [bold]Species:[/bold] 
-          [bold]Gender:[/bold] 
+          [bold]Name:[/bold]
+          [bold]Species:[/bold]
           [bold]Occupation:[/bold] 
           [bold]Vessel IFF:[/bold] 
 
@@ -133,12 +147,13 @@
 
           [bold]Additional Coverage:[/bold]
           \[  ] Towing: Coverage up to $10,000. Small shuttles only. ($2,000 premium)
+          \[  ] Towing: Coverage up to $20,000. Small and medium shuttles only. ($4,000 premium)
 
       [head=3]Total Premium[/head]
           [bold]$XX,XXX[/bold]
 
 
-      [color=#AAAAAA]This Form is void without the signatures of borth Parties and the stamp of a medical specialist.[/color]
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and the stamp of a medical specialist.[/color]
 
 - type: entity
   id: PaperWrittenMedicalFormServiceInvoice
@@ -148,14 +163,13 @@
   components:
   - type: Paper
     content: |2
-      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
-      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Medical Service Invoice[/head]
 
       [head=3]Patient Information[/head]
-            [bold]Name:[/bold] 
-            [bold]Species:[/bold] 
-            [bold]Gender:[/bold] 
+            [bold]Name:[/bold]
+            [bold]Species:[/bold]
             [bold]Occupation:[/bold] 
 
       [head=3]Responder Information[/head]
@@ -178,3 +192,68 @@
 
 
       [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist.[/color]
+            
+- type: entity
+  id: PaperWrittenMedicalFormReceiptInvoice
+  name: medical dispatch payment
+  categories: [ HideSpawnMenu ]
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+      [color=#33ccff]◥[bold]N[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
+      [color=#33ccff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Medical Dispatch Payment[/head]
+
+      [head=3]Contractor Information[/head]
+            [bold]Name:[/bold] 
+            [bold]Species:[/bold] 
+            [bold]Occupation:[/bold] 
+
+      [head=3]Description of Services Provided[/head]
+
+      [head=3]Service Value[/head]
+          Medical Bounty Delivery: $0
+          Material Delivery: $0
+          Medical Services: $0
+          Other: $0
+      
+      [bold]Total Value: $XXX,XXX[/bold]
+      
+      [color=#AAAAAA]This Form is void without the signature and stamp of the Director of Care. This form does not constitute a contract. Compensation for services provided is at the discretion of the Director of Care.[/color]
+
+- type: entity
+  id: PaperWrittenMedicalFormRelease
+  name: medical release form
+  categories: [ HideSpawnMenu ]
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+      [color=#33ccff]◥[bold]N[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
+      [color=#33ccff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Medical Release Form[/head]
+
+      [head=3]Patient Information[/head]
+            [bold]Name:[/bold] 
+            [bold]Species:[/bold] 
+            [bold]Occupation:[/bold] 
+
+      [head=3]Responder Information[/head]
+            [bold]Name:[/bold] 
+            [bold]Vessel IFF:[/bold] 
+            [bold]Shift Time:[/bold] 
+
+      [head=3]Services Provided[/head]
+
+
+
+      [head=3]Notes[/head]
+      
+
+
+      [head=3]I, the undersigned, agree that the services listed above are accurate and consent to release.[/head]
+
+
+
+      [color=#AAAAAA]This Form is only acknowledged with the signature and stamp of the Director of Care. This form does not constitute a contract. Compensation for services provided is at the discretion of the Director of Care.[/color]

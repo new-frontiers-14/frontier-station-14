@@ -1,0 +1,34 @@
+- type: entity
+  name: mercenary boss spawner
+  id: SpawnMobMercenaryCaptain
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#d3bf86"
+    - sprite: Clothing/OuterClothing/Armor/bulletproof.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/gassecurity.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/security.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Belt/militarywebbing.rsi
+      state: equipped-BELT
+    - sprite: Clothing/Neck/mantles/qmmantle.rsi
+      state: equipped-NECK
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMercenaryCaptain

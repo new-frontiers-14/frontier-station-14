@@ -4,19 +4,21 @@
   desc: salvage-biome-mod-shadow
   biome: Shadow
 
+# Dungeons
+#  For now just simple 1-dungeon setups
 - type: salvageDungeonMod
-  id: CaveFactory
-  proto: CaveFactory
+  id: NFCaveFactory
   desc: salvage-dungeon-mod-cave-factory
+  proto: NFCaveFactory
   biomes:
     - Caves
     - Grasslands
     - Shadow
 
 - type: salvageDungeonMod
-  id: MedSci
-  proto: MedSci
+  id: NFMedSci
   desc: salvage-dungeon-mod-med-sci
+  proto: NFMedSci
   biomes:
     - Caves
     - Grasslands
@@ -24,9 +26,9 @@
     - Shadow
 
 - type: salvageDungeonMod
-  id: FactoryDorms
-  proto: FactoryDorms
+  id: NFFactoryDorms
   desc: salvage-dungeon-mod-factory-dorms
+  proto: NFFactoryDorms
   biomes:
     - Caves
     - Grasslands
@@ -34,17 +36,17 @@
     - Shadow
 
 - type: salvageDungeonMod
-  id: LavaMercenary
-  proto: LavaMercenary
+  id: NFLavaMercenary
   desc: salvage-dungeon-mod-lava-mercenary
+  proto: NFLavaMercenary
   biomes:
     - Lava
     - Shadow
 
 - type: salvageDungeonMod
-  id: VirologyLab
-  proto: VirologyLab
+  id: NFVirologyLab
   desc: salvage-dungeon-mod-virology-lab
+  proto: NFVirologyLab
   biomes:
     - Caves
     - Grasslands
@@ -53,15 +55,51 @@
     - Shadow
 
 - type: salvageDungeonMod
-  id: SalvageOutpost
-  proto: SalvageOutpost
+  id: NFSalvageOutpost
   desc: salvage-dungeon-mod-salvage-outpost
+  proto: NFSalvageOutpost
   biomes:
     - Caves
     - Grasslands
     - Lava
     - Snow
     - Shadow
+
+- type: salvageDungeonMod
+  id: NFExperiment
+  desc: salvage-dungeon-mod-experiment
+  proto: NFExperiment
+  biomes:
+    #- LowDesert
+    - Grasslands
+
+- type: salvageDungeonMod
+  id: NFLavaBrig
+  desc: salvage-dungeon-mod-lava-brig
+  proto: NFLavaBrig
+  biomes:
+    - Lava
+
+- type: salvageDungeonMod
+  id: NFMineshaft
+  desc: salvage-dungeon-mod-mineshaft
+  proto: NFMineshaft
+  biomes:
+    - Caves
+
+- type: salvageDungeonMod
+  id: NFSnowyLabs
+  desc: salvage-dungeon-mod-snowy-labs
+  proto: NFSnowyLabs
+  biomes:
+    - Snow
+
+- type: salvageDungeonMod
+  id: NFHaunted
+  desc: salvage-dungeon-mod-haunted
+  proto: NFHaunted
+  biomes:
+    - Caves
 
 # Time mods -> at least 1 required
 # Standard time, no description, no need to show.
@@ -111,35 +149,35 @@
     - 0 # nitrous oxide
     - 0 # frezon
 
-- type: salvageAirMod
-  id: Mix2
-  cost: 1
-  desc: salvage-air-mod-2
-  gases:
-    - 21.824779 # oxygen
-    - 72.10312 # nitrogen
-    - 0 # carbon dioxide
-    - 0 # plasma
-    - 0 # tritium
-    - 0 # water vapor
-    - 0 # miasma
-    - 10 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Mix2
+  # cost: 1
+  # desc: salvage-air-mod-2
+  # gases:
+    # - 21.824779 # oxygen
+    # - 72.10312 # nitrogen
+    # - 0 # carbon dioxide
+    # - 0 # plasma
+    # - 0 # tritium
+    # - 0 # water vapor
+    # - 0 # miasma
+    # - 10 # nitrous oxide
+    # - 0 # frezon
 
-- type: salvageAirMod
-  id: Mix3
-  cost: 1
-  desc: salvage-air-mod-3
-  gases:
-    - 21.824779 # oxygen
-    - 72.10312 # nitrogen
-    - 0 # carbon dioxide
-    - 0 # plasma
-    - 0 # tritium
-    - 10 # water vapor
-    - 0 # miasma
-    - 0 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Mix3
+  # cost: 1
+  # desc: salvage-air-mod-3
+  # gases:
+    # - 21.824779 # oxygen
+    # - 72.10312 # nitrogen
+    # - 0 # carbon dioxide
+    # - 0 # plasma
+    # - 0 # tritium
+    # - 10 # water vapor
+    # - 0 # miasma
+    # - 0 # nitrous oxide
+    # - 0 # frezon
 
 - type: salvageAirMod
   id: Mix4
@@ -171,65 +209,65 @@
     - 0 # nitrous oxide
     - 0 # frezon
 
-- type: salvageAirMod
-  id: Mix6
-  cost: 2
-  desc: salvage-air-mod-6
-  gases:
-    - 21.824779 # oxygen
-    - 79.10312 # nitrogen
-    - 0 # carbon dioxide
-    - 5 # plasma
-    - 0 # tritium
-    - 0 # water vapor
-    - 0 # miasma
-    - 0 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Mix6
+  # cost: 2
+  # desc: salvage-air-mod-6
+  # gases:
+    # - 21.824779 # oxygen
+    # - 79.10312 # nitrogen
+    # - 0 # carbon dioxide
+    # - 5 # plasma
+    # - 0 # tritium
+    # - 0 # water vapor
+    # - 0 # miasma
+    # - 0 # nitrous oxide
+    # - 0 # frezon
 
-- type: salvageAirMod
-  id: Mix7
-  cost: 2
-  desc: salvage-air-mod-7
-  gases:
-    - 21.824779 # oxygen
-    - 57.10312 # nitrogen
-    - 0 # carbon dioxide
-    - 5 # plasma
-    - 0 # tritium
-    - 0 # water vapor
-    - 15 # miasma
-    - 5 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Mix7
+  # cost: 2
+  # desc: salvage-air-mod-7
+  # gases:
+    # - 21.824779 # oxygen
+    # - 57.10312 # nitrogen
+    # - 0 # carbon dioxide
+    # - 5 # plasma
+    # - 0 # tritium
+    # - 0 # water vapor
+    # - 15 # miasma
+    # - 5 # nitrous oxide
+    # - 0 # frezon
 
-- type: salvageAirMod
-  id: Mix8
-  cost: 2
-  desc: salvage-air-mod-8
-  gases:
-    - 21.824779 # oxygen
-    - 57.10312 # nitrogen
-    - 0 # carbon dioxide
-    - 0 # plasma
-    - 0 # tritium
-    - 15 # water vapor
-    - 5 # miasma
-    - 5 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Mix8
+  # cost: 2
+  # desc: salvage-air-mod-8
+  # gases:
+    # - 21.824779 # oxygen
+    # - 57.10312 # nitrogen
+    # - 0 # carbon dioxide
+    # - 0 # plasma
+    # - 0 # tritium
+    # - 15 # water vapor
+    # - 5 # miasma
+    # - 5 # nitrous oxide
+    # - 0 # frezon
 
-- type: salvageAirMod
-  id: Mix9
-  cost: 2
-  desc: salvage-air-mod-9
-  gases:
-    - 21.824779 # oxygen
-    - 57.10312 # nitrogen
-    - 15 # carbon dioxide
-    - 5 # plasma
-    - 0 # tritium
-    - 0 # water vapor
-    - 0 # miasma
-    - 5 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Mix9
+  # cost: 2
+  # desc: salvage-air-mod-9
+  # gases:
+    # - 21.824779 # oxygen
+    # - 57.10312 # nitrogen
+    # - 15 # carbon dioxide
+    # - 5 # plasma
+    # - 0 # tritium
+    # - 0 # water vapor
+    # - 0 # miasma
+    # - 5 # nitrous oxide
+    # - 0 # frezon
 
 - type: salvageAirMod
   id: Mix10
@@ -246,20 +284,20 @@
     - 0 # nitrous oxide
     - 0 # frezon
 
-- type: salvageAirMod
-  id: Mix11
-  cost: 3
-  desc: salvage-air-mod-11
-  gases:
-    - 31.824779 # oxygen
-    - 0 # nitrogen
-    - 67.10312 # carbon dioxide
-    - 5 # plasma
-    - 0 # tritium
-    - 0 # water vapor
-    - 0 # miasma
-    - 0 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Mix11
+  # cost: 3
+  # desc: salvage-air-mod-11
+  # gases:
+    # - 31.824779 # oxygen
+    # - 0 # nitrogen
+    # - 67.10312 # carbon dioxide
+    # - 5 # plasma
+    # - 0 # tritium
+    # - 0 # water vapor
+    # - 0 # miasma
+    # - 0 # nitrous oxide
+    # - 0 # frezon
 
 - type: salvageAirMod
   id: Mix12
@@ -291,20 +329,20 @@
     - 0 # nitrous oxide
     - 0 # frezon
 
-- type: salvageAirMod
-  id: Mix14
-  cost: 4
-  desc: salvage-air-mod-14
-  gases:
-    - 0 # oxygen
-    - 0 # nitrogen
-    - 0 # carbon dioxide
-    - 0 # plasma
-    - 0 # tritium
-    - 0 # water vapor
-    - 0 # miasma
-    - 103.927899 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Mix14
+  # cost: 4
+  # desc: salvage-air-mod-14
+  # gases:
+    # - 0 # oxygen
+    # - 0 # nitrogen
+    # - 0 # carbon dioxide
+    # - 0 # plasma
+    # - 0 # tritium
+    # - 0 # water vapor
+    # - 0 # miasma
+    # - 103.927899 # nitrous oxide
+    # - 0 # frezon
 
 - type: salvageAirMod
   id: Mix15
@@ -321,122 +359,122 @@
     - 0 # nitrous oxide
     - 0 # frezon
 
-- type: salvageAirMod
-  id: Mix16
-  cost: 4
-  desc: salvage-air-mod-16
-  gases:
-    - 0 # oxygen
-    - 0 # nitrogen
-    - 34.642633 # carbon dioxide
-    - 0 # plasma
-    - 0 # tritium
-    - 0 # water vapor
-    - 34.642633 # miasma
-    - 34.642633 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Mix16
+  # cost: 4
+  # desc: salvage-air-mod-16
+  # gases:
+    # - 0 # oxygen
+    # - 0 # nitrogen
+    # - 34.642633 # carbon dioxide
+    # - 0 # plasma
+    # - 0 # tritium
+    # - 0 # water vapor
+    # - 34.642633 # miasma
+    # - 34.642633 # nitrous oxide
+    # - 0 # frezon
 
-- type: salvageAirMod
-  id: Mix17
-  cost: 4
-  desc: salvage-air-mod-17
-  gases:
-    - 0 # oxygen
-    - 0 # nitrogen
-    - 0 # carbon dioxide
-    - 0 # plasma
-    - 0 # tritium
-    - 34.642633 # water vapor
-    - 34.642633 # miasma
-    - 34.642633 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Mix17
+  # cost: 4
+  # desc: salvage-air-mod-17
+  # gases:
+    # - 0 # oxygen
+    # - 0 # nitrogen
+    # - 0 # carbon dioxide
+    # - 0 # plasma
+    # - 0 # tritium
+    # - 34.642633 # water vapor
+    # - 34.642633 # miasma
+    # - 34.642633 # nitrous oxide
+    # - 0 # frezon
 
-- type: salvageAirMod
-  id: Mix18
-  cost: 4
-  desc: salvage-air-mod-18
-  gases:
-    - 0 # oxygen
-    - 0 # nitrogen
-    - 17.321316 # carbon dioxide
-    - 0 # plasma
-    - 0 # tritium
-    - 34.642633 # water vapor
-    - 17.321316 # miasma
-    - 34.642633 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Mix18
+  # cost: 4
+  # desc: salvage-air-mod-18
+  # gases:
+    # - 0 # oxygen
+    # - 0 # nitrogen
+    # - 17.321316 # carbon dioxide
+    # - 0 # plasma
+    # - 0 # tritium
+    # - 34.642633 # water vapor
+    # - 17.321316 # miasma
+    # - 34.642633 # nitrous oxide
+    # - 0 # frezon
 
-- type: salvageAirMod
-  id: Unknown1
-  cost: 5
-  desc: salvage-air-mod-unknown
-  gases:
-    - 5 # oxygen
-    - 38.642633 # nitrogen
-    - 7.321316 # carbon dioxide
-    - 5 # plasma
-    - 0 # tritium
-    - 1 # water vapor
-    - 12.321316 # miasma
-    - 34.642633 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Unknown1
+  # cost: 5
+  # desc: salvage-air-mod-unknown
+  # gases:
+    # - 5 # oxygen
+    # - 38.642633 # nitrogen
+    # - 7.321316 # carbon dioxide
+    # - 5 # plasma
+    # - 0 # tritium
+    # - 1 # water vapor
+    # - 12.321316 # miasma
+    # - 34.642633 # nitrous oxide
+    # - 0 # frezon
 
-- type: salvageAirMod
-  id: Unknown2
-  cost: 5
-  desc: salvage-air-mod-unknown
-  gases:
-    - 0 # oxygen
-    - 32.642633 # nitrogen
-    - 17.321316 # carbon dioxide
-    - 17.321316 # plasma
-    - 0.3 # tritium
-    - 1 # water vapor
-    - 0 # miasma
-    - 34.642633 # nitrous oxide
-    - 0.1 # frezon
+# - type: salvageAirMod
+  # id: Unknown2
+  # cost: 5
+  # desc: salvage-air-mod-unknown
+  # gases:
+    # - 0 # oxygen
+    # - 32.642633 # nitrogen
+    # - 17.321316 # carbon dioxide
+    # - 17.321316 # plasma
+    # - 0.3 # tritium
+    # - 1 # water vapor
+    # - 0 # miasma
+    # - 34.642633 # nitrous oxide
+    # - 0.1 # frezon
 
-- type: salvageAirMod
-  id: Unknown3
-  cost: 5
-  desc: salvage-air-mod-unknown
-  gases:
-    - 20 # oxygen
-    - 32.642633 # nitrogen
-    - 17.321316 # carbon dioxide
-    - 2.321316 # plasma
-    - 0.3 # tritium
-    - 1 # water vapor
-    - 15 # miasma
-    - 14.642633 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Unknown3
+  # cost: 5
+  # desc: salvage-air-mod-unknown
+  # gases:
+    # - 20 # oxygen
+    # - 32.642633 # nitrogen
+    # - 17.321316 # carbon dioxide
+    # - 2.321316 # plasma
+    # - 0.3 # tritium
+    # - 1 # water vapor
+    # - 15 # miasma
+    # - 14.642633 # nitrous oxide
+    # - 0 # frezon
 
-- type: salvageAirMod
-  id: Unknown4
-  cost: 5
-  desc: salvage-air-mod-unknown
-  gases:
-    - 15 # oxygen
-    - 27.642633 # nitrogen
-    - 12.321316 # carbon dioxide
-    - 2.321316 # plasma
-    - 0.1 # tritium
-    - 1 # water vapor
-    - 20 # miasma
-    - 14.642633 # nitrous oxide
-    - 0.5 # frezon
+# - type: salvageAirMod
+  # id: Unknown4
+  # cost: 5
+  # desc: salvage-air-mod-unknown
+  # gases:
+    # - 15 # oxygen
+    # - 27.642633 # nitrogen
+    # - 12.321316 # carbon dioxide
+    # - 2.321316 # plasma
+    # - 0.1 # tritium
+    # - 1 # water vapor
+    # - 20 # miasma
+    # - 14.642633 # nitrous oxide
+    # - 0.5 # frezon
 
-- type: salvageAirMod
-  id: Unknown5
-  cost: 5
-  desc: salvage-air-mod-unknown
-  gases:
-    - 20 # oxygen
-    - 32.642633 # nitrogen
-    - 17.321316 # carbon dioxide
-    - 1.321316 # plasma
-    - 2 # tritium
-    - 1 # water vapor
-    - 15 # miasma
-    - 14.642633 # nitrous oxide
-    - 0 # frezon
+# - type: salvageAirMod
+  # id: Unknown5
+  # cost: 5
+  # desc: salvage-air-mod-unknown
+  # gases:
+    # - 20 # oxygen
+    # - 32.642633 # nitrogen
+    # - 17.321316 # carbon dioxide
+    # - 1.321316 # plasma
+    # - 2 # tritium
+    # - 1 # water vapor
+    # - 15 # miasma
+    # - 14.642633 # nitrous oxide
+    # - 0 # frezon

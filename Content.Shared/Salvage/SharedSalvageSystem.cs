@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Dataset;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
@@ -7,7 +6,7 @@ using Content.Shared.Salvage.Expeditions.Modifiers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
-using Robust.Shared.Utility;
+using System.Linq; // Frontier
 
 namespace Content.Shared.Salvage;
 
@@ -78,13 +77,13 @@ public abstract partial class SharedSalvageSystem : EntitySystem
     /// </summary>
     public float GetSpawnCount(DifficultyRating difficulty)
     {
-        return (int) difficulty * 2;
+        return ((int)difficulty + 1) * 2; // Frontier: add one to difficulty (no empty expeditions)
     }
 
-    public static string GetFTLName(DatasetPrototype dataset, int seed)
+    public string GetFTLName(LocalizedDatasetPrototype dataset, int seed)
     {
         var random = new System.Random(seed);
-        return $"{dataset.Values[random.Next(dataset.Values.Count)]}-{random.Next(10, 100)}-{(char) (65 + random.Next(26))}";
+        return $"{Loc.GetString(dataset.Values[random.Next(dataset.Values.Count)])}-{random.Next(10, 100)}-{(char) (65 + random.Next(26))}";
     }
 
     public SalvageMission GetMission(SalvageMissionType config, DifficultyRating difficulty, int seed)
@@ -181,48 +180,45 @@ public abstract partial class SharedSalvageSystem : EntitySystem
     private List<string> GetRewards(DifficultyRating difficulty, System.Random rand)
     {
         var rewards = new List<string>(3);
-        // Frontier : Removed rewards
-        //var ids = RewardsForDifficulty(difficulty);
-        // foreach (var id in ids)
-        // {
-        //     // pick a random reward to give
-        //     var weights = _proto.Index<WeightedRandomEntityPrototype>(id);
-        //     rewards.Add(weights.Pick(rand));
-        // }
+        var ids = RewardsForDifficulty(difficulty);
+
+        foreach (var id in ids)
+        {
+            // pick a random reward to give
+            var weights = _proto.Index<WeightedRandomEntityPrototype>(id);
+            rewards.Add(weights.Pick(rand));
+        }
 
         return rewards;
     }
 
-    /**
-     * Frontier: Removed rewards
-     */
-    // /// <summary>
-    // /// Get a list of WeightedRandomEntityPrototype IDs with the rewards for a certain difficulty.
-    // /// Frontier: added uncommon and legendary reward tiers, limited amount of rewards to 1 per difficulty rating
-    // /// </summary>
-    // private string[] RewardsForDifficulty(DifficultyRating rating)
-    // {
-    //     var t1 = "ExpeditionRewardT1"; // Frontier - Update tiers
-    //     var t2 = "ExpeditionRewardT2"; // Frontier - Update tiers
-    //     var t3 = "ExpeditionRewardT3"; // Frontier - Update tiers
-    //     var t4 = "ExpeditionRewardT4"; // Frontier - Update tiers
-    //     var t5 = "ExpeditionRewardT5"; // Frontier - Update tiers
-    //     switch (rating)
-    //     {
-    //         case DifficultyRating.Minimal:
-    //             return new string[] { t1 }; // Frontier - Update tiers
-    //         case DifficultyRating.Minor:
-    //             return new string[] { t2 }; // Frontier - Update tiers
-    //         case DifficultyRating.Moderate:
-    //             return new string[] { t3 }; // Frontier - Update tiers
-    //         case DifficultyRating.Hazardous:
-    //             return new string[] { t4 }; // Frontier - Update tiers
-    //         case DifficultyRating.Extreme:
-    //             return new string[] { t5 }; // Frontier - Update tiers
-    //         default:
-    //             throw new NotImplementedException();
-    //     }
-    // }
+    /// <summary>
+    /// Get a list of WeightedRandomEntityPrototype IDs with the rewards for a certain difficulty.
+    /// Frontier: added uncommon and legendary reward tiers, limited amount of rewards to 1 per difficulty rating
+    /// </summary>
+    private string[] RewardsForDifficulty(DifficultyRating rating)
+    {
+        var t1 = "ExpeditionRewardT1"; // Frontier - Update tiers
+        var t2 = "ExpeditionRewardT2"; // Frontier - Update tiers
+        var t3 = "ExpeditionRewardT3"; // Frontier - Update tiers
+        var t4 = "ExpeditionRewardT4"; // Frontier - Update tiers
+        var t5 = "ExpeditionRewardT5"; // Frontier - Update tiers
+        switch (rating)
+        {
+            case DifficultyRating.Minimal:
+                return new string[] { t1 }; // Frontier - Update tiers // Frontier
+            case DifficultyRating.Minor:
+                return new string[] { t2 }; // Frontier - Update tiers // Frontier
+            case DifficultyRating.Moderate:
+                return new string[] { t3 }; // Frontier - Update tiers
+            case DifficultyRating.Hazardous:
+                return new string[] { t4 }; // Frontier - Update tiers
+            case DifficultyRating.Extreme:
+                return new string[] { t5 }; // Frontier - Update tiers
+            default:
+                throw new NotImplementedException();
+        }
+    }
 }
 
 [Serializable, NetSerializable]

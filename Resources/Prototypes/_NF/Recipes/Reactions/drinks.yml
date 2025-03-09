@@ -100,3 +100,32 @@
       amount: 1
   products:
     HoneyIcedTea: 2
+
+- type: reaction
+  id: WassailMulledAle
+  minTemp: 350
+  reactants:
+    Ale:
+      amount: 1
+    Sugar:
+      amount: 1
+    JuiceApple:
+      amount: 1
+  products:
+    WassailMulledAle : 3
+
+- type: reaction
+  id: Eggnog
+  requiredMixerCategories:
+  - Shake # close enough to meringue?
+  reactants:
+    Sugar:
+      amount: 1
+    Cream:
+      amount: 1
+    Egg:
+      amount: 1
+    Rum:
+      amount: 1
+  products:
+    Eggnog: 4

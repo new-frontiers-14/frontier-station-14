@@ -20,6 +20,8 @@ entities:
       name: Camper
     - type: Transform
       parent: invalid
+    - type: BecomesStation
+      id: Camper
     - type: MapGrid
       chunks:
         0,0:
@@ -966,6 +968,13 @@ entities:
         - 0
         - 0
         - 0
+- proto: NFHolopadShip
+  entities:
+  - uid: 192
+    components:
+    - type: Transform
+      pos: -1.5,4.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 106

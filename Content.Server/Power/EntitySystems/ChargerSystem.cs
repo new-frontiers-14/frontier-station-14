@@ -11,6 +11,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Storage.Components;
 using Robust.Server.Containers;
 using Content.Shared.Whitelist;
+using Content.Server._NF.Power.Components; // Frontier
 
 namespace Content.Server.Power.EntitySystems;
 
