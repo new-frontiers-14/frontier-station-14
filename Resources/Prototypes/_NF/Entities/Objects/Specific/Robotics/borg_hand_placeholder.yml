@@ -9,57 +9,13 @@
   - type: HandPlaceholderVisuals
 
 - type: entity
-  id: HandPlaceholderPlant
+  id: HandPlaceholderProduce
   parent: HandPlaceholder
-  name: plant placeholder
+  name: produce placeholder
   categories: [ HideSpawnMenu ]
   components:
-  - type: Item
-    size: Ginormous # no storage insertion visuals
   - type: HandPlaceholder
     whitelist:
       components:
       - Produce
     prototype: FoodApple
-
-- type: entity
-  id: HandPlaceholderOre
-  parent: HandPlaceholder
-  name: ore placeholder
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Item
-    size: Ginormous # no storage insertion visuals
-  - type: HandPlaceholder
-    whitelist:
-      tags:
-      - Ore
-    prototype: SteelOre
-
-- type: entity
-  id: HandPlaceholderOre
-  parent: HandPlaceholder
-  name: food placeholder
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Item
-    size: Ginormous # no storage insertion visuals
-  - type: HandPlaceholder
-    whitelist:
-      components:
-      - Food
-    prototype: FoodBreadPlainSlice
-
-- type: entity
-  id: HandPlaceholderTradeCrate
-  parent: HandPlaceholder
-  name: trading crate placeholder
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Item
-    size: Ginormous # no storage insertion visuals
-  - type: HandPlaceholder
-    whitelist:
-      components:
-      - TradeCrate
-    prototype: CrateTradeSecureNormal

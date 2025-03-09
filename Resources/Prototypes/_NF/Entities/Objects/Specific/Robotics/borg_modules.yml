@@ -29,7 +29,7 @@
 - type: entity
   id: BorgModuleAdvancedParamedic
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
-  name: advanced paramedic cyborg module
+  name: chemical recovery cyborg module
   components:
   - type: Sprite
     layers:
@@ -40,11 +40,8 @@
     moduleId: NFAdvancedParamedic
     items:
     - HandheldHealthAnalyzerUnpowered
-    - Suture10Lingering
-    - Mesh10Lingering
-    - Gauze10Lingering
-    - Bloodpack10Lingering
-    - SyringeBluespace
+    - BorgHypoTricordrazine # Frontier
+    - BorgHypoInaprovaline # Frontier
   - type: BorgModuleIcon
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-paramed-module }
 
