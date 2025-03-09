@@ -57,13 +57,13 @@
 - type: entity
   id: SolarPanelPlasma
   parent: SolarPanelBasePhysSprite
-  name: solar panel plasma
+  name: plasma solar panel # Frontier: prefix with plasma
   description: A plasma solar panel that generates power.
   components:
   - type: PowerSupplier
     supplyRampTolerance: 500
     supplyRampRate: 500
-  - type: SolarPanel
+  - type: NFSolarPanel # Frontier: SolarPanel<NFSolarPanel (grid-based tracking)
     maxSupply: 1000
   - type: Sprite
     sprite: Structures/Power/Generation/solar_panel.rsi
@@ -91,13 +91,13 @@
 - type: entity
   id: SolarPanelUranium
   parent: SolarPanelBasePhysSprite
-  name: solar panel uranium
+  name: uranium solar panel # Frontier: prefix with uranium
   description: A uranium solar panel that generates power.
   components:
   - type: PowerSupplier
     supplyRampTolerance: 500
     supplyRampRate: 500
-  - type: SolarPanel
+  - type: NFSolarPanel # Frontier: SolarPanel<NFSolarPanel (grid-based tracking)
     maxSupply: 1500
   - type: Sprite
     sprite: Structures/Power/Generation/solar_panel.rsi
