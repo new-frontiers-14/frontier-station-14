@@ -47,8 +47,7 @@ namespace Content.Client.VendingMachines
                 _mod = market.Mod;
             // End Frontier
 
-            _menu = this.CreateWindow<VendingMachineMenu>();
-            _menu.OpenCenteredLeft();
+            _menu = this.CreateWindowCenteredLeft<VendingMachineMenu>();
             // Frontier: no exceptions
             if (EntMan.TryGetComponent(Owner, out MetaDataComponent? meta))
                 _menu.Title = meta.EntityName;
