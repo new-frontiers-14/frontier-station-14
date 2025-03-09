@@ -345,20 +345,30 @@
   # Frontier: ItemBorgModule replaced with droppable variants
   - type: DroppableBorgModule
     moduleId: Construction
-    items: []
+    items:
+    - id: ConstructionBag
+      whitelist:
+        components:
+        - NFConstructionBag
     placeholders:
     - id: SheetSteel
       whitelist:
         tags:
-        - BorgMaterial
+        - Ingot
+        - RodMetal1
+        - Sheet
+        - CableCoil
+        components:
+        - ConstructionMaterials
     - id: SheetGlass
       whitelist:
         tags:
-        - BorgMaterial
-    - id: PartRodMetal
-      whitelist:
-        tags:
-        - BorgMaterial
+        - Ingot
+        - RodMetal1
+        - Sheet
+        - CableCoil
+        components:
+        - ConstructionMaterials
     - id: FloorTileItemSteel
       whitelist:
         components:
