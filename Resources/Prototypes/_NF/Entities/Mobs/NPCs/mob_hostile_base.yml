@@ -248,25 +248,6 @@
 #    groups:
 #    - AllAccess
 
-- type: entity
-  abstract: true
-  parent: MobBaseSilentFootsteps
-  id: MobIncorporealBase
-  description: You can't touch it, but it can touch you.
-  components:
-  - type: CanMoveInAir
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.4
-        density: 10
-        mask:
-        - FlyingMobMask
-        layer:
-        - Opaque
-
 # Dungeon boss
 - type: entity
   id: MobHostileBossBase
