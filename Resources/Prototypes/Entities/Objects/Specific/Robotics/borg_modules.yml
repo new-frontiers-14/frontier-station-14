@@ -209,7 +209,7 @@
 - type: entity
   id: BorgModuleAppraisal
   parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
-  name: appraisal cyborg module
+  name: cargo cyborg module # Frontier: appraisal<cargo
   components:
   - type: Sprite
     layers:
@@ -219,6 +219,12 @@
     moduleId: Appraisal # Frontier
     items:
     - AppraisalTool
+  # Frontier: droppable items
+  - type: ItemBorgModule
+    moduleId: Appraisal
+    items:
+    - HandPlaceholderTradeCrate
+    - HandPlaceholderTradeCrate
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: appraisal-module }
 

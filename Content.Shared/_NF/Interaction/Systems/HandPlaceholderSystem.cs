@@ -85,7 +85,7 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
     {
         // trying to insert when deleted is an error, and only handle when it is being actually dropped
         var owner = container.Owner;
-        if (!ent.Comp.Enabled || TerminatingOrDeleted(owner))
+        if (!ent.Comp.Enabled || TerminatingOrDeleted(owner) || Transform(owner).MapID == MapId.Nullspace)
             return;
 
         var placeholder = ent.Comp.Placeholder;

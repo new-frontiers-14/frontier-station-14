@@ -244,3 +244,32 @@
           Quantity: 15
         - ReagentId: Dylovene
           Quantity: 5
+
+- type: entity
+  name: tricordrazine hypo
+  parent: BaseItem
+  description: A sterile injector for rapid administration of drugs to patients. A cheaper and more specialised version for medical borgs.
+  id: BorgHypoTricordAutofill
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: borghypo
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Tricordrazine
+        Quantity: 5
+    duration: 5
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 0.5
