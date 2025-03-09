@@ -65,6 +65,7 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
         SubscribeLocalEvent<DisposalUnitComponent, PreventCollideEvent>(OnPreventCollide);
         SubscribeLocalEvent<DisposalUnitComponent, CanDropTargetEvent>(OnCanDragDropOn);
         SubscribeLocalEvent<DisposalUnitComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<DisposalUnitComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
 
         // Shouldn't need re-anchoring.
         SubscribeLocalEvent<DisposalUnitComponent, AnchorStateChangedEvent>(OnAnchorChanged);
@@ -361,6 +362,11 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
 
     private void OnDragDropOn(EntityUid uid, SharedDisposalUnitComponent component, ref DragDropTargetEvent args)
     {
+        // Frontier: check handled
+        if (args.Handled)
+            return;
+        // End Frontier
+
         args.Handled = TryInsert(uid, args.Dragged, args.User);
     }
 

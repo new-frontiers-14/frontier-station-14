@@ -80,6 +80,17 @@
     - id: MagazinePistol
       amount: 2
 
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortAntiqueLaserExpedition
+  suffix: Dungeon, Antique Laser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponAntiqueLaser
+      amount: 1
+
 # Revolvers
 - type: entity
   parent: WeaponCaseShort
@@ -410,13 +421,13 @@
 
 - type: entity
   parent: WeaponCaseLong
-  id: WeaponCaseLongSVTExpedition
-  suffix: Dungeon, SVT
+  id: WeaponCaseLongSVSExpedition
+  suffix: Dungeon, SVS
   categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
-    - id: WeaponRifleSVT
+    - id: WeaponRifleSVS
       amount: 1
     - id: MagazineLightRifleLowCapacity
       amount: 2
