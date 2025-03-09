@@ -18,10 +18,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Coordinates;
 using Content.Shared.Procedural;
-using System.Linq;
-using System.Threading;
 using Content.Shared.Salvage;
-using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Random;
 using Robust.Shared.Map;
@@ -37,7 +34,6 @@ public sealed partial class SalvageSystem
      */
 
     private const int MissionLimit = 5;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfgManager = default!; // Frontier
 
     private readonly JobQueue _salvageQueue = new();
@@ -57,16 +53,16 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, FinishSalvageMessage>(OnSalvageFinishMessage); // Frontier: For early finish
 
         SubscribeLocalEvent<SalvageExpeditionComponent, MapInitEvent>(OnExpeditionMapInit);
-//        SubscribeLocalEvent<SalvageExpeditionDataComponent, EntityUnpausedEvent>(OnDataUnpaused); // Frontier
+        // SubscribeLocalEvent<SalvageExpeditionDataComponent, EntityUnpausedEvent>(OnDataUnpaused); // Frontier
 
         SubscribeLocalEvent<SalvageExpeditionComponent, ComponentShutdown>(OnExpeditionShutdown);
-//        SubscribeLocalEvent<SalvageExpeditionComponent, EntityUnpausedEvent>(OnExpeditionUnpaused); // Frontier
+        // SubscribeLocalEvent<SalvageExpeditionComponent, EntityUnpausedEvent>(OnExpeditionUnpaused); // Frontier
         SubscribeLocalEvent<SalvageExpeditionComponent, ComponentGetState>(OnExpeditionGetState);
 
         SubscribeLocalEvent<SalvageStructureComponent, ExaminedEvent>(OnStructureExamine);
 
-        Subs.CVar(_configurationManager, CCVars.SalvageExpeditionCooldown, SetCooldownChange, true); // Frontier
-        Subs.CVar(_configurationManager, NFCCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange, true); // Frontier
+        Subs.CVar(_cfgManager, CCVars.SalvageExpeditionCooldown, SetCooldownChange, true); // Frontier
+        Subs.CVar(_cfgManager, NFCCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange, true); // Frontier
     }
 
     private void OnExpeditionGetState(EntityUid uid, SalvageExpeditionComponent component, ref ComponentGetState args)
@@ -80,8 +76,8 @@ public sealed partial class SalvageSystem
     // Frontier
     private void ShutdownExpeditions()
     {
-        _configurationManager.UnsubValueChanged(CCVars.SalvageExpeditionCooldown, SetCooldownChange);
-        _configurationManager.UnsubValueChanged(NFCCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange);
+        _cfgManager.UnsubValueChanged(CCVars.SalvageExpeditionCooldown, SetCooldownChange);
+        _cfgManager.UnsubValueChanged(NFCCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange);
     }
     // End Frontier
 
@@ -116,8 +112,7 @@ public sealed partial class SalvageSystem
 
     private void OnExpeditionMapInit(EntityUid uid, SalvageExpeditionComponent component, MapInitEvent args)
     {
-        var selectedFile = _audio.GetSound(component.Sound);
-        component.SelectedSong = new SoundPathSpecifier(selectedFile, component.Sound.Params);
+        component.SelectedSong = _audio.ResolveSound(component.Sound);
     }
 
     private void OnExpeditionShutdown(EntityUid uid, SalvageExpeditionComponent component, ComponentShutdown args)
@@ -324,7 +319,7 @@ public sealed partial class SalvageSystem
             _biome,
             _dungeon,
             _shuttle,
-            _stationSystem,
+            _station,
             _metaData,
             this,
             _transform,
@@ -352,7 +347,7 @@ public sealed partial class SalvageSystem
         var pallets = EntityQueryEnumerator<SalvageExpeditionConsoleComponent>(); // Frontier CargoPalletComponent<SalvageExpeditionConsoleComponent
         while (pallets.MoveNext(out var pallet, out var palletComp))
         {
-            if (_stationSystem.GetOwningStation(pallet) == comp.Station)
+            if (_station.GetOwningStation(pallet) == comp.Station)
             {
                 palletList.Add(pallet);
             }

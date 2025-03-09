@@ -47,9 +47,13 @@ namespace Content.Client.VendingMachines
                 _mod = market.Mod;
             // End Frontier
 
-            _menu = this.CreateWindow<VendingMachineMenu>();
-            _menu.OpenCenteredLeft();
-            _menu.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
+            _menu = this.CreateWindowCenteredLeft<VendingMachineMenu>();
+            // Frontier: no exceptions
+            if (EntMan.TryGetComponent(Owner, out MetaDataComponent? meta))
+                _menu.Title = meta.EntityName;
+            else
+                _menu.Title = Loc.GetString("vending-machine-nf-fallback-title");
+            // End Frontier: no exceptions
             _menu.OnItemSelected += OnItemSelected;
             Refresh();
         }
