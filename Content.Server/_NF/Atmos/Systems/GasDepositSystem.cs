@@ -215,14 +215,13 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
     private void OnSalePointUpdate(Entity<GasSalePointComponent> ent, ref AtmosDeviceUpdateEvent args)
     {
         if (TryComp<ApcPowerReceiverComponent>(ent, out var power) && !power.Powered
-            || !_nodeContainer.TryGetNode(ent.Owner, ent.Comp.InletPipePortName, out PipeNode? port)
-            || port.NodeGroup is not PipeNet { NodeCount: > 1 } net)
+            || !_nodeContainer.TryGetNode(ent.Owner, ent.Comp.InletPipePortName, out PipeNode? port))
             return;
 
-        if (net.Air.TotalMoles > 0)
+        if (port.Air.TotalMoles > 0)
         {
-            _atmosphere.Merge(ent.Comp.GasStorage, net.Air);
-            net.Air.Clear();
+            _atmosphere.Merge(ent.Comp.GasStorage, port.Air);
+            port.Air.Clear();
         }
     }
 
