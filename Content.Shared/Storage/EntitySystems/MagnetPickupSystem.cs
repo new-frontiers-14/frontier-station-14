@@ -3,12 +3,13 @@ using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle; // DeltaV
-using Content.Shared.Verbs; // Frontier
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Item; // Frontier
+using Content.Shared.Verbs; // Frontier
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -24,9 +25,11 @@ public sealed class MagnetPickupSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly SharedItemSystem _item = default!; // Frontier
 
 
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
+    private const int MaxEntitiesToInsert = 15; // Frontier
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
 
@@ -131,28 +134,37 @@ public sealed class MagnetPickupSystem : EntitySystem
             //    continue;
             // End DeltaV Removals
 
-            // No space
-            if (!_storage.HasSpace((uid, storage)))
+            // Frontier: run conservative space estimations, cut down on space checks
+            var slotCount = _storage.GetCumulativeItemAreas((uid, storage)); // Frontier
+            var totalSlots = storage.Grid.GetArea();
+            if (slotCount >= totalSlots)
                 continue;
+            // End Frontier
 
             var parentUid = xform.ParentUid;
             var playedSound = false;
             var finalCoords = xform.Coordinates;
             var moverCoords = _transform.GetMoverCoordinates(uid, xform);
+            var count = 0; // Frontier
 
             foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
             {
-                if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, near))
+                // Frontier: stop spamming bags
+                count++;
+
+                if (count > MaxEntitiesToInsert)
+                    break;
+
+                if (!TryComp<ItemComponent>(near, out var item))
                     continue;
 
-                // FRONTIER - START
-                // Makes sure that after the last insertion, there is still bag space.
-                // Using a cheap 'how many slots left' vs 'how many we need' check, and additional stack check.
-                // Note: Unfortunately, this is still 'expensive' as it checks the entire bag, however its better than
-                // to rotate an item n^n times of every item in the bag to find the best fit, for every xy coordinate it has.
-                if (!_storage.HasSlotSpaceFor(uid, near))
+                var itemSize = _item.GetItemShape((near, item)).GetArea();
+                if (itemSize > totalSlots - slotCount)
+                    break;
+                // End Frontier: stop spamming bags
+
+                if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, near))
                     continue;
-                // FRONTIER - END
 
                 if (!_physicsQuery.TryGetComponent(near, out var physics) || physics.BodyStatus != BodyStatus.OnGround)
                     continue;
@@ -166,10 +178,12 @@ public sealed class MagnetPickupSystem : EntitySystem
                 // game state handling we can't show a lerp animation for it.
                 var nearXform = Transform(near);
                 var nearMap = _transform.GetMapCoordinates(near, xform: nearXform);
-                var nearCoords = EntityCoordinates.FromMap(moverCoords.EntityId, nearMap, _transform, EntityManager);
+                var nearCoords = _transform.ToCoordinates(moverCoords.EntityId, nearMap);
 
                 if (!_storage.Insert(uid, near, out var stacked, storageComp: storage, playSound: !playedSound))
                     continue;
+
+                slotCount += itemSize; // Frontier: adjust size (assume it's in a new slot)
 
                 // Play pickup animation for either the stack entity or the original entity.
                 if (stacked != null)
