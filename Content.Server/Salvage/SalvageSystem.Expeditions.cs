@@ -40,7 +40,7 @@ public sealed partial class SalvageSystem
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
     private const double SalvageJobTime = 0.002;
-    private readonly List<ProtoId<SalvageDifficultyPrototype>> _missionDifficulties = ["NFModerate", "NFHazardous", "NFExtreme"]; // Frontier
+    private readonly List<(ProtoId<SalvageDifficultyPrototype> id, int value)> _missionDifficulties = [("NFModerate", 0), ("NFHazardous", 1), ("NFExtreme", 2)]; // Frontier: mission difficulties with difficulty
 
     [Dependency] private readonly IConfigurationManager _cfgManager = default!; // Frontier
 
@@ -201,7 +201,7 @@ public sealed partial class SalvageSystem
             var difficultyIndex = _random.Next(_missionDifficulties.Count);
             difficulties.Add(_missionDifficulties[difficultyIndex]);
         }
-        difficulties.Sort();
+        difficulties.Sort((x, y) => { return Comparer<int>.Default.Compare(x.value, y.value); });
 
         for (var i = 0; i < MissionLimit; i++)
         {
@@ -210,7 +210,7 @@ public sealed partial class SalvageSystem
                 Index = component.NextIndex,
                 MissionType = (SalvageMissionType)_random.NextByte((byte)SalvageMissionType.Max + 1), // Frontier
                 Seed = _random.Next(),
-                Difficulty = difficulties[i],
+                Difficulty = difficulties[i].id,
             };
 
             component.Missions[component.NextIndex++] = mission;
