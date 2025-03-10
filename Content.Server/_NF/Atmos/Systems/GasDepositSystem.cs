@@ -215,14 +215,13 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
     private void OnSalePointUpdate(Entity<GasSalePointComponent> ent, ref AtmosDeviceUpdateEvent args)
     {
         if (TryComp<ApcPowerReceiverComponent>(ent, out var power) && !power.Powered
-            || !_nodeContainer.TryGetNode(ent.Owner, ent.Comp.InletPipePortName, out PipeNode? port)
-            || port.NodeGroup is not PipeNet { NodeCount: > 1 } net)
+            || !_nodeContainer.TryGetNode(ent.Owner, ent.Comp.InletPipePortName, out PipeNode? port))
             return;
 
-        if (net.Air.TotalMoles > 0)
+        if (port.Air.TotalMoles > 0)
         {
-            _atmosphere.Merge(ent.Comp.GasStorage, net.Air);
-            net.Air.Clear();
+            _atmosphere.Merge(ent.Comp.GasStorage, port.Air);
+            port.Air.Clear();
         }
     }
 
@@ -247,14 +246,13 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
             return;
         }
 
-        var mixture = new GasMixture();
+        var amount = 0.0;
         foreach (var salePoint in GetNearbySalePoints(ent, gridUid))
         {
-            _atmosphere.Merge(mixture, salePoint.Comp.GasStorage);
+            amount += _atmosphere.GetPrice(salePoint.Comp.GasStorage);
             salePoint.Comp.GasStorage.Clear();
         }
 
-        var amount = _atmosphere.GetPrice(mixture);
         if (TryComp<MarketModifierComponent>(ent, out var priceMod))
             amount *= priceMod.Mod;
 
@@ -288,13 +286,13 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
     private void GetNearbyMixtures(EntityUid consoleUid, EntityUid gridUid, out GasMixture mixture, out double value)
     {
         mixture = new GasMixture();
+        value = 0.0;
 
         foreach (var salePoint in GetNearbySalePoints(consoleUid, gridUid))
         {
             _atmosphere.Merge(mixture, salePoint.Comp.GasStorage);
+            value += _atmosphere.GetPrice(salePoint.Comp.GasStorage);
         }
-
-        value = _atmosphere.GetPrice(mixture);
     }
 
     private List<Entity<GasSalePointComponent>> GetNearbySalePoints(EntityUid consoleUid, EntityUid gridUid)
