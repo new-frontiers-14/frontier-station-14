@@ -47,32 +47,31 @@
     DefenseStructure: CarpStatue
     Megafauna: MobDragonDungeon
 
-# Frontier (everything below)
 - type: salvageFaction
   id: NFSyndicate
   desc: salvage-faction-syndicate
   entries:
-    - id: SpawnMobSyndicateNavalDeckhand
-    - id: SpawnMobSyndicateNavalEngineer
+    - proto: SpawnMobSyndicateNavalDeckhand
+    - proto: SpawnMobSyndicateNavalEngineer
       cost: 3
       prob: 0.3
-    - id: SpawnMobSyndicateNavalSaboteur
+    - proto: SpawnMobSyndicateNavalSaboteur
       prob: 0.2
-    - id: SpawnMobSyndicateNavalMedic
+    - proto: SpawnMobSyndicateNavalMedic
       cost: 2
       prob: 0.2
-    - id: WeaponTurretSyndicate
+    - proto: WeaponTurretSyndicate
       prob: 0.05
-    - id: SpawnMobSyndicateNavalOperator
+    - proto: SpawnMobSyndicateNavalOperator
       cost: 8
       prob: 0.05
-    - id: SpawnMobSyndicateNavalCaptain
+    - proto: SpawnMobSyndicateNavalCaptain
       cost: 6
       prob: 0.02
-    - id: MobSyndicateNavalCommanderA
+    - proto: MobSyndicateNavalCommanderA
       cost: 10
       prob: 0.02
-    - id: SpawnMobSyndicateNavalHorror
+    - proto: SpawnMobSyndicateNavalHorror
       cost: 10
       prob: 0.01
   configs:
@@ -83,26 +82,26 @@
   id: NFCultists
   desc: salvage-faction-cultists
   entries:
-    - id: SpawnMobBloodCultistZealotMelee
-    - id: SpawnMobBloodCultLeech
+    - proto: SpawnMobBloodCultistZealotMelee
+    - proto: SpawnMobBloodCultLeech
       cost: 2
-    - id: SpawnMobBloodCultistZealotRanged
+    - proto: SpawnMobBloodCultistZealotRanged
       cost: 3
       prob: 0.5
-    - id: SpawnMobBloodCultistCaster
+    - proto: SpawnMobBloodCultistCaster
       cost: 3
       prob: 0.3
-    - id: BloodCultTurret
+    - proto: BloodCultTurret
       prob: 0.05
-    - id: SpawnMobBloodCultistAcolyte
+    - proto: SpawnMobBloodCultistAcolyte
       cost: 2
-    - id: SpawnMobBloodCultistPriest
+    - proto: SpawnMobBloodCultistPriest
       cost: 8
       prob: 0.4
-    - id: SpawnMobBloodCultistJanitor
+    - proto: SpawnMobBloodCultistJanitor
       cost: 4
       prob: 0.01
-    - id: MobBloodCultistAscended
+    - proto: MobBloodCultistAscended
       cost: 10
       prob: 0.02
   configs:
@@ -113,12 +112,12 @@
   id: NFFlesh
   desc: salvage-faction-flesh
   entries:
-    - id: SpawnMobAberrantFleshExpeditions
-    - id: SpawnMobAberrantFleshExpeditions
+    - proto: SpawnMobAberrantFleshExpeditions
+    - proto: SpawnMobAberrantFleshExpeditions
       cost: 2
-    - id: SpawnMobAberrantFleshExpeditions
+    - proto: SpawnMobAberrantFleshExpeditions
       cost: 4
-    - id: MobHorrorExpeditions
+    - proto: MobHorrorExpeditions
       cost: 10
       prob: 0.02
   configs:
@@ -129,20 +128,20 @@
   id: NFArgocytes
   desc: salvage-faction-argocytes
   entries:
-    - id: SpawnMobArgocyteTiny
-    - id: SpawnMobArgocyteSmall
-    - id: MobArgocyteGliderExpeditions
+    - proto: SpawnMobArgocyteTiny
+    - proto: SpawnMobArgocyteSmall
+    - proto: MobArgocyteGliderExpeditions
       cost: 2
       prob: 0.4
-    - id: SpawnMobArgocyteMedium
+    - proto: SpawnMobArgocyteMedium
       cost: 4
-    - id: SpawnMobArgocyteBig
+    - proto: SpawnMobArgocyteBig
       cost: 6
       prob: 0.3
-    - id: MobArgocyteCrawlerExpeditions
+    - proto: MobArgocyteCrawlerExpeditions
       cost: 3
       prob: 0.3
-    - id: MobArgocyteLeviathingExpeditions
+    - proto: MobArgocyteLeviathingExpeditions
       cost: 10
       prob: 0.02
   configs:
@@ -153,18 +152,18 @@
   id: NFDinosaurs
   desc: salvage-faction-dinosaurs
   entries:
-    - id: SpawnMobDinosaurSmall
-    - id: MobDinosaurDiloExpeditions
+    - proto: SpawnMobDinosaurSmall
+    - proto: MobDinosaurDiloExpeditions
       cost: 6
       prob: 0.3
-    - id: SpawnMobDinosaurMedium
+    - proto: SpawnMobDinosaurMedium
       cost: 4
-    - id: SpawnMobDinosaurBig
+    - proto: SpawnMobDinosaurBig
       cost: 8
-    - id: MobDinosaurRaptorExpeditions
+    - proto: MobDinosaurRaptorExpeditions
       cost: 6
       prob: 0.3
-    - id: MobDinosaurTrexExpeditions
+    - proto: MobDinosaurTrexExpeditions
       cost: 10
       prob: 0.02
   configs:
@@ -175,15 +174,15 @@
   id: NFMercenaries
   desc: salvage-faction-mercenaries
   entries:
-    - id: SpawnMobMercenaryT1
-    - id: SpawnMobMercenaryT2
+    - proto: SpawnMobMercenaryT1
+    - proto: SpawnMobMercenaryT2
       cost: 2
-    - id: SpawnMobMercenaryT3
+    - proto: SpawnMobMercenaryT3
       cost: 4
-    - id: MobMercenarySoldierNovalite
+    - proto: MobMercenarySoldierNovalite
       cost: 4
       prob: 0.2
-    - id: MobMercenaryCaptain
+    - proto: MobMercenaryCaptain
       cost: 10
       prob: 0.02
   configs:
@@ -194,16 +193,16 @@
   id: NFExplorers
   desc: salvage-faction-explorers
   entries:
-    - id: SpawnMobExplorerT1
-    - id: SpawnMobExplorerT2
+    - proto: SpawnMobExplorerT1
+    - proto: SpawnMobExplorerT2
       cost: 2
-    - id: SpawnMobExplorerT3
+    - proto: SpawnMobExplorerT3
       cost: 4
-    - id: MobExplorerHauler
+    - proto: MobExplorerHauler
       cost: 6
-    - id: MobExplorerMeleeT1
+    - proto: MobExplorerMeleeT1
       prob: 0.6
-    - id: MobExplorerBoss
+    - proto: MobExplorerBoss
       cost: 10
       prob: 0.02
   configs:
@@ -214,17 +213,17 @@
   id: NFSilicons
   desc: salvage-faction-silicons
   entries:
-    - id: SpawnMobRogueScapT1
-    - id: SpawnMobRogueDronesT1
+    - proto: SpawnMobRogueScapT1
+    - proto: SpawnMobRogueDronesT1
       cost: 2
       prob: 0.1
-    - id: SpawnMobRogueSiliconsT2
+    - proto: SpawnMobRogueSiliconsT2
       cost: 4
-    - id: SpawnMobRogueSiliconsT3
+    - proto: SpawnMobRogueSiliconsT3
       cost: 6
-    - id: MobRogueSiliconScrapFlayer
+    - proto: MobRogueSiliconScrapFlayer
       prob: 0.05
-    - id: MobRogueSiliconBoss
+    - proto: MobRogueSiliconBoss
       cost: 10
       prob: 0.02
   configs:
@@ -235,12 +234,12 @@
   id: NFPunks
   desc: salvage-faction-punks
   entries:
-    - id: SpawnMobPunkT1
-    - id: SpawnMobPunkT2
+    - proto: SpawnMobPunkT1
+    - proto: SpawnMobPunkT2
       cost: 2
-    - id: SpawnMobPunkT3
+    - proto: SpawnMobPunkT3
       cost: 4
-    - id: MobRogueSiliconBoss
+    - proto: MobRogueSiliconBoss
       cost: 10
       prob: 0.02
   configs:
