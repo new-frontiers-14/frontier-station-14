@@ -1,13 +1,13 @@
 dungeon-boss-grid-warning = Return to the dungeon.
 
-salvage-faction-nf-xenos = Xenos
-salvage-faction-nf-carps = Carp
-salvage-faction-nf-syndicate = Syndicate
-salvage-faction-nf-cultists = Cultists
-salvage-faction-nf-flesh = Flesh
-salvage-faction-nf-argocytes = Argocytes
-salvage-faction-nf-dinosaurs = Dinosaurs
-salvage-faction-nf-mercenaries = Mercenaries
-salvage-faction-nf-explorers = Explorers
-salvage-faction-nf-silicons = Rogue Silicon
-salvage-faction-nf-punks = Punks
+nf-salvage-faction-xenos = Xenos
+nf-salvage-faction-carps = Carp
+nf-salvage-faction-syndicate = Syndicate
+nf-salvage-faction-cultists = Cultists
+nf-salvage-faction-flesh = Flesh
+nf-salvage-faction-argocytes = Argocytes
+nf-salvage-faction-dinosaurs = Dinosaurs
+nf-salvage-faction-mercenaries = Mercenaries
+nf-salvage-faction-explorers = Explorers
+nf-salvage-faction-silicons = Rogue Silicon
+nf-salvage-faction-punks = Punks
