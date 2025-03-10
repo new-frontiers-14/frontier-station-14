@@ -4,14 +4,16 @@
   abstract: true
   id: NFBaseJumpsuitRecipe
   parent: BaseJumpsuitRecipe
-  category: ClothesNF
+  categories:
+  - ClothesNF
   applyMaterialDiscount: false
 
 - type: latheRecipe
   abstract: true
   id: NFBaseCoatRecipe
   parent: BaseCoatRecipe
-  category: ClothesNF
+  categories:
+  - ClothesNF
   applyMaterialDiscount: false
 
 - type: latheRecipe
@@ -61,6 +63,16 @@
   parent: NFBaseJumpsuitRecipe
   result: ClothingUniformRandomPunkCroptopShorts
 
+- type: latheRecipe
+  id: ClothingUniformJumpskirtPrivateSec
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpskirtPrivateSec
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitPrivateSec
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitPrivateSec
+
 # Coats
 - type: latheRecipe
   id: ClothingOuterCoatBomberRandomized
@@ -97,6 +109,111 @@
   id: ClothingBeltPunkRandomized
   parent: NFBaseBeltRecipe
   result: ClothingBeltPunkRandomized
+
+# Pouches
+- type: latheRecipe
+  id: NFPouchUtility
+  parent: NFBaseBeltRecipe
+  result: NFPouchUtility
+
+- type: latheRecipe
+  id: NFPouchEngineering
+  parent: NFBaseBeltRecipe
+  result: NFPouchEngineering
+
+- type: latheRecipe
+  id: NFPouchFirstAid
+  parent: NFBaseBeltRecipe
+  result: NFPouchFirstAid
+
+- type: latheRecipe
+  id: NFPouchFirstAidAlt
+  parent: NFBaseBeltRecipe
+  result: NFPouchFirstAidAlt
+
+- type: latheRecipe
+  id: NFPouchScience
+  parent: NFBaseBeltRecipe
+  result: NFPouchScience
+
+- type: latheRecipe
+  id: NFPouchSalvage
+  parent: NFBaseBeltRecipe
+  result: NFPouchSalvage
+
+- type: latheRecipe
+  id: NFPouchAtmospherics
+  parent: NFBaseBeltRecipe
+  result: NFPouchAtmospherics
+
+- type: latheRecipe
+  id: NFPouchHydroponics
+  parent: NFBaseBeltRecipe
+  result: NFPouchHydroponics
+
+- type: latheRecipe
+  id: NFPouchChaplain
+  parent: NFBaseBeltRecipe
+  result: NFPouchChaplain
+
+- type: latheRecipe
+  id: NFPouchPunk
+  parent: NFBaseBeltRecipe
+  result: NFPouchPunk
+
+- type: latheRecipe
+  id: NFPouchContractor
+  parent: NFBaseBeltRecipe
+  result: NFPouchContractor
+
+- type: latheRecipe
+  id: NFPouchMercenary
+  parent: NFBaseBeltRecipe
+  result: NFPouchMercenary
+
+- type: latheRecipe
+  id: NFPouchPrivateSecurity
+  parent: NFBaseBeltRecipe
+  result: NFPouchPrivateSecurity
+
+- type: latheRecipe
+  id: NFPouchNfsd
+  parent: NFBaseBeltRecipe
+  result: NFPouchNfsd
+
+- type: latheRecipe
+  id: NFPouchJanitor
+  parent: NFBaseBeltRecipe
+  result: NFPouchJanitor
+
+- type: latheRecipe
+  id: NFPouchMime
+  parent: NFBaseBeltRecipe
+  result: NFPouchMime
+
+- type: latheRecipe
+  id: NFPouchClown
+  parent: NFBaseBeltRecipe
+  result: NFPouchClown
+
+- type: latheRecipe
+  id: NFPouchCaptain
+  parent: NFBaseBeltRecipe
+  result: NFPouchCaptain
+
+- type: latheRecipe
+  id: NFPouchCargo
+  parent: NFBaseBeltRecipe
+  result: NFPouchCargo
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: UtilityBeltChiefEngineer
+  result: ClothingBeltChiefEngineer
+  completetime: 6
+  materials:
+    Silver: 400
+    Gold: 100
 
 # Gloves
 - type: latheRecipe
