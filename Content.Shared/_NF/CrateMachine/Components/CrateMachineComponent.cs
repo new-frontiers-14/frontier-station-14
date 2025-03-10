@@ -3,8 +3,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._NF.CrateMachine.Components;
 
-[RegisterComponent]
-[NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedCrateMachineSystem))]
 public sealed partial class CrateMachineComponent: Component
 {
@@ -33,13 +32,13 @@ public sealed partial class CrateMachineComponent: Component
     /// How long the opening animation will play
     /// </summary>
     [NonSerialized]
-    public float OpeningTime = 3.2f;
+    public float OpeningTime = 1.4f;
 
     /// <summary>
     /// How long the closing animation will play
     /// </summary>
     [NonSerialized]
-    public float ClosingTime = 3.2f;
+    public float ClosingTime = 1.4f;
 
     /// <summary>
     /// Remaining time of opening animation
@@ -52,6 +51,12 @@ public sealed partial class CrateMachineComponent: Component
     /// </summary>
     [NonSerialized]
     public float ClosingTimeRemaining;
+
+    /// <summary>
+    /// Whether the machine is powered or not
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public bool Powered;
 
     #region Graphics
 
@@ -66,12 +71,6 @@ public sealed partial class CrateMachineComponent: Component
     /// </summary>
     [DataField]
     public string ClosingSpriteState = "closing";
-
-    /// <summary>
-    /// The sprite state used to animate the crate going up.
-    /// </summary>
-    [DataField]
-    public string CrateSpriteState = "crate";
 
     /// <summary>
     /// The sprite state used for the open airlock lights.

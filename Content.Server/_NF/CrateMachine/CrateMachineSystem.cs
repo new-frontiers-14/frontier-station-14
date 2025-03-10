@@ -4,6 +4,7 @@ using Content.Server.Storage.EntitySystems;
 using Content.Shared._NF.CrateMachine;
 using Content.Shared._NF.CrateMachine.Components;
 using Content.Shared.Maps;
+using Content.Shared.Power;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 
@@ -11,7 +12,7 @@ namespace Content.Server._NF.CrateMachine;
 
 /// <summary>
 /// The crate machine system can be used to make a crate machine open and spawn crates.
-/// When calling <see cref="OpenFor"/>, the machine will open the door and give a callback to the given
+/// When calling <see cref="StartOpening"/>, the machine will open the door and give a callback to the given
 /// </summary>
 public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
 {
@@ -19,6 +20,18 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly EntityStorageSystem _storage = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<CrateMachineComponent, PowerChangedEvent>(OnPowerChanged);
+    }
+
+    private void OnPowerChanged(EntityUid uid, CrateMachineComponent component, PowerChangedEvent args)
+    {
+        component.Powered = args.Powered;
+        Dirty(uid, component);
+    }
 
     /// <summary>
     /// Checks if there is a crate on the crate machine.
@@ -65,6 +78,8 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
         var crateMachineQuery = AllEntityQuery<CrateMachineComponent, TransformComponent>();
         while (crateMachineQuery.MoveNext(out var crateMachineUid, out var comp, out var compXform))
         {
+            if (!comp.Powered)
+                continue;
             // Skip crate machines that aren't mounted on a grid.
             if (compXform.GridUid == null)
                 continue;
