@@ -1,0 +1,89 @@
+<Document>
+  # OSPREY-CLASS SALVAGE SHUTTLE
+  <Box>
+    <GuideEntityEmbed Entity="BannerCargo" Caption="Cargo"/>
+    <GuideEntityEmbed Entity="SalvageTechfabNF" Caption="Techfab"/>
+    <GuideEntityEmbed Entity="WeaponProtoKineticAccelerator" Caption="Proto-Kinetic Accelerator"/>
+    <GuideEntityEmbed Entity="OreBag" Caption="Ore Bag"/>
+    <GuideEntityEmbed Entity="Pickaxe" Caption="Pickaxe"/>
+  </Box>
+  [color=#a4885c]Ship Size:[/color] Medium
+
+  [color=#a4885c]Recommended Crew:[/color] 2-5
+
+  [color=#a4885c]Power Gen Type:[/color] Uranium
+
+  [color=#a4885c]Expeditions:[/color] No
+
+  [color=#a4885c]IFF Console:[/color] None
+
+  Originally designed for salvaging, a lot of captains have put it to more lucrative uses.
+
+  # GENERAL NOTES
+  - In the captain's quarters, there is a remote signaller that can open and close the cargo bay doors. [color=#ff0000]Make sure you can see the blast doors before you open them[/color] to avoid unnecesary problems.
+  - There is an unused room on each of side of the ship, at the bottom of the 'wings'. If you want to get in, interact with the secret door just below the thruster on the outermost wall.
+
+  # PREFLIGHT CHECKLIST
+
+  ## 1. Power supply
+
+  ## 1.1. Battery units
+  <Box>
+    <GuideEntityEmbed Entity="SMESBasic" Caption="SMES"/>
+    <GuideEntityEmbed Entity="SubstationBasic" Caption="Substation"/>
+    <GuideEntityEmbed Entity="APCBasic" Caption="APC"/>
+  </Box>
+
+  - Check that the SMES unit is anchored to the floor, verify charge level and status.
+  - Check that the substation unit is anchored to the floor, verify charge level and status.
+  - Check each APC unit and verify its breaker is on, and that the unit is charging. There are 6 in total, one for the cargo bay and each connected room.
+  - Verify each APC unit registers some load, if not this may indicate problems.
+
+  ## 1.2. S.U.P.E.R.P.A.C.M.A.N generator unit.
+  <Box>
+    <GuideEntityEmbed Entity="PortableGeneratorSuperPacmanShuttle" Caption="S.U.P.E.R.P.A.C.M.A.N Generator"/>
+    <GuideEntityEmbed Entity="FuelUranium" Caption="Fuel-Grade Uranium"/>
+  </Box>
+
+  - Add fuel-grade uranium from the uranium fuel locker into the generator.
+  - For extended operation, turn the fuel magnet on and ensure you have a stockpile of uranium or fuel-grade uranium near the generator.
+  - Verify the target power is set to [bold]38kW[/bold], as the ship uses a little more than 37kW at idle.
+
+  ## 2. Atmospherics
+
+  ## 2.1. Distribution Network
+  <Box>
+    <GuideEntityEmbed Entity="GasMixer" Caption="Gas Mixer"/>
+    <GuideEntityEmbed Entity="OxygenCanister" Caption="Oxygen Canister"/>
+    <GuideEntityEmbed Entity="NitrogenCanister" Caption="Nitrogen Canister"/>
+  </Box>
+
+  - Ensure oxygen and nitrogen canisters are anchored to their connector ports.
+  - Verify atmos network gas mixer is configured to 79% on its primary port (N2) and 21% on is side port (O2).
+  - Verify gas mixer is enabled.
+  - Verify gas mixer is configured to circa 101kPa.
+
+  ## 2.2. Air alarms
+  <Box>
+    <GuideEntityEmbed Entity="AirAlarm" Caption="Air Alarm"/>
+  </Box>
+
+  - There is an air alarm for the cargo bay, and all connecting rooms.
+  - Examine all air alarms, ensure sensors are reading normal.
+  - Set all air alarms to 'Filtering (Wide)' and disable auto mode.
+
+  ## 3. Other checks
+  <Box>
+    <GuideEntityEmbed Entity="Gyroscope" Caption="Gyroscope"/>
+    <GuideEntityEmbed Entity="GravityGeneratorMini" Caption="Gravity Generator"/>
+    <GuideEntityEmbed Entity="BlastDoor" Caption="Blast door"/>
+    <GuideEntityEmbed Entity="ConveyorBelt" Caption="Conveyor Belt"/>
+  </Box>
+
+  - Check that the gyroscopes are anchored, powered, and enabled. These devices are located outside the ship on either side of the bridge.
+  - Check that the mini gravity generator is anchored, powered, and enabled. This device is located in the engine room.
+  - Check that the cargo bay blast doors are closed. These can be controlled by the buttons above each of the doors.
+  - Check that the conveyor system blast doors are closed. These can be toggled with the button above them marked in yellow.
+  - Check that the conveyor belts on each side of the ship are in good order. These can be operated with the floor lever to the left of the conveyor belts. Make sure to only use the left conveyor belt for loading, and the right conveyor belt for unloading.
+
+</Document>
