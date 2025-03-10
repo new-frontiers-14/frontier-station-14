@@ -119,8 +119,10 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 
         // Setup mission configs
         // As we go through the config the rating will deplete so we'll go for most important to least important.
-        var difficultyId = "NFModerate"; // Frontier: Moderate<NFModerate
-        var difficultyProto = _prototypeManager.Index<SalvageDifficultyPrototype>(difficultyId);
+        // Frontier: custom difficulty
+        if (!_prototypeManager.TryIndex<SalvageDifficultyPrototype>(_missionParams.Difficulty, out var difficultyProto))
+            difficultyProto = _prototypeManager.Index<SalvageDifficultyPrototype>("NFModerate");
+        // End Frontier
 
         var mission = _entManager.System<SharedSalvageSystem>()
             .GetMission(_missionParams.MissionType, difficultyProto, _missionParams.Seed); // Frontier: add MissionType
