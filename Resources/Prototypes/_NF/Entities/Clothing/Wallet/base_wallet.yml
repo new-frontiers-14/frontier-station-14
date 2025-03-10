@@ -1,12 +1,11 @@
 - type: entity
   parent: [BaseStorageItem, Clothing, RecyclableItemClothBasic]
-  id: NFWalletLeatherBrown
-  name: leather wallet
-  description: Surprisingly thick. Careful not to lose it, and don't sit on it.
+  id: NFBaseWallet
+  abstract: true
+  name: wallet
+  description: If somebody dropped this, you should really return it.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Wallet/leather.rsi
-    state: closed
     layers:
     - state: closed
       map: ["closeLayer"]
@@ -25,13 +24,16 @@
   - type: Storage
     maxItemSize: Small
     grid:
-    - 0,0,1,2
+    - 0,0,3,1
     whitelist:
       components:
       - Cash
       - Paper
+      - NFCoin
+    blacklist:
+      tags:
+      - Book
   - type: Item
-    sprite: _NF/Clothing/Wallet/leather.rsi
     size: Small
   - type: Clothing
     slots: [wallet]
@@ -42,20 +44,19 @@
       amount: 1
   - type: Appearance
   - type: ItemMapper
-    sprite: _NF/Clothing/Wallet/leather.rsi
     mapLayers:
       closed-paper:
         whitelist:
           components:
-            - Paper
+          - Paper
       closed-cash:
         whitelist:
           components:
-            - Cash
+          - Cash
       closed-coin:
         whitelist:
           components:
-            - NFCoin
+          - NFCoin
   - type: GenericVisualizer
     visuals:
       enum.SharedBagOpenVisuals.BagState:
@@ -74,74 +75,3 @@
         closed-coin:
           Open: { state: open-coin }
           Closed: { state: closed-coin }
-
-- type: entity
-  parent: NFWalletLeatherBrown
-  id: NFWalletLeatherBlack
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Wallet/leather.rsi
-    state: closed-black
-    layers:
-    - state: closed-black
-      map: ["closeLayer"]
-    - state: open-black
-      map: ["openLayer"]
-      visible: false
-    - state: closed-paper
-      map: ["closed-paper"]
-      visible: false
-    - state: closed-cash
-      map: ["closed-cash"]
-      visible: false
-    - state: closed-coin
-      map: ["closed-coin"]
-      visible: false
-
-- type: entity
-  parent: NFWalletLeatherBrown
-  id: NFWalletLeatherMail
-  description: On the inside is an embroidered picture of a cat along with a heart and the word "CLIPPY".
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Wallet/leather.rsi
-    state: closed-mail
-    layers:
-    - state: closed-mail
-      map: ["closeLayer"]
-    - state: open-mail
-      map: ["openLayer"]
-      visible: false
-    - state: closed-paper
-      map: ["closed-paper"]
-      visible: false
-    - state: closed-cash
-      map: ["closed-cash"]
-      visible: false
-    - state: closed-coin
-      map: ["closed-coin"]
-      visible: false
-
-- type: entity
-  parent: NFWalletLeatherBrown
-  id: NFWalletLeatherBlack
-  description: There's an old picture of a cat with a beard inside.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Wallet/leather.rsi
-    state: closed-pirate
-    layers:
-    - state: closed-pirate
-      map: ["closeLayer"]
-    - state: open-pirate
-      map: ["openLayer"]
-      visible: false
-    - state: closed-paper
-      map: ["closed-paper"]
-      visible: false
-    - state: closed-cash
-      map: ["closed-cash"]
-      visible: false
-    - state: closed-coin
-      map: ["closed-coin"]
-      visible: false
