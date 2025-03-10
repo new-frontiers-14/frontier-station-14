@@ -25,6 +25,7 @@ using Content.Shared.Salvage;
 using Content.Server._NF.Salvage.Expeditions;
 using Content.Shared.Shuttles.Components;
 using Content.Server.Station.Components; // Frontier
+using Robust.Shared.Configuration; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -40,6 +41,8 @@ public sealed partial class SalvageSystem
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
     private const double SalvageJobTime = 0.002;
     private readonly List<ProtoId<SalvageDifficultyPrototype>> _missionDifficulties = ["NFModerate", "NFHazardous", "NFExtreme"]; // Frontier
+
+    [Dependency] private readonly IConfigurationManager _cfgManager = default!; // Frontier
 
     private float _cooldown;
     private float _failedCooldown; // Frontier
@@ -58,10 +61,10 @@ public sealed partial class SalvageSystem
 
         SubscribeLocalEvent<SalvageStructureComponent, ExaminedEvent>(OnStructureExamine);
 
-        _cooldown = _configurationManager.GetCVar(CCVars.SalvageExpeditionCooldown);
-        Subs.CVar(_configurationManager, CCVars.SalvageExpeditionCooldown, SetCooldownChange);
-        _failedCooldown = _configurationManager.GetCVar(NFCCVars.SalvageExpeditionFailedCooldown); // Frontier
-        Subs.CVar(_configurationManager, CCVars.SalvageExpeditionCooldown, SetFailedCooldownChange); // Frontier
+        _cooldown = _cfgManager.GetCVar(CCVars.SalvageExpeditionCooldown);
+        Subs.CVar(_cfgManager, CCVars.SalvageExpeditionCooldown, SetCooldownChange);
+        _failedCooldown = _cfgManager.GetCVar(NFCCVars.SalvageExpeditionFailedCooldown); // Frontier
+        Subs.CVar(_cfgManager, CCVars.SalvageExpeditionCooldown, SetFailedCooldownChange); // Frontier
     }
 
     private void OnExpeditionGetState(EntityUid uid, SalvageExpeditionComponent component, ref ComponentGetState args)
