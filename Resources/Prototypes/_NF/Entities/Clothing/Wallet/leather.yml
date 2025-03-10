@@ -1,0 +1,98 @@
+- type: entity
+  parent: NFBaseWallet
+  id: ClothingWalletLeatherBrown
+  name: leather wallet
+  description: Surprisingly thick. Careful not to lose it, and don't sit on it.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"] # scuffed values to deal with ItemMapper complaining
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+  - type: Item
+    sprite: _NF/Clothing/Wallet/leather.rsi
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 1
+  - type: Appearance
+  - type: ItemMapper
+    sprite: _NF/Clothing/Wallet/leather.rsi
+
+- type: entity
+  parent: ClothingWalletLeatherBrown
+  id: ClothingWalletLeatherBlack
+  components:
+  - type: Sprite
+    layers:
+    - state: closed-black
+      map: ["closeLayer"]
+    - state: open-black
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+
+- type: entity
+  parent: ClothingWalletLeatherBrown
+  id: ClothingWalletLeatherMail
+  description: On the inside is an embroidered picture of a cat, a heart, and the word "CLIPPY".
+  components:
+  - type: Sprite
+    layers:
+    - state: closed-mail
+      map: ["closeLayer"]
+    - state: open-mail
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+
+- type: entity
+  parent: ClothingWalletLeatherBrown
+  id: ClothingWalletLeatherPirate
+  description: There's an old picture of a cat with a beard inside.
+  components:
+  - type: Sprite
+    layers:
+    - state: closed-pirate
+      map: ["closeLayer"]
+    - state: open-pirate
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
