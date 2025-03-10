@@ -1,6 +1,14 @@
-﻿using Robust.Shared.Serialization;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Power;
+
+/// <summary>
+///     Frontier: Sent to the server to set whether the machine should be on or off
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class ActivateMachineMessage : BoundUserInterfaceMessage
+{
+}
 
 /// <summary>
 ///     Sent to the server to set whether the machine should be on or off
@@ -20,6 +28,7 @@ public sealed class SwitchChargingMachineMessage : BoundUserInterfaceMessage
 public sealed class PowerChargeState : BoundUserInterfaceState
 {
     public bool On;
+    public bool Activate; // Frontier
     // 0 -> 255
     public byte Charge;
     public PowerChargePowerStatus PowerStatus;
@@ -29,6 +38,7 @@ public sealed class PowerChargeState : BoundUserInterfaceState
 
     public PowerChargeState(
         bool on,
+        bool activate, // Frontier
         byte charge,
         PowerChargePowerStatus powerStatus,
         short powerDraw,
@@ -36,6 +46,7 @@ public sealed class PowerChargeState : BoundUserInterfaceState
         short etaSeconds)
     {
         On = on;
+        Activate = activate; // Frontier
         Charge = charge;
         PowerStatus = powerStatus;
         PowerDraw = powerDraw;
