@@ -13,6 +13,7 @@ namespace Content.Server.Procedural;
 public sealed partial class DungeonSystem
 {
     // Temporary caches.
+    private readonly HashSet<EntityUid> _entitySet = new();
     private readonly List<DungeonRoomPrototype> _availableRooms = new();
 
     /// <summary>
