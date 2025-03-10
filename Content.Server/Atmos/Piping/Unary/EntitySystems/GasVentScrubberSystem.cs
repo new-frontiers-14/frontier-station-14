@@ -70,7 +70,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
                 return;
 
             var position = _transformSystem.GetGridTilePositionOrDefault(uid);
-            var environment = _atmosphereSystem.GetTileMixture(grid, args.Map, position, true);
+            var environment = _atmosphereSystem.GetTileMixture(grid, null, position, true); // Frontier: args.Map<null
 
             Scrub(timeDelta, scrubber, environment, outlet);
 

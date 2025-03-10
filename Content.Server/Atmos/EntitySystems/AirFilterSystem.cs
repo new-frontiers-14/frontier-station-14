@@ -31,7 +31,7 @@ public sealed class AirFilterSystem : EntitySystem
         if (air.Pressure >= intake.Pressure)
             return;
 
-        var environment = _atmosphere.GetContainingMixture(uid, args.Grid, args.Map, true, true);
+        var environment = _atmosphere.GetContainingMixture(uid, args.Grid, null, true, true); // Frontier: args.Map<null
         // nothing to intake from
         if (environment == null)
             return;

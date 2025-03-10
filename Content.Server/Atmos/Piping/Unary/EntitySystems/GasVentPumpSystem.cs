@@ -86,7 +86,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
                 return;
             }
 
-            var environment = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map, true, true);
+            var environment = _atmosphereSystem.GetContainingMixture(uid, args.Grid, null, true, true); // Frontier: args.Map<null
 
             // We're in an air-blocked tile... Do nothing.
             if (environment == null)

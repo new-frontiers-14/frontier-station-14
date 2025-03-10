@@ -76,7 +76,7 @@ namespace Content.Server.Atmos.Portable
                 return;
 
             var position = _transformSystem.GetGridTilePositionOrDefault(uid);
-            var environment = _atmosphereSystem.GetTileMixture(grid, args.Map, position, true);
+            var environment = _atmosphereSystem.GetTileMixture(grid, null, position, true); // Frontier: args.Map<null
 
             var running = Scrub(timeDelta, component, environment);
 
