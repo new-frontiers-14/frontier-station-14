@@ -1,10 +1,11 @@
 - type: salvageFaction
   id: NFXenos
-  desc: salvage-faction-nf-xenos
+  desc: salvage-faction-xenos
   entries:
     - proto: MobXeno
+      cost: 1
     - proto: MobXenoDrone
-      cost: 2
+      cost: 3
     - proto: MobXenoPraetorian
       cost: 5
       prob: 0.1
@@ -25,17 +26,18 @@
 
 - type: salvageFaction
   id: NFCarps
-  desc: salvage-faction-nf-carps
+  desc: salvage-faction-carps
   entries:
-    - proto: MobCarpDungeon
-    # These do too much damage for salvage, need nerfs
-    #- proto: MobCarpHolo
-    #  cost: 5
-    #  prob: 0.1
-    #- proto: MobCarpMagic
-    #  cost: 5
-    #  prob: 0.1
-    - proto: MobCarpRainbow # carp version of rouny...
+    - proto: NFMobCarp
+    - proto: NFMobCarpRainbow
+    - proto: NFMobPurpleSnake
+    - proto: MobCarpHolo
+      cost: 5
+      prob: 0.1
+    - proto: NFMobShark
+      cost: 5
+      prob: 0.1
+    - proto: NFMobCarpMagic
       cost: 3
       prob: 0.05
     - proto: MobDragonDungeon
@@ -44,3 +46,203 @@
   configs:
     DefenseStructure: CarpStatue
     Megafauna: MobDragonDungeon
+
+# Frontier (everything below)
+- type: salvageFaction
+  id: NFSyndicate
+  desc: salvage-faction-syndicate
+  entries:
+    - id: SpawnMobSyndicateNavalDeckhand
+    - id: SpawnMobSyndicateNavalEngineer
+      cost: 3
+      prob: 0.3
+    - id: SpawnMobSyndicateNavalSaboteur
+      prob: 0.2
+    - id: SpawnMobSyndicateNavalMedic
+      cost: 2
+      prob: 0.2
+    - id: WeaponTurretSyndicate
+      prob: 0.05
+    - id: SpawnMobSyndicateNavalOperator
+      cost: 8
+      prob: 0.05
+    - id: SpawnMobSyndicateNavalCaptain
+      cost: 6
+      prob: 0.02
+    - id: MobSyndicateNavalCommanderA
+      cost: 10
+      prob: 0.02
+    - id: SpawnMobSyndicateNavalHorror
+      cost: 10
+      prob: 0.01
+  configs:
+    DefenseStructure: CybersunDataMiner
+    Megafauna: MobSyndicateNavalCommanderA
+
+- type: salvageFaction
+  id: NFCultists
+  desc: salvage-faction-cultists
+  entries:
+    - id: SpawnMobBloodCultistZealotMelee
+    - id: SpawnMobBloodCultLeech
+      cost: 2
+    - id: SpawnMobBloodCultistZealotRanged
+      cost: 3
+      prob: 0.5
+    - id: SpawnMobBloodCultistCaster
+      cost: 3
+      prob: 0.3
+    - id: BloodCultTurret
+      prob: 0.05
+    - id: SpawnMobBloodCultistAcolyte
+      cost: 2
+    - id: SpawnMobBloodCultistPriest
+      cost: 8
+      prob: 0.4
+    - id: SpawnMobBloodCultistJanitor
+      cost: 4
+      prob: 0.01
+    - id: MobBloodCultistAscended
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: BloodCollector
+    Megafauna: MobBloodCultistAscended
+
+- type: salvageFaction
+  id: NFFlesh
+  desc: salvage-faction-flesh
+  entries:
+    - id: SpawnMobAberrantFleshExpeditions
+    - id: SpawnMobAberrantFleshExpeditions
+      cost: 2
+    - id: SpawnMobAberrantFleshExpeditions
+      cost: 4
+    - id: MobHorrorExpeditions
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: AberrantFleshDigestiveSack
+    Megafauna: MobHorrorExpeditions
+
+- type: salvageFaction
+  id: NFArgocytes
+  desc: salvage-faction-argocytes
+  entries:
+    - id: SpawnMobArgocyteTiny
+    - id: SpawnMobArgocyteSmall
+    - id: MobArgocyteGliderExpeditions
+      cost: 2
+      prob: 0.4
+    - id: SpawnMobArgocyteMedium
+      cost: 4
+    - id: SpawnMobArgocyteBig
+      cost: 6
+      prob: 0.3
+    - id: MobArgocyteCrawlerExpeditions
+      cost: 3
+      prob: 0.3
+    - id: MobArgocyteLeviathingExpeditions
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: ArgocyteEgg
+    Megafauna: MobArgocyteLeviathingExpeditions
+
+- type: salvageFaction
+  id: NFDinosaurs
+  desc: salvage-faction-dinosaurs
+  entries:
+    - id: SpawnMobDinosaurSmall
+    - id: MobDinosaurDiloExpeditions
+      cost: 6
+      prob: 0.3
+    - id: SpawnMobDinosaurMedium
+      cost: 4
+    - id: SpawnMobDinosaurBig
+      cost: 8
+    - id: MobDinosaurRaptorExpeditions
+      cost: 6
+      prob: 0.3
+    - id: MobDinosaurTrexExpeditions
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: DinosaurEgg
+    Megafauna: MobDinosaurTrexExpeditions
+
+- type: salvageFaction
+  id: NFMercenaries
+  desc: salvage-faction-mercenaries
+  entries:
+    - id: SpawnMobMercenaryT1
+    - id: SpawnMobMercenaryT2
+      cost: 2
+    - id: SpawnMobMercenaryT3
+      cost: 4
+    - id: MobMercenarySoldierNovalite
+      cost: 4
+      prob: 0.2
+    - id: MobMercenaryCaptain
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: MercenaryCounterfeitCache
+    Megafauna: MobMercenaryCaptain
+
+- type: salvageFaction
+  id: NFExplorers
+  desc: salvage-faction-explorers
+  entries:
+    - id: SpawnMobExplorerT1
+    - id: SpawnMobExplorerT2
+      cost: 2
+    - id: SpawnMobExplorerT3
+      cost: 4
+    - id: MobExplorerHauler
+      cost: 6
+    - id: MobExplorerMeleeT1
+      prob: 0.6
+    - id: MobExplorerBoss
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: ExplorersLootRadar
+    Megafauna: MobExplorerBoss
+
+- type: salvageFaction
+  id: NFSilicons
+  desc: salvage-faction-silicons
+  entries:
+    - id: SpawnMobRogueScapT1
+    - id: SpawnMobRogueDronesT1
+      cost: 2
+      prob: 0.1
+    - id: SpawnMobRogueSiliconsT2
+      cost: 4
+    - id: SpawnMobRogueSiliconsT3
+      cost: 6
+    - id: MobRogueSiliconScrapFlayer
+      prob: 0.05
+    - id: MobRogueSiliconBoss
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: RogueAiNode
+    Megafauna: MobRogueSiliconBoss
+
+- type: salvageFaction
+  id: NFPunks
+  desc: salvage-faction-punks
+  entries:
+    - id: SpawnMobPunkT1
+    - id: SpawnMobPunkT2
+      cost: 2
+    - id: SpawnMobPunkT3
+      cost: 4
+    - id: MobRogueSiliconBoss
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: PunkPartySupplies
+    Megafauna: MobPunkGangerLeader
