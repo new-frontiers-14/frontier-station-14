@@ -1682,6 +1682,21 @@ entities:
     - type: Transform
       pos: 16.5,12.5
       parent: 1
+  - uid: 1600
+    components:
+    - type: Transform
+      pos: -17.5,-13.5
+      parent: 1
+  - uid: 1601
+    components:
+    - type: Transform
+      pos: -17.5,-9.5
+      parent: 1
+  - uid: 1603
+    components:
+    - type: Transform
+      pos: -17.5,-5.5
+      parent: 1
 - proto: AirlockEngineering
   entities:
   - uid: 4
@@ -1992,7 +2007,7 @@ entities:
       pos: -21.5,-16.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7689.9478
+      secondsUntilStateChange: -7866.5293
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2047,7 +2062,7 @@ entities:
       pos: 19.5,1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -88927.14
+      secondsUntilStateChange: -89103.72
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2275,26 +2290,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -13.5,-34.5
       parent: 1
-- proto: AirlockJanitorLocked
-  entities:
-  - uid: 1600
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -17.5,-13.5
-      parent: 1
-  - uid: 1601
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -17.5,-9.5
-      parent: 1
-  - uid: 1603
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -17.5,-5.5
-      parent: 1
 - proto: AirlockMaint
   entities:
   - uid: 50
@@ -2333,7 +2328,7 @@ entities:
       pos: 11.5,10.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -93110.97
+      secondsUntilStateChange: -93287.55
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2481,6 +2476,12 @@ entities:
     components:
     - type: Transform
       pos: -16.5,-16.5
+      parent: 1
+  - uid: 3412
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -17.5,-3.5
       parent: 1
 - proto: AtmosDeviceFanDirectional
   entities:
@@ -5243,6 +5244,26 @@ entities:
     - type: Transform
       pos: 17.5,13.5
       parent: 1
+  - uid: 3411
+    components:
+    - type: Transform
+      pos: -15.5,-12.5
+      parent: 1
+  - uid: 3414
+    components:
+    - type: Transform
+      pos: -17.5,-3.5
+      parent: 1
+  - uid: 3415
+    components:
+    - type: Transform
+      pos: -18.5,-3.5
+      parent: 1
+  - uid: 3416
+    components:
+    - type: Transform
+      pos: -18.5,-4.5
+      parent: 1
 - proto: CableHV
   entities:
   - uid: 5
@@ -7211,6 +7232,11 @@ entities:
     components:
     - type: Transform
       pos: 17.5,13.5
+      parent: 1
+  - uid: 3413
+    components:
+    - type: Transform
+      pos: -17.5,-3.5
       parent: 1
 - proto: CableTerminal
   entities:

@@ -14,7 +14,6 @@
   name: 'Anomalous Lab'
   minimumDistance: 2100
   maximumDistance: 3800
-  spawnGroup: ScienceLab
   gridPath: /Maps/_NF/POI/anomalouslab.yml
   addComponents:
   - type: SolarPoweredGrid
@@ -26,10 +25,21 @@
   mapName: 'Anomalous Lab'
   mapPath: /Maps/_NF/POI/anomalouslab.yml
   minPlayers: 0
+  maxPlayers: 100
   stations:
     AnomalousLab:
       stationProto: StandardFrontierOutpost
       components:
+        - type: ExtraStationInformation
+          iconPath: /Textures/Markers/jobs.rsi/rd.png
+          stationSubtext: 'frontier-lobby-lab-subtext'
+          stationDescription: 'frontier-lobby-lab-description'
+        - type: StationJobs
+          availableJobs:
+            Pilot: [ -1, -1 ]
+            Mercenary: [ -1, -1 ]
+        - type: StationDeadDrop
+          maxDeadDrops: 1 # Fewer here, players start here.
         - type: StationNameSetup
           mapNameTemplate: 'Anomalous Lab'
         - type: StationJobs

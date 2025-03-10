@@ -42,3 +42,9 @@ frontier-lobby-pirate-description = This is the ultimate hideout where scallywag
    - Find a crew to join
    - Socialize with other pirates
  The roles on this station are whitelist-only and require an application in the discord to be accepted.
+
+frontier-lobby-lab-subtext = Where scientists can conduct research of all kinds.
+frontier-lobby-lab-description = The lab is a good place to perform various kinds of scientific research. Here you can:
+   - Learn about and experiment on anomalies
+   - Collect artifacts and perform xenoarchaeology
+   - Socialize with other scientists
