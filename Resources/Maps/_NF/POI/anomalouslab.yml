@@ -1449,6 +1449,17 @@ entities:
       - 2441
       - 691
       - 2440
+  - uid: 2478
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,17.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 2571
+      - 2477
+      - 535
   - uid: 2602
     components:
     - type: Transform
@@ -1670,14 +1681,6 @@ entities:
     components:
     - type: Transform
       pos: 16.5,12.5
-      parent: 1
-- proto: AirlockCommand
-  entities:
-  - uid: 2478
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,15.5
       parent: 1
 - proto: AirlockEngineering
   entities:
@@ -1989,7 +1992,7 @@ entities:
       pos: -21.5,-16.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7216.0986
+      secondsUntilStateChange: -7689.9478
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2044,7 +2047,7 @@ entities:
       pos: 19.5,1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -88453.29
+      secondsUntilStateChange: -88927.14
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2330,7 +2333,7 @@ entities:
       pos: 11.5,10.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -92637.12
+      secondsUntilStateChange: -93110.97
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2360,6 +2363,14 @@ entities:
     components:
     - type: Transform
       pos: -0.5,15.5
+      parent: 1
+- proto: AirlockResearchDirectorLocked
+  entities:
+  - uid: 2255
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,15.5
       parent: 1
 - proto: AirlockScience
   entities:
@@ -9489,6 +9500,15 @@ entities:
       deviceLists:
       - 1029
       - 2446
+  - uid: 2571
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,15.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2478
   - uid: 2580
     components:
     - type: Transform
@@ -14384,6 +14404,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,16.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2478
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 681
@@ -14964,6 +14987,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,18.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2478
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 2577
@@ -16044,6 +16070,26 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 25.5,-16.5
+      parent: 1
+  - uid: 3407
+    components:
+    - type: Transform
+      pos: -27.5,-16.5
+      parent: 1
+  - uid: 3408
+    components:
+    - type: Transform
+      pos: -17.5,-26.5
+      parent: 1
+  - uid: 3409
+    components:
+    - type: Transform
+      pos: 14.5,-13.5
+      parent: 1
+  - uid: 3410
+    components:
+    - type: Transform
+      pos: 18.5,-5.5
       parent: 1
 - proto: PoweredLEDSmallLight
   entities:
@@ -19021,20 +19067,6 @@ entities:
     components:
     - type: Transform
       pos: 12.5,13.5
-      parent: 1
-- proto: SurveillanceCameraWirelessRouterConstructed
-  entities:
-  - uid: 2255
-    components:
-    - type: Transform
-      pos: 5.5,6.5
-      parent: 1
-- proto: SurveillanceWirelessCameraMovableConstructed
-  entities:
-  - uid: 2571
-    components:
-    - type: Transform
-      pos: -11.5,1.5
       parent: 1
 - proto: Table
   entities:
