@@ -315,10 +315,10 @@
     output: FoodMealFries
 
 - type: entity
-  name: everyspice pod
+  name: everyspice pods
   parent: FoodProduceBase
   id: FoodEveryspice
-  description: The long, pale pods of the everyspice plant. A flavorful addition to food when processed.
+  description: The long, pale pods of the everyspice plant. A flavorful addition to food when ground.
   components:
   - type: FlavorProfile
     flavors:
@@ -330,14 +330,41 @@
         reagents:
         - ReagentId: Everyspice
           Quantity: 5
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Blackpepper
-        Quantity: 5
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
     state: produce
   - type: Tag
     tags:
       - Fruit
+  - type: AtmosExposed
+  - type: Temperature
+  - type: Construction
+    graph: Everyspice
+    node: start
+    defaultTarget: FoodEveryspiceRoasted
+
+- type: entity
+  name: roasted everyspice pods
+  parent: FoodProduceBase
+  id: FoodEveryspiceRoasted
+  description: Aromatic, charred pods of the everyspice plant. A piquant addition to food when ground.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - peppery
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Blackpepper
+          Quantity: 5
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
+    state: produce-roasted
+  - type: Tag
+    tags:
+      - Fruit
+  - type: Construction
+    graph: Everyspice
+    node: FoodEveryspiceRoasted
