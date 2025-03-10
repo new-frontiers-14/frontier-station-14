@@ -7,4 +7,4 @@ namespace Content.Shared._NF.Whitelist.Components;
 /// FIXME: move ShipyardVoucher definition to shared to prevent mispredicts.    
 /// </remarks>
 [RegisterComponent]
-public sealed partial class NFShipyardVoucher : Component;
+public sealed partial class NFShipyardVoucherComponent : Component;
