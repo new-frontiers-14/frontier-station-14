@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/10/2025 09:57:53
+  entityCount: 723
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   12: FloorAstroGrass
@@ -949,10 +960,10 @@ entities:
       parent: 1
 - proto: BoxMouthSwab
   entities:
-  - uid: 51
+  - uid: 447
     components:
     - type: Transform
-      pos: -0.5,2.5
+      pos: -0.5,3.5
       parent: 1
 - proto: BoxPaper
   entities:
@@ -963,15 +974,15 @@ entities:
       parent: 1
 - proto: Bucket
   entities:
-  - uid: 53
-    components:
-    - type: Transform
-      pos: -0.5,2.5
-      parent: 1
   - uid: 54
     components:
     - type: Transform
       pos: 2.5,-10.5
+      parent: 1
+  - uid: 723
+    components:
+    - type: Transform
+      pos: -0.5,3.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -3679,17 +3690,17 @@ entities:
       bodyType: Static
 - proto: PestSpray
   entities:
-  - uid: 446
+  - uid: 586
     components:
     - type: Transform
-      pos: -0.5,2.5
+      pos: -0.5,3.5
       parent: 1
 - proto: PlantBGoneSpray
   entities:
-  - uid: 447
+  - uid: 466
     components:
     - type: Transform
-      pos: -0.5,2.5
+      pos: -0.5,3.5
       parent: 1
 - proto: PortableGeneratorSuperPacmanShuttle
   entities:
@@ -3699,7 +3710,7 @@ entities:
       pos: 8.5,-10.5
       parent: 1
     - type: FuelGenerator
-      targetPower: 26000
+      targetPower: 28000
 - proto: PortableScrubber
   entities:
   - uid: 561
@@ -3816,16 +3827,16 @@ entities:
       parent: 1
 - proto: Rack
   entities:
+  - uid: 51
+    components:
+    - type: Transform
+      pos: -0.5,3.5
+      parent: 1
   - uid: 465
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-2.5
-      parent: 1
-  - uid: 466
-    components:
-    - type: Transform
-      pos: -0.5,2.5
       parent: 1
   - uid: 467
     components:
@@ -4211,6 +4222,13 @@ entities:
     components:
     - type: Transform
       pos: 1.5,7.5
+      parent: 1
+- proto: ServiceTechFab
+  entities:
+  - uid: 446
+    components:
+    - type: Transform
+      pos: -0.5,2.5
       parent: 1
 - proto: ShelfChemistry
   entities:
@@ -4646,7 +4664,7 @@ entities:
       parent: 1
 - proto: VendingMachineNutri
   entities:
-  - uid: 586
+  - uid: 53
     components:
     - type: Transform
       pos: -5.5,-2.5
@@ -5248,7 +5266,7 @@ entities:
   - uid: 685
     components:
     - type: Transform
-      pos: -0.5,2.5
+      pos: -0.5,3.5
       parent: 1
 - proto: WeldingFuelTankFull
   entities:
