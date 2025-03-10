@@ -1,0 +1,86 @@
+- type: entity
+  parent: [BaseStorageItem, BaseBagOpenClose, Clothing, RecyclableItemClothBasic]
+  id: NFWalletLeatherBrown
+  name: leather wallet
+  description: Surprisingly thick. Careful not to lose it, and don't sit on it.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    state: closed
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"] # scuffed values to deal with ItemMapper complaining
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,2
+    whitelist:
+      components:
+      - Cash
+      - Paper
+  - type: Item
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    size: Small
+  - type: Clothing
+    slots: [wallet]
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 1
+  - type: Appearance
+  - type: ItemMapper
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    mapLayers:
+      closed-paper:
+        whitelist:
+          components:
+            - Paper
+      closed-cash:
+        whitelist:
+          components:
+            - Cash
+  - type: GenericVisualizer
+    visuals:
+      enum.SharedBagOpenVisuals.BagState: # You don't have to use both of these if its not necessary.
+        closeLayer:
+          Open: { visible: false }
+          Closed: { visible: true }
+        openLayer:
+          Open: { visible: true }
+          Closed: { visible: false }
+        closed-paper:
+          Open: { state: open-paper }
+          Closed: { state: closed-paper }
+        closed-cash:
+          Open: { state: open-cash }
+          Closed: { state: closed-cash }
+
+- type: entity
+  parent: NFWalletLeatherBrown
+  id: NFWalletLeatherBlack
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi
+    state: closed-black
+    layers:
+    - state: closed-black
+      map: ["closeLayer"]
+    - state: open-black
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
