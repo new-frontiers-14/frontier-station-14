@@ -50,7 +50,10 @@ public sealed partial class MedicalBountyRedemptionMenu : FancyWindow
                 break;
             case MedicalBountyRedemptionStatus.Valid:
                 BodyLabel.Text = Loc.GetString("medical-bounty-redemption-body-label-valid-bounty");
-                RedeemLabel.Text = Loc.GetString("medical-bounty-redemption-redeem-label-valid-bounty", ("amount", BankSystemExtensions.ToSpesoString(message.BountyValue)));
+                if (message.PaidToStation)
+                    RedeemLabel.Text = Loc.GetString("medical-bounty-redemption-redeem-label-valid-bounty-to-station", ("amount", BankSystemExtensions.ToSpesoString(message.BountyValue)));
+                else
+                    RedeemLabel.Text = Loc.GetString("medical-bounty-redemption-redeem-label-valid-bounty", ("amount", BankSystemExtensions.ToSpesoString(message.BountyValue)));
                 SellButton.Disabled = false;
                 break;
         }
