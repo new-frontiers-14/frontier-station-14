@@ -16,10 +16,15 @@ using Content.Shared.DeviceLinking.Components;
 using Content.Shared.Examine;
 using Content.Shared.DeviceNetwork;
 using Content.Server.DeviceNetwork;
+using Content.Server.DeviceLinking.Systems;
+using Content.Shared._NF.DeviceLinking.Systems;
+using Content.Shared._NF.DeviceLinking.Components;
+using Content.Server._NF.DeviceLinking.Components;
+using SignalState = Content.Shared._NF.DeviceLinking.Components.SignalState;
 
-namespace Content.Server.DeviceLinking.Systems;
+namespace Content.Server._NF.DeviceLinking.Systems;
 
-public sealed class RngDeviceSystem : EntitySystem
+public sealed class RngDeviceSystem : SharedRngDeviceSystem
 {
     [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -30,12 +35,12 @@ public sealed class RngDeviceSystem : EntitySystem
     /// <summary>
     /// Creates an array of output port ProtoIds for the given number of outputs
     /// </summary>
-    private static ProtoId<SourcePortPrototype>[] CreatePortsArray(RngDeviceComponent comp, int count)
+    private static new ProtoId<SourcePortPrototype>[] CreatePortsArray(RngDeviceComponent comp, int count)
     {
         var result = new ProtoId<SourcePortPrototype>[count];
         for (int i = 0; i < count; i++)
         {
-            result[i] = comp.GetOutputPort(i + 1);
+            result[i] = comp.OutputPorts[i + 1];
         }
         return result;
     }
@@ -52,98 +57,109 @@ public sealed class RngDeviceSystem : EntitySystem
         SubscribeLocalEvent<RngDeviceComponent, RngDeviceToggleEdgeModeMessage>(OnToggleEdgeMode);
         SubscribeLocalEvent<RngDeviceComponent, RngDeviceSetTargetNumberMessage>(OnSetTargetNumber);
         SubscribeLocalEvent<RngDeviceComponent, AfterActivatableUIOpenEvent>(OnAfterActivatableUIOpen);
-        SubscribeLocalEvent<RngDeviceComponent, ExaminedEvent>(OnExamined);
     }
 
-    private void OnInit(EntityUid uid, RngDeviceComponent comp, ComponentInit args)
+    private void OnInit(Entity<RngDeviceComponent> ent, ref ComponentInit args)
     {
+        var comp = ent.Comp;
+        var uid = ent.Owner;
+
+        // Initialize output ports if they're not already set
+        for (int i = 1; i <= 20; i++)
+        {
+            if (!comp.OutputPorts.ContainsKey(i))
+                comp.OutputPorts[i] = $"RngOutput{i}";
+        }
+
         _deviceLink.EnsureSinkPorts(uid, comp.InputPort);
 
         // Initialize the ports array based on output count
-        var ports = InitializePortsArray(comp);
+        var ports = CreatePortsArray(comp, comp.Outputs);
         _deviceLink.EnsureSourcePorts(uid, ports);
 
         // Cache the state prefix
-        comp.StatePrefix = comp.GetStatePrefix();
+        comp.StatePrefix = GetStatePrefix(uid, comp);
 
-        UpdateUserInterface(uid, comp);
+        // Add server component if needed
+        if (!HasComp<ServerRngDeviceComponent>(uid))
+        {
+            var serverComp = AddComp<ServerRngDeviceComponent>(uid);
+            serverComp.Outputs = comp.Outputs;
+            serverComp.InputPort = comp.InputPort;
+            serverComp.OutputPorts = comp.OutputPorts;
+            serverComp.StatePrefix = comp.StatePrefix;
+        }
+
+        UpdateUserInterface(ent);
     }
 
-    private ProtoId<SourcePortPrototype>[] InitializePortsArray(RngDeviceComponent comp)
+    private void OnAfterActivatableUIOpen(Entity<RngDeviceComponent> ent, ref AfterActivatableUIOpenEvent args)
     {
-        var array = CreatePortsArray(comp, comp.Outputs);
-        comp.PortsArray = array;
-        return array;
+        UpdateUserInterface(ent);
     }
 
-    private void OnAfterActivatableUIOpen(EntityUid uid, RngDeviceComponent comp, AfterActivatableUIOpenEvent args)
+    private void OnToggleMute(Entity<RngDeviceComponent> ent, ref RngDeviceToggleMuteMessage args)
     {
-        UpdateUserInterface(uid, comp);
+        ent.Comp.Muted = args.Muted;
+        Dirty(ent);
+        UpdateUserInterface(ent);
     }
 
-    private void OnToggleMute(EntityUid uid, RngDeviceComponent comp, RngDeviceToggleMuteMessage args)
+    private void OnToggleEdgeMode(Entity<RngDeviceComponent> ent, ref RngDeviceToggleEdgeModeMessage args)
     {
-        comp.Muted = args.Muted;
-        UpdateUserInterface(uid, comp);
+        ent.Comp.EdgeMode = args.EdgeMode;
+        Dirty(ent);
+        UpdateUserInterface(ent);
     }
 
-    private void OnToggleEdgeMode(EntityUid uid, RngDeviceComponent comp, RngDeviceToggleEdgeModeMessage args)
+    private void OnSetTargetNumber(Entity<RngDeviceComponent> ent, ref RngDeviceSetTargetNumberMessage args)
     {
-        comp.EdgeMode = args.EdgeMode;
-        UpdateUserInterface(uid, comp);
-    }
-
-    private void OnSetTargetNumber(EntityUid uid, RngDeviceComponent comp, RngDeviceSetTargetNumberMessage args)
-    {
-        if (comp.Outputs != 2)
+        if (ent.Comp.Outputs != 2)
             return;
 
-        comp.TargetNumber = Math.Clamp(args.TargetNumber, 1, 100);
-        UpdateUserInterface(uid, comp);
+        ent.Comp.TargetNumber = Math.Clamp(args.TargetNumber, 1, 100);
+        Dirty(ent);
+        UpdateUserInterface(ent);
     }
 
-    private void UpdateUserInterface(EntityUid uid, RngDeviceComponent comp)
+    private void UpdateUserInterface(Entity<RngDeviceComponent> ent)
     {
-        if (_userInterfaceSystem.HasUi(uid, RngDeviceUiKey.Key))
-        {
-            _userInterfaceSystem.SetUiState(uid, RngDeviceUiKey.Key,
-                new RngDeviceBoundUserInterfaceState(comp.Muted, comp.TargetNumber, comp.Outputs, comp.EdgeMode, comp.GetDeviceType()));
-        }
+        var comp = ent.Comp;
+        var uid = ent.Owner;
+
+        if (!_userInterfaceSystem.HasUi(uid, RngDeviceUiKey.Key))
+            return;
+
+        _userInterfaceSystem.SetUiState(uid, RngDeviceUiKey.Key,
+            new RngDeviceBoundUserInterfaceState(comp.Muted, comp.TargetNumber, comp.Outputs, comp.EdgeMode, GetDeviceType(uid, comp)));
     }
 
-    private void OnSignalReceived(EntityUid uid, RngDeviceComponent comp, ref SignalReceivedEvent args)
+    private void OnSignalReceived(Entity<RngDeviceComponent> ent, ref SignalReceivedEvent args)
     {
-        // Roll the dice and determine output port
-        int roll;
-        int outputPort;
-        if (comp.Outputs == 2)
-        {
-            // For percentile dice, roll 1-100 and determine which output to trigger based on target number
-            roll = _random.Next(1, 101);
-            outputPort = roll <= comp.TargetNumber ? 1 : 2;
-        }
-        else
-        {
-            roll = _random.Next(1, comp.Outputs + 1);
-            outputPort = roll;
-        }
+        var comp = ent.Comp;
+        var uid = ent.Owner;
 
-        // Store the values for future use
-        comp.LastRoll = roll;
-        comp.LastOutputPort = outputPort;
+        // Use the shared roll system for deterministic rolls
+        var (roll, outputPort) = PerformRoll(ent);
 
         // Update visual state and play sound
-        UpdateVisualState(uid, comp, roll);
+        UpdateVisualState(ent, roll);
 
         // Handle signal output based on mode
         if (comp.EdgeMode)
-            HandleEdgeModeSignals(uid, comp, outputPort);
+            HandleEdgeModeSignals(ent, outputPort);
         else
-            HandleNormalModeSignal(uid, comp, outputPort);
+            HandleNormalModeSignal(ent, outputPort);
+
+        // Dirty the component to ensure changes are synchronized
+        Dirty(ent);
     }
 
-    private void UpdateVisualState(EntityUid uid, RngDeviceComponent comp, int roll)
+    private void UpdateVisualState(Entity<RngDeviceComponent> ent, int roll)
     {
+        var comp = ent.Comp;
+        var uid = ent.Owner;
+
         if (!TryComp<AppearanceComponent>(uid, out var appearance))
             return;
 
@@ -159,17 +175,22 @@ public sealed class RngDeviceSystem : EntitySystem
             _audio.PlayPvs(new SoundCollectionSpecifier("Dice"), uid);
     }
 
-    private void HandleNormalModeSignal(EntityUid uid, RngDeviceComponent comp, int outputPort)
+    protected override void UpdateVisuals(Entity<RngDeviceComponent> ent)
     {
-        var port = GetOutputPort(comp, outputPort);
-        _deviceLink.InvokePort(uid, port);
+        UpdateVisualState(ent, ent.Comp.LastRoll);
     }
 
-    private void HandleEdgeModeSignals(EntityUid uid, RngDeviceComponent comp, int selectedPort)
+    private void HandleNormalModeSignal(Entity<RngDeviceComponent> ent, int outputPort)
     {
-        var ports = comp.PortsArray;
-        if (ports == null)
-            return;
+        var port = GetOutputPort(ent.Comp, outputPort);
+        _deviceLink.InvokePort(ent.Owner, port);
+    }
+
+    private void HandleEdgeModeSignals(Entity<RngDeviceComponent> ent, int selectedPort)
+    {
+        var comp = ent.Comp;
+        var uid = ent.Owner;
+        var ports = CreatePortsArray(comp, comp.Outputs);
 
         // Clear the payload once before the loop
         _edgeModePayload.Clear();
@@ -198,22 +219,11 @@ public sealed class RngDeviceSystem : EntitySystem
     /// <param name="portNumber">The port number (1-20)</param>
     /// <returns>The ProtoId for the corresponding output port</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when port number is invalid</exception>
-    private static ProtoId<SourcePortPrototype> GetOutputPort(RngDeviceComponent comp, int portNumber)
+    private static new ProtoId<SourcePortPrototype> GetOutputPort(RngDeviceComponent comp, int portNumber)
     {
         if (portNumber < 1 || portNumber > 20)
             throw new ArgumentOutOfRangeException(nameof(portNumber), "Port number must be between 1 and 20");
 
-        return comp.GetOutputPort(portNumber);
-    }
-
-    private void OnExamined(EntityUid uid, RngDeviceComponent component, ExaminedEvent args)
-    {
-        if (!args.IsInDetailsRange)
-            return;
-
-        args.PushMarkup(Loc.GetString("rng-device-examine-last-roll", ("roll", component.LastRoll)));
-
-        if (component.Outputs == 2)  // Only show port info for percentile die
-            args.PushMarkup(Loc.GetString("rng-device-examine-last-port", ("port", component.LastOutputPort)));
+        return comp.OutputPorts[portNumber];
     }
 }

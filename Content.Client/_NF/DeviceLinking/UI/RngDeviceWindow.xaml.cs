@@ -18,13 +18,6 @@ namespace Content.Client._NF.DeviceLinking.UI;
 [GenerateTypedNameReferences]
 public sealed partial class RngDeviceWindow : DefaultWindow
 {
-    private readonly CheckBox _muteCheckBox;
-    private readonly CheckBox _edgeModeCheckBox;
-    private readonly SpinBox _targetNumberSpinBox;
-    private readonly Slider _targetNumberSlider;
-    private readonly BoxContainer _targetNumberContainer;
-    private readonly Button _minusButton;
-    private readonly Button _plusButton;
     private RngDeviceBoundUserInterfaceState? _state;
     private bool _updatingControls;
 
@@ -37,31 +30,19 @@ public sealed partial class RngDeviceWindow : DefaultWindow
         RobustXamlLoader.Load(this);
         Title = Loc.GetString("rng-device-window-title");
 
-        _muteCheckBox = MuteCheckBox;
-        _muteCheckBox.OnToggled += OnMuteCheckBoxToggled;
-
-        _edgeModeCheckBox = EdgeModeCheckBox;
-        _edgeModeCheckBox.OnToggled += OnEdgeModeCheckBoxToggled;
-
-        _targetNumberContainer = TargetNumberContainer;
-
-        _targetNumberSpinBox = TargetNumberSpinBox;
-        _targetNumberSpinBox.ValueChanged += OnTargetNumberSpinBoxChanged;
-
-        _targetNumberSlider = TargetNumberSlider;
-        _targetNumberSlider.OnValueChanged += OnTargetNumberSliderChanged;
-        _targetNumberSlider.OnKeyBindUp += OnTargetNumberSliderReleased;
-
-        _minusButton = MinusButton;
-        _plusButton = PlusButton;
-        _minusButton.OnPressed += _ => AdjustTargetNumber(-1);
-        _plusButton.OnPressed += _ => AdjustTargetNumber(1);
+        MuteCheckBox.OnToggled += OnMuteCheckBoxToggled;
+        EdgeModeCheckBox.OnToggled += OnEdgeModeCheckBoxToggled;
+        TargetNumberSpinBox.ValueChanged += OnTargetNumberSpinBoxChanged;
+        TargetNumberSlider.OnValueChanged += OnTargetNumberSliderChanged;
+        TargetNumberSlider.OnKeyBindUp += OnTargetNumberSliderReleased;
+        MinusButton.OnPressed += _ => AdjustTargetNumber(-1);
+        PlusButton.OnPressed += _ => AdjustTargetNumber(1);
     }
 
     private void AdjustTargetNumber(int delta)
     {
-        var newValue = Math.Clamp(_targetNumberSpinBox.Value + delta, 1, 100);
-        _targetNumberSpinBox.Value = newValue;
+        var newValue = Math.Clamp(TargetNumberSpinBox.Value + delta, 1, 100);
+        TargetNumberSpinBox.Value = newValue;
     }
 
     private void OnMuteCheckBoxToggled(BaseButton.ButtonToggledEventArgs args)
@@ -82,7 +63,7 @@ public sealed partial class RngDeviceWindow : DefaultWindow
         var value = (int)args.Value;
         _updatingControls = true;
         OnTargetNumberChanged?.Invoke(value);
-        _targetNumberSlider.SetValueWithoutEvent(value);
+        TargetNumberSlider.SetValueWithoutEvent(value);
         _updatingControls = false;
     }
 
@@ -93,7 +74,7 @@ public sealed partial class RngDeviceWindow : DefaultWindow
 
         var value = (int)slider.Value;
         _updatingControls = true;
-        _targetNumberSpinBox.OverrideValue(value);
+        TargetNumberSpinBox.OverrideValue(value);
         _updatingControls = false;
     }
 
@@ -102,27 +83,26 @@ public sealed partial class RngDeviceWindow : DefaultWindow
         if (args.Function != EngineKeyFunctions.UIClick)
             return;
 
-        OnTargetNumberChanged?.Invoke((int)_targetNumberSlider.Value);
+        OnTargetNumberChanged?.Invoke((int)TargetNumberSlider.Value);
     }
 
     public void UpdateState(RngDeviceBoundUserInterfaceState state)
     {
         _state = state;
         _updatingControls = true;
-        _muteCheckBox.Pressed = state.Muted;
-        _edgeModeCheckBox.Pressed = state.EdgeMode;
+        MuteCheckBox.Pressed = state.Muted;
+        EdgeModeCheckBox.Pressed = state.EdgeMode;
 
         Title = Loc.GetString("rng-device-window-title", ("type", state.DeviceType));
 
         // Only update values if the slider isn't being dragged
-        if (!_targetNumberSlider.Grabbed)
+        if (!TargetNumberSlider.Grabbed)
         {
-            _targetNumberSpinBox.OverrideValue(state.TargetNumber);
-            _targetNumberSlider.SetValueWithoutEvent(state.TargetNumber);
+            TargetNumberSpinBox.OverrideValue(state.TargetNumber);
+            TargetNumberSlider.SetValueWithoutEvent(state.TargetNumber);
         }
 
-        _targetNumberContainer.Visible = state.Outputs == 2; // Only show for percentile variant
+        TargetNumberContainer.Visible = state.Outputs == 2; // Only show for percentile variant
         _updatingControls = false;
     }
-
 }
