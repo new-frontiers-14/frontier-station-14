@@ -8,9 +8,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.DeviceLinking.Components;
 
-/// <summary>
-/// Last state of a signal port, used to not spam invoking ports.
-/// </summary>
+// Last state of a signal port, used to not spam invoking ports.
 public enum SignalState : byte
 {
     Momentary, // Instantaneous pulse high, compatibility behavior
@@ -18,80 +16,57 @@ public enum SignalState : byte
     High
 }
 
-/// <summary>
-/// Frontier: A random number generator device that triggers a random output port when triggered.
-/// </summary>
+// Frontier: A random number generator device that triggers a random output port when triggered.
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedRngDeviceSystem))]
-[AutoGenerateComponentState]
+[AutoGenerateComponentState(true)]
 public sealed partial class RngDeviceComponent : Component
 {
-    [DataField("inputPort")]
+    [DataField]
     public ProtoId<SinkPortPrototype> InputPort = "Trigger";
 
-    [DataField("outputPorts")]
-    [AutoNetworkedField]
+    [DataField]
     public Dictionary<int, ProtoId<SourcePortPrototype>> OutputPorts = [];
 
     private static readonly int[] ValidOutputCounts = { 2, 4, 6, 8, 10, 12, 20 };
 
-    /// <summary>
-    /// Number of output ports.
-    /// </summary>
-    [DataField("outputs")]
-    [AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
+    // Number of output ports.
+    [DataField]
     public int Outputs = 6;
 
-    /// <summary>
-    /// Initial state
-    /// </summary>
+    // Initial state
     [DataField]
     [AutoNetworkedField]
     public SignalState State = SignalState.Low;
 
-    /// <summary>
-    /// Whether the device is muted
-    /// </summary>
-    [DataField("muted")]
-    [AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
+    // Whether the device is muted
+    [DataField]
     public bool Muted;
 
-    /// <summary>
-    /// Target number for percentile dice (1-100). Only used when Outputs = 2.
-    /// </summary>
-    [DataField("targetNumber")]
-    [AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
+    // Sound to play when the device is rolled
+    [DataField]
+    public SoundSpecifier Sound = new SoundCollectionSpecifier("Dice");
+
+    // Target number for percentile dice (1-100). Only used when Outputs = 2.
+    [DataField]
     public int TargetNumber = 50;
 
-    /// <summary>
-    /// When enabled, sends High signal to selected port and Low signals to others.
-    /// </summary>
-    [DataField("edgeMode")]
-    [AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
+    // When enabled, sends High signal to selected port and Low signals to others.
+    [DataField]
     public bool EdgeMode;
 
-    /// <summary>
-    /// The last value rolled (1-100 for percentile, 1-N for other dice).
-    /// </summary>
-    [DataField("lastRoll")]
+    // The last value rolled (1-100 for percentile, 1-N for other dice).
+    [DataField]
     [AutoNetworkedField]
     [ViewVariables]
     public int LastRoll;
 
-    /// <summary>
-    /// The last output port that was triggered (1-based).
-    /// </summary>
-    [DataField("lastOutputPort")]
+    // The last output port that was triggered (1-based).
+    [DataField]
     [AutoNetworkedField]
     [ViewVariables]
     public int LastOutputPort;
 
-    /// <summary>
-    /// Cached state prefix for visual updates
-    /// </summary>
+    // Cached state prefix for visual updates
     [ViewVariables]
     public string StatePrefix = string.Empty;
 }

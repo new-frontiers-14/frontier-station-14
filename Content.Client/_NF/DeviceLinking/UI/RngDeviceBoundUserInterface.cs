@@ -27,31 +27,16 @@ public sealed class RngDeviceBoundUserInterface(EntityUid owner, Enum uiKey) : B
 
     private void OnMuteToggled(bool muted)
     {
-        // We can't modify the component directly on the client
-        // Just send the message to the server
         SendMessage(new RngDeviceToggleMuteMessage(muted));
     }
 
     private void OnEdgeModeToggled(bool edgeMode)
     {
-        // We can't modify the component directly on the client
-        // Just send the message to the server
         SendMessage(new RngDeviceToggleEdgeModeMessage(edgeMode));
     }
 
     private void OnTargetNumberChanged(int targetNumber)
     {
-        // We can't modify the component directly on the client
-        // Just send the message to the server
-
-        // If we have a client system, predict a roll with the new target number
-        if (_entityManager.TryGetComponent<TransformComponent>(Owner, out _) &&
-            _entityManager.EntitySysManager.TryGetEntitySystem<RngDeviceSystem>(out var system) &&
-            _entityManager.TryGetComponent<RngDeviceComponent>(Owner, out var component))
-        {
-            system.PredictRoll(new Entity<RngDeviceComponent>(Owner, component));
-        }
-
         SendMessage(new RngDeviceSetTargetNumberMessage(targetNumber));
     }
 

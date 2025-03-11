@@ -14,14 +14,6 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<RngDeviceComponent, ComponentInit>(OnInit);
-    }
-
-    private void OnInit(Entity<RngDeviceComponent> ent, ref ComponentInit args)
-    {
-        // Initialize the state prefix
-        ent.Comp.StatePrefix = GetStatePrefix(ent, ent.Comp);
     }
 
     // Predicts a roll on the client side for responsive UI

@@ -1,10 +1,6 @@
 using Content.Server.DeviceLinking.Components;
 using SignalReceivedEvent = Content.Server.DeviceLinking.Events.SignalReceivedEvent;
-using Robust.Shared.Random;
-using System.Linq;
 using Robust.Server.GameObjects;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Server.UserInterface;
 using Robust.Shared.Prototypes;
@@ -13,13 +9,11 @@ using Content.Shared._NF.DeviceLinking;
 using static Content.Shared._NF.DeviceLinking.RngDeviceVisuals;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Components;
-using Content.Shared.Examine;
 using Content.Shared.DeviceNetwork;
 using Content.Server.DeviceNetwork;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared._NF.DeviceLinking.Systems;
 using Content.Shared._NF.DeviceLinking.Components;
-using Content.Server._NF.DeviceLinking.Components;
 using SignalState = Content.Shared._NF.DeviceLinking.Components.SignalState;
 
 namespace Content.Server._NF.DeviceLinking.Systems;
@@ -27,23 +21,8 @@ namespace Content.Server._NF.DeviceLinking.Systems;
 public sealed class RngDeviceSystem : SharedRngDeviceSystem
 {
     [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
-
-    /// <summary>
-    /// Creates an array of output port ProtoIds for the given number of outputs
-    /// </summary>
-    private static new ProtoId<SourcePortPrototype>[] CreatePortsArray(RngDeviceComponent comp, int count)
-    {
-        var result = new ProtoId<SourcePortPrototype>[count];
-        for (int i = 0; i < count; i++)
-        {
-            result[i] = comp.OutputPorts[i + 1];
-        }
-        return result;
-    }
 
     private readonly NetworkPayload _edgeModePayload = new();
 
@@ -51,7 +30,6 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RngDeviceComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<RngDeviceComponent, SignalReceivedEvent>(OnSignalReceived);
         SubscribeLocalEvent<RngDeviceComponent, RngDeviceToggleMuteMessage>(OnToggleMute);
         SubscribeLocalEvent<RngDeviceComponent, RngDeviceToggleEdgeModeMessage>(OnToggleEdgeMode);
@@ -59,8 +37,10 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
         SubscribeLocalEvent<RngDeviceComponent, AfterActivatableUIOpenEvent>(OnAfterActivatableUIOpen);
     }
 
-    private void OnInit(Entity<RngDeviceComponent> ent, ref ComponentInit args)
+    protected override void OnInit(Entity<RngDeviceComponent> ent, ref ComponentInit args)
     {
+        base.OnInit(ent, ref args);
+
         var comp = ent.Comp;
         var uid = ent.Owner;
 
@@ -76,19 +56,6 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
         // Initialize the ports array based on output count
         var ports = CreatePortsArray(comp, comp.Outputs);
         _deviceLink.EnsureSourcePorts(uid, ports);
-
-        // Cache the state prefix
-        comp.StatePrefix = GetStatePrefix(uid, comp);
-
-        // Add server component if needed
-        if (!HasComp<ServerRngDeviceComponent>(uid))
-        {
-            var serverComp = AddComp<ServerRngDeviceComponent>(uid);
-            serverComp.Outputs = comp.Outputs;
-            serverComp.InputPort = comp.InputPort;
-            serverComp.OutputPorts = comp.OutputPorts;
-            serverComp.StatePrefix = comp.StatePrefix;
-        }
 
         UpdateUserInterface(ent);
     }
@@ -114,10 +81,14 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
 
     private void OnSetTargetNumber(Entity<RngDeviceComponent> ent, ref RngDeviceSetTargetNumberMessage args)
     {
-        if (ent.Comp.Outputs != 2)
+        var comp = ent.Comp;
+
+        if (comp.Outputs != 2)
             return;
 
-        ent.Comp.TargetNumber = Math.Clamp(args.TargetNumber, 1, 100);
+        // Update the target number
+        comp.TargetNumber = Math.Clamp(args.TargetNumber, 1, 100);
+
         Dirty(ent);
         UpdateUserInterface(ent);
     }
@@ -142,7 +113,7 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
         // Use the shared roll system for deterministic rolls
         var (roll, outputPort) = PerformRoll(ent);
 
-        // Update visual state and play sound
+        // Update visual state
         UpdateVisualState(ent, roll);
 
         // Handle signal output based on mode
@@ -170,9 +141,6 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
             _ => roll
         };
         _appearance.SetData(uid, State, $"{comp.StatePrefix}_{stateNumber}", appearance);
-
-        if (!comp.Muted)
-            _audio.PlayPvs(new SoundCollectionSpecifier("Dice"), uid);
     }
 
     protected override void UpdateVisuals(Entity<RngDeviceComponent> ent)
@@ -210,20 +178,5 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
 
             _deviceLink.InvokePort(uid, ports[i], _edgeModePayload);
         }
-    }
-
-    /// <summary>
-    /// Gets the ProtoId for the specified output port number
-    /// </summary>
-    /// <param name="comp">The RNG device component</param>
-    /// <param name="portNumber">The port number (1-20)</param>
-    /// <returns>The ProtoId for the corresponding output port</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when port number is invalid</exception>
-    private static new ProtoId<SourcePortPrototype> GetOutputPort(RngDeviceComponent comp, int portNumber)
-    {
-        if (portNumber < 1 || portNumber > 20)
-            throw new ArgumentOutOfRangeException(nameof(portNumber), "Port number must be between 1 and 20");
-
-        return comp.OutputPorts[portNumber];
     }
 }

@@ -2,16 +2,19 @@ using Content.Shared._NF.DeviceLinking.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Components;
 using Content.Shared.Examine;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.UserInterface;
 
 namespace Content.Shared._NF.DeviceLinking.Systems;
 
 // Shared system for RNG device functionality
 public abstract class SharedRngDeviceSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     private static readonly int[] ValidOutputCounts = { 2, 4, 6, 8, 10, 12, 20 };
 
@@ -21,6 +24,13 @@ public abstract class SharedRngDeviceSystem : EntitySystem
 
         SubscribeLocalEvent<RngDeviceComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<RngDeviceComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
+        SubscribeLocalEvent<RngDeviceComponent, ComponentInit>(OnInit);
+    }
+
+    protected virtual void OnInit(Entity<RngDeviceComponent> ent, ref ComponentInit args)
+    {
+        // Initialize the state prefix
+        ent.Comp.StatePrefix = GetStatePrefix(ent, ent.Comp);
     }
 
     // Checks if the output count is valid
@@ -76,11 +86,8 @@ public abstract class SharedRngDeviceSystem : EntitySystem
         var comp = ent.Comp;
 
         // Use current tick as seed for deterministic randomness
-        // Both client and server will use the same seed in order to get the same results
-        var seed = (int)_gameTiming.CurTick.Value;
-
-        // XOR with entity ID to ensure different entities get different results on the same tick
-        var random = new System.Random(seed ^ ent.Owner.GetHashCode());
+        // This is critical for client prediction - both client and server will use the same tick value
+        var rand = new System.Random((int)_timing.CurTick.Value);
 
         int roll;
         int outputPort;
@@ -88,18 +95,22 @@ public abstract class SharedRngDeviceSystem : EntitySystem
         if (comp.Outputs == 2)
         {
             // For percentile dice, roll 1-100
-            roll = random.Next(1, 101);
+            roll = rand.Next(1, 101);
             outputPort = roll <= comp.TargetNumber ? 1 : 2;
         }
         else
         {
-            roll = random.Next(1, comp.Outputs + 1);
+            roll = rand.Next(1, comp.Outputs + 1);
             outputPort = roll;
         }
 
         // Store the values for future reference
         comp.LastRoll = roll;
         comp.LastOutputPort = outputPort;
+
+        // Play sound if not muted
+        if (!comp.Muted)
+            _audio.PlayPredicted(comp.Sound, ent, null);
 
         return (roll, outputPort);
     }
@@ -129,10 +140,13 @@ public abstract class SharedRngDeviceSystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        args.PushMarkup(Loc.GetString("rng-device-examine-last-roll", ("roll", ent.Comp.LastRoll)));
+        using (args.PushGroup(nameof(RngDeviceComponent)))
+        {
+            args.PushMarkup(Loc.GetString("rng-device-examine-last-roll", ("roll", ent.Comp.LastRoll)));
 
-        if (ent.Comp.Outputs == 2)  // Only show port info for percentile die
-            args.PushMarkup(Loc.GetString("rng-device-examine-last-port", ("port", ent.Comp.LastOutputPort)));
+            if (ent.Comp.Outputs == 2)  // Only show port info for percentile die
+                args.PushMarkup(Loc.GetString("rng-device-examine-last-port", ("port", ent.Comp.LastOutputPort)));
+        }
     }
 
     private void OnAfterAutoHandleState(Entity<RngDeviceComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -140,7 +154,7 @@ public abstract class SharedRngDeviceSystem : EntitySystem
         // Update the state prefix when component state changes
         ent.Comp.StatePrefix = GetStatePrefix(ent, ent.Comp);
 
-        // Update visuals if needed
+        // Update visuals
         UpdateVisuals(ent);
     }
 
