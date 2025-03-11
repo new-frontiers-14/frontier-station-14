@@ -1,0 +1,72 @@
+- type: entity
+  id: CrateStorageRack
+  name: crate storage rack
+  description: Like a shelf, but bigger!
+  parent: BaseStructure
+  components:
+  - type: CrateStorageRack
+  - type: Sprite
+    sprite: _NF/Structures/Storage/crate_storage_rack.rsi
+    snapCardinals: true
+    layers:
+    - state: base
+    - state: top
+    - state: bottom
+  - type: InteractionOutline
+  - type: StaticPrice
+    price: 500
+  - type: ContainerContainer
+    containers:
+      item-container: !type:Container
+
+- type: entity
+  id: CrateStorageRackItemSlot
+  name: crate storage rack
+  description: Like a shelf, but bigger!
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/crate_storage_rack.rsi
+    snapCardinals: true
+    layers:
+    - state: base
+    - state: top
+      map: [ "top" ]
+    - state: bottom_back
+      map: [ "bottom_back" ]
+    - state: bottom
+      map: [ "bottom" ]
+  - type: InteractionOutline
+  - type: StaticPrice
+    price: 500
+  - type: ItemSlots
+    containers:
+      crate_1:
+        whitelist:
+          components:
+            - TradeCrate
+      crate_2:
+        whitelist:
+          components:
+            - TradeCrate
+      crate_3:
+        whitelist:
+          components:
+            - TradeCrate
+  - type: ItemMapper
+    mapLayers:
+      bottom_back: # this is like stack of floor signs
+        minCount: 1
+        whitelist:
+          components:
+            - TradeCrate
+      bottom: # this is like stack of floor signs
+        minCount: 1
+        whitelist:
+          components:
+            - TradeCrate
+      top: # this is like stack of floor signs
+        minCount: 3
+        whitelist:
+          components:
+            - TradeCrate

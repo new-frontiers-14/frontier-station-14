@@ -1,0 +1,53 @@
+- type: entity
+  id: MechChunk
+  parent: BaseMech
+  name: Chunk PLU
+  description: An old design, the Chunk Power Lifting Unit is still used for moving, storing and delivering freight.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: ripley
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: ripley
+    openState: ripley-open
+    brokenState: ripley-broken
+    mechToPilotDamageMultiplier: 0.75
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    canRemoveEquipment: false
+    maxEquipmentAmount: 1
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 3.6
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+      mech-equipment-slot:
+      - MechEquipmentGrabber
+
+- type: entity
+  id: MechChunkBattery
+  parent: MechChunk
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+      mech-equipment-slot:
+      - MechEquipmentGrabber

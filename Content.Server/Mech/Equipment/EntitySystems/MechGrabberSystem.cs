@@ -18,7 +18,8 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Content.Shared.Whitelist; // Frontier
 using Content.Shared.Buckle.Components; // Frontier
-using Content.Shared.Buckle; // Frontier
+using Content.Shared.Buckle;
+using Content.Server._NF.Mech.Events; // Frontier
 
 namespace Content.Server.Mech.Equipment.EntitySystems;
 
@@ -136,6 +137,11 @@ public sealed class MechGrabberSystem : EntitySystem
 
         if (args.Target == args.User || component.DoAfter != null)
             return;
+
+        // Frontier: run a mechgrabber event check on the target
+        var ev = new MechGrabberInteractEvent(uid);
+        RaiseLocalEvent(args.Target, ref ev);
+        // End Frontier
 
         if (TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static ||
             HasComp<WallMountComponent>(target) ||

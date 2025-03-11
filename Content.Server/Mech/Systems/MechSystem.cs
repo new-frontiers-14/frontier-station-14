@@ -149,6 +149,11 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void OnRemoveEquipmentMessage(EntityUid uid, MechComponent component, MechEquipmentRemoveMessage args)
     {
+        // Frontier: mechs with fixed equipment
+        if (component.CanRemoveEquipment)
+            return;
+        // End Frontier: mechs with fixed equipment
+
         var equip = GetEntity(args.Equipment);
 
         if (!Exists(equip) || Deleted(equip))
