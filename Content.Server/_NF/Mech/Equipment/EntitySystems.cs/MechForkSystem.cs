@@ -16,16 +16,18 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
-using Content.Shared.Whitelist; // Frontier
-using Content.Shared.Buckle.Components; // Frontier
-using Content.Shared.Buckle; // Frontier
+using Content.Shared.Whitelist;
+using Content.Shared.Buckle.Components;
+using Content.Shared.Buckle;
+using Content.Server._NF.Mech.Events;
+using Content.Server._NF.Mech.Equipment.Components;
 
-namespace Content.Server.Mech.Equipment.EntitySystems;
+namespace Content.Server._NF.Mech.Equipment.EntitySystems;
 
 /// <summary>
-/// Handles <see cref="MechGrabberComponent"/> and all related UI logic
+/// Handles <see cref="MechForkComponent"/> and all related UI logic
 /// </summary>
-public sealed class MechGrabberSystem : EntitySystem
+public sealed class MechForkSystem : EntitySystem
 {
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly MechSystem _mech = default!;
@@ -39,17 +41,17 @@ public sealed class MechGrabberSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<MechGrabberComponent, MechEquipmentUiMessageRelayEvent>(OnGrabberMessage);
-        SubscribeLocalEvent<MechGrabberComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<MechGrabberComponent, MechEquipmentUiStateReadyEvent>(OnUiStateReady);
-        SubscribeLocalEvent<MechGrabberComponent, MechEquipmentRemovedEvent>(OnEquipmentRemoved);
-        SubscribeLocalEvent<MechGrabberComponent, AttemptRemoveMechEquipmentEvent>(OnAttemptRemove);
+        SubscribeLocalEvent<MechForkComponent, MechEquipmentUiMessageRelayEvent>(OnGrabberMessage);
+        SubscribeLocalEvent<MechForkComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<MechForkComponent, MechEquipmentUiStateReadyEvent>(OnUiStateReady);
+        SubscribeLocalEvent<MechForkComponent, MechEquipmentRemovedEvent>(OnEquipmentRemoved);
+        SubscribeLocalEvent<MechForkComponent, AttemptRemoveMechEquipmentEvent>(OnAttemptRemove);
 
-        SubscribeLocalEvent<MechGrabberComponent, UserActivateInWorldEvent>(OnInteract);
-        SubscribeLocalEvent<MechGrabberComponent, GrabberDoAfterEvent>(OnMechGrab);
+        SubscribeLocalEvent<MechForkComponent, UserActivateInWorldEvent>(OnInteract);
+        SubscribeLocalEvent<MechForkComponent, GrabberDoAfterEvent>(OnMechGrab);
     }
 
-    private void OnGrabberMessage(EntityUid uid, MechGrabberComponent component, MechEquipmentUiMessageRelayEvent args)
+    private void OnGrabberMessage(EntityUid uid, MechForkComponent component, MechEquipmentUiMessageRelayEvent args)
     {
         if (args.Message is not MechGrabberEjectMessage msg)
             return;
@@ -78,7 +80,7 @@ public sealed class MechGrabberSystem : EntitySystem
     /// <param name="mech">The mech it belongs to</param>
     /// <param name="toRemove">The item being removed</param>
     /// <param name="component"></param>
-    public void RemoveItem(EntityUid uid, EntityUid mech, EntityUid toRemove, MechGrabberComponent? component = null)
+    public void RemoveItem(EntityUid uid, EntityUid mech, EntityUid toRemove, MechForkComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
@@ -94,7 +96,7 @@ public sealed class MechGrabberSystem : EntitySystem
         _mech.UpdateUserInterface(mech);
     }
 
-    private void OnEquipmentRemoved(EntityUid uid, MechGrabberComponent component, ref MechEquipmentRemovedEvent args)
+    private void OnEquipmentRemoved(EntityUid uid, MechForkComponent component, ref MechEquipmentRemovedEvent args)
     {
         if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComponent) ||
             equipmentComponent.EquipmentOwner == null)
@@ -108,17 +110,17 @@ public sealed class MechGrabberSystem : EntitySystem
         }
     }
 
-    private void OnAttemptRemove(EntityUid uid, MechGrabberComponent component, ref AttemptRemoveMechEquipmentEvent args)
+    private void OnAttemptRemove(EntityUid uid, MechForkComponent component, ref AttemptRemoveMechEquipmentEvent args)
     {
         args.Cancelled = component.ItemContainer.ContainedEntities.Any();
     }
 
-    private void OnStartup(EntityUid uid, MechGrabberComponent component, ComponentStartup args)
+    private void OnStartup(EntityUid uid, MechForkComponent component, ComponentStartup args)
     {
         component.ItemContainer = _container.EnsureContainer<Container>(uid, "item-container");
     }
 
-    private void OnUiStateReady(EntityUid uid, MechGrabberComponent component, MechEquipmentUiStateReadyEvent args)
+    private void OnUiStateReady(EntityUid uid, MechForkComponent component, MechEquipmentUiStateReadyEvent args)
     {
         var state = new MechGrabberUiState
         {
@@ -128,7 +130,7 @@ public sealed class MechGrabberSystem : EntitySystem
         args.States.Add(GetNetEntity(uid), state);
     }
 
-    private void OnInteract(EntityUid uid, MechGrabberComponent component, UserActivateInWorldEvent args)
+    private void OnInteract(EntityUid uid, MechForkComponent component, UserActivateInWorldEvent args)
     {
         if (args.Handled)
             return;
@@ -137,6 +139,8 @@ public sealed class MechGrabberSystem : EntitySystem
         if (args.Target == args.User || component.DoAfter != null)
             return;
 
+
+
         if (TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static ||
             HasComp<WallMountComponent>(target) ||
             HasComp<MobStateComponent>(target))
@@ -144,7 +148,7 @@ public sealed class MechGrabberSystem : EntitySystem
             return;
         }
 
-        if (_whitelist.IsBlacklistPass(component.Blacklist, target)) // Frontier: Blacklist
+        if (_whitelist.IsWhitelistFail(component.Whitelist, target)) // Frontier: Blacklist
             return;
 
         if (Transform(target).Anchored)
@@ -172,7 +176,7 @@ public sealed class MechGrabberSystem : EntitySystem
         _doAfter.TryStartDoAfter(doAfterArgs, out component.DoAfter);
     }
 
-    private void OnMechGrab(EntityUid uid, MechGrabberComponent component, DoAfterEvent args)
+    private void OnMechGrab(EntityUid uid, MechForkComponent component, DoAfterEvent args)
     {
         component.DoAfter = null;
 

@@ -1,0 +1,20 @@
+- type: entity
+  id: MechEquipmentGrabber
+  parent: BaseMechEquipment
+  name: power fork
+  description: Gives the mech the ability to grab things and drag them around.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Sprite
+    state: mecha_fork
+  - type: Item
+    sprite: _NF/Objects/Specific/Mech/mecha_equipment.rsi
+  - type: PowerFork
+    maxContents: 4
+  - type: UIFragment
+    ui: !type:MechGrabberUi
+  - type: ContainerContainer
+    containers:
+      item-container: !type:Container
+
