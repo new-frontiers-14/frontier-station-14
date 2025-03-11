@@ -1,11 +1,12 @@
 - type: guideEntry
   id: NewPlayer
   name: guide-entry-newplayer
+  priority: -3 # Frontier: 0<-3
   text: "/ServerInfo/Guidebook/NewPlayer/NewPlayer.xml"
-  priority: -3 # Frontier
   children:
   - Controls
   - CharacterCreation
+  - StartingGear # Frontier
 
 - type: guideEntry
   id: Controls
@@ -17,7 +18,7 @@
 - type: guideEntry
   id: Radio
   name: guide-entry-radio
-  text: "/ServerInfo/Guidebook/NewPlayer/Controls/Radio.xml" 
+  text: "/ServerInfo/Guidebook/NewPlayer/Controls/Radio.xml"
 
 - type: guideEntry
   id: CharacterCreation
@@ -25,7 +26,7 @@
   text: "/ServerInfo/Guidebook/NewPlayer/CharacterCreation.xml"
   children:
   - YourFirstCharacter
-  - Species 
+  - Species
 
 - type: guideEntry
   id: YourFirstCharacter

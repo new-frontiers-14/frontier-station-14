@@ -3,8 +3,8 @@ barsign-prototype-name-little-treats = Little Treats Tea Room
 barsign-prototype-description-little-treats = A delightfully relaxing tearoom for all the fancy lads in the cosmos.
 
 ## Maltroach
-barsign-prototype-name-maltroach = Maltroach
-barsign-prototype-description-maltroach = Mothroaches politely greet you into the bar, or are they greeting each other?
+barsign-prototype-name-nf-maltroach = Maltroach
+barsign-prototype-description-nf-maltroach = Mothroaches politely greet you into the bar, or are they greeting each other?
 
 ## Neon Flamingos
 barsign-prototype-name-neon-flamingos = Neon Flamingos

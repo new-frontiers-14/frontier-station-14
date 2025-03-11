@@ -141,7 +141,7 @@ public sealed class DrainSystem : SharedDrainSystem
             if (!_solutionContainerSystem.ResolveSolution((uid, manager), DrainComponent.SolutionName, ref drain.Solution, out var drainSolution))
                 continue;
 
-            if (drainSolution.Volume <= 0 && !drain.AutoDrain) // Upstream: cherry-pick #34173 (add !drain.AutoDrain)
+            if (drainSolution.Volume <= 0 && !drain.AutoDrain)
             {
                 _ambientSoundSystem.SetAmbience(uid, false);
                 continue;
@@ -158,7 +158,7 @@ public sealed class DrainSystem : SharedDrainSystem
                 _puddles.Clear();
                 _lookup.GetEntitiesInRange(Transform(uid).Coordinates, drain.Range, _puddles);
 
-                if (_puddles.Count == 0 && drainSolution.Volume <= 0) // Upstream: cherry-pick #34173 (add drainSolution.Volume)
+                if (_puddles.Count == 0 && drainSolution.Volume <= 0)
                 {
                     _ambientSoundSystem.SetAmbience(uid, false);
                     continue;
