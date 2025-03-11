@@ -409,8 +409,10 @@
   - type: MachineBoard
     prototype: PortablePump
     requirements:
-      MatterBin: 1
       Manipulator: 2
     stackRequirements:
-      Cable: 5
-      Glass: 2
+      Cable: 2
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
