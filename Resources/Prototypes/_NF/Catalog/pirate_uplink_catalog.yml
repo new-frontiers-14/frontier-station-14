@@ -423,10 +423,14 @@
   id: UplinkRadioImplanterFreelance
   name: uplink-pirate-radio-implanter-name
   description: uplink-pirate-radio-implanter-desc
-  icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: pirate_label }
   productEntity: RadioImplanterFreelance
-  discountCategory: usualDiscounts
+  icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: pirate_label }
   cost:
-    Telecrystal: 2
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
   categories:
   - UplinkPirateUtility
