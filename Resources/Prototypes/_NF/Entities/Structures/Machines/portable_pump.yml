@@ -1,6 +1,6 @@
 - type: entity
   id: PortablePump
-  parent: [BaseMachine, StructureWheeled]
+  parent: [BaseMachine, SmallConstructibleMachine, StructureWheeled]
   name: portable pump
   description: Drains puddles around it. Has a sticker on the side that says "Do not submerge in water"
   components:
@@ -64,6 +64,7 @@
     sound:
       path: /Audio/Ambience/Objects/drain.ogg
   - type: Machine
+    board: PortablePumpMachineCircuitBoard
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -92,9 +93,6 @@
                 max: 2
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
-  - type: Item
-    size: Ginormous
-  - type: MultiHandedItem
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
