@@ -9,12 +9,14 @@ namespace Content.Client._NF.DeviceLinking.Systems;
 
 public sealed class RngDeviceVisualizerSystem : VisualizerSystem<RngDeviceVisualsComponent>
 {
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+
     protected override void OnAppearanceChange(EntityUid uid, RngDeviceVisualsComponent component, ref AppearanceChangeEvent args)
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        if (args.AppearanceData.TryGetValue(State, out var state) && state is string stateVal)
+        if (_appearance.TryGetData<string>(uid, State, out var stateVal, args.Component))
         {
             sprite.LayerSetState("dice", stateVal);
         }

@@ -5,14 +5,10 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.DeviceLinking.UI;
 
-public sealed class RngDeviceBoundUserInterface : BoundUserInterface
+public sealed class RngDeviceBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [ViewVariables]
     private RngDeviceWindow? _window;
-
-    public RngDeviceBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
 
     protected override void Open()
     {

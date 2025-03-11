@@ -35,7 +35,7 @@ public sealed class RngDeviceSystem : EntitySystem
         var result = new ProtoId<SourcePortPrototype>[count];
         for (int i = 0; i < count; i++)
         {
-            result[i] = new ProtoId<SourcePortPrototype>(comp.GetOutputPort(i + 1));
+            result[i] = comp.GetOutputPort(i + 1);
         }
         return result;
     }
@@ -57,7 +57,7 @@ public sealed class RngDeviceSystem : EntitySystem
 
     private void OnInit(EntityUid uid, RngDeviceComponent comp, ComponentInit args)
     {
-        _deviceLink.EnsureSinkPorts(uid, new ProtoId<SinkPortPrototype>(comp.InputPort));
+        _deviceLink.EnsureSinkPorts(uid, comp.InputPort);
 
         // Initialize the ports array based on output count
         var ports = InitializePortsArray(comp);
@@ -203,7 +203,7 @@ public sealed class RngDeviceSystem : EntitySystem
         if (portNumber < 1 || portNumber > 20)
             throw new ArgumentOutOfRangeException(nameof(portNumber), "Port number must be between 1 and 20");
 
-        return new ProtoId<SourcePortPrototype>(comp.GetOutputPort(portNumber));
+        return comp.GetOutputPort(portNumber);
     }
 
     private void OnExamined(EntityUid uid, RngDeviceComponent component, ExaminedEvent args)
