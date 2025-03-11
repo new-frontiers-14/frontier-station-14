@@ -13,6 +13,7 @@ using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Access.Components;
+using Content.Shared.Ghost;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -182,7 +183,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
 
-        if (!TryPurchaseShuttle(station, vessel.ShuttlePath.ToString(), out var shuttleUidOut))
+        if (!TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttleUidOut))
         {
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
@@ -202,8 +203,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 shuttleUid
             };
             shuttleStation = _station.InitializeNewStation(stationProto.Stations[vessel.ID], gridUids);
-            var metaData = MetaData((EntityUid)shuttleStation);
-            name = metaData.EntityName;
+            name = Name(shuttleStation.Value);
         }
 
         if (TryComp<AccessComponent>(targetId, out var newCap))
@@ -613,11 +613,17 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         while (childEnumerator.MoveNext(out var child))
         {
-            if (mobQuery.TryGetComponent(child, out var mobState)
-                && !_mobState.IsDead(child, mobState)
-                && _mind.TryGetMind(child, out var mind, out var mindComp)
-                && !_mind.IsCharacterDeadIc(mindComp))
-                return mindComp.CharacterName;
+            // Ghosts don't stop a ship sale.
+            if (HasComp<GhostComponent>(child))
+                continue;
+
+            // Check if we have a player entity that's either still around or alive and may come back
+            if (_mind.TryGetMind(child, out var mind, out var mindComp)
+                && (mindComp.Session != null
+                || !_mind.IsCharacterDeadPhysically(mindComp)))
+            {
+                return Name(child);
+            }
             else
             {
                 var charName = FoundOrganics(child, mobQuery, xformQuery);
