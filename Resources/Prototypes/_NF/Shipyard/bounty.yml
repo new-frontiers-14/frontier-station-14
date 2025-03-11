@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Bounty
+  parent: BaseVessel
+  name: FSB Bounty
+  description: A medium service vessel providing botanical and chemical services to support the needs of the Frontier. Designed, developed and deployed by the Far Star Biotech company to render aid wherever it is needed.
+  price: 40000 # Roses a red, the tester is stingy, let this pass or I'll start to whingey.
+  category: Medium
+  group: Medical
+  shuttlePath: /Maps/_NF/Shuttles/bounty.yml
+  guidebookPage: ShipyardBounty
+  class:
+  - Botany
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Bounty
+  mapName: 'FSB Bounty'
+  mapPath: /Maps/_NF/Shuttles/bounty.yml
+  minPlayers: 0
+  stations:
+    Bounty:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bounty {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
