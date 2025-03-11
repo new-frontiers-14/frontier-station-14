@@ -19,8 +19,9 @@ using Robust.Shared.Physics.Components;
 using Content.Shared.Whitelist;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Buckle;
-using Content.Server._NF.Mech.Events;
 using Content.Server._NF.Mech.Equipment.Components;
+using Content.Shared._NF.Cargo.Components;
+using Content.Shared._NF.Mech.Equipment.Events;
 
 namespace Content.Server._NF.Mech.Equipment.EntitySystems;
 
@@ -139,7 +140,11 @@ public sealed class MechForkSystem : EntitySystem
         if (args.Target == args.User || component.DoAfter != null)
             return;
 
-
+        // TODO: swap this out for a "forkable storage"
+        if (TryComp<CrateStorageRackComponent>(target, out var fork))
+        {
+            // 
+        }
 
         if (TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static ||
             HasComp<WallMountComponent>(target) ||

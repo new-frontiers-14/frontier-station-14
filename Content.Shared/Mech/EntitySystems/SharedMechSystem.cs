@@ -21,7 +21,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Content.Shared.Mobs.Components; // Frontier
-using Content.Shared.NPC.Components; // Frontier
+using Content.Shared.NPC.Components;
+using Content.Shared._NF.Mech.Components; // Frontier
 
 namespace Content.Shared.Mech.EntitySystems;
 
@@ -144,6 +145,11 @@ public abstract class SharedMechSystem : EntitySystem
         RemComp<InteractionRelayComponent>(pilot);
 
         _actions.RemoveProvidedActions(pilot, mech);
+
+        // Frontier
+        if (_net.IsServer && TryComp<MechComponent>(mech, out var mechComp) && component.PilotSlot.ContainedEntity != null && component.CurrentSelectedEquipment != null)
+            _actions.RemoveProvidedActions(mechComp.PilotSlot.ContainedEntity.Value, component.CurrentSelectedEquipment.Value);
+        // End Frontier
     }
 
     /// <summary>
@@ -186,6 +192,11 @@ public abstract class SharedMechSystem : EntitySystem
             equipmentIndex = allEquipment.FindIndex(StartIndex);
         }
 
+        // Frontier
+        if (_net.IsServer && component.PilotSlot.ContainedEntity != null && component.CurrentSelectedEquipment != null)
+            _actions.RemoveProvidedActions(component.PilotSlot.ContainedEntity.Value, component.CurrentSelectedEquipment.Value);
+        // End Frontier
+
         equipmentIndex++;
         component.CurrentSelectedEquipment = equipmentIndex >= allEquipment.Count
             ? null
@@ -197,6 +208,14 @@ public abstract class SharedMechSystem : EntitySystem
 
         if (_net.IsServer)
             _popup.PopupEntity(popupString, uid);
+
+        // Frontier
+        if (_net.IsServer)
+        {
+            MechEquipmentEquippedAction ev = new();
+            RaiseLocalEvent<MechEquipmentEquippedAction>(component.CurrentSelectedEquipment, ref ev);
+        }
+        // End Frontier
 
         Dirty(uid, component);
     }
