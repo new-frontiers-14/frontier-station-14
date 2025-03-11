@@ -19,7 +19,7 @@ Small fixes/refactors are exempt. Media may be used in SS14 progress reports wit
 
 ## Requirements
 <!-- Confirm the following by placing an X in the brackets [X]: -->
-- [ ] I have read [CONTRIBUTING.md]() and and am following the [Pull Request and Changelog Guidelines](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html).
+- [ ] I have read [CONTRIBUTING.md](https://github.com/new-frontiers-14/frontier-station-14/blob/master/CONTRIBUTING.md) and and am following the [Pull Request and Changelog Guidelines](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html).
 - [ ] I have added media to this PR or it does not require an ingame showcase.
 - [ ] I have reviewed the [Ship Submission Guidelines](https://frontierstation.wiki.gg/wiki/Ship_Submission_Guidelines) if relevant.
 - [ ] I confirm that AI tools were not used in generating the material in this PR.
