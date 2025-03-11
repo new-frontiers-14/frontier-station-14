@@ -64,7 +64,7 @@ Content under these subdirectories originate from their respective forks and may
 Additional repos that we have ported features from without subdirectories are listed below.
 
 | Fork Name | Fork Repository | License |
-|--------------|-----------|-----------------|---------|
+|-----------|-----------------|---------|
 | Sector Umbra | https://github.com/Sector-Umbra/Sector-Umbra/ | MIT |
 | Space Station 14 | https://github.com/space-wizards/space-station-14/ | MIT |
 | White Dream | https://github.com/WWhiteDreamProject/wwdpublic/ | AGPL 3.0 |
