@@ -53,7 +53,7 @@ Content under these subdirectories originate from their respective forks and may
 | `_NF` | Frontier Station | https://github.com/new-frontiers-14/frontier-station-14 | AGPL 3.0 |
 | `_CD` | Cosmatic Drift | https://github.com/cosmatic-drift-14/cosmatic-drift | MIT |
 | `_Corvax` | Corvax | https://github.com/space-syndicate/space-station-14 | MIT |
-| `_Corvax` | Corvax Frontier | https://github.com/Corvax-Frontier/Frontier | MIT |
+| `_Corvax` | Corvax Frontier | https://github.com/Corvax-Frontier/Frontier | AGPL 3.0 |
 | `_DV` | Delta-V | https://github.com/DeltaV-Station/Delta-v/ | AGPL 3.0 |
 | `_EE` | Einstein Engines | https://github.com/Simple-Station/Einstein-Engines/ | AGPL 3.0 |
 | `_EstacaoPirata` | Estacao Pirata | https://github.com/Day-OS/estacao-pirata-14/ | AGPL 3.0 |
