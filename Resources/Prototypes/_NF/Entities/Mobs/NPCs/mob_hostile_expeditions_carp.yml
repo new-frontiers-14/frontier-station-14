@@ -23,12 +23,30 @@
   parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobCarp, MobCarpMagic]
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/Carps/magic.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: mouth
+      shader: unshaded
 
 - type: entity
   id: NFMobCarpHolo
   parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobCarp, MobCarpHolo]
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/Carps/holo.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: mouth
+      shader: unshaded
 
 - type: entity
   id: NFMobCarpRainbow
