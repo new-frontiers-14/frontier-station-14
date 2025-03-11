@@ -108,6 +108,17 @@
         Base: dead
       Dead:
         Base: dead
+  - type: Extractable
+    grindableSolutionName: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: GroundBee
+          Quantity: 1
+  - type: Butcherable
+    spawned:
+    - id: null # Should give nothing when you butcher it so we set the item id it needs to spawn to null
   - type: Item
     size: Tiny
   - type: Tag
@@ -115,6 +126,7 @@
     - Bee
     - Trash
   - type: Bloodstream
+    bloodReagent: InsectBlood
     bloodMaxVolume: 0.1
   - type: MobPrice
     price: 50
@@ -126,14 +138,6 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
-  - type: Extractable # DeltaV - Make it so bees can be ground up
-    grindableSolutionName: bee
-  - type: SolutionContainerManager
-    solutions:
-      bee:
-        reagents:
-        - ReagentId: GroundBee
-          Quantity: 5
   - type: ZombieImmune
 
 - type: entity
@@ -240,6 +244,7 @@
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
+  - type: ExaminableHunger
   - type: ReplacementAccent
     accent: chicken
   - type: SentienceTarget
@@ -686,6 +691,7 @@
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
+  - type: ExaminableHunger
   - type: ReplacementAccent
     accent: duck
   - type: SentienceTarget
@@ -792,7 +798,24 @@
         Base: dead
       Dead:
         Base: dead
+  - type: Extractable
+    grindableSolutionName: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 1
+  - type: Butcherable
+    spawned:
+    - id: null # Should give nothing when you butcher it so we set the item id it needs to spawn to null
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - Trash
   - type: Bloodstream
+    bloodReagent: InsectBlood
     bloodMaxVolume: 0.1
   - type: MobPrice
     price: 50
@@ -851,6 +874,7 @@
     reagentId: Milk
     quantityPerUpdate: 25
     growthDelay: 30
+  - type: ExaminableHunger
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -1010,6 +1034,7 @@
     reagentId: MilkGoat
     quantityPerUpdate: 25
     growthDelay: 20
+  - type: ExaminableHunger
   - type: Wooly
   - type: Food
     solution: wool
@@ -1299,8 +1324,8 @@
       state: body-overlay-2
       visible: false
     - map: [ "ears" ]
-    - map: [ "outerClothing" ]
     - map: [ "id" ]
+    - map: [ "outerClothing" ]
     - map: [ "mask" ]
     - map: [ "head" ]
     - map: [ "clownedon" ]
@@ -1475,7 +1500,7 @@
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian
-    allowedEmotes: ['Thump']
+    allowedEmotes: ['Thump', 'ReptilianHiss'] # Imp: add ReptilianHiss
   - type: Vocal
     sounds:
       Male: MaleReptilian
@@ -1935,6 +1960,19 @@
   id: MobLizard
   description: A harmless dragon.
   components:
+  # Imp: kobold accent, reptilian vocal sounds, and ReptilianHiss emote
+  - type: ReplacementAccent
+    accent: kobold
+  - type: Speech
+    speechSounds: Lizard
+    speechVerb: Reptilian
+    allowedEmotes: ['ReptilianHiss'] # Can't thump tail because no body component
+  - type: Vocal
+    sounds:
+      Male: MaleReptilian
+      Female: FemaleReptilian
+      Unsexed: MaleReptilian
+  # End Imp: kobold accent, reptilian vocal sounds, and ReptilianHiss emote
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
@@ -2789,6 +2827,7 @@
   - type: Physics
   - type: Speech
     speechVerb: Canine
+    speechSounds: Dog
   - type: Fixtures
     fixtures:
       fix1:

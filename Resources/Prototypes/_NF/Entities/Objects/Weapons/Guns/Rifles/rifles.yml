@@ -16,6 +16,7 @@
         whitelist:
           tags:
             - MagazineRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeRifleRubber
@@ -42,6 +43,7 @@
         whitelist:
           tags:
             - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifleRubber
@@ -55,7 +57,7 @@
   name: Gestio
   parent: [ BaseWeaponRifle, BaseC1Contraband ]
   id: WeaponRifleGestio
-  description: An old prototype burst-fire NanoTrasen marksman rifle. Manufactured by Silver Industries. It never left the trials. Given its antiquity it is considered a civilian grade weapon.  Uses .30 rifle ammo.
+  description: An old burst-fire rifle made by Silver Industries that never left trials. Accepts low capacity .30 rifle magazines.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
@@ -67,12 +69,10 @@
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
   - type: Gun
-    fireRate: 3.75
-    projectileSpeed: 30
-    angleDecay: 4 #in testing 3 was more balanced
-    angleIncrease: 6
-    minAngle: 21 #generally meant to be 1 when used properly
-    maxAngle: 30 #generally meant to be 5 when used properly
+    fireRate: 3.8
+    burstFireRate: 8
+    shotsPerBurst: 2
+    burstCooldown: 0.4
     selectedMode: Burst
     availableModes:
       - Burst
@@ -80,12 +80,6 @@
       path: /Audio/_NF/Weapons/Guns/Gunshots/rifle.ogg
       params:
         volume: -5
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -25
-    angleDecay: 4 #in testing 3 was more balanced
-    angleIncrease: -3
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -96,7 +90,8 @@
         priority: 2
         whitelist:
           tags:
-            - MagazineLightRifle
+            - MagazineLightRifleLowCapacity
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle
@@ -129,7 +124,8 @@
         priority: 2
         whitelist:
           tags:
-            - MagazineLightRifle
+            - MagazineLightRifleLowCapacity
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifleRubber
@@ -154,7 +150,7 @@
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/novalitec1.rsi
   - type: Gun
-    fireRate: 4
+    fireRate: 5
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -173,6 +169,7 @@
         whitelist:
           tags:
             - MagazineNovaliteC1
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeRifle
@@ -206,6 +203,7 @@
         whitelist:
           tags:
             - MagazineNovaliteC1
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeRifleRubber
@@ -215,21 +213,20 @@
             - CartridgeRifle
 
 - type: entity
-  id: WeaponRifleSVT
-  name: SVT-40
-  parent: [ BaseWeaponRifle, BaseC1Contraband ]
-  description: |-
-   Once a weapon used in war, now a civilian hunting rifle brought to you by S.E.S.W.C., "Retreating is Considered Treason" is etched on one side.
+  id: WeaponRifleSVS
+  name: SVS-42
+  parent: [ BaseWeaponRifle, BaseGunMelee, BaseC1Contraband ]
+  description: "Originally designed by Samonov, this old surplus rifle looks like it's seen a few wars. Uses low capacity .30 rifle magazines. Equipped with bayonet."
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Rifles/svt40.rsi
+    sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
     layers:
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
       - state: base
         map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Rifles/svt40.rsi
+    sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
     quickEquip: false
     slots:
     - Back
@@ -254,7 +251,8 @@
         priority: 2
         whitelist:
           tags:
-            - MagazineLightRifle
+            - MagazineLightRifleLowCapacity
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle
@@ -271,3 +269,9 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 1.5
+    pvsIncrease: 0.15
+  - type: AltFireMelee
+    attackType: Light

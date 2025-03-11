@@ -73,13 +73,13 @@ public sealed partial class CargoSystem
             }
 
             // Frontier - This makes sure telepads spawn goods of linked computers only. //TODO: FIx This Again
-             List<NetEntity> consoleUidList = sinkComponent.LinkedSources.Select(item => EntityManager.GetNetEntity(item)).ToList();
+            List<NetEntity> consoleUidList = sinkComponent.LinkedSources.Select(item => EntityManager.GetNetEntity(item)).ToList();
 
             var xform = Transform(uid);
             if (FulfillNextOrder(consoleUidList, orderDatabase, xform.Coordinates, comp.PrinterOutput))
             {
-                _audio.PlayPvs(_audio.GetSound(comp.TeleportSound), uid, AudioParams.Default.WithVolume(-8f));
-                UpdateOrders(station.Value, orderDatabase);
+                _audio.PlayPvs(_audio.ResolveSound(comp.TeleportSound), uid, AudioParams.Default.WithVolume(-8f));
+                UpdateOrders(station.Value); // Frontier
 
                 comp.CurrentState = CargoTelepadState.Teleporting;
                 _appearance.SetData(uid, CargoTelepadVisuals.State, CargoTelepadState.Teleporting, appearance);

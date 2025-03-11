@@ -6750,6 +6750,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 28.5,-4.5
       parent: 1
+  - uid: 5262
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 29.5,-1.5
+      parent: 1
 - proto: AirlockSecurityGlassLocked
   entities:
   - uid: 2472
@@ -6757,12 +6763,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 27.5,13.5
-      parent: 1
-  - uid: 5262
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 29.5,-1.5
       parent: 1
   - uid: 5267
     components:
@@ -19210,7 +19210,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 29.5,11.5
       parent: 1
-- proto: ComputerTabletopMarketConsoleNFLow
+- proto: ComputerTabletopMarketConsoleNFNormal
   entities:
   - uid: 27
     components:
@@ -19229,7 +19229,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 58.5,-3.5
       parent: 1
-- proto: ComputerTabletopPalletConsoleNFLowMarket
+- proto: ComputerTabletopPalletConsoleNFHighMarket
   entities:
   - uid: 632
     components:
@@ -21380,18 +21380,15 @@ entities:
     - type: Transform
       pos: 56.5,-9.5
       parent: 1
-- proto: FaxMachineBase
+- proto: FaxMachineNFTradeMallNFSD
   entities:
-  - uid: 2562
-    components:
-    - type: Transform
-      pos: 27.5,-8.5
-      parent: 1
   - uid: 2567
     components:
     - type: Transform
       pos: 30.5,-3.5
       parent: 1
+- proto: FaxMachineNFTradeMallSTC
+  entities:
   - uid: 4411
     components:
     - type: Transform
@@ -22957,21 +22954,6 @@ entities:
     components:
     - type: Transform
       pos: 29.514894,10.760558
-      parent: 1
-- proto: GasMinerNitrogenStation
-  entities:
-  - uid: 393
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 10.5,15.5
-      parent: 1
-- proto: GasMinerOxygenStation
-  entities:
-  - uid: 496
-    components:
-    - type: Transform
-      pos: 10.5,17.5
       parent: 1
 - proto: GasMixerOn
   entities:
@@ -42787,14 +42769,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,3.5
       parent: 1
-- proto: WardrobePrison
+- proto: NFWardrobePrison
   entities:
   - uid: 2556
     components:
     - type: Transform
       pos: 25.5,-5.5
       parent: 1
-- proto: WardrobePrisonFilled
+- proto: NFWardrobePrisonFilled
   entities:
   - uid: 3029
     components:

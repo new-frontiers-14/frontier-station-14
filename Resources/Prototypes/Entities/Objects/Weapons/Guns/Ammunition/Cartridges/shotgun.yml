@@ -1,7 +1,7 @@
 - type: entity
   id: BaseShellShotgun
   name: shell (.50)
-  parent: [ BaseCartridge, BaseC1Contraband ] # Frontier: BaseRestrictedContraband<BaseC1Contraband
+  parent: [ BaseCartridge, BaseC1Contraband ] # Frontier: added BaseC1Contraband
   abstract: true
   components:
   - type: Tag
@@ -24,7 +24,7 @@
 - type: entity
   id: ShellShotgunBeanbag
   name: shell (.50 beanbag)
-  parent: BaseShellShotgun
+  parent: BaseShellShotgun # Frontier: remove BaseSecurityBartenderContraband
   components:
   - type: Tag
     tags:
@@ -43,7 +43,7 @@
 - type: entity
   id: ShellShotgunSlug
   name: shell (.50 slug)
-  parent: BaseShellShotgun
+  parent: BaseShellShotgun # Frontier: remove BaseSecurityContraband
   components:
   - type: Sprite
     layers:
@@ -76,7 +76,7 @@
 - type: entity
   id: ShellShotgun
   name: shell (.50)
-  parent: BaseShellShotgun
+  parent: BaseShellShotgun # Frontier: remove BaseSecurityContraband
   components:
   - type: Sprite
     layers:
@@ -88,7 +88,7 @@
 - type: entity
   id: ShellShotgunIncendiary
   name: shell (.50 incendiary)
-  parent: BaseShellShotgun
+  parent: BaseShellShotgun # Frontier: remove BaseSecurityContraband
   components:
   - type: Sprite
     layers:
@@ -102,7 +102,7 @@
 - type: entity
   id: ShellShotgunPractice
   name: shell (.50 practice)
-  parent: BaseShellShotgun
+  parent: BaseShellShotgun # Frontier: remove BaseSecurityContraband
   components:
   - type: Sprite
     layers:
@@ -116,7 +116,7 @@
 - type: entity
   id: ShellTranquilizer
   name: shell (.50 tranquilizer)
-  parent: BaseShellShotgun
+  parent: BaseShellShotgun # Frontier: remove BaseSecurityContraband
   components:
   - type: Tag
     tags:
@@ -145,7 +145,7 @@
   id: ShellShotgunImprovised
   name: improvised shotgun shell
   description: A homemade shotgun shell that shoots painful glass shrapnel. The spread is so wide that it couldn't hit the broad side of a barn.
-  parent: BaseShellShotgun
+  parent: BaseShellShotgun # Frontier: remove BaseSecurityContraband
   components:
   - type: Tag
     tags:
@@ -167,7 +167,7 @@
 - type: entity
   id: ShellShotgunUranium
   name: uranium shotgun shell
-  parent: BaseShellShotgun
+  parent: BaseShellShotgun # Frontier: remove BaseSecurityContraband
   components:
     - type: Sprite
       layers:

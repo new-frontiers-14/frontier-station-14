@@ -1,5 +1,6 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Smuggling.Components;
 
@@ -74,7 +75,7 @@ public sealed partial class DeadDropComponent : Component
     ///     Location of the grid to spawn in as the dead drop.
     /// </summary>
     [DataField]
-    public string DropGrid = "/Maps/_NF/DeadDrop/deaddrop.yml";
+    public ResPath DropGrid = new("/Maps/_NF/DeadDrop/deaddrop.yml");
 
     /// <summary>
     ///     The color of your grid. the name should be set by the mapper when mapping.

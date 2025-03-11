@@ -3,6 +3,7 @@ using Content.Server.Research.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Emag.Components;
+using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
@@ -11,6 +12,8 @@ namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
+    [Dependency] private readonly EmagSystem _emag = default!;
+
     private void InitializeConsole()
     {
         SubscribeLocalEvent<ResearchConsoleComponent, ConsoleUnlockTechnologyMessage>(OnConsoleUnlock);
@@ -18,6 +21,8 @@ public sealed partial class ResearchSystem
         SubscribeLocalEvent<ResearchConsoleComponent, ResearchServerPointsChangedEvent>(OnPointsChanged);
         SubscribeLocalEvent<ResearchConsoleComponent, ResearchRegistrationChangedEvent>(OnConsoleRegistrationChanged);
         SubscribeLocalEvent<ResearchConsoleComponent, TechnologyDatabaseModifiedEvent>(OnConsoleDatabaseModified);
+        SubscribeLocalEvent<ResearchConsoleComponent, TechnologyDatabaseSynchronizedEvent>(OnConsoleDatabaseSynchronized);
+        //SubscribeLocalEvent<ResearchConsoleComponent, GotEmaggedEvent>(OnEmagged); // Frontier: unneeded
     }
 
     private void OnConsoleUnlock(EntityUid uid, ResearchConsoleComponent component, ConsoleUnlockTechnologyMessage args)
@@ -39,7 +44,9 @@ public sealed partial class ResearchSystem
         if (!UnlockTechnology(uid, args.Id, act))
             return;
 
-        if (false && !HasComp<EmaggedComponent>(uid)) // Frontier: add false - silent R&D computers
+        // Frontier: silent R&D computers
+        /*
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
         {
             var getIdentityEvent = new TryGetIdentityShortInfoEvent(uid, act);
             RaiseLocalEvent(getIdentityEvent);
@@ -52,6 +59,8 @@ public sealed partial class ResearchSystem
             );
             _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
         }
+        */
+        // End Frontier
 
         SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);
@@ -97,7 +106,28 @@ public sealed partial class ResearchSystem
 
     private void OnConsoleDatabaseModified(EntityUid uid, ResearchConsoleComponent component, ref TechnologyDatabaseModifiedEvent args)
     {
+        SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);
     }
+
+    private void OnConsoleDatabaseSynchronized(EntityUid uid, ResearchConsoleComponent component, ref TechnologyDatabaseSynchronizedEvent args)
+    {
+        UpdateConsoleInterface(uid, component);
+    }
+
+    // Frontier: unneeded emag call
+    /*
+    private void OnEmagged(Entity<ResearchConsoleComponent> ent, ref GotEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (_emag.CheckFlag(ent, EmagType.Interaction))
+            return;
+
+        args.Handled = true;
+    }
+    */
+    // End Frontier: unneeded emag call
 
 }

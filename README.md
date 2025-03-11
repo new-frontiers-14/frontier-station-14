@@ -12,7 +12,7 @@ If you want to host or create content for FS14, this is the repo you need. It co
 
 ## Documentation/Wiki
 
-Our [wiki](https://frontierstation14.com/) has documentation on FS14s content.
+Our [wiki](https://frontierstation.wiki.gg/) has documentation on FS14s content.
 
 ## Contributing
 

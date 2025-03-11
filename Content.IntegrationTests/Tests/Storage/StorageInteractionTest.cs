@@ -17,7 +17,6 @@ public sealed class StorageInteractionTest : InteractionTest
     /// Check that players can interact with items in storage if the storage UI is open
     /// </summary>
     [Test]
-    [Ignore("Preventing CI tests from failing")] // Frontier: FIXME - no idea what's actually causing a failure here.
     public async Task UiInteractTest()
     {
         var sys = Server.System<SharedContainerSystem>();
@@ -82,7 +81,7 @@ public sealed class StorageInteractionTest : InteractionTest
     {
         var uid = ToClient(target);
         var hotbar = GetWidget<HotbarGui>();
-        var storageContainer  = GetControlFromField<Control>(nameof(HotbarGui.StorageContainer), hotbar);
+        var storageContainer  = GetControlFromField<Control>(nameof(HotbarGui.SingleStorageContainer), hotbar); // Frontier: upstream#35041 - StorageContainer<SingleStorageContainer
         return GetControlFromChildren<ItemGridPiece>(c => c.Entity == uid, storageContainer);
     }
 }
