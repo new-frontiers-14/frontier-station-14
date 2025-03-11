@@ -1,3 +1,4 @@
+using System.Linq; // Frontier: cherry-pick upstream#35041
 using System.Numerics;
 using Content.Client.Examine;
 using Content.Client.Hands.Systems;
@@ -5,6 +6,7 @@ using Content.Client.Interaction;
 using Content.Client.Storage;
 using Content.Client.Storage.Systems;
 using Content.Client.UserInterface.Systems.Hotbar.Widgets;
+using Content.Client.UserInterface.Systems.Info;
 using Content.Client.UserInterface.Systems.Storage.Controls;
 using Content.Client.Verbs.UI;
 using Content.Shared.CCVar;
@@ -37,6 +39,7 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly IInputManager _input = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly CloseRecentWindowUIController _closeRecentWindowUIController = default!;
     [UISystemDependency] private readonly StorageSystem _storage = default!;
     [UISystemDependency] private readonly UserInterfaceSystem _ui = default!;
 
@@ -46,6 +49,7 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
     public Angle DraggingRotation = Angle.Zero;
     public bool StaticStorageUIEnabled;
     public bool OpaqueStorageWindow;
+    private int _openStorageLimit = -1; // Frontier: cherry-pick upstream#35041
 
     public bool IsDragging => _menuDragHelper.IsDragging;
     public ItemGridPiece? CurrentlyDragging => _menuDragHelper.Dragged;
@@ -61,38 +65,18 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
     {
         base.Initialize();
 
-        UIManager.OnScreenChanged += OnScreenChange;
-
         _configuration.OnValueChanged(CCVars.StaticStorageUI, OnStaticStorageChanged, true);
         _configuration.OnValueChanged(CCVars.OpaqueStorageWindow, OnOpaqueWindowChanged, true);
         _configuration.OnValueChanged(CCVars.StorageWindowTitle, OnStorageWindowTitle, true);
+        _configuration.OnValueChanged(CCVars.StorageLimit, OnStorageLimitChanged, true); // Frontier: cherry-pick upstream#35041
     }
 
-    private void OnScreenChange((UIScreen? Old, UIScreen? New) obj)
+    // Frontier: cherry-pick upstream#35041
+    private void OnStorageLimitChanged(int obj)
     {
-        // Handle reconnects with hotbargui.
-
-        // Essentially HotbarGui / the screen gets loaded AFTER gamestates at the moment (because clientgameticker manually changes it via event)
-        // and changing this may be a massive change.
-        // So instead we'll just manually reload it for now.
-        if (!StaticStorageUIEnabled ||
-            obj.New == null ||
-            !EntityManager.TryGetComponent(_player.LocalEntity, out UserInterfaceUserComponent? userComp))
-        {
-            return;
-        }
-
-        // UISystemDependency not injected at this point so do it the old fashion way, I love ordering issues.
-        var uiSystem = EntityManager.System<SharedUserInterfaceSystem>();
-
-        foreach (var bui in uiSystem.GetActorUis((_player.LocalEntity.Value, userComp)))
-        {
-            if (!uiSystem.TryGetOpenUi<StorageBoundUserInterface>(bui.Entity, StorageComponent.StorageUiKey.Key, out var storageBui))
-                continue;
-
-            storageBui.ReOpen();
-        }
+        _openStorageLimit = obj;
     }
+    // End Frontier: cherry-pick upstream#35041
 
     private void OnStorageWindowTitle(bool obj)
     {
@@ -125,7 +109,47 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
 
         if (StaticStorageUIEnabled)
         {
-            UIManager.GetActiveUIWidgetOrNull<HotbarGui>()?.StorageContainer.AddChild(window);
+            // Frontier: cherry-pick upstream#35041
+            // UIManager.GetActiveUIWidgetOrNull<HotbarGui>()?.StorageContainer.AddChild(window);
+            var hotbar = UIManager.GetActiveUIWidgetOrNull<HotbarGui>();
+            // this lambda handles the nested storage case
+            // during nested storage, a parent window hides and a child window is
+            // immediately inserted to the end of the list
+            // we can reorder the newly inserted to the same index as the invisible
+            // window in order to prevent an invisible window from being replaced
+            // with a visible one in a different position
+            Action<Control?, Control> reorder = (parent, child) =>
+            {
+                if (parent is null)
+                    return;
+
+                var parentChildren = parent.Children.ToList();
+                var invisibleIndex = parentChildren.FindIndex(c => c.Visible == false);
+                if (invisibleIndex == -1)
+                    return;
+                child.SetPositionInParent(invisibleIndex);
+            };
+
+            if (_openStorageLimit == 2)
+            {
+                if (hotbar?.LeftStorageContainer.Children.Any(c => c.Visible) == false) // we're comparing booleans because it's bool? and not bool from the optional chaining
+                {
+                    hotbar?.LeftStorageContainer.AddChild(window);
+                    reorder(hotbar?.LeftStorageContainer, window);
+                }
+                else
+                {
+                    hotbar?.RightStorageContainer.AddChild(window);
+                    reorder(hotbar?.RightStorageContainer, window);
+                }
+            }
+            else
+            {
+                hotbar?.SingleStorageContainer.AddChild(window);
+                reorder(hotbar?.SingleStorageContainer, window);
+            }
+            // End Frontier: cherry-pick upstream#35041
+            _closeRecentWindowUIController.SetMostRecentlyInteractedWindow(window);
         }
         else
         {
