@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/11/2025 21:58:44
+  entityCount: 725
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   42: FloorDarkPlastic
@@ -43,16 +54,17 @@ entities:
           ind: -1,-1
           tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgwAAAAAAgwAAAAAAAAAAAAAAgwAAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgwAAAAAAgwAAAAAAgwAAAAAAgwAAAAAAgwAAAAAAgwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAAAAAgwAAAAAAgwAAAAAAcgAAAAAAcgAAAAAAgwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgwAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAgwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgwAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAgwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgwAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAfgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMQAAAAACgwAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAKgAAAAAC
           version: 6
-    - type: Fixtures
-      fixtures: {}
-    - type: SpreaderGrid
-    - type: Shuttle
+    - type: Broadphase
     - type: Physics
       bodyStatus: InAir
       angularDamping: 0.05
       linearDamping: 0.05
       fixedRotation: False
       bodyType: Dynamic
+    - type: Fixtures
+      fixtures: {}
+    - type: SpreaderGrid
+    - type: Shuttle
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -749,7 +761,7 @@ entities:
     - type: DeviceList
       devices:
       - 595
-      - 175
+      - 9
       - 176
   - uid: 614
     components:
@@ -761,7 +773,7 @@ entities:
       - 494
 - proto: AirlockCargo
   entities:
-  - uid: 153
+  - uid: 725
     components:
     - type: Transform
       pos: -0.5,-1.5
@@ -875,7 +887,7 @@ entities:
       pos: -5.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -6294.07
+      secondsUntilStateChange: -7873.2485
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -887,17 +899,6 @@ entities:
       parent: 1
 - proto: AirlockMedicalGlass
   entities:
-  - uid: 9
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,6.5
-      parent: 1
-  - uid: 15
-    components:
-    - type: Transform
-      pos: 0.5,12.5
-      parent: 1
   - uid: 21
     components:
     - type: Transform
@@ -929,6 +930,16 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,0.5
+      parent: 1
+  - uid: 662
+    components:
+    - type: Transform
+      pos: 0.5,12.5
+      parent: 1
+  - uid: 709
+    components:
+    - type: Transform
+      pos: 0.5,6.5
       parent: 1
 - proto: APCBasic
   entities:
@@ -2211,6 +2222,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,10.5
       parent: 1
+- proto: EmergencyRollerBedSpawnFolded
+  entities:
+  - uid: 658
+    components:
+    - type: Transform
+      pos: -4.5262733,7.382437
+      parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 481
@@ -2231,6 +2249,13 @@ entities:
     components:
     - type: Transform
       pos: 3.5,18.5
+      parent: 1
+- proto: filingCabinetDrawer
+  entities:
+  - uid: 657
+    components:
+    - type: Transform
+      pos: 4.5,18.5
       parent: 1
 - proto: Firelock
   entities:
@@ -2330,6 +2355,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,9.5
       parent: 1
+    - type: GasFilter
+      filteredGas: CarbonDioxide
     - type: AtmosPipeColor
       color: '#98FBCBFF'
 - proto: GasMixerOn
@@ -2496,14 +2523,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 24
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,17.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 44
     components:
     - type: Transform
@@ -3151,6 +3170,17 @@ entities:
       color: '#98FBCBFF'
 - proto: GasVentPump
   entities:
+  - uid: 9
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,17.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 613
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 26
     components:
     - type: Transform
@@ -3198,17 +3228,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 599
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 175
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,17.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 613
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 218
@@ -3568,17 +3587,17 @@ entities:
     - type: Transform
       pos: -1.5,18.5
       parent: 1
-  - uid: 289
-    components:
-    - type: Transform
-      pos: 4.5,18.5
-      parent: 1
 - proto: LockerParamedicFilledHardsuit
   entities:
   - uid: 18
     components:
     - type: Transform
       pos: 5.5,17.5
+      parent: 1
+  - uid: 600
+    components:
+    - type: Transform
+      pos: -2.5,17.5
       parent: 1
 - proto: LockerWallEVAColorMedicalFilled
   entities:
@@ -3612,7 +3631,7 @@ entities:
       parent: 1
 - proto: MaterialReclaimer
   entities:
-  - uid: 247
+  - uid: 726
     components:
     - type: Transform
       pos: -1.5,-4.5
@@ -3630,6 +3649,26 @@ entities:
     components:
     - type: Transform
       pos: 4.5,7.5
+      parent: 1
+- proto: Morgue
+  entities:
+  - uid: 175
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-0.5
+      parent: 1
+  - uid: 247
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-0.5
+      parent: 1
+  - uid: 289
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-0.5
       parent: 1
 - proto: Multitool
   entities:
@@ -3686,16 +3725,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-  - uid: 709
-    components:
-    - type: Transform
-      pos: -2.5,-0.5
-      parent: 1
-  - uid: 710
-    components:
-    - type: Transform
-      pos: -3.5,-0.5
-      parent: 1
 - proto: OxygenCanister
   entities:
   - uid: 431
@@ -3706,13 +3735,13 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-  - uid: 485
-    components:
-    - type: Transform
-      pos: -1.5,-0.5
-      parent: 1
 - proto: PaperBin20
   entities:
+  - uid: 24
+    components:
+    - type: Transform
+      pos: 1.5,18.5
+      parent: 1
   - uid: 677
     components:
     - type: Transform
@@ -3754,20 +3783,25 @@ entities:
       parent: 1
 - proto: PottedPlantRandom
   entities:
-  - uid: 656
+  - uid: 8
     components:
     - type: Transform
-      pos: -1.5,15.5
+      pos: 1.5,5.5
       parent: 1
-  - uid: 657
+  - uid: 153
     components:
     - type: Transform
       pos: 4.5,15.5
       parent: 1
-  - uid: 658
+  - uid: 472
     components:
     - type: Transform
       pos: 1.5,7.5
+      parent: 1
+  - uid: 656
+    components:
+    - type: Transform
+      pos: -1.5,15.5
       parent: 1
   - uid: 659
     components:
@@ -3783,11 +3817,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,1.5
-      parent: 1
-  - uid: 662
-    components:
-    - type: Transform
-      pos: 1.5,5.5
       parent: 1
 - proto: PowerCellRecharger
   entities:
@@ -3828,6 +3857,12 @@ entities:
     - type: Transform
       pos: 3.5,15.5
       parent: 1
+  - uid: 485
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,1.5
+      parent: 1
   - uid: 513
     components:
     - type: Transform
@@ -3865,13 +3900,13 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -2.5,1.5
+      pos: -1.5,1.5
       parent: 1
   - uid: 521
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 5.5,1.5
+      pos: -3.5,3.5
       parent: 1
   - uid: 522
     components:
@@ -3900,13 +3935,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 7.5,3.5
-      parent: 1
-  - uid: 553
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,3.5
+      pos: 6.5,3.5
       parent: 1
   - uid: 577
     components:
@@ -4182,14 +4211,6 @@ entities:
     - type: Transform
       pos: 2.5,16.5
       parent: 1
-- proto: SignCans
-  entities:
-  - uid: 8
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-0.5
-      parent: 1
 - proto: SignChem
   entities:
   - uid: 581
@@ -4203,6 +4224,13 @@ entities:
     components:
     - type: Transform
       pos: -4.5,11.5
+      parent: 1
+- proto: SignDisposalSpace
+  entities:
+  - uid: 15
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
       parent: 1
 - proto: SignEngineering
   entities:
@@ -4245,6 +4273,13 @@ entities:
     - type: Transform
       pos: 8.5,16.5
       parent: 1
+- proto: SignMorgue
+  entities:
+  - uid: 553
+    components:
+    - type: Transform
+      pos: -0.5,-0.5
+      parent: 1
 - proto: SinkWide
   entities:
   - uid: 403
@@ -4285,13 +4320,6 @@ entities:
     components:
     - type: Transform
       pos: 6.5,-3.5
-      parent: 1
-- proto: SuitStorageEVAMedical
-  entities:
-  - uid: 600
-    components:
-    - type: Transform
-      pos: -2.5,17.5
       parent: 1
 - proto: TableReinforced
   entities:
@@ -4938,11 +4966,6 @@ entities:
     - type: Transform
       pos: 4.5,0.5
       parent: 1
-  - uid: 472
-    components:
-    - type: Transform
-      pos: 0.5,0.5
-      parent: 1
   - uid: 473
     components:
     - type: Transform
@@ -5113,6 +5136,11 @@ entities:
     - type: Transform
       pos: 6.5,0.5
       parent: 1
+  - uid: 710
+    components:
+    - type: Transform
+      pos: 0.5,0.5
+      parent: 1
   - uid: 716
     components:
     - type: Transform
@@ -5138,5 +5166,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,14.5
+      parent: 1
+- proto: Windoor
+  entities:
+  - uid: 727
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-4.5
       parent: 1
 ...
