@@ -1,0 +1,78 @@
+# 57mm Cal Base
+
+- type: entity
+  id: 57mmBulletBase
+  parent: BaseBulletTrigger
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    ignoreWeaponGrid: true
+  - type: ShipWeaponProjectile
+  - type: TimedDespawn
+    lifetime: 10
+  - type: PointLight
+    radius: 3.5
+    energy: 0.5
+  - type: RadarBlip
+    scale: 1
+    requireNoGrid: true
+    shape: triangle
+
+- type: entity
+  id: 57mmCartridgeBase
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - CartridgeMachineGun
+    - Cartridge
+  - type: Item
+    size: Tiny
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    muzzleFlash: null
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: SpaceGarbage
+
+- type: entity
+  id: 57mmCartridgeArmorPiercing
+  name: 57mm depleted uranium cartridge
+  parent: 57mmCartridgeBase
+  description: An armor-piercing 57mm cartridge, tipped with depleted uranium.
+  components:
+  - type: CartridgeAmmo
+    proto: 57mmBulletArmorPiercing
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/50_armorpiercing_machinegun_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+
+# 57mm Cal AP
+
+- type: entity
+  id: 57mmBulletArmorPiercing
+  name: 57mm AP bullet
+  parent: 57mmBulletBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 15
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/50_armorpiercing_machinegun_casing.rsi
+    layers:
+    - state: base-projectile
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 6
+    intensitySlope: 4
+    totalIntensity: 4
+    maxTileBreak: 1
+  - type: PointLight
+    color: orange

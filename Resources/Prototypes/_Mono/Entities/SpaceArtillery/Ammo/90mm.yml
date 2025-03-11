@@ -1,0 +1,85 @@
+# 90mm Base
+
+- type: entity
+  id: 90mmBulletBase
+  name: shell
+  parent: BaseBulletTrigger
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 60
+  - type: PointLight
+    radius: 3.5
+    energy: 0.5
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    scale: 1
+    requireNoGrid: true
+    shape: triangle
+
+- type: entity
+  id: 90mmBulletArmorPiercing
+  parent: 90mmBulletExplosiveBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 250
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
+    layers:
+    - state: base-projectile
+  - type: Explosive
+    maxIntensity: 10
+    intensitySlope: 5
+    totalIntensity: 10
+    maxTileBreak: 3
+  - type: PointLight
+    color: orange
+
+# 90mm Shells
+
+- type: entity
+  id: 90mmShellBase
+  abstract: true
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - CartridgeShell
+    - Cartridge
+  - type: Item
+    size: Normal
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    muzzleFlash: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: SpaceGarbage
+
+- type: entity
+  id: 90mmShellArmorPiercing
+  name: 90mm depleted uranium shell
+  parent: 90mmShellBase
+  description: An artillery shell with a depleted uranium tip.
+  components:
+  - type: CartridgeAmmo
+    proto: 90mmBulletArmorPiercing
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
+
+- type: entity
+  id: 90mmBulletExplosiveBase
+  parent: 90mmBulletBase
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default

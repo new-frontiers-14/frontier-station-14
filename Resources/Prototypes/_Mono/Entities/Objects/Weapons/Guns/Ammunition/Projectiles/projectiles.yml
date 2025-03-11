@@ -1,0 +1,28 @@
+﻿- type: entity
+  id: ShipMediumPlasmaProjectile
+  name: plasma projectile
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Caustic: 50
+          Structural: 350
+          Heat: 150
+          Radiation: 20
+          Ion: 40
+    - type: Sprite
+      sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
+      layers:
+        - state: plasmashot
+    - type: Ammo
+      muzzleFlash: null
+    - type: ShipWeaponProjectile
+    - type: RadarBlip
+      scale: 0.5
+      requireNoGrid: true
+    - type: TimedDespawn
+      lifetime: 60
+    - type: PointLight
+      color: "#FB00FF"

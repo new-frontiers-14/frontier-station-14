@@ -1,0 +1,225 @@
+# 57mm
+
+- type: entity
+  id: WeaponTurretL85Autocannon
+  name: L85 Naval Autocannon
+  parent: BallisticArtillery
+  description: A old, but not outdated 57mm autocannon. Links up to a central GCS, and is not automated like PD turrets.
+  components:
+  - type: StaticPrice
+    price: 2500
+  - type: Sprite
+    sprite: _Mono/Objects/ShuttleWeapons/50cal.rsi
+    layers:
+    - state: space_artillery
+  - type: Battery
+    maxCharge: 20000
+    startingCharge: 20000
+  - type: ExaminableBattery
+  - type: Appearance
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: WirelessNetworkConnection
+    range: 700
+  - type: DeviceLinkSink
+    ports:
+    - Toggle
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 95
+    soundGunshot:
+      path: /Audio/_Mono/Weapons/Guns/Gunshots/uaf_57mm.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: SpaceArtillery
+    powerChargeRate: 150
+    powerUsePassive: 100
+  - type: BatterySelfRecharger
+  - type: Actions
+  - type: ApcPowerReceiver
+    powerLoad: 250
+  - type: CombatMode
+    isInCombatMode: true
+  - type: Airtight
+  - type: ProjectileBatteryAmmoProvider
+    proto: 57mmBulletArmorPiercing
+    fireCost: 15
+  - type: RadiationBlocker
+    resistance: 8
+  - type: RadarBlip
+    radarColor: "#00A6FF"
+    scale: 1
+
+# 90mm
+
+- type: entity
+  id: WeaponTurretAK570
+  name: AK570 90mm heavy autocannon
+  parent: BallisticArtillery
+  description: A dual barrel, heavy autocannon. Links up to a central GCS, and is not automated like PD turrets.
+  components:
+  - type: StaticPrice
+    price: 3000
+  - type: Sprite
+    sprite: _Mono/Objects/ShuttleWeapons/artillery.rsi
+    layers:
+    - state: artillery
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 40000
+    startingCharge: 40000
+  - type: ExaminableBattery
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: Gun
+    fireRate: 1.5
+    projectileSpeed: 150
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: SpaceArtillery
+    powerChargeRate: 250
+    powerUsePassive: 200
+  - type: Actions
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: ExtensionCableReceiver
+  - type: ProjectileBatteryAmmoProvider
+    proto: 90mmBulletArmorPiercing
+    fireCost: 50
+  - type: RadarBlip
+    radarColor: "#FF9100"
+    scale: 1
+
+# Plasma
+
+- type: entity
+  id: WeaponTurretType35
+  name: type-35 plasma launcher
+  parent: BallisticArtillery
+  description: Launches magnetically contained balls of plasma at targets. Links up to a central gunnery control system.
+  components:
+  - type: StaticPrice
+    price: 6500
+  - type: Sprite
+    sprite: _Mono/Objects/ShuttleWeapons/t35.rsi
+    layers:
+    - state: space_artillery
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 40000
+    startingCharge: 40000
+  - type: ExaminableBattery
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: Gun
+    fireRate: 0.5
+    projectileSpeed: 30
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: SpaceArtillery
+    powerChargeRate: 250
+    powerUsePassive: 200
+  - type: Actions
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: ExtensionCableReceiver
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShipMediumPlasmaProjectile
+    fireCost: 500
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: RadarBlip
+    radarColor: "#C92BCC"
+    scale: 1
+
+# Base
+
+- type: entity
+  id: BallisticArtillery
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: DeviceLinkSink
+    ports:
+    - SpaceArtilleryFire
+  - type: SpaceArtillery
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: ApcPowerReceiver
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: FireControllable
+  - type: RadarBlip
+    radarColor: "#9999FF"
+    scale: 1

@@ -1,0 +1,65 @@
+- type: entity
+  id: GunneryServer
+  parent: BaseMachinePowered
+  name: gunnery control server
+  description: Manages the remote operation of ship weapons.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/telecomms.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: FireControlServer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: Appearance
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+
+- type: entity
+  id: GunneryTest
+  parent: BaseWeaponTurret
+  name: gunnery controllable
+  description: Helps debug gunnery.
+  components:
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: FireControllable
+  - type: RadarBlip
+    radarColor: "#FFFF33"
+    scale: 1
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerGunneryConsole
+  name: gunnery control console
+  description: Interfaces with the gunnery control server to operate ship weapons.
+  components:
+  - type: FireControlConsole
+  - type: ActivatableUI
+    key: enum.FireControlConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.FireControlConsoleUiKey.Key:
+          type: FireControlConsoleBoundUserInterface
+          requireInputValidation: false
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: RadarConsole
+  - type: WorldLoader
+    radius: 256
