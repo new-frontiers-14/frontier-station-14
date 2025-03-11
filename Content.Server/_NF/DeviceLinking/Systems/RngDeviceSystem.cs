@@ -27,62 +27,19 @@ public sealed class RngDeviceSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
 
-    // Pre-allocated arrays for common output counts
-    private static ProtoId<SourcePortPrototype>[] InitializeTwoPortsArray(RngDeviceComponent comp) => new[]
+    /// <summary>
+    /// Creates an array of output port ProtoIds for the given number of outputs
+    /// </summary>
+    private static ProtoId<SourcePortPrototype>[] CreatePortsArray(RngDeviceComponent comp, int count)
     {
-        new ProtoId<SourcePortPrototype>(comp.GetOutputPort(1)),
-        new ProtoId<SourcePortPrototype>(comp.GetOutputPort(2))
-    };
-
-    private static ProtoId<SourcePortPrototype>[] InitializeFourPortsArray(RngDeviceComponent comp) => InitializeTwoPortsArray(comp)
-        .Concat(new[]
+        var result = new ProtoId<SourcePortPrototype>[count];
+        for (int i = 0; i < count; i++)
         {
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(3)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(4))
-        }).ToArray();
+            result[i] = new ProtoId<SourcePortPrototype>(comp.GetOutputPort(i + 1));
+        }
+        return result;
+    }
 
-    private static ProtoId<SourcePortPrototype>[] InitializeSixPortsArray(RngDeviceComponent comp) => InitializeFourPortsArray(comp)
-        .Concat(new[]
-        {
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(5)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(6))
-        }).ToArray();
-
-    private static ProtoId<SourcePortPrototype>[] InitializeEightPortsArray(RngDeviceComponent comp) => InitializeSixPortsArray(comp)
-        .Concat(new[]
-        {
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(7)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(8))
-        }).ToArray();
-
-    private static ProtoId<SourcePortPrototype>[] InitializeTenPortsArray(RngDeviceComponent comp) => InitializeEightPortsArray(comp)
-        .Concat(new[]
-        {
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(9)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(10))
-        }).ToArray();
-
-    private static ProtoId<SourcePortPrototype>[] InitializeTwelvePortsArray(RngDeviceComponent comp) => InitializeTenPortsArray(comp)
-        .Concat(new[]
-        {
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(11)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(12))
-        }).ToArray();
-
-    private static ProtoId<SourcePortPrototype>[] InitializeTwentyPortsArray(RngDeviceComponent comp) => InitializeTwelvePortsArray(comp)
-        .Concat(new[]
-        {
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(13)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(14)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(15)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(16)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(17)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(18)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(19)),
-            new ProtoId<SourcePortPrototype>(comp.GetOutputPort(20))
-        }).ToArray();
-
-    // Reusable payload for edge mode signals
     private readonly NetworkPayload _edgeModePayload = new();
 
     public override void Initialize()
@@ -107,35 +64,14 @@ public sealed class RngDeviceSystem : EntitySystem
         _deviceLink.EnsureSourcePorts(uid, ports);
 
         // Cache the state prefix
-        comp.StatePrefix = comp.Outputs switch
-        {
-            2 => "percentile",
-            4 => "d4",
-            6 => "d6",
-            8 => "d8",
-            10 => "d10",
-            12 => "d12",
-            20 => "d20",
-            _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
-        };
+        comp.StatePrefix = comp.GetStatePrefix();
 
         UpdateUserInterface(uid, comp);
     }
 
     private ProtoId<SourcePortPrototype>[] InitializePortsArray(RngDeviceComponent comp)
     {
-        var array = comp.Outputs switch
-        {
-            2 => InitializeTwoPortsArray(comp),
-            4 => InitializeFourPortsArray(comp),
-            6 => InitializeSixPortsArray(comp),
-            8 => InitializeEightPortsArray(comp),
-            10 => InitializeTenPortsArray(comp),
-            12 => InitializeTwelvePortsArray(comp),
-            20 => InitializeTwentyPortsArray(comp),
-            _ => throw new ArgumentException($"Unsupported number of outputs: {comp.Outputs}")
-        };
-
+        var array = CreatePortsArray(comp, comp.Outputs);
         comp.PortsArray = array;
         return array;
     }
@@ -170,7 +106,8 @@ public sealed class RngDeviceSystem : EntitySystem
     {
         if (_userInterfaceSystem.HasUi(uid, RngDeviceUiKey.Key))
         {
-            _userInterfaceSystem.SetUiState(uid, RngDeviceUiKey.Key, new RngDeviceBoundUserInterfaceState(comp.Muted, comp.TargetNumber, comp.Outputs, comp.EdgeMode));
+            _userInterfaceSystem.SetUiState(uid, RngDeviceUiKey.Key,
+                new RngDeviceBoundUserInterfaceState(comp.Muted, comp.TargetNumber, comp.Outputs, comp.EdgeMode, comp.GetDeviceType()));
         }
     }
 
@@ -234,12 +171,22 @@ public sealed class RngDeviceSystem : EntitySystem
         if (ports == null)
             return;
 
-        // Send High signal to selected port and Low signals to others
+        // Clear the payload once before the loop
+        _edgeModePayload.Clear();
+
+        // Send High signal to selected port
+        _edgeModePayload.Add(DeviceNetworkConstants.LogicState, SignalState.High);
+        _deviceLink.InvokePort(uid, ports[selectedPort - 1], _edgeModePayload);
+
+        // Send Low signals to other ports
+        _edgeModePayload.Clear();
+        _edgeModePayload.Add(DeviceNetworkConstants.LogicState, SignalState.Low);
+
         for (int i = 0; i < ports.Length; i++)
         {
-            var state = (i + 1) == selectedPort ? SignalState.High : SignalState.Low;
-            _edgeModePayload.Clear();
-            _edgeModePayload.Add(DeviceNetworkConstants.LogicState, state);
+            if (i + 1 == selectedPort)
+                continue;
+
             _deviceLink.InvokePort(uid, ports[i], _edgeModePayload);
         }
     }

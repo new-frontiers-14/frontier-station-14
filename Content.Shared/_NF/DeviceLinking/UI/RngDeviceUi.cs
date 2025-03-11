@@ -68,6 +68,15 @@ public sealed class RngDeviceBoundUserInterfaceState : BoundUserInterfaceState
             _ => "Unknown"
         };
     }
+
+    public RngDeviceBoundUserInterfaceState(bool muted, int targetNumber, int outputs, bool edgeMode, string deviceType)
+    {
+        Muted = muted;
+        TargetNumber = targetNumber;
+        Outputs = outputs;
+        EdgeMode = edgeMode;
+        DeviceType = deviceType;
+    }
 }
 
 [Serializable, NetSerializable]
