@@ -35,7 +35,7 @@
 
 - type: entity
   id: NFMobCarpHolo
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobCarp, MobCarpHolo]
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarpHolo]
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
@@ -47,6 +47,9 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: mouth
       shader: unshaded
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
 
 - type: entity
   id: NFMobCarpRainbow
@@ -81,9 +84,9 @@
 
 - type: entity
   parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobSmallPurpleSnake]
-  id: NFMobSmallPurpleSnake
-  suffix: Frontier, Small
-  categories: [ HideSpawnMenu ]
+  id: NFMobSmallRainbowSnake
+  suffix: Frontier, Rainbow
+  #categories: [ HideSpawnMenu ] # No spawner
   components:
   - type: NpcFactionMember
     factions:
@@ -102,12 +105,26 @@
   - type: Sprite
     drawdepth: SmallMobs
     sprite: _NF/Mobs/Aliens/snake.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: mouth
+      shader: unshaded
   - type: RandomSprite
     available:
     - enum.DamageStateVisualLayers.Base:
         alive: Rainbow
       enum.DamageStateVisualLayers.BaseUnshaded:
         mouth: ""
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: mouth
+      Dead:
+        Base: dead
+        BaseUnshaded: dead_mouth
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -116,3 +133,30 @@
         Piercing: 3
         Slash: 3
         Structural: 20
+
+- type: entity
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobTick]
+  id: NFMobTick
+  suffix: Frontier
+  #categories: [ HideSpawnMenu ] # No spawner
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _NF/Mobs/Aliens/spacetick.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: glow
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: glow
+      Dead:
+        Base: dead
+        BaseUnshaded: mask_null
