@@ -24,6 +24,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 using Content.Shared.StepTrigger.Components; // Delta V-NoShoesSilentFootstepsComponent
+using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared._NF.SoftCrit; // Frontier
 
 namespace Content.Shared.Movement.Systems;
 
@@ -150,23 +152,34 @@ public abstract partial class SharedMoverController : VirtualController
         float frameTime)
     {
         var canMove = mover.CanMove;
-        // Upstream - #34016
-        // if (RelayTargetQuery.TryGetComponent(uid, out var relayTarget))
-        // {
-        //     if (_mobState.IsIncapacitated(relayTarget.Source) ||
-        //         TryComp<SleepingComponent>(relayTarget.Source, out _) ||
-        //         !MoverQuery.TryGetComponent(relayTarget.Source, out var relayedMover))
-        //     {
-        //         canMove = false;
-        //     }
-        //     else
-        //     {
-        //         mover.RelativeEntity = relayedMover.RelativeEntity;
-        //         mover.RelativeRotation = relayedMover.RelativeRotation;
-        //         mover.TargetRelativeRotation = relayedMover.TargetRelativeRotation;
-        //     }
-        // }
-        // End Upstream - #34016
+
+        if (RelayTargetQuery.TryGetComponent(uid, out var relayTarget))
+        {
+            /*if (_mobState.IsIncapacitated(relayTarget.Source) ||
+                TryComp<SleepingComponent>(relayTarget.Source, out _) ||
+                !MoverQuery.TryGetComponent(relayTarget.Source, out var relayedMover))*/
+            if (_mobState.IsDead(relayTarget.Source)
+                    || TryComp<SleepingComponent>(relayTarget.Source, out _)
+                    || !MoverQuery.TryGetComponent(relayTarget.Source, out var relayedMover)
+                    || _mobState.IsCritical(relayTarget.Source) && !_configManager.GetCVar(NFCCVars.AllowMovementWhileCrit)) // Frontier code
+            {
+                if(TryComp<SoftCritComponent>(relayTarget.Source, out var softCritComp) && softCritComp.UnableToAct == false)
+                {
+                    // TODO code it much much better
+                    canMove = false;
+                }
+                else
+                {
+                    canMove = false;
+                }
+            }
+            else
+            {
+                mover.RelativeEntity = relayedMover.RelativeEntity;
+                mover.RelativeRotation = relayedMover.RelativeRotation;
+                mover.TargetRelativeRotation = relayedMover.TargetRelativeRotation;
+            }
+        }
 
         // Update relative movement
         if (mover.LerpTarget < Timing.CurTime)
@@ -515,6 +528,14 @@ public abstract partial class SharedMoverController : VirtualController
         while (anchored.MoveNext(out var maybeFootstep))
         {
             RaiseLocalEvent(maybeFootstep.Value, ref soundEv);
+
+            // Frontier code
+            if (_mobState.IsCritical(uid) && TryComp<SoftCritComponent>(uid, out var softCritComp))
+            {
+                sound = softCritComp.CrawlSound;
+                return true;
+            }
+            // Frontier code end
 
             if (soundEv.Sound != null)
             {

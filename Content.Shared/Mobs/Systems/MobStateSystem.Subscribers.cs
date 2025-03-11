@@ -17,16 +17,27 @@ using Content.Shared.Standing;
 using Content.Shared.Strip.Components;
 using Content.Shared.Throwing;
 using Robust.Shared.Physics.Components;
+using Content.Shared.CCVar; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
+using Robust.Shared.Configuration; // Frontier
+using Content.Shared.Movement.Events; // Frontier
+using Content.Shared.Movement.Systems; // Frontier
+using Content.Shared._NF.SoftCrit; // Frontier
+using Content.Shared.Damage; // Frontier
 
 namespace Content.Shared.Mobs.Systems;
 
 public partial class MobStateSystem
 {
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!; // Frontier
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!; // Frontier
+
     //General purpose event subscriptions. If you can avoid it register these events inside their own systems
     private void SubscribeEvents()
     {
         SubscribeLocalEvent<MobStateComponent, BeforeGettingStrippedEvent>(OnGettingStripped);
-        SubscribeLocalEvent<MobStateComponent, ChangeDirectionAttemptEvent>(CheckAct);
+        //SubscribeLocalEvent<MobStateComponent, ChangeDirectionAttemptEvent>(CheckAct);
+        SubscribeLocalEvent<MobStateComponent, ChangeDirectionAttemptEvent>(OnDirectionAttempt); // Frontier
         SubscribeLocalEvent<MobStateComponent, UseAttemptEvent>(CheckAct);
         SubscribeLocalEvent<MobStateComponent, AttackAttemptEvent>(CheckAct);
         SubscribeLocalEvent<MobStateComponent, ConsciousAttemptEvent>(CheckConcious);
@@ -38,7 +49,8 @@ public partial class MobStateSystem
         SubscribeLocalEvent<MobStateComponent, DropAttemptEvent>(CheckAct);
         SubscribeLocalEvent<MobStateComponent, PickupAttemptEvent>(CheckAct);
         SubscribeLocalEvent<MobStateComponent, StartPullAttemptEvent>(CheckAct);
-        SubscribeLocalEvent<MobStateComponent, UpdateCanMoveEvent>(CheckAct);
+        //SubscribeLocalEvent<MobStateComponent, UpdateCanMoveEvent>(CheckAct);
+        SubscribeLocalEvent<MobStateComponent, UpdateCanMoveEvent>(OnMoveAttempt); // Frontier
         SubscribeLocalEvent<MobStateComponent, StandAttemptEvent>(CheckAct);
         SubscribeLocalEvent<MobStateComponent, PointAttemptEvent>(CheckAct);
         SubscribeLocalEvent<MobStateComponent, TryingToSleepEvent>(OnSleepAttempt);
@@ -47,6 +59,39 @@ public partial class MobStateSystem
 
         SubscribeLocalEvent<MobStateComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
     }
+
+    // Frontier code
+    private void OnDirectionAttempt(Entity<MobStateComponent> ent, ref ChangeDirectionAttemptEvent args)
+    {
+        if (ent.Comp.CurrentState is MobState.Critical && _configurationManager.GetCVar(NFCCVars.AllowMovementWhileCrit))
+            if(TryComp<DamageableComponent>(ent.Owner, out var damageComp) && TryComp<SoftCritComponent>(ent.Owner, out var softCritComp))
+            {
+                if(damageComp.TotalDamage < softCritComp.DamageThreshold)
+                {
+                    return;
+                }
+            }
+
+        CheckAct(ent.Owner, ent.Comp, args);
+    }
+
+// TODO fix so it properly stops players from moving once softcrit threshold is reached
+    private void OnMoveAttempt(Entity<MobStateComponent> ent, ref UpdateCanMoveEvent args)
+    {
+        if (ent.Comp.CurrentState is MobState.Critical && _configurationManager.GetCVar(NFCCVars.AllowMovementWhileCrit))
+        {
+            //if(TryComp<DamageableComponent>(ent.Owner, out var damageComp) && TryComp<SoftCritComponent>(ent.Owner, out var softCritComp))
+           // {
+               // if(damageComp.TotalDamage < softCritComp.DamageThreshold)
+                //{
+                    return;
+                //}
+            //}
+        }
+
+        CheckAct(ent.Owner, ent.Comp, args);
+    }
+    // Frontier code end
 
     private void OnUnbuckleAttempt(Entity<MobStateComponent> ent, ref UnbuckleAttemptEvent args)
     {
@@ -144,6 +189,17 @@ public partial class MobStateSystem
             RemCompDeferred<AllowNextCritSpeechComponent>(uid);
             return;
         }
+
+        // Frontier code
+        if (component.CurrentState is MobState.Critical && _configurationManager.GetCVar(NFCCVars.AllowTalkingWhileCrit))
+            if(TryComp<DamageableComponent>(uid, out var damageComp) && TryComp<SoftCritComponent>(uid, out var softCritComp))
+            {
+                if(damageComp.TotalDamage < softCritComp.DamageThreshold)
+                {
+                    return;
+                }
+            }
+        // Frontier code end
 
         CheckAct(uid, component, args);
     }
