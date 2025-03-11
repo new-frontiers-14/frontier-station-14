@@ -346,19 +346,6 @@
   - Assembler
 
 - type: microwaveMealRecipe
-  id: RecipeBatteredOnionRings
-  name: battered onion rings recipe
-  result: FoodOnionRingsBattered
-  time: 2 # ~5 seconds for three
-  reagents:
-    Flour: 1.5 # ~1/3 of a click
-    Egg: 2 # 1/3 of an egg
-  solids:
-    FoodOnionSlice: 1
-  recipeType:
-  - Assembler
-
-- type: microwaveMealRecipe
   id: RecipeBatteredCuredCarp
   name: battered fish recipe
   result: FoodCuredCarpBattered
@@ -369,6 +356,19 @@
     Egg: 6
   solids:
     FoodCuredCarp: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeBatteredOnionRings
+  name: battered onion rings recipe
+  result: FoodOnionRingsBattered
+  time: 2 # ~5 seconds for three
+  reagents:
+    Flour: 1.5 # ~1/3 of a click
+    Egg: 2 # 1/3 of an egg
+  solids:
+    FoodOnionSlice: 1
   recipeType:
   - Assembler
    
@@ -990,8 +990,6 @@
     Water: 15
   recipeType:
   - Oven
-<<<<<<< HEAD
-=======
 
 # NOT ACTUAL FOOD
 
@@ -1008,4 +1006,3 @@
   recipeType:
   - Oven
   - Microwave
->>>>>>> master
