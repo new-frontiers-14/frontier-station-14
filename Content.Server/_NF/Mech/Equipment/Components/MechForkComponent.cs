@@ -74,13 +74,12 @@ public sealed partial class MechForkComponent : Component
     public EntityUid? ToggleActionEntity;
 }
 
-
-[Serializable, NetSerializable]
+[Serializable]
 public sealed partial class ForkInsertDoAfterEvent : SimpleDoAfterEvent
 {
 }
 
-[Serializable, NetSerializable]
+[Serializable]
 public sealed partial class ForkRemoveDoAfterEvent : SimpleDoAfterEvent
 {
 }
