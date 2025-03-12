@@ -100,11 +100,11 @@
   abstract: true
   components:
   - type: Lock
-    immuneToEmag: true
+    breakOnAccessBreaker: false
 
 - type: entity
   id: BaseStructureAccessReaderImmuneToEmag
   abstract: true
   components:
   - type: AccessReader
-    immuneToEmag: true
+    breakOnAccessBreaker: false
