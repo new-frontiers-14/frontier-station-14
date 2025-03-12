@@ -7,6 +7,7 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
+    color: "#ff2200"
     sprite: Objects/Specific/Mech/mecha.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
@@ -37,8 +38,8 @@
     containers:
       mech-battery-slot:
       - PowerCellHigh
-      mech-equipment-slot:
-      - MechEquipmentGrabber
+      mech-equipment-container:
+      - MechEquipmentFork
 
 - type: entity
   id: MechChunkBattery
@@ -49,5 +50,5 @@
     containers:
       mech-battery-slot:
       - PowerCellHigh
-      mech-equipment-slot:
-      - MechEquipmentGrabber
+      mech-equipment-container:
+      - MechEquipmentFork

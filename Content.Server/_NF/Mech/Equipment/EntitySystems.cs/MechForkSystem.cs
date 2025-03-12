@@ -50,9 +50,12 @@ public sealed class MechForkSystem : EntitySystem
         SubscribeLocalEvent<MechForkComponent, MechEquipmentRemovedEvent>(OnEquipmentRemoved);
         SubscribeLocalEvent<MechForkComponent, AttemptRemoveMechEquipmentEvent>(OnAttemptRemove);
         SubscribeLocalEvent<MechForkComponent, MechEquipmentEquippedAction>(OnEquipped);
+        SubscribeLocalEvent<MechForkComponent, MechForkToggleActionEvent>(OnForkToggled);
 
         SubscribeLocalEvent<MechForkComponent, UserActivateInWorldEvent>(OnInteract);
         SubscribeLocalEvent<MechForkComponent, GrabberDoAfterEvent>(OnMechGrab);
+        SubscribeLocalEvent<MechForkComponent, ForkInsertDoAfterEvent>(OnMechInsertIntoStorage);
+        SubscribeLocalEvent<MechForkComponent, ForkRemoveDoAfterEvent>(OnMechRemoveFromStorage);
     }
 
     private void OnGrabberMessage(EntityUid uid, MechForkComponent component, MechEquipmentUiMessageRelayEvent args)
@@ -136,8 +139,21 @@ public sealed class MechForkSystem : EntitySystem
 
     private void OnEquipped(EntityUid uid, MechForkComponent component, MechEquipmentEquippedAction args)
     {
+        if (args.Handled)
+            return;
+
         if (args.Pilot != null)
+        {
             component.ToggleActionEntity = _action.AddAction(args.Pilot.Value, component.ToggleAction);
+            _action.SetToggled(component.ToggleActionEntity, component.Inserting);
+        }
+        args.Handled = true;
+    }
+
+    private void OnForkToggled(EntityUid uid, MechForkComponent component, MechForkToggleActionEvent args)
+    {
+        component.Inserting = !component.Inserting;
+        _action.SetToggled(component.ToggleActionEntity, component.Inserting);
     }
 
     private void OnInteract(EntityUid uid, MechForkComponent component, UserActivateInWorldEvent args)
@@ -149,11 +165,57 @@ public sealed class MechForkSystem : EntitySystem
         if (args.Target == args.User || component.DoAfter != null)
             return;
 
+        if (!TryComp<MechComponent>(args.User, out var mech) || mech.PilotSlot.ContainedEntity == target)
+            return;
+
+        if (mech.Energy + component.GrabEnergyDelta < 0)
+            return;
+
+        if (!_interaction.InRangeUnobstructed(args.User, target))
+            return;
+
         // TODO: swap this out for a "forkable storage"
-        if (TryComp<CrateStorageRackComponent>(target, out var fork))
+        if (TryComp<CrateStorageRackComponent>(target, out var rack))
         {
-            // 
+            if (!_container.TryGetContainer(target, rack.ContainerName, out var targetContainer))
+                return;
+
+            if (component.Inserting)
+            {
+                // Check if crate is full
+                if (targetContainer.Count >= rack.MaxObjectsStored || component.ItemContainer.Count <= 0)
+                    return;
+
+                args.Handled = true;
+                component.AudioStream = _audio.PlayPvs(component.GrabSound, uid)?.Entity;
+                var insertDoAfterArgs = new DoAfterArgs(EntityManager, args.User, component.GrabDelay, new ForkInsertDoAfterEvent(), uid, target: target, used: uid)
+                {
+                    BreakOnMove = true
+                };
+
+                _doAfter.TryStartDoAfter(insertDoAfterArgs, out component.DoAfter);
+                return;
+            }
+            else
+            {
+                // Check if crate is empty or
+                if (targetContainer.Count <= 0 || component.ItemContainer.Count >= component.MaxContents)
+                    return;
+
+                args.Handled = true;
+                component.AudioStream = _audio.PlayPvs(component.GrabSound, uid)?.Entity;
+                var insertDoAfterArgs = new DoAfterArgs(EntityManager, args.User, component.GrabDelay, new ForkRemoveDoAfterEvent(), uid, target: target, used: uid)
+                {
+                    BreakOnMove = true
+                };
+
+                _doAfter.TryStartDoAfter(insertDoAfterArgs, out component.DoAfter);
+                return;
+            }
         }
+
+        if (Transform(target).Anchored)
+            return;
 
         if (TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static ||
             HasComp<WallMountComponent>(target) ||
@@ -162,22 +224,10 @@ public sealed class MechForkSystem : EntitySystem
             return;
         }
 
-        if (_whitelist.IsWhitelistFail(component.Whitelist, target)) // Frontier: Blacklist
-            return;
-
-        if (Transform(target).Anchored)
+        if (_whitelist.IsWhitelistFail(component.Whitelist, target))
             return;
 
         if (component.ItemContainer.ContainedEntities.Count >= component.MaxContents)
-            return;
-
-        if (!TryComp<MechComponent>(args.User, out var mech) || mech.PilotSlot.ContainedEntity == target)
-            return;
-
-        if (mech.Energy + component.GrabEnergyDelta < 0)
-            return;
-
-        if (!_interaction.InRangeUnobstructed(args.User, target))
             return;
 
         args.Handled = true;
@@ -219,6 +269,66 @@ public sealed class MechForkSystem : EntitySystem
         // End Frontier
 
         _container.Insert(args.Args.Target.Value, component.ItemContainer);
+        _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);
+
+        args.Handled = true;
+    }
+
+    private void OnMechInsertIntoStorage(EntityUid uid, MechForkComponent component, DoAfterEvent args)
+    {
+        component.DoAfter = null;
+
+        if (args.Cancelled)
+        {
+            component.AudioStream = _audio.Stop(component.AudioStream);
+            return;
+        }
+
+        if (args.Handled || args.Args.Target is not { } target)
+            return;
+
+        if (!TryComp<CrateStorageRackComponent>(target, out var rack))
+            return;
+        if (component.ItemContainer.Count <= 0)
+            return;
+        if (!_container.TryGetContainer(target, rack.ContainerName, out var rackContainer) || rackContainer.Count >= rack.MaxObjectsStored)
+            return;
+        if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComponent) || equipmentComponent.EquipmentOwner == null)
+            return;
+        if (!_mech.TryChangeEnergy(equipmentComponent.EquipmentOwner.Value, component.GrabEnergyDelta))
+            return;
+
+        _container.Insert(component.ItemContainer.ContainedEntities[0], rackContainer);
+        _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);
+
+        args.Handled = true;
+    }
+
+    private void OnMechRemoveFromStorage(EntityUid uid, MechForkComponent component, DoAfterEvent args)
+    {
+        component.DoAfter = null;
+
+        if (args.Cancelled)
+        {
+            component.AudioStream = _audio.Stop(component.AudioStream);
+            return;
+        }
+
+        if (args.Handled || args.Args.Target is not { } target)
+            return;
+
+        if (!TryComp<CrateStorageRackComponent>(target, out var rack))
+            return;
+        if (component.ItemContainer.Count >= component.MaxContents)
+            return;
+        if (!_container.TryGetContainer(target, rack.ContainerName, out var rackContainer) || rackContainer.Count <= 0)
+            return;
+        if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComponent) || equipmentComponent.EquipmentOwner == null)
+            return;
+        if (!_mech.TryChangeEnergy(equipmentComponent.EquipmentOwner.Value, component.GrabEnergyDelta))
+            return;
+
+        _container.Insert(rackContainer.ContainedEntities[0], component.ItemContainer);
         _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);
 
         args.Handled = true;

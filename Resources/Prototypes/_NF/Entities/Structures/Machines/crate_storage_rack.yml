@@ -11,7 +11,14 @@
     layers:
     - state: base
     - state: top
+      map: [ "top" ]
+      visible: false
+    - state: bottom_back
+      map: [ "bottom_back" ]
+      visible: false
     - state: bottom
+      map: [ "bottom" ]
+      visible: false
   - type: InteractionOutline
   - type: StaticPrice
     price: 500
@@ -25,6 +32,7 @@
   description: Like a shelf, but bigger!
   parent: BaseStructure
   components:
+  - type: CrateStorageRack
   - type: Sprite
     sprite: _NF/Structures/Storage/crate_storage_rack.rsi
     snapCardinals: true
@@ -32,10 +40,13 @@
     - state: base
     - state: top
       map: [ "top" ]
+      visible: false
     - state: bottom_back
       map: [ "bottom_back" ]
+      visible: false
     - state: bottom
       map: [ "bottom" ]
+      visible: false
   - type: InteractionOutline
   - type: StaticPrice
     price: 500

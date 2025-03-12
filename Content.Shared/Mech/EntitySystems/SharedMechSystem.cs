@@ -147,7 +147,7 @@ public abstract class SharedMechSystem : EntitySystem
         _actions.RemoveProvidedActions(pilot, mech);
 
         // Frontier
-        if (_net.IsServer && TryComp<MechComponent>(mech, out var mechComp) && mechComp.PilotSlot.ContainedEntity != null && mechComp.CurrentSelectedEquipment != null)
+        if (TryComp<MechComponent>(mech, out var mechComp) && mechComp.PilotSlot.ContainedEntity != null && mechComp.CurrentSelectedEquipment != null)
             _actions.RemoveProvidedActions(mechComp.PilotSlot.ContainedEntity.Value, mechComp.CurrentSelectedEquipment.Value);
         // End Frontier
     }
@@ -164,10 +164,15 @@ public abstract class SharedMechSystem : EntitySystem
 
         TryEject(uid, component);
         var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
+        // Frontier: optionally removable equipment
+        if (component.CanRemoveEquipment)
         {
-            RemoveEquipment(uid, ent, component, forced: true);
+            foreach (var ent in equipment)
+            {
+                RemoveEquipment(uid, ent, component, forced: true);
+            }
         }
+        // End Frontier
 
         component.Broken = true;
         UpdateAppearance(uid, component);
@@ -193,7 +198,7 @@ public abstract class SharedMechSystem : EntitySystem
         }
 
         // Frontier
-        if (_net.IsServer && component.PilotSlot.ContainedEntity != null && component.CurrentSelectedEquipment != null)
+        if (component.PilotSlot.ContainedEntity != null && component.CurrentSelectedEquipment != null)
             _actions.RemoveProvidedActions(component.PilotSlot.ContainedEntity.Value, component.CurrentSelectedEquipment.Value);
         // End Frontier
 
@@ -212,7 +217,11 @@ public abstract class SharedMechSystem : EntitySystem
         // Frontier
         if (_net.IsServer && component.CurrentSelectedEquipment != null)
         {
-            MechEquipmentEquippedAction ev = new(uid, component.PilotSlot.ContainedEntity);
+            var ev = new MechEquipmentEquippedAction
+            {
+                Mech = uid,
+                Pilot = component.PilotSlot.ContainedEntity
+            };
             RaiseLocalEvent(component.CurrentSelectedEquipment.Value, ev);
         }
         // End Frontier

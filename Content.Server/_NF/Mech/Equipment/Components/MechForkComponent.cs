@@ -4,6 +4,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Server._NF.Mech.Equipment.Components;
 
@@ -71,4 +72,15 @@ public sealed partial class MechForkComponent : Component
 
     [DataField]
     public EntityUid? ToggleActionEntity;
+}
+
+
+[Serializable, NetSerializable]
+public sealed partial class ForkInsertDoAfterEvent : SimpleDoAfterEvent
+{
+}
+
+[Serializable, NetSerializable]
+public sealed partial class ForkRemoveDoAfterEvent : SimpleDoAfterEvent
+{
 }
