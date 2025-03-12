@@ -21,7 +21,6 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Buckle;
 using Content.Server._NF.Mech.Equipment.Components;
 using Content.Shared._NF.Cargo.Components;
-using Content.Shared._NF.Mech.Components;
 using Content.Server.Actions;
 using Content.Shared._NF.Mech.Equipment.Events;
 
@@ -145,7 +144,7 @@ public sealed class MechForkSystem : EntitySystem
 
         if (args.Pilot != null)
         {
-            component.ToggleActionEntity = _action.AddAction(args.Pilot.Value, component.ToggleAction);
+            component.ToggleActionEntity = _action.AddAction(args.Pilot.Value, component.ToggleAction, uid);
             _action.SetToggled(component.ToggleActionEntity, component.Inserting);
         }
         args.Handled = true;

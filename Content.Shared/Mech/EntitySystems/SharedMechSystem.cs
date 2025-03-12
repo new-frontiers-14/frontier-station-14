@@ -22,7 +22,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Content.Shared.Mobs.Components; // Frontier
 using Content.Shared.NPC.Components;
-using Content.Shared._NF.Mech.Components; // Frontier
+using Content.Shared._NF.Mech.Equipment.Events; // Frontier
 
 namespace Content.Shared.Mech.EntitySystems;
 
@@ -135,6 +135,8 @@ public abstract class SharedMechSystem : EntitySystem
         _actions.AddAction(pilot, ref component.MechCycleActionEntity, component.MechCycleAction, mech);
         _actions.AddAction(pilot, ref component.MechUiActionEntity, component.MechUiAction, mech);
         _actions.AddAction(pilot, ref component.MechEjectActionEntity, component.MechEjectAction, mech);
+
+        RaiseEquipmentEquippedEvent((mech, component)); // Frontier
     }
 
     private void RemoveUser(EntityUid mech, EntityUid pilot)
@@ -147,8 +149,8 @@ public abstract class SharedMechSystem : EntitySystem
         _actions.RemoveProvidedActions(pilot, mech);
 
         // Frontier
-        if (TryComp<MechComponent>(mech, out var mechComp) && mechComp.PilotSlot.ContainedEntity != null && mechComp.CurrentSelectedEquipment != null)
-            _actions.RemoveProvidedActions(mechComp.PilotSlot.ContainedEntity.Value, mechComp.CurrentSelectedEquipment.Value);
+        if (TryComp<MechComponent>(mech, out var mechComp) && mechComp.CurrentSelectedEquipment != null)
+            _actions.RemoveProvidedActions(pilot, mechComp.CurrentSelectedEquipment.Value);
         // End Frontier
     }
 
@@ -214,17 +216,7 @@ public abstract class SharedMechSystem : EntitySystem
         if (_net.IsServer)
             _popup.PopupEntity(popupString, uid);
 
-        // Frontier
-        if (_net.IsServer && component.CurrentSelectedEquipment != null)
-        {
-            var ev = new MechEquipmentEquippedAction
-            {
-                Mech = uid,
-                Pilot = component.PilotSlot.ContainedEntity
-            };
-            RaiseLocalEvent(component.CurrentSelectedEquipment.Value, ev);
-        }
-        // End Frontier
+        RaiseEquipmentEquippedEvent((uid, component)); // Frontier
 
         Dirty(uid, component);
     }
@@ -487,6 +479,20 @@ public abstract class SharedMechSystem : EntitySystem
         args.CanDrop |= !component.Broken && CanInsert(uid, args.Dragged, component);
     }
 
+    // Frontier
+    private void RaiseEquipmentEquippedEvent(Entity<MechComponent> ent)
+    {
+        if (_net.IsServer && ent.Comp.CurrentSelectedEquipment != null)
+        {
+            var ev = new MechEquipmentEquippedAction
+            {
+                Mech = ent,
+                Pilot = ent.Comp.PilotSlot.ContainedEntity
+            };
+            RaiseLocalEvent(ent.Comp.CurrentSelectedEquipment.Value, ev);
+        }
+    }
+    // End Frontier
 }
 
 /// <summary>

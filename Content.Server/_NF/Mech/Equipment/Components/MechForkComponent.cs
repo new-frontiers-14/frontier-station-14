@@ -65,7 +65,7 @@ public sealed partial class MechForkComponent : Component
     /// If true, interactions with storage will insert an object onto them.
     /// </summary>
     [DataField]
-    public bool Inserting;
+    public bool Inserting = true;
 
     [DataField]
     public EntProtoId ToggleAction = "ActionMechForkToggleInsert";

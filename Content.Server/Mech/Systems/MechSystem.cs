@@ -252,7 +252,7 @@ public sealed partial class MechSystem : SharedMechSystem
             if (faction.Factions != null)
                 factionMech.Factions = faction.Factions;
         }
-        // Frontier
+        // End Frontier
 
         TryInsert(uid, args.Args.User, component);
         _actionBlocker.UpdateCanMove(uid);
