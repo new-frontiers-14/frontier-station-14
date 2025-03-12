@@ -23,6 +23,8 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    startingEquipment:
+    - MechEquipmentFork
     canRemoveEquipment: false
     maxEquipmentAmount: 1
   - type: MeleeWeapon
@@ -34,12 +36,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6
-  - type: ContainerFill
-    containers:
-      mech-battery-slot:
-      - PowerCellHigh
-      mech-equipment-container:
-      - MechEquipmentFork
 
 - type: entity
   id: MechChunkBattery
@@ -50,5 +46,3 @@
     containers:
       mech-battery-slot:
       - PowerCellHigh
-      mech-equipment-container:
-      - MechEquipmentFork
