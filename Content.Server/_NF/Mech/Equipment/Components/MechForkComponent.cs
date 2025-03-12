@@ -73,13 +73,3 @@ public sealed partial class MechForkComponent : Component
     [DataField]
     public EntityUid? ToggleActionEntity;
 }
-
-[Serializable]
-public sealed partial class ForkInsertDoAfterEvent : SimpleDoAfterEvent
-{
-}
-
-[Serializable]
-public sealed partial class ForkRemoveDoAfterEvent : SimpleDoAfterEvent
-{
-}
