@@ -5,6 +5,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Examine;   // Frontier
 using Content.Shared.Hands.Components;  // Frontier
 using Content.Shared.Verbs;     // Frontier
+using Content.Shared.Popups;    // Eclipse
 using Robust.Shared.Utility;    // Frontier
 
 namespace Content.Shared.Storage.EntitySystems;
@@ -17,6 +18,7 @@ public sealed class MaterialReclaimerMagnetPickupSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedMaterialReclaimerSystem _storage = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!; // Eclipse
 
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
 
@@ -55,7 +57,7 @@ public sealed class MaterialReclaimerMagnetPickupSystem : EntitySystem
         {
             Act = () =>
             {
-                ToggleMagnet(uid, component);
+                ToggleMagnet(uid, component, args.User); // Eclipse
             },
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
             Text = Loc.GetString("magnet-pickup-component-toggle-verb"),
@@ -75,10 +77,21 @@ public sealed class MaterialReclaimerMagnetPickupSystem : EntitySystem
     }
 
     // Frontier, used to toggle the magnet on the ore bag/box
-    public bool ToggleMagnet(EntityUid uid, MaterialReclaimerMagnetPickupComponent comp)
+    public bool ToggleMagnet(EntityUid uid, MaterialReclaimerMagnetPickupComponent comp, EntityUid userUid)
     {
         var query = EntityQueryEnumerator<MaterialReclaimerMagnetPickupComponent>();
         comp.MagnetEnabled = !comp.MagnetEnabled;
+
+        // Start-Eclipse
+        if (comp.MagnetEnabled)
+        {
+            _popup.PopupClient(Loc.GetString("magnet-pickup-component-toggled-on"), uid, userUid);
+        }
+        else
+        {
+            _popup.PopupClient(Loc.GetString("magnet-pickup-component-toggled-off"), uid, userUid);
+        }
+        // End-Eclipse
 
         return comp.MagnetEnabled;
     }

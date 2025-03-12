@@ -10,6 +10,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Item; // Frontier
 using Content.Shared.Verbs; // Frontier
+using Content.Shared.Popups; // Eclipse
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -26,6 +27,7 @@ public sealed class MagnetPickupSystem : EntitySystem
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedItemSystem _item = default!; // Frontier
+    [Dependency] private readonly SharedPopupSystem _popup = default!; // Eclipse
 
 
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
@@ -65,7 +67,7 @@ public sealed class MagnetPickupSystem : EntitySystem
         {
             Act = () =>
             {
-                ToggleMagnet(uid, component);
+                ToggleMagnet(uid, component, args.User); // Eclipse
             },
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
             Text = Loc.GetString("magnet-pickup-component-toggle-verb"),
@@ -89,13 +91,25 @@ public sealed class MagnetPickupSystem : EntitySystem
     }
 
     //Toggles the magnet on the ore bag/box
-    public void ToggleMagnet(EntityUid uid, MagnetPickupComponent comp)
+    public void ToggleMagnet(EntityUid uid, MagnetPickupComponent comp, EntityUid userUid)
     {
         // Magnet run by other means (e.g. toggles)
         if (!comp.MagnetCanBeEnabled)
             return;
 
         comp.MagnetEnabled = !comp.MagnetEnabled;
+
+        // Start-Eclipse
+        if (comp.MagnetEnabled)
+        {
+            _popup.PopupClient(Loc.GetString("magnet-pickup-component-toggled-on"), uid, userUid);
+        }
+        else
+        {
+            _popup.PopupClient(Loc.GetString("magnet-pickup-component-toggled-off"), uid, userUid);
+        }
+        // End-Eclipse
+
         Dirty(uid, comp);
     }
     // End Frontier: togglable magnets
