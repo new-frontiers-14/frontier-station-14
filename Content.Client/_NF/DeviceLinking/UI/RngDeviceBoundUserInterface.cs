@@ -12,16 +12,16 @@ public sealed class RngDeviceBoundUserInterface(EntityUid owner, Enum uiKey) : B
     [ViewVariables]
     private RngDeviceWindow? _window;
 
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-
     protected override void Open()
     {
         base.Open();
 
         _window = this.CreateWindow<RngDeviceWindow>();
+
         _window.OnMuteToggled += OnMuteToggled;
         _window.OnEdgeModeToggled += OnEdgeModeToggled;
         _window.OnTargetNumberChanged += OnTargetNumberChanged;
+
         _window.OpenCentered();
     }
 
@@ -44,9 +44,20 @@ public sealed class RngDeviceBoundUserInterface(EntityUid owner, Enum uiKey) : B
     {
         base.UpdateState(state);
 
-        if (state is not RngDeviceBoundUserInterfaceState rngState)
+        if (_window == null || !EntMan.TryGetComponent<RngDeviceComponent>(Owner, out var component))
             return;
 
-        _window?.UpdateState(rngState);
+        _window.SetDeviceType(component.StatePrefix);
+        _window.SetMuted(component.Muted);
+        _window.SetEdgeMode(component.EdgeMode);
+        _window.SetTargetNumber(component.TargetNumber);
+        _window.SetTargetNumberVisibility(component.Outputs == 2);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        if (!disposing) return;
+        _window?.Dispose();
     }
 }

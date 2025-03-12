@@ -34,7 +34,6 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
         SubscribeLocalEvent<RngDeviceComponent, RngDeviceToggleMuteMessage>(OnToggleMute);
         SubscribeLocalEvent<RngDeviceComponent, RngDeviceToggleEdgeModeMessage>(OnToggleEdgeMode);
         SubscribeLocalEvent<RngDeviceComponent, RngDeviceSetTargetNumberMessage>(OnSetTargetNumber);
-        SubscribeLocalEvent<RngDeviceComponent, AfterActivatableUIOpenEvent>(OnAfterActivatableUIOpen);
     }
 
     protected override void OnInit(Entity<RngDeviceComponent> ent, ref ComponentInit args)
@@ -57,52 +56,28 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
         var ports = CreatePortsArray(comp, comp.Outputs);
         _deviceLink.EnsureSourcePorts(uid, ports);
 
-        UpdateUserInterface(ent);
-    }
-
-    private void OnAfterActivatableUIOpen(Entity<RngDeviceComponent> ent, ref AfterActivatableUIOpenEvent args)
-    {
-        UpdateUserInterface(ent);
+        Dirty(ent);
     }
 
     private void OnToggleMute(Entity<RngDeviceComponent> ent, ref RngDeviceToggleMuteMessage args)
     {
         ent.Comp.Muted = args.Muted;
         Dirty(ent);
-        UpdateUserInterface(ent);
     }
 
     private void OnToggleEdgeMode(Entity<RngDeviceComponent> ent, ref RngDeviceToggleEdgeModeMessage args)
     {
         ent.Comp.EdgeMode = args.EdgeMode;
         Dirty(ent);
-        UpdateUserInterface(ent);
     }
 
     private void OnSetTargetNumber(Entity<RngDeviceComponent> ent, ref RngDeviceSetTargetNumberMessage args)
     {
-        var comp = ent.Comp;
-
-        if (comp.Outputs != 2)
+        if (ent.Comp.Outputs != 2)
             return;
 
-        // Update the target number
-        comp.TargetNumber = Math.Clamp(args.TargetNumber, 1, 100);
-
+        ent.Comp.TargetNumber = Math.Clamp(args.TargetNumber, 1, 100);
         Dirty(ent);
-        UpdateUserInterface(ent);
-    }
-
-    private void UpdateUserInterface(Entity<RngDeviceComponent> ent)
-    {
-        var comp = ent.Comp;
-        var uid = ent.Owner;
-
-        if (!_userInterfaceSystem.HasUi(uid, RngDeviceUiKey.Key))
-            return;
-
-        _userInterfaceSystem.SetUiState(uid, RngDeviceUiKey.Key,
-            new RngDeviceBoundUserInterfaceState(comp.Muted, comp.TargetNumber, comp.Outputs, comp.EdgeMode, GetDeviceType(uid, comp)));
     }
 
     private void OnSignalReceived(Entity<RngDeviceComponent> ent, ref SignalReceivedEvent args)

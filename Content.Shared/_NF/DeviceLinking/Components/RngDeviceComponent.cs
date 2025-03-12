@@ -34,12 +34,11 @@ public sealed partial class RngDeviceComponent : Component
     public int Outputs = 6;
 
     // Initial state
-    [DataField]
-    [AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public SignalState State = SignalState.Low;
 
     // Whether the device is muted
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool Muted;
 
     // Sound to play when the device is rolled
@@ -47,26 +46,22 @@ public sealed partial class RngDeviceComponent : Component
     public SoundSpecifier Sound = new SoundCollectionSpecifier("Dice");
 
     // Target number for percentile dice (1-100). Only used when Outputs = 2.
-    [DataField]
+    [DataField, AutoNetworkedField]
     public int TargetNumber = 50;
 
     // When enabled, sends High signal to selected port and Low signals to others.
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool EdgeMode;
 
     // The last value rolled (1-100 for percentile, 1-N for other dice).
-    [DataField]
-    [AutoNetworkedField]
-    [ViewVariables]
+    [DataField, AutoNetworkedField]
     public int LastRoll;
 
-    // The last output port that was triggered (1-based).
-    [DataField]
-    [AutoNetworkedField]
-    [ViewVariables]
+    // The last output port that was triggered
+    [DataField, AutoNetworkedField]
     public int LastOutputPort;
 
-    // Cached state prefix for visual updates
-    [ViewVariables]
-    public string StatePrefix = string.Empty;
+    // The state prefix for visual updates (e.g. "percentile", "d6", etc.)
+    [DataField, AutoNetworkedField]
+    public string StatePrefix = "";
 }
