@@ -7,7 +7,7 @@ namespace Content.Shared._NF.Cargo.Components;
 public sealed partial class CrateStorageRackComponent : Component
 {
     [DataField]
-    public int MaxObjectsStored = 3;
+    public int MaxObjectsStored = 4;
 
     [DataField]
     public string ContainerName = "item-container";
