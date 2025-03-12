@@ -130,7 +130,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 100
+        density: 25
         mask:
         - SmallMobMask
         layer:
@@ -178,6 +178,17 @@
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 25
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobMask
   - type: Sprite
     drawdepth: SmallMobs
     sprite: _NF/Mobs/Aliens/Carps/wyvern.rsi
