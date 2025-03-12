@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/12/2025 14:55:45
+  entityCount: 184
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   82: FloorRGlass
@@ -443,13 +454,21 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.44,4
       parent: 1
+- proto: ButtonFrameCautionSecurity
+  entities:
+  - uid: 118
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.44,3.1
+      parent: 1
 - proto: ButtonFrameGrey
   entities:
   - uid: 181
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 0.01,4
+      pos: 0.44,3.55
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -603,10 +622,11 @@ entities:
       parent: 1
 - proto: ClothingEyesHudMedical
   entities:
-  - uid: 169
+  - uid: 113
     components:
     - type: Transform
-      pos: 0.46397698,3.378488
+      rot: 1.5707963267948966 rad
+      pos: 0.18729413,3.7535882
       parent: 1
 - proto: ComputerTabletopCrewMonitoring
   entities:
@@ -676,10 +696,10 @@ entities:
       parent: 1
 - proto: FaxMachineShip
   entities:
-  - uid: 149
+  - uid: 183
     components:
     - type: Transform
-      pos: 0.5,3.5
+      pos: 0.5,2.5
       parent: 1
 - proto: GasMixerOn
   entities:
@@ -984,19 +1004,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
       parent: 1
-- proto: MedicalAssembler
-  entities:
-  - uid: 113
-    components:
-    - type: Transform
-      pos: -0.5,0.5
-      parent: 1
 - proto: MedicalBagFilled
   entities:
   - uid: 38
     components:
     - type: Transform
-      pos: 0.52134836,2.708301
+      pos: -0.5210391,0.6238781
       parent: 1
 - proto: MedicalBed
   entities:
@@ -1012,10 +1025,10 @@ entities:
       parent: 1
 - proto: MedicalTechFab
   entities:
-  - uid: 118
+  - uid: 149
     components:
     - type: Transform
-      pos: 0.5,2.5
+      pos: -0.5,0.5
       parent: 1
 - proto: NFHolopadShip
   entities:
@@ -1090,6 +1103,8 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 1
+    - type: FuelGenerator
+      targetPower: 11000
 - proto: PoweredLEDSmallLight
   entities:
   - uid: 156
@@ -1251,7 +1266,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 0.01,4
+      pos: 0.44,3.55
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -1267,6 +1282,20 @@ entities:
         - Pressed: Toggle
         180:
         - Pressed: Toggle
+  - uid: 184
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.44,3.1
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        13:
+        - Pressed: DoorBolt
+        8:
+        - Pressed: DoorBolt
+        92:
+        - Pressed: DoorBolt
 - proto: SmallGyroscope
   entities:
   - uid: 86
@@ -1338,6 +1367,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,4.5
+      parent: 1
+  - uid: 169
+    components:
+    - type: Transform
+      pos: 0.5,2.5
       parent: 1
 - proto: Thruster
   entities:
