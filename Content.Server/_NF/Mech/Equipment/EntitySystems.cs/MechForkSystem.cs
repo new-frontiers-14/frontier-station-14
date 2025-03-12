@@ -23,6 +23,7 @@ using Content.Server._NF.Mech.Equipment.Components;
 using Content.Shared._NF.Cargo.Components;
 using Content.Shared._NF.Mech.Components;
 using Content.Server.Actions;
+using Content.Shared._NF.Mech.Equipment.Events;
 
 namespace Content.Server._NF.Mech.Equipment.EntitySystems;
 
