@@ -135,28 +135,135 @@
         Structural: 20
 
 - type: entity
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobTick]
-  id: NFMobTick
-  suffix: Frontier
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarp]
+  id: NFMobRainbowWyvernIce
+  name: wyvern
+  description: A smaller relative of a space dragon known for its hunting provess and ability to conjure magical progectiles.
+  suffix: Frontier, Ice
   #categories: [ HideSpawnMenu ] # No spawner
   components:
-  - type: NpcFactionMember
-    factions:
-    - Dragon
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: _NF/Mobs/Aliens/spacetick.rsi
+    sprite: _NF/Mobs/Aliens/Carps/wyvern.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: alive
+      scale: 0.5, 0.5
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-      state: glow
+      state: alive-unshaded-ice
       shader: unshaded
+      scale: 0.5, 0.5
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
+      enum.DamageStateVisualLayers.BaseUnshaded:
+        alive-unshaded-ice: ""
   - type: DamageStateVisuals
     states:
       Alive:
         Base: alive
-        BaseUnshaded: glow
+        BaseUnshaded: alive-unshaded-ice
       Dead:
         Base: dead
-        BaseUnshaded: mask_null
+        BaseUnshaded: dead-unshaded
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcThrust
+    damage:
+      types:
+        Piercing: 4
+        Slash: 4
+        Structural: 20
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileIcicleLowDamage
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    minAngle: 31
+    maxAngle: 45
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+
+- type: entity
+  parent: NFMobRainbowWyvernIce
+  id: NFMobRainbowWyvernFire
+  suffix: Frontier, Fire
+  #categories: [ HideSpawnMenu ] # No spawner
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _NF/Mobs/Aliens/Carps/wyvern.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      scale: 0.5, 0.5
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive-unshaded-fire
+      shader: unshaded
+      scale: 0.5, 0.5
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
+      enum.DamageStateVisualLayers.BaseUnshaded:
+        alive-unshaded-fire: ""
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: alive-unshaded-fire
+      Dead:
+        Base: dead
+        BaseUnshaded: dead-unshaded
+  - type: BasicEntityAmmoProvider
+    proto: BulletFireBolt
+    capacity: 1
+    count: 1
+
+- type: entity
+  parent: NFMobRainbowWyvernIce
+  id: NFMobRainbowWyvernCaustic
+  suffix: Frontier, Caustic
+  #categories: [ HideSpawnMenu ] # No spawner
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _NF/Mobs/Aliens/Carps/wyvern.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      scale: 0.5, 0.5
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive-unshaded-caustic
+      shader: unshaded
+      scale: 0.5, 0.5
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
+      enum.DamageStateVisualLayers.BaseUnshaded:
+        alive-unshaded-caustic: ""
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: alive-unshaded-caustic
+      Dead:
+        Base: dead
+        BaseUnshaded: dead-unshaded
+  - type: BasicEntityAmmoProvider
+    proto: BulletAcid
+    capacity: 1
+    count: 1
