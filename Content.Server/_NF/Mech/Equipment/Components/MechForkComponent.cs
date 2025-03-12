@@ -3,6 +3,7 @@ using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Content.Shared.Whitelist;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Mech.Equipment.Components;
 
@@ -64,4 +65,10 @@ public sealed partial class MechForkComponent : Component
     /// </summary>
     [DataField]
     public bool Inserting;
+
+    [DataField]
+    public EntProtoId ToggleAction = "ActionMechForkToggleInsert";
+
+    [DataField]
+    public EntityUid? ToggleActionEntity;
 }

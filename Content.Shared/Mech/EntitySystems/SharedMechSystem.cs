@@ -147,8 +147,8 @@ public abstract class SharedMechSystem : EntitySystem
         _actions.RemoveProvidedActions(pilot, mech);
 
         // Frontier
-        if (_net.IsServer && TryComp<MechComponent>(mech, out var mechComp) && component.PilotSlot.ContainedEntity != null && component.CurrentSelectedEquipment != null)
-            _actions.RemoveProvidedActions(mechComp.PilotSlot.ContainedEntity.Value, component.CurrentSelectedEquipment.Value);
+        if (_net.IsServer && TryComp<MechComponent>(mech, out var mechComp) && mechComp.PilotSlot.ContainedEntity != null && mechComp.CurrentSelectedEquipment != null)
+            _actions.RemoveProvidedActions(mechComp.PilotSlot.ContainedEntity.Value, mechComp.CurrentSelectedEquipment.Value);
         // End Frontier
     }
 
@@ -210,10 +210,10 @@ public abstract class SharedMechSystem : EntitySystem
             _popup.PopupEntity(popupString, uid);
 
         // Frontier
-        if (_net.IsServer)
+        if (_net.IsServer && component.CurrentSelectedEquipment != null)
         {
-            MechEquipmentEquippedAction ev = new();
-            RaiseLocalEvent<MechEquipmentEquippedAction>(component.CurrentSelectedEquipment, ref ev);
+            MechEquipmentEquippedAction ev = new(uid, component.PilotSlot.ContainedEntity);
+            RaiseLocalEvent(component.CurrentSelectedEquipment.Value, ev);
         }
         // End Frontier
 

@@ -21,7 +21,8 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Buckle;
 using Content.Server._NF.Mech.Equipment.Components;
 using Content.Shared._NF.Cargo.Components;
-using Content.Shared._NF.Mech.Equipment.Events;
+using Content.Shared._NF.Mech.Components;
+using Content.Server.Actions;
 
 namespace Content.Server._NF.Mech.Equipment.EntitySystems;
 
@@ -36,8 +37,9 @@ public sealed class MechForkSystem : EntitySystem
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Frontier
-    [Dependency] private readonly SharedBuckleSystem _buckle = default!; // Frontier
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
+    [Dependency] private readonly ActionsSystem _action = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -47,6 +49,7 @@ public sealed class MechForkSystem : EntitySystem
         SubscribeLocalEvent<MechForkComponent, MechEquipmentUiStateReadyEvent>(OnUiStateReady);
         SubscribeLocalEvent<MechForkComponent, MechEquipmentRemovedEvent>(OnEquipmentRemoved);
         SubscribeLocalEvent<MechForkComponent, AttemptRemoveMechEquipmentEvent>(OnAttemptRemove);
+        SubscribeLocalEvent<MechForkComponent, MechEquipmentEquippedAction>(OnEquipped);
 
         SubscribeLocalEvent<MechForkComponent, UserActivateInWorldEvent>(OnInteract);
         SubscribeLocalEvent<MechForkComponent, GrabberDoAfterEvent>(OnMechGrab);
@@ -129,6 +132,12 @@ public sealed class MechForkSystem : EntitySystem
             MaxContents = component.MaxContents
         };
         args.States.Add(GetNetEntity(uid), state);
+    }
+
+    private void OnEquipped(EntityUid uid, MechForkComponent component, MechEquipmentEquippedAction args)
+    {
+        if (args.Pilot != null)
+            component.ToggleActionEntity = _action.AddAction(args.Pilot.Value, component.ToggleAction);
     }
 
     private void OnInteract(EntityUid uid, MechForkComponent component, UserActivateInWorldEvent args)

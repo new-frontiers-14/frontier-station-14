@@ -5,4 +5,8 @@ namespace Content.Shared._NF.Mech.Components;
 /// <summary>
 /// An action raised on 
 /// </summary>
-public sealed partial class MechEquipmentEquippedAction : InstantActionEvent;
+public sealed partial class MechEquipmentEquippedAction(EntityUid mech, EntityUid? pilot) : InstantActionEvent
+{
+    public EntityUid Mech = mech;
+    public EntityUid? Pilot = pilot;
+}
