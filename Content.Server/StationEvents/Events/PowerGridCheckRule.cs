@@ -59,7 +59,7 @@ namespace Content.Server.StationEvents.Events
             component.AnnounceCancelToken = new CancellationTokenSource();
             Timer.Spawn(3000, () =>
             {
-                Audio.PlayGlobal("/Audio/_NF/Announcements/PocketSizedAndy/andy1_power_onnf.ogg", Filter.Broadcast(), true, AudioParams.Default.WithVolume(-4f)); // Frontier
+                Audio.PlayGlobal(component.PowerOnSound, Filter.Broadcast(), true);
             }, component.AnnounceCancelToken.Token);
             component.Unpowered.Clear();
         }
