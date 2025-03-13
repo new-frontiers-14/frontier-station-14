@@ -27,7 +27,7 @@
     sprite: Clothing/Ears/Headsets/cargo.rsi
 
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  parent: [ClothingHeadsetAlt, BaseCentcommCommandContraband] # Frontier: Added BaseCentcommCommandContraband, removed BaseCommandContraband.
   id: ClothingHeadsetAltCentCom
   name: CentComm over-ear headset
   components:
@@ -127,9 +127,9 @@
   name: blood-red over-ear headset
   description: An updated, modular syndicate intercom that fits over the head and takes encryption keys (there are 5 key slots.).
   components:
-  - type: Headset
-  - type: EncryptionKeyHolder
-    keySlots: 6 # Frontier 5<6
+#  - type: Headset # Frontier: Use 10 from base
+#  - type: EncryptionKeyHolder # Frontier: Use 10 from base
+#    keySlots: 5 # Frontier: Use 10 from base
   - type: ContainerFill
     containers:
       key_slots:

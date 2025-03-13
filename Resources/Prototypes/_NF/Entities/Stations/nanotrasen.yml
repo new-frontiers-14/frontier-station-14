@@ -3,10 +3,8 @@
   suffix: DEBUG # TODO: Fix this, its here to stop PrototypeSaveTest fail
   parent:
   - BaseStation
-  - BaseStationCargo
   - BaseStationJobsSpawning
   - BaseStationRecords
-  - BaseStationAlertLevels
   - BaseStationSiliconLawFrontierStation
   - BaseStationSectorNews
   - BaseStationMail # Mail
@@ -23,7 +21,6 @@
   parent:
   - BaseStation
   - BaseStationJobsSpawning
-  - BaseStationCargo
   - BaseStationSiliconLawFrontierShips
   - BaseStationDampening
   categories: [ HideSpawnMenu ]
@@ -40,6 +37,7 @@
 - type: entity
   id: MarketFrontierOutpost
   parent:
+  - NFBaseStationCargo
   - StandardFrontierOutpost
   - BaseStationCargoMarket
   categories: [ HideSpawnMenu ]
@@ -63,10 +61,8 @@
   id: SecurityFrontierOutpost
   parent:
   - BaseStation # Copied from StandardFrontierStation
-  - BaseStationCargo # Cargo
   - BaseStationJobsSpawning # Records and jobsspawning
   - BaseStationRecords
-  - BaseStationAlertLevels # Has a comms console
   - BaseStationSiliconLawFrontierStation # No funny borg laws
   - BaseStationDampening
   categories: [ HideSpawnMenu ]
@@ -79,9 +75,9 @@
   - BaseStation
   - BaseStationJobsSpawning
   - BaseStationRecords
-  - BaseStationAlertLevels
   - BaseStationAllEventsEligible
   - BaseStationRenameFaxes
+  - BaseStationRenameHolopads
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
   - BaseStationDeadDropHintExempt # No hints on ship generation
@@ -96,9 +92,9 @@
   - BaseStation
   - BaseStationJobsSpawning
   - BaseStationRecords
-  - BaseStationAlertLevels
   - BaseStationAllEventsEligible
   - BaseStationRenameFaxes
+  - BaseStationRenameHolopads
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
   - BaseStationDeadDropHintExempt # No hints on ship generation

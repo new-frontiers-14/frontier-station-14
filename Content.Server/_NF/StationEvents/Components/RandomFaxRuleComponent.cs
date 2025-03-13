@@ -32,6 +32,9 @@ public sealed partial class RandomFaxRuleComponent : Component
     [DataField]
     public bool Locked { get; private set; }
 
+    [DataField]
+    public bool StampProtected { get; private set; }
+
     /// <summary>
     /// The localized string
     /// </summary>
@@ -101,4 +104,5 @@ public sealed partial class EditableFaxPrintout
     public string? StampState;
     public List<StampDisplayInfo> StampedBy = new();
     public bool Locked;
+    public bool StampProtected;
 }

@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub:
 # Discord: Checkraze
 
 # Maintainer Info
@@ -10,6 +10,7 @@
 # just a little loot n shoot POI. Pretty much the second POI to even exist
 - type: pointOfInterest
   id: LPBravo
+  parent: BasePOI
   name: 'Listening Point Bravo'
   minimumDistance: 4000
   maximumDistance: 6000
@@ -20,10 +21,11 @@
   - type: IFF
     color: "#C83737"
     flags: [HideLabel, Hide]
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
+    readOnly: false
   - type: SyndicateFOB # For pinpointer
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: LPBravo

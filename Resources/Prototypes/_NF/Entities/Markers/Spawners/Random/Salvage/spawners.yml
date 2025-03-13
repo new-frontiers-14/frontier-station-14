@@ -1,0 +1,20 @@
+- type: entityTable
+  id: SalvageScrapSpawnerBrass
+  table: !type:GroupSelector
+    children:
+    # 70% chance of scrap of some kind
+    - !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: SalvageScrapBrass
+
+- type: entity
+  parent: SalvageSpawnerScrapCommon
+  id: SalvageSpawnerScrapBrass75
+  suffix: Brass, 75%
+  components:
+  - type: EntityTableSpawner
+    offset: 0.4
+    table: !type:NestedSelector
+      tableId: SalvageScrapSpawnerBrass
+      prob: 0.75

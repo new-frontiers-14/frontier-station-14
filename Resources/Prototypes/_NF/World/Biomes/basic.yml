@@ -135,22 +135,24 @@
     - type: NoiseDrivenDebrisSelector
       noiseChannel: Wreck
       debrisTable:
-        # - id: NFScrapDebrisSmall
+        # - id: NFWreckDebrisSmall
           # prob: 1
-        # - id: NFScrapDebrisMedium
+        # - id: NFWreckDebrisMedium
           # prob: 1
-        # - id: NFScrapDebrisLarge
+        # - id: NFWreckDebrisLarge
           # prob: 1
-        - id: NFScrapDebrisExtraLarge
+        - id: NFWreckDebrisExtraLarge
           prob: 1
-        - id: NFScrapDebrisHuge
+        - id: NFWreckDebrisHuge
           prob: 0.6
-        - id: NFScrapDebrisExtraHuge
+        - id: NFWreckDebrisExtraHuge
           prob: 0.15
-        - id: NFScrapDebrisEnormous
+        - id: NFWreckDebrisEnormous
           prob: 0.08
-        - id: NFScrapDebrisBrassLarge
-          prob: 0.01
+        - id: NFWreckDebrisBrassLarge
+          prob: 0.008
+        - id: NFWreckDebrisBrassExtraLarge
+          prob: 0.002
     - type: NoiseRangeCarver
       ranges:
         - 0.4, 0.6

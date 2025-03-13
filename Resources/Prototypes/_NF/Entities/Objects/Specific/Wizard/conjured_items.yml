@@ -119,13 +119,13 @@
       shader: unshaded
       color: red
   - type: Appearance
-  - type: ClusterGrenade
+  - type: ScatteringGrenade
     fillPrototype: SoapletBloodCult
-    maxGrenadesCount: 20
-    grenadeTriggerIntervalMax: 0
-    grenadeTriggerIntervalMin: 0
-    baseTriggerDelay: 60
-    randomSpread: true
+    capacity: 20
+    intervalBetweenTriggersMax: 0
+    intervalBetweenTriggersMin: 0
+    delayBeforeTriggerContents: 60
+    randomDistance: true
     velocity: 25
   - type: DamageOnLand
     damage:

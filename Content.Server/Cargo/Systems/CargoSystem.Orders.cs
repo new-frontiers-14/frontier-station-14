@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Server._NF.Bank; // Frontier
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
-using Content.Shared.Bank.Components; // Frontier
+using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Server.Station.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
@@ -10,7 +10,7 @@ using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Database;
-using Content.Shared.Emag.Components;
+using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
@@ -25,6 +25,7 @@ namespace Content.Server.Cargo.Systems
     public sealed partial class CargoSystem
     {
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private readonly EmagSystem _emag = default!;
 
         /// <summary>
         /// How much time to wait (in seconds) before increasing bank accounts balance.
@@ -47,6 +48,8 @@ namespace Content.Server.Cargo.Systems
             SubscribeLocalEvent<CargoOrderConsoleComponent, ComponentInit>(OnInit);
             //SubscribeLocalEvent<CargoOrderConsoleComponent, InteractUsingEvent>(OnInteractUsing); //Frontier Disabled
             SubscribeLocalEvent<CargoOrderConsoleComponent, BankBalanceUpdatedEvent>(OnOrderBalanceUpdated);
+            SubscribeLocalEvent<CargoOrderConsoleComponent, GotEmaggedEvent>(OnEmagged);
+            SubscribeLocalEvent<CargoOrderConsoleComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
             Reset();
         }
 
@@ -70,6 +73,7 @@ namespace Content.Server.Cargo.Systems
             _audio.PlayPvs(component.ConfirmSound, uid);
             UpdateBankAccount(stationUid.Value, bank, (int) price);
             QueueDel(args.Used);
+            args.Handled = true;
         }
         */
         // End Frontier
@@ -85,6 +89,30 @@ namespace Content.Server.Cargo.Systems
             _timer = 0;
         }
 
+        private void OnEmagged(Entity<CargoOrderConsoleComponent> ent, ref GotEmaggedEvent args)
+        {
+            if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+                return;
+
+            if (_emag.CheckFlag(ent, EmagType.Interaction))
+                return;
+
+            args.Handled = true;
+        }
+
+        // Frontier: demag
+        private void OnUnemagged(Entity<CargoOrderConsoleComponent> ent, ref GotUnEmaggedEvent args)
+        {
+            if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+                return;
+
+            if (!_emag.CheckFlag(ent, EmagType.Interaction))
+                return;
+
+            args.Handled = true;
+        }
+        // End Frontier: demag
+
         private void UpdateConsole(float frameTime)
         {
             _timer += frameTime;
@@ -95,9 +123,11 @@ namespace Content.Server.Cargo.Systems
             {
                 _timer -= Delay;
 
-                foreach (var account in EntityQuery<StationBankAccountComponent>())
+                var stationQuery = EntityQueryEnumerator<StationBankAccountComponent>();
+                while (stationQuery.MoveNext(out var uid, out var bank))
                 {
-                    account.Balance += account.IncreasePerSecond * Delay;
+                    var balanceToAdd = bank.IncreasePerSecond * Delay;
+                    UpdateBankAccount(uid, bank, balanceToAdd);
                 }
 
                 var query = EntityQueryEnumerator<CargoOrderConsoleComponent>();
@@ -125,10 +155,20 @@ namespace Content.Server.Cargo.Systems
                 return;
             }
 
-            if (!TryComp<BankAccountComponent>(player, out var bankAccount)) return;
+            var station = _station.GetOwningStation(uid);
+
+            // Frontier: orders require a bank account.
+            if (!TryComp<BankAccountComponent>(player, out var bankAccount))
+            {
+                ConsolePopup(args.Actor, Loc.GetString("cargo-console-nf-no-bank-account"));
+                PlayDenySound(uid, component);
+                return;
+            }
 
             // No station to deduct from.
-            if (!TryGetOrderDatabase(uid, out var dbUid, out var orderDatabase, component) ||  bankAccount == null)
+            // Frontier: no checks for StationData/StationBankAccount.
+            if (station == null
+                || !TryGetOrderDatabase(uid, out var dbUid, out var orderDatabase, component))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-station-not-found"));
                 PlayDenySound(uid, component);
@@ -181,7 +221,8 @@ namespace Content.Server.Cargo.Systems
                 return;
             }
 
-            //var ev = new FulfillCargoOrderEvent((station.Value, stationData), order, (uid, component)); // Frontier
+            // Frontier: no cargo fulfillment check
+            //var ev = new FulfillCargoOrderEvent((station.Value, stationData), order, (uid, component));
             //RaiseLocalEvent(ref ev); // Frontier
             //ev.FulfillmentEntity ??= station.Value; // Frontier
 
@@ -196,11 +237,12 @@ namespace Content.Server.Cargo.Systems
             //         return;
             //     }
             // }
+            // End Frontier
 
             order.Approved = true;
             _audio.PlayPvs(component.ConfirmSound, uid);
 
-            if (!HasComp<EmaggedComponent>(uid))
+            if (!_emag.CheckFlag(uid, EmagType.Interaction))
             {
                 var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, player);
                 RaiseLocalEvent(tryGetIdentityShortInfoEvent);
@@ -235,7 +277,7 @@ namespace Content.Server.Cargo.Systems
             _bankSystem.TryBankWithdraw(player, cost);
             // End Frontier
 
-            UpdateOrders(uid, orderDatabase);
+            UpdateOrders(station.Value);
         }
 
         // Frontier - consoleUid is required to find cargo pads
@@ -397,7 +439,7 @@ namespace Content.Server.Cargo.Systems
 
         private void PlayDenySound(EntityUid uid, CargoOrderConsoleComponent component)
         {
-            _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
+            _audio.PlayPvs(_audio.ResolveSound(component.ErrorSound), uid);
         }
 
         private static CargoOrderData GetOrderData(NetEntity consoleUid, CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id)
@@ -423,7 +465,7 @@ namespace Content.Server.Cargo.Systems
         /// Updates all of the cargo-related consoles for a particular station.
         /// This should be called whenever orders change.
         /// </summary>
-        private void UpdateOrders(EntityUid dbUid, StationCargoOrderDatabaseComponent _)
+        private void UpdateOrders(EntityUid dbUid)
         {
             // Order added so all consoles need updating.
             var orderQuery = AllEntityQuery<CargoOrderConsoleComponent>();
@@ -481,7 +523,7 @@ namespace Content.Server.Cargo.Systems
         private bool TryAddOrder(EntityUid dbUid, CargoOrderData data, StationCargoOrderDatabaseComponent component)
         {
             component.Orders.Add(data);
-            UpdateOrders(dbUid, component);
+            UpdateOrders(dbUid);
             return true;
         }
 
@@ -499,7 +541,7 @@ namespace Content.Server.Cargo.Systems
             {
                 orderDB.Orders.RemoveAt(sequenceIdx);
             }
-            UpdateOrders(dbUid, orderDB);
+            UpdateOrders(dbUid);
         }
 
         public void ClearOrders(StationCargoOrderDatabaseComponent component)
@@ -578,11 +620,6 @@ namespace Content.Server.Cargo.Systems
 
             return true;
 
-        }
-
-        public void DeductFunds(StationBankAccountComponent component, int amount)
-        {
-            component.Balance = Math.Max(0, component.Balance - amount);
         }
 
         #region Station

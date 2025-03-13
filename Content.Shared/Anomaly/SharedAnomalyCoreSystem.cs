@@ -6,6 +6,8 @@ using Content.Shared.Weapons.Melee.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
+using Robust.Shared.Network; // Frontier
+using Content.Shared.Anomaly.Effects; // Frontier
 
 namespace Content.Shared.Anomaly;
 
@@ -17,6 +19,7 @@ public sealed class SharedAnomalyCoreSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly INetManager _net = default!; // Frontier
 
     public override void Initialize()
     {
@@ -36,9 +39,9 @@ public sealed class SharedAnomalyCoreSystem : EntitySystem
         var (uid, comp) = ent;
 
         // don't waste charges on non-anchorable non-anomalous static bodies.
-        if (!HasComp<AnomalyComponent>(args.Hit)
-            && !HasComp<AnchorableComponent>(args.Hit)
-            && TryComp<PhysicsComponent>(args.Hit, out var body)
+        if (!HasComp<AnomalyComponent>(args.Target)
+            && !HasComp<AnchorableComponent>(args.Target)
+            && TryComp<PhysicsComponent>(args.Target, out var body)
             && body.BodyType == BodyType.Static)
             return;
 
@@ -109,4 +112,24 @@ public sealed class SharedAnomalyCoreSystem : EntitySystem
         component.IsDecayed = true;
         Dirty(uid, component);
     }
+
+    // Frontier: settable anomaly price
+    /// <summary>
+    ///  Sets the value of an anomaly core based on the number of points it earned.
+    /// </summary>
+    /// <param name="uid">The anomaly core entity</param>
+    /// <param name="component">The anomaly core component to set.</param>
+    /// <param name="pointsEarned">The number of points earned by the anomaly during its lifetime.</param>
+    [Access(typeof(SharedAnomalySystem), typeof(SharedInnerBodyAnomalySystem))]
+    public void SetValueFromPointsEarned(EntityUid uid, AnomalyCoreComponent component, int pointsEarned)
+    {
+        if (!_net.IsServer)
+            return;
+
+        int price = (int)double.Clamp((pointsEarned * component.PointPriceCoefficient), component.MinimumPrice, component.MaximumPrice);
+
+        component.StartPrice = price;
+        component.EndPrice = price;
+    }
+    // End Frontier: settable anomaly price
 }

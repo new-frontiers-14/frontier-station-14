@@ -423,7 +423,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: lantern
+      id: Lantern
 - proto: AirAlarm
   entities:
   - uid: 295
@@ -976,48 +976,36 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-5.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 490
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-3.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 495
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-7.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 504
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,-3.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 505
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-5.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 506
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-7.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchPewMiddle
   entities:
   - uid: 496
@@ -1026,16 +1014,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-5.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 497
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,-7.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchPewRight
   entities:
   - uid: 498
@@ -1044,48 +1028,36 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-5.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 499
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-7.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 500
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-3.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 501
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-7.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 502
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-5.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 503
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-3.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: Bible
   entities:
   - uid: 100
@@ -3078,19 +3050,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-16.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: ConveyorBelt
   entities:
   - uid: 186
@@ -4198,6 +4157,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-16.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 694
+    components:
+    - type: Transform
+      pos: 0.5,4.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 616
@@ -4241,10 +4207,6 @@ entities:
     - type: Transform
       pos: -1.5,-16.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PottedPlantRandom
   entities:
   - uid: 719
@@ -5873,7 +5835,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-16.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 418
     components:

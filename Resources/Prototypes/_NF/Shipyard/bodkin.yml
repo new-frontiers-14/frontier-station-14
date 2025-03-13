@@ -10,14 +10,18 @@
 #
 - type: vessel
   id: Bodkin
+  parent: BaseVessel
   name: SBB Bodkin
   description: The smaller sibling to the Broadhead, the SBB Bodkin is designed for rockhopping and salvage recovery.
-  price: 39000 #Grid appraises at 35693. Slapped on a ~10% markup.
+  price: 39000 #Grid appraises at 35000. Slapped on a ~10% markup.
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/bodkin.yml
+  guidebookPage: ShipyardBodkin
   class:
   - Salvage
+  engine:
+  - Uranium
 
 - type: gameMap
   id: Bodkin
@@ -28,13 +32,12 @@
     Bodkin:
       stationProto: StandardFrontierVessel
       components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Bodkin {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+      - type: StationNameSetup
+        mapNameTemplate: 'Bodkin {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Contractor: [ 0, 0 ]
+          Pilot: [ 0, 0 ]
+          Mercenary: [ 0, 0 ]

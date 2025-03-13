@@ -133,7 +133,7 @@
     # - !type:OreDunGen
       # tileMask:
       # - Plating
-      # entity: FloraRockSolid01
+      # entity: FloraRockSolid
       # count: 20
       # minGroupSize: 1
       # maxGroupSize: 1
@@ -142,7 +142,14 @@
       tileMask:
       - Plating
       entity: SpawnMobRogueScapT1
-      count: 25
+      count: 3
+      minGroupSize: 1
+      maxGroupSize: 2
+    - !type:OreDunGen
+      tileMask:
+      - Plating
+      entity: SpawnMobRogueDronesT1
+      count: 2
       minGroupSize: 1
       maxGroupSize: 1
 
@@ -184,7 +191,7 @@
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: SalvageOutpost
+    proto: NFSalvageOutpost
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
@@ -244,6 +251,12 @@
     maxCount: 2
     groups:
     - id: SpawnMobRogueSiliconsT2
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 0
+    maxCount: 1
+    groups:
+    - id: SpawnMobRogueSiliconBossRandom
       amount: 1
 
 #- type: dungeonConfig

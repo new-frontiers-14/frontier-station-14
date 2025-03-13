@@ -12,6 +12,7 @@ using Robust.Server.GameObjects;
 using Content.Shared.Radiation.Components; // Frontier
 using Content.Shared.Audio; // Frontier
 using Content.Shared.Materials; // Frontier
+using Content.Server._NF.Power.Components; // Frontier
 
 namespace Content.Server.Power.Generator;
 
@@ -28,14 +29,14 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
 
-    [Dependency] private readonly PointLightSystem _pointLight = default!; // Frontier - Rads glow
-    [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!; // Frontier - Rads sound
+    [Dependency] private readonly PointLightSystem _pointLight = default!; // Frontier: Rads glow
+    [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!; // Frontier: Rads sound
 
-    private EntityQuery<UpgradePowerSupplierComponent> _upgradeQuery;
+    private EntityQuery<UpgradePowerSupplierComponent> _upgradeQuery; // Frontier: keeping upgradeable power supplies
 
     public override void Initialize()
     {
-        _upgradeQuery = GetEntityQuery<UpgradePowerSupplierComponent>();
+        _upgradeQuery = GetEntityQuery<UpgradePowerSupplierComponent>(); // Frontier: keeping upgradeable power supplies
 
         UpdatesBefore.Add(typeof(PowerNetSystem));
 
@@ -68,21 +69,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
 
     private void SolidEmpty(EntityUid uid, SolidFuelGeneratorAdapterComponent component, GeneratorEmpty args)
     {
-        // Frontier: eject fuel-grade material
-        if (component.EjectedFuelProtoId == null)
-            _materialStorage.EjectAllMaterial(uid);
-        else
-        {
-            int materialAmount = _materialStorage.GetMaterialAmount(uid, component.FuelMaterial);
-            if (materialAmount <= 0) // No fuel?  Job done.
-                return;
-            _materialStorage.TryChangeMaterialAmount(uid, component.FuelMaterial, -materialAmount);
-
-            var ejectedUid = Spawn(component.EjectedFuelProtoId, Transform(uid).Coordinates);
-            if (TryComp<PhysicalCompositionComponent>(ejectedUid, out var phys))
-                phys.MaterialComposition[component.FuelMaterial] = materialAmount;
-        }
-        // End Frontier
+        _materialStorage.EjectAllMaterial(uid);
     }
 
     private void ChemicalEmpty(Entity<ChemicalFuelGeneratorAdapterComponent> entity, ref GeneratorEmpty args)

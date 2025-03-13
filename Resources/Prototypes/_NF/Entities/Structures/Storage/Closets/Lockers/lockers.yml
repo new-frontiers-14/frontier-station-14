@@ -56,6 +56,41 @@
     stateDoorOpen: pilot_open
     stateDoorClosed: pilot_door
 
+# Materials
+- type: entity
+  id: LockerMaterials
+  parent: NFLockerBaseSecure
+  name: materials locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: secure
+    stateDoorOpen: secure_open
+    stateDoorClosed: secure_door
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        decal1:
+          True: { visible: false }
+          False: { visible: true }
+        decal2:
+          True: { visible: false }
+          False: { visible: true }
+  - type: Sprite
+    layers:
+    - state: secure
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: secure_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: door-decal-engi-01
+      map: [ decal1 ]
+      color: "#ad8c27"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
 # Wooden Cabinet
 - type: entity
   id: LockerWoodenGeneric
@@ -73,7 +108,7 @@
 - type: entity
   id: LockerNfsdEvidence
   parent: [NFLockerBaseSecure, LockerSecurity]
-  name: nfsd evidence locker
+  name: NFSD evidence locker
   components:
   - type: EntityStorageVisuals
     stateBaseClosed: nfsd
@@ -84,7 +119,7 @@
 - type: entity
   id: LockerNfsdCopper
   parent: [NFLockerBaseSecure, LockerSecurity]
-  name: nfsd locker
+  name: NFSD locker
   suffix: Copper
   components:
   - type: EntityStorageVisuals
@@ -96,7 +131,7 @@
 - type: entity
   id: LockerNfsdSilver
   parent: [NFLockerBaseSecure, LockerSecurity]
-  name: nfsd locker
+  name: NFSD locker
   suffix: Silver
   components:
   - type: EntityStorageVisuals
@@ -108,7 +143,7 @@
 - type: entity
   id: LockerNfsdBrigmedic
   parent: [NFLockerBaseSecure, LockerSecurity]
-  name: nfsd locker
+  name: NFSD locker
   suffix: Brigmedic
   components:
   - type: EntityStorageVisuals
@@ -120,7 +155,7 @@
 - type: entity
   id: LockerNfsdSergeant
   parent: NFLockerBaseSecure
-  name: nfsd locker
+  name: NFSD locker
   suffix: Sergeant
   components:
   - type: EntityStorageVisuals
@@ -134,7 +169,7 @@
 - type: entity
   id: LockerNfsdBailiff
   parent: LockerNfsdSergeant
-  name: nfsd locker
+  name: NFSD locker
   suffix: Bailiff
   components:
   - type: AccessReader
@@ -144,7 +179,7 @@
 - type: entity
   id: LockerNfsdSheriff
   parent: [NFLockerBaseSecure, LockerHeadOfSecurity]
-  name: nfsd locker
+  name: NFSD locker
   suffix: Sheriff
   components:
   - type: EntityStorageVisuals

@@ -22,6 +22,8 @@ entities:
     - type: Transform
       pos: -0.4761362,-0.4642291
       parent: invalid
+    - type: BecomesStation
+      id: Templar
     - type: MapGrid
       chunks:
         0,0:
@@ -141,32 +143,47 @@ entities:
         tiles:
           0,0:
             0: 13079
-            1: 34944
+            2: 34944
           0,-1:
             0: 32563
-            1: 32904
+            2: 32904
           -1,0:
             0: 34828
-            1: 8736
+            2: 8736
           0,1:
             0: 3
-            2: 64
+            1: 64
           -1,1:
             0: 8
-            2: 64
+            1: 64
           -1,-1:
             0: 52872
-            1: 8226
+            2: 8226
           0,-2:
-            1: 49152
+            2: 49152
           -1,-2:
-            1: 24576
+            2: 24576
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -192,26 +209,9 @@ entities:
           - 0
           - 0
           - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: BecomesStation
-      id: Hospitaller
 - proto: AirlockGlassShuttleNfsd
   entities:
   - uid: 45
@@ -509,14 +509,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,0.5
-      parent: 1
-- proto: ClosetWallOrangeFilled
-  entities:
-  - uid: 60
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,-2.5
       parent: 1
 - proto: ComputerTabletopIFF
   entities:
@@ -927,6 +919,39 @@ entities:
     - type: Transform
       pos: 2.5,-0.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 172
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 1
+- proto: NFPrisonerClosetWallOrangeFilled
+  entities:
+  - uid: 60
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-2.5
+      parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: NitrogenCanister
   entities:
   - uid: 54
@@ -1028,7 +1053,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,5.5
       parent: 1
-- proto: PoweredlightColoredRed
+- proto: PoweredlightRed
   entities:
   - uid: 28
     components:
@@ -1326,7 +1351,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-4.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 98
     components:

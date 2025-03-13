@@ -5983,6 +5983,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,-3.5
       parent: 3
+- proto: NFHolopadShip
+  entities:
+  - uid: 910
+    components:
+    - type: Transform
+      pos: -0.5,25.5
+      parent: 3
 - proto: NitrogenCanister
   entities:
   - uid: 492
@@ -6258,7 +6265,7 @@ entities:
     - type: Transform
       pos: 11.5,0.5
       parent: 3
-- proto: PoweredlightColoredRed
+- proto: PoweredlightRed
   entities:
   - uid: 151
     components:
@@ -6640,13 +6647,6 @@ entities:
     components:
     - type: Transform
       pos: -6.5,9.5
-      parent: 3
-- proto: ScienceTechFab
-  entities:
-  - uid: 646
-    components:
-    - type: Transform
-      pos: 5.5,-3.5
       parent: 3
 - proto: SignalButton
   entities:
@@ -7222,8 +7222,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -8.5,4.5
       parent: 3
-    - type: Thruster
-      enabled: False
   - uid: 217
     components:
     - type: Transform
@@ -7262,6 +7260,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-9.5
+      parent: 3
+- proto: UnfinishedMachineFrame
+  entities:
+  - uid: 646
+    components:
+    - type: Transform
+      pos: 5.5,-3.5
       parent: 3
 - proto: VendingMachineBooze
   entities:
@@ -8921,7 +8926,7 @@ entities:
     - type: Transform
       pos: 5.5,12.5
       parent: 3
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 1203
     components:

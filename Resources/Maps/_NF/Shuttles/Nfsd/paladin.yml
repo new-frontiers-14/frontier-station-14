@@ -23,6 +23,8 @@ entities:
     - type: Transform
       pos: -0.4917612,-0.4486041
       parent: invalid
+    - type: BecomesStation
+      id: Paladin
     - type: MapGrid
       chunks:
         0,0:
@@ -187,8 +189,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: BecomesStation
-      id: Hospitaller
 - proto: AirCanister
   entities:
   - uid: 120
@@ -1012,7 +1012,7 @@ entities:
         - Pressed: Toggle
         67:
         - Pressed: Toggle
-- proto: LockerNfsdSilverDetectiveFilled
+- proto: LockerNfsdSilver
   entities:
   - uid: 116
     components:
@@ -1046,6 +1046,13 @@ entities:
     components:
     - type: Transform
       pos: 0.5,5.5
+      parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 189
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
       parent: 1
 - proto: PlastitaniumWindow
   entities:
@@ -1093,7 +1100,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-1.5
       parent: 1
-- proto: PoweredlightColoredFrostyBlue
+- proto: PoweredlightCyan
   entities:
   - uid: 36
     components:
@@ -1147,7 +1154,7 @@ entities:
     - type: Transform
       pos: 0.5,4.5
       parent: 1
-- proto: ShuttleGunDuster
+- proto: ShuttleGunDusterNfsd
   entities:
   - uid: 132
     components:
@@ -1365,7 +1372,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-0.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 188
     components:

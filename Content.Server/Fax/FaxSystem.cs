@@ -32,6 +32,7 @@ using System.Xml.Linq;
 using Robust.Shared.Prototypes;
 using Content.Shared.NameModifier.Components;
 using Content.Shared.Power;
+using Content.Shared.Tag; // Frontier
 
 namespace Content.Server.Fax;
 
@@ -52,6 +53,8 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly FaxecuteSystem _faxecute = default!;
+    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private readonly TagSystem _tag = default!; // Frontier
 
     private const string PaperSlotId = "Paper";
 
@@ -72,6 +75,7 @@ public sealed class FaxSystem : EntitySystem
         // Interaction
         SubscribeLocalEvent<FaxMachineComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<FaxMachineComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<FaxMachineComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
 
         // UI
         SubscribeLocalEvent<FaxMachineComponent, AfterActivatableUIOpenEvent>(OnToggleInterface);
@@ -229,7 +233,7 @@ public sealed class FaxSystem : EntitySystem
                 return;
             }
 
-            if (component.KnownFaxes.ContainsValue(newName) && !HasComp<EmaggedComponent>(uid)) // Allow existing names if emagged for fun
+            if (component.KnownFaxes.ContainsValue(newName) && !_emag.CheckFlag(uid, EmagType.Interaction)) // Allow existing names if emagged for fun
             {
                 _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-name-exist"), uid);
                 return;
@@ -252,9 +256,27 @@ public sealed class FaxSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, FaxMachineComponent component, ref GotEmaggedEvent args)
     {
-        _audioSystem.PlayPvs(component.EmagSound, uid);
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
         args.Handled = true;
     }
+
+    // Frontier: demag
+    private void OnUnemagged(EntityUid uid, FaxMachineComponent component, ref GotUnEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        args.Handled = true;
+    }
+    // End Frontier: demag
 
     private void OnPacketReceived(EntityUid uid, FaxMachineComponent component, DeviceNetworkPacketEvent args)
     {
@@ -266,7 +288,7 @@ public sealed class FaxSystem : EntitySystem
             switch (command)
             {
                 case FaxConstants.FaxPingCommand:
-                    var isForSyndie = HasComp<EmaggedComponent>(uid) &&
+                    var isForSyndie = _emag.CheckFlag(uid, EmagType.Interaction) &&
                                       args.Data.ContainsKey(FaxConstants.FaxSyndicateData);
                     if (!isForSyndie && !component.ResponsePings)
                         return;
@@ -298,8 +320,9 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampedByData, out List<StampDisplayInfo>? stampedBy);
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
                     args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
+                    args.Data.TryGetValue(FaxConstants.FaxPaperStampProtectedData, out bool? stampProtected); // Frontier
 
-                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false);
+                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false, stampProtected ?? false); // Frontier: add stampProtected
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -411,7 +434,7 @@ public sealed class FaxSystem : EntitySystem
             { DeviceNetworkConstants.Command, FaxConstants.FaxPingCommand }
         };
 
-        if (HasComp<EmaggedComponent>(uid))
+        if (_emag.CheckFlag(uid, EmagType.Interaction))
             payload.Add(FaxConstants.FaxSyndicateData, true);
 
         _deviceNetworkSystem.QueuePacket(uid, null, payload);
@@ -451,6 +474,9 @@ public sealed class FaxSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+        if (component.SendTimeoutRemaining > 0)
+            return;
+
         var sendEntity = component.PaperSlot.Item;
         if (sendEntity == null)
             return;
@@ -469,7 +495,8 @@ public sealed class FaxSystem : EntitySystem
                                        metadata.EntityPrototype?.ID ?? component.PrintPaperId,
                                        paper.StampState,
                                        paper.StampedBy,
-                                       paper.EditingDisabled);
+                                       paper.EditingDisabled,
+                                       _tag.HasTag(sendEntity.Value, "NFPaperStampProtected")); // Frontier: add stamp protection
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -502,6 +529,9 @@ public sealed class FaxSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+        if (component.SendTimeoutRemaining > 0)
+            return;
+
         var sendEntity = component.PaperSlot.Item;
         if (sendEntity == null)
             return;
@@ -527,6 +557,7 @@ public sealed class FaxSystem : EntitySystem
             { FaxConstants.FaxPaperLabelData, labelComponent?.CurrentLabel },
             { FaxConstants.FaxPaperContentData, paper.Content },
             { FaxConstants.FaxPaperLockedData, paper.EditingDisabled },
+            { FaxConstants.FaxPaperStampProtectedData, _tag.HasTag(sendEntity.Value, "NFPaperStampProtected") }, // Frontier
         };
 
         if (metadata.EntityPrototype != null)
@@ -613,6 +644,13 @@ public sealed class FaxSystem : EntitySystem
             }
 
             paper.EditingDisabled = printout.Locked;
+
+            // Frontier: stamp protection
+            if (printout.StampProtected)
+            {
+                _tag.AddTag(printed, "NFPaperStampProtected");
+            }
+            // End Frontier
         }
 
         _metaData.SetEntityName(printed, printout.Name);

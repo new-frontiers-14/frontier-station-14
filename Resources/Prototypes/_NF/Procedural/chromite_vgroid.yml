@@ -106,7 +106,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockChromite
-      entity: WallChromiteCobblebrickNF
+      entity: NFWallChromiteCobblebrick
       count: 100
       minGroupSize: 6
       maxGroupSize: 16
@@ -135,7 +135,7 @@
     # - !type:OreDunGen
       # tileMask:
       # - FloorChromite
-      # entity: FloraRockSolid01
+      # entity: FloraRockSolid
       # count: 20
       # minGroupSize: 1
       # maxGroupSize: 1
@@ -144,7 +144,7 @@
       tileMask:
       - FloorChromite
       entity: SpawnMobBloodCultLeech
-      count: 25
+      count: 5
       minGroupSize: 1
       maxGroupSize: 1
 
@@ -205,7 +205,7 @@
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: VirologyLab
+    proto: NFVirologyLab
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
@@ -266,6 +266,18 @@
     groups:
     - id: SpawnMobBloodCultistCaster
       amount: 1
+  - !type:MobsDunGen
+    minCount: 0
+    maxCount: 1
+    groups:
+    - id: SpawnMobBloodCultistAscended # Boss
+      amount: 1
+  # - !type:MobsDunGen # Dies to barotrauma - equip it for space if you want this restored
+  #   minCount: 1
+  #   maxCount: 1
+  #   groups:
+  #   - id: SpawnMobCatBloodCultLowChance
+  #     amount: 1
 
 #- type: dungeonConfig
 #  id: NFVGRoidInteriorDungeonsChromite
@@ -324,16 +336,7 @@
       allowedTiles:
         - FloorChromite
       entities:
-        - ShadowTree01
-        - ShadowTree02
-        - ShadowTree03
-        - ShadowTree04
-        - ShadowTree05
-        - ShadowTree06
-        - CrystalPink
-        - CrystalPink
-        - CrystalPink
-        - CrystalPink
+        - ShadowTree
         - CrystalPink
     # Rock formations
     - !type:BiomeEntityLayer

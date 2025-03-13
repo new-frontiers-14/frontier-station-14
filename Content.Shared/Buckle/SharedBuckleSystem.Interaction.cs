@@ -15,11 +15,11 @@ public abstract partial class SharedBuckleSystem
     private void InitializeInteraction()
     {
         SubscribeLocalEvent<StrapComponent, GetVerbsEvent<InteractionVerb>>(AddStrapVerbs);
-        SubscribeLocalEvent<StrapComponent, InteractHandEvent>(OnStrapInteractHand, after: [typeof(InteractionPopupSystem)]);
+        SubscribeLocalEvent<StrapComponent, InteractHandEvent>(OnStrapInteractHand, before: [typeof(InteractionPopupSystem)]);
         SubscribeLocalEvent<StrapComponent, DragDropTargetEvent>(OnStrapDragDropTarget);
         SubscribeLocalEvent<StrapComponent, CanDropTargetEvent>(OnCanDropTarget);
 
-        SubscribeLocalEvent<BuckleComponent, InteractHandEvent>(OnBuckleInteractHand, after: [typeof(InteractionPopupSystem)]);
+        SubscribeLocalEvent<BuckleComponent, InteractHandEvent>(OnBuckleInteractHand, before: [typeof(InteractionPopupSystem)]);
         SubscribeLocalEvent<BuckleComponent, GetVerbsEvent<InteractionVerb>>(AddUnbuckleVerb);
     }
 
@@ -31,6 +31,11 @@ public abstract partial class SharedBuckleSystem
 
     private void OnStrapDragDropTarget(EntityUid uid, StrapComponent component, ref DragDropTargetEvent args)
     {
+        // Frontier: check handled
+        if (args.Handled)
+            return;
+        // End Frontier
+
         if (!StrapCanDragDropOn(uid, args.User, uid, args.Dragged, component))
             return;
 
@@ -114,11 +119,15 @@ public abstract partial class SharedBuckleSystem
         if (args.Handled)
             return;
 
+        // Frontier: set handled to true only if you actually unbuckle something
         if (ent.Comp.BuckledTo != null)
-            TryUnbuckle(ent!, args.User, popup: true);
+        {
+            args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+        }
 
         // TODO BUCKLE add out bool for whether a pop-up was generated or not.
-        args.Handled = true;
+        // args.Handled = true;
+        // End Frontier: set handled to true only if you actually unbuckle something
     }
 
     private void AddStrapVerbs(EntityUid uid, StrapComponent component, GetVerbsEvent<InteractionVerb> args)

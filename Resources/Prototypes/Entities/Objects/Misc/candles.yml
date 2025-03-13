@@ -33,7 +33,7 @@
       alwaysCombustible: true
       canExtinguish: true
       firestacksOnIgnite: 3.0
-      firestackFade: -0.01
+      firestackFade: -0.001 # Frontier -0.01<-0.001 
       damage:
         types:
           Heat: 0.1
@@ -55,7 +55,7 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 100
+          damage: 1000 # Frontier 100<1000 
         behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -171,7 +171,7 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 60
+          damage: 550 # Frontier 60<550 
         behaviors:
         - !type:SpawnEntitiesBehavior
         - !type:DoActsBehavior

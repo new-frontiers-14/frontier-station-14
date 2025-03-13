@@ -99,18 +99,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -3982,20 +3975,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,18.5
-      parent: 1
-- proto: SalvagePartsSpawnerLow
-  entities:
-  - uid: 738
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -5.5,25.5
-      parent: 1
-  - uid: 739
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -7.5,26.5
       parent: 1
 - proto: Screwdriver
   entities:

@@ -23,6 +23,7 @@ entities:
     components:
     - type: MetaData
     - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -67,18 +68,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -864,7 +858,7 @@ entities:
       pos: 14.5,-0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -2634.3037
+      secondsUntilStateChange: -2755.6655
       state: Opening
   - uid: 196
     components:
@@ -1263,8 +1257,6 @@ entities:
     - type: Transform
       pos: 5.5,-10.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaMiddle
   entities:
   - uid: 657
@@ -1272,8 +1264,6 @@ entities:
     - type: Transform
       pos: 4.5,-10.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaRight
   entities:
   - uid: 1521
@@ -1281,8 +1271,6 @@ entities:
     - type: Transform
       pos: 3.5,-10.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelLeft
   entities:
   - uid: 1761
@@ -1291,16 +1279,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.5,-3.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 1962
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,3.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelMiddle
   entities:
   - uid: 1762
@@ -1309,16 +1293,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.5,-4.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 1963
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,2.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelRight
   entities:
   - uid: 1760
@@ -1327,16 +1307,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.5,-5.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 1964
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,1.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BookHowToCookForFortySpaceman
   entities:
   - uid: 1790
@@ -6684,46 +6660,16 @@ entities:
     - type: Transform
       pos: 11.5,6.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
   - uid: 394
     components:
     - type: Transform
       pos: 6.5,-8.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
   - uid: 396
     components:
     - type: Transform
       pos: -10.5,-5.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: ComputerRadar
   entities:
   - uid: 266
@@ -10649,6 +10595,13 @@ entities:
     - type: Transform
       pos: 1.5,11.5
       parent: 1
+- proto: NFHolopadTinnia
+  entities:
+  - uid: 2249
+    components:
+    - type: Transform
+      pos: -5.5,-8.5
+      parent: 1
 - proto: OilJarCorn
   entities:
   - uid: 2173
@@ -10730,10 +10683,6 @@ entities:
     - type: Transform
       pos: -0.5,13.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandAtmosiaDeclarationIndependence
   entities:
   - uid: 1982
@@ -11493,7 +11442,7 @@ entities:
     - type: Transform
       pos: 3.5,-12.5
       parent: 1
-- proto: RandomPosterContrabandDeadDrop
+- proto: RandomPosterContraband
   entities:
   - uid: 1984
     components:
@@ -11937,6 +11886,13 @@ entities:
       parent: 1
     - type: DisableToolUse
       anchoring: True
+- proto: SellOnlyMothershipComputer
+  entities:
+  - uid: 2250
+    components:
+    - type: Transform
+      pos: -10.5,-7.5
+      parent: 1
 - proto: SignBar
   entities:
   - uid: 1991

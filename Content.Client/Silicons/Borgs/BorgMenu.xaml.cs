@@ -55,8 +55,12 @@ public sealed partial class BorgMenu : FancyWindow
             NameIdentifierLabel.Text = nameIdentifierComponent.FullIdentifier;
 
             var fullName = _entity.GetComponent<MetaDataComponent>(Entity).EntityName;
-            var name = fullName.Substring(0, fullName.Length - nameIdentifierComponent.FullIdentifier.Length - 1);
-            NameLineEdit.Text = name;
+            // Frontier: prevent exceptions
+            if (fullName.Contains(nameIdentifierComponent.FullIdentifier))
+                NameLineEdit.Text = fullName.Substring(0, fullName.Length - nameIdentifierComponent.FullIdentifier.Length - 1);
+            else
+                NameLineEdit.Text = fullName;
+            // End Frontier
         }
         else
         {
@@ -131,7 +135,8 @@ public sealed partial class BorgMenu : FancyWindow
         _modules.Clear();
         foreach (var module in chassis.ModuleContainer.ContainedEntities)
         {
-            var control = new BorgModuleControl(module, _entity);
+            var moduleComponent = _entity.GetComponent<BorgModuleComponent>(module);
+            var control = new BorgModuleControl(module, _entity, !moduleComponent.DefaultModule);
             control.RemoveButtonPressed += () =>
             {
                 RemoveModuleButtonPressed?.Invoke(module);

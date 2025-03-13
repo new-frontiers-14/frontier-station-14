@@ -10,7 +10,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server.Shuttles.Components
 {
-    [RegisterComponent, NetworkedComponent]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
     [Access(typeof(ThrusterSystem))]
     public sealed partial class ThrusterComponent : Component
     {
@@ -58,11 +58,15 @@ namespace Content.Server.Shuttles.Components
         public bool Firing = false;
 
         /// <summary>
-        /// Next time we tick damage for anyone colliding.
+        /// How often thruster deals damage.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField("nextFire", customTypeSerializer:typeof(TimeOffsetSerializer))]
-        public TimeSpan NextFire;
+        [DataField]
+        public TimeSpan FireCooldown = TimeSpan.FromSeconds(2);
 
+        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+        public TimeSpan NextFire = TimeSpan.Zero;
+
+        // Frontier: upgradeable parts, togglable thrust
         [DataField("machinePartThrust", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
         public string MachinePartThrust = "Capacitor";
 
@@ -85,7 +89,7 @@ namespace Content.Server.Shuttles.Components
 
         [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))] // Frontier
         public string TogglePort = "Toggle"; // Frontier
-
+        // End Frontier: upgradeable parts, togglable thrust
     }
 
     public enum ThrusterType

@@ -141,7 +141,9 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         destComp.BeaconsOnly = true;
         destComp.RequireCoordinateDisk = true;
         destComp.Enabled = true;
-        _metaData.SetEntityName(mapUid, SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), _missionParams.Seed));
+        _metaData.SetEntityName(
+            mapUid,
+            _entManager.System<SharedSalvageSystem>().GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>("NamesBorer"), _missionParams.Seed));
         _entManager.AddComponent<FTLBeaconComponent>(mapUid);
 
         // Saving the mission mapUid to a CD is made optional, in case one is somehow made in a process without a CD entity
@@ -205,7 +207,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // On Frontier, we cant share our locations it breaks ftl in a bad bad way
         // Don't want consoles to have the incorrect name until refreshed.
         /*var ftlUid = _entManager.CreateEntityUninitialized("FTLPoint", new EntityCoordinates(mapUid, grid.TileSizeHalfVector));
-        _metaData.SetEntityName(ftlUid, SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), _missionParams.Seed));
+        _metaData.SetEntityName(ftlUid, SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>("NamesBorer"), _missionParams.Seed));
         _entManager.InitializeAndStartEntity(ftlUid);*/
 
         // so we just gunna yeet them there instead why not. they chose this life.
@@ -292,7 +294,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         //     clearBoxCenter.X + clearBoxHalfWidth,
         //     clearBoxCenter.Y + clearBoxHalfHeight);
 
-        // foreach (var tile in _map.GetTilesIntersecting(mapUid, grid, shuttleClearBox, false))
+        // foreach (var tile in _map.GetTilesIntersecting(mapUid, grid, new Circle(Vector2.Zero, landingPadRadius), false))
         // {
         //     if (!_biome.TryGetBiomeTile(mapUid, grid, tile.GridIndices, out _))
         //         continue;
@@ -405,7 +407,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                 validSpawns.RemoveAt(validSpawns.Count - 1);
 
                 if (!_anchorable.TileFree(grid, spawnTile, (int) CollisionGroup.MachineLayer,
-                        (int) CollisionGroup.MachineLayer))
+                        (int) CollisionGroup.MachineMask)) // Frontier: MachineLayer<MachineMask
                 {
                     continue;
                 }

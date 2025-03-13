@@ -10,6 +10,7 @@
 # Basic Trade Outpost buying point for economy and great wealth
 - type: pointOfInterest
   id: TradeMall
+  parent: BasePOI
   name: Trade Mall
   minimumDistance: 1500
   maximumDistance: 2500
@@ -18,13 +19,12 @@
   addComponents:
   - type: IFF
     color: "#37C837"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
   - type: StationTransit
   - type: ProtectedGrid
     preventArtifactTriggers: true
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: TradeMall
@@ -39,3 +39,5 @@
           mapNameTemplate: 'Trade Mall'
         - type: StationDeadDrop
           maxDeadDrops: 2 # A few, its not as big as the original trade outpost
+        - type: TradeCrateDestination
+          destinationProto: Trade

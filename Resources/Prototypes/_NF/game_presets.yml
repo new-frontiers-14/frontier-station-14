@@ -1,12 +1,30 @@
 - type: gamePreset
-  id: Adventure
+  id: NFAdventure
   alias:
+    - nfadventure
     - adventure
-  name: adventure-title
-  description: adventure-description
-  showInVote: false
+  name: nf-adventure-title
+  description: nf-adventure-description
+  showInVote: true
   rules:
-    - Adventure
+    - NFAdventure
+    - BasicStationEventScheduler
+    - BluespaceEventScheduler
+    - BluespaceDungeonEventScheduler
+    - BluespaceSalvageEventScheduler
+    - SmugglingEventScheduler
+    - FrontierRoundstartVariation
+
+- type: gamePreset
+  id: NFPirate
+  alias:
+    - nfpirate
+    - pirate
+  name: nf-pirate-title
+  description: nf-pirate-description
+  showInVote: true
+  rules:
+    - NFAdventure
     - BasicStationEventScheduler
     - BluespaceEventScheduler
     - BluespaceDungeonEventScheduler

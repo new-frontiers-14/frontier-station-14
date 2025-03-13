@@ -40,7 +40,7 @@ public sealed partial class SalvageSystem
             if (TryComp<SalvageExpeditionDataComponent>(expeditionUid, out var expeditionData) && expeditionData.Claimed)
                 activeExpeditionCount++;
 
-        if (activeExpeditionCount >= _configurationManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
+        if (activeExpeditionCount >= _cfgManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
         {
             PlayDenySound(uid, component);
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-too-many"), uid, PopupType.MediumCaution);
@@ -102,7 +102,7 @@ public sealed partial class SalvageSystem
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
 
         // Frontier  change - disable coordinate disks for expedition missions
-        //_labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), missionparams.Seed));
+        //_labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>("NamesBorer"), missionparams.Seed));
         //_audio.PlayPvs(component.PrintSound, uid);
 
         UpdateConsoles(station.Value, data); // Frontier: add station

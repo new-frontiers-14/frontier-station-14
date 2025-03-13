@@ -1,0 +1,22 @@
+- type: entity
+  id: TrialTimer
+  parent: SignalTimer
+  name: trial timer
+  description: A fancy timer with a screen, designed to keep trials within their time limit.
+  components:
+  - type: SignalTimer
+    canEditLabel: true
+  - type: TextScreenVisuals
+    color: "#fffaf0" # Frontier: b03060<fffaf0 for readability
+    textOffset: 1,8
+    timerOffset: 1,8
+    textLength: 5
+    rows: 1
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _DV/Objects/Specific/Justice/trialtimer.rsi
+    state: trialtimer
+    noRot: true
+  - type: Construction
+    graph: Timer
+    node: screen

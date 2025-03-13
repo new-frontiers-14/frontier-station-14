@@ -47,6 +47,7 @@
   parent:
   - MobCleanBot
   - BaseC3SyndicateContrabandNoValue
+  - NFMobRestrictions
   id: MobCleanBotSyndie
   name: syndicate cleanbot
   description: The creep of automation now threatening space janitors with a knife.
@@ -59,3 +60,7 @@
   - type: HTN
     rootTask:
       task: CleanbotCompound
+  - type: NFSalvageMobRestrictions
+    despawnIfOffLinkedGrid: false
+    addComponentsOnDeath: []
+    removeComponentsOnDeath: []

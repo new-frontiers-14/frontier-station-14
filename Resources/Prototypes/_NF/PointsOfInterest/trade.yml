@@ -10,6 +10,7 @@
 # Basic Trade Outpost buying point for economy and great wealth
 - type: pointOfInterest
   id: Trade
+  parent: BasePOI
   name: Trade Outpost
   minimumDistance: 1500
   maximumDistance: 2500
@@ -18,10 +19,6 @@
   addComponents:
   - type: IFF
     color: "#37C837"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
   - type: StationTransit
   - type: ProtectedGrid
     preventArtifactTriggers: true
@@ -39,3 +36,5 @@
           mapNameTemplate: 'Trade Outpost'
         - type: StationDeadDrop
           maxDeadDrops: 3 # Many here, it's huge.
+        - type: TradeCrateDestination
+          destinationProto: Trade

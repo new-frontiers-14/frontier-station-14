@@ -4,6 +4,7 @@
   components:
   - type: GhostRole
   - type: IntrinsicRadioReceiver
+  - type: CargoSellBlacklist
 
 - type: entity
   name: Clippy
@@ -16,6 +17,7 @@
     description: ghost-role-information-clippy-description
     rules: ghost-role-information-nonantagonist-rules
     prototype: CatClippy
+    mindRoles: [ MindRoleGhostRoleNeutral ]
   - type: Loadout
     prototypes: [ MobClippyGear ]
   - type: RandomMetadata
@@ -40,7 +42,6 @@
       - Cat
       - PetsNT
   - type: ShowJobIcons
-  - type: CargoSellBlacklist
 
 - type: entity
   name: Clarpy
@@ -59,14 +60,15 @@
       Alive:
         Base: piratecat
       Critical:
-        Base: piratecat_dead
+        Base: piratecat
       Dead:
-        Base: piratecat_dead
+        Base: piratecat
   - type: GhostRole
     name: ghost-role-information-clarpy-name
     description: ghost-role-information-clarpy-description
     rules: ghost-role-information-clarpy-rules
     prototype: CatClarpy
+    mindRoles: [ MindRoleGhostRoleTeamAntagonist ]
   - type: Loadout
     prototypes: [ MobClarpyGear ]
   - type: ReplacementAccent
@@ -85,8 +87,13 @@
   - type: NpcFactionMember
     factions:
       - Cat
-      - PirateNF
-  - type: CargoSellBlacklist
+     # - PirateNF Stupid cat too old to fight, also forgot he is a pirate.
+  - type: PirateAccent
+  - type: Speech
+    audioParams:
+      volume: -2
+      rolloffFactor: 4.5
+      pitch: 0.7
 
 - type: entity
   name: Cappy
@@ -109,6 +116,7 @@
     description: ghost-role-information-cappy-description
     rules: ghost-role-information-nonantagonist-rules
     prototype: CatCappy
+    mindRoles: [ MindRoleGhostRoleNeutral ]
   - type: Loadout
     prototypes: [ MobCappyGear ]
   - type: ReplacementAccent
@@ -136,7 +144,7 @@
   - type: NpcFactionMember
     factions:
       - Cat
-      - PetsNT
+      - NanoTrasen
   - type: Speech
     speechSounds: NfsdCat
     speechVerb: SmallMob
@@ -148,9 +156,39 @@
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/_NF/Animals/nfsdcat_meow.ogg
-  - type: CargoSellBlacklist
   - type: PirateBountyItem
     id: Cappy
+  - type: SouthernAccent
+
+- type: entity
+  name: El Capo
+  parent: [NFMobPet, MobBingusGhost]
+  id: MobCatElCapo
+  description: Wanted for countless cat crimes.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: crimecat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: combatcat
+  - type: GhostRole
+    name: ghost-role-information-elcapo-name
+    description: ghost-role-information-elcapo-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles: [ MindRoleGhostRoleFreeAgent ]
+  - type: RandomMetadata
+    nameSegments: [names_cat_elcapo]
+  - type: AutoImplant
+    implants:
+    - TrackingImplant
+  - type: NpcFactionMember
+    factions:
+      - Cat
 
 - type: entity
   name: Clugg
@@ -172,16 +210,17 @@
     name: ghost-role-information-clugg-name
     description: ghost-role-information-clugg-description
     rules: ghost-role-information-nonantagonist-rules
+    mindRoles: [ MindRoleGhostRoleNeutral ]
   - type: RandomMetadata
     nameSegments: [names_cat_clugg]
   - type: NpcFactionMember
     factions:
-      - Cat
-      - DinosaursNF
+      - Cat # Everybody loves Clugg. Maybe not pitbulls.
   - type: NFSalvageMobRestrictions
     despawnIfOffLinkedGrid: false
     addComponentsOnDeath: []
     removeComponentsOnDeath: []
+  - type: CavemanAccent
 
 - type: entity
   name: Mistake
@@ -190,7 +229,6 @@
   description: "???"
   components:
   - type: Sprite
-    drawdepth: Mobs
     sprite: _NF/Mobs/Pets/cat.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -203,6 +241,7 @@
     name: ghost-role-information-mistake-name
     description: ghost-role-information-mistake-description
     rules: ghost-role-information-freeagent-rules
+    mindRoles: [ MindRoleGhostRoleFreeAgent ]
     prototype: CatMistake
   - type: ReplacementAccent
     accent: mistakeCat
@@ -217,11 +256,114 @@
     successChance: 0.0
     interactFailureString: petting-failure-mistake
   - type: MovementSpeedModifier
-    baseWalkSpeed : 8
-    baseSprintSpeed : 8
+    baseWalkSpeed : 6
+    baseSprintSpeed : 6
+  - type: NFSalvageMobRestrictions
+    despawnIfOffLinkedGrid: false
+    addComponentsOnDeath: []
+    removeComponentsOnDeath: []
   - type: NpcFactionMember
     factions:
       - Cat
+  - type: Respirator # Paranormal cat: doesn't need to breathe (but it will)
+    updateInterval: 99999 # Shouldn't run often, if ever.
+    suffocationThreshold: -100 # Should never happen.
+    damage:
+      types: {}
+    damageRecovery:
+      types: {}
+
+- type: entity
+  name: blood cult cat
+  parent: [NFMobPet, MobCatMistake]
+  id: MobCatBloodCult
+  description: Founded the Blood Cult out of boredom.
+  components:
+  - type: Body
+    prototype: Bloodsucker
+    requiredLegs: 1
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 1
+        Bloodloss: 1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cultcat
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: cultcat_unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: cultcat
+        BaseUnshaded: cultcat_unshaded
+      Critical:
+        Base: cultcat
+        BaseUnshaded: mask_null
+      Dead:
+        Base: cultcat
+        BaseUnshaded: mask_null
+  - type: GhostRole
+    name: ghost-role-information-cult-cat-name
+    description: ghost-role-information-cult-cat-description
+    rules: ghost-role-information-cult-cat-rules
+    mindRoles: [ MindRoleGhostRoleFreeAgent ]
+    prototype: CatBloodCult
+  - type: RandomMetadata
+    nameSegments: [ names_cat_cult ]
+  - type: AutoImplant
+    implants:
+    - RedLightImplant
+    - DissonantWhispersImplant
+    - MedicalTrackingImplant
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Science
+  - type: ActiveRadio
+    channels:
+    - Science
+  - type: ActionGun
+    action: ActionEldritchPush
+    gunProto: EldritchPushGun
+
+- type: entity
+  id: EldritchPushGun
+  name: eldritch hand gun
+  description: Shoots an eldritch hand.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 300
+    rechargeSound:
+      path: /Audio/Magic/fireball.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletEldritchHand
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+    soundEmpty: null
+    projectileSpeed: 3
+
+- type: entity
+  id: ActionEldritchPush
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Force Push[/color]"
+  description: "Summon forth an eldritch hand. [color=yellow]5 minute cooldown.[/color]"
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : _NF/Effects/bloodcultprojectiles.rsi, state: hand }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
+    useDelay: 300
 
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 - type: entity
@@ -252,6 +394,7 @@
     - CannotSuicide
     - DoorBumpOpener
     - VimPilot
+    - AnomalyHost
   - type: Loadout
     prototypes: [ MobKoboldGear ]
   - type: Grammar

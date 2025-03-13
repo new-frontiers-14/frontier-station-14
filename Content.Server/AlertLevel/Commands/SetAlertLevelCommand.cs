@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Server._NF.SectorServices;
 using Content.Server.Administration;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -21,11 +22,14 @@ namespace Content.Server.AlertLevel.Commands
             var player = shell.Player;
             if (player?.AttachedEntity != null)
             {
-                var stationUid = _entitySystems.GetEntitySystem<StationSystem>().GetOwningStation(player.AttachedEntity.Value);
-                if (stationUid != null)
-                {
-                    levelNames = GetStationLevelNames(stationUid.Value);
-                }
+                // Frontier: sector-wide alerts
+                levelNames = GetSectorLevelNames();
+                // var stationUid = _entitySystems.GetEntitySystem<StationSystem>().GetOwningStation(player.AttachedEntity.Value);
+                // if (stationUid != null)
+                // {
+                //     levelNames = GetStationLevelNames(stationUid.Value);
+                // }
+                // End Frontier
             }
 
             return args.Length switch
@@ -68,7 +72,7 @@ namespace Content.Server.AlertLevel.Commands
             }
 
             var level = args[0];
-            var levelNames = GetStationLevelNames(stationUid.Value);
+            var levelNames = GetSectorLevelNames();
             if (!levelNames.Contains(level))
             {
                 shell.WriteLine(LocalizationManager.GetString("cmd-setalertlevel-invalid-level"));
@@ -78,10 +82,12 @@ namespace Content.Server.AlertLevel.Commands
             _entitySystems.GetEntitySystem<AlertLevelSystem>().SetLevel(stationUid.Value, level, true, true, true, locked);
         }
 
-        private string[] GetStationLevelNames(EntityUid station)
+        // Frontier: sector-wide alert level names
+        private string[] GetSectorLevelNames()
         {
+            var sectorServiceUid = _entitySystems.GetEntitySystem<SectorServiceSystem>().GetServiceEntity();
             var entityManager = IoCManager.Resolve<IEntityManager>();
-            if (!entityManager.TryGetComponent<AlertLevelComponent>(station, out var alertLevelComp))
+            if (!entityManager.TryGetComponent<AlertLevelComponent>(sectorServiceUid, out var alertLevelComp))
                 return new string[]{};
 
             if (alertLevelComp.AlertLevels == null)
@@ -89,5 +95,6 @@ namespace Content.Server.AlertLevel.Commands
 
             return alertLevelComp.AlertLevels.Levels.Keys.ToArray();
         }
+        // End Frontier
     }
 }

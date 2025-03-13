@@ -6,6 +6,8 @@ using Robust.Server.GameObjects;
 using System.Linq;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes; // Frontier
+using Content.Shared.Access.Systems; // Frontier
+using Content.Server.Station.Components; // Frontier
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -16,6 +18,8 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly AccessReaderSystem _access = default!; // Frontier
+    [Dependency] private readonly IPrototypeManager _proto = default!; // Frontier
 
     public override void Initialize()
     {
@@ -64,6 +68,35 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         var stationUid = _stationSystem.GetOwningStation(uid);
         if (stationUid is EntityUid station)
         {
+            // Frontier: check access - hack because we don't have an AccessReaderComponent, it's the station
+            if (TryComp(stationUid, out StationJobsComponent? stationJobs) &&
+                (stationJobs.Groups.Count > 0 || stationJobs.Tags.Count > 0))
+            {
+                var accessSources = _access.FindPotentialAccessItems(msg.Actor);
+                var access = _access.FindAccessTags(msg.Actor, accessSources);
+
+                // Check access groups and tags
+                bool hasAccess = stationJobs.Tags.Any(access.Contains);
+                if (!hasAccess)
+                {
+                    foreach (var group in stationJobs.Groups)
+                    {
+                        if (!_proto.TryIndex(group, out var accessGroup))
+                            continue;
+
+                        hasAccess = accessGroup.Tags.Any(access.Contains);
+                        if (hasAccess)
+                            break;
+                    }
+                }
+
+                if (!hasAccess)
+                {
+                    UpdateUserInterface((uid, component));
+                    return;
+                }
+            }
+            // End Frontier
             _stationJobsSystem.TryAdjustJobSlot(station, msg.JobProto, msg.Amount, false, true);
         }
         UpdateUserInterface((uid,component));

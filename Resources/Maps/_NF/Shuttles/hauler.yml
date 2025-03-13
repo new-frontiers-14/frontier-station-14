@@ -711,7 +711,7 @@ entities:
       pos: -5.5,14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -319.50586
+      secondsUntilStateChange: -489.1448
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -932,8 +932,6 @@ entities:
     - type: Transform
       pos: 4.5,26.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpRight
   entities:
   - uid: 509
@@ -941,8 +939,6 @@ entities:
     - type: Transform
       pos: 3.5,26.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BoozeDispenser
   entities:
   - uid: 527
@@ -4032,6 +4028,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,0.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 725
+    components:
+    - type: Transform
+      pos: 0.5,28.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 214
@@ -4140,10 +4143,6 @@ entities:
     - type: Transform
       pos: 3.5,-1.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterLegitAnatomyPoster
   entities:
   - uid: 522
@@ -4346,7 +4345,29 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,9.5
       parent: 1
-- proto: PoweredlightColoredRed
+- proto: PoweredLightPostSmallRed
+  entities:
+  - uid: 144
+    components:
+    - type: Transform
+      pos: 6.5,29.5
+      parent: 1
+  - uid: 474
+    components:
+    - type: Transform
+      pos: -5.5,29.5
+      parent: 1
+  - uid: 689
+    components:
+    - type: Transform
+      pos: -2.5,33.5
+      parent: 1
+  - uid: 696
+    components:
+    - type: Transform
+      pos: 3.5,33.5
+      parent: 1
+- proto: PoweredlightRed
   entities:
   - uid: 203
     components:
@@ -4403,28 +4424,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-3.5
-      parent: 1
-- proto: PoweredLightPostSmallRed
-  entities:
-  - uid: 144
-    components:
-    - type: Transform
-      pos: 6.5,29.5
-      parent: 1
-  - uid: 474
-    components:
-    - type: Transform
-      pos: -5.5,29.5
-      parent: 1
-  - uid: 689
-    components:
-    - type: Transform
-      pos: -2.5,33.5
-      parent: 1
-  - uid: 696
-    components:
-    - type: Transform
-      pos: 3.5,33.5
       parent: 1
 - proto: Rack
   entities:
@@ -5342,21 +5341,21 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         328:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         208:
-        - Right: Forward
-        - Left: Reverse
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         501:
-        - Right: Forward
-        - Left: Reverse
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         383:
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Right: Forward
-        - Left: Reverse
         475:
         - Left: Forward
         - Right: Reverse
@@ -5369,37 +5368,37 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         12:
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Right: Forward
-        - Left: Reverse
         137:
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Left: Reverse
         138:
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Right: Forward
-        - Left: Reverse
         153:
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Right: Forward
-        - Left: Reverse
         133:
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Right: Forward
-        - Left: Reverse
         124:
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Right: Forward
-        - Left: Reverse
         219:
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Right: Forward
-        - Left: Reverse
         606:
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Right: Forward
-        - Left: Reverse
   - uid: 812
     components:
     - type: Transform
@@ -5408,12 +5407,12 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         505:
-        - Left: Reverse
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Right: Forward
         200:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         777:
         - Left: Forward
@@ -6361,7 +6360,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,6.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 191
     components:

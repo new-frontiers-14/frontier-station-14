@@ -278,3 +278,58 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockPirateGlassLocked
+  suffix: Pirate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: AirlockExternalGlassPirateLocked
+  suffix: Pirate, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
+  parent: AirlockMiningGlass
+  id: AirlockMiningGlassPirateLocked
+  suffix: Pirate, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
+  parent: AirlockShuttleSyndicate
+  id: AirlockShuttleSyndicatePirateLocked
+  suffix: Pirate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+- type: entity
+  parent: AirlockGlassShuttleSyndicate
+  id: AirlockGlassShuttleSyndicatePirateLocked
+  suffix: Pirate, Glass Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]
+
+# Airtight Hatch
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchPirateLocked
+  suffix: Pirate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsPirate ]

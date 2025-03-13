@@ -21,9 +21,14 @@
     tags:
     - Recyclable
     - Trash
-  - type: FoodSequenceElement # Frontier
+  # Frontier: edible hairballs
+  - type: FoodSequenceElement
     entries:
       Burger: Hairball
       Taco: Hairball
       Skewer: Hairball
-    solution: hairball # Frontier
+    solution: hairball
+  - type: Food
+    requiresSpecialDigestion: true
+    solution: hairball
+  # End Frontier: edible hairballs

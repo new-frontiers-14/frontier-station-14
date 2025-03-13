@@ -94,7 +94,7 @@
 - type: entity
   id: SpawnPointERTMailCarrier
   parent: SpawnPointJobBase
-  name: ERTmailcarrier
+  name: ERT mail carrier
   components:
   - type: SpawnPoint
     job_id: ERTMailCarrier
@@ -103,6 +103,19 @@
     layers:
       - state: green
       - state: ertmailcarrier
+
+- type: entity
+  id: SpawnPointDirectorOfCare
+  parent: SpawnPointJobBase
+  name: director of care
+  components:
+  - type: SpawnPoint
+    job_id: DirectorOfCare
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: medic
 
 - type: entity
   id: SpawnPointStationRepresentative
@@ -156,6 +169,7 @@
   id: NFSpawnPointDetective
   parent: SpawnPointDetective
   name: detective
+  suffix: Frontier
   components:
   - type: SpawnPoint
     job_id: NFDetective
@@ -171,6 +185,7 @@
 - type: entity
   id: NFSpawnPointJanitor
   parent: SpawnPointJanitor
+  suffix: Frontier
   components:
   - type: SpawnPoint
     job_id: NFJanitor

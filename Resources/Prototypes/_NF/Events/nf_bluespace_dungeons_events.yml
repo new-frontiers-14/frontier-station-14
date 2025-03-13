@@ -27,7 +27,7 @@
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
-        nameDataset: names_borer
+        nameDataset: NamesBorer
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents: &dungeonComponents
@@ -35,10 +35,15 @@
           enabled: true
           inherent: true
         - type: IFF
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
         - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        # FIXME: the dungeon dosen't pass FTL events even though it should FTL in
+        #        and we don't get a MapInitEvent, so this just forces static physics
+        - type: Physics
+          bodyType: Static
+          bodyStatus: OnGround
         protos:
         - NFVGRoidBasalt
 
@@ -50,7 +55,7 @@
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
-        nameDataset: names_borer
+        nameDataset: NamesBorer
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents: *dungeonComponents
@@ -65,7 +70,7 @@
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
-        nameDataset: names_borer
+        nameDataset: NamesBorer
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents: *dungeonComponents
@@ -80,7 +85,7 @@
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
-        nameDataset: names_borer
+        nameDataset: NamesBorer
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents: *dungeonComponents
@@ -95,7 +100,7 @@
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
-        nameDataset: names_borer
+        nameDataset: NamesBorer
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents: *dungeonComponents

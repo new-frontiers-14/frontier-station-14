@@ -1,4 +1,56 @@
-# Upstream
+- type: entity
+  parent: AsteroidRock
+  id: NFAsteroidRockOre
+  abstract: true
+  components: &softRockComps
+  - type: OreVein
+    gatherDestructionWhitelist:
+      components:
+      - MiningGatheringHard
+
+- type: entity
+  parent: IronRock
+  id: NFIronRockOre
+  abstract: true
+  components: *softRockComps
+
+- type: entity
+  parent: WallRock
+  id: NFWallRockOre
+  abstract: true
+  components: *softRockComps
+
+- type: entity
+  parent: WallRockBasalt
+  id: NFWallRockBasaltOre
+  abstract: true
+  components: *softRockComps
+
+- type: entity
+  parent: WallRockSnow
+  id: NFWallRockSnowOre
+  abstract: true
+  components: *softRockComps
+
+- type: entity
+  parent: WallRockSand
+  id: NFWallRockSandOre
+  abstract: true
+  components: *softRockComps
+
+- type: entity
+  parent: WallRockChromite
+  id: NFWallRockChromiteOre
+  abstract: true
+  components: *softRockComps
+
+- type: entity
+  parent: WallRockAndesite
+  id: NFWallRockAndesiteOre
+  abstract: true
+  components: *softRockComps
+
+# region Upstream
 - type: entity
   id: AsteroidRockBananiumCrab
   parent: AsteroidRockBananium
@@ -6,7 +58,7 @@
   components:
     - type: OreVein
       oreChance: 1.0
-      currentOre: OreBananiumCrab
+      currentOre: OreBananiumCrabNF
 
 - type: entity
   id: AsteroidRockCoalCrab
@@ -15,7 +67,7 @@
   components:
     - type: OreVein
       oreChance: 1.0
-      currentOre: OreCoalCrab
+      currentOre: OreCoalCrabNF
 
 - type: entity
   id: AsteroidRockGoldCrab
@@ -24,7 +76,7 @@
   components:
     - type: OreVein
       oreChance: 1.0
-      currentOre: OreGoldCrab
+      currentOre: OreGoldCrabNF
 
 - type: entity
   id: AsteroidRockPlasmaCrab
@@ -33,7 +85,7 @@
   components:
     - type: OreVein
       oreChance: 1.0
-      currentOre: OrePlasmaCrab
+      currentOre: OrePlasmaCrabNF
 
 - type: entity
   id: AsteroidRockSaltCrab
@@ -42,18 +94,19 @@
   components:
     - type: OreVein
       oreChance: 1.0
-      currentOre: OreSaltCrab
+      currentOre: OreSaltCrabNF
+# endregion Upstream
 
-# Frontier - Ore
+# region Ore
 - type: entity
   id: AsteroidRockBluespace
-  parent: AsteroidRock
+  parent: NFAsteroidRockOre
   description: An ore vein with bluespace.
   suffix: Bluespace
   components:
   - type: OreVein
     oreChance: 1.0
-    currentOre: OreBluespace
+    currentOre: NFOreBluespace
   - type: Sprite
     layers:
     - state: rock_asteroid
@@ -71,13 +124,13 @@
 
 - type: entity
   id: IronRockBluespace
-  parent: IronRock
+  parent: NFIronRockOre
   description: An ore vein with bluespace.
   suffix: Bluespace
   components:
     - type: OreVein
       oreChance: 1.0
-      currentOre: OreBluespace
+      currentOre: NFOreBluespace
     - type: Sprite
       layers:
       - state: ironrock
@@ -95,7 +148,7 @@
 
 - type: entity
   id: WallRockBluespace
-  parent: WallRock
+  parent: NFWallRockOre
   description: An ore vein with bluespace.
   suffix: Bluespace
   components:
@@ -108,7 +161,7 @@
       WallRockSnow: WallRockSnowBluespace
   - type: OreVein
     oreChance: 1.0
-    currentOre: OreBluespace
+    currentOre: NFOreBluespace
   - type: Sprite
     layers:
       - state: rock
@@ -126,13 +179,13 @@
 
 - type: entity
   id: WallRockBasaltBluespace
-  parent: WallRockBasalt
+  parent: NFWallRockBasaltOre
   description: An ore vein with bluespace.
   suffix: Bluespace
   components:
     - type: OreVein
       oreChance: 1.0
-      currentOre: OreBluespace
+      currentOre: NFOreBluespace
     - type: Sprite
       layers:
       - state: rock_wall
@@ -150,13 +203,13 @@
 
 - type: entity
   id: WallRockSnowBluespace
-  parent: WallRockSnow
+  parent: NFWallRockSnowOre
   description: An ore vein with bluespace.
   suffix: Bluespace
   components:
     - type: OreVein
       oreChance: 1.0
-      currentOre: OreBluespace
+      currentOre: NFOreBluespace
     - type: Sprite
       layers:
       - state: rock_snow
@@ -174,13 +227,13 @@
 
 - type: entity
   id: WallRockSandBluespace
-  parent: WallRockSand
+  parent: NFWallRockSandOre
   description: An ore vein with bluespace.
   suffix: Bluespace
   components:
     - type: OreVein
       oreChance: 1.0
-      currentOre: OreBluespace
+      currentOre: NFOreBluespace
     - type: Sprite
       layers:
       - state: rock_sand
@@ -198,13 +251,13 @@
 
 - type: entity
   id: WallRockChromiteBluespace
-  parent: WallRockChromite
+  parent: NFWallRockChromiteOre
   description: An ore vein with bluespace.
   suffix: Bluespace
   components:
     - type: OreVein
       oreChance: 1.0
-      currentOre: OreBluespace
+      currentOre: NFOreBluespace
     - type: Sprite
       layers:
       - state: rock_chromite
@@ -222,13 +275,13 @@
 
 - type: entity
   id: WallRockAndesiteBluespace
-  parent: WallRockAndesite
+  parent: NFWallRockAndesiteOre
   description: An ore vein with bluespace.
   suffix: Bluespace
   components:
     - type: OreVein
       oreChance: 1.0
-      currentOre: OreBluespace
+      currentOre: NFOreBluespace
     - type: Sprite
       layers:
       - state: rock_andesite
@@ -243,12 +296,12 @@
       - sprite: _NF/Structures/Walls/rock.rsi
         state: rock_bluespace
         map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+# endregion Ore
 
-# Frontier - scrap pile with ore
-
+# region Scrap with Ore
 - type: entity
   id: WallRockScrapPile
-  parent: WallRockAndesite
+  parent: NFWallRockAndesiteOre
   name: scrap pile
   description: A pile of scrap.
   suffix: Scrap
@@ -664,7 +717,7 @@
   components:
   - type: OreVein
     oreChance: 1.0
-    currentOre: OreBluespace
+    currentOre: NFOreBluespace
   - type: Sprite
     layers:
     - state: scraprock01
@@ -696,8 +749,9 @@
   - type: OreVein
     oreChance: 0.33
     oreRarityPrototypeId: RandomOreDistributionStandard
+# endregion Scrap with Ore
 
-# Frontier - Mobs
+# region AsteroidRock Crabs
 - type: entity
   id: AsteroidRockQuartzCrabNF
   parent: AsteroidRockQuartzCrab
@@ -729,10 +783,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreUraniumCrabNF
+# endregion AsteroidRock Crabs
 
-# Bananium
-## Bananium CrabNFs
-
+# region Bananium Crabs
 - type: entity
   id: WallRockAndesiteBananiumCrabNF
   parent: WallRockAndesiteBananium
@@ -795,9 +848,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreBananiumCrabNF
+# endregion Bananium Crabs
 
-## Bananium golems
-
+# region Bananium Golems
 - type: entity
   id: WallRockAndesiteBananiumGolem
   parent: WallRockAndesiteBananium
@@ -860,10 +913,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreBananiumGolem
+# endregion Bananium Golems
 
-# Coal
-## Coal crabs
-
+# region Coal Crabs
 - type: entity
   id: WallRockAndesiteCoalCrabNF
   parent: WallRockAndesiteCoal
@@ -926,9 +978,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreCoalCrabNF
+# endregion Coal Crabs
 
-## Coal golems
-
+# region Coal Golems
 - type: entity
   id: WallRockAndesiteCoalGolem
   parent: WallRockAndesiteCoal
@@ -991,10 +1043,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreCoalGolem
+# endregion Coal Golems
 
-# Gold
-## Gold crabs
-
+# region Gold Crabs
 - type: entity
   id: WallRockAndesiteGoldCrabNF
   parent: WallRockAndesiteGold
@@ -1057,9 +1108,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreGoldCrabNF
+# endregion Gold Crabs
 
-## Gold golems
-
+# region Gold Golems
 - type: entity
   id: WallRockAndesiteGoldGolem
   parent: WallRockAndesiteGold
@@ -1122,10 +1173,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreGoldGolem
+# endregion Gold Golems
 
-# Iron. Steel?
-## Iron crabs
-
+# region Iron Crabs
 - type: entity
   id: WallRockAndesiteIronCrabNF
   parent: WallRockAndesiteTin
@@ -1179,9 +1229,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreIronCrabNF
+# endregion Iron Crabs
 
-## Iron golems
-
+# region Iron Golems
 - type: entity
   id: WallRockAndesiteIronGolem
   parent: WallRockAndesiteTin
@@ -1244,10 +1294,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreIronGolem
+# endregion Iron Golems
 
-# Plasma
-## Plasma crabs
-
+# region Plasma Crabs
 - type: entity
   id: WallRockAndesitePlasmaCrabNF
   parent: WallRockAndesitePlasma
@@ -1310,9 +1359,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OrePlasmaCrabNF
+# endregion Plasma Crabs
 
-## Plasma golems
-
+# region Plasma Golems
 - type: entity
   id: WallRockAndesitePlasmaGolem
   parent: WallRockAndesitePlasma
@@ -1375,10 +1424,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OrePlasmaGolem
+# endregion Plasma Golems
 
-# Quartz
-## Quartz crabs
-
+# region Quartz Crabs
 - type: entity
   id: WallRockAndesiteQuartzCrabNF
   parent: WallRockAndesiteQuartz
@@ -1432,9 +1480,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreQuartzCrabNF
+# endregion Quartz Crabs
 
-## Quartz golems
-
+# region Quartz Golems
 - type: entity
   id: WallRockAndesiteQuartzGolem
   parent: WallRockAndesiteQuartz
@@ -1497,10 +1545,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreQuartzGolem
+# endregion Quartz Golems
 
-# Salt
-## Salt crabs
-
+# region Salt Crabs
 - type: entity
   id: WallRockAndesiteSaltCrabNF
   parent: WallRockAndesiteSalt
@@ -1563,9 +1610,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreSaltCrabNF
+# endregion Salt Crabs
 
-## Salt golems
-
+# region Salt Golems
 - type: entity
   id: WallRockAndesiteSaltGolem
   parent: WallRockAndesiteSalt
@@ -1628,10 +1675,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreSaltGolem
+# endregion Salt Golems
 
- # Silver
-## Silver crabs
-
+# region Silver Crabs
 - type: entity
   id: WallRockAndesiteSilverCrabNF
   parent: WallRockAndesiteSilver
@@ -1685,9 +1731,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreSilverCrabNF
+# endregion Silver Crabs
 
-## Silver golems
-
+# region Silver Golems
 - type: entity
   id: WallRockAndesiteSilverGolem
   parent: WallRockAndesiteSilver
@@ -1750,10 +1796,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreSilverGolem
+# endregion Silver Golems
 
- # Uranium
-## Uranium crabs
-
+# region Uranium Crabs
 - type: entity
   id: WallRockAndesiteUraniumCrabNF
   parent: WallRockAndesiteUranium
@@ -1807,9 +1852,9 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreUraniumCrabNF
+# endregion Uranium Crabs
 
-## Uranium golems
-
+# region Uranium Golems
 - type: entity
   id: WallRockAndesiteUraniumGolem
   parent: WallRockAndesiteUranium
@@ -1872,4 +1917,4 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreUraniumGolem
-
+#endregion Uranium Golems
