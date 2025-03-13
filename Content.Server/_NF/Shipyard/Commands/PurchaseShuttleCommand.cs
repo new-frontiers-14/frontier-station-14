@@ -27,7 +27,7 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
         var shuttlePath = args[1];
         var system = _entityManager.GetEntitySystem<ShipyardSystem>();
         var station = new EntityUid(stationId);
-        system.TryPurchaseShuttle(station, new ResPath(shuttlePath), out _);
+        system.TryPurchaseShuttle(station, new ResPath(shuttlePath), out _, out _);
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)

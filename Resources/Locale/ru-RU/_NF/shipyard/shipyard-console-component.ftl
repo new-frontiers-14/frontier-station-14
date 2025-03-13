@@ -5,6 +5,7 @@ shipyard-console-menu-title = Меню Верфи
 shipyard-console-menu-listing-free = Бесплатно
 shipyard-console-docking = { $owner } ваш корабль - { $vessel } прибыл.
 shipyard-console-leaving = Корабль { $vessel } капитана { $owner } был продан { $player }.
+shipyard-console-docking-port = { $owner } ваш корабль - { $vessel } прибыл. Ваш док - { $dock }.
 shipyard-console-docking-secret = Обнаружен вражеский корабль, заходящий сектор.
 shipyard-console-leaving-secret = Обнаружен вражеский шаттл, покидающий сектор.
 shipyard-commands-purchase-desc = Доставляет шаттл к стыковочным докам станции.

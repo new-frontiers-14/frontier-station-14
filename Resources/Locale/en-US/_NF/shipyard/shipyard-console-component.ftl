@@ -4,6 +4,7 @@ shipyard-console-menu-title = Shipyard Menu
 shipyard-console-menu-listing-free = Free
 shipyard-console-docking = {$owner} shuttle {$vessel} en route.
 shipyard-console-leaving = {$owner} shuttle {$vessel} sold by {$player}.
+shipyard-console-docking-port = {$owner} shuttle { $vessel } en route. Destination dock is { $dock }.
 shipyard-console-docking-secret = Unregistered vessel detected entering your sector.
 shipyard-console-leaving-secret = Unregistered vessel detected leaving your sector.
 shipyard-commands-purchase-desc = Spawns and FTL docks a specified shuttle from a grid file.
