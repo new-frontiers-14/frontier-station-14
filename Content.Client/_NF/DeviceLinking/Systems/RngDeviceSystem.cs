@@ -4,23 +4,60 @@ using Content.Shared._NF.DeviceLinking.Events;
 using Robust.Client.GameObjects;
 using Robust.Shared.Timing;
 using Content.Shared.Popups;
+using Content.Shared.Examine;
 using static Content.Shared._NF.DeviceLinking.Visuals.RngDeviceVisuals;
+using Content.Shared.UserInterface;
+using Content.Shared._NF.DeviceLinking.Systems;
 
 namespace Content.Client._NF.DeviceLinking.Systems;
 
 /// <summary>
 /// Client-side system for RNG device functionality
 /// </summary>
-public sealed class RngDeviceSystem : EntitySystem
+public sealed class RngDeviceSystem : SharedRngDeviceSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+
+    private Dictionary<EntityUid, RngDeviceBoundUserInterfaceState> _lastStates = new();
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<RngDeviceVisualsComponent, RollEvent>(OnRoll);
+        SubscribeLocalEvent<RngDeviceVisualsComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<RngDeviceVisualsComponent, BoundUIOpenedEvent>(OnUIOpened);
+    }
+
+    private void OnUIOpened(Entity<RngDeviceVisualsComponent> ent, ref BoundUIOpenedEvent args)
+    {
+        if (args.UiKey is not RngDeviceUiKey.Key)
+            return;
+
+        // Store the UI state for later use in examine
+        if (_ui.TryGetUiState<RngDeviceBoundUserInterfaceState>(args.Entity, RngDeviceUiKey.Key, out var state) &&
+            state is RngDeviceBoundUserInterfaceState rngState)
+        {
+            _lastStates[args.Entity] = rngState;
+        }
+    }
+
+    private void OnExamine(Entity<RngDeviceVisualsComponent> ent, ref ExaminedEvent args)
+    {
+        // Try to get the last UI state for this entity
+        if (!_lastStates.TryGetValue(ent, out var state))
+            return;
+
+        // Use args.PushGroup to organize the examine text
+        using (args.PushGroup("RngDevice"))
+        {
+            args.PushMarkup(Loc.GetString("rng-device-examine-last-roll", ("roll", state.LastRoll)));
+
+            if (state.Outputs == 2)  // Only show port info for percentile die
+                args.PushMarkup(Loc.GetString("rng-device-examine-last-port", ("port", state.LastOutputPort)));
+        }
     }
 
     private void OnRoll(Entity<RngDeviceVisualsComponent> ent, ref RollEvent args)
@@ -37,20 +74,8 @@ public sealed class RngDeviceSystem : EntitySystem
     /// </summary>
     private void PredictRoll(Entity<RngDeviceVisualsComponent> ent, int outputs, EntityUid? user = null)
     {
-        // Use current tick as seed for deterministic randomness
-        var rand = new System.Random((int)_timing.CurTick.Value);
-
-        int roll;
-
-        if (outputs == 2)
-        {
-            // For percentile dice, roll 1-100
-            roll = rand.Next(1, 101);
-        }
-        else
-        {
-            roll = rand.Next(1, outputs + 1);
-        }
+        // Use the shared GenerateRoll method
+        var (roll, _) = GenerateRoll(outputs);
 
         // Update visuals with the predicted roll
         UpdateVisualState(ent, outputs, roll);

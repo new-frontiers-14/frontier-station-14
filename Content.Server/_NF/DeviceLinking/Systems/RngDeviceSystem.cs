@@ -21,10 +21,11 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Robust.Shared.Player;
 using Robust.Shared.Map;
+using Content.Shared._NF.DeviceLinking.Systems;
 
 namespace Content.Server._NF.DeviceLinking.Systems;
 
-public sealed class RngDeviceSystem : EntitySystem
+public sealed class RngDeviceSystem : SharedRngDeviceSystem
 {
     [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -148,23 +149,8 @@ public sealed class RngDeviceSystem : EntitySystem
 
     private (int roll, int outputPort) PerformRoll(EntityUid uid, RngDeviceComponent component)
     {
-        // Use current tick as seed for deterministic randomness
-        var rand = new System.Random((int)_timing.CurTick.Value);
-
-        int roll;
-        int outputPort;
-
-        if (component.Outputs == 2)
-        {
-            // For percentile dice, roll 1-100
-            roll = rand.Next(1, 101);
-            outputPort = roll <= component.TargetNumber ? 1 : 2;
-        }
-        else
-        {
-            roll = rand.Next(1, component.Outputs + 1);
-            outputPort = roll;
-        }
+        // Use the shared GenerateRoll method
+        var (roll, outputPort) = GenerateRoll(component.Outputs, component.TargetNumber);
 
         // Store the values for future reference
         component.LastRoll = roll;

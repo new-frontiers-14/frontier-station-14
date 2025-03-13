@@ -91,7 +91,4 @@ namespace Content.Shared._NF.DeviceLinking.Components
             TargetNumber = targetNumber;
         }
     }
-
-
-
 }
