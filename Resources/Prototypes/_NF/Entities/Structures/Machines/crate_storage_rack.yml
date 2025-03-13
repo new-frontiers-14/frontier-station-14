@@ -29,9 +29,9 @@
 
 - type: entity
   parent: BaseStructure
-  id: CrateStorageRackSuperstructure
-  name: crate storage rack frame
-  description: Like a shelf, but flat and useless!
+  id: CrateStorageRackBase
+  name: crate storage rack base
+  description: All racks start from humble beginnings.
   components:
   - type: Sprite
     sprite: _NF/Structures/Storage/crate_storage_rack.rsi
@@ -40,12 +40,28 @@
     - state: frame
   - type: Construction
     graph: CrateStorageRack
-    node: frame
+    node: base
     defaultTarget: rack
 
 - type: entity
   parent: BaseStructure
-  id: CrateStorageRackSuperstructure
+  id: CrateStorageRackFrameEmpty
+  name: crate storage rack frame
+  description: Like a half-built shelf, but bigger!
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/crate_storage_rack.rsi
+    snapCardinals: true
+    layers:
+    - state: tallframe
+  - type: Construction
+    graph: CrateStorageRack
+    node: emptyframe
+    defaultTarget: rack
+
+- type: entity
+  parent: BaseStructure
+  id: CrateStorageRackFrame
   name: crate storage rack frame
   description: Like a half-built shelf, but bigger!
   components:
@@ -56,5 +72,5 @@
     - state: superstructure
   - type: Construction
     graph: CrateStorageRack
-    node: superstructure
+    node: frame
     defaultTarget: rack

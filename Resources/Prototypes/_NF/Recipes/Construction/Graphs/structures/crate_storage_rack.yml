@@ -4,59 +4,79 @@
   graph:
   - node: start
     edges:
-    - to: frame
+    - to: base
       steps:
       - material: Steel
         amount: 2
+        doAfter: 1
     
-  - node: frame
-    entity: CrateStorageRackSuperstructure
+  - node: base
+    entity: CrateStorageRackBase
     edges:
-    - to: superstructure
+    - to: emptyframe
       steps:
-      - material: MetalRod1
+      - tool: Anchoring
+        doAfter: 1
+      - material: MetalRod
         amount: 4
-      - tool: Welding
-        doAfter: 3
+        doAfter: 1
     - to: start
       steps:
-      - tool: Wrenching
+      - tool: Prying
         doAfter: 1
       completed:
       - !type:SpawnPrototype
         prototype: SheetSteel1
         amount: 2
       - !type:DeleteEntity
+  
+  - node: emptyframe
+    entity: CrateStorageRackFrameEmpty
+    edges:
+    - to: frame
+      steps:
+      - tool: Welding
+        doAfter: 3
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    - to: base
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:SpawnPrototype
+        prototype: MetalRod1
+        amount: 4
     
-  - node: superstructure
-    entity: CrateStorageRackSuperstructure
+  - node: frame
+    entity: CrateStorageRackFrame
     edges:
     - to: rack
       steps:
-      - material: Steel
-        amount: 2
-      - tool: Wrenching
+      - tool: Anchoring
         doAfter: 2
-    - to: frame
+      - material: Steel
+        amount: 1
+        doAfter: 1
+    - to: base
       steps:
       - tool: Welding
         doAfter: 3
       completed:
       - !type:SpawnPrototype
-        prototype: MetalRod1
+        prototype: PartRodMetal1
         amount: 4
-      - !type:DeleteEntity
 
   - node: rack
     entity: CrateStorageRack
     edges:
-    - to: superstructure
+    - to: frame
       steps:
-      - tool: Wrenching
+      - tool: Anchoring
         doAfter: 2
       completed:
       - !type:SpawnPrototype
         prototype: SheetSteel1
         amount: 2
       - !type:EmptyAllContainers
-      - !type:DeleteEntity
