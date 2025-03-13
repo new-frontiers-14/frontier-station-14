@@ -1,24 +1,26 @@
 - type: entity
-  id: MechClanker
+  id: MechEmu
   parent: BaseMech
-  name: Clanker
-  description: An older model of cargo hauler mech, this lightweight chassis has a single integral power fork module.
+  name: Emu PLU
+  description: An older model of cargo hauler mech, the EMU Power Loading Unit has a single integral power fork module.
   components:
   - type: Sprite
     drawdepth: Mobs
     noRot: true
     color: "#44ff00"
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: _NF/Objects/Specific/Mech/mecha.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: ripley
+      state: emu
   - type: FootstepModifier
     footstepSoundCollection:
-      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      path: _NF/Audio/Mecha/mechstep.ogg
+      params:
+        volume: -5
   - type: Mech
-    baseState: ripley
-    openState: ripley-open
-    brokenState: ripley-broken
+    baseState: emu
+    openState: emu-open
+    brokenState: emu-broken
     mechToPilotDamageMultiplier: 0.75
     pilotWhitelist:
       components:
@@ -34,12 +36,12 @@
       types:
         Blunt: 10
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.5
-    baseSprintSpeed: 5.5
+    baseWalkSpeed: 3
+    baseSprintSpeed: 5
 
 - type: entity
-  id: MechClankerBattery
-  parent: MechClanker
+  id: MechEmuBattery
+  parent: MechEmu
   suffix: Battery
   components:
   - type: ContainerFill
