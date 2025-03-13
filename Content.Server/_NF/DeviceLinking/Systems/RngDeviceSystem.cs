@@ -34,8 +34,6 @@ public sealed class RngDeviceSystem : EntitySystem
 
     private readonly NetworkPayload _edgeModePayload = new();
 
-    private static readonly int[] ValidOutputCounts = { 2, 4, 6, 8, 10, 12, 20 };
-
     public override void Initialize()
     {
         base.Initialize();
@@ -98,10 +96,10 @@ public sealed class RngDeviceSystem : EntitySystem
         }
         _deviceLink.EnsureSourcePorts(ent.Owner, ports);
 
-        // Initialize the state prefix if it's not already set
+        // Ensure the state prefix is set in the component
         if (string.IsNullOrEmpty(ent.Comp.StatePrefix))
         {
-            ent.Comp.StatePrefix = GetStatePrefix(ent.Comp);
+            throw new InvalidOperationException($"StatePrefix not set for RngDevice with {ent.Comp.Outputs} outputs. StatePrefix must be set in the prototype.");
         }
     }
 
@@ -210,24 +208,6 @@ public sealed class RngDeviceSystem : EntitySystem
             else
                 _deviceLink.InvokePort(uid, port, _edgeModePayload);
         }
-    }
-
-    // Checks if the output count is valid
-    private static bool IsValidOutputCount(int outputs)
-    {
-        return Array.IndexOf(ValidOutputCounts, outputs) >= 0;
-    }
-
-    // Gets the state prefix for visual updates
-    private string GetStatePrefix(RngDeviceComponent component)
-    {
-        if (!IsValidOutputCount(component.Outputs))
-            return "";
-
-        if (component.Outputs == 2)
-            return "percentile";
-
-        return $"d{component.Outputs}";
     }
 
     // Gets the ProtoId for the specified output port number
