@@ -1,0 +1,75 @@
+- type: constructionGraph
+  id: Sink
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: sinkEmpty
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 1
+        - to: sinkWide
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 1
+        - to: sinkStemless
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 1
+    - node: sinkEmpty
+      entity: SinkEmpty
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 5
+            - !type:EmptyAllContainers {}
+            - !type:DestroyEntity {}
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          steps:
+            - tool: Welding
+              doAfter: 2
+    - node: sinkWide
+      entity: SinkWide
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 5
+            - !type:EmptyAllContainers {}
+            - !type:DestroyEntity {}
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          steps:
+            - tool: Welding
+              doAfter: 2
+    - node: sinkStemless
+      entity: SinkStemless
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 5
+            - !type:EmptyAllContainers {}
+            - !type:DestroyEntity {}
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          steps:
+            - tool: Welding
+              doAfter: 2

@@ -1,0 +1,50 @@
+- type: construction
+  id: SinkEmpty
+  name: sink
+  description: The faucets have been tightened to the maximum possible torque but are still known to drip.
+  graph: Sink
+  startNode: start
+  targetNode: sinkEmpty
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/sink.rsi
+    state: sink_stem
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SinkWide
+  name: wide sink
+  description: The faucets have been tightened to the maximum possible torque but are still known to drip.
+  graph: Sink
+  startNode: start
+  targetNode: sinkWide
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/sink.rsi
+    state: sink_wide
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SinkStemless
+  name: sink stemless
+  description: The faucets have been tightened to the maximum possible torque but are still known to drip.
+  graph: Sink
+  startNode: start
+  targetNode: sinkStemless
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/sink.rsi
+    state: sink
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
