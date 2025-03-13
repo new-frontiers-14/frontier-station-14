@@ -4,6 +4,7 @@ using Content.Shared._NF.DeviceLinking.Components;
 using Robust.Client.GameObjects;
 using Content.Client._NF.DeviceLinking.UI;
 using Robust.Client.UserInterface;
+using Content.Shared.UserInterface;
 
 namespace Content.Client._NF.DeviceLinking.UI;
 
@@ -44,14 +45,13 @@ public sealed class RngDeviceBoundUserInterface(EntityUid owner, Enum uiKey) : B
     {
         base.UpdateState(state);
 
-        if (_window == null || !EntMan.TryGetComponent<RngDeviceComponent>(Owner, out var component))
+        if (_window == null || state is not RngDeviceBoundUserInterfaceState cast)
             return;
 
-        _window.SetDeviceType(component.StatePrefix);
-        _window.SetMuted(component.Muted);
-        _window.SetEdgeMode(component.EdgeMode);
-        _window.SetTargetNumber(component.TargetNumber);
-        _window.SetTargetNumberVisibility(component.Outputs == 2);
+        _window.SetMuted(cast.Muted);
+        _window.SetEdgeMode(cast.EdgeMode);
+        _window.SetTargetNumber(cast.TargetNumber);
+        _window.SetTargetNumberVisibility(cast.Outputs == 2);
     }
 
     protected override void Dispose(bool disposing)

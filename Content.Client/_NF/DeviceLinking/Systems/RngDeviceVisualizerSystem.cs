@@ -1,9 +1,10 @@
 using Content.Shared._NF.DeviceLinking;
 using Content.Shared._NF.DeviceLinking.Components;
+using Content.Shared._NF.DeviceLinking.Visuals;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
-using static Content.Shared._NF.DeviceLinking.RngDeviceVisuals;
+using static Content.Shared._NF.DeviceLinking.Visuals.RngDeviceVisuals;
 
 namespace Content.Client._NF.DeviceLinking.Systems;
 
