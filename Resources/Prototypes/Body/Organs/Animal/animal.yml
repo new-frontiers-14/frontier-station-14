@@ -5,7 +5,7 @@
   components:
   - type: Organ
   - type: Food
-#    quality: Nasty # Frontier
+  #    quality: Nasty # Frontier
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
   - type: StaticPrice
@@ -19,10 +19,10 @@
           Quantity: 5
   - type: FlavorProfile
     flavors:
-      - chicken # everything kinda tastes like chicken
+    - chicken # everything kinda tastes like chicken
   - type: Tag
     tags:
-      - Meat
+    - Meat
 
 - type: entity
   id: BaseAnimalOrgan
@@ -42,6 +42,7 @@
     - state: lung-l
     - state: lung-r
   - type: Organ
+    slotId: lungs # Shitmed
   - type: Lung
   - type: Metabolizer
     removeEmpty: true
@@ -74,6 +75,7 @@
   - type: Sprite
     state: stomach
   - type: Organ
+    slotId: stomach # Shitmed
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -117,12 +119,19 @@
   - type: Sprite
     state: liver
   - type: Organ
+    slotId: liver # Shitmed
   - type: Metabolizer
     maxReagents: 1
     metabolizerTypes: [ Animal ]
     groups:
     - id: Alcohol
       rateModifier: 0.1
+  - type: Liver # Shitmed
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Liver
   - type: Item
     size: Small
     heldPrefix: liver
@@ -136,6 +145,7 @@
   - type: Sprite
     state: heart-on
   - type: Organ
+    slotId: heart # Shitmed
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Animal ]
@@ -144,6 +154,12 @@
     - id: Cryogenic # Frontier
     - id: Poison
     - id: Narcotic
+  - type: Heart # Shitmed
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Heart
   - type: Item
     size: Small
     heldPrefix: heart
@@ -159,6 +175,7 @@
     - state: kidney-l
     - state: kidney-r
   - type: Organ
+    slotId: kidneys # Shitmed
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [ Animal ]

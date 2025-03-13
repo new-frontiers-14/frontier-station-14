@@ -4,41 +4,41 @@
   name: sentient slime core
   description: "The source of incredible, unending gooeyness."
   components:
-    - type: Sprite
-      sprite: Mobs/Species/Slime/organs.rsi
-      state: brain-slime
-    - type: Stomach
-    - type: Metabolizer
-      maxReagents: 6
-      metabolizerTypes: [ Slime ]
-      removeEmpty: true
-      groups:
-        - id: Food
-        - id: Drink
-        - id: Medicine
-        - id: Cryogenic # Frontier
-        - id: Poison
-        - id: Narcotic
-        - id: Alcohol
-          rateModifier: 0.25
-    - type: SolutionContainerManager
-      solutions:
-        stomach:
-          maxVol: 50.0
-        food:
-          maxVol: 5
-          reagents:
-          - ReagentId: GreyMatter
-            Quantity: 5
-        organ:
-          reagents:
-          - ReagentId: Slime
-            Quantity: 10
-    - type: Item
-      size: Small
-      heldPrefix: brain
+  - type: Sprite
+    sprite: Mobs/Species/Slime/organs.rsi
+    state: brain-slime
+  - type: Stomach
+  - type: Metabolizer
+    maxReagents: 6
+    metabolizerTypes: [ Slime ]
+    removeEmpty: true
+    groups:
+    - id: Food
+    - id: Drink
+    - id: Medicine
+    - id: Cryogenic # Frontier
+    - id: Poison
+    - id: Narcotic
+    - id: Alcohol
+      rateModifier: 0.25
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50.0
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: GreyMatter
+          Quantity: 5
+      organ:
+        reagents:
+        - ReagentId: Slime
+          Quantity: 10
+  - type: Item
+    size: Small
+    heldPrefix: brain
 
-      
+
 - type: entity
   id: OrganSlimeLungs
   parent: BaseHumanOrgan
@@ -48,8 +48,10 @@
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
     layers:
-      - state: lung-l-slime
-      - state: lung-r-slime
+    - state: lung-l-slime
+    - state: lung-r-slime
+  - type: Organ # Shitmed
+    slotId: lungs
   - type: Lung
     alert: LowNitrogen
   - type: Metabolizer

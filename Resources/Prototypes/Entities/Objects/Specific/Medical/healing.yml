@@ -29,22 +29,22 @@
     heldPrefix: ointment
   - type: Healing
     damageContainers:
-      - Biological
+    - Biological
     damage:
       types:
-        Heat: -5
-        Cold: -5
-        Shock: -5
-        Caustic: -1.5
+        Heat: -15
+        Cold: -15
+        Shock: -15
+        Caustic: -10 #Was 5 per type & 1.5 caustic, Buffed due to limb damage changes (Goobstation)
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
     healingEndSound:
       path: "/Audio/Items/Medical/ointment_end.ogg"
   - type: Stack
     stackType: Ointment
-    count: 10
+    count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
   - type: StackPrice
-    price: 5
+    price: 10 #Was 5, Buffed due to surgery changes (Goobstation)
 
 - type: entity
   id: Ointment1
@@ -80,22 +80,22 @@
     heldPrefix: regenerative-mesh
   - type: Healing
     damageContainers:
-      - Biological
+    - Biological
     damage:
       types:
-        Heat: -10
-        Cold: -10
-        Shock: -10
-        Caustic: -10
+        Heat: -20
+        Cold: -20
+        Shock: -20
+        Caustic: -20 #Was 10 per type, Buffed due to limb damage changes (Goobstation)
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
     healingEndSound:
       path: "/Audio/Items/Medical/ointment_end.ogg"
   - type: Stack
     stackType: RegenerativeMesh
-    count: 10
+    count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
   - type: StackPrice
-    price: 20
+    price: 40 #Was 20, Buffed due to limb damage changes (Goobstation)
 
 - type: entity
   id: OintmentAdvanced1
@@ -120,19 +120,19 @@
     state: brutepack
   - type: Healing
     damageContainers:
-      - Biological
+    - Biological
     damage:
       groups:
-        Brute: -15 # 5 for each type in the group
+        Brute: -45 # was 5 for each, Buffed due to limb damage changes (Goobstation)
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: Brutepack
-    count: 10
+    count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
   - type: StackPrice
-    price: 5
+    price: 10 #Was 5, Buffed due to limb damage changes (Goobstation)
 
 - type: entity
   id: Brutepack1
@@ -169,10 +169,10 @@
     storedRotation: -90
   - type: Healing
     damageContainers:
-      - Biological
+    - Biological
     damage:
       groups:
-        Brute: -30 # 10 for each type in the group
+        Brute: -60 # was 10 for each, now 20 for each type in the group, Buffed due to surgery changes (Goobstation)
     bloodlossModifier: -10 # a suture should stop ongoing bleeding
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -180,9 +180,9 @@
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: MedicatedSuture
-    count: 10
+    count: 15 #Was 10, Buffed due to surgery changes (Goobstation)
   - type: StackPrice
-    price: 20
+    price: 40 #Was 20, Buffed due to limb damage changes (Goobstation)
 
 - type: entity
   id: BrutepackAdvanced1
@@ -207,20 +207,20 @@
     state: bloodpack
   - type: Healing
     damageContainers:
-      - Biological
+    - Biological
     damage:
       types:
-        Bloodloss: -0.5 #lowers bloodloss damage
-    ModifyBloodLevel: 15 #restores about 5% blood per use on standard humanoids.
+        Bloodloss: -2.5 #lowers bloodloss damage, was .5 buffed to 5 due to Limb Damage Changes (Goobstation)
+    ModifyBloodLevel: 30 #used to restore 5% blood per use, now restores about 10% blood per use on standard Buffed due to Limb Damage Changes (Goobstation)
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: Bloodpack
-    count: 10
+    count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
   - type: StackPrice
-    price: 5 # Frontier 10<5
+    price: 20 #Was 10, Buffed due to limb damage changes (Goobstation)
 
 - type: entity
   parent: Bloodpack
@@ -236,25 +236,25 @@
   name: tourniquet
   description: Stops bleeding! Hopefully.
   components:
-    - type: Tag
-      tags:
-        - SecBeltEquip
-    - type: Sprite
-      state: tourniquet
-    - type: Healing
-      damageContainers:
-        - Biological
-      damage:
-        groups:
-          Brute: 5 # Tourniquets HURT!
-        types:
-          Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
-      bloodlossModifier: -10 # Tourniquets stop bleeding
-      delay: 0.5
-      healingBeginSound:
-        path: "/Audio/Items/Medical/brutepack_begin.ogg"
-      healingEndSound:
-        path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Tag
+    tags:
+    - SecBeltEquip
+  - type: Sprite
+    state: tourniquet
+  - type: Healing
+    damageContainers:
+    - Biological
+    damage:
+      groups:
+        Brute: 5 # Tourniquets HURT!
+      types:
+        Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
+    bloodlossModifier: -10 # Tourniquets stop bleeding
+    delay: 0.5
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
 
 - type: entity
   name: roll of gauze
@@ -273,11 +273,11 @@
     node: gauze
   - type: Healing
     damageContainers:
-      - Biological
+    - Biological
     damage:
       types:
-        Slash: -5
-        Piercing: -10
+        Slash: -15 # Was 5
+        Piercing: -20 # Was 10, Buffed due to limb damage changes (Goobstation)
     bloodlossModifier: -10
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -285,9 +285,9 @@
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: Gauze
-    count: 10
+    count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
   - type: StackPrice
-    price: 5 # Frontier 10<5
+    price: 20 #Was 10, Buffed due to limb damage changes (Goobstation)
 
 - type: entity
   id: Gauze1
@@ -317,7 +317,7 @@
     state: cream
   - type: Stack
     stackType: AloeCream
-    count: 10
+    count: 15 #Was 10, Buffed due to limb damage changes (Goobstation)
 
 - type: entity
   parent: BaseHealingItem
@@ -740,30 +740,30 @@
   parent: Pill
   id: PillAmbuzol
   components:
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Ambuzol
-              Quantity: 10
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Ambuzol
+          Quantity: 10
 
 - type: entity
   name: ambuzol plus pill
   parent: Pill
   id: PillAmbuzolPlus
   components:
-    - type: Pill
-      pillType: 2
-    - type: Sprite
-      state: pill3
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: AmbuzolPlus
-              Quantity: 5
+  - type: Pill
+    pillType: 2
+  - type: Sprite
+    state: pill3
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: AmbuzolPlus
+          Quantity: 5
 
 - type: entity
   parent: PillCanister
@@ -951,8 +951,8 @@
       injector:
         maxVol: 15
         reagents:
-          - ReagentId: Ambuzol
-            Quantity: 15
+        - ReagentId: Ambuzol
+          Quantity: 15
 
 - type: entity
   suffix: sigynate
@@ -966,8 +966,8 @@
       injector:
         maxVol: 15
         reagents:
-          - ReagentId: Sigynate
-            Quantity: 15
+        - ReagentId: Sigynate
+          Quantity: 15
 
 - type: entity
   suffix: ethylredoxrazine
@@ -981,8 +981,8 @@
       injector:
         maxVol: 15
         reagents:
-          - ReagentId: Ethylredoxrazine
-            Quantity: 15
+        - ReagentId: Ethylredoxrazine
+          Quantity: 15
 
 - type: entity
   suffix: phalanximine
@@ -996,8 +996,8 @@
       injector:
         maxVol: 15
         reagents:
-          - ReagentId: Phalanximine
-            Quantity: 15
+        - ReagentId: Phalanximine
+          Quantity: 15
 
 - type: entity
   suffix: saline
@@ -1011,8 +1011,8 @@
       injector:
         maxVol: 15
         reagents:
-          - ReagentId: Saline
-            Quantity: 15
+        - ReagentId: Saline
+          Quantity: 15
 
 #this is where all the syringes are so i didn't know where to put it
 - type: entity

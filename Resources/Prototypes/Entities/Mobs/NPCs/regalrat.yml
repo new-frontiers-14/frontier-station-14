@@ -50,7 +50,7 @@
   - type: MeleeWeapon
     altDisarm: false
     soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh1.ogg
+      path: /Audio/Weapons/Xeno/alien_claw_flesh1.ogg
     angle: 0
     animation: WeaponArcClaw
     damage:
@@ -60,6 +60,11 @@
   - type: Body
     prototype: Rat
     requiredLegs: 1 # TODO: More than 1 leg
+  - type: SurgeryTarget # Shitmed
+  - type: UserInterface # Shitmed
+    interfaces:
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
   - type: Hunger # probably should be prototyped
     thresholds:
       Overfed: 200
@@ -98,8 +103,8 @@
   - type: GhostTakeoverAvailable
   - type: Tag
     tags:
-      - CannotSuicide
-      - FootstepSound
+    - CannotSuicide
+    - FootstepSound
   - type: NoSlip
   - type: RatKing
     hungerPerArmyUse: 25
@@ -148,7 +153,7 @@
   - type: MeleeWeapon
     altDisarm: false
     soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh2.ogg
+      path: /Audio/Weapons/Xeno/alien_claw_flesh2.ogg
     angle: 0
     attackRate: 0.75
     animation: WeaponArcFist
@@ -235,7 +240,7 @@
     critThreshold: 60
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Weapons/bladeslice.ogg
+      path: /Audio/Weapons/bladeslice.ogg
     angle: 0
     animation: WeaponArcClaw
     damage:
@@ -282,8 +287,8 @@
     wilhelmProbability: 0.001
   - type: Tag
     tags:
-      - CannotSuicide
-      - FootstepSound
+    - CannotSuicide
+    - FootstepSound
   - type: NoSlip
   - type: MobPrice
     price: 500 # rat wealth
@@ -350,7 +355,7 @@
       state: stay
     event:
       !type:RatKingOrderActionEvent
-        type: Stay
+      type: Stay
     priority: 5
 
 - type: entity

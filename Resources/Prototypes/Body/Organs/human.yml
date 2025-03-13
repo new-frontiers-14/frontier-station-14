@@ -7,7 +7,7 @@
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
   - type: Food
-#    quality: Nasty # Frontier
+  #    quality: Nasty # Frontier
   - type: Extractable
     grindableSolutionName: organ
   - type: SolutionContainerManager
@@ -23,10 +23,10 @@
           Quantity: 5
   - type: FlavorProfile
     flavors:
-      - people
+    - people
   - type: Tag
     tags:
-      - Meat
+    - Meat
 
 - type: entity
   id: BaseHumanOrgan
@@ -44,6 +44,7 @@
   - type: Sprite
     state: brain
   - type: Organ
+    slotId: brain # Shitmed Change
   - type: Input
     context: "ghost"
   - type: Brain
@@ -53,7 +54,7 @@
   - type: BadFood
   - type: Tag
     tags:
-      - Meat
+    - Meat
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -67,7 +68,7 @@
           Quantity: 5
   - type: FlavorProfile
     flavors:
-      - people
+    - people
   - type: FoodSequenceElement
     entries:
       Burger: Brain
@@ -75,17 +76,20 @@
   - type: Item
     size: Small
     heldPrefix: brain
-  
+
 - type: entity
   id: OrganHumanEyes
   parent: BaseHumanOrgan
   name: eyes
   description: "I see you!"
   components:
+  - type: Organ # Shitmed Change
+    slotId: eyes # Shitmed Change
+  - type: Eyes # Shitmed Change
   - type: Sprite
     layers:
-      - state: eyeball-l
-      - state: eyeball-r
+    - state: eyeball-l
+    - state: eyeball-r
   - type: Item
     size: Small
     heldPrefix: eyeballs
@@ -118,6 +122,7 @@
   components:
   - type: Sprite
     state: ears
+  - type: Ears # Shitmed Change
 
 - type: entity
   id: OrganHumanLungs
@@ -125,10 +130,12 @@
   name: lungs
   description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier."
   components:
+  - type: Organ # Shitmed Change
+    slotId: lungs # Shitmed Change
   - type: Sprite
     layers:
-      - state: lung-l
-      - state: lung-r
+    - state: lung-l
+    - state: lung-r
   - type: Item
     size: Small
     heldPrefix: lungs
@@ -162,6 +169,9 @@
   name: heart
   description: "I feel bad for the heartless bastard who lost this."
   components:
+  - type: Heart # Shitmed Change
+  - type: Organ # Shitmed Change
+    slotId: heart # Shitmed Change
   - type: Sprite
     state: heart-on
   # The heart 'metabolizes' medicines and poisons that aren't filtered out by other organs.
@@ -185,6 +195,8 @@
   name: stomach
   description: "Gross. This is hard to stomach."
   components:
+  - type: Organ # Shitmed Change
+    slotId: stomach # Shitmed Change
   - type: Sprite
     state: stomach
   - type: Item
@@ -217,6 +229,9 @@
   name: liver
   description: "Pairing suggestion: chianti and fava beans."
   components:
+  - type: Liver # Shitmed Change
+  - type: Organ # Shitmed Change
+    slotId: liver # Shitmed Change
   - type: Sprite
     state: liver
   - type: Item
@@ -237,8 +252,8 @@
   components:
   - type: Sprite
     layers:
-      - state: kidney-l
-      - state: kidney-r
+    - state: kidney-l
+    - state: kidney-r
   - type: Item
     size: Small
     heldPrefix: kidneys

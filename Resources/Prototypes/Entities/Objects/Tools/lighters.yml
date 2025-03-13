@@ -14,8 +14,8 @@
       collection: lighterOffSounds
   - type: ItemToggleMeleeWeapon
     activatedDamage:
-        types:
-            Heat: 1
+      types:
+        Heat: 1
   - type: ItemToggleSize
     activatedSize: Small
   - type: ItemToggleHot
@@ -33,18 +33,18 @@
   - type: Appearance
   - type: RandomSprite
     available:
-      - skin:
-          basic_icon_base-1: ""
-          basic_icon_base-2: ""
-          basic_icon_base-3: ""
-          basic_icon_base-4: ""
-          basic_icon_base-5: ""
-          basic_icon_base-6: ""
-          basic_icon_base-7: ""
-          basic_icon_base-8: ""
-          basic_icon_base-9: ""
-          basic_icon_base-10: ""
-          basic_icon_base-11: ""
+    - skin:
+        basic_icon_base-1: ""
+        basic_icon_base-2: ""
+        basic_icon_base-3: ""
+        basic_icon_base-4: ""
+        basic_icon_base-5: ""
+        basic_icon_base-6: ""
+        basic_icon_base-7: ""
+        basic_icon_base-8: ""
+        basic_icon_base-9: ""
+        basic_icon_base-10: ""
+        basic_icon_base-11: ""
   - type: GenericVisualizer
     visuals:
       enum.ToggleVisuals.Toggled:
@@ -91,6 +91,13 @@
   - type: StaticPrice # Frontier
     price: 15 # Frontier
   - type: NFLighter # Frontier
+  - type: Cautery # Shitmed
+    speed: 0.45
+  - type: SurgeryTool # Shitmed
+    startSound:
+      collection: lighterOnSounds
+    endSound:
+      collection: lighterOffSounds
 
 - type: entity
   name: cheap lighter
@@ -111,8 +118,8 @@
       map: [ "flame" ]
   - type: RandomSprite
     available:
-      - skin:
-          cheap_icon_base: Rainbow
+    - skin:
+        cheap_icon_base: Rainbow
   - type: SolutionContainerManager
     solutions:
       Welder:
@@ -154,8 +161,8 @@
         volume: -5
   - type: ItemToggleMeleeWeapon
     activatedDamage:
-        types:
-            Heat: 1
+      types:
+        Heat: 1
   - type: ItemToggleSize
     activatedSize: Small
   - type: ItemToggleHot

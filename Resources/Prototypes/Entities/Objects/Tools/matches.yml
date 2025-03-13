@@ -25,7 +25,7 @@
   - type: Sprite
     sprite: Objects/Tools/matches.rsi
     layers:
-      - state: match_unlit
+    - state: match_unlit
   - type: Item
     sprite: Objects/Tools/matches.rsi
     heldPrefix: unlit
@@ -45,6 +45,13 @@
     burntIcon: match_burnt
   - type: StaticPrice
     price: 2
+  - type: Cautery # Shitmed
+    speed: 0.2
+  - type: SurgeryTool # Shitmed
+    startSound:
+      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
+    endSound:
+      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
 
 - type: entity
   parent: Matchstick
@@ -53,7 +60,7 @@
   components:
   - type: Sprite
     layers:
-      - state: match_burnt
+    - state: match_burnt
   - type: Matchstick
     state: Burnt
   - type: StaticPrice
@@ -93,8 +100,8 @@
     - 0,0,2,1
   - type: StorageFill
     contents:
-      - id: Matchstick
-        amount: 6
+    - id: Matchstick
+      amount: 6
   - type: ItemCounter
     count:
       tags: [Matchstick]

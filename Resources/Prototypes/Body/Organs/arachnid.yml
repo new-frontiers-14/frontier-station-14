@@ -23,7 +23,7 @@
           Quantity: 5
   - type: Tag
     tags:
-      - Meat
+    - Meat
 
 - type: entity
   id: OrganArachnidStomach
@@ -34,6 +34,8 @@
   - type: Sprite
     sprite: Mobs/Species/Arachnid/organs.rsi
     state: stomach
+  - type: Organ # Shitmed
+    slotId: stomach
   - type: Item
     size: Small
     heldPrefix: stomach
@@ -59,8 +61,10 @@
   components:
   - type: Sprite
     layers:
-      - state: lung-l
-      - state: lung-r
+    - state: lung-l
+    - state: lung-r
+  - type: Organ # Shitmed
+    slotId: lungs
   - type: Lung
   - type: Metabolizer
     updateInterval: 1.5
@@ -106,6 +110,14 @@
     - id: Cryogenic # Frontier
     - id: Poison
     - id: Narcotic
+  - type: Organ # Shitmed
+    slotId: heart
+  - type: Heart # Shitmed: Lets you transplant spider hearts into other species
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Heart
 
 - type: entity
   id: OrganArachnidLiver
@@ -126,6 +138,14 @@
     groups:
     - id: Alcohol
       rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
+  - type: Organ # Shitmed
+    slotId: liver
+  - type: Liver # Shitmed
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Liver
 
 - type: entity
   id: OrganArachnidKidneys
@@ -136,8 +156,8 @@
   components:
   - type: Sprite
     layers:
-      - state: kidney-l
-      - state: kidney-r
+    - state: kidney-l
+    - state: kidney-r
   # The kidneys just remove anything that doesn't currently have any metabolisms, as a stopgap.
   - type: Item
     size: Small
@@ -156,8 +176,16 @@
   components:
   - type: Sprite
     layers:
-      - state: eyeball-l
-      - state: eyeball-r
+    - state: eyeball-l
+    - state: eyeball-r
+  - type: Organ # Shitmed
+    slotId: eyes
+  - type: Eyes # Shitmed
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Eyes
   - type: Item
     size: Small
     heldPrefix: eyeballs

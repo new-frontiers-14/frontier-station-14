@@ -11,9 +11,9 @@
   - type: Clothing
     sprite: Clothing/Belt/utility.rsi
   - type: Storage
-    #maxItemSize: Normal# Frontier
-    # TODO: Fill this out more.
-    # whitelist: # Frontier: commented out whitelist
+      #maxItemSize: Normal# Frontier
+      # TODO: Fill this out more.
+      # whitelist: # Frontier: commented out whitelist
       # tags:
       #   - Powerdrill
       #   - Wirecutter
@@ -43,7 +43,7 @@
       #   - Geiger
       #   - TrayScanner
       #   - GasAnalyzer
-      #   - HandLabeler
+    #   - HandLabeler
   - type: ItemMapper
     mapLayers:
       drill:
@@ -77,7 +77,7 @@
       multitool:
         whitelist:
           tags:
-            - Multitool
+          - Multitool
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
 
@@ -91,7 +91,7 @@
     sprite: Clothing/Belt/ce.rsi
   - type: Clothing
     sprite: Clothing/Belt/ce.rsi
-  #- type: Storage # Frontier
+    #- type: Storage # Frontier
     #grid: # Frontier
     #- 0,0,9,1 # Frontier
     # TODO: Fill this out more.
@@ -154,7 +154,7 @@
       multitool:
         whitelist:
           tags:
-            - Multitool
+          - Multitool
       wrench:
         whitelist:
           tags:
@@ -172,19 +172,19 @@
     sprite: Clothing/Belt/assault.rsi
   - type: Clothing
     sprite: Clothing/Belt/assault.rsi
-  # - type: Storage # Frontier: commented out whitelist
-    # whitelist:
+      # - type: Storage # Frontier: commented out whitelist
+      # whitelist:
       # tags:
-        # - CigPack
-        # - Taser
+      # - CigPack
+      # - Taser
       # components:
-        # - Stunbaton
-        # - FlashOnTrigger
-        # - SmokeOnTrigger
-        # - Flash
-        # - Handcuff
-        # - BallisticAmmoProvider
-        # - Ammo
+      # - Stunbaton
+      # - FlashOnTrigger
+      # - SmokeOnTrigger
+      # - Flash
+      # - Handcuff
+      # - BallisticAmmoProvider
+    # - Ammo
   - type: ItemMapper
     mapLayers:
       flashbang:
@@ -212,24 +212,24 @@
     sprite: Clothing/Belt/janitor.rsi
   - type: Clothing
     sprite: Clothing/Belt/janitor.rsi
-  #- type: Storage # Frontier
-    # whitelist: # Frontier: commented out whitelist
+      #- type: Storage # Frontier
+      # whitelist: # Frontier: commented out whitelist
       # tags:
-        # - Wrench
-        # - Bottle
-        # - Spray
-        # - Soap
-        # - Flashlight
-        # - CigPack
-        # - TrashBag
-        # - WetFloorSign
-        # - HolosignProjector
-        # - Plunger
-        # - LightReplacer
-        # - JanicartKeys
+      # - Wrench
+      # - Bottle
+      # - Spray
+      # - Soap
+      # - Flashlight
+      # - CigPack
+      # - TrashBag
+      # - WetFloorSign
+      # - HolosignProjector
+      # - Plunger
+      # - LightReplacer
+      # - JanicartKeys
       # components:
-        # - LightReplacer
-        # - SmokeOnTrigger
+      # - LightReplacer
+    # - SmokeOnTrigger
     #maxItemSize: Large # Frontier
   - type: ItemMapper
     mapLayers:
@@ -279,6 +279,7 @@
   #       - Injector
   #       - Pill
   #       - HandLabeler
+  #       - SurgeryTool # Shitmed Change
   - type: ItemMapper
     mapLayers:
       bottle:
@@ -392,28 +393,28 @@
     sprite: Clothing/Belt/chef.rsi
   - type: Clothing
     sprite: Clothing/Belt/chef.rsi
-  # - type: Storage # Frontier: commented out whitelist
-    # whitelist:
+      # - type: Storage # Frontier: commented out whitelist
+      # whitelist:
       # tags:
-        # - KitchenKnife
-        # - Cleaver
-        # - RollingPin
-        # - Coldsauce
-        # - Enzyme
-        # - Hotsauce
-        # - Ketchup
-        # - BBQsauce
-        # - SaltShaker
-        # - PepperShaker
-        # - CigPack
-        # - Packet
-        # - Skewer
-        # - MonkeyCube
-        # - Mayo
+      # - KitchenKnife
+      # - Cleaver
+      # - RollingPin
+      # - Coldsauce
+      # - Enzyme
+      # - Hotsauce
+      # - Ketchup
+      # - BBQsauce
+      # - SaltShaker
+      # - PepperShaker
+      # - CigPack
+      # - Packet
+      # - Skewer
+      # - MonkeyCube
+      # - Mayo
       # components:
-        # - Mousetrap
-        # - Smokable
-        # - Utensil
+      # - Mousetrap
+      # - Smokable
+    # - Utensil
   - type: ItemMapper
     mapLayers:
       kitchenknife:
@@ -522,7 +523,7 @@
     state: sheath
   - type: Clothing
     sprite: Clothing/Belt/sheath.rsi
-  #- type: Item # Frontier
+    #- type: Item # Frontier
     #size: Ginormous # Frontier
   - type: ItemSlots
     slots:
@@ -555,12 +556,12 @@
     sprite: Clothing/Belt/bandolier.rsi
   - type: Clothing
     sprite: Clothing/Belt/bandolier.rsi
-  #- type: Item # Frontier
+    #- type: Item # Frontier
     #size: Huge # Frontier
   - type: BallisticAmmoProvider
     whitelist:
       tags:
-        - ShellShotgun
+      - ShellShotgun
     capacity: 14
 
 - type: entity
@@ -588,7 +589,7 @@
     sprite: Clothing/Belt/holster.rsi
   - type: Clothing
     sprite: Clothing/Belt/holster.rsi
-  # - type: Storage # Frontier: commented out
+    # - type: Storage # Frontier: commented out
     # grid: # Frontier: commented out
     # - 0,0,3,1 # Frontier: commented out
 
@@ -602,17 +603,17 @@
     sprite: Clothing/Belt/syndieholster.rsi
   - type: Clothing
     sprite: Clothing/Belt/syndieholster.rsi
-  #- type: Item # Frontier
-    #size: Ginormous # Frontier
-  # - type: Storage # Frontier: commented out
-    # maxItemSize: Huge # Frontier: commented out
-    # grid: # Frontier: commented out
-    # - 0,0,3,3 # Frontier: commented out
-    # whitelist: # Frontier: commented out whitelist
+      #- type: Item # Frontier
+      #size: Ginormous # Frontier
+      # - type: Storage # Frontier: commented out
+      # maxItemSize: Huge # Frontier: commented out
+      # grid: # Frontier: commented out
+      # - 0,0,3,3 # Frontier: commented out
+      # whitelist: # Frontier: commented out whitelist
       # components:
-        # - Gun
-        # - BallisticAmmoProvider
-        # - CartridgeAmmo
+      # - Gun
+      # - BallisticAmmoProvider
+    # - CartridgeAmmo
 
 - type: entity
   parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
@@ -670,7 +671,7 @@
     sprite: Clothing/Belt/militarywebbingmed.rsi
   - type: Clothing
     sprite: Clothing/Belt/militarywebbingmed.rsi
-  #- type: Item # Frontier
+    #- type: Item # Frontier
     #size: Huge # Frontier
   - type: ExplosionResistance
     damageCoefficient: 0.1
@@ -711,9 +712,9 @@
     sprite: Clothing/Belt/wand.rsi
   - type: Clothing
     sprite: Clothing/Belt/wand.rsi
-  # - type: Storage # Frontier: commented out
-    # grid: # Frontier: commented out
-    # - 0,0,15,1 # Frontier: commented out
-    # whitelist: # Frontier: commented out whitelist
+      # - type: Storage # Frontier: commented out
+      # grid: # Frontier: commented out
+      # - 0,0,15,1 # Frontier: commented out
+      # whitelist: # Frontier: commented out whitelist
       # tags:
-      # - WizardWand
+    # - WizardWand

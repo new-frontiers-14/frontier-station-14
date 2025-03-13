@@ -5,8 +5,8 @@
   playTimeTracker: JobMedicalDoctor
   setPreference: false # Frontier
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 10800
+  - !type:OverallPlaytimeRequirement
+    time: 10800
   startingGear: DoctorGear
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-hire # Frontier
@@ -16,12 +16,17 @@
   # - !type:GiveItemOnHolidaySpecial # Frontier
   #   holiday: DoctorDay # Frontier
   #   prototype: WehMedipen # Frontier
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: SurgerySpeedModifier
+      SpeedModifier: 1.75
 
 - type: startingGear
   id: DoctorGear
   equipment:
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
-  #storage:
+    #storage:
     #back:
     #- Stuff

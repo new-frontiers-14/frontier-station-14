@@ -23,7 +23,7 @@
           Quantity: 5
   - type: FlavorProfile
     flavors:
-      - people
+    - people
 
 - type: entity
   id: OrganDionaBrain
@@ -36,6 +36,9 @@
     heldPrefix: brain
   - type: Sprite
     state: brain
+  - type: Organ # Shitmed
+    slotId: Brain
+  - type: Brain # Shitmed
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -60,8 +63,15 @@
   components:
   - type: Sprite
     layers:
-      - state: eyeball-l
-      - state: eyeball-r
+    - state: eyeball-l
+    - state: eyeball-r
+  - type: Organ # Shitmed
+    slotId: eyes
+  - type: Tag # goob edit
+    tags:
+      - Meat
+      - Organ
+      - Eyes
 
 - type: entity
   id: OrganDionaStomach
@@ -80,20 +90,22 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
+  - type: Organ # Shitmed
+    slotId: stomach
   - type: Stomach
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Plant ]
     removeEmpty: true
     groups:
-      - id: Food
-      - id: Drink
-      - id: Medicine
-      - id: Cryogenic # Frontier
-      - id: Poison
-      - id: Narcotic
-      - id: Alcohol
-        rateModifier: 0.1
+    - id: Food
+    - id: Drink
+    - id: Medicine
+    - id: Cryogenic # Frontier
+    - id: Poison
+    - id: Narcotic
+    - id: Alcohol
+      rateModifier: 0.1
   - type: Item
     size: Small
     heldPrefix: stomach
@@ -106,10 +118,12 @@
   components:
   - type: Sprite
     state: lungs
+  - type: Organ # Shitmed
+    slotId: lungs
   - type: Item
     size: Small
     heldPrefix: lungs
-  - type: Lung 
+  - type: Lung
   - type: Metabolizer
     removeEmpty: true
     solutionOnBody: false
@@ -138,7 +152,7 @@
   description: "The source of incredible, unending intelligence. Honk."
   components:
   - type: Brain
-  - type: Nymph # This will make the organs turn into a nymph when they're removed. 
+  - type: Nymph # This will make the organs turn into a nymph when they're removed.
     entityPrototype: OrganDionaNymphBrain
     transferMind: true
 
@@ -177,11 +191,11 @@
 
 - type: entity
   id: OrganDionaNymphStomach
-  parent: MobDionaNymphAccent 
+  parent: MobDionaNymphAccent
   categories: [ HideSpawnMenu ]
   name: diona nymph
   suffix: Stomach
-  description: Contains the stomach of a formerly fully-formed Diona. It doesn't taste any better for it. 
+  description: Contains the stomach of a formerly fully-formed Diona. It doesn't taste any better for it.
   components:
   - type: IsDeadIC
   - type: Body
@@ -193,7 +207,7 @@
   categories: [ HideSpawnMenu ]
   name: diona nymph
   suffix: Lungs
-  description: Contains the lungs of a formerly fully-formed Diona. Breathtaking. 
+  description: Contains the lungs of a formerly fully-formed Diona. Breathtaking.
   components:
   - type: IsDeadIC
   - type: Body

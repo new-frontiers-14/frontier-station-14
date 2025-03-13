@@ -4,12 +4,12 @@
   description: job-description-intern
   playTimeTracker: JobMedicalIntern
   requirements:
-#    - !type:DepartmentTimeRequirement
-#      department: Medical
-#      time: 54000 # 15 hrs
-#      inverted: true # stop playing intern if you're good at med!
-    - !type:OverallPlaytimeRequirement # Frontier
-      time: 10800 # Frontier
+  #    - !type:DepartmentTimeRequirement
+  #      department: Medical
+  #      time: 54000 # 15 hrs
+  #      inverted: true # stop playing intern if you're good at med!
+  - !type:OverallPlaytimeRequirement # Frontier
+    time: 10800 # Frontier
   startingGear: MedicalInternGear
   icon: "JobIconMedicalIntern"
   supervisors: job-supervisors-medicine
@@ -20,6 +20,11 @@
   setPreference: false # Frontier
   accessGroups: # Frontier
   - GeneralAccess # Frontier
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: SurgerySpeedModifier
+      SpeedModifier: 1.5
 
 - type: startingGear
   id: MedicalInternGear
@@ -29,6 +34,6 @@
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     pocket2: BookMedicalReferenceBook
-  #storage:
+    #storage:
     #back:
     #- Stuff

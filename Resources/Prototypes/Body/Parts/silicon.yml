@@ -18,7 +18,7 @@
     price: 5
   - type: Tag
     tags:
-      - Trash
+    - Trash
   - type: PhysicalComposition
     materialComposition:
       Steel: 25
@@ -26,6 +26,14 @@
     guides:
     - Cyborgs
     - Robotics
+  # Shitmed Change Start
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/organ1.ogg
+    endSound:
+      path: /Audio/_Shitmed/Medical/Surgery/organ2.ogg
+  - type: Gibbable
+  # Shitmed Change End
 
 - type: entity
   id: LeftArmBorg
@@ -33,7 +41,7 @@
   name: cyborg left arm
   components:
   - type: BodyPart
-    partType: Hand
+    partType: Arm # Shitmed Change
     symmetry: Left
   - type: Sprite
     state: borg_l_arm
@@ -51,7 +59,7 @@
   name: cyborg right arm
   components:
   - type: BodyPart
-    partType: Hand
+    partType: Arm # Shitmed Change
     symmetry: Right
   - type: Sprite
     state: borg_r_arm
@@ -80,6 +88,7 @@
     - Trash
     - BorgLeg
     - BorgLLeg
+  - type: MovementBodyPart # Shitmed Change
 
 - type: entity
   id: RightLegBorg
@@ -98,6 +107,7 @@
     - Trash
     - BorgLeg
     - BorgRLeg
+  - type: MovementBodyPart # Shitmed Change
 
 - type: entity
   id: LightHeadBorg

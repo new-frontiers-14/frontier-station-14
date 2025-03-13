@@ -9,15 +9,15 @@
     doAfterDuration: 4.0
   - type: Sprite
     layers:
-      - sprite: Objects/Materials/Shards/shard.rsi
-        state: shard1
-        map: [ "enum.DamageStateVisualLayers.Base" ]
+    - sprite: Objects/Materials/Shards/shard.rsi
+      state: shard1
+      map: [ "enum.DamageStateVisualLayers.Base" ]
   - type: RandomSprite
     available:
-      - enum.DamageStateVisualLayers.Base:
-          shard1: ""
-          shard2: ""
-          shard3: ""
+    - enum.DamageStateVisualLayers.Base:
+        shard1: ""
+        shard2: ""
+        shard3: ""
   - type: MeleeWeapon
     attackRate: 1
     damage:
@@ -78,6 +78,13 @@
   - type: DeleteOnTrigger
   - type: StaticPrice
     price: 0
+  - type: Scalpel # Shitmed
+    speed: 0.45
+  - type: SurgeryTool # Shitmed
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Shitmed/Medical/Surgery/scalpel2.ogg
 
 - type: entity
   parent: ShardBase
@@ -96,8 +103,8 @@
         Piercing: 4.5
   - type: Tag
     tags:
-      - GlassShard
-      - Trash
+    - GlassShard
+    - Trash
   - type: Extractable
     grindableSolutionName: shardglass
   - type: SolutionContainerManager
@@ -132,8 +139,8 @@
         Piercing: 5.5
   - type: Tag
     tags:
-      - ReinforcedGlassShard
-      - Trash
+    - ReinforcedGlassShard
+    - Trash
   - type: Extractable
     grindableSolutionName: shardrglass
   - type: SolutionContainerManager
@@ -168,8 +175,8 @@
         Piercing: 6.5
   - type: Tag
     tags:
-      - PlasmaGlassShard
-      - Trash
+    - PlasmaGlassShard
+    - Trash
   - type: Extractable
     grindableSolutionName: shardpglass
   - type: SolutionContainerManager
@@ -208,8 +215,8 @@
         Radiation: 2.5
   - type: Tag
     tags:
-      - UraniumGlassShard
-      - Trash
+    - UraniumGlassShard
+    - Trash
   - type: Extractable
     grindableSolutionName: sharduglass
   - type: SolutionContainerManager
@@ -242,8 +249,8 @@
         Piercing: 5
   - type: Tag
     tags:
-      - ClockworkGlassShard
-      - Trash
+    - ClockworkGlassShard
+    - Trash
   - type: Extractable
     grindableSolutionName: shardcglass
   - type: SolutionContainerManager

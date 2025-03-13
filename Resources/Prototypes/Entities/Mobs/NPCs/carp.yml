@@ -5,87 +5,94 @@
   description: It's a space carp.
   abstract: true
   components:
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHostileCompound
-      blackboard:
-        NavSmash: !type:Bool
-          true
-    - type: NpcFactionMember
-      factions:
-      - Dragon
-    - type: Sprite
-      drawdepth: Mobs
-      sprite: Mobs/Aliens/Carps/space.rsi
-      layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-    - type: CombatMode
-    - type: Physics
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeCircle
-            radius: 0.35 # Frontier 0.40<0.35 Lowered the value, to allow them to fit through the airlocks
-          density: 80
-          mask:
-            - FlyingMobMask
-          layer:
-            - FlyingMobLayer
-    - type: MobState
-    - type: MobThresholds
-      thresholds:
-        0: Alive
-        40: Dead
-    - type: MovementSpeedModifier
-      baseWalkSpeed: 2.5
-      baseSprintSpeed: 3.5
-    - type: Stamina
-      critThreshold: 100
-    - type: DamageStateVisuals
-      states:
-        Alive:
-          Base: alive
-          BaseUnshaded: mouth
-        Dead:
-          Base: dead
-          BaseUnshaded: dead_mouth
-    - type: Butcherable
-      spawned:
-        - id: FoodMeatFish
-          amount: 2
-        - id: MaterialToothSpaceCarp1
-          amount: 1
-          maxAmount: 4
-    - type: MeleeWeapon
-      altDisarm: false
-      angle: 0
-      animation: WeaponArcBite
-      soundHit:
-        path: /Audio/Effects/bite.ogg
-      damage:
-        types:
-          Blunt: 5
-          Slash: 7
-    - type: TypingIndicator
-      proto: alien
-    - type: Tag
-      tags:
-        - Carp
-        - DoorBumpOpener
-    - type: ReplacementAccent
-      accent: genericAggressive
-    - type: Speech
-      speechVerb: LargeMob
-    - type: InteractionPopup
-      interactSuccessString: petting-success-carp
-      interactFailureString: petting-failure-carp
-      interactFailureSound:
-        path: /Audio/Effects/bite.ogg
-    - type: Carriable # DeltaV
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/Carps/space.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+  - type: CombatMode
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35 # Frontier 0.40<0.35 Lowered the value, to allow them to fit through the airlocks
+        density: 80
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.5
+  - type: Stamina
+    critThreshold: 100
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: mouth
+      Dead:
+        Base: dead
+        BaseUnshaded: dead_mouth
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFish
+      amount: 2
+    - id: MaterialToothSpaceCarp1
+      amount: 1
+      maxAmount: 4
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Blunt: 5
+        Slash: 7
+  - type: TypingIndicator
+    proto: alien
+  - type: Tag
+    tags:
+    - Carp
+    - DoorBumpOpener
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Speech
+    speechVerb: LargeMob
+  - type: InteractionPopup
+    interactSuccessString: petting-success-carp
+    interactFailureString: petting-failure-carp
+    interactFailureSound:
+      path: /Audio/Effects/bite.ogg
+  - type: Carriable # DeltaV
+  - type: Body # Shitmed: Special carp organs
+    prototype: Carp
+  - type: SurgeryTarget # Shitmed
+  - type: UserInterface # Shitmed
+    interfaces:
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
 
 - type: entity
   parent: BaseMobCarp
@@ -113,10 +120,10 @@
   description: Looks like some kind of fish. Might be magical.
   categories: [ HideSpawnMenu ] # Frontier
   components:
-    - type: Sprite
-      sprite: Mobs/Aliens/Carps/magic.rsi
-    - type: TypingIndicator
-      proto: guardian
+  - type: Sprite
+    sprite: Mobs/Aliens/Carps/magic.rsi
+  - type: TypingIndicator
+    proto: guardian
 
 - type: entity
   name: holocarp
@@ -125,22 +132,22 @@
   description: Carp made out of holographic energies. Sadly for you, it is very much real.
   categories: [ HideSpawnMenu ] # Frontier
   components:
-    - type: Sprite
-      sprite: Mobs/Aliens/Carps/holo.rsi
-    - type: Physics
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeCircle
-            radius: 0.35 # Frontier 0.40<0.35 Lowered the value, to allow them to fit through the airlocks
-          density: 10
-          mask:
-            - MobMask
-          layer:
-            - Opaque
-    - type: TypingIndicator
-      proto: robot
+  - type: Sprite
+    sprite: Mobs/Aliens/Carps/holo.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35 # Frontier 0.40<0.35 Lowered the value, to allow them to fit through the airlocks
+        density: 10
+        mask:
+        - MobMask
+        layer:
+        - Opaque
+  - type: TypingIndicator
+    proto: robot
 
 - type: entity
   parent: MobCarp
@@ -161,7 +168,7 @@
   suffix: "Salvage Ruleset"
   categories: [ HideSpawnMenu ] # Frontier
   components:
-    - type: NFSalvageMobRestrictions # Frontier: SalvageMobRestrictions<NFSalvageMobRestrictions
+  - type: NFSalvageMobRestrictions # Frontier: SalvageMobRestrictions<NFSalvageMobRestrictions
 
 - type: entity
   name: space carp
@@ -170,21 +177,21 @@
   parent: MobCarp
   categories: [ HideSpawnMenu ] # Frontier
   components:
-    - type: GhostRole
-      allowMovement: true
-      allowSpeech: true
-      makeSentient: true
-      name: ghost-role-information-sentient-carp-name
-      description: ghost-role-information-sentient-carp-description
-      rules: ghost-role-information-space-dragon-summoned-carp-rules
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
-      raffle:
-        settings: short
-    - type: GhostTakeoverAvailable
-    - type: HTN
-      rootTask:
-        task: DragonCarpCompound
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-sentient-carp-name
+    description: ghost-role-information-sentient-carp-description
+    rules: ghost-role-information-space-dragon-summoned-carp-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: HTN
+    rootTask:
+      task: DragonCarpCompound
 
 - type: entity
   id: MobCarpDungeon
@@ -211,54 +218,59 @@
   description: A dangerous shark from the blackness of endless space, who loves to drink blood.
   categories: [ HideSpawnMenu ] # Frontier
   components:
-    - type: Sprite
-      sprite: Mobs/Aliens/Carps/sharkminnow.rsi
-      layers:
-      - map: [ "enum.DamageStateVisualLayers.Base" ]
-        state: alive
-      - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-        state: mouth
-        shader: unshaded
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeCircle
-            radius: 0.35 # Frontier 0.40<0.35 Lowered the value, to allow them to fit through the airlocks
-          density: 100
-          mask:
-            - FlyingMobMask
-          layer:
-            - FlyingMobLayer
-    - type: MobThresholds
-      thresholds:
-        0: Alive
-        150: Dead
-    - type: Stamina
-      critThreshold: 150
-    - type: DamageStateVisuals
-      states:
-        Alive:
-          Base: alive
-          BaseUnshaded: mouth
-        Dead:
-          Base: dead
-          BaseUnshaded: dead_mouth
-    - type: Body
-      prototype: Bloodsucker
-      requiredLegs: 1
-    - type: Butcherable
-      spawned:
-        - id: FoodMeatFish
-          amount: 4
-        - id: MaterialToothSharkminnow1
-          amount: 1
-          maxAmount: 3
-    - type: MeleeWeapon
-      damage:
-        types:
-          Slash: 10
-          Bloodloss: 5
+  - type: Sprite
+    sprite: Mobs/Aliens/Carps/sharkminnow.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: mouth
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35 # Frontier 0.40<0.35 Lowered the value, to allow them to fit through the airlocks
+        density: 100
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Stamina
+    critThreshold: 150
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: mouth
+      Dead:
+        Base: dead
+        BaseUnshaded: dead_mouth
+  - type: Body
+    prototype: Bloodsucker
+    requiredLegs: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFish
+      amount: 4
+    - id: MaterialToothSharkminnow1
+      amount: 1
+      maxAmount: 3
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 10
+        Bloodloss: 5
+  - type: SurgeryTarget # Shitmed
+  - type: UserInterface # Shitmed
+    interfaces:
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
 
 - type: entity
   id: MobSharkSalvage
@@ -266,4 +278,4 @@
   suffix: "Salvage Ruleset"
   categories: [ HideSpawnMenu ] # Frontier
   components:
-    - type: NFSalvageMobRestrictions # Frontier: SalvageMobRestrictions<NFSalvageMobRestrictions
+  - type: NFSalvageMobRestrictions # Frontier: SalvageMobRestrictions<NFSalvageMobRestrictions

@@ -11,7 +11,7 @@
     doAfterDuration: 4.0
   - type: Utensil
     types:
-      - Knife
+    - Knife
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -24,9 +24,16 @@
     size: Small
   - type: Tool
     qualities:
-      - Slicing
+    - Slicing
     useSound:
       path: /Audio/Items/Culinary/chop.ogg
+  - type: Scalpel # Shitmed
+    speed: 0.65
+  - type: SurgeryTool # Shitmed
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Shitmed/Medical/Surgery/scalpel2.ogg
 
 - type: entity
   name: kitchen knife
@@ -74,6 +81,10 @@
     guides:
     - Chef
     - FoodRecipes
+  - type: Scalpel # Shitmed
+    speed: 0.3
+  - type: BoneSaw # Shitmed: Better than tg 25% because its a cleaver its meant to hack off limbs
+    speed: 0.5
 
 - type: entity
   name: combat knife
