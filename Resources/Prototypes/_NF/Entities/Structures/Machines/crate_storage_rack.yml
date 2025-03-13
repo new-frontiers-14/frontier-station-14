@@ -27,11 +27,13 @@
     graph: CrateStorageRack
     node: rack
 
+# intermediate entities for construction graph
 - type: entity
   parent: BaseStructure
   id: CrateStorageRackBase
   name: crate storage rack base
   description: All racks start from humble beginnings.
+  categories: [HideSpawnMenu]
   components:
   - type: Sprite
     sprite: _NF/Structures/Storage/crate_storage_rack.rsi
@@ -48,6 +50,7 @@
   id: CrateStorageRackFrameEmpty
   name: crate storage rack frame
   description: Like a half-built shelf, but bigger!
+  categories: [HideSpawnMenu]
   components:
   - type: Sprite
     sprite: _NF/Structures/Storage/crate_storage_rack.rsi
@@ -64,6 +67,7 @@
   id: CrateStorageRackFrame
   name: crate storage rack frame
   description: Like a half-built shelf, but bigger!
+  categories: [HideSpawnMenu]
   components:
   - type: Sprite
     sprite: _NF/Structures/Storage/crate_storage_rack.rsi
