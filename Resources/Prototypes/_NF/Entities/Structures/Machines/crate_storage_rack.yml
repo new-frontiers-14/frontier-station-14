@@ -13,7 +13,7 @@
       map: [ "enum.StorageFillLayers.Fill" ]
   - type: InteractionOutline
   - type: StaticPrice
-    price: 500
+    price: 100
   - type: ContainerContainer
     containers:
       item-container: !type:Container
@@ -23,3 +23,38 @@
     maxFillLevels: 5
     fillBaseName: fill
   - type: Appearance
+  - type: Construction
+    graph: CrateStorageRack
+    node: rack
+
+- type: entity
+  parent: BaseStructure
+  id: CrateStorageRackSuperstructure
+  name: crate storage rack frame
+  description: Like a shelf, but flat and useless!
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/crate_storage_rack.rsi
+    snapCardinals: true
+    layers:
+    - state: frame
+  - type: Construction
+    graph: CrateStorageRack
+    node: frame
+    defaultTarget: rack
+
+- type: entity
+  parent: BaseStructure
+  id: CrateStorageRackSuperstructure
+  name: crate storage rack frame
+  description: Like a half-built shelf, but bigger!
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/crate_storage_rack.rsi
+    snapCardinals: true
+    layers:
+    - state: superstructure
+  - type: Construction
+    graph: CrateStorageRack
+    node: superstructure
+    defaultTarget: rack

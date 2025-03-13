@@ -1,0 +1,62 @@
+- type: constructionGraph
+  id: CrateStorageRack
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: frame
+      steps:
+      - material: Steel
+        amount: 2
+    
+  - node: frame
+    entity: CrateStorageRackSuperstructure
+    edges:
+    - to: superstructure
+      steps:
+      - material: MetalRod1
+        amount: 4
+      - tool: Welding
+        doAfter: 3
+    - to: start
+      steps:
+      - tool: Wrenching
+        doAfter: 1
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+    
+  - node: superstructure
+    entity: CrateStorageRackSuperstructure
+    edges:
+    - to: rack
+      steps:
+      - material: Steel
+        amount: 2
+      - tool: Wrenching
+        doAfter: 2
+    - to: frame
+      steps:
+      - tool: Welding
+        doAfter: 3
+      completed:
+      - !type:SpawnPrototype
+        prototype: MetalRod1
+        amount: 4
+      - !type:DeleteEntity
+
+  - node: rack
+    entity: CrateStorageRack
+    edges:
+    - to: superstructure
+      steps:
+      - tool: Wrenching
+        doAfter: 2
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity
