@@ -47,3 +47,14 @@
     containers:
       mech-battery-slot:
       - PowerCellHigh
+
+- type: entity
+  id: MechEmuCargo
+  parent: MechEmu
+  suffix: Cargo, Med Battery
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellMedium
