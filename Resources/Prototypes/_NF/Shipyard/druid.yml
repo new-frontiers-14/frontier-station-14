@@ -9,31 +9,31 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Bounty
+  id: Druid
   parent: BaseVessel
-  name: FSB Bounty
+  name: FSB Druid
   description: A medium service vessel providing botanical and chemical services to support the needs of the Frontier. Designed, developed and deployed by the Far Star Biotech company to render aid wherever it is needed.
   price: 40000 # Roses a red, the tester is stingy, let this pass or I'll start to whingey.
   category: Medium
   group: Medical
-  shuttlePath: /Maps/_NF/Shuttles/bounty.yml
-  guidebookPage: ShipyardBounty
+  shuttlePath: /Maps/_NF/Shuttles/druid.yml
+  guidebookPage: ShipyardDruid
   class:
   - Botany
   engine:
   - Uranium
 
 - type: gameMap
-  id: Bounty
-  mapName: 'FSB Bounty'
-  mapPath: /Maps/_NF/Shuttles/bounty.yml
+  id: Druid
+  mapName: 'FSB Druid'
+  mapPath: /Maps/_NF/Shuttles/druid.yml
   minPlayers: 0
   stations:
-    Bounty:
+    Druid:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Bounty {1}'
+          mapNameTemplate: 'Druid {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
