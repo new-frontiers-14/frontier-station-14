@@ -1,0 +1,34 @@
+- type: vessel
+  id: Swallow
+  parent: BaseVessel
+  name: WS Swallow
+  description: A lightning fast microshuttle for quick and cheap transportation.
+  price: 8500
+  category: Micro
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/Swallow.yml
+  guidebookPage: Swallow
+  class:
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Swallow
+  mapName: 'WS Swallow'
+  mapPath: /Maps/_NF/Shuttles/swallow.yml
+  minPlayers: 0
+  stations:
+    Stellaris:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Swallow {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
