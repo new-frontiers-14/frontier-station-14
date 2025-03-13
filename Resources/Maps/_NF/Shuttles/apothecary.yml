@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/13/2025 01:51:08
+  entityCount: 418
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   3: FloorBar
@@ -1042,7 +1053,7 @@ entities:
   - uid: 248
     components:
     - type: Transform
-      pos: 4.5183296,-0.5728046
+      pos: 3.3339694,-2.5367086
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -1441,6 +1452,14 @@ entities:
     - type: Transform
       pos: -3.5,5.5
       parent: 1
+- proto: ClosetWallO2N2Filled
+  entities:
+  - uid: 337
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-3.5
+      parent: 1
 - proto: ClothingBeltUtilityEngineering
   entities:
   - uid: 335
@@ -1478,19 +1497,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-0.5
       parent: 1
-- proto: CrateFreezer
-  entities:
-  - uid: 324
-    components:
-    - type: Transform
-      pos: 2.5,1.5
-      parent: 1
 - proto: CrateHydroponicsSeedsMedicinal
   entities:
-  - uid: 28
+  - uid: 220
     components:
     - type: Transform
-      pos: 4.5,-0.5
+      pos: 4.5,-2.5
       parent: 1
 - proto: CrateMaterialsBasicFilled
   entities:
@@ -1533,11 +1545,10 @@ entities:
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
-  - uid: 337
+  - uid: 190
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,-3.5
+      pos: -1.5,0.5
       parent: 1
 - proto: FaxMachineShip
   entities:
@@ -2234,37 +2245,24 @@ entities:
   - uid: 340
     components:
     - type: Transform
-      pos: 4.4037466,-0.4269712
+      pos: 3.3409138,-2.3769865
       parent: 1
 - proto: hydroponicsTrayAnchored
   entities:
-  - uid: 163
-    components:
-    - type: Transform
-      pos: 5.5,-2.5
-      parent: 1
-  - uid: 220
-    components:
-    - type: Transform
-      pos: 3.5,-2.5
-      parent: 1
-  - uid: 286
+  - uid: 37
     components:
     - type: Transform
       pos: 5.5,-0.5
       parent: 1
-  - uid: 290
+  - uid: 221
     components:
     - type: Transform
       pos: 3.5,-0.5
       parent: 1
-- proto: JukeboxWallmountShip
-  entities:
-  - uid: 190
+  - uid: 286
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,0.5
+      pos: 4.5,-0.5
       parent: 1
 - proto: KitchenReagentGrinder
   entities:
@@ -2581,10 +2579,10 @@ entities:
       parent: 1
 - proto: SeedExtractor
   entities:
-  - uid: 37
+  - uid: 134
     components:
     - type: Transform
-      pos: 4.5,-2.5
+      pos: 5.5,-2.5
       parent: 1
 - proto: ShelfChemistry
   entities:
@@ -2947,6 +2945,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,-2.5
       parent: 1
+- proto: SmartFridge
+  entities:
+  - uid: 28
+    components:
+    - type: Transform
+      pos: 2.5,1.5
+      parent: 1
 - proto: SMESBasic
   entities:
   - uid: 157
@@ -2974,6 +2979,33 @@ entities:
     components:
     - type: Transform
       pos: -2.5,0.5
+      parent: 1
+- proto: TableCounterMetal
+  entities:
+  - uid: 163
+    components:
+    - type: Transform
+      pos: 3.5,-2.5
+      parent: 1
+  - uid: 290
+    components:
+    - type: Transform
+      pos: 0.5,1.5
+      parent: 1
+  - uid: 294
+    components:
+    - type: Transform
+      pos: -1.5,2.5
+      parent: 1
+  - uid: 324
+    components:
+    - type: Transform
+      pos: -1.5,1.5
+      parent: 1
+  - uid: 351
+    components:
+    - type: Transform
+      pos: -0.5,1.5
       parent: 1
 - proto: TableReinforced
   entities:
@@ -3006,11 +3038,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,4.5
       parent: 1
-  - uid: 134
-    components:
-    - type: Transform
-      pos: -1.5,2.5
-      parent: 1
   - uid: 217
     components:
     - type: Transform
@@ -3026,21 +3053,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,9.5
-      parent: 1
-  - uid: 351
-    components:
-    - type: Transform
-      pos: 0.5,1.5
-      parent: 1
-  - uid: 352
-    components:
-    - type: Transform
-      pos: -0.5,1.5
-      parent: 1
-  - uid: 353
-    components:
-    - type: Transform
-      pos: -1.5,1.5
       parent: 1
 - proto: Thruster
   entities:
@@ -3095,7 +3107,7 @@ entities:
   - uid: 228
     components:
     - type: Transform
-      pos: 4.445413,-0.4582212
+      pos: 3.438136,-2.4742086
       parent: 1
 - proto: ToyFigurineChemist
   entities:
