@@ -58,5 +58,5 @@ public sealed partial class RngDeviceComponent : Component
     // The state prefix for visual updates (e.g. "percentile", "d6", etc.)
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("statePrefix"), AutoNetworkedField]
-    public string StatePrefix { get; set; } = "";
+    public string StatePrefix { get; set; } = "d6";
 }
