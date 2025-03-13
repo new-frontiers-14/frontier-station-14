@@ -2,19 +2,15 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._NF.DeviceLinking.Systems;
 
-/// <summary>
-/// Shared system for RNG device functionality
-/// </summary>
+// Shared system for RNG device functionality
 public abstract class SharedRngDeviceSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming _timing = default!;
 
-    /// <summary>
-    /// Generates a random roll and determines the output port based on the number of outputs and target number
-    /// </summary>
-    /// <param name="outputs">Number of possible outputs</param>
-    /// <param name="targetNumber">Target number for percentile dice (1-100)</param>
-    /// <returns>A tuple containing the roll value and the output port</returns>
+    // Generates a random roll and determines the output port based on the number of outputs and target number
+    // outputs: Number of possible outputs
+    // targetNumber: Target number for percentile dice (1-100)
+    // Returns a tuple containing the roll value and the output port
     protected (int roll, int outputPort) GenerateRoll(int outputs, int targetNumber = 50)
     {
         // Use current tick as seed for deterministic randomness

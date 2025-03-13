@@ -11,9 +11,7 @@ using Content.Shared._NF.DeviceLinking.Systems;
 
 namespace Content.Client._NF.DeviceLinking.Systems;
 
-/// <summary>
-/// Client-side system for RNG device functionality
-/// </summary>
+// Client-side system for RNG device functionality
 public sealed class RngDeviceSystem : SharedRngDeviceSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -69,9 +67,7 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
         args.Handled = true;
     }
 
-    /// <summary>
-    /// Predicts a roll on the client side for responsive UI
-    /// </summary>
+    // Predicts a roll on the client side for responsive UI
     private void PredictRoll(Entity<RngDeviceVisualsComponent> ent, int outputs, EntityUid? user = null)
     {
         // Use the shared GenerateRoll method
