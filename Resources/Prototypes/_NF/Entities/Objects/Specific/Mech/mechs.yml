@@ -1,8 +1,8 @@
 - type: entity
-  id: MechChunk
+  id: MechClanker
   parent: BaseMech
-  name: Chunk PLU
-  description: An old design, the Chunk Power Lifting Unit is still used for moving, storing and delivering freight.
+  name: Clanker
+  description: An older model of cargo hauler mech, this lightweight chassis has a single integral power fork module.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -32,14 +32,14 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Blunt: 10
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.25
-    baseSprintSpeed: 3.6
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 5.5
 
 - type: entity
-  id: MechChunkBattery
-  parent: MechChunk
+  id: MechClankerBattery
+  parent: MechClanker
   suffix: Battery
   components:
   - type: ContainerFill

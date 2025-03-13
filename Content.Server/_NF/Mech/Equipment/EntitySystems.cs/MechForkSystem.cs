@@ -289,16 +289,24 @@ public sealed class MechForkSystem : EntitySystem
 
         if (!TryComp<CrateStorageRackComponent>(target, out var rack))
             return;
-        if (component.ItemContainer.Count <= 0)
+        if (!_container.TryGetContainer(target, rack.ContainerName, out var rackContainer))
             return;
-        if (!_container.TryGetContainer(target, rack.ContainerName, out var rackContainer) || rackContainer.Count >= rack.MaxObjectsStored)
+        int itemsToInsert = Math.Min(component.ItemContainer.Count, rack.MaxObjectsStored - rackContainer.Count);
+        if (itemsToInsert < 0)
             return;
         if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComponent) || equipmentComponent.EquipmentOwner == null)
             return;
         if (!_mech.TryChangeEnergy(equipmentComponent.EquipmentOwner.Value, component.GrabEnergyDelta))
             return;
 
-        _container.Insert(component.ItemContainer.ContainedEntities[0], rackContainer);
+        // Insert items until they won't fit - if something fails with one, proceed to the next item
+        int index = 0;
+        for (int i = 0; i < itemsToInsert; i++)
+        {
+            if (!_container.Insert(component.ItemContainer.ContainedEntities[index], rackContainer))
+                index++;
+        }
+
         _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);
 
         args.Handled = true;
@@ -319,16 +327,24 @@ public sealed class MechForkSystem : EntitySystem
 
         if (!TryComp<CrateStorageRackComponent>(target, out var rack))
             return;
-        if (component.ItemContainer.Count >= component.MaxContents)
+        if (!_container.TryGetContainer(target, rack.ContainerName, out var rackContainer))
             return;
-        if (!_container.TryGetContainer(target, rack.ContainerName, out var rackContainer) || rackContainer.Count <= 0)
+        int itemsToInsert = Math.Min(rackContainer.Count, component.MaxContents - component.ItemContainer.Count);
+        if (itemsToInsert < 0)
             return;
         if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComponent) || equipmentComponent.EquipmentOwner == null)
             return;
         if (!_mech.TryChangeEnergy(equipmentComponent.EquipmentOwner.Value, component.GrabEnergyDelta))
             return;
 
-        _container.Insert(rackContainer.ContainedEntities[0], component.ItemContainer);
+        // Insert items until they won't fit - if something fails with one, proceed to the next item
+        int index = 0;
+        for (int i = 0; i < itemsToInsert; i++)
+        {
+            if (!_container.Insert(rackContainer.ContainedEntities[index], component.ItemContainer))
+                index++;
+        }
+
         _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);
 
         args.Handled = true;
