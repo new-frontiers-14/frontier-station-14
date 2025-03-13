@@ -46,7 +46,7 @@
         doAfter: 1
       completed:
       - !type:SpawnPrototype
-        prototype: MetalRod1
+        prototype: PartRodMetal1
         amount: 4
     
   - node: frame
@@ -65,8 +65,8 @@
         doAfter: 3
       completed:
       - !type:SpawnPrototype
-        prototype: PartRodMetal1
-        amount: 4
+        prototype: SheetSteel1
+        amount: 2
 
   - node: rack
     entity: CrateStorageRack
@@ -78,5 +78,5 @@
       completed:
       - !type:SpawnPrototype
         prototype: SheetSteel1
-        amount: 2
+        amount: 1
       - !type:EmptyAllContainers
