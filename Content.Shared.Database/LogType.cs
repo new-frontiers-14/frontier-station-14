@@ -467,7 +467,7 @@ public enum LogType
     AdminRefund = 203,
 
     /// <summary>
-    /// A gas lock's direction has been changed.
+    /// An atmos device's direction was changed.
     /// </summary>
     AtmosDirectionChanged = 204,
 
@@ -480,6 +480,11 @@ public enum LogType
     /// A player has deleted a bounty contract.
     /// </summary>
     BountyContractRemoved = 206,
+
+    /// <summary>
+    /// A medical bounty was redeemed.
+    /// </summary>
+    MedicalBountyRedeemed = 207,
 
     // DeltaV Station Specific
 
