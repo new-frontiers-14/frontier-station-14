@@ -1,1 +1,0 @@
-cargoproduct-description-mech-emu = An old mech with an integral forklift, useful for moving trade crates.
