@@ -104,6 +104,15 @@
   - ContractorClothingUniformRandomArmlessNoSkirt # Punkish (Randomized visuals)
   - ContractorClothingUniformRandomPunkCroptopShorts # Punkish (Randomized visuals)
   - ContractorClothingUniformRandomPunkTanktopShorts # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomArmless
+  - ContractorClothingUniformRandomStandard
+  - ContractorClothingUniformRandomShorts
+  - ContractorClothingUniformRandomShirt
+  - ContractorClothingSkirtUniformRandomArmless
+  - ContractorClothingSkirtUniformRandomStandard
+  - ContractorClothingSkirtUniformRandomBra
+  - ContractorClothingSkirtUniformRandomShorts
+  - ContractorClothingSkirtUniformRandomShirt
   - ContractorClothingUniformJumpsuitMonasticRobeDark
   - ContractorClothingUniformJumpsuitMonasticRobeLight
   - ContractorClothingUniformJumpsuitChaplainPilgrimVest
@@ -145,6 +154,10 @@
   - ContractorClothingUniformJumpsuitTshirtJeans
   - ContractorClothingUniformJumpsuitTshirtJeansGray
   - ContractorClothingUniformJumpsuitTshirtJeansPeach
+  - ContractorClothingUniformJumpsuitCaptain
+  - ContractorClothingUniformJumpskirtCaptain
+  - ContractorClothingUniformJumpsuitCapFormal
+  - ContractorClothingUniformJumpskirtCapFormalDress
   - ContractorClothingUniformJumpsuitMilitaryCaptain
   - ContractorClothingUniformJumpsuitMilitaryAtmospherics
   - ContractorClothingUniformJumpsuitMilitaryEngineering
@@ -394,6 +407,7 @@
   - ContractorClothingBeltMartialBlack
   - ContractorClothingBeltPunkRandomized # Punkish (Randomized visuals)
   - ContractorClothingBeltPunkRandomizedFilled # Punkish (Randomized visuals)
+  - ContractorClothingBeltSheathFilledHilt
   - ContractorClothingBeltChampion
 
 - type: loadoutGroup
@@ -493,7 +507,6 @@
   - ContractorClothingHeadHatBowlerHat
   - ContractorClothingHeadHatGreyFlatcap
   - ContractorClothingHeadHatBrownFlatcap
-  - ContractorClothingHeadHatCapcap
   - ContractorClothingHeadHatParamedicsoft
   - ContractorClothingHeadNurseHat
   - ContractorClothingHeadHatBeretMedic
@@ -502,6 +515,8 @@
   - ContractorClothingHeadHatSurgcapPurple
   - ContractorClothingHeadHatFedoraGrey
   - ContractorClothingHeadHatFedoraBrown
+  - ContractorClothingHeadHatCapcap
+  - ContractorClothingHeadHatCaptain
   - ContractorClothingHeadTinfoil
   - ContractorClothingHeadHatBeretRND
   - ContractorClothingHeadHatBeretEngineering
@@ -584,6 +599,7 @@
   - ContractorClothingHandsGlovesBoxingBlue
   - ContractorClothingHandsGlovesBoxingRed
   - ContractorClothingHandsGlovesBoxingYellow
+  - ContractorClothingHandsGlovesCaptain
   - ContractorClothingHandsGlovesColorWhite
 
 - type: loadoutGroup
@@ -606,7 +622,6 @@
   - ContractorClothingNeckStethoscope
   - ContractorClothingOuterPoncho
   - ContractorClothingOuterPonchoClassic
-  - ContractorClothingNeckCloakCap
   - ContractorClothingNeckCloakMiner
   - ContractorClothingNeckCloakMoth
   - ContractorClothingNeckScarfChaplainStole
@@ -628,8 +643,9 @@
   - ContractorClothingNeckIFFCyan
   - ContractorClothingNeckIFFOrange
   - ContractorClothingNeckIFFPurple
-  - ContractorClothingNeckCloakCapFormal
   - ContractorClothingNeckMantleCap
+  - ContractorClothingNeckCloakCap
+  - ContractorClothingNeckCloakCapFormal
   - ContractorClothingNeckCloakQm
   - ContractorClothingNeckMantleQM
 #  - ContractorClothingCloakCmo # Temp removed for MOM. Will return if replaced.
@@ -768,6 +784,7 @@
   - ContractorClothingMaskScaredMime
   - ContractorClothingMaskSadMime
   - ContractorClothingMaskClown
+  - ContractorClothingMaskClownBald
   fallbacks:
   - ContractorClothingMaskBreath
 
@@ -812,6 +829,7 @@
   # Frontier - try to mirror the upstream trinkets here, but only if they arent job role restricted in some weird way
   - PlushieLizard
   - ClothingNeckLGBTPin
+  - ClothingNeckAllyPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
   - ClothingNeckBisexualPin
@@ -821,6 +839,7 @@
   - ClothingNeckNonBinaryPin
   - ClothingNeckPansexualPin
   - ClothingNeckOmnisexualPin
+  - ClothingNeckGenderqueerPin
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
@@ -842,7 +861,7 @@
   id: ContractorEncryptionKey
   name: loadout-group-contractor-encryption-key
   minLimit: 0
-  maxLimit: 4
+  maxLimit: 5
   loadouts:
   - ContractorEncryptionKeyTraffic
   - ContractorEncryptionKeyMedical
@@ -851,6 +870,15 @@
   - ContractorEncryptionKeyScience
   fallbacks:
   - ContractorEncryptionKeyTraffic
+
+- type: loadoutGroup
+  id: ContractorWallet
+  name: loadout-group-contractor-wallet
+  loadouts:
+  - ContractorClothingWalletLeatherBrown
+  - ContractorClothingWalletLeatherBlack
+  fallbacks:
+  - ContractorClothingWalletLeatherBrown
 
 - type: loadoutGroup
   id: ContractorCartridge
@@ -873,6 +901,7 @@
   - ContractorLightImplanter
   - ContractorBikeHornImplanter
   - ContractorSadTromboneImplanter
+  - ContractorMimePowersImplanter
   fallbacks:
   - ContractorMedicalTrackingImplanter
 

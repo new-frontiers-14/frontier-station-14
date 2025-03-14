@@ -116,7 +116,7 @@
         - Write
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseCommandContraband]
   id: SheriffPDA
   name: sheriff PDA
   description: Whosoever bears this PDA is the law.
@@ -130,6 +130,12 @@
         tags:
         - BookSpaceLaw
         - BookNfsdSop
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
@@ -338,7 +344,7 @@
     state: pda-pal
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseCommandContraband]
   id: SrPDA
   name: station representative PDA
   description: Looks like it's been clawed on.
@@ -448,7 +454,7 @@
         pda-janitor
 
 - type: entity
-  parent: CMOPDA
+  parent: [CMOPDA, BaseCommandContraband]
   id: DocPDA
   name: director of care PDA
   description: It smells like disinfectant.
@@ -478,6 +484,6 @@
     - NotekeeperCartridge
     - NewsReaderCartridge
     - BountyContractsCartridge
-    - AstroNavCartridge    
+    - AstroNavCartridge
     - LedgerCartridge
     - MedTekCartridge #medtek preloaded. Should be ok.

@@ -129,7 +129,7 @@
 - type: loadout
   id: ContractorBible
   name: bible and faith implanter
-  description: For the budding Chaplain.  Perform miracles, proselytize, and grow your flock.
+  description: For the budding chaplain. Perform miracles, proselytize, and grow your flock.
   previewEntity: Bible
   effects:
   - !type:GroupLoadoutEffect
@@ -140,6 +140,18 @@
   storage:
     back:
       - BibleUserImplanter
+
+- type: loadout
+  id: ContractorMimePowersImplanter
+  name: mime vow implanter
+  description: For the budding mime. Take your vow today.
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 5000
+  storage:
+    back:
+      - MimePowersImplanter
 
 - type: loadout
   id: ContractorMonkeyCubeWrapped
