@@ -136,7 +136,7 @@ public abstract class SharedMechSystem : EntitySystem
         _actions.AddAction(pilot, ref component.MechUiActionEntity, component.MechUiAction, mech);
         _actions.AddAction(pilot, ref component.MechEjectActionEntity, component.MechEjectAction, mech);
 
-        RaiseEquipmentEquippedEvent((mech, component)); // Frontier
+        RaiseEquipmentEquippedEvent((mech, component), pilot); // Frontier (note: must send pilot separately, not yet in their seat)
     }
 
     private void RemoveUser(EntityUid mech, EntityUid pilot)
@@ -480,14 +480,14 @@ public abstract class SharedMechSystem : EntitySystem
     }
 
     // Frontier
-    private void RaiseEquipmentEquippedEvent(Entity<MechComponent> ent)
+    private void RaiseEquipmentEquippedEvent(Entity<MechComponent> ent, EntityUid? pilot = null)
     {
         if (_net.IsServer && ent.Comp.CurrentSelectedEquipment != null)
         {
             var ev = new MechEquipmentEquippedAction
             {
                 Mech = ent,
-                Pilot = ent.Comp.PilotSlot.ContainedEntity
+                Pilot = pilot ?? ent.Comp.PilotSlot.ContainedEntity
             };
             RaiseLocalEvent(ent.Comp.CurrentSelectedEquipment.Value, ev);
         }
