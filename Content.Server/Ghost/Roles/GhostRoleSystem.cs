@@ -280,7 +280,7 @@ public sealed class GhostRoleSystem : EntitySystem
         if (player.AttachedEntity == null || !HasComp<GhostComponent>(player.AttachedEntity))
             return false;
 
-        if (TryTakeover(player, identifier)) // DeltaV - prevent taking ghost roles in lobby
+        if (Takeover(player, identifier))
         {
             // takeover successful, we have a winner! remove the winner from other raffles they might be in
             LeaveAllRaffles(player);
@@ -480,7 +480,7 @@ public sealed class GhostRoleSystem : EntitySystem
         }
         else
         {
-            Takeover(player, identifier);
+            TryTakeover(player, identifier); // DeltaV - prevent taking ghost roles in the lobby
         }
     }
 
