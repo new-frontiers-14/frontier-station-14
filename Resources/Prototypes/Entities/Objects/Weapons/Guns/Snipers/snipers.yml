@@ -94,6 +94,12 @@
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
   - type: DisarmMalus
     malus: 0.225 # End Frontier
+  - type: CursorOffsetRequiresWield # Frontier
+  - type: EyeCursorOffset # Frontier
+    maxOffset: 1.5 # Frontier
+    pvsIncrease: 0.15 # Frontier
+  - type: AltFireMelee # Frontier
+    attackType: Light # Frontier
 
 - type: entity
   name: Hristov
@@ -129,7 +135,7 @@
 
 - type: entity
   name: musket
-  parent: [ BaseWeaponSniper, BaseGunWieldable, BaseC2Contraband ] # Frontier: BaseMinorContraband<BaseC2Contraband
+  parent: [ BaseWeaponSniper, BaseGunWieldable, BaseGunMelee, BaseC2Contraband ] # Frontier: BaseMinorContraband<BaseC2Contraband, add BaseGunMelee
   id: Musket
   description: This should've been in a museum long before you were born. Uses .60 anti-materiel ammo.
   components:
@@ -164,6 +170,8 @@
     animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+  - type: AltFireMelee # Frontier
+    attackType: Light # Frontier
 
 - type: entity
   name: flintlock pistol
