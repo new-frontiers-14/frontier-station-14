@@ -3,6 +3,7 @@ using Content.Server.Construction.Components;
 using Content.Server.GameTicking.Rules.VariationPass.Components;
 using Content.Shared._NF.BindToGrid;
 using Content.Shared.Climbing.Components;
+using Content.Shared.Construction.Components;
 using Content.Shared.Placeable;
 
 namespace Content.Server.GameTicking.Rules.VariationPass;
@@ -14,14 +15,23 @@ public sealed class BindToGridVariationPass : VariationPassSystem<BindToGridVari
         //if (HasComp<StationDeadDropHintExemptComponent>(args.Station))
         //    return;
 
-        var query = AllEntityQuery<MachineComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var _, out var xform))
+        var machineQuery = AllEntityQuery<MachineComponent, TransformComponent>();
+        while (machineQuery.MoveNext(out var uid, out var _, out var xform))
         {
             if (!IsMemberOfStation((uid, xform), ref args))
                 continue;
 
             var binding = EnsureComp<BindToGridComponent>(uid);
-            binding.BoundGrid = GetNetEntity(uid);
+            binding.BoundGrid = GetNetEntity(args.Station);
+        }
+        var boardQuery = AllEntityQuery<MachineBoardComponent, TransformComponent>();
+        while (boardQuery.MoveNext(out var uid, out var _, out var xform))
+        {
+            if (!IsMemberOfStation((uid, xform), ref args))
+                continue;
+
+            var binding = EnsureComp<BindToGridComponent>(uid);
+            binding.BoundGrid = GetNetEntity(args.Station);
         }
     }
 }

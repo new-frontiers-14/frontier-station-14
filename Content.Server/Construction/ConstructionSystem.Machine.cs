@@ -1,5 +1,7 @@
 using System.Linq; // Frontier
 using Content.Server.Construction.Components;
+using Content.Shared._NF.BindToGrid;
+using Content.Shared.Access.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.Prototypes;
 using Robust.Shared.Containers;
@@ -22,6 +24,17 @@ public sealed partial class ConstructionSystem
     {
         component.BoardContainer = _container.EnsureContainer<Container>(uid, MachineFrameComponent.BoardContainerName);
         component.PartContainer = _container.EnsureContainer<Container>(uid, MachineFrameComponent.PartContainerName);
+
+        //Frontier - we mirror the bind to grid component from any existing machine board onto the resultant machine to prevent high-grading
+        foreach (var board in component.BoardContainer.ContainedEntities)
+        {
+            if (TryComp<BindToGridComponent>(board, out var binding))
+            {
+                var machineBinding = EnsureComp<BindToGridComponent>(uid);
+                machineBinding.BoundGrid = binding.BoundGrid;
+            }
+        }
+        //End Frontier
     }
 
     private void OnMachineMapInit(EntityUid uid, MachineComponent component, MapInitEvent args)

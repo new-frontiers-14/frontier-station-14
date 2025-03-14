@@ -6,10 +6,11 @@ namespace Content.Shared._NF.BindToGrid;
 /// Frontier - Added to AI to allow auto waking up after 5 secs.
 /// </summary>
 [NetworkedComponent, RegisterComponent]
-[AutoGenerateComponentState, AutoGenerateComponentPause(Dirty = true)]
+[AutoGenerateComponentState]
 public sealed partial class BindToGridComponent : Component
 {
-    // The length of time, in seconds, to sleep
+    // the NetUID that this machine/item is bound to
     [DataField]
+    [AutoNetworkedField]
     public NetEntity BoundGrid;
 }
