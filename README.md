@@ -65,7 +65,6 @@ Additional repos that we have ported features from without subdirectories are li
 
 | Fork Name | Fork Repository | License |
 |-----------|-----------------|---------|
-| Goob Station | https://github.com/Goob-Station/Goob-Station | AGPL 3.0 |
 | Sector Umbra | https://github.com/Sector-Umbra/Sector-Umbra | MIT |
 | Space Station 14 | https://github.com/space-wizards/space-station-14 | MIT |
 | White Dream | https://github.com/WWhiteDreamProject/wwdpublic | AGPL 3.0 |
