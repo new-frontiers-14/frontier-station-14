@@ -75,8 +75,10 @@ namespace Content.Server.Atmos.Portable
             if (args.Grid is not {} grid)
                 return;
 
+            var map = _atmosphereSystem.AllowMapGasExtraction ? args.Map : null; // Frontier
+
             var position = _transformSystem.GetGridTilePositionOrDefault(uid);
-            var environment = _atmosphereSystem.GetTileMixture(grid, args.Map, position, true);
+            var environment = _atmosphereSystem.GetTileMixture(grid, map, position, true); // Frontier: args.Map<map
 
             var running = Scrub(timeDelta, component, environment);
 

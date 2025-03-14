@@ -9,6 +9,9 @@ guide-entry-cargo-hauling = Cargo Hauling
 guide-entry-shipyard = Shipyard
 guide-entry-frontier-rules = Server Rules
 
+# Engineering entries
+guide-entry-gas-mining = Gas Mining
+
 # Security entries
 guide-entry-nfsd-smuggling = Smuggling
 
@@ -66,6 +69,7 @@ guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-loader = Loader
 guide-entry-shipyard-mccargo = McCargo
 guide-entry-shipyard-mcdelivery = McDelivery
+guide-entry-shipyard-nightlight = Nightlight
 guide-entry-shipyard-pathfinder = Pathfinder
 guide-entry-shipyard-phoenix = Phoenix
 guide-entry-shipyard-pioneer = Pioneer
