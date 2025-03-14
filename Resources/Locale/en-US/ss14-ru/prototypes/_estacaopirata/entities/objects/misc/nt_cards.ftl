@@ -3,7 +3,6 @@ ent-CardBaseNanotrasen = card
 ent-CardBoxNanotrasen = nanotrasen deck box
     .desc = { ent-CardBoxBase.desc }
 ent-CardDeckNanotrasen = deck of cards
-    .suffix = DO NOT MAP
     .desc = { ent-CardDeckBase.desc }
 ent-CardSc2OfClubsNanotrasen = { ent-CardBaseNanotrasen }
     .desc = { ent-CardBaseNanotrasen.desc }

@@ -11,8 +11,8 @@
 - type: vessel
   id: Hypnos
   parent: BaseVessel
-  name: NSF Hypnos
-  description: A light medium ship with a recommended crew of 2 to 3 officers, the Hypnos is a dedicated interdiction vessel outfitted with a powerful EMP device for tackling escaping vessels.
+  name: NSF Гипноз
+  description: Легкий средний корабль с рекомендуемым экипажем из 2-3 офицеров, Гипноз - это специализированное судно для перехвата, оснащенное мощным ЭМИ-устройством для борьбы с убегающими судами.
   price: 34500
   category: Medium
   group: Security
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Hypnos
-  mapName: 'NSF Hypnos'
+  mapName: 'NSF Гипноз'
   mapPath: /Maps/_NF/Shuttles/Nfsd/hypnos.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Hypnos {1}'
+          mapNameTemplate: 'Гипноз {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

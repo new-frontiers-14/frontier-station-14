@@ -1,3 +1,3 @@
 ent-GrilleDungeon = { ent-Grille }
-    .desc = A covered in soot and grime grille.
-    .suffix = DO NOT MAP, Dungeon only
+    .desc = A grille covered in soot and grime.
+    .suffix = Dungeon only, DO NOT MAP

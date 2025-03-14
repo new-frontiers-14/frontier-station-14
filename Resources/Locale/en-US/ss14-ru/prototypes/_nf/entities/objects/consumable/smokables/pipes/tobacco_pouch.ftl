@@ -1,6 +1,3 @@
-ent-TobaccoPouchBase = tobacco pouch
-    .desc = A synth-leather pouch for safe storing pipe tobacco.
-    .suffix = Empty
 ent-TobaccoPouchBrownFilled = "Galaxy Core Blend" pouch
     .desc = A fiery collection of exotic tobaccos, each leaf coated with preserving agent. Should you wash it off before smoking?
     .suffix = Filled

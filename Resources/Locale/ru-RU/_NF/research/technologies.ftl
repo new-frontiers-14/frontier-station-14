@@ -16,3 +16,4 @@ research-technology-magnets-tech-advanced = Продвинутый локали�
 research-technology-magnets-tech-combat = Боевые технологии на основе локального магнетизма
 research-technology-mobile-sanitation = Передвижные средства гигиены
 research-technology-chemical-dispensary = Химический диспенсер
+research-technology-personal-storage-solutions = Решения для персонального хранения

@@ -3,7 +3,6 @@ ent-CardBaseSyndicate = card
 ent-CardBoxSyndicate = syndicate deck box
     .desc = { ent-CardBoxBase.desc }
 ent-CardDeckSyndicate = deck of cards
-    .suffix = DO NOT MAP
     .desc = { ent-CardDeckBase.desc }
 ent-CardSc2OfClubsSyndicate = { ent-CardBaseSyndicate }
     .desc = { ent-CardBaseSyndicate.desc }

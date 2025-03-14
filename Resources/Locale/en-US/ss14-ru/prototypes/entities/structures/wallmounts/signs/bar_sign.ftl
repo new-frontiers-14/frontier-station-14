@@ -49,3 +49,5 @@ ent-BarSignEmprah = 4 The Emprah
     .desc = Enjoyed by fanatics, heretics, and brain-damaged patrons alike.
 ent-BarSignSpacebucks = Spacebucks
     .desc = You can't get away from them, even in space, and even after we started calling them 'spesos' instead.
+ent-BarSignWhiskeyEchoes = Whiskey Echoes
+    .desc = An elite bar for elite oper-wait, this is a Nanotrasen station. Why's this sign in the database?

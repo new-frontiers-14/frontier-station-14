@@ -8,6 +8,8 @@ guide-entry-expeditions = Экспедиции
 guide-entry-cargo-hauling = Грузоперевозки
 guide-entry-shipyard = Верфь
 guide-entry-frontier-rules = Правила сервера
+# Engineering entries
+guide-entry-gas-mining = Газодобыча
 # Security entries
 guide-entry-nfsd-smuggling = Контрабанда
 # Medical entries

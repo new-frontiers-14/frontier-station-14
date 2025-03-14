@@ -27,5 +27,7 @@ ent-LockerWallColorMaterials = шкаф базовых материалов
     .desc = { ent-BaseWallCloset.desc }
 ent-ClosetWallN2 = аварийный азотный настенный шкаф
     .desc = Это хранилище для аварийных принадлежностей и баллонов с азотом.
+ent-NFPrisonerClosetWallOrange = стенной шкаф для заключенных
+    .desc = Это хранилище для одежды заключенных, отвечающей требованиям Космического Закона.
 ent-ClosetWallO2N2 = { ent-ClosetO2N2 }
     .desc = { ent-ClosetO2N2.desc }

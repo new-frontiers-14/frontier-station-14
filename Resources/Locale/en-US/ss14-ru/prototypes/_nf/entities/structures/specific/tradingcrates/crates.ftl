@@ -1,0 +1,14 @@
+ent-CrateTradeSecureNormal = cargo trading crate
+    .desc = Contains goods made in the Frontier sector, ready to be sold at a cargo depot for higher value. MAKE SURE THE CRATE IS INTACT.
+ent-CrateTradeSecureHigh = express cargo trading crate
+    .desc = An urgent crate of goods made in the Frontier sector, ready to be quickly sold at a cargo depot for higher value. MAKE SURE THE CRATE IS INTACT.
+ent-CrateTradeContrabandSecure1 = { ent-CrateTradeBaseSecureContraband }
+    .desc = { ent-CrateTradeBaseSecureContraband.desc }
+ent-CrateTradeContrabandSecure2 = { ent-CrateTradeBaseSecureContraband }
+    .desc = { ent-CrateTradeBaseSecureContraband.desc }
+ent-CrateTradeContrabandSecure3 = { ent-CrateTradeBaseSecureContraband }
+    .desc = { ent-CrateTradeBaseSecureContraband.desc }
+ent-CrateTradeContrabandSecure4 = Donk Co. contraband crate
+    .desc = { ent-CrateTradeBaseSecureContraband.desc }
+ent-CrateTradeContrabandSecure5 = Cybersun Industries contraband crate
+    .desc = { ent-CrateTradeBaseSecureContraband.desc }

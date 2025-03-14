@@ -1,5 +1,5 @@
 ent-WarpPointAdmin = { ent-WarpPoint }
-    .suffix = Admin-only, DO NOT MAP
+    .suffix = Admin-only
     .desc = { ent-WarpPoint.desc }
 ent-WarpPointDungeon = { ent-WarpPoint }
     .suffix = Dungeon

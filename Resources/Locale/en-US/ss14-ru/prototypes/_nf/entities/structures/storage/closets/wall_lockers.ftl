@@ -27,3 +27,5 @@ ent-ClosetWallN2 = emergency nitrogen wall closet
     .desc = It's a storage unit for emergency breath masks and N2 tanks.
 ent-ClosetWallO2N2 = emergency internals wall closet
     .desc = It's a storage unit for emergency breathing equipment for all species.
+ent-NFPrisonerClosetWallOrange = prisoner wall closet
+    .desc = It's a storage unit for Space Law compliant prisoner garb.

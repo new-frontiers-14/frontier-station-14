@@ -2,6 +2,7 @@
 
 ui-options-title = Игровые настройки
 ui-options-tab-accessibility = Доступность
+ui-options-tab-admin = Админское
 ui-options-tab-graphics = Графика
 ui-options-tab-controls = Управление
 ui-options-tab-audio = Аудио
@@ -263,3 +264,7 @@ ui-options-colorblind-friendly = Режим для дальтоников
 ui-options-reduced-motion = Снижение интенсивности визуальных эффектов
 ui-options-chat-window-opacity = Прозрачность окна чата
 ui-options-screen-shake-intensity = Интенсивность дрожания экрана
+ui-options-speech-bubble-text-opacity = Непрозрачность текста речевых пузырьков
+ui-options-speech-bubble-speaker-opacity = Непрозрачность динамического речевого пузыря
+ui-options-speech-bubble-background-opacity = Непрозрачность фона речевого пузыря
+ui-options-enable-classic-overlay = Вернуть классический overlay антагониста

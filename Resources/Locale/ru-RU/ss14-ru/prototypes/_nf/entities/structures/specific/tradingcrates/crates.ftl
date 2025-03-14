@@ -1,0 +1,14 @@
+ent-CrateTradeSecureNormal = ящик с товарами
+    .desc = Содержит товары, произведенные в секторах Фронтира, готовые к продаже на грузовом складе по высокой цене. ЯЩИК ДОЛЖЕН БЫТЬ ЦЕЛ.
+ent-CrateTradeSecureHigh = ящик с ценными товарами (экспресс)
+    .desc = Содержит ценные товары, произведенные в секторах Фронтира, готовые к эспресс продаже на грузовом складе по высокой цене. ЯЩИК ДОЛЖЕН БЫТЬ ЦЕЛ.
+ent-CrateTradeContrabandSecure1 = { ent-CrateTradeBaseSecureContraband }
+    .desc = { ent-CrateTradeBaseSecureContraband.desc }
+ent-CrateTradeContrabandSecure2 = { ent-CrateTradeBaseSecureContraband }
+    .desc = { ent-CrateTradeBaseSecureContraband.desc }
+ent-CrateTradeContrabandSecure3 = { ent-CrateTradeBaseSecureContraband }
+    .desc = { ent-CrateTradeBaseSecureContraband.desc }
+ent-CrateTradeContrabandSecure4 = Ящик с контрабандой Donk Co.
+    .desc = { ent-CrateTradeBaseSecureContraband.desc }
+ent-CrateTradeContrabandSecure5 = ящик контрабанды Cybersun Industries
+    .desc = { ent-CrateTradeBaseSecureContraband.desc }

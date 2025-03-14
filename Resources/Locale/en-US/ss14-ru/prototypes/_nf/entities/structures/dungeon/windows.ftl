@@ -1,9 +1,9 @@
 ent-WindowMurkyDungeon = { "" }
     .desc = A murky glass window, it's hard to see what's on the other side.
-    .suffix = DO NOT MAP, Dungeon only
+    .suffix = Dungeon only, DO NOT MAP
 ent-WindowDirectionalMurkyDungeon = { "" }
     .desc = A murky glass window, it's hard to see what's on the other side.
-    .suffix = DO NOT MAP, Dungeon only
+    .suffix = Dungeon only, DO NOT MAP
 ent-WindowDungeon = { ent-WindowMurkyDungeon }
     .desc = { ent-WindowMurkyDungeon.desc }
 ent-ReinforcedWindowDungeon = { ent-WindowMurkyDungeon }

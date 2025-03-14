@@ -16,3 +16,5 @@ ent-FoodPickleSlice = pickle slice
     .desc = Like tangy crispy water, but smaller.
 ent-FoodHoneyComb = honeycomb
     .desc = Crispy container of honey.
+ent-FoodPotatoSlice = sliced potato
+    .desc = Raw potato sticks ready for the deep fryer.

@@ -1,5 +1,5 @@
 ent-PinpointerUniversalDebug = { ent-PinpointerUniversal }
-    .suffix = DEBUG, DO NOT MAP
+    .suffix = DEBUG
     .desc = { ent-PinpointerUniversal.desc }
 ent-PinpointerSyndicatePOI = { ent-PinpointerSyndicateNuclear }
     .desc = Pointing to some unknown place.

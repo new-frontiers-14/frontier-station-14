@@ -9,4 +9,12 @@ lathe-category-weapons = Вооружение
 lathe-category-food = Пища
 lathe-category-chemicals = Химикаты
 lathe-category-materials = Материалы
+# Uniform
+lathe-category-bedsheets = Постельное бельё
+lathe-category-carpets = Ковры
+lathe-category-coats = Плащи
+lathe-category-command = Командование
+lathe-category-hats = Шляпы
+lathe-category-jumpsuits = Комбинезоны
+lathe-category-neck = Шея
 lathe-category-seeds = Семена

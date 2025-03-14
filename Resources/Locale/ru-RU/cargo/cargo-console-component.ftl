@@ -32,7 +32,7 @@ cargo-console-unfulfilled = Нет места для выполнения зак
 cargo-console-trade-station = Отправить на { $destination }
 # Frontier
 cargo-console-nf-no-bank-account = Банковский счёт не найден
-cargo-console-unlock-approved-order-broadcast =  [bold]Заказ на { $productName } x{ $orderAmount }[/bold], стоимостью [bold]{ $cost }[/bold], был одобрен [bold]{ $approver }[/bold]
+cargo-console-unlock-approved-order-broadcast = [bold]Заказ на { $productName } x{ $orderAmount }[/bold], стоимостью [bold]{ $cost }[/bold], был одобрен [bold]{ $approver }[/bold]
 cargo-console-paper-print-name = Заказ #{ $orderNumber }
 cargo-console-paper-print-text =
     Заказ #{ $orderNumber }

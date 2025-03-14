@@ -231,10 +231,12 @@ ghost-role-information-syndie-disaster-victim-name = Жертва катастр
 ghost-role-information-syndie-disaster-victim-description = Вы - обычный пассажир со станции Синдиката. К несчастью, спасательная капсула закинула вас во вражеский сектор...
 ghost-role-information-artifact-name = Разумный артефакт
 ghost-role-information-artifact-description = Осуществляйте свои инопланетные прихоти. Принудительно активируйте свои узлы во благо или во зло.
-ghost-role-information-gingerbread-name = Gingerbread Man
+ghost-role-information-gingerbread-name = Пряничный человечек
 ghost-role-information-gingerbread-description =
-    A being of pure holiday spirit.
-    Spread molassesy goodness and to all good cheer.
+    Существо с чистым праздничным духом.
+    Распространяйте патоку и поднимайте всем настроение.
+ghost-role-information-wizard-name = Волшебник
+ghost-role-information-wizard-desc = ВЫ ВОЛШЕБНИК! Покажите станции, из чего состоит ваше волшебство.
 ghost-role-information-tomatokiller-name = Томат-убийца
 ghost-role-information-tomatokiller-description = Этот маленький помидор будет служить ботанику до конца своей жизни... то есть пару минут.
 # Corvax-start

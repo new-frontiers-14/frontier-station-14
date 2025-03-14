@@ -1,6 +1,6 @@
 ent-AirlockGlassMurkyDungeon = { "" }
     .desc = An airlock with murky glass windows, it's hard to see what's on the other side.
-    .suffix = DO NOT MAP, Dungeon only
+    .suffix = Dungeon only, DO NOT MAP
 ent-AirlockGlassDungeon = { ent-AirlockGlassMurkyDungeon }
     .desc = { ent-AirlockGlassMurkyDungeon.desc }
 ent-AirlockMaintGlassLockedDungeon = { ent-AirlockGlassMurkyDungeon }

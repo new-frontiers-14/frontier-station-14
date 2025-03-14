@@ -1,6 +1,6 @@
 ## Entity
 
-gas-analyzer-object-out-of-range = Объект покинул зону действия.
+gas-analyzer-object-out-of-range = Вы не можете туда достать.
 gas-analyzer-shutoff = Газоанализатор выключается.
 
 ## UI

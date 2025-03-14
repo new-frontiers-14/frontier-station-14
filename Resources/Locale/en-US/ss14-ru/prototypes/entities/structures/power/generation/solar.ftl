@@ -1,8 +1,8 @@
 ent-SolarPanelBasePhysSprite = solar panel
     .desc = { "" }
-ent-SolarPanelPlasma = solar panel plasma
+ent-SolarPanelPlasma = plasma solar panel
     .desc = A plasma solar panel that generates power.
-ent-SolarPanelUranium = solar panel uranium
+ent-SolarPanelUranium = uranium solar panel
     .desc = A uranium solar panel that generates power.
 ent-SolarPanel = solar panel
     .desc = A solar panel that generates power.

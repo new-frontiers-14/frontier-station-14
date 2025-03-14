@@ -1,0 +1,15 @@
+gas-deposit-scanner-window-name = Сканер газовых месторождений
+gas-deposit-scanner-window-refresh-button = Обновить
+gas-deposit-scanner-window-no-data = Нет данных
+gas-deposit-scanner-window-no-gas-text = Нет газов
+gas-deposit-scanner-window-density-column-name = Плотность
+gas-deposit-scanner-window-error-text = Ошибка: { $errorText }
+gas-deposit-scanner-window-gas-column-name = Газы
+gas-deposit-scanner-window-deposit-title-capitalized = Депозит
+gas-deposit-scanner-window-deposit-size-trace = Трассировка
+gas-deposit-scanner-window-deposit-size-small = Малый
+gas-deposit-scanner-window-deposit-size-medium = Средний
+gas-deposit-scanner-window-deposit-size-large = Большой
+gas-deposit-scanner-window-deposit-size-enormous = Огромный
+gas-deposit-scanner-object-out-of-range = Депозит вышел за пределы досягаемости.
+gas-deposit-scanner-shutoff = Сканер газовых месторождений отключился.

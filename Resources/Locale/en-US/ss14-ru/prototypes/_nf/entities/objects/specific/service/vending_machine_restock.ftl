@@ -12,5 +12,3 @@ ent-VendingMachineRestockAutoTuneVend = AutoTuneVend restock box
     .desc = A box containing music and stuff for the AutoTuneVend machine. A label reads "THE BOX IS TAMPER-PROOF AND WILL DESTROY ITS CONTENT ON HARM."
 ent-VendingMachineRestockPottedPlantVend = Plant-O-Matic restock box
     .desc = A box containing potted plants for the Plant-O-Matic vending machine. A label reads "THE BOX IS TAMPER-PROOF AND WILL DESTROY ITS CONTENT ON HARM."
-ent-VendingMachineRestockSyndieContraband = contravend restock box
-    .desc = A box containing the best illegal tools for the ContraVend machine. A label reads "THE BOX IS TAMPER-PROOF AND WILL DESTROY ITS CONTENT ON HARM."

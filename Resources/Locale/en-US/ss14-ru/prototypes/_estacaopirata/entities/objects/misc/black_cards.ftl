@@ -1,7 +1,6 @@
 ent-CardBoxBlack = black deck box
     .desc = { ent-CardBoxBase.desc }
 ent-CardDeckBlack = deck of cards
-    .suffix = DO NOT MAP
     .desc = { ent-CardDeckBase.desc }
 ent-CardBase = card
     .desc = { ent-BaseItem.desc }

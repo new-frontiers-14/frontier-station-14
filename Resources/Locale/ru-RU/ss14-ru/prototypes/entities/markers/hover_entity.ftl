@@ -1,2 +1,2 @@
-ent-hoverentity = hover entity
+ent-hoverentity = наведение объекта
     .desc = { "" }

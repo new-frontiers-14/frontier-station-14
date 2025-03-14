@@ -12,8 +12,8 @@
 - type: vessel
   id: Watchdog
   parent: BaseVessel
-  name: SBI Watchdog
-  description: "A refurbished and repainted older model of the NSF Templar for use for Mercenaries and 'repurposed' for the Station Guard, mind the gap."
+  name: SBI Сторожевой пёс
+  description: Обновленная и перекрашенная старая модель "Тамплиера" NSF, предназначенная для использования наемниками и "перепрофилированная" для станционной охраны.
   price: 20000
   category: Small
   group: Sr
@@ -28,7 +28,7 @@
 
 - type: gameMap
   id: Watchdog
-  mapName: 'SBI Watchdog'
+  mapName: 'SBI Сторожевой пёс'
   mapPath: /Maps/_NF/Shuttles/Sr/watchdog.yml
   minPlayers: 0
   stations:
@@ -36,7 +36,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Watchdog {1}'
+          mapNameTemplate: 'Сторожевой пёс{1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

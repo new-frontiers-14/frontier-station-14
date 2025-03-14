@@ -7,7 +7,11 @@ spellbook-voidapplause-name = Аплодисменты пустоты
 spellbook-voidapplause-desc = Поменяйтесь местами с мишенью, разве вам не хочется сделать буги?
 spellbook-force-wall-name = Силовой барьер
 spellbook-force-wall-desc = Создайте три стены чистой энергии, через которые вы можете пройти, а другие - нет.
-spellbook-polymoprh-spider-name = Полиморф-паук
+spellbook-repulse-name = Толчок
+spellbook-repulse-desc = Скажите людям: «GITTAH`WEIGH» и оттолкните их от себя.
+spellbook-smoke-name = Дымовая завеса
+spellbook-smoke-desc = Вызывает облако дыма, это довольно очевидно.
+spellbook-polymorph-spider-name = Полиморф-паук
 spellbook-polymorph-spider-desc = Превращает вас в паука!
 spellbook-polymorph-rod-name = Полиморф-жезл
 spellbook-polymorph-rod-desc = Превратитесь в неподвижный жезл с ограниченной возможностью передвижения.
@@ -35,9 +39,14 @@ spellbook-wand-polymorph-door-description = На случай, когда нуж
 spellbook-wand-polymorph-carp-name = Волшебная палочка полиморфа карпа
 spellbook-wand-polymorph-carp-description = На случай, когда вам срочно нужно филе карпа, а клоун выглядит уж очень аппетитно.
 spellbook-wand-locker-name = Палочка из шкафчика
+spellbook-hammer-mjollnir-name = Мьёлльнир
+spellbook-hammer-mjollnir-description = Овладейте силой ГРОМА в своих руках. Отправляйте врагов в полет мощным ударом или бросайте его прямо в них!
+spellbook-hammer-singularity-name = Молот сингулярности
+spellbook-hammer-singularity-description = Вы когда-нибудь задумывались, каково это — быть сингулярностью? Размахивайте этим молотом, чтобы привлечь свое окружение, даже если вы промахнетесь!
 spellbook-wand-locker-description = Стреляйте в своих врагов проклятыми замками и заблокируйте их!
 spellbook-staff-animation-name = Посох анимации
 spellbook-staff-animation-description = Оживите неодушевленные предметы!
+
 # Events
 
 spellbook-event-summon-ghosts-name = Призвать призраков
