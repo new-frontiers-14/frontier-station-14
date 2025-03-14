@@ -15,10 +15,10 @@ public static class Identity
     /// </summary>
     public static string Name(EntityUid uid, IEntityManager ent, EntityUid? viewer=null)
     {
-        if (!uid.IsValid())
+        if (!uid.IsValid() || !ent.TryGetComponent(uid, out MetaDataComponent? meta)) // Frontier: add TryGetComponent
             return string.Empty;
 
-        var meta = ent.GetComponent<MetaDataComponent>(uid);
+        //var meta = ent.GetComponent<MetaDataComponent>(uid); // Frontier: exception safety
         if (meta.EntityLifeStage <= EntityLifeStage.Initializing)
             return meta.EntityName; // Identity component and such will not yet have initialized and may throw NREs
 
@@ -28,10 +28,11 @@ public static class Identity
             return uidName;
 
         var ident = identity.IdentityEntitySlot.ContainedEntity;
-        if (ident is null)
+        if (ident is null || !ent.TryGetComponent(ident.Value, out MetaDataComponent? identMeta)) // Frontier: add TryGetComponent
             return uidName;
 
-        var identName = ent.GetComponent<MetaDataComponent>(ident.Value).EntityName;
+        //var identName = ent.GetComponent<MetaDataComponent>(ident.Value).EntityName; // Frontier: exception safety
+        var identName = identMeta.EntityName; // Frontier: exception safety
         if (viewer == null || !CanSeeThroughIdentity(uid, viewer.Value, ent))
         {
             return identName;

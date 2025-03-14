@@ -1,5 +1,4 @@
 using Content.Server.Access.Systems;
-using Content.Server.DetailExaminable;
 using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
 using Content.Server.Mind.Commands;
@@ -9,6 +8,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
+using Content.Shared.DetailExaminable;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.PDA;
@@ -29,7 +29,8 @@ using Content.Server.Spawners.Components;
 using Content.Shared._NF.Bank.Components; // DeltaV
 using Content.Server._NF.Bank; // Frontier
 using Content.Server.Preferences.Managers; // Frontier
-using System.Linq; // Frontier
+using System.Linq;
+using Content.Shared.NameIdentifier; // Frontier
 
 namespace Content.Server.Station.Systems;
 
@@ -273,7 +274,13 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (profile != null)
         {
             // Frontier: allow pseudonyms
-            var name = (loadout != null) && !string.IsNullOrEmpty(loadout.EntityName) ? loadout.EntityName : profile.Name;
+            var name = loadout != null && !string.IsNullOrEmpty(loadout.EntityName) ? loadout.EntityName : profile.Name;
+            // Janky hack for borgs
+            if (TryComp<NameIdentifierComponent>(entity.Value, out var identifier))
+            {
+                // Append our name identifier (why have a pseudonym for a role that has a complete name identifier group?)
+                name = $"{name} {identifier.FullIdentifier}";
+            }
             // End Frontier
             if (prototype != null)
                 SetPdaAndIdCardData(entity.Value, name, prototype, station); // Frontier: profile.Name<name
