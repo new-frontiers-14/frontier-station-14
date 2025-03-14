@@ -13,7 +13,7 @@
       map: ["openLayer"]
       visible: false
     - state: closed-paper
-      map: ["closed-paper"] # scuffed values to deal with ItemMapper complaining
+      map: ["closed-paper"] # scuffed values to get ItemMapper to play nice with the generic visualizer
       visible: false
     - state: closed-cash
       map: ["closed-cash"]
@@ -31,7 +31,7 @@
       - Paper
       - NFCoin
       - NFShipyardVoucher
-      - Card # single cards only, why not
+      - Card # single cards
     blacklist:
       tags:
       - Book
