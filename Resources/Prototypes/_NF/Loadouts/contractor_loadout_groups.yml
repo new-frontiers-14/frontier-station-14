@@ -104,6 +104,15 @@
   - ContractorClothingUniformRandomArmlessNoSkirt # Punkish (Randomized visuals)
   - ContractorClothingUniformRandomPunkCroptopShorts # Punkish (Randomized visuals)
   - ContractorClothingUniformRandomPunkTanktopShorts # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomArmless
+  - ContractorClothingUniformRandomStandard
+  - ContractorClothingUniformRandomShorts
+  - ContractorClothingUniformRandomShirt
+  - ContractorClothingSkirtUniformRandomArmless
+  - ContractorClothingSkirtUniformRandomStandard
+  - ContractorClothingSkirtUniformRandomBra
+  - ContractorClothingSkirtUniformRandomShorts
+  - ContractorClothingSkirtUniformRandomShirt
   - ContractorClothingUniformJumpsuitMonasticRobeDark
   - ContractorClothingUniformJumpsuitMonasticRobeLight
   - ContractorClothingUniformJumpsuitChaplainPilgrimVest
@@ -833,6 +842,7 @@
   - ContractorClothingMaskScaredMime
   - ContractorClothingMaskSadMime
   - ContractorClothingMaskClown
+  - ContractorClothingMaskClownBald
   fallbacks:
   - ContractorClothingMaskBreath
 
@@ -864,6 +874,15 @@
   - ContractorEncryptionKeyTraffic
 
 - type: loadoutGroup
+  id: ContractorWallet
+  name: loadout-group-contractor-wallet
+  loadouts:
+  - ContractorClothingWalletLeatherBrown
+  - ContractorClothingWalletLeatherBlack
+  fallbacks:
+  - ContractorClothingWalletLeatherBrown
+
+- type: loadoutGroup
   id: ContractorCartridge
   name: loadout-group-contractor-cartridge
   minLimit: 0
@@ -884,5 +903,6 @@
   - ContractorLightImplanter
   - ContractorBikeHornImplanter
   - ContractorSadTromboneImplanter
+  - ContractorMimePowersImplanter
   fallbacks:
   - ContractorMedicalTrackingImplanter

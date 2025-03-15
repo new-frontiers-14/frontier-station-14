@@ -63,7 +63,7 @@
   suffix: VeryHigh
   components:
   - type: MarketModifier
-    mod: 1.75
+    mod: 1.50
 
 - type: entity
   parent: ComputerPalletConsoleNFMarket
@@ -71,7 +71,7 @@
   suffix: High
   components:
   - type: MarketModifier
-    mod: 1.50
+    mod: 1.25
 
 - type: entity
   parent: ComputerPalletConsoleNFMarket
@@ -213,6 +213,15 @@
 - type: entity
   name: cargo market computer
   parent: ComputerMarketConsoleNFBase
+  id: ComputerMarketConsoleNFNormal
+  suffix: Normal
+  components:
+  - type: MarketModifier
+    mod: 6
+
+- type: entity
+  name: cargo market computer
+  parent: ComputerMarketConsoleNFBase
   id: ComputerMarketConsoleNFHigh
   suffix: High
   components:
@@ -329,7 +338,8 @@
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]
   id: GasSaleConsole
   name: gas sale console
-  description: Sells gas pumped into a linked gas sale port/point.
+  description: Sells gas pumped into any nearby gas sale ports or points.
+  suffix: Normal
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -354,7 +364,40 @@
   - type: Computer
     board: Null # FIXME
   - type: MarketModifier
+    buy: false
     mod: 1
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleVeryHigh
+  suffix: VeryHigh
+  components:
+  - type: MarketModifier
+    mod: 1.5
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleHigh
+  suffix: High
+  components:
+  - type: MarketModifier
+    mod: 1.25
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleLow
+  suffix: Low
+  components:
+  - type: MarketModifier
+    mod: 0.75
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleVeryLow
+  suffix: VeryLow
+  components:
+  - type: MarketModifier
+    mod: 0.5
 
 # Station Traffic Controller consoles
 - type: entity
