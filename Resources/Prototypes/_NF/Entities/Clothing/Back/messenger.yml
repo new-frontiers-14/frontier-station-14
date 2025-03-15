@@ -587,6 +587,44 @@
       - state: clasp-inhand-right
         color: "#bbbb7a"
 
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerPrivateSecurity
+  name: private security messenger bag
+  description:  A robust messenger bag for commiting war crimes on a payroll.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#2286bd"
+    - state: icon-sling
+      color: "#9d1c1c"
+    - state: icon-clasp
+      color: "#935c3f"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#2286bd"
+      - state: sling-equipped-BACKPACK
+        color: "#9d1c1c"
+      - state: clasp-equipped-BACKPACK
+        color: "#935c3f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#2286bd"
+      - state: clasp-inhand-left
+        color: "#935c3f"
+      right:
+      - state: base-inhand-right
+        color: "#2286bd"
+      - state: clasp-inhand-right
+        color: "#935c3f"
+
 ## Holding
 - type: entity
   parent: ClothingBackpackHolding
