@@ -65,12 +65,57 @@
   completetime: 10
   materials:
     Biomass: 35
+    
+- type: latheRecipe
+  id: NFBioGenFoodMeatChicken
+  result: FoodMeatChicken
+  parent: BioGenFoodRecipe
+  applyMaterialDiscount: false
+  completetime: 10
+  materials:
+    Biomass: 35
+    
+- type: latheRecipe
+  id: NFBioGenFoodMeatPenguin
+  result: FoodMeatPenguin
+  parent: BioGenFoodRecipe
+  applyMaterialDiscount: false
+  completetime: 10
+  materials:
+    Biomass: 35
+    
+- type: latheRecipe
+  id: NFBioGenFoodMeatDuck
+  result: FoodMeatDuck
+  parent: BioGenFoodRecipe
+  applyMaterialDiscount: false
+  completetime: 10
+  materials:
+    Biomass: 35
+
+- type: latheRecipe
+  id: NFBioGenFoodMeatCrab
+  result: FoodMeatCrab
+  parent: BioGenFoodRecipe
+  applyMaterialDiscount: false
+  completetime: 10
+  materials:
+    Biomass: 25 #Crab is a more specific recipe, also crabs are smaller so I pressume the cut of crab meat is easier to make than a full steak
+    
+- type: latheRecipe
+  id: NFBioGenFoodMeatBacon
+  result: FoodMeatBacon
+  parent: BioGenFoodRecipe
+  applyMaterialDiscount: false
+  completetime: 10
+  materials:
+    Biomass: 35 
 
 - type: latheRecipe
   id: BioGenChickenCube
   result: ChickenCube
   parent: BioGenFoodRecipe
-  completetime: 60
+  completetime: 180
   materials:
     Biomass: 45
 
@@ -78,7 +123,7 @@
   id: BioGenDuckCube
   result: DuckCube
   parent: BioGenFoodRecipe
-  completetime: 60
+  completetime: 180
   materials:
     Biomass: 45
 
@@ -87,7 +132,7 @@
   id: BioGenPigCube
   result: PigCube
   parent: BioGenFoodRecipe
-  completetime: 60
+  completetime: 180
   materials:
     Biomass: 45
 
