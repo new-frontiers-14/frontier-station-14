@@ -10,16 +10,21 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 14
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
         - ReagentId: Vitamin
-          Quantity: 5
+          Quantity: 4
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/pear.rsi
   - type: Produce
     seedId: pear
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuicePear
+        Quantity: 10
   - type: Tag
     tags:
       - Fruit
