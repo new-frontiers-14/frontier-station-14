@@ -1,10 +1,7 @@
-using Content.Server._NF.Smuggling.Components;
 using Content.Server.Construction.Components;
 using Content.Server.GameTicking.Rules.VariationPass.Components;
 using Content.Shared._NF.BindToGrid;
-using Content.Shared.Climbing.Components;
 using Content.Shared.Construction.Components;
-using Content.Shared.Placeable;
 
 namespace Content.Server.GameTicking.Rules.VariationPass;
 
@@ -12,9 +9,6 @@ public sealed class BindToGridVariationPass : VariationPassSystem<BindToGridVari
 {
     protected override void ApplyVariation(Entity<BindToGridVariationPassComponent> ent, ref StationVariationPassEvent args)
     {
-        //if (HasComp<StationDeadDropHintExemptComponent>(args.Station))
-        //    return;
-
         var machineQuery = AllEntityQuery<MachineComponent, TransformComponent>();
         while (machineQuery.MoveNext(out var uid, out var _, out var xform))
         {
@@ -22,7 +16,8 @@ public sealed class BindToGridVariationPass : VariationPassSystem<BindToGridVari
                 continue;
 
             var binding = EnsureComp<BindToGridComponent>(uid);
-            binding.BoundGrid = GetNetEntity(args.Station);
+
+            binding.BoundGrid = GetNetEntity(Transform(uid).GridUid!.Value);
         }
         var boardQuery = AllEntityQuery<MachineBoardComponent, TransformComponent>();
         while (boardQuery.MoveNext(out var uid, out var _, out var xform))
