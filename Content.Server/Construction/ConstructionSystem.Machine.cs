@@ -1,7 +1,6 @@
 using System.Linq; // Frontier
 using Content.Server.Construction.Components;
-using Content.Shared._NF.BindToGrid;
-using Content.Shared.Access.Components;
+using Content.Shared._NF.BindToGrid; //Frontier
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.Prototypes;
 using Robust.Shared.Containers;
