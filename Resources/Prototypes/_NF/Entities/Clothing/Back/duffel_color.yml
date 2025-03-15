@@ -939,6 +939,8 @@
     - state: icon-handle
       map: [ "iconDuffelHandle" ]
     - state: icon-zipper
+      map: [ "iconDuffelZipper" ]
+      shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/Back/Duffels/color.rsi
     clothingVisuals:
@@ -963,6 +965,8 @@
       - state: inhand-left-handle
         map: [ "leftDuffelHandle" ]
       - state: inhand-left-zipper
+        map: [ "leftDuffelZipper" ]
+        shader: unshaded
       right:
       - state: inhand-right-base
         map: [ "rightDuffelBase" ]
@@ -973,6 +977,8 @@
       - state: inhand-right-handle
         map: [ "rightDuffelHandle" ]
       - state: inhand-right-zipper
+        map: [ "rightDuffelZipper" ]
+        shader: unshaded
   - type: RandomSprite
     available:
     # icon
@@ -984,6 +990,8 @@
         icon-decal-straps: Straps
       iconDuffelHandle:
         icon-handle: Handle
+      iconDuffelZipper:
+        icon-zipper: Zipper
     # clothing
       equippedDuffelBase:
         equipped-BACKPACK-base: Base
@@ -1002,6 +1010,8 @@
         inhand-left-decal-straps: Straps
       leftDuffelHandle:
         inhand-left-handle: Handle
+      leftDuffelZipper:
+        inhand-left-zipper: Zipper
     # right hand
       rightDuffelBase:
         inhand-right-base: Base
@@ -1011,8 +1021,11 @@
         inhand-right-decal-straps: Straps
       rightDuffelHandle:
         inhand-right-handle: Handle
+      rightDuffelZipper:
+        inhand-right-zipper: Zipper
     mappedColors:
       Base: Cyberpunk
       Sling: Cyberpunk
       Straps: Cyberpunk
       Handle: Cyberpunk
+      Zipper: CyberpunkNeon
