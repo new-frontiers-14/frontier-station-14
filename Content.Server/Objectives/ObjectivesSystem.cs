@@ -1,5 +1,6 @@
 using Content.Server.GameTicking;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._DV.CustomObjectiveSummary; // DeltaV
 using Content.Shared.Cuffs.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
@@ -12,11 +13,12 @@ using Robust.Shared.Random;
 using System.Linq;
 using System.Text;
 using Content.Server.Objectives.Commands;
-using Content.Shared._DV.CustomObjectiveSummary; // DeltaV
 using Content.Shared.Prototypes;
 using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
+using Robust.Shared.Configuration; // DeltaV
 using Robust.Shared.Utility;
+using Content.Shared._DV.CCVars; // DeltaV
 
 namespace Content.Server.Objectives;
 
@@ -28,14 +30,19 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly SharedJobSystem _job = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // DeltaV
 
     private IEnumerable<string>? _objectives;
+
+    private bool _showGreentext; // DeltaV
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
+
+        Subs.CVar(_cfg, DCCVars.GameShowGreentext, value => _showGreentext = value, true); // DeltaV
 
         _prototypeManager.PrototypesReloaded += CreateCompletions;
     }
@@ -163,8 +170,12 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                     totalObjectives++;
 
                     agentSummary.Append("- ");
-                    /* Begin DeltaV removal - Removed greentext
-                    if (progress > 0.99f)
+
+                    if (!_showGreentext) // DeltaV
+                    {
+                        agentSummary.AppendLine(objectiveTitle);
+                    }
+                    else if (progress > 0.99f)
                     {
                         agentSummary.AppendLine(Loc.GetString(
                             "objectives-objective-success",
@@ -182,13 +193,6 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                             ("markupColor", "red")
                         ));
                     }
-                    End DeltaV removal */
-                    // Begin DeltaV Additions - Generic objective
-                    agentSummary.AppendLine(Loc.GetString(
-                        "objectives-objective",
-                        ("objective", objectiveTitle)
-                    ));
-                    // End DeltaV Additions
                 }
             }
 
