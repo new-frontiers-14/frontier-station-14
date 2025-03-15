@@ -289,8 +289,6 @@
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
-  - ContractorClothingOuterSuitEmergency
-  - ContractorClothingOuterHardsuitEVA
   - ContractorClothingOuterHardsuitBasic
   - ContractorClothingOuterHardsuitVoidParamed
   - ContractorClothingOuterHoodieGrey
@@ -477,7 +475,6 @@
   name: loadout-group-contractor-head
   minLimit: 0
   loadouts:
-  - ContractorClothingHeadHelmetEVALarge
   - ContractorClothingHeadBandBlack
   - ContractorClothingHeadBandBlue
   - ContractorClothingHeadBandGreen
@@ -636,6 +633,19 @@
   - ContractorClothingNeckCloakGay
   - ContractorClothingNeckCloakLesbian
   - ContractorBedsheetRainbow
+  - ClothingNeckLGBTPin
+  - ClothingNeckAromanticPin
+  - ClothingNeckAsexualPin
+  - ClothingNeckBisexualPin
+  - ClothingNeckGayPin
+  - ClothingNeckIntersexPin
+  - ClothingNeckLesbianPin
+  - ClothingNeckNonBinaryPin
+  - ClothingNeckPansexualPin
+  - ClothingNeckOmnisexualPin
+  - ClothingNeckTransPin
+  - ClothingNeckAutismPin
+  - ClothingNeckGoldAutismPin
   - ContractorClothingNeckIFFNeutral
   - ContractorClothingNeckIFFGreen
   - ContractorClothingNeckIFFRed
@@ -717,9 +727,10 @@
   - ContractorClothingEyesEyepatchHudMedical
 
 - type: loadoutGroup
-  id: ContractorUtility # Right Hand - 1 only
-  name: loadout-group-contractor-utility
+  id: ContractorBackpackItems # Right Hand - 1 only
+  name: loadout-group-contractor-backpack-items
   minLimit: 0
+  maxLimit: 6
   loadouts:
   - ContractorAppraisalTool
   - ContractorPickaxe
@@ -738,62 +749,6 @@
   - ContractorBible
   - ContractorMonkeyCubeWrapped
   - ContractorKoboldCubeWrapped
-
-- type: loadoutGroup
-  id: ContractorFun # Left Hand - 1 only
-  name: loadout-group-contractor-fun
-  minLimit: 0
-  loadouts:
-  - ContractorBriefcaseBrownFilled
-  - ContractorToolboxEmergency
-  - ContractorToolboxMechanical
-  - ContractorPlushieSharkGrey
-  - ContractorPlushieSharkBlue
-  - ContractorPlushieSharkPink
-  - ContractorHarmonicaInstrument
-  - ContractorSaxophoneInstrument
-  - ContractorAcousticGuitarInstrument
-  - ContractorCane
-  - ContractorLGBTQHandyFlag
-  - ContractorNTHandyFlag
-  - ContractorBalloonNT
-  - ContractorPonderingOrb
-  - ContractorPlushieRGBee
-  - ContractorMysterySpaceBladeBox
-  - ContractorHoloGraffitiProjector # Punkish (might be annoying)
-  - ContractorFlashlightUmbrella
-  - ContractorDawInstrumentFlatpack
-  - ContractorHoverbikeFlatpack
-  - ContractorEmotionalPetCarrier
-  - ContractorCrayonMagic
-
-- type: loadoutGroup
-  id: ContractorFace
-  name: loadout-group-contractor-face
-  loadouts:
-  - ContractorClothingMaskBreath
-  - ContractorClothingMaskBreathMedical
-  - ContractorClothingMaskSterile
-  - ContractorClothingMaskGas
-  - ContractorClothingMaskPunkHalf # Punkish (Randomized visuals)
-  - ContractorClothingMaskGasExplorer
-  - ContractorClothingMaskGasCaptain
-  - ContractorClothingMaskGasAtmos
-  - ContractorClothingMaskPlague
-  - ContractorClothingMaskMime
-  - ContractorClothingMaskScaredMime
-  - ContractorClothingMaskSadMime
-  - ContractorClothingMaskClown
-  - ContractorClothingMaskClownBald
-  fallbacks:
-  - ContractorClothingMaskBreath
-
-- type: loadoutGroup
-  id: ContractorTrinkets
-  name: loadout-group-contractor-trinkets
-  minLimit: 0
-  maxLimit: 3
-  loadouts:
   - ContractorCigPackBlue
   - ContractorCigPackRed
   - ContractorCigPackBlack
@@ -826,23 +781,70 @@
   - ContractorBeachBall
   - ContractorCrayonBox
   - ContractorSoapNT
-  # Frontier - try to mirror the upstream trinkets here, but only if they arent job role restricted in some weird way
   - PlushieLizard
-  - ClothingNeckLGBTPin
-  - ClothingNeckAllyPin
-  - ClothingNeckAromanticPin
-  - ClothingNeckAsexualPin
-  - ClothingNeckBisexualPin
-  - ClothingNeckGayPin
-  - ClothingNeckIntersexPin
-  - ClothingNeckLesbianPin
-  - ClothingNeckNonBinaryPin
-  - ClothingNeckPansexualPin
-  - ClothingNeckOmnisexualPin
-  - ClothingNeckGenderqueerPin
-  - ClothingNeckTransPin
-  - ClothingNeckAutismPin
-  - ClothingNeckGoldAutismPin
+  - ContractorPlushieSharkGrey
+  - ContractorPlushieSharkBlue
+  - ContractorPlushieSharkPink
+  - ContractorHarmonicaInstrument
+  - ContractorSaxophoneInstrument
+  - ContractorAcousticGuitarInstrument
+  - ContractorPonderingOrb
+  - ContractorPlushieRGBee
+  - ContractorMysterySpaceBladeBox
+  - ContractorHoloGraffitiProjector # Punkish (might be annoying)
+  - ContractorCrayonMagic
+    # Bureaucracy
+  - ContractorBoxFolderMedicalDoctor
+  - ContractorBrbSign
+  - ContractorHandLabeler
+  - ContractorStampsApprovedDenied
+  - ContractorRubberStampCaptain
+  - ContractorRubberStampChaplain
+  - ContractorRubberStampDoctor
+  - ContractorRubberStampEngineer
+  - ContractorRubberStampLawyer
+  - ContractorRubberStampPsychologist
+  - ContractorRubberStampTrader
+  - ContractorRubberStampClown
+  - ContractorRubberStampMime
+
+- type: loadoutGroup
+  id: ContractorHandItems # Left Hand - 1 only
+  name: loadout-group-contractor-hand-items
+  minLimit: 0
+  loadouts:
+  - ContractorBriefcaseBrownFilled
+  - ContractorToolboxEmergency
+  - ContractorToolboxMechanical
+  - ContractorCane
+  - ContractorLGBTQHandyFlag
+  - ContractorNTHandyFlag
+  - ContractorBalloonNT
+  - ContractorFlashlightUmbrella
+  - ContractorDawInstrumentFlatpack
+  - ContractorHoverbikeFlatpack
+  - ContractorEmotionalPetCarrier
+
+- type: loadoutGroup
+  id: ContractorFace
+  name: loadout-group-contractor-face
+  loadouts:
+  - ContractorClothingMaskBreath
+  - ContractorClothingMaskBreathMedical
+  - ContractorClothingMaskSterile
+  - ContractorClothingMaskGas
+  - ContractorClothingMaskPunkHalf # Punkish (Randomized visuals)
+  - ContractorClothingMaskGasExplorer
+  - ContractorClothingMaskGasCaptain
+  - ContractorClothingMaskGasAtmos
+  - ContractorClothingMaskPlague
+  - ContractorClothingMaskMime
+  - ContractorClothingMaskScaredMime
+  - ContractorClothingMaskSadMime
+  - ContractorClothingMaskClown
+  - ContractorClothingMaskClownBald
+  fallbacks:
+  - ContractorClothingMaskBreath
 
 - type: loadoutGroup
   id: ContractorBoxSurvival
@@ -904,23 +906,3 @@
   - ContractorMimePowersImplanter
   fallbacks:
   - ContractorMedicalTrackingImplanter
-
-- type: loadoutGroup
-  id: ContractorBureaucracy
-  name: loadout-group-contractor-bureaucracy
-  minLimit: 0
-  maxLimit: 3
-  loadouts:
-  - ContractorBoxFolderMedicalDoctor
-  - ContractorBrbSign
-  - ContractorHandLabeler
-  - ContractorStampsApprovedDenied
-  - ContractorRubberStampCaptain
-  - ContractorRubberStampChaplain
-  - ContractorRubberStampDoctor
-  - ContractorRubberStampEngineer
-  - ContractorRubberStampLawyer
-  - ContractorRubberStampPsychologist
-  - ContractorRubberStampTrader
-  - ContractorRubberStampClown
-  - ContractorRubberStampMime
