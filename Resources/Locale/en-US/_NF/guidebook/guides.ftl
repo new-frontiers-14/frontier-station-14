@@ -69,6 +69,7 @@ guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-loader = Loader
 guide-entry-shipyard-mccargo = McCargo
 guide-entry-shipyard-mcdelivery = McDelivery
+guide-entry-shipyard-nightlight = Nightlight
 guide-entry-shipyard-pathfinder = Pathfinder
 guide-entry-shipyard-phoenix = Phoenix
 guide-entry-shipyard-pioneer = Pioneer
