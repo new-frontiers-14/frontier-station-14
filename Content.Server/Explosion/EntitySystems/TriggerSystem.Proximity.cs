@@ -4,6 +4,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
+using Content.Shared.Whitelist; // Frontier
 
 namespace Content.Server.Explosion.EntitySystems;
 
@@ -11,6 +12,8 @@ public sealed partial class TriggerSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!; // Frontier
 
     private void InitializeProximity()
     {
@@ -36,7 +39,7 @@ public sealed partial class TriggerSystem
         // Re-check for contacts as we cleared them.
         else if (TryComp<PhysicsComponent>(uid, out var body))
         {
-            _broadphase.RegenerateContacts(uid, body);
+            _broadphase.RegenerateContacts((uid, body));
         }
     }
 
@@ -67,6 +70,9 @@ public sealed partial class TriggerSystem
     private void OnProximityStartCollide(EntityUid uid, TriggerOnProximityComponent component, ref StartCollideEvent args)
     {
         if (args.OurFixtureId != TriggerOnProximityComponent.FixtureID)
+            return;
+
+        if (_whitelistSystem.IsWhitelistFail(component.Whitelist, args.OtherEntity)) // Frontier
             return;
 
         component.Colliding[args.OtherEntity] = args.OtherBody;

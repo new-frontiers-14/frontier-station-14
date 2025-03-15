@@ -30,6 +30,7 @@ public sealed class LockSystem : EntitySystem
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly ActivatableUISystem _activatableUI = default!;
+    [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
@@ -49,7 +50,7 @@ public sealed class LockSystem : EntitySystem
         SubscribeLocalEvent<LockComponent, LockDoAfter>(OnDoAfterLock);
         SubscribeLocalEvent<LockComponent, UnlockDoAfter>(OnDoAfterUnlock);
         SubscribeLocalEvent<LockComponent, StorageInteractAttemptEvent>(OnStorageInteractAttempt);
-        SubscribeLocalEvent<LockComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMUG
+        SubscribeLocalEvent<LockComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - demag
 
         SubscribeLocalEvent<LockedWiresPanelComponent, LockToggleAttemptEvent>(OnLockToggleAttempt);
         SubscribeLocalEvent<LockedWiresPanelComponent, AttemptChangePanelEvent>(OnAttemptChangePanel);
@@ -298,10 +299,10 @@ public sealed class LockSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, LockComponent component, ref GotEmaggedEvent args)
     {
-        if (component.ImmuneToEmag) // Frontier
+        if (!_emag.CompareFlag(args.Type, EmagType.Access))
             return;
 
-        if (!component.Locked || !component.BreakOnEmag)
+        if (!component.Locked || !component.BreakOnAccessBreaker)
             return;
 
         _audio.PlayPredicted(component.UnlockSound, uid, args.UserUid);
@@ -313,22 +314,31 @@ public sealed class LockSystem : EntitySystem
         var ev = new LockToggledEvent(false);
         RaiseLocalEvent(uid, ref ev, true);
 
-        // Frontier - Has to remove this to allow fixing locks
-        //RemComp<LockComponent>(uid); //Literally destroys the lock as a tell it was emagged
+        args.Repeatable = true;
         args.Handled = true;
     }
 
-    private void OnUnEmagged(EntityUid uid, LockComponent component, ref GotUnEmaggedEvent args) // Frontier - DEMAG
+    // Frontier: demag ("let me lock this without access?")
+    private void OnUnEmagged(EntityUid uid, LockComponent component, ref GotUnEmaggedEvent args)
     {
-        if (HasComp<EmaggedComponent>(uid))
-        {
-            _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
-            _appearanceSystem.SetData(uid, LockVisuals.Locked, true);
-            //EnsureComp<LockComponent>(uid); //Literally addes the lock as a tell it was emagged
-            component.Locked = true;
-            args.Handled = true;
-        }
+        if (!_emag.CompareFlag(args.Type, EmagType.Access))
+            return;
+
+        if (component.Locked)
+            return;
+
+        _audio.PlayPredicted(component.LockSound, uid, args.UserUid);
+
+        component.Locked = true;
+        _appearanceSystem.SetData(uid, LockVisuals.Locked, true);
+        Dirty(uid, component);
+
+        var ev = new LockToggledEvent(true);
+        RaiseLocalEvent(uid, ref ev, true);
+
+        args.Handled = true;
     }
+    // End Frontier: demag
 
     private void OnDoAfterLock(EntityUid uid, LockComponent component, LockDoAfter args)
     {

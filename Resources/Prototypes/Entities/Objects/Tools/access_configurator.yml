@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, BaseCommandContraband] # Frontier: Added BaseCommandContraband
   id: AccessConfigurator
   name: access configurator
   description: Used to modify the access level requirements for airlocks and other lockable devices.
@@ -103,6 +103,8 @@
     - ChiefEngineer
     - ChiefMedicalOfficer
     - Command
+    - Cryogenics
+    - EmergencyShuttleRepealAll
     - Engineering
     - External
     - Frontier # Frontier
@@ -116,6 +118,7 @@
     - Maintenance
     - Medical
     - Mercenary # Frontier
+    - Pirate # Frontier
     - Quartermaster
     - Research
     - ResearchDirector

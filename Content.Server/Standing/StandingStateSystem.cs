@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._NF.Standing;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Standing;
@@ -13,6 +14,7 @@ public sealed class StandingStateSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
     private void FallOver(EntityUid uid, StandingStateComponent component, DropHandItemsEvent args)
     {
@@ -25,7 +27,10 @@ public sealed class StandingStateSystem : EntitySystem
         if (!TryComp(uid, out HandsComponent? handsComp))
             return;
 
-        var worldRotation = EntityManager.GetComponent<TransformComponent>(uid).WorldRotation.ToVec();
+        if (HasComp<PreventDropOnDownedComponent>(uid)) // Frontier: stop dropping items when falling over.
+            return; // Frontier
+
+        var worldRotation = _transformSystem.GetWorldRotation(uid).ToVec();
         foreach (var hand in handsComp.Hands.Values)
         {
             if (hand.HeldEntity is not EntityUid held)

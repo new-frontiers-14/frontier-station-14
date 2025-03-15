@@ -11,12 +11,16 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Power;
 using Content.Shared.Stacks;
 using Content.Shared.Storage;
+using Content.Shared.Materials;
 using Robust.Shared.Prototypes;
+
 
 namespace Content.Server._NF.Market.Systems;
 
 public sealed partial class MarketSystem
 {
+
+    [Dependency] private readonly SharedMaterialStorageSystem _sharedMaterialStorageSystem = default!;
     private void InitializeConsole()
     {
         SubscribeLocalEvent<EntitySoldEvent>(OnEntitySoldEvent);
@@ -47,7 +51,9 @@ public sealed partial class MarketSystem
 
         foreach (var sold in entitySoldEvent.Sold)
         {
-            if (_entityManager.TryGetComponent<StorageComponent>(sold, out var storageComponent))
+            if (_entityManager.TryGetComponent<MaterialStorageComponent>(sold, out var materialStorageComponent))
+                UpsertMaterialStorage(market, materialStorageComponent, sold);
+            else if (_entityManager.TryGetComponent<StorageComponent>(sold, out var storageComponent))
                 UpsertStorage(market, storageComponent);
             else if (_entityManager.TryGetComponent<EntityStorageComponent>(sold, out var entityStorageComponent))
                 UpsertEntityStorage(market, entityStorageComponent);
@@ -161,6 +167,44 @@ public sealed partial class MarketSystem
     }
 
     /// <summary>
+    /// Inserts market data for all materials contained within a MaterialStorageComponent.
+    /// </summary>
+    /// <param name="marketDataComponent"></param>
+    /// <param name="materialStorageComponent"></param>
+    private void UpsertMaterialStorage(CargoMarketDataComponent marketDataComponent, MaterialStorageComponent materialStorageComponent, EntityUid sold)
+    {
+        foreach (var (materialProto, amount) in materialStorageComponent.Storage)
+        {
+            if (!_prototypeManager.TryIndex<MaterialPrototype>(materialProto, out var material))
+            {
+                Log.Error("Failed to index material prototype " + materialProto);
+                continue;
+            }
+
+            if (amount <= 0 || material.StackEntity == null)
+                continue;
+
+            var entProto = _prototypeManager.Index<EntityPrototype>(material.StackEntity);
+            if (!entProto.TryGetComponent<PhysicalCompositionComponent>(out var composition))
+                continue;
+
+            var materialPerStack = composition.MaterialComposition[material.ID];
+            var amountToSpawn = amount / materialPerStack;
+            var price = material.Price * materialPerStack;
+
+            if (amountToSpawn == 0)
+                continue;
+
+            var overflowMaterial = amount - amountToSpawn * materialPerStack;
+            _sharedMaterialStorageSystem.TrySetMaterialAmount(sold, materialProto, overflowMaterial, materialStorageComponent);
+
+
+            // Increase the count in the MarketData for this material
+            marketDataComponent.MarketDataList.Upsert(entProto.ID, amountToSpawn, price, material.StackEntity);
+        }
+    }
+
+    /// <summary>
     /// Calculates the total number of entities in the market data list, taking into account the maximum stack count for stackable items.
     /// </summary>
     /// <param name="marketDataList">The list of market data to calculate the total entity count from.</param>
@@ -175,7 +219,7 @@ public sealed partial class MarketSystem
             {
                 var maxStackCount = stackPrototype.MaxCount;
                 if (maxStackCount != null)
-                    count += (int) Math.Ceiling((double) data.Quantity / int.Max(1, maxStackCount.Value)); // Ensure denominator is positive
+                    count += (int)Math.Ceiling((double)data.Quantity / int.Max(1, maxStackCount.Value)); // Ensure denominator is positive
                 else
                     count += 1;
             }

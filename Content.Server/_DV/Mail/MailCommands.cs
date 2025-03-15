@@ -6,6 +6,9 @@ using Content.Shared.Administration;
 using Content.Server.Administration;
 using Content.Server._DV.Mail.Components;
 using Content.Server._DV.Mail.EntitySystems;
+using Content.Server._NF.SectorServices;
+using Content.Server._DV.Cargo.Components;
+using Content.Server._NF.Mail.Components;
 
 namespace Content.Server._DV.Mail;
 
@@ -28,7 +31,7 @@ public sealed class MailToCommand : LocalizedCommands // Frontier: IConsoleComma
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args) // Frontier: async < override
     {
-        if (args.Length < 4)
+        if (args.Length < 2) // Frontier: 4<2 - optional arguments
         {
             shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
             return;
@@ -46,19 +49,21 @@ public sealed class MailToCommand : LocalizedCommands // Frontier: IConsoleComma
             return;
         }
 
-        if (!bool.TryParse(args[2], out var isFragile))
+        // Frontier: optional arguments, large mail
+        var isFragile = false;
+        if (args.Length > 2 && !bool.TryParse(args[2], out isFragile))
         {
             shell.WriteError(Loc.GetString("shell-invalid-bool"));
             return;
         }
 
-        if (!bool.TryParse(args[3], out var isPriority))
+        var isPriority = false;
+        if (args.Length > 3 && !bool.TryParse(args[3], out isPriority))
         {
             shell.WriteError(Loc.GetString("shell-invalid-bool"));
             return;
         }
 
-        // Frontier: Large Mail
         var isLarge = false;
         if (args.Length > 4 && !bool.TryParse(args[4], out isLarge))
         {
@@ -68,9 +73,17 @@ public sealed class MailToCommand : LocalizedCommands // Frontier: IConsoleComma
         var mailPrototype = isLarge ? BlankLargeMailPrototype : BlankMailPrototype;
         // End Frontier
 
-
         var mailSystem = _entitySystemManager.GetEntitySystem<MailSystem>();
         var containerSystem = _entitySystemManager.GetEntitySystem<SharedContainerSystem>();
+        var sectorService = _entitySystemManager.GetEntitySystem<SectorServiceSystem>(); // Frontier
+
+        // Frontier: sector-wide mail
+        if (!_entityManager.TryGetComponent(sectorService.GetServiceEntity(), out SectorMailComponent? sectorMail))
+        {
+            shell.WriteLine(Loc.GetString("command-mailto-no-mailservice"));
+            return;
+        }
+        // End Frontier
 
         if (!_entityManager.HasComponent<MailReceiverComponent>(recipientUid))
         {
@@ -131,11 +144,11 @@ public sealed class MailToCommand : LocalizedCommands // Frontier: IConsoleComma
         mailComponent.IsPriority = isPriority;
         mailComponent.IsLarge = isLarge;
 
-        mailSystem.SetupMail(mailUid, teleporterComponent, recipient.Value);
+        mailSystem.SetupMail(mailUid, sectorMail, recipient.Value); // Frontier: use SectorMailComponent
 
         var teleporterQueue = containerSystem.EnsureContainer<Container>((EntityUid)teleporterUid, "queued");
         containerSystem.Insert(mailUid, teleporterQueue);
-        shell.WriteLine(Loc.GetString("command-mailto-success", ("timeToTeleport", teleporterComponent.TeleportInterval.TotalSeconds - teleporterComponent.Accumulator)));
+        shell.WriteLine(Loc.GetString("command-mailto-success", ("timeToTeleport", sectorMail.TeleportInterval.TotalSeconds - sectorMail.Accumulator))); // Frontier: use SectorMailComponent
     }
 
     // Frontier: completion
@@ -168,13 +181,15 @@ public sealed class MailNowCommand : IConsoleCommand
     public string Help => Loc.GetString("command-mailnow-help", ("command", Command));
 
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!; // Frontier
 
     public async void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        foreach (var mailTeleporter in _entityManager.EntityQuery<MailTeleporterComponent>())
-        {
-            mailTeleporter.Accumulator += (float) mailTeleporter.TeleportInterval.TotalSeconds - mailTeleporter.Accumulator;
-        }
+        var sectorService = _entitySystemManager.GetEntitySystem<SectorServiceSystem>();
+        // Frontier: sector-wide mail
+        if (_entityManager.TryGetComponent(sectorService.GetServiceEntity(), out SectorMailComponent? mail))
+            mail.Accumulator = (float)mail.TeleportInterval.TotalSeconds;
+        // End Frontier: sector-wide mail
 
         shell.WriteLine(Loc.GetString("command-mailnow-success"));
     }
