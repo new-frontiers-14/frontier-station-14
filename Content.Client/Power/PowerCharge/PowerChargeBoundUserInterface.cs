@@ -1,4 +1,4 @@
-﻿using Content.Shared.Power;
+using Content.Shared.Power;
 using Robust.Client.UserInterface;
 
 namespace Content.Client.Power.PowerCharge;
@@ -15,6 +15,11 @@ public sealed class PowerChargeBoundUserInterface : BoundUserInterface
     public void SetPowerSwitch(bool on)
     {
         SendMessage(new SwitchChargingMachineMessage(on));
+    }
+
+    public void ActivateButton()
+    {
+        SendMessage(new ActivateMachineMessage());
     }
 
     protected override void Open()
