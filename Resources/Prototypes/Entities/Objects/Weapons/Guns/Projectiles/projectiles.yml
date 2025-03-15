@@ -1327,3 +1327,16 @@
         Heat: 20 # Slightly more damage than the 17heat from the Captain's Hitscan lasgun
     soundHit:
       collection: MeatLaserImpact
+
+# Emberfall projectiles
+# For whatever magical reasons, I cannot put those in the Emberfall folders without having errors.
+
+- type: entity
+  abstract: true
+  id: BaseBulletTracer
+  components:
+  - type: Tracer
+  - type: PointLight
+    radius: 1.3
+    energy: 2
+    color: "#ff0000"

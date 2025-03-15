@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseMagazineRifle
+  id: MagazineRifleTracer
+  name: magazine (.20 rifle tracer)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleTracer
+  - type: Sprite
+    layers:
+    - state: red
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-1
+      map: [ "enum.GunVisualLayers.Mag" ]
