@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._NF.BindToGrid;
 
 /// <summary>
-/// Frontier - Added to AI to allow auto waking up after 5 secs.
+/// Contains the starting grid of an entity for purposes of binding various functionality to the grid it originated on
 /// </summary>
 [NetworkedComponent, RegisterComponent]
 [AutoGenerateComponentState]

@@ -18,7 +18,7 @@ public sealed class BindToGridVariationPass : VariationPassSystem<BindToGridVari
         var machineQuery = AllEntityQuery<MachineComponent, TransformComponent>();
         while (machineQuery.MoveNext(out var uid, out var _, out var xform))
         {
-            if (!IsMemberOfStation((uid, xform), ref args))
+            if (!IsMemberOfStation((uid, xform), ref args) || HasComp<BindToGridExemptionComponent>(uid))
                 continue;
 
             var binding = EnsureComp<BindToGridComponent>(uid);
@@ -27,7 +27,7 @@ public sealed class BindToGridVariationPass : VariationPassSystem<BindToGridVari
         var boardQuery = AllEntityQuery<MachineBoardComponent, TransformComponent>();
         while (boardQuery.MoveNext(out var uid, out var _, out var xform))
         {
-            if (!IsMemberOfStation((uid, xform), ref args))
+            if (!IsMemberOfStation((uid, xform), ref args) || HasComp<BindToGridExemptionComponent>(uid))
                 continue;
 
             var binding = EnsureComp<BindToGridComponent>(uid);
