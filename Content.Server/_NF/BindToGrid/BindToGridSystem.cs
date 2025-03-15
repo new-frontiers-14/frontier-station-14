@@ -20,6 +20,6 @@ public sealed class BindToGridSystem : EntitySystem
         if (!args.IsInDetailsRange || (component.BoundGrid == null))
             return;
         var stationName = Name(GetEntity(component.BoundGrid));
-        args.PushMarkup(Loc.GetString("bound-to-grid-examine-text", ("board", stationName)));
+        args.PushMarkup(Loc.GetString("bound-to-grid-examine-text", ("shipname", stationName)));
     }
 }
