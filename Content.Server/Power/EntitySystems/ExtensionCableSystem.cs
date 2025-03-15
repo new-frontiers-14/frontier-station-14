@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Power.Components;
+using Content.Shared._NF.BindToGrid; //Frontier
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -190,7 +191,11 @@ namespace Content.Server.Power.EntitySystems
 
         private void OnReceiverAnchorStateChanged(EntityUid uid, ExtensionCableReceiverComponent receiver, ref AnchorStateChangedEvent args)
         {
-            if (args.Anchored)
+            //Frontier - check for a grid bound lock on an entity, if it exists is not on the proper grid, don't connect
+            var gridBound = TryComp<BindToGridComponent>(uid, out var binding) &&
+                             Transform(uid).GridUid != GetEntity(binding.BoundGrid);
+
+            if (args.Anchored && !gridBound) //End Frontier
             {
                 Connect(uid, receiver);
             }
