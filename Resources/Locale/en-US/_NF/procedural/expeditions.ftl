@@ -38,3 +38,15 @@ salvage-air-mod-16 = 34 CO2, 34 NH3, 34 N2O
 salvage-air-mod-17 = 34 H2O, 34 NH3, 34 N2O
 salvage-air-mod-18 = 34 H2O, 34 N2O, 17 NH3, 17 CO2
 salvage-air-mod-unknown = Unknown atmosphere
+
+salvage-expedition-difficulty-NFModerate = Moderate
+salvage-expedition-difficulty-NFHazardous = Hazardous
+salvage-expedition-difficulty-NFExtreme = Extreme
+
+salvage-expedition-megafauna-remaining = {$count ->
+    [one] {$count} target remaining.
+    *[other] {$count} targets remaining.
+}
+
+salvage-expedition-type-Destruction = Destruction
+salvage-expedition-type-Elimination = Elimination
