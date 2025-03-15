@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/15/2025 23:47:28
+  entityCount: 634
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   1: FloorArcadeBlue
@@ -1191,13 +1202,16 @@ entities:
     - type: Transform
       pos: 15.5,-9.5
       parent: 1
-- proto: BannerMedical
+- proto: BannerFsb
   entities:
   - uid: 172
     components:
     - type: Transform
+      anchored: True
       pos: 12.5,10.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: Bed
   entities:
   - uid: 44
@@ -3783,14 +3797,14 @@ entities:
       pos: 14.5,-8.5
       parent: 1
     - type: FuelGenerator
-      targetPower: 20000
+      targetPower: 17000
   - uid: 641
     components:
     - type: Transform
       pos: 12.5,-8.5
       parent: 1
     - type: FuelGenerator
-      targetPower: 20000
+      targetPower: 17000
 - proto: PosterLegitAnatomyPoster
   entities:
   - uid: 208
@@ -4426,6 +4440,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 20.5,-2.5
       parent: 1
+- proto: SmartFridge
+  entities:
+  - uid: 564
+    components:
+    - type: Transform
+      pos: 19.5,-1.5
+      parent: 1
 - proto: SMESBasic
   entities:
   - uid: 552
@@ -4545,11 +4566,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 22.5,9.5
-      parent: 1
-  - uid: 615
-    components:
-    - type: Transform
-      pos: 19.5,-1.5
       parent: 1
 - proto: Thruster
   entities:
@@ -5262,18 +5278,9 @@ entities:
     - type: Transform
       pos: 18.5,4.5
       parent: 1
-  - uid: 564
+  - uid: 615
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 16.5,-1.5
-      parent: 1
-- proto: Windoor
-  entities:
-  - uid: 642
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 19.5,-1.5
+      pos: 22.5,9.5
       parent: 1
 ...
