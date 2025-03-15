@@ -135,7 +135,7 @@
     weight: 1
     duration: 1800
     maxDuration: 2400
-    reoccurrenceDelay: 480 # Only once per shift possible
+    maxOccurrences: 1 # Will only appear once per shift as intended
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -172,7 +172,7 @@
     weight: 1
     duration: 900
     maxDuration: 1200
-    reoccurrenceDelay: 480 # 8 hours
+    maxOccurrences: 1 # Will only appear once per shift as intended
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -209,7 +209,7 @@
     weight: 1
     duration: 1800
     maxDuration: 2400
-    reoccurrenceDelay: 480 # 8 hours
+    maxOccurrences: 1 # Will only appear once per shift as intended
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
