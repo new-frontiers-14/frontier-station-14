@@ -834,9 +834,12 @@
     - NFMobTick
     - NFMobTick
     - NFMobTick
-    - SpawnMobCobraSalvage
+    - NFMobSmallRainbowSnake # SpawnMobCobraSalvage<NFMobSmallRainbowSnake
     chance: 0.95
     rarePrototypes:
+    - SalvageSpawnerMobTickSwarm
+    - SpawnMobWyvern
+    - SpawnMobWyvern
     - NFMobShark
     - NFMobShark
     - NFMobShark
@@ -847,6 +850,23 @@
     - SpawnMobCobraSalvage
     rareChance: 0.2
     offset: 0.0
+
+- type: entity
+  parent: MarkerBase
+  id: SalvageSpawnerMobTickSwarm
+  name: Salvage Tick Swarm Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: _NF/Mobs/Aliens/spacetick.rsi
+      state: alive
+  - type: EntityTableSpawner
+    table: !type:AllSelector
+      children:
+      - id: NFMobTick
+        rolls: !type:RangeNumberSelector
+          range: 3, 4
 
 - type: entity
   id: NFSalvageChemicalBarrelSpawner
