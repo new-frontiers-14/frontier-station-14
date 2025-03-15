@@ -13,7 +13,7 @@ public sealed class TracerOverlay : Overlay
 {
     private readonly TracerSystem _tracer;
 
-    public override OverlaySpace Space => OverlaySpace.WorldSpace;
+    public override OverlaySpace Space => OverlaySpace.WorldSpaceEntities;
 
     public TracerOverlay(TracerSystem tracer)
     {
