@@ -3,13 +3,13 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._NF.BindToStation;
 
 /// <summary>
-/// Contains the starting station of an entity for purposes of binding various functionality to the station it originated on
+/// Binds a machine to a given station - it must be on that station to work.
 /// </summary>
 [NetworkedComponent, RegisterComponent]
 [AutoGenerateComponentState]
 public sealed partial class BindToStationComponent : Component
 {
-    // the entity of the station that this machine/item is bound to
+    // The entity UID of the station that this machine/item is bound to.
     [DataField]
     [AutoNetworkedField]
     public EntityUid? BoundStation;
