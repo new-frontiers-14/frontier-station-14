@@ -9,30 +9,33 @@
   - type: Sprite
     sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
     layers:
-    - state: base_glasses_01
+    - state: icon_base_glasses_01
       map: [ "glasses_main" ]
-      scale: 2.5, 2.5
-      offset: 0,-0.6
-    - state: decor_base_glasses_01
+    - state: icon_decor_base_glasses_01
       map: [ "glasses_decor" ]
-      scale: 2.5, 2.5
-      offset: 0,-0.6
       shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
     clothingVisuals:
       eyes:
       - state: base_glasses_01
-        map: [ "glasses_main" ]
+        map: [ "clothing_glasses_main" ]
       - state: decor_base_glasses_01
-        map: [ "glasses_decor" ]
+        map: [ "clothing_glasses_decor" ]
         shader: unshaded
   - type: RandomSprite
     available:
       - glasses_main:
-          base_glasses_01: CyberpunkDark
+          icon_base_glasses_01: Base
+        clothing_glasses_main:
+          base_glasses_01: Base
         glasses_decor:
-          decor_base_glasses_01: CyberpunkDark
+          icon_decor_base_glasses_01: Decor
+        clothing_glasses_decor:
+          decor_base_glasses_01: Decor
+    mappedColors:
+      Base: CyberpunkDark
+      Decor: CyberpunkDark
 
 # HUDs
 - type: entity
@@ -49,30 +52,33 @@
   - type: Sprite
     sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
     layers:
-    - state: base_glasses_02
+    - state: icon_base_glasses_02
       map: [ "infoshades_main" ]
-      scale: 2.5, 2.5
-      offset: 0,-0.6
-    - state: decor_base_glasses_02
+    - state: icon_decor_base_glasses_02
       map: [ "infoshades_decor" ]
-      scale: 2.5, 2.5
-      offset: 0,-0.6
       shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
     clothingVisuals:
       eyes:
       - state: base_glasses_02
-        map: [ "infoshades_main" ]
+        map: [ "clothing_infoshades_main" ]
       - state: decor_base_glasses_02
-        map: [ "infoshades_decor" ]
+        map: [ "clothing_infoshades_decor" ]
         shader: unshaded
   - type: RandomSprite
     available:
       - infoshades_main:
-          base_glasses_02: CyberpunkNeon
+          icon_base_glasses_02: Base
+        clothing_infoshades_main:
+          base_glasses_02: Base
         infoshades_decor:
-          decor_base_glasses_02: CyberpunkNeon
+          icon_decor_base_glasses_02: Decor
+        clothing_infoshades_decor:
+          decor_base_glasses_02: Decor
+    mappedColors:
+      Base: CyberpunkNeon
+      Decor: CyberpunkNeon
   - type: ShowHealthBars
     damageContainers:
     - Inorganic
