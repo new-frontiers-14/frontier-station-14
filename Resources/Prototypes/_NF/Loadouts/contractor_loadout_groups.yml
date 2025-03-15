@@ -456,7 +456,7 @@
   - ContractorClothingShoesHighheelBoots
   - ContractorClothingShoesBootsCowboyFancy
   - ContractorClothingShoesBootsWinterChiefEngineer
-#  - ContractorClothingShoesBootsWinterCMO # Temp removed for MOM. Will return if replaced.
+#  - ContractorClothingShoesBootsWinterCMO # Temp removed for DOC. Will return if replaced.
   - ContractorClothingShoesBootsWinterQM
   - ContractorClothingShoesBootsWinterRD
   - ContractorClothingShoesBootsWinterClown
@@ -518,7 +518,7 @@
   - ContractorClothingHeadHatBeretRND
   - ContractorClothingHeadHatBeretEngineering
   - ContractorClothingHeadHatBeretSeniorPhysician
-#  - ContractorClothingHeadHatBeretCmo # Temp removed for MOM. Will return if replaced.
+#  - ContractorClothingHeadHatBeretCmo # Temp removed for DOC. Will return if replaced.
   - ContractorClothingHeadHatBeretQM
   - ContractorClothingHeadHatQMsoft
   - ContractorClothingHeadHatCardinal
@@ -658,8 +658,8 @@
   - ContractorClothingNeckCloakCapFormal
   - ContractorClothingNeckCloakQm
   - ContractorClothingNeckMantleQM
-#  - ContractorClothingCloakCmo # Temp removed for MOM. Will return if replaced.
-#  - ContractorClothingNeckMantleCMO # Temp removed for MOM. Will return if replaced.
+#  - ContractorClothingCloakCmo # Temp removed for DOC. Will return if replaced.
+#  - ContractorClothingNeckMantleCMO # Temp removed for DOC. Will return if replaced.
   - ContractorClothingNeckCloakRd
   - ContractorClothingNeckMantleRD
   - ContractorClothingNeckCloakCe
@@ -697,7 +697,7 @@
   - ContractorSeniorResearcherPDA
   - ContractorRnDPDA
   - ContractorSeniorPhysicianPDA
-  #- ContractorCMOPDA # Temp removed for MOM. Will return if replaced.
+  #- ContractorCMOPDA # Temp removed for DOC. Will return if replaced.
   - ContractorSeniorEngineerPDA
   - ContractorCEPDA
   - ContractorBoxerPDA
@@ -727,10 +727,10 @@
   - ContractorClothingEyesEyepatchHudMedical
 
 - type: loadoutGroup
-  id: ContractorBackpackItems # Right Hand - 1 only
+  id: ContractorBackpackItems
   name: loadout-group-contractor-backpack-items
   minLimit: 0
-  maxLimit: 6
+  maxLimit: 6 # Caveat emptor - enjoy picking stuff up off the ground
   loadouts:
   - ContractorAppraisalTool
   - ContractorPickaxe
@@ -904,5 +904,6 @@
   - ContractorBikeHornImplanter
   - ContractorSadTromboneImplanter
   - ContractorMimePowersImplanter
+  - ContractorBibleUserImplanter
   fallbacks:
   - ContractorMedicalTrackingImplanter
