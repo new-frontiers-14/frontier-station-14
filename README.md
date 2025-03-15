@@ -50,7 +50,6 @@ Content under these subdirectories originate from their respective forks and may
 
 | Subdirectory | Fork Name | Fork Repository | License |
 |--------------|-----------|-----------------|---------|
-| `Nyanotrasen` | Nyanotrasen | https://github.com/Nyanotrasen/Nyanotrasen | MIT |
 | `_NF` | Frontier Station | https://github.com/new-frontiers-14/frontier-station-14 | AGPL 3.0 |
 | `_CD` | Cosmatic Drift | https://github.com/cosmatic-drift-14/cosmatic-drift | MIT |
 | `_Corvax` | Corvax | https://github.com/space-syndicate/space-station-14 | MIT |
@@ -61,6 +60,7 @@ Content under these subdirectories originate from their respective forks and may
 | `_Goobstation` | Goob Station | https://github.com/Goob-Station/Goob-Station | AGPL 3.0 |
 | `_Impstation` | Impstation | https://github.com/impstation/imp-station-14 | AGPL 3.0 |
 | `_NC14` | Nuclear 14 | https://github.com/Vault-Overseers/nuclear-14 | AGPL 3.0 |
+| `Nyanotrasen` | Nyanotrasen | https://github.com/Nyanotrasen/Nyanotrasen | MIT |
 
 Additional repos that we have ported features from without subdirectories are listed below.
 
