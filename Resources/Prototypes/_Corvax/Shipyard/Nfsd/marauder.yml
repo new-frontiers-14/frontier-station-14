@@ -1,0 +1,39 @@
+# Author -
+# GitHub: -
+# Discord: -
+
+# Maintainer Info
+# GitHub: -
+# Discord: -
+
+# Shuttle Notes:
+
+- type: vessel
+  id: Marauder
+  parent: BaseVessel
+  name: NSF Мародёр
+  description: Тяжёлый крупногабаритный патрульный шаттл. Рекомендованный состав команды 4-8 человек.
+  price: 80000
+  category: Large
+  group: Security
+  access: Bailiff
+  shuttlePath: /Maps/_Corvax/Shuttles/Nfsd/marauder.yml
+  guidebookPage: Null
+  class:
+    - Capital
+
+- type: gameMap
+  id: Marauder
+  mapName: "NSF Мародёр"
+  mapPath: /Maps/_Corvax/Shuttles/Nfsd/marauder.yml
+  minPlayers: 0
+  stations:
+    Marauder:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Мародёр {1}"
+          nameGenerator: !type:NanotrasenNameGenerator
+            prefixCreator: "14"
+        - type: StationJobs
+          availableJobs: {}

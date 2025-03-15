@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: -
+# Discord: kvasen
+# License: CC-BY-NC-ND-3.0
+# Corvax_frontier
+
+# Maintainer Info
+# GitHub: https://github.com/mersen-tyn
+# Discord: mersen
+
+# Shuttle Notes:
+
+- type: vessel
+  id: Hercules
+  parent: BaseVessel
+  name: NCS Геркулес
+  description: Среднегабаритный грузовой шаттл. Рабочая лошадка "Космологистики", используется для перевозки большого объема грузов на дальние расстояния. Рекомендованный состав команды 2-5 человека.
+  price: 39900
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_Corvax/Shuttles/Civilian/hercules.yml
+  class:
+    - Cargo
+    - Civilian
+
+- type: gameMap
+  id: Hercules
+  mapName: "NCS Геркулес"
+  mapPath: /Maps/_Corvax/Shuttles/Civilian/hercules.yml
+  minPlayers: 0
+  stations:
+    Hercules:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Геркулес {1}"
+          nameGenerator: !type:NanotrasenNameGenerator
+            prefixCreator: "14"
+        - type: StationJobs
+          availableJobs:
+            Contractor: [0, 0]
+            Pilot: [0, 0]
+            Mercenary: [0, 0]

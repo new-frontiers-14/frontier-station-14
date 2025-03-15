@@ -1,0 +1,41 @@
+# Author -
+# GitHub: -
+# Discord: -
+
+# Maintainer Info
+# GitHub: -
+# Discord: -
+
+# Shuttle Notes:
+
+- type: vessel
+  id: hunami
+  parent: BaseVessel
+  name: NT Хунами
+  description: Шаттл построенный по типу Обломка, Это всё же лучше чем ничего.
+  price: 18000
+  category: Small
+  group: Scrap
+  shuttlePath: /Maps/_Corvax/Shuttles/Scrap/hunami.yml
+  guidebookPage: Null
+  class:
+    - Scrapyard
+
+- type: gameMap
+  id: hunami
+  mapName: "NT Хунами"
+  mapPath: /Maps/_Corvax/Shuttles/Scrap/hunami.yml
+  minPlayers: 0
+  stations:
+    hunami:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Хунами {1}"
+          nameGenerator: !type:NanotrasenNameGenerator
+            prefixCreator: "14"
+        - type: StationJobs
+          availableJobs:
+            Contractor: [0, 0]
+            Pilot: [0, 0]
+            Mercenary: [0, 0]

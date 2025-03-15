@@ -1,0 +1,43 @@
+# Author MrIzo
+# GitHub: -
+# Discord: letstrythisone.
+# License: CC-BY-NC-ND-3.0
+# Corvax-Frontier
+
+# Maintainer Info
+# GitHub: https://github.com/mersen-tyn
+# Discord: mersen
+
+# Shuttle Notes:
+
+- type: vessel
+  id: musiclover
+  parent: BaseVessel
+  name: NC Меломан
+  description: "Шаттл-бар от NT для элитарных обществ. Внутреннее роскошное убранство бара вам что-то напоминает, но вы никак не можете вспомнить, что именно. Рекомендуемый экипаж: 3-5 человек."
+  price: 53750 # 43 000 + 25%
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_Corvax/Shuttles/Service/musiclover.yml
+  guidebookPage: Null
+  class:
+    - Kitchen
+
+- type: gameMap
+  id: musiclover
+  mapName: "NC Меломан"
+  mapPath: /Maps/_Corvax/Shuttles/Service/musiclover.yml
+  minPlayers: 0
+  stations:
+    musiclover:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Меломан {1}"
+          nameGenerator: !type:NanotrasenNameGenerator
+            prefixCreator: "14"
+        - type: StationJobs
+          availableJobs:
+            Contractor: [0, 0]
+            Pilot: [0, 0]
+            Mercenary: [0, 0]

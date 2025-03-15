@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: -
+# Discord: autsaider_m
+# License: CC-BY-NC-ND-3.0
+# Corvax_frontier
+
+# Maintainer Info
+# GitHub: https://github.com/mersen-tyn
+# Discord: mersen
+
+# Shuttle Notes:
+
+- type: vessel
+  id: Asklepi
+  parent: BaseVessel
+  name: NMS Асклеп
+  description: Среднегабаритный медицинский шаттл. Рекомендованный состав команды 2-5 человек.
+  price: 52000
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_Corvax/Shuttles/Medical/Asklepi.yml
+  class:
+  - Medical
+
+- type: gameMap
+  id: Asklepi
+  mapName: 'NMS Асклеп'
+  mapPath: /Maps/_Corvax/Shuttles/Medical/Asklepi.yml
+  minPlayers: 0
+  stations:
+    Asklepi:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Асклеп {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

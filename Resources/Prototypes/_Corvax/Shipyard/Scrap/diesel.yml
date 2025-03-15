@@ -1,0 +1,44 @@
+# Author MrIzo
+# GitHub: -
+# Discord: letstrythisone.
+# License: CC-BY-NC-ND-3.0
+# Corvax-Frontier
+
+# Maintainer Info
+# GitHub: https://github.com/mersen-tyn
+# Discord: mersen
+
+# Shuttle Notes:
+
+- type: vessel
+  id: diesel
+  parent: BaseVessel
+  name: SV Дизель
+  description: "Старый, никому не нужный шаттл был (доведен до ума) SV. Этот шаттл для починки и заправки нуждающихся так-же содержит на своем борту небольшой магазин запчастей и еды, а так-же зал отдыха. Целостное состояние оборудования не гарантируется. Рекомендуемый экипаж: 4-6 человек."
+  price: 68400 #57000 + 20%
+  category: Medium
+  group: Scrap
+  shuttlePath: /Maps/_Corvax/Shuttles/Scrap/diesel.yml
+  class:
+    - Scrapyard
+    - Civilian
+    - Engineering
+
+- type: gameMap
+  id: diesel
+  mapName: "SV Дизель"
+  mapPath: /Maps/_Corvax/Shuttles/Scrap/diesel.yml
+  minPlayers: 0
+  stations:
+    diesel:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Дизель {1}"
+          nameGenerator: !type:NanotrasenNameGenerator
+            prefixCreator: "14"
+        - type: StationJobs
+          availableJobs:
+            Contractor: [0, 0]
+            Pilot: [0, 0]
+            Mercenary: [0, 0]

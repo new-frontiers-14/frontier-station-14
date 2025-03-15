@@ -1,0 +1,41 @@
+# Author MrIzo
+# GitHub: -
+# Discord: letstrythisone.
+
+# Maintainer Info
+# GitHub: https://github.com/mersen-tyn
+# Discord: mersen
+
+# Corvax-Frontier
+
+- type: vessel
+  id: bootlegger
+  parent: BaseVessel
+  name: NC Бутлегер
+  description: "Этот экземпляр прошел через множество ремонтов и проблем, но все же-он здесь! Этот торговый шаттл, воскрешенный SV, ныне доступен вам для продажи. Рекомендуемый экипаж: 2-3 человек"
+  price: 23000 # 20 000 + 15%
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_Corvax/Shuttles/Service/bootlegger.yml
+  guidebookPage: Null
+  class:
+    - Kitchen
+
+- type: gameMap
+  id: bootlegger
+  mapName: "NC Бутлегер"
+  mapPath: /Maps/_Corvax/Shuttles/Service/bootlegger.yml
+  minPlayers: 0
+  stations:
+    bootlegger:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Бутлегер {1}"
+          nameGenerator: !type:NanotrasenNameGenerator
+            prefixCreator: "14"
+        - type: StationJobs
+          availableJobs:
+            Contractor: [0, 0]
+            Pilot: [0, 0]
+            Mercenary: [0, 0]

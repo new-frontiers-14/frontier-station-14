@@ -1,0 +1,44 @@
+# Author -
+# GitHub: -
+# Discord: -
+
+# Maintainer Info
+# GitHub: -
+# Discord: -
+
+# Shuttle Notes:
+
+- type: vessel
+  id: Ravager
+  parent: BaseVessel
+  name: TL Разоритель
+  description: Крупногабаритный патрульшый шаттл ДСБФ. Рекомендованный состав команды 4-8 человек.
+  price: 245000 #Appraisal value is 150000
+  category: Large
+  group: Security
+  access: Bailiff
+  shuttlePath: /Maps/_Corvax/Shuttles/Nfsd/Ravager.yml
+  guidebookPage: Null
+  class:
+    - Capital
+
+- type: gameMap
+  id: Ravager
+  mapName: "TL Разоритель"
+  mapPath: /Maps/_Corvax/Shuttles/Nfsd/Ravager.yml
+  minPlayers: 0
+  stations:
+    Ravager:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Разоритель {1}"
+          nameGenerator: !type:NanotrasenNameGenerator
+            prefixCreator: "14"
+        - type: StationJobs
+          availableJobs:
+            #            PrisonGuard: [ 0, 0 ]
+            #            SecurityOfficer: [ 0, 0 ]
+            #            Warden: [ 0, 0 ]
+            #            Brigmedic: [ 0, 0 ]
+            Chef: [0, 0]

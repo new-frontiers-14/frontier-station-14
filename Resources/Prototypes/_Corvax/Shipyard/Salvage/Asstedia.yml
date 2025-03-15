@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: -
+# Discord: autsaider_m
+# License: CC-BY-NC-ND-3.0
+# Corvax_frontier
+
+# Maintainer Info
+# GitHub: https://github.com/mersen-tyn
+# Discord: mersen
+
+# Shuttle Notes:
+
+- type: vessel
+  id: Asstedia
+  parent: BaseVessel
+  name: NMS Асцедия
+  description: Малогабаритный шахтерский шаттл. Рекомендованный состав команды 1-3 человек.
+  price: 30000
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_Corvax/Shuttles/Salvage/Asstedia.yml
+  class:
+    - Salvage
+
+- type: gameMap
+  id: Asstedia
+  mapName: "NMS Асцедия"
+  mapPath: /Maps/_Corvax/Shuttles/Salvage/Asstedia.yml
+  minPlayers: 0
+  stations:
+    Asstedia:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Асцедия {1}"
+          nameGenerator: !type:NanotrasenNameGenerator
+            prefixCreator: "14"
+        - type: StationJobs
+          availableJobs:
+            Contractor: [0, 0]
+            Pilot: [0, 0]
+            Mercenary: [0, 0]
