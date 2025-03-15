@@ -19,3 +19,16 @@
   - type: SolarPoweredGrid
     trackOnInit: true
     doNotCull: true
+
+- type: gameMap
+  id: Omnichurch
+  mapName: "Omnichurch Beacon"
+  mapPath: /Maps/_NF/POI/beacon.yml
+  minPlayers: 0
+  stations:
+    Omnichurch:
+      stationProto: DeadDropFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Omnichurch Beacon"
+        - type: StationBindMachines

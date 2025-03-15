@@ -1,6 +1,7 @@
 using System.Linq; // Frontier
+using Content.Server._NF.BindToStation; // Frontier
 using Content.Server.Construction.Components;
-using Content.Shared._NF.BindToGrid; //Frontier
+using Content.Shared._NF.BindToStation; //Frontier
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.Prototypes;
 using Robust.Shared.Containers;
@@ -13,6 +14,7 @@ namespace Content.Server.Construction;
 public sealed partial class ConstructionSystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Frontier
+    [Dependency] private readonly BindToStationSystem _bindToStation = default!; // Frontier
     private void InitializeMachines()
     {
         SubscribeLocalEvent<MachineComponent, ComponentInit>(OnMachineInit);
@@ -27,11 +29,8 @@ public sealed partial class ConstructionSystem
         //Frontier - we mirror the bind to grid component from any existing machine board onto the resultant machine to prevent high-grading
         foreach (var board in component.BoardContainer.ContainedEntities)
         {
-            if (TryComp<BindToGridComponent>(board, out var binding))
-            {
-                var machineBinding = EnsureComp<BindToGridComponent>(uid);
-                machineBinding.BoundGrid = binding.BoundGrid;
-            }
+            if (TryComp<BindToStationComponent>(board, out var binding))
+                _bindToStation.BindToStation(uid, binding.BoundStation);
         }
         //End Frontier
     }

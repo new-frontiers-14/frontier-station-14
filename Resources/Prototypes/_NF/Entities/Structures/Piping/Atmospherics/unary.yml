@@ -79,7 +79,7 @@
   - type: ApcPowerReceiver
     load: 4000
   - type: Machine
-    board: Null # FIXME - ALSO DONT FORGET TO EXEMPT THE BOARD FROM BINDTOGRID WHEN YOU DO FIXME
+    board: Null # FIXME - ALSO DONT FORGET TO EXEMPT THE BOARD FROM BindToStation WHEN YOU DO FIXME
   - type: GasDepositExtractor
     extractionRate: 50 # 50 mol/s => 20 kmol in ~6.6 min
     port: outlet
@@ -95,7 +95,7 @@
         layer:
         - MidImpassable
         - LowImpassable
-  - type: BindToGridExemption #Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+  - type: BindToStationExemption #Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseMachinePowered ]
