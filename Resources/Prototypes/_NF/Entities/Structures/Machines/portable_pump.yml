@@ -1,6 +1,6 @@
 - type: entity
   id: PortablePump
-  parent: [BaseMachine, SmallConstructibleMachine, StructureWheeled]
+  parent: [BaseMachinePowered, SmallConstructibleMachine, StructureWheeled]
   name: portable pump
   description: Drains puddles around it. Has a sticker on the side that says "Do not submerge in water"
   components:
@@ -112,3 +112,5 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+  - type: ApcPowerReceiver
+    powerLoad: 1000
