@@ -1,6 +1,6 @@
 using Content.Server.Construction.Components;
 using Content.Server.Power.Components;
-using Content.Shared._NF.BindToStation;
+using Content.Shared._NF.BindToStation; // Frontier
 using Content.Shared.Computer;
 using Content.Shared.Power;
 using Robust.Shared.Containers;

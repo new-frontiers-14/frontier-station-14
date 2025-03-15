@@ -1,7 +1,7 @@
 using System.Linq; // Frontier
 using Content.Server._NF.BindToStation; // Frontier
 using Content.Server.Construction.Components;
-using Content.Shared._NF.BindToStation; //Frontier
+using Content.Shared._NF.BindToStation; // Frontier
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.Prototypes;
 using Robust.Shared.Containers;
