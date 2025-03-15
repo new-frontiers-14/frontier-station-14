@@ -57,10 +57,12 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         {
             var message = Loc.GetString(stationEvent.StartRadioAnnouncement);
             var mapUid = MapSystem.GetMap(GameTicker.DefaultMap); // Hack: need a reference to a valid entity on the default map - the map itself works.
-            RadioSystem.SendRadioMessage(uid, message, stationEvent.StartRadioAnnouncementChannel, mapUid, escapeMarkup: false);
+            RadioSystem.SendRadioMessage(uid, message, stationEvent.StartRadioAnnouncementChannel, mapUid, escapeMarkup: false, sound: stationEvent.StartAudio);
         }
-
-        Audio.PlayGlobal(stationEvent.StartAudio, allPlayersInGame, true);
+        else
+        {
+            Audio.PlayGlobal(stationEvent.StartAudio, allPlayersInGame, true);
+        }
     }
 
     /// <inheritdoc/>
@@ -104,11 +106,13 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         {
             var message = Loc.GetString(stationEvent.EndRadioAnnouncement);
             var mapUid = MapSystem.GetMap(GameTicker.DefaultMap); // Hack: need a reference to a valid entity on the default map - the map itself works.
-            RadioSystem.SendRadioMessage(uid, message, stationEvent.EndRadioAnnouncementChannel, mapUid, escapeMarkup: false);
+            RadioSystem.SendRadioMessage(uid, message, stationEvent.EndRadioAnnouncementChannel, mapUid, escapeMarkup: false, sound: stationEvent.EndAudio);
         }
+        else
         // End Frontier
-
-        Audio.PlayGlobal(stationEvent.EndAudio, allPlayersInGame, true);
+        {
+            Audio.PlayGlobal(stationEvent.EndAudio, allPlayersInGame, true);
+        }
     }
 
     /// <summary>
@@ -144,9 +148,12 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
                 {
                     var message = Loc.GetString(stationEvent.WarningRadioAnnouncement);
                     var mapUid = MapSystem.GetMap(GameTicker.DefaultMap); // Hack: need a reference to a valid entity on the default map - the map itself works.
-                    RadioSystem.SendRadioMessage(uid, message, stationEvent.WarningRadioAnnouncementChannel, mapUid, escapeMarkup: false);
+                    RadioSystem.SendRadioMessage(uid, message, stationEvent.WarningRadioAnnouncementChannel, mapUid, escapeMarkup: false,sound: stationEvent.WarningAudio);
                 }
-                Audio.PlayGlobal(stationEvent.WarningAudio, allPlayersInGame, true);
+                else
+                {
+                    Audio.PlayGlobal(stationEvent.WarningAudio, allPlayersInGame, true);
+                }
                 stationEvent.WarningAnnounced = true;
             }
             // End Frontier
