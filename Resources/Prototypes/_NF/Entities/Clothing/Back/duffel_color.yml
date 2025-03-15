@@ -922,3 +922,114 @@
       - state: inhand-right-zipper
 
 # RANDOMIZED
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelColorRandom
+  name: punk duffel
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#ffffff"
+      map: [ "iconDuffelMain" ]
+    - state: icon-sling
+      color: "#776756"
+      map: [ "iconDuffelSling" ]
+    - state: icon-decal-straps
+      color: "#444444"
+      map: [ "iconDuffelStraps" ]
+    - state: icon-handle
+      color: "#776756"
+      map: [ "iconDuffelHandle" ]
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#ffffff"
+        map: [ "equippedDuffelBase" ]
+      - state: equipped-BACKPACK-sling
+        color: "#776756"
+        map: [ "equippedDuffelSling" ]
+      - state: equipped-BACKPACK-decal-straps
+        color: "#444444"
+        map: [ "equippedDuffelStraps" ]
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+        map: [ "equippedDuffelHandle" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#ffffff"
+        map: [ "leftDuffelBase" ]
+      - state: inhand-left-sling
+        color: "#776756"
+        map: [ "leftDuffelSling" ]
+      - state: inhand-left-decal-straps
+        color: "#444444"
+        map: [ "leftDuffelStraps" ]
+      - state: inhand-left-handle
+        color: "#776756"
+        map: [ "leftDuffelHandle" ]
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#ffffff"
+        map: [ "rightDuffelBase" ]
+      - state: inhand-right-sling
+        color: "#776756"
+        map: [ "rightDuffelSling" ]
+      - state: inhand-right-decal-straps
+        color: "#444444"
+        map: [ "rightDuffelStraps" ]
+      - state: inhand-right-handle
+        color: "#776756"
+        map: [ "rightDuffelHandle" ]
+      - state: inhand-right-zipper
+  - type: RandomSprite
+    available:
+    # icon
+    - iconDuffelMain:
+        icon-base: Base
+      iconDuffelSling:
+        icon-sling: Sling
+      iconDuffelStraps:
+        icon-decal-straps: Straps
+      iconDuffelHandle:
+        icon-handle: Handle
+    # clothing
+      equippedDuffelBase:
+        equipped-BACKPACK-base: Base
+      equippedDuffelSling:
+        equipped-BACKPACK-sling: Sling
+      equippedDuffelStraps:
+        equipped-BACKPACK-decal-straps: Straps
+      equippedDuffelHandle:
+        equipped-BACKPACK-handle: Handle
+    # left hand
+      leftDuffelBase:
+        inhand-left-base: Base
+      leftDuffelSling:
+        inhand-left-sling: Sling
+      leftDuffelStraps:
+        inhand-left-decal-straps: Straps
+      leftDuffelHandle:
+        inhand-left-handle: Handle
+    # right hand
+      rightDuffelBase:
+        inhand-right-base: Base
+      rightDuffelSling:
+        inhand-right-sling: Sling
+      rightDuffelStraps:
+        inhand-right-decal-straps: Straps
+      rightDuffelHandle:
+        inhand-right-handle: Handle
+    mappedColors:
+      Base: Cyberpunk
+      Sling: Cyberpunk
+      Straps: Cyberpunk
+      Handle: Cyberpunk
