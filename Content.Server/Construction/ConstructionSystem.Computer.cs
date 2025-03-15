@@ -32,14 +32,14 @@ public sealed partial class ConstructionSystem
     private void OnCompMapInit(Entity<ComputerComponent> component, ref MapInitEvent args)
     {
         CreateComputerBoard(component);
-        //Frontier - we mirror the bind to grid component from any existing machine board onto the resultant machine to prevent high-grading
+        // Frontier - we mirror the bind to grid component from any existing machine board onto the resultant machine to prevent high-grading
         var boardContainer = _container.EnsureContainer<Container>(component.Owner, "board");
         foreach (var board in boardContainer.ContainedEntities)
         {
             if (TryComp<BindToStationComponent>(board, out var binding))
                 _bindToStation.BindToStation(component.Owner, binding.BoundStation);
         }
-        //End Frontier
+        // End Frontier
     }
 
     private void OnCompPowerChange(EntityUid uid, ComputerComponent component, ref PowerChangedEvent args)

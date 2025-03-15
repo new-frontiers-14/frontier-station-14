@@ -26,13 +26,13 @@ public sealed partial class ConstructionSystem
         component.BoardContainer = _container.EnsureContainer<Container>(uid, MachineFrameComponent.BoardContainerName);
         component.PartContainer = _container.EnsureContainer<Container>(uid, MachineFrameComponent.PartContainerName);
 
-        //Frontier - we mirror the bind to grid component from any existing machine board onto the resultant machine to prevent high-grading
+        // Frontier - we mirror the bind to grid component from any existing machine board onto the resultant machine to prevent high-grading
         foreach (var board in component.BoardContainer.ContainedEntities)
         {
             if (TryComp<BindToStationComponent>(board, out var binding))
                 _bindToStation.BindToStation(uid, binding.BoundStation);
         }
-        //End Frontier
+        // End Frontier
     }
 
     private void OnMachineMapInit(EntityUid uid, MachineComponent component, MapInitEvent args)
