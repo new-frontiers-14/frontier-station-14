@@ -12,7 +12,7 @@
     noRot: false
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
-    - state: infernoshot
+    - state: blastwave
   - type: Ammo
     muzzleFlash: null
   - type: IgniteOnCollide
@@ -91,3 +91,15 @@
     - state: hand
   - type: Ammo
     muzzleFlash: null
+
+- type: entity
+  id: ProjectileIcicleLowDamage
+  parent: ProjectileIcicle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 4
+        Cold: 4
+        Structural: 10
