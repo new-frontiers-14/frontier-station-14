@@ -28,6 +28,7 @@ public sealed class BindToStationSystem : EntitySystem
         args.PushMarkup(Loc.GetString("bound-to-grid-examine-text", ("shipname", stationName)));
     }
 
+    // Ensure consistency for station-bound machines/
     public void OnBoundMapInit(Entity<BindToStationComponent> ent, ref MapInitEvent args)
     {
         if (TryComp<ExtensionCableReceiverComponent>(ent.Owner, out var receiver)
