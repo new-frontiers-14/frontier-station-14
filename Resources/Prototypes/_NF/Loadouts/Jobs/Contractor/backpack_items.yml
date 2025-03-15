@@ -1,6 +1,3 @@
-# This file might get big
-# instead of by tiers, we are going to sort by category and tiers in the category. For now, it will be smokes, lighters, flasks, flashlights, etc.
-
 # Smokes:
 #T0
 - type: loadout
@@ -30,7 +27,6 @@
   storage:
     back:
     - CigPackGreen
-
 
 #T1
 - type: loadout
@@ -290,6 +286,9 @@
 #T3 for lols
 - type: loadout
   id: ContractorWristwatchGold
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
   price: 2500
   storage:
     back:
@@ -297,6 +296,9 @@
 
 - type: loadout
   id: ContractorSilverRing
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
   price: 2750
   storage:
     back:
@@ -304,20 +306,242 @@
 
 - type: loadout
   id: ContractorGoldRing
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
   price: 3000
   storage:
     back:
     - GoldRing
 
-# - type: loadout
-  # id: ContractorREPLACE
-  # equipment: ContractorREPLACE
-  # effects:
-  # - !type:GroupLoadoutEffect
-    # proto: ContractorT3
-  # price: 5000
+# T2
+- type: loadout
+  id: ContractorMonkeyCubeWrapped
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 500
+  storage:
+    back:
+    - MonkeyCubeWrapped
 
-# - type: startingGear
-  # id: ContractorREPLACE
-  # storage:
-    # back: REPLACE
+- type: loadout
+  id: ContractorKoboldCubeWrapped
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 500
+  storage:
+    back:
+    - KoboldCubeWrapped
+
+# fun
+#T1
+- type: loadout
+  id: ContractorPlushieSharkGrey
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  storage:
+    back:
+    - PlushieSharkGrey
+
+- type: loadout
+  id: ContractorPlushieSharkBlue
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  storage:
+    back:
+    - PlushieSharkBlue
+
+- type: loadout
+  id: ContractorPlushieSharkPink
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  storage:
+    back:
+    - PlushieSharkPink
+
+- type: loadout
+  id: ContractorHarmonicaInstrument
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  storage:
+    back:
+    - HarmonicaInstrument
+
+- type: loadout
+  id: ContractorSaxophoneInstrument
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  storage:
+    back:
+    - SaxophoneInstrument
+
+- type: loadout
+  id: ContractorAcousticGuitarInstrument
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  storage:
+    back:
+    - AcousticGuitarInstrument
+
+#T2
+- type: loadout
+  id: ContractorPonderingOrb
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 5000
+  storage:
+    back:
+    - PonderingOrb
+
+#T3
+- type: loadout
+  id: ContractorPlushieRGBee
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  price: 10000
+  storage:
+    back:
+    - PlushieRGBee
+
+- type: loadout
+  id: ContractorMysterySpaceBladeBox
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  price: 2400
+  storage:
+    back:
+    - MysterySpaceBladeBox
+
+- type: loadout
+  id: ContractorHoloGraffitiProjector
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  price: 10000
+  storage:
+    back:
+    - HoloGraffitiProjector
+
+- type: loadout
+  id: ContractorCrayonMagic
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  price: 30000
+  storage:
+    back:
+    - CrayonMagic
+
+#bureaucracy
+#T0
+- type: loadout
+  id: ContractorBoxFolderMedicalDoctor
+  price: 500
+  storage:
+    back:
+    - BoxFolderMedicalDoctor
+
+- type: loadout
+  id: ContractorBrbSign
+  price: 500
+  storage:
+    back:
+    - BrbSign
+
+- type: loadout
+  id: ContractorHandLabeler
+  price: 500
+  storage:
+    back:
+    - HandLabeler
+
+- type: loadout
+  id: ContractorStampsApprovedDenied
+  price: 1000
+  name: approved and denied stamps
+  description: A pair of stamps used for reviewing forms.
+  previewEntity: RubberStampApproved
+  storage:
+    back:
+    - RubberStampApproved
+    - RubberStampDenied
+
+- type: loadout
+  id: ContractorRubberStampClown
+  price: 1500
+  storage:
+    back:
+    - RubberStampClown
+
+- type: loadout
+  id: ContractorRubberStampMime
+  price: 1500
+  storage:
+    back:
+    - RubberStampMime
+
+- type: loadout
+  id: ContractorRubberStampTrader
+  price: 500
+  storage:
+    back:
+    - RubberStampTrader
+
+- type: loadout
+  id: ContractorRubberStampChaplain
+  price: 500
+  storage:
+    back:
+    - RubberStampChaplain
+
+- type: loadout
+  id: ContractorRubberStampCaptain
+  price: 500
+  storage:
+    back:
+    - RubberStampCaptain
+
+- type: loadout
+  id: ContractorRubberStampLawyer
+  price: 500
+  storage:
+    back:
+    - RubberStampLawyer
+
+- type: loadout
+  id: ContractorRubberStampPsychologist
+  price: 500
+  storage:
+    back:
+    - RubberStampPsychologist
+
+- type: loadout
+  id: ContractorRubberStampDoctor
+  price: 500
+  storage:
+    back:
+    - RubberStampDoctor
+
+- type: loadout
+  id: ContractorRubberStampEngineer
+  price: 500
+  storage:
+    back:
+    - RubberStampEngineer
