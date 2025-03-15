@@ -1,8 +1,8 @@
 - type: entity
   name: Mk32 "Universal"
-  parent: [BaseWeaponPistol, BaseC1Contraband]
+  parent: [BaseWeaponPistol, BaseC3Contraband]
   id: WeaponPistolUniversal
-  description: The Mark 32 Offensive Handgun, produced by NanoTrasen's Small Arms Division. Uses .35 auto ammo.
+  description: The Mark 32 Offensive Handgun, produced by the Syndicate's Small Arms Division. Uses .25 caseless ammo. # Frontier: lore? if it uses syndicate ammo then it is a syndicate gun.
   components:
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi
@@ -14,7 +14,7 @@
   - type: Clothing
     sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi
   - type: Gun
-    fireRate: 4 # Frontier: 3<4
+    fireRate: 5 # Frontier: 4<5
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -23,21 +23,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistol
+        startingItem: MagazinePistolCaselessRifle # Frontier: MagazinePistol<MagazinePistolCaselessRifle
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazinePistol
+            - MagazinePistolCaselessRifle # Frontier: MagazinePistol<MagazinePistolCaselessRifle
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: CartridgeCaselessRifle # Frontier: CartridgePistol<CartridgeCaselessRifle
         priority: 1
         whitelist:
           tags:
-            - CartridgePistol
+            - CartridgeCaselessRifle # Frontier: CartridgePistol<CartridgeCaselessRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
