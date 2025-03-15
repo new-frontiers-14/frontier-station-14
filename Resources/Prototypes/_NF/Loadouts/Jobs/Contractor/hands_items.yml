@@ -1,5 +1,112 @@
 #T1
 - type: loadout
+  id: ContractorBriefcaseBrownFilled
+  name: brown briefcase (empty)
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  inhand:
+  - BriefcaseBrownFilled
+
+- type: loadout
+  id: ContractorToolboxEmergency
+  name: emergency toolbox (empty)
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  inhand:
+  - ToolboxEmergency
+
+- type: loadout
+  id: ContractorToolboxMechanical
+  name: mechanical toolbox (empty)
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  inhand:
+  - ToolboxMechanical
+
+#T2
+- type: loadout
+  id: ContractorCane
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+  inhand:
+  - Cane
+
+- type: loadout
+  id: ContractorLGBTQHandyFlag
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+  inhand:
+  - LGBTQHandyFlag
+
+- type: loadout
+  id: ContractorNTHandyFlag
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 5000
+  inhand:
+  - NTHandyFlag
+
+- type: loadout
+  id: ContractorBalloonNT
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 5000
+  inhand:
+  - BalloonNT
+
+#T3 Ballin'
+- type: loadout
+  id: ContractorFlashlightUmbrella
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  price: 10000
+  inhand:
+  - FlashlightUmbrella
+
+- type: loadout
+  id: ContractorDawInstrumentFlatpack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  price: 20000
+  inhand:
+  - DawInstrumentFlatpack
+
+- type: loadout
+  id: ContractorHoverbikeFlatpack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  price: 35000
+  inhand:
+  - HoverbikeFlatpack
+
+- type: loadout
+  id: ContractorEmotionalPetCarrier
+  name: emotional support pet
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  price: 10000
+  inhand:
+  - PetCarrierNPCEmotionalSupportSafe
+
+# Tools
+#T1
+- type: loadout
   id: ContractorAppraisalTool
   effects:
   - !type:GroupLoadoutEffect
@@ -128,51 +235,9 @@
 
 - type: loadout
   id: ContractorBible
-  name: bible and faith implanter
-  description: For the budding chaplain. Perform miracles, proselytize, and grow your flock.
-  previewEntity: Bible
   effects:
   - !type:GroupLoadoutEffect
     proto: ContractorT2
-  price: 5000
+  price: 500
   inhand:
     - Bible
-  storage:
-    back:
-      - BibleUserImplanter
-
-- type: loadout
-  id: ContractorMimePowersImplanter
-  name: mime vow implanter
-  description: For the budding mime. Take your vow today.
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ContractorT2
-  price: 5000
-  storage:
-    back:
-      - MimePowersImplanter
-
-- type: loadout
-  id: ContractorMonkeyCubeWrapped
-  name: monkey cube
-  description: Unwrap this to get a monkey cube.
-  previewEntity: MonkeyCubeWrapped
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ContractorT2
-  price: 500
-  inhand:
-    - MonkeyCubeWrapped
-
-- type: loadout
-  id: ContractorKoboldCubeWrapped
-  name: kobold cube
-  description: Unwrap this to get a kobold cube.
-  previewEntity: KoboldCubeWrapped
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ContractorT2
-  price: 500
-  inhand:
-    - KoboldCubeWrapped
