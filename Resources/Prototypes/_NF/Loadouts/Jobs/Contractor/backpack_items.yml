@@ -313,7 +313,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 350
-  inhand:
+  storage:
+    back:
     - AppraisalTool
 
 - type: loadout
@@ -322,7 +323,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 350
-  inhand:
+  storage:
+    back:
     - Pickaxe
 
 - type: loadout
@@ -331,7 +333,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 350
-  inhand:
+  storage:
+    back:
     - HandheldGPSBasic
 
 - type: loadout
@@ -340,7 +343,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 550
-  inhand:
+  storage:
+    back:
     - RadioHandheldNF
 
 - type: loadout
@@ -349,7 +353,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 350
-  inhand:
+  storage:
+    back:
     - NetworkConfigurator
 
 - type: loadout
@@ -358,7 +363,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 350
-  inhand:
+  storage:
+    back:
     - HandheldHealthAnalyzerUnpowered
 
 - type: loadout
@@ -367,7 +373,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 350
-  inhand:
+  storage:
+    back:
     - AnomalyScanner
 
 - type: loadout
@@ -376,7 +383,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 350
-  inhand:
+  storage:
+    back:
     - Bucket
 
 - type: loadout
@@ -385,7 +393,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 350
-  inhand:
+  storage:
+    back:
     - GeigerCounter
 
 #T2
@@ -395,7 +404,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT2
   price: 3000
-  inhand:
+  storage:
+    back:
     - WeaponProtoKineticAccelerator
 
 - type: loadout
@@ -404,7 +414,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT2
   price: 2000
-  inhand:
+  storage:
+    back:
     - PinpointerUniversal
 
 - type: loadout
@@ -413,7 +424,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT2
   price: 5000
-  inhand:
+  storage:
+    back:
     - ShipyardRCD
 
 - type: loadout
@@ -422,7 +434,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT2
   price: 2000
-  inhand:
+  storage:
+    back:
     - HandheldCrewMonitor
 
 - type: loadout
@@ -431,58 +444,38 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT2
   price: 5000
-  inhand:
+  storage:
+    back:
     - HypoMini
 
 - type: loadout
   id: ContractorBible
-  name: bible and faith implanter
-  description: For the budding chaplain. Perform miracles, proselytize, and grow your flock.
-  previewEntity: Bible
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ContractorT2
-  price: 5000
-  inhand:
-    - Bible
-  storage:
-    back:
-      - BibleUserImplanter
-
-- type: loadout
-  id: ContractorMimePowersImplanter
-  name: mime vow implanter
-  description: For the budding mime. Take your vow today.
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ContractorT2
-  price: 5000
-  storage:
-    back:
-      - MimePowersImplanter
-
-- type: loadout
-  id: ContractorMonkeyCubeWrapped
-  name: monkey cube
-  description: Unwrap this to get a monkey cube.
-  previewEntity: MonkeyCubeWrapped
   effects:
   - !type:GroupLoadoutEffect
     proto: ContractorT2
   price: 500
-  inhand:
+  storage:
+    back:
+    - Bible
+
+- type: loadout
+  id: ContractorMonkeyCubeWrapped
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 500
+  storage:
+    back:
     - MonkeyCubeWrapped
 
 - type: loadout
   id: ContractorKoboldCubeWrapped
-  name: kobold cube
-  description: Unwrap this to get a kobold cube.
-  previewEntity: KoboldCubeWrapped
   effects:
   - !type:GroupLoadoutEffect
     proto: ContractorT2
   price: 500
-  inhand:
+  storage:
+    back:
     - KoboldCubeWrapped
 
 # fun
@@ -493,7 +486,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 500
-  inhand:
+  storage:
+    back:
     - PlushieSharkGrey
 
 - type: loadout
@@ -502,7 +496,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 500
-  inhand:
+  storage:
+    back:
     - PlushieSharkBlue
 
 - type: loadout
@@ -511,7 +506,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 500
-  inhand:
+  storage:
+    back:
     - PlushieSharkPink
 
 - type: loadout
@@ -520,7 +516,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 500
-  inhand:
+  storage:
+    back:
     - HarmonicaInstrument
 
 - type: loadout
@@ -529,7 +526,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 500
-  inhand:
+  storage:
+    back:
     - SaxophoneInstrument
 
 - type: loadout
@@ -538,7 +536,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT1
   price: 500
-  inhand:
+  storage:
+    back:
     - AcousticGuitarInstrument
 
 #T2
@@ -548,7 +547,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT2
   price: 5000
-  inhand:
+  storage:
+    back:
     - PonderingOrb
 
 #T3
@@ -558,7 +558,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT3
   price: 10000
-  inhand:
+  storage:
+    back:
     - PlushieRGBee
 
 - type: loadout
@@ -567,7 +568,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT3
   price: 2400
-  inhand:
+  storage:
+    back:
     - MysterySpaceBladeBox
 
 - type: loadout
@@ -576,7 +578,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT3
   price: 10000
-  inhand:
+  storage:
+    back:
     - HoloGraffitiProjector
 
 - type: loadout
@@ -585,7 +588,8 @@
   - !type:GroupLoadoutEffect
     proto: ContractorT3
   price: 30000
-  inhand:
+  storage:
+    back:
     - CrayonMagic
 
 #bureaucracy
