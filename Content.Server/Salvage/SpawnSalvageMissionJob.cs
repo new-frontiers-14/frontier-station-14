@@ -407,7 +407,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                 validSpawns.RemoveAt(validSpawns.Count - 1);
 
                 if (!_anchorable.TileFree(grid, spawnTile, (int) CollisionGroup.MachineLayer,
-                        (int) CollisionGroup.MachineLayer))
+                        (int) CollisionGroup.MachineMask)) // Frontier: MachineLayer<MachineMask
                 {
                     continue;
                 }
