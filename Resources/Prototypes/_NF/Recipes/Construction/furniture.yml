@@ -700,6 +700,23 @@
   conditions:
     - !type:TileNotBlocked
 
+- type: construction
+  id: BannerFsb
+  name: fsb banner
+  description: A banner displaying the sigil of the Far Star Biotech corporation.
+  graph: BannersGraph
+  startNode: start
+  targetNode: BannerFsb
+  category: construction-category-furniture
+  icon:
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: banner-fsb
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 
 # Altars
 - type: construction
