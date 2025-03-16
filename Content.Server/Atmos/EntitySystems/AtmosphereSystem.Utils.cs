@@ -4,7 +4,7 @@ using Content.Server.Maps;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Maps;
-using Content.Shared.Shuttles.Components;
+using Content.Shared.Shuttles.Components; // Frontier
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
