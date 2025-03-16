@@ -162,6 +162,7 @@ public sealed class PlantHolderSystem : EntitySystem
                 // Frontier
                 if (TryComp<BindToStationComponent>(entity.Owner, out var bindToStation)
                     && bindToStation.Enabled
+                    && bindToStation.BoundStation != null
                     && _station.GetOwningStation(entity.Owner) != bindToStation.BoundStation)
                 {
                     _popup.PopupCursor(Loc.GetString("plant-holder-component-bound-to-station"),
