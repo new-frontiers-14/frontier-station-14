@@ -82,8 +82,7 @@ public sealed class PowerChargeSystem : EntitySystem
         UpdateState((ent, ent.Comp, powerReceiver));
     }
 
-    /* New Frontiers - StationAnchor Links - Made SetSwitchedOn public for use in StatonAnchorSystem.
-    This code is licensed under AGPLv3. See AGPLv3.txt */
+    // New Frontiers - StationAnchor Links - Changed SetSwitchedOn to Public for the linking system in StationAnchorSystem.
     public void SetSwitchedOn(EntityUid uid, PowerChargeComponent component, bool on,
         ApcPowerReceiverComponent? powerReceiver = null, EntityUid? user = null)
     {

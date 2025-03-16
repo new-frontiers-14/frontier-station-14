@@ -4,6 +4,7 @@ using Content.Server.Shuttles.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Popups;
 
+//Frontier
 using Content.Server.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.DeviceNetwork;
@@ -16,23 +17,26 @@ public sealed class StationAnchorSystem : EntitySystem
 {
     [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
+
+    //Frontier
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
     [Dependency] private readonly PowerChargeSystem _chargeSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<StationAnchorComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<StationAnchorComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
         SubscribeLocalEvent<StationAnchorComponent, AnchorStateChangedEvent>(OnAnchorStationChange);
-
-        SubscribeLocalEvent<StationAnchorComponent, SignalReceivedEvent>(OnSignalReceived);
-        SubscribeLocalEvent<StationAnchorComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
 
         SubscribeLocalEvent<StationAnchorComponent, ChargedMachineActivatedEvent>(OnActivated);
         SubscribeLocalEvent<StationAnchorComponent, ChargedMachineDeactivatedEvent>(OnDeactivated);
 
         SubscribeLocalEvent<StationAnchorComponent, MapInitEvent>(OnMapInit);
+
+        //Frontier
+        SubscribeLocalEvent<StationAnchorComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<StationAnchorComponent, SignalReceivedEvent>(OnSignalReceived);
+        SubscribeLocalEvent<StationAnchorComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
     }
 
     private void OnMapInit(Entity<StationAnchorComponent> ent, ref MapInitEvent args)
@@ -76,8 +80,9 @@ public sealed class StationAnchorSystem : EntitySystem
             SetStatus(ent, false);
     }
 
-    /* New Frontiers - StationAnchor Links - Added functions to handle the DeviceLinking system.
-    This code is licensed under AGPLv3. See AGPLv3.txt */
+    /* Frontier:
+        -All these functions are used to handle device linking for anchors.
+     */
     private void OnInit(EntityUid uid, StationAnchorComponent anchor, ComponentInit args)
     {
         _signalSystem.EnsureSinkPorts(uid, anchor.OnPort, anchor.OffPort, anchor.TogglePort);
@@ -129,7 +134,7 @@ public sealed class StationAnchorSystem : EntitySystem
 
         _chargeSystem.SetSwitchedOn(ent, entPowerHandler, (!entPowerHandler.SwitchedOn));
     }
-    // End of modified code
+    //Frontier - End.
 
     private void SetStatus(Entity<StationAnchorComponent> ent, bool enabled, ShuttleComponent? shuttleComponent = default)
     {

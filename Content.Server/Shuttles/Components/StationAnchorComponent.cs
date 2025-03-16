@@ -8,8 +8,7 @@ namespace Content.Server.Shuttles.Components;
 [Access(typeof(StationAnchorSystem))]
 public sealed partial class StationAnchorComponent : Component
 {
-    /* New Frontiers - StationAnchor Links - Added the necessary ports for linking.
-        This code is licensed under AGPLv3. See AGPLv3.txt */
+    // Frontier: Add ports for linking
 
     [DataField("onPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string OnPort = "On";
@@ -20,7 +19,7 @@ public sealed partial class StationAnchorComponent : Component
     [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string TogglePort = "Toggle";
 
-    // End of modified code
+    //Frontier - End
 
     [DataField("switchedOn")]
     public bool SwitchedOn { get; set; } = true;
