@@ -4,8 +4,8 @@ meta:
   engineVersion: 247.2.0
   forkId: ""
   forkVersion: ""
-  time: 03/15/2025 23:47:28
-  entityCount: 634
+  time: 03/16/2025 06:12:09
+  entityCount: 635
 maps: []
 grids:
 - 1
@@ -24,11 +24,13 @@ tilemap:
   33: FloorDark
   22: FloorDarkMini
   7: FloorDarkMono
+  23: FloorDarkOffset
   52: FloorGrassDark
   9: FloorMetalDiamond
   16: FloorRockVault
   4: FloorSteel
   17: FloorSteelDiagonal
+  24: FloorSteelMini
   108: FloorSteelMono
   21: FloorSteelOffset
   3: FloorTechMaint
@@ -58,7 +60,7 @@ entities:
       chunks:
         0,0:
           ind: 0,0
-          tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAABgAAAAAABgAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAABgAAAAAABgAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAABgAAAAAABgAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAAAwAAAAAAAwAAAAAAAwAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAEQAAAAAAEQAAAAAAEQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAAACgAAAAAAEQAAAAAAEQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAAACgAAAAAAEQAAAAAAEQAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAAACgAAAAAAEQAAAAAAEQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAEQAAAAAAEQAAAAAAEQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAAAAAAAwAAAAAAAwAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAwAAAAAAAwAAAAAAAwAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAADgAAAAAAAwAAAAAAAwAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAbAAAAAAAbAAAAAAAbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAbAAAAAAAbAAAAAAAbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAbAAAAAAAbAAAAAAAbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAAAwAAAAAAAwAAAAAAAwAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAbAAAAAAAbAAAAAAAbAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAAACgAAAAAAbAAAAAAAbAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAAACgAAAAAAbAAAAAAAbAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAAACgAAAAAAbAAAAAAAbAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAbAAAAAAAbAAAAAAAbAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAAAAAAAwAAAAAAAwAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAwAAAAAAAwAAAAAAAwAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAADgAAAAAAAwAAAAAAAwAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
           version: 6
         0,-1:
           ind: 0,-1
@@ -66,11 +68,11 @@ entities:
           version: 6
         1,-1:
           ind: 1,-1
-          tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAADgAAAAAADgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAAgQAAAAAAgQAAAAAADgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAAAwAAAAAADgAAAAAADgAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAAeAAAAAAAeAAAAAAAeAAAAAAAeAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAADgAAAAAABwAAAAAADgAAAAAAeAAAAAAABgAAAAAABgAAAAAAeAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAADgAAAAAABwAAAAAADgAAAAAAeAAAAAAABgAAAAAABgAAAAAAeAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAABgAAAAAABgAAAAAAeQAAAAAAeAAAAAAAeAAAAAAAeAAAAAAAeAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAABgAAAAAABgAAAAAADgAAAAAAAwAAAAAADgAAAAAADgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAADgAAAAAADgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAFwAAAAAAFgAAAAAAFwAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAFwAAAAAAFgAAAAAAFwAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAAgQAAAAAAgQAAAAAADgAAAAAAFgAAAAAAFgAAAAAAFgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAAAwAAAAAADgAAAAAADgAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAAGAAAAAAAGAAAAAAAGAAAAAAAGAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAADgAAAAAABwAAAAAADgAAAAAAGAAAAAAABAAAAAAABAAAAAAAGAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAADgAAAAAABwAAAAAADgAAAAAAGAAAAAAABAAAAAAABAAAAAAAGAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbAAAAAAAbAAAAAAAbAAAAAAAeQAAAAAAGAAAAAAAGAAAAAAAGAAAAAAAGAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbAAAAAAAbAAAAAAAbAAAAAAADgAAAAAAAwAAAAAADgAAAAAADgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
           version: 6
         1,0:
           ind: 1,0
-          tiles: DQAAAAAADQAAAAAADQAAAAAABgAAAAAABgAAAAAABgAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAAAAADQAAAAAADQAAAAAABgAAAAAABgAAAAAABgAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAAAAADQAAAAAADQAAAAAABgAAAAAABgAAAAAABgAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAABgAAAAAABgAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAABgAAAAAABgAAAAAADgAAAAAAFQAAAAAAFQAAAAAAFQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAwAAAAAADgAAAAAADgAAAAAAFQAAAAAAFQAAAAAAFQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFQAAAAAAFQAAAAAAFQAAAAAAFQAAAAAAFQAAAAAAFQAAAAAADgAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFQAAAAAADgAAAAAAFQAAAAAADgAAAAAAFQAAAAAAFQAAAAAAFQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAAAwAAAAAADgAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAAgQAAAAAAgQAAAAAADgAAAAAAIQAAAAAAIQAAAAAAIQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAIQAAAAAAIQAAAAAAIQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAADgAAAAAADgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          tiles: EQAAAAAAEQAAAAAAEQAAAAAAbAAAAAAAbAAAAAAAbAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAAAAAEQAAAAAAEQAAAAAAbAAAAAAAbAAAAAAAbAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAAAAAEQAAAAAAEQAAAAAAbAAAAAAAbAAAAAAAbAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbAAAAAAAbAAAAAAAbAAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbAAAAAAAbAAAAAAAbAAAAAAADgAAAAAAFQAAAAAAFQAAAAAAFQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAwAAAAAADgAAAAAADgAAAAAAFQAAAAAAFQAAAAAAFQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFQAAAAAAFQAAAAAAFQAAAAAAFQAAAAAAFQAAAAAAFQAAAAAADgAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFQAAAAAADgAAAAAAFQAAAAAADgAAAAAAFQAAAAAAFQAAAAAAFQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAADgAAAAAAAwAAAAAADgAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAAgQAAAAAAgQAAAAAADgAAAAAAIQAAAAAAIQAAAAAAIQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAIQAAAAAAIQAAAAAAIQAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAADgAAAAAADgAAAAAADgAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
           version: 6
     - type: Broadphase
     - type: Physics
@@ -127,11 +129,6 @@ entities:
             117: 11,-3
             118: 11,-2
         - node:
-            color: '#D4C8BFFF'
-            id: BrickEndOverlayE
-          decals:
-            303: 22,7
-        - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkCornerNe
           decals:
@@ -144,19 +141,42 @@ entities:
             146: 20,-7
         - node:
             color: '#FFFFFFFF'
-            id: BrickTileDarkCornerSe
+            id: BrickTileDarkEndE
           decals:
-            261: 22,-9
+            692: 22,-7
         - node:
             color: '#FFFFFFFF'
-            id: BrickTileDarkCornerSw
+            id: BrickTileDarkEndN
           decals:
-            263: 20,-9
+            812: 20,-8
+            813: 22,-8
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileDarkEndS
+          decals:
+            686: 21,-9
+            814: 20,-9
+            815: 22,-9
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileDarkEndW
+          decals:
+            691: 20,-7
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileDarkInnerSe
+          decals:
+            687: 21,-7
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileDarkInnerSw
+          decals:
+            688: 21,-7
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkLineE
           decals:
-            199: 22,-8
+            690: 21,-8
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkLineN
@@ -171,7 +191,7 @@ entities:
             color: '#FFFFFFFF'
             id: BrickTileDarkLineW
           decals:
-            200: 20,-8
+            689: 21,-8
         - node:
             color: '#52B4E9FF'
             id: BrickTileSteelCornerNe
@@ -193,11 +213,6 @@ entities:
           decals:
             106: 11,-5
         - node:
-            color: '#B3B3B3FF'
-            id: BrickTileSteelEndW
-          decals:
-            61: 12,8
-        - node:
             color: '#52B4E9FF'
             id: BrickTileSteelLineE
           decals:
@@ -210,318 +225,411 @@ entities:
             107: 11,-3
             108: 11,-4
         - node:
+            color: '#D4D4D4FF'
+            id: BrickTileWhiteBox
+          decals:
+            623: 12,8
+            624: 12,4
+        - node:
+            color: '#E6E6E6FF'
+            id: BrickTileWhiteBox
+          decals:
+            787: 16,2
+            789: 18,0
+            790: 16,0
+            797: 18,2
+        - node:
             color: '#FA7500FF'
             id: BrickTileWhiteBox
           decals:
             128: 19,-2
-        - node:
-            color: '#FFFFFFFF'
-            id: BrickTileWhiteBox
-          decals:
-            40: 18,2
-            41: 16,2
-            42: 16,0
-            43: 18,0
         - node:
             color: '#334E6DFF'
             id: BrickTileWhiteCornerNe
           decals:
             123: 22,10
         - node:
-            color: '#37789BFF'
+            color: '#96DAFF3F'
             id: BrickTileWhiteCornerNe
           decals:
-            18: 18,4
-            19: 21,2
-        - node:
-            color: '#B3B3B3FF'
-            id: BrickTileWhiteCornerNe
-          decals:
-            154: 14,8
+            551: 21,2
+            573: 18,4
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteCornerNe
           decals:
-            318: 22,5
+            778: 22,5
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteCornerNe
+          decals:
+            525: 18,4
+            530: 21,2
         - node:
             color: '#334E6DFF'
             id: BrickTileWhiteCornerNw
           decals:
             124: 20,10
         - node:
-            color: '#37789BFF'
+            color: '#96DAFF3F'
             id: BrickTileWhiteCornerNw
           decals:
-            35: 16,4
-            163: 13,2
+            567: 13,2
+            570: 16,4
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteCornerNw
           decals:
-            300: 20,7
+            763: 20,7
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteCornerNw
+          decals:
+            431: 13,2
+            527: 16,4
         - node:
             color: '#334E6DFF'
             id: BrickTileWhiteCornerSe
           decals:
             126: 22,9
         - node:
-            color: '#37789BFF'
+            color: '#96DAFF3F'
             id: BrickTileWhiteCornerSe
           decals:
-            20: 21,0
-            21: 18,-2
-        - node:
-            color: '#B3B3B3FF'
-            id: BrickTileWhiteCornerSe
-          decals:
-            66: 14,4
+            553: 21,0
+            558: 18,-2
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteCornerSe
           decals:
-            317: 22,4
+            779: 22,4
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteCornerSe
+          decals:
+            534: 21,0
+            538: 18,-2
         - node:
             color: '#334E6DFF'
             id: BrickTileWhiteCornerSw
           decals:
             125: 20,9
         - node:
-            color: '#37789BFF'
+            color: '#96DAFF3F'
             id: BrickTileWhiteCornerSw
           decals:
-            22: 16,-2
-            159: 13,0
+            560: 16,-2
+            565: 13,0
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteCornerSw
           decals:
-            306: 16,6
-            315: 20,4
+            767: 16,6
+            781: 20,4
         - node:
-            color: '#52B4E9FF'
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteCornerSw
+          decals:
+            436: 13,0
+            539: 16,-2
+        - node:
+            color: '#96DAFF7F'
             id: BrickTileWhiteEndE
           decals:
-            11: 18,1
+            546: 18,1
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteEndE
           decals:
-            304: 22,7
+            761: 22,7
         - node:
-            color: '#52B4E9FF'
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteEndE
+          decals:
+            468: 18,1
+        - node:
+            color: '#96DAFF41'
             id: BrickTileWhiteEndN
           decals:
-            12: 17,2
+            542: 17,2
+            543: 17,2
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteEndN
           decals:
-            301: 18,7
-            302: 16,7
+            759: 16,7
+            760: 18,7
         - node:
-            color: '#52B4E9FF'
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteEndN
+          decals:
+            418: 17,2
+        - node:
+            color: '#96DAFF7F'
             id: BrickTileWhiteEndS
           decals:
-            13: 17,0
+            544: 17,0
         - node:
-            color: '#52B4E9FF'
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteEndS
+          decals:
+            419: 17,0
+        - node:
+            color: '#96DAFF7F'
             id: BrickTileWhiteEndW
           decals:
-            10: 16,1
+            545: 16,1
         - node:
-            color: '#B3B3B3FF'
+            color: '#D4D4D4FF'
             id: BrickTileWhiteEndW
           decals:
-            62: 12,8
-            63: 12,4
+            612: 12,8
+            613: 12,4
         - node:
-            color: '#37789BFF'
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteEndW
+          decals:
+            420: 16,1
+        - node:
+            color: '#96DAFF3F'
             id: BrickTileWhiteInnerNe
           decals:
-            36: 18,2
-            44: 18,2
+            799: 18,2
+            801: 18,2
         - node:
-            color: '#52B4E9FF'
+            color: '#96DAFF7F'
             id: BrickTileWhiteInnerNe
           decals:
-            17: 17,1
+            547: 17,1
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteInnerNe
           decals:
-            308: 16,6
-            319: 21,5
-            324: 18,6
+            768: 16,6
+            769: 18,6
+            777: 21,5
         - node:
-            color: '#DDC3A1FF'
+            color: '#D4D4D4FF'
             id: BrickTileWhiteInnerNe
           decals:
-            232: 21,5
+            625: 14,6
+            798: 18,2
         - node:
-            color: '#37789BFF'
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteInnerNe
+          decals:
+            422: 17,1
+            800: 18,2
+        - node:
+            color: '#96DAFF3F'
             id: BrickTileWhiteInnerNw
           decals:
-            37: 16,2
-            45: 16,2
+            803: 16,2
         - node:
-            color: '#52B4E9FF'
+            color: '#96DAFF7F'
             id: BrickTileWhiteInnerNw
           decals:
-            16: 17,1
-        - node:
-            color: '#B3B3B3FF'
-            id: BrickTileWhiteInnerNw
-          decals:
-            70: 13,4
+            548: 17,1
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteInnerNw
           decals:
-            309: 18,6
-            323: 20,6
+            764: 20,6
+            770: 18,6
+        - node:
+            color: '#D4D4D4FF'
+            id: BrickTileWhiteInnerNw
+          decals:
+            615: 13,4
+            616: 13,8
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteInnerNw
+          decals:
+            423: 17,1
+            802: 16,2
         - node:
             color: '#334E6DFF'
             id: BrickTileWhiteInnerSe
           decals:
             135: 21,9
         - node:
-            color: '#37789BFF'
+            color: '#96DAFF3F'
             id: BrickTileWhiteInnerSe
           decals:
-            38: 18,0
-            46: 18,0
+            805: 18,0
         - node:
-            color: '#52B4E9FF'
+            color: '#96DAFF7F'
             id: BrickTileWhiteInnerSe
           decals:
-            15: 17,1
+            549: 17,1
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteInnerSe
           decals:
-            321: 21,7
+            776: 21,7
+        - node:
+            color: '#D4D4D4FF'
+            id: BrickTileWhiteInnerSe
+          decals:
+            626: 14,6
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteInnerSe
+          decals:
+            424: 17,1
+            804: 18,0
         - node:
             color: '#334E6DFF'
             id: BrickTileWhiteInnerSw
           decals:
             134: 21,9
         - node:
-            color: '#37789BFF'
+            color: '#96DAFF3F'
             id: BrickTileWhiteInnerSw
           decals:
-            39: 16,0
-            47: 16,0
+            807: 16,0
         - node:
-            color: '#52B4E9FF'
+            color: '#96DAFF7F'
             id: BrickTileWhiteInnerSw
           decals:
-            14: 17,1
-        - node:
-            color: '#B3B3B3FF'
-            id: BrickTileWhiteInnerSw
-          decals:
-            69: 13,8
+            550: 17,1
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteInnerSw
           decals:
-            313: 20,6
+            774: 20,6
         - node:
-            color: '#37789BFF'
+            color: '#D4D4D4FF'
+            id: BrickTileWhiteInnerSw
+          decals:
+            614: 13,4
+            617: 13,8
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteInnerSw
+          decals:
+            425: 17,1
+            806: 16,0
+        - node:
+            color: '#96DAFF3F'
             id: BrickTileWhiteLineE
           decals:
-            23: 21,1
-            24: 18,3
-            25: 18,-1
+            552: 21,1
+            557: 18,-1
+            574: 18,3
         - node:
             color: '#9C2020FF'
             id: BrickTileWhiteLineE
           decals:
             274: 14,10
         - node:
-            color: '#B3B3B3FF'
-            id: BrickTileWhiteLineE
-          decals:
-            65: 14,5
-            131: 14,6
-            155: 14,7
-        - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteLineE
           decals:
-            320: 21,6
+            775: 21,6
+        - node:
+            color: '#D4D4D4FF'
+            id: BrickTileWhiteLineE
+          decals:
+            606: 14,8
+            607: 14,7
+            608: 14,5
+            609: 14,4
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteLineE
+          decals:
+            528: 18,3
+            533: 21,1
+            540: 18,-1
         - node:
             color: '#334E6DFF'
             id: BrickTileWhiteLineN
           decals:
             127: 21,10
         - node:
-            color: '#37789BFF'
+            color: '#96DAFF3F'
             id: BrickTileWhiteLineN
           decals:
-            26: 15,2
-            27: 20,2
-            28: 19,2
-            161: 17,4
-            162: 14,2
-        - node:
-            color: '#B3B3B3FF'
-            id: BrickTileWhiteLineN
-          decals:
-            64: 13,8
+            568: 14,2
+            569: 15,2
+            572: 17,4
+            575: 20,2
+            576: 19,2
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteLineN
           decals:
-            305: 21,7
-            307: 17,6
-            322: 19,6
+            762: 21,7
+            765: 19,6
+            766: 17,6
         - node:
-            color: '#37789BFF'
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteLineN
+          decals:
+            432: 14,2
+            433: 15,2
+            526: 17,4
+            531: 19,2
+            532: 20,2
+        - node:
+            color: '#96DAFF3F'
             id: BrickTileWhiteLineS
           decals:
-            29: 14,0
-            30: 15,0
-            31: 19,0
-            48: 17,-2
-            160: 20,0
-        - node:
-            color: '#B3B3B3FF'
-            id: BrickTileWhiteLineS
-          decals:
-            71: 13,4
+            554: 20,0
+            555: 19,0
+            559: 17,-2
+            563: 15,0
+            564: 14,0
         - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteLineS
           decals:
-            310: 17,6
-            311: 18,6
-            312: 19,6
-            316: 21,4
+            771: 17,6
+            772: 18,6
+            773: 19,6
+            780: 21,4
         - node:
-            color: '#37789BFF'
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteLineS
+          decals:
+            535: 20,0
+            536: 19,0
+            537: 17,-2
+        - node:
+            color: '#96DAFF3F'
             id: BrickTileWhiteLineW
           decals:
-            32: 13,1
-            33: 16,3
-            34: 16,-1
+            561: 16,-1
+            566: 13,1
+            571: 16,3
         - node:
             color: '#9C2020FF'
             id: BrickTileWhiteLineW
           decals:
             275: 13,10
         - node:
-            color: '#B3B3B3FF'
-            id: BrickTileWhiteLineW
-          decals:
-            67: 13,7
-            68: 13,5
-            132: 13,6
-        - node:
             color: '#D4C8BFFF'
             id: BrickTileWhiteLineW
           decals:
-            314: 20,5
+            782: 20,5
+        - node:
+            color: '#D4D4D4FF'
+            id: BrickTileWhiteLineW
+          decals:
+            618: 13,7
+            619: 13,6
+            620: 13,5
+            621: 13,8
+            622: 13,4
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileWhiteLineW
+          decals:
+            435: 13,1
+            529: 16,3
+            541: 16,-1
         - node:
             angle: 1.5707963267948966 rad
             color: '#FFFFFFFF'
@@ -529,18 +637,6 @@ entities:
           decals:
             49: 12,5
             50: 12,7
-        - node:
-            color: '#F5DAA7FF'
-            id: CheckerNESW
-          decals:
-            98: 21,-3
-            100: 22,-4
-        - node:
-            color: '#F5DAA7FF'
-            id: CheckerNWSE
-          decals:
-            99: 22,-3
-            101: 21,-4
         - node:
             color: '#3C44AAFF'
             id: DeliveryGreyscale
@@ -553,44 +649,44 @@ entities:
             149: 14,-5
             150: 14,-4
         - node:
-            color: '#96DAFFFF'
+            color: '#96DAFFBF'
             id: DiagonalCheckerAOverlay
           decals:
-            0: 17,2
-            1: 17,1
-            2: 17,0
-            3: 16,1
-            4: 18,1
+            404: 17,2
+            405: 17,1
+            406: 17,0
+            408: 16,1
+            466: 18,1
         - node:
-            angle: 1.5707963267948966 rad
-            color: '#B3B3B3FF'
-            id: DiagonalCheckerAOverlay
-          decals:
-            53: 14,5
-            54: 14,4
-            55: 13,4
-            56: 13,5
-            57: 13,7
-            58: 13,8
-            59: 12,8
-            60: 12,4
-        - node:
-            color: '#52B4E9FF'
+            color: '#52B4E9C0'
             id: DiagonalCheckerBOverlay
           decals:
-            5: 17,2
-            6: 17,1
-            7: 17,0
-            8: 16,1
-            9: 18,1
+            409: 17,2
+            410: 17,1
+            411: 17,0
+            412: 16,1
+            467: 18,1
         - node:
-            color: '#B3B3B3FF'
-            id: DiagonalCheckerBOverlay
+            color: '#E6E6E6FF'
+            id: DiagonalOverlay
           decals:
-            129: 13,6
-            130: 14,6
-            152: 14,8
-            153: 14,7
+            396: 17,1
+            397: 16,1
+            399: 17,0
+            403: 17,2
+            465: 18,1
+            783: 16,2
+            785: 18,0
+            786: 16,0
+            796: 18,2
+        - node:
+            color: '#E6E6E6FF'
+            id: FullTileOverlayGreyscale
+          decals:
+            828: 21,-3
+            829: 21,-4
+            830: 22,-4
+            831: 22,-3
         - node:
             color: '#639137FF'
             id: MiniTileCheckerAOverlay
@@ -599,11 +695,7 @@ entities:
             137: 21,-7
             138: 22,-7
             190: 21,-8
-            191: 20,-8
-            195: 22,-8
-            255: 22,-9
             256: 21,-9
-            257: 20,-9
         - node:
             color: '#9FED58FF'
             id: MiniTileCheckerBOverlay
@@ -611,9 +703,7 @@ entities:
             139: 20,-7
             140: 21,-7
             141: 22,-7
-            258: 22,-9
             259: 21,-9
-            260: 20,-9
         - node:
             color: '#FFFFFFFF'
             id: MiniTileDarkCornerNe
@@ -630,105 +720,177 @@ entities:
           decals:
             144: 21,-7
         - node:
+            color: '#FA75007F'
+            id: MiniTileInnerOverlayNE
+          decals:
+            844: 20,-5
+        - node:
+            color: '#FA75007F'
+            id: MiniTileInnerOverlayNW
+          decals:
+            845: 23,-5
+        - node:
+            color: '#FA75007F'
+            id: MiniTileInnerOverlaySE
+          decals:
+            846: 20,-2
+        - node:
+            color: '#FA75007F'
+            id: MiniTileInnerOverlaySW
+          decals:
+            847: 23,-2
+        - node:
+            color: '#FA75007F'
+            id: MiniTileLineOverlayE
+          decals:
+            832: 20,-3
+            833: 20,-4
+            834: 23,-3
+            835: 23,-4
+        - node:
+            color: '#FA75007F'
+            id: MiniTileLineOverlayN
+          decals:
+            836: 21,-2
+            837: 22,-2
+            838: 22,-5
+            839: 21,-5
+        - node:
+            color: '#FA75007F'
+            id: MiniTileLineOverlayS
+          decals:
+            840: 22,-5
+            841: 21,-5
+            842: 21,-2
+            843: 22,-2
+        - node:
+            color: '#FA75007F'
+            id: MiniTileLineOverlayW
+          decals:
+            848: 23,-3
+            849: 23,-4
+            850: 20,-3
+            851: 20,-4
+        - node:
             color: '#9FED58FF'
             id: MiniTileOverlay
           decals:
-            184: 20,-8
             185: 21,-8
-            186: 22,-8
         - node:
-            color: '#FA7500FF'
+            color: '#E6E6E6FF'
+            id: MiniTileOverlay
+          decals:
+            816: 20,-2
+            817: 20,-3
+            818: 20,-4
+            819: 20,-5
+            820: 21,-5
+            821: 22,-5
+            822: 23,-5
+            823: 23,-4
+            824: 23,-3
+            825: 23,-2
+            826: 22,-2
+            827: 21,-2
+        - node:
+            color: '#FA75007F'
             id: MiniTileWhiteCornerNe
           decals:
-            75: 23,-2
+            852: 23,-2
         - node:
-            color: '#FA7500FF'
+            color: '#FA75007F'
             id: MiniTileWhiteCornerNw
           decals:
-            74: 20,-2
+            853: 20,-2
         - node:
-            color: '#FA7500FF'
+            color: '#FA75007F'
             id: MiniTileWhiteCornerSe
           decals:
-            77: 23,-5
+            854: 23,-5
         - node:
-            color: '#FA7500FF'
+            color: '#FA75007F'
             id: MiniTileWhiteCornerSw
           decals:
-            76: 20,-5
+            855: 20,-5
         - node:
-            color: '#FA7500FF'
-            id: MiniTileWhiteInnerNe
+            color: '#E6E6E6C0'
+            id: MonoOverlay
           decals:
-            94: 20,-5
+            328: 14,8
+            329: 13,8
+            330: 13,7
+            331: 14,7
+            332: 14,6
+            333: 13,6
+            334: 13,5
+            335: 14,5
+            336: 14,4
+            337: 13,4
         - node:
-            color: '#FA7500FF'
-            id: MiniTileWhiteInnerNw
+            color: '#E6E6E6FF'
+            id: MonoOverlay
           decals:
-            95: 23,-5
+            363: 13,2
+            364: 14,2
+            365: 15,2
+            366: 15,1
+            367: 14,1
+            368: 13,1
+            369: 13,0
+            460: 17,-1
+            501: 14,0
+            502: 15,0
+            503: 16,-1
+            504: 16,-2
+            505: 17,-2
+            506: 18,-2
+            507: 18,-1
+            508: 19,0
+            511: 20,0
+            512: 21,0
+            513: 21,1
+            514: 20,1
+            515: 19,1
+            516: 19,2
+            517: 20,2
+            518: 21,2
+            519: 18,4
+            520: 18,3
+            521: 17,3
+            522: 17,4
+            523: 16,4
+            524: 16,3
+            610: 12,8
+            611: 12,4
         - node:
-            color: '#FA7500FF'
-            id: MiniTileWhiteInnerSe
+            color: '#96DAFF3F'
+            id: OffsetOverlay
           decals:
-            96: 20,-2
-        - node:
-            color: '#FA7500FF'
-            id: MiniTileWhiteInnerSw
-          decals:
-            97: 23,-2
-        - node:
-            color: '#FA7500FF'
-            id: MiniTileWhiteLineE
-          decals:
-            84: 23,-3
-            85: 23,-4
-            92: 20,-3
-            93: 20,-4
-        - node:
-            color: '#FA7500FF'
-            id: MiniTileWhiteLineN
-          decals:
-            82: 21,-2
-            83: 22,-2
-            86: 21,-5
-            87: 22,-5
-        - node:
-            color: '#FA7500FF'
-            id: MiniTileWhiteLineS
-          decals:
-            78: 22,-5
-            79: 21,-5
-            88: 21,-2
-            89: 22,-2
-        - node:
-            color: '#FA7500FF'
-            id: MiniTileWhiteLineW
-          decals:
-            80: 20,-3
-            81: 20,-4
-            90: 23,-3
-            91: 23,-4
+            808: 20,-8
+            809: 20,-9
+            810: 22,-8
+            811: 22,-9
         - node:
             color: '#E6E6E67F'
             id: OffsetOverlay
           decals:
-            283: 16,7
-            284: 16,6
-            285: 18,6
-            286: 17,6
-            287: 18,7
-            288: 19,6
-            289: 20,6
-            290: 20,7
-            291: 21,7
-            292: 22,7
-            293: 21,6
-            294: 22,5
-            295: 22,4
-            296: 21,4
-            297: 21,5
-            298: 20,5
-            299: 20,4
+            742: 16,6
+            743: 17,6
+            744: 18,6
+            745: 16,7
+            746: 18,7
+            747: 20,7
+            748: 21,7
+            749: 22,7
+            750: 21,6
+            751: 20,6
+            752: 19,6
+            753: 20,5
+            754: 21,5
+            755: 22,5
+            756: 22,4
+            757: 21,4
+            758: 20,4
         - node:
             angle: 3.141592653589793 rad
             color: '#FFFFFFFF'
@@ -739,7 +901,7 @@ entities:
             color: '#FFFFFFFF'
             id: WarnLineGreyscaleE
           decals:
-            181: 15,6
+            326: 15,6
         - node:
             color: '#FFFFFFFF'
             id: WarnLineGreyscaleN
@@ -750,7 +912,6 @@ entities:
             172: 20,-1
             173: 21,-6
             174: 14,3
-            175: 13,3
         - node:
             color: '#FFFFFFFF'
             id: WarnLineGreyscaleS
@@ -760,13 +921,12 @@ entities:
             166: 13,-1
             167: 17,5
             168: 21,8
-            176: 13,3
             177: 14,3
         - node:
             color: '#FFFFFFFF'
             id: WarnLineGreyscaleW
           decals:
-            180: 15,6
+            325: 15,6
         - node:
             color: '#FFFFFFFF'
             id: WarnLineN
@@ -1272,7 +1432,6 @@ entities:
   - uid: 369
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 16.5,7.5
       parent: 1
 - proto: BenchBlueComfy
@@ -1350,6 +1509,13 @@ entities:
     components:
     - type: Transform
       pos: 11.500278,-4.509832
+      parent: 1
+- proto: Bucket
+  entities:
+  - uid: 271
+    components:
+    - type: Transform
+      pos: 22.55925,-6.426667
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -2028,7 +2194,7 @@ entities:
       bodyType: Static
 - proto: CrateHydroponicsSeedsMedicinal
   entities:
-  - uid: 216
+  - uid: 204
     components:
     - type: Transform
       pos: 22.5,-6.5
@@ -3533,10 +3699,10 @@ entities:
       parent: 1
 - proto: HydroponicsToolHatchet
   entities:
-  - uid: 231
+  - uid: 619
     components:
     - type: Transform
-      pos: 22.492579,-6.450464
+      pos: 22.403,-6.35375
       parent: 1
 - proto: hydroponicsTrayAnchored
   entities:
@@ -3556,10 +3722,9 @@ entities:
     - type: Transform
       pos: 20.5,-8.5
       parent: 1
-  - uid: 271
+  - uid: 231
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 22.5,-7.5
       parent: 1
 - proto: KitchenReagentGrinder
@@ -3861,12 +4026,6 @@ entities:
       parent: 1
 - proto: Poweredlight
   entities:
-  - uid: 248
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 19.5,0.5
-      parent: 1
   - uid: 438
     components:
     - type: Transform
@@ -3915,6 +4074,11 @@ entities:
       parent: 1
 - proto: PoweredlightLED
   entities:
+  - uid: 216
+    components:
+    - type: Transform
+      pos: 20.5,2.5
+      parent: 1
   - uid: 336
     components:
     - type: Transform
@@ -3994,7 +4158,7 @@ entities:
       parent: 1
 - proto: SeedExtractor
   entities:
-  - uid: 204
+  - uid: 248
     components:
     - type: Transform
       pos: 20.5,-6.5
@@ -4640,7 +4804,7 @@ entities:
   - uid: 509
     components:
     - type: Transform
-      pos: 22.534245,-6.4296303
+      pos: 22.507168,-6.385
       parent: 1
 - proto: ToyFigurineChiefMedicalOfficer
   entities:
