@@ -60,6 +60,7 @@ Content under these subdirectories originate from their respective forks and may
 | `_Goobstation` | Goob Station | https://github.com/Goob-Station/Goob-Station | AGPL 3.0 |
 | `_Impstation` | Impstation | https://github.com/impstation/imp-station-14 | AGPL 3.0 |
 | `_NC14` | Nuclear 14 | https://github.com/Vault-Overseers/nuclear-14 | AGPL 3.0 |
+| `Nyanotrasen` | Nyanotrasen | https://github.com/Nyanotrasen/Nyanotrasen | MIT |
 
 Additional repos that we have ported features from without subdirectories are listed below.
 
