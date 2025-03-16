@@ -4,8 +4,8 @@ meta:
   engineVersion: 247.2.0
   forkId: ""
   forkVersion: ""
-  time: 03/15/2025 17:26:35
-  entityCount: 2449
+  time: 03/16/2025 00:31:54
+  entityCount: 2450
 maps: []
 grids:
 - 1
@@ -1734,6 +1734,14 @@ entities:
             color: '#52B4E93F'
             id: OffsetOverlay
           decals:
+            4996: 9,-5
+            4997: 10,-5
+            4998: 11,-5
+            4999: 12,-5
+            5000: 12,-7
+            5001: 11,-7
+            5002: 10,-7
+            5003: 9,-7
             5849: 0,-6
             5850: -2,-6
             5851: -2,-8
@@ -1767,33 +1775,6 @@ entities:
             6094: 3,-2
             6095: 8,-2
         - node:
-            color: '#52B4E93F'
-            id: OffsetOverlay
-          decals:
-            4996: 9,-5
-            4997: 10,-5
-            4998: 11,-5
-            4999: 12,-5
-            5000: 12,-7
-            5001: 11,-7
-            5002: 10,-7
-            5003: 9,-7
-        - node:
-            color: '#52B4E941'
-            id: OffsetOverlay
-          decals:
-            5594: -2,-1
-            5595: -3,-1
-            5596: -3,-2
-            5597: 0,-1
-            5598: 1,-1
-            5599: 1,-2
-            5600: 0,-3
-            5601: 0,-4
-            5602: -1,-4
-            5603: -2,-4
-            5604: -2,-3
-        - node:
             color: '#52B4E941'
             id: OffsetOverlay
           decals:
@@ -1807,6 +1788,17 @@ entities:
             4922: 0,8
             4925: -2,8
             4926: -3,8
+            5594: -2,-1
+            5595: -3,-1
+            5596: -3,-2
+            5597: 0,-1
+            5598: 1,-1
+            5599: 1,-2
+            5600: 0,-3
+            5601: 0,-4
+            5602: -1,-4
+            5603: -2,-4
+            5604: -2,-3
         - node:
             color: '#7654283F'
             id: OffsetOverlay
@@ -2731,7 +2723,7 @@ entities:
       pos: 5.5,-23.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -21286.422
+      secondsUntilStateChange: -21800.148
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2888,7 +2880,7 @@ entities:
       pos: -15.5,-13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -17288.76
+      secondsUntilStateChange: -17802.486
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -3750,17 +3742,28 @@ entities:
     - type: Transform
       pos: 3.5,-28.5
       parent: 1
-- proto: BannerMedical
+- proto: BannerFsb
   entities:
+  - uid: 658
+    components:
+    - type: Transform
+      anchored: True
+      pos: 6.5,11.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 1225
     components:
     - type: Transform
-      pos: 6.5,11.5
+      anchored: True
+      pos: -7.5,11.5
       parent: 1
-  - uid: 1957
+    - type: Physics
+      bodyType: Static
+  - uid: 2443
     components:
     - type: Transform
-      pos: -7.5,11.5
+      pos: -3.5,-23.5
       parent: 1
 - proto: BarSign
   entities:
@@ -4080,13 +4083,6 @@ entities:
     components:
     - type: Transform
       pos: -14.5,-11.5
-      parent: 1
-- proto: BookshelfFilled
-  entities:
-  - uid: 658
-    components:
-    - type: Transform
-      pos: -3.5,-23.5
       parent: 1
 - proto: BoxCandleSmall
   entities:
@@ -11591,6 +11587,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,3.5
       parent: 1
+    - type: GasThermoMachine
+      targetTemperature: 145
+    - type: ApcPowerReceiver
+      powerDisabled: False
     - type: AtmosPipeColor
       color: '#00FFFFFF'
 - proto: GasValve
@@ -13405,6 +13405,13 @@ entities:
     components:
     - type: Transform
       pos: -15.5,3.5
+      parent: 1
+- proto: NFPosterContrabandFsbNightlight
+  entities:
+  - uid: 1957
+    components:
+    - type: Transform
+      pos: 3.5,-27.5
       parent: 1
 - proto: NFPosterContrabandFsbRubicon
   entities:
