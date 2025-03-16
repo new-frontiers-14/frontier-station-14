@@ -4,12 +4,11 @@ using Content.Server.Shuttles.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Popups;
 
-//Frontier
-using Content.Server.DeviceLinking.Events;
-using Content.Server.DeviceLinking.Systems;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Power.Components;
+using Content.Server.DeviceLinking.Events;      //Frontier
+using Content.Server.DeviceLinking.Systems;     //Frontier
+using Content.Server.DeviceNetwork;             //Frontier
+using Content.Server.DeviceNetwork.Systems;     //Frontier
+using Content.Server.Power.Components;          //Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -17,10 +16,8 @@ public sealed class StationAnchorSystem : EntitySystem
 {
     [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-
-    //Frontier
-    [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
-    [Dependency] private readonly PowerChargeSystem _chargeSystem = default!;
+    [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;    //Frontier
+    [Dependency] private readonly PowerChargeSystem _chargeSystem = default!;   //Frontier
 
     public override void Initialize()
     {
@@ -33,10 +30,9 @@ public sealed class StationAnchorSystem : EntitySystem
 
         SubscribeLocalEvent<StationAnchorComponent, MapInitEvent>(OnMapInit);
 
-        //Frontier
-        SubscribeLocalEvent<StationAnchorComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<StationAnchorComponent, SignalReceivedEvent>(OnSignalReceived);
-        SubscribeLocalEvent<StationAnchorComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
+        SubscribeLocalEvent<StationAnchorComponent, ComponentInit>(OnInit);                         //Frontier
+        SubscribeLocalEvent<StationAnchorComponent, SignalReceivedEvent>(OnSignalReceived);         //Frontier
+        SubscribeLocalEvent<StationAnchorComponent, DeviceNetworkPacketEvent>(OnPacketReceived);    //Frontier
     }
 
     private void OnMapInit(Entity<StationAnchorComponent> ent, ref MapInitEvent args)
@@ -80,9 +76,7 @@ public sealed class StationAnchorSystem : EntitySystem
             SetStatus(ent, false);
     }
 
-    /* Frontier:
-        -All these functions are used to handle device linking for anchors.
-     */
+    //Frontier: All these functions are used to handle device linking for anchors.
     private void OnInit(EntityUid uid, StationAnchorComponent anchor, ComponentInit args)
     {
         _signalSystem.EnsureSinkPorts(uid, anchor.OnPort, anchor.OffPort, anchor.TogglePort);
@@ -134,7 +128,7 @@ public sealed class StationAnchorSystem : EntitySystem
 
         _chargeSystem.SetSwitchedOn(ent, entPowerHandler, (!entPowerHandler.SwitchedOn));
     }
-    //Frontier - End.
+    // End Frontier
 
     private void SetStatus(Entity<StationAnchorComponent> ent, bool enabled, ShuttleComponent? shuttleComponent = default)
     {
