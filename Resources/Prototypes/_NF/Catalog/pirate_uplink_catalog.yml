@@ -434,3 +434,19 @@
           - PirateUplink
   categories:
   - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPmag
+  name: uplink-pirate-pmag-name
+  description: uplink-pirate-pmag-desc
+  productEntity: Pmag
+  icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: pirate_label }
+  cost:
+    Doubloon: 3
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility

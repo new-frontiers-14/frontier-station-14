@@ -13,4 +13,10 @@ public sealed partial class BindToStationComponent : Component
     [DataField]
     [AutoNetworkedField]
     public EntityUid? BoundStation;
+
+    // Whether or not the effect is active.
+    // Useful for keeping track of the original
+    [DataField]
+    [AutoNetworkedField]
+    public bool Enabled = true;
 }
