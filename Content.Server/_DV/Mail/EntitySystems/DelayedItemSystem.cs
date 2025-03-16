@@ -24,7 +24,7 @@ namespace Content.Server._DV.Mail.EntitySystems
         /// </summary>
         private void OnRemovedFromContainer(EntityUid uid, DelayedItemComponent component, EntGotRemovedFromContainerMessage args)
         {
-            SpawnNextToOrDrop(component.Item, uid, out _);
+            SpawnAtPosition(component.Item, Transform(uid).Coordinates);
             QueueDel(uid);
         }
 
@@ -33,7 +33,7 @@ namespace Content.Server._DV.Mail.EntitySystems
         /// </summary>
         private void OnDamageChanged(EntityUid uid, DelayedItemComponent component, DamageChangedEvent args)
         {
-            SpawnNextToOrDrop(component.Item, uid, out _);
+            SpawnAtPosition(component.Item, Transform(uid).Coordinates);
             QueueDel(uid);
         }
     }
