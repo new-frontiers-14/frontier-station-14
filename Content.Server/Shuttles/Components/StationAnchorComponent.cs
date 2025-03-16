@@ -1,6 +1,6 @@
 ﻿using Content.Server.Shuttles.Systems;
-using Content.Shared.DeviceLinking;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.DeviceLinking; // Frontier
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype; // Frontier
 
 namespace Content.Server.Shuttles.Components;
 
@@ -9,7 +9,6 @@ namespace Content.Server.Shuttles.Components;
 public sealed partial class StationAnchorComponent : Component
 {
     // Frontier: Add ports for linking
-
     [DataField("onPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string OnPort = "On";
 
@@ -18,8 +17,7 @@ public sealed partial class StationAnchorComponent : Component
 
     [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string TogglePort = "Toggle";
-
-    //Frontier - End
+    // Frontier - End
 
     [DataField("switchedOn")]
     public bool SwitchedOn { get; set; } = true;
