@@ -82,7 +82,8 @@ public sealed class PowerChargeSystem : EntitySystem
         UpdateState((ent, ent.Comp, powerReceiver));
     }
 
-    private void SetSwitchedOn(EntityUid uid, PowerChargeComponent component, bool on,
+    //Frontier: Changed SetSwitchedOn to Public for the linking system in StationAnchorSystem.
+    public void SetSwitchedOn(EntityUid uid, PowerChargeComponent component, bool on,
         ApcPowerReceiverComponent? powerReceiver = null, EntityUid? user = null)
     {
         if (!Resolve(uid, ref powerReceiver))
@@ -95,6 +96,7 @@ public sealed class PowerChargeSystem : EntitySystem
         UpdatePowerState(component, powerReceiver);
         component.NeedUIUpdate = true;
     }
+    // Frontier End
 
     private static void UpdatePowerState(PowerChargeComponent component, ApcPowerReceiverComponent powerReceiver)
     {
