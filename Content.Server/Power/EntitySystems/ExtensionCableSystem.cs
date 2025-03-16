@@ -195,6 +195,7 @@ namespace Content.Server.Power.EntitySystems
         {
             // Frontier - check for a grid bound lock on an entity, if it exists is not on the proper grid, don't connect
             var gridBound = TryComp<BindToStationComponent>(uid, out var binding) &&
+                            binding.Enabled &&
                             binding.BoundStation != null &&
                              _station.GetOwningStation(uid) != binding.BoundStation;
 

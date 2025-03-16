@@ -12,7 +12,7 @@ public sealed class BindToStationVariationPass : VariationPassSystem<BindToStati
     protected override void ApplyVariation(Entity<BindToStationVariationPassComponent> ent, ref StationVariationPassEvent args)
     {
         // Exempt station?  Don't apply this variation.
-        if (HasComp<BindToStationVariationPassExemptionComponent>(ent))
+        if (HasComp<BindToStationVariationPassExemptionComponent>(args.Station))
             return;
 
         // Tie machines to a particular station.
