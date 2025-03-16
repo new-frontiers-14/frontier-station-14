@@ -221,4 +221,4 @@ uplink-pirate-accessconfigurator-captain-desc = An access configurator that is s
 uplink-pirate-radio-implanter-name = Radio Implanter
 uplink-pirate-radio-implanter-desc = Implants a Freelance radio, allowing covert communication without a headset.
 uplink-pirate-pmag-name = Machine Liberator
-uplink-pirate-pmag-desc = Removes all station-binding machine DRM. A pirate's best friend.
+uplink-pirate-pmag-desc = Removes station-binding machine DRM. A pirate's best friend.
