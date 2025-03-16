@@ -76,9 +76,8 @@ public sealed class StationAnchorSystem : EntitySystem
             SetStatus(ent, false);
     }
 
-    /* Frontier:
-        -All these functions are used to handle device linking for anchors.
-     */
+    /* New Frontiers - StationAnchor Links - Added functions to handle the DeviceLinking system.
+    This code is licensed under AGPLv3. See AGPLv3.txt */
     private void OnInit(EntityUid uid, StationAnchorComponent anchor, ComponentInit args)
     {
         _signalSystem.EnsureSinkPorts(uid, anchor.OnPort, anchor.OffPort, anchor.TogglePort);
@@ -130,7 +129,7 @@ public sealed class StationAnchorSystem : EntitySystem
 
         _chargeSystem.SetSwitchedOn(ent, entPowerHandler, (!entPowerHandler.SwitchedOn));
     }
-    //Frontier - End.
+    // End of modified code
 
     private void SetStatus(Entity<StationAnchorComponent> ent, bool enabled, ShuttleComponent? shuttleComponent = default)
     {
