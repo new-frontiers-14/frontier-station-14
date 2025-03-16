@@ -1,0 +1,77 @@
+- type: entity
+  parent: [BaseStorageItem, Clothing, RecyclableItemClothBasic]
+  id: NFBaseWallet
+  abstract: true
+  name: wallet
+  description: If somebody dropped this, you should really return it.
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"] # scuffed values to get ItemMapper to play nice with the generic visualizer
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,1
+    whitelist:
+      components:
+      - Cash
+      - Paper
+      - NFCoin
+      - NFShipyardVoucher
+      - Card # single cards
+    blacklist:
+      tags:
+      - Book
+  - type: Item
+    size: Small
+  - type: Clothing
+    slots: [wallet]
+    quickEquip: false
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      closed-paper:
+        whitelist:
+          components:
+          - Paper
+          - NFShipyardVoucher
+          - Card
+      closed-cash:
+        whitelist:
+          components:
+          - Cash
+      closed-coin:
+        whitelist:
+          components:
+          - NFCoin
+  - type: GenericVisualizer
+    visuals:
+      enum.SharedBagOpenVisuals.BagState:
+        closeLayer:
+          Open: { visible: false }
+          Closed: { visible: true }
+        openLayer:
+          Open: { visible: true }
+          Closed: { visible: false }
+        closed-paper:
+          Open: { state: open-paper }
+          Closed: { state: closed-paper }
+        closed-cash:
+          Open: { state: open-cash }
+          Closed: { state: closed-cash }
+        closed-coin:
+          Open: { state: open-coin }
+          Closed: { state: closed-coin }
