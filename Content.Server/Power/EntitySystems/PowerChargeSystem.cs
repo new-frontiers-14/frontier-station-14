@@ -95,7 +95,6 @@ public sealed class PowerChargeSystem : EntitySystem
         UpdatePowerState(component, powerReceiver);
         component.NeedUIUpdate = true;
     }
-    // End Frontier
 
     private static void UpdatePowerState(PowerChargeComponent component, ApcPowerReceiverComponent powerReceiver)
     {

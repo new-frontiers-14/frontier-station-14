@@ -110,7 +110,7 @@ public sealed class StationAnchorSystem : EntitySystem
     {
         if (!EntityManager.TryGetComponent<PowerChargeComponent>(ent, out var entPowerHandler))
         {
-            Console.WriteLine($"Unable to find PowerChargeComponent in StationAnchor. ID:{ent.Owner}");
+            Logger.Error($"Unable to find PowerChargeComponent in StationAnchor. ID:{ent.Owner}");
             return;
         }
 
@@ -121,13 +121,13 @@ public sealed class StationAnchorSystem : EntitySystem
     {
         if (!EntityManager.TryGetComponent<PowerChargeComponent>(ent, out var entPowerHandler))
         {
-            Console.WriteLine($"Unable to find PowerChargeComponent in StationAnchor. ID:{ent.Owner}");
+            Logger.Error($"Unable to find PowerChargeComponent in StationAnchor. ID:{ent.Owner}");
             return;
         }
 
-        _chargeSystem.SetSwitchedOn(ent, entPowerHandler, (!entPowerHandler.SwitchedOn));
+        _chargeSystem.SetSwitchedOn(ent, entPowerHandler, !entPowerHandler.SwitchedOn);
     }
-    // End Frontier
+    // End Frontier: Anchor Device Linking.
 
     private void SetStatus(Entity<StationAnchorComponent> ent, bool enabled, ShuttleComponent? shuttleComponent = default)
     {
