@@ -37,7 +37,7 @@ public sealed partial class ConstructionSystem
         foreach (var board in boardContainer.ContainedEntities)
         {
             if (TryComp<BindToStationComponent>(board, out var binding))
-                _bindToStation.BindToStation(component.Owner, binding.BoundStation);
+                _bindToStation.BindToStation(component.Owner, binding.BoundStation, binding.Enabled);
         }
         // End Frontier
     }

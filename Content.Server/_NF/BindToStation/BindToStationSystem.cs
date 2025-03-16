@@ -35,7 +35,8 @@ public sealed class BindToStationSystem : EntitySystem
     // Ensure consistency for station-bound machines
     public void OnBoundMapInit(Entity<BindToStationComponent> ent, ref MapInitEvent args)
     {
-        if (TryComp<ExtensionCableReceiverComponent>(ent.Owner, out var receiver)
+        if (ent.Comp.Enabled
+            && TryComp<ExtensionCableReceiverComponent>(ent.Owner, out var receiver)
             && _station.GetOwningStation(ent.Owner) != ent.Comp.BoundStation)
         {
             _extensionCable.Disconnect(ent.Owner, receiver);
