@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Power.Components;
-using Content.Shared._NF.BindToGrid; //Frontier
+using Content.Server.Station.Systems; // Frontier
+using Content.Shared._NF.BindToStation; // Frontier
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -9,6 +10,7 @@ namespace Content.Server.Power.EntitySystems
 {
     public sealed class ExtensionCableSystem : EntitySystem
     {
+        [Dependency] private readonly StationSystem _station = default!; // Frontier
         public override void Initialize()
         {
             base.Initialize();
@@ -191,9 +193,10 @@ namespace Content.Server.Power.EntitySystems
 
         private void OnReceiverAnchorStateChanged(EntityUid uid, ExtensionCableReceiverComponent receiver, ref AnchorStateChangedEvent args)
         {
-            //Frontier - check for a grid bound lock on an entity, if it exists is not on the proper grid, don't connect
-            var gridBound = TryComp<BindToGridComponent>(uid, out var binding) &&
-                             Transform(uid).GridUid != GetEntity(binding.BoundGrid);
+            // Frontier - check for a grid bound lock on an entity, if it exists is not on the proper grid, don't connect
+            var gridBound = TryComp<BindToStationComponent>(uid, out var binding) &&
+                            binding.BoundStation != null &&
+                             _station.GetOwningStation(uid) != binding.BoundStation;
 
             if (args.Anchored && !gridBound) //End Frontier
             {
@@ -211,7 +214,7 @@ namespace Content.Server.Power.EntitySystems
             Connect(uid, receiver);
         }
 
-        private void Connect(EntityUid uid, ExtensionCableReceiverComponent receiver)
+        public void Connect(EntityUid uid, ExtensionCableReceiverComponent receiver) // Frontier: private<public
         {
             receiver.Connectable = true;
             if (receiver.Provider == null)
@@ -220,7 +223,7 @@ namespace Content.Server.Power.EntitySystems
             }
         }
 
-        private void Disconnect(EntityUid uid, ExtensionCableReceiverComponent receiver)
+        public void Disconnect(EntityUid uid, ExtensionCableReceiverComponent receiver) // Frontier: private<public
         {
             receiver.Connectable = false;
             RaiseLocalEvent(uid, new ProviderDisconnectedEvent(receiver.Provider), broadcast: false);
