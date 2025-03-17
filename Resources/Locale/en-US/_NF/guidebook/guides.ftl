@@ -75,6 +75,7 @@ guide-entry-shipyard-phoenix = Phoenix
 guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-placebo = Placebo
 guide-entry-shipyard-prospector = Prospector
+guide-entry-shipyard-resolve = Resolve
 guide-entry-shipyard-searchlight = Searchlight
 guide-entry-shipyard-sparrow = Sparrow
 guide-entry-shipyard-skipper = Skipper

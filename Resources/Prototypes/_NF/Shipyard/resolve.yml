@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: Goldkin (https://github.com/Goldkin)
+# Discord: Goldkin
+
+# Maintainer Info
+# GitHub: Goldkin (https://github.com/Goldkin)
+# Discord: Goldkin
+
+# Shuttle Notes:
+# Full-service medical vessel suited for small practices. Direct market competitor to the Stasis.
+# Contains a front desk, hydroponics, medical, and morgue setups in a compact design suited for smaller crews.
+- type: vessel
+  id: Resolve
+  parent: BaseVessel
+  name: NC Resolve
+  description: A compact, full-service medical ship. NanoTransen Civilian's initial venture into medical response and aid vessels.
+  price: 48000 # Appraises at ~40000 at this writing, 20% markup (consistent with T2 and other NC vessels)
+  category: Medium
+  group: Medical
+  shuttlePath: /Maps/_NF/Shuttles/resolve.yml
+  guidebookPage: ShipyardResolve
+  class:
+  - Medical
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Resolve
+  mapName: 'NC Resolve'
+  mapPath: /Maps/_NF/Shuttles/resolve.yml
+  minPlayers: 0
+  stations:
+    Resolve:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Resolve {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Contractor: [ 0, 0 ]
+          Pilot: [ 0, 0 ]
+          Mercenary: [ 0, 0 ]
