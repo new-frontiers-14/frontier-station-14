@@ -4,8 +4,8 @@ meta:
   engineVersion: 247.2.0
   forkId: ""
   forkVersion: ""
-  time: 03/17/2025 14:21:13
-  entityCount: 349
+  time: 03/17/2025 14:38:06
+  entityCount: 347
 maps: []
 grids:
 - 1
@@ -311,7 +311,7 @@ entities:
       pos: -0.5,-4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -2103.1328
+      secondsUntilStateChange: -2137.336
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -896,25 +896,8 @@ entities:
   - uid: 110
     components:
     - type: Transform
-      rot: 12.566370614359172 rad
-      pos: -1.7217169,-6.206202
+      pos: -1.683989,-6.25358
       parent: 1
-    - type: Storage
-      storedItems:
-        111:
-          position: 0,0
-          _rotation: South
-        112:
-          position: 1,0
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 111
-          - 112
 - proto: ButtonFrameCautionSecurity
   entities:
   - uid: 266
@@ -1831,22 +1814,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,-9.5
       parent: 1
-- proto: InflatableDoorStack
-  entities:
-  - uid: 111
-    components:
-    - type: Transform
-      parent: 110
-    - type: Physics
-      canCollide: False
-- proto: InflatableWallStack
-  entities:
-  - uid: 112
-    components:
-    - type: Transform
-      parent: 110
-    - type: Physics
-      canCollide: False
 - proto: JerryCanWeldingFuel
   entities:
   - uid: 165
