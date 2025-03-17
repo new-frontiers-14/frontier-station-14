@@ -117,9 +117,9 @@
   - type: ItemBorgModule
     moduleId: Cables # Frontier
     items:
-    # - CableApcStackLingering10
-    # - CableMVStackLingering10
-    # - CableHVStackLingering10
+    # - CableApcStackLingering10 # DeltaV
+    # - CableMVStackLingering10 # DeltaV
+    # - CableHVStackLingering10 # DeltaV
     - Wirecutter
     - trayScanner
   # Begin DeltaV Additions - wires module can assemble electronics
@@ -138,6 +138,9 @@
       whitelist:
         components:
         - CablePlacer
+  # End DeltaV Additions
+  # Frontier: placeholders
+    placeholders:
     - id: APCElectronics
       whitelist:
         components:
@@ -148,7 +151,7 @@
         components:
         - Electronics
         - MachineBoard
-  # End DeltaV Additions
+  # End Frontier: placeholders
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: wire-module }
 
@@ -260,6 +263,7 @@
       whitelist:
         components:
         - TradeCrate
+  # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: appraisal-module }
 
@@ -643,6 +647,7 @@
   id: BorgModuleService
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
   name: service cyborg module
+  categories: [HideSpawnMenu] # Frontier
   components:
   - type: Sprite
     layers:
@@ -652,40 +657,11 @@
     moduleId: Service # Frontier
     items:
     - Pen
-    # - BooksBag # Frontier
+    - BooksBag
     - HandLabeler
-    # - Lighter # Frontier
-    # - DrinkShaker # Frontier
+    - Lighter
+    - DrinkShaker
     - BorgDropper
-  # Frontier: droppable items - separate this into bureaucracy and bartending module
-  - type: DroppableBorgModule
-    moduleId: Service
-    items:
-    - id: BooksBag
-      whitelist:
-        components:
-        - NFBookBag
-    - id: Lighter
-      whitelist:
-        components:
-        - NFLighter
-    - id: DrinkShaker
-      whitelist:
-        components:
-        - NFShaker
-    placeholders:
-    - id: CigPackRed
-      whitelist:
-        components:
-        - NFSmokeableContainer
-        tags:
-        - Cigar
-        - Cigarette
-    - id: DrinkGlass
-      whitelist:
-        tags:
-        - DrinkGlass
-  # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: service-module }
 

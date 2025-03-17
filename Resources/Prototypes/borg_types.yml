@@ -153,10 +153,12 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleMedical
-    - BorgModuleJetpack # Frontier
 
   defaultModules:
   - BorgModuleTreatment
+  - BorgModuleAdvancedTreatment # Frontier
+  - BorgModuleDefibrillator # Frontier
+  - BorgModuleJetpack # Frontier
 
   radioChannels:
   - Science
@@ -204,8 +206,10 @@
 
   defaultModules:
   - BorgModuleMusique
-  - BorgModuleService
+  # - BorgModuleService # Frontier: deprecated, use NF variant
   - BorgModuleClowning
+  - BorgModuleBureaucracy # Frontier
+  - BorgModuleNFService # Frontier
   - BorgModuleJetpack # Frontier
 
   radioChannels:

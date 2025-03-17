@@ -40,8 +40,8 @@
     moduleId: NFAdvancedParamedic
     items:
     - HandheldHealthAnalyzerUnpowered
-    - BorgHypoTricordrazine # Frontier
-    - BorgHypoInaprovaline # Frontier
+    - BorgHypoTricordrazine
+    - BorgHypoInaprovaline
   - type: BorgModuleIcon
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-paramed-module }
 
@@ -94,3 +94,125 @@
         - RCDAmmo
   - type: BorgModuleIcon
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: shipyard-rcd-module }
+
+# Service modules
+- type: entity
+  id: BorgModuleNFService
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: lounge cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-martini
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: NFService
+    items:
+    - id: BarSpoon
+  - type: DroppableBorgModule
+    moduleId: NFService
+    items:
+    - id: DrinkShaker
+      whitelist:
+        components:
+        - NFShaker
+    - id: Lighter
+      whitelist:
+        components:
+        - NFLighter
+    placeholders:
+    - id: CigPackRed
+      whitelist:
+        components:
+        - NFSmokeableContainer
+        tags:
+        - Cigar
+        - Cigarette
+    - id: DrinkGlass
+      whitelist:
+        tags:
+        - DrinkGlass
+    - id: DrinkGlass
+      whitelist:
+        tags:
+        - DrinkGlass
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: service-module }
+
+- type: entity
+  id: BorgModuleBureaucracy
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: bureaucracy cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-pen
+  - type: ItemBorgModule
+    moduleId: Bureaucracy
+    items:
+    - HandLabeler
+  - type: DroppableBorgModule
+    moduleId: Bureaucracy
+    items:
+    - id: BooksBag
+      whitelist:
+        components:
+        - NFBookBag
+    - id: Pen
+      whitelist:
+        tag:
+        - Write
+    placeholders:
+    - id: Paper
+      whitelist:
+        components:
+        - Paper
+    - id: RubberStampApproved
+      whitelist:
+        components:
+        - Stamp
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: bureaucracy-module }
+
+- type: entity
+  id: BorgModuleChef
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: chef cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-burger
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: Chef
+    items:
+    - RollingPin
+    - KitchenKnife
+  - type: DroppableBorgModule
+    moduleId: Chef
+    items:
+    - id: BeakerLarge
+      whitelist:
+        tags:
+        - GlassBeaker
+        - DrinkGlass
+    placeholders:
+    - id: ReagentContainerFlour
+      whitelist:
+        components:
+        - Food
+        - Produce
+        tags:
+        - Ingredient
+    - id: FoodApple
+      whitelist:
+        components:
+        - Food
+        - Produce
+        tags:
+        - Ingredient
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: chef-module }

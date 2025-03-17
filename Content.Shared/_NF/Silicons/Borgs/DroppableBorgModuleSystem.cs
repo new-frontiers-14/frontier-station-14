@@ -81,41 +81,11 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
         var items = container.ContainedEntities;
         for (int i = 0; i < ent.Comp.Items.Count; i++)
         {
-            var item = items[0]; // the contained items will gradually go to 0
-            var handId = HandId(ent, i);
-            _hands.AddHand(chassis, handId, HandLocation.Middle, hands);
-            var hand = hands.Hands[handId];
-            _hands.DoPickup(chassis, hand, item, hands);
-            if (hand.HeldEntity != item)
-            {
-                Log.Error($"Failed to pick up {ToPrettyString(item)} into hand {handId} of {ToPrettyString(chassis)}, it holds {ToPrettyString(hand.HeldEntity)}");
-                // If we didn't pick up our expected item, delete the hand.  No free hands!
-                _hands.RemoveHand(chassis, handId, hands);
-            }
-            else
-            {
-                _interaction.DoContactInteraction(chassis, item); // for potential forensics or other systems (why does hands system not do this)
-                _placeholder.SetEnabled(item, true);
-            }
+            AddItemAsHand((chassis, hands), items[0], HandId(ent, i)); // the contained items will gradually go to 0
         }
         for (int i = 0; i < ent.Comp.Placeholders.Count; i++)
         {
-            var placeholder = items[0]; // the contained items will gradually go to 0
-            var handId = PlaceholderHandId(ent, i);
-            _hands.AddHand(chassis, handId, HandLocation.Middle, hands);
-            var hand = hands.Hands[handId];
-            _hands.DoPickup(chassis, hand, placeholder, hands);
-            if (hand.HeldEntity != placeholder)
-            {
-                Log.Error($"Failed to pick up {ToPrettyString(placeholder)} into hand {handId} of {ToPrettyString(chassis)}, it holds {ToPrettyString(hand.HeldEntity)}");
-                // If we didn't pick up our expected item, delete the hand.  No free hands!
-                _hands.RemoveHand(chassis, handId, hands);
-            }
-            else
-            {
-                _interaction.DoContactInteraction(chassis, placeholder); // for potential forensics or other systems (why does hands system not do this)
-                _placeholder.SetEnabled(placeholder, true);
-            }
+            AddItemAsHand((chassis, hands), items[0], PlaceholderHandId(ent, i)); // the contained items will gradually go to 0
         }
     }
 
@@ -129,23 +99,13 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
         {
             for (int i = 0; i < ent.Comp.Items.Count; i++)
             {
-                var handId = HandId(ent, i);
-                _hands.TryGetHand(chassis, handId, out var hand, hands);
-                if (hand?.HeldEntity is { } item)
-                    QueueDel(item);
-                else if (!TerminatingOrDeleted(chassis) && Transform(chassis).MapID != MapId.Nullspace) // don't care if its empty if the server is shutting down
+                if (!DeleteHandAndHeldItem((chassis, hands), HandId(ent, i)))
                     Log.Error($"Borg {ToPrettyString(chassis)} terminated with empty hand {i} in {ToPrettyString(ent)}");
-                _hands.RemoveHand(chassis, handId, hands);
             }
             for (int i = 0; i < ent.Comp.Placeholders.Count; i++)
             {
-                var handId = PlaceholderHandId(ent, i);
-                _hands.TryGetHand(chassis, handId, out var hand, hands);
-                if (hand?.HeldEntity is { } item)
-                    QueueDel(item);
-                else if (!TerminatingOrDeleted(chassis) && Transform(chassis).MapID != MapId.Nullspace) // don't care if its empty if the server is shutting down
+                if (!DeleteHandAndHeldItem((chassis, hands), PlaceholderHandId(ent, i)))
                     Log.Error($"Borg {ToPrettyString(chassis)} terminated with empty hand {i} in {ToPrettyString(ent)}");
-                _hands.RemoveHand(chassis, handId, hands);
             }
             return;
         }
@@ -153,35 +113,13 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
         var container = _container.GetContainer(ent, ent.Comp.ContainerId);
         for (int i = 0; i < ent.Comp.Items.Count; i++)
         {
-            var handId = HandId(ent, i);
-            _hands.TryGetHand(chassis, handId, out var hand, hands);
-            if (hand?.HeldEntity is { } item)
-            {
-                _placeholder.SetEnabled(item, false);
-                _container.Insert(item, container, force: true);
-            }
-            else
-            {
+            if (!DeleteHandAndStoreItem((chassis, hands), container, HandId(ent, i)))
                 Log.Error($"Borg {ToPrettyString(chassis)} had an empty hand in the slot for {ent.Comp.Items[i].Id}");
-            }
-
-            _hands.RemoveHand(chassis, handId, hands);
         }
         for (int i = 0; i < ent.Comp.Placeholders.Count; i++)
         {
-            var handId = PlaceholderHandId(ent, i);
-            _hands.TryGetHand(chassis, handId, out var hand, hands);
-            if (hand?.HeldEntity is { } item)
-            {
-                _placeholder.SetEnabled(item, false);
-                _container.Insert(item, container, force: true);
-            }
-            else
-            {
+            if (!DeleteHandAndStoreItem((chassis, hands), container, PlaceholderHandId(ent, i)))
                 Log.Error($"Borg {ToPrettyString(chassis)} had an empty hand in the slot for {ent.Comp.Items[i].Id}");
-            }
-
-            _hands.RemoveHand(chassis, handId, hands);
         }
     }
 
@@ -199,6 +137,62 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
     private static string PlaceholderHandId(EntityUid uid, int i)
     {
         return $"nf-{uid}-placeholder-{i}";
+    }
+
+    /// <summary>
+    /// Tries to add a hand to the given cyborg entity and insert the given item into it.
+    /// On failure, the hand will be deleted.
+    /// </summary>
+    private void AddItemAsHand(Entity<HandsComponent> chassis, EntityUid item, string handId)
+    {
+        _hands.AddHand(chassis, handId, HandLocation.Middle, chassis.Comp);
+        var hand = chassis.Comp.Hands[handId];
+        _hands.DoPickup(chassis, hand, item, chassis.Comp);
+        if (hand.HeldEntity != item)
+        {
+            Log.Error($"Failed to pick up {ToPrettyString(item)} into hand {handId} of {ToPrettyString(chassis)}, it holds {ToPrettyString(hand.HeldEntity)}");
+            // If we didn't pick up our expected item, delete the hand.  No free hands!
+            _hands.RemoveHand(chassis, handId, chassis.Comp);
+        }
+
+        _interaction.DoContactInteraction(chassis, item); // for potential forensics or other systems (why does hands system not do this)
+        _placeholder.SetEnabled(item, true);
+    }
+
+    /// <summary>
+    /// Removes the named hand from the given cyborg, returning its item to the given container.
+    /// </summary>
+    private bool DeleteHandAndStoreItem(Entity<HandsComponent> chassis, BaseContainer container, string handId)
+    {
+        var ret = true;
+        _hands.TryGetHand(chassis, handId, out var hand, chassis.Comp);
+        if (hand?.HeldEntity is { } item)
+        {
+            _placeholder.SetEnabled(item, false);
+            _container.Insert(item, container, force: true);
+        }
+        else
+            ret = false;
+
+        _hands.RemoveHand(chassis, handId, chassis.Comp);
+        return ret;
+    }
+
+    /// <summary>
+    /// Removes the named hand from the given cyborg, deleting its held item.
+    /// </summary>
+    private bool DeleteHandAndHeldItem(Entity<HandsComponent> chassis, string handId)
+    {
+        bool ret = true;
+        _hands.TryGetHand(chassis, handId, out var hand, chassis.Comp);
+
+        if (hand?.HeldEntity is { } item)
+            QueueDel(item);
+        else if (!TerminatingOrDeleted(chassis) && Transform(chassis).MapID != MapId.Nullspace) // don't care if its empty if the server is shutting down
+            ret = false;
+
+        _hands.RemoveHand(chassis, handId, chassis.Comp);
+        return ret;
     }
 }
 
