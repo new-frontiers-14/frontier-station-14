@@ -86,9 +86,12 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
                 return;
             }
 
-            var map = _atmosphereSystem.AllowMapGasExtraction ? args.Map : null; // Frontier
+            // Frontier: check running gas extraction
+            if (!_atmosphereSystem.AtmosInputCanRunOnMap(args.Map))
+                return;
+            // End Frontier
 
-            var environment = _atmosphereSystem.GetContainingMixture(uid, args.Grid, map, true, true); // Frontier: args.Map<map
+            var environment = _atmosphereSystem.GetContainingMixture(uid, args.Grid, args.Map, true, true);
 
             // We're in an air-blocked tile... Do nothing.
             if (environment == null)
