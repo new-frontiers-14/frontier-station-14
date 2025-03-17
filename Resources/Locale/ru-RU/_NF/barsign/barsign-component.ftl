@@ -5,8 +5,6 @@ barsign-prototype-description-little-treats = Уютная чайная для �
 
 ## Maltroach
 
-barsign-prototype-name-nf-maltroach = Мальтроч
-barsign-prototype-description-nf-maltroach = Мотыльки вежливо приветствуют вас в баре, или они приветствуют друг друга?
 barsign-prototype-name-maltroach = Таракамольня
 barsign-prototype-description-maltroach = Таракамоль радушно приветствуют вас в баре... или друг друга?
 
