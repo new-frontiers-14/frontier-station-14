@@ -23,12 +23,12 @@ public sealed class CustomObjectiveSummaryUIController : UIController
 
     public void OpenWindow()
     {
-        // If a window is already open, close it
-        _window?.Close();
+        _window ??= new CustomObjectiveSummaryWindow();
 
-        _window = new CustomObjectiveSummaryWindow();
+        if (_window.IsOpen)
+            return;
+
         _window.OpenCentered();
-        _window.OnClose += () => _window = null;
         _window.OnSubmitted += OnFeedbackSubmitted;
     }
 

@@ -41,7 +41,6 @@ public sealed class CustomObjectiveSummarySystem : EntitySystem
     {
         var allMinds = _mind.GetAliveHumans();
 
-        // Assumes the assistant is still there at the end of the round.
         foreach (var mind in allMinds)
         {
             // Only send the popup to people with objectives.
