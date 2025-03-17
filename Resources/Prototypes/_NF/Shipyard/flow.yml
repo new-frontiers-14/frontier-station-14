@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: alkheemist (https://github.com/alkheemist)
+# Discord: alkheemist
+
+# Maintainer Info
+# GitHub: alkheemist (https://github.com/alkheemist)
+# Discord: alkheemist
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Flow
+  parent: BaseVessel
+  name: NT Flow
+  description: A bulk gas hauling shuttle, used for delivering large volumes of gas to remote stations.
+  price: 20000
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/flow.yml
+  guidebookPage: ShipyardFlow # TODO: actually make a guidebook page
+  class:
+  - Engineering
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Flow
+  mapName: 'NT Flow'
+  mapPath: /Maps/_NF/Shuttles/flow.yml
+  minPlayers: 0
+  stations:
+    Flow:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Flow {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
