@@ -4,8 +4,8 @@ meta:
   engineVersion: 247.2.0
   forkId: ""
   forkVersion: ""
-  time: 03/17/2025 12:50:06
-  entityCount: 345
+  time: 03/17/2025 14:21:13
+  entityCount: 349
 maps: []
 grids:
 - 1
@@ -32,7 +32,7 @@ entities:
       chunks:
         -1,-1:
           ind: -1,-1
-          tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAwAAAAABAwAAAAACAwAAAAADAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAwAAAAABAwAAAAAAAwAAAAABAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAwAAAAADAwAAAAACAwAAAAADAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAwAAAAADAwAAAAACAwAAAAADAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAwAAAAADAwAAAAABAwAAAAABAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAwAAAAABAwAAAAACAwAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAwAAAAABAwAAAAACAwAAAAADAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAwAAAAABAwAAAAAAAwAAAAABAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAwAAAAADAwAAAAACAwAAAAADAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAwAAAAADAwAAAAACAwAAAAADAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAwAAAAADAwAAAAABAwAAAAABAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAwAAAAABAwAAAAACAwAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
           version: 6
         0,-1:
           ind: 0,-1
@@ -67,6 +67,12 @@ entities:
         version: 2
         nodes:
         - node:
+            color: '#FFFFFFFF'
+            id: Arrows
+          decals:
+            85: -1,-19
+            86: -2,-19
+        - node:
             color: '#0054AAFF'
             id: BoxGreyscale
           decals:
@@ -91,6 +97,8 @@ entities:
             49: 0,-7
             50: 0,-8
             51: 0,-9
+            87: 0,-10
+            88: 0,-3
         - node:
             color: '#005A8EFF'
             id: BrickTileWhiteLineN
@@ -161,6 +169,7 @@ entities:
             34: -5,-10
             35: 2,-10
             36: 3,-10
+            90: 0,-13
         - node:
             color: '#FFFFFFFF'
             id: WarnLineS
@@ -169,6 +178,11 @@ entities:
             30: -6,-12
             31: -6,-13
             32: -6,-14
+        - node:
+            color: '#FFFFFFFF'
+            id: WarnLineW
+          decals:
+            89: 0,-13
     - type: GridAtmosphere
       version: 2
       data:
@@ -297,15 +311,14 @@ entities:
       pos: -0.5,-4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -711.5753
+      secondsUntilStateChange: -2103.1328
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
-  - uid: 89
+  - uid: 25
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 0.5,-9.5
       parent: 1
 - proto: AirlockGlassShuttle
@@ -343,7 +356,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-2.5
       parent: 1
-  - uid: 296
+  - uid: 89
     components:
     - type: Transform
       pos: 0.5,-9.5
@@ -869,8 +882,15 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        43:
-        - DoorStatus: Toggle
+        348:
+        - DoorStatus: Input
+- proto: BookEngineersHandbook
+  entities:
+  - uid: 349
+    components:
+    - type: Transform
+      pos: -3.143756,-14.716655
+      parent: 1
 - proto: BoxInflatable
   entities:
   - uid: 110
@@ -909,6 +929,11 @@ entities:
     components:
     - type: Transform
       pos: -6.5,-11.5
+      parent: 1
+  - uid: 33
+    components:
+    - type: Transform
+      pos: 0.5,-9.5
       parent: 1
   - uid: 55
     components:
@@ -1045,11 +1070,6 @@ entities:
     - type: Transform
       pos: 0.5,-4.5
       parent: 1
-  - uid: 220
-    components:
-    - type: Transform
-      pos: 0.5,-9.5
-      parent: 1
   - uid: 231
     components:
     - type: Transform
@@ -1185,6 +1205,24 @@ entities:
     - type: Transform
       pos: -3.0587187,-3.4372058
       parent: 1
+- proto: EdgeDetector
+  entities:
+  - uid: 348
+    components:
+    - type: Transform
+      anchored: True
+      pos: 1.5,-3.5
+      parent: 1
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        43:
+        - OutputHigh: On
+        - OutputLow: Off
+    - type: Physics
+      canCollide: False
+      bodyType: Static
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 58
@@ -1293,7 +1331,6 @@ entities:
   - uid: 163
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 3.5,-10.5
       parent: 1
     - type: AtmosPipeColor
@@ -1382,6 +1419,13 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 164
+    components:
+    - type: Transform
+      pos: 3.5,-11.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#9955CCFF'
   - uid: 166
     components:
     - type: Transform
@@ -1544,13 +1588,6 @@ entities:
       color: '#9955CCFF'
 - proto: GasPort
   entities:
-  - uid: 25
-    components:
-    - type: Transform
-      pos: 3.5,-9.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#9955CCFF'
   - uid: 270
     components:
     - type: Transform
@@ -1563,6 +1600,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-8.5
       parent: 1
+  - uid: 296
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-12.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#9955CCFF'
 - proto: GasPressurePump
   entities:
   - uid: 74
@@ -1664,6 +1709,13 @@ entities:
       - 194
     - type: AtmosPipeColor
       color: '#990000FF'
+- proto: GravityGeneratorMini
+  entities:
+  - uid: 346
+    components:
+    - type: Transform
+      pos: 3.5,-9.5
+      parent: 1
 - proto: Grille
   entities:
   - uid: 20
@@ -1864,9 +1916,9 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: PortableGeneratorJrPacmanShuttle
+- proto: PortableGeneratorJrPacman
   entities:
-  - uid: 33
+  - uid: 220
     components:
     - type: Transform
       pos: -4.5,-11.5
@@ -1931,15 +1983,16 @@ entities:
       parent: 1
 - proto: PoweredLightPostSmall
   entities:
-  - uid: 164
-    components:
-    - type: Transform
-      pos: -6.5,-16.5
-      parent: 1
   - uid: 201
     components:
     - type: Transform
       pos: 4.5,-16.5
+      parent: 1
+  - uid: 232
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-16.5
       parent: 1
 - proto: PoweredStrobeRed
   entities:
@@ -1950,7 +2003,7 @@ entities:
       pos: 0.5,-3.5
       parent: 1
     - type: DeviceLinkSink
-      invokeCounter: 1
+      invokeCounter: 3
 - proto: PoweredWarmSmallLight
   entities:
   - uid: 30
@@ -2124,10 +2177,10 @@ entities:
       parent: 1
 - proto: StorageCanister
   entities:
-  - uid: 232
+  - uid: 347
     components:
     - type: Transform
-      pos: 3.5,-9.5
+      pos: 3.5,-12.5
       parent: 1
 - proto: SubstationWallBasic
   entities:
