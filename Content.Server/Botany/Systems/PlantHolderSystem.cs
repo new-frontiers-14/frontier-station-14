@@ -24,6 +24,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Server.Labels.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared._NF.BindToStation; // Frontier
+using Content.Server.Station.Systems; // Frontier
 
 namespace Content.Server.Botany.Systems;
 
@@ -42,6 +44,7 @@ public sealed class PlantHolderSystem : EntitySystem
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly StationSystem _station = default!; // Frontier
 
 
     public const float HydroponicsSpeedMultiplier = 1f;
@@ -156,6 +159,18 @@ public sealed class PlantHolderSystem : EntitySystem
         {
             if (component.Seed == null)
             {
+                // Frontier
+                if (TryComp<BindToStationComponent>(entity.Owner, out var bindToStation)
+                    && bindToStation.Enabled
+                    && bindToStation.BoundStation != null
+                    && _station.GetOwningStation(entity.Owner) != bindToStation.BoundStation)
+                {
+                    _popup.PopupCursor(Loc.GetString("plant-holder-component-bound-to-station"),
+                        args.User, PopupType.Medium);
+                    return;
+                }
+                // End Frontier
+
                 if (!_botany.TryGetSeed(seeds, out var seed))
                     return;
 
