@@ -166,12 +166,6 @@ public partial class AtmosphereSystem
             && Resolve(gridEnt, ref gridEnt.Comp1, false)
             && gridEnt.Comp1.Tiles.TryGetValue(gridTile, out var tile))
         {
-            // Frontier: hack to avoid infinite gas extraction from planets
-            if (tile.MapAtmosphere && map == null)
-            {
-                return GasMixture.SpaceGas;
-            }
-            // End Frontier
             if (excite)
             {
                 AddActiveTile(gridEnt.Comp1, tile);

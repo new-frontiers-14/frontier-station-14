@@ -366,6 +366,7 @@
       stackRequirements:
         Cable: 1
         Glass: 1
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   id: ThermomachineFreezerMachineCircuitBoard
@@ -478,6 +479,7 @@
     stackRequirements:
       Cable: 5
       Glass: 2
+  - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   id: SpaceHeaterMachineCircuitBoard
@@ -936,6 +938,7 @@
         Silicon: 20
     - type: StaticPrice
       price: 40
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   id: ReagentGrinderMachineCircuitboard
