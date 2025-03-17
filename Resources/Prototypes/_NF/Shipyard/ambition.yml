@@ -15,11 +15,10 @@
   description: Declassified gas production and distribution platform seized in a hostile takeover of an Atmosian conglomerate. For the ultimate insurgent.
   price: 156000 # ~120000$ on mapinit + ~36000$ from 30% markup
   category: Large
-  group: Expedition
-  shuttlePath: /Maps/_NF/Shuttles/Expedition/ambition.yml
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/ambition.yml
   guidebookPage: ShipyardAmbition
   class:
-  - Expedition
   - Atmospherics
   engine:
   - AME
@@ -27,11 +26,11 @@
 - type: gameMap
   id: Ambition
   mapName: 'UAC Ambition'
-  mapPath: /Maps/_NF/Shuttles/Expedition/ambition.yml
+  mapPath: /Maps/_NF/Shuttles/ambition.yml
   minPlayers: 0
   stations:
     Ambition:
-      stationProto: StandardFrontierExpeditionVessel
+      stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Ambition {1}'
