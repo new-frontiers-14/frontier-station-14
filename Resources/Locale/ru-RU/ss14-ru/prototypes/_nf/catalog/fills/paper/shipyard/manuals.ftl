@@ -26,5 +26,7 @@ ent-ShipyardPioneerInfo = Руководство по использованию
     .desc = { ent-ShipyardInfoBase.desc }
 ent-ShipyardSearchlightInfo = Руководство по использованию шаттла "Прожектор"
     .desc = { ent-ShipyardInfoBase.desc }
+ent-ShipyardNightlightInfo = Nightlight user manual
+    .desc = { ent-ShipyardInfoBase.desc }
 ent-ShipyardCharonInfo = Руководство по использованию шаттла "Charon"
     .desc = { ent-ShipyardInfoBase.desc }

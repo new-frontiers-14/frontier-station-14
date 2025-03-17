@@ -3,6 +3,7 @@ research-technology-advanced-personal-propulsion = Продвинутые пер
 research-technology-rapid-construction = Быстрое строительство
 research-technology-hardsuits-basic = Базовые скафандры
 research-technology-hardsuits-specialized = Специализированные скафандры
+research-technology-atmospheric-drilling = Газодобывающее оборудование
 research-technology-hardsuits-advanced = Продвинутые скафандры
 research-technology-hardsuits-experimental-industrial = Экспериментальный скафандр утилизатора
 research-technology-hardsuits-armored = Бронированные скафандры

@@ -48,3 +48,5 @@ ent-NFPosterContrabandWyvernShipyards = Wyvern Shipyards
     .desc = The Future can't come any faster, but we can get you there in a jiff!
 ent-NFPosterContrabandRatvarLives = Ratvar Lives
     .desc = A poster in a strange language with pictures of machinery. "RATVAR LIVES" is scrawled in the corner.
+ent-NFPosterContrabandFsbNightlight = Far Star Biotech Nightlight
+    .desc = The FSB Nightlight, chasing the night away.

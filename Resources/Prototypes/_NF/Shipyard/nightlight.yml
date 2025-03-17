@@ -11,8 +11,8 @@
 - type: vessel
   id: Nightlight
   parent: BaseVessel
-  name: FSB Nightlight
-  description: The Far Star Biotech company is please to present the most forward facing testbed for the effects of bioregenerative nutrient on humanoid physiology to date! Bone Apple Teeth!
+  name: FSB Ночник
+  description: Компания Фар Стар Биотеч рада представить вам самый перспективный на сегодняшний день стенд для исследования влияния биорегенеративных питательных веществ на физиологию гуманоидов! Костяные яблочные зубы!
   price: 45000 # Botany bay
   category: Medium
   group: Shipyard
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Nightlight
-  mapName: 'FSB Nightlight'
+  mapName: 'FSB Ночник'
   mapPath: /Maps/_NF/Shuttles/nightlight.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Nightlight {1}'
+          mapNameTemplate: 'Ночник {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

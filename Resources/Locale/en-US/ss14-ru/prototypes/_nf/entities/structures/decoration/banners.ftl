@@ -4,3 +4,5 @@ ent-FlagNfsd = NFSD flag
     .desc = A flag displaying the colors of the New Frontier Sheriff's Department.
 ent-BannerGoblin01 = goblin banner
     .desc = A banner displaying one of goblin clan symbols.
+ent-BannerFsb = FSB banner
+    .desc = A banner displaying the sigil of the Far Star Biotech corporation.

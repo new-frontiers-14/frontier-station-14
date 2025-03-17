@@ -9,6 +9,8 @@ guide-entry-cargo-hauling = Грузоперевозки
 guide-entry-shipyard = Верфь
 guide-entry-frontier-rules = Правила сервера
 # Engineering entries
+guide-entry-offshore-gas-mining = Добыча газа на астероидах
+# Engineering entries
 guide-entry-gas-mining = Газодобыча
 # Security entries
 guide-entry-nfsd-smuggling = Контрабанда
@@ -62,6 +64,7 @@ guide-entry-shipyard-legman = Legman
 guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-loader = Loader
 guide-entry-shipyard-mccargo = McCargo
+guide-entry-shipyard-nightlight = Nightlight
 guide-entry-shipyard-mcdelivery = McDelivery
 guide-entry-shipyard-pathfinder = Pathfinder
 guide-entry-shipyard-phoenix = Phoenix

@@ -6,3 +6,5 @@ ent-BulletBloodCultDarkBolt = blood bolt
     .desc = { ent-BaseBulletTrigger.desc }
 ent-BulletEldritchHand = eldritch hand
     .desc = { ent-BaseBullet.desc }
+ent-ProjectileIcicleLowDamage = { ent-ProjectileIcicle }
+    .desc = { ent-ProjectileIcicle.desc }

@@ -1,7 +1,5 @@
-
 ent-LightTubeCrystalBlack = чёрная кристальная лампа-трубка
     .desc = { ent-LightTubeCrystalCyan.desc }
-
 ent-SodiumLightBulb = натриевая лампочка
     .desc = Резкий свет, который одновременно тревожит и угнетает.
 ent-ExteriorLightBulb = экстерьерная лампочка

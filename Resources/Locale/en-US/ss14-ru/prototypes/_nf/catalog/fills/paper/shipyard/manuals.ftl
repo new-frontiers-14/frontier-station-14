@@ -26,5 +26,7 @@ ent-ShipyardPioneerInfo = Pioneer user manual
     .desc = { ent-ShipyardInfoBase.desc }
 ent-ShipyardSearchlightInfo = Searchlight user manual
     .desc = { ent-ShipyardInfoBase.desc }
+ent-ShipyardNightlightInfo = Nightlight user manual
+    .desc = { ent-ShipyardInfoBase.desc }
 ent-ShipyardCharonInfo = Charon user manual
     .desc = { ent-ShipyardInfoBase.desc }

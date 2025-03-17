@@ -10,4 +10,4 @@ cmd-changecvar-success = CVar { $cvar } изменен с "{ $old }" на "{ $va
 cmd-changecvar-search-no-arguments = Необходимо указать условие поиска.
 cmd-changecvar-search-no-matches = Не найдено ни одного cvar, соответствующего поисковому запросу.
 cmd-changecvar-search-matches = Найдено { $count } cvars, соответствующих условию поиска:
-cmd-changecvar-arg-name =  <name | ? | search>
+cmd-changecvar-arg-name = <name | ? | search>

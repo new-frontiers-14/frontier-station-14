@@ -1,37 +1,55 @@
 #!/usr/bin/env python3
 
-# Форматтер, приводящий fluent-файлы (.ftl) в соответствие стайлгайду
-# path - путь к папке, содержащий форматируемые файлы. Для форматирования всего проекта, необходимо заменить значение на root_dir_path
-import typing
+# Форматтер, приводящий fluent-файлы (.ftl) к единому стилю.
+# Использует путь к папке с файлами для форматирования. Для обработки всего проекта замените путь на root_dir_path.
 
+import typing
+from fluent.syntax import ast, FluentParser, FluentSerializer
 from file import FluentFile
 from project import Project
-from fluent.syntax import ast, FluentParser, FluentSerializer
 
-
-######################################### Class defifitions ############################################################
 
 class FluentFormatter:
     @classmethod
-    def format(cls, fluent_files: typing.List[FluentFile]):
+    def format(cls, fluent_files: typing.List[FluentFile]) -> None:
+        """
+        Форматирует список Fluent-файлов и сохраняет изменения.
+
+        Args:
+            fluent_files: Список объектов FluentFile для форматирования.
+        """
         for file in fluent_files:
-            file_data = file.read_data()
-            parsed_file_data = file.parse_data(file_data)
-            serialized_file_data = file.serialize_data(parsed_file_data)
-            file.save_data(serialized_file_data)
+            try:
+                file_data = file.read_data()
+                parsed_file_data = file.parse_data(file_data)
+                serialized_file_data = file.serialize_data(parsed_file_data)
+                file.save_data(serialized_file_data)
+            except Exception as e:
+                print(f"Ошибка при форматировании файла {file.full_path}: {e}")
 
     @classmethod
-    def format_serialized_file_data(cls, file_data: typing.AnyStr):
-        parsed_data = FluentParser().parse(file_data)
+    def format_serialized_file_data(cls, file_data: str) -> str:
+        """
+        Форматирует строковые данные Fluent и возвращает сериализованный результат.
 
-        return FluentSerializer(with_junk=True).serialize(parsed_data)
+        Args:
+            file_data: Строковые данные в формате Fluent.
+
+        Returns:
+            Отформатированная строка в формате Fluent.
+        """
+        try:
+            parsed_data = FluentParser().parse(file_data)
+            return FluentSerializer(with_junk=True).serialize(parsed_data)
+        except Exception as e:
+            raise ValueError(f"Ошибка форматирования данных: {e}")
 
 
-
-######################################## Var definitions ###############################################################
+# Инициализация проекта и получение файлов
 project = Project()
 fluent_files = project.get_fluent_files_by_dir(project.ru_locale_dir_path)
 
-########################################################################################################################
-
-FluentFormatter.format(fluent_files)
+# Запуск форматирования
+if __name__ == "__main__":
+    FluentFormatter.format(fluent_files)
+    print("Форматирование завершено.")

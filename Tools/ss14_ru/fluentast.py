@@ -1,58 +1,53 @@
 import typing
-
 from fluent.syntax import ast, FluentParser, FluentSerializer
 from lokalisemodels import LokaliseKey
 from pydash import py_
 
 
 class FluentAstAbstract:
-    element = None
     @classmethod
-    def get_id_name(cls, element):
+    def get_id_name(cls, element: typing.Any) -> typing.Optional[str]:
+        """Получает имя идентификатора элемента AST."""
         if isinstance(element, ast.Junk):
             return FluentAstJunk(element).get_id_name()
         elif isinstance(element, ast.Message):
             return FluentAstMessage(element).get_id_name()
         elif isinstance(element, ast.Term):
             return FluentAstTerm(element).get_id_name()
-        else:
-            return None
+        return None
 
     @classmethod
-    def create_element(cls, element):
+    def create_element(cls, element: typing.Any) -> typing.Optional[typing.Any]:
+        """Создает объект FluentAst на основе типа элемента."""
         if isinstance(element, ast.Junk):
-            cls.element = FluentAstJunk(element)
-            return cls.element
+            return FluentAstJunk(element)
         elif isinstance(element, ast.Message):
-            cls.element = FluentAstMessage(element)
-            return cls.element
+            return FluentAstMessage(element)
         elif isinstance(element, ast.Term):
-            cls.element = FluentAstTerm(element)
-            return cls.element
-        else:
-            return None
+            return FluentAstTerm(element)
+        return None
 
 
 class FluentAstMessage:
     def __init__(self, message: ast.Message):
         self.message = message
-        self.element = message
+        self.element = message  # Сохраняем ссылку для совместимости
 
-    def get_id_name(self):
+    def get_id_name(self) -> str:
         return self.message.id.name
 
 
 class FluentAstTerm:
     def __init__(self, term: ast.Term):
         self.term = term
-        self.element = term
+        self.element = term  # Сохраняем ссылку для совместимости
 
-    def get_id_name(self):
+    def get_id_name(self) -> str:
         return self.term.id.name
 
 
 class FluentAstAttribute:
-    def __init__(self, id, value, parent_key = None):
+    def __init__(self, id: str, value: str, parent_key: typing.Optional[str] = None):
         self.id = id
         self.value = value
         self.parent_key = parent_key
@@ -60,67 +55,61 @@ class FluentAstAttribute:
 
 class FluentAstAttributeFactory:
     @classmethod
-    def from_yaml_element(cls, element):
+    def from_yaml_element(cls, element: typing.Any) -> typing.Optional[list[FluentAstAttribute]]:
+        """Создает список атрибутов из YAML-элемента."""
         attrs = []
-        if element.description:
+        if getattr(element, 'description', None):
             attrs.append(FluentAstAttribute('desc', element.description))
-
-        if element.suffix:
+        if getattr(element, 'suffix', None):
             attrs.append(FluentAstAttribute('suffix', element.suffix))
-
-        if not len(attrs):
-            return None
-
-        return attrs
+        return attrs if attrs else None
 
 
 class FluentAstJunk:
     def __init__(self, junk: ast.Junk):
         self.junk = junk
-        self.element = junk
+        self.element = junk  # Сохраняем ссылку для совместимости
 
-    def get_id_name(self):
-        return self.junk.content.split('=')[0].strip()
+    def get_id_name(self) -> str:
+        # Предполагаем, что Junk содержит строку вида "key = value"
+        return self.junk.content.split('=', 1)[0].strip()
 
 
 class FluentSerializedMessage:
     @classmethod
-    def from_yaml_element(cls, id, value, attributes, parent_id = None, raw_key = False):
+    def from_yaml_element(cls, id: str, value: typing.Optional[str], attributes: typing.Optional[list[FluentAstAttribute]],
+                         parent_id: typing.Optional[str] = None, raw_key: bool = False) -> typing.Optional[str]:
+        """Создает сериализованное сообщение из YAML-элемента."""
         if not value and not id and not parent_id:
             return None
 
-        if not attributes:
-            attributes = []
+        attributes = attributes or []
+        # Добавляем атрибут desc, если его нет
+        if not any(attr.id == 'desc' for attr in attributes):
+            desc_value = f"{{ {cls.get_key(parent_id)}.desc }}" if parent_id else '{ "" }'
+            attributes.append(FluentAstAttribute('desc', desc_value))
 
-        if len(list(filter(lambda attr: attr.id == 'desc', attributes))) == 0:
-            if parent_id:
-                attributes.append(FluentAstAttribute('desc', '{ ' + FluentSerializedMessage.get_key(parent_id) + '.desc' + ' }'));
-            else:
-                attributes.append(FluentAstAttribute('desc', '{ "" }'))
+        message = f"{cls.get_key(id, raw_key)} = {cls.get_value(value, parent_id)}\n"
+        full_message = message
 
-        message = f'{cls.get_key(id, raw_key)} = {cls.get_value(value, parent_id)}\n'
+        for attr in attributes:
+            fluent_newlines = attr.value.replace("\n", "\n        ")  # Форматирование отступов
+            full_message = cls.add_attr(full_message, attr.id, fluent_newlines, raw_key=raw_key)
 
-        if attributes and len(attributes):
-            full_message = message
-
-            for attr in attributes:
-                fluent_newlines = attr.value.replace("\n", "\n        ");
-                full_message = cls.add_attr(full_message, attr.id, fluent_newlines, raw_key=raw_key)
-
-            desc_attr = py_.find(attributes, lambda a: a.id == 'desc')
-            if not desc_attr and parent_id:
-                full_message = cls.add_attr(full_message, 'desc', '{ ' + FluentSerializedMessage.get_key(parent_id) + '.desc' + ' }')
-
-            return full_message
-
-        return cls.to_serialized_message(message)
+        return cls.to_serialized_message(full_message)
 
     @classmethod
-    def from_lokalise_keys(cls, keys: typing.List[LokaliseKey]):
-        attributes_keys = list(filter(lambda k: k.is_attr, keys))
-        attributes = list(map(lambda k: FluentAstAttribute(id='.{name}'.format(name=k.get_key_last_name(k.key_name)),
-                                                           value=FluentSerializedMessage.get_attr(k, k.get_key_last_name(k.key_name)), parent_key=k.get_parent_key()),
-                              attributes_keys))
+    def from_lokalise_keys(cls, keys: typing.List[LokaliseKey]) -> str:
+        """Создает сериализованные сообщения из списка ключей Lokalise."""
+        # Группируем атрибуты по родительскому ключу
+        attributes_keys = [k for k in keys if k.is_attr]
+        attributes = [
+            FluentAstAttribute(
+                id=f".{k.get_key_last_name(k.key_name)}",
+                value=cls.get_attr(k, k.get_key_last_name(k.key_name), k.get_parent_key()),
+                parent_key=k.get_parent_key()
+            ) for k in attributes_keys
+        ]
         attributes_group = py_.group_by(attributes, 'parent_key')
 
         serialized_message = ''
@@ -129,59 +118,73 @@ class FluentSerializedMessage:
                 continue
             key_name = key.get_key_last_name(key.key_name)
             key_value = key.get_translation('ru').data['translation']
-            key_attributes = []
+            key_attributes = attributes_group.get(f"{key.get_key_base_name(key.key_name)}.{key_name}", [])
 
-            if len(attributes_group):
-                k = f'{key.get_key_base_name(key.key_name)}.{key_name}'
-                key_attributes = attributes_group[k] if k in attributes_group else []
-
-            message = key.serialize_message()
-            full_message = cls.from_yaml_element(key_name, key_value, key_attributes, key.get_parent_key(), True)
-
+            full_message = cls.from_yaml_element(key_name, key_value, key_attributes, key.get_parent_key(), raw_key=True)
             if full_message:
-                serialized_message = serialized_message + '\n' + full_message
-            elif message:
-                serialized_message = serialized_message + '\n' + message
+                serialized_message += f"\n{full_message}"
+            elif message := key.serialize_message():
+                serialized_message += f"\n{message}"
             else:
-                raise Exception('Что-то пошло не так')
+                raise ValueError(f"Ошибка сериализации ключа {key.key_name}")
 
-        return serialized_message
+        return serialized_message.lstrip()  # Убираем начальную пустую строку
 
     @staticmethod
-    def get_attr(k, name, parent_id = None):
+    def get_attr(k: LokaliseKey, name: str, parent_id: typing.Optional[str] = None) -> str:
+        """Получает значение атрибута."""
         if parent_id:
-            return "{ " + parent_id + f'.{name}' + " }"
-        else:
-            return k.get_translation('ru').data['translation']
-
+            return f"{{ {parent_id}.{name} }}"
+        return k.get_translation('ru').data['translation']
 
     @staticmethod
-    def to_serialized_message(string_message):
+    def to_serialized_message(string_message: str) -> str:
+        """Сериализует строку в формат Fluent."""
         if not string_message:
-            return None
-
+            return ''
         ast_message = FluentParser().parse(string_message)
-        serialized = FluentSerializer(with_junk=True).serialize(ast_message)
-
-        return serialized if serialized else ''
+        return FluentSerializer(with_junk=True).serialize(ast_message) or ''
 
     @staticmethod
-    def add_attr(message_str, attr_key, attr_value, raw_key = False):
+    def add_attr(message_str: str, attr_key: str, attr_value: str, raw_key: bool = False) -> str:
+        """Добавляет атрибут к сообщению."""
         prefix = '' if raw_key else '.'
-        return f'{message_str}\n  {prefix}{attr_key} = {attr_value}'
+        return f"{message_str}  {prefix}{attr_key} = {attr_value}\n"
 
     @staticmethod
-    def get_value(value, parent_id):
+    def get_value(value: typing.Optional[str], parent_id: typing.Optional[str]) -> str:
+        """Получает значение для сообщения."""
         if value:
             return value
         elif parent_id:
-            return '{ ' + FluentSerializedMessage.get_key(parent_id) + ' }'
-        else:
-            return '{ "" }'
+            return f"{{ {FluentSerializedMessage.get_key(parent_id)} }}"
+        return '{ "" }'
 
     @staticmethod
-    def get_key(id, raw = False):
-        if raw:
-            return f'{id}'
-        else:
-            return f'ent-{id}'
+    def get_key(id: str, raw: bool = False) -> str:
+        """Формирует ключ сообщения."""
+        return id if raw else f"ent-{id}"
+
+
+# Пример использования (для тестирования)
+if __name__ == "__main__":
+    # Пример требует реализации LokaliseKey, поэтому просто заглушка
+    class MockLokaliseKey:
+        def __init__(self, key_name, translation, is_attr=False):
+            self.key_name = key_name
+            self.is_attr = is_attr
+            self.translation_data = {'ru': {'translation': translation}}
+
+        def get_key_last_name(self, key): return key.split('.')[-1]
+        def get_key_base_name(self, key): return '.'.join(key.split('.')[:-1])
+        def get_parent_key(self): return None
+        def get_translation(self, lang): return self
+        def serialize_message(self): return f"{self.key_name} = {self.translation_data['ru']['translation']}"
+
+    keys = [
+        MockLokaliseKey("Item.Name", "Название предмета"),
+        MockLokaliseKey("Item.Name.desc", "Описание предмета", is_attr=True)
+    ]
+    result = FluentSerializedMessage.from_lokalise_keys(keys)
+    print("Serialized output:")
+    print(result)
