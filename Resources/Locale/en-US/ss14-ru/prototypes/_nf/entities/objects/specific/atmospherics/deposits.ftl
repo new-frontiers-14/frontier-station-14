@@ -50,10 +50,9 @@ ent-GasDepositCarbonDioxideVerySmall = { ent-BaseGasDepositVerySmall }
 ent-GasDepositPlasmaVerySmall = { ent-BaseGasDepositVerySmall }
     .suffix = Plasma, Very Small
     .desc = { ent-BaseGasDepositVerySmall.desc }
-ent-GasDepositAmmoniaVery Small = { ent-BaseGasDepositVerySmall }
-
-  .suffix = Ammonia, Very Small
-  .desc = { ent-BaseGasDepositVerySmall.desc }
+ent-GasDepositAmmoniaVerySmall = { ent-BaseGasDepositVerySmall }
+    .suffix = Ammonia, Very Small
+    .desc = { ent-BaseGasDepositVerySmall.desc }
 ent-GasDepositWaterVaporVerySmall = { ent-BaseGasDepositVerySmall }
     .suffix = Water Vapor, Very Small
     .desc = { ent-BaseGasDepositVerySmall.desc }
