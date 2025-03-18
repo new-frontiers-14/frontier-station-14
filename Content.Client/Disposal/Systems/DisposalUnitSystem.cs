@@ -33,6 +33,7 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
         SubscribeLocalEvent<DisposalUnitComponent, PreventCollideEvent>(OnPreventCollide);
         SubscribeLocalEvent<DisposalUnitComponent, CanDropTargetEvent>(OnCanDragDropOn);
         SubscribeLocalEvent<DisposalUnitComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<DisposalUnitComponent, GotUnEmaggedEvent>(OnUnemagged);
 
         SubscribeLocalEvent<DisposalUnitComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<DisposalUnitComponent, AppearanceChangeEvent>(OnAppearanceChange);
@@ -144,7 +145,7 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
                         {
                             KeyFrames =
                             {
-                                new AnimationTrackPlaySound.KeyFrame(_audioSystem.GetSound(unit.FlushSound), 0)
+                                new AnimationTrackPlaySound.KeyFrame(_audioSystem.ResolveSound(unit.FlushSound), 0)
                             }
                         });
                 }

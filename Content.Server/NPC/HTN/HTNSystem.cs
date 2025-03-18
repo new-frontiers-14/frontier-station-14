@@ -256,17 +256,24 @@ public sealed class HTNSystem : EntitySystem
         }
     }
 
-    private bool IsNPCActive(EntityUid entity) // Frontier
+    // Frontier: prevent unneded NPC activity
+    private bool IsNPCActive(EntityUid entity)
     {
         var transform = Transform(entity);
 
+        // Pathfinding in space doesn't currently work.
+        if (transform.GridUid == null)
+            return false;
+
+        // No WorldController: we're on an expedition planet.
         if (!_mapQuery.TryGetComponent(transform.MapUid, out var worldComponent))
             return true;
 
+        // Check if we're on a loaded chunk.
         var chunk = _world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(transform)).Floored(), transform.MapUid.Value, worldComponent);
-
         return _loadedQuery.TryGetComponent(chunk, out var loaded) && loaded.Loaders is not null;
     }
+    // End Frontier
 
     private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
     {

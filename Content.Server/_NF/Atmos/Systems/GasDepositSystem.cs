@@ -24,6 +24,7 @@ using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Server.Construction;
 
 namespace Content.Server._NF.Atmos.Systems;
 
@@ -52,6 +53,7 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
     /// </summary>
     private const double DefaultMaxSalePointDistance = 8.0;
 
+
     /// <inheritdoc />
     public override void Initialize()
     {
@@ -62,8 +64,9 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
         SubscribeLocalEvent<GasDepositExtractorComponent, MapInitEvent>(OnExtractorMapInit);
         SubscribeLocalEvent<GasDepositExtractorComponent, BoundUIOpenedEvent>(OnExtractorUiOpened);
         SubscribeLocalEvent<GasDepositExtractorComponent, PowerChangedEvent>(OnPowerChanged);
-        SubscribeLocalEvent<GasDepositExtractorComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<GasDepositExtractorComponent, AtmosDeviceUpdateEvent>(OnExtractorUpdate);
+        SubscribeLocalEvent<GasDepositExtractorComponent, RefreshPartsEvent>(OnExtractorRefreshParts);
+        SubscribeLocalEvent<GasDepositExtractorComponent, UpgradeExamineEvent>(OnExtractorUpgradeExamine);
 
         SubscribeLocalEvent<GasDepositExtractorComponent, GasPressurePumpChangeOutputPressureMessage>(
             OnOutputPressureChangeMessage);
@@ -91,12 +94,6 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
         UpdateAppearance(ent);
     }
 
-    public void OnAnchorChanged(Entity<GasDepositExtractorComponent> ent, ref AnchorStateChangedEvent args)
-    {
-        if (!args.Anchored)
-            ent.Comp.DepositEntity = null;
-    }
-
     public void OnRandomDepositMapInit(Entity<RandomGasDepositComponent> ent, ref MapInitEvent args)
     {
         EnsureComp<GasDepositComponent>(ent, out var deposit);
@@ -110,7 +107,9 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
         for (var i = 0; i < depositPrototype.Gases.Length && i < Atmospherics.TotalNumberOfGases; i++)
         {
             var gasRange = depositPrototype.Gases[i];
-            deposit.Deposit.SetMoles(i, gasRange[0] + _random.NextFloat() * (gasRange[1] - gasRange[0]));
+            var gasAmount = gasRange[0] + _random.NextFloat() * (gasRange[1] - gasRange[0]);
+            gasAmount *= ent.Comp.Scale;
+            deposit.Deposit.SetMoles(i, gasAmount);
         }
 
         deposit.LowMoles = deposit.Deposit.TotalMoles * LowMoleCoefficient;
@@ -168,6 +167,24 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
             SetDepositState(ent, GasDepositExtractorState.On);
     }
 
+    private void OnExtractorRefreshParts(Entity<GasDepositExtractorComponent> ent,
+        ref RefreshPartsEvent args)
+    {
+        float componentRate;
+        if (!args.PartRatings.TryGetValue(ent.Comp.ExtractionRateMachinePart, out componentRate))
+            componentRate = 1.0f;
+        componentRate = MathF.Max(componentRate, 1.0f) - 1.0f;
+
+        ent.Comp.ExtractionRate = ent.Comp.BaseExtractionRate * MathF.Pow(ent.Comp.ExtractionRateMultiplier, componentRate);
+    }
+
+    private void OnExtractorUpgradeExamine(Entity<GasDepositExtractorComponent> ent,
+        ref UpgradeExamineEvent args)
+    {
+        if (ent.Comp.BaseExtractionRate > 0)
+            args.AddPercentageUpgrade("gas-deposit-extraction-rate", ent.Comp.ExtractionRate / ent.Comp.BaseExtractionRate);
+    }
+
     private void OnToggleStatusMessage(Entity<GasDepositExtractorComponent> ent,
         ref GasPressurePumpToggleStatusMessage args)
     {
@@ -213,14 +230,13 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
     private void OnSalePointUpdate(Entity<GasSalePointComponent> ent, ref AtmosDeviceUpdateEvent args)
     {
         if (TryComp<ApcPowerReceiverComponent>(ent, out var power) && !power.Powered
-            || !_nodeContainer.TryGetNode(ent.Owner, ent.Comp.InletPipePortName, out PipeNode? port)
-            || port.NodeGroup is not PipeNet { NodeCount: > 1 } net)
+            || !_nodeContainer.TryGetNode(ent.Owner, ent.Comp.InletPipePortName, out PipeNode? port))
             return;
 
-        if (net.Air.TotalMoles > 0)
+        if (port.Air.TotalMoles > 0)
         {
-            _atmosphere.Merge(ent.Comp.GasStorage, net.Air);
-            net.Air.Clear();
+            _atmosphere.Merge(ent.Comp.GasStorage, port.Air);
+            port.Air.Clear();
         }
     }
 
@@ -245,14 +261,13 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
             return;
         }
 
-        var mixture = new GasMixture();
+        var amount = 0.0;
         foreach (var salePoint in GetNearbySalePoints(ent, gridUid))
         {
-            _atmosphere.Merge(mixture, salePoint.Comp.GasStorage);
+            amount += _atmosphere.GetPrice(salePoint.Comp.GasStorage);
             salePoint.Comp.GasStorage.Clear();
         }
 
-        var amount = _atmosphere.GetPrice(mixture);
         if (TryComp<MarketModifierComponent>(ent, out var priceMod))
             amount *= priceMod.Mod;
 
@@ -286,13 +301,13 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
     private void GetNearbyMixtures(EntityUid consoleUid, EntityUid gridUid, out GasMixture mixture, out double value)
     {
         mixture = new GasMixture();
+        value = 0.0;
 
         foreach (var salePoint in GetNearbySalePoints(consoleUid, gridUid))
         {
             _atmosphere.Merge(mixture, salePoint.Comp.GasStorage);
+            value += _atmosphere.GetPrice(salePoint.Comp.GasStorage);
         }
-
-        value = _atmosphere.GetPrice(mixture);
     }
 
     private List<Entity<GasSalePointComponent>> GetNearbySalePoints(EntityUid consoleUid, EntityUid gridUid)

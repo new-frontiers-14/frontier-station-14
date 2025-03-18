@@ -95,6 +95,12 @@ public sealed class NFCCVars
     public static readonly CVarDef<bool> Shipyard =
         CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
 
+    /// <summary>
+    /// Base sell rate (multiplier: 0.75 = 75%)
+    /// </summary>
+    public static readonly CVarDef<float> ShipyardSellRate =
+        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.75f, CVar.SERVERONLY);
+
     /*
      * Salvage
      */
@@ -109,6 +115,12 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<float> SalvageExpeditionFailedCooldown =
         CVarDef.Create("salvage.expedition_failed_cooldown", 1200f, CVar.REPLICATED);
+
+    /// <summary>
+    /// Whether salvage expedition rewards is enabled.
+    /// </summary>
+    public static readonly CVarDef<bool> SalvageExpeditionRewardsEnabled =
+        CVarDef.Create("nf14.salvage.expedition_rewards_enabled", false, CVar.REPLICATED);
 
     /*
      * Smuggling
@@ -204,4 +216,13 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<float> CrateGenerationGridBoundsScale =
         CVarDef.Create("nf14.events.crate_generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
+
+    /*
+     * Atmos
+     */
+    /// <summary>
+    ///     If true, allows map extraction (scrubbing a planet's atmosphere).
+    /// </summary>
+    public static readonly CVarDef<bool> AllowMapGasExtraction =
+        CVarDef.Create("nf14.atmos.allow_map_gas_extraction", false, CVar.SERVER | CVar.REPLICATED);
 }

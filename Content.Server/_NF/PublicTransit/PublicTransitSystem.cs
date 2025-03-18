@@ -22,6 +22,9 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
+using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
+using Content.Server._NF.Station.Systems;
+using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Server.Maps;
@@ -344,7 +347,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
         var shuttleOffset = 500.0f;
         var shuttleArrivalOffset = 5.0f;
-        var dummyMapEnt = _map.CreateMap(out var dummyMap);
+        var dummyMapUid = _map.CreateMap(out var dummyMap);
 
         // For each route: find out the number of buses we need on it, then add more buses until we get to that count.
         // Leave the excess buses for now.
@@ -373,7 +376,7 @@ public sealed class PublicTransitSystem : EntitySystem
                 };
 
                 // Spawn the bus onto a dummy map
-                if (!_loader.TryLoad(dummyMap, busVessel.ShuttlePath.ToString(), out var shuttleUids, loadOptions) ||
+                if (!_loader.TryLoadGrid(dummyMap, busVessel.ShuttlePath, out var shuttleUids, loadOptions) ||
                     !TryComp<MapGridComponent>(shuttleUids[0], out var mapGrid) ||
                     !TryComp<ShuttleComponent>(shuttleUids[0], out var shuttleComp))
                     break;
@@ -410,7 +413,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
         // the FTL sequence takes a few seconds to warm up and send the grid, so we give the temp dummy map
         // some buffer time before calling a self-delete
-        var timer = AddComp<TimedDespawnComponent>(dummyMapEnt);
+        var timer = AddComp<TimedDespawnComponent>(dummyMapUid);
         timer.Lifetime = 15f;
         RoutesCreated = true;
     }

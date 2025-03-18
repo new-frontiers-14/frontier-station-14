@@ -5,6 +5,7 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.ContentPack;
 using Robust.Shared.IoC;
 using Robust.Shared.Reflection;
+using Content.Client._NF.CryoSleep; // Frontier
 
 namespace Content.IntegrationTests.Tests.UserInterface;
 
@@ -16,13 +17,13 @@ public sealed class UiControlTest
     {
         typeof(EmotesMenu),
         typeof(LateJoinGui),
+        typeof(CryosleepWakeupWindow), // Frontier: FIXME - refactor this window into EUI(?) pattern, this thing subscribes to events
     };
 
     /// <summary>
     /// Tests that all windows can be instantiated successfully.
     /// </summary>
     [Test]
-    [Ignore("Preventing CI tests from failing")] // Frontier: FIXME - bad Cryosleep UI registration
     public async Task TestWindows()
     {
         var pair = await PoolManager.GetServerClient(new PoolSettings()
