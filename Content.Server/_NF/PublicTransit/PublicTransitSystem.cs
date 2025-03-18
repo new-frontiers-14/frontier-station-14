@@ -1,33 +1,26 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.PublicTransit.Components;
 using Content.Server._NF.PublicTransit.Prototypes;
-using Content.Server._NF.Station.Components;
 using Content.Server._NF.Station.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
+using Content.Server.Maps;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
-using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared.GameTicking;
-using Content.Shared.Shuttles.Components;
-using Content.Shared.Tiles;
 using Robust.Shared.Configuration;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
-using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Content.Server._NF.Station.Systems;
-using Robust.Shared.Utility;
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
-using Content.Server.Maps;
 
 namespace Content.Server._NF.PublicTransit;
 
@@ -370,39 +363,37 @@ public sealed class PublicTransitSystem : EntitySystem
 
             while (numBuses < neededBuses)
             {
-                var loadOptions = new MapLoadOptions()
-                {
-                    Offset = new Vector2(shuttleOffset, 1f)
-                };
-
                 // Spawn the bus onto a dummy map
-                if (!_loader.TryLoadGrid(dummyMap, busVessel.ShuttlePath, out var shuttleUids, loadOptions) ||
-                    !TryComp<MapGridComponent>(shuttleUids[0], out var mapGrid) ||
-                    !TryComp<ShuttleComponent>(shuttleUids[0], out var shuttleComp))
+                if (!_loader.TryLoadGrid(dummyMap, busVessel.ShuttlePath, out var shuttleMaybe, offset: new Vector2(shuttleOffset, 1f))
+                    || shuttleMaybe is not { } shuttleEnt
+                    || !TryComp<MapGridComponent>(shuttleEnt, out var mapGrid)
+                    || !TryComp<ShuttleComponent>(shuttleEnt, out var shuttleComp))
+                {
                     break;
+                }
 
                 shuttleOffset += mapGrid.LocalAABB.Width + ShuttleSpawnBuffer;
 
                 // Here we are making sure that the shuttle has the TransitShuttle comp onto it, in case of dynamically changing the bus grid
-                var transitComp = EnsureComp<TransitShuttleComponent>(shuttleUids[0]);
+                var transitComp = EnsureComp<TransitShuttleComponent>(shuttleEnt.Owner);
                 transitComp.RouteID = route.Prototype.ID;
                 transitComp.DockTag = route.Prototype.DockTag;
                 // If this thing should be a station, set up the station.
                 var shuttleName = Loc.GetString("public-transit-shuttle-name", ("number", route.Prototype.RouteNumber), ("suffix", neededBuses > 1 ? (char)('A' + numBuses) : ""));
                 if (_proto.TryIndex<GameMapPrototype>(busVessel.ID, out var stationProto))
                 {
-                    var shuttleStation = _station.InitializeNewStation(stationProto.Stations[busVessel.ID], shuttleUids);
+                    var shuttleStation = _station.InitializeNewStation(stationProto.Stations[busVessel.ID], [shuttleEnt]);
                     _meta.SetEntityName(shuttleStation, shuttleName);
                 }
                 // Set both the bus grid and station name
-                _meta.SetEntityName(shuttleUids[0], shuttleName);
+                _meta.SetEntityName(shuttleEnt.Owner, shuttleName);
 
                 // Space each bus out in the schedule.
                 int index = numBuses * route.GridStops.Count / neededBuses;
 
                 //we set up a default in case the second time we call it fails for some reason
                 var nextGrid = route.GridStops.GetValueAtIndex(index);
-                _shuttles.FTLToDock(shuttleUids[0], shuttleComp, nextGrid, hyperspaceTime: shuttleArrivalOffset, priorityTag: transitComp.DockTag);
+                _shuttles.FTLToDock(shuttleEnt, shuttleComp, nextGrid, hyperspaceTime: shuttleArrivalOffset, priorityTag: transitComp.DockTag);
                 transitComp.CurrentGrid = nextGrid;
                 transitComp.NextTransfer = _timing.CurTime + route.Prototype.WaitTime + TimeSpan.FromSeconds(shuttleArrivalOffset);
 
