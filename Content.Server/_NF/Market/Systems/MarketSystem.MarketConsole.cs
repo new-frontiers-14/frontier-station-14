@@ -329,7 +329,12 @@ public sealed partial class MarketSystem
     /// <returns>The MarketData item with the matching prototype, or null if not found.</returns>
     public MarketData? FindMarketDataByPrototype(List<MarketData> marketDataList, string prototypeId)
     {
-        return marketDataList.FirstOrDefault(x => { return x.Prototype == prototypeId; });
+        foreach (var marketData in marketDataList)
+        {
+            if (marketData.Prototype == prototypeId)
+                return marketData;
+        }
+        return null;
     }
 
     private void OnConsoleUiOpened(EntityUid uid, MarketConsoleComponent component, BoundUIOpenedEvent args)
