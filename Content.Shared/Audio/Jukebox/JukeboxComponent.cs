@@ -12,6 +12,12 @@ public sealed partial class JukeboxComponent : Component
     [DataField, AutoNetworkedField]
     public ProtoId<JukeboxPrototype>? SelectedSongId;
 
+    [ViewVariables]
+    public bool IsShuffleOn;
+
+    [ViewVariables]
+    public bool IsReplayOn;
+
     [DataField, AutoNetworkedField]
     public EntityUid? AudioStream;
 
@@ -53,6 +59,12 @@ public sealed class JukeboxPauseMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
 public sealed class JukeboxStopMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class JukeboxShuffleMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class JukeboxReplayMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
 public sealed class JukeboxSelectedMessage(ProtoId<JukeboxPrototype> songId) : BoundUserInterfaceMessage

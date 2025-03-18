@@ -1,6 +1,9 @@
+using System.Collections.Frozen;
+using System.Linq;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Audio.Jukebox;
+using Content.Shared.Fax;
 using Content.Shared.Power;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -9,6 +12,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using JukeboxComponent = Content.Shared.Audio.Jukebox.JukeboxComponent;
+using Robust.Shared.Random;
+using Robust.Shared.Toolshed.Commands.Generic;
 
 namespace Content.Server.Audio.Jukebox;
 
@@ -17,6 +22,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 {
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -25,6 +31,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, JukeboxPlayingMessage>(OnJukeboxPlay);
         SubscribeLocalEvent<JukeboxComponent, JukeboxPauseMessage>(OnJukeboxPause);
         SubscribeLocalEvent<JukeboxComponent, JukeboxStopMessage>(OnJukeboxStop);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxShuffleMessage>(OnJukeboxShuffle);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxReplayMessage>(OnJukeboxReplay);
         SubscribeLocalEvent<JukeboxComponent, JukeboxSetTimeMessage>(OnJukeboxSetTime);
         SubscribeLocalEvent<JukeboxComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<JukeboxComponent, ComponentShutdown>(OnComponentShutdown);
@@ -34,6 +42,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnComponentInit(EntityUid uid, JukeboxComponent component, ComponentInit args)
     {
+        Logger.Warning($"{System.Reflection.MethodBase.GetCurrentMethod()!.Name}");
         if (HasComp<ApcPowerReceiverComponent>(uid))
         {
             TryUpdateVisualState(uid, component);
@@ -42,6 +51,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxPlay(EntityUid uid, JukeboxComponent component, ref JukeboxPlayingMessage args)
     {
+        Logger.Warning($"{System.Reflection.MethodBase.GetCurrentMethod()!.Name}");
         if (Exists(component.AudioStream))
         {
             Audio.SetState(component.AudioStream, AudioState.Playing);
@@ -49,6 +59,15 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         else
         {
             component.AudioStream = Audio.Stop(component.AudioStream);
+
+            if (component.IsShuffleOn)
+            {
+                JukeboxPrototype randomSong =_protoManager.EnumeratePrototypes<JukeboxPrototype>()
+                    .Skip(_random.Next(_protoManager.Count<JukeboxPrototype>()))
+                    .First();
+
+                component.SelectedSongId = randomSong.ID;
+            }
 
             if (string.IsNullOrEmpty(component.SelectedSongId) ||
                 !_protoManager.TryIndex(component.SelectedSongId, out var jukeboxProto))
@@ -69,11 +88,25 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxPause(Entity<JukeboxComponent> ent, ref JukeboxPauseMessage args)
     {
+        Logger.Warning($"{System.Reflection.MethodBase.GetCurrentMethod()!.Name}");
         Audio.SetState(ent.Comp.AudioStream, AudioState.Paused);
+    }
+
+    private void OnJukeboxShuffle(Entity<JukeboxComponent> ent, ref JukeboxShuffleMessage args)
+    {
+        ent.Comp.IsShuffleOn = !ent.Comp.IsShuffleOn;
+        Logger.Warning($"JUKEBOX {ent.Owner} TRIED TO SHUFFLE. SETTING SHUFFLE TO {ent.Comp.IsShuffleOn}");
+    }
+
+    private void OnJukeboxReplay(Entity<JukeboxComponent> ent, ref JukeboxReplayMessage args)
+    {
+        ent.Comp.IsReplayOn = !ent.Comp.IsReplayOn;
+        Logger.Warning($"JUKEBOX {ent.Owner} TRIED TO REPLAY. SETTING REPLAY TO {ent.Comp.IsReplayOn}");
     }
 
     private void OnJukeboxSetTime(EntityUid uid, JukeboxComponent component, JukeboxSetTimeMessage args)
     {
+        Logger.Warning($"{System.Reflection.MethodBase.GetCurrentMethod()!.Name}");
         if (TryComp(args.Actor, out ActorComponent? actorComp))
         {
             var offset = actorComp.PlayerSession.Channel.Ping * 1.5f / 1000f;
@@ -83,6 +116,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnPowerChanged(Entity<JukeboxComponent> entity, ref PowerChangedEvent args)
     {
+        Logger.Warning($"{System.Reflection.MethodBase.GetCurrentMethod()!.Name}");
         TryUpdateVisualState(entity);
 
         if (!this.IsPowered(entity.Owner, EntityManager))
@@ -93,17 +127,20 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxStop(Entity<JukeboxComponent> entity, ref JukeboxStopMessage args)
     {
+        Logger.Warning($"{System.Reflection.MethodBase.GetCurrentMethod()!.Name}");
         Stop(entity);
     }
 
     private void Stop(Entity<JukeboxComponent> entity)
     {
+        Logger.Warning($"{System.Reflection.MethodBase.GetCurrentMethod()!.Name}");
         Audio.SetState(entity.Comp.AudioStream, AudioState.Stopped);
         Dirty(entity);
     }
 
     private void OnJukeboxSelected(EntityUid uid, JukeboxComponent component, JukeboxSelectedMessage args)
     {
+        Logger.Warning($"{System.Reflection.MethodBase.GetCurrentMethod()!.Name}");
         if (!Audio.IsPlaying(component.AudioStream))
         {
             component.SelectedSongId = args.SongId;
@@ -133,21 +170,30 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
                     TryUpdateVisualState(uid, comp);
                 }
             }
+
+            if (!Audio.IsPlaying(comp.AudioStream)  && comp.IsReplayOn)
+            {
+                var msg = new JukeboxPlayingMessage();
+                OnJukeboxPlay(uid, comp, ref msg);
+            }
         }
     }
 
     private void OnComponentShutdown(EntityUid uid, JukeboxComponent component, ComponentShutdown args)
     {
+        Logger.Warning($"{System.Reflection.MethodBase.GetCurrentMethod()!.Name}");
         component.AudioStream = Audio.Stop(component.AudioStream);
     }
 
     private void DirectSetVisualState(EntityUid uid, JukeboxVisualState state)
     {
+        Logger.Warning($"{System.Reflection.MethodBase.GetCurrentMethod()!.Name}");
         _appearanceSystem.SetData(uid, JukeboxVisuals.VisualState, state);
     }
 
     private void TryUpdateVisualState(EntityUid uid, JukeboxComponent? jukeboxComponent = null)
     {
+        Logger.Warning($"{System.Reflection.MethodBase.GetCurrentMethod()!.Name}");
         if (!Resolve(uid, ref jukeboxComponent))
             return;
 

@@ -28,6 +28,8 @@ public sealed partial class JukeboxMenu : FancyWindow
     /// </summary>
     public event Action<bool>? OnPlayPressed;
     public event Action? OnStopPressed;
+    public event Action? OnShufflePressed;
+    public event Action? OnReplayPressed;
     public event Action<ProtoId<JukeboxPrototype>>? OnSongSelected;
     public event Action<float>? SetTime;
 
@@ -59,6 +61,15 @@ public sealed partial class JukeboxMenu : FancyWindow
         StopButton.OnPressed += args =>
         {
             OnStopPressed?.Invoke();
+        };
+
+        ShuffleButton.OnToggled += args =>
+        {
+            OnShufflePressed?.Invoke();
+        };
+        ReplayButton.OnToggled += args =>
+        {
+            OnReplayPressed?.Invoke();
         };
         PlaybackSlider.OnReleased += PlaybackSliderKeyUp;
 
