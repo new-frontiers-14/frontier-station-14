@@ -283,8 +283,8 @@ public sealed partial class MarketSystem
             var toWithdraw = Math.Max(args.Amount, 0);
             toWithdraw = Math.Min(toWithdraw, maxQuantityToWithdraw);
 
-            var existingNull = FindMarketDataByPrototype(marketData, args.ItemPrototype!);
-            if (existingNull is not { } existing)
+            var existing = FindMarketDataByPrototype(marketData, args.ItemPrototype!);
+            if (existing == null)
                 return;
 
             // Calculate maximum we can fit.
@@ -296,8 +296,8 @@ public sealed partial class MarketSystem
             {
                 var amountLeft = (30 - entityAmount) * amountPerEntity.Value;
 
-                var existingCartMaybe = FindMarketDataByPrototype(consoleComponent.CartDataList, args.ItemPrototype!);
-                if (existingCartMaybe is { } existingCart)
+                var existingCart = FindMarketDataByPrototype(consoleComponent.CartDataList, args.ItemPrototype!);
+                if (existingCart != null)
                 {
                     // Find if there's a partially filled entity in the cart.
                     var quantityMod = existingCart.Quantity % amountPerEntity.Value;
