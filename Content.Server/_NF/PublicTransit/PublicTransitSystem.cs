@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Numerics;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.PublicTransit.Components;
@@ -13,9 +14,10 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
+using Content.Shared.Examine;
 using Content.Shared.GameTicking;
-using Robust.Shared.Configuration;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
@@ -47,9 +49,10 @@ public sealed class PublicTransitSystem : EntitySystem
     public bool Enabled { get; private set; }
     public bool StationsGenerated { get; private set; }
     public bool RoutesCreated { get; private set; }
-    private Dictionary<ProtoId<PublicTransitRoutePrototype>, PublicTransitRoute> _routeList = new();
+    private Dictionary<ProtoId<PublicTransitRoutePrototype>, PublicTransitRoute> _routes = new();
     private readonly TimeSpan _updatePeriod = TimeSpan.FromSeconds(2);
     private TimeSpan _nextUpdate = TimeSpan.FromSeconds(2);
+    private TimeSpan _initialHyperspaceTime = TimeSpan.FromSeconds(5);
     private const float ShuttleSpawnBuffer = 1f;
 
     public override void Initialize()
@@ -61,20 +64,21 @@ public sealed class PublicTransitSystem : EntitySystem
         SubscribeLocalEvent<TransitShuttleComponent, ComponentStartup>(OnShuttleStartup);
         SubscribeLocalEvent<TransitShuttleComponent, FTLCompletedEvent>(OnShuttleArrival);
         SubscribeLocalEvent<TransitShuttleComponent, FTLTagEvent>(OnShuttleTag);
+        SubscribeLocalEvent<BusScheduleComponent, ExaminedEvent>(OnScheduleExamined);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         Enabled = _cfgManager.GetCVar(NFCCVars.PublicTransit);
         StationsGenerated = false;
         RoutesCreated = false;
-        _routeList.Clear();
+        _routes.Clear();
         _cfgManager.OnValueChanged(NFCCVars.PublicTransit, SetTransit);
         _nextUpdate = _timing.CurTime;
     }
 
     public void OnRoundRestartCleanup(RoundRestartCleanupEvent args)
     {
-        _routeList.Clear();
+        _routes.Clear();
         StationsGenerated = false;
         RoutesCreated = false;
     }
@@ -99,6 +103,52 @@ public sealed class PublicTransitSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void OnScheduleExamined(Entity<BusScheduleComponent> ent, ref ExaminedEvent args)
+    {
+        if (!TryComp(ent, out TransformComponent? xform)
+            || !TryComp<StationTransitComponent>(xform.GridUid, out var transit))
+        {
+            // TODO: add fallback output
+            return;
+        }
+
+        // Get the route associated with this grid.
+        if (transit.Routes.Count <= 0)
+        {
+            // TODO: add fallback output
+            return;
+        }
+
+        var route = ent.Comp.RouteID;
+        if (route == null)
+        {
+            route = transit.Routes.First().Key;
+        }
+        else if (!transit.Routes.ContainsKey(route.Value))
+        {
+            // TODO: add fallback output
+            return;
+        }
+
+        if (!_routes.TryGetValue(route.Value, out var routeData))
+        {
+            // TODO: add fallback output
+            return;
+        }
+
+        EntityUid nextBus = EntityUid.Invalid;
+        int stopDistance = int.MaxValue;
+        // Get the buses associated with this route, find the closest one before this stop.
+        var busQuery = EntityQueryEnumerator<StationTransitComponent>();
+        while (busQuery.MoveNext(out var busUid, out var busComp))
+        {
+            if ()
+        }
+
+        // Calculate the departure time from this stop and the arrival time at the next stops.
+
+    }
+
     private void OnStationsGenerated(StationsGeneratedEvent args)
     {
         if (Enabled && !RoutesCreated)
@@ -113,24 +163,33 @@ public sealed class PublicTransitSystem : EntitySystem
     /// </summary>
     private void OnStationStartup(Entity<StationTransitComponent> ent, ref ComponentStartup args)
     {
+        if (Transform(ent).MapID != _ticker.DefaultMap) //best solution i could find because of componentinit/mapinit race conditions
+            return;
+
         UpdateRouteList(ent);
+        // TODO: add bus if needed, adjust departure times
     }
 
     private void UpdateRouteList(Entity<StationTransitComponent> ent)
     {
-        if (Transform(ent).MapID != _ticker.DefaultMap) //best solution i could find because of componentinit/mapinit race conditions
-            return;
-
         // Add each present route
         foreach (var route in ent.Comp.Routes)
         {
-            if (!_routeList.ContainsKey(route.Key))
+            if (!_routes.ContainsKey(route.Key))
             {
                 if (!_proto.TryIndex(route.Key, out var routeProto))
                     continue;
-                _routeList.Add(route.Key, new PublicTransitRoute(routeProto));
+                _routes.Add(route.Key, new PublicTransitRoute(routeProto));
             }
-            _routeList[route.Key].GridStops.Add(route.Value, ent); //add it to the list
+
+            // Already added (running from startup, reasonable)
+            if (_routes[route.Key].GridStops.ContainsValue(ent))
+                continue;
+
+            // Handle duplicate values (e.g. three trade stations)
+            int value = route.Value;
+            while (!_routes[route.Key].GridStops.TryAdd(value, ent))
+                value++;
         }
     }
 
@@ -139,7 +198,7 @@ public sealed class PublicTransitSystem : EntitySystem
     /// </summary>
     private void OnStationRemove(Entity<StationTransitComponent> ent, ref ComponentRemove args)
     {
-        foreach (var route in _routeList.Values)
+        foreach (var route in _routes.Values)
         {
             var index = route.GridStops.IndexOfValue(ent);
             if (index != -1)
@@ -148,10 +207,6 @@ public sealed class PublicTransitSystem : EntitySystem
         // TODO: could add logic to rebalance the buses here.
     }
 
-    /// <summary>
-    /// Again, this can and likely should be instructed to mappers to do, but just in case it was either forgotten or we are doing admemes,
-    /// we make sure that the bus is (mostly) griefer protected and that it cant be hijacked
-    /// </summary>
     private void OnShuttleStartup(Entity<TransitShuttleComponent> ent, ref ComponentStartup args)
     {
         _renameWarps.SyncWarpPointsToGrid(ent);
@@ -167,7 +222,7 @@ public sealed class PublicTransitSystem : EntitySystem
                 continue;
 
             // Find route details.
-            if (!_routeList.TryGetValue(ent.Comp.RouteID, out var route))
+            if (!_routes.TryGetValue(ent.Comp.RouteID, out var route))
                 continue;
 
             // Note: the next grid is not cached in case stations are added or removed.
@@ -231,7 +286,7 @@ public sealed class PublicTransitSystem : EntitySystem
             if (comp.NextTransfer > curTime)
                 continue;
 
-            if (!_routeList.TryGetValue(comp.RouteID, out var route))
+            if (!_routes.TryGetValue(comp.RouteID, out var route))
                 continue;
 
             // Regardless of whether we have a station to go to, don't rerun the same conditions frequently.
@@ -311,7 +366,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
         // Set up bus depot
         // NOTE: this only works with one depot at the moment.
-        foreach (var route in _routeList.Values)
+        foreach (var route in _routes.Values)
         {
             route.GridStops.Remove(0);
         }
@@ -328,7 +383,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
             var transit = EnsureComp<StationTransitComponent>(depotGrid.Value);
             transit.Routes.Clear();
-            foreach (var route in _routeList.Values)
+            foreach (var route in _routes.Values)
             {
                 if (route.GridStops.Count <= 0)
                     continue;
@@ -344,7 +399,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
         // For each route: find out the number of buses we need on it, then add more buses until we get to that count.
         // Leave the excess buses for now.
-        foreach (var route in _routeList.Values)
+        foreach (var route in _routes.Values)
         {
             var numBuses = 0;
             if (busesByRoute.ContainsKey(route.Prototype.ID))
@@ -360,6 +415,8 @@ public sealed class PublicTransitSystem : EntitySystem
             // TODO: default to 
             if (!_proto.TryIndex(route.Prototype.BusVessel, out var busVessel))
                 continue;
+
+            var routeHopTime = route.Prototype.WaitTime + route.Prototype.TravelTime;
 
             while (numBuses < neededBuses)
             {
@@ -389,16 +446,17 @@ public sealed class PublicTransitSystem : EntitySystem
                 _meta.SetEntityName(shuttleEnt.Owner, shuttleName);
 
                 // Space each bus out in the schedule.
-                int index = numBuses * route.GridStops.Count / neededBuses;
+                var relativePosition = (float)(numBuses * route.GridStops.Count) / neededBuses;
+                var relativeIndex = MathF.Ceiling(relativePosition);
+                var extraTime = (relativeIndex - relativePosition) * routeHopTime;
 
                 //we set up a default in case the second time we call it fails for some reason
-                var nextGrid = route.GridStops.GetValueAtIndex(index);
-                _shuttles.FTLToDock(shuttleEnt, shuttleComp, nextGrid, hyperspaceTime: shuttleArrivalOffset, priorityTag: transitComp.DockTag);
+                var nextGrid = route.GridStops.GetValueAtIndex((int)relativeIndex);
+                _shuttles.FTLToDock(shuttleEnt, shuttleComp, nextGrid, hyperspaceTime: (float)_initialHyperspaceTime.TotalSeconds, priorityTag: transitComp.DockTag);
                 transitComp.CurrentGrid = nextGrid;
-                transitComp.NextTransfer = _timing.CurTime + route.Prototype.WaitTime + TimeSpan.FromSeconds(shuttleArrivalOffset);
+                transitComp.NextTransfer = _timing.CurTime + route.Prototype.WaitTime + extraTime + _initialHyperspaceTime;
 
                 numBuses++;
-                shuttleArrivalOffset += 5.0f;
             }
         }
 

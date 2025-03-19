@@ -21,11 +21,9 @@
   - type: IFF
     flags: [IsPlayerShuttle, HideLabel]
 
+# Note: we keep the IsPlayerShuttle flag to hide consistently with other shuttles.
 - type: vessel
   id: BaseVesselNonPlayer
   abstract: true
   parent: BaseVessel
   group: Custom # Should not be available in any shipyard
-  addComponents:
-  - type: IFF
-    flags: None
