@@ -33,7 +33,7 @@ public sealed partial class TechnologyCardControl : Control
         if (!hasAccess)
             ResearchButton.ToolTip = Loc.GetString("research-console-no-access-popup");
 
-        ResearchButton.Disabled = points < technology.Cost || !hasAccess;
+        ResearchButton.Disabled = points < (technology.Cost * technology.CostMult) || !hasAccess;
         ResearchButton.OnPressed += _ => OnPressed?.Invoke();
     }
 }

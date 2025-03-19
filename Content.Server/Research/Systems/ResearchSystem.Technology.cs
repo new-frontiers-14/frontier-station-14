@@ -81,7 +81,7 @@ public sealed partial class ResearchSystem
 
         AddTechnology(serverEnt.Value, prototype);
         TrySetMainDiscipline(prototype, serverEnt.Value);
-        ModifyServerPoints(serverEnt.Value, -prototype.Cost);
+        ModifyServerPoints(serverEnt.Value, -prototype.Cost * prototype.CostMult);
         UpdateTechnologyCards(serverEnt.Value);
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
@@ -151,7 +151,7 @@ public sealed partial class ResearchSystem
         if (!IsTechnologyAvailable(database, technology))
             return false;
 
-        if (technology.Cost > serverComp.Points)
+        if (technology.Cost * technology.CostMult > serverComp.Points)
             return false;
 
         return true;

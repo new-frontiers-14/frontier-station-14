@@ -15,6 +15,8 @@ public abstract class SharedResearchSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedLatheSystem _lathe = default!;
 
+    protected int _costMult = 2;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -164,7 +166,7 @@ public abstract class SharedResearchSystem : EntitySystem
 
         if (includeCost)
         {
-            description.AddMarkupOrThrow(Loc.GetString("research-console-cost", ("amount", technology.Cost)));
+            description.AddMarkupOrThrow(Loc.GetString("research-console-cost", ("amount", technology.Cost * technology.CostMult)));
             description.PushNewline();
         }
 

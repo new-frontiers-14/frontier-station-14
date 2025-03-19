@@ -53,6 +53,12 @@ public sealed partial class TechnologyPrototype : IPrototype
     public int Cost = 10000;
 
     /// <summary>
+    ///  Multiplies the resulting cost of the technology by that number.
+    /// </summary>
+    [DataField]
+    public int CostMult = 2; // Eclipse
+
+    /// <summary>
     /// A list of <see cref="TechnologyPrototype"/>s that need to be unlocked in order to unlock this technology.
     /// </summary>
     [DataField]

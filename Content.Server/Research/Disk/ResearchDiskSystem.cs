@@ -40,7 +40,7 @@ namespace Content.Server.Research.Disk
                 return;
 
             component.Points = _prototype.EnumeratePrototypes<TechnologyPrototype>()
-                .Sum(tech => tech.Cost);
+                .Sum(tech => tech.Cost * tech.CostMult);
         }
     }
 }
