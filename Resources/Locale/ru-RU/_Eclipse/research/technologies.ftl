@@ -1,0 +1,1 @@
+research-technology-atmos-fans = Продвинутый контроль атмосферы
