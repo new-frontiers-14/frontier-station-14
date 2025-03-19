@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseMachinePowered
-  id: NFSmartFridge
+  id: DVSmartFridge
   name: SmartFridge
   description: A refrigerated storage unit for keeping items cold and fresh.
   components:
@@ -91,9 +91,10 @@
 
 - type: entity
   parent: DVSmartFridge
-  id: NFSmartFridgeMedical
+  id: DVSmartFridgeMedical
   name: Medical SmartFridge
   description: A refrigerated storage unit for keeping lifesaving medications cold and fresh.
+  categories: [ HideSpawnMenu ]
   components:
   - type: AccessReader
     access: [["Medical"]]
