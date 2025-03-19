@@ -76,3 +76,9 @@ nf-ghost-role-information-derelict-cyborg-description = You are a cyborg that's 
 
 nf-ghost-role-information-buddy-name = Buddy
 nf-ghost-role-information-buddy-description = You were constructed from a Build-A-Buddy kit. Become someone's best friend today!
+
+eclipse-ghost-role-information-syndicate = Syndicate Agent
+eclipse-ghost-role-information-rogue-ai = Rogue AI Bot
+eclipse-ghost-role-information-mercenary = Mercenary
+eclipse-ghost-role-information-wizard = Wizard
+eclipse-ghost-role-information-general-description = Defend the expedition dungeon and your loot!

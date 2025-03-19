@@ -184,6 +184,15 @@
       48: 0.5
   - type: Stamina
     critThreshold: 600
+  - type: GhostRole # Eclipse
+    allowMovement: true
+    name: eclipse-ghost-role-information-rogue-ai
+    description: eclipse-ghost-role-information-general-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
 
 - type: entity
   id: MobRogueSiliconProjectileBatteryAmmo

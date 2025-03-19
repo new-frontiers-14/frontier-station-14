@@ -61,3 +61,9 @@ ghost-role-information-dungeon-boss-rules =
 nf-ghost-role-information-derelict-cyborg-description = Вы - киборг, который годами просиживает на заброшенном корабле, подвергаясь воздействию бесчисленных ионных бурь.
 nf-ghost-role-information-buddy-name = Приятель
 nf-ghost-role-information-buddy-description = Вы были созданы из набора Построй-своего-Приятеля. Станьте чьим-то лучшим другом уже сегодня!
+
+eclipse-ghost-role-information-syndicate = Агент Синдиката
+eclipse-ghost-role-information-rogue-ai = Киборг
+eclipse-ghost-role-information-mercenary = Наёмник
+eclipse-ghost-role-information-wizard = Маг
+eclipse-ghost-role-information-general-description = Защитите подземелье экспедиции и свою добычу!
