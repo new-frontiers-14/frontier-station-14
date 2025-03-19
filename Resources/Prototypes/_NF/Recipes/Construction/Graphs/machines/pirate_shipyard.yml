@@ -1,0 +1,14 @@
+- type: constructionGraph
+  id: NFPirateShipyard
+  name:
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: repaired
+          steps:
+            - tool: ComputerRepair
+              doAfter: 10.0
+
+    - node: repaired
+      entity: ComputerShipyardBlackMarket

@@ -63,3 +63,26 @@
   - type: ToolTileCompatible
   - type: UseDelay
     delay: 1
+
+- type: entity
+  name: pirate repair kit
+  parent: [BaseItem, BaseC3PirateContraband]
+  id: PirateRepaitKit
+  description: A collection of equipment needed to repair a pirate shipyard
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/toolbox_drop.ogg
+  - type: Tag
+    tags:
+    - Toolbox
+  - type: Sprite
+    sprite: Objects/Tools/Toolboxes/toolbox_syn.rsi
+    state: icon
+  - type: Tool
+    qualities:
+      - ComputerRepair
+    useSound:
+      collection: toolbox
+  - type: StaticPrice
+    price: 0

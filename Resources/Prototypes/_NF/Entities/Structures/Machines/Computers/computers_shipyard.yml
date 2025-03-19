@@ -166,6 +166,22 @@
       Invalid: 0.30
     ignoreBaseSaleRate: true # Fixed 70% sale rate.
     canTransferDeed: false
+  - type: Destructible
+    thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 250
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                PirateComputerBroken:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
 
 - type: entity
   id: ComputerShipyardExpedition
@@ -262,3 +278,26 @@
       state: shipyard_sr
     - map: ["computerLayerKeys"]
       state: telesci_key
+
+- type: entity
+  parent: BaseStructureComputer
+  id: PirateComputerBroken
+  name: broken shipyard computer
+  description: This shipyard has seen better days. Can be repaired with a repair kit
+  components:
+  - type: Construction
+    graph: Computer
+    node: start
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_blackmarket
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+    drawdepth: Objects
+    state: broken
