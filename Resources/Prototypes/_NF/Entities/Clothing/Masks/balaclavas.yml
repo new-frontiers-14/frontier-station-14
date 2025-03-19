@@ -5,6 +5,24 @@
   name: black balaclava
   description: A black balaclava to make you look menacing.
   components:
+  - type: FoldableClothing
+    foldedSlots:
+    - HEAD
+    unfoldedSlots:
+    - MASK
+    foldedHideLayers: []
+    unfoldedHideLayers:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    hideOnToggle: true
   - type: Sprite
     sprite: _NF/Clothing/Mask/balaclava.rsi
     layers:
