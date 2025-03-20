@@ -7,7 +7,7 @@
     arc: 175
   - type: Sprite
     drawdepth: WallMountedItems
-    sprite: _NF/Structures/Wallmounts/bus_schedule.yml
+    sprite: _NF/Structures/Wallmounts/bus_schedule.rsi
     snapCardinals: true
     layers:
     - state: body
@@ -15,8 +15,8 @@
   - type: BusSchedule
 
 - type: entity
-  parent: BaseSign
-  id: BusSchedule
+  parent: BusSchedule
+  id: BusScheduleRoute1
   suffix: Route 1, Spawn Points
   components:
   - type: Sprite
@@ -28,8 +28,8 @@
     routeId: SpawnPoints
 
 - type: entity
-  parent: BaseSign
-  id: BusSchedule
+  parent: BusSchedule
+  id: BusScheduleRoute2
   suffix: Route 2, Trade Express
   components:
   - type: Sprite
@@ -41,8 +41,8 @@
     routeId: TradeExpress
 
 - type: entity
-  parent: BaseSign
-  id: BusSchedule
+  parent: BusSchedule
+  id: BusScheduleRoute3
   suffix: Route 3, Minor POIs
   components:
   - type: Sprite

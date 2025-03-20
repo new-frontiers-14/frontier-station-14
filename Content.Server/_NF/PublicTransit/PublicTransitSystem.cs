@@ -175,17 +175,21 @@ public sealed class PublicTransitSystem : EntitySystem
         // Calculate the departure time from this stop and the arrival time at the next stops.
         var departureTime = nextBus.Comp.NextTransfer + stopDistance * (routeData.Prototype.TravelTime + routeData.Prototype.WaitTime) - _ticker.RoundStartTimeSpan;
 
-        args.PushMarkup(Loc.GetString("bus-schedule-next-departure", ("time", departureTime.ToString(@"hh\:mm\:ss"))));
-        args.PushMarkup(Loc.GetString("bus-schedule-arrival-header"));
+        FormattedMessage message = new();
+        message.AddMarkupPermissive(Loc.GetString("bus-schedule-next-departure", ("time", departureTime.ToString(@"hh\:mm\:ss"))));
+        message.PushNewline();
+        message.AddMarkupPermissive(Loc.GetString("bus-schedule-arrival-header"));
 
         var arrivalTime = departureTime + routeData.Prototype.TravelTime;
         for (int i = 1; i <= routeData.GridStops.Count; i++)
         {
-            var stopUid = routeData.GridStops.GetValueAtIndex(destInfo.stopIndex + i % routeData.GridStops.Count);
+            var stopUid = routeData.GridStops.GetValueAtIndex((destInfo.stopIndex + i) % routeData.GridStops.Count);
 
-            args.PushMarkup(Loc.GetString("bus-schedule-next-departure", ("station", Name(stopUid)), ("time", arrivalTime.ToString(@"hh\:mm\:ss"))));
+            message.PushNewline();
+            message.AddMarkupPermissive(Loc.GetString("bus-schedule-arrival", ("station", Name(stopUid)), ("time", arrivalTime.ToString(@"hh\:mm\:ss"))));
             arrivalTime += routeData.Prototype.TravelTime + routeData.Prototype.WaitTime;
         }
+        args.PushMessage(message);
     }
 
     private void OnStationsGenerated(StationsGeneratedEvent args)
@@ -346,7 +350,7 @@ public sealed class PublicTransitSystem : EntitySystem
                 continue; // NOTE: this bus is dead, should we despawn it?
 
             // FTL to next station if it exists.  Do this before the print.
-            _shuttles.FTLToDock(uid, shuttle, nextGrid.Value, hyperspaceTime: route.Prototype.TravelTime.Seconds, priorityTag: comp.DockTag); // TODO: Unhard code the priorityTag as it should be added from the system.
+            _shuttles.FTLToDock(uid, shuttle, nextGrid.Value, hyperspaceTime: (float)route.Prototype.TravelTime.TotalSeconds, priorityTag: comp.DockTag); // TODO: Unhard code the priorityTag as it should be added from the system.
             comp.CurrentGrid = nextGrid.Value;
 
             if (!TryComp(nextGrid, out MetaDataComponent? metadata))
