@@ -11,5 +11,6 @@ flavor-complex-torpedo = like convoy raiding
 flavor-complex-bees = like buzzing and honey
 flavor-complex-wassail = warm and comforting
 flavor-complex-fine-noodles = like fine noodles
-flavor-complex-rich-broth = rich broth
+flavor-complex-rich-broth = like rich broth
 flavor-complex-tangy = tangy
+flavor-complex-dirty-water = mildly off

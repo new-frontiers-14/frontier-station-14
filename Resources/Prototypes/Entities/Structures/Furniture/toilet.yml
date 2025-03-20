@@ -91,7 +91,7 @@
     solution: tank
     generated:
       reagents:
-      - ReagentId: Water
+      - ReagentId: DirtyWater # Frontier: Water<DirtyWater
         Quantity: 1
   - type: DrainableSolution
     solution: tank
@@ -132,10 +132,14 @@
       tank:
         maxVol: 500
         reagents:
-        - ReagentId: Water
-          Quantity: 180
-        - ReagentId: GastroToxin
-          Quantity: 20
+        # Frontier: toilet reagents
+        # - ReagentId: Water
+        #   Quantity: 180
+        # - ReagentId: GastroToxin
+        #   Quantity: 20
+        - ReagentId: DirtyWater
+          Quantity: 200
+        # Frontier: toilet reagents
 
 - type: entity
   id: ToiletGoldenEmpty
@@ -187,9 +191,11 @@
       tank:
         maxVol: 500
         reagents:
-        - ReagentId: Water
-          Quantity: 160
+        # - ReagentId: Water # Frontier
+        #   Quantity: 160 # Frontier
         - ReagentId: Gold
           Quantity: 20
-        - ReagentId: GastroToxin
-          Quantity: 20
+        # - ReagentId: GastroToxin # Frontier
+        #   Quantity: 20 # Frontier
+        - ReagentId: DirtyWater # Frontier
+          Quantity: 180 # Frontier

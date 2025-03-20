@@ -1,0 +1,33 @@
+- type: reagent
+  id: DirtyWater
+  parent: BaseDrink
+  name: reagent-name-dirty-water
+  group: Toxins
+  desc: reagent-desc-dirty-water
+  slippery: true
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: dirtywater
+  color: "#9ed6cc"
+  recognizable: true
+  boilingPoint: 100.0
+  meltingPoint: 0.0
+  plantMetabolism:
+  - !type:PlantAdjustWater
+    amount: 0.8
+  - !type:PlantAdjustHealth
+    amount: -0.2
+  metabolisms:
+    Drink:
+      effects:
+      # ~80% water, 20% gastrotoxin
+      - !type:SatiateThirst
+        factor: 2
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.4
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        probability: 0.2
