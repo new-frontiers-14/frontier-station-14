@@ -13,4 +13,7 @@ public sealed class EclipseCCVars
 
     public static readonly CVarDef<string> DiscordInteractAlertWebhook =
         CVarDef.Create("eclipse.discord_interact_alert_webhook", string.Empty, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> EmergencyShuttleAutoCallEnabled =
+        CVarDef.Create("eclipse.shuttle_auto_call_enabled", true, CVar.SERVERONLY);
 }

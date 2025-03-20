@@ -22,7 +22,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Timer = Robust.Shared.Timing.Timer;
-using Content.Server._NF.SectorServices; // Frontier
+using Content.Server._NF.SectorServices;
+using Content.Shared._Eclipse.CCVar; // Frontier
 
 namespace Content.Server.RoundEnd
 {
@@ -354,6 +355,11 @@ namespace Content.Server.RoundEnd
 
         public override void Update(float frameTime)
         {
+            if (!_cfg.GetCVar(EclipseCCVars.EmergencyShuttleAutoCallEnabled))
+            {
+                return;
+            }
+
             // Check if we should auto-call.
             int mins = _autoCalledBefore ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
                                         : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
