@@ -2,6 +2,8 @@
   parent: BaseSign
   id: BusSchedule
   suffix: Auto
+  name: bus schedule
+  description: A schedule that tells you when the bus is here. Don't be late!
   components:
   - type: WallMount
     arc: 175
@@ -12,6 +14,7 @@
     layers:
     - state: body
     - state: top_greyscale
+      color: "#aaaaaa"
   - type: BusSchedule
 
 - type: entity
@@ -23,7 +26,7 @@
     layers:
     - state: body
     - state: top_greyscale
-      color: "#ffaaaa"
+      color: "#aa4444"
   - type: BusSchedule
     routeId: SpawnPoints
 
@@ -36,7 +39,7 @@
     layers:
     - state: body
     - state: top_greyscale
-      color: "#aaffaa"
+      color: "#44aa44"
   - type: BusSchedule
     routeId: TradeExpress
 
@@ -49,6 +52,6 @@
     layers:
     - state: body
     - state: top_greyscale
-      color: "#aaaaff"
+      color: "#4444aa"
   - type: BusSchedule
     routeId: MinorPointsOfInterest

@@ -23,5 +23,5 @@ public sealed partial class TransitShuttleComponent : Component
     public string? DockTag;
 
     [DataField]
-    public ProtoId<PublicTransitRoutePrototype> RouteID;
+    public ProtoId<PublicTransitRoutePrototype> RouteId;
 }

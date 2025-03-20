@@ -14,5 +14,5 @@ public sealed partial class BusScheduleComponent : Component
     // The route ID to use when looking up the information.
     // If left null, will be associated with the first route in the station.
     [DataField]
-    public ProtoId<PublicTransitRoutePrototype>? RouteID;
+    public ProtoId<PublicTransitRoutePrototype>? RouteId;
 }
