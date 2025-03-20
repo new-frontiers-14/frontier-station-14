@@ -13,13 +13,12 @@
   parent: BaseVessel
   name: LVHI Gasbender
   description: The Gasbender is a medium-sized engineering vessel outfitted for deep space construction projects. Features atmospherics setup with mixing/ignition chamber. Designed to work in pair with smaller salvage ship. Manufactured by Langstad-Voigt Heavy Industries.
-  price: 82500 # ~63330$ on mapinit + 19000$ from 30% markup
+  price: 88000 # ~$73200 on mapinit + $14800 from ~20% markup
   category: Medium
-  group: Expedition
-  shuttlePath: /Maps/_NF/Shuttles/Expedition/gasbender.yml
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/gasbender.yml
   guidebookPage: ShipyardGasbender
   class:
-  - Expedition
   - Atmospherics
   engine:
   - AME
@@ -27,11 +26,11 @@
 - type: gameMap
   id: Gasbender
   mapName: 'Gasbender'
-  mapPath: /Maps/_NF/Shuttles/Expedition/gasbender.yml
+  mapPath: /Maps/_NF/Shuttles/gasbender.yml
   minPlayers: 0
   stations:
     Gasbender:
-      stationProto: StandardFrontierExpeditionVessel
+      stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Gasbender {1}'
