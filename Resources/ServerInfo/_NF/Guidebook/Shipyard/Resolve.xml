@@ -10,31 +10,31 @@
   <GuideEntityEmbed Entity="ShuttleMapResolve" Caption=""/>
   </Box>
     [color=#a4885c]Ship Size:[/color] Medium
-	
-	[color=#a4885c]Recommended Crew:[/color] 1-3
-	
-	[color=#a4885c]Power Gen Type:[/color] Plasma (x2)
-	
-	[color=#a4885c]Expeditions:[/color] None
-	
-	[color=#a4885c]IFF Console:[/color] None
-	
+    
+    [color=#a4885c]Recommended Crew:[/color] 1-3
+    
+    [color=#a4885c]Power Gen Type:[/color] Plasma (x2)
+    
+    [color=#a4885c]Expeditions:[/color] None
+    
+    [color=#a4885c]IFF Console:[/color] None
+    
   "A compact, full-service medical ship. NanoTransen Civilian's initial venture into medical response and aid vessels.*"
     
   # PREFLIGHT CHECKLIST
-  
+    
   ## 1. Power supply
-  
+    
   ## 1.1. Battery units
   <Box>
   <GuideEntityEmbed Entity="SubstationWallBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
-  
+    
   - Check that the wall-mounted substation unit is anchored and operational.
   - Check that each APC unit's Main Breaker is toggled on.
   - Check each APC unit's current Load** (W).
-  
+    
   ## 1.2. P.A.C.M.A.N. generator unit (x2)
   <Box>
   <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
@@ -44,40 +44,40 @@
   <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
   <GuideEntityEmbed Entity="SheetPlasma"/>
   </Box>
-  
+    
   - Check that each P.A.C.M.A.N. generator unit is anchored to the floor.
   - Check that each P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
   - Check that each P.A.C.M.A.N. generator unit is set to HV output.
   - Set Target Power to 15 [bold]kW[/bold] on each generator.
   - Start each P.A.C.M.A.N. generator unit.
-  
+    
   ## 2. Atmospherics
-
+    
   ## 2.1. Distribution Loop
-
+    
     <Box>
       <GuideEntityEmbed Entity="GasPort"/>
       <GuideEntityEmbed Entity="OxygenCanister"/>
       <GuideEntityEmbed Entity="NitrogenCanister"/>
       <GuideEntityEmbed Entity="GasMixer"/>
     </Box>
-
+    
     - Check that the O2 canister is anchored to connector port.
     - Check that the N2 canister is anchored to connector port.
     - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
     - Check that the gas mixer is set to 101.3kPa.
     - Check that the gas mixer is enabled.
-
+    
     ## 2.2. Waste Loops
     <Box>
       <GuideEntityEmbed Entity="GasVentScrubber"/>
       <GuideEntityEmbed Entity="AirAlarm"/>
     </Box>
-
+    
     - Check each waste loop pump. These are located under the scrubber in each individual room***.
     - Set the Air Alarm in Reception to Filtering (Wide).
     - Set the Air Alarm in Medical to Filtering (Wide). Be careful not to fall when accessing this panel.
-
+    
     ## 2.3. Cryo Loop
     <Box>
       <GuideEntityEmbed Entity="CryoPod"/>
@@ -85,30 +85,31 @@
       <GuideEntityEmbed Entity="GasPressurePump"/>
       <GuideEntityEmbed Entity="GasFilter"/>
     </Box>
-
+    
     - Ensure that the CryoPod, gas pump, and freezer are anchored, powered, and disabled.
-	- When enabling the CryoPod for use, first ensure the gas pump is enabled. Ensure that it is set to 101.3kPa.
-	- After confirming the gas pump is enabled, enable the freezer. Wait a moment for the pod to get to temperature (140K by default).
-	- Before use, verify that the CryoPod is at the appropriate pressure and temperature using a Gas Sensor.
-	- (Optional) Enable the Gas Filter and verify its operational condition. Use this to filter respiration and any other unwanted gases from the network.
-	- (Optional) When disabling the CryoPod, disable the freezer first. Wait approximately a minute for the temperature to recover, then disable the gas pump.
-
+    - When enabling the CryoPod for use, first ensure the gas pump is enabled. Ensure that it is set to 101.3kPa.
+    - After confirming the gas pump is enabled, enable the freezer. Wait a moment for the pod to get to temperature (140K by default).
+    - Before use, verify that the CryoPod is at the appropriate pressure and temperature using a Gas Sensor.
+    - (Optional) Enable the Gas Filter and verify its operational condition. Use this to filter respiration and any other unwanted gases from the network.
+    - (Optional) When disabling the CryoPod, disable the freezer first. Wait approximately a minute for the temperature to recover, then disable the gas pump.
+    
   ## 3. Other checks
   <Box>
     <GuideEntityEmbed Entity="SmallGyroscope"/>
     <GuideEntityEmbed Entity="GravityGeneratorMini"/>
   </Box>
-  
+    
   - Check that the gyroscope is anchored, powered, and enabled.
   - Check that the mini gravity generator is anchored, powered, and enabled.
-  
+    
   ## Sidenotes
-  
+    
   * - NanoTrasen Civilian typically designates their ships as service vessels. Facets of the Resolve's ship design -- particularly the location of hydroponics and use of plasma -- identify it 
   as a food service prototype repurposed for medical. NC complied with all appropriate permits and signoff with command prior to deployment.
-  
+    
   ** - Resolve-class vessels are equipped with two APC units split across the fore and aft (read: front and back) of the ship, located in Medical and Reception respectively. Both should read around 8.8 and 8.1kW by default. With the freezer and gas filter enabled, the APC on the medical floor should read approximately 13.8kW.
-  
+    
   *** - Due to the Resolve's unique design, each waste loop flows individually on a desire path out of the ship. The only shared loop is cryo and medical.
-
+    
 </Document>
+    
