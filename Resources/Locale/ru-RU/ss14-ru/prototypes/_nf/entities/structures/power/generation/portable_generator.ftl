@@ -15,18 +15,18 @@ ent-PortableGeneratorDK = портативный генератор типа Д-
         Работает на бананиуме и рассчитан на мощность до 120 кВт.
         Сильно радиоактивен без защиты.
     .suffix = Бананиум, Рад+, 60 кВт
-ent-PortableGeneratorDKShuttle = { ent-BaseGeneratorShuttle }
+ent-PortableGeneratorDKShuttle = { ent-PortableGeneratorDK }
     .suffix = Бананиум, Рад+, 60 кВт, Шаттл
-    .desc = { ent-BaseGeneratorShuttle.desc }
+    .desc = { ent-PortableGeneratorDK.desc }
 ent-PortableGeneratorDKJr = портативный генератор типа Д-К Мл.
     .desc =
         Миниатюрный реактор деления Данна-Кикко. Используйте с осторожностью.
         Работает на бананиуме и рассчитан на мощность до 100 кВт.
         Довольно радиоактивен без защиты.
     .suffix = Бананиум, Рад-, 60 кВт
-ent-PortableGeneratorDKJrShuttle = { ent-BaseGeneratorShuttle }
+ent-PortableGeneratorDKJrShuttle = { ent-PortableGeneratorDKJr }
     .suffix = Бананиум, Рад-, 60 кВт, Шаттл
-    .desc = { ent-BaseGeneratorShuttle.desc }
+    .desc = { ent-PortableGeneratorDKJr.desc }
 ent-PortableGeneratorHyperPacman = Г.И.П.Е.Р.П.А.К.М.А.Н.
     .desc =
         Генератор нового поколения для питания станций.

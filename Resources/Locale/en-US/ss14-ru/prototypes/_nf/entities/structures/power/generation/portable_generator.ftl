@@ -15,15 +15,15 @@ ent-PortableGeneratorDK = D-K-type portable generator
         Runs off bananium and is rated for up to 120 kW.
         Highly radioactive without protection.
     .suffix = Bananium, Rad+, 60 kW
-ent-PortableGeneratorDKShuttle = { ent-BaseGeneratorShuttle }
+ent-PortableGeneratorDKShuttle = { ent-PortableGeneratorDK }
     .suffix = Bananium, Rad+, 60 kW, Ship
-    .desc = { ent-BaseGeneratorShuttle.desc }
+    .desc = { ent-PortableGeneratorDK.desc }
 ent-PortableGeneratorDKJr = D-K Jr.-type portable generator
     .desc =
         A miniaturized Dunn-Kikko fission reactor. Use with caution.
         Runs off bananium and is rated for up to 100 kW.
         Quite radioactive without protection.
     .suffix = Bananium, Rad-, 60 kW
-ent-PortableGeneratorDKJrShuttle = { ent-BaseGeneratorShuttle }
+ent-PortableGeneratorDKJrShuttle = { ent-PortableGeneratorDKJr }
     .suffix = Bananium, Rad-, 60 kW, Ship
-    .desc = { ent-BaseGeneratorShuttle.desc }
+    .desc = { ent-PortableGeneratorDKJr.desc }
