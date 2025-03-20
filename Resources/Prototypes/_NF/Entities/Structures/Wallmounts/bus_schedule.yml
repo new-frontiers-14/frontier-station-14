@@ -1,0 +1,54 @@
+- type: entity
+  parent: BaseSign
+  id: BusSchedule
+  suffix: Auto
+  components:
+  - type: WallMount
+    arc: 175
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Structures/Wallmounts/bus_schedule.yml
+    snapCardinals: true
+    layers:
+    - state: body
+    - state: top_greyscale
+  - type: BusSchedule
+
+- type: entity
+  parent: BaseSign
+  id: BusSchedule
+  suffix: Route 1, Spawn Points
+  components:
+  - type: Sprite
+    layers:
+    - state: body
+    - state: top_greyscale
+      color: "#ffaaaa"
+  - type: BusSchedule
+    routeId: SpawnPoints
+
+- type: entity
+  parent: BaseSign
+  id: BusSchedule
+  suffix: Route 2, Trade Express
+  components:
+  - type: Sprite
+    layers:
+    - state: body
+    - state: top_greyscale
+      color: "#aaffaa"
+  - type: BusSchedule
+    routeId: TradeExpress
+
+- type: entity
+  parent: BaseSign
+  id: BusSchedule
+  suffix: Route 3, Minor POIs
+  components:
+  - type: Sprite
+    layers:
+    - state: body
+    - state: top_greyscale
+      color: "#aaaaff"
+  - type: BusSchedule
+    routeId: MinorPointsOfInterest

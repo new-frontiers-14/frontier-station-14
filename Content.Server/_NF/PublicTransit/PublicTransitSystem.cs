@@ -23,6 +23,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server._NF.PublicTransit;
 
@@ -105,17 +106,21 @@ public sealed class PublicTransitSystem : EntitySystem
 
     private void OnScheduleExamined(Entity<BusScheduleComponent> ent, ref ExaminedEvent args)
     {
+        if (!args.IsInDetailsRange)
+            return;
+
         if (!TryComp(ent, out TransformComponent? xform)
+            || xform.GridUid == null
             || !TryComp<StationTransitComponent>(xform.GridUid, out var transit))
         {
-            // TODO: add fallback output
+            args.PushMarkup(Loc.GetString("bus-schedule-no-bus"));
             return;
         }
 
         // Get the route associated with this grid.
         if (transit.Routes.Count <= 0)
         {
-            // TODO: add fallback output
+            args.PushMarkup(Loc.GetString("bus-schedule-no-bus"));
             return;
         }
 
@@ -126,27 +131,61 @@ public sealed class PublicTransitSystem : EntitySystem
         }
         else if (!transit.Routes.ContainsKey(route.Value))
         {
-            // TODO: add fallback output
+            args.PushMarkup(Loc.GetString("bus-schedule-no-buses-on-route"));
             return;
         }
 
-        if (!_routes.TryGetValue(route.Value, out var routeData))
+        // Get stop index on requested route
+        if (!_routes.TryGetValue(route.Value, out var routeData)
+            || !routeData.StopIndicesByGrid.TryGetValue(xform.GridUid.Value, out var destInfo))
         {
-            // TODO: add fallback output
+            args.PushMarkup(Loc.GetString("bus-schedule-no-buses-on-route"));
             return;
         }
 
-        EntityUid nextBus = EntityUid.Invalid;
-        int stopDistance = int.MaxValue;
+        Entity<TransitShuttleComponent>? nextBusMaybe = null;
+        var stopDistance = int.MaxValue;
+        var numStops = routeData.StopIndicesByGrid.Count;
         // Get the buses associated with this route, find the closest one before this stop.
-        var busQuery = EntityQueryEnumerator<StationTransitComponent>();
+        var busQuery = EntityQueryEnumerator<TransitShuttleComponent>();
         while (busQuery.MoveNext(out var busUid, out var busComp))
         {
-            if ()
+            if (busComp.RouteID != route)
+                continue;
+
+            // Find grid index
+            if (!routeData.StopIndicesByGrid.TryGetValue(xform.GridUid.Value, out var busInfo))
+                continue;
+
+            // Find distance (ensure positive modulo)
+            var distance = (destInfo.stopIndex - busInfo.stopIndex + numStops) % numStops;
+            if (distance < stopDistance)
+            {
+                stopDistance = distance;
+                nextBusMaybe = (busUid, busComp);
+            }
+        }
+
+        if (nextBusMaybe is not { } nextBus)
+        {
+            args.PushMarkup(Loc.GetString("bus-schedule-no-buses-on-route"));
+            return;
         }
 
         // Calculate the departure time from this stop and the arrival time at the next stops.
+        var departureTime = nextBus.Comp.NextTransfer + stopDistance * (routeData.Prototype.TravelTime + routeData.Prototype.WaitTime) - _ticker.RoundStartTimeSpan;
 
+        args.PushMarkup(Loc.GetString("bus-schedule-next-departure", ("time", departureTime.ToString(@"hh\:mm\:ss"))));
+        args.PushMarkup(Loc.GetString("bus-schedule-arrival-header"));
+
+        var arrivalTime = departureTime + routeData.Prototype.TravelTime;
+        for (int i = 1; i <= routeData.GridStops.Count; i++)
+        {
+            var stopUid = routeData.GridStops.GetValueAtIndex(destInfo.stopIndex + i % routeData.GridStops.Count);
+
+            args.PushMarkup(Loc.GetString("bus-schedule-next-departure", ("station", Name(stopUid)), ("time", arrivalTime.ToString(@"hh\:mm\:ss"))));
+            arrivalTime += routeData.Prototype.TravelTime + routeData.Prototype.WaitTime;
+        }
     }
 
     private void OnStationsGenerated(StationsGeneratedEvent args)
@@ -166,30 +205,39 @@ public sealed class PublicTransitSystem : EntitySystem
         if (Transform(ent).MapID != _ticker.DefaultMap) //best solution i could find because of componentinit/mapinit race conditions
             return;
 
-        UpdateRouteList(ent);
-        // TODO: add bus if needed, adjust departure times
-    }
-
-    private void UpdateRouteList(Entity<StationTransitComponent> ent)
-    {
         // Add each present route
-        foreach (var route in ent.Comp.Routes)
+        foreach (var (routeId, routeIndex) in ent.Comp.Routes)
         {
-            if (!_routes.ContainsKey(route.Key))
+            if (!_routes.TryGetValue(routeId, out var route))
             {
-                if (!_proto.TryIndex(route.Key, out var routeProto))
+                if (!_proto.TryIndex(routeId, out var routeProto))
                     continue;
-                _routes.Add(route.Key, new PublicTransitRoute(routeProto));
+                route = new PublicTransitRoute(routeProto);
+                _routes.Add(routeId, route);
             }
 
             // Already added (running from startup, reasonable)
-            if (_routes[route.Key].GridStops.ContainsValue(ent))
+            if (route.GridStops.ContainsValue(ent))
                 continue;
 
             // Handle duplicate values (e.g. three trade stations)
-            int value = route.Value;
-            while (!_routes[route.Key].GridStops.TryAdd(value, ent))
-                value++;
+            int actualRouteIndex = routeIndex;
+            while (!route.GridStops.TryAdd(actualRouteIndex, ent))
+                actualRouteIndex++;
+
+            CalculateGridIndices(route);
+        }
+        // TODO: add bus if needed, adjust departure times
+    }
+
+    private void CalculateGridIndices(PublicTransitRoute route)
+    {
+        // Recalculate grid indices
+        route.StopIndicesByGrid.Clear();
+        var index = 0;
+        foreach (var stop in route.GridStops)
+        {
+            route.StopIndicesByGrid[stop.Value] = (stop.Key, index++);
         }
     }
 
@@ -203,6 +251,8 @@ public sealed class PublicTransitSystem : EntitySystem
             var index = route.GridStops.IndexOfValue(ent);
             if (index != -1)
                 route.GridStops.RemoveAt(index);
+
+            CalculateGridIndices(route);
         }
         // TODO: could add logic to rebalance the buses here.
     }
@@ -476,7 +526,12 @@ sealed class PublicTransitRoute(PublicTransitRoutePrototype prototype)
     public PublicTransitRoutePrototype Prototype = prototype;
 
     /// <summary>
-    /// The list of grids this route stops at.
+    /// The list of grids this route stops at sorted by relative order.
     /// </summary>
     public SortedList<int, EntityUid> GridStops = new();
+
+    /// <summary>
+    /// The relative order (key in GridStops) and index of each stop by its UID
+    /// </summary>
+    public Dictionary<EntityUid, (int stopOrder, int stopIndex)> StopIndicesByGrid = new();
 }
