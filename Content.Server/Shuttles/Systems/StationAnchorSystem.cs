@@ -75,7 +75,7 @@ public sealed class StationAnchorSystem : EntitySystem
             SetStatus(ent, false);
     }
 
-    // Frontier: All these functions are used to handle device linking for anchors.
+    // Frontier: anchor device linking
     private void OnInit(EntityUid uid, StationAnchorComponent anchor, ComponentInit args)
     {
         _signalSystem.EnsureSinkPorts(uid, anchor.OnPort, anchor.OffPort, anchor.TogglePort);
@@ -127,7 +127,7 @@ public sealed class StationAnchorSystem : EntitySystem
 
         _chargeSystem.SetSwitchedOn(ent, entPowerHandler, !entPowerHandler.SwitchedOn);
     }
-    // End Frontier: Anchor Device Linking.
+    // End Frontier: anchor device linking
 
     private void SetStatus(Entity<StationAnchorComponent> ent, bool enabled, ShuttleComponent? shuttleComponent = default)
     {

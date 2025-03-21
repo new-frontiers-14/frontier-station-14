@@ -11,16 +11,6 @@
     powerLoad: 500
   - type: StaticPrice
     price: 300
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
-  - type: WirelessNetworkConnection
-    range: 200
-  - type: DeviceLinkSink
-    ports:
-      - On
-      - Off
-      - Toggle
   - type: Machine
     board: MiniStationAnchorCircuitboard
   - type: Fixtures
@@ -49,4 +39,6 @@
   suffix: Off
   components:
   - type: StationAnchor
+    switchedOn: false
+  - type: PowerCharge
     switchedOn: false
