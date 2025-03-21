@@ -12,16 +12,34 @@ namespace Content.Server._NF.PublicTransit.Components;
 [RegisterComponent, Access(typeof(PublicTransitSystem)), AutoGenerateComponentPause]
 public sealed partial class TransitShuttleComponent : Component
 {
+    /// <summary>
+    /// The grid that the shuttle is either at or travelling to.
+    /// </summary>
     [DataField]
     public EntityUid CurrentGrid;
 
+    /// <summary>
+    /// The time that the shuttle should leave for the next grid.
+    /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan NextTransfer;
 
+    /// <summary>
+    /// The priority tag to use for docking the shuttle.
+    /// </summary>
     [DataField]
     public string? DockTag;
 
+    /// <summary>
+    /// The prototype ID for the bus route this bus covers.
+    /// </summary>
     [DataField]
     public ProtoId<PublicTransitRoutePrototype> RouteId;
+
+    /// <summary>
+    /// The text to use on any screens on the bus.
+    /// </summary>
+    [DataField]
+    public string? ScreenText;
 }

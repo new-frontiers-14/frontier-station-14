@@ -6,8 +6,11 @@ using Content.Server._NF.PublicTransit.Components;
 using Content.Server._NF.PublicTransit.Prototypes;
 using Content.Server._NF.Station.Systems;
 using Content.Server.Chat.Systems;
+using Content.Server.DeviceNetwork.Components;
+using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
+using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
@@ -15,6 +18,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.PublicTransit;
+using Content.Shared.DeviceNetwork;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Shuttles.Components;
@@ -46,6 +50,7 @@ public sealed class PublicTransitSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
 
     /// <summary>
     /// If enabled then spawns the bus and sets up the bus line.
@@ -58,6 +63,7 @@ public sealed class PublicTransitSystem : EntitySystem
     private TimeSpan _nextUpdate = TimeSpan.FromSeconds(2);
     private TimeSpan _hyperspaceTimePerRoute = TimeSpan.FromSeconds(10);
     private const float ShuttleSpawnBuffer = 4f;
+    private const ushort TransitShuttleScreenFrequency = 10000;
 
     public override void Initialize()
     {
@@ -547,7 +553,7 @@ public sealed class PublicTransitSystem : EntitySystem
             if (numBuses >= neededBuses)
                 continue;
 
-            // TODO: default to 
+            // TODO: reduce the redundancy in these buses
             if (!_proto.TryIndex(route.Prototype.BusVessel, out var busVessel))
                 continue;
 
@@ -566,13 +572,16 @@ public sealed class PublicTransitSystem : EntitySystem
 
                 shuttleOffset += mapGrid.LocalAABB.Width + ShuttleSpawnBuffer;
 
-                // Here we are making sure that the shuttle has the TransitShuttle comp onto it, in case of dynamically changing the bus grid
+                // Here we are making sure that the shuttle has the TransitShuttle comp onto it, in case of dynamically changing the bus grid.
                 var transitComp = EnsureComp<TransitShuttleComponent>(shuttleEnt.Owner);
                 transitComp.RouteId = route.Prototype.ID;
                 transitComp.DockTag = route.Prototype.DockTag;
+                var busSuffix = (char)('A' + numBuses);
+                transitComp.ScreenText = Loc.GetString("public-transit-shuttle-screen-text", ("number", route.Prototype.RouteNumber), ("suffix", busSuffix));
+
                 EnsureComp<PreventPilotComponent>(shuttleEnt.Owner);
-                // If this thing should be a station, set up the station.
-                var shuttleName = Loc.GetString("public-transit-shuttle-name", ("number", route.Prototype.RouteNumber), ("suffix", (char)('A' + numBuses)));
+
+                var shuttleName = Loc.GetString("public-transit-shuttle-name", ("number", route.Prototype.RouteNumber), ("suffix", busSuffix));
 
                 // Set both the bus grid and station name, adjust warp points
                 _meta.SetEntityName(shuttleEnt.Owner, shuttleName);
@@ -587,11 +596,21 @@ public sealed class PublicTransitSystem : EntitySystem
                 var relativeIndex = MathF.Ceiling(relativePosition);
                 var extraTime = (relativeIndex - relativePosition) * routeHopTime;
 
-                //we set up a default in case the second time we call it fails for some reason
+                // We set up a default in case the second time we call it fails for some reason
                 var nextGrid = route.GridStops.GetValueAtIndex((int)relativeIndex);
                 _shuttles.FTLToDock(shuttleEnt, shuttleComp, nextGrid, hyperspaceTime: (float)initialHyperspaceTime.TotalSeconds, priorityTag: transitComp.DockTag);
                 transitComp.CurrentGrid = nextGrid;
                 transitComp.NextTransfer = _timing.CurTime + route.Prototype.WaitTime + extraTime + initialHyperspaceTime;
+
+                // Set up the screen text on the bus
+                var netComp = EnsureComp<DeviceNetworkComponent>(shuttleEnt);
+                _deviceNetwork.SetTransmitFrequency(shuttleEnt, TransitShuttleScreenFrequency, netComp);
+                var payload = new NetworkPayload
+                {
+                    [ScreenMasks.Text] = transitComp.ScreenText,
+                    [ScreenMasks.LocalGrid] = shuttleEnt.Owner,
+                };
+                _deviceNetwork.QueuePacket(shuttleEnt, null, payload, TransitShuttleScreenFrequency, device: netComp);
 
                 numBuses++;
             }
