@@ -1,0 +1,15 @@
+- type: entity
+  name: bedrock tile
+  parent: FloorTileItemBase
+  id: FloorTileItemBedrock
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Tiles/tile.rsi
+    state: bedrock
+  - type: Item
+    heldPrefix: bedrock
+  - type: FloorTile
+    outputs:
+      - FloorBedrock
+  - type: Stack
+    stackType: FloorTileBedrock
