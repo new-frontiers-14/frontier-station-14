@@ -50,4 +50,10 @@ public sealed partial class PublicTransitRoutePrototype : IPrototype
     /// </summary>
     [DataField(required: true)]
     public ProtoId<VesselPrototype> BusVessel { get; private set; } = default!;
+
+    /// <summary>
+    /// The color of related bus livery.
+    /// </summary>
+    [DataField]
+    public Color LiveryColor { get; private set; } = default!;
 }

@@ -14,6 +14,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
+using Content.Shared._NF.PublicTransit;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Shuttles.Components;
@@ -44,6 +45,7 @@ public sealed class PublicTransitSystem : EntitySystem
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
 
     /// <summary>
     /// If enabled then spawns the bus and sets up the bus line.
@@ -54,8 +56,8 @@ public sealed class PublicTransitSystem : EntitySystem
     private Dictionary<ProtoId<PublicTransitRoutePrototype>, PublicTransitRoute> _routes = new();
     private readonly TimeSpan _updatePeriod = TimeSpan.FromSeconds(2);
     private TimeSpan _nextUpdate = TimeSpan.FromSeconds(2);
-    private TimeSpan _initialHyperspaceTime = TimeSpan.FromSeconds(5);
-    private const float ShuttleSpawnBuffer = 1f;
+    private TimeSpan _hyperspaceTimePerRoute = TimeSpan.FromSeconds(10);
+    private const float ShuttleSpawnBuffer = 4f;
 
     public override void Initialize()
     {
@@ -63,9 +65,9 @@ public sealed class PublicTransitSystem : EntitySystem
 
         SubscribeLocalEvent<StationTransitComponent, ComponentStartup>(OnStationStartup);
         SubscribeLocalEvent<StationTransitComponent, ComponentRemove>(OnStationRemove);
-        SubscribeLocalEvent<TransitShuttleComponent, ComponentStartup>(OnShuttleStartup);
         SubscribeLocalEvent<TransitShuttleComponent, FTLCompletedEvent>(OnShuttleArrival);
         SubscribeLocalEvent<TransitShuttleComponent, FTLTagEvent>(OnShuttleTag);
+        SubscribeLocalEvent<BusScheduleComponent, MapInitEvent>(OnScheduleInit);
         SubscribeLocalEvent<BusScheduleComponent, ExaminedEvent>(OnScheduleExamined);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
@@ -103,6 +105,34 @@ public sealed class PublicTransitSystem : EntitySystem
         // Just saves mappers forgetting, or ensuring that a non-standard grid forced to be a bus will prioritize the "DockTransit" tagged docks
         args.Tag = ent.Comp.DockTag;
         args.Handled = true;
+    }
+
+    private void OnScheduleInit(Entity<BusScheduleComponent> ent, ref MapInitEvent args)
+    {
+        PublicTransitRoutePrototype? transitRoute;
+        // Non-null: set livery to our ID if it exists.
+        if (ent.Comp.RouteId != null)
+        {
+            if (_proto.TryIndex(ent.Comp.RouteId, out transitRoute))
+                _appearance.SetData(ent, PublicTransitVisuals.Livery, transitRoute.LiveryColor);
+            return;
+        }
+
+        // Null: look up livery from bus/stop data.
+        if (!TryComp(ent, out TransformComponent? xform))
+            return;
+
+        if (TryComp(xform.GridUid, out TransitShuttleComponent? transitShuttle)
+            && _proto.TryIndex(transitShuttle.RouteId, out transitRoute))
+        {
+            _appearance.SetData(ent, PublicTransitVisuals.Livery, transitRoute.LiveryColor);
+        }
+        else if (TryComp(xform.GridUid, out StationTransitComponent? stationTransit)
+            && stationTransit.Routes.Count > 0
+            && _proto.TryIndex(stationTransit.Routes.First().Key, out transitRoute))
+        {
+            _appearance.SetData(ent, PublicTransitVisuals.Livery, transitRoute.LiveryColor);
+        }
     }
 
     private void OnScheduleExamined(Entity<BusScheduleComponent> ent, ref ExaminedEvent args)
@@ -315,11 +345,6 @@ public sealed class PublicTransitSystem : EntitySystem
         // TODO: could add logic to rebalance the buses here.
     }
 
-    private void OnShuttleStartup(Entity<TransitShuttleComponent> ent, ref ComponentStartup args)
-    {
-        _renameWarps.SyncWarpPointsToGrid(ent);
-    }
-
     private void OnShuttleArrival(Entity<TransitShuttleComponent> ent, ref FTLCompletedEvent args)
     {
         var consoleQuery = EntityQueryEnumerator<ShuttleConsoleComponent, TransformComponent>();
@@ -505,6 +530,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
         var shuttleOffset = 500.0f;
         var dummyMapUid = _map.CreateMap(out var dummyMap);
+        var initialHyperspaceTime = _hyperspaceTimePerRoute;
 
         // For each route: find out the number of buses we need on it, then add more buses until we get to that count.
         // Leave the excess buses for now.
@@ -546,34 +572,38 @@ public sealed class PublicTransitSystem : EntitySystem
                 transitComp.DockTag = route.Prototype.DockTag;
                 EnsureComp<PreventPilotComponent>(shuttleEnt.Owner);
                 // If this thing should be a station, set up the station.
-                var shuttleName = Loc.GetString("public-transit-shuttle-name", ("number", route.Prototype.RouteNumber), ("suffix", neededBuses > 1 ? (char)('A' + numBuses) : ""));
+                var shuttleName = Loc.GetString("public-transit-shuttle-name", ("number", route.Prototype.RouteNumber), ("suffix", (char)('A' + numBuses)));
+
+                // Set both the bus grid and station name, adjust warp points
+                _meta.SetEntityName(shuttleEnt.Owner, shuttleName);
                 if (_proto.TryIndex<GameMapPrototype>(busVessel.ID, out var stationProto))
                 {
-                    var shuttleStation = _station.InitializeNewStation(stationProto.Stations[busVessel.ID], [shuttleEnt]);
-                    _meta.SetEntityName(shuttleStation, shuttleName);
+                    var shuttleStation = _station.InitializeNewStation(stationProto.Stations[busVessel.ID], [shuttleEnt], shuttleName);
                 }
-                // Set both the bus grid and station name
-                _meta.SetEntityName(shuttleEnt.Owner, shuttleName);
+                _renameWarps.SyncWarpPointsToGrid(shuttleEnt);
 
-                // Space each bus out in the schedule.
+                // Space each bus out in the schedule (in the next station if fractional time remaining, with that time added to the delay before leaving)
                 var relativePosition = (float)(numBuses * route.GridStops.Count) / neededBuses;
                 var relativeIndex = MathF.Ceiling(relativePosition);
                 var extraTime = (relativeIndex - relativePosition) * routeHopTime;
 
                 //we set up a default in case the second time we call it fails for some reason
                 var nextGrid = route.GridStops.GetValueAtIndex((int)relativeIndex);
-                _shuttles.FTLToDock(shuttleEnt, shuttleComp, nextGrid, hyperspaceTime: (float)_initialHyperspaceTime.TotalSeconds, priorityTag: transitComp.DockTag);
+                _shuttles.FTLToDock(shuttleEnt, shuttleComp, nextGrid, hyperspaceTime: (float)initialHyperspaceTime.TotalSeconds, priorityTag: transitComp.DockTag);
                 transitComp.CurrentGrid = nextGrid;
-                transitComp.NextTransfer = _timing.CurTime + route.Prototype.WaitTime + extraTime + _initialHyperspaceTime;
+                transitComp.NextTransfer = _timing.CurTime + route.Prototype.WaitTime + extraTime + initialHyperspaceTime;
 
                 numBuses++;
             }
+
+            // Space out routes so they don't all FTL at once.
+            initialHyperspaceTime += _hyperspaceTimePerRoute;
         }
 
         // the FTL sequence takes a few seconds to warm up and send the grid, so we give the temp dummy map
         // some buffer time before calling a self-delete
         var timer = AddComp<TimedDespawnComponent>(dummyMapUid);
-        timer.Lifetime = 15f;
+        timer.Lifetime = (float)initialHyperspaceTime.TotalSeconds + 10f;
         RoutesCreated = true;
     }
 }
