@@ -145,18 +145,11 @@ public sealed partial class MaterialReclaimerComponent : Component
     [DataField, AutoNetworkedField]
     public int ItemsProcessed;
 
-    // Frontier: old material reclaimer logic, material processing fix
     /// <summary>
-    /// Set to true for old material reclaimer solution drain logic, overrides OnlyReclaimDrainable
+    /// Frontier: set to true for old material reclaimer solution drain logic, overrides OnlyReclaimDrainable
     /// </summary>
     [DataField]
     public bool UseOldSolutionLogic = false;
-
-    /// <summary>
-    /// If false, machine will only process reagents (as in the industrial reagent grinder)
-    /// </summary>
-    [DataField]
-    public bool ProcessMaterials = true;
     // End Frontier
 }
 
