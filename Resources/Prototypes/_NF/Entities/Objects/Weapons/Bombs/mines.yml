@@ -1,10 +1,13 @@
 # Base
 - type: entity
-  parent: [ BaseLandMine ]
-  id: NFConcealedMineTrigger
+  id: NFBaseProximityMine
   abstract: true
   components:
-  - type: RequireProjectileTarget
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+    fixedRotation: true
   - type: Fixtures
     fixtures:
       fix1:
@@ -15,10 +18,22 @@
         - TabletopMachineMask
         layer:
         - TabletopMachineLayer
-  - type: CollisionWake
-    enabled: false
-  - type: Physics
-    bodyType: Dynamic
+  - type: Sprite
+    drawdepth: Items
+    sprite: Objects/Misc/landmine.rsi
+    state: landmine
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: RequireProjectileTarget
   - type: AmbientSound
     volume: -15
     range: 2
@@ -45,11 +60,9 @@
     whitelist:
       components:
         - Actor
-  - type: StepTrigger
-    active: false
 
 - type: entity
-  parent: NFConcealedMineTrigger
+  parent: NFBaseProximityMine
   id: NFConcealedMineExplosive
   suffix: Frontier, Mine, Explosive
   abstract: true
@@ -61,7 +74,7 @@
     canCreateVacuum: false
 
 - type: entity
-  parent: NFConcealedMineTrigger
+  parent: NFBaseProximityMine
   id: NFConcealedMineCryo
   suffix: Frontier, Mine, Cryo
   abstract: true
@@ -73,7 +86,7 @@
     canCreateVacuum: false
 
 - type: entity
-  parent: NFConcealedMineTrigger
+  parent: NFBaseProximityMine
   id: NFConcealedMineFire
   suffix: Frontier, Mine, Fire
   abstract: true
