@@ -1,5 +1,5 @@
 - type: entity
-  parent: GrenadeBase
+  parent: [GrenadeBase, BaseC2ContrabandUnredeemable] # Frontier: Added BaseC2ContrabandUnredeemable
   id: PipeBomb
   name: pipe bomb
   description: An improvised explosive made from pipes and wire.
@@ -33,7 +33,7 @@
     node: pipebomb
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: Added BaseC2ContrabandUnredeemable
   id: PipeBombGunpowder
   name: pipe bomb
   description: An improvised explosive made from a pipe. This one has no gunpowder.

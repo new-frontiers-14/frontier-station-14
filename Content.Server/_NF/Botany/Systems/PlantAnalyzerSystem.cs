@@ -199,7 +199,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
     {
         MutationFlags ret = MutationFlags.None;
         if (plant.TurnIntoKudzu) ret |= MutationFlags.TurnIntoKudzu;
-        if (plant.Seedless) ret |= MutationFlags.Seedless;
+        if (plant.Seedless || plant.PermanentlySeedless) ret |= MutationFlags.Seedless;
         if (plant.Ligneous) ret |= MutationFlags.Ligneous;
         if (plant.CanScream) ret |= MutationFlags.CanScream;
 

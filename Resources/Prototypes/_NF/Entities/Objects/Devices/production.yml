@@ -84,6 +84,36 @@
           amount: 2
           defaultPrototype: Beaker
 
+- type: entity
+  id: GasMiningDrillMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: gas mining drill machine board
+  description: A machine printed circuit board for a gas mining drill.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: GasMiningDrill
+      requirements:
+        Manipulator: 3
+      stackRequirements:
+        Steel: 10
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+
+- type: entity
+  id: GaslockFrameMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: portable gaslock machine board
+  description: A machine printed circuit board for a gas mining drill.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: GaslockFrame
+      stackRequirements:
+        Steel: 10
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+
 # TechFab
 - type: entity
   id: NfsdTechFabCircuitboard
@@ -226,15 +256,37 @@
       Cable: 2
 
 - type: entity
-  id: PortableGeneratorHyperPacmanMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: H.Y.P.E.R.P.A.C.M.A.N.-type portable generator machine board
-  description: A machine printed circuit board for a shredder.
+  id: PortableGeneratorDKMachineCircuitboard
+  parent: [ BaseMachineCircuitboard, BaseC2ContrabandUnredeemable ]
+  name: D-K-type portable generator machine board
+  description: A machine printed circuit board for a D-K-type portable generator.
   components:
     - type: Sprite
       state: engineering
     - type: MachineBoard
-      prototype: PortableGeneratorHyperPacman
+      prototype: PortableGeneratorDK
+      requirements:
+        Capacitor: 2
+      stackRequirements:
+        CableHV: 10
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 200
+      chemicalComposition:
+        Silicon: 20
+    - type: StaticPrice
+      price: 40
+
+- type: entity
+  id: PortableGeneratorDKJrMachineCircuitboard
+  parent: [ BaseMachineCircuitboard, BaseC1Contraband ]
+  name: D-K Jr.-type portable generator machine board
+  description: A machine printed circuit board for a D-K Jr.-type portable generator.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: PortableGeneratorDKJr
       requirements:
         Capacitor: 2
       stackRequirements:
@@ -351,7 +403,7 @@
 
 - type: entity
   id: CondimentDispenserCircuitboard
-  parent: BaseMachineCircuitboard  
+  parent: BaseMachineCircuitboard
   name: condiment dispenser machine board
   description: A machine printed circuit board for a condiment dispenser.
   components:
@@ -375,3 +427,22 @@
   components:
   - type: MachineBoard
     prototype: MiniStationAnchor
+
+- type: entity
+  id: PortablePumpMachineCircuitBoard
+  parent: BaseMachineCircuitboard
+  name: portable pump machine board
+  description: A machine printed circuit board for a portable pump.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: PortablePump
+    requirements:
+      Manipulator: 2
+    stackRequirements:
+      Cable: 2
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
