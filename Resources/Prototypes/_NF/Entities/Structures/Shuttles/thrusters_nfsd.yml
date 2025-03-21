@@ -8,7 +8,13 @@
   - type: Machine
     board: ThrusterNfsdMachineCircuitboard
   - type: Wires
-    layoutid: ThrusterNfsd
+    layoutId: ThrusterNfsd
+  - type: WiresPanel
+    open: false
+  - type: UserInterface
+    interfaces:
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
 
 - type: entity
   id: DebugThrusterNfsd

@@ -103,8 +103,13 @@
   - type: PirateBountyItem # Frontier
     id: Thruster # Frontier
   - type: Wires #Frontier
-    layoutid: Thruster #Frontier
-
+    layoutId: Thruster #Frontier
+  - type: WiresPanel #Frontier
+    open: false #Frontier
+  - type: UserInterface #Frontier
+    interfaces: #Frontier
+        enum.WiresUiKey.Key: #Frontier
+          type: WiresBoundUserInterface #Frontier
 - type: entity
   id: ThrusterUnanchored
   parent: Thruster

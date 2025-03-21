@@ -43,7 +43,12 @@
     board: SmallThrusterMachineCircuitboard
   - type: Wires
     layoutId: SmallThruster
-
+  - type: WiresPanel #Frontier
+    open: false #Frontier
+  - type: UserInterface #Frontier
+    interfaces: #Frontier
+        enum.WiresUiKey.Key: #Frontier
+          type: WiresBoundUserInterface #Frontier
 - type: entity
   id: SmallGyroscope
   parent: Gyroscope

@@ -17,8 +17,13 @@
   - type: Machine
     board: ThrusterSecurityMachineCircuitboard
   - type: Wires
-    layoutid: ThrusterSecurity
-
+    layoutId: ThrusterSecurity
+  - type: WiresPanel
+    open: false
+  - type: UserInterface
+    interfaces:
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
 - type: entity
   id: DebugThrusterSecurity
   parent: [BaseStructureDisableToolUse, DebugThruster]
