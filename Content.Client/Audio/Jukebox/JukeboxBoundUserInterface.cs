@@ -41,16 +41,6 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
             SendMessage(new JukeboxStopMessage());
         };
 
-        _menu.OnShufflePressed += () =>
-        {
-            SendMessage(new JukeboxShuffleMessage());
-        };
-
-        _menu.OnReplayPressed += () =>
-        {
-            SendMessage(new JukeboxReplayMessage());
-        };
-
         _menu.OnSongSelected += SelectSong;
 
         _menu.SetTime += SetTime;
