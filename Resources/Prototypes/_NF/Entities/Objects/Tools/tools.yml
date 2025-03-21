@@ -67,22 +67,24 @@
 - type: entity
   name: pirate repair kit
   parent: [BaseItem, BaseC3PirateContraband]
-  id: PirateRepaitKit
-  description: A collection of equipment needed to repair a pirate shipyard
+  id: PirateRepairKit
+  description: A collection of equipment needed to repair a pirate console.
   components:
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/toolbox_drop.ogg
-  - type: Tag
-    tags:
-    - Toolbox
   - type: Sprite
-    sprite: Objects/Tools/Toolboxes/toolbox_syn.rsi
+    sprite: _NF/Objects/Tools/Toolboxes/toolbox_pirate.rsi
     state: icon
-  - type: Tool
-    qualities:
-      - ComputerRepair
-    useSound:
-      collection: toolbox
+  - type: NFPirateToolbox
   - type: StaticPrice
     price: 0
+  # Lines below taken from ToolboxBase.
+  - type: Item
+    size: Ginormous
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"

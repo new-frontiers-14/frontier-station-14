@@ -222,5 +222,5 @@ uplink-pirate-radio-implanter-name = Radio Implanter
 uplink-pirate-radio-implanter-desc = Implants a Freelance radio, allowing covert communication without a headset.
 uplink-pirate-pmag-name = Machine Liberator
 uplink-pirate-pmag-desc = Removes station-binding machine DRM. A pirate's best friend.
-uplink-pirate-repair-kit-name = Pirate Shipyard Repair Kit
-uplink-pirate-repair-kit-desc = A collection of tools used to repair a pirate shipyard console. For those times when you have a string of bad luck.
+uplink-pirate-repair-kit-name = Pirate Computer Repair Kit
+uplink-pirate-repair-kit-desc = A collection of tools used to repair a pirate console. For those times when you have a string of bad luck.

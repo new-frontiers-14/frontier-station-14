@@ -440,13 +440,16 @@
   name: uplink-pirate-repair-kit-name
   description: uplink-pirate-repair-kit-desc
   productEntity: PirateRepairKit
-  icon: { sprite: Objects/Tools/Toolboxes/toolbox_syn.rsi, state: icon }
+  icon: { sprite: _NF/Objects/Tools/Toolboxes/toolbox_pirate.rsi, state: icon }
   cost:
-    Doubloon: 12
+    Doubloon: 3
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - PirateCaptain
   categories:
   - UplinkPirateUtility
