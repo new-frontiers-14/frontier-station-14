@@ -44,10 +44,7 @@ public sealed class ThrusterSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        // Frontier: Stops the current meta of "rush thrusters and left click all of them" that has been happening
-        /*
         SubscribeLocalEvent<ThrusterComponent, ActivateInWorldEvent>(OnActivateThruster);
-        */
         SubscribeLocalEvent<ThrusterComponent, ComponentInit>(OnThrusterInit);
         SubscribeLocalEvent<ThrusterComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ThrusterComponent, ComponentShutdown>(OnThrusterShutdown);
