@@ -4,6 +4,7 @@ using System.Numerics;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.PublicTransit.Components;
 using Content.Server._NF.PublicTransit.Prototypes;
+using Content.Server._NF.SectorServices;
 using Content.Server._NF.Station.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.DeviceNetwork.Components;
@@ -21,7 +22,6 @@ using Content.Shared._NF.PublicTransit;
 using Content.Shared._NF.PublicTransit.Components;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Examine;
-using Content.Shared.GameTicking;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
@@ -52,16 +52,13 @@ public sealed class PublicTransitSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
+    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
 
     /// <summary>
     /// If enabled then spawns the bus and sets up the bus line.
     /// </summary>
     public bool Enabled { get; private set; }
-    public bool StationsGenerated { get; private set; }
-    public bool RoutesCreated { get; private set; }
-    private Dictionary<ProtoId<PublicTransitRoutePrototype>, PublicTransitRoute> _routes = new();
-    private readonly TimeSpan _updatePeriod = TimeSpan.FromSeconds(2);
-    private TimeSpan _nextUpdate = TimeSpan.FromSeconds(2);
+
     private TimeSpan _hyperspaceTimePerRoute = TimeSpan.FromSeconds(10);
     private const float ShuttleSpawnBuffer = 4f;
     private const ushort TransitShuttleScreenFrequency = 10000;
@@ -77,21 +74,9 @@ public sealed class PublicTransitSystem : EntitySystem
         SubscribeLocalEvent<PublicTransitVisualsComponent, MapInitEvent>(OnPublicTransitVisualsInit);
         SubscribeLocalEvent<BusScheduleComponent, ExaminedEvent>(OnScheduleExamined);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         Enabled = _cfgManager.GetCVar(NFCCVars.PublicTransit);
-        StationsGenerated = false;
-        RoutesCreated = false;
-        _routes.Clear();
         _cfgManager.OnValueChanged(NFCCVars.PublicTransit, SetTransit);
-        _nextUpdate = _timing.CurTime;
-    }
-
-    public void OnRoundRestartCleanup(RoundRestartCleanupEvent args)
-    {
-        _routes.Clear();
-        StationsGenerated = false;
-        RoutesCreated = false;
     }
 
     public override void Shutdown()
@@ -192,8 +177,14 @@ public sealed class PublicTransitSystem : EntitySystem
 
     private void PrintBusSchedule(ProtoId<PublicTransitRoutePrototype> route, Entity<TransitShuttleComponent> grid, ref ExaminedEvent args)
     {
+        if (!TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var sectorPublicTransit))
+        {
+            args.PushMarkup(Loc.GetString("bus-schedule-no-stops-on-route"));
+            return;
+        }
+
         // FIXME: what happens if the station the bus is at is removed?
-        if (!_routes.TryGetValue(route, out var routeData)
+        if (!sectorPublicTransit.Routes.TryGetValue(route, out var routeData)
             || !routeData.StopIndicesByGrid.TryGetValue(grid.Comp.CurrentGrid, out var destInfo))
         {
             args.PushMarkup(Loc.GetString("bus-schedule-no-stops-on-route"));
@@ -227,8 +218,14 @@ public sealed class PublicTransitSystem : EntitySystem
 
     private void PrintStationSchedule(ProtoId<PublicTransitRoutePrototype> route, EntityUid grid, ref ExaminedEvent args)
     {
+        if (!TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var sectorPublicTransit))
+        {
+            args.PushMarkup(Loc.GetString("bus-schedule-no-buses-on-route"));
+            return;
+        }
+
         // Get stop index on requested route
-        if (!_routes.TryGetValue(route, out var routeData)
+        if (!sectorPublicTransit.Routes.TryGetValue(route, out var routeData)
             || !routeData.StopIndicesByGrid.TryGetValue(grid, out var destInfo))
         {
             args.PushMarkup(Loc.GetString("bus-schedule-no-buses-on-route"));
@@ -286,10 +283,13 @@ public sealed class PublicTransitSystem : EntitySystem
 
     private void OnStationsGenerated(StationsGeneratedEvent args)
     {
-        if (Enabled && !RoutesCreated)
-            SetupPublicTransit();
+        if (!TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var sectorPublicTransit))
+            return;
 
-        StationsGenerated = true;
+        if (Enabled && !sectorPublicTransit.RoutesCreated)
+            SetupPublicTransit(sectorPublicTransit);
+
+        sectorPublicTransit.StationsGenerated = true;
     }
 
     /// <summary>
@@ -301,15 +301,18 @@ public sealed class PublicTransitSystem : EntitySystem
         if (Transform(ent).MapID != _ticker.DefaultMap) //best solution i could find because of componentinit/mapinit race conditions
             return;
 
+        if (!TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var sectorPublicTransit))
+            return;
+
         // Add each present route
         foreach (var (routeId, routeIndex) in ent.Comp.Routes)
         {
-            if (!_routes.TryGetValue(routeId, out var route))
+            if (!sectorPublicTransit.Routes.TryGetValue(routeId, out var route))
             {
                 if (!_proto.TryIndex(routeId, out var routeProto))
                     continue;
                 route = new PublicTransitRoute(routeProto);
-                _routes.Add(routeId, route);
+                sectorPublicTransit.Routes.Add(routeId, route);
             }
 
             // Already added (running from startup, reasonable)
@@ -342,7 +345,10 @@ public sealed class PublicTransitSystem : EntitySystem
     /// </summary>
     private void OnStationRemove(Entity<StationTransitComponent> ent, ref ComponentRemove args)
     {
-        foreach (var route in _routes.Values)
+        if (!TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var sectorPublicTransit))
+            return;
+
+        foreach (var route in sectorPublicTransit.Routes.Values)
         {
             var index = route.GridStops.IndexOfValue(ent);
             if (index != -1)
@@ -355,6 +361,9 @@ public sealed class PublicTransitSystem : EntitySystem
 
     private void OnShuttleArrival(Entity<TransitShuttleComponent> ent, ref FTLCompletedEvent args)
     {
+        if (!TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var sectorPublicTransit))
+            return;
+
         var consoleQuery = EntityQueryEnumerator<ShuttleConsoleComponent, TransformComponent>();
 
         while (consoleQuery.MoveNext(out var consoleUid, out _, out var xform))
@@ -363,7 +372,7 @@ public sealed class PublicTransitSystem : EntitySystem
                 continue;
 
             // Find route details.
-            if (!_routes.TryGetValue(ent.Comp.RouteId, out var route))
+            if (!sectorPublicTransit.Routes.TryGetValue(ent.Comp.RouteId, out var route))
                 continue;
 
             // Note: the next grid is not cached in case stations are added or removed.
@@ -414,11 +423,14 @@ public sealed class PublicTransitSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        if (!TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var sectorPublicTransit))
+            return;
+
         var curTime = _timing.CurTime;
         // Update periodically, no need to have the buses on time to the millisecond.
-        if (_nextUpdate < curTime)
+        if (sectorPublicTransit.NextUpdate > curTime)
             return;
-        _nextUpdate = curTime + _updatePeriod;
+        sectorPublicTransit.NextUpdate = curTime + sectorPublicTransit.UpdatePeriod;
 
         var query = EntityQueryEnumerator<TransitShuttleComponent, ShuttleComponent>();
 
@@ -427,7 +439,7 @@ public sealed class PublicTransitSystem : EntitySystem
             if (comp.NextTransfer > curTime)
                 continue;
 
-            if (!_routes.TryGetValue(comp.RouteId, out var route))
+            if (!sectorPublicTransit.Routes.TryGetValue(comp.RouteId, out var route))
                 continue;
 
             // Regardless of whether we have a station to go to, don't rerun the same conditions frequently.
@@ -477,11 +489,15 @@ public sealed class PublicTransitSystem : EntitySystem
             {
                 QueueDel(uid);
             }
-            RoutesCreated = false;
+
+            if (TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var publicTransit))
+                publicTransit.RoutesCreated = false;
         }
-        else if (!RoutesCreated && StationsGenerated)
+        else if (TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var publicTransit)
+                && !publicTransit.RoutesCreated
+                && publicTransit.StationsGenerated)
         {
-            SetupPublicTransit();
+            SetupPublicTransit(publicTransit);
         }
     }
 
@@ -493,7 +509,7 @@ public sealed class PublicTransitSystem : EntitySystem
     /// <remarks>
     /// Bus scheduling may be clumped if disabled and reenabled with enough stops to require additional buses.
     /// </remarks>
-    private void SetupPublicTransit()
+    private void SetupPublicTransit(SectorPublicTransitComponent comp)
     {
         Dictionary<ProtoId<PublicTransitRoutePrototype>, List<EntityUid>> busesByRoute = new();
         // Count the existing buses.
@@ -507,7 +523,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
         // Set up bus depot
         // NOTE: this only works with one depot at the moment.
-        foreach (var route in _routes.Values)
+        foreach (var route in comp.Routes.Values)
         {
             route.GridStops.Remove(0);
         }
@@ -524,7 +540,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
             var transit = EnsureComp<StationTransitComponent>(depotGrid.Value);
             transit.Routes.Clear();
-            foreach (var route in _routes.Values)
+            foreach (var route in comp.Routes.Values)
             {
                 if (route.GridStops.Count <= 0)
                     continue;
@@ -542,7 +558,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
         // For each route: find out the number of buses we need on it, then add more buses until we get to that count.
         // Leave the excess buses for now.
-        foreach (var route in _routes.Values)
+        foreach (var route in comp.Routes.Values)
         {
             var numBuses = 0;
             if (busesByRoute.TryGetValue(route.Prototype.ID, out var routeBuses))
@@ -625,7 +641,7 @@ public sealed class PublicTransitSystem : EntitySystem
         // some buffer time before calling a self-delete
         var timer = AddComp<TimedDespawnComponent>(dummyMapUid);
         timer.Lifetime = (float)initialHyperspaceTime.TotalSeconds + 10f;
-        RoutesCreated = true;
+        comp.RoutesCreated = true;
 
         // Set up livery for route-based visuals
         var visualsEnumerator = EntityQueryEnumerator<PublicTransitVisualsComponent>();
@@ -634,22 +650,4 @@ public sealed class PublicTransitSystem : EntitySystem
             TrySetGridVisuals((visualUid, visualComp));
         }
     }
-}
-
-sealed class PublicTransitRoute(PublicTransitRoutePrototype prototype)
-{
-    /// <summary>
-    /// The prototype this route is based off of.
-    /// </summary>
-    public PublicTransitRoutePrototype Prototype = prototype;
-
-    /// <summary>
-    /// The list of grids this route stops at sorted by relative order.
-    /// </summary>
-    public SortedList<int, EntityUid> GridStops = new();
-
-    /// <summary>
-    /// The relative order (key in GridStops) and index of each stop by its UID
-    /// </summary>
-    public Dictionary<EntityUid, (int stopOrder, int stopIndex)> StopIndicesByGrid = new();
 }
