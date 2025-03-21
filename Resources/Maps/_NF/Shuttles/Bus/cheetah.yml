@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/21/2025 05:05:20
+  entityCount: 124
+maps: []
+grids:
+- 8756
+orphans:
+- 8756
+nullspace: []
 tilemap:
   0: Space
   30: FloorDark
@@ -18,6 +29,7 @@ entities:
     components:
     - type: MetaData
     - type: Transform
+      parent: invalid
     - type: BecomesStation
       id: Cheetah
     - type: MapGrid
@@ -50,7 +62,6 @@ entities:
     - type: OccluderTree
     - type: Shuttle
     - type: GridPathfinding
-    - type: PreventGridAnchorChanges
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
@@ -236,6 +247,80 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,0.5
       parent: 8756
+- proto: BenchComfyTransit
+  entities:
+  - uid: 9
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-0.5
+      parent: 8756
+  - uid: 24
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-3.5
+      parent: 8756
+  - uid: 29
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-4.5
+      parent: 8756
+  - uid: 31
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-4.5
+      parent: 8756
+  - uid: 55
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-1.5
+      parent: 8756
+  - uid: 65
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-2.5
+      parent: 8756
+  - uid: 67
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-3.5
+      parent: 8756
+  - uid: 68
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-2.5
+      parent: 8756
+  - uid: 86
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-3.5
+      parent: 8756
+  - uid: 87
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-2.5
+      parent: 8756
+- proto: BusSchedule
+  entities:
+  - uid: 56
+    components:
+    - type: Transform
+      pos: -3.5,-2.5
+      parent: 8756
+  - uid: 59
+    components:
+    - type: Transform
+      pos: 2.5,-2.5
+      parent: 8756
 - proto: CableApcExtension
   entities:
   - uid: 14
@@ -372,68 +457,6 @@ entities:
     - type: Transform
       pos: 1.5,-5.5
       parent: 8756
-- proto: ChairPilotSeat
-  entities:
-  - uid: 9
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-1.5
-      parent: 8756
-  - uid: 24
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-2.5
-      parent: 8756
-  - uid: 29
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-2.5
-      parent: 8756
-  - uid: 31
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-2.5
-      parent: 8756
-  - uid: 67
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-0.5
-      parent: 8756
-  - uid: 68
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-3.5
-      parent: 8756
-  - uid: 8857
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-3.5
-      parent: 8756
-  - uid: 8858
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-4.5
-      parent: 8756
-  - uid: 8859
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-3.5
-      parent: 8756
-  - uid: 8860
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-4.5
-      parent: 8756
 - proto: ComputerRadar
   entities:
   - uid: 63
@@ -449,7 +472,7 @@ entities:
       pos: 0.5,1.5
       parent: 8756
     - type: WorldLoader
-      disabled: true
+      disabled: True
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 27
@@ -579,18 +602,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-3.5
       parent: 8756
-  - uid: 43
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,-2.5
-      parent: 8756
-  - uid: 56
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-2.5
-      parent: 8756
   - uid: 57
     components:
     - type: Transform
@@ -665,6 +676,18 @@ entities:
     - type: Transform
       pos: -0.5,1.5
       parent: 8756
+- proto: NFSignBus
+  entities:
+  - uid: 1
+    components:
+    - type: Transform
+      pos: -3.5,1.5
+      parent: 8756
+  - uid: 44
+    components:
+    - type: Transform
+      pos: 2.5,1.5
+      parent: 8756
 - proto: NitrogenCanister
   entities:
   - uid: 50
@@ -736,32 +759,22 @@ entities:
       parent: 8756
     - type: ApcPowerReceiver
       powerLoad: 0
-- proto: RandomPosterLegit
+- proto: ScreenBus
   entities:
-  - uid: 55
+  - uid: 88
     components:
     - type: Transform
-      pos: -3.5,-1.5
-      parent: 8756
-  - uid: 65
-    components:
-    - type: Transform
+      rot: 3.141592653589793 rad
       pos: 2.5,-1.5
+      parent: 8756
+  - uid: 89
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-1.5
       parent: 8756
 - proto: ShuttleWindow
   entities:
-  - uid: 59
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-2.5
-      parent: 8756
-  - uid: 62
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,-2.5
-      parent: 8756
   - uid: 72
     components:
     - type: Transform
@@ -835,18 +848,6 @@ entities:
     - type: Transform
       pos: -1.5,3.5
       parent: 8756
-- proto: NFSignBus
-  entities:
-  - uid: 1
-    components:
-    - type: Transform
-      pos: -3.5,1.5
-      parent: 8756
-  - uid: 44
-    components:
-    - type: Transform
-      pos: 2.5,1.5
-      parent: 8756
 - proto: SpaceHeaterEnabled
   entities:
   - uid: 42
@@ -907,6 +908,16 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-1.5
+      parent: 8756
+  - uid: 43
+    components:
+    - type: Transform
+      pos: 2.5,-2.5
+      parent: 8756
+  - uid: 62
+    components:
+    - type: Transform
+      pos: -3.5,-2.5
       parent: 8756
   - uid: 8765
     components:

@@ -10,10 +10,9 @@
 # Minimal definition, should not be an actual shipyard entry.
 # Named it cheetah because it's _so fast_.
 - type: vessel
-  id: BaseCheetah
+  id: Cheetah
   parent: BaseVesselNonPlayer
   shuttlePath: /Maps/_NF/Shuttles/Bus/cheetah.yml
-  abstract: true
   addComponents:
   - type: PreventPilot
   - type: ProtectedGrid
@@ -26,28 +25,13 @@
     killHostileMobs: true
   - type: LinkedLifecycleGridParent
 
-- type: vessel
-  id: CheetahRed
-  parent: BaseCheetah
-  shuttlePath: /Maps/_NF/Shuttles/Bus/cheetah_red.yml
-
-- type: vessel
-  id: CheetahGreen
-  parent: BaseCheetah
-  shuttlePath: /Maps/_NF/Shuttles/Bus/cheetah_green.yml
-
-- type: vessel
-  id: CheetahBlue
-  parent: BaseCheetah
-  shuttlePath: /Maps/_NF/Shuttles/Bus/cheetah_blue.yml
-
 - type: gameMap
-  id: CheetahRed
-  mapName: 'CheetahRed'
-  mapPath: /Maps/_NF/Shuttles/Bus/cheetah_red.yml
+  id: Cheetah
+  mapName: 'Cheetah'
+  mapPath: /Maps/_NF/Shuttles/Bus/cheetah.yml
   minPlayers: 0
   stations:
-    CheetahRed: &cheetahParams
+    Cheetah:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
@@ -55,19 +39,3 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
-
-- type: gameMap
-  id: CheetahGreen
-  mapName: 'CheetahGreen'
-  mapPath: /Maps/_NF/Shuttles/Bus/cheetah_green.yml
-  minPlayers: 0
-  stations:
-    CheetahGreen: *cheetahParams
-
-- type: gameMap
-  id: CheetahBlue
-  mapName: 'CheetahBlue'
-  mapPath: /Maps/_NF/Shuttles/Bus/cheetah_blue.yml
-  minPlayers: 0
-  stations:
-    CheetahBlue: *cheetahParams

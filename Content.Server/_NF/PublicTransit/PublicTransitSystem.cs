@@ -18,6 +18,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.PublicTransit;
+using Content.Shared._NF.PublicTransit.Components;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
@@ -73,7 +74,7 @@ public sealed class PublicTransitSystem : EntitySystem
         SubscribeLocalEvent<StationTransitComponent, ComponentRemove>(OnStationRemove);
         SubscribeLocalEvent<TransitShuttleComponent, FTLCompletedEvent>(OnShuttleArrival);
         SubscribeLocalEvent<TransitShuttleComponent, FTLTagEvent>(OnShuttleTag);
-        SubscribeLocalEvent<BusScheduleComponent, MapInitEvent>(OnScheduleInit);
+        SubscribeLocalEvent<PublicTransitVisualsComponent, MapInitEvent>(OnPublicTransitVisualsInit);
         SubscribeLocalEvent<BusScheduleComponent, ExaminedEvent>(OnScheduleExamined);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
@@ -113,32 +114,33 @@ public sealed class PublicTransitSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnScheduleInit(Entity<BusScheduleComponent> ent, ref MapInitEvent args)
+    private void OnPublicTransitVisualsInit(Entity<PublicTransitVisualsComponent> ent, ref MapInitEvent args)
     {
-        PublicTransitRoutePrototype? transitRoute;
-        // Non-null: set livery to our ID if it exists.
-        if (ent.Comp.RouteId != null)
-        {
-            if (_proto.TryIndex(ent.Comp.RouteId, out transitRoute))
-                _appearance.SetData(ent, PublicTransitVisuals.Livery, transitRoute.LiveryColor);
-            return;
-        }
+        TrySetGridVisuals(ent);
+    }
 
+    private bool TrySetGridVisuals(Entity<PublicTransitVisualsComponent> ent)
+    {
         // Null: look up livery from bus/stop data.
         if (!TryComp(ent, out TransformComponent? xform))
-            return;
+            return false;
 
+        PublicTransitRoutePrototype? transitRoute;
         if (TryComp(xform.GridUid, out TransitShuttleComponent? transitShuttle)
             && _proto.TryIndex(transitShuttle.RouteId, out transitRoute))
         {
             _appearance.SetData(ent, PublicTransitVisuals.Livery, transitRoute.LiveryColor);
+            return true;
         }
         else if (TryComp(xform.GridUid, out StationTransitComponent? stationTransit)
             && stationTransit.Routes.Count > 0
             && _proto.TryIndex(stationTransit.Routes.First().Key, out transitRoute))
         {
             _appearance.SetData(ent, PublicTransitVisuals.Livery, transitRoute.LiveryColor);
+            return true;
         }
+
+        return false;
     }
 
     private void OnScheduleExamined(Entity<BusScheduleComponent> ent, ref ExaminedEvent args)
@@ -624,6 +626,13 @@ public sealed class PublicTransitSystem : EntitySystem
         var timer = AddComp<TimedDespawnComponent>(dummyMapUid);
         timer.Lifetime = (float)initialHyperspaceTime.TotalSeconds + 10f;
         RoutesCreated = true;
+
+        // Set up livery for route-based visuals
+        var visualsEnumerator = EntityQueryEnumerator<PublicTransitVisualsComponent>();
+        while (visualsEnumerator.MoveNext(out var visualUid, out var visualComp))
+        {
+            TrySetGridVisuals((visualUid, visualComp));
+        }
     }
 }
 

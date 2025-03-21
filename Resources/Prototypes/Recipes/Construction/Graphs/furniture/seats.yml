@@ -87,15 +87,6 @@
               doAfter: 1
             - material: Cloth
               amount: 1
-        # Frontier
-        - to: greenComfBench
-          steps:
-            - material: Steel
-              amount: 2
-              doAfter: 1
-            - material: Cloth
-              amount: 1
-        # End Frontier
 
     - node: chair
       entity: Chair
@@ -341,25 +332,6 @@
               doAfter: 1
             - tool: Screwing
               doAfter: 1
-
-    # Frontier
-    - node: greenComfBench
-      entity: BenchGreenComfy
-      edges:
-        - to: start
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetSteel1
-              amount: 2
-            - !type:SpawnPrototype
-              prototype: MaterialCloth1
-              amount: 1
-          steps:
-            - tool: Cutting
-              doAfter: 1
-            - tool: Screwing
-              doAfter: 1
-    # End Frontier
 
     # Frontier: fancy wooden chairs
     - node: chairWoodFancyBlack
