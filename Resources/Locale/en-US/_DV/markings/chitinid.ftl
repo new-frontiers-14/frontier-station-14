@@ -11,7 +11,8 @@ marking-ChitinidAntennasSlick-slick = Antennae
 marking-ChitinidAntennasSlick = Antennae (Slick)
 
 marking-ChitinidAntennasShort-short = Antennae
-marking-ChitinidAntennasShort = Antennae (short)
+# Frontier: capitalize Short
+marking-ChitinidAntennasShort = Antennae (Short)
 
 marking-ChitinidAntennasLong-long = Antennae
 marking-ChitinidAntennasLong = Antennae (Long)
