@@ -25,6 +25,7 @@ public sealed class DumpableSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!; // DeltaV - ough why do you not use events for this
+    [Dependency] private readonly SmartFridgeSystem _smartFridge = default!; // Frontier
 
     private EntityQuery<ItemComponent> _itemQuery;
 
@@ -187,14 +188,19 @@ public sealed class DumpableSystem : EntitySystem
         else if (TryComp<SmartFridgeComponent>(target, out var fridge))
         {
             dumped = true;
-            if (_container.TryGetContainer(target!.Value, fridge.Container, out var container))
+            // Frontier: 
+            // if (_container.TryGetContainer(target!.Value, fridge.Container, out var container))
+            // {
+            //     foreach (var entity in dumpQueue)
+            //     {
+            //         _container.Insert(entity, container); // Frontier
+            //     }
+            // }
+            foreach (var entity in dumpQueue)
             {
-                foreach (var entity in dumpQueue)
-                {
-                    _container.Insert(entity, container);
-                }
+                _smartFridge.TryInsertObject((target!.Value, fridge), entity, user); // Frontier
             }
-
+            // End Frontier
         }
         // End DeltaV - ough why do you not use events for this
         else
