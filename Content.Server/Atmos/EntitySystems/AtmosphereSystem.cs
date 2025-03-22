@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Fluids.EntitySystems;
+using Content.Server.GameTicking; // Frontier
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Decals;
@@ -38,6 +39,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] public readonly PuddleSystem Puddle = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!; // Frontier
 
     private const float ExposedUpdateDelay = 1f;
     private float _exposedTimer = 0f;
