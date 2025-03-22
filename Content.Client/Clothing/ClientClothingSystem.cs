@@ -328,6 +328,18 @@ public sealed class ClientClothingSystem : ClothingSystem
             sprite.LayerSetData(index, layerData);
             layer.Offset += slotDef.Offset;
 
+            // Frontier: species-specific layering
+            if (layer.RSI != null
+                && inventory.SpeciesId != null
+                && layerData.State != null
+                && !layerData.State.EndsWith(inventory.SpeciesId))
+            {
+                var speciesLayer = $"{layerData.State}-{inventory.SpeciesId}";
+                if (layer.RSI.TryGetState(speciesLayer, out _))
+                    layer.State = speciesLayer;
+            }
+            // End Frontier: species-specific layering
+
             if (displacementData is not null)
             {
                 //Checking that the state is not tied to the current race. In this case we don't need to use the displacement maps.
