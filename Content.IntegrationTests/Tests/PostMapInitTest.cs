@@ -292,6 +292,7 @@ namespace Content.IntegrationTests.Tests
                 DeserializationOptions.Default,
                 renamedPrototypes,
                 deletedPrototypes);
+          // End Upstream#35933 - migration fix
 
             if (!reader.TryProcessData())
             {
