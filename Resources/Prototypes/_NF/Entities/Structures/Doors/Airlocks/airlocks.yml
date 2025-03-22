@@ -46,11 +46,20 @@
 
 - type: entity
   parent: AirlockMedicalGlass
-  id: AirlockBrigmedicGlassLocked
+  id: AirlockMedicalGlassLockedSecurity
   suffix: Locked, Security
   components:
   - type: Wires
     layoutId: AirlockSecurity
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  parent: AirlockMedicalGlassLockedSecurity
+  id: AirlockBrigmedicGlassLocked
+  suffix: Locked, Brigmedic
+  components:
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsBrigmedic ]
