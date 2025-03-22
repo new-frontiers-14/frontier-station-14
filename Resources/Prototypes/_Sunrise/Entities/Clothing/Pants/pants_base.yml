@@ -3,37 +3,19 @@
   parent: Clothing
   id: ClothingPantsBase
   components:
-  - type: Clothing
-    slots:
-      - PANTS
-  - type: Sprite
-    state: icon
+    - type: Clothing
+      slots:
+        - PANTS
+    - type: Sprite
+      state: icon
 
 - type: entity
   abstract: true
   parent: ClothingPantsBase
   id: ClothingPantsBaseButcherable
   components:
-  - type: Butcherable
-    butcheringType: Knife
-    spawned:
-    - id: MaterialCloth1
-      amount: 1
-
-- type: entity
-  abstract: true
-  parent: ClothingPantsBase
-  id: ClothingPantsStorageBase
-  components:
-  - type: Storage
-    grid:
-    - 0,0,1,1
-    maxItemSize: Tiny
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
+    - type: Butcherable
+      butcheringType: Knife
+      spawned:
+        - id: MaterialCloth1
+          amount: 1
