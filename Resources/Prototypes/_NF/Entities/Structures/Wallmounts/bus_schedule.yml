@@ -6,7 +6,7 @@
   description: A schedule that tells you when the bus is here. Don't miss it!
   components:
   - type: WallMount
-    arc: 175
+    arc: 360
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: _NF/Structures/Wallmounts/bus_schedule.rsi
@@ -17,8 +17,8 @@
       color: "#aaaaaa"
       map: [ "enum.PublicTransitVisualLayers.Livery" ]
   - type: BusSchedule
-  - type: PublicTransitVisuals
   - type: Appearance
+  - type: PublicTransitVisuals
 
 - type: entity
   parent: BusSchedule

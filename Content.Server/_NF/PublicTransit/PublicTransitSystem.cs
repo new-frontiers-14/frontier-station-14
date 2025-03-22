@@ -106,11 +106,21 @@ public sealed class PublicTransitSystem : EntitySystem
 
     private bool TrySetGridVisuals(Entity<PublicTransitVisualsComponent> ent)
     {
-        // Null: look up livery from bus/stop data.
         if (!TryComp(ent, out TransformComponent? xform))
             return false;
 
         PublicTransitRoutePrototype? transitRoute;
+
+        // Exception: if this is a route-dedicated bus schedule, just get its route's livery colour
+        if (TryComp(ent, out BusScheduleComponent? comp)
+            && comp.RouteId != null
+            && _proto.TryIndex(comp.RouteId, out transitRoute))
+        {
+            _appearance.SetData(ent, PublicTransitVisuals.Livery, transitRoute.LiveryColor);
+            return true;
+        }
+
+        // Otherwise, check the grid we're on.
         if (TryComp(xform.GridUid, out TransitShuttleComponent? transitShuttle)
             && _proto.TryIndex(transitShuttle.RouteId, out transitRoute))
         {
