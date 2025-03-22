@@ -232,7 +232,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 10
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -293,7 +293,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 50
+        maxVol: 10
         reagents:
         - ReagentId: Nutriment
           Quantity: 4.5
@@ -601,6 +601,9 @@
           Quantity: 4
         - ReagentId: Uranium
           Quantity: 16
+  # - type: RadiationSource # Frontier
+  #   intensity: 0.1 # Frontier
+  #   slope: 3 # Frontier
 
 - type: entity
   name: slice of spicy rock pizza
@@ -636,6 +639,9 @@
           Quantity: 0.5
         - ReagentId: Uranium
           Quantity: 2
+  # - type: RadiationSource # Frontier
+  #   intensity: 0.1 # Frontier
+  #   slope: 3 # Frontier
 
 # Tastes like crust, tomato, cheese, radiation.
 

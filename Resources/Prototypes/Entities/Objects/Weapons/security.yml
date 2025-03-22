@@ -1,6 +1,6 @@
 - type: entity
   name: stun baton
-  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseItem, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
   id: Stunbaton
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:
@@ -36,7 +36,7 @@
         Blunt: 7
     bluntStaminaDamageFactor: 2.0
     angle: 60
-    animation: WeaponArcSlash
+    animation: WeaponArcThrust
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
@@ -91,7 +91,7 @@
 
 - type: entity
   name: truncheon
-  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: Truncheon
   description: A rigid, steel-studded baton, meant to harm. On the handle is a label that says 'for authorized use only.'
   components:
@@ -184,7 +184,7 @@
 
 - type: entity
   name: portable flasher
-  parent: [BaseMachine, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseMachine, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: PortableFlasher
   description: An ultrabright flashbulb with a proximity trigger, useful for making an area security-only.
   components:

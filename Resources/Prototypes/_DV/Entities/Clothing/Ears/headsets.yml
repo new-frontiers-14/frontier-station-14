@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetPrison
+  name: prisoner headset # Frontier: prison<prisoner
+  description: A headset used by prisoners. Criminally uncomfortable. # Frontier: reworded
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      # - EncryptionKeyPrison # Frontier
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _DV/Clothing/Ears/Headsets/prisoner.rsi
+  - type: Clothing
+    sprite: _DV/Clothing/Ears/Headsets/prisoner.rsi

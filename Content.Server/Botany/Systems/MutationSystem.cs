@@ -88,6 +88,12 @@ public sealed class MutationSystem : EntitySystem
         CrossGasses(ref result.ExudeGasses, a.ExudeGasses);
         CrossGasses(ref result.ConsumeGasses, a.ConsumeGasses);
 
+        // Frontier: ensure clip/swab/seed safety propagates
+        result.PreventClipping |= a.PreventClipping;
+        result.PreventSwabbing |= a.PreventSwabbing;
+        result.PermanentlySeedless |= a.PermanentlySeedless;
+        // End Frontier
+
         // LINQ Explanation
         // For the list of mutation effects on both plants, use a 50% chance to pick each one.
         // Union all of the chosen mutations into one list, and pick ones with a Distinct (unique) name.

@@ -28,3 +28,27 @@
     - back
     - suitStorage
     - belt
+
+- type: entity
+  name: captain's sabre hilt
+  parent: [ BaseItem ]
+  id: CaptainSabreHilt
+  description: A bit pointless, isn't it?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/captain_sword_hilt.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+  - type: Item
+    size: Small
+    sprite: _NF/Objects/Weapons/Melee/captain_sword_hilt.rsi
+  - type: Tag
+    tags:
+    - CaptainSabre
