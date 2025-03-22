@@ -50,6 +50,7 @@ public sealed partial class IdCardConsoleComponent : Component
         "Bailiff", // Frontier
         //"Bar",
         "Brig",
+        "Brigmedic", // Frontier
         "Detective",
         "Captain",
         //"Cargo",
