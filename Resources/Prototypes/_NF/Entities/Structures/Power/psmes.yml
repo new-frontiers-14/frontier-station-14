@@ -1,0 +1,77 @@
+- type: entity
+  parent: BaseSMES
+  id: PortableSMES
+  suffix: Portable, 8MJ
+  name: Portable SMES
+  description: A portable SMES. More portable anyways. 
+  components:
+  - type: AmbientSound
+    volume: -9
+    range: 2
+    sound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: Sprite
+    sprite: _NF/Structures/Power/psmes.rsi
+    snapCardinals: true
+    layers:
+      - state: psmes
+      - map: ["enum.SmesVisualLayers.Charge"]
+        state: "smes-og1" # -og0 does not exist
+        shader: unshaded
+        visible: false
+      - map: ["enum.SmesVisualLayers.Input"]
+        state: "smes-oc0"
+        shader: unshaded
+      - map: ["enum.SmesVisualLayers.Output"]
+        state: "smes-op1"
+        shader: unshaded
+      - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+        state: psmes-open
+  - type: Battery
+    maxCharge: 8000000
+    startingCharge: 8000000
+  - type: PowerNetworkBattery
+    maxSupply: 15000
+    maxChargeRate: 40000 #about a 4 minute recharge time. 
+    supplyRampTolerance: 5000
+    supplyRampRate: 500
+    efficiency: 0.8 # take a loss when dumping in the juice.
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: BatteryDischarger
+    voltage: Apc
+    node: output
+  - type: PowerProvider
+    voltage: Apc
+  - type: Machine
+    board: PortableSMESMachineCircuitboard
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.40,-0.40,0.40,0.40"
+        # Wheels go vroom
+        density: 155
+        mask:
+          - MachineMask
+        layer:
+          - MachineLayer
+  - type: UpgradeBattery
+    maxChargeMultiplier: 1.5
+    baseMaxCharge: 8000000
+  - type: UpgradePowerSupplyRamping
+    scaling: Linear
+    supplyRampingMultiplier: 1
+
+- type: entity
+  parent: PortableSMES
+  id: PortableSMESEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
