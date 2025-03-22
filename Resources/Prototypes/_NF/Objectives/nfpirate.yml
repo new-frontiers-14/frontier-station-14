@@ -1,0 +1,11 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseNFPirateObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-nf-pirate
+  - type: RoleRequirement
+    roles:
+      mindRoles:
+      - NFPirateRole
