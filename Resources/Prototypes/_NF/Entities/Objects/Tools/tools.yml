@@ -63,3 +63,28 @@
   - type: ToolTileCompatible
   - type: UseDelay
     delay: 1
+
+- type: entity
+  name: pirate repair kit
+  parent: [BaseItem, BaseC3PirateContraband]
+  id: PirateRepairKit
+  description: A collection of equipment needed to repair a pirate console.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/toolbox_drop.ogg
+  - type: Sprite
+    sprite: _NF/Objects/Tools/Toolboxes/toolbox_pirate.rsi
+    state: icon
+  - type: NFPirateToolbox
+  - type: StaticPrice
+    price: 0
+  # Lines below taken from ToolboxBase.
+  - type: Item
+    size: Ginormous
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
