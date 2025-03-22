@@ -45,7 +45,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
 
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
 
-        Subs.CVar(_cfg, CCVars.GameShowGreentext, value => _showGreentext = value, true);
+        Subs.CVar(_cfg, DCCVars.GameShowGreentext, value => _showGreentext = value, true);
 
         Subs.CVar(_cfg, DCCVars.MaxObjectiveSummaryLength, len => _maxLengthSummaryLength = len, true); // DeltaV
 
