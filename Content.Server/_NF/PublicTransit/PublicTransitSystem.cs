@@ -187,14 +187,8 @@ public sealed class PublicTransitSystem : EntitySystem
 
     private void PrintBusSchedule(ProtoId<PublicTransitRoutePrototype> route, Entity<TransitShuttleComponent> grid, ref ExaminedEvent args)
     {
-        if (!TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var sectorPublicTransit))
-        {
-            args.PushMarkup(Loc.GetString("bus-schedule-no-stops-on-route"));
-            return;
-        }
-
-        // FIXME: what happens if the station the bus is at is removed?
-        if (!sectorPublicTransit.Routes.TryGetValue(route, out var routeData)
+        if (!TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var sectorPublicTransit)
+            || !sectorPublicTransit.Routes.TryGetValue(route, out var routeData)
             || !routeData.StopIndicesByGrid.TryGetValue(grid.Comp.CurrentGrid, out var destInfo))
         {
             args.PushMarkup(Loc.GetString("bus-schedule-no-stops-on-route"));
@@ -228,14 +222,9 @@ public sealed class PublicTransitSystem : EntitySystem
 
     private void PrintStationSchedule(ProtoId<PublicTransitRoutePrototype> route, EntityUid grid, ref ExaminedEvent args)
     {
-        if (!TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var sectorPublicTransit))
-        {
-            args.PushMarkup(Loc.GetString("bus-schedule-no-buses-on-route"));
-            return;
-        }
-
         // Get stop index on requested route
-        if (!sectorPublicTransit.Routes.TryGetValue(route, out var routeData)
+        if (!TryComp<SectorPublicTransitComponent>(_sectorService.GetServiceEntity(), out var sectorPublicTransit)
+            || !sectorPublicTransit.Routes.TryGetValue(route, out var routeData)
             || !routeData.StopIndicesByGrid.TryGetValue(grid, out var destInfo))
         {
             args.PushMarkup(Loc.GetString("bus-schedule-no-buses-on-route"));
