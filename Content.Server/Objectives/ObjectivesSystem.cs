@@ -12,14 +12,13 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
 using System.Text;
-using Content.Server.Objectives.Commands;
-using Content.Shared._DV.CCVars;
-using Content.Shared._DV.CustomObjectiveSummary; // DeltaV
-using Content.Shared.CCVar;
+using Content.Server.Objectives.Commands; // DeltaV
+using Content.Shared._DV.CCVars; // DeltaV
+using Content.Shared.CCVar; // DeltaV
 using Content.Shared.Prototypes;
 using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
-using Robust.Shared.Configuration;
+using Robust.Shared.Configuration; // DeltaV
 using Robust.Shared.Utility;
 
 namespace Content.Server.Objectives;
@@ -32,11 +31,11 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly SharedJobSystem _job = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // DeltaV
 
     private IEnumerable<string>? _objectives;
 
-    private bool _showGreentext;
+    private bool _showGreentext; // DeltaV
 
     private int _maxLengthSummaryLength; // DeltaV
 
@@ -176,7 +175,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                     totalObjectives++;
 
                     agentSummary.Append("- ");
-                    if (!_showGreentext)
+                    if (!_showGreentext) // DeltaV
                     {
                         agentSummary.AppendLine(objectiveTitle);
                     }
