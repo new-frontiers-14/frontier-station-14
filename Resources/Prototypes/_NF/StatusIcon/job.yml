@@ -8,6 +8,23 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconMailCarrier
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi # /Textures/DeltaV</Textures/_NF
+    state: mailcarrier # nyanoMailCarrier<mailcarrier
+  jobName: job-name-mail-carrier
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconDoc
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
+    state: nfmsdoc
+  jobName: job-name-doc
+  allowSelection: false # Frontier: no impersonating command staff, literally 1984
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconMercenary
   icon:
     sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
@@ -144,13 +161,11 @@
   jobName: job-name-sheriff
   allowSelection: false # Frontier: no impersonating command staff, literally 1984
 
-  # Medical positions
-
 - type: jobIcon
   parent: JobIcon
-  id: JobIconDoc
+  id: JobIconPrisonGuard
   icon:
-    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
-    state: nfmsdoc
-  jobName: job-name-doc
-  allowSelection: false # Frontier: no impersonating command staff, literally 1984
+    sprite: /Textures/_DV/Interface/Misc/job_icons.rsi
+    state: nyanoPrisonGuard
+  jobName: job-name-guard
+  allowSelection: false # Frontier: don't display, no job
