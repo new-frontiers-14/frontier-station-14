@@ -47,6 +47,9 @@ public sealed class SmartFridgeSystem : EntitySystem
         if (!Allowed(ent, args.User))
             return;
 
+        if (container.Count >= ent.Comp.MaxContainedCount) // Frontier
+            return; // Frontier
+
         if (!_hands.TryDrop(args.User, args.Used))
             return;
 
@@ -93,8 +96,8 @@ public sealed class SmartFridgeSystem : EntitySystem
 
     private void OnDispenseItem(Entity<SmartFridgeComponent> ent, ref SmartFridgeDispenseItemMessage args)
     {
-        if (!_timing.IsFirstTimePredicted)
-            return;
+        if (!_timing.IsFirstTimePredicted) // Frontier: less prediction jank in the UI
+            return; // Frontier
 
         if (!Allowed(ent, args.Actor))
             return;
@@ -137,11 +140,11 @@ public sealed class SmartFridgeSystem : EntitySystem
         if (_whitelist.IsWhitelistFail(ent.Comp.Whitelist, item) || _whitelist.IsBlacklistPass(ent.Comp.Blacklist, item))
             return false;
 
-        if (user is { } userUid && userUid.Valid)
-        {
-            if (!Allowed(ent, userUid))
-                return false;
-        }
+        if (user is { Valid: true } userUid && !Allowed(ent, userUid))
+            return false;
+
+        if (container.Count >= ent.Comp.MaxContainedCount)
+            return false;
 
         _audio.PlayPredicted(ent.Comp.InsertSound, ent, user);
         _container.Insert(item, container);
