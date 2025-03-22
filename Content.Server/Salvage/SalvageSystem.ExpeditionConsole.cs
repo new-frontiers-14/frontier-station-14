@@ -1,18 +1,21 @@
-using Content.Server.Station.Components;
-using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Procedural;
 using Content.Shared.Salvage.Expeditions;
+using Content.Shared.Dataset;
+using Robust.Shared.Prototypes;
+using Content.Shared.Popups;
+using Content.Shared._NF.CCVar;
+using Content.Server.Station.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Prototypes;
-using Content.Server.Salvage.Expeditions; // Frontier
-using Content.Shared._NF.CCVar; // Frontier
-using Content.Shared.Mind.Components; // Frontier
-using Content.Shared.Mobs.Components; // Frontier
-using Content.Shared.NPC.Components; // Frontier
-using Content.Shared.IdentityManagement; // Frontier
-using Content.Shared.NPC; // Frontier
-using Content.Server._NF.Salvage; // Frontier
+using Content.Shared.NPC;
+using Content.Server._NF.Salvage;
+using Content.Shared.NPC.Components;
+using Content.Server.Salvage.Expeditions;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mobs.Components;
+using Content.Shared.IdentityManagement;
+using Robust.Shared.Configuration; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -21,19 +24,22 @@ public sealed partial class SalvageSystem
     [ValidatePrototypeId<EntityPrototype>]
     public const string CoordinatesDisk = "CoordinatesDisk";
 
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!; // Frontier
 
-    private const float ShuttleFTLMassThreshold = 50f;
-    private const float ShuttleFTLRange = 150f;
+    private const float ShuttleFTLMassThreshold = 50f; // Frontier
+    private const float ShuttleFTLRange = 150f; // Frontier
 
     private void OnSalvageClaimMessage(EntityUid uid, SalvageExpeditionConsoleComponent component, ClaimSalvageMessage args)
     {
         var station = _station.GetOwningStation(uid);
 
-        // Frontier
-        if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed) // Moved up before the active expedition count
+        if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed)
             return;
 
+        if (!data.Missions.TryGetValue(args.Index, out var missionparams))
+            return;
+
+        // Frontier: prevent expeditions if there are too many out already.
         var activeExpeditionCount = 0;
         var expeditionQuery = AllEntityQuery<SalvageExpeditionDataComponent, MetaDataComponent>();
         while (expeditionQuery.MoveNext(out var expeditionUid, out _, out _))
@@ -42,70 +48,71 @@ public sealed partial class SalvageSystem
 
         if (activeExpeditionCount >= _cfgManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
         {
-            PlayDenySound(uid, component);
+            PlayDenySound((uid, component));
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-too-many"), uid, PopupType.MediumCaution);
-            UpdateConsoles(station.Value, data);
+            UpdateConsoles((station.Value, data));
             return;
         }
         // End Frontier
 
-        if (!data.Missions.TryGetValue(args.Index, out var missionparams))
-            return;
+        // var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates); // Frontier: no disk-based FTL
+        // SpawnMission(missionparams, station.Value, cdUid); // Frontier: no disk-based FTL
 
         // Frontier: FTL travel is currently restricted to expeditions and such, and so we need to put this here
         // until FTL changes for us in some way.
-        if (!component.Debug) // Skip the test
-        {
-            if (!TryComp<StationDataComponent>(station, out var stationData))
-                return;
-            if (_station.GetLargestGrid(stationData) is not { Valid: true } grid)
-                return;
-            if (!TryComp<MapGridComponent>(grid, out var gridComp))
-                return;
 
-            var xform = Transform(grid);
-            var bounds = xform.WorldMatrix.TransformBox(gridComp.LocalAABB).Enlarged(ShuttleFTLRange);
-            var bodyQuery = GetEntityQuery<PhysicsComponent>();
-            foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
+        // Run a proximity check (unless using a debug console)
+        if (!component.Debug)
+        {
+            if (!TryComp<StationDataComponent>(station, out var stationData)
+                || _station.GetLargestGrid(stationData) is not { Valid: true } ourGrid
+                || !TryComp<MapGridComponent>(ourGrid, out var gridComp))
             {
-                if (grid == other.Owner ||
-                    !bodyQuery.TryGetComponent(other.Owner, out var body) ||
+                PlayDenySound((uid, component));
+                _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-invalid"), uid, PopupType.MediumCaution);
+                UpdateConsoles((station.Value, data));
+                return;
+            }
+
+            if (HasComp<FTLComponent>(ourGrid))
+            {
+                PlayDenySound((uid, component));
+                _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-recharge"), uid, PopupType.MediumCaution);
+                UpdateConsoles((station.Value, data));
+                return;
+            }
+
+            var xform = Transform(ourGrid);
+            var bounds = _transform.GetWorldMatrix(ourGrid).TransformBox(gridComp.LocalAABB).Enlarged(ShuttleFTLRange);
+            var bodyQuery = GetEntityQuery<PhysicsComponent>();
+            var otherGrids = new List<Entity<MapGridComponent>>();
+            _mapManager.FindGridsIntersecting(xform.MapID, bounds, ref otherGrids);
+            foreach (var otherGrid in otherGrids)
+            {
+                if (ourGrid == otherGrid.Owner ||
+                    !bodyQuery.TryGetComponent(otherGrid.Owner, out var body) ||
                     body.Mass < ShuttleFTLMassThreshold)
                 {
                     continue;
                 }
 
-                PlayDenySound(uid, component);
+                PlayDenySound((uid, component));
                 _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
-                UpdateConsoles(station.Value, data);
-                return;
-            }
-            // end of Frontier proximity check
-
-            // Frontier: check for FTL component - if one exists, the station won't be taken into FTL.
-            if (HasComp<FTLComponent>(grid))
-            {
-                PlayDenySound(uid, component);
-                _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-recharge"), uid, PopupType.MediumCaution);
-                UpdateConsoles(station.Value, data); // Sure, why not?
+                UpdateConsoles((station.Value, data));
                 return;
             }
         }
+        SpawnMission(missionparams, station.Value, null);
         // End Frontier
 
-        // Frontier  change - disable coordinate disks for expedition missions
-        //var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates);
-        SpawnMission(missionparams, station.Value, null);
-
         data.ActiveMission = args.Index;
-        var mission = GetMission(missionparams.MissionType, missionparams.Difficulty, missionparams.Seed);
+        var mission = GetMission(missionparams.MissionType, _prototypeManager.Index<SalvageDifficultyPrototype>(missionparams.Difficulty), missionparams.Seed); // Frontier: add MissionType
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
 
-        // Frontier  change - disable coordinate disks for expedition missions
-        //_labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>("NamesBorer"), missionparams.Seed));
-        //_audio.PlayPvs(component.PrintSound, uid);
+        // _labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>("NamesBorer"), missionparams.Seed)); // Frontier: no disc
+        // _audio.PlayPvs(component.PrintSound, uid); // Frontier: no disc
 
-        UpdateConsoles(station.Value, data); // Frontier: add station
+        UpdateConsoles((station.Value, data));
     }
 
     // Frontier: early expedition end
@@ -118,9 +125,9 @@ public sealed partial class SalvageSystem
         // Based on SalvageSystem.Runner:OnConsoleFTLAttempt
         if (!TryComp(entity, out TransformComponent? xform)) // Get the console's grid (if you move it, rip you)
         {
-            PlayDenySound(entity, component);
+            PlayDenySound((entity, component));
             _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-shuttle-not-found"), entity, PopupType.MediumCaution);
-            UpdateConsoles(station.Value, data);
+            UpdateConsoles((station.Value, data));
             return;
         }
 
@@ -150,16 +157,16 @@ public sealed partial class SalvageSystem
             // Okay they're on salvage, so are they on the shuttle.
             if (mobXform.GridUid != xform.GridUid)
             {
-                PlayDenySound(entity, component);
+                PlayDenySound((entity, component));
                 _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-not-everyone-aboard", ("target", Identity.Entity(uid, EntityManager))), entity, PopupType.MediumCaution);
-                UpdateConsoles(station.Value, data);
+                UpdateConsoles((station.Value, data));
                 return;
             }
         }
         // End SalvageSystem.Runner:OnConsoleFTLAttempt
 
         data.CanFinish = false;
-        UpdateConsoles(station.Value, data);
+        UpdateConsoles((station.Value, data));
 
         var map = Transform(entity).MapUid;
 
@@ -189,7 +196,7 @@ public sealed partial class SalvageSystem
         UpdateConsole(console);
     }
 
-    private void UpdateConsoles(EntityUid stationUid, SalvageExpeditionDataComponent component)
+    private void UpdateConsoles(Entity<SalvageExpeditionDataComponent> component)
     {
         var state = GetState(component);
 
@@ -198,17 +205,8 @@ public sealed partial class SalvageSystem
         {
             var station = _station.GetOwningStation(uid, xform);
 
-            if (station != stationUid)
+            if (station != component.Owner)
                 continue;
-
-            // Frontier: if we have a lingering FTL component, we cannot start a new mission
-            if (!TryComp<StationDataComponent>(station, out var stationData) ||
-                    _station.GetLargestGrid(stationData) is not { Valid: true } grid ||
-                    HasComp<FTLComponent>(grid))
-            {
-                state.Cooldown = true; //Hack: disable buttons
-            }
-            // End Frontier
 
             _ui.SetUiState((uid, uiComp), SalvageConsoleUiKey.Expedition, state);
         }
@@ -225,23 +223,25 @@ public sealed partial class SalvageSystem
         }
         else
         {
-            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, false, 0, new List<SalvageMissionParams>()); // Frontier: add false as 4th param
+            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>(), false); // Frontier: add false as last arg (cannot finish, not on a mission)
         }
 
-        // Frontier: if we have a lingering FTL component, we cannot start a new mission
+        // Frontier: if we have a lingering FTL component, we cannot start a new mission	
         if (!TryComp<StationDataComponent>(station, out var stationData) ||
                 _station.GetLargestGrid(stationData) is not { Valid: true } grid ||
                 HasComp<FTLComponent>(grid))
         {
-            state.Cooldown = true; //Hack: disable buttons
+            state.Cooldown = true; //Hack: disable buttons	
         }
         // End Frontier
 
         _ui.SetUiState(component.Owner, SalvageConsoleUiKey.Expedition, state);
     }
 
-    private void PlayDenySound(EntityUid uid, SalvageExpeditionConsoleComponent component)
+    // Frontier: deny sound
+    private void PlayDenySound(Entity<SalvageExpeditionConsoleComponent> ent)
     {
-        _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
+        _audio.PlayPvs(_audio.GetSound(ent.Comp.ErrorSound), ent);
     }
+    // End Frontier
 }
