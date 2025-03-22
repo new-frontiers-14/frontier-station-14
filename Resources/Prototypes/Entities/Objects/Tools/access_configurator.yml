@@ -20,39 +20,40 @@
     - type: AccessOverrider
       accessLevels:
       - Armory
-      - Atmospherics
-      - Bar
+      # - Atmospherics # Frontier
+      # - Bar # Frontier
+      - Bailiff # Frontier
       - Brig
       - Brigmedic # Frontier
-      - Detective
       - Captain
-      - Cargo
-      - Chapel
-      - Chemistry
-      - ChiefEngineer
-      - ChiefMedicalOfficer
+      # - Cargo # Frontier
+      # - Chapel # Frontier
+      # - Chemistry # Frontier
+      # - ChiefEngineer # Frontier
+      # - ChiefMedicalOfficer # Frontier
       - Command
-      - Engineering
+      - Detective # Frontier - moved down
+      # - Engineering # Frontier
       - External
       - Frontier # Frontier
-      - HeadOfPersonnel
-      - HeadOfSecurity
-      - Hydroponics
+      # - Hydroponics # Frontier
       - Janitor
-      - Kitchen
-      - Lawyer
+      # - Kitchen # Frontier
+      # - Lawyer # Frontier
       - Mail # Frontier
       - Maintenance
       - Medical
       - Mercenary # Frontier
-      - Quartermaster
-      - Research
-      - ResearchDirector
-      - Salvage
+      # - Quartermaster # Frontier
+      # - Research # Frontier
+      # - ResearchDirector # Frontier
+      # - Salvage # Frontier
       - Security
       - Service
+      - HeadOfSecurity # Frontier: reordered for "Sheriff"
+      - HeadOfPersonnel # Frontier: reordered for "Station Representative"
       - StationTrafficController # Frontier
-      - Theatre
+      # - Theatre # Frontier
       privilegedIdSlot:
         name: id-card-console-privileged-id
         ejectSound: /Audio/Machines/id_swipe.ogg
@@ -97,7 +98,6 @@
     - Bar
     - Brig
     - Brigmedic # Frontier
-    - Detective
     - Captain
     - Cargo
     - Chapel
@@ -106,12 +106,11 @@
     - ChiefMedicalOfficer
     - Command
     - Cryogenics
+    - Detective # Frontier: moved down
     - EmergencyShuttleRepealAll
     - Engineering
     - External
     - Frontier # Frontier
-    - HeadOfPersonnel
-    - HeadOfSecurity
     - Hydroponics
     - Janitor
     - Kitchen
@@ -127,6 +126,8 @@
     - Salvage
     - Security
     - Service
+    - HeadOfSecurity # Frontier: reordered for "Sheriff"
+    - HeadOfPersonnel # Frontier: reordered for "Station Representative"
     - StationTrafficController # Frontier
     - Theatre
     - CentralCommand
