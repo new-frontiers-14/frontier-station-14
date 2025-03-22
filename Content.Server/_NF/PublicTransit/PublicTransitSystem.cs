@@ -448,7 +448,8 @@ public sealed class PublicTransitSystem : EntitySystem
                 continue; // NOTE: this bus is dead, should we despawn it?
 
             // FTL to next station if it exists.  Do this before the print.
-            _shuttles.FTLToDock(uid, shuttle, nextGrid.Value, hyperspaceTime: (float)route.Prototype.TravelTime.TotalSeconds, priorityTag: comp.DockTag); // TODO: Unhard code the priorityTag as it should be added from the system.
+            var hyperspaceTime = MathF.Max(0.0f, (float)route.Prototype.TravelTime.TotalSeconds - _shuttles.DefaultStartupTime);
+            _shuttles.FTLToDock(uid, shuttle, nextGrid.Value, startupTime: _shuttles.DefaultStartupTime, hyperspaceTime: hyperspaceTime, priorityTag: comp.DockTag); // TODO: Unhard code the priorityTag as it should be added from the system.
             comp.CurrentGrid = nextGrid.Value;
 
             if (!TryComp(nextGrid, out MetaDataComponent? metadata))
@@ -458,7 +459,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
             while (consoleQuery.MoveNext(out var consoleUid, out _, out var xform))
             {
-                if (Transform(consoleUid).GridUid != uid)
+                if (xform.GridUid != uid)
                     continue;
 
                 _chat.TrySendInGameICMessage(consoleUid, Loc.GetString("public-transit-departure",
