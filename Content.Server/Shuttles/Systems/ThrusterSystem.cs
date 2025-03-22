@@ -44,7 +44,10 @@ public sealed class ThrusterSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        // Frontier: Remove the ability to click on a thruster to enable/disable it
+        /*
         SubscribeLocalEvent<ThrusterComponent, ActivateInWorldEvent>(OnActivateThruster);
+        */
         SubscribeLocalEvent<ThrusterComponent, ComponentInit>(OnThrusterInit);
         SubscribeLocalEvent<ThrusterComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ThrusterComponent, ComponentShutdown>(OnThrusterShutdown);
