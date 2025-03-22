@@ -1,0 +1,806 @@
+# Base
+- type: entity
+  id: NFBaseProximityMine
+  abstract: true
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+    fixedRotation: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.16,0.2,0.16"
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: Sprite
+    drawdepth: Items
+    sprite: Objects/Misc/landmine.rsi
+    state: landmine
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: RequireProjectileTarget
+  - type: AmbientSound
+    volume: -15
+    range: 2
+    enabled: true
+    sound:
+      path: /Audio/Items/newton_cradle.ogg
+  - type: ExplodeOnTrigger
+  - type: DeleteOnTrigger
+  - type: OnUseTimerTrigger
+    useVerbInstead: true
+    beepInterval: .25
+    beepSound:
+      path: /Audio/Effects/beep_landmine.ogg
+      params:
+        volume: 1
+    examinable: false
+  - type: TriggerOnProximity
+    triggerSpeed: 0
+    shape:
+      !type:PhysShapeCircle
+        radius: 0.5
+    repeating: false
+    requiresAnchored: false
+    whitelist:
+      components:
+        - Actor
+
+- type: entity
+  parent: NFBaseProximityMine
+  id: NFConcealedMineExplosive
+  suffix: Frontier, Mine, Explosive
+  abstract: true
+  components:
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 20
+    totalIntensity: 30 # about a ~3 tile radius
+    canCreateVacuum: false
+
+- type: entity
+  parent: NFBaseProximityMine
+  id: NFConcealedMineCryo
+  suffix: Frontier, Mine, Cryo
+  abstract: true
+  components:
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 10
+    totalIntensity: 30 # about a ~3 tile radius
+    canCreateVacuum: false
+
+- type: entity
+  parent: NFBaseProximityMine
+  id: NFConcealedMineFire
+  suffix: Frontier, Mine, Fire
+  abstract: true
+  components:
+  - type: Explosive
+    explosionType: FireBomb
+    maxIntensity: 10
+    totalIntensity: 30 # about a ~3 tile radius
+    canCreateVacuum: false
+
+# Variations
+# Explosive
+- type: entity
+  parent: NFConcealedMineExplosive
+  id: NFToolboxMineExplosive
+  name: mechanical toolbox
+  description: A blue box, stocked with mechanical tools.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
+      shader: unshaded
+      state: ied_light
+  - type: RandomSprite
+    available:
+      - ied_wiring1:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring2:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring3:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+          mask_null: ""
+
+- type: entity
+  parent: NFConcealedMineExplosive
+  id: NFWetFloorSignMineExplosive
+  name: wet floor sign
+  description: Caution! Wet Floor!
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
+      shader: unshaded
+      state: ied_light
+  - type: RandomSprite
+    available:
+      - ied_wiring1:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring2:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring3:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+          mask_null: ""
+
+- type: entity
+  parent: NFConcealedMineExplosive
+  id: NFPlushieMineExplosive
+  name: plushie
+  description: A stuffed toy to remind adults of what they can no longer have - youth.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Fun/toys.rsi
+      state: plushie_atmosian
+      map: [ "ied_sprite_toy" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
+      shader: unshaded
+      state: ied_light
+  - type: RandomSprite
+    available:
+      - ied_sprite_toy:
+          carpplush: ""
+          magicplush: ""
+          narplush: ""
+          nuketoy: ""
+          plushie_atmosian: ""
+          plushie_arachnid: ""
+          plushie_diona: ""
+          plushie_h: ""
+          plushie_hampter: ""
+          plushie_lizard: ""
+          plushie_vox: ""
+          plushie_nuke: ""
+          plushie_moth: ""
+          plushie_xeno: ""
+          plushie_slime: ""
+          plushie_rouny: ""
+          plushie_human: ""
+          plushie_lizard_inversed: ""
+          plushie_ratvar: ""
+          plushie_spacelizard: ""
+          plushie_lamp: ""
+        ied_wiring1:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring2:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring3:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+          mask_null: ""
+
+- type: entity
+  parent: NFConcealedMineExplosive
+  id: NFBoxMineExplosive
+  name: box
+  description: What's inside the box?
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Storage/boxicons.rsi
+      state: bodybags
+      map: [ "ied_sprite_box" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
+      shader: unshaded
+      state: ied_light
+  - type: RandomSprite
+    available:
+      - ied_sprite_box:
+          beaker: ""
+          bodybags: ""
+          box: ""
+          box_of_doom: ""
+          circuit: ""
+          disk_kit: ""
+          donk_kit: ""
+          flashbang: ""
+          glasses: ""
+          mousetraps: ""
+          throwing_knives: ""
+        ied_wiring1:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring2:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring3:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+          mask_null: ""
+
+- type: entity
+  parent: NFConcealedMineExplosive
+  id: NFTrashMineExplosive
+  name: discarded wrapper
+  description: A discarded packaging from an item athat a generous person could describe as a food item.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers-trash
+      map: [ "ied_sprite_trash" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
+      shader: unshaded
+      state: ied_light
+  - type: RandomSprite
+    available:
+      - ied_sprite_trash:
+          cheesiehonkers-trash: ""
+          chocolatebar-trash: ""
+          cnds-trash: ""
+          energybar-trash: ""
+          mre-wrapper: ""
+          pistachio-trash: ""
+          popcorn-trash: ""
+          raisins-trash: ""
+          semki-trash: ""
+          susjerky-trash: ""
+          syndicakes-trash: ""
+        ied_wiring1:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring2:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring3:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+          mask_null: ""
+
+- type: entity
+  parent: NFConcealedMineExplosive
+  id: NFScrapMineExplosive
+  name: scrap
+  description: Worthless junk. You could probably get some materials out of it though.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: glass-1
+      map: [ "ied_sprite_scrap" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#990000"
+      shader: unshaded
+      state: ied_light
+  - type: RandomSprite
+    available:
+      - ied_sprite_scrap:
+          glass-1: ""
+          glass-2: ""
+          glass-3: ""
+          glass-4: ""
+          glass-5: ""
+          glass-6: ""
+          junk-airlock-1: ""
+          junk-fax: ""
+          junk-fireextinguisher: ""
+          junk-pai: ""
+          junk-pai-gold: ""
+          metal-1: ""
+          metal-2: ""
+          metal-3: ""
+          junk-mop-bucket: ""
+        ied_wiring1:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring2:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+        ied_wiring3:
+          ied_wiring1: Rainbow
+          ied_wiring2: Rainbow
+          ied_wiring3: Rainbow
+          ied_wiring4: Rainbow
+          ied_wiring5: Rainbow
+          ied_wiring6: Rainbow
+          mask_null: ""
+
+# Cryo
+- type: entity
+  parent: [ NFConcealedMineCryo, NFToolboxMineExplosive ]
+  id: NFToolboxMineCryo
+  name: mechanical toolbox
+  description: A blue box, stocked with mechanical tools.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineCryo, NFWetFloorSignMineExplosive ]
+  id: NFWetFloorSignMineCryo
+  name: wet floor sign
+  description: Caution! Wet Floor!
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineCryo, NFPlushieMineExplosive ]
+  id: NFPlushieMineCryo
+  name: plushie
+  description: A stuffed toy to remind adults of what they can no longer have - youth.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Fun/toys.rsi
+      state: plushie_atmosian
+      map: [ "ied_sprite_toy" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineCryo, NFBoxMineExplosive ]
+  id: NFBoxMineCryo
+  name: box
+  description: What's inside the box?
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Storage/boxicons.rsi
+      state: bodybags
+      map: [ "ied_sprite_box" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineCryo, NFTrashMineExplosive ]
+  id: NFTrashMineCryo
+  name: discarded wrapper
+  description: A discarded packaging from an item athat a generous person could describe as a food item.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers-trash
+      map: [ "ied_sprite_trash" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineCryo, NFScrapMineExplosive ]
+  id: NFScrapMineCryo
+  name: scrap
+  description: Worthless junk. You could probably get some materials out of it though.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: glass-1
+      map: [ "ied_sprite_scrap" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#009999"
+      shader: unshaded
+      state: ied_light
+
+# Fire
+- type: entity
+  parent: [ NFConcealedMineFire, NFToolboxMineExplosive ]
+  id: NFToolboxMineFire
+  name: mechanical toolbox
+  description: A blue box, stocked with mechanical tools.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineFire, NFWetFloorSignMineExplosive ]
+  id: NFWetFloorSignMineFire
+  name: wet floor sign
+  description: Caution! Wet Floor!
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
+      state: icon
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineFire, NFPlushieMineExplosive ]
+  id: NFPlushieMineFire
+  name: plushie
+  description: A stuffed toy to remind adults of what they can no longer have - youth.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Fun/toys.rsi
+      state: plushie_atmosian
+      map: [ "ied_sprite_toy" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineFire, NFBoxMineExplosive ]
+  id: NFBoxMineFire
+  name: box
+  description: What's inside the box?
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Storage/boxicons.rsi
+      state: bodybags
+      map: [ "ied_sprite_box" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineFire, NFTrashMineExplosive ]
+  id: NFTrashMineFire
+  name: discarded wrapper
+  description: A discarded packaging from an item athat a generous person could describe as a food item.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers-trash
+      map: [ "ied_sprite_trash" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
+
+- type: entity
+  parent: [ NFConcealedMineFire, NFScrapMineExplosive ]
+  id: NFScrapMineFire
+  name: scrap
+  description: Worthless junk. You could probably get some materials out of it though.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring1" ]
+      state: ied_wiring1
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring2" ]
+      state: ied_wiring2
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      map: [ "ied_wiring3" ]
+      state: ied_wiring3
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: glass-1
+      map: [ "ied_sprite_scrap" ]
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      color: "#999900"
+      shader: unshaded
+      state: ied_light
