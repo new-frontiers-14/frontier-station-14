@@ -39,7 +39,7 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
     /// Spawns a new placeholder and ties it to an item.
     /// When dropped the item will replace itself with the placeholder in its container.
     /// </summary>
-    public void SpawnPlaceholder(BaseContainer container, EntityUid item, EntProtoId id, EntityWhitelist whitelist)
+    public EntityUid SpawnPlaceholder(BaseContainer container, EntityUid item, EntProtoId id, EntityWhitelist whitelist)
     {
         var placeholder = Spawn(Placeholder);
         var comp = Comp<HandPlaceholderComponent>(placeholder);
@@ -55,6 +55,7 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
 
         var succeeded = _container.Insert(placeholder, container, force: true);
         DebugTools.Assert(succeeded, $"Failed to insert placeholder {ToPrettyString(placeholder)} into {ToPrettyString(comp.Source)}");
+        return placeholder;
     }
 
     /// <summary>
@@ -62,6 +63,9 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
     /// </summary>
     public void SetPlaceholder(EntityUid item, EntityUid placeholder)
     {
+        if (!item.Valid)
+            return;
+
         var comp = EnsureComp<HandPlaceholderRemoveableComponent>(item);
         comp.Placeholder = placeholder;
         Dirty(item, comp);
@@ -85,7 +89,7 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
     {
         // trying to insert when deleted is an error, and only handle when it is being actually dropped
         var owner = container.Owner;
-        if (!ent.Comp.Enabled || TerminatingOrDeleted(owner))
+        if (!ent.Comp.Enabled || TerminatingOrDeleted(owner) || Transform(owner).MapID == MapId.Nullspace)
             return;
 
         var placeholder = ent.Comp.Placeholder;

@@ -244,3 +244,59 @@
           Quantity: 15
         - ReagentId: Dylovene
           Quantity: 5
+
+- type: entity
+  parent: BaseItem
+  id: BorgHypoNoRefill
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: borghypo
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+    injectOnly: true
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  parent: BaseItem
+  id: BorgHypoTricordrazine
+  description: A sterile injector for rapid administration of drugs to patients. This one synthesizes tricordrazine.
+  name: tricordrazine hypo
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/borghypo.rsi
+    state: hypocyan
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Tricordrazine
+        Quantity: 5
+    duration: 5
+
+- type: entity
+  parent: BaseItem
+  id: BorgHypoInaprovaline
+  description: A sterile injector for rapid administration of drugs to patients. This one synthesizes inaprovaline.
+  name: inaprovaline hypo
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/borghypo.rsi
+    state: hypomaroon
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Inaprovaline
+        Quantity: 5
+    duration: 5
