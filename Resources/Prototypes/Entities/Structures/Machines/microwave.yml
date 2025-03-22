@@ -8,6 +8,7 @@
     capacity: 10
     canMicrowaveIdsSafely: false # Frontier: true<false
     explosionChance: 1 # Frontier: 0.3<1
+    lightColor: "#FFAF38"
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -108,6 +109,8 @@
     guides:
     - Chef
     - FoodRecipes
+  - type: RadiationSource # Frontier
+    enabled: false # Frontier
 
 - type: entity
   id: SyndicateMicrowave
@@ -120,6 +123,7 @@
     capacity: 10
     canMicrowaveIdsSafely: false
     explosionChance: 1 # Frontier 0.3<1
+    lightColor: "#52ff39"
   - type: Sprite
     sprite: Structures/Machines/microwave_syndie.rsi
     drawdepth: SmallObjects
