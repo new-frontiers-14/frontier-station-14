@@ -18,6 +18,7 @@ public sealed class DiggingSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turfs = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -33,7 +34,7 @@ public sealed class DiggingSystem : EntitySystem
         var coordinates = GetCoordinates(args.Coordinates);
         if (!TryComp<EarthDiggingComponent>(shovel, out var _))
             return;
-                var gridUid = coordinates.GetGridUid(EntityManager);
+        var gridUid = _transform.GetGrid(coordinates);
         if (gridUid == null)
             return;
 
@@ -68,7 +69,7 @@ public sealed class DiggingSystem : EntitySystem
         if (component.ToolComponentNeeded && !TryComp(shovel, out  tool))
             return false;
 
-        var mapUid = clickLocation.GetGridUid(EntityManager);
+        var mapUid = _transform.GetGrid(clickLocation);
         if (mapUid == null || !TryComp(mapUid, out MapGridComponent? mapGrid))
             return false;
 
