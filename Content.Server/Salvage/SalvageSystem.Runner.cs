@@ -167,7 +167,7 @@ public sealed partial class SalvageSystem
                 Dirty(uid, comp);
                 Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-seconds", ("duration", TimeSpan.FromSeconds(45).Seconds)));
             }
-            else if (comp.Stream == null && remaining < audioLength)
+            else if (comp.Stage < ExpeditionStage.MusicCountdown && comp.Stream == null && remaining < audioLength) // Frontier: add MusicCountdown check
             {
                 var audio = _audio.PlayPvs(comp.Sound, uid);
                 comp.Stream = audio?.Entity;

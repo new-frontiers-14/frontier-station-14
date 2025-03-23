@@ -17,8 +17,9 @@ public sealed class SalvageExpeditionConsoleState : BoundUserInterfaceState
     public ushort ActiveMission;
     public List<SalvageMissionParams> Missions;
     public bool CanFinish; // Frontier
+    public TimeSpan CooldownTime; // Frontier: separate fail vs. success time
 
-    public SalvageExpeditionConsoleState(TimeSpan nextOffer, bool claimed, bool cooldown, ushort activeMission, List<SalvageMissionParams> missions, bool canFinish) // Frontier: add canFinish
+    public SalvageExpeditionConsoleState(TimeSpan nextOffer, bool claimed, bool cooldown, ushort activeMission, List<SalvageMissionParams> missions, bool canFinish, TimeSpan cooldownTime) // Frontier: add canFinish, cooldownTime
     {
         NextOffer = nextOffer;
         Claimed = claimed;
@@ -26,6 +27,7 @@ public sealed class SalvageExpeditionConsoleState : BoundUserInterfaceState
         ActiveMission = activeMission;
         Missions = missions;
         CanFinish = canFinish; // Frontier
+        CooldownTime = cooldownTime; // Frontier
     }
 }
 
@@ -86,11 +88,6 @@ public sealed partial class SalvageExpeditionDataComponent : Component
     public bool Cooldown = false;
 
     // Frontier: early expedition finish
-    /// <summary>
-    /// Allow early finish.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField]
-    public bool CanFinish = false;
     // End Frontier: early expedition finish
 
     /// <summary>
@@ -106,6 +103,20 @@ public sealed partial class SalvageExpeditionDataComponent : Component
     [ViewVariables] public ushort ActiveMission;
 
     public ushort NextIndex = 1;
+
+    // Frontier: early finish, failure vs. success cooldowns
+    /// <summary>
+    /// Allow early finish.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool CanFinish = false;
+
+    /// <summary>
+    /// The total cooldown time that we had to wait.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public TimeSpan CooldownTime;
+    // End Frontier: early finish, failure vs. success cooldowns
 }
 
 [Serializable, NetSerializable]

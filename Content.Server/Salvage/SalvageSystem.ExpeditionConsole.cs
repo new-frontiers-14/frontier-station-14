@@ -110,7 +110,9 @@ public sealed partial class SalvageSystem
 
         data.ActiveMission = args.Index;
         var mission = GetMission(missionparams.MissionType, _prototypeManager.Index<SalvageDifficultyPrototype>(missionparams.Difficulty), missionparams.Seed); // Frontier: add MissionType
+        // Frontier - TODO: move this to progression for secondary window timer
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
+        data.CooldownTime = mission.Duration + TimeSpan.FromSeconds(1); // Frontier
 
         // _labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>("NamesBorer"), missionparams.Seed)); // Frontier: no disc
         // _audio.PlayPvs(component.PrintSound, uid); // Frontier: no disc
@@ -153,7 +155,7 @@ public sealed partial class SalvageSystem
             if (TryComp(uid, out NpcFactionMemberComponent? npcFaction))
             {
                 var hostileFactions = npcFaction.HostileFactions;
-                if (hostileFactions.Contains("NanoTrasen")) // Nasty - what if we need pirate expeditions?
+                if (hostileFactions.Contains("NanoTrasen")) // TODO: move away from hardcoded faction
                     continue;
             }
 
@@ -182,8 +184,9 @@ public sealed partial class SalvageSystem
         if (expedition.EndTime <= newEndTime)
             return;
 
-        expedition.EndTime = newEndTime;
         expedition.Stage = ExpeditionStage.FinalCountdown;
+        expedition.EndTime = newEndTime;
+        Dirty(entity, expedition);
 
         Announce(map.Value, Loc.GetString("salvage-expedition-announcement-early-finish", ("departTime", departTime)));
     }
@@ -226,7 +229,7 @@ public sealed partial class SalvageSystem
         }
         else
         {
-            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>(), false); // Frontier: add false as last arg (cannot finish, not on a mission)
+            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>(), false, TimeSpan.FromSeconds(1)); // Frontier: add false, 1 second timespan as last args (cannot finish, not on a mission)
         }
 
         // Frontier: if we have a lingering FTL component, we cannot start a new mission

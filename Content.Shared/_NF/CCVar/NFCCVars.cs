@@ -134,12 +134,6 @@ public sealed class NFCCVars
     public static readonly CVarDef<float> SalvageExpeditionFailedCooldown =
         CVarDef.Create("salvage.expedition_failed_cooldown", 1200f, CVar.REPLICATED);
 
-    /// <summary>
-    /// Whether salvage expedition rewards is enabled.
-    /// </summary>
-    public static readonly CVarDef<bool> SalvageExpeditionRewardsEnabled =
-        CVarDef.Create("nf14.salvage.expedition_rewards_enabled", false, CVar.REPLICATED);
-
     /*
      * Smuggling
      */

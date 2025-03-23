@@ -150,6 +150,7 @@ public sealed partial class SalvageSystem
             // End Frontier: disable cooldown when still in FTL
             // comp.NextOffer += TimeSpan.FromSeconds(_cooldown); // Frontier
             comp.NextOffer = currentTime + TimeSpan.FromSeconds(_cooldown); // Frontier
+            comp.CooldownTime = TimeSpan.FromSeconds(_cooldown); // Frontier
             GenerateMissions(comp);
             UpdateConsoles((uid, comp));
         }
@@ -162,11 +163,13 @@ public sealed partial class SalvageSystem
         if (expeditionComp.Completed)
         {
             component.NextOffer = _timing.CurTime + TimeSpan.FromSeconds(_cooldown);
+            component.CooldownTime = TimeSpan.FromSeconds(_cooldown);
             Announce(uid, Loc.GetString("salvage-expedition-mission-completed"));
         }
         else
         {
             component.NextOffer = _timing.CurTime + TimeSpan.FromSeconds(_failedCooldown);
+            component.CooldownTime = TimeSpan.FromSeconds(_failedCooldown);
             Announce(uid, Loc.GetString("salvage-expedition-mission-failed"));
         }
         // End Frontier: separate timeout/announcement for success/failures
@@ -218,7 +221,7 @@ public sealed partial class SalvageSystem
     private SalvageExpeditionConsoleState GetState(SalvageExpeditionDataComponent component)
     {
         var missions = component.Missions.Values.ToList();
-        return new SalvageExpeditionConsoleState(component.NextOffer, component.Claimed, component.Cooldown, component.ActiveMission, missions, component.CanFinish); // Frontier: add CanFinish
+        return new SalvageExpeditionConsoleState(component.NextOffer, component.Claimed, component.Cooldown, component.ActiveMission, missions, component.CanFinish, component.CooldownTime); // Frontier: add CanFinish, CooldownTime
     }
 
     private void SpawnMission(SalvageMissionParams missionParams, EntityUid station, EntityUid? coordinatesDisk)

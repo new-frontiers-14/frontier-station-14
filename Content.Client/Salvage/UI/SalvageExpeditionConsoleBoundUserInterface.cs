@@ -44,7 +44,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
             return;
 
         _window.Progression = null;
-        _window.Cooldown = TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.SalvageExpeditionCooldown));
+        _window.Cooldown = current.CooldownTime;
         _window.NextOffer = current.NextOffer;
         _window.Claimed = current.Claimed;
         _window.SetFinishDisabled(!current.CanFinish); // Frontier
