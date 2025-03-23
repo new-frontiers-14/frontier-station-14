@@ -163,6 +163,7 @@ public sealed partial class ShuttleSystem
 
         iffComponent.ServiceFlags = args.ServiceFlags;
         _console.RefreshShuttleConsoles(gridUid);
+        Dirty(gridUid, iffComponent);
     }
 
 }
