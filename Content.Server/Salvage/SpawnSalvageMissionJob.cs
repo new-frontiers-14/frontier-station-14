@@ -461,13 +461,13 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         var structureComp = _entManager.EnsureComponent<SalvageDestructionExpeditionComponent>(gridUid);
         var availableRooms = dungeon.Rooms.ToList();
         var faction = _prototypeManager.Index<SalvageFactionPrototype>(mission.Faction);
+        var difficulty = _prototypeManager.Index(mission.Difficulty);
 
-        var structureCount = 5; // FIXME: difficulty-based structure count
         var shaggy = faction.Configs["DefenseStructure"];
         var validSpawns = new List<Vector2i>();
 
         // Spawn the objectives
-        for (var i = 0; i < structureCount; i++)
+        for (var i = 0; i < difficulty.DestructionStructures; i++)
         {
             var structureRoom = availableRooms[random.Next(availableRooms.Count)];
             validSpawns.Clear();
