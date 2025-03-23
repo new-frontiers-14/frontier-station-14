@@ -34,3 +34,29 @@
       sprite: Structures/Furniture/Tables/generic.rsi
       state: full
     event: !type:ToggleCrawlingStateEvent
+
+- type: entity
+  id: ActionChitzite
+  name: Cough Up Chitzite
+  description: Purge the excess radiation build-up from your body, and gain a cool danger rock.
+  components:
+  - type: InstantAction
+    charges: 0
+    enabled: false
+    maxCharges: 1
+    icon: { sprite: _DV/Objects/Specific/Species/chitinid.rsi, state: chitzite }
+    useDelay: 300
+    event: !type:CoughItemActionEvent
+
+- type: entity
+  id: ActionHairball
+  name: Cough Up Hairball
+  description: Purge some of your chemstream, and gain a cool hairball to throw at people.
+  components:
+  - type: InstantAction
+    charges: 1
+    icon:
+      sprite: Nyanotrasen/Objects/Specific/Species/felinid.rsi
+      state: icon
+    useDelay: 30
+    event: !type:CoughItemActionEvent
