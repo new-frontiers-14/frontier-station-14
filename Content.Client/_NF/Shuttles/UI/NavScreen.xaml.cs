@@ -2,6 +2,7 @@
 // Copyright (c) 2024 New Frontiers Contributors
 // See AGPLv3.txt for details.
 using Content.Shared._NF.Shuttles.Events;
+using Content.Shared.Shuttles.Components;
 using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client.Shuttles.UI
@@ -10,6 +11,7 @@ namespace Content.Client.Shuttles.UI
     {
         private readonly ButtonGroup _buttonGroup = new();
         public event Action<NetEntity?, InertiaDampeningMode>? OnInertiaDampeningModeChanged;
+        public event Action<NetEntity?, ServiceFlags>? OnServiceFlagsChanged;
 
         private void NfInitialize()
         {
@@ -31,6 +33,15 @@ namespace Content.Client.Shuttles.UI
             // Send off a request to get the current dampening mode.
             _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
             OnInertiaDampeningModeChanged?.Invoke(shuttle, InertiaDampeningMode.Query);
+
+            ServiceFlagN.OnPressed += _ => SetServiceFlags(ServiceFlags.None);
+            ServiceFlagS.OnPressed += _ => SetServiceFlags(ServiceFlags.Service);
+            ServiceFlagSA.OnPressed += _ => SetServiceFlags(ServiceFlags.Salvage);
+            ServiceFlagM.OnPressed += _ => SetServiceFlags(ServiceFlags.Medical);
+            ServiceFlagR.OnPressed += _ => SetServiceFlags(ServiceFlags.Research);
+            ServiceFlagT.OnPressed += _ => SetServiceFlags(ServiceFlags.Trade);
+            ServiceFlagC.OnPressed += _ => SetServiceFlags(ServiceFlags.Construction);
+            ServiceFlagE.OnPressed += _ => SetServiceFlags(ServiceFlags.Entertainment);
         }
 
         private void SetDampenerMode(InertiaDampeningMode mode)
@@ -53,12 +64,32 @@ namespace Content.Client.Shuttles.UI
                 DampenerOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Dampen;
                 AnchorOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Anchor;
             }
+            SetServiceFlags(NavRadar.ServiceFlags, updateButtonsOnly: true);
         }
 
         // Frontier - Maximum IFF Distance
         private void OnRangeFilterChanged(int value)
         {
             NavRadar.MaximumIFFDistance = (float) value;
+        }
+
+        private void SetServiceFlags(ServiceFlags flags, bool updateButtonsOnly = false)
+        {
+            if (!updateButtonsOnly)
+            {
+                NavRadar.ServiceFlags = flags;
+                _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
+                OnServiceFlagsChanged?.Invoke(shuttle, flags);
+            }
+
+            ServiceFlagN.Pressed = flags == ServiceFlags.None;
+            ServiceFlagS.Pressed = flags == ServiceFlags.Service;
+            ServiceFlagSA.Pressed = flags == ServiceFlags.Salvage;
+            ServiceFlagM.Pressed = flags == ServiceFlags.Medical;
+            ServiceFlagR.Pressed = flags == ServiceFlags.Research;
+            ServiceFlagT.Pressed = flags == ServiceFlags.Trade;
+            ServiceFlagC.Pressed = flags == ServiceFlags.Construction;
+            ServiceFlagE.Pressed = flags == ServiceFlags.Entertainment;
         }
 
         private void NfAddShuttleDesignation(EntityUid? shuttle)

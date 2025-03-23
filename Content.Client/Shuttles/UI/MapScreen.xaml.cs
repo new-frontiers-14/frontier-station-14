@@ -329,6 +329,8 @@ public sealed partial class MapScreen : BoxContainer
                 var gridObj = new GridMapObject()
                 {
                     Name = _entManager.GetComponent<MetaDataComponent>(grid.Owner).EntityName,
+                    // Frontier: Service Flags
+                    ServiceFlags = iffComp != null && iffComp.ServiceFlags != 0x0 ? iffComp.ServiceFlags : ServiceFlags.None,
                     Entity = grid.Owner,
                     HideButton = iffComp != null && (iffComp.Flags & IFFFlags.HideLabel) != 0x0,
                 };
@@ -447,9 +449,24 @@ public sealed partial class MapScreen : BoxContainer
 
         var gridContents = _mapHeadings[mapId];
 
+        // Frontier: Service flags for shuttles
+        // If it is a GridMapObject, Turn the mapObj.ServiceFlags into a string like Food = F, Medical = M, etc.
+        // This should turn the ServiceFlags into a string like "FM" for Food and Medical.
+        var serviceFlagsText = string.Empty;
+        if (mapObj is GridMapObject gridMapObj && gridMapObj.ServiceFlags != ServiceFlags.None)
+        {
+            var serviceFlags = gridMapObj.ServiceFlags;
+            var serviceString = string.Join("", Enum.GetValues<ServiceFlags>()
+                .Where(flag => (serviceFlags & flag) != 0)
+                .Select(flag => flag.ToString()[0]));
+            serviceFlagsText = $"[{serviceString}]";
+        }
+
+        var objName = mapObj.Name + serviceFlagsText;
+
         var gridButton = new Button()
         {
-            Text = mapObj.Name,
+            Text = objName,
             HorizontalExpand = true,
         };
 
@@ -465,7 +482,7 @@ public sealed partial class MapScreen : BoxContainer
             }
         };
 
-        _mapObjectControls.Add(gridContainer, mapObj.Name);
+        _mapObjectControls.Add(gridContainer, objName);
         gridContents.AddChild(gridContainer);
 
         gridButton.OnPressed += args =>

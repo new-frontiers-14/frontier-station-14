@@ -78,6 +78,29 @@ public abstract partial class SharedShuttleSystem
         UpdateIFFInterfaces(gridUid, component);
     }
 
+    /// <summary>
+    /// Frontier: Service flags
+    /// Sets the service flags for this grid to appear as on radar.
+    /// </summary>
+    /// <param name="gridUid">The grid to set the flags for.</param>
+    /// <param name="flags">The flags to set.</param>
+    /// <param name="component">The IFF component to set the flags for.</param>
+    [PublicAPI]
+    public void SetServiceFlags(EntityUid gridUid, ServiceFlags flags, IFFComponent? component = null)
+    {
+        component ??= EnsureComp<IFFComponent>(gridUid);
+
+        if (component.ReadOnly) // Frontier: POI IFF protection
+            return; // Frontier: POI IFF protection
+
+        if (component.ServiceFlags == flags)
+            return;
+
+        component.ServiceFlags = flags;
+        Dirty(gridUid, component);
+        UpdateIFFInterfaces(gridUid, component);
+    }
+
     [PublicAPI]
     public void RemoveIFFFlag(EntityUid gridUid, IFFFlags flags, IFFComponent? component = null)
     {
