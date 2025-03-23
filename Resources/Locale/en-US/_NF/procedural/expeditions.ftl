@@ -1,11 +1,22 @@
 salvage-expedition-window-finish = Finish expedition
 salvage-expedition-announcement-early-finish = The expedition was completed ahead of schedule. Shuttle will depart in {$departTime} seconds.
+salvage-expedition-announcement-destruction = { $count ->
+    [1] Destroy the {$structure} before the expedition ends.
+    *[others] Destroy {$count} {MAKEPLURAL($structure)} before the expedition ends.
+}
+salvage-expedition-announcement-elimination = { $count ->
+    [1] Eliminate the {$target} before the expedition ends.
+    *[others] Eliminate {$count} {MAKEPLURAL($target)} before the expedition ends.
+}
+salvage-expedition-announcement-destruction-entity-fallback = structure
+salvage-expedition-announcement-elimination-entity-fallback = target
+
 salvage-expedition-shuttle-not-found = Cannot locate shuttle.
 salvage-expedition-not-everyone-aboard = Not all crew aboard! {CAPITALIZE(THE($target))} is still out there!
 
 # Salvage mods
 salvage-time-mod-standard-time = Normal Duration
-salvage-time-mod-rush = Rush
+salvage-time-mod-rush = Rushs
 
 salvage-weather-mod-heavy-snowfall = Heavy Snowfall
 salvage-weather-mod-rain = Rain

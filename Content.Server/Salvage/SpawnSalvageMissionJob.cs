@@ -270,13 +270,6 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         Vector2 coords = dungeonBox.Center - dungeonProjection - dungeonOffset - shuttleProjection - shuttleBox.Center; // Coordinates to spawn the ship at to center it with the dungeon's bounding boxes
         coords = coords.Rounded(); // Ensure grid is aligned to map coords
 
-        // Frontier: delay ship FTL
-        if (shuttleUid is { Valid: true })
-        {
-            var shuttle = _entManager.GetComponent<ShuttleComponent>(shuttleUid.Value);
-            _shuttle.FTLToCoordinates(shuttleUid.Value, shuttle, new EntityCoordinates(mapUid, coords), 0f, 5.5f, 50f);
-        }
-
         // List<Vector2i> reservedTiles = new();
 
         // foreach (var tile in _map.GetTilesIntersecting(mapUid, grid, new Circle(Vector2.Zero, landingPadRadius), false))
@@ -385,6 +378,14 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             }
         }
 
+        // Frontier: delay ship FTL
+        if (shuttleUid is { Valid: true })
+        {
+            var shuttle = _entManager.GetComponent<ShuttleComponent>(shuttleUid.Value);
+            _shuttle.FTLToCoordinates(shuttleUid.Value, shuttle, new EntityCoordinates(mapUid, coords), 0f, 5.5f, 50f);
+        }
+        // End Frontier
+
         return true;
     }
 
@@ -458,7 +459,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         MapGridComponent grid,
         Random random)
     {
-        var structureComp = _entManager.EnsureComponent<SalvageDestructionExpeditionComponent>(gridUid);
+        var structureComp = _entManager.EnsureComponent<SalvageDestructionExpeditionComponent>(mapUid);
         var availableRooms = dungeon.Rooms.ToList();
         var faction = _prototypeManager.Index<SalvageFactionPrototype>(mission.Faction);
         var difficulty = _prototypeManager.Index(mission.Difficulty);
@@ -511,7 +512,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         var prototype = faction.Configs["Megafauna"];
         var uid = _entManager.SpawnEntity(prototype, position);
 
-        var eliminationComp = _entManager.EnsureComponent<SalvageEliminationExpeditionComponent>(gridUid);
+        var eliminationComp = _entManager.EnsureComponent<SalvageEliminationExpeditionComponent>(mapUid);
         eliminationComp.Megafauna.Add(uid);
     }
     // End Frontier: mission-specific setup functions

@@ -15,7 +15,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Map; // Frontier
 using Content.Server.GameTicking; // Frontier
 using Content.Server._NF.Salvage.Expeditions.Structure; // Frontier
-using Content.Server._NF.Salvage.Expeditions; // Frontier
+using Content.Server._NF.Salvage.Expeditions;
+using Content.Shared.Salvage; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -121,6 +122,40 @@ public sealed partial class SalvageSystem
 
         if (component.DungeonLocation != Vector2.Zero)
             Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-dungeon", ("direction", directionLocalization)));
+
+        // Frontier: type-specific announcement
+        switch (component.MissionParams.MissionType)
+        {
+            case SalvageMissionType.Destruction:
+                if (TryComp<SalvageDestructionExpeditionComponent>(args.MapUid, out var destruction)
+                    && destruction.Structures.Count > 0
+                    && TryComp(destruction.Structures[0], out MetaDataComponent? structureMeta)
+                    && structureMeta.EntityPrototype != null)
+                {
+                    var name = structureMeta.EntityPrototype.Name;
+                    if (string.IsNullOrWhiteSpace(name))
+                        name = Loc.GetString("salvage-expedition-announcement-destruction-entity-fallback");
+                    // Assuming all structures are of the same type.
+                    Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-destruction", ("structure", name), ("count", destruction.Structures.Count)));
+                }
+                break;
+            case SalvageMissionType.Elimination:
+                if (TryComp<SalvageEliminationExpeditionComponent>(args.MapUid, out var elimination)
+                    && elimination.Megafauna.Count > 0
+                    && TryComp(elimination.Megafauna[0], out MetaDataComponent? targetMeta)
+                    && targetMeta.EntityPrototype != null)
+                {
+                    var name = targetMeta.EntityPrototype.Name;
+                    if (string.IsNullOrWhiteSpace(name))
+                        name = Loc.GetString("salvage-expedition-announcement-elimination-entity-fallback");
+                    // Assuming all megafauna are of the same type.
+                    Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-elimination", ("target", name), ("count", elimination.Megafauna.Count)));
+                }
+                break;
+            default:
+                break; // No announcement
+        }
+        // End Frontier
 
         component.Stage = ExpeditionStage.Running;
         Dirty(args.MapUid, component);
