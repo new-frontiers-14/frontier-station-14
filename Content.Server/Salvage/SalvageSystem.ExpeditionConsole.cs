@@ -3,19 +3,18 @@ using Content.Shared.Procedural;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
-using Content.Shared.Popups;
-using Content.Shared._NF.CCVar;
-using Content.Server.Station.Components;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Physics.Components;
-using Content.Shared.NPC;
-using Content.Server._NF.Salvage;
-using Content.Shared.NPC.Components;
-using Content.Server.Salvage.Expeditions;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.IdentityManagement;
-using Robust.Shared.Configuration; // Frontier
+using Content.Shared.Popups; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
+using Content.Server.Station.Components; // Frontier
+using Robust.Shared.Map.Components; // Frontier
+using Robust.Shared.Physics.Components; // Frontier
+using Content.Shared.NPC; // Frontier
+using Content.Server._NF.Salvage; // Frontier
+using Content.Shared.NPC.Components; // Frontier
+using Content.Server.Salvage.Expeditions; // Frontier
+using Content.Shared.Mind.Components; // Frontier
+using Content.Shared.Mobs.Components; // Frontier
+using Content.Shared.IdentityManagement; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -43,8 +42,10 @@ public sealed partial class SalvageSystem
         var activeExpeditionCount = 0;
         var expeditionQuery = AllEntityQuery<SalvageExpeditionDataComponent, MetaDataComponent>();
         while (expeditionQuery.MoveNext(out var expeditionUid, out _, out _))
+        {
             if (TryComp<SalvageExpeditionDataComponent>(expeditionUid, out var expeditionData) && expeditionData.Claimed)
                 activeExpeditionCount++;
+        }
 
         if (activeExpeditionCount >= _cfgManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
         {
@@ -226,12 +227,12 @@ public sealed partial class SalvageSystem
             state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>(), false); // Frontier: add false as last arg (cannot finish, not on a mission)
         }
 
-        // Frontier: if we have a lingering FTL component, we cannot start a new mission	
+        // Frontier: if we have a lingering FTL component, we cannot start a new mission
         if (!TryComp<StationDataComponent>(station, out var stationData) ||
                 _station.GetLargestGrid(stationData) is not { Valid: true } grid ||
                 HasComp<FTLComponent>(grid))
         {
-            state.Cooldown = true; //Hack: disable buttons	
+            state.Cooldown = true; //Hack: disable buttons
         }
         // End Frontier
 
@@ -241,7 +242,7 @@ public sealed partial class SalvageSystem
     // Frontier: deny sound
     private void PlayDenySound(Entity<SalvageExpeditionConsoleComponent> ent)
     {
-        _audio.PlayPvs(_audio.GetSound(ent.Comp.ErrorSound), ent);
+        _audio.PlayPvs(_audio.ResolveSound(ent.Comp.ErrorSound), ent);
     }
     // End Frontier
 }

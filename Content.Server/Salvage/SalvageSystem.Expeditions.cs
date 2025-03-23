@@ -4,27 +4,20 @@ using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
-using Content.Shared.Procedural;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.Audio;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
-using Content.Server.Shuttles.Systems;
-using Content.Server.Station.Components;
-using Content.Server.Station.Systems;
-using Content.Shared.Coordinates;
-using Content.Shared.Procedural;
-using Content.Shared.Salvage;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
-using Content.Server._NF.Salvage; // Frontier
-using Content.Shared._NF.CCVar;
-using Content.Shared.Salvage;
-using Content.Server._NF.Salvage.Expeditions;
-using Content.Shared.Shuttles.Components;
+using Content.Server._NF.Salvage.Expeditions; // Frontier
 using Content.Server.Station.Components; // Frontier
+using Content.Shared.Procedural; // Frontier
+using Content.Shared.Salvage; // Frontier
+using Robust.Shared.Prototypes; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared.Shuttles.Components; // Frontier
 using Robust.Shared.Configuration; // Frontier
 
 namespace Content.Server.Salvage;
@@ -40,7 +33,7 @@ public sealed partial class SalvageSystem
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
     private const double SalvageJobTime = 0.002;
-    private readonly List<(ProtoId<SalvageDifficultyPrototype> id, int value)> _missionDifficulties = [("NFModerate", 0), ("NFHazardous", 1), ("NFExtreme", 2)]; // Frontier: mission difficulties with difficulty
+    private readonly List<(ProtoId<SalvageDifficultyPrototype> id, int value)> _missionDifficulties = [("NFModerate", 0), ("NFHazardous", 1), ("NFExtreme", 2)]; // Frontier: mission difficulties with order
 
     [Dependency] private readonly IConfigurationManager _cfgManager = default!; // Frontier
 
@@ -52,7 +45,7 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, ComponentInit>(OnSalvageConsoleInit);
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, EntParentChangedMessage>(OnSalvageConsoleParent);
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, ClaimSalvageMessage>(OnSalvageClaimMessage);
-        SubscribeLocalEvent<SalvageExpeditionDataComponent, ExpeditionSpawnCompleteEvent>(OnExpeditionSpawnComplete); // Frontier: more gracefully handle expedition generation failures	
+        SubscribeLocalEvent<SalvageExpeditionDataComponent, ExpeditionSpawnCompleteEvent>(OnExpeditionSpawnComplete); // Frontier: more gracefully handle expedition generation failures
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, FinishSalvageMessage>(OnSalvageFinishMessage); // Frontier: For early finish
 
         SubscribeLocalEvent<SalvageExpeditionComponent, MapInitEvent>(OnExpeditionMapInit);
@@ -93,7 +86,7 @@ public sealed partial class SalvageSystem
     // Frontier: failed cooldowns
     private void SetFailedCooldownChange(float obj)
     {
-        // Note: no adjustment to existing wait times because we don't know whether or not players have failed missions, so let's not punish them if this gets changed.
+        // Note: we don't know whether or not players have failed missions, so let's not punish/reward them if this gets changed.
         _failedCooldown = obj;
     }
     // End Frontier
@@ -193,7 +186,6 @@ public sealed partial class SalvageSystem
         var allDifficulties = _missionDifficulties; // Frontier: Enum.GetValues<DifficultyRating>() < _missionDifficulties
         _random.Shuffle(allDifficulties);
         var difficulties = allDifficulties.Take(MissionLimit).ToList();
-        // difficulties.Sort(); // Frontier: sort later
 
         // If we support more missions than there are accepted types, pick more until you're up to MissionLimit
         while (difficulties.Count < MissionLimit)
@@ -215,7 +207,7 @@ public sealed partial class SalvageSystem
 
             component.Missions[component.NextIndex++] = mission;
         }
-        // End Frontier
+        // End Frontier: generate missions from an arbitrary set of difficulties
     }
 
     private SalvageExpeditionConsoleState GetState(SalvageExpeditionDataComponent component)
@@ -240,6 +232,8 @@ public sealed partial class SalvageSystem
             _metaData,
             _transform,
             _mapSystem,
+            _station, // Frontier
+            _shuttle, // Frontier
             station,
             coordinatesDisk,
             missionParams,

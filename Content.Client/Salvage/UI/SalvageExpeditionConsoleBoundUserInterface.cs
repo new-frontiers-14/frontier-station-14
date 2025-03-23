@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Client._NF.Salvage.UI;
+using Content.Client._NF.Salvage.UI; // Frontier
 using Content.Client.Stylesheets;
 using Content.Shared.CCVar;
 using Content.Shared.Procedural;
