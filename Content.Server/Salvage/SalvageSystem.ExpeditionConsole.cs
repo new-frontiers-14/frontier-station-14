@@ -60,6 +60,7 @@ public sealed partial class SalvageSystem
         // SpawnMission(missionparams, station.Value, cdUid); // Frontier: no disk-based FTL
 
         // Frontier: FTL travel is currently restricted to expeditions and such, and so we need to put this here
+        #region Frontier FTL changes
         // until FTL changes for us in some way.
 
         // Run a proximity check (unless using a debug console)
@@ -104,6 +105,7 @@ public sealed partial class SalvageSystem
             }
         }
         SpawnMission(missionparams, station.Value, null);
+        #endregion Frontier FTL changes
         // End Frontier
 
         data.ActiveMission = args.Index;

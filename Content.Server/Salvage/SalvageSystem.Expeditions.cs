@@ -180,6 +180,11 @@ public sealed partial class SalvageSystem
         component.Missions.Clear();
 
         // Frontier: generate missions from an arbitrary set of difficulties
+        if (_missionDifficulties.Count <= 0)
+        {
+            Log.Error("No expedition mission difficulties to pick from!");
+            return;
+        }
 
         // this doesn't support having more missions than types of ratings
         // but the previous system didn't do that either.
