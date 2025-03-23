@@ -25,3 +25,9 @@ chat-speech-verb-rodentia-1 = скрипит
 chat-speech-verb-rodentia-2 = пищит
 chat-speech-verb-rodentia-3 = болтает
 chat-speech-verb-rodentia-4 = визжит
+
+chat-speech-verb-name-chitinid = Хитинид
+chat-speech-verb-chitinid-1 = клацает
+chat-speech-verb-chitinid-2 = щебечет
+chat-speech-verb-chitinid-3 = шипит
+chat-speech-verb-chitinid-4 = жужжит
