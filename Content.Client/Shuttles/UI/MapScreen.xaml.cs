@@ -326,9 +326,21 @@ public sealed partial class MapScreen : BoxContainer
             {
                 _entManager.TryGetComponent(grid.Owner, out IFFComponent? iffComp);
 
+                // Frontier: Service flags for shuttles
+                // If it is a GridMapObject, Turn the mapObj.ServiceFlags into a string like Food = F, Medical = M, etc.
+                // This should turn the ServiceFlags into a string like "FM" for Food and Medical.
+                var serviceFlagsText = string.Empty;
+                if (iffComp?.ServiceFlags != null && iffComp.ServiceFlags != ServiceFlags.None)
+                {
+                    var serviceString = string.Join("", Enum.GetValues<ServiceFlags>()
+                        .Where(flag => (iffComp.ServiceFlags & flag) != 0)
+                        .Select(flag => flag.ToString()[0]));
+                    serviceFlagsText = $"[{serviceString}]";
+                }
+
                 var gridObj = new GridMapObject()
                 {
-                    Name = _entManager.GetComponent<MetaDataComponent>(grid.Owner).EntityName,
+                    Name = _entManager.GetComponent<MetaDataComponent>(grid.Owner).EntityName + serviceFlagsText,
                     // Frontier: Service Flags
                     ServiceFlags = iffComp?.ServiceFlags ?? ServiceFlags.None,
                     Entity = grid.Owner,
@@ -449,24 +461,9 @@ public sealed partial class MapScreen : BoxContainer
 
         var gridContents = _mapHeadings[mapId];
 
-        // Frontier: Service flags for shuttles
-        // If it is a GridMapObject, Turn the mapObj.ServiceFlags into a string like Food = F, Medical = M, etc.
-        // This should turn the ServiceFlags into a string like "FM" for Food and Medical.
-        var serviceFlagsText = string.Empty;
-        if (mapObj is GridMapObject gridMapObj && gridMapObj.ServiceFlags != ServiceFlags.None)
-        {
-            var serviceFlags = gridMapObj.ServiceFlags;
-            var serviceString = string.Join("", Enum.GetValues<ServiceFlags>()
-                .Where(flag => (serviceFlags & flag) != 0)
-                .Select(flag => flag.ToString()[0]));
-            serviceFlagsText = $"[{serviceString}]";
-        }
-
-        var objName = mapObj.Name + serviceFlagsText;
-
         var gridButton = new Button()
         {
-            Text = objName,
+            Text = mapObj.Name,
             HorizontalExpand = true,
         };
 
@@ -482,7 +479,7 @@ public sealed partial class MapScreen : BoxContainer
             }
         };
 
-        _mapObjectControls.Add(gridContainer, objName);
+        _mapObjectControls.Add(gridContainer, mapObj.Name);
         gridContents.AddChild(gridContainer);
 
         gridButton.OnPressed += args =>
