@@ -9,10 +9,10 @@ shuttle-console-inertia-dampener-anchor = Park
 
 shuttle-console-service-flags = Service Flags
 service-flag-none = No services
-service-flag-service = Offering food and/or drinks
-service-flag-salvage = Offering salvaged goods or mined ore
-service-flag-medical = Offering medical services
-service-flag-research = Offering research
-service-flag-trade = Offering trade goods, like things found on expeditions
-service-flag-construction = Offering construction materials like iron, plastic, etc.
-service-flag-entertainment = Offering entertainment
+service-flag-service = Service food and/or drinks
+service-flag-salvage = Salvaged goods or mined ore
+service-flag-medical = Medical services
+service-flag-research = Research
+service-flag-trade = Trade goods, like things found on expeditions
+service-flag-construction = Construction materials like iron, plastic, etc.
+service-flag-entertainment = Entertainment
