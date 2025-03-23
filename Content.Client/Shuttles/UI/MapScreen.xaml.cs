@@ -330,7 +330,7 @@ public sealed partial class MapScreen : BoxContainer
                 {
                     Name = _entManager.GetComponent<MetaDataComponent>(grid.Owner).EntityName,
                     // Frontier: Service Flags
-                    ServiceFlags = iffComp != null && iffComp.ServiceFlags != 0x0 ? iffComp.ServiceFlags : ServiceFlags.None,
+                    ServiceFlags = iffComp?.ServiceFlags ?? ServiceFlags.None,
                     Entity = grid.Owner,
                     HideButton = iffComp != null && (iffComp.Flags & IFFFlags.HideLabel) != 0x0,
                 };
