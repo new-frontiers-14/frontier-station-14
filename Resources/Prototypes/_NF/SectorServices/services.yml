@@ -4,9 +4,10 @@
   - type: SectorPirateBountyDatabase
 
 - type: sectorService
-  id: MailMetrics
+  id: Mail
   components:
   - type: SectorLogisticStats
+  - type: SectorMail # Contains sector-wide mail parameters
 
 - type: sectorService
   id: ShuttleRecords
@@ -29,7 +30,7 @@
       Medical:
         !type:SectorBankAccountInfo
         balance: 8000
-        increasePerSecond: 5 # 18K per hour, a bit short for the MOM's wage.
+        increasePerSecond: 6 # 21.6K per hour, a bit over for the DOC MOM's wage.
 
  # A global source of character records (DNA, fingerprints, criminal records, etc.)
 - type: sectorService
@@ -42,3 +43,8 @@
   components:
   - type: AlertLevel
     alertLevelPrototype: stationAlerts
+
+- type: sectorService
+  id: BountyContracts
+  components:
+  - type: BountyContractData

@@ -83,6 +83,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
+      bodyStatus: InAir
+      angularDamping: 0.05
+      linearDamping: 0.05
+      fixedRotation: False
+      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
@@ -11822,6 +11827,13 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+  - uid: 2336
+    components:
+    - type: Transform
+      pos: -5.5,14.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: FloorWaterDecorativeEntity
   entities:
   - uid: 1615
@@ -15444,7 +15456,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,16.5
       parent: 2
-- proto: PosterLegitSMFires
+- proto: PosterLegitSafetyMothFires
   entities:
   - uid: 2339
     components:
