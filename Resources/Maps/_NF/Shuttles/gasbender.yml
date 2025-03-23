@@ -4,8 +4,8 @@ meta:
   engineVersion: 247.2.0
   forkId: ""
   forkVersion: ""
-  time: 03/22/2025 19:31:32
-  entityCount: 1237
+  time: 03/23/2025 04:44:33
+  entityCount: 1238
 maps: []
 grids:
 - 1
@@ -3084,6 +3084,16 @@ entities:
     - type: Transform
       pos: 5.5,-11.5
       parent: 1
+  - uid: 998
+    components:
+    - type: Transform
+      pos: 3.5,-14.5
+      parent: 1
+  - uid: 1238
+    components:
+    - type: Transform
+      pos: 2.5,-14.5
+      parent: 1
 - proto: CableMV
   entities:
   - uid: 16
@@ -3949,13 +3959,6 @@ entities:
     - type: Transform
       pos: -0.5,-9.5
       parent: 1
-- proto: DefaultStationBeaconAME
-  entities:
-  - uid: 551
-    components:
-    - type: Transform
-      pos: 2.5,-9.5
-      parent: 1
 - proto: DefaultStationBeaconBridge
   entities:
   - uid: 403
@@ -3972,6 +3975,11 @@ entities:
       parent: 1
 - proto: DefaultStationBeaconEngineering
   entities:
+  - uid: 551
+    components:
+    - type: Transform
+      pos: 1.5,-11.5
+      parent: 1
   - uid: 870
     components:
     - type: Transform
@@ -6856,13 +6864,6 @@ entities:
     - type: Transform
       pos: -0.5,6.5
       parent: 1
-- proto: LockerChiefEngineerFilledHardsuit
-  entities:
-  - uid: 759
-    components:
-    - type: Transform
-      pos: -3.5,15.5
-      parent: 1
 - proto: LockerEngineerFilled
   entities:
   - uid: 391
@@ -7040,11 +7041,15 @@ entities:
     - type: Transform
       pos: 6.5,-10.5
       parent: 1
+    - type: FuelGenerator
+      targetPower: 25000
   - uid: 749
     components:
     - type: Transform
       pos: 5.5,-11.5
       parent: 1
+    - type: FuelGenerator
+      targetPower: 25000
 - proto: PortableGeneratorJrPacman
   entities:
   - uid: 6
@@ -8072,6 +8077,13 @@ entities:
     - type: Transform
       pos: 1.5,-13.5
       parent: 1
+- proto: SuitStorageEVACaptain
+  entities:
+  - uid: 759
+    components:
+    - type: Transform
+      pos: -3.5,15.5
+      parent: 1
 - proto: SuitStorageEVAEngineer
   entities:
   - uid: 339
@@ -8088,12 +8100,6 @@ entities:
       pos: 1.5,11.5
       parent: 1
   - uid: 997
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-0.5
-      parent: 1
-  - uid: 998
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
