@@ -12,11 +12,10 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Localizations;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
-using Robust.Shared.Map;
-using Content.Server.GameTicking;
-using Content.Server._NF.Salvage.Expeditions.Structure;
-using Content.Server._NF.Salvage.Expeditions;
-using Robust.Shared.Utility;
+using Robust.Shared.Map; // Frontier
+using Content.Server.GameTicking; // Frontier
+using Content.Server._NF.Salvage.Expeditions.Structure; // Frontier
+using Content.Server._NF.Salvage.Expeditions; // Frontier
 
 namespace Content.Server.Salvage;
 

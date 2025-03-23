@@ -37,7 +37,8 @@ using Content.Server.Shuttles.Components;
 using Content.Server._NF.Salvage.Expeditions; // Frontier
 using Content.Server.Station.Components; // Frontier
 using Content.Server.Station.Systems; // Frontier
-using Content.Server.Shuttles.Systems; // Frontier
+using Content.Server.Shuttles.Systems;
+using Content.Server._NF.Salvage.Expeditions.Structure; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -66,6 +67,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 #pragma warning disable IDE1006 // suppressing prefix warnings to reduce merge conflict area
     private EntityUid mapUid = EntityUid.Invalid;
 #pragma warning restore IDE1006
+    private static readonly ProtoId<SalvageDifficultyPrototype> FallbackDifficulty = "NFModerate";
     // End Frontier
 
     public SpawnSalvageMissionJob(
@@ -166,7 +168,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // As we go through the config the rating will deplete so we'll go for most important to least important.
         // Frontier: custom difficulty
         if (!_prototypeManager.TryIndex<SalvageDifficultyPrototype>(_missionParams.Difficulty, out var difficultyProto))
-            difficultyProto = _prototypeManager.Index<SalvageDifficultyPrototype>("NFModerate");
+            difficultyProto = _prototypeManager.Index<SalvageDifficultyPrototype>(FallbackDifficulty);
         // End Frontier
 
         var mission = _entManager.System<SharedSalvageSystem>()
@@ -286,6 +288,21 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // }
         #endregion Frontier map generation
         // End Frontier: map generation and offset
+
+        // Frontier: mission setup
+        switch (_missionParams.MissionType)
+        {
+            case SalvageMissionType.Destruction:
+                await SetupStructure(mission, dungeon, mapUid, grid, random);
+                break;
+            case SalvageMissionType.Elimination:
+                await SetupElimination(mission, dungeon, mapUid, grid, random);
+                break;
+            default:
+                _sawmill.Warning($"No setup function for salvage mission type {_missionParams.MissionType}!");
+                break;
+        }
+        // End Frontier: mission setup
 
         var budgetEntries = new List<IBudgetEntry>();
 
@@ -432,4 +449,70 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             }
         }
     }
+
+    // Frontier: mission-specific setup functions
+    private async Task SetupStructure(
+        SalvageMission mission,
+        Dungeon dungeon,
+        EntityUid gridUid,
+        MapGridComponent grid,
+        Random random)
+    {
+        var structureComp = _entManager.EnsureComponent<SalvageDestructionExpeditionComponent>(gridUid);
+        var availableRooms = dungeon.Rooms.ToList();
+        var faction = _prototypeManager.Index<SalvageFactionPrototype>(mission.Faction);
+
+        var structureCount = 5; // FIXME: difficulty-based structure count
+        var shaggy = faction.Configs["DefenseStructure"];
+        var validSpawns = new List<Vector2i>();
+
+        // Spawn the objectives
+        for (var i = 0; i < structureCount; i++)
+        {
+            var structureRoom = availableRooms[random.Next(availableRooms.Count)];
+            validSpawns.Clear();
+            validSpawns.AddRange(structureRoom.Tiles);
+            random.Shuffle(validSpawns);
+
+            while (validSpawns.Count > 0)
+            {
+                var spawnTile = validSpawns[^1];
+                validSpawns.RemoveAt(validSpawns.Count - 1);
+
+                if (!_anchorable.TileFree(grid, spawnTile, (int) CollisionGroup.MachineLayer,
+                        (int)CollisionGroup.MachineMask))
+                {
+                    continue;
+                }
+
+                var spawnPosition = _map.GridTileToLocal(mapUid, grid, spawnTile);
+                var uid = _entManager.SpawnEntity(shaggy, spawnPosition);
+                _entManager.AddComponent<SalvageStructureComponent>(uid);
+                structureComp.Structures.Add(uid);
+                break;
+            }
+        }
+    }
+
+    private async Task SetupElimination(
+        SalvageMission mission,
+        Dungeon dungeon,
+        EntityUid gridUid,
+        MapGridComponent grid,
+        Random random)
+    {
+        // spawn megafauna in a random place
+        var roomIndex = random.Next(dungeon.Rooms.Count);
+        var room = dungeon.Rooms[roomIndex];
+        var tile = room.Tiles.ElementAt(random.Next(room.Tiles.Count));
+        var position = _map.GridTileToLocal(mapUid, grid, tile);
+
+        var faction = _prototypeManager.Index<SalvageFactionPrototype>(mission.Faction);
+        var prototype = faction.Configs["Megafauna"];
+        var uid = _entManager.SpawnEntity(prototype, position);
+
+        var eliminationComp = _entManager.EnsureComponent<SalvageEliminationExpeditionComponent>(gridUid);
+        eliminationComp.Megafauna.Add(uid);
+    }
+    // End Frontier: mission-specific setup functions
 }
