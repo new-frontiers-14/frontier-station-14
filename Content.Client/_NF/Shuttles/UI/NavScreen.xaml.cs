@@ -56,15 +56,18 @@ namespace Content.Client.Shuttles.UI
             if (NavRadar.DampeningMode == InertiaDampeningMode.Station)
             {
                 DampenerModeButtons.Visible = false;
+                ServiceFlagsBox.Visible = false;
             }
             else
             {
                 DampenerModeButtons.Visible = true;
+                ServiceFlagsBox.Visible = true;
                 DampenerOff.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Off;
                 DampenerOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Dampen;
                 AnchorOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Anchor;
+                SetServiceFlags(NavRadar.ServiceFlags, updateButtonsOnly: true);
             }
-            SetServiceFlags(NavRadar.ServiceFlags, updateButtonsOnly: true);
+
         }
 
         // Frontier - Maximum IFF Distance

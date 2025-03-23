@@ -330,12 +330,9 @@ public sealed partial class MapScreen : BoxContainer
                 // If it is a GridMapObject, Turn the mapObj.ServiceFlags into a string like Food = F, Medical = M, etc.
                 // This should turn the ServiceFlags into a string like "FM" for Food and Medical.
                 var serviceFlagsText = string.Empty;
-                if (iffComp?.ServiceFlags != null && iffComp.ServiceFlags != ServiceFlags.None)
+                if (iffComp?.ServiceFlags != null)
                 {
-                    var serviceString = string.Join("", Enum.GetValues<ServiceFlags>()
-                        .Where(flag => (iffComp.ServiceFlags & flag) != 0)
-                        .Select(flag => flag.ToString()[0]));
-                    serviceFlagsText = $"[{serviceString}]";
+                    serviceFlagsText = _shuttles.GetServiceFlagsSuffix(iffComp);
                 }
 
                 var gridObj = new GridMapObject()
