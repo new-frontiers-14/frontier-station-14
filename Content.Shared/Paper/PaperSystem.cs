@@ -137,41 +137,65 @@ public sealed class PaperSystem : EntitySystem
         // only allow editing if there are no stamps or when using a cyberpen
         var editable = entity.Comp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps")
                        || _tagSystem.HasTag(args.Used, "NFWriteIgnoreUnprotectedStamps") && !_tagSystem.HasTag(entity, "NFPaperStampProtected"); // Frontier: protected stamps
-        if (_tagSystem.HasTag(args.Used, "Write") && editable)
+        if (_tagSystem.HasTag(args.Used, "Write"))
         {
-            if (entity.Comp.EditingDisabled)
+            if (editable)
             {
-                var paperEditingDisabledMessage = Loc.GetString("paper-tamper-proof-modified-message");
-                _popupSystem.PopupEntity(paperEditingDisabledMessage, entity, args.User);
+                // Frontier - Restrict writing to entities with ActorComponent, players only
+                if (!HasComp<ActorComponent>(args.User))
+                {
+                    args.Handled = true;
+                    return;
+                }
+                // End Frontier
 
+                if (entity.Comp.EditingDisabled)
+                {
+                    var paperEditingDisabledMessage = Loc.GetString("paper-tamper-proof-modified-message");
+                    _popupSystem.PopupEntity(paperEditingDisabledMessage, entity, args.User);
+
+                    args.Handled = true;
+                    return;
+                }
+
+                var ev = new PaperWriteAttemptEvent(entity.Owner);
+                RaiseLocalEvent(args.User, ref ev);
+                if (ev.Cancelled)
+                {
+                    if (ev.FailReason is not null)
+                    {
+                        var fileWriteMessage = Loc.GetString(ev.FailReason);
+                        _popupSystem.PopupClient(fileWriteMessage, entity.Owner, args.User);
+                    }
+
+                    args.Handled = true;
+                    return;
+                }
+
+                var writeEvent = new PaperWriteEvent(entity, args.User);
+                RaiseLocalEvent(args.Used, ref writeEvent);
+
+                entity.Comp.Mode = PaperAction.Write;
+                _uiSystem.OpenUi(entity.Owner, PaperUiKey.Key, args.User);
+                UpdateUserInterface(entity);
                 args.Handled = true;
                 return;
             }
-            var writeEvent = new PaperWriteEvent(entity, args.User);
-            RaiseLocalEvent(args.Used, ref writeEvent);
-
-            // Frontier - Restrict writing to entities with ActorComponent, players only
-            if (!TryComp<ActorComponent>(args.User, out var actor))
-                return;
-
-            entity.Comp.Mode = PaperAction.Write;
-            _uiSystem.OpenUi(entity.Owner, PaperUiKey.Key, args.User);
-            UpdateUserInterface(entity);
-            args.Handled = true;
-            return;
         }
 
         // If a stamp, attempt to stamp paper
         if (TryComp<StampComponent>(args.Used, out var stampComp) &&
             !StampDelayed(args.Used)) // Frontier: check stamp is delayed, defer TryStamp
         {
-            var stampInfo = GetStampInfo(stampComp); // Frontier: assign DisplayStampInfo before stamp
+            // Frontier: assign DisplayStampInfo before stamp
+            var stampInfo = GetStampInfo(stampComp);
             if (_tagSystem.HasTag(args.Used, "Write"))
             {
                 TrySign(entity, args.User, args.Used);
             }
             else if (TryStamp(entity, stampInfo, stampComp.StampState))
-            { // End Frontier
+            {
+                // End Frontier: assign DisplayStampInfo before stamp
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
                         ("user", args.User),
@@ -211,6 +235,11 @@ public sealed class PaperSystem : EntitySystem
 
     private void OnInputTextMessage(Entity<PaperComponent> entity, ref PaperInputTextMessage args)
     {
+        var ev = new PaperWriteAttemptEvent(entity.Owner);
+        RaiseLocalEvent(args.Actor, ref ev);
+        if (ev.Cancelled)
+            return;
+
         if (args.Text.Length <= entity.Comp.ContentSize)
         {
             SetContent(entity, args.Text);
@@ -385,3 +414,10 @@ public sealed class PaperSystem : EntitySystem
 /// </summary>
 [ByRefEvent]
 public record struct PaperWriteEvent(EntityUid User, EntityUid Paper);
+
+/// <summary>
+/// Cancellable event for attempting to write on a piece of paper.
+/// </summary>
+/// <param name="paper">The paper that the writing will take place on.</param>
+[ByRefEvent]
+public record struct PaperWriteAttemptEvent(EntityUid Paper, string? FailReason = null, bool Cancelled = false);

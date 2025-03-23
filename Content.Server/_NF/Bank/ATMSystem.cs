@@ -5,9 +5,9 @@
  */
 using Content.Server.Popups;
 using Content.Server.Stack;
-using Content.Shared.Bank.BUI;
-using Content.Shared.Bank.Components;
-using Content.Shared.Bank.Events;
+using Content.Shared._NF.Bank.BUI;
+using Content.Shared._NF.Bank.Components;
+using Content.Shared._NF.Bank.Events;
 using Content.Shared.Coordinates;
 using Content.Shared.Stacks;
 using Content.Shared.UserInterface;

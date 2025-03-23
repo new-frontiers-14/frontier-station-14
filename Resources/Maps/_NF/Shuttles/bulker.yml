@@ -504,6 +504,34 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: Bulker
+- proto: AirAlarm
+  entities:
+  - uid: 361
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,-4.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 138
+      - 147
+      - 546
+      - 547
+      - 475
+      - 558
+      - 535
+      - 536
+      - 66
+      - 360
+      - 364
+      - 68
+      - 490
+      - 201
+      - 336
+      - 339
+      - 343
+      - 342
 - proto: Airlock
   entities:
   - uid: 3
@@ -1599,10 +1627,11 @@ entities:
       parent: 1
 - proto: ComputerTabletopStationRecords
   entities:
-  - uid: 361
+  - uid: 62
     components:
     - type: Transform
-      pos: 1.5,3.5
+      rot: 1.5707963267948966 rad
+      pos: -0.5,2.5
       parent: 1
 - proto: ConveyorBelt
   entities:
@@ -1939,11 +1968,17 @@ entities:
     - type: Transform
       pos: -6.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
   - uid: 339
     components:
     - type: Transform
       pos: -6.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
   - uid: 340
     components:
     - type: Transform
@@ -1954,11 +1989,17 @@ entities:
     - type: Transform
       pos: 7.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
   - uid: 343
     components:
     - type: Transform
       pos: 7.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
   - uid: 346
     components:
     - type: Transform
@@ -2669,6 +2710,9 @@ entities:
     - type: Transform
       pos: -7.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 68
@@ -2676,6 +2720,9 @@ entities:
     - type: Transform
       pos: -0.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 147
@@ -2683,6 +2730,9 @@ entities:
     - type: Transform
       pos: 8.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 201
@@ -2691,6 +2741,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 535
@@ -2698,6 +2751,9 @@ entities:
     - type: Transform
       pos: -7.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 546
@@ -2705,6 +2761,9 @@ entities:
     - type: Transform
       pos: 9.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 558
@@ -2713,6 +2772,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 11.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -2731,6 +2793,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -8.5,-4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 364
@@ -2738,6 +2803,9 @@ entities:
     - type: Transform
       pos: 1.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 475
@@ -2745,6 +2813,9 @@ entities:
     - type: Transform
       pos: 11.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 490
@@ -2752,6 +2823,9 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 536
@@ -2759,6 +2833,9 @@ entities:
     - type: Transform
       pos: -8.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 547
@@ -2766,6 +2843,9 @@ entities:
     - type: Transform
       pos: 8.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -2881,7 +2961,7 @@ entities:
   - uid: 367
     components:
     - type: Transform
-      pos: 1.5,2.5
+      pos: 1.5,3.5
       parent: 1
 - proto: LockerSalvageSpecialistFilled
   entities:
@@ -2918,6 +2998,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 12.5,0.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 434
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 477
@@ -2950,13 +3037,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: PaperBin10
-  entities:
-  - uid: 407
-    components:
-    - type: Transform
-      pos: -0.5,2.5
-      parent: 1
 - proto: PaperCaptainsThoughts
   entities:
   - uid: 476
@@ -3142,7 +3222,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-2.5
       parent: 1
-- proto: PoweredlightColoredBlack
+- proto: PoweredlightBlack
   entities:
   - uid: 351
     components:
@@ -3155,19 +3235,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,-3.5
-      parent: 1
-- proto: PoweredlightColoredRed
-  entities:
-  - uid: 442
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -10.5,0.5
-      parent: 1
-  - uid: 657
-    components:
-    - type: Transform
-      pos: 0.5,-6.5
       parent: 1
 - proto: PoweredlightGreen
   entities:
@@ -3184,6 +3251,17 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -8.5,3.5
+      parent: 1
+  - uid: 442
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -10.5,0.5
+      parent: 1
+  - uid: 657
+    components:
+    - type: Transform
+      pos: 0.5,-6.5
       parent: 1
 - proto: PoweredSmallLight
   entities:
@@ -3427,16 +3505,6 @@ entities:
     - type: Transform
       pos: -0.41324377,-1.3236005
       parent: 1
-  - uid: 434
-    components:
-    - type: Transform
-      pos: 0.05550623,-1.4329755
-      parent: 1
-  - uid: 435
-    components:
-    - type: Transform
-      pos: 0.6180062,-1.3079755
-      parent: 1
   - uid: 438
     components:
     - type: Transform
@@ -3534,11 +3602,6 @@ entities:
       parent: 1
 - proto: TableReinforced
   entities:
-  - uid: 62
-    components:
-    - type: Transform
-      pos: 1.5,3.5
-      parent: 1
   - uid: 292
     components:
     - type: Transform

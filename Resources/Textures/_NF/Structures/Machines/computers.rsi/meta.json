@@ -2,12 +2,16 @@
   "version": 1,
   "license": "CC-BY-SA-3.0",
   "copyright": "shipyard_security and shipyard made by Potato1234_x, black market versions by terezi4real on github, medical versions by sungyandy, piratebounty* by @gentlebutter, sr by Tych0thesynth on github",
-  "copyright": "contraband by gentlebutter, animated by whatston3; cargo_market, cargo_sale, shuttle_records, station_atm by whatston3",
+  "copyright": "contraband by gentlebutter, animated by whatston3; cargo_market, cargo_sale, shuttle_records, solar_screen, station_atm by whatston3",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
+    {
+      "name": "atmos_key",
+      "directions": 4
+    },
     {
       "name": "computer",
       "directions": 4
@@ -22,6 +26,14 @@
     },
     {
       "name": "generic_keyboard",
+      "directions": 4
+    },
+    {
+      "name": "generic_keys",
+      "directions": 4
+    },
+    {
+      "name": "generic_panel_open",
       "directions": 4
     },
     {
@@ -83,6 +95,10 @@
           0.9
         ]
       ]
+    },
+    {
+      "name": "gas_sale_point",
+      "directions": 4
     },
     {
       "name": "shipyard",
@@ -399,6 +415,36 @@
           [
             0.5,
             0.5
+          ]
+        ]
+    },
+    {
+        "name": "solar_screen",
+        "directions": 4,
+        "delays": [
+          [
+            0.6,
+            0.4,
+            0.4,
+            0.6
+          ],
+          [
+            0.6,
+            0.4,
+            0.4,
+            0.6
+          ],
+          [
+            0.6,
+            0.4,
+            0.4,
+            0.6
+          ],
+          [
+            0.6,
+            0.4,
+            0.4,
+            0.6
           ]
         ]
     }

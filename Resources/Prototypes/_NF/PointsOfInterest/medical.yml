@@ -1,0 +1,49 @@
+# Author Info
+# GitHub: dustylens
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# Medical ship garage, medical manager base and medical bounty staging area.
+- type: pointOfInterest
+  id: Medical
+  parent: BasePOI
+  name: 'Medical Dispatch'
+  minimumDistance: 1650
+  maximumDistance: 3400
+  spawnGroup: Required
+  gridPath: /Maps/_NF/POI/medical.yml
+  addComponents:
+  - type: IFF
+    color: "#00b7eb"
+  - type: StationTransit
+
+- type: gameMap
+  id: Medical
+  mapName: 'Medical Dispatch'
+  mapPath: /Maps/_NF/POI/medical.yml
+  minPlayers: 0
+  stations:
+    Medical:
+      stationProto: RecordsFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Medical Dispatch'
+        - type: ExtraStationInformation
+          iconPath: /Textures/_NF/Markers/jobs.rsi/medic.png
+          stationSubtext: 'frontier-lobby-medical-subtext'
+          stationDescription: 'frontier-lobby-medical-description'
+          lobbySortOrder: 4
+        - type: StationJobs
+          availableJobs:
+            DirectorOfCare: [ 1, 1 ]
+            Pilot: [ -1, -1 ]
+            Mercenary: [ -1, -1 ]
+          tags:
+          - HeadOfPersonnel
+          - HeadOfSecurity
+        - type: StationDeadDrop
+          maxDeadDrops: 1 # Fewer here, players start here.

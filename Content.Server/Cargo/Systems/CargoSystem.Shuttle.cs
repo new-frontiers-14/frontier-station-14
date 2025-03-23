@@ -1,16 +1,17 @@
 using Content.Server.Cargo.Components;
 using Content.Shared.Stacks;
-using Content.Shared.Bank.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
 using Content.Shared.GameTicking;
-using Content.Shared.Mobs;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Audio;
-using Content.Shared.Mind.Components; // Frontier
+using Content.Shared.Whitelist; // Frontier
+using Content.Server._NF.Cargo.Components; // Frontier
+using Content.Shared._NF.Bank.Components; // Frontier
+using Content.Shared.Mobs; // Frontier
 
 namespace Content.Server.Cargo.Systems;
 
@@ -19,6 +20,8 @@ public sealed partial class CargoSystem
     /*
      * Handles cargo shuttle / trade mechanics.
      */
+
+    [Dependency] EntityWhitelistSystem _whitelist = default!; // Frontier
 
     // Frontier addition:
     // The maximum distance from the console to look for pallets.
@@ -59,26 +62,29 @@ public sealed partial class CargoSystem
         }
     }
 
-    private void UpdatePalletConsoleInterface(EntityUid uid)
+    private void UpdatePalletConsoleInterface(Entity<CargoPalletConsoleComponent> uid) // Frontier: EntityUid<Entity
     {
         if (Transform(uid).GridUid is not EntityUid gridUid)
         {
-            _uiSystem.SetUiState(uid, CargoPalletConsoleUiKey.Sale,
+            _uiSystem.SetUiState(uid.Owner, CargoPalletConsoleUiKey.Sale, // Frontier: uid<uid.Owner
             new CargoPalletConsoleInterfaceState(0, 0, false));
             return;
         }
-        GetPalletGoods(uid, gridUid, out var toSell, out var amount);
+        // Frontier: per-object market modification
+        GetPalletGoods(uid, gridUid, out var toSell, out var amount, out var noModAmount);
         if (TryComp<MarketModifierComponent>(uid, out var priceMod))
         {
             amount *= priceMod.Mod;
         }
-        _uiSystem.SetUiState(uid, CargoPalletConsoleUiKey.Sale,
+        amount += noModAmount;
+        // End Frontier
+        _uiSystem.SetUiState(uid.Owner, CargoPalletConsoleUiKey.Sale, // Frontier: uid<uid.Owner
             new CargoPalletConsoleInterfaceState((int) amount, toSell.Count, true));
     }
 
     private void OnPalletUIOpen(EntityUid uid, CargoPalletConsoleComponent component, BoundUIOpenedEvent args)
     {
-        UpdatePalletConsoleInterface(uid);
+        UpdatePalletConsoleInterface((uid, component)); // Frontier: EntityUid<Entity
     }
 
     /// <summary>
@@ -91,7 +97,7 @@ public sealed partial class CargoSystem
 
     private void OnPalletAppraise(EntityUid uid, CargoPalletConsoleComponent component, CargoPalletAppraiseMessage args)
     {
-        UpdatePalletConsoleInterface(uid);
+        UpdatePalletConsoleInterface((uid, component)); // Frontier: EntityUid<Entity
     }
 
     private void OnCargoShuttleConsoleStartup(EntityUid uid, CargoShuttleConsoleComponent component, ComponentStartup args)
@@ -259,11 +265,11 @@ public sealed partial class CargoSystem
 
     #region Station
 
-    private bool SellPallets(EntityUid consoleUid, EntityUid gridUid, out double amount)
+    private bool SellPallets(Entity<CargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out double amount, out double noMultiplierAmount) // Frontier: first arg to Entity, add noMultiplierAmount
     {
-        GetPalletGoods(consoleUid, gridUid, out var toSell, out amount);
+        GetPalletGoods(consoleUid, gridUid, out var toSell, out amount, out noMultiplierAmount); // Frontier: add noMultiplierAmount
 
-        Log.Debug($"Cargo sold {toSell.Count} entities for {amount}");
+        Log.Debug($"Cargo sold {toSell.Count} entities for {amount} (plus {noMultiplierAmount} without mods)"); // Frontier: add section in parentheses
 
         if (toSell.Count == 0)
             return false;
@@ -280,9 +286,10 @@ public sealed partial class CargoSystem
         return true;
     }
 
-    private void GetPalletGoods(EntityUid consoleUid, EntityUid gridUid, out HashSet<EntityUid> toSell, out double amount)
+    private void GetPalletGoods(Entity<CargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out HashSet<EntityUid> toSell, out double amount, out double noMultiplierAmount) // Frontier: first arg to Entity, add noMultiplierAmount
     {
         amount = 0;
+        noMultiplierAmount = 0;
         toSell = new HashSet<EntityUid>();
 
         foreach (var (palletUid, _, _) in GetCargoPallets(consoleUid, gridUid, BuySellType.Sell))
@@ -306,6 +313,11 @@ public sealed partial class CargoSystem
                     continue;
                 }
 
+                // Frontier: whitelisted consoles
+                if (_whitelist.IsWhitelistFail(consoleUid.Comp.Whitelist, ent))
+                    continue;
+                // End Frontier
+
                 if (_blacklistQuery.HasComponent(ent))
                     continue;
 
@@ -313,7 +325,13 @@ public sealed partial class CargoSystem
                 if (price == 0)
                     continue;
                 toSell.Add(ent);
-                amount += price;
+
+                // Frontier: check for items that are immune to market modifiers
+                if (HasComp<IgnoreMarketModifierComponent>(ent))
+                    noMultiplierAmount += price;
+                else
+                    amount += price;
+                // End Frontier: check for items that are immune to market modifiers
             }
         }
     }
@@ -356,17 +374,20 @@ public sealed partial class CargoSystem
             return;
         }
 
-        if (!SellPallets(uid, gridUid, out var price))
+        if (!SellPallets((uid, component), gridUid, out var price, out var noMultiplierPrice)) // Frontier: convert first arg to Entity, add noMultiplierPrice
             return;
 
+        // Frontier: market modifiers & immune objects
         if (TryComp<MarketModifierComponent>(uid, out var priceMod))
         {
             price *= priceMod.Mod;
         }
+        price += noMultiplierPrice;
+        // End Frontier: market modifiers & immune objects
         var stackPrototype = _protoMan.Index<StackPrototype>(component.CashType);
         _stack.Spawn((int) price, stackPrototype, xform.Coordinates);
         _audio.PlayPvs(ApproveSound, uid);
-        UpdatePalletConsoleInterface(uid);
+        UpdatePalletConsoleInterface((uid, component)); // Frontier: EntityUid<Entity
     }
 
     #endregion
@@ -374,6 +395,7 @@ public sealed partial class CargoSystem
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
         Reset();
+        CleanupTradeCrateDestinations(); // Frontier
     }
 }
 

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/09/2025 22:19:52
+  entityCount: 2572
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   30: FloorDark
@@ -25,6 +36,7 @@ entities:
     components:
     - type: MetaData
     - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -94,8 +106,8 @@ entities:
     - type: Broadphase
     - type: Physics
       bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
+      angularDamping: 0.05
+      linearDamping: 0.05
       fixedRotation: False
       bodyType: Dynamic
     - type: Fixtures
@@ -103,8 +115,6 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -7403,40 +7413,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,13.5
       parent: 1
-- proto: CargoPalletSell
-  entities:
-  - uid: 218
-    components:
-    - type: Transform
-      pos: 16.5,4.5
-      parent: 1
-  - uid: 363
-    components:
-    - type: Transform
-      pos: 17.5,5.5
-      parent: 1
-  - uid: 364
-    components:
-    - type: Transform
-      pos: 17.5,4.5
-      parent: 1
-  - uid: 603
-    components:
-    - type: Transform
-      pos: 16.5,5.5
-      parent: 1
-  - uid: 604
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 15.5,5.5
-      parent: 1
-  - uid: 627
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 15.5,4.5
-      parent: 1
 - proto: CarpetBlack
   entities:
   - uid: 2241
@@ -7688,9 +7664,25 @@ entities:
     - type: Transform
       pos: -7.794549,13.405164
       parent: 1
-- proto: ComputerPalletConsoleNFLowMarket
+- proto: Cobweb1
   entities:
-  - uid: 602
+  - uid: 364
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 17.5,4.5
+      parent: 1
+- proto: Cobweb2
+  entities:
+  - uid: 218
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 15.5,4.5
+      parent: 1
+- proto: ComputerBroken
+  entities:
+  - uid: 363
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -7758,110 +7750,44 @@ entities:
       rot: 3.141592653589793 rad
       pos: -12.5,7.5
       parent: 1
-- proto: ComputerWallmountWithdrawBankATM
+- proto: ComputerWallmountBankATM
   entities:
   - uid: 2517
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,12.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
-  - uid: 2518
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,12.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
+  - uid: 2518
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,12.5
+      parent: 1
   - uid: 2519
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 25.5,-1.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
   - uid: 2520
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -24.5,-1.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
   - uid: 2521
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 19.5,20.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
   - uid: 2522
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -18.5,20.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
 - proto: ConveyorBelt
   entities:
   - uid: 701
@@ -14304,6 +14230,13 @@ entities:
     - type: Transform
       pos: 6.535731,10.07715
       parent: 1
+- proto: NFHolopadExpeditionLodge
+  entities:
+  - uid: 2576
+    components:
+    - type: Transform
+      pos: 6.5,8.5
+      parent: 1
 - proto: NFSignDock
   entities:
   - uid: 360
@@ -14913,8 +14846,6 @@ entities:
     - type: Transform
       pos: -2.5,11.5
       parent: 1
-- proto: RandomPosterContrabandDeadDrop
-  entities:
   - uid: 2510
     components:
     - type: Transform

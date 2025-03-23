@@ -3,7 +3,6 @@
   suffix: DEBUG # TODO: Fix this, its here to stop PrototypeSaveTest fail
   parent:
   - BaseStation
-  - BaseStationCargo
   - BaseStationJobsSpawning
   - BaseStationRecords
   - BaseStationSiliconLawFrontierStation
@@ -22,7 +21,6 @@
   parent:
   - BaseStation
   - BaseStationJobsSpawning
-  - BaseStationCargo
   - BaseStationSiliconLawFrontierShips
   - BaseStationDampening
   categories: [ HideSpawnMenu ]
@@ -39,6 +37,7 @@
 - type: entity
   id: MarketFrontierOutpost
   parent:
+  - NFBaseStationCargo
   - StandardFrontierOutpost
   - BaseStationCargoMarket
   categories: [ HideSpawnMenu ]
@@ -62,7 +61,6 @@
   id: SecurityFrontierOutpost
   parent:
   - BaseStation # Copied from StandardFrontierStation
-  - BaseStationCargo # Cargo
   - BaseStationJobsSpawning # Records and jobsspawning
   - BaseStationRecords
   - BaseStationSiliconLawFrontierStation # No funny borg laws
@@ -79,6 +77,7 @@
   - BaseStationRecords
   - BaseStationAllEventsEligible
   - BaseStationRenameFaxes
+  - BaseStationRenameHolopads
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
   - BaseStationDeadDropHintExempt # No hints on ship generation
@@ -95,6 +94,7 @@
   - BaseStationRecords
   - BaseStationAllEventsEligible
   - BaseStationRenameFaxes
+  - BaseStationRenameHolopads
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
   - BaseStationDeadDropHintExempt # No hints on ship generation

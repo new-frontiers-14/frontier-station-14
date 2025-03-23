@@ -39,12 +39,24 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.7,-0.8,0.7,0.8"
+          bounds: "-0.7,-0.7,0.7,0.7"
         density: 190
         mask:
         - LargeMobMask
         layer:
         - WallLayer
+  # Frontier: linkable station anchors
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
+  # End Frontier: linkable station anchors
 
 - type: entity
   id: StationAnchorIndestructible
@@ -117,3 +129,5 @@
   components:
   - type: StationAnchor
     switchedOn: false
+  - type: PowerCharge # Frontier
+    switchedOn: false # Frontier

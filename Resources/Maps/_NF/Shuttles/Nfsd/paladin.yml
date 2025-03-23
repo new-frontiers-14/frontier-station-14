@@ -20,11 +20,11 @@ entities:
     components:
     - type: MetaData
       name: Paladin
-    - type: BecomesStation
-      id: Paladin
     - type: Transform
       pos: -0.4917612,-0.4486041
       parent: invalid
+    - type: BecomesStation
+      id: Paladin
     - type: MapGrid
       chunks:
         0,0:
@@ -1047,6 +1047,13 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 189
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
 - proto: PlastitaniumWindow
   entities:
   - uid: 8
@@ -1093,7 +1100,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-1.5
       parent: 1
-- proto: PoweredlightColoredFrostyBlue
+- proto: PoweredlightCyan
   entities:
   - uid: 36
     components:
@@ -1365,7 +1372,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-0.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 188
     components:

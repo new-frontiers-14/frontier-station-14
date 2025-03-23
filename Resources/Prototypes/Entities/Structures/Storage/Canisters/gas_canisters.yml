@@ -5,6 +5,7 @@
   name: gas canister
   description: A canister that can contain any type of gas. It can be attached to connector ports using a wrench.
   components:
+    - type: Animateable
     - type: InteractionOutline
     - type: Transform
       noRot: true
@@ -99,11 +100,17 @@
           components:
             - GasTank
     - type: StaticPrice
-      price: 1000 # Frontier: 200<1000
+      price: 125 # Frontier: 200<125
     - type: AccessReader
 #      access: [["Atmospherics"], ["Engineering"], ["Research"], ["Captain"]] # Frontier
+    - type: Construction # Frontier
+      graph: NFStorageCanister # Frontier
+      node: storagecanister # Frontier
     - type: Lock
-      locked: true
+      locked: true # Frontier: false<true
+    - type: GuideHelp
+      guides:
+      - GasCanisters
 
 - type: entity
   parent: GasCanister

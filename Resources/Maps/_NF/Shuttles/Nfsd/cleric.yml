@@ -13,11 +13,11 @@ entities:
     components:
     - type: MetaData
       name: Cleric
-    - type: BecomesStation
-      id: Cleric
     - type: Transform
       pos: 0.84375,0.34375
       parent: invalid
+    - type: BecomesStation
+      id: Cleric
     - type: MapGrid
       chunks:
         0,0:
@@ -568,6 +568,13 @@ entities:
     - type: Transform
       pos: -1.5,0.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 113
+    components:
+    - type: Transform
+      pos: 1.5,0.5
+      parent: 1
 - proto: PlastitaniumWindow
   entities:
   - uid: 11
@@ -814,7 +821,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-1.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 104
     components:

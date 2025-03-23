@@ -5,14 +5,20 @@ guide-entry-piloting = Piloting
 guide-entry-startinggear = Starting Equipment
 guide-entry-hiring = Hiring Crew
 guide-entry-expeditions = Expeditions
+guide-entry-sector-topology = Sector Topology
+guide-entry-cargo-hauling = Cargo Hauling
 guide-entry-shipyard = Shipyard
 guide-entry-frontier-rules = Server Rules
+
+# Engineering entries
+guide-entry-offshore-gas-mining = Offshore Gas Mining
 
 # Security entries
 guide-entry-nfsd-smuggling = Smuggling
 
 # Medical entries
 guide-entry-medical-bounties = Medical Bounties
+guide-entry-medical-doc = Director of Care
 
 # Reference entries
 guide-entry-medicalrecipes = Medical Recipes
@@ -37,6 +43,7 @@ guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-barge = Barge
 guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
+guide-entry-shipyard-bodkin = Bodkin
 guide-entry-shipyard-bookworm = Bookworm
 guide-entry-shipyard-brigand = Brigand
 guide-entry-shipyard-bulker = Bulker
@@ -63,6 +70,7 @@ guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-loader = Loader
 guide-entry-shipyard-mccargo = McCargo
 guide-entry-shipyard-mcdelivery = McDelivery
+guide-entry-shipyard-nightlight = Nightlight
 guide-entry-shipyard-pathfinder = Pathfinder
 guide-entry-shipyard-phoenix = Phoenix
 guide-entry-shipyard-pioneer = Pioneer

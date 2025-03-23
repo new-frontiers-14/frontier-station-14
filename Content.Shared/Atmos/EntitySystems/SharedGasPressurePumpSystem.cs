@@ -10,6 +10,7 @@ using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.UserInterface;
+using Content.Shared._NF.Atmos.Piping.Binary.Messages; // Frontier
 
 namespace Content.Shared.Atmos.EntitySystems;
 
@@ -31,6 +32,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
 
         SubscribeLocalEvent<GasPressurePumpComponent, GasPressurePumpChangeOutputPressureMessage>(OnOutputPressureChangeMessage);
         SubscribeLocalEvent<GasPressurePumpComponent, GasPressurePumpToggleStatusMessage>(OnToggleStatusMessage);
+        SubscribeLocalEvent<GasPressurePumpComponent, GasPressurePumpChangePumpDirectionMessage>(OnPumpSetDirectionMessage); // Frontier
 
         SubscribeLocalEvent<GasPressurePumpComponent, AtmosDeviceDisabledEvent>(OnPumpLeaveAtmosphere);
         SubscribeLocalEvent<GasPressurePumpComponent, ExaminedEvent>(OnExamined);
@@ -70,13 +72,14 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
         UpdateAppearance(uid, component);
     }
 
-    private void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null)
+    protected void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null) // Frontier: private<protected
     {
         if (!Resolve(uid, ref pump, ref appearance, false))
             return;
 
         var pumpOn = pump.Enabled && _receiver.IsPowered(uid);
         Appearance.SetData(uid, PumpVisuals.Enabled, pumpOn, appearance);
+        Appearance.SetData(uid, PumpVisuals.PumpingInwards, pump.PumpingInwards, appearance); // Frontier
     }
 
     private void OnToggleStatusMessage(EntityUid uid, GasPressurePumpComponent pump, GasPressurePumpToggleStatusMessage args)
@@ -104,4 +107,22 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
 
         UserInterfaceSystem.CloseUi(uid, GasPressurePumpUiKey.Key);
     }
+
+    // Frontier - bidirectional pumps
+    public void OnPumpSetDirectionMessage(EntityUid uid, GasPressurePumpComponent pump, GasPressurePumpChangePumpDirectionMessage args)
+    {
+        if (!pump.SettableDirection || pump.PumpingInwards == args.Inwards)
+            return;
+
+        var temp = pump.OutletName;
+        pump.OutletName = pump.InletName;
+        pump.InletName = temp;
+
+        pump.PumpingInwards = args.Inwards;
+        _adminLogger.Add(LogType.AtmosDirectionChanged, LogImpact.Medium,
+            $"{ToPrettyString(args.Actor):player} set the direction on {ToPrettyString(uid):device} to {(args.Inwards ? "in" : "out")}");
+        Dirty(uid, pump);
+        UpdateAppearance(uid, pump);
+    }
+    // End Frontier
 }

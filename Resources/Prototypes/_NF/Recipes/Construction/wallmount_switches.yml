@@ -1,0 +1,84 @@
+- type: construction
+  name: button frame
+  id: ButtonFrameGreyConstruction
+  graph: ButtonFrameGraph
+  startNode: start
+  targetNode: ButtonFrameGreyNode
+  category: construction-category-machines
+  description: It's a frame to help distinguish switches visually.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+  icon:
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: grey
+
+- type: construction
+  name: button frame (yellow caution)
+  id: ButtonFrameCautionConstruction
+  graph: ButtonFrameGraph
+  startNode: start
+  targetNode: ButtonFrameCautionNode
+  category: construction-category-machines
+  description: It's a frame to help distinguish switches visually. This one is striped black and yellow.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+  icon:
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: caution
+
+- type: construction
+  name: button frame (red caution)
+  id: ButtonFrameCautionSecurityConstruction
+  graph: ButtonFrameGraph
+  startNode: start
+  targetNode: ButtonFrameCautionSecurityNode
+  category: construction-category-machines
+  description: It's a frame to help distinguish switches visually. This one is striped black and red.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+  icon:
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: caution_security
+
+- type: construction
+  name: button frame (exit)
+  id: ButtonFrameExitConstruction
+  graph: ButtonFrameGraph
+  startNode: start
+  targetNode: ButtonFrameExitNode
+  category: construction-category-machines
+  description: It's a frame to help distinguish switches visually. This one is labeled "EXIT".
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+  icon:
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: exit
+
+- type: construction
+  name: button frame (janitor)
+  id: ButtonFrameJanitorConstruction
+  graph: ButtonFrameGraph
+  startNode: start
+  targetNode: ButtonFrameJanitorNode
+  category: construction-category-machines
+  description: It's a frame to help distinguish switches visually. This one is purple.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+  icon:
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: janitor

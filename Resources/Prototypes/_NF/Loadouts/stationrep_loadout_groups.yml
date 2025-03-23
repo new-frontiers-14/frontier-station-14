@@ -14,13 +14,10 @@
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
-  - ContractorClothingOuterVestTank
   - StationRepClothingOuterArmorSrCarapace
   - StationRepClothingOuterJacketSr
   - ContractorClothingOuterCoatExpensive #We let them drip out a little if they want
   - ContractorClothingOuterCoatSpaceAsshole
-  fallbacks:
-  - ContractorClothingOuterVestTank
 
 - type: loadoutGroup
   id: StationRepBackpack
@@ -74,9 +71,19 @@
 
 - type: loadoutGroup
   id: StationRepPDA
-  name: loadout-group-contractor-id
+  name: loadout-group-contractor-pda
   hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - StationRepSrPDA
   fallbacks:
   - StationRepSrPDA
+
+- type: loadoutGroup
+  id: StationRepBackpackItems
+  name: loadout-group-contractor-backpack-items
+  minLimit: 0
+  maxLimit: 6
+  loadouts:
+  - StationRepNFPouchSr
+  subgroups:
+  - ContractorBackpackItems

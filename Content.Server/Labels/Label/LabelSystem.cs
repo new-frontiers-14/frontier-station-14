@@ -47,7 +47,7 @@ namespace Content.Server.Labels
         {
             if (!Resolve(uid, ref label, false))
                 label = EnsureComp<LabelComponent>(uid);
-            if (_tagSystem.HasTag(uid, PreventTag)) // DeltaV - Prevent labels on certain items // Frontier: currently unused - TODO: remove
+            if (_tagSystem.HasTag(uid, PreventTag)) // DeltaV - Prevent labels on certain items
                 return; // DeltaV
 
             label.CurrentLabel = text;

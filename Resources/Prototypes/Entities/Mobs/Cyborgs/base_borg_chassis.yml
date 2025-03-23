@@ -155,6 +155,7 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
+    screamAction: null
   - type: UnblockableSpeech
   - type: FootstepModifier
     footstepSoundCollection:
@@ -167,7 +168,6 @@
     - cell_slot
   - type: Lock
     locked: true
-    breakOnEmag: false
     unlockOnClick: false
   - type: ActivatableUIRequiresLock
   - type: LockedWiresPanel
@@ -245,7 +245,7 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
-  - type: JetpackUser # DeltaV: Lets cyborgs fly in space
+  - type: PreventDropOnDowned # Frontier: borgs don't drop items when falling (e.g. critical/dead)
 
 - type: entity
   abstract: true
@@ -283,7 +283,8 @@
   components:
   - type: RandomMetadata
     nameSegments:
-      - names_borg
+      # - names_borg # Frontier
+      - NFNamesBorgUnlocalized # Frontier
   - type: NpcFactionMember
     factions:
     - NanoTrasen
@@ -314,6 +315,7 @@
     access: [["SyndicateAgent"], ["NuclearOperative"]]
   - type: SiliconLawProvider
     laws: SyndicateStatic
+    subverted: true
   - type: IntrinsicRadioTransmitter
     channels:
     - Binary
@@ -325,6 +327,8 @@
   - type: MovementAlwaysTouching
   - type: Speech
     speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate

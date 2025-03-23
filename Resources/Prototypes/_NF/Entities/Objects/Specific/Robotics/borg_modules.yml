@@ -9,13 +9,22 @@
     - state: icon-advancedmining
       sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
+    moduleId: NFAdvancedMining
     items:
     - MiningDrillDiamond
     - Shovel
     - AdvancedMineralScannerUnpowered
-    - OreBagOfHolding
     - JawsOfLife
     - RadioHandheldNF
+  - type: DroppableBorgModule
+    moduleId: NFAdvancedMining
+    items:
+    - id: OreBagOfHolding
+      whitelist:
+        components:
+        - NFOreBag
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-drill-module }
 
 - type: entity
   id: BorgModuleAdvancedParamedic
@@ -28,6 +37,7 @@
     - state: icon-paramedic
       sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
+    moduleId: NFAdvancedParamedic
     items:
     - HandheldHealthAnalyzerUnpowered
     - Suture10Lingering
@@ -35,3 +45,25 @@
     - Gauze10Lingering
     - Bloodpack10Lingering
     - SyringeBluespace
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-paramed-module }
+
+- type: entity
+  id: BorgModuleJetpack
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: jetpack cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: generic
+    - state: icon-jetpack
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: DroppableBorgModule
+    moduleId: NFJetpack
+    items:
+    - id: JetpackMiniFilled
+      whitelist:
+        components:
+        - Jetpack
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: jetpack-module }

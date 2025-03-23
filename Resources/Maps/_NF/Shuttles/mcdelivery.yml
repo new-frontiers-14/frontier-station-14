@@ -14,11 +14,11 @@ entities:
     components:
     - type: MetaData
       name: McDelivery
-    - type: BecomesStation
-      id: McDelivery
     - type: Transform
       pos: -0.48958334,-0.5208333
       parent: invalid
+    - type: BecomesStation
+      id: McDelivery
     - type: MapGrid
       chunks:
         0,0:
@@ -284,14 +284,6 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 1
-- proto: ComputerTabletopStationRecords
-  entities:
-  - uid: 41
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,2.5
-      parent: 1
 - proto: ComputerWallmountWithdrawBankATM
   entities:
   - uid: 68
@@ -300,19 +292,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: CrateFreezerMcCargo
   entities:
   - uid: 72
@@ -538,6 +517,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,0.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 41
+    components:
+    - type: Transform
+      pos: -0.5,2.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 45
@@ -587,10 +573,6 @@ entities:
     - type: Transform
       pos: -0.5,1.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PowerCellRecharger
   entities:
   - uid: 43
@@ -756,12 +738,6 @@ entities:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
-  - uid: 66
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,2.5
-      parent: 1
 - proto: Thruster
   entities:
   - uid: 3
@@ -833,7 +809,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,2.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 90
     components:

@@ -67,7 +67,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// How many times we try to proximity warp close to something before falling back to map-wideAABB.
     /// </summary>
-    private const int FTLProximityIterations = 5;
+    private const int FTLProximityIterations = 15; // Frontier: 5<15
 
     private readonly HashSet<EntityUid> _lookupEnts = new();
     private readonly HashSet<EntityUid> _immuneEnts = new();
@@ -712,9 +712,10 @@ public sealed partial class ShuttleSystem
         EntityUid shuttleUid,
         ShuttleComponent component,
         EntityUid targetUid,
-        string? priorityTag = null)
+        string? priorityTag = null,
+        DockType dockType = DockType.Airlock) // Frontier
     {
-        return TryFTLDock(shuttleUid, component, targetUid, out _, priorityTag);
+        return TryFTLDock(shuttleUid, component, targetUid, out _, priorityTag, dockType); // Frontier: add dockType
     }
 
     /// <summary>
@@ -726,7 +727,8 @@ public sealed partial class ShuttleSystem
         ShuttleComponent component,
         EntityUid targetUid,
         [NotNullWhen(true)] out DockingConfig? config,
-        string? priorityTag = null)
+        string? priorityTag = null,
+        DockType dockType = DockType.Airlock) // Frontier
     {
         config = null;
 
@@ -738,7 +740,7 @@ public sealed partial class ShuttleSystem
             return false;
         }
 
-        config = _dockSystem.GetDockingConfig(shuttleUid, targetUid, priorityTag);
+        config = _dockSystem.GetDockingConfig(shuttleUid, targetUid, priorityTag, dockType); // Frontier: add dockType
 
         if (config != null)
         {
@@ -794,7 +796,7 @@ public sealed partial class ShuttleSystem
 
         // We essentially expand the Box2 of the target area until nothing else is added then we know it's valid.
         // Can't just get an AABB of every grid as we may spawn very far away.
-        var nearbyGrids = new HashSet<EntityUid>();
+        //var nearbyGrids = new HashSet<EntityUid>(); // Frontier
         var shuttleAABB = Comp<MapGridComponent>(shuttleUid).LocalAABB;
 
         // Start with small point.
@@ -803,65 +805,117 @@ public sealed partial class ShuttleSystem
 
         // How much we expand the target AABB be.
         // We half it because we only need the width / height in each direction if it's placed at a particular spot.
-        var expansionAmount = MathF.Max(shuttleAABB.Width / 2f, shuttleAABB.Height / 2f);
+        var expansionAmount = MathF.Max(shuttleAABB.Width * 0.72f, shuttleAABB.Height * 0.72f); // Frontier: "/ 2" < "* 0.72" - a bit over sqrt 2, worst case for AABB shenanigans
 
         // Expand the starter AABB so we have something to query to start with.
         var targetAABB = _transform.GetWorldMatrix(targetXform)
             .TransformBox(targetLocalAABB)
             .Enlarged(expansionAmount);
 
+        // Frontier: our world is very dense in places, very sparse overall, and very large.
+        // Running a mapwise union results in ships sent very far away.
         var iteration = 0;
-        var lastCount = nearbyGrids.Count;
-        var mapId = targetXform.MapID;
         var grids = new List<Entity<MapGridComponent>>();
+        const float minMargin = 8.0f;
+        const float maxMargin = 32.0f;
 
+        // Pick a cardinal direction to move in.
+        // true: axis-positive movement
+        // false: axis-negative movement
+        // null: no movement in axis
+        var direction = _random.Next(8);
+        bool? positiveX;
+        bool? positiveY;
+        // Nasty but readable
+        switch (direction)
+        {
+            case 0:
+            default:
+                positiveX = true;
+                positiveY = null;
+                break;
+            case 1:
+                positiveX = true;
+                positiveY = true;
+                break;
+            case 2:
+                positiveX = null;
+                positiveY = true;
+                break;
+            case 3:
+                positiveX = false;
+                positiveY = true;
+                break;
+            case 4:
+                positiveX = false;
+                positiveY = null;
+                break;
+            case 5:
+                positiveX = false;
+                positiveY = false;
+                break;
+            case 6:
+                positiveX = null;
+                positiveY = false;
+                break;
+            case 7:
+                positiveX = true;
+                positiveY = false;
+                break;
+        }
         while (iteration < FTLProximityIterations)
         {
             grids.Clear();
-            // We pass in an expanded offset here so we can safely do a random offset later.
-            // We don't include this in the actual targetAABB because then we would be double-expanding it.
-            // Once in this loop, then again when placing the shuttle later.
-            // Note that targetAABB already has expansionAmount factored in already.
-            _mapManager.FindGridsIntersecting(mapId, targetAABB.Enlarged(maxOffset), ref grids);
+            _mapManager.FindGridsIntersecting(targetXform.MapID, targetAABB, ref grids);
+            if (grids.Count == 0)
+                break;
 
+            // Adjust our requested position to be clear of intersecting grids along our randomly chosen direction.
             foreach (var grid in grids)
             {
-                if (!nearbyGrids.Add(grid))
-                    continue;
+                var collidingBox = _transform.GetWorldMatrix(grid).TransformBox(Comp<MapGridComponent>(grid).LocalAABB);
 
-                // Include the other grid's AABB (expanded by ours) as well.
-                targetAABB = targetAABB.Union(
-                    _transform.GetWorldMatrix(grid)
-                    .TransformBox(Comp<MapGridComponent>(grid).LocalAABB.Enlarged(expansionAmount)));
+                if (positiveX == true)
+                {
+                    var newLeft = Math.Max(targetAABB.Left, collidingBox.Right + _random.NextFloat(minMargin, maxMargin));
+                    targetAABB.Right = newLeft + targetAABB.Width;
+                    targetAABB.Left = newLeft;
+                }
+                else if (positiveX == false)
+                {
+                    var newRight = Math.Min(targetAABB.Right, collidingBox.Left - _random.NextFloat(minMargin, maxMargin));
+                    targetAABB.Left = newRight - targetAABB.Width;
+                    targetAABB.Right = newRight;
+                }
+                else
+                {
+                    var margin = _random.NextFloat(-maxMargin, maxMargin);
+                    targetAABB.Left += margin;
+                    targetAABB.Right += margin;
+                }
+
+                if (positiveY == true)
+                {
+                    var newBottom = Math.Max(targetAABB.Bottom, collidingBox.Top + _random.NextFloat(minMargin, maxMargin));
+                    targetAABB.Top = newBottom + targetAABB.Height;
+                    targetAABB.Bottom = newBottom;
+                }
+                else if (positiveY == false)
+                {
+                    var newTop = Math.Min(targetAABB.Top, collidingBox.Bottom - _random.NextFloat(minMargin, maxMargin));
+                    targetAABB.Bottom = newTop - targetAABB.Height;
+                    targetAABB.Top = newTop;
+                }
+                else
+                {
+                    var margin = _random.NextFloat(-maxMargin, maxMargin);
+                    targetAABB.Bottom += margin;
+                    targetAABB.Top += margin;
+                }
             }
-
-            // Can do proximity
-            if (nearbyGrids.Count == lastCount)
-            {
-                break;
-            }
-
             iteration++;
-            lastCount = nearbyGrids.Count;
-
-            // Mishap moment, dense asteroid field or whatever
-            if (iteration != FTLProximityIterations)
-                continue;
-
-            var query = AllEntityQuery<MapGridComponent>();
-            while (query.MoveNext(out var uid, out var grid))
-            {
-                // Don't add anymore as it is irrelevant, but that doesn't mean we need to re-do existing work.
-                if (nearbyGrids.Contains(uid))
-                    continue;
-
-                targetAABB = targetAABB.Union(
-                    _transform.GetWorldMatrix(uid)
-                    .TransformBox(Comp<MapGridComponent>(uid).LocalAABB.Enlarged(expansionAmount)));
-            }
-
-            break;
         }
+        // End Frontier
 
         // Now we have a targetAABB. This has already been expanded to account for our fat ass.
         Vector2 spawnPos;
@@ -872,8 +926,10 @@ public sealed partial class ShuttleSystem
             _physics.SetAngularVelocity(shuttleUid, 0f, body: shuttleBody);
         }
 
+        // Frontier: spawn in our AABB
         // TODO: This should prefer the position's angle instead.
         // TODO: This is pretty crude for multiple landings.
+        /*
         if (nearbyGrids.Count > 1 || !HasComp<MapComponent>(targetXform.GridUid))
         {
             // Pick a random angle
@@ -891,6 +947,9 @@ public sealed partial class ShuttleSystem
         {
             spawnPos = _transform.GetWorldPosition(targetXform);
         }
+        */
+        spawnPos = targetAABB.Center;
+        // End Frontier
 
         var offset = Vector2.Zero;
 

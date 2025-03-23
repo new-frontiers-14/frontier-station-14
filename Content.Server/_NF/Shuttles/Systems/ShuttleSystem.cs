@@ -4,7 +4,7 @@
 using Content.Server._NF.Station.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared._NF.Shuttles.Events;
-using Content.Shared.Shipyard.Components;
+using Content.Shared._NF.Shipyard.Components;
 using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Shuttles.Systems;
