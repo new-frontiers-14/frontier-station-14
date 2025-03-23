@@ -98,6 +98,7 @@
         Manipulator: 3
       stackRequirements:
         Steel: 10
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   id: GaslockFrameMachineCircuitboard
@@ -111,6 +112,7 @@
       prototype: GaslockFrame
       stackRequirements:
         Steel: 10
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 # TechFab
 - type: entity
@@ -401,7 +403,7 @@
 
 - type: entity
   id: CondimentDispenserCircuitboard
-  parent: BaseMachineCircuitboard  
+  parent: BaseMachineCircuitboard
   name: condiment dispenser machine board
   description: A machine printed circuit board for a condiment dispenser.
   components:
@@ -425,3 +427,22 @@
   components:
   - type: MachineBoard
     prototype: MiniStationAnchor
+
+- type: entity
+  id: PortablePumpMachineCircuitBoard
+  parent: BaseMachineCircuitboard
+  name: portable pump machine board
+  description: A machine printed circuit board for a portable pump.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: PortablePump
+    requirements:
+      Manipulator: 2
+    stackRequirements:
+      Cable: 2
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker

@@ -163,6 +163,45 @@ entities:
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
+    - type: WorldGenDistanceCarver
+      distanceThresholds:
+        # Dead zone
+        - maxDistance: 1000
+          prob: 0.0
+        # Sparse zone
+        - maxDistance: 1400
+          prob: 0.1
+        - maxDistance: 1800
+          prob: 0.2
+        - maxDistance: 2200
+          prob: 0.3
+        - maxDistance: 2600
+          prob: 0.4
+        - maxDistance: 3000
+          prob: 0.5
+        - maxDistance: 3400
+          prob: 0.6
+        - maxDistance: 3800
+          prob: 0.7
+        - maxDistance: 4200
+          prob: 0.8
+        - maxDistance: 4600
+          prob: 0.9
+        # Main world
+        - maxDistance: 14000
+          prob: 1.0
+        # Outer sparse zone
+        - maxDistance: 14500
+          prob: 0.8
+        - maxDistance: 15000
+          prob: 0.6
+        - maxDistance: 15500
+          prob: 0.4
+        - maxDistance: 16000
+          prob: 0.2
+        # Outer dead zone
+        - maxDistance: 99999999 # ~ 100 million
+          prob: 0.0
     - type: DecalGrid
       chunkCollection:
         version: 2
