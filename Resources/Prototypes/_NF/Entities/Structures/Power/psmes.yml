@@ -47,9 +47,18 @@
         nodeGroupID: Apc
   - type: BatteryDischarger
     voltage: Apc
-    node: output
   - type: PowerProvider
     voltage: Apc
+  - type: Apc
+    voltage: Apc
+  - type: ExtensionCableProvider
+  # - type: UserInterface # TODO: differentiate this thing
+  #   interfaces:
+  #     enum.ApcUiKey.Key:
+  #       type: ApcBoundUserInterface
+  # - type: ActivatableUI
+  #   inHandsOnly: false
+  #   key: enum.ApcUiKey.Key
   - type: Machine
     board: PortableSMESMachineCircuitboard
   - type: Fixtures
