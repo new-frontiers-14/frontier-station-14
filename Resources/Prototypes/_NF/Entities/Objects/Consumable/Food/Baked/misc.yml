@@ -41,7 +41,7 @@
       - muffin
       - pear
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    sprite: _NF/Objects/Consumable/Food/Baked/misc.rsi
     state: pearmuffin
     scale: .75, .75
   - type: SolutionContainerManager
@@ -73,7 +73,7 @@
       - butter
       - bread
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    sprite: _NF/Objects/Consumable/Food/Baked/misc.rsi
     layers:
       - state: apple_strudel_1
         map: [ "Variant" ]
@@ -97,3 +97,30 @@
   - type: Tag
     tags:
     - Fruit
+
+- type: entity
+  name: cinnamon roll
+  parent: FoodBakedBase
+  id: FoodBakedCinnamonRoll
+  description: I wonder how much more icing you could put on this.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - cinnamon
+      - bun
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/misc.rsi
+    layers:
+      - state: cinnamonroll
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Sugar
+          Quantity: 4
+        - ReagentId: Flavorol
+          Quantity: 2
