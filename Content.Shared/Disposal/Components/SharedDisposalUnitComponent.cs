@@ -120,6 +120,9 @@ public abstract partial class SharedDisposalUnitComponent : Component
     [ViewVariables, DataField(customTypeSerializer:typeof(TimeOffsetSerializer))]
     public TimeSpan? NextFlush;
 
+    [ViewVariables, DataField]
+    public int MaxNumEntities = 8;
+
     [Serializable, NetSerializable]
     public enum Visuals : byte
     {
