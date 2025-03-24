@@ -4,8 +4,8 @@ meta:
   engineVersion: 247.2.0
   forkId: ""
   forkVersion: ""
-  time: 03/24/2025 06:24:46
-  entityCount: 565
+  time: 03/24/2025 13:59:21
+  entityCount: 567
 maps: []
 grids:
 - 1
@@ -113,18 +113,19 @@ entities:
             id: Caution
           decals:
             171: 0,-15
-            202: 8,-12
-            203: 9,-12
-            204: 10,-12
         - node:
             angle: 3.141592653589793 rad
             color: '#FFFFFFFF'
             id: Caution
           decals:
             172: 0,-15
-            193: 8,-12
-            194: 9,-12
-            195: 10,-12
+        - node:
+            color: '#FFFFFFFF'
+            id: LoadingArea
+          decals:
+            208: 8,-12
+            209: 9,-12
+            210: 10,-12
         - node:
             color: '#FFFFFFFF'
             id: StandClear
@@ -132,13 +133,6 @@ entities:
             199: 8,-13
             200: 9,-13
             201: 10,-13
-        - node:
-            color: '#FFFFFFFF'
-            id: WarnLineW
-          decals:
-            187: 8,-12
-            188: 9,-12
-            189: 10,-12
         - node:
             cleanable: True
             angle: 3.141592653589793 rad
@@ -371,7 +365,7 @@ entities:
       pos: 13.5,-7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -28545.836
+      secondsUntilStateChange: -28859.287
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -578,6 +572,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,-10.5
+      parent: 1
+  - uid: 567
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-15.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -1383,7 +1383,7 @@ entities:
       pos: -3.5,-7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -10704.619
+      secondsUntilStateChange: -11018.071
       state: Opening
   - uid: 181
     components:
@@ -1392,7 +1392,7 @@ entities:
       pos: -1.5,-11.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -9222.287
+      secondsUntilStateChange: -9535.739
       state: Opening
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -3113,11 +3113,6 @@ entities:
       parent: 1
 - proto: PoweredlightSodium
   entities:
-  - uid: 404
-    components:
-    - type: Transform
-      pos: 1.5,-15.5
-      parent: 1
   - uid: 405
     components:
     - type: Transform
@@ -3149,6 +3144,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,-12.5
+      parent: 1
+- proto: PoweredWarmSmallLight
+  entities:
+  - uid: 404
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-15.5
       parent: 1
 - proto: RandomPosterAny
   entities:
@@ -3336,6 +3339,16 @@ entities:
         37:
         - Pressed: Toggle
         38:
+        - Pressed: Toggle
+  - uid: 566
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-15.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        417:
         - Pressed: Toggle
 - proto: SignBridge
   entities:
