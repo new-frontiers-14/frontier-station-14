@@ -1,37 +1,63 @@
 - type: entity
   parent: [ WeaponCrusherGlaive, BaseC1Contraband]
   id: WeaponCrusherGlaiveUpgrade
-  name: Advanced Glaive
-  description: An upgraded version of the glaive, Now able to dig through hard rock
+  name: Experimental Glaive
+  description: Features an experimental rock dematerializer shot, weaker against the living and excessive against soft rock but effective when dealing with hard rock.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/advanced_crusher_glaive.rsi
-  - type: IncreaseDamageOnWield
-    damage:
-      types:
-        Blunt: 2.5
-        Slash: 2.5
-        Structural: 40
-  - type: MiningGatheringHard # Frontier
+  - type: BasicEntityAmmoProvider
+    proto: BulletChargeExperimental
+    capacity: 1
+    count: 1
+  - type: UseDelay
+    delay: 1.5 #slightly faster use delay
+  - type: LeechOnMarker
+    leech:
+      groups:
+        Brute: -10 #reduced from glaives 21
   - type: Item
     size: Ginormous
     sprite: _NF/Objects/Weapons/Melee/advanced_crusher_glaive_inhand.rsi
 
 - type: entity
-  parent: [ WeaponCrusher, BaseC1Contraband]
+  parent: [ BaseWeaponCrusher, BaseC1Contraband]
   id: WeaponCrusherUpgrade
   name: Advanced Crusher
-  description: An upgraded crusher, better equipped to deal with hard rocks, structures and the odd space fauna
+  description: An upgraded crusher, shooting system replaced with superheavy alloys. Requires two hands to wield effectively. Mines heavy rocks.
   components:
+  - type: Tag
+    tags:
+      - Pickaxe
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/advanced_crusher.rsi
+    state: icon
+  - type: UseDelay
+    delay: 0.9
+  - type: MeleeWeapon
+    attackRate: 1 #slower swing down from 1.5
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 5 #lower unwielded
+        Slash: 5
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 2.5
-        Slash: 2.5
-        Structural: 50
-  - type: MiningGatheringHard # Frontier
+        Blunt: 15
+        Slash: 5
+        Structural: 50 #total dps is very slightly lower than normal crusher wielded dps, easier to hit however due to wide swings. Structural dps slightly higher
+  - type: MiningGatheringHard
   - type: Item
     size: Ginormous
     sprite: _NF/Objects/Weapons/Melee/advanced_crusher_inhand.rsi
+  - type: DisarmMalus
+  - type: Prying
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage

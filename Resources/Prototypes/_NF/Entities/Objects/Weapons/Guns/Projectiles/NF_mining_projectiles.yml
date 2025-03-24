@@ -1,0 +1,36 @@
+- type: entity
+  id: BulletChargeExperimental
+  name: Experimental charge bolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: Marks a target, mines hard, deals less damage than regular charge.
+  components:
+  - type: Reflective
+    reflective:
+    - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    color: "#66b2b2" # Blu!
+    layers:
+      - state: chronobolt
+        shader: unshaded
+  - type: GatheringProjectile
+  - type: DamageMarkerOnCollide
+    whitelist:
+      components:
+        - MobState
+    damage:
+      types:
+        Blunt: 10 #halved damage compared to regular leech
+        Slash: 5
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 0
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: MiningGatheringSoft # Frontier
+  - type: MiningGatheringHard # Frontier. Note, it doesn't harvest soft properly, keeping for now, will find fix if inconvinient
