@@ -48,7 +48,7 @@ public enum CollisionGroup
     LargeMobLayer = Opaque | HighImpassable | MidImpassable | LowImpassable | BulletImpassable,
 
     // Machines, computers
-    MachineMask = Impassable | MidImpassable | LowImpassable,
+    MachineMask = Impassable | HighImpassable | MidImpassable | LowImpassable,
     MachineLayer = Opaque | MidImpassable | LowImpassable | BulletImpassable,
     ConveyorMask = Impassable | MidImpassable | LowImpassable | DoorPassable,
 
@@ -62,7 +62,7 @@ public enum CollisionGroup
     // Tabletop machines, windoors, firelocks
     TabletopMachineMask = Impassable | HighImpassable,
     // Tabletop machines
-    TabletopMachineLayer = Opaque | BulletImpassable,
+    TabletopMachineLayer = Opaque | BulletImpassable | HighImpassable,
 
     // Airlocks, windoors, firelocks
     GlassAirlockLayer = HighImpassable | MidImpassable | BulletImpassable | InteractImpassable,
@@ -84,5 +84,8 @@ public enum CollisionGroup
     // FlyingMob can go past
     FullTileLayer = Opaque | HighImpassable | MidImpassable | LowImpassable | BulletImpassable | InteractImpassable,
 
-    SubfloorMask = Impassable | LowImpassable
+    SubfloorMask = Impassable | LowImpassable,
+
+    WallLightMask = Impassable,
+    WallLightLayer = Opaque | BulletImpassable
 }
