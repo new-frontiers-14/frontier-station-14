@@ -1,5 +1,5 @@
 [net]
-max_connections = 256
+max_connections = 1024
 pvs_range = 20.0
 pvs_priority_range = 30.0
 tickrate = 60
@@ -12,20 +12,31 @@ desc = "🌒Начни свое путешествие на секторе ЭК�
 cryo_sleep_rejoining = true
 
 [shuttle]
-auto_call_time = 960
-auto_call_extension_time = 30
+auto_call_time = 4320
+arrivals = false
+emergency_dock_time = 360 # an extra 2 minutes over the default
+emergency_transit_time_min = 300
+auto_call_extension_time = 45
+emergency_early_launch_allowed = false
+
+[rules]
+time = 60
 
 [atmos]
-space_wind_max_velocity = 22.0
+space_wind = true
+
+[ic]
+flavor_text = true
+punctuation = true
 
 [salvage]
-expedition_failed_cooldown = 600.0
+expedition_failed_cooldown = 1200.0
+
+[worldgen]
+enabled = true
 
 [replay]
 client_recording_enabled = false
-
-[viewport]
-maximum_width = 26
 
 [server]
 id = "frontier_main"
@@ -50,6 +61,12 @@ uncryo.maxtime = 86400.0
 restart_when_server_empty = false
 start_round_with_no_players = true
 shuttle_auto_call_enabled = false
+
+[biomass]
+easy_mode = false # reclaimer can work on soul-ful bodies, mrp server
+
+[control]
+storage_limit = 3
 
 [discord]
 rich_main_icon_id = "https://shorturl.at/nHmHm"
