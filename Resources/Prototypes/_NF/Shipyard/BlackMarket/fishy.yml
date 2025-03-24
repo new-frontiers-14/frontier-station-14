@@ -1,0 +1,37 @@
+# Author Info
+# GitHub: assignedgod
+
+# Shuttle Notes:
+# A ship designed to look like the Orca, and meant to function as an alternative to the Falcon
+- type: vessel
+  id: Fishy
+  parent: BaseVesselAntag
+  name: Fishy
+  description: A modified troop transport for hauling massive amounts of plunder.
+  price: 40000 #Basevalue is about 31k, added 30% markup.
+  category: Medium
+  group: BlackMarket
+  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/Fishy.yml
+  guidebookPage: Null
+  class:
+  - Pirate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Fishy
+  mapName: 'Fishy'
+  mapPath: /Maps/_NF/Shuttles/BlackMarket/Fishy.yml
+  minPlayers: 0
+  stations:
+    Fishy:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Orca {1}' # 100% real no fake name here trust me
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Pirate: [ 0, 0 ]
