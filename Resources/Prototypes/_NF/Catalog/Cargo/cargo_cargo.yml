@@ -1,0 +1,46 @@
+- type: cargoProduct
+  id: CrateTradeSecureNormal
+  icon:
+    sprite: _NF/Structures/Storage/Crates/tradedark.rsi
+    state: icon
+  product: CrateTradeSecureNormal
+  cost: 1000
+  category: cargoproduct-category-name-cargo
+  group: market
+
+- type: cargoProduct
+  id: CrateTradeSecureHigh
+  icon:
+    sprite: _NF/Structures/Storage/Crates/tradelight.rsi
+    state: icon
+  product: CrateTradeSecureHigh
+  cost: 2000
+  category: cargoproduct-category-name-cargo
+  group: market
+
+# The combination of the cargo mech and a forklift certificate for the meme
+- type: entity
+  id: MechEmuCargoListing
+  name: Emu PLU
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Mech/mecha.rsi
+    state: emu
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:AllSelector
+      children:
+      - id: MechEmuCargo
+      - id: PowerForkCertification
+
+- type: cargoProduct
+  id: MechEmu
+  icon:
+    sprite: _NF/Objects/Specific/Mech/mecha.rsi
+    state: emu
+  product: MechEmuCargoListing
+  cost: 10000
+  category: cargoproduct-category-name-cargo
+  description: An old mech with an integral forklift, useful for moving trade crates.
+  group: market
