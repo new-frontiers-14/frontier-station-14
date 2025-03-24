@@ -223,8 +223,24 @@
   - type: Tag
     tags:
     - Write
+    - Pen
   - type: Contraband # Frontier
     hideValues: true # Frontier
+  # Start-Eclipse
+  - type: UseDelay
+    delays:
+      stamp:
+        length: 1.0
+    delay: 1.0
+  - type: Stamp
+    stampedColor: "#333333"
+    stampState: "paper_stamp-nf-signature"
+    sound:
+      path: /Audio/Items/Paper/paper_scribble1.ogg
+      params:
+        volume: -2
+        maxDistance: 5
+  # End-Eclipse
 
 - type: entity
   parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
