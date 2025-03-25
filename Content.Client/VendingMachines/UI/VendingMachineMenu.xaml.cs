@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.VendingMachines;
@@ -25,10 +26,15 @@ namespace Content.Client.VendingMachines.UI
         [Dependency] private readonly IComponentFactory _componentFactory = default!; // Frontier
 
         private readonly Dictionary<EntProtoId, EntityUid> _dummies = [];
+        private readonly Dictionary<EntProtoId, (ListContainerButton Button, VendingMachineItem Item)> _listItems = new();
+        private readonly Dictionary<EntProtoId, uint> _amounts = new();
+
+        /// <summary>
+        /// Whether the vending machine is able to be interacted with or not.
+        /// </summary>
+        private bool _enabled;
 
         public event Action<GUIBoundKeyEventArgs, ListData>? OnItemSelected;
-
-        private readonly StyleBoxFlat _styleBox = new() { BackgroundColor = new Color(70, 73, 102) };
 
         public VendingMachineMenu()
         {
@@ -74,18 +80,23 @@ namespace Content.Client.VendingMachines.UI
             if (data is not VendorItemsListData { ItemProtoID: var protoID, ItemText: var text })
                 return;
 
-            button.AddChild(new VendingMachineItem(protoID, text));
-
-            button.ToolTip = text;
-            button.StyleBoxOverride = _styleBox;
+            var item = new VendingMachineItem(protoID, text);
+            _listItems[protoID] = (button, item);
+            button.AddChild(item);
+            button.AddStyleClass("ButtonSquare");
+            button.Disabled = !_enabled || _amounts[protoID] == 0;
         }
 
         /// <summary>
         /// Populates the list of available items on the vending machine interface
         /// and sets icons based on their prototypes
         /// </summary>
-        public void Populate(List<VendingMachineInventoryEntry> inventory, float priceModifier, int balance, int? cashSlotBalance) // Frontier: add balance, cashSlotBalance
+        public void Populate(List<VendingMachineInventoryEntry> inventory, bool enabled, float priceModifier, int balance, int? cashSlotBalance) // Frontier: add priceModifier, balance, cashSlotBalance
         {
+            _enabled = enabled;
+            _listItems.Clear();
+            _amounts.Clear();
+
             UpdateBalance(balance); // Frontier
             UpdateCashSlotBalance(cashSlotBalance); // Frontier
 
@@ -118,7 +129,10 @@ namespace Content.Client.VendingMachines.UI
                 var entry = inventory[i];
 
                 if (!_prototypeManager.TryIndex(entry.ID, out var prototype))
+                {
+                    _amounts[entry.ID] = 0;
                     continue;
+                }
 
                 if (!_dummies.TryGetValue(entry.ID, out var dummy))
                 {
@@ -204,20 +218,23 @@ namespace Content.Client.VendingMachines.UI
                 // End Frontier
 
                 var itemName = Identity.Name(dummy, _entityManager);
-                string itemText;
 
                 // Frontier: unlimited vending
+                string itemText;
                 if (entry.Amount != uint.MaxValue)
                     itemText = $"[{BankSystemExtensions.ToSpesoString(cost)}] {itemName} [{entry.Amount}]";
                 else
                     itemText = $"[{BankSystemExtensions.ToSpesoString(cost)}] {itemName}";
                 // End Frontier: unlimited vending
-
+                _amounts[entry.ID] = entry.Amount;
 
                 if (itemText.Length > longestEntry.Length)
                     longestEntry = itemText;
 
-                listData.Add(new VendorItemsListData(prototype!.ID, itemText, i)); // Frontier: prototype<prototype!
+                listData.Add(new VendorItemsListData(prototype!.ID, i) // Frontier: prototype<prototype!
+                {
+                    ItemText = itemText,
+                });
             }
 
             VendingContents.PopulateList(listData);
@@ -239,12 +256,44 @@ namespace Content.Client.VendingMachines.UI
         }
         // End Frontier
 
+        /// <summary>
+        /// Updates text entries for vending data in place without modifying the list controls.
+        /// </summary>
+        public void UpdateAmounts(List<VendingMachineInventoryEntry> cachedInventory, bool enabled)
+        {
+            _enabled = enabled;
+
+            foreach (var proto in _dummies.Keys)
+            {
+                if (!_listItems.TryGetValue(proto, out var button))
+                    continue;
+
+                var dummy = _dummies[proto];
+                var amount = cachedInventory.First(o => o.ID == proto).Amount;
+                // Could be better? Problem is all inventory entries get squashed.
+                var text = GetItemText(dummy, amount);
+
+                button.Item.SetText(text);
+                button.Button.Disabled = !enabled || amount == 0;
+            }
+        }
+
+        private string GetItemText(EntityUid dummy, uint amount)
+        {
+            // FRONTIER MERGE - FIXME
+            var itemName = Identity.Name(dummy, _entityManager);
+            return $"{itemName} [{amount}]";
+        }
+
         private void SetSizeAfterUpdate(int longestEntryLength, int contentCount)
         {
             SetSize = new Vector2(Math.Clamp((longestEntryLength + 2) * 12, 250, 400),
                 Math.Clamp(contentCount * 50, 150, 350));
         }
     }
-}
 
-public record VendorItemsListData(EntProtoId ItemProtoID, string ItemText, int ItemIndex) : ListData;
+    public record VendorItemsListData(EntProtoId ItemProtoID, int ItemIndex) : ListData
+    {
+        public string ItemText = string.Empty;
+    }
+}

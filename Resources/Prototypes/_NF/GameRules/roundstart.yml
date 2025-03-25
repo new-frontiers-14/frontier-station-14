@@ -98,3 +98,20 @@
     - id: BasicPuddleMessVariationPass
     - id: BasicBindToStationVariationPass
     # - id: BasicDeadDropHintVariationPass # ccvar for it found at smuggling.min_hints/smuggling.max_hints
+
+- type: entityTable
+  id: NFGameRulesTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+      - !type:NestedSelector
+        tableId: NFBasicCalmEventsTable
+      - !type:NestedSelector
+        tableId: CalmPestEventsTable
+
+- type: entity
+  id: NFBasicStationEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: NFGameRulesTable

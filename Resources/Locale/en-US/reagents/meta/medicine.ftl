@@ -18,8 +18,12 @@ reagent-name-cryoxadone = cryoxadone
 reagent-desc-cryoxadone = A cryogenics chemical. Useful in treating asphyxiation and bloodloss, but only works in temperatures under 213K. It can treat and rejuvenate plants when applied in small doses. Works regardless of the patient being alive or dead.
 
 reagent-name-doxarubixadone = doxarubixadone
+<<<<<<< HEAD
 reagent-desc-doxarubixadone = A cryogenics chemical. Heals certain types of cellular damage done by Slimes and improper use of other chemicals. Works regardless of the patient being alive or dead.
 # End Frontier
+=======
+reagent-desc-doxarubixadone = A cryogenics chemical. Heals cellular damage caused by dangerous gasses and chemicals.
+>>>>>>> e4864ac4236a2a51a7fc7aa94e74fcdc1fe8fdf0
 
 reagent-name-dermaline = dermaline
 reagent-desc-dermaline = An advanced chemical that is more effective at treating burn damage than kelotane.
