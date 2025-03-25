@@ -13,4 +13,6 @@ flavor-complex-wassail = warm and comforting
 flavor-complex-fine-noodles = like fine noodles
 flavor-complex-rich-broth = like rich broth
 flavor-complex-tangy = tangy
-flavor-complex-antiseptic = like chemical violets
+flavor-complex-spices = like spices
+flavor-complex-cinnamon = like cinnamon
+flavor-complex-antiseptic = like chemical lavender
