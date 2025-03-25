@@ -13,4 +13,4 @@ flavor-complex-wassail = warm and comforting
 flavor-complex-fine-noodles = like fine noodles
 flavor-complex-rich-broth = like rich broth
 flavor-complex-tangy = tangy
-flavor-complex-dirty-water = mildly off
+flavor-complex-antiseptic = like chemical violets

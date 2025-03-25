@@ -1,27 +1,27 @@
 - type: reagent
-  id: DirtyWater
+  id: AntiSepticFluid
   parent: BaseDrink
-  name: reagent-name-dirty-water
+  name: reagent-name-antiseptic
   group: Toxins
-  desc: reagent-desc-dirty-water
+  desc: reagent-desc-antiseptic
   slippery: true
   physicalDesc: reagent-physical-desc-translucent
-  flavor: dirtywater
-  color: "#9ed6cc"
+  flavor: antiseptic
+  color: "#2a6bf9"
   recognizable: true
   boilingPoint: 100.0
   meltingPoint: 0.0
   plantMetabolism:
   - !type:PlantAdjustWater
-    amount: 0.8
-  - !type:PlantAdjustHealth
-    amount: -0.2
+    amount: -0.5
+  - !type:PlantAdjustToxins
+    amount: 0.2
   metabolisms:
     Drink:
       effects:
       # ~80% water, 20% gastrotoxin
       - !type:SatiateThirst
-        factor: 2
+        factor: -1 # mild dessicant
       - !type:HealthChange
         damage:
           types:
