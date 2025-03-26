@@ -4,7 +4,8 @@ flavor-complex-nuggie = like "chicken"
 flavor-complex-enthralling = enthralling
 flavor-complex-sublime = sublime
 flavor-complex-holy = heavenly
-flavor-base-seeds = seeds
+# Frontier: add "like"
+flavor-base-seeds = like seeds
 flavor-complex-vanilla = like vanilla
 flavor-complex-soju = like bold, alcoholic rice
 flavor-complex-orangecreamcicle = like creamy, alcoholic orange juice
