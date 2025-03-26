@@ -169,5 +169,3 @@ loadout-group-boxer-gloves = Боксёр, перчатки
 loadout-group-pants = трусы
 loadout-group-bra = бюстгальтер
 loadout-group-socks = носки
-loadout-contractor-survival-basic = аварийный запас
-loadout-contractor-survival-extended = расширенный аварийный запас
