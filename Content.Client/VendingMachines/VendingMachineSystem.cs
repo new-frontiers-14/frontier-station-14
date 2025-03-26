@@ -223,4 +223,10 @@ public sealed class VendingMachineSystem : SharedVendingMachineSystem
 
         sprite.LayerSetVisible(actualLayer, false);
     }
+
+    // Frontier: custom vending check
+    public override void AuthorizedVend(EntityUid uid, EntityUid sender, InventoryType type, string itemId, VendingMachineComponent component)
+    {
+    }
+    // End Frontier: custom vending check
 }

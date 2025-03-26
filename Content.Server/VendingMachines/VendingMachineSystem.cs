@@ -27,7 +27,7 @@ using Content.Shared.Database; // Frontier
 using Content.Shared._NF.Bank.BUI; // Frontier
 using Content.Server._NF.Contraband.Systems; // Frontier
 using Content.Shared.Stacks; // Frontier
-using Content.Server.Stack;
+using Content.Server.Stack; // Frontier
 using Robust.Shared.Containers; // Frontier
 using Content.Shared._NF.Bank.Components; // Frontier
 
@@ -40,7 +40,6 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
 
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Frontier
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Frontier
         [Dependency] private readonly BankSystem _bankSystem = default!; // Frontier
         [Dependency] private readonly PopupSystem _popupSystem = default!; // Frontier
@@ -370,7 +369,7 @@ namespace Content.Server.VendingMachines
         //    }
         //}
 
-        // Frontier: cash slot logic
+        // Frontier: cash slot logic, custom vending check
         private void OnEntityInserted(Entity<VendingMachineComponent> ent, ref EntInsertedIntoContainerMessage args)
         {
             if (ent.Comp.CashSlotName != null
@@ -393,6 +392,99 @@ namespace Content.Server.VendingMachines
             ent.Comp.CashSlotBalance = 0;
             Dirty(ent, ent.Comp);
         }
-        // End Frontier: cash slot logic
+
+        /// <summary>
+        /// Checks whether the user is authorized to use the vending machine, then ejects the provided item if true
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="sender">Entity that is trying to use the vending machine</param>
+        /// <param name="type">The type of inventory the item is from</param>
+        /// <param name="itemId">The prototype ID of the item</param>
+        /// <param name="component"></param>
+        public override void AuthorizedVend(EntityUid uid, EntityUid sender, InventoryType type, string itemId, VendingMachineComponent component)
+        {
+            if (!PrototypeManager.TryIndex<EntityPrototype>(itemId, out var proto))
+                return;
+
+            var price = _pricing.GetEstimatedPrice(proto);
+            // Somewhere deep in the code of pricing, a hardcoded 20 dollar value exists for anything without
+            // a staticprice component for some god forsaken reason, and I cant find it or think of another way to
+            // get an accurate price from a prototype with no staticprice comp.
+            // this will undoubtably lead to vending machine exploits if I cant find wtf pricing system is doing.
+            // also stacks, food, solutions, are handled poorly too f
+            if (price == 0)
+                price = 20;
+
+            if (TryComp<MarketModifierComponent>(uid, out var modifier))
+                price *= modifier.Mod;
+
+            var totalPrice = (int)price;
+
+            // If any price has a vendor price, explicitly use its value - higher OR lower, over others.
+            var priceVend = _pricing.GetEstimatedVendPrice(proto);
+            if (priceVend > 0.0) // if vending price exists, overwrite it.
+                totalPrice = (int)priceVend;
+
+            if (IsAuthorized(uid, sender, component))
+            {
+                int bankBalance = 0;
+                if (TryComp<BankAccountComponent>(sender, out var bank))
+                    bankBalance = bank.Balance;
+
+                int cashSlotBalance = 0;
+                Entity<StackComponent>? cashEntity = null;
+                if (component.CashSlotName != null
+                    && component.CurrencyStackType != null
+                    && ItemSlots.TryGetSlot(uid, component.CashSlotName, out var cashSlot)
+                    && TryComp<StackComponent>(cashSlot?.ContainerSlot?.ContainedEntity, out var stackComp)
+                    && stackComp!.StackTypeId == component.CurrencyStackType)
+                {
+                    cashSlotBalance = stackComp!.Count;
+                    cashEntity = (cashSlot!.ContainerSlot!.ContainedEntity.Value, stackComp!);
+                }
+
+                if (totalPrice > bankBalance + cashSlotBalance)
+                {
+                    Popup.PopupEntity(Loc.GetString("bank-insufficient-funds"), uid);
+                    Deny((uid, component));
+                    return;
+                }
+
+                bool paidFully = false;
+                if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, vendComponent: component))
+                {
+                    if (cashEntity != null)
+                    {
+                        var newCashSlotBalance = Math.Max(cashSlotBalance - totalPrice, 0);
+                        _stack.SetCount(cashEntity.Value.Owner, newCashSlotBalance, cashEntity.Value.Comp);
+                        component.CashSlotBalance = newCashSlotBalance;
+                        paidFully = true; // Either we paid fully with cash, or we need to withdraw the remainder
+                    }
+                    if (totalPrice > cashSlotBalance)
+                    {
+                        paidFully = _bankSystem.TryBankWithdraw(sender, totalPrice - cashSlotBalance);
+                    }
+
+                    // If we paid completely, pay our station taxes
+                    if (paidFully)
+                    {
+                        foreach (var (account, taxCoeff) in component.TaxAccounts)
+                        {
+                            if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
+                                continue;
+                            var tax = (int)Math.Floor(totalPrice * taxCoeff);
+                            _bankSystem.TrySectorDeposit(account, tax, LedgerEntryType.VendorTax);
+                        }
+                    }
+
+                    // Something was ejected, update the vending component's state
+                    Dirty(uid, component);
+
+                    _adminLogger.Add(LogType.Action, LogImpact.Low,
+                        $"{ToPrettyString(sender):user} bought from [vendingMachine:{ToPrettyString(uid)}, product:{proto.Name}, cost:{totalPrice},  with ${cashSlotBalance} in the cash slot and ${bankBalance} in the bank.");
+                }
+            }
+        }
+        // End Frontier: cash slot logic, custom vending check
     }
 }
