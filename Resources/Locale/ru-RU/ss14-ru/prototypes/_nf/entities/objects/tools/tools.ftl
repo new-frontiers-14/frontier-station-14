@@ -5,4 +5,4 @@ ent-ShipyardRCDEmpty = { ent-ShipyardRCD }
     .desc = { ent-ShipyardRCD.desc }
 ent-ShipyardRCDAmmo = картридж корабельного РСУ
     .desc = Картридж припасов для корабельного РСУ
-
+    .desc = Домкрат для снятия напольного покрытия.

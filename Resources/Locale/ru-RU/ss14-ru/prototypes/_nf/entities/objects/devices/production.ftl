@@ -46,7 +46,6 @@ ent-SyndicateElectricRangeMachineCircuitboard = электроплита "donk c
     .desc = Печатная плата машинного типа для электроплиты "donk co.".
 ent-MedicalAssemblerMachineCircuitboard = Мед-О-Мат (машинная плата)
     .desc = Печатная плата машинного типа для Мед-О-Мат`а.
-
 ent-ElectricRangeMachineCircuitboard = электроплита (машинная плата)
     .desc = Печатная плата машинного типа для электроплиты.
 ent-CondimentDispenserCircuitboard = раздатчик соусов (машинная плата)

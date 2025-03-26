@@ -1,1 +1,1 @@
-
+.desc = { ent-BoxDonkSoftBase.desc }

@@ -1,2 +1,11 @@
-
-
+.desc = { ent-BaseItem.desc }
+    .desc = { ent-PartHarpy.desc }
+    .desc = { ent-PartHarpy.desc }
+    .desc = { ent-PartHarpy.desc }
+    .desc = { ent-PartHarpy.desc }
+    .desc = { ent-PartHarpy.desc }
+    .desc = { ent-PartHarpy.desc }
+    .desc = { ent-PartHarpy.desc }
+    .desc = { ent-PartHarpy.desc }
+    .desc = { ent-PartHarpy.desc }
+    .desc = { ent-PartHarpy.desc }

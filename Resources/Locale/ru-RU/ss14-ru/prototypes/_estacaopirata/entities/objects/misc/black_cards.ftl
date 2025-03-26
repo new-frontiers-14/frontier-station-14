@@ -1,5 +1,5 @@
-
-
+.desc = { ent-CardBoxBase.desc }
+    .desc = { ent-CardDeckBase.desc }
 ent-CardBase = карта
     .desc = { ent-BaseItem.desc }
 ent-CardSc2OfClubsBlack = { ent-CardBase }

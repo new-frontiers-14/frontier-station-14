@@ -143,7 +143,7 @@ ent-VendingMachineHappyHonk = Хэппи Хонк
 ent-VendingMachineTankDispenserEVA = раздатчик газовых баллонов
     .desc = Автомат по выдаче газовых баллонов.
     .suffix = EVA [O2, N2]
-
+    .desc = Торговый автомат, содержащий гордость.
 ent-VendingMachineTankDispenserEngineering = раздатчик газовых баллонов
     .desc = Автомат по выдаче газовых баллонов. Этот имеет инженерную окраску.
     .suffix = ИНЖ [O2, Плазма]

@@ -1,6 +1,6 @@
 ent-Window = окно
     .desc = Смотри не заляпай.
-
+    .desc = { ent-Window.desc }
 ent-WindowRCDResistant = { ent-Window }
     .desc = { ent-Window.desc }
 ent-WindowDirectional = направленное окно

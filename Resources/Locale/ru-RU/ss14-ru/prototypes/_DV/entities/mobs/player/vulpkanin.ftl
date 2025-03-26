@@ -1,1 +1,1 @@
-
+.desc = { ent-BaseMobVulpkanin.desc }

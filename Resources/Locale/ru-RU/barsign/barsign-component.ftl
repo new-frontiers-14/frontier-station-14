@@ -4,6 +4,7 @@ barsign-ui-set-label = Выбрать вывеску:
 
 # Bar signs prototypes
 
+
 ## The Harmbaton
 
 barsign-prototype-name-harmbaton = Хармбатон
@@ -121,6 +122,8 @@ barsign-prototype-description-spacebucks = От них нельзя скрыть
 
 ## EmpBarSign
 
+barsign-prototype-name-maltroach = Таракамольня
+barsign-prototype-description-maltroach = Сквиик!
 barsign-prototype-description-empbarsign = Что-то пошло совсем не так.
 barsign-prototype-name-whiskeyechoes = Отголоски виски
 barsign-prototype-description-whiskeyechoes = Элитный бар для элитных оперативников... Подождите, это же станция «Nanotrasen». Почему эта вывеска в базе данных?

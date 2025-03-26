@@ -62,7 +62,8 @@ ent-SalvageSuitStorageSpawner = спавнер скафандра
     .desc = { ent-MarkerBase.desc }
 ent-SalvageGeneratorSpawner = спавнер генератора
     .desc = { ent-MarkerBase.desc }
-
+    .desc = { ent-MarkerBase.desc }
+    .desc = { ent-MarkerBase.desc }
 ent-NFSalvageMobSpawner = { ent-SalvageMobSpawner }
     .suffix = 95
     .desc = { ent-SalvageMobSpawner.desc }

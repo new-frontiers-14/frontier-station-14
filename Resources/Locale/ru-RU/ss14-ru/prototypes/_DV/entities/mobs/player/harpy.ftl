@@ -1,1 +1,1 @@
-
+.desc = { ent-MobHarpyBase.desc }

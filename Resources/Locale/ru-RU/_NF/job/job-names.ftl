@@ -7,6 +7,8 @@ job-name-deputy = Рейнджер
 job-name-nf-detective = Детектив
 job-name-ertmailcarrier = Почтальон ОБР
 job-name-mercenary = Наёмник
+job-name-mail-carrier = Почтальон
+job-name-guard = Тюремщик
 job-name-pilot = Пилот
 job-name-pirate = Пират
 job-name-pirate-captain = Пиратский Капитан
@@ -17,6 +19,7 @@ job-name-stc = Диспетчер Аванпоста
 job-name-sr = Представитель Фронтира
 job-name-pal = Представитель Юридического Департамента
 job-name-doc = Менеджер медицинских операций
+job-name-valet = Камердинер
 # Job titles
 job-title-ert-mail-carrier = ОБР почтальон
 # Role timers - Make these alphabetical or I cut you
@@ -26,6 +29,7 @@ JobPilot = Пилот
 JobPirate = Пират
 JobPirateCaptain = Пиратский Капитан
 JobPirateFirstMate = Пиратский Боцман
+JobPublicAffairsLiaison = Public Affairs Liaison
 JobSecurityGuard = Охранник Аванпоста
 JobSTC = Диспетчер Аванпоста
 # Upstream Removed

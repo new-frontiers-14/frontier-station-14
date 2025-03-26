@@ -1,2 +1,10 @@
-
-
+.suffix = Снаряжение, Простое
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Снаряжение, Лучшее
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Оружие, Броня
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Оружие
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Броня
+    .desc = { ent-MarkerBase.desc }

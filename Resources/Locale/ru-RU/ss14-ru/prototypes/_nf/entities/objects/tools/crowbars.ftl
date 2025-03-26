@@ -1,1 +1,1 @@
-
+.desc = { ent-BaseCrowbar.desc }

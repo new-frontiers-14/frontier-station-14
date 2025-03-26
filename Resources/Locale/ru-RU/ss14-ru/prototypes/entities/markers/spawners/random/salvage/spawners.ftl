@@ -22,7 +22,7 @@ ent-SalvageSpawnerEquipment = спавнер обломок экипировка
 ent-SalvageSpawnerEquipmentValuable = спавнер обломок экипировка
     .suffix = Ценный, 75%
     .desc = { ent-MarkerBase.desc }
-
+    .desc = { ent-MarkerBase.desc }
 ent-SalvageSpawnerMobMagnet = спавнер обломок моб из магнита
     .suffix = 50%
     .desc = { ent-MarkerBase.desc }

@@ -1,1 +1,1 @@
-
+.desc = { ent-OrganAnimalStomach.desc }

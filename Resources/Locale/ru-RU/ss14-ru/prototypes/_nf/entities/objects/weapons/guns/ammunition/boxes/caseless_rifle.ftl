@@ -2,4 +2,6 @@ ent-MagazineBoxCaselessRifleBigRubber = коробка патронов (.25 б�
     .desc = { ent-BaseMagazineBoxCaselessRifle.desc }
 ent-MagazineBoxCaselessRifleRubber = коробка патронов (.25 безгильзовые резиновые)
     .desc = { ent-BaseMagazineBoxCaselessRifle.desc }
-
+    .suffix = 200
+    .desc = { ent-BaseMagazineBoxCaselessRifle.desc }
+    .desc = { ent-BaseMagazineBoxCaselessRifle.desc }

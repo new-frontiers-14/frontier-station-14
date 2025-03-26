@@ -1,2 +1,12 @@
-
-
+.suffix = Синдикат
+    .desc = { ent-BaseWeaponBallisticTurret.desc }
+    .suffix = Синдикат, Одноразовые
+    .desc = { ent-BaseWeaponBallisticTurret.desc }
+    .suffix = NanoTrasen
+    .desc = { ent-BaseWeaponBallisticTurret.desc }
+    .suffix = Враждебный
+    .desc = { ent-BaseWeaponBallisticTurret.desc }
+    .suffix = Все враждебно
+    .desc = { ent-BaseWeaponBallisticTurret.desc }
+    .desc = Стреляет кислотными снарядами калибра 9 мм.
+    .suffix = Ксено

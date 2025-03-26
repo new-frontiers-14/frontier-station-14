@@ -1,1 +1,1 @@
-
+.desc = { ent-IDCardStandard.desc }

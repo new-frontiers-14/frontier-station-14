@@ -1,1 +1,1 @@
-
+.desc = { ent-BaseMobRodentia.desc }

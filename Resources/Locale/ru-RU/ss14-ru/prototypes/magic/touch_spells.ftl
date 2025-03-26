@@ -1,4 +1,3 @@
-
 ent-ActionSmiteNoReq = Кара
     .desc = Мгновенно поражает цель.
 ent-ActionCluwne = Проклятие Клувня
