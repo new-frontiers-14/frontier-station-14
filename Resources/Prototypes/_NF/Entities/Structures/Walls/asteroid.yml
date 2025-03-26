@@ -1,54 +1,50 @@
 - type: entity
-  parent: AsteroidRock
-  id: NFAsteroidRockOre
   abstract: true
-  components: &softRockComps
+  id: BaseSoftOreVein
+  components:
   - type: OreVein
     gatherDestructionWhitelist:
       components:
       - MiningGatheringHard
 
 - type: entity
-  parent: IronRock
-  id: NFIronRockOre
+  parent: [BaseSoftOreVein, AsteroidRock]
+  id: NFAsteroidRockOre
   abstract: true
-  components: *softRockComps
 
 - type: entity
-  parent: WallRock
+  parent: [BaseSoftOreVein, NFIronRockOre]
+  abstract: true
+
+- type: entity
+  parent: [BaseSoftOreVein, WallRock]
   id: NFWallRockOre
   abstract: true
-  components: *softRockComps
 
 - type: entity
-  parent: WallRockBasalt
+  parent: [BaseSoftOreVein, WallRockBasalt]
   id: NFWallRockBasaltOre
   abstract: true
-  components: *softRockComps
 
 - type: entity
-  parent: WallRockSnow
+  parent: [BaseSoftOreVein, WallRockSnow]
   id: NFWallRockSnowOre
   abstract: true
-  components: *softRockComps
 
 - type: entity
-  parent: WallRockSand
+  parent: [BaseSoftOreVein, WallRockSand]
   id: NFWallRockSandOre
   abstract: true
-  components: *softRockComps
 
 - type: entity
-  parent: WallRockChromite
+  parent: [BaseSoftOreVein, WallRockChromite]
   id: NFWallRockChromiteOre
   abstract: true
-  components: *softRockComps
 
 - type: entity
-  parent: WallRockAndesite
+  parent: [BaseSoftOreVein, WallRockAndesite]
   id: NFWallRockAndesiteOre
   abstract: true
-  components: *softRockComps
 
 # region Ore
 - type: entity
@@ -293,11 +289,7 @@
 
 - type: entity
   id: WallRockScrapPileBot
-  parent: WallRockScrapPile
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPile]
 
 - type: entity
   id: WallRockScrapPileCoal
@@ -326,11 +318,7 @@
 
 - type: entity
   id: WallRockScrapPileCoalBot
-  parent: WallRockScrapPileCoal
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPileCoal]
 
 - type: entity
   id: WallRockScrapPileGold
@@ -359,11 +347,7 @@
 
 - type: entity
   id: WallRockScrapPileGoldBot
-  parent: WallRockScrapPileGold
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPileGold]
 
 - type: entity
   id: WallRockScrapPileDiamond
@@ -392,11 +376,7 @@
 
 - type: entity
   id: WallRockScrapPileDiamondBot
-  parent: WallRockScrapPileDiamond
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPileDiamond]
 
 - type: entity
   id: WallRockScrapPilePlasma
@@ -425,11 +405,7 @@
 
 - type: entity
   id: WallRockScrapPilePlasmaBot
-  parent: WallRockScrapPilePlasma
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPilePlasma]
 
 - type: entity
   id: WallRockScrapPileQuartz
@@ -458,11 +434,7 @@
 
 - type: entity
   id: WallRockScrapPileQuartzBot
-  parent: WallRockScrapPileQuartz
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPileQuartz]
 
 - type: entity
   id: WallRockScrapPileSilver
@@ -491,11 +463,7 @@
 
 - type: entity
   id: WallRockScrapPileSilverBot
-  parent: WallRockScrapPileSilver
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPileSilver]
 
 - type: entity
   id: WallRockScrapPileIron
@@ -524,11 +492,7 @@
 
 - type: entity
   id: WallRockScrapPileIronBot
-  parent: WallRockScrapPileIron
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPileIron]
 
 - type: entity
   id: WallRockScrapPileUranium
@@ -557,11 +521,7 @@
 
 - type: entity
   id: WallRockScrapPileUraniumBot
-  parent: WallRockScrapPileUranium
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPileUranium]
 
 - type: entity
   id: WallRockScrapPileBananium
@@ -590,11 +550,7 @@
 
 - type: entity
   id: WallRockScrapPileBananiumBot
-  parent: WallRockScrapPileBananium
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPileBananium]
 
 - type: entity
   id: WallRockScrapPileSalt
@@ -623,11 +579,7 @@
 
 - type: entity
   id: WallRockScrapPileSaltBot
-  parent: WallRockScrapPileSalt
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPileSalt]
 
 - type: entity
   id: WallRockScrapPileArtifactFragment
@@ -656,11 +608,7 @@
 
 - type: entity
   id: WallRockScrapPileArtifactFragmentBot
-  parent: WallRockScrapPileArtifactFragment
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPileArtifactFragment]
 
 - type: entity
   id: WallRockScrapPileBluespace
@@ -688,11 +636,7 @@
 
 - type: entity
   id: WallRockScrapPileBluespaceBot
-  parent: WallRockScrapPileBluespace
-  components:
-  - type: OreVein
-    oreChance: 1.0
-    currentOre: OreScrapBot
+  parent: [BaseScrapBotVein, WallRockScrapPileBluespace]
 
 - type: entity
   id: AsteroidScrapPileMining
@@ -704,1170 +648,666 @@
     oreRarityPrototypeId: RandomOreDistributionStandard
 # endregion Scrap with Ore
 
-# region AsteroidRock Crabs
-- type: entity
-  id: AsteroidRockQuartzCrabNF
-  parent: AsteroidRockQuartzCrab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzCrabNF
-
-- type: entity
-  id: AsteroidRockSilverCrabNF
-  parent: AsteroidRockSilverCrab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverCrabNF
-
-- type: entity
-  id: AsteroidRockTinCrabNF
-  parent: AsteroidRockTinCrab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronCrabNF
-
-- type: entity
-  id: AsteroidRockUraniumCrabNF
-  parent: AsteroidRockUraniumCrab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumCrabNF
-# endregion AsteroidRock Crabs
-
 # region Bananium Crabs
 - type: entity
   id: WallRockAndesiteBananiumCrabNF
-  parent: WallRockAndesiteBananium
+  parent: [BaseBananiumCrabVein, WallRockAndesiteBananium]
   suffix: Bananium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumCrabNF
 
 - type: entity
   id: WallRockBasaltBananiumCrabNF
-  parent: WallRockBasaltBananium
+  parent: [BaseBananiumCrabVein, WallRockBasaltBananium]
   suffix: Bananium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumCrabNF
 
 - type: entity
   id: AsteroidRockBananiumCrabNF
-  parent: AsteroidRockBananium
+  parent: [BaseBananiumCrabVein, AsteroidRockBananium]
   suffix: Bananium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumCrabNF
 
 - type: entity
   id: WallRockBananiumCrabNF
-  parent: WallRockBananium
+  parent: [BaseBananiumCrabVein, WallRockBananium]
   suffix: Bananium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumCrabNF
 
 - type: entity
   id: WallRockSandBananiumCrabNF
-  parent: WallRockSandBananium
+  parent: [BaseBananiumCrabVein, WallRockSandBananium]
   suffix: Bananium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumCrabNF
 
 - type: entity
   id: WallRockSnowBananiumCrabNF
-  parent: WallRockSnowBananium
+  parent: [BaseBananiumCrabVein, WallRockSnowBananium]
   suffix: Bananium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumCrabNF
 
 - type: entity
   id: WallRockChromiteBananiumCrabNF
-  parent: WallRockChromiteBananium
+  parent: [BaseBananiumCrabVein, WallRockChromiteBananium]
   suffix: Bananium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumCrabNF
 # endregion Bananium Crabs
 
 # region Bananium Golems
 - type: entity
   id: WallRockAndesiteBananiumGolem
-  parent: WallRockAndesiteBananium
+  parent: [BaseBananiumGolemVein, WallRockAndesiteBananium]
   suffix: Bananium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumGolem
 
 - type: entity
   id: WallRockBasaltBananiumGolem
-  parent: WallRockBasaltBananium
+  parent: [BaseBananiumGolemVein, WallRockBasaltBananium]
   suffix: Bananium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumGolem
 
 - type: entity
   id: AsteroidRockBananiumGolem
-  parent: AsteroidRockBananium
+  parent: [BaseBananiumGolemVein, AsteroidRockBananium]
   suffix: Bananium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumGolem
 
 - type: entity
   id: WallRockBananiumGolem
-  parent: WallRockBananium
+  parent: [BaseBananiumGolemVein, WallRockBananium]
   suffix: Bananium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumGolem
 
 - type: entity
   id: WallRockSandBananiumGolem
-  parent: WallRockSandBananium
+  parent: [BaseBananiumGolemVein, WallRockSandBananium]
   suffix: Bananium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumCrabNF
 
 - type: entity
   id: WallRockSnowBananiumGolem
-  parent: WallRockSnowBananium
+  parent: [BaseBananiumGolemVein, WallRockSnowBananium]
   suffix: Bananium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumGolem
 
 - type: entity
   id: WallRockChromiteBananiumGolem
-  parent: WallRockChromiteBananium
+  parent: [BaseBananiumGolemVein, WallRockChromiteBananium]
   suffix: Bananium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreBananiumGolem
 # endregion Bananium Golems
 
 # region Coal Crabs
 - type: entity
   id: WallRockAndesiteCoalCrabNF
-  parent: WallRockAndesiteCoal
+  parent: [BaseCoalCrabVein, WallRockAndesiteCoal]
   suffix: Coal Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalCrabNF
 
 - type: entity
   id: WallRockBasaltCoalCrabNF
-  parent: WallRockBasaltCoal
+  parent: [BaseCoalCrabVein, WallRockBasaltCoal]
   suffix: Coal Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalCrabNF
 
 - type: entity
   id: AsteroidRockCoalCrabNF
-  parent: AsteroidRockCoal
+  parent: [BaseCoalCrabVein, AsteroidRockCoal]
   suffix: Coal Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalCrabNF
 
 - type: entity
   id: WallRockCoalCrabNF
-  parent: WallRockCoal
+  parent: [BaseCoalCrabVein, WallRockCoal]
   suffix: Coal Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalCrabNF
 
 - type: entity
   id: WallRockSandCoalCrabNF
-  parent: WallRockSandCoal
+  parent: [BaseCoalCrabVein, WallRockSandCoal]
   suffix: Coal Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalCrabNF
 
 - type: entity
   id: WallRockSnowCoalCrabNF
-  parent: WallRockSnowCoal
+  parent: [BaseCoalCrabVein, WallRockSnowCoal]
   suffix: Coal Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalCrabNF
 
 - type: entity
   id: WallRockChromiteCoalCrabNF
-  parent: WallRockChromiteCoal
+  parent: [BaseCoalCrabVein, WallRockChromiteCoal]
   suffix: Coal Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalCrabNF
 # endregion Coal Crabs
 
 # region Coal Golems
 - type: entity
   id: WallRockAndesiteCoalGolem
-  parent: WallRockAndesiteCoal
+  parent: [BaseCoalGolemVein, WallRockAndesiteCoal]
   suffix: Coal Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalGolem
 
 - type: entity
   id: WallRockBasaltCoalGolem
-  parent: WallRockBasaltCoal
+  parent: [BaseCoalGolemVein, WallRockBasaltCoal]
   suffix: Coal Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalGolem
 
 - type: entity
   id: AsteroidRockCoalGolem
-  parent: AsteroidRockCoal
+  parent: [BaseCoalGolemVein, AsteroidRockCoal]
   suffix: Coal Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalGolem
 
 - type: entity
   id: WallRockCoalGolem
-  parent: WallRockCoal
+  parent: [BaseCoalGolemVein, WallRockCoal]
   suffix: Coal Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalGolem
 
 - type: entity
   id: WallRockSandCoalGolem
-  parent: WallRockSandCoal
+  parent: [BaseCoalGolemVein, WallRockSandCoal]
   suffix: Coal Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalGolem
 
 - type: entity
   id: WallRockSnowCoalGolem
-  parent: WallRockSnowCoal
+  parent: [BaseCoalGolemVein, WallRockSnowCoal]
   suffix: Coal Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalGolem
 
 - type: entity
   id: WallRockChromiteCoalGolem
-  parent: WallRockChromiteCoal
+  parent: [BaseCoalGolemVein, WallRockChromiteCoal]
   suffix: Coal Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreCoalGolem
 # endregion Coal Golems
 
 # region Gold Crabs
 - type: entity
   id: WallRockAndesiteGoldCrabNF
-  parent: WallRockAndesiteGold
+  parent: [BaseGoldCrabVein, WallRockAndesiteGold]
   suffix: Gold Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldCrabNF
 
 - type: entity
   id: WallRockBasaltGoldCrabNF
-  parent: WallRockBasaltGold
+  parent: [BaseGoldCrabVein, WallRockBasaltGold]
   suffix: Gold Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldCrabNF
 
 - type: entity
   id: AsteroidRockGoldCrabNF
-  parent: AsteroidRockGold
+  parent: [BaseGoldCrabVein, AsteroidRockGold]
   suffix: Gold Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldCrabNF
 
 - type: entity
   id: WallRockGoldCrabNF
-  parent: WallRockGold
+  parent: [BaseGoldCrabVein, WallRockGold]
   suffix: Gold Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldCrabNF
 
 - type: entity
   id: WallRockSandGoldCrabNF
-  parent: WallRockSandGold
+  parent: [BaseGoldCrabVein, WallRockSandGold]
   suffix: Gold Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldCrabNF
 
 - type: entity
   id: WallRockSnowGoldCrabNF
-  parent: WallRockSnowGold
+  parent: [BaseGoldCrabVein, WallRockSnowGold]
   suffix: Gold Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldCrabNF
 
 - type: entity
   id: WallRockChromiteGoldCrabNF
-  parent: WallRockChromiteGold
+  parent: [BaseGoldCrabVein, WallRockChromiteGold]
   suffix: Gold Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldCrabNF
 # endregion Gold Crabs
 
 # region Gold Golems
 - type: entity
   id: WallRockAndesiteGoldGolem
-  parent: WallRockAndesiteGold
+  parent: [BaseGoldGolemVein, WallRockAndesiteGold]
   suffix: Gold Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldGolem
 
 - type: entity
   id: WallRockBasaltGoldGolem
-  parent: WallRockBasaltGold
+  parent: [BaseGoldGolemVein, WallRockBasaltGold]
   suffix: Gold Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldGolem
 
 - type: entity
   id: AsteroidRockGoldGolem
-  parent: AsteroidRockGold
+  parent: [BaseGoldGolemVein, AsteroidRockGold]
   suffix: Gold Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldGolem
 
 - type: entity
   id: WallRockGoldGolem
-  parent: WallRockGold
+  parent: [BaseGoldGolemVein, WallRockGold]
   suffix: Gold Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldGolem
 
 - type: entity
   id: WallRockSandGoldGolem
-  parent: WallRockSandGold
+  parent: [BaseGoldGolemVein, WallRockSandGold]
   suffix: Gold Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldGolem
 
 - type: entity
   id: WallRockSnowGoldGolem
-  parent: WallRockSnowGold
+  parent: [BaseGoldGolemVein, WallRockSnowGold]
   suffix: Gold Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldGolem
 
 - type: entity
   id: WallRockChromiteGoldGolem
-  parent: WallRockChromiteGold
+  parent: [BaseGoldGolemVein, WallRockChromiteGold]
   suffix: Gold Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreGoldGolem
 # endregion Gold Golems
 
 # region Iron Crabs
 - type: entity
+  id: AsteroidRockTinCrabNF
+  parent: [BaseIronCrabVein, AsteroidRockTinCrab]
+
+- type: entity
   id: WallRockAndesiteIronCrabNF
-  parent: WallRockAndesiteTin
+  parent: [BaseIronCrabVein, WallRockAndesiteTin]
   suffix: Iron Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronCrabNF
 
 - type: entity
   id: WallRockBasaltIronCrabNF
-  parent: WallRockBasaltTin
+  parent: [BaseIronCrabVein, WallRockBasaltTin]
   suffix: Iron Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronCrabNF
 
 - type: entity
   id: WallRockIronCrabNF
-  parent: WallRockTin
+  parent: [BaseIronCrabVein, WallRockTin]
   suffix: Iron Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronCrabNF
 
 - type: entity
   id: WallRockSandIronCrabNF
-  parent: WallRockSandTin
+  parent: [BaseIronCrabVein, WallRockSandTin]
   suffix: Iron Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronCrabNF
 
 - type: entity
   id: WallRockSnowIronCrabNF
-  parent: WallRockSnowTin
+  parent: [BaseIronCrabVein, WallRockSnowTin]
   suffix: Iron Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronCrabNF
 
 - type: entity
   id: WallRockChromiteIronCrabNF
-  parent: WallRockChromiteTin
+  parent: [BaseIronCrabVein, WallRockChromiteTin]
   suffix: Iron Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronCrabNF
 # endregion Iron Crabs
 
 # region Iron Golems
 - type: entity
   id: WallRockAndesiteIronGolem
-  parent: WallRockAndesiteTin
+  parent: [BaseIronGolemVein, WallRockAndesiteTin]
   suffix: Iron Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronGolem
 
 - type: entity
   id: WallRockBasaltIronGolem
-  parent: WallRockBasaltTin
+  parent: [BaseIronGolemVein, WallRockBasaltTin]
   suffix: Iron Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronGolem
 
 - type: entity
   id: AsteroidRockIronGolem
-  parent: AsteroidRockTin
+  parent: [BaseIronGolemVein, AsteroidRockTin]
   suffix: Iron Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronGolem
 
 - type: entity
   id: WallRockIronGolem
-  parent: WallRockTin
+  parent: [BaseIronGolemVein, WallRockTin]
   suffix: Iron Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronGolem
 
 - type: entity
   id: WallRockSandIronGolem
-  parent: WallRockSandTin
+  parent: [BaseIronGolemVein, WallRockSandTin]
   suffix: Iron Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronGolem
 
 - type: entity
   id: WallRockSnowIronGolem
-  parent: WallRockSnowTin
+  parent: [BaseIronGolemVein, WallRockSnowTin]
   suffix: Iron Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronGolem
 
 - type: entity
   id: WallRockChromiteIronGolem
-  parent: WallRockChromiteTin
+  parent: [BaseIronGolemVein, WallRockChromiteTin]
   suffix: Iron Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreIronGolem
 # endregion Iron Golems
 
 # region Plasma Crabs
+
 - type: entity
   id: WallRockAndesitePlasmaCrabNF
-  parent: WallRockAndesitePlasma
+  parent: [BasePlasmaCrabVein, WallRockAndesitePlasma]
   suffix: Plasma Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaCrabNF
 
 - type: entity
   id: WallRockBasaltPlasmaCrabNF
-  parent: WallRockBasaltPlasma
+  parent: [BasePlasmaCrabVein, WallRockBasaltPlasma]
   suffix: Plasma Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaCrabNF
 
 - type: entity
   id: AsteroidRockPlasmaCrabNF
-  parent: AsteroidRockPlasma
+  parent: [BasePlasmaCrabVein, AsteroidRockPlasma]
   suffix: Plasma Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaCrabNF
 
 - type: entity
   id: WallRockPlasmaCrabNF
-  parent: WallRockPlasma
+  parent: [BasePlasmaCrabVein, WallRockPlasma]
   suffix: Plasma Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaCrabNF
 
 - type: entity
   id: WallRockSandPlasmaCrabNF
-  parent: WallRockSandPlasma
+  parent: [BasePlasmaCrabVein, WallRockSandPlasma]
   suffix: Plasma Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaCrabNF
 
 - type: entity
   id: WallRockSnowPlasmaCrabNF
-  parent: WallRockSnowPlasma
+  parent: [BasePlasmaCrabVein, WallRockSnowPlasma]
   suffix: Plasma Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaCrabNF
 
 - type: entity
   id: WallRockChromitePlasmaCrabNF
-  parent: WallRockChromitePlasma
+  parent: [BasePlasmaCrabVein, WallRockChromitePlasma]
   suffix: Plasma Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaCrabNF
 # endregion Plasma Crabs
 
 # region Plasma Golems
+
 - type: entity
   id: WallRockAndesitePlasmaGolem
-  parent: WallRockAndesitePlasma
+  parent: [BasePlasmaGolemVein, WallRockAndesitePlasma]
   suffix: Plasma Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaGolem
 
 - type: entity
   id: WallRockBasaltPlasmaGolem
-  parent: WallRockBasaltPlasma
+  parent: [BasePlasmaGolemVein, WallRockBasaltPlasma]
   suffix: Plasma Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaGolem
 
 - type: entity
   id: AsteroidRockPlasmaGolem
-  parent: AsteroidRockPlasma
+  parent: [BasePlasmaGolemVein, AsteroidRockPlasma]
   suffix: Plasma Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaGolem
 
 - type: entity
   id: WallRockPlasmaGolem
-  parent: WallRockPlasma
+  parent: [BasePlasmaGolemVein, WallRockPlasma]
   suffix: Plasma Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaGolem
 
 - type: entity
   id: WallRockSandPlasmaGolem
-  parent: WallRockSandPlasma
+  parent: [BasePlasmaGolemVein, WallRockSandPlasma]
   suffix: Plasma Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaGolem
 
 - type: entity
   id: WallRockSnowPlasmaGolem
-  parent: WallRockSnowPlasma
+  parent: [BasePlasmaGolemVein, WallRockSnowPlasma]
   suffix: Plasma Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaGolem
 
 - type: entity
   id: WallRockChromitePlasmaGolem
-  parent: WallRockChromitePlasma
+  parent: [BasePlasmaGolemVein, WallRockChromitePlasma]
   suffix: Plasma Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OrePlasmaGolem
 # endregion Plasma Golems
 
 # region Quartz Crabs
+
+- type: entity
+  id: AsteroidRockQuartzCrabNF
+  parent: [BaseQuartzCrabVein, AsteroidRockQuartzCrab]
+
 - type: entity
   id: WallRockAndesiteQuartzCrabNF
-  parent: WallRockAndesiteQuartz
+  parent: [BaseQuartzCrabVein, WallRockAndesiteQuartz]
   suffix: Quartz Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzCrabNF
 
 - type: entity
   id: WallRockBasaltQuartzCrabNF
-  parent: WallRockBasaltQuartz
+  parent: [BaseQuartzCrabVein, WallRockBasaltQuartz]
   suffix: Quartz Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzCrabNF
 
 - type: entity
   id: WallRockQuartzCrabNF
-  parent: WallRockQuartz
+  parent: [BaseQuartzCrabVein, WallRockQuartz]
   suffix: Quartz Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzCrabNF
 
 - type: entity
   id: WallRockSandQuartzCrabNF
-  parent: WallRockSandQuartz
+  parent: [BaseQuartzCrabVein, WallRockSandQuartz]
   suffix: Quartz Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzCrabNF
 
 - type: entity
   id: WallRockSnowQuartzCrabNF
-  parent: WallRockSnowQuartz
+  parent: [BaseQuartzCrabVein, WallRockSnowQuartz]
   suffix: Quartz Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzCrabNF
 
 - type: entity
   id: WallRockChromiteQuartzCrabNF
-  parent: WallRockChromiteQuartz
+  parent: [BaseQuartzCrabVein, WallRockChromiteQuartz]
   suffix: Quartz Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzCrabNF
 # endregion Quartz Crabs
 
 # region Quartz Golems
 - type: entity
   id: WallRockAndesiteQuartzGolem
-  parent: WallRockAndesiteQuartz
+  parent: [BaseQuartzGolemVein, WallRockAndesiteQuartz]
   suffix: Quartz Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzGolem
 
 - type: entity
   id: WallRockBasaltQuartzGolem
-  parent: WallRockBasaltQuartz
+  parent: [BaseQuartzGolemVein, WallRockBasaltQuartz]
   suffix: Quartz Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzGolem
 
 - type: entity
   id: AsteroidRockQuartzGolem
-  parent: AsteroidRockQuartz
+  parent: [BaseQuartzGolemVein, AsteroidRockQuartz]
   suffix: Quartz Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzGolem
 
 - type: entity
   id: WallRockQuartzGolem
-  parent: WallRockQuartz
+  parent: [BaseQuartzGolemVein, WallRockQuartz]
   suffix: Quartz Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzGolem
 
 - type: entity
   id: WallRockSandQuartzGolem
-  parent: WallRockSandQuartz
+  parent: [BaseQuartzGolemVein, WallRockSandQuartz]
   suffix: Quartz Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzGolem
 
 - type: entity
   id: WallRockSnowQuartzGolem
-  parent: WallRockSnowQuartz
+  parent: [BaseQuartzGolemVein, WallRockSnowQuartz]
   suffix: Quartz Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzGolem
 
 - type: entity
   id: WallRockChromiteQuartzGolem
-  parent: WallRockChromiteQuartz
+  parent: [BaseQuartzGolemVein, WallRockChromiteQuartz]
   suffix: Quartz Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreQuartzGolem
 # endregion Quartz Golems
 
 # region Salt Crabs
 - type: entity
   id: WallRockAndesiteSaltCrabNF
-  parent: WallRockAndesiteSalt
+  parent: [BaseSaltCrabVein, WallRockAndesiteSalt]
   suffix: Salt Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltCrabNF
 
 - type: entity
   id: WallRockBasaltSaltCrabNF
-  parent: WallRockBasaltSalt
+  parent: [BaseSaltCrabVein, WallRockBasaltSalt]
   suffix: Salt Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltCrabNF
 
 - type: entity
   id: AsteroidRockSaltCrabNF
-  parent: AsteroidRockSalt
+  parent: [BaseSaltCrabVein, AsteroidRockSalt]
   suffix: Salt Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltCrabNF
 
 - type: entity
   id: WallRockSaltCrabNF
-  parent: WallRockSalt
+  parent: [BaseSaltCrabVein, WallRockSalt]
   suffix: Salt Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltCrabNF
 
 - type: entity
   id: WallRockSandSaltCrabNF
-  parent: WallRockSandSalt
+  parent: [BaseSaltCrabVein, WallRockSandSalt]
   suffix: Salt Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltCrabNF
 
 - type: entity
   id: WallRockSnowSaltCrabNF
-  parent: WallRockSnowSalt
+  parent: [BaseSaltCrabVein, WallRockSnowSalt]
   suffix: Salt Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltCrabNF
 
 - type: entity
   id: WallRockChromiteSaltCrabNF
-  parent: WallRockChromiteSalt
+  parent: [BaseSaltCrabVein, WallRockChromiteSalt]
   suffix: Salt Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltCrabNF
 # endregion Salt Crabs
 
 # region Salt Golems
 - type: entity
   id: WallRockAndesiteSaltGolem
-  parent: WallRockAndesiteSalt
+  parent: [BaseSaltGolemVein, WallRockAndesiteSalt]
   suffix: Salt Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltGolem
 
 - type: entity
   id: WallRockBasaltSaltGolem
-  parent: WallRockBasaltSalt
+  parent: [BaseSaltGolemVein, WallRockBasaltSalt]
   suffix: Salt Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltGolem
 
 - type: entity
   id: AsteroidRockSaltGolem
-  parent: AsteroidRockSalt
+  parent: [BaseSaltGolemVein, AsteroidRockSalt]
   suffix: Salt Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltGolem
 
 - type: entity
   id: WallRockSaltGolem
-  parent: WallRockSalt
+  parent: [BaseSaltGolemVein, WallRockSalt]
   suffix: Salt Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltGolem
 
 - type: entity
   id: WallRockSandSaltGolem
-  parent: WallRockSandSalt
+  parent: [BaseSaltGolemVein, WallRockSandSalt]
   suffix: Salt Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltGolem
 
 - type: entity
   id: WallRockSnowSaltGolem
-  parent: WallRockSnowSalt
+  parent: [BaseSaltGolemVein, WallRockSnowSalt]
   suffix: Salt Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltGolem
 
 - type: entity
   id: WallRockChromiteSaltGolem
-  parent: WallRockChromiteSalt
+  parent: [BaseSaltGolemVein, WallRockChromiteSalt]
   suffix: Salt Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSaltGolem
 # endregion Salt Golems
 
 # region Silver Crabs
 - type: entity
+  id: AsteroidRockSilverCrabNF
+  parent: [BaseSilverCrabVein, AsteroidRockSilverCrab]
+
+- type: entity
   id: WallRockAndesiteSilverCrabNF
-  parent: WallRockAndesiteSilver
+  parent: [BaseSilverCrabVein, WallRockAndesiteSilver]
   suffix: Silver Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverCrabNF
 
 - type: entity
   id: WallRockBasaltSilverCrabNF
-  parent: WallRockBasaltSilver
+  parent: [BaseSilverCrabVein, WallRockBasaltSilver]
   suffix: Silver Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverCrabNF
 
 - type: entity
   id: WallRockSilverCrabNF
-  parent: WallRockSilver
+  parent: [BaseSilverCrabVein, WallRockSilver]
   suffix: Silver Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverCrabNF
 
 - type: entity
   id: WallRockSandSilverCrabNF
-  parent: WallRockSandSilver
+  parent: [BaseSilverCrabVein, WallRockSandSilver]
   suffix: Silver Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverCrabNF
 
 - type: entity
   id: WallRockSnowSilverCrabNF
-  parent: WallRockSnowSilver
+  parent: [BaseSilverCrabVein, WallRockSnowSilver]
   suffix: Silver Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverCrabNF
 
 - type: entity
   id: WallRockChromiteSilverCrabNF
-  parent: WallRockChromiteSilver
-  suffix: Silver Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverCrabNF
+  parent: [BaseSilverCrabVein, WallRockChromiteSilver]
 # endregion Silver Crabs
 
 # region Silver Golems
 - type: entity
   id: WallRockAndesiteSilverGolem
-  parent: WallRockAndesiteSilver
+  parent: [BaseSilverGolemVein, WallRockAndesiteSilver]
   suffix: Silver Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverGolem
 
 - type: entity
   id: WallRockBasaltSilverGolem
-  parent: WallRockBasaltSilver
+  parent: [BaseSilverGolemVein, WallRockBasaltSilver]
   suffix: Silver Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverGolem
 
 - type: entity
   id: AsteroidRockSilverGolem
-  parent: AsteroidRockSilver
+  parent: [BaseSilverGolemVein, AsteroidRockSilver]
   suffix: Silver Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverGolem
 
 - type: entity
   id: WallRockSilverGolem
-  parent: WallRockSilver
+  parent: [BaseSilverGolemVein, WallRockSilver]
   suffix: Silver Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverGolem
 
 - type: entity
   id: WallRockSandSilverGolem
-  parent: WallRockSandSilver
+  parent: [BaseSilverGolemVein, WallRockSandSilver]
   suffix: Silver Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverGolem
 
 - type: entity
   id: WallRockSnowSilverGolem
-  parent: WallRockSnowSilver
+  parent: [BaseSilverGolemVein, WallRockSnowSilver]
   suffix: Silver Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverGolem
 
 - type: entity
   id: WallRockChromiteSilverGolem
-  parent: WallRockChromiteSilver
+  parent: [BaseSilverGolemVein, WallRockChromiteSilver]
   suffix: Silver Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreSilverGolem
 # endregion Silver Golems
 
 # region Uranium Crabs
 - type: entity
+  id: AsteroidRockUraniumCrabNF
+  parent: [BaseUraniumCrabVein, AsteroidRockUraniumCrab]
+
+- type: entity
   id: WallRockAndesiteUraniumCrabNF
-  parent: WallRockAndesiteUranium
+  parent: [BaseUraniumCrabVein, WallRockAndesiteUranium]
   suffix: Uranium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumCrabNF
 
 - type: entity
   id: WallRockBasaltUraniumCrabNF
-  parent: WallRockBasaltUranium
+  parent: [BaseUraniumCrabVein, WallRockBasaltUranium]
   suffix: Uranium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumCrabNF
 
 - type: entity
   id: WallRockUraniumCrabNF
-  parent: WallRockUranium
+  parent: [BaseUraniumCrabVein, WallRockUranium]
   suffix: Uranium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumCrabNF
 
 - type: entity
   id: WallRockSandUraniumCrabNF
-  parent: WallRockSandUranium
+  parent: [BaseUraniumCrabVein, WallRockSandUranium]
   suffix: Uranium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumCrabNF
 
 - type: entity
   id: WallRockSnowUraniumCrabNF
-  parent: WallRockSnowUranium
+  parent: [BaseUraniumCrabVein, WallRockSnowUranium]
   suffix: Uranium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumCrabNF
 
 - type: entity
   id: WallRockChromiteUraniumCrabNF
-  parent: WallRockChromiteUranium
+  parent: [BaseUraniumCrabVein, WallRockChromiteUranium]
   suffix: Uranium Crab
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumCrabNF
 # endregion Uranium Crabs
 
 # region Uranium Golems
 - type: entity
   id: WallRockAndesiteUraniumGolem
-  parent: WallRockAndesiteUranium
+  parent: [BaseUraniumGolemVein, WallRockAndesiteUranium]
   suffix: Uranium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumGolem
 
 - type: entity
   id: WallRockBasaltUraniumGolem
-  parent: WallRockBasaltUranium
+  parent: [BaseUraniumGolemVein, WallRockBasaltUranium]
   suffix: Uranium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumGolem
 
 - type: entity
   id: AsteroidRockUraniumGolem
-  parent: AsteroidRockUranium
+  parent: [BaseUraniumGolemVein, AsteroidRockUranium]
   suffix: Uranium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumGolem
 
 - type: entity
   id: WallRockUraniumGolem
-  parent: WallRockUranium
+  parent: [BaseUraniumGolemVein, WallRockUranium]
   suffix: Uranium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumGolem
 
 - type: entity
   id: WallRockSandUraniumGolem
-  parent: WallRockSandUranium
+  parent: [BaseUraniumGolemVein, WallRockSandUranium]
   suffix: Uranium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumGolem
 
 - type: entity
   id: WallRockSnowUraniumGolem
-  parent: WallRockSnowUranium
+  parent: [BaseUraniumGolemVein, WallRockSnowUranium]
   suffix: Uranium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumGolem
 
 - type: entity
   id: WallRockChromiteUraniumGolem
-  parent: WallRockChromiteUranium
+  parent: [BaseUraniumGolemVein, WallRockChromiteUranium]
   suffix: Uranium Golem
-  components:
-    - type: OreVein
-      oreChance: 1.0
-      currentOre: OreUraniumGolem
 #endregion Uranium Golems
