@@ -67,5 +67,3 @@ ent-StructurePistolRackLockSR = стойка с оружием самообор�
 ent-StructurePistolRackLockSRWallmounted = стойка с оружием самообороны
     .suffix = ПФ, Пустой, Настенный
     .desc = { ent-WeaponRackBase.desc }
-    .suffix = Пираты, Пустой
-    .desc = { ent-StructurePistolRack.desc }

@@ -1,5 +1,3 @@
-.suffix = Нет загрузки
-    .desc = { "" }
 ent-SpawnRandomHumanoidCorpseMedicalBountyService = { "" }
     .suffix = Сервис
     .desc = { "" }

@@ -1,5 +1,3 @@
-.desc = Обычные черные перчатки, которые не спасут вас от жарки.
-    .suffix = ПП
 ent-ClothingHandsGlovesColorBlackAK = боевые перчатки
     .suffix = АКМС
     .desc = { ent-ClothingHandsGlovesColorBlackSMG.desc }

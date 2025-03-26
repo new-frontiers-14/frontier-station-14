@@ -6,4 +6,3 @@ ent-CageParrot = переноска для попугая
 ent-MobRosyMothroach = розовая таракамоль
     .desc = Это восхитительный побочный продукт муль... Подождите, а почему он розовый?
     .suffix = Злой, Прирученный
-    .desc = { ent-MobAngryBee.desc }

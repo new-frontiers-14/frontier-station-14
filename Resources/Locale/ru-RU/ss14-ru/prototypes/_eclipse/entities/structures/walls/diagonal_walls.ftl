@@ -1,18 +1,7 @@
 ent-BaseWallDiagonal = basewall
     .suffix = Диагональ
     .desc = { "" }
-    .suffix = Диагональ
-    .desc = { ent-BaseWallDiagonal.desc }
-    .suffix = диагональ
-    .desc = { ent-BaseWallDiagonal.desc }
-    .desc = Скуб знает, что эту стену слишком трудно разрушить.
-    .suffix = диагональ, неразрушимый
-    .suffix = диагональ
-    .desc = { ent-BaseWallDiagonal.desc }
-    .suffix = диагональ
-    .desc = { ent-BaseWallDiagonal.desc }
-    .suffix = диагональ
-    .desc = { ent-BaseWallDiagonal.desc }
+
 ent-WallWoodDiagonal = стена из дерева
     .desc = { ent-WallWood.desc }
 ent-WallUraniumDiagonal = стена из урана

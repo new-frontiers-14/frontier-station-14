@@ -1,9 +1,7 @@
-.desc = Оригинальная камера для съемки с рук.
 ent-BaseCrossbowWieldable = { ent-BaseCrossbow }
     .desc = { ent-BaseCrossbow.desc }
 ent-CrossbowBloodCult = арбалет кровавого культа
     .desc = { ent-BaseCrossbow.desc }
-    .desc = { ent-BaseCrossbowWieldable.desc }
 ent-CrossbowBloodCultHand = ручной арбалет культа крови
     .desc = { ent-BaseCrossbow.desc }
 ent-CrossbowModern = модернизированный арбалет

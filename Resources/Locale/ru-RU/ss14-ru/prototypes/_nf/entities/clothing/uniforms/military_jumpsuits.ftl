@@ -127,5 +127,3 @@ ent-ClothingUniformJumpsuitMilitaryTurtleneckBlueMercenaryMedic = синий к�
 ent-ClothingUniformJumpsuitMilitaryTurtleneckBlueMercenaryCaptain = синий комбинезон наёмника-капитана
     .suffix = Военный, Синий
     .desc = { ent-ClothingUniformJumpsuitMercenary.desc }
-    .desc = Тактический комбинезон производства Аракадиа Индастриз.
-    .suffix = Военный, Тактический

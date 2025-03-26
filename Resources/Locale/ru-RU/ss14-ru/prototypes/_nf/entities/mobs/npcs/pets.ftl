@@ -18,6 +18,5 @@ ent-EldritchPushGun = эльдрическое ручное оружие
     .desc = Стреляет из эльдрической руки.
 ent-ActionEldritchPush =  [color=yellow]Силовое воздействие[/color]
     .desc = Вызовите эльдрическую руку. [color=yellow]5-минутная перезарядка.[/color]
-    .desc = Он живет в ананасе на Фронтире!
 ent-MobCatClugg = Умник
     .desc = Весёлый.
