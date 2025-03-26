@@ -1,0 +1,33 @@
+- type: reagent
+  id: AntiSepticFluid
+  parent: BaseDrink
+  name: reagent-name-antiseptic
+  group: Toxins
+  desc: reagent-desc-antiseptic
+  slippery: true
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: antiseptic
+  color: "#457c7d"
+  recognizable: true
+  boilingPoint: 100.0
+  meltingPoint: 0.0
+  plantMetabolism:
+  - !type:PlantAdjustWater
+    amount: -0.5
+  - !type:PlantAdjustToxins
+    amount: 0.2
+  metabolisms:
+    Drink:
+      effects:
+      # similar to ~80% water, 20% gastrotoxin
+      - !type:SatiateThirst
+        factor: -1 # mild dessicant
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.4
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        probability: 0.2
