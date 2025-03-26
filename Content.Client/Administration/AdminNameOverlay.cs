@@ -84,8 +84,6 @@ internal sealed class AdminNameOverlay : Overlay
                                                               new Angle(-_eyeManager.CurrentEye.Rotation).RotateVec(
                                                                   aabb.TopRight - aabb.Center)) + new Vector2(1f, 7f);
 
-            var balance = playerInfo.Balance == int.MinValue ? "NO BALANCE" : BankSystemExtensions.ToCurrencyString(playerInfo.Balance); // Frontier
-
             var currentOffset = Vector2.Zero;
 
             args.ScreenHandle.DrawString(_font, screenCoordinates + currentOffset, playerInfo.CharacterName, uiScale, playerInfo.Connected ? Color.Aquamarine : Color.White);
@@ -107,6 +105,7 @@ internal sealed class AdminNameOverlay : Overlay
             }
 
             // Frontier: print balance
+            var balance = playerInfo.Balance == int.MinValue ? "NO BALANCE" : BankSystemExtensions.ToCurrencyString(playerInfo.Balance);
             args.ScreenHandle.DrawString(_font, screenCoordinates + currentOffset, $"Balance: {balance}", uiScale, playerInfo.Connected ? Color.GreenYellow : Color.White);
             currentOffset += lineoffset;
             // End Frontier
