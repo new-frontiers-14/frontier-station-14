@@ -12,3 +12,4 @@ flavor-complex-wassail = тепло и уютно
 flavor-complex-fine-noodles = как тонкая лапша
 flavor-complex-rich-broth = как насыщенный бульон
 flavor-complex-tangy = терпко
+flavor-complex-antiseptic = как химическая лаванда
