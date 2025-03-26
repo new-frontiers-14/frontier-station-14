@@ -210,6 +210,9 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
         if (!ResolveDisposals(uid, ref disposal))
             return;
 
+        if (disposal.Container.ContainedEntities.Count + 1 > disposal.MaxNumEntities)
+            return;
+
         if (!_containerSystem.Insert(toInsert, disposal.Container))
             return;
 
@@ -756,6 +759,9 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
     public override bool CanInsert(EntityUid uid, SharedDisposalUnitComponent component, EntityUid entity)
     {
         if (!base.CanInsert(uid, component, entity))
+            return false;
+
+        if (component.Container.ContainedEntities.Count + 1 > component.MaxNumEntities)
             return false;
 
         return _containerSystem.CanInsert(entity, component.Container);

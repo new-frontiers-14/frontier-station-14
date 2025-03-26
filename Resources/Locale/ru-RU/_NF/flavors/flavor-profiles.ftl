@@ -14,3 +14,4 @@ flavor-complex-rich-broth = как насыщенный бульон
 flavor-complex-tangy = терпко
 flavor-complex-spices = пряно
 flavor-complex-cinnamon = как корица
+flavor-complex-antiseptic = как химическая лаванда

@@ -77,12 +77,12 @@
         type: IntercomBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  - type: Construction
-    graph: Intercom
-    node: intercom
-    containers:
-    - board
-    - key_slots
+  # - type: Construction
+  #   graph: Intercom
+  #   node: intercom
+  #   containers:
+  #   - board
+  #   - key_slots
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
@@ -151,9 +151,9 @@
         wires:
           0: { visible: false }
           1: { visible: true }
-  - type: Construction
-    graph: Intercom
-    node: assembly
+  # - type: Construction
+  #   graph: Intercom
+  #   node: assembly
   - type: Transform
     anchored: true
   placement:
@@ -223,8 +223,8 @@
   - type: WiresPanelSecurity
     examine: wires-panel-component-on-examine-security-level2
     wiresAccessible: false
-  - type: Construction
-    node: intercomReinforced
+  # - type: Construction
+  #   node: intercomReinforced
 
 - type: entity
   id: IntercomCommon
