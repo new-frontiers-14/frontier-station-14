@@ -101,8 +101,11 @@ public sealed partial class MarketSystem
             }
             else
             {
-                var spawn = Spawn(data.Prototype, coordinates);
-                _crateMachine.InsertIntoCrate(spawn, targetCrate);
+                for (int i = 0; i < data.Quantity; i++)
+                {
+                    var spawn = Spawn(data.Prototype, coordinates);
+                    _crateMachine.InsertIntoCrate(spawn, targetCrate);
+                }
             }
         }
     }
