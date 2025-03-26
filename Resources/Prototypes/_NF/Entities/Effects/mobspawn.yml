@@ -1,62 +1,5 @@
-﻿# Upstream
 - type: entity
-  id: MobSpawnBananiumCrab
-  parent: MobSpawnCrabQuartz
-  name: mobspawner bananium crab
-  components:
-  - type: Sprite
-    sprite: /Textures/_NF/Effects/mobspawn.rsi
-    state: crab_bananium
-  - type: SpawnOnDespawn
-    prototype: MobBananiumCrab
-
-- type: entity
-  id: MobSpawnCoalCrab
-  parent: MobSpawnCrabQuartz
-  name: mobspawner coal crab
-  components:
-  - type: Sprite
-    sprite: /Textures/_NF/Effects/mobspawn.rsi
-    state: crab_coal
-  - type: SpawnOnDespawn
-    prototype: MobCoalCrab
-
-- type: entity
-  id: MobSpawnGoldCrab
-  parent: MobSpawnCrabQuartz
-  name: mobspawner gold crab
-  components:
-  - type: Sprite
-    sprite: /Textures/_NF/Effects/mobspawn.rsi
-    state: crab_gold
-  - type: SpawnOnDespawn
-    prototype: MobGoldCrab
-
-- type: entity
-  id: MobSpawnPlasmaCrab
-  parent: MobSpawnCrabQuartz
-  name: mobspawner plasma crab
-  components:
-  - type: Sprite
-    sprite: /Textures/_NF/Effects/mobspawn.rsi
-    state: crab_plasma
-  - type: SpawnOnDespawn
-    prototype: MobPlasmaCrab
-
-- type: entity
-  id: MobSpawnSaltCrab
-  parent: MobSpawnCrabQuartz
-  name: mobspawner salt crab
-  components:
-  - type: Sprite
-    sprite: /Textures/_NF/Effects/mobspawn.rsi
-    state: crab_salt
-  - type: SpawnOnDespawn
-    prototype: MobSaltCrab
-
-# Frontier
-- type: entity
-  id: MobSpawnCrabNFQuartz
+  id: MobSpawnCrabQuartzNF
   name: mobspawner quartzcrab
   suffix: Frontier
   components:
@@ -85,8 +28,8 @@
     prototype: MobQuartzCrabNF
 
 - type: entity
-  id: MobSpawnCrabNFIron
-  parent: MobSpawnCrabNFQuartz
+  id: MobSpawnCrabIronNF
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner ironcrab
   components:
   - type: Sprite
@@ -96,8 +39,8 @@
     prototype: MobIronCrabNF
 
 - type: entity
-  id: MobSpawnCrabNFSilver
-  parent: MobSpawnCrabNFQuartz
+  id: MobSpawnCrabSilverNF
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner silvercrab
   components:
   - type: Sprite
@@ -107,8 +50,8 @@
     prototype: MobSilverCrabNF
 
 - type: entity
-  id: MobSpawnCrabNFUranium
-  parent: MobSpawnCrabNFQuartz
+  id: MobSpawnCrabUraniumNF
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner uraniumcrab
   components:
   - type: Sprite
@@ -118,8 +61,8 @@
     prototype: MobUraniumCrabNF
 
 - type: entity
-  id: MobSpawnBananiumCrabNF
-  parent: MobSpawnCrabNFQuartz
+  id: MobSpawnCrabBananiumNF
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner bananium crab
   components:
   - type: Sprite
@@ -129,8 +72,8 @@
     prototype: MobBananiumCrabNF
 
 - type: entity
-  id: MobSpawnCoalCrabNF
-  parent: MobSpawnCrabNFQuartz
+  id: MobSpawnCrabCoalNF
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner coal crab
   components:
   - type: Sprite
@@ -140,8 +83,8 @@
     prototype: MobCoalCrabNF
 
 - type: entity
-  id: MobSpawnGoldCrabNF
-  parent: MobSpawnCrabNFQuartz
+  id: MobSpawnCrabGoldNF
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner gold crab
   components:
   - type: Sprite
@@ -151,8 +94,8 @@
     prototype: MobGoldCrabNF
 
 - type: entity
-  id: MobSpawnPlasmaCrabNF
-  parent: MobSpawnCrabNFQuartz
+  id: MobSpawnCrabPlasmaNF
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner plasma crab
   components:
   - type: Sprite
@@ -162,8 +105,8 @@
     prototype: MobPlasmaCrabNF
 
 - type: entity
-  id: MobSpawnSaltCrabNF
-  parent: MobSpawnCrabNFQuartz
+  id: MobSpawnCrabSaltNF
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner salt crab
   components:
   - type: Sprite
@@ -174,7 +117,7 @@
 
 - type: entity
   id: MobSpawnBananiumGolem
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner bananium golem
   components:
   - type: Sprite
@@ -185,7 +128,7 @@
 
 - type: entity
   id: MobSpawnCoalGolem
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner bananium golem
   components:
   - type: Sprite
@@ -196,7 +139,7 @@
 
 - type: entity
   id: MobSpawnGoldGolem
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner gold golem
   components:
   - type: Sprite
@@ -207,7 +150,7 @@
 
 - type: entity
   id: MobSpawnIronGolem
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner iron golem
   components:
   - type: Sprite
@@ -218,7 +161,7 @@
 
 - type: entity
   id: MobSpawnPlasmaGolem
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner plasma golem
   components:
   - type: Sprite
@@ -229,7 +172,7 @@
 
 - type: entity
   id: MobSpawnQuartzGolem
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner quartz golem
   components:
   - type: Sprite
@@ -240,7 +183,7 @@
 
 - type: entity
   id: MobSpawnSaltGolem
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner salt golem
   components:
   - type: Sprite
@@ -251,7 +194,7 @@
 
 - type: entity
   id: MobSpawnSilverGolem
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner silver golem
   components:
   - type: Sprite
@@ -262,7 +205,7 @@
 
 - type: entity
   id: MobSpawnUraniumGolem
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner uranium golem
   components:
   - type: Sprite
@@ -274,7 +217,7 @@
 # Scrapbots
 - type: entity
   id: MobSpawnScrapbot
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner scrapbot
   components:
   - type: Jittering
@@ -286,7 +229,7 @@
 
 - type: entity
   id: MobSpawnScrapbotThreads
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner scrapbot
   components:
   - type: Jittering
@@ -298,7 +241,7 @@
 
 - type: entity
   id: MobSpawnScrapbotThrusters
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner scrapbot
   components:
   - type: Jittering
@@ -310,7 +253,7 @@
 
 - type: entity
   id: MobSpawnScrapbotLaser
-  parent: MobSpawnCrabNFQuartz
+  parent: MobSpawnCrabQuartzNF
   name: mobspawner scrapbot
   components:
   - type: Jittering
