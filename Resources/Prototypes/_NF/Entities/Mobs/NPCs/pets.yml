@@ -10,6 +10,7 @@
   name: Clippy
   parent: [NFMobPet, MobCatGhost]
   id: MobCatClippy
+  name: Clippy
   description: It looks like you’re writing a letter, would you like help?
   components:
   - type: GhostRole
@@ -21,7 +22,7 @@
   - type: Loadout
     prototypes: [ MobClippyGear ]
   - type: RandomMetadata
-    nameSegments: [names_cat_clippy]
+    nameSegments: null
   - type: AutoImplant
     implants:
     - MindShieldImplant
@@ -47,6 +48,7 @@
   name: Clarpy
   parent: [NFMobPet, MobCatGhost]
   id: MobCatClarpy
+  name: Clarpy
   description: First cat to gain a bounty.
   components:
   - type: Sprite
@@ -74,7 +76,7 @@
   - type: ReplacementAccent
     accent: pirateCat
   - type: RandomMetadata
-    nameSegments: [names_cat_clarpy]
+    nameSegments: [NamesCatClarpy]
   - type: AutoImplant
     implants:
     - FreelanceTrackingImplant
@@ -99,6 +101,7 @@
   name: Cappy
   parent: [NFMobPet, MobCatGhost, ShowSecurityIcons]
   id: MobCatCappy
+  name: Cappy
   description: First cat to shoot a gun.
   components:
   - type: Sprite
@@ -122,7 +125,7 @@
   - type: ReplacementAccent
     accent: nfsdCat
   - type: RandomMetadata
-    nameSegments: [names_cat_cappy]
+    nameSegments: null
   - type: AutoImplant
     implants:
     - MindShieldImplant
@@ -164,6 +167,7 @@
   name: El Capo
   parent: [NFMobPet, MobBingusGhost]
   id: MobCatElCapo
+  name: El Capo
   description: Wanted for countless cat crimes.
   components:
   - type: Sprite
@@ -182,7 +186,7 @@
     rules: ghost-role-information-freeagent-rules
     mindRoles: [ MindRoleGhostRoleFreeAgent ]
   - type: RandomMetadata
-    nameSegments: [names_cat_elcapo]
+    nameSegments: null
   - type: AutoImplant
     implants:
     - TrackingImplant
@@ -194,7 +198,8 @@
   name: Clugg
   parent: [NFMobPet, MobCatCaracalGhost]
   id: MobCatClugg
-  description:
+  name: Clugg
+  description: A prehistoric saber-toothed cat. Loves steak.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -212,10 +217,10 @@
     rules: ghost-role-information-nonantagonist-rules
     mindRoles: [ MindRoleGhostRoleNeutral ]
   - type: RandomMetadata
-    nameSegments: [names_cat_clugg]
+    nameSegments: null
   - type: NpcFactionMember
     factions:
-      - Cat # Everybody loves Clugg. Maybe not pitbulls.
+      - Cat # Needs to be neutral to dinosaurs.
   - type: NFSalvageMobRestrictions
     despawnIfOffLinkedGrid: false
     addComponentsOnDeath: []
@@ -246,7 +251,7 @@
   - type: ReplacementAccent
     accent: mistakeCat
   - type: RandomMetadata
-    nameSegments: [names_cat_mistake]
+    nameSegments: [NamesCatMistake]
   - type: Vocal
     sounds:
       Male: CatMistake
@@ -314,7 +319,7 @@
     mindRoles: [ MindRoleGhostRoleFreeAgent ]
     prototype: CatBloodCult
   - type: RandomMetadata
-    nameSegments: [ names_cat_cult ]
+    nameSegments: [ NamesCatCult ]
   - type: AutoImplant
     implants:
     - RedLightImplant
@@ -386,7 +391,7 @@
     butcheringType: Spike
     spawned:
     - id: FoodMeat
-      amount: 3
+      amount: 2
     - id: DrinkPremiumRumBottleFull
       amount: 1
   - type: Tag
