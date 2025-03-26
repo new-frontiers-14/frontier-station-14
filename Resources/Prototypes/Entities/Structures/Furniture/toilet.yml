@@ -117,10 +117,10 @@
   id: ToiletEmpty
   parent: BaseToilet
   suffix: Empty
-  #components: # Eclipse - toilets constructed must not be able to become clogged
-  #- type: Construction
-  #  graph: Toilet
-  #  node: toilet
+  components:
+  - type: Construction
+    graph: Toilet
+    node: toilet
 
 - type: entity
   id: ToiletDirtyWater
