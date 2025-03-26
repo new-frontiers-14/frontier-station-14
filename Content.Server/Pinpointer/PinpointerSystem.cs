@@ -147,6 +147,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         if (target == null || !EntityManager.EntityExists(target.Value))
         {
             SetDistance(uid, Distance.Unknown, pinpointer);
+            TrySetArrowAngle(uid, Angle.Zero, pinpointer); // Frontier
             return;
         }
 
@@ -171,6 +172,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         else
         {
             SetDistance(uid, Distance.Unknown, pinpointer);
+            TrySetArrowAngle(uid, Angle.Zero, pinpointer); // Frontier
         }
         if (oldDist != pinpointer.DistanceToTarget)
             UpdateAppearance(uid, pinpointer);
@@ -211,4 +213,16 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         else
             return Distance.Far;
     }
+
+    // Frontier: clear function
+    public void ClearPinpointer(EntityUid uid, PinpointerComponent? pinpointer = null)
+    {
+        if (!Resolve(uid, ref pinpointer))
+            return;
+
+        pinpointer.Target = null;
+        UpdateDirectionToTarget(uid, pinpointer);
+        UpdateAppearance(uid, pinpointer);
+    }
+    // End Frontier: clear function
 }
