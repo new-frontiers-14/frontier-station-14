@@ -1,0 +1,31 @@
+- type: vessel
+  id: Reciever
+  parent: BaseVesselAntag
+  name: Reciever
+  description: A compact vessel dedicated to stealth operations and espionage.
+  price: 35500
+  category: Small
+  group: Syndicate
+  shuttlePath: /Maps/_NF/Shuttles/Syndicate/RECEIVER.yml
+  guidebookPage: Null
+  class:
+  - Syndicate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Reciever
+  mapName: 'Reciever'
+  mapPath: /Maps/_NF/Shuttles/Syndicate/RECEIVER.yml
+  minPlayers: 0
+  stations:
+    Reciever:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Reciever {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
