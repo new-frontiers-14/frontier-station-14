@@ -1,4 +1,4 @@
-ёent-CratePirateChestCannonBall = сундук пушечных ядер
+ent-CratePirateChestCannonBall = сундук пушечных ядер
     .suffix = Заполненный
     .desc = { ent-CratePirateGrey.desc }
 ent-CratePirateChestCannonBallEmp = сундук ЭМИ-ядер
