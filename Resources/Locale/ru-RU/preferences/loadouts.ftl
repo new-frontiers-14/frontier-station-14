@@ -1,7 +1,7 @@
 # Name
-loadout-name-edit-label = Своё название
+loadout-name-edit-label = Настраиваемое имя
 loadout-name-edit-label-dataset = Задает пользовательское имя, которое будет использоваться, если вы будете играть за эту роль. Если оно пустое, вместо него будет выбрано случайное имя.
-loadout-name-edit-tooltip = Максимум 32 символа. Если название не указано, для вас оно может быть выбрано случайно.
+loadout-name-edit-tooltip = Не более 32 символов. Если имя не указано, оно будет выбрано случайным образом.
 # Restrictions
 loadout-restrictions = Ограничения
 loadouts-min-limit = Мин. кол-во: { $count }
