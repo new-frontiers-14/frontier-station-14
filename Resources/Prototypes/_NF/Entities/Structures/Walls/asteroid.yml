@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  id: BaseSoftOreVein
+  id: NFBaseSoftOreVein
   components:
   - type: OreVein
     gatherDestructionWhitelist:
@@ -8,48 +8,48 @@
       - MiningGatheringHard
 
 - type: entity
-  parent: [BaseSoftOreVein, AsteroidRock]
+  parent: [NFBaseSoftOreVein, AsteroidRock]
   id: NFAsteroidRockOre
   abstract: true
 
 - type: entity
-  parent: [BaseSoftOreVein, IronRock]
+  parent: [NFBaseSoftOreVein, IronRock]
   id: NFIronRockOre
   abstract: true
 
 - type: entity
-  parent: [BaseSoftOreVein, WallRock]
+  parent: [NFBaseSoftOreVein, WallRock]
   id: NFWallRockOre
   abstract: true
 
 - type: entity
-  parent: [BaseSoftOreVein, WallRockBasalt]
+  parent: [NFBaseSoftOreVein, WallRockBasalt]
   id: NFWallRockBasaltOre
   abstract: true
 
 - type: entity
-  parent: [BaseSoftOreVein, WallRockSnow]
+  parent: [NFBaseSoftOreVein, WallRockSnow]
   id: NFWallRockSnowOre
   abstract: true
 
 - type: entity
-  parent: [BaseSoftOreVein, WallRockSand]
+  parent: [NFBaseSoftOreVein, WallRockSand]
   id: NFWallRockSandOre
   abstract: true
 
 - type: entity
-  parent: [BaseSoftOreVein, WallRockChromite]
+  parent: [NFBaseSoftOreVein, WallRockChromite]
   id: NFWallRockChromiteOre
   abstract: true
 
 - type: entity
-  parent: [BaseSoftOreVein, WallRockAndesite]
+  parent: [NFBaseSoftOreVein, WallRockAndesite]
   id: NFWallRockAndesiteOre
   abstract: true
 
 # region Ore
 - type: entity
-  id: AsteroidRockBluespace
+  id: NFAsteroidRockBluespace
   parent: NFAsteroidRockOre
   description: An ore vein with bluespace.
   suffix: Bluespace
@@ -73,7 +73,7 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: IronRockBluespace
+  id: NFIronRockBluespace
   parent: NFIronRockOre
   description: An ore vein with bluespace.
   suffix: Bluespace
@@ -97,18 +97,18 @@
         map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockBluespace
+  id: NFWallRockBluespace
   parent: NFWallRockOre
   description: An ore vein with bluespace.
   suffix: Bluespace
   components:
   - type: EntityRemap
     mask:
-      AsteroidRock: AsteroidRockBluespace
-      WallRockBasalt: WallRockBasaltBluespace
-      WallRockChromite: WallRockChromiteBluespace
-      WallRockSand: WallRockSandBluespace
-      WallRockSnow: WallRockSnowBluespace
+      AsteroidRock: NFAsteroidRockBluespace
+      WallRockBasalt: NFWallRockBasaltBluespace
+      WallRockChromite: NFWallRockChromiteBluespace
+      WallRockSand: NFWallRockSandBluespace
+      WallRockSnow: NFWallRockSnowBluespace
   - type: OreVein
     oreChance: 1.0
     currentOre: NFOreBluespace
@@ -128,7 +128,7 @@
         map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockBasaltBluespace
+  id: NFWallRockBasaltBluespace
   parent: NFWallRockBasaltOre
   description: An ore vein with bluespace.
   suffix: Bluespace
@@ -152,7 +152,7 @@
         map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockSnowBluespace
+  id: NFWallRockSnowBluespace
   parent: NFWallRockSnowOre
   description: An ore vein with bluespace.
   suffix: Bluespace
@@ -176,7 +176,7 @@
         map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockSandBluespace
+  id: NFWallRockSandBluespace
   parent: NFWallRockSandOre
   description: An ore vein with bluespace.
   suffix: Bluespace
@@ -200,7 +200,7 @@
         map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockChromiteBluespace
+  id: NFWallRockChromiteBluespace
   parent: NFWallRockChromiteOre
   description: An ore vein with bluespace.
   suffix: Bluespace
@@ -224,7 +224,7 @@
         map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockAndesiteBluespace
+  id: NFWallRockAndesiteBluespace
   parent: NFWallRockAndesiteOre
   description: An ore vein with bluespace.
   suffix: Bluespace
@@ -250,7 +250,7 @@
 
 # region Scrap with Ore
 - type: entity
-  id: WallRockScrapPile
+  id: NFWallRockScrapPile
   parent: NFWallRockAndesiteOre
   name: scrap pile
   description: A pile of scrap.
@@ -289,12 +289,12 @@
           scraprock07: ""
 
 - type: entity
-  id: WallRockScrapPileBot
-  parent: [BaseScrapBotVein, WallRockScrapPile]
+  id: NFWallRockScrapPileBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPile]
 
 - type: entity
-  id: WallRockScrapPileCoal
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPileCoal
+  parent: NFWallRockScrapPile
   description: An ore vein with coal.
   suffix: Coal
   components:
@@ -318,12 +318,12 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPileCoalBot
-  parent: [BaseScrapBotVein, WallRockScrapPileCoal]
+  id: NFWallRockScrapPileCoalBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPileCoal]
 
 - type: entity
-  id: WallRockScrapPileGold
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPileGold
+  parent: NFWallRockScrapPile
   description: An ore vein with gold.
   suffix: Gold
   components:
@@ -347,12 +347,12 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPileGoldBot
-  parent: [BaseScrapBotVein, WallRockScrapPileGold]
+  id: NFWallRockScrapPileGoldBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPileGold]
 
 - type: entity
-  id: WallRockScrapPileDiamond
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPileDiamond
+  parent: NFWallRockScrapPile
   description: An ore vein with diamond.
   suffix: Diamond
   components:
@@ -376,12 +376,12 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPileDiamondBot
-  parent: [BaseScrapBotVein, WallRockScrapPileDiamond]
+  id: NFWallRockScrapPileDiamondBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPileDiamond]
 
 - type: entity
-  id: WallRockScrapPilePlasma
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPilePlasma
+  parent: NFWallRockScrapPile
   description: An ore vein with plasma.
   suffix: Plasma
   components:
@@ -405,12 +405,12 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPilePlasmaBot
-  parent: [BaseScrapBotVein, WallRockScrapPilePlasma]
+  id: NFWallRockScrapPilePlasmaBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPilePlasma]
 
 - type: entity
-  id: WallRockScrapPileQuartz
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPileQuartz
+  parent: NFWallRockScrapPile
   description: An ore vein with quartz.
   suffix: Quartz
   components:
@@ -434,12 +434,12 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPileQuartzBot
-  parent: [BaseScrapBotVein, WallRockScrapPileQuartz]
+  id: NFWallRockScrapPileQuartzBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPileQuartz]
 
 - type: entity
-  id: WallRockScrapPileSilver
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPileSilver
+  parent: NFWallRockScrapPile
   description: An ore vein with silver.
   suffix: Silver
   components:
@@ -463,12 +463,12 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPileSilverBot
-  parent: [BaseScrapBotVein, WallRockScrapPileSilver]
+  id: NFWallRockScrapPileSilverBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPileSilver]
 
 - type: entity
-  id: WallRockScrapPileIron
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPileIron
+  parent: NFWallRockScrapPile
   description: An ore vein with iron.
   suffix: Iron
   components:
@@ -492,12 +492,12 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPileIronBot
-  parent: [BaseScrapBotVein, WallRockScrapPileIron]
+  id: NFWallRockScrapPileIronBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPileIron]
 
 - type: entity
-  id: WallRockScrapPileUranium
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPileUranium
+  parent: NFWallRockScrapPile
   description: An ore vein with uranium.
   suffix: Uranium
   components:
@@ -521,12 +521,12 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPileUraniumBot
-  parent: [BaseScrapBotVein, WallRockScrapPileUranium]
+  id: NFWallRockScrapPileUraniumBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPileUranium]
 
 - type: entity
-  id: WallRockScrapPileBananium
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPileBananium
+  parent: NFWallRockScrapPile
   description: An ore vein with bananium.
   suffix: Bananium
   components:
@@ -550,12 +550,12 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPileBananiumBot
-  parent: [BaseScrapBotVein, WallRockScrapPileBananium]
+  id: NFWallRockScrapPileBananiumBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPileBananium]
 
 - type: entity
-  id: WallRockScrapPileSalt
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPileSalt
+  parent: NFWallRockScrapPile
   description: An ore vein with salt.
   suffix: Salt
   components:
@@ -579,12 +579,12 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPileSaltBot
-  parent: [BaseScrapBotVein, WallRockScrapPileSalt]
+  id: NFWallRockScrapPileSaltBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPileSalt]
 
 - type: entity
-  id: WallRockScrapPileArtifactFragment
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPileArtifactFragment
+  parent: NFWallRockScrapPile
   description: A scrap pile. What's that sticking out of it?
   suffix: Artifact Fragment
   components:
@@ -608,12 +608,12 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPileArtifactFragmentBot
-  parent: [BaseScrapBotVein, WallRockScrapPileArtifactFragment]
+  id: NFWallRockScrapPileArtifactFragmentBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPileArtifactFragment]
 
 - type: entity
-  id: WallRockScrapPileBluespace
-  parent: WallRockScrapPile
+  id: NFWallRockScrapPileBluespace
+  parent: NFWallRockScrapPile
   description: An ore vein with bluespace.
   suffix: Bluespace
   components:
@@ -636,677 +636,667 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: WallRockScrapPileBluespaceBot
-  parent: [BaseScrapBotVein, WallRockScrapPileBluespace]
-
-- type: entity
-  id: AsteroidScrapPileMining
-  parent: WallRockScrapPile
-  suffix: higher ore yield .33
-  components:
-  - type: OreVein
-    oreChance: 0.33
-    oreRarityPrototypeId: RandomOreDistributionStandard
+  id: NFWallRockScrapPileBluespaceBot
+  parent: [NFBaseScrapBotVein, NFWallRockScrapPileBluespace]
 # endregion Scrap with Ore
 
 # region Bananium Crabs
 - type: entity
-  id: WallRockAndesiteBananiumCrabNF
-  parent: [BaseBananiumCrabVein, WallRockAndesiteBananium]
+  id: NFWallRockAndesiteBananiumCrab
+  parent: [NFBaseBananiumCrabVein, WallRockAndesiteBananium]
   suffix: Bananium Crab
 
 - type: entity
-  id: WallRockBasaltBananiumCrabNF
-  parent: [BaseBananiumCrabVein, WallRockBasaltBananium]
+  id: NFWallRockBasaltBananiumCrab
+  parent: [NFBaseBananiumCrabVein, WallRockBasaltBananium]
   suffix: Bananium Crab
 
 - type: entity
   id: NFAsteroidRockBananiumCrab
-  parent: [BaseBananiumCrabVein, AsteroidRockBananium]
+  parent: [NFBaseBananiumCrabVein, AsteroidRockBananium]
   suffix: Bananium Crab
 
 - type: entity
-  id: WallRockBananiumCrabNF
-  parent: [BaseBananiumCrabVein, WallRockBananium]
+  id: NFWallRockBananiumCrab
+  parent: [NFBaseBananiumCrabVein, WallRockBananium]
   suffix: Bananium Crab
 
 - type: entity
-  id: WallRockSandBananiumCrabNF
-  parent: [BaseBananiumCrabVein, WallRockSandBananium]
+  id: NFWallRockSandBananiumCrab
+  parent: [NFBaseBananiumCrabVein, WallRockSandBananium]
   suffix: Bananium Crab
 
 - type: entity
-  id: WallRockSnowBananiumCrabNF
-  parent: [BaseBananiumCrabVein, WallRockSnowBananium]
+  id: NFWallRockSnowBananiumCrab
+  parent: [NFBaseBananiumCrabVein, WallRockSnowBananium]
   suffix: Bananium Crab
 
 - type: entity
-  id: WallRockChromiteBananiumCrabNF
-  parent: [BaseBananiumCrabVein, WallRockChromiteBananium]
+  id: NFWallRockChromiteBananiumCrab
+  parent: [NFBaseBananiumCrabVein, WallRockChromiteBananium]
   suffix: Bananium Crab
 # endregion Bananium Crabs
 
 # region Bananium Golems
 - type: entity
-  id: WallRockAndesiteBananiumGolem
-  parent: [BaseBananiumGolemVein, WallRockAndesiteBananium]
+  id: NFWallRockAndesiteBananiumGolem
+  parent: [NFBaseBananiumGolemVein, WallRockAndesiteBananium]
   suffix: Bananium Golem
 
 - type: entity
-  id: WallRockBasaltBananiumGolem
-  parent: [BaseBananiumGolemVein, WallRockBasaltBananium]
+  id: NFWallRockBasaltBananiumGolem
+  parent: [NFBaseBananiumGolemVein, WallRockBasaltBananium]
   suffix: Bananium Golem
 
 - type: entity
   id: NFAsteroidRockBananiumGolem
-  parent: [BaseBananiumGolemVein, AsteroidRockBananium]
+  parent: [NFBaseBananiumGolemVein, AsteroidRockBananium]
   suffix: Bananium Golem
 
 - type: entity
-  id: WallRockBananiumGolem
-  parent: [BaseBananiumGolemVein, WallRockBananium]
+  id: NFWallRockBananiumGolem
+  parent: [NFBaseBananiumGolemVein, WallRockBananium]
   suffix: Bananium Golem
 
 - type: entity
-  id: WallRockSandBananiumGolem
-  parent: [BaseBananiumGolemVein, WallRockSandBananium]
+  id: NFWallRockSandBananiumGolem
+  parent: [NFBaseBananiumGolemVein, WallRockSandBananium]
   suffix: Bananium Golem
 
 - type: entity
-  id: WallRockSnowBananiumGolem
-  parent: [BaseBananiumGolemVein, WallRockSnowBananium]
+  id: NFWallRockSnowBananiumGolem
+  parent: [NFBaseBananiumGolemVein, WallRockSnowBananium]
   suffix: Bananium Golem
 
 - type: entity
-  id: WallRockChromiteBananiumGolem
-  parent: [BaseBananiumGolemVein, WallRockChromiteBananium]
+  id: NFWallRockChromiteBananiumGolem
+  parent: [NFBaseBananiumGolemVein, WallRockChromiteBananium]
   suffix: Bananium Golem
 # endregion Bananium Golems
 
 # region Coal Crabs
 - type: entity
-  id: WallRockAndesiteCoalCrabNF
-  parent: [BaseCoalCrabVein, WallRockAndesiteCoal]
+  id: NFWallRockAndesiteCoalCrab
+  parent: [NFBaseCoalCrabVein, WallRockAndesiteCoal]
   suffix: Coal Crab
 
 - type: entity
-  id: WallRockBasaltCoalCrabNF
-  parent: [BaseCoalCrabVein, WallRockBasaltCoal]
+  id: NFWallRockBasaltCoalCrab
+  parent: [NFBaseCoalCrabVein, WallRockBasaltCoal]
   suffix: Coal Crab
 
 - type: entity
-  id: AsteroidRockCoalCrabNF
-  parent: [BaseCoalCrabVein, AsteroidRockCoal]
+  id: NFAsteroidRockCoalCrab
+  parent: [NFBaseCoalCrabVein, AsteroidRockCoal]
   suffix: Coal Crab
 
 - type: entity
-  id: WallRockCoalCrabNF
-  parent: [BaseCoalCrabVein, WallRockCoal]
+  id: NFWallRockCoalCrab
+  parent: [NFBaseCoalCrabVein, WallRockCoal]
   suffix: Coal Crab
 
 - type: entity
-  id: WallRockSandCoalCrabNF
-  parent: [BaseCoalCrabVein, WallRockSandCoal]
+  id: NFWallRockSandCoalCrab
+  parent: [NFBaseCoalCrabVein, WallRockSandCoal]
   suffix: Coal Crab
 
 - type: entity
-  id: WallRockSnowCoalCrabNF
-  parent: [BaseCoalCrabVein, WallRockSnowCoal]
+  id: NFWallRockSnowCoalCrab
+  parent: [NFBaseCoalCrabVein, WallRockSnowCoal]
   suffix: Coal Crab
 
 - type: entity
-  id: WallRockChromiteCoalCrabNF
-  parent: [BaseCoalCrabVein, WallRockChromiteCoal]
+  id: NFWallRockChromiteCoalCrab
+  parent: [NFBaseCoalCrabVein, WallRockChromiteCoal]
   suffix: Coal Crab
 # endregion Coal Crabs
 
 # region Coal Golems
 - type: entity
-  id: WallRockAndesiteCoalGolem
-  parent: [BaseCoalGolemVein, WallRockAndesiteCoal]
+  id: NFWallRockAndesiteCoalGolem
+  parent: [NFBaseCoalGolemVein, WallRockAndesiteCoal]
   suffix: Coal Golem
 
 - type: entity
-  id: WallRockBasaltCoalGolem
-  parent: [BaseCoalGolemVein, WallRockBasaltCoal]
+  id: NFWallRockBasaltCoalGolem
+  parent: [NFBaseCoalGolemVein, WallRockBasaltCoal]
   suffix: Coal Golem
 
 - type: entity
   id: NFAsteroidRockCoalGolem
-  parent: [BaseCoalGolemVein, AsteroidRockCoal]
+  parent: [NFBaseCoalGolemVein, AsteroidRockCoal]
   suffix: Coal Golem
 
 - type: entity
-  id: WallRockCoalGolem
-  parent: [BaseCoalGolemVein, WallRockCoal]
+  id: NFWallRockCoalGolem
+  parent: [NFBaseCoalGolemVein, WallRockCoal]
   suffix: Coal Golem
 
 - type: entity
-  id: WallRockSandCoalGolem
-  parent: [BaseCoalGolemVein, WallRockSandCoal]
+  id: NFWallRockSandCoalGolem
+  parent: [NFBaseCoalGolemVein, WallRockSandCoal]
   suffix: Coal Golem
 
 - type: entity
-  id: WallRockSnowCoalGolem
-  parent: [BaseCoalGolemVein, WallRockSnowCoal]
+  id: NFWallRockSnowCoalGolem
+  parent: [NFBaseCoalGolemVein, WallRockSnowCoal]
   suffix: Coal Golem
 
 - type: entity
-  id: WallRockChromiteCoalGolem
-  parent: [BaseCoalGolemVein, WallRockChromiteCoal]
+  id: NFWallRockChromiteCoalGolem
+  parent: [NFBaseCoalGolemVein, WallRockChromiteCoal]
   suffix: Coal Golem
 # endregion Coal Golems
 
 # region Gold Crabs
 - type: entity
-  id: WallRockAndesiteGoldCrabNF
-  parent: [BaseGoldCrabVein, WallRockAndesiteGold]
+  id: NFWallRockAndesiteGoldCrab
+  parent: [NFBaseGoldCrabVein, WallRockAndesiteGold]
   suffix: Gold Crab
 
 - type: entity
-  id: WallRockBasaltGoldCrabNF
-  parent: [BaseGoldCrabVein, WallRockBasaltGold]
+  id: NFWallRockBasaltGoldCrab
+  parent: [NFBaseGoldCrabVein, WallRockBasaltGold]
   suffix: Gold Crab
 
 - type: entity
-  id: AsteroidRockGoldCrabNF
-  parent: [BaseGoldCrabVein, AsteroidRockGold]
+  id: NFAsteroidRockGoldCrab
+  parent: [NFBaseGoldCrabVein, AsteroidRockGold]
   suffix: Gold Crab
 
 - type: entity
-  id: WallRockGoldCrabNF
-  parent: [BaseGoldCrabVein, WallRockGold]
+  id: NFWallRockGoldCrab
+  parent: [NFBaseGoldCrabVein, WallRockGold]
   suffix: Gold Crab
 
 - type: entity
-  id: WallRockSandGoldCrabNF
-  parent: [BaseGoldCrabVein, WallRockSandGold]
+  id: NFWallRockSandGoldCrab
+  parent: [NFBaseGoldCrabVein, WallRockSandGold]
   suffix: Gold Crab
 
 - type: entity
-  id: WallRockSnowGoldCrabNF
-  parent: [BaseGoldCrabVein, WallRockSnowGold]
+  id: NFWallRockSnowGoldCrab
+  parent: [NFBaseGoldCrabVein, WallRockSnowGold]
   suffix: Gold Crab
 
 - type: entity
-  id: WallRockChromiteGoldCrabNF
-  parent: [BaseGoldCrabVein, WallRockChromiteGold]
+  id: NFWallRockChromiteGoldCrab
+  parent: [NFBaseGoldCrabVein, WallRockChromiteGold]
   suffix: Gold Crab
 # endregion Gold Crabs
 
 # region Gold Golems
 - type: entity
-  id: WallRockAndesiteGoldGolem
-  parent: [BaseGoldGolemVein, WallRockAndesiteGold]
+  id: NFWallRockAndesiteGoldGolem
+  parent: [NFBaseGoldGolemVein, WallRockAndesiteGold]
   suffix: Gold Golem
 
 - type: entity
-  id: WallRockBasaltGoldGolem
-  parent: [BaseGoldGolemVein, WallRockBasaltGold]
+  id: NFWallRockBasaltGoldGolem
+  parent: [NFBaseGoldGolemVein, WallRockBasaltGold]
   suffix: Gold Golem
 
 - type: entity
   id: NFAsteroidRockGoldGolem
-  parent: [BaseGoldGolemVein, AsteroidRockGold]
+  parent: [NFBaseGoldGolemVein, AsteroidRockGold]
   suffix: Gold Golem
 
 - type: entity
-  id: WallRockGoldGolem
-  parent: [BaseGoldGolemVein, WallRockGold]
+  id: NFWallRockGoldGolem
+  parent: [NFBaseGoldGolemVein, WallRockGold]
   suffix: Gold Golem
 
 - type: entity
-  id: WallRockSandGoldGolem
-  parent: [BaseGoldGolemVein, WallRockSandGold]
+  id: NFWallRockSandGoldGolem
+  parent: [NFBaseGoldGolemVein, WallRockSandGold]
   suffix: Gold Golem
 
 - type: entity
-  id: WallRockSnowGoldGolem
-  parent: [BaseGoldGolemVein, WallRockSnowGold]
+  id: NFWallRockSnowGoldGolem
+  parent: [NFBaseGoldGolemVein, WallRockSnowGold]
   suffix: Gold Golem
 
 - type: entity
-  id: WallRockChromiteGoldGolem
-  parent: [BaseGoldGolemVein, WallRockChromiteGold]
+  id: NFWallRockChromiteGoldGolem
+  parent: [NFBaseGoldGolemVein, WallRockChromiteGold]
   suffix: Gold Golem
 # endregion Gold Golems
 
 # region Iron Crabs
 - type: entity
   id: NFAsteroidRockIronCrab
-  parent: [BaseIronCrabVein, AsteroidRockTinCrab]
+  parent: [NFBaseIronCrabVein, AsteroidRockTinCrab]
 
 - type: entity
-  id: WallRockAndesiteIronCrabNF
-  parent: [BaseIronCrabVein, WallRockAndesiteTin]
+  id: NFWallRockAndesiteIronCrab
+  parent: [NFBaseIronCrabVein, WallRockAndesiteTin]
   suffix: Iron Crab
 
 - type: entity
-  id: WallRockBasaltIronCrabNF
-  parent: [BaseIronCrabVein, WallRockBasaltTin]
+  id: NFWallRockBasaltIronCrab
+  parent: [NFBaseIronCrabVein, WallRockBasaltTin]
   suffix: Iron Crab
 
 - type: entity
-  id: WallRockIronCrabNF
-  parent: [BaseIronCrabVein, WallRockTin]
+  id: NFWallRockIronCrab
+  parent: [NFBaseIronCrabVein, WallRockTin]
   suffix: Iron Crab
 
 - type: entity
-  id: WallRockSandIronCrabNF
-  parent: [BaseIronCrabVein, WallRockSandTin]
+  id: NFWallRockSandIronCrab
+  parent: [NFBaseIronCrabVein, WallRockSandTin]
   suffix: Iron Crab
 
 - type: entity
-  id: WallRockSnowIronCrabNF
-  parent: [BaseIronCrabVein, WallRockSnowTin]
+  id: NFWallRockSnowIronCrab
+  parent: [NFBaseIronCrabVein, WallRockSnowTin]
   suffix: Iron Crab
 
 - type: entity
-  id: WallRockChromiteIronCrabNF
-  parent: [BaseIronCrabVein, WallRockChromiteTin]
+  id: NFWallRockChromiteIronCrab
+  parent: [NFBaseIronCrabVein, WallRockChromiteTin]
   suffix: Iron Crab
 # endregion Iron Crabs
 
 # region Iron Golems
 - type: entity
-  id: WallRockAndesiteIronGolem
-  parent: [BaseIronGolemVein, WallRockAndesiteTin]
+  id: NFWallRockAndesiteIronGolem
+  parent: [NFBaseIronGolemVein, WallRockAndesiteTin]
   suffix: Iron Golem
 
 - type: entity
-  id: WallRockBasaltIronGolem
-  parent: [BaseIronGolemVein, WallRockBasaltTin]
+  id: NFWallRockBasaltIronGolem
+  parent: [NFBaseIronGolemVein, WallRockBasaltTin]
   suffix: Iron Golem
 
 - type: entity
   id: NFAsteroidRockIronGolem
-  parent: [BaseIronGolemVein, AsteroidRockTin]
+  parent: [NFBaseIronGolemVein, AsteroidRockTin]
   suffix: Iron Golem
 
 - type: entity
-  id: WallRockIronGolem
-  parent: [BaseIronGolemVein, WallRockTin]
+  id: NFWallRockIronGolem
+  parent: [NFBaseIronGolemVein, WallRockTin]
   suffix: Iron Golem
 
 - type: entity
-  id: WallRockSandIronGolem
-  parent: [BaseIronGolemVein, WallRockSandTin]
+  id: NFWallRockSandIronGolem
+  parent: [NFBaseIronGolemVein, WallRockSandTin]
   suffix: Iron Golem
 
 - type: entity
-  id: WallRockSnowIronGolem
-  parent: [BaseIronGolemVein, WallRockSnowTin]
+  id: NFWallRockSnowIronGolem
+  parent: [NFBaseIronGolemVein, WallRockSnowTin]
   suffix: Iron Golem
 
 - type: entity
-  id: WallRockChromiteIronGolem
-  parent: [BaseIronGolemVein, WallRockChromiteTin]
+  id: NFWallRockChromiteIronGolem
+  parent: [NFBaseIronGolemVein, WallRockChromiteTin]
   suffix: Iron Golem
 # endregion Iron Golems
 
 # region Plasma Crabs
-
 - type: entity
-  id: WallRockAndesitePlasmaCrabNF
-  parent: [BasePlasmaCrabVein, WallRockAndesitePlasma]
+  id: NFWallRockAndesitePlasmaCrab
+  parent: [NFBasePlasmaCrabVein, WallRockAndesitePlasma]
   suffix: Plasma Crab
 
 - type: entity
-  id: WallRockBasaltPlasmaCrabNF
-  parent: [BasePlasmaCrabVein, WallRockBasaltPlasma]
+  id: NFWallRockBasaltPlasmaCrab
+  parent: [NFBasePlasmaCrabVein, WallRockBasaltPlasma]
   suffix: Plasma Crab
 
 - type: entity
   id: NFAsteroidRockPlasmaCrab
-  parent: [BasePlasmaCrabVein, AsteroidRockPlasma]
+  parent: [NFBasePlasmaCrabVein, AsteroidRockPlasma]
   suffix: Plasma Crab
 
 - type: entity
-  id: WallRockPlasmaCrabNF
-  parent: [BasePlasmaCrabVein, WallRockPlasma]
+  id: NFWallRockPlasmaCrab
+  parent: [NFBasePlasmaCrabVein, WallRockPlasma]
   suffix: Plasma Crab
 
 - type: entity
-  id: WallRockSandPlasmaCrabNF
-  parent: [BasePlasmaCrabVein, WallRockSandPlasma]
+  id: NFWallRockSandPlasmaCrab
+  parent: [NFBasePlasmaCrabVein, WallRockSandPlasma]
   suffix: Plasma Crab
 
 - type: entity
-  id: WallRockSnowPlasmaCrabNF
-  parent: [BasePlasmaCrabVein, WallRockSnowPlasma]
+  id: NFWallRockSnowPlasmaCrab
+  parent: [NFBasePlasmaCrabVein, WallRockSnowPlasma]
   suffix: Plasma Crab
 
 - type: entity
-  id: WallRockChromitePlasmaCrabNF
-  parent: [BasePlasmaCrabVein, WallRockChromitePlasma]
+  id: NFWallRockChromitePlasmaCrab
+  parent: [NFBasePlasmaCrabVein, WallRockChromitePlasma]
   suffix: Plasma Crab
 # endregion Plasma Crabs
 
 # region Plasma Golems
 - type: entity
-  id: WallRockAndesitePlasmaGolem
-  parent: [BasePlasmaGolemVein, WallRockAndesitePlasma]
+  id: NFWallRockAndesitePlasmaGolem
+  parent: [NFBasePlasmaGolemVein, WallRockAndesitePlasma]
   suffix: Plasma Golem
 
 - type: entity
-  id: WallRockBasaltPlasmaGolem
-  parent: [BasePlasmaGolemVein, WallRockBasaltPlasma]
+  id: NFWallRockBasaltPlasmaGolem
+  parent: [NFBasePlasmaGolemVein, WallRockBasaltPlasma]
   suffix: Plasma Golem
 
 - type: entity
   id: NFAsteroidRockPlasmaGolem
-  parent: [BasePlasmaGolemVein, AsteroidRockPlasma]
+  parent: [NFBasePlasmaGolemVein, AsteroidRockPlasma]
   suffix: Plasma Golem
 
 - type: entity
-  id: WallRockPlasmaGolem
-  parent: [BasePlasmaGolemVein, WallRockPlasma]
+  id: NFWallRockPlasmaGolem
+  parent: [NFBasePlasmaGolemVein, WallRockPlasma]
   suffix: Plasma Golem
 
 - type: entity
-  id: WallRockSandPlasmaGolem
-  parent: [BasePlasmaGolemVein, WallRockSandPlasma]
+  id: NFWallRockSandPlasmaGolem
+  parent: [NFBasePlasmaGolemVein, WallRockSandPlasma]
   suffix: Plasma Golem
 
 - type: entity
-  id: WallRockSnowPlasmaGolem
-  parent: [BasePlasmaGolemVein, WallRockSnowPlasma]
+  id: NFWallRockSnowPlasmaGolem
+  parent: [NFBasePlasmaGolemVein, WallRockSnowPlasma]
   suffix: Plasma Golem
 
 - type: entity
-  id: WallRockChromitePlasmaGolem
-  parent: [BasePlasmaGolemVein, WallRockChromitePlasma]
+  id: NFWallRockChromitePlasmaGolem
+  parent: [NFBasePlasmaGolemVein, WallRockChromitePlasma]
   suffix: Plasma Golem
 # endregion Plasma Golems
 
 # region Quartz Crabs
 - type: entity
-  id: AsteroidRockQuartzCrabNF
-  parent: [BaseQuartzCrabVein, AsteroidRockQuartzCrab]
+  id: NFAsteroidRockQuartzCrab
+  parent: [NFBaseQuartzCrabVein, AsteroidRockQuartzCrab]
 
 - type: entity
-  id: WallRockAndesiteQuartzCrabNF
-  parent: [BaseQuartzCrabVein, WallRockAndesiteQuartz]
+  id: NFWallRockAndesiteQuartzCrab
+  parent: [NFBaseQuartzCrabVein, WallRockAndesiteQuartz]
   suffix: Quartz Crab
 
 - type: entity
-  id: WallRockBasaltQuartzCrabNF
-  parent: [BaseQuartzCrabVein, WallRockBasaltQuartz]
+  id: NFWallRockBasaltQuartzCrab
+  parent: [NFBaseQuartzCrabVein, WallRockBasaltQuartz]
   suffix: Quartz Crab
 
 - type: entity
-  id: WallRockQuartzCrabNF
-  parent: [BaseQuartzCrabVein, WallRockQuartz]
+  id: NFWallRockQuartzCrab
+  parent: [NFBaseQuartzCrabVein, WallRockQuartz]
   suffix: Quartz Crab
 
 - type: entity
-  id: WallRockSandQuartzCrabNF
-  parent: [BaseQuartzCrabVein, WallRockSandQuartz]
+  id: NFWallRockSandQuartzCrab
+  parent: [NFBaseQuartzCrabVein, WallRockSandQuartz]
   suffix: Quartz Crab
 
 - type: entity
-  id: WallRockSnowQuartzCrabNF
-  parent: [BaseQuartzCrabVein, WallRockSnowQuartz]
+  id: NFWallRockSnowQuartzCrab
+  parent: [NFBaseQuartzCrabVein, WallRockSnowQuartz]
   suffix: Quartz Crab
 
 - type: entity
-  id: WallRockChromiteQuartzCrabNF
-  parent: [BaseQuartzCrabVein, WallRockChromiteQuartz]
+  id: NFWallRockChromiteQuartzCrab
+  parent: [NFBaseQuartzCrabVein, WallRockChromiteQuartz]
   suffix: Quartz Crab
 # endregion Quartz Crabs
 
 # region Quartz Golems
 - type: entity
-  id: WallRockAndesiteQuartzGolem
-  parent: [BaseQuartzGolemVein, WallRockAndesiteQuartz]
+  id: NFWallRockAndesiteQuartzGolem
+  parent: [NFBaseQuartzGolemVein, WallRockAndesiteQuartz]
   suffix: Quartz Golem
 
 - type: entity
-  id: WallRockBasaltQuartzGolem
-  parent: [BaseQuartzGolemVein, WallRockBasaltQuartz]
+  id: NFWallRockBasaltQuartzGolem
+  parent: [NFBaseQuartzGolemVein, WallRockBasaltQuartz]
   suffix: Quartz Golem
 
 - type: entity
   id: NFAsteroidRockQuartzGolem
-  parent: [BaseQuartzGolemVein, AsteroidRockQuartz]
+  parent: [NFBaseQuartzGolemVein, AsteroidRockQuartz]
   suffix: Quartz Golem
 
 - type: entity
-  id: WallRockQuartzGolem
-  parent: [BaseQuartzGolemVein, WallRockQuartz]
+  id: NFWallRockQuartzGolem
+  parent: [NFBaseQuartzGolemVein, WallRockQuartz]
   suffix: Quartz Golem
 
 - type: entity
-  id: WallRockSandQuartzGolem
-  parent: [BaseQuartzGolemVein, WallRockSandQuartz]
+  id: NFWallRockSandQuartzGolem
+  parent: [NFBaseQuartzGolemVein, WallRockSandQuartz]
   suffix: Quartz Golem
 
 - type: entity
-  id: WallRockSnowQuartzGolem
-  parent: [BaseQuartzGolemVein, WallRockSnowQuartz]
+  id: NFWallRockSnowQuartzGolem
+  parent: [NFBaseQuartzGolemVein, WallRockSnowQuartz]
   suffix: Quartz Golem
 
 - type: entity
-  id: WallRockChromiteQuartzGolem
-  parent: [BaseQuartzGolemVein, WallRockChromiteQuartz]
+  id: NFWallRockChromiteQuartzGolem
+  parent: [NFBaseQuartzGolemVein, WallRockChromiteQuartz]
   suffix: Quartz Golem
 # endregion Quartz Golems
 
 # region Salt Crabs
 - type: entity
-  id: WallRockAndesiteSaltCrabNF
-  parent: [BaseSaltCrabVein, WallRockAndesiteSalt]
+  id: NFWallRockAndesiteSaltCrab
+  parent: [NFBaseSaltCrabVein, WallRockAndesiteSalt]
   suffix: Salt Crab
 
 - type: entity
-  id: WallRockBasaltSaltCrabNF
-  parent: [BaseSaltCrabVein, WallRockBasaltSalt]
+  id: NFWallRockBasaltSaltCrab
+  parent: [NFBaseSaltCrabVein, WallRockBasaltSalt]
   suffix: Salt Crab
 
 - type: entity
   id: NFAsteroidRockSaltCrab
-  parent: [BaseSaltCrabVein, AsteroidRockSalt]
+  parent: [NFBaseSaltCrabVein, AsteroidRockSalt]
   suffix: Salt Crab
 
 - type: entity
-  id: WallRockSaltCrabNF
-  parent: [BaseSaltCrabVein, WallRockSalt]
+  id: NFWallRockSaltCrab
+  parent: [NFBaseSaltCrabVein, WallRockSalt]
   suffix: Salt Crab
 
 - type: entity
-  id: WallRockSandSaltCrabNF
-  parent: [BaseSaltCrabVein, WallRockSandSalt]
+  id: NFWallRockSandSaltCrab
+  parent: [NFBaseSaltCrabVein, WallRockSandSalt]
   suffix: Salt Crab
 
 - type: entity
-  id: WallRockSnowSaltCrabNF
-  parent: [BaseSaltCrabVein, WallRockSnowSalt]
+  id: NFWallRockSnowSaltCrab
+  parent: [NFBaseSaltCrabVein, WallRockSnowSalt]
   suffix: Salt Crab
 
 - type: entity
-  id: WallRockChromiteSaltCrabNF
-  parent: [BaseSaltCrabVein, WallRockChromiteSalt]
+  id: NFWallRockChromiteSaltCrab
+  parent: [NFBaseSaltCrabVein, WallRockChromiteSalt]
   suffix: Salt Crab
 # endregion Salt Crabs
 
 # region Salt Golems
 - type: entity
-  id: WallRockAndesiteSaltGolem
-  parent: [BaseSaltGolemVein, WallRockAndesiteSalt]
+  id: NFWallRockAndesiteSaltGolem
+  parent: [NFBaseSaltGolemVein, WallRockAndesiteSalt]
   suffix: Salt Golem
 
 - type: entity
-  id: WallRockBasaltSaltGolem
-  parent: [BaseSaltGolemVein, WallRockBasaltSalt]
+  id: NFWallRockBasaltSaltGolem
+  parent: [NFBaseSaltGolemVein, WallRockBasaltSalt]
   suffix: Salt Golem
 
 - type: entity
   id: NFAsteroidRockSaltGolem
-  parent: [BaseSaltGolemVein, AsteroidRockSalt]
+  parent: [NFBaseSaltGolemVein, AsteroidRockSalt]
   suffix: Salt Golem
 
 - type: entity
-  id: WallRockSaltGolem
-  parent: [BaseSaltGolemVein, WallRockSalt]
+  id: NFWallRockSaltGolem
+  parent: [NFBaseSaltGolemVein, WallRockSalt]
   suffix: Salt Golem
 
 - type: entity
-  id: WallRockSandSaltGolem
-  parent: [BaseSaltGolemVein, WallRockSandSalt]
+  id: NFWallRockSandSaltGolem
+  parent: [NFBaseSaltGolemVein, WallRockSandSalt]
   suffix: Salt Golem
 
 - type: entity
-  id: WallRockSnowSaltGolem
-  parent: [BaseSaltGolemVein, WallRockSnowSalt]
+  id: NFWallRockSnowSaltGolem
+  parent: [NFBaseSaltGolemVein, WallRockSnowSalt]
   suffix: Salt Golem
 
 - type: entity
-  id: WallRockChromiteSaltGolem
-  parent: [BaseSaltGolemVein, WallRockChromiteSalt]
+  id: NFWallRockChromiteSaltGolem
+  parent: [NFBaseSaltGolemVein, WallRockChromiteSalt]
   suffix: Salt Golem
 # endregion Salt Golems
 
 # region Silver Crabs
 - type: entity
   id: NFAsteroidRockSilverCrab
-  parent: [BaseSilverCrabVein, NFAsteroidRockSilverCrab]
+  parent: [NFBaseSilverCrabVein, AsteroidRockSilverCrab]
 
 - type: entity
-  id: WallRockAndesiteSilverCrabNF
-  parent: [BaseSilverCrabVein, WallRockAndesiteSilver]
+  id: NFWallRockAndesiteSilverCrab
+  parent: [NFBaseSilverCrabVein, WallRockAndesiteSilver]
   suffix: Silver Crab
 
 - type: entity
-  id: WallRockBasaltSilverCrabNF
-  parent: [BaseSilverCrabVein, WallRockBasaltSilver]
+  id: NFWallRockBasaltSilverCrab
+  parent: [NFBaseSilverCrabVein, WallRockBasaltSilver]
   suffix: Silver Crab
 
 - type: entity
-  id: WallRockSilverCrabNF
-  parent: [BaseSilverCrabVein, WallRockSilver]
+  id: NFWallRockSilverCrab
+  parent: [NFBaseSilverCrabVein, WallRockSilver]
   suffix: Silver Crab
 
 - type: entity
-  id: WallRockSandSilverCrabNF
-  parent: [BaseSilverCrabVein, WallRockSandSilver]
+  id: NFWallRockSandSilverCrab
+  parent: [NFBaseSilverCrabVein, WallRockSandSilver]
   suffix: Silver Crab
 
 - type: entity
-  id: WallRockSnowSilverCrabNF
-  parent: [BaseSilverCrabVein, WallRockSnowSilver]
+  id: NFWallRockSnowSilverCrab
+  parent: [NFBaseSilverCrabVein, WallRockSnowSilver]
   suffix: Silver Crab
 
 - type: entity
-  id: WallRockChromiteSilverCrabNF
-  parent: [BaseSilverCrabVein, WallRockChromiteSilver]
+  id: NFWallRockChromiteSilverCrab
+  parent: [NFBaseSilverCrabVein, WallRockChromiteSilver]
 # endregion Silver Crabs
 
 # region Silver Golems
 - type: entity
-  id: WallRockAndesiteSilverGolem
-  parent: [BaseSilverGolemVein, WallRockAndesiteSilver]
+  id: NFWallRockAndesiteSilverGolem
+  parent: [NFBaseSilverGolemVein, WallRockAndesiteSilver]
   suffix: Silver Golem
 
 - type: entity
-  id: WallRockBasaltSilverGolem
-  parent: [BaseSilverGolemVein, WallRockBasaltSilver]
+  id: NFWallRockBasaltSilverGolem
+  parent: [NFBaseSilverGolemVein, WallRockBasaltSilver]
   suffix: Silver Golem
 
 - type: entity
   id: NFAsteroidRockSilverGolem
-  parent: [BaseSilverGolemVein, AsteroidRockSilver]
+  parent: [NFBaseSilverGolemVein, AsteroidRockSilver]
   suffix: Silver Golem
 
 - type: entity
-  id: WallRockSilverGolem
-  parent: [BaseSilverGolemVein, WallRockSilver]
+  id: NFWallRockSilverGolem
+  parent: [NFBaseSilverGolemVein, WallRockSilver]
   suffix: Silver Golem
 
 - type: entity
-  id: WallRockSandSilverGolem
-  parent: [BaseSilverGolemVein, WallRockSandSilver]
+  id: NFWallRockSandSilverGolem
+  parent: [NFBaseSilverGolemVein, WallRockSandSilver]
   suffix: Silver Golem
 
 - type: entity
-  id: WallRockSnowSilverGolem
-  parent: [BaseSilverGolemVein, WallRockSnowSilver]
+  id: NFWallRockSnowSilverGolem
+  parent: [NFBaseSilverGolemVein, WallRockSnowSilver]
   suffix: Silver Golem
 
 - type: entity
-  id: WallRockChromiteSilverGolem
-  parent: [BaseSilverGolemVein, WallRockChromiteSilver]
+  id: NFWallRockChromiteSilverGolem
+  parent: [NFBaseSilverGolemVein, WallRockChromiteSilver]
   suffix: Silver Golem
 # endregion Silver Golems
 
 # region Uranium Crabs
 - type: entity
-  id: AsteroidRockUraniumCrabNF
-  parent: [BaseUraniumCrabVein, AsteroidRockUraniumCrab]
+  id: NFAsteroidRockUraniumCrab
+  parent: [NFBaseUraniumCrabVein, AsteroidRockUraniumCrab]
 
 - type: entity
-  id: WallRockAndesiteUraniumCrabNF
-  parent: [BaseUraniumCrabVein, WallRockAndesiteUranium]
+  id: NFWallRockAndesiteUraniumCrab
+  parent: [NFBaseUraniumCrabVein, WallRockAndesiteUranium]
   suffix: Uranium Crab
 
 - type: entity
-  id: WallRockBasaltUraniumCrabNF
-  parent: [BaseUraniumCrabVein, WallRockBasaltUranium]
+  id: NFWallRockBasaltUraniumCrab
+  parent: [NFBaseUraniumCrabVein, WallRockBasaltUranium]
   suffix: Uranium Crab
 
 - type: entity
-  id: WallRockUraniumCrabNF
-  parent: [BaseUraniumCrabVein, WallRockUranium]
+  id: NFWallRockUraniumCrab
+  parent: [NFBaseUraniumCrabVein, WallRockUranium]
   suffix: Uranium Crab
 
 - type: entity
-  id: WallRockSandUraniumCrabNF
-  parent: [BaseUraniumCrabVein, WallRockSandUranium]
+  id: NFWallRockSandUraniumCrab
+  parent: [NFBaseUraniumCrabVein, WallRockSandUranium]
   suffix: Uranium Crab
 
 - type: entity
-  id: WallRockSnowUraniumCrabNF
-  parent: [BaseUraniumCrabVein, WallRockSnowUranium]
+  id: NFWallRockSnowUraniumCrab
+  parent: [NFBaseUraniumCrabVein, WallRockSnowUranium]
   suffix: Uranium Crab
 
 - type: entity
-  id: WallRockChromiteUraniumCrabNF
-  parent: [BaseUraniumCrabVein, WallRockChromiteUranium]
+  id: NFWallRockChromiteUraniumCrab
+  parent: [NFBaseUraniumCrabVein, WallRockChromiteUranium]
   suffix: Uranium Crab
 # endregion Uranium Crabs
 
 # region Uranium Golems
 - type: entity
-  id: WallRockAndesiteUraniumGolem
-  parent: [BaseUraniumGolemVein, WallRockAndesiteUranium]
+  id: NFWallRockAndesiteUraniumGolem
+  parent: [NFBaseUraniumGolemVein, WallRockAndesiteUranium]
   suffix: Uranium Golem
 
 - type: entity
-  id: WallRockBasaltUraniumGolem
-  parent: [BaseUraniumGolemVein, WallRockBasaltUranium]
+  id: NFWallRockBasaltUraniumGolem
+  parent: [NFBaseUraniumGolemVein, WallRockBasaltUranium]
   suffix: Uranium Golem
 
 - type: entity
   id: NFAsteroidRockUraniumGolem
-  parent: [BaseUraniumGolemVein, AsteroidRockUranium]
+  parent: [NFBaseUraniumGolemVein, AsteroidRockUranium]
   suffix: Uranium Golem
 
 - type: entity
-  id: WallRockUraniumGolem
-  parent: [BaseUraniumGolemVein, WallRockUranium]
+  id: NFWallRockUraniumGolem
+  parent: [NFBaseUraniumGolemVein, WallRockUranium]
   suffix: Uranium Golem
 
 - type: entity
-  id: WallRockSandUraniumGolem
-  parent: [BaseUraniumGolemVein, WallRockSandUranium]
+  id: NFWallRockSandUraniumGolem
+  parent: [NFBaseUraniumGolemVein, WallRockSandUranium]
   suffix: Uranium Golem
 
 - type: entity
-  id: WallRockSnowUraniumGolem
-  parent: [BaseUraniumGolemVein, WallRockSnowUranium]
+  id: NFWallRockSnowUraniumGolem
+  parent: [NFBaseUraniumGolemVein, WallRockSnowUranium]
   suffix: Uranium Golem
 
 - type: entity
-  id: WallRockChromiteUraniumGolem
-  parent: [BaseUraniumGolemVein, WallRockChromiteUranium]
+  id: NFWallRockChromiteUraniumGolem
+  parent: [NFBaseUraniumGolemVein, WallRockChromiteUranium]
   suffix: Uranium Golem
 #endregion Uranium Golems
