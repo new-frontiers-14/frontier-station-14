@@ -55,6 +55,6 @@ ent-ActionToggleEyes = Открыть/закрыть глаза
 ent-FakeMindShieldToggleAction = [color=green]Переключить имплант фальшивого Щита разума[/color]
     .desc = Переключить передачу данных имплантата фальшивого Щита разума
 ent-ActionToggleParamedicSiren = Переключить сирену парамедика
-    .desc = Включает и выключает сирену парамедика.
+    .desc = Включает и выключает сирену парамедика. Вииу-вииу.
 ent-ActionToggleWagging = action-name-toggle-wagging
     .desc = action-description-toggle-wagging
