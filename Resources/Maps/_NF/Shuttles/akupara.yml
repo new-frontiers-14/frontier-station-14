@@ -4,7 +4,7 @@ meta:
   engineVersion: 247.2.0
   forkId: ""
   forkVersion: ""
-  time: 03/27/2025 18:23:20
+  time: 03/27/2025 19:37:00
   entityCount: 725
 maps: []
 grids:
@@ -654,6 +654,8 @@ entities:
       - 251
       - 346
       - 347
+      - 293
+      - 429
 - proto: AirlockAtmosphericsGlass
   entities:
   - uid: 6
@@ -3020,6 +3022,9 @@ entities:
     - type: Transform
       pos: 4.5,14.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 5
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -3029,6 +3034,9 @@ entities:
     - type: Transform
       pos: 3.5,12.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 5
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 347
@@ -3105,6 +3113,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
+      - invalid
       - invalid
       deviceLists:
       - 3
