@@ -12,5 +12,6 @@ ent-ClothingSkirtUniformRandomBra = разноцветный бра
 ent-ClothingSkirtUniformRandomShorts = разноцветная юбка
     .suffix = Случайный цвет
     .desc = { ent-ClothingUniformRandom.desc }
-ent-ClothingSkirtUniformRandomShirt = топ и юбка с разноцветными узорами
+ent-ClothingSkirtUniformRandomShirt = разноцветный топ с юбкой
+    .suffix = Случайный цвет
     .desc = { ent-ClothingUniformRandom.desc }
