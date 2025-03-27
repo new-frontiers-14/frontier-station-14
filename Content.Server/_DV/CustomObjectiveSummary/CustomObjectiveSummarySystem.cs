@@ -34,7 +34,7 @@ public sealed class CustomObjectiveSummarySystem : EntitySystem
         comp.ObjectiveSummary = msg.Summary;
         Dirty(mind.Value.Owner, comp);
 
-        _adminLog.Add(LogType.ObjectiveSummary, $"{ToPrettyString(mind.Value.Comp.OwnedEntity)} wrote objective summery: {msg.Summary}");
+        _adminLog.Add(LogType.ObjectiveSummary, $"{ToPrettyString(mind.Value.Comp.OwnedEntity)} wrote objective summary: {msg.Summary}");
     }
 
     private void OnEvacShuttleLeft(EvacShuttleLeftEvent args)
