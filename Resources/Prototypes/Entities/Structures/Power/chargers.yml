@@ -193,7 +193,7 @@
           - PotatoBattery
 
 - type: entity
-  parent: BaseItemRecharger
+  parent: [BaseStructureWallmount, BaseItemRecharger] # Frontier: add BaseStructureWallmount
   id: WallWeaponCapacitorRecharger
   name: wall recharger
   components:
@@ -217,8 +217,6 @@
           - HitscanBatteryAmmoProvider
           - ProjectileBatteryAmmoProvider
           - Stunbaton
-  - type: Fixtures # Frontier: wallmounts should have no fixtures, causes rotation bugs
-    fixtures: {} # Frontier
 
 - type: entity
   parent: BaseRecharger
