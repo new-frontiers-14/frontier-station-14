@@ -19,15 +19,10 @@
   metabolisms:
     Drink:
       effects:
-      # similar to ~80% water, 20% gastrotoxin
+      # Shouldn't drink this.
       - !type:SatiateThirst
-        factor: -1 # mild dessicant
+        factor: -0.2
       - !type:HealthChange
         damage:
           types:
-            Poison: 0.4
-      - !type:ChemVomit
-        conditions:
-        - !type:ReagentThreshold
-          min: 10
-        probability: 0.2
+            Poison: 0.05
