@@ -18,3 +18,6 @@ lathe-category-hats = Шляпы
 lathe-category-jumpsuits = Комбинезоны
 lathe-category-neck = Шея
 lathe-category-seeds = Семена
+# Frontier lines below
+lathe-category-evasuits = ЕВА
+lathe-category-armor-nf = Броня

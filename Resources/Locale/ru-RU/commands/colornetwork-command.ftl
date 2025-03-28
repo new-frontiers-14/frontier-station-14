@@ -1,3 +1,3 @@
-cmd-colornetwork-desc = Окрашивает атмос-устройства в заданный цвет
-cmd-colornetwork-help = colornetwork <uid> Pipe <HexColor>
-cmd-colornetwork-no-access = В настоящее время вы не можете использовать команды маппинга.
+cmd-colornetwork-desc = Красит атмосферные устройства в указанный цвет
+cmd-colornetwork-help = colornetwork <uid> Труба <HexColor>
+cmd-colornetwork-no-access = У вас нет доступа к использованию команд карты.

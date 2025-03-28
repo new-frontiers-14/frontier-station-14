@@ -141,3 +141,5 @@ seeds-cherry-name = вишня
 seeds-cherry-display-name = вишнёвое дерево
 seeds-anomaly-berry-name = аномальные ягоды
 seeds-anomaly-berry-display-name = куст аномальных ягод
+seeds-goldenapple-name = золотое яблоко
+seeds-goldenapple-display-name = золотая яблоня

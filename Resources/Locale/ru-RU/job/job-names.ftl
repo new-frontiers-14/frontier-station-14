@@ -48,6 +48,7 @@ job-name-ertjanitor = Уборщик ОБР
 job-name-boxer = Боксёр
 job-name-zookeeper = Зоотехник
 job-name-visitor = Посетитель
+
 # unused jobs
 # these are required for the agent ID job icon tooltips
 # I am keeping them for roleplaying opportunities
@@ -59,10 +60,12 @@ job-name-syndicate = Синдикат
 job-name-unknown = Неизвестно
 job-name-virologist = Вирусолог
 job-name-zombie = Зомби
+
 # Job titles
 job-title-visitor = Посетитель
-job-title-cluwne = Клоун
+job-title-cluwne = Клувень
 job-title-universal = Универсал
+
 # Role timers - Make these alphabetical or I cut you
 JobAtmosphericTechnician = Атмосферный техник
 JobBartender = Бармен
@@ -87,7 +90,7 @@ JobERTLeader = Лидер ОБР
 JobERTMedical = Медик ОБР
 JobERTSecurity = Офицер безопасности ОБР
 # Frontier: глава персонала<Station Representative
-JobHeadOfPersonnel = Представитель Станции
+JobHeadOfPersonnel = Представитель Фронтира
 # Frontier: глава службы безопасности<Sheriff
 JobHeadOfSecurity = Шериф
 JobJanitor = Уборщик
@@ -103,14 +106,14 @@ JobPassenger = Авантюрист
 JobPsychologist = Психолог
 JobQuartermaster = Квартирмейстер
 JobReporter = Репортёр
-JobResearchAssistant = Научный Руководитель
-JobResearchDirector = Научный ассистент
+JobResearchAssistant = Научный ассистент
+JobResearchDirector = Научный Руководитель
 JobSalvageSpecialist = Утилизатор
 JobScientist = Учёный
 # Frontier: кадет СБ<Cadet
-JobSecurityCadet = Кадет ДШНФ
+JobSecurityCadet = Кадет ДСБФ
 # Frontier: офицер СБ<Deputy
-JobSecurityOfficer = Патрульный ДШНФ
+JobSecurityOfficer = Патрульный ДСБФ
 JobServiceWorker = Сервисный работник
 JobStationAi = ИИ
 JobStationEngineer = Инженер

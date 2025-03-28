@@ -53,4 +53,4 @@ ent-StorageFillEVASuitEmergency = { "" }
 ent-StorageFillEVASuitLvhi = { "" }
     .desc = Содержит стандартный комплект EVA от Лангстад-Войгт Хэви Индастриз (LVHI).
 ent-StorageFillEVASuitFsb = { "" }
-    .desc = Содержит стандартный костюм Фар Стар Биотех (FSB) EVA.
+    .desc = Содержит стандартный костюм Фар Стар Биотеч (FSB) EVA.

@@ -5,10 +5,10 @@ ghost-role-information-emotional-support-rules =
     Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что видели, будучи призраком.
     Вам разрешается знать общие знания об игре, например, как готовить или использовать предметы и т.д.
     Вам категорически [color=red]ЗАПРЕЩЕНО[/color] помнить имя, внешность и т.д. вашего прошлого персонажа.
-ghost-role-information-clippy-name = Клиппи
+ghost-role-information-clippy-name = Скрепыш
 ghost-role-information-clippy-description = Верный работник станции, пахнет картоном и бумагой.
-ghost-role-information-clugg-name = Клагг
-ghost-role-information-clugg-description = Урргг! Клагг любит есть мясо. Найди новый дом в космическом камне, устрой большую охоту.
+ghost-role-information-clugg-name = Умник
+ghost-role-information-clugg-description = Урргг! Умник любит есть мясо. Найди новый дом в космическом камне, устрой большую охоту.
 ghost-role-information-clarpy-name = Кларпи
 ghost-role-information-clarpy-description = Аргх! Разыскивается Nanotrasen за преступления против мышей.
 ghost-role-information-clarpy-rules = Вы [color=red][bold]Командный Антагонист[/bold][/color] вместе со всеми остальными пиратами.
@@ -21,12 +21,12 @@ ghost-role-information-cult-cat-rules =
     - [color=red]НЕ[/color] разрывайте игроков на части. После того как они погибли, оставьте их в покое.
 ghost-role-information-cappy-name = Каппи
 ghost-role-information-cappy-description = Прекратите сопротивление! Сертифицированный специалист по когтистой силе и кусачей обороне.
-ghost-role-information-elcapo-name = El Capo
-ghost-role-information-elcapo-description = Found himself in jail after years of cat crimes.
+ghost-role-information-elcapo-name = Эль Капо
+ghost-role-information-elcapo-description = Оказался в тюрьме после нескольких лет преступлений, совершенных кошкой.
 ghost-role-information-crispy-name = Подгорелыш
-ghost-role-information-crispy-description = Допустил ошибку.
+ghost-role-information-crispy-description = Ошибочка вышла.
 ghost-role-information-mistake-name = ?????
-ghost-role-information-mistake-description = Ymg' ph'nglui ah li.
+ghost-role-information-mistake-description = Фхтагн мглв'нафх Ктулху Р'льех вгах'нагл фхтагн..
 ghost-role-information-ert-mailcarrier-name = Почтальон ОБР
 ghost-role-information-ert-mailcarrier-description = Помогай разрешать проблемы станции с помощью бумажной волокиты.
 ghost-role-information-baby-dragon-name = Космодракончик

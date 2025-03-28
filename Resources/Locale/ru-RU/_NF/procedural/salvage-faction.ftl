@@ -1,10 +1,13 @@
-dungeon-boss-grid-warning = Мегафауна вернулась.
+dungeon-boss-grid-warning = Возвращайтесь в комплекс.
+
 salvage-faction-syndicate = Синдикат
 salvage-faction-cultists = Культисты
-salvage-faction-flesh = Живая плоть
+salvage-faction-flesh = Плоть
 salvage-faction-argocytes = Аргоциты
 salvage-faction-dinosaurs = Динозавры
-salvage-faction-mercenaries = Наемники
-salvage-faction-explorers = Шахтеры-геологи
-salvage-faction-silicons = Восставшие роботы
+salvage-faction-mercenaries = Наёмники
+salvage-faction-explorers = Исследователи
+salvage-faction-silicons = ИИ Мятежники
 salvage-faction-punks = Панки
+salvage-faction-carps = Карпы
+salvage-faction-xenos = Ксеносы

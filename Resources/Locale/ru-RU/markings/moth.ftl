@@ -46,6 +46,7 @@ marking-MothWingsDbushy-dbushy_secondary = Вторичный
 marking-MothWingsDbushy = Крылья (Тёмные и Кустистые)
 marking-MothWingsDeathhead-deathhead_primary = Основной
 marking-MothWingsDeathhead-deathhead_secondary = Вторичный
+marking-MothWingsMaple-maple = Крыло
 marking-MothWingsDeathhead = Крылья (Рука Смерти)
 marking-MothWingsFan-fan = Крыло
 marking-MothWingsFan = Крылья (Вентилятор)

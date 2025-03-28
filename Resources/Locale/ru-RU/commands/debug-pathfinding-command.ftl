@@ -1,4 +1,4 @@
-cmd-pathfinder-desc = Переключает видимость отладчиков поиска пути.
-cmd-pathfinder-help = Использование: { $command } [options]
-cmd-pathfinder-error = Нераспознанные аргументы поиска пути { $arg }
-cmd-pathfinder-notify = Переключается { $arg } к { $newMode }
+cmd-pathfinder-desc = Включает или выключает отладчики путей.
+cmd-pathfinder-help = Использование: { $command } [опции]
+cmd-pathfinder-error = Нераспознанные аргументы отладчика путей { $arg }
+cmd-pathfinder-notify = Переключено { $arg } на { $newMode }

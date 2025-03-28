@@ -1,0 +1,12 @@
+ent-ColiseumMagazineGrenadeEmpty = картридж гранат для колизея
+    .desc = { ent-BaseItem.desc }
+ent-ColiseumMagazineGrenadeFrag = картридж осколочных гранат для колизея
+    .desc = { ent-BaseMagazineGrenade.desc }
+ent-ColiseumMagazineGrenadeEMP = картридж ЭМИ гранат для колизея
+    .desc = { ent-BaseMagazineGrenade.desc }
+ent-ColiseumMagazineGrenadeFlash = картридж светошумовых гранат для колизея
+    .desc = { ent-BaseMagazineGrenade.desc }
+ent-ColiseumMagazineGrenadeBlast = картридж фугасных гранат для колизея
+    .desc = { ent-BaseMagazineGrenade.desc }
+ent-ColiseumMagazineGrenadeBaton = картридж шоковых гранат для колизея
+    .desc = { ent-BaseMagazineGrenade.desc }

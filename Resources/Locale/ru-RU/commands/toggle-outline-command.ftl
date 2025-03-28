@@ -1,3 +1,3 @@
-cmd-toggleoutline-desc = Включает рисование контуров на сущностях.
+cmd-toggleoutline-desc = Включает или выключает отрисовку контуров на сущностях.
 cmd-toggleoutline-help = Использование: { $command }
-cmd-toggleoutline-notify = Рисовать контуры, установленные на: { $cvar }
+cmd-toggleoutline-notify = Отрисовка контуров установлена на: { $cvar }

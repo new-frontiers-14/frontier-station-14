@@ -1,2 +1,2 @@
-chat-radio-traffic = Диспетчер
+chat-radio-traffic = диспетчер
 chat-radio-nfsd = ДСБФ

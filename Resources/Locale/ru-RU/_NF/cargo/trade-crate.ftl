@@ -1,4 +1,4 @@
-trade-crate-destination-station = Пункт назначения этого ящика - [color=springgreen]{ $destination }[/color].
-trade-crate-priority-time = Этот ящик должен быть доставлен за: [color=lightblue]{ $time }[/color].
-trade-crate-priority-active = Этот ящик является [color=yellow]экспресс-доставкой[/color]. У него [bold]еще есть время[/bold]!
-trade-crate-priority-inactive = Этот ящик является[color=#886600]экспресс-доставкой[/color]. У него [bold]время вышло[/bold].
+trade-crate-destination-station = Этот ящик должен быть доставлен в [color=springgreen]{$destination}[/color].
+trade-crate-priority-time = Этот ящик должен быть доставлен до [color=lightblue]{$time}[/color] от начала смены.
+trade-crate-priority-active = Это ящик класса [color=yellow]Экспресс[/color]. Он должен быть [bold]доставлен вовремя[/bold]!
+trade-crate-priority-inactive = Это ящик класса [color=#886600]Экспресс[/color]. Его время доставки [bold]вышло[/bold].

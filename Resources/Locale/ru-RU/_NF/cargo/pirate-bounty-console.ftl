@@ -6,8 +6,7 @@ pirate-bounty-console-skip-button-accepted = Отменить
 pirate-bounty-console-time-label = Время: [color=orange]{ $time }[/color]
 pirate-bounty-console-reward-label = Награда: [color=limegreen]{ $reward } кредов[/color]
 pirate-bounty-console-manifest-label = Список: [color=orange]{ $item }[/color]
-pirate-bounty-console-manifest-entry =
-    { $amount ->
+pirate-bounty-console-manifest-entry =    { $amount ->
         [1] { $item }
        *[other] { $item } x{ $amount }
     }

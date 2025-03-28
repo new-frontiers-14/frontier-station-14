@@ -1,7 +1,5 @@
 ent-BaseMob = { "" }
     .desc = { "" }
-ent-MobPolymorphable = { "" }
-    .desc = { "" }
 ent-MobDamageable = { "" }
     .desc = { "" }
 ent-MobCombat = { "" }

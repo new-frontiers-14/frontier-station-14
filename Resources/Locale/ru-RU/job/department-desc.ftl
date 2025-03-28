@@ -1,10 +1,10 @@
-department-Cargo-description = Выполняйте задания, зарабатывайте кредиты и заказывайте полезные предметы для команды.
-department-Civilian-description = Выполняйте мелкие полезные задания, чтобы поддерживать порядок на станции и обеспечивать ее питанием.
-department-Command-description = Управляйте командой и обеспечивайте ее эффективную работу.
-department-CentralCommand-description = Управляйте командой и обеспечивайте ее эффективную работу.
-department-Engineering-description = Поддерживайте питание и работу станции.
+department-Cargo-description = Выполняйте запросы, зарабатывайте космокредиты и доставляйте экипажу полезные припасы.
+department-Civilian-description = Выполняйте небольшие полезные задания для поддержания нормальной и сытой работы станции.
+department-Command-description = Управляйте экипажем и обеспечивайте его эффективную работу.
+department-CentralCommand-description = Управляйте сектором и обеспечивайте его функционирование.
+department-Engineering-description = Поддерживайте наличие электроэнергии и целостность станции.
 department-Medical-description = Поддерживайте здоровье экипажа.
-department-Security-description = Поддерживайте мир на станции.
-department-Science-description = Исследуйте артефакты и аномалии, чтобы изобрести новое оборудование для станции.
+department-Security-description = Поддерживайте порядок на станции.
+department-Science-description = Изучайте артефакты и аномалии, обеспечивайте членов экипажа новыми продвинутыми устройствами.
 department-Silicon-description = Соблюдайте законы и служите команде.
 department-Specific-description = Должности, которые есть не на всех станциях.

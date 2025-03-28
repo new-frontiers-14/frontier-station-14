@@ -1,6 +1,6 @@
 cmd-loadacts-desc = Загружает назначения панели инструментов действий из пользовательского файла.
-cmd-loadacts-help = Использование: { $command } <user resource path>
-cmd-loadacts-error = Не удалось загрузить задания для действий
-cmd-loadmapacts-desc = Загружает предустановленные для отображения назначения панели инструментов действий.
-cmd-loadmapacts-help = Использование: { $command } <user resource path>
-cmd-loadmapacts-error = Не удалось загрузить задания для действий
+cmd-loadacts-help = Использование: { $command } <путь к пользовательскому ресурсу>
+cmd-loadacts-error = Ошибка загрузки назначений действий
+cmd-loadmapacts-desc = Загружает назначенные действия предустановленной карты панели инструментов.
+cmd-loadmapacts-help = Использование: { $command } <путь к пользовательскому ресурсу>
+cmd-loadmapacts-error = Ошибка загрузки назначений действий

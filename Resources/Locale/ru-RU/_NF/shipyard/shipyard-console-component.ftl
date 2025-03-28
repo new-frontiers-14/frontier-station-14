@@ -3,11 +3,12 @@
 shipyard-console-invalid-vessel = Не удалось приобрести шаттл:
 shipyard-console-menu-title = Меню Верфи
 shipyard-console-menu-listing-free = Бесплатно
-shipyard-console-docking = { $owner } ваш корабль - { $vessel } прибыл.
-shipyard-console-leaving = Корабль { $vessel } капитана { $owner } был продан { $player }.
-shipyard-console-docking-port = { $owner } ваш корабль - { $vessel } прибыл. Ваш док - { $dock }.
-shipyard-console-docking-secret = Обнаружен вражеский корабль, заходящий сектор.
-shipyard-console-leaving-secret = Обнаружен вражеский шаттл, покидающий сектор.
+shipyard-console-menu-listing-amount = ${ $amount }
+shipyard-console-docking = Шаттл { $vessel } капитана { $owner } в пути, расчётное время прибытия 10 секунд.
+shipyard-console-leaving = Шаттл { $vessel } капитана { $owner } продан { $player }.
+shipyard-console-docking-port = Шаттл { $vessel } капитана { $owner } в пути, расчётное время прибытия 10 секунд. Док - { $dock }.
+shipyard-console-docking-secret = Обнаружен незарегистрированный шаттл, заходящий в сектор.
+shipyard-console-leaving-secret = Обнаружен незарегистрированный шаттл, покидающий сектор.
 shipyard-commands-purchase-desc = Доставляет шаттл к стыковочным докам станции.
 shipyard-console-no-idcard = Отсутствует ID карта.
 shipyard-console-already-deeded = Уже имеется привязанный шаттл.

@@ -1,4 +1,4 @@
-ent-FoodDonutUncooked = нежареный пончик
-    .desc = Немного во фритюре, и можно есть.
-ent-FoodDonutUncookedJelly = нежареный желейный пончик
-    .desc = { ent-FoodDonutBase.desc }
+ent-FoodDonutUncooked = сырой пончик
+  .desc = Нужно немного подержать его во фритюрнице, и тогда он будет готов к употреблению
+ent-FoodDonutUncookedJelly = сырой желейный пончик
+  .desc = Отлично сочетается с крепким кофе.

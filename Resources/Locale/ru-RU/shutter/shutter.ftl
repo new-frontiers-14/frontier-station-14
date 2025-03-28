@@ -1,1 +1,1 @@
-shutter-rattle = *тряск-тряск*
+shutter-rattle = *бдзынь*

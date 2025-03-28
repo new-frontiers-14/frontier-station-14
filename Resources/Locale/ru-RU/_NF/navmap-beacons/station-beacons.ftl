@@ -1,7 +1,7 @@
 station-beacon-atm = Банкомат
 station-beacon-shipyard = Верфь
-station-beacon-sr-office = Офис ПС
-station-beacon-sr-quarters = Приёмная ПС
+station-beacon-sr-office = Офис ПФ
+station-beacon-sr-quarters = Приёмная ПФ
 station-beacon-cargobay-one = Грузовой шлюз 1
 station-beacon-cargobay-two = Грузовой шлюз 2
 station-beacon-cargobay-three = Грузовой шлюз 3

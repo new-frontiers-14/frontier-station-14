@@ -11,8 +11,8 @@
 - type: vessel
   id: Bookworm
   parent: BaseVessel
-  name: SBB Книжный червь
-  description: Уютная библиотека среднего размера для путешественников, желающих отдохнуть с книгой или, возможно, настольной игрой.  
+  name: SBB Буквоед
+  description: Уютная библиотека среднего размера для путешественников, желающих отдохнуть с книгой или, возможно, настольной игрой.
   price: 31500 # ~29476 after purchase + ~5% markup
   category: Medium
   group: Shipyard
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Bookworm
-  mapName: 'SBB Книжный червь'
+  mapName: 'SBB Буквоед'
   mapPath: /Maps/_NF/Shuttles/bookworm.yml
   minPlayers: 0
   stations:
@@ -33,7 +33,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Книжный червь {1}'
+          mapNameTemplate: 'Буквоед {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

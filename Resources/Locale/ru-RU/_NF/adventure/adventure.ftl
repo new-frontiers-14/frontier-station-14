@@ -1,5 +1,5 @@
 ## UI
-
+adventure-title = Исследование Фронтира
 adventure-list-start = [color=gold]Галактический банк NT[/color]
 adventure-list-profit = Прибыль составила: [color=#d19e5e]{ $amount }[/color].
 adventure-list-loss = Убыток составил: [color=#659cc9]{ $amount }[/color].
@@ -13,7 +13,7 @@ adventure-webhook-footer =
     Сервер: { $serverName }
     Раунд: #{ $roundId }
 nf-adventure-title = Авантюрист
-nf-adventure-description = Присоединяйтесь к команде корабля или купите свой собственный и исследуйте, изучайте, спасайте или перевозите богатства!
+nf-adventure-description = Исследуйте неизведанные уголки космоса, проводите научные исследования, занимайтесь спасательными операциями или транспортировкой грузов и прокладывайте свой путь к богатству!
 nf-pirate-title = Пираты
 nf-pirate-description = Банда пиратов на свободе! Будьте осторожны в космосе и постарайтесь не быть разграбленными!
 currency = Кредиты
