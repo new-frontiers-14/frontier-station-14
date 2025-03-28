@@ -86,6 +86,10 @@ namespace Content.Server.Lathe
             //Frontier: upgradeable parts
             SubscribeLocalEvent<LatheComponent, RefreshPartsEvent>(OnPartsRefresh);
             SubscribeLocalEvent<LatheComponent, UpgradeExamineEvent>(OnUpgradeExamine);
+
+            //Frontier: reagent container slot sprite updating
+            SubscribeLocalEvent<LatheComponent, EntInsertedIntoContainerMessage>(OnContainerModified);
+            SubscribeLocalEvent<LatheComponent, EntRemovedFromContainerMessage>(OnContainerModified);
         }
         public override void Update(float frameTime)
         {
@@ -193,7 +197,7 @@ namespace Content.Server.Lathe
             foreach (var (mat, amount) in recipe.Materials)
             {
                 var adjustedAmount = recipe.ApplyMaterialDiscount
-                    ? (int) (-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
+                    ? (int)(-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
                     : -amount;
                 adjustedAmount *= quantity; // Frontier
 
@@ -490,6 +494,17 @@ namespace Content.Server.Lathe
                         ModifyPrintedEntityPrice(uid, component, ent);
                     }
                 }
+            }
+        }
+
+        // Frontier: reagent container slot sprite updating
+        private void OnContainerModified(EntityUid uid, LatheComponent comp, ContainerModifiedMessage args)
+        {
+            if (comp.ReagentOutputSlotId is not null)
+            {
+                var hasOutputContainer = _container.TryGetContainer(uid, comp.ReagentOutputSlotId, out var container) &&
+                        container.ContainedEntities.Count == 1;
+                _appearance.SetData(uid, LatheVisuals.BeakerAttached, hasOutputContainer);
             }
         }
         // End Frontier

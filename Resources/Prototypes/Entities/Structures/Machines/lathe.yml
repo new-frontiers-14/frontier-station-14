@@ -576,6 +576,8 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: beaker # Frontier
+      map: ["enum.LatheVisualLayers.BeakerAttached"] # Frontier
   - type: Machine
     board: BiogeneratorMachineCircuitboard
   - type: MaterialStorage
@@ -596,6 +598,7 @@
     reagentOutputSlotId: beaker_slot
     idleState: icon
     runningState: building
+    beakerState: beaker
     staticPacks:
     - BioGenIngredientsStatic
     - BioGenMaterialsStatic
