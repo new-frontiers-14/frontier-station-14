@@ -1,6 +1,5 @@
 ent-MouseMigration = { ent-BaseStationEventShortDelay }
     .desc = { ent-BaseStationEventShortDelay.desc }
-    .desc = { ent-BaseStationEventShortDelay.desc }
 ent-CockroachMigration = { ent-BaseStationEventShortDelay }
     .desc = { ent-BaseStationEventShortDelay.desc }
 ent-SnailMigrationLowPop = { ent-BaseStationEventShortDelay }

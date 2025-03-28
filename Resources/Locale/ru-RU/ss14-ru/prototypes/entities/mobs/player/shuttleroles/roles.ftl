@@ -84,7 +84,6 @@ ent-RandomHumanoidVisitorServiceWorker = посетитель сервисный
     .desc = { "" }
 ent-RandomHumanoidVisitorZookeeper = посетитель зоотехник роль призрака
     .desc = { "" }
-    .desc = { ent-RandomHumanoidVisitorClown.desc }
 ent-RandomHumanoidChallengeVictimCaptain = жертва катастрофы Капитан роль призрака
     .suffix = ЧЕЛЛЕНДЖ
     .desc = { "" }
