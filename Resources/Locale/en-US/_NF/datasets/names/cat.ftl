@@ -1,15 +1,3 @@
-names-cat-clippy-dataset-1 = Clippy
-
-
-names-cat-cappy-dataset-1 = Cappy
-
-
-names-cat-elcapo-dataset-1 = El Capo
-
-
-names-cat-clugg-dataset-1 = Clugg
-
-
 names-cat-clarpy-dataset-1 = Clarpy
 names-cat-clarpy-dataset-2 = Clarrrpy
 names-cat-clarpy-dataset-3 = Clarrrrpy

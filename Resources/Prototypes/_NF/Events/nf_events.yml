@@ -1,5 +1,5 @@
 - type: entity
-  id: BaseStationEventNFModerateDelay
+  id: NFBaseStationEventModerateDelay
   parent: BaseGameRule
   abstract: true
   components:
@@ -10,7 +10,7 @@
 
 - type: entity
   id: NFBluespaceCargoCrate
-  parent: BaseStationEventNFModerateDelay
+  parent: NFBaseStationEventModerateDelay
   components:
   - type: StationEvent
     startAnnouncement: bluespace-cargo-event-announcement
@@ -25,7 +25,7 @@
 
 - type: entity
   id: NFBluespaceMcCargoCrate
-  parent: BaseStationEventNFModerateDelay
+  parent: NFBaseStationEventModerateDelay
   components:
   - type: StationEvent
     startAnnouncement: bluespace-cargo-event-announcement
@@ -41,7 +41,7 @@
 
 - type: entity
   id: NFBluespaceSyndicateCrate
-  parent: BaseStationEventNFModerateDelay
+  parent: NFBaseStationEventModerateDelay
   components:
   - type: StationEvent
     startAnnouncement: bluespace-syndicate-crate-event-announcement
