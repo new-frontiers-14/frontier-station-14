@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: arimah
+# Discord: arimah
+
+# Maintainer Info
+# GitHub: arimah
+# Discord: arimah
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Baroness
+  parent: BaseVessel
+  name: SBB Baroness
+  description: A small luxury cruiser for one or two people, with a lounge, a private bedroom, and a hell of a cockpit view.
+  price: 27000 # ~23,500 on purchase, ~15% markup
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/baroness.yml
+  guidebookPage: ShipyardBaroness
+  class:
+  - Civilian
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Baroness
+  mapName: 'SBB Baroness'
+  mapPath: /Maps/_NF/Shuttles/baroness.yml
+  minPlayers: 0
+  stations:
+    Baroness:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Baroness {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
