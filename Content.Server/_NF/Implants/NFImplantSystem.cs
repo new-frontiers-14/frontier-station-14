@@ -46,11 +46,11 @@ public sealed class NFImplantSystem : EntitySystem
             return;
 
         EnsureComp<MimePowersComponent>(args.Implanted.Value, out var mimeComp);
-        mimeComp.PreventWriting = true;
+        mimeComp.PreventWriting = false;
         // Note: must spawn the illiteracy component separately
-        EnsureComp<BlockWritingComponent>(args.Implanted.Value, out var blockWritingComp);
-        blockWritingComp.FailWriteMessage = mimeComp.FailWriteMessage;
-        Dirty(args.Implanted.Value, blockWritingComp);
+        //EnsureComp<BlockWritingComponent>(args.Implanted.Value, out var blockWritingComp);
+        //blockWritingComp.FailWriteMessage = mimeComp.FailWriteMessage;
+        //Dirty(args.Implanted.Value, blockWritingComp);
     }
 
     private void OnMimeRemoved(EntityUid uid, MimePowersImplantComponent component, EntGotRemovedFromContainerMessage args)
