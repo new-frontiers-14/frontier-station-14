@@ -102,3 +102,16 @@
   - type: Store
     balance:
       Doubloon: 15
+
+# If you can think of a better place for this, please replace it.
+- type: entity
+  parent: BaseItem
+  id: IonizedBluespaceDustBag
+  name: bag of ionized bluespace dust
+  description: Claimed by some to clear magnetic navigational fields. Claimed by others to be a bag of blue dust.
+  components:
+  - type: ClearPinpointer
+    otherMessage: bluespace-dust-interact-other
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Pirate/bluespace_dust.rsi
+    state: icon
