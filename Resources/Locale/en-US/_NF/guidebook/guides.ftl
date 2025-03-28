@@ -53,6 +53,7 @@ guide-entry-shipyard-charon = Charon
 guide-entry-shipyard-chisel = Chisel
 guide-entry-shipyard-comet = Comet
 guide-entry-shipyard-construct = Construct
+guide-entry-shipyard-druid = Druid
 guide-entry-shipyard-eagle = Eagle
 guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
