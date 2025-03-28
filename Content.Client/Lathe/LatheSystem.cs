@@ -34,14 +34,6 @@ public sealed class LatheSystem : SharedLatheSystem
             }
         }
 
-        // Frontier - Beaker visual state
-        if (_appearance.TryGetData<bool>(uid, LatheVisuals.BeakerAttached, out var beakerAttached, args.Component) &&
-            args.Sprite.LayerMapTryGet(LatheVisualLayers.BeakerAttached, out var beakerLayer))
-        {
-            args.Sprite.LayerSetVisible(beakerLayer, beakerAttached);
-        }
-        // End Frontier
-
         if (_appearance.TryGetData<bool>(uid, PowerDeviceVisuals.Powered, out var powered, args.Component) &&
             args.Sprite.LayerMapTryGet(PowerDeviceVisualLayers.Powered, out var powerLayer))
         {
@@ -69,5 +61,4 @@ public sealed class LatheSystem : SharedLatheSystem
 public enum LatheVisualLayers : byte
 {
     IsRunning,
-    BeakerAttached // Frontier
 }

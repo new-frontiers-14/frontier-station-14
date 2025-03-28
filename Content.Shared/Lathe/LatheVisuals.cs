@@ -12,7 +12,6 @@ namespace Content.Shared.Lathe
     {
         IsRunning,
         IsInserting,
-        InsertingColor,
-        BeakerAttached // Frontier - Beaker visual state
+        InsertingColor
     }
 }
