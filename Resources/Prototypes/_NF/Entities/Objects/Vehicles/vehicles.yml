@@ -1,7 +1,7 @@
 # Base game vehicles
 - type: entity
   parent: VehicleATV
-  id: VehicleATVNF
+  id: NFVehicleATV
   name: ATV
   description: All-Tile Vehicle.
   components:
@@ -56,7 +56,7 @@
 
 - type: entity
   parent: VehicleSkeletonMotorcycle
-  id: VehicleSkeletonMotorcycleNF
+  id: NFVehicleSkeletonMotorcycle
   name: skeleton motorcycle
   description: Bad to the Bone.
   components:
@@ -81,8 +81,8 @@
 
 # New Frontier vehicles
 - type: entity
-  parent: VehicleATVNF
-  id: VehicleHoverbikeNF
+  parent: NFVehicleATV
+  id: NFVehicleHoverbike
   name: hoverbike
   description: A turbine with bike handles. Very safe.
   components:
@@ -153,8 +153,8 @@
     energy: 3
 
 - type: entity
-  parent: VehicleHoverbikeNF
-  id: VehicleHoverbikeNFKeys
+  parent: NFVehicleHoverbike
+  id: NFVehicleHoverbikeKeys
   suffix: With key
   components:
   - type: ItemSlots
@@ -327,7 +327,7 @@
 
 # Mail carrier
 - type: entity
-  parent: VehicleSkeletonMotorcycleNF
+  parent: NFVehicleSkeletonMotorcycle
   id: VehicleHoverbikeMailcarrier
   name: mail carrier hoverbike
   description: You better run, better run, faster than my mail.
@@ -416,7 +416,7 @@
   parent:
   - VehicleHoverbikeMailcarrier
   - BaseC2ContrabandUnredeemable
-  id: VehicleHoverbikeNfsd
+  id: NFVehicleHoverbikesd
   name: NFSD hoverbike
   description: An NFSD issued turbine with bike handles. Very safe.
   components:
@@ -482,8 +482,8 @@
     mask: /Textures/Effects/LightMasks/double_cone.png
 
 - type: entity
-  parent: VehicleHoverbikeNfsd
-  id: VehicleHoverbikeNfsdKey
+  parent: NFVehicleHoverbikesd
+  id: NFVehicleHoverbikesdKey
   suffix: With key
   components:
   - type: ItemSlots
