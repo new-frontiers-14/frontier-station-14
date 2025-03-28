@@ -117,5 +117,70 @@
                                                  HorizontalExpand="True"/>
                     </controls:BoxContainer>
                     <!-- End Frontier - Maximum IFF Distance -->
+
+                    <!-- Frontier - Service Flags -->
+                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="ServiceFlagsBox">
+                        <controls:Label Text="{controls:Loc 'shuttle-console-service-flags'}"/>
+                        <controls:BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <controls:Button Name="ServiceFlagN"
+                                             Text="N"
+                                             TextAlign="Center"
+                                             ToggleMode="True"
+                                             MinWidth="30"
+                                             MaxWidth="30"
+                                             ToolTip="{controls:Loc 'service-flag-none'}"/>
+                            <controls:Button Name="ServiceFlagS"
+                                             Text="S"
+                                             TextAlign="Center"
+                                             ToggleMode="True"
+                                             MinWidth="30"
+                                             MaxWidth="30"
+                                             ToolTip="{controls:Loc 'service-flag-service'}"/>
+                            <controls:Button Name="ServiceFlagSA"
+                                             Text="SA"
+                                             TextAlign="Center"
+                                             ToggleMode="True"
+                                             MinWidth="30"
+                                             MaxWidth="30"
+                                             ToolTip="{controls:Loc 'service-flag-salvage'}"/>
+                            <controls:Button Name="ServiceFlagM"
+                                             Text="M"
+                                             TextAlign="Center"
+                                             ToggleMode="True"
+                                             MinWidth="30"
+                                             MaxWidth="30"
+                                             ToolTip="{controls:Loc 'service-flag-medical'}"/>
+                            <controls:Button Name="ServiceFlagR"
+                                             Text="R"
+                                             TextAlign="Center"
+                                             ToggleMode="True"
+                                             MinWidth="30"
+                                             MaxWidth="30"
+                                             ToolTip="{controls:Loc 'service-flag-research'}"/>
+                            <controls:Button Name="ServiceFlagT"
+                                             Text="T"
+                                             TextAlign="Center"
+                                             ToggleMode="True"
+                                             MinWidth="30"
+                                             MaxWidth="30"
+                                             ToolTip="{controls:Loc 'service-flag-trade'}"/>
+                            <controls:Button Name="ServiceFlagC"
+                                             Text="C"
+                                             TextAlign="Center"
+                                             ToggleMode="True"
+                                             MinWidth="30"
+                                             MaxWidth="30"
+                                             ToolTip="{controls:Loc 'service-flag-construction'}"/>
+                            <controls:Button Name="ServiceFlagE"
+                                             Text="E"
+                                             TextAlign="Center"
+                                             ToggleMode="True"
+                                             MinWidth="30"
+                                             MaxWidth="30"
+                                             ToolTip="{controls:Loc 'service-flag-entertainment'}"/>
+                        </controls:BoxContainer>
+                    </controls:BoxContainer>
+                    <!-- End Frontier - Service Flags -->
+
                     </controls:BoxContainer>
                 </controls:BoxContainer>

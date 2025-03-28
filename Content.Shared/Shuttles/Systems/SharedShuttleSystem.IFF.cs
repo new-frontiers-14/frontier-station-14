@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Shuttles.Components;
 using JetBrains.Annotations;
 
@@ -40,7 +41,10 @@ public abstract partial class SharedShuttleSystem
             return null;
         }
 
-        return string.IsNullOrEmpty(entName) ? Loc.GetString("shuttle-console-unknown") : entName;
+        // Frontier
+        var suffix = component != null ? GetServiceFlagsSuffix(component) : string.Empty;
+
+        return string.IsNullOrEmpty(entName) ? Loc.GetString("shuttle-console-unknown") : entName + suffix;
     }
 
     /// <summary>
@@ -76,6 +80,46 @@ public abstract partial class SharedShuttleSystem
         component.Flags |= flags;
         Dirty(gridUid, component);
         UpdateIFFInterfaces(gridUid, component);
+    }
+
+    /// <summary>
+    /// Frontier: Service flags
+    /// Sets the service flags for this grid to appear as on radar.
+    /// </summary>
+    /// <param name="gridUid">The grid to set the flags for.</param>
+    /// <param name="flags">The flags to set.</param>
+    /// <param name="component">The IFF component to set the flags for.</param>
+    public void SetServiceFlags(EntityUid gridUid, ServiceFlags flags, IFFComponent? component = null)
+    {
+        component ??= EnsureComp<IFFComponent>(gridUid);
+
+        if (component.ReadOnly) // Frontier: POI IFF protection
+            return; // Frontier: POI IFF protection
+
+        if (component.ServiceFlags == flags)
+            return;
+
+        component.ServiceFlags = flags;
+        Dirty(gridUid, component);
+        UpdateIFFInterfaces(gridUid, component);
+    }
+
+    /// <summary>
+    /// Turns the service flags into a string for display.
+    /// IE. [M] for Medical, [R] for Research, etc.
+    /// </summary>
+    /// <param name="iffComp">The IFF component to get the flags from.</param>
+    /// <returns>The string to display.</returns>
+    public string GetServiceFlagsSuffix(IFFComponent iffComp)
+    {
+        if (iffComp.ServiceFlags != ServiceFlags.None)
+        {
+            var serviceString = string.Join("", Enum.GetValues<ServiceFlags>()
+                .Where(flag => (iffComp.ServiceFlags & flag) != 0)
+                .Select(flag => flag.ToString()[0]));
+            return $"[{serviceString}]";
+        }
+        return string.Empty;
     }
 
     [PublicAPI]
