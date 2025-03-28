@@ -69,5 +69,5 @@ public sealed class LatheSystem : SharedLatheSystem
 public enum LatheVisualLayers : byte
 {
     IsRunning,
-    BeakerAttached
+    BeakerAttached // Frontier
 }
