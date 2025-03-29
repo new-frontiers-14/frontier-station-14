@@ -19,8 +19,6 @@ public sealed class VendingMachineSystem : SharedVendingMachineSystem
         SubscribeLocalEvent<VendingMachineComponent, AppearanceChangeEvent>(OnAppearanceChange);
         SubscribeLocalEvent<VendingMachineComponent, AnimationCompletedEvent>(OnAnimationCompleted);
         SubscribeLocalEvent<VendingMachineComponent, ComponentHandleState>(OnVendingHandleState);
-        SubscribeLocalEvent<VendingMachineComponent, EntInsertedIntoContainerMessage>(OnEntityInserted); // Frontier
-        SubscribeLocalEvent<VendingMachineComponent, EntRemovedFromContainerMessage>(OnEntityRemoved); // Frontier
     }
 
     private void OnVendingHandleState(Entity<VendingMachineComponent> entity, ref ComponentHandleState args)
@@ -35,6 +33,7 @@ public sealed class VendingMachineSystem : SharedVendingMachineSystem
         component.EjectEnd = state.EjectEnd;
         component.DenyEnd = state.DenyEnd;
         component.DispenseOnHitEnd = state.DispenseOnHitEnd;
+        component.CashSlotBalance = state.CashSlotBalance; // Frontier
 
         // If all we did was update amounts then we can leave BUI buttons in place.
         var fullUiUpdate = !component.Inventory.Keys.SequenceEqual(state.Inventory.Keys) ||
@@ -85,24 +84,6 @@ public sealed class VendingMachineSystem : SharedVendingMachineSystem
             bui.UpdateAmounts();
         }
     }
-
-    // Frontier
-    private void OnEntityInserted(Entity<VendingMachineComponent> ent, ref EntInsertedIntoContainerMessage args)
-    {
-        if (UISystem.TryGetOpenUi<VendingMachineBoundUserInterface>(ent.Owner, VendingMachineUiKey.Key, out var bui))
-        {
-            bui.Refresh();
-        }
-    }
-
-    private void OnEntityRemoved(Entity<VendingMachineComponent> ent, ref EntRemovedFromContainerMessage args)
-    {
-        if (UISystem.TryGetOpenUi<VendingMachineBoundUserInterface>(ent.Owner, VendingMachineUiKey.Key, out var bui))
-        {
-            bui.Refresh();
-        }
-    }
-    // End Frontier
 
     private void OnAnimationCompleted(EntityUid uid, VendingMachineComponent component, AnimationCompletedEvent args)
     {

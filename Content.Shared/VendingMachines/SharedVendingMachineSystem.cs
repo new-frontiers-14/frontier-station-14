@@ -17,6 +17,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Containers.ItemSlots;
+using Robust.Shared.Containers;
+using Content.Shared.Stacks; // Frontier
 
 namespace Content.Shared.VendingMachines;
 
@@ -45,6 +47,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         SubscribeLocalEvent<VendingMachineComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
+        SubscribeLocalEvent<VendingMachineComponent, EntInsertedIntoContainerMessage>(OnEntityInserted); // Frontier
+        SubscribeLocalEvent<VendingMachineComponent, EntRemovedFromContainerMessage>(OnEntityRemoved); // Frontier
 
         SubscribeLocalEvent<VendingMachineRestockComponent, AfterInteractEvent>(OnAfterInteract);
 
@@ -86,6 +90,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             EjectEnd = component.EjectEnd,
             DenyEnd = component.DenyEnd,
             DispenseOnHitEnd = component.DispenseOnHitEnd,
+            CashSlotBalance = component.CashSlotBalance, // Frontier
         };
     }
 
@@ -437,4 +442,31 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             }
         }
     }
+
+    // Frontier: cash slot handlers
+    private void OnEntityInserted(Entity<VendingMachineComponent> ent, ref EntInsertedIntoContainerMessage args)
+    {
+        if (ent.Comp.CashSlotName != null
+        && ent.Comp.CurrencyStackType != null
+        && ItemSlots.TryGetSlot(ent, ent.Comp.CashSlotName, out var slot)
+        && TryComp<StackComponent>(slot?.ContainerSlot?.ContainedEntity, out var stack)
+        && stack.StackTypeId == ent.Comp.CurrencyStackType)
+        {
+            ent.Comp.CashSlotBalance = stack.Count;
+        }
+        else
+        {
+            ent.Comp.CashSlotBalance = 0;
+        }
+        Dirty(ent, ent.Comp);
+        UpdateUI((ent.Owner, ent.Comp)); // nullable type, must be reconstructed
+    }
+
+    private void OnEntityRemoved(Entity<VendingMachineComponent> ent, ref EntRemovedFromContainerMessage args)
+    {
+        ent.Comp.CashSlotBalance = 0;
+        Dirty(ent, ent.Comp);
+        UpdateUI((ent.Owner, ent.Comp)); // nullable type, must be reconstructed
+    }
+    // End Frontier: cash slot handlers
 }

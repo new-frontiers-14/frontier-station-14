@@ -348,5 +348,6 @@ namespace Content.Shared.VendingMachines
         public TimeSpan? DenyEnd;
 
         public TimeSpan? DispenseOnHitEnd;
+        public int CashSlotBalance; // Frontier
     }
 }

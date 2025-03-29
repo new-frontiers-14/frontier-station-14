@@ -58,8 +58,6 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamageChanged);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             //SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
-            SubscribeLocalEvent<VendingMachineComponent, EntInsertedIntoContainerMessage>(OnEntityInserted); // Frontier
-            SubscribeLocalEvent<VendingMachineComponent, EntRemovedFromContainerMessage>(OnEntityRemoved); // Frontier
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
 
@@ -369,30 +367,7 @@ namespace Content.Server.VendingMachines
         //    }
         //}
 
-        // Frontier: cash slot logic, custom vending check
-        private void OnEntityInserted(Entity<VendingMachineComponent> ent, ref EntInsertedIntoContainerMessage args)
-        {
-            if (ent.Comp.CashSlotName != null
-            && ent.Comp.CurrencyStackType != null
-            && ItemSlots.TryGetSlot(ent, ent.Comp.CashSlotName, out var slot)
-            && TryComp<StackComponent>(slot?.ContainerSlot?.ContainedEntity, out var stack)
-            && stack.StackTypeId == ent.Comp.CurrencyStackType)
-            {
-                ent.Comp.CashSlotBalance = stack.Count;
-            }
-            else
-            {
-                ent.Comp.CashSlotBalance = 0;
-            }
-            Dirty(ent, ent.Comp);
-        }
-
-        private void OnEntityRemoved(Entity<VendingMachineComponent> ent, ref EntRemovedFromContainerMessage args)
-        {
-            ent.Comp.CashSlotBalance = 0;
-            Dirty(ent, ent.Comp);
-        }
-
+        // Frontier: custom vending check
         /// <summary>
         /// Checks whether the user is authorized to use the vending machine, then ejects the provided item if true
         /// </summary>
