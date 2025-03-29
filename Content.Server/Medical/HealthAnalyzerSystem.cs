@@ -217,7 +217,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             bloodAmount,
             scanMode,
             bleeding,
-            unrevivable,
+            unrevivable
         ));
     }
 }
