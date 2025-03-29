@@ -10,7 +10,10 @@ using Robust.Shared.Random;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.EntityTable;
 using Content.Server.Station.Systems; // Frontier
-using Content.Server.Station.Components; // Frontier
+using Content.Shared.Roles.Jobs; // Frontier
+using Content.Server.Afk; // Frontier
+using Content.Server.Mind; // Frontier
+using Robust.Shared.Enums; // Frontier
 
 namespace Content.Server.StationEvents;
 
@@ -24,6 +27,10 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] public readonly GameTicker GameTicker = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!; // Frontier
+
+    [Dependency] private readonly SharedJobSystem _jobs = default!; // Frontier
+
+    [Dependency] private readonly MindSystem _mindSystem = default!;
 
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;
@@ -276,16 +283,25 @@ public sealed class EventManagerSystem : EntitySystem
             return false;
         }
 
-        // Frontier: require jobs to run event - TODO: actually count jobs, compare vs. numJobs
+        // Frontier: require jobs to run event
         foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs)
         {
-            var jobPrototype = _prototype.Index(jobProtoId);
-            var query = EntityQueryEnumerator<StationJobsComponent>();
-            while (query.MoveNext(out var station, out var comp))
+            var activeJobCount = 0;
+            var jobQuery = AllEntityQuery<JobRoleComponent, TransformComponent>();
+            while (jobQuery.MoveNext(out var mindUid, out _, out var xform))
             {
-                // If a job slot is open, nobody has the job, or the player with the job should be leaving.
-                if (_stationJobs.TryGetJobSlot(station, jobPrototype, out var slots, comp) && slots >= 1)
-                    return false;
+                if (xform.MapUid == null || !_jobs.MindHasJobWithId(mindUid, jobProtoId)) // Skip if they're in nullspace or the job doesn't match
+                    continue;
+
+                if (!_mindSystem.TryGetMind(mindUid, out _, out var mindComp)
+                    || mindComp?.Session?.State.Status != SessionStatus.InGame) // Skip if they're SSD
+                    continue;
+
+                activeJobCount++;
+            }
+            if (activeJobCount < numJobs)
+            {
+                return false;
             }
         }
         // End Frontier
