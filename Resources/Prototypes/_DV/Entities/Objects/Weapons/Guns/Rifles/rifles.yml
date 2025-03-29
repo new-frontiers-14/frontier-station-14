@@ -36,6 +36,7 @@
         whitelist:
           tags:
             - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle
@@ -80,7 +81,10 @@
     whitelist:
       tags:
       - CartridgeLightRifle
-
+  - type: CursorOffsetRequiresWield # Frontier
+  - type: EyeCursorOffset # Frontier
+    maxOffset: 1.5 # Frontier
+    pvsIncrease: 0.15 # Frontier
 
 - type: entity
   name: CAWS-25 Jackdaw
@@ -121,6 +125,7 @@
         whitelist:
           tags:
             - MagazineCaselessRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeCaselessRifle

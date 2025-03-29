@@ -162,7 +162,10 @@
       prob: 0.6
     - id: PonderingOrb
       orGroup: Staff
-      prob: 0.3
+      prob: 0.27
+    - id: PonderingOrbWizard
+      orGroup: Staff
+      prob: 0.03
     - id: RGBStaff
       orGroup: Staff
       prob: 0.1
@@ -1604,53 +1607,7 @@
   - type: Mail
     isFragile: true
     contents:
-      # Bugs (weight: 2)
-      - id: MobCockroach
-        orGroup: Critter
-        prob: 0.36
-      - id: MobSlug
-        orGroup: Critter
-        prob: 0.36
-      - id: MobArgocyteSlurva # honorary bug?
-        orGroup: Critter
-        prob: 0.36
-      - id: MobBee
-        orGroup: Critter
-        prob: 0.36
-      - id: MobButterfly
-        orGroup: Critter
-        prob: 0.36
-        # Uncommon
-      - id: MobMothroach
-        orGroup: Critter
-        prob: 0.15
-        # Rare
-      - id: MobRosyMothroach
-        orGroup: Critter
-        prob: 0.05
-      # Small reptiles (weight: 1)
-      - id: MobLizard
-        orGroup: Critter
-        prob: 0.34
-      - id: MobSnake
-        orGroup: Critter
-        prob: 0.33
-      - id: MobFrog
-        orGroup: Critter
-        prob: 0.33
-      # Small mammals (weight: 1)
-      - id: MobMouse
-        orGroup: Critter
-        prob: 0.33
-      - id: MobMouse1
-        orGroup: Critter
-        prob: 0.33
-      - id: MobMouse2
-        orGroup: Critter
-        prob: 0.33
-      - id: MobMouseCancer
-        orGroup: Critter
-        prob: 0.01 # Rare
+      - id: DelayedNFRandomCritter
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -1912,6 +1869,7 @@
         orGroup: Mask
       - id: ClothingMaskScaredMime
         orGroup: Mask
+      - id: MimePowersImplanter
 
 # Base Nyano mail
 

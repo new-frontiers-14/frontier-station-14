@@ -1,5 +1,5 @@
 - type: entity
-  parent: GasPipeBase
+  parent: [RecyclableItemSteelSmall, GasPipeBase] # Frontier: add RecyclableItemSteelSmall
   abstract: true
   id: GasBinaryBase
   placement:
@@ -75,7 +75,10 @@
       path: /Audio/Ambience/Objects/gas_pump.ogg
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasFlowRegulator
-    
+  - type: GuideHelp
+    guides:
+    - Pumps
+
 - type: entity
   parent: GasBinaryBase
   id: GasVolumePump
@@ -134,7 +137,10 @@
     - type: WiredNetworkConnection
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
-    
+    - type: GuideHelp
+      guides:
+      - Pumps
+
 - type: entity
   parent: GasBinaryBase
   id: GasPassiveGate
@@ -165,7 +171,10 @@
         path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasValve
-      
+    - type: GuideHelp
+      guides:
+      - PassiveGate
+
 - type: entity
   parent: GasBinaryBase
   id: GasValve
@@ -215,7 +224,10 @@
         path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasValve
-      
+    - type: GuideHelp
+      guides:
+      - ManualValve
+
 - type: entity
   parent: GasBinaryBase
   id: SignalControlledValve
@@ -276,7 +288,10 @@
       path: /Audio/Ambience/Objects/gas_hiss.ogg
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasValve
-      
+  - type: GuideHelp
+    guides:
+    - SignalValve
+
 - type: entity
   parent: GasBinaryBase
   id: GasPort
@@ -307,11 +322,15 @@
       node: port
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
-      
+    - type: GuideHelp
+      guides:
+      - GasCanisters
+
 - type: entity
   parent: GasVentPump
   id: GasDualPortVentPump
   name: dual-port air vent
+  categories: [ HideSpawnMenu ] # Frontier
   description: Has a valve and a pump attached to it. There are two ports, one is an input for releasing air, the other is an output when siphoning.
   placement:
     mode: SnapgridCenter
@@ -365,7 +384,10 @@
       enabled: true
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
-      
+    - type: GuideHelp
+      guides:
+      - AirVent
+
 - type: entity
   parent: [ BaseMachine, ConstructibleMachine ]
   id: GasRecycler
@@ -393,6 +415,7 @@
   - type: PipeColorVisuals
   - type: Rotatable
   - type: GasRecycler
+  - type: NFGasRecyclerVisuals # Frontier
   - type: PipeRestrictOverlap
   - type: NodeContainer
     nodes:
@@ -429,7 +452,7 @@
     board: GasRecyclerMachineCircuitboard
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasValve
-    
+
 - type: entity
   parent: GasBinaryBase
   id: HeatExchanger
@@ -471,6 +494,9 @@
     node: radiator
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: Thermoregulator
+  - type: GuideHelp
+    guides:
+    - Radiators
 
 - type: entity
   parent: HeatExchanger

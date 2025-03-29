@@ -4,3 +4,60 @@
   components:
   - type: DeadDropHintVariationPass
     hintSpawnChance: 0.03
+
+- type: entity
+  id: BasicBindToStationVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: BindToStationVariationPass
+
+- type: weightedRandomFillSolution
+  id: NFRandomFillTrashPuddle
+  fills:
+  - quantity: 80
+    weight: 5
+    reagents:
+    - Vomit
+    - WeldingFuel
+    - Mold
+  # low chance, high quantity blood spill
+  - quantity: 120
+    weight: 4
+    reagents:
+    - Blood
+  - quantity: 120
+    weight: 2
+    reagents:
+    - AmmoniaBlood
+    - GoblinBlood
+    - CopperBlood
+    - AmmoniaBlood
+    - Sap
+  - quantity: 55
+    weight: 4
+    reagents:
+    - PlantBGone
+    - Potassium
+    - VentCrud
+    - Carbon
+    - Hydrogen
+    - Sulfur
+    - Acetone
+    - Bleach
+  - quantity: 40
+    weight: 3
+    reagents:
+    - Fat
+    - SpaceLube
+    - SpaceGlue
+  - quantity: 25
+    weight: 1
+    reagents:
+    - Omnizine
+    - Desoxyephedrine
+    - Napalm
+    - Radium
+    - Gold
+    - Silver
+    - Sodium
+    - JuiceThatMakesYouWeh

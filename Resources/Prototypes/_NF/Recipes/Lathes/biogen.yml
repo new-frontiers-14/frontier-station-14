@@ -3,7 +3,8 @@
 - type: latheRecipe
   abstract: true
   id: BioGenFoodRecipe
-  category: Food
+  categories:
+  - Food
   completetime: 1
 
 - type: latheRecipe
@@ -16,7 +17,8 @@
 - type: latheRecipe
   abstract: true
   id: BioGenSeedsRecipe
-  category: Seeds
+  categories:
+  - Seeds
   completetime: 1
   materials:
     Biomass: 5
@@ -26,7 +28,8 @@
 - type: latheRecipe
   id: NFBioGenHydroponicsSoilNutritionFlatpack
   result: HydroponicsSoilNutritionFlatpack
-  category: Tools
+  categories:
+  - Tools
   completetime: 360
   applyMaterialDiscount: false
   materials:
@@ -121,7 +124,7 @@
   id: BioGenFrostoil
   parent: BioGenCondimentRecipe
   resultReagents:
-    Frostoil: 10
+    Coldsauce: 10
   icon:
     sprite: Objects/Consumable/Food/condiments.rsi
     state: packet-frostoil
@@ -286,6 +289,14 @@
     state: seed
 
 - type: latheRecipe
+  id: NFBioGenBungoSeeds
+  parent: BioGenSeedsRecipe
+  result: BungoSeeds
+  icon:
+    sprite: Objects/Specific/Hydroponics/bungo.rsi
+    state: seed
+
+- type: latheRecipe
   id: NFBioGenCarrotSeeds
   parent: BioGenSeedsRecipe
   result: CarrotSeeds
@@ -379,6 +390,14 @@
   result: EggySeeds
   icon:
     sprite: Objects/Specific/Hydroponics/eggy.rsi
+    state: seed
+
+- type: latheRecipe
+  id: NFBioGenEveryspiceSeeds
+  parent: BioGenSeedsRecipe
+  result: EveryspiceSeeds
+  icon:
+    sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
     state: seed
 
 - type: latheRecipe

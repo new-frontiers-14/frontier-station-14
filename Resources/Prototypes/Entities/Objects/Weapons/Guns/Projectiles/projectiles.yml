@@ -16,6 +16,34 @@
     tags:
       - HideContextMenu
   - type: AnimationPlayer
+  
+- type: entity
+  parent: MuzzleFlashEffect
+  id: MuzzleFlashEffectOmnilaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: BelowMobs
+    offset: 0.15, 0
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+      state: omnilaser_flash
+  
+- type: entity
+  parent: MuzzleFlashEffect
+  id: MuzzleFlashEffectHeavyLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: BelowMobs
+    offset: 0.15, 0
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+      state: heavylaser_flash
 
 # One bullet to bring them all into the darkness and bind them
 - type: entity
@@ -103,6 +131,9 @@
     damage:
       types:
         Blunt: 1
+  - type: Tracer # Frontier
+    color: "#E98C23FF" # Frontier
+    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletIncendiary
@@ -121,6 +152,8 @@
     energy: 7.0
   - type: IgniteOnCollide
     fireStacks: 0.25
+  - type: Tracer # Frontier
+    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletAP
@@ -137,6 +170,9 @@
       types:
         Piercing: 11 # 20% decrease
     ignoreResistances: true
+  - type: Tracer # Frontier
+    color: "#000000FF" # Frontier
+    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletUranium
@@ -152,6 +188,13 @@
     damage:
       types:
         Radiation: 11
+  - type: Tracer # Frontier
+    color: "#9BE792FF" # Frontier
+    length: 1.5 # Frontier
+  - type: PointLight # Frontier
+    radius: 1.1 # Frontier
+    energy: 1 # Frontier
+    color: "#9BE792FF" # Frontier
 
 # Energy projectiles
 - type: entity
@@ -229,7 +272,7 @@
       fly-by: *flybyfixture
   - type: Ammo
   - type: StaminaDamageOnCollide
-    damage: 30
+    damage: 33
   - type: Projectile
     impactEffect: BulletImpactEffectDisabler
     damage:
@@ -954,6 +997,81 @@
     forceSound: true
 
 - type: entity
+  name : energy bolt
+  id: BulletEnergyTurretBase
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      shader: unshaded
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.3,0.15,0.3"
+        hard: false
+        mask:
+        - Opaque
+      fly-by: *flybyfixture
+  - type: Ammo
+
+- type: entity
+  name : laser bolt
+  id: BulletEnergyTurretLaser
+  parent: BulletEnergyTurretBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectHeavyLaser
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Heat: 28
+
+- type: entity
+  name : disabler bolt
+  id: BulletEnergyTurretDisabler
+  parent: BulletEnergyTurretBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectOmnilaser
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 30
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 0
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+- type: entity
   name: tesla gun lightning
   id: TeslaGunBullet
   parent: BaseBullet
@@ -1057,7 +1175,6 @@
     count: 3 #bit stronger than a disabler if you hit your shots you goober, still not a 2 hit stun though
     spread: 9
 
-
 # Frontier projectiles
 # The game wont allow them to sit under _NF.
 # TODO: redefine the flybyfixture anchor locally; it probably will.
@@ -1080,6 +1197,9 @@
       path: /Audio/Weapons/Guns/Hits/snap.ogg
   - type: StaminaDamageOnCollide
     damage: 22 # 5 hits to stun sounds reasonable
+  - type: Tracer
+    color: "#206EEFFF"
+    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletEmp
