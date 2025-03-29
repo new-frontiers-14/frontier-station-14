@@ -1,0 +1,57 @@
+- type: constructionGraph
+  id: ComputerShipyardBlackMarket
+  start: start
+  graph:
+  - node: start
+    entity: ComputerShipyardBlackMarketBroken
+    edges:
+    - to: repaired
+      steps: &pirateRepairToolboxSteps
+      - component: NFPirateToolbox
+        name: pirate repair toolbox
+        icon:
+          sprite: "Objects/Misc/module.rsi"
+          state: "id_mod"
+        doAfter: 10.0
+
+  - node: repaired
+    entity: ComputerShipyardBlackMarket
+
+- type: constructionGraph
+  id: ComputerPirateBounty
+  start: start
+  graph:
+  - node: start
+    entity: ComputerPirateBountyBroken
+    edges:
+    - to: repaired
+      steps: *pirateRepairToolboxSteps
+
+  - node: repaired
+    entity: ComputerPirateBounty
+
+- type: constructionGraph
+  id: ComputerContrabandPalletConsolePirate
+  start: start
+  graph:
+  - node: start
+    entity: ComputerContrabandPalletConsolePirateBroken
+    edges:
+    - to: repaired
+      steps: *pirateRepairToolboxSteps
+
+  - node: repaired
+    entity: ComputerContrabandPalletConsolePirate
+
+- type: constructionGraph
+  id: ComputerPirateBountyRedemption
+  start: start
+  graph:
+  - node: start
+    entity: ComputerPirateBountyRedemptionBroken
+    edges:
+    - to: repaired
+      steps: *pirateRepairToolboxSteps
+
+  - node: repaired
+    entity: ComputerPirateBountyRedemption
