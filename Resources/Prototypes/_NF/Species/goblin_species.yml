@@ -8,20 +8,23 @@
   markingLimits: MobGoblinMarkingLimits
   dollPrototype: MobGoblinDummy
   skinColoration: HumanToned #Possible values: TintedHues, Hues, HumanToned
-  maleFirstNames: names_goblin_male
-  femaleFirstNames: names_goblin_female
-  lastNames: names_goblin_last
+  maleFirstNames: NamesGoblinFirstMale
+  femaleFirstNames: NamesGoblinFirstFemale
+  lastNames: NamesGoblinLast
 
 - type: speciesBaseSprites
   id: MobGoblinSprites
   sprites:
-    Hair: MobHumanoidAnyMarking
-    Snout: MobHumanoidAnyMarking
-    FacialHair: MobHumanoidAnyMarking
     Head: MobGoblinHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobGoblinTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
-    Chest: MobGoblinTorso
+    Tail: MobHumanoidAnyMarking
     Eyes: MobGoblinEyes
     LArm: MobGoblinLArm
     RArm: MobGoblinRArm
@@ -31,7 +34,6 @@
     RLeg: MobGoblinRLeg
     LFoot: MobGoblinLFoot
     RFoot: MobGoblinRFoot
-    Tail: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobGoblinMarkingLimits
@@ -50,6 +52,12 @@
       points: 2
       required: false
 #      defaultMarkings: [ GoblinNoseBasic ]
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false
     Chest:
       points: 1
       required: false
