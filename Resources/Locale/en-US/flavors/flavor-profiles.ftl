@@ -276,7 +276,8 @@ flavor-complex-mimeosa = like silence and oranges
 flavor-complex-mimosa = like an early brunch
 flavor-complex-moscowmule = like vodka and ginger ale
 flavor-complex-thesunalsorises = like an absinthe daiquiri
-flavor-complex-whiskeysour = like whiskey and egg
+# Frontier: egg<lemon
+flavor-complex-whiskeysour = like sweetened whiskey and lemon
 flavor-complex-zombiecocktail = like eating brains
 flavor-complex-absinthe = like anise
 flavor-complex-blue-curacao = like orange flowers
@@ -295,7 +296,8 @@ flavor-complex-devils-kiss = like cannibalism
 flavor-complex-driest-martini = like a drunk mimic
 flavor-complex-erika-surprise = like the bartender made a mistake
 flavor-complex-gin-fizz = refreshing and lemony
-flavor-complex-gildlager = like the Tzar's gold
+# Frontier: Tzar<Tsar
+flavor-complex-gildlager = like the Tsar's gold
 flavor-complex-grog = like a sea shanty
 flavor-complex-hippies-delight = like your blood pressure is dropping
 flavor-complex-hooch = like it would be delicious if you were a diesel engine

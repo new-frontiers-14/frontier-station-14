@@ -243,7 +243,7 @@ namespace Content.Shared.VendingMachines
 
         /// <summary>
         /// The current balance in the cash slot.
-        /// Kept for 
+        /// Kept for convenience of access.
         /// </summary>
         [DataField]
         public int CashSlotBalance;

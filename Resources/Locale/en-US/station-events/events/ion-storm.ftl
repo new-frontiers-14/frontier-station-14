@@ -23,7 +23,7 @@ ion-storm-x-and-y = {$x} AND {$y}
 ion-storm-law-on-station = THERE ARE {$joined} {$subjects} IN THE SECTOR
 # ion-storm-law-call-shuttle = THE SHUTTLE MUST BE CALLED BECAUSE OF {$joined} {$subjects} ON THE STATION
 # Frontier
-ion-storm-law-nf-needs-help = {$joined} {$subjects} ARE IN THE SECTOR AND NEED YOUR HELP
+ion-storm-law-nf-needs-help = {$joined} {$subjects} NEED YOUR HELP
 ion-storm-law-crew-are = THE {$who} ARE NOW {$joined} {$subjects}
 
 ion-storm-law-subjects-harmful = {$adjective} {$subjects} ARE HARMFUL TO THE CREW
