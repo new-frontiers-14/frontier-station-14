@@ -11,9 +11,8 @@ using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.EntityTable;
 using Content.Server.Station.Systems; // Frontier
 using Content.Shared.Roles.Jobs; // Frontier
-using Content.Server.Afk; // Frontier
 using Content.Server.Mind; // Frontier
-using Robust.Shared.Enums;
+using Robust.Shared.Enums; // Frontier
 using Content.Shared.Roles; // Frontier
 
 namespace Content.Server.StationEvents;
