@@ -234,4 +234,13 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<float> CrateGenerationGridBoundsScale =
         CVarDef.Create("nf14.events.crate_generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
+
+    /*
+     * Atmos
+     */
+    /// <summary>
+    ///     If true, allows map extraction (scrubbing a planet's atmosphere).
+    /// </summary>
+    public static readonly CVarDef<bool> AllowMapGasExtraction =
+        CVarDef.Create("nf14.atmos.allow_map_gas_extraction", false, CVar.SERVER | CVar.REPLICATED);
 }

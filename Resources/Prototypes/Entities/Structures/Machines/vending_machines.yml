@@ -110,7 +110,7 @@
   - type: PotentialDeadDrop
     hintText: dead-drop-hint-vendor
   - type: VendingMachine
-    pack: "" # Mandatory value
+    pack: EmptyVendingMachineInventory # Mandatory, use empty inventory
     taxAccounts:
       Frontier: 0.25
       Nfsd: 0.15
@@ -1475,7 +1475,7 @@
 
 - type: entity
   id: VendingMachineWallmount
-  parent: VendingMachine
+  parent: [BaseStructureWallmount, VendingMachine] # Frontier: add BaseStructureWallmount
   name: vending machine
   abstract: true
   placement:

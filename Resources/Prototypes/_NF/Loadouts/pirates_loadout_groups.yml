@@ -14,7 +14,7 @@
 
 - type: loadoutGroup
   id: PiratePDA
-  name: loadout-group-contractor-id
+  name: loadout-group-contractor-pda
   hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - PiratePirateNFPDA
@@ -53,6 +53,16 @@
   fallbacks:
   - PirateClothingHeadBandBlack
 
+- type: loadoutGroup
+  id: PirateBackpackItems
+  name: loadout-group-contractor-backpack-items
+  minLimit: 0
+  maxLimit: 6
+  loadouts:
+  - PirateNFPouchPirate
+  subgroups:
+  - ContractorBackpackItems
+
 # Pirate Captain loadouts
 
 - type: loadoutGroup
@@ -76,12 +86,31 @@
 
 - type: loadoutGroup
   id: PirateCaptainPDA
-  name: loadout-group-contractor-id
+  name: loadout-group-contractor-pda
   hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - PirateCaptainPirateCaptainNFPDA
   fallbacks:
   - PirateCaptainPirateCaptainNFPDA
+
+- type: loadoutGroup
+  id: PirateCaptainWallet
+  name: loadout-group-contractor-wallet
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - PirateCaptainClothingWalletLeatherPirate
+  fallbacks:
+  - PirateCaptainClothingWalletLeatherPirate
+
+- type: loadoutGroup
+  id: PirateCaptainBackpackItems
+  name: loadout-group-contractor-backpack-items
+  minLimit: 0
+  maxLimit: 6
+  loadouts:
+  - PirateNFPouchPirateCaptain
+  subgroups:
+  - ContractorBackpackItems
 
 # Pirate First Mate loadouts
 
@@ -105,7 +134,7 @@
 
 - type: loadoutGroup
   id: PirateFirstMatePDA
-  name: loadout-group-contractor-id
+  name: loadout-group-contractor-pda
   hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - PirateFirstMatePirateFirstMateNFPDA

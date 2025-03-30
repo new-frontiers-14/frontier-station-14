@@ -263,30 +263,30 @@
     # - UplinkExplosives
 
 # - type: listing # Frontier
-  # id: UplinkSupermatterGrenade
-  # name: uplink-supermatter-grenade-name
-  # description: uplink-supermatter-grenade-desc
-  # productEntity: SupermatterGrenade
-  # discountCategory: usualDiscounts
-  # discountDownTo:
-    # Telecrystal: 3
-  # cost:
-    # Telecrystal: 6
-  # categories:
-    # - UplinkExplosives
+#   id: UplinkSingularityGrenade
+#   name: uplink-singularity-grenade-name
+#   description: uplink-singularity-grenade-desc
+#   productEntity: SingularityGrenade
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Telecrystal: 1
+#   cost:
+#     Telecrystal: 2
+#   categories:
+#     - UplinkDisruption
 
 # - type: listing # Frontier
-  # id: UplinkWhiteholeGrenade
-  # name: uplink-whitehole-grenade-name
-  # description: uplink-whitehole-grenade-desc
-  # productEntity: WhiteholeGrenade
-  # discountCategory: usualDiscounts
-  # discountDownTo:
-    # Telecrystal: 1
-  # cost:
-    # Telecrystal: 3
-  # categories:
-    # - UplinkExplosives
+#   id: UplinkWhiteholeGrenade
+#   name: uplink-whitehole-grenade-name
+#   description: uplink-whitehole-grenade-desc
+#   productEntity: WhiteholeGrenade
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Telecrystal: 1
+#   cost:
+#     Telecrystal: 2
+#   categories:
+#     - UplinkDisruption
 
 # - type: listing # Frontier
   # id: UplinkGrenadePenguin
@@ -870,11 +870,11 @@
   name: uplink-access-breaker-name
   description: uplink-access-breaker-desc
   productEntity: AccessBreaker
-  discountCategory: veryRareDiscounts
+  discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 2
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
   - UplinkDisruption
 
@@ -883,11 +883,11 @@
   name: uplink-emag-name
   description: uplink-emag-desc
   productEntity: Emag
-  discountCategory: rareDiscounts
+  discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 3
   cost:
-    Telecrystal: 4
+    Telecrystal: 5
   categories:
   - UplinkDisruption
 
@@ -1053,7 +1053,7 @@
   description: uplink-surplus-bundle-desc
   productEntity: CrateSyndicateSurplusBundle
   cost:
-    Telecrystal: 20
+    Telecrystal: 35 # Frontier: 20<35
   categories:
   - UplinkDisruption
   conditions:
@@ -1066,24 +1066,24 @@
       components:
       - SurplusBundle
 
-- type: listing
-  id: UplinkSuperSurplusBundle
-  name: uplink-super-surplus-bundle-name
-  description: uplink-super-surplus-bundle-desc
-  productEntity: CrateSyndicateSuperSurplusBundle
-  cost:
-    Telecrystal: 40
-  categories:
-  - UplinkDisruption
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
+# - type: listing
+#   id: UplinkSuperSurplusBundle
+#   name: uplink-super-surplus-bundle-name
+#   description: uplink-super-surplus-bundle-desc
+#   productEntity: CrateSyndicateSuperSurplusBundle
+#   cost:
+#     Telecrystal: 40
+#   categories:
+#   - UplinkDisruption
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#     blacklist:
+#       tags:
+#       - NukeOpsUplink
+#   - !type:BuyerWhitelistCondition
+#     blacklist:
+#       components:
+#       - SurplusBundle
 
 # - type: listing # Frontier
   # id: UplinkSingarityBeacon

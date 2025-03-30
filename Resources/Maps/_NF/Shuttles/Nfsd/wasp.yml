@@ -813,7 +813,7 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: AirlockChemistryGlassLocked
+- proto: AirlockBrigmedicGlassLocked
   entities:
   - uid: 16
     components:
@@ -4213,32 +4213,6 @@ entities:
     - type: Transform
       pos: -4.5,-2.5
       parent: 1
-- proto: ClosetWallMaintenanceFilledRandom
-  entities:
-  - uid: 646
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,0.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: ClothingBeltUtilityEngineering
   entities:
   - uid: 647
@@ -5116,11 +5090,11 @@ entities:
       parent: 1
 - proto: FireAxeCabinetFilled
   entities:
-  - uid: 752
+  - uid: 64
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -2.5,-0.5
+      pos: -2.5,0.5
       parent: 1
 - proto: Firelock
   entities:
@@ -8317,11 +8291,11 @@ entities:
       parent: 1
 - proto: LockerWallMaterialsFuelAmeJarFilled
   entities:
-  - uid: 1004
+  - uid: 65
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-0.5
       parent: 1
 - proto: MedicalBed
   entities:
@@ -8381,6 +8355,28 @@ entities:
     components:
     - type: Transform
       pos: -1.5,9.5
+      parent: 1
+- proto: NFWardrobePrisonFilled
+  entities:
+  - uid: 66
+    components:
+    - type: Transform
+      pos: 6.5,-22.5
+      parent: 1
+  - uid: 67
+    components:
+    - type: Transform
+      pos: 2.5,-22.5
+      parent: 1
+  - uid: 68
+    components:
+    - type: Transform
+      pos: -1.5,-22.5
+      parent: 1
+  - uid: 69
+    components:
+    - type: Transform
+      pos: -5.5,-22.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -9265,7 +9261,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,5.5
       parent: 1
-- proto: PoweredlightBlack
+- proto: PoweredlightUltraviolet
   entities:
   - uid: 1368
     components:
@@ -11745,100 +11741,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,4.5
       parent: 1
-- proto: WardrobePrisonFilled
-  entities:
-  - uid: 1778
-    components:
-    - type: Transform
-      pos: -5.5,-22.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-  - uid: 1779
-    components:
-    - type: Transform
-      pos: -1.5,-22.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-  - uid: 1780
-    components:
-    - type: Transform
-      pos: 2.5,-22.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-  - uid: 1781
-    components:
-    - type: Transform
-      pos: 6.5,-22.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: WarpPoint
   entities:
   - uid: 1782

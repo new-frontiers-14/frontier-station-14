@@ -65,7 +65,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         SubscribeLocalEvent<CryoSleepComponent, DestructionEventArgs>((e,c,_) => EjectBody(e, c));
         SubscribeLocalEvent<CryoSleepComponent, CryoStoreDoAfterEvent>(OnAutoCryoSleep);
         SubscribeLocalEvent<CryoSleepComponent, DragDropTargetEvent>(OnEntityDragDropped);
-        SubscribeLocalEvent<RoundEndedEvent>(OnRoundEnded);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
         InitReturning();
     }
@@ -322,7 +322,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         return component.BodyContainer.ContainedEntity != null;
     }
 
-    private void OnRoundEnded(RoundEndedEvent args)
+    private void OnRoundRestart(RoundRestartCleanupEvent args)
     {
         _storedBodies.Clear();
     }

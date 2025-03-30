@@ -450,7 +450,18 @@ public enum LogType
     /// </summary>
     AtmosDeviceSetting = 97,
 
+    /// <summary>
+    /// Commands related to admemes. Stuff like config changes, etc.
+    /// </summary>
+    AdminCommands = 98,
+
+    /// <summary>
+    /// A player was selected or assigned antag status
+    /// </summary>
+    AntagSelection = 99,
+
     // Frontier Station Specific
+    #region Frontier Values
     ATMUsage = 200,
     ShipYardUsage = 201,
     ShuttleRecordsUsage = 202,
@@ -459,5 +470,22 @@ public enum LogType
     /// An admin spawns a refund for a player.
     /// </summary>
     AdminRefund = 203,
+    /// <summary>
+    /// An atmos device's direction was changed.
+    /// </summary>
     AtmosDirectionChanged = 204,
+    /// <summary>
+    /// A player has posted a bounty contract.
+    /// </summary>
+    BountyContractCreated = 205,
+    /// <summary>
+    /// A player has deleted a bounty contract.
+    /// </summary>
+    BountyContractRemoved = 206,
+    /// <summary>
+    /// A medical bounty was redeemed.
+    /// </summary>
+    MedicalBountyRedeemed = 207,
+    #endregion Frontier Values
+    // End Frontier
 }

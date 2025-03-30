@@ -508,7 +508,9 @@
   - type: NFSalvageMobRestrictions
     despawnIfOffLinkedGrid: false
     addComponentsOnDeath: []
-    removeComponentsOnDeath: []
+    removeComponentsOnDeath:
+    - type: Prying
+    - type: Tool
   - type: MovementSpeedModifier
     baseWalkSpeed : 4.5
     baseSprintSpeed : 4.5
@@ -660,8 +662,8 @@
       baseSprintSpeed: 6
     - type: Advertise
       pack: mimehumanoidchatter
-      minimumWait: 120 # 1 * 2
-      maximumWait: 240 # 2 * 60
+      minimumWait: 120
+      maximumWait: 240
       nextAdvertisementTime: 0
 
 # Syndicate Chemwarrior, shoots healthy mixes of chems
