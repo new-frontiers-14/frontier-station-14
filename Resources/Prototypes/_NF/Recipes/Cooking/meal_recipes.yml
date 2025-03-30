@@ -705,7 +705,7 @@
     FoodBowlBig: 1
     FoodNoodlesBoiled: 1
     FoodCorn: 1
-  reagents:    
+  reagents:
     Water: 20
   recipeType:
   - Oven
@@ -733,7 +733,7 @@
   result: FoodMealSpicyNoodles
   time: 20
   solids:
-    FoodBowlBig: 1 
+    FoodBowlBig: 1
     FoodNoodlesBoiled: 1
     FoodTofuSlice: 1
     FoodChiliPepper: 1
@@ -749,7 +749,7 @@
   result: FoodMealTonkatsuNoodles
   time: 20
   solids:
-    FoodBowlBig: 1   
+    FoodBowlBig: 1
     FoodNoodlesBoiled: 1
     FoodSoybeans: 1
     FoodGarlic: 1
@@ -757,5 +757,38 @@
   reagents:
     Soysauce: 5
     Water: 15
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBunCotton
+  name: cotton bun recipe
+  result: FoodBunCotton
+  time: 5
+  solids:
+    FoodDoughCottonSlice: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerPlainCotton
+  name: plain cotton burger recipe
+  result: FoodBurgerCotton
+  time: 10
+  solids:
+    FoodMealBunCotton: 1
+    CottonBol: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerCottonCheese
+  name: cotton cheeseburger recipe
+  result: FoodBurgerCottonCheese
+  time: 10
+  solids:
+    FoodMealBunCotton: 1
+    CottonBol: 1
+    FoodCheeseSlice: 1
   recipeType:
   - Oven
