@@ -13,7 +13,8 @@ using Content.Server.Station.Systems; // Frontier
 using Content.Shared.Roles.Jobs; // Frontier
 using Content.Server.Afk; // Frontier
 using Content.Server.Mind; // Frontier
-using Robust.Shared.Enums; // Frontier
+using Robust.Shared.Enums;
+using Content.Shared.Roles; // Frontier
 
 namespace Content.Server.StationEvents;
 
@@ -287,14 +288,17 @@ public sealed class EventManagerSystem : EntitySystem
         foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs)
         {
             var activeJobCount = 0;
-            var jobQuery = AllEntityQuery<JobRoleComponent, TransformComponent>();
-            while (jobQuery.MoveNext(out var mindUid, out _, out var xform))
+            var jobQuery = AllEntityQuery<JobRoleComponent, MindRoleComponent>();
+            while (jobQuery.MoveNext(out _, out _, out var mindRole))
             {
-                if (xform.MapUid == null || !_jobs.MindHasJobWithId(mindUid, jobProtoId)) // Skip if they're in nullspace or the job doesn't match
+
+                if (!TryComp(mindRole.Mind.Comp.CurrentEntity, out TransformComponent? xform) || xform.MapUid == null) // Skip if they're in nullspace
                     continue;
 
-                if (!_mindSystem.TryGetMind(mindUid, out _, out var mindComp)
-                    || mindComp?.Session?.State.Status != SessionStatus.InGame) // Skip if they're SSD
+                if (mindRole.Mind.Comp.Session?.State.Status != SessionStatus.InGame) // Skip if they're SSD
+                    continue;
+
+                if (!_jobs.MindHasJobWithId(mindRole.Mind, jobProtoId)) // Skip if the job doesn't match
                     continue;
 
                 activeJobCount++;
