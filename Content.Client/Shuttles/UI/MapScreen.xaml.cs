@@ -332,7 +332,7 @@ public sealed partial class MapScreen : BoxContainer
                 var serviceFlagsText = string.Empty;
                 if (iffComp?.ServiceFlags != null)
                 {
-                    serviceFlagsText = _shuttles.GetServiceFlagsSuffix(iffComp);
+                    serviceFlagsText = SharedShuttleSystem.GetServiceFlagsSuffix(iffComp.ServiceFlags);
                 }
 
                 var gridObj = new GridMapObject()

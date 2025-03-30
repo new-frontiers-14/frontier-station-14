@@ -42,7 +42,7 @@ public abstract partial class SharedShuttleSystem
         }
 
         // Frontier
-        var suffix = component != null ? GetServiceFlagsSuffix(component) : string.Empty;
+        var suffix = component != null ? GetServiceFlagsSuffix(component.ServiceFlags) : string.Empty;
 
         return string.IsNullOrEmpty(entName) ? Loc.GetString("shuttle-console-unknown") : entName + suffix;
     }
@@ -107,19 +107,37 @@ public abstract partial class SharedShuttleSystem
     /// <summary>
     /// Turns the service flags into a string for display.
     /// IE. [M] for Medical, [R] for Research, etc.
+    /// This function also handles duplicate first characters by using the first two characters of the flag name.
     /// </summary>
-    /// <param name="iffComp">The IFF component to get the flags from.</param>
+    /// <param name="flags">The IFF flags to get the suffix for</param>
     /// <returns>The string to display.</returns>
-    public string GetServiceFlagsSuffix(IFFComponent iffComp)
+    public static string GetServiceFlagsSuffix(ServiceFlags flags)
     {
-        if (iffComp.ServiceFlags != ServiceFlags.None)
-        {
-            var serviceString = string.Join("|", Enum.GetValues<ServiceFlags>()
-                .Where(flag => flag != ServiceFlags.None && (iffComp.ServiceFlags & flag) != 0)
-                .Select(flag => flag.ToString()[0]));
-            return $"[{serviceString}]";
-        }
-        return string.Empty;
+        if (flags == ServiceFlags.None)
+            return string.Empty;
+
+        // Find which first characters are duplicated among ALL possible flags
+        var duplicateFirstChars = Enum.GetValues<ServiceFlags>()
+            .Where(flag => flag != ServiceFlags.None)
+            .GroupBy(flag => flag.ToString()[0])
+            .Where(g => g.Count() > 1)
+            .Select(g => g.Key)
+            .ToHashSet();
+
+        // Get all active flags
+        var activeFlags = Enum.GetValues<ServiceFlags>()
+            .Where(flag => flag != ServiceFlags.None && (flags & flag) != 0)
+            .ToList();
+
+        // Build strings for each flag
+        var flagStrings = activeFlags.Select(flag => {
+            var flagName = flag.ToString().ToUpper();
+            return duplicateFirstChars.Contains(flagName[0])
+                ? flagName[..Math.Min(2, flagName.Length)]
+                : flagName[..1];
+        });
+
+        return $"[{string.Join("|", flagStrings)}]";
     }
 
     [PublicAPI]
