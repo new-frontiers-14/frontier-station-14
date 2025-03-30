@@ -360,6 +360,19 @@
     FoodCuredCarp: 1
   recipeType:
   - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeBatteredOnionRings
+  name: battered onion rings recipe
+  result: FoodOnionRingsBattered
+  time: 2 # ~5 seconds for three
+  reagents:
+    Flour: 1.5 # ~1/3 of a click
+    Egg: 2 # 1/3 of an egg
+  solids:
+    FoodOnionSlice: 1
+  recipeType:
+  - Assembler
    
 # Donuts (uncooked as well as glazed) - frying handled by DeepFrySpawnComponent per-entity
 
@@ -870,11 +883,25 @@
   time: 5
   group: BarsAndCookies
   solids:
-    FoodCroissantRaw: 1
+    FoodDoughPastryBaseRaw: 1
     FoodApple: 1
     FoodButterSlice: 1
   reagents:
     Honey: 5
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeCinnamonRoll
+  name: cinnamon roll
+  result: FoodBakedCinnamonRoll
+  time: 5
+  group: Dessert
+  solids:
+    FoodDoughPastryBaseRaw: 1
+  reagents:
+    Sugar: 5
+    Everyspice: 5
   recipeType:
   - Oven
 
