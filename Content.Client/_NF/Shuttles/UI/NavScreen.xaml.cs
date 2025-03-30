@@ -34,14 +34,14 @@ namespace Content.Client.Shuttles.UI
             _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
             OnInertiaDampeningModeChanged?.Invoke(shuttle, InertiaDampeningMode.Query);
 
-            ServiceFlagN.OnPressed += _ => SetServiceFlags(ServiceFlags.None);
-            ServiceFlagS.OnPressed += _ => SetServiceFlags(ServiceFlags.Service);
-            ServiceFlagSA.OnPressed += _ => SetServiceFlags(ServiceFlags.Salvage);
-            ServiceFlagM.OnPressed += _ => SetServiceFlags(ServiceFlags.Medical);
-            ServiceFlagR.OnPressed += _ => SetServiceFlags(ServiceFlags.Research);
-            ServiceFlagT.OnPressed += _ => SetServiceFlags(ServiceFlags.Trade);
-            ServiceFlagC.OnPressed += _ => SetServiceFlags(ServiceFlags.Construction);
-            ServiceFlagE.OnPressed += _ => SetServiceFlags(ServiceFlags.Entertainment);
+            ServiceFlagNone.OnPressed += _ => ToggleServiceFlags(ServiceFlags.None);
+            ServiceFlagKitchen.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Kitchen);
+            ServiceFlagMedical.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Medical);
+            ServiceFlagUpgrades.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Upgrades);
+            ServiceFlagTrade.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Trade);
+            ServiceFlagConstruction.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Construction);
+            ServiceFlagService.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Service);
+            ServiceFlagSocial.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Social);
         }
 
         private void SetDampenerMode(InertiaDampeningMode mode)
@@ -65,7 +65,7 @@ namespace Content.Client.Shuttles.UI
                 DampenerOff.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Off;
                 DampenerOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Dampen;
                 AnchorOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Anchor;
-                SetServiceFlags(NavRadar.ServiceFlags, updateButtonsOnly: true);
+                ToggleServiceFlags(NavRadar.ServiceFlags, updateButtonsOnly: true);
             }
 
         }
@@ -76,23 +76,45 @@ namespace Content.Client.Shuttles.UI
             NavRadar.MaximumIFFDistance = (float) value;
         }
 
-        private void SetServiceFlags(ServiceFlags flags, bool updateButtonsOnly = false)
+        private void ToggleServiceFlags(ServiceFlags flags, bool updateButtonsOnly = false)
         {
             if (!updateButtonsOnly)
             {
-                NavRadar.ServiceFlags = flags;
+                // Special handling for ServiceFlags.None
+                if (flags == ServiceFlags.None)
+                {
+                    // If None is being toggled, set it to None (clear all other flags)
+                    // No need to check if None is already set since that check will always be false
+                    NavRadar.ServiceFlags = ServiceFlags.None;
+                }
+                else
+                {
+                    // Toggle the requested flag
+                    NavRadar.ServiceFlags ^= flags;
+
+                    // If any flag other than None is set, make sure None is unset
+                    if (NavRadar.ServiceFlags != 0)
+                    {
+                        NavRadar.ServiceFlags &= ~ServiceFlags.None; // This is redundant since None is 0
+                    }
+                    // If toggling resulted in no flags, set None
+                    else
+                    {
+                        NavRadar.ServiceFlags = ServiceFlags.None;
+                    }
+                }
                 _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
-                OnServiceFlagsChanged?.Invoke(shuttle, flags);
+                OnServiceFlagsChanged?.Invoke(shuttle, NavRadar.ServiceFlags);
             }
 
-            ServiceFlagN.Pressed = flags == ServiceFlags.None;
-            ServiceFlagS.Pressed = flags == ServiceFlags.Service;
-            ServiceFlagSA.Pressed = flags == ServiceFlags.Salvage;
-            ServiceFlagM.Pressed = flags == ServiceFlags.Medical;
-            ServiceFlagR.Pressed = flags == ServiceFlags.Research;
-            ServiceFlagT.Pressed = flags == ServiceFlags.Trade;
-            ServiceFlagC.Pressed = flags == ServiceFlags.Construction;
-            ServiceFlagE.Pressed = flags == ServiceFlags.Entertainment;
+            ServiceFlagNone.Pressed = NavRadar.ServiceFlags == ServiceFlags.None;
+            ServiceFlagKitchen.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Kitchen);
+            ServiceFlagMedical.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Medical);
+            ServiceFlagUpgrades.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Upgrades);
+            ServiceFlagTrade.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Trade);
+            ServiceFlagConstruction.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Construction);
+            ServiceFlagService.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Service);
+            ServiceFlagSocial.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Social);
         }
 
         private void NfAddShuttleDesignation(EntityUid? shuttle)

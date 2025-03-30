@@ -114,8 +114,8 @@ public abstract partial class SharedShuttleSystem
     {
         if (iffComp.ServiceFlags != ServiceFlags.None)
         {
-            var serviceString = string.Join("", Enum.GetValues<ServiceFlags>()
-                .Where(flag => (iffComp.ServiceFlags & flag) != 0)
+            var serviceString = string.Join("|", Enum.GetValues<ServiceFlags>()
+                .Where(flag => flag != ServiceFlags.None && (iffComp.ServiceFlags & flag) != 0)
                 .Select(flag => flag.ToString()[0]));
             return $"[{serviceString}]";
         }

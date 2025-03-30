@@ -72,39 +72,11 @@ public enum IFFFlags : byte
 public enum ServiceFlags : byte
 {
     None = 0,
-
-    /// <summary>
-    /// Shuttle is a service shuttle.
-    /// </summary>
-    Service = 1,
-
-    /// <summary>
-    /// Shuttle is a cargo shuttle.
-    /// </summary>
-    Salvage = 2,
-
-    /// <summary>
-    /// Shuttle is a medical shuttle.
-    /// </summary>
-    Medical = 4,
-
-    /// <summary>
-    /// Shuttle is a research shuttle.
-    /// </summary>
-    Research = 8,
-
-    /// <summary>
-    /// Shuttle offers goods like exped stuff.
-    /// </summary>
-    Trade = 16,
-
-    /// <summary>
-    /// Shuttle offers construction materials
-    /// </summary>
-    Construction = 32,
-
-    /// <summary>
-    /// Shuttle offers entertainment
-    /// </summary>
-    Entertainment = 64,
+    Kitchen = 1,
+    Medical = 2,
+    Upgrades = 4,
+    Trade = 8,
+    Construction = 16,
+    Service = 32,
+    Social = 64,
 }
