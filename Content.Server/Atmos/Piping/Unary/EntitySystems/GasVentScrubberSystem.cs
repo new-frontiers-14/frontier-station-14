@@ -69,10 +69,13 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             if (args.Grid is not {} grid)
                 return;
 
-            var map = _atmosphereSystem.AllowMapGasExtraction ? args.Map : null; // Frontier
+            // Frontier: check running gas extraction
+            if (!_atmosphereSystem.AtmosInputCanRunOnMap(args.Map))
+                return;
+            // End Frontier
 
             var position = _transformSystem.GetGridTilePositionOrDefault(uid);
-            var environment = _atmosphereSystem.GetTileMixture(grid, map, position, true); // Frontier: args.Map<map
+            var environment = _atmosphereSystem.GetTileMixture(grid, args.Map, position, true);
 
             Scrub(timeDelta, scrubber, environment, outlet);
 
