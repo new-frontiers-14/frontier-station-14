@@ -97,6 +97,41 @@
     destroyOnFax: true
     destroyMessage: fax-delete-paper-intellectual-property
 
+# A printed blueprint - starts with no recipes, should be edited.
+- type: entity
+  parent: BaseBlueprintFaxable
+  id: NFBlueprintPrinted
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-base
+        color: "#97cae1"
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi # Need for PaperVisuals otherwise it wont stop complaining
+        state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#97cae1"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#97cae1"
+      - state: inhand-right-text
+  - type: Blueprint
+    providedRecipes: []
+
 # Faxable variants (obtainable from research)
 
 - type: entity # Engineering
