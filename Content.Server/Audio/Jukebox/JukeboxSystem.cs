@@ -21,6 +21,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!; // Frontier
     [Dependency] private readonly IEntityManager _entityManager = default!; // Frontier
+    [Dependency] private readonly UserInterfaceSystem _userInterface = default!; // Frontier
 
     public override void Initialize()
     {
@@ -35,6 +36,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<JukeboxComponent, ComponentShutdown>(OnComponentShutdown);
 
+        SubscribeLocalEvent<JukeboxComponent, ComponentStartup>(OnComponentStartup); // Frontier
         SubscribeLocalEvent<JukeboxComponent, PowerChangedEvent>(OnPowerChanged);
     }
 
@@ -45,6 +47,19 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             TryUpdateVisualState(uid, component);
         }
     }
+    // Frontier: For Shuffle & Replay Buttons.
+    private void OnComponentStartup<T>(Entity<JukeboxComponent> entity, ref T ev)
+    {
+        UpdateUIElements(entity);
+    }
+
+    private void UpdateUIElements(Entity<JukeboxComponent> entity)
+    {
+        var (owner, component) = entity;
+        var state = new JukeboxInterfaceState(component.IsReplayOn, component.IsShuffleOn);
+        _userInterface.SetUiState(owner, JukeboxUiKey.Key, state);
+    }
+    // End Frontier
 
     private void OnJukeboxPlay(EntityUid uid, JukeboxComponent component, ref JukeboxPlayingMessage args)
     {
@@ -93,12 +108,14 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     private void OnJukeboxShuffle(Entity<JukeboxComponent> ent, ref JukeboxShuffleMessage args)
     {
         ent.Comp.IsShuffleOn = !ent.Comp.IsShuffleOn;
+        UpdateUIElements(ent);
         Dirty(ent);
     }
 
     private void OnJukeboxReplay(Entity<JukeboxComponent> ent, ref JukeboxReplayMessage args)
     {
         ent.Comp.IsReplayOn = !ent.Comp.IsReplayOn;
+        UpdateUIElements(ent);
         Dirty(ent);
     }
 

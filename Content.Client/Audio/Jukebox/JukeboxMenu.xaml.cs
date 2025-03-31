@@ -175,4 +175,17 @@ public sealed partial class JukeboxMenu : FancyWindow
             SongName.Text = "---";
         }
     }
+    // Frontier: UpdateState() for Shuffle & Replay Buttons.
+    public void UpdateState(BoundUserInterfaceState state)
+    {
+        var convState = (JukeboxInterfaceState)state;
+        UpdateJukeboxButtons(convState);
+    }
+
+    private void UpdateJukeboxButtons(JukeboxInterfaceState state)
+    {
+        ReplayButton.Pressed = state.IsReplaySelected;
+        ShuffleButton.Pressed = state.IsShuffleSelected;
+    }
+    // End Frontier
 }

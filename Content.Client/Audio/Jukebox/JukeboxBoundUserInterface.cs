@@ -107,5 +107,13 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 
         SendMessage(new JukeboxSetTimeMessage(sentTime));
     }
+    // Frontier: UpdateState() for Shuffle & Replay Buttons.
+    protected override void UpdateState(BoundUserInterfaceState state)
+    {
+        base.UpdateState(state);
+
+        _menu?.UpdateState(state);
+    }
+    // End Frontier
 }
 
