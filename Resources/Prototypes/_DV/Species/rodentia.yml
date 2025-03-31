@@ -8,9 +8,9 @@
   markingLimits: MobRodentiaMarkingLimits
   dollPrototype: MobRodentiaDummy
   skinColoration: Hues
-  maleFirstNames: names_rodentia_male
-  femaleFirstNames: names_rodentia_female
-  lastNames: names_rodentia_last
+  maleFirstNames: NamesRodentiaMale
+  femaleFirstNames: NamesRodentiaFemale
+  lastNames: NamesRodentiaLast
   naming: LastFirst
 
 - type: speciesBaseSprites
@@ -20,6 +20,8 @@
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobRodentiaTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -66,6 +68,14 @@
     Chest:
       points: 2
       required: false
+    # Frontier: apparently these don't exist on Delta
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false
+    # End Frontier
 
 - type: humanoidBaseSprite
   id: MobRodentiaHead

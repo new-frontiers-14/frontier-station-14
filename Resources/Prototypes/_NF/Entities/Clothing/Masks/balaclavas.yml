@@ -1,0 +1,100 @@
+
+- type: entity
+  parent: ClothingMaskBandanaBase
+  id: ClothingMaskBalaclavaBlack
+  name: black balaclava
+  description: A black balaclava to make you look menacing.
+  components:
+  - type: FoldableClothing
+    foldedSlots:
+    - HEAD
+    unfoldedSlots:
+    - MASK
+    foldedHideLayers: []
+    unfoldedHideLayers:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    hideOnToggle: true
+  - type: Sprite
+    sprite: _NF/Clothing/Mask/balaclava.rsi
+    layers:
+    - state: icon_mask
+      map: [ "unfoldedLayer" ]
+      color: "#3e3e48"
+    - state: icon
+      map: ["foldedLayer"]
+      visible: false
+      color: "#3e3e48"
+  - type: Clothing
+    sprite: _NF/Clothing/Mask/balaclava.rsi
+    clothingVisuals:
+      mask:
+      - state: equipped-MASK
+        color: "#3e3e48"
+      head:
+      - state: equipped-HELMET
+        color: "#3e3e48"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#3e3e48"
+      right:
+      - state: inhand-right
+        color: "#3e3e48"
+
+- type: entity
+  parent: ClothingMaskBalaclavaBlack
+  id: ClothingMaskBalaclavaRandom
+  name: punk balaclava
+  description: A colorful balaclava to make somebody look at you.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Mask/balaclava.rsi
+    layers:
+    - state: icon_mask
+      map: [ "unfoldedLayer" ]
+    - state: icon
+      map: ["foldedLayer"]
+      visible: false
+  - type: Clothing
+    sprite: _NF/Clothing/Mask/balaclava.rsi
+    clothingVisuals:
+      mask:
+      - state: equipped-MASK
+        map: [ "equippedMaskBalaclava" ]
+      head:
+      - state: equipped-HELMET
+        map: [ "equippedHelmetBalaclava" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        map: [ "inhandLeftBalaclava" ]
+      right:
+      - state: inhand-right
+        map: [ "inhandRightBalaclava" ]
+  - type: RandomSprite
+    available:
+    - unfoldedLayer:
+        icon_mask: Base
+      foldedLayer:
+        icon: Base
+      equippedMaskBalaclava:
+        equipped-MASK: Base
+      equippedHelmetBalaclava:
+        equipped-HELMET: Base
+      inhandLeftBalaclava:
+        inhand-left: Base
+      inhandRightBalaclava:
+        inhand-right: Base
+    mappedColors:
+      Base: CyberpunkNeon

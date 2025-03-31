@@ -19,6 +19,7 @@
   - type: ActivatableUI
     inHandsOnly: false
     key: enum.GasPressurePumpUiKey.Key
+  - type: ActivatableUIRequiresAnchor
   - type: WiresPanel
   - type: WiresVisuals
   - type: PipeRestrictOverlap
@@ -30,16 +31,15 @@
         pipeDirection: South
   - type: Transform
     noRot: false
-  - type: DeviceNetwork # still needed?
+  - type: DeviceNetwork
     deviceNetId: AtmosDevices
     receiveFrequencyId: AtmosMonitor
     transmitFrequencyId: AtmosMonitor
     sendBroadcastAttemptEvent: true
     examinableAddress: true
     prefix: device-address-prefix-gas-drill
-  - type: WiredNetworkConnection # still needed?
+  - type: WiredNetworkConnection
   - type: PowerSwitch
-  - type: StationAiWhitelist
   - type: Sprite
     sprite: _NF/Objects/Specific/Atmospherics/extractor.rsi
     snapCardinals: true
@@ -53,10 +53,14 @@
       - state: base
       - state: base-powered
         shader: unshaded
+        visible: false
         map: [ "enum.PowerDeviceVisualLayers.Powered" ]
       - state: drill-empty-unlit
         shader: unshaded
         map: [ "light" ]
+        visible: false
+      - state: panel
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -77,11 +81,13 @@
           Low: { state: drill-low-unlit, visible: true }
           On: { state: drill-on-unlit, visible: true }
   - type: ApcPowerReceiver
-    load: 4000
+    powerLoad: 1000
   - type: Machine
-    board: Null # FIXME
+    board: GasMiningDrillMachineCircuitboard
   - type: GasDepositExtractor
-    extractionRate: 50 # 50 mol/s => 20 kmol in ~6.6 min
+    baseExtractionRate: 50 # 50 mol/s => 20 kmol in ~6.6 min
+    extractionRate: 50 
+    extractionRateMultiplier: 1.2 # max rate: 86.4 mol/s => 20 kmol in ~3.9 min
     port: outlet
   - type: Fixtures
     fixtures:
@@ -95,6 +101,7 @@
         layer:
         - MidImpassable
         - LowImpassable
+  - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseMachinePowered ]
@@ -122,11 +129,12 @@
         shader: unshaded
       - state: on-unlit
         shader: unshaded
+        visible: false
         map: [ "enum.PowerDeviceVisualLayers.Powered" ]
       - state: pipe
         map: [ "enum.PipeVisualLayers.Pipe" ]
   - type: ApcPowerReceiver
-    load: 1000
+    powerLoad: 1000
   - type: Machine
     board: Null # FIXME
   - type: GasSalePoint
@@ -172,6 +180,7 @@
         map: [ "docked-unlit" ]
       - state: on-unlit
         shader: unshaded
+        visible: false
         map: [ "enum.PowerDeviceVisualLayers.Powered" ]
       - state: pipe
         map: [ "enum.PipeVisualLayers.Pipe" ]
