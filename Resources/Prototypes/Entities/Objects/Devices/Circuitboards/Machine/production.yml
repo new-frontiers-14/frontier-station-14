@@ -366,6 +366,7 @@
       stackRequirements:
         Cable: 1
         Glass: 1
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   id: ThermomachineFreezerMachineCircuitBoard
@@ -478,6 +479,7 @@
     stackRequirements:
       Cable: 5
       Glass: 2
+  - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   id: SpaceHeaterMachineCircuitBoard
@@ -936,6 +938,7 @@
         Silicon: 20
     - type: StaticPrice
       price: 40
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   id: ReagentGrinderMachineCircuitboard
@@ -1240,6 +1243,20 @@
         Capacitor: 2 # Frontier stackRequirements<requirements
       stackRequirements:
         Steel: 5
+
+- type: entity
+  id: MailTeleporterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: mail teleporter machine board
+  description: A machine printed circuit board for a mail teleporter.
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: CargoMailTeleporter
+    stackRequirements:
+      Capacitor: 2
+      Steel: 5
 
 - type: entity
   id: SodaDispenserMachineCircuitboard
