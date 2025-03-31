@@ -23,6 +23,12 @@ public sealed class ServiceFlagsSuffixTests
         _shuttle = entManager.System<SharedShuttleSystem>();
     }
 
+    [TearDown]
+    public async Task TearDownInternal()
+    {
+        await _pair.CleanReturnAsync();
+    }
+
     [Test]
     public void GetServiceFlagsSuffix_None_ReturnsEmptyString()
     {
