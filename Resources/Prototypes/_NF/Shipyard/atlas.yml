@@ -1,0 +1,35 @@
+- type: vessel
+  id: Atlas
+  parent: BaseVessel
+  name: MOFF Atlas
+  description: A massive-sized vessel specializing in long-haul salvage, mining, and cargo operations.
+  price: 100
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/Atlas.yml
+  guidebookPage: Null
+  class:
+  - Cargo
+  - Salvage
+  engine:
+  - AME
+
+- type: gameMap
+  id: Atlas
+  mapName: 'MOFF Atlas'
+  mapPath: /Maps/_NF/Shuttles/Atlas.yml
+  minPlayers: 0
+  stations:
+    Atlas:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Atlas {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
