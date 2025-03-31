@@ -1,5 +1,6 @@
 using Content.Client.Clothing;
 using Content.Shared.Clothing.Components;
+using Content.Shared.Item;
 using Content.Shared.Sprite;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameStates;
@@ -36,6 +37,7 @@ public sealed class RandomSpriteSystem : SharedRandomSpriteSystem
 
         UpdateSpriteComponentAppearance(uid, component);
         UpdateClothingComponentAppearance(uid, component);
+        UpdateItemComponentAppearance(uid, component); // Frontier
     }
 
     private void UpdateClothingComponentAppearance(EntityUid uid, RandomSpriteComponent component, ClothingComponent? clothing = null)
@@ -78,4 +80,28 @@ public sealed class RandomSpriteSystem : SharedRandomSpriteSystem
             sprite.LayerSetColor(index, layer.Value.Color ?? Color.White);
         }
     }
+
+    // Frontier: edit inhand visuals
+    private void UpdateItemComponentAppearance(EntityUid uid, RandomSpriteComponent component, ItemComponent? sprite = null)
+    {
+        if (!Resolve(uid, ref sprite, false))
+            return;
+
+        var itemLayers = sprite.InhandVisuals;
+        foreach (var keyColorPair in component.Selected)
+        {
+            foreach (var layerSet in itemLayers.Values)
+            {
+                foreach (var layer in layerSet)
+                {
+                    if (layer.MapKeys?.Contains(keyColorPair.Key) ?? false)
+                    {
+                        layer.State = keyColorPair.Value.State;
+                        layer.Color = keyColorPair.Value.Color;
+                    }
+                }
+            }
+        }
+    }
+    // End Frontier: edit inhand visuals
 }
