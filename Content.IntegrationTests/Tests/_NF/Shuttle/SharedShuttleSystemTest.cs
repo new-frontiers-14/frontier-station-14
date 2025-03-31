@@ -6,6 +6,7 @@ using Robust.Shared.GameObjects;
 namespace Content.IntegrationTests.Tests._NF.Shuttle;
 
 [TestFixture]
+[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
 public sealed class ServiceFlagsSuffixTests
 {
     TestPair _pair;
