@@ -16,6 +16,6 @@ shuttle-console-service-flag-Services-shortform = ♫
 shuttle-console-service-flag-Trade-shortform = $
 shuttle-console-service-flag-Social-shortform = ☺
 
-shuttle-console-service-flag-Services-description = Services (medical, engineering, bar) offered onboard.
+shuttle-console-service-flag-Services-description = Services (e.g. medical, dining, engineering) offered onboard.
 shuttle-console-service-flag-Trade-description = Goods sold onboard.
-shuttle-console-service-flag-Social-description = A social space for hangouts.
+shuttle-console-service-flag-Social-description = A social space to gather or hang out.
