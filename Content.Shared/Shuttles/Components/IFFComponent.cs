@@ -72,11 +72,7 @@ public enum IFFFlags : byte
 public enum ServiceFlags : byte
 {
     None = 0,
-    Kitchen = 1,
-    Medical = 2,
-    Upgrades = 4,
-    Trade = 8,
-    Construction = 16,
-    Service = 32,
-    Social = 64,
+    Services = 1,
+    Trade = 2,
+    Social = 4,
 }

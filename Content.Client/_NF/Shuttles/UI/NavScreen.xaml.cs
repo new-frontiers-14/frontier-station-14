@@ -34,13 +34,8 @@ namespace Content.Client.Shuttles.UI
             _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
             OnInertiaDampeningModeChanged?.Invoke(shuttle, InertiaDampeningMode.Query);
 
-            ServiceFlagNone.OnPressed += _ => ToggleServiceFlags(ServiceFlags.None);
-            ServiceFlagKitchen.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Kitchen);
-            ServiceFlagMedical.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Medical);
-            ServiceFlagUpgrades.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Upgrades);
+            ServiceFlagServices.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Services);
             ServiceFlagTrade.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Trade);
-            ServiceFlagConstruction.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Construction);
-            ServiceFlagService.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Service);
             ServiceFlagSocial.OnPressed += _ => ToggleServiceFlags(ServiceFlags.Social);
         }
 
@@ -107,13 +102,8 @@ namespace Content.Client.Shuttles.UI
                 OnServiceFlagsChanged?.Invoke(shuttle, NavRadar.ServiceFlags);
             }
 
-            ServiceFlagNone.Pressed = NavRadar.ServiceFlags == ServiceFlags.None;
-            ServiceFlagKitchen.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Kitchen);
-            ServiceFlagMedical.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Medical);
-            ServiceFlagUpgrades.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Upgrades);
+            ServiceFlagServices.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Services);
             ServiceFlagTrade.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Trade);
-            ServiceFlagConstruction.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Construction);
-            ServiceFlagService.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Service);
             ServiceFlagSocial.Pressed = NavRadar.ServiceFlags.HasFlag(ServiceFlags.Social);
         }
 

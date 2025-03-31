@@ -66,10 +66,12 @@
                             Text="{controls:Loc 'shuttle-console-iff-toggle'}"
                             TextAlign="Center"
                             ToggleMode="True"/>
+                    <!-- Frontier: hide player shuttles -->
                     <controls:Button Name="IFFShuttleToggle"
                              Text="{controls:Loc 'shuttle-console-iffshuttles-toggle'}"
                              TextAlign="Center"
                              ToggleMode="True"/>
+                    <!-- End Frontier: hide player shuttles -->
                     <controls:Button Name="DockToggle"
                             Text="{controls:Loc 'shuttle-console-dock-toggle'}"
                             TextAlign="Center"
@@ -122,71 +124,27 @@
                     <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="ServiceFlagsBox">
                         <controls:Label Text="{controls:Loc 'shuttle-console-service-flags'}"/>
                         <controls:BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                            <controls:Button Name="ServiceFlagNone"
-                                             Text="N"
+                            <controls:Button Name="ServiceFlagServices"
+                                             Text="{controls:Loc 'shuttle-console-service-flag-Services-label'}"
                                              TextAlign="Center"
                                              ToggleMode="True"
                                              MinWidth="30"
-                                             MaxWidth="30"
-                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-none'}"
+                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-Services-description'}"
                                              StyleClasses="OpenRight"/>
-                            <controls:Button Name="ServiceFlagKitchen"
-                                             Text="K"
-                                             TextAlign="Center"
-                                             ToggleMode="True"
-                                             MinWidth="30"
-                                             MaxWidth="30"
-                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-kitchen'}"
-                                             StyleClasses="OpenBoth"/>
-                            <controls:Button Name="ServiceFlagMedical"
-                                             Text="M"
-                                             TextAlign="Center"
-                                             ToggleMode="True"
-                                             MinWidth="30"
-                                             MaxWidth="30"
-                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-medical'}"
-                                             StyleClasses="OpenBoth"/>
-                            <controls:Button Name="ServiceFlagUpgrades"
-                                             Text="U"
-                                             TextAlign="Center"
-                                             ToggleMode="True"
-                                             MinWidth="30"
-                                             MaxWidth="30"
-                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-upgrades'}"
-                                             StyleClasses="OpenBoth"/>
                             <controls:Button Name="ServiceFlagTrade"
-                                             Text="T"
+                                             Text="{controls:Loc 'shuttle-console-service-flag-Trade-label'}"
                                              TextAlign="Center"
                                              ToggleMode="True"
                                              MinWidth="30"
-                                             MaxWidth="30"
-                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-trade'}"
-                                             StyleClasses="OpenBoth"/>
-                            <controls:Button Name="ServiceFlagConstruction"
-                                             Text="C"
-                                             TextAlign="Center"
-                                             ToggleMode="True"
-                                             MinWidth="30"
-                                             MaxWidth="30"
-                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-construction'}"
-                                             StyleClasses="OpenBoth"/>
-                            <controls:Button Name="ServiceFlagService"
-                                             Text="SE"
-                                             TextAlign="Center"
-                                             ToggleMode="True"
-                                             MinWidth="30"
-                                             MaxWidth="30"
-                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-service'}"
+                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-Trade-description'}"
                                              StyleClasses="OpenBoth"/>
                             <controls:Button Name="ServiceFlagSocial"
-                                             Text="SO"
+                                             Text="{controls:Loc 'shuttle-console-service-flag-Social-label'}"
                                              TextAlign="Center"
                                              ToggleMode="True"
                                              MinWidth="30"
-                                             MaxWidth="30"
-                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-social'}"
-                                             StyleClasses="OpenLeft"
-                                             />
+                                             ToolTip="{controls:Loc 'shuttle-console-service-flag-Social-description'}"
+                                             StyleClasses="OpenLeft"/>
                         </controls:BoxContainer>
                     </controls:BoxContainer>
                     <!-- End Frontier - Service Flags -->
