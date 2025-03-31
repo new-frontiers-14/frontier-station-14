@@ -80,25 +80,30 @@
                     <controls:BoxContainer Name="DampenerModeButtons"
                                   Orientation="Horizontal"
                                   HorizontalAlignment="Stretch"
-                                  Margin="5">
+                                  HorizontalExpand="True"
+                                  Align="Center"
+                                  Margin="0 0 0 3">
                         <controls:Button Name="DampenerOff"
                                          Text="{controls:Loc 'shuttle-console-inertia-dampener-off'}"
                                          TextAlign="Center"
                                          ToggleMode="True"
-                                         MinWidth="82"
-                                         MaxWidth="82"/>
+                                         MinWidth="85"
+                                         StyleClasses="OpenRight"
+                                         Margin="0"/>
                         <controls:Button Name="DampenerOn"
                                          Text="{controls:Loc 'shuttle-console-inertia-dampener-dampen'}"
                                          TextAlign="Center"
                                          ToggleMode="True"
-                                         MinWidth="82"
-                                         MaxWidth="82"/>
+                                         MinWidth="85"
+                                         StyleClasses="OpenBoth"
+                                         Margin="0"/>
                         <controls:Button Name="AnchorOn"
                                          Text="{controls:Loc 'shuttle-console-inertia-dampener-anchor'}"
                                          TextAlign="Center"
                                          ToggleMode="True"
-                                         MinWidth="82"
-                                         MaxWidth="82"/>
+                                         MinWidth="85"
+                                         StyleClasses="OpenLeft"
+                                         Margin="0"/>
                     </controls:BoxContainer>
                     <!-- End Frontier - Inertia dampener controls-->
                     <!-- Frontier - IFF search -->
@@ -123,28 +128,34 @@
                     <!-- Frontier - Service Flags -->
                     <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="ServiceFlagsBox">
                         <controls:Label Text="{controls:Loc 'shuttle-console-service-flags'}"/>
-                        <controls:BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                        <controls:BoxContainer Orientation="Horizontal"
+                                               HorizontalExpand="True"
+                                               Align="Center"
+                                               Margin="0 0 0 3">
                             <controls:Button Name="ServiceFlagServices"
                                              Text="{controls:Loc 'shuttle-console-service-flag-Services-label'}"
                                              TextAlign="Center"
                                              ToggleMode="True"
                                              MinWidth="30"
                                              ToolTip="{controls:Loc 'shuttle-console-service-flag-Services-description'}"
-                                             StyleClasses="OpenRight"/>
+                                             StyleClasses="OpenRight"
+                                             Margin="0"/>
                             <controls:Button Name="ServiceFlagTrade"
                                              Text="{controls:Loc 'shuttle-console-service-flag-Trade-label'}"
                                              TextAlign="Center"
                                              ToggleMode="True"
                                              MinWidth="30"
                                              ToolTip="{controls:Loc 'shuttle-console-service-flag-Trade-description'}"
-                                             StyleClasses="OpenBoth"/>
+                                             StyleClasses="OpenBoth"
+                                             Margin="0"/>
                             <controls:Button Name="ServiceFlagSocial"
                                              Text="{controls:Loc 'shuttle-console-service-flag-Social-label'}"
                                              TextAlign="Center"
                                              ToggleMode="True"
                                              MinWidth="30"
                                              ToolTip="{controls:Loc 'shuttle-console-service-flag-Social-description'}"
-                                             StyleClasses="OpenLeft"/>
+                                             StyleClasses="OpenLeft"
+                                             Margin="0"/>
                         </controls:BoxContainer>
                     </controls:BoxContainer>
                     <!-- End Frontier - Service Flags -->
