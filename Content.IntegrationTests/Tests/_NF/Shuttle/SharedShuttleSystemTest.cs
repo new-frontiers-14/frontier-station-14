@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Content.IntegrationTests.Pair;
+﻿using Content.IntegrationTests.Pair;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Robust.Shared.GameObjects;
@@ -7,7 +6,6 @@ using Robust.Shared.GameObjects;
 namespace Content.IntegrationTests.Tests._NF.Shuttle;
 
 [TestFixture]
-[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
 public sealed class ServiceFlagsSuffixTests
 {
     TestPair _pair;
