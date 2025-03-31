@@ -42,31 +42,32 @@ public sealed class ServiceFlagsSuffixTests
     {
         // Assemble all enum values into one
         var valueCount = 0;
-        var enumValue = ServiceFlags.None;
-        foreach (var flagObj in Enum.GetValues(typeof(ServiceFlags)))
+        var allFlags = ServiceFlags.None;
+        foreach (var flag in Enum.GetValues<ServiceFlags>())
         {
-            var flag = (ServiceFlags)flagObj;
             if (flag == ServiceFlags.None)
                 continue;
-            enumValue |= flag;
+            allFlags |= flag;
             valueCount++;
         }
-        var result = _shuttle.GetServiceFlagsSuffix(enumValue);
 
-        // Extract the characters between brackets and split by '|'
-        var characters = result.Trim('[', ']').Split('|');
-        // Check that we have three separate character combination.
+        // Extract the characters between brackets
+        var characters = _shuttle.GetServiceFlagsSuffix(allFlags).Trim('[', ']');
+
+        // Check that we have three separate character combinations.
         Assert.Multiple(() =>
         {
             Assert.That(characters, Is.Unique);
             Assert.That(characters.Length, Is.EqualTo(valueCount));
 
-            foreach (var flagObj in Enum.GetValues(typeof(ServiceFlags)))
+            foreach (var flag in Enum.GetValues<ServiceFlags>())
             {
-                var flag = (ServiceFlags)flagObj;
+                if (flag == ServiceFlags.None)
+                    continue;
+
                 var oneFlagResult = _shuttle.GetServiceFlagsSuffix(flag);
                 // Extract the characters between brackets and split by '|'
-                var oneFlagCharacters = oneFlagResult.Trim('[', ']').Split('|');
+                var oneFlagCharacters = oneFlagResult.Trim('[', ']');
                 // Check that we have three separate character combination.
                 Assert.That(oneFlagCharacters.Length, Is.EqualTo(1));
                 Assert.That(characters.Contains(oneFlagCharacters[0]), Is.True);
