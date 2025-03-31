@@ -113,9 +113,9 @@ public sealed class ItemSystem : SharedItemSystem
         return true;
     }
 
-    // Frontier
+    // Frontier: settable inhand visuals
     /// <summary>
-    ///     An entity holding this item is requesting visual information for in-hand sprites.
+    /// Sets an item's inhand visuals and send out an update.
     /// </summary>
     public void SetVisuals(EntityUid uid, ItemComponent item, Dictionary<HandLocation, List<PrototypeLayerData>> visuals)
     {

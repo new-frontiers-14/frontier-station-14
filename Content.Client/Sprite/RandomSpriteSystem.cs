@@ -1,6 +1,6 @@
 using Content.Client.Clothing;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Item;
+using Content.Shared.Item; // Frontier
 using Content.Shared.Sprite;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameStates;
@@ -90,11 +90,13 @@ public sealed class RandomSpriteSystem : SharedRandomSpriteSystem
         var itemLayers = sprite.InhandVisuals;
         foreach (var keyColorPair in component.Selected)
         {
-            foreach (var layerSet in itemLayers.Values)
+            // Update each hand's layers
+            foreach (var layerList in itemLayers.Values)
             {
-                foreach (var layer in layerSet)
+                // Iterate over list of layers, look for our mappings
+                foreach (var layer in layerList)
                 {
-                    if (layer.MapKeys?.Contains(keyColorPair.Key) ?? false)
+                    if (layer.MapKeys != null && layer.MapKeys.Contains(keyColorPair.Key))
                     {
                         layer.State = keyColorPair.Value.State;
                         layer.Color = keyColorPair.Value.Color;
