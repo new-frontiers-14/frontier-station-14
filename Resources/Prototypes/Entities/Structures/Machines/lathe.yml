@@ -233,6 +233,10 @@
     - SecurityEquipment
     - SecurityWeapons
     - SyringeGuns # Delta-V
+  - type: BlueprintReceiver # Frontier
+    whitelist: # Frontier
+      tags: # Frontier
+      - NFBlueprintProtolathe # Frontier
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -437,7 +441,7 @@
 
 - type: entity
   id: AmmoTechFab
-  parent: [BlueprintReceiverBase, BaseLatheLube] # Frontier: added BlueprintReceiverBase
+  parent: [NFBlueprintReceiverBase, BaseLatheLube] # Frontier: added NFBlueprintReceiverBase
   name: ammo techfab
   description: Prints the bare minimum of bullets that any budget military or armory could need. Nothing fancy.
   components:
@@ -467,10 +471,14 @@
           - Sheet
           - RawMaterial
           - Ingot
+    - type: BlueprintReceiver # Frontier
+      whitelist: # Frontier
+        tags: # Frontier
+        - NFBlueprintAmmoTechfab # Frontier
 
 - type: entity
   id: MedicalTechFab
-  parent: [ BlueprintReceiverBase, BaseLatheLube ] # Frontier: added BlueprintReceiverBase
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ] # Frontier: added NFBlueprintReceiverBase
   name: medical techfab
   description: Prints equipment for use by the medbay.
   components:
@@ -507,6 +515,10 @@
     board: MedicalTechFabCircuitboard
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
+  - type: BlueprintReceiver # Frontier
+    whitelist: # Frontier
+      tags: # Frontier
+      - NFBlueprintMedicalTechfab # Frontier
 
 - type: entity
   parent: BaseLathe

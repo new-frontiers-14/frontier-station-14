@@ -1,5 +1,5 @@
 - type: entity
-  id: BlueprintReceiverBase
+  id: NFBlueprintReceiverBase
   abstract: true
   components:
   - type: BlueprintReceiver
@@ -16,7 +16,7 @@
     - blueprint
 
 - type: entity
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   id: ServiceTechFab
   name: service techfab
   description: Prints equipment for service staff.
@@ -48,9 +48,13 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFServiceTechfabDeprecatedEmagStatic
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintServiceTechfab
 
 - type: entity
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   id: EngineeringTechFab
   name: engineering techfab
   description: Prints equipment for engineers.
@@ -78,9 +82,13 @@
     - NFEngineeringTechfabDeprecatedStatic
     dynamicPacks:
     - NFEngineeringTechfabDeprecated
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintEngineeringTechfab
 
 - type: entity
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   id: SalvageTechfabNF
   name: salvage techfab
   description: Prints equipment for salvagers.
@@ -111,10 +119,14 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFSalvageTechfabDeprecatedEmag
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintSalvageTechfab
 
 - type: entity
   id: NfsdTechFab
-  parent: [ BlueprintReceiverBase, SecurityTechFab ]
+  parent: [ NFBlueprintReceiverBase, SecurityTechFab ]
   name: NFSD techfab
   description: Prints equipment for use by NFSD.
   components:
@@ -147,7 +159,7 @@
 
 - type: entity
   id: MercenaryTechFab
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   name: mercenary techfab
   description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
   components:
@@ -176,6 +188,10 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFMercenaryTechfabDeprecatedEmag
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintMercTechfab
 
 - type: entity
   id: MercenaryTechFabHacked
@@ -269,38 +285,9 @@
 
 - type: entity
   id: BlueprintLithograph
-  parent: BaseLatheLube
-  name: blueprint lithograph
-  description: Prints blueprints.
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Machines/blueprint_printer.rsi
-    snapCardinals: true
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: BlueprintLithographMachineCircuitboard
-  - type: Lathe
-    producingSound: /Audio/Machines/circuitprinter.ogg
-    idleState: icon
-    runningState: building
-    staticPacks:
-    - PowerCellsStatic
-    dynamicPacks:
-    - NFBlueprints
-  - type: RequireProjectileTarget
-
-- type: entity
-  id: BlueprintLithographAdvanced
   parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: advanced blueprint lithograph
-  description: Prints any blueprints for recipes unlocked on the linked tech server.
+  name: blueprint lithograph
+  description: Prints any blueprints for recipes unlocked on the tech server it's linked to.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/blueprint_printer.rsi

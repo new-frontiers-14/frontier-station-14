@@ -1,4 +1,5 @@
-﻿using Robust.Shared.Prototypes;
+﻿using Content.Shared._NF.Research.Prototypes; // Frontier
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Research.Prototypes;
@@ -69,6 +70,14 @@ public sealed partial class TechnologyPrototype : IPrototype
     /// </summary>
     [DataField]
     public IReadOnlyList<GenericUnlock> GenericUnlocks = new List<GenericUnlock>();
+
+    // Frontier: tech blueprints
+    /// <summary>
+    /// The type of blueprint recipes in this technology discipline default to.
+    /// </summary>
+    [DataField]
+    public ProtoId<BlueprintPrototype>? Blueprint;
+    // End Frontier
 }
 
 [DataDefinition]
