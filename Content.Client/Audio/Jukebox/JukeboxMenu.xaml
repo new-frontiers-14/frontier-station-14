@@ -1,3 +1,4 @@
+<!-- Frontier: Added MinWidth & MinHeight to <FancyWindow> -->
 <ui:FancyWindow xmlns="https://spacestation14.io" xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
                 SetSize="400 500" MinWidth="400" MinHeight="200" Title="{Loc 'jukebox-menu-title'}">
     <BoxContainer Margin="4 0" Orientation="Vertical">
@@ -12,8 +13,10 @@
         VerticalExpand="False" SizeFlagsStretchRatio="1">
             <Button Name="PlayButton" Text="{Loc 'jukebox-menu-buttonplay'}" />
             <Button Name="StopButton" Text="{Loc 'jukebox-menu-buttonstop'}" />
+            <!-- Frontier: Shuffle & Replay features.-->
             <Button Name="ShuffleButton" Text="{Loc 'jukebox-menu-buttonshuffle'}" ToggleMode="True"/>
             <Button Name="ReplayButton" Text="{Loc 'jukebox-menu-buttonreplay'}" ToggleMode="True"/>
+            <!-- End Frontier -->
             <Label Name="DurationLabel" Text="00:00 / 00:00" HorizontalAlignment="Right" HorizontalExpand="True"/>
         </BoxContainer>
     </BoxContainer>
