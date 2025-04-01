@@ -391,8 +391,9 @@ namespace Content.Server.Lathe
         {
             if (!args.Powered)
             {
-                RemComp<LatheProducingComponent>(uid);
-                UpdateRunningAppearance(uid, false);
+                AbortProduction(uid); // Frontier
+                // RemComp<LatheProducingComponent>(uid); // Frontier
+                // UpdateRunningAppearance(uid, false); // Frontier
             }
             else if (component.CurrentRecipe != null)
             {
@@ -460,7 +461,8 @@ namespace Content.Server.Lathe
             args.AddPercentageUpgrade("lathe-component-upgrade-material-use", component.FinalMaterialUseMultiplier);
         }
 
-        // Frontier: modify item value
+        // Frontier: modify item value, remove from queue
+        #region Frontier
         private void ModifyPrintedEntityPrice(EntityUid uid, LatheComponent component, EntityUid target)
         {
             // Cannot reduce value, leave item as-is
@@ -492,6 +494,32 @@ namespace Content.Server.Lathe
                 }
             }
         }
+
+        public void AbortProduction(EntityUid uid, LatheComponent? component = null)
+        {
+            if (!Resolve(uid, ref component))
+                return;
+            if (component.CurrentRecipe != null)
+            {
+                // Items incremented on start, need to decrement with removal
+                var batch = component.Queue.First();
+                if (batch.Recipe != component.CurrentRecipe)
+                {
+                    var newBatch = new LatheRecipeBatch(batch.Recipe, 0, 1);
+                    component.Queue.Insert(0, newBatch);
+                }
+                else if (batch.ItemsPrinted > 0)
+                {
+                    batch.ItemsPrinted--;
+                }
+
+                component.CurrentRecipe = null;
+            }
+            RemCompDeferred<LatheProducingComponent>(uid);
+            UpdateUserInterfaceState(uid, component);
+            UpdateRunningAppearance(uid, false);
+        }
+        #endregion
         // End Frontier
     }
 }
