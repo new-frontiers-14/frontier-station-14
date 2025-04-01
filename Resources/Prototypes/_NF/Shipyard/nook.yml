@@ -1,28 +1,39 @@
+# Author Info
+# GitHub: Chervjakys
+# Discord: Chervjakys
 
+# Maintainer Info
+# GitHub: Chervjakys
+# Discord: Chervjakys
+
+# Shuttle Notes:
+#
 - type: vessel
-  id: Ugol
-  name: WSE Ugol
+  id: Nook
+  parent: BaseVessel
+  name: WSE Nook
   description: A ship designed as a mobile home, with space for user modifications. Fast and comfortable.
   price: 22000 ###base sell price is around 17000
   category: Small
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/ugol.yml
+  shuttlePath: /Maps/_NF/Shuttles/nook.yml
+  guidebookPage: ShipyardNook
   class:
   - Civilian
   engine:
   - Uranium
 
 - type: gameMap
-  id: Ugol
-  mapName: 'WSE Ugol'
-  mapPath: /Maps/_NF/Shuttles/ugol.yml
+  id: Nook
+  mapName: 'WSE Nook'
+  mapPath: /Maps/_NF/Shuttles/nook.yml
   minPlayers: 0
   stations:
-    Ugol:
+    Nook:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Ugol {1}'
+          mapNameTemplate: 'Nook {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
