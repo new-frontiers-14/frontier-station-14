@@ -1,9 +1,81 @@
-# Rubber
+# BASE SMG
 - type: entity
-  name: Drozd
-  parent: WeaponSubMachineGunDrozd
-  id: WeaponSubMachineGunDrozdRubber
-  suffix: Non-Lethal
+  id: NFBaseWeaponSubMachineGun
+  parent: BaseWeaponSubMachineGun
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,2
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -3.1
+    maxAngle: -6.2
+  - type: Gun
+    minAngle: 9.1
+    maxAngle: 18.2
+    angleIncrease: 0.5
+    angleDecay: 3
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
+# WizDen
+- type: entity
+  id: NFWeaponSubMachineGunAtreides
+  parent: [ NFBaseWeaponSubMachineGun, BaseC3SyndicateContraband, WeaponSubMachineGunAtreides ]
+  name: atreides
+  description: |-
+    Manufacturer: Gorlex Steel Works
+    Type: Submachine Gun
+    Ammo: .35 auto
+    Desc.: Pla-ket-ket-ket-ket! An illegal firearm often used by Syndicate agents.
+
+- type: entity
+  id: NFWeaponSubMachineGunC20r
+  parent: [ NFBaseWeaponSubMachineGun, BaseC3SyndicateContraband, WeaponSubMachineGunC20r ]
+  name: c-20r
+  description: |-
+    Manufacturer: Cybersun Industries
+    Type: Submachine Gun
+    Ammo: .35 auto
+    Desc.: An illegal firearm that is often used by the infamous nuclear operatives.
+
+- type: entity
+  id: NFWeaponSubMachineGunDrozd
+  parent: [ NFBaseWeaponSubMachineGun, BaseC2ContrabandUnredeemable, WeaponSubMachineGunDrozd ]
+  name: drozd
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Submachine Gun
+    Ammo: .35 auto
+    Desc.: An excellent fully automatic Heavy SMG.
+
+- type: entity
+  id: NFWeaponSubMachineGunWt550
+  parent: [ NFBaseWeaponSubMachineGun, BaseC2ContrabandUnredeemable, WeaponSubMachineGunWt550 ]
+  name: wt550
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Submachine Gun
+    Ammo: .35 auto
+    Desc.: An excellent SMG. On the receiver is a label that says 'for authorized use only.'
+
+# WizDen: Rubber
+- type: entity
+  parent: NFWeaponSubMachineGunDrozd
+  id: NFWeaponSubMachineGunDrozdRubber
+  suffix: Frontier, Non-Lethal
   components:
     - type: ItemSlots
       slots:
@@ -24,3 +96,16 @@
           whitelist:
             tags:
               - CartridgePistol
+
+# DeltaV
+- type: entity
+  id: NFWeaponSubMachineGunTypewriter
+  parent: [ NFBaseWeaponSubMachineGun, BaseC2Contraband, WeaponSubMachineGunTypewriter ]
+  name: typewriter
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Submachine Gun
+    Ammo: .35 auto
+    Desc.: A modern take on the classic design used by mobsters throughout space and time.
+
+# Frontier

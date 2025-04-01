@@ -1,0 +1,277 @@
+# BASE REVOLVER
+- type: entity
+  id: NFBaseWeaponRevolver
+  parent: BaseWeaponRevolver
+  suffix: Frontier
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Gun
+    minAngle: 5.4
+    maxAngle: 10.8
+    angleIncrease: 0.5
+    angleDecay: 3
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: UseDelay
+    delay: 0.66
+
+# BASE RIFLE
+- type: entity
+  id: NFBaseWeaponRifle
+  parent: BaseWeaponSniper
+  suffix: Frontier
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,5,3
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -3.2
+    maxAngle: -6.4
+  - type: Gun
+    minAngle: 6.4
+    maxAngle: 12.8
+    angleIncrease: 0.5
+    angleDecay: 3
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4.5
+    pvsIncrease: 0
+
+# BASE SNIPER RIFLE
+- type: entity
+  id: NFBaseWeaponRifleSniper
+  parent: BaseWeaponSniper
+  suffix: Frontier
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,6,6
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -2.7
+    maxAngle: -5.4
+  - type: Gun
+    minAngle: 5.4
+    maxAngle: 10.8
+    angleIncrease: 4
+    angleDecay: 4
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.1
+    sprintModifier: 0.1
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4.5
+    pvsIncrease: 0
+
+# BASE SHOTGUN
+- type: entity
+  id: NFBaseWeaponShotgun
+  parent: BaseWeaponShotgun
+  suffix: Frontier
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,5,2
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -10.9
+    maxAngle: -21.8
+  - type: Gun
+    minAngle: 21.8
+    maxAngle: 43.6
+    angleIncrease: 5
+    angleDecay: 3
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
+
+# BASE LMG
+- type: entity
+  id: NFBaseWeaponLightMachineGun
+  parent: BaseWeaponLightMachineGun
+  suffix: Frontier
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,6,6
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -6.8
+    maxAngle: -13.6
+  - type: Gun
+    minAngle: 13.6
+    maxAngle: 27.2
+    angleIncrease: 1
+    angleDecay: 2
+    fireRate: 4
+    burstFireRate: 5
+    shotsPerBurst: 5
+    burstCooldown: 0.8
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - Burst
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.6
+    sprintModifier: 0.6
+
+# BASE LAUNCHER
+- type: entity
+  id: NFBaseWeaponLauncher
+  parent: BaseWeaponLauncher
+  suffix: Frontier
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,6,6
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -2.7
+    maxAngle: -5.4
+  - type: Gun
+    minAngle: 5.4
+    maxAngle: 10.8
+    angleIncrease: 5
+    angleDecay: 4
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.1
+    sprintModifier: 0.1
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4.5
+    pvsIncrease: 0
+
+# TEST WEAPONS
+- type: entity
+  id: NFWeaponTestPistol
+  name: test gun pistol
+  suffix: Frontier, DO NOT MAP
+  parent: [NFBaseWeaponPistol, WeaponPistolMk58, BaseC1Contraband]
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Pistol
+    Ammo: .35 auto
+    Desc.: A cheap semiauto sidearm.
+
+- type: entity
+  id: NFWeaponTestMachinePistol
+  name: test gun machine pistol
+  suffix: Frontier, DO NOT MAP
+  parent: [NFBaseWeaponMachinePistol, WeaponPistolViper, BaseC1Contraband]
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Machine Pistol
+    Ammo: .35 auto
+    Desc.: A cheap sidearm capable of full-auto and burst firing.
+
+- type: entity
+  id: NFWeaponTestSubMachineGun
+  name: test gun smg
+  suffix: Frontier, DO NOT MAP
+  parent: [NFBaseWeaponSubMachineGun, WeaponSubMachineGunDrozd, BaseC1Contraband]
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Submachine Gun
+    Ammo: .35 auto
+    Desc.: A cheap SMG.
+
+- type: entity
+  id: NFWeaponTestAssaultRifle
+  name: test gun assault rifle
+  suffix: Frontier, DO NOT MAP
+  parent: [NFBaseWeaponRifleAssault, WeaponRifleLecter, BaseC1Contraband]
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Assault Rifle
+    Ammo: .20 rifle
+    Desc.: A cheap assault rifle.
+
+- type: entity
+  id: NFWeaponTestShotgun
+  name: test gun shotgun
+  suffix: Frontier, DO NOT MAP
+  parent: [NFBaseWeaponShotgun, WeaponShotgunEnforcer, BaseC1Contraband]
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Shotgun
+    Ammo: .50 shell
+    Desc.: A cheap and somewhat reliable shotgun.
+
+- type: entity
+  id: NFWeaponTestRifle
+  name: test gun rifle
+  suffix: Frontier, DO NOT MAP
+  parent: [NFBaseWeaponRifle, WeaponSniperCeremonial, BaseC1Contraband]
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Rifle
+    Ammo: .20 rifle
+    Desc.: A cheap and somewhat reliable rifle.
+
+- type: entity
+  id: NFWeaponTestRifleSniper
+  name: test gun sniper rifle
+  suffix: Frontier, DO NOT MAP
+  parent: [NFBaseWeaponRifleSniper, WeaponSniperHristov, BaseC1Contraband]
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Sniper Rifle
+    Ammo: .60 anti-materiel
+    Desc.: A cheap and somewhat reliable sniper rifle.

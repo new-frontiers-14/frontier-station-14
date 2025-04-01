@@ -1,7 +1,66 @@
+# BASE PISTOL
 - type: entity
-  id: WeaponPistolMk58Nonlethal
-  parent: WeaponPistolMk58
-  suffix: Non-lethal
+  id: NFBaseWeaponPistol
+  parent: BaseWeaponPistol
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Gun
+    minAngle: 6.8
+    maxAngle: 13.6
+    angleIncrease: 0.5
+    angleDecay: 3
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+# WizDen
+- type: entity
+  id: NFWeaponPistolMk58
+  parent: [ NFBaseWeaponPistol, BaseC1Contraband, WeaponPistolMk58 ]
+  name: mk58
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Pistol
+    Ammo: .35 auto
+    Desc.: A cheap semiauto sidearm.
+    ---
+
+- type: entity
+  id: NFWeaponPistolN1984
+  parent: [ NFBaseWeaponPistol, BaseC2ContrabandUnredeemable, WeaponPistolN1984]
+  name: n1984
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Pistol
+    Ammo: .45 magnum
+    Desc.: The sidearm of any self respecting officer. On the handle is a label that says 'for authorized use only.'
+    ---
+
+- type: entity
+  id: NFWeaponPistolCobra
+  parent: [ NFBaseWeaponPistol, BaseC3SyndicateContraband, WeaponPistolCobra ]
+  name: cobra
+  description: |-
+    Manufacturer: Cybersun Industries
+    Type: Pistol
+    Ammo: .45 magnum
+    Desc.: A rugged, robust operator handgun with inbuilt silencer. An illegal firearm often used by Syndicate agents.
+    ---
+
+# WizDen: Rubber
+- type: entity
+  id: NFWeaponPistolMk58Nonlethal
+  parent: NFWeaponPistolMk58
+  suffix: Frontier, Non-lethal
   components:
   - type: ItemSlots
     slots:
@@ -24,9 +83,9 @@
 
 - type: entity
   name: N1984
-  parent: WeaponPistolN1984
-  id: WeaponPistolN1984Nonlethal
-  suffix: Non-lethal
+  parent: NFWeaponPistolN1984
+  id: NFWeaponPistolN1984Nonlethal
+  suffix: Frontier, Non-lethal
   components:
   - type: ItemSlots
     slots:
@@ -46,3 +105,15 @@
         whitelist:
           tags:
             - CartridgeMagnum
+
+# DeltaV
+- type: entity
+  id: NFWeaponPistolUniversal
+  parent: [ NFBaseWeaponPistol, BaseC1Contraband, WeaponPistolUniversal ]
+  name: mk32 "universal"
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Pistol
+    Ammo: .35 auto
+    Desc.: The Mark 32 Offensive Handgun.
+    ---

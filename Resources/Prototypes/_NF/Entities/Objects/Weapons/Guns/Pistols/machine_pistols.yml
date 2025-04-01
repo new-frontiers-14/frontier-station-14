@@ -1,0 +1,46 @@
+# BASE MACHINE PISTOL
+- type: entity
+  id: NFBaseWeaponMachinePistol
+  parent: NFBaseWeaponPistol
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 9.1
+    maxAngle: 18.2
+    angleIncrease: 1
+    angleDecay: 3
+    fireRate: 4
+    burstFireRate: 5
+    shotsPerBurst: 3
+    burstCooldown: 0.8
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - Burst
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+# WizDen
+- type: entity
+  id: NFWeaponPistolViper
+  parent: [NFBaseWeaponMachinePistol, BaseC3SyndicateContraband, WeaponPistolViper]
+  name: viper
+  description: |-
+    Manufacturer: Gorlex Steel Works
+    Type: Pistol
+    Ammo: .35 auto
+    Desc.: A small, easily concealable machine pistol. An illegal firearm often used by Syndicate agents.
+    ---
+
+# DeltaV
+- type: entity
+  id: NFWeaponPistolPollock
+  parent: [NFBaseWeaponMachinePistol, BaseC1Contraband, WeaponPistolPollock]
+  name: pollock
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Machine Pistol
+    Ammo: .35 auto
+    Desc.: A compact and mass-produced combat pistol.
+    ---
