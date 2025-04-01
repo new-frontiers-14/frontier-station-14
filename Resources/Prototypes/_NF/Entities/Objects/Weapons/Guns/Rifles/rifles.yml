@@ -1,8 +1,74 @@
+# BASE RIFLE
+- type: entity
+  id: NFBaseWeaponRifle
+  parent: BaseWeaponSniper
+  suffix: Frontier
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,5,3
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -3.2
+    maxAngle: -6.4
+  - type: Gun
+    minAngle: 6.4
+    maxAngle: 12.8
+    angleIncrease: 0.5
+    angleDecay: 3
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4.5
+    pvsIncrease: 0
+
+# WizDen
+- type: entity
+  id: NFWeaponRifleBarlowsBolt
+  parent: [ NFBaseWeaponRifle, BaseC3SyndicateContraband, WeaponSniperMosin ]
+  name: barlows boltaction rifle # Renamed: real brand name
+  description: |-
+    Manufacturer: Steelbolt Tool Forge
+    Type: Rifle
+    Ammo: .30 rifle
+    Desc.: A weapon for hunting, or endless trench warfare. Equipped with bayonet.
+    ---
+
+- type: entity
+  id: NFWeaponRifleMusket
+  parent: [ NFBaseWeaponRifle, BaseC3PirateContraband, Musket ]
+  name: musket
+  description: |-
+    Manufacturer: Steelbolt Tool Forge
+    Type: Rifle
+    Ammo: .60 anti-materiel
+    Desc.: This should've been in a museum long before you were born.
+    ---
+
+# WizDen: Rubber
+- type: entity
+  id: NFWeaponRifleBarlowsBoltRubber
+  parent: NFWeaponRifleBarlowsBolt
+  suffix: Frontier, Less-lethal
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleRubber
 
 # Frontier
 - type: entity
   id: WeaponRifleSVS
-  parent: [ BaseWeaponRifle, BaseGunMelee, BaseC1Contraband ]
+  parent: [ NFBaseWeaponRifle, BaseGunMelee, BaseC1Contraband ]
   name: SVS-42
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -68,3 +134,26 @@
     pvsIncrease: 0.15
   - type: AltFireMelee
     attackType: Light
+
+- type: entity
+  id: WeaponRifleRepeater
+  parent: [ BaseC1Contraband, NFBaseWeaponRifle, BaseGunWieldable ]
+  name: n2524 pattern repeater
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Rifle
+    Ammo: .30 rifle
+    Desc.: A civilian grade lever action firearm, favored by space cowboys across the Frontier for its reliability.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi
+  - type: StaticPrice
+    price: 500
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeLightRifle
+    capacity: 7
+    proto: CartridgeLightRifle
