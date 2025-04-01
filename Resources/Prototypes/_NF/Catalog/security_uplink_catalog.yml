@@ -148,7 +148,7 @@
   id: UplinkSecurityMK58
   name:  uplink-security-mk58-name
   description: uplink-security-mk58-desc
-  productEntity: WeaponPistolMk58
+  productEntity: NFWeaponPistolMk58
   icon: { sprite: Objects/Weapons/Guns/Pistols/mk58.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 2
@@ -233,7 +233,7 @@
   id: UplinkSecurityLecter
   name:  uplink-security-lecter-name
   description: uplink-security-lecter-desc
-  productEntity: WeaponRifleLecter
+  productEntity: NFWeaponRifleAssaultLecter
   icon: { sprite: Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 3
@@ -254,7 +254,7 @@
   id: UplinkSecurityVulcan
   name:  uplink-security-vulcan-name
   description: uplink-security-vulcan-desc
-  productEntity: WeaponRifleVulcan
+  productEntity: NFWeaponRifleAssaultVulcan
   icon: { sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 3
@@ -336,7 +336,7 @@
   id: UplinkSecurityWT550
   name:  uplink-security-wt550-name
   description: uplink-security-wt550-desc
-  productEntity: WeaponSubMachineGunWt550
+  productEntity: NFWeaponSubMachineGunWt550
   icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 4
@@ -718,26 +718,10 @@
   id: UplinkSecurityInspector
   name:  uplink-security-inspector-name
   description: uplink-security-inspector-desc
-  productEntity: WeaponRevolverInspector
+  productEntity: NFWeaponRevolverInspector
   icon: { sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityMateba
-  name:  uplink-security-mateba-name
-  description: uplink-security-mateba-desc
-  productEntity: WeaponRevolverMateba
-  icon: { sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 3
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -797,46 +781,6 @@
       whitelist:
         - Bailiff
         - SeniorOfficer
-        - Sheriff
-
-- type: listing
-  id: UplinkSecurityPulsePistol
-  name:  uplink-security-pulsepistol-name
-  description: uplink-security-pulsepistol-desc
-  productEntity: WeaponPulsePistol
-  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi, state: base }
-  cost:
-    FrontierUplinkCoin: 12
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
-
-- type: listing
-  id: UplinkSecurityPulseCarbine
-  name:  uplink-security-pulsecarbine-name
-  description: uplink-security-pulsecarbine-desc
-  productEntity: WeaponPulseCarbine
-  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: base }
-  cost:
-    FrontierUplinkCoin: 20
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
         - Sheriff
 
 - type: listing

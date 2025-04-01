@@ -1,8 +1,147 @@
+# BASE REVOLVER
 - type: entity
-  name: Argenti
-  parent: [ BaseC1Contraband, BaseWeaponRevolver ]
+  id: NFBaseWeaponRevolver
+  parent: BaseWeaponRevolver
+  suffix: Frontier
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Gun
+    minAngle: 5.4
+    maxAngle: 10.8
+    angleIncrease: 0.5
+    angleDecay: 3
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: UseDelay
+    delay: 0.66
+
+# WizDen
+- type: entity
+  id: NFWeaponRevolverDeckard
+  parent: [ NFBaseWeaponRevolver, BaseC1Contraband, WeaponRevolverDeckard ]
+  name: deckard
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Revolver
+    Ammo: .45 pistol
+    Desc.: A rare, civilian grade custom-built revolver. Use when there is no time for Voight-Kampff test.
+    ---
+
+- type: entity
+  id: NFWeaponRevolverInspector
+  parent: [ NFBaseWeaponRevolver, BaseC2ContrabandUnredeemable, WeaponRevolverInspector ]
+  name: inspector
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Revolver
+    Ammo: .45 pistol
+    Desc.: A detective's best friend. On the handle is a label that says 'for authorized use only.'
+    ---
+
+- type: entity
+  id: NFWeaponRevolverWard45
+  parent: [ NFBaseWeaponRevolver, BaseC2ContrabandUnredeemable, WeaponRevolverMateba ]
+  name: ward-45 # Renamed: mateba is a real brand name
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Revolver
+    Ammo: .45 pistol
+    Desc.: The iconic sidearm of the dreaded death squads. On the handle is a label that says 'for authorized use only.'
+    ---
+
+- type: entity
+  id: NFWeaponRevolverRitland45
+  parent: [ NFBaseWeaponRevolver, BaseC3SyndicateContraband, WeaponRevolverPython ]
+  name: ritland-45 # Renamed: python is too on the nose
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Revolver
+    Ammo: .45 pistol
+    Desc.: An illegal revolver favoured by Syndicate agents.
+    ---
+
+- type: entity
+  id: NFWeaponRevolverPirate
+  parent: [ NFBaseWeaponRevolver, BaseC3PirateContraband, WeaponRevolverPirate ]
+  name: pirate revolver
+  description: |-
+    Manufacturer: Steelbolt Tool Forge
+    Type: Revolver
+    Ammo: .45 pistol
+    Desc.: An odd, illegal, old-looking revolver, favoured by pirate crews.
+    ---
+
+# DeltaV
+- type: entity
+  id: NFWeaponRevolverFitz
+  parent: [ NFBaseWeaponRevolver, BaseC1Contraband, WeaponRevolverFitz ]
+  name: fitz special
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Revolver
+    Ammo: .45 pistol
+    Desc.: A compact and concealable self defence snub revolver.
+    ---
+
+- type: entity
+  id: NFWeaponRevolverFaith
+  parent: [ NFBaseWeaponRevolver, BaseC1Contraband, WeaponRevolverFaith ]
+  name: faith
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Revolver
+    Ammo: .45 pistol
+    Desc.: Delivers blessings in bullet form.
+    ---
+
+- type: entity
+  id: NFWeaponRevolverLucky
+  parent: [ NFBaseWeaponRevolver, BaseC1Contraband, WeaponRevolverLucky ]
+  name: faith
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Revolver
+    Ammo: .45 pistol
+    Desc.: Luck always beats skill, ya weasel.
+    ---
+
+# WizDen: Rubber
+- type: entity
+  parent: NFWeaponRevolverDeckard
+  id: WeaponRevolverDeckardNonlethal
+  suffix: Non-lethal
+  components:
+  - type: RevolverAmmoProvider
+    capacity: 5
+    proto: CartridgeMagnumRubber
+    chambers: [ True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null ]
+
+- type: entity
+  parent: WeaponRevolverDeckardExpedition
+  id: WeaponRevolverDeckardExpeditionGrifty
+  categories: [ HideSpawnMenu ]
+  name: Customer Service Resolver
+
+# Frontier
+- type: entity
   id: WeaponRevolverArgenti
-  description: The civilian grade Argenti Type 20 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well. Uses .20 rifle ammo.
+  parent: [ BaseC1Contraband, NFBaseWeaponRevolver ]
+  name: argenti
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Revolver
+    Ammo: .35 pistol
+    Desc.: The civilian grade Argenti Type 35 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well.
+    ---
   components:
   - type: Sprite
     scale: 0.75 , 0.75
@@ -24,6 +163,7 @@
   - type: StaticPrice
     price: 200
 
+# Frontier: Rubber
 - type: entity
   parent: WeaponRevolverArgenti
   id: WeaponRevolverArgentiNonlethal
@@ -34,20 +174,3 @@
     proto: CartridgeRifleRubber
     chambers: [ True, True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null, null ]
-
-- type: entity
-  parent: WeaponRevolverDeckard
-  id: WeaponRevolverDeckardNonlethal
-  suffix: Non-lethal
-  components:
-  - type: RevolverAmmoProvider
-    capacity: 5
-    proto: CartridgeMagnumRubber
-    chambers: [ True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null ]
-
-- type: entity
-  parent: WeaponRevolverDeckardExpedition
-  id: WeaponRevolverDeckardExpeditionGrifty
-  categories: [ HideSpawnMenu ]
-  name: Customer Service Resolver

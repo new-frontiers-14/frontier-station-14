@@ -39,12 +39,13 @@
 - type: entity
   id: NFWeaponRifleAssaultSm
   parent: [ NFBaseWeaponRifleAssault, BaseC3SyndicateContraband, WeaponRifleAk ]
-  name: soland-moss assault rifle
+  name: soland-moss assault rifle # Renamed: real brand name
   description: |-
     Manufacturer: Cybersun Industries
     Type: Assault Rifle
     Ammo: .25 rifle (caseless)
     Desc.: An iconic weapon of war. An illegal firearm often used by Syndicate agents.
+    ---
 
 - type: entity
   id: NFWeaponRifleAssaultM90GrenadeLauncher
@@ -55,6 +56,7 @@
     Type: Assault Rifle
     Ammo: .25 rifle (caseless)
     Desc.: An older bullpup carbine model, with an attached underbarrel grenade launcher. An illegal firearm often used by Syndicate agents.
+    ---
 
 - type: entity
   id: NFWeaponRifleAssaultLecter
@@ -65,6 +67,7 @@
     Type: Assault Rifle
     Ammo: .20 rifle
     Desc.: A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
+    ---
 
 # WizDen: Rubber
 - type: entity
@@ -91,6 +94,7 @@
         whitelist:
           tags:
             - CartridgeRifle
+
 # DeltaV
 - type: entity
   id: NFWeaponRifleAssaultVulcan
@@ -101,6 +105,7 @@
     Type: Assault Rifle
     Ammo: .30 rifle
     Desc.: One of the heaviest small arms to grace Security's armory, this rifle is a modern take on a classic, informally dubbed the "Right Arm of the Free World".
+    ---
 
 - type: entity
   id: NFWeaponRifleAssaultJackdaw
@@ -111,6 +116,34 @@
     Type: Assault Rifle
     Ammo: .20 rifle
     Desc.: The beginning of the end is heralded by the song of a Jackdaw.
+    ---
+
+# DeltaV: Rubber
+- type: entity
+  name: Vulcan
+  parent: NFWeaponRifleAssaultVulcan
+  id: NFWeaponRifleAssaultVulcanRubber
+  suffix: Non-lethal
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleRubber
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleRubber
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
 
 # Frontier
 - type: entity
@@ -122,6 +155,7 @@
     Type: Assault Rifle
     Ammo: .20 rifle
     Desc.: An old burst-fire rifle designed by Silver Industries that never left trials.
+    ---
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
@@ -182,6 +216,7 @@
     Type: Assault Rifle
     Ammo: .20 rifle
     Desc.: A civilian grade semi-automatic rifle with an internal magazine.
+    ---
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/novalitec1.rsi
