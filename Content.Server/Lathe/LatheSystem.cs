@@ -528,6 +528,11 @@ namespace Content.Server.Lathe
             if (args.Index < 0 || args.Index >= component.Queue.Count)
                 return;
 
+            var batch = component.Queue[args.Index];
+            _adminLogger.Add(LogType.Action,
+                LogImpact.Low,
+                $"{ToPrettyString(args.Actor):player} deleted a lathe job for ({batch.ItemsPrinted}/{batch.ItemsRequested}) {GetRecipeName(batch.Recipe)} at {ToPrettyString(uid):lathe}");
+
             component.Queue.RemoveAt(args.Index);
             UpdateUserInterfaceState(uid, component);
         }
@@ -551,6 +556,10 @@ namespace Content.Server.Lathe
         {
             if (component.CurrentRecipe == null)
                 return;
+
+            _adminLogger.Add(LogType.Action,
+                LogImpact.Low,
+                $"{ToPrettyString(args.Actor):player} aborted printing {GetRecipeName(component.CurrentRecipe)} at {ToPrettyString(uid):lathe}");
 
             component.CurrentRecipe = null;
             FinishProducing(uid, component);

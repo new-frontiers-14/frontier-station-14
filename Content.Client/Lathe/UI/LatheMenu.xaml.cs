@@ -60,7 +60,7 @@ public sealed partial class LatheMenu : DefaultWindow
         FilterOption.OnItemSelected += OnItemSelected;
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
-        DeleteFabricating.OnPressed += a => DeleteFabricatingAction?.Invoke(); // Frontier
+        DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke(); // Frontier
     }
 
     public void SetEntity(EntityUid uid)
