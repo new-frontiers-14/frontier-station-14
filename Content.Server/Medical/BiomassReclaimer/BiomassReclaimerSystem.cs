@@ -35,9 +35,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Contraband; // Frontier
-using Content.Server.Materials.Components; //possum
-using Content.Server.Botany.Components; //possum
-using Content.Shared.Chemistry.EntitySystems; //possum
 
 namespace Content.Server.Medical.BiomassReclaimer
 {
