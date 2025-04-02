@@ -243,7 +243,7 @@ namespace Content.Server.Medical.BiomassReclaimer
             {
                 component.SpawnedEntities = butcherableComponent.SpawnedEntities;
             }
-            var expectedYield = physics.FixturesMass * component.YieldPerUnitMass;
+
             //Frontier changes start here
             var expectedYieldPlant = 0;
 
