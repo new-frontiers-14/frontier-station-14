@@ -59,11 +59,7 @@ namespace Content.Server.Medical.BiomassReclaimer
         [Dependency] private readonly MaterialStorageSystem _material = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
-        //possum
-        [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-        [Dependency] private readonly NFbiomassEqualizerSystem _equalizerSystem = default!;
-        //
+        [Dependency] private readonly NFbiomassEqualizerSystem _equalizerSystem = default!; //Frontier
 
         [ValidatePrototypeId<MaterialPrototype>]
         public const string BiomassPrototype = "Biomass";
@@ -261,7 +257,7 @@ namespace Content.Server.Medical.BiomassReclaimer
             //Frontier changes end here
 
 
-            var expectedYield = physics.FixturesMass * component.YieldPerUnitMass + expectedYieldPlant; //NF added expectedyieldplant
+            var expectedYield = physics.FixturesMass * component.YieldPerUnitMass + expectedYieldPlant; //Frontier added expectedyieldplant
 
 
             component.CurrentExpectedYield += expectedYield;
