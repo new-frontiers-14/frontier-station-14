@@ -1,7 +1,7 @@
 - type: species
   id: Chitinid
   name: species-name-chitinid
-  roundStart: true
+  roundStart: false # Frontier - off
   prototype: MobChitinid
   sprites: MobChitinidSprites
   defaultSkinTone: "#ffda93"
@@ -17,8 +17,8 @@
   sprites:
     Head: MobChitinidHead
     Snout: MobHumanoidAnyMarking
-#    Underwear: MobHumanoidAnyMarking
-#    Undershirt: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobChitinidTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -69,12 +69,14 @@
     Chest:
       points: 1
       required: false
-#    Underwear:
-#      points: 1
-#      required: false
-#    Undershirt:
-#      points: 1
-#      required: false
+    # Frontier: apparently these don't exist on Delta
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false
+    # End Frontier
     Legs:
       points: 6
       required: false

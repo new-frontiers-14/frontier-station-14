@@ -110,7 +110,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
             // Alerts
 
-            var showAlerts = msg.Unrevivable == true || msg.Uncloneable == true || msg.Bleeding == true; // Frontier: add Uncloneable
+            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true;
 
             AlertsDivider.Visible = showAlerts;
             AlertsContainer.Visible = showAlerts;
@@ -125,16 +125,6 @@ namespace Content.Client.HealthAnalyzer.UI
                     Margin = new Thickness(0, 4),
                     MaxWidth = 300
                 });
-
-            // Frontier: uncloneable text
-            if (msg.Uncloneable == true)
-                AlertsContainer.AddChild(new RichTextLabel
-                {
-                    Text = Loc.GetString("health-analyzer-window-entity-uncloneable-text"),
-                    Margin = new Thickness(0, 4),
-                    MaxWidth = 300
-                });
-            // End Frontier
 
             if (msg.Bleeding == true)
                 AlertsContainer.AddChild(new RichTextLabel
