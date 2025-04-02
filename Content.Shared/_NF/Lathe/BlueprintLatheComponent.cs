@@ -16,7 +16,7 @@ public sealed partial class BlueprintLatheComponent : Component
     /// The lathe's construction queue
     /// </summary>
     [DataField]
-    public List<LatheRecipeBatch> Queue = new(); // Frontier: LatheRecipePrototype<LatheRecipeBatch
+    public List<BlueprintLatheRecipeBatch> Queue = new(); // Frontier: LatheRecipePrototype<LatheRecipeBatch
 
     /// <summary>
     /// The sound that plays when the lathe is producing an item, if any
@@ -42,6 +42,12 @@ public sealed partial class BlueprintLatheComponent : Component
     [DataField(required: true)]
     public TimeSpan BlueprintPrintTime;
 
+    /// <summary>
+    /// If true, blueprints will receive a discount based on the quality of the components in the machine.
+    /// </summary>
+    [ViewVariables]
+    public bool ApplyMaterialDiscount;
+
     #region Visualizer info
     [DataField]
     public string? IdleState;
@@ -57,10 +63,16 @@ public sealed partial class BlueprintLatheComponent : Component
     #endregion
 
     /// <summary>
-    /// The recipe the lathe is currently producing
+    /// The blueprint type the lathe is currently producing.
     /// </summary>
     [ViewVariables]
-    public LatheRecipePrototype? CurrentRecipe;
+    public ProtoId<BlueprintPrototype>? CurrentRecipe;
+
+    /// <summary>
+    /// The recipe types the blueprint the lathe is currently producing.
+    /// </summary>
+    [ViewVariables]
+    public int[]? CurrentRecipeSets;
 
     #region MachineUpgrading
     /// <summary>

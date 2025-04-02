@@ -2,6 +2,7 @@ using System.Linq;
 using System.Text;
 using Content.Client.Materials;
 using Content.Shared._NF.Lathe;
+using Content.Shared._NF.Research.Prototypes;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Research.Prototypes;
@@ -30,9 +31,9 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
 
     public List<ProtoId<LatheRecipePrototype>> Recipes = new();
 
-    public List<ProtoId<LatheCategoryPrototype>>? Categories;
+    public List<ProtoId<BlueprintPrototype>>? BlueprintTypes;
 
-    public ProtoId<LatheCategoryPrototype>? CurrentCategory;
+    public ProtoId<LatheCategoryPrototype>? CurrentBlueprintType;
 
     public EntityUid Entity;
 
@@ -96,7 +97,7 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
                 continue;
 
             // Category filtering
-            if (CurrentCategory != null)
+            if (CurrentBlueprintType != null)
             {
                 if (proto.Categories.Count <= 0)
                     continue;
@@ -230,7 +231,7 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
     /// Populates the build queue list with all queued items
     /// </summary>
     /// <param name="queue"></param>
-    public void PopulateQueueList(List<LatheRecipeBatch> queue) // Frontier: LatheRecipePrototype<LatheRecipeBatch
+    public void PopulateQueueList(List<BlueprintLatheRecipeBatch> queue) // Frontier: LatheRecipePrototype<LatheRecipeBatch
     {
         QueueList.DisposeAllChildren();
 
@@ -240,31 +241,42 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
             var queuedRecipeBox = new BoxContainer();
             queuedRecipeBox.Orientation = BoxContainer.LayoutOrientation.Horizontal;
 
-            // Frontier: batch handling
-            queuedRecipeBox.AddChild(GetRecipeDisplayControl(batch.Recipe));
+            queuedRecipeBox.AddChild(GetBlueprintDisplayControl(batch.BlueprintType));
 
             var queuedRecipeLabel = new Label();
             if (batch.ItemsRequested > 1)
-                queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
+                queuedRecipeLabel.Text = $"{idx}. {GetBlueprintName(batch.BlueprintType)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
             else
-                queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
-            // End Frontier
+                queuedRecipeLabel.Text = $"{idx}. {GetBlueprintName(batch.BlueprintType)}";
+
             queuedRecipeBox.AddChild(queuedRecipeLabel);
             QueueList.AddChild(queuedRecipeBox);
             idx++;
         }
     }
 
-    public void SetQueueInfo(LatheRecipePrototype? recipe)
+    public void SetQueueInfo(ProtoId<BlueprintPrototype>? recipe)
     {
         FabricatingContainer.Visible = recipe != null;
         if (recipe == null)
             return;
 
         FabricatingDisplayContainer.Children.Clear();
-        FabricatingDisplayContainer.AddChild(GetRecipeDisplayControl(recipe));
+        FabricatingDisplayContainer.AddChild(GetBlueprintDisplayControl(recipe.Value));
 
-        NameLabel.Text = _lathe.GetRecipeName(recipe);
+        NameLabel.Text = GetBlueprintName(recipe);
+    }
+
+    public Control GetBlueprintDisplayControl(ProtoId<BlueprintPrototype> recipe)
+    {
+        if (_prototypeManager.TryIndex(recipe, out var blueprintPrototype))
+        {
+            var entProtoView = new EntityPrototypeView();
+            entProtoView.SetPrototype(blueprintPrototype.Blueprint);
+            return entProtoView;
+        }
+
+        return new Control();
     }
 
     public Control GetRecipeDisplayControl(LatheRecipePrototype recipe)
@@ -298,5 +310,15 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
             CurrentCategory = Categories?[obj.Id];
         }
         PopulateRecipes();
+    }
+
+    private string GetBlueprintName(ProtoId<BlueprintPrototype>? recipe)
+    {
+        if (recipe != null
+            && _prototypeManager.TryIndex(recipe, out var blueprintPrototype)
+            && _prototypeManager.TryIndex(blueprintPrototype.Blueprint, out var entityPrototype))
+            return entityPrototype.Name;
+
+        return Loc.GetString("blueprint-lathe-menu-default-blueprint-name");
     }
 }

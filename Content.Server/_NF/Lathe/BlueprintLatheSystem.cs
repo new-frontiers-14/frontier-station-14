@@ -102,7 +102,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         return _availableRecipes;
     }
 
-    public bool TryAddToQueue(EntityUid uid, LatheRecipePrototype recipe, int quantity, BlueprintLatheComponent? component = null)
+    public bool TryAddToQueue(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, int[] recipes, int quantity, BlueprintLatheComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -110,12 +110,12 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         if (quantity <= 0)
             return false;
 
-        if (!CanProduce(uid, recipe, quantity, component))
+        if (!CanProduce(uid, recipes, quantity, component))
             return false;
 
         foreach (var (mat, amount) in component.BlueprintPrintMaterials)
         {
-            var adjustedAmount = recipe.ApplyMaterialDiscount
+            var adjustedAmount = component.ApplyMaterialDiscount
                 ? (int)(-amount * component.FinalMaterialUseMultiplier)
                 : -amount;
             adjustedAmount *= quantity;
@@ -124,10 +124,10 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         }
 
         // Queue up a batch
-        if (component.Queue.Count > 0 && component.Queue[^1].Recipe.ID == recipe.ID)
+        if (component.Queue.Count > 0 && component.Queue[^1].Recipes == recipes)
             component.Queue[^1].ItemsRequested += quantity;
         else
-            component.Queue.Add(new LatheRecipeBatch(recipe, 0, quantity));
+            component.Queue.Add(new BlueprintLatheRecipeBatch(blueprintType, recipes, 0, quantity));
 
         return true;
     }
@@ -144,17 +144,14 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         batch.ItemsPrinted++;
         if (batch.ItemsPrinted >= batch.ItemsRequested || batch.ItemsPrinted < 0) // Rollover sanity check
             component.Queue.RemoveAt(0);
-        var recipe = batch.Recipe;
+        var blueprintType = batch.BlueprintType;
 
         var time = _reagentSpeed.ApplySpeed(uid, component.BlueprintPrintTime) * component.TimeMultiplier;
 
         var lathe = EnsureComp<LatheProducingComponent>(uid);
         lathe.StartTime = _timing.CurTime;
         lathe.ProductionLength = time * component.FinalTimeMultiplier;
-        component.CurrentRecipe = recipe;
-
-        var ev = new LatheStartPrintingEvent(recipe);
-        RaiseLocalEvent(uid, ref ev);
+        component.CurrentRecipe = blueprintType;
 
         _audio.PlayPvs(component.ProducingSound, uid);
         UpdateRunningAppearance(uid, true);
@@ -172,18 +169,31 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         if (!Resolve(uid, ref comp, ref prodComp, false))
             return;
 
-        if (comp.CurrentRecipe != null)
+        if (comp.CurrentRecipe != null
+            && comp.CurrentRecipeSets != null
+            && _proto.TryIndex(comp.CurrentRecipe, out var blueprintProto)
+            && PrintableRecipesByType.TryGetValue(comp.CurrentRecipe.Value, out var possibleRecipes))
         {
-            if (comp.CurrentRecipe.Result is { } resultProto)
+            var blueprint = Spawn(blueprintProto.Blueprint, Transform(uid).Coordinates);
+            var blueprintComp = EnsureComp<BlueprintComponent>(blueprint);
+
+            for (int i = 0; i < possibleRecipes.Count; i++)
             {
-                var blueprint = Spawn("NFBlueprintPrinted", Transform(uid).Coordinates);
-                if (TryComp<BlueprintComponent>(blueprint, out var blueprintComp))
+                int idx = i / 32;
+                int value = 1 << (i % 32);
+
+                if (idx >= possibleRecipes.Count)
+                    break;
+
+                if ((comp.CurrentRecipeSets[idx] & value) != 0)
                 {
-                    blueprintComp.ProvidedRecipes.Add(resultProto.Id);
+
                 }
-                _meta.SetEntityName(blueprint, GetRecipeName(comp.CurrentRecipe));
-                _meta.SetEntityDescription(blueprint, GetRecipeDescription(comp.CurrentRecipe));
             }
+            blueprintComp.ProvidedRecipes.Add(resultProto.Id);
+
+            _meta.SetEntityName(blueprint, Loc.GetString(blueprintProto.Name));
+            _meta.SetEntityDescription(blueprint, Loc.GetString(blueprintProto.Description));
         }
 
         comp.CurrentRecipe = null;
@@ -202,7 +212,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         if (!Resolve(uid, ref component))
             return;
 
-        var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault()?.Recipe; // Frontier: add ?.Recipe
+        var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault()?.BlueprintType;
 
         var state = new BlueprintLatheUpdateState(GetAvailableRecipes(uid), component.Queue, producing);
         _uiSys.SetUiState(uid, LatheUiKey.Key, state);
@@ -315,14 +325,12 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
 
     private void OnLatheQueueRecipeMessage(EntityUid uid, BlueprintLatheComponent component, LatheQueueRecipeMessage args)
     {
-        if (_proto.TryIndex(args.ID, out LatheRecipePrototype? recipe))
+        if (_proto.TryIndex(args.ID, out LatheRecipePrototype? recipe)
+            && TryAddToQueue(uid, recipe, args.Quantity, component))
         {
-            if (TryAddToQueue(uid, recipe, args.Quantity, component))
-            {
-                _adminLogger.Add(LogType.Action,
-                    LogImpact.Low,
-                    $"{ToPrettyString(args.Actor):player} queued {args.Quantity} {GetRecipeName(recipe)} at {ToPrettyString(uid):lathe}");
-            }
+            _adminLogger.Add(LogType.Action,
+                LogImpact.Low,
+                $"{ToPrettyString(args.Actor):player} queued {args.Quantity} {GetRecipeName(recipe)} at {ToPrettyString(uid):lathe}");
         }
         TryStartProducing(uid, component);
         UpdateUserInterfaceState(uid, component);
