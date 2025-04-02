@@ -35,6 +35,9 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Contraband; // Frontier
+using Content.Server.Materials.Components; //possum
+using Content.Server.Botany.Components; //possum
+using Content.Shared.Chemistry.EntitySystems; //possum
 
 namespace Content.Server.Medical.BiomassReclaimer
 {
@@ -56,6 +59,11 @@ namespace Content.Server.Medical.BiomassReclaimer
         [Dependency] private readonly MaterialStorageSystem _material = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
+        //possum
+        [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
+        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+        [Dependency] private readonly NFbiomassEqualizerSystem _equalizerSystem = default!;
+        //
 
         [ValidatePrototypeId<MaterialPrototype>]
         public const string BiomassPrototype = "Biomass";
@@ -243,11 +251,20 @@ namespace Content.Server.Medical.BiomassReclaimer
                 component.SpawnedEntities = butcherableComponent.SpawnedEntities;
             }
 
-            var expectedYield = physics.FixturesMass * component.YieldPerUnitMass;
-            if (HasComp<ProduceComponent>(toProcess))
-                expectedYield *= component.ProduceYieldMultiplier;
-            component.CurrentExpectedYield += expectedYield;
+            //Frontier changes start here
+            var expectedYieldPlant = 0;
 
+            if (HasComp<ProduceComponent>(toProcess) && TryComp<NFbiomassEqualizerComponent>(toProcess, out _))
+            {
+                expectedYieldPlant = _equalizerSystem.ExtractMaterial(toProcess);
+            }
+            //Frontier changes end here
+
+
+            var expectedYield = physics.FixturesMass * component.YieldPerUnitMass + expectedYieldPlant; //NF added expectedyieldplant
+
+
+            component.CurrentExpectedYield += expectedYield;
             component.ProcessingTimer = physics.FixturesMass * component.ProcessingTimePerUnitMass;
 
             var inventory = _inventory.GetHandOrInventoryEntities(toProcess);
