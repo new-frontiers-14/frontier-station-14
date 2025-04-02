@@ -1,3 +1,4 @@
+using Content.Shared._NF.Research.Prototypes;
 using Content.Shared.Materials;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
@@ -13,7 +14,18 @@ public abstract class SharedBlueprintLatheSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
 
-    public readonly HashSet<ProtoId<LatheRecipePrototype>> PrintableRecipes = new();
+    /// <summary>
+    /// A lookup table of all printable recipes and the blueprint type they're printable as.
+    /// </summary>
+    /// <remarks>
+    /// Value in each pair is kept for convenience rather than looking up recipe, then tech, then discipline.
+    /// </remarks>
+    public readonly Dictionary<ProtoId<LatheRecipePrototype>, (ProtoId<BlueprintPrototype> blueprint, int index)> PrintableRecipes = new();
+    /// <summary>
+    /// A lookup table of all printable blueprint types and each recipe that prints as that type.
+    /// Each list must be sorted alphabetically, and these indices are used as indices in a bitset in print requests.
+    /// </summary>
+    public readonly Dictionary<ProtoId<BlueprintPrototype>, List<ProtoId<LatheRecipePrototype>>> PrintableRecipesByType = new();
 
     public override void Initialize()
     {
@@ -62,10 +74,48 @@ public abstract class SharedBlueprintLatheSystem : EntitySystem
     private void BuildBlueprintRecipeList()
     {
         PrintableRecipes.Clear();
+        PrintableRecipesByType.Clear();
+
+        // Set up collections
+        foreach (var blueprintProto in _proto.EnumeratePrototypes<BlueprintPrototype>())
+        {
+            PrintableRecipesByType.Add(blueprintProto.ID, new());
+        }
+
+        // Fill in collections by blueprint type
         foreach (var tech in _proto.EnumeratePrototypes<TechnologyPrototype>())
         {
             foreach (var recipe in tech.RecipeUnlocks)
-                PrintableRecipes.Add(recipe);
+            {
+                if (!_proto.TryIndex(recipe, out var recipeProto))
+                    continue;
+
+                // Add recipe to each blueprint type it supports
+                ProtoId<BlueprintPrototype> blueprintId = "Generic";
+                if (recipeProto.Blueprint != null)
+                    blueprintId = recipeProto.Blueprint.Value;
+                else if (tech.Blueprint != null)
+                    blueprintId = tech.Blueprint.Value;
+                else if (_proto.TryIndex(tech.Discipline, out var disciplineProto) && disciplineProto.Blueprint != null)
+                    blueprintId = disciplineProto.Blueprint.Value;
+
+                PrintableRecipesByType[blueprintId].Add(recipe);
+            }
+        }
+
+        // Associate each recipe with blueprint keys and indices
+        foreach (var (blueprintType, recipeList) in PrintableRecipesByType)
+        {
+            // Ensure alphabetical order for consistent indices in messages
+            recipeList.Sort();
+
+            // Set up index values
+            int index = 0;
+            foreach (var recipe in recipeList)
+            {
+                PrintableRecipes[recipe] = (blueprintType, index);
+                index++;
+            }
         }
     }
 

@@ -1,3 +1,4 @@
+using Content.Shared._NF.Research.Prototypes;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Lathe;
 using Content.Shared.Materials;
@@ -114,17 +115,33 @@ public sealed partial class BlueprintLatheComponent : Component
     #endregion
 }
 
+// Frontier: batch lathe recipes
+[Serializable]
+public sealed partial class BlueprintLatheRecipeBatch : EntityEventArgs
+{
+    public ProtoId<BlueprintPrototype> BlueprintType;
+    public int[] Recipes;
+    public int ItemsPrinted;
+    public int ItemsRequested;
+
+    public BlueprintLatheRecipeBatch(ProtoId<BlueprintPrototype> blueprintType, int[] recipes, int itemsPrinted, int itemsRequested)
+    {
+        BlueprintType = blueprintType;
+        Recipes = recipes;
+        ItemsPrinted = itemsPrinted;
+        ItemsRequested = itemsRequested;
+    }
+}
+// End Frontier
+
 public sealed class BlueprintLatheGetRecipesEvent : EntityEventArgs
 {
     public readonly EntityUid Lathe;
 
-    public bool GetUnavailable;
+    public Dictionary<ProtoId<BlueprintPrototype>, int[]> UnlockedRecipes = new();
 
-    public HashSet<ProtoId<LatheRecipePrototype>> Recipes = new();
-
-    public BlueprintLatheGetRecipesEvent(EntityUid lathe, bool forced)
+    public BlueprintLatheGetRecipesEvent(EntityUid lathe)
     {
         Lathe = lathe;
-        GetUnavailable = forced;
     }
 }

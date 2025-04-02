@@ -29,22 +29,4 @@ public sealed partial class BlueprintPrototype : IPrototype
     /// </summary>
     [DataField]
     public LocId Description = string.Empty;
-
-    /// <summary>
-    /// The type of machines that can accept this blueprint.  Used to categorize blueprints in the lathe.
-    /// </summary>
-    [DataField]
-    public BlueprintType Type = BlueprintType.Autolathe;
-}
-
-[Flags]
-public enum BlueprintType : byte
-{
-    Autolathe = 1 << 0,
-    Engineering = 1 << 1,
-    Medical = 1 << 2,
-    Mercenary = 1 << 3,
-    Nfsd = 1 << 4,
-    Salvage = 1 << 5,
-    Service = 1 << 6,
 }

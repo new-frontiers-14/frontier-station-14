@@ -19,6 +19,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared._NF.Lathe;
+using Content.Shared._NF.Research.Prototypes;
 
 namespace Content.Server._NF.Lathe;
 
@@ -38,7 +39,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
     /// <summary>
     /// Per-tick cache
     /// </summary>
-    private readonly HashSet<ProtoId<LatheRecipePrototype>> _availableRecipes = new();
+    private readonly Dictionary<ProtoId<BlueprintPrototype>, int[]> _availableRecipes = new();
 
     public override void Initialize()
     {
@@ -81,24 +82,24 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
     }
 
     [PublicAPI]
-    public bool TryGetAvailableRecipes(EntityUid uid, [NotNullWhen(true)] out List<ProtoId<LatheRecipePrototype>>? recipes, [NotNullWhen(true)] BlueprintLatheComponent? component = null, bool getUnavailable = false)
+    public bool TryGetAvailableRecipes(EntityUid uid, [NotNullWhen(true)] out Dictionary<ProtoId<BlueprintPrototype>, int[]>? recipes, [NotNullWhen(true)] BlueprintLatheComponent? component = null)
     {
         recipes = null;
         if (!Resolve(uid, ref component))
             return false;
-        recipes = GetAvailableRecipes(uid, component, getUnavailable);
+        recipes = GetAvailableRecipes(uid);
         return true;
     }
 
-    public List<ProtoId<LatheRecipePrototype>> GetAvailableRecipes(EntityUid uid, BlueprintLatheComponent component, bool getUnavailable = false)
+    public Dictionary<ProtoId<BlueprintPrototype>, int[]> GetAvailableRecipes(EntityUid uid)
     {
         _availableRecipes.Clear();
-        var ev = new BlueprintLatheGetRecipesEvent(uid, getUnavailable)
+        var ev = new BlueprintLatheGetRecipesEvent(uid)
         {
-            Recipes = _availableRecipes
+            UnlockedRecipes = _availableRecipes
         };
         RaiseLocalEvent(uid, ev);
-        return [.. ev.Recipes];
+        return _availableRecipes;
     }
 
     public bool TryAddToQueue(EntityUid uid, LatheRecipePrototype recipe, int quantity, BlueprintLatheComponent? component = null)
@@ -203,7 +204,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
 
         var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault()?.Recipe; // Frontier: add ?.Recipe
 
-        var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing);
+        var state = new BlueprintLatheUpdateState(GetAvailableRecipes(uid), component.Queue, producing);
         _uiSys.SetUiState(uid, LatheUiKey.Key, state);
     }
 
@@ -212,15 +213,26 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
     /// </summary>
     public void AddDynamicRecipes(ref BlueprintLatheGetRecipesEvent args, TechnologyDatabaseComponent database)
     {
-        if (args.GetUnavailable)
+        // Setup bitsets
+        foreach (var blueprintType in _proto.EnumeratePrototypes<BlueprintPrototype>())
         {
-            foreach (var recipe in PrintableRecipes)
-                args.Recipes.Add(recipe);
+            if (PrintableRecipesByType.TryGetValue(blueprintType.ID, out var list))
+            {
+                int numbersNeeded = (list.Count + 31) / 32;
+                args.UnlockedRecipes.Add(blueprintType.ID, new int[numbersNeeded]);
+            }
+            else
+                args.UnlockedRecipes.Add(blueprintType.ID, Array.Empty<int>());
         }
-        else
+
+        foreach (var recipe in database.UnlockedRecipes)
         {
-            foreach (var recipe in database.UnlockedRecipes)
-                args.Recipes.Add(recipe);
+            if (PrintableRecipes.TryGetValue(recipe, out var value))
+            {
+                var index = value.index / 32;
+                var intValue = 1 << (value.index % 32);
+                args.UnlockedRecipes[value.blueprint][index] |= intValue;
+            }
         }
     }
 
@@ -287,7 +299,16 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
 
     protected override bool HasRecipe(EntityUid uid, LatheRecipePrototype recipe, BlueprintLatheComponent component)
     {
-        return GetAvailableRecipes(uid, component).Contains(recipe.ID);
+        if (!PrintableRecipes.TryGetValue(recipe.ID, out var recipeInfo))
+            return false;
+
+        var recipeDict = GetAvailableRecipes(uid);
+        if (!recipeDict.TryGetValue(recipeInfo.blueprint, out var intArray)
+            || intArray.Length < (recipeInfo.index + 31) / 32)
+        {
+            return false;
+        }
+        return (intArray[recipeInfo.index / 32] & (1 << (recipeInfo.index % 32))) != 0;
     }
 
     #region UI Messages

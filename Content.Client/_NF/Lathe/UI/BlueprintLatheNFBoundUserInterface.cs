@@ -5,6 +5,7 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.Lathe.UI
 {
+    // Suffixed NF to avoid BUI collisions with LatheBUI
     [UsedImplicitly]
     public sealed class BlueprintLatheNFBoundUserInterface : BoundUserInterface
     {
