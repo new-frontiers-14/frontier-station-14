@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text;
+using Content.Client._NF.Lathe.UI; // Frontier
 using Content.Client.Materials;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
