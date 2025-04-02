@@ -1,6 +1,7 @@
 using Content.Server.Electrocution;
 using Content.Shared.Electrocution;
 using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
 using Content.Server.Wires;
 using Content.Shared.Emp; // Frontier: Upstream - #28984
 using Content.Shared.Power;
@@ -62,15 +63,17 @@ public sealed partial class PowerWireAction : BaseWireAction
             return;
         }
 
+        var receiverSys = EntityManager.System<PowerReceiverSystem>();
+
         if (pulsed)
         {
-            power.PowerDisabled = true;
+            receiverSys.SetPowerDisabled(owner, true, power);
             return;
         }
 
         if (AllWiresCut(owner))
         {
-            power.PowerDisabled = true;
+            receiverSys.SetPowerDisabled(owner, true, power);
         }
         else
         {
@@ -80,12 +83,14 @@ public sealed partial class PowerWireAction : BaseWireAction
                 return;
             }
 
-            if (EntityManager.HasComponent<EmpDisabledComponent>(owner)) // Frontier: Upstream - #28984
+            // Frontier: Upstream - #28984
+            if (EntityManager.HasComponent<EmpDisabledComponent>(owner))
             {
                 return;
             }
+            // End Frontier: Upstream - #28984
 
-            power.PowerDisabled = false;
+            receiverSys.SetPowerDisabled(owner, false, power);
         }
     }
 
