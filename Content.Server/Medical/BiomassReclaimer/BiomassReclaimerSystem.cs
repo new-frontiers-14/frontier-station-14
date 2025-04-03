@@ -244,7 +244,7 @@ namespace Content.Server.Medical.BiomassReclaimer
                 component.SpawnedEntities = butcherableComponent.SpawnedEntities;
             }
 
-            //Frontier changes start here
+            // Frontier: PR #3206
             var expectedYieldPlant = 0;
 
             if (HasComp<ProduceComponent>(toProcess) && TryComp<NFbiomassEqualizerComponent>(toProcess, out _))
