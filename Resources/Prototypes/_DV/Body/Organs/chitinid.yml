@@ -1,0 +1,67 @@
+- type: entity
+  id: OrganChitinidStomach
+  parent: OrganAnimalStomach
+  name: stomach
+  description: "Gross. This is hard to stomach."
+  components:
+#  - type: Organ # Shitmed Change
+#    slotId: stomach # Shitmed Change
+  - type: Sprite
+    state: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Stomach
+  # The stomach metabolizes stuff like foods and drinks.
+  # TODO: Have it work off of the ent's solution container, and move this
+  # to intestines instead.
+  - type: Metabolizer
+    # mm yummy
+    maxReagents: 3
+    metabolizerTypes: [Animal]
+    groups:
+    - id: Food
+    - id: Drink
+
+- type: entity
+  id: OrganChitinidLiver
+  parent: BaseAnimalOrgan
+  name: liver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Organ
+#    slotId: liver # Shitmed
+#    onAdd:  # Shitmed: Need to fix this in some otherway.
+#    - type: UnpoweredFlashlight
+#    - type: PointLight
+#      enabled: false
+#      radius: 3
+#      softness: 5
+#      color: "#2CFA1F"
+#      autoRot: true
+  - type: Sprite
+    state: liver
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [ Animal ]
+    groups:
+    - id: Alcohol
+      rateModifier: 0.1
+#  - type: Liver # Shitmed
+  - type: Tag # goob edit
+    tags:
+    - Meat
+#    - Organ # Shitmed
+#    - Liver # Shitmed
+  - type: Item
+    size: Small
+    heldPrefix: liver

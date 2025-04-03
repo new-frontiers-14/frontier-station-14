@@ -22,6 +22,7 @@
       map: [ "enum.DisposalUnitVisualLayers.OverlayFull" ]
     - state: dispover-handle
       map: [ "enum.DisposalUnitVisualLayers.OverlayEngaged" ]
+    - map: [ "ToolOpenableVisualState.StashOpen" ] # Frontier
     - map: [ "DoorVisualState.DoorOpen" ]
     - map: [ "SeatVisualState.SeatUp" ]
   - type: Rotatable
@@ -91,7 +92,7 @@
     solution: tank
     generated:
       reagents:
-      - ReagentId: Water
+      - ReagentId: AntiSepticFluid # Frontier: Water<AntiSepticFluid
         Quantity: 1
   - type: DrainableSolution
     solution: tank
@@ -132,10 +133,12 @@
       tank:
         maxVol: 500
         reagents:
-        - ReagentId: Water
+        - ReagentId: AntiSepticFluid # Frontier: Water<AntiSepticFluid
           Quantity: 180
         - ReagentId: GastroToxin
           Quantity: 20
+  - type: Toilet # Frontier
+    clogProbability: 0.3 # Frontier
 
 - type: entity
   id: ToiletGoldenEmpty
@@ -187,9 +190,11 @@
       tank:
         maxVol: 500
         reagents:
-        - ReagentId: Water
+        - ReagentId: AntiSepticFluid # Frontier: Water<AntiSepticFluid
           Quantity: 160
         - ReagentId: Gold
           Quantity: 20
         - ReagentId: GastroToxin
           Quantity: 20
+  - type: Toilet # Frontier
+    clogProbability: 0.3 # Frontier
