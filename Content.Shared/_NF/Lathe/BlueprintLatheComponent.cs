@@ -66,7 +66,7 @@ public sealed partial class BlueprintLatheComponent : Component
     /// The blueprint type the lathe is currently producing.
     /// </summary>
     [ViewVariables]
-    public ProtoId<BlueprintPrototype>? CurrentRecipe;
+    public ProtoId<BlueprintPrototype>? CurrentBlueprintType;
 
     /// <summary>
     /// The recipe types the blueprint the lathe is currently producing.

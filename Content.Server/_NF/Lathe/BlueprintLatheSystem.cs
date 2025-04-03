@@ -50,7 +50,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         SubscribeLocalEvent<BlueprintLatheComponent, TechnologyDatabaseModifiedEvent>(OnDatabaseModified);
         SubscribeLocalEvent<BlueprintLatheComponent, ResearchRegistrationChangedEvent>(OnResearchRegistrationChanged);
 
-        SubscribeLocalEvent<BlueprintLatheComponent, LatheQueueRecipeMessage>(OnLatheQueueRecipeMessage);
+        SubscribeLocalEvent<BlueprintLatheComponent, BlueprintLatheQueueRecipeMessage>(OnLatheQueueRecipeMessage);
         SubscribeLocalEvent<BlueprintLatheComponent, LatheSyncRequestMessage>(OnLatheSyncRequestMessage);
 
         SubscribeLocalEvent<BlueprintLatheComponent, BeforeActivatableUIOpenEvent>((u, c, _) => UpdateUserInterfaceState(u, c));
@@ -65,7 +65,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         var query = EntityQueryEnumerator<LatheProducingComponent, BlueprintLatheComponent>();
         while (query.MoveNext(out var uid, out var comp, out var lathe))
         {
-            if (lathe.CurrentRecipe == null)
+            if (lathe.CurrentBlueprintType == null)
                 continue;
 
             if (_timing.CurTime - comp.StartTime >= comp.ProductionLength)
@@ -110,7 +110,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         if (quantity <= 0)
             return false;
 
-        if (!CanProduce(uid, recipes, quantity, component))
+        if (!CanProduce(uid, blueprintType, recipes, quantity, component))
             return false;
 
         foreach (var (mat, amount) in component.BlueprintPrintMaterials)
@@ -136,7 +136,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
     {
         if (!Resolve(uid, ref component))
             return false;
-        if (component.CurrentRecipe != null || component.Queue.Count <= 0 || !this.IsPowered(uid, EntityManager))
+        if (component.CurrentBlueprintType != null || component.Queue.Count <= 0 || !this.IsPowered(uid, EntityManager))
             return false;
 
         // handle batches
@@ -151,7 +151,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         var lathe = EnsureComp<LatheProducingComponent>(uid);
         lathe.StartTime = _timing.CurTime;
         lathe.ProductionLength = time * component.FinalTimeMultiplier;
-        component.CurrentRecipe = blueprintType;
+        component.CurrentBlueprintType = blueprintType;
 
         _audio.PlayPvs(component.ProducingSound, uid);
         UpdateRunningAppearance(uid, true);
@@ -169,10 +169,10 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         if (!Resolve(uid, ref comp, ref prodComp, false))
             return;
 
-        if (comp.CurrentRecipe != null
+        if (comp.CurrentBlueprintType != null
             && comp.CurrentRecipeSets != null
-            && _proto.TryIndex(comp.CurrentRecipe, out var blueprintProto)
-            && PrintableRecipesByType.TryGetValue(comp.CurrentRecipe.Value, out var possibleRecipes))
+            && _proto.TryIndex(comp.CurrentBlueprintType, out var blueprintProto)
+            && PrintableRecipesByType.TryGetValue(comp.CurrentBlueprintType.Value, out var possibleRecipes))
         {
             var blueprint = Spawn(blueprintProto.Blueprint, Transform(uid).Coordinates);
             var blueprintComp = EnsureComp<BlueprintComponent>(blueprint);
@@ -187,16 +187,14 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
 
                 if ((comp.CurrentRecipeSets[idx] & value) != 0)
                 {
-
+                    blueprintComp.ProvidedRecipes.Add(possibleRecipes[i]);
                 }
             }
-            blueprintComp.ProvidedRecipes.Add(resultProto.Id);
-
             _meta.SetEntityName(blueprint, Loc.GetString(blueprintProto.Name));
             _meta.SetEntityDescription(blueprint, Loc.GetString(blueprintProto.Description));
         }
 
-        comp.CurrentRecipe = null;
+        comp.CurrentBlueprintType = null;
         prodComp.StartTime = _timing.CurTime;
 
         if (!TryStartProducing(uid, comp))
@@ -212,7 +210,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         if (!Resolve(uid, ref component))
             return;
 
-        var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault()?.BlueprintType;
+        var producing = component.CurrentBlueprintType ?? component.Queue.FirstOrDefault()?.BlueprintType;
 
         var state = new BlueprintLatheUpdateState(GetAvailableRecipes(uid), component.Queue, producing);
         _uiSys.SetUiState(uid, LatheUiKey.Key, state);
@@ -290,7 +288,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
             RemComp<LatheProducingComponent>(uid);
             UpdateRunningAppearance(uid, false);
         }
-        else if (component.CurrentRecipe != null)
+        else if (component.CurrentBlueprintType != null)
         {
             EnsureComp<LatheProducingComponent>(uid);
             TryStartProducing(uid, component);
@@ -307,10 +305,40 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         UpdateUserInterfaceState(uid, component);
     }
 
-    protected override bool HasRecipe(EntityUid uid, LatheRecipePrototype recipe, BlueprintLatheComponent component)
+    protected override bool HasRecipes(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, int[] requestedRecipes, BlueprintLatheComponent component)
     {
-        if (!PrintableRecipes.TryGetValue(recipe.ID, out var recipeInfo))
+        if (!PrintableRecipesByType.TryGetValue(blueprintType, out var blueprintTypeRecipes))
             return false;
+
+        var availableRecipesByType = GetAvailableRecipes(uid);
+        if (!availableRecipesByType.TryGetValue(blueprintType, out var availableRecipes))
+            return false;
+
+        // If our recipe array is longer than the available recipes, if we're asking for any recipes beyond those bounds, this should fail.
+        for (int i = availableRecipes.Length; i < requestedRecipes.Length; i++)
+        {
+            if (requestedRecipes[i] != 0)
+                return false;
+        }
+
+        // For each set, compare what we want against what we have
+        for (int i = 0; i < Math.Min(requestedRecipes.Length, availableRecipes.Length); i++)
+        {
+            if ((requestedRecipes[i] & ~availableRecipes[i]) != 0)
+                return false;
+        }
+
+        return true;
+    }
+
+    // TODO: Not sure if we need this.
+    protected override bool HasRecipe(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, ProtoId<LatheRecipePrototype> recipe, BlueprintLatheComponent component)
+    {
+        if (!PrintableRecipes.TryGetValue(recipe, out var recipeInfo)
+            || recipeInfo.blueprint != blueprintType) // belt and suspenders, but blueprintType isn't needed
+        {
+            return false;
+        }
 
         var recipeDict = GetAvailableRecipes(uid);
         if (!recipeDict.TryGetValue(recipeInfo.blueprint, out var intArray)
@@ -323,14 +351,14 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
 
     #region UI Messages
 
-    private void OnLatheQueueRecipeMessage(EntityUid uid, BlueprintLatheComponent component, LatheQueueRecipeMessage args)
+    private void OnLatheQueueRecipeMessage(EntityUid uid, BlueprintLatheComponent component, BlueprintLatheQueueRecipeMessage args)
     {
-        if (_proto.TryIndex(args.ID, out LatheRecipePrototype? recipe)
-            && TryAddToQueue(uid, recipe, args.Quantity, component))
+        if (_proto.TryIndex(args.BlueprintType, out BlueprintPrototype? recipe)
+            && TryAddToQueue(uid, recipe.ID, args.Recipes, args.Quantity, component))
         {
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(args.Actor):player} queued {args.Quantity} {GetRecipeName(recipe)} at {ToPrettyString(uid):lathe}");
+                $"{ToPrettyString(args.Actor):player} queued {args.Quantity} at {ToPrettyString(uid):lathe}");
         }
         TryStartProducing(uid, component);
         UpdateUserInterfaceState(uid, component);

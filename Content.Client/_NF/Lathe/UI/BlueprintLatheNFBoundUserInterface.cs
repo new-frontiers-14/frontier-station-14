@@ -1,3 +1,4 @@
+using Content.Shared._NF.Lathe;
 using Content.Shared.Lathe;
 using Content.Shared.Research.Components;
 using JetBrains.Annotations;
@@ -39,9 +40,9 @@ namespace Content.Client._NF.Lathe.UI
 
             switch (state)
             {
-                case LatheUpdateState msg:
+                case BlueprintLatheUpdateState msg:
                     if (_menu != null)
-                        _menu.Recipes = msg.Recipes;
+                        _menu.RecipesByBlueprintType = msg.RecipeBitsetByBlueprintType;
                     _menu?.PopulateRecipes();
                     _menu?.UpdateCategories();
                     _menu?.PopulateQueueList(msg.Queue);

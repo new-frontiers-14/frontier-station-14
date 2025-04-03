@@ -5,6 +5,8 @@ using Content.Client.Power;
 using Content.Shared.Research.Prototypes;
 using Content.Client.Lathe;
 using Content.Shared._NF.Lathe;
+using Robust.Shared.Prototypes;
+using Content.Shared._NF.Research.Prototypes;
 
 namespace Content.Client._NF.Lathe;
 
@@ -55,7 +57,12 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
     /// Whether or not a recipe is available is not really visible to the client,
     /// so it just defaults to true.
     ///</remarks>
-    protected override bool HasRecipe(EntityUid uid, LatheRecipePrototype recipe, BlueprintLatheComponent component)
+    protected override bool HasRecipes(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, int[] recipes, BlueprintLatheComponent component)
+    {
+        return true;
+    }
+
+    protected override bool HasRecipe(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, ProtoId<LatheRecipePrototype> recipe, BlueprintLatheComponent component)
     {
         return true;
     }

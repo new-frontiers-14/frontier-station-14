@@ -37,21 +37,45 @@ public abstract class SharedBlueprintLatheSystem : EntitySystem
     }
 
     [PublicAPI]
-    public bool CanProduce(EntityUid uid, string recipe, int amount = 1, BlueprintLatheComponent? component = null)
-    {
-        return _proto.TryIndex<LatheRecipePrototype>(recipe, out var proto) && CanProduce(uid, proto, amount, component);
-    }
-
-    public bool CanProduce(EntityUid uid, LatheRecipePrototype recipe, int amount = 1, BlueprintLatheComponent? component = null)
+    public bool CanProduce(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, int[] recipe, int amount = 1, BlueprintLatheComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;
-        if (!HasRecipe(uid, recipe, component))
+        // TODO: should we reduce the set of recipes down to what we do have (and fail on empty) if this asks for things we don't have vs. failing?
+        if (!HasRecipes(uid, blueprintType, recipe, component))
+            return false;
+
+        return HasBlueprintMaterial(uid, amount, component);
+    }
+
+    [PublicAPI]
+    public bool HasBlueprintMaterial(EntityUid uid, int amount = 1, BlueprintLatheComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
             return false;
 
         foreach (var (material, needed) in component.BlueprintPrintMaterials)
         {
-            var adjustedAmount = AdjustMaterial(needed, recipe.ApplyMaterialDiscount, component.FinalMaterialUseMultiplier);
+            var adjustedAmount = AdjustMaterial(needed, component.ApplyMaterialDiscount, component.FinalMaterialUseMultiplier);
+
+            if (_materialStorage.GetMaterialAmount(uid, material) < adjustedAmount * amount)
+                return false;
+        }
+        return true;
+    }
+
+    [PublicAPI]
+    public bool CanProduceRecipe(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, ProtoId<LatheRecipePrototype> recipe, int amount = 1, BlueprintLatheComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return false;
+        // TODO: should we reduce the set of recipes down to what we do have (and fail on empty) if this asks for things we don't have vs. failing?
+        if (!HasRecipe(uid, blueprintType, recipe, component))
+            return false;
+
+        foreach (var (material, needed) in component.BlueprintPrintMaterials)
+        {
+            var adjustedAmount = AdjustMaterial(needed, component.ApplyMaterialDiscount, component.FinalMaterialUseMultiplier);
 
             if (_materialStorage.GetMaterialAmount(uid, material) < adjustedAmount * amount)
                 return false;
@@ -62,7 +86,8 @@ public abstract class SharedBlueprintLatheSystem : EntitySystem
     public static int AdjustMaterial(int original, bool reduce, float multiplier)
         => reduce ? (int)MathF.Ceiling(original * multiplier) : original;
 
-    protected abstract bool HasRecipe(EntityUid uid, LatheRecipePrototype recipe, BlueprintLatheComponent component);
+    protected abstract bool HasRecipes(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, int[] recipe, BlueprintLatheComponent component);
+    protected abstract bool HasRecipe(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, ProtoId<LatheRecipePrototype> recipe, BlueprintLatheComponent component);
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs obj)
     {

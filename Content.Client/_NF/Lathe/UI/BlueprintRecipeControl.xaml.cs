@@ -9,10 +9,11 @@ namespace Content.Client._NF.Lathe.UI;
 [GenerateTypedNameReferences]
 public sealed partial class BlueprintRecipeControl : Control
 {
-    public Action<string>? OnButtonPressed;
     public Func<string> TooltipTextSupplier;
+    public bool Selected = false;
+    public int Index;
 
-    public BlueprintRecipeControl(BlueprintLatheSystem latheSystem, LatheRecipePrototype recipe, Func<string> tooltipTextSupplier, bool canProduce, Control displayControl)
+    public BlueprintRecipeControl(BlueprintLatheSystem latheSystem, LatheRecipePrototype recipe, Func<string> tooltipTextSupplier, bool canProduce, Control displayControl, int index)
     {
         RobustXamlLoader.Load(this);
 
@@ -21,10 +22,12 @@ public sealed partial class BlueprintRecipeControl : Control
         Button.Disabled = !canProduce;
         TooltipTextSupplier = tooltipTextSupplier;
         Button.TooltipSupplier = SupplyTooltip;
+        Index = index;
 
         Button.OnPressed += (_) =>
         {
-            OnButtonPressed?.Invoke(recipe.ID);
+            Selected = !Selected;
+            Button.Pressed = Selected;
         };
     }
 

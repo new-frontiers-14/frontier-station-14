@@ -7,15 +7,19 @@ namespace Content.Shared._NF.Lathe;
 [Serializable, NetSerializable]
 public sealed class BlueprintLatheUpdateState : BoundUserInterfaceState
 {
-    public Dictionary<ProtoId<BlueprintPrototype>, int[]> RecipesByIndex;
+    public Dictionary<ProtoId<BlueprintPrototype>, int[]> RecipeBitsetByBlueprintType;
 
     public List<BlueprintLatheRecipeBatch> Queue;
 
     public ProtoId<BlueprintPrototype>? CurrentlyProducing;
 
-    public BlueprintLatheUpdateState(Dictionary<ProtoId<BlueprintPrototype>, int[]> recipesByIndex, List<BlueprintLatheRecipeBatch> queue, ProtoId<BlueprintPrototype>? currentlyProducing = null)
+    public BlueprintLatheUpdateState(
+        Dictionary<ProtoId<BlueprintPrototype>, int[]> recipeBitsetByBlueprintType,
+        List<BlueprintLatheRecipeBatch> queue,
+        ProtoId<BlueprintPrototype>? currentlyProducing = null
+    )
     {
-        RecipesByIndex = recipesByIndex;
+        RecipeBitsetByBlueprintType = recipeBitsetByBlueprintType;
         Queue = queue;
         CurrentlyProducing = currentlyProducing;
     }

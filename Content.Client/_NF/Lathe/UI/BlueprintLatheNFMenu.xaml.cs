@@ -29,11 +29,11 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
     public event Action<string, int>? RecipeQueueAction;
 
-    public List<ProtoId<LatheRecipePrototype>> Recipes = new();
+    public Dictionary<ProtoId<BlueprintPrototype>, int[]> RecipesByBlueprintType = new();
 
     public List<ProtoId<BlueprintPrototype>>? BlueprintTypes;
 
-    public ProtoId<LatheCategoryPrototype>? CurrentBlueprintType;
+    public ProtoId<BlueprintPrototype>? CurrentBlueprintType;
 
     public EntityUid Entity;
 
@@ -90,54 +90,60 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
     /// </summary>
     public void PopulateRecipes()
     {
-        var recipesToShow = new List<LatheRecipePrototype>();
-        foreach (var recipe in Recipes)
+        var recipesToShow = new List<(LatheRecipePrototype recipe, int index)>();
+
+        // TODO: if blueprint type is null, default to the first index if there is one
+        if (CurrentBlueprintType == null
+            || !RecipesByBlueprintType.TryGetValue(CurrentBlueprintType.Value, out var recipeBitset)
+            || !_lathe.PrintableRecipesByType.TryGetValue(CurrentBlueprintType.Value, out var recipeList))
         {
-            if (!_prototypeManager.TryIndex(recipe, out var proto))
-                continue;
+            return;
+        }
 
-            // Category filtering
-            if (CurrentBlueprintType != null)
+        // Find bits in the bitset, add recipes for our current blueprint type.
+        for (int i = 0; i < recipeBitset.Length; i++)
+        {
+            for (int j = 0; j < 32; j++)
             {
-                if (proto.Categories.Count <= 0)
+                var index = 32 * i + j;
+                if (index < recipeList.Count)
+                    break;
+
+                // No bit or no recipe?
+                if ((recipeBitset[i] & (1 << j)) == 0
+                    || !_prototypeManager.TryIndex(recipeList[32 * i + j], out var recipe))
+                {
                     continue;
+                }
 
-                var validRecipe = proto.Categories.Any(category => category == CurrentCategory);
-
-                if (!validRecipe)
-                    continue;
-            }
-
-            if (SearchBar.Text.Trim().Length != 0)
-            {
-                if (_lathe.GetRecipeName(recipe).ToLowerInvariant().Contains(SearchBar.Text.Trim().ToLowerInvariant()))
-                    recipesToShow.Add(proto);
-            }
-            else
-            {
-                recipesToShow.Add(proto);
+                if (SearchBar.Text.Trim().Length != 0)
+                {
+                    if (_lathe.GetRecipeName(recipe).ToLowerInvariant().Contains(SearchBar.Text.Trim().ToLowerInvariant()))
+                        recipesToShow.Add((recipe, index));
+                }
+                else
+                {
+                    recipesToShow.Add((recipe, index));
+                }
             }
         }
+
+        // TODO: associate each control with the index of its bit, for server requests.
 
         if (!int.TryParse(AmountLineEdit.Text, out var quantity) || quantity <= 0)
             quantity = 1;
 
-        var sortedRecipesToShow = recipesToShow.OrderBy(_lathe.GetRecipeName);
+        var sortedRecipesToShow = recipesToShow.OrderBy(x => _lathe.GetRecipeName(x.recipe));
         RecipeList.Children.Clear();
         if (!_entityManager.TryGetComponent(Entity, out BlueprintLatheComponent? lathe))
             return;
 
-        foreach (var prototype in sortedRecipesToShow)
+        foreach (var item in sortedRecipesToShow)
         {
-            var canProduce = _lathe.CanProduce(Entity, prototype, quantity, component: lathe);
+            // TODO: fix lookup by blueprint type
+            var canProduce = _lathe.CanProduceRecipe(Entity, CurrentBlueprintType.Value, item.recipe, quantity, component: lathe);
 
-            var control = new BlueprintRecipeControl(_lathe, prototype, () => GenerateTooltipText(prototype, lathe), canProduce, GetRecipeDisplayControl(prototype));
-            control.OnButtonPressed += s =>
-            {
-                if (!int.TryParse(AmountLineEdit.Text, out var amount) || amount <= 0)
-                    amount = 1;
-                RecipeQueueAction?.Invoke(s, amount);
-            };
+            var control = new BlueprintRecipeControl(_lathe, item.recipe, () => GenerateTooltipText(item.recipe, lathe), canProduce, GetRecipeDisplayControl(item.recipe), item.index);
             RecipeList.AddChild(control);
         }
     }
@@ -190,41 +196,27 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
 
     public void UpdateCategories()
     {
-        // Get categories from recipes
-        var currentCategories = new List<ProtoId<LatheCategoryPrototype>>();
-        foreach (var recipeId in Recipes)
-        {
-            var recipe = _prototypeManager.Index(recipeId);
+        // Get categories from recipe dictionary.
+        List<ProtoId<BlueprintPrototype>> currentBlueprintTypes = RecipesByBlueprintType.Keys.ToList();
 
-            if (recipe.Categories.Count <= 0)
-                continue;
-
-            foreach (var category in recipe.Categories)
-            {
-                if (currentCategories.Contains(category))
-                    continue;
-
-                currentCategories.Add(category);
-            }
-        }
-
-        if (Categories != null && (Categories.Count == currentCategories.Count || !Categories.All(currentCategories.Contains)))
+        if (BlueprintTypes != null
+            && (BlueprintTypes.Count == currentBlueprintTypes.Count || !BlueprintTypes.All(currentBlueprintTypes.Contains)))
             return;
 
-        Categories = currentCategories;
-        var sortedCategories = currentCategories
+        BlueprintTypes = currentBlueprintTypes;
+        var sortedBlueprintTypes = currentBlueprintTypes
             .Select(p => _prototypeManager.Index(p))
             .OrderBy(p => Loc.GetString(p.Name))
             .ToList();
 
         FilterOption.Clear();
-        FilterOption.AddItem(Loc.GetString("lathe-menu-category-all"), -1);
-        foreach (var category in sortedCategories)
+        foreach (var blueprintType in sortedBlueprintTypes)
         {
-            FilterOption.AddItem(Loc.GetString(category.Name), Categories.IndexOf(category.ID));
+            FilterOption.AddItem(Loc.GetString(blueprintType.Name), BlueprintTypes.IndexOf(blueprintType.ID));
         }
 
-        FilterOption.SelectId(-1);
+        // Default to whatever the first item is.  No blueprint type is not a valid selection.
+        FilterOption.SelectId(0);
     }
 
     /// <summary>
@@ -303,11 +295,11 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
         FilterOption.SelectId(obj.Id);
         if (obj.Id == -1)
         {
-            CurrentCategory = null;
+            CurrentBlueprintType = null;
         }
         else
         {
-            CurrentCategory = Categories?[obj.Id];
+            CurrentBlueprintType = BlueprintTypes?[obj.Id];
         }
         PopulateRecipes();
     }
@@ -320,5 +312,10 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
             return entityPrototype.Name;
 
         return Loc.GetString("blueprint-lathe-menu-default-blueprint-name");
+    }
+
+    // Enqueue blueprint based on the currently selected buttons by index and selected status
+    private void QueueBlueprint()
+    {
     }
 }
