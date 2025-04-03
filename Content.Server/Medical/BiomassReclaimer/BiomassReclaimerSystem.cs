@@ -56,7 +56,7 @@ namespace Content.Server.Medical.BiomassReclaimer
         [Dependency] private readonly MaterialStorageSystem _material = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
-        [Dependency] private readonly NFbiomassEqualizerSystem _equalizerSystem = default!; //Frontier
+        [Dependency] private readonly NFbiomassEqualizerSystem _equalizerSystem = default!; // Frontier
 
         [ValidatePrototypeId<MaterialPrototype>]
         public const string BiomassPrototype = "Biomass";
