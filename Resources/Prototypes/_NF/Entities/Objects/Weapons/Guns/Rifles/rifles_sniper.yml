@@ -1,0 +1,46 @@
+# BASE SNIPER RIFLE
+- type: entity
+  id: NFBaseWeaponRifleSniper
+  parent: BaseWeaponSniper
+  suffix: Frontier
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,6,6
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -2.7
+    maxAngle: -5.4
+  - type: Gun
+    minAngle: 5.4
+    maxAngle: 10.8
+    angleIncrease: 4
+    angleDecay: 4
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.1
+    sprintModifier: 0.1
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4.5
+    pvsIncrease: 0
+
+# WizDen
+- type: entity
+  id: NFWeaponSniperHristov
+  parent: [ NFBaseWeaponRifleSniper, BaseC3SyndicateContraband, WeaponSniperHristov ]
+  name: hristov
+  description: |-
+    Manufacturer: Steelbolt Tool Forge
+    Type: Rifle
+    Ammo: .60 rifle
+    Desc.: A portable anti-materiel rifle.
+    ---

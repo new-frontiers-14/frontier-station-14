@@ -1,5 +1,86 @@
+# BASE LAUNCHER
 - type: entity
-  parent: WeaponLauncherChinaLake
+  id: NFBaseWeaponLauncher
+  parent: BaseWeaponLauncher
+  suffix: Frontier
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,6,6
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -2.7
+    maxAngle: -5.4
+  - type: Gun
+    minAngle: 5.4
+    maxAngle: 10.8
+    angleIncrease: 5
+    angleDecay: 4
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.1
+    sprintModifier: 0.1
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4.5
+    pvsIncrease: 0
+
+# WizDen
+- type: entity
+  id: NFWeaponLauncherChinaLake
+  parent: [ NFBaseWeaponLauncher, BaseC3SyndicateContraband, WeaponLauncherChinaLake ]
+  name: china lake
+  description: |-
+    Manufacturer: Gorlex Steel Works
+    Type: Launcher
+    Ammo: 40mm Grenades
+    Desc.: PLOOP.
+    ---
+
+- type: entity
+  id: NFWeaponLauncherRocket
+  parent: [ NFBaseWeaponLauncher, BaseC3SyndicateContraband, WeaponLauncherRocket ]
+  name: gsw rocket launcher mk4
+  description: |-
+    Manufacturer: Gorlex Steel Works
+    Type: Launcher
+    Ammo: Rocket-propelled grenades
+    Desc.: A modified ancient rocket-propelled grenade launcher.
+    ---
+
+- type: entity
+  id: NFWeaponLauncherMultipleRocket
+  parent: [ NFBaseWeaponLauncher, BaseC3SyndicateContraband, WeaponLauncherMultipleRocket ]
+  name: gsw multiple rocket launcher mk2
+  description: |-
+    Manufacturer: Gorlex Steel Works
+    Type: Launcher
+    Ammo: Rocket-propelled grenades
+    Desc.: A modified ancient rocket-propelled grenade launcher.
+    ---
+
+- type: entity
+  id: NFWeaponLauncherPirateCannon
+  parent: [ NFBaseWeaponLauncher, BaseC3PirateContraband, WeaponLauncherPirateCannon ]
+  name: pirate cannon
+  description: |-
+    Manufacturer: Steelbolt Tool Forge
+    Type: Launcher
+    Ammo: 40mm Cannon Balls
+    Desc.: Kaboom!
+    ---
+
+# Frontier variations
+- type: entity
+  parent: NFWeaponLauncherChinaLake
   suffix: EMP
   id: WeaponLauncherChinaLakeEmp
   components:
@@ -16,7 +97,7 @@
 
 - type: entity
   name: mail RPDS
-  parent: [BaseC1Contraband, WeaponLauncherChinaLake]
+  parent: [BaseC1Contraband, NFWeaponLauncherChinaLake]
   id: WeaponMailLake
   description: Rap(b?)id Parcel Delivery System
   components:
@@ -38,7 +119,7 @@
 
 - type: entity
   name: NFSD grenade launcher
-  parent: [BaseC2ContrabandUnredeemable, WeaponLauncherChinaLake]
+  parent: [BaseC2ContrabandUnredeemable, NFWeaponLauncherChinaLake]
   id: WeaponLauncherNfsdLake
   description: Able to lob both grenades and darts!
   components:

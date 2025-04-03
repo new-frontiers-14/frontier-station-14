@@ -709,8 +709,8 @@
 - type: entity
   id: BorgModuleL6C
   parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
-  name: L6C ROW cyborg module
-  description: A module that comes with a L6C.
+  name: cyborg gsw lmg-6 module # Frontier: "L6C ROW cyborg module"<"cyborg gsw lmg-6 module"
+  description: A module that comes with a gsw lmg-6. # Frontier
   components:
     - type: Sprite
       layers:
@@ -719,7 +719,7 @@
     - type: ItemBorgModule
       moduleId: L6CROW # Frontier
       items:
-        - WeaponLightMachineGunL6C
+        - NFWeaponLightMachineGunL6C # Frontier: WeaponLightMachineGunL6C<NFWeaponLightMachineGunL6C
         - PinpointerSyndicateNuclear
     - type: BorgModuleIcon
       icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }

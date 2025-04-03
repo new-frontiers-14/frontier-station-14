@@ -1,0 +1,60 @@
+
+# BASE LMG
+- type: entity
+  id: NFBaseWeaponLightMachineGun
+  parent: BaseWeaponLightMachineGun
+  suffix: Frontier
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,6,6
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -6.8
+    maxAngle: -13.6
+  - type: Gun
+    minAngle: 13.6
+    maxAngle: 27.2
+    angleIncrease: 1
+    angleDecay: 2
+    fireRate: 4
+    burstFireRate: 5
+    shotsPerBurst: 5
+    burstCooldown: 0.8
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - Burst
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.6
+    sprintModifier: 0.6
+
+# WizDen
+- type: entity
+  id: NFWeaponLightMachineGunL6
+  parent: [ NFBaseWeaponLightMachineGun, BaseC3SyndicateContraband, WeaponLightMachineGunL6 ]
+  name: gsw lmg-6
+  description: |-
+    Manufacturer: Gorlex Steel Works
+    Type: Light Machine Gun
+    Ammo: .20 rifle
+    Desc.: A rather traditionally made LMG with a pleasantly lacquered wooden pistol grip. An illegal firearm often used by Syndicate agents.
+    ---
+
+- type: entity
+  id: NFWeaponLightMachineGunL6C
+  parent: [ NFBaseWeaponLightMachineGun, BaseC3SyndicateContraband, WeaponLightMachineGunL6C ]
+  name: cyborg gsw lmg-6
+  description: |-
+    Manufacturer: Gorlex Steel Works
+    Type: Light Machine Gun
+    Ammo: .20 rifle
+    Desc.: A GSW LMG-6 for use by cyborgs. Creates rifle ammo on the fly from an internal ammo fabricator, which slowly self-charges. An illegal firearm often used by Syndicate agents.
+    ---
