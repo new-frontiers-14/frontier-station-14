@@ -213,7 +213,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         var producing = component.CurrentBlueprintType ?? component.Queue.FirstOrDefault()?.BlueprintType;
 
         var state = new BlueprintLatheUpdateState(GetAvailableRecipes(uid), component.Queue, producing);
-        _uiSys.SetUiState(uid, LatheUiKey.Key, state);
+        _uiSys.SetUiState(uid, BlueprintLatheUiKey.Key, state);
     }
 
     /// <summary>

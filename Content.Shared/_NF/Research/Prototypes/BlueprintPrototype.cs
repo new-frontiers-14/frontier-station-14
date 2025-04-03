@@ -19,10 +19,16 @@ public sealed partial class BlueprintPrototype : IPrototype
     public EntProtoId Blueprint;
 
     /// <summary>
-    /// The name of the blueprint, should be a locale string accepting the {$name} tag.
+    /// The name of the blueprint type itself.
     /// </summary>
     [DataField]
     public LocId Name = string.Empty;
+
+    /// <summary>
+    /// The name of a given blueprint of this type, should be a locale string accepting the {$name} tag.
+    /// </summary>
+    [DataField]
+    public LocId EntityName = string.Empty;
 
     /// <summary>
     /// The description of the blueprint, should be a locale string accepting the {$name} tag.
