@@ -12,6 +12,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Client._NF.Lathe.UI;
 
@@ -91,9 +92,17 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
     {
         var recipesToShow = new List<(LatheRecipePrototype recipe, int index)>();
 
-        // TODO: if blueprint type is null, default to the first index if there is one
+        // Coerce a null blueprint type into a valid one if possible.
+        int[]? recipeBitset = null;
         if (CurrentBlueprintType == null
-            || !RecipesByBlueprintType.TryGetValue(CurrentBlueprintType.Value, out var recipeBitset)
+            || !RecipesByBlueprintType.TryGetValue(CurrentBlueprintType.Value, out recipeBitset))
+        {
+            CurrentBlueprintType = RecipesByBlueprintType.Keys.FirstOrNull();
+        }
+
+        // Check that we can still get a set of recipes from what we have.
+        if (CurrentBlueprintType == null
+            || !RecipesByBlueprintType.TryGetValue(CurrentBlueprintType.Value, out recipeBitset)
             || !_lathe.PrintableRecipesByType.TryGetValue(CurrentBlueprintType.Value, out var recipeList))
         {
             return;
@@ -105,12 +114,12 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
             for (int j = 0; j < 32; j++)
             {
                 var index = 32 * i + j;
-                if (index < recipeList.Count)
+                if (index >= recipeList.Count)
                     break;
 
                 // No bit or no recipe?
                 if ((recipeBitset[i] & (1 << j)) == 0
-                    || !_prototypeManager.TryIndex(recipeList[32 * i + j], out var recipe))
+                    || !_prototypeManager.TryIndex(recipeList[index], out var recipe))
                 {
                     continue;
                 }
