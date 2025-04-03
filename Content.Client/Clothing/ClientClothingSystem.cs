@@ -349,6 +349,9 @@ public sealed class ClientClothingSystem : ClothingSystem
                 if (layer.State.Name is not null && inventory.SpeciesId is not null && layer.State.Name.EndsWith(inventory.SpeciesId))
                     continue;
                 // End Frontier: revise race check
+
+                if (_displacement.TryAddDisplacement(displacementData, sprite, index, key, revealedLayers))
+                    index++;
             }
         }
 
