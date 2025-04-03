@@ -251,7 +251,7 @@ namespace Content.Server.Medical.BiomassReclaimer
             {
                 expectedYieldPlant = _equalizerSystem.ExtractMaterial(toProcess);
             }
-            //Frontier changes end here
+            // Frontier: PR #3206 end
 
 
             var expectedYield = physics.FixturesMass * component.YieldPerUnitMass + expectedYieldPlant; //Frontier added expectedyieldplant
