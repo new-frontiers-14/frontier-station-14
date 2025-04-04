@@ -35,25 +35,36 @@
 
 # Pistol
 - type: entity
-  name: box of pistol .35 auto (rubber) magazines
+  name: box of pistol (.35 pistol) magazines
   parent: BoxMagazine
-  id: BoxMagazinePistolRubber
-  description: A box full of pistol .35 auto (rubber) magazines.
+  id: NFBoxMagazinePistol35
+  description: A box full of pistol (.35 pistol) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolRubber
+      - id: NFMagazineHighCapacityPistol35
         amount: 4
 
 - type: entity
-  name: box of SMG .35 auto (rubber) magazines
+  name: box of pistol (.35 pistol, rubber) magazines
   parent: BoxMagazine
-  id: BoxMagazinePistolSubMachineGunRubber
-  description: A box full of SMG .35 auto (rubber) magazines.
+  id: NFBoxMagazinePistol35Rubber
+  description: A box full of pistol (.35 pistol, rubber) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGunRubber
+      - id: NFMagazineHighCapacityPistol35Rubber
+        amount: 4
+
+- type: entity
+  name: box of SMG (.35 pistol, rubber) magazines
+  parent: BoxMagazine
+  id: BoxMagazinePistolSubMachineGunRubber
+  description: A box full of SMG (.35 pistol, rubber) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineSubMachineGun35Rubber
         amount: 3
 
 # Rifle

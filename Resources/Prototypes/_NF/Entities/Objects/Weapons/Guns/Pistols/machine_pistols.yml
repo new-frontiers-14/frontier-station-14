@@ -32,6 +32,10 @@
     Ammo: .35 auto
     Desc.: A viper for use by cyborgs. Creates .35 ammo on the fly from an internal ammo fabricator, which slowly self-charges.
     ---
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletPistol35
+    fireCost: 100
 
 - type: entity
   id: NFWeaponPistolViper
@@ -43,6 +47,26 @@
     Ammo: .35 auto
     Desc.: A small, easily concealable machine pistol. An illegal firearm often used by Syndicate agents.
     ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineHighCapacityPistol35
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
 
 # DeltaV
 - type: entity
@@ -55,3 +79,23 @@
     Ammo: .35 auto
     Desc.: A compact and mass-produced combat pistol.
     ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineHighCapacityPistol35
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol

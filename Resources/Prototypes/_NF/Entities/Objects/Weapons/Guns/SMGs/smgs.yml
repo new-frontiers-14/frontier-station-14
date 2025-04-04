@@ -41,6 +41,26 @@
     Ammo: .35 auto
     Desc.: Pla-ket-ket-ket-ket! An illegal firearm often used by Syndicate agents.
     ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineSubMachineGun35
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolSubMachineGun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
 
 - type: entity
   id: NFWeaponSubMachineGunC20r
@@ -52,6 +72,26 @@
     Ammo: .35 auto
     Desc.: An illegal firearm that is often used by the infamous nuclear operatives.
     ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineSubMachineGun35
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolSubMachineGun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
 
 - type: entity
   id: NFWeaponSubMachineGunDrozd
@@ -63,6 +103,26 @@
     Ammo: .35 auto
     Desc.: An excellent fully automatic Heavy SMG.
     ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineSubMachineGun35
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolSubMachineGun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
 
 - type: entity
   id: NFWeaponSubMachineGunWt550
@@ -74,6 +134,26 @@
     Ammo: .35 auto
     Desc.: An excellent SMG. On the receiver is a label that says 'for authorized use only.'
     ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineSubMachineGunTopMounted35
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolSubMachineGun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
 
 # WizDen: Rubber
 - type: entity
@@ -85,7 +165,7 @@
       slots:
         gun_magazine:
           name: Magazine
-          startingItem: MagazinePistolSubMachineGunRubber
+          startingItem: NFMagazineSubMachineGun35Rubber
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
           priority: 2
@@ -95,7 +175,7 @@
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
           name: Chamber
-          startingItem: CartridgePistolRubber
+          startingItem: NFCartridgePistol35Rubber
           priority: 1
           whitelist:
             tags:
@@ -125,5 +205,24 @@
     - FullAuto
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/typewriter.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineSubMachineGun35
+        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolSubMachineGun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
 
 # Frontier

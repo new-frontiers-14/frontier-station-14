@@ -1,11 +1,73 @@
-# Upstream
+# WizDen
+#region .35 pistol
 - type: entity
-  id: CartridgePistolRubber
-  name: cartridge (.35 auto rubber)
+  id: NFCartridgePistol35
+  name: cartridge (.35 pistol)
   parent: BaseCartridgePistol
   components:
   - type: CartridgeAmmo
-    proto: BulletPistolRubber
+    proto: NFBulletPistol35
+
+- type: entity
+  id: NFCartridgePistol35HighGrain
+  name: cartridge (.35 pistol, high grain)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol35HighGrain
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff0000"
+
+- type: entity
+  id: NFCartridgePistol35Incendiary
+  name: cartridge (.35 pistol, incendiary)
+  parent: CartridgePistolIncendiary
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol35Incendiary
+
+- type: entity
+  id: NFCartridgePistol35Uranium
+  name: cartridge (.35 pistol, uranium)
+  parent: CartridgePistolUranium
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol35Uranium
+
+- type: entity
+  id: NFCartridgePistol35Practice
+  name: cartridge (.35 pistol, practice)
+  parent: CartridgePistolPractice
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol35Practice
+
+# Frontier
+# .35 pistol
+- type: entity
+  id: NFCartridgePistol35Emp
+  name: cartridge (.35 pistol, emp)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol35Emp
+  - type: EmpDescription
+    range: 0.3
+    energyConsumption: 2700000
+    disableDuration: 10
+
+- type: entity
+  id: NFCartridgePistol35Rubber
+  name: cartridge (.35 pistol, rubber)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol35Rubber
   - type: Sprite
     layers:
       - state: base
@@ -14,15 +76,80 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#43c4f7"
 
-# Frontier
+# WizDen
+#region .45 pistol
 - type: entity
-  id: CartridgePistolEmp
-  name: cartridge (.35 auto emp)
-  parent: BaseCartridgePistol
+  id: NFCartridgePistol45
+  name: cartridge (.45 pistol)
+  parent: BaseCartridgeMagnum
   components:
   - type: CartridgeAmmo
-    proto: BulletPistolEmp
+    proto: NFBulletPistol45
+
+- type: entity
+  id: NFCartridgePistol45HighGrain
+  name: cartridge (.45 pistol, high grain)
+  parent: BaseCartridgeMagnum
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol45HighGrain
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff0000"
+
+- type: entity
+  id: NFCartridgePistol45Incendiary
+  name: cartridge (.45 pistol, incendiary)
+  parent: CartridgeMagnumIncendiary
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol45Incendiary
+
+- type: entity
+  id: NFCartridgePistol45Uranium
+  name: cartridge (.45 pistol, uranium)
+  parent: CartridgeMagnumUranium
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol45Uranium
+
+- type: entity
+  id: NFCartridgePistol45Practice
+  name: cartridge (.45 pistol, practice)
+  parent: CartridgeMagnumPractice
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol45Practice
+
+# Frontier
+# .45 pistol
+- type: entity
+  id: NFCartridgePistol45Emp
+  name: cartridge (.45 pistol, emp)
+  parent: BaseCartridgeMagnum
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol45Emp
   - type: EmpDescription
     range: 0.3
     energyConsumption: 2700000
     disableDuration: 10
+
+- type: entity
+  id: NFCartridgePistol45Rubber
+  name: cartridge (.45 pistol, rubber)
+  parent: BaseCartridgeMagnum
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol45Rubber
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#43c4f7"

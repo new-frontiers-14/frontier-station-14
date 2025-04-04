@@ -142,12 +142,16 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: BulletPistol
+    proto: NFBulletPistol35
     capacity: 4
     count: 4
   - type: Gun
     showExamineText: false
-    fireRate: 0.5
+    minAngle: 6.8
+    maxAngle: 13.6
+    angleIncrease: 0.5
+    angleDecay: 3
+    fireRate: 1
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -277,14 +281,16 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: CartridgeRifle
-    capacity: 8
-    count: 8
+    proto: NFBulletPistol35
+    capacity: 6
+    count: 6
   - type: Gun
     showExamineText: false
-    fireRate: 2.0
-    minAngle: 1
-    maxAngle: 15
+    minAngle: 6.8
+    maxAngle: 13.6
+    angleIncrease: 0.5
+    angleDecay: 3
+    fireRate: 2
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -487,7 +493,7 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: CartridgeMagnum
+    proto: NFBulletPistol45
     capacity: 10
     count: 10
   - type: Gun

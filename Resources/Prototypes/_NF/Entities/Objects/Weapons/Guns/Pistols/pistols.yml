@@ -33,6 +33,26 @@
     Ammo: .35 auto
     Desc.: A cheap semiauto sidearm.
     ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazinePistol35
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
 
 - type: entity
   id: NFWeaponPistolN1984
@@ -44,6 +64,26 @@
     Ammo: .45 pistol
     Desc.: The sidearm of any self respecting officer. On the handle is a label that says 'for authorized use only.'
     ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazinePistol45
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol45
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
 
 - type: entity
   id: NFWeaponPistolCobra
@@ -55,6 +95,26 @@
     Ammo: .45 pistol
     Desc.: A rugged, robust operator handgun with inbuilt silencer. An illegal firearm often used by Syndicate agents.
     ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazinePistol45
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol45
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
 
 - type: entity
   id: NFWeaponPistolFlintlock
@@ -77,7 +137,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolRubber
+        startingItem: NFMagazinePistol35Rubber
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -86,7 +146,7 @@
             - MagazinePistol
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolRubber
+        startingItem: NFCartridgePistol35Rubber
         priority: 1
         whitelist:
           tags:
@@ -128,3 +188,86 @@
     Ammo: .35 auto
     Desc.: The Mark 32 Offensive Handgun.
     ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazinePistol35
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+
+- type: entity
+  id: NFWeaponPistolUniversalNfsd
+  parent: [ NFBaseWeaponPistol, BaseC2ContrabandUnredeemable, WeaponPistolUniversal ]
+  name: mk32 "universal" service pistol
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Pistol
+    Ammo: .35 auto
+    Desc.: The Mark 32 Offensive Service Pistol. On the handle is a label that says 'for authorized use only.'
+    ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineHighCapacityPistol35
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+
+- type: entity
+  id: NFWeaponPistolUniversalNfsdLessLethal
+  parent: [ NFBaseWeaponPistol, BaseC2ContrabandUnredeemable, WeaponPistolUniversal ]
+  name: mk32 "universal" service pistol
+  suffix: Frontier, Non-Lethal
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Pistol
+    Ammo: .35 auto
+    Desc.: The Mark 32 Offensive Service Pistol. On the handle is a label that says 'for authorized use only.'
+    ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineHighCapacityPistol35Rubber
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35Rubber
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol

@@ -145,11 +145,11 @@
         - Sheriff
 
 - type: listing
-  id: UplinkSecurityMK58
-  name:  uplink-security-mk58-name
-  description: uplink-security-mk58-desc
-  productEntity: NFWeaponPistolMk58
-  icon: { sprite: Objects/Weapons/Guns/Pistols/mk58.rsi, state: icon }
+  id: UplinkSecurityMk32
+  name:  uplink-security-mk32-name
+  description: uplink-security-mk32-desc
+  productEntity: NFWeaponPistolUniversalNfsd
+  icon: { sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 2
   categories:
@@ -250,26 +250,26 @@
         - SeniorOfficer
         - Sheriff
 
-- type: listing
-  id: UplinkSecurityVulcan
-  name:  uplink-security-vulcan-name
-  description: uplink-security-vulcan-desc
-  productEntity: NFWeaponRifleAssaultVulcan
-  icon: { sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+#- type: listing # Removed until sprites for wielded state are made
+#  id: UplinkSecurityVulcan
+#  name:  uplink-security-vulcan-name
+#  description: uplink-security-vulcan-desc
+#  productEntity: NFWeaponRifleAssaultVulcan
+#  icon: { sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 3
+#  categories:
+#    - UplinkSecurityWeapons
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
+#    - !type:BuyerJobCondition
+#      whitelist:
+#        - Bailiff
+#        - SeniorOfficer
+#        - Sheriff
 
 - type: listing
   id: UplinkSecurityLaserCarbine
@@ -313,24 +313,24 @@
         - SeniorOfficer
         - Sheriff
 
-- type: listing
-  id: UplinkSecurityEnergySword
-  name:  uplink-security-energysword-name
-  description: uplink-security-energysword-desc
-  productEntity: EnergySwordNfsd
-  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: e_sword }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
+#- type: listing
+#  id: UplinkSecurityEnergySword
+#  name:  uplink-security-energysword-name
+#  description: uplink-security-energysword-desc
+#  productEntity: EnergySwordNfsd
+#  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: e_sword }
+#  cost:
+#    FrontierUplinkCoin: 5
+#  categories:
+#    - UplinkSecurityWeapons
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
+#    - !type:BuyerJobCondition
+#      whitelist:
+#        - Sheriff
 
 - type: listing
   id: UplinkSecurityWT550
@@ -390,7 +390,6 @@
     - !type:BuyerJobCondition
       whitelist:
         - Sheriff
-
 
 - type: listing
   id: UplinkSecurityHolo
@@ -504,7 +503,7 @@
   productEntity: BoxT3SuperCapacitor
   icon: { sprite: Objects/Storage/boxes.rsi, state: box}
   cost:
-    FrontierUplinkCoin: 4
+    FrontierUplinkCoin: 8 # 4<8
   categories:
     - UplinkSecurityBundles
   conditions:
@@ -522,7 +521,7 @@
   id: UplinkSecurityPistolMagazine
   name:  uplink-security-magazinepistol-name
   description: uplink-security-magazinepistol-desc
-  productEntity: BoxMagazinePistol
+  productEntity: NFBoxMagazinePistol35
   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   cost:
     FrontierUplinkCoin: 1
@@ -600,7 +599,7 @@
   id: UplinkSecurityPistolMagazineRubber
   name:  uplink-security-magazinepistol-rubber-name
   description: uplink-security-magazinepistol-rubber-desc
-  productEntity: BoxMagazinePistolRubber
+  productEntity: NFBoxMagazinePistol35Rubber
   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   cost:
     FrontierUplinkCoin: 1
@@ -927,22 +926,6 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityShotIncend
-  name:  uplink-security-shotincend-name
-  description: uplink-security-shotincend-desc
-  productEntity: BoxShotgunIncendiary
-  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-
-- type: listing
   id: UplinkSecurityShotSlug
   name:  uplink-security-shotslug-name
   description: uplink-security-shotslug-desc
@@ -980,69 +963,6 @@
   description: uplink-security-empgrenade-box-desc
   productEntity: BoxEMPGrenadesNfsd
   icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - UplinkSecurityExplosives
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
-
-- type: listing
-  id: UplinkSecurityExplosiveGrenadeBox
-  name:  uplink-security-explosivegrenade-box-name
-  description: uplink-security-explosivegrenade-box-desc
-  productEntity: BoxExplosiveGrenadesNfsd
-  icon: { sprite: Objects/Weapons/Grenades/grenade.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - UplinkSecurityExplosives
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
-
-- type: listing
-  id: UplinkSecurityIncendiaryGrenadeBox
-  name:  uplink-security-incendiarygrenade-box-name
-  description: uplink-security-incendiarygrenade-box-desc
-  productEntity: BoxIncendiaryGrenadesNfsd
-  icon: { sprite: Objects/Weapons/Grenades/pyrogrenade.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - UplinkSecurityExplosives
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
-
-- type: listing
-  id: UplinkSecurityShrapnelGrenadeBox
-  name:  uplink-security-shrapnelgrenade-box-name
-  description: uplink-security-shrapnelgrenade-box-desc
-  productEntity: BoxShrapnelGrenadesNfsd
-  icon: { sprite: Objects/Weapons/Grenades/shrapnelgrenade.rsi, state: icon}
   cost:
     FrontierUplinkCoin: 2
   categories:
@@ -1106,21 +1026,21 @@
         tags:
           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityStingerGrenadeBox
-  name:  uplink-security-stingergrenade-box-name
-  description: uplink-security-stingergrenade-box-desc
-  productEntity: BoxStingerGrenadesNfsd
-  icon: { sprite: Objects/Weapons/Grenades/stingergrenade.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+#- type: listing
+#  id: UplinkSecurityStingerGrenadeBox
+#  name:  uplink-security-stingergrenade-box-name
+#  description: uplink-security-stingergrenade-box-desc
+#  productEntity: BoxStingerGrenadesNfsd
+#  icon: { sprite: Objects/Weapons/Grenades/stingergrenade.rsi, state: icon}
+#  cost:
+#    FrontierUplinkCoin: 2
+#  categories:
+#    - UplinkSecurityUtility
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
 
 - type: listing
   id: UplinkSecurityBreachingChargesBox

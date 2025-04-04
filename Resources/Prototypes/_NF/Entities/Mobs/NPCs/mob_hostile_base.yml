@@ -360,14 +360,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      140: Dead
+      80: Critical
+      120: Dead
   - type: Stamina
     critThreshold: 100
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+      40: 0.7
+      60: 0.5
   - type: Blindable
   - type: Butcherable
     butcheringType: Spike
@@ -436,8 +436,8 @@
     group: GenericNumber
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+      30: 0.7
+      50: 0.5
   - type: MobState
     allowedStates:
     - Alive
@@ -446,8 +446,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      120: Dead
+      65: Critical
+      100: Dead
   - type: Stamina
     critThreshold: 100
   - type: NpcFactionMember

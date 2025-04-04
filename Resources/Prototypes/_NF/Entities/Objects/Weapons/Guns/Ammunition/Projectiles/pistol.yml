@@ -1,11 +1,184 @@
-# Upstream
+# WizDen
+#region .35 pistol
 - type: entity
-  id: BulletPistolEmp
-  name: bullet (.35 auto emp)
+  id: NFBulletPistol35
+  name: bullet (.35 pistol)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 4
+        Blunt: 4
+  - type: StaminaDamageOnCollide
+    damage: 4 # 15 hits to slowdown
+
+- type: entity
+  id: NFBulletPistol35HighGrain
+  name: bullet (.35 pistol, high grain)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 4
+        Blunt: 5
+  - type: StaminaDamageOnCollide
+    damage: 5 # 12 hits to slowdown
+
+- type: entity
+  id: NFBulletPistol35Incendiary
+  name: bullet (.35 pistol, incendiary)
+  parent: BaseBulletIncendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 4
+        Heat: 4
+  - type: StaminaDamageOnCollide
+    damage: 4 # 15 hits to slowdown
+
+- type: entity
+  id: NFBulletPistol35Uranium
+  parent: BaseBulletUranium
+  name: bullet (.35 pistol, uranium)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5.5
+        Radiation: 5.5
+  - type: StaminaDamageOnCollide
+    damage: 4 # 15 hits to slowdown
+
+- type: entity
+  id: NFBulletPistol35Practice
+  name: bullet (.35 pistol, practice)
+  parent: BaseBulletPractice
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+
+# Frontier
+# .35 pistol
+- type: entity
+  id: NFBulletPistol35Emp
+  name: bullet (.35 pistol, emp)
   parent: BaseBulletEmp
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
       types:
-        Shock: 0
+        Shock: 4
+
+- type: entity
+  id: NFBulletPistol35Rubber
+  name: bullet (.35 pistol, rubber)
+  parent: BaseBulletRubber
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 2
+
+#region .45 pistol
+- type: entity
+  id: NFBulletPistol45
+  name: bullet (.45 pistol)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 5
+        Blunt: 5
+  - type: StaminaDamageOnCollide
+    damage: 5 # 12 hits to slowdown
+
+- type: entity
+  id: NFBulletPistol45HighGrain
+  name: bullet (.45 pistol, high grain)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 5
+        Blunt: 6
+  - type: StaminaDamageOnCollide
+    damage: 6 # 10 hits to slowdown
+
+- type: entity
+  id: NFBulletPistol35Incendiary
+  name: bullet (.45 pistol, incendiary)
+  parent: BaseBulletIncendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+        Heat: 5
+  - type: StaminaDamageOnCollide
+    damage: 5 # 12 hits to slowdown
+
+- type: entity
+  id: NFBulletPistol35Uranium
+  parent: BaseBulletUranium
+  name: bullet (.45 pistol, uranium)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 7
+        Radiation: 7
+  - type: StaminaDamageOnCollide
+    damage: 5 # 12 hits to slowdown
+
+- type: entity
+  id: NFBulletPistol45Practice
+  name: bullet (.45 pistol, practice)
+  parent: BaseBulletPractice
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 2
+
+# Frontier
+# .45 pistol
+- type: entity
+  id: BulletPistolEmp
+  name: bullet (.45 pistol, emp)
+  parent: BaseBulletEmp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 6
+
+- type: entity
+  id: NFBulletPistol45Rubber
+  name: bullet (.45 pistol, rubber)
+  parent: BaseBulletRubber
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
