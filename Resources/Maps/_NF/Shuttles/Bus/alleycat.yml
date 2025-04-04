@@ -4,8 +4,8 @@ meta:
   engineVersion: 248.0.2
   forkId: ""
   forkVersion: ""
-  time: 04/04/2025 14:31:27
-  entityCount: 159
+  time: 04/04/2025 15:39:15
+  entityCount: 167
 maps: []
 grids:
 - 8756
@@ -567,6 +567,26 @@ entities:
     - type: Transform
       pos: -2.4183166,-4.579852
       parent: 8756
+- proto: Cobweb1
+  entities:
+  - uid: 134
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-4.5
+      parent: 8756
+  - uid: 135
+    components:
+    - type: Transform
+      pos: -1.5,1.5
+      parent: 8756
+- proto: Cobweb2
+  entities:
+  - uid: 136
+    components:
+    - type: Transform
+      pos: -0.5,2.5
+      parent: 8756
 - proto: ComputerBroken
   entities:
   - uid: 50
@@ -943,6 +963,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-1.5
       parent: 8756
+- proto: PuddleVomit
+  entities:
+  - uid: 132
+    components:
+    - type: Transform
+      pos: -2.5,-3.5
+      parent: 8756
+  - uid: 133
+    components:
+    - type: Transform
+      pos: 1.5,-2.5
+      parent: 8756
 - proto: RandomPosterContraband
   entities:
   - uid: 87
@@ -1062,6 +1094,23 @@ entities:
     components:
     - type: Transform
       pos: -1.5,3.5
+      parent: 8756
+- proto: SpawnerHoloGraffitiRandom
+  entities:
+  - uid: 129
+    components:
+    - type: Transform
+      pos: -1.5,-1.5
+      parent: 8756
+  - uid: 130
+    components:
+    - type: Transform
+      pos: -0.5,0.5
+      parent: 8756
+  - uid: 131
+    components:
+    - type: Transform
+      pos: 1.5,-4.5
       parent: 8756
 - proto: SubstationWallBasic
   entities:
