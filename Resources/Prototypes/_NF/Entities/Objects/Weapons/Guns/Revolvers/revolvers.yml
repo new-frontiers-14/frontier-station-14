@@ -22,6 +22,12 @@
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
   - type: UseDelay
     delay: 0.66
+  - type: RevolverAmmoProvider
+    mayTransfer: true
+    proto: NFCartridgePistol45
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
 
 # WizDen
 - type: entity
@@ -34,6 +40,13 @@
     Ammo: .45 pistol
     Desc.: A rare, civilian grade custom-built revolver. Use when there is no time for Voight-Kampff test.
     ---
+  components:
+  - type: RevolverAmmoProvider
+    mayTransfer: true
+    proto: NFCartridgePistol45
+    capacity: 5
+    chambers: [ True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null ]
 
 - type: entity
   id: NFWeaponRevolverInspector
@@ -101,6 +114,13 @@
     Ammo: .45 pistol
     Desc.: Delivers blessings in bullet form.
     ---
+  components:
+  - type: RevolverAmmoProvider
+    mayTransfer: true
+    proto: NFCartridgePistol45
+    capacity: 4
+    chambers: [ True, True, True, True ]
+    ammoSlots: [ null, null, null, null ]
 
 - type: entity
   id: NFWeaponRevolverLucky
@@ -121,7 +141,7 @@
   components:
   - type: RevolverAmmoProvider
     capacity: 5
-    proto: CartridgeMagnumRubber
+    proto: NFCartridgePistol45Rubber
     chambers: [ True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null ]
 
@@ -154,10 +174,10 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - CartridgeRifle
-        - SpeedLoaderRifleHeavy
+        - CartridgePistol
+        - SpeedLoaderPistol
     capacity: 8
-    proto: CartridgeRifle
+    proto: NFCartridgePistol35
     chambers: [ True, True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null, null ]
   - type: StaticPrice
@@ -171,6 +191,6 @@
   components:
   - type: RevolverAmmoProvider
     capacity: 8
-    proto: CartridgeRifleRubber
+    proto: NFCartridgePistol35Rubber
     chambers: [ True, True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null, null ]

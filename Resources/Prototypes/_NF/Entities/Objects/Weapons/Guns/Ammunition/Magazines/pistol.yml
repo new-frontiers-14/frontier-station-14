@@ -386,7 +386,68 @@
         shader: unshaded
 
 # WizDen
-#region .45 pistol
+#region .35 pistol, speed loader
+- type: entity
+  id: NFSpeedLoaderPistol35Empty
+  name: "speed loader (.35 pistol, any)"
+  parent: SpeedLoaderPistol
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 8
+    proto: null
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol/pistol_speed_loader.rsi
+    layers:
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: NFSpeedLoaderPistol35
+  name: "speed loader (.35 pistol)"
+  parent: SpeedLoaderPistol
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 8
+    proto: NFCartridgePistol35
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol/pistol_speed_loader.rsi
+    layers:
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: NFSpeedLoaderPistol35Practice
+  name: "speed loader (.35 pistol, practice)"
+  parent: SpeedLoaderPistolPractice
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 8
+    proto: NFCartridgePistol35Practice
+
+# Frontier
+# .35 pistol, speed loader
+- type: entity
+  id: NFSpeedLoaderPistol35Rubber
+  name: "speed loader (.35 pistol, rubber)"
+  parent: BaseSpeedLoaderPistol
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 8
+    proto: NFCartridgePistol35Rubber
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol/pistol_speed_loader.rsi
+    layers:
+    - state: practice-6
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+# WizDen
+#region .45 pistol, standard magazines
 - type: entity
   id: NFMagazinePistol45Empty
   name: pistol magazine (.45 pistol, any)
@@ -473,3 +534,62 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+# WizDen
+#region .45 pistol, speedloaders
+- type: entity
+  id: NFSpeedLoaderPistol45Empty
+  name: "speed loader (.45 pistol, any)"
+  parent: SpeedLoaderMagnumEmpty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFSpeedLoaderPistol45
+  name: "speed loader (.45 pistol)"
+  parent: SpeedLoaderMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45
+
+- type: entity
+  id: NFSpeedLoaderPistol45Incendiary
+  name: "speed loader (.45 pistol, incendiary)"
+  parent: SpeedLoaderMagnumIncendiary
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Incendiary
+
+- type: entity
+  id: NFSpeedLoaderPistol45Uranium
+  name: "speed loader (.45 pistol, uranium)"
+  parent: SpeedLoaderMagnumUranium
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Uranium
+
+- type: entity
+  id: NFSpeedLoaderPistol45Practice
+  name: "speed loader (.45 pistol, practice)"
+  parent: SpeedLoaderMagnumPractice
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Practice
+
+# Frontier
+# .45 pistol, speed loaders
+- type: entity
+  id: NFSpeedLoaderPistol45Rubber
+  name: "speed loader (.45 pistol, Rubber)"
+  parent: BaseSpeedLoaderMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Rubber
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: rubber-6
+        map: [ "enum.GunVisualLayers.Mag" ]
