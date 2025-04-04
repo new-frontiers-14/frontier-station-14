@@ -88,3 +88,154 @@
         Blunt: 12
     soundHit:
       path: "/Audio/Weapons/smash.ogg"
+
+#Other
+- type: entity
+  name: the peoples shovel
+  parent: Shovel
+  id: NFShovel
+  description: "18 Functions including: digging, chopping, cutting, picking, prying, wire cutting, shoveling, mini shield."
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/cm-shovel.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 11
+        Slash: 3
+        Structural: 1
+  - type: Item
+    sprite: _NF/Objects/Tools/cm-shovel.rsi
+  - type: StaticPrice
+    price: 25
+  - type: Sharp
+  - type: ToolTileCompatible
+  - type: Prying
+  - type: Tag
+    tags:
+    - BotanyShovel
+    - Hoe
+    - BotanyHoe
+    - PlantSampleTaker
+    - Wirecutter
+    - Screwdriver
+    - Crowbar
+    - Pickaxe
+  - type: Tool
+    qualities:
+      - Digging
+    speedModifier: 0.4
+    useSound:
+      path: /Audio/Items/shovel_dig.ogg
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Digging
+        sprite:
+          sprite: _NF/Objects/Tools/cm-shovel.rsi
+          state: icon
+        useSound:
+          path: _NF/Objects/Tools/cm-shovel.rsi
+        changeSound:
+          path: /Audio/Items/shovel_dig.ogg
+      - behavior: Screwing
+        sprite:
+          sprite: _NF/Objects/Tools/cm-shovel.rsi
+          state: icon
+        useSound:
+          path: /Audio/Items/screwdriver.ogg
+        changeSound:
+          path: /Audio/Items/shovel_dig.ogg
+      - behavior: Anchoring
+        sprite:
+          sprite: _NF/Objects/Tools/cm-shovel.rsi
+          state: icon
+        useSound:
+          path: /Audio/Items/ratchet.ogg
+        changeSound:
+          path: /Audio/Items/shovel_dig.ogg
+      - behavior: 
+        - Prying
+        - Axing
+        sprite:
+          sprite: _NF/Objects/Tools/cm-shovel.rsi
+          state: icon
+        useSound:
+          path: /Audio/Items/crowbar.ogg
+        changeSound:
+          path: /Audio/Items/shovel_dig.ogg
+      - behavior: 
+        - Cutting
+        - Slicing
+        - Sawing
+        sprite:
+          sprite: _NF/Objects/Tools/cm-shovel.rsi
+          state: icon
+        useSound:
+          path: /Audio/Items/wirecutter.ogg
+        changeSound:
+          path: /Audio/Items/shovel_dig.ogg
+  - type: ThrowingAngle
+    angle: 45
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.20,0.10
+            - -0.10,0.20
+            - 0.20,-0.10
+            - 0.10,-0.20
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 4
+        Slash: 1
+  - type: BalloonPopper
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 2
+    activeBlockModifier:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 2
+      flatReductions:
+        Blunt: 1
+        Slash: 1
+        Piercing: 1
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 30 #Weaker shield
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: WoodDestroy
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              MaterialWoodPlank:
+                min: 5
+                max: 5
+  - type: Utensil
+    types:
+      - Knife
