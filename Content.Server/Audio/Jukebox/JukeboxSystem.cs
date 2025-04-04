@@ -20,7 +20,6 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!; // Frontier
-    [Dependency] private readonly IEntityManager _entityManager = default!; // Frontier
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!; // Frontier
 
     public override void Initialize()
@@ -56,6 +55,10 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     private void UpdateUIElements(Entity<JukeboxComponent> entity)
     {
         var (owner, component) = entity;
+        if (!component.IsReplayOn && component.IsShuffleOn)
+        {
+            component.IsShuffleOn = false;
+        }
         var state = new JukeboxInterfaceState(component.IsReplayOn, component.IsShuffleOn);
         _userInterface.SetUiState(owner, JukeboxUiKey.Key, state);
     }

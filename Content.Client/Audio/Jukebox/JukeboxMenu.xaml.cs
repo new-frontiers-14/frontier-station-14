@@ -184,6 +184,13 @@ public sealed partial class JukeboxMenu : FancyWindow
 
     private void UpdateJukeboxButtons(JukeboxInterfaceState state)
     {
+        ShuffleButton.Disabled = true;
+
+        if (state.IsReplaySelected)
+        {
+            ShuffleButton.Disabled = false;
+        }
+
         ReplayButton.Pressed = state.IsReplaySelected;
         ShuffleButton.Pressed = state.IsShuffleSelected;
     }
