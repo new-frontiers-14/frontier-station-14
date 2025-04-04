@@ -225,4 +225,14 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<bool> AllowMapGasExtraction =
         CVarDef.Create("nf14.atmos.allow_map_gas_extraction", false, CVar.SERVER | CVar.REPLICATED);
+
+    /*
+     * Audio
+     */
+
+    /// <summary>
+    /// The volume of expedition end music.
+    /// </summary>
+    public static readonly CVarDef<float> SalvageExpeditionMusicVolume =
+        CVarDef.Create("nf14.audio.expedition_music_volume", 25f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

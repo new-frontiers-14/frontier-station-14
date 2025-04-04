@@ -37,11 +37,13 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
 
     [ViewVariables] public bool Completed = false;
 
+    // Frontier: moved to Client
     /// <summary>
     /// Countdown audio stream.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid? Stream = null;
+    // [DataField, AutoNetworkedField]
+    // public EntityUid? Stream = null;
+    // End Frontier: moved to Client
 
     /// <summary>
     /// Sound that plays when the mission end is imminent.
@@ -52,11 +54,13 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
         Params = AudioParams.Default.WithVolume(-5),
     };
 
+    // Frontier: moved to Shared
     /// <summary>
     /// Song selected on MapInit so we can predict the audio countdown properly.
     /// </summary>
-    [DataField]
-    public ResolvedSoundSpecifier SelectedSong;
+    // [DataField]
+    // public ResolvedSoundSpecifier SelectedSong;
+    // End Frontier: moved to Shared
 
     // Frontier: expedition difficulty and rewards
     /// <summary>
