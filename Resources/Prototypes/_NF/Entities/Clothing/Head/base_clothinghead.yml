@@ -12,3 +12,31 @@
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
   - type: BreathMask
+
+- type: entity
+  abstract: true
+  parent: ClothingHeadBase
+  id: NFClothingHeadClearEVAHelmetBase # This version is to allow for choice regarding HideLayerClothing for clear helmets. Is otherwise identical to ClothingHeadEVAHelmetBase
+  name: base space helmet
+  components:
+  - type: BreathMask
+  - type: Item
+    size: Normal
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.2
+    coolingCoefficient: 0.2
+  - type: IngestionBlocker
+  - type: Clothing
+    #Copies ClothingHeadHardsuitBase behavior
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 2
+    unequipDelay: 2
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HelmetEVA
+  - type: IdentityBlocker
