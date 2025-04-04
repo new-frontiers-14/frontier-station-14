@@ -116,7 +116,6 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // Frontier: gracefully handle expedition failures
         bool success = true;
         string? errorStackTrace = null;
-        EntityUid mapUid = EntityUid.Invalid;
         try
         {
             await InternalProcess().ContinueWith((t) => { success = false; errorStackTrace = t.Exception?.InnerException?.StackTrace; }, TaskContinuationOptions.OnlyOnFaulted);
@@ -286,10 +285,10 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         switch (_missionParams.MissionType)
         {
             case SalvageMissionType.Destruction:
-                await SetupStructure(mission, dungeon, mapUid, grid, random);
+                await SetupStructure(mission, dungeon, grid, random);
                 break;
             case SalvageMissionType.Elimination:
-                await SetupElimination(mission, dungeon, mapUid, grid, random);
+                await SetupElimination(mission, dungeon, grid, random);
                 break;
             default:
                 _sawmill.Warning($"No setup function for salvage mission type {_missionParams.MissionType}!");
@@ -455,7 +454,6 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     private async Task SetupStructure(
         SalvageMission mission,
         Dungeon dungeon,
-        EntityUid gridUid,
         MapGridComponent grid,
         Random random)
     {
@@ -498,7 +496,6 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     private async Task SetupElimination(
         SalvageMission mission,
         Dungeon dungeon,
-        EntityUid gridUid,
         MapGridComponent grid,
         Random random)
     {
