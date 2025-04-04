@@ -1,4 +1,4 @@
-# Base prototypes
+#region Base
 
 - type: latheRecipe
   abstract: true
@@ -23,14 +23,14 @@
   materials:
     Biomass: 5
 
-# Recipes
+#region Materials/Tools
 
 - type: latheRecipe
   id: NFBioGenHydroponicsSoilNutritionFlatpack
   result: HydroponicsSoilNutritionFlatpack
   categories:
   - Tools
-  completetime: 360
+  completetime: 200
   applyMaterialDiscount: false
   materials:
     Biomass: 1600
@@ -66,32 +66,146 @@
   materials:
     Biomass: 35
 
+#region Meat
+
 - type: latheRecipe
-  id: BioGenChickenCube
+  id: NFBioGenFoodMeatChicken
+  result: FoodMeatChicken
+  parent: BioGenFoodRecipe
+  applyMaterialDiscount: false
+  completetime: 10
+  materials:
+    Biomass: 35
+    
+- type: latheRecipe
+  id: NFBioGenFoodMeatPenguin
+  result: FoodMeatPenguin
+  parent: BioGenFoodRecipe
+  applyMaterialDiscount: false
+  completetime: 10
+  materials:
+    Biomass: 35
+    
+- type: latheRecipe
+  id: NFBioGenFoodMeatDuck
+  result: FoodMeatDuck
+  parent: BioGenFoodRecipe
+  applyMaterialDiscount: false
+  completetime: 10
+  materials:
+    Biomass: 35
+
+- type: latheRecipe
+  id: NFBioGenFoodMeatCrab
+  result: FoodMeatCrab
+  parent: BioGenFoodRecipe
+  applyMaterialDiscount: false
+  completetime: 10
+  materials:
+    Biomass: 25 #Crab is a more specific recipe, also crabs are smaller so I pressume the cut of crab meat is easier to make than a full steak
+    
+- type: latheRecipe
+  id: NFBioGenFoodMeatBacon
+  result: FoodMeatBacon
+  parent: BioGenFoodRecipe
+  applyMaterialDiscount: false
+  completetime: 10
+  materials:
+    Biomass: 35 
+
+#region Cubes
+
+- type: latheRecipe
+  id: NFBioGenChickenCube
   result: ChickenCube
-  parent: BioGenFoodRecipe
-  completetime: 300
-  materials:
-    Biomass: 45
+  parent: BaseCubeRecipe
 
 - type: latheRecipe
-  id: BioGenDuckCube
+  id: NFBioGenDuckCube
   result: DuckCube
-  parent: BioGenFoodRecipe
-  completetime: 300
-  materials:
-    Biomass: 45
-
+  parent: BaseCubeRecipe
 
 - type: latheRecipe
-  id: BioGenPigCube
+  id: NFBioGenPigCube
   result: PigCube
-  parent: BioGenFoodRecipe
-  completetime: 300
-  materials:
-    Biomass: 45
+  parent: BaseCubeRecipe
 
-# Condiments
+- type: latheRecipe
+  id: NFBioGenButterflyCube
+  result: ButterflyCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenParrotCube
+  result: ParrotCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenSnailCube
+  result: SnailCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenGooseCube
+  result: GooseCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenBatCube
+  result: BatCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenCrabCube
+  result: CrabCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenLizardCube
+  result: LizardCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenSnakeCube
+  result: SnakeCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenSlugCube
+  result: SlugCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenFrogCube
+  result: FrogCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenPenguinCube
+  result: PenguinCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenTarantulaCube
+  result: TarantulaCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenPossumCube
+  result: PossumCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenRaccoonCube
+  result: RaccoonCube
+  parent: BaseCubeRecipe
+
+- type: latheRecipe
+  id: NFBioGenFoxCube
+  result: FoxCube
+  parent: BaseCubeRecipe
+
+# region Condiments
 
 - type: latheRecipe
   id: BioGenAstrotame
@@ -246,7 +360,7 @@
     sprite: Objects/Consumable/Food/condiments.rsi
     state: bottle-vinegar
 
-  #Seeds
+# region Seeds
 
 - type: latheRecipe
   id: NFBioGenAppleSeeds
@@ -390,6 +504,14 @@
   result: EggySeeds
   icon:
     sprite: Objects/Specific/Hydroponics/eggy.rsi
+    state: seed
+
+- type: latheRecipe
+  id: NFBioGenEveryspiceSeeds
+  parent: BioGenSeedsRecipe
+  result: EveryspiceSeeds
+  icon:
+    sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
     state: seed
 
 - type: latheRecipe
@@ -560,7 +682,7 @@
     sprite: Objects/Specific/Hydroponics/watermelon.rsi
     state: seed
 
-# Medical Seeds
+# region Medical Seeds
 
 - type: latheRecipe
   id: NFBioGenAloeSeeds
@@ -602,7 +724,7 @@
     sprite: Objects/Specific/Hydroponics/poppy.rsi
     state: seed
 
-#emag
+# region Emag
 
 - type: latheRecipe
   id: NFBioGenFlyAmanitaSeeds

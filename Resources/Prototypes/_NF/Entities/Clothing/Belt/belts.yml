@@ -84,3 +84,21 @@
   - type: Clothing
     sprite: _NF/Clothing/Belt/nfsd_webbing.rsi
   - type: CatWearable
+
+# Ported from Nyano
+- type: entity
+  parent: NFClothingBeltStorageBase # muh belt parity
+  id: ClothingBeltMartialBlack
+  name: black belt
+  description: This is the most martial of all the belts.
+  components:
+  - type: MeleeWeapon
+    attackRate: 1.25
+    damage:
+      types:
+        Blunt: 1
+        Slash: 1
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/martial_black.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/martial_black.rsi

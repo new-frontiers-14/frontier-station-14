@@ -149,9 +149,10 @@
   result: FoodMealBreakfastBagel
   time: 5
   group: Breakfast
+  reagents:
+    Egg: 12
   solids:
     FoodBagel: 1
-    FoodEgg: 2
     FoodAvocadoSlice: 1
     FoodCheeseSlice: 1
   recipeType:
@@ -163,9 +164,10 @@
   result: FoodMealBreakfastBagelPoppy
   time: 5
   group: Breakfast
+  reagents:
+    Egg: 12
   solids:
     FoodBagelPoppy: 1
-    FoodEgg: 2
     FoodAvocadoSlice: 1
     FoodCheeseSlice: 1
   recipeType:
@@ -356,6 +358,19 @@
     Egg: 6
   solids:
     FoodCuredCarp: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeBatteredOnionRings
+  name: battered onion rings recipe
+  result: FoodOnionRingsBattered
+  time: 2 # ~5 seconds for three
+  reagents:
+    Flour: 1.5 # ~1/3 of a click
+    Egg: 2 # 1/3 of an egg
+  solids:
+    FoodOnionSlice: 1
   recipeType:
   - Assembler
    
@@ -868,11 +883,25 @@
   time: 5
   group: BarsAndCookies
   solids:
-    FoodCroissantRaw: 1
+    FoodDoughPastryBaseRaw: 1
     FoodApple: 1
     FoodButterSlice: 1
   reagents:
     Honey: 5
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeCinnamonRoll
+  name: cinnamon roll
+  result: FoodBakedCinnamonRoll
+  time: 5
+  group: Dessert
+  solids:
+    FoodDoughPastryBaseRaw: 1
+  reagents:
+    Sugar: 5
+    Everyspice: 5
   recipeType:
   - Oven
 
@@ -903,10 +932,10 @@
     FoodBowlBig: 1
     FoodNoodlesBoiled: 1
     FoodSoybeans: 1
-    FoodEgg: 1
     FoodButterSlice: 1
   reagents:
     Water: 20
+    Egg: 6
   recipeType:
   - Oven
 
@@ -934,12 +963,12 @@
   solids:
     FoodBowlBig: 1
     FoodNoodlesBoiled: 1
-    FoodEgg: 1
     FoodCorn: 1
     FoodMeatBacon: 1
   reagents:
     Soysauce: 10
     Water: 10
+    Egg: 6
   recipeType:
   - Oven
 

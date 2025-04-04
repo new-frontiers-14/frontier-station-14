@@ -130,7 +130,7 @@
       state: blackmarket_key
   - type: ShipyardConsole
     shipyardChannel: Syndicate
-    secretShipyardChannel: Nfsd
+    #secretShipyardChannel: Nfsd #Find out via communicating with other players
     taxAccounts:
       Invalid: 0.30
     ignoreBaseSaleRate: true # Fixed 70% sale rate.
@@ -140,7 +140,7 @@
   id: ComputerShipyardBlackMarket
   parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyardBase]
   name: black market shipyard console
-  description: Used to buy ships not available through other means.
+  description: Used to buy ill-gotten vesssels for nefarious purposes.
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.BlackMarket
@@ -161,17 +161,43 @@
       state: blackmarket_key
   - type: ShipyardConsole
     shipyardChannel: Freelance
-    secretShipyardChannel: Nfsd
+    #secretShipyardChannel: Nfsd #Find out via communicating with other players
     taxAccounts:
       Invalid: 0.30
     ignoreBaseSaleRate: true # Fixed 70% sale rate.
     canTransferDeed: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerShipyardBlackMarket
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerShipyardBlackMarketBroken
+  name: broken black market shipyard console
+  description: This console has seen better days. Can be repaired with a repair kit.
+  components:
+  - type: Construction
+    graph: ComputerShipyardBlackMarket
+    node: start
 
 - type: entity
   id: ComputerShipyardExpedition
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: expedition shipyard console
-  description: Used to buy ships outfitted for planetary expeditions
+  description: Used to buy ships outfitted for planetary expeditions.
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Expedition
@@ -195,7 +221,7 @@
   id: ComputerShipyardScrap
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: scrapyard console
-  description: Used to purchase and sell "shuttles"
+  description: Used to purchase and sell "shuttles".
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Scrap

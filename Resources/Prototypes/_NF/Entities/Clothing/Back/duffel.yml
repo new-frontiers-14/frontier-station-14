@@ -1,13 +1,4 @@
 - type: entity
-  parent: NFClothingDuffel
-  id: ClothingBackpackDuffelMercenary # Frontier - Merc to Mercenary
-  name: mercenary duffel
-  description: A duffel that has been in many dangerous places, a reliable combat duffel.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Duffels/mercenary.rsi
-
-- type: entity
   id: ClothingBackpackDuffelArcadia
   name: arcadia duffel
   parent: [ NFClothingDuffel, BaseC3ContrabandNoValue, ContrabandClothing ]
@@ -15,15 +6,6 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Duffels/arcadia.rsi
-
-- type: entity
-  parent: NFClothingDuffel
-  id: ClothingBackpackDuffelPilot
-  name: pilot duffel
-  description: A duffelbag produced for a True Ace.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Duffels/pilot.rsi
 
 - type: entity
   parent: ClothingBackpackDuffelSecurity

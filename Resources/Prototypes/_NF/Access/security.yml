@@ -1,15 +1,15 @@
 - type: accessLevel
-  id: Mercenary
-  name: id-card-access-level-mercenary
-
-- type: accessLevel
   id: Sergeant
   name: id-card-access-level-sergeant
   
 - type: accessLevel
   id: Bailiff
   name: id-card-access-level-bailiff
-  
+
+- type: accessLevel
+  id: Brigmedic
+  name: id-card-access-level-brigmedic
+
 - type: accessGroup
   id: CadetNfsdAccess
   tags:
@@ -26,25 +26,20 @@
   - Command
   - Brig
   - Security
-  - Mercenary # Frontier
-  - Captain # Frontier
+  - Mercenary
+  - Captain
 
 - type: accessGroup
-  id: GeneralNfsdBrigAccess
+  id: AllNfsdAccess
   tags:
-  - Maintenance
-  - External
-  - Brig
-  
-- type: accessGroup
-  id: GeneralNfsdBrigmedicAccess
-  tags:
-  - Maintenance
-  - External
-  - Command
-  - Brig
+  - HeadOfSecurity
+  - Bailiff
+  - Sergeant
+  - Detective
+  - Brigmedic
   - Security
-  - Mercenary # Frontier
-  - Captain # Frontier
-  - Chemistry
-  - Medical
+  - Armory
+  - Brig
+  # These two are kind of a meme
+  - Mercenary
+  - Captain

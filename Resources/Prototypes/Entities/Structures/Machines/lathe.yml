@@ -140,6 +140,7 @@
     - NFSalvageStatic # Frontier
     - NFLights # Frontier
     - NFServiceStatic # Frontier
+    - ReportingStatic # DeltaV
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityAmmoStatic
@@ -563,7 +564,7 @@
   description: Converts plants into biomass, which can be used to construct useful items.
   components:
   - type: Sprite
-    sprite: Structures/Machines/biofabricator.rsi
+    sprite: _NF/Structures/Machines/biofabricator.rsi # Frontier: use NF version
     snapCardinals: true
     layers:
     - state: icon
@@ -575,6 +576,9 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: beaker # Frontier
+      map: ["beaker"] # Frontier
+      visible: false # Frontier
   - type: Machine
     board: BiogeneratorMachineCircuitboard
   - type: MaterialStorage
@@ -604,10 +608,21 @@
     - NFBioGenSeedsStatic # Frontier
     - NFBioGenSeedsMedicalStatic # Frontier
     - NFBioGenSoil # Frontier
-  - type: EmagLatheRecipes # Frontier
-    emagStaticPacks: # Frontier
-    - HostileCubesStatic # Frontier
-    - NFBioGenIngredientsDangerous # Frontier
+    - NFBioGenAnimalCubesStatic #Frontier
+  # Frontier: emag lathe recipes, item mapper
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - HostileCubesStatic
+    - NFBioGenIngredientsDangerous
+  - type: ItemMapper
+    mapLayers:
+      beaker:
+        whitelist: null # We shouldn't really care what goes in it
+    containerWhitelist:
+    - beaker_slot
+    spriteLayers:
+    - beaker
+  # End Frontier: emag lathe recipes, item mapper
 
 - type: entity
   parent: BaseLathe

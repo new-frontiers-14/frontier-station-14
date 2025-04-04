@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/22/2025 00:14:13
+  entityCount: 6429
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   12: FloorAsphalt
@@ -161,6 +172,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
+      bodyStatus: InAir
+      angularDamping: 0.05
+      linearDamping: 0.05
+      fixedRotation: False
+      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
@@ -2031,7 +2047,7 @@ entities:
           0,-5:
             1: 4960
           -1,-4:
-            1: 13115
+            1: 4923
           0,-3:
             1: 14199
           -1,-3:
@@ -3128,7 +3144,7 @@ entities:
     - type: Transform
       pos: 17.5,21.5
       parent: 1
-- proto: AirlockExternalGlassShuttleTransit
+- proto: AirlockExternalGlassShuttleTransitTradeExpress
   entities:
   - uid: 218
     components:
@@ -3151,12 +3167,6 @@ entities:
     - type: Transform
       pos: 27.5,0.5
       parent: 1
-    - type: Door
-      secondsUntilStateChange: -973.52405
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
 - proto: AirlockGlass
   entities:
   - uid: 88
@@ -4105,6 +4115,13 @@ entities:
     components:
     - type: Transform
       pos: 24.809456,2.735341
+      parent: 1
+- proto: BusSchedule
+  entities:
+  - uid: 2437
+    components:
+    - type: Transform
+      pos: -2.5,-12.5
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -28868,6 +28885,11 @@ entities:
     - type: Transform
       pos: 47.5,16.5
       parent: 1
+  - uid: 505
+    components:
+    - type: Transform
+      pos: -3.5,-11.5
+      parent: 1
   - uid: 517
     components:
     - type: Transform
@@ -29012,6 +29034,11 @@ entities:
     components:
     - type: Transform
       pos: 77.5,-2.5
+      parent: 1
+  - uid: 573
+    components:
+    - type: Transform
+      pos: -2.5,-12.5
       parent: 1
   - uid: 574
     components:
@@ -31471,11 +31498,6 @@ entities:
     - type: Transform
       pos: -16.5,25.5
       parent: 1
-  - uid: 2437
-    components:
-    - type: Transform
-      pos: -3.5,-11.5
-      parent: 1
   - uid: 2438
     components:
     - type: Transform
@@ -33468,12 +33490,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 19.5,-4.5
-      parent: 1
-  - uid: 2475
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-12.5
       parent: 1
   - uid: 2480
     components:

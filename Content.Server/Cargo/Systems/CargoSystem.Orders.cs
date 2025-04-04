@@ -71,7 +71,7 @@ namespace Content.Server.Cargo.Systems
                 return;
 
             _audio.PlayPvs(component.ConfirmSound, uid);
-            UpdateBankAccount(stationUid.Value, bank, (int) price);
+            UpdateBankAccount((stationUid.Value, bank), (int) price);
             QueueDel(args.Used);
             args.Handled = true;
         }
@@ -127,7 +127,7 @@ namespace Content.Server.Cargo.Systems
                 while (stationQuery.MoveNext(out var uid, out var bank))
                 {
                     var balanceToAdd = bank.IncreasePerSecond * Delay;
-                    UpdateBankAccount(uid, bank, balanceToAdd);
+                    UpdateBankAccount((uid, bank), balanceToAdd);
                 }
 
                 var query = EntityQueryEnumerator<CargoOrderConsoleComponent>();
@@ -277,6 +277,8 @@ namespace Content.Server.Cargo.Systems
             _bankSystem.TryBankWithdraw(player, cost);
             // End Frontier
 
+            // orderDatabase.Orders.Remove(order); // Frontier
+            // UpdateBankAccount((station.Value, bank), -cost); // Frontier
             UpdateOrders(station.Value);
         }
 

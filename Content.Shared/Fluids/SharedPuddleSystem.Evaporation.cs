@@ -12,9 +12,10 @@ public abstract partial class SharedPuddleSystem
     private static readonly ProtoId<ReagentPrototype> Holywater = "Holywater"; // Frontier
     private static readonly ProtoId<ReagentPrototype> Ice = "Ice"; // Frontier
     private static readonly ProtoId<ReagentPrototype> SodaWater = "SodaWater"; // Frontier
+    private static readonly ProtoId<ReagentPrototype> AntiSepticFluid = "AntiSepticFluid"; // Frontier: evaporates, not usable as mop water
 
-    // Frontier: NOTE: if updating this list, keep up to date with AbsorbentSystem.EvaporationReagents
-    public static readonly string[] EvaporationReagents = [Water, Holywater, Ice, SodaWater]; // Frontier
+    // Frontier: NOTE: if updating this list, keep up to date with AbsorbentSystem.MopFriendlyReagents
+    public static readonly string[] EvaporationReagents = [Water, Holywater, Ice, SodaWater, AntiSepticFluid]; // Frontier
 
     public bool CanFullyEvaporate(Solution solution)
     {

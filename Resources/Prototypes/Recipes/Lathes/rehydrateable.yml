@@ -3,7 +3,9 @@
 - type: latheRecipe
   abstract: true
   id: BaseCubeRecipe
-  completetime: 300 # Frontier 30<300
+  completetime: 180 # Frontier: 30<180
+  categories: [ NFAnimalCubes ] # Frontier
+  applyMaterialDiscount: false
   materials:
     Biomass: 70 # Frontier: 16<70, same as BioGenMonkeyCube recipe
 
@@ -25,37 +27,37 @@
   id: CowCube
   result: CowCube
   materials:
-    Biomass: 350 # Frontier: 120<350, went with 1 pound = 1 biomass, used average weight from wiki
+    Biomass: 300 # Frontier: 120<350, went with 1 pound = 1 biomass, used average weight from wiki. Reduced to 300 to make it competitive with just producing milk
 
 - type: latheRecipe
   parent: BaseCubeRecipe
   id: GoatCube
   result: GoatCube
-  materials:
-    Biomass: 50 # Frontier: 35<50, used average weight from wiki
+  # materials: # Frontier
+  #   Biomass: 50 # Frontier
 
 - type: latheRecipe
   parent: BaseCubeRecipe
   id: MothroachCube
   result: MothroachCube
-  completetime: 450 # prevent biblical floods, Frontier 45<450
-  materials:
-    Biomass: 25 # a lot of materials wasted due to complex genetics # Frontier: 20<25
+  # completetime: 15 # Frontier
+  # materials: # Frontier
+  #   Biomass: 20 # a lot of materials wasted due to complex genetics # Frontier
 
 - type: latheRecipe
   parent: BaseCubeRecipe
   id: MouseCube
   result: MouseCube
-  completetime: 200 # Frontier 15<200
-  materials:
-    Biomass: 25 # Frontier: 12<25
+  # completetime: 15 # Frontier
+  # materials: # Frontier
+  #   Biomass: 12 # Frontier
 
 - type: latheRecipe
   parent: MouseCube
   id: CockroachCube
   result: CockroachCube
-  materials:
-    Biomass: 25 # Frontier: 16<25
+  # materials: # Frontier
+  #   Biomass: 16 # Frontier
 
 - type: latheRecipe
   parent: BaseCubeRecipe
@@ -63,7 +65,7 @@
   result: SpaceCarpCube
   completetime: 400 # Frontier
   materials:
-    Biomass: 50 # Frontier: 24<50
+    Biomass: 70 # Frontier: 24<70
     Plasma: 600
 
 - type: latheRecipe
@@ -72,7 +74,7 @@
   result: SpaceTickCube
   completetime: 250 # Frontier 15<250
   materials:
-    Biomass: 25 # Frontier: 8<25
+    Biomass: 70 # Frontier: 8<70
     Plasma: 300 # less biomass but more plasma
 
 - type: latheRecipe
@@ -81,5 +83,5 @@
   result: AbominationCube
   completetime: 400 # Frontier 30<400
   materials: # abominations are slow and essentially worse than even carp
-    Biomass: 80 # Frontier: 28<80
+    Biomass: 70 # Frontier: 28<70
     Plasma: 500 # more biomass but less plasma

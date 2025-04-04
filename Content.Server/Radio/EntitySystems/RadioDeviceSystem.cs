@@ -309,7 +309,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         {
             mic.BroadcastChannel = channel;
             if(_protoMan.TryIndex<RadioChannelPrototype>(channel, out var channelProto)) // Frontier
-                mic.Frequency = _radio.GetFrequency(ent, channelProto); // Frontier
+                mic.Frequency = channelProto.Frequency; // Frontier
         }
         if (TryComp<RadioSpeakerComponent>(ent, out var speaker))
             speaker.Channels = new() { channel };

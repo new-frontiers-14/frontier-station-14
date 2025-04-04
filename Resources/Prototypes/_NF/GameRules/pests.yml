@@ -1,0 +1,18 @@
+- type: entity
+  id: NFCockroachMigration
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-nf-start-announcement # Frontier: add nf-
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    weight: 6
+    duration: 50
+  - type: VentCrittersRule
+    entries:
+    - id: MobCockroach
+      prob: 0.03
+    - id: MobMothroach
+      prob: 0.072
+    - id: MobRosyMothroach
+      prob: 0.008

@@ -545,6 +545,7 @@
     deleteOnCollide: true
   - type: SpawnOnTrigger
     proto: CrossbowBoltShrapnelSpread
+    mapCoords: true # shouldn't be parented to colliding object
   - type: Construction
     graph: CraftCrossbowBoltShrapnel
     node: CraftCrossbowBoltShrapnel
@@ -553,14 +554,30 @@
   id: CrossbowBoltShrapnelSpread
   categories: [ HideSpawnMenu, Spawner ] # Spawner category - this is intended to create other entities
   components:
-  - type: ScatteringGrenade
-    fillPrototype: PelletShotgun
+  - type: ProjectileGrenade
+    fillPrototype: PelletShrapnelCrossbow
     capacity: 6
-    delayBeforeTriggerContents: 0
+    randomAngle: true # should be unreliable
   - type: TriggerOnSpawn
   - type: ContainerContainer
     containers:
       cluster-payload: !type:Container
+
+- type: entity
+  id: PelletShrapnelCrossbow
+  name: crossbow shrapnel pellet
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+  - type: TimedDespawn
+    lifetime: 0.25
 
 # Blood cult
 - type: entity

@@ -5,6 +5,7 @@ guide-entry-piloting = Piloting
 guide-entry-startinggear = Starting Equipment
 guide-entry-hiring = Hiring Crew
 guide-entry-expeditions = Expeditions
+guide-entry-sector-topology = Sector Topology
 guide-entry-cargo-hauling = Cargo Hauling
 guide-entry-shipyard = Shipyard
 guide-entry-frontier-rules = Server Rules

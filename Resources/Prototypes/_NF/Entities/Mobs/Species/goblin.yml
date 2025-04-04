@@ -8,6 +8,10 @@
     scale: 0.8, 0.7
   - type: HumanoidAppearance
     species: Goblin
+    hideLayersOnEquip:
+    - Hair
+    - HeadTop
+    - Snout # Nose, tusks
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
@@ -107,6 +111,14 @@
         probability: 0.2
   - type: Rummager # DeltaV Code
   - type: AlwaysTriggerMousetrap # DeltaV Code
+  - type: Inventory
+    speciesId: goblin
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
 
 - type: entity
   save: false

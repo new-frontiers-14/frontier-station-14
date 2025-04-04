@@ -1,7 +1,7 @@
 namespace Content.Shared._NF.Cargo.Components;
 
 /// <summary>
-/// Designates an entity as ignoring market modifiers.
+/// Designates an entity as a rack for storing trading crates.
 /// </summary>
 [RegisterComponent]
 public sealed partial class CrateStorageRackComponent : Component

@@ -258,7 +258,7 @@ public sealed class MechForkSystem : EntitySystem
         if (!_mech.TryChangeEnergy(equipmentComponent.EquipmentOwner.Value, component.GrabEnergyDelta))
             return;
 
-        // Frontier: Remove people from chairs
+        // Remove people from chairs
         if (TryComp<StrapComponent>(args.Args.Target, out var strapComp) && strapComp.BuckledEntities != null)
         {
             foreach (var buckleUid in strapComp.BuckledEntities)
@@ -266,7 +266,6 @@ public sealed class MechForkSystem : EntitySystem
                 _buckle.Unbuckle(buckleUid, args.Args.User);
             }
         }
-        // End Frontier
 
         _container.Insert(args.Args.Target.Value, component.ItemContainer);
         _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);

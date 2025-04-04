@@ -39,6 +39,34 @@
     vendPrice: 2000 # Meat only worth 607 at a depot, but can produce more stuff from extra goats + milk
 
 - type: entity
+  parent: BoxCardboard
+  name: farm cube box
+  id: FarmCubeBox
+  description: "A pack of livestock cubes: chicken, cows, pigs, goats, ducks! Just add water!"
+  components:
+  - type: StorageFill
+    contents:
+    - id: ChickenCubeWrapped
+      amount: 2
+    - id: DuckCubeWrapped
+      amount: 2
+    - id: GoatCubeWrapped
+      amount: 2
+    - id: PigCubeWrapped
+      amount: 2
+    - id: CowCubeWrapped
+      amount: 2
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: box_farm
+  - type: Storage
+    grid:
+    - 0,0,3,2
+  - type: StaticPrice
+    price: 20
+    vendPrice: 3000 # The whole family is here.
+
+- type: entity
   parent: MonkeyCubeWrapped
   name: chicken cube
   suffix: Wrapped

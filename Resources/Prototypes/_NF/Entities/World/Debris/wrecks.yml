@@ -65,17 +65,17 @@
           prob: 0.03
         - id: SalvageCanisterSpawner
           prob: 0.2
-        - id: SalvageLockerSpawner
+        - id: NFSalvageLockerSpawner
           prob: 0.2
-        - id: SalvageGeneratorSpawner
+        - id: NFSalvageGeneratorSpawner
           prob: 0.1
-        - id: SalvageFurnitureSpawner
+        - id: NFSalvageFurnitureSpawner
           prob: 0.1
-        - id: SalvageSuitStorageSpawner
+        - id: NFSalvageSuitStorageSpawner
           prob: 0.1
         - id: RandomArtifactSpawner
           prob: 0.05
-        - id: SalvageTankSpawnerHighCapacity
+        - id: NFSalvageTankSpawnerHighCapacity
           prob: 0.0005
         # Medical
         - id: MedicalPodFilled # Medical bounties
@@ -136,7 +136,7 @@
         - id: SalvagePartsT4Spawner
           prob: 0.01
         # Big loot
-        - id: SalvageBrassFurnitureSpawner
+        - id: NFSalvageBrassFurnitureSpawner
           prob: 0.03
         - id: AltarTechnology
           prob: 0.03
@@ -270,6 +270,16 @@
 # endregion Wrecks
 
 # region Brass Wrecks
+- type: entity
+  id: NFWreckDebrisBrassSmall
+  parent: [NFBaseWreckDebrisBrass, NFBaseWreckSmall]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFWreckDebrisBrassMedium
+  parent: [NFBaseWreckDebrisBrass, NFBaseWreckMedium]
+  categories: [ HideSpawnMenu ]
+
 - type: entity
   id: NFWreckDebrisBrassLarge
   parent: [NFBaseWreckDebrisBrass, NFBaseWreckLarge]
