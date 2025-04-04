@@ -1,144 +1,6 @@
-# Upstream
-- type: entity
-  parent: MobOreCrab
-  id: MobBananiumCrab
-  description: An ore crab made from bananium.
-  components:
-  - type: Sprite
-    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
-    state: bananium_crab
-  - type: RadiationSource
-    intensity: 1
-    slope: 0.3
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 80
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          BananiumOre1:
-            min: 1
-            max: 3
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-
-- type: entity
-  parent: MobOreCrab
-  id: MobCoalCrab
-  description: An ore crab made from coal.
-  components:
-  - type: Sprite
-    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
-    state: coal_crab
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 80
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Coal1:
-            min: 2
-            max: 4
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-
-- type: entity
-  parent: MobOreCrab
-  id: MobGoldCrab
-  description: An ore crab made from gold.
-  components:
-  - type: Sprite
-    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
-    state: gold_crab
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50 # Gold soft u know
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          GoldOre1:
-            min: 2
-            max: 4
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-
-- type: entity
-  parent: MobOreCrab
-  id: MobPlasmaCrab
-  description: An ore crab made from plasma.
-  components:
-  - type: Sprite
-    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
-    state: plasma_crab
-  - type: MeleeWeapon
-    damage:
-      types:
-        Slash: 7
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          PlasmaOre1:
-            min: 2
-            max: 4
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: PointLight
-    radius: 2
-    energy: 3
-    color: "#E592E7FF" # Same as plasma ore
-
-- type: entity
-  parent: MobOreCrab
-  id: MobSaltCrab
-  description: An ore crab made from salt. # delicious, don't try to lick this
-  components:
-  - type: Sprite
-    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
-    state: salt_crab
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 80
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Salt1:
-            min: 1
-            max: 3
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-
-# Frontier
 - type: entity
   abstract: true
-  id: MobOreCrabNF
+  id: NFMobOreCrab
   parent: [MobOreCrab, NFMobRestrictions]
   components:
   - type: NpcFactionMember
@@ -147,8 +9,8 @@
   - type: MovementIgnoreGravity # Or they just can't do something
 
 - type: entity
-  parent: MobOreCrabNF
-  id: MobBananiumCrabNF
+  parent: NFMobOreCrab
+  id: NFMobBananiumCrab
   description: An ore crab made from bananium.
   components:
   - type: Sprite
@@ -175,8 +37,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreCrabNF
-  id: MobGoldCrabNF
+  parent: NFMobOreCrab
+  id: NFMobGoldCrab
   description: An ore crab made from gold.
   components:
   - type: Sprite
@@ -200,8 +62,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreCrabNF
-  id: MobPlasmaCrabNF
+  parent: NFMobOreCrab
+  id: NFMobPlasmaCrab
   description: An ore crab made from plasma.
   components:
   - type: Sprite
@@ -233,8 +95,8 @@
     color: "#E592E7FF" # Same as plasma ore
 
 - type: entity
-  parent: MobOreCrabNF
-  id: MobSaltCrabNF
+  parent: NFMobOreCrab
+  id: NFMobSaltCrab
   description: An ore crab made from salt. # delicious, don't try to lick this
   components:
   - type: Sprite
@@ -258,8 +120,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreCrabNF
-  id: MobQuartzCrabNF
+  parent: NFMobOreCrab
+  id: NFMobQuartzCrab
   description: An ore crab made from Quartz.
   components:
   - type: Sprite
@@ -282,8 +144,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreCrabNF
-  id: MobIronCrabNF
+  parent: NFMobOreCrab
+  id: NFMobIronCrab
   description: An ore crab made from iron.
   components:
   - type: Sprite
@@ -309,8 +171,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreCrabNF
-  id: MobUraniumCrabNF
+  parent: NFMobOreCrab
+  id: NFMobUraniumCrab
   description: An ore crab made from uranium.
   components:
   - type: RadiationSource
@@ -338,8 +200,8 @@
     color: "#06DF24"
 
 - type: entity
-  parent: MobOreCrabNF
-  id: MobSilverCrabNF
+  parent: NFMobOreCrab
+  id: NFMobSilverCrab
   description: An ore crab made from silver.
   components:
   - type: Sprite
@@ -363,7 +225,7 @@
 
 - type: entity
   abstract: true
-  id: MobOreGolem
+  id: NFMobOreGolem
   name: ore golem
   parent: [ MobElementalBase, MobCombat, NFMobRestrictions ]
   components:
@@ -396,8 +258,8 @@
     horizontalRotation: 90
 
 - type: entity
-  parent: MobOreGolem
-  id: MobBananiumGolem
+  parent: NFMobOreGolem
+  id: NFMobBananiumGolem
   description: An ore golem made from bananium.
   components:
   - type: Sprite
@@ -423,8 +285,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreCrabNF
-  id: MobCoalCrabNF
+  parent: NFMobOreCrab
+  id: NFMobCoalCrab
   description: An ore crab made from coal.
   components:
   - type: Sprite
@@ -448,8 +310,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreGolem
-  id: MobCoalGolem
+  parent: NFMobOreGolem
+  id: NFMobCoalGolem
   description: An ore golem made from coal.
   components:
   - type: Sprite
@@ -472,8 +334,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreGolem
-  id: MobGoldGolem
+  parent: NFMobOreGolem
+  id: NFMobGoldGolem
   description: An ore golem made from gold.
   components:
   - type: Sprite
@@ -496,8 +358,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreGolem
-  id: MobIronGolem
+  parent: NFMobOreGolem
+  id: NFMobIronGolem
   description: An ore golem made from iron.
   components:
   - type: Sprite
@@ -520,8 +382,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreGolem
-  id: MobPlasmaGolem
+  parent: NFMobOreGolem
+  id: NFMobPlasmaGolem
   description: An ore golem made from plasma.
   components:
   - type: Sprite
@@ -552,8 +414,8 @@
     color: "#E592E7FF" # Same as plasma ore
 
 - type: entity
-  parent: MobOreGolem
-  id: MobQuartzGolem
+  parent: NFMobOreGolem
+  id: NFMobQuartzGolem
   description: An ore golem made from quartz.
   components:
   - type: Sprite
@@ -576,8 +438,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreGolem
-  id: MobSaltGolem
+  parent: NFMobOreGolem
+  id: NFMobSaltGolem
   description: An ore golem made from salt.
   components:
   - type: Sprite
@@ -600,8 +462,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreGolem
-  id: MobSilverGolem
+  parent: NFMobOreGolem
+  id: NFMobSilverGolem
   description: An ore golem made from silver.
   components:
   - type: Sprite
@@ -624,8 +486,8 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: MobOreGolem
-  id: MobUraniumGolem
+  parent: NFMobOreGolem
+  id: NFMobUraniumGolem
   description: An ore golem made from bananium.
   components:
   - type: Sprite

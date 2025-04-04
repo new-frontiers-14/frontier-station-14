@@ -181,7 +181,7 @@ public sealed class MagnetPickupSystem : EntitySystem
                 var nearCoords = _transform.ToCoordinates(moverCoords.EntityId, nearMap);
 
                 if (!_storage.Insert(uid, near, out var stacked, storageComp: storage, playSound: !playedSound))
-                    continue;
+                    break; // Frontier: continue<break
 
                 slotCount += itemSize; // Frontier: adjust size (assume it's in a new slot)
 
