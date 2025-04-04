@@ -64,7 +64,8 @@ public sealed partial class SalvageSystem
     {
         args.State = new SalvageExpeditionComponentState()
         {
-            Stage = component.Stage
+            Stage = component.Stage,
+            SelectedSong = component.SelectedSong // Frontier: note, not dirtied on map init (no purpose)
         };
     }
 
@@ -98,7 +99,7 @@ public sealed partial class SalvageSystem
 
     private void OnExpeditionShutdown(EntityUid uid, SalvageExpeditionComponent component, ComponentShutdown args)
     {
-        component.Stream = _audio.Stop(component.Stream);
+        // component.Stream = _audio.Stop(component.Stream); // Frontier: moved to client
 
         foreach (var (job, cancelToken) in _salvageJobs.ToArray())
         {

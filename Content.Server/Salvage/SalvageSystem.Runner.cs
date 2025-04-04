@@ -202,11 +202,13 @@ public sealed partial class SalvageSystem
                 Dirty(uid, comp);
                 Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-seconds", ("duration", TimeSpan.FromSeconds(45).Seconds)));
             }
-            else if (comp.Stage < ExpeditionStage.MusicCountdown && comp.Stream == null && remaining < audioLength) // Frontier: add MusicCountdown check
+            else if (comp.Stage < ExpeditionStage.MusicCountdown && remaining < audioLength) // Frontier
             {
-                var audio = _audio.PlayPvs(comp.Sound, uid);
-                comp.Stream = audio?.Entity;
-                _audio.SetMapAudio(audio);
+                // Frontier: handled client-side.
+                // var audio = _audio.PlayPvs(comp.Sound, uid);
+                // comp.Stream = audio?.Entity;
+                // _audio.SetMapAudio(audio);
+                // End Frontier
                 comp.Stage = ExpeditionStage.MusicCountdown;
                 Dirty(uid, comp);
                 Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", audioLength.Minutes)));
