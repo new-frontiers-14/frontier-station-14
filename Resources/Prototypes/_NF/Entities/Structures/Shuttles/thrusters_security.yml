@@ -16,7 +16,14 @@
           acts: ["Destruction"]
   - type: Machine
     board: ThrusterSecurityMachineCircuitboard
-
+  - type: Wires
+    layoutId: ThrusterSecurity
+  - type: WiresPanel
+    open: false
+  - type: UserInterface
+    interfaces:
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
 - type: entity
   id: DebugThrusterSecurity
   parent: [BaseStructureDisableToolUse, DebugThruster]
