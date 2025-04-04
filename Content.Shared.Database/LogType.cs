@@ -460,6 +460,11 @@ public enum LogType
     /// </summary>
     AntagSelection = 99,
 
+    /// <summary>
+    /// Logs related to botany, such as planting and harvesting crops
+    /// </summary>
+    Botany = 100,
+
     // Frontier Station Specific
     #region Frontier Values
     ATMUsage = 200,
