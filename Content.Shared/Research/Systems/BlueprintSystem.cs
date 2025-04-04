@@ -73,12 +73,14 @@ public sealed class BlueprintSystem : EntitySystem
     {
         if (_entityWhitelist.IsWhitelistFail(ent.Comp.Whitelist, blueprint))
         {
+            _popup.PopupPredicted(Loc.GetString("blueprint-receiver-popup-invalid-type"), ent, user); // Frontier
             return false;
         }
 
         if (blueprint.Comp.ProvidedRecipes.Count == 0)
         {
             Log.Error($"Attempted to insert blueprint {ToPrettyString(blueprint)} with no recipes.");
+            _popup.PopupPredicted(Loc.GetString("blueprint-receiver-popup-no-recipes"), ent, user); // Frontier
             return false;
         }
 

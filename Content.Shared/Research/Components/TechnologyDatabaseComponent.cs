@@ -1,3 +1,4 @@
+using Content.Shared._NF.Lathe; // Frontier
 using Content.Shared.Lathe;
 using Content.Shared.Research.Prototypes;
 using Content.Shared.Research.Systems;
@@ -7,7 +8,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Shared.Research.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedResearchSystem), typeof(SharedLatheSystem)), AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedResearchSystem), typeof(SharedLatheSystem), typeof(SharedBlueprintLatheSystem)), AutoGenerateComponentState] // Frontier: add SharedBlueprintLatheSystem access
 public sealed partial class TechnologyDatabaseComponent : Component
 {
     /// <summary>
