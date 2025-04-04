@@ -134,7 +134,7 @@ namespace Content.Server.Kitchen.Components
         public bool CanHeat = true;
 
         /// <summary>
-        /// If true, events sent off by the microwave will state that the object is being irradiated.
+        /// If true, events sent off by the microwave will state that the object is being irradiated (Microwave + Metal / ID Card).
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public bool CanIrradiate = true;
@@ -156,6 +156,18 @@ namespace Content.Server.Kitchen.Components
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadOnly)]
         public MicrowaveUiKey Key = MicrowaveUiKey.Key;
+
+        /// <summary>
+        /// Colour of radiation light emissions.
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public Color LightColor { get; set; } = Color.LimeGreen;
+
+        /// <summary>
+        /// Colour of radiation light emissions.
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public float LightRadius = 0.1f;
         // End Frontier
     }
 
