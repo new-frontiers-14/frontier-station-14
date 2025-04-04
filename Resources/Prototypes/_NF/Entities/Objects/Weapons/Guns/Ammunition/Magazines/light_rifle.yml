@@ -93,3 +93,25 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+# LGM Ammo
+
+- type: entity
+  id: MagazineLightRifleBoxPk
+  name: "PK magazine box (.30 rifle)"
+  parent: BaseMagazineLightRifle
+  components:
+  - type: Tag
+    tags:
+    - MagazineLightRifleBox
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifle
+    capacity: 60
+  - type: Item
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_pk_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Appearance
