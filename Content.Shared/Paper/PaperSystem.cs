@@ -244,8 +244,10 @@ public sealed class PaperSystem : EntitySystem
         {
             SetContent(entity, args.Text);
 
+            var paperStatus = string.IsNullOrWhiteSpace(args.Text) ? PaperStatus.Blank : PaperStatus.Written;
+
             if (TryComp<AppearanceComponent>(entity, out var appearance))
-                _appearance.SetData(entity, PaperVisuals.Status, PaperStatus.Written, appearance);
+                _appearance.SetData(entity, PaperVisuals.Status, paperStatus, appearance);
 
             if (TryComp(entity, out MetaDataComponent? meta))
                 _metaSystem.SetEntityDescription(entity, "", meta);
@@ -286,7 +288,32 @@ public sealed class PaperSystem : EntitySystem
         return true;
     }
 
-    // FRONTIER - stamp precondition
+    /// <summary>
+    ///     Copy any stamp information from one piece of paper to another.
+    /// </summary>
+    public void CopyStamps(Entity<PaperComponent?> source, Entity<PaperComponent?> target)
+    {
+        if (!Resolve(source, ref source.Comp) || !Resolve(target, ref target.Comp))
+            return;
+
+        target.Comp.StampedBy = new List<StampDisplayInfo>(source.Comp.StampedBy);
+        target.Comp.StampState = source.Comp.StampState;
+        Dirty(target);
+
+        // Frontier: apply 
+        if(_tagSystem.HasTag(source, "NFPaperStampProtected"))
+            _tagSystem.AddTag(target, "NFPaperStampProtected");
+
+        if (TryComp<AppearanceComponent>(target, out var appearance))
+        {
+            // delete any stamps if the stamp state is null
+            _appearance.SetData(target, PaperVisuals.Stamp, target.Comp.StampState ?? "", appearance);
+        }
+    }
+
+    // Frontier: stamp functions
+    #region Frontier
+    // stamp precondition
     private bool CanStamp(StampDisplayInfo stampInfo, PaperComponent paperComp)
     {
         if (paperComp.StampedBy.Count >= StampLimit)
@@ -297,21 +324,21 @@ public sealed class PaperSystem : EntitySystem
             return !paperComp.StampedBy.Contains(stampInfo); // Original precondition
     }
 
-    // FRONTIER - stamp reapplication: checks if a given stamp is delayed
+    // stamp reapplication: checks if a given stamp is delayed
     private bool StampDelayed(EntityUid stampUid)
     {
         return TryComp<UseDelayComponent>(stampUid, out var delay) &&
             _useDelay.IsDelayed((stampUid, delay), "stamp");
     }
 
-    // FRONTIER - stamp reapplication: resets the delay on a given stamp
+    // stamp reapplication: resets the delay on a given stamp
     private void DelayStamp(EntityUid stampUid)
     {
         if (TryComp<UseDelayComponent>(stampUid, out var delay))
             _useDelay.TryResetDelay(stampUid, false, delay, "stamp");
     }
 
-    // FRONTIER - Pen signing: Adds the sign verb for pen signing
+    // Pen signing: Adds the sign verb for pen signing
     private void AddSignVerb(EntityUid uid, PaperComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
@@ -337,7 +364,7 @@ public sealed class PaperSystem : EntitySystem
         args.Verbs.Add(verb);
     }
 
-    // FRONTIER - TrySign method, attempts to place a signature
+    // TrySign method, attempts to place a signature
     public bool TrySign(Entity<PaperComponent> paper, EntityUid signer, EntityUid pen)
     {
         if (!TryComp<StampComponent>(pen, out var stamp))
@@ -386,7 +413,8 @@ public sealed class PaperSystem : EntitySystem
 
         return false;
     }
-
+    #endregion Frontier
+    // End Frontier
     public void SetContent(Entity<PaperComponent> entity, string content)
     {
         entity.Comp.Content = content;
