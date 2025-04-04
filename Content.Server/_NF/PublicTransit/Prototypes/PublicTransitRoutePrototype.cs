@@ -46,10 +46,10 @@ public sealed partial class PublicTransitRoutePrototype : IPrototype
     public EntProtoId? SignEntity { get; private set; } = null;
 
     /// <summary>
-    /// The bus type to spawn on this route.
+    /// The possible bus types to spawn on this route.
     /// </summary>
     [DataField(required: true)]
-    public ProtoId<VesselPrototype> BusVessel { get; private set; } = default!;
+    public List<ProtoId<VesselPrototype>> BusVessels { get; private set; } = default!;
 
     /// <summary>
     /// The color of related bus livery.

@@ -22,12 +22,14 @@ using Content.Shared._NF.PublicTransit;
 using Content.Shared._NF.PublicTransit.Components;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Examine;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -53,6 +55,7 @@ public sealed class PublicTransitSystem : EntitySystem
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     /// <summary>
     /// If enabled then spawns the bus and sets up the bus line.
@@ -571,14 +574,14 @@ public sealed class PublicTransitSystem : EntitySystem
             if (numBuses >= neededBuses)
                 continue;
 
-            // TODO: reduce the redundancy in these buses
-            if (!_proto.TryIndex(route.Prototype.BusVessel, out var busVessel))
-                continue;
-
             var routeHopTime = route.Prototype.WaitTime + route.Prototype.TravelTime;
 
             while (numBuses < neededBuses)
             {
+                var busProto = _random.Pick(route.Prototype.BusVessels);
+                if (!_proto.TryIndex(busProto, out var busVessel))
+                    continue;
+
                 // Spawn the bus onto a dummy map
                 if (!_loader.TryLoadGrid(dummyMap, busVessel.ShuttlePath, out var shuttleMaybe, offset: new Vector2(shuttleOffset, 1f))
                     || shuttleMaybe is not { } shuttleEnt
