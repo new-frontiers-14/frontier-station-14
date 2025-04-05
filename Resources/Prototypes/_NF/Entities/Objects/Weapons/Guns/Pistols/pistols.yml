@@ -34,6 +34,9 @@
     Desc.: A cheap semiauto sidearm.
     ---
   components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -96,6 +99,11 @@
     Desc.: A rugged, robust operator handgun with inbuilt silencer. An illegal firearm often used by Syndicate agents.
     ---
   components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -14
   - type: ItemSlots
     slots:
       gun_magazine:
