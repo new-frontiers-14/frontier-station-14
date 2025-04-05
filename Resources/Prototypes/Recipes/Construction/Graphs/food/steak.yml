@@ -204,6 +204,12 @@
         sound: /Audio/Effects/sizzle.ogg
       steps:
       - minTemperature: 335
+    - to: casing # Frontier - Added extra node to include crafting for sausage casings
+      steps:
+      - tool: Rolling
+        doAfter: 1
+  - node: casing
+    entity: SausageCasing # End Frontier
   - node: cutlet
     entity: FoodMeatCutletCooked
 

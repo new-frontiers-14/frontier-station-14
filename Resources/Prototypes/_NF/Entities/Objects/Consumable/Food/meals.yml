@@ -551,3 +551,35 @@
   - type: Tag
     tags:
     - Meat
+
+- type: entity
+  name: hotdog
+  parent: FoodMeatBase
+  id: Hotdog
+  description: Hot diggity-dog!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - bread
+  - type: Construction
+    graph: hotdiggity # Technically this is a subset off meatballs now.
+    node: hotteddog # Frontier: Starts in the same way as cooking a meatball would. Rolling changes it to a patty.
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: hotdog
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 4
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat

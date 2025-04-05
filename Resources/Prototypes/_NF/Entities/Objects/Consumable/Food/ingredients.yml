@@ -228,3 +228,21 @@
   - type: SliceableFood
     count: 3
     slice: FoodDoughPastryBaseRaw
+
+- type: entity
+  name: sausage casing
+  parent: BaseItem
+  id: SausageCasing
+  description: placeholder
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: sausagecasing
+  - type: Food
+  - type: SpaceGarbage
+  - type: StaticPrice
+    vendPrice: 50
+    price: 10
+  - type: Construction
+    graph: Cutlet
+    node: casing

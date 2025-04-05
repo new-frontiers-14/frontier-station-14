@@ -54,6 +54,32 @@
     cycles: 1
     output: FoodBakedNugget
 
+- type: entity
+  name: uncooked sausage
+  parent: FoodMeatBase
+  id: SausageRaw
+  description: Placeholder #Change this later.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meat
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: sausageraw
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 9
+        - ReagentId: Fat
+          Quantity: 3
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+
 # Cooked
 
 - type: entity
@@ -124,3 +150,35 @@
     tags:
       - Slice
       - Meat
+
+- type: entity
+  name: sausage
+  parent: FoodMeatBase
+  id: SausageCooked
+  description: Placeholder #Change this later.
+  components:
+  - type: Construction
+    graph: hotdiggity # Sticking sausage into a bun to make a hotdog
+    node: start # Before the hot doggening
+  - type: FlavorProfile
+    flavors:
+      - meat
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: sausagecooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Flavorol
+          Quantity: 2
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+    - NFHotdog

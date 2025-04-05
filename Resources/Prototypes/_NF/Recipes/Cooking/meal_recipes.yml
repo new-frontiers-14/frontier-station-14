@@ -792,3 +792,50 @@
     FoodCheeseSlice: 1
   recipeType:
   - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeSausageRaw
+  name: raw sausage recipe
+  result: SausageRaw
+  resultCount: 2
+  time: 5
+  solids:
+    SausageCasing: 1
+  reagents:
+    UncookedAnimalProteins: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSausageRawStomach
+  name: raw sausage recipe
+  result: SausageRaw
+  resultCount: 2
+  time: 5
+  solids:
+    OrganAnimalStomach: 1
+  reagents:
+    UncookedAnimalProteins: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSausageCooked
+  name: sausage recipe
+  result: SausageCooked
+  time: 10
+  solids:
+    SausageRaw: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeHotdog
+  name: hotdog recipe
+  result: Hotdog
+  time: 10
+  solids:
+    SausageRaw: 1
+    FoodBreadBun: 1
+  recipeType:
+  - Oven
