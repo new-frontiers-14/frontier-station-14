@@ -1,0 +1,41 @@
+# Loot table for expedition
+- type: salvageLoot
+  id: NFSalvageLootModerate
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: SalvageSpawnerEquipmentValuable100
+          prob: 0.1
+        - proto: SalvageSpawnerEquipment100
+          prob: 0.2
+        - proto: SalvageSpawnerTreasureValuable100
+          prob: 0.4
+        - proto: SalvageSpawnerTreasure100
+#        - proto: SalvageSpawnerScrapValuable100
+
+- type: salvageLoot
+  id: NFSalvageLootHazardous
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: SalvageSpawnerEquipmentValuable100
+          prob: 0.2
+        - proto: SalvageSpawnerEquipment100
+          prob: 0.4
+        - proto: SalvageSpawnerTreasureValuable100
+          prob: 0.8
+        - proto: SalvageSpawnerTreasure100
+#        - proto: SalvageSpawnerScrapValuable100
+
+- type: salvageLoot
+  id: NFSalvageLootExtreme
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: SalvageSpawnerEquipmentValuable100
+          prob: 0.3
+        - proto: SalvageSpawnerEquipment100
+          prob: 0.6
+        - proto: SalvageSpawnerTreasureValuable100
+        - proto: SalvageSpawnerTreasure100
+#        - proto: SalvageSpawnerScrapValuable100
