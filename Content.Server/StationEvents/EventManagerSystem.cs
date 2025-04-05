@@ -14,6 +14,7 @@ using Content.Shared.Roles.Jobs; // Frontier
 using Content.Server.Mind; // Frontier
 using Robust.Shared.Enums; // Frontier
 using Content.Shared.Roles; // Frontier
+using Content.Server._NF.Players; // Frontier
 
 namespace Content.Server.StationEvents;
 
@@ -26,9 +27,7 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] public readonly GameTicker GameTicker = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!; // Frontier
-
-    [Dependency] private readonly SharedJobSystem _jobs = default!; // Frontier
+    [Dependency] private readonly JobPresentSystem _jobs = default!; // Frontier
 
     [Dependency] private readonly MindSystem _mindSystem = default!;
 
@@ -286,23 +285,7 @@ public sealed class EventManagerSystem : EntitySystem
         // Frontier: require jobs to run event
         foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs)
         {
-            var activeJobCount = 0;
-            var jobQuery = AllEntityQuery<JobRoleComponent, MindRoleComponent>();
-            while (jobQuery.MoveNext(out _, out _, out var mindRole))
-            {
-
-                if (!TryComp(mindRole.Mind.Comp.CurrentEntity, out TransformComponent? xform) || xform.MapUid == null) // Skip if they're in nullspace
-                    continue;
-
-                if (mindRole.Mind.Comp.Session?.State.Status != SessionStatus.InGame) // Skip if they're SSD
-                    continue;
-
-                if (!_jobs.MindHasJobWithId(mindRole.Mind, jobProtoId)) // Skip if the job doesn't match
-                    continue;
-
-                activeJobCount++;
-            }
-            if (activeJobCount < numJobs)
+            if (_jobs.getNumberOfActiveRoles(jobProtoId) < numJobs)
             {
                 return false;
             }
