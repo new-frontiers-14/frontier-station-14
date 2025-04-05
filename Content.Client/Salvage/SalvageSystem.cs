@@ -36,8 +36,8 @@ public sealed class SalvageSystem : SharedSalvageSystem
             return;
 
         component.Stage = state.Stage;
-
-        // Frontier: check where the local player is
+        if (state.SelectedSong != null) // Frontier
+            component.SelectedSong = state.SelectedSong; // Frontier
 
         if (component.Stage >= ExpeditionStage.MusicCountdown)
         {
@@ -79,7 +79,7 @@ public sealed class SalvageSystem : SharedSalvageSystem
     // Frontier: stop stream when destroying the expedition
     private void OnRemove(EntityUid uid, SalvageExpeditionComponent component, ComponentRemove args)
     {
-        // For whatever reason, AudioStream considers stream as a server-side entity.
+        // For whatever reason, this stream is considered a server-side entity, so the AudioSystem won't tear it down.
         // Don't really understand why, but I don't think it is.
 
         //component.Stream = _audioSystem.Stop(component.Stream);

@@ -37,11 +37,13 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
 
     [ViewVariables] public bool Completed = false;
 
+    // Frontier: moved to Client
     /// <summary>
     /// Countdown audio stream.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid? Stream = null;
+    // [DataField, AutoNetworkedField]
+    // public EntityUid? Stream = null;
+    // End Frontier: moved to Client
 
     /// <summary>
     /// Sound that plays when the mission end is imminent.
