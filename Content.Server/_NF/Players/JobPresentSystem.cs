@@ -27,7 +27,7 @@ public sealed class JobPresentSystem : EntitySystem
             if (!TryComp(mindRole.Mind.Comp.CurrentEntity, out TransformComponent? xform) || xform.MapUid == null) // Skip if they're in nullspace
                 continue;
 
-            if (HasComp<GhostComponent>(mindRole.Mind.Comp.CurrentEntity)) // Skip if they're a ghost
+            if (GetNetEntity(mindRole.Mind.Comp.CurrentEntity) != mindRole.Mind.Comp.OriginalOwnedEntity) // Skip if they're no longer in their original body (ghost or ghostrole)
                 continue;
 
             if (mindRole.Mind.Comp.Session?.State.Status != SessionStatus.InGame) // Skip if they're SSD
