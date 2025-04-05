@@ -47,7 +47,7 @@ public sealed partial class AudioTab : Control
         // Frontier: add expedition volume slider
         Control.AddOptionPercentSlider(
             NFCCVars.SalvageExpeditionMusicVolume,
-            SliderVolumeAmbience,
+            SliderVolumeExpedMusic,
             scale: ContentAudioSystem.SalvageMultiplier);
         // End Frontier: add expedition volume slider
 
