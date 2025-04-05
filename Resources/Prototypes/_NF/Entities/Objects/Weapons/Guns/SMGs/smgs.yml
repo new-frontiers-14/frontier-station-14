@@ -42,6 +42,13 @@
     Desc.: Pla-ket-ket-ket-ket! An illegal firearm often used by Syndicate agents.
     ---
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/SMGs/atreides.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/SMGs/atreides.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -73,6 +80,9 @@
     Desc.: An illegal firearm that is often used by the infamous nuclear operatives.
     ---
   components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -104,6 +114,13 @@
     Desc.: An excellent fully automatic Heavy SMG.
     ---
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/SMGs/drozd.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/SMGs/drozd.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -135,6 +152,10 @@
     Desc.: An excellent SMG. On the receiver is a label that says 'for authorized use only.'
     ---
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/SMGs/wt550.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/SMGs/wt550.rsi
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -194,15 +215,6 @@
     ---
   components:
   - type: Gun
-    minAngle: 9.1
-    maxAngle: 18.2
-    angleIncrease: 0.5
-    angleDecay: 3
-    fireRate: 4
-    selectedMode: FullAuto
-    availableModes:
-    - SemiAuto
-    - FullAuto
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/typewriter.ogg
   - type: ItemSlots
@@ -224,5 +236,3 @@
         whitelist:
           tags:
             - CartridgePistol
-
-# Frontier
