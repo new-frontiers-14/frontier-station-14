@@ -37,13 +37,14 @@ YamlLoaderIgnoringTags.add_constructor(None, YamlLoaderIgnoringTags.ignore_unkno
 # End of snippet
 
 
-def check_prototype(proto_id: str, proto_name: str, proto_suffixes: List[str]) -> Union[bool, List[str]]:
+def check_prototype(proto_id: str, proto_name: str, proto_suffixes: List[str], proto_categories: List[str]) -> Union[bool, List[str]]:
     """
     Checks prototype information against the ILLEGAL_MATCHES and CONDITIONALLY_ILLEGAL_MATCHES constants.
 
     :param proto_id: The prototype's ID.
     :param proto_name: The prototype's name.
     :param proto_suffixes: The prototype's suffixes.
+    :param proto_categories: The prototype's categories.
     :return:
     - True if the prototype is legal
     - False if the prototype is globally illegal (matched by ILLEGAL_MATCHES)
@@ -69,6 +70,10 @@ def check_prototype(proto_id: str, proto_name: str, proto_suffixes: List[str]) -
             if illegal_match.lower() == suffix.lower():
                 return False
 
+        for category in proto_categories:
+            if illegal_match.lower() == category.lower():
+                return False
+
     # Check against CONDITIONALLY_ILLEGAL_MATCHES.
     conditionally_illegal_keys = list()
     for key in CONDITIONALLY_ILLEGAL_MATCHES.keys():
@@ -86,6 +91,11 @@ def check_prototype(proto_id: str, proto_name: str, proto_suffixes: List[str]) -
 
             for suffix in proto_suffixes:
                 if cond_illegal_match.lower() == suffix.lower():
+                    conditionally_illegal_keys.append(key)
+                    break
+
+            for category in proto_categories:
+                if cond_illegal_match.lower() == category.lower():
                     conditionally_illegal_keys.append(key)
                     break
 
