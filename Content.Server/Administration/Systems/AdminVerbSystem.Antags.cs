@@ -1,3 +1,4 @@
+using Content.Server._NF.GameTicking.Rules.Components; // Frontier
 using Content.Server.Administration.Commands;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
@@ -10,6 +11,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using static Content.Shared.Fax.AdminFaxEuiMsg;
 
 namespace Content.Server.Administration.Systems;
 
@@ -21,11 +23,11 @@ public sealed partial class AdminVerbSystem
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultTraitorRule = "Traitor";
 
-    // [ValidatePrototypeId<EntityPrototype>] // Frontier: no initial infected verb
-    // private const string DefaultInitialInfectedRule = "Zombie"; // Frontier: no initial infected verb
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string DefaultInitialInfectedRule = "Zombie";
 
-    // [ValidatePrototypeId<EntityPrototype>] // Frontier: no nuke op verb
-    // private const string DefaultNukeOpRule = "LoneOpsSpawn"; // Frontier: no nuke op verb
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string DefaultNukeOpRule = "LoneOpsSpawn";
 
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultRevsRule = "Revolutionary";
@@ -35,6 +37,9 @@ public sealed partial class AdminVerbSystem
 
     [ValidatePrototypeId<StartingGearPrototype>]
     private const string PirateGearId = "PirateGear";
+
+    [ValidatePrototypeId<EntityPrototype>] // Frontier
+    private const string DefaultNFPirateRule = "NFPirate"; // Frontier
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -129,7 +134,9 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 // pirates just get an outfit because they don't really have logic associated with them
-                SetOutfitCommand.SetOutfit(args.Target, PirateGearId, EntityManager);
+                //SetOutfitCommand.SetOutfit(args.Target, PirateGearId, EntityManager);
+
+                _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, DefaultNFPirateRule); // Frontier
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", pirateName, Loc.GetString("admin-verb-make-pirate")),
@@ -149,7 +156,7 @@ public sealed partial class AdminVerbSystem
             Impact = LogImpact.High,
             Message = string.Join(": ", headRevName, Loc.GetString("admin-verb-make-head-rev")),
         };
-        args.Verbs.Add(headRev);
+        //args.Verbs.Add(headRev); // Frontier
 
         var thiefName = Loc.GetString("admin-verb-text-make-thief");
         Verb thief = new()
