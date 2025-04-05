@@ -39,17 +39,17 @@ public sealed partial class AudioTab : Control
             SliderVolumeAmbientMusic,
             scale: ContentAudioSystem.AmbientMusicMultiplier);
 
-        // Frontier: adjustable expedition music volume
-        Control.AddOptionPercentSlider(
-            NFCCVars.SalvageExpeditionMusicVolume,
-            SliderVolumeExpedMusic,
-            scale: ContentAudioSystem.SalvageVolumeMultiplier);
-        // End Frontier: adjustable expedition music volume
-
         Control.AddOptionPercentSlider(
             CCVars.AmbienceVolume,
             SliderVolumeAmbience,
             scale: ContentAudioSystem.AmbienceMultiplier);
+
+        // Frontier: add expedition volume slider
+        Control.AddOptionPercentSlider(
+            NFCCVars.SalvageExpeditionMusicVolume,
+            SliderVolumeAmbience,
+            scale: ContentAudioSystem.SalvageMultiplier);
+        // End Frontier: add expedition volume slider
 
         Control.AddOptionPercentSlider(
             CCVars.LobbyMusicVolume,

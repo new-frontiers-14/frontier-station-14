@@ -1,17 +1,17 @@
 using Content.Client.Audio;
-using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
-using Robust.Client.Audio; // Frontier
 using Robust.Client.Player;
+using Robust.Shared.GameStates;
+using Content.Shared._NF.CCVar; // Frontier
+using Robust.Client.Audio; // Frontier
 using Robust.Shared.Audio; // Frontier
 using Robust.Shared.Configuration; // Frontier
-using Robust.Shared.GameStates;
 using Robust.Shared.Player; // Frontier
 
 namespace Content.Client.Salvage;
 
-public sealed partial class SalvageSystem : SharedSalvageSystem // Frontier: added partial (see SalvageSystem.Audio.cs)
+public sealed class SalvageSystem : SharedSalvageSystem
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ContentAudioSystem _audio = default!;
@@ -19,7 +19,7 @@ public sealed partial class SalvageSystem : SharedSalvageSystem // Frontier: add
     [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
 
     const float SalvageExpeditionMinMusicVolume = -30f; // Frontier: expedition volume range
-    const float SalvageExpeditionMaxMusicVolume = 5.0f; // Frontier: expedition volume range
+    const float SalvageExpeditionMaxMusicVolume = 3.0f; // Frontier: expedition volume range
 
     public override void Initialize()
     {
@@ -36,8 +36,6 @@ public sealed partial class SalvageSystem : SharedSalvageSystem // Frontier: add
             return;
 
         component.Stage = state.Stage;
-        if (state.SelectedSong != null) // Frontier
-            component.SelectedSong = state.SelectedSong; // Frontier
 
         // Frontier: check where the local player is
 

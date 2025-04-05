@@ -29,7 +29,8 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float AmbientMusicMultiplier = 3f;
     public const float LobbyMultiplier = 3f;
     public const float InterfaceMultiplier = 2f;
-    public const float SalvageVolumeMultiplier = 1f; // Frontier
+    public const float SalvageMultiplier = 2f; // Frontier
+
     public override void Initialize()
     {
         base.Initialize();
