@@ -1,61 +1,48 @@
-# Loot table
-# Main loot table for random spawns
+# Loot table for expedition
 - type: salvageLoot
-  id: NFSalvageLoot
+  id: NFSalvageLootModerate
   loots:
-    - !type:RandomSpawnsLoot # Placeholder, redefining SalvageLoot
+    - !type:RandomSpawnsLoot
       entries:
         - proto: SalvageSpawnerEquipmentValuable100
-          cost: 5
-        - proto: SalvageSpawnerEquipment100
-          cost: 4
-        - proto: SalvageSpawnerTreasureValuable100
           cost: 3
-        - proto: SalvageSpawnerTreasure100
+          prob: 0.1
+        - proto: SalvageSpawnerEquipment100
           cost: 2
-        - proto: SalvageSpawnerScrapValuable100
+          prob: 0.2
+        - proto: SalvageSpawnerTreasureValuable100
+          cost: 2
+          prob: 0.5
+        - proto: SalvageSpawnerTreasure100
+#        - proto: SalvageSpawnerScrapValuable100
 
-- type: entity
-  parent: SalvageSpawnerScrapValuable75
-  id: SalvageSpawnerScrapValuable100
-  suffix: Valuable, 100%
-  components:
-  - type: EntityTableSpawner
-    table: !type:NestedSelector
-      tableId: SalvageScrapSpawnerValuable
+- type: salvageLoot
+  id: NFSalvageLootHazardous
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: SalvageSpawnerEquipmentValuable100
+          cost: 3
+          prob: 0.2
+        - proto: SalvageSpawnerEquipment100
+          cost: 2
+          prob: 0.4
+        - proto: SalvageSpawnerTreasureValuable100
+          cost: 2
+        - proto: SalvageSpawnerTreasure100
+#        - proto: SalvageSpawnerScrapValuable100
 
-- type: entity
-  parent: SalvageSpawnerTreasure
-  id: SalvageSpawnerTreasure100
-  suffix: Common, 100%
-  components:
-  - type: EntityTableSpawner
-    table: !type:NestedSelector
-      tableId: SalvageTreasureSpawnerCommon
-
-- type: entity
-  parent: SalvageSpawnerTreasureValuable
-  id: SalvageSpawnerTreasureValuable100
-  suffix: Valuable, 100%
-  components:
-  - type: EntityTableSpawner
-    table: !type:NestedSelector
-      tableId: SalvageTreasureSpawnerValuable
-
-- type: entity
-  parent: SalvageSpawnerEquipment
-  id: SalvageSpawnerEquipment100
-  suffix: Common, 100%
-  components:
-  - type: EntityTableSpawner
-    table: !type:NestedSelector
-      tableId: SalvageEquipmentSpawnerCommon
-
-- type: entity
-  parent: SalvageSpawnerEquipmentValuable
-  id: SalvageSpawnerEquipmentValuable100
-  suffix: Valuable, 100%
-  components:
-  - type: EntityTableSpawner
-    table: !type:NestedSelector
-      tableId: SalvageEquipmentSpawnerValuable
+- type: salvageLoot
+  id: NFSalvageLootExtreme
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: SalvageSpawnerEquipmentValuable100
+          cost: 2
+          prob: 0.4
+        - proto: SalvageSpawnerEquipment100
+          cost: 2
+          prob: 0.8
+        - proto: SalvageSpawnerTreasureValuable100
+        - proto: SalvageSpawnerTreasure100
+#        - proto: SalvageSpawnerScrapValuable100
