@@ -94,7 +94,7 @@
   name: the peoples shovel
   parent: Shovel
   id: NFShovel
-  description: "18 Functions including: digging, chopping, cutting, picking, prying, wire cutting, shoveling, mini shield."
+  description: "18 Functions including: digging, chopping, cutting, picking, prying, wire cutting, anchoring, shoveling, mini shield."
   components:
   - type: Sprite
     sprite: _NF/Objects/Tools/cm-shovel.rsi
@@ -114,10 +114,10 @@
     enabled: false
   - type: Tag
     tags:
-    - BotanyShovel
+#    - BotanyShovel # This wont work at the same time with hoe
     - Hoe
     - BotanyHoe
-    - PlantSampleTaker
+#    - PlantSampleTaker # This wont work at the same time with hoe
     - Wirecutter
     - Screwdriver
     - Crowbar
@@ -178,20 +178,6 @@
           path: /Audio/Items/shovel_dig.ogg
   - type: ThrowingAngle
     angle: 45
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape: !type:PolygonShape
-          vertices:
-            - -0.20,0.10
-            - -0.10,0.20
-            - 0.20,-0.10
-            - 0.10,-0.20
-        density: 20
-        mask:
-        - ItemMask
-        restitution: 0.3
-        friction: 0.2
   - type: DamageOtherOnHit
     damage:
       types:
