@@ -54,6 +54,12 @@ public sealed partial class CCVars
         GameLobbyEnableWin = CVarDef.Create("game.enablewin", true, CVar.ARCHIVE);
 
     /// <summary>
+    ///     Controls if round-end window shows whether the objective was completed or not.
+    /// </summary>
+    public static readonly CVarDef<bool>
+        GameShowGreentext = CVarDef.Create("game.showgreentext", true, CVar.ARCHIVE | CVar.SERVERONLY);
+
+    /// <summary>
     ///     Controls the maximum number of character slots a player is allowed to have.
     /// </summary>
     public static readonly CVarDef<int>
@@ -82,7 +88,7 @@ public sealed partial class CCVars
     ///     Prototype to use for map pool.
     /// </summary>
     public static readonly CVarDef<string>
-        GameMapPool = CVarDef.Create("game.map_pool", "DefaultMapPool", CVar.SERVERONLY);
+        GameMapPool = CVarDef.Create("game.map_pool", "NFMapPool", CVar.SERVERONLY); // Frontier: DefaultMapPool<NFMapPool
 
     /// <summary>
     ///     The depth of the queue used to calculate which map is next in rotation.
