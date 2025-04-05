@@ -19,5 +19,5 @@ public sealed partial class RandomGasDepositComponent : Component
     /// After each gas is chosen from the deposit prototype, the scale factor is multiplied into the deposit size.
     /// </summary>
     [DataField]
-    public float Scale = 1.2f;
+    public float Scale = 1.0f;
 }
