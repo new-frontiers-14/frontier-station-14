@@ -185,6 +185,7 @@ public sealed partial class SalvageSystem
                 // comp.Stream = audio?.Entity;
                 // _audio.SetMapAudio(audio);
                 // End Frontier
+                comp.Stage = ExpeditionStage.MusicCountdown;
                 Dirty(uid, comp);
                 Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", audioLength.Minutes)));
             }
