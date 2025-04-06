@@ -11,6 +11,9 @@
     damage:
       types:
         Piercing: 28
+  - type: Tracer # Frontier
+    color: "#000000FF" # Frontier
+    length: 1.5 # Frontier
 
 - type: entity
   id: PelletShotgunBeanbag
@@ -27,6 +30,9 @@
         Blunt: 10
   - type: StaminaDamageOnCollide
     damage: 30 # 4 hits to stun
+  - type: Tracer # Frontier
+    color: "#004A00FF" # Frontier
+    length: 1.5 # Frontier
 
 - type: entity
   id: PelletShotgun
@@ -154,6 +160,9 @@
     solution: ammo
   - type: InjectableSolution
     solution: ammo
+  - type: Tracer # Frontier
+    color: "#49CECEFF" # Frontier
+    length: 1.5 # Frontier
 
 - type: entity
   id: PelletShotgunFlare
@@ -216,6 +225,13 @@
       types:
         Radiation: 5
         Piercing: 5
+  - type: Tracer # Frontier
+    color: "#9BE792FF" # Frontier
+    length: 1.5 # Frontier
+  - type: PointLight # Frontier
+    radius: 1.1 # Frontier
+    energy: 1 # Frontier
+    color: "#9BE792FF" # Frontier
 
 - type: entity
   id: PelletShotgunUraniumSpread
