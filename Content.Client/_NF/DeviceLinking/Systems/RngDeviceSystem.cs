@@ -15,7 +15,6 @@ namespace Content.Client._NF.DeviceLinking.Systems;
 public sealed class RngDeviceSystem : SharedRngDeviceSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
