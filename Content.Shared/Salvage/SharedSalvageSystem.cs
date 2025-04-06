@@ -47,7 +47,17 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref modifierBudget);
         var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget);
         var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget);
-        var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
+        // Frontier: restrict factions per difficulty
+        // var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
+        var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>()
+            .Where(x =>
+                {
+                    return !x.Configs.TryGetValue("Difficulties", out var difficulties)
+                        || string.IsNullOrWhiteSpace(difficulties)
+                        || difficulties.Split(",").Contains(difficulty.ID.ToString());
+                }
+            ).ToList();
+        // End Frontier: difficulties per faction
         factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         var faction = factionProtos[rand.Next(factionProtos.Count)];
 
