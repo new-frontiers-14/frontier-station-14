@@ -15,6 +15,8 @@ seeds-bees-name = bees
 seeds-bees-display-name = honeycomb
 seeds-everyspice-name = everyspice
 seeds-everyspice-display-name = everyspice plants
+seeds-monkanana-name = monkanana
+seeds-monkanana-display-name = monkanana trees
 
 # Should be in seed-component
 botany-seed-jar-name = jar of {$seedName} {$seedNoun}
