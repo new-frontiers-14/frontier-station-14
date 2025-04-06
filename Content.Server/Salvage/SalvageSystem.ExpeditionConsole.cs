@@ -14,7 +14,7 @@ using Content.Shared.NPC.Components; // Frontier
 using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
-using Content.Shared.IdentityManagement; // Frontier
+using Robust.Shared.Physics; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -24,6 +24,7 @@ public sealed partial class SalvageSystem
     public const string CoordinatesDisk = "CoordinatesDisk";
 
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!; // Frontier
+    [Dependency] private readonly SalvageSystem _salvage = default!; // Frontier
 
     private const float ShuttleFTLMassThreshold = 50f; // Frontier
     private const float ShuttleFTLRange = 150f; // Frontier
@@ -64,7 +65,7 @@ public sealed partial class SalvageSystem
         // until FTL changes for us in some way.
 
         // Run a proximity check (unless using a debug console)
-        if (!component.Debug)
+        if (_salvage.ProximityCheck && !component.Debug)
         {
             if (!TryComp<StationDataComponent>(station, out var stationData)
                 || _station.GetLargestGrid(stationData) is not { Valid: true } ourGrid
@@ -93,7 +94,7 @@ public sealed partial class SalvageSystem
             {
                 if (ourGrid == otherGrid.Owner ||
                     !bodyQuery.TryGetComponent(otherGrid.Owner, out var body) ||
-                    body.Mass < ShuttleFTLMassThreshold)
+                    body.Mass < ShuttleFTLMassThreshold && body.BodyType == BodyType.Dynamic)
                 {
                     continue;
                 }
@@ -163,7 +164,7 @@ public sealed partial class SalvageSystem
             if (mobXform.GridUid != xform.GridUid)
             {
                 PlayDenySound((entity, component));
-                _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-not-everyone-aboard", ("target", Identity.Entity(uid, EntityManager))), entity, PopupType.MediumCaution);
+                _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-not-everyone-aboard", ("target", uid)), entity, PopupType.MediumCaution);
                 UpdateConsoles((station.Value, data));
                 return;
             }

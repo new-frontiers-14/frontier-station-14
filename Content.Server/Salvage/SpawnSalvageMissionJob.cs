@@ -56,6 +56,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     private readonly SharedMapSystem _map;
     private readonly StationSystem _station; // Frontier
     private readonly ShuttleSystem _shuttle; // Frontier
+    private readonly SalvageSystem _salvage; // Frontier
 
     public readonly EntityUid Station;
     public readonly EntityUid? CoordinatesDisk;
@@ -85,6 +86,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         SharedMapSystem map,
         StationSystem stationSystem, // Frontier
         ShuttleSystem shuttleSystem, // Frontier
+        SalvageSystem salvageSystem, // Frontier
         EntityUid station,
         EntityUid? coordinatesDisk,
         SalvageMissionParams missionParams,
@@ -102,6 +104,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         _map = map;
         _station = stationSystem; // Frontier
         _shuttle = shuttleSystem; // Frontier
+        _salvage = salvageSystem; // Frontier
         Station = station;
         CoordinatesDisk = coordinatesDisk;
         _missionParams = missionParams;
@@ -381,7 +384,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         if (shuttleUid is { Valid: true })
         {
             var shuttle = _entManager.GetComponent<ShuttleComponent>(shuttleUid.Value);
-            _shuttle.FTLToCoordinates(shuttleUid.Value, shuttle, new EntityCoordinates(mapUid, coords), 0f, 5.5f, 50f);
+            _shuttle.FTLToCoordinates(shuttleUid.Value, shuttle, new EntityCoordinates(mapUid, coords), 0f, 5.5f, _salvage.TravelTime);
         }
         // End Frontier
 

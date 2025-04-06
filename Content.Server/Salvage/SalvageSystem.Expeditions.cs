@@ -18,7 +18,9 @@ using Content.Shared.Salvage; // Frontier
 using Robust.Shared.Prototypes; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Shuttles.Components; // Frontier
-using Robust.Shared.Configuration; // Frontier
+using Robust.Shared.Configuration;
+using Content.Shared.Ghost;
+using System.Numerics; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -39,6 +41,8 @@ public sealed partial class SalvageSystem
 
     private float _cooldown;
     private float _failedCooldown; // Frontier
+    public float TravelTime { get; private set; } // Frontier
+    public bool ProximityCheck { get; private set; } // Frontier
 
     private void InitializeExpeditions()
     {
@@ -57,7 +61,11 @@ public sealed partial class SalvageSystem
         _cooldown = _cfgManager.GetCVar(CCVars.SalvageExpeditionCooldown);
         Subs.CVar(_cfgManager, CCVars.SalvageExpeditionCooldown, SetCooldownChange);
         _failedCooldown = _cfgManager.GetCVar(NFCCVars.SalvageExpeditionFailedCooldown); // Frontier
-        Subs.CVar(_cfgManager, CCVars.SalvageExpeditionCooldown, SetFailedCooldownChange); // Frontier
+        Subs.CVar(_cfgManager, NFCCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange); // Frontier
+        TravelTime = _cfgManager.GetCVar(NFCCVars.SalvageExpeditionTravelTime); // Frontier
+        Subs.CVar(_cfgManager, NFCCVars.SalvageExpeditionTravelTime, SetTravelTime); // Frontier
+        ProximityCheck = _cfgManager.GetCVar(NFCCVars.SalvageExpeditionProximityCheck); // Frontier
+        Subs.CVar(_cfgManager, NFCCVars.SalvageExpeditionProximityCheck, SetProximityCheck); // Frontier
     }
 
     private void OnExpeditionGetState(EntityUid uid, SalvageExpeditionComponent component, ref ComponentGetState args)
@@ -90,6 +98,16 @@ public sealed partial class SalvageSystem
         // Note: we don't know whether or not players have failed missions, so let's not punish/reward them if this gets changed.
         _failedCooldown = obj;
     }
+
+    private void SetTravelTime(float obj)
+    {
+        TravelTime = obj;
+    }
+
+    private void SetProximityCheck(bool obj)
+    {
+        ProximityCheck = obj;
+    }
     // End Frontier
 
     private void OnExpeditionMapInit(EntityUid uid, SalvageExpeditionComponent component, MapInitEvent args)
@@ -118,6 +136,18 @@ public sealed partial class SalvageSystem
         {
             FinishExpedition((component.Station, data), component, uid); // Frontier: add component
         }
+
+        // Frontier: Find all ghosts, warp them to the main map.
+        var ghosts = EntityQueryEnumerator<GhostComponent, TransformComponent>();
+        var newCoords = new MapCoordinates(Vector2.Zero, _gameTicker.DefaultMap);
+        while (ghosts.MoveNext(out var ghostUid, out _, out var xform))
+        {
+            if (xform.MapUid == ghostUid)
+            {
+                _transform.SetMapCoordinates(ghostUid, newCoords);
+            }
+        }
+        // End Frontier
     }
 
     private void UpdateExpeditions()
@@ -243,6 +273,7 @@ public sealed partial class SalvageSystem
             _mapSystem,
             _station, // Frontier
             _shuttle, // Frontier
+            this, // Frontier
             station,
             coordinatesDisk,
             missionParams,

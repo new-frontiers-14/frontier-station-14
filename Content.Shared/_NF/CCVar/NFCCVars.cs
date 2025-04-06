@@ -114,7 +114,19 @@ public sealed class NFCCVars
     /// Cooldown for failed missions.
     /// </summary>
     public static readonly CVarDef<float> SalvageExpeditionFailedCooldown =
-        CVarDef.Create("salvage.expedition_failed_cooldown", 1200f, CVar.REPLICATED);
+        CVarDef.Create("nf14.salvage.expedition_failed_cooldown", 1200f, CVar.REPLICATED);
+
+    /// <summary>
+    /// Transit time in hyperspace in seconds.
+    /// </summary>
+    public static readonly CVarDef<float> SalvageExpeditionTravelTime =
+        CVarDef.Create("nf14.salvage.expedition_travel_time", 50f, CVar.REPLICATED);
+
+    /// <summary>
+    /// Whether or not to skip the expedition proximity check.
+    /// </summary>
+    public static readonly CVarDef<bool> SalvageExpeditionProximityCheck =
+        CVarDef.Create("nf14.salvage.expedition_proximity_check", true, CVar.REPLICATED);
 
     /*
      * Smuggling
