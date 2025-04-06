@@ -70,8 +70,19 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
     // Predicts a roll on the client side for responsive UI
     private void PredictRoll(Entity<RngDeviceVisualsComponent> ent, int outputs, EntityUid? user = null)
     {
-        // Use the shared GenerateRoll method
-        var (roll, _) = GenerateRoll(outputs);
+        int roll;
+        // Only use target number for percentile dice (outputs == 2)
+        // And only if we have a cached state from the UI being opened previously.
+        if (outputs == 2 && _lastStates.TryGetValue(ent, out var state))
+        {
+            // Use the overload that takes targetNumber
+            (roll, _) = GenerateRoll(outputs, state.TargetNumber);
+        }
+        else
+        {
+            // Use the original overload without targetNumber
+            (roll, _) = GenerateRoll(outputs);
+        }
 
         // Update visuals with the predicted roll
         UpdateVisualState(ent, outputs, roll);
