@@ -47,24 +47,6 @@ public sealed class NFCCVars
     public static readonly CVarDef<bool> PublicTransit =
         CVarDef.Create("nf14.publictransit.enabled", true, CVar.SERVERONLY);
 
-    /// <summary>
-    /// The map to use for the public bus.
-    /// </summary>
-    public static readonly CVarDef<string> PublicTransitBusMap =
-        CVarDef.Create("nf14.publictransit.bus_map", "/Maps/_NF/Shuttles/Bus/publicts.yml", CVar.SERVERONLY);
-
-    /// <summary>
-    /// The amount of time the bus waits at a station.
-    /// </summary>
-    public static readonly CVarDef<float> PublicTransitWaitTime =
-        CVarDef.Create("nf14.publictransit.wait_time", 180f, CVar.SERVERONLY);
-
-    /// <summary>
-    /// The amount of time the flies through FTL space.
-    /// </summary>
-    public static readonly CVarDef<float> PublicTransitFlyTime =
-        CVarDef.Create("nf14.publictransit.fly_time", 50f, CVar.SERVERONLY);
-
     /*
      *  World Gen
      */
@@ -243,4 +225,14 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<bool> AllowMapGasExtraction =
         CVarDef.Create("nf14.atmos.allow_map_gas_extraction", false, CVar.SERVER | CVar.REPLICATED);
+
+    /*
+     * Audio
+     */
+
+    /// <summary>
+    /// The volume of expedition ending music.
+    /// </summary>
+    public static readonly CVarDef<float> SalvageExpeditionMusicVolume =
+        CVarDef.Create("nf14.audio.expedition_music_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
