@@ -327,12 +327,9 @@
   - type: CartridgeAmmo
     proto: NFBulletRifle60
   - type: Sprite
-    layers:
+    layers: # TODO: add tip
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#333333"
 
 - type: entity
   id: NFCartridgeRifle60Rubber
@@ -345,6 +342,3 @@
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#00b0ff"
