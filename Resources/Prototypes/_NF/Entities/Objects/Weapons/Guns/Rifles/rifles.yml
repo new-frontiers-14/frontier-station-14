@@ -44,6 +44,9 @@
     Ammo: .30 rifle
     Desc.: A weapon for hunting, or endless trench warfare. Equipped with bayonet.
     ---
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30
 
 - type: entity
   id: NFWeaponRifleMusket
@@ -63,7 +66,7 @@
   suffix: Frontier, Less-lethal
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleRubber
+    proto: NFCartridgeRifle30Rubber
 
 # DeltaV
 - type: entity
@@ -76,6 +79,9 @@
     Ammo: .30 rifle
     Desc.: A ceremonial variant of the Mark 1 Rifle, in tasteful blue and white.
     ---
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30
 
 # Frontier
 - type: entity
@@ -116,7 +122,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleLowCapacity
+        startingItem: NFMagazineLowCapacityRifle30
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -126,7 +132,7 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle
+        startingItem: NFCartridgeRifle30
         priority: 1
         whitelist:
           tags:
@@ -167,5 +173,5 @@
     whitelist:
       tags:
       - CartridgeLightRifle
-    capacity: 7
-    proto: CartridgeLightRifle
+    capacity: 8
+    proto: NFCartridgeRifle30

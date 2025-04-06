@@ -1,0 +1,194 @@
+# WizDen
+#region base .20
+- type: entity
+  id: NFBaseMagazineRifle20
+  name: magazine (.20 rifle)
+  parent: [ BaseC1Contraband, RecyclableItemSteelTiny, BaseMagazineRifle ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineRifle # TODO: make it make sense, change the tags
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRifle
+    proto: NFCartridgeRifle20
+    capacity: 25
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-5
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+
+#region .20 magazines
+- type: entity
+  id: NFMagazineRifle20Empty
+  name: magazine (.20 rifle, any)
+  parent: NFBaseMagazineRifle20
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFMagazineRifle20
+  name: magazine (.20 rifle)
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20
+
+- type: entity
+  id: NFMagazineRifle20HighGrain
+  name: magazine (.20 rifle, high grain)
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20HighGrain
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-5
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFMagazineRifle20Incendiary
+  name: magazine (.20 rifle, incendiary)
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-5
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFMagazineRifle20Uranium
+  name: magazine (.20 rifle, uranium)
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: mag-5
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFMagazineRifle20Practice
+  name: magazine (.20 rifle, practice)
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#dddddd"
+    - state: mag-5
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFMagazineRifle20Rubber # MagazineRifleRubber
+  name: "magazine (.20 rifle, rubber)"
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-5
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Frontier
+#region .20 Novalite
+- type: entity
+  parent: BaseMagazineRifle
+  id: MagazineNovaliteC1Empty
+  name: "clip (.20 rifle any)"
+  suffix: empty
+  components:
+  - type: Tag
+    tags:
+      - MagazineNovaliteC1
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRifle
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_novalite_clip.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-15
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 16
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: MagazineNovaliteC1Empty
+  id: MagazineNovaliteC1
+  name: "clip (.20 rifle)"
+  suffix: full
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-15
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: MagazineNovaliteC1Empty
+  id: MagazineNovaliteC1Rubber
+  name: "clip (.20 rifle rubber)"
+  suffix: full
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleRubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-15
+      map: ["enum.GunVisualLayers.Mag"]
