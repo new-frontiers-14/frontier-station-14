@@ -1,13 +1,14 @@
+# region Moderate
 - type: salvageFaction
   id: NFXenos
   desc: nf-salvage-faction-xenos
   entries:
     - proto: NFMobXeno
-      cost: 0.5
+      cost: 2
     - proto: NFMobXenoDrone
-      cost: 0.5
+      cost: 2
     - proto: NFMobXenoPraetorian
-      cost: 1
+      cost: 3
       prob: 0.2
     - proto: NFMobXenoQueen
       cost: 4
@@ -17,13 +18,14 @@
     - proto: NFMobXenoRunner
       cost: 3
     - proto: NFMobXenoSpitter
-      cost: 1
+      cost: 2
     - proto: WeaponTurretXeno
-      cost: 1
+      cost: 2
       prob: 0.1
   configs:
     DefenseStructure: XenoWardingTower
     Megafauna: NFMobXenoQueen
+    Difficulties: NFModerate
 
 - type: salvageFaction
   id: NFCarps
@@ -32,97 +34,44 @@
     - proto: NFMobPurpleSnake
       cost: 2
     - proto: NFMobCarp
-      cost: 1
+      cost: 2
     - proto: NFMobCarpHolo
-      cost: 1
+      cost: 2
       prob: 0.1
     - proto: NFMobCarpMagic
       cost: 2
       prob: 0.4
     - proto: NFMobCarpRainbow
-      cost: 1
+      cost: 2
       prob: 0.05
     - proto: NFMobShark
-      cost: 2
-      prob: 0.1
+      cost: 3
+      prob: 0.2
+    - proto: NFMobRainbowWyvernIce
+      cost: 3
+      prob: 0.05
+    - proto: NFMobRainbowWyvernFire
+      cost: 3
+      prob: 0.05
+    - proto: NFMobRainbowWyvernCaustic
+      cost: 3
+      prob: 0.05
     - proto: MobDragonDungeon
       cost: 4
       prob: 0.05
   configs:
     DefenseStructure: CarpStatue
     Megafauna: MobDragonDungeon
-
-- type: salvageFaction
-  id: NFSyndicate
-  desc: nf-salvage-faction-syndicate
-  entries:
-    - proto: SpawnMobSyndicateNavalDeckhand
-      cost: 4
-    - proto: SpawnMobSyndicateNavalEngineer
-      cost: 13
-    - proto: SpawnMobSyndicateNavalSaboteur
-      cost: 8
-      prob: 0.05
-    - proto: SpawnMobSyndicateNavalMedic
-      cost: 4
-      prob: 0.2
-    - proto: WeaponTurretSyndicate
-      cost: 8
-      prob: 0.1
-    - proto: SpawnMobSyndicateNavalOperator
-      cost: 12
-      prob: 0.2
-    - proto: SpawnMobSyndicateNavalCaptain
-      cost: 13
-      prob: 0.1
-    - proto: MobSyndicateNavalCommanderA
-      cost: 15
-      prob: 0.1
-    - proto: SpawnMobSyndicateNavalHorror
-      cost: 9
-      prob: 0.01
-  configs:
-    DefenseStructure: CybersunDataMiner
-    Megafauna: MobSyndicateNavalCommanderA
-
-- type: salvageFaction
-  id: NFCultists
-  desc: nf-salvage-faction-cultists
-  entries:
-    - proto: SpawnMobBloodCultistZealotMelee
-      cost: 2
-    - proto: SpawnMobBloodCultLeech
-      cost: 5
-    - proto: SpawnMobBloodCultistZealotRanged
-      cost: 9
-    - proto: SpawnMobBloodCultistCaster
-      cost: 5
-      prob: 0.3
-    - proto: BloodCultTurret
-      cost: 9
-      prob: 0.1
-    - proto: SpawnMobBloodCultistAcolyte
-      cost: 2
-    - proto: SpawnMobBloodCultistPriest
-      cost: 13
-      prob: 0.4
-    - proto: SpawnMobBloodCultistJanitor
-      cost: 5
-      prob: 0.05
-    - proto: MobBloodCultistAscended
-      cost: 10
-      prob: 0.05
-  configs:
-    DefenseStructure: BloodCollector
-    Megafauna: MobBloodCultistAscended
+    Difficulties: NFModerate
 
 - type: salvageFaction
   id: NFFlesh
   desc: nf-salvage-faction-flesh
   entries:
     - proto: SpawnMobAberrantFleshExpeditions
+      cost: 2
     - proto: SpawnMobAberrantFleshNewbornExpeditions
-      cost: 10
+      cost: 2
       prob: 0.1
     - proto: MobHorrorExpeditions
       cost: 3
@@ -130,6 +79,7 @@
   configs:
     DefenseStructure: AberrantFleshDigestiveSack
     Megafauna: MobHorrorExpeditions
+    Difficulties: NFModerate
 
 - type: salvageFaction
   id: NFArgocytes
@@ -137,7 +87,7 @@
   entries:
     - proto: MobArgocyteSlurvaExpeditions # Need spawner for swarms
       cost: 1
-      prob: 0.4
+      prob: 0.1
     - proto: MobArgocyteSkitterExpeditions # Need spawner for swarms
       cost: 1
       prob: 0.4
@@ -150,22 +100,51 @@
     - proto: MobArgocyteFounderExpeditions
       cost: 3
     - proto: MobArgocyteBarrierExpeditions # Need spawner for swarms
-      cost: 1
+      cost: 2
       prob: 0.4
     - proto: MobArgocyteMolderExpeditions
-      cost: 1
+      cost: 2
     - proto: MobArgocytePouncerExpeditions
-      cost: 1
+      cost: 2
     - proto: MobArgocyteHarvesterExpeditions
-      cost: 1
+      cost: 2
     - proto: MobArgocyteEnforcerExpeditions
       cost: 3
     - proto: MobArgocyteLeviathingExpeditions
-      cost: 6
+      cost: 4
       prob: 0.05
   configs:
     DefenseStructure: ArgocyteEgg
     Megafauna: MobArgocyteLeviathingExpeditions
+    Difficulties: NFModerate
+
+# region Hazardous
+
+
+
+- type: salvageFaction
+  id: NFPunks
+  desc: nf-salvage-faction-punks
+  entries:
+    - proto: MobPunkGangerMeleeT1
+      cost: 2
+    - proto: MobPunkGangerMeleeT2
+      cost: 3
+    - proto: MobPunkGangerMeleeT3
+      cost: 3
+    - proto: MobPunkGangerPistol
+      cost: 3
+    - proto: MobPunkGangerSmg
+      cost: 3
+    - proto: MobPunkGangerShotgun
+      cost: 6
+    - proto: MobPunkGangerLeader
+      cost: 4
+      prob: 0.05
+  configs:
+    DefenseStructure: PunkPartySupplies
+    Megafauna: MobPunkGangerLeader
+    Difficulties: NFHazardous
 
 - type: salvageFaction
   id: NFDinosaurs
@@ -195,6 +174,7 @@
   configs:
     DefenseStructure: DinosaurEgg
     Megafauna: MobDinosaurTrexExpeditions
+    Difficulties: NFHazardous
 
 - type: salvageFaction
   id: NFMercenaries
@@ -203,27 +183,64 @@
     - proto: MobMercenarySoldierKnife
       cost: 2
     - proto: MobMercenarySoldierPistol
-      cost: 5
+      cost: 4
     - proto: MobMercenarySoldierNovalite
-      cost: 5
+      cost: 4
     - proto: MobMercenaryBreacherMachete
       cost: 2
     - proto: MobMercenarySoldierRevolver
-      cost: 8
-    - proto: MobMercenaryBreacherShotgun
-      cost: 16
-    - proto: MobMercenarySpecialistMedic
       cost: 4
+    - proto: MobMercenaryBreacherShotgun
+      cost: 6
+    - proto: MobMercenarySpecialistMedic
+      cost: 3
       prob: 0.2
     - proto: MobMercenarySpecialistAssault
-      cost: 12
+      cost: 6
       prob: 0.3
     - proto: MobMercenaryCaptain
-      cost: 13
+      cost: 6
       prob: 0.05
   configs:
     DefenseStructure: MercenaryCounterfeitCache
     Megafauna: MobMercenaryCaptain
+    Difficulties: NFHazardous
+
+# region Extreme
+
+- type: salvageFaction
+  id: NFSyndicate
+  desc: nf-salvage-faction-syndicate
+  entries:
+    - proto: SpawnMobSyndicateNavalDeckhand
+      cost: 3
+    - proto: SpawnMobSyndicateNavalEngineer
+      cost: 6
+    - proto: SpawnMobSyndicateNavalSaboteur
+      cost: 5
+      prob: 0.05
+    - proto: SpawnMobSyndicateNavalMedic
+      cost: 2
+      prob: 0.2
+    - proto: WeaponTurretSyndicate
+      cost: 4
+      prob: 0.1
+    - proto: SpawnMobSyndicateNavalOperator
+      cost: 5
+      prob: 0.2
+    - proto: SpawnMobSyndicateNavalCaptain
+      cost: 5
+      prob: 0.1
+    - proto: MobSyndicateNavalCommanderA
+      cost: 7
+      prob: 0.1
+    - proto: SpawnMobSyndicateNavalHorror
+      cost: 5
+      prob: 0.01
+  configs:
+    DefenseStructure: CybersunDataMiner
+    Megafauna: MobSyndicateNavalCommanderA
+    Difficulties: NFExtreme
 
 - type: salvageFaction
   id: NFExplorers
@@ -252,57 +269,68 @@
   configs:
     DefenseStructure: ExplorersLootRadar
     Megafauna: MobExplorerBoss
+    Difficulties: NFExtreme
 
 - type: salvageFaction
   id: NFSilicons
   desc: nf-salvage-faction-silicons
   entries:
     - proto: MobRogueSiliconScrap
-      cost: 1
+      cost: 2
     - proto: SpawnMobRogueDronesT1
       cost: 3
       prob: 0.2
     - proto: MobRogueSiliconHerder
-      cost: 2
-    - proto: MobRogueSiliconHunter
       cost: 3
+    - proto: MobRogueSiliconHunter
+      cost: 4
     - proto: MobRogueSiliconCatcher
-      cost: 2
+      cost: 3
       prob: 0.3
     - proto: MobRogueSiliconTesla
       cost: 4
     - proto: MobRogueSiliconScrapFlayer
-      cost: 1
+      cost: 2
       prob: 0.1
     - proto: MobRogueSiliconBoss
-      cost: 6
+      cost: 4
       prob: 0.05
     - proto: MobRogueSiliconGuardian
-      cost: 14
+      cost: 8
       prob: 0.05
   configs:
     DefenseStructure: RogueAiNode
     Megafauna: MobRogueSiliconBoss
+    Difficulties: NFExtreme
 
 - type: salvageFaction
-  id: NFPunks
-  desc: nf-salvage-faction-punks
+  id: NFCultists
+  desc: nf-salvage-faction-cultists
   entries:
-    - proto: MobPunkGangerMeleeT1
+    - proto: SpawnMobBloodCultistZealotMelee
       cost: 2
-    - proto: MobPunkGangerMeleeT2
+    - proto: SpawnMobBloodCultLeech
       cost: 3
-    - proto: MobPunkGangerMeleeT3
+    - proto: SpawnMobBloodCultistZealotRanged
       cost: 4
-    - proto: MobPunkGangerPistol
+    - proto: SpawnMobBloodCultistCaster
+      cost: 3
+      prob: 0.3
+    - proto: BloodCultTurret
       cost: 4
-    - proto: MobPunkGangerSmg
-      cost: 5
-    - proto: MobPunkGangerShotgun
-      cost: 13
-    - proto: MobPunkGangerLeader
-      cost: 8
+      prob: 0.1
+    - proto: SpawnMobBloodCultistAcolyte
+      cost: 2
+    - proto: SpawnMobBloodCultistPriest
+      cost: 6
+      prob: 0.4
+    - proto: SpawnMobBloodCultistJanitor
+      cost: 3
+      prob: 0.05
+    - proto: MobBloodCultistAscended
+      cost: 6
       prob: 0.05
   configs:
-    DefenseStructure: PunkPartySupplies
-    Megafauna: MobPunkGangerLeader
+    DefenseStructure: BloodCollector
+    Megafauna: MobBloodCultistAscended
+    Difficulties: NFExtreme
