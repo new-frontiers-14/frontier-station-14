@@ -187,7 +187,7 @@ public sealed partial class SalvageSystem
 
         expedition.Stage = ExpeditionStage.FinalCountdown;
         expedition.EndTime = newEndTime;
-        Dirty(entity, expedition);
+        Dirty(map.Value, expedition);
 
         Announce(map.Value, Loc.GetString("salvage-expedition-announcement-early-finish", ("departTime", departTime)));
     }
