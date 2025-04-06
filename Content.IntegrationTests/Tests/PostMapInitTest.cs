@@ -45,8 +45,6 @@ namespace Content.IntegrationTests.Tests
             // Frontier: no upstream maps, define our own.
             // "/Maps/centcomm.yml",
             AdminTestArenaSystem.ArenaMapPath,
-            "/Maps/_NF/Shuttles/Admin/fishbowl.yml",
-            "/Maps/_NF/Shuttles/Bus/publicts.yml",
             "/Maps/_NF/Shuttles/Admin/fishbowl.yml"
             // End Frontier
         };
