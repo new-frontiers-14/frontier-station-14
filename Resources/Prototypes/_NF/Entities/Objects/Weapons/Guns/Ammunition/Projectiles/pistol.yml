@@ -121,7 +121,7 @@
     damage: 6 # 10 hits to slowdown
 
 - type: entity
-  id: NFBulletPistol35Incendiary
+  id: NFBulletPistol45Incendiary
   name: bullet (.45 pistol, incendiary)
   parent: BaseBulletIncendiary
   categories: [ HideSpawnMenu ]
@@ -135,7 +135,7 @@
     damage: 5 # 12 hits to slowdown
 
 - type: entity
-  id: NFBulletPistol35Uranium
+  id: NFBulletPistol45Uranium
   parent: BaseBulletUranium
   name: bullet (.45 pistol, uranium)
   categories: [ HideSpawnMenu ]
@@ -182,3 +182,27 @@
     damage:
       types:
         Blunt: 3
+
+- type: entity
+  id: NFBulletPistol45Explosive
+  name: bullet (.45 pistol, explosive)
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 5
+  - type: StaminaDamageOnCollide
+    damage: 5 # 12 hits to slowdown
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 2
+    intensitySlope: 1
+    totalIntensity: 6
+    maxTileBreak: 0
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5

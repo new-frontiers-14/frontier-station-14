@@ -1,96 +1,186 @@
 # WizDen
-# .35 pistol
-#region .35 pistol, standard magazines
+#region base mags .35
 - type: entity
-  id: NFMagazinePistol35Empty
-  name: pistol magazine (.35 pistol, any)
-  parent: MagazinePistolEmpty
+  id: NFBaseMagazinePistol35
+  name: pistol magazine (.35 pistol)
+  parent: BaseMagazinePistol
+  abstract: true
   components:
   - type: BallisticAmmoProvider
     capacity: 10
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFBaseMagazineHighCapacityPistol35
+  name: high capacity pistol magazine (.35 pistol)
+  parent: BaseMagazinePistolHighCapacity
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 16
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_high_capacity_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFBaseMagazinePistolSubMachineGun35
+  name: smg magazine (.35 pistol)
+  parent: BaseMagazinePistolSubMachineGun
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFBaseMagazineSubMachineGunTopMounted35
+  name: top mounted smg magazine (.35 pistol)
+  parent: MagazinePistolSubMachineGunTopMounted
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+
+#region standard mags .35
+- type: entity
+  id: NFMagazinePistol35Empty
+  name: pistol magazine (.35 pistol, any)
+  parent: NFBaseMagazinePistol35
+  components:
+  - type: BallisticAmmoProvider
     proto: null
 
 - type: entity
   id: NFMagazinePistol35
   name: pistol magazine (.35 pistol)
-  parent: MagazinePistol
+  parent: NFBaseMagazinePistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 10
     proto: NFCartridgePistol35
 
 - type: entity
   id: NFMagazinePistol35HighGrain
   name: pistol magazine (.35 pistol, high grain)
-  parent: BaseMagazinePistol
+  parent: NFBaseMagazinePistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 10
     proto: NFCartridgePistol35HighGrain
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazinePistol35Incendiary
   name: pistol magazine (.35 pistol, incendiary)
-  parent: MagazinePistolIncendiary
+  parent: NFBaseMagazinePistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 10
     proto: NFCartridgePistol35Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazinePistol35Uranium
   name: pistol magazine (.35 pistol, uranium)
-  parent: MagazinePistolUranium
+  parent: NFBaseMagazinePistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 10
     proto: NFCartridgePistol35Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazinePistol35Practice
   name: pistol magazine (.35 pistol, practice)
-  parent: MagazinePistolPractice
+  parent: NFBaseMagazinePistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 10
     proto: NFCartridgePistol35Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#dddddd"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 # Frontier
-#region .35 pistol, standard magazines
 - type: entity
   id: NFMagazinePistol35Emp
   name: pistol magazine (.35 pistol, emp)
-  parent: BaseMagazinePistol
+  parent: NFBaseMagazinePistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 10
     proto: NFCartridgePistol35Emp
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi
     layers:
-    - state: emp
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ffff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazinePistol35Rubber
   name: pistol magazine (.35 pistol, rubber)
-  parent: BaseMagazinePistol
+  parent: NFBaseMagazinePistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 10
     proto: NFCartridgePistol35Rubber
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi
     layers:
-    - state: rubber
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 # WizDen
-#region .35 pistol, high capacity magazines
+#region highcap mags .35
 - type: entity
   id: NFMagazineHighCapacityPistol35Empty
   name: high capacity pistol magazine (.35 pistol, any)
@@ -152,7 +242,6 @@
     proto: NFCartridgePistol35Practice
 
 # Frontier
-#region .35 pistol, high capacity magazines
 - type: entity
   id: NFMagazineHighCapacityPistol35Emp
   name: high capacity pistol magazine (.35 pistol, emp)
@@ -186,101 +275,146 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 # WizDen
-#region .35 pistol, smg magazines
+#region smg mags .35
 - type: entity
   id: NFMagazineSubMachineGun35Empty
   name: smg magazine (.35 pistol, any)
-  parent: MagazinePistolSubMachineGunEmpty
+  parent: NFBaseMagazinePistolSubMachineGun35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: null
 
 - type: entity
   id: NFMagazineSubMachineGun35
   name: smg magazine (.35 pistol)
-  parent: BaseMagazinePistolSubMachineGun
+  parent: NFBaseMagazinePistolSubMachineGun35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35
 
 - type: entity
   id: NFMagazineSubMachineGun35HighGrain
   name: smg magazine (.35 pistol, high grain)
-  parent: BaseMagazinePistolSubMachineGun
+  parent: NFBaseMagazinePistolSubMachineGun35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35HighGrain
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazineSubMachineGun35Incendiary
   name: smg magazine (.35 pistol, incendiary)
-  parent: MagazinePistolSubMachineGunIncendiary
+  parent: NFBaseMagazinePistolSubMachineGun35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazineSubMachineGun35Uranium
   name: smg magazine (.35 pistol, uranium)
-  parent: MagazinePistolSubMachineGunUranium
+  parent: NFBaseMagazinePistolSubMachineGun35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazineSubMachineGun35Practice
   name: smg magazine (.35 pistol, practice)
-  parent: MagazinePistolSubMachineGunPractice
+  parent: NFBaseMagazinePistolSubMachineGun35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Empty
   name: top mounted smg magazine (.35 pistol, any)
-  parent: MagazinePistolSubMachineGunTopMounted
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: null
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35
   name: top mounted smg magazine (.35 pistol)
-  parent: MagazinePistolSubMachineGunTopMounted
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35HighGrain
   name: top mounted smg magazine (.35 pistol, high grain)
-  parent: MagazinePistolSubMachineGunTopMounted
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35HighGrain
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
+        color: "#ff8d00"
+      - state: mag-unshaded-1
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Incendiary
   name: top mounted smg magazine (.35 pistol, incendiary)
-  parent: MagazinePistolSubMachineGunTopMounted
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35Incendiary
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi
     layers:
-      - state: red
+      - state: base
         map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
+        color: "#ff0000"
       - state: mag-unshaded-1
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
@@ -288,16 +422,16 @@
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Uranium
   name: top mounted smg magazine (.35 pistol, uranium)
-  parent: MagazinePistolSubMachineGunTopMounted
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35Uranium
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi
     layers:
-      - state: uranium
+      - state: base
         map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
+        color: "#00ff00"
       - state: mag-unshaded-1
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
@@ -305,22 +439,20 @@
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Practice
   name: top mounted smg magazine (.35 pistol, practice)
-  parent: MagazinePistolSubMachineGunTopMounted
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35Practice
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi
     layers:
-      - state: practice
+      - state: base
         map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
       - state: mag-unshaded-1
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
 
 # Frontier
-#region .35 pistol, smg magazines
 - type: entity
   id: NFMagazineSubMachineGun35Rubber # MagazinePistolSubMachineGunRubber
   name: smg magazine (.35 pistol, rubber)
@@ -329,10 +461,11 @@
   - type: BallisticAmmoProvider
     proto: NFCartridgePistol35Rubber
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi
     layers:
-    - state: rubber
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -344,49 +477,50 @@
   - type: BallisticAmmoProvider
     proto: NFCartridgePistol35Emp
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi
     layers:
-    - state: emp
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ffff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Emp
   name: top mounted smg magazine (.35 pistol, emp)
-  parent: MagazinePistolSubMachineGunTopMounted
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35Emp
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi
     layers:
-      - state: emp
+      - state: base
         map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
+        color: "#00ffff"
       - state: mag-unshaded-1
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Rubber
-  name: top mounted smg magazine (.35 pistol, practice)
-  parent: MagazinePistolSubMachineGunTopMounted
+  name: top mounted smg magazine (.35 pistol, rubber)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
     proto: NFCartridgePistol35Rubber
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi
     layers:
-      - state: rubber
+      - state: base
         map: ["enum.GunVisualLayers.Base"]
+      - state: decal-01
+        color: "#00b0ff"
       - state: mag-unshaded-1
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
 
 # WizDen
-#region .35 pistol, speed loader
+#region speed loaders .35
 - type: entity
   id: NFSpeedLoaderPistol35Empty
   name: "speed loader (.35 pistol, any)"
@@ -447,7 +581,7 @@
       map: ["enum.GunVisualLayers.Base"]
 
 # WizDen
-#region .45 pistol, standard magazines
+#region standard magas .45
 - type: entity
   id: NFMagazinePistol45Empty
   name: pistol magazine (.45 pistol, any)
@@ -519,7 +653,7 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 # Frontier
-#region .45 pistol, smg magazines
+#region smg mags .45
 - type: entity
   id: NFMagazineSubMachineGun45Rubber
   name: "SMG magazine (.45 pistol, rubber)"
@@ -536,7 +670,7 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 # WizDen
-#region .45 pistol, speedloaders
+#region speed loaders .45
 - type: entity
   id: NFSpeedLoaderPistol45Empty
   name: "speed loader (.45 pistol, any)"
