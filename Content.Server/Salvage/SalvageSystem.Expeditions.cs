@@ -65,7 +65,7 @@ public sealed partial class SalvageSystem
         args.State = new SalvageExpeditionComponentState()
         {
             Stage = component.Stage,
-            SelectedSong = component.SelectedSong // Frontier: note, not dirtied on map init (no purpose)
+            SelectedSong = component.SelectedSong // Frontier: note, not dirtied on map init (not needed)
         };
     }
 

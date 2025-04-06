@@ -225,8 +225,8 @@ public sealed class NFCCVars
      */
 
     /// <summary>
-    /// The volume of expedition end music.
+    /// The volume of expedition ending music.
     /// </summary>
     public static readonly CVarDef<float> SalvageExpeditionMusicVolume =
-        CVarDef.Create("nf14.audio.expedition_music_volume", 25f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("nf14.audio.expedition_music_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
