@@ -1,0 +1,62 @@
+# WizDen
+# NF base
+- type: entity
+  id: NFBaseSpeedLoaderPistol35
+  name: "speed loader (.35 pistol)"
+  parent: [ BaseC1Contraband, SpeedLoaderPistol, RecyclableItemSteelTiny ]
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 8
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol35/speed_loader.rsi
+
+# .35 pistol, speed loader
+- type: entity
+  id: NFSpeedLoaderPistol35Empty
+  name: "speed loader (.35 pistol, any)"
+  parent: NFBaseSpeedLoaderPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFSpeedLoaderPistol35
+  name: "speed loader (.35 pistol)"
+  parent: NFBaseSpeedLoaderPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35
+
+- type: entity
+  id: NFSpeedLoaderPistol35Practice
+  name: "speed loader (.35 pistol, practice)"
+  parent: NFBaseSpeedLoaderPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Frontier
+# .35 pistol, speed loader
+- type: entity
+  id: NFSpeedLoaderPistol35Rubber
+  name: "speed loader (.35 pistol, rubber)"
+  parent: NFBaseSpeedLoaderPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]

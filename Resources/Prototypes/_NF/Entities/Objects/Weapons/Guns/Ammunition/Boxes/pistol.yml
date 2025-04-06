@@ -6,7 +6,6 @@
   name: ammunition box (.35 pistol)
   abstract: true
   components:
-  components:
   - type: BallisticAmmoProvider
     capacity: 80
   - type: Sprite
@@ -18,12 +17,14 @@
 
 - type: entity
   id: NFBaseAmmunitionBoxPistol45
-  parent: [ BaseMagazineBoxMagnum, NFBaseAmmunitionBoxPistol35 ]
+  parent: [ BaseMagazineBoxMagnum, RecyclableItemCardboard ]
   name: ammunition box (.45 pistol)
   abstract: true
   components:
   - type: BallisticAmmoProvider
     capacity: 60
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
 
 #region .35 pistol
 - type: entity

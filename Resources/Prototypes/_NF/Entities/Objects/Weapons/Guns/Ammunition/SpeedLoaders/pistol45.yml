@@ -1,0 +1,110 @@
+# WizDen
+# NF base
+- type: entity
+  id: NFBaseSpeedLoaderPistol45
+  name: "speed loader (.45 pistol)"
+  parent: [ BaseC1Contraband, SpeedLoaderMagnum, RecyclableItemSteelTiny ]
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 6
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi
+
+# .45 pistol, speed loaders
+- type: entity
+  id: NFSpeedLoaderPistol45Empty
+  name: "speed loader (.45 pistol, any)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFSpeedLoaderPistol45
+  name: "speed loader (.45 pistol)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45
+
+- type: entity
+  id: NFSpeedLoaderPistol45Incendiary
+  name: "speed loader (.45 pistol, incendiary)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFSpeedLoaderPistol45Uranium
+  name: "speed loader (.45 pistol, uranium)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFSpeedLoaderPistol45Practice
+  name: "speed loader (.45 pistol, practice)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFSpeedLoaderPistol45Explosive
+  name: "speed loader (.45 pistol, explosive)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Explosive
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ffff00"
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Frontier
+# .45 pistol, speed loaders
+- type: entity
+  id: NFSpeedLoaderPistol45Rubber
+  name: "speed loader (.45 pistol, Rubber)"
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]

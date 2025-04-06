@@ -3,13 +3,13 @@
 - type: entity
   id: NFBaseMagazinePistol35
   name: pistol magazine (.35 pistol)
-  parent: BaseMagazinePistol
+  parent: [ BaseC1Contraband, BaseMagazinePistol, RecyclableItemSteelTiny ]
   abstract: true
   components:
   - type: BallisticAmmoProvider
     capacity: 10
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -19,13 +19,13 @@
 - type: entity
   id: NFBaseMagazineHighCapacityPistol35
   name: high capacity pistol magazine (.35 pistol)
-  parent: BaseMagazinePistolHighCapacity
+  parent: [ BaseC1Contraband, BaseMagazinePistolHighCapacity, RecyclableItemSteelTiny ]
   abstract: true
   components:
   - type: BallisticAmmoProvider
     capacity: 16
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_high_capacity_mag.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_high_capacity_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -35,13 +35,13 @@
 - type: entity
   id: NFBaseMagazinePistolSubMachineGun35
   name: smg magazine (.35 pistol)
-  parent: BaseMagazinePistolSubMachineGun
+  parent: [ BaseC1Contraband, BaseMagazinePistolSubMachineGun, RecyclableItemSteelTiny ]
   abstract: true
   components:
   - type: BallisticAmmoProvider
     capacity: 30
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -51,13 +51,13 @@
 - type: entity
   id: NFBaseMagazineSubMachineGunTopMounted35
   name: top mounted smg magazine (.35 pistol)
-  parent: MagazinePistolSubMachineGunTopMounted
+  parent: [ BaseC1Contraband, MagazinePistolSubMachineGunTopMounted, RecyclableItemSteelTiny ]
   abstract: true
   components:
   - type: BallisticAmmoProvider
     capacity: 30
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag_top_mounted.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
@@ -184,93 +184,112 @@
 - type: entity
   id: NFMagazineHighCapacityPistol35Empty
   name: high capacity pistol magazine (.35 pistol, any)
-  parent: MagazinePistolHighCapacityEmpty
+  parent: NFBaseMagazineHighCapacityPistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 16
     proto: null
 
 - type: entity
   id: NFMagazineHighCapacityPistol35
   name: high capacity pistol magazine (.35 pistol)
-  parent: MagazinePistolHighCapacity
+  parent: NFBaseMagazineHighCapacityPistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 16
     proto: NFCartridgePistol35
 
 - type: entity
   id: NFMagazineHighCapacityPistol35HighGrain
   name: high capacity pistol magazine (.35 pistol, high grain)
-  parent: MagazinePistolHighCapacity
+  parent: NFBaseMagazineHighCapacityPistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 16
     proto: NFCartridgePistol35HighGrain
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazineHighCapacityPistol35Incendiary
   name: high capacity pistol magazine (.35 pistol, incendiary)
-  parent: MagazinePistolHighCapacity
+  parent: NFBaseMagazineHighCapacityPistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 16
     proto: NFCartridgePistol35Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazineHighCapacityPistol35Uranium
   name: high capacity pistol magazine (.35 pistol, uranium)
-  parent: MagazinePistolHighCapacity
+  parent: NFBaseMagazineHighCapacityPistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 16
     proto: NFCartridgePistol35Uranium
   - type: Sprite
     layers:
-    - state: uranium
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazineHighCapacityPistol35Practice
   name: high capacity pistol magazine (.35 pistol, practice)
-  parent: MagazinePistolHighCapacityPractice
+  parent: NFBaseMagazineHighCapacityPistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 16
     proto: NFCartridgePistol35Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 # Frontier
 - type: entity
   id: NFMagazineHighCapacityPistol35Emp
   name: high capacity pistol magazine (.35 pistol, emp)
-  parent: MagazinePistolHighCapacity
+  parent: NFBaseMagazineHighCapacityPistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 16
     proto: NFCartridgePistol35Emp
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_high_capacity_mag.rsi
     layers:
-    - state: emp
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ffff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFMagazineHighCapacityPistol35Rubber
   name: high capacity pistol magazine (.35 pistol, rubber)
-  parent: MagazinePistolHighCapacity
+  parent: NFBaseMagazineHighCapacityPistol35
   components:
   - type: BallisticAmmoProvider
-    capacity: 16
     proto: NFCartridgePistol35Rubber
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_high_capacity_mag.rsi
     layers:
-    - state: rubber
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -456,7 +475,7 @@
 - type: entity
   id: NFMagazineSubMachineGun35Rubber # MagazinePistolSubMachineGunRubber
   name: smg magazine (.35 pistol, rubber)
-  parent: BaseMagazinePistolSubMachineGun
+  parent: NFBaseMagazinePistolSubMachineGun35
   components:
   - type: BallisticAmmoProvider
     proto: NFCartridgePistol35Rubber
@@ -472,7 +491,7 @@
 - type: entity
   id: NFMagazineSubMachineGun35Emp # MagazinePistolSubMachineGunEmp
   name: smg magazine (.35 pistol, emp)
-  parent: BaseMagazinePistolSubMachineGun
+  parent: NFBaseMagazinePistolSubMachineGun35
   components:
   - type: BallisticAmmoProvider
     proto: NFCartridgePistol35Emp
@@ -518,212 +537,3 @@
       - state: mag-unshaded-1
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
-
-# WizDen
-#region speed loaders .35
-- type: entity
-  id: NFSpeedLoaderPistol35Empty
-  name: "speed loader (.35 pistol, any)"
-  parent: SpeedLoaderPistol
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 8
-    proto: null
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol/pistol_speed_loader.rsi
-    layers:
-    - state: base-6
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-
-- type: entity
-  id: NFSpeedLoaderPistol35
-  name: "speed loader (.35 pistol)"
-  parent: SpeedLoaderPistol
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 8
-    proto: NFCartridgePistol35
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol/pistol_speed_loader.rsi
-    layers:
-    - state: base-6
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-
-- type: entity
-  id: NFSpeedLoaderPistol35Practice
-  name: "speed loader (.35 pistol, practice)"
-  parent: SpeedLoaderPistolPractice
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 8
-    proto: NFCartridgePistol35Practice
-
-# Frontier
-# .35 pistol, speed loader
-- type: entity
-  id: NFSpeedLoaderPistol35Rubber
-  name: "speed loader (.35 pistol, rubber)"
-  parent: BaseSpeedLoaderPistol
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 8
-    proto: NFCartridgePistol35Rubber
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol/pistol_speed_loader.rsi
-    layers:
-    - state: practice-6
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-
-# WizDen
-#region standard magas .45
-- type: entity
-  id: NFMagazinePistol45Empty
-  name: pistol magazine (.45 pistol, any)
-  parent: MagazineMagnumEmpty
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 7
-    proto: null
-
-- type: entity
-  id: NFMagazinePistol45
-  name: pistol magazine (.45 pistol)
-  parent: MagazineMagnum
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 7
-    proto: NFCartridgePistol45
-
-- type: entity
-  id: NFMagazinePistol45HighGrain
-  name: pistol magazine (.45 pistol, high grain)
-  parent: MagazineMagnum
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 7
-    proto: NFCartridgePistol45HighGrain
-
-- type: entity
-  id: NFMagazinePistol45Incendiary
-  name: pistol magazine (.45 pistol, incendiary)
-  parent: MagazineMagnum
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 7
-    proto: NFCartridgePistol45Incendiary
-
-- type: entity
-  id: NFMagazinePistol45Uranium
-  name: pistol magazine (.45 pistol, uranium)
-  parent: MagazineMagnumUranium
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 7
-    proto: NFCartridgePistol45Uranium
-
-- type: entity
-  id: NFMagazinePistol45Practice
-  name: pistol magazine (.45 pistol, practice)
-  parent: MagazineMagnumPractice
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 7
-    proto: NFCartridgePistol45Practice
-
-- type: entity
-  id: NFMagazinePistol45Rubber
-  name: pistol magazine (.45 pistol, rubber)
-  parent: BaseMagazineMagnum
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 7
-    proto: NFCartridgePistol45Rubber
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi
-    layers:
-    - state: rubber
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-# Frontier
-#region smg mags .45
-- type: entity
-  id: NFMagazineSubMachineGun45Rubber
-  name: "SMG magazine (.45 pistol, rubber)"
-  parent: BaseMagazineMagnumSubMachineGun
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeMagnumRubber
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Magnum/magnum_smg_mag.rsi
-    layers:
-    - state: rubber
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-# WizDen
-#region speed loaders .45
-- type: entity
-  id: NFSpeedLoaderPistol45Empty
-  name: "speed loader (.45 pistol, any)"
-  parent: SpeedLoaderMagnumEmpty
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
-
-- type: entity
-  id: NFSpeedLoaderPistol45
-  name: "speed loader (.45 pistol)"
-  parent: SpeedLoaderMagnum
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45
-
-- type: entity
-  id: NFSpeedLoaderPistol45Incendiary
-  name: "speed loader (.45 pistol, incendiary)"
-  parent: SpeedLoaderMagnumIncendiary
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Incendiary
-
-- type: entity
-  id: NFSpeedLoaderPistol45Uranium
-  name: "speed loader (.45 pistol, uranium)"
-  parent: SpeedLoaderMagnumUranium
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Uranium
-
-- type: entity
-  id: NFSpeedLoaderPistol45Practice
-  name: "speed loader (.45 pistol, practice)"
-  parent: SpeedLoaderMagnumPractice
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Practice
-
-# Frontier
-# .45 pistol, speed loaders
-- type: entity
-  id: NFSpeedLoaderPistol45Rubber
-  name: "speed loader (.45 pistol, Rubber)"
-  parent: BaseSpeedLoaderMagnum
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Rubber
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
-    layers:
-      - state: base
-        map: [ "enum.GunVisualLayers.Base" ]
-      - state: rubber-6
-        map: [ "enum.GunVisualLayers.Mag" ]
