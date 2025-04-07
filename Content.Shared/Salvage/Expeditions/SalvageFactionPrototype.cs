@@ -2,11 +2,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Salvage.Expeditions;
 
-<<<<<<< HEAD
 [Prototype]
-=======
-[Prototype("salvageFaction")]
->>>>>>> d90a4eec972f4ca680c31f6c096d22e00fa7f330
 public sealed partial class SalvageFactionPrototype : IPrototype
 {
     [IdDataField] public string ID { get; private set; } = default!;
