@@ -42,7 +42,7 @@ public sealed class NFPirateRuleSystem : GameRuleSystem<NFPirateRuleComponent>
         var isHuman = HasComp<HumanoidAppearanceComponent>(ent);
         var briefing = isHuman
             ? Loc.GetString("nf-pirate-role-greeting-human")
-            : Loc.GetString("pirate-role-greeting-animal");
+            : Loc.GetString("nf-pirate-role-greeting-animal");
 
         if (isHuman)
             briefing += "\n \n" + Loc.GetString("pirate-role-greeting-equipment") + "\n";
