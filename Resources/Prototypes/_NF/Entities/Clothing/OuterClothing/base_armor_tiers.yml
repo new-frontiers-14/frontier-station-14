@@ -1,0 +1,418 @@
+# List of coef
+# Blunt Slash Piercing Heat Cold Caustic Radiation Shock
+
+#region Tier 1
+# light armor, EVA suits
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT1Ballistic
+  name: level 1 ballistic armor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.75 # Primary (paired)
+        Blunt: 0.75 # Primary (paired)
+        Slash: 0.875 # Secondary
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.875
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT1Insulated
+  name: level 1 insulative armor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.75 # Primary
+        Shock: 0.875 # Secondary
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.875
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT1TearResistance
+  name: level 1 tear resistant armor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.75 # Primary (paired)
+        Blunt: 0.75 # Primary (paired)
+        Piercing: 0.875 # Secondary
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.875
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT1Eva
+  name: eva
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 0.3 # Default
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+
+#region Tier 2
+# hazmat suits, light hardsuits
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT2HazMatRadiation
+  name: radiation protection suit
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 0.3 # Default
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT2HazMatCaustic
+  name: chemical protection suit
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.3 # Default
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT2HardsuitBallistic # T2 combat hardsuits
+  name: armored hardsuit (level 1 ballistic)
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.75 # Primary (paired)
+        Blunt: 0.75 # Primary (paired)
+        Slash: 0.875 # Secondary
+        Radiation: 0.3 # Default
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.875
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT2HardsuitInsulative # T2 combat hardsuits
+  name: armored hardsuit (level 1 insulative)
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.75 # Primary
+        Shock: 0.875 # Secondary
+        Radiation: 0.3 # Default
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.875
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT2HardsuitBallistic # T2 spationaut hardsuits
+  name: armored hardsuit (level 1 tear resistant)
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.75 # Primary (paired)
+        Blunt: 0.75 # Primary (paired)
+        Piercing: 0.875 # Secondary
+        Radiation: 0.3 # Default
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.875
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+
+#region Tier 3
+# medium armor and hardsuits
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT3Ballistic
+  name: level 2 ballistic armor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.55 # Primary (paired)
+        Blunt: 0.55 # Primary (paired)
+        Slash: 0.775 # Secondary
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.775
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT3Insulated
+  name: level 2 insulative armor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.55 # Primary
+        Shock: 0.775 # Secondary
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.775
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT3TearResistance
+  name: level 2 tear resistant armor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.55 # Primary (paired)
+        Blunt: 0.55 # Primary (paired)
+        Piercing: 0.775 # Secondary
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.775
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT3HardsuitBallistic # T2 combat hardsuits
+  name: armored hardsuit (level 2 ballistic)
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.55 # Primary (paired)
+        Blunt: 0.55 # Primary (paired)
+        Slash: 0.775 # Secondary
+        Radiation: 0.3 # Default
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.775
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT3HardsuitInsulative # T3 combat hardsuits
+  name: armored hardsuit (level 2 insulative)
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.55 # Primary
+        Shock: 0.775 # Secondary
+        Radiation: 0.3 # Default
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.775
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT3HardsuitBallistic # T3 spationaut hardsuits
+  name: armored hardsuit (level 2 tear resistant)
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.55 # Primary (paired)
+        Blunt: 0.55 # Primary (paired)
+        Piercing: 0.775 # Secondary
+        Radiation: 0.3 # Default
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.775
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+
+#region Tier 4
+# heavy armor and hardsuits
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT4Ballistic
+  name: level 3 ballistic armor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.45 # Primary (paired)
+        Blunt: 0.45 # Primary (paired)
+        Slash: 0.725 # Secondary
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.725
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT4Insulated
+  name: level 3 insulative armor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.45 # Primary
+        Shock: 0.725 # Secondary
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.725
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT4TearResistance
+  name: level 3 tear resistant armor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.45 # Primary (paired)
+        Blunt: 0.45 # Primary (paired)
+        Piercing: 0.725 # Secondary
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.725
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT4HardsuitBallistic # T4 combat hardsuits
+  name: armored hardsuit (level 3 ballistic)
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.45 # Primary (paired)
+        Blunt: 0.45 # Primary (paired)
+        Slash: 0.725 # Secondary
+        Radiation: 0.3 # Default
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.725
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT4HardsuitInsulative # T4 combat hardsuits
+  name: armored hardsuit (level 3 insulative)
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.45 # Primary
+        Shock: 0.725 # Secondary
+        Radiation: 0.3 # Default
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.725
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT4HardsuitBallistic # T4 spationaut hardsuits
+  name: armored hardsuit (level 3 tear resistant)
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.45 # Primary (paired)
+        Blunt: 0.45 # Primary (paired)
+        Piercing: 0.725 # Secondary
+        Radiation: 0.3 # Default
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.725
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+
+#region Tier 5
+# experimental armor and hardsuits
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT5ExperimentalBI
+  name: experimental insulative ballistic armor
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.55 # Primary (paired)
+        Blunt: 0.55 # Primary (paired)
+        Heat: 0.55 # Secondary
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.55
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+
+- type: entity
+  abstract: true
+  id: ArmorProtectionValuesT5HardsuitExperimentalBI # T5 combat hardsuits
+  name: armored hardsuit (level 3 experimental insulative ballistic)
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.55 # Primary (paired)
+        Blunt: 0.55 # Primary (paired)
+        Heat: 0.55 # Secondary
+        Radiation: 0.3 # Default
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.55
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier

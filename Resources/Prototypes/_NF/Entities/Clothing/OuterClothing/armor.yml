@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingOuterBaseLarge, BaseC2ContrabandUnredeemable ]
+  parent: [ ArmorProtectionValuesT3Ballistic, ClothingOuterBaseLarge, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterArmorSrCarapace
   name: "station representative's carapace"
   description: "A premium armored chestpiece that provides above average protection for its size. It offers maximum mobility and flexibility thanks to the premium composite materials. Issued only to the station representative."
@@ -8,19 +8,6 @@
     sprite: _NF/Clothing/OuterClothing/Armor/sr_carapace.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Armor/sr_carapace.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.5
-        Heat: 0.6
-        Caustic: 0.6
-  - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
-  - type: ExplosionResistance
-    damageCoefficient: 0.60
   - type: GroupExamine
 
 # Syndicate armored bio suit
@@ -38,46 +25,31 @@
     sprite: _NF/Clothing/OuterClothing/Bio/syndicate.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Bio/syndicate.rsi
-  - type: Armor
+  - type: Armor # T4 Heavy
     modifiers:
       coefficients:
-        Slash: 1.2
-        Piercing: 0.4
-        Heat: 0.6
-        Caustic: 0.4
+        Caustic: 0.45 # Primary
+        Piercing: 0.725 # Secondary
+  - type: ExplosionResistance # Equal to secondary
+    damageCoefficient: 0.725
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
-  - type: ExplosionResistance
-    damageCoefficient: 0.60
 
 - type: entity
-  parent: [ ClothingOuterBaseLarge, BaseC2ContrabandUnredeemable ]
+  parent: [ ArmorProtectionValuesT1Ballistic, ClothingOuterBaseLarge, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterArmorNfsd
-  name: NFSD armor
+  name: NFSD armor (level 1 ballistic)
   description: Get shot, maybe survive?
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Armor/nfsd_armor.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Armor/nfsd_armor.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.65
-        Heat: 0.7
-        Caustic: 0.65
-  - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
-  - type: ExplosionResistance
-    damageCoefficient: 0.60
   - type: GroupExamine
 
 - type: entity
-  parent: [ BaseC1Contraband, ClothingOuterVestWebMercenary ]
+  parent: [ ArmorProtectionValuesT1Ballistic, BaseC1Contraband, ClothingOuterVestWebMercenary ]
   id: ClothingOuterVestWebMercenaryBlack
   components:
   - type: Sprite
