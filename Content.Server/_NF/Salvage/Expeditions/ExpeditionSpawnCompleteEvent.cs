@@ -1,4 +1,4 @@
-namespace Content.Server._NF.Salvage;
+namespace Content.Server._NF.Salvage.Expeditions;
 
 /// <summary>
 ///     This event is raised when an expedition spawn job has completed (either successfully or in failure), and informs whether the job was successful or not.
