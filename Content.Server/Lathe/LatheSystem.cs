@@ -505,15 +505,18 @@ namespace Content.Server.Lathe
             if (component.CurrentRecipe != null)
             {
                 // Items incremented on start, need to decrement with removal
-                var batch = component.Queue.First();
-                if (batch.Recipe != component.CurrentRecipe)
+                if (component.Queue.Count > 0)
                 {
-                    var newBatch = new LatheRecipeBatch(component.CurrentRecipe, 0, 1);
-                    component.Queue.Insert(0, newBatch);
-                }
-                else if (batch.ItemsPrinted > 0)
-                {
-                    batch.ItemsPrinted--;
+                    var batch = component.Queue.First();
+                    if (batch.Recipe != component.CurrentRecipe)
+                    {
+                        var newBatch = new LatheRecipeBatch(component.CurrentRecipe, 0, 1);
+                        component.Queue.Insert(0, newBatch);
+                    }
+                    else if (batch.ItemsPrinted > 0)
+                    {
+                        batch.ItemsPrinted--;
+                    }
                 }
 
                 component.CurrentRecipe = null;
