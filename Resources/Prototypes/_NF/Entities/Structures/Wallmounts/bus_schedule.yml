@@ -1,0 +1,45 @@
+- type: entity
+  parent: BaseSign
+  id: BusSchedule
+  suffix: Auto
+  name: bus schedule
+  description: A schedule that tells you when the bus is here. Don't miss it!
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Structures/Wallmounts/bus_schedule.rsi
+    snapCardinals: true
+    layers:
+    - state: body
+    - state: top_greyscale
+      color: "#aaaaaa"
+      map: [ "enum.PublicTransitVisualLayers.Livery" ]
+  - type: BusSchedule
+  - type: Appearance
+  - type: PublicTransitVisuals
+
+- type: entity
+  parent: BusSchedule
+  id: BusScheduleRoute1
+  suffix: Route 1, Spawn Points
+  components:
+  - type: BusSchedule
+    routeId: SpawnPoints
+
+- type: entity
+  parent: BusSchedule
+  id: BusScheduleRoute2
+  suffix: Route 2, Trade Express
+  components:
+  - type: BusSchedule
+    routeId: TradeExpress
+
+- type: entity
+  parent: BusSchedule
+  id: BusScheduleRoute3
+  suffix: Route 3, Minor POIs
+  components:
+  - type: BusSchedule
+    routeId: MinorPointsOfInterest
