@@ -65,10 +65,16 @@ public abstract partial class SharedGunSystem
         ));
 
         // Fire Rate (converted from RPS to RPM)
+        var fireRate = 0f;
+        if (ent.Comp.SelectedMode != SelectiveFire.Burst)
+            fireRate = ent.Comp.FireRateModified;
+        else
+            fireRate = ent.Comp.BurstFireRate;
+
         msg.PushNewline();
         msg.AddMarkupOrThrow(Loc.GetString("gun-examine-fire-rate",
             ("color", FireRateExamineColor),
-            ("value", MathF.Round(ent.Comp.FireRateModified, 1).ToString("0.0"))
+            ("value", MathF.Round(fireRate, 1).ToString("0.0"))
         ));
 
         // Muzzle Velocity (ProjectileSpeed * 10)
