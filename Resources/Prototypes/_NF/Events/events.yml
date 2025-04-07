@@ -29,17 +29,6 @@
   - type: BreakerFlipRule
 
 - type: entity
-  id: NFFalseAlarm
-  parent: BaseGameRule
-  components:
-  - type: StationEvent
-    weight: 2 # Frontier: 15<2
-    earliestStart: 15
-    duration: 1
-    reoccurrenceDelay: 240 # Frontier: 4 hours
-  - type: FalseAlarmRule
-
-- type: entity
   id: NFGasLeak
   parent: BaseStationEventShortDelay
   components:
