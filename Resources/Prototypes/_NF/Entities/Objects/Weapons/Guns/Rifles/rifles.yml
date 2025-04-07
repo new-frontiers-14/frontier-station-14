@@ -38,7 +38,7 @@
 - type: entity
   id: NFWeaponRifleBarlowsBolt
   parent: [ NFBaseWeaponRifle, BaseC3SyndicateContraband, WeaponSniperMosin ]
-  name: barlows boltaction rifle # Renamed: real brand name
+  name: barlows bolt-action rifle # Renamed: real brand name
   description: |-
     Manufacturer: Steelbolt Tool Forge
     Type: Rifle
@@ -59,6 +59,13 @@
     Ammo: .60 anti-materiel
     Desc.: This should've been in a museum long before you were born.
     ---
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeAntiMateriel
+    capacity: 1
+    proto: NFCartridgeRifle60
 
 # WizDen: Rubber
 - type: entity

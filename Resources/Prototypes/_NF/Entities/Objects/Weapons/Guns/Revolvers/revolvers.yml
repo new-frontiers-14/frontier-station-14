@@ -96,6 +96,34 @@
     Desc.: An odd, illegal, old-looking revolver, favoured by pirate crews.
     ---
 
+- type: entity
+  id: NFWeaponPistolFlintlock
+  parent: [ NFBaseWeaponRevolver, BaseC3PirateContraband ]
+  name: flintlock pistol
+  description: |-
+    Manufacturer: Steelbolt Tool Forge
+    Type: Pistol
+    Ammo: .60 rifle (yarr, it fits!)
+    Desc.: A pirate's companion. Yarrr! An illegal weapon often used by pirates.
+    ---
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Revolvers/flintlock.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Revolvers/flintlock.rsi
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 8 #it's a flintlock
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeAntiMateriel
+    mayTransfer: true
+    proto: NFCartridgeRifle60
+    capacity: 1
+    chambers: [ True ]
+    ammoSlots: [ null ]
+
 # DeltaV
 - type: entity
   id: NFWeaponRevolverFitz
