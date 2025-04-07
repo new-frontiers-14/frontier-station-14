@@ -415,6 +415,7 @@ public sealed class PaperSystem : EntitySystem
     }
     #endregion Frontier
     // End Frontier
+
     public void SetContent(Entity<PaperComponent> entity, string content)
     {
         entity.Comp.Content = content;
