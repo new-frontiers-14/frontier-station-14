@@ -1,0 +1,46 @@
+- type: entity
+  parent: BaseItem
+  id: BaseHyperlinkBook
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/books.rsi
+  - type: Tag
+    tags:
+    - Book
+  - type: StaticPrice
+    price: 35
+
+- type: entity
+  parent: BaseHyperlinkBook
+  id: NFHyperlinkBookSpaceLaw
+  name: space law
+  description: A big book of laws for space courts.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/books.rsi
+    layers:
+    - state: law_space
+  - type: HyperlinkBook
+    url: https://frontierstation.wiki.gg/wiki/Space_Law
+  - type: Tag
+    tags:
+    - Book
+    - BookSpaceLaw
+
+- type: entity
+  parent: BaseHyperlinkBook
+  id: HyperlinkBookNfsdSop
+  name: NFSD SOP manual
+  description: A book defining NFSD standard operating procedures.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/books.rsi
+    layers:
+    - state: nfsd_sop
+  - type: HyperlinkBook
+    url: https://frontierstation.wiki.gg/wiki/NFSDSOP
+  - type: Tag
+    tags:
+    - Book
+    - BookNfsdSop

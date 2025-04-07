@@ -4,6 +4,11 @@ using Content.Server.Shuttles.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Components; // Frontier
+using Content.Server.DeviceLinking.Events; // Frontier
+using Content.Server.DeviceLinking.Systems; // Frontier
+using Content.Server.DeviceNetwork; // Frontier
+using Content.Server.DeviceNetwork.Systems; // Frontier
+using Content.Server.Power.Components; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -11,6 +16,8 @@ public sealed class StationAnchorSystem : EntitySystem
 {
     [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly DeviceLinkSystem _signalSystem = default!; // Frontier
+    [Dependency] private readonly PowerChargeSystem _chargeSystem = default!; // Frontier
 
     public override void Initialize()
     {
@@ -24,6 +31,9 @@ public sealed class StationAnchorSystem : EntitySystem
         SubscribeLocalEvent<StationAnchorComponent, MapInitEvent>(OnMapInit);
 
         SubscribeLocalEvent<StationAnchorComponent, ToolUseAttemptEvent>(OnToolUseAttempt); // Frontier
+        SubscribeLocalEvent<StationAnchorComponent, ComponentInit>(OnInit); // Frontier
+        SubscribeLocalEvent<StationAnchorComponent, SignalReceivedEvent>(OnSignalReceived); // Frontier
+        SubscribeLocalEvent<StationAnchorComponent, DeviceNetworkPacketEvent>(OnPacketReceived); // Frontier
     }
 
     private void OnMapInit(Entity<StationAnchorComponent> ent, ref MapInitEvent args)
@@ -91,6 +101,60 @@ public sealed class StationAnchorSystem : EntitySystem
         if (!args.Anchored)
             SetStatus(ent, false);
     }
+
+    // Frontier: anchor device linking
+    private void OnInit(EntityUid uid, StationAnchorComponent anchor, ComponentInit args)
+    {
+        _signalSystem.EnsureSinkPorts(uid, anchor.OnPort, anchor.OffPort, anchor.TogglePort);
+    }
+
+    private void OnPacketReceived(EntityUid uid, StationAnchorComponent component, DeviceNetworkPacketEvent args)
+    {
+        if (!args.Data.TryGetValue(DeviceNetworkConstants.Command, out string? command) ||
+            command != DeviceNetworkConstants.CmdSetState)
+            return;
+        if (!args.Data.TryGetValue(DeviceNetworkConstants.StateEnabled, out bool enabled))
+            return;
+
+        SetAnchorPower((uid, component), enabled);
+    }
+
+    private void OnSignalReceived(EntityUid uid, StationAnchorComponent component, ref SignalReceivedEvent args)
+    {
+        if (args.Port == component.OffPort)
+        {
+            SetAnchorPower((uid, component), false);
+        }
+        else if (args.Port == component.OnPort)
+        {
+            SetAnchorPower((uid, component), true);
+        }
+        else if (args.Port == component.TogglePort)
+            ToggleAnchorPower((uid, component));
+    }
+
+    private void SetAnchorPower(Entity<StationAnchorComponent> ent, bool value)
+    {
+        if (!EntityManager.TryGetComponent<PowerChargeComponent>(ent, out var entPowerHandler))
+        {
+            Logger.Error($"Unable to find PowerChargeComponent in StationAnchor. ID:{ent.Owner}");
+            return;
+        }
+
+        _chargeSystem.SetSwitchedOn(ent, entPowerHandler, value);
+    }
+
+    private void ToggleAnchorPower(Entity<StationAnchorComponent> ent)
+    {
+        if (!EntityManager.TryGetComponent<PowerChargeComponent>(ent, out var entPowerHandler))
+        {
+            Logger.Error($"Unable to find PowerChargeComponent in StationAnchor. ID:{ent.Owner}");
+            return;
+        }
+
+        _chargeSystem.SetSwitchedOn(ent, entPowerHandler, !entPowerHandler.SwitchedOn);
+    }
+    // End Frontier: anchor device linking
 
     private void SetStatus(Entity<StationAnchorComponent> ent, bool enabled, ShuttleComponent? shuttleComponent = default)
     {
