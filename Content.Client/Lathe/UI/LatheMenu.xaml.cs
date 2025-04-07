@@ -62,6 +62,7 @@ public sealed partial class LatheMenu : DefaultWindow
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
         DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke(); // Frontier
+        DeleteFabricating.AddStyleClass("OpenLeft");
     }
 
     public void SetEntity(EntityUid uid)
