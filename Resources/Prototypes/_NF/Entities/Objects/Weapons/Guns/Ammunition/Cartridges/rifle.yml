@@ -1,9 +1,65 @@
 # WizDen
+#region base
+- type: entity
+  id: NFBaseCartridgeRifle10
+  name: cartridge (.10 rifle)
+  parent: BaseCartridgeHeavyRifle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeHeavyRifle
+
+- type: entity
+  id: NFBaseCartridgeRifle20
+  name: cartridge (.20 rifle)
+  parent: BaseCartridgeRifle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeRifle
+
+- type: entity
+  id: NFBaseCartridgeRifle25
+  name: cartridge (.25 rifle)
+  parent: BaseCartridgeCaselessRifle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeCaselessRifle
+
+- type: entity
+  id: NFBaseCartridgeRifle30
+  name: cartridge (.30 rifle)
+  parent: BaseCartridgeLightRifle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeLightRifle
+
+- type: entity
+  id: NFBaseCartridgeRifle60
+  name: cartridge (.60 rifle)
+  parent: CartridgeAntiMateriel
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAntiMateriel
+
 #region .10 rifle
 - type: entity
   id: NFCartridgeRifle10
   name: cartridge (.10 rifle)
-  parent: BaseCartridgeHeavyRifle
+  parent: NFBaseCartridgeRifle10
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle10
@@ -18,7 +74,7 @@
 - type: entity
   id: NFCartridgeRifle10Practice
   name: cartridge (.10 rifle, practice)
-  parent: BaseCartridgeHeavyRifle
+  parent: NFBaseCartridgeRifle10
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle10Practice
@@ -33,7 +89,7 @@
 - type: entity
   id: NFCartridgeRifle10Rubber
   name: cartridge (.10 rifle, Rubber)
-  parent: BaseCartridgeHeavyRifle
+  parent: NFBaseCartridgeRifle10
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle10Rubber
@@ -49,7 +105,7 @@
 - type: entity
   id: NFCartridgeRifle20
   name: cartridge (.20 rifle)
-  parent: BaseCartridgeRifle
+  parent: NFBaseCartridgeRifle20
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle20
@@ -64,7 +120,7 @@
 - type: entity
   id: NFCartridgeRifle20HighGrain
   name: cartridge (.20 rifle, high grain)
-  parent: BaseCartridgeRifle
+  parent: NFBaseCartridgeRifle20
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle20HighGrain
@@ -79,7 +135,7 @@
 - type: entity
   id: NFCartridgeRifle20Incendiary
   name: cartridge (.20 rifle, incendiary)
-  parent: BaseCartridgeRifle
+  parent: NFBaseCartridgeRifle20
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle20Incendiary
@@ -94,7 +150,7 @@
 - type: entity
   id: NFCartridgeRifle20Uranium
   name: cartridge (.20 rifle, uranium)
-  parent: BaseCartridgeRifle
+  parent: NFBaseCartridgeRifle20
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle20Uranium
@@ -109,7 +165,7 @@
 - type: entity
   id: NFCartridgeRifle20Practice
   name: cartridge (.20 rifle, practice)
-  parent: BaseCartridgeRifle
+  parent: NFBaseCartridgeRifle20
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle20Practice
@@ -124,7 +180,7 @@
 - type: entity
   id: NFCartridgeRifle20Rubber # CartridgeRifleRubber
   name: cartridge (.20 rifle, rubber)
-  parent: BaseCartridgeRifle
+  parent: NFBaseCartridgeRifle20
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle20Rubber
@@ -140,7 +196,7 @@
 - type: entity
   id: NFCartridgeRifle25
   name: cartridge (.25 rifle)
-  parent: CartridgeCaselessRifle
+  parent: NFBaseCartridgeRifle25
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle25
@@ -155,7 +211,7 @@
 - type: entity
   id: NFCartridgeRifle25HighGrain
   name: cartridge (.25 rifle, high grain)
-  parent: CartridgeCaselessRifle
+  parent: NFBaseCartridgeRifle25
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle25HighGrain
@@ -170,7 +226,7 @@
 - type: entity
   id: NFCartridgeRifle25Incendiary
   name: cartridge (.25 rifle, incendiary)
-  parent: CartridgeCaselessRifle
+  parent: NFBaseCartridgeRifle25
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle25Incendiary
@@ -185,7 +241,7 @@
 - type: entity
   id: NFCartridgeRifle25Uranium
   name: cartridge (.25 rifle, uranium)
-  parent: CartridgeCaselessRifle
+  parent: NFBaseCartridgeRifle25
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle25Uranium
@@ -200,7 +256,7 @@
 - type: entity
   id: NFCartridgeRifle25Practice
   name: cartridge (.25 rifle, practice)
-  parent: CartridgeCaselessRifle
+  parent: NFBaseCartridgeRifle25
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle25Practice
@@ -215,7 +271,7 @@
 - type: entity
   id: NFCartridgeRifle25Rubber # CartridgeCaselessRifleRubber
   name: cartridge (.25 rifle, rubber)
-  parent: CartridgeCaselessRifle
+  parent: NFBaseCartridgeRifle25
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle25Rubber
@@ -231,7 +287,7 @@
 - type: entity
   id: NFCartridgeRifle30
   name: cartridge (.30 rifle)
-  parent: BaseCartridgeLightRifle
+  parent: NFBaseCartridgeRifle30
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle30
@@ -246,7 +302,7 @@
 - type: entity
   id: NFCartridgeRifle30HighGrain
   name: cartridge (.30 rifle, high grain)
-  parent: BaseCartridgeLightRifle
+  parent: NFBaseCartridgeRifle30
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle30HighGrain
@@ -261,7 +317,7 @@
 - type: entity
   id: NFCartridgeRifle30Incendiary
   name: cartridge (.30 rifle, incendiary)
-  parent: BaseCartridgeLightRifle
+  parent: NFBaseCartridgeRifle30
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle30Incendiary
@@ -276,7 +332,7 @@
 - type: entity
   id: NFCartridgeRifle30Uranium
   name: cartridge (.30 rifle, uranium)
-  parent: BaseCartridgeLightRifle
+  parent: NFBaseCartridgeRifle30
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifl320Uranium
@@ -291,7 +347,7 @@
 - type: entity
   id: NFCartridgeRifle30Practice
   name: cartridge (.30 rifle, practice)
-  parent: BaseCartridgeLightRifle
+  parent: NFBaseCartridgeRifle30
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle30Practice
@@ -306,7 +362,7 @@
 - type: entity
   id: NFCartridgeRifle30Rubber # CartridgeLightRifleRubber
   name: cartridge (.30 rifle, rubber)
-  parent: BaseCartridgeLightRifle
+  parent: NFBaseCartridgeRifle30
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle30Rubber
@@ -322,7 +378,7 @@
 - type: entity
   id: NFCartridgeRifle60
   name: cartridge (.60 rifle)
-  parent: CartridgeAntiMateriel
+  parent: NFBaseCartridgeRifle60
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle60
@@ -334,7 +390,7 @@
 - type: entity
   id: NFCartridgeRifle60Rubber
   name: cartridge (.60 rifle, rubber)
-  parent: CartridgeAntiMateriel
+  parent: NFBaseCartridgeRifle60
   components:
   - type: CartridgeAmmo
     proto: NFBulletRifle60Rubber

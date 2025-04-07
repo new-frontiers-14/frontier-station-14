@@ -7,6 +7,11 @@
   abstract: true
   components:
   - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistol
+    proto: NFCartridgePistol35
     capacity: 80
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
@@ -22,6 +27,11 @@
   abstract: true
   components:
   - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMagnum
+    proto: NFCartridgePistol45
     capacity: 60
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi

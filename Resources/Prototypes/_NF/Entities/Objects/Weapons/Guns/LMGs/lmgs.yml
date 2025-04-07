@@ -47,6 +47,25 @@
     Ammo: .20 rifle
     Desc.: A rather traditionally made LMG with a pleasantly lacquered wooden pistol grip. An illegal firearm often used by Syndicate agents.
     ---
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineBoxRifle20
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifleBox
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgeRifle20
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle
 
 - type: entity
   id: NFWeaponLightMachineGunL6C
@@ -58,3 +77,7 @@
     Ammo: .20 rifle
     Desc.: A GSW LMG-6 for use by cyborgs. Creates rifle ammo on the fly from an internal ammo fabricator, which slowly self-charges. An illegal firearm often used by Syndicate agents.
     ---
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFCartridgeRifle20
+    fireCost: 100

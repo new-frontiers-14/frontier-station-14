@@ -1,10 +1,14 @@
 # WizDen
-#region .35 pistol
+#region base
 - type: entity
-  id: NFCartridgePistol35
+  id: NFBaseCartridgePistol35
   name: cartridge (.35 pistol)
   parent: BaseCartridgePistol
   components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgePistol
   - type: CartridgeAmmo
     proto: NFBulletPistol35
   - type: Sprite
@@ -16,9 +20,34 @@
         color: "#333333"
 
 - type: entity
+  id: NFBaseCartridgePistol45
+  name: cartridge (.45 pistol)
+  parent: BaseCartridgeMagnum
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeMagnum
+  - type: CartridgeAmmo
+    proto: NFBulletPistol45
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#333333"
+
+#region .35 pistol
+- type: entity
+  id: NFCartridgePistol35
+  name: cartridge (.35 pistol)
+  parent: NFBaseCartridgePistol35
+
+- type: entity
   id: NFCartridgePistol35HighGrain
   name: cartridge (.35 pistol, high grain)
-  parent: BaseCartridgePistol
+  parent: NFBaseCartridgePistol35
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol35HighGrain
@@ -33,7 +62,7 @@
 - type: entity
   id: NFCartridgePistol35Incendiary
   name: cartridge (.35 pistol, incendiary)
-  parent: CartridgePistolIncendiary
+  parent: NFBaseCartridgePistol35
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol35Incendiary
@@ -48,7 +77,7 @@
 - type: entity
   id: NFCartridgePistol35Uranium
   name: cartridge (.35 pistol, uranium)
-  parent: CartridgePistolUranium
+  parent: NFBaseCartridgePistol35
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol35Uranium
@@ -63,7 +92,7 @@
 - type: entity
   id: NFCartridgePistol35Practice
   name: cartridge (.35 pistol, practice)
-  parent: CartridgePistolPractice
+  parent: NFBaseCartridgePistol35
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol35Practice
@@ -80,7 +109,7 @@
 - type: entity
   id: NFCartridgePistol35Emp
   name: cartridge (.35 pistol, emp)
-  parent: BaseCartridgePistol
+  parent: NFBaseCartridgePistol35
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol35Emp
@@ -99,7 +128,7 @@
 - type: entity
   id: NFCartridgePistol35Rubber
   name: cartridge (.35 pistol, rubber)
-  parent: BaseCartridgePistol
+  parent: NFBaseCartridgePistol35
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol35Rubber
@@ -116,7 +145,7 @@
 - type: entity
   id: NFCartridgePistol45
   name: cartridge (.45 pistol)
-  parent: BaseCartridgeMagnum
+  parent: NFBaseCartridgePistol45
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol45
@@ -131,7 +160,7 @@
 - type: entity
   id: NFCartridgePistol45HighGrain
   name: cartridge (.45 pistol, high grain)
-  parent: BaseCartridgeMagnum
+  parent: NFBaseCartridgePistol45
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol45HighGrain
@@ -146,7 +175,7 @@
 - type: entity
   id: NFCartridgePistol45Incendiary
   name: cartridge (.45 pistol, incendiary)
-  parent: CartridgeMagnumIncendiary
+  parent: NFBaseCartridgePistol45
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol45Incendiary
@@ -161,7 +190,7 @@
 - type: entity
   id: NFCartridgePistol45Uranium
   name: cartridge (.45 pistol, uranium)
-  parent: CartridgeMagnumUranium
+  parent: NFBaseCartridgePistol45
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol45Uranium
@@ -176,7 +205,7 @@
 - type: entity
   id: NFCartridgePistol45Practice
   name: cartridge (.45 pistol, practice)
-  parent: CartridgeMagnumPractice
+  parent: NFBaseCartridgePistol45
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol45Practice
@@ -193,7 +222,7 @@
 - type: entity
   id: NFCartridgePistol45Emp
   name: cartridge (.45 pistol, emp)
-  parent: BaseCartridgeMagnum
+  parent: NFBaseCartridgePistol45
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol45Emp
@@ -212,7 +241,7 @@
 - type: entity
   id: NFCartridgePistol45Rubber
   name: cartridge (.45 pistol, rubber)
-  parent: BaseCartridgeMagnum
+  parent: NFBaseCartridgePistol45
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol45Rubber
@@ -227,7 +256,7 @@
 - type: entity
   id: NFCartridgePistol45Explosive
   name: cartridge (.45 pistol, explosive)
-  parent: BaseCartridgeMagnum
+  parent: NFBaseCartridgePistol45
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol45Explosive

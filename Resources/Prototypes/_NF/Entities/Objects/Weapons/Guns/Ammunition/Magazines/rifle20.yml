@@ -28,6 +28,25 @@
     steps: 6
     zeroVisible: false
 
+- type: entity
+  id: NFBaseMagazineBoxRifle20
+  name: box magazine (.20 rifle)
+  parent: NFBaseMagazineRifle20
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineLightRifleBox # TODO: change the tags
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20
+    capacity: 100
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+
 #region .20 magazines
 - type: entity
   id: NFMagazineRifle20Empty
@@ -126,12 +145,18 @@
     - state: mag-5
       map: ["enum.GunVisualLayers.Mag"]
 
+#region .20 box mags
+- type: entity
+  id: NFMagazineBoxRifle20
+  name: box magazine (.20 rifle)
+  parent: NFBaseMagazineBoxRifle20
+
 # Frontier
 #region .20 Novalite
 - type: entity
   parent: BaseMagazineRifle
   id: MagazineNovaliteC1Empty
-  name: "clip (.20 rifle any)"
+  name: clip (.20 rifle, any)
   suffix: empty
   components:
   - type: Tag
@@ -164,7 +189,7 @@
 - type: entity
   parent: MagazineNovaliteC1Empty
   id: MagazineNovaliteC1
-  name: "clip (.20 rifle)"
+  name: clip (.20 rifle)
   suffix: full
   components:
   - type: BallisticAmmoProvider
@@ -179,7 +204,7 @@
 - type: entity
   parent: MagazineNovaliteC1Empty
   id: MagazineNovaliteC1Rubber
-  name: "clip (.20 rifle rubber)"
+  name: clip (.20 rifle, rubber)
   suffix: full
   components:
   - type: BallisticAmmoProvider

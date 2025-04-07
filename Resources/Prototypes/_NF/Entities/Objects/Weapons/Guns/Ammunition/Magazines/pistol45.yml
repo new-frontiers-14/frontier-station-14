@@ -6,7 +6,14 @@
   parent: [ BaseC1Contraband, BaseMagazineMagnum, RecyclableItemSteelTiny ]
   abstract: true
   components:
+  - type: Tag
+    tags:
+      - MagazineMagnum
   - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMagnum
     capacity: 8
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_mag.rsi
@@ -23,7 +30,14 @@
   parent: [ BaseC1Contraband, BaseMagazineMagnumSubMachineGun, RecyclableItemSteelTiny ]
   abstract: true
   components:
+  - type: Tag
+    tags:
+      - MagazineMagnumSubMachineGun
   - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMagnum
     capacity: 25
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol45/smg_mag.rsi

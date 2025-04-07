@@ -6,7 +6,14 @@
   parent: [ BaseC1Contraband, BaseMagazinePistol, RecyclableItemSteelTiny ]
   abstract: true
   components:
+  - type: Tag
+    tags:
+      - MagazinePistol
   - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistol
     capacity: 10
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_mag.rsi
@@ -22,7 +29,14 @@
   parent: [ BaseC1Contraband, BaseMagazinePistolHighCapacity, RecyclableItemSteelTiny ]
   abstract: true
   components:
+  - type: Tag
+    tags:
+      - MagazinePistolHighCapacity
   - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistol
     capacity: 16
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_high_capacity_mag.rsi
@@ -38,7 +52,14 @@
   parent: [ BaseC1Contraband, BaseMagazinePistolSubMachineGun, RecyclableItemSteelTiny ]
   abstract: true
   components:
+  - type: Tag
+    tags:
+      - MagazinePistolSubMachineGun
   - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistol
     capacity: 30
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi
@@ -54,7 +75,15 @@
   parent: [ BaseC1Contraband, MagazinePistolSubMachineGunTopMounted, RecyclableItemSteelTiny ]
   abstract: true
   components:
+  - type: Tag
+    tags:
+      - MagazinePistolSubMachineGunTopMounted
   - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol
+    whitelist:
+      tags:
+      - CartridgePistol
     capacity: 30
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag_top_mounted.rsi
