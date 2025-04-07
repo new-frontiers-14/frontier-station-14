@@ -268,7 +268,7 @@ public sealed partial class GunComponent : Component
     /// Frontier: add gun caliber text
     /// </summary>
     [DataField]
-    public LocId ExamineCaliber { get; private set; } = string.Empty;
+    public LocId? ExamineCaliber;
 }
 
 [Flags]

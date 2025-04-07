@@ -11,5 +11,6 @@ gun-examine-caliber = It's chambered in [color={$color}]{$caliber}[/color].
 
 # Frontier caliber list:
 gun-examine-caliber-30 = .30
+gun-examine-caliber-45 = .45
 gun-examine-caliber-50 = .50
 gun-examine-caliber-60 = .60

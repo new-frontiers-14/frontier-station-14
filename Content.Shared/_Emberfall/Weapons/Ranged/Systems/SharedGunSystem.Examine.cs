@@ -86,9 +86,10 @@ public abstract partial class SharedGunSystem
         caliber = null;
 
         // Frontier change: Added ExamineCaliber to guns to note the caliber type in ftl
-        var caliberName = Loc.GetString(component.ExamineCaliber);
-        if (caliberName is not null && !string.IsNullOrEmpty(component.ExamineCaliber.Id))
+        if (!string.IsNullOrEmpty(component.ExamineCaliber))
         {
+            var caliberName = Loc.GetString(component.ExamineCaliber);
+
             caliber = caliberName;
             return true;
         }
