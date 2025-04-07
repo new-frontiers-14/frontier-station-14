@@ -7,6 +7,7 @@
     sprite: /Textures/_NF/Objects/Tiles/tile.rsi
     state: grassdark
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/tile.rsi
     heldPrefix: grassdark
   - type: FloorTile
     outputs:
@@ -23,6 +24,7 @@
     sprite: /Textures/_NF/Objects/Tiles/tile.rsi
     state: grasslight
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/tile.rsi
     heldPrefix: grasslight
   - type: FloorTile
     outputs:
@@ -39,6 +41,7 @@
     sprite: /Textures/_NF/Objects/Tiles/tile.rsi
     state: dirt
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/tile.rsi
     heldPrefix: dirt
   - type: FloorTile
     outputs:
@@ -55,6 +58,7 @@
     sprite: /Textures/_NF/Objects/Tiles/tile.rsi
     state: bedrock
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/tile.rsi
     heldPrefix: bedrock
   - type: FloorTile
     outputs:
@@ -71,6 +75,7 @@
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     state: gold-mono
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     heldPrefix: gold mono
   - type: FloorTile
     outputs:
@@ -87,6 +92,7 @@
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     state: green-mono
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     heldPrefix: green mono
   - type: FloorTile
     outputs:
@@ -103,6 +109,7 @@
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     state: light-blue-mono
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     heldPrefix: light blue mono
   - type: FloorTile
     outputs:
@@ -119,6 +126,7 @@
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     state: light-green-mono
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     heldPrefix: light green mono
   - type: FloorTile
     outputs:
@@ -135,6 +143,7 @@
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     state: light-pink-mono
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     heldPrefix: light pink mono
   - type: FloorTile
     outputs:
@@ -151,6 +160,7 @@
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     state: light-yellow-mono
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     heldPrefix: light yellow mono
   - type: FloorTile
     outputs:
@@ -167,6 +177,7 @@
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     state: orange-mono
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     heldPrefix: orange mono
   - type: FloorTile
     outputs:
@@ -183,6 +194,7 @@
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     state: light-red-mono
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     heldPrefix: light red mono
   - type: FloorTile
     outputs:
@@ -199,6 +211,7 @@
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     state: red-mono
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
     heldPrefix: red mono
   - type: FloorTile
     outputs:
@@ -215,9 +228,61 @@
     sprite: /Textures/_NF/Objects/Tiles/carpettile.rsi
     state: sus
   - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/carpettile.rsi
     heldPrefix: sus
   - type: FloorTile
     outputs:
       - FloorSus
   - type: Stack
     stackType: FloorSus
+
+- type: entity
+  name: checkerboard wood tile
+  parent: FloorTileItemBase
+  id: FloorTileItemCheckerboardWood
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Tiles/woodtile.rsi
+    state: checkerboard
+  - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/woodtile.rsi
+    heldPrefix: checkerboard
+  - type: FloorTile
+    outputs:
+      - FloorCheckerboardWood
+  - type: Stack
+    stackType: FloorCheckerboardWood
+
+- type: entity
+  name: mosaic wood tile
+  parent: FloorTileItemBase
+  id: FloorTileItemMosaicWood
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Tiles/woodtile.rsi
+    state: mosaic
+  - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/woodtile.rsi
+    heldPrefix: mosaic
+  - type: FloorTile
+    outputs:
+      - FloorMosaicWood
+  - type: Stack
+    stackType: FloorMosaicWood
+
+- type: entity
+  name: versailles wood tile
+  parent: FloorTileItemBase
+  id: FloorTileItemVersaillesWood
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Tiles/woodtile.rsi
+    state: versailles
+  - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/woodtile.rsi
+    heldPrefix: versailles
+  - type: FloorTile
+    outputs:
+      - FloorVersaillesWood
+  - type: Stack
+    stackType: FloorVersaillesWood

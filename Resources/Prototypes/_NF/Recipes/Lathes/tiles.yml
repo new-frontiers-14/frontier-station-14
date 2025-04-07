@@ -24,6 +24,13 @@
 
 - type: latheRecipe
   abstract: true
+  id: NFBaseFloorTileWoodRecipe
+  parent: NFBaseFloorTileRecipe
+  materials:
+    Wood: 25
+
+- type: latheRecipe
+  abstract: true
   id: NFBaseFloorTileClothRecipe
   parent: NFBaseFloorTileRecipe
   materials:
@@ -266,3 +273,18 @@
   id: FloorTileItemRedMono
   parent: NFBaseFloorTileRecipe
   result: FloorTileItemRedMono
+
+- type: latheRecipe
+  id: FloorTileItemCheckerboardWood
+  parent: NFBaseFloorTileWoodRecipe
+  result: FloorTileItemCheckerboardWood
+
+- type: latheRecipe
+  id: FloorTileItemMosaicWood
+  parent: NFBaseFloorTileWoodRecipe
+  result: FloorTileItemMosaicWood
+
+- type: latheRecipe
+  id: FloorTileItemVersaillesWood
+  parent: NFBaseFloorTileWoodRecipe
+  result: FloorTileItemVersaillesWood
