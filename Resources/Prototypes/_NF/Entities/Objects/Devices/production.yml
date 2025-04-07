@@ -402,6 +402,22 @@
         Plastic: 5
 
 - type: entity
+  id: PlantReclaimerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: plant reclaimer machine board
+  description: A machine printed circuit board for a plant reclaimer.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: PlantReclaimer
+      requirements:
+        Manipulator: 2
+      stackRequirements:
+        Steel: 5
+        Plastic: 5
+
+- type: entity
   id: CondimentDispenserCircuitboard
   parent: BaseMachineCircuitboard
   name: condiment dispenser machine board
