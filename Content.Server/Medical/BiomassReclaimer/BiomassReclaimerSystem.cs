@@ -56,6 +56,7 @@ namespace Content.Server.Medical.BiomassReclaimer
         [Dependency] private readonly MaterialStorageSystem _material = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
+        [Dependency] private readonly NFbiomassEqualizerSystem _equalizerSystem = default!; // Frontier
 
         [ValidatePrototypeId<MaterialPrototype>]
         public const string BiomassPrototype = "Biomass";
@@ -243,11 +244,16 @@ namespace Content.Server.Medical.BiomassReclaimer
                 component.SpawnedEntities = butcherableComponent.SpawnedEntities;
             }
 
-            var expectedYield = physics.FixturesMass * component.YieldPerUnitMass;
-            if (HasComp<ProduceComponent>(toProcess))
-                expectedYield *= component.ProduceYieldMultiplier;
-            component.CurrentExpectedYield += expectedYield;
+            // Frontier: PR #3206
+            var expectedYieldPlant = 0;
 
+            if (HasComp<ProduceComponent>(toProcess) && TryComp<NFbiomassEqualizerComponent>(toProcess, out _))
+            {
+                expectedYieldPlant = _equalizerSystem.ExtractMaterial(toProcess);
+            }
+            // Frontier: PR #3206 end
+            var expectedYield = physics.FixturesMass * component.YieldPerUnitMass + expectedYieldPlant; //Frontier: PR #3206 added expectedyieldplant
+            component.CurrentExpectedYield += expectedYield;
             component.ProcessingTimer = physics.FixturesMass * component.ProcessingTimePerUnitMass;
 
             var inventory = _inventory.GetHandOrInventoryEntities(toProcess);
