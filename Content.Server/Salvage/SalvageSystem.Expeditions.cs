@@ -55,6 +55,7 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<SalvageExpeditionComponent, MapInitEvent>(OnExpeditionMapInit);
         SubscribeLocalEvent<SalvageExpeditionComponent, ComponentShutdown>(OnExpeditionShutdown);
         SubscribeLocalEvent<SalvageExpeditionComponent, ComponentGetState>(OnExpeditionGetState);
+        SubscribeLocalEvent<SalvageExpeditionComponent, EntityTerminatingEvent>(OnMapTerminating); // Frontier
 
         SubscribeLocalEvent<SalvageStructureComponent, ExaminedEvent>(OnStructureExamine);
 
@@ -136,18 +137,6 @@ public sealed partial class SalvageSystem
         {
             FinishExpedition((component.Station, data), component, uid); // Frontier: add component
         }
-
-        // Frontier: Find all ghosts, warp them to the main map.
-        var ghosts = EntityQueryEnumerator<GhostComponent, TransformComponent>();
-        var newCoords = new MapCoordinates(Vector2.Zero, _gameTicker.DefaultMap);
-        while (ghosts.MoveNext(out var ghostUid, out _, out var xform))
-        {
-            if (xform.MapUid == ghostUid)
-            {
-                _transform.SetMapCoordinates(ghostUid, newCoords);
-            }
-        }
-        // End Frontier
     }
 
     private void UpdateExpeditions()
@@ -288,7 +277,8 @@ public sealed partial class SalvageSystem
         args.PushMarkup(Loc.GetString("salvage-expedition-structure-examine"));
     }
 
-    // Frontier: handle exped spawn job failures gracefully - reset the console
+    // Frontier: exped job handling, ghost reparenting
+    // Handle exped spawn job failures gracefully - reset the console
     private void OnExpeditionSpawnComplete(EntityUid uid, SalvageExpeditionDataComponent component, ExpeditionSpawnCompleteEvent ev)
     {
         if (component.ActiveMission == ev.MissionIndex && !ev.Success)
@@ -296,6 +286,18 @@ public sealed partial class SalvageSystem
             component.ActiveMission = 0;
             component.Cooldown = false;
             UpdateConsoles((uid, component));
+        }
+    }
+
+    // Send all ghosts (relevant for admins) back to the default map so they don't lose their stuff.
+    private void OnMapTerminating(EntityUid uid, SalvageExpeditionComponent component, EntityTerminatingEvent ev)
+    {
+        var ghosts = EntityQueryEnumerator<GhostComponent, TransformComponent>();
+        var newCoords = new MapCoordinates(Vector2.Zero, _gameTicker.DefaultMap);
+        while (ghosts.MoveNext(out var ghostUid, out _, out var xform))
+        {
+            if (xform.MapUid == uid)
+                _transform.SetMapCoordinates(ghostUid, newCoords);
         }
     }
     // End Frontier

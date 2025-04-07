@@ -460,35 +460,35 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         MapGridComponent grid,
         Random random)
     {
+        await SuspendIfOutOfTime();
+
         var structureComp = _entManager.EnsureComponent<SalvageDestructionExpeditionComponent>(mapUid);
-        var availableRooms = dungeon.Rooms.ToList();
         var faction = _prototypeManager.Index<SalvageFactionPrototype>(mission.Faction);
         var difficulty = _prototypeManager.Index(mission.Difficulty);
 
         var shaggy = faction.Configs["DefenseStructure"];
-        var validSpawns = new List<Vector2i>();
 
-        // Spawn the objectives
-        for (var i = 0; i < difficulty.DestructionStructures; i++)
+        var availableRooms = new ValueList<DungeonRoom>(dungeon.Rooms);
+        var availableTiles = new List<Vector2i>();
+
+        while (availableRooms.Count > 0 && structureComp.Structures.Count < difficulty.DestructionStructures)
         {
-            var structureRoom = availableRooms[random.Next(availableRooms.Count)];
-            validSpawns.Clear();
-            validSpawns.AddRange(structureRoom.Tiles);
-            random.Shuffle(validSpawns);
+            availableTiles.Clear();
+            var roomIndex = random.Next(availableRooms.Count);
+            var room = availableRooms.RemoveSwap(roomIndex);
+            availableTiles.AddRange(room.Tiles);
 
-            while (validSpawns.Count > 0)
+            while (availableTiles.Count > 0)
             {
-                var spawnTile = validSpawns[^1];
-                validSpawns.RemoveAt(validSpawns.Count - 1);
+                var tile = availableTiles.RemoveSwap(random.Next(availableTiles.Count));
 
-                if (!_anchorable.TileFree(grid, spawnTile, (int) CollisionGroup.MachineLayer,
-                        (int)CollisionGroup.MachineMask))
+                if (!_anchorable.TileFree(grid, tile, (int)CollisionGroup.MachineLayer,
+                        (int)CollisionGroup.MachineLayer))
                 {
                     continue;
                 }
 
-                var spawnPosition = _map.GridTileToLocal(mapUid, grid, spawnTile);
-                var uid = _entManager.SpawnEntity(shaggy, spawnPosition);
+                var uid = _entManager.SpawnEntity(shaggy, _map.GridTileToLocal(mapUid, grid, tile));
                 _entManager.AddComponent<SalvageStructureComponent>(uid);
                 structureComp.Structures.Add(uid);
                 break;
@@ -502,18 +502,41 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         MapGridComponent grid,
         Random random)
     {
-        // spawn megafauna in a random place
-        var roomIndex = random.Next(dungeon.Rooms.Count);
-        var room = dungeon.Rooms[roomIndex];
-        var tile = room.Tiles.ElementAt(random.Next(room.Tiles.Count));
-        var position = _map.GridTileToLocal(mapUid, grid, tile);
+        await SuspendIfOutOfTime();
 
+        // spawn megafauna in a random place
         var faction = _prototypeManager.Index<SalvageFactionPrototype>(mission.Faction);
         var prototype = faction.Configs["Megafauna"];
-        var uid = _entManager.SpawnEntity(prototype, position);
+
+        var availableRooms = new ValueList<DungeonRoom>(dungeon.Rooms);
+        var availableTiles = new List<Vector2i>();
+
+        var uid = EntityUid.Invalid;
+        while (availableRooms.Count > 0 && uid == EntityUid.Invalid)
+        {
+            availableTiles.Clear();
+            var roomIndex = random.Next(availableRooms.Count);
+            var room = availableRooms.RemoveSwap(roomIndex);
+            availableTiles.AddRange(room.Tiles);
+
+            while (availableTiles.Count > 0)
+            {
+                var tile = availableTiles.RemoveSwap(random.Next(availableTiles.Count));
+
+                if (!_anchorable.TileFree(grid, tile, (int)CollisionGroup.MachineLayer,
+                        (int)CollisionGroup.MachineLayer))
+                {
+                    continue;
+                }
+
+                uid = _entManager.SpawnAtPosition(prototype, _map.GridTileToLocal(mapUid, grid, tile));
+                break;
+            }
+        }
 
         var eliminationComp = _entManager.EnsureComponent<SalvageEliminationExpeditionComponent>(mapUid);
-        eliminationComp.Megafauna.Add(uid);
+        if (uid != EntityUid.Invalid)
+            eliminationComp.Megafauna.Add(uid);
     }
     // End Frontier: mission-specific setup functions
 }
