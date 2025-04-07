@@ -13,6 +13,7 @@ using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+using Content.Shared._NF.CCVar;
 
 namespace Content.Client.Administration;
 
@@ -29,6 +30,7 @@ internal sealed class AdminNameOverlay : Overlay
     private bool _overlaySymbols;
     private bool _overlayPlaytime;
     private bool _overlayStartingJob;
+    private bool _overlayBalance; // Frontier
     private float _ghostFadeDistance;
     private float _ghostHideDistance;
     private int _overlayStackMax;
@@ -66,6 +68,7 @@ internal sealed class AdminNameOverlay : Overlay
         config.OnValueChanged(CCVars.AdminOverlayGhostFadeDistance, (f) => { _ghostFadeDistance = f; }, true);
         config.OnValueChanged(CCVars.AdminOverlayStackMax, (i) => { _overlayStackMax = i; }, true);
         config.OnValueChanged(CCVars.AdminOverlayMergeDistance, (f) => { _overlayMergeDistance = f; }, true);
+        config.OnValueChanged(NFCCVars.AdminOverlayBalance, (show) => { _overlayBalance = show; }, true); // Frontier
     }
 
     public override OverlaySpace Space => OverlaySpace.ScreenSpace;
@@ -185,9 +188,12 @@ internal sealed class AdminNameOverlay : Overlay
             }
 
             // Frontier: print balance
-            var balance = playerInfo.Balance == int.MinValue ? "NO BALANCE" : BankSystemExtensions.ToCurrencyString(playerInfo.Balance);
-            args.ScreenHandle.DrawString(_font, screenCoordinates + currentOffset, $"Balance: {balance}", uiScale, playerInfo.Connected ? Color.GreenYellow : Color.White);
-            currentOffset += lineoffset;
+            if (_overlayBalance)
+            {
+                var balance = playerInfo.Balance == int.MinValue ? "NO BALANCE" : BankSystemExtensions.ToCurrencyString(playerInfo.Balance);
+                args.ScreenHandle.DrawString(_font, screenCoordinates + currentOffset, $"Balance: {balance}", uiScale, playerInfo.Connected ? Color.GreenYellow : Color.White);
+                currentOffset += lineoffset;
+            }
             // End Frontier
 
             // Classic Antag Label
