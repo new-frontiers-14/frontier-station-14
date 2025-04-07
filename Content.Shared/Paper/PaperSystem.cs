@@ -13,7 +13,7 @@ using Content.Shared.Timing; // Frontier
 using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Verbs; // Frontier
 using Content.Shared.Ghost;
-using Content.Shared.Mobs; // Frontier
+using Robust.Shared.Prototypes; // Frontier
 
 namespace Content.Shared.Paper;
 
@@ -32,6 +32,8 @@ public sealed class PaperSystem : EntitySystem
 
     private const int ReapplyLimit = 10; // Frontier: limits on reapplied stamps
     private const int StampLimit = 100; // Frontier: limits on total stamps on a page (should be able to get a signature from everybody on the server on a page)
+    private readonly ProtoId<TagPrototype> _paperProtectedByStampTag = "NFPaperStampProtected"; // Frontier
+    private readonly ProtoId<TagPrototype> _paperWeakIgnoreTag = "NFWriteIgnoreUnprotectedStamps"; // Frontier
 
     public override void Initialize()
     {
@@ -136,7 +138,7 @@ public sealed class PaperSystem : EntitySystem
     {
         // only allow editing if there are no stamps or when using a cyberpen
         var editable = entity.Comp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps")
-                       || _tagSystem.HasTag(args.Used, "NFWriteIgnoreUnprotectedStamps") && !_tagSystem.HasTag(entity, "NFPaperStampProtected"); // Frontier: protected stamps
+                       || _tagSystem.HasTag(args.Used, _paperWeakIgnoreTag) && !_tagSystem.HasTag(entity, _paperProtectedByStampTag); // Frontier: protected stamps
         if (_tagSystem.HasTag(args.Used, "Write"))
         {
             if (editable)
@@ -215,7 +217,7 @@ public sealed class PaperSystem : EntitySystem
 
                 // Note: mode is not changed here, anyone with an open paper may still save changes.
                 if (stampComp.Protected)
-                    _tagSystem.AddTag(entity, "NFPaperStampProtected");
+                    _tagSystem.AddTag(entity, _paperProtectedByStampTag);
                 // End Frontier
 
                 UpdateUserInterface(entity);
@@ -300,9 +302,10 @@ public sealed class PaperSystem : EntitySystem
         target.Comp.StampState = source.Comp.StampState;
         Dirty(target);
 
-        // Frontier: apply 
-        if(_tagSystem.HasTag(source, "NFPaperStampProtected"))
-            _tagSystem.AddTag(target, "NFPaperStampProtected");
+        // Frontier: apply stamp protection
+        if (_tagSystem.HasTag(source, _paperProtectedByStampTag))
+            _tagSystem.AddTag(target, _paperProtectedByStampTag);
+        // End Frontier: apply stamp protection
 
         if (TryComp<AppearanceComponent>(target, out var appearance))
         {
