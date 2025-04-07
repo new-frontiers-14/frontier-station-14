@@ -1,0 +1,83 @@
+#region base
+- type: entity
+  id: NFBaseWeaponEnergyRifleSniper
+  parent: BaseWeaponBattery
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,5,3
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -1.8
+    maxAngle: -3.6
+  - type: Gun
+    minAngle: 3.6
+    maxAngle: 7.2
+    angleIncrease: 1
+    angleDecay: 2
+    fireRate: 0.7
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.1
+    sprintModifier: 0.1
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4.5
+    pvsIncrease: 0
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedHeavyLaser
+    fireCost: 100
+  - type: Battery # 20 shots
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5 # 1 shot per 20 seconds
+
+# WizDen
+#region Laser
+- type: entity
+  id: NFWeaponEnergyRifleSniperCannon
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleSniper, WeaponLaserCannon ]
+  name: laser cannon
+  suffix: Frontier
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Sniper Rifle
+    Ammo: High Power Laser Beam
+    Desc.: A heavy duty, high powered laser weapon. On the handle is a label that says 'for authorized use only.'
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
+
+- type: entity
+  id: NFWeaponEnergyRifleSniperXrayCannon
+  parent: [ BaseC3Contraband, NFBaseWeaponEnergyRifleSniper, WeaponXrayCannon ]
+  name: x-ray cannon
+  suffix: Frontier
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Sniper Rifle
+    Ammo: X-Ray Beam
+    Desc.: An illegal and experimental weapon that uses concentrated x-ray energy against its target.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/xray.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/xray.rsi
+  - type: HitscanBatteryAmmoProvider
+    proto: NFXrayLaser
+    fireCost: 100

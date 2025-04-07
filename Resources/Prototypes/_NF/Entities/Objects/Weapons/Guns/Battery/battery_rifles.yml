@@ -1,0 +1,81 @@
+#region base
+- type: entity
+  id: NFBaseWeaponEnergyRifle
+  parent: BaseWeaponBattery
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,5,3
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -2.1
+    maxAngle: -4.2
+  - type: Gun
+    minAngle: 4.2
+    maxAngle: 8.4
+    angleIncrease: 0.25
+    angleDecay: 1
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4.5
+    pvsIncrease: 0
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedMediumLaser
+    fireCost: 80
+  - type: Battery # 30 shots
+    maxCharge: 2400
+    startingCharge: 2400
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 4 # 1 shot per 20 seconds
+
+# WizDen
+#region Laser
+- type: entity
+  id: NFWeaponEnergyRifleCarbine
+  parent: [ BaseC1Contraband, NFBaseWeaponEnergyRifle, WeaponLaserCarbine ]
+  name: laser carbine
+  suffix: Frontier
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Rifle
+    Ammo: Medium Power Laser Beam
+    Desc.: A simple civilian grade laser carbine, the workhorse of many private security organizations.
+    ---
+
+#region Pulse
+- type: entity
+  id: NFWeaponEnergyRiflePulseRifle
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifle, WeaponPulseRifle ]
+  name: pulse rifle
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Rifle
+    Ammo: Pulse Beam
+    Desc.: A weapon that is almost as infamous as its users. On the handle is a label that says 'for authorized use only.'
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
+  - type: HitscanBatteryAmmoProvider
+    proto: NFPulse
+    fireCost: 100
+  - type: Battery # 30 shots
+    maxCharge: 3000
+    startingCharge: 3000

@@ -1,0 +1,16 @@
+- type: entity
+  id: NFBulletDisabler
+  name: disabler bolt
+  parent: BulletDisabler
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 5
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+  - type: StaminaDamageOnCollide
+    damage: 18
