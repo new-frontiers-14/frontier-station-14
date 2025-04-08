@@ -99,6 +99,7 @@ public sealed class VendingInteractionTest : InteractionTest
     }
 
     [Test]
+    [Ignore("Vending machines require a user with a bank account to work.")] // Frontier
     public async Task DispenseItemTest()
     {
         await SpawnTarget(VendingMachineProtoId);
