@@ -110,7 +110,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
             // Alerts
 
-            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true;
+            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || msg.Unclonable == true; // Frontier: add Unclonable cond
 
             AlertsDivider.Visible = showAlerts;
             AlertsContainer.Visible = showAlerts;
