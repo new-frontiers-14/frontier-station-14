@@ -28,7 +28,7 @@
   - type: Item
     size: Large
     shape:
-    - 0,0,4,2
+    - 0,0,4,3
 
 # Assault Rifles
 - type: entity
@@ -49,6 +49,29 @@
     size: Huge
     shape:
     - 0,0,4,4
+
+#region Crossbows
+- type: entity
+  id: NFBaseWeaponSizeCrossbow
+  abstract: true
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,1
+    - 1,1,2,3
+    storedRotation: -45
+
+- type: entity
+  id: NFBaseWeaponSizeCrossbowHand
+  abstract: true
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,1
+    storedRotation: -45
 
 #region Melee
 # TODO: this

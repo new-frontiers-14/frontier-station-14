@@ -96,7 +96,7 @@
     onlyCollideWhenShot: true
     damage:
       types:
-        Piercing: 35
+        Piercing: 25
 
 - type: entity
   parent: [ BaseBoltProjectile, BaseBoltEmbeddable, BaseBoltLiquidInjector, BaseC1Contraband ]
@@ -166,8 +166,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
-        Slash: 20
+        Piercing: 5
+        Slash: 15
 
 - type: entity
   parent: BaseCrossbowBolt
@@ -239,7 +239,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 25
+        Piercing: 20
   - type: Construction
     graph: CraftCrossbowBoltGlassShard
     node: CraftCrossbowBoltGlassShard
@@ -270,7 +270,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 30
+        Piercing: 20
   - type: Construction
     graph: CraftCrossbowBoltPlasmaGlassShard
     node: CraftCrossbowBoltPlasmaGlassShard
@@ -302,7 +302,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 25
+        Piercing: 15
         Radiation: 5
   - type: Construction
     graph: CraftCrossbowBoltUraniumGlassShard
@@ -369,7 +369,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 20
+        Piercing: 18
     ignoreResistances: true
   - type: Construction
     graph: CraftCrossbowBoltPlasteel
@@ -501,7 +501,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 15
+        Piercing: 10
     deleteOnCollide: true
   - type: IgniteOnProjectileHit
     fireStacks: 0.5
@@ -575,7 +575,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
+        Piercing: 6
   - type: TimedDespawn
     lifetime: 0.25
 
@@ -603,6 +603,6 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 15
+        Piercing: 5
         Slash: 5
         Bloodloss: 5

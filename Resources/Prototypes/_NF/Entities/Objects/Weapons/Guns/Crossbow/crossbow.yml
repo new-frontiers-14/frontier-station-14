@@ -1,8 +1,8 @@
-﻿# Base
+﻿#region Base
 - type: entity
   id: BaseCrossbow
   name: crossbow
-  parent: [ BaseItem, GunMeleeAttackBluntBase ] # \Resources\Prototypes\_NF\Entities\Objects\Weapons\Melee\base_melee_weapon.yml
+  parent: [ NFBaseWeaponSizeCrossbow, BaseItem, GunMeleeAttackBluntBase ] # \Resources\Prototypes\_NF\Entities\Objects\Weapons\Melee\base_melee_weapon.yml
   description: The original rooty tooty point and shooty.
   abstract: true
   components:
@@ -75,8 +75,6 @@
       state: icon-bolt-shell
       map: [ shrapnel ]
       visible: false
-  - type: Item
-    size: Normal
   - type: Clothing
     quickEquip: false
     slots:
@@ -208,8 +206,6 @@
   parent: BaseCrossbow
   abstract: true
   components:
-  - type: Item
-    size: Large
   - type: Clothing
     quickEquip: false
     slots:
@@ -264,7 +260,7 @@
           True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-stake-drawn }
           False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-stake }
 
-# Wieldable
+#region Wieldable
 - type: entity
   id: CrossbowModern
   parent: [ BaseCrossbowWieldable, BaseC1Contraband ]
@@ -305,10 +301,10 @@
     node: start
     deconstructionTarget: null
 
-# Hand crossbows
+#region Hand xbows
 - type: entity
   id: CrossbowModernHand
-  parent: [ BaseCrossbow, BaseC1Contraband ]
+  parent: [ NFBaseWeaponSizeCrossbowHand, BaseCrossbow, BaseC1Contraband ]
   name: hand crossbow
   components:
   - type: UseDelay
@@ -321,7 +317,7 @@
 
 - type: entity
   id: CrossbowImprovisedHand
-  parent: [ BaseCrossbow, BaseC1Contraband ]
+  parent: [ NFBaseWeaponSizeCrossbowHand, BaseCrossbow, BaseC1Contraband ]
   name: impovised hand crossbow
   components:
   - type: UseDelay
@@ -334,7 +330,7 @@
 
 - type: entity
   id: CrossbowBloodCultHand
-  parent: [ BaseCrossbow, BaseC3CultContraband ]
+  parent: [ NFBaseWeaponSizeCrossbowHand, BaseCrossbow, BaseC3CultContraband ]
   name: blood cult hand crossbow
   components:
   - type: Sprite
