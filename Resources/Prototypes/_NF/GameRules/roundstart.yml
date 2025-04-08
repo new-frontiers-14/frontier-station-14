@@ -86,10 +86,18 @@
     children:
     - id: NFSmugglingFaxBig
 
-# Concrete ignored upstream definition
+# Concrete ignored upstream definitions
 - type: entity
   id: NFSandbox
   parent: Sandbox
+
+- type: entity
+  id: NFMaxTimeRestart
+  parent: BaseGameRule
+  components:
+  - type: MaxTimeRestartRule
+    roundMaxTime: 300
+    roundEndDelay: 10
 
 # variation passes
 - type: entity
