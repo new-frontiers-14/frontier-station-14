@@ -7,12 +7,15 @@ shuttle-console-inertia-dampener-off = Cruise
 shuttle-console-inertia-dampener-dampen = Drive
 shuttle-console-inertia-dampener-anchor = Park
 
-shuttle-console-service-flags = Service Flags
-shuttle-console-service-flag-none = No services
-shuttle-console-service-flag-kitchen = Food and/or drinks
-shuttle-console-service-flag-medical = Medical services
-shuttle-console-service-flag-upgrades = Upgrades
-shuttle-console-service-flag-trade = Trade goods, like things found on expeditions
-shuttle-console-service-flag-construction = Materials to build
-shuttle-console-service-flag-service = Lawyer, tailor, etc
-shuttle-console-service-flag-social = Socialization and potentially entertainment
+shuttle-console-service-flags = Advertise Features
+shuttle-console-service-flag-Services-label = Services
+shuttle-console-service-flag-Trade-label = Shopping
+shuttle-console-service-flag-Social-label = Social
+
+shuttle-console-service-flag-Services-shortform = ♫
+shuttle-console-service-flag-Trade-shortform = $
+shuttle-console-service-flag-Social-shortform = ☺
+
+shuttle-console-service-flag-Services-description = Services (e.g. medical, dining, engineering) offered onboard.
+shuttle-console-service-flag-Trade-description = Goods sold onboard.
+shuttle-console-service-flag-Social-description = A social space to gather and hang out.

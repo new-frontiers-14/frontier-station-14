@@ -111,33 +111,23 @@ public abstract partial class SharedShuttleSystem
     /// </summary>
     /// <param name="flags">The IFF flags to get the suffix for</param>
     /// <returns>The string to display.</returns>
-    public static string GetServiceFlagsSuffix(ServiceFlags flags)
+    public string GetServiceFlagsSuffix(ServiceFlags flags)
     {
         if (flags == ServiceFlags.None)
             return string.Empty;
 
-        // Find which first characters are duplicated among ALL possible flags
-        var duplicateFirstChars = Enum.GetValues<ServiceFlags>()
-            .Where(flag => flag != ServiceFlags.None)
-            .GroupBy(flag => flag.ToString()[0])
-            .Where(g => g.Count() > 1)
-            .Select(g => g.Key)
-            .ToHashSet();
+        string outputString = "";
+        foreach (var flag in Enum.GetValues<ServiceFlags>())
+        {
+            if (flag == ServiceFlags.None || !flags.HasFlag(flag))
+                continue;
 
-        // Get all active flags
-        var activeFlags = Enum.GetValues<ServiceFlags>()
-            .Where(flag => flag != ServiceFlags.None && (flags & flag) != 0)
-            .ToList();
-
-        // Build strings for each flag
-        var flagStrings = activeFlags.Select(flag => {
-            var flagName = flag.ToString().ToUpper();
-            return duplicateFirstChars.Contains(flagName[0])
-                ? flagName[..Math.Min(2, flagName.Length)]
-                : flagName[..1];
-        });
-
-        return $"[{string.Join("|", flagStrings)}]";
+            if (Loc.TryGetString($"shuttle-console-service-flag-{flag}-shortform", out var flagString))
+                outputString = string.Concat(outputString, flagString);
+            else
+                outputString = string.Concat(outputString, flag.ToString()[0]); // Fallback: use first character of string
+        }
+        return $"[{outputString}]";
     }
 
     [PublicAPI]
