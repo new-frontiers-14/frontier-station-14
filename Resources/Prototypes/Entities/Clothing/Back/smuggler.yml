@@ -92,33 +92,29 @@
               range: 1, 8
             weight: 5
 
-# Frontier: prevent test failures from overfull satchels
+- type: entity
+  parent: ClothingBackpackSatchelSmuggler
+  id: ClothingBackpackSatchelSmugglerFilled
+  suffix: Smuggler, Do Not Map
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Satchels/smuggler.rsi
+    state: icon
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: FillSmugglerBackpack
 
-# - type: entity
-#   parent: ClothingBackpackSatchelSmuggler
-#   id: ClothingBackpackSatchelSmugglerFilled
-#   suffix: Smuggler, Do Not Map
-#   components:
-#   - type: Sprite
-#     sprite: Clothing/Back/Satchels/smuggler.rsi
-#     state: icon
-#   - type: EntityTableContainerFill
-#     containers:
-#       storagebase: !type:NestedSelector
-#         tableId: FillSmugglerBackpack
-
-# - type: entity
-#   parent: MarkerBase
-#   id: RandomSatchelSpawner
-#   name: random smuggler's satchel spawner
-#   suffix: Do Not Map
-#   components:
-#   - type: Sprite
-#     layers:
-#       - sprite: Clothing/Back/Satchels/smuggler.rsi
-#         state: icon
-#   - type: EntityTableSpawner
-#     table: !type:NestedSelector
-#       tableId: RandomSatchelTable
-
-# End Frontier: prevent test failures from overfull satchels
+- type: entity
+  parent: MarkerBase
+  id: RandomSatchelSpawner
+  name: random smuggler's satchel spawner
+  suffix: Do Not Map
+  components:
+  - type: Sprite
+    layers:
+      - sprite: Clothing/Back/Satchels/smuggler.rsi
+        state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: RandomSatchelTable

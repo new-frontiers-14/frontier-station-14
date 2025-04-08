@@ -1,15 +1,40 @@
 - type: entity
+  id: NFBaseVariationPass
+  parent: NFBaseGameRule
+  abstract: true
+  components:
+  - type: StationVariationPassRule
+
+- type: entity
   id: BasicDeadDropHintVariationPass
-  parent: BaseVariationPass
+  parent: NFBaseVariationPass
   components:
   - type: DeadDropHintVariationPass
     hintSpawnChance: 0.03
 
 - type: entity
   id: BasicBindToStationVariationPass
-  parent: BaseVariationPass
+  parent: NFBaseVariationPass
   components:
   - type: BindToStationVariationPass
+
+# Redefinitions/variations of upstream entities
+
+- type: entity
+  id: NFBasicPoweredLightVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: PoweredLightVariationPass
+
+- type: entity
+  id: NFBasicTrashVariationPass
+  parent: NFBaseVariationPass
+  components:
+  - type: EntitySpawnVariationPass
+    tilesPerEntityAverage: 35
+    tilesPerEntityStdDev: 4
+    entities:
+    - id: RandomSpawner
 
 - type: weightedRandomFillSolution
   id: NFRandomFillTrashPuddle
