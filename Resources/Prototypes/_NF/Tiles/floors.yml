@@ -216,9 +216,9 @@
   heatCapacity: 10000
 
 - type: tile
-  id: FloorMosaicWood
-  name: tiles-wood-mosaic-floor
-  sprite: /Textures/_NF/Tiles/mosaic.png
+  id: FloorLightMosaicWood
+  name: tiles-wood-light-mosaic-floor
+  sprite: /Textures/_NF/Tiles/light-mosaic.png
   variants: 4
   placementVariants:
   - 1.0
@@ -230,7 +230,25 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepFloor
-  itemDrop: FloorTileItemMosaicWood
+  itemDrop: FloorTileItemLightMosaicWood
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorDarkMosaicWood
+  name: tiles-wood-dark-mosaic-floor
+  sprite: /Textures/_NF/Tiles/dark-mosaic.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemDarkMosaicWood
   heatCapacity: 10000
 
 - type: tile

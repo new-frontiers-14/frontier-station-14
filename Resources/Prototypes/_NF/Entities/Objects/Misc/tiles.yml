@@ -254,21 +254,38 @@
     stackType: FloorCheckerboardWood
 
 - type: entity
-  name: mosaic wood tile
+  name: light mosaic wood tile
   parent: FloorTileItemBase
-  id: FloorTileItemMosaicWood
+  id: FloorTileItemLightMosaicWood
   components:
   - type: Sprite
     sprite: /Textures/_NF/Objects/Tiles/woodtile.rsi
-    state: mosaic
+    state: light-mosaic
   - type: Item
     sprite: /Textures/_NF/Objects/Tiles/woodtile.rsi
-    heldPrefix: mosaic
+    heldPrefix: light-mosaic
   - type: FloorTile
     outputs:
-      - FloorMosaicWood
+      - FloorLightMosaicWood
   - type: Stack
-    stackType: FloorMosaicWood
+    stackType: FloorLightMosaicWood
+
+- type: entity
+  name: dark mosaic wood tile
+  parent: FloorTileItemBase
+  id: FloorTileItemDarkMosaicWood
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Tiles/woodtile.rsi
+    state: dark-mosaic
+  - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/woodtile.rsi
+    heldPrefix: dark-mosaic
+  - type: FloorTile
+    outputs:
+      - FloorDarkMosaicWood
+  - type: Stack
+    stackType: FloorDarkMosaicWood
 
 - type: entity
   name: versailles wood tile
