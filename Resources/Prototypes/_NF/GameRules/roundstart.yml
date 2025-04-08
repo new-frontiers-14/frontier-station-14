@@ -1,19 +1,13 @@
 - type: entity
-  id: NFBaseGameRule
-  abstract: true
-  components:
-  - type: GameRule
-
-- type: entity
   id: NFAdventure
-  parent: NFBaseGameRule
+  parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: NFAdventureRule
 
 - type: entity
   id: BluespaceEventScheduler
-  parent: NFBaseGameRule
+  parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
     scheduledGameRules: !type:NestedSelector
@@ -37,7 +31,7 @@
 
 - type: entity
   id: BluespaceDungeonEventScheduler
-  parent: NFBaseGameRule
+  parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
     scheduledGameRules: !type:NestedSelector
@@ -58,7 +52,7 @@
 
 - type: entity
   id: BluespaceSalvageEventScheduler
-  parent: NFBaseGameRule
+  parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
     scheduledGameRules: !type:NestedSelector
@@ -76,7 +70,7 @@
 
 - type: entity
   id: SmugglingEventScheduler
-  parent: NFBaseGameRule
+  parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
     scheduledGameRules: !type:NestedSelector
@@ -95,7 +89,7 @@
 # variation passes
 - type: entity
   id: FrontierRoundstartVariation
-  parent: NFBaseGameRule
+  parent: BaseGameRule
   components:
   - type: RoundstartStationVariationRule
     rules:
@@ -116,7 +110,7 @@
 
 - type: entity
   id: NFBasicStationEventScheduler
-  parent: NFBaseGameRule
+  parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
     scheduledGameRules: !type:NestedSelector
