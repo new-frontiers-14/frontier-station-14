@@ -142,7 +142,7 @@
 # NFSD Brigmedic
 - type: entity
   id: LockerNfsdBrigmedic
-  parent: [NFLockerBaseSecure, LockerSecurity]
+  parent: NFLockerBaseSecure
   name: NFSD locker
   suffix: Brigmedic
   components:
@@ -150,6 +150,8 @@
     stateBaseClosed: nfsd_brigmed
     stateDoorOpen: nfsd_brigmed_open
     stateDoorClosed: nfsd_brigmed_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
 
 # NFSD Gold - Sergeant
 - type: entity
