@@ -32,7 +32,7 @@
     - id: GameRuleMeteorSwarmSmall
     - id: GameRuleMeteorSwarmMedium
     - id: GameRuleMeteorSwarmLarge
-    - id: GameRuleUristSwarm
+    # - id: GameRuleUristSwarm # Frontier
     - id: ImmovableRodSpawn
 
 - type: weightedRandomEntity
@@ -177,23 +177,27 @@
       MeteorMedium: 4
       MeteorLarge: 4
 
-- type: entity
-  parent: GameRuleMeteorSwarm
-  id: GameRuleUristSwarm
-  components:
-  - type: StationEvent
-    weight: 0.05
-  - type: MeteorSwarm
-    announcement: station-event-meteor-urist-start-announcement
-    announcementSound: /Audio/Announcements/attention.ogg
-    meteors:
-      MeteorUrist: 1
-    waves:
-      min: 3
-      max: 3
-    meteorsPerWave:
-      min: 10
-      max: 10
+# Frontier: FIXME - causes test failures
+
+# - type: entity
+#   parent: GameRuleMeteorSwarm
+#   id: GameRuleUristSwarm
+#   components:
+#   - type: StationEvent
+#     weight: 0.05
+#   - type: MeteorSwarm
+#     announcement: station-event-meteor-urist-start-announcement
+#     announcementSound: /Audio/Announcements/attention.ogg
+#     meteors:
+#       MeteorUrist: 1
+#     waves:
+#       min: 3
+#       max: 3
+#     meteorsPerWave:
+#       min: 10
+#       max: 10
+
+# End Frontier
 
 - type: entity
   id: ImmovableRodSpawn
