@@ -15,18 +15,21 @@
   id: FillSmugglerBackpack
   table: !type:GroupSelector
     children:
-    - !type:NestedSelector
-      tableId: RandomSatchelTable1
-    - !type:NestedSelector
-      tableId: RandomSatchelTable2
-    - !type:NestedSelector
-      tableId: RandomSatchelTable3
-    - !type:NestedSelector
-      tableId: RandomSatchelTable4
-    - !type:NestedSelector
-      tableId: RandomSatchelTable5
-    - !type:NestedSelector
-      tableId: RandomSatchelTable6
+    # Frontier: FIXME - preventing overfull satchels
+    # - !type:NestedSelector
+    #   tableId: RandomSatchelTable1
+    # - !type:NestedSelector
+    #   tableId: RandomSatchelTable2
+    # - !type:NestedSelector
+    #   tableId: RandomSatchelTable3
+    # - !type:NestedSelector
+    #   tableId: RandomSatchelTable4
+    # - !type:NestedSelector
+    #   tableId: RandomSatchelTable5
+    # - !type:NestedSelector
+    #   tableId: RandomSatchelTable6
+    - id: SpaceCash5000
+    # End Frontier: FIXME - preventing overfull satchels
 
 - type: entityTable
   id: RandomSatchelTable1
