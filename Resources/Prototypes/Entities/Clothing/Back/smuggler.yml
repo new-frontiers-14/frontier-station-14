@@ -12,6 +12,7 @@
     blacklist:
       components:
       - HumanoidAppearance # for forks with felines
+      - MindContainer # Frontier: consistency with older backpack
   - type: BlockAnchorOn
     blacklist:
       components:
@@ -33,7 +34,7 @@
     bodyType: Static
 
 - type: entity
-  parent: [ BaseSubfloorAnchorStorageAnchored, ClothingBackpackSatchel, BaseC3Contraband ] # Frontier: BaseMinorContraband<BaseC3Contraband
+  parent: [ BaseSubfloorAnchorStorageAnchored, ClothingBackpackSatchel ] # Frontier: remove BaseMinorContraband
   id: ClothingBackpackSatchelSmuggler
   name: smuggler's satchel
   suffix: Empty
@@ -44,7 +45,7 @@
     state: icon
 
 - type: entity
-  parent: [ BaseSubfloorAnchorStorage, ClothingBackpackSatchel, BaseC3Contraband ] # Frontier: BaseMinorContraband<BaseC3Contraband
+  parent: [ BaseSubfloorAnchorStorage, ClothingBackpackSatchel ] # Frontier: removed BaseMinorContraband
   id: ClothingBackpackSatchelSmugglerUnanchored
   name: smuggler's satchel
   suffix: Empty, Unanchored
@@ -55,7 +56,7 @@
     state: icon
 
 - type: entity
-  parent: [ BaseSubfloorAnchorStorageAnchored, BriefcaseSyndie, BaseC3Contraband ] # Frontier: BaseMinorContraband<BaseC3Contraband
+  parent: [ BaseSubfloorAnchorStorageAnchored, BriefcaseSyndie ] # Frontier: remove BaseMinorContraband
   id: BriefcaseSmugglerCash
   name: smuggler's briefcase
   suffix: Smuggler, Do Not Map
@@ -69,7 +70,7 @@
             range: 1, 11
 
 - type: entity
-  parent: [ BaseSubfloorAnchorStorageAnchored, ClothingBackpackDuffelClown, BaseC3Contraband ] # Frontier: BaseMinorContraband<BaseC3Contraband
+  parent: [ BaseSubfloorAnchorStorageAnchored, ClothingBackpackDuffelClown ] # Frontier: remove BaseMinorContraband
   id: ClothingBackpackDuffelClownSmuggler
   name: smuggler's clown duffel bag
   suffix: Smuggler, Do Not Map
