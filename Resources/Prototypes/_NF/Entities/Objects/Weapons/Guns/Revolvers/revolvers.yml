@@ -3,6 +3,7 @@
   id: NFBaseWeaponRevolver
   parent: [ NFBaseWeaponSizePistol, BaseWeaponRevolver ]
   suffix: Frontier
+  abstract: true
   components:
   - type: Gun
     minAngle: 5.4
@@ -162,9 +163,9 @@
 
 # WizDen: Rubber
 - type: entity
-  parent: NFWeaponRevolverDeckard
   id: WeaponRevolverDeckardNonlethal
-  suffix: Non-lethal
+  parent: NFWeaponRevolverDeckard
+  suffix: Less-lethal
   components:
   - type: RevolverAmmoProvider
     capacity: 5
@@ -173,8 +174,8 @@
     ammoSlots: [ null, null, null, null, null ]
 
 - type: entity
-  parent: WeaponRevolverDeckardExpedition
   id: WeaponRevolverDeckardExpeditionGrifty
+  parent: WeaponRevolverDeckardExpedition
   categories: [ HideSpawnMenu ]
   name: Customer Service Resolver
 
@@ -214,7 +215,7 @@
 - type: entity
   parent: WeaponRevolverArgenti
   id: WeaponRevolverArgentiNonlethal
-  suffix: Non-lethal
+  suffix: Less-lethal
   components:
   - type: RevolverAmmoProvider
     capacity: 8
