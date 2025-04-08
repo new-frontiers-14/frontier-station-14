@@ -99,10 +99,10 @@
   components:
   - type: RoundstartStationVariationRule
     rules:
-    - id: BasicPoweredLightVariationPass
-    - id: BasicTrashVariationPass
-    - id: BasicPuddleMessVariationPass
-    - id: BasicBindToStationVariationPass
+    - id: NFBasicPoweredLightVariationPass
+    - id: NFBasicTrashVariationPass
+    - id: NFBasicPuddleMessVariationPass
+    - id: NFBasicBindToStationVariationPass
     # - id: BasicDeadDropHintVariationPass # ccvar for it found at smuggling.min_hints/smuggling.max_hints
 
 - type: entityTable
@@ -112,7 +112,7 @@
       - !type:NestedSelector
         tableId: NFBasicCalmEventsTable
       - !type:NestedSelector
-        tableId: CalmPestEventsTable
+        tableId: NFCalmPestEventsTable
 
 - type: entity
   id: NFBasicStationEventScheduler
