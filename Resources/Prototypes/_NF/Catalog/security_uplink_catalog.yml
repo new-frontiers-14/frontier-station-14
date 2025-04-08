@@ -197,7 +197,7 @@
   name:  uplink-security-emitter-name
   description: uplink-security-emitter-desc
   productEntity: WeaponEmpEmitter
-  icon: { sprite: _NF/Objects/Weapons/Guns/Projectiles/emp.rsi, state: icon }
+  icon: { sprite: _NF/Objects/Weapons/Guns/Battery/emp.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -250,26 +250,26 @@
         - SeniorOfficer
         - Sheriff
 
-#- type: listing # Removed until sprites for wielded state are made
-#  id: UplinkSecurityVulcan
-#  name:  uplink-security-vulcan-name
-#  description: uplink-security-vulcan-desc
-#  productEntity: NFWeaponRifleAssaultVulcan
-#  icon: { sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi, state: icon }
-#  cost:
-#    FrontierUplinkCoin: 3
-#  categories:
-#    - UplinkSecurityWeapons
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
-#    - !type:BuyerJobCondition
-#      whitelist:
-#        - Bailiff
-#        - SeniorOfficer
-#        - Sheriff
+- type: listing
+  id: UplinkSecurityVulcan
+  name:  uplink-security-vulcan-name
+  description: uplink-security-vulcan-desc
+  productEntity: NFWeaponRifleAssaultVulcan
+  icon: { sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityLaserCarbine
