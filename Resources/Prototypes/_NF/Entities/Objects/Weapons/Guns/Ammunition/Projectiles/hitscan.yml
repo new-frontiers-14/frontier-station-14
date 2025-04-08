@@ -1,4 +1,4 @@
-# Pistol / SMG
+# Pistols / SMGs
 - type: hitscan
   id: NFRedLightLaser
   damage:
@@ -14,7 +14,7 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: impact_laser
 
-# Rifle / Carbine
+# Assault Rifles / Carbines
 - type: hitscan
   id: NFRedMediumLaser
   damage:
@@ -22,15 +22,15 @@
       Heat: 12
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_laser
+    state: muzzle_beam_heavy
   travelFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam
+    state: beam_heavy
   impactFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_laser
+    state: impact_beam_heavy
 
-# Sniper rifle
+# Rifles
 - type: hitscan
   id: NFRedHeavyLaser
   damage:
@@ -46,13 +46,29 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: impact_beam_heavy
 
+# Sniper Rifles
+- type: hitscan
+  id: NFRedSpecialLaser
+  damage:
+    types:
+      Heat: 20
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_beam_heavy2
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_heavy2
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_beam_heavy2
+
 # XRay
 - type: hitscan
   id: NFXrayLaser
   damage:
     types:
-      Heat: 5
-      Radiation: 5
+      Heat: 10
+      Radiation: 10
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_xray

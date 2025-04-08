@@ -1,14 +1,10 @@
 # BASE RIFLE
 - type: entity
   id: NFBaseWeaponRifle
-  parent: BaseWeaponSniper
+  parent: [ NFBaseWeaponSizeRifle, BaseWeaponSniper ]
   suffix: Frontier
   abstract: true
   components:
-  - type: Item
-    size: Large
-    shape:
-    - 0,0,5,3
   - type: Wieldable
     unwieldOnUse: false
   - type: GunRequiresWield

@@ -1,14 +1,10 @@
 #region base
 - type: entity
   id: NFBaseWeaponEnergyRifleSniper
-  parent: BaseWeaponBattery
+  parent: [ NFBaseWeaponSizeLauncher, BaseWeaponBattery ]
   suffix: Frontier
   abstract: true
   components:
-  - type: Item
-    size: Large
-    shape:
-    - 0,0,5,3
   - type: Wieldable
     unwieldOnUse: false
   - type: GunRequiresWield
@@ -34,14 +30,19 @@
     maxOffset: 4.5
     pvsIncrease: 0
   - type: HitscanBatteryAmmoProvider
-    proto: NFRedHeavyLaser
-    fireCost: 100
+    proto: NFRedSpecialLaser
+    fireCost: 120
   - type: Battery # 20 shots
-    maxCharge: 2000
-    startingCharge: 2000
+    maxCharge: 2400
+    startingCharge: 2400
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 5 # 1 shot per 20 seconds
+    autoRechargeRate: 6 # 1 shot per 20 seconds
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
 
 # WizDen
 #region Laser

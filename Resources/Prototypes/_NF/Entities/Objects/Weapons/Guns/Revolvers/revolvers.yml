@@ -1,14 +1,9 @@
 # BASE REVOLVER
 - type: entity
   id: NFBaseWeaponRevolver
-  parent: BaseWeaponRevolver
+  parent: [ NFBaseWeaponSizePistol, BaseWeaponRevolver ]
   suffix: Frontier
   components:
-  - type: Item
-    size: Small
-    shape:
-    - 0,0,1,0
-    - 0,1,0,1
   - type: Gun
     minAngle: 5.4
     maxAngle: 10.8

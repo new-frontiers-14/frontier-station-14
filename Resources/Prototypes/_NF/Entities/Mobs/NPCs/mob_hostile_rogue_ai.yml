@@ -190,7 +190,7 @@
   abstract: true
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletEnergyGunLaser
+    proto: NFBulletLaserLow
     fireCost: 100
 
 - type: entity
@@ -198,7 +198,7 @@
   abstract: true
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: NFRedLightLaser
     fireCost: 100
 
 - type: entity
@@ -455,7 +455,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: NFRedLightLaser
     fireCost: 100
   - type: Gun
     showExamineText: false
@@ -578,7 +578,7 @@
       shader: unshaded
       color: "#0055cc"
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletDisabler
+    proto: NFBulletDisablerLow
     fireCost: 100
 
 - type: entity
@@ -604,7 +604,7 @@
       shader: unshaded
       color: "#ffff00"
   - type: ProjectileBatteryAmmoProvider
-    proto: AnomalousParticleSigmaStrong
+    proto: BulletKineticLowPower
     fireCost: 100
 
 - type: entity
@@ -1069,7 +1069,6 @@
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
 
-
 ### Asteroid scrap bots: no regen
 ## Tier 1
 - type: entity
@@ -1287,7 +1286,7 @@
     prototypes:
     - MobRogueSiliconLootT1
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: NFRedLightLaser
     fireCost: 100
   - type: Gun
     showExamineText: false

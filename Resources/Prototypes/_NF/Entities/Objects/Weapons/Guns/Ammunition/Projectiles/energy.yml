@@ -1,3 +1,56 @@
+#region Laser bolts
+# Pistols / SMGs
+- type: entity
+  id: NFBulletLaserLow
+  parent: NFBaseBulletLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Heat: 8
+
+# Assault Rifles / Carbines
+- type: entity
+  id: NFBulletLaserMedium
+  parent: NFBaseBulletLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Heat: 12
+
+# Rifles
+- type: entity
+  id: NFBulletLaserHeavy
+  parent: NFBaseBulletLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Heat: 14
+
+#region Disabler bolts
+- type: entity
+  parent: BulletDisabler
+  id: BulletDisablerStaminaOnly
+  name: disabler bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 0
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
 - type: entity
   id: NFBulletDisabler
   name: disabler bolt
@@ -14,3 +67,55 @@
     forceSound: true
   - type: StaminaDamageOnCollide
     damage: 18
+
+- type: entity
+  id: NFBulletDisablerLow
+  name: disabler bolt
+  parent: BulletDisabler
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 4
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+  - type: StaminaDamageOnCollide
+    damage: 14
+
+#region Kinetic bolts
+- type: entity
+  id: BulletKineticLowPower
+  name: kinetic bolt
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 12
+        Structural: 30
+  - type: Ammo
+    muzzleFlash: HitscanEffect
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: PointLight
+    radius: 2.5
+    color: white
+    energy: 0.5
+
+- type: entity
+  id: BulletKineticMediumPower
+  name: kinetic bolt
+  parent: BulletKineticLowPower
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 16
+        Structural: 30

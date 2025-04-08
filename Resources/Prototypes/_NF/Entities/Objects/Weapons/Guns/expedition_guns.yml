@@ -1,7 +1,7 @@
 # The list contains only the guns that were previously obtainable as expedition reward
 # or as a loose guns on the expedition
 
-# Pistols
+#region Pistols
 - type: entity
   parent:
   - BaseC2ExpeditionContraband
@@ -23,7 +23,7 @@
   categories: [ HideSpawnMenu ]
   id: WeaponPistolUniversalExpedition
 
-# Revolvers
+#region Revolvers
 - type: entity
   parent:
   - BaseC2ExpeditionContraband
@@ -73,7 +73,7 @@
   categories: [ HideSpawnMenu ]
   id: WeaponRevolverPirateExpedition
 
-# Shotguns
+#region Shotguns
 - type: entity
   parent:
   - BaseC2ExpeditionContraband
@@ -109,7 +109,7 @@
   categories: [ HideSpawnMenu ]
   id: WeaponShotgunEnforcerExpedition
 
-# Rifles
+#region Rifles
 - type: entity
   parent:
   - BaseC2ExpeditionContraband
@@ -131,7 +131,7 @@
   categories: [ HideSpawnMenu ]
   id: WeaponRifleVulcanExpedition
 
-# SMGs
+#region SMGs
 - type: entity
   parent:
   - BaseC3ExpeditionContraband
@@ -160,7 +160,7 @@
   categories: [ HideSpawnMenu ]
   id: WeaponSubMachineGunTypewriterExpedition
 
-# Energy
+#region Energy
 - type: entity
   parent:
   - BaseC2ExpeditionContraband
@@ -171,14 +171,14 @@
 - type: entity
   parent:
   - BaseC2ExpeditionContraband
-  - WeaponLaserSvalinn
+  - NFWeaponEnergyPistolLaserSvalinn
   categories: [ HideSpawnMenu ]
   id: WeaponLaserSvalinnExpedition
 
 - type: entity
   parent:
   - BaseC2ExpeditionContraband
-  - WeaponEnergyGun
+  - NFWeaponEnergyPistolLaserMakeshift # Switch back to WeaponEnergyGun after DV egun is updated
   categories: [ HideSpawnMenu ]
   id: WeaponEnergyGunExpedition
 
@@ -186,32 +186,32 @@
   name: laser carbine
   parent:
   - BaseC2ExpeditionContraband
-  - WeaponLaserCarbine
+  - NFWeaponEnergyRifleCarbine
   categories: [ HideSpawnMenu ]
   id: WeaponLaserCarbineExpedition
 
 - type: entity
   parent:
   - BaseC2ExpeditionContraband
-  - WeaponAdvancedLaser
+  - NFWeaponEnergyPistolLaserAdvanced
   categories: [ HideSpawnMenu ]
   id: WeaponAdvancedLaserExpedition
 
 - type: entity
   parent:
   - BaseC3ExpeditionContraband
-  - WeaponLaserCannon
+  - NFWeaponEnergyRifleSniperCannon
   categories: [ HideSpawnMenu ]
   id: WeaponLaserCannonExpedition
 
 - type: entity
   parent:
   - BaseC3ExpeditionContraband
-  - WeaponXrayCannon
+  - NFWeaponEnergyRifleSniperXrayCannon
   categories: [ HideSpawnMenu ]
   id: WeaponXrayCannonExpedition
 
-# Sniper
+#region Sniper
 - type: entity
   parent:
   - BaseC2ExpeditionContraband

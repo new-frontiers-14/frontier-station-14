@@ -1,14 +1,10 @@
 # BASE SMG
 - type: entity
   id: NFBaseWeaponSubMachineGun
-  parent: BaseWeaponSubMachineGun
+  parent: [ NFBaseWeaponSizeSubMachineGun, BaseWeaponSubMachineGun ]
   suffix: Frontier
   abstract: true
   components:
-  - type: Item
-    size: Normal
-    shape:
-    - 0,0,4,2
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus

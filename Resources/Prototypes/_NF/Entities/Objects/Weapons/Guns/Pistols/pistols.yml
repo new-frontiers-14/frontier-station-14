@@ -1,15 +1,10 @@
 # BASE PISTOL
 - type: entity
   id: NFBaseWeaponPistol
-  parent: BaseWeaponPistol
+  parent: [ NFBaseWeaponSizePistol, BaseWeaponPistol ]
   suffix: Frontier
   abstract: true
   components:
-  - type: Item
-    size: Small
-    shape:
-    - 0,0,1,0
-    - 0,1,0,1
   - type: Gun
     minAngle: 6.8
     maxAngle: 13.6

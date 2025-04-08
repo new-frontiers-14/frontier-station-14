@@ -1,14 +1,22 @@
 #region base
 - type: entity
   id: NFBaseWeaponEnergyRifleAssault
-  parent: BaseWeaponBattery
+  parent: [ NFBaseWeaponSizeRifleAssault, BaseWeaponBattery ]
   suffix: Frontier
   abstract: true
   components:
-  - type: Item
-    size: Large
-    shape:
-    - 0,0,5,3
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
   - type: Wieldable
     unwieldOnUse: false
   - type: GunRequiresWield
@@ -34,21 +42,44 @@
   - type: EyeCursorOffset
     maxOffset: 1.5
     pvsIncrease: 0
-  - type: HitscanBatteryAmmoProvider
-    proto: NFRedMediumLaser
-    fireCost: 80
-  - type: Battery # 30 shots
+  - type: Battery # Default: 30 shots with 80 fireCost
     maxCharge: 2400
     startingCharge: 2400
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 4 # 1 shot per 20 seconds
+    autoRechargeRate: 4 # Default recharge rate: 1 shot per 20 seconds with 80 fireCost
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleAssaultFireModes
+  parent: NFBaseWeaponEnergyRifleAssault
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserMedium
+    fireCost: 80
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBulletLaserMedium
+      fireCost: 80
+    - proto: NFBulletDisabler
+      fireCost: 80
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleAssaultHitScan
+  parent: NFBaseWeaponEnergyRifleAssault
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedMediumLaser
+    fireCost: 80
 
 # WizDen
 #region Pulse
 - type: entity
   id: NFWeaponEnergyRiflePulseAssaultCarbine
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleAssault, WeaponPulseCarbine ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleAssaultHitScan ]
   name: pulse carbine
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -72,12 +103,12 @@
 # Frontier
 - type: entity
   id: WeaponLaserTurboNF
-  parent: [ BaseC3Contraband, NFBaseWeaponEnergyRifleAssault ]
+  parent: [ BaseC3Contraband, NFBaseWeaponEnergyRifleAssaultFireModes ]
   name: turbo laser mk3
   description: |-
     Manufacturer: Cybersun Industries
     Type: Energy Assault Rifle
-    Ammo: Low Power Laser Beam
+    Ammo: Medium Power Laser Bolt
     Desc.: A turbo laser ripped from the guardian unit. Appears to be a rather old model. Doesn't seem to be working properly. Supposedly highly illegal."
     ---
   components:
@@ -118,9 +149,6 @@
       - state: equipped-back
       - state: equipped-unshaded
         shader: unshaded
-  - type: HitscanBatteryAmmoProvider
-    proto: NFRedLightLaser
-    fireCost: 80
   - type: Battery # 50 shots
     maxCharge: 4000
     startingCharge: 4000

@@ -1,13 +1,9 @@
 # BASE LAUNCHER
 - type: entity
   id: NFBaseWeaponLauncher
-  parent: BaseWeaponLauncher
+  parent: [ NFBaseWeaponSizeLauncher, BaseWeaponLauncher ]
   suffix: Frontier
   components:
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,4,4
   - type: Wieldable
     unwieldOnUse: false
   - type: GunRequiresWield

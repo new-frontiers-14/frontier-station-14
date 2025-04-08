@@ -1,14 +1,22 @@
 #region base
 - type: entity
   id: NFBaseWeaponEnergyRifle
-  parent: BaseWeaponBattery
+  parent: [ NFBaseWeaponSizeRifle, BaseWeaponBattery ]
   suffix: Frontier
   abstract: true
   components:
-  - type: Item
-    size: Large
-    shape:
-    - 0,0,5,3
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
   - type: Wieldable
     unwieldOnUse: false
   - type: GunRequiresWield
@@ -33,34 +41,62 @@
   - type: EyeCursorOffset
     maxOffset: 4.5
     pvsIncrease: 0
-  - type: HitscanBatteryAmmoProvider
-    proto: NFRedMediumLaser
-    fireCost: 80
-  - type: Battery # 30 shots
+  - type: Battery # Default: 30 shots with 80 fireCost
     maxCharge: 2400
     startingCharge: 2400
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 4 # 1 shot per 20 seconds
+    autoRechargeRate: 4 # Default recharge rate: 1 shot per 20 seconds with 80 fireCost
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleFireModes
+  parent: NFBaseWeaponEnergyRifle
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserHeavy
+    fireCost: 80
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBulletLaserHeavy
+      fireCost: 80
+    - proto: NFBulletDisabler
+      fireCost: 80
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleHitScan
+  parent: NFBaseWeaponEnergyRifle
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedHeavyLaser
+    fireCost: 80
 
 # WizDen
 #region Laser
 - type: entity
   id: NFWeaponEnergyRifleCarbine
-  parent: [ BaseC1Contraband, NFBaseWeaponEnergyRifle, WeaponLaserCarbine ]
+  parent: [ BaseC1Contraband, NFBaseWeaponEnergyRifleFireModes ]
   name: laser carbine
   suffix: Frontier
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Energy Rifle
-    Ammo: Medium Power Laser Beam
+    Ammo: High Power Laser Bolt
     Desc.: A simple civilian grade laser carbine, the workhorse of many private security organizations.
     ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
 
 #region Pulse
 - type: entity
   id: NFWeaponEnergyRiflePulseRifle
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifle, WeaponPulseRifle ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleHitScan ]
   name: pulse rifle
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -79,3 +115,55 @@
   - type: Battery # 30 shots
     maxCharge: 3000
     startingCharge: 3000
+
+#region Other
+- type: entity
+  name: emp emitter
+  parent: [BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleFireModes]
+  id: WeaponEmpEmitter
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Rifle
+    Ammo: EMP Pulse
+    Desc.: Releases electromagnetic pulses that disrupt or damage many electronic devices or drain power cells, has a slow self charging nuclear powered battery.
+    ---
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/emp.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/emp.rsi
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: ProjectileBatteryAmmoProvider
+    proto: ProjectileEmp
+    fireCost: 500
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: ProjectileEmp
+      fireCost: 500
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: EmpDescription
+    range: 2
+    energyConsumption: 2700000
+    disableDuration: 30
