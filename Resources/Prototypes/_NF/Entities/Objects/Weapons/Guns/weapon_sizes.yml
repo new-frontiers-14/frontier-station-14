@@ -19,6 +19,9 @@
     size: Normal
     shape:
     - 0,0,3,2
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
 
 # Rifles / Shotguns
 - type: entity
@@ -29,6 +32,9 @@
     size: Large
     shape:
     - 0,0,4,3
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.8
+    sprintModifier: 0.8
 
 # Assault Rifles
 - type: entity
@@ -39,16 +45,35 @@
     size: Large
     shape:
     - 0,0,4,3
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
 
-# Sniper Rifles / Launchers / LMGs
+# Launchers
 - type: entity
   id: NFBaseWeaponSizeLauncher
   abstract: true
   components:
   - type: Item
     size: Huge
+    #shape:
+    #- 0,0,4,4
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.3
+    sprintModifier: 0.3
+
+# Sniper Rifles / LMGs
+- type: entity
+  id: NFBaseWeaponSizeSniper
+  abstract: true
+  components:
+  - type: Item
+    size: Huge
     shape:
     - 0,0,4,4
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.3
+    sprintModifier: 0.3
 
 #region Crossbows
 - type: entity

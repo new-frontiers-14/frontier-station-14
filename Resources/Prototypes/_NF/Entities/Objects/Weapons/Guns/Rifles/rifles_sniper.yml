@@ -1,7 +1,7 @@
 # BASE SNIPER RIFLE
 - type: entity
   id: NFBaseWeaponRifleSniper
-  parent: [ NFBaseWeaponSizeLauncher, BaseWeaponSniper ]
+  parent: [ NFBaseWeaponSizeSniper, BaseWeaponSniper ]
   suffix: Frontier
   abstract: true
   components:
@@ -22,9 +22,6 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.1
-    sprintModifier: 0.1
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 4.5

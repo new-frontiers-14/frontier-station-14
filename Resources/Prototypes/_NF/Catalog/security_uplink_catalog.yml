@@ -105,27 +105,6 @@
         - Sheriff
 
 - type: listing
-  id: UplinkSecurityHardsuitSyndieReverseEngineered
-  name:  uplink-security-hardsuit-experimental-name
-  description: uplink-security-hardsuit-experimental-desc
-  productEntity: ClothingOuterHardsuitNfsdExperimental
-  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 20
-  categories:
-    - UplinkSecurityHardsuits
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
-
-- type: listing
   id: UplinkSecurityHardsuitSheriff
   name:  uplink-security-hardsuit-sheriff-name
   description: uplink-security-hardsuit-sheriff-desc
@@ -278,7 +257,7 @@
   productEntity: WeaponLaserCarbine
   icon: { sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 3
+    FrontierUplinkCoin: 8
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -313,25 +292,6 @@
         - SeniorOfficer
         - Sheriff
 
-#- type: listing
-#  id: UplinkSecurityEnergySword
-#  name:  uplink-security-energysword-name
-#  description: uplink-security-energysword-desc
-#  productEntity: EnergySwordNfsd
-#  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: e_sword }
-#  cost:
-#    FrontierUplinkCoin: 5
-#  categories:
-#    - UplinkSecurityWeapons
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
-#    - !type:BuyerJobCondition
-#      whitelist:
-#        - Sheriff
-
 - type: listing
   id: UplinkSecurityWT550
   name:  uplink-security-wt550-name
@@ -359,7 +319,7 @@
   productEntity: WeaponEnergyGun
   icon: { sprite: _DV/Objects/Weapons/Guns/Battery/energygun.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 4
+    FrontierUplinkCoin: 8
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -820,27 +780,6 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityEnergyShield
-  name:  uplink-security-energyshield-name
-  description: uplink-security-energyshield-desc
-  productEntity: EnergyShieldNfsd
-  icon: { sprite: _NF/Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
-  cost:
-    FrontierUplinkCoin: 4
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
-
-- type: listing
   id: UplinkSecuritySwat
   name:  uplink-security-swat-name
   description: uplink-security-swat-desc
@@ -1025,22 +964,6 @@
       whitelist:
         tags:
           - SecurityUplink
-
-#- type: listing
-#  id: UplinkSecurityStingerGrenadeBox
-#  name:  uplink-security-stingergrenade-box-name
-#  description: uplink-security-stingergrenade-box-desc
-#  productEntity: BoxStingerGrenadesNfsd
-#  icon: { sprite: Objects/Weapons/Grenades/stingergrenade.rsi, state: icon}
-#  cost:
-#    FrontierUplinkCoin: 2
-#  categories:
-#    - UplinkSecurityUtility
-#  conditions:
-#    - !type:StoreWhitelistCondition
-#      whitelist:
-#        tags:
-#          - SecurityUplink
 
 - type: listing
   id: UplinkSecurityBreachingChargesBox
