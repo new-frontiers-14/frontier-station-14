@@ -1,8 +1,6 @@
 using Content.Shared._NF.Research.Prototypes;
 using Content.Shared.Construction.Prototypes;
-using Content.Shared.Lathe;
 using Content.Shared.Materials;
-using Content.Shared.Research.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -16,7 +14,7 @@ public sealed partial class BlueprintLatheComponent : Component
     /// The lathe's construction queue
     /// </summary>
     [DataField]
-    public List<BlueprintLatheRecipeBatch> Queue = new(); // Frontier: LatheRecipePrototype<LatheRecipeBatch
+    public List<BlueprintLatheRecipeBatch> Queue = new();
 
     /// <summary>
     /// The sound that plays when the lathe is producing an item, if any
@@ -99,7 +97,7 @@ public sealed partial class BlueprintLatheComponent : Component
     [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public float FinalMaterialUseMultiplier = 1;
 
-    public const float DefaultPartRatingMaterialUseMultiplier = 0.85f; // Frontier: restored for machine parts
+    public const float DefaultPartRatingMaterialUseMultiplier = 0.85f;
 
     /// <summary>
     /// The machine part that reduces how long it takes to print a recipe.
@@ -127,7 +125,6 @@ public sealed partial class BlueprintLatheComponent : Component
     #endregion
 }
 
-// Frontier: batch lathe recipes
 [Serializable]
 public sealed partial class BlueprintLatheRecipeBatch : EntityEventArgs
 {
@@ -144,7 +141,6 @@ public sealed partial class BlueprintLatheRecipeBatch : EntityEventArgs
         ItemsRequested = itemsRequested;
     }
 }
-// End Frontier
 
 public sealed class BlueprintLatheGetRecipesEvent : EntityEventArgs
 {

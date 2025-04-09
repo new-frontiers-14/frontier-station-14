@@ -10,6 +10,7 @@ namespace Content.Client._NF.Lathe.UI;
 public sealed partial class BlueprintRecipeControl : Control
 {
     public Func<string> TooltipTextSupplier;
+    public Action<bool>? OnSelectedAction;
     public bool Selected = false;
     public int Index;
 
@@ -31,6 +32,7 @@ public sealed partial class BlueprintRecipeControl : Control
     {
         Selected = selected;
         Button.Pressed = selected;
+        OnSelectedAction?.Invoke(selected);
     }
 
     private Control? SupplyTooltip(Control sender)

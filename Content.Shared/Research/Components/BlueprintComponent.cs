@@ -10,11 +10,13 @@ namespace Content.Shared.Research.Components;
 /// This is used for an item that is inserted directly into a given lathe to provide it with a recipe.
 /// </summary>
 [RegisterComponent, NetworkedComponent, Access(typeof(BlueprintSystem), typeof(SharedBlueprintLatheSystem))] // Frontier: add SharedBlueprintLatheSystem access
+[AutoGenerateComponentState] // Frontier: dynamically set blueprints
 public sealed partial class BlueprintComponent : Component
 {
     /// <summary>
     /// The recipes that this blueprint provides.
     /// </summary>
     [DataField(required: true)]
+    [AutoNetworkedField] // Frontier: dynamically set blueprints
     public HashSet<ProtoId<LatheRecipePrototype>> ProvidedRecipes = new();
 }

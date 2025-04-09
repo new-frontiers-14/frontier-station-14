@@ -1,5 +1,4 @@
 using Content.Shared._NF.Lathe;
-using Content.Shared.Lathe;
 using Content.Shared.Research.Components;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
