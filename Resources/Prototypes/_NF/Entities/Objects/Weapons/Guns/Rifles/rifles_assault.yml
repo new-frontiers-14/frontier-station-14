@@ -416,3 +416,53 @@
         whitelist:
           tags:
             - CartridgeRifle
+
+- type: entity # DONT ASK WHY ITS HERE
+  id: WeaponRifleSVS
+  parent: [ NFBaseWeaponRifle, BaseGunMelee, BaseC1Contraband ]
+  name: SVS-42
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Rifle
+    Ammo: .30 rifle
+    Desc.: Originally designed by Samonov, this old surplus rifle looks like it's seen a few wars. Equipped with bayonet.
+    ---
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
+    layers:
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineLowCapacityRifle30
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifleLowCapacity
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgeRifle30
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: AltFireMelee
+    attackType: Light
