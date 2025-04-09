@@ -29,7 +29,7 @@
     angleIncrease: 1
     angleDecay: 2
     fireRate: 2.5
-    selectedMode: SemiAuto
+    selectedMode: FullAuto
     availableModes:
       - SemiAuto
       - FullAuto
@@ -71,15 +71,15 @@
   suffix: Frontier
   abstract: true
   components:
-  - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletLaserLow
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedMediumLaser
     fireCost: 80
 
 # WizDen
 #region Pulse
 - type: entity
   id: NFWeaponEnergyRiflePulseAssaultCarbine
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleAssaultHitScan ]
+  parent: [ NFBaseWeaponEnergyRifleAssaultHitScan, BaseC2ContrabandUnredeemable ]
   name: pulse carbine
   description: |-
     Manufacturer: NanoTrasen Munitions

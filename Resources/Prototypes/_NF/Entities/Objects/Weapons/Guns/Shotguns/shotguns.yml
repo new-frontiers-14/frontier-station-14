@@ -44,7 +44,7 @@
 #region Shotguns
 - type: entity
   id: NFWeaponShotgunBulldog
-  parent: [ NFBaseWeaponShotgunWieldable, BaseC3SyndicateContraband, WeaponShotgunBulldog ]
+  parent: [ BaseC3SyndicateContraband, WeaponShotgunBulldog ]
   name: bulldog
   description: |-
     Manufacturer: Gorlex Steel Works
@@ -64,7 +64,18 @@
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -10.9
+    maxAngle: -21.8
   - type: Gun
+    minAngle: 21.8
+    maxAngle: 43.6
+    angleIncrease: 5
+    angleDecay: 3
+    fireRate: 1.5
     selectedMode: FullAuto
     availableModes:
     - FullAuto
