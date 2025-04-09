@@ -199,7 +199,8 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
 
             if (anyRecipes)
             {
-                _meta.SetEntityName(blueprint, Loc.GetString(blueprintProto.Name));
+                Dirty(blueprint, blueprintComp);
+                _meta.SetEntityName(blueprint, Loc.GetString(blueprintProto.EntityName));
                 _meta.SetEntityDescription(blueprint, Loc.GetString(blueprintProto.Description));
             }
             else

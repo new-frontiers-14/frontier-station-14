@@ -218,7 +218,9 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
 
         if (BlueprintTypes != null
             && (BlueprintTypes.Count == currentBlueprintTypes.Count || !BlueprintTypes.All(currentBlueprintTypes.Contains)))
+        {
             return;
+        }
 
         BlueprintTypes = currentBlueprintTypes;
         var sortedBlueprintTypes = currentBlueprintTypes
