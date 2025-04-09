@@ -1,0 +1,34 @@
+# Bus routes
+
+# Stopping between spawn points
+- type: publicTransitRoute
+  id: SpawnPoints
+  routeNumber: 1
+  stationsPerBus: 4
+  dockTag: DockTransit
+  busVessels:
+  - Cheetah
+  liveryColor: "#aa4444"
+
+- type: publicTransitRoute
+  id: TradeExpress
+  routeNumber: 2
+  dockTag: DockTransitTradeExpress
+  busVessels:
+  - Cheetah
+  - Cheetah
+  - McBus
+  liveryColor: "#44aa44"
+
+- type: publicTransitRoute
+  id: MinorPointsOfInterest
+  routeNumber: 3
+  stationsPerBus: 4
+  dockTag: DockTransitMinorPOIs
+  busVessels:
+  - Cheetah
+  - Cheetah
+  - Cheetah
+  - Cheetah
+  - Alleycat # the occasional crappy bus
+  liveryColor: "#4444aa"

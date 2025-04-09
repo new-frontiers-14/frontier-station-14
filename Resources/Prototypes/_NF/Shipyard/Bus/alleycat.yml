@@ -1,0 +1,29 @@
+# Author Info
+# GitHub: dvir001
+# Discord: dvir001
+
+# Maintainer Info
+# GitHub: dvir001
+# Discord: dvir001
+
+# Shuttle Notes:
+# A cursed bus.
+- type: vessel
+  id: Alleycat
+  parent: BaseVesselBus
+  shuttlePath: /Maps/_NF/Shuttles/Bus/alleycat.yml
+
+- type: gameMap
+  id: Alleycat
+  mapName: 'Alleycat'
+  mapPath: /Maps/_NF/Shuttles/Bus/alleycat.yml
+  minPlayers: 0
+  stations:
+    Alleycat:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bus {1}' # Will be overwritten
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

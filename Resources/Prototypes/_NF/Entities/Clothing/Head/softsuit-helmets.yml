@@ -758,26 +758,29 @@
 
 #FSB Void suit helmet
 - type: entity
-  parent: NFClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadSuitWithLightBase, NFClothingHeadClearEVAHelmetBase ]
   id: ClothingHeadHelmetHardsuitFSB
   name: far star biotech voidsuit helmet
-  categories: [ HideSpawnMenu ]
   description: A lightweight suit helmet that doesn't restrict your head movements. It has a light!
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Helmets/fsb_eva_helmet.rsi
-  - type: Clothing
-    sprite:  _NF/Clothing/Head/Helmets/fsb_eva_helmet.rsi
+  - type: ToggleableLightVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: HELMET-light-glow
+      - state: on-equipped-HELMET
+        shader: unshaded
+  - type: HandheldLight
+    addPrefix: false
   - type: PointLight
     color: "#adf1ff"
-    radius: 7
-    energy: 3
-  - type: PressureProtection
-    highPressureMultiplier: 0.6
-    lowPressureMultiplier: 1000
+    radius: 5
+    energy: 2
   - type: HideLayerClothing
     slots:
-    - Hair
-    #- Snout
+    - Hair    
     - HeadTop
-    #- HeadSide
+    - HeadSide

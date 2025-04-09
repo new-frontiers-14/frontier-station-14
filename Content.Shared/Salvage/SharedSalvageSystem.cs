@@ -1,84 +1,30 @@
+using System.Linq;
+using Content.Shared.CCVar;
 using Content.Shared.Dataset;
+using Content.Shared.Procedural;
+using Content.Shared.Procedural.Loot;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Salvage.Expeditions.Modifiers;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
-using System.Linq; // Frontier
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Salvage;
 
 public abstract partial class SharedSalvageSystem : EntitySystem
 {
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] protected readonly IConfigurationManager CfgManager = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
-    #region Descriptions
-
-    public string GetMissionDescription(SalvageMission mission)
-    {
-        // Hardcoded in coooooz it's dynamic based on difficulty and I'm lazy.
-        switch (mission.Mission)
-        {
-            case SalvageMissionType.Mining:
-                // Taxation: , ("tax", $"{GetMiningTax(mission.Difficulty) * 100f:0}")
-                return Loc.GetString("salvage-expedition-desc-mining");
-            case SalvageMissionType.Destruction:
-                var proto = _proto.Index<SalvageFactionPrototype>(mission.Faction).Configs["DefenseStructure"];
-
-                return Loc.GetString("salvage-expedition-desc-structure",
-                    ("count", GetStructureCount(mission.Difficulty)),
-                    ("structure", _loc.GetEntityData(proto).Name));
-            case SalvageMissionType.Elimination:
-                return Loc.GetString("salvage-expedition-desc-elimination");
-            default:
-                throw new NotImplementedException();
-        }
-    }
-
-    public float GetMiningTax(DifficultyRating baseRating)
-    {
-        return 0.6f + (int) baseRating * 0.05f;
-    }
-
     /// <summary>
-    /// Gets the amount of structures to destroy.
+    /// Main loot table for salvage expeditions.
     /// </summary>
-    public int GetStructureCount(DifficultyRating baseRating)
-    {
-        return 1 + (int) baseRating * 2;
-    }
-
-    #endregion
-
-    public int GetDifficulty(DifficultyRating rating)
-    {
-        switch (rating)
-        {
-            case DifficultyRating.Minimal:
-                return 4;
-            case DifficultyRating.Minor:
-                return 6;
-            case DifficultyRating.Moderate:
-                return 8;
-            case DifficultyRating.Hazardous:
-                return 10;
-            case DifficultyRating.Extreme:
-                return 12;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(rating), rating, null);
-        }
-    }
-
-    /// <summary>
-    /// How many groups of mobs to spawn for a mission.
-    /// </summary>
-    public float GetSpawnCount(DifficultyRating difficulty)
-    {
-        return ((int)difficulty + 1) * 2; // Frontier: add one to difficulty (no empty expeditions)
-    }
+    [ValidatePrototypeId<SalvageLootPrototype>]
+    public const string ExpeditionsLootProto = "NFSalvageLootModerate"; // Frontier: SalvageLoot<NFSalvageLootModerate
 
     public string GetFTLName(LocalizedDatasetPrototype dataset, int seed)
     {
@@ -86,23 +32,34 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         return $"{Loc.GetString(dataset.Values[random.Next(dataset.Values.Count)])}-{random.Next(10, 100)}-{(char) (65 + random.Next(26))}";
     }
 
-    public SalvageMission GetMission(SalvageMissionType config, DifficultyRating difficulty, int seed)
+    public SalvageMission GetMission(SalvageMissionType config, SalvageDifficultyPrototype difficulty, int seed) // Frontier: add config
     {
         // This is on shared to ensure the client display for missions and what the server generates are consistent
-        var rating = (float) GetDifficulty(difficulty);
-        // Don't want easy missions to have any negative modifiers but also want
-        // easy to be a 1 for difficulty.
-        rating -= 1f;
+        var modifierBudget = difficulty.ModifierBudget;
         var rand = new System.Random(seed);
 
         // Run budget in order of priority
         // - Biome
         // - Lighting
         // - Atmos
-        var faction = GetMod<SalvageFactionPrototype>(rand, ref rating);
-        var biome = GetMod<SalvageBiomeMod>(rand, ref rating);
-        var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref rating);
-        var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref rating);
+        var biome = GetMod<SalvageBiomeModPrototype>(rand, ref modifierBudget);
+        var light = GetBiomeMod<SalvageLightMod>(biome.ID, rand, ref modifierBudget);
+        var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref modifierBudget);
+        var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget);
+        var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget);
+        // Frontier: restrict factions per difficulty
+        // var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
+        var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>()
+            .Where(x =>
+                {
+                    return !x.Configs.TryGetValue("Difficulties", out var difficulties)
+                        || string.IsNullOrWhiteSpace(difficulties)
+                        || difficulties.Split(",").Contains(difficulty.ID.ToString());
+                }
+            ).ToList();
+        // End Frontier: difficulties per faction
+        factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
+        var faction = factionProtos[rand.Next(factionProtos.Count)];
 
         var mods = new List<string>();
 
@@ -112,31 +69,19 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         }
 
         // only show the description if there is an atmosphere since wont matter otherwise
-        var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref rating);
         if (temp.Description != string.Empty && !air.Space)
         {
             mods.Add(Loc.GetString(temp.Description));
         }
 
-        var light = GetBiomeMod<SalvageLightMod>(biome.ID, rand, ref rating);
         if (light.Description != string.Empty)
         {
             mods.Add(Loc.GetString(light.Description));
         }
 
-        var time = GetMod<SalvageTimeMod>(rand, ref rating);
-        // Round the duration to nearest 15 seconds.
-        var exactDuration = MathHelper.Lerp(time.MinDuration, time.MaxDuration, rand.NextFloat());
-        exactDuration = MathF.Round(exactDuration / 15f) * 15f;
-        var duration = TimeSpan.FromSeconds(exactDuration);
+        var duration = TimeSpan.FromSeconds(CfgManager.GetCVar(CCVars.SalvageExpeditionDuration));
 
-        if (!time.Hidden && time.Description != string.Empty)
-        {
-            mods.Add(Loc.GetString(time.Description));
-        }
-
-        var rewards = GetRewards(difficulty, rand);
-        return new SalvageMission(seed, difficulty, dungeon.ID, faction.ID, config, biome.ID, air.ID, temp.Temperature, light.Color, duration, rewards, mods);
+        return new SalvageMission(seed, dungeon.ID, faction.ID, biome.ID, air.ID, temp.Temperature, light.Color, duration, mods, difficulty.ID, config); // Frontier: add difficulty.ID, config
     }
 
     public T GetBiomeMod<T>(string biome, System.Random rand, ref float rating) where T : class, IPrototype, IBiomeSpecificMod
@@ -176,76 +121,25 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
         throw new InvalidOperationException();
     }
-
-    private List<string> GetRewards(DifficultyRating difficulty, System.Random rand)
-    {
-        var rewards = new List<string>(3);
-        var ids = RewardsForDifficulty(difficulty);
-
-        foreach (var id in ids)
-        {
-            // pick a random reward to give
-            var weights = _proto.Index<WeightedRandomEntityPrototype>(id);
-            rewards.Add(weights.Pick(rand));
-        }
-
-        return rewards;
-    }
-
-    /// <summary>
-    /// Get a list of WeightedRandomEntityPrototype IDs with the rewards for a certain difficulty.
-    /// Frontier: added uncommon and legendary reward tiers, limited amount of rewards to 1 per difficulty rating
-    /// </summary>
-    private string[] RewardsForDifficulty(DifficultyRating rating)
-    {
-        var t1 = "ExpeditionRewardT1"; // Frontier - Update tiers
-        var t2 = "ExpeditionRewardT2"; // Frontier - Update tiers
-        var t3 = "ExpeditionRewardT3"; // Frontier - Update tiers
-        var t4 = "ExpeditionRewardT4"; // Frontier - Update tiers
-        var t5 = "ExpeditionRewardT5"; // Frontier - Update tiers
-        switch (rating)
-        {
-            case DifficultyRating.Minimal:
-                return new string[] { t1 }; // Frontier - Update tiers // Frontier
-            case DifficultyRating.Minor:
-                return new string[] { t2 }; // Frontier - Update tiers // Frontier
-            case DifficultyRating.Moderate:
-                return new string[] { t3 }; // Frontier - Update tiers
-            case DifficultyRating.Hazardous:
-                return new string[] { t4 }; // Frontier - Update tiers
-            case DifficultyRating.Extreme:
-                return new string[] { t5 }; // Frontier - Update tiers
-            default:
-                throw new NotImplementedException();
-        }
-    }
 }
 
+// Frontier: salvage mission type
 [Serializable, NetSerializable]
 public enum SalvageMissionType : byte
 {
     /// <summary>
-    /// No dungeon, just ore loot and random mob spawns.
-    /// </summary>
-    Mining,
-
-    /// <summary>
     /// Destroy the specified structures in a dungeon.
     /// </summary>
-    Destruction,
+    Destruction = 0,
 
     /// <summary>
     /// Kill a large creature in a dungeon.
     /// </summary>
-    Elimination,
-}
+    Elimination = 1,
 
-[Serializable, NetSerializable]
-public enum DifficultyRating : byte
-{
-    Minimal,
-    Minor,
-    Moderate,
-    Hazardous,
-    Extreme,
+    /// <summary>
+    /// Maximum value for random generation, should not be used directly.
+    /// </summary>
+    Max = Elimination,
 }
+// End Frontier

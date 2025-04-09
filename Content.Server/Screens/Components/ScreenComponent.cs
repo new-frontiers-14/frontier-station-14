@@ -13,6 +13,7 @@ public sealed class ScreenMasks
 {
     public static readonly string Text = Loc.GetString("screen-text");
     public static readonly string Color = Loc.GetString("screen-color");
+    public static readonly string LocalGrid = Loc.GetString("screen-local-grid"); // Frontier
 }
 
 /// <summary>
