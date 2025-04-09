@@ -1,5 +1,6 @@
+#region base
 - type: entity
-  id: BaseMagazineShotgun
+  id: NFBaseMagazineShotgunDrum
   name: ammo drum (.50 shells)
   parent: [ BaseItem, BaseC1Contraband, RecyclableItemSteelTiny ] # Frontier: BaseSecurityContraband<BaseC1Contraband, added RecyclableItemSteelTiny
   abstract: true
@@ -8,6 +9,7 @@
     tags:
     - MagazineShotgun
   - type: BallisticAmmoProvider
+    proto: NFShellShotgunBuckshot
     mayTransfer: true
     whitelist:
       tags:
@@ -21,84 +23,88 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/drum.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 9
     zeroVisible: false
   - type: Appearance
 
+#region fills
 - type: entity
-  categories: [ HideSpawnMenu, DoNotMap ] # Frontier
-  id: MagazineShotgunEmpty
-  name: ammo drum (.50 shells any)
-  suffix: empty
-  parent: BaseMagazineShotgun
+  id: NFMagazineShotgunDrumEmpty
+  name: ammo drum (.50 shells, any)
+  parent: NFBaseMagazineShotgunDrum
   components:
   - type: BallisticAmmoProvider
     proto: null
 
 - type: entity
-  categories: [ HideSpawnMenu, DoNotMap ] # Frontier
-  id: MagazineShotgun
-  name: ammo drum (.50 pellet)
-  parent: BaseMagazineShotgun
+  id: NFMagazineShotgunDrum
+  name: ammo drum (.50 shells, buckshot)
+  parent: NFBaseMagazineShotgunDrum
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgun
+    proto: NFShellShotgunBuckshot
   - type: Sprite
     layers:
-    - state: pellets
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#333333"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  categories: [ HideSpawnMenu, DoNotMap ] # Frontier
-  id: MagazineShotgunBeanbag
-  name: ammo drum (.50 beanbags)
-  parent: BaseMagazineShotgun
+  id: NFMagazineShotgunDrumBeanbag
+  name: ammo drum (.50 shells, beanbags)
+  parent: NFBaseMagazineShotgunDrum
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgunBeanbag
+    proto: NFShellShotgunBeanbag
   - type: Sprite
     layers:
-    - state: beanbag
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  categories: [ HideSpawnMenu, DoNotMap ] # Frontier
-  id: MagazineShotgunSlug
-  name: ammo drum (.50 slug)
-  parent: BaseMagazineShotgun
+  id: NFMagazineShotgunDrumSlug
+  name: ammo drum (.50 shells, slugs)
+  parent: NFBaseMagazineShotgunDrum
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgunSlug
+    proto: NFShellShotgunSlug
   - type: Sprite
     layers:
-    - state: slug
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#333333"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  categories: [ HideSpawnMenu, DoNotMap ] # Frontier
-  id: MagazineShotgunIncendiary
-  name: ammo drum (.50 incendiary)
-  parent: BaseMagazineShotgun
+  id: NFMagazineShotgunDrumIncendiary
+  name: ammo drum (.50 shells, incendiary)
+  parent: NFBaseMagazineShotgunDrum
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgunIncendiary
+    proto: NFShellShotgunIncendiary
   - type: Sprite
     layers:
-    - state: slug
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]

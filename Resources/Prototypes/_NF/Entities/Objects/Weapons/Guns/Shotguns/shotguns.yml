@@ -1,16 +1,18 @@
-# BASE SHOTGUN
+#region base
 - type: entity
   id: NFBaseWeaponShotgun
-  parent: [ NFBaseWeaponSizeRifle, BaseWeaponShotgun ]
+  parent: [ NFBaseWeaponSizePistol, BaseWeaponShotgun ]
   suffix: Frontier
   abstract: true
   components:
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunRequiresWield
-  - type: GunWieldBonus
-    minAngle: -10.9
-    maxAngle: -21.8
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 7
+    proto: NFShellShotgunBuckshot
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
   - type: Gun
     minAngle: 21.8
     maxAngle: 43.6
@@ -24,25 +26,228 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.85
-    sprintModifier: 0.85
+
+- type: entity
+  id: NFBaseWeaponShotgunWieldable
+  parent: [ NFBaseWeaponSizeRifle, NFBaseWeaponShotgun ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -10.9
+    maxAngle: -21.8
 
 # WizDen
+#region Shotguns
 - type: entity
-  parent: WeaponShotgunSawn
+  id: NFWeaponShotgunBulldog
+  parent: [ NFBaseWeaponShotgunWieldable, BaseC3SyndicateContraband, WeaponShotgunBulldog ]
+  name: bulldog
+  description: |-
+    Manufacturer: Gorlex Steel Works
+    Type: Shotgun
+    Ammo: .50 shells
+    Desc.: An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineShotgunDrum
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: NFWeaponShotgunDoubleBarreled
+  parent: [ NFBaseWeaponShotgunWieldable, BaseC1Contraband, WeaponShotgunDoubleBarreled ]
+  name: double-barreled shotgun
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Shotgun
+    Ammo: .50 shells
+    Desc.: An immortal classic. A civilian grade shotgun.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+  - type: BallisticAmmoProvider
+    capacity: 2
+
+- type: entity
+  id: NFWeaponShotgunEnforcer
+  parent: [ NFBaseWeaponShotgunWieldable, BaseC2ContrabandUnredeemable, WeaponShotgunEnforcer ]
+  name: enforcer
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Shotgun
+    Ammo: .50 shells
+    Desc.: A premium semi-automatic shotgun, featuring an upgraded tube capacity.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
+
+- type: entity
+  id: NFWeaponShotgunKammerer
+  parent: [ NFBaseWeaponShotgunWieldable, BaseC2ContrabandUnredeemable, WeaponShotgunKammerer ]
+  name: kammerer
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Shotgun
+    Ammo: .50 shells
+    Desc.: An old yet faithful design, and a favorite among irregular forces on many worlds.
+    ---
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+
+- type: entity
+  id: NFWeaponShotgunSawn
+  parent: [ NFBaseWeaponShotgun, BaseC1Contraband, WeaponShotgunSawn ]
+  name: sawn-off shotgun
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Shotgun
+    Ammo: .50 shells
+    Desc.: Groovy!
+    ---
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Shotguns/sawn.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Shotguns/sawn.rsi
+  - type: Item
+    size: Normal
+    sprite: _DV/Objects/Weapons/Guns/Shotguns/sawn.rsi
+  - type: BallisticAmmoProvider
+    capacity: 2
+
+- type: entity
+  id: NFWeaponShotgunHandmade
+  parent: [ NFBaseWeaponShotgun, BaseC1Contraband, WeaponShotgunHandmade ]
+  name: handmade pistol
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Shotgun
+    Ammo: .50 shells
+    Desc.: Looks unreliable, but legal.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    capacity: 1
+
+- type: entity
+  id: NFWeaponShotgunBlunderbuss
+  parent: [ NFBaseWeaponShotgunWieldable, BaseC3PirateContraband, WeaponShotgunBlunderbuss ]
+  name: blunderbuss
+  description: |-
+    Manufacturer: Steelbolt Tool Forge
+    Type: Shotgun
+    Ammo: .50 shells
+    Desc.: Deadly at close range, an illegal shotgun often found at the side of a pirate.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+
+- type: entity
+  id: NFWeaponShotgunImprovised
+  parent: [ NFBaseWeaponShotgunWieldable, BaseC1Contraband, WeaponShotgunImprovised ]
+  name: improvised shotgun
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Shotgun
+    Ammo: .50 shells
+    Desc.: A shitty, but legal, hand-made shotgun. It can only hold one round in the chamber.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun_inhands_64x.rsi
+  - type: BallisticAmmoProvider
+    capacity: 1
+    proto: null
+
+#region Less-lethal
+- type: entity
   id: WeaponShotgunSawnNonlethal
-  suffix: Non-lethal
+  parent: NFWeaponShotgunSawn
+  suffix: Less-lethal
   components:
   - type: BallisticAmmoProvider
     capacity: 2
-    proto: ShellShotgunBeanbag
+    proto: NFShellShotgunBeanbag
 
 - type: entity
-  parent: WeaponShotgunKammerer
   id: WeaponShotgunKammererNonlethal
-  suffix: Non-lethal
+  parent: NFWeaponShotgunKammerer
+  suffix: Less-lethal
   components:
   - type: BallisticAmmoProvider
-    capacity: 4
-    proto: ShellShotgunBeanbag
+    proto: NFShellShotgunBeanbag
+
+- type: entity
+  id: NFWeaponShotgunEnforcerLessLethal
+  parent: NFWeaponShotgunEnforcer
+  suffix: Less-lethal
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBeanbag
