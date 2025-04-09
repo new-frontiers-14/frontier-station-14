@@ -1,0 +1,61 @@
+- type: entity
+  abstract: true
+  parent: BasePart
+  id: PartFelinidBase
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+  - type: BodyPart
+    species: Felinid
+
+- type: entity
+  parent: [ PartFelinidBase, BaseTorso ]
+  id: TorsoFelinid
+  name: "felinid torso"
+
+- type: entity
+  parent: [ PartFelinidBase, BaseHead ]
+  id: HeadFelinid
+  name: "felinid head"
+
+- type: entity
+  parent: [ PartFelinidBase, BaseLeftArm ]
+  id: LeftArmFelinid
+  name: "left felinid arm"
+
+- type: entity
+  parent: [ PartFelinidBase, BaseRightArm ]
+  id: RightArmFelinid
+  name: "right felinid arm"
+
+- type: entity
+  parent: [ PartFelinidBase, BaseLeftHand ]
+  id: LeftHandFelinid
+  name: "left felinid hand"
+
+- type: entity
+  parent: [ PartFelinidBase, BaseRightHand ]
+  id: RightHandFelinid
+  name: "right felinid hand"
+
+- type: entity
+  parent: [ PartFelinidBase, BaseLeftLeg ]
+  id: LeftLegFelinid
+  name: "left felinid leg"
+
+- type: entity
+  parent: [ PartFelinidBase, BaseRightLeg ]
+  id: RightLegFelinid
+  name: "right felinid leg"
+
+- type: entity
+  parent: [ PartFelinidBase, BaseLeftFoot ]
+  id: LeftFootFelinid
+  name: "left felinid foot"
+
+- type: entity
+  parent: [ PartFelinidBase, BaseRightFoot ]
+  id: RightFootFelinid
+  name: "right felinid foot"
