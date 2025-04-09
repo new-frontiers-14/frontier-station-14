@@ -43,8 +43,6 @@
     staticPacks:
     - NFServiceTechfabDeprecatedStatic
     - ReportingStatic # DeltaV
-    dynamicPacks:
-    - NFServiceTechfabDeprecated
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFServiceTechfabDeprecatedEmagStatic
@@ -80,8 +78,6 @@
     runningState: icon
     staticPacks:
     - NFEngineeringTechfabDeprecatedStatic
-    dynamicPacks:
-    - NFEngineeringTechfabDeprecated
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -114,8 +110,6 @@
     runningState: icon
     staticPacks:
     - NFSalvageTechfabDeprecatedStatic
-    dynamicPacks:
-    - NFSalvageTechfabDeprecated
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFSalvageTechfabDeprecatedEmag
@@ -151,8 +145,6 @@
     staticPacks:
     - NFNfsdTechfabDeprecatedStatic
     - ReportingStatic # DeltaV
-    dynamicPacks:
-    - NFNfsdTechfabDeprecated
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFNfsdTechfabDeprecatedEmag
@@ -183,8 +175,6 @@
     runningState: icon
     staticPacks:
     - NFMercenaryTechfabDeprecatedStatic
-    dynamicPacks:
-    - NFMercenaryTechfabDeprecated
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFMercenaryTechfabDeprecatedEmag
@@ -232,8 +222,11 @@
     runningState: icon
     staticPacks:
     - NFHackedMercenaryTechfabDeprecatedStatic
-    dynamicPacks:
-    - NFHackedMercenaryTechfabDeprecated
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintMercTechfab
+      - NFBlueprintNfsdTechfab
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseLathe]
@@ -281,7 +274,7 @@
   - type: MaterialStorage
     whitelist:
       tags:
-        - PrizeTicket
+      - PrizeTicket
 
 - type: entity
   id: BlueprintLithograph
@@ -351,8 +344,8 @@
     price: 800
   - type: ResearchClient
   - type: TechnologyDatabase
-  - type: MaterialStorageMagnetPickup # Frontier
-    range: 0.30 # Frontier
+  - type: MaterialStorageMagnetPickup
+    range: 0.30
   - type: Machine
     board: BlueprintLithographMachineCircuitboard
   - type: RequireProjectileTarget

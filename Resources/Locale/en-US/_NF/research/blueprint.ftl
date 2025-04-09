@@ -1,7 +1,14 @@
 blueprint-receiver-popup-invalid-type = That blueprint can't be used on this machine!
 blueprint-receiver-popup-no-recipes = That blueprint doesn't contain any recipes!
 
-blueprint-name = {$name} blueprint
+blueprint-generic-name = blueprint
+blueprint-engineering-name = engineering blueprint
+blueprint-medical-name = medical blueprint
+blueprint-arsenal-name = combat blueprint
+blueprint-arsenalnfsd-name = restricted combat blueprint
+blueprint-salvage-name = salvage blueprint
+blueprint-science-name = science blueprint
+blueprint-service-name = service blueprint
 
 blueprint-type-generic-name = Generic
 blueprint-type-engineering-name = Engineering
