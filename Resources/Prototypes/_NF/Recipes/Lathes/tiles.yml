@@ -36,6 +36,13 @@
   materials:
     Cloth: 100
 
+- type: latheRecipe
+  abstract: true
+  id: NFBaseFloorTileBioRecipe
+  parent: NFBaseFloorTileRecipe
+  materials:
+    Biomass: 1
+
 # Recipes
 
 - type: latheRecipe
@@ -291,5 +298,10 @@
 
 - type: latheRecipe
   id: FloorTileItemVersaillesWood
-  parent: NFBaseFloorTileWoodRecipe
+  parent: NFBaseFloorTileBioRecipe
   result: FloorTileItemVersaillesWood
+
+- type: latheRecipe
+  id: FloorTileItemCheese
+  parent: NFBaseFloorTileBioRecipe
+  result: FloorTileItemCheese

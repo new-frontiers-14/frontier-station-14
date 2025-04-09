@@ -303,3 +303,20 @@
       - FloorVersaillesWood
   - type: Stack
     stackType: FloorVersaillesWood
+
+- type: entity
+  name: cheese tile
+  parent: FloorTileItemBase
+  id: FloorTileItemCheese
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Tiles/organic.rsi
+    state: cheese
+  - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/organic.rsi
+    heldPrefix: cheese
+  - type: FloorTile
+    outputs:
+      - FloorCheese
+  - type: Stack
+    stackType: FloorCheese
