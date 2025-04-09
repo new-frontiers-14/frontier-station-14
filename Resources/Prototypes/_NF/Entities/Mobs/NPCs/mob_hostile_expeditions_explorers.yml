@@ -14,12 +14,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      130: Dead
+      80: Critical
+      105: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+      48: 0.7
+      64: 0.5
   - type: DamageStateVisuals
     rotate: true
   - type: RotationVisuals
@@ -202,7 +202,7 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.5
-    minAngle: 31
+    minAngle: 15
     maxAngle: 45
     selectedMode: SemiAuto
     availableModes:
@@ -308,7 +308,7 @@
     showExamineText: false
     fireRate: 0.75
     selectedMode: FullAuto
-    minAngle: 31
+    minAngle: 15
     maxAngle: 45
     availableModes:
     - FullAuto
@@ -416,8 +416,8 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.75
-    minAngle: 1
-    maxAngle: 5
+    minAngle: 5
+    maxAngle: 15
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -462,18 +462,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      120: 0.7
-      160: 0.5
+      160: Dead
   - type: Stamina
-    critThreshold: 600
+    critThreshold: 480
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 195
+        damage: 155
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -558,8 +554,8 @@
     energy: 3
   - type: MobThresholds
     thresholds:
-      120: Critical
-      150: Dead
+      100: Critical
+      130: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       60: 0.7

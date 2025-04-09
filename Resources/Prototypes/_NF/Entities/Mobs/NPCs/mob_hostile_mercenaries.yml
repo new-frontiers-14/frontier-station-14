@@ -19,14 +19,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      130: Dead
+      80: Critical
+      100: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+      48: 0.7
+      64: 0.5
   - type: Stamina
-    critThreshold: 100
+    critThreshold: 80
   - type: DamageStateVisuals
     rotate: true
   - type: RotationVisuals
@@ -48,7 +48,7 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Slash: 15
+        Slash: 12
         Structural: 20
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
@@ -147,8 +147,8 @@
     count: 4
   - type: Gun
     showExamineText: false
-    minAngle: 6.8
-    maxAngle: 13.6
+    minAngle: 10
+    maxAngle: 21
     angleIncrease: 0.5
     angleDecay: 3
     fireRate: 1
@@ -194,8 +194,8 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.85
-    minAngle: 1
-    maxAngle: 10
+    minAngle: 5
+    maxAngle: 20
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -286,8 +286,8 @@
     count: 6
   - type: Gun
     showExamineText: false
-    minAngle: 6.8
-    maxAngle: 13.6
+    minAngle: 10
+    maxAngle: 20
     angleIncrease: 0.5
     angleDecay: 3
     fireRate: 2
@@ -331,14 +331,14 @@
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
-    proto: ShellShotgun
+    proto: NFShellShotgunBuckshot
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
     fireRate: 2
-    minAngle: 1
-    maxAngle: 10
+    minAngle: 5
+    maxAngle: 20
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -387,8 +387,8 @@
   - type: Gun
     showExamineText: false
     fireRate: 1
-    minAngle: 1
-    maxAngle: 10
+    minAngle: 8
+    maxAngle: 20
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -498,7 +498,7 @@
     count: 10
   - type: Gun
     showExamineText: false
-    fireRate: 0.6
+    fireRate: 1
     minAngle: 1
     maxAngle: 15
     selectedMode: SemiAuto

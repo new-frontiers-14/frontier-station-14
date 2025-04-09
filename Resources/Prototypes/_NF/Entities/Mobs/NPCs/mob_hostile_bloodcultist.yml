@@ -59,9 +59,9 @@
     startingCharge: 300
   - type: Gun
     showExamineText: false
-    fireRate: 4
-    minAngle: 1
-    maxAngle: 10
+    fireRate: 2
+    minAngle: 5
+    maxAngle: 15
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
 
@@ -90,9 +90,9 @@
     count: 1
   - type: Gun
     showExamineText: false
-    fireRate: 4
-    minAngle: 1
-    maxAngle: 10
+    fireRate: 2
+    minAngle: 5
+    maxAngle: 15
     selectedMode: SemiAuto
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
@@ -155,8 +155,8 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.5
-    minAngle: 1
-    maxAngle: 10
+    minAngle: 5
+    maxAngle: 15
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -182,7 +182,7 @@
     capacity: 3
     count: 3
   - type: Gun
-    fireRate: 2
+    fireRate: 1.5
     soundGunshot:
       path: /Audio/Effects/demon_consume.ogg
   - type: RechargeBasicEntityAmmo
@@ -225,10 +225,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      130: Dead
+      60: Critical
+      120: Dead
   - type: Stamina
-    critThreshold: 100
+    critThreshold: 80
   - type: MovementSpeedModifier
     baseWalkSpeed: 4
     baseSprintSpeed: 6
@@ -237,7 +237,7 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Slash: 10
+        Slash: 8
         Structural: 20
     animation: WeaponArcBite
 
@@ -297,10 +297,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
-      400: Dead
+      240: Critical
+      320: Dead
   - type: Stamina
-    critThreshold: 400
+    critThreshold: 320
   - type: BasicEntityAmmoProvider
     proto: SpawnMobBloodCultistAscendedSummons # MobBloodCultDrainedOne
     capacity: 2
@@ -321,7 +321,7 @@
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     damage:
       types:
-        Slash: 20
+        Slash: 16
         Structural: 20
     animation: WeaponArcClaw
   - type: PointLight
@@ -393,10 +393,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      130: Dead
+      80: Critical
+      100: Dead
   - type: Stamina
-    critThreshold: 400
+    critThreshold: 320
   - type: MeleeWeapon
     soundHit:
       collection: MetalThud
@@ -553,13 +553,13 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 600
+            damage: 480
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
         - trigger:
             !type:DamageTrigger
-            damage: 300
+            damage: 240
           # TODO: Construction graph
           behaviors:
             - !type:DoActsBehavior

@@ -85,7 +85,7 @@
     prototypes:
     - PunkGangerGearPistol
   - type: BasicEntityAmmoProvider
-    proto: BulletPistol
+    proto: NFCartridgePistol35
     capacity: 1
     count: 1
   - type: Gun
@@ -127,7 +127,7 @@
     prototypes:
     - PunkGangerGearShotgun
   - type: BasicEntityAmmoProvider
-    proto: ShellShotgun
+    proto: NFShellShotgunBuckshot
     capacity: 1
     count: 1
   - type: Gun
@@ -169,7 +169,7 @@
     prototypes:
     - PunkGangerGearSmg
   - type: BasicEntityAmmoProvider
-    proto: NFBulletPistol35
+    proto: NFCartridgePistol35
     capacity: 6
     count: 6
   - type: Gun
@@ -251,8 +251,8 @@
     capacity: 1
     count: 1
   - type: Gun
-    minAngle: 1
-    maxAngle: 5
+    minAngle: 5
+    maxAngle: 15
     fireRate: 1
     selectedMode: FullAuto
     availableModes:

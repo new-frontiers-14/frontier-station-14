@@ -70,8 +70,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      140: Dead
+      64: Critical
+      110: Dead
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -80,8 +80,8 @@
     allowRevives: true
   - type: SlowOnDamage
     speedModifierThresholds:
-      48: 0.7
-      64: 0.5
+      40: 0.7
+      52: 0.5
   - type: HealthExaminable
     examinableTypes:
       - Blunt
@@ -176,12 +176,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      60: Critical
-      120: Dead
+      48: Critical
+      100: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      36: 0.7
-      48: 0.5
+      30: 0.7
+      40: 0.5
   - type: Stamina
     critThreshold: 600
 
@@ -235,18 +235,18 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      30: Critical
-      90: Dead
+      24: Critical
+      72: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      18: 0.7
-      24: 0.5
+      14: 0.7
+      20: 0.5
   - type: Stamina
     critThreshold: 600
   - type: Gun
     showExamineText: false
     fireRate: 0.75
-    minAngle: 0
+    minAngle: 5
     maxAngle: 15
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
@@ -461,7 +461,7 @@
     showExamineText: false
     fireRate: 0.7
     minAngle: 5
-    maxAngle: 10
+    maxAngle: 15
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -485,7 +485,7 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 15
+        Slash: 12
         Structural: 20
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
@@ -911,12 +911,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      110: Critical
-      160: Dead
+      88: Critical
+      130: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      66: 0.7
-      88: 0.5
+      54: 0.7
+      70: 0.5
   - type: Stamina
     critThreshold: 600
   - type: ProjectileBatteryAmmoProvider
@@ -987,12 +987,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Critical
-      400: Dead
+      160: Critical
+      320: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      120: 0.7
-      160: 0.5
+      96: 0.7
+      130: 0.5
   - type: Stamina
     critThreshold: 600
   - type: HitscanBatteryAmmoProvider
@@ -1043,12 +1043,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
-      400: Dead
+      240: Critical
+      360: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      200: 0.7
-      260: 0.5
+      144: 0.7
+      192: 0.5
   - type: Stamina
     critThreshold: 600
   - type: BasicEntityAmmoProvider
