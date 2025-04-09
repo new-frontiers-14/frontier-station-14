@@ -2409,6 +2409,15 @@ entities:
     - type: Transform
       pos: 4.23837,-0.7256026
       parent: 1
+- proto: BoxLethalshot
+  entities:
+  - uid: 389
+    components:
+    - type: Transform
+      parent: 2747
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: Bucket
   entities:
   - uid: 1995
@@ -14279,6 +14288,43 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.472803,-24.268795
       parent: 1
+- proto: ShellShotgun
+  entities:
+  - uid: 2241
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.7482262,-25.853245
+      parent: 1
+  - uid: 2242
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.2013512,-26.321995
+      parent: 1
+  - uid: 2243
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.9513512,-26.27512
+      parent: 1
+  - uid: 2244
+    components:
+    - type: Transform
+      pos: -0.3497399,-26.619625
+      parent: 1
+  - uid: 2245
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.052865,-27.713375
+      parent: 1
+  - uid: 2957
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.8406615,-8.282737
+      parent: 1
 - proto: SignalButton
   entities:
   - uid: 235
@@ -17833,6 +17879,21 @@ entities:
     - type: Transform
       pos: 10.5,-17.5
       parent: 1
+- proto: WeaponShotgunDoubleBarreled
+  entities:
+  - uid: 2246
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.4609277,-25.906773
+      parent: 1
+  - uid: 2752
+    components:
+    - type: Transform
+      parent: 2747
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: WelderIndustrial
   entities:
   - uid: 2803
