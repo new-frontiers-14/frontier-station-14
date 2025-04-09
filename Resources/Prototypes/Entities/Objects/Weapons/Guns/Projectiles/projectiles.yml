@@ -131,9 +131,6 @@
     damage:
       types:
         Blunt: 1
-  - type: Tracer # Frontier
-    color: "#E98C23FF" # Frontier
-    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletIncendiary
@@ -152,8 +149,6 @@
     energy: 7.0
   - type: IgniteOnCollide
     fireStacks: 0.25
-  - type: Tracer # Frontier
-    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletAP
@@ -170,9 +165,6 @@
       types:
         Piercing: 11 # 20% decrease
     ignoreResistances: true
-  - type: Tracer # Frontier
-    color: "#000000FF" # Frontier
-    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletUranium
@@ -188,13 +180,6 @@
     damage:
       types:
         Radiation: 11
-  - type: Tracer # Frontier
-    color: "#9BE792FF" # Frontier
-    length: 1.5 # Frontier
-  - type: PointLight # Frontier
-    radius: 1.1 # Frontier
-    energy: 1 # Frontier
-    color: "#9BE792FF" # Frontier
 
 # Energy projectiles
 - type: entity
@@ -1197,9 +1182,6 @@
       path: /Audio/Weapons/Guns/Hits/snap.ogg
   - type: StaminaDamageOnCollide
     damage: 22 # 5 hits to stun sounds reasonable
-  - type: Tracer
-    color: "#206EEFFF"
-    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletEmp
