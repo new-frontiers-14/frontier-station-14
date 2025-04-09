@@ -56,6 +56,17 @@
                         PlaceHolder="0"
                         Text="1"
                         HorizontalExpand="True" />
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal"
+                    HorizontalExpand="True">
+                    <Button
+                        Name="AllButton"
+                        Text="{Loc 'blueprint-lathe-menu-select-all'}"
+                        TextAlign="Center"/>
+                    <Button
+                        Name="ClearButton"
+                        Text="{Loc 'blueprint-lathe-menu-clear-all'}"
+                        TextAlign="Center"/>
                     <Button
                         Name="PrintButton"
                         Text="{Loc 'blueprint-lathe-menu-print'}"
@@ -109,6 +120,14 @@
                             HorizontalAlignment="Left"
                             Margin="130 0 0 0">
                         </Label>
+                        <Button
+                            Name="DeleteFabricating"
+                            Margin="0"
+                            StyleClasses="Caution"
+                            Text="✖"
+                            SetSize="38 32"
+                            HorizontalAlignment="Right"
+                            />
                     </PanelContainer>
                 </BoxContainer>
                 <ScrollContainer VerticalExpand="True" HScrollEnabled="False">

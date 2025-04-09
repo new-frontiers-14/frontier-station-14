@@ -27,7 +27,11 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
     private readonly MaterialStorageSystem _materialStorage;
 
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
-    public event Action<string, int>? RecipeQueueAction;
+    public event Action<ProtoId<BlueprintPrototype>, int[], int>? RecipeQueueAction;
+    public event Action<int>? QueueDeleteAction;
+    public event Action<int>? QueueMoveUpAction;
+    public event Action<int>? QueueMoveDownAction;
+    public event Action? DeleteFabricatingAction;
 
     public Dictionary<ProtoId<BlueprintPrototype>, int[]> RecipesByBlueprintType = new();
 
@@ -58,6 +62,11 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
         FilterOption.OnItemSelected += OnItemSelected;
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
+        DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke();
+        DeleteFabricating.AddStyleClass("OpenLeft");
+        AllButton.OnPressed += _ => SetAllRecipesPressed(true);
+        ClearButton.OnPressed += _ => SetAllRecipesPressed(false);
+        PrintButton.OnPressed += _ => QueueBlueprint();
     }
 
     public void SetEntity(EntityUid uid)
@@ -238,18 +247,15 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
         var idx = 1;
         foreach (var batch in queue) // Frontier: recipe<batch
         {
-            var queuedRecipeBox = new BoxContainer();
-            queuedRecipeBox.Orientation = BoxContainer.LayoutOrientation.Horizontal;
-
-            queuedRecipeBox.AddChild(GetBlueprintDisplayControl(batch.BlueprintType));
-
-            var queuedRecipeLabel = new Label();
+            string displayText;
             if (batch.ItemsRequested > 1)
-                queuedRecipeLabel.Text = $"{idx}. {GetBlueprintName(batch.BlueprintType)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
+                displayText = $"{idx}. {GetBlueprintName(batch.BlueprintType)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
             else
-                queuedRecipeLabel.Text = $"{idx}. {GetBlueprintName(batch.BlueprintType)}";
-
-            queuedRecipeBox.AddChild(queuedRecipeLabel);
+                displayText = $"{idx}. {GetBlueprintName(batch.BlueprintType)}";
+            var queuedRecipeBox = new QueuedRecipeControl(displayText, idx - 1, GetBlueprintDisplayControl(batch.BlueprintType));
+            queuedRecipeBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
+            queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
+            queuedRecipeBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
             QueueList.AddChild(queuedRecipeBox);
             idx++;
         }
@@ -302,13 +308,10 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
     {
         FilterOption.SelectId(obj.Id);
         if (obj.Id == -1)
-        {
             CurrentBlueprintType = null;
-        }
         else
-        {
             CurrentBlueprintType = BlueprintTypes?[obj.Id];
-        }
+
         PopulateRecipes();
     }
 
@@ -325,5 +328,47 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
     // TODO: Enqueue blueprint based on the currently selected buttons by index and selected status
     private void QueueBlueprint()
     {
+        if (CurrentBlueprintType == null || !RecipesByBlueprintType.TryGetValue(CurrentBlueprintType.Value, out var recipeSet))
+            return;
+
+        int[] recipes = new int[recipeSet.Length];
+        bool anySelected = false;
+        foreach (var child in RecipeList.Children)
+        {
+            if (child is not BlueprintRecipeControl blueprint)
+                continue;
+
+            if (!blueprint.Selected || blueprint.Index < 0)
+                continue;
+
+            var recipeIdx = blueprint.Index / 32;
+            var recipeValue = 1 << (blueprint.Index % 32);
+
+            if (recipeIdx >= recipes.Length)
+                continue;
+
+            recipes[recipeIdx] |= recipeValue;
+            anySelected = true;
+        }
+
+        // Must have something on a blueprint.
+        if (!anySelected)
+            return;
+
+        if (!int.TryParse(AmountLineEdit.Text, out var quantity) || quantity <= 0)
+            quantity = 1;
+
+        RecipeQueueAction?.Invoke(CurrentBlueprintType.Value, recipes, quantity);
+    }
+
+    private void SetAllRecipesPressed(bool pressed)
+    {
+        foreach (var child in RecipeList.Children)
+        {
+            if (child is not BlueprintRecipeControl blueprint)
+                continue;
+
+            blueprint.SetSelected(pressed);
+        }
     }
 }

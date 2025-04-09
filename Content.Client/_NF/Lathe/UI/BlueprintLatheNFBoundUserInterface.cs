@@ -28,9 +28,9 @@ namespace Content.Client._NF.Lathe.UI
                 SendMessage(new ConsoleServerSelectionMessage());
             };
 
-            _menu.RecipeQueueAction += (recipe, amount) =>
+            _menu.RecipeQueueAction += (blueprintType, recipes, amount) =>
             {
-                SendMessage(new LatheQueueRecipeMessage(recipe, amount));
+                SendMessage(new BlueprintLatheQueueRecipeMessage(blueprintType, recipes, amount));
             };
         }
 

@@ -24,11 +24,13 @@ public sealed partial class BlueprintRecipeControl : Control
         Button.TooltipSupplier = SupplyTooltip;
         Index = index;
 
-        Button.OnPressed += (_) =>
-        {
-            Selected = !Selected;
-            Button.Pressed = Selected;
-        };
+        Button.OnPressed += (_) => SetSelected(!Selected);
+    }
+
+    public void SetSelected(bool selected)
+    {
+        Selected = selected;
+        Button.Pressed = selected;
     }
 
     private Control? SupplyTooltip(Control sender)
