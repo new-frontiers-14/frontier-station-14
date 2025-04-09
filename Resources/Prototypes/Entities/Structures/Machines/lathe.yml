@@ -233,10 +233,17 @@
     - SecurityEquipment
     - SecurityWeapons
     - SyringeGuns # Delta-V
-  - type: BlueprintReceiver # Frontier
-    whitelist: # Frontier
-      tags: # Frontier
-      - NFBlueprintProtolathe # Frontier
+  # Frontier: accept blueprints
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintProtolathe
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  # End Frontier: accept blueprints
 
 - type: entity
   id: ProtolatheHyperConvection
