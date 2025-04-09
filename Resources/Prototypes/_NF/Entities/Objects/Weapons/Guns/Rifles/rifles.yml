@@ -105,17 +105,6 @@
         map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
-  - type: Gun
-    fireRate: 3
-    selectedMode: SemiAuto
-    availableModes:
-      - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
@@ -138,19 +127,10 @@
         whitelist:
           tags:
             - CartridgeLightRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
-  - type: Appearance
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 1.5
-    pvsIncrease: 0.15
   - type: AltFireMelee
     attackType: Light
 
