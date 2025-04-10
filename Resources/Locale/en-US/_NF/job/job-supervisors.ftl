@@ -7,4 +7,4 @@ job-supervisors-prisoner = all NFSD personnel
 job-supervisors-nfsd = Deputies, the Bailiff, and the Sheriff
 job-supervisors-nf-pirate = the First Mate and Captain
 job-supervisors-nf-pirate-captain = the Captain
-job-supervisors-nobody = nobody
+job-supervisors-freebooters-union = the Freebooters' Union

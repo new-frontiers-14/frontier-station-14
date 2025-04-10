@@ -31,6 +31,7 @@ JobPilot = Pilot
 JobNFPirate = Pirate
 JobNFPirateCaptain = Pirate Captain
 JobNFPirateFirstMate = Pirate First Mate
+JobPublicAffairsLiaison = Public Affairs Liaison
 JobSecurityGuard = Security Guard
 JobSTC = Station Traffic Controller
 

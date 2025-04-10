@@ -45,7 +45,7 @@ public sealed class NFPirateRuleSystem : GameRuleSystem<NFPirateRuleComponent>
             : Loc.GetString("nf-pirate-role-greeting-animal");
 
         if (isHuman)
-            briefing += "\n \n" + Loc.GetString("pirate-role-greeting-equipment") + "\n";
+            briefing += "\n\n" + Loc.GetString("pirate-role-greeting-equipment") + "\n";
 
         return briefing;
     }
