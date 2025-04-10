@@ -25,6 +25,9 @@ public sealed class NFPirateRuleSystem : GameRuleSystem<NFPirateRuleComponent>
     {
         var ent = args.EntityUid;
         _antag.SendBriefing(ent, MakeBriefing(ent), null, null);
+
+        _npcFaction.RemoveFaction(traitor, component.NanoTrasenFaction, false);
+        _npcFaction.AddFaction(traitor, component.PirateFaction);
     }
 
     // Character screen briefing

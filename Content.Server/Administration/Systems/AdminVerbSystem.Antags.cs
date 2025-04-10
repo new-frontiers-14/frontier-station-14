@@ -128,7 +128,7 @@ public sealed partial class AdminVerbSystem
                 // pirates just get an outfit because they don't really have logic associated with them
                 //SetOutfitCommand.SetOutfit(args.Target, PirateGearId, EntityManager); // Frontier
 
-                EnsureComp<AutoPirateComponent>(args.User); // Frontier
+                EnsureComp<AutoPirateComponent>(args.User); // Frontier: needed to pass the pirate whitelist
                 _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, DefaultNFPirateRule); // Frontier
             },
             Impact = LogImpact.High,
@@ -140,7 +140,7 @@ public sealed partial class AdminVerbSystem
         var pirateCaptainName = Loc.GetString("admin-verb-text-make-nf-pirate-captain");
         Verb pirateCaptain = new()
         {
-            Text = pirateName,
+            Text = pirateCaptainName,
             Category = VerbCategory.Antag,
             Icon = new SpriteSpecifier.Rsi(new("/Textures/_NF/Interface/Misc/job_icons.rsi"), "piratecaptain"),
             Act = () =>
