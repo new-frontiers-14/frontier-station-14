@@ -125,6 +125,9 @@
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
   - type: BallisticAmmoProvider
     capacity: 2
+  - type: Construction
+    graph: NFShotgunSawn
+    node: start
 
 - type: entity
   id: NFWeaponShotgunEnforcer
@@ -162,7 +165,7 @@
   - type: Item
     sprite: _NF/Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
   - type: BallisticAmmoProvider
-    capacity: 4
+    capacity: 5
 
 - type: entity
   id: NFWeaponShotgunSawn
@@ -186,6 +189,16 @@
     capacity: 2
 
 - type: entity
+  id: NFWeaponShotgunSawnEmpty
+  parent: NFWeaponShotgunSawn
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Construction
+    graph: NFShotgunSawn
+    node: shotgunsawn
+
+- type: entity
   id: NFWeaponShotgunHandmade
   parent: [ NFBaseWeaponShotgun, BaseC1Contraband, WeaponShotgunHandmade ]
   name: handmade pistol
@@ -204,6 +217,17 @@
     size: Small
   - type: BallisticAmmoProvider
     capacity: 1
+
+- type: entity
+  id: NFWeaponShotgunHandmadeEmpty
+  parent: NFWeaponShotgunHandmade
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Construction
+    graph: NFShotgunSawn
+    node: handmadepistol
+    deconstructionTarget: null
 
 - type: entity
   id: NFWeaponShotgunBlunderbuss

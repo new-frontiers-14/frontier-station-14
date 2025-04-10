@@ -84,6 +84,30 @@
     slots:
       gun_magazine:
         name: Magazine
+        startingItem: NFMagazinePistol35
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+
+- type: entity
+  id: NFWeaponPistolPollockHighCapacityMag
+  parent: NFWeaponPistolPollock
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
         startingItem: NFMagazineHighCapacityPistol35
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
