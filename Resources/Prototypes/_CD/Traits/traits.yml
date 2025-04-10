@@ -1,0 +1,15 @@
+﻿- type: trait
+  category: Quirks
+  id: Synthetic
+  name: trait-synth-name
+  description: trait-synth-desc
+  # Begin DeltaV Additions - blacklist IPCs
+  blacklist:
+    components:
+      - Silicon
+      - BorgChassis
+  excludedSpecies:
+    - IPC
+  # End DeltaV Additions - blacklist IPCs
+  components:
+    - type: Synth
