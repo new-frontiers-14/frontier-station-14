@@ -490,4 +490,18 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         args.AddPercentageUpgrade("lathe-component-upgrade-speed", 1 / component.FinalTimeMultiplier);
         args.AddPercentageUpgrade("lathe-component-upgrade-material-use", component.FinalMaterialUseMultiplier);
     }
+
+    /// <summary>
+    /// Accesssor to set blueprints server-side.
+    /// </summary>
+    /// <param name="ent">Blueprint to alter.</param>
+    /// <param name="reipces">The recipe set the blueprint should unlock.</param>
+    /// <remarks>
+    /// This is in the BlueprintLatheSystem as BlueprintSystem is sealed, I don't particularly want to edit it.
+    /// </remarks>
+    public void SetBlueprintRecipes(Entity<BlueprintComponent> ent, HashSet<ProtoId<LatheRecipePrototype>> recipes)
+    {
+        ent.Comp.ProvidedRecipes = recipes;
+        Dirty(ent, ent.Comp);
+    }
 }
