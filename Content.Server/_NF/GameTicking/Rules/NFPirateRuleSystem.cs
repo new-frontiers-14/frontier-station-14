@@ -4,19 +4,20 @@ using Content.Server.Antag;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Roles;
 using Content.Shared.Humanoid;
+using Content.Shared.NPC.Systems;
 
 namespace Content.Server._NF.GameTicking.Rules;
 
 public sealed class NFPirateRuleSystem : GameRuleSystem<NFPirateRuleComponent>
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<NFPirateRuleComponent, AfterAntagEntitySelectedEvent>(AfterAntagSelected);
-
         SubscribeLocalEvent<NFPirateRoleComponent, GetBriefingEvent>(OnGetBriefing);
     }
 
@@ -26,8 +27,8 @@ public sealed class NFPirateRuleSystem : GameRuleSystem<NFPirateRuleComponent>
         var ent = args.EntityUid;
         _antag.SendBriefing(ent, MakeBriefing(ent), null, null);
 
-        _npcFaction.RemoveFaction(traitor, component.NanoTrasenFaction, false);
-        _npcFaction.AddFaction(traitor, component.PirateFaction);
+        _npcFaction.RemoveFaction(ent, mindId.Comp.NanoTrasenFaction, false);
+        _npcFaction.AddFaction(ent, mindId.Comp.PirateFaction);
     }
 
     // Character screen briefing
