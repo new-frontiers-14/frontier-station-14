@@ -146,7 +146,7 @@
 
 - type: entity
   id: NFWeaponShotgunKammerer
-  parent: [ NFBaseWeaponShotgunWieldable, BaseC2ContrabandUnredeemable, WeaponShotgunKammerer ]
+  parent: [ NFBaseWeaponShotgunWieldable, BaseC1Contraband, WeaponShotgunKammerer ]
   name: kammerer
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -161,6 +161,8 @@
     sprite: _NF/Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: Item
     sprite: _NF/Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+  - type: BallisticAmmoProvider
+    capacity: 4
 
 - type: entity
   id: NFWeaponShotgunSawn
