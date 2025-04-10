@@ -94,7 +94,7 @@
   - type: AntagSelection
     agentName: nf-pirate-round-end-agent-name
     definitions:
-    - prefRoles: [ NFPirate, NFPirateCaptain ]
+    - prefRoles: [ NFPirate ]
       max: 999
       playerRatio: -1
       lateJoinAdditional: true
@@ -102,11 +102,30 @@
       multiAntagSetting: All
       components:
       - type: MailDisabled
-      - type: SpecialSectorStationRecord
-        recordGeneration: FalseRecord
       - type: NpcFactionMember
         factions:
         - NFPirate
+      mindRoles:
+      - MindRoleNFPirate
+      whitelist:
+        components:
+        - AutoPirate
+      briefing:
+        sound: "/Audio/_NF/Misc/pirate_greeting.ogg"
+    - prefRoles: [ NFPirateCaptain ]
+      max: 999
+      playerRatio: -1
+      lateJoinAdditional: true
+      allowNonHumans: true
+      multiAntagSetting: All
+      components:
+      - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - NFPirate
+      whitelist:
+        components:
+        - AutoPirateCaptain
       mindRoles:
       - MindRoleNFPirate
       briefing:

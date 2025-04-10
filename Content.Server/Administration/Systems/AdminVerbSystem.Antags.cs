@@ -1,4 +1,5 @@
 using Content.Server._NF.GameTicking.Rules.Components; // Frontier
+using Content.Server._NF.Pirate.Components;
 using Content.Server.Administration.Commands;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
@@ -116,23 +117,42 @@ public sealed partial class AdminVerbSystem
         };
         //args.Verbs.Add(nukeOp); // Frontier: comment this out, no nuke op verb
 
-        var pirateName = Loc.GetString("admin-verb-text-make-pirate");
+        var pirateName = Loc.GetString("admin-verb-text-make-nf-pirate"); // Frontier: add NF prefix
         Verb pirate = new()
         {
             Text = pirateName,
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Clothing/Head/Hats/pirate.rsi"), "icon"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_NF/Interface/Misc/job_icons.rsi"), "pirate"),
             Act = () =>
             {
                 // pirates just get an outfit because they don't really have logic associated with them
                 //SetOutfitCommand.SetOutfit(args.Target, PirateGearId, EntityManager); // Frontier
 
+                EnsureComp<AutoPirateComponent>(args.User); // Frontier
                 _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, DefaultNFPirateRule); // Frontier
             },
             Impact = LogImpact.High,
-            Message = string.Join(": ", pirateName, Loc.GetString("admin-verb-make-pirate")),
+            Message = string.Join(": ", pirateName, Loc.GetString("admin-verb-make-nf-pirate")), // Frontier: add NF prefix
         };
         args.Verbs.Add(pirate);
+
+        // Frontier: pirate captain verb
+        var pirateCaptainName = Loc.GetString("admin-verb-text-make-nf-pirate-captain");
+        Verb pirateCaptain = new()
+        {
+            Text = pirateName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_NF/Interface/Misc/job_icons.rsi"), "piratecaptain"),
+            Act = () =>
+            {
+                EnsureComp<AutoPirateCaptainComponent>(args.User); // Pass the pirate captain whitelist
+                _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, DefaultNFPirateRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", pirateName, Loc.GetString("admin-verb-make-nf-pirate-captain")),
+        };
+        args.Verbs.Add(pirateCaptain);
+        // End Frontier
 
         var headRevName = Loc.GetString("admin-verb-text-make-head-rev");
         Verb headRev = new()

@@ -15,10 +15,11 @@ public sealed class AutoPirateSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<AutoPirateComponent, MindAddedMessage>(OnMindAdded);
+        SubscribeLocalEvent<AutoPirateCaptainComponent, MindAddedMessage>(OnMindAdded);
     }
 
-    private void OnMindAdded(EntityUid uid, AutoPirateComponent comp, MindAddedMessage args)
+    private void OnMindAdded(EntityUid uid, Component _, MindAddedMessage args)
     {
-        _antag.ForceMakeAntag<NFPirateRuleComponent>(args.Mind.Comp.Session, comp.Captain ? "NFPirateCaptain" : "NFPirate");
+        _antag.ForceMakeAntag<NFPirateRuleComponent>(args.Mind.Comp.Session, "NFPirate");
     }
 }
