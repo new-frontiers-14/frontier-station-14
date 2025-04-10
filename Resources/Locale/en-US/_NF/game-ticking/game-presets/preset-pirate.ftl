@@ -7,9 +7,7 @@ nf-piratecaptain-role-greeting =
     You are the captain of a band of pirates on a hidden cove deep in space.
     Lead your crew to plunder the sector, and {-nf-pirate-role-greeting-suffix}
 
-nf-pirate-role-greeting-equipment =
-    Use the consoles in the lobby to find and redeem bounties and
-    sell loose contraband crates. Purchase a ship and head off on adventure!
+nf-pirate-role-greeting-equipment = Use the consoles in the lobby to find and redeem bounties and sell loose contraband crates. Purchase a ship and head off on adventure!
 
 objective-issuer-nf-pirate = [color=#F6CE64]Freebooters' Union[/color]
 
