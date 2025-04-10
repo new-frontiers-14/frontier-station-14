@@ -2,20 +2,19 @@ using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 using Content.Server.Salvage.Magnet;
+using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Procedural;
 using Content.Shared.Radio;
 using Content.Shared.Salvage.Magnet;
-using Robust.Server.Maps;
 using Robust.Shared.Exceptions;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Salvage;
 
 public sealed partial class SalvageSystem
 {
-    [Dependency] private readonly IRuntimeLog _runtimeLog = default!;
-
     [ValidatePrototypeId<RadioChannelPrototype>]
     private const string MagnetChannel = "Supply";
 
@@ -46,19 +45,7 @@ public sealed partial class SalvageSystem
             return;
         }
 
-        var index = args.Index;
-        async void TryTakeMagnetOffer()
-        {
-            try
-            {
-                await TakeMagnetOffer((station.Value, dataComp), index, (uid, component));
-            }
-            catch (Exception e)
-            {
-                _runtimeLog.LogException(e, $"{nameof(SalvageSystem)}.{nameof(TakeMagnetOffer)}");
-            }
-        }
-        TryTakeMagnetOffer();
+        TakeMagnetOffer((station.Value, dataComp), args.Index, (uid, component));
     }
 
     private void OnMagnetStartup(EntityUid uid, SalvageMagnetComponent component, ComponentStartup args)
@@ -281,25 +268,20 @@ public sealed partial class SalvageSystem
         {
             case AsteroidOffering asteroid:
                 var grid = _mapManager.CreateGridEntity(salvMap);
-                await _dungeon.GenerateDungeonAsync(asteroid.DungeonConfig, asteroid.Id, grid.Owner, grid.Comp, Vector2i.Zero, seed); // Frontier: added asteroid.Id - FIXME: value makes no sense.
+                await _dungeon.GenerateDungeonAsync(asteroid.DungeonConfig, asteroid.Id, grid.Owner, grid.Comp, Vector2i.Zero, seed); // Frontier: add asteroid.Id
                 break;
             case DebrisOffering debris:
                 var debrisProto = _prototypeManager.Index<DungeonConfigPrototype>(debris.Id);
                 var debrisGrid = _mapManager.CreateGridEntity(salvMap);
-                await _dungeon.GenerateDungeonAsync(debrisProto, debrisProto.ID, debrisGrid.Owner, debrisGrid.Comp, Vector2i.Zero, seed); // Frontier: debrisProto.ID
+                await _dungeon.GenerateDungeonAsync(debrisProto, debris.Id, debrisGrid.Owner, debrisGrid.Comp, Vector2i.Zero, seed); // Frontier: add debris.Id
                 break;
             case SalvageOffering wreck:
                 var salvageProto = wreck.SalvageMap;
 
-                var opts = new MapLoadOptions
-                {
-                    Offset = new Vector2(0, 0)
-                };
-
-                if (!_map.TryLoad(salvMapXform.MapID, salvageProto.MapPath.ToString(), out _, opts))
+                if (!_loader.TryLoadGrid(salvMapXform.MapID, salvageProto.MapPath, out _))
                 {
                     Report(magnet, MagnetChannel, "salvage-system-announcement-spawn-debris-disintegrated");
-                    _mapManager.DeleteMap(salvMapXform.MapID);
+                    _mapSystem.DeleteMap(salvMapXform.MapID);
                     return;
                 }
 
@@ -360,7 +342,7 @@ public sealed partial class SalvageSystem
         if (!TryGetSalvagePlacementLocation(magnet, mapId, attachedBounds, bounds!.Value, worldAngle, out var spawnLocation, out var spawnAngle))
         {
             Report(magnet.Owner, MagnetChannel, "salvage-system-announcement-spawn-no-debris-available");
-            _mapManager.DeleteMap(salvMapXform.MapID);
+            _mapSystem.DeleteMap(salvMapXform.MapID);
             return;
         }
 
@@ -397,7 +379,7 @@ public sealed partial class SalvageSystem
         }
 
         Report(magnet.Owner, MagnetChannel, "salvage-system-announcement-arrived", ("timeLeft", data.Comp.ActiveTime.TotalSeconds));
-        _mapManager.DeleteMap(salvMapXform.MapID);
+        _mapSystem.DeleteMap(salvMapXform.MapID);
 
         data.Comp.Announced = false;
 

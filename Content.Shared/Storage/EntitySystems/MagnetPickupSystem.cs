@@ -178,10 +178,10 @@ public sealed class MagnetPickupSystem : EntitySystem
                 // game state handling we can't show a lerp animation for it.
                 var nearXform = Transform(near);
                 var nearMap = _transform.GetMapCoordinates(near, xform: nearXform);
-                var nearCoords = EntityCoordinates.FromMap(moverCoords.EntityId, nearMap, _transform, EntityManager);
+                var nearCoords = _transform.ToCoordinates(moverCoords.EntityId, nearMap);
 
                 if (!_storage.Insert(uid, near, out var stacked, storageComp: storage, playSound: !playedSound))
-                    continue;
+                    break; // Frontier: continue<break
 
                 slotCount += itemSize; // Frontier: adjust size (assume it's in a new slot)
 
