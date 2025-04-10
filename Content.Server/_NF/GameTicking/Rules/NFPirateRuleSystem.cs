@@ -1,4 +1,5 @@
 using Content.Server._NF.GameTicking.Rules.Components;
+using Content.Server._NF.Pirate.Components;
 using Content.Server._NF.Roles;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules;
@@ -41,16 +42,17 @@ public sealed class NFPirateRuleSystem : GameRuleSystem<NFPirateRuleComponent>
         args.Append(MakeBriefing(ent.Value));
     }
 
-    private string MakeBriefing(EntityUid ent)
+    private string MakeBriefing(EntityUid uid)
     {
-        var isHuman = HasComp<HumanoidAppearanceComponent>(ent);
-        var briefing = isHuman
-            ? Loc.GetString("nf-pirate-role-greeting-human")
-            : Loc.GetString("nf-pirate-role-greeting-animal");
+        string ret;
+        // This is hacky.
+        if (HasComp<AutoPirateCaptainComponent>(uid))
+            ret = Loc.GetString("nf-piratecaptain-role-greeting");
+        else
+            ret = Loc.GetString("nf-pirate-role-greeting");
 
-        if (isHuman)
-            briefing += "\n\n" + Loc.GetString("nf-pirate-role-greeting-equipment") + "\n";
-
-        return briefing;
+        if (HasComp<HumanoidAppearanceComponent>(uid))
+            ret += "\n\n" + Loc.GetString("nf-pirate-role-greeting-equipment") + "\n";
+        return ret;
     }
 }

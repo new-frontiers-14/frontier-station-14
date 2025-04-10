@@ -1,14 +1,6 @@
--nf-pirate-role-greeting-suffix = fulfill
-    bounties from the Freebooters' Union in exchange
-    for doubloons.
-    Evade the law and amass a fortune!
+-nf-pirate-role-greeting-suffix = fulfill bounties from the Freebooters' Union in exchange for doubloons. Evade the law and amass a fortune!
 
-nf-pirate-role-greeting-human =
-    You are a pirate aboard a hidden cove deep in space.
-    Help your captain plunder the sector, and {-nf-pirate-role-greeting-suffix}
-
-nf-pirate-role-greeting-animal =
-    You are a pirate animal.
+nf-pirate-role-greeting = You are a pirate aboard a hidden cove deep in space.
     Help your captain plunder the sector, and {-nf-pirate-role-greeting-suffix}
 
 nf-piratecaptain-role-greeting = 
@@ -19,7 +11,7 @@ nf-pirate-role-greeting-equipment =
     Use the consoles in the lobby to find and redeem bounties and
     sell loose contraband crates. Purchase a ship and head off on adventure!
 
-objective-issuer-nf-pirate = [color=#746694]Freebooters' Union[/color]
+objective-issuer-nf-pirate = [color=#F6CE64]Freebooters' Union[/color]
 
 nf-pirate-round-end-agent-name = pirate
 

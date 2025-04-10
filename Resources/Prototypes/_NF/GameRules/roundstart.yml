@@ -91,6 +91,10 @@
   id: NFPirate
   components:
   - type: NFPirateRule
+  - type: AntagObjectives
+    objectives:
+    - NFPiratePlunderObjective
+    - NFPirateBountyObjective
   - type: AntagSelection
     agentName: nf-pirate-round-end-agent-name
     definitions:
@@ -111,6 +115,7 @@
         components:
         - AutoPirate
       briefing:
+        greeting: nf-pirate-role-greeting
         sound: "/Audio/_NF/Misc/pirate_greeting.ogg"
     - prefRoles: [ NFPirateCaptain ]
       max: 999
@@ -129,6 +134,7 @@
       mindRoles:
       - MindRoleNFPirate
       briefing:
+        greeting: nf-piratecaptain-role-greeting
         sound: "/Audio/_NF/Misc/pirate_greeting.ogg"
 
 # variation passes
