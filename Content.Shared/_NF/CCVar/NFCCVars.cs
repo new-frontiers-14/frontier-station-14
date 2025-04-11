@@ -39,6 +39,15 @@ public sealed class NFCCVars
         CVarDef.Create("nf14.uncryo.maxtime", 180 * 60f, CVar.SERVER | CVar.REPLICATED);
 
     /*
+     *  Game
+     */
+    /// <summary>
+    /// If false, the game will not display the round's objectives in the summary window.
+    /// </summary>
+    public static readonly CVarDef<bool> GameShowObjectives =
+        CVarDef.Create("nf14.game.showobjectives", false, CVar.ARCHIVE | CVar.SERVERONLY);
+
+    /*
      *  Public Transit
      */
     /// <summary>
