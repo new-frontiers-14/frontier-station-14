@@ -1,0 +1,170 @@
+#region base
+- type: entity
+  id: NFBaseWeaponEnergyRifleAssault
+  parent: [ NFBaseWeaponEncumbranceRifleAssault, BaseWeaponBattery ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -2.8
+    maxAngle: -5.6
+  - type: Gun
+    minAngle: 5.6
+    maxAngle: 11.2
+    angleIncrease: 1
+    angleDecay: 2
+    fireRate: 2.5
+    selectedMode: FullAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 1.5
+    pvsIncrease: 0
+  - type: Battery # Default: 30 shots with 80 fireCost
+    maxCharge: 2400
+    startingCharge: 2400
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 4 # Default recharge rate: 1 shot per 20 seconds with 80 fireCost
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleAssaultFireModes
+  parent: NFBaseWeaponEnergyRifleAssault
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserMedium
+    fireCost: 80
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBulletLaserMedium
+      fireCost: 80
+    - proto: NFBulletDisabler
+      fireCost: 80
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleAssaultHitScan
+  parent: NFBaseWeaponEnergyRifleAssault
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedMediumLaser
+    fireCost: 80
+
+# WizDen
+#region Pulse
+- type: entity
+  id: NFWeaponEnergyRiflePulseAssaultCarbine
+  parent: [ NFBaseWeaponEnergyRifleAssaultHitScan, BaseC2ContrabandUnredeemable ]
+  name: pulse carbine
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Assault Rifle
+    Ammo: Pulse Beam
+    Desc.: A high tech energy carbine favoured by the NT-ERT operatives. On the handle is a label that says 'for authorized use only.'
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: HitscanBatteryAmmoProvider
+    proto: NFPulse
+    fireCost: 80
+  - type: Battery # 40 shots
+    maxCharge: 3200
+    startingCharge: 3200
+
+#region Laser
+# Frontier
+- type: entity
+  id: WeaponLaserTurboNF
+  parent: [ BaseC3Contraband, NFBaseWeaponEnergyRifleAssaultFireModes ]
+  name: turbo laser mk3
+  description: |-
+    Manufacturer: Cybersun Industries
+    Type: Energy Assault Rifle
+    Ammo: Medium Power Laser Bolt
+    Desc.: A turbo laser ripped from the guardian unit. Appears to be a rather old model. Doesn't seem to be working properly. Supposedly highly illegal."
+    ---
+  components:
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: Item
+    size: Ginormous
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/turbo_laser.rsi
+    layers:
+    - state: icon-base
+    - state: charge-level-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+    sprite: _NF/Objects/Weapons/Guns/Battery/turbo_laser.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-back
+      - state: equipped-unshaded
+        shader: unshaded
+      suitstorage:
+      - state: equipped-back
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: Battery # 50 shots
+    maxCharge: 4000
+    startingCharge: 4000
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    fireRate: 8
+    minAngle: 1
+    maxAngle: 10
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
+    soundEmpty:
+      path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
+  - type: MagazineVisuals
+    magState: charge-level
+    steps: 6
+    zeroVisible: true
+  - type: Appearance

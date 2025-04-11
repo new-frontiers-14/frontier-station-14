@@ -1,7 +1,6 @@
 # Base prototypes can be found in \Resources\Prototypes\Recipes\Lathes\security.yml
 
 # Recipes
-
 - type: latheRecipe # crossbow bolt
   id: CrossbowBolt
   parent: BaseAmmoRecipe
@@ -41,13 +40,14 @@
 - type: latheRecipe # gestio mag empty
   id: MagazineLightRifleLowCapacityEmpty
   parent: BaseEmptyAmmoRecipe
-  result: MagazineLightRifleLowCapacityEmpty
+  result: NFMagazineLowCapacityRifle30Empty
   materials:
     Steel: 20
+
 - type: latheRecipe # Gestio small rubber mag
   id: MagazineLightRifleLowCapacityRubber
   parent: BaseAmmoRecipe
-  result: MagazineLightRifleLowCapacityRubber
+  result: NFMagazineLowCapacityRifle30Rubber
   materials:
     Steel: 82 #33% of cost in steel
     Plastic: 163 #66% of 245
@@ -55,7 +55,7 @@
 - type: latheRecipe # gestio mag
   id: MagazineLightRifleLowCapacity
   parent: BaseAmmoRecipe
-  result: MagazineLightRifleLowCapacity
+  result: NFMagazineLowCapacityRifle30
   materials:
     Steel: 245 # 20 [Steel per empty mag] + 15 [bullets] * 15 [Steel per bullet]
 
@@ -108,7 +108,7 @@
 - type: latheRecipe
   id: MagazinePistolRubber
   parent: BaseAmmoRecipe
-  result: MagazinePistolRubber
+  result: NFMagazinePistol35Rubber
   materials:
     Steel: 100 #50% of box cost
     Plastic: 200 #50% of box cost
@@ -116,7 +116,7 @@
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazinePistolSubMachineGunRubber
-  result: MagazinePistolSubMachineGunRubber
+  result: NFMagazineSubMachineGun35Rubber
   materials:
     Steel: 150 #75% of box cost
     Plastic: 300 #75% of box cost
@@ -124,7 +124,7 @@
 - type: latheRecipe
   id: MagazineBoxLightRifleRubber
   parent: BaseAmmoRecipe
-  result: MagazineBoxLightRifleRubber
+  result: NFAmmunitionBoxRifle30Rubber
   materials:
     Steel: 300
     Plastic: 600
@@ -132,7 +132,7 @@
 - type: latheRecipe
   id: MagazineLightRifleRubber
   parent: BaseAmmoRecipe
-  result: MagazineLightRifleRubber
+  result: NFMagazineRifle30Rubber
   materials:
     Steel: 150 #50% of ammo box
     Plastic: 300 #50% of ammo box
@@ -140,7 +140,7 @@
 - type: latheRecipe
   id: MagazineBoxMagnumRubber
   parent: BaseAmmoRecipe
-  result: MagazineBoxMagnumRubber
+  result: NFAmmunitionBoxPistol45Rubber
   materials:
     Steel: 80
     Plastic: 160
@@ -148,7 +148,7 @@
 - type: latheRecipe
   id: SpeedLoaderMagnumRubber
   parent: BaseAmmoRecipe
-  result: SpeedLoaderMagnumRubber
+  result: NFSpeedLoaderPistol45Rubber
   materials:
     Steel: 40 #50% of ammo box
     Plastic: 80 #50% of ammo box
@@ -156,7 +156,7 @@
 - type: latheRecipe
   id: MagazineBoxPistolRubber
   parent: BaseAmmoRecipe
-  result: MagazineBoxPistolRubber
+  result: NFAmmunitionBoxPistol35Rubber
   materials:
     Steel: 200
     Plastic: 400
@@ -164,7 +164,7 @@
 - type: latheRecipe
   id: MagazineBoxRifleRubber
   parent: BaseAmmoRecipe
-  result: MagazineBoxRifleRubber
+  result: NFAmmunitionBoxRifle20Rubber
   materials:
     Steel: 250
     Plastic: 500
@@ -172,7 +172,7 @@
 - type: latheRecipe
   id: MagazineRifleRubber
   parent: BaseAmmoRecipe
-  result: MagazineRifleRubber
+  result: NFMagazineRifle20Rubber
   materials:
     Steel: 125 #50% of ammo box
     Plastic: 250 #50% of ammo box
@@ -190,7 +190,7 @@
 
 - type: latheRecipe
   id: WeaponPistolPollock
-  result: WeaponPistolPollock
+  result: NFWeaponPistolPollock
   categories:
   - Weapons
   completetime: 3

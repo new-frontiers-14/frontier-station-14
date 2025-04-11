@@ -1,0 +1,306 @@
+#region base
+- type: entity
+  id: NFBaseWeaponEnergyPistol
+  parent: [ NFBaseWeaponEncumbrancePistol, BaseWeaponBatterySmall ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Gun
+    minAngle: 4.5
+    maxAngle: 9
+    angleIncrease: 0.25
+    angleDecay: 1
+    fireRate: 2.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: Battery # Default: 16 shots with 60 fireCost
+    maxCharge: 960
+    startingCharge: 960
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 3 # Default recharge rate: 1 shot per 20 seconds with 60 fireCost
+
+- type: entity
+  id: NFBaseWeaponEnergyPistolFireModes
+  parent: NFBaseWeaponEnergyPistol
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserLow
+    fireCost: 60
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBulletLaserLow
+      fireCost: 60
+    - proto: NFBulletDisabler
+      fireCost: 60
+
+- type: entity
+  id: NFBaseWeaponEnergyPistolHitScan
+  parent: NFBaseWeaponEnergyPistol
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedLightLaser
+    fireCost: 60
+
+# WizDen
+#region Laser
+- type: entity
+  id: NFWeaponEnergyPistolLaserSvalinn
+  parent: [ BaseC1Contraband, WeaponLaserSvalinn ]
+  name: svalinn
+  suffix: Frontier
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Pistol
+    Ammo: Low Power Laser Bolt
+    Desc.: A cheap and widely used laser pistol.
+    ---
+
+- type: entity
+  id: NFWeaponEnergyPistolLaserMakeshift
+  parent: [ BaseC1Contraband, NFBaseWeaponEnergyPistolHitScan ]
+  name: makeshift laser pistol
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Energy Pistol
+    Ammo: Low Power Laser Beam
+    Desc.: Better pray it won't burn your hands off. At least it's legal.
+    ---
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/makeshift.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/makeshift.rsi
+  - type: Battery # 14 shots
+    maxCharge: 840
+    startingCharge: 840
+  - type: BatterySelfRecharger # doesn't recharge
+    autoRecharge: false
+
+- type: entity
+  id: NFWeaponEnergyPistolLaserAntique
+  parent: [ BaseC1Contraband, NFBaseWeaponEnergyPistolFireModes ]
+  name: antique laser pistol
+  suffix: Frontier
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Pistol
+    Ammo: Low Power Laser Bolt
+    Desc.: This is an antique laser pistol with two settings: disable and kill. All craftsmanship is of the highest quality. It is decorated with a mahogany grip and chrome filigree. The object menaces with spikes of energy. On the item is an image of a captain and a clown. The clown is dead. The captain is striking a heroic pose.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
+  - type: Battery # 26 shots
+    maxCharge: 1560
+    startingCharge: 1560
+  - type: BatterySelfRecharger # Recharges 1 shot per 2 seconds
+    autoRecharge: true
+    autoRechargeRate: 30
+
+- type: entity
+  id: NFWeaponEnergyPistolLaserAdvanced
+  parent: [ BaseC1Contraband, NFBaseWeaponEnergyPistolFireModes ]
+  name: advanced laser pistol
+  suffix: Frontier
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Pistol
+    Ammo: Low Power Laser Bolt
+    Desc.: An experimental civilian grade high-energy laser pistol with a self-charging nuclear battery and two settings: disable and kill.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+  - type: Battery # 26 shots
+    maxCharge: 1560
+    startingCharge: 1560
+
+# Frontier
+- type: entity
+  id: NFWeaponEnergyPistolLaser # TODO: migrate to NFWeaponEnergyPistolLaser
+  parent: [ BaseC1Contraband, NFBaseWeaponEnergyPistolFireModes ]
+  name: laser pistol
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Pistol
+    Ammo: Low Power Laser Bolt
+    Desc.: An older model of civilian-grade laser pistol with two settings: disable and kill.
+    ---
+  components:
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
+
+#region Pulse
+- type: entity
+  id: NFWeaponEnergyPistolPulse
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyPistolHitScan, WeaponPulsePistol ]
+  name: pulse pistol
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Pistol
+    Ammo: Pulse Beam
+    Desc.: A state of the art energy pistol favoured as a sidearm by the NT operatives. On the handle is a label that says 'for authorized use only.'
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+  - type: HitscanBatteryAmmoProvider
+    proto: NFPulse
+    fireCost: 60
+  - type: Battery # 20 shots
+    maxCharge: 1200
+    startingCharge: 1200
+
+#region Diasblers
+- type: entity
+  id: NFWeaponEnergyPistolDisabler
+  parent: [ BaseC1Contraband, NFBaseWeaponEnergyPistolFireModes, WeaponDisabler ]
+  name: disabler pistol
+  suffix: Frontier
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Pistol
+    Ammo: Energy Bolt
+    Desc.: A civilian grade self-defense weapon that exhausts organic targets, weakening them until they collapse.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletDisabler
+    fireCost: 60
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBulletDisabler
+      fireCost: 60
+  - type: Battery # 20 shots
+    maxCharge: 1200
+    startingCharge: 1200
+
+#region Other
+# Frontier
+- type: entity
+  id: NFWeaponHoloflareGun
+  parent: [ BaseC1Contraband, NFBaseWeaponEnergyPistol ]
+  name: holoflare pistol
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Tool
+    Ammo: Energy Bolt
+    Desc.: A modification of a civilian-grade laser pistol that can project holoflares onto surfaces.
+    ---
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+    - state: mode-cyan
+      shader: unshaded
+      map: [ "Firemode" ]
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 2
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/flaregun.ogg
+    projectileSpeed: 15
+  - type: Battery
+    maxCharge: 720
+    startingCharge: 720
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
+  - type: ProjectileBatteryAmmoProvider
+    proto: HoloFlareCyan
+    fireCost: 240
+  - type: EnergyGun
+    fireModes:
+    - proto: HoloFlareCyan
+      fireCost: 240
+      name: cyan
+      state: cyan
+    - proto: HoloFlareRed
+      fireCost: 240
+      name: red
+      state: red
+    - proto: HoloFlareYellow
+      fireCost: 240
+      name: yellow
+      state: yellow
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.EnergyGunFireModeVisuals.State:
+        Firemode:
+          Cyan: { state: mode-cyan }
+          Red: { state: mode-red }
+          Yellow: { state: mode-yellow }
+  - type: StaticPrice
+    price: 250

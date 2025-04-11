@@ -52,6 +52,7 @@
     price: 500
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: AKMS
   parent: [BaseWeaponRifle, BaseC3SyndicateContraband] # Frontier: BaseSecurityContraband<BaseC3SyndicateContraband
   id: WeaponRifleAk
@@ -103,6 +104,7 @@
     id: AKMS # Frontier
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: M-90gl
   parent: [BaseWeaponRifle, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponRifleM90GrenadeLauncher
@@ -147,20 +149,21 @@
   - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: Lecter
   parent: [BaseWeaponRifle, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: WeaponRifleLecter
   description: A high end military grade assault rifle. Uses .20 rifle ammo. On the receiver is a label that says 'for authorized use only.'
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi # Frontier: add _NF prefix
+    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi # Frontier: add _NF prefix
+    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
@@ -194,6 +197,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: Foam Force Astro Ace
   parent: [BaseWeaponShotgun, BaseGunWieldable]
   id: WeaponRifleFoam

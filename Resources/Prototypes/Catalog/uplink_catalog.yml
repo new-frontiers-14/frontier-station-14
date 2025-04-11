@@ -5,7 +5,7 @@
   id: UplinkPistolViper
   name: uplink-pistol-viper-name
   description: uplink-pistol-viper-desc
-  productEntity: WeaponPistolViper
+  productEntity: NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -15,10 +15,10 @@
   - UplinkWeaponry
 
 - type: listing
-  id: UplinkRevolverPython
-  name: uplink-revolver-python-name
-  description: uplink-revolver-python-desc
-  productEntity: WeaponRevolverPythonAP
+  id: UplinkRevolverRitland # Frontier: UplinkRevolverPython<UplinkRevolverRitland
+  name: uplink-revolver-ritland-name # Frontier: uplink-revolver-python-name<uplink-revolver-ritland-name
+  description: uplink-revolver-ritland-desc # Frontier: uplink-revolver-python-desc<uplink-revolver-ritland-desc
+  productEntity: NFWeaponRevolverRitland45 # Frontier: WeaponRevolverPythonAP<NFWeaponRevolverRitland45
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -31,8 +31,8 @@
 - type: listing
   id: UplinkPistolCobra
   name: uplink-pistol-cobra-name
-  description: uplink-pistol-cobra-desc
-  productEntity: WeaponPistolCobra
+  description: uplink-pistol-cobra45-desc # Frontier: uplink-pistol-cobra-desc<uplink-pistol-cobra45-desc
+  productEntity: NFWeaponPistolCobra # Frontier: WeaponPistolCobra<NFWeaponPistolCobra
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -46,7 +46,7 @@
   id: UplinkRifleMosin
   name: uplink-rifle-mosin-name
   description: uplink-rifle-mosin-desc
-  productEntity: WeaponSniperMosin
+  productEntity: NFWeaponRifleBarlowsBolt # Frontier: WeaponSniperMosin<NFWeaponRifleBarlowsBolt
   cost:
     Telecrystal: 1
   categories:
@@ -488,10 +488,10 @@
 # For the Cobra
 - type: listing
   id: UplinkMagazinePistolCaselessRifle
-  name: uplink-pistol-magazine-caseless-name
-  description: uplink-pistol-magazine-caseless-desc
+  name: uplink-pistol-magazine-cobra-name # Frontier: uplink-pistol-magazine-caseless-name<uplink-pistol-magazine-cobra-name
+  description: uplink-pistol-magazine-cobra-desc # Frontier: uplink-pistol-magazine-caseless-desc<uplink-pistol-magazine-cobra-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolCaselessRifle
+  productEntity: NFMagazinePistol45 # Frontier:  MagazinePistolCaselessRifle<NFMagazinePistol45
   cost:
     Telecrystal: 1
   categories:
@@ -500,10 +500,10 @@
 # For the Python
 - type: listing
   id: UplinkSpeedLoaderMagnumAP
-  name: uplink-speedloader-magnum-name
-  description: uplink-speedloader-magnu-desc
+  name: uplink-speedloader-magnum-non-ap-name # Frontier: uplink-speedloader-magnum-name<uplink-speedloader-magnum-non-ap-name
+  description: uplink-speedloader-magnum-non-ap-desc # Frontier: uplink-speedloader-magnu-desc<uplink-speedloader-magnum-non-ap-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: SpeedLoaderMagnumAP
+  productEntity: NFSpeedLoaderPistol45 # Frontier: SpeedLoaderMagnumAP<NFSpeedLoaderPistol45
   cost:
     Telecrystal: 3
   categories:
@@ -1883,7 +1883,7 @@
     Telecrystal: 10 # Frontier: 6<10 (all the time in the world)
   categories:
   - UplinkWeaponry # Frontier: UplinkJob<UplinkWeaponry
-  # conditions: # Frontier: 
+  # conditions: # Frontier:
   # - !type:BuyerJobCondition
   #   whitelist:
   #   - Botanist
@@ -1991,7 +1991,7 @@
 #     Telecrystal: 2
 #   categories:
 #   - UplinkJob
-#   conditions: 
+#   conditions:
 #   - !type:BuyerJobCondition
 #     whitelist:
 #     - Clown

@@ -1,0 +1,45 @@
+#region base
+- type: entity
+  id: NFBaseWeaponRifleSniper
+  parent: [ BaseC1Contraband, NFBaseWeaponEncumbranceSniper, NFBaseItemWeaponGun ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -2.7
+    maxAngle: -5.4
+  - type: Gun
+    minAngle: 5.4
+    maxAngle: 10.8
+    angleIncrease: 4
+    angleDecay: 4
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4.5
+    pvsIncrease: 0
+
+#region WizDen
+- type: entity
+  id: NFWeaponSniperHristov
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleChamber60, NFBaseWeaponRifleSniper ]
+  name: hristov
+  description: |-
+    Manufacturer: Steelbolt Tool Forge
+    Type: Sniper Rifle
+    Ammo: .60 rifle
+    Desc.: A portable anti-materiel rifle.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
