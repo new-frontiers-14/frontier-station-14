@@ -42,19 +42,19 @@ public sealed class FoldableSystem : EntitySystem
 
     private void OnFoldableOpenAttempt(EntityUid uid, FoldableComponent component, ref StorageOpenAttemptEvent args)
     {
-        if (component.IsFolded)
+        if (!component.IsFolded && !component.CanFoldInsideContainer) // Frontier: if things are folded or can unfold in storage, let them be stored
             args.Cancelled = true;
     }
 
     public void OnStoreThisAttempt(EntityUid uid, FoldableComponent comp, ref InsertIntoEntityStorageAttemptEvent args)
     {
-        if (comp.IsFolded)
+        if (!comp.IsFolded && !comp.CanFoldInsideContainer) // Frontier: if things are folded or can unfold in storage, let them be stored
             args.Cancelled = true;
     }
 
     public void OnStrapAttempt(EntityUid uid, FoldableComponent comp, ref StrapAttemptEvent args)
     {
-        if (comp.IsFolded)
+        if (!comp.IsFolded && !comp.CanFoldInsideContainer) // Frontier: if things are folded or can unfold in storage, let them be stored
             args.Cancelled = true;
     }
 
