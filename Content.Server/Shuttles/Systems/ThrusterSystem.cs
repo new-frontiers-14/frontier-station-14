@@ -637,6 +637,7 @@ public sealed class ThrusterSystem : EntitySystem
         }
     }
 
+    // Frontier: upgradeable machine parts, separate EMP handler
     private void OnRefreshParts(EntityUid uid, ThrusterComponent component, RefreshPartsEvent args)
     {
         if (component.IsOn) // safely disable thruster to prevent negative thrust
@@ -644,7 +645,18 @@ public sealed class ThrusterSystem : EntitySystem
 
         var thrustRating = args.PartRatings[component.MachinePartThrust];
 
-        component.Thrust = component.BaseThrust + component.ThrustPerPartLevel * (thrustRating - 1);
+        if (component.ThrustPerPartLevel.Length <= 0 || thrustRating <= 1)
+            component.Thrust = component.BaseThrust;
+        else if (thrustRating > component.ThrustPerPartLevel.Length)
+            component.Thrust = component.ThrustPerPartLevel[^1];
+        else
+        {
+            var idx = (int)thrustRating - 1;
+            component.Thrust = component.ThrustPerPartLevel[idx];
+            // Linearly interpolate if fractional
+            if (idx < component.ThrustPerPartLevel.Length - 1)
+                component.Thrust += (thrustRating - 1 - idx) * (component.ThrustPerPartLevel[idx + 1] - component.ThrustPerPartLevel[idx]);
+        }
 
         if (component.Enabled && CanEnable(uid, component))
             EnableThruster(uid, component);
@@ -666,6 +678,7 @@ public sealed class ThrusterSystem : EntitySystem
 
     //[ByRefEvent]
     //public record struct ThrusterToggleAttemptEvent(bool Cancelled);
+    // End Frontier: upgradeable machine parts, separate EMP handler
 
     #endregion
 

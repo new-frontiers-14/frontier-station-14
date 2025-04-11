@@ -72,7 +72,7 @@ namespace Content.Server.Shuttles.Components
         public ProtoId<MachinePartPrototype> MachinePartThrust = "Capacitor";
 
         [DataField]
-        public float ThrustPerPartLevel = 50;
+        public float[] ThrustPerPartLevel = [100, 140, 175, 205];
 
         /// <summary>
         /// Load on the power network, in watts.
