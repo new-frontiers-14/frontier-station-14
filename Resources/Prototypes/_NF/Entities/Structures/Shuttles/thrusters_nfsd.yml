@@ -7,6 +7,14 @@
     sprite: _NF/Structures/Shuttles/thrusternfsd.rsi
   - type: Machine
     board: ThrusterNfsdMachineCircuitboard
+  - type: Wires
+    layoutId: ThrusterNfsd
+  - type: WiresPanel
+    open: false
+  - type: UserInterface
+    interfaces:
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
 
 - type: entity
   id: DebugThrusterNfsd
