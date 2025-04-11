@@ -1,7 +1,11 @@
 using Content.Server.Emp; // Frontier: Upstream - #28984
+using Content.Server.Popups; // Frontier
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Construction.Components; // Frontier
 using Content.Shared.Gravity;
+using Content.Shared.Tools.Components; // Frontier
+using Content.Shared.Popups; // Frontier
 
 namespace Content.Server.Gravity;
 
@@ -9,6 +13,8 @@ public sealed class GravityGeneratorSystem : EntitySystem
 {
     [Dependency] private readonly GravitySystem _gravitySystem = default!;
     [Dependency] private readonly SharedPointLightSystem _lights = default!;
+
+    [Dependency] private readonly PopupSystem _popupSystem = default!; // Frontier
 
     public override void Initialize()
     {
@@ -18,6 +24,8 @@ public sealed class GravityGeneratorSystem : EntitySystem
         SubscribeLocalEvent<GravityGeneratorComponent, ChargedMachineActivatedEvent>(OnActivated);
         SubscribeLocalEvent<GravityGeneratorComponent, ChargedMachineDeactivatedEvent>(OnDeactivated);
         // SubscribeLocalEvent<GravityGeneratorComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
+        SubscribeLocalEvent<GravityGeneratorComponent, UnanchorAttemptEvent>(OnUnanchorAttempt); // Frontier
+        SubscribeLocalEvent<GravityGeneratorComponent, ToolUseAttemptEvent>(OnToolUseAttempt); // Frontier
     }
 
     public override void Update(float frameTime)
@@ -56,6 +64,48 @@ public sealed class GravityGeneratorSystem : EntitySystem
         if (TryComp(xform.ParentUid, out GravityComponent? gravity))
         {
             _gravitySystem.RefreshGravity(xform.ParentUid, gravity);
+        }
+    }
+
+    /// <summary>
+    /// Frontier: Prevent unanchoring when anchor is active
+    /// </summary>
+    private void OnUnanchorAttempt(Entity<GravityGeneratorComponent> ent, ref UnanchorAttemptEvent args)
+    {
+        if (!ent.Comp.GravityActive)
+            return;
+
+        _popupSystem.PopupEntity(
+            Loc.GetString("gravity-generator-unanchoring-failed"),
+            ent,
+            args.User,
+            PopupType.Medium);
+
+        args.Cancel();
+    }
+
+    /// <summary>
+    /// Frontier: Prevent disassembly when anchor is active
+    /// </summary>
+    private void OnToolUseAttempt(Entity<GravityGeneratorComponent> ent, ref ToolUseAttemptEvent args)
+    {
+        if (!ent.Comp.GravityActive)
+            return;
+
+        foreach (var quality in args.Qualities)
+        {
+            // prevent reconstruct
+            if (quality == "Prying")
+            {
+                _popupSystem.PopupEntity(
+                    Loc.GetString("gravity-generator-teardown-failed"),
+                     ent,
+                     args.User,
+                     PopupType.Medium);
+
+                args.Cancel();
+                return;
+            }
         }
     }
 
