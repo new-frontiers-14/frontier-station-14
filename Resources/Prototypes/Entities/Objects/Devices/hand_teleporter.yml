@@ -21,6 +21,7 @@
   parent: BaseItem
   name: interdimensional teleporter
   description: Allows you to open stable portal gates that are not limited by distance.
+  categories: [HideSpawnMenu] # Frontier: use NF variant
   components:
   - type: Sprite
     sprite: /Textures/Objects/Devices/hand_teleporter.rsi
@@ -28,5 +29,7 @@
     - state: icon
       color: green
   - type: HandTeleporter
+    allowPortalsOnDifferentGrids: true
+    allowPortalsOnDifferentMaps: true
     firstPortalPrototype: PortalGatewayBlue
     secondPortalPrototype: PortalGatewayOrange
