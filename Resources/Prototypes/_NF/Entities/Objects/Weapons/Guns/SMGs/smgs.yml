@@ -1,8 +1,8 @@
-# BASE SMG
+#region base
 - type: entity
   id: NFBaseWeaponSubMachineGun
-  parent: [ NFBaseWeaponSizeSubMachineGun, BaseWeaponSubMachineGun ]
-  suffix: Frontier
+  parent: [ NFBaseWeaponEncumbranceSubMachineGun, NFBaseItemWeaponGunMagazineFed ]
+  name: submachine gun
   abstract: true
   components:
   - type: Wieldable
@@ -23,10 +23,46 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/smg.ogg
 
-# WizDen
+#region chamber
+- type: entity
+  id: NFBaseWeaponSubMachineGunChamber35
+  parent: NFBaseWeaponSubMachineGun
+  abstract: true
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineSubMachineGun35
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolSubMachineGun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+#region WizDen
 - type: entity
   id: NFWeaponSubMachineGunAtreides
-  parent: [ NFBaseWeaponSubMachineGun, BaseC3SyndicateContraband, WeaponSubMachineGunAtreides ]
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponSubMachineGunChamber35 ]
   name: atreides
   description: |-
     Manufacturer: Gorlex Steel Works
@@ -42,29 +78,10 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineSubMachineGun35
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazinePistolSubMachineGun
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgePistol
 
 - type: entity
   id: NFWeaponSubMachineGunC20r
-  parent: [ NFBaseWeaponSubMachineGun, BaseC3SyndicateContraband, WeaponSubMachineGunC20r ]
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponSubMachineGunChamber35 ]
   name: c-20r
   description: |-
     Manufacturer: Cybersun Industries
@@ -73,32 +90,19 @@
     Desc.: An illegal firearm that is often used by the infamous nuclear operatives.
     ---
   components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineSubMachineGun35
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazinePistolSubMachineGun
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgePistol
 
 - type: entity
   id: NFWeaponSubMachineGunDrozd
-  parent: [ NFBaseWeaponSubMachineGun, BaseC2ContrabandUnredeemable, WeaponSubMachineGunDrozd ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponSubMachineGunChamber35 ]
   name: drozd
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -114,29 +118,10 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineSubMachineGun35
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazinePistolSubMachineGun
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgePistol
 
 - type: entity
   id: NFWeaponSubMachineGunWt550
-  parent: [ NFBaseWeaponSubMachineGun, BaseC2ContrabandUnredeemable, WeaponSubMachineGunWt550 ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponSubMachineGun ]
   name: wt550
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -147,8 +132,23 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/SMGs/wt550.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: base-unshaded
+        map: ["enum.GunVisualLayers.BaseUnshaded"]
+        shader: unshaded
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: mag-unshaded-0
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/SMGs/wt550.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -168,8 +168,16 @@
         whitelist:
           tags:
             - CartridgePistol
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
 
-# WizDen: Rubber
+#region WizDen: Rubber
 - type: entity
   parent: NFWeaponSubMachineGunDrozd
   id: NFWeaponSubMachineGunDrozdRubber
@@ -195,10 +203,10 @@
             tags:
               - CartridgePistol
 
-# DeltaV
+#region DeltaV
 - type: entity
   id: NFWeaponSubMachineGunTypewriter
-  parent: [ NFBaseWeaponSubMachineGun, BaseC2Contraband, WeaponSubMachineGunTypewriter ]
+  parent: [ BaseC2Contraband, NFBaseWeaponSubMachineGunChamber35 ]
   name: typewriter
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -207,28 +215,10 @@
     Desc.: A modern take on the classic design used by mobsters throughout space and time.
     ---
   components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/SMGs/typewriter.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/SMGs/typewriter.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/typewriter.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineSubMachineGun35
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazinePistolSubMachineGun
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgePistol
-
-# Frontier
-# TODO: add .45 smg

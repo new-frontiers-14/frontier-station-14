@@ -1,8 +1,7 @@
-# BASE RIFLE
+#region base
 - type: entity
   id: NFBaseWeaponRifle
-  parent: [ NFBaseWeaponSizeRifle, BaseWeaponSniper ]
-  suffix: Frontier
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseItemWeaponGun ]
   abstract: true
   components:
   - type: Wieldable
@@ -27,10 +26,65 @@
     maxOffset: 4.5
     pvsIncrease: 0
 
-# WizDen
+#region chamber
+- type: entity
+  id: NFBaseWeaponRifleChamber20
+  abstract: true
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: BallisticAmmoProvider
+    capacity: 15
+    proto: NFCartridgeRifle20
+    whitelist:
+      tags:
+      - CartridgeRifle
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  id: NFBaseWeaponRifleChamber30
+  abstract: true
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: NFCartridgeRifle30
+    whitelist:
+      tags:
+      - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  id: NFBaseWeaponRifleChamber60
+  abstract: true
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: BallisticAmmoProvider
+    capacity: 5
+    proto: NFCartridgeRifle60
+    whitelist:
+      tags:
+      - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+#region WizDen
 - type: entity
   id: NFWeaponRifleBarlowsBolt
-  parent: [ NFBaseWeaponRifle, BaseC3SyndicateContraband, WeaponSniperMosin ]
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleChamber30, NFBaseWeaponRifle ]
   name: barlows bolt-action rifle # Renamed: real brand name
   description: |-
     Manufacturer: Steelbolt Tool Forge
@@ -39,12 +93,16 @@
     Desc.: A weapon for hunting, or endless trench warfare. Equipped with bayonet.
     ---
   components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
   - type: BallisticAmmoProvider
     proto: NFCartridgeRifle30
 
 - type: entity
   id: NFWeaponRifleMusket
-  parent: [ NFBaseWeaponRifle, BaseC3PirateContraband, Musket ]
+  parent: [ BaseC3PirateContraband, NFBaseWeaponRifleChamber60, NFBaseWeaponRifle ]
   name: musket
   description: |-
     Manufacturer: Steelbolt Tool Forge
@@ -53,14 +111,14 @@
     Desc.: This should've been in a museum long before you were born.
     ---
   components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/musket.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/musket.rsi
   - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - CartridgeAntiMateriel
     capacity: 1
-    proto: NFCartridgeRifle60
 
-# WizDen: Rubber
+#region WizDen: Rubber
 - type: entity
   id: NFWeaponRifleBarlowsBoltRubber
   parent: NFWeaponRifleBarlowsBolt
@@ -69,41 +127,55 @@
   - type: BallisticAmmoProvider
     proto: NFCartridgeRifle30Rubber
 
-# DeltaV
+#region DeltaV
 - type: entity
   id: NFWeaponRifleCeremonial
-  parent: [ NFBaseWeaponRifle, BaseC3PirateContraband, WeaponSniperCeremonial ]
+  parent: [ NFBaseWeaponRifleChamber20, NFBaseWeaponRifle ]
   name: ceremonial rifle
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
     Type: Rifle
-    Ammo: .30 rifle
+    Ammo: .20 rifle
     Desc.: A ceremonial variant of the Mark 1 Rifle, in tasteful blue and white.
     ---
   components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Rifles/ceremonial_grand.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Rifles/ceremonial_grand.rsi
 
-# Frontier
+#region Frontier
 - type: entity
-  id: WeaponRifleRepeater
-  parent: [ BaseC1Contraband, NFBaseWeaponRifle, BaseGunWieldable ]
+  id: NFWeaponRifleRepeater
+  parent: [ NFBaseWeaponRifleChamber20, NFBaseWeaponRifle ]
   name: n2524 pattern repeater
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
     Type: Rifle
-    Ammo: .30 rifle
+    Ammo: .20 rifle
     Desc.: A civilian grade lever action firearm, favored by space cowboys across the Frontier for its reliability.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi
-  - type: StaticPrice
-    price: 500
   - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - CartridgeLightRifle
     capacity: 8
-    proto: NFCartridgeRifle30
+
+- type: entity
+  id: NFWeaponRifleSVS
+  parent: [ BaseGunMelee, NFBaseItemWeaponGunMagazineFed, NFBaseWeaponRifle, NFBaseWeaponRifleAssaultChamber30LowCapacity ]
+  name: svs-42
+  description: |-
+    Manufacturer: Frontier Gunsmith Consortium
+    Type: Rifle
+    Ammo: .30 rifle
+    Desc.: Originally designed by Samonov, this old surplus battle rifle looks like it's seen a few wars. Equipped with bayonet.
+    ---
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
+  - type: AltFireMelee
+    attackType: Light

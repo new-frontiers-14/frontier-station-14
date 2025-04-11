@@ -3,13 +3,34 @@
 - type: entity
   id: NFBaseSpeedLoaderPistol45
   name: "speed loader (.45 pistol)"
-  parent: [ BaseC1Contraband, SpeedLoaderMagnum, RecyclableItemSteelTiny ]
+  parent: [ BaseC1Contraband, BaseItem, RecyclableItemSteelTiny ]
   abstract: true
   components:
+  - type: Tag
+    tags:
+      - SpeedLoaderMagnum
+  - type: SpeedLoader
   - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeMagnum
     capacity: 6
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: base
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
 
 # .45 pistol, speed loaders
 - type: entity

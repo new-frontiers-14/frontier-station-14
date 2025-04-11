@@ -1,7 +1,7 @@
-# BASE SNIPER RIFLE
+#region base
 - type: entity
   id: NFBaseWeaponRifleSniper
-  parent: [ NFBaseWeaponSizeSniper, BaseWeaponSniper ]
+  parent: [ BaseC1Contraband, NFBaseWeaponEncumbranceSniper, NFBaseItemWeaponGun ]
   suffix: Frontier
   abstract: true
   components:
@@ -27,10 +27,10 @@
     maxOffset: 4.5
     pvsIncrease: 0
 
-# WizDen
+#region WizDen
 - type: entity
   id: NFWeaponSniperHristov
-  parent: [ NFBaseWeaponRifleSniper, BaseC3SyndicateContraband, WeaponSniperHristov ]
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleChamber60, NFBaseWeaponRifleSniper ]
   name: hristov
   description: |-
     Manufacturer: Steelbolt Tool Forge
@@ -39,5 +39,7 @@
     Desc.: A portable anti-materiel rifle.
     ---
   components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle60
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi

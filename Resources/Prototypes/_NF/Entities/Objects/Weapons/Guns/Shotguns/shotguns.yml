@@ -1,18 +1,13 @@
 #region base
 - type: entity
   id: NFBaseWeaponShotgun
-  parent: [ NFBaseWeaponSizePistol, BaseWeaponShotgun ]
-  suffix: Frontier
+  parent: [ BaseC1Contraband, NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGun ]
   abstract: true
   components:
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - ShellShotgun
-    capacity: 7
-    proto: NFShellShotgunBuckshot
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
   - type: Gun
     minAngle: 21.8
     maxAngle: 43.6
@@ -29,8 +24,7 @@
 
 - type: entity
   id: NFBaseWeaponShotgunWieldable
-  parent: [ NFBaseWeaponSizeRifle, NFBaseWeaponShotgun ]
-  suffix: Frontier
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseWeaponShotgun ]
   abstract: true
   components:
   - type: Wieldable
@@ -40,49 +34,38 @@
     minAngle: -10.9
     maxAngle: -21.8
 
-# WizDen
-#region Shotguns
 - type: entity
-  id: NFWeaponShotgunBulldog
-  parent: [ BaseC3SyndicateContraband, WeaponShotgunBulldog ]
-  name: bulldog
-  description: |-
-    Manufacturer: Gorlex Steel Works
-    Type: Shotgun
-    Ammo: .50 shells
-    Desc.: An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids.
-    ---
+  id: NFBaseWeaponShotgunWieldableMagazineFed
+  parent: [ NFBaseItemWeaponGunMagazineFed, NFBaseWeaponShotgunWieldable ]
+  abstract: true
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponShotgunShell50
+  abstract: true
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
-  - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunRequiresWield
-  - type: GunWieldBonus
-    minAngle: -10.9
-    maxAngle: -21.8
   - type: Gun
-    minAngle: 21.8
-    maxAngle: 43.6
-    angleIncrease: 5
-    angleDecay: 3
-    fireRate: 1.5
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: BallisticAmmoProvider
+    capacity: 7
+    proto: NFShellShotgunBuckshot
+    whitelist:
+      tags:
+      - ShellShotgun
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  id: NFBaseWeaponShotgunShell50Magazine
+  abstract: true
+  components:
+  - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: MagazineAmmoProvider
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -99,16 +82,34 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-  - type: MagazineAmmoProvider
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
+
+#region WizDen
+- type: entity
+  id: NFWeaponShotgunBulldog
+  parent:
+  - BaseC3SyndicateContraband
+  - NFBaseWeaponShotgunWieldableMagazineFed
+  - NFBaseWeaponShotgunShell50Magazine
+  name: bulldog
+  description: |-
+    Manufacturer: Gorlex Steel Works
+    Type: Shotgun
+    Ammo: .50 shells
+    Desc.: An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
 
 - type: entity
   id: NFWeaponShotgunDoubleBarreled
-  parent: [ NFBaseWeaponShotgunWieldable, BaseC1Contraband, WeaponShotgunDoubleBarreled ]
+  parent: [ NFBaseWeaponShotgunWieldable, NFBaseWeaponShotgunShell50 ]
   name: double-barreled shotgun
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -131,7 +132,7 @@
 
 - type: entity
   id: NFWeaponShotgunEnforcer
-  parent: [ NFBaseWeaponShotgunWieldable, BaseC2ContrabandUnredeemable, WeaponShotgunEnforcer ]
+  parent: [ NFBaseWeaponShotgunWieldable, NFBaseWeaponShotgunShell50 ]
   name: enforcer
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -149,7 +150,7 @@
 
 - type: entity
   id: NFWeaponShotgunKammerer
-  parent: [ NFBaseWeaponShotgunWieldable, BaseC1Contraband, WeaponShotgunKammerer ]
+  parent: [ NFBaseWeaponShotgunWieldable, NFBaseWeaponShotgunShell50 ]
   name: kammerer
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -169,7 +170,7 @@
 
 - type: entity
   id: NFWeaponShotgunSawn
-  parent: [ NFBaseWeaponShotgun, BaseC1Contraband, WeaponShotgunSawn ]
+  parent: [ NFBaseWeaponShotgun, NFBaseWeaponShotgunShell50 ]
   name: sawn-off shotgun
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -200,7 +201,7 @@
 
 - type: entity
   id: NFWeaponShotgunHandmade
-  parent: [ NFBaseWeaponShotgun, BaseC1Contraband, WeaponShotgunHandmade ]
+  parent: [ NFBaseWeaponShotgun, NFBaseWeaponShotgunShell50 ]
   name: handmade pistol
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -231,7 +232,7 @@
 
 - type: entity
   id: NFWeaponShotgunBlunderbuss
-  parent: [ NFBaseWeaponShotgunWieldable, BaseC3PirateContraband, WeaponShotgunBlunderbuss ]
+  parent: [ BaseC3PirateContraband, NFBaseWeaponShotgunWieldable, NFBaseWeaponShotgunShell50 ]
   name: blunderbuss
   description: |-
     Manufacturer: Steelbolt Tool Forge
@@ -246,10 +247,12 @@
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+  - type: BallisticAmmoProvider
+    capacity: 1
 
 - type: entity
   id: NFWeaponShotgunImprovised
-  parent: [ NFBaseWeaponShotgunWieldable, BaseC1Contraband, WeaponShotgunImprovised ]
+  parent: [ NFBaseWeaponShotgunWieldable, NFBaseWeaponShotgunShell50 ]
   name: improvised shotgun
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -270,7 +273,7 @@
 
 #region Less-lethal
 - type: entity
-  id: WeaponShotgunSawnNonlethal
+  id: NFWeaponShotgunSawnLessLethal
   parent: NFWeaponShotgunSawn
   suffix: Less-lethal
   components:

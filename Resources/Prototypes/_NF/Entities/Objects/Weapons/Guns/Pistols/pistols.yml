@@ -1,8 +1,8 @@
-# BASE PISTOL
+#region base
 - type: entity
   id: NFBaseWeaponPistol
-  parent: [ NFBaseWeaponSizePistol, BaseWeaponPistol ]
-  suffix: Frontier
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGunMagazineFed ]
+  name: pistol
   abstract: true
   components:
   - type: Gun
@@ -17,21 +17,17 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
-# WizDen
+#region chamber
 - type: entity
-  id: NFWeaponPistolMk58
-  parent: [ NFBaseWeaponPistol, BaseC1Contraband, WeaponPistolMk58 ]
-  name: mk58
-  description: |-
-    Manufacturer: NanoTrasen Munitions
-    Type: Pistol
-    Ammo: .35 pistol
-    Desc.: A cheap semiauto sidearm.
-    ---
+  id: NFBaseWeaponPistolChamber35
+  abstract: true
   components:
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -51,10 +47,96 @@
         whitelist:
           tags:
             - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  id: NFBaseWeaponPistolChamber35HighCapacity
+  abstract: true
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineHighCapacityPistol35
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  id: NFBaseWeaponPistolChamber45
+  abstract: true
+  components:
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazinePistol45
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol45
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+#region WizDen
+- type: entity
+  id: NFWeaponPistolMk58
+  parent: [ NFBaseWeaponPistol, NFBaseWeaponPistolChamber35 ]
+  name: mk58
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Pistol
+    Ammo: .35 pistol
+    Desc.: A cheap semiauto sidearm.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
 
 - type: entity
   id: NFWeaponPistolN1984
-  parent: [ NFBaseWeaponPistol, BaseC2ContrabandUnredeemable, WeaponPistolN1984]
+  parent: [ NFBaseWeaponPistol, NFBaseWeaponPistolChamber45 ]
   name: n1984
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -63,29 +145,14 @@
     Desc.: The sidearm of any self respecting officer. On the handle is a label that says 'for authorized use only.'
     ---
   components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazinePistol45
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineMagnum
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol45
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeMagnum
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
 
 - type: entity
   id: NFWeaponPistolCobra
-  parent: [ NFBaseWeaponPistol, BaseC3SyndicateContraband, WeaponPistolCobra ]
+  parent: [ NFBaseWeaponPistol, NFBaseWeaponPistolChamber45 ]
   name: cobra
   description: |-
     Manufacturer: Cybersun Industries
@@ -94,32 +161,17 @@
     Desc.: A rugged, robust operator handgun with inbuilt silencer. An illegal firearm often used by Syndicate agents.
     ---
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Pistols/cobra.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Pistols/cobra.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
       params:
-        volume: -14
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazinePistol45
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineMagnum
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol45
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeMagnum
+        volume: -5
 
-# WizDen: Rubber
+#region WizDen: Rubber
 - type: entity
   id: NFWeaponPistolMk58Nonlethal
   parent: NFWeaponPistolMk58
@@ -169,10 +221,10 @@
           tags:
             - CartridgeMagnum
 
-# DeltaV
+#region DeltaV
 - type: entity
   id: NFWeaponPistolUniversal
-  parent: [ NFBaseWeaponPistol, BaseC1Contraband, WeaponPistolUniversal ]
+  parent: [ NFBaseWeaponPistol, NFBaseWeaponPistolChamber35 ]
   name: mk32 "universal"
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -181,29 +233,17 @@
     Desc.: The Mark 32 Offensive Handgun.
     ---
   components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazinePistol35
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazinePistol
-            - MagazinePistolHighCapacity
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgePistol
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/universal.ogg
 
 - type: entity
   id: NFWeaponPistolUniversalNfsd
-  parent: [ NFBaseWeaponPistol, BaseC2ContrabandUnredeemable, WeaponPistolUniversal ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponPistolChamber35HighCapacity, NFWeaponPistolUniversal ]
   name: mk32 "universal" service pistol
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -212,37 +252,14 @@
     Desc.: The Mark 32 Offensive Service Pistol. On the handle is a label that says 'for authorized use only.'
     ---
   components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineHighCapacityPistol35
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazinePistol
-            - MagazinePistolHighCapacity
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgePistol
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/universal.ogg
 
+#region DeltaV: rubber
 - type: entity
   id: NFWeaponPistolUniversalNfsdLessLethal
-  parent: [ NFBaseWeaponPistol, BaseC2ContrabandUnredeemable, WeaponPistolUniversal ]
-  name: mk32 "universal" service pistol
-  suffix: Frontier, Less-Lethal
-  description: |-
-    Manufacturer: NanoTrasen Munitions
-    Type: Pistol
-    Ammo: .35 pistol
-    Desc.: The Mark 32 Offensive Service Pistol. On the handle is a label that says 'for authorized use only.'
-    ---
+  parent: NFWeaponPistolUniversalNfsd
   components:
   - type: ItemSlots
     slots:

@@ -47,7 +47,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponPistolCobra
+    - id: NFWeaponPistolCobra
       amount: 1
     - id: NFMagazinePistol45
       amount: 2
@@ -77,17 +77,6 @@
       amount: 1
     - id: NFMagazineHighCapacityPistol35
       amount: 2
-
-- type: entity
-  parent: WeaponCaseShort
-  id: WeaponCaseShortAntiqueLaserExpedition
-  suffix: Dungeon, Antique Laser
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponAntiqueLaser
-      amount: 1
 
 #region Revolvers
 - type: entity
@@ -358,7 +347,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponRifleGestio
+    - id: NFWeaponRifleAssaultGestio
       amount: 1
     - id: NFMagazineLowCapacityRifle30
       amount: 3
@@ -423,7 +412,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponRifleSVS
+    - id: NFWeaponRifleSVS
       amount: 1
     - id: NFMagazineLowCapacityRifle30
       amount: 2
@@ -503,6 +492,17 @@
 
 - type: entity
   parent: WeaponCaseShort
+  id: WeaponCaseShortAntiqueLaserExpedition
+  suffix: Dungeon, Antique Laser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponEnergyPistolLaserAntique
+      amount: 1
+
+- type: entity
+  parent: WeaponCaseShort
   id: WeaponCaseShortAdvancedLaserExpedition
   suffix: Dungeon, Advanced Laser
   categories: [ HideSpawnMenu ]
@@ -569,9 +569,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponRifleRepeater
+    - id: NFWeaponRifleRepeater
       amount: 1
-    - id: NFAmmunitionBoxRifle30
+    - id: NFAmmunitionBoxRifle20
       amount: 2
 
 - type: entity
@@ -622,7 +622,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponLauncherChinaLake
+    - id: NFWeaponLauncherChinaLake
       amount: 1
     - id: GrenadeFrag
       amount: 2

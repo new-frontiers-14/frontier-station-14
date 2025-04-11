@@ -1,7 +1,7 @@
 #region base
 - type: entity
   id: NFBaseWeaponEnergyPistol
-  parent: [ NFBaseWeaponSizePistol, BaseWeaponBatterySmall ]
+  parent: [ NFBaseWeaponEncumbrancePistol, BaseWeaponBatterySmall ]
   suffix: Frontier
   abstract: true
   components:
@@ -141,7 +141,7 @@
 
 # Frontier
 - type: entity
-  id: WeaponLaserPistolNF # TODO: migrate to NFWeaponEnergyPistolLaser
+  id: NFWeaponEnergyPistolLaser # TODO: migrate to NFWeaponEnergyPistolLaser
   parent: [ BaseC1Contraband, NFBaseWeaponEnergyPistolFireModes ]
   name: laser pistol
   description: |-

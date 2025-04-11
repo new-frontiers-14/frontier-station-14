@@ -1,7 +1,7 @@
-# BASE LMG
+#region base
 - type: entity
   id: NFBaseWeaponLightMachineGun
-  parent: [ NFBaseWeaponSizeSniper, BaseWeaponLightMachineGun ]
+  parent: [ NFBaseWeaponEncumbranceSniper, NFBaseItemWeaponGunMagazineFed ]
   suffix: Frontier
   abstract: true
   components:
@@ -19,7 +19,7 @@
     fireRate: 4
     burstFireRate: 5
     shotsPerBurst: 5
-    burstCooldown: 0.8
+    burstCooldown: 1
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -32,18 +32,17 @@
     walkModifier: 0.6
     sprintModifier: 0.6
 
-# WizDen
+#region chamber
 - type: entity
-  id: NFWeaponLightMachineGunL6
-  parent: [ NFBaseWeaponLightMachineGun, BaseC3SyndicateContraband, WeaponLightMachineGunL6 ]
-  name: gsw lmg-6
-  description: |-
-    Manufacturer: Gorlex Steel Works
-    Type: Light Machine Gun
-    Ammo: .20 rifle
-    Desc.: A rather traditionally made LMG with a pleasantly lacquered wooden pistol grip. An illegal firearm often used by Syndicate agents.
-    ---
+  id: NFBaseWeaponLightMachineGunChamber20
+  abstract: true
   components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -62,10 +61,35 @@
         whitelist:
           tags:
             - CartridgeRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+#region WizDen
+- type: entity
+  id: NFWeaponLightMachineGunL6
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponLightMachineGun, NFBaseWeaponLightMachineGunChamber20 ]
+  name: gsw lmg-6
+  description: |-
+    Manufacturer: Gorlex Steel Works
+    Type: Light Machine Gun
+    Ammo: .20 rifle
+    Desc.: A rather traditionally made LMG with a pleasantly lacquered wooden pistol grip. An illegal firearm often used by Syndicate agents.
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
 
 - type: entity
   id: NFWeaponLightMachineGunL6C
-  parent: [ NFBaseWeaponLightMachineGun, BaseC3SyndicateContraband, WeaponLightMachineGunL6C ]
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponLightMachineGun ]
   name: cyborg gsw lmg-6
   description: |-
     Manufacturer: Gorlex Steel Works
@@ -74,6 +98,16 @@
     Desc.: A GSW LMG-6 for use by cyborgs. Creates rifle ammo on the fly from an internal ammo fabricator, which slowly self-charges. An illegal firearm often used by Syndicate agents.
     ---
   components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
   - type: ProjectileBatteryAmmoProvider
     proto: NFCartridgeRifle20
     fireCost: 100
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25

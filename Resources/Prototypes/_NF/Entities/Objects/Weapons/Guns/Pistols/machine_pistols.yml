@@ -1,8 +1,8 @@
-# BASE MACHINE PISTOL
+#region base
 - type: entity
   id: NFBaseWeaponMachinePistol
   parent: NFBaseWeaponPistol
-  suffix: Frontier
+  name: machine pistol
   abstract: true
   components:
   - type: Gun
@@ -18,13 +18,11 @@
     availableModes:
     - FullAuto
     - Burst
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
-# WizDen
+#region WizDen
 - type: entity
   id: NFWeaponPistolEchis
-  parent: [NFBaseWeaponMachinePistol, BaseC3SyndicateContraband, WeaponPistolEchis]
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponMachinePistol ]
   name: echis
   description: |-
     Manufacturer: Cybersun Industries
@@ -33,13 +31,23 @@
     Desc.: A viper for use by cyborgs. Creates .35 ammo on the fly from an internal ammo fabricator, which slowly self-charges.
     ---
   components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
   - type: ProjectileBatteryAmmoProvider
     proto: NFBulletPistol35
     fireCost: 100
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
 
 - type: entity
   id: NFWeaponPistolViper
-  parent: [NFBaseWeaponMachinePistol, BaseC3SyndicateContraband, WeaponPistolViper]
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponMachinePistol, NFBaseWeaponPistolChamber35HighCapacity ]
   name: viper
   description: |-
     Manufacturer: Gorlex Steel Works
@@ -48,30 +56,15 @@
     Desc.: A small, easily concealable machine pistol. An illegal firearm often used by Syndicate agents.
     ---
   components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineHighCapacityPistol35
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazinePistol
-            - MagazinePistolHighCapacity
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgePistol
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
 
-# DeltaV
+#region DeltaV
 - type: entity
   id: NFWeaponPistolPollock
-  parent: [NFBaseWeaponMachinePistol, BaseC1Contraband, WeaponPistolPollock]
+  parent: [ NFBaseWeaponMachinePistol, NFBaseWeaponPistolChamber35 ]
   name: pollock
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -80,46 +73,11 @@
     Desc.: A compact and mass-produced combat pistol.
     ---
   components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazinePistol35
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazinePistol
-            - MagazinePistolHighCapacity
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgePistol
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Pistols/pollock.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Pistols/pollock.rsi
 
 - type: entity
   id: NFWeaponPistolPollockHighCapacityMag
-  parent: NFWeaponPistolPollock
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineHighCapacityPistol35
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazinePistol
-            - MagazinePistolHighCapacity
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgePistol
+  parent: [ NFWeaponPistolPollock, NFBaseWeaponPistolChamber35HighCapacity ]

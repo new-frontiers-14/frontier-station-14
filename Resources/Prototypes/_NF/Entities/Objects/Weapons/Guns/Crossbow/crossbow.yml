@@ -2,7 +2,7 @@
 - type: entity
   id: BaseCrossbow
   name: crossbow
-  parent: [ NFBaseWeaponSizeCrossbow, BaseItem, GunMeleeAttackBluntBase ] # \Resources\Prototypes\_NF\Entities\Objects\Weapons\Melee\base_melee_weapon.yml
+  parent: [ NFBaseWeaponEncumbranceCrossbow, BaseItem, GunMeleeAttackBluntBase ] # \Resources\Prototypes\_NF\Entities\Objects\Weapons\Melee\base_melee_weapon.yml
   description: The original rooty tooty point and shooty.
   abstract: true
   components:
@@ -304,7 +304,7 @@
 #region Hand xbows
 - type: entity
   id: CrossbowModernHand
-  parent: [ NFBaseWeaponSizeCrossbowHand, BaseCrossbow, BaseC1Contraband ]
+  parent: [ NFBaseWeaponEncumbranceCrossbowHand, BaseCrossbow, BaseC1Contraband ]
   name: hand crossbow
   components:
   - type: UseDelay
@@ -317,7 +317,7 @@
 
 - type: entity
   id: CrossbowImprovisedHand
-  parent: [ NFBaseWeaponSizeCrossbowHand, BaseCrossbow, BaseC1Contraband ]
+  parent: [ NFBaseWeaponEncumbranceCrossbowHand, BaseCrossbow, BaseC1Contraband ]
   name: impovised hand crossbow
   components:
   - type: UseDelay
@@ -330,7 +330,7 @@
 
 - type: entity
   id: CrossbowBloodCultHand
-  parent: [ NFBaseWeaponSizeCrossbowHand, BaseCrossbow, BaseC3CultContraband ]
+  parent: [ NFBaseWeaponEncumbranceCrossbowHand, BaseCrossbow, BaseC3CultContraband ]
   name: blood cult hand crossbow
   components:
   - type: Sprite

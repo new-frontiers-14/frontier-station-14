@@ -1,8 +1,8 @@
-# BASE ASSAULT RIFLE
+#region base
 - type: entity
   id: NFBaseWeaponRifleAssault
-  parent: [ NFBaseWeaponSizeRifleAssault, BaseWeaponRifle ]
-  suffix: Frontier
+  parent: [ NFBaseWeaponEncumbranceRifleAssault, NFBaseItemWeaponGunMagazineFed ]
+  name: assault rifle
   abstract: true
   components:
   - type: Wieldable
@@ -28,88 +28,17 @@
     maxOffset: 2.5
     pvsIncrease: 0
 
-# WizDen
-- type: entity # TODO: switch to .25 rifle (caseless)
-  id: NFWeaponRifleAssaultSm
-  parent: [ NFBaseWeaponRifleAssault, BaseC3SyndicateContraband, WeaponRifleAk ]
-  name: soland-moss assault rifle # Renamed: real brand name
-  description: |-
-    Manufacturer: Cybersun Industries
-    Type: Assault Rifle
-    Ammo: .30 rifle
-    Desc.: An iconic weapon of war. An illegal firearm often used by Syndicate agents.
-    ---
-  components:
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Rifles/solandmoss.rsi
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Rifles/solandmoss.rsi
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineRifle30
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineLightRifle
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgeRifle30
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeLightRifle
-
-- type: entity # TODO: switch to .25 rifle (caseless)
-  id: NFWeaponRifleAssaultM90GrenadeLauncher
-  parent: [ NFBaseWeaponRifleAssault, BaseC3SyndicateContraband, WeaponRifleM90GrenadeLauncher ]
-  name: m90gl
-  description: |-
-    Manufacturer: Cybersun Industries
-    Type: Assault Rifle
-    Ammo: .20 rifle
-    Desc.: An older bullpup carbine model, with an attached underbarrel grenade launcher. An illegal firearm often used by Syndicate agents.
-    ---
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineRifle20
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineLightRifle
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgeRifle20
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeLightRifle
-
+#region chamber
 - type: entity
-  id: NFWeaponRifleAssaultLecter
-  parent: [ NFBaseWeaponRifleAssault, BaseC3SyndicateContraband, WeaponRifleLecter ]
-  name: lecter
-  description: |-
-    Manufacturer: NanoTrasen Munitions
-    Type: Assault Rifle
-    Ammo: .20 rifle
-    Desc.: A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
-    ---
+  id: NFBaseWeaponRifleAssaultChamber20
+  abstract: true
   components:
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -129,8 +58,154 @@
         whitelist:
           tags:
             - CartridgeRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
 
-# WizDen: Rubber
+- type: entity
+  id: NFBaseWeaponRifleAssaultChamber20Clip
+  abstract: true
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineNovaliteC1
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineNovaliteC1
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgeRifle20
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  id: NFBaseWeaponRifleAssaultChamber30
+  abstract: true
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineRifle30
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgeRifle30
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  id: NFBaseWeaponRifleAssaultChamber30LowCapacity
+  parent: NFBaseWeaponRifleAssaultChamber30
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineLowCapacityRifle30
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifleLowCapacity
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgeRifle30
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+
+#region WizDen
+- type: entity # TODO: switch to .25 rifle (caseless)
+  id: NFWeaponRifleAssaultSm
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber30 ]
+  name: soland-moss assault rifle # Renamed: real brand name
+  description: |-
+    Manufacturer: Cybersun Industries
+    Type: Assault Rifle
+    Ammo: .30 rifle
+    Desc.: An iconic weapon of war. An illegal firearm often used by Syndicate agents.
+    ---
+  components:
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Rifles/solandmoss.rsi
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Rifles/solandmoss.rsi
+
+- type: entity # TODO: switch to .25 rifle (caseless)
+  id: NFWeaponRifleAssaultM90GrenadeLauncher
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber20 ]
+  name: m90gl
+  description: |-
+    Manufacturer: Cybersun Industries
+    Type: Assault Rifle
+    Ammo: .20 rifle
+    Desc.: An older bullpup carbine model, with an attached underbarrel grenade launcher. An illegal firearm often used by Syndicate agents.
+    ---
+  components:
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
+
+- type: entity
+  id: NFWeaponRifleAssaultLecter
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber20 ]
+  name: lecter
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Assault Rifle
+    Ammo: .20 rifle
+    Desc.: A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
+    ---
+  components:
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi
+
+#region WizDen: Rubber
 - type: entity
   parent: NFWeaponRifleAssaultLecter
   id: NFWeaponRifleAssaultLecterRubber
@@ -156,10 +231,10 @@
           tags:
             - CartridgeRifle
 
-# DeltaV
+#region DeltaV
 - type: entity
   id: NFWeaponRifleAssaultVulcan
-  parent: [ NFBaseWeaponRifleAssault, BaseC1Contraband, WeaponRifleVulcan ]
+  parent: [ NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber30 ]
   name: vulcan
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -168,29 +243,14 @@
     Desc.: One of the heaviest small arms to grace Security's armory, this rifle is a modern take on a classic, informally dubbed the "Right Arm of the Free World".
     ---
   components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineRifle30Rubber
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineLightRifle
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgeRifle30Rubber
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeLightRifle
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi
 
 - type: entity
   id: NFWeaponRifleAssaultJackdaw
-  parent: [ NFBaseWeaponRifleAssault, BaseC3Contraband, WeaponRifleJackdaw ]
+  parent: [ BaseC3Contraband, NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber20 ]
   name: jackdaw
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -199,32 +259,16 @@
     Desc.: The beginning of the end is heralded by the song of a Jackdaw.
     ---
   components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineRifle20
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineRifle
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgeRifle20
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeRifle
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Rifles/jackdaw.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Rifles/jackdaw.rsi
 
-# DeltaV: Rubber
+#region DeltaV: Rubber
 - type: entity
-  name: Vulcan
   parent: NFWeaponRifleAssaultVulcan
   id: NFWeaponRifleAssaultVulcanRubber
-  suffix: Less-lethal
+  suffix: Frontier, Less-lethal
   components:
   - type: ItemSlots
     slots:
@@ -246,10 +290,10 @@
           tags:
             - CartridgeLightRifle
 
-# Frontier
+#region Frontier
 - type: entity
-  id: WeaponRifleGestio # TODO: migrate to NFWeaponRifleAssaultGestio
-  parent: [ NFBaseWeaponRifleAssault, BaseC1Contraband ]
+  id: NFWeaponRifleAssaultGestio # WeaponRifleGestio
+  parent: [ NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber30LowCapacity ]
   name: gestio
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -260,11 +304,6 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
-    layers:
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
   - type: Gun
@@ -279,39 +318,11 @@
       path: /Audio/_NF/Weapons/Guns/Gunshots/rifle.ogg
       params:
         volume: -5
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineLowCapacityRifle30
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineLightRifleLowCapacity
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgeRifle30
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeLightRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
 
 - type: entity
-  id: WeaponRifleNovaliteC1 # TODO: migrate to NFWeaponRifleAssaultNovaliteC1
-  name: novalite c1
-  parent: [ NFBaseWeaponRifleAssault, BaseC1Contraband ]
+  id: NFWeaponRifleAssaultNovaliteC1
+  parent: [ NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber20Clip ]
+  name: "novalite c1"
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
     Type: Assault Rifle
@@ -321,15 +332,9 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/novalitec1.rsi
-    layers:
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/novalitec1.rsi
   - type: Gun
-    fireRate: 5
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -337,132 +342,3 @@
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
       params:
         variation: 0.125
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineNovaliteC1
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineNovaliteC1
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgeRifle20
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-
-# Frontier: Rubber
-- type: entity
-  parent: WeaponRifleGestio # NFWeaponRifleAssaultGestio
-  id: WeaponRifleGestioRubber # NFWeaponRifleAssaultGestioRubber
-  suffix: Frontier, Less-lethal
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineLowCapacityRifle30Rubber
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineLightRifleLowCapacity
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgeRifle30Rubber
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeLightRifle
-
-- type: entity
-  id: WeaponRifleNovaliteC1Rubber # NFWeaponRifleAssaultNovaliteC1Rubber
-  parent: WeaponRifleNovaliteC1 # NFWeaponRifleAssaultNovaliteC1
-  suffix: Frontier, Less-lethal
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineNovaliteC1Rubber
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineNovaliteC1
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFMagazineRifle20Rubber
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeRifle
-
-- type: entity # DONT ASK WHY ITS HERE
-  id: WeaponRifleSVS
-  parent: [ NFBaseWeaponRifleAssault, BaseGunMelee, BaseC1Contraband ]
-  name: svs-42
-  description: |-
-    Manufacturer: Frontier Gunsmith Consortium
-    Type: Rifle
-    Ammo: .30 rifle
-    Desc.: Originally designed by Samonov, this old surplus battle rifle looks like it's seen a few wars. Equipped with bayonet.
-    ---
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
-    layers:
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Rifles/svs42.rsi
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineLowCapacityRifle30
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineLightRifleLowCapacity
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgeRifle30
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeLightRifle
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: AltFireMelee
-    attackType: Light

@@ -124,6 +124,25 @@
         - Sheriff
 
 - type: listing
+  id: UplinkSecurityHardsuitSyndieReverseEngineered
+  name:  uplink-security-hardsuit-experimental-name
+  description: uplink-security-hardsuit-experimental-desc
+  productEntity: ClothingOuterHardsuitNfsdExperimental
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 20
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+
+- type: listing
   id: UplinkSecurityMk32
   name:  uplink-security-mk32-name
   description: uplink-security-mk32-desc
