@@ -1,4 +1,4 @@
-# BASE REVOLVER
+#region base
 - type: entity
   id: NFBaseWeaponRevolver
   parent: [ NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGun ]
@@ -35,7 +35,7 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
 
-# WizDen
+#region WizDen
 - type: entity
   id: NFWeaponRevolverDeckard
   parent: [ NFBaseWeaponRevolver ]
@@ -162,7 +162,14 @@
     chambers: [ True ]
     ammoSlots: [ null ]
 
-# DeltaV
+# WizDen: Rubber
+- type: entity
+  id: WeaponRevolverDeckardExpeditionGrifty
+  parent: WeaponRevolverDeckardExpedition
+  categories: [ HideSpawnMenu ]
+  name: Customer Service Resolver
+
+#region DeltaV
 - type: entity
   id: NFWeaponRevolverFitz
   parent: [ NFBaseWeaponRevolver ]
@@ -215,14 +222,7 @@
   - type: Clothing
     sprite: _DV/Objects/Weapons/Guns/Revolvers/lucky.rsi
 
-# WizDen: Rubber
-- type: entity
-  id: WeaponRevolverDeckardExpeditionGrifty
-  parent: WeaponRevolverDeckardExpedition
-  categories: [ HideSpawnMenu ]
-  name: Customer Service Resolver
-
-# Frontier
+#region Frontier
 - type: entity
   id: NFWeaponRevolverArgenti # WeaponRevolverArgenti
   parent: [ NFBaseWeaponRevolver ]

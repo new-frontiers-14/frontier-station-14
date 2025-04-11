@@ -770,7 +770,7 @@
   productEntity: ClothingBeltSheathFilled
   icon: { sprite: Objects/Weapons/Melee/captain_sabre.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 10
+    FrontierUplinkCoin: 8
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -820,6 +820,27 @@
       whitelist:
         tags:
           - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityEnergyShield
+  name:  uplink-security-energyshield-name
+  description: uplink-security-energyshield-desc
+  productEntity: EnergyShieldNfsd
+  icon: { sprite: _NF/Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
+  cost:
+    FrontierUplinkCoin: 8
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecuritySwat
