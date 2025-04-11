@@ -1,4 +1,20 @@
 - type: entity
+  parent: EmagUnlimited
+  id: EmagPass
+  name: cryptographic sequencer pass
+  description: A portable, disposable device hacking solution made by the Syndicate.
+  suffix: Limited, 3 usege
+  components:
+  - type: NFEmagPass
+  - type: LimitedCharges
+  - type: Sprite
+    sprite: _NF/Objects/Tools/emagpass.rsi
+  - type: Item
+    sprite: _NF/Objects/Tools/emagpass.rsi
+    storedRotation: -90
+    size: Tiny
+
+- type: entity
   parent: [BaseItem, BaseCommandContraband]
   id: DemagUnlimited
   name: cryptographic resequencer
