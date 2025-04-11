@@ -1,4 +1,4 @@
-#region T1: common
+#region melee T1
 - type: entity
   name: random weapon
   id: SpawnDungeonLootMeleeT1
@@ -34,72 +34,7 @@
     - SpawnDungeonLootMeleeT2
     rareChance: 0.05
 
-- type: entity
-  name: random weapon
-  id: SpawnDungeonLootGunT1
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Gun, T1"
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-      scale: 0.7, 0.7
-    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
-      state: icon
-    - sprite: Effects/crayondecals.rsi
-      state: 1
-      color: red
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortMk58Expedition
-    - WeaponCaseShortUniversalExpedition
-    - WeaponCaseShortPollockExpedition
-    - WeaponCaseShortFaithExpedition
-    - WeaponCaseShortArgentiExpedition
-    - WeaponCaseLongMosinExpedition
-    - WeaponCaseLongSniperCeremonialExpedition
-    - WeaponCaseLongRepeaterExpedition
-    - WeaponCaseShortLuckyExpedition
-    - WeaponCaseShortDeckardExpedition
-    - WeaponCaseShortPython
-    #- WeaponCaseLongKammererExpedition
-    #- WeaponCaseShortLaserGunExpedition
-    #- WeaponCaseShortHandmadeExpedition
-    #- WeaponCaseLongShotgunDoubleBarreledExpedition
-    #- WeaponCaseShortSawnExpedition
-    chance: 1.0
-    offset: 0.0
-    rarePrototypes:
-    - SpawnDungeonLootGunT2
-    rareChance: 0.05
-
-- type: entity
-  name: random weapon
-  id: SpawnDungeonLootExplosivesT1
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Explosives, T1"
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-      scale: 0.7, 0.7
-    - sprite: Objects/Weapons/Bombs/seismic.rsi
-      state: icon
-    - sprite: Effects/crayondecals.rsi
-      state: 1
-      color: red
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortFireBomb
-    chance: 0.3
-    offset: 0.0
-    rarePrototypes:
-    - SpawnDungeonLootExplosivesT2
-    rareChance: 0.05
-
-#region T2: uncommon
+#region melee T2
 - type: entity
   name: random weapon
   id: SpawnDungeonLootMeleeT2
@@ -131,64 +66,7 @@
     - SpawnDungeonLootMeleeT3
     rareChance: 0.05
 
-- type: entity
-  name: random weapon
-  id: SpawnDungeonLootGunT2
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Gun, T2"
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-      scale: 0.7, 0.7
-    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
-      state: icon
-    - sprite: Effects/crayondecals.rsi
-      state: 2
-      color: red
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseLongC20r
-    - WeaponCaseLongJackdaw
-    - WeaponCaseShortViper
-    - WeaponCaseShortRevolverPirate
-    - WeaponCaseShortFitzExpedition
-    - WeaponCaseLongGestioExpedition
-    - WeaponCaseLongWeaponRifleNovaliteC1Expedition
-    - WeaponCaseLongSVSExpedition
-    chance: 1.0
-    offset: 0.0
-    rarePrototypes:
-    - SpawnDungeonLootGunT3
-    rareChance: 0.05
-
-- type: entity
-  name: random weapon
-  id: SpawnDungeonLootExplosivesT2
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Explosives, T2"
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-      scale: 0.7, 0.7
-    - sprite: Objects/Weapons/Bombs/seismic.rsi
-      state: icon
-    - sprite: Effects/crayondecals.rsi
-      state: 2
-      color: red
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortPipeBomb
-    chance: 0.4
-    offset: 0.0
-    rarePrototypes:
-    - SpawnDungeonLootExplosivesT3
-    rareChance: 0.05
-
-#region T3: rare
+#region melee T3
 - type: entity
   name: random weapon
   id: SpawnDungeonLootMeleeT3
@@ -218,66 +96,7 @@
     - SpawnDungeonLootMeleeT4
     rareChance: 0.05
 
-- type: entity
-  name: random weapon
-  id: SpawnDungeonLootGunT3
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Gun, T3"
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-      scale: 0.7, 0.7
-    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
-      state: icon
-    - sprite: Effects/crayondecals.rsi
-      state: 3
-      color: red
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortN1984Expedition
-    - WeaponCaseShortAntiqueLaserExpedition
-    - WeaponCaseLongM90Expedition
-    - WeaponCaseShortCobra
-    - WeaponCaseShortWard45Expedition
-    - WeaponCaseLongWT550Expedition
-    - WeaponCaseLongDrozdExpedition
-    - WeaponCaseLongLecterExpedition
-    - WeaponCaseShortSvalinnExpedition
-    #- WeaponCaseLongMusketExpedition
-    chance: 1.0
-    offset: 0.0
-    rarePrototypes:
-    - SpawnDungeonLootGunT4
-    rareChance: 0.05
-
-- type: entity
-  name: random weapon
-  id: SpawnDungeonLootExplosivesT3
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Explosives, T3"
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-      scale: 0.7, 0.7
-    - sprite: Objects/Weapons/Bombs/seismic.rsi
-      state: icon
-    - sprite: Effects/crayondecals.rsi
-      state: 3
-      color: red
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortSeismicCharge
-    chance: 0.5
-    offset: 0.0
-    rarePrototypes:
-    - SpawnDungeonLootExplosivesT4
-    rareChance: 0.05
-
-#region T4: extremely rare
+#region melee T4
 - type: entity
   name: random weapon
   id: SpawnDungeonLootMeleeT4
@@ -305,6 +124,143 @@
     - SpawnDungeonLootMeleeT5
     rareChance: 0.05
 
+#region melee T5
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootMeleeT5
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Melee, T5"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Melee/katana.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 5
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortEnergySwordExpedition
+    - WeaponCaseShortEnergyCutlassExpedition
+    - WeaponCaseShortEnergySwordDoubleExpedition
+    chance: 1.0
+    offset: 0.0
+
+#region guns T1
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootGunT1
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Gun, T1"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 1
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortMk58Expedition
+    - WeaponCaseShortUniversalExpedition
+    - WeaponCaseShortPollockExpedition
+    - WeaponCaseShortFaithExpedition
+    - WeaponCaseShortArgentiExpedition
+    - WeaponCaseShortLuckyExpedition
+    - WeaponCaseShortDeckardExpedition
+    - WeaponCaseShortPython
+    - WeaponCaseLongMosinExpedition
+    - WeaponCaseLongRepeaterExpedition
+    - WeaponCaseLongSniperCeremonialExpedition
+    #- WeaponCaseShortHandmadeExpedition
+    #- WeaponCaseLongShotgunDoubleBarreledExpedition
+    #- WeaponCaseShortSawnExpedition
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootGunT2
+    rareChance: 0.05
+
+#region guns T2
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootGunT2
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Gun, T2"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 2
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortCobra
+    - WeaponCaseShortN1984Expedition
+    - WeaponCaseShortViper
+    - WeaponCaseShortFitzExpedition
+    - WeaponCaseShortWard45Expedition
+    - WeaponCaseShortRevolverPirate
+    - WeaponCaseLongC20r
+    - WeaponCaseLongJackdaw
+    - WeaponCaseLongGestioExpedition
+    - WeaponCaseLongWeaponRifleNovaliteC1Expedition
+    - WeaponCaseLongSVSExpedition
+    - WeaponCaseLongKammererExpedition
+    - WeaponCaseShortLaserGunExpedition
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootGunT3
+    rareChance: 0.05
+
+#region guns T3
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootGunT3
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Gun, T3"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 3
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseLongTypewriterExpedition
+    - WeaponCaseLongAtreidesExpedition
+    - WeaponCaseLongWT550Expedition
+    - WeaponCaseLongDrozdExpedition
+    - WeaponCaseLongM90Expedition
+    - WeaponCaseLongLecterExpedition
+    - WeaponCaseShortSvalinnExpedition
+    - WeaponCaseLongHristovExpedition
+    #- WeaponCaseLongMusketExpedition
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootGunT4
+    rareChance: 0.05
+
+#region guns T4
 - type: entity
   name: random weapon
   id: SpawnDungeonLootGunT4
@@ -323,22 +279,127 @@
       color: red
   - type: RandomSpawner
     prototypes:
-    - WeaponCaseLongBulldog
-    - WeaponCaseLongAtreidesExpedition
-    - WeaponCaseLongTypewriterExpedition
-    - WeaponCaseLongHristovExpedition
     - WeaponCaseLongSm
     - WeaponCaseLongVulcanExpedition
+    - WeaponCaseLongBulldog
     - WeaponCaseLongEnforcerExpedition
-    - WeaponCaseLongEnergyGunExpedition
+    - WeaponCaseShortAntiqueLaserExpedition
     - WeaponCaseShortAdvancedLaserExpedition
     - WeaponCaseLongLaserCarbineExpedition
+    - WeaponCaseLongXrayCannonExpedition
     chance: 1.0
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT5
     rareChance: 0.05
 
+#region guns T5
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootGunT5
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Gun, T5"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 5
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseLongLauncherRocketExpedition
+    - WeaponCaseLongLauncherChinaLake
+    - WeaponCaseLongLightMachineGunL6
+    - WeaponCaseLongEnergyGunExpedition
+    - WeaponCaseLongLaserCannonExpedition
+    - WeaponCaseHeavyAsmgtExpeditions
+    chance: 1.0
+    offset: 0.0
+
+#region bombs T1
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootExplosivesT1
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Explosives, T1"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Bombs/seismic.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 1
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortFireBomb
+    chance: 0.3
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootExplosivesT2
+    rareChance: 0.05
+
+#region bombs T2
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootExplosivesT2
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Explosives, T2"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Bombs/seismic.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 2
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortPipeBomb
+    chance: 0.4
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootExplosivesT3
+    rareChance: 0.05
+
+#region bombs T3
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootExplosivesT3
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Explosives, T3"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Bombs/seismic.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 3
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortSeismicCharge
+    chance: 0.5
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootExplosivesT4
+    rareChance: 0.05
+
+#region bombs T4
 - type: entity
   name: random weapon
   id: SpawnDungeonLootExplosivesT4
@@ -364,58 +425,7 @@
     - SpawnDungeonLootExplosivesT5
     rareChance: 0.01
 
-#region T5: next to unobtainable
-- type: entity
-  name: random weapon
-  id: SpawnDungeonLootMeleeT5
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Melee, T5"
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-      scale: 0.7, 0.7
-    - sprite: Objects/Weapons/Melee/katana.rsi
-      state: icon
-    - sprite: Effects/crayondecals.rsi
-      state: 5
-      color: red
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortEnergySwordExpedition
-    - WeaponCaseShortEnergyCutlassExpedition
-    - WeaponCaseShortEnergySwordDoubleExpedition
-    chance: 1.0
-    offset: 0.0
-
-- type: entity
-  name: random weapon
-  id: SpawnDungeonLootGunT5
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Gun, T5"
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-      scale: 0.7, 0.7
-    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
-      state: icon
-    - sprite: Effects/crayondecals.rsi
-      state: 5
-      color: red
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseLongLauncherRocketExpedition
-    - WeaponCaseLongLauncherChinaLake
-    - WeaponCaseLongLightMachineGunL6
-    - WeaponCaseHeavyAsmgtExpeditions
-    - WeaponCaseLongXrayCannonExpedition
-    - WeaponCaseLongLaserCannonExpedition
-    chance: 1.0
-    offset: 0.0
-
+#region bombs T5
 - type: entity
   name: random weapon
   id: SpawnDungeonLootExplosivesT5

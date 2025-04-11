@@ -202,8 +202,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.5
-    minAngle: 15
-    maxAngle: 45
+    minAngle: 10
+    maxAngle: 40
+    angleIncrease: 5
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -309,7 +311,9 @@
     fireRate: 0.75
     selectedMode: FullAuto
     minAngle: 15
-    maxAngle: 45
+    maxAngle: 40
+    angleIncrease: 5
+    angleDecay: 3
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
@@ -416,8 +420,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.75
-    minAngle: 5
-    maxAngle: 15
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -603,8 +609,10 @@
     capacity: 1
     count: 1
   - type: Gun
-    minAngle: 1
-    maxAngle: 5
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 5
+    angleDecay: 3
     fireRate: 1
     selectedMode: FullAuto
     availableModes:

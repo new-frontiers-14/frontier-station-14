@@ -60,8 +60,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 2
-    minAngle: 5
-    maxAngle: 15
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
 
@@ -91,8 +93,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 2
-    minAngle: 5
-    maxAngle: 15
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: SemiAuto
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
@@ -155,8 +159,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.5
-    minAngle: 5
-    maxAngle: 15
+    minAngle: 7
+    maxAngle: 16
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -183,6 +189,10 @@
     count: 3
   - type: Gun
     fireRate: 1.5
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     soundGunshot:
       path: /Audio/Effects/demon_consume.ogg
   - type: RechargeBasicEntityAmmo
@@ -308,8 +318,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 1
-    minAngle: 1
-    maxAngle: 10
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     soundGunshot:
       path: /Audio/Effects/teleport_arrival.ogg
   - type: RechargeBasicEntityAmmo
@@ -519,6 +531,10 @@
     - type: Gun
       showExamineText: false
       fireRate: 2
+      minAngle: 10
+      maxAngle: 20
+      angleIncrease: 2
+      angleDecay: 3
       selectedMode: FullAuto
       availableModes:
         - FullAuto
