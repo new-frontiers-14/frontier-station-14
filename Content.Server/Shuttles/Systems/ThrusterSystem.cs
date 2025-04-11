@@ -644,7 +644,7 @@ public sealed class ThrusterSystem : EntitySystem
 
         var thrustRating = args.PartRatings[component.MachinePartThrust];
 
-        component.Thrust = component.BaseThrust * MathF.Pow(component.PartRatingThrustMultiplier, thrustRating - 1);
+        component.Thrust = component.BaseThrust + component.ThrustPerPartLevel * (thrustRating - 1);
 
         if (component.Enabled && CanEnable(uid, component))
             EnableThruster(uid, component);
