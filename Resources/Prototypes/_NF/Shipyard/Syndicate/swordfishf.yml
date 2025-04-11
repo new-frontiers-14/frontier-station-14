@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: Tych0theSynth
+# Discord: Tych0
+
+# Maintainer Info
+# GitHub: Tych0theSynth
+# Discord: Tych0
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Swordfish-F
+  parent: BaseVesselAntag
+  name: CS Swordfish-F
+  description: A retired Cybersun 'Swordfish' torpedo bomber repurposed for hauling sensitive goods.
+  price: 100000 #Appraises at ~19000. It's a smuggling ship. Of course it's going to be hella expensive due to the profit potential.
+  category: Medium
+  group: Syndicate
+  shuttlePath: /Maps/_NF/Shuttles/Syndicate/swordfishf.yml
+  guidebookPage: Null
+  class:
+  - Syndicate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Swordfish-F
+  mapName: 'CS Swordfish-F'
+  mapPath: /Maps/_NF/Shuttles/Syndicate/swordfishf.yml
+  minPlayers: 0
+  stations:
+    Swordfish-F:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Swordfish-F {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
