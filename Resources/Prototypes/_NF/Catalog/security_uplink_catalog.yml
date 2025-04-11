@@ -1,3 +1,4 @@
+#region hardsuits
 - type: listing
   id: UplinkSecurityHardsuit
   name:  uplink-security-hardsuit-name
@@ -142,6 +143,7 @@
       whitelist:
         - Sheriff
 
+#region weapons
 - type: listing
   id: UplinkSecurityMk32
   name:  uplink-security-mk32-name
@@ -255,7 +257,7 @@
   productEntity: NFWeaponRifleAssaultVulcan
   icon: { sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 3
+    FrontierUplinkCoin: 4
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -291,13 +293,32 @@
         - Sheriff
 
 - type: listing
+  id: UplinkSecurityLaserCannon
+  name:  uplink-security-lasercanon-name
+  description: uplink-security-lasercanon-desc
+  productEntity: NFWeaponEnergyRifleSniperCannon
+  icon: { sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 14
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+
+- type: listing
   id: UplinkSecurityDisablerSMG
   name:  uplink-security-disablersmg-name
   description: uplink-security-disablersmg-desc
   productEntity: WeaponDisablerSMG
   icon: { sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi, state: base }
   cost:
-    FrontierUplinkCoin: 3
+    FrontierUplinkCoin: 6
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -370,6 +391,7 @@
       whitelist:
         - Sheriff
 
+#region utililty
 - type: listing
   id: UplinkSecurityHolo
   name:  uplink-security-holo-name
@@ -496,11 +518,12 @@
         - SeniorOfficer
         - Sheriff
 
+#region magazines
 - type: listing
-  id: UplinkSecurityPistolMagazine
+  id: UplinkSecurityMagazineHighCapacityPistol35HighGrain
   name:  uplink-security-magazinepistol-name
   description: uplink-security-magazinepistol-desc
-  productEntity: NFBoxMagazinePistol35
+  productEntity: NFBoxMagazineHighCapacityPistol35HighGrain
   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   cost:
     FrontierUplinkCoin: 1
@@ -513,10 +536,10 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurity20RifleMagazine
+  id: UplinkSecurityMagazineRifle20HighGrain
   name:  uplink-security-20riflemagazine-name
   description: uplink-security-20riflemagazine-desc
-  productEntity: BoxMagazineRifle
+  productEntity: NFBoxMagazineRifle20HighGrain
   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   cost:
     FrontierUplinkCoin: 1
@@ -534,10 +557,10 @@
         - Sheriff
 
 - type: listing
-  id: UplinkSecurity30RifleMagazine
+  id: UplinkSecurityMagazineRifle30HighGrain
   name:  uplink-security-30riflemagazine-name
   description: uplink-security-30riflemagazine-desc
-  productEntity: BoxMagazineLightRifle
+  productEntity: NFBoxMagazineRifle30HighGrain
   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   cost:
     FrontierUplinkCoin: 1
@@ -555,10 +578,10 @@
         - Sheriff
 
 - type: listing
-  id: UplinkSecurityWT550Magazine
+  id: UplinkSecurityMagazineSubMachineGunTopMounted35HighGrain
   name:  uplink-security-wt550magazine-name
   description: uplink-security-wt550magazine-desc
-  productEntity: BoxMagazinePistolSubMachineGunTopMounted
+  productEntity: NFMagazineSubMachineGunTopMounted35HighGrain
   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   cost:
     FrontierUplinkCoin: 1
@@ -823,7 +846,7 @@
   id: UplinkSecuritySpeedloader
   name:  uplink-security-speedloader-name
   description: uplink-security-speedloader-desc
-  productEntity: NFSpeedLoaderPistol45
+  productEntity: NFSpeedLoaderPistol45HighGrain
   icon: { sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: base }
   cost:
     FrontierUplinkCoin: 1
@@ -855,7 +878,7 @@
   id: UplinkSecurityShotLethal
   name:  uplink-security-shotlethal-name
   description: uplink-security-shotlethal-desc
-  productEntity: BoxLethalshot
+  productEntity: NFAmmunitionBoxShellShotgunBuckshot
   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   cost:
     FrontierUplinkCoin: 1
@@ -871,7 +894,7 @@
   id: UplinkSecurityShotBeanbag
   name:  uplink-security-shotbeanbag-name
   description: uplink-security-shotbeanbag-desc
-  productEntity: BoxBeanbag
+  productEntity: NFAmmunitionBoxShellShotgunBeanbag
   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   cost:
     FrontierUplinkCoin: 1
@@ -887,7 +910,7 @@
   id: UplinkSecurityShotSlug
   name:  uplink-security-shotslug-name
   description: uplink-security-shotslug-desc
-  productEntity: BoxShotgunSlug
+  productEntity: NFAmmunitionBoxShellShotgunSlug
   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   cost:
     FrontierUplinkCoin: 1

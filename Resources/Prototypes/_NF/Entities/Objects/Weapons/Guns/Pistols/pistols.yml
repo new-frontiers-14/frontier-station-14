@@ -87,6 +87,40 @@
       gun_chamber: !type:ContainerSlot
 
 - type: entity
+  id: NFBaseWeaponPistolChamber35HighCapacityNfsd
+  abstract: true
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineHighCapacityPistol35HighGrain
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35HighGrain
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
   id: NFBaseWeaponPistolChamber45
   abstract: true
   components:
@@ -243,7 +277,7 @@
 
 - type: entity
   id: NFWeaponPistolUniversalNfsd
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponPistolChamber35HighCapacity, NFWeaponPistolUniversal ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponPistolChamber35HighCapacityNfsd, NFWeaponPistolUniversal ]
   name: mk32 "universal" service pistol
   description: |-
     Manufacturer: NanoTrasen Munitions

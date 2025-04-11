@@ -1,4 +1,4 @@
-# CaselessRifle
+#region .25 rifle
 - type: entity
   name: box of .25 caseless (rubber) magazines
   parent: BoxMagazine
@@ -10,7 +10,30 @@
       - id: MagazineCaselessRifleRubber
         amount: 4
 
-# LightRifle
+#region .20 rifle
+- type: entity
+  name: box of .20 rifle (rubber) magazines
+  parent: BoxMagazine
+  id: BoxMagazineRifleRubber
+  description: A box full of .20 rifle (rubber) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineRifle20Rubber
+        amount: 4
+
+- type: entity
+  name: box of .20 rifle (high grain) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazineRifle20HighGrain
+  description: A box full of .20 rifle (high grain) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineRifle20HighGrain
+        amount: 4
+
+#region .30 rifle
 - type: entity
   name: box of .30 rifle (rubber) magazines
   parent: BoxMagazine
@@ -20,6 +43,17 @@
   - type: StorageFill
     contents:
       - id: NFMagazineRifle30Rubber
+        amount: 4
+
+- type: entity
+  name: box of .30 rifle (high grain) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazineRifle30HighGrain
+  description: A box full of .30 rifle (high grain) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineRifle30HighGrain
         amount: 4
 
 - type: entity
@@ -33,7 +67,7 @@
       - id: NFMagazineSubMachineGun45Rubber
         amount: 3
 
-# Pistol
+#region .35 pistol
 - type: entity
   name: box of pistol (.35 pistol) magazines
   parent: BoxMagazine
@@ -67,14 +101,35 @@
       - id: NFMagazineSubMachineGun35Rubber
         amount: 3
 
-# Rifle
 - type: entity
-  name: box of .20 rifle (rubber) magazines
+  name: box of pistol (.35 pistol, high grain) magazines
   parent: BoxMagazine
-  id: BoxMagazineRifleRubber
-  description: A box full of .20 rifle (rubber) magazines.
+  id: NFBoxMagazineHighCapacityPistol35HighGrain
+  description: A box full of pistol (.35 pistol, high grain) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineRifle20Rubber
+      - id: NFMagazineHighCapacityPistol35HighGrain
+        amount: 4
+
+- type: entity
+  name: box of SMG (.35 pistol, high grain) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazineSubMachineGun35HighGrain
+  description: A box full of SMG (.35 pistol, high grain) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineSubMachineGun35HighGrain
+        amount: 4
+
+- type: entity
+  name: box of top moumted SMG (.35 pistol, high grain) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazineSubMachineGunTopMounted35HighGrain
+  description: A box full of top moumted SMG (.35 pistol, high grain) magazines for WT550.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineSubMachineGunTopMounted35HighGrain
         amount: 4
