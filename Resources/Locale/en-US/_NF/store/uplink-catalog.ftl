@@ -316,5 +316,5 @@ uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bun
 uplink-spaceblade-syndicate-name = Contra SpaceBlade
 uplink-spaceblade-syndicate-desc = Made from real metal!
 
-uplink-emag-pass-name = Emag Pass
-uplink-emag-pass-desc = A card-shaped object used for hacking devices with a limited number of charges.
+uplink-emag-pass-name = Disposable Emag
+uplink-emag-pass-desc = A card used to hack devices. Usable three times.
