@@ -1,6 +1,6 @@
 #region base
 - type: entity
-  id: NFBaseWeaponPistol
+  id: NFBaseWeaponFramePistol
   parent: [ NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGunMagazineFed ]
   name: pistol
   abstract: true
@@ -16,6 +16,31 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFramePistolNanotrasen
+  parent: NFBaseWeaponFramePistol
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 7
+    maxAngle: 14
+    angleIncrease: 1
+    angleDecay: 0.7
+    fireRate: 3.5
+
+- type: entity
+  id: NFBaseWeaponFramePistolCybersun
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFramePistol ]
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 6.8
+    maxAngle: 13.6
+    angleIncrease: 1
+    angleDecay: 2
+    fireRate: 3
 
 #region chamber
 - type: entity
@@ -154,7 +179,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponPistolMk58
-  parent: [ NFBaseWeaponPistol, NFBaseWeaponPistolChamber35 ]
+  parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber35 ]
   name: mk58
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -170,7 +195,7 @@
 
 - type: entity
   id: NFWeaponPistolN1984
-  parent: [ NFBaseWeaponPistol, NFBaseWeaponPistolChamber45 ]
+  parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber45 ]
   name: n1984
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -186,7 +211,7 @@
 
 - type: entity
   id: NFWeaponPistolCobra
-  parent: [ NFBaseWeaponPistol, NFBaseWeaponPistolChamber45 ]
+  parent: [ NFBaseWeaponFramePistolCybersun, NFBaseWeaponPistolChamber45 ]
   name: cobra
   description: |-
     Manufacturer: Cybersun Industries
@@ -258,7 +283,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponPistolUniversal
-  parent: [ NFBaseWeaponPistol, NFBaseWeaponPistolChamber35 ]
+  parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber35 ]
   name: mk32 "universal"
   description: |-
     Manufacturer: NanoTrasen Munitions
