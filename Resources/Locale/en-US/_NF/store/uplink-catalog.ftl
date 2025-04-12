@@ -309,7 +309,7 @@ uplink-pirate-pmag-desc = Removes station-binding machine DRM. A pirate's best f
 uplink-pirate-repair-kit-name = Pirate Computer Repair Kit
 uplink-pirate-repair-kit-desc = A collection of tools used to repair a pirate console. For those times when you have a string of bad luck.
 
-# Syndicate
+# region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
 uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.
 
