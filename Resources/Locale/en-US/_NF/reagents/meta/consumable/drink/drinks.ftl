@@ -30,3 +30,6 @@ reagent-desc-wassail = Hot mulled ale.
 
 reagent-name-eggnog = eggnog
 reagent-desc-eggnog = Creamy, sweet, and slightly boozy. Fully nogged.
+
+reagent-name-swamp = swamp kiss
+reagent-desc-swamp = Looks like creamy swamp water, only missing some tadpoles.

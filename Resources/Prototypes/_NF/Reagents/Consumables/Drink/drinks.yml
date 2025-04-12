@@ -237,3 +237,34 @@
   metamorphicMaxFillLevels: 8
   metamorphicFillBaseName: fill
   metamorphicChangeColor: false
+
+- type: reagent
+  id: SwampKiss
+  name: reagent-name-swamp-kiss
+  parent: BaseAlcohol
+  desc: reagent-desc-swamp
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: swamp
+  color: "#1f894b"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:Emote
+        emote: Croak
+        showInChat: false
+        force: true
+        probability: 0.4
+      - !type:SatiateThirst
+        factor: 1
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.08
+      - !type:AdjustReagent
+        reagent: JuiceBanana
+        amount: 0.07
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/swampkiss.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 3
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
