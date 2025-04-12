@@ -29,6 +29,36 @@
     zeroVisible: false
 
 - type: entity
+  id: NFBaseMagazineDrumRifle20
+  name: drum magazine (.20 rifle)
+  parent: [ BaseC1Contraband, RecyclableItemSteelTiny, BaseMagazineRifle ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFMagazineDrumRifle20 # TODO: make it make sense, change the tags
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRifle
+    proto: NFCartridgeRifle20
+    capacity: 60
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_drum.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      scale: 0.8, 0.8
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+      scale: 0.8, 0.8
+  - type: MagazineVisuals
+    magState: mag
+    steps: 10
+    zeroVisible: false
+
+- type: entity
   id: NFBaseMagazineBoxRifle20
   name: box magazine (.20 rifle)
   parent: NFBaseMagazineRifle20
@@ -144,6 +174,21 @@
       color: "#00b0ff"
     - state: mag-6
       map: ["enum.GunVisualLayers.Mag"]
+
+#region .20 drum mags
+- type: entity
+  id: NFMagazineDrumRifle20Empty
+  name: drum magazine (.20 rifle, any)
+  parent: NFBaseMagazineDrumRifle20
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFMagazineDrumRifle20
+  name: drum magazine (.20 rifle)
+  parent: NFBaseMagazineDrumRifle20
 
 #region .20 box mags
 - type: entity
