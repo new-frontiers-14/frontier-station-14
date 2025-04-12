@@ -9,13 +9,13 @@
     unwieldOnUse: false
   - type: GunRequiresWield
   - type: GunWieldBonus
-    minAngle: -6.8
-    maxAngle: -13.6
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
   - type: Gun
-    minAngle: 13.6
-    maxAngle: 27.2
-    angleIncrease: 1
-    angleDecay: 2
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 3
     fireRate: 4
     burstFireRate: 5
     shotsPerBurst: 5
@@ -28,9 +28,6 @@
       path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.6
-    sprintModifier: 0.6
 
 #region chamber
 - type: entity

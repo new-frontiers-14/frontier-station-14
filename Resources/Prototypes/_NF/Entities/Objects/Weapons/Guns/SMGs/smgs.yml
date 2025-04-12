@@ -1,6 +1,6 @@
 #region base
 - type: entity
-  id: NFBaseWeaponSubMachineGun
+  id: NFBaseWeaponFrameSubMachineGun
   parent: [ NFBaseWeaponEncumbranceSubMachineGun, NFBaseItemWeaponGunMagazineFed ]
   name: submachine gun
   abstract: true
@@ -8,25 +8,82 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -3.1
-    maxAngle: -6.2
+    minAngle: -2.2
+    maxAngle: -7.5
   - type: Gun
-    minAngle: 9.1
-    maxAngle: 18.2
-    angleIncrease: 0.5
-    angleDecay: 3
-    fireRate: 4
+    minAngle: 6.7
+    maxAngle: 21
+    angleIncrease: 1
+    angleDecay: 2
+    fireRate: 6
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+  - type: StaticPrice
+    price: 350
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameSubMachineGunNanotrasen
+  parent: NFBaseWeaponFrameSubMachineGun
+  abstract: true
+  components:
+  - type: GunWieldBonus
+    minAngle: -1.7
+    maxAngle: -7.5
+  - type: Gun
+    minAngle: 6.7
+    maxAngle: 21
+    angleIncrease: 1
+    angleDecay: 2
+    fireRate: 4
+
+- type: entity
+  id: NFBaseWeaponFrameSubMachineGunCybersun
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameSubMachineGun ]
+  abstract: true
+  components:
+  - type: Gun
+    angleIncrease: 0.5
+    angleDecay: 2
+    fireRate: 3.5
+
+- type: entity
+  id: NFBaseWeaponFrameSubMachineGunGorlex
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameSubMachineGun ]
+  abstract: true
+  components:
+  - type: GunWieldBonus
+    minAngle: -1
+    maxAngle: -7.5
+  - type: Gun
+    minAngle: 6.7
+    maxAngle: 21
+    angleIncrease: 1
+    angleDecay: 2
+    fireRate: 5
+
+- type: entity
+  id: NFBaseWeaponFrameSubMachineGunFrontierGunsmith
+  parent: [ NFBaseWeaponFrameSubMachineGun ]
+  abstract: true
+  components:
+  - type: GunWieldBonus
+    minAngle: -1.8
+    maxAngle: -6.5
+  - type: Gun
+    minAngle: 6.7
+    maxAngle: 21
+    angleIncrease: 1
+    angleDecay: 2
+    fireRate: 4
 
 #region chamber
 - type: entity
   id: NFBaseWeaponSubMachineGunChamber35
-  parent: NFBaseWeaponSubMachineGun
   abstract: true
   components:
   - type: Gun
@@ -62,7 +119,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponSubMachineGunAtreides
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponSubMachineGunChamber35 ]
+  parent: [ NFBaseWeaponFrameSubMachineGunGorlex, NFBaseWeaponSubMachineGunChamber35 ]
   name: atreides
   description: |-
     Manufacturer: Gorlex Steel Works
@@ -81,7 +138,7 @@
 
 - type: entity
   id: NFWeaponSubMachineGunC20r
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponSubMachineGunChamber35 ]
+  parent: [ NFBaseWeaponFrameSubMachineGunCybersun, NFBaseWeaponSubMachineGunChamber35 ]
   name: c-20r
   description: |-
     Manufacturer: Cybersun Industries
@@ -106,13 +163,13 @@
 
 - type: entity
   id: NFWeaponSubMachineGunDrozd
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponSubMachineGunChamber35 ]
+  parent: [ NFBaseWeaponFrameSubMachineGunNanotrasen, NFBaseWeaponSubMachineGunChamber35 ]
   name: drozd
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Submachine Gun
     Ammo: .35 pistol
-    Desc.: An excellent fully automatic Heavy SMG.
+    Desc.: A fully automatic SMG.
     ---
   components:
   - type: Sprite
@@ -125,7 +182,7 @@
 
 - type: entity
   id: NFWeaponSubMachineGunWt550
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponSubMachineGun ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameSubMachineGunNanotrasen ]
   name: wt550
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -210,7 +267,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponSubMachineGunTypewriter
-  parent: [ BaseC2Contraband, NFBaseWeaponSubMachineGunChamber35 ]
+  parent: [ BaseC2Contraband, NFBaseWeaponFrameSubMachineGunFrontierGunsmith, NFBaseWeaponSubMachineGunChamber35 ]
   name: typewriter
   description: |-
     Manufacturer: Frontier Gunsmith Consortium

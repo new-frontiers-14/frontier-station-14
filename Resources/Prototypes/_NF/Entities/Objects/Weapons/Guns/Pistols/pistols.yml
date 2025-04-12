@@ -6,16 +6,18 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 6.8
-    maxAngle: 13.6
-    angleIncrease: 0.5
-    angleDecay: 3
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 1
+    angleDecay: 0.5
     fireRate: 4
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: StaticPrice
+    price: 250
 
 #region manufacturer
 - type: entity
@@ -24,10 +26,10 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 7
-    maxAngle: 14
-    angleIncrease: 1
-    angleDecay: 0.7
+    minAngle: 6
+    maxAngle: 18
+    angleIncrease: 1.25
+    angleDecay: 0.5
     fireRate: 3.5
 
 - type: entity
@@ -36,10 +38,10 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 6.8
-    maxAngle: 13.6
+    minAngle: 5
+    maxAngle: 15
     angleIncrease: 1
-    angleDecay: 2
+    angleDecay: 1
     fireRate: 3
 
 #region chamber

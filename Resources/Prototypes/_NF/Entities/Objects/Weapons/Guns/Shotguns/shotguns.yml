@@ -1,7 +1,7 @@
 #region base
 - type: entity
   id: NFBaseWeaponShotgun
-  parent: [ BaseC1Contraband, NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGun ]
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGun ]
   abstract: true
   components:
   - type: Sprite
@@ -21,6 +21,8 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: StaticPrice
+    price: 400
 
 - type: entity
   id: NFBaseWeaponShotgunWieldable

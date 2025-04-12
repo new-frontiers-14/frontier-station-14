@@ -21,14 +21,14 @@
     unwieldOnUse: false
   - type: GunRequiresWield
   - type: GunWieldBonus
-    minAngle: -2.1
-    maxAngle: -4.2
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
   - type: Gun
-    minAngle: 4.2
-    maxAngle: 8.4
-    angleIncrease: 0.25
+    minAngle: 1.6
+    maxAngle: 3.2
+    angleIncrease: 0.5
     angleDecay: 1
-    fireRate: 2
+    fireRate: 2.25
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -47,6 +47,8 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 4 # Default recharge rate: 1 shot per 20 seconds with 80 fireCost
+  - type: StaticPrice
+    price: 400
 
 - type: entity
   id: NFBaseWeaponEnergyRifleFireModes

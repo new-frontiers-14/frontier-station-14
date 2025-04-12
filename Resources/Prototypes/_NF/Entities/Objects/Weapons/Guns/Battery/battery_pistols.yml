@@ -18,11 +18,11 @@
     zeroVisible: true
   - type: Appearance
   - type: Gun
-    minAngle: 4.5
-    maxAngle: 9
+    minAngle: 3.3
+    maxAngle: 6.6
     angleIncrease: 0.25
     angleDecay: 1
-    fireRate: 2.5
+    fireRate: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -34,6 +34,8 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 3 # Default recharge rate: 1 shot per 20 seconds with 60 fireCost
+  - type: StaticPrice
+    price: 250
 
 - type: entity
   id: NFBaseWeaponEnergyPistolFireModes

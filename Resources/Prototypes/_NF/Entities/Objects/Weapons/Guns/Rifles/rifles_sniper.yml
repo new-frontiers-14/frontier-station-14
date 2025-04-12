@@ -1,6 +1,6 @@
 #region base
 - type: entity
-  id: NFBaseWeaponRifleSniper
+  id: NFBaseWeaponFrameRifleSniper
   parent: [ BaseC1Contraband, NFBaseWeaponEncumbranceSniper, NFBaseItemWeaponGun ]
   suffix: Frontier
   abstract: true
@@ -9,13 +9,13 @@
     unwieldOnUse: false
   - type: GunRequiresWield
   - type: GunWieldBonus
-    minAngle: -2.7
-    maxAngle: -5.4
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
   - type: Gun
-    minAngle: 5.4
-    maxAngle: 10.8
-    angleIncrease: 4
-    angleDecay: 4
+    minAngle: 2
+    maxAngle: 6
+    angleIncrease: 5
+    angleDecay: 3
     fireRate: 1
     selectedMode: SemiAuto
     availableModes:
@@ -27,13 +27,19 @@
     maxOffset: 4.5
     pvsIncrease: 0
 
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameRifleSniperCybersun
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleSniper ]
+  abstract: true
+
 #region WizDen
 - type: entity
   id: NFWeaponSniperHristov
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleChamber60, NFBaseWeaponRifleSniper ]
+  parent: [ NFBaseWeaponRifleChamber60, NFBaseWeaponFrameRifleSniperCybersun ]
   name: hristov
   description: |-
-    Manufacturer: Steelbolt Tool Forge
+    Manufacturer: Cybersun Industries
     Type: Sniper Rifle
     Ammo: .60 rifle
     Desc.: A portable anti-materiel rifle.

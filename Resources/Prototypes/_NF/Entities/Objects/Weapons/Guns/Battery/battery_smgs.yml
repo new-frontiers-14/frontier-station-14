@@ -20,14 +20,14 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -2
-    maxAngle: -4
+    minAngle: -1.5
+    maxAngle: -3
   - type: Gun
-    minAngle: 6
-    maxAngle: 12
+    minAngle: 4.5
+    maxAngle: 9
     angleIncrease: 0.25
     angleDecay: 1
-    fireRate: 3.5
+    fireRate: 4
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -39,6 +39,8 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 3 # Default recharge rate: 1 shot per 20 seconds with 60 fireCost
+  - type: StaticPrice
+    price: 350
 
 - type: entity
   id: NFBaseWeaponEnergySubMachineGunFireModes

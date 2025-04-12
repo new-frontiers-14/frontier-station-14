@@ -1,6 +1,6 @@
 #region base
 - type: entity
-  id: NFBaseWeaponRifleAssault
+  id: NFBaseWeaponFrameRifleAssault
   parent: [ NFBaseWeaponEncumbranceRifleAssault, NFBaseItemWeaponGunMagazineFed ]
   name: assault rifle
   abstract: true
@@ -9,13 +9,13 @@
     unwieldOnUse: false
   - type: GunRequiresWield
   - type: GunWieldBonus
-    minAngle: -4.2
-    maxAngle: -8.4
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
   - type: Gun
-    minAngle: 8.4
-    maxAngle: 16.8
-    angleIncrease: 0.5
-    angleDecay: 2
+    minAngle: 3.1
+    maxAngle: 9.3
+    angleIncrease: 2
+    angleDecay: 4
     fireRate: 4
     selectedMode: FullAuto
     availableModes:
@@ -27,6 +27,41 @@
   - type: EyeCursorOffset
     maxOffset: 2.5
     pvsIncrease: 0
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameRifleAssaultNanotrasen
+  parent: [ NFBaseWeaponFrameRifleAssault ]
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 4
+    maxAngle: 12
+    angleIncrease: 2.5
+    angleDecay: 3
+    fireRate: 3.5
+
+- type: entity
+  id: NFBaseWeaponFrameRifleAssaultCybersun
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleAssault ]
+  abstract: true
+  components:
+  - type: Gun
+    angleIncrease: 2
+    angleDecay: 5
+    fireRate: 3
+
+- type: entity
+  id: NFBaseWeaponFrameRifleAssaultFrontierGunsmith
+  parent: [ NFBaseWeaponFrameRifleAssault ]
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 3.7
+    maxAngle: 11
+    angleIncrease: 2
+    angleDecay: 3
+    fireRate: 3.5
 
 #region chamber
 - type: entity
@@ -159,7 +194,7 @@
 #region WizDen
 - type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultSm
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber30 ]
+  parent: [ NFBaseWeaponFrameRifleAssaultCybersun, NFBaseWeaponRifleAssaultChamber30 ]
   name: soland-moss assault rifle # Renamed: real brand name
   description: |-
     Manufacturer: Cybersun Industries
@@ -175,7 +210,7 @@
 
 - type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultM90GrenadeLauncher
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber20 ]
+  parent: [ NFBaseWeaponFrameRifleAssaultCybersun, NFBaseWeaponRifleAssaultChamber20 ]
   name: m90gl
   description: |-
     Manufacturer: Cybersun Industries
@@ -191,7 +226,7 @@
 
 - type: entity
   id: NFWeaponRifleAssaultLecter
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber20 ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameRifleAssaultNanotrasen, NFBaseWeaponRifleAssaultChamber20 ]
   name: lecter
   description: |-
     Manufacturer: NanoTrasen Munitions
@@ -293,7 +328,7 @@
 #region Frontier
 - type: entity
   id: NFWeaponRifleAssaultGestio
-  parent: [ NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber30LowCapacity ]
+  parent: [ NFBaseWeaponFrameRifleAssaultFrontierGunsmith, NFBaseWeaponRifleAssaultChamber30LowCapacity ]
   name: gestio
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -307,10 +342,9 @@
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
   - type: Gun
-    fireRate: 3.8
-    burstFireRate: 8
+    burstFireRate: 5
     shotsPerBurst: 2
-    burstCooldown: 0.4
+    burstCooldown: 0.8
     selectedMode: Burst
     availableModes:
       - Burst
@@ -321,7 +355,7 @@
 
 - type: entity
   id: NFWeaponRifleAssaultNovaliteC1
-  parent: [ NFBaseWeaponRifleAssault, NFBaseWeaponRifleAssaultChamber20Clip ]
+  parent: [ NFBaseWeaponFrameRifleAssaultFrontierGunsmith, NFBaseWeaponRifleAssaultChamber20Clip ]
   name: "novalite c1"
   description: |-
     Manufacturer: Frontier Gunsmith Consortium

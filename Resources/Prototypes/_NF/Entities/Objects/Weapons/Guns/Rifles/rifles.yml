@@ -1,6 +1,6 @@
 #region base
 - type: entity
-  id: NFBaseWeaponRifle
+  id: NFBaseWeaponFrameRifle
   parent: [ NFBaseWeaponEncumbranceRifle, NFBaseItemWeaponGun ]
   abstract: true
   components:
@@ -8,14 +8,14 @@
     unwieldOnUse: false
   - type: GunRequiresWield
   - type: GunWieldBonus
-    minAngle: -3.2
-    maxAngle: -6.4
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
   - type: Gun
-    minAngle: 6.4
-    maxAngle: 12.8
-    angleIncrease: 0.5
+    minAngle: 2.4
+    maxAngle: 7.2
+    angleIncrease: 2
     angleDecay: 3
-    fireRate: 2
+    fireRate: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -25,6 +25,33 @@
   - type: EyeCursorOffset
     maxOffset: 4.5
     pvsIncrease: 0
+  - type: StaticPrice
+    price: 400
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameRifleFrontierGunsmith
+  parent: NFBaseWeaponFrameRifle
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 3
+    maxAngle: 9
+    angleIncrease: 2
+    angleDecay: 3
+    fireRate: 2
+
+- type: entity
+  id: NFBaseWeaponFrameRifleSteelbolt
+  parent: [ BaseC3PirateContraband, NFBaseWeaponFrameRifle ]
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 3
+    maxAngle: 12
+    angleIncrease: 3
+    angleDecay: 3
+    fireRate: 2
 
 #region chamber
 - type: entity
@@ -84,7 +111,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponRifleBarlowsBolt
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleChamber30, NFBaseWeaponRifle ]
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleChamber30, NFBaseWeaponFrameRifleSteelbolt ]
   name: barlows bolt-action rifle # Renamed: real brand name
   description: |-
     Manufacturer: Steelbolt Tool Forge
@@ -97,12 +124,10 @@
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30
 
 - type: entity
   id: NFWeaponRifleMusket
-  parent: [ BaseC3PirateContraband, NFBaseWeaponRifleChamber60, NFBaseWeaponRifle ]
+  parent: [ NFBaseWeaponRifleChamber60, NFBaseWeaponFrameRifleSteelbolt ]
   name: musket
   description: |-
     Manufacturer: Steelbolt Tool Forge
@@ -130,7 +155,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponRifleCeremonial
-  parent: [ NFBaseWeaponRifleChamber20, NFBaseWeaponRifle ]
+  parent: [ NFBaseWeaponRifleChamber20, NFBaseWeaponFrameRifleFrontierGunsmith ]
   name: ceremonial rifle
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -147,7 +172,7 @@
 #region Frontier
 - type: entity
   id: NFWeaponRifleRepeater
-  parent: [ NFBaseWeaponRifleChamber20, NFBaseWeaponRifle ]
+  parent: [ NFBaseWeaponRifleChamber20, NFBaseWeaponFrameRifleFrontierGunsmith ]
   name: n2524 pattern repeater
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -164,7 +189,7 @@
 
 - type: entity
   id: NFWeaponRifleSVS
-  parent: [ BaseGunMelee, NFBaseItemWeaponGunMagazineFed, NFBaseWeaponRifle, NFBaseWeaponRifleAssaultChamber30LowCapacity ]
+  parent: [ BaseGunMelee, NFBaseItemWeaponGunMagazineFed, NFBaseWeaponFrameRifleFrontierGunsmith, NFBaseWeaponRifleAssaultChamber30LowCapacity ]
   name: svs-42
   description: |-
     Manufacturer: Frontier Gunsmith Consortium

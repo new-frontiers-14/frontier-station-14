@@ -8,10 +8,10 @@
     layers:
     - state: icon
   - type: Gun
-    minAngle: 5.4
-    maxAngle: 10.8
-    angleIncrease: 0.5
-    angleDecay: 3
+    minAngle: 4
+    maxAngle: 12
+    angleIncrease: 1.5
+    angleDecay: 0.5
     fireRate: 2
     selectedMode: SemiAuto
     availableModes:
@@ -37,6 +37,8 @@
   - type: ContainerContainer
     containers:
       revolver-ammo: !type:Container
+  - type: StaticPrice
+    price: 200
 
 #region WizDen
 - type: entity
