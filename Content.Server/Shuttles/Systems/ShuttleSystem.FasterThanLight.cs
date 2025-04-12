@@ -62,7 +62,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Space between grids within hyperspace.
     /// </summary>
-    private const float Buffer = 5f;
+    private const float Buffer = 500f; // Frontier: 5 < 500
 
     /// <summary>
     /// How many times we try to proximity warp close to something before falling back to map-wideAABB.

@@ -28,6 +28,51 @@
   - type: StaticPrice
     price: 50
 
+# Upstream definitions
+- type: entity
+  parent: BaseItem
+  id: VehicleKeyJanicart
+  name: janicart keys
+  description: Interesting design.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - VehicleKey
+    - JanicartKeys
+  - type: Sprite
+    sprite: Objects/Vehicles/janicart.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyJanicart
+  id: VehicleKeySecway
+  name: secway keys
+  description: The keys to the future.
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - SecwayKeys
+  - type: Sprite
+    sprite: Objects/Vehicles/secway.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyJanicart
+  id: VehicleKeyATV
+  name: ATV keys
+  description: Think this looks like just one key? ATV keys means "actually two vehicle keys."
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - ATVKeys
+  - type: Sprite
+    sprite: Objects/Vehicles/atv.rsi
+    state: keys
+
 - type: entity
   parent: VehicleKeyATV
   id: VehicleKeySkeleton
