@@ -24,6 +24,7 @@ using Content.Shared._NF.Cargo.Components;
 using Content.Server.Actions;
 using Content.Shared._NF.Mech.Equipment.Events;
 using Content.Shared.Mind.Components;
+using Content.Server.Ghost.Roles.Components;
 
 namespace Content.Server._NF.Mech.Equipment.EntitySystems;
 
@@ -282,7 +283,8 @@ public sealed class MechForkSystem : EntitySystem
                 toRemove.Clear();
                 foreach (var contained in container.Value.ContainedEntities)
                 {
-                    if (TryComp<MindContainerComponent>(contained, out var mindContainer)
+                    if (HasComp<GhostRoleComponent>(contained)
+                        || TryComp<MindContainerComponent>(contained, out var mindContainer)
                         && mindContainer.HasMind)
                     {
                         toRemove.Add(contained);

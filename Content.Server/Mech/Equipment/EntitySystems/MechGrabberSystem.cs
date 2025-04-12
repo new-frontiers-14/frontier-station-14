@@ -20,6 +20,7 @@ using Content.Shared.Whitelist; // Frontier
 using Content.Shared.Buckle.Components; // Frontier
 using Content.Shared.Buckle; // Frontier
 using Content.Shared.Mind.Components; // Frontier
+using Content.Server.Ghost.Roles.Components; // Frontier
 
 namespace Content.Server.Mech.Equipment.EntitySystems;
 
@@ -214,7 +215,8 @@ public sealed class MechGrabberSystem : EntitySystem
                 toRemove.Clear();
                 foreach (var contained in container.Value.ContainedEntities)
                 {
-                    if (TryComp<MindContainerComponent>(contained, out var mindContainer)
+                    if (HasComp<GhostRoleComponent>(contained)
+                        || TryComp<MindContainerComponent>(contained, out var mindContainer)
                         && mindContainer.HasMind)
                     {
                         toRemove.Add(contained);
