@@ -1,6 +1,23 @@
 # Tier 1
 
 - type: technology
+  id: NonlethalAmmunition
+  name: research-technology-nonlethal-ammunition
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    state: beanbag
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - NFAmmunitionBoxShellShotgunBeanbag
+  - NFAmmunitionBoxRifle20Rubber
+  - NFAmmunitionBoxRifle30Rubber
+  - NFAmmunitionBoxPistol35Rubber
+  - NFAmmunitionBoxPistol45Rubber
+  - NFAmmunitionBoxShellShotgunTranquilizer
+
+- type: technology
   id: BountyHunting
   name: research-technology-bounty-hunting
   icon:
@@ -21,7 +38,7 @@
   - ForensicPad
   - FlashlightSecliteNF
   technologyPrerequisites:
-  - AdvancedRiotControl
+  - NonlethalAmmunition
 
 # Tier 2
 
@@ -89,6 +106,24 @@
   technologyPrerequisites:
   - BountyHunting
 
+- type: technology
+  id: ImprovedPistolAmmo
+  name: research-technology-pistol-ammo-improved
+  icon:
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+    state: base
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - NFAmmunitionBoxPistol35HighGrain
+  - NFAmmunitionBoxPistol45HighGrain
+  - NFMagazineHighCapacityPistol35Empty
+  - NFMagazineSubMachineGun35Empty
+  - NFMagazineSubMachineGunTopMounted35Empty
+  technologyPrerequisites:
+  - BountyHunting
+
 # Tier 3
 
 - type: technology
@@ -105,3 +140,35 @@
   - BlueprintClothingOuterHardsuitScaf
   technologyPrerequisites:
   - HardsuitsArmored
+
+- type: technology
+  id: ExplosivePistolAmmo
+  name: research-technology-pistol-ammo-explosive
+  icon:
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+    state: base
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - NFAmmunitionBoxPistol45Explosive
+  - NFMagazinePistol45Empty
+  technologyPrerequisites:
+  - ImprovedPistolAmmo
+
+- type: technology
+  id: ImprovedRifleAmmo
+  name: research-technology-rifle-ammo-improved
+  icon:
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
+    state: base
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - NFAmmunitionBoxRifle20HighGrain
+  - NFAmmunitionBoxRifle30HighGrain
+  - NFMagazineRifle20Empty
+  - NFMagazineRifle30Empty
+  technologyPrerequisites:
+  - ImprovedPistolAmmo

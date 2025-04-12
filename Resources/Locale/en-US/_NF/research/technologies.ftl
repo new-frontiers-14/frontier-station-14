@@ -18,3 +18,6 @@ research-technology-magnets-tech-combat = Localized Magnetism Combat Application
 research-technology-mobile-sanitation = Mobile Sanitation
 research-technology-chemical-dispensary = Chemical Dispensary
 research-technology-personal-storage-solutions = Personal Storage Solutions
+research-technology-pistol-ammo-improved = High Pressure Pistol Ammo
+research-technology-pistol-ammo-explosive = Explosive Pistol Ammo
+research-technology-rifle-ammo-improved = High Pressure Rifle Ammo

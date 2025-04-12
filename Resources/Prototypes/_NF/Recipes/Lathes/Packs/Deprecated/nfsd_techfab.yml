@@ -4,54 +4,40 @@
 - type: latheRecipePack
   id: NFNfsdTechfabDeprecatedStatic
   recipes:
-  - BoxLethalshot
-  - BoxShotgunPractice
-  - BoxShotgunSlug
+  # Ammo boxes
+  - NFAmmunitionBoxShellShotgunBuckshot
+  - NFAmmunitionBoxShellShotgunPractice
+  - NFAmmunitionBoxShellShotgunSlug
+  - NFAmmunitionBoxRifle20HighGrain
+  - NFAmmunitionBoxRifle20Practice
+  - NFAmmunitionBoxRifle20Rubber
+  - NFAmmunitionBoxPistol35HighGrain
+  - NFAmmunitionBoxPistol35Practice
+  - NFAmmunitionBoxPistol35Rubber
+  - NFAmmunitionBoxPistol45HighGrain
+  - NFAmmunitionBoxPistol45Practice
+  - NFAmmunitionBoxPistol45Rubber
+  # Magazines (Empty)
+  - NFMagazineHighCapacityPistol35Empty
+  - NFMagazinePistol45Empty
+  - NFMagazineSubMachineGun35Empty
+  - NFMagazineSubMachineGunTopMounted35Empty
+  - NFBaseMagazineBoxRifle20
+  - NFBaseMagazineBoxRifle30
+  - NFSpeedLoaderPistol35Empty
+  - NFSpeedLoaderPistol45Empty
+  # Stuff
   - ClothingEyesHudNfsd
   - CombatKnife
   - Flash
   - ForensicPad
   - Handcuffs
-  - MagazineBoxLightRifle
-  - MagazineBoxLightRiflePractice
-  - MagazineBoxMagnum
-  - MagazineBoxMagnumPractice
-  - MagazineBoxPistol
-  - MagazineBoxPistolPractice
-  - MagazineBoxRifle
-  - MagazineBoxRiflePractice
-  - MagazineLightRifle
-  - MagazineLightRifleEmpty
-  - MagazinePistol
-  - MagazinePistolEmpty
-  - MagazinePistolSubMachineGun
-  - MagazinePistolSubMachineGunEmpty
-  - MagazinePistolSubMachineGunTopMounted
-  - MagazinePistolSubMachineGunTopMountedEmpty
-  - MagazineRifle
-  - MagazineRifleEmpty
-  - MagazineShotgun
-  - MagazineShotgunEmpty
-  - MagazineShotgunSlug
   - RiotShield
-  - SpeedLoaderMagnum
-  - SpeedLoaderMagnumEmpty
-  - SpeedLoaderRifleHeavy
-  - SpeedLoaderRifleHeavyEmpty
   - Stunbaton
   - TargetClown
   - TargetHuman
   - TargetSyndicate
   - WeaponDisablerPractice
-  - SpeedLoaderRifleHeavyRubber
-  - SpeedLoaderMagnumRubber
-  - MagazineRifleRubber
-  - MagazineShotgunBeanbag
-  - MagazineShotgunSlug
-  - MagazinePistolRubber
-  - MagazinePistolSubMachineGunRubber
-  - MagazineLightRifleRubber
-#      - WeaponFlareGunSecurity
   - WeaponLaserCarbinePractice
   - Zipties
   - ThrusterNfsdMachineCircuitboard
@@ -59,12 +45,6 @@
   - GyroscopeNfsdMachineCircuitboard
   - SmallGyroscopeNfsdMachineCircuitboard
   - ClothingOuterHardsuitEVAPrisoner
-  - BoxBeanbag
-  - MagazineBoxLightRifleRubber
-  - MagazineBoxMagnumRubber
-  - MagazineBoxPistolRubber
-  - MagazineBoxRifleRubber
-  - MagazineShotgunBeanbag
   - WeaponDisabler
   - ContrabandAppraisalTool
   - HoloprojectorNfsd
@@ -74,14 +54,11 @@
   - PowerCageMedium
   - PowerCageSmall
   - Signaller
-  - MagazineNovaliteC1Empty
-  - MagazineNovaliteC1
-  - MagazineNovaliteC1Rubber
 
 - type: latheRecipePack
-  id: NFNfsdTechfabDeprecated
+  id: NFNfsdTechfabDynamicDeprecated
   recipes:
-  - BoxShellTranquilizer
+  - NFAmmunitionBoxShellShotgunTranquilizer
   #- ExplosivePayload
   - FlashPayload
   #- GrenadeBlast
@@ -124,3 +101,41 @@
   - SpeedLoaderMagnumUranium
   - SpeedLoaderRifleHeavyIncendiary
   - SpeedLoaderRifleHeavyUranium
+
+# Practice ammo/mags and practice weapons
+- type: latheRecipePack
+  id: NFSecurityPracticeStatic
+  recipes:
+  - NFAmmunitionBoxPistol35Practice
+  - NFAmmunitionBoxPistol45Practice
+  - NFAmmunitionBoxRifle20Practice
+  - NFAmmunitionBoxRifle30Practice
+  - NFAmmunitionBoxShellShotgunPractice
+  - WeaponDisablerPractice
+  - WeaponLaserCarbinePractice
+
+# Shared between secfab and emagged autolathe
+- type: latheRecipePack
+  id: NFSecurityAmmoStatic
+  recipes:
+  - NFAmmunitionBoxShellShotgunBuckshot
+  - NFAmmunitionBoxShellShotgunSlug
+  - NFAmmunitionBoxShellShotgunBeanbag
+  - NFAmmunitionBoxPistol35
+  - NFAmmunitionBoxPistol35Rubber
+  - NFAmmunitionBoxPistol45
+  - NFAmmunitionBoxPistol45Rubber
+  - NFAmmunitionBoxRifle20
+  - NFAmmunitionBoxRifle20Rubber
+  - NFAmmunitionBoxBigRifle30
+  - NFAmmunitionBoxBigRifle30Rubber
+  - NFMagazinePistol35Empty
+  - NFMagazineHighCapacityPistol35Empty
+  - NFMagazineSubMachineGun35Empty
+  - NFMagazineSubMachineGunTopMounted35Empty
+  - NFSpeedLoaderPistol35Empty
+  - NFMagazinePistol45Empty
+  - NFSpeedLoaderPistol45Empty
+  - NFMagazineRifle20Empty
+  - NFMagazineRifle30Empty
+  - MagazineAsmgtUniversalEmpty
