@@ -19,7 +19,6 @@ using Robust.Shared.Physics.Components;
 using Content.Shared.Whitelist; // Frontier
 using Content.Shared.Buckle.Components; // Frontier
 using Content.Shared.Buckle; // Frontier
-using Content.Shared.Humanoid; // Frontier
 using Content.Shared.Mind.Components; // Frontier
 
 namespace Content.Server.Mech.Equipment.EntitySystems;
@@ -215,8 +214,7 @@ public sealed class MechGrabberSystem : EntitySystem
                 toRemove.Clear();
                 foreach (var contained in container.Value.ContainedEntities)
                 {
-                    if (HasComp<HumanoidAppearanceComponent>(contained)
-                        && TryComp<MindContainerComponent>(contained, out var mindContainer)
+                    if (TryComp<MindContainerComponent>(contained, out var mindContainer)
                         && mindContainer.HasMind)
                     {
                         toRemove.Add(contained);
