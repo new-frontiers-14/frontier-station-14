@@ -2,7 +2,6 @@ using Content.Client.Rotation;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Rotation;
-using Content.Shared.Vehicle.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 
@@ -41,9 +40,6 @@ internal sealed class BuckleSystem : SharedBuckleSystem
 
         if (args.NewRotation == args.OldRotation)
             return;
-
-        //if (HasComp<VehicleComponent>(component.LastEntityBuckledTo)) // Umbra
-        //    return; // Umbra
 
         if (!TryComp<SpriteComponent>(uid, out var strapSprite))
             return;

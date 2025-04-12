@@ -3,7 +3,6 @@
   parent: VehicleATV
   id: NFVehicleATV
   name: ATV
-  description: All-Tile Vehicle.
   components:
   - type: Sprite
     sprite: _NF/Objects/Vehicles/atv.rsi
@@ -50,34 +49,131 @@
           components:
             - Storage
     sprite: _NF/Objects/Vehicles/atv.rsi
-  - type: Appearance
-  - type: Strap
-    unbuckleDistanceSquared: 0.09 # (30 cm)^2
 
 - type: entity
-  parent: VehicleSkeletonMotorcycle
+  parent: BaseVehicle
   id: NFVehicleSkeletonMotorcycle
   name: skeleton motorcycle
   description: Bad to the Bone.
   components:
-  - type: Storage
-    grid:
-    - 0,0,1,3
-    - 3,0,6,3
-    - 8,0,9,3
-    maxItemSize: Huge
-    blacklist:
-      components:
-      - HumanoidAppearance
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
+    - type: Vehicle
+      northOverride: -0.1
+      southOverride: 0.1
+      renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
+    - type: Sprite
+      sprite: Objects/Vehicles/motorbike.rsi
+      layers:
+        - state: vehicle
+          map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      noRot: true
+    - type: Strap
+      buckleOffset: "0.1, -0.05"
+    - type: MovementSpeedModifier
+      acceleration: 2
+      friction: 1.5
+      baseWalkSpeed: 4.5
+      baseSprintSpeed: 7
+    - type: UnpoweredFlashlight
+    - type: PointLight
+      enabled: false
+      radius: 3.5
+      softness: 2
+      mask: /Textures/Effects/LightMasks/cone.png
+      autoRot: true
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: vehicle-slot-component-slot-name-keys
+          whitelist:
+            requireAll: true
+            tags:
+              - VehicleKey
+              - SkeletonMotorcycleKeys
+          insertSound:
+            path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+            params:
+              volume: -3
+    - type: Storage
+      grid:
+      - 0,0,1,3
+      - 3,0,6,3
+      - 8,0,9,3
+      maxItemSize: Huge
+      blacklist:
+        components:
+        - HumanoidAppearance
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+
+- type: entity
+  id: VehicleUnicycle
+  parent: [BaseVehicle, BaseFoldable, BaseItem]
+  name: unicycle
+  description: It only has one wheel!
+  components:
+  - type: Vehicle
+    northOver: true
+    southOver: true
+    northOverride: -0.15
+    southOverride: 0.15
+    hasKey: true
+    hornSound:
+      path: /Audio/Effects/Vehicle/bicyclebell.ogg
+  - type: Sprite
+    sprite: Objects/Vehicles/unicycle.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.AutoAnimate", "unfoldedLayer"]
+    - state: vehicle_folded
+      map: ["foldedLayer"]
+      visible: false
+    noRot: true
   - type: Strap
-    unbuckleDistanceSquared: 0.09 # (30 cm)^2
+    buckleOffset: "0.1, -0.05"
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 0.8
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 240
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+
+- type: entity
+  parent: VehicleUnicycle
+  id: VehicleUnicycleFolded
+  suffix: folded
+  components:
+  - type: Foldable
+    folded: true
+
+- type: entity
+  id: VehicleJanicartDestroyed
+  parent: MachineFrameDestroyed
+  name: destroyed janicart
+  components:
+  - type: Sprite
+    sprite: Objects/Vehicles/janicart.rsi
+    state: destroyed
 
 # New Frontier vehicles
 - type: entity
@@ -96,7 +192,6 @@
     enabled: false
   - type: Strap
     buckleOffset: "0.1, -0.05"
-    # maxBuckleDistance: 1 # Umbra - buckling fix
   - type: MovementSpeedModifier
     acceleration: 2
     friction: 1.5

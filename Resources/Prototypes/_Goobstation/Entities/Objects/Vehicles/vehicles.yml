@@ -8,6 +8,7 @@
     renderOver: East, SouthEast, South, SouthWest, West
   - type: Strap
     position: Stand
+    unbuckleDistanceSquared: 0.09 # Frontier
   - type: Appearance
   - type: AmbientSound
     sound: "/Audio/Effects/Vehicle/vehicleengineidle.ogg"
@@ -42,18 +43,14 @@
         !type:DamageTrigger
         damage: 100
       behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
         damage: 50
       behaviors:
       - !type:DoActsBehavior
-        #acts: ["Destruction"]
-        acts: ["Breakage"]
+        acts: ["Destruction"] # Frontier: swap back to Breakage?
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
@@ -83,7 +80,7 @@
 
 - type: entity
   id: VehicleSecway
-  parent: [ BaseVehicle, BaseSecurityContraband ]
+  parent: BaseVehicle
   name: secway
   description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
   components:
@@ -92,6 +89,7 @@
     state: vehicle
     noRot: true
   - type: Vehicle
+    renderOver: North, NorthEast, NorthWest
     hornSound:
       collection: DeskBell
       params:
@@ -116,13 +114,14 @@
 
 - type: entity
   id: VehicleSyndicateSegway
-  parent: [ BaseSyndicateContraband, VehicleSecway ]
+  parent: VehicleSecway
   name: syndicate segway
   description: Be an enemy of the corporation, in style.
   components:
   - type: Sprite
     sprite: Objects/Vehicles/syndicatesegway.rsi
     state: vehicle
+    renderOver: North, NorthEast, NorthWest
     noRot: true
   - type: ItemSlots
     slots:
@@ -220,18 +219,14 @@
   - type: Vehicle
     requiredHands: 0
     engineRunning: true
-    hornSound:
-      collection: BikeHorn
-      params:
-        variation: 0.125
-    renderOver: North, NorthEast, NorthWest
+    renderOver: South, SouthEast, SouthWest
   - type: MovementSpeedModifier
     acceleration: 10
     friction: 10
     baseSprintSpeed: 3.5
     baseWalkSpeed: 2.5
   - type: StaticPrice
-    price: 175
+    price: 75
   - type: PhysicalComposition
     materialComposition:
       Steel: 125

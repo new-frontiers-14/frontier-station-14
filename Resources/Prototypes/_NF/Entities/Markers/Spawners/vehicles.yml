@@ -41,7 +41,7 @@
       - NFVehicleATV # Frontier: add NF suffix
 
 - type: entity
-  name: Motobike Spawner
+  name: Skeleton Motorcycle Spawner
   id: SpawnVehicleMotobike
   parent: MarkerBase
   components:
@@ -53,34 +53,6 @@
   - type: ConditionalSpawner
     prototypes:
       - NFVehicleSkeletonMotorcycle # Frontier: add NF suffix
-      
-- type: entity
-  name: Wheelchair Spawner
-  id: SpawnVehicleWheelchair
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Objects/Vehicles/wheelchair.rsi
-        state: vehicle
-  - type: ConditionalSpawner
-    prototypes:
-      - VehicleWheelchair
-      
-- type: entity
-  name: Wheelchair [Folded] Spawner
-  id: SpawnVehicleWheelchairFolded
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Objects/Vehicles/wheelchair.rsi
-        state: vehicle_folded
-  - type: ConditionalSpawner
-    prototypes:
-      - VehicleWheelchairFolded
 
 - type: entity
   name: hoverbike spawner
