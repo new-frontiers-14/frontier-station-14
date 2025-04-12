@@ -215,7 +215,9 @@ public sealed class MechGrabberSystem : EntitySystem
                 toRemove.Clear();
                 foreach (var contained in container.Value.ContainedEntities)
                 {
-                    if (HasComp<HumanoidAppearanceComponent>(contained) && HasComp<MindContainerComponent>(contained))
+                    if (HasComp<HumanoidAppearanceComponent>(contained)
+                        && TryComp<MindContainerComponent>(contained, out var mindContainer)
+                        && mindContainer.HasMind)
                     {
                         toRemove.Add(contained);
                     }
