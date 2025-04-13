@@ -98,6 +98,13 @@ public sealed partial class StrapComponent : Component
     /// </summary>
     [DataField, Access(typeof(SharedBuckleSystem))]
     public double UnbuckleDistanceSquared = 1e-5;
+
+    /// <summary>
+    /// If true, the strap will not alter the layering of items buckled in.
+    /// Useful if other systems are handling the layering (e.g. for vehicles)
+    /// </summary>
+    [DataField, Access(typeof(SharedBuckleSystem))]
+    public bool MaintainSpriteLayers;
     // End Frontier: fix vehicles unbuckling
 }
 

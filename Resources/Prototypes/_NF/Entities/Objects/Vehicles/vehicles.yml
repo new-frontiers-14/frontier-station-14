@@ -2,7 +2,6 @@
 - type: entity
   parent: VehicleATV
   id: NFVehicleATV
-  name: ATV
   components:
   - type: Sprite
     sprite: _NF/Objects/Vehicles/atv.rsi
@@ -14,6 +13,16 @@
     - state: lights
       shader: unshaded
     noRot: true
+  - type: Vehicle
+    hornSound:
+      collection: BikeHorn
+      params:
+        variation: 0.125
+    renderOver: North, East, South, West # Frontier
+    southOffset: 0, -0.1
+    northOffset: 0, -0.1
+    eastOffset: 0.05, -0.1
+    westOffset: -0.05, -0.1
   - type: RandomSprite
     available:
       - enum.DamageStateVisualLayers.Base:
@@ -56,6 +65,8 @@
     softness: 2
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
+  - type: RandomMetadata
+    descriptionSegments: [DescriptionsATV]
 
 - type: entity
   parent: BaseVehicle
@@ -64,10 +75,11 @@
   description: Bad to the Bone.
   components:
     - type: Vehicle
-      baseBuckleOffset: "0.1, -0.05"
-      northOverride: -0.1
-      southOverride: 0.1
-      renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
+      renderOver: North, East, South, West
+      southOffset: 0, -0.1
+      northOffset: 0, -0.1
+      eastOffset: 0.05, -0.1
+      westOffset: -0.05, -0.1
     - type: Sprite
       sprite: Objects/Vehicles/motorbike.rsi
       layers:
@@ -123,12 +135,11 @@
   description: It only has one wheel!
   components:
   - type: Vehicle
-    northOver: true
-    southOver: true
+    renderOver: None
     northOffset: 0, -0.15
     southOffset: 0, -0.15
-    eastOffset: 0.36, -0.22
-    westOffset: -0.36, -0.22
+    eastOffset: 0, -0.15
+    westOffset: 0, -0.15
     engineRunning: true
     hornSound:
       path: /Audio/Effects/Vehicle/bicyclebell.ogg
@@ -394,6 +405,7 @@
   - type: StaticPrice
     price: 375 # Same as flatpack
   - type: Vehicle
+    renderOver: East, South, West # Frontier
     southOffset: 0, -0.15
     northOffset: 0, -0.15
     eastOffset: 0.36, -0.22

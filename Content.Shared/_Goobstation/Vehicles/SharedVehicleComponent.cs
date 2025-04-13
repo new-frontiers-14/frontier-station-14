@@ -52,7 +52,7 @@ public sealed partial class VehicleComponent : Component
     [DataField]
     public VehicleRenderOver RenderOver = VehicleRenderOver.None;
 
-    // Frontier: old buckle offset logic
+    // Frontier: sprite offset per
     [DataField]
     public Vector2 SouthOffset = Vector2.Zero;
 
@@ -73,16 +73,14 @@ public enum VehicleState : byte
     DrawOver
 }
 
+// Frontier: use RsiDirection-compatible flags
 [Serializable, NetSerializable, Flags]
 public enum VehicleRenderOver
 {
     None = 0,
-    North = 1,
-    NorthEast = 2,
+    South = 1,
+    North = 2,
     East = 4,
-    SouthEast = 8,
-    South = 16,
-    SouthWest = 32,
-    West = 64,
-    NorthWest = 128,
+    West = 8,
 }
+// End Frontier

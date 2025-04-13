@@ -5,10 +5,12 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Vehicle
-    renderOver: East, SouthEast, South, SouthWest, West
+    # renderOver: East, SouthEast, South, SouthWest, West # Frontier
+    renderOver: East, South, West # Frontier
   - type: Strap
     position: Stand
     unbuckleDistanceSquared: 0.09 # Frontier
+    maintainSpriteLayers: true # Frontier
   - type: Appearance
   - type: AmbientSound
     sound: "/Audio/Effects/Vehicle/vehicleengineidle.ogg"
@@ -89,7 +91,8 @@
     state: vehicle
     noRot: true
   - type: Vehicle
-    renderOver: North, NorthEast, NorthWest
+    # renderOver: North, NorthEast, NorthWest # Frontier
+    renderOver: North # Frontier
     hornSound:
       collection: DeskBell
       params:
@@ -153,7 +156,7 @@
       collection: BikeHorn
       params:
         variation: 0.125
-    renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
+    # renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest # Frontier
   - type: ItemSlots
     slots:
       key_slot:
@@ -167,22 +170,20 @@
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -3
-  - type: RandomMetadata # Frontier
-    descriptionSegments: [DescriptionsATV] # Frontier
 
 - type: entity
   id: VehicleJanicart
   parent: BaseVehicle
   name: janicart
   description: The janitor's trusty steed.
-  categories: [HideSpawnMenu] # Frontier
+  categories: [HideSpawnMenu] # Frontier: use NF variant
   components:
   - type: Sprite
     sprite: Objects/Vehicles/janicart.rsi
     state: vehicle
     noRot: true
   - type: Vehicle
-    renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest
+    # renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest # Frontier
   - type: ItemSlots
     slots:
       key_slot:
@@ -196,14 +197,6 @@
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -3
-  - type: UnpoweredFlashlight
-  - type: PointLight
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    radius: 3.5
-    softness: 2
-    netsync: false
 
 - type: entity
   id: VehicleWheelchair
@@ -223,7 +216,8 @@
   - type: Vehicle
     requiredHands: 1 # Frontier: 0<1
     engineRunning: true
-    renderOver: South, SouthEast, SouthWest
+    # renderOver: South, SouthEast, SouthWest # Frontier
+    renderOver: North # Frontier
   - type: MovementSpeedModifier
     acceleration: 10
     friction: 10
@@ -262,7 +256,7 @@
     requiredHands: 0
     engineRunning: true
     # renderOver: North, NorthEast, NorthWest, East, West # Frontier: looks odd
-    renderOver: South # Frontier
+    renderOver: North # Frontier
   - type: MovementSpeedModifier
     acceleration: 5 # Frontier: 10<5
     friction: 2.5 # Frontier: 0.5<2.5

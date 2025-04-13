@@ -41,6 +41,11 @@ internal sealed class BuckleSystem : SharedBuckleSystem
         if (args.NewRotation == args.OldRotation)
             return;
 
+        // Frontier: maintain sprite order
+        if (component.MaintainSpriteLayers)
+            return;
+        // End Frontier
+
         if (!TryComp<SpriteComponent>(uid, out var strapSprite))
             return;
 
@@ -80,6 +85,11 @@ internal sealed class BuckleSystem : SharedBuckleSystem
 
         if (!TryComp<SpriteComponent>(ent.Owner, out var buckledSprite))
             return;
+
+        // Frontier: maintain sprite order
+        if (args.Strap.Comp.MaintainSpriteLayers)
+            return;
+        // End Frontier
 
         var angle = _xformSystem.GetWorldRotation(args.Strap) + _eye.CurrentEye.Rotation; // Get true screen position, or close enough
 
