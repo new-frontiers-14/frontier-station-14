@@ -17,8 +17,9 @@ public sealed partial class VehicleComponent : Component
     [ViewVariables]
     public EntityUid? SirenAction;
 
-    public bool SirenEnabled = false;
+    // public bool SirenEnabled = false; // Frontier
 
+    [ViewVariables] // Frontier
     public EntityUid? SirenStream;
 
     /// <summary>

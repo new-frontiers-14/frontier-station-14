@@ -12,6 +12,7 @@ using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Network; // Frontier
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
@@ -26,6 +27,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private readonly INetManager _net = default!; // Frontier
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
@@ -97,25 +99,29 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (args.Handled == true || component.Driver != args.Performer || component.HornSound == null)
             return;
 
-        _audio.PlayPvs(component.HornSound, uid);
+        _audio.PlayPredicted(component.HornSound, uid, args.Performer); // Frontier: PlayPvs<PlayPredicted, add args.Performer
         args.Handled = true;
     }
 
     private void OnSiren(EntityUid uid, VehicleComponent component, InstantActionEvent args)
     {
+        if (_net.IsClient) // Frontier
+            return; // Frontier
+
         if (args.Handled == true || component.Driver != args.Performer || component.SirenSound == null)
             return;
 
-        if (component.SirenEnabled)
+        if (component.SirenStream != null) // Frontier: SirenEnabled<SirenStream != null
         {
             component.SirenStream = _audio.Stop(component.SirenStream);
         }
         else
         {
-            component.SirenStream = _audio.PlayPvs(component.SirenSound, uid)?.Entity;
+            var sirenParams = component.SirenSound.Params.WithLoop(true); // Frontier: force loop
+            component.SirenStream = _audio.PlayPvs(component.SirenSound, uid, audioParams: sirenParams)?.Entity; // Frontier: set params
         }
 
-        component.SirenEnabled = !component.SirenEnabled;
+        // component.SirenEnabled = component.SirenStream != null; // Frontier: remove (unneeded state)
         args.Handled = true;
     }
 
