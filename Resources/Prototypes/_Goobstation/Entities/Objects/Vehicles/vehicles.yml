@@ -118,6 +118,15 @@
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -3
+  - type: RotatingLight
+    speed: 190
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    energy: 2
+    color: "#FF4020"
+    mask: /Textures/Effects/LightMasks/double_cone.png
 
 - type: entity
   id: VehicleSyndicateSegway
@@ -143,6 +152,8 @@
           tags:
           - VehicleKey
           - SyndicateSegwayKeys
+  - type: PointLight
+    color: "#3db83b"
 
 - type: entity
   id: VehicleATV
