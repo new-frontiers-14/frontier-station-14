@@ -1,23 +1,37 @@
 - type: entity
-  id: NFMobBearSpace
+  id: NFMobSpaceBase
   parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobBearSpace]
   suffix: "Frontier"
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      50: 0.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      70: Dead
+  - type: Stamina
+    critThreshold: 120
+
+- type: entity
+  id: NFMobBearSpace
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobSpaceBase, MobBearSpace]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFMobKangarooSpace
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobKangarooSpace]
-  suffix: "Frontier"
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobSpaceBase, MobKangarooSpace]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFMobSpiderSpace
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobSpiderSpace]
-  suffix: "Frontier"
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobSpaceBase, MobSpiderSpace]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFMobCobraSpace
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCobraSpace]
-  suffix: "Frontier"
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobSpaceBase, MobCobraSpace]
   categories: [ HideSpawnMenu ]
