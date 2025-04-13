@@ -1,15 +1,3 @@
-uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
-uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.
-uplink-spaceblade-syndicate-name = Contra SpaceBlade
-uplink-spaceblade-syndicate-desc = Made from real metal!
-
-store-category-sechardsuits = EVA Suits
-store-category-secweapons = Weapons
-store-category-secutility = Utility
-store-category-secammo = Ammunition
-store-category-secexplosives = Explosives
-store-category-secbundles = Bundles
-
 # region Security
 uplink-security-hardsuit-name = Bronze Patrol Suit
 uplink-security-hardsuit-desc = The standard-issue NFSD space proof suit for patrol duty. This bronze variant has cadet rank markings.
@@ -120,27 +108,6 @@ uplink-security-30riflemagazine-rubber-name = .30 Rifle Rubber Magazines
 uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifle (rubber) magazines.
 uplink-security-wt550magazine-name = .35 pistol (high grain) Top-mounted Magazines
 uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol  (high grain) top-mounted magazines.
-
-uplink-security-magazinepistol-name = .35 Auto Pistol Magazines
-uplink-security-magazinepistol-desc = A box containing 4 filled .35 auto magazines.
-
-uplink-security-magazinepistol-rubber-name = .35 Auto Pistol Rubber Magazines
-uplink-security-magazinepistol-rubber-desc = A box containing 4 filled .35 auto (rubber) magazines.
-
-uplink-security-20riflemagazine-name = .20 Rifle Magazines
-uplink-security-20riflemagazine-desc = A box containing 4 filled .20 rifle magazines.
-
-uplink-security-20riflemagazine-rubber-name = .20 Rifle Rubber Magazines
-uplink-security-20riflemagazine-rubber-desc = A box containing 4 filled .20 rifle (rubber) magazines.
-
-uplink-security-30riflemagazine-name = .30 Rifle Magazines
-uplink-security-30riflemagazine-desc = A box containing 4 filled .30 rifle magazines.
-
-uplink-security-30riflemagazine-rubber-name = .30 Rifle Rubber Magazines
-uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifle (rubber) magazines.
-
-uplink-security-wt550magazine-name = .35 Auto Top-mounted Magazines
-uplink-security-wt550magazine-desc = A box containing 3 filled .35 auto top-mounted magazines.
 
 uplink-security-hypo-name = Hypospray
 uplink-security-hypo-desc = A sterile medical injector for instant delivery of medications.
@@ -343,7 +310,6 @@ uplink-pirate-repair-kit-desc = A collection of tools used to repair a pirate co
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
 uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.
-
 uplink-spaceblade-syndicate-name = Contra SpaceBlade
 uplink-spaceblade-syndicate-desc = Made from real metal!
 
