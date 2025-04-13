@@ -94,18 +94,25 @@ uplink-security-emprocket-desc = An EMP rocket for the RPG-7.
 
 uplink-security-thrusterkit-name = Thruster Upgrade Kit
 uplink-security-thrusterkit-desc = Contains 12 super capaciters. Perfect for upgrading three thrusters.
+
 uplink-security-magazinepistol-name = .35 Pistol (high grain) Magazines
 uplink-security-magazinepistol-desc = A box containing 4 filled .35 (high grain) high capacity pistol magazines.
+
 uplink-security-magazinepistol-rubber-name = .35 Pistol Rubber Magazines
 uplink-security-magazinepistol-rubber-desc = A box containing 4 filled .35 auto (rubber) magazines.
+
 uplink-security-20riflemagazine-name = .20 Rifle (high grain) Magazines
 uplink-security-20riflemagazine-desc = A box containing 4 filled .20 rifle (high grain) magazines.
+
 uplink-security-20riflemagazine-rubber-name = .20 Rifle Rubber Magazines
 uplink-security-20riflemagazine-rubber-desc = A box containing 4 filled .20 rifle (rubber) magazines.
+
 uplink-security-30riflemagazine-name = .30 Rifle (high grain) Magazines
 uplink-security-30riflemagazine-desc = A box containing 4 filled .30 rifle (high grain) magazines.
+
 uplink-security-30riflemagazine-rubber-name = .30 Rifle Rubber Magazines
 uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifle (rubber) magazines.
+
 uplink-security-wt550magazine-name = .35 pistol (high grain) Top-mounted Magazines
 uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol  (high grain) top-mounted magazines.
 
@@ -153,6 +160,7 @@ uplink-security-swat-desc = A full-face covering version of the standard issue N
 
 uplink-security-speedloader-name = .45 Pistol Speed Loader
 uplink-security-speedloader-desc = A revolver speed loader that comes pre-loaded with .45 pistol cartridges.
+
 uplink-security-speedloaderrubber-name = .45 Pistol Rubber Speed Loader
 uplink-security-speedloader-desc = A revolver speed loader that comes pre-loaded with .45 magnum cartridges.
 uplink-security-speedloaderrubber-desc = A revolver speed loader that comes pre-loaded with .45 rubber cartridges.
@@ -219,6 +227,7 @@ uplink-security-spaceblade-sec-desc = The latest in stun tech.
 
 uplink-security-contraband-forensics-module-name = Contraband Forenics Module
 uplink-security-contraband-forensics-module-desc = A program for scanning and reporting contraband dead drops and pods for bounties. Slots into a forensic scanner.
+
 uplink-security-lasercanon-name = laser cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
@@ -310,6 +319,7 @@ uplink-pirate-repair-kit-desc = A collection of tools used to repair a pirate co
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
 uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.
+
 uplink-spaceblade-syndicate-name = Contra SpaceBlade
 uplink-spaceblade-syndicate-desc = Made from real metal!
 
@@ -318,8 +328,11 @@ uplink-emag-pass-desc = A card used to hack devices. Usable three times.
 
 uplink-revolver-ritland-name = Ritland-45
 uplink-revolver-ritland-desc = Usually reliable, heavy revolver. Do you feel lucky, punk?
+
 uplink-pistol-cobra45-desc = A rugged, robust operator handgun with inbuilt silencer. Uses .45 pistol ammo.
+
 uplink-pistol-magazine-cobra-name = Cobra .45 pistol magazine
 uplink-pistol-magazine-cobra-desc = A loaded magazine for Cobra .45 pistol.
+
 uplink-speedloader-magnum-non-ap-name = .45 pistol speed loader
 uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pistol caliber rounds.
