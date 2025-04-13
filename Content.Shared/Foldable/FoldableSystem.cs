@@ -42,7 +42,7 @@ public sealed class FoldableSystem : EntitySystem
 
     private void OnFoldableOpenAttempt(EntityUid uid, FoldableComponent component, ref StorageOpenAttemptEvent args)
     {
-        if (!component.IsFolded && !component.CanFoldInsideContainer) // Frontier: if things are folded or can unfold in storage, let them be stored
+        if (component.IsFolded)
             args.Cancelled = true;
     }
 
@@ -54,7 +54,7 @@ public sealed class FoldableSystem : EntitySystem
 
     public void OnStrapAttempt(EntityUid uid, FoldableComponent comp, ref StrapAttemptEvent args)
     {
-        if (!comp.IsFolded && !comp.CanFoldInsideContainer) // Frontier: if things are folded or can unfold in storage, let them be stored
+        if (comp.IsFolded)
             args.Cancelled = true;
     }
 
