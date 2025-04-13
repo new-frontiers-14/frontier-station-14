@@ -1,6 +1,6 @@
 - type: entity
   id: NFMobSpaceBase
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobBearSpace]
+  parent: [ NFMobRestrictions, NFMobSimpleHostileBase ]
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   abstract: true
@@ -18,20 +18,20 @@
 
 - type: entity
   id: NFMobBearSpace
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobSpaceBase, MobBearSpace]
+  parent: [ NFMobSpaceBase, MobBearSpace ]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFMobKangarooSpace
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobSpaceBase, MobKangarooSpace]
+  parent: [ NFMobSpaceBase, MobKangarooSpace ]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFMobSpiderSpace
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobSpaceBase, MobSpiderSpace]
+  parent: [ NFMobSpaceBase, MobSpiderSpace ]
   categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFMobCobraSpace
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobSpaceBase, MobCobraSpace]
+  parent: [ NFMobSpaceBase, MobCobraSpace ]
   categories: [ HideSpawnMenu ]
