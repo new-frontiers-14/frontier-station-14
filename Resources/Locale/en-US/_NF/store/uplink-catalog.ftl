@@ -162,7 +162,6 @@ uplink-security-speedloader-name = .45 Pistol Speed Loader
 uplink-security-speedloader-desc = A revolver speed loader that comes pre-loaded with .45 pistol cartridges.
 
 uplink-security-speedloaderrubber-name = .45 Pistol Rubber Speed Loader
-uplink-security-speedloader-desc = A revolver speed loader that comes pre-loaded with .45 magnum cartridges.
 uplink-security-speedloaderrubber-desc = A revolver speed loader that comes pre-loaded with .45 rubber cartridges.
 
 uplink-security-shotlethal-name = Lethal Shotgun Shells
