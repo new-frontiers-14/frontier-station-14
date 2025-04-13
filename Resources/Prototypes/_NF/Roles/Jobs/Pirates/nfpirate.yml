@@ -1,23 +1,22 @@
 - type: job
-  id: PirateCaptain
-  name: job-name-pirate-captain
-  description: job-description-pirate-captain
-  playTimeTracker: JobPirateCaptain
+  id: NFPirate
+  name: job-name-nf-pirate
+  description: job-description-nf-pirate
+  playTimeTracker: JobPirate
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 172800 # 48 hours
-    - !type:RoleTimeRequirement
-      role: JobSeniorOfficer
-      time: 10800 # 3 hours
-  whitelisted: true
-  startingGear: PirateCaptainNFGear
+      time: 86400 # 24 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10800 # 3 hrs
+  startingGear: NFPirateGear
   alwaysUseSpawner: true
   hideConsoleVisibility: true
   canBeAntag: true
-  icon: "JobIconPirateCaptain"
-  supervisors: job-supervisors-nobody
-  weight: 40
-  displayWeight: 40
+  icon: "JobIconNFPirate"
+  supervisors: job-supervisors-nf-pirate
+  weight: 20
+  displayWeight: 20
   setPreference: true
   access:
   - Pirate
@@ -26,12 +25,9 @@
   special:
   - !type:AddComponentSpecial
     components:
-    - type: MailDisabled
-    - type: SpecialSectorStationRecord
+    - type: AutoPirate
+    - type: SpecialSectorStationRecord # must be given on spawn
       recordGeneration: FalseRecord
-    - type: NpcFactionMember
-      factions:
-      - PirateNF
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
@@ -39,12 +35,11 @@
     prototype: FrontierBirthdayGift
 
 - type: startingGear
-  id: PirateCaptainNFGear
+  id: NFPirateGear
   equipment:
     ears: ClothingHeadsetAltFreelancer
     belt: ClothingBeltUtility
-    pocket1: BasePirateUplinkRadioPirateCaptain
-    pocket2: EnergyCutlass
+    pocket1: BasePirateUplinkPirateCrew
   storage:
     back:
     - AppraisalTool
