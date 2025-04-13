@@ -21,3 +21,4 @@ research-technology-personal-storage-solutions = Personal Storage Solutions
 research-technology-pistol-ammo-improved = High Pressure Pistol Ammo
 research-technology-pistol-ammo-explosive = Explosive Pistol Ammo
 research-technology-rifle-ammo-improved = High Pressure Rifle Ammo
+research-technology-rifle-ammo-bulk = Bulk Ammunition Production

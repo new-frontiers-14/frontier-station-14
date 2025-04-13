@@ -86,7 +86,7 @@
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Energy Rifle
-    Ammo: High Power Laser Bolt
+    Ammo: High Power Energy Bolt
     Desc.: A simple civilian grade laser carbine, the workhorse of many private security organizations.
     ---
   components:
@@ -94,6 +94,30 @@
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+
+- type: entity
+  id: NFWeaponEnergyRifleCarbinePractice
+  parent: [ BaseC1Contraband, NFBaseWeaponEnergyRifleFireModes ]
+  name: practice laser carbine
+  suffix: Frontier
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Rifle
+    Ammo: Energy Bolt
+    Desc.: This modified laser rifle fires nearly harmless beams in the 40-watt range, for target practice.
+    ---
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/practice_laser_gun.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/practice_laser_gun.rsi
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserPractice
+    fireCost: 40
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBulletLaserPractice
+      fireCost: 40
 
 #region Pulse
 - type: entity

@@ -13,6 +13,23 @@
 
 # Assault Rifles / Carbines
 - type: entity
+  id: NFBulletLaserPractice
+  parent: NFBaseBulletLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser_greyscale
+      shader: unshaded
+      color: green
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Heat: 0
+
+- type: entity
   id: NFBulletLaserMedium
   parent: NFBaseBulletLaser
   categories: [ HideSpawnMenu ]

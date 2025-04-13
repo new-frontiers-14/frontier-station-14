@@ -4,24 +4,6 @@
 - type: latheRecipePack
   id: NFNfsdTechfabDeprecatedStatic
   recipes:
-  # Ammo boxes
-  - NFAmmunitionBoxShellShotgunBuckshot
-  - NFAmmunitionBoxShellShotgunSlug
-  - NFAmmunitionBoxRifle20HighGrain
-  - NFAmmunitionBoxRifle20Rubber
-  - NFAmmunitionBoxPistol35HighGrain
-  - NFAmmunitionBoxPistol35Rubber
-  - NFAmmunitionBoxPistol45HighGrain
-  - NFAmmunitionBoxPistol45Rubber
-  # Magazines (Empty)
-  - NFMagazineHighCapacityPistol35Empty
-  - NFMagazinePistol45Empty
-  - NFMagazineSubMachineGun35Empty
-  - NFMagazineSubMachineGunTopMounted35Empty
-  - NFMagazineRifle20Empty
-  - NFMagazineRifle30Empty
-  - NFSpeedLoaderPistol35Empty
-  - NFSpeedLoaderPistol45Empty
   # Stuff
   - ClothingEyesHudNfsd
   - CombatKnife
@@ -54,22 +36,18 @@
   recipes:
   - NFMagazineDrumRifle20Empty
   - NFAmmunitionBoxShellShotgunTranquilizer
-  #- ExplosivePayload
+  - NFAmmunitionBoxBigRifle20
+  - NFAmmunitionBoxBigRifle20HighGrain
+  - NFAmmunitionBoxBigRifle30
+  - NFAmmunitionBoxBigRifle30HighGrain
   - FlashPayload
-  #- GrenadeBlast
   - GrenadeEMP
   - GrenadeFlash
   - PortableRecharger
   - SignalTrigger
   - TelescopicShield
   - TimerTrigger
-  #- Truncheon
   - VoiceTrigger
-  #- WeaponAdvancedLaser
-  #- WeaponDisablerSMG
-  #- WeaponLaserCannon
-  #- WeaponLaserCarbine
-  #- WeaponXrayCannon
 
 - type: latheRecipePack
   id: NFNfsdTechfabDeprecatedEmag
@@ -99,38 +77,43 @@
 
 # Practice ammo/mags and practice weapons
 - type: latheRecipePack
-  id: NFSecurityPracticeStatic
+  id: NfsdPracticeStatic
   recipes:
   - NFAmmunitionBoxPistol35Practice
   - NFAmmunitionBoxPistol45Practice
   - NFAmmunitionBoxRifle20Practice
   - NFAmmunitionBoxRifle30Practice
   - NFAmmunitionBoxShellShotgunPractice
-  - WeaponDisablerPractice
-  - WeaponLaserCarbinePractice
+  - NFWeaponEnergyPistolDisablerPractice
+  - NFWeaponEnergyRifleCarbinePractice
 
 # Shared between secfab and emagged autolathe
 - type: latheRecipePack
-  id: NFSecurityAmmoStatic
+  id: NfsdAmmoStatic
   recipes:
+  # Ammo boxes
   - NFAmmunitionBoxShellShotgunBuckshot
   - NFAmmunitionBoxShellShotgunSlug
   - NFAmmunitionBoxShellShotgunBeanbag
-  - NFAmmunitionBoxPistol35
-  - NFAmmunitionBoxPistol35Rubber
-  - NFAmmunitionBoxPistol45
-  - NFAmmunitionBoxPistol45Rubber
   - NFAmmunitionBoxRifle20
+  - NFAmmunitionBoxRifle20HighGrain
   - NFAmmunitionBoxRifle20Rubber
   - NFAmmunitionBoxRifle30
+  - NFAmmunitionBoxRifle30HighGrain
   - NFAmmunitionBoxRifle30Rubber
-  - NFMagazinePistol35Empty
+  - NFAmmunitionBoxPistol35
+  - NFAmmunitionBoxPistol35HighGrain
+  - NFAmmunitionBoxPistol35Rubber
+  - NFAmmunitionBoxPistol45
+  - NFAmmunitionBoxPistol45HighGrain
+  - NFAmmunitionBoxPistol45Rubber
+  # Magazines (Empty)
   - NFMagazineHighCapacityPistol35Empty
+  - NFMagazinePistol45Empty
   - NFMagazineSubMachineGun35Empty
   - NFMagazineSubMachineGunTopMounted35Empty
-  - NFSpeedLoaderPistol35Empty
-  - NFMagazinePistol45Empty
-  - NFSpeedLoaderPistol45Empty
   - NFMagazineRifle20Empty
   - NFMagazineRifle30Empty
+  - NFSpeedLoaderPistol35Empty
+  - NFSpeedLoaderPistol45Empty
   - MagazineAsmgtUniversalEmpty

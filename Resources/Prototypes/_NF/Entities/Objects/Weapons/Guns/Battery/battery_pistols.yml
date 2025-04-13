@@ -73,7 +73,7 @@
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Energy Pistol
-    Ammo: Low Power Laser Bolt
+    Ammo: Low Power Energy Bolt
     Desc.: A cheap and widely used laser pistol.
     ---
 
@@ -106,7 +106,7 @@
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Energy Pistol
-    Ammo: Low Power Laser Bolt
+    Ammo: Low Power Energy Bolt
     Desc.: This is an antique laser pistol with two settings: disable and kill. All craftsmanship is of the highest quality. It is decorated with a mahogany grip and chrome filigree. The object menaces with spikes of energy. On the item is an image of a captain and a clown. The clown is dead. The captain is striking a heroic pose.
     ---
   components:
@@ -129,7 +129,7 @@
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Energy Pistol
-    Ammo: Low Power Laser Bolt
+    Ammo: Low Power Energy Bolt
     Desc.: An experimental civilian grade high-energy laser pistol with a self-charging nuclear battery and two settings: disable and kill.
     ---
   components:
@@ -149,7 +149,7 @@
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Energy Pistol
-    Ammo: Low Power Laser Bolt
+    Ammo: Low Power Energy Bolt
     Desc.: An older model of civilian-grade laser pistol with two settings: disable and kill.
     ---
   components:
@@ -225,6 +225,30 @@
   - type: Battery # 20 shots
     maxCharge: 1200
     startingCharge: 1200
+
+- type: entity
+  id: NFWeaponEnergyPistolDisablerPractice
+  parent: [ BaseC1Contraband, NFBaseWeaponEnergyPistolFireModes, WeaponDisabler ]
+  name: practice disabler pistol
+  suffix: Frontier
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Energy Pistol
+    Ammo: Energy Bolt
+    Desc.: A self-defense weapon that exhausts organic targets, weakening them until they collapse. This one has been undertuned for cadets making it mostly harmless.
+    ---
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/practice_disabler.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/practice_disabler.rsi
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserPractice
+    fireCost: 30
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBulletLaserPractice
+      fireCost: 30
 
 #region Other
 # Frontier
