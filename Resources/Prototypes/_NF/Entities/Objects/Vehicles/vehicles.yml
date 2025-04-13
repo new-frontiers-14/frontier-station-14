@@ -540,16 +540,11 @@
   parent:
   - VehicleHoverbikeMailcarrier
   - BaseC2ContrabandUnredeemable
-  id: NFVehicleHoverbikesd
+  id: NFVehicleHoverbikeNfsd
   name: NFSD hoverbike
   description: An NFSD issued turbine with bike handles. Very safe.
   components:
   - type: Vehicle
-    northOver: true
-    westOver: true
-    eastOver: true
-    northOverride: -0.1
-    southOverride: 0.1
     hornSound:
       path: /Audio/Effects/Vehicle/policesiren.ogg
   - type: MovementSpeedModifier # Very petty on my end
@@ -606,8 +601,8 @@
     mask: /Textures/Effects/LightMasks/double_cone.png
 
 - type: entity
-  parent: NFVehicleHoverbikesd
-  id: NFVehicleHoverbikesdKey
+  parent: NFVehicleHoverbikeNfsd
+  id: NFVehicleHoverbikeNfsdKey
   suffix: With key
   components:
   - type: ItemSlots
