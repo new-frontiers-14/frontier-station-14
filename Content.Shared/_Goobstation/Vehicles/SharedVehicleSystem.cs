@@ -6,6 +6,7 @@ using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Hands;
 using Content.Shared.Inventory.VirtualItem;
+using Content.Shared.Light.Components; // Frontier
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
@@ -13,7 +14,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Vehicles;
+namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
 public abstract partial class SharedVehicleSystem : EntitySystem
 {
@@ -153,6 +154,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             return;
 
         ent.Comp.Driver = driver;
+        Dirty(ent); // Frontier
         _appearance.SetData(ent.Owner, VehicleState.DrawOver, true);
 
         if (!ent.Comp.EngineRunning)
@@ -191,6 +193,13 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         if (vehicleComp.SirenSound != null)
             _actions.AddAction(driver, ref vehicleComp.SirenAction, SirenActionId, vehicle);
+
+        // Frontier: add flashlight action
+        if (TryComp<UnpoweredFlashlightComponent>(driver, out var flashlight))
+        {
+            _actions.AddAction(driver, ref flashlight.ToggleActionEntity, flashlight.ToggleAction, vehicle);
+        }
+        // End Frontier
     }
 
     private void Mount(EntityUid driver, EntityUid vehicle)
@@ -223,6 +232,11 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         if (vehicleComp.SirenAction != null)
             _actions.RemoveAction(driver, vehicleComp.SirenAction);
+
+        // Frontier: remove flashlight action
+        if (TryComp<UnpoweredFlashlightComponent>(driver, out var flashlight) && flashlight.ToggleActionEntity != null)
+            _actions.RemoveAction(driver, flashlight.ToggleActionEntity);
+        // End Frontier
 
         _virtualItem.DeleteInHandsMatching(driver, vehicle);
 

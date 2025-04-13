@@ -72,7 +72,7 @@
           params:
             volume: -3
   - type: StaticPrice
-    price: 2500
+    price: 750 # Frontier: 2500<750
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -142,6 +142,7 @@
   parent: BaseVehicle
   name: ATV
   description: All-Tile Vehicle.
+  categories: [HideSpawnMenu] # Frontier
   components:
   - type: Sprite
     sprite: Objects/Vehicles/atv.rsi
@@ -166,12 +167,15 @@
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -3
+  - type: RandomMetadata # Frontier
+    descriptionSegments: [DescriptionsATV] # Frontier
 
 - type: entity
   id: VehicleJanicart
   parent: BaseVehicle
   name: janicart
   description: The janitor's trusty steed.
+  categories: [HideSpawnMenu] # Frontier
   components:
   - type: Sprite
     sprite: Objects/Vehicles/janicart.rsi
@@ -217,7 +221,7 @@
       visible: false
     noRot: true
   - type: Vehicle
-    requiredHands: 0
+    requiredHands: 1 # Frontier: 0<1
     engineRunning: true
     renderOver: South, SouthEast, SouthWest
   - type: MovementSpeedModifier
@@ -257,10 +261,11 @@
   - type: Vehicle
     requiredHands: 0
     engineRunning: true
-    renderOver: North, NorthEast, NorthWest, East, West
+    # renderOver: North, NorthEast, NorthWest, East, West # Frontier: looks odd
+    renderOver: South # Frontier
   - type: MovementSpeedModifier
-    acceleration: 10
-    friction: 0.5
+    acceleration: 5 # Frontier: 10<5
+    friction: 2.5 # Frontier: 0.5<2.5
     baseSprintSpeed: 3.5
     baseWalkSpeed: 2.5
   - type: StaticPrice

@@ -10,7 +10,7 @@ using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
-using Content.Shared.Vehicles;
+using Content.Shared._Goobstation.Vehicles;
 
 namespace Content.Server.StationEvents.Events;
 

@@ -1,13 +1,14 @@
+using System.Numerics; // Frontier
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Vehicles;
+namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState] // Frontier: add AutoGenerateComponentState
 public sealed partial class VehicleComponent : Component
 {
-    [ViewVariables]
+    [DataField, AutoNetworkedField] // Frontier: ViewVariables to DataField & AutoNetworked
     public EntityUid? Driver;
 
     [ViewVariables]
@@ -50,6 +51,20 @@ public sealed partial class VehicleComponent : Component
     /// </summary>
     [DataField]
     public VehicleRenderOver RenderOver = VehicleRenderOver.None;
+
+    // Frontier: old buckle offset logic
+    [DataField]
+    public Vector2 SouthOffset = Vector2.Zero;
+
+    [DataField]
+    public Vector2 NorthOffset = Vector2.Zero;
+
+    [DataField]
+    public Vector2 EastOffset = Vector2.Zero;
+
+    [DataField]
+    public Vector2 WestOffset = Vector2.Zero;
+    // End Frontier: old buckle offset logic
 }
 [Serializable, NetSerializable]
 public enum VehicleState : byte
