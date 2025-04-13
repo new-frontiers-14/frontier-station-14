@@ -5,20 +5,13 @@
   playTimeTracker: JobSeniorOfficer
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 108000 # 30 hours
+      time: 129600 # 36 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 43200 # 18 hours
+      time: 86400 # 24 hours
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 64800 # 12 hours
-  alternateRequirementSets:
-    longerPlaytimeLessSec:
-    - !type:OverallPlaytimeRequirement
-      time: 540000 # 150 hours
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 21600 # 6 hours
+      time: 43200 # 12 hours
   startingGear: SeniorOfficerGear
   icon: JobIconSergeant
   supervisors: job-supervisors-bailiff
