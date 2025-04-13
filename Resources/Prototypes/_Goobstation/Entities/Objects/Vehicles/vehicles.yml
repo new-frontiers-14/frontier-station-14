@@ -92,7 +92,11 @@
     noRot: true
   - type: Vehicle
     # renderOver: North, NorthEast, NorthWest # Frontier
-    renderOver: North # Frontier
+    renderOver: West, South, East # Frontier
+    southOffset: 0, -0.1 # Frontier
+    northOffset: 0, -0.1 # Frontier
+    eastOffset: 0, -0.1 # Frontier
+    westOffset: 0, -0.1 # Frontier
     hornSound:
       collection: DeskBell
       params:
@@ -145,7 +149,7 @@
   parent: BaseVehicle
   name: ATV
   description: All-Tile Vehicle.
-  categories: [HideSpawnMenu] # Frontier
+  categories: [HideSpawnMenu] # Frontier: use NF variant
   components:
   - type: Sprite
     sprite: Objects/Vehicles/atv.rsi
@@ -218,6 +222,10 @@
     engineRunning: true
     # renderOver: South, SouthEast, SouthWest # Frontier
     renderOver: North # Frontier
+    southOffset: 0, -0.15 # Frontier
+    northOffset: 0, -0.15 # Frontier
+    eastOffset: -0.05, -0.15 # Frontier
+    westOffset: 0.05, -0.15 # Frontier
   - type: MovementSpeedModifier
     acceleration: 10
     friction: 10
@@ -257,6 +265,10 @@
     engineRunning: true
     # renderOver: North, NorthEast, NorthWest, East, West # Frontier: looks odd
     renderOver: North # Frontier
+    southOffset: 0, -0.08 # Frontier
+    northOffset: 0, -0.08 # Frontier
+    eastOffset: 0, -0.08 # Frontier
+    westOffset: 0, -0.08 # Frontier
   - type: MovementSpeedModifier
     acceleration: 5 # Frontier: 10<5
     friction: 2.5 # Frontier: 0.5<2.5
