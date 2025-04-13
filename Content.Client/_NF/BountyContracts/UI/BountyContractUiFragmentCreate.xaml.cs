@@ -74,14 +74,12 @@ public sealed partial class BountyContractUiFragmentCreate : Control
 
         // update ships dropdown
         VesselSelector.Clear();
-        int listIndex = 0;
         for (var i = 0; i < _vessels.Count; i++)
         {
             if (string.IsNullOrWhiteSpace(_vessels[i]))
                 continue;
 
-            VesselSelector.AddItem(_vessels[i], listIndex);
-            listIndex++;
+            VesselSelector.AddItem(_vessels[i], i);
         }
 
         // set vessel to unknown

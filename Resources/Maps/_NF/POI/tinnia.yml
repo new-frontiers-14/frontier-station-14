@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/22/2025 00:10:32
+  entityCount: 2253
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   30: FloorDark
@@ -68,6 +79,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
+      bodyStatus: InAir
+      angularDamping: 0.05
+      linearDamping: 0.05
+      fixedRotation: False
+      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
@@ -694,8 +710,8 @@ entities:
         - volume: 2500
           temperature: 235
           moles:
-          - 21.824879
-          - 82.10312
+          - 27.225372
+          - 102.419266
           - 0
           - 0
           - 0
@@ -810,7 +826,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,15.5
       parent: 1
-- proto: AirlockExternalGlassShuttleTransit
+- proto: AirlockExternalGlassShuttleTransitMinorPOI
   entities:
   - uid: 188
     components:
@@ -857,9 +873,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 14.5,-0.5
       parent: 1
-    - type: Door
-      secondsUntilStateChange: -2755.6655
-      state: Opening
   - uid: 196
     components:
     - type: Transform
@@ -1354,6 +1367,23 @@ entities:
     components:
     - type: Transform
       pos: -5.623775,12.729663
+      parent: 1
+- proto: BusSchedule
+  entities:
+  - uid: 2251
+    components:
+    - type: Transform
+      pos: 2.5,-13.5
+      parent: 1
+  - uid: 2252
+    components:
+    - type: Transform
+      pos: 12.5,1.5
+      parent: 1
+  - uid: 2253
+    components:
+    - type: Transform
+      pos: -11.5,-2.5
       parent: 1
 - proto: ButchCleaver
   entities:
@@ -10383,7 +10413,7 @@ entities:
     - type: Transform
       pos: -5.967525,12.464038
       parent: 1
-- proto: hydroponicsTrayAnchored
+- proto: hydroponicsTray
   entities:
   - uid: 257
     components:
