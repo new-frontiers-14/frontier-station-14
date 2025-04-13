@@ -1,7 +1,7 @@
 # Base prototypes can be found in \Resources\Prototypes\Recipes\Lathes\security.yml
 #region base
 - type: latheRecipe
-  id: BaseEEmptyMagazineRecipe
+  id: BaseEmptyMagazineRecipe
   abstract: true
   categories:
   - NFMagazines
@@ -9,7 +9,7 @@
 
 - type: latheRecipe
   id: BaseFilledMagazineRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   abstract: true
   completetime: 2.5
 
@@ -398,237 +398,95 @@
 
 #region mags empty
 - type: latheRecipe # novalite mag empty
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: MagazineNovaliteC1Empty
   result: MagazineNovaliteC1Empty
   materials:
     Steel: 20
 
 - type: latheRecipe # gestio mag empty
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: MagazineLightRifleLowCapacityEmpty
   result: NFMagazineLowCapacityRifle30Empty
   materials:
     Steel: 20
 
 - type: latheRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: NFSpeedLoaderPistol35Empty
   result: NFSpeedLoaderPistol35Empty
   materials:
     Steel: 20
 
 - type: latheRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: NFSpeedLoaderPistol45Empty
   result: NFSpeedLoaderPistol45Empty
   materials:
     Steel: 20
 
 - type: latheRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: NFMagazinePistol35Empty
   result: NFMagazinePistol35Empty
   materials:
     Steel: 20
 
 - type: latheRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: NFMagazineHighCapacityPistol35Empty
   result: NFMagazineHighCapacityPistol35Empty
   materials:
     Steel: 25
 
 - type: latheRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: NFMagazineSubMachineGun35Empty
   result: NFMagazineSubMachineGun35Empty
   materials:
     Steel: 30
 
 - type: latheRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: NFMagazineSubMachineGunTopMounted35Empty
   result: NFMagazineSubMachineGunTopMounted35Empty
   materials:
     Steel: 30
 
 - type: latheRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: NFMagazinePistol45Empty
   result: NFMagazinePistol45Empty
   materials:
     Steel: 20
 
 - type: latheRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: NFMagazineRifle20Empty
   result: NFMagazineRifle20Empty
   materials:
     Steel: 30
 
 - type: latheRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: NFMagazineRifle30Empty
   result: NFMagazineRifle30Empty
   materials:
     Steel: 30
 
 - type: latheRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: MagazineAsmgtUniversalEmpty
   result: MagazineAsmgtUniversalEmpty
   materials:
     Steel: 40
 
 - type: latheRecipe
-  parent: BaseEEmptyMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
   id: NFMagazineDrumRifle20Empty
   result: NFMagazineDrumRifle20Empty
   materials:
     Steel: 40
-
-#region mags filled
-- type: latheRecipe # novalite mag
-  id: MagazineNovaliteC1
-  parent: BaseFilledMagazineRecipe
-  result: MagazineNovaliteC1
-  materials:
-    Steel: 245 # 20 [Steel per empty mag] + 15 [bullets] * 15 [Steel per bullet]
-
-- type: latheRecipe # novalite rubber mag
-  id: MagazineNovaliteC1Rubber
-  parent: BaseFilledMagazineRecipe
-  result: MagazineNovaliteC1Rubber
-  materials:
-    Steel: 82 #33% of 245 in steel
-    Plastic: 163 #66% of 245
-
-- type: latheRecipe # Gestio small rubber mag
-  id: MagazineLightRifleLowCapacityRubber
-  parent: BaseFilledMagazineRecipe
-  result: NFMagazineLowCapacityRifle30Rubber
-  materials:
-    Steel: 82 #33% of cost in steel
-    Plastic: 163 #66% of 245
-
-- type: latheRecipe # gestio mag
-  id: MagazineLightRifleLowCapacity
-  parent: BaseFilledMagazineRecipe
-  result: NFMagazineLowCapacityRifle30
-  materials:
-    Steel: 245 # 20 [Steel per empty mag] + 15 [bullets] * 15 [Steel per bullet]
-
-- type: latheRecipe
-  id: SpeedLoaderRifleHeavy
-  parent: BaseFilledMagazineRecipe
-  result: SpeedLoaderRifleHeavy
-  materials:
-    Steel: 140 # 25 [Steel per empty mag] + 8 [bullets] * 15 [Steel per bullet]
-
-- type: latheRecipe
-  id: SpeedLoaderRifleHeavyRubber #Argenti rubber loader
-  parent: BaseFilledMagazineRecipe
-  result: SpeedLoaderRifleHeavyRubber
-  materials:
-    Steel: 47 #33% of cost in Steel
-    Plastic: 93 #66% of cost in Plastic
-
-- type: latheRecipe
-  id: SpeedLoaderRifleHeavyPractice
-  parent: BaseFilledMagazineRecipe
-  result: SpeedLoaderRifleHeavyPractice
-  materials:
-    Steel: 65 # 25 [Steel per empty mag] + 8 [bullets] * 5 [Steel per practice bullet]
-
-- type: latheRecipe
-  id: SpeedLoaderRifleHeavyUranium
-  parent: BaseFilledMagazineRecipe
-  result: SpeedLoaderRifleHeavyUranium
-  materials:
-    Steel: 25 # 25 [Steel per empty mag]
-    Plastic: 80 # 8 [bullets] * 10 [Plastic per bullet]
-    Uranium: 80 # 8 [bullets] * 10 [Uranium per bullet]
-
-- type: latheRecipe
-  id: SpeedLoaderRifleHeavyIncendiary
-  parent: BaseFilledMagazineRecipe
-  result: SpeedLoaderRifleHeavyIncendiary
-  materials:
-    Steel: 25 # 25 [Steel per empty mag]
-    Plastic: 120 # 8 [bullets] * 15 [Plastic per bullet]
-
-- type: latheRecipe
-  id: MagazinePistolRubber
-  parent: BaseFilledMagazineRecipe
-  result: NFMagazinePistol35Rubber
-  materials:
-    Steel: 100 #50% of box cost
-    Plastic: 200 #50% of box cost
-
-- type: latheRecipe
-  parent: BaseFilledMagazineRecipe
-  id: MagazinePistolSubMachineGunRubber
-  result: NFMagazineSubMachineGun35Rubber
-  materials:
-    Steel: 150 #75% of box cost
-    Plastic: 300 #75% of box cost
-
-- type: latheRecipe
-  id: MagazineBoxLightRifleRubber
-  parent: BaseFilledMagazineRecipe
-  result: NFAmmunitionBoxRifle30Rubber
-  materials:
-    Steel: 300
-    Plastic: 600
-
-- type: latheRecipe
-  id: MagazineLightRifleRubber
-  parent: BaseFilledMagazineRecipe
-  result: NFMagazineRifle30Rubber
-  materials:
-    Steel: 150 #50% of ammo box
-    Plastic: 300 #50% of ammo box
-
-- type: latheRecipe
-  id: MagazineBoxMagnumRubber
-  parent: BaseFilledMagazineRecipe
-  result: NFAmmunitionBoxPistol45Rubber
-  materials:
-    Steel: 80
-    Plastic: 160
-
-- type: latheRecipe
-  id: SpeedLoaderMagnumRubber
-  parent: BaseFilledMagazineRecipe
-  result: NFSpeedLoaderPistol45Rubber
-  materials:
-    Steel: 40 #50% of ammo box
-    Plastic: 80 #50% of ammo box
-
-- type: latheRecipe
-  id: MagazineBoxPistolRubber
-  parent: BaseFilledMagazineRecipe
-  result: NFAmmunitionBoxPistol35Rubber
-  materials:
-    Steel: 200
-    Plastic: 400
-
-- type: latheRecipe
-  id: MagazineBoxRifleRubber
-  parent: BaseFilledMagazineRecipe
-  result: NFAmmunitionBoxRifle20Rubber
-  materials:
-    Steel: 250
-    Plastic: 500
-
-- type: latheRecipe
-  id: MagazineRifleRubber
-  parent: BaseFilledMagazineRecipe
-  result: NFMagazineRifle20Rubber
-  materials:
-    Steel: 125 #50% of ammo box
-    Plastic: 250 #50% of ammo box
 
 #region weapons
 - type: latheRecipe
