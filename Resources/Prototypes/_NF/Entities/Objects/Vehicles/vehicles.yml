@@ -15,7 +15,7 @@
     noRot: true
   - type: Vehicle
     hornSound:
-      collection: BikeHorn
+      collection: NFVehicleHorn
       params:
         variation: 0.125
     renderOver: North, East, South, West # Frontier
@@ -144,7 +144,9 @@
     westOffset: 0, -0.15
     engineRunning: true
     hornSound:
-      path: /Audio/Effects/Vehicle/bicyclebell.ogg
+      collection: BikeHorn
+      params:
+        variation: 0.125
   - type: Sprite
     sprite: Objects/Vehicles/unicycle.rsi
     layers:
@@ -176,6 +178,8 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+  - type: ItemSlots
+    slots: {} # no keys required
 
 - type: entity
   parent: VehicleUnicycle
@@ -507,7 +511,7 @@
   - type: Appearance
   - type: PointLight
     enabled: false
-    radius: 6
+    radius: 7
     energy: 3
 
 - type: entity
@@ -547,8 +551,10 @@
   description: An NFSD issued turbine with bike handles. Very safe.
   components:
   - type: Vehicle
-    hornSound:
-      path: /Audio/Effects/Vehicle/policesiren.ogg
+    sirenSound:
+      collection: PoliceSiren
+      params:
+        variation: 0.125
   - type: MovementSpeedModifier # Very petty on my end
     acceleration: 1.9
     friction: 1.4
@@ -597,8 +603,8 @@
     speed: 190
   - type: PointLight
     enabled: false
-    radius: 6
-    energy: 2
+    radius: 7
+    energy: 3
     color: "#FF4020"
     mask: /Textures/Effects/LightMasks/double_cone.png
 

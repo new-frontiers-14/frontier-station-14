@@ -7,6 +7,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Hands;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Light.Components; // Frontier
+using Content.Shared.Light.EntitySystems; // Frontier
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
@@ -28,6 +29,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly INetManager _net = default!; // Frontier
+    [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
@@ -51,7 +53,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void OnInit(EntityUid uid, VehicleComponent component, ComponentInit args)
     {
-        _appearance.SetData(uid, VehicleState.Animated, component.EngineRunning);
+        _appearance.SetData(uid, VehicleState.Animated, component.EngineRunning && component.Driver != null); // Frontier: add Driver != null
         _appearance.SetData(uid, VehicleState.DrawOver, false);
     }
 
@@ -71,7 +73,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             return;
 
         component.EngineRunning = true;
-        _appearance.SetData(uid, VehicleState.Animated, true);
+        _appearance.SetData(uid, VehicleState.Animated, component.Driver != null);
 
         _ambientSound.SetAmbience(uid, true);
 
@@ -91,7 +93,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (component.Driver == null)
             return;
 
-        Dismount(component.Driver.Value, uid);
+        Dismount(component.Driver.Value, uid, removeDriver: false); // Frontier: add removeDriver: false - the driver is still around.
     }
 
     private void OnHorn(EntityUid uid, VehicleComponent component, InstantActionEvent args)
@@ -105,7 +107,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void OnSiren(EntityUid uid, VehicleComponent component, InstantActionEvent args)
     {
-        if (_net.IsClient) // Frontier
+        if (_net.IsClient) // Frontier: _audio.Stop hates client-side entities, only create this serverside
             return; // Frontier
 
         if (args.Handled == true || component.Driver != args.Performer || component.SirenSound == null)
@@ -149,7 +151,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             }
         }
 
-        AddHorns(driver, ent);
+        // AddHorns(driver, ent); // Frontier: delay until mounted
     }
 
     private void OnStrapped(Entity<VehicleComponent> ent, ref StrappedEvent args)
@@ -162,6 +164,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         ent.Comp.Driver = driver;
         Dirty(ent); // Frontier
         _appearance.SetData(ent.Owner, VehicleState.DrawOver, true);
+        _appearance.SetData(ent.Owner, VehicleState.Animated, ent.Comp.EngineRunning); // Frontier
 
         if (!ent.Comp.EngineRunning)
             return;
@@ -176,6 +179,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         Dismount(args.Buckle.Owner, ent);
         _appearance.SetData(ent.Owner, VehicleState.DrawOver, false);
+        _appearance.SetData(ent.Owner, VehicleState.Animated, false); // Frontier
     }
 
     private void OnDropped(EntityUid uid, VehicleComponent comp, VirtualItemDeletedEvent args)
@@ -187,6 +191,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         Dismount(args.User, uid);
         _appearance.SetData(uid, VehicleState.DrawOver, false);
+        _appearance.SetData(uid, VehicleState.Animated, false); // Frontier
     }
 
     private void AddHorns(EntityUid driver, EntityUid vehicle)
@@ -201,9 +206,11 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             _actions.AddAction(driver, ref vehicleComp.SirenAction, SirenActionId, vehicle);
 
         // Frontier: add flashlight action
-        if (TryComp<UnpoweredFlashlightComponent>(driver, out var flashlight))
+        if (TryComp<UnpoweredFlashlightComponent>(vehicle, out var flashlight))
         {
+            var lightEnabled = flashlight.LightOn;
             _actions.AddAction(driver, ref flashlight.ToggleActionEntity, flashlight.ToggleAction, vehicle);
+            _flashlight.SetLight((vehicle, flashlight), lightEnabled, quiet: true);
         }
         // End Frontier
     }
@@ -222,16 +229,19 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         }
 
         _mover.SetRelay(driver, vehicle);
+
+        AddHorns(driver, vehicle); // Frontier
     }
 
-    private void Dismount(EntityUid driver, EntityUid vehicle)
+    private void Dismount(EntityUid driver, EntityUid vehicle, bool removeDriver = true) // Frontier: add removeDriver
     {
         if (!TryComp<VehicleComponent>(vehicle, out var vehicleComp) || vehicleComp.Driver != driver)
             return;
 
         RemComp<RelayInputMoverComponent>(driver);
 
-        vehicleComp.Driver = null;
+        if (removeDriver) // Frontier
+            vehicleComp.Driver = null;
 
         if (vehicleComp.HornAction != null)
             _actions.RemoveAction(driver, vehicleComp.HornAction);
@@ -239,12 +249,13 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (vehicleComp.SirenAction != null)
             _actions.RemoveAction(driver, vehicleComp.SirenAction);
 
-        // Frontier: remove flashlight action
-        if (TryComp<UnpoweredFlashlightComponent>(driver, out var flashlight) && flashlight.ToggleActionEntity != null)
+        // Frontier: flashlight actions
+        if (TryComp<UnpoweredFlashlightComponent>(vehicle, out var flashlight))
             _actions.RemoveAction(driver, flashlight.ToggleActionEntity);
         // End Frontier
 
-        _virtualItem.DeleteInHandsMatching(driver, vehicle);
+        if (removeDriver) // Frontier
+            _virtualItem.DeleteInHandsMatching(driver, vehicle);
 
         if (TryComp<AccessComponent>(vehicle, out var accessComp))
             accessComp.Tags.Clear();

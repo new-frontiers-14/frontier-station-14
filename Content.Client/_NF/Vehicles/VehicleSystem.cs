@@ -11,6 +11,7 @@ public sealed class VehicleSystem : SharedVehicleSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IEyeManager _eye = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -40,7 +41,7 @@ public sealed class VehicleSystem : SharedVehicleSystem
         var eye = _eye.CurrentEye;
         while (query.MoveNext(out var uid, out var vehicle, out var sprite))
         {
-            var angle = Transform(uid).LocalRotation + eye.Rotation;
+            var angle = _transform.GetWorldRotation(uid) + eye.Rotation;
             if (angle < 0)
                 angle += 2 * Math.PI;
             RsiDirection dir = SpriteComponent.Layer.GetDirection(RsiDirectionType.Dir4, angle);

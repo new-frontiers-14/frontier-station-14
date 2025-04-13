@@ -98,7 +98,7 @@
     eastOffset: 0, -0.1 # Frontier
     westOffset: 0, -0.1 # Frontier
     hornSound:
-      collection: DeskBell
+      collection: NFVehicleHorn # Frontier: DeskBell<NFVehicleHorn
       params:
         variation: 0.125
     sirenSound:
@@ -157,7 +157,7 @@
     noRot: true
   - type: Vehicle
     hornSound:
-      collection: BikeHorn
+      collection: NFVehicleHorn # Frontier: BikeHorn<NFVehicleHorn
       params:
         variation: 0.125
     # renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest # Frontier
@@ -264,7 +264,7 @@
     requiredHands: 0
     engineRunning: true
     # renderOver: North, NorthEast, NorthWest, East, West # Frontier: looks odd
-    renderOver: North # Frontier
+    renderOver: West, North, East # Frontier
     southOffset: 0, -0.08 # Frontier
     northOffset: 0, -0.08 # Frontier
     eastOffset: 0, -0.08 # Frontier
