@@ -36,32 +36,32 @@ public abstract partial class SharedGunSystem
         var msg = new FormattedMessage();
         msg.AddMarkupOrThrow(Loc.GetString("gun-examine"));
 
-        // Recoil (AngleIncrease), Frontier change: added .ToString("0.0")
+        // Recoil (AngleIncrease)
         msg.PushNewline();
         msg.AddMarkupOrThrow(Loc.GetString("gun-examine-recoil",
             ("color", FireRateExamineColor),
-            ("value", MathF.Round((float)ent.Comp.AngleIncreaseModified.Degrees, 2).ToString("0.0"))
+            ("value", MathF.Round((float)ent.Comp.AngleIncreaseModified.Degrees, 2))
         ));
 
-        // Stability (AngleDecay), Frontier change: added .ToString("0.0")
+        // Stability (AngleDecay)
         msg.PushNewline();
         msg.AddMarkupOrThrow(Loc.GetString("gun-examine-stability",
             ("color", FireRateExamineColor),
-            ("value", MathF.Round((float)ent.Comp.AngleDecayModified.Degrees, 2).ToString("0.0"))
+            ("value", MathF.Round((float)ent.Comp.AngleDecayModified.Degrees, 2))
         ));
 
-        // Max Angle, Frontier change: added .ToString("0.0")
+        // Max Angle
         msg.PushNewline();
         msg.AddMarkupOrThrow(Loc.GetString("gun-examine-max-angle",
             ("color", FireRateExamineColor),
-            ("value", MathF.Round((float)ent.Comp.MaxAngleModified.Degrees, 2).ToString("0.0"))
+            ("value", MathF.Round((float)ent.Comp.MaxAngleModified.Degrees, 2))
         ));
 
-        // Min Angle, Frontier change: added .ToString("0.0")
+        // Min Angle
         msg.PushNewline();
         msg.AddMarkupOrThrow(Loc.GetString("gun-examine-min-angle",
             ("color", FireRateExamineColor),
-            ("value", MathF.Round((float)ent.Comp.MinAngleModified.Degrees, 2).ToString("0.0"))
+            ("value", MathF.Round((float)ent.Comp.MinAngleModified.Degrees, 2))
         ));
 
         // Fire Rate (converted from RPS to RPM)
@@ -77,11 +77,11 @@ public abstract partial class SharedGunSystem
             ("value", MathF.Round(fireRate, 1).ToString("0.0"))
         ));
 
-        // Muzzle Velocity (ProjectileSpeed * 10), Frontier change: added .ToString("0.0")
+        // Muzzle Velocity (ProjectileSpeed * 10)
         msg.PushNewline();
         msg.AddMarkupOrThrow(Loc.GetString("gun-examine-muzzle-velocity",
             ("color", FireRateExamineColor),
-            ("value", MathF.Round(ent.Comp.ProjectileSpeedModified, 0).ToString("0.0"))
+            ("value", MathF.Round(ent.Comp.ProjectileSpeedModified, 0))
         ));
 
         return msg;
