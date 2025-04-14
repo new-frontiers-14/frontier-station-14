@@ -412,20 +412,20 @@
     output: FoodOnionRings
 
 - type: entity
-  name: monkana
+  name: monkanana
   parent: FoodProduceBase
-  id: FoodMonkana
+  id: FoodMonkanana
   description: Looks like a monkeyfied banana.
   components:
   - type: FlavorProfile
     flavors:
-      - monkana
+      - hairy
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 25
         reagents:
-        - ReagentId: JuiceThatMakesYouOOOK
+        - ReagentId: ook
           Quantity: 8
         - ReagentId: Cryptobiolin
           Quantity: 4
@@ -435,10 +435,6 @@
     seedId: monkanana
   - type: Extractable
     grindableSolutionName: food
-    juiceSolution:
-      reagents:
-      - ReagentId: Barefoot
-        Quantity: 10
   - type: Tag
     tags:
       - Vegetable
