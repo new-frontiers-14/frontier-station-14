@@ -18,6 +18,7 @@ using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
+using Content.Shared._NF.CCVar; // Frontier
 
 namespace Content.Server.Objectives;
 
@@ -34,6 +35,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     private IEnumerable<string>? _objectives;
 
     private bool _showGreentext;
+    private bool _showObjectives; // Frontier: hide objectives
 
     public override void Initialize()
     {
@@ -42,6 +44,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
 
         Subs.CVar(_cfg, CCVars.GameShowGreentext, value => _showGreentext = value, true);
+        Subs.CVar(_cfg, NFCCVars.GameShowObjectives, value => _showObjectives = value, true); // Frontier
 
         _prototypeManager.PrototypesReloaded += CreateCompletions;
     }
@@ -58,6 +61,10 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     /// </summary>
     private void OnRoundEndText(RoundEndTextAppendEvent ev)
     {
+        // Frontier: hide objectives
+        if (!_showObjectives)
+            return;
+
         // go through each gamerule getting data for the roundend summary.
         var summaries = new Dictionary<string, Dictionary<string, List<(EntityUid, string)>>>();
         var query = EntityQueryEnumerator<GameRuleComponent>();
