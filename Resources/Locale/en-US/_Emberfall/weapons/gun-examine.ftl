@@ -15,7 +15,7 @@ gun-examine-stability = - [color={$color}]Stability[/color]: [color=lightblue]{N
 gun-examine-max-angle = - [color={$color}]Maximum spread[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color]
 gun-examine-min-angle = - [color={$color}]Minimum spread[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color]
 gun-examine-fire-rate = - [color={$color}]Fire rate[/color]: [color=lightblue]{NATURALFIXED($value, 1)} RPS[/color]
-gun-examine-muzzle-velocity = - [color={$color}]Muzzle velocity[/color]: [color=lightblue]{NATURALFIXED($value, 0)} m/s[/color]
+gun-examine-muzzle-velocity = - [color={$color}]Muzzle velocity[/color]: [color=lightblue]{NATURALFIXED($value, 1)} m/s[/color]
 gun-examine-caliber = Uses [color={$color}]{$caliber}[/color].
 gun-examine-caliber-35 = .35 pistol ammo
 gun-examine-caliber-45 = .45 pistol ammo
