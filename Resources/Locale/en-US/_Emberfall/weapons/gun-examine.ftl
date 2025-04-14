@@ -38,3 +38,6 @@ gun-examine-energybolt-disabler-practice = 25J disabler bolt
 gun-examine-energybolt-holoflare = holoflare
 gun-examine-pulse-low = 1750J energy pulse
 gun-examine-energybolt-emp = EMP bolt
+gun-examine-caliber-40mm-grenade = 40mm grenades
+gun-examine-caliber-rocket = rocket-propelled grenades
+gun-examine-caliber-cannon-ball = cannon balls

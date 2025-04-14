@@ -1,74 +1,8 @@
-#region base
-- type: entity
-  id: NFBaseWeaponLightMachineGun
-  parent: [ NFBaseWeaponEncumbranceSniper, NFBaseItemWeaponGunMagazineFed ]
-  suffix: Frontier
-  abstract: true
-  components:
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunRequiresWield
-  - type: GunWieldBonus
-    minAngle: -0 # Set to 0 because GunRequiresWield
-    maxAngle: -0
-  - type: Gun
-    projectileSpeed: 30
-    minAngle: 4.7
-    maxAngle: 14.1
-    angleIncrease: 2
-    angleDecay: 3
-    fireRate: 4
-    burstFireRate: 5
-    shotsPerBurst: 5
-    burstCooldown: 1
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    - Burst
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-
-#region chamber
-- type: entity
-  id: NFBaseWeaponLightMachineGunChamber20
-  abstract: true
-  components:
-  - type: Gun
-    examineCaliber: gun-examine-caliber-20
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineBoxRifle20
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineLightRifleBox
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgeRifle20
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
 
 #region WizDen
 - type: entity
   id: NFWeaponLightMachineGunL6
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponLightMachineGun, NFBaseWeaponLightMachineGunChamber20 ]
+  parent: [ NFBaseWeaponFrameLightMachineGunGorlex, NFBaseWeaponLightMachineGunChamber20 ]
   name: gsw lmg-6
   description: |-
     Manufacturer: Gorlex Steel Works
@@ -87,12 +21,11 @@
 
 - type: entity
   id: NFWeaponLightMachineGunL6C
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponLightMachineGun ]
+  parent: [ NFBaseWeaponFrameLightMachineGunGorlex ]
   name: cyborg gsw lmg-6
   description: |-
     Manufacturer: Gorlex Steel Works
     Type: Light Machine Gun
-    Ammo: .20 rifle
     Desc.: A GSW LMG-6 for use by cyborgs. Creates rifle ammo on the fly from an internal ammo fabricator, which slowly self-charges. An illegal firearm often used by Syndicate agents.
     ---
   components:

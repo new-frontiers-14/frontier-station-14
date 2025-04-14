@@ -1,69 +1,61 @@
-# BASE LAUNCHER
-- type: entity
-  id: NFBaseWeaponLauncher
-  parent: [ NFBaseWeaponEncumbranceLauncher, BaseWeaponLauncher ]
-  suffix: Frontier
-  abstract: true
-  components:
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunRequiresWield
-  - type: GunWieldBonus
-    minAngle: -0 # Set to 0 because GunRequiresWield
-    maxAngle: -0
-  - type: Gun
-    minAngle: 1.9
-    maxAngle: 5.7
-    angleIncrease: 5
-    angleDecay: 2
-    fireRate: 1
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 4.5
-    pvsIncrease: 0
-
-# WizDen
+#region WizDen
 - type: entity
   id: NFWeaponLauncherChinaLake
-  parent: [ NFBaseWeaponLauncher, BaseC3SyndicateContraband, WeaponLauncherChinaLake ]
+  parent: [ NFBaseWeaponFrameLauncherGorlex, NFBaseWeaponLauncherChamber40mmGrenades ]
   name: china lake
   description: |-
     Manufacturer: Gorlex Steel Works
     Type: Launcher
-    Ammo: 40mm Grenades
     Desc.: PLOOP.
     ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
+    layers:
+      - state: icon
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
+    slots:
+    - Back
+    - suitStorage
 
 - type: entity
   id: NFWeaponLauncherRocket
-  parent: [ NFBaseWeaponLauncher, BaseC3SyndicateContraband, WeaponLauncherRocket ]
+  parent: [ NFBaseWeaponFrameLauncherGorlex, NFBaseWeaponLauncherChamberRockets ]
   name: gsw rocket launcher mk4
   description: |-
     Manufacturer: Gorlex Steel Works
     Type: Launcher
-    Ammo: Rocket-propelled grenades
     Desc.: A modified ancient rocket-propelled grenade launcher.
     ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
 
 - type: entity
   id: NFWeaponLauncherMultipleRocket
-  parent: [ NFBaseWeaponLauncher, BaseC3SyndicateContraband, WeaponLauncherMultipleRocket ]
+  parent: [ NFWeaponLauncherRocket ]
   name: gsw multiple rocket launcher mk2
   description: |-
     Manufacturer: Gorlex Steel Works
     Type: Launcher
-    Ammo: Rocket-propelled grenades
     Desc.: A modified ancient rocket-propelled grenade launcher.
     ---
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRocketSlow
 
 - type: entity
   id: NFWeaponLauncherPirateCannon
-  parent: [ NFBaseWeaponLauncher, BaseC3PirateContraband, WeaponLauncherPirateCannon ]
+  parent: [ NFBaseWeaponFrameLauncherSteelbolt, NFBaseWeaponLauncherChamberCannonBalls ]
   name: pirate cannon
   description: |-
     Manufacturer: Steelbolt Tool Forge
@@ -71,8 +63,16 @@
     Ammo: 40mm Cannon Balls
     Desc.: Kaboom!
     ---
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi
+      layers:
+        - state: icon
+          map: ["enum.GunVisualLayers.Base"]
+    - type: Clothing
+      sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi
 
-# Frontier variations
+#region Frontier
 - type: entity
   parent: NFWeaponLauncherChinaLake
   suffix: EMP
@@ -83,7 +83,7 @@
 
 - type: entity
   suffix: EMP
-  parent: [BaseC2ContrabandUnredeemable, WeaponLauncherRocket]
+  parent: [ BaseC2ContrabandUnredeemable, NFWeaponLauncherRocket ]
   id: WeaponLauncherRocketEmp
   components:
   - type: BallisticAmmoProvider
@@ -91,7 +91,7 @@
 
 - type: entity
   name: mail RPDS
-  parent: [BaseC1Contraband, NFWeaponLauncherChinaLake]
+  parent: [ BaseC1Contraband, NFWeaponLauncherChinaLake ]
   id: WeaponMailLake
   description: Rap(b?)id Parcel Delivery System
   components:
@@ -113,7 +113,7 @@
 
 - type: entity
   name: NFSD grenade launcher
-  parent: [BaseC2ContrabandUnredeemable, NFWeaponLauncherChinaLake]
+  parent: [ BaseC2ContrabandUnredeemable, NFWeaponLauncherChinaLake ]
   id: WeaponLauncherNfsdLake
   description: Able to lob both grenades and darts!
   components:
