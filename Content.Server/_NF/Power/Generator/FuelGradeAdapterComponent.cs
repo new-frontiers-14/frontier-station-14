@@ -16,15 +16,15 @@ public sealed partial class FuelGradeAdapterComponent : Component
 [DataDefinition]
 public partial record struct MaterialAdapterRate
 {
-    [DataField]
+    [DataField(required: true)]
     public ProtoId<MaterialPrototype> Input;
 
-    [DataField]
+    [DataField(required: true)]
     public ProtoId<MaterialPrototype> Output;
 
     /// <summary>
     /// The conversion rate - 1 unit of input results in Rate units of output.
     /// </summary>
     [DataField]
-    public float Rate;
+    public float Rate = 1.0f;
 }
