@@ -87,6 +87,7 @@
   abstract: true
   components:
   - type: Gun
+    examineCaliber: gun-examine-caliber-35
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/smg.ogg
   - type: ChamberMagazineAmmoProvider
@@ -124,7 +125,6 @@
   description: |-
     Manufacturer: Gorlex Steel Works
     Type: Submachine Gun
-    Ammo: .35 pistol
     Desc.: Pla-ket-ket-ket-ket! An illegal firearm often used by Syndicate agents.
     ---
   components:
@@ -143,7 +143,6 @@
   description: |-
     Manufacturer: Cybersun Industries
     Type: Submachine Gun
-    Ammo: .35 pistol
     Desc.: An illegal firearm that is often used by the infamous nuclear operatives.
     ---
   components:
@@ -168,7 +167,6 @@
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Submachine Gun
-    Ammo: .35 pistol
     Desc.: A fully automatic SMG.
     ---
   components:
@@ -187,10 +185,11 @@
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Submachine Gun
-    Ammo: .35 pistol
     Desc.: An excellent SMG. On the receiver is a label that says 'for authorized use only.'
     ---
   components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-35
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/SMGs/wt550.rsi
     layers:
@@ -267,12 +266,11 @@
 #region DeltaV
 - type: entity
   id: NFWeaponSubMachineGunTypewriter
-  parent: [ BaseC2Contraband, NFBaseWeaponFrameSubMachineGunFrontierGunsmith, NFBaseWeaponSubMachineGunChamber35 ]
+  parent: [ NFBaseWeaponFrameSubMachineGunFrontierGunsmith, NFBaseWeaponSubMachineGunChamber35 ]
   name: typewriter
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
     Type: Submachine Gun
-    Ammo: .35 pistol
     Desc.: A modern take on the classic design used by mobsters throughout space and time.
     ---
   components:

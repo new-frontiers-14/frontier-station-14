@@ -10,7 +10,11 @@ gun-examine-muzzle-velocity = - [color={$color}]Muzzle velocity[/color]: [color=
 gun-examine-caliber = It's chambered in [color={$color}]{$caliber}[/color].
 
 # Frontier caliber list:
-gun-examine-caliber-30 = .30
-gun-examine-caliber-45 = .45
-gun-examine-caliber-50 = .50
-gun-examine-caliber-60 = .60
+gun-examine-caliber-35 = .35 pistol
+gun-examine-caliber-45 = .45 pistol
+gun-examine-caliber-10 = .10 rifle
+gun-examine-caliber-25 = .25 rifle
+gun-examine-caliber-20 = .20 rifle
+gun-examine-caliber-30 = .30 rifle
+gun-examine-caliber-50 = .50 shell
+gun-examine-caliber-60 = .60 rifle

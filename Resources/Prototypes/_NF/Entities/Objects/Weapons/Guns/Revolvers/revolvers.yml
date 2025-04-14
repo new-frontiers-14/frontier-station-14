@@ -8,6 +8,7 @@
     layers:
     - state: icon
   - type: Gun
+    examineCaliber: gun-examine-caliber-45
     minAngle: 3.7
     maxAngle: 11.1
     angleIncrease: 1.5
@@ -48,7 +49,6 @@
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
     Type: Revolver
-    Ammo: .45 pistol
     Desc.: A rare, civilian grade custom-built revolver. Use when there is no time for Voight-Kampff test.
     ---
   components:
@@ -79,7 +79,6 @@
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Revolver
-    Ammo: .45 pistol
     Desc.: A detective's best friend. On the handle is a label that says 'for authorized use only.'
     ---
   components:
@@ -95,7 +94,6 @@
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Revolver
-    Ammo: .45 pistol
     Desc.: The iconic sidearm of the dreaded death squads. On the handle is a label that says 'for authorized use only.'
     ---
   components:
@@ -114,7 +112,6 @@
   description: |-
     Manufacturer: Gorlex Steel Works
     Type: Revolver
-    Ammo: .45 pistol
     Desc.: An illegal revolver favoured by Syndicate agents.
     ---
   components:
@@ -130,7 +127,6 @@
   description: |-
     Manufacturer: Steelbolt Tool Forge
     Type: Revolver
-    Ammo: .45 pistol
     Desc.: An odd, illegal, old-looking revolver, favoured by pirate crews.
     ---
   components:
@@ -146,10 +142,11 @@
   description: |-
     Manufacturer: Steelbolt Tool Forge
     Type: Pistol
-    Ammo: .60 rifle (yarr, it fits!)
     Desc.: A pirate's companion. Yarrr! An illegal weapon often used by pirates.
     ---
   components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-60
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Revolvers/flintlock.rsi
   - type: Clothing
@@ -182,7 +179,6 @@
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
     Type: Revolver
-    Ammo: .45 pistol
     Desc.: A compact and concealable self defence snub revolver.
     ---
   components:
@@ -198,7 +194,6 @@
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
     Type: Revolver
-    Ammo: .45 pistol
     Desc.: Delivers blessings in bullet form.
     ---
   components:
@@ -218,7 +213,6 @@
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
     Type: Revolver
-    Ammo: .45 pistol
     Desc.: Luck always beats skill, ya weasel.
     ---
   components:
@@ -235,10 +229,11 @@
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
     Type: Revolver
-    Ammo: .35 pistol
     Desc.: The civilian grade Argenti Type 35 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well.
     ---
   components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-35
   - type: Sprite
     scale: 0.75 , 0.75
     sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
