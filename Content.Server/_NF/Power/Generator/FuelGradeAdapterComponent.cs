@@ -3,12 +3,28 @@ using Robust.Shared.Prototypes; // Frontier
 
 namespace Content.Server._NF.Power.Generator;
 
+/// <summary>
+/// A component that converts materials at arbitrary rates before inserting into material storage.
+/// </summary>
 [RegisterComponent]
 public sealed partial class FuelGradeAdapterComponent : Component
 {
+    [DataField(required: true)]
+    public List<MaterialAdapterRate> Conversions;
+}
+
+[DataDefinition]
+public partial record struct MaterialAdapterRate
+{
     [DataField]
-    public ProtoId<MaterialPrototype> InputMaterial = "Plasma";
+    public ProtoId<MaterialPrototype> Input;
 
     [DataField]
-    public ProtoId<MaterialPrototype> OutputMaterial = "FuelGradePlasma";
+    public ProtoId<MaterialPrototype> Output;
+
+    /// <summary>
+    /// The conversion rate - 1 unit of input results in Rate units of output.
+    /// </summary>
+    [DataField]
+    public float Rate;
 }
