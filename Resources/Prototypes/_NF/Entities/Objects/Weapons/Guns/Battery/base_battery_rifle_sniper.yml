@@ -5,6 +5,13 @@
   suffix: Frontier
   abstract: true
   components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
   - type: Wieldable
     unwieldOnUse: false
   - type: GunRequiresWield
@@ -57,7 +64,6 @@
 #region chamber
 - type: entity
   id: NFBaseWeaponEnergyRifleSniperHitScan
-  suffix: Frontier
   abstract: true
   components:
   - type: Gun
@@ -68,7 +74,6 @@
 
 - type: entity
   id: NFBaseWeaponEnergyRifleSniperHitScanXray
-  suffix: Frontier
   abstract: true
   components:
   - type: Gun
