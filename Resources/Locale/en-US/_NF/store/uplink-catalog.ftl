@@ -225,4 +225,6 @@ uplink-pirate-pmag-desc = Removes station-binding machine DRM. A pirate's best f
 uplink-pirate-repair-kit-name = Pirate Computer Repair Kit
 uplink-pirate-repair-kit-desc = A collection of tools used to repair a pirate console. For those times when you have a string of bad luck.
 uplink-pirate-ionized-dust-bag-name = Ionized Bluespace Dust
-uplink-pirate-ionized-dust-bag-desc = A bag of dust that can clear pinpointers pointing at a given object, supposedly. Others swear it's just hokum.
+uplink-pirate-ionized-dust-bag-desc = A bag of dust that can clear pinpointers pointing at a given object, supposedly.
+uplink-pirate-pinpointer-target-scanner-name = Pinpointer Target Scanner
+uplink-pirate-pinpointer-target-scanner-desc = A jury-rigged scanner that can find objects targeted by pinpointers. Batteries included, lubber.

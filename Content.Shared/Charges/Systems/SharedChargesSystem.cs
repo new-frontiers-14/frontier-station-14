@@ -1,10 +1,12 @@
 using Content.Shared.Charges.Components;
 using Content.Shared.Examine;
+using Robust.Shared.Serialization; // Frontier
 
 namespace Content.Shared.Charges.Systems;
 
 public abstract class SharedChargesSystem : EntitySystem
 {
+    [Dependency] protected SharedAppearanceSystem Appearance = default!; // Frontier
     protected EntityQuery<LimitedChargesComponent> Query;
 
     public override void Initialize()
@@ -42,7 +44,13 @@ public abstract class SharedChargesSystem : EntitySystem
         var old = comp.Charges;
         comp.Charges = Math.Clamp(comp.Charges + change, 0, comp.MaxCharges);
         if (comp.Charges != old)
+        {
             Dirty(uid, comp);
+            // Frontier: set visuals
+            Appearance.SetData(uid, LimitedChargeVisuals.Charges, comp.Charges);
+            Appearance.SetData(uid, LimitedChargeVisuals.MaxCharges, comp.MaxCharges);
+            // End Frontier: set visuals
+        }
     }
 
     /// <summary>
@@ -101,3 +109,12 @@ public abstract class SharedChargesSystem : EntitySystem
         AddCharges(uid, -chargesUsed, comp);
     }
 }
+
+// Frontier: limited charge visuals
+[Serializable, NetSerializable]
+public enum LimitedChargeVisuals : byte
+{
+    Charges,
+    MaxCharges
+}
+// End Frontier

@@ -1,5 +1,7 @@
+using Content.Server.Charges.Systems;
 using Content.Server.Pinpointer;
 using Content.Shared._NF.Pinpointer;
+using Content.Shared.Charges.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -13,6 +15,7 @@ public sealed class ClearPinpointerSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly PinpointerSystem _pinpointer = default!;
+    [Dependency] private readonly ChargesSystem _charges = default!;
 
     public override void Initialize()
     {
@@ -27,6 +30,15 @@ public sealed class ClearPinpointerSystem : EntitySystem
         if (!args.CanReach || args.Handled || args.Target == null)
             return;
 
+        TryComp<LimitedChargesComponent>(ent, out var charges);
+        if (_charges.IsEmpty(ent, charges))
+        {
+            if (ent.Comp.EmptyMessage != null)
+                _popup.PopupEntity(Loc.GetString(ent.Comp.EmptyMessage), args.User, args.User);
+
+            return;
+        }
+
         if (ent.Comp.OtherMessage != null)
             _popup.PopupEntity(Loc.GetString(ent.Comp.OtherMessage, ("user", Identity.Entity(args.User, EntityManager))), args.Target.Value, args.Target.Value, PopupType.Large);
 
@@ -38,23 +50,38 @@ public sealed class ClearPinpointerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Prevent removing the tape cassette while the recorder is active
+    /// DoAfter: remove all pinpointers that point to this object
     /// </summary>
     private void OnDoAfter(Entity<ClearPinpointerComponent> ent, ref ClearPinpointerDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
 
-        if (args.Target != null)
+        TryComp<LimitedChargesComponent>(ent, out var charges);
+        if (_charges.IsEmpty(ent, charges))
         {
-            var pinpointers = EntityQueryEnumerator<PinpointerComponent>();
-            while (pinpointers.MoveNext(out var pinpointerUid, out var pinpointerComp))
-            {
-                if (pinpointerComp.Target == args.Target)
-                    _pinpointer.ClearPinpointer(pinpointerUid, pinpointerComp);
-            }
+            if (ent.Comp.EmptyMessage != null)
+                _popup.PopupEntity(Loc.GetString(ent.Comp.EmptyMessage), args.User, args.User);
+
+            return;
         }
 
-        QueueDel(ent.Owner);
+        if (TryComp<PinpointerTargetComponent>(args.Target, out var target))
+        {
+            foreach (var pinpointer in target.Entities)
+            {
+                if (!TryComp<PinpointerComponent>(pinpointer, out var pinpointComp))
+                    continue;
+
+                _pinpointer.ClearPinpointer(pinpointer, pinpointComp);
+            }
+            RemComp<PinpointerTargetComponent>(args.Target.Value);
+        }
+
+        if (charges != null)
+            _charges.UseCharge(ent, charges);
+
+        if (ent.Comp.DestroyAfterUse)
+            QueueDel(ent.Owner);
     }
 }
