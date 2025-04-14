@@ -1,50 +1,40 @@
-#region base
-- type: entity
-  id: NFBaseWeaponRevolver
-  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGun ]
-  abstract: true
-  components:
-  - type: Sprite
-    layers:
-    - state: icon
-  - type: Gun
-    examineCaliber: gun-examine-caliber-45
-    minAngle: 3.7
-    maxAngle: 11.1
-    angleIncrease: 1.5
-    angleDecay: 0.5
-    fireRate: 2
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
-  - type: UseDelay
-    delay: 0.66
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - CartridgeMagnum
-        - SpeedLoaderMagnum
-    mayTransfer: true
-    proto: NFCartridgePistol45
-    capacity: 6
-    chambers: [ True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null ]
-    soundEject:
-      path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
-  - type: ContainerContainer
-    containers:
-      revolver-ammo: !type:Container
-  - type: StaticPrice
-    price: 200
-
 #region WizDen
 - type: entity
+  id: NFWeaponRevolverInspector
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameRevolverNanotrasen, NFBaseWeaponRevolverChamber45 ]
+  name: inspector
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Revolver
+    Desc.: A detective's best friend. On the handle is a label that says 'for authorized use only.'
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
+
+- type: entity
+  id: NFWeaponRevolverWard45
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameRevolverNanotrasen, NFBaseWeaponRevolverChamber45 ]
+  name: ward-45
+  description: |-
+    Manufacturer: NanoTrasen Munitions
+    Type: Revolver
+    Desc.: The iconic sidearm of the dreaded death squads. On the handle is a label that says 'for authorized use only.'
+    ---
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+
+- type: entity
   id: NFWeaponRevolverDeckard
-  parent: [ NFBaseWeaponRevolver ]
+  parent: [ NFBaseWeaponFrameRevolverFrontierGunsmith, NFBaseWeaponRevolverChamber45 ]
   name: deckard
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -63,7 +53,6 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Revolvers/deckard.rsi
   - type: RevolverAmmoProvider
-    mayTransfer: true
     capacity: 5
     chambers: [ True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null ]
@@ -73,41 +62,8 @@
     zeroVisible: true
 
 - type: entity
-  id: NFWeaponRevolverInspector
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponRevolver ]
-  name: inspector
-  description: |-
-    Manufacturer: NanoTrasen Munitions
-    Type: Revolver
-    Desc.: A detective's best friend. On the handle is a label that says 'for authorized use only.'
-    ---
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
-
-- type: entity
-  id: NFWeaponRevolverWard45
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponRevolver ]
-  name: ward-45
-  description: |-
-    Manufacturer: NanoTrasen Munitions
-    Type: Revolver
-    Desc.: The iconic sidearm of the dreaded death squads. On the handle is a label that says 'for authorized use only.'
-    ---
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-
-- type: entity
   id: NFWeaponRevolverRitland45
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRevolver ]
+  parent: [ NFBaseWeaponFrameRevolverGorlex, NFBaseWeaponRevolverChamber45 ]
   name: ritland-45
   description: |-
     Manufacturer: Gorlex Steel Works
@@ -122,7 +78,7 @@
 
 - type: entity
   id: NFWeaponRevolverPirate
-  parent: [ BaseC3PirateContraband, NFBaseWeaponRevolver ]
+  parent: [ NFBaseWeaponFrameRevolverSteelbolt, NFBaseWeaponRevolverChamber45 ]
   name: pirate revolver
   description: |-
     Manufacturer: Steelbolt Tool Forge
@@ -137,7 +93,7 @@
 
 - type: entity
   id: NFWeaponPistolFlintlock
-  parent: [ BaseC3PirateContraband, NFBaseWeaponRevolver ]
+  parent: [ NFBaseWeaponFrameRevolverSteelbolt, NFBaseWeaponRevolverChamber60 ]
   name: flintlock pistol
   description: |-
     Manufacturer: Steelbolt Tool Forge
@@ -145,24 +101,12 @@
     Desc.: A pirate's companion. Yarrr! An illegal weapon often used by pirates.
     ---
   components:
-  - type: Gun
-    examineCaliber: gun-examine-caliber-60
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Revolvers/flintlock.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Revolvers/flintlock.rsi
-  - type: UseDelayOnShoot
   - type: UseDelay
     delay: 8
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - CartridgeAntiMateriel
-    mayTransfer: true
-    proto: NFCartridgeRifle60
-    capacity: 1
-    chambers: [ True ]
-    ammoSlots: [ null ]
 
 # WizDen: Rubber
 - type: entity
@@ -174,7 +118,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponRevolverFitz
-  parent: [ NFBaseWeaponRevolver ]
+  parent: [ NFBaseWeaponFrameRevolverFrontierGunsmith, NFBaseWeaponRevolverChamber45 ]
   name: fitz special
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -189,7 +133,7 @@
 
 - type: entity
   id: NFWeaponRevolverFaith
-  parent: [ NFBaseWeaponRevolver, BaseC1Contraband ]
+  parent: [ NFBaseWeaponFrameRevolverFrontierGunsmith, NFBaseWeaponRevolverChamber45 ]
   name: faith
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -208,7 +152,7 @@
 
 - type: entity
   id: NFWeaponRevolverLucky
-  parent: [ NFBaseWeaponRevolver ]
+  parent: [ NFBaseWeaponFrameRevolverFrontierGunsmith, NFBaseWeaponRevolverChamber45 ]
   name: lucky
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -224,7 +168,7 @@
 #region Frontier
 - type: entity
   id: NFWeaponRevolverArgenti
-  parent: [ NFBaseWeaponRevolver ]
+  parent: [ NFBaseWeaponFrameRevolverFrontierGunsmith, NFBaseWeaponRevolverChamber35 ]
   name: argenti
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
@@ -232,22 +176,11 @@
     Desc.: The civilian grade Argenti Type 35 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well.
     ---
   components:
-  - type: Gun
-    examineCaliber: gun-examine-caliber-35
   - type: Sprite
     scale: 0.75 , 0.75
     sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - CartridgePistol
-        - SpeedLoaderPistol
-    capacity: 8
-    proto: NFCartridgePistol35
-    chambers: [ True, True, True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null, null, null ]
   - type: StaticPrice
     price: 200
 
@@ -260,5 +193,3 @@
   - type: RevolverAmmoProvider
     capacity: 8
     proto: NFCartridgePistol35Rubber
-    chambers: [ True, True, True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null, null, null ]
