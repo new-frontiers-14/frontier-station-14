@@ -16,4 +16,8 @@ flavor-complex-tangy = tangy
 flavor-complex-spices = like spices
 flavor-complex-cinnamon = like cinnamon
 flavor-complex-antiseptic = like chemical lavender
+<<<<<<< HEAD
 flavor-complex-hairy = hairy and pungent
+=======
+flavor-complex-monkanana = hairy and pungent
+>>>>>>> 78d0576608665de73e07941edfee68d6aac03411
