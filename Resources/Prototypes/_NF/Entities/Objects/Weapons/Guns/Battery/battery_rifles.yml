@@ -1,93 +1,13 @@
-#region base
-- type: entity
-  id: NFBaseWeaponEnergyRifle
-  parent: [ NFBaseWeaponEncumbranceRifle, BaseWeaponBattery ]
-  suffix: Frontier
-  abstract: true
-  components:
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: Appearance
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunRequiresWield
-  - type: GunWieldBonus
-    minAngle: -0 # Set to 0 because GunRequiresWield
-    maxAngle: -0
-  - type: Gun
-    projectileSpeed: 30
-    minAngle: 1.5
-    maxAngle: 3
-    angleIncrease: 0.5
-    angleDecay: 1
-    fireRate: 2.25
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.8
-    sprintModifier: 0.8
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 4.5
-    pvsIncrease: 0
-  - type: Battery # Default: 30 shots with 80 fireCost
-    maxCharge: 2400
-    startingCharge: 2400
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 4 # Default recharge rate: 1 shot per 20 seconds with 80 fireCost
-  - type: StaticPrice
-    price: 400
-
-- type: entity
-  id: NFBaseWeaponEnergyRifleFireModes
-  parent: NFBaseWeaponEnergyRifle
-  suffix: Frontier
-  abstract: true
-  components:
-  - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletLaserHeavy
-    fireCost: 80
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: NFBulletLaserHeavy
-      fireCost: 80
-    - proto: NFBulletDisabler
-      fireCost: 80
-
-- type: entity
-  id: NFBaseWeaponEnergyRifleHitScan
-  parent: NFBaseWeaponEnergyRifle
-  suffix: Frontier
-  abstract: true
-  components:
-  - type: HitscanBatteryAmmoProvider
-    proto: NFRedHeavyLaser
-    fireCost: 80
-
 # WizDen
 #region Laser
 - type: entity
   id: NFWeaponEnergyRifleCarbine
-  parent: [ BaseC1Contraband, NFBaseWeaponEnergyRifleFireModes ]
+  parent: [ NFBaseWeaponFrameEnergyRifleNanotrasen, NFBaseWeaponEnergyRifleFireModes ]
   name: laser carbine
   suffix: Frontier
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Energy Rifle
-    Ammo: High Power Energy Bolt
     Desc.: A simple civilian grade laser carbine, the workhorse of many private security organizations.
     ---
   components:
@@ -98,13 +18,12 @@
 
 - type: entity
   id: NFWeaponEnergyRifleCarbinePractice
-  parent: [ BaseC1Contraband, NFBaseWeaponEnergyRifleFireModes ]
+  parent: [ NFBaseWeaponFrameEnergyRifleNanotrasen, NFBaseWeaponEnergyGunPractice ]
   name: practice laser carbine
   suffix: Frontier
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Energy Rifle
-    Ammo: Energy Bolt
     Desc.: This modified laser rifle fires nearly harmless beams in the 40-watt range, for target practice.
     ---
   components:
@@ -112,23 +31,15 @@
     sprite: _NF/Objects/Weapons/Guns/Battery/practice_laser_gun.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Battery/practice_laser_gun.rsi
-  - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletLaserPractice
-    fireCost: 40
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: NFBulletLaserPractice
-      fireCost: 40
 
 #region Pulse
 - type: entity
   id: NFWeaponEnergyRiflePulseRifle
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleHitScan ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameEnergyRifleNanotrasen, NFBaseWeaponEnergyRifleHitScanPulse ]
   name: pulse rifle
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Energy Rifle
-    Ammo: Pulse Beam
     Desc.: A weapon that is almost as infamous as its users. On the handle is a label that says 'for authorized use only.'
     ---
   components:
@@ -136,9 +47,6 @@
     sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
-  - type: HitscanBatteryAmmoProvider
-    proto: NFPulse
-    fireCost: 100
   - type: Battery # 30 shots
     maxCharge: 3000
     startingCharge: 3000
@@ -146,12 +54,11 @@
 #region Other
 - type: entity
   name: emp emitter
-  parent: [BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleFireModes]
+  parent: [BaseC2ContrabandUnredeemable, NFBaseWeaponFrameEnergyRifleNanotrasen, NFBaseWeaponEnergyRifleEmp ]
   id: WeaponEmpEmitter
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Energy Rifle
-    Ammo: EMP Pulse
     Desc.: Releases electromagnetic pulses that disrupt or damage many electronic devices or drain power cells, has a slow self charging nuclear powered battery.
     ---
   components:
@@ -175,20 +82,9 @@
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
-  - type: ProjectileBatteryAmmoProvider
-    proto: ProjectileEmp
-    fireCost: 500
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: ProjectileEmp
-      fireCost: 500
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 5
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
   - type: Appearance
   - type: EmpDescription
     range: 2

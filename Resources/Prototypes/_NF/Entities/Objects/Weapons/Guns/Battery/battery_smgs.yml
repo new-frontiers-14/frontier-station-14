@@ -1,74 +1,12 @@
-#region base
-- type: entity
-  id: NFBaseWeaponEnergySubMachineGun
-  parent: [ NFBaseWeaponEncumbranceSubMachineGun, BaseWeaponBatterySmall ]
-  suffix: Frontier
-  abstract: true
-  components:
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
-  - type: Appearance
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunWieldBonus
-    minAngle: -1.3
-    maxAngle: -2.5
-  - type: Gun
-    projectileSpeed: 30
-    minAngle: 4.1
-    maxAngle: 8.2
-    angleIncrease: 0.25
-    angleDecay: 1
-    fireRate: 4
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-  - type: Battery # Default: 40 shots with 60 fireCost
-    maxCharge: 2400
-    startingCharge: 2400
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 3 # Default recharge rate: 1 shot per 20 seconds with 60 fireCost
-  - type: StaticPrice
-    price: 350
-
-- type: entity
-  id: NFBaseWeaponEnergySubMachineGunFireModes
-  parent: NFBaseWeaponEnergySubMachineGun
-  suffix: Frontier
-  abstract: true
-  components:
-  - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletLaserLow
-    fireCost: 60
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: NFBulletLaserLow
-      fireCost: 60
-    - proto: NFBulletDisablerLow
-      fireCost: 60
-
 # DeltaV
 #region Laser
 - type: entity
   id: NFWeaponEnergySubMachineGunDeltaV
-  parent: [ BaseC1Contraband, NFBaseWeaponEnergySubMachineGunFireModes ]
+  parent: [ NFBaseWeaponFrameEnergySubMachineGunNanotrasen, NFBaseWeaponEnergySubMachineGunFireModes ]
   name: energy submachine gun
   description: |-
     Manufacturer: Frontier Gunsmith Consortium
     Type: Energy Submachine Gun
-    Ammo: Low Power Energy Bolts
     Desc.: An advanced hybrid energy submachine gun with two settings: disable and kill. On the handle is a label that says 'for authorized use only.'
     ---
   components:
@@ -80,13 +18,12 @@
 #region Diasblers
 - type: entity
   id: NFWeaponEnergySubMachineGunDisabler
-  parent: [ BaseC1Contraband, NFBaseWeaponEnergySubMachineGun ]
+  parent: [ NFBaseWeaponFrameEnergySubMachineGunNanotrasen, NFBaseWeaponEnergySubMachineGunDisabler ]
   name: disabler submachine gun
   suffix: Frontier
   description: |-
     Manufacturer: NanoTrasen Munitions
     Type: Energy Submachine Gun
-    Ammo: Energy Bolt
     Desc.: Advanced weapon that exhausts organic targets, weakening them until they collapse. On the handle is a label that says 'for authorized use only.'
     ---
   components:
@@ -94,10 +31,3 @@
     sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi
-  - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletDisablerLow
-    fireCost: 60
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: NFBulletDisablerLow
-      fireCost: 60
