@@ -84,7 +84,56 @@
   id: MajorSmugglingEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
-    - id: SmugglingFaxBig
+    - id: NFSmugglingFaxBig
+
+- type: entity
+  parent: BaseGameRule
+  id: NFPirate
+  components:
+  - type: NFPirateRule
+  - type: AntagObjectives
+    objectives:
+    - NFPiratePlunderObjective
+    - NFPirateBountyObjective
+  - type: AntagSelection
+    agentName: nf-pirate-round-end-agent-name
+    definitions:
+    - prefRoles: [ NFPirate ]
+      max: 999
+      playerRatio: -1
+      lateJoinAdditional: true
+      allowNonHumans: true
+      multiAntagSetting: All
+      components:
+      - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - NFPirate
+      mindRoles:
+      - MindRoleNFPirate
+      whitelist:
+        components:
+        - AutoPirate
+      briefing:
+        sound: "/Audio/_NF/Misc/pirate_greeting.ogg"
+    - prefRoles: [ NFPirateCaptain ]
+      max: 999
+      playerRatio: -1
+      lateJoinAdditional: true
+      allowNonHumans: true
+      multiAntagSetting: All
+      components:
+      - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - NFPirate
+      whitelist:
+        components:
+        - AutoPirateCaptain
+      mindRoles:
+      - MindRoleNFPirate
+      briefing:
+        sound: "/Audio/_NF/Misc/pirate_greeting.ogg"
 
 # variation passes
 - type: entity
@@ -98,3 +147,20 @@
     - id: BasicPuddleMessVariationPass
     - id: BasicBindToStationVariationPass
     # - id: BasicDeadDropHintVariationPass # ccvar for it found at smuggling.min_hints/smuggling.max_hints
+
+- type: entityTable
+  id: NFGameRulesTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+      - !type:NestedSelector
+        tableId: NFBasicCalmEventsTable
+      - !type:NestedSelector
+        tableId: CalmPestEventsTable
+
+- type: entity
+  id: NFBasicStationEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: NFGameRulesTable
