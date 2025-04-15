@@ -175,7 +175,7 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
             data = comp.Others.Value;
         }
 
-        var actorMsg = null; // Stores the text to be shown to the actor in the popup message.
+        string? actorMsg = null; // Stores the text to be shown to the actor in the popup message.
         SoundSpecifier? sfx = null; // Stores the filepath of the sound to be played
 
         if (_random.Prob(comp.SuccessChance))
