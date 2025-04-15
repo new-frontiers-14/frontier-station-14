@@ -11,6 +11,9 @@ public abstract partial class SharedSalvageExpeditionComponent : Component
     public ExpeditionStage Stage = ExpeditionStage.Added;
 
     // Frontier: add end of expedition song
+    /// <summary>
+    /// Song selected on MapInit so we can predict the audio countdown properly.
+    /// </summary>
     [DataField]
     public ResolvedSoundSpecifier SelectedSong;
     // End Frontier: add end of expedition song
@@ -20,7 +23,5 @@ public abstract partial class SharedSalvageExpeditionComponent : Component
 public sealed class SalvageExpeditionComponentState : ComponentState
 {
     public ExpeditionStage Stage;
-
-    // Frontier: add sound
-    public ResolvedSoundSpecifier? SelectedSong;
+    public ResolvedSoundSpecifier? SelectedSong; // Frontier: add end of expedition song
 }
