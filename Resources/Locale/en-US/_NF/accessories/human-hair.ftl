@@ -1,7 +1,7 @@
 marking-NFHumanHairChub = Chub
 marking-NFHumanHairStreak = Streak
 marking-NFHumanHairHalfshavedEmo = Half-shaved Eno
-marking-NFHumanHairHalfshavedTrim = Half-shaved (Trim))
+marking-NFHumanHairHalfshavedTrim = Half-shaved (Trim)
 marking-NFHumanHairJensen = Jensen
 marking-NFHumanHairLeftSide = Half-shaved (Long, Left)
 marking-NFHumanHairLeftSideTrim = Half-shaved (Trim, Left)
