@@ -3,6 +3,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.Interaction.Components;
 
@@ -126,5 +127,5 @@ public partial record struct InteractionMessageSet
     public LocId? Failure;
 }
 
-[Serializable]
-public sealed partial class InteractionPopupOnUseDoAfter : SimpleDoAfterEvent;
+[Serializable, NetSerializable]
+public sealed partial class InteractionPopupOnUseDoAfterEvent : SimpleDoAfterEvent;

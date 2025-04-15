@@ -13,6 +13,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Shared.DoAfter;
+using Content.Shared._NF.Interaction.Events;
 
 namespace Content.Shared._NF.Interaction.Systems;
 
@@ -24,7 +25,6 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTriggerSystem _trigger = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -39,7 +39,7 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
         SubscribeLocalEvent<InteractionPopupOnUseComponent, UseInHandEvent>(OnUseOnSelf);
         SubscribeLocalEvent<InteractionPopupOnUseComponent, AfterInteractEvent>(OnUseOnOthers);
         SubscribeLocalEvent<InteractionPopupOnUseComponent, GetVerbsEvent<UtilityVerb>>(AddVerb);
-        SubscribeLocalEvent<InteractionPopupOnUseComponent, InteractionPopupOnUseDoAfter>(OnDoAfter);
+        SubscribeLocalEvent<InteractionPopupOnUseComponent, InteractionPopupOnUseDoAfterEvent>(OnDoAfter);
     }
 
     /// <summary>
@@ -71,6 +71,8 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
     {
         bool self = target == user;
         InteractionData data;
+
+        // Get our strings to print out.  If we don't have any strings to print, great.
         if (self)
         {
             if (comp.Self == null)
@@ -120,7 +122,7 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
                 _popup.PopupEntity(msg, user, target);
             }
 
-            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, data.Delay, new InteractionPopupOnUseDoAfter(), item, target: target, used: item)
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, data.Delay, new InteractionPopupOnUseDoAfterEvent(), item, target: target, used: item)
             {
                 NeedHand = true,
                 BreakOnMove = true,
@@ -130,7 +132,7 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
         return true;
     }
 
-    private void OnDoAfter(Entity<InteractionPopupOnUseComponent> entity, ref InteractionPopupOnUseDoAfter args)
+    private void OnDoAfter(Entity<InteractionPopupOnUseComponent> entity, ref InteractionPopupOnUseDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || entity.Comp.Deleted || args.Target == null)
             return;
@@ -201,8 +203,8 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
             if (comp.InteractSuccessSpawn != null)
                 Spawn(comp.InteractSuccessSpawn, _transform.GetMapCoordinates(target));
 
-            var ev = new InteractionSuccessEvent(user);
-            RaiseLocalEvent(target, ref ev);
+            var ev = new InteractionPopupOnUseSuccessEvent(item, user, target);
+            RaiseLocalEvent(item, ref ev);
         }
         else
         {
@@ -229,7 +231,8 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
             if (comp.InteractFailureSpawn != null)
                 Spawn(comp.InteractFailureSpawn, _transform.GetMapCoordinates(target));
 
-            // TODO: add success/failure object interaction events
+            var ev = new InteractionPopupOnUseFailureEvent(item, user, target);
+            RaiseLocalEvent(item, ref ev);
         }
 
         if (!predict)
