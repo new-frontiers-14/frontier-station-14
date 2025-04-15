@@ -78,7 +78,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     {
         if (HasComp<InstantActionComponent>(args.Entity))
             return;
-        
+
         // Frontier: check key slot
         if (args.Container.ID != component.KeySlotId)
             return;
@@ -96,7 +96,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     }
 
     private void OnEject(EntityUid uid, VehicleComponent component, ref EntRemovedFromContainerMessage args)
-    {        
+    {
         // Frontier: check key slot
         if (args.Container.ID != component.KeySlotId)
             return;
