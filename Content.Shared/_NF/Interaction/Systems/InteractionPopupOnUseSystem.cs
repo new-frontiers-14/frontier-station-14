@@ -175,7 +175,7 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
             data = comp.Others.Value;
         }
 
-        var actorMsg = ""; // Stores the text to be shown to the actor in the popup message.
+        var actorMsg = null; // Stores the text to be shown to the actor in the popup message.
         SoundSpecifier? sfx = null; // Stores the filepath of the sound to be played
 
         if (_random.Prob(comp.SuccessChance))
@@ -237,7 +237,8 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
 
         if (!predict)
         {
-            _popup.PopupEntity(actorMsg, target, user);
+            if (actorMsg != null)
+                _popup.PopupEntity(actorMsg, target, user);
 
             if (comp.SoundPerceivedByOthers)
                 _audio.PlayPvs(sfx, target);
@@ -246,7 +247,8 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
             return;
         }
 
-        _popup.PopupClient(actorMsg, target, user);
+        if (actorMsg != null)
+            _popup.PopupClient(actorMsg, target, user);
 
         if (sfx == null)
             return;
