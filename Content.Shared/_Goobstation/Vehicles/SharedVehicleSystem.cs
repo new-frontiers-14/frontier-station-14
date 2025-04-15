@@ -6,15 +6,19 @@ using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Hands;
 using Content.Shared.Inventory.VirtualItem;
-using Content.Shared.Light.Components; // Frontier
-using Content.Shared.Light.EntitySystems; // Frontier
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes; // Frontier
+using Content.Shared.Light.Components; // Frontier
+using Content.Shared.Light.EntitySystems; // Frontier
+using Content.Shared.Movement.Pulling.Components; // Frontier
+using Content.Shared.Popups; // Frontier
 using Robust.Shared.Network; // Frontier
-using Robust.Shared.Prototypes;
+using Content.Shared._NF.Vehicle.Components; // Frontier
+using Content.Shared.Movement.Pulling.Events; // Frontier
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
@@ -30,6 +34,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly INetManager _net = default!; // Frontier
     [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
+    [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
@@ -49,6 +54,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         SubscribeLocalEvent<VehicleComponent, HornActionEvent>(OnHorn);
         SubscribeLocalEvent<VehicleComponent, SirenActionEvent>(OnSiren);
+
+        SubscribeLocalEvent<VehicleRiderComponent, PullAttemptEvent>(OnRiderPull); // Frontier
     }
 
     private void OnInit(EntityUid uid, VehicleComponent component, ComponentInit args)
@@ -138,6 +145,15 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             return;
         }
 
+        // Frontier: no pulling when riding
+        if (TryComp<PullerComponent>(args.Buckle, out var puller) && puller.Pulling != null)
+        {
+            _popup.PopupPredicted(Loc.GetString("vehicle-cannot-pull", ("object", puller.Pulling), ("vehicle", ent)), ent, args.Buckle);
+            args.Cancelled = true;
+            return;
+        }
+        // End Frontier
+
         if (ent.Comp.RequiredHands != 0)
         {
             for (int hands = 0; hands < ent.Comp.RequiredHands; hands++)
@@ -165,6 +181,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         Dirty(ent); // Frontier
         _appearance.SetData(ent.Owner, VehicleState.DrawOver, true);
         _appearance.SetData(ent.Owner, VehicleState.Animated, ent.Comp.EngineRunning); // Frontier
+        var rider = EnsureComp<VehicleRiderComponent>(driver); // Frontier
+        Dirty(driver, rider); // Frontier
 
         if (!ent.Comp.EngineRunning)
             return;
@@ -180,6 +198,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         Dismount(args.Buckle.Owner, ent);
         _appearance.SetData(ent.Owner, VehicleState.DrawOver, false);
         _appearance.SetData(ent.Owner, VehicleState.Animated, false); // Frontier
+        RemComp<VehicleRiderComponent>(args.Buckle.Owner); // Frontier
     }
 
     private void OnDropped(EntityUid uid, VehicleComponent comp, VirtualItemDeletedEvent args)
@@ -192,6 +211,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         Dismount(args.User, uid);
         _appearance.SetData(uid, VehicleState.DrawOver, false);
         _appearance.SetData(uid, VehicleState.Animated, false); // Frontier
+        RemComp<VehicleRiderComponent>(args.User); // Frontier
     }
 
     private void AddHorns(EntityUid driver, EntityUid vehicle)
@@ -260,6 +280,13 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (TryComp<AccessComponent>(vehicle, out var accessComp))
             accessComp.Tags.Clear();
     }
+
+    // Frontier: prevent drivers from pulling things
+    private void OnRiderPull(Entity<VehicleRiderComponent> ent, ref PullAttemptEvent args)
+    {
+        args.Cancelled = true;
+    }
+    // End Frontier
 }
 
 public sealed partial class HornActionEvent : InstantActionEvent;
