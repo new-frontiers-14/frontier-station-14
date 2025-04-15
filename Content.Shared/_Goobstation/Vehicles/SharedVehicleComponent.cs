@@ -65,6 +65,12 @@ public sealed partial class VehicleComponent : Component
 
     [DataField]
     public Vector2 WestOffset = Vector2.Zero;
+
+    /// <summary>
+    /// The container name for the vehicle key.
+    /// </summary>
+    [DataField]
+    public string KeySlotId = "key_slot";
     // End Frontier: old buckle offset logic
 }
 [Serializable, NetSerializable]
