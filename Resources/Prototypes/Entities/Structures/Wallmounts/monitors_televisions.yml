@@ -31,7 +31,7 @@
           - TabletopMachineLayer
 
 - type: entity
-  parent: BaseComputer
+  parent: [BaseStructureWallmount, BaseComputer] # Frontier: add BaseStructureWallmount
   id: WallmountTelescreenFrame
   name: telescreen frame
   description: Finally, some decent reception around here...
@@ -47,17 +47,20 @@
         state: telescreen_frame
       - map: ["computerLayerScreen"]
         state: telescreen
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.20,-0.10,0.25,0.35"
-        density: 250
-        mask:
-          - FullTileMask
-        layer:
-          - WallLayer
+  # Frontier: remove fixtures, it's a wallmount device
+  # - type: Fixtures
+  #   fixtures:
+  #     Frontier: no fixtures, it's a wallmount item
+  #     fix1:
+  #       shape:
+  #         !type:PhysShapeAabb
+  #         bounds: "-0.20,-0.10,0.25,0.35"
+  #       density: 250
+  #       mask:
+  #         - FullTileMask
+  #       layer:
+  #         - WallLayer
+  # End Frontier
   - type: WallMount
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -122,17 +125,19 @@
   name: television frame
   description: Finally, some decent reception around here...
   components:
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.75,-0.10,0.75,0.35"
-        density: 75
-        mask:
-          - FullTileMask
-        layer:
-          - WallLayer
+  # Frontier: remove fixtures, it's a wallmount device
+  # - type: Fixtures
+  #   fixtures:
+  #     fix1:
+  #       shape:
+  #         !type:PhysShapeAabb
+  #         bounds: "-0.75,-0.10,0.75,0.35"
+  #       density: 75
+  #       mask:
+  #         - FullTileMask
+  #       layer:
+  #         - WallLayer
+  # End Frontier
   - type: Construction
     graph: WallmountTelevision
     node: TelevisionFrame

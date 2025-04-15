@@ -33,12 +33,14 @@ shipyard-rules-default2 =
     Thank you for choosing Nanotrasen Security Forces.
 
 shuttle-ftl-proximity = Nearby objects too massive for FTL!
+shuttle-ftl-invalid = Invalid ship for FTL!
 shuttle-ftl-recharge = FTL drives still spooling down!
 shuttle-ftl-too-many = Too many shuttles already on expedition!
 
 changelog-tab-title-Upstream = Upstream Changelog
 multiauth-already-connected = Already connected to Frontier Official servers.
 
-public-transit-shuttle-name = Public Transport Shuttle
+public-transit-shuttle-name = Bus {$number}{$suffix}
+public-transit-shuttle-screen-text = {" "}BUS  {$number}{$suffix}
 public-transit-departure = Now departing for {$destination}. Estimated travel time: {$flytime} seconds.
-public-transit-arrival = Thank you for choosing NT Public Transit. Next transfer to {$destination} departs in {$waittime} seconds.
+public-transit-arrival = Thank you for choosing NT Public Transit. Next stop: {$destination}. Bus departs in {$waittime} seconds.

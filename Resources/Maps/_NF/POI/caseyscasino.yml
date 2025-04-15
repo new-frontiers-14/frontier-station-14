@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/21/2025 23:39:46
+  entityCount: 1304
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   14: FloorBar
@@ -20,6 +31,7 @@ entities:
     components:
     - type: MetaData
     - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -44,6 +56,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
+      bodyStatus: InAir
+      angularDamping: 0.05
+      linearDamping: 0.05
+      fixedRotation: False
+      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
@@ -637,31 +654,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -13.5,-5.5
       parent: 2
-- proto: AirlockGlass
-  entities:
-  - uid: 314
-    components:
-    - type: Transform
-      pos: 5.5,10.5
-      parent: 2
-  - uid: 315
-    components:
-    - type: Transform
-      pos: 5.5,9.5
-      parent: 2
-  - uid: 1025
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 11.5,-4.5
-      parent: 2
-  - uid: 1026
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 12.5,-4.5
-      parent: 2
-- proto: AirlockGlassShuttle
+- proto: AirlockExternalGlassShuttleTransitMinorPOI
   entities:
   - uid: 75
     components:
@@ -716,6 +709,30 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -15.5,-7.5
+      parent: 2
+- proto: AirlockGlass
+  entities:
+  - uid: 314
+    components:
+    - type: Transform
+      pos: 5.5,10.5
+      parent: 2
+  - uid: 315
+    components:
+    - type: Transform
+      pos: 5.5,9.5
+      parent: 2
+  - uid: 1025
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 11.5,-4.5
+      parent: 2
+  - uid: 1026
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 12.5,-4.5
       parent: 2
 - proto: AirlockMaint
   entities:
@@ -939,6 +956,20 @@ entities:
     components:
     - type: Transform
       pos: -1.5,13.5
+      parent: 2
+- proto: BusSchedule
+  entities:
+  - uid: 1299
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -11.5,-8.5
+      parent: 2
+  - uid: 1300
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 12.5,-8.5
       parent: 2
 - proto: CableApcExtension
   entities:
@@ -5717,6 +5748,7 @@ entities:
   - uid: 1151
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -11.5,-9.5
       parent: 2
 - proto: PosterLegitMoreBread
@@ -5876,7 +5908,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-11.5
       parent: 2
-- proto: PoweredlightColoredBlack
+- proto: PoweredlightBlack
   entities:
   - uid: 780
     components:
@@ -5901,7 +5933,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,11.5
       parent: 2
-- proto: PoweredlightColoredFrostyBlue
+- proto: PoweredlightCyan
   entities:
   - uid: 1140
     components:
@@ -5920,7 +5952,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,1.5
       parent: 2
-- proto: PoweredlightColoredRed
+- proto: PoweredlightRed
   entities:
   - uid: 1188
     components:
@@ -6074,7 +6106,7 @@ entities:
     - type: Transform
       pos: 2.5,11.5
       parent: 2
-- proto: RandomPosterContrabandDeadDrop
+- proto: RandomPosterContraband
   entities:
   - uid: 257
     components:

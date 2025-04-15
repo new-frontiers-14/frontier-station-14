@@ -1,7 +1,8 @@
 - type: latheRecipe
   id: HandheldCrewMonitor
   result: HandheldCrewMonitor
-  category: Tools
+  categories:
+  - Tools
   completetime: 4
   materials:
     Glass: 1200
@@ -12,7 +13,8 @@
   parent: BaseToolRecipe
   id: CraftChemBag
   result: ChemBag
-  category: Tools
+  categories:
+  - Tools
   completetime: 2
   materials:
     Cloth: 500
@@ -22,7 +24,8 @@
   parent: BaseToolRecipe
   id: CraftMedicalBag
   result: MedicalBag
-  category: Tools
+  categories:
+  - Tools
   completetime: 2
   materials:
     Cloth: 500
@@ -32,7 +35,8 @@
   parent: BaseToolRecipe
   id: BeltMedicalEMT
   result: ClothingBeltMedicalEMT
-  category: Tools
+  categories:
+  - Tools
   completetime: 2
   materials:
     Cloth: 100
@@ -42,8 +46,31 @@
   parent: BaseToolRecipe
   id: BeltMedical
   result: ClothingBeltMedical
-  category: Tools
+  categories:
+  - Tools
   completetime: 2
   materials:
     Cloth: 100
     Steel: 50
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: CraftClothingEyesHudMedical
+  result: ClothingEyesHudMedical
+  categories:
+  - Tools
+  completetime: 2
+  materials:
+    Steel: 300
+    Glass: 200
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: CraftClothingEyesEyepatchHudMedical
+  result: ClothingEyesEyepatchHudMedical
+  categories:
+  - Tools
+  completetime: 2
+  materials:
+    Steel: 300
+    Glass: 200

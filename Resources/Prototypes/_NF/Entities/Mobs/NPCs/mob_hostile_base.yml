@@ -21,7 +21,7 @@
     sweatHeatRegulation: 2000
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 25
+    thermalRegulationTemperatureThreshold: 2
   - type: MovedByPressure
   - type: Insulated
 
@@ -89,7 +89,6 @@
   components:
   - type: NFSalvageMobRestrictions
     addComponentsOnDeath:
-    - type: Uncloneable
     - type: Unrevivable
     - type: Strippable
     - type: UserInterface
@@ -107,8 +106,6 @@
     - type: Access
     - type: Timer
     - type: TimedSpawner
-    - type: Advertise
-      pack: FuelVendAds # placeholder, required field, unused
     - type: Jittering
 
 - type: entity
@@ -248,25 +245,6 @@
 #    groups:
 #    - AllAccess
 
-- type: entity
-  abstract: true
-  parent: MobBaseSilentFootsteps
-  id: MobIncorporealBase
-  description: You can't touch it, but it can touch you.
-  components:
-  - type: CanMoveInAir
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.4
-        density: 10
-        mask:
-        - FlyingMobMask
-        layer:
-        - Opaque
-
 # Dungeon boss
 - type: entity
   id: MobHostileBossBase
@@ -280,9 +258,6 @@
   - type: Puller
   - type: Stamina
     critThreshold: 999
-  - type: MobPrice
-    price: 4000
-    deathPenalty: 0.5
   - type: Tag
     tags:
     - CanPilot
@@ -397,19 +372,16 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
-      amount: 5
+    - id: FoodMeatRotten
+      amount: 2
   - type: NpcFactionMember
     factions:
     - SimpleHostile
   - type: Carriable # Carrying system from nyanotrasen.
-  - type: MobPrice
-    price: 1500
-    deathPenalty: 0.5
   - type: Advertise
     pack: syndicatehumanoidchatter
-    minimumWait: 120 # 1 * 2
-    maximumWait: 240 # 2 * 60
+    minimumWait: 120
+    maximumWait: 240
     nextAdvertisementTime: 0
   - type: FTLKnockdownImmune
   - type: Respirator
@@ -482,9 +454,6 @@
     factions:
     - SimpleHostile
   - type: Carriable # Carrying system from nyanotrasen.
-  - type: MobPrice
-    price: 1500
-    deathPenalty: 0.5
   - type: Tag
     tags:
     - CanPilot
@@ -493,9 +462,39 @@
     - CannotSuicide
   - type: FTLKnockdownImmune
 
+# A simpler base for extending existing mobs (e.g. carp, kangaroos, snakes, xenos)
 - type: entity
+  suffix: Frontier, Hostile
   abstract: true
-  id: MobBaseSilentFootsteps
+  parent:
+  - MobFlammable
+  - MobEnhancedMovement
+  - MobHumanoidHostileAISimpleMelee
+  - BaseC3MobCreature
+  id: NFMobSimpleHostileBase
   components:
-  - type: FootstepModifier
-    footstepSoundCollection: Null
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+      Acidic: [Touch, Ingestion]
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+    - Drowsiness
+    - Adrenaline
+  - type: ZombieImmune
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Carriable # Kept for consistency with other mobs
+  - type: FTLKnockdownImmune
