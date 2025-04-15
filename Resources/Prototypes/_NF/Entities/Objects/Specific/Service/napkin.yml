@@ -64,21 +64,32 @@
     maxWritableArea: 256.0, 0.0
   - type: Paper
     contentSize: 280 # Tweet
-  - type: Food
-    solution: food
-    delay: 1
-    forceFeedDelay: 3
-    trash:
-      - TrashNapkin
-    eatMessage: wipe-face
-    verbEat: food-system-verb-wipe
-    forceFeedMessage: food-system-wipe
-    forceFeedSuccessMessage: food-system-wipe-success
-    forceFeedSuccessUserMessage: food-system-wipe-success-user
-    cannotEatAnyMoreMessage: food-system-you-cannot-wipe
-    cannotEatAnyMoreOtherMessage: food-system-you-cannot-wipe-other
-    useSound:
+  - type: InteractionPopupOnUse
+    whitelist:
+      components:
+      - MobState
+      - Body
+    verbUse: food-system-verb-wipe
+    self:
+      actor:
+        success: wipe-face
+    others:
+      delay: 3
+      actor:
+        start: food-system-wipe-user
+        success: food-system-wipe-success-user
+      target:
+        start: food-system-wipe
+        success: food-system-wipe-success-user
+      other:
+        start: food-system-wipe-other
+        success: food-system-wipe-success-other
+    interactSuccessSound:
       path: /Audio/_NF/Items/Napkin/wipe.ogg
+    onActivate: true
+  - type: TriggerOnInteractionPopupUse
+  - type: ReplaceOnTrigger
+    proto: TrashNapkin
 
 - type: entity
   name: crumpled napkin

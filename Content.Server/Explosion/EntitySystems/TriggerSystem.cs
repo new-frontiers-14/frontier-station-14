@@ -37,7 +37,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Body.Components; // Frontier: Gib organs
-using Content.Shared.Projectiles; // Frontier: embed triggers
+using Content.Shared.Projectiles;
+using Content.Server._NF.Explosion.Components;
+using Robust.Shared.Map; // Frontier: embed triggers
 
 namespace Content.Server.Explosion.EntitySystems
 {
@@ -114,6 +116,7 @@ namespace Content.Server.Explosion.EntitySystems
             SubscribeLocalEvent<TriggerOnProjectileHitComponent, ProjectileHitEvent>(OnProjectileHitEvent); // Frontier: trigger on embed
 
             SubscribeLocalEvent<SpawnOnTriggerComponent, TriggerEvent>(OnSpawnTrigger);
+            SubscribeLocalEvent<ReplaceOnTriggerComponent, TriggerEvent>(OnReplaceTrigger); // Frontier: replace on trigger
             SubscribeLocalEvent<DeleteOnTriggerComponent, TriggerEvent>(HandleDeleteTrigger);
             SubscribeLocalEvent<ExplodeOnTriggerComponent, TriggerEvent>(HandleExplodeTrigger);
             SubscribeLocalEvent<FlashOnTriggerComponent, TriggerEvent>(HandleFlashTrigger);
@@ -194,6 +197,24 @@ namespace Content.Server.Explosion.EntitySystems
 
             }
         }
+
+        // Frontier: replace on trigger function
+        private void OnReplaceTrigger(Entity<ReplaceOnTriggerComponent> ent, ref TriggerEvent args)
+        {
+            var xform = Transform(ent);
+
+            if (_container.TryGetContainingContainer((ent, xform), out var container))
+            {
+                _container.Remove(ent.Owner, container, force: true);
+                SpawnInContainerOrDrop(ent.Comp.Proto, container.Owner, container.ID);
+            }
+            else
+            {
+                Spawn(ent.Comp.Proto, xform.Coordinates);
+            }
+            QueueDel(ent);
+        }
+        // End Frontier: replace on trigger function
 
         private void HandleExplodeTrigger(EntityUid uid, ExplodeOnTriggerComponent component, TriggerEvent args)
         {
