@@ -1,0 +1,120 @@
+- type: entity
+  name: behonker NPC Spawner
+  id: NFSpawnMobBehonkerBoss
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: base
+      sprite: Objects/Weapons/Guns/Battery/behonker_eye.rsi
+  - type: ConditionalSpawner
+    prototypes:
+      - NFBossMobBehonkerIce
+      - NFBossMobBehonkerPyro
+      - NFBossMobBehonkerElectrical
+      - NFBossMobBehonkerGrav
+
+- type: entity
+  name: clown spider spawner NPC
+  id: SpawnNPCClownSpider
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: clown
+      sprite: Mobs/Animals/clownspider.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobClownSpiderNPC
+
+- type: entity
+  name: Enlightened mime spawner
+  id: SpawnMobEnlightenedMime
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Species/Templates/human.rsi
+        state: human
+      - sprite: Clothing/Uniforms/Jumpsuit/mime.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/Mask/mime.rsi
+        state: equipped-MASK
+      - sprite: Clothing/Head/Hats/beret.rsi
+        state: equipped-HELMET
+  - type: ConditionalSpawner
+    prototypes:
+      - MobClownUIVMime
+
+- type: entity
+  name: Twisted Clown Spawner
+  id: SpawnMobTwistedClown
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Species/Templates/human.rsi
+        state: human
+      - sprite: Clothing/Uniforms/Jumpsuit/clown.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/Mask/clown.rsi
+        state: equipped-MASK
+  - type: ConditionalSpawner
+    prototypes:
+      - MobClownUIVClown
+
+- type: entity
+  name: Twisted Clown Pie Launcher Spawner
+  id: SpawnMobTwistedClownPie
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Species/Templates/human.rsi
+        state: human
+      - sprite: Clothing/Uniforms/Jumpsuit/clown.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/Mask/clown.rsi
+        state: equipped-MASK
+  - type: ConditionalSpawner
+    prototypes:
+      - MobClownUIVClownPie
+
+- type: entity
+  name: Horrid Cluwne
+  id: SpawnHorridCluwne
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Species/Templates/human.rsi
+        state: human
+      - sprite: Clothing/Uniforms/Jumpsuit/cluwne.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/Mask/cluwne.rsi
+        state: equipped-MASK
+  - type: ConditionalSpawner
+    prototypes:
+      - MobClownUIVCluwne

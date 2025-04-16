@@ -308,7 +308,7 @@
     contents:
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdSilver # Frontier
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -324,7 +324,7 @@
     contents:
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdBrigmedic # Frontier
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -340,7 +340,7 @@
     contents:
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdGold # Frontier
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -356,7 +356,7 @@
     contents:
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdGold # Frontier
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -388,7 +388,7 @@
     contents:
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdCombat # Frontier
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -404,8 +404,22 @@
     contents:
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdCommand # Frontier
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
     access: [["Security"]]
+
+#Mime hardsuit
+- type: entity
+  id: SuitStorageMime
+  parent: SuitStorageBase
+  suffix: Mime
+  components:
+  - type: StorageFill
+    contents:
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitMime
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+  - type: AccessReader

@@ -1,0 +1,116 @@
+﻿# BASE
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClownDuffelGiftBox
+  name: Clown Bundle
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/mime.rsi
+    state: icon
+
+- type: entity
+  parent: ClownDuffelGiftBox
+  id: ClothingBackpackClownMimeLoot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.4
+    - id: SpaceCash1000
+      prob: 0.2
+    # Weapon
+    - id: RevolverCapGunFake
+      prob: 0.5
+    - id: SpeedLoaderMagnum
+    - id: SpeedLoaderMagnum
+      prob: 0.6
+    # Items
+    - id: MimePowersImplanter
+      prob: 0.1
+    - id: CrayonMime
+      prob: 0.9
+    - id: GoldenBikeHorn
+      prob: 0.05
+    - id: CrayonMagic
+      prob: 0.01
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClownDuffelGiftBox
+  id: ClothingBackpackClownPieLauncherLoot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.4
+    - id: SpaceCash1000
+      prob: 0.2
+    # Weapon
+    - id: LauncherCreamPie
+      prob: 0.33
+    # Items
+    - id: FoodPieBananaCream
+      prob: 0.1
+    - id: FoodPieBananaCream
+      prob: 0.1
+    - id: FoodPieBananaCream
+      prob: 0.1
+    - id: GoldenBikeHorn
+      prob: 0.01
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClownDuffelGiftBox
+  id: ClothingBackpackClownLoot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.4
+    - id: SpaceCash1000
+      prob: 0.2
+    # Weapon
+    - id: BikeHorn
+      prob: 0.7
+    # Items
+    - id: FoodPieBananaCream
+      prob: 0.05
+    - id: FoodPieBananaCream
+      prob: 0.05
+    - id: FoodPieBananaCream
+      prob: 0.05
+    - id: GoldenBikeHorn
+      prob: 0.01
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClownDuffelGiftBox
+  id: ClothingBackpackCluwneLoot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.2
+    - id: CluwneHorn
+      prob: 0.05
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
