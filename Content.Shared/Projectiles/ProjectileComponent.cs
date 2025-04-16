@@ -98,4 +98,8 @@ public sealed partial class ProjectileComponent : Component
     /// </summary>
     [DataField]
     public FixedPoint2 PenetrationAmount = FixedPoint2.Zero;
+
+    // Goobstation
+    [DataField]
+    public float ArmorPenetration;
 }
