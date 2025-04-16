@@ -20,8 +20,22 @@
   description: A gas tank for O2 and N2 mixed in equal proportions. It can hold 5 L of gas.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Tanks/oxygen_nitrogen_equal_mix.rsi
+    sprite: _NF/Objects/Tanks/o2n2equal.rsi
   - type: Item
-    sprite: _NF/Objects/Tanks/oxygen_nitrogen_equal_mix.rsi
+    sprite: _NF/Objects/Tanks/o2n2equal.rsi
   - type: Clothing
-    sprite: _NF/Objects/Tanks/oxygen_nitrogen_equal_mix.rsi
+    sprite: _NF/Objects/Tanks/o2n2equal.rsi
+
+- type: entity
+  parent: DoubleEmergencyAirTank
+  id: DoubleEmergencyTankO2N2Equal
+  name: double emergency O2/N2 tank
+  description: |-
+   A high-grade dual-tank emergency life support container: one tank contains N2 the other - O2. It holds a decent amount of air for it's small size.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tanks/emergency_double_o2n2equal.rsi
+  - type: Item
+    sprite: _NF/Objects/Tanks/emergency_double_o2n2equal.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tanks/emergency_double_o2n2equal.rsi

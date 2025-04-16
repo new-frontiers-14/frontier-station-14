@@ -61,3 +61,18 @@
         - 0 # N2O
         # 2.051379050       total
       temperature: 293.15
+
+- type: entity
+  id: DoubleEmergencyTankO2N2EqualFilled
+  parent: DoubleEmergencyAirTank
+  suffix: Filled
+  components:
+    - type: GasTank
+      outputPressure: 42.6
+      air:
+        # 3.9 minutes due to output pressure
+        volume: 2.5
+        moles:
+          - 0.5128447625 # 50% oxygen
+          - 0.5128447625 # 50% nitrogen
+        temperature: 293.15
