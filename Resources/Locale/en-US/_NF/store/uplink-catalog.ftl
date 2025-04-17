@@ -335,3 +335,6 @@ uplink-pistol-magazine-cobra-desc = A loaded magazine for Cobra .45 pistol.
 
 uplink-speedloader-magnum-non-ap-name = .45 pistol speed loader
 uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pistol caliber rounds.
+
+uplink-syndicate-segway-name = Syndicate Segway
+uplink-syndicate-segway-desc = Move around in style without dirtying your blood red boots.
