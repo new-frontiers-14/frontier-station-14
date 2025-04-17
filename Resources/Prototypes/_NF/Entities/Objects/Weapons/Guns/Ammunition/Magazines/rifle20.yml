@@ -8,12 +8,12 @@
   components:
   - type: Tag
     tags:
-      - MagazineRifle # TODO: make it make sense, change the tags
+      - NFMagazineRifle20 # TODO: make it make sense, change the tags
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeRifle
+        - NFCartridgeRifle20
     proto: NFCartridgeRifle20
     capacity: 25
   - type: Sprite
@@ -41,7 +41,7 @@
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeRifle
+        - NFCartridgeRifle20
     proto: NFCartridgeRifle20
     capacity: 60
   - type: Sprite
@@ -66,7 +66,7 @@
   components:
   - type: Tag
     tags:
-      - MagazineLightRifleBox # TODO: change the tags
+      - NFMagazineBoxRifle20 # TODO: change the tags
   - type: BallisticAmmoProvider
     proto: NFCartridgeRifle20
     capacity: 100
@@ -206,14 +206,14 @@
   components:
   - type: Tag
     tags:
-      - MagazineNovaliteC1
+      - NFMagazineClipRifle20
   - type: Item
     size: Small
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeRifle
+        - NFCartridgeRifle20
     capacity: 16
   - type: ContainerContainer
     containers:
