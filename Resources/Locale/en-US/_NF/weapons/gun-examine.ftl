@@ -4,7 +4,7 @@ gun-examine-nf-max-angle = - [color={$color}]Maximum spread[/color]: [color=ligh
 gun-examine-nf-min-angle = - [color={$color}]Minimum spread[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color]
 gun-examine-nf-fire-rate = - [color={$color}]Fire rate[/color]: [color=lightblue]{NATURALFIXED($value, 1)} RPS[/color]
 gun-examine-nf-fire-rate-burst = - [color={$color}]Fire rate[/color]: [color=lightblue]{NATURALFIXED($value, 1)} RPS[/color] (burst of [color=lightblue]{$burstsize}[/color] at [color=lightblue]{NATURALFIXED($burstrate, 1)} RPS[/color])
-gun-examine-nf-muzzle-velocity = - [color={$color}]Muzzle velocity[/color]: [color=lightblue]{NATURALFIXED($value, 0)} m/s[/color]
+gun-examine-nf-muzzle-velocity = - [color={$color}]Muzzle velocity[/color]: [color=lightblue]{NATURALFIXED($value, 1)} m/s[/color]
 
 # Calibers
 gun-examine-caliber-35 = .35 pistol ammo
