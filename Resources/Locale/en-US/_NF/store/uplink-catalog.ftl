@@ -95,26 +95,26 @@ uplink-security-emprocket-desc = An EMP rocket for the RPG-7.
 uplink-security-thrusterkit-name = Thruster Upgrade Kit
 uplink-security-thrusterkit-desc = Contains 12 super capaciters. Perfect for upgrading three thrusters.
 
-uplink-security-magazinepistol-name = .35 Pistol (high grain) Magazines
-uplink-security-magazinepistol-desc = A box containing 4 filled .35 (high grain) high capacity pistol magazines.
+uplink-security-magazinepistol-name = .35 Pistol +P Magazines
+uplink-security-magazinepistol-desc = A box containing 4 filled .35 pistol (overpressure) pistol magazines.
 
 uplink-security-magazinepistol-rubber-name = .35 Pistol Rubber Magazines
-uplink-security-magazinepistol-rubber-desc = A box containing 4 filled .35 auto (rubber) magazines.
+uplink-security-magazinepistol-rubber-desc = A box containing 4 filled .35 pistol (rubber) pistol magazines.
 
-uplink-security-20riflemagazine-name = .20 Rifle (high grain) Magazines
-uplink-security-20riflemagazine-desc = A box containing 4 filled .20 rifle (high grain) magazines.
+uplink-security-20riflemagazine-name = .20 Rifle +P Magazines
+uplink-security-20riflemagazine-desc = A box containing 4 filled .20 rifle (overpressure) magazines.
 
 uplink-security-20riflemagazine-rubber-name = .20 Rifle Rubber Magazines
 uplink-security-20riflemagazine-rubber-desc = A box containing 4 filled .20 rifle (rubber) magazines.
 
-uplink-security-30riflemagazine-name = .30 Rifle (high grain) Magazines
-uplink-security-30riflemagazine-desc = A box containing 4 filled .30 rifle (high grain) magazines.
+uplink-security-30riflemagazine-name = .30 Rifle +P Magazines
+uplink-security-30riflemagazine-desc = A box containing 4 filled .30 rifle (overpressure) magazines.
 
 uplink-security-30riflemagazine-rubber-name = .30 Rifle Rubber Magazines
 uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifle (rubber) magazines.
 
-uplink-security-wt550magazine-name = .35 pistol (high grain) Top-mounted Magazines
-uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol  (high grain) top-mounted magazines.
+uplink-security-wt550magazine-name = .35 +P Top-mounted Magazines
+uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol (overpressure) top-mounted magazines.
 
 uplink-security-hypo-name = Hypospray
 uplink-security-hypo-desc = A sterile medical injector for instant delivery of medications.

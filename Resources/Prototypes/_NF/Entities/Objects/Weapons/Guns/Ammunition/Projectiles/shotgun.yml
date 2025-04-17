@@ -91,17 +91,16 @@
 #region PelletsSpread
 - type: entity
   id: NFBasePelletShotgunSpread
-  parent: NFPelletShotgun
   abstract: true
   components:
   - type: ProjectileSpread
-    count: 6
+    count: 5 # six total, includes the spread as a bullet
     spread: 11
 
 - type: entity
   categories: [ HideSpawnMenu ]
   id: NFPelletShotgunSpread
-  parent: NFBasePelletShotgunSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgun]
   components:
   - type: ProjectileSpread
     proto: NFPelletShotgun
@@ -109,7 +108,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   id: NFPelletShotgunIncendiarySpread
-  parent: NFBasePelletShotgunSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunIncendiary]
   components:
   - type: ProjectileSpread
     proto: NFPelletShotgunIncendiary
@@ -117,7 +116,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   id: NFPelletShotgunPracticeSpread
-  parent: NFBasePelletShotgunSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunPractice]
   components:
   - type: ProjectileSpread
     proto: NFPelletShotgunPractice
@@ -125,7 +124,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   id: NFPelletShotgunUraniumSpread
-  parent: NFBasePelletShotgunSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunUranium]
   components:
   - type: ProjectileSpread
     proto: NFPelletShotgunUranium
@@ -133,7 +132,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   id: NFPelletShotgunImprovisedSpread
-  parent: NFBasePelletShotgunSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunImprovised]
   components:
   - type: ProjectileSpread
     proto: NFPelletShotgunImprovised
@@ -141,7 +140,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   id: NFPelletShotgunGlassSpread
-  parent: NFBasePelletShotgunSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunGlass]
   components:
   - type: ProjectileSpread
     proto: NFPelletShotgunGlass
@@ -149,7 +148,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   id: NFPelletShotgunGrapeshotSpread
-  parent: NFBasePelletShotgunSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunGrapeshot]
   components:
   - type: ProjectileSpread
     proto: NFPelletShotgunGrapeshot

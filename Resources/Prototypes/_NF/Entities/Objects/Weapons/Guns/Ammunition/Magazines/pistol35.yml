@@ -112,12 +112,12 @@
     proto: NFCartridgePistol35
 
 - type: entity
-  id: NFMagazinePistol35HighGrain
-  name: pistol magazine (.35 pistol, high grain)
+  id: NFMagazinePistol35Overpressure
+  name: pistol magazine (.35 pistol, overpressure)
   parent: NFBaseMagazinePistol35
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol35HighGrain
+    proto: NFCartridgePistol35Overpressure
   - type: Sprite
     layers:
     - state: base
@@ -178,7 +178,7 @@
 # Frontier
 - type: entity
   id: NFMagazinePistol35Emp
-  name: pistol magazine (.35 pistol, emp)
+  name: pistol magazine (.35 pistol, EMP)
   parent: NFBaseMagazinePistol35
   components:
   - type: BallisticAmmoProvider
@@ -227,12 +227,12 @@
     proto: NFCartridgePistol35
 
 - type: entity
-  id: NFMagazineHighCapacityPistol35HighGrain
-  name: high capacity pistol magazine (.35 pistol, high grain)
+  id: NFMagazineHighCapacityPistol35Overpressure
+  name: high capacity pistol magazine (.35 pistol, overpressure)
   parent: NFBaseMagazineHighCapacityPistol35
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol35HighGrain
+    proto: NFCartridgePistol35Overpressure
   - type: Sprite
     layers:
     - state: base
@@ -292,7 +292,7 @@
 # Frontier
 - type: entity
   id: NFMagazineHighCapacityPistol35Emp
-  name: high capacity pistol magazine (.35 pistol, emp)
+  name: high capacity pistol magazine (.35 pistol, EMP)
   parent: NFBaseMagazineHighCapacityPistol35
   components:
   - type: BallisticAmmoProvider
@@ -341,12 +341,12 @@
     proto: NFCartridgePistol35
 
 - type: entity
-  id: NFMagazineSubMachineGun35HighGrain
-  name: smg magazine (.35 pistol, high grain)
+  id: NFMagazineSubMachineGun35Overpressure
+  name: smg magazine (.35 pistol, overpressure)
   parent: NFBaseMagazinePistolSubMachineGun35
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol35HighGrain
+    proto: NFCartridgePistol35Overpressure
   - type: Sprite
     layers:
     - state: base
@@ -434,12 +434,12 @@
         shader: unshaded
 
 - type: entity
-  id: NFMagazineSubMachineGunTopMounted35HighGrain
-  name: top mounted smg magazine (.35 pistol, high grain)
+  id: NFMagazineSubMachineGunTopMounted35Overpressure
+  name: top mounted smg magazine (.35 pistol, overpressure)
   parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol35HighGrain
+    proto: NFCartridgePistol35Overpressure
   - type: Sprite
     layers:
       - state: base
@@ -519,7 +519,7 @@
 
 - type: entity
   id: NFMagazineSubMachineGun35Emp # MagazinePistolSubMachineGunEmp
-  name: smg magazine (.35 pistol, emp)
+  name: smg magazine (.35 pistol, EMP)
   parent: NFBaseMagazinePistolSubMachineGun35
   components:
   - type: BallisticAmmoProvider
@@ -535,7 +535,7 @@
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Emp
-  name: top mounted smg magazine (.35 pistol, emp)
+  name: top mounted smg magazine (.35 pistol, EMP)
   parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider

@@ -19,6 +19,8 @@
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: StaticPrice
     price: 250
+  - type: NFWeaponDetails
+    class: weapon-details-class-pistol
 
 #region manufacturer
 - type: entity
@@ -32,6 +34,8 @@
     angleIncrease: 1.25
     angleDecay: 0.5
     fireRate: 3.5
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
 - type: entity
   id: NFBaseWeaponFramePistolCybersun
@@ -42,6 +46,8 @@
     angleIncrease: 1
     angleDecay: 1
     fireRate: 3
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-cybersun-industries
 
 #region chamber
 - type: entity
@@ -129,7 +135,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineHighCapacityPistol35HighGrain
+        startingItem: NFMagazineHighCapacityPistol35Overpressure
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -139,7 +145,7 @@
             - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgePistol35HighGrain
+        startingItem: NFCartridgePistol35Overpressure
         priority: 1
         whitelist:
           tags:

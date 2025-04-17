@@ -23,14 +23,14 @@
         amount: 4
 
 - type: entity
-  name: box of .20 rifle (high grain) magazines
+  name: box of .20 rifle (overpressure) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineRifle20HighGrain
-  description: A box full of .20 rifle (high grain) magazines.
+  id: NFBoxMagazineRifle20Overpressure
+  description: A box full of .20 rifle (overpressure) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineRifle20HighGrain
+      - id: NFMagazineRifle20Overpressure
         amount: 4
 
 #region .30 rifle
@@ -46,14 +46,14 @@
         amount: 4
 
 - type: entity
-  name: box of .30 rifle (high grain) magazines
+  name: box of .30 rifle (overpressure) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineRifle30HighGrain
-  description: A box full of .30 rifle (high grain) magazines.
+  id: NFBoxMagazineRifle30Overpressure
+  description: A box full of .30 rifle (overpressure) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineRifle30HighGrain
+      - id: NFMagazineRifle30Overpressure
         amount: 4
 
 - type: entity
@@ -102,34 +102,45 @@
         amount: 3
 
 - type: entity
-  name: box of pistol (.35 pistol, high grain) magazines
+  name: box of pistol (.35 pistol, overpressure) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineHighCapacityPistol35HighGrain
-  description: A box full of pistol (.35 pistol, high grain) magazines.
+  id: NFBoxMagazineHighCapacityPistol35Overpressure
+  description: A box full of pistol (.35 pistol, overpressure) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineHighCapacityPistol35HighGrain
+      - id: NFMagazineHighCapacityPistol35Overpressure
         amount: 4
 
 - type: entity
-  name: box of SMG (.35 pistol, high grain) magazines
+  name: box of SMG (.35 pistol, overpressure) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineSubMachineGun35HighGrain
-  description: A box full of SMG (.35 pistol, high grain) magazines.
+  id: NFBoxMagazineSubMachineGun35Overpressure
+  description: A box full of SMG (.35 pistol, overpressure) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineSubMachineGun35HighGrain
+      - id: NFMagazineSubMachineGun35Overpressure
         amount: 4
 
 - type: entity
-  name: box of top moumted SMG (.35 pistol, high grain) magazines
+  name: box of top moumted SMG (.35 pistol, overpressure) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineSubMachineGunTopMounted35HighGrain
-  description: A box full of top moumted SMG (.35 pistol, high grain) magazines for WT550.
+  id: NFBoxMagazineSubMachineGunTopMounted35Overpressure
+  description: A box full of top moumted SMG (.35 pistol, overpressure) magazines for WT550.
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineSubMachineGunTopMounted35HighGrain
+      - id: NFMagazineSubMachineGunTopMounted35Overpressure
         amount: 4
+
+- type: entity
+  name: box of SMG .35 auto (EMP) magazines # Frontier: capitalize emp
+  parent: BoxMagazine
+  id: BoxMagazinePistolSubMachineGunEmp
+  description: A box full of SMG .35 auto (EMP) magazines. # Frontier: capitalize emp
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineSubMachineGun35Emp
+        amount: 3

@@ -49,6 +49,8 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 4 # Default recharge rate: 1 shot per 20 seconds with 80 fireCost
+  - type: NFWeaponDetails
+    class: weapon-details-class-assault-rifle
 
 #region manufacturer
 - type: entity
@@ -59,6 +61,8 @@
   - type: Gun
     minAngle: 2.1
     maxAngle: 4
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
 - type: entity
   id: NFBaseWeaponFrameEnergyRifleAssaultCybersun
@@ -73,6 +77,8 @@
       path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
     soundEmpty:
       path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-cybersun-industries
 
 #region chamber
 - type: entity

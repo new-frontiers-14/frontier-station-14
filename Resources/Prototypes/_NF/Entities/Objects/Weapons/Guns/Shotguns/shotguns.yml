@@ -7,10 +7,7 @@
   - NFBaseWeaponShotgunShell50Magazine
   name: bulldog
   description: |-
-    Manufacturer: Gorlex Steel Works
-    Type: Shotgun
-    Desc.: An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids.
-    ---
+    An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
@@ -20,16 +17,15 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works
 
 - type: entity
   id: NFWeaponShotgunDoubleBarreled
   parent: [ NFBaseWeaponShotgunWieldable, NFBaseWeaponShotgunShell50 ]
   name: double-barreled shotgun
   description: |-
-    Manufacturer: Frontier Gunsmith Consortium
-    Type: Shotgun
-    Desc.: An immortal classic. A civilian grade shotgun.
-    ---
+    An immortal classic. A civilian grade shotgun.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
@@ -42,16 +38,15 @@
   - type: Construction
     graph: NFShotgunSawn
     node: start
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
 
 - type: entity
   id: NFWeaponShotgunEnforcer
   parent: [ NFBaseWeaponShotgunWieldable, NFBaseWeaponShotgunShell50 ]
   name: enforcer
   description: |-
-    Manufacturer: NanoTrasen Munitions
-    Type: Shotgun
-    Desc.: A premium semi-automatic shotgun, featuring an upgraded tube capacity.
-    ---
+    A premium semi-automatic shotgun, featuring an upgraded tube capacity.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
@@ -59,16 +54,15 @@
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
 - type: entity
   id: NFWeaponShotgunKammerer
   parent: [ NFBaseWeaponShotgunWieldable, NFBaseWeaponShotgunShell50 ]
   name: kammerer
   description: |-
-    Manufacturer: NanoTrasen Munitions
-    Type: Shotgun
-    Desc.: An old yet faithful design, and a favorite among irregular forces on many worlds.
-    ---
+    An old yet faithful design, and a favorite among irregular forces on many worlds.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Shotguns/pump.rsi
@@ -78,16 +72,15 @@
     sprite: _NF/Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
   - type: BallisticAmmoProvider
     capacity: 5
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
 - type: entity
   id: NFWeaponShotgunSawn
   parent: [ NFBaseWeaponShotgun, NFBaseWeaponShotgunShell50 ]
   name: sawn-off shotgun
   description: |-
-    Manufacturer: Frontier Gunsmith Consortium
-    Type: Shotgun
-    Desc.: Groovy!
-    ---
+    Groovy!
   components:
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Shotguns/sawn.rsi
@@ -98,6 +91,8 @@
     sprite: _DV/Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: BallisticAmmoProvider
     capacity: 2
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
 
 - type: entity
   id: NFWeaponShotgunSawnEmpty
@@ -114,10 +109,7 @@
   parent: [ NFBaseWeaponShotgun, NFBaseWeaponShotgunShell50 ]
   name: handmade pistol
   description: |-
-    Manufacturer: Frontier Gunsmith Consortium
-    Type: Shotgun
-    Desc.: Looks unreliable, but legal.
-    ---
+    Looks unreliable, but legal.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
@@ -127,6 +119,8 @@
     size: Small
   - type: BallisticAmmoProvider
     capacity: 1
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
 
 - type: entity
   id: NFWeaponShotgunHandmadeEmpty
@@ -144,10 +138,7 @@
   parent: [ BaseC3PirateContraband, NFBaseWeaponShotgunWieldable, NFBaseWeaponShotgunShell50 ]
   name: blunderbuss
   description: |-
-    Manufacturer: Steelbolt Tool Forge
-    Type: Shotgun
-    Desc.: Deadly at close range, an illegal shotgun often found at the side of a pirate.
-    ---
+    Deadly at close range, an illegal shotgun often found at the side of a pirate.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
@@ -157,16 +148,15 @@
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
   - type: BallisticAmmoProvider
     capacity: 1
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-steelbolt-tool-forge
 
 - type: entity
   id: NFWeaponShotgunImprovised
   parent: [ NFBaseWeaponShotgunWieldable, NFBaseWeaponShotgunShell50 ]
   name: improvised shotgun
   description: |-
-    Manufacturer: Frontier Gunsmith Consortium
-    Type: Shotgun
-    Desc.: A shitty, but legal, hand-made shotgun. It can only hold one round in the chamber.
-    ---
+    A shitty, but legal, hand-made shotgun. It can only hold one round in the chamber.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
@@ -177,6 +167,8 @@
   - type: BallisticAmmoProvider
     capacity: 1
     proto: null
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
 
 #region Less-lethal
 - type: entity

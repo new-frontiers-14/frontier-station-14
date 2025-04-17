@@ -3,26 +3,20 @@
   id: NFWeaponPistolMk58
   parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber35 ]
   name: mk58
-  description: |-
-    Manufacturer: NanoTrasen Munitions
-    Type: Pistol
-    Desc.: A cheap semiauto sidearm.
-    ---
+  description: A cheap semiauto sidearm.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+  - type: NFWeaponDetails
 
 - type: entity
   id: NFWeaponPistolN1984
   parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber45 ]
   name: n1984
   description: |-
-    Manufacturer: NanoTrasen Munitions
-    Type: Pistol
-    Desc.: The sidearm of any self respecting officer. On the handle is a label that says 'for authorized use only.'
-    ---
+    The sidearm of any self respecting officer. On the handle is a label that says 'for authorized use only.'
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
@@ -34,10 +28,7 @@
   parent: [ NFBaseWeaponFramePistolCybersun, NFBaseWeaponPistolChamber45 ]
   name: cobra
   description: |-
-    Manufacturer: Cybersun Industries
-    Type: Pistol
-    Desc.: A rugged, robust operator handgun with inbuilt silencer. An illegal firearm often used by Syndicate agents.
-    ---
+    A rugged, robust operator handgun with inbuilt silencer. An illegal firearm often used by Syndicate agents.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Pistols/cobra.rsi
@@ -104,11 +95,7 @@
   id: NFWeaponPistolUniversal
   parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber35 ]
   name: mk32 "universal"
-  description: |-
-    Manufacturer: NanoTrasen Munitions
-    Type: Pistol
-    Desc.: The Mark 32 Offensive Handgun.
-    ---
+  description: The Mark 32 Offensive Handgun.
   components:
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi
@@ -123,10 +110,7 @@
   parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponPistolChamber35HighCapacityNfsd, NFWeaponPistolUniversal ]
   name: mk32 "universal" service pistol
   description: |-
-    Manufacturer: NanoTrasen Munitions
-    Type: Pistol
-    Desc.: The Mark 32 Offensive Service Pistol. On the handle is a label that says 'for authorized use only.'
-    ---
+    The Mark 32 Offensive Service Pistol. On the handle is a label that says 'for authorized use only.'
   components:
   - type: Gun
     soundGunshot:
