@@ -16,7 +16,7 @@
     tags:
       - HideContextMenu
   - type: AnimationPlayer
-  
+
 - type: entity
   parent: MuzzleFlashEffect
   id: MuzzleFlashEffectOmnilaser
@@ -30,7 +30,7 @@
       map: ["enum.EffectLayers.Unshaded"]
       sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
       state: omnilaser_flash
-  
+
 - type: entity
   parent: MuzzleFlashEffect
   id: MuzzleFlashEffectHeavyLaser
@@ -131,6 +131,9 @@
     damage:
       types:
         Blunt: 1
+  - type: Tracer # Frontier
+    color: "#E98C23FF" # Frontier
+    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletIncendiary
@@ -149,6 +152,8 @@
     energy: 7.0
   - type: IgniteOnCollide
     fireStacks: 0.25
+  - type: Tracer # Frontier
+    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletAP
@@ -165,6 +170,9 @@
       types:
         Piercing: 11 # 20% decrease
     ignoreResistances: true
+  - type: Tracer # Frontier
+    color: "#000000FF" # Frontier
+    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletUranium
@@ -180,6 +188,13 @@
     damage:
       types:
         Radiation: 11
+  - type: Tracer # Frontier
+    color: "#9BE792FF" # Frontier
+    length: 1.5 # Frontier
+  - type: PointLight # Frontier
+    radius: 1.1 # Frontier
+    energy: 1 # Frontier
+    color: "#9BE792FF" # Frontier
 
 # Energy projectiles
 - type: entity
@@ -262,7 +277,7 @@
     impactEffect: BulletImpactEffectDisabler
     damage:
       types:
-        Heat: 5
+        Heat: 0
     soundHit:
       collection: WeakHit
     forceSound: true
@@ -302,7 +317,7 @@
     impactEffect: BulletImpactEffectDisabler
     damage:
       types:
-        Heat: 1
+        Heat: 0
     soundHit:
       collection: WeakHit
     forceSound: true
@@ -976,7 +991,7 @@
     impactEffect: BulletImpactEffectDisabler
     damage:
       types:
-        Heat: 2
+        Heat: 0
     soundHit:
       collection: WeakHit
     forceSound: true
@@ -1182,6 +1197,9 @@
       path: /Audio/Weapons/Guns/Hits/snap.ogg
   - type: StaminaDamageOnCollide
     damage: 22 # 5 hits to stun sounds reasonable
+  - type: Tracer
+    color: "#206EEFFF"
+    length: 1.5 # Frontier
 
 - type: entity
   id: BaseBulletEmp
