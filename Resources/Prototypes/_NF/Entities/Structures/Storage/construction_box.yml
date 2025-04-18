@@ -46,3 +46,23 @@
     blacklist:
       tags:
       - PrizeTicket
+
+- type: entity
+  id: ScrapBox
+  name: scrap box
+  description: A large storage container for holding scrap. It smells like the big city.
+  parent: ConstructionBox
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/scrapbox.rsi
+    layers:
+    - state: scrapbox
+    - state: scrapbox-top
+      map: [ top ]
+      visible: true
+  - type: Storage
+    whitelist:
+      tags:
+      - Recyclable
+      - Trash
+    maxItemSize: Huge # so you can pick up scrap chunks
