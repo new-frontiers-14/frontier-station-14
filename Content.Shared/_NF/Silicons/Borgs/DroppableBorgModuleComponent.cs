@@ -65,4 +65,10 @@ public sealed partial class DroppableBorgItem
     /// </summary>
     [DataField]
     public EntityWhitelist? Blacklist;
+
+    /// <summary>
+    /// An optional localization string for the entity name to display for the borg's hands.
+    /// </summary>
+    [DataField]
+    public LocId? DisplayName;
 }

@@ -17,6 +17,7 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
 
     public override void Initialize()
     {
@@ -39,12 +40,16 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
             var successful = TrySpawnInContainer(slot.Id, ent, ent.Comp.ContainerId, out var item);
             // this would only fail if the current entity is being terminated, which is impossible for mapinit
             DebugTools.Assert(successful, $"Somehow failed to insert {ToPrettyString(item)} into {ToPrettyString(ent)}");
-            _placeholder.SpawnPlaceholder(placeholders, item!.Value, slot.Id, slot.Whitelist, slot.Blacklist);
+            var placeholderUid = _placeholder.SpawnPlaceholder(placeholders, item!.Value, slot.Id, slot.Whitelist, slot.Blacklist);
+            if (slot.DisplayName != null)
+                _meta.SetEntityName(placeholderUid, Loc.GetString(slot.DisplayName));
         }
 
         foreach (var placeholder in ent.Comp.Placeholders)
         {
             var placeholderUid = _placeholder.SpawnPlaceholder(placeholders, EntityUid.Invalid, placeholder.Id, placeholder.Whitelist, placeholder.Blacklist);
+            if (placeholder.DisplayName != null)
+                _meta.SetEntityName(placeholderUid, Loc.GetString(placeholder.DisplayName));
             _container.Insert(placeholderUid, items, force: true);
         }
 

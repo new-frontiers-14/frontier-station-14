@@ -299,14 +299,17 @@
       whitelist:
         components:
         - CablePlacer
+      displayName: borg-placeholder-display-name-cable-coil
     - id: CableMVStack
       whitelist:
         components:
         - CablePlacer
+      displayName: borg-placeholder-display-name-cable-coil
     - id: CableHVStack
       whitelist:
         components:
         - CablePlacer
+      displayName: borg-placeholder-display-name-cable-coil
   # End DeltaV Additions
   # Frontier: placeholders
     placeholders:
@@ -315,11 +318,15 @@
         components:
         - Electronics
         - MachineBoard
-    - id: DoorElectronics
+        - ComputerBoard
+      displayName: borg-placeholder-display-name-electronics
+    - id: StationRecordsComputerCircuitboard
       whitelist:
         components:
         - Electronics
         - MachineBoard
+        - ComputerBoard
+      displayName: borg-placeholder-display-name-electronics
   # End Frontier: placeholders
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: wire-module }
@@ -428,10 +435,12 @@
       whitelist:
         components:
         - TradeCrate
+      displayName: borg-placeholder-display-name-trading-crate
     - id: CrateTradeSecureNormal
       whitelist:
         components:
         - TradeCrate
+      displayName: borg-placeholder-display-name-trading-crate
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: appraisal-module }
@@ -531,22 +540,28 @@
         - Ingot
         - RodMetal1
         - Sheet
-        - CableCoil
         components:
         - ConstructionMaterials
+      displayName: borg-placeholder-display-name-construction-material
     - id: SheetGlass
       whitelist:
         tags:
         - Ingot
         - RodMetal1
         - Sheet
-        - CableCoil
         components:
         - ConstructionMaterials
+      displayName: borg-placeholder-display-name-construction-material
     - id: FloorTileItemSteel
       whitelist:
         components:
         - FloorTile
+      displayName: borg-placeholder-display-name-floor-tile
+    - id: ThrusterFlatpack
+      whitelist:
+        components:
+        - Flatpack
+      displayName: borg-placeholder-display-name-flatpack
     # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: construction-module }
@@ -592,6 +607,7 @@
       whitelist:
         components:
         - LightBulb
+      displayName: borg-placeholder-display-name-lights
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: light-replacer-module }
@@ -652,6 +668,7 @@
       whitelist:
         tags:
         - Spray
+      displayName: borg-placeholder-display-spray-bottle
     - id: TrashBag
       whitelist:
         tags:
@@ -704,18 +721,22 @@
       whitelist:
         components:
         - Healing
+      displayName: borg-placeholder-display-name-topical-medication
     - id: Ointment
       whitelist:
         components:
         - Healing
+      displayName: borg-placeholder-display-name-topical-medication
     - id: Gauze
       whitelist:
         components:
         - Healing
+      displayName: borg-placeholder-display-name-topical-medication
     - id: Bloodpack
       whitelist:
         components:
         - Healing
+      displayName: borg-placeholder-display-name-topical-medication
     - id: Syringe
       whitelist:
         tags:
@@ -861,18 +882,21 @@
         components:
         - Instrument
         - Item
+      displayName: borg-placeholder-display-name-musical-instrument # Frontier
     - id: ElectricGuitarInstrument
       whitelist:
         requireAll: true
         components:
         - Instrument
         - Item
+      displayName: borg-placeholder-display-name-musical-instrument # Frontier
     - id: SaxophoneInstrument
       whitelist:
         requireAll: true
         components:
         - Instrument
         - Item
+      displayName: borg-placeholder-display-name-musical-instrument # Frontier
   # End DeltaV Additions
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: musical-module }
@@ -907,6 +931,7 @@
       whitelist:
         components:
         - Seed
+      displayName: borg-placeholder-display-name-seeds # Frontier
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
@@ -939,6 +964,7 @@
       whitelist:
         components:
         - Produce
+      displayName: borg-placeholder-display-name-produce # Frontier
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: harvesting-module }
