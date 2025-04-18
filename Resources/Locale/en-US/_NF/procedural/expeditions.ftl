@@ -1,11 +1,22 @@
 salvage-expedition-window-finish = Finish expedition
 salvage-expedition-announcement-early-finish = The expedition was completed ahead of schedule. Shuttle will depart in {$departTime} seconds.
+salvage-expedition-announcement-destruction = { $count ->
+    [1] Destroy the {$structure} before the expedition ends.
+    *[others] Destroy {$count} {MAKEPLURAL($structure)} before the expedition ends.
+}
+salvage-expedition-announcement-elimination = { $count ->
+    [1] Eliminate the {$target} before the expedition ends.
+    *[others] Eliminate {$count} {MAKEPLURAL($target)} before the expedition ends.
+}
+salvage-expedition-announcement-destruction-entity-fallback = structure
+salvage-expedition-announcement-elimination-entity-fallback = target
+
 salvage-expedition-shuttle-not-found = Cannot locate shuttle.
 salvage-expedition-not-everyone-aboard = Not all crew aboard! {CAPITALIZE(THE($target))} is still out there!
 
 # Salvage mods
 salvage-time-mod-standard-time = Normal Duration
-salvage-time-mod-rush = Rush
+salvage-time-mod-rush = Rushs
 
 salvage-weather-mod-heavy-snowfall = Heavy Snowfall
 salvage-weather-mod-rain = Rain
@@ -38,3 +49,15 @@ salvage-air-mod-16 = 34 CO2, 34 NH3, 34 N2O
 salvage-air-mod-17 = 34 H2O, 34 NH3, 34 N2O
 salvage-air-mod-18 = 34 H2O, 34 N2O, 17 NH3, 17 CO2
 salvage-air-mod-unknown = Unknown atmosphere
+
+salvage-expedition-difficulty-NFModerate = Moderate
+salvage-expedition-difficulty-NFHazardous = Hazardous
+salvage-expedition-difficulty-NFExtreme = Extreme
+
+salvage-expedition-megafauna-remaining = {$count ->
+    [one] {$count} target remaining.
+    *[other] {$count} targets remaining.
+}
+
+salvage-expedition-type-Destruction = Destruction
+salvage-expedition-type-Elimination = Elimination
