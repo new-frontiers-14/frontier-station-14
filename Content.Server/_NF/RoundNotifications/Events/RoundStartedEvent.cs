@@ -1,8 +1,6 @@
-using Robust.Shared.Serialization;
-
 namespace Content.Server._NF.RoundNotifications.Events;
 
-[Serializable, NetSerializable]
+[Serializable]
 public sealed class RoundStartedEvent : EntityEventArgs
 {
     public int RoundId { get; }
