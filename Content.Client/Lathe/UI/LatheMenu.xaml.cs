@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text;
+using Content.Client._NF.Lathe.UI; // Frontier
 using Content.Client.Materials;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
@@ -26,6 +27,10 @@ public sealed partial class LatheMenu : DefaultWindow
 
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
     public event Action<string, int>? RecipeQueueAction;
+    public event Action<int>? QueueDeleteAction; // Frontier
+    public event Action<int>? QueueMoveUpAction; // Frontier
+    public event Action<int>? QueueMoveDownAction; // Frontier
+    public event Action? DeleteFabricatingAction; // Frontier
 
     public List<ProtoId<LatheRecipePrototype>> Recipes = new();
 
@@ -56,6 +61,8 @@ public sealed partial class LatheMenu : DefaultWindow
         FilterOption.OnItemSelected += OnItemSelected;
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
+        DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke(); // Frontier
+        DeleteFabricating.AddStyleClass("OpenLeft");
     }
 
     public void SetEntity(EntityUid uid)
@@ -68,19 +75,11 @@ public sealed partial class LatheMenu : DefaultWindow
             {
                 ServerListButton.Visible = false;
             }
+
+            AmountLineEdit.SetText(latheComponent.DefaultProductionAmount.ToString());
         }
 
         MaterialsList.SetOwner(Entity);
-    }
-
-    protected override void Opened()
-    {
-        base.Opened();
-
-        if (_entityManager.TryGetComponent<LatheComponent>(Entity, out var latheComp))
-        {
-            AmountLineEdit.SetText(latheComp.DefaultProductionAmount.ToString());
-        }
     }
 
     /// <summary>
@@ -119,6 +118,8 @@ public sealed partial class LatheMenu : DefaultWindow
 
         if (!int.TryParse(AmountLineEdit.Text, out var quantity) || quantity <= 0)
             quantity = 1;
+
+        RecipeCount.Text = Loc.GetString("lathe-menu-recipe-count", ("count", recipesToShow.Count));
 
         var sortedRecipesToShow = recipesToShow.OrderBy(_lathe.GetRecipeName);
         RecipeList.Children.Clear();
@@ -236,20 +237,33 @@ public sealed partial class LatheMenu : DefaultWindow
         var idx = 1;
         foreach (var batch in queue) // Frontier: recipe<batch
         {
-            var queuedRecipeBox = new BoxContainer();
-            queuedRecipeBox.Orientation = BoxContainer.LayoutOrientation.Horizontal;
+            // Frontier: custom boxes
+            // var queuedRecipeBox = new BoxContainer();
+            // queuedRecipeBox.Orientation = BoxContainer.LayoutOrientation.Horizontal;
 
-            // Frontier: batch handling
-            queuedRecipeBox.AddChild(GetRecipeDisplayControl(batch.Recipe));
+            // // Frontier: batch handling
+            // queuedRecipeBox.AddChild(GetRecipeDisplayControl(batch.Recipe)); // Frontier: GetRecipeDisplayControl<GetQueueRecipeDisplayControl
 
-            var queuedRecipeLabel = new Label();
+            // var queuedRecipeLabel = new Label();
+            // if (batch.ItemsRequested > 1)
+            //     queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
+            // else
+            //     queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
+            // // End Frontier
+            // queuedRecipeBox.AddChild(queuedRecipeLabel);
+            // QueueList.AddChild(queuedRecipeBox);
+
+            string displayText;
             if (batch.ItemsRequested > 1)
-                queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
+                displayText = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
             else
-                queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
-            // End Frontier
-            queuedRecipeBox.AddChild(queuedRecipeLabel);
+                displayText = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
+            var queuedRecipeBox = new QueuedRecipeControl(displayText, idx - 1, GetRecipeDisplayControl(batch.Recipe));
+            queuedRecipeBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
+            queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
+            queuedRecipeBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
             QueueList.AddChild(queuedRecipeBox);
+            // End Frontier: custom boxes
             idx++;
         }
     }

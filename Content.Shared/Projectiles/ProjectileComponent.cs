@@ -98,10 +98,4 @@ public sealed partial class ProjectileComponent : Component
     /// </summary>
     [DataField]
     public FixedPoint2 PenetrationAmount = FixedPoint2.Zero;
-
-    /// <summary>
-    /// Frontier: Chance for a blind effect bonus to occur (1 = 100%).
-    /// </summary>
-    [DataField]
-    public float RandomBlindChance { get; set; } = 0;
 }
