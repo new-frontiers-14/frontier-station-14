@@ -18,6 +18,9 @@ trait-streetpunk-accent-desc = Ya were born in a sprawlin' megacity an' never we
 trait-clumsy-name = Clumsy
 trait-clumsy-desc = You are very clumsy! Certain actions, like shooting, are more difficult.
 
+trait-unclonable-name = Unclonable
+trait-unclonable-desc = Whether due to an administrative oversight or abnormal genetics, your genes aren't sequenced by NT, and you cannot be cloned.
+
 # These traits are bound to be replaced with a slider, but they live here for now.
 trait-tall-name = Tall
 trait-short-name = Short
