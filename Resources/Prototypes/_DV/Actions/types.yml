@@ -12,25 +12,14 @@
 #     event: !type:OpenStorageImplantEvent
 
 - type: entity
-  id: ActionOpenMouthStorage
-  name: Open cheek storage
-  description: Allows you to store items in your cheeks. 
+  id: ActionHairball
+  name: Cough Up Hairball
+  description: Purge some of your chemstream, and gain a cool hairball to throw at people.
   components:
   - type: InstantAction
-    itemIconStyle: BigAction
-    priority: -10
-    icon: _DV/Interface/Actions/mouthStorageOpen.png
-    event: !type:OpenStorageImplantEvent
-
-- type: entity
-  id: ActionToggleSneakMode
-  name: Toggle sneak mode
-  description: Sneak underneath tables. 
-  components:
-  - type: InstantAction
-    itemIconStyle: BigAction
-    useDelay: 3
+    charges: 1
     icon:
-      sprite: Structures/Furniture/Tables/generic.rsi
-      state: full
-    event: !type:ToggleCrawlingStateEvent
+      sprite: Nyanotrasen/Objects/Specific/Species/felinid.rsi
+      state: icon
+    useDelay: 30
+    event: !type:CoughItemActionEvent

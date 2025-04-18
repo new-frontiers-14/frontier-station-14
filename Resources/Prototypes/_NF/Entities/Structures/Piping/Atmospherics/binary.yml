@@ -188,7 +188,7 @@
     mode: NoSprite
 
 - type: entity
-  parent: [BaseStructureDynamic, BasePressurePumpGaslock]
+  parent: [ BaseStructureDynamic, BasePressurePumpGaslock, BaseMachinePowered, ConstructibleMachine ]
   id: GaslockFrame
   name: portable gaslock
   description: Pumps gas through. Accepts docking, but cannot dock. Both sides must be docked and pumping in the same direction for gas to flow.
@@ -253,3 +253,6 @@
           radius: 0.2
           position: "0,-0.5"
         hard: false
+  - type: Machine
+    board: GaslockFrameMachineCircuitboard
+  - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability

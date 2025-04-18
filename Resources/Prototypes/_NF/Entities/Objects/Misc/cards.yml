@@ -1,0 +1,31 @@
+- type: entity
+  id: NFBusinessCardBlank
+  name: business card
+  parent: Paper
+  description: A business card. For the consummate professional.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Misc/bureaucracy.rsi
+      layers:
+      - state: business_card
+      - state: business_card_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+      - state: paper_stamp-generic
+        sprite: Objects/Misc/bureaucracy.rsi
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+    - type: PaperVisuals
+      backgroundImagePath: "/Textures/_NF/Interface/Paper/business_card_background_white.svg.96dpi.png"
+      backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+      contentMargin: 4.0, 4.0, 4.0, 4.0
+      maxWritableArea: 400.0, 256.0
+
+- type: entity
+  id: PowerForkCertification
+  name: power fork certification
+  parent: NFBusinessCardBlank
+  description: A certificate for the operation of heavy machinery.
+  components:
+    - type: Paper
+      content: power-fork-certification
