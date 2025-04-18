@@ -350,7 +350,12 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/hypospray.rsi
-    state: borghypo
+    layers:
+    - state: borghypo
+    - state: fill-1
+      visible: false
+      map: [ enum.SolutionContainerLayers.Fill ]
+      sprite: _NF/Objects/Specific/Medical/borghypo.rsi
   - type: Item
     sprite: Objects/Specific/Medical/hypospray.rsi
   - type: SolutionContainerManager
@@ -364,37 +369,51 @@
     injectOnly: true
   - type: UseDelay
     delay: 0.5
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 7
+    fillBaseName: fill-
 
 - type: entity
-  parent: BaseItem
+  parent: BorgHypoNoRefill
   id: BorgHypoTricordrazine
   description: A sterile injector for rapid administration of drugs to patients. This one synthesizes tricordrazine.
   name: tricordrazine hypo
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Medical/borghypo.rsi
-    state: hypocyan
+    layers:
+    - state: hypocyan
+      map: [ enum.SolutionContainerLayers.Base ]
+    - state: fill-1
+      visible: false
+      map: [ enum.SolutionContainerLayers.Fill ]
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
       - ReagentId: Tricordrazine
         Quantity: 5
-    duration: 5
+    duration: 7.5
 
 - type: entity
-  parent: BaseItem
+  parent: BorgHypoNoRefill
   id: BorgHypoInaprovaline
   description: A sterile injector for rapid administration of drugs to patients. This one synthesizes inaprovaline.
   name: inaprovaline hypo
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Medical/borghypo.rsi
-    state: hypomaroon
+    layers:
+    - state: hypomaroon
+      map: [ enum.SolutionContainerLayers.Base ]
+    - state: fill-1
+      visible: false
+      map: [ enum.SolutionContainerLayers.Fill ]
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
       - ReagentId: Inaprovaline
         Quantity: 5
-    duration: 5
+    duration: 7.5
