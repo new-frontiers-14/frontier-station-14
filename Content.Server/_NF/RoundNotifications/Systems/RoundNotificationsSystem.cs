@@ -1,14 +1,12 @@
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
 using Content.Server.Discord;
 using Content.Shared._NF.CCVar;
 using Content.Server.Maps;
 using Content.Shared.GameTicking;
 using Robust.Shared;
 using Robust.Shared.Configuration;
+using Content.Server._NF.RoundNotifications.Events;
 
-namespace Content.Server._NF.RoundNotifications;
+namespace Content.Server._NF.RoundNotifications.Systems;
 
 /// <summary>
 /// Listen for game events and send notifications to Discord.
@@ -23,7 +21,6 @@ public sealed class RoundNotificationsSystem : EntitySystem
     [Dependency] private readonly DiscordWebhook _discord = default!;
 
     private ISawmill _sawmill = default!;
-    private readonly HttpClient _httpClient = new();
 
     private string _roleId = string.Empty;
     private bool _roundStartOnly;
@@ -123,8 +120,9 @@ public sealed class RoundNotificationsSystem : EntitySystem
             };
             if (!string.IsNullOrEmpty(_roleId) && ping)
             {
-                var mention = new WebhookMentions();
-                mention.Roles.Add(_roleId);
+                var mentions = new WebhookMentions();
+                mentions.Roles.Add(_roleId);
+                payload.AllowedMentions = mentions;
             }
 
             var request = await _discord.CreateMessage(_webhookIdentifier.Value, payload);
