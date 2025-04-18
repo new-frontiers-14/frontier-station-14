@@ -207,6 +207,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             Log,
             DungeonJobTime,
             EntityManager,
+
             _prototype,
             _tileDefManager,
             _anchorable,
