@@ -90,6 +90,7 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - NewsReaderCartridge
       - BountyContractsCartridge # Frontier
       - AstroNavCartridge # Frontier
@@ -146,6 +147,25 @@
 
 - type: entity
   parent: BasePDA
+  id: BaseWidePDA
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda"
+    - state: "light_overlay_wide"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay_wide"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+
+- type: entity
+  parent: BasePDA
   id: BaseSecurityPDA
   abstract: true
   components:
@@ -153,6 +173,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - BountyContractsCartridge # Frontier
     - AstroNavCartridge # Frontier
@@ -165,12 +186,13 @@
   # Frontier: cartridges moved to loadouts
   # components:
   # - type: CartridgeLoader
-    # uiKey: enum.PdaUiKey.Key
-    # preinstalled:
-      # - CrewManifestCartridge
-      # - NotekeeperCartridge
-      # - NewsReaderCartridge
-      # - MedTekCartridge
+  #   uiKey: enum.PdaUiKey.Key
+  #   preinstalled:
+  #     - CrewManifestCartridge
+  #     - NotekeeperCartridge
+  #     - NanoTaskCartridge
+  #     - NewsReaderCartridge
+  #     - MedTekCartridge
   # End Frontier
 
 - type: entity
@@ -518,11 +540,12 @@
   # Frontier: cartridges moved to loadouts
   # - type: CartridgeLoader
   #   uiKey: enum.PdaUiKey.Key
-    # preinstalled:
-    #   - CrewManifestCartridge
-    #   - NotekeeperCartridge
-    #   - NewsReaderCartridge
-    #   - AstroNavCartridge
+  #   preinstalled:
+  #     - CrewManifestCartridge
+  #     - NotekeeperCartridge
+  #     - NanoTaskCartridge
+  #     - NewsReaderCartridge
+  #     - AstroNavCartridge
   # End Frontier
 
 - type: entity
@@ -544,7 +567,7 @@
     state: pda-bartender
 
 - type: entity
-  parent: BasePDA
+  parent: BaseWidePDA
   id: LibrarianPDA
   name: librarian PDA
   description: Smells like books.
@@ -871,6 +894,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
@@ -939,6 +963,7 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
       - WantedListCartridge
@@ -964,6 +989,7 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - NewsReaderCartridge
       - LogProbeCartridge
       - WantedListCartridge
@@ -1087,6 +1113,7 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - AstroNavCartridge # Frontier
 
 - type: entity
@@ -1114,6 +1141,7 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
       - WantedListCartridge
@@ -1286,6 +1314,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
@@ -1313,6 +1342,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
@@ -1460,6 +1490,7 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - MedTekCartridge
 
 - type: entity
@@ -1494,7 +1525,7 @@
         type: ChameleonBoundUserInterface
 
 - type: entity
-  parent: BasePDA
+  parent: BaseWidePDA
   id: WizardPDA
   name: wizard PDA
   description: You hear faint whispers coming from it.
