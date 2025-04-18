@@ -263,6 +263,12 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField]
     public Vector2 DefaultDirection = new Vector2(0, -1);
+
+    /// <summary>
+    /// Frontier: add gun caliber text
+    /// </summary>
+    [DataField]
+    public LocId? ExamineCaliber;
 }
 
 [Flags]

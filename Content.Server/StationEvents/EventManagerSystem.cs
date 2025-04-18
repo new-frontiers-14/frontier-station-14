@@ -10,7 +10,11 @@ using Robust.Shared.Random;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.EntityTable;
 using Content.Server.Station.Systems; // Frontier
-using Content.Server.Station.Components; // Frontier
+using Content.Shared.Roles.Jobs; // Frontier
+using Content.Server.Mind; // Frontier
+using Robust.Shared.Enums; // Frontier
+using Content.Shared.Roles; // Frontier
+using Content.Server._NF.Players; // Frontier
 
 namespace Content.Server.StationEvents;
 
@@ -23,7 +27,9 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] public readonly GameTicker GameTicker = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!; // Frontier
+    [Dependency] private readonly JobPresentSystem _jobs = default!; // Frontier
+
+    [Dependency] private readonly MindSystem _mindSystem = default!;
 
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;
@@ -276,16 +282,12 @@ public sealed class EventManagerSystem : EntitySystem
             return false;
         }
 
-        // Frontier: require jobs to run event - TODO: actually count jobs, compare vs. numJobs
+        // Frontier: require jobs to run event
         foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs)
         {
-            var jobPrototype = _prototype.Index(jobProtoId);
-            var query = EntityQueryEnumerator<StationJobsComponent>();
-            while (query.MoveNext(out var station, out var comp))
+            if (_jobs.getNumberOfActiveRoles(jobProtoId) < numJobs)
             {
-                // If a job slot is open, nobody has the job, or the player with the job should be leaving.
-                if (_stationJobs.TryGetJobSlot(station, jobPrototype, out var slots, comp) && slots >= 1)
-                    return false;
+                return false;
             }
         }
         // End Frontier

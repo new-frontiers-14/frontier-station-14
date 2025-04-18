@@ -3,12 +3,10 @@
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: NFBreakerFlip
-    - id: NFCockroachMigration
     - id: NFGasLeak
     - id: NFIonStorm
-    - id: MouseMigration
     - id: NFPowerGridCheck
-    - id: RandomSentience
+    - id: NFRandomSentience
     - id: NFSolarFlare
     - id: NFVentClog
     - id: NFBluespaceCargoCrate
@@ -27,17 +25,6 @@
     duration: 1
     minimumPlayers: 15
   - type: BreakerFlipRule
-
-- type: entity
-  id: NFFalseAlarm
-  parent: BaseGameRule
-  components:
-  - type: StationEvent
-    weight: 2 # Frontier: 15<2
-    earliestStart: 15
-    duration: 1
-    reoccurrenceDelay: 240 # Frontier: 4 hours
-  - type: FalseAlarmRule
 
 - type: entity
   id: NFGasLeak

@@ -1,19 +1,5 @@
-
 - type: entity
-  abstract: true
-  id: NFBackpackHiddenStash
-  components:
-  - type: Appearance
-  - type: SubFloorHide
-  - type: Anchorable
-  - type: CollideOnAnchor
-    enable: false
-  - type: Transform
-    anchored: false
-  - type: AnchorableStorage
-
-- type: entity
-  parent: [ ClothingBackpack, NFBackpackHiddenStash ]
+  parent: [BaseSubfloorAnchorStorage, ClothingBackpack]
   id: NFClothingBackpack
   components:
   - type: Storage
@@ -27,7 +13,7 @@
     - 0,0,6,3
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, NFBackpackHiddenStash ]
+  parent: [BaseSubfloorAnchorStorage, ClothingBackpackDuffel]
   id: NFClothingDuffel
   components:
   - type: Storage

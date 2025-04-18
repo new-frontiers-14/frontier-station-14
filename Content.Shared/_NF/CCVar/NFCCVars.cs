@@ -39,6 +39,15 @@ public sealed class NFCCVars
         CVarDef.Create("nf14.uncryo.maxtime", 180 * 60f, CVar.SERVER | CVar.REPLICATED);
 
     /*
+     *  Game
+     */
+    /// <summary>
+    /// If false, the game will not display the round's objectives in the summary window.
+    /// </summary>
+    public static readonly CVarDef<bool> GameShowObjectives =
+        CVarDef.Create("nf14.game.showobjectives", false, CVar.ARCHIVE | CVar.SERVERONLY);
+
+    /*
      *  Public Transit
      */
     /// <summary>
@@ -241,4 +250,14 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<float> SalvageExpeditionMusicVolume =
         CVarDef.Create("nf14.audio.expedition_music_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /*
+     * Interface
+     */
+
+    /// <summary>
+    /// If true, the admin overlay will display the players starting position.
+    /// </summary>
+    public static readonly CVarDef<bool> AdminOverlayBalance =
+        CVarDef.Create("nf14.ui.admin_overlay_balance", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
