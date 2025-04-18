@@ -35,9 +35,9 @@ public sealed class RoundNotificationsSystem : EntitySystem
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEnded);
 
-        _config.OnValueChanged(NFCCVars.DiscordRoundRoleId, value => _roleId = value, true);
-        _config.OnValueChanged(NFCCVars.DiscordRoundStartOnly, value => _roundStartOnly = value, true);
-        _config.OnValueChanged(CVars.GameHostName, value => _serverName = value, true);
+        Subs.CVar(_config, CVars.GameHostName, value => _serverName = value, true);
+        Subs.CVar(_config, NFCCVars.DiscordRoundRoleId, value => _roleId = value, true);
+        Subs.CVar(_config, NFCCVars.DiscordRoundStartOnly, value => _roundStartOnly = value, true);
         Subs.CVar(_config, NFCCVars.DiscordRoundWebhook, value =>
         {
             if (!string.IsNullOrWhiteSpace(value))
