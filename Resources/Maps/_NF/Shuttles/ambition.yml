@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 250.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 04/18/2025 16:44:31
+  entityCount: 2554
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   10: FloorCarpetOffice
@@ -1861,6 +1872,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,34.5
       parent: 1
+    - type: Door
+      secondsUntilStateChange: -941.6914
+      state: Opening
+    - type: DeviceLinkSource
+      lastSignals:
+        DoorStatus: True
 - proto: AirlockMaint
   entities:
   - uid: 2421
@@ -3411,6 +3428,8 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 1
+    - type: DeviceLinkSink
+      invokeCounter: 7
   - uid: 1890
     components:
     - type: Transform
@@ -3493,6 +3512,19 @@ entities:
     components:
     - type: Transform
       pos: 4.5,0.5
+      parent: 1
+- proto: BorgCharger
+  entities:
+  - uid: 1875
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,7.5
+      parent: 1
+  - uid: 2143
+    components:
+    - type: Transform
+      pos: -4.5,28.5
       parent: 1
 - proto: BoxBodyBag
   entities:
@@ -5725,28 +5757,6 @@ entities:
     - type: Transform
       pos: -10.594801,5.7791753
       parent: 1
-- proto: Catwalk
-  entities:
-  - uid: 1156
-    components:
-    - type: Transform
-      pos: 7.5,29.5
-      parent: 1
-  - uid: 1163
-    components:
-    - type: Transform
-      pos: 6.5,30.5
-      parent: 1
-  - uid: 1604
-    components:
-    - type: Transform
-      pos: 5.5,30.5
-      parent: 1
-  - uid: 2387
-    components:
-    - type: Transform
-      pos: 4.5,30.5
-      parent: 1
 - proto: CarpetBlue
   entities:
   - uid: 12
@@ -6035,10 +6045,20 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-10.5
       parent: 1
+  - uid: 1156
+    components:
+    - type: Transform
+      pos: 7.5,29.5
+      parent: 1
   - uid: 1160
     components:
     - type: Transform
       pos: -5.5,9.5
+      parent: 1
+  - uid: 1163
+    components:
+    - type: Transform
+      pos: 6.5,30.5
       parent: 1
   - uid: 1172
     components:
@@ -6424,6 +6444,11 @@ entities:
     - type: Transform
       pos: -5.5,25.5
       parent: 1
+  - uid: 1604
+    components:
+    - type: Transform
+      pos: 5.5,30.5
+      parent: 1
   - uid: 1617
     components:
     - type: Transform
@@ -6571,6 +6596,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 11.5,31.5
       parent: 1
+  - uid: 2387
+    components:
+    - type: Transform
+      pos: 4.5,30.5
+      parent: 1
   - uid: 2389
     components:
     - type: Transform
@@ -6668,14 +6698,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.625493,32.18197
-      parent: 1
-- proto: ChairOfficeDark
-  entities:
-  - uid: 2084
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,1.5
       parent: 1
 - proto: ChairPilotSeat
   entities:
@@ -7048,6 +7070,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-1.5
       parent: 1
+    - type: Door
+      secondsUntilStateChange: -913.32477
+      state: Closing
 - proto: CurtainSpawner
   entities:
   - uid: 2294
@@ -7135,6 +7160,8 @@ entities:
     - type: Transform
       pos: -6.5,10.5
       parent: 1
+    - type: Openable
+      opened: True
   - uid: 106
     components:
     - type: Transform
@@ -8894,6 +8921,12 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#9955CCFF'
+  - uid: 2014
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,5.5
+      parent: 1
   - uid: 2031
     components:
     - type: Transform
@@ -10417,12 +10450,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 1875
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,6.5
-      parent: 1
   - uid: 1879
     components:
     - type: Transform
@@ -10813,12 +10840,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 2312
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,5.5
-      parent: 1
   - uid: 2349
     components:
     - type: Transform
@@ -11233,6 +11254,12 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#947507FF'
+  - uid: 1708
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,5.5
+      parent: 1
   - uid: 1710
     components:
     - type: Transform
@@ -11312,11 +11339,6 @@ entities:
     components:
     - type: Transform
       pos: -4.5,-1.5
-      parent: 1
-  - uid: 2305
-    components:
-    - type: Transform
-      pos: -5.5,7.5
       parent: 1
   - uid: 2485
     components:
@@ -11472,6 +11494,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 11.5,8.5
       parent: 1
+    - type: GasValve
+      open: False
     - type: AtmosPipeColor
       color: '#9955CCFF'
   - uid: 910
@@ -12829,14 +12853,7 @@ entities:
     - type: Transform
       pos: -9.5,29.5
       parent: 1
-- proto: PosterLegitSafetyMothHardhat
-  entities:
-  - uid: 2259
-    components:
-    - type: Transform
-      pos: 2.5,-10.5
-      parent: 1
-- proto: PosterLegitSMEpi
+- proto: PosterLegitSafetyMothEpi
   entities:
   - uid: 2274
     components:
@@ -12850,7 +12867,14 @@ entities:
     - type: Transform
       pos: -6.5,6.5
       parent: 1
-- proto: PosterLegitSMPiping
+- proto: PosterLegitSafetyMothHardhat
+  entities:
+  - uid: 2259
+    components:
+    - type: Transform
+      pos: 2.5,-10.5
+      parent: 1
+- proto: PosterLegitSafetyMothPiping
   entities:
   - uid: 2345
     components:
@@ -14186,6 +14210,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,8.5
       parent: 1
+    - type: SignalSwitch
+      state: True
     - type: DeviceLinkSource
       linkedPorts:
         1888:
@@ -17091,15 +17117,15 @@ entities:
       parent: 1
 - proto: WeldingFuelTankFull
   entities:
-  - uid: 1708
-    components:
-    - type: Transform
-      pos: -4.5,28.5
-      parent: 1
   - uid: 2002
     components:
     - type: Transform
       pos: -0.5,20.5
+      parent: 1
+  - uid: 2084
+    components:
+    - type: Transform
+      pos: -9.5,24.5
       parent: 1
 - proto: WetFloorSign
   entities:
