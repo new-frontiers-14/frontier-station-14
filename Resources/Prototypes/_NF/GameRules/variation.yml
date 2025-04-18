@@ -1,6 +1,88 @@
 - type: entity
-  id: BasicDeadDropHintVariationPass
+  id: NFBasicDeadDropHintVariationPass
   parent: BaseVariationPass
   components:
   - type: DeadDropHintVariationPass
     hintSpawnChance: 0.03
+
+- type: entity
+  id: NFBasicBindToStationVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: BindToStationVariationPass
+
+# Redefinitions/variations of upstream entities
+
+- type: entity
+  id: NFBasicPoweredLightVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: PoweredLightVariationPass
+
+- type: entity
+  id: NFBasicTrashVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: EntitySpawnVariationPass
+    tilesPerEntityAverage: 35
+    tilesPerEntityStdDev: 4
+    entities:
+    - id: RandomSpawner
+
+- type: entity
+  id: NFBasicPuddleMessVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: PuddleMessVariationPass
+    randomPuddleSolutionFill: NFRandomFillTrashPuddle
+
+- type: weightedRandomFillSolution
+  id: NFRandomFillTrashPuddle
+  fills:
+  - quantity: 80
+    weight: 5
+    reagents:
+    - Vomit
+    - WeldingFuel
+    - Mold
+  # low chance, high quantity blood spill
+  - quantity: 120
+    weight: 4
+    reagents:
+    - Blood
+  - quantity: 120
+    weight: 2
+    reagents:
+    - AmmoniaBlood
+    - GoblinBlood
+    - CopperBlood
+    - AmmoniaBlood
+    - Sap
+  - quantity: 55
+    weight: 4
+    reagents:
+    - PlantBGone
+    - Potassium
+    - VentCrud
+    - Carbon
+    - Hydrogen
+    - Sulfur
+    - Acetone
+    - Bleach
+  - quantity: 40
+    weight: 3
+    reagents:
+    - Fat
+    - SpaceLube
+    - SpaceGlue
+  - quantity: 25
+    weight: 1
+    reagents:
+    - Omnizine
+    - Desoxyephedrine
+    - Napalm
+    - Radium
+    - Gold
+    - Silver
+    - Sodium
+    - JuiceThatMakesYouWeh
