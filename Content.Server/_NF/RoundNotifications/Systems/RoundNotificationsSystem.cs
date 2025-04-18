@@ -129,14 +129,13 @@ public sealed class RoundNotificationsSystem : EntitySystem
             if (!request.IsSuccessStatusCode)
             {
                 var content = await request.Content.ReadAsStringAsync();
-                _sawmill.Log(LogLevel.Error,
-                    $"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {content}");
+                _sawmill.Error($"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {content}");
                 return;
             }
         }
         catch (Exception e)
         {
-            Log.Error($"Error while sending discord round status message:\n{e}");
+            _sawmill.Error($"Error while sending discord round status message:\n{e}");
         }
     }
 }
