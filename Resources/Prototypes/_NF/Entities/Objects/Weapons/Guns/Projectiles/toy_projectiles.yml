@@ -1,3 +1,33 @@
+# From Delta-V, but heavily modified
+- type: entity
+  id: BulletBB
+  description: Don't shoot your eye out.
+  name: BB
+  parent: BaseItem
+  components:
+    - type: Item
+      size: Tiny
+    - type: Reflective
+    - type: Appearance
+    - type: Sprite
+      sprite: _DV/Objects/Weapons/Guns/Ammunition/Boxes/bbgun.rsi
+      layers:
+        - state: bbbullet
+    - type: Tag
+      tags:
+        - BulletBB
+        - Trash
+    - type: TileFrictionModifier
+      modifier: 0.01
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 1
+    - type: SpaceGarbage
+    - type: CartridgeAmmo
+      proto: BulletBBDamaged
+      deleteOnSpawn: true
+      muzzleFlash: null
+
 # separate BB "cartridge" and projectile
 - type: entity
   id: BulletBBDamaged
@@ -11,7 +41,6 @@
     impactEffect: BulletImpactEffect
     deleteOnCollide: false
     onlyCollideWhenShot: true
-    randomBlindChance: 0.05
     damage:
       types:
         Blunt: 1
@@ -63,6 +92,8 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 1
+  - type: BlindOnProjectileHit
+    prob: 0.05
 
 # RGB bullets (sins)
 - type: entity
@@ -71,8 +102,8 @@
   name: RGBB
   description: Don't shoot your eye out, gamer.
   components:
-  - type: CartridgeAmmo # Frontier
-    proto: BulletRGBBDamaged # Frontier
+  - type: CartridgeAmmo
+    proto: BulletRGBBDamaged
 
 - type: entity
   id: BulletRGBBDamaged
