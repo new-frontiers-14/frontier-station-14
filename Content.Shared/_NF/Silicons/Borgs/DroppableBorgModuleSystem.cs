@@ -39,12 +39,12 @@ public sealed class DroppableBorgModuleSystem : EntitySystem
             var successful = TrySpawnInContainer(slot.Id, ent, ent.Comp.ContainerId, out var item);
             // this would only fail if the current entity is being terminated, which is impossible for mapinit
             DebugTools.Assert(successful, $"Somehow failed to insert {ToPrettyString(item)} into {ToPrettyString(ent)}");
-            _placeholder.SpawnPlaceholder(placeholders, item!.Value, slot.Id, slot.Whitelist);
+            _placeholder.SpawnPlaceholder(placeholders, item!.Value, slot.Id, slot.Whitelist, slot.Blacklist);
         }
 
         foreach (var placeholder in ent.Comp.Placeholders)
         {
-            var placeholderUid = _placeholder.SpawnPlaceholder(placeholders, EntityUid.Invalid, placeholder.Id, placeholder.Whitelist);
+            var placeholderUid = _placeholder.SpawnPlaceholder(placeholders, EntityUid.Invalid, placeholder.Id, placeholder.Whitelist, placeholder.Blacklist);
             _container.Insert(placeholderUid, items, force: true);
         }
 

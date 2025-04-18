@@ -48,15 +48,21 @@ public sealed partial class DroppableBorgModuleComponent : Component
 public sealed partial class DroppableBorgItem
 {
     /// <summary>
-    /// The entity to spawn and use for the placeholder sprite.
+    /// The entity to spawn (if not a placeholder) and use for the placeholder sprite.
     /// </summary>
     [DataField(required: true)]
     public EntProtoId Id;
 
     /// <summary>
     /// A whitelist that items must match to be picked up by the placeholder.
-    /// Regardless of this whitelist entities must have <c>ItemComponent</c> to be picked up.
+    /// Entities must have <c>ItemComponent</c> to be picked up unless the specified ID not not an item.
     /// </summary>
     [DataField(required: true)]
     public EntityWhitelist Whitelist;
+
+    /// <summary>
+    /// An optional blacklist that items must not match to be picked up by the placeholder.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Blacklist;
 }

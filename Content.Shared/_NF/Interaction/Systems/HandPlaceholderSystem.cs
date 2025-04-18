@@ -39,13 +39,14 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
     /// Spawns a new placeholder and ties it to an item.
     /// When dropped the item will replace itself with the placeholder in its container.
     /// </summary>
-    public EntityUid SpawnPlaceholder(BaseContainer container, EntityUid item, EntProtoId id, EntityWhitelist whitelist)
+    public EntityUid SpawnPlaceholder(BaseContainer container, EntityUid item, EntProtoId id, EntityWhitelist whitelist, EntityWhitelist? blacklist)
     {
         var placeholder = Spawn(Placeholder);
         var proto = _proto.Index(id);
         var comp = Comp<HandPlaceholderComponent>(placeholder);
         comp.Prototype = id;
         comp.Whitelist = whitelist;
+        comp.Blacklist = blacklist;
         comp.Source = container.Owner;
         comp.ContainerId = container.ID;
         comp.AllowNonItems = !proto.HasComponent<ItemComponent>();
@@ -132,7 +133,7 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
     private void TryToPickUpTarget(Entity<HandPlaceholderComponent> ent, EntityUid target, EntityUid user)
     {
         // require items regardless of the whitelist
-        if (!ent.Comp.AllowNonItems && !HasComp<ItemComponent>(target) || _whitelist.IsWhitelistFail(ent.Comp.Whitelist, target))
+        if (!ent.Comp.AllowNonItems && !HasComp<ItemComponent>(target) || _whitelist.IsWhitelistFail(ent.Comp.Whitelist, target) || _whitelist.IsBlacklistPass(ent.Comp.Blacklist, target))
             return;
 
         if (!TryComp<HandsComponent>(user, out var hands))
