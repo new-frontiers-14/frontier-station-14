@@ -7,6 +7,7 @@
   - type: Sprite
     layers:
     - state: icon
+      map: ["enum.GunVisualLayers.Base"]
   - type: Gun
     projectileSpeed: 22.5
     minAngle: 3.7
@@ -82,22 +83,24 @@
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
 
+- type: entity
+  id: NFBaseWeaponFrameRevolverFoamForce
+  parent: NFBaseWeaponFrameRevolverFrontierGunsmith # Lowest fire rate, it's a toy.
+  abstract: true
+  components:
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-foam-force-llc
+
 #region chamber
 - type: entity
-  id: NFBaseWeaponRevolverChamber45
+  id: NFBaseWeaponRevolverChamber
   abstract: true
   components:
   - type: Gun
-    examineCaliber: gun-examine-caliber-45
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
   - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - NFCartridgePistol45
-        - NFSpeedLoaderPistol45
     mayTransfer: true
-    proto: NFCartridgePistol45
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
@@ -110,15 +113,27 @@
       revolver-ammo: !type:Container
 
 - type: entity
+  id: NFBaseWeaponRevolverChamber45
+  parent: NFBaseWeaponRevolverChamber
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-45
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - NFCartridgePistol45
+        - NFSpeedLoaderPistol45
+    proto: NFCartridgePistol45
+
+- type: entity
   id: NFBaseWeaponRevolverChamber35
+  parent: NFBaseWeaponRevolverChamber
   abstract: true
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-35
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
   - type: RevolverAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - NFCartridgePistol35
@@ -127,24 +142,15 @@
     proto: NFCartridgePistol35
     chambers: [ True, True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null, null ]
-    soundEject:
-      path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
-  - type: ContainerContainer
-    containers:
-      revolver-ammo: !type:Container
 
 - type: entity
   id: NFBaseWeaponRevolverChamber60
+  parent: NFBaseWeaponRevolverChamber
   abstract: true
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-60
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
   - type: RevolverAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - NFCartridgeRifle60
@@ -152,10 +158,32 @@
     proto: NFCartridgeRifle60
     chambers: [ True ]
     ammoSlots: [ null ]
-    soundEject:
-      path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
-  - type: ContainerContainer
-    containers:
-      revolver-ammo: !type:Container
+
+# Cap guns and fake cap guns
+- type: entity
+  id: NFBaseWeaponRevolverChamberCap
+  parent: NFBaseWeaponRevolverChamber
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-45-foam
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeCap
+        - SpeedLoaderCap
+    proto: CartridgeCap
+
+- type: entity
+  id: NFBaseWeaponRevolverChamber45Cap
+  parent: NFBaseWeaponRevolverChamberCap
+  abstract: true
+  components:
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - NFCartridgePistol45
+        - NFSpeedLoaderPistol45
+        - CartridgeCap
+        - SpeedLoaderCap
+    proto: NFCartridgePistol45

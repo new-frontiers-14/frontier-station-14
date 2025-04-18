@@ -72,6 +72,19 @@
 
 #region chamber
 - type: entity
+  id: NFBaseWeaponLauncherChamber
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+    capacity: 1
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
   id: NFBaseWeaponLauncherChamber40mmGrenades
   abstract: true
   components:
@@ -85,12 +98,6 @@
         - Grenade
     capacity: 3
     proto: GrenadeFrag
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
 
 - type: entity
   id: NFBaseWeaponLauncherChamberRockets
@@ -105,17 +112,10 @@
       tags:
         - CartridgeRocket
     proto: CartridgeRocket
-    capacity: 1
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 2
     zeroVisible: false
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
 
 - type: entity
   id: NFBaseWeaponLauncherChamberCannonBalls
@@ -129,11 +129,4 @@
     whitelist:
       tags:
       - CannonBall
-    capacity: 1
     proto: CannonBall
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []

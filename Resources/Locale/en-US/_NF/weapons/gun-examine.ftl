@@ -11,6 +11,7 @@ gun-examine-nf-manufacturer = - [color={$color}]Manufacturer[/color]: [color=lig
 # Calibers
 gun-examine-caliber-35 = .35 pistol ammo
 gun-examine-caliber-45 = .45 pistol ammo
+gun-examine-caliber-45-foam = .45 cap ammo
 gun-examine-caliber-10 = .10 rifle ammo
 gun-examine-caliber-25 = .25 rifle ammo
 gun-examine-caliber-20 = .20 rifle ammo
@@ -40,6 +41,7 @@ weapon-details-manufacturer-frontier-gunsmith-consortium = Frontier Gunsmith Con
 weapon-details-manufacturer-gorlex-steel-works = Gorlex Steel Works
 weapon-details-manufacturer-nanotrasen-munitions = NanoTrasen Munitions
 weapon-details-manufacturer-steelbolt-tool-forge = Steelbolt Tool Forge
+weapon-details-manufacturer-foam-force-llc = Foam Force LLC
 
 # Classes (alphabetical please)
 weapon-details-class-assault-rifle = Assault Rifle

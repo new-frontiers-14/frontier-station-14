@@ -51,16 +51,26 @@
 
 #region chamber
 - type: entity
-  id: NFBaseWeaponPistolChamber35
+  id: NFBaseWeaponPistolChamber
   abstract: true
   components:
   - type: Gun
-    examineCaliber: gun-examine-caliber-35
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  id: NFBaseWeaponPistolChamber35
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-35
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -69,21 +79,15 @@
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
-        whitelist:
-          tags:
-            - NFMagazinePistol35
-            - NFMagazineHighCapacityPistol35
-      gun_chamber:
+        whitelist: &whitelist35
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: &chamber35Standard
         name: Chamber
         startingItem: NFCartridgePistol35
         priority: 1
         whitelist:
           tags:
             - NFCartridgePistol35
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
 
 - type: entity
   id: NFBaseWeaponPistolChamber35HighCapacity
@@ -91,11 +95,6 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-35
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -104,21 +103,9 @@
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
-        whitelist:
-          tags:
-            - NFMagazinePistol35
-            - NFMagazineHighCapacityPistol35
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35
-        priority: 1
-        whitelist:
-          tags:
-            - NFCartridgePistol35
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
+        whitelist: *whitelist35
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: *chamber35Standard
 
 - type: entity
   id: NFBaseWeaponPistolChamber35HighCapacityNfsd
@@ -126,11 +113,6 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-35
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -139,10 +121,8 @@
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
-        whitelist:
-          tags:
-            - NFMagazinePistol35
-            - NFMagazineHighCapacityPistol35
+        whitelist: *whitelist35
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: NFCartridgePistol35Overpressure
@@ -150,10 +130,6 @@
         whitelist:
           tags:
             - NFCartridgePistol35
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
 
 - type: entity
   id: NFBaseWeaponPistolChamber45
@@ -161,9 +137,6 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-45
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -183,7 +156,3 @@
         whitelist:
           tags:
             - NFCartridgePistol45
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
