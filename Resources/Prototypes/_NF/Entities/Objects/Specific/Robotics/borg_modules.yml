@@ -48,7 +48,7 @@
 - type: entity
   id: BorgModuleJetpack
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
-  name: jetpack cyborg module
+  name: Frontier cyborg module
   components:
   - type: Sprite
     layers:
@@ -60,6 +60,7 @@
     items:
     - HandheldGPSBasic
     - HandHeldMassScannerBorg
+    - BorgClock
   - type: DroppableBorgModule
     moduleId: NFJetpack
     items:
@@ -67,6 +68,11 @@
       whitelist:
         components:
         - Jetpack
+    placeholders:
+    - id: SpaceCash1000
+      whitelist:
+        components:
+        - Cash
   - type: BorgModuleIcon
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: jetpack-module }
 
