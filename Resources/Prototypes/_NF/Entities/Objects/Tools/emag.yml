@@ -1,4 +1,20 @@
 - type: entity
+  parent: [EmagUnlimited, RecyclableItemPlasticSmall]
+  id: EmagPass
+  name: disposable cryptographic sequencer
+  description: A disposable card made by the Syndicate to hack devices. Works three times.
+  suffix: Limited, 3 Uses
+  components:
+  - type: NFEmagPass
+  - type: LimitedCharges
+  - type: Sprite
+    sprite: _NF/Objects/Tools/emagpass.rsi
+  - type: Item
+    sprite: _NF/Objects/Tools/emagpass.rsi
+    storedRotation: -90
+    size: Tiny
+
+- type: entity
   parent: [BaseItem, BaseCommandContraband]
   id: DemagUnlimited
   name: cryptographic resequencer

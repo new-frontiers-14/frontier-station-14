@@ -1,0 +1,34 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseNFPirateObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-nf-pirate
+    difficulty: 1
+  - type: RoleRequirement
+    roles:
+      mindRoles:
+      - NFPirateRole
+
+- type: entity
+  parent: [BaseNFPirateObjective, BaseFreeObjective] # TODO: make this less free?
+  id: NFPiratePlunderObjective
+  name: Plunder the sector.
+  description: Amass wealth by pillaging the sector.
+  components:
+  - type: Objective
+    icon:
+      sprite: Structures/Storage/Crates/piratechest.rsi
+      state: crate_icon
+
+- type: entity
+  parent: [BaseNFPirateObjective, BaseFreeObjective] # TODO: make this less free?
+  id: NFPirateBountyObjective
+  name: Fulfill bounties.
+  description: Earn doubloons to spend by completing bounties.
+  components:
+  - type: Objective
+    icon:
+      sprite: _NF/Objects/Specific/Pirate/pirate_doubloon.rsi
+      state: doubloon
