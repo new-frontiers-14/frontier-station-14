@@ -50,7 +50,6 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
-        private readonly EntityWhitelistSystem _whitelist; // Frontier
 
         private FlavorText.FlavorText? _flavorText;
         private TextEdit? _flavorTextEdit;
@@ -129,8 +128,6 @@ namespace Content.Client.Lobby.UI
             _resManager = resManager;
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
-
-            _whitelist = _entManager.System<EntityWhitelistSystem>(); // Frontier
 
             ImportButton.OnPressed += args =>
             {
@@ -1146,6 +1143,20 @@ namespace Content.Client.Lobby.UI
                     Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
                     break;
                 }
+                case HumanoidSkinColor.ShelegToned: // Frontier: Sheleg
+                {
+                    if (!Skin.Visible)
+                    {
+                        Skin.Visible = true;
+                        RgbSkinColorContainer.Visible = false;
+                    }
+
+                    var color = SkinColor.ShelegSkinTone((int)Skin.Value);
+
+                    Markings.CurrentSkinColor = color;
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+                    break;
+                }
             }
 
             ReloadProfilePreview();
@@ -1375,6 +1386,18 @@ namespace Content.Client.Lobby.UI
 
                     break;
                 }
+                case HumanoidSkinColor.ShelegToned: // Frontier: Sheleg
+                    {
+                    if (!Skin.Visible)
+                    {
+                        Skin.Visible = true;
+                        RgbSkinColorContainer.Visible = false;
+                    }
+
+                    Skin.Value = SkinColor.ShelegSkinToneFromColor(Profile.Appearance.SkinColor);
+
+                    break;
+                }
             }
 
         }
@@ -1477,6 +1500,10 @@ namespace Content.Client.Lobby.UI
                     {
                         hairColor = Profile.Appearance.SkinColor;
                     }
+                    else if (_markingManager.MustMatchColor(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager) is Color matchedColor) // Frontier: Forced hair color
+                    {
+                        hairColor = matchedColor;
+                    }
                     else
                     {
                         hairColor = Profile.Appearance.HairColor;
@@ -1510,6 +1537,10 @@ namespace Content.Client.Lobby.UI
                     if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager))
                     {
                         facialHairColor = Profile.Appearance.SkinColor;
+                    }
+                    else if (_markingManager.MustMatchColor(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager) is Color matchedColor) // Frontier: Forced hair color
+                    {
+                        facialHairColor = matchedColor;
                     }
                     else
                     {
