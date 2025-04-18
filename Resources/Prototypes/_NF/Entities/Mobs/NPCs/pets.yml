@@ -93,6 +93,7 @@
       volume: -2
       rolloffFactor: 4.5
       pitch: 0.7
+  - type: AutoPirate
 
 - type: entity
   id: MobCatCappy
@@ -179,7 +180,7 @@
     name: ghost-role-information-elcapo-name
     description: ghost-role-information-elcapo-description
     rules: ghost-role-information-freeagent-rules
-    mindRoles: [ MindRoleGhostRoleFreeAgent ]
+    mindRoles: [ MindRoleGhostRoleFreeAgentHarmless ]
   - type: RandomMetadata
     nameSegments: null
   - type: AutoImplant
@@ -240,7 +241,7 @@
     name: ghost-role-information-mistake-name
     description: ghost-role-information-mistake-description
     rules: ghost-role-information-freeagent-rules
-    mindRoles: [ MindRoleGhostRoleFreeAgent ]
+    mindRoles: [ MindRoleGhostRoleFreeAgentHarmless ]
     prototype: CatMistake
   - type: ReplacementAccent
     accent: mistakeCat
@@ -310,7 +311,7 @@
     name: ghost-role-information-cult-cat-name
     description: ghost-role-information-cult-cat-description
     rules: ghost-role-information-cult-cat-rules
-    mindRoles: [ MindRoleGhostRoleFreeAgent ]
+    mindRoles: [ MindRoleGhostRoleFreeAgentHarmless ]
     prototype: CatBloodCult
   - type: RandomMetadata
     nameSegments: [ NamesCatCult ]
