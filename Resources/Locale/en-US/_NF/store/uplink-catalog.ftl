@@ -318,3 +318,6 @@ uplink-spaceblade-syndicate-desc = Made from real metal!
 
 uplink-emag-pass-name = Disposable Emag
 uplink-emag-pass-desc = A card used to hack devices. Usable three times.
+
+uplink-syndicate-segway-name = Syndicate Segway
+uplink-syndicate-segway-desc = Move around in style without dirtying your blood red boots.
