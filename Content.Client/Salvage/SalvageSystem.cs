@@ -1,31 +1,33 @@
 using Content.Client.Audio;
-using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
-using Robust.Client.Audio; // Frontier
 using Robust.Client.Player;
+using Robust.Shared.GameStates;
+using Content.Shared._NF.CCVar; // Frontier
+using Robust.Client.Audio; // Frontier
 using Robust.Shared.Audio; // Frontier
 using Robust.Shared.Configuration; // Frontier
-using Robust.Shared.GameStates;
+using Robust.Shared.Player; // Frontier
 
 namespace Content.Client.Salvage;
 
-public sealed partial class SalvageSystem : SharedSalvageSystem // Frontier: added partial (see SalvageSystem.Audio.cs)
+public sealed class SalvageSystem : SharedSalvageSystem
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ContentAudioSystem _audio = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!; // Frontier
     [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
 
-    const float SalvageExpeditionMusicVolumeOffset = -30f; // Frontier: constant to add to expedition volume
+    const float SalvageExpeditionMinMusicVolume = -30f; // Frontier: expedition volume range
+    const float SalvageExpeditionMaxMusicVolume = 3.0f; // Frontier: expedition volume range
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<PlayAmbientMusicEvent>(OnPlayAmbientMusic);
         SubscribeLocalEvent<SalvageExpeditionComponent, ComponentHandleState>(OnExpeditionHandleState);
-        SubscribeLocalEvent<SalvageExpeditionComponent, ComponentShutdown>(OnShutdown); // Frontier
-        Subs.CVar(_cfg, NFCCVars.SalvageExpeditionMusicVolume, SetMusicVolume);
+        SubscribeLocalEvent<SalvageExpeditionComponent, ComponentRemove>(OnRemove); // Frontier
+        Subs.CVar(_cfg, NFCCVars.SalvageExpeditionMusicVolume, SetMusicVolume); // Frontier
     }
 
     private void OnExpeditionHandleState(EntityUid uid, SalvageExpeditionComponent component, ref ComponentHandleState args)
@@ -47,11 +49,12 @@ public sealed partial class SalvageSystem : SharedSalvageSystem // Frontier: add
             && component.SelectedSong != null
             && component.Stream == null)
         {
-            var volume = _cfg.GetCVar(NFCCVars.SalvageExpeditionMusicVolume) + SalvageExpeditionMusicVolumeOffset;
+            var volume = ConvertSliderValueToVolume(_cfg.GetCVar(NFCCVars.SalvageExpeditionMusicVolume));
             var audioParams = AudioParams.Default.WithVolume(volume);
-            var audio = _audioSystem.PlayPvs(component.SelectedSong, uid, audioParams);
-            component.Stream = audio?.Entity;
+            var audio = _audioSystem.PlayEntity(component.SelectedSong, Filter.Local(), uid, false, audioParams);
             _audioSystem.SetMapAudio(audio);
+
+            component.Stream = audio?.Entity;
         }
         // End Frontier
     }
@@ -74,9 +77,13 @@ public sealed partial class SalvageSystem : SharedSalvageSystem // Frontier: add
     }
 
     // Frontier: stop stream when destroying the expedition
-    private void OnShutdown(EntityUid uid, SalvageExpeditionComponent component, ComponentShutdown args)
+    private void OnRemove(EntityUid uid, SalvageExpeditionComponent component, ComponentRemove args)
     {
-        component.Stream = _audioSystem.Stop(component.Stream); // Frontier: moved to client
+        // For whatever reason, this stream is considered a server-side entity, so the AudioSystem won't tear it down.
+        // Don't really understand why, but I don't think it is.
+
+        //component.Stream = _audioSystem.Stop(component.Stream);
+        QueueDel(component.Stream);
     }
 
     private void SetMusicVolume(float volume)
@@ -85,8 +92,18 @@ public sealed partial class SalvageSystem : SharedSalvageSystem // Frontier: add
         while (expedQuery.MoveNext(out _, out var comp))
         {
             if (comp.Stream != null)
-                _audioSystem.SetVolume(comp.Stream, volume + SalvageExpeditionMusicVolumeOffset);
+                _audioSystem.SetVolume(comp.Stream, ConvertSliderValueToVolume(volume));
         }
+    }
+
+    private float ConvertSliderValueToVolume(float value)
+    {
+        var ret = AudioSystem.GainToVolume(value);
+        if (!float.IsFinite(ret)) // Explicitly handle any odd cases (chiefly NaN)
+            ret = SalvageExpeditionMinMusicVolume;
+        else
+            ret = Math.Clamp(ret, SalvageExpeditionMinMusicVolume, SalvageExpeditionMaxMusicVolume);
+        return ret;
     }
     // End Frontier: stop stream when destroying the expedition
 }
