@@ -42,4 +42,10 @@ public sealed partial class HandPlaceholderComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Enabled;
+
+    /// <summary>
+    /// Controls preventing removal from containers.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool AllowNonItems;
 }

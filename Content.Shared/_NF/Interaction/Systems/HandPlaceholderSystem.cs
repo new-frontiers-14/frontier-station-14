@@ -4,6 +4,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
+using Content.Shared.Prototypes;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -20,7 +21,6 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -42,14 +42,16 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
     public EntityUid SpawnPlaceholder(BaseContainer container, EntityUid item, EntProtoId id, EntityWhitelist whitelist)
     {
         var placeholder = Spawn(Placeholder);
+        var proto = _proto.Index(id);
         var comp = Comp<HandPlaceholderComponent>(placeholder);
         comp.Prototype = id;
         comp.Whitelist = whitelist;
         comp.Source = container.Owner;
         comp.ContainerId = container.ID;
+        comp.AllowNonItems = !proto.HasComponent<ItemComponent>();
         Dirty(placeholder, comp);
 
-        var name = _proto.Index(id).Name;
+        var name = proto.Name;
         _metadata.SetEntityName(placeholder, name);
         SetPlaceholder(item, placeholder);
 
@@ -130,7 +132,7 @@ public sealed partial class HandPlaceholderSystem : EntitySystem
     private void TryToPickUpTarget(Entity<HandPlaceholderComponent> ent, EntityUid target, EntityUid user)
     {
         // require items regardless of the whitelist
-        if (!HasComp<ItemComponent>(target) || _whitelist.IsWhitelistFail(ent.Comp.Whitelist, target))
+        if (!ent.Comp.AllowNonItems && !HasComp<ItemComponent>(target) || _whitelist.IsWhitelistFail(ent.Comp.Whitelist, target))
             return;
 
         if (!TryComp<HandsComponent>(user, out var hands))
