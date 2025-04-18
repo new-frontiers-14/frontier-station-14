@@ -349,13 +349,13 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/hypospray.rsi
+    sprite: _NF/Objects/Specific/Medical/hypospray.rsi
     layers:
     - state: borghypo
+      map: [ enum.SolutionContainerLayers.Base ]
     - state: fill-1
       visible: false
       map: [ enum.SolutionContainerLayers.Fill ]
-      sprite: _NF/Objects/Specific/Medical/borghypo.rsi
   - type: Item
     sprite: Objects/Specific/Medical/hypospray.rsi
   - type: SolutionContainerManager
