@@ -1,0 +1,142 @@
+# Pirate loadouts
+
+- type: loadoutGroup
+  id: NFPirateJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  loadouts:
+  - NFPirateJumpsuit
+  - NFPirateJumpskirt
+  - NFPirateClothingUniformJumpsuitPirateSlops
+  - NFPirateClothingUniformJumpsuitPirateLuffy
+  fallbacks:
+  - NFPirateJumpsuit
+  - NFPirateJumpskirt
+
+- type: loadoutGroup
+  id: NFPiratePDA
+  name: loadout-group-contractor-pda
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - NFPirateNFPiratePDA
+  fallbacks:
+  - NFPirateNFPiratePDA
+
+- type: loadoutGroup
+  id: NFPirateFace
+  name: loadout-group-contractor-face
+  minLimit: 0
+  loadouts:
+  - ContractorClothingMaskBreath
+  - ContractorClothingMaskBreathMedical
+  - ContractorClothingMaskGas
+  fallbacks:
+  - ContractorClothingMaskBreath
+
+- type: loadoutGroup
+  id: NFPirateShoes
+  name: loadout-group-contractor-shoes
+  loadouts:
+  - NFPirateClothingShoesBootsLaceup
+  - NFPirateClothingShoesBootsPirateLuffy
+  fallbacks:
+  - NFPirateClothingShoesBootsLaceup
+
+- type: loadoutGroup
+  id: NFPirateHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - NFPirateClothingHeadBandBlack
+  - NFPirateClothingHeadBandBrown
+  - NFPirateClothingHeadBandGrey
+  - NFPirateClothingHeadBandRed
+  fallbacks:
+  - NFPirateClothingHeadBandBlack
+
+- type: loadoutGroup
+  id: PirateBackpackItems
+  name: loadout-group-contractor-backpack-items
+  minLimit: 0
+  maxLimit: 6
+  loadouts:
+  - PirateNFPouchPirate
+  subgroups:
+  - ContractorBackpackItems
+
+# Pirate Captain loadouts
+
+- type: loadoutGroup
+  id: NFPirateCaptainHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - NFPirateClothingHeadHatPirate
+  - NFPirateClothingHeadHatPirateLuffy
+  fallbacks:
+  - NFPirateClothingHeadHatPirate
+
+- type: loadoutGroup
+  id: NFPirateCaptainOuterClothing
+  name: loadout-group-contractor-outerclothing
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - NFPirateCaptainClothingOuterCoatPirate
+  fallbacks:
+  - NFPirateCaptainClothingOuterCoatPirate
+
+- type: loadoutGroup
+  id: NFPirateCaptainPDA
+  name: loadout-group-contractor-pda
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - NFPirateCaptainNFPirateCaptainPDA
+  fallbacks:
+  - NFPirateCaptainNFPirateCaptainPDA
+
+- type: loadoutGroup
+  id: PirateCaptainWallet
+  name: loadout-group-contractor-wallet
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - PirateCaptainClothingWalletLeatherPirate
+  fallbacks:
+  - PirateCaptainClothingWalletLeatherPirate
+
+- type: loadoutGroup
+  id: PirateCaptainBackpackItems
+  name: loadout-group-contractor-backpack-items
+  minLimit: 0
+  maxLimit: 6
+  loadouts:
+  - PirateNFPouchPirateCaptain
+  subgroups:
+  - ContractorBackpackItems
+
+# Pirate First Mate loadouts
+
+- type: loadoutGroup
+  id: NFPirateFirstMateHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - NFPirateClothingHeadHatPirateTricord
+  - NFPirateClothingHeadHatPirateLuffy
+  fallbacks:
+  - NFPirateClothingHeadHatPirateTricord
+
+- type: loadoutGroup
+  id: NFPirateFirstMateOuterClothing
+  name: loadout-group-contractor-outerclothing
+  loadouts:
+  - NFPirateFirstMateClothingOuterCoatGentle
+  fallbacks:
+  - NFPirateFirstMateClothingOuterCoatGentle
+
+- type: loadoutGroup
+  id: NFPirateFirstMatePDA
+  name: loadout-group-contractor-pda
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - NFPirateFirstMateNFPirateFirstMatePDA
+  fallbacks:
+  - NFPirateFirstMateNFPirateFirstMatePDA
