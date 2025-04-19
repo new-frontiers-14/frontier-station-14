@@ -1,11 +1,26 @@
 - type: loadout
+  id: MailCarrierForcedClothingOuterEVASuitMailman
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NFOuterSuitRequired
+  price: 0
+  equipment:
+    outerClothing: ClothingOuterEVASuitMailman
+
+- type: loadout
   id: MailCarrierClothingOuterWinterCoatMail
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
   price: 200
   equipment:
     outerClothing: ClothingOuterWinterCoatMail
 
 - type: loadout
   id: MailCarrierClothingOuterEVASuitMailman
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
   price: 800
   equipment:
     outerClothing: ClothingOuterEVASuitMailman

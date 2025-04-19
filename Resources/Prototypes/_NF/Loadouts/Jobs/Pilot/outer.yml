@@ -1,11 +1,26 @@
 - type: loadout
+  id: PilotForcedClothingOuterEVASuitPilot
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NFOuterSuitRequired
+  price: 0
+  equipment:
+    outerClothing: ClothingOuterEVASuitPilot
+
+- type: loadout
   id: PilotClothingOuterHardsuitPilot
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
   price: 1200
   equipment:
     outerClothing: ClothingOuterHardsuitPilot
 
 - type: loadout
   id: PilotClothingOuterCoatBomber
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
   price: 0
   equipment:
     outerClothing: ClothingOuterCoatBomber
