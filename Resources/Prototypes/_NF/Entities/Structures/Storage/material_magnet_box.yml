@@ -170,3 +170,26 @@
         - Seed
 
 #region trash box
+- type: entity
+  id: NFMagnetBoxScrap
+  parent: NFBaseMagnetBox
+  name: scrap box
+  description: A large storage container for holding scrap. It smells like the big city.
+  components:
+  - type: Sprite
+    layers:
+    - state: scrapbox
+    - state: scrapbox-top
+      map: [ top ]
+      visible: true
+    - state: controller
+    - state: controller-on
+      visible: False
+      map: [ "enum.ToggleVisuals.Layer" ]
+      shader: unshaded
+  - type: Storage
+    whitelist:
+      tags:
+      - Recyclable
+      - Trash
+    maxItemSize: Huge # so you can pick up scrap chunks
