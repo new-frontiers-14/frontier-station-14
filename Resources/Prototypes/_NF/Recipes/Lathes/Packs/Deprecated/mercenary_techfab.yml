@@ -79,7 +79,7 @@
   - WeaponCaseShortExplosives
 ## Weapons
   - CombatKnife
-  - WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+  #- WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
   - WeaponLaserPistolNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
   - WeaponRevolverArgenti
   - WeaponPistolMk58NF
@@ -90,43 +90,27 @@
   - CrossbowModern
   - WeaponPistolPollock
 ## Ammo boxes
-  - BoxLethalshot
-  - MagazineBoxLightRifle
-  - MagazineBoxPistol
-  - MagazineBoxRifle
+  - NFAmmunitionBoxPistol35
+  - NFAmmunitionBoxShellShotgunBuckshot
+  - NFAmmunitionBoxRifle20
+  - NFAmmunitionBoxRifle30
   - CrossbowBolt
   - CrossbowBoltBroadhead
-  - BoxBeanbag
-  - BoxShotgunSlug
-  - MagazineBoxLightRifleRubber
-  - MagazineBoxMagnumRubber
-  - MagazineBoxPistolRubber
-  - MagazineBoxRifleRubber
+  - NFAmmunitionBoxShellShotgunBeanbag
+  - NFAmmunitionBoxShellShotgunSlug
+  - NFAmmunitionBoxRifle30Rubber
+  - NFAmmunitionBoxPistol35Rubber
+  - NFAmmunitionBoxPistol45Rubber
+  - NFAmmunitionBoxRifle20Rubber
 ## Mags / Speedloaders / Clips
+  - NFMagazinePistol35Empty
+  - NFSpeedLoaderPistol35Empty
+  - NFSpeedLoaderPistol45Empty
   - MagazineNovaliteC1Empty
-  - MagazineNovaliteC1
-  - MagazineNovaliteC1Rubber
   - MagazineLightRifleLowCapacityEmpty
-  - MagazineLightRifleLowCapacity
-  - MagazineLightRifleLowCapacityRubber
-  - MagazineLightRifle
-  - MagazineLightRifleEmpty
-  - MagazineRifle
-  - MagazineRifleEmpty
-  - MagazinePistol
-  - MagazinePistolEmpty
-  - SpeedLoaderRifleHeavy
-  - SpeedLoaderRifleHeavyEmpty
-  - SpeedLoaderRifleHeavyRubber
-  - SpeedLoaderMagnumRubber
-  - MagazineRifleRubber
-  - MagazineShotgunSlug
-  - MagazinePistolRubber
-  - MagazineLightRifleRubber
-  - MagazineShotgunBeanbag
 
 - type: latheRecipePack
-  id: NFMercenaryTechfabDeprecated
+  id: NFMercenaryTechfabDynamicDeprecated
   recipes:
 # Shared lathe recipes
 ## Advanced tools
@@ -183,29 +167,44 @@
   - FlashlightSecliteNF
 ## Weapons
   - WeaponGrapplingGun
-  - KatanaNF
-  - KukriKnifeNF
-  - MacheteNF
-  - Stunbaton
+  #- KatanaNF
+  #- KukriKnifeNF
+  #- MacheteNF
+  #- Stunbaton
   - BolaNF
-  - ExplosivePayload
+  #- ExplosivePayload
   - FlashPayload
   - ChemicalPayload
-  - WeaponShotgunKammererNF
-  - WeaponAdvancedLaser # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-  - WeaponLaserCarbine
-  - WeaponDisabler
-  - WeaponDisablerSMG
-  - WeaponLaserCannon
-  - WeaponXrayCannon
+  #- WeaponShotgunKammererNF
+  #- WeaponAdvancedLaser # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+  #- WeaponLaserCarbine
+  #- WeaponDisabler
+  #- WeaponDisablerSMG
+  #- WeaponLaserCannon
+  #- WeaponXrayCannon
 ## Ammo boxes
-  - BoxBeanbag
-  - BoxShellTranquilizer
-  - MagazineBoxLightRifleRubber
-  - MagazineBoxMagnumRubber
-  - MagazineBoxPistolRubber
-  - MagazineBoxRifleRubber
-  - MagazineShotgunBeanbag
+  - NFAmmunitionBoxShellShotgunBeanbag
+  - NFAmmunitionBoxRifle20Rubber
+  - NFAmmunitionBoxRifle30Rubber
+  - NFAmmunitionBoxPistol35Rubber
+  - NFAmmunitionBoxPistol45Rubber
+  - NFAmmunitionBoxPistol35Overpressure
+  - NFAmmunitionBoxPistol45Overpressure
+  - NFAmmunitionBoxPistol45Explosive
+  - NFAmmunitionBoxRifle20Overpressure
+  - NFAmmunitionBoxRifle30Overpressure
+  # Magazines
+  - MagazineNovaliteC1Empty
+  - MagazineLightRifleLowCapacityEmpty
+  - NFMagazinePistol35Empty
+  - NFMagazineRifle20Empty
+  - NFMagazineRifle30Empty
+  - NFMagazinePistol45Empty
+  - NFMagazineHighCapacityPistol35Empty
+  - NFMagazineSubMachineGun35Empty
+  - NFMagazineSubMachineGunTopMounted35Empty
+  - NFMagazineDrumRifle20Empty
+  - MagazineAsmgtUniversalEmpty
 
 - type: latheRecipePack
   id: NFMercenaryTechfabDeprecatedEmag
@@ -220,15 +219,3 @@
   - MagazineBoxPistolUranium
   - MagazineBoxRifleIncendiary
   - MagazineBoxRifleUranium
-  - MagazineGrenadeEmpty
-  - MagazineLightRifleIncendiary
-  - MagazineLightRifleUranium
-  - MagazinePistolIncendiary
-  - MagazinePistolUranium
-  - MagazineRifleIncendiary
-  - MagazineRifleUranium
-  - MagazineShotgunIncendiary
-  - SpeedLoaderMagnumIncendiary
-  - SpeedLoaderMagnumUranium
-  - SpeedLoaderRifleHeavyIncendiary
-  - SpeedLoaderRifleHeavyUranium

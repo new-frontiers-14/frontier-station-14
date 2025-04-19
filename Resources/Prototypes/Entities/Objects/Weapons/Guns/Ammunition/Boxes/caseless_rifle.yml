@@ -17,7 +17,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/caseless_rifle.rsi # Frontier: add _NF prefix
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/caseless_rifle.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -26,6 +26,7 @@
 
 # Boxes
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   parent: BaseMagazineBoxCaselessRifle
   id: MagazineBoxCaselessRifle
   name: ammunition box (.25 caseless)
@@ -40,6 +41,7 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   parent: BaseMagazineBoxCaselessRifle
   id: MagazineBoxCaselessRiflePractice
   name: ammunition box (.25 caseless practice)

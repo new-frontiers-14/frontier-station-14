@@ -1,48 +1,142 @@
+#region WizDen
 - type: entity
-  id: WeaponPistolMk58Nonlethal
-  parent: WeaponPistolMk58
-  suffix: Non-lethal
+  id: NFWeaponPistolMk58
+  parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber35 ]
+  name: mk58
+  description: A cheap semiauto sidearm.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+  - type: NFWeaponDetails
+
+- type: entity
+  id: NFWeaponPistolN1984
+  parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber45 ]
+  name: n1984
+  description: |-
+    The sidearm of any self respecting officer. On the handle is a label that says 'for authorized use only.'
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
+
+- type: entity
+  id: NFWeaponPistolCobra
+  parent: [ NFBaseWeaponFramePistolCybersun, NFBaseWeaponPistolChamber45 ]
+  name: cobra
+  description: |-
+    A rugged, robust operator handgun with inbuilt silencer. An illegal firearm often used by Syndicate agents.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Pistols/cobra.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Pistols/cobra.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -5
+
+#region WizDen: Rubber
+- type: entity
+  id: NFWeaponPistolMk58Nonlethal
+  parent: NFWeaponPistolMk58
+  suffix: Frontier, Less-lethal
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolRubber
+        startingItem: NFMagazinePistol35Rubber
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazinePistol
+            - NFMagazinePistol35
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolRubber
+        startingItem: NFCartridgePistol35Rubber
         priority: 1
         whitelist:
           tags:
-            - CartridgePistol
+            - NFCartridgePistol35
 
 - type: entity
   name: N1984
-  parent: WeaponPistolN1984
-  id: WeaponPistolN1984Nonlethal
-  suffix: Non-lethal
+  parent: NFWeaponPistolN1984
+  id: NFWeaponPistolN1984Nonlethal
+  suffix: Frontier, Less-lethal
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineMagnumRubber
+        startingItem: NFMagazinePistol45Rubber
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineMagnum
+            - NFMagazinePistol45
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnumRubber
+        startingItem: NFCartridgePistol45Rubber
         priority: 1
         whitelist:
           tags:
-            - CartridgeMagnum
+            - NFCartridgePistol45
+
+#region DeltaV
+- type: entity
+  id: NFWeaponPistolUniversal
+  parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber35 ]
+  name: mk32 "universal"
+  description: The Mark 32 Offensive Handgun.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/universal.ogg
+
+- type: entity
+  id: NFWeaponPistolUniversalNfsd
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponPistolChamber35HighCapacityNfsd, NFWeaponPistolUniversal ]
+  name: mk32 "universal" service pistol
+  description: |-
+    The Mark 32 Offensive Service Pistol. On the handle is a label that says 'for authorized use only.'
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/universal.ogg
+
+#region DeltaV: rubber
+- type: entity
+  id: NFWeaponPistolUniversalNfsdLessLethal
+  parent: NFWeaponPistolUniversalNfsd
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineHighCapacityPistol35Rubber
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - NFMagazinePistol35
+            - NFMagazineHighCapacityPistol35
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35Rubber
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgePistol35
