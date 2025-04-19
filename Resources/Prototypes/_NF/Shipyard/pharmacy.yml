@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: AssignedGod
+# Discord: Assignedgod
+
+- type: vessel
+  id: Pharmacy
+  parent: BaseVessel
+  name: NM Pharmacy
+  description: A robust medical supply and domestic care ship with an industrial chemistry setup, both professional and theraputic botany set ups, and a therapists office.
+  price: 75000 # 30k base, 50% markup brings it to about 50k, added 25k due to the massive botany and chem stups
+  category: Medium
+  group: Medical
+  shuttlePath: /Maps/_NF/Shuttles/pharmacy.yml
+  class:
+  - Botany
+  - Chemistry
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Pharmacy
+  mapName: 'NM Pharmacy'
+  mapPath: /Maps/_NF/Shuttles/Pharmacy.yml
+  minPlayers: 0
+  stations:
+    Pharmacy:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Pharmacy {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
