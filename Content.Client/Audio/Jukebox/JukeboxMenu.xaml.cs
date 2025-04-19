@@ -28,6 +28,8 @@ public sealed partial class JukeboxMenu : FancyWindow
     /// </summary>
     public event Action<bool>? OnPlayPressed;
     public event Action? OnStopPressed;
+    public event Action? OnShufflePressed; // Frontier
+    public event Action? OnReplayPressed; // Frontier
     public event Action<ProtoId<JukeboxPrototype>>? OnSongSelected;
     public event Action<float>? SetTime;
 
@@ -60,6 +62,16 @@ public sealed partial class JukeboxMenu : FancyWindow
         {
             OnStopPressed?.Invoke();
         };
+        // Frontier: Shuffling & Replay features.
+        ShuffleButton.OnToggled += args =>
+        {
+            OnShufflePressed?.Invoke();
+        };
+        ReplayButton.OnToggled += args =>
+        {
+            OnReplayPressed?.Invoke();
+        };
+        // End Frontier
         PlaybackSlider.OnReleased += PlaybackSliderKeyUp;
 
         SetPlayPauseButton(_audioSystem.IsPlaying(_audio), force: true);
@@ -163,4 +175,24 @@ public sealed partial class JukeboxMenu : FancyWindow
             SongName.Text = "---";
         }
     }
+    // Frontier: UpdateState() for Shuffle & Replay Buttons.
+    public void UpdateState(BoundUserInterfaceState state)
+    {
+        var convState = (JukeboxInterfaceState)state;
+        UpdateJukeboxButtons(convState);
+    }
+
+    private void UpdateJukeboxButtons(JukeboxInterfaceState state)
+    {
+        ShuffleButton.Disabled = true;
+
+        if (state.IsReplaySelected)
+        {
+            ShuffleButton.Disabled = false;
+        }
+
+        ReplayButton.Pressed = state.IsReplaySelected;
+        ShuffleButton.Pressed = state.IsShuffleSelected;
+    }
+    // End Frontier
 }
