@@ -15,10 +15,11 @@
   - UplinkWeaponry
 
 - type: listing
-  id: UplinkRevolverRitland # Frontier: UplinkRevolverPython<UplinkRevolverRitland
-  name: uplink-revolver-ritland-name # Frontier: uplink-revolver-python-name<uplink-revolver-ritland-name
-  description: uplink-revolver-ritland-desc # Frontier: uplink-revolver-python-desc<uplink-revolver-ritland-desc
-  productEntity: NFWeaponRevolverRitland45 # Frontier: WeaponRevolverPythonAP<NFWeaponRevolverRitland45
+  abstract: true # Frontier: moved to _NF uplink catalog
+  id: UplinkRevolverPython
+  name: uplink-revolver-python-name
+  description: uplink-revolver-python-desc
+  productEntity: WeaponRevolverPythonAP
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -29,10 +30,11 @@
 
 # Inbuilt suppressor so it's sneaky + more expensive.
 - type: listing
+  abstract: true # Frontier: moved to _NF uplink catalog
   id: UplinkPistolCobra
   name: uplink-pistol-cobra-name
-  description: uplink-pistol-cobra45-desc # Frontier: uplink-pistol-cobra-desc<uplink-pistol-cobra45-desc
-  productEntity: NFWeaponPistolCobra # Frontier: WeaponPistolCobra<NFWeaponPistolCobra
+  description: uplink-pistol-cobra-desc
+  productEntity: WeaponPistolCobra
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
