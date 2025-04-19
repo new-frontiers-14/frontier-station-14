@@ -52,4 +52,15 @@ public sealed partial class SolarFlareRuleComponent : Component
     /// </summary>
     [DataField("doorToggleChancePerSecond")]
     public float DoorToggleChancePerSecond;
+
+    // Frontier
+    /// <summary>
+    /// If true, affects all channels.
+    /// </summary>
+    /// <remarks>
+    /// Faster than a Contains check that we know will pass.
+    /// </remarks>
+    [DataField]
+    public bool AllChannels;
+    // End Frontier
 }
