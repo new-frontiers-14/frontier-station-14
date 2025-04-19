@@ -1,0 +1,150 @@
+- type: entity
+  id: BaseBulletRubber
+  name: base bullet rubber
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: rubber
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/snap.ogg
+  - type: StaminaDamageOnCollide
+    damage: 22 # 5 hits to stun sounds reasonable
+
+- type: entity
+  id: BaseBulletEmp
+  name: base bullet emp
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: emp_projectile
+      shader: unshaded
+  - type: EmpOnTrigger
+    range: 0.3
+    energyConsumption: 2700000
+    disableDuration: 10
+
+- type: entity
+  id: BulletRocketEmp
+  name: rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+  - type: TimedDespawn
+    lifetime: 15
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: frag-emp
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 2700000
+    disableDuration: 60
+
+- type: entity
+  parent: BaseBulletTrigger
+  id: ProjectileEmp
+  name: emp projectile
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: emp_projectile
+      shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Opaque
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+  - type: TimedDespawn
+    lifetime: 15
+  - type: EmpOnTrigger
+    range: 2
+    energyConsumption: 2700000
+    disableDuration: 30
+
+- type: entity
+  id: BulletCannonBallEmp
+  name: shockshot
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: ball-emp
+    - state: ball-emp-unlit
+      shader: unshaded
+  - type: PointLight
+    radius: 1
+    color: cyan
+    energy: 0.5
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 50000
+    disableDuration: 60
+
+- type: entity
+  id: NFBaseBulletLaser
+  name: laser bolt
+  parent: BulletLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser_greyscale
+      shader: unshaded
+      color: red
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.3,0.15,0.3"
+        hard: false
+        mask:
+        - Opaque
+      fly-by: *flybyfixture

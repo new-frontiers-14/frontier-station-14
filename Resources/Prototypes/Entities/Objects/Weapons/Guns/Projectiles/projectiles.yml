@@ -118,6 +118,7 @@
       fly-by: *flybyfixture
 
 - type: entity
+  abstract: true # Frontier: use _NF variants
   id: BaseBulletPractice
   name: base bullet practice
   parent: BaseBullet
@@ -133,6 +134,7 @@
         Blunt: 1
 
 - type: entity
+  abstract: true # Frontier: use _NF variants
   id: BaseBulletIncendiary
   name: base bullet incendiary
   parent: BaseBullet
@@ -151,6 +153,7 @@
     fireStacks: 0.25
 
 - type: entity
+  abstract: true # Frontier: use _NF variants
   id: BaseBulletAP
   name: base bullet armor-piercing
   parent: BaseBullet
@@ -167,6 +170,7 @@
     ignoreResistances: true
 
 - type: entity
+  abstract: true # Frontier: use _NF variants
   id: BaseBulletUranium
   name: base bullet uranium
   parent: BaseBullet
@@ -183,6 +187,7 @@
 
 # Energy projectiles
 - type: entity
+  abstract: true # Frontier: use _NF variants
   name: taser bolt
   id: BulletTaser
   parent: BaseBullet
@@ -225,6 +230,7 @@
     knockdownAmount: 5
 
 - type: entity
+  abstract: true # Frontier: use _NF variants
   name : disabler bolt
   id: BulletDisabler
   parent: BaseBullet
@@ -268,6 +274,7 @@
     forceSound: true
 
 - type: entity
+  abstract: true # Frontier: use _NF variants
   name : disabler bolt practice
   id: BulletDisablerPractice
   parent: BaseBullet
@@ -463,6 +470,7 @@
   - type: MiningGatheringHard # Frontier
 
 - type: entity
+  abstract: true # Frontier: use _NF variants
   id: BulletCharge
   name: charge bolt
   parent: BaseBullet
@@ -1159,194 +1167,3 @@
     proto: BulletDisablerSmg
     count: 3 #bit stronger than a disabler if you hit your shots you goober, still not a 2 hit stun though
     spread: 9
-
-# Frontier projectiles
-# The game wont allow them to sit under _NF.
-# TODO: redefine the flybyfixture anchor locally; it probably will.
-
-- type: entity
-  id: BaseBulletRubber
-  name: base bullet rubber
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    layers:
-    - state: rubber
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 3
-    soundHit:
-      path: /Audio/Weapons/Guns/Hits/snap.ogg
-  - type: StaminaDamageOnCollide
-    damage: 22 # 5 hits to stun sounds reasonable
-
-- type: entity
-  id: BaseBulletEmp
-  name: base bullet emp
-  parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Shock: 0
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
-    layers:
-    - state: emp_projectile
-      shader: unshaded
-  - type: EmpOnTrigger
-    range: 0.3
-    energyConsumption: 2700000
-    disableDuration: 10
-
-- type: entity
-  id: BulletRocketEmp
-  name: rocket
-  parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Shock: 0
-  - type: TimedDespawn
-    lifetime: 15
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    layers:
-    - state: frag-emp
-  - type: EmpOnTrigger
-    range: 4
-    energyConsumption: 2700000
-    disableDuration: 60
-
-- type: entity
-  parent: BaseBulletTrigger
-  id: ProjectileEmp
-  name: emp projectile
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
-    layers:
-    - state: emp_projectile
-      shader: unshaded
-  - type: Ammo
-    muzzleFlash: null
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.2,-0.2,0.2,0.2"
-        hard: false
-        mask:
-        - Opaque
-      fly-by: *flybyfixture
-  - type: Projectile
-    damage:
-      types:
-        Shock: 0
-  - type: TimedDespawn
-    lifetime: 15
-  - type: EmpOnTrigger
-    range: 2
-    energyConsumption: 2700000
-    disableDuration: 30
-
-- type: entity
-  id: BulletCannonBallEmp
-  name: shockshot
-  parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    layers:
-    - state: ball-emp
-    - state: ball-emp-unlit
-      shader: unshaded
-  - type: PointLight
-    radius: 1
-    color: cyan
-    energy: 0.5
-  - type: Projectile
-    damage:
-      types:
-        Shock: 0
-  - type: EmpOnTrigger
-    range: 4
-    energyConsumption: 50000
-    disableDuration: 60
-
-- type: entity
-  id: NFBaseBulletLaser
-  name: laser bolt
-  parent: BulletLaser
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-    layers:
-    - state: omnilaser_greyscale
-      shader: unshaded
-      color: red
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.15,-0.3,0.15,0.3"
-        hard: false
-        mask:
-        - Opaque
-      fly-by: *flybyfixture
-
-# DeltaV projectiles
-# For whatever magical reasons, I cannot put those in the DeltaV folders without having errors.
-
-# Because Hitscan lasers aren't fun to shoot in my opinion, we give the HoS pistol a special lethal laser that moves
-- type: entity
-  name: energy bolt
-  id: BulletEnergyGunLaser
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Reflective
-    reflective:
-    - Energy
-  - type: FlyBySound
-    sound:
-      collection: EnergyMiss
-      params:
-        volume: 5
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-    layers:
-    - state: omnilaser_greyscale
-      shader: unshaded
-      color: red
-  - type: Ammo
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.2,-0.2,0.2,0.2"
-        hard: false
-        mask:
-        - Opaque
-      fly-by: *flybyfixture
-  - type: Projectile
-    impactEffect: BulletImpactEffectRedDisabler
-    damage:
-      types:
-        Heat: 20 # Slightly more damage than the 17heat from the Captain's Hitscan lasgun
-    soundHit:
-      collection: MeatLaserImpact
