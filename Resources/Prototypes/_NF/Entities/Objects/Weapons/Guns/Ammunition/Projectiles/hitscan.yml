@@ -4,13 +4,13 @@
   damage:
     types:
       Heat: 8
-  muzzleFlash:
+  muzzleFlash: &lightMuzzleFlash
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_laser
-  travelFlash:
+  travelFlash: &lightTravelFlash
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: beam
-  impactFlash:
+  impactFlash: &lightImpactFlash
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: impact_laser
 
@@ -94,3 +94,13 @@
   impactFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: impact_blue
+
+# Mobs
+- type: hitscan
+  id: RedLaserPractice
+  damage:
+    types:
+      Heat: 1
+  muzzleFlash: *lightMuzzleFlash
+  travelFlash: *lightTravelFlash
+  impactFlash: *lightImpactFlash

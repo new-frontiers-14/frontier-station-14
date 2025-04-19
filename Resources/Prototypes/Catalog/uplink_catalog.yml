@@ -2,10 +2,11 @@
 # Guns
 
 - type: listing
+  abstract: true # Frontier: moved to _NF uplink catalog
   id: UplinkPistolViper
   name: uplink-pistol-viper-name
   description: uplink-pistol-viper-desc
-  productEntity: NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
+  productEntity: WeaponPistolViper
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -45,10 +46,11 @@
 
 # Poor accuracy, slow to fire, cheap option
 - type: listing
+  abstract: true # Frontier: moved to _NF uplink catalog
   id: UplinkRifleMosin
   name: uplink-rifle-mosin-name
   description: uplink-rifle-mosin-desc
-  productEntity: NFWeaponRifleBarlowsBolt # Frontier: WeaponSniperMosin<NFWeaponRifleBarlowsBolt
+  productEntity: WeaponSniperMosin
   cost:
     Telecrystal: 1
   categories:

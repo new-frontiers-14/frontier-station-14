@@ -19,7 +19,7 @@
         ejectOnInteract: true
         whitelist:
           tags:
-          - NFWeaponShotgunKammerer # Frontier: use NF version
+          - WeaponShotgunKammerer
   - type: AccessReader
     access: [["Security"], ["Command"]]
 
@@ -41,7 +41,7 @@
   - type: ContainerFill
     containers:
       ItemCabinet:
-      - WeaponShotgunKammerer
+      - NFWeaponShotgunKammerer # Frontier: use NF version
 
 - type: entity
   parent: [ShotGunCabinetFilled, ShotGunCabinetOpen]
