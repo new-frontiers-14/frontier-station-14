@@ -1,6 +1,6 @@
 #region base
 - type: entity
-  id: NFMaterialMagnetBox
+  id: NFBaseMagnetBox
   parent: BaseStructureDynamic
   abstract: true
   components:
@@ -33,15 +33,7 @@
   - type: Climbable
   - type: Sprite
     noRot: true
-    sprite: /Textures/Structures/Storage/orebox.rsi
-    layers:
-    - state: orebox
-    - state: orebox-top
-      map: [ top ]
-      visible: true
-    - state: icon-on
-      visible: False
-      map: [ "enum.ToggleVisuals.Layer" ]
+    sprite: /Textures/_NF/Structures/Storage/magnetbox.rsi
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -97,41 +89,39 @@
     off: item-toggle-examine-magnet-off
 
 #region ore box
-# - type: entity
-  # id: NFOreBox
-  # parent: NFMaterialMagnetBox
-  # name: ore box
-  # description: A large storage container for collecting and holding unprocessed ores and fragments.
-  # components:
-  # - type: Sprite
-    # sprite: /Textures/_NF/Structures/Storage/magnetbox.rsi
-    # layers:
-    # - state: orebox
-    # - state: orebox-top
-      # map: [ top ]
-      # visible: true
-    # - state: controller
-    # - state: controller-on
-      # visible: False
-      # map: [ "enum.ToggleVisuals.Layer" ]
-      # shader: unshaded
-  # - type: Storage
-    # whitelist:
-      # tags:
-      # - Ore
-      # - ArtifactFragment
-  # - type: PirateBountyItem
-    # id: OreBox
+- type: entity
+  id: NFMagnetBoxOre
+  parent: NFBaseMagnetBox
+  name: ore box
+  description: A large storage container for collecting and holding unprocessed ores and fragments.
+  components:
+  - type: Sprite
+    layers:
+    - state: orebox
+    - state: orebox-top
+      map: [ top ]
+      visible: true
+    - state: controller
+    - state: controller-on
+      visible: False
+      map: [ "enum.ToggleVisuals.Layer" ]
+      shader: unshaded
+  - type: Storage
+    whitelist:
+      tags:
+      - Ore
+      - ArtifactFragment
+  - type: PirateBountyItem
+    id: NFMagnetBoxOre
 
 #region construction box
 - type: entity
-  id: ConstructionBox
-  parent: NFMaterialMagnetBox
-  name: plant box
-  description: A large storage container for holding plants and seeds.
+  id: NFMagnetBoxConstruction
+  parent: NFBaseMagnetBox
+  name: construction box
+  description: A large storage container for holding construction materials.
   components:
   - type: Sprite
-    sprite: /Textures/_NF/Structures/Storage/magnetbox.rsi
     layers:
     - state: constructionbox
     - state: constructionbox-top
@@ -157,13 +147,12 @@
 
 #region plant box
 - type: entity
-  id: PlantBox
-  parent: NFMaterialMagnetBox
+  id: NFMagnetBoxPlant
+  parent: NFBaseMagnetBox
   name: plant box
   description: A large storage container for holding plants and seeds.
   components:
   - type: Sprite
-    sprite: /Textures/_NF/Structures/Storage/magnetbox.rsi
     layers:
     - state: plantbox
     - state: plantbox-top
