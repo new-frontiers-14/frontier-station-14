@@ -10,20 +10,6 @@
     proto: BulletRGBB
   - type: StaticPrice
     price: 2500 # 25k for a meme item
-- type: entity
-  abstract: true
-  parent: [BaseItem, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
-  id: BoxDonkSoftBase
-  name: foamdart box
-  components:
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    capacity: 30
-  - type: Sprite
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
 
 # Ignored upstream redefinitions
 - type: entity
