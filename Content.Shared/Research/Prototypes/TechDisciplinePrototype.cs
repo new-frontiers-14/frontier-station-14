@@ -1,4 +1,5 @@
-﻿using Robust.Shared.Prototypes;
+﻿using Content.Shared._NF.Research.Prototypes; // Frontier
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Research.Prototypes;
@@ -44,5 +45,13 @@ public sealed partial class TechDisciplinePrototype : IPrototype
     /// Purchasing this tier of technology causes a server to become "locked" to this discipline.
     /// </summary>
     [DataField("lockoutTier")]
-    public int LockoutTier = 4;
+    public int LockoutTier = 4; // Frontier: 3<4
+
+    // Frontier: tech blueprints
+    /// <summary>
+    /// The type of blueprint recipes in this technology discipline default to.
+    /// </summary>
+    [DataField]
+    public ProtoId<BlueprintPrototype>? Blueprint;
+    // End Frontier
 }

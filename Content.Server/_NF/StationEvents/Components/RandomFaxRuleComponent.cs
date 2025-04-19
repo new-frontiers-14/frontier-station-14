@@ -1,6 +1,8 @@
 using Content.Server.StationEvents.Events;
 using Content.Shared.Fax.Components;
 using Content.Shared.Paper;
+using Content.Shared.Research.Components;
+using Content.Shared.Research.Prototypes;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.StationEvents.Components;
@@ -34,6 +36,9 @@ public sealed partial class RandomFaxRuleComponent : Component
 
     [DataField]
     public bool StampProtected { get; private set; }
+
+    [DataField]
+    public HashSet<ProtoId<LatheRecipePrototype>> BlueprintRecipes { get; private set; } = new();
 
     /// <summary>
     /// The localized string
@@ -105,4 +110,5 @@ public sealed partial class EditableFaxPrintout
     public List<StampDisplayInfo> StampedBy = new();
     public bool Locked;
     public bool StampProtected;
+    public HashSet<ProtoId<LatheRecipePrototype>> BlueprintRecipes = new();
 }
