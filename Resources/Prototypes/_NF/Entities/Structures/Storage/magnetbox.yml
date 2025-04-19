@@ -69,7 +69,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.3
+          radius: 0.4
         density: 20
         mask:
         - SmallMobMask
@@ -171,15 +171,15 @@
 
 #region trash box
 - type: entity
-  id: NFMagnetBoxScrap
+  id: NFMagnetBoxRubbish
   parent: NFBaseMagnetBox
-  name: scrap box
-  description: A large storage container for holding scrap. It smells like the big city.
+  name: dumpster
+  description: A large storage container for holding trash. It smells like the big city.
   components:
   - type: Sprite
     layers:
-    - state: scrapbox
-    - state: scrapbox-top
+    - state: rubbishbox
+    - state: rubbishbox-top
       map: [ top ]
       visible: true
     - state: controller
@@ -187,6 +187,15 @@
       visible: False
       map: [ "enum.ToggleVisuals.Layer" ]
       shader: unshaded
+  - type: Flammable
+    fireSpread: true
+    canResistFire: true
+    damage: #per second, scales with number of fire 'stacks'
+      types:
+        Heat: 1.5
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Generic_mob_burning
   - type: Storage
     whitelist:
       tags:
