@@ -103,11 +103,7 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
         else
         {
             if (data.Observers.Start != null)
-            {
-                var msg = Loc.GetString(data.Observers.Start,
-                    ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)));
-                _popup.PopupEntity(msg, user, Filter.PvsExcept(user, entityManager: EntityManager).RemovePlayerByAttachedEntity(target), true);
-            }
+                ShowPopupForObservers(user, target, data.Observers.Start);
 
             if (_net.IsClient && !self && data.Actor.Start != null) // Filter by client before we process this string.
             {
@@ -116,11 +112,7 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
             }
 
             if (_net.IsServer && data.Target.Start != null)
-            {
-                var msg = Loc.GetString(data.Target.Start,
-                    ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)));
-                _popup.PopupEntity(msg, user, target);
-            }
+                ShowPopupForTarget(user, target, data.Target.Start);
 
             _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, data.Delay, new InteractionPopupOnUseDoAfterEvent(), item, target: target, used: item)
             {
@@ -181,21 +173,13 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
         if (_random.Prob(comp.SuccessChance))
         {
             if (data.Observers.Success != null)
-            {
-                var msg = Loc.GetString(data.Observers.Success,
-                    ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)));
-                _popup.PopupEntity(msg, user, Filter.PvsExcept(user, entityManager: EntityManager).RemovePlayerByAttachedEntity(target), true);
-            }
+                ShowPopupForObservers(user, target, data.Observers.Success);
 
             if (data.Actor.Success != null)
-                actorMsg = Loc.GetString(data.Actor.Success, ("target", Identity.Entity(target, EntityManager))); // Success message (localized).
+                actorMsg = Loc.GetString(data.Actor.Success, ("target", Identity.Entity(target, EntityManager)));
 
             if (_net.IsServer && !self && data.Target.Success != null)
-            {
-                var msg = Loc.GetString(data.Target.Success,
-                    ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)));
-                _popup.PopupEntity(msg, user, target);
-            }
+                ShowPopupForTarget(user, target, data.Target.Success);
 
             if (comp.InteractSuccessSound != null)
                 sfx = comp.InteractSuccessSound;
@@ -209,21 +193,13 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
         else
         {
             if (data.Observers.Failure != null)
-            {
-                var msgOthers = Loc.GetString(data.Observers.Failure,
-                    ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)));
-                _popup.PopupEntity(msgOthers, user, Filter.PvsExcept(user, entityManager: EntityManager).RemovePlayerByAttachedEntity(target), true);
-            }
+                ShowPopupForObservers(user, target, data.Observers.Failure);
 
             if (data.Actor.Failure != null)
                 actorMsg = Loc.GetString(data.Actor.Failure, ("target", Identity.Entity(target, EntityManager)));
 
             if (_net.IsServer && !self && data.Target.Failure != null)
-            {
-                var msg = Loc.GetString(data.Target.Failure,
-                    ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)));
-                _popup.PopupEntity(msg, user, target);
-            }
+                ShowPopupForTarget(user, target, data.Target.Failure);
 
             if (comp.InteractFailureSound != null)
                 sfx = comp.InteractFailureSound;
@@ -253,19 +229,24 @@ public sealed class InteractionPopupOnUseSystem : EntitySystem
         if (sfx == null)
             return;
 
-        if (comp.SoundPerceivedByOthers)
-        {
+        if (comp.SoundPerceivedByOthers || _net.IsClient)
             _audio.PlayPredicted(sfx, target, user);
-        }
-        else if (_net.IsClient)
-        {
-            if (_gameTiming.IsFirstTimePredicted)
-                _audio.PlayEntity(sfx, Filter.Local(), target, true);
-        }
         else
-        {
             _audio.PlayEntity(sfx, Filter.Empty().FromEntities(target), target, false);
-        }
+    }
+
+    private void ShowPopupForObservers(EntityUid user, EntityUid target, string msgLoc)
+    {
+        var msgOthers = Loc.GetString(msgLoc,
+            ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)));
+        _popup.PopupEntity(msgOthers, user, Filter.PvsExcept(user, entityManager: EntityManager).RemovePlayerByAttachedEntity(target), true);
+    }
+
+    private void ShowPopupForTarget(EntityUid user, EntityUid target, string msgLoc)
+    {
+        var msgTarget = Loc.GetString(msgLoc,
+            ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(target, EntityManager)));
+        _popup.PopupEntity(msgTarget, user, target);
     }
 
     private void AddVerb(Entity<InteractionPopupOnUseComponent> entity, ref GetVerbsEvent<UtilityVerb> ev)
