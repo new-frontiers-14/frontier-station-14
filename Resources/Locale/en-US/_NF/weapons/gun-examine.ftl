@@ -19,6 +19,7 @@ gun-examine-caliber-30 = .30 rifle ammo
 gun-examine-caliber-50 = .50 shotgun shells
 gun-examine-caliber-60 = .60 rifle ammo
 gun-examine-caliber-asmgt = .35 pistol / .20 rifle / .25 rifle / .30 rifle ammo
+gun-examine-caliber-foam-dart = foam darts
 gun-examine-hitscan-low = 750J energy beam
 gun-examine-energybolt-medium = 1100J energy beam
 gun-examine-hitscan-high = 1400 energy beam

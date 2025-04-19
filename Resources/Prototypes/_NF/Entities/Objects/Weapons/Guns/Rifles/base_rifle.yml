@@ -60,25 +60,41 @@
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-steelbolt-tool-forge
 
+- type: entity
+  id: NFBaseWeaponFrameRifleFoamForce
+  parent: NFBaseWeaponFrameRifleFrontierGunsmith
+  abstract: true
+  components:
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-frontier-foam-force
+
 #region chamber
+- type: entity
+  id: NFBaseWeaponRifleChamber
+  abstract: true
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: BallisticAmmoProvider
+    capacity: 10
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
 - type: entity
   id: NFBaseWeaponRifleChamber20
   abstract: true
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-20
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
   - type: BallisticAmmoProvider
     capacity: 15
     proto: NFCartridgeRifle20
     whitelist:
       tags:
       - NFCartridgeRifle20
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
 
 - type: entity
   id: NFBaseWeaponRifleChamber30
@@ -89,12 +105,21 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
   - type: BallisticAmmoProvider
-    capacity: 10
     proto: NFCartridgeRifle30
     whitelist:
       tags:
       - NFCartridgeRifle30
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
+
+- type: entity
+  id: NFBaseWeaponRifleChamberDartFoam
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-foam
+    clumsyProof: true
+  - type: BallisticAmmoProvider
+    proto: BulletFoam
+    whitelist:
+      tags:
+      - BulletFoam
+  - type: PacifismAllowedGun
