@@ -91,19 +91,13 @@
       effects:
       - !type:Emote
         emote: Scream
-        probability: 1.0
-      - !type:ExplosionReactionEffect
-        explosionType: Default
-        maxIntensity: 1
-        intensityPerUnit: 0.1 # Dont overkill this
-        intensitySlope: 4
-        maxTotalIntensity: 1
-  # - type: Explosive
-    # explosionType: Default
-    # maxIntensity: 1
-    # intensitySlope: 3
-    # totalIntensity: 10
-    # repeatable: true
+        probability: 0.2
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "barozine-effect-skin-burning" ]
+        probability: 0.33
+      - !type:Jitter
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:
