@@ -299,3 +299,40 @@
         - type: PreventPilot
         paths:
         - /Maps/_NF/Bluespace/mcevent.yml
+
+- type: entity
+  id: BluespaceClownCollege
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    warningAnnouncement: station-event-bluespace-generic-ftl-warning-announcement
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
+    earliestStart: 80
+    minimumPlayers: 15
+    weight: 1
+    duration: 1800
+    maxDuration: 2400
+    reoccurrenceDelay: 480 # 8 hours
+  - type: BluespaceErrorRule
+    groups:
+      grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-UnidentifiedVessel
+        minimumDistance: 1500
+        maximumDistance: 2500
+        addComponents:
+        - type: Gravity
+          enabled: true
+          inherent: true
+        - type: IFF
+          color: "#E10F9B"
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor
+        paths:
+        - /Maps/_NF/Bluespace/MassacreAtClownSchool.yml

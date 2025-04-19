@@ -1,0 +1,26 @@
+﻿- type: entity
+  name: Clown Locker (25%)
+  id: UIVClownLocker
+  parent: MarkerBase
+  suffix: "Dungeon, UIV"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: clown
+      - sprite: Structures/Storage/closet.rsi
+        state: clown
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - LockerClown
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - LockerClownFilled
+    rareChance: 0.25
+
+
