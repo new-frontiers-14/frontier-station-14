@@ -34,3 +34,45 @@
           - 0.2256516955 # 22% oxygen
           - 0.800378295 # 78% nitrogen
         temperature: 293.15
+
+- type: entity
+  id: NFTankO2N2EqualFilled
+  parent: NFTankO2N2Equal
+  suffix: Filled
+  components:
+  - type: GasTank
+    #      0.21  | % oxygen in normal atmosphere
+    #  /   0.5   | % oxygen in this mixture
+    #  * 101.325 | one atmosphere
+    # __________
+    #    42.5565   output pressure
+    outputPressure: 42.6
+    air:
+      # only 7.8 minutes due to pressure
+      volume: 5
+      moles:
+        - 1.025689525 # 50% oxygen
+        - 1.025689525 # 50% nitrogen
+        - 0 # CO2
+        - 0 # plasma
+        - 0 # tritium
+        - 0 # water vapor
+        - 0 # ammonia
+        - 0 # N2O
+        # 2.051379050       total
+      temperature: 293.15
+
+- type: entity
+  id: DoubleEmergencyTankO2N2EqualFilled
+  parent: DoubleEmergencyTankO2N2Equal
+  suffix: Filled
+  components:
+    - type: GasTank
+      outputPressure: 42.6
+      air:
+        # 3.9 minutes due to output pressure
+        volume: 2.5
+        moles:
+          - 0.5128447625 # 50% oxygen
+          - 0.5128447625 # 50% nitrogen
+        temperature: 293.15
