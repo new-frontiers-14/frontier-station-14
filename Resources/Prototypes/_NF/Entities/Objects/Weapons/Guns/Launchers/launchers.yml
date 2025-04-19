@@ -96,19 +96,16 @@
 
 - type: entity
   name: NFSD grenade launcher
-  parent: [ BaseC2ContrabandUnredeemable, NFWeaponLauncherChinaLake ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponLauncherChamber40mmGrenadesSingleShot, NFBaseWeaponFrameLauncherNanotrasen ]
   id: WeaponLauncherNfsdLake
-  description: Able to lob both grenades and darts!
+  description: Single shot grenade launcher able to lob both grenades and darts!
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi
-  - type: BallisticAmmoProvider
-    proto: null
-    whitelist:
-      tags:
-        - NFTrackingDart
-        - Grenade
   - type: StaticPrice
     price: 50
