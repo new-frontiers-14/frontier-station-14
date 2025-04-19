@@ -1,6 +1,18 @@
 # region Upstream
+# Guns
 - type: listing
-  id: UplinkRevolverRitland
+  id: UplinkNFPistolViper
+  name: uplink-pistol-viper-name
+  description: uplink-pistol-viper-desc
+  productEntity: NFWeaponPistolViper
+  discountCategory: rareDiscounts
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkNFRevolverRitland
   name: uplink-revolver-ritland-name
   description: uplink-revolver-ritland-desc
   productEntity: NFWeaponRevolverRitland45
@@ -11,19 +23,27 @@
   - UplinkWeaponry
 
 - type: listing
-  id: UplinkPistolCobra
+  id: UplinkNFPistolCobra
   name: uplink-pistol-cobra-name
   description: uplink-pistol-cobra45-desc
   productEntity: NFWeaponPistolCobra
   discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 2
   cost:
     Telecrystal: 4
   categories:
   - UplinkWeaponry
 
-# region Local
+- type: listing
+  id: UplinkNFRifleBarlows
+  name: uplink-rifle-mosin-name
+  description: uplink-rifle-mosin-desc
+  productEntity: NFWeaponRifleBarlowsBolt
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkWeaponry
+
+# region Frontier
 - type: listing
   id: UplinkEmpGrenadeLauncherBundle
   name: uplink-emp-grenade-launcher-bundle-name
