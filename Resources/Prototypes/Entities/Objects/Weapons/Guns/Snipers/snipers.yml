@@ -27,7 +27,7 @@
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
   - type: BallisticAmmoProvider
     capacity: 10
-    proto: CartridgeLightRifle
+    # proto: CartridgeLightRifle # Frontier
     whitelist:
       tags:
       - CartridgeLightRifle
@@ -47,12 +47,6 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
-  - type: CursorOffsetRequiresWield # Frontier
-  - type: EyeCursorOffset # Frontier
-    maxOffset: 1.5 # Frontier
-    pvsIncrease: 0.15 # Frontier
-  - type: AltFireMelee # Frontier
-    attackType: Light # Frontier
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
@@ -78,7 +72,7 @@
       tags:
       - CartridgeAntiMateriel
     capacity: 5
-    proto: CartridgeAntiMateriel
+    # proto: CartridgeAntiMateriel # Frontier
   - type: SpeedModifiedOnWield
     walkModifier: 0.25
     sprintModifier: 0.25
@@ -114,7 +108,7 @@
       tags:
       - CartridgeAntiMateriel
     capacity: 1
-    proto: CartridgeAntiMateriel
+    # proto: CartridgeAntiMateriel # Frontier
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -153,7 +147,7 @@
       tags:
         - CartridgeAntiMateriel
     capacity: 1
-    proto: CartridgeAntiMateriel
+    # proto: CartridgeAntiMateriel # Frontier
   - type: StaticPrice
     price: 0
 
