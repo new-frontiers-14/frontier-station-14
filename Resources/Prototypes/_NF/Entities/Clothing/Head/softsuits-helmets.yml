@@ -1,4 +1,4 @@
-# BASE
+#region base
 - type: entity
   abstract: true
   parent: ClothingHeadEVAHelmetBase
@@ -64,7 +64,7 @@
     autoRot: true
     netsync: false
 
-# DEPARTMENTAL
+#region Departmental suits
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetHydro
@@ -118,7 +118,7 @@
         color: "#adcfd5"
 
 # COLORED DEPARTMENTAL
-## CONTRACTORS
+#region Contractors
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetContractor
@@ -145,7 +145,7 @@
       - state: equipped-head-visor
         color: "#adcfd5"
 
-## COMMAND
+#region Command
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetSr
@@ -179,7 +179,7 @@
     radius: 5
     energy: 2
 
-- type: entity # TODO: Fix colors
+- type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetStc
   name: station traffic controller EVA helmet
@@ -189,25 +189,21 @@
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     layers:
     - state: icon-base
-      color: "#194214"
+      color: "#fe5c00"
     - state: icon-reinforced-points
-      color: "#3e3e48"
-    - state: icon-decals-02
-      color: "#f2b833"
+      color: "#704900"
     - state: icon-visor
-      color: "#fbe6b8"
+      color: "#adcfd5"
   - type: Clothing
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     clothingVisuals:
       head:
       - state: equipped-head-base
-        color: "#194214"
+        color: "#fe5c00"
       - state: equipped-head-reinforced-points
-        color: "#3e3e48"
-      - state: equipped-head-decals-02
-        color: "#f2b833"
+        color: "#704900"
       - state: equipped-head-visor
-        color: "#fbe6b8"
+        color: "#adcfd5"
   - type: PointLight
     radius: 5
     energy: 2
@@ -245,7 +241,7 @@
     radius: 5
     energy: 2
 
-## ENGINEERING
+#region engineering
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetEngineer
@@ -300,7 +296,7 @@
   - type: PointLight
     color: "#adffe6"
 
-## SUPPLY
+#region supply
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetCargo
@@ -355,7 +351,7 @@
   - type: PointLight
     radius: 6
 
-## MEDICAL
+#region medical
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetMedic
@@ -384,7 +380,7 @@
   - type: PointLight
     color: "#adf1ff"
 
-## SCIENCE
+#region science
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetScientist
@@ -413,7 +409,7 @@
   - type: PointLight
     color: "#d6adff"
 
-## SERVICE
+#region service
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetJanitor
@@ -442,7 +438,7 @@
   - type: PointLight
     color: "#d6adff"
 
-- type: entity # TODO: Fix colors
+- type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetValet
   name: valet EVA helmet
@@ -452,21 +448,21 @@
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     layers:
     - state: icon-base
-      color: "#cac4c3"
+      color: "#e6001f"
     - state: icon-reinforced-points
-      color: "#ebdc36"
+      color: "#606275"
     - state: icon-visor
-      color: "#bb5cc9"
+      color: "#adcfd5"
   - type: Clothing
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     clothingVisuals:
       head:
       - state: equipped-head-base
-        color: "#cac4c3"
+        color: "#e6001f"
       - state: equipped-head-reinforced-points
-        color: "#ebdc36"
+        color: "#606275"
       - state: equipped-head-visor
-        color: "#bb5cc9"
+        color: "#adcfd5"
   - type: PointLight
     color: "#d6adff"
 
@@ -658,7 +654,7 @@
       - EVA_helmet_decal_boxing:
           equipped-head-base: Sixteen # CyberpunkNeon
 
-## WILDCARDS
+#region wildcards
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetPilot
@@ -737,7 +733,7 @@
       - state: equipped-head-visor
         color: "#ffd600"
 
-## NFSD
+#region nfsd
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetNfsd
@@ -764,8 +760,8 @@
       - state: equipped-head-visor
         color: "#52843f"
 
-## Pirate
-- type: entity # TODO: Fix colors
+#region pirates
+- type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetPirate
   name: Pirate EVA helmet
@@ -775,24 +771,24 @@
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     layers:
     - state: icon-base
-      color: "#a9947d"
+      color: "#d4a365"
     - state: icon-reinforced-points
-      color: "#384d2f"
+      color: "#784f1e"
     - state: icon-visor
-      color: "#52843f"
+      color: "#68b4ff"
   - type: Clothing
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     clothingVisuals:
       head:
       - state: equipped-head-base
-        color: "#a9947d"
+        color: "#d4a365"
       - state: equipped-head-reinforced-points
-        color: "#384d2f"
+        color: "#784f1e"
       - state: equipped-head-visor
-        color: "#52843f"
+        color: "#68b4ff"
 
-## Prisoner
-- type: entity # TODO: Fix colors
+#region prisoner
+- type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetPrisoner
   name: Prisoner EVA helmet
@@ -802,24 +798,23 @@
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     layers:
     - state: icon-base
-      color: "#a9947d"
+      color: "#ff8300"
     - state: icon-reinforced-points
-      color: "#384d2f"
+      color: "#493926"
     - state: icon-visor
-      color: "#52843f"
+      color: "#adcfd5"
   - type: Clothing
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     clothingVisuals:
       head:
       - state: equipped-head-base
-        color: "#a9947d"
+        color: "#ff8300"
       - state: equipped-head-reinforced-points
-        color: "#384d2f"
+        color: "#493926"
       - state: equipped-head-visor
-        color: "#52843f"
+        color: "#adcfd5"
 
-
-## PLAYER FACTIONS
+#region player factions
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetLvhi
@@ -872,7 +867,7 @@
       - state: equipped-head-visor
         color: "#8f1717"
 
-#FSB Void suit helmet
+#region FSB Void suit helmet
 - type: entity
   parent: [ ClothingHeadSuitWithLightBase, NFClothingHeadClearEVAHelmetBase ]
   id: ClothingHeadHelmetHardsuitFSB
