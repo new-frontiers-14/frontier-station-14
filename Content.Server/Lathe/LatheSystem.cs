@@ -498,6 +498,7 @@ namespace Content.Server.Lathe
                 }
             }
         }
+
         public void AbortProduction(EntityUid uid, LatheComponent? component = null)
         {
             if (!Resolve(uid, ref component))
