@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 250.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 04/18/2025 16:55:22
+  entityCount: 2016
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   14: FloorBar
@@ -3615,6 +3626,23 @@ entities:
     - type: Transform
       pos: -1.8859248,28.547873
       parent: 1
+- proto: BorgCharger
+  entities:
+  - uid: 662
+    components:
+    - type: Transform
+      pos: 6.5,-10.5
+      parent: 1
+  - uid: 724
+    components:
+    - type: Transform
+      pos: -9.5,13.5
+      parent: 1
+  - uid: 852
+    components:
+    - type: Transform
+      pos: 10.5,13.5
+      parent: 1
 - proto: ButtonFrameCaution
   entities:
   - uid: 131
@@ -5885,53 +5913,6 @@ entities:
       parent: 584
     - type: Physics
       canCollide: False
-- proto: Catwalk
-  entities:
-  - uid: 9
-    components:
-    - type: Transform
-      pos: 12.5,3.5
-      parent: 1
-  - uid: 10
-    components:
-    - type: Transform
-      pos: 13.5,1.5
-      parent: 1
-  - uid: 55
-    components:
-    - type: Transform
-      pos: 13.5,0.5
-      parent: 1
-  - uid: 573
-    components:
-    - type: Transform
-      pos: 13.5,2.5
-      parent: 1
-  - uid: 814
-    components:
-    - type: Transform
-      pos: 12.5,-0.5
-      parent: 1
-  - uid: 820
-    components:
-    - type: Transform
-      pos: 12.5,1.5
-      parent: 1
-  - uid: 821
-    components:
-    - type: Transform
-      pos: 13.5,-0.5
-      parent: 1
-  - uid: 873
-    components:
-    - type: Transform
-      pos: 12.5,0.5
-      parent: 1
-  - uid: 1389
-    components:
-    - type: Transform
-      pos: 12.5,2.5
-      parent: 1
 - proto: Carpet
   entities:
   - uid: 728
@@ -6318,10 +6299,30 @@ entities:
       parent: 1
 - proto: Catwalk
   entities:
+  - uid: 9
+    components:
+    - type: Transform
+      pos: 12.5,3.5
+      parent: 1
+  - uid: 10
+    components:
+    - type: Transform
+      pos: 13.5,1.5
+      parent: 1
   - uid: 11
     components:
     - type: Transform
       pos: 12.5,-1.5
+      parent: 1
+  - uid: 55
+    components:
+    - type: Transform
+      pos: 13.5,0.5
+      parent: 1
+  - uid: 573
+    components:
+    - type: Transform
+      pos: 13.5,2.5
       parent: 1
   - uid: 694
     components:
@@ -6371,11 +6372,31 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,0.5
       parent: 1
+  - uid: 814
+    components:
+    - type: Transform
+      pos: 12.5,-0.5
+      parent: 1
   - uid: 817
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,1.5
+      parent: 1
+  - uid: 820
+    components:
+    - type: Transform
+      pos: 12.5,1.5
+      parent: 1
+  - uid: 821
+    components:
+    - type: Transform
+      pos: 13.5,-0.5
+      parent: 1
+  - uid: 873
+    components:
+    - type: Transform
+      pos: 12.5,0.5
       parent: 1
   - uid: 874
     components:
@@ -6420,36 +6441,15 @@ entities:
     - type: Transform
       pos: -7.5,1.5
       parent: 1
+  - uid: 1389
+    components:
+    - type: Transform
+      pos: 12.5,2.5
+      parent: 1
   - uid: 1494
     components:
     - type: Transform
       pos: -7.5,0.5
-      parent: 1
-- proto: ChairOfficeLight
-  entities:
-  - uid: 662
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,27.5
-      parent: 1
-  - uid: 724
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.4361367,2.6951075
-      parent: 1
-  - uid: 852
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -11.516135,1.7039237
-      parent: 1
-  - uid: 1149
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,27.5
       parent: 1
 - proto: ChairPilotSeat
   entities:
@@ -11236,8 +11236,7 @@ entities:
   - uid: 960
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.5,-10.5
+      pos: 1.5,-6.5
       parent: 1
   - uid: 1282
     components:
