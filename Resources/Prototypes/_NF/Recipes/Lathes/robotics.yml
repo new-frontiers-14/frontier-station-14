@@ -1,21 +1,21 @@
 - type: latheRecipe
   id: BorgModuleAdvancedParamedic
   result: BorgModuleAdvancedParamedic
-  parent: BaseBorgModuleRecipe
+  parent: BaseGoldBorgModuleRecipe
   materials:
     Steel: 500
     Glass: 500
     Plastic: 250
     Gold: 50
-    Bluespace: 60 # SyringeBluespace Bluepsace price
+    Bluespace: 100
 
 - type: latheRecipe
   id: BorgModuleAdvancedMining
   result: BorgModuleAdvancedMining
   parent: BaseBorgModuleRecipe
   materials:
-    Steel: 500
-    Glass: 500
+    Steel: 1000
+    Glass: 1000
     Plastic: 250
     Bluespace: 200 # OreBagOfHolding Bluepsace price
     Diamond: 100 # MiningDrillDiamond Diamond price
@@ -29,3 +29,20 @@
     Glass: 500
     Plastic: 250
     Gold: 50
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleRCD
+  result: BorgModuleRCD
+  completetime: 8
+  materials:
+    Steel: 1500
+    Plastic: 500
+    Uranium: 400
+    Gold: 300
+    Bluespace: 150
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleChef
+  result: BorgModuleChef

@@ -1,0 +1,21 @@
+- type: entity
+  id: BorgClock
+  parent: BaseItem
+  name: digital clock
+  description: A rugged digital clock with 7-segment display. It's ticking for some reason.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Devices/borgclock.rsi
+    layers:
+    - state: base
+    - state: base_unlit
+      shader: unshaded
+    - map: [ "enum.ClockVisualLayers.MinuteHand"]
+      shader: unshaded
+    - map: [ "enum.ClockVisualLayers.HourHand"]
+      shader: unshaded
+  - type: Item
+    size: Small
+  - type: StaticPrice
+    price: 10
+  - type: Clock

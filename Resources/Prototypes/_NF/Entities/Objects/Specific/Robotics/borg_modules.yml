@@ -29,7 +29,7 @@
 - type: entity
   id: BorgModuleAdvancedParamedic
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
-  name: advanced paramedic cyborg module
+  name: chemical recovery cyborg module
   components:
   - type: Sprite
     layers:
@@ -40,24 +40,27 @@
     moduleId: NFAdvancedParamedic
     items:
     - HandheldHealthAnalyzerUnpowered
-    - Suture10Lingering
-    - Mesh10Lingering
-    - Gauze10Lingering
-    - Bloodpack10Lingering
-    - SyringeBluespace
+    - BorgHypoTricordrazine
+    - BorgHypoInaprovaline
   - type: BorgModuleIcon
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-paramed-module }
 
 - type: entity
   id: BorgModuleJetpack
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
-  name: jetpack cyborg module
+  name: Frontier cyborg module
   components:
   - type: Sprite
     layers:
     - state: generic
     - state: icon-jetpack
       sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: NFJetpack
+    items:
+    - HandheldGPSBasic
+    - HandHeldMassScannerBorg
+    - BorgClock
   - type: DroppableBorgModule
     moduleId: NFJetpack
     items:
@@ -65,5 +68,176 @@
       whitelist:
         components:
         - Jetpack
+      displayName: borg-placeholder-display-name-jetpack
+    placeholders:
+    - id: SpaceCash1000
+      whitelist:
+        components:
+        - Cash
+    - id: FuelPlasma
+      whitelist:
+        components:
+        - NFFuel
+      displayName: borg-placeholder-display-name-fuel
   - type: BorgModuleIcon
     icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: jetpack-module }
+
+- type: entity
+  id: BorgModuleRCDShipyard
+  parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule ]
+  name: shipyard RCD cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: engineering
+    - state: icon-rcd-shipyard
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: DroppableBorgModule
+    moduleId: RCD
+    items:
+    - id: ShipyardRCD
+      whitelist:
+        components:
+        - RCD
+      displayName: borg-placeholder-display-name-rcd
+    placeholders:
+    - id: ShipyardRCDAmmo
+      whitelist:
+        components:
+        - RCDAmmo
+      displayName: borg-placeholder-display-name-compressed-matter
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: shipyard-rcd-module }
+
+# Service modules
+- type: entity
+  id: BorgModuleNFService
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: lounge cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-martini
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: NFService
+    items:
+    - BarSpoon
+  - type: DroppableBorgModule
+    moduleId: NFService
+    items:
+    - id: DrinkShaker
+      whitelist:
+        components:
+        - NFShaker
+    - id: Lighter
+      whitelist:
+        components:
+        - NFLighter
+      displayName: borg-placeholder-display-name-lighter
+    placeholders:
+    - id: CigPackRed
+      whitelist:
+        components:
+        - NFSmokeableContainer
+        tags:
+        - Cigar
+        - Cigarette
+      displayName: borg-placeholder-display-name-smokes
+    - id: DrinkGlass
+      whitelist:
+        tags:
+        - DrinkGlass
+      displayName: borg-placeholder-display-name-glassware
+    - id: DrinkGlass
+      whitelist:
+        tags:
+        - DrinkGlass
+      displayName: borg-placeholder-display-name-glassware
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: service-module }
+
+- type: entity
+  id: BorgModuleBureaucracy
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: bureaucracy cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-pen
+  - type: ItemBorgModule
+    moduleId: Bureaucracy
+    items:
+    - HandLabeler
+  - type: DroppableBorgModule
+    moduleId: Bureaucracy
+    items:
+    - id: BooksBag
+      whitelist:
+        components:
+        - NFBookBag
+    - id: Pen
+      whitelist:
+        tags:
+        - Write
+      blacklist:
+        components:
+        - EnergyWeapon
+    placeholders:
+    - id: Paper
+      whitelist:
+        components:
+        - Paper
+    - id: RubberStampApproved
+      whitelist:
+        components:
+        - Stamp
+      displayName: borg-placeholder-display-name-rubber-stamp
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: bureaucracy-module }
+
+- type: entity
+  id: BorgModuleChef
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: chef cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-burger
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: Chef
+    items:
+    - RollingPin
+    - KitchenKnife
+  - type: DroppableBorgModule
+    moduleId: Chef
+    items:
+    - id: LargeBeaker
+      whitelist:
+        tags:
+        - GlassBeaker
+        - DrinkGlass
+      displayName: borg-placeholder-display-name-glassware
+    placeholders:
+    - id: ReagentContainerFlour
+      whitelist:
+        components:
+        - Food
+        - Produce
+        tags:
+        - Ingredient
+      displayName: borg-placeholder-display-name-food-or-ingredients
+    - id: FoodApple
+      whitelist:
+        components:
+        - Food
+        - Produce
+        tags:
+        - Ingredient
+      displayName: borg-placeholder-display-name-food-or-ingredients
+  - type: BorgModuleIcon
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: chef-module }
