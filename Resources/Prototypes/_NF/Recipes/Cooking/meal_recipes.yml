@@ -796,7 +796,7 @@
 - type: microwaveMealRecipe
   id: RecipeSausageRaw
   name: raw sausage recipe
-  result: FoodSausageRaw
+  result: SausageRaw
   resultCount: 2
   time: 5
   solids:
@@ -809,7 +809,7 @@
 - type: microwaveMealRecipe
   id: RecipeSausageRawStomach
   name: raw sausage recipe
-  result: FoodSausageRaw
+  result: SausageRaw
   resultCount: 2
   time: 5
   solids:
@@ -822,10 +822,10 @@
 - type: microwaveMealRecipe
   id: RecipeSausageCooked
   name: sausage recipe
-  result: FoodSausageCooked
+  result: SausageCooked
   time: 10
   solids:
-    FoodSausageRaw: 1
+    SausageRaw: 1
   recipeType:
   - Oven
 
@@ -835,19 +835,7 @@
   result: Hotdog
   time: 10
   solids:
-    FoodSausageRaw: 1
+    SausageRaw: 1
     FoodBreadBun: 1
   recipeType:
   - Oven
-
-- type: microwaveMealRecipe
-  id: RecipeSausagePizza
-  name: sausage pizza recipe
-  result: FoodPizzaSausage
-  time: 30
-  solids:
-    FoodDoughFlat: 1
-    FoodSausageRaw: 3
-    FoodCheeseSlice: 1
-    FoodTomato: 1
-  recipeType: Oven
