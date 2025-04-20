@@ -6,7 +6,7 @@
   id: UplinkPistolViper
   name: uplink-pistol-viper-name
   description: uplink-pistol-viper-desc
-  productEntity: WeaponPistolViper
+  # productEntity: WeaponPistolViper # Frontier
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -20,7 +20,7 @@
   id: UplinkRevolverPython
   name: uplink-revolver-python-name
   description: uplink-revolver-python-desc
-  productEntity: WeaponRevolverPythonAP
+  # productEntity: WeaponRevolverPythonAP # Frontier
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -35,7 +35,7 @@
   id: UplinkPistolCobra
   name: uplink-pistol-cobra-name
   description: uplink-pistol-cobra-desc
-  productEntity: WeaponPistolCobra
+  # productEntity: WeaponPistolCobra # Frontier
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -467,11 +467,12 @@
 # Ammo
 
 - type: listing
+  abstract: true # Frontier: moved to _NF uplink catalog
   id: UplinkPistol9mmMagazine
   name: uplink-pistol-magazine-name
   description: uplink-pistol-magazine-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistol
+  # productEntity: MagazinePistol # Frontier
   cost:
     Telecrystal: 1
   categories:
@@ -479,11 +480,12 @@
 
 # For the C20R
 - type: listing
+  abstract: true # Frontier: moved to _NF uplink catalog
   id: UplinkMagazinePistolSubMachineGun
   name: uplink-pistol-magazine-c20r-name
   description: uplink-pistol-magazine-c20r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGun
+  # productEntity: MagazinePistolSubMachineGun # Frontier
   cost:
     Telecrystal: 2
   categories:
@@ -491,11 +493,12 @@
 
 # For the Cobra
 - type: listing
+  abstract: true # Frontier: moved to _NF uplink catalog
   id: UplinkMagazinePistolCaselessRifle
-  name: uplink-pistol-magazine-cobra-name # Frontier: uplink-pistol-magazine-caseless-name<uplink-pistol-magazine-cobra-name
-  description: uplink-pistol-magazine-cobra-desc # Frontier: uplink-pistol-magazine-caseless-desc<uplink-pistol-magazine-cobra-desc
+  name: uplink-pistol-magazine-caseless-name
+  description: uplink-pistol-magazine-caseless-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: red-icon }
-  productEntity: NFMagazinePistol45 # Frontier:  MagazinePistolCaselessRifle<NFMagazinePistol45
+  # productEntity: NFMagazinePistol45 # Frontier
   cost:
     Telecrystal: 1
   categories:
@@ -503,11 +506,12 @@
 
 # For the Python
 - type: listing
+  abstract: true # Frontier: moved to _NF uplink catalog
   id: UplinkSpeedLoaderMagnumAP
-  name: uplink-speedloader-magnum-non-ap-name # Frontier: uplink-speedloader-magnum-name<uplink-speedloader-magnum-non-ap-name
-  description: uplink-speedloader-magnum-non-ap-desc # Frontier: uplink-speedloader-magnu-desc<uplink-speedloader-magnum-non-ap-desc
+  name: uplink-speedloader-magnum-name
+  description: uplink-speedloader-magnu-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: NFSpeedLoaderPistol45 # Frontier: SpeedLoaderMagnumAP<NFSpeedLoaderPistol45
+  # productEntity: SpeedLoaderMagnumAP # Frontier
   cost:
     Telecrystal: 3
   categories:
@@ -515,10 +519,11 @@
 
 # For the mosin
 - type: listing
+  abstract: true # Frontier: moved to _NF uplink catalog
   id: UplinkMosinAmmo
   name: uplink-mosin-ammo-name
   description: uplink-mosin-ammo-desc
-  productEntity: MagazineBoxLightRifle
+  # productEntity: MagazineBoxLightRifle # Frontier
   cost:
     Telecrystal: 1
   categories:
@@ -529,7 +534,7 @@
   id: UplinkHristovAmmo
   name: uplink-sniper-ammo-name
   description: uplink-sniper-ammo-desc
-  productEntity: MagazineBoxAntiMateriel
+  # productEntity: MagazineBoxAntiMateriel # Frontier
   cost:
     Telecrystal: 2
   categories:
