@@ -55,29 +55,29 @@
 # Grenades
 
 - type: entity
-  parent: NFGrenadeBaton
-  id: GrenadeBaton
+  parent: GrenadeBaton
+  id: NFGrenadeBaton
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeBaton
 
 - type: entity
-  parent: NFGrenadeBlast
-  id: GrenadeBlast
+  parent: GrenadeBlast
+  id: NFGrenadeBlast
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeBlast
 
 - type: entity
-  parent: NFGrenadeFlash
-  id: GrenadeFlash
+  parent: GrenadeFlash
+  id: NFGrenadeFlash
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeFlash
 
 - type: entity
-  parent: NFGrenadeFrag
-  id: GrenadeFrag
+  parent: GrenadeFrag
+  id: NFGrenadeFrag
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeFrag
@@ -96,28 +96,28 @@
 # Cannon Balls
 
 - type: entity
-  parent: [BaseC3PirateContrabandNoValue, CannonBall]
+  parent: CannonBall
   id: NFCannonBall
   components:
   - type: CartridgeAmmo
     proto: NFBulletCannonBall
 
 - type: entity
-  parent: [BaseC3PirateContrabandNoValue, CannonBallGrapeshot]
+  parent: CannonBallGrapeshot
   id: NFCannonBallGrapeshot
   components:
   - type: CartridgeAmmo
     proto: NFPelletGrapeshotSpread
 
 - type: entity
-  parent: [BaseC3PirateContrabandNoValue, CannonBallGlassshot]
+  parent: CannonBallGlassshot
   id: NFCannonBallGlassshot
   components:
   - type: CartridgeAmmo
     proto: NFPelletGlassSpread
 
 - type: entity
-  parent: [BaseC3PirateContrabandNoValue, BaseCannonBall]
+  parent: BaseCannonBall
   id: NFCannonBallEmp
   name: shockshot
   suffix: EMP

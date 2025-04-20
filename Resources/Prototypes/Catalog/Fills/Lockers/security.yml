@@ -35,6 +35,7 @@
     contents:
       - id: FlashlightSeclite
       # - id: WeaponDisabler # Frontier
+      - id: NFWeaponEnergyPistolDisabler # Frontier
       - id: ClothingBeltSecurityFilled
       - id: Flash
       - id: ClothingEyesGlassesSecurity
@@ -63,6 +64,7 @@
       - id: FlashlightSeclite
         prob: 0.8
       # - id: WeaponDisabler # Frontier
+      - id: NFWeaponEnergyPistolDisabler # Frontier
       - id: ClothingUniformJumpsuitSecGrey
         prob: 0.3
       - id: ClothingHeadHelmetBasic
@@ -91,6 +93,7 @@
     contents:
       - id: ClothingEyesGlassesSecurity
       # - id: WeaponDisabler # Frontier
+      - id: NFWeaponEnergyPistolDisabler
       - id: TrackingImplanter
         amount: 2
       - id: ClothingOuterHardsuitBrigmedic
@@ -166,9 +169,11 @@
   categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: StorageFill
-    contents: [] # Frontier: add list
+    contents:
     # - id: WeaponDisabler # Frontier
     #   amount: 5 # Frontier
+    - id: NFWeaponEnergyPistolDisabler # Frontier
+      amount: 5 # Frontier
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
