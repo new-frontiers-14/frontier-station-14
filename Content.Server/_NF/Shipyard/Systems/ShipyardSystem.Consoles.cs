@@ -31,7 +31,6 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
 using Content.Shared.Preferences;
-using static Content.Shared._NF.Shipyard.Components.ShuttleDeedComponent;
 using Content.Server.Shuttles.Components;
 using Content.Server._NF.Station.Components;
 using System.Text.RegularExpressions;
@@ -41,9 +40,7 @@ using Content.Shared.Access;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.ShuttleRecords;
 using Content.Server.StationEvents.Components;
-using Content.Server.Forensics;
 using Content.Shared.Forensics.Components;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
