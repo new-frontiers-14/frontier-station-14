@@ -148,3 +148,72 @@
         mask:
         - Opaque
       fly-by: *flybyfixture
+
+# region Upstream
+
+- type: entity
+  parent: BulletCap
+  id: NFBulletCap
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletCannonBall
+  id: NFBulletCannonBall
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: GrapplingHook
+  id: NFGrapplingHook
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletEnergyTurretLaser
+  id: NFBulletEnergyTurretLaser
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletEnergyTurretDisabler
+  id: NFBulletEnergyTurretDisabler
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: TeslaGunBullet
+  id: NFTeslaGunBullet
+  categories: [ HideSpawnMenu ]
+
+# region Upstream Spreads
+
+- type: entity
+  parent: PelletGrapeshot
+  id: NFPelletGrapeshot
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: NFPelletGrapeshot
+  id: NFPelletGrapeshotSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletGrapeshot
+    count: 5
+    spread: 40
+
+- type: entity
+  parent: PelletGlass
+  id: NFPelletGlass
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: PelletGlassSpread
+  id: NFPelletGlass
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletGlass
+    count: 5
+    spread: 10
+
+- type: entity
+  parent: PelletShotgunFlare
+  id: NFPelletShotgunFlare
+  categories: [ HideSpawnMenu ]
