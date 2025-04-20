@@ -583,3 +583,47 @@
     tags:
     - Cooked
     - Meat
+
+- type: entity
+  name: sausage pizza
+  parent: FoodPizzaBase
+  id: FoodPizzaSausage
+  description: Greasy sausage pizza goodness!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - cheesy
+      - oily
+      - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: sausagepizza
+  - type: SliceableFood
+    slice: FoodPizzaSausageSlice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+
+
+- type: entity
+  name: slice of sausage pizza
+  parent: FoodPizzaSliceBase
+  id: FoodPizzaSausageSlice
+  description: A nutritious slice of that sausage-y goodness.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - cheesy
+      - oily
+      - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: sausage-slice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+    - Slice
