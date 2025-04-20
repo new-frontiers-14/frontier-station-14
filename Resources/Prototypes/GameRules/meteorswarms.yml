@@ -112,8 +112,8 @@
     announcement: null
     announcementSound: null
     nonDirectional: true
-    meteors:
-      MeteorSpaceDust: 1
+    meteors: {} # Frontier
+      # MeteorSpaceDust: 1 # Frontier
     waves:
       min: 2
       max: 3
@@ -132,8 +132,8 @@
     announcement: station-event-space-dust-start-announcement
     announcementSound: /Audio/Announcements/attention.ogg
     nonDirectional: true
-    meteors:
-      MeteorSpaceDust: 1
+    meteors: {} # Frontier
+      # MeteorSpaceDust: 1 # Frontier
     waves:
       min: 2
       max: 3
@@ -149,9 +149,9 @@
     weight: 18
     minimumPlayers: 15
   - type: MeteorSwarm
-    meteors:
-      MeteorSmall: 7
-      MeteorMedium: 3
+    meteors: {} # Frontier
+      # MeteorSmall: 7 # Frontier
+      # MeteorMedium: 3 # Frontier
 
 - type: entity
   parent: GameRuleMeteorSwarm
@@ -160,10 +160,10 @@
   - type: StationEvent
     weight: 10
   - type: MeteorSwarm
-    meteors:
-      MeteorSmall: 3
-      MeteorMedium: 6
-      MeteorLarge: 1
+    meteors: {} # Frontier
+      # MeteorSmall: 3 # Frontier
+      # MeteorMedium: 6 # Frontier
+      # MeteorLarge: 1 # Frontier
 
 - type: entity
   parent: GameRuleMeteorSwarm
@@ -172,10 +172,10 @@
   - type: StationEvent
     weight: 5
   - type: MeteorSwarm
-    meteors:
-      MeteorSmall: 2
-      MeteorMedium: 4
-      MeteorLarge: 4
+    meteors: {} # Frontier
+      # MeteorSmall: 2 # Frontier
+      # MeteorMedium: 4 # Frontier
+      # MeteorLarge: 4 # Frontier
 
 - type: entity
   parent: GameRuleMeteorSwarm
@@ -186,8 +186,8 @@
   - type: MeteorSwarm
     announcement: station-event-meteor-urist-start-announcement
     announcementSound: /Audio/Announcements/attention.ogg
-    meteors:
-      MeteorUrist: 1
+    meteors: {} # Frontier
+      # MeteorUrist: 1 # Frontier
     waves:
       min: 3
       max: 3

@@ -73,10 +73,10 @@
     proto: NFCartridgeRocketEmp
 
 - type: entity
-  name: mail RPDS
   parent: [ BaseC1Contraband, NFWeaponLauncherChinaLake ]
   id: WeaponMailLake
-  description: Rap(b?)id Parcel Delivery System
+  name: RPDS
+  description: The Rapid Parcel Delivery System, a mail carrier's right hand. Launches mail capsules.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Launchers/mail.rsi
@@ -90,14 +90,14 @@
     proto: null
     whitelist:
       tags:
-        - MailCapsule
+      - MailCapsule
   - type: StaticPrice
     price: 50
 
 - type: entity
-  name: NFSD grenade launcher
   parent: [ BaseC2ContrabandUnredeemable, NFWeaponLauncherChinaLake ]
   id: WeaponLauncherNfsdLake
+  name: NFSD grenade launcher
   description: Able to lob both grenades and darts!
   components:
   - type: Sprite
