@@ -1,5 +1,4 @@
 - type: entity
-  abstract: true # Frontier: use NF variant
   name: flare gun
   parent: BaseItem
   id: WeaponFlareGun
@@ -17,7 +16,7 @@
     slots:
       gun_chamber:
         name: Chamber
-        startingItem: ShellShotgunFlare
+        startingItem: NFShellShotgunFlare # Frontier: use NF prefix
         priority: 1
         whitelist:
           tags: ## TODO: Add a risk of the gun blowing up if using non-light shotgun shells, and then re-enable them.
