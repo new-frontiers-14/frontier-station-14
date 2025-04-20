@@ -603,25 +603,37 @@
       damage: 20
 
 - type: entity
-  parent: [BaseClearContraband, NFBaseWeaponFrameRevolverFoamForce, NFBaseWeaponRevolverChamberCap, RevolverCapGun] # Frontier: added BaseC3SyndicateContraband
+  parent: [BaseClearContraband, NFBaseWeaponFrameRevolverFoamForce, NFBaseWeaponRevolverChamberCap] # Frontier: added BaseC3SyndicateContraband
   id: NFRevolverCapGun
   suffix: Frontier
   name: cap gun
   description: Looks almost like the real thing! Ages 8 and up.
-  components: &capGunVisualComponents
+  components:
   - type: Sprite
     sprite: Objects/Fun/toys.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+    clumsyProof: true
 
 - type: entity
-  parent: [NFBaseWeaponFrameRevolverFoamForce, NFBaseWeaponRevolverChamber45Cap, RevolverCapGunFake] # Frontier: added BaseC3SyndicateContraband
+  parent: [BaseC3SyndicateContraband, NFBaseWeaponFrameRevolverFoamForce, NFBaseWeaponRevolverChamber45Cap] # Frontier: added BaseC3SyndicateContraband
   id: NFRevolverCapGunFake
   suffix: Fake, Frontier
   name: cap gun
   description: Looks almost like the real thing! Ages 8 and up.
-  components: *capGunVisualComponents
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/toys.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: Objects/Fun/toys.rsi
+    heldPrefix: capgun
+  - type: Contraband
+    hideValues: true
 
 # Grown cap gun, in toys.yml for consistency with fake parent
 - type: entity
