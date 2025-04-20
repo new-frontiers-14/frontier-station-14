@@ -1,3 +1,6 @@
+# FRONTIER: IGNORED.
+# If this changes, please update Resources\Prototypes\_NF\Recipes\Lathes\Packs\security.yml
+
 # Base prototypes
 
 - type: latheRecipe
@@ -633,8 +636,8 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipe
-  id: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
-  result: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+  id: WeaponDisabler
+  result: WeaponDisabler
   completetime: 6
   materials:
     Steel: 300
@@ -642,9 +645,9 @@
     Plastic: 200
 
 - type: latheRecipe
-  parent: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
-  id: NFWeaponEnergySubMachineGunDisabler # Frontier: WeaponDisablerSMG<NFWeaponEnergySubMachineGunDisabler
-  result: NFWeaponEnergySubMachineGunDisabler # Frontier: WeaponDisablerSMG<NFWeaponEnergySubMachineGunDisabler
+  parent: WeaponDisabler
+  id: WeaponDisablerSMG
+  result: WeaponDisablerSMG
   materials:
     Steel: 1000
     Glass: 500

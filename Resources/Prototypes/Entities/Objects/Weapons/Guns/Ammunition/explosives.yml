@@ -1,9 +1,10 @@
 # Rockets
 
 - type: entity
+  abstract: true # Frontier
   id: CartridgeRocket
   name: PG-7VL grenade
-  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: BaseMajorContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseItem] # Frontier: removed BaseMajorContraband
   description: A 1.5 warhead designed for the RPG-7 launcher. Has tubular shape.
   components:
   - type: Tag
@@ -21,9 +22,10 @@
     price: 20
 
 - type: entity
+  abstract: true # Frontier
   id: CartridgeRocketSlow
   name: PG-7VL grenade "Snail-Rocket"
-  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: BaseMajorContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseItem] # Frontier: removed BaseMajorContraband
   description: A 1.5 warhead designed for the RPG-7 launcher. It's unusually slow.
   components:
     - type: Tag
@@ -139,17 +141,13 @@
   - type: SpentAmmoVisuals
     state: frag
     suffix: false
-  - type: EmpDescription # Frontier
-    range: 5 # Frontier
-    energyConsumption: 2700000 # Frontier
-    disableDuration: 10 # Frontier
 
 # Cannon Balls
 
 - type: entity
   id: BaseCannonBall
   name: base cannon ball
-  parent: [BaseItem, BaseC3PirateContrabandNoValue] # Frontier: BaseMajorContraband<BaseC3PirateContrabandNoValue
+  parent: [BaseItem] # Frontier: removed BaseMajorContraband
   abstract: true
   components:
   - type: Tag
@@ -166,7 +164,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: NFBulletCannonBall # Frontier: use NF variant
+    # proto: NFBulletCannonBall # Frontier
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -179,7 +177,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: NFPelletGrapeshotSpread # Frontier: use NF variant
+    # proto: NFPelletGrapeshotSpread # Frontier
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -192,7 +190,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: NFPelletGlassSpread # Frontier: use NF variant
+    # proto: NFPelletGlassSpread # Frontier
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
