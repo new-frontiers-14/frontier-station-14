@@ -88,7 +88,7 @@ namespace Content.IntegrationTests.Tests
             await pair.CleanReturnAsync();
         }
 
-        private const string TestMap = "Maps/bagel.yml";
+        private const string TestMap = "Maps/_NF/Outpost/frontier.yml"; // Frontier: bagel.yml<_NF/Outpost/frontier.yml
 
         /// <summary>
         ///     Loads the default map, runs it for 5 ticks, then assert that it did not change.
