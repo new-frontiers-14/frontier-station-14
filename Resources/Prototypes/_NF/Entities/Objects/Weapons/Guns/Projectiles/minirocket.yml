@@ -1,7 +1,7 @@
 # Bullet
 - type: entity
   parent: BaseBulletTrigger
-  id: BulletRocketMiniNF
+  id: NFBulletRocketMini
   name: mini rocket
   categories: [ HideSpawnMenu ]
   components:
@@ -23,14 +23,14 @@
 
 # Cartridge
 - type: entity
-  id: CartridgeRocketMiniNF
+  id: NFCartridgeRocketMini
   name: minirocket
   parent: BaseItem
   components:
     - type: Item
       size: Small
     - type: CartridgeAmmo
-      proto: BulletRocketMiniNF
+      proto: NFBulletRocketMini
       deleteOnSpawn: true
     - type: Sprite
       sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
