@@ -40,7 +40,7 @@ public sealed class ShipyardTest
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception($"Failed to load shuttle {vessel.ShuttlePath}", ex);
+                        Assert.Fail($"Failed to load shuttle {vessel.ShuttlePath}: {ex}");
                     }
 
                     try
@@ -49,7 +49,7 @@ public sealed class ShipyardTest
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception($"Failed to delete map {vessel.ShuttlePath}", ex);
+                        Assert.Fail($"Failed to delete map {vessel.ShuttlePath}: {ex}");
                     }
                 }
             });
