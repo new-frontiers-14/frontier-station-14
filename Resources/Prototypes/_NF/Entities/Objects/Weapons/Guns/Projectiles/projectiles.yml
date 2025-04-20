@@ -152,6 +152,106 @@
 # region Upstream
 
 - type: entity
+  parent: EmitterBolt
+  id: NFEmitterBolt
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: WatcherBolt
+  id: NFWatcherBolt
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: WatcherBoltMagmawing
+  id: NFWatcherBoltMagmawing
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletKinetic
+  id: NFBulletKinetic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MiningGatheringSoft # Frontier
+
+- type: entity
+  parent: BulletKineticShuttle
+  id: NFBulletKineticShuttle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    color: "#FF8888" # distinguish from regular PKA bolts
+  - type: Projectile
+    damage:
+      types: # it's for mining hard things, not destroying critters
+        Blunt: 0.5
+        Structural: 1
+  - type: TimedDespawn
+    lifetime: 1
+  - type: PointLight
+    color: "#FF8888"
+  - type: MiningGatheringHard # Frontier
+
+- type: entity
+  parent: AnomalousParticleDeltaStrong
+  id: NFAnomalousParticleDeltaStrong
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: AnomalousParticleEpsilonStrong
+  id: NFAnomalousParticleEpsilonStrong
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: AnomalousParticleZetaStrong
+  id: NFAnomalousParticleZetaStrong
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: AnomalousParticleOmegaStrong
+  id: NFAnomalousParticleOmegaStrong
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: AnomalousParticleSigmaStrong
+  id: NFAnomalousParticleSigmaStrong
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletRocket
+  id: NFBulletRocket
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletWeakRocket
+  id: NFBulletWeakRocket
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletGrenadeBaton
+  id: NFBulletGrenadeBaton
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletGrenadeBlast
+  id: NFBulletGrenadeBlast
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletGrenadeFlash
+  id: NFBulletGrenadeFlash
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletGrenadeFrag
+  id: NFBulletGrenadeFrag
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletGrenadeEMP
+  id: NFBulletGrenadeEMP
+  categories: [ HideSpawnMenu ]
+
+- type: entity
   parent: BulletCap
   id: NFBulletCap
   categories: [ HideSpawnMenu ]
@@ -204,8 +304,8 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: PelletGlassSpread
-  id: NFPelletGlass
+  parent: NFPelletGlass
+  id: NFPelletGlassSpread
   categories: [ HideSpawnMenu ]
   components:
   - type: ProjectileSpread

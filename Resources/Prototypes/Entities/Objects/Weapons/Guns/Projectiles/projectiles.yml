@@ -118,7 +118,6 @@
       fly-by: *flybyfixture
 
 - type: entity
-  abstract: true # Frontier: use _NF variants
   id: BaseBulletPractice
   name: base bullet practice
   parent: BaseBullet
@@ -134,7 +133,6 @@
         Blunt: 1
 
 - type: entity
-  abstract: true # Frontier: use _NF variants
   id: BaseBulletIncendiary
   name: base bullet incendiary
   parent: BaseBullet
@@ -153,7 +151,6 @@
     fireStacks: 0.25
 
 - type: entity
-  abstract: true # Frontier: use _NF variants
   id: BaseBulletAP
   name: base bullet armor-piercing
   parent: BaseBullet
@@ -170,7 +167,6 @@
     ignoreResistances: true
 
 - type: entity
-  abstract: true # Frontier: use _NF variants
   id: BaseBulletUranium
   name: base bullet uranium
   parent: BaseBullet
@@ -187,7 +183,6 @@
 
 # Energy projectiles
 - type: entity
-  abstract: true # Frontier: use _NF variants
   name: taser bolt
   id: BulletTaser
   parent: BaseBullet
@@ -230,7 +225,6 @@
     knockdownAmount: 5
 
 - type: entity
-  abstract: true # Frontier: use _NF variants
   name : disabler bolt
   id: BulletDisabler
   parent: BaseBullet
@@ -274,7 +268,6 @@
     forceSound: true
 
 - type: entity
-  abstract: true # Frontier: use _NF variants
   name : disabler bolt practice
   id: BulletDisablerPractice
   parent: BaseBullet
@@ -438,7 +431,6 @@
   - type: TimedDespawn
     lifetime: 0.4
   - type: GatheringProjectile
-  - type: MiningGatheringSoft # Frontier
 
 - type: entity
   id: BulletKineticShuttle
@@ -448,7 +440,6 @@
   - type: Sprite
     noRot: false
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
-    color: "#FF8888" # Frontier: color it red vs. handheld bolts
     layers:
     - state: chronobolt
       shader: unshaded
@@ -456,18 +447,17 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 0.5 # Frontier 30<0.5
-        Structural: 1 # Frontier 35<1
+        Blunt: 30
+        Structural: 35
   - type: Ammo
     muzzleFlash: HitscanEffect
   - type: TimedDespawn
-    lifetime: 1 # Frontier 1.5<1
+    lifetime: 1.5
   - type: PointLight
     radius: 2.5
-    color: "#FF8888" # Frontier: white<FF8888
+    color: white
     energy: 0.5
   - type: GatheringProjectile
-  - type: MiningGatheringHard # Frontier
 
 - type: entity
   id: BulletCharge
@@ -946,7 +936,6 @@
     - type: GrapplingProjectile
 
 - type: entity
-  abstract: true # Frontier
   name : disabler bolt smg
   id: BulletDisablerSmg
   parent: BaseBullet
@@ -1098,7 +1087,6 @@
       - HideContextMenu
 
 - type: entity
-  abstract: true # Frontier
   name: laser bolt
   id: BulletLaser
   parent: BaseBullet
@@ -1137,7 +1125,6 @@
         Heat: 13
 
 - type: entity
-  abstract: true # Frontier
   name: wide laser barrage
   id: BulletLaserSpread
   categories: [ HideSpawnMenu ]
@@ -1149,7 +1136,6 @@
     spread: 30
 
 - type: entity
-  abstract: true # Frontier
   name: narrow laser barrage
   id: BulletLaserSpreadNarrow
   categories: [ HideSpawnMenu ]
@@ -1161,7 +1147,6 @@
     spread: 10
 
 - type: entity
-  abstract: true # Frontier
   name: disabling laser barrage
   id: BulletDisablerSmgSpread
   categories: [ HideSpawnMenu ]
