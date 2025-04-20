@@ -127,7 +127,7 @@
 - type: entity
   abstract: true # Frontier: use NF variant
   name: pirate cannon
-  parent: [BaseC3PirateContraband, BaseWeaponLauncher] # Frontier: added C3PirateContraband
+  parent: [BaseWeaponLauncher]
   id: WeaponLauncherPirateCannon
   description: Kaboom!
   components:
@@ -153,7 +153,7 @@
         tags:
           - CannonBall
       capacity: 1
-      proto: CannonBall
+      # proto: CannonBall # Frontier
       soundInsert:
         path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
 
