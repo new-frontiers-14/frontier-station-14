@@ -43,6 +43,7 @@ using Content.Shared._NF.ShuttleRecords;
 using Content.Server.StationEvents.Components;
 using Content.Server.Forensics;
 using Content.Shared.Forensics.Components;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -221,10 +222,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttleUid);
         AssignShuttleDeedProperties(deedShuttle, shuttleUid, name, shuttleOwner, voucherUsed);
 
-        if (!voucherUsed)
+        if (!voucherUsed && component.NewJobTitle != null)
         {
-            if (!string.IsNullOrEmpty(component.NewJobTitle))
-                _idSystem.TryChangeJobTitle(targetId, component.NewJobTitle, idCard, player);
+            _idSystem.TryChangeJobTitle(targetId, Loc.GetString(component.NewJobTitle), idCard, player);
         }
 
         // The following block of code is entirely to do with trying to sanely handle moving records from station to station.
