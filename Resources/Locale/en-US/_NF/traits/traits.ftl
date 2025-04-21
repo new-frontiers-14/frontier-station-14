@@ -27,7 +27,7 @@ trait-lizard-accent-desc = Be it through continual ekssposssure or otherwissse, 
 trait-moth-accent-name = Moth accent
 trait-moth-accent-desc = Some of your words have a certain buzzz to them.
 
-trait-dwarf-accent-name = Dwarf accent
+trait-dwarf-accent-name = Dwarven accent
 trait-dwarf-accent-desc = Ye sound like ye've spent tae long wi ae pickaxe in your hands. Rock and stone!
 
 # These traits are bound to be replaced with a slider, but they live here for now.
