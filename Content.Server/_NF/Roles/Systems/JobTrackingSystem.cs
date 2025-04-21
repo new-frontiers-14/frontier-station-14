@@ -46,7 +46,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
         try
         {
             if (!TryComp<StationJobsComponent>(ent.Comp.SpawnStation, out var stationJobs)
-                || _stationJobs.TryGetJobSlot(ent.Comp.SpawnStation, job, out var slots)
+                || !_stationJobs.TryGetJobSlot(ent.Comp.SpawnStation, job, out var slots)
                 || slots == null)
                 return;
 

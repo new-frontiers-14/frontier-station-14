@@ -282,9 +282,7 @@ public sealed class EventManagerSystem : EntitySystem
         foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs)
         {
             if (_jobs.GetNumberOfActiveRoles(jobProtoId, false) < numJobs)
-            {
                 return false;
-            }
         }
         // End Frontier
 
