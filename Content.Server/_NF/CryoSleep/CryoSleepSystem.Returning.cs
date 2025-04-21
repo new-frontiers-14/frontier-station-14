@@ -1,4 +1,3 @@
-using System.Threading;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Shared.Bed.Sleep;
@@ -10,6 +9,8 @@ using Content.Shared.GameTicking;
 using Content.Shared.Players;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
+using Content.Shared._NF.CryoSleep.Events;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server._NF.CryoSleep;
 
@@ -21,7 +22,6 @@ public sealed partial class CryoSleepSystem
     private void InitReturning()
     {
         SubscribeNetworkEvent<WakeupRequestMessage>(OnWakeupMessage);
-        SubscribeNetworkEvent<GetStatusMessage>(OnGetStatusMessage);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(e => ResetCryosleepState(e.PlayerSession.UserId));
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(e => ResetCryosleepState(e.Player.UserId));
     }
@@ -36,12 +36,6 @@ public sealed partial class CryoSleepSystem
 
         var msg = new WakeupRequestMessage.Response(result);
         RaiseNetworkEvent(msg, session.SenderSession);
-    }
-
-    public void OnGetStatusMessage(GetStatusMessage message, EntitySessionEventArgs args)
-    {
-        var msg = new GetStatusMessage.Response(HasCryosleepingBody(args.SenderSession.UserId));
-        RaiseNetworkEvent(msg, args.SenderSession);
     }
 
     /// <summary>
@@ -116,5 +110,21 @@ public sealed partial class CryoSleepSystem
     public bool HasCryosleepingBody(NetUserId id)
     {
         return _storedBodies.ContainsKey(id);
+    }
+
+    public bool TryGetSleepingBody(NetUserId userId, [NotNullWhen(true)] out EntityUid? body, [NotNullWhen(true)] out EntityUid? pod)
+    {
+        if (_storedBodies.TryGetValue(userId, out var storedBody) && storedBody != null)
+        {
+            body = storedBody.Value.Body;
+            pod = storedBody.Value.Cryopod;
+            return true;
+        }
+        else
+        {
+            body = null;
+            pod = null;
+            return false;
+        }
     }
 }

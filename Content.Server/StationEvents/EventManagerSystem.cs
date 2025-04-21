@@ -10,7 +10,7 @@ using Robust.Shared.Random;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.EntityTable;
 using Content.Server.Mind; // Frontier
-using Content.Server._NF.GameTicking.Systems; // Frontier
+using Content.Server._NF.Roles.Systems; // Frontier
 
 namespace Content.Server.StationEvents;
 

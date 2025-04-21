@@ -21,8 +21,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server._Corvax.Respawn;
-using Content.Server._NF.GameRule.Components; // Frontier
+using Content.Server._Corvax.Respawn; // Frontier
+using Content.Shared._NF.Roles.Components; // Frontier
 
 namespace Content.Server.GameTicking
 {
@@ -255,6 +255,7 @@ namespace Content.Server.GameTicking
             jobComp.Job = jobId;
             jobComp.SpawnStation = station;
             jobComp.Active = true;
+            Dirty(mob, jobComp);
             // End Frontier
 
             _roles.MindAddJobRole(newMind, silent: silent, jobPrototype:jobId);

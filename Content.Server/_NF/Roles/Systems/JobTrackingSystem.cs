@@ -1,39 +1,38 @@
 using Content.Server._NF.CryoSleep;
-using Content.Server._NF.GameRule.Components;
 using Content.Server.Afk;
 using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._NF.Roles.Components;
+using Content.Shared._NF.Roles.Systems;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._NF.GameTicking.Systems;
+namespace Content.Server._NF.Roles.Systems;
 
 /// <summary>
 /// This handles job tracking for station jobs that should be reopened on cryo.
 /// </summary>
-public sealed class JobTrackingSystem : EntitySystem
+public sealed class JobTrackingSystem : SharedJobTrackingSystem
 {
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly IAfkManager _afk = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
-
-    public readonly List<ProtoId<JobPrototype>> CryoStorageExceptions = ["Contractor", "Pilot", "Mercenary", "Cyborg"];
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<JobTrackingComponent, CryosleepEnterEvent>(OnJobCryoEntered);
+        SubscribeLocalEvent<JobTrackingComponent, CryosleepBeforeMindRemovedEvent>(OnJobBeforeCryoEntered);
         SubscribeLocalEvent<JobTrackingComponent, MindAddedMessage>(OnJobMindAdded);
         SubscribeLocalEvent<JobTrackingComponent, MindRemovedMessage>(OnJobMindRemoved);
     }
 
-    // If, through admin jiggery pokery, the player returns, we should close the slot if it's opened
+    // If, through admin jiggery pokery, the player returns (or the mob is controlled), we should close the slot if it's opened.
     private void OnJobMindAdded(Entity<JobTrackingComponent> ent, ref MindAddedMessage ev)
     {
         if (ent.Comp.Job is not { } job || ent.Comp.Active)
@@ -41,7 +40,7 @@ public sealed class JobTrackingSystem : EntitySystem
 
         ent.Comp.Active = true;
 
-        if (CryoStorageExceptions.Contains(job))
+        if (!JobShouldBeReopened(ent.Comp.Job.Value))
             return;
 
         try
@@ -64,20 +63,21 @@ public sealed class JobTrackingSystem : EntitySystem
 
     private void OnJobMindRemoved(Entity<JobTrackingComponent> ent, ref MindRemovedMessage ev)
     {
-        if (ent.Comp.Job == null || !ent.Comp.Active || CryoStorageExceptions.Contains(ent.Comp.Job.Value))
+        if (ent.Comp.Job == null || !ent.Comp.Active || !JobShouldBeReopened(ent.Comp.Job.Value))
             return;
 
         OpenJob(ent);
         ent.Comp.Active = false;
     }
 
-    private void OnJobCryoEntered(Entity<JobTrackingComponent> ent, ref CryosleepEnterEvent ev)
+    private void OnJobBeforeCryoEntered(Entity<JobTrackingComponent> ent, ref CryosleepBeforeMindRemovedEvent ev)
     {
-        if (ent.Comp.Job == null || !ent.Comp.Active || CryoStorageExceptions.Contains(ent.Comp.Job.Value))
+        if (ent.Comp.Job == null || !ent.Comp.Active || !JobShouldBeReopened(ent.Comp.Job.Value))
             return;
 
         OpenJob(ent);
-        QueueDel(ent); // Destroy the jobber, mustn't come back.
+        ent.Comp.Active = false; // Entity shouldn't persist, but if something goes wrong, ensure consistent state.
+        ev.DeleteEntity = true;
     }
 
     public void OpenJob(Entity<JobTrackingComponent> ent)
