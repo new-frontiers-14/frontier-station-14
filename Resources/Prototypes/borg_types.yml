@@ -1,4 +1,4 @@
-﻿# Generic borg
+# Generic borg
 - type: borgType
   id: generic
 
@@ -10,9 +10,11 @@
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
+    - BorgModuleScience #until sciborgs are added
 
   defaultModules:
   - BorgModuleTool
+  - BorgModuleJetpack # Frontier
 
   radioChannels:
   - Science
@@ -46,8 +48,9 @@
   defaultModules:
   - BorgModuleTool
   - BorgModuleConstruction
-  - BorgModuleRCD
+  - BorgModuleRCDShipyard # Frontier: RCD<RCDShipyard
   - BorgModuleCable
+  - BorgModuleJetpack # Frontier
 
   radioChannels:
   - Engineering
@@ -83,6 +86,7 @@
   - BorgModuleGrapplingGun
   - BorgModuleMining
   - BorgModuleAppraisal
+  - BorgModuleJetpack # Frontier
 
   radioChannels:
   - Supply
@@ -118,6 +122,7 @@
   defaultModules:
   - BorgModuleLightReplacer
   - BorgModuleCleaning
+  - BorgModuleJetpack # Frontier
 
   radioChannels:
   - Science
@@ -152,6 +157,9 @@
 
   defaultModules:
   - BorgModuleTreatment
+  - BorgModuleAdvancedTreatment # Frontier
+  - BorgModuleDefibrillator # Frontier
+  - BorgModuleJetpack # Frontier
 
   radioChannels:
   - Science
@@ -199,8 +207,11 @@
 
   defaultModules:
   - BorgModuleMusique
-  - BorgModuleService
+  # - BorgModuleService # Frontier: deprecated, use NF variant
   - BorgModuleClowning
+  - BorgModuleBureaucracy # Frontier
+  - BorgModuleNFService # Frontier
+  - BorgModuleJetpack # Frontier
 
   radioChannels:
   - Science

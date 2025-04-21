@@ -37,6 +37,9 @@
   name: mercenary techfab machine board
   description: A machine printed circuit board for a mercenary techfab.
   components:
+    - type: Sprite
+      sprite: _NF/Objects/Misc/module.rsi
+      state: nfsd # dumb, but we don't really have a merc module at the moment
     - type: MachineBoard
       prototype: MercenaryTechFab
       requirements:
@@ -98,6 +101,7 @@
         Manipulator: 3
       stackRequirements:
         Steel: 10
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   id: GaslockFrameMachineCircuitboard
@@ -111,6 +115,7 @@
       prototype: GaslockFrame
       stackRequirements:
         Steel: 10
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 # TechFab
 - type: entity
@@ -131,6 +136,8 @@
   parent: BaseMachineCircuitboard
   name: security thruster machine board
   components:
+  - type: Sprite
+    state: security
   - type: MachineBoard
     prototype: ThrusterSecurity
     requirements:
@@ -143,6 +150,9 @@
   parent: BaseMachineCircuitboard
   name: NFSD thruster machine board
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: nfsd
   - type: MachineBoard
     prototype: ThrusterNfsd
     requirements:
@@ -155,6 +165,8 @@
   parent: BaseMachineCircuitboard
   name: small thruster machine board
   components:
+  - type: Sprite
+    state: supply
   - type: MachineBoard
     prototype: SmallThruster
     requirements:
@@ -173,6 +185,8 @@
   parent: BaseMachineCircuitboard
   name: security gyroscope machine board
   components:
+  - type: Sprite
+    state: security
   - type: MachineBoard
     prototype: GyroscopeSecurity
     requirements:
@@ -186,6 +200,8 @@
   parent: BaseMachineCircuitboard
   name: small security gyroscope machine board
   components:
+  - type: Sprite
+    state: security
   - type: MachineBoard
     prototype: SmallGyroscopeSecurity
     requirements:
@@ -201,6 +217,9 @@
   parent: BaseMachineCircuitboard
   name: NFSD gyroscope machine board
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: nfsd
   - type: MachineBoard
     prototype: GyroscopeNfsd
     requirements:
@@ -214,6 +233,9 @@
   parent: BaseMachineCircuitboard
   name: small NFSD gyroscope machine board
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: nfsd
   - type: MachineBoard
     prototype: SmallGyroscopeNfsd
     requirements:
@@ -229,6 +251,8 @@
   parent: BaseMachineCircuitboard
   name: small gyroscope machine board
   components:
+  - type: Sprite
+    state: supply
   - type: MachineBoard
     prototype: SmallGyroscope
     requirements:
@@ -245,6 +269,9 @@
   name: M_EMP Generator machine board
   description: A machine printed circuit board for a mobile EMP generator.
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: nfsd
   - type: MachineBoard
     prototype: M_Emp
     requirements:
