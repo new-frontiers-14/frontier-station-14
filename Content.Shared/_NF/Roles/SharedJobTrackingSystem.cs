@@ -8,7 +8,7 @@ namespace Content.Shared._NF.Roles.Systems;
 /// </summary>
 public abstract class SharedJobTrackingSystem : EntitySystem
 {
-    public static readonly ProtoId<JobPrototype>[] ReopenExceptions = ["Contractor", "Pilot", "Mercenary", "Cyborg"];
+    public static readonly ProtoId<JobPrototype>[] ReopenExceptions = ["Contractor", "Pilot", "Mercenary", "Borg"];
 
     public static bool JobShouldBeReopened(ProtoId<JobPrototype> job)
     {
