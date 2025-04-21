@@ -59,9 +59,20 @@
   description: A sterile injector for rapid administration of drugs to patients. A cheaper and more specialised version for medical borgs.
   id: BorgHypo
   components:
+  # Frontier: fillable sprite
   - type: Sprite
-    sprite: Objects/Specific/Medical/hypospray.rsi
-    state: borghypo
+    sprite: _NF/Objects/Specific/Medical/borghypo.rsi
+    layers:
+    - state: borghypo
+      map: [ enum.SolutionContainerLayers.Base ]
+    - state: fill-1
+      visible: false
+      map: [ enum.SolutionContainerLayers.Fill ]
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 7
+    fillBaseName: fill-
+  # End Frontier: fillable sprite
   - type: Item
     sprite: Objects/Specific/Medical/hypospray.rsi
   - type: SolutionContainerManager
