@@ -4,8 +4,8 @@ meta:
   engineVersion: 247.2.0
   forkId: ""
   forkVersion: ""
-  time: 04/21/2025 02:04:56
-  entityCount: 723
+  time: 04/21/2025 02:16:43
+  entityCount: 725
 maps: []
 grids:
 - 1
@@ -3734,7 +3734,7 @@ entities:
       pos: 8.5,-10.5
       parent: 1
     - type: FuelGenerator
-      targetPower: 29000
+      targetPower: 26000
 - proto: PortableScrubber
   entities:
   - uid: 561
@@ -5293,22 +5293,22 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        612:
+        574:
         - DoorStatus: Close
     - type: DeviceLinkSink
-      invokeCounter: 3
-  - uid: 612
+      invokeCounter: 4
+  - uid: 574
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,7.5
+      rot: -1.5707963267948966 rad
+      pos: 3.5,7.5
       parent: 1
+    - type: DeviceLinkSink
+      invokeCounter: 1
     - type: DeviceLinkSource
       linkedPorts:
         466:
         - DoorStatus: Close
-    - type: DeviceLinkSink
-      invokeCounter: 3
   - uid: 687
     components:
     - type: Transform
@@ -5317,6 +5317,18 @@ entities:
       parent: 1
 - proto: WindowReinforcedDirectional
   entities:
+  - uid: 612
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,8.5
+      parent: 1
+  - uid: 669
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,9.5
+      parent: 1
   - uid: 688
     components:
     - type: Transform
