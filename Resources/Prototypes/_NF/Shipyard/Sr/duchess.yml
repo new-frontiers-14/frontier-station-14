@@ -9,15 +9,15 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Bottleneck
+  id: Duchess
   parent: BaseVessel
-  name: NT Bottleneck
-  description: A personal transport and mobile office for the station representative.
-  price: 18000 # TODO: fix this value, getting tests to pass - Whatstone
+  name: NT Duchess
+  description: A mobile office and personal transport for the Station Representative, based on the SBB Bodkin.
+  price: 24500 #Appraises at ~22000. Markup of ~9%.
   category: Small
   group: Sr
   access: HeadOfPersonnel
-  shuttlePath: /Maps/_NF/Shuttles/Sr/bottleneck.yml
+  shuttlePath: /Maps/_NF/Shuttles/Sr/duchess.yml
   guidebookPage: Null
   class:
   - Civilian
@@ -25,16 +25,16 @@
   - Plasma
 
 - type: gameMap
-  id: Bottleneck
-  mapName: 'NT Bottleneck'
-  mapPath: /Maps/_NF/Shuttles/Sr/bottleneck.yml
+  id: Duchess
+  mapName: 'NT Duchess'
+  mapPath: /Maps/_NF/Shuttles/Sr/duchess.yml
   minPlayers: 0
   stations:
-    Bottleneck:
+    Duchess:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Bottleneck {1}'
+          mapNameTemplate: 'Duchess {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
