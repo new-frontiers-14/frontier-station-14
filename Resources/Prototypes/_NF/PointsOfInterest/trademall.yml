@@ -46,6 +46,15 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Trade Mall'
+        - type: ExtraStationInformation
+          iconPath: /Textures/_NF/Markers/jobs.rsi/mercenary.png
+          stationSubtext: 'frontier-lobby-trademall-subtext'
+          stationDescription: 'frontier-lobby-trademall-description'
+          lobbySortOrder: 5
+        - type: StationJobs
+          availableJobs:
+            Pilot: [ -1, -1 ]
+            Mercenary: [ -1, -1 ]
         - type: StationDeadDrop
           maxDeadDrops: 2 # A few, its not as big as the original trade outpost
         - type: TradeCrateDestination
