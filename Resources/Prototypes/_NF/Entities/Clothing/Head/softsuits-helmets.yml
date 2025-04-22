@@ -1,4 +1,4 @@
-# BASE
+#region base
 - type: entity
   abstract: true
   parent: ClothingHeadEVAHelmetBase
@@ -64,7 +64,7 @@
     autoRot: true
     netsync: false
 
-# DEPARTMENTAL
+#region Departmental suits
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetHydro
@@ -118,7 +118,7 @@
         color: "#adcfd5"
 
 # COLORED DEPARTMENTAL
-## CONTRACTORS
+#region Contractors
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetContractor
@@ -145,7 +145,7 @@
       - state: equipped-head-visor
         color: "#adcfd5"
 
-## COMMAND
+#region Command
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetSr
@@ -175,6 +175,35 @@
         color: "#f2b833"
       - state: equipped-head-visor
         color: "#fbe6b8"
+  - type: PointLight
+    radius: 5
+    energy: 2
+
+- type: entity
+  parent: ClothingHeadEVAHelmetWithLightBase
+  id: ClothingHeadEVAHelmetStc
+  name: station traffic controller EVA helmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#fe5c00"
+    - state: icon-reinforced-points
+      color: "#704900"
+    - state: icon-visor
+      color: "#adcfd5"
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head-base
+        color: "#fe5c00"
+      - state: equipped-head-reinforced-points
+        color: "#704900"
+      - state: equipped-head-visor
+        color: "#adcfd5"
   - type: PointLight
     radius: 5
     energy: 2
@@ -212,7 +241,7 @@
     radius: 5
     energy: 2
 
-## ENGINEERING
+#region engineering
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetEngineer
@@ -267,7 +296,7 @@
   - type: PointLight
     color: "#adffe6"
 
-## SUPPLY
+#region supply
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetCargo
@@ -322,7 +351,7 @@
   - type: PointLight
     radius: 6
 
-## MEDICAL
+#region medical
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetMedic
@@ -351,7 +380,7 @@
   - type: PointLight
     color: "#adf1ff"
 
-## SCIENCE
+#region science
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetScientist
@@ -380,7 +409,7 @@
   - type: PointLight
     color: "#d6adff"
 
-## SERVICE
+#region service
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetJanitor
@@ -408,6 +437,32 @@
         color: "#bb5cc9"
   - type: PointLight
     color: "#d6adff"
+
+- type: entity
+  parent: ClothingHeadEVAHelmetWithLightBase
+  id: ClothingHeadEVAHelmetValet
+  name: valet EVA helmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#e6001f"
+    - state: icon-reinforced-points
+      color: "#606275"
+    - state: icon-visor
+      color: "#adcfd5"
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head-base
+        color: "#e6001f"
+      - state: equipped-head-reinforced-points
+        color: "#606275"
+      - state: equipped-head-visor
+        color: "#adcfd5"
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -597,7 +652,7 @@
       - EVA_helmet_decal_boxing:
           equipped-head-base: Sixteen # CyberpunkNeon
 
-## WILDCARDS
+#region wildcards
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetPilot
@@ -676,7 +731,7 @@
       - state: equipped-head-visor
         color: "#ffd600"
 
-## NFSD
+#region nfsd
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetNfsd
@@ -703,7 +758,61 @@
       - state: equipped-head-visor
         color: "#52843f"
 
-## PLAYER FACTIONS
+#region pirates
+- type: entity
+  parent: ClothingHeadEVAHelmetWithLightBase
+  id: ClothingHeadEVAHelmetPirate
+  name: pirate EVA helmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#d4a365"
+    - state: icon-reinforced-points
+      color: "#784f1e"
+    - state: icon-visor
+      color: "#68b4ff"
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head-base
+        color: "#d4a365"
+      - state: equipped-head-reinforced-points
+        color: "#784f1e"
+      - state: equipped-head-visor
+        color: "#68b4ff"
+
+#region prisoner
+- type: entity
+  parent: ClothingHeadEVAHelmetWithLightBase
+  id: ClothingHeadEVAHelmetPrisoner
+  name: prisoner EVA helmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#ff8300"
+    - state: icon-reinforced-points
+      color: "#493926"
+    - state: icon-visor
+      color: "#adcfd5"
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head-base
+        color: "#ff8300"
+      - state: equipped-head-reinforced-points
+        color: "#493926"
+      - state: equipped-head-visor
+        color: "#adcfd5"
+
+#region player factions
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
   id: ClothingHeadEVAHelmetLvhi
@@ -756,7 +865,7 @@
       - state: equipped-head-visor
         color: "#8f1717"
 
-#FSB Void suit helmet
+#region FSB Void suit helmet
 - type: entity
   parent: [ ClothingHeadSuitWithLightBase, NFClothingHeadClearEVAHelmetBase ]
   id: ClothingHeadHelmetHardsuitFSB
