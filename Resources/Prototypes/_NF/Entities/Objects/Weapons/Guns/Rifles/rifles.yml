@@ -1,7 +1,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponRifleBarlowsBolt
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleChamber30, NFBaseWeaponFrameRifleSteelbolt ]
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleSteelbolt, NFBaseWeaponRifleChamber30, BaseGunMelee ]
   name: barlows bolt-action rifle # Renamed: real brand name
   description: |-
     A weapon for hunting, or endless trench warfare. Equipped with bayonet.
@@ -10,10 +10,12 @@
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+  - type: AltFireMelee
+    attackType: Light
 
 - type: entity
   id: NFWeaponRifleMusket
-  parent: [ NFBaseWeaponRifleChamber60, NFBaseWeaponFrameRifleSteelbolt ]
+  parent: [ NFBaseWeaponFrameRifleSteelbolt, NFBaseWeaponRifleChamber60 ]
   name: musket
   description: This should've been in a museum long before you were born.
   components:
@@ -36,7 +38,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponRifleCeremonial
-  parent: [ NFBaseWeaponRifleChamber20, NFBaseWeaponFrameRifleFrontierGunsmith ]
+  parent: [ NFBaseWeaponFrameRifleFrontierGunsmith, NFBaseWeaponRifleChamber20 ]
   name: ceremonial rifle
   description: A ceremonial variant of the Mark 1 Rifle, in tasteful blue and white.
   components:
@@ -48,14 +50,14 @@
 #region Frontier
 - type: entity
   id: NFWeaponRifleRepeater
-  parent: [ NFBaseWeaponRifleChamber20, NFBaseWeaponFrameRifleFrontierGunsmith ]
+  parent: [ NFBaseWeaponFrameRifleFrontierGunsmith, NFBaseWeaponRifleChamber20 ]
   name: n2524 pattern repeater
   description: A civilian grade lever action firearm, favored by space cowboys across the Frontier for its reliability.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi
+    sprite: _NF/Objects/Weapons/Guns/Rifles/repeater.rsi
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi
+    sprite: _NF/Objects/Weapons/Guns/Rifles/repeater.rsi
   - type: BallisticAmmoProvider
     capacity: 8
 
