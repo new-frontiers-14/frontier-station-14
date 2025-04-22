@@ -22,6 +22,7 @@ using Content.Shared.Localizations;
 using Content.Shared.Power;
 using Content.Server.Construction; // Frontier
 using Content.Server.DeviceLinking.Events; // Frontier
+using Content.Server.Construction.Components; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -35,6 +36,7 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly ConstructionSystem _construction = default!; // Frontier
 
     // Essentially whenever thruster enables we update the shuttle's available impulses which are used for movement.
     // This is done for each direction available.
@@ -295,6 +297,10 @@ public sealed class ThrusterSystem : EntitySystem
     private void OnMapInit(Entity<ThrusterComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextFire = _timing.CurTime + ent.Comp.FireCooldown;
+        // Frontier: upgradeable parts
+        if (TryComp<MachineComponent>(ent, out var machineComp))
+            _construction.RefreshParts(ent, machineComp);
+        // End Frontier: upgradeable parts
     }
 
     private void OnThrusterShutdown(EntityUid uid, ThrusterComponent component, ComponentShutdown args)
@@ -645,8 +651,10 @@ public sealed class ThrusterSystem : EntitySystem
 
         var thrustRating = args.PartRatings[component.MachinePartThrust];
 
-        if (component.ThrustPerPartLevel.Length <= 0 || thrustRating <= 1)
+        if (component.ThrustPerPartLevel.Length <= 0)
             component.Thrust = component.BaseThrust;
+        else if (thrustRating <= 1)
+            component.Thrust = component.ThrustPerPartLevel[0];
         else if (thrustRating > component.ThrustPerPartLevel.Length)
             component.Thrust = component.ThrustPerPartLevel[^1];
         else
