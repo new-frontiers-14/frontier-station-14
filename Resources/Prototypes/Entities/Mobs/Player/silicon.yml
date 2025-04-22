@@ -430,6 +430,7 @@
   - type: Access
     groups:
     - AllAccess
+    - Silicon
   - type: Eye
     drawFov: false
   - type: Examiner
@@ -603,16 +604,16 @@
         - PositronicBrain
       borg_module:
         - BorgModuleTool
-        # - BorgModuleFireExtinguisher # Frontier
+        # - BorgModuleFireExtinguisher # Frontier: jetpack is superior
+        # - BorgModuleGPS # Frontier: useless
         - BorgModuleJetpack # Frontier
-        - BorgModuleGPS
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
   - type: RandomMetadata
-    nameSegments: [NFNamesBorgUnlocalized] # Frontier: names_borg<NFNamesBorgUnlocalized
+    nameSegments: [NFNamesBorg] # Frontier: NamesBorg<NFNamesBorg
 
 - type: entity
   id: PlayerBorgDerelictGhostRole
