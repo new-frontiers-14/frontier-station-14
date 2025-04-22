@@ -146,7 +146,7 @@ ORDER BY alp.round_id, alp.log_id
 
     first_row = True
     while True:
-        data = cur.fetchmany(5000)
+        data = cur.fetchmany(500)
         if len(data) <= 0:
             break
 
@@ -185,7 +185,7 @@ ORDER BY al.round_id, al.admin_log_id
 
     first_row = True
     while True:
-        data = cur.fetchmany(5000)
+        data = cur.fetchmany(500)
         if len(data) <= 0:
             break
 
