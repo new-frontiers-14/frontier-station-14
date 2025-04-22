@@ -140,8 +140,7 @@ FROM
     admin_log_player alp JOIN admin_dump ad
 ON
     alp.log_id = ad.admin_log_id AND alp.round_id = ad.round_id
-GROUP BY
-    alp.log_id, alp.round_id
+GROUP BY alp.round_id, alp.log_id
 ORDER BY alp.round_id, alp.log_id
     """)
 
@@ -180,8 +179,7 @@ FROM
     admin_log al JOIN admin_dump ad
 ON
     al.admin_log_id = ad.admin_log_id AND al.round_id = ad.round_id
-GROUP BY
-    al.admin_log_id, al.round_id
+GROUP BY al.round_id, al.admin_log_id
 ORDER BY al.round_id, al.admin_log_id
     """)
 
