@@ -11,11 +11,35 @@
 
 - type: listing
   id: UplinkSecuritySpaceBladeSyndicate
-  name:  uplink-spaceblade-syndicate-name
+  name: uplink-spaceblade-syndicate-name
   description: uplink-spaceblade-syndicate-desc
   productEntity: SpaceBladeContra
   icon: { sprite: _NF/Objects/Fun/spaceblade.rsi, state: contraband }
   cost:
     Telecrystal: 1
+  categories:
+    - UplinkPointless
+
+- type: listing
+  id: UplinkEmagPass
+  name: uplink-emag-pass-name
+  description: uplink-emag-pass-desc
+  productEntity: EmagPass
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkDisruption
+
+- type: listing
+  id: UplinkSecuritySyndicateSegway
+  name: uplink-syndicate-segway-name
+  description: uplink-syndicate-segway-desc
+  productEntity: NFCrateFunSyndicateSegway
+  icon: { sprite: Objects/Vehicles/syndicatesegway.rsi, state: vehicle }
+  cost:
+    Telecrystal: 25
   categories:
     - UplinkPointless
