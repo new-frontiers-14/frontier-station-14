@@ -11,6 +11,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Content.Shared._NF.CryoSleep.Events;
 using System.Diagnostics.CodeAnalysis;
+using Content.Server.Ghost;
 
 namespace Content.Server._NF.CryoSleep;
 
@@ -101,7 +102,17 @@ public sealed partial class CryoSleepSystem
     {
         var body = _storedBodies.GetValueOrDefault(id, null);
 
-        if (body != null && _storedBodies.Remove(id) && Transform(body!.Value.Body).ParentUid == _storageMap)
+        _storedBodies.Remove(id);
+
+        // If the user's a ghost, let them know their body's been removed.
+        if (_mind.TryGetMind(id, out _, out var mindComp)
+            && TryComp<GhostComponent>(mindComp.CurrentEntity, out var ghost))
+        {
+            _ghost.SetCanReturnFromCryo(ghost, false);
+        }
+
+        if (body != null
+            && Transform(body.Value.Body).MapUid == _storageMap)
         {
             QueueDel(body.Value.Body);
         }
