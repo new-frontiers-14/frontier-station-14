@@ -60,10 +60,12 @@ def main():
         print(f"Nothing to export. Oldest record {oldest_record} is older than given date {end_date}.")
         return
 
-    old_date = datetime.datetime(oldest_record.year, oldest_record.month, oldest_record.day, tzinfo=datetime.timezone.utc)
+    first_record_time = datetime.datetime(oldest_record.year, oldest_record.month, oldest_record.day, tzinfo=datetime.timezone.utc)
+    old_date = first_record_time
+    months_to_add = 1
 
     while old_date < end_date:
-        new_date = next_month(old_date)
+        new_date = add_months(first_record_time, months_to_add)
         if new_date > end_date:
             new_date = end_date
 
@@ -73,13 +75,15 @@ def main():
         conn.commit()
 
         old_date = new_date
+        months_to_add += 1
 
-
-def next_month(date_in: "datetime.datetime") -> datetime.datetime:
-    new_year = date_in.year + date_in.month // 12
-    new_month = date_in.month % 12 + 1
-    new_day = min(date_in.day, calendar.monthrange(new_year, new_month)[1])
-    return datetime.datetime(new_year, new_month, new_day, tzinfo=datetime.timezone.utc)
+# Taken from https://stackoverflow.com/questions/4130922/ (thank you, David Webb)
+def add_months(date_in: "datetime.datetime", months: int) -> datetime.datetime:
+    month = date_in.month - 1 + months
+    year = date_in.year + date_in.month // 12
+    month = date_in.month % 12 + 1
+    day = min(date_in.day, calendar.monthrange(year, month)[1])
+    return datetime.datetime(year, month, day, tzinfo=datetime.timezone.utc)
 
 def check_schema_version(cur: "psycopg2.cursor", ignore_mismatch: bool):
     cur.execute('SELECT "MigrationId" FROM "__EFMigrationsHistory" ORDER BY "__EFMigrationsHistory" DESC LIMIT 1')
