@@ -22,6 +22,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
     public event Action<ProtoId<JobPrototype>>? OnJobSubtract; // Frontier
     public event Action<string>? OnAdvertisementChanged; // Frontier
     private string? _lastAdvertisement; // Frontier
+    public const int MaxAdvertisementLength = 500; // Frontier
 
     private bool _isPopulating;
 
@@ -82,7 +83,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 
         // Frontier: station/ship advertisements
         // If ropes can be specified in XAML, push this there.
-        AdTextBox.Placeholder = new Rope.Leaf(Loc.GetString("general-station-record-console-ad-default-text"));
+        AdTextBox.Placeholder = new Rope.Leaf(Loc.GetString("general-station-record-console-ad-default-text", ("size", MaxAdvertisementLength)));
         AdSubmitButton.OnPressed += args =>
         {
             var advertisementText = Rope.Collapse(AdTextBox.TextRope);

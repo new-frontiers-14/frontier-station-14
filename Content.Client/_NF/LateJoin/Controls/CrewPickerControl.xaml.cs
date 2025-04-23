@@ -30,11 +30,15 @@ public sealed partial class CrewPickerControl : PickerControl
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
         _spriteSystem = _entitySystem.GetEntitySystem<SpriteSystem>();
+
+        HideJoblessShipsCheckbox.OnPressed += _ => ToggleHideJoblessShips();
+        HideJoblessShipsCheckbox.Pressed = true;
     }
 
     private Dictionary<NetEntity, StationJobInformation> _lobbyJobs = new();
     private CrewListItem.ViewState? _lastSelectedStation;
     public Action<NetEntity, string>? OnJobJoined;
+    private bool _hideJoblessShips = true;
 
     public override void UpdateUi(IReadOnlyDictionary<NetEntity, StationJobInformation> obj)
     {
@@ -66,6 +70,12 @@ public sealed partial class CrewPickerControl : PickerControl
 
         StationName.Text = _lastSelectedStation?.StationName ?? "";
         StationDescription.SetMessage(BuildDescription(_lastSelectedStation));
+    }
+
+    private void ToggleHideJoblessShips()
+    {
+        _hideJoblessShips = HideJoblessShipsCheckbox.Pressed;
+        UpdateUi(_lobbyJobs);
     }
 
     private void OnStationPressed(CrewListItem.ViewState stationItemViewState)
@@ -129,6 +139,12 @@ public sealed partial class CrewPickerControl : PickerControl
 
         foreach (var (stationEntity, stationJobInformation) in stationList)
         {
+            if (_hideJoblessShips
+                && !stationJobInformation.JobsAvailable.Any(x => x.Value != 0))
+            {
+                continue;
+            }
+
             var viewState = new CrewListItem.ViewState(
                 stationEntity,
                 stationJobInformation.GetStationNameWithJobCount(),

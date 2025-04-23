@@ -1,14 +1,15 @@
-using System.Collections.ObjectModel;
+using System.Linq;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Components;
 using Content.Shared.StationRecords;
 using Robust.Server.GameObjects;
-using System.Linq;
-using Content.Shared.Roles;
+using Content.Shared.Roles; // Frontier
 using Robust.Shared.Prototypes; // Frontier
 using Content.Shared.Access.Systems; // Frontier
-using Content.Server.Station.Components;
+using Content.Server.Station.Components; // Frontier
 using Content.Server._NF.Station.Components; // Frontier
+using Content.Server.Administration.Logs;
+using Content.Shared.Database; // Frontier
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -17,18 +18,18 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!; // Frontier
     [Dependency] private readonly AccessReaderSystem _access = default!; // Frontier
     [Dependency] private readonly IPrototypeManager _proto = default!; // Frontier
+    [Dependency] private readonly IAdminLogManager _adminLog = default!; // Frontier
 
     public override void Initialize()
     {
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AfterGeneralRecordCreatedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordRemovedEvent>(UpdateUserInterface);
-        SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AdjustStationJobMsg>(OnAdjustJob); // Frontier
-        SubscribeLocalEvent<GeneralStationRecordConsoleComponent, SetStationAdvertisementMsg>(OnAdvertisementChanged); // Frontier
+        //SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AdjustStationJobMsg>(OnAdjustJob); // Frontier
+        //SubscribeLocalEvent<GeneralStationRecordConsoleComponent, SetStationAdvertisementMsg>(OnAdvertisementChanged); // Frontier
 
         Subs.BuiEvents<GeneralStationRecordConsoleComponent>(GeneralStationRecordConsoleKey.Key, subs =>
         {
@@ -36,6 +37,8 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
             subs.Event<SelectStationRecord>(OnKeySelected);
             subs.Event<SetStationRecordFilter>(OnFiltersChanged);
             subs.Event<DeleteStationRecord>(OnRecordDelete);
+            subs.Event<AdjustStationJobMsg>(OnAdjustJob); // Frontier
+            subs.Event<SetStationAdvertisementMsg>(OnAdvertisementChanged); // Frontier
         });
     }
 
@@ -68,7 +71,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
     // Frontier: job counts, advertisements
     private void OnAdjustJob(Entity<GeneralStationRecordConsoleComponent> ent, ref AdjustStationJobMsg msg)
     {
-        var stationUid = _stationSystem.GetOwningStation(ent);
+        var stationUid = _station.GetOwningStation(ent);
         if (stationUid is EntityUid station)
         {
             // Frontier: check access - hack because we don't have an AccessReaderComponent, it's the station
@@ -116,11 +119,12 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
 
     private void OnAdvertisementChanged(Entity<GeneralStationRecordConsoleComponent> ent, ref SetStationAdvertisementMsg msg)
     {
-        var stationUid = _stationSystem.GetOwningStation(ent);
+        var stationUid = _station.GetOwningStation(ent);
         if (stationUid is EntityUid station
             && TryComp<ExtraVesselInformationComponent>(station, out var vesselInfo))
         {
             vesselInfo.Advertisement = msg.Advertisement;
+            _adminLog.Add(LogType.ShuttleInfoChanged, $"{ToPrettyString(msg.Actor):actor} set their shuttle {ToPrettyString(station)}'s ad text to {vesselInfo.Advertisement}");
             UpdateUserInterface(ent); // Note: this won't push updates to any clients - less important vs. job state.
         }
     }
