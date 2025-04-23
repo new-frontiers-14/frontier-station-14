@@ -31,6 +31,7 @@ gun-examine-energybolt-disabler-practice = 25J disabler bolt
 gun-examine-energybolt-holoflare = holoflare
 gun-examine-pulse-low = 1750J energy pulse
 gun-examine-energybolt-emp = EMP bolt
+gun-examine-energybolt-kinetic-high = 1600J kinetic bolt
 gun-examine-energybolt-kinetic-medium = 1100J kinetic bolt
 gun-examine-energybolt-kinetic-low = 850J kinetic bolt
 gun-examine-caliber-40mm-grenade = 40mm grenades

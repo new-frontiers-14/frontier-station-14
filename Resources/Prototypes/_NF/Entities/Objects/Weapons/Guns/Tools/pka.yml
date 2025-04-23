@@ -6,11 +6,16 @@
   description: Fires low-damage kinetic bolts at a short range.
   abstract: true
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
   - type: Sprite
     layers:
     - state: icon
     - state: animation-icon
       visible: false
+      shader: unshaded
       map: [ "empty-icon" ]
   - type: Gun
     projectileSpeed: 20
@@ -69,7 +74,24 @@
 
 #region chamber
 - type: entity
-  id: NFBaseWeaponFramePkaKineticMedium
+  id: NFBaseWeaponPkaChamberKineticHigh
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-kinetic-high
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticHighPower
+    capacity: 2
+    count: 1
+
+- type: entity
+  id: NFBaseWeaponPkaChamberKineticMedium
   abstract: true
   components:
   - type: Gun
@@ -77,7 +99,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.75
+    rechargeCooldown: 0.85
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
@@ -86,7 +108,7 @@
     count: 1
 
 - type: entity
-  id: NFBaseWeaponFramePkaKineticLow
+  id: NFBaseWeaponPkaChamberKineticLow
   abstract: true
   components:
   - type: Gun
@@ -94,7 +116,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.9
+    rechargeCooldown: 0.95
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
@@ -104,8 +126,22 @@
 
 #region WizDen
 - type: entity
+  id: NFWeaponPkaCannon
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseWeaponFramePkaNanotrasen, NFBaseWeaponPkaChamberKineticHigh ]
+  name: proto-kinetic accelerator cannon
+  description: Fires high-damage kinetic bolts at a short range, strong enough to destroy hard rocks.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+
+#region Frontier
+- type: entity
   id: NFWeaponPka
-  parent: [ NFBaseWeaponFramePkaNanotrasen, NFBaseWeaponFramePkaKineticMedium ]
+  parent: [ NFBaseWeaponFramePkaNanotrasen, NFBaseWeaponPkaChamberKineticMedium ]
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
@@ -121,10 +157,9 @@
     node: start
     deconstructionTarget: null
 
-#region Frontier
 - type: entity
   id: NFWeaponPkaSawn
-  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseWeaponFramePkaCustomMod, NFBaseWeaponFramePkaKineticLow ]
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseWeaponFramePkaCustomMod, NFBaseWeaponPkaChamberKineticLow ]
   name: sawn-off proto-kinetic accelerator
   description: Boundaries and rules are meant to be broken; otherwise, there will be no progress, but this thing here is a good argument against that statement.
   components:

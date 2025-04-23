@@ -113,7 +113,7 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 12
+        Blunt: 10
         Structural: 30
   - type: Ammo
     muzzleFlash: HitscanEffect
@@ -123,6 +123,8 @@
     radius: 2.5
     color: white
     energy: 0.5
+  - type: GatheringProjectile
+  - type: MiningGatheringSoft
 
 - type: entity
   id: BulletKineticMediumPower
@@ -134,5 +136,26 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 14
+        Blunt: 13
         Structural: 30
+
+- type: entity
+  id: BulletKineticHighPower
+  name: kinetic bolt
+  parent: BulletKineticLowPower
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: chronobolt
+      shader: unshaded
+      color: "#a08662"
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 18
+        Structural: 30
+  - type: PointLight
+    color: "#a08662"
+  - type: MiningGatheringHard
