@@ -13,6 +13,8 @@
   - type: Sprite
     layers:
     - state: icon
+    - state: icon-unshaded
+      shader: unshaded
     - state: animation-icon
       visible: false
       shader: unshaded
@@ -132,11 +134,11 @@
   description: Fires high-damage kinetic bolts at a short range, strong enough to destroy hard rocks.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
   - type: Item
-    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
 
 #region Frontier
 - type: entity
@@ -164,11 +166,11 @@
   description: Boundaries and rules are meant to be broken; otherwise, there will be no progress, but this thing here is a good argument against that statement.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_sawn.rsi
   - type: Item
-    sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_sawn.rsi
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_sawn.rsi
   - type: Construction
     graph: PKASawn
     node: pkasawn
