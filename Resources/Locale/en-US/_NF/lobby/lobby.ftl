@@ -42,3 +42,8 @@ frontier-lobby-pirate-description = This is the ultimate hideout where scallywag
    - Find a crew to join
    - Socialize with other pirates
  The roles on this station are whitelist-only and require an application in the discord to be accepted.
+
+frontier-lobby-crew-vessel = [color=#A88B5E]Vessel:[/color] {$name}
+frontier-lobby-crew-class-prefix = [color=#A88B5E]Classes:[/color]{" "}
+frontier-lobby-crew-size = [color=#A88B5E]Size:[/color] {$size}
+frontier-lobby-crew-class-advertisement = [color=#A88B5E]Advertisement:[/color]

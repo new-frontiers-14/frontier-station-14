@@ -41,10 +41,10 @@ public sealed class GeneralStationRecordConsoleState : BoundUserInterfaceState
     public IReadOnlyDictionary<ProtoId<JobPrototype>, int?>? JobList { get; } // Frontier
     public readonly StationRecordsFilter? Filter;
     public readonly bool CanDeleteEntries;
-    public readonly string Advertisement; // Frontier
+    public readonly string? Advertisement; // Frontier
 
     public GeneralStationRecordConsoleState(uint? key, GeneralStationRecord? record,
-        Dictionary<uint, string>? recordListing, IReadOnlyDictionary<ProtoId<JobPrototype>, int?>? jobList, StationRecordsFilter? newFilter, bool canDeleteEntries, string advertisement) // Frontier: add jobList, advertisement
+        Dictionary<uint, string>? recordListing, IReadOnlyDictionary<ProtoId<JobPrototype>, int?>? jobList, StationRecordsFilter? newFilter, bool canDeleteEntries, string? advertisement) // Frontier: add jobList, advertisement
     {
         SelectedKey = key;
         Record = record;

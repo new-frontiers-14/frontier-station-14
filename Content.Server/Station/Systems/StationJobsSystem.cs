@@ -480,7 +480,7 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     private bool _availableJobsDirty;
 
-    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new Dictionary<NetEntity, StationJobInformation>());
+    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new());
 
     /// <summary>
     /// Assembles an event from the current available-to-play jobs.
@@ -491,7 +491,7 @@ public sealed partial class StationJobsSystem : EntitySystem
     {
         // If late join is disallowed, return no available jobs.
         if (_gameTicker.DisallowLateJoin)
-            return new TickerJobsAvailableEvent(new Dictionary<NetEntity, StationJobInformation>());
+            return new TickerJobsAvailableEvent(new());
 
         var query = EntityQueryEnumerator<StationJobsComponent>();
 
@@ -503,40 +503,43 @@ public sealed partial class StationJobsSystem : EntitySystem
             var stationNetEntity = GetNetEntity(station);
             var list = comp.JobList.ToDictionary(x => x.Key, x => x.Value);
 
-            // Frontier addition
-            // Every station can have ExtraStationInformation, which can contain a subtext, description, and icon.
-            // Typically shown for major stations, and not ships.
-            // These are shown in the latejoin menu in the pre-round lobby.
-            LocId? stationSubtext = null;
-            LocId? stationDescription = null;
-            ResPath? stationIcon = null;
-            var lobbySortOrder = 0;
             var isLateJoinStation = false;
-
-            // Frontier addition
-            if (EntityManager.TryGetComponent<ExtraStationInformationComponent>(station, out var extraStationInformation))
+            VesselDisplayInformation? vesselDisplay = null;
+            StationDisplayInformation? stationDisplay = null;
+            // Frontier: overwrite station/vessel information generation
+            if (TryComp<ExtraVesselInformationComponent>(station, out var extraVesselInfo))
             {
-                // Any station with ExtraStationInformation is considered a latejoin station.
-                isLateJoinStation = extraStationInformation.IsLateJoinStation;
-                stationSubtext = extraStationInformation.StationSubtext;
-                stationDescription = extraStationInformation.StationDescription;
-                stationIcon = extraStationInformation.IconPath;
-                lobbySortOrder = extraStationInformation.LobbySortOrder;
+                vesselDisplay = new VesselDisplayInformation(
+                    vesselAdvertisement: extraVesselInfo.Advertisement,
+                    vessel: extraVesselInfo.Vessel,
+                    hiddenIfNoJobs: extraVesselInfo.HiddenWithoutOpenJobs
+                );
+                isLateJoinStation = false;
             }
-
-            // Frontier addition
+            else
+            {
+                isLateJoinStation = true;
+                if (TryComp<ExtraStationInformationComponent>(station, out var extraStationInformation))
+                {
+                    stationDisplay = new StationDisplayInformation(
+                        stationSubtext: extraStationInformation.StationSubtext,
+                        stationDescription: extraStationInformation.StationDescription,
+                        stationIcon: extraStationInformation.IconPath,
+                        lobbySortOrder: extraStationInformation.LobbySortOrder
+                    );
+                }
+            }
             var stationJobInformation = new StationJobInformation(
                 stationName: Name(station),
                 jobsAvailable: list,
-                stationSubtext: stationSubtext,
-                stationDescription: stationDescription,
-                stationIcon: stationIcon,
-                lobbySortOrder: lobbySortOrder,
-                isLateJoinStation: isLateJoinStation
+                isLateJoinStation: isLateJoinStation,
+                stationDisplayInfo: stationDisplay,
+                vesselDisplayInfo: vesselDisplay
             );
             stationJobInformationList.Add(stationNetEntity, stationJobInformation);
+            // End Frontier: overwrite station/vessel information generation
         }
-        return new TickerJobsAvailableEvent(stationJobInformationList);
+        return new TickerJobsAvailableEvent(stationJobInformationList); // Frontier: add second param
     }
 
     /// <summary>

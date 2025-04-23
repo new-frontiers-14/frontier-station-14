@@ -1,0 +1,17 @@
+using Content.Shared._NF.Shipyard.Prototypes;
+using Robust.Shared.Prototypes;
+
+namespace Content.Server._NF.Station.Components;
+
+[RegisterComponent]
+public sealed partial class ExtraVesselInformationComponent : Component
+{
+    [DataField]
+    public ProtoId<VesselPrototype>? Vessel;
+
+    [DataField]
+    public string Advertisement = string.Empty;
+
+    [DataField]
+    public bool HiddenWithoutOpenJobs;
+}
