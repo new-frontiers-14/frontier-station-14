@@ -76,10 +76,10 @@ def main():
 
 
 def next_month(date_in: "datetime.datetime") -> datetime.datetime:
-    if (date_in.month == 12):
-        return datetime.datetime(date_in.year + 1, 1, date_in.day, tzinfo=datetime.timezone.utc)
-    else:
-        return datetime.datetime(date_in.year, date_in.month + 1, date_in.day, tzinfo=datetime.timezone.utc)
+    new_year = date_in.year + date_in.month // 12
+    new_month = date_in.month % 12 + 1
+    new_day = min(date_in.day, calendar.monthrange(new_year, new_month)[1])
+    return datetime.datetime(new_year, new_month, new_day, tzinfo=datetime.timezone.utc)
 
 def check_schema_version(cur: "psycopg2.cursor", ignore_mismatch: bool):
     cur.execute('SELECT "MigrationId" FROM "__EFMigrationsHistory" ORDER BY "__EFMigrationsHistory" DESC LIMIT 1')
