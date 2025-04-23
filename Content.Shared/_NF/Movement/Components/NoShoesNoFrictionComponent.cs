@@ -8,7 +8,7 @@ namespace Content.Shared._NF.Movement.Components;
 public sealed partial class NoShoesNoFrictionComponent : Component
 {
     /// <summary>
-    /// Slot the clothing has to be worn in to work.
+    /// Slot the clothing has to not be worn in to work.
     /// </summary>
     [DataField]
     public string Slot = "shoes";
