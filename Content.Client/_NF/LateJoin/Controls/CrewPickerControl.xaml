@@ -22,6 +22,7 @@
                                   HorizontalExpand="True"
                                   MinSize="50 50"/>
                 </ScrollContainer>
+
                 <CheckBox Name="HideJoblessShipsCheckbox"
                           Text="{Loc 'frontier-lobby-crew-only-hide-jobless'}"
                           Margin="10 5 0 5"/>
@@ -38,7 +39,8 @@
                 <BoxContainer Orientation="Vertical"
                               VerticalExpand="True"
                               HorizontalExpand="True"
-                              Margin="20">
+                              Margin="20"
+                              SizeFlagsStretchRatio="2">
                     <Label Name="StationName"
                            HorizontalExpand="True"
                            StyleClasses="FancyWindowTitle" />
@@ -46,17 +48,19 @@
                     <ScrollContainer VerticalExpand="True"
                                      HorizontalExpand="True"
                                      VScrollEnabled="True"
-                                     Margin="20">
+                                     HScrollEnabled="False">
                         <RichTextLabel Name="StationDescription" />
                     </ScrollContainer>
                 </BoxContainer>
 
                 <Label Text="{Loc 'frontier-lobby-available-jobs'}"
-                       Margin="20 4 0 4"
+                       Margin="20 0 0 4"
                        StyleClasses="FancyWindowTitle" />
+
                 <ScrollContainer VerticalExpand="True"
                                  HorizontalExpand="True"
-                                 VScrollEnabled="True">
+                                 VScrollEnabled="True"
+                                 SizeFlagsStretchRatio="1">
                     <BoxContainer Name="StationJobItemList"
                                   Orientation="Vertical"
                                   HorizontalExpand="True"
