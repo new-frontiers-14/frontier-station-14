@@ -134,6 +134,9 @@
   placement:
     mode: SnapgridCenter
   components:
+    - type: SubFloorHide # Frontier: show the gas mixer
+      visibleLayers: # Frontier: show the gas mixer
+      - enum.SubfloorLayers.FirstLayer # Frontier: show the gas mixer
     - type: Sprite
       sprite: Structures/Piping/Atmospherics/gasmixer.rsi
       layers:
@@ -233,6 +236,8 @@
     - type: SubFloorHide
       blockInteractions: false
       blockAmbience: false
+      visibleLayers: # Frontier
+      - enum.SubfloorLayers.FirstLayer # Frontier
     - type: NodeContainer
       nodes:
         inlet:
