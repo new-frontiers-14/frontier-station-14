@@ -86,12 +86,16 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
         // Frontier: station/ship advertisements
         // If ropes can be specified in XAML, push this there.
         AdTextBox.Placeholder = new Rope.Leaf(Loc.GetString("general-station-record-console-ad-default-text", ("size", MaxAdvertisementLength)));
-        AdTextBox.OnTextChanged += _ => { _advertisementEdited = true; AdUnsavedChanges.Visible = true; AdSubmitButton.Disabled = false; };
+        AdTextBox.OnTextChanged += _ =>
+        {
+            var ropeEqual = GetAdvertisementString() == _lastAdvertisement;
+            _advertisementEdited = !ropeEqual;
+            AdUnsavedChanges.Visible = !ropeEqual;
+            AdSubmitButton.Disabled = ropeEqual;
+        };
         AdSubmitButton.OnPressed += _ =>
         {
-            var advertisementText = Rope.Collapse(AdTextBox.TextRope);
-            if (advertisementText.Length > 500)
-                advertisementText = advertisementText.Substring(0, 500);
+            var advertisementText = GetAdvertisementString();
 
             if (advertisementText != _lastAdvertisement)
             {
@@ -237,6 +241,14 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
             jobEntry.IncreaseJobSlot.OnPressed += (args) => { OnJobAdd?.Invoke(job); };
             JobListing.AddChild(jobEntry);
         }
+    }
+
+    private string GetAdvertisementString()
+    {
+        var advertisementText = Rope.Collapse(AdTextBox.TextRope);
+        if (advertisementText.Length > 500)
+            advertisementText = advertisementText.Substring(0, 500);
+        return advertisementText;
     }
     // End Frontier: job container
 }
