@@ -16,8 +16,7 @@ public sealed partial class CrewListItem : PanelContainer
         string stationDescription,
         bool selected,
         string? iconPath,
-        ProtoId<VesselPrototype>? vessel
-        )
+        ProtoId<VesselPrototype>? vessel)
     {
         public string StationName { get; } = stationName;
         public string StationSubtext { get; } = stationSubtext;

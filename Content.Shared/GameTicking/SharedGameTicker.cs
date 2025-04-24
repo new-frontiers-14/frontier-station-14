@@ -144,7 +144,7 @@ namespace Content.Shared.GameTicking
 
     // Frontier: station job info, optional structs
     /// <summary>
-    /// Station-specific fields
+    /// General job information for each station-like entity (both stations and shuttles)
     /// </summary>
     /// <param name="stationName">The name of the station.</param>
     /// <param name="jobsAvailable">A dictionary of job prototypes and the number of jobs positions available for it.</param>
@@ -204,7 +204,7 @@ namespace Content.Shared.GameTicking
         public ProtoId<VesselPrototype>? Vessel { get; } = vessel;
         public bool HiddenIfNoJobs { get; } = hiddenIfNoJobs;
     }
-    // End Frontier
+    // End Frontier: station job info, optional structs
 
     [Serializable, NetSerializable]
     public sealed class TickerJobsAvailableEvent(

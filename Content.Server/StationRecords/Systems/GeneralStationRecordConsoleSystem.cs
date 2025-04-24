@@ -8,8 +8,9 @@ using Robust.Shared.Prototypes; // Frontier
 using Content.Shared.Access.Systems; // Frontier
 using Content.Server.Station.Components; // Frontier
 using Content.Server._NF.Station.Components; // Frontier
-using Content.Server.Administration.Logs;
+using Content.Server.Administration.Logs; // Frontier
 using Content.Shared.Database; // Frontier
+using Content.Shared._NF.StationRecords; // Frontier
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -28,8 +29,6 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AfterGeneralRecordCreatedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordRemovedEvent>(UpdateUserInterface);
-        //SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AdjustStationJobMsg>(OnAdjustJob); // Frontier
-        //SubscribeLocalEvent<GeneralStationRecordConsoleComponent, SetStationAdvertisementMsg>(OnAdvertisementChanged); // Frontier
 
         Subs.BuiEvents<GeneralStationRecordConsoleComponent>(GeneralStationRecordConsoleKey.Key, subs =>
         {
@@ -121,14 +120,15 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
     {
         var stationUid = _station.GetOwningStation(ent);
         if (stationUid is EntityUid station
-            && TryComp<ExtraVesselInformationComponent>(station, out var vesselInfo))
+            && TryComp<ExtraShuttleInformationComponent>(station, out var vesselInfo))
         {
             vesselInfo.Advertisement = msg.Advertisement;
             _adminLog.Add(LogType.ShuttleInfoChanged, $"{ToPrettyString(msg.Actor):actor} set their shuttle {ToPrettyString(station)}'s ad text to {vesselInfo.Advertisement}");
-            UpdateUserInterface(ent); // Note: this won't push updates to any clients - less important vs. job state.
+            UpdateUserInterface(ent);
+            _stationJobsSystem.UpdateJobsAvailable(); // Nasty - ideally this sends out partial information - one ship changed its advertisement.
         }
     }
-    // End Frontier: job count edit
+    // End Frontier: job counts, advertisements
 
     private void UpdateUserInterface(Entity<GeneralStationRecordConsoleComponent> ent)
     {
@@ -141,7 +141,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         if (owningStation != null)
         {
             jobList = _stationJobsSystem.GetJobs(owningStation.Value);
-            if (TryComp<ExtraVesselInformationComponent>(owningStation, out var extraVessel))
+            if (TryComp<ExtraShuttleInformationComponent>(owningStation, out var extraVessel))
                 advertisement = extraVessel.Advertisement;
         }
 

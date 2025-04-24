@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.StationRecords;
+namespace Content.Shared._NF.StationRecords;
 
 [Serializable, NetSerializable]
 public sealed class AdjustStationJobMsg : BoundUserInterfaceMessage
@@ -25,4 +25,3 @@ public sealed class SetStationAdvertisementMsg : BoundUserInterfaceMessage
         Advertisement = advertisement;
     }
 }
-

@@ -52,7 +52,7 @@ public sealed class GeneralStationRecordConsoleState : BoundUserInterfaceState
         Filter = newFilter;
         JobList = jobList; // Frontier
         CanDeleteEntries = canDeleteEntries;
-        Advertisement = advertisement;
+        Advertisement = advertisement; // Frontier
     }
 
     public GeneralStationRecordConsoleState() : this(null, null, null, null, null, false, string.Empty)

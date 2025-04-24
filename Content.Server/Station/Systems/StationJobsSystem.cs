@@ -480,7 +480,7 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     private bool _availableJobsDirty;
 
-    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new());
+    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new()); // Frontier: use one dictionary of composite objects instead of two
 
     /// <summary>
     /// Assembles an event from the current available-to-play jobs.
@@ -491,7 +491,7 @@ public sealed partial class StationJobsSystem : EntitySystem
     {
         // If late join is disallowed, return no available jobs.
         if (_gameTicker.DisallowLateJoin)
-            return new TickerJobsAvailableEvent(new());
+            return new TickerJobsAvailableEvent(new()); // Frontier: changed param type
 
         var query = EntityQueryEnumerator<StationJobsComponent>();
 
@@ -503,11 +503,11 @@ public sealed partial class StationJobsSystem : EntitySystem
             var stationNetEntity = GetNetEntity(station);
             var list = comp.JobList.ToDictionary(x => x.Key, x => x.Value);
 
+            // Frontier: overwrite station/vessel information generation
             var isLateJoinStation = false;
             VesselDisplayInformation? vesselDisplay = null;
             StationDisplayInformation? stationDisplay = null;
-            // Frontier: overwrite station/vessel information generation
-            if (TryComp<ExtraVesselInformationComponent>(station, out var extraVesselInfo))
+            if (TryComp<ExtraShuttleInformationComponent>(station, out var extraVesselInfo))
             {
                 if (extraVesselInfo.HiddenWithoutOpenJobs && !list.Any(x => x.Value != 0))
                     continue;
@@ -517,7 +517,6 @@ public sealed partial class StationJobsSystem : EntitySystem
                     vessel: extraVesselInfo.Vessel,
                     hiddenIfNoJobs: extraVesselInfo.HiddenWithoutOpenJobs
                 );
-                isLateJoinStation = false;
             }
             else
             {
@@ -542,13 +541,13 @@ public sealed partial class StationJobsSystem : EntitySystem
             stationJobInformationList.Add(stationNetEntity, stationJobInformation);
             // End Frontier: overwrite station/vessel information generation
         }
-        return new TickerJobsAvailableEvent(stationJobInformationList); // Frontier: add second param
+        return new TickerJobsAvailableEvent(stationJobInformationList); // Frontier: changed param type
     }
 
     /// <summary>
     /// Updates the cached available jobs. Moderately expensive.
     /// </summary>
-    private void UpdateJobsAvailable()
+    public void UpdateJobsAvailable() // Frontier: private<public
     {
         _availableJobsDirty = true;
     }

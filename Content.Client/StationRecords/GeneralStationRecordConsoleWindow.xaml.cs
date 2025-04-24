@@ -5,6 +5,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes; // Frontier
 using Content.Shared.Roles; // Frontier
 using Robust.Shared.Utility; // Frontier
+using Content.Client._NF.StationRecords; // Frontier
 
 namespace Content.Client.StationRecords;
 

@@ -1,9 +1,8 @@
-using Content.Shared.Roles;
 using Content.Shared.StationRecords;
-using Robust.Client.Input;
 using Robust.Client.UserInterface;
-using Robust.Shared.Prototypes;
-using static Robust.Client.UserInterface.Controls.BaseButton;
+using Content.Shared._NF.StationRecords; // Frontier
+using Content.Shared.Roles; // Frontier
+using Robust.Shared.Prototypes; // Frontier
 
 namespace Content.Client.StationRecords;
 

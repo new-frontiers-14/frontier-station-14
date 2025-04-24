@@ -3,8 +3,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Station.Components;
 
+/// <summary>
+/// The counterpart to ExtraStationInformationComponent - extra info to display on the latejoin crew tab.
+/// </summary>
 [RegisterComponent]
-public sealed partial class ExtraVesselInformationComponent : Component
+public sealed partial class ExtraShuttleInformationComponent : Component
 {
     [DataField]
     public ProtoId<VesselPrototype>? Vessel;
