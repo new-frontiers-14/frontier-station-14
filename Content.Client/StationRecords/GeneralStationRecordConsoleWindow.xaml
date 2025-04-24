@@ -31,9 +31,21 @@
                 </ScrollContainer> <!-- Frontier: put record info in a scroll box -->
                 <!-- Frontier: ship bio -->
                 <BoxContainer Name="AdContainer" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Visible="False">
-                    <Label Name="AdTitle" Text="{Loc 'general-station-record-console-ad-label'}" StyleClasses="LabelKeyText" Visible="False"/>
+                    <Label Name="AdTitle" Text="{Loc 'general-station-record-console-ad-label'}" StyleClasses="LabelKeyText"/>
                     <TextEdit Name="AdTextBox" MinHeight="100" VerticalExpand="True" HorizontalExpand="True"/>
-                    <Button Name="AdSubmitButton" SetSize="100 30" HorizontalAlignment="Right" Text="{Loc 'general-station-record-console-ad-submit'}"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Label Name="AdUnsavedChanges"
+                               Text="{Loc 'general-station-record-console-ad-unsaved-changes'}"
+                               Visible="False"
+                               HorizontalAlignment="Right"
+                               FontColorOverride="yellow"
+                               Margin="0 0 5 0"/>
+                        <Button Name="AdSubmitButton"
+                                Text="{Loc 'general-station-record-console-ad-submit'}"
+                                Disabled="True"
+                                SetSize="100 30"
+                                HorizontalAlignment="Right"/>
+                    </BoxContainer>
                 </BoxContainer>
                 <!-- Frontier: end ship bio -->
             </BoxContainer>

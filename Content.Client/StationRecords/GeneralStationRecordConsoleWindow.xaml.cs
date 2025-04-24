@@ -23,6 +23,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
     public event Action<ProtoId<JobPrototype>>? OnJobSubtract; // Frontier
     public event Action<string>? OnAdvertisementChanged; // Frontier
     private string? _lastAdvertisement; // Frontier
+    private bool _advertisementEdited; // Frontier
     public const int MaxAdvertisementLength = 500; // Frontier
 
     private bool _isPopulating;
@@ -85,7 +86,8 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
         // Frontier: station/ship advertisements
         // If ropes can be specified in XAML, push this there.
         AdTextBox.Placeholder = new Rope.Leaf(Loc.GetString("general-station-record-console-ad-default-text", ("size", MaxAdvertisementLength)));
-        AdSubmitButton.OnPressed += args =>
+        AdTextBox.OnTextChanged += _ => { _advertisementEdited = true; AdUnsavedChanges.Visible = true; AdSubmitButton.Disabled = false; };
+        AdSubmitButton.OnPressed += _ =>
         {
             var advertisementText = Rope.Collapse(AdTextBox.TextRope);
             if (advertisementText.Length > 500)
@@ -96,6 +98,9 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
                 _lastAdvertisement = advertisementText; // Prevent quick-sending dupes.
                 OnAdvertisementChanged?.Invoke(advertisementText);
             }
+            _advertisementEdited = false;
+            AdUnsavedChanges.Visible = false;
+            AdSubmitButton.Disabled = true;
         };
         // End Frontier: station/ship advertisements
     }
@@ -126,12 +131,11 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 
         if (state.Advertisement != null)
         {
-            AdTitle.Visible = true;
             AdContainer.Visible = true;
             _lastAdvertisement = state.Advertisement;
 
             // Overwrite text box contents only if not being edited
-            if (!AdTextBox.HasKeyboardFocus())
+            if (!_advertisementEdited && !AdTextBox.HasKeyboardFocus())
                 AdTextBox.TextRope = new Rope.Leaf(state.Advertisement);
         }
         // End Frontier: station/ship advertisements
