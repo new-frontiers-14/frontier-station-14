@@ -311,3 +311,37 @@
     proto: BulletAcid
     capacity: 1
     count: 1
+
+- type: entity
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobDragonDungeon, NFMobBossRestrictions ]
+  id: NFMobDragonDungeon
+  suffix: Dungeon, Frontier
+  components:
+  - type: GhostRole
+    description: ghost-role-information-space-dragon-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.7
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  # less meat spawned since it's a lot easier to kill
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatDragon
+      amount: 3
+    - id: DragonEgg
+      amount: 1
+      prob: 0.3
+  # half damage, spread evenly
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 15
+  - type: ActionGun
+    action: ActionDragonsBreath
+    gunProto: DragonsBreathGun
