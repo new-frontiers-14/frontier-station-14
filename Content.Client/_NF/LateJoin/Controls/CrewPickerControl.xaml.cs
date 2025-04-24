@@ -58,9 +58,9 @@ public sealed partial class CrewPickerControl : PickerControl
 
         // Build station jobs, the right section of the screen.
         StationJobItemList.RemoveAllChildren();
-        if (_lastSelectedStation != null)
+        if (_lastSelectedStation != null && obj.TryGetValue(_lastSelectedStation.StationEntity, out var stationInfo))
         {
-            foreach (var jobViewState in BuildJobViewStateList(obj[_lastSelectedStation.StationEntity]))
+            foreach (var jobViewState in BuildJobViewStateList(stationInfo))
             {
                 var item = new JobListItem(jobViewState);
                 item.OnPressed += _ =>

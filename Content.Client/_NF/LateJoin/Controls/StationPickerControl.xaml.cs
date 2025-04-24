@@ -48,14 +48,17 @@ public sealed partial class StationPickerControl : PickerControl
 
         // Build station jobs, the right section of the screen.
         StationJobItemList.RemoveAllChildren();
-        foreach (var jobViewState in BuildJobViewStateList(obj[_lastSelectedStation!.StationEntity]))
+        if (_lastSelectedStation != null && obj.TryGetValue(_lastSelectedStation.StationEntity, out var stationInfo))
         {
-            var item = new JobListItem(jobViewState);
-            item.OnPressed += _ =>
+            foreach (var jobViewState in BuildJobViewStateList(stationInfo))
             {
-                OnJobJoined?.Invoke(_lastSelectedStation.StationEntity, jobViewState.JobId);
-            };
-            StationJobItemList.AddChild(item);
+                var item = new JobListItem(jobViewState);
+                item.OnPressed += _ =>
+                {
+                    OnJobJoined?.Invoke(_lastSelectedStation.StationEntity, jobViewState.JobId);
+                };
+                StationJobItemList.AddChild(item);
+            }
         }
 
         StationName.Text = _lastSelectedStation?.StationName ?? "";
