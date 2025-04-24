@@ -504,6 +504,34 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: Bulker
+- proto: AirAlarm
+  entities:
+  - uid: 361
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,-4.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 138
+      - 147
+      - 546
+      - 547
+      - 475
+      - 558
+      - 535
+      - 536
+      - 66
+      - 360
+      - 364
+      - 68
+      - 490
+      - 201
+      - 336
+      - 339
+      - 343
+      - 342
 - proto: Airlock
   entities:
   - uid: 3
@@ -1602,8 +1630,8 @@ entities:
   - uid: 62
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: -0.5,2.5
       parent: 1
 - proto: ConveyorBelt
   entities:
@@ -1940,11 +1968,17 @@ entities:
     - type: Transform
       pos: -6.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
   - uid: 339
     components:
     - type: Transform
       pos: -6.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
   - uid: 340
     components:
     - type: Transform
@@ -1955,11 +1989,17 @@ entities:
     - type: Transform
       pos: 7.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
   - uid: 343
     components:
     - type: Transform
       pos: 7.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
   - uid: 346
     components:
     - type: Transform
@@ -2670,6 +2710,9 @@ entities:
     - type: Transform
       pos: -7.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 68
@@ -2677,6 +2720,9 @@ entities:
     - type: Transform
       pos: -0.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 147
@@ -2684,6 +2730,9 @@ entities:
     - type: Transform
       pos: 8.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 201
@@ -2692,6 +2741,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 535
@@ -2699,6 +2751,9 @@ entities:
     - type: Transform
       pos: -7.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 546
@@ -2706,6 +2761,9 @@ entities:
     - type: Transform
       pos: 9.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 558
@@ -2714,6 +2772,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 11.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -2732,6 +2793,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -8.5,-4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 364
@@ -2739,6 +2803,9 @@ entities:
     - type: Transform
       pos: 1.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 475
@@ -2746,6 +2813,9 @@ entities:
     - type: Transform
       pos: 11.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 490
@@ -2753,6 +2823,9 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 536
@@ -2760,6 +2833,9 @@ entities:
     - type: Transform
       pos: -8.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 547
@@ -2767,6 +2843,9 @@ entities:
     - type: Transform
       pos: 8.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 361
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -2882,7 +2961,7 @@ entities:
   - uid: 367
     components:
     - type: Transform
-      pos: 1.5,2.5
+      pos: 1.5,3.5
       parent: 1
 - proto: LockerSalvageSpecialistFilled
   entities:
@@ -2921,10 +3000,10 @@ entities:
       parent: 1
 - proto: NFHolopadShip
   entities:
-  - uid: 361
+  - uid: 434
     components:
     - type: Transform
-      pos: 1.5,3.5
+      pos: 1.5,2.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -2958,13 +3037,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: PaperBin10
-  entities:
-  - uid: 407
-    components:
-    - type: Transform
-      pos: -0.5,2.5
-      parent: 1
 - proto: PaperCaptainsThoughts
   entities:
   - uid: 476
@@ -3150,7 +3222,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-2.5
       parent: 1
-- proto: PoweredlightBlack
+- proto: PoweredlightUltraviolet
   entities:
   - uid: 351
     components:

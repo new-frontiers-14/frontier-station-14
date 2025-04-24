@@ -18,6 +18,7 @@
     - id: RubberStampDenied
     - id: RubberStampQm
 #    - id: AstroNavCartridge # Frontier
+#    - id: MailTeleporterMachineCircuitboard # Frontier
     - id: ClothingBeltUtilityEngineering # Frontier
 
 - type: entity
@@ -174,7 +175,7 @@
   id: FillChiefEngineerHardsuit
   table: !type:AllSelector
     children:
-    - id: ClothingMaskBreath
+    - id: ClothingMaskGasAtmos
     - id: ClothingOuterHardsuitEngineeringWhite
 #    - id: ClothingShoesBootsMagAdv # Frontier
     - id: ClothingShoesBootsMag # Frontier
@@ -329,7 +330,7 @@
   table: !type:AllSelector
     children:
 #    - id: WeaponEnergyShotgun # Frontier
-    - id: HyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<HyperlinkBookSpaceLaw
+    - id: NFHyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<NFHyperlinkBookSpaceLaw
 #    - id: BoxEncryptionKeySecurity # Frontier
 #    - id: CigarGoldCase # Frontier
 #      prob: 0.50 # Frontier
@@ -344,6 +345,8 @@
 #    - id: RubberStampHos # Frontier
 #    - id: SecurityTechFabCircuitboard # Frontier
 #    - id: WeaponDisabler # Frontier
+#    - id: WantedListCartridge # Frontier
+    - id: DrinkHosFlask
     - id: ClothingUniformJumpskirtHoSAlt # Frontier: consistency with old fill
     - id: ClothingUniformJumpsuitHoSAlt # Frontier: consistency with old fill
     - id: ClothingHeadHatBeretHoS # Frontier: consistency with old fill
@@ -363,9 +366,7 @@
     - id: ClothingMaskGasSwat
     - id: ClothingOuterHardsuitSecurityRed
     - id: JetpackSecurityFilled
-#    - id: OxygenTankFilled # Frontier
-    - id: AirTankFilled # Frontier
-    - id: ClothingShoesBootsMagCombatFilled # Frontier
+    - id: OxygenTankFilled
 
 # No hardsuit locker
 - type: entity

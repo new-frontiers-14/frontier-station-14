@@ -6,6 +6,7 @@
   name: emergency medipen
   result: EmergencyMedipen
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -18,6 +19,7 @@
   name: poison auto-injector
   result: AntiPoisonMedipen
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -30,6 +32,7 @@
   name: brute auto-injector
   result: BruteAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -42,6 +45,7 @@
   name: burn auto-injector
   result: BurnAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -54,6 +58,7 @@
   name: rad auto-injector
   result: RadAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -66,6 +71,7 @@
   name: puncturase auto-injector
   result: PunctAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -78,6 +84,7 @@
   name: pyrazine auto-injector
   result: PyraAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -90,6 +97,7 @@
   name: airloss auto-injector
   result: AirlossAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -104,6 +112,7 @@
   name: hemostasis auto-injector
   result: HemostasisAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -116,6 +125,7 @@
   name: stimulant auto-injector
   result: StimulantAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -128,6 +138,7 @@
   name: crisis auto-injector
   result: CrisisAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -140,6 +151,7 @@
   name: lacerinol auto-injector
   result: LacerAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -152,6 +164,7 @@
   name: bruizine auto-injector
   result: BruizAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -164,6 +177,7 @@
   name: polypyrylium oligomers auto-injector
   result: PolyAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
@@ -175,9 +189,113 @@
   name: barkeeper's friend auto-injector
   result: EthylredoxrazineAutoInjector
   time: 5
+  group: Medicinal
   solids:
     BlankMediPen: 1
   reagents:
     Ethylredoxrazine: 15
     Dylovene: 5
   recipeType: MedicalAssembler
+
+# Microwave meal recipes for making real people.
+# It's so wrong, yet so right.
+
+- type: microwaveMealRecipe
+  id: NFRecipeBuildABuddyHuman
+  name: Build-A-Buddy
+  result: NFMobHumanBuddy
+  time: 20
+  group: Secret
+  solids:
+    HeadHuman: 1
+    TorsoHuman: 1
+    LeftArmHuman: 1
+    RightArmHuman: 1
+    LeftHandHuman: 1
+    RightHandHuman: 1
+    LeftLegHuman: 1
+    RightLegHuman: 1
+    LeftFootHuman: 1
+    RightFootHuman: 1
+  recipeType: MedicalAssembler
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: NFRecipeBuildABuddyGoblin
+  name: Build-A-Buddy
+  result: NFMobGoblinBuddy
+  time: 20
+  group: Secret
+  solids:
+    HeadGoblin: 1
+    TorsoGoblin: 1
+    LeftArmGoblin: 1
+    RightArmGoblin: 1
+    LeftHandGoblin: 1
+    RightHandGoblin: 1
+    LeftLegGoblin: 1
+    RightLegGoblin: 1
+    LeftFootGoblin: 1
+    RightFootGoblin: 1
+  recipeType: MedicalAssembler
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: NFRecipeBuildABuddyReptilian
+  name: Build-A-Buddy
+  result: NFMobReptilianBuddy
+  time: 20
+  group: Secret
+  solids:
+    HeadReptilian: 1
+    TorsoReptilian: 1
+    LeftArmReptilian: 1
+    RightArmReptilian: 1
+    LeftHandReptilian: 1
+    RightHandReptilian: 1
+    LeftLegReptilian: 1
+    RightLegReptilian: 1
+    LeftFootReptilian: 1
+    RightFootReptilian: 1
+  recipeType: MedicalAssembler
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: NFRecipeBuildABuddySlime
+  name: Build-A-Buddy
+  result: NFMobSlimePersonBuddy
+  time: 20
+  group: Secret
+  solids:
+    HeadSlime: 1
+    TorsoSlime: 1
+    LeftArmSlime: 1
+    RightArmSlime: 1
+    LeftHandSlime: 1
+    RightHandSlime: 1
+    LeftLegSlime: 1
+    RightLegSlime: 1
+    LeftFootSlime: 1
+    RightFootSlime: 1
+  recipeType: MedicalAssembler
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: NFRecipeBuildABuddyVulpkanin
+  name: Build-A-Buddy
+  result: NFMobVulpkaninBuddy
+  time: 20
+  group: Secret
+  solids:
+    HeadVulpkanin: 1
+    TorsoVulpkanin: 1
+    LeftArmVulpkanin: 1
+    RightArmVulpkanin: 1
+    LeftHandVulpkanin: 1
+    RightHandVulpkanin: 1
+    LeftLegVulpkanin: 1
+    RightLegVulpkanin: 1
+    LeftFootVulpkanin: 1
+    RightFootVulpkanin: 1
+  recipeType: MedicalAssembler
+  hideInGuidebook: true

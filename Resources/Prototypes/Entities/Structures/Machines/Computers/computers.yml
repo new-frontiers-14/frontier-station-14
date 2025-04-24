@@ -48,6 +48,10 @@
             type: AtmosAlertsComputerBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+  - type: GuideHelp
+    guides:
+    - AtmosphericAlertsComputer
+    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -81,6 +85,10 @@
         type: AtmosMonitoringConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: GuideHelp
+    guides:
+    - AtmosphericNetworkMonitor
+    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseComputer
@@ -105,8 +113,6 @@
     radius: 1.5
     energy: 1.6
     color: "#43ccb5"
-  - type: Rotatable
-    rotateWhileAnchored: true
 
 - type: entity
   parent: BaseComputer
@@ -131,8 +137,6 @@
     radius: 1.5
     energy: 1.6
     color: "#43ccb5"
-  - type: Rotatable
-    rotateWhileAnchored: true
   - type: ItemSlots
     slots:
       disk_slot:
@@ -149,6 +153,9 @@
       board: !type:Container
         ents: []
       disk_slot: !type:ContainerSlot {}
+  - type: GuideHelp
+    guides:
+    - ShuttleCraft
 
 - type: entity
   parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom
@@ -631,7 +638,7 @@
     color: "#3c5eb5"
   - type: Tag
     tags:
-    - EmagImmune
+    - AccessBreakerImmune
   - type: ItemSlots
   - type: ContainerContainer
     containers:
@@ -678,6 +685,7 @@
     title: comms-console-announcement-title-station
     global: true #SR WILL NOT BE IGNORED
   - type: DeviceNetwork
+    deviceNetId: Wireless # Frontier
     transmitFrequencyId: ShuttleTimer
   - type: ActivatableUI
     key: enum.CommunicationsConsoleUiKey.Key
@@ -731,6 +739,71 @@
     color: "#f71713"
 
 - type: entity
+  parent: ComputerComms
+  id: WizardComputerComms
+  name: wizard communications computer
+  description: A computer capable of magically projecting your speech to the station. Using this to make an announcement will alert the station to your presence.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_wizard
+    - map: ["computerLayerKeys"]
+      state: wizard_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Wizard" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-wizard
+    color: "#ff00ff"
+    canShuttle: false
+    global: true #announce to everyone they're about to fuck shit up
+    sound: /Audio/Announcements/war.ogg
+  - type: Computer
+    board: WizardCommsComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#F317F3"
+
+- type: entity
+  parent: ComputerComms
+  id: CentcommComputerComms
+  name: central command communications computer
+  description: A computer used to make world wide announcements via keyboard. The superior cousin of the regular communications computer.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_logs
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-centcom
+    color: "#1d8bad"
+    canShuttle: false
+    global: true
+  - type: Computer
+    board: CentcommCommsComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#00FF00"
+
+- type: entity
   parent: BaseComputerAiAccess
   id: ComputerSolarControl
   name: solar control computer
@@ -743,6 +816,7 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi # Frontier
       state: solar_screen
     - map: ["computerLayerKeys"]
       state: generic_keys
@@ -763,9 +837,10 @@
     radius: 1.5
     energy: 1.6
     color: "#e6e227"
-  - type: Tag
-    tags:
-      - DroneUsable
+  - type: GuideHelp
+    guides:
+    - SolarPanels
+    - Power
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -994,8 +1069,8 @@
 - type: entity
   id: ComputerSalvageExpedition
   parent: BaseComputerAiAccess
-  name: salvage expeditions computer
-  description: Used to accept salvage missions, if you're tough enough.
+  name: expedition console # Frontier: salvage expeditions computer<expedition console
+  description: Used to go on expeditions, if you're tough enough. # Frontier: "accept salvage missions"<"go on expeditions"
   components:
     - type: Sprite
       layers:
@@ -1210,6 +1285,7 @@
   # Putting this as "DO NOT MAP" until the performance issues are fixed.
   # And it's more fleshed out.
   suffix: TESTING, DO NOT MAP
+  categories: [ DoNotMap ]
   components:
     - type: Sprite
       layers:

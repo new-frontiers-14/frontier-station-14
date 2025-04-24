@@ -5,9 +5,17 @@
   description: A robust bag for salvage specialists and miners alike to carry large amounts of ore. Magnetises any nearby ores when attached to a belt.
   components:
   - type: MagnetPickup
+    magnetEnabled: false # Frontier
+    magnetCanBeEnabled: false # Frontier
   - type: Sprite
     sprite: Objects/Specific/Mining/ore_bag.rsi
-    state: icon
+    # Frontier: layered sprite
+    layers:
+    - state: icon
+    - state: icon-on
+      visible: False
+      map: [ "enum.ToggleVisuals.Layer" ]
+    # End Frontier
   - type: Clothing
     sprite: Objects/Specific/Mining/ore_bag.rsi
     quickEquip: false
@@ -26,3 +34,25 @@
         - ArtifactFragment
         - Ore
   - type: Dumpable
+  - type: NFOreBag # Frontier
+  # Begin DeltaV Additions: toggle magnet from White Dream
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onUse: false
+    onAltUse: true
+    onActivate: false
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: True }
+          False: { visible: False }
+  # End DeltaV Additions

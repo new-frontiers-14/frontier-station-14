@@ -20,6 +20,8 @@
   - type: IFF
     color: "#00b7eb"
   - type: StationTransit
+    routes:
+      SpawnPoints: 30
 
 - type: gameMap
   id: Medical
@@ -42,5 +44,8 @@
             DirectorOfCare: [ 1, 1 ]
             Pilot: [ -1, -1 ]
             Mercenary: [ -1, -1 ]
+          tags:
+          - HeadOfPersonnel
+          - HeadOfSecurity
         - type: StationDeadDrop
           maxDeadDrops: 1 # Fewer here, players start here.

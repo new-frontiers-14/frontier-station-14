@@ -28,7 +28,7 @@
   recipeUnlocks:
   - RadarConsoleCircuitboard
   - HandHeldMassScanner
-  - BorgModuleGPS
+  # - BorgModuleGPS # Frontier: useless
 
 - type: technology
   id: AdvancedPowercells
@@ -119,6 +119,7 @@
   - RipleyCentralElectronics
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
+  - MechEquipmentFork # Frontier
 
 # Tier 2
 
@@ -126,7 +127,7 @@
   id: Shuttlecraft
   name: research-technology-shuttlecraft
   icon:
-    sprite: Structures/Shuttles/gyroscope.rsi
+    sprite: _NF/Structures/Shuttles/gyroscope.rsi # Frontier: add _NF prefix
     state: base
   discipline: Industrial
   tier: 2
@@ -172,6 +173,8 @@
     - JawsOfLife
     - UtilityBeltChiefEngineer
     - BorgModuleAdvancedTool
+    # - Fulton # Frontier
+    # - FultonBeacon # Frontier
     - NFBlueprintPowerDrill # Frontier
     - NFBlueprintJawsOfLife # Frontier
     - NFBlueprintWelderExperimental # Frontier
@@ -227,6 +230,8 @@
   recipeUnlocks:
   - PowerCellMicroreactor
   - NFBlueprintPowerCellMicroreactor # Frontier
+  - PortableGeneratorDKJrMachineCircuitboard # Frontier
+  - NFBlueprintPortableGeneratorDKJr # Frontier
   technologyPrerequisites:
   - AdvancedPowercells
 

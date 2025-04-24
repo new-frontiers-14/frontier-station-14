@@ -49,6 +49,26 @@
     sprite: _NF/Structures/Wallmounts/posters.rsi
     state: nf_poster5_legit
 
+- type: entity
+  parent: PosterBase
+  id: NFPosterLegitMothPlease
+  name: "Mothroaches: More Than Pests!"
+  description: An adorable mothgirl in a cute hat asks that you think before hurting a mothroach.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster6_legit
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterLegitHaveYouSeenThisEgg
+  name: "Have You Seen This Egg?"
+  description: Please inform NFSD personnel of any strange sightings like roaming space monsters, gigantic purple eggs, and strange notes left behind posters or vending machines.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster7_legit
+
 # Contraband posters
 - type: entity
   parent: PosterBase
@@ -211,3 +231,37 @@
   - type: Sprite
     sprite: _NF/Structures/Wallmounts/posters.rsi
     state: nf_poster16_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandWyvernShipyards
+  name: "Wyvern Shipyards"
+  description: "The Future can't come any faster, but we can get you there in a jiff!"
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster17_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandRatvarLives
+  name: "Ratvar Lives"
+  description: A poster in a strange language with pictures of machinery. "RATVAR LIVES" is scrawled in the corner.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster18_contraband
+    
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandFsbNightlight
+  name: "Far Star Biotech Nightlight"
+  description: "The FSB Nightlight, chasing the night away."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster20_contraband      
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+    color: "#F8F6F0"

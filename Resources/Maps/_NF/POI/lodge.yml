@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/21/2025 23:55:55
+  entityCount: 2578
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   30: FloorDark
@@ -95,8 +106,8 @@ entities:
     - type: Broadphase
     - type: Physics
       bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
+      angularDamping: 0.05
+      linearDamping: 0.05
       fixedRotation: False
       bodyType: Dynamic
     - type: Fixtures
@@ -104,8 +115,6 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -3113,39 +3122,6 @@ entities:
       parent: 1
 - proto: AirlockExternalGlassShuttleTransit
   entities:
-  - uid: 169
-    components:
-    - type: Transform
-      pos: 1.5,-3.5
-      parent: 1
-  - uid: 170
-    components:
-    - type: Transform
-      pos: 0.5,-3.5
-      parent: 1
-    - type: Docking
-      name: dock-label-bus
-  - uid: 171
-    components:
-    - type: Transform
-      pos: -0.5,-3.5
-      parent: 1
-- proto: AirlockFrontierCommandEngineeringLocked
-  entities:
-  - uid: 22
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,16.5
-      parent: 1
-  - uid: 103
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,16.5
-      parent: 1
-- proto: AirlockGlassShuttle
-  entities:
   - uid: 151
     components:
     - type: Transform
@@ -3260,6 +3236,23 @@ entities:
       rot: 3.141592653589793 rad
       pos: -29.5,4.5
       parent: 1
+  - uid: 169
+    components:
+    - type: Transform
+      pos: 1.5,-3.5
+      parent: 1
+  - uid: 170
+    components:
+    - type: Transform
+      pos: 0.5,-3.5
+      parent: 1
+    - type: Docking
+      name: dock-label-bus
+  - uid: 171
+    components:
+    - type: Transform
+      pos: -0.5,-3.5
+      parent: 1
   - uid: 219
     components:
     - type: Transform
@@ -3359,6 +3352,20 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,26.5
+      parent: 1
+- proto: AirlockFrontierCommandEngineeringLocked
+  entities:
+  - uid: 22
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,16.5
+      parent: 1
+  - uid: 103
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,16.5
       parent: 1
 - proto: AirlockMaint
   entities:
@@ -5229,6 +5236,38 @@ entities:
     components:
     - type: Transform
       pos: -6.632983,17.52343
+      parent: 1
+- proto: BusSchedule
+  entities:
+  - uid: 602
+    components:
+    - type: Transform
+      pos: -22.5,-1.5
+      parent: 1
+  - uid: 603
+    components:
+    - type: Transform
+      pos: 4.5,-1.5
+      parent: 1
+  - uid: 604
+    components:
+    - type: Transform
+      pos: 23.5,-1.5
+      parent: 1
+  - uid: 627
+    components:
+    - type: Transform
+      pos: 18.5,18.5
+      parent: 1
+  - uid: 2577
+    components:
+    - type: Transform
+      pos: -17.5,18.5
+      parent: 1
+  - uid: 2578
+    components:
+    - type: Transform
+      pos: 3.5,19.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -7404,40 +7443,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,13.5
       parent: 1
-- proto: CargoPalletSell
-  entities:
-  - uid: 218
-    components:
-    - type: Transform
-      pos: 16.5,4.5
-      parent: 1
-  - uid: 363
-    components:
-    - type: Transform
-      pos: 17.5,5.5
-      parent: 1
-  - uid: 364
-    components:
-    - type: Transform
-      pos: 17.5,4.5
-      parent: 1
-  - uid: 603
-    components:
-    - type: Transform
-      pos: 16.5,5.5
-      parent: 1
-  - uid: 604
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 15.5,5.5
-      parent: 1
-  - uid: 627
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 15.5,4.5
-      parent: 1
 - proto: CarpetBlack
   entities:
   - uid: 2241
@@ -7689,9 +7694,25 @@ entities:
     - type: Transform
       pos: -7.794549,13.405164
       parent: 1
-- proto: ComputerPalletConsoleNFLowMarket
+- proto: Cobweb1
   entities:
-  - uid: 602
+  - uid: 364
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 17.5,4.5
+      parent: 1
+- proto: Cobweb2
+  entities:
+  - uid: 218
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 15.5,4.5
+      parent: 1
+- proto: ComputerBroken
+  entities:
+  - uid: 363
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -7759,19 +7780,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: -12.5,7.5
       parent: 1
-- proto: ComputerWallmountWithdrawBankATM
+- proto: ComputerWallmountBankATM
   entities:
   - uid: 2517
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,12.5
+      rot: 1.5707963267948966 rad
+      pos: 3.5,12.5
       parent: 1
   - uid: 2518
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,12.5
+      rot: -1.5707963267948966 rad
+      pos: -2.5,12.5
       parent: 1
   - uid: 2519
     components:

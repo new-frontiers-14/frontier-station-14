@@ -1061,7 +1061,7 @@ entities:
             1: 14
           4,1:
             0: 16
-            2: 61152
+            5: 61152
           -4,0:
             0: 65471
           -4,-1:
@@ -1103,18 +1103,18 @@ entities:
             0: 61164
           -8,1:
             1: 32800
-            3: 136
+            2: 136
           -7,0:
             0: 36863
           -8,2:
             1: 8
           -7,1:
             1: 61440
-            4: 34
+            3: 34
             0: 136
           -7,2:
             1: 1
-            5: 14
+            4: 14
           -7,-1:
             0: 61917
           -6,0:
@@ -1123,7 +1123,7 @@ entities:
             0: 3392
             1: 4096
           -6,2:
-            5: 1
+            4: 1
             0: 8
           -6,-1:
             0: 64185
@@ -1135,24 +1135,24 @@ entities:
           4,0:
             0: 61152
           4,2:
-            2: 14
+            5: 14
           5,0:
             0: 48056
           5,1:
             0: 1161
-            2: 4352
+            5: 4352
             1: 49152
           5,-1:
             0: 65263
           5,2:
-            5: 12
+            4: 12
           6,0:
             0: 59278
           6,1:
             1: 61440
             0: 238
           6,2:
-            5: 3
+            4: 3
             1: 12
           6,-1:
             0: 61679
@@ -1185,51 +1185,51 @@ entities:
             0: 56560
           -7,-3:
             1: 8955
-            5: 4356
+            4: 4356
             0: 16384
           -7,-4:
             1: 35840
-            5: 16384
+            4: 16384
           -6,-4:
             1: 256
-            5: 61440
+            4: 61440
           -6,-3:
             1: 15
-            5: 16
+            4: 16
             0: 56320
           -6,-2:
             0: 56797
           -5,-4:
-            5: 4096
+            4: 4096
             1: 24576
           -5,-3:
             1: 8739
-            5: 17476
+            4: 17476
           -5,-2:
             0: 13104
           4,-4:
             1: 12288
-            5: 49152
+            4: 49152
           4,-3:
-            5: 4369
+            4: 4369
             1: 8750
             0: 34816
           4,-2:
             0: 3808
           5,-4:
-            5: 28672
+            4: 28672
             1: 35840
           5,-3:
             1: 143
             0: 28928
-            5: 64
+            4: 64
           5,-2:
             0: 28276
           6,-4:
             1: 256
-            5: 4096
+            4: 4096
           6,-3:
-            5: 17409
+            4: 17409
             1: 8822
             0: 4096
           6,-2:
@@ -1268,55 +1268,55 @@ entities:
           - 0
           - 0
         - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 2500
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 2500
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
           temperature: 235
           moles:
           - 21.824879
           - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 2500
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 2500
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 0
           - 0
           - 0
           - 0
@@ -1384,13 +1384,6 @@ entities:
     components:
     - type: Transform
       pos: 21.5,-8.5
-      parent: 1
-- proto: AirlockChemistryGlassLocked
-  entities:
-  - uid: 644
-    components:
-    - type: Transform
-      pos: -2.5,5.5
       parent: 1
 - proto: AirlockEngineeringGlass
   entities:
@@ -1498,6 +1491,13 @@ entities:
     components:
     - type: Transform
       pos: 24.5,2.5
+      parent: 1
+- proto: AirlockBrigmedicGlassLocked
+  entities:
+  - uid: 644
+    components:
+    - type: Transform
+      pos: -2.5,5.5
       parent: 1
 - proto: AirlockMedicalGlassLockedSecurity
   entities:
@@ -11469,6 +11469,16 @@ entities:
     - type: Transform
       pos: -13.5,0.5
       parent: 1
+  - uid: 1052
+    components:
+    - type: Transform
+      pos: -12.5,1.5
+      parent: 1
+  - uid: 1092
+    components:
+    - type: Transform
+      pos: -10.5,1.5
+      parent: 1
 - proto: LockerNfsdSergeant
   entities:
   - uid: 667
@@ -11679,6 +11689,38 @@ entities:
     components:
     - type: Transform
       pos: -10.5,-1.5
+      parent: 1
+- proto: NFPrisonerClosetWallOrangeFilled
+  entities:
+  - uid: 609
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -10.5,5.5
+      parent: 1
+  - uid: 610
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.5,5.5
+      parent: 1
+  - uid: 847
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,5.5
+      parent: 1
+  - uid: 864
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -20.5,3.5
+      parent: 1
+  - uid: 865
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -20.5,5.5
       parent: 1
 - proto: NfsdTechFab
   entities:
@@ -13048,7 +13090,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 27.5,8.5
       parent: 1
-- proto: RandomBook
+- proto: NFRandomBook
   entities:
   - uid: 877
     components:
@@ -16842,18 +16884,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -16.5,1.5
-      parent: 1
-- proto: WardrobePrisonFilled
-  entities:
-  - uid: 609
-    components:
-    - type: Transform
-      pos: -12.5,1.5
-      parent: 1
-  - uid: 610
-    components:
-    - type: Transform
-      pos: -10.5,1.5
       parent: 1
 - proto: WarpPoint
   entities:

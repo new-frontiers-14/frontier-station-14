@@ -67,8 +67,8 @@ public sealed class MoverController : SharedMoverController
         {
             var physicsUid = uid;
 
-            if (RelayQuery.HasComponent(uid))
-                continue;
+            // if (RelayQuery.HasComponent(uid)) // Upstream - #34015
+            //     continue; // Upstream - #34015
 
             if (!XformQuery.TryGetComponent(uid, out var xform))
             {
@@ -100,6 +100,14 @@ public sealed class MoverController : SharedMoverController
                 xformMover,
                 frameTime);
         }
+
+        // Upstream - #34016
+        var movementRelayTargetEnumerator = AllEntityQuery<MovementRelayTargetComponent, InputMoverComponent>();
+        while (movementRelayTargetEnumerator.MoveNext(out var uid, out var relay, out var mover))
+        {
+            HandleRelayMovement((uid, relay, mover));
+        }
+        // End Upstream - #34016
 
         HandleShuttleMovement(frameTime);
     }
@@ -509,14 +517,14 @@ public sealed class MoverController : SharedMoverController
                 var forceMul = frameTime * body.InvMass;
 
                 var localVel = (-shuttleNorthAngle).RotateVec(body.LinearVelocity);
-                var maxVelocity = ObtainMaxVel(localVel, shuttle); // max for current travel dir
+                //var maxVelocity = ObtainMaxVel(localVel, shuttle); // max for current travel dir // Frontier: unneeded
                 var maxWishVelocity = ObtainMaxVel(totalForce, shuttle);
                 var properAccel = (maxWishVelocity - localVel) / forceMul;
 
                 var finalForce = Vector2Dot(totalForce, properAccel.Normalized()) * properAccel.Normalized();
 
-                if (localVel.Length() >= maxVelocity.Length() && Vector2.Dot(totalForce, localVel) > 0f)
-                    finalForce = Vector2.Zero; // burn would be faster if used as such
+                // if (localVel.Length() >= maxVelocity.Length() && Vector2.Dot(totalForce, localVel) > 0f) // Frontier: not needed due to properAccel subtraction
+                //     finalForce = Vector2.Zero; // burn would be faster if used as such // Frontier: not needed due to properAccel subtraction
 
                 if (finalForce.Length() > properAccel.Length())
                     finalForce = properAccel; // don't overshoot

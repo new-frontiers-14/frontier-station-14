@@ -15,6 +15,8 @@
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobHarpyTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -28,6 +30,7 @@
     RLeg: MobHarpyRLeg
     LFoot: MobHarpyLFoot
     RFoot: MobHarpyRFoot
+    RArmExtension: MobHumanoidAnyMarking # Frontier
 
 
 - type: markingPoints
@@ -47,6 +50,14 @@
       points: 1
       required: true
       defaultMarkings: [ HarpyEarsDefault ]
+    # Frontier: apparently these don't exist on Delta
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false
+    # End Frontier
     Chest:
       points: 1
       required: true

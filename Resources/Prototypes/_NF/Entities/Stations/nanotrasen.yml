@@ -3,7 +3,6 @@
   suffix: DEBUG # TODO: Fix this, its here to stop PrototypeSaveTest fail
   parent:
   - BaseStation
-  - BaseStationCargo
   - BaseStationJobsSpawning
   - BaseStationRecords
   - BaseStationSiliconLawFrontierStation
@@ -13,6 +12,7 @@
   - BaseStationDampening
   - BaseStationDeadDropHintExempt # No hints
   - BaseStationRenameWarpPoints
+  - BaseStationBusDepot # All the buses
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
@@ -22,7 +22,6 @@
   parent:
   - BaseStation
   - BaseStationJobsSpawning
-  - BaseStationCargo
   - BaseStationSiliconLawFrontierShips
   - BaseStationDampening
   categories: [ HideSpawnMenu ]
@@ -39,6 +38,7 @@
 - type: entity
   id: MarketFrontierOutpost
   parent:
+  - NFBaseStationCargo
   - StandardFrontierOutpost
   - BaseStationCargoMarket
   categories: [ HideSpawnMenu ]
@@ -62,7 +62,6 @@
   id: SecurityFrontierOutpost
   parent:
   - BaseStation # Copied from StandardFrontierStation
-  - BaseStationCargo # Cargo
   - BaseStationJobsSpawning # Records and jobsspawning
   - BaseStationRecords
   - BaseStationSiliconLawFrontierStation # No funny borg laws
