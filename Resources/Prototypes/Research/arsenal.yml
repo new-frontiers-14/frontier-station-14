@@ -45,17 +45,17 @@
 
 # End Frontier: restricted arsenal research
 
-# - type: technology
-#   id: WeaponizedLaserManipulation
-#   name: research-technology-weaponized-laser-manipulation
-#   icon:
-#     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
-#     state: icon
-#   discipline: Arsenal
-#   tier: 1
-#   cost: 7500
-#   recipeUnlocks:
-#   - WeaponLaserCarbine
+- type: technology
+  id: WeaponizedLaserManipulation
+  name: research-technology-weaponized-laser-manipulation
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - WeaponLaserCarbine
 
 - type: technology
   id: NonlethalAmmunition
@@ -150,33 +150,29 @@
 
 # Tier 2
 
-# Frontier: no printable guns, please.
+- type: technology
+  id: ConcentratedLaserWeaponry
+  name: research-technology-concentrated-laser-weaponry
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - WeaponLaserCannon
 
-# - type: technology
-#   id: ConcentratedLaserWeaponry
-#   name: research-technology-concentrated-laser-weaponry
-#   icon:
-#     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
-#     state: icon
-#   discipline: Arsenal
-#   tier: 2
-#   cost: 10000
-#   recipeUnlocks:
-#   - WeaponLaserCannon
-
-# - type: technology
-#   id: WaveParticleHarnessing
-#   name: research-technology-wave-particle-harnessing
-#   icon:
-#     sprite: Objects/Weapons/Guns/Battery/xray.rsi
-#     state: icon
-#   discipline: Arsenal
-#   tier: 2
-#   cost: 10000
-#   recipeUnlocks:
-#   - WeaponXrayCannon
-
-# End Frontier: no printable guns, please.
+- type: technology
+  id: WaveParticleHarnessing
+  name: research-technology-wave-particle-harnessing
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/xray.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - WeaponXrayCannon
 
 - type: technology
   id: BasicShuttleArmament
@@ -214,23 +210,21 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
-  # - WeaponAdvancedLaser # Frontier
+  - WeaponAdvancedLaser
   - PortableRecharger
   - NFBlueprintPortableRecharger # Frontier
 
-# Frontier: no printable guns, please.
-
-# - type: technology
-#   id: ExperimentalBatteryAmmo
-#   name: research-technology-experimental-battery-ammo
-#   icon:
-#     sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
-#     state: icon
-#   discipline: Arsenal
-#   tier: 3
-#   cost: 15000
-#   recipeUnlocks:
-#   - WeaponLaserSvalinn
+- type: technology
+  id: ExperimentalBatteryAmmo
+  name: research-technology-experimental-battery-ammo
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - WeaponLaserSvalinn
 
 # - type: technology #Frontier
 #  id: AdvancedShuttleWeapon
@@ -247,5 +241,3 @@
 #  - ShuttleGunDusterCircuitboard # Frontier
 #  technologyPrerequisites:
 #  - BasicShuttleArmament
-
-# End Frontier
