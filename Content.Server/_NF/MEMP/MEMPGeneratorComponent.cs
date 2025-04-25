@@ -1,6 +1,4 @@
 using Content.Shared._NF.MEMP;
-using Content.Shared.Construction.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server._NF.MEMP
 {
@@ -8,13 +6,19 @@ namespace Content.Server._NF.MEMP
     [Access(typeof(MEMPGeneratorSystem))]
     public sealed partial class MEMPGeneratorComponent : SharedMEMPGeneratorComponent
     {
-        [DataField("lightRadiusMin")] public float LightRadiusMin { get; set; }
-        [DataField("lightRadiusMax")] public float LightRadiusMax { get; set; }
+        [DataField] public float LightRadiusMin { get; set; }
+        [DataField] public float LightRadiusMax { get; set; }
 
         /// <summary>
-        /// Is the mobile emp currently "producing" gravity?
+        /// Is the mobile emp currently running?
         /// </summary>
         [ViewVariables]
         public bool MEMPActive { get; set; } = false;
+
+        /// <summary>
+        /// Is the mobile emp action locked.
+        /// </summary>
+        [ViewVariables]
+        public bool MEMPActionLocked { get; set; } = false;
     }
 }

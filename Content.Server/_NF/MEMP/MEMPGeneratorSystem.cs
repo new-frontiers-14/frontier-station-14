@@ -1,11 +1,18 @@
+using Content.Server.Emp;
+using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Popups;
+using Robust.Server.GameObjects;
 
 namespace Content.Server._NF.MEMP;
 
 public sealed class MEMPGeneratorSystem : EntitySystem
 {
     [Dependency] private readonly SharedPointLightSystem _lights = default!;
+    [Dependency] private readonly EmpSystem _emp = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -14,6 +21,7 @@ public sealed class MEMPGeneratorSystem : EntitySystem
         SubscribeLocalEvent<MEMPGeneratorComponent, EntParentChangedMessage>(OnParentChanged);
         SubscribeLocalEvent<MEMPGeneratorComponent, ChargedMachineActivatedEvent>(OnActivated);
         SubscribeLocalEvent<MEMPGeneratorComponent, ChargedMachineDeactivatedEvent>(OnDeactivated);
+        SubscribeLocalEvent<MEMPGeneratorComponent, ActionEvent>(OnAction);
     }
 
     public override void Update(float frameTime)
@@ -54,6 +62,22 @@ public sealed class MEMPGeneratorSystem : EntitySystem
         //if (TryComp(xform.ParentUid, out MEMPComponent? gravity))
         //{
         //    _gravitySystem.RefreshMEMP(xform.ParentUid, gravity);
+        //}
+    }
+
+    private void OnAction(Entity<MEMPGeneratorComponent> ent, ref ActionEvent args)
+    {
+        ent.Comp.MEMPActionLocked = true;
+
+        var xform = Transform(ent);
+
+        _emp.EmpPulse(_transform.ToMapCoordinates(xform.Coordinates), ent.Comp.Range, ent.Comp.EnergyConsumption, ent.Comp.DisableDuration);
+
+        _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), ent, PopupType.MediumCaution);
+
+        //if (TryComp(xform.ParentUid, out MEMPComponent? gravity))
+        //{
+        //    _gravitySystem.EnableMEMP(xform.ParentUid, gravity);
         //}
     }
 

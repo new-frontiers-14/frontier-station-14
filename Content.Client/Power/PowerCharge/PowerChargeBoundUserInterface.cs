@@ -17,9 +17,9 @@ public sealed class PowerChargeBoundUserInterface : BoundUserInterface
         SendMessage(new SwitchChargingMachineMessage(on));
     }
 
-    public void ActivateButton()
+    public void ActionButton(bool on)
     {
-        SendMessage(new ActivateMachineMessage());
+        SendMessage(new ActionMessage(on));
     }
 
     protected override void Open()

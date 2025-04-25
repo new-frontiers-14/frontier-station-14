@@ -10,49 +10,49 @@ public partial class SharedMEMPGeneratorComponent : Component
     /// <summary>
     /// A map of the sprites used by the mobile emp given its status.
     /// </summary>
-    [DataField("spriteMap")]
+    [DataField]
     public Dictionary<PowerChargeStatus, string> SpriteMap = new();
 
     /// <summary>
     /// The sprite used by the core of the mobile emp when the mobile emp is starting up.
     /// </summary>
-    [DataField("coreStartupState")]
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public string CoreStartupState = "startup";
 
     /// <summary>
     /// The sprite used by the core of the mobile emp when the mobile emp is idle.
     /// </summary>
-    [DataField("coreIdleState")]
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public string CoreIdleState = "idle";
 
     /// <summary>
     /// The sprite used by the core of the mobile emp when the mobile emp is activating.
     /// </summary>
-    [DataField("coreActivatingState")]
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public string CoreActivatingState = "activating";
 
     /// <summary>
     /// The sprite used by the core of the mobile emp when the mobile emp is active.
     /// </summary>
-    [DataField("coreActivatedState")]
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public string CoreActivatedState = "activated";
 
-    [DataField("range"), ViewVariables(VVAccess.ReadWrite)]
-    public float Range = 1.0f;
+    [DataField]
+    public float Range = 100.0f;
 
     /// <summary>
     /// How much energy will be consumed per battery in range
     /// </summary>
-    [DataField("energyConsumption"), ViewVariables(VVAccess.ReadWrite)]
-    public float EnergyConsumption;
+    [DataField]
+    public float EnergyConsumption = 1000000;
 
     /// <summary>
     /// How long it disables targets in seconds
     /// </summary>
-    [DataField("disableDuration"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public float DisableDuration = 60f;
 }

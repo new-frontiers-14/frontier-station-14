@@ -30,7 +30,7 @@ public sealed class PowerChargeSystem : EntitySystem
         SubscribeLocalEvent<PowerChargeComponent, SwitchChargingMachineMessage>(OnSwitchGenerator);
 
         SubscribeLocalEvent<PowerChargeComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: emp code
-        SubscribeLocalEvent<PowerChargeComponent, ActivateMachineMessage>(ActivateGenerator); // Frontier
+        SubscribeLocalEvent<PowerChargeComponent, ActionMessage>(OnActionAttempt); // Frontier
     }
 
     private void OnAnchorStateChange(EntityUid uid, PowerChargeComponent component, AnchorStateChangedEvent args)
@@ -56,9 +56,9 @@ public sealed class PowerChargeSystem : EntitySystem
         SetSwitchedOn(uid, component, args.On, user: args.Actor);
     }
 
-    private void ActivateGenerator(EntityUid uid, PowerChargeComponent component, ActivateMachineMessage args)
+    private void OnActionAttempt(EntityUid uid, PowerChargeComponent component, ActionMessage args) // Frontier
     {
-        OnActivate(uid, component, user: args.Actor);
+        OnAction(uid, component, args.On, user: args.Actor);
     }
 
     private void OnUIOpenAttempt(EntityUid uid, PowerChargeComponent component, ActivatableUIOpenAttemptEvent args)
@@ -102,7 +102,7 @@ public sealed class PowerChargeSystem : EntitySystem
         component.NeedUIUpdate = true;
     }
 
-    private void OnActivate(EntityUid uid, PowerChargeComponent component, // Frontier
+    private void OnAction(EntityUid uid, PowerChargeComponent component, bool on, // Frontier
     ApcPowerReceiverComponent? powerReceiver = null, EntityUid? user = null)
     {
         if (!Resolve(uid, ref powerReceiver))
@@ -111,10 +111,6 @@ public sealed class PowerChargeSystem : EntitySystem
         if (user is { })
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(user):player} set ${ToPrettyString(uid):target}");
 
-        //        ActivateButton.Visible = false;
-
-        //component.SwitchedOn = on;
-        //UpdatePowerState(component, powerReceiver);
         component.NeedUIUpdate = true;
     }
 
@@ -234,7 +230,7 @@ public sealed class PowerChargeSystem : EntitySystem
 
         var state = new PowerChargeState(
             component.SwitchedOn,
-            component.ActivateUI, // Frontier
+            component.ActionUI, // Frontier
             (byte) (component.Charge * 255),
             status,
             (short) Math.Round(powerReceiver.PowerReceived),
@@ -329,3 +325,4 @@ public sealed class PowerChargeSystem : EntitySystem
 
 [ByRefEvent] public record struct ChargedMachineActivatedEvent;
 [ByRefEvent] public record struct ChargedMachineDeactivatedEvent;
+[ByRefEvent] public record struct ActionEvent; // Frontier
