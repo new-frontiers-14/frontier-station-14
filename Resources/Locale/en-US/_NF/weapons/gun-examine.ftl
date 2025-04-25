@@ -36,8 +36,10 @@ gun-examine-energybolt-kinetic-high = 1600J kinetic bolt
 gun-examine-energybolt-kinetic-medium = 1100J kinetic bolt
 gun-examine-energybolt-kinetic-low = 850J kinetic bolt
 gun-examine-caliber-40mm-grenade = 40mm grenades
+gun-examine-caliber-40mm-grenade-dart = 40mm grenades / tracking darts
 gun-examine-caliber-rocket = rocket-propelled grenades
 gun-examine-caliber-cannon-ball = cannon balls
+gun-examine-caliber-mail-capsule = mail capsules
 
 # Manufacturers (alphabetical please)
 weapon-details-manufacturer-custom-made = Custom Made

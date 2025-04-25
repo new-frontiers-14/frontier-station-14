@@ -21,8 +21,6 @@
     availableModes:
     - SemiAuto
     - FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
   - type: StaticPrice
     price: 350
   - type: NFWeaponDetails
@@ -94,7 +92,7 @@
 
 #region chamber
 - type: entity
-  id: NFBaseWeaponSubMachineGunChamber35
+  id: NFBaseWeaponSubMachineGunChamber
   abstract: true
   components:
   - type: Gun
@@ -104,9 +102,19 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  id: NFBaseWeaponSubMachineGunChamber35
+  parent: NFBaseWeaponSubMachineGunChamber
+  abstract: true
+  components:
   - type: ItemSlots
     slots:
-      gun_magazine:
+      gun_magazine: &mag35Standard
         name: Magazine
         startingItem: NFMagazineSubMachineGun35
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
@@ -116,14 +124,54 @@
           tags:
             - NFMagazineSubMachineGunPistol35
         whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
+      gun_chamber: &chamber35Standard
         name: Chamber
         startingItem: NFCartridgePistol35
         priority: 1
         whitelist:
           tags:
             - NFCartridgePistol35
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  id: NFBaseWeaponSubMachineGunChamber35Rubber
+  parent: NFBaseWeaponSubMachineGunChamber35
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine: *mag35Standard
+      gun_chamber: &chamber35Rubber
+        name: Chamber
+        startingItem: NFCartridgePistol35Rubber
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgePistol35
+
+- type: entity
+  id: NFBaseWeaponSubMachineGunChamber35TopMounted
+  parent: NFBaseWeaponSubMachineGunChamber
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine: &mag35TopMounted
+        name: Magazine
+        startingItem: NFMagazineSubMachineGunTopMounted35
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - NFMagazineSubMachineGunTopMountedPistol35
+      gun_chamber: *chamber35Standard
+
+- type: entity
+  id: NFBaseWeaponSubMachineGunChamber35TopMounted
+  parent: NFBaseWeaponSubMachineGunChamber
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine: *mag35TopMounted
+      gun_chamber: *chamber35Rubber

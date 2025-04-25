@@ -2,7 +2,7 @@
 - type: entity
   id: NFWeaponLauncherChinaLake
   parent: [ NFBaseWeaponFrameLauncherGorlex, NFBaseWeaponLauncherChamber40mmGrenades ]
-  name: china lake
+  name: GP-40 grenade launcher
   description: PLOOP.
   components:
   - type: Sprite
@@ -17,6 +17,8 @@
     - suitStorage
   - type: BallisticAmmoProvider
     proto: NFGrenadeFrag
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works
 
 - type: entity
   id: NFWeaponLauncherRocket
@@ -97,11 +99,13 @@
       - MailCapsule
   - type: StaticPrice
     price: 50
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
 - type: entity
-  name: NFSD grenade launcher
   parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponLauncherChamber40mmGrenadesSingleShot, NFBaseWeaponFrameLauncherNanotrasen ]
   id: WeaponLauncherNfsdLake
+  name: NGP-40 projector
   description: Single shot grenade launcher able to lob both grenades and darts!
   components:
   - type: Sprite
@@ -113,3 +117,5 @@
     sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi
   - type: StaticPrice
     price: 50
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions

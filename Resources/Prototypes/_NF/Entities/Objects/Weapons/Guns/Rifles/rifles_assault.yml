@@ -2,7 +2,7 @@
 - type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultSm
   parent: [ NFBaseWeaponFrameRifleAssaultCybersun, NFBaseWeaponRifleAssaultChamber30 ]
-  name: soland-moss assault rifle # Renamed: real brand name
+  name: Soland-Moss # Renamed: real brand name
   description: |-
     An iconic weapon of war. An illegal firearm often used by Syndicate agents.
   components:
@@ -18,7 +18,7 @@
 - type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultM90GrenadeLauncher
   parent: [ NFBaseWeaponFrameRifleAssaultCybersun, NFBaseWeaponRifleAssaultChamber20 ]
-  name: m90gl
+  name: M90-GL
   description: |-
     An older bullpup carbine model, with an attached underbarrel grenade launcher. An illegal firearm often used by Syndicate agents.
   components:
@@ -30,10 +30,10 @@
 - type: entity
   id: NFWeaponRifleAssaultLecter
   parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameRifleAssaultNanotrasen, NFBaseWeaponRifleAssaultChamber20 ]
-  name: lecter
+  name: Lecter
   description: |-
     A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
-  components:
+  components: &lecterComponents
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi
   - type: Sprite
@@ -45,38 +45,22 @@
 
 #region WizDen: Rubber
 - type: entity
-  parent: NFWeaponRifleAssaultLecter
   id: NFWeaponRifleAssaultLecterRubber
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameRifleAssaultNanotrasen, NFBaseWeaponRifleAssaultChamber20Rubber ]
+  name: Lecter
+  description: |-
+    A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
   suffix: Frontier, Less-lethal
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineRifle20Rubber
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - NFMagazineRifle20
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgeRifle20Rubber
-        priority: 1
-        whitelist:
-          tags:
-            - NFCartridgeRifle20
+  components: *lecterComponents
 
 #region DeltaV
 - type: entity
   id: NFWeaponRifleAssaultVulcan
   parent: [ NFBaseWeaponFrameRifleAssaultFrontierGunsmith, NFBaseWeaponRifleAssaultChamber30 ]
-  name: vulcan
+  name: Vulcan
   description: |-
     One of the heaviest small arms to grace Security's armory, this rifle is a modern take on a classic, informally dubbed the "Right Arm of the Free World".
-  components:
+  components: &vulcanComponents
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi
   - type: Clothing
@@ -89,7 +73,7 @@
 - type: entity
   id: NFWeaponRifleAssaultJackdaw
   parent: [ BaseC3Contraband, NFBaseWeaponFrameRifleAssaultFrontierGunsmith, NFBaseWeaponRifleAssaultChamber20 ]
-  name: jackdaw
+  name: Jackdaw
   description: |-
     The beginning of the end is heralded by the song of a Jackdaw.
   components:
@@ -100,36 +84,19 @@
 
 #region DeltaV: Rubber
 - type: entity
-  parent: NFWeaponRifleAssaultVulcan
   id: NFWeaponRifleAssaultVulcanRubber
+  parent: [ NFBaseWeaponFrameRifleAssaultFrontierGunsmith, NFBaseWeaponRifleAssaultChamber30 ]
+  name: Vulcan
+  description: |-
+    One of the heaviest small arms to grace Security's armory, this rifle is a modern take on a classic, informally dubbed the "Right Arm of the Free World".
   suffix: Frontier, Less-lethal
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineRifle30Rubber
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - NFMagazineRifle30
-            - NFMagazineLowCapacityRifle30
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgeRifle30Rubber
-        priority: 1
-        whitelist:
-          tags:
-            - NFCartridgeRifle30
+  components: *vulcanComponents
 
 #region Frontier
 - type: entity
   id: NFWeaponRifleAssaultGestio
   parent: [ NFBaseWeaponFrameRifleAssaultFrontierGunsmith, NFBaseWeaponRifleAssaultChamber30LowCapacity ]
-  name: gestio
+  name: Gestio
   description: |-
     An old burst-fire rifle designed by Silver Industries that never left trials.
   components:
@@ -154,7 +121,7 @@
 - type: entity
   id: NFWeaponRifleAssaultNovaliteC1
   parent: [ NFBaseWeaponFrameRifleAssaultFrontierGunsmith, NFBaseWeaponRifleAssaultChamber20Clip ]
-  name: "novalite c1"
+  name: Novalite C1
   description: |-
     A civilian grade semi-automatic rifle with an internal magazine.
   components:
