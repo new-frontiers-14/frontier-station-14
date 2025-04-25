@@ -50,7 +50,7 @@
   - type: TimedDespawn
     lifetime: 15
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/projectiles2.rsi
     layers:
     - state: frag-emp
   - type: EmpOnTrigger
@@ -108,7 +108,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/projectiles2.rsi
     layers:
     - state: ball-emp
     - state: ball-emp-unlit
@@ -316,11 +316,17 @@
   parent: BulletEnergyTurretLaser
   id: NFBulletEnergyTurretLaser
   categories: [ HideSpawnMenu ]
+  components:
+  - type: Ammo
+    muzzleFlash: NFMuzzleFlashEffectHeavyLaser
 
 - type: entity
   parent: BulletEnergyTurretDisabler
   id: NFBulletEnergyTurretDisabler
   categories: [ HideSpawnMenu ]
+  components:
+  - type: Ammo
+    muzzleFlash: NFMuzzleFlashEffectOmnilaser
 
 - type: entity
   parent: TeslaGunBullet
