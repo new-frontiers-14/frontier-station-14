@@ -78,8 +78,8 @@ public sealed class SkrunglerSystem : EntitySystem
 
         using (args.PushGroup(nameof(SkrunglerComponent)))
         {
-            if (_appearance.TryGetData<bool>(uid, SkrunglerVisuals.Skrungling, out var isSkrungling, appearance) &&
-                isSkrungling)
+            if (_appearance.TryGetData<bool>(uid, SkrunglerVisuals.Skrunglring, out var isSkrunglring, appearance) &&
+                isSkrunglring)
             {
                 args.PushMarkup(Loc.GetString("skrungler-entity-storage-component-on-examine-details-is-running",
                     ("owner", uid)));
@@ -255,8 +255,9 @@ public sealed class SkrunglerSystem : EntitySystem
 
     private void OnInit(EntityUid uid, ActiveSkrunglerComponent component, ComponentInit args)
     {
-        _appearance.SetData(uid, SkrunglerVisuals.Skrungling, true);
-        _jitteringSystem.AddJitter(uid, -10, 100);
+        _appearance.SetData(uid, SkrunglerVisuals.SkrunglringBase, true);
+        _appearance.SetData(uid, SkrunglerVisuals.Skrunglring, true);
+        _jitteringSystem.AddJitter(uid, 2, 10);
         _audio.PlayPvs(component.SkrungStartSound, uid);
         _audio.PlayPvs(component.SkrunglerSound, uid);
         _ambientSoundSystem.SetAmbience(uid, true);
@@ -264,7 +265,8 @@ public sealed class SkrunglerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, ActiveSkrunglerComponent component, ComponentShutdown args)
     {
-        _appearance.SetData(uid, SkrunglerVisuals.Skrungling, false);
+        _appearance.SetData(uid, SkrunglerVisuals.SkrunglringBase, false);
+        _appearance.SetData(uid, SkrunglerVisuals.Skrunglring, false);
         RemComp<JitteringComponent>(uid);
         _audio.PlayPvs(component.SkrungFinishSound, uid);
         _ambientSoundSystem.SetAmbience(uid, false);

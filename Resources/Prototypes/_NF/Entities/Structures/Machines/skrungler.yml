@@ -18,10 +18,12 @@
       visible: false
       map: ["enum.SkrunglerVisualLayers.LightContent"]
       shader: unshaded
-    - state: skrungler_active_light
+    - state: skrungler_base
       visible: false
-      map: ["enum.SkrunglerVisualLayers.LightSkrungler"]
-      shader: unshaded
+      map: ["enum.SkrunglerVisualLayers.SkrunglringBase"]
+    - state: skrungler_active
+      visible: false
+      map: ["enum.SkrunglerVisualLayers.Skrunglring"]
   - type: EntityStorage
     isCollidableWhenOpen: true
     showContents: false
@@ -32,6 +34,11 @@
     openSound:
       path: /Audio/Items/deconstruct.ogg
   - type: EntityStorageLayingDownOverride
+  - type: Construction
+    containers:
+      - machine_board
+      - machine_parts
+      - entity_storage
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
@@ -44,8 +51,12 @@
     stateDoorOpen: skrungler_tray
   - type: GenericVisualizer
     visuals:
-      enum.SkrunglerVisuals.Skrungling:
-        enum.SkrunglerVisualLayers.LightSkrungler:
+      enum.SkrunglerVisuals.SkrunglringBase:
+        enum.SkrunglerVisualLayers.SkrunglringBase:
+          True: { visible: true }
+          False: { visible: false }
+      enum.SkrunglerVisuals.Skrunglring:
+        enum.SkrunglerVisualLayers.Skrunglring:
           True: { visible: true }
           False: { visible: false }
       enum.StorageVisuals.HasContents:
