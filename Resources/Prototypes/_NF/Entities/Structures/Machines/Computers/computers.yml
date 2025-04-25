@@ -63,7 +63,7 @@
   suffix: VeryHigh
   components:
   - type: MarketModifier
-    mod: 1.75
+    mod: 1.50
 
 - type: entity
   parent: ComputerPalletConsoleNFMarket
@@ -71,7 +71,7 @@
   suffix: High
   components:
   - type: MarketModifier
-    mod: 1.50
+    mod: 1.25
 
 - type: entity
   parent: ComputerPalletConsoleNFMarket
@@ -213,6 +213,15 @@
 - type: entity
   name: cargo market computer
   parent: ComputerMarketConsoleNFBase
+  id: ComputerMarketConsoleNFNormal
+  suffix: Normal
+  components:
+  - type: MarketModifier
+    mod: 6
+
+- type: entity
+  name: cargo market computer
+  parent: ComputerMarketConsoleNFBase
   id: ComputerMarketConsoleNFHigh
   suffix: High
   components:
@@ -259,6 +268,32 @@
   # - type: GuideHelp # Frontier
   #   guides: # Frontier
   #   - Pirate # Frontier: eventually?  maybe?
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerPirateBounty
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerPirateBountyBroken
+  name: broken pirate bounty computer
+  description: This console has seen better days. Can be repaired with a repair kit.
+  components:
+  - type: Construction
+    graph: ComputerPirateBounty
+    node: start
 
 - type: entity
   name: plunder exchange computer
@@ -283,6 +318,32 @@
     cashType: Doubloon
     faction: Pirates
     locStringPrefix: pirate-
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerContrabandPalletConsolePirate
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerContrabandPalletConsolePirateBroken
+  name: broken plunder exchange computer
+  description: This console has seen better days. Can be repaired with a repair kit.
+  components:
+  - type: Construction
+    graph: ComputerContrabandPalletConsolePirate
+    node: start
 
 - type: entity
   name: pirate bounty redemption computer
@@ -316,6 +377,32 @@
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerPirateBountyRedemption
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerPirateBountyRedemptionBroken
+  name: broken pirate bounty redemption computer
+  description: This console has seen better days. Can be repaired with a repair kit.
+  components:
+  - type: Construction
+    graph: ComputerPirateBountyRedemption
+    node: start
 
 - type: entity
   id: ComputerSalvageExpeditionDebug
@@ -329,7 +416,8 @@
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]
   id: GasSaleConsole
   name: gas sale console
-  description: Sells gas pumped into a linked gas sale port/point.
+  description: Sells gas pumped into any nearby gas sale ports or points.
+  suffix: Normal
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -354,7 +442,40 @@
   - type: Computer
     board: Null # FIXME
   - type: MarketModifier
+    buy: false
     mod: 1
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleVeryHigh
+  suffix: VeryHigh
+  components:
+  - type: MarketModifier
+    mod: 1.5
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleHigh
+  suffix: High
+  components:
+  - type: MarketModifier
+    mod: 1.25
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleLow
+  suffix: Low
+  components:
+  - type: MarketModifier
+    mod: 0.75
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleVeryLow
+  suffix: VeryLow
+  components:
+  - type: MarketModifier
+    mod: 0.5
 
 # Station Traffic Controller consoles
 - type: entity

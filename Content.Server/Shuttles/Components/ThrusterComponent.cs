@@ -5,12 +5,13 @@ using Content.Shared.Construction.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.DeviceLinking; // Frontier
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Shuttles.Components
 {
-    [RegisterComponent, NetworkedComponent]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
     [Access(typeof(ThrusterSystem))]
     public sealed partial class ThrusterComponent : Component
     {
@@ -58,34 +59,38 @@ namespace Content.Server.Shuttles.Components
         public bool Firing = false;
 
         /// <summary>
-        /// Next time we tick damage for anyone colliding.
+        /// How often thruster deals damage.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField("nextFire", customTypeSerializer:typeof(TimeOffsetSerializer))]
-        public TimeSpan NextFire;
+        [DataField]
+        public TimeSpan FireCooldown = TimeSpan.FromSeconds(2);
 
-        [DataField("machinePartThrust", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-        public string MachinePartThrust = "Capacitor";
+        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+        public TimeSpan NextFire = TimeSpan.Zero;
 
-        [DataField("partRatingThrustMultiplier")]
-        public float PartRatingThrustMultiplier = 1.15f; // Frontier - PR #1292 1.5f<1.15f
+        // Frontier: upgradeable parts, togglable thrust
+        [DataField]
+        public ProtoId<MachinePartPrototype> MachinePartThrust = "Capacitor";
+
+        [DataField]
+        public float[] ThrustPerPartLevel = [130, 170, 210, 250];
 
         /// <summary>
-        ///     Frontier - Amount of charge this needs from an APC per second to function.
+        /// Load on the power network, in watts.
         /// </summary>
         public float OriginalLoad { get; set; } = 0;
 
         /// <summary>
-        ///     Frontier - Make linkable to buttons
+        /// Togglable thrusters
         /// </summary>
-        [DataField("onPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))] // Frontier
-        public string OnPort = "On"; // Frontier
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string OnPort = "On";
 
-        [DataField("offPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))] // Frontier
-        public string OffPort = "Off"; // Frontier
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string OffPort = "Off";
 
-        [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))] // Frontier
-        public string TogglePort = "Toggle"; // Frontier
-
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string TogglePort = "Toggle";
+        // End Frontier: upgradeable parts, togglable thrust
     }
 
     public enum ThrusterType

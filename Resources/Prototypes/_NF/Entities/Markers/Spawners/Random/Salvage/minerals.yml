@@ -28,9 +28,9 @@
       weight: 0.01
     - id: WallRockDiamond
       weight: 0.002
-    - id: WallRockBluespace
+    - id: NFWallRockBluespace
       weight: 0.003
-    - id: RockElementalSpawner
+    - id: NFRockElementalSpawner
       weight: 0.06
 
 - type: entity
@@ -80,7 +80,7 @@
       weight: 0.001
     - id: NFWallCobblebrickBluespace
       weight: 0.0003
-    - id: CobblebrickElementalSpawner
+    - id: NFCobblebrickElementalSpawner
       weight: 0.006
 
 - type: entity
@@ -164,9 +164,9 @@
       weight: 0.04
     - id: WallRockSnowDiamond
       weight: 0.002
-    - id: WallRockSnowBluespace
+    - id: NFWallRockSnowBluespace
       weight: 0.01
-    - id: SnowElementalSpawner
+    - id: NFSnowElementalSpawner
       weight: 0.07
 
 - type: entity
@@ -218,7 +218,7 @@
     #   weight: 0.0002
     - id: NFWallIceBluespace
       weight: 0.001
-    - id: IceElementalSpawner
+    - id: NFIceElementalSpawner
       weight: 0.007
 
 - type: entity
@@ -302,9 +302,9 @@
       weight: 0.01
     - id: WallRockAndesiteDiamond
       weight: 0.008
-    - id: WallRockAndesiteBluespace
+    - id: NFWallRockAndesiteBluespace
       weight: 0.002
-    - id: AndesiteElementalSpawner
+    - id: NFAndesiteElementalSpawner
       weight: 0.08
 
 - type: entity
@@ -356,7 +356,7 @@
     #   weight: 0.0012
     - id: NFWallAndesiteCobblebrickBluespace
       weight: 0.0002
-    - id: AndesiteCobblebrickElementalSpawner
+    - id: NFAndesiteNFCobblebrickElementalSpawner
       weight: 0.008
 
 - type: entity
@@ -440,9 +440,9 @@
       weight: 0.01
     - id: WallRockBasaltDiamond
       weight: 0.005
-    - id: WallRockBasaltBluespace
+    - id: NFWallRockBasaltBluespace
       weight: 0.005
-    - id: BasaltElementalSpawner
+    - id: NFBasaltElementalSpawner
       weight: 0.05
 
 - type: entity
@@ -494,7 +494,7 @@
     #   weight: 0.0005
     - id: NFWallBasaltCobblebrickBluespace
       weight: 0.0005
-    - id: BasaltCobblebrickElementalSpawner
+    - id: NFBasaltNFCobblebrickElementalSpawner
       weight: 0.005
 
 - type: entity
@@ -578,9 +578,9 @@
       weight: 0.01
     - id: WallRockSandDiamond
       weight: 0.002
-    - id: WallRockSandBluespace
+    - id: NFWallRockSandBluespace
       weight: 0.002
-    - id: SandElementalSpawner
+    - id: NFSandElementalSpawner
       weight: 0.05
 
 - type: entity
@@ -632,7 +632,7 @@
     #   weight: 0.0002
     - id: NFWallSandstoneBluespace
       weight: 0.0002
-    - id: SandstoneCobblebrickElementalSpawner
+    - id: NFSandstoneNFCobblebrickElementalSpawner
       weight: 0.008
 
 - type: entity
@@ -716,9 +716,9 @@
       weight: 0.01
     - id: WallRockChromiteDiamond
       weight: 0.005
-    - id: WallRockChromiteBluespace
+    - id: NFWallRockChromiteBluespace
       weight: 0.0025
-    - id: ChromiteElementalSpawner
+    - id: NFChromiteElementalSpawner
       weight: 0.05
 
 - type: entity
@@ -770,7 +770,7 @@
     #   weight: 0.0005
     - id: NFWallChromiteCobblebrickBluespace
       weight: 0.00025
-    - id: ChromiteCobblebrickElementalSpawner
+    - id: NFChromiteNFCobblebrickElementalSpawner
       weight: 0.005
 
 - type: entity
@@ -852,11 +852,11 @@
       weight: 0.04
     - id: AsteroidRockArtifactFragment
       weight: 0.01
-    - id: AsteroidRockBluespace
+    - id: NFAsteroidRockBluespace
       weight: 0.002
     - id: AsteroidRockDiamond
       weight: 0.01
-    - id: AsteroidRockElementalSpawner
+    - id: NFAsteroidRockElementalSpawner
       weight: 0.08
 
 - type: entity
@@ -908,7 +908,7 @@
       weight: 0.0002
     # - id: NFWallNecropolisDiamond
     #   weight: 0.001
-    - id: NecropolisElementalSpawner
+    - id: NFNecropolisElementalSpawner
       weight: 0.008
 
 - type: entity
@@ -968,32 +968,34 @@
   id: NFScrapMineralSoft
   table: !type:GroupSelector
     children:
-    - id: WallRockScrapPile
+    - id: NFWallRockScrapPile
       weight: 0.5
-    - id: WallRockScrapPileCoal
+    - id: NFWallRockScrapPileCoal
       weight: 0.02
-    - id: WallRockScrapPileIron
+    - id: NFWallRockScrapPileIron
       weight: 0.04
-    - id: WallRockScrapPileQuartz
+    - id: NFWallRockScrapPileQuartz
       weight: 0.01
-    - id: WallRockScrapPileSalt
+    - id: NFWallRockScrapPileSalt
       weight: 0.01
-    - id: WallRockScrapPileGold
+    - id: NFWallRockScrapPileGold
       weight: 0.02
-    - id: WallRockScrapPileSilver
+    - id: NFWallRockScrapPileSilver
       weight: 0.02
-    - id: WallRockScrapPilePlasma
+    - id: NFWallRockScrapPilePlasma
       weight: 0.05
-    - id: WallRockScrapPileUranium
+    - id: NFWallRockScrapPileUranium
       weight: 0.01
-    - id: WallRockScrapPileBananium
+    - id: NFWallRockScrapPileBananium
       weight: 0.005
-    - id: WallRockScrapPileArtifactFragment
+    - id: NFWallRockScrapPileArtifactFragment
       weight: 0.02
-    - id: WallRockScrapPileDiamond
+    - id: NFWallRockScrapPileDiamond
       weight: 0.002
-    - id: WallRockScrapPileBluespace
+    - id: NFWallRockScrapPileBluespace
       weight: 0.003
+    - id: NFAsteroidScrapBotWallSpawner
+      weight: 0.05
 
 - type: entity
   id: NFScrapMineralSoft

@@ -6,7 +6,7 @@ using Content.Client.Lobby;
 using Content.Client.UserInterface.Controls;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Shared.CCVar;
-using Content.Shared.GameTicking;
+using Content.Shared.GameTicking; // Frontier
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -170,7 +170,7 @@ namespace Content.Client.LateJoin
 
                 foreach (var department in departments)
                 {
-                    var departmentName = Loc.GetString($"department-{department.ID}");
+                    var departmentName = Loc.GetString(department.Name);
                     _jobCategories[id] = new Dictionary<string, BoxContainer>();
                     var stationAvailable = _gameTicker.StationJobInformationList[id];
                     var jobsAvailable = new List<JobPrototype>();

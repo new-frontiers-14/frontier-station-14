@@ -106,7 +106,7 @@
     sprite: Clothing/Back/Satchels/science.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseC2Contraband] # Frontier: BaseRestrictedContraband<BaseC2Contraband
+  parent: [ClothingBackpackSatchel, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
   id: ClothingBackpackSatchelSecurity
   name: security satchel
   description: A robust satchel for security related needs.
@@ -115,7 +115,7 @@
     sprite: Clothing/Back/Satchels/security.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseC2Contraband] # Frontier: BaseRestrictedContraband<BaseC2Contraband
+  parent: [ClothingBackpackSatchel, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: ClothingBackpackSatchelBrigmedic
   name: brigmedic satchel
   description: A sterile satchel for medical related needs.
@@ -186,7 +186,7 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-    - 0,0,11,4
+    - 0,0,7,7 # Frontier: Was 0,0,19,9
   - type: Clothing # Frontier
     sprite: _NF/Clothing/Back/Satchels/holding.rsi # Frontier
     clothingVisuals: # Frontier

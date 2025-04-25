@@ -6,4 +6,5 @@ role-type-familiar-name = Familiar
 role-type-silicon-name = Silicon
 role-type-silicon-antagonist-name = Altered Silicon
 
-role-type-update-message = Your role is [color = {$color}]{$role}[/color]
+# Frontier: grammar & consistency with job.ftl
+role-type-update-message = Your role is: [color = {$color}]{$role}[/color].
