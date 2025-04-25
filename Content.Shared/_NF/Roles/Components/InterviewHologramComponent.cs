@@ -1,4 +1,6 @@
+using Content.Shared.Roles;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using System.Numerics;
 
 namespace Content.Shared._NF.Roles.Components;
@@ -6,21 +8,9 @@ namespace Content.Shared._NF.Roles.Components;
 /// <summary>
 /// Holds data pertaining to interview holograms
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class InterviewHologramComponent : Component
 {
-    /// <summary>
-    /// Default RSI path
-    /// </summary>
-    [DataField]
-    public string RsiPath = string.Empty;
-
-    /// <summary>
-    /// Default RSI state
-    /// </summary>
-    [DataField]
-    public string RsiState = string.Empty;
-
     /// <summary>
     /// Name of the shader to use
     /// </summary>
@@ -62,4 +52,28 @@ public sealed partial class InterviewHologramComponent : Component
     /// </summary>
     [DataField]
     public Vector2 Offset = new Vector2();
+
+    /// <summary>
+    /// The job this user is applying for.
+    /// </summary>
+    [DataField(required: true)]
+    public ProtoId<JobPrototype> Job;
+
+    /// <summary>
+    /// True if the hologram user has accepted this job.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool ApplicantAccepted;
+
+    /// <summary>
+    /// True if the captain has accepted this job.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool CaptainAccepted;
+
+    /// <summary>
+    /// True if a character appearance has been applied to this entity.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool AppearanceApplied;
 }

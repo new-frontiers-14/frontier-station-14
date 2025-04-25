@@ -1,0 +1,77 @@
+- type: entity
+  parent: [NFMobBossRestrictions, BaseMob]
+  id: InterviewHologram
+  abstract: true
+  components:
+  # Cherry-picking stuff from BaseMobSpecies
+  - type: Sprite
+    drawdepth: Mobs
+  - type: StatusIcon
+    bounds: -0.5,-0.5,0.5,0.5
+  - type: HumanoidAppearance
+    species: Human
+  - type: Fixtures
+    fixtures: # Fixtures taken from species/base.yml
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 185
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FloorOcclusion
+  - type: Identity
+  - type: AnimationPlayer
+  - type: SSDIndicator
+  - type: MindContainer
+    showExamineInfo: true
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+    speechBubbleOffset: 0.45
+  - type: Emoting
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  # Interview-specific things
+  - type: InterviewHologram
+    shaderName: Hologram
+    color1: "#65b8e2"
+    color2: "#3a6981"
+    alpha: 0.9
+    intensity: 2
+    scrollRate: 0.125
+  - type: NFSalvageMobRestrictions
+    leaveGridPopup: hologram-return-to-shuttle
+
+- type: entity
+  id: InterviewHologramContractor
+  parent: InterviewHologram
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: InterviewHologram
+    job: Contractor
+
+- type: entity
+  id: InterviewHologramPilot
+  parent: InterviewHologram
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: InterviewHologram
+    job: Pilot
+
+- type: entity
+  id: InterviewHologramMercenary
+  parent: InterviewHologram
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: InterviewHologram
+    job: Mercenary
