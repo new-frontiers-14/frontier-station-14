@@ -95,7 +95,7 @@
     examineCaliber: gun-examine-caliber-20
   - type: ItemSlots
     slots:
-      gun_magazine:
+      gun_magazine: &mag20Standard
         name: Magazine
         startingItem: NFMagazineRifle20
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
@@ -109,6 +109,22 @@
       gun_chamber: &chamber20Standard
         name: Chamber
         startingItem: NFCartridgeRifle20
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgeRifle20
+
+- type: entity
+  id: NFBaseWeaponRifleAssaultChamber20Rubber
+  parent: NFBaseWeaponRifleAssaultChamber20
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine: *mag20Standard
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgeRifle20Rubber
         priority: 1
         whitelist:
           tags:
