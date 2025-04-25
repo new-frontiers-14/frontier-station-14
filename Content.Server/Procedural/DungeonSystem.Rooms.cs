@@ -90,7 +90,7 @@ public sealed partial class DungeonSystem
             roomRotation = GetRoomRotation(room, random);
         }
 
-        var roomTransform = Matrix3Helpers.CreateTransform((Vector2) room.Size / 2f, roomRotation);
+        var roomTransform = Matrix3Helpers.CreateTransform((Vector2)room.Size / 2f, roomRotation);
         var finalTransform = Matrix3x2.Multiply(roomTransform, originTransform);
 
         SpawnRoom(gridUid, grid, finalTransform, room, reservedTiles, clearExisting);
@@ -113,20 +113,6 @@ public sealed partial class DungeonSystem
         return roomRotation;
     }
 
-    private static Box2 GetRotatedBox(Vector2 point1, Vector2 point2, double angle)
-    {
-        if (angle == 0)
-            return new Box2(point1, point2);
-        if (Math.Abs(angle - Math.PI / 2) < 1E-5)
-            return new Box2(point2.X, point1.Y, point1.X, point2.Y);
-        if (Math.Abs(angle - Math.PI) < 1E-5)
-            return new Box2(point2, point1);
-        if (Math.Abs(angle + Math.PI / 2) < 1E-5)
-            return new Box2(point1.X, point2.Y, point2.X, point1.Y);
-
-        throw new NotImplementedException();
-    }
-
     public void SpawnRoom(
         EntityUid gridUid,
         MapGridComponent grid,
@@ -140,8 +126,6 @@ public sealed partial class DungeonSystem
         var templateMapUid = _mapManager.GetMapEntityId(roomMap);
         var templateGrid = Comp<MapGridComponent>(templateMapUid);
         var roomDimensions = room.Size;
-
-        var entitySet = new HashSet<EntityUid>();
 
         var finalRoomRotation = roomTransform.Rotation();
 
@@ -266,7 +250,7 @@ public sealed partial class DungeonSystem
                 // but place 1 nanometre off grid and fail the add.
                 if (!_maps.TryGetTileRef(gridUid, grid, tilePos, out var tileRef) || tileRef.Tile.IsEmpty)
                 {
-                    _maps.SetTile(gridUid, grid, tilePos, _tile.GetVariantTile((ContentTileDefinition) _tileDefManager[FallbackTileId], _random.GetRandom()));
+                    _maps.SetTile(gridUid, grid, tilePos, _tile.GetVariantTile((ContentTileDefinition)_tileDefManager[FallbackTileId], _random.GetRandom()));
                 }
 
                 var result = _decals.TryAddDecal(

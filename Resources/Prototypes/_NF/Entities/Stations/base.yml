@@ -109,6 +109,7 @@
       - RCD # Dup charges
       - Storage # Till fixed
       - StorageFill # Till fixed
+      - BindToStation # no laundering your rental ship machines
     whitelistOverride:
       components:
       - UraniumMaterials # Counts as food
@@ -125,3 +126,9 @@
   abstract: true
   components:
     - type: StationDeadDropHintExempt
+
+- type: entity
+  id: BaseStationBusDepot
+  abstract: true
+  components:
+  - type: StationBusDepot
