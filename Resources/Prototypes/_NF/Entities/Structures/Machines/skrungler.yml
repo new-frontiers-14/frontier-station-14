@@ -1,0 +1,66 @@
+- type: entity
+  id: Skrungler
+  name: skrungler
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  description: A skrungler, a vile machine that is able to produce plasma fuel from dead bodies.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/skrungler.rsi
+    layers:
+    - state: crema_closed
+      map: ["enum.SkrunglerVisualLayers.Base", "enum.StorageVisualLayers.Base"]
+    - state: crema_tray
+      offset: 0, -1
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: crema_contents_light
+      visible: false
+      map: ["enum.SkrunglerVisualLayers.LightContent"]
+      shader: unshaded
+    - state: crema_active_light
+      visible: false
+      map: ["enum.SkrunglerVisualLayers.LightSkrungler"]
+      shader: unshaded
+  - type: EntityStorage
+    isCollidableWhenOpen: true
+    showContents: false
+    capacity: 1
+    enteringOffset: 0, -1
+    closeSound:
+      path: /Audio/Items/deconstruct.ogg
+    openSound:
+      path: /Audio/Items/deconstruct.ogg
+  - type: EntityStorageLayingDownOverride
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      entity_storage: !type:Container
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: crema_closed
+    stateBaseOpen: crema_open
+    stateDoorOpen: crema_tray
+  - type: GenericVisualizer
+    visuals:
+      enum.SkrunglerVisuals.Skrungling:
+        enum.SkrunglerVisualLayers.LightSkrungler:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StorageVisuals.HasContents:
+        enum.SkrunglerVisualLayers.LightContent:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Skrungler
+  - type: AmbientSound
+    enabled: false
+    volume: -5
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/reclaimer_ambience.ogg
+  - type: Machine
+    board: SkrunglerMachineCircuitboard
