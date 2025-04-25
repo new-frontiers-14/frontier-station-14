@@ -9,16 +9,16 @@
   - type: Sprite
     sprite: _NF/Structures/Storage/skrungler.rsi
     layers:
-    - state: crema_closed
+    - state: skrungler_closed
       map: ["enum.SkrunglerVisualLayers.Base", "enum.StorageVisualLayers.Base"]
-    - state: crema_tray
+    - state: skrungler_tray
       offset: 0, -1
       map: ["enum.StorageVisualLayers.Door"]
-    - state: crema_contents_light
+    - state: skrungler_contents_light
       visible: false
       map: ["enum.SkrunglerVisualLayers.LightContent"]
       shader: unshaded
-    - state: crema_active_light
+    - state: skrungler_active_light
       visible: false
       map: ["enum.SkrunglerVisualLayers.LightSkrungler"]
       shader: unshaded
@@ -39,9 +39,9 @@
       entity_storage: !type:Container
   - type: Appearance
   - type: EntityStorageVisuals
-    stateBaseClosed: crema_closed
-    stateBaseOpen: crema_open
-    stateDoorOpen: crema_tray
+    stateBaseClosed: skrungler_closed
+    stateBaseOpen: skrungler_open
+    stateDoorOpen: skrungler_tray
   - type: GenericVisualizer
     visuals:
       enum.SkrunglerVisuals.Skrungling:
