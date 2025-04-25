@@ -22,7 +22,7 @@ gun-examine-caliber-asmgt = .35 pistol / .20 rifle / .25 rifle / .30 rifle ammo
 gun-examine-caliber-foam = foam darts
 gun-examine-hitscan-low = 750J energy beam
 gun-examine-energybolt-medium = 1100J energy beam
-gun-examine-hitscan-high = 1400 energy beam
+gun-examine-hitscan-high = 1400J energy beam
 gun-examine-hitscan-high-p = 1900J energy beam
 gun-examine-hitscan-xray = 1900J X-ray beam
 gun-examine-energybolt-low = 750J energy bolt
@@ -32,17 +32,21 @@ gun-examine-energybolt-disabler-practice = 25J disabler bolt
 gun-examine-energybolt-holoflare = holoflare
 gun-examine-pulse-low = 1750J energy pulse
 gun-examine-energybolt-emp = EMP bolt
+gun-examine-energybolt-kinetic-high = 1600J kinetic bolt
+gun-examine-energybolt-kinetic-medium = 1100J kinetic bolt
+gun-examine-energybolt-kinetic-low = 850J kinetic bolt
 gun-examine-caliber-40mm-grenade = 40mm grenades
 gun-examine-caliber-rocket = rocket-propelled grenades
 gun-examine-caliber-cannon-ball = cannon balls
 
 # Manufacturers (alphabetical please)
+weapon-details-manufacturer-custom-made = Custom Made
 weapon-details-manufacturer-cybersun-industries = Cybersun Industries
+weapon-details-manufacturer-foam-force-llc = Foam Force LLC
 weapon-details-manufacturer-frontier-gunsmith-consortium = Frontier Gunsmith Consortium
 weapon-details-manufacturer-gorlex-steel-works = Gorlex Steel Works
 weapon-details-manufacturer-nanotrasen-munitions = NanoTrasen Munitions
 weapon-details-manufacturer-steelbolt-tool-forge = Steelbolt Tool Forge
-weapon-details-manufacturer-foam-force-llc = Foam Force LLC
 
 # Classes (alphabetical please)
 weapon-details-class-assault-rifle = Assault Rifle
@@ -55,3 +59,4 @@ weapon-details-class-rifle = Rifle
 weapon-details-class-shotgun = Shotgun
 weapon-details-class-sniper = Sniper Rifle
 weapon-details-class-submachine-gun = Submachine Gun
+weapon-details-class-tool = Tool
