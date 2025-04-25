@@ -1,3 +1,4 @@
+using Content.Server._NF.MEMP;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Power;
 
@@ -5,7 +6,7 @@ namespace Content.Server.Power.Components;
 
 /// <inheritdoc cref="Content.Shared.Power.SharedPowerChargeComponent" />
 [RegisterComponent]
-[Access(typeof(PowerChargeSystem))]
+[Access(typeof(PowerChargeSystem), typeof(MEMPGeneratorSystem))] // Frontier: Added MEMPGeneratorSystem
 public sealed partial class PowerChargeComponent : SharedPowerChargeComponent
 {
     /// <summary>

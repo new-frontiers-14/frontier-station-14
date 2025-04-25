@@ -73,7 +73,20 @@ public sealed class MEMPGeneratorSystem : EntitySystem
 
         _emp.EmpPulse(_transform.ToMapCoordinates(xform.Coordinates), ent.Comp.Range, ent.Comp.EnergyConsumption, ent.Comp.DisableDuration);
 
-        _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), ent, PopupType.MediumCaution);
+
+        if (!TryComp<ApcPowerReceiverComponent>(ent.Owner, out var powerReceiver))
+            return;
+
+        if (!TryComp<PowerChargeComponent>(ent.Owner, out var powerCharge))
+            return;
+
+        // convert from normalised energy to watts and subtract
+        float maxEnergy = powerCharge.ActivePowerUse / powerCharge.ChargeRate;
+        float currentEnergy = maxEnergy * powerCharge.Charge;
+        currentEnergy = Math.Max(0, currentEnergy - ent.Comp.EnergyConsumption);
+
+        // apply renormalised energy to charge variable
+        powerCharge.Charge = currentEnergy / maxEnergy;
 
         //if (TryComp(xform.ParentUid, out MEMPComponent? gravity))
         //{

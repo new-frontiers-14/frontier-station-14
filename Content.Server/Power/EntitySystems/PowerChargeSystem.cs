@@ -111,6 +111,9 @@ public sealed class PowerChargeSystem : EntitySystem
         if (user is { })
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(user):player} set ${ToPrettyString(uid):target}");
 
+        var eventArgs = new ActionEvent();
+        RaiseLocalEvent(uid, ref eventArgs);
+
         component.NeedUIUpdate = true;
     }
 
