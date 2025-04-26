@@ -45,8 +45,6 @@ namespace Content.IntegrationTests.Tests
             // Frontier: no upstream maps, define our own.
             // "/Maps/centcomm.yml",
             AdminTestArenaSystem.ArenaMapPath,
-            "/Maps/_NF/Shuttles/Admin/fishbowl.yml",
-            "/Maps/_NF/Shuttles/Bus/publicts.yml",
             "/Maps/_NF/Shuttles/Admin/fishbowl.yml"
             // End Frontier
         };
@@ -219,7 +217,6 @@ namespace Content.IntegrationTests.Tests
             // End Frontier
 
             var deps = server.ResolveDependency<IEntitySystemManager>().DependencyCollection;
-            // Upstream#35933 - migration fix
             var ev = new BeforeEntityReadEvent();
             server.EntMan.EventBus.RaiseEvent(EventSource.Local, ev);
 
@@ -293,7 +290,6 @@ namespace Content.IntegrationTests.Tests
                 DeserializationOptions.Default,
                 renamedPrototypes,
                 deletedPrototypes);
-            // End Upstream#35933 - migration fix
 
             if (!reader.TryProcessData())
             {

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Server._NF.CryoSleep; // Frontier
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Server.Mind;
@@ -74,6 +75,7 @@ public sealed class AGhostCommand : LocalizedCommands
         var ghostSystem = _entities.System<SharedGhostSystem>();
         var transformSystem = _entities.System<TransformSystem>();
         var gameTicker = _entities.System<GameTicker>();
+        var cryoSystem = _entities.System<CryoSleepSystem>(); // Frontier
 
         if (!mindSystem.TryGetMind(player, out var mindId, out var mind))
         {
@@ -117,5 +119,6 @@ public sealed class AGhostCommand : LocalizedCommands
 
         var comp = _entities.GetComponent<GhostComponent>(ghost);
         ghostSystem.SetCanReturnToBody(comp, canReturn);
+        ghostSystem.SetCanReturnFromCryo(comp, cryoSystem.HasCryosleepingBody(player.UserId)); // Frontier
     }
 }
