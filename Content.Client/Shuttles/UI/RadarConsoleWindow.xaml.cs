@@ -21,8 +21,10 @@ public sealed partial class RadarConsoleWindow : FancyWindow,
         RadarScreen.UpdateState(scc);
     }
 
+    //Frontier start
     public void SetConsole(EntityUid consoleEntity)
     {
         RadarScreen.SetConsole(consoleEntity);
     }
+    //Frontier end
 }

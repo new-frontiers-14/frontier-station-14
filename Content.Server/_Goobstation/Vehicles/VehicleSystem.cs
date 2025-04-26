@@ -1,12 +1,12 @@
 using Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
-using Content.Server._NF.Radar; //Lua mod
-using Content.Shared.Buckle.Components; //Lua mod
+using Content.Server._NF.Radar; //Frontier change _Mono<_NF
+using Content.Shared.Buckle.Components; //Frontier
 
 namespace Content.Server._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
 public sealed class VehicleSystem : SharedVehicleSystem
 {
-    //Lua start
+    ////Frontier start
     protected override void OnStrapped(Entity<VehicleComponent> uid, ref StrappedEvent args)
     {
         base.OnStrapped(uid, ref args);
@@ -24,4 +24,5 @@ public sealed class VehicleSystem : SharedVehicleSystem
         base.OnUnstrapped(uid, ref args);
 
     }
+    //Frontier end
 }

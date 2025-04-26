@@ -1,8 +1,8 @@
 using System.Numerics;
-using Content.Shared._NF.Radar;
+using Content.Shared._NF.Radar; //Frontier change _Mono<_NF
 using Robust.Shared.Timing;
 
-namespace Content.Client._NF.Radar;
+namespace Content.Client._NF.Radar; //Frontier change _Mono<_NF
 
 public sealed partial class RadarBlipsSystem : EntitySystem
 {

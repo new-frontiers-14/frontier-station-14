@@ -1,6 +1,6 @@
-namespace Content.Server._NF.Radar;
+namespace Content.Server._NF.Radar; //Frontier change _Mono<_NF
 
-using Content.Shared._NF.Radar;
+using Content.Shared._NF.Radar; //Frontier change _Mono<_NF
 
 /// <summary>
 /// These handle objects which should be represented by radar blips.

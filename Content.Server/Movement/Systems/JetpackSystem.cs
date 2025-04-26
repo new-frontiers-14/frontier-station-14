@@ -1,6 +1,6 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server._NF.Radar;
+using Content.Server._NF.Radar; //Frontier
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Collections;
@@ -12,8 +12,9 @@ public sealed class JetpackSystem : SharedJetpackSystem
 {
     [Dependency] private readonly GasTankSystem _gasTank = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!; //Frontier
 
+    //Frontier start
     public override void Initialize()
     {
         base.Initialize();
@@ -22,6 +23,7 @@ public sealed class JetpackSystem : SharedJetpackSystem
         SubscribeLocalEvent<ActiveJetpackComponent, ComponentStartup>(OnJetpackActivated);
         SubscribeLocalEvent<ActiveJetpackComponent, ComponentShutdown>(OnJetpackDeactivated);
     }
+    //Frontier end
 
     protected override bool CanEnable(EntityUid uid, JetpackComponent component)
     {
@@ -30,6 +32,7 @@ public sealed class JetpackSystem : SharedJetpackSystem
                !(gasTank.Air.TotalMoles < component.MoleUsage);
     }
 
+    //Frontier Start
     /// <summary>
     /// Adds radar blip to jetpacks when they are activated
     /// </summary>
@@ -48,6 +51,7 @@ public sealed class JetpackSystem : SharedJetpackSystem
     {
         RemComp<RadarBlipComponent>(uid);
     }
+    //Frontier end
 
     public override void Update(float frameTime)
     {
