@@ -5,6 +5,7 @@ using Content.Server._NF.Station.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared._NF.Shipyard.Components;
+using Content.Shared.Shuttles.Components;
 using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Shuttles.Systems;
@@ -16,6 +17,7 @@ public sealed partial class ShuttleSystem
     private void NfInitialize()
     {
         SubscribeLocalEvent<ShuttleConsoleComponent, SetInertiaDampeningRequest>(OnSetInertiaDampening);
+        SubscribeLocalEvent<ShuttleConsoleComponent, SetServiceFlagsRequest>(NfSetServiceFlags);
     }
 
     private bool SetInertiaDampening(EntityUid uid, PhysicsComponent physicsComponent, ShuttleComponent shuttleComponent, TransformComponent transform, InertiaDampeningMode mode)
@@ -122,6 +124,46 @@ public sealed partial class ShuttleSystem
                 SetInertiaDampening(uid, physicsComponent, shuttleComponent, transform, component.DampeningMode);
             }
         }
+    }
+
+    /// <summary>
+    /// Get the current service flags for this grid.
+    /// </summary>
+    public ServiceFlags NfGetServiceFlags(EntityUid uid)
+    {
+        var transform = Transform(uid);
+        // Get the grid entity from the console transform
+        if (!transform.GridUid.HasValue)
+            return ServiceFlags.None;
+
+        var gridUid = transform.GridUid.Value;
+
+        // Set the service flags on the IFFComponent.
+        if (!EntityManager.TryGetComponent<IFFComponent>(gridUid, out var iffComponent))
+            return ServiceFlags.None;
+
+        return iffComponent.ServiceFlags;
+    }
+
+    /// <summary>
+    /// Set the service flags for this grid.
+    /// </summary>
+    public void NfSetServiceFlags(EntityUid uid, ShuttleConsoleComponent component, SetServiceFlagsRequest args)
+    {
+        var transform = Transform(uid);
+        // Get the grid entity from the console transform
+        if (!transform.GridUid.HasValue)
+            return;
+
+        var gridUid = transform.GridUid.Value;
+
+        // Set the service flags on the IFFComponent.
+        if (!EntityManager.TryGetComponent<IFFComponent>(gridUid, out var iffComponent))
+            return;
+
+        iffComponent.ServiceFlags = args.ServiceFlags;
+        _console.RefreshShuttleConsoles(gridUid);
+        Dirty(gridUid, iffComponent);
     }
 
 }
