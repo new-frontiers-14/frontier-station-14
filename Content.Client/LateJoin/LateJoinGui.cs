@@ -6,7 +6,7 @@ using Content.Client.Lobby;
 using Content.Client.UserInterface.Controls;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Shared.CCVar;
-using Content.Shared.GameTicking;
+using Content.Shared.GameTicking; // Frontier
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;

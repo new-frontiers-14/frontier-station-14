@@ -20,6 +20,12 @@ public sealed partial class HandPlaceholderComponent : Component
     public EntityWhitelist? Whitelist;
 
     /// <summary>
+    /// A blacklist to match entities that this should not accept.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityWhitelist? Blacklist;
+
+    /// <summary>
     /// The prototype to use for placeholder icon visuals.
     /// </summary>
     [DataField, AutoNetworkedField]
@@ -42,4 +48,10 @@ public sealed partial class HandPlaceholderComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Enabled;
+
+    /// <summary>
+    /// Controls preventing removal from containers.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool AllowNonItems;
 }

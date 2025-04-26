@@ -50,16 +50,24 @@ public abstract class SharedAnomalySystem : EntitySystem
     {
         if (!TryComp<CorePoweredThrowerComponent>(args.Weapon, out var corePowered) || !TryComp<PhysicsComponent>(ent, out var body))
             return;
-        if (HasComp<InnerBodyAnomalyComponent>(ent.Owner)) // Frontier
-            return; // Frontier
 
-        // anomalies are static by default, so we have set them to dynamic to be throwable
-        _physics.SetBodyType(ent, BodyType.Dynamic, body: body);
+        // Frontier: affect physics only for non-infectious anomalies
+        if (!HasComp<InnerBodyAnomalyComponent>(ent.Owner))
+        {
+            // anomalies are static by default, so we have set them to dynamic to be throwable
+            _physics.SetBodyType(ent, BodyType.Dynamic, body: body);
+        }
+        // End Frontier
         ChangeAnomalyStability(ent, Random.NextFloat(corePowered.StabilityPerThrow.X, corePowered.StabilityPerThrow.Y), ent.Comp);
     }
 
     private void OnLand(Entity<AnomalyComponent> ent, ref LandEvent args)
     {
+        // Frontier: early return if infectious anomaly
+        if (HasComp<InnerBodyAnomalyComponent>(ent))
+            return;
+        // End Frontier
+
         // revert back to static
         _physics.SetBodyType(ent, BodyType.Static);
     }
@@ -126,7 +134,7 @@ public abstract class SharedAnomalySystem : EntitySystem
         if (HasComp<AnomalySupercriticalComponent>(uid))
             return;
 
-        AdminLog.Add(LogType.Anomaly, LogImpact.Extreme, $"Anomaly {ToPrettyString(uid)} began to go supercritical.");
+        AdminLog.Add(LogType.Anomaly, LogImpact.High, $"Anomaly {ToPrettyString(uid)} began to go supercritical.");
         if (_net.IsServer)
             Log.Info($"Anomaly is going supercritical. Entity: {ToPrettyString(uid)}");
 

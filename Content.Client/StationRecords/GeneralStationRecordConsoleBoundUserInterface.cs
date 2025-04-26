@@ -1,6 +1,8 @@
 using Content.Shared.StationRecords;
 using Robust.Client.UserInterface;
-using static Robust.Client.UserInterface.Controls.BaseButton;
+using Content.Shared._NF.StationRecords; // Frontier
+using Content.Shared.Roles; // Frontier
+using Robust.Shared.Prototypes; // Frontier
 
 namespace Content.Client.StationRecords;
 
@@ -25,27 +27,21 @@ public sealed class GeneralStationRecordConsoleBoundUserInterface : BoundUserInt
         _window.OnJobAdd += OnJobsAdd; // Frontier: job modification buttons
         _window.OnJobSubtract += OnJobsSubtract; // Frontier: job modification buttons
         _window.OnDeleted += id => SendMessage(new DeleteStationRecord(id));
+        _window.OnAdvertisementChanged += OnAdvertisementChanged; // Frontier: job modification buttons
     }
 
-    // Frontier: job modification buttons
-    private void OnJobsAdd(ButtonEventArgs args)
+    // Frontier: job modification buttons, ship advertisements
+    private void OnJobsAdd(ProtoId<JobPrototype> job)
     {
-        if (args.Button.Parent?.Parent is not JobRow row || row.Job == null)
-        {
-            return;
-        }
-
-        AdjustStationJobMsg msg = new(row.Job, 1);
-        SendMessage(msg);
+        SendMessage(new AdjustStationJobMsg(job, 1));
     }
-    private void OnJobsSubtract(ButtonEventArgs args)
+    private void OnJobsSubtract(ProtoId<JobPrototype> job)
     {
-        if (args.Button.Parent?.Parent is not JobRow row || row.Job == null)
-        {
-            return;
-        }
-        AdjustStationJobMsg msg = new(row.Job, -1);
-        SendMessage(msg);
+        SendMessage(new AdjustStationJobMsg(job, -1));
+    }
+    private void OnAdvertisementChanged(string text)
+    {
+        SendMessage(new SetStationAdvertisementMsg(text));
     }
     // End Frontier
     protected override void UpdateState(BoundUserInterfaceState state)

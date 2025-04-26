@@ -1,0 +1,12 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'accept-cryo-window-title'}">
+    <BoxContainer Orientation="Vertical">
+        <Label Text="{Loc 'accept-cryo-window-prompt-text-part'}"/>
+        <RichTextLabel Name="StoreText" Access="Public" MaxWidth="300"/>
+        <BoxContainer Orientation="Horizontal" Align="Center">
+            <Button Name="AcceptButton" Text="{Loc 'accept-cryo-window-accept-button'}"/>
+            <Control MinSize="20 0"/>
+            <Button Name="DenyButton" Text="{Loc 'accept-cryo-window-deny-button'}"/>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

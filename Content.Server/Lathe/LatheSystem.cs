@@ -34,7 +34,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Cargo.Components; // Frontier
 using Content.Server._NF.Contraband.Systems; // Frontier
-using Robust.Shared.Containers; // Frontier
+using Robust.Shared.Containers;
+using Content.Shared._NF.Lathe; // Frontier
 
 namespace Content.Server.Lathe
 {
@@ -64,6 +65,7 @@ namespace Content.Server.Lathe
         /// </summary>
         private readonly List<GasMixture> _environments = new();
         private readonly HashSet<ProtoId<LatheRecipePrototype>> _availableRecipes = new();
+        private const int MaxItemsPerRequest = 100_000; // Frontier
 
         public override void Initialize()
         {
@@ -76,6 +78,9 @@ namespace Content.Server.Lathe
 
             SubscribeLocalEvent<LatheComponent, LatheQueueRecipeMessage>(OnLatheQueueRecipeMessage);
             SubscribeLocalEvent<LatheComponent, LatheSyncRequestMessage>(OnLatheSyncRequestMessage);
+            SubscribeLocalEvent<LatheComponent, LatheDeleteRequestMessage>(OnLatheDeleteRequestMessage); // Frontier
+            SubscribeLocalEvent<LatheComponent, LatheMoveRequestMessage>(OnLatheMoveRequestMessage); // Frontier
+            SubscribeLocalEvent<LatheComponent, LatheAbortFabricationMessage>(OnLatheAbortFabricationMessage); // Frontier
 
             SubscribeLocalEvent<LatheComponent, BeforeActivatableUIOpenEvent>((u, c, _) => UpdateUserInterfaceState(u, c));
             SubscribeLocalEvent<LatheComponent, MaterialAmountChangedEvent>(OnMaterialAmountChanged);
@@ -185,6 +190,7 @@ namespace Content.Server.Lathe
             // Frontier: argument check
             if (quantity <= 0)
                 return false;
+            quantity = int.Min(quantity, MaxItemsPerRequest);
             // Frontier: argument check
 
             if (!CanProduce(uid, recipe, quantity, component)) // Frontier: 1<quantity
@@ -193,7 +199,7 @@ namespace Content.Server.Lathe
             foreach (var (mat, amount) in recipe.Materials)
             {
                 var adjustedAmount = recipe.ApplyMaterialDiscount
-                    ? (int) (-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
+                    ? (int)(-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
                     : -amount;
                 adjustedAmount *= quantity; // Frontier
 
@@ -391,12 +397,13 @@ namespace Content.Server.Lathe
         {
             if (!args.Powered)
             {
-                RemComp<LatheProducingComponent>(uid);
-                UpdateRunningAppearance(uid, false);
+                AbortProduction(uid); // Frontier
+                // RemComp<LatheProducingComponent>(uid); // Frontier
+                // UpdateRunningAppearance(uid, false); // Frontier
             }
-            else if (component.CurrentRecipe != null)
+            else /*if (component.CurrentRecipe != null)*/ // Frontier
             {
-                EnsureComp<LatheProducingComponent>(uid);
+                //EnsureComp<LatheProducingComponent>(uid); // Frontier
                 TryStartProducing(uid, component);
             }
         }
@@ -460,7 +467,8 @@ namespace Content.Server.Lathe
             args.AddPercentageUpgrade("lathe-component-upgrade-material-use", component.FinalMaterialUseMultiplier);
         }
 
-        // Frontier: modify item value
+        // Frontier: modify item value, remove from queue
+        #region Frontier
         private void ModifyPrintedEntityPrice(EntityUid uid, LatheComponent component, EntityUid target)
         {
             // Cannot reduce value, leave item as-is
@@ -492,6 +500,76 @@ namespace Content.Server.Lathe
                 }
             }
         }
+        public void AbortProduction(EntityUid uid, LatheComponent? component = null)
+        {
+            if (!Resolve(uid, ref component))
+                return;
+            if (component.CurrentRecipe != null)
+            {
+                // Items incremented on start, need to decrement with removal
+                if (component.Queue.Count > 0)
+                {
+                    var batch = component.Queue.First();
+                    if (batch.Recipe != component.CurrentRecipe)
+                    {
+                        var newBatch = new LatheRecipeBatch(component.CurrentRecipe, 0, 1);
+                        component.Queue.Insert(0, newBatch);
+                    }
+                    else if (batch.ItemsPrinted > 0)
+                    {
+                        batch.ItemsPrinted--;
+                    }
+                }
+
+                component.CurrentRecipe = null;
+            }
+            RemCompDeferred<LatheProducingComponent>(uid);
+            UpdateUserInterfaceState(uid, component);
+            UpdateRunningAppearance(uid, false);
+        }
+
+        public void OnLatheDeleteRequestMessage(EntityUid uid, LatheComponent component, ref LatheDeleteRequestMessage args)
+        {
+            if (args.Index < 0 || args.Index >= component.Queue.Count)
+                return;
+
+            var batch = component.Queue[args.Index];
+            _adminLogger.Add(LogType.Action,
+                LogImpact.Low,
+                $"{ToPrettyString(args.Actor):player} deleted a lathe job for ({batch.ItemsPrinted}/{batch.ItemsRequested}) {GetRecipeName(batch.Recipe)} at {ToPrettyString(uid):lathe}");
+
+            component.Queue.RemoveAt(args.Index);
+            UpdateUserInterfaceState(uid, component);
+        }
+
+        public void OnLatheMoveRequestMessage(EntityUid uid, LatheComponent component, ref LatheMoveRequestMessage args)
+        {
+            if (args.Change == 0 || args.Index < 0 || args.Index >= component.Queue.Count)
+                return;
+
+            var newIndex = args.Index + args.Change;
+            if (newIndex < 0 || newIndex >= component.Queue.Count)
+                return;
+
+            var temp = component.Queue[args.Index];
+            component.Queue[args.Index] = component.Queue[newIndex];
+            component.Queue[newIndex] = temp;
+            UpdateUserInterfaceState(uid, component);
+        }
+
+        public void OnLatheAbortFabricationMessage(EntityUid uid, LatheComponent component, ref LatheAbortFabricationMessage args)
+        {
+            if (component.CurrentRecipe == null)
+                return;
+
+            _adminLogger.Add(LogType.Action,
+                LogImpact.Low,
+                $"{ToPrettyString(args.Actor):player} aborted printing {GetRecipeName(component.CurrentRecipe)} at {ToPrettyString(uid):lathe}");
+
+            component.CurrentRecipe = null;
+            FinishProducing(uid, component);
+        }
+        #endregion
         // End Frontier
     }
 }

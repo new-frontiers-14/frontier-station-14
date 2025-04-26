@@ -92,6 +92,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         InitializeClothing();
         InitializeContainer();
         InitializeSolution();
+        InitializeGunExamine(); // Emberfall
 
         // Interactions
         SubscribeLocalEvent<GunComponent, GetVerbsEvent<AlternativeVerb>>(OnAltVerb);

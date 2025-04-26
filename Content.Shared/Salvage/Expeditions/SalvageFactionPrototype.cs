@@ -1,24 +1,16 @@
-using Content.Shared.Salvage.Expeditions.Modifiers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 
 namespace Content.Shared.Salvage.Expeditions;
 
-[Prototype("salvageFaction")]
-public sealed partial class SalvageFactionPrototype : IPrototype, ISalvageMod
+[Prototype]
+public sealed partial class SalvageFactionPrototype : IPrototype
 {
     [IdDataField] public string ID { get; private set; } = default!;
 
     [DataField("desc")] public LocId Description { get; private set; } = string.Empty;
 
-    /// <summary>
-    /// Cost for difficulty modifiers.
-    /// </summary>
-    [DataField("cost")]
-    public float Cost { get; private set; } = 0f;
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("groups", required: true)]
-    public List<SalvageMobGroup> MobGroups = default!;
+    [ViewVariables(VVAccess.ReadWrite), DataField("entries", required: true)]
+    public List<SalvageMobEntry> MobGroups = new();
 
     /// <summary>
     /// Miscellaneous data for factions.

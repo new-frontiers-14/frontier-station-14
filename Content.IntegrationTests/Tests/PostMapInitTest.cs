@@ -217,7 +217,6 @@ namespace Content.IntegrationTests.Tests
             // End Frontier
 
             var deps = server.ResolveDependency<IEntitySystemManager>().DependencyCollection;
-            // Upstream#35933 - migration fix
             var ev = new BeforeEntityReadEvent();
             server.EntMan.EventBus.RaiseEvent(EventSource.Local, ev);
 
@@ -291,7 +290,6 @@ namespace Content.IntegrationTests.Tests
                 DeserializationOptions.Default,
                 renamedPrototypes,
                 deletedPrototypes);
-            // End Upstream#35933 - migration fix
 
             if (!reader.TryProcessData())
             {
