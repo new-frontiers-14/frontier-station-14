@@ -36,6 +36,7 @@ public sealed class RadioDeviceSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!; // Frontier: access
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Frontier
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid, RadioChannelPrototype)> _recentlySent = new();
@@ -258,7 +259,8 @@ public sealed class RadioDeviceSystem : EntitySystem
     {
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
-        if (!_access.IsAllowed(args.Actor, ent.Owner)) // Frontier
+        if (!_access.IsAllowed(args.Actor, ent.Owner)
+            || !_actionBlocker.CanComplexInteract(args.Actor)) // Frontier
             return; // Frontier
 
         SetMicrophoneEnabled(ent, args.Actor, args.Enabled, true);
@@ -270,7 +272,8 @@ public sealed class RadioDeviceSystem : EntitySystem
     {
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
-        if (!_access.IsAllowed(args.Actor, ent.Owner)) // Frontier
+        if (!_access.IsAllowed(args.Actor, ent.Owner)
+            || !_actionBlocker.CanComplexInteract(args.Actor)) // Frontier
             return; // Frontier
 
         SetSpeakerEnabled(ent, args.Actor, args.Enabled, true);
@@ -282,7 +285,8 @@ public sealed class RadioDeviceSystem : EntitySystem
     {
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
-        if (!_access.IsAllowed(args.Actor, ent.Owner)) // Frontier
+        if (!_access.IsAllowed(args.Actor, ent.Owner)
+            || !_actionBlocker.CanComplexInteract(args.Actor)) // Frontier
             return; // Frontier
 
         if (!_protoMan.TryIndex<RadioChannelPrototype>(args.Channel, out var channel) || !ent.Comp.SupportedChannels.Contains(args.Channel)) // Nuclear-14: add channel
@@ -376,6 +380,10 @@ public sealed class RadioDeviceSystem : EntitySystem
     private void OnGetAltVerbs(EntityUid uid, RadioMicrophoneComponent microphone, GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        if (!_access.IsAllowed(args.Actor, ent.Owner)
+            || !_actionBlocker.CanComplexInteract(args.Actor))
             return;
 
         AlternativeVerb verb = new()

@@ -60,16 +60,16 @@ public sealed partial class InterviewHologramComponent : Component
     public ProtoId<JobPrototype> Job;
 
     /// <summary>
-    /// True if the hologram user has accepted this job.
+    /// True if the hologram user has approved this job.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool ApplicantAccepted;
+    public bool ApplicantApproved;
 
     /// <summary>
-    /// True if the captain has accepted this job.
+    /// True if the captain has approved this job.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool CaptainAccepted;
+    public bool CaptainApproved;
 
     /// <summary>
     /// True if a character appearance has been applied to this entity.

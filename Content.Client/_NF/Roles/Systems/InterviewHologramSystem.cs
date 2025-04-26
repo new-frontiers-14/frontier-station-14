@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._NF.Roles.Systems;
 using Content.Shared._NF.Roles.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -8,7 +9,7 @@ using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client._NF.Roles.Systems;
 
-public sealed class InterviewHologramSystem : EntitySystem
+public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IGameTiming _timing = default!;
@@ -71,5 +72,10 @@ public sealed class InterviewHologramSystem : EntitySystem
 
         sprite.PostShader = instance;
         sprite.RaiseShaderEvent = true;
+    }
+
+    // NOOP, spawn logic handled on server.
+    protected override void HandleApprovalChanged(Entity<InterviewHologramComponent> ent)
+    {
     }
 }
