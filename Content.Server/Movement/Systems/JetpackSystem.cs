@@ -1,6 +1,6 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server._Mono.Radar;
+using Content.Server._NF.Radar;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Collections;
@@ -17,7 +17,7 @@ public sealed class JetpackSystem : SharedJetpackSystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         // Subscribe to ActiveJetpackComponent events
         SubscribeLocalEvent<ActiveJetpackComponent, ComponentStartup>(OnJetpackActivated);
         SubscribeLocalEvent<ActiveJetpackComponent, ComponentShutdown>(OnJetpackDeactivated);
@@ -29,7 +29,7 @@ public sealed class JetpackSystem : SharedJetpackSystem
                TryComp<GasTankComponent>(uid, out var gasTank) &&
                !(gasTank.Air.TotalMoles < component.MoleUsage);
     }
-    
+
     /// <summary>
     /// Adds radar blip to jetpacks when they are activated
     /// </summary>
@@ -40,11 +40,11 @@ public sealed class JetpackSystem : SharedJetpackSystem
         blip.Scale = 0.5f;
         blip.VisibleFromOtherGrids = true;
     }
-    
+
     /// <summary>
     /// Removes radar blip from jetpacks when they are deactivated
     /// </summary>
-    private void OnJetpackDeactivated(EntityUid uid, ActiveJetpackComponent component, ComponentShutdown args) 
+    private void OnJetpackDeactivated(EntityUid uid, ActiveJetpackComponent component, ComponentShutdown args)
     {
         RemComp<RadarBlipComponent>(uid);
     }
