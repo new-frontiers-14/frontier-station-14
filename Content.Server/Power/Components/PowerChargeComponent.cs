@@ -6,7 +6,7 @@ namespace Content.Server.Power.Components;
 
 /// <inheritdoc cref="Content.Shared.Power.SharedPowerChargeComponent" />
 [RegisterComponent]
-[Access(typeof(PowerChargeSystem), typeof(MEMPGeneratorSystem))] // Frontier: Added MEMPGeneratorSystem
+[Access(typeof(PowerChargeSystem))]
 public sealed partial class PowerChargeComponent : SharedPowerChargeComponent
 {
     /// <summary>
