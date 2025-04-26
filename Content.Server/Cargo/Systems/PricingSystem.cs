@@ -444,7 +444,7 @@ public sealed class PricingSystem : EntitySystem
         {
             if (predicate is null || predicate(child))
             {
-                var subPrice = GetPrice(child, true, predicate); // Frontier: GetPrice<GetPriceConditional, add true, predicate
+                var subPrice = GetPrice(child, true, predicate); // Frontier: make getPrice recursive & respect predicate per item
                 price += subPrice;
                 afterPredicate?.Invoke(child, subPrice);
             }
