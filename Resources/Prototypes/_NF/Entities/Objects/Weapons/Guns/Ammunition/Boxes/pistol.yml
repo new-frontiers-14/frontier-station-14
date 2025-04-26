@@ -1,13 +1,11 @@
-# WizDen
 #region base
 - type: entity
   id: NFBaseAmmunitionBoxPistol35
-  parent: [ BaseMagazineBoxPistol, RecyclableItemCardboard ]
+  parent: NFBaseAmmunitionBox
   name: ammunition box (.35 pistol)
   abstract: true
   components:
   - type: BallisticAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - NFCartridgePistol35
@@ -15,19 +13,14 @@
     capacity: 80
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: false
 
 - type: entity
   id: NFBaseAmmunitionBoxPistol45
-  parent: [ BaseMagazineBoxMagnum, RecyclableItemCardboard ]
+  parent: NFBaseAmmunitionBox
   name: ammunition box (.45 pistol)
   abstract: true
   components:
   - type: BallisticAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - NFCartridgePistol45
@@ -48,9 +41,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-35
 
 - type: entity
   id: NFAmmunitionBoxPistol35Overpressure
@@ -63,11 +57,12 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
       color: "#ff8d00"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-35
 
 - type: entity
   id: NFAmmunitionBoxPistol35Practice
@@ -80,10 +75,11 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-35
 
 - type: entity
   id: NFAmmunitionBoxPistol35Incendiary
@@ -96,11 +92,12 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
       color: "#ff0000"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-35
 
 - type: entity
   id: NFAmmunitionBoxPistol35Uranium
@@ -113,11 +110,12 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
       color: "#00ff00"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-35
 
 # Frontier
 # .35 pistol
@@ -132,11 +130,12 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
       color: "#00b0ff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-35
 
 - type: entity
   id: NFAmmunitionBoxPistol35Emp # MagazineBoxPistolEmp
@@ -149,11 +148,12 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
       color: "#00ffff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-35
 
 # WizDen
 #region .45 pistol
@@ -168,9 +168,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-45
 
 - type: entity
   id: NFAmmunitionBoxPistol45Overpressure
@@ -183,11 +184,12 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#ff8d00"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-45
 
 - type: entity
   id: NFAmmunitionBoxPistol45Practice
@@ -200,10 +202,11 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-45
 
 - type: entity
   id: NFAmmunitionBoxPistol45Incendiary
@@ -216,11 +219,12 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#ff0000"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-45
 
 - type: entity
   id: NFAmmunitionBoxPistol45Uranium
@@ -233,11 +237,12 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#00ff00"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-45
 
 # Frontier
 # .45 pistol
@@ -252,11 +257,12 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#00b0ff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-45
 
 - type: entity
   id: NFAmmunitionBoxPistol45Emp # MagazineBoxPistolEmp
@@ -269,11 +275,12 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#00ffff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-45
 
 - type: entity
   id: NFAmmunitionBoxPistol45Explosive
@@ -286,8 +293,9 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#ffff00"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: decal-calibre-45
