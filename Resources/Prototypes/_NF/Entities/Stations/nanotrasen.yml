@@ -1,3 +1,4 @@
+# region Frontier Outpost
 - type: entity
   id: StandardFrontierStation
   suffix: DEBUG # TODO: Fix this, its here to stop PrototypeSaveTest fail
@@ -12,10 +13,12 @@
   - BaseStationDampening
   - BaseStationDeadDropHintExempt # No hints
   - BaseStationRenameWarpPoints
+  - BaseStationBusDepot # All the buses
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
+# region POIs
 - type: entity
   id: StandardFrontierOutpost
   parent:
@@ -69,6 +72,7 @@
   components:
   - type: Transform
 
+# region Shuttles
 - type: entity
   id: StandardFrontierVessel
   parent:
@@ -84,24 +88,27 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
+  - type: ExtraShuttleInformation
 
-  # FIXME: this is currently identical to StandardFrontierVessel
+- type: entity
+  id: StandardFrontierAntagVessel
+  parent:
+  - StandardFrontierVessel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: ExtraShuttleInformation
+    hiddenWithoutOpenJobs: true
+
 - type: entity
   id: StandardFrontierSecurityVessel
   parent:
-  - BaseStation
-  - BaseStationJobsSpawning
-  - BaseStationRecords
-  - BaseStationAllEventsEligible
-  - BaseStationRenameFaxes
-  - BaseStationRenameHolopads
-  - BaseStationRenameWarpPoints
-  - BaseStationSiliconLawFrontierShips
-  - BaseStationDeadDropHintExempt # No hints on ship generation
+  - StandardFrontierVessel
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
+# region Expedition Shuttles
 - type: entity
   id: StandardFrontierSecurityExpeditionVessel
   parent:
