@@ -294,7 +294,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     // Frontier: prevent drivers from pulling things
     private void OnRiderPull(Entity<VehicleRiderComponent> ent, ref PullAttemptEvent args)
     {
-        args.Cancelled = true;
+        if (args.PullerUid == ent.Owner)
+            args.Cancelled = true;
     }
     // End Frontier
 }
