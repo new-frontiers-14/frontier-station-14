@@ -70,9 +70,14 @@ public sealed class MEMPGeneratorSystem : EntitySystem
         ent.Comp.MEMPActionLocked = true;
 
         var xform = Transform(ent);
-
-        _emp.EmpPulse(_transform.ToMapCoordinates(xform.Coordinates), ent.Comp.Range, ent.Comp.EnergyConsumption, ent.Comp.DisableDuration);
-
+        List<EntityUid>? immuneGridList = null;
+        if (xform.GridUid != null)
+        {
+            immuneGridList = new List<EntityUid> {
+                    xform.GridUid.Value
+                };
+        }
+        _emp.EmpPulse(_transform.ToMapCoordinates(xform.Coordinates), ent.Comp.Range, ent.Comp.EnergyConsumption, ent.Comp.DisableDuration, immuneGrids: immuneGridList);
 
         if (!TryComp<ApcPowerReceiverComponent>(ent.Owner, out var powerReceiver))
             return;
@@ -87,11 +92,6 @@ public sealed class MEMPGeneratorSystem : EntitySystem
 
         // apply renormalised energy to charge variable
         powerCharge.Charge = currentEnergy / maxEnergy;
-
-        //if (TryComp(xform.ParentUid, out MEMPComponent? gravity))
-        //{
-        //    _gravitySystem.EnableMEMP(xform.ParentUid, gravity);
-        //}
     }
 
     private void OnParentChanged(EntityUid uid, MEMPGeneratorComponent component, ref EntParentChangedMessage args)
