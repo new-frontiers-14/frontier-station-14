@@ -1,7 +1,7 @@
 - type: entity
   id: Skrungler
   name: skrungler
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  parent: [ BaseC2ContrabandUnredeemable, BaseMachinePowered, ConstructibleMachine ]
   description: A skrungler, a vile machine that is able to produce plasma fuel from dead bodies.
   placement:
     mode: SnapgridCenter
@@ -33,6 +33,10 @@
       path: /Audio/Items/deconstruct.ogg
     openSound:
       path: /Audio/Items/deconstruct.ogg
+    whitelist:
+      tags:
+      - CanPilot # People
+      - VimPilot # Pets
   - type: EntityStorageLayingDownOverride
   - type: Construction
     containers:
