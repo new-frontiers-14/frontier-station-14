@@ -1,9 +1,9 @@
 using System.Numerics;
-using Content.Shared._NF.Radar; //Frontier change _Mono<_NF
+using Content.Shared._NF.Radar; // Frontier
 using Content.Shared.Projectiles;
 using Content.Shared.Shuttles.Components;
 
-namespace Content.Server._NF.Radar; //Frontier change _Mono<_NF
+namespace Content.Server._NF.Radar; // Frontier
 
 public sealed partial class RadarBlipSystem : EntitySystem
 {

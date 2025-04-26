@@ -13,9 +13,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Timing; //Frontier
-using Content.Client._NF.Radar; //Frontier change _Mono<_NF
-using Content.Shared._NF.Radar; //Frontier change _Mono<_NF
+using Robust.Shared.Timing; // Frontier
+using Content.Client._NF.Radar; // Frontier
+using Content.Shared._NF.Radar; // Frontier
 
 namespace Content.Client.Shuttles.UI;
 
@@ -27,7 +27,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     private readonly StationSystem _station; // Frontier
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _transform;
-    private readonly RadarBlipsSystem _blips; //Frontier
+    private readonly RadarBlipsSystem _blips; // Frontier
 
     /// <summary>
     /// Used to transform all of the radar objects. Typically is a shuttle console parented to a grid.
@@ -65,7 +65,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     private List<Entity<MapGridComponent>> _grids = new();
 
-    //Frontier start
+    // Frontier: constants for gunnery system
     #region Mono
     // These 2 handle timing updates
     private const float RadarUpdateInterval = 0f;
@@ -77,19 +77,20 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     private Vector2 _lastMousePos;
     private float _lastFireTime;
     private const float FireRateLimit = 0.1f; // 100ms between shots
-    //Frontier end
+    // End Frontier
     public ShuttleNavControl() : base(64f, 256f, 256f)
     {
         RobustXamlLoader.Load(this);
         _shuttles = EntManager.System<SharedShuttleSystem>();
         _transform = EntManager.System<SharedTransformSystem>();
-        _station = EntManager.System<StationSystem>(); //Frontier
-        _blips = EntManager.System<RadarBlipsSystem>(); //Frontier
+        _station = EntManager.System<StationSystem>(); // Frontier
+        _blips = EntManager.System<RadarBlipsSystem>(); // Frontier
 
-        OnMouseEntered += HandleMouseEntered; //Frontier
-        OnMouseExited += HandleMouseExited; //Frontier
+        OnMouseEntered += HandleMouseEntered; // Frontier
+        OnMouseExited += HandleMouseExited; // Frontier
     }
-    //Frontier start
+
+    // Frontier: handling mouse action
     private void HandleMouseEntered(GUIMouseHoverEventArgs args)
     {
         _isMouseInside = true;
@@ -99,7 +100,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     {
         _isMouseInside = false;
     }
-    //Frontier end
+    //End Frontier
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)
     {
         _coordinates = coordinates;
@@ -110,7 +111,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     {
         _consoleEntity = consoleEntity;
     }
-    //Frontier start
+
+    // Frontier: gunnery system logic
     protected override void KeyBindDown(GUIBoundKeyEventArgs args)
     {
         base.KeyBindDown(args);
@@ -122,11 +124,12 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         _lastMousePos = args.RelativePosition;
         TryFireAtPosition(args.RelativePosition);
     }
-    //Frontier end
+    // End Frontier
     protected override void KeyBindUp(GUIBoundKeyEventArgs args)
     {
         base.KeyBindUp(args);
-        //Frontier start
+
+        // Frontier: Clicking coordinates
         if (args.Function != EngineKeyFunctions.UIClick)
         {
             return;
@@ -138,14 +141,15 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         {
             return;
         }
-        //Frontier end
+        // End Frontier
         var a = InverseScalePosition(args.RelativePosition);
         var relativeWorldPos = a with { Y = -a.Y };
         relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
         var coords = _coordinates.Value.Offset(relativeWorldPos);
         OnRadarClick?.Invoke(coords);
     }
-    //Frontier start
+
+    // Frontier: screen update logic and drawing
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
@@ -187,7 +191,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var coords = _coordinates.Value.Offset(relativeWorldPos);
         OnRadarClick?.Invoke(coords);
     }
-    //Frontier end
+    // End Frontier
 
     /// <summary>
     /// Gets the entity coordinates of where the mouse position is, relative to the control.
@@ -452,8 +456,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 handle.DrawCircle(p, 5, Color.ToSrgb(Color.Cyan), true);
             }
         }
-        //Frontier start
 
+        // Frontier: radar blip system for the mass scanners and shapes
         #region Mono
         // Draw radar line
         // First, figure out which angle to draw.
@@ -599,7 +603,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, vertices, color);
 
     }
-    //Frontier end
+    // End Frontier
 
     private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3x2 gridToView)
     {

@@ -21,10 +21,10 @@ public sealed partial class RadarConsoleWindow : FancyWindow,
         RadarScreen.UpdateState(scc);
     }
 
-    //Frontier start
+    // Frontier: set the console for the radar blip system
     public void SetConsole(EntityUid consoleEntity)
     {
         RadarScreen.SetConsole(consoleEntity);
     }
-    //Frontier end
+    // End Frontier
 }

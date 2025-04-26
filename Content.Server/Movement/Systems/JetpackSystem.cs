@@ -14,7 +14,7 @@ public sealed class JetpackSystem : SharedJetpackSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityManager _entityManager = default!; //Frontier
 
-    //Frontier start
+    // Frontier: Initialize jetpack component subscriptions
     public override void Initialize()
     {
         base.Initialize();
@@ -32,7 +32,7 @@ public sealed class JetpackSystem : SharedJetpackSystem
                !(gasTank.Air.TotalMoles < component.MoleUsage);
     }
 
-    //Frontier Start
+    // Frontier: add RadarBlipComponent logic for adding and removal if active or not
     /// <summary>
     /// Adds radar blip to jetpacks when they are activated
     /// </summary>
@@ -51,7 +51,7 @@ public sealed class JetpackSystem : SharedJetpackSystem
     {
         RemComp<RadarBlipComponent>(uid);
     }
-    //Frontier end
+    // End Frontier
 
     public override void Update(float frameTime)
     {
