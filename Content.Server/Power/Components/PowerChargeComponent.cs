@@ -1,4 +1,3 @@
-using Content.Server._NF.MEMP;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Power;
 

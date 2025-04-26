@@ -17,10 +17,12 @@ public sealed class PowerChargeBoundUserInterface : BoundUserInterface
         SendMessage(new SwitchChargingMachineMessage(on));
     }
 
-    public void ActionButton(bool on)
+    // Frontier: Add action
+    public void ActionButton()
     {
-        SendMessage(new ActionMessage(on));
+        SendMessage(new ActionMessage);
     }
+    // Frontier End
 
     protected override void Open()
     {

@@ -6,15 +6,7 @@ namespace Content.Shared.Power;
 ///     Frontier: Sent to the server to set whether the machine should be on or off
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class ActionMessage : BoundUserInterfaceMessage
-{
-    public bool On;
-
-    public ActionMessage(bool on)
-    {
-        On = on;
-    }
-}
+public sealed class ActionMessage : BoundUserInterfaceMessage { }
 
 /// <summary>
 ///     Sent to the server to set whether the machine should be on or off

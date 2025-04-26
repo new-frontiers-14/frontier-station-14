@@ -93,7 +93,7 @@ namespace Content.Client.Entry
             _componentFactory.IgnoreMissingComponents();
 
             // Do not add to these, they are legacy.
-            _componentFactory.RegisterClass<SharedMEMPGeneratorComponent>(); // Frontier: Funny
+            _componentFactory.RegisterClass<SharedMEMPGeneratorComponent>(); // Frontier
             _componentFactory.RegisterClass<SharedGravityGeneratorComponent>();
             _componentFactory.RegisterClass<SharedAmeControllerComponent>();
             // Do not add to the above, they are legacy

@@ -5,7 +5,6 @@ using Content.Server.Power.Components;
 using Content.Shared.Database;
 using Content.Shared.Power;
 using Content.Shared.UserInterface;
-using JetBrains.FormatRipper.Elf;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 
@@ -57,11 +56,6 @@ public sealed class PowerChargeSystem : EntitySystem
         SetSwitchedOn(uid, component, args.On, user: args.Actor);
     }
 
-    private void OnActionAttempt(EntityUid uid, PowerChargeComponent component, ActionMessage args) // Frontier
-    {
-        OnAction(uid, component, args.On, user: args.Actor);
-    }
-
     private void OnUIOpenAttempt(EntityUid uid, PowerChargeComponent component, ActivatableUIOpenAttemptEvent args)
     {
         if (!component.Intact)
@@ -104,6 +98,11 @@ public sealed class PowerChargeSystem : EntitySystem
     }
 
     // Frontier: Added action option
+    private void OnActionAttempt(EntityUid uid, PowerChargeComponent component, ActionMessage args)
+    {
+        OnAction(uid, component, args.On, user: args.Actor);
+    }
+
     private void OnAction(EntityUid uid, PowerChargeComponent component, bool on,
     ApcPowerReceiverComponent? powerReceiver = null, EntityUid? user = null)
     {
