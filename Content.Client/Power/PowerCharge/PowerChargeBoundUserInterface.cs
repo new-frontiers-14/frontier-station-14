@@ -20,7 +20,7 @@ public sealed class PowerChargeBoundUserInterface : BoundUserInterface
     // Frontier: Add action
     public void ActionButton()
     {
-        SendMessage(new ActionMessage);
+        SendMessage(new ActionMessage());
     }
     // Frontier End
 

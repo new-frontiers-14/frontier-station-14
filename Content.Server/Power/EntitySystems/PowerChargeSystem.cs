@@ -100,10 +100,10 @@ public sealed class PowerChargeSystem : EntitySystem
     // Frontier: Added action option
     private void OnActionAttempt(EntityUid uid, PowerChargeComponent component, ActionMessage args)
     {
-        OnAction(uid, component, args.On, user: args.Actor);
+        OnAction(uid, component, user: args.Actor);
     }
 
-    private void OnAction(EntityUid uid, PowerChargeComponent component, bool on,
+    private void OnAction(EntityUid uid, PowerChargeComponent component,
     ApcPowerReceiverComponent? powerReceiver = null, EntityUid? user = null)
     {
         if (component.ActionUnlocked)
