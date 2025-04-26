@@ -1,3 +1,4 @@
+# Station/Crew Selection
 frontier-lobby-station-title = Station
 frontier-lobby-available-jobs = Available Jobs
 frontier-lobby-no-stations-available = There are no stations available at this time.
@@ -6,6 +7,7 @@ frontier-lobby-station-subtext = Wake up from cryosleep to become captain, find 
 frontier-lobby-crew-title = Crew
 frontier-lobby-crew-subtext = Start your round aboard a ship amongst a crew that is looking for new crewmembers to give them a helping hand, whether you are a new or seasoned pilot!
 
+# Station Menu
 frontier-lobby-frontier-subtext = Main hub for many space pioneers.
 frontier-lobby-frontier-description = Awaken from cryosleep here to:
    - Start your own crew and become captain
@@ -42,3 +44,10 @@ frontier-lobby-pirate-description = This is the ultimate hideout where scallywag
    - Find a crew to join
    - Socialize with other pirates
  The roles on this station are whitelist-only and require an application in the discord to be accepted.
+
+# Crew Menu
+frontier-lobby-crew-vessel = [bold][color=#A88B5E]Vessel:[/color][/bold] {$name}
+frontier-lobby-crew-class-prefix = [bold][color=#A88B5E]Classes:[/color][/bold]{" "}
+frontier-lobby-crew-size = [bold][color=#A88B5E]Size:[/color][/bold] {$size}
+frontier-lobby-crew-class-advertisement = [bold][color=#A88B5E]Advertisement:[/color][/bold]
+frontier-lobby-crew-only-hide-jobless = Hide jobless ships

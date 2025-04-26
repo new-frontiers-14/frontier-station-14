@@ -1,6 +1,6 @@
 using Content.Server._NF.GameTicking.Rules.Components;
 using Content.Server._NF.Pirate.Components;
-using Content.Server._NF.Roles;
+using Content.Server._NF.Roles.Components;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Roles;
