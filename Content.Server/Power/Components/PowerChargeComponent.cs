@@ -66,8 +66,14 @@ public sealed partial class PowerChargeComponent : SharedPowerChargeComponent
     public bool NeedUIUpdate { get; set; }
 
     /// <summary>
-    /// Frontier: show a activate button on UI
+    /// Frontier: show a action button on UI
     /// </summary>
     [DataField]
     public bool ActionUI { get; set; } = false;
+
+    /// <summary>
+    /// Frontier: is the UI action unlocked?
+    /// </summary>
+    [DataField]
+    public bool ActionUnlocked { get; set; } = true;
 }

@@ -35,6 +35,7 @@ public sealed class PowerChargeState : BoundUserInterfaceState
 {
     public bool On;
     public bool Action; // Frontier
+    public bool ActionUnlocked; // Frontier
     // 0 -> 255
     public byte Charge;
     public PowerChargePowerStatus PowerStatus;
@@ -45,6 +46,7 @@ public sealed class PowerChargeState : BoundUserInterfaceState
     public PowerChargeState(
         bool on,
         bool action, // Frontier
+        bool actionUnlocked, // Frontier
         byte charge,
         PowerChargePowerStatus powerStatus,
         short powerDraw,
@@ -53,6 +55,7 @@ public sealed class PowerChargeState : BoundUserInterfaceState
     {
         On = on;
         Action = action; // Frontier
+        ActionUnlocked = actionUnlocked; // Frontier
         Charge = charge;
         PowerStatus = powerStatus;
         PowerDraw = powerDraw;

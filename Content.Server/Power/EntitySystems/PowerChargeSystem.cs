@@ -5,6 +5,7 @@ using Content.Server.Power.Components;
 using Content.Shared.Database;
 using Content.Shared.Power;
 using Content.Shared.UserInterface;
+using JetBrains.FormatRipper.Elf;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 
@@ -102,20 +103,30 @@ public sealed class PowerChargeSystem : EntitySystem
         component.NeedUIUpdate = true;
     }
 
-    private void OnAction(EntityUid uid, PowerChargeComponent component, bool on, // Frontier
+    // Frontier: Added action option
+    private void OnAction(EntityUid uid, PowerChargeComponent component, bool on,
     ApcPowerReceiverComponent? powerReceiver = null, EntityUid? user = null)
     {
+        if (component.ActionUnlocked)
+            return;
+
         if (!Resolve(uid, ref powerReceiver))
             return;
 
         if (user is { })
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(user):player} set ${ToPrettyString(uid):target}");
 
-        var eventArgs = new ActionEvent();
-        RaiseLocalEvent(uid, ref eventArgs);
+        var eventActionArgs = new ActionEvent();
+        RaiseLocalEvent(uid, ref eventActionArgs);
+
+        component.Active = false;
+        component.Charge = 0;
+        var eventDeactivatedArgs = new ChargedMachineDeactivatedEvent();
+        RaiseLocalEvent(uid, ref eventDeactivatedArgs);
 
         component.NeedUIUpdate = true;
     }
+    // Frontier End
 
     private static void UpdatePowerState(PowerChargeComponent component, ApcPowerReceiverComponent powerReceiver)
     {
@@ -176,6 +187,8 @@ public sealed class PowerChargeSystem : EntitySystem
                 }
             }
 
+            chargingMachine.ActionUnlocked = !chargingMachine.Active; // Frontier: unlock/lock action
+
             var updateUI = chargingMachine.NeedUIUpdate;
             if (!MathHelper.CloseTo(lastCharge, chargingMachine.Charge))
             {
@@ -234,6 +247,7 @@ public sealed class PowerChargeSystem : EntitySystem
         var state = new PowerChargeState(
             component.SwitchedOn,
             component.ActionUI, // Frontier
+            component.ActionUnlocked, // Frontier
             (byte) (component.Charge * 255),
             status,
             (short) Math.Round(powerReceiver.PowerReceived),
@@ -306,19 +320,15 @@ public sealed class PowerChargeSystem : EntitySystem
     // Frontier: EMP on charge system (Upstream - #28984, MIT)
     private void OnEmpPulse(Entity<PowerChargeComponent> ent, ref EmpPulseEvent args)
     {
-        /// i really don't think that the gravity generator should use normalised 0-1 charge
-        /// as opposed to watts charge that every other battery uses
+        ent.Comp.Active = false;
+        ent.Comp.Charge = 0;
+        var eventDeactivatedArgs = new ChargedMachineDeactivatedEvent();
+        RaiseLocalEvent(ent.Owner, ref eventDeactivatedArgs);
+
+        ent.Comp.NeedUIUpdate = true;
 
         if (!TryComp<ApcPowerReceiverComponent>(ent.Owner, out var powerReceiver))
             return;
-
-        // convert from normalised energy to watts and subtract
-        float maxEnergy = ent.Comp.ActivePowerUse / ent.Comp.ChargeRate;
-        float currentEnergy = maxEnergy * ent.Comp.Charge;
-        currentEnergy = Math.Max(0, currentEnergy - args.EnergyConsumption);
-
-        // apply renormalised energy to charge variable
-        ent.Comp.Charge = currentEnergy / maxEnergy;
 
         // update power state
         UpdateState((ent.Owner, ent.Comp, powerReceiver));

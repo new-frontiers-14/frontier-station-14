@@ -17,28 +17,24 @@ public partial class SharedMEMPGeneratorComponent : Component
     /// The sprite used by the core of the mobile emp when the mobile emp is starting up.
     /// </summary>
     [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
     public string CoreStartupState = "startup";
 
     /// <summary>
     /// The sprite used by the core of the mobile emp when the mobile emp is idle.
     /// </summary>
     [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
     public string CoreIdleState = "idle";
 
     /// <summary>
     /// The sprite used by the core of the mobile emp when the mobile emp is activating.
     /// </summary>
     [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
     public string CoreActivatingState = "activating";
 
     /// <summary>
     /// The sprite used by the core of the mobile emp when the mobile emp is active.
     /// </summary>
     [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
     public string CoreActivatedState = "activated";
 
     [DataField]

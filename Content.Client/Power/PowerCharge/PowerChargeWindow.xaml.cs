@@ -40,6 +40,7 @@ public sealed partial class PowerChargeWindow : FancyWindow
 
         ActionButton.Visible = state.Action; // Frontier
         ActionButtonText.Visible = state.Action; // Frontier
+        ActionButton.Disabled = state.ActionUnlocked; // Frontier
 
         PowerLabel.Text = Loc.GetString(
             "power-charge-window-power-label",

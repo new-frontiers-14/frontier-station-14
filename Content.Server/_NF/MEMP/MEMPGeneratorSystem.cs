@@ -41,34 +41,16 @@ public sealed class MEMPGeneratorSystem : EntitySystem
 
     private void OnActivated(Entity<MEMPGeneratorComponent> ent, ref ChargedMachineActivatedEvent args)
     {
-        ent.Comp.MEMPActive = true;
-
-        var xform = Transform(ent);
-
-        //EmpPulse(_transform.GetMapCoordinates(uid), comp.Range, comp.EnergyConsumption, comp.DisableDuration);
-
-        //if (TryComp(xform.ParentUid, out MEMPComponent? gravity))
-        //{
-        //    _gravitySystem.EnableMEMP(xform.ParentUid, gravity);
-        //}
+        // Nothing need to be done here.
     }
 
     private void OnDeactivated(Entity<MEMPGeneratorComponent> ent, ref ChargedMachineDeactivatedEvent args)
     {
-        ent.Comp.MEMPActive = false;
-
-        var xform = Transform(ent);
-
-        //if (TryComp(xform.ParentUid, out MEMPComponent? gravity))
-        //{
-        //    _gravitySystem.RefreshMEMP(xform.ParentUid, gravity);
-        //}
+        // Nothing need to be done here.
     }
 
     private void OnAction(Entity<MEMPGeneratorComponent> ent, ref ActionEvent args)
     {
-        ent.Comp.MEMPActionLocked = true;
-
         var xform = Transform(ent);
         List<EntityUid>? immuneGridList = null;
         if (xform.GridUid != null)
@@ -77,28 +59,12 @@ public sealed class MEMPGeneratorSystem : EntitySystem
                     xform.GridUid.Value
                 };
         }
+
         _emp.EmpPulse(_transform.ToMapCoordinates(xform.Coordinates), ent.Comp.Range, ent.Comp.EnergyConsumption, ent.Comp.DisableDuration, immuneGrids: immuneGridList);
-
-        if (!TryComp<ApcPowerReceiverComponent>(ent.Owner, out var powerReceiver))
-            return;
-
-        if (!TryComp<PowerChargeComponent>(ent.Owner, out var powerCharge))
-            return;
-
-        // convert from normalised energy to watts and subtract
-        float maxEnergy = powerCharge.ActivePowerUse / powerCharge.ChargeRate;
-        float currentEnergy = maxEnergy * powerCharge.Charge;
-        currentEnergy = Math.Max(0, currentEnergy - ent.Comp.EnergyConsumption);
-
-        // apply renormalised energy to charge variable
-        powerCharge.Charge = currentEnergy / maxEnergy;
     }
 
     private void OnParentChanged(EntityUid uid, MEMPGeneratorComponent component, ref EntParentChangedMessage args)
     {
-        //if (component.MEMPActive && TryComp(args.OldParent, out MEMPComponent? gravity))
-        //{
-        //    _gravitySystem.RefreshMEMP(args.OldParent.Value, gravity);
-        //}
+        // Nothing need to be done here.
     }
 }
