@@ -22,6 +22,7 @@ using Content.Shared.Localizations;
 using Content.Shared.Power;
 using Content.Server.Construction; // Frontier
 using Content.Server.DeviceLinking.Events; // Frontier
+using Content.Server.Construction.Components; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -35,6 +36,7 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly ConstructionSystem _construction = default!; // Frontier
 
     // Essentially whenever thruster enables we update the shuttle's available impulses which are used for movement.
     // This is done for each direction available.
@@ -46,6 +48,7 @@ public sealed class ThrusterSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<ThrusterComponent, ActivateInWorldEvent>(OnActivateThruster);
         SubscribeLocalEvent<ThrusterComponent, ComponentInit>(OnThrusterInit);
+        SubscribeLocalEvent<ThrusterComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ThrusterComponent, ComponentShutdown>(OnThrusterShutdown);
         SubscribeLocalEvent<ThrusterComponent, PowerChangedEvent>(OnPowerChange);
         SubscribeLocalEvent<ThrusterComponent, AnchorStateChangedEvent>(OnAnchorChange);
@@ -278,8 +281,6 @@ public sealed class ThrusterSystem : EntitySystem
         }
         // End Frontier: togglable thrusters
 
-        component.NextFire = _timing.CurTime + component.FireCooldown;
-
         _ambient.SetAmbience(uid, false);
 
         if (!component.Enabled)
@@ -291,6 +292,15 @@ public sealed class ThrusterSystem : EntitySystem
         {
             EnableThruster(uid, component);
         }
+    }
+
+    private void OnMapInit(Entity<ThrusterComponent> ent, ref MapInitEvent args)
+    {
+        ent.Comp.NextFire = _timing.CurTime + ent.Comp.FireCooldown;
+        // Frontier: upgradeable parts
+        if (TryComp<MachineComponent>(ent, out var machineComp))
+            _construction.RefreshParts(ent, machineComp);
+        // End Frontier: upgradeable parts
     }
 
     private void OnThrusterShutdown(EntityUid uid, ThrusterComponent component, ComponentShutdown args)
@@ -633,6 +643,7 @@ public sealed class ThrusterSystem : EntitySystem
         }
     }
 
+    // Frontier: upgradeable machine parts, separate EMP handler
     private void OnRefreshParts(EntityUid uid, ThrusterComponent component, RefreshPartsEvent args)
     {
         if (component.IsOn) // safely disable thruster to prevent negative thrust
@@ -640,7 +651,20 @@ public sealed class ThrusterSystem : EntitySystem
 
         var thrustRating = args.PartRatings[component.MachinePartThrust];
 
-        component.Thrust = component.BaseThrust * MathF.Pow(component.PartRatingThrustMultiplier, thrustRating - 1);
+        if (component.ThrustPerPartLevel.Length <= 0)
+            component.Thrust = component.BaseThrust;
+        else if (thrustRating <= 1)
+            component.Thrust = component.ThrustPerPartLevel[0];
+        else if (thrustRating > component.ThrustPerPartLevel.Length)
+            component.Thrust = component.ThrustPerPartLevel[^1];
+        else
+        {
+            var idx = (int)thrustRating - 1;
+            component.Thrust = component.ThrustPerPartLevel[idx];
+            // Linearly interpolate if fractional
+            if (idx < component.ThrustPerPartLevel.Length - 1)
+                component.Thrust += (thrustRating - 1 - idx) * (component.ThrustPerPartLevel[idx + 1] - component.ThrustPerPartLevel[idx]);
+        }
 
         if (component.Enabled && CanEnable(uid, component))
             EnableThruster(uid, component);
@@ -662,6 +686,7 @@ public sealed class ThrusterSystem : EntitySystem
 
     //[ByRefEvent]
     //public record struct ThrusterToggleAttemptEvent(bool Cancelled);
+    // End Frontier: upgradeable machine parts, separate EMP handler
 
     #endregion
 

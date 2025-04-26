@@ -150,7 +150,7 @@
     key: enum.StoreUiKey.Key
   - type: Store
     balance:
-      Telecrystal: 5 # Small initial balance
+      Telecrystal: 4 # Small initial balance
   - type: AccessReader
     access: [["NuclearOperative"], ["SyndicateAgent"]]
 
@@ -690,7 +690,7 @@
 # POI versions of upstream machines
 
 - type: entity
-  parent: VendingMachineAmmo
+  parent: [VendingMachineAmmo, BaseStructureDisableAnchoring]
   id: VendingMachineAmmoPOI
   suffix: POI
   components:
@@ -698,7 +698,7 @@
     pack: WeaponryWorksVendPOIInventory
 
 - type: entity
-  parent: VendingMachineEngivend
+  parent: [VendingMachineEngivend, BaseStructureDisableAnchoring]
   id: VendingMachineEngivendPOI
   suffix: POI
   components:
@@ -706,7 +706,7 @@
     pack: EngiVendPOIInventory
 
 - type: entity
-  parent: VendingMachineVendomat
+  parent: [VendingMachineVendomat, BaseStructureDisableAnchoring]
   id: VendingMachineVendomatPOI
   suffix: POI
   components:
@@ -714,7 +714,7 @@
     pack: VendomatPOIInventory
 
 - type: entity
-  parent: VendingMachineYouTool
+  parent: [VendingMachineYouTool, BaseStructureDisableAnchoring]
   id: VendingMachineYouToolPOI
   suffix: POI
   components:
@@ -722,17 +722,57 @@
     pack: YouToolPOIInventory
 
 - type: entity
-  parent: VendingMachineSalvage
+  parent: [VendingMachineSalvage, BaseStructureDisableAnchoring]
   id: VendingMachineSalvagePOI
   suffix: POI
   components:
   - type: VendingMachine
     pack: NFSalvageEquipmentPOIInventory
 
+- type: entity
+  parent: [VendingMachineMediDrobe, BaseStructureDisableAnchoring]
+  id: VendingMachineMediDrobePOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: MediDrobeInventory
+
+- type: entity
+  parent: [VendingMachinePottedPlantVend, BaseStructureDisableAnchoring]
+  id: VendingMachinePottedPlantVendPOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: PottedPlantVendInventory
+
+- type: entity
+  parent: [VendingMachineGames, BaseStructureDisableAnchoring]
+  id: VendingMachineGamesPOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: GoodCleanFunInventory
+
+- type: entity
+  parent: [VendingMachineCigs, BaseStructureDisableAnchoring]
+  id: VendingMachineCigsPOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: CigaretteMachineInventory
+
+- type: entity
+  parent: [VendingMachineBooze, BaseStructureDisableAnchoring]
+  id: VendingMachineBoozePOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: BoozeOMatInventory
+
 # Gas Tank Dispenser
 
 - type: entity
-  parent: VendingMachineTankDispenserEVA
+  parent: [VendingMachineTankDispenserEVA, BaseStructureDisableAnchoring] #This one is flagged as POI
   id: VendingMachineTankDispenserEVAPOI
   suffix: POI, EVA [O2, N2]
   components:

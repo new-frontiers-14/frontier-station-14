@@ -1,8 +1,50 @@
+# Upstream definitions
+- type: entity
+  parent: [ MobSiliconBase, BaseVehicle]
+  id: MobSiliconBaseVehicle # for vehicles
+  abstract: true
+  components:
+  - type: NoSlip
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    softness: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+
+- type: entity
+  parent: MobSiliconBaseVehicle
+  id: MobTaxiBot
+  name: taxibot
+  description: Need a ride?
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Bots/taxibot.rsi
+    layers:
+    - state: taxibot
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+  - type: GhostRole
+    name: ghost-role-information-taxibot-name
+    description: ghost-role-information-taxibot-description
+    rules: ghost-role-information-nonantagonist-rules # Frontier?
+  - type: Strap
+    buckleOffset: "0, 0"
+    unbuckleDistanceSquared: 0.09 # Frontier: (30 cm)^2 - seems unnecessary, but for consistency with vehicles
+  - type: Construction
+    graph: TaxiBot
+    node: bot
+  - type: VehicleHorn # Frontier: beep beep
+
+# Frontier
 - type: entity
   parent: MobSiliconBaseVehicle
   id: MobHoverTaxiBot
   name: hovertaxibot
-  description: Give a ride? IN SPAAAAACE!
+  description: Need a ride? IN SPAAAAACE!
   components:
   - type: Sprite
     sprite: _NF/Mobs/Silicons/Bots/hovertaxibot.rsi

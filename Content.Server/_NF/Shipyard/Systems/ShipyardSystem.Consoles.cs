@@ -4,7 +4,6 @@ using Content.Server.Radio.EntitySystems;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Shipyard.Components;
 using Content.Server._NF.ShuttleRecords;
-using Content.Server._NF.Smuggling.Components;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Shipyard;
 using Content.Shared._NF.Shipyard.Events;
@@ -13,6 +12,7 @@ using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Access.Components;
+using Content.Shared.Ghost;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -30,7 +30,6 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
 using Content.Shared.Preferences;
-using static Content.Shared._NF.Shipyard.Components.ShuttleDeedComponent;
 using Content.Server.Shuttles.Components;
 using Content.Server._NF.Station.Components;
 using System.Text.RegularExpressions;
@@ -40,7 +39,6 @@ using Content.Shared.Access;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.ShuttleRecords;
 using Content.Server.StationEvents.Components;
-using Content.Server.Forensics;
 using Content.Shared.Forensics.Components;
 
 namespace Content.Server._NF.Shipyard.Systems;
@@ -181,12 +179,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
-
-        if (!TryPurchaseShuttle(station, vessel.ShuttlePath.ToString(), out var shuttleUidOut))
+        if (!TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttleUidOut))
         {
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
         }
+
         var shuttleUid = shuttleUidOut.Value;
         if (!_entityManager.TryGetComponent<ShuttleComponent>(shuttleUid, out var shuttle))
         {
@@ -202,8 +200,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 shuttleUid
             };
             shuttleStation = _station.InitializeNewStation(stationProto.Stations[vessel.ID], gridUids);
-            var metaData = MetaData((EntityUid)shuttleStation);
-            name = metaData.EntityName;
+            name = Name(shuttleStation.Value);
+
+            var vesselInfo = EnsureComp<ExtraShuttleInformationComponent>(shuttleStation.Value);
+            vesselInfo.Vessel = vessel.ID;
         }
 
         if (TryComp<AccessComponent>(targetId, out var newCap))
@@ -221,10 +221,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttleUid);
         AssignShuttleDeedProperties(deedShuttle, shuttleUid, name, shuttleOwner, voucherUsed);
 
-        if (!voucherUsed)
+        if (!voucherUsed && component.NewJobTitle != null)
         {
-            if (!string.IsNullOrEmpty(component.NewJobTitle))
-                _idSystem.TryChangeJobTitle(targetId, component.NewJobTitle, idCard, player);
+            _idSystem.TryChangeJobTitle(targetId, Loc.GetString(component.NewJobTitle), idCard, player);
         }
 
         // The following block of code is entirely to do with trying to sanely handle moving records from station to station.
@@ -315,7 +314,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         // This may cause problems but ONLY when renaming a ship. It will still display properly regardless of this.
         var nameParts = name.Split(' ');
 
-        var hasSuffix = nameParts.Length > 1 && nameParts.Last().Length < MaxSuffixLength && nameParts.Last().Contains('-');
+        var hasSuffix = nameParts.Length > 1 && nameParts.Last().Length < ShuttleDeedComponent.MaxSuffixLength && nameParts.Last().Contains('-');
         deed.ShuttleNameSuffix = hasSuffix ? nameParts.Last() : null;
         deed.ShuttleName = String.Join(" ", nameParts.SkipLast(hasSuffix ? 1 : 0));
     }
@@ -613,11 +612,17 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         while (childEnumerator.MoveNext(out var child))
         {
-            if (mobQuery.TryGetComponent(child, out var mobState)
-                && !_mobState.IsDead(child, mobState)
-                && _mind.TryGetMind(child, out var mind, out var mindComp)
-                && !_mind.IsCharacterDeadIc(mindComp))
-                return mindComp.CharacterName;
+            // Ghosts don't stop a ship sale.
+            if (HasComp<GhostComponent>(child))
+                continue;
+
+            // Check if we have a player entity that's either still around or alive and may come back
+            if (_mind.TryGetMind(child, out var mind, out var mindComp)
+                && (mindComp.Session != null
+                || !_mind.IsCharacterDeadPhysically(mindComp)))
+            {
+                return Name(child);
+            }
             else
             {
                 var charName = FoundOrganics(child, mobQuery, xformQuery);
