@@ -10,20 +10,20 @@ public sealed partial class SkrunglerComponent : Component
     /// This gets set for each mob it processes.
     /// When it hits 0, there is a chance for the skrungler to either spill blood.
     /// </summary>
-    [ViewVariables]
+    [DataField, ViewVariables]
     public float RandomMessTimer = 0f;
 
     /// <summary>
     /// The interval for <see cref="RandomMessTimer"/>.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField]
+    [DataField, ViewVariables]
     public TimeSpan RandomMessInterval = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// This gets set for each mob it processes.
     /// When it hits 0, spit out fuel.
     /// </summary>
-    [ViewVariables]
+    [DataField, ViewVariables]
     public float ProcessingTimer = default;
 
     /// <summary>
@@ -31,19 +31,19 @@ public sealed partial class SkrunglerComponent : Component
     /// This is calculated from the YieldPerUnitMass.
     /// Also stores non-integer leftovers.
     /// </summary>
-    [ViewVariables]
+    [DataField, ViewVariables]
     public float CurrentExpectedYield = 0f;
 
     /// <summary>
     /// The reagent that will be spilled while processing a mob.
     /// </summary>
-    [ViewVariables]
+    [DataField, ViewVariables]
     public string? BloodReagent;
 
     /// <summary>
     /// How many units of fuel it produces for each unit of mass.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables]
     public float YieldPerUnitMass = default;
 
     /// <summary>
@@ -68,13 +68,13 @@ public sealed partial class SkrunglerComponent : Component
     /// <summary>
     /// How many seconds to take to insert an entity per unit of its mass.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables]
     public float BaseInsertionDelay = 0.1f;
 
     /// <summary>
     /// The time it takes to process a mob, per mass.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables]
     public float ProcessingTimePerUnitMass = default;
 
     /// <summary>

@@ -20,10 +20,10 @@
       shader: unshaded
     - state: skrungler_base
       visible: false
-      map: ["enum.SkrunglerVisualLayers.SkrunglringBase"]
+      map: ["enum.SkrunglerVisualLayers.SkrunglingBase"]
     - state: skrungler_active
       visible: false
-      map: ["enum.SkrunglerVisualLayers.Skrunglring"]
+      map: ["enum.SkrunglerVisualLayers.Skrungling"]
   - type: EntityStorage
     isCollidableWhenOpen: true
     showContents: false
@@ -55,12 +55,12 @@
     stateDoorOpen: skrungler_tray
   - type: GenericVisualizer
     visuals:
-      enum.SkrunglerVisuals.SkrunglringBase:
-        enum.SkrunglerVisualLayers.SkrunglringBase:
+      enum.SkrunglerVisuals.SkrunglingBase:
+        enum.SkrunglerVisualLayers.SkrunglingBase:
           True: { visible: true }
           False: { visible: false }
-      enum.SkrunglerVisuals.Skrunglring:
-        enum.SkrunglerVisualLayers.Skrunglring:
+      enum.SkrunglerVisuals.Skrungling:
+        enum.SkrunglerVisualLayers.Skrungling:
           True: { visible: true }
           False: { visible: false }
       enum.StorageVisuals.HasContents:

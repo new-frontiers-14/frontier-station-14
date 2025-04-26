@@ -8,7 +8,7 @@ namespace Content.Server._NF.Skrungler.Components;
 [RegisterComponent]
 public sealed partial class ActiveSkrunglerComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables]
     public float Accumulator = 0;
 
     [DataField]

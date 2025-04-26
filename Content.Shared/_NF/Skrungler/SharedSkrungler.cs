@@ -14,6 +14,6 @@ public enum SkrunglerContents : byte
 [Serializable, NetSerializable]
 public enum SkrunglerVisuals : byte
 {
-    SkrunglringBase,
-    Skrunglring,
+    SkrunglingBase,
+    Skrungling,
 }
