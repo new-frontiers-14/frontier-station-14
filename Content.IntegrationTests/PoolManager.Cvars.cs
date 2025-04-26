@@ -44,6 +44,7 @@ public static partial class PoolManager
         (RMCCVars.RMCMentorHelpRateLimitCount.Name, "10"), // Frontier: postinject seems to fail
         (CCVars.GameLobbyDefaultPreset.Name, "secret"), // Frontier: Adventure takes ages, default to secret
         (CCVars.StaticStorageUI.Name, "true"),// Frontier: causes storage test failures
+        (CCVars.GameLobbyDefaultPreset.Name, "nftest"), // Frontier: Adventure takes ages, default to nftest (no need to test events we will not run, e.g. meteor swarm)
         (CCVars.StorageLimit.Name, "1")// Frontier: test failures with multiple storage enabled
     };
 
