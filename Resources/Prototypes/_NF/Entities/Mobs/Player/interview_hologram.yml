@@ -1,3 +1,4 @@
+# region Entities
 - type: entity
   parent: [NFMobBossRestrictions, BaseMob]
   id: InterviewHologram
@@ -55,6 +56,7 @@
     scrollRate: 0.125
   - type: NFSalvageMobRestrictions
     leaveGridPopup: hologram-return-to-shuttle
+  - type: ActionsContainer
 
 - type: entity
   id: InterviewHologramContractor
@@ -79,3 +81,28 @@
   components:
   - type: InterviewHologram
     job: Mercenary
+
+# region Actions
+
+- type: entity
+  id: ActionInterviewToggleApproval
+  name: Toggle Approval
+  description: 
+  components:
+  - type: InstantAction
+    icon: _NF/Interface/Actions/acceptOff.png
+    iconOn: _NF/Interface/Actions/accept.png
+    itemIconStyle: NoItem
+    useDelay: 3
+    event: !type:ToggleApplicantApprovalEvent
+
+- type: entity
+  id: ActionInterviewCancel
+  name: Cancel Application
+  description: Cancel your application and return to the lobby.
+  components:
+  - type: InstantAction
+    icon: _NF/Interface/Actions/paperFire.png
+    itemIconStyle: NoItem
+    useDelay: 3
+    event: !type:CancelInterviewEvent

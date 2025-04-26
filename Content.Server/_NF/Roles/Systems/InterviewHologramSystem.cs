@@ -1,7 +1,9 @@
+using Content.Server.Actions;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.Roles.Components;
+using Content.Shared._NF.Roles.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -19,6 +21,8 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
     [Dependency] private IServerPreferencesManager _prefs = default!;
     [Dependency] private StationSystem _station = default!;
+    [Dependency] private JobTrackingSystem _jobTracking = default!;
+    [Dependency] private ActionsSystem _actions = default!;
 
     public override void Initialize()
     {
@@ -27,10 +31,16 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
         SubscribeLocalEvent<InterviewHologramComponent, MapInitEvent>(OnHologramMapInit);
         SubscribeLocalEvent<InterviewHologramComponent, MindRemovedMessage>(OnHologramMindRemoved);
         SubscribeLocalEvent<InterviewHologramComponent, MindAddedMessage>(OnHologramMindAdded);
+        SubscribeLocalEvent<InterviewHologramComponent, CancelInterviewEvent>(OnHologramCancelInterview);
+        SubscribeLocalEvent<InterviewHologramComponent, DismissInterviewEvent>(OnHologramDismissInterview);
     }
 
     private void OnHologramMapInit(Entity<InterviewHologramComponent> ent, ref MapInitEvent ev)
     {
+        _actions.AddAction(ent, ref ent.Comp.CancelApplicationActionEntity, ent.Comp.CancelApplicationAction);
+        _actions.AddAction(ent, ref ent.Comp.ToggleApprovalActionEntity, ent.Comp.ToggleApprovalAction);
+        _actions.SetToggled(ent.Comp.ToggleApprovalActionEntity, ent.Comp.ApplicantApproved);
+
         // Apply the current character's appearance from their profile, if it exists.
         if (!TryComp(ent, out MindContainerComponent? mindContainer)
             || !_mind.TryGetSession(mindContainer.Mind, out var session))
@@ -60,7 +70,7 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
     {
         var profile = _gameTicker.GetPlayerProfile(session);
         _humanoid.LoadProfile(ent, profile);
-        _meta.SetEntityName(ent, profile.Name); // Frontier: profile.Name<name
+        _meta.SetEntityName(ent, profile.Name);
         ent.Comp.AppearanceApplied = true;
     }
 
@@ -74,8 +84,7 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
             return;
 
         var mindUid = _mind.GetMind(ent);
-        if (mindUid == null
-            || !_mind.TryGetSession(mindUid, out var session))
+        if (mindUid == null || !_mind.TryGetSession(mindUid, out var session))
             return;
 
         HumanoidCharacterProfile? profile = null;
@@ -86,7 +95,7 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
         RemComp<JobTrackingComponent>(ent);
 
         // Spawn new entity.
-        _stationSpawning.SpawnPlayerMob(xform.Coordinates,
+        var newEntity = _stationSpawning.SpawnPlayerMob(xform.Coordinates,
             ent.Comp.Job,
             profile,
             _station.GetOwningStation(ent),
@@ -94,7 +103,37 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
             session: session
             );
 
+        _mind.TransferTo(mindUid.Value, newEntity);
+
         // Delete the old hologram.
+        QueueDel(ent);
+    }
+
+    private void OnHologramCancelInterview(Entity<InterviewHologramComponent> ent, ref CancelInterviewEvent ev)
+    {
+        if (_mind.TryGetSession(_mind.GetMind(ent), out var session))
+            _gameTicker.Respawn(session);
+
+        DismissHologram(ent);
+    }
+
+    private void OnHologramDismissInterview(Entity<InterviewHologramComponent> ent, ref DismissInterviewEvent ev)
+    {
+        if (!IsCaptain(ev.Captain, ent))
+            return;
+
+        DismissHologram(ent);
+    }
+
+    private void DismissHologram(Entity<InterviewHologramComponent> ent)
+    {
+        if (_mind.TryGetSession(_mind.GetMind(ent), out var session))
+            _gameTicker.Respawn(session);
+
+        // Ensure our job slot reopens
+        if (TryComp<JobTrackingComponent>(ent, out var jobTracking))
+            _jobTracking.OpenJob((ent.Owner, jobTracking));
+
         QueueDel(ent);
     }
 }

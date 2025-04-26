@@ -1,11 +1,8 @@
-using Robust.Shared.Serialization;
-
-namespace Content.Shared._NF.Shipyard.Events;
+namespace Content.Shared._NF.Roles.Events;
 
 /// <summary>
-///     Sell a Vessel from the console. The button holds no info and is doing a validation check for a deed client side, but we will still check on the server.
+/// Sets an interview applicant's captain approved status.
 /// </summary>
-[Serializable, NetSerializable]
 public sealed class SetCaptainApprovedEvent(EntityUid captain, bool approved) : EntityEventArgs
 {
     public readonly EntityUid Captain = captain;

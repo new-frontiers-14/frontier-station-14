@@ -1,6 +1,6 @@
 using Content.Shared._NF.Roles.Components;
+using Content.Shared._NF.Roles.Events;
 using Content.Shared._NF.Shipyard.Components;
-using Content.Shared._NF.Shipyard.Events;
 using Content.Shared.Access.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
@@ -17,29 +17,15 @@ public abstract partial class SharedInterviewHologramSystem : EntitySystem
 
         SubscribeLocalEvent<InterviewHologramComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternativeVerb);
         SubscribeLocalEvent<InterviewHologramComponent, SetCaptainApprovedEvent>(OnSetCaptainApproved);
-        SubscribeLocalEvent<InterviewHologramComponent, SetApplicantApprovedEvent>(OnSetApplicantApproved);
+        SubscribeLocalEvent<InterviewHologramComponent, ToggleApplicantApprovalEvent>(OnToggleApplicantApproval);
     }
 
     private void OnAlternativeVerb(Entity<InterviewHologramComponent> ent, ref GetVerbsEvent<AlternativeVerb> ev)
     {
-        if (!ev.CanAccess || !ev.CanInteract || ev.Hands == null)
+        if (!ev.CanAccess || !ev.CanInteract || ev.Hands == null || ev.User == ev.Target)
             return;
 
-        if (ev.User == ev.Target)
-        {
-            bool accepted = ent.Comp.ApplicantApproved;
-            ev.Verbs.Add(new AlternativeVerb()
-            {
-                Act = () => RaiseLocalEvent(ent, new SetApplicantApprovedEvent(!accepted)),
-                Text = Loc.GetString(accepted ? "interview-hologram-rescind" : "interview-hologram-approve"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
-                Priority = 4
-            });
-        }
-        else if (IdCardSystem.TryFindIdCard(ev.User, out var idCard)
-                && TryComp(idCard, out ShuttleDeedComponent? shuttleDeed)
-                && TryComp(ev.Target, out TransformComponent? targetXform)
-                && shuttleDeed.ShuttleUid == targetXform.GridUid)
+        if (IsCaptain(ev.User, ent))
         {
             bool accepted = ent.Comp.CaptainApproved;
             EntityUid captain = ev.User;
@@ -47,28 +33,47 @@ public abstract partial class SharedInterviewHologramSystem : EntitySystem
             {
                 Act = () => RaiseLocalEvent(ent, new SetCaptainApprovedEvent(captain, !accepted)),
                 Text = Loc.GetString(accepted ? "interview-hologram-rescind" : "interview-hologram-approve"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png"))
+            });
+            ev.Verbs.Add(new AlternativeVerb()
+            {
+                Act = () => RaiseLocalEvent(ent, new DismissInterviewEvent(captain)),
+                Text = Loc.GetString("interview-hologram-dismiss"),
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
-                Priority = 4
+                Priority = -1
             });
         }
     }
 
     private void OnSetCaptainApproved(Entity<InterviewHologramComponent> ent, ref SetCaptainApprovedEvent ev)
     {
-        if (IdCardSystem.TryFindIdCard(ev.Captain, out var idCard)
-                && TryComp(idCard, out ShuttleDeedComponent? shuttleDeed)
-                && TryComp(ent, out TransformComponent? targetXform)
-                && shuttleDeed.ShuttleUid == targetXform.GridUid)
+        if (IsCaptain(ev.Captain, ent))
         {
             ent.Comp.CaptainApproved = ev.Approved;
             Dirty(ent);
+            HandleApprovalChanged(ent);
         }
     }
 
-    private void OnSetApplicantApproved(Entity<InterviewHologramComponent> ent, ref SetApplicantApprovedEvent ev)
+    /// <summary>
+    /// Checks if a given entity is the captain of the ship the target entity is on.
+    /// </summary>
+    /// <param name="uid">The entity to check.</param>
+    /// <param name="target">The target entity that's on the ship in question.</param>
+    protected bool IsCaptain(EntityUid uid, EntityUid target)
     {
-        ent.Comp.ApplicantApproved = ev.Approved;
+        return IdCardSystem.TryFindIdCard(uid, out var idCard)
+            && TryComp(idCard, out ShuttleDeedComponent? shuttleDeed)
+            && TryComp(target, out TransformComponent? targetXform)
+            && shuttleDeed.ShuttleUid == targetXform.GridUid;
+    }
+
+    private void OnToggleApplicantApproval(Entity<InterviewHologramComponent> ent, ref ToggleApplicantApprovalEvent ev)
+    {
+        ent.Comp.ApplicantApproved = !ent.Comp.ApplicantApproved;
         Dirty(ent);
+        ev.Toggle = true;
+        HandleApprovalChanged(ent);
     }
 
     abstract protected void HandleApprovalChanged(Entity<InterviewHologramComponent> ent);

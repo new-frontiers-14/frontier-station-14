@@ -19,7 +19,8 @@ using Robust.Server.GameObjects; // Nuclear-14
 using Robust.Shared.Prototypes;
 using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Verbs; //Frontier
-using Robust.Shared.Utility; //Frontier
+using Robust.Shared.Utility; // Frontier
+using Content.Shared.ActionBlocker; //Frontier
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -382,8 +383,8 @@ public sealed class RadioDeviceSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        if (!_access.IsAllowed(args.Actor, ent.Owner)
-            || !_actionBlocker.CanComplexInteract(args.Actor))
+        if (!_access.IsAllowed(args.User, uid)
+            || !_actionBlocker.CanComplexInteract(args.User))
             return;
 
         AlternativeVerb verb = new()

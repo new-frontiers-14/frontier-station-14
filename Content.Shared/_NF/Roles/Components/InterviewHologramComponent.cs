@@ -11,6 +11,7 @@ namespace Content.Shared._NF.Roles.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class InterviewHologramComponent : Component
 {
+    // Hologram parameters:
     /// <summary>
     /// Name of the shader to use
     /// </summary>
@@ -54,6 +55,13 @@ public sealed partial class InterviewHologramComponent : Component
     public Vector2 Offset = new Vector2();
 
     /// <summary>
+    /// True if a character appearance has been applied to this entity.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool AppearanceApplied;
+
+    // Application parameters:
+    /// <summary>
     /// The job this user is applying for.
     /// </summary>
     [DataField(required: true)]
@@ -71,9 +79,16 @@ public sealed partial class InterviewHologramComponent : Component
     [DataField, AutoNetworkedField]
     public bool CaptainApproved;
 
-    /// <summary>
-    /// True if a character appearance has been applied to this entity.
-    /// </summary>
+    // Action parameters:
+
+    [DataField]
+    public EntProtoId ToggleApprovalAction = "ActionInterviewToggleApproval";
+
     [DataField, AutoNetworkedField]
-    public bool AppearanceApplied;
+    public EntityUid? ToggleApprovalActionEntity;
+    [DataField]
+    public EntProtoId CancelApplicationAction = "ActionInterviewCancel";
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? CancelApplicationActionEntity;
 }
