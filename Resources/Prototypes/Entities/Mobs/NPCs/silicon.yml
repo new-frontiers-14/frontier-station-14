@@ -31,6 +31,9 @@
   - type: NpcFactionMember
     factions:
     - SimpleNeutral
+  - type: Access
+    tags:
+    - BasicSilicon
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     channels:
@@ -107,47 +110,6 @@
   - type: ProtectedFromStepTriggers
   - type: NoSlip
   - type: Insulated
-
-- type: entity
-  parent: [ MobSiliconBase, BaseVehicle]
-  id: MobSiliconBaseVehicle # for vehicles
-  abstract: true
-  components:
-  - type: NoSlip
-  - type: GhostTakeoverAvailable
-  - type: GhostRole
-    makeSentient: true
-  - type: UnpoweredFlashlight
-  - type: PointLight
-    enabled: false
-    radius: 3.5
-    softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-
-- type: entity
-  parent: MobSiliconBaseVehicle
-  id: MobTaxiBot
-  name: taxibot
-  description: Give a ride?
-  components:
-  - type: Sprite
-    sprite: Mobs/Silicon/Bots/taxibot.rsi
-    layers:
-    - state: taxibot
-      map: ["enum.VehicleVisualLayers.AutoAnimate"]
-  - type: GhostRole
-    name: ghost-role-information-taxibot-name
-    description: ghost-role-information-taxibot-description
-    rules: ghost-role-information-nonantagonist-rules # Frontier?
-  - type: Strap
-    buckleOffset: "0, 0"
-    unbuckleDistanceSquared: 0.09 # Frontier: (30 cm)^2 - seems unnecessary, but for consistency with vehicles
-    # maxBuckleDistance: 1 # Umbra - buckling fix
-  - type: Construction
-    graph: TaxiBot
-    node: bot
-  - type: VehicleHorn # Frontier: beep beep
 
 - type: entity
   parent: MobSiliconBase
@@ -246,7 +208,7 @@
     description: ghost-role-information-honkbot-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleFreeAgentHarmless
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -280,7 +242,7 @@
     description: ghost-role-information-jonkbot-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleFreeAgentHarmless
     raffle:
       settings: default
   - type: InteractionPopup
@@ -417,7 +379,7 @@
     description: ghost-role-information-mimebot-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleFreeAgentHarmless
     raffle:
       settings: default
   - type: GhostTakeoverAvailable

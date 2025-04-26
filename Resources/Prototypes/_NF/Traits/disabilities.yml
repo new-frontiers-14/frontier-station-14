@@ -1,3 +1,5 @@
+# If you add a new trait, make sure to add the corresponding component to the whitelist in \Resources\Prototypes\Entities\Mobs\Player\clone.yml so it gets copied to clones correctly!
+
 - type: trait
   id: Stinky
   name: trait-stinky-name
@@ -20,6 +22,14 @@
         groups:
           Burn: 3
 
+- type: trait
+  id: Unclonable
+  name: trait-unclonable-name
+  description: trait-unclonable-desc
+  category: Disabilities
+  components:
+    - type: Unclonable
+
 # Upstream
 - type: trait
   id: WheelchairBound
@@ -33,11 +43,3 @@
     - type: BuckleOnMapInit
       prototype: VehicleWheelchair
     - type: LegsParalyzed
-
-- type: trait
-  id: Uncloneable
-  name: trait-uncloneable-name
-  description: trait-uncloneable-desc
-  category: Disabilities
-  components:
-    - type: Uncloneable
