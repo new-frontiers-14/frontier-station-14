@@ -1,4 +1,3 @@
-using System.Threading;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Shared.Bed.Sleep;
@@ -10,6 +9,9 @@ using Content.Shared.GameTicking;
 using Content.Shared.Players;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
+using Content.Shared._NF.CryoSleep.Events;
+using System.Diagnostics.CodeAnalysis;
+using Content.Server.Ghost;
 
 namespace Content.Server._NF.CryoSleep;
 
@@ -21,7 +23,6 @@ public sealed partial class CryoSleepSystem
     private void InitReturning()
     {
         SubscribeNetworkEvent<WakeupRequestMessage>(OnWakeupMessage);
-        SubscribeNetworkEvent<GetStatusMessage>(OnGetStatusMessage);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(e => ResetCryosleepState(e.PlayerSession.UserId));
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(e => ResetCryosleepState(e.Player.UserId));
     }
@@ -36,12 +37,6 @@ public sealed partial class CryoSleepSystem
 
         var msg = new WakeupRequestMessage.Response(result);
         RaiseNetworkEvent(msg, session.SenderSession);
-    }
-
-    public void OnGetStatusMessage(GetStatusMessage message, EntitySessionEventArgs args)
-    {
-        var msg = new GetStatusMessage.Response(HasCryosleepingBody(args.SenderSession.UserId));
-        RaiseNetworkEvent(msg, args.SenderSession);
     }
 
     /// <summary>
@@ -107,7 +102,17 @@ public sealed partial class CryoSleepSystem
     {
         var body = _storedBodies.GetValueOrDefault(id, null);
 
-        if (body != null && _storedBodies.Remove(id) && Transform(body!.Value.Body).ParentUid == _storageMap)
+        _storedBodies.Remove(id);
+
+        // If the user's a ghost, let them know their body's been removed.
+        if (_mind.TryGetMind(id, out _, out var mindComp)
+            && TryComp<GhostComponent>(mindComp.CurrentEntity, out var ghost))
+        {
+            _ghost.SetCanReturnFromCryo(ghost, false);
+        }
+
+        if (body != null
+            && Transform(body.Value.Body).MapUid == _storageMap)
         {
             QueueDel(body.Value.Body);
         }
@@ -116,5 +121,21 @@ public sealed partial class CryoSleepSystem
     public bool HasCryosleepingBody(NetUserId id)
     {
         return _storedBodies.ContainsKey(id);
+    }
+
+    public bool TryGetSleepingBody(NetUserId userId, [NotNullWhen(true)] out EntityUid? body, [NotNullWhen(true)] out EntityUid? pod)
+    {
+        if (_storedBodies.TryGetValue(userId, out var storedBody) && storedBody != null)
+        {
+            body = storedBody.Value.Body;
+            pod = storedBody.Value.Cryopod;
+            return true;
+        }
+        else
+        {
+            body = null;
+            pod = null;
+            return false;
+        }
     }
 }
