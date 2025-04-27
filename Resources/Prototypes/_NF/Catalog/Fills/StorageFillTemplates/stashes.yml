@@ -1,10 +1,10 @@
 # Inventory template fills
-# Cash and valuables
+#region tables: valuables
 - type: entityTable
   id: TableStorageFillStashCash
   table: !type:AllSelector
     children:
-    - !type:GroupSelector # Cash
+    - !type:GroupSelector
       children:
       - id: SpaceCash5000
         weight: 70
@@ -26,9 +26,64 @@
         - id: TreasureCoinIron # 75 spesos for one
 
 - type: entityTable
-  id: TableStorageFillStashFoodSpoiled
+  id: TableStorageFillStashJewelry
   table: !type:AllSelector
     children:
+      - !type:GroupSelector
+        children:
+        - id: GoldRing # 300 spesos for one
+        - id: GoldRingDiamond # 1500 spesos for one
+        - id: GoldRingGem # 2100 spesos for one
+        - id: SilverRing # 275 spesos for one
+        - id: SilverRingDiamond # 1400 spesos for one
+        - id: SilverRingGem # 2000 spesos for one
+        - id: IngotGold # 600 per full stack
+        - id: IngotSilver # 450 per full stack
+        - id: TowelColorGold # 10 per one, but think of the PRESTIGE!
+        - id: WristwatchGold # 500 spesos for one
+          weight: 3
+        - id: ClothingMaskGoldenCursed # 5000 spesos for one
+          weight: 1
+
+- type: entityTable
+  id: TableStorageFillStashSmokes
+  table: !type:GroupSelector
+    children:
+      - !type:AllSelector
+        children:
+        - id: FlippoEngravedLighter
+        - id: CigarGoldCase
+      - !type:AllSelector
+        children:
+        - id: SmokingPipe
+        - id: FlippoEngravedLighter
+        - id: TobaccoPouchBrownFilled
+        - id: TobaccoPouchPurpleFilled
+      - !type:AllSelector
+        children:
+        - id: SmokingPipe
+        - id: FlippoEngravedLighter
+        - id: TobaccoPouchPurpleFilled
+        - id: TobaccoPouchBlueFilled
+      - !type:AllSelector
+        children:
+        - id: SmokingPipe
+        - id: FlippoEngravedLighter
+        - id: TobaccoPouchBlueFilled
+        - id: TobaccoPouchRedFilled
+      - !type:AllSelector
+        children:
+        - id: SmokingPipe
+        - id: FlippoEngravedLighter
+        - id: TobaccoPouchRedFilled
+        - id: TobaccoPouchBrownFilled
+
+#region tables: spoiled food
+- type: entityTable
+  id: TableStorageFillStashFoodSpoiled
+  table: !type:GroupSelector
+    children:
+    # T1
     - !type:GroupSelector
       children:
       - id: FoodBurgerBaconRotten
@@ -41,7 +96,16 @@
       - id: FoodNoodlesMoldy
       - id: FoodNoodlesMeatballMoldy
       - id: FoodSaladCaesarMoldy
+    # T2
+    - !type:GroupSelector
+      children:
+      - id: FoodBurgerBaconRotten
+    # T3
+    - !type:GroupSelector
+      children:
+      - id: FoodBurgerBaconRotten
 
+#region tables: weapons
 - type: entityTable
   id: TableStorageFillStashWeaponCasesGuns
   table: !type:AllSelector
@@ -59,6 +123,7 @@
       - id: WeaponCaseShortFitzExpedition
       - id: WeaponCaseShortLuckyExpedition
 
+#region tables: materials
 - type: entityTable
   id: MaintToolsTableNoBoxes
   table: !type:GroupSelector
@@ -146,6 +211,7 @@
       - id: SpectralLocator
         weight: 0.05
 
+#region tables: clutter
 - type: entityTable
   id: MaintFluffTableTrimmed
   table: !type:GroupSelector
@@ -215,6 +281,35 @@
       - id: WristwatchGold
       - id: RubberStampGreytide
 
+#region tables: contraband
+- type: entityTable
+  id: TableStorageFillStashContraband
+  table: !type:AllSelector
+    children:
+    - id: SyndicateBusinessCard
+    - id: BoxID
+      prob: 0.2
+    - !type:GroupSelector # Cash
+      children:
+      - id: Telecrystal1
+        weight: 80
+      - id: Telecrystal5
+        weight: 18
+      - id: Telecrystal10
+        weight: 2
+    - !type:GroupSelector # Tools
+      children:
+      - id: CameraBug
+      - id: ClothingMaskGasVoiceChameleon
+      - id: Emag
+      - id: StorageImplanter
+      - id: RadioJammer
+    - !type:GroupSelector # Weapons
+       children:
+       - id: WeaponCaseShortCobra
+       - id: WeaponCaseShortViper
+
+#region tables: all in one
 - type: entityTable
   id: TableStorageFillStashValuables
   table: !type:GroupSelector
@@ -254,6 +349,7 @@
       rolls: !type:RangeNumberSelector
         range: 10, 30 # From 750 to 15000 spesos
 
+#region storage fills
 - type: entity
   abstract: true
   id: StorageFillStashValuables
@@ -263,34 +359,6 @@
     containers:
       storagebase: !type:NestedSelector
         tableId: TableStorageFillStashValuables
-
-# Contraband
-- type: entityTable
-  id: TableStorageFillStashContraband
-  table: !type:AllSelector
-    children:
-    - id: SyndicateBusinessCard
-    - id: BoxID
-      prob: 0.2
-    - !type:GroupSelector # Cash
-      children:
-      - id: Telecrystal1
-        weight: 80
-      - id: Telecrystal5
-        weight: 18
-      - id: Telecrystal10
-        weight: 2
-    - !type:GroupSelector # Tools
-      children:
-      - id: CameraBug
-      - id: ClothingMaskGasVoiceChameleon
-      - id: Emag
-      - id: StorageImplanter
-      - id: RadioJammer
-    - !type:GroupSelector # Weapons
-       children:
-       - id: WeaponCaseShortCobra
-       - id: WeaponCaseShortViper
 
 - type: entity
   abstract: true

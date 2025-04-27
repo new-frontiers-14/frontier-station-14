@@ -1,4 +1,4 @@
-# Tables
+#region Tables
 - type: entityTable
   id: TableStashVariety
   table: !type:GroupSelector
@@ -7,22 +7,27 @@
     - !type:GroupSelector
       weight: 99
       children:
-      - id: DuffelCargoStashValuables
-      - id: DuffelContractorStashValuables
-      - id: DuffelPilotStashValuables
-      - id: DuffelEngineeringStashValuables
-      - id: DuffelAtmosphericsStashValuables
-      - id: DuffelSalvageStashValuables
-      - id: DuffelMedicalStashValuables
-      - id: DuffelHydroponicsStashValuables
-      - id: DuffelMercenaryStashValuables
+      - id: DuffelBlackStashValuables
+      - id: DuffelBlueStashValuables
+      - id: DuffelGreenStashValuables
+      - id: DuffelOrangeStashValuables
+      - id: DuffelRedStashValuables
+      - id: DuffelPurpleStashValuables
+      - id: DuffelBrownLightStashValuables
+      - id: DuffelBrownStashValuables
+      - id: DuffelWhiteStashValuables
     # Contraband
     - !type:GroupSelector
       weight: 1
       children:
+      - id: DuffelTraumaStashValuables
+      - id: DuffelPrivateSecurityStashValuables
+      - id: DuffelCargoStashValuables
+      - id: DuffelAtmosphericsStashValuables
+      - id: DuffelPunkStashValuables
       - id: DuffelSyndicateStashContraband
 
-#Spawners
+#region Spawners
 - type: entity
   name: random stash
   id: SpawnDungeonLootStash
