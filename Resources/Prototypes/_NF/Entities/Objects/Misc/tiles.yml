@@ -1,5 +1,5 @@
 - type: entity
-  name: dark grass tile
+  name: dark grass floor
   parent: FloorTileItemBase
   id: FloorTileItemGrassDark
   components:
@@ -16,7 +16,7 @@
     stackType: FloorTileGrassDark
 
 - type: entity
-  name: light grass tile
+  name: light grass floor
   parent: FloorTileItemBase
   id: FloorTileItemGrassLight
   components:
@@ -33,7 +33,7 @@
     stackType: FloorTileGrassLight
 
 - type: entity
-  name: dirt tile
+  name: dirt floor
   parent: FloorTileItemBase
   id: FloorTileItemDirt
   components:
@@ -50,7 +50,7 @@
     stackType: FloorTileDirt
 
 - type: entity
-  name: bedrock tile
+  name: bedrock
   parent: FloorTileItemBase
   id: FloorTileItemBedrock
   components:
@@ -84,6 +84,23 @@
     stackType: FloorGoldMono
 
 - type: entity
+  name: silver mono tile
+  parent: FloorTileItemBase
+  id: FloorTileItemSilverMono
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
+    state: silver-mono
+  - type: Item
+    sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
+    heldPrefix: silver-mono
+  - type: FloorTile
+    outputs:
+      - FloorSilverMono
+  - type: Stack
+    stackType: FloorSilverMono
+
+- type: entity
   name: green mono tile
   parent: FloorTileItemBase
   id: FloorTileItemGreenMono
@@ -93,7 +110,13 @@
     state: green-mono
   - type: Item
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
-    heldPrefix: green-mono
+    inhandVisuals:
+      left:
+        - state: mono-inhand-left
+          color: "#01810e"
+      right:
+        - state: mono-inhand-right
+          color: "#01810e"
   - type: FloorTile
     outputs:
       - FloorGreenMono
@@ -110,7 +133,13 @@
     state: light-blue-mono
   - type: Item
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
-    heldPrefix: light-blue-mono
+    inhandVisuals:
+      left:
+        - state: mono-inhand-left
+          color: "#69bce0"
+      right:
+        - state: mono-inhand-right
+          color: "#69bce0"
   - type: FloorTile
     outputs:
       - FloorLightBlueMono
@@ -127,7 +156,13 @@
     state: light-green-mono
   - type: Item
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
-    heldPrefix: light-green-mono
+    inhandVisuals:
+      left:
+        - state: mono-inhand-left
+          color: "#8ded69"
+      right:
+        - state: mono-inhand-right
+          color: "#8ded69"
   - type: FloorTile
     outputs:
       - FloorLightGreenMono
@@ -144,7 +179,13 @@
     state: light-pink-mono
   - type: Item
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
-    heldPrefix: light-pink-mono
+    inhandVisuals:
+      left:
+        - state: mono-inhand-left
+          color: "#fcc0fc"
+      right:
+        - state: mono-inhand-right
+          color: "#fcc0fc"
   - type: FloorTile
     outputs:
       - FloorLightPinkMono
@@ -161,7 +202,13 @@
     state: light-yellow-mono
   - type: Item
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
-    heldPrefix: light-yellow-mono
+    inhandVisuals:
+      left:
+        - state: mono-inhand-left
+          color: "#fcee89"
+      right:
+        - state: mono-inhand-right
+          color: "#fcee89"
   - type: FloorTile
     outputs:
       - FloorLightYellowMono
@@ -178,7 +225,13 @@
     state: orange-mono
   - type: Item
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
-    heldPrefix: orange-mono
+    inhandVisuals:
+      left:
+        - state: mono-inhand-left
+          color: "#d88102"
+      right:
+        - state: mono-inhand-right
+          color: "#d88102"
   - type: FloorTile
     outputs:
       - FloorOrangeMono
@@ -195,7 +248,13 @@
     state: light-red-mono
   - type: Item
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
-    heldPrefix: light-red-mono
+    inhandVisuals:
+      left:
+        - state: mono-inhand-left
+          color: "#b63448"
+      right:
+        - state: mono-inhand-right
+          color: "#b63448"
   - type: FloorTile
     outputs:
       - FloorLightRedMono
@@ -212,7 +271,13 @@
     state: red-mono
   - type: Item
     sprite: /Textures/_NF/Objects/Tiles/color_monotile.rsi
-    heldPrefix: red-mono
+    inhandVisuals:
+      left:
+        - state: mono-inhand-left
+          color: "#8c0015"
+      right:
+        - state: mono-inhand-right
+          color: "#8c0015"
   - type: FloorTile
     outputs:
       - FloorRedMono
@@ -220,7 +285,7 @@
     stackType: FloorRedMono
 
 - type: entity
-  name: sus tile
+  name: sus floor
   parent: FloorTileItemBase
   id: FloorTileItemSus
   components:
@@ -237,7 +302,7 @@
     stackType: FloorSus
 
 - type: entity
-  name: checkerboard wood tile
+  name: checkerboard wood floor
   parent: FloorTileItemBase
   id: FloorTileItemCheckerboardWood
   components:
@@ -254,7 +319,7 @@
     stackType: FloorCheckerboardWood
 
 - type: entity
-  name: light mosaic wood tile
+  name: light mosaic wood floor
   parent: FloorTileItemBase
   id: FloorTileItemLightMosaicWood
   components:
@@ -271,7 +336,7 @@
     stackType: FloorLightMosaicWood
 
 - type: entity
-  name: fancy wood tile
+  name: fancy wood floor
   parent: FloorTileItemBase
   id: FloorTileItemFancyWood
   components:
@@ -288,7 +353,7 @@
     stackType: FloorFancyWood
 
 - type: entity
-  name: versailles wood tile
+  name: versailles wood floor
   parent: FloorTileItemBase
   id: FloorTileItemVersaillesWood
   components:
@@ -305,7 +370,7 @@
     stackType: FloorVersaillesWood
 
 - type: entity
-  name: cheese tile
+  name: cheese floor
   parent: FloorTileItemBase
   id: FloorTileItemCheese
   components:
