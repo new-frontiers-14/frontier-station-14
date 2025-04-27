@@ -230,15 +230,6 @@
   id: TableStorageFillStashPunk
   table: !type:AllSelector
     children:
-    - id: ClothingBeltPunkRandomized
-    - id: ClothingShoesBootsPunkRandomized
-    - id: HoloGraffitiProjectorEmpty
-    - id: NFPouchPunk
-      amount: !type:RangeNumberSelector
-        range: 1, 2
-    - id: GroundCannabis
-      amount: !type:RangeNumberSelector
-        range: 0, 3
     # Jumpsuits
     - !type:GroupSelector
       children:
@@ -281,9 +272,17 @@
         - id: ClothingOuterCoatJacketLettermanBlue
         - id: ClothingOuterCoatJacketLettermanBrown
         - id: ClothingOuterCoatJacketLettermanRed
-    # Items
+    # Fluff
     - !type:GroupSelector
       children:
+      - id: ClothingShoesBootsPunkRandomized
+      - id: HoloGraffitiProjectorEmpty
+      - id: NFPouchPunk
+        amount: !type:RangeNumberSelector
+          range: 1, 2
+      - id: GroundCannabis
+        amount: !type:RangeNumberSelector
+          range: 0, 3
       - id: ClothingEyesPunkGoggles
       - id: ClothingEyesPunkInfoShades
 
