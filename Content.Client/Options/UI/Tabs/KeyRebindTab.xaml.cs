@@ -192,6 +192,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.SmartEquipWallet); // Frontier
             AddButton(ContentKeyFunctions.OpenBackpack);
             AddButton(ContentKeyFunctions.OpenBelt);
+            AddButton(ContentKeyFunctions.OpenWallet); // Frontier
             AddButton(ContentKeyFunctions.ThrowItemInHand);
             AddButton(ContentKeyFunctions.TryPullObject);
             AddButton(ContentKeyFunctions.MovePulledObject);

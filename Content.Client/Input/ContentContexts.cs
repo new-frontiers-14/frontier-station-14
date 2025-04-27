@@ -75,6 +75,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.SmartEquipWallet); // Frontier
             human.AddFunction(ContentKeyFunctions.OpenBackpack);
             human.AddFunction(ContentKeyFunctions.OpenBelt);
+            human.AddFunction(ContentKeyFunctions.OpenWallet); // Frontier
             human.AddFunction(ContentKeyFunctions.MouseMiddle);
             human.AddFunction(ContentKeyFunctions.RotateObjectClockwise);
             human.AddFunction(ContentKeyFunctions.RotateObjectCounterclockwise);
