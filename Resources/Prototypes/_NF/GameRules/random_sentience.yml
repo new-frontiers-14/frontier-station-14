@@ -1,0 +1,25 @@
+- type: entity
+  id: NFRandomSentience
+  parent: BaseGameRule
+  components:
+  - type: StationEvent
+    weight: 6
+    duration: 1
+    reoccurrenceDelay: 240 # Once per four hours.
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+  - type: RandomSentienceRule
+    minSentiences: 2
+    maxSentiences: 5
+
+- type: localizedDataset
+  id: NFRandomSentienceEventData
+  values:
+    prefix: random-sentience-event-data-
+    count: 6
+
+- type: localizedDataset
+  id: NFRandomSentienceEventStrength
+  values:
+    prefix: random-sentience-event-strength-
+    count: 8

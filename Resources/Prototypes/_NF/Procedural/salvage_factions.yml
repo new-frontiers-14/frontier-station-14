@@ -1,0 +1,336 @@
+# region Moderate
+- type: salvageFaction
+  id: NFXenos
+  desc: nf-salvage-faction-xenos
+  entries:
+    - proto: NFMobXeno
+      cost: 2
+    - proto: NFMobXenoDrone
+      cost: 2
+    - proto: NFMobXenoPraetorian
+      cost: 3
+      prob: 0.2
+    - proto: NFMobXenoQueen
+      cost: 4
+      prob: 0.1
+    - proto: NFMobXenoRavager
+      cost: 2
+    - proto: NFMobXenoRunner
+      cost: 3
+    - proto: NFMobXenoSpitter
+      cost: 2
+    - proto: WeaponTurretXeno
+      cost: 2
+      prob: 0.1
+  configs:
+    DefenseStructure: XenoWardingTower
+    Megafauna: NFMobXenoQueen
+    Difficulties: NFModerate
+
+- type: salvageFaction
+  id: NFCarps
+  desc: nf-salvage-faction-carps
+  entries:
+    - proto: NFMobPurpleSnake
+      cost: 2
+    - proto: NFMobCarp
+      cost: 2
+    - proto: NFMobCarpHolo
+      cost: 2
+      prob: 0.1
+    - proto: NFMobCarpMagic
+      cost: 2
+      prob: 0.4
+    - proto: NFMobCarpRainbow
+      cost: 2
+      prob: 0.05
+    - proto: NFMobShark
+      cost: 3
+      prob: 0.2
+    - proto: NFMobRainbowWyvernIce
+      cost: 3
+      prob: 0.05
+    - proto: NFMobRainbowWyvernFire
+      cost: 3
+      prob: 0.05
+    - proto: NFMobRainbowWyvernCaustic
+      cost: 3
+      prob: 0.05
+    - proto: NFMobDragonDungeon
+      cost: 4
+      prob: 0.05
+  configs:
+    DefenseStructure: CarpStatue
+    Megafauna: NFMobDragonDungeon
+    Difficulties: NFModerate
+
+- type: salvageFaction
+  id: NFFlesh
+  desc: nf-salvage-faction-flesh
+  entries:
+    - proto: SpawnMobAberrantFleshExpeditions
+      cost: 2
+    - proto: SpawnMobAberrantFleshNewbornExpeditions
+      cost: 2
+      prob: 0.1
+    - proto: MobHorrorExpeditions
+      cost: 3
+      prob: 0.1
+  configs:
+    DefenseStructure: AberrantFleshDigestiveSack
+    Megafauna: MobHorrorExpeditions
+    Difficulties: NFModerate
+
+- type: salvageFaction
+  id: NFArgocytes
+  desc: nf-salvage-faction-argocytes
+  entries:
+    - proto: MobArgocyteSlurvaExpeditions # Need spawner for swarms
+      cost: 1
+      prob: 0.1
+    - proto: MobArgocyteSkitterExpeditions # Need spawner for swarms
+      cost: 1
+      prob: 0.4
+    - proto: MobArgocyteSwiperExpeditions # Need spawner for swarms
+      cost: 1
+    - proto: MobArgocyteGliderExpeditions # Need spawner for swarms
+      cost: 2
+    - proto: MobArgocyteCrawlerExpeditions
+      cost: 2
+    - proto: MobArgocyteFounderExpeditions
+      cost: 3
+    - proto: MobArgocyteBarrierExpeditions # Need spawner for swarms
+      cost: 2
+      prob: 0.4
+    - proto: MobArgocyteMolderExpeditions
+      cost: 2
+    - proto: MobArgocytePouncerExpeditions
+      cost: 2
+    - proto: MobArgocyteHarvesterExpeditions
+      cost: 2
+    - proto: MobArgocyteEnforcerExpeditions
+      cost: 3
+    - proto: MobArgocyteLeviathingExpeditions
+      cost: 4
+      prob: 0.05
+  configs:
+    DefenseStructure: ArgocyteEgg
+    Megafauna: MobArgocyteLeviathingExpeditions
+    Difficulties: NFModerate
+
+# region Hazardous
+
+
+
+- type: salvageFaction
+  id: NFPunks
+  desc: nf-salvage-faction-punks
+  entries:
+    - proto: MobPunkGangerMeleeT1
+      cost: 2
+    - proto: MobPunkGangerMeleeT2
+      cost: 3
+    - proto: MobPunkGangerMeleeT3
+      cost: 3
+    - proto: MobPunkGangerPistol
+      cost: 3
+    - proto: MobPunkGangerSmg
+      cost: 3
+    - proto: MobPunkGangerShotgun
+      cost: 6
+    - proto: MobPunkGangerLeader
+      cost: 4
+      prob: 0.05
+  configs:
+    DefenseStructure: PunkPartySupplies
+    Megafauna: MobPunkGangerLeader
+    Difficulties: NFHazardous
+
+- type: salvageFaction
+  id: NFDinosaurs
+  desc: nf-salvage-faction-dinosaurs
+  entries:
+    - proto: MobDinosaurCompyExpeditions
+      cost: 2
+    - proto: MobDinosaurDiloExpeditions
+      cost: 2
+    - proto: MobDinosaurRaptorExpeditions
+      cost: 3
+    - proto: MobDinosaurParaExpeditions # Need spawner for swarms
+      cost: 1
+    - proto: MobDinosaurKentroExpeditions
+      cost: 3
+    - proto: MobDinosaurTrikeExpeditions
+      cost: 3
+    - proto: MobDinosaurAnkiExpeditions
+      cost: 3
+    - proto: MobDinosaurSpinoExpeditions
+      cost: 4
+    - proto: MobDinosaurStegoExpeditions
+      cost: 5
+    - proto: MobDinosaurTrexExpeditions
+      cost: 6
+      prob: 0.05
+  configs:
+    DefenseStructure: DinosaurEgg
+    Megafauna: MobDinosaurTrexExpeditions
+    Difficulties: NFHazardous
+
+- type: salvageFaction
+  id: NFMercenaries
+  desc: nf-salvage-faction-mercenaries
+  entries:
+    - proto: MobMercenarySoldierKnife
+      cost: 2
+    - proto: MobMercenarySoldierPistol
+      cost: 4
+    - proto: MobMercenarySoldierNovalite
+      cost: 4
+    - proto: MobMercenaryBreacherMachete
+      cost: 2
+    - proto: MobMercenarySoldierRevolver
+      cost: 4
+    - proto: MobMercenaryBreacherShotgun
+      cost: 6
+    - proto: MobMercenarySpecialistMedic
+      cost: 3
+      prob: 0.2
+    - proto: MobMercenarySpecialistAssault
+      cost: 6
+      prob: 0.3
+    - proto: MobMercenaryCaptain
+      cost: 6
+      prob: 0.05
+  configs:
+    DefenseStructure: MercenaryCounterfeitCache
+    Megafauna: MobMercenaryCaptain
+    Difficulties: NFHazardous
+
+# region Extreme
+
+- type: salvageFaction
+  id: NFSyndicate
+  desc: nf-salvage-faction-syndicate
+  entries:
+    - proto: SpawnMobSyndicateNavalDeckhand
+      cost: 3
+    - proto: SpawnMobSyndicateNavalEngineer
+      cost: 6
+    - proto: SpawnMobSyndicateNavalSaboteur
+      cost: 5
+      prob: 0.05
+    - proto: SpawnMobSyndicateNavalMedic
+      cost: 2
+      prob: 0.2
+    - proto: WeaponTurretSyndicate
+      cost: 4
+      prob: 0.1
+    - proto: SpawnMobSyndicateNavalOperator
+      cost: 5
+      prob: 0.2
+    - proto: SpawnMobSyndicateNavalCaptain
+      cost: 5
+      prob: 0.1
+    - proto: MobSyndicateNavalCommanderA
+      cost: 7
+      prob: 0.1
+    - proto: SpawnMobSyndicateNavalHorror
+      cost: 5
+      prob: 0.01
+  configs:
+    DefenseStructure: CybersunDataMiner
+    Megafauna: MobSyndicateNavalCommanderA
+    Difficulties: NFExtreme
+
+- type: salvageFaction
+  id: NFExplorers
+  desc: nf-salvage-faction-explorers
+  entries:
+    - proto: MobExplorerMeleeT1
+      cost: 2
+    - proto: MobExplorerRangedT1
+      cost: 2
+    - proto: MobExplorerMeleeT2
+      cost: 2
+      prob: 0.3
+    - proto: MobExplorerRangedT2
+      cost: 2
+      prob: 0.3
+    - proto: MobExplorerMeleeT3
+      cost: 3
+    - proto: MobExplorerRangedT3
+      cost: 4
+    - proto: MobExplorerHauler
+      cost: 4
+      prob: 0.1
+    - proto: MobExplorerBoss
+      cost: 6
+      prob: 0.05
+  configs:
+    DefenseStructure: ExplorersLootRadar
+    Megafauna: MobExplorerBoss
+    Difficulties: NFExtreme
+
+- type: salvageFaction
+  id: NFSilicons
+  desc: nf-salvage-faction-silicons
+  entries:
+    - proto: MobRogueSiliconScrap
+      cost: 2
+    - proto: SpawnMobRogueDronesT1
+      cost: 3
+      prob: 0.2
+    - proto: MobRogueSiliconHerder
+      cost: 3
+    - proto: MobRogueSiliconHunter
+      cost: 4
+    - proto: MobRogueSiliconCatcher
+      cost: 3
+      prob: 0.3
+    - proto: MobRogueSiliconTesla
+      cost: 4
+    - proto: MobRogueSiliconScrapFlayer
+      cost: 2
+      prob: 0.1
+    - proto: MobRogueSiliconBoss
+      cost: 4
+      prob: 0.05
+    - proto: MobRogueSiliconGuardian
+      cost: 8
+      prob: 0.05
+  configs:
+    DefenseStructure: RogueAiNode
+    Megafauna: MobRogueSiliconBoss
+    Difficulties: NFExtreme
+
+- type: salvageFaction
+  id: NFCultists
+  desc: nf-salvage-faction-cultists
+  entries:
+    - proto: SpawnMobBloodCultistZealotMelee
+      cost: 2
+    - proto: SpawnMobBloodCultLeech
+      cost: 3
+    - proto: SpawnMobBloodCultistZealotRanged
+      cost: 4
+    - proto: SpawnMobBloodCultistCaster
+      cost: 3
+      prob: 0.3
+    - proto: BloodCultTurret
+      cost: 4
+      prob: 0.1
+    - proto: SpawnMobBloodCultistAcolyte
+      cost: 2
+    - proto: SpawnMobBloodCultistPriest
+      cost: 6
+      prob: 0.4
+    - proto: SpawnMobBloodCultistJanitor
+      cost: 3
+      prob: 0.05
+    - proto: MobBloodCultistAscended
+      cost: 6
+      prob: 0.05
+  configs:
+    DefenseStructure: BloodCollector
+    Megafauna: MobBloodCultistAscended
+    Difficulties: NFExtreme

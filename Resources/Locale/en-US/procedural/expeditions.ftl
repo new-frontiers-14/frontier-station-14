@@ -4,9 +4,7 @@ salvage-expedition-structure-remaining = {$count ->
     *[other] {$count} structures remaining.
 }
 
-# Frontier: megafauna<targets (syndies and robots are not megafauna)
-salvage-expedition-megafauna-remaining = {$count} targets remaining.
-
+salvage-expedition-type = Mission
 salvage-expedition-window-title = Salvage expeditions
 salvage-expedition-window-difficulty = Difficulty:
 salvage-expedition-window-details = Details:
@@ -14,34 +12,22 @@ salvage-expedition-window-hostiles = Hostiles:
 salvage-expedition-window-duration = Duration:
 salvage-expedition-window-biome = Biome:
 salvage-expedition-window-modifiers = Modifiers:
-salvage-expedition-window-rewards = Rewards:
-salvage-expedition-window-claimed = Claimed
-salvage-expedition-window-claim = Claim
+
+offering-window-claimed = Claimed
+offering-window-claim = Claim
 
 salvage-expedition-window-next = Next offer
 
-# Frontier: Expedition descriptions
-salvage-expedition-desc-mining = Collect resources inside the area.
-#  You will be taxed {$tax}% of the resources collected.
-salvage-expedition-desc-structure = {$count ->
-    [one] Destroy {$count} {$structure}.
-    *[other] Destroy {$count} {MAKEPLURAL($structure)}.
-}
-salvage-expedition-desc-elimination = Kill a large and dangerous creature.
-# End Frontier
-
-salvage-expedition-type-Mining = Mining
-salvage-expedition-type-Destruction = Destruction
-salvage-expedition-type-Elimination = Elimination
-
-salvage-expedition-difficulty-Minimal = Minimal
-salvage-expedition-difficulty-Minor = Minor
 salvage-expedition-difficulty-Moderate = Moderate
 salvage-expedition-difficulty-Hazardous = Hazardous
 salvage-expedition-difficulty-Extreme = Extreme
 
+# Frontier: salvagers<team size
+salvage-expedition-difficulty-players = Recommended team size:
+
 # Runner
-salvage-expedition-not-all-present = Not all salvagers are aboard the shuttle!
+# Frontier: salvagers<expeditioners
+salvage-expedition-not-all-present = Not all expeditioners are aboard the shuttle!
 
 salvage-expedition-announcement-countdown-minutes = {$duration} minutes remaining to complete the expedition.
 salvage-expedition-announcement-countdown-seconds = {$duration} seconds remaining to complete the expedition.
@@ -75,10 +61,7 @@ salvage-air-mod-toxic-atmosphere = Toxic atmosphere
 salvage-air-mod-volatile-atmosphere = Volatile atmosphere
 
 salvage-dungeon-mod-lava-brig = Lava Brig
-# Frontier: labs<Labs
-salvage-dungeon-mod-snowy-labs = Snowy Labs
-# Frontier: Experiment<Experiment Site
-salvage-dungeon-mod-experiment = Experiment Site
-# Frontier: Haunted<Haunted Cave
-salvage-dungeon-mod-haunted = Haunted Cave
+salvage-dungeon-mod-snowy-labs = Snowy labs
+salvage-dungeon-mod-experiment = Experiment
+salvage-dungeon-mod-haunted = Haunted
 salvage-dungeon-mod-mineshaft = Mineshaft

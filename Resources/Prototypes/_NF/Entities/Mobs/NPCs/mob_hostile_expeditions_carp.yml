@@ -1,29 +1,347 @@
 - type: entity
   id: NFMobCarp
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarp]
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarp, NFMobRoadkillable]
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      24: 0.7
+      32: 0.5
+  - type: Stamina
+    critThreshold: 50
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
 
 - type: entity
   id: NFMobCarpMagic
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarpMagic]
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobCarp, MobCarpMagic]
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/Carps/magic.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: mouth
+      shader: unshaded
 
 - type: entity
   id: NFMobCarpHolo
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarpHolo]
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarpHolo, NFMobRoadkillable]
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/Carps/holo.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: mouth
+      shader: unshaded
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
 
 - type: entity
   id: NFMobCarpRainbow
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarpRainbow]
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobCarp, MobCarpRainbow]
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      36: 0.7
+      48: 0.5
 
 - type: entity
   id: NFMobShark
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobShark]
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobShark, NFMobRoadkillable]
   suffix: "Frontier"
 #  categories: [ HideSpawnMenu ] # No spawner
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      48: 0.7
+      64: 0.5
+  - type: Stamina
+    critThreshold: 80
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 7
+        Bloodloss: 7
+
+- type: entity
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobSmallPurpleSnake, NFMobRoadkillable]
+  id: NFMobSmallRainbowSnake
+  suffix: Frontier, Rainbow
+  #categories: [ HideSpawnMenu ] # No spawner
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 25
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer # Allows small snakes to pass under the tables
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _NF/Mobs/Aliens/snake.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: mouth
+      shader: unshaded
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
+      enum.DamageStateVisualLayers.BaseUnshaded:
+        mouth: ""
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: mouth
+      Dead:
+        Base: dead
+        BaseUnshaded: dead_mouth
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 3
+        Slash: 3
+        Structural: 20
+
+- type: entity
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarp, NFMobRoadkillable]
+  id: NFMobRainbowWyvernIce
+  name: wyvern
+  description: A smaller relative of a space dragon known for its hunting provess and ability to conjure magical progectiles.
+  suffix: Frontier, Ice
+  #categories: [ HideSpawnMenu ] # No spawner
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 25
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobMask
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _NF/Mobs/Aliens/Carps/wyvern.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      scale: 0.5, 0.5
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive-unshaded-ice
+      shader: unshaded
+      scale: 0.5, 0.5
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
+      enum.DamageStateVisualLayers.BaseUnshaded:
+        alive-unshaded-ice: ""
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: alive-unshaded-ice
+      Dead:
+        Base: dead
+        BaseUnshaded: dead-unshaded
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcThrust
+    damage:
+      types:
+        Piercing: 4
+        Slash: 4
+        Structural: 20
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileIcicleLowDamage
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    minAngle: 31
+    maxAngle: 45
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+
+- type: entity
+  parent: NFMobRainbowWyvernIce
+  id: NFMobRainbowWyvernFire
+  suffix: Frontier, Fire
+  #categories: [ HideSpawnMenu ] # No spawner
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _NF/Mobs/Aliens/Carps/wyvern.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      scale: 0.5, 0.5
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive-unshaded-fire
+      shader: unshaded
+      scale: 0.5, 0.5
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
+      enum.DamageStateVisualLayers.BaseUnshaded:
+        alive-unshaded-fire: ""
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: alive-unshaded-fire
+      Dead:
+        Base: dead
+        BaseUnshaded: dead-unshaded
+  - type: BasicEntityAmmoProvider
+    proto: BulletFireBolt
+    capacity: 1
+    count: 1
+
+- type: entity
+  parent: NFMobRainbowWyvernIce
+  id: NFMobRainbowWyvernCaustic
+  suffix: Frontier, Caustic
+  #categories: [ HideSpawnMenu ] # No spawner
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _NF/Mobs/Aliens/Carps/wyvern.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+      scale: 0.5, 0.5
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive-unshaded-caustic
+      shader: unshaded
+      scale: 0.5, 0.5
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
+      enum.DamageStateVisualLayers.BaseUnshaded:
+        alive-unshaded-caustic: ""
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: alive-unshaded-caustic
+      Dead:
+        Base: dead
+        BaseUnshaded: dead-unshaded
+  - type: BasicEntityAmmoProvider
+    proto: BulletAcid
+    capacity: 1
+    count: 1
+
+- type: entity
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobDragonDungeon, NFMobBossRestrictions ]
+  id: NFMobDragonDungeon
+  suffix: Dungeon, Frontier
+  components:
+  - type: GhostRole
+    description: ghost-role-information-space-dragon-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      100: 0.7
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  # less meat spawned since it's a lot easier to kill
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatDragon
+      amount: 3
+    - id: DragonEgg
+      amount: 1
+      prob: 0.3
+  # half damage, spread evenly
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 15
+  - type: ActionGun
+    action: ActionDragonsBreath
+    gunProto: DragonsBreathGun
