@@ -705,6 +705,18 @@
     - state: command_airlock_directional
 
 - type: entity
+  parent: AirlockFlatpack
+  id: GaslockFlatpack
+  name: gaslock flatpack
+  description: A flatpack used for constructing a gaslock.
+  components:
+  - type: Flatpack
+    entity: Gaslock
+  - type: Sprite
+    layers:
+    - state: command_airlock_directional
+
+- type: entity
   parent: AirlockShuttleFlatpack
   id: AirlockGlassShuttleFlatpack
   name: docking glass airlock flatpack
