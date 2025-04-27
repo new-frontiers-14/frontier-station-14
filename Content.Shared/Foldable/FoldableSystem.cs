@@ -42,7 +42,7 @@ public sealed class FoldableSystem : EntitySystem
 
     private void OnFoldableOpenAttempt(EntityUid uid, FoldableComponent component, ref StorageOpenAttemptEvent args)
     {
-        if (!component.IsFolded && !component.CanFoldInsideContainer) // Frontier: if things are folded or can unfold in storage, let them be stored
+        if (component.IsFolded)
             args.Cancelled = true;
     }
 
@@ -54,7 +54,7 @@ public sealed class FoldableSystem : EntitySystem
 
     public void OnStrapAttempt(EntityUid uid, FoldableComponent comp, ref StrapAttemptEvent args)
     {
-        if (!comp.IsFolded && !comp.CanFoldInsideContainer) // Frontier: if things are folded or can unfold in storage, let them be stored
+        if (comp.IsFolded)
             args.Cancelled = true;
     }
 
@@ -103,7 +103,7 @@ public sealed class FoldableSystem : EntitySystem
         if (_container.IsEntityInContainer(uid) && !fold.CanFoldInsideContainer)
             return false;
 
-        var ev = new FoldAttemptEvent();
+        var ev = new FoldAttemptEvent(fold);
         RaiseLocalEvent(uid, ref ev);
         return !ev.Cancelled;
     }
@@ -157,7 +157,7 @@ public sealed class FoldableSystem : EntitySystem
 /// </summary>
 /// <param name="Cancelled"></param>
 [ByRefEvent]
-public record struct FoldAttemptEvent(bool Cancelled = false);
+public record struct FoldAttemptEvent(FoldableComponent Comp, bool Cancelled = false);
 
 /// <summary>
 /// Event raised on an entity after it has been folded.

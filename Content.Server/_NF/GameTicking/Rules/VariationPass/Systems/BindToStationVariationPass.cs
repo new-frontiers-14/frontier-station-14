@@ -3,6 +3,7 @@ using Content.Server.Construction.Components;
 using Content.Server.GameTicking.Rules.VariationPass.Components;
 using Content.Shared._NF.BindToStation;
 using Content.Shared.Construction.Components;
+using Content.Shared.VendingMachines;
 
 namespace Content.Server.GameTicking.Rules.VariationPass;
 
@@ -46,6 +47,16 @@ public sealed class BindToStationVariationPass : VariationPassSystem<BindToStati
 
         var compBoardQuery = AllEntityQuery<ComputerBoardComponent, TransformComponent>();
         while (compBoardQuery.MoveNext(out var uid, out var _, out var xform))
+        {
+            if (HasComp<BindToStationExemptionComponent>(uid) || !IsMemberOfStation((uid, xform), ref args))
+                continue;
+
+            _bindToStation.BindToStation(uid, args.Station);
+        }
+
+        // Tie vendors to a particular station.
+        var vendorQuery = AllEntityQuery<VendingMachineComponent, TransformComponent>();
+        while (vendorQuery.MoveNext(out var uid, out _, out var xform))
         {
             if (HasComp<BindToStationExemptionComponent>(uid) || !IsMemberOfStation((uid, xform), ref args))
                 continue;
