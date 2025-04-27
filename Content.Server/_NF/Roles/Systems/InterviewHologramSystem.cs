@@ -4,6 +4,8 @@ using Content.Server.GameTicking;
 using Content.Server.PDA.Ringer;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
+using Content.Server.StationRecords;
+using Content.Server.StationRecords.Systems;
 using Content.Shared._NF.Roles.Components;
 using Content.Shared._NF.Roles.Events;
 using Content.Shared.Chat;
@@ -34,6 +36,7 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
     [Dependency] private SharedHumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private StationJobsSystem _stationJobs = default!;
+    [Dependency] private StationRecordsSystem _stationRecords = default!;
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
     [Dependency] private StationSystem _station = default!;
 
@@ -200,13 +203,17 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
         RemComp<JobTrackingComponent>(ent);
 
         // Spawn new entity.
+        var station = _station.GetOwningStation(ent);
         var newEntity = _stationSpawning.SpawnPlayerMob(xform.Coordinates,
             ent.Comp.Job,
             profile,
-            _station.GetOwningStation(ent),
+            station,
             entity: null,
             session: session
             );
+
+        if (profile != null && TryComp<StationRecordsComponent>(station, out var stationRecords))
+            _stationRecords.CreateGeneralRecord(station.Value, newEntity, profile, ent.Comp.Job, stationRecords);
 
         _mind.TransferTo(mindUid.Value, newEntity);
         _chat.DispatchServerMessage(session, Loc.GetString("interview-hologram-message-accepted"), suppressLog: true);
