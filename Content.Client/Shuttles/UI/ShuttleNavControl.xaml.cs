@@ -66,11 +66,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     private List<Entity<MapGridComponent>> _grids = new();
 
     // Frontier: constants for gunnery system
-    #region Mono
     // These 2 handle timing updates
     private const float RadarUpdateInterval = 0f;
     private float _updateAccumulator = 0f;
-    #endregion
 
     private bool _isMouseDown;
     private bool _isMouseInside;
@@ -100,7 +98,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     {
         _isMouseInside = false;
     }
-    //End Frontier
+    // End Frontier
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)
     {
         _coordinates = coordinates;
@@ -458,7 +456,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         }
 
         // Frontier: radar blip system for the mass scanners and shapes
-        #region Mono
         // Draw radar line
         // First, figure out which angle to draw.
         var updateRatio = _updateAccumulator / RadarUpdateInterval;
@@ -471,7 +468,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var rawBlips = _blips.GetRawBlips();
 
         // Prepare view bounds for culling
-        var monoViewBounds = new Box2(-3f, -3f, Size.X + 3f, Size.Y + 3f);
+        var viewBounds = new Box2(-3f, -3f, Size.X + 3f, Size.Y + 3f);
 
         // Draw blips using the same grid-relative transformation approach as docks
         foreach (var blip in rawBlips)
@@ -500,7 +497,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             }
 
             // Check if this blip is within view bounds before drawing
-            if (monoViewBounds.Contains(blipPosInView))
+            if (viewBounds.Contains(blipPosInView))
             {
                 DrawBlipShape(handle, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape);
             }

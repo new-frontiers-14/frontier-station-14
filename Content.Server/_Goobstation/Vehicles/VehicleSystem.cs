@@ -24,5 +24,5 @@ public sealed class VehicleSystem : SharedVehicleSystem
         base.OnUnstrapped(uid, ref args);
 
     }
-    // Frontier end
+    // End Frontier
 }

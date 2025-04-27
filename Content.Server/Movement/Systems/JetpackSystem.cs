@@ -12,7 +12,7 @@ public sealed class JetpackSystem : SharedJetpackSystem
 {
     [Dependency] private readonly GasTankSystem _gasTank = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!; //Frontier
+    [Dependency] private readonly EntityManager _entityManager = default!; // Frontier
 
     // Frontier: Initialize jetpack component subscriptions
     public override void Initialize()
@@ -23,7 +23,7 @@ public sealed class JetpackSystem : SharedJetpackSystem
         SubscribeLocalEvent<ActiveJetpackComponent, ComponentStartup>(OnJetpackActivated);
         SubscribeLocalEvent<ActiveJetpackComponent, ComponentShutdown>(OnJetpackDeactivated);
     }
-    //Frontier end
+    // End Frontier
 
     protected override bool CanEnable(EntityUid uid, JetpackComponent component)
     {

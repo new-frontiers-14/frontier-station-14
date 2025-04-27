@@ -1,6 +1,6 @@
-namespace Content.Server._NF.Radar; // Frontier
+namespace Content.Server._NF.Radar;
 
-using Content.Shared._NF.Radar; // Frontier
+using Content.Shared._NF.Radar;
 
 /// <summary>
 /// These handle objects which should be represented by radar blips.

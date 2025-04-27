@@ -2,7 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._NF.Radar; // Frontier
+namespace Content.Shared._NF.Radar;
 
 [Serializable, NetSerializable]
 public enum RadarBlipShape
