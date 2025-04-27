@@ -154,6 +154,7 @@ ui-options-function-drop = Drop item
 ui-options-function-examine-entity = Examine
 # Frontier: add (next)
 ui-options-function-swap-hands = Swap hands (next)
+ui-options-function-smart-equip-wallet = Smart-equip to wallet
 # Frontier
 ui-options-function-swap-hands-previous = Swap hands (previous)
 ui-options-function-move-stored-item = Move stored item
