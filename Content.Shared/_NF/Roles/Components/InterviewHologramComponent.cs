@@ -57,7 +57,7 @@ public sealed partial class InterviewHologramComponent : Component
     /// <summary>
     /// True if a character appearance has been applied to this entity.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField(serverOnly: true)]
     public bool AppearanceApplied;
 
     // Application parameters:
@@ -78,6 +78,12 @@ public sealed partial class InterviewHologramComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool CaptainApproved;
+
+    /// <summary>
+    /// True if a character appearance has been applied to this entity.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public bool NotificationsSent;
 
     // Action parameters:
 
