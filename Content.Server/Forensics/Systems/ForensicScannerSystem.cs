@@ -21,6 +21,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
+using Content.Server.Chemistry.Containers.EntitySystems;
+using Robust.Shared.Prototypes;
 using Content.Shared.Containers.ItemSlots; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Shared.FixedPoint; // Frontier
@@ -30,7 +32,6 @@ using Content.Shared._NF.Bank; // Frontier
 using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Server._NF.Bank; // Frontier
 using Content.Shared._NF.Bank.BUI; // Frontier
-
 // todo: remove this stinky LINQy
 
 namespace Content.Server.Forensics
@@ -71,6 +72,8 @@ namespace Content.Server.Forensics
         private const int DropPodSpesoReward = 10000;
         private const float DropPodFUCReward = 1.0f;
         // End Frontier: payout constants
+
+        private static readonly ProtoId<TagPrototype> DNASolutionScannableTag = "DNASolutionScannable";
 
         public override void Initialize()
         {
@@ -226,7 +229,7 @@ namespace Content.Server.Forensics
                 }
                 // End Frontier: contraband poster/pod scanning
 
-                if (_tag.HasTag(args.Args.Target.Value, "DNASolutionScannable"))
+                if (_tag.HasTag(args.Args.Target.Value, DNASolutionScannableTag))
                 {
                     scanner.SolutionDNAs = _forensicsSystem.GetSolutionsDNA(args.Args.Target.Value);
                 } else

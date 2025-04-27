@@ -53,6 +53,9 @@ public sealed class PlantHolderSystem : EntitySystem
     public const float HydroponicsSpeedMultiplier = 1f;
     public const float HydroponicsConsumptionMultiplier = 2f;
 
+    private static readonly ProtoId<TagPrototype> HoeTag = "Hoe";
+    private static readonly ProtoId<TagPrototype> PlantSampleTakerTag = "PlantSampleTaker";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -218,7 +221,7 @@ public sealed class PlantHolderSystem : EntitySystem
             return;
         }
 
-        if (_tagSystem.HasTag(args.Used, "Hoe"))
+        if (_tagSystem.HasTag(args.Used, HoeTag))
         {
             args.Handled = true;
             if (component.WeedLevel > 0)
@@ -258,7 +261,7 @@ public sealed class PlantHolderSystem : EntitySystem
             return;
         }
 
-        if (_tagSystem.HasTag(args.Used, "PlantSampleTaker"))
+        if (_tagSystem.HasTag(args.Used, PlantSampleTakerTag))
         {
             args.Handled = true;
             if (component.Seed == null)

@@ -374,11 +374,13 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 250
-  - type: Battery
-    maxCharge: 4000
-    startingCharge: 4000
-
+    fireCost: 250 # Frontier: 100<250
+  - type: Battery # Frontier
+    maxCharge: 4000 # Frontier
+    startingCharge: 4000 # Frontier
+  - type: Tag
+    tags:
+    - TurretCompatibleWeapon
 
 - type: entity
   name: portable particle decelerator
