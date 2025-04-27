@@ -83,10 +83,17 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
         });
         ev.Verbs.Add(new AlternativeVerb()
         {
-            Act = () => RaiseLocalEvent(ent, new DismissInterviewEvent(captain)),
+            Act = () => RaiseLocalEvent(ent, new DismissInterviewEvent(captain, true)),
             Text = Loc.GetString("interview-hologram-dismiss"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/delete.svg.192dpi.png")),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/delete_transparent.svg.192dpi.png")),
             Priority = -1
+        });
+        ev.Verbs.Add(new AlternativeVerb()
+        {
+            Act = () => RaiseLocalEvent(ent, new DismissInterviewEvent(captain, false)),
+            Text = Loc.GetString("interview-hologram-dismiss-and-close"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/delete_transparent.svg.192dpi.png")),
+            Priority = -2
         });
     }
 
@@ -210,28 +217,30 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
 
     private void OnHologramCancelInterview(Entity<InterviewHologramComponent> ent, ref CancelInterviewEvent ev)
     {
-        DismissHologram(ent, Loc.GetString("interview-hologram-message-cancelled"));
+        DismissHologram(ent, message: Loc.GetString("interview-hologram-message-cancelled"));
     }
 
     private void OnHologramDismissInterview(Entity<InterviewHologramComponent> ent, ref DismissInterviewEvent ev)
     {
-        DismissHologram(ent, Loc.GetString("interview-hologram-message-dismissed"));
+        DismissHologram(ent, ev.ReopenSlot, message: Loc.GetString("interview-hologram-message-dismissed"));
     }
 
-    private void DismissHologram(Entity<InterviewHologramComponent> ent, string? message = null)
+    private void DismissHologram(Entity<InterviewHologramComponent> ent, bool reopenSlot = true, string? message = null)
     {
         // Override job tracking - explicitly reopen the job slot, whatever it was.
         if (TryComp<JobTrackingComponent>(ent, out var jobTracking))
         {
-            if (jobTracking.Job != null)
+            if (jobTracking.Job != null && reopenSlot)
                 _stationJobs.TryAdjustJobSlot(jobTracking.SpawnStation, jobTracking.Job, 1);
             RemComp<JobTrackingComponent>(ent);
         }
 
         if (_mind.TryGetSession(_mind.GetMind(ent), out var session))
         {
+            // Inform the user why they were dismissed.
             if (message != null)
                 _chat.DispatchServerMessage(session, message, suppressLog: true);
+
             _gameTicker.Respawn(session);
         }
 
