@@ -24,4 +24,13 @@ public sealed partial class RandomSpriteComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("selected")]
     public Dictionary<string, (string State, Color? Color)> Selected = new();
+
+    // Frontier: mapped random colours
+    /// <summary>
+    /// Maps arbitrary strings to palettes.
+    /// Keys can be used in <c>Available</c> to refer to a mapped colour in multiple layers.
+    /// </summary>
+    [DataField]
+    public Dictionary<string, string> MappedColors = new();
+    // End Frontier
 }

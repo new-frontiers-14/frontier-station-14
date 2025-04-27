@@ -8,12 +8,12 @@
   showInVote: true
   rules:
     - NFAdventure
-    - BasicStationEventScheduler
+    - NFBasicStationEventScheduler
     - BluespaceEventScheduler
     - BluespaceDungeonEventScheduler
     - BluespaceSalvageEventScheduler
     - SmugglingEventScheduler
-    - FrontierRoundstartVariation
+    - NFRoundstartVariation
 
 - type: gamePreset
   id: NFPirate
@@ -25,9 +25,23 @@
   showInVote: true
   rules:
     - NFAdventure
-    - BasicStationEventScheduler
+    - NFBasicStationEventScheduler
     - BluespaceEventScheduler
     - BluespaceDungeonEventScheduler
     - BluespaceSalvageEventScheduler
     - SmugglingEventScheduler
-    - FrontierRoundstartVariation
+    - NFRoundstartVariation
+
+# Test preset: intended to be close enough to upstream stuff but should be
+#              quicker to setup and teardown than adventure/pirate
+- type: gamePreset
+  id: NFTest
+  alias:
+    - nftest
+    - test
+  name: nf-test-title
+  showInVote: false
+  description: nf-test-description
+  rules:
+    - NFBasicStationEventScheduler
+    - NFRoundstartVariation

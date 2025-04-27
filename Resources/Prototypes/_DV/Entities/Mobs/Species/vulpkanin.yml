@@ -7,6 +7,10 @@
   components:
   - type: HumanoidAppearance
     species: Vulpkanin
+    hideLayersOnEquip: # Frontier
+    - Hair # Frontier
+    - HeadTop # Frontier
+    - Snout # Frontier
   - type: Hunger
   - type: Carriable # Carrying system from nyanotrasen.
   - type: Inventory # Allows vulps to wear properly shaped helmets
@@ -45,6 +49,8 @@
         sprite: _DV/Mobs/Customization/Vulpkanin/masking_helpers.rsi
         state: female_full
         visible: false
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
       - map: [ "jumpsuit" ]
       - map: [ "enum.HumanoidVisualLayers.LHand" ]
       - map: [ "enum.HumanoidVisualLayers.RHand" ]
@@ -90,26 +96,29 @@
   - type: Perishable
   - type: Damageable
     damageModifierSet: Vulpkanin
-  - type: TemperatureProtection
-    coolingCoefficient: 0.1 # fur is insulating
   - type: Vocal
     sounds:
       Male: MaleVulpkanin
       Female: FemaleVulpkanin
       Unsexed: MaleVulpkanin
   - type: DogVision
-  - type: InteractionPopup # Frontier
+  - type: Temperature
+    heatDamageThreshold: 320 # 5 lower than base # Frontier: 315<320
+    coldDamageThreshold: 220 # 40 lower than base, very insulating fur
+  # Frontier: interaction & tall/short traits
+  - type: InteractionPopup
     successChance: 1
     interactSuccessString: pat-success-generic
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
     messagePerceivedByOthers: pat-success-generic-others
-  - type: ShortWhitelist # Frontier
-    scale: 0.8 # Frontier
-    density: 140 # Frontier
-    pseudoItem: true # Frontier
-    cosmeticOnly: false # Frontier
-  - type: TallWhitelist # Frontier
-    scale: 1.2 # Frontier
+  - type: ShortWhitelist
+    scale: 0.8
+    density: 140
+    pseudoItem: true
+    cosmeticOnly: false
+  - type: TallWhitelist
+    scale: 1.2
+  # End Frontier
 
 - type: entity
   save: false

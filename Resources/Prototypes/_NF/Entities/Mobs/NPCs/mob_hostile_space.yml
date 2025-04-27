@@ -1,0 +1,46 @@
+- type: entity
+  id: NFMobBearSpace
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobBearSpace, NFMobRoadkillable]
+  suffix: Frontier
+  # categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobKangarooSpace
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobKangarooSpace, NFMobRoadkillable]
+  suffix: Frontier
+  # categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobSpiderSpace
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobSpiderSpace, NFMobRoadkillable]
+  suffix: Frontier
+  # categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobCobraSpace
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCobraSpace, NFMobRoadkillable]
+  suffix: Frontier
+  # categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobTick
+  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobTick, NFMobRoadkillable]
+  suffix: Frontier
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _NF/Mobs/Aliens/spacetick.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: glow
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: glow
+      Dead:
+        Base: dead
+        BaseUnshaded: mask_null

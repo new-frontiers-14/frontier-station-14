@@ -148,7 +148,7 @@
 
 - type: entity
   categories: [ HideSpawnMenu ]
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFCosplayWizard
   suffix: cosplay-wizard, extended
   components:
@@ -157,6 +157,7 @@
     - id: ClothingOuterWizard
     - id: ClothingHeadHatWizard
     - id: ClothingShoesWizard
+    - id: RubberStampWizard
     - id: WizardStaffMeleeBase
       orGroup: Staff
       prob: 0.6
@@ -172,7 +173,7 @@
 
 - type: entity
   categories: [ HideSpawnMenu ]
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFCosplayMaid
   suffix: cosplay-maid, extended
   components:
@@ -289,6 +290,10 @@
     contents:
     - id: CigarGoldCase
       orGroup: Cigars
+      prob: 0.95
+    - id: CigarPlatinumCase
+      orGroup: Cigars
+      prob: 0.05
     - id: FlippoLighter
       orGroup: Lighter
       prob: 0.95
@@ -728,7 +733,7 @@
   components:
   - type: Mail
     contents:
-    - id: HyperlinkBookSpaceLaw
+    - id: NFHyperlinkBookSpaceLaw
     - id: HyperlinkBookNfsdSop
     - id: PaperMailNFSpaceLaw
 
@@ -1189,18 +1194,17 @@
       prob: 0.50
     - id: PenHop
       orGroup: Pen
-      prob: 0.25
+      prob: 0.245
     - id: PenCap
       orGroup: Pen
-      prob: 0.25
-    # TODO: come up with a slightly less powerful version of these
+      prob: 0.245
     # Ultra-rare
-    # - id: CyberPen
-    #   orGroup: Pen
-    #   prob: 0.005
-    # - id: PenCentcom
-    #   orGroup: Pen
-    #   prob: 0.005
+    - id: CyberPen
+      orGroup: Pen
+      prob: 0.005
+    - id: PenWiz
+      orGroup: Pen
+      prob: 0.005
     - id: PaperMailNFPaperPusherAd
 
 - type: entity
@@ -1607,59 +1611,7 @@
   - type: Mail
     isFragile: true
     contents:
-      # Bugs (weight: 2)
-      - id: MobCockroach
-        orGroup: Critter
-        prob: 0.34
-      - id: MobSlug
-        orGroup: Critter
-        prob: 0.34
-      - id: MobBee
-        orGroup: Critter
-        prob: 0.34
-      - id: MobButterfly
-        orGroup: Critter
-        prob: 0.34
-      - id: MobSnail
-        orGroup: Critter
-        prob: 0.34
-        # Uncommon
-      - id: MobMothroach
-        orGroup: Critter
-        prob: 0.15
-        # Rare
-      - id: MobRosyMothroach
-        orGroup: Critter
-        prob: 0.05
-      - id: MobSnailMoth
-        orGroup: Critter
-        prob: 0.05
-      - id: MobSnailSpeed
-        orGroup: Critter
-        prob: 0.05
-      # Small reptiles (weight: 1)
-      - id: MobLizard
-        orGroup: Critter
-        prob: 0.34
-      - id: MobSnake
-        orGroup: Critter
-        prob: 0.33
-      - id: MobFrog
-        orGroup: Critter
-        prob: 0.33
-      # Small mammals (weight: 1)
-      - id: MobMouse
-        orGroup: Critter
-        prob: 0.33
-      - id: MobMouse1
-        orGroup: Critter
-        prob: 0.33
-      - id: MobMouse2
-        orGroup: Critter
-        prob: 0.33
-      - id: MobMouseCancer
-        orGroup: Critter
-        prob: 0.01 # Rare
+      - id: DelayedNFRandomCritter
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -1727,7 +1679,7 @@
   - type: Mail
     isFragile: true
     contents:
-      - id: NecrosolChemistryBottle
+      - id: ChemistryBottleNecrosol
       - id: Syringe
 
 - type: entity
@@ -1739,7 +1691,7 @@
   - type: Mail
     isFragile: true
     contents:
-      - id: OmnizineChemistryBottle
+      - id: ChemistryBottleOmnizine
       - id: Syringe
 
 - type: entity
@@ -1858,20 +1810,29 @@
   components:
   - type: Mail
     contents:
-      - id: VehicleATVNF
+      - id: NFVehicleATV
       - id: VehicleKeyATV
 
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseMailLarge
   id: MailNFSkeletonMotorcycle
-  suffix: ATV
+  suffix: Skeleton Motorcycle
   components:
   - type: Mail
     contents:
-      - id: VehicleSkeletonMotorcycleNF
+      - id: NFVehicleSkeletonMotorcycle
       - id: VehicleKeySkeleton
 
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMailLarge
+  id: MailNFHoverchair
+  suffix: Hoverchair
+  components:
+  - type: Mail
+    contents:
+      - id: VehicleHoverchair
 
 - type: entity
   categories: [ HideSpawnMenu ]
