@@ -189,7 +189,19 @@
   - type: IconSmooth
     key: walls
     mode: NoSprite
-
+  - type: Destructible
+    thresholds:
+  - trigger:
+        !type:DamageTrigger
+        damage: 600 #technically not repairable, would need to buy a new flatpack
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 - type: entity
   parent: [ BaseStructureDynamic, BasePressurePumpGaslock, BaseMachinePowered, ConstructibleMachine ]
   id: GaslockFrame
