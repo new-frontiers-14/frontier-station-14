@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 247.2.0
+  engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/28/2025 05:11:33
+  time: 04/27/2025 22:05:20
   entityCount: 1266
 maps: []
 grids:
@@ -1226,19 +1226,19 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 536
-      - 535
+      - 958
+      - 889
+      - 888
+      - 885
+      - 886
+      - 887
       - 1034
+      - 535
       - 967
       - 512
-      - 1022
-      - 59
-      - 887
-      - 888
-      - 889
-      - 958
-      - 886
-      - 885
+      - 1001
+      - 856
+      - 536
   - uid: 1043
     components:
     - type: Transform
@@ -2307,7 +2307,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 4.5,1
+      pos: 4.5,1.05
       parent: 1
   - uid: 961
     components:
@@ -4581,7 +4581,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.465078,2.5227299
       parent: 1
-- proto: GasFilterFlipped
+- proto: GasFilterOnFlipped
   entities:
   - uid: 89
     components:
@@ -6190,16 +6190,14 @@ entities:
       color: '#990000FF'
 - proto: GasThermoMachineFreezer
   entities:
+  - uid: 456
+    components:
+    - type: Transform
+      pos: -0.5,-0.5
+      parent: 1
   - uid: 848
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-0.5
-      parent: 1
-  - uid: 858
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
       pos: -0.5,0.5
       parent: 1
 - proto: GasValve
@@ -6269,9 +6267,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,9.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 864
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 1034
@@ -6326,9 +6321,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,8.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 864
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 129
@@ -6460,6 +6452,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,13.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 864
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 980
@@ -6490,6 +6485,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,8.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 864
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 1114
@@ -7110,7 +7108,7 @@ entities:
       pos: 5.5,-11.5
       parent: 1
     - type: FuelGenerator
-      targetPower: 50000
+      targetPower: 52000
 - proto: PortableGeneratorJrPacman
   entities:
   - uid: 6
@@ -7143,14 +7141,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,15.5
-      parent: 1
-- proto: PoweredlightBlack
-  entities:
-  - uid: 456
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,14.5
       parent: 1
 - proto: PoweredlightGreen
   entities:
@@ -7245,6 +7235,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -7.5,-11.5
+      parent: 1
+- proto: PoweredlightUltraviolet
+  entities:
+  - uid: 858
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,14.5
       parent: 1
 - proto: PoweredSmallLight
   entities:
@@ -7950,7 +7948,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 4.5,1
+      pos: 4.5,1.05
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -8258,64 +8256,119 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,0.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: gas lock chamber
   - uid: 520
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,-9.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: engine room
   - uid: 916
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,11.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: mess hall
   - uid: 997
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,-0.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: engineering bay
   - uid: 1000
     components:
     - type: Transform
       pos: 8.5,2.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: burn chamber
   - uid: 1031
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,4.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: atmospherics laboratory
   - uid: 1260
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.5,-6.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: starboard quarter
   - uid: 1261
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-11.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: cargo bay
   - uid: 1262
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -7.5,6.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: port beam
   - uid: 1263
     components:
     - type: Transform
       pos: 3.5,16.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: starboard bow
   - uid: 1264
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,-15.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraGeneral
+      nameSet: True
+      id: aft
 - proto: SurveillanceCameraRouterGeneral
   entities:
   - uid: 549
