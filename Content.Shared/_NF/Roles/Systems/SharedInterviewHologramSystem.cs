@@ -2,8 +2,6 @@ using Content.Shared._NF.Roles.Components;
 using Content.Shared._NF.Roles.Events;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Verbs;
-using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Roles.Systems;
 
@@ -15,34 +13,8 @@ public abstract partial class SharedInterviewHologramSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<InterviewHologramComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternativeVerb);
         SubscribeLocalEvent<InterviewHologramComponent, SetCaptainApprovedEvent>(OnSetCaptainApproved);
         SubscribeLocalEvent<InterviewHologramComponent, ToggleApplicantApprovalEvent>(OnToggleApplicantApproval);
-    }
-
-    private void OnAlternativeVerb(Entity<InterviewHologramComponent> ent, ref GetVerbsEvent<AlternativeVerb> ev)
-    {
-        if (!ev.CanAccess || !ev.CanInteract || ev.Hands == null || ev.User == ev.Target)
-            return;
-
-        if (IsCaptain(ev.User, ent))
-        {
-            bool accepted = ent.Comp.CaptainApproved;
-            EntityUid captain = ev.User;
-            ev.Verbs.Add(new AlternativeVerb()
-            {
-                Act = () => RaiseLocalEvent(ent, new SetCaptainApprovedEvent(captain, !accepted)),
-                Text = Loc.GetString(accepted ? "interview-hologram-rescind" : "interview-hologram-approve"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png"))
-            });
-            ev.Verbs.Add(new AlternativeVerb()
-            {
-                Act = () => RaiseLocalEvent(ent, new DismissInterviewEvent(captain)),
-                Text = Loc.GetString("interview-hologram-dismiss"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
-                Priority = -1
-            });
-        }
     }
 
     private void OnSetCaptainApproved(Entity<InterviewHologramComponent> ent, ref SetCaptainApprovedEvent ev)
@@ -72,9 +44,14 @@ public abstract partial class SharedInterviewHologramSystem : EntitySystem
     {
         ent.Comp.ApplicantApproved = !ent.Comp.ApplicantApproved;
         Dirty(ent);
-        ev.Toggle = true;
         HandleApprovalChanged(ent);
+        ev.Toggle = true;
+        ev.Handled = true;
     }
 
+    /// <summary>
+    /// An abstract approval handler, expected to be defined server- and client-side.
+    /// </summary>
+    /// <param name="ent">The entity whose approval state has changed.</param>
     abstract protected void HandleApprovalChanged(Entity<InterviewHologramComponent> ent);
 }

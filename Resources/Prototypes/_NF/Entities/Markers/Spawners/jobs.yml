@@ -7,6 +7,14 @@
     job_id: Contractor
 
 - type: entity
+  id: SpawnPointContractorInterview
+  parent: SpawnPointContractor
+  name: contractor applicant
+  components:
+  - type: SpawnPoint
+    job_id: ContractorInterview
+
+- type: entity
   id: SpawnPointMercenary
   parent: SpawnPointJobBase
   name: mercenary
@@ -20,6 +28,14 @@
       - state: mercenary
 
 - type: entity
+  id: SpawnPointMercenaryInterview
+  parent: SpawnPointMercenary
+  name: mercenary applicant
+  components:
+  - type: SpawnPoint
+    job_id: MercenaryInterview
+
+- type: entity
   id: SpawnPointPilot
   parent: SpawnPointJobBase
   name: pilot
@@ -31,6 +47,14 @@
     layers:
       - state: green
       - state: pilot
+
+- type: entity
+  id: SpawnPointPilotInterview
+  parent: SpawnPointPilot
+  name: pilot applicant
+  components:
+  - type: SpawnPoint
+    job_id: PilotInterview
 
 - type: entity
   id: SpawnPointNFPirate
