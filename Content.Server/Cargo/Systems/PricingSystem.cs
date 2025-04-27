@@ -247,8 +247,8 @@ public sealed class PricingSystem : EntitySystem
     /// </remarks>
     public double GetPrice(EntityUid uid, bool includeContents = true, Func<EntityUid, bool>? predicate = null) // Frontier - Add optional predicate
     {
-        if (predicate is not null && !predicate(uid)) // Frontier - Add optional predicate
-            return 0.0;                               // Frontier - Add optional predicate
+        if (predicate is not null && !predicate(uid)) // Frontier
+            return 0.0;                               // Frontier
 
         var ev = new PriceCalculationEvent();
         ev.Price = 0; // Structs doesnt initialize doubles when called by constructor.
@@ -278,7 +278,7 @@ public sealed class PricingSystem : EntitySystem
             {
                 foreach (var ent in container.ContainedEntities)
                 {
-                    price += GetPrice(ent, includeContents, predicate); // Frontier - Add optional predicate
+                    price += GetPrice(ent, includeContents, predicate); // Frontier - Add includeContents, predicate
                 }
             }
         }
@@ -444,7 +444,7 @@ public sealed class PricingSystem : EntitySystem
         {
             if (predicate is null || predicate(child))
             {
-                var subPrice = GetPrice(child, true, predicate); // Frontier: make getPrice recursive & respect predicate per item
+                var subPrice = GetPrice(child, true, predicate); // Frontier: add true, predicate
                 price += subPrice;
                 afterPredicate?.Invoke(child, subPrice);
             }
