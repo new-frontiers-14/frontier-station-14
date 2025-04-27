@@ -52,14 +52,8 @@
   suffix: Valuable, 100%
   components:
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
-      - !type:NestedSelector
-        weight: 0.1
-        tableId: SalvageTreasureSpawnerValuable
-      - !type:NestedSelector
-        weight: 99.9
-        tableId: TableStashVariety
+    table: !type:NestedSelector
+      tableId: SalvageTreasureSpawnerValuable
 
 - type: entity
   parent: SalvageSpawnerEquipment
@@ -76,11 +70,5 @@
   suffix: Valuable, 100%
   components:
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
-      - !type:NestedSelector
-        weight: 0.1
-        tableId: SalvageEquipmentSpawnerValuable
-      - !type:NestedSelector
-        weight: 99.9
-        tableId: TableStashVariety
+    table: !type:NestedSelector
+      tableId: SalvageEquipmentSpawnerValuable
