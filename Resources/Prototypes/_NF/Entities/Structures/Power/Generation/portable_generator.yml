@@ -92,7 +92,7 @@
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: FuelGradeBananium
     - type: MaterialStorage
-      materialWhiteList: [Bananium, FuelGradeBananium]
+      materialWhiteList: [Bananium, FuelGradeBananium, RawBananium]
     - type: PowerMonitoringDevice
       sprite: _NF/Structures/Power/Generation/portable_generator.rsi
       state: portgen1
@@ -107,8 +107,13 @@
       supplyRampRate: 10000
       supplyRampTolerance: 3000
     - type: FuelGradeAdapter
-      inputMaterial: Bananium
-      outputMaterial: FuelGradeBananium
+      conversions:
+      - input: Bananium
+        output: FuelGradeBananium
+        rate: 1
+      - input: RawBananium
+        output: FuelGradeBananium
+        rate: 0.5
 
 - type: entity
   parent:

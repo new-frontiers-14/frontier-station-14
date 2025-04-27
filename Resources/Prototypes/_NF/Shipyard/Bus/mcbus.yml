@@ -1,0 +1,29 @@
+# Author Info
+# GitHub: dvir001
+# Discord: dvir001
+
+# Maintainer Info
+# GitHub: dvir001
+# Discord: dvir001
+
+# Shuttle Notes:
+# This is supposed to be a corporate sponsored bus.
+- type: vessel
+  id: McBus
+  parent: BaseVesselBus
+  shuttlePath: /Maps/_NF/Shuttles/Bus/mcbus.yml
+
+- type: gameMap
+  id: McBus
+  mapName: 'McBus'
+  mapPath: /Maps/_NF/Shuttles/Bus/mcbus.yml
+  minPlayers: 0
+  stations:
+    McBus:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bus {1}' # Will be overwritten
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

@@ -21,7 +21,7 @@
     sweatHeatRegulation: 2000
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 25
+    thermalRegulationTemperatureThreshold: 2
   - type: MovedByPressure
   - type: Insulated
 
@@ -89,7 +89,6 @@
   components:
   - type: NFSalvageMobRestrictions
     addComponentsOnDeath:
-    - type: Uncloneable
     - type: Unrevivable
     - type: Strippable
     - type: UserInterface
@@ -373,8 +372,8 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
-      amount: 5
+    - id: FoodMeatRotten
+      amount: 2
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -499,3 +498,14 @@
     - SimpleHostile
   - type: Carriable # Kept for consistency with other mobs
   - type: FTLKnockdownImmune
+
+# Parent for consistent roadkill settings
+- type: entity
+  abstract: true
+  id: NFMobRoadkillable
+  components:
+  - type: Roadkill
+    killSpeed: 25
+    destroySpeed: 40 # yeehaw
+    destroySound:
+      collection: gib
