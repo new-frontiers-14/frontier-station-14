@@ -221,7 +221,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: VehicleATVNF # Frontier
+      - id: NFVehicleATV # Frontier
       - id: VehicleKeyATV
 
 - type: entity
@@ -291,15 +291,19 @@
         amount: 4
 
 - type: entity
-  id: CrateFunSyndicateSegway
-  parent: CrateLivestock
-  name: Syndicate segway crate
-  description: A crate containing a two-wheeler that will help you escape from the security officers. Or not.
+  id: CrateFunFoamGuns
+  parent: CratePlastic
+  name: Foam Force crate
+  description: Contains four Foam Force rifles, some grenades, and extra ammo. It's [REDACTED] or nothing!
   components:
-    - type: StorageFill
-      contents:
-        - id: VehicleSyndicateSegway
-        - id: VehicleKeySyndicateSegway
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleFoam
+      amount: 4
+    - id: BoxDonkSoftBox
+      amount: 2
+    - id: GrenadeFoamDart
+      amount: 4
 
 - type: entity
   id: CrateFunBoxing

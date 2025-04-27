@@ -1,6 +1,6 @@
 # Randomized spawners to make things a bit more diverse
-# Unlike dungeon spawners, this ones shouldn't have contraband
-# items or machines
+# Unlike dungeon spawners, the ones here shouldn't contain
+# contraband or otherwise restricted items or machines
 
 # Clutter
 
@@ -8,11 +8,23 @@
 
 # Clothes
 
-# Furniture/lockers
+#region Furniture/lockers
+- type: entityTable
+  id: TableRandomSuitStorageMercenary
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      children:
+      - id: SuitStorageMercenary
+      - id: SuitStoragePrivateSecurity
+      - id: SuitStorageEVAMercenary
+      - id: SuitStorageEVAPrivateSec
+
 - type: entity
-  name: random suit storage unit
   id: SpawnShuttleGearSuitStorageUnitsMercenary
   parent: MarkerBase
+  name: random suit storage unit
   suffix: "Shuttle, Mercenary"
   components:
   - type: Sprite
@@ -25,18 +37,52 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
-  - type: RandomSpawner
-    prototypes:
-    - SuitStorageMercenary
-    - SuitStoragePrivateSecurity
-    chance: 1
+  - type: EntityTableSpawner
     offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableRandomSuitStorageMercenary
+      prob: 1.00
 
-# Machines
+#region Machines
+- type: entityTable
+  id: TableRandomVendomatClothing
+  table: !type:GroupSelector
+    children:
+    # Common
+    - !type:GroupSelector
+      weight: 95
+      children:
+      - id: VendingMachineClothing
+      - id: VendingMachineWinter
+      - id: VendingMachineHydrobe
+      - id: VendingMachineTheater
+      - id: VendingMachineLawDrobe
+      - id: VendingBarDrobe
+      - id: VendingMachineChapel
+      - id: VendingMachineCargoDrobe
+      - id: VendingMachineMediDrobe
+      - id: VendingMachineChemDrobe
+      - id: VendingMachineCuraDrobe
+      - id: VendingMachineAtmosDrobe
+      - id: VendingMachineEngiDrobe
+      - id: VendingMachineChefDrobe
+      - id: VendingMachineJaniDrobe
+      - id: VendingMachineSciDrobe
+      - id: VendingMachineRoboDrobe
+      - id: VendingMachineGeneDrobe
+      - id: VendingMachineViroDrobe
+      - id: VendingMachinePride
+    # Uncommon
+    - !type:GroupSelector
+      weight: 5
+      children:
+      - id: VendingMachineClothingPunk
+      - id: VendingMachineBountyVendPunk
+
 - type: entity
-  name: random vendomat
   id: SpawnShuttleVendomatsClothes
   parent: MarkerBase
+  name: random vendomat
   suffix: "Shuttle, Clothes"
   components:
   - type: Sprite
@@ -47,32 +93,10 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
-  - type: RandomSpawner
-    prototypes:
-    - VendingMachineClothing
-    - VendingMachineWinter
-    - VendingMachineHydrobe
-    - VendingMachineTheater
-    - VendingMachineLawDrobe
-    - VendingBarDrobe
-    - VendingMachineChapel
-    - VendingMachineCargoDrobe
-    - VendingMachineMediDrobe
-    - VendingMachineChemDrobe
-    - VendingMachineCuraDrobe
-    - VendingMachineAtmosDrobe
-    - VendingMachineEngiDrobe
-    - VendingMachineChefDrobe
-    - VendingMachineJaniDrobe
-    - VendingMachineSciDrobe
-    - VendingMachineRoboDrobe
-    - VendingMachineGeneDrobe
-    - VendingMachineViroDrobe
-    chance: 1
+  - type: EntityTableSpawner
     offset: 0.0
-    rarePrototypes:
-    - VendingMachineBountyVendPunk
-    - VendingMachineClothingPunk
-    rareChance: 0.05
+    table: !type:NestedSelector
+      tableId: TableRandomVendomatClothing
+      prob: 1.00
 
 # Other
