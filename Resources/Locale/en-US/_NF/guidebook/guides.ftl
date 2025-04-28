@@ -4,6 +4,7 @@ guide-entry-bank = NT Galactic Bank
 guide-entry-piloting = Piloting
 guide-entry-startinggear = Starting Equipment
 guide-entry-hiring = Hiring Crew
+guide-entry-interviews = Interviews
 guide-entry-expeditions = Expeditions
 guide-entry-sector-topology = Sector Topology
 guide-entry-cargo-hauling = Cargo Hauling
