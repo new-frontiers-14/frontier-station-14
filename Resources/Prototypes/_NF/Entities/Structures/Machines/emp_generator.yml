@@ -1,8 +1,8 @@
 - type: entity
   id: MobileEmpGenerator
   parent: [BaseStructureDisableToolUse, BaseC2ContrabandUnredeemable, BaseMachinePowered, ConstructibleMachine]
-  name: mobile emp generator
-  description: A major EMP blast pulse to disable shuttles.
+  name: mobile EMP generator
+  description: Creates giant EMP blasts to disable shuttles.
   placement:
     mode: AlignTileAny
   components:
@@ -32,6 +32,10 @@
   - type: EmpGenerator
     lightRadiusMin: 0.75
     lightRadiusMax: 2.5
+  - type: EmpDescription
+    range: 100
+    energyConsumption: 1000000
+    disableDuration: 60
   - type: EmpGeneratorVisuals
     spriteMap:
       broken: "broken"

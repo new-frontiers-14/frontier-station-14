@@ -164,7 +164,7 @@ public sealed class PowerChargeSystem : EntitySystem
                     // Scale discharge rate such that if we're at 25% active power we discharge at 75% rate.
                     var receiving = powerReceiver.PowerReceived;
                     var mainSystemPower = Math.Max(0, receiving - chargingMachine.IdlePowerUse);
-                    var ratio = 1 - mainSystemPower / (chargingMachine.ActivePowerUse - chargingMachine.IdlePowerUse);
+                    var ratio = 1 - mainSystemPower / (chargingMachine.ActiveChargingPowerUse - chargingMachine.IdlePowerUse); // Frontier: ActivePowerUse<ActiveChargingPowerUse
                     chargeRate = -(ratio * chargingMachine.ChargeRate);
                 }
             }

@@ -1,4 +1,3 @@
-using Content.Shared.Power;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._NF.EmpGenerator;
