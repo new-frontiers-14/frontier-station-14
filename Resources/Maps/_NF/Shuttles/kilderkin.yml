@@ -4,8 +4,8 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/28/2025 12:33:08
-  entityCount: 644
+  time: 04/28/2025 12:43:52
+  entityCount: 645
 maps: []
 grids:
 - 1
@@ -2016,8 +2016,6 @@ entities:
       pos: 0.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
   - uid: 415
@@ -2027,8 +2025,6 @@ entities:
       pos: -0.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
   - uid: 424
@@ -2038,8 +2034,6 @@ entities:
       pos: -2.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
   - uid: 435
@@ -2049,8 +2043,6 @@ entities:
       pos: -1.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
   - uid: 492
@@ -2060,8 +2052,6 @@ entities:
       pos: 1.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
   - uid: 497
@@ -2071,8 +2061,6 @@ entities:
       pos: 3.5,2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
 - proto: FirelockGlass
@@ -2092,8 +2080,6 @@ entities:
       pos: -0.5,4.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 84
       - 155
@@ -2124,8 +2110,6 @@ entities:
       pos: 4.5,-5.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 249
       - 155
@@ -2856,8 +2840,6 @@ entities:
       pos: 1.5,3.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
     - type: AtmosPipeColor
@@ -2885,8 +2867,6 @@ entities:
       pos: 1.5,-3.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
     - type: AtmosPipeColor
@@ -2898,8 +2878,6 @@ entities:
       pos: 6.5,1.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
     - type: AtmosPipeColor
@@ -2934,8 +2912,6 @@ entities:
       pos: 6.5,2.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
     - type: AtmosPipeColor
@@ -2947,8 +2923,6 @@ entities:
       pos: -1.5,3.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
     - type: AtmosPipeColor
@@ -2986,8 +2960,6 @@ entities:
       pos: 2.5,-3.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 155
     - type: AtmosPipeColor
@@ -3331,6 +3303,8 @@ entities:
     - type: Transform
       pos: -4.5,-4.5
       parent: 1
+    - type: FuelGenerator
+      targetPower: 26000
 - proto: PottedPlantRandom
   entities:
   - uid: 363
@@ -4044,16 +4018,41 @@ entities:
     - type: Transform
       pos: 2.5,-3.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraService
+      nameSet: True
+      id: bar
   - uid: 504
     components:
     - type: Transform
       pos: -4.5,-2.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraService
+      nameSet: True
+      id: port dock
   - uid: 505
     components:
     - type: Transform
       pos: 7.5,-2.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraService
+      nameSet: True
+      id: starboard dock
+  - uid: 643
+    components:
+    - type: Transform
+      pos: 0.5,-6.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraService
+      nameSet: True
+      id: engineering
 - proto: Table
   entities:
   - uid: 204
