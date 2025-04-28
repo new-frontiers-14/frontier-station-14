@@ -1,0 +1,24 @@
+- type: entity
+  id: MechEquipmentFork
+  parent: BaseMechEquipment
+  name: power fork
+  description: Gives a mech the ability to pick up crates and insert them onto racks.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_fork
+  - type: Item
+    sprite: _NF/Objects/Specific/Mech/mecha_equipment.rsi
+  - type: MechFork
+    maxContents: 4
+    grabDelay: 2.0
+    grabEnergyDelta: -20
+    whitelist:
+      components:
+      - TradeCrate
+      - NFCrate
+  - type: UIFragment
+    ui: !type:MechGrabberUi
+  - type: ContainerContainer
+    containers:
+      item-container: !type:Container

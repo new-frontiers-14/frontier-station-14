@@ -50,6 +50,7 @@
         amount: 2
       - id: RemoteSignaller
         amount: 2
+      - id: Binoculars
 
 - type: entity
   id: LockerSecurityFilled
@@ -126,7 +127,7 @@
     contents:
       - id: ClothingEyesGlassesSecurity
         prob: 0.3
-      - id: ClothingHeadHatFedoraBrown
+      - id: ClothingHeadHatDetGadget
       - id: ClothingNeckTieDet
       - id: ClothingOuterVestDetective
       - id: ClothingOuterCoatDetective
@@ -140,6 +141,8 @@
       - id: HoloprojectorSecurity
       - id: BoxEvidenceMarkers
       - id: HandLabeler
+      - id: BoxTapeRecorder # DeltaV
+        prob: 0.3
 
 - type: entity
   id: ClosetBombFilled
@@ -157,7 +160,7 @@
         prob: 0.5
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseC1Contraband ] # Frontier: BaseRestrictedContraband<BaseC1Contraband
+  parent: [GunSafeBaseSecure, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband
   id: GunSafeDisabler
   name: disabler safe
   categories: [ HideSpawnMenu ] # Frontier
@@ -168,7 +171,7 @@
       amount: 5
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: GunSafePistolMk58
   name: mk58 safe
   categories: [ HideSpawnMenu ] # Frontier
@@ -181,7 +184,7 @@
       amount: 8
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: GunSafeRifleLecter
   name: lecter safe
   categories: [ HideSpawnMenu ] # Frontier
@@ -194,7 +197,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: GunSafeSubMachineGunDrozd
   name: drozd safe
   categories: [ HideSpawnMenu ] # Frontier
@@ -207,7 +210,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: GunSafeShotgunEnforcer
   name: enforcer safe
   categories: [ HideSpawnMenu ] # Frontier
@@ -220,7 +223,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: GunSafeShotgunKammerer
   name: kammerer safe
   categories: [ HideSpawnMenu ] # Frontier
@@ -235,7 +238,7 @@
 - type: entity
   id: GunSafeSubMachineGunWt550
   suffix: Wt550
-  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   name: wt550 safe
   categories: [ HideSpawnMenu ] # Frontier
   components:
@@ -247,7 +250,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseSecure] # Frontier: remove BaseRestrictedContraband
+  parent: [GunSafeBaseSecure] # Frontier: remove BaseSecurityContraband
   id: GunSafeLaserCarbine
   name: laser safe
   categories: [ HideSpawnMenu ] # Frontier

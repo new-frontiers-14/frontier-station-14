@@ -622,6 +622,8 @@
   noun: seeds-noun-seeds
   displayName: seeds-killertomato-display-name
   plantRsi: Objects/Specific/Hydroponics/tomatokiller.rsi
+  plantLogImpact: High
+  harvestLogImpact: High
   packetPrototype: KillerTomatoSeeds
   productPrototypes:
     - MobTomatoKiller
@@ -664,6 +666,7 @@
   production: 6
   yield: 2
   potency: 20
+  growthStages: 3
   idealLight: 9
   idealHeat: 298
   chemicals:
@@ -1063,6 +1066,8 @@
   displayName: seeds-deathnettle-display-name
   plantRsi: Objects/Specific/Hydroponics/death_nettle.rsi
   packetPrototype: DeathNettleSeeds
+  plantLogImpact: High
+  harvestLogImpact: High
   productPrototypes:
     - DeathNettle
   lifespan: 25
@@ -1136,7 +1141,7 @@
   idealLight: 9
   idealHeat: 298
   chemicals:
-    Frostoil:
+    FrostOil:
       Min: 1
       Max: 10
       PotencyDivisor: 10
@@ -1432,6 +1437,10 @@
       Min: 1
       Max: 5
       PotencyDivisor: 20
+  seedless: true # Frontier
+  preventSwabbing: true # Frontier
+  preventClipping: true # Frontier
+  permanentlySeedless: true # Frontier
 
 - type: seed
   id: fakeCapfruit
@@ -1458,6 +1467,10 @@
       Min: 1
       Max: 5
       PotencyDivisor: 20
+  seedless: true # Frontier
+  preventSwabbing: true # Frontier
+  preventClipping: true # Frontier
+  permanentlySeedless: true # Frontier
 
 - type: seed
   id: realCapfruit
@@ -1484,6 +1497,10 @@
       Min: 1
       Max: 5
       PotencyDivisor: 20
+  seedless: true # Frontier
+  preventSwabbing: true # Frontier
+  preventClipping: true # Frontier
+  permanentlySeedless: true # Frontier
 
 - type: seed
   id: rice
