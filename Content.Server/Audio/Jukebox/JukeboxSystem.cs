@@ -87,7 +87,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
             component.AudioStream = Audio.PlayPvs(jukeboxProto.Path, uid, AudioParams.Default.WithMaxDistance(10f))?.Entity;
 
-            // Frontier: wallmount jukebox
+            // Frontier: wallmount jukebox, shuffle state
             if (TryComp<TransformComponent>(component.AudioStream, out var xform))
                 _transform.SetLocalPosition(component.AudioStream.Value, component.AudioOffset, xform);
 
