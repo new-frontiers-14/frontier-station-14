@@ -18,7 +18,7 @@ public sealed partial class JukeboxComponent : Component
     /// Useful for shuffle.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool FirstPlay;
+    public bool FirstPlay = true;
 
     [ViewVariables]
     public JukeboxPlaybackMode PlaybackMode = JukeboxPlaybackMode.Single;
