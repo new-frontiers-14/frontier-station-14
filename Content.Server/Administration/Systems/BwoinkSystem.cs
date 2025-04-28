@@ -407,7 +407,7 @@ namespace Content.Server.Administration.Systems
                 if (lookup == null)
                 {
                     _sawmill.Log(LogLevel.Error,
-                        $"Unable to find player for NetUserId {userId} when sending webhook.");
+                        $"Unable to find player for NetUserId {userId} when sending webhook."); // Frontier: remove "discord"
                     _relayMessages.Remove(userId);
                     return;
                 }
@@ -492,7 +492,7 @@ namespace Content.Server.Administration.Systems
                 if (!request.IsSuccessStatusCode)
                 {
                     _sawmill.Log(LogLevel.Error,
-                        $"Webhook returned bad status code when posting message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}");
+                        $"Webhook returned bad status code when posting message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}"); // Frontier: "Discord"<"Webhook"
                     _relayMessages.Remove(userId);
                     return;
                 }
@@ -501,7 +501,7 @@ namespace Content.Server.Administration.Systems
                 if (id == null)
                 {
                     _sawmill.Log(LogLevel.Error,
-                        $"Could not find id in json-content returned from webhook: {content}");
+                        $"Could not find id in json-content returned from webhook: {content}"); // Frontier: remove "discord"
                     _relayMessages.Remove(userId);
                     return;
                 }
@@ -517,7 +517,7 @@ namespace Content.Server.Administration.Systems
                 {
                     var content = await request.Content.ReadAsStringAsync();
                     _sawmill.Log(LogLevel.Error,
-                        $"Webhook returned bad status code when patching message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}");
+                        $"Webhook returned bad status code when patching message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}"); // Frontier: "Discord"<"Webhook"
                     _relayMessages.Remove(userId);
                     return;
                 }
@@ -553,7 +553,7 @@ namespace Content.Server.Administration.Systems
                     var content = await request.Content.ReadAsStringAsync();
                     if (!request.IsSuccessStatusCode)
                     {
-                        _sawmill.Log(LogLevel.Error, $"Discord returned bad status code when posting relay message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}");
+                        _sawmill.Log(LogLevel.Error, $"Webhook returned bad status code when posting relay message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}"); // Frontier: Discord<Webhook
                     }
                 }
             }
@@ -667,7 +667,7 @@ namespace Content.Server.Administration.Systems
         /// Sends a bwoink. Common to both internal messages (sent via the ahelp or admin interface) and webhook messages (sent through the webhook, e.g. via Discord)
         /// </summary>
         /// <param name="message">The message being sent.</param>
-        /// <param name="senderId">The network GUID of the person sending the message. This can be a SystemUserId if originated from a webhook</param>
+        /// <param name="senderId">The network GUID of the person sending the message. Frontier: This can be a SystemUserId if originated from a webhook.</param>
         /// <param name="senderAdmin">The admin privileges of the person sending the message.</param>
         /// <param name="senderName">The name of the person sending the message.</param>
         /// <param name="senderChannel">The channel to send a message to, e.g. in case of failure to send</param>
