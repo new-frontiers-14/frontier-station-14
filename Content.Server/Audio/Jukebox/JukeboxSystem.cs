@@ -77,8 +77,6 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             {
                 component.SelectedSongId = newJukeboxProto;
             }
-
-            component.FirstPlay = false;
             // End Frontier
 
             if (string.IsNullOrEmpty(component.SelectedSongId) ||
@@ -92,6 +90,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             // Frontier: wallmount jukebox
             if (TryComp<TransformComponent>(component.AudioStream, out var xform))
                 _transform.SetLocalPosition(component.AudioStream.Value, component.AudioOffset, xform);
+
+            component.FirstPlay = false;
             // End Frontier
 
             Dirty(uid, component);
