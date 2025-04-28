@@ -468,7 +468,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var rawBlips = _blips.GetRawBlips();
 
         // Prepare view bounds for culling
-        var viewBounds = new Box2(-3f, -3f, Size.X + 3f, Size.Y + 3f);
+        var blipViewBounds = new Box2(-3f, -3f, Size.X + 3f, Size.Y + 3f);
 
         // Draw blips using the same grid-relative transformation approach as docks
         foreach (var blip in rawBlips)
@@ -497,12 +497,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             }
 
             // Check if this blip is within view bounds before drawing
-            if (viewBounds.Contains(blipPosInView))
+            if (blipViewBounds.Contains(blipPosInView))
             {
                 DrawBlipShape(handle, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape);
             }
         }
-        #endregion
     }
 
     private void DrawBlipShape(DrawingHandleScreen handle, Vector2 position, float size, Color color, RadarBlipShape shape)
