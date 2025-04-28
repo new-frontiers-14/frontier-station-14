@@ -667,7 +667,7 @@ namespace Content.Server.Administration.Systems
         /// Sends a bwoink. Common to both internal messages (sent via the ahelp or admin interface) and webhook messages (sent through the webhook, e.g. via Discord)
         /// </summary>
         /// <param name="message">The message being sent.</param>
-        /// <param name="senderId">The network GUID of the person sending the message.</param>
+        /// <param name="senderId">The network GUID of the person sending the message. This can be a SystemUserId if originated from a webhook</param>
         /// <param name="senderAdmin">The admin privileges of the person sending the message.</param>
         /// <param name="senderName">The name of the person sending the message.</param>
         /// <param name="senderChannel">The channel to send a message to, e.g. in case of failure to send</param>
