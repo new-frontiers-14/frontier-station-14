@@ -26,7 +26,6 @@ public sealed class SwitchChargingMachineMessage : BoundUserInterfaceMessage
 public sealed class PowerChargeState : BoundUserInterfaceState
 {
     public bool On;
-    public bool Action; // Frontier
     public bool ActionUnlocked; // Frontier
     // 0 -> 255
     public byte Charge;
@@ -37,7 +36,6 @@ public sealed class PowerChargeState : BoundUserInterfaceState
 
     public PowerChargeState(
         bool on,
-        bool action, // Frontier
         bool actionUnlocked, // Frontier
         byte charge,
         PowerChargePowerStatus powerStatus,
@@ -46,7 +44,6 @@ public sealed class PowerChargeState : BoundUserInterfaceState
         short etaSeconds)
     {
         On = on;
-        Action = action; // Frontier
         ActionUnlocked = actionUnlocked; // Frontier
         Charge = charge;
         PowerStatus = powerStatus;

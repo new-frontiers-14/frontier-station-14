@@ -257,7 +257,6 @@ public sealed class PowerChargeSystem : EntitySystem
 
         var state = new PowerChargeState(
             component.SwitchedOn,
-            component.ActionUI, // Frontier
             component.Charge >= component.ActionCharge, // Frontier
             (byte) (component.Charge * 255),
             status,
