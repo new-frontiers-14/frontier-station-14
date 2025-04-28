@@ -407,7 +407,7 @@ namespace Content.Server.Administration.Systems
                 if (lookup == null)
                 {
                     _sawmill.Log(LogLevel.Error,
-                        $"Unable to find player for NetUserId {userId} when sending discord webhook.");
+                        $"Unable to find player for NetUserId {userId} when sending webhook.");
                     _relayMessages.Remove(userId);
                     return;
                 }
@@ -492,7 +492,7 @@ namespace Content.Server.Administration.Systems
                 if (!request.IsSuccessStatusCode)
                 {
                     _sawmill.Log(LogLevel.Error,
-                        $"Discord returned bad status code when posting message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}");
+                        $"Webhook returned bad status code when posting message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}");
                     _relayMessages.Remove(userId);
                     return;
                 }
@@ -501,7 +501,7 @@ namespace Content.Server.Administration.Systems
                 if (id == null)
                 {
                     _sawmill.Log(LogLevel.Error,
-                        $"Could not find id in json-content returned from discord webhook: {content}");
+                        $"Could not find id in json-content returned from webhook: {content}");
                     _relayMessages.Remove(userId);
                     return;
                 }
@@ -517,7 +517,7 @@ namespace Content.Server.Administration.Systems
                 {
                     var content = await request.Content.ReadAsStringAsync();
                     _sawmill.Log(LogLevel.Error,
-                        $"Discord returned bad status code when patching message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}");
+                        $"Webhook returned bad status code when patching message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}");
                     _relayMessages.Remove(userId);
                     return;
                 }
