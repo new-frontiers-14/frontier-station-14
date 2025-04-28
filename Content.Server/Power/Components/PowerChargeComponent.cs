@@ -20,11 +20,19 @@ public sealed partial class PowerChargeComponent : SharedPowerChargeComponent
     [DataField("idlePower")]
     public float IdlePowerUse { get; set; }
 
+    // Frontier: different power when charging vs. charged
     /// <summary>
-    /// Power consumed when <see cref="SwitchedOn"/> is true.
+    /// Power consumed when <see cref="SwitchedOn"/> is true and the power is fully charged.
     /// </summary>
     [DataField("activePower")]
     public float ActivePowerUse { get; set; }
+
+    /// <summary>
+    /// Power consumed when <see cref="SwitchedOn"/> is true and the machine is not fully charged.
+    /// </summary>
+    [DataField("activeChargingPower")]
+    public float ActiveChargingPowerUse { get; set; }
+    // End Frontier
 
     /// <summary>
     /// Is the gravity generator intact?
@@ -65,14 +73,8 @@ public sealed partial class PowerChargeComponent : SharedPowerChargeComponent
     public bool NeedUIUpdate { get; set; }
 
     /// <summary>
-    /// Frontier: show a action button on UI
+    /// Frontier: how much charge is required to actually run the action (and how much does it consume).
     /// </summary>
     [DataField]
-    public bool ActionUI { get; set; } = false;
-
-    /// <summary>
-    /// Frontier: is the UI action unlocked?
-    /// </summary>
-    [DataField]
-    public bool ActionUnlocked { get; set; } = true;
+    public float ActionCharge { get; set; } = 1.0f;
 }

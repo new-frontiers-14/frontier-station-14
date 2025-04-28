@@ -3,10 +3,10 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Power;
 
 /// <summary>
-///     Frontier: Sent to the server to set whether the machine should be on or off
+///     Frontier: Sent to the server to perform some action with the charge in the machine.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class ActionMessage : BoundUserInterfaceMessage { }
+public sealed class PowerChargeActionMessage : BoundUserInterfaceMessage { }
 
 /// <summary>
 ///     Sent to the server to set whether the machine should be on or off
