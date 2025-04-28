@@ -11,16 +11,18 @@ public sealed partial class JukeboxComponent : Component
 {
     [DataField, AutoNetworkedField]
     public ProtoId<JukeboxPrototype>? SelectedSongId;
-    // Frontier: Bools & the previous song ID.
+
+    // Frontier: Shuffle & Repeat
+    /// <summary>
+    /// Whether or not the currently selected song is the first being played.
+    /// Useful for shuffle.
+    /// </summary>
     [DataField, AutoNetworkedField]
-    public ProtoId<JukeboxPrototype>? PrevSelectedSongId;
+    public bool FirstPlay;
 
     [ViewVariables]
-    public bool IsShuffleOn;
-
-    [ViewVariables]
-    public bool IsReplayOn;
-    // End Frontier
+    public JukeboxPlaybackMode PlaybackMode = JukeboxPlaybackMode.Single;
+    // End Frontier: Shuffle & Repeat
 
     [DataField, AutoNetworkedField]
     public EntityUid? AudioStream;
@@ -64,13 +66,6 @@ public sealed class JukeboxPauseMessage : BoundUserInterfaceMessage;
 [Serializable, NetSerializable]
 public sealed class JukeboxStopMessage : BoundUserInterfaceMessage;
 
-// Frontier: Shuffling & Replay IMs.
-[Serializable, NetSerializable]
-public sealed class JukeboxShuffleMessage : BoundUserInterfaceMessage;
-
-[Serializable, NetSerializable]
-public sealed class JukeboxReplayMessage : BoundUserInterfaceMessage;
-// End Frontier
 [Serializable, NetSerializable]
 public sealed class JukeboxSelectedMessage(ProtoId<JukeboxPrototype> songId) : BoundUserInterfaceMessage
 {
@@ -82,6 +77,22 @@ public sealed class JukeboxSetTimeMessage(float songTime) : BoundUserInterfaceMe
 {
     public float SongTime { get; } = songTime;
 }
+
+// Frontier: Shuffle & Repeat
+[Serializable, NetSerializable]
+public sealed class JukeboxSetPlaybackModeMessage(JukeboxPlaybackMode playbackMode) : BoundUserInterfaceMessage
+{
+    public JukeboxPlaybackMode PlaybackMode = playbackMode;
+}
+
+[Serializable, NetSerializable]
+public enum JukeboxPlaybackMode : byte
+{
+    Single,
+    Shuffle,
+    Repeat,
+}
+// End Frontier: Shuffle & Repeat
 
 [Serializable, NetSerializable]
 public enum JukeboxVisuals : byte

@@ -3,5 +3,8 @@ jukebox-menu-selectedsong = Selected Song:
 jukebox-menu-buttonplay = Play
 jukebox-menu-buttonpause = Pause
 jukebox-menu-buttonstop = Stop
+
+# Frontier: Shuffle & Repeat
 jukebox-menu-buttonshuffle = Shuffle
-jukebox-menu-buttonreplay = Replay
+jukebox-menu-buttonrepeat = Repeat
+# End Frontier: Shuffle & Repeat

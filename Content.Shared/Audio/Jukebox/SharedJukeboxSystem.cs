@@ -7,14 +7,11 @@ public abstract class SharedJukeboxSystem : EntitySystem
 {
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
 }
-// Frontier: Interface State for Shuffle & Replay buttons.
+
+// Frontier: Shuffle & Repeat
 [Serializable, NetSerializable]
-public sealed class JukeboxInterfaceState (
-    bool isReplaySelected,
-    bool isShuffleSelected
-) : BoundUserInterfaceState
+public sealed class JukeboxInterfaceState(JukeboxPlaybackMode playbackMode) : BoundUserInterfaceState
 {
-    public bool IsReplaySelected { get; set; } = isReplaySelected;
-    public bool IsShuffleSelected { get; set; } = isShuffleSelected;
+    public JukeboxPlaybackMode PlaybackMode { get; set; } = playbackMode;
 }
-// End Frontier
+// End Frontier: Shuffle & Repeat

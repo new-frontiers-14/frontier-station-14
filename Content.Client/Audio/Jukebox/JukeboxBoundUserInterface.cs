@@ -40,18 +40,14 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
         {
             SendMessage(new JukeboxStopMessage());
         };
-        // Frontier: Shuffling & Replay features.
-        _menu.OnShufflePressed += () =>
-        {
-            SendMessage(new JukeboxShuffleMessage());
-        };
-
-        _menu.OnReplayPressed += () =>
-        {
-            SendMessage(new JukeboxReplayMessage());
-        };
-        // End Frontier
         _menu.OnSongSelected += SelectSong;
+
+        // Frontier: Shuffle & Repeat
+        _menu.OnModeChanged += playbackMode =>
+        {
+            SendMessage(new JukeboxSetPlaybackModeMessage(playbackMode));
+        };
+        // End Frontier: Shuffle & Repeat
 
         _menu.SetTime += SetTime;
         PopulateMusic();
@@ -107,11 +103,11 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
 
         SendMessage(new JukeboxSetTimeMessage(sentTime));
     }
-    // Frontier: UpdateState() for Shuffle & Replay Buttons.
+
+    // Frontier: Shuffle & Repeat
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-
         _menu?.UpdateState(state);
     }
     // End Frontier
