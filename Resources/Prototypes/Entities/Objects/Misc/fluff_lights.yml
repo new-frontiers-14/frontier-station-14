@@ -98,9 +98,10 @@
 - type: entity
   name: desk lamp
   id: LampGold
-  parent: BaseLamp
+  parent: [BaseLamp, MixedPowerMachine] # Frontier: Add MixedPowerMachine
   description: A light emitting device that would look great on a desk.
   components:
+  - type: Anchorable # Frontier: Add Anchorable
   - type: Sprite
     sprite: Objects/Misc/Lights/lampgreen.rsi
     layers:
@@ -185,7 +186,7 @@
 - type: entity
   name: floodlight
   id: Floodlight
-  parent: BaseLamp
+  parent: [BaseLamp, MixedPowerMachine] # Frontier: Add MixedPowerMachine
   description: A pole with powerful mounted lights on it.
   components:
   - type: Item

@@ -31,7 +31,7 @@ namespace Content.Server.Light.EntitySystems
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedPointLightSystem _lights = default!;
-            [Dependency] private readonly PowerReceiverSystem _powerSystem = default!; // Frontier
+        [Dependency] private readonly PowerReceiverSystem _powerSystem = default!; // Frontier
 
         // TODO: Ideally you'd be able to subscribe to power stuff to get events at certain percentages.. or something?
         // But for now this will be better anyway.
@@ -201,6 +201,17 @@ namespace Content.Server.Light.EntitySystems
             {
                 return false;
             }
+
+            // Frontier start - Mixed Power Recievers
+            if (HasComp<MixedPowerReceiverComponent>(uid) &&
+                TryComp<ApcPowerReceiverComponent>(uid, out var apcPowerComp) &&
+                _powerSystem.IsPowered(uid, apcPowerComp))
+            {
+                _lights.SetEnabled(uid, true, pointLightComponent);
+                SetActivated(uid, true, component, true);
+                _activeLights.Add(uid);
+            }
+            // Frontier end - Mixed Power Recievers
 
             if (!_powerCell.TryGetBatteryFromSlot(uid, out var battery) &&
                 !TryComp(uid, out battery))
