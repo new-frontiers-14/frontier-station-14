@@ -1,13 +1,11 @@
-# WizDen
 #region base
 - type: entity
   id: NFBaseAmmunitionBoxPistol35
-  parent: [ BaseMagazineBoxPistol, RecyclableItemCardboard ]
+  parent: NFBaseAmmunitionBox
   name: ammunition box (.35 pistol)
   abstract: true
   components:
   - type: BallisticAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - NFCartridgePistol35
@@ -15,19 +13,14 @@
     capacity: 80
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: false
 
 - type: entity
   id: NFBaseAmmunitionBoxPistol45
-  parent: [ BaseMagazineBoxMagnum, RecyclableItemCardboard ]
+  parent: NFBaseAmmunitionBox
   name: ammunition box (.45 pistol)
   abstract: true
   components:
   - type: BallisticAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - NFCartridgePistol45
@@ -48,6 +41,7 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+      color: "#3b7b9c"
     - state: decal-calibre-35
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -63,9 +57,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
       color: "#ff8d00"
+    - state: decal-calibre-35
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -80,8 +75,9 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
+    - state: decal-calibre-35
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -96,9 +92,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
       color: "#ff0000"
+    - state: decal-calibre-35
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -113,9 +110,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
       color: "#00ff00"
+    - state: decal-calibre-35
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -132,9 +130,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
       color: "#00b0ff"
+    - state: decal-calibre-35
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -149,9 +148,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-35
+      color: "#3b7b9c"
     - state: decal-01
       color: "#00ffff"
+    - state: decal-calibre-35
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -168,6 +168,7 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+      color: "#7d3c40"
     - state: decal-calibre-45
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -183,9 +184,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#ff8d00"
+    - state: decal-calibre-45
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -200,8 +202,9 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
+    - state: decal-calibre-45
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -216,9 +219,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#ff0000"
+    - state: decal-calibre-45
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -233,9 +237,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#00ff00"
+    - state: decal-calibre-45
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -252,9 +257,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#00b0ff"
+    - state: decal-calibre-45
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -269,9 +275,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#00ffff"
+    - state: decal-calibre-45
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
@@ -286,8 +293,9 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-45
+      color: "#7d3c40"
     - state: decal-01
       color: "#ffff00"
+    - state: decal-calibre-45
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]

@@ -2,22 +2,17 @@
 #region base .10
 - type: entity
   id: NFBaseAmmunitionBoxRifle10
-  parent: [ BaseMagazineBoxRifle, RecyclableItemCardboard ]
+  parent: NFBaseAmmunitionBox
   name: ammunition box (.10 rifle)
   abstract: true
   components:
   - type: BallisticAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - NFCartridgeRifle10
     capacity: 60
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: false
 
 - type: entity
   id: NFBaseAmmunitionBoxBigRifle10
@@ -26,30 +21,30 @@
   suffix: 200
   abstract: true
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: BallisticAmmoProvider
     capacity: 200
   - type: Sprite
+    scale: 1.15, 1.15
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi
 
 #region base .20
 - type: entity
   id: NFBaseAmmunitionBoxRifle20
-  parent: [ BaseMagazineBoxRifle, RecyclableItemCardboard ]
+  parent: NFBaseAmmunitionBox
   name: ammunition box (.20 rifle)
   abstract: true
   components:
   - type: BallisticAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - NFCartridgeRifle20
     capacity: 60
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: false
 
 - type: entity
   id: NFBaseAmmunitionBoxBigRifle20
@@ -58,30 +53,30 @@
   suffix: 200
   abstract: true
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: BallisticAmmoProvider
     capacity: 200
   - type: Sprite
+    scale: 1.15, 1.15
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi
 
 #region base .25
 - type: entity
   id: NFBaseAmmunitionBoxRifle25
-  parent: [ BaseMagazineBoxCaselessRifle, RecyclableItemCardboard ]
+  parent: NFBaseAmmunitionBox
   name: ammunition box (.25 rifle)
   abstract: true
   components:
   - type: BallisticAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - NFCartridgeRifle25
     capacity: 60
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: false
 
 - type: entity
   id: NFBaseAmmunitionBoxBigRifle25
@@ -90,30 +85,30 @@
   suffix: 200
   abstract: true
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: BallisticAmmoProvider
     capacity: 200
   - type: Sprite
+    scale: 1.15, 1.15
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi
 
 #region base .30
 - type: entity
   id: NFBaseAmmunitionBoxRifle30
-  parent: [ BaseMagazineBoxLightRifle, RecyclableItemCardboard ]
+  parent: NFBaseAmmunitionBox
   name: ammunition box (.30 rifle)
   abstract: true
   components:
   - type: BallisticAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - NFCartridgeRifle30
     capacity: 60
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: false
 
 - type: entity
   id: NFBaseAmmunitionBoxBigRifle30
@@ -122,46 +117,51 @@
   suffix: 200
   abstract: true
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: BallisticAmmoProvider
     capacity: 200
   - type: Sprite
+    scale: 1.15, 1.15
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi
 
 #region base .60
 - type: entity
   id: NFBaseAmmunitionBoxRifle60
-  parent: [ BaseMagazineBoxAntiMateriel, RecyclableItemCardboard ]
+  parent: NFBaseAmmunitionBox
   name: ammunition box (.60 rifle)
   abstract: true
   components:
   - type: BallisticAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - NFCartridgeRifle60
-    capacity: 60
+    capacity: 30
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
   - type: MagazineVisuals
     magState: mag-60
-    steps: 4
-    zeroVisible: false
 
 - type: entity
   id: NFBaseAmmunitionBoxBigRifle60
   parent: NFBaseAmmunitionBoxRifle60
   name: ammunition box (.60 rifle)
-  suffix: 200
+  suffix: 120
   abstract: true
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: BallisticAmmoProvider
-    capacity: 200
+    capacity: 120
   - type: Sprite
+    scale: 1.25, 1.25
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi
   - type: MagazineVisuals
     magState: mag-60
-    steps: 4
-    zeroVisible: false
 
 #region .10 rifle
 - type: entity
@@ -175,21 +175,7 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-10
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: NFAmmunitionBoxBigRifle10
-  parent: NFBaseAmmunitionBoxBigRifle10
-  name: ammunition box (.10 rifle)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle10
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
+      color: "#83825e"
     - state: decal-calibre-10
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -205,23 +191,7 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#dddddd"
-    - state: decal-calibre-10
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: NFAmmunitionBoxBigRifle10Practice
-  parent: NFBaseAmmunitionBoxBigRifle10
-  name: ammunition box (.10 rifle, practice)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle10Practice
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
+      color: "#83825e"
     - state: decal-01
       color: "#dddddd"
     - state: decal-calibre-10
@@ -239,8 +209,42 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+      color: "#83825e"
     - state: decal-01
       color: "#00b0ff"
+    - state: decal-calibre-10
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+#region .10 rifle big
+- type: entity
+  id: NFAmmunitionBoxBigRifle10
+  parent: NFBaseAmmunitionBoxBigRifle10
+  name: ammunition box (.10 rifle)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle10
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-calibre-10
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxBigRifle10Practice
+  parent: NFBaseAmmunitionBoxBigRifle10
+  name: ammunition box (.10 rifle, practice)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle10Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#dddddd"
     - state: decal-calibre-10
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -274,21 +278,7 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-20
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: NFAmmunitionBoxBigRifle20
-  parent: NFBaseAmmunitionBoxBigRifle20
-  name: ammunition box (.20 rifle)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
+      color: "#cbca8f"
     - state: decal-calibre-20
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -304,8 +294,97 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+      color: "#cbca8f"
     - state: decal-01
       color: "#ff8d00"
+    - state: decal-calibre-20
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle20Incendiary
+  parent: NFBaseAmmunitionBoxRifle20
+  name: ammunition box (.20 rifle, incendiary)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#cbca8f"
+    - state: decal-01
+      color: "#ff0000"
+    - state: decal-calibre-20
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle20Uranium
+  parent: NFBaseAmmunitionBoxRifle20
+  name: ammunition box (.20 rifle, uranium)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#cbca8f"
+    - state: decal-01
+      color: "#00ff00"
+    - state: decal-calibre-20
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle20Practice
+  parent: NFBaseAmmunitionBoxRifle20
+  name: ammunition box (.20 rifle, practice)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#cbca8f"
+    - state: decal-01
+      color: "#dddddd"
+    - state: decal-calibre-20
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle20Rubber
+  parent: NFBaseAmmunitionBoxRifle20
+  name: ammunition box (.20 rifle, rubber)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#cbca8f"
+    - state: decal-01
+      color: "#00b0ff"
+    - state: decal-calibre-20
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+#region .20 rifle big
+- type: entity
+  id: NFAmmunitionBoxBigRifle20
+  parent: NFBaseAmmunitionBoxBigRifle20
+  name: ammunition box (.20 rifle)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
     - state: decal-calibre-20
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -328,23 +407,6 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxRifle20Incendiary
-  parent: NFBaseAmmunitionBoxRifle20
-  name: ammunition box (.20 rifle, incendiary)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Incendiary
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#ff0000"
-    - state: decal-calibre-20
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: NFAmmunitionBoxBigRifle20Incendiary
   parent: NFBaseAmmunitionBoxBigRifle20
   name: ammunition box (.20 rifle, incendiary)
@@ -357,23 +419,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
       color: "#ff0000"
-    - state: decal-calibre-20
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: NFAmmunitionBoxRifle20Uranium
-  parent: NFBaseAmmunitionBoxRifle20
-  name: ammunition box (.20 rifle, uranium)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Uranium
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#00ff00"
     - state: decal-calibre-20
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -396,23 +441,6 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxRifle20Practice
-  parent: NFBaseAmmunitionBoxRifle20
-  name: ammunition box (.20 rifle, practice)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Practice
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#dddddd"
-    - state: decal-calibre-20
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: NFAmmunitionBoxBigRifle20Practice
   parent: NFBaseAmmunitionBoxBigRifle20
   name: ammunition box (.20 rifle, practice)
@@ -430,24 +458,7 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxRifle20Rubber # MagazineBoxRifleRubber
-  parent: NFBaseAmmunitionBoxRifle20
-  name: ammunition box (.20 rifle, rubber)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Rubber
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#00b0ff"
-    - state: decal-calibre-20
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: NFAmmunitionBoxBigRifle20Rubber # MagazineBoxRifleBigRubber
+  id: NFAmmunitionBoxBigRifle20Rubber
   parent: NFBaseAmmunitionBoxBigRifle20
   name: ammunition box (.20 rifle, rubber)
   components:
@@ -475,21 +486,7 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-25
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: NFAmmunitionBoxBigRifle25
-  parent: NFBaseAmmunitionBoxBigRifle25
-  name: ammunition box (.25 rifle)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle25
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
+      color: "#b8a291"
     - state: decal-calibre-25
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -505,8 +502,97 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+      color: "#b8a291"
     - state: decal-01
       color: "#ff8d00"
+    - state: decal-calibre-25
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle25Incendiary
+  parent: NFBaseAmmunitionBoxRifle25
+  name: ammunition box (.25 rifle, incendiary)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle25Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#b8a291"
+    - state: decal-01
+      color: "#ff0000"
+    - state: decal-calibre-25
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle25Uranium
+  parent: NFBaseAmmunitionBoxRifle25
+  name: ammunition box (.25 rifle, uranium)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle25Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#b8a291"
+    - state: decal-01
+      color: "#00ff00"
+    - state: decal-calibre-25
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle25Practice
+  parent: NFBaseAmmunitionBoxRifle25
+  name: ammunition box (.25 rifle, practice)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle25Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#b8a291"
+    - state: decal-01
+      color: "#dddddd"
+    - state: decal-calibre-25
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle25Rubber
+  parent: NFBaseAmmunitionBoxRifle25
+  name: ammunition box (.25 rifle, rubber)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle25Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#b8a291"
+    - state: decal-01
+      color: "#00b0ff"
+    - state: decal-calibre-25
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+#region .25 rifle big
+- type: entity
+  id: NFAmmunitionBoxBigRifle25
+  parent: NFBaseAmmunitionBoxBigRifle25
+  name: ammunition box (.25 rifle)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle25
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
     - state: decal-calibre-25
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -529,23 +615,6 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxRifle25Incendiary
-  parent: NFBaseAmmunitionBoxRifle25
-  name: ammunition box (.25 rifle, incendiary)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle25Incendiary
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#ff0000"
-    - state: decal-calibre-25
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: NFAmmunitionBoxBigRifle25Incendiary
   parent: NFBaseAmmunitionBoxBigRifle25
   name: ammunition box (.25 rifle, incendiary)
@@ -558,23 +627,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
       color: "#ff0000"
-    - state: decal-calibre-25
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: NFAmmunitionBoxRifle25Uranium
-  parent: NFBaseAmmunitionBoxRifle25
-  name: ammunition box (.25 rifle, uranium)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle25Uranium
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#00ff00"
     - state: decal-calibre-25
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -597,23 +649,6 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxRifle25Practice
-  parent: NFBaseAmmunitionBoxRifle25
-  name: ammunition box (.25 rifle, practice)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle25Practice
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#dddddd"
-    - state: decal-calibre-25
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: NFAmmunitionBoxBigRifle25Practice
   parent: NFBaseAmmunitionBoxBigRifle25
   name: ammunition box (.25 rifle, practice)
@@ -626,23 +661,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
       color: "#dddddd"
-    - state: decal-calibre-25
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: NFAmmunitionBoxRifle25Rubber
-  parent: NFBaseAmmunitionBoxRifle25
-  name: ammunition box (.25 rifle, rubber)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle25Rubber
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#00b0ff"
     - state: decal-calibre-25
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -676,24 +694,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: decal-calibre-30
+      color: "#b55f59"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: NFAmmunitionBoxBigRifle30
-  parent: NFBaseAmmunitionBoxBigRifle30
-  name: ammunition box (.30 rifle)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
     - state: decal-calibre-30
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFAmmunitionBoxRifle30Overpressure
@@ -706,8 +710,97 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+      color: "#b55f59"
     - state: decal-01
       color: "#ff8d00"
+    - state: decal-calibre-30
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle30Incendiary
+  parent: NFBaseAmmunitionBoxRifle30
+  name: ammunition box (.30 rifle, incendiary)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#b55f59"
+    - state: decal-01
+      color: "#ff0000"
+    - state: decal-calibre-30
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle30Uranium
+  parent: NFBaseAmmunitionBoxRifle30
+  name: ammunition box (.30 rifle, uranium)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#b55f59"
+    - state: decal-01
+      color: "#00ff00"
+    - state: decal-calibre-30
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle30Practice
+  parent: NFBaseAmmunitionBoxRifle30
+  name: ammunition box (.30 rifle, practice)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#b55f59"
+    - state: decal-01
+      color: "#dddddd"
+    - state: decal-calibre-30
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxRifle30Rubber
+  parent: NFBaseAmmunitionBoxRifle30
+  name: ammunition box (.30 rifle, rubber)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#b55f59"
+    - state: decal-01
+      color: "#00b0ff"
+    - state: decal-calibre-30
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+#region .30 rifle big
+- type: entity
+  id: NFAmmunitionBoxBigRifle30
+  parent: NFBaseAmmunitionBoxBigRifle30
+  name: ammunition box (.30 rifle)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
     - state: decal-calibre-30
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -730,23 +823,6 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxRifle30Incendiary
-  parent: NFBaseAmmunitionBoxRifle30
-  name: ammunition box (.30 rifle, incendiary)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30Incendiary
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#ff0000"
-    - state: decal-calibre-30
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: NFAmmunitionBoxBigRifle30Incendiary
   parent: NFBaseAmmunitionBoxBigRifle30
   name: ammunition box (.30 rifle, incendiary)
@@ -759,23 +835,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
       color: "#ff0000"
-    - state: decal-calibre-30
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: NFAmmunitionBoxRifle30Uranium
-  parent: NFBaseAmmunitionBoxRifle30
-  name: ammunition box (.30 rifle, uranium)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30Uranium
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#00ff00"
     - state: decal-calibre-30
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -798,23 +857,6 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxRifle30Practice
-  parent: NFBaseAmmunitionBoxRifle30
-  name: ammunition box (.30 rifle, practice)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30Practice
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#dddddd"
-    - state: decal-calibre-30
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: NFAmmunitionBoxBigRifle30Practice
   parent: NFBaseAmmunitionBoxBigRifle30
   name: ammunition box (.30 rifle, practice)
@@ -827,23 +869,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
       color: "#dddddd"
-    - state: decal-calibre-30
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: NFAmmunitionBoxRifle30Rubber
-  parent: NFBaseAmmunitionBoxRifle30
-  name: ammunition box (.30 rifle, rubber)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30Rubber
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#00b0ff"
     - state: decal-calibre-30
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -877,30 +902,10 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-      scale: 1.25,1.25
-    - state: decal-calibre-60
-      scale: 1.25,1.25
+      color: "#845c42"
     - state: mag-60-1
       map: ["enum.GunVisualLayers.Mag"]
-      scale: 1.25,1.25
-
-- type: entity
-  id: NFAmmunitionBoxBigRifle60
-  parent: NFBaseAmmunitionBoxBigRifle60
-  name: ammunition box (.60 rifle)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle60
-  - type: Sprite
-    layers:
-    - state: base-largecal
-      map: ["enum.GunVisualLayers.Base"]
-      scale: 1.25,1.25
     - state: decal-calibre-60
-      scale: 1.25,1.25
-    - state: mag-60-1
-      map: ["enum.GunVisualLayers.Mag"]
-      scale: 1.25,1.25
 
 - type: entity
   id: NFAmmunitionBoxRifle60Rubber
@@ -913,15 +918,28 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-      scale: 1.25,1.25
+      color: "#845c42"
     - state: decal-01
       color: "#00b0ff"
-      scale: 1.25,1.25
-    - state: decal-calibre-60
-      scale: 1.25,1.25
     - state: mag-60-1
       map: ["enum.GunVisualLayers.Mag"]
-      scale: 1.25,1.25
+    - state: decal-calibre-60
+
+#region .60 rifle big
+- type: entity
+  id: NFAmmunitionBoxBigRifle60
+  parent: NFBaseAmmunitionBoxBigRifle60
+  name: ammunition box (.60 rifle)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle60
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-calibre-60
+    - state: mag-60-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: NFAmmunitionBoxBigRifle60Rubber
@@ -932,14 +950,10 @@
     proto: NFCartridgeRifle60Rubber
   - type: Sprite
     layers:
-    - state: base-largecal
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
-      scale: 1.25,1.25
-    - state: decal-largecal-01
+    - state: decal-01
       color: "#00b0ff"
-      scale: 1.25,1.25
     - state: decal-calibre-60
-      scale: 1.25,1.25
     - state: mag-60-1
       map: ["enum.GunVisualLayers.Mag"]
-      scale: 1.25,1.25
