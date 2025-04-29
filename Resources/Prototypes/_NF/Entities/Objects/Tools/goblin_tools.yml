@@ -1,0 +1,182 @@
+#region base
+- type: entity
+  id: NFBaseGoblinMadeTools
+  suffix: Goblin Made
+  abstract: true
+  components:
+  - type: TriggerOnActivate
+  - type: Explosive
+    explosionType: Cryo
+    totalIntensity: 1
+    intensitySlope: 5
+    maxIntensity: 1
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100 # That's what you get for recycling 1 wrapper
+  - type: StaticPrice
+    price: 0 # Can't get rich :(
+
+#region basic tools
+- type: entity
+  id: NFGoblinMadeWirecutter
+  parent: [ NFBaseGoblinMadeTools, Wirecutter ]
+  name: wire snippah
+  description: A wire cutter made out of glass shards, metal bits, cloth and some wires. What's up with sparks though?
+  components:
+  - type: Tag
+    tags:
+    - PlantSampleTaker
+    - Wirecutter
+    - GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
+
+- type: entity
+  id: NFGoblinMadeScrewdriver
+  parent: [ NFBaseGoblinMadeTools, Screwdriver ]
+  name: auto-drivah
+  description: An improvised electrical screwdriver, not much in terms of torque, but your wrists will be less sore.
+  components:
+  - type: Tag
+    tags:
+    - Screwdriver
+    - GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/screwdriver.rsi
+    layers:
+      - state: screwdriver-base
+      - state: screwdriver-wires
+        map: [ "iconScrewdriverWires" ]
+      - state: screwdriver-unshaded
+        shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/screwdriver.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/screwdriver.rsi
+  - type: RandomSprite
+    available:
+    - iconScrewdriverWires:
+        screwdriver-wires: Rainbow
+
+- type: entity
+  id: NFGoblinMadeCrowbar
+  parent: [ NFBaseGoblinMadeTools, Crowbar ]
+  name: jilt
+  description: The next step in crowbar evolution - jack. Enchanced with improvised electrical winch.
+  components:
+  - type: Tag
+    tags:
+    - Crowbar
+    - GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/crowbar.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/crowbar.rsi
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/crowbar.rsi
+    storedSprite:
+      sprite: _NF/Objects/Tools/goblin_tools/crowbar.rsi
+      state: storage
+
+- type: entity
+  id: NFGoblinMadeWrench
+  parent: [ NFBaseGoblinMadeTools, Wrench ]
+  name: spannah
+  components:
+  - type: Tag
+    tags:
+    - Wrench
+    - GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
+    state: icon
+  - type: Item
+    sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
+    storedSprite:
+      sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
+      state: storage
+
+- type: entity
+  id: NFGoblinMadeWelder
+  parent: [ NFBaseGoblinMadeTools, Welder ]
+  name: burnah torch
+  description: An improvised welding tool made out of plastic bottle, empty soda can, spray nozzle and leaking battery.
+  components:
+  - type: Tag
+    tags:
+    - GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/welder.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: welder_flame
+      visible: false
+      shader: unshaded
+      map: ["enum.ToggleVisuals.Layer"]
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/welder.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/welder.rsi
+
+- type: entity
+  id: NFGoblinMadeMiniHoe
+  parent: [ NFBaseGoblinMadeTools, HydroponicsToolMiniHoe ]
+  name: scratcha
+  components:
+  - type: Tag
+    tags:
+    - Hoe
+    - BotanyHoe
+    - GoblinMade
+  - type: Sprite
+    sprite: Objects/Tools/Hydroponics/hoe.rsi
+    state: icon
+
+- type: entity
+  id: NFGoblinMadeTrashBag
+  parent: [ NFBaseGoblinMadeTools, TrashBag ]
+  name: trash bag
+  components:
+  - type: Tag
+    tags:
+    - TrashBag
+    - GoblinMade
+  - type: Sprite
+    layers:
+      - state: blue-icon-0
+        map: ["enum.StorageFillLayers.Fill"]
+  - type: Item
+    heldPrefix: blue
+  - type: StorageFillVisualizer
+    fillBaseName: blue-icon
+
+- type: entity
+  id: NFGoblinMadeMiningDrill
+  parent: [ NFBaseGoblinMadeTools, MiningDrill ]
+  name: mining drill
+  components:
+  - type: Tag
+    tags:
+    - Pickaxe
+    - GoblinMade
+  - type: Sprite
+    sprite: Objects/Tools/handdrill.rsi
+    state: handdrill
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 0
+      types:
+        Structural: 1
