@@ -3,11 +3,12 @@
   name: guide-entry-nf14
   text: "/ServerInfo/_NF/Guidebook/NewFrontier14.xml"
   priority: -1
-  children:
+  children: # note: children may be in other files. When adding to this, update the priority of anything after.
   - Bank
   - Hiring
   - Piloting
   - Survival # Moved out from Station and Shifts section (upstream file)
+  - SectorTopology
   - Expeditions
   - CargoHauling # TODO: separate this out along with salvage and mining into some NF_Cargo section
   - Shipyard
@@ -23,6 +24,8 @@
   name: guide-entry-hiring
   text: "/ServerInfo/_NF/Guidebook/Hiring.xml"
   priority: 1
+  children:
+  - Interviews
 
 - type: guideEntry
   id: Piloting
@@ -31,7 +34,19 @@
   priority: 2
 
 - type: guideEntry
+  id: SectorTopology
+  name: guide-entry-sector-topology
+  text: "/ServerInfo/_NF/Guidebook/SectorTopology.xml"
+  priority: 6
+
+- type: guideEntry
   id: CargoHauling
   name: guide-entry-cargo-hauling
   text: "/ServerInfo/_NF/Guidebook/CargoHauling.xml"
-  priority: 5
+  priority: 6
+
+# Hiring children
+- type: guideEntry
+  id: Interviews
+  name: guide-entry-interviews
+  text: "/ServerInfo/_NF/Guidebook/Interviews.xml"

@@ -202,7 +202,10 @@
         weight: 35
       - !type:NestedSelector
         tableId: SalvageTreasureRare
-        weight: 15
+        weight: 7.5 # Frontier: 15<7.5
+      - !type:NestedSelector # Frontier
+        tableId: TableStashVariety # Frontier
+        weight: 7.5 # Frontier
       - !type:NestedSelector
         tableId: SalvageTreasureLegendary
         weight: 5
@@ -402,10 +405,10 @@
         weight: 0.25
       - id: NitrousOxideCanister
         weight: 0.25
-      - id: TritiumCanister # Frontier
-        weight: 0.05 # Frontier
-      - id: FrezonCanister # Frontier
-        weight: 0.03 # Frontier
+#      - id: TritiumCanister # Frontier
+#        weight: 0.05 # Frontier
+#      - id: FrezonCanister # Frontier
+#        weight: 0.03 # Frontier
       - id: StorageCanister # Frontier
       - id: AmmoniaCanister # Frontier
       - id: WaterVaporCanister # Frontier

@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: Cu1r (https://github.com/Cu1r/)
+# Discord: cu1r
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+# 
+- type: vessel
+  id: Ambition
+  parent: BaseVessel
+  name: UAC Ambition
+  description: Declassified gas production and distribution platform seized in a hostile takeover of an Atmosian conglomerate. For the ultimate insurgent.
+  price: 160000 # ~$133300 on mapinit + 36700$ from ~20% markup
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/ambition.yml
+  guidebookPage: ShipyardAmbition
+  class:
+  - Atmospherics
+  engine:
+  - AME
+
+- type: gameMap
+  id: Ambition
+  mapName: 'UAC Ambition'
+  mapPath: /Maps/_NF/Shuttles/ambition.yml
+  minPlayers: 0
+  stations:
+    Ambition:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Ambition {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
