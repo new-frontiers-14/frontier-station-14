@@ -10,6 +10,10 @@
     totalIntensity: 1
     intensitySlope: 5
     maxIntensity: 1
+  - type: Clothing # Apparently a lot of upstream tools have equipped sprites, but this bit isn't defined there
+    quickEquip: false
+    slots:
+    - Belt
   - type: PhysicalComposition
     materialComposition:
       Steel: 100 # That's what you get for recycling 1 wrapper
@@ -17,6 +21,48 @@
     price: 0 # Can't get rich :(
 
 #region basic tools
+- type: entity
+  id: NFGoblinMadeMultitool
+  parent: [ NFBaseGoblinMadeTools, Multitool ]
+  name: "'acking jig"
+  description: "An improvised multitool pieced together from faulty circuit board, broken display, bent antennae and stuffed into a discarded wrapper for additional protection against elements."
+  components:
+  - type: Tag
+    tags:
+    - Multitool
+    - DoorElectronicsConfigurator
+    - GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/multitool.rsi
+    layers:
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers
+      map: [ "iconMultitoolWrapper" ]
+    - state: icon
+    - state: icon-green-unlit
+      shader: unshaded
+    - state: icon-text-unshaded
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/multitool.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/multitool.rsi
+  - type: RandomSprite
+    available:
+      - iconMultitoolWrapper:
+          cheesiehonkers: ""
+          cnds: ""
+          chips: ""
+          boritos: ""
+          pistachio: ""
+          raisins: ""
+          semki: ""
+          susjerky: ""
+          chinese1: ""
+          chinese2: ""
+          chinese3: ""
+          chinese4: ""
+
 - type: entity
   id: NFGoblinMadeWirecutter
   parent: [ NFBaseGoblinMadeTools, Wirecutter ]
@@ -40,7 +86,7 @@
 - type: entity
   id: NFGoblinMadeScrewdriver
   parent: [ NFBaseGoblinMadeTools, Screwdriver ]
-  name: auto-drivah
+  name: lectro-drivah
   description: An improvised electrical screwdriver, not much in terms of torque, but your wrists will be less sore.
   components:
   - type: Tag
@@ -63,11 +109,15 @@
     available:
     - iconScrewdriverWires:
         screwdriver-wires: Rainbow
+  - type: Tool
+    qualities:
+      - Screwing
+    useSound: /Audio/Items/drill_use.ogg
 
 - type: entity
   id: NFGoblinMadeCrowbar
   parent: [ NFBaseGoblinMadeTools, Crowbar ]
-  name: jilt
+  name: lectro-jilt
   description: The next step in crowbar evolution - jack. Enchanced with improvised electrical winch.
   components:
   - type: Tag
@@ -87,24 +137,38 @@
     storedSprite:
       sprite: _NF/Objects/Tools/goblin_tools/crowbar.rsi
       state: storage
+  - type: Tool
+    qualities:
+      - Prying
+    useSound: /Audio/Items/drill_use.ogg
 
 - type: entity
   id: NFGoblinMadeWrench
   parent: [ NFBaseGoblinMadeTools, Wrench ]
-  name: spannah
+  name: lectro-spannah
+  description: An improvised electrical wrench, not much in terms of torque, but your wrists will be less sore.
   components:
   - type: Tag
     tags:
     - Wrench
     - GoblinMade
   - type: Sprite
-    sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
-    state: icon
+    sprite: _NF/Objects/Tools/goblin_tools/wrench.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
   - type: Item
-    sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
+    sprite: _NF/Objects/Tools/goblin_tools/wrench.rsi
     storedSprite:
-      sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
-      state: storage
+      sprite: _NF/Objects/Tools/goblin_tools/wrench.rsi
+      state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/wrench.rsi
+  - type: Tool
+    qualities:
+      - Anchoring
+    useSound: /Audio/Items/drill_use.ogg
 
 - type: entity
   id: NFGoblinMadeWelder
@@ -125,15 +189,32 @@
       visible: false
       shader: unshaded
       map: ["enum.ToggleVisuals.Layer"]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
   - type: Item
     sprite: _NF/Objects/Tools/goblin_tools/welder.rsi
   - type: Clothing
     sprite: _NF/Objects/Tools/goblin_tools/welder.rsi
 
 - type: entity
+  id: NFGoblinMadeWelderEmpty
+  parent: NFGoblinMadeWelder
+  suffix: Goblin Made, Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents: []
+        maxVol: 100
+
+- type: entity
   id: NFGoblinMadeMiniHoe
   parent: [ NFBaseGoblinMadeTools, HydroponicsToolMiniHoe ]
-  name: scratcha
+  name: lectro-scratcha
   components:
   - type: Tag
     tags:
@@ -141,26 +222,21 @@
     - BotanyHoe
     - GoblinMade
   - type: Sprite
-    sprite: Objects/Tools/Hydroponics/hoe.rsi
-    state: icon
-
-- type: entity
-  id: NFGoblinMadeTrashBag
-  parent: [ NFBaseGoblinMadeTools, TrashBag ]
-  name: trash bag
-  components:
-  - type: Tag
-    tags:
-    - TrashBag
-    - GoblinMade
-  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/hoe.rsi
     layers:
-      - state: blue-icon-0
-        map: ["enum.StorageFillLayers.Fill"]
+      - state: hoe-base
+      - state: hoe-wires
+        map: [ "iconHoeWires" ]
+      - state: hoe-unshaded
+        shader: unshaded
   - type: Item
-    heldPrefix: blue
-  - type: StorageFillVisualizer
-    fillBaseName: blue-icon
+    sprite: _NF/Objects/Tools/goblin_tools/hoe.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/hoe.rsi
+  - type: RandomSprite
+    available:
+    - iconHoeWires:
+        hoe-wires: Rainbow
 
 - type: entity
   id: NFGoblinMadeMiningDrill
