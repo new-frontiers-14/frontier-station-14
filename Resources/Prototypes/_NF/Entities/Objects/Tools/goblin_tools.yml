@@ -39,7 +39,7 @@
       state: cheesiehonkers
       map: [ "iconMultitoolWrapper" ]
     - state: icon
-    - state: icon-green-unlit
+    - state: icon-unshaded
       shader: unshaded
     - state: icon-text-unshaded
       shader: unshaded
@@ -221,6 +221,9 @@
     - Hoe
     - BotanyHoe
     - GoblinMade
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/wrench_drop.ogg
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/hoe.rsi
     layers:
@@ -241,18 +244,74 @@
 - type: entity
   id: NFGoblinMadeMiningDrill
   parent: [ NFBaseGoblinMadeTools, MiningDrill ]
-  name: mining drill
+  name: pneumatic 'ammah
   components:
   - type: Tag
     tags:
     - Pickaxe
     - GoblinMade
   - type: Sprite
-    sprite: Objects/Tools/handdrill.rsi
-    state: handdrill
+    sprite: _NF/Objects/Tools/goblin_tools/handdrill.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/handdrill.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/handdrill.rsi
   - type: MeleeWeapon
+    wideAnimationRotation: -45
+    soundHit:
+      path: "/Audio/_NF/Items/Jackhammer/jackhammer-short.ogg"
+    attackRate: 2
     damage:
       groups:
-        Brute: 0
+        Brute: 1.25
       types:
-        Structural: 1
+        Structural: 5
+
+- type: entity
+  id: NFGoblinMadeTrayScanner
+  parent: [ NFBaseGoblinMadeTools, trayScanner ]
+  name: stash scannah
+  components:
+  - type: Tag
+    tags:
+    - GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/tray.rsi
+    layers:
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers
+      map: [ "iconMultitoolWrapper" ]
+    - state: icon
+    - state: tray-off
+      map: ["baseTRay"]
+    - state: icon-unshaded
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.TrayScannerVisual.Visual:
+        baseTRay:
+          On: { state: tray-on }
+          Off: { state: tray-off }
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/tray.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/tray.rsi
+  - type: RandomSprite
+    available:
+      - iconMultitoolWrapper:
+          cheesiehonkers: ""
+          cnds: ""
+          chips: ""
+          boritos: ""
+          pistachio: ""
+          raisins: ""
+          semki: ""
+          susjerky: ""
+          chinese1: ""
+          chinese2: ""
+          chinese3: ""
+          chinese4: ""
