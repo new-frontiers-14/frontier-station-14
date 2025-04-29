@@ -71,13 +71,16 @@
           chinese2: ""
           chinese3: ""
           chinese4: ""
+  - type: Construction
+    graph: NFGoblinMadeMultitool
+    node: NFGoblinMadeMultitool
 
 #region wire cutter
 - type: entity
   id: NFGoblinMadeWirecutter
   parent: [ NFBaseGoblinMadeTools, Wirecutter ]
   name: wire snippah
-  description: A wire cutter made out of glass shards, metal bits, cloth and some wires. What's up with sparks though?
+  description: A wire cutter made out of glass shards, metal bits, cloth, and some wires. What's up with all the sparking, though?
   components:
   - type: Tag
     tags:
@@ -106,6 +109,9 @@
         shader: unshaded
   - type: Clothing
     sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
+  - type: Construction
+    graph: NFGoblinMadeWirecutter
+    node: NFGoblinMadeWirecutter
 
 #region screwdriver
 - type: entity
@@ -152,13 +158,16 @@
     qualities:
       - Screwing
     useSound: /Audio/Items/drill_use.ogg
+  - type: Construction
+    graph: NFGoblinMadeScrewdriver
+    node: NFGoblinMadeScrewdriver
 
 #region crowbar
 - type: entity
   id: NFGoblinMadeCrowbar
   parent: [ NFBaseGoblinMadeTools, Crowbar ]
   name: lectro-jilt
-  description: The next step in crowbar evolution - jack. Enchanced with improvised electrical winch.
+  description: The next step in crowbar evolution - jack. Enhanced with an improvised electrical winch.
   components:
   - type: Tag
     tags:
@@ -195,6 +204,9 @@
     qualities:
       - Prying
     useSound: /Audio/Items/drill_use.ogg
+  - type: Construction
+    graph: NFGoblinMadeCrowbar
+    node: NFGoblinMadeCrowbar
 
 #region wrench
 - type: entity
@@ -253,13 +265,16 @@
           can8: ""
           can9: ""
           can10: ""
+  - type: Construction
+    graph: NFGoblinMadeWrench
+    node: NFGoblinMadeWrench
 
 #region welder
 - type: entity
   id: NFGoblinMadeWelder
   parent: [ NFBaseGoblinMadeTools, Welder ]
   name: burnah torch
-  description: An improvised welding tool made out of plastic bottle, empty soda can, spray nozzle and leaking battery.
+  description: An improvised welding tool made out of a plastic bottle, an empty soda can, a spray nozzle, and a leaking battery.
   components:
   - type: Tag
     tags:
@@ -324,12 +339,16 @@
       Welder:
         reagents: []
         maxVol: 100
+  - type: Construction
+    graph: NFGoblinMadeWelder
+    node: NFGoblinMadeWelder
 
 #region mini hoe
 - type: entity
   id: NFGoblinMadeMiniHoe
   parent: [ NFBaseGoblinMadeTools, HydroponicsToolMiniHoe ]
-  name: lectro-scratcha
+  name: lectro-scratchah
+  description: A small modification for the tried and true electrical screwdriver device. Weeds , your end is nigh.
   components:
   - type: Tag
     tags:
@@ -370,12 +389,16 @@
     available:
     - iconHoeWires:
         hoe-wires: Rainbow
+  - type: Construction
+    graph: NFGoblinMadeMiniHoe
+    node: NFGoblinMadeMiniHoe
 
 #region minig drill
 - type: entity
   id: NFGoblinMadeMiningDrill
   parent: [ NFBaseGoblinMadeTools, MiningDrill ]
   name: pneumatic 'ammah
+  description: The pickaxe is dead; hail the new king of manual mining - the improvised pneumatic hammer.
   components:
   - type: Tag
     tags:
@@ -415,12 +438,16 @@
         Brute: 1.25
       types:
         Structural: 5
+  - type: Construction
+    graph: NFGoblinMadeMiningDrill
+    node: NFGoblinMadeMiningDrill
 
 #region tray scanner
 - type: entity
   id: NFGoblinMadeTrayScanner
   parent: [ NFBaseGoblinMadeTools, trayScanner ]
-  name: stash scannah
+  name: stash oglah
+  description: With this tool you no longer have to memorise where you've hid you stash.
   components:
   - type: Tag
     tags:
@@ -430,7 +457,7 @@
     layers:
     - sprite: Objects/Consumable/Food/snacks.rsi
       state: cheesiehonkers
-      map: [ "iconMultitoolWrapper" ]
+      map: [ "iconTrayWrapper" ]
     - state: icon
     - state: icon-unshaded
       shader: unshaded
@@ -463,7 +490,7 @@
     sprite: _NF/Objects/Tools/goblin_tools/tray.rsi
   - type: RandomSprite
     available:
-      - iconMultitoolWrapper:
+      - iconTrayWrapper:
           cheesiehonkers: ""
           cnds: ""
           chips: ""
@@ -476,3 +503,6 @@
           chinese2: ""
           chinese3: ""
           chinese4: ""
+  - type: Construction
+    graph: NFGoblinMadeTrayScanner
+    node: NFGoblinMadeTrayScanner

@@ -1,0 +1,506 @@
+# clothes
+#region robes
+- type: constructionGraph
+  id: ClothingOuterCoatRobesGoblin
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: ClothingOuterCoatRobesGoblin
+      steps:
+      - material: Cloth
+        amount: 10
+        doAfter: 10
+  - node: ClothingOuterCoatRobesGoblin
+    entity: ClothingOuterCoatRobesGoblin
+
+#region EVA
+- type: constructionGraph
+  id: ClothingOuterEVASuitGoblin
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: ClothingOuterEVASuitGoblin
+          steps:
+            - tag: ClothingRobesGoblin
+              name: goblin traditional robes
+              icon:
+                sprite: _NF/Clothing/OuterClothing/Coats/goblin_robes.rsi
+                state: icon
+              doAfter: 10
+            - tag: SuitEVA
+              name: EVA suit
+              icon:
+                sprite: Clothing/OuterClothing/Suits/eva.rsi
+                state: icon
+              doAfter: 10
+    - node: ClothingOuterEVASuitGoblin
+      entity: ClothingOuterEVASuitGoblin
+
+#region trash duffel
+- type: constructionGraph
+  id: NFGoblinMadeClothingBackpackDuffelTrashBlue
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeClothingBackpackDuffelTrashBlue
+      steps:
+      - tag: TrashBag
+        name: trash bag
+        icon:
+          sprite: Objects/Specific/Janitorial/trashbag.rsi
+          state: blue-icon-0
+        doAfter: 0.5
+      - tag: TrashBag
+        name: trash bag
+        icon:
+          sprite: Objects/Specific/Janitorial/trashbag.rsi
+          state: blue-icon-0
+        doAfter: 0.5
+      - material: Cable
+        amount: 5
+        doAfter: 0.5
+  - node: NFGoblinMadeClothingBackpackDuffelTrashBlue
+    entity: NFGoblinMadeClothingBackpackDuffelTrashBlue
+
+# tools
+#region multitool
+- type: constructionGraph
+  id: NFGoblinMadeMultitool
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeMultitool
+      steps:
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: boritos-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: chips-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: energybar-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+  - node: NFGoblinMadeMultitool
+    entity: NFGoblinMadeMultitool
+
+#region wire cutter
+- type: constructionGraph
+  id: NFGoblinMadeWirecutter
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeWirecutter
+      steps:
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: boritos-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: chips-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: energybar-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+  - node: NFGoblinMadeWirecutter
+    entity: NFGoblinMadeWirecutter
+
+#region screwdriver
+- type: constructionGraph
+  id: NFGoblinMadeScrewdriver
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeScrewdriver
+      steps:
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: boritos-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: chips-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: energybar-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+  - node: NFGoblinMadeScrewdriver
+    entity: NFGoblinMadeScrewdriver
+
+#region crowbar
+- type: constructionGraph
+  id: NFGoblinMadeCrowbar
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeCrowbar
+      steps:
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: boritos-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: chips-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: energybar-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+  - node: NFGoblinMadeCrowbar
+    entity: NFGoblinMadeCrowbar
+
+#region wrench
+- type: constructionGraph
+  id: NFGoblinMadeWrench
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeWrench
+      steps:
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: boritos-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: chips-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: energybar-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+  - node: NFGoblinMadeWrench
+    entity: NFGoblinMadeWrench
+
+#region welder
+- type: constructionGraph
+  id: NFGoblinMadeWelder
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeWelder
+      steps:
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: boritos-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: chips-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: energybar-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+  - node: NFGoblinMadeWelder
+    entity: NFGoblinMadeWelderEmpty
+
+#region mini hoe
+- type: constructionGraph
+  id: NFGoblinMadeMiniHoe
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeMiniHoe
+      steps:
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: boritos-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: chips-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: energybar-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+  - node: NFGoblinMadeMiniHoe
+    entity: NFGoblinMadeMiniHoe
+
+#region minig drill
+- type: constructionGraph
+  id: NFGoblinMadeMiningDrill
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeMiningDrill
+      steps:
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: boritos-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: chips-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: energybar-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+  - node: NFGoblinMadeMiningDrill
+    entity: NFGoblinMadeMiningDrill
+
+#region tray scanner
+- type: constructionGraph
+  id: NFGoblinMadeTrayScanner
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeTrayScanner
+      steps:
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: boritos-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: chips-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: energybar-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 0.2
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+  - node: NFGoblinMadeTrayScanner
+    entity: NFGoblinMadeTrayScanner
+
+#region banner
+- type: constructionGraph
+  id: NFGoblinMadeBanner
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: BannerGoblin01
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+    - node: BannerGoblin01
+      entity: BannerGoblin01
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
