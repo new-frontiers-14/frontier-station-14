@@ -4,6 +4,31 @@
   suffix: Goblin Made
   abstract: true
   components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnGoblinMadeToolMalfunction
+    chance: 0.05
+    intervalSeconds: 1200 # 20 min
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
   - type: Clothing # Apparently a lot of upstream tools have equipped sprites, but this bit isn't defined there
     quickEquip: false
     slots:
@@ -13,6 +38,120 @@
       Steel: 100 # That's what you get for recycling 1 wrapper
   - type: StaticPrice
     price: 0 # Can't get rich :(
+
+- type: entity
+  id: NFBaseGoblinMadeToolsMalfunction
+  abstract: true
+  components:
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 5
+
+#region malfunctions
+- type: entity
+  id: NFGoblinMadeToolMalfunctionEmp
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 5000
+
+- type: entity
+  id: NFGoblinMadeToolMalfunctionFlash
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FlashOnTrigger
+    range: 4
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+
+- type: entity
+  id: NFGoblinMadeToolMalfunctionSmoke
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SmokeOnTrigger
+    duration: 3
+    spreadAmount: 1
+  - type: SoundOnTrigger
+    sound: /Audio/Effects/smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Effects/Smoke-grenade.ogg
+
+- type: entity
+  id: NFGoblinMadeToolMalfunctionFireBomb
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: FireBomb
+    totalIntensity: 5
+    intensitySlope: 2.5
+    maxIntensity: 1
+    canCreateVacuum: false
+
+- type: entity
+  id: NFGoblinMadeToolMalfunctionExplosion
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 5
+    intensitySlope: 2.5
+    maxIntensity: 1
+    canCreateVacuum: false
+
+- type: entity
+  id: NFGoblinMadeToolMalfunctionCryo
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Cryo
+    totalIntensity: 5
+    intensitySlope: 2.5
+    maxIntensity: 1
+    canCreateVacuum: false
+
+- type: entityTable
+  id: TableGoblinMadeToolMalfunction
+  table: !type:GroupSelector
+    children:
+    - id: NFGoblinMadeToolMalfunctionEmp
+      weight: 30
+    - id: NFGoblinMadeToolMalfunctionFlash
+      weight: 20
+    - id: NFGoblinMadeToolMalfunctionSmoke
+      weight: 35
+    - id: NFGoblinMadeToolMalfunctionFireBomb
+      weight: 5
+    - id: NFGoblinMadeToolMalfunctionExplosion
+      weight: 5
+    - id: NFGoblinMadeToolMalfunctionCryo
+      weight: 5
+
+- type: entity
+  id: SpawnGoblinMadeToolMalfunction
+  parent: MarkerBasePlaceFree
+  name: goblin tool malfunction
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableGoblinMadeToolMalfunction
+      prob: 1.00
 
 # tools
 #region multitool
