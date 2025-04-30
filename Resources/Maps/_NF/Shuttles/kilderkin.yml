@@ -4,8 +4,8 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/28/2025 12:43:52
-  entityCount: 645
+  time: 04/30/2025 07:55:55
+  entityCount: 651
 maps: []
 grids:
 - 1
@@ -921,7 +921,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 5.5,4.5
+      pos: 5.25,4.5
       parent: 1
   - uid: 394
     components:
@@ -932,7 +932,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -3.5,3.5
+      pos: -3.5,3.25
       parent: 1
   - uid: 396
     components:
@@ -945,16 +945,22 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,0.5
       parent: 1
-  - uid: 462
+  - uid: 644
     components:
     - type: Transform
-      pos: 0.5,4.5
+      pos: -1.3,4.5
       parent: 1
   - uid: 645
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-7.5
+      parent: 1
+  - uid: 649
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,-4.75
       parent: 1
 - proto: ButtonFrameCautionSecurity
   entities:
@@ -963,6 +969,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,1.5
+      parent: 1
+- proto: ButtonFrameGrey
+  entities:
+  - uid: 462
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.75,4.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -3143,6 +3157,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,5.5
       parent: 1
+- proto: Icebox
+  entities:
+  - uid: 651
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,5.5
+      parent: 1
 - proto: JukeboxWallmountShip
   entities:
   - uid: 242
@@ -3304,7 +3326,7 @@ entities:
       pos: -4.5,-4.5
       parent: 1
     - type: FuelGenerator
-      targetPower: 26000
+      targetPower: 27000
 - proto: PottedPlantRandom
   entities:
   - uid: 363
@@ -3349,7 +3371,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -2.5,5.5
+      pos: -3.5,5.5
       parent: 1
   - uid: 353
     components:
@@ -3561,6 +3583,13 @@ entities:
     - type: Transform
       pos: 1.5,-1.5
       parent: 1
+- proto: ShelfBar
+  entities:
+  - uid: 285
+    components:
+    - type: Transform
+      pos: 0.5,4.5
+      parent: 1
 - proto: ShelfRMetal
   entities:
   - uid: 442
@@ -3762,30 +3791,11 @@ entities:
         - Pressed: Toggle
         490:
         - Pressed: Toggle
-  - uid: 285
-    components:
-    - type: Transform
-      pos: 0.5,4.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        367:
-        - Pressed: Toggle
-        368:
-        - Pressed: Toggle
-        369:
-        - Pressed: Toggle
-        370:
-        - Pressed: Toggle
-        495:
-        - Pressed: Toggle
-        385:
-        - Pressed: Toggle
   - uid: 286
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -3.5,3.5
+      pos: -3.5,3.25
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -3801,7 +3811,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 5.5,4.5
+      pos: 5.25,4.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -3859,6 +3869,67 @@ entities:
         191:
         - Pressed: Toggle
         598:
+        - Pressed: Toggle
+  - uid: 647
+    components:
+    - type: Transform
+      pos: -1.3,4.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        367:
+        - Pressed: Toggle
+        368:
+        - Pressed: Toggle
+        369:
+        - Pressed: Toggle
+        370:
+        - Pressed: Toggle
+        495:
+        - Pressed: Toggle
+        385:
+        - Pressed: Toggle
+  - uid: 648
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.75,4.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        551:
+        - Pressed: Toggle
+        153:
+        - Pressed: Toggle
+        152:
+        - Pressed: Toggle
+        163:
+        - Pressed: Toggle
+        162:
+        - Pressed: Toggle
+        520:
+        - Pressed: Toggle
+        157:
+        - Pressed: Toggle
+        156:
+        - Pressed: Toggle
+        552:
+        - Pressed: Toggle
+        158:
+        - Pressed: Toggle
+        159:
+        - Pressed: Toggle
+        228:
+        - Pressed: Toggle
+  - uid: 650
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,-4.75
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        623:
         - Pressed: Toggle
 - proto: SignBar
   entities:
