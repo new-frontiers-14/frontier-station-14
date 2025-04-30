@@ -12,14 +12,11 @@
     intervalSeconds: 1200 # 20 min
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 30
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
         damage: 25
