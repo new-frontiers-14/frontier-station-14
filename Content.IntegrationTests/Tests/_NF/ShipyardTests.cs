@@ -32,16 +32,20 @@ public sealed class ShipyardTest
                 {
                     map.CreateMap(out var mapId);
 
+                    bool mapLoaded = false;
+                    Entity<MapGridComponent>? shuttle = null;
                     try
                     {
-                        Assert.That(mapLoader.TryLoadGrid(mapId, vessel.ShuttlePath, out var shuttle));
-                        Assert.That(shuttle.HasValue, Is.True);
-                        Assert.That(entManager.HasComponent<MapGridComponent>(shuttle.Value), Is.True);
+                        mapLoaded = mapLoader.TryLoadGrid(mapId, vessel.ShuttlePath, out shuttle);
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception($"Failed to load shuttle {vessel.ShuttlePath}", ex);
+                        Assert.Fail($"Failed to load shuttle {vessel} ({vessel.ShuttlePath}): TryLoadGrid threw exception {ex}");
                     }
+
+                    Assert.That(mapLoaded, Is.True, $"Failed to load shuttle {vessel} ({vessel.ShuttlePath}): TryLoadGrid returned false.");
+                    Assert.That(shuttle.HasValue, Is.True);
+                    Assert.That(entManager.HasComponent<MapGridComponent>(shuttle.Value), Is.True);
 
                     try
                     {
@@ -49,7 +53,7 @@ public sealed class ShipyardTest
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception($"Failed to delete map {vessel.ShuttlePath}", ex);
+                        Assert.Fail($"Failed to delete map for {vessel} ({vessel.ShuttlePath}): {ex}");
                     }
                 }
             });
