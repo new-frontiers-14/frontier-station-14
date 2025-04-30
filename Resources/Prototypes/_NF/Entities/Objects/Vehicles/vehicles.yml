@@ -814,6 +814,14 @@
   name: dumpster
   description: It only has one wheel!
   components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnGoblinMadeToolMalfunction
+    chance: 0.05
+    intervalSeconds: 1200 # 20 min
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -840,6 +848,9 @@
       state: controller-on
       visible: False
       map: [ "enum.ToggleVisuals.Layer" ]
+      shader: unshaded
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
       shader: unshaded
   - type: MovementSpeedModifier
     acceleration: 1
