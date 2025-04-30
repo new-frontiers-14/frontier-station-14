@@ -289,6 +289,6 @@ namespace Content.Shared.Humanoid.Markings
             alpha = sprite.LayerAlpha;
             return speciesProto.ForcedMarkingColor;
         }
-        // Frontier End
+        // End Frontier
     }
 }

@@ -127,7 +127,7 @@ public sealed class HypospraySystem : SharedHypospraySystem
             _popup.PopupEntity(Loc.GetString("injector-component-deny-user"), target, user);
             return false;
         }
-        // Frontier End
+        // End Frontier
 
         string? msgFormat = null;
 

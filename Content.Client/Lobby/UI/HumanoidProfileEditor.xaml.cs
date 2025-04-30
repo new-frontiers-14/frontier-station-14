@@ -1143,7 +1143,8 @@ namespace Content.Client.Lobby.UI
                     Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
                     break;
                 }
-                case HumanoidSkinColor.ShelegToned: // Frontier: Sheleg
+                // Frontier: Sheleg
+                case HumanoidSkinColor.ShelegToned:
                 {
                     if (!Skin.Visible)
                     {
@@ -1157,6 +1158,7 @@ namespace Content.Client.Lobby.UI
                     Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
                     break;
                 }
+                // End Frontier
             }
 
             ReloadProfilePreview();
@@ -1386,7 +1388,8 @@ namespace Content.Client.Lobby.UI
 
                     break;
                 }
-                case HumanoidSkinColor.ShelegToned: // Frontier: Sheleg
+                // Frontier: Sheleg
+                case HumanoidSkinColor.ShelegToned:
                     {
                     if (!Skin.Visible)
                     {
@@ -1398,6 +1401,7 @@ namespace Content.Client.Lobby.UI
 
                     break;
                 }
+                // End Frontier
             }
 
         }
@@ -1500,10 +1504,12 @@ namespace Content.Client.Lobby.UI
                     {
                         hairColor = Profile.Appearance.SkinColor;
                     }
-                    else if (_markingManager.MustMatchColor(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager) is Color matchedColor) // Frontier: Forced hair color
+                    // Frontier: Forced hair color
+                    else if (_markingManager.MustMatchColor(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager) is Color matchedColor)
                     {
                         hairColor = matchedColor;
                     }
+                    // End Frontier
                     else
                     {
                         hairColor = Profile.Appearance.HairColor;
@@ -1538,10 +1544,12 @@ namespace Content.Client.Lobby.UI
                     {
                         facialHairColor = Profile.Appearance.SkinColor;
                     }
-                    else if (_markingManager.MustMatchColor(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager) is Color matchedColor) // Frontier: Forced hair color
+                    // Frontier: Forced hair color
+                    else if (_markingManager.MustMatchColor(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager) is Color matchedColor)
                     {
                         facialHairColor = matchedColor;
                     }
+                    // End Frontier
                     else
                     {
                         facialHairColor = Profile.Appearance.FacialHairColor;

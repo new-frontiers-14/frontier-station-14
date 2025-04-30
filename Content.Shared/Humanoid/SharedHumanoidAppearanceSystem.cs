@@ -418,7 +418,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             profile.Appearance.SkinColor.WithAlpha(forcedFacialHairAlpha);
             facialHairColor = forcedFacialHairColor;
         }
-        // Frontier End
+        // End Frontier
 
         if (_markingManager.Markings.TryGetValue(profile.Appearance.HairStyleId, out var hairPrototype) &&
             _markingManager.CanBeApplied(profile.Species, profile.Sex, hairPrototype, _proto))

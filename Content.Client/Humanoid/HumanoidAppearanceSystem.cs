@@ -183,7 +183,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             profile.Appearance.SkinColor.WithAlpha(forcedFacialHairAlpha);
             facialHairColor = forcedFacialHairColor;
         }
-        // Frontier End
+        // End Frontier
 
         if (_markingManager.CanBeApplied(profile.Species, profile.Sex, hair, _prototypeManager))
         {

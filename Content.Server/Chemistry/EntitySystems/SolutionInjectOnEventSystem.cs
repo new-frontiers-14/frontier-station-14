@@ -95,7 +95,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             // Frontier: Block injections
             if (TryComp<BlockInjectionComponent>(target, out var blockInjection) && blockInjection.BlockInjectOnProjectile)
                 continue;
-            // Frontier End
+            // End Frontier
 
             // Yuck, this is way to hardcodey for my tastes
             // TODO blocking injection with a hardsuit should probably done with a cancellable event or something

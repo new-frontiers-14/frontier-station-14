@@ -252,7 +252,7 @@ public static class SkinColor
         };
     }
 
-    // Frontier: Sheleg start
+    // Frontier: Sheleg
     public static Color ValidShelegSkinTone => Color.FromHsv(new Vector4(210f / 360f, 0.5f, 0.8f, 1f));
 
     public static Color ShelegSkinTone(int tone)
@@ -331,7 +331,7 @@ public static class SkinColor
 
         return true;
     }
-    // Frontier: Sheleg end
+    // End Frontier
 }
 
 public enum HumanoidSkinColor : byte

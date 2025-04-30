@@ -234,7 +234,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
         ToggleClothing(args.Performer, uid, component);
     }
 
-    public void ToggleClothing(EntityUid user, EntityUid target, ToggleableClothingComponent component) // Frontier private to public
+    public void ToggleClothing(EntityUid user, EntityUid target, ToggleableClothingComponent component) // Frontier: private to public
     {
         if (component.Container == null || component.ClothingUid == null)
             return;

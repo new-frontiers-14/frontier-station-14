@@ -186,7 +186,7 @@ namespace Content.Server.Body.Systems
                     // Frontier: skip applying effects in metabolism
                     if (group.SkipEffects)
                         continue;
-                    // End Frontier: skip applying effects in metabolism
+                    // End Frontier
 
                     float scale = (float) mostToRemove / (float) rate;
 
