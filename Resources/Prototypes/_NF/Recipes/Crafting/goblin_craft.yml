@@ -50,6 +50,23 @@
     state: icon
   objectType: Item
 
+#region trash pouch
+- type: construction
+  name: goblin pouch
+  id: NFGoblinMadeTrashPouch
+  graph: NFGoblinMadeTrashPouch
+  startNode: start
+  targetNode: NFGoblinMadeTrashPouch
+  category: construction-category-clothing
+  description: A pouch made out of trash bag.
+  entityWhitelist:
+    tags:
+    - GoblinCraft
+  icon:
+    sprite: _NF/Objects/Storage/Pouches/pouch.rsi
+    state: closed
+  objectType: Item
+
 # tools
 #region multitool
 - type: construction
@@ -68,15 +85,15 @@
     state: icon
   objectType: Item
 
-#region wire cutter
+#region wirecutter
 - type: construction
-  name: goblin wire snippah
+  name: goblin wiresnippah
   id: NFGoblinMadeWirecutter
   graph: NFGoblinMadeWirecutter
   startNode: start
   targetNode: NFGoblinMadeWirecutter
   category: construction-category-tools
-  description: A wire cutter made out of glass shards, metal bits, cloth, and some wires. What's up with all the sparking, though?
+  description: A wirecutter made out of glass shards, metal bits, cloth, and some wires. What's up with all the sparking, though?
   entityWhitelist:
     tags:
     - GoblinCraft

@@ -79,7 +79,7 @@
 - type: entity
   id: NFGoblinMadeWirecutter
   parent: [ NFBaseGoblinMadeTools, Wirecutter ]
-  name: wire snippah
+  name: wiresnippah
   description: A wire cutter made out of glass shards, metal bits, cloth, and some wires. What's up with all the sparking, though?
   components:
   - type: Tag
@@ -91,9 +91,15 @@
     sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
     layers:
     - state: icon
+    - state: icon-color
+      map: [ "enum.DamageStateVisualLayers.Base" ]
     - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
       state: overlay-icon
       shader: unshaded
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          icon-color: Rainbow
   - type: Item
     sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
     inhandVisuals:
