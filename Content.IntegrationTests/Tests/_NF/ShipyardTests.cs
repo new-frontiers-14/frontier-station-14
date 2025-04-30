@@ -41,6 +41,8 @@ public sealed class ShipyardTest
                     catch (Exception ex)
                     {
                         Assert.Fail($"Failed to load shuttle {vessel} ({vessel.ShuttlePath}): TryLoadGrid threw exception {ex}");
+                        map.DeleteMap(mapId);
+                        continue;
                     }
 
                     Assert.That(mapLoaded, Is.True, $"Failed to load shuttle {vessel} ({vessel.ShuttlePath}): TryLoadGrid returned false.");
