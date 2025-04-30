@@ -1346,60 +1346,39 @@
 #region trash
 - type: entity
   id: NFGoblinMadeTrashPouch
-  parent: [ RecyclableItemPlasticSmall, NFPouchUtility ]
+  parent: [ RecyclableItemPlasticSmall, NFPouchBase ]
   name: trash bag pouch
   components:
   - type: Sprite
+    sprite: _NF/Objects/Storage/Pouches/trash_pouch.rsi
     layers:
-    - state: base
-      color: "#3dafe6"
     - state: closed
       map: ["closeLayer"]
-      color: "#3dafe6"
     - state: open
-      color: "#3dafe6"
       map: ["openLayer"]
       visible: false
-    - state: inside
-      color: "#3dafe6"
-      map: ["insideLayer"]
-      visible: false
-    - state: fill-util4-1
-      map: [ "pouchFill4" ]
-      visible: false
-    - state: fill-util3-1
-      map: [ "pouchFill3" ]
-      visible: false
-    - state: fill-util2-1
-      map: [ "pouchFill2" ]
-      visible: false
-    - state: fill-util1-1
+    - state: fill-trash-1
       map: [ "pouchFill1" ]
       visible: false
-    - state: decal-line-04
-      map: [ "decal1" ]
-      color: "#ffe500"
+    - state: fill-trash-2
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-trash-3
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-trash-4
+      map: [ "pouchFill4" ]
+      visible: false
   - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#3dafe6"
-      right:
-      - state: inhand-right
-        color: "#3dafe6"
+    sprite: _NF/Objects/Storage/Pouches/trash_pouch.rsi
   - type: Clothing
-    clothingVisuals:
-      belt:
-      - state: equipped-BELT
-        color: "#3dafe6"
-      pocket:
-      - state: equipped-BELT
-        color: "#3dafe6"
+    sprite: _NF/Objects/Storage/Pouches/trash_pouch.rsi
   - type: Tag
     tags:
     - GoblinMade
   - type: Dumpable
   - type: Storage
+    maxItemSize: Small
     areaInsert: true
     storageOpenSound:
       collection: trashBagRustle
@@ -1410,6 +1389,8 @@
         - Cartridge
         - Trash
         - GoblinMade
+    blacklist:
+      components: []
   - type: MagnetPickup
     magnetEnabled: false
   - type: Construction
