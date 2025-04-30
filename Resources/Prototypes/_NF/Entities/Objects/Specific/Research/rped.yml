@@ -6,7 +6,10 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Research/rped.rsi
-    state: icon
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     sprite: _NF/Objects/Specific/Research/rped.rsi
     size: Normal
