@@ -511,7 +511,7 @@ public sealed partial class MarkingPicker : Control
                 markingObject.SetColor(i, forcedColor);
             }
         }
-        // Frontier End
+        // End Frontier
 
         markingObject.Forced = Forced;
 
