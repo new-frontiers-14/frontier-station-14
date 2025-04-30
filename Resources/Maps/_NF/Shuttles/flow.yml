@@ -4,7 +4,7 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/30/2025 05:20:03
+  time: 04/30/2025 05:32:41
   entityCount: 411
 maps: []
 grids:
@@ -305,7 +305,7 @@ entities:
       - 89
       - 87
       - 115
-  - uid: 254
+  - uid: 255
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -313,7 +313,7 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 255
+      - 254
 - proto: AirlockEngineeringGlass
   entities:
   - uid: 203
@@ -351,23 +351,21 @@ entities:
       pos: 0.5,0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1380.5988
+      secondsUntilStateChange: -1442.8201
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
 - proto: AirSensor
   entities:
-  - uid: 255
+  - uid: 254
     components:
     - type: Transform
       pos: 1.5,-14.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
-      - 254
+      - 255
 - proto: APCBasic
   entities:
   - uid: 125
@@ -2102,6 +2100,8 @@ entities:
     - type: Transform
       pos: -3.5,-3.5
       parent: 1
+    - type: FuelGenerator
+      targetPower: 25000
 - proto: PosterLegitSafetyMothPiping
   entities:
   - uid: 247
