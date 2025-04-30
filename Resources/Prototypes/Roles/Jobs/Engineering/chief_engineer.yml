@@ -5,8 +5,15 @@
   playTimeTracker: JobChiefEngineer
   setPreference: false # Frontier
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 144000 #40 hrs
+    - !type:RoleTimeRequirement
+      role: JobAtmosphericTechnician
+      time: 9000 #2.5 hrs
+    - !type:RoleTimeRequirement
+      role: JobStationEngineer
+      time: 18000 #5 hrs
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 36000 #10 hrs
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"

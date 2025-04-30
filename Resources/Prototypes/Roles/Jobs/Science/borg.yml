@@ -1,15 +1,14 @@
 # No idea why it's in sci but we ball.
+# Why is this one file?
 - type: job
   id: StationAi
   name: job-name-station-ai
   description: job-description-station-ai
   playTimeTracker: JobStationAi
   requirements:
-  # - !type:RoleTimeRequirement # Frontier
-  #   role: JobBorg # Frontier
-  #   time: 54000  # 15 hrs # Frontier
-    - !type:OverallPlaytimeRequirement # Frontier
-      time: 10800 # 3 hrs # Frontier
+  - !type:RoleTimeRequirement
+    role: JobBorg
+    time: 18000  # 5 hrs
   canBeAntag: false
   icon: JobIconStationAi
   supervisors: job-supervisors-hire # Frontier: rd<hire
@@ -26,7 +25,7 @@
   setPreference: true
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 43200 # 12 hrs # Frontier: 40<12 hrs
+      time: 43200 # 12 hrs # Frontier: 10<12 hrs
   canBeAntag: false
   icon: JobIconBorg
   supervisors: job-supervisors-hire # Frontier

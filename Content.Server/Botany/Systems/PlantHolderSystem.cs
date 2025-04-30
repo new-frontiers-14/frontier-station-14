@@ -22,10 +22,10 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Server.Labels.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
+using Content.Shared.Labels.Components;
 using Content.Shared._NF.BindToStation; // Frontier
 using Content.Server.Station.Systems; // Frontier
 
@@ -48,7 +48,6 @@ public sealed class PlantHolderSystem : EntitySystem
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly StationSystem _station = default!; // Frontier
-
 
     public const float HydroponicsSpeedMultiplier = 1f;
     public const float HydroponicsConsumptionMultiplier = 2f;

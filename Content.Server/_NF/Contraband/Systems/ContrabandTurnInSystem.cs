@@ -117,7 +117,7 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
 
         if (station != null)
         {
-            var ev = new EntitySoldEvent(toSell, gridUid);
+            var ev = new NFEntitySoldEvent(toSell, gridUid);
             RaiseLocalEvent(ref ev);
         }
 

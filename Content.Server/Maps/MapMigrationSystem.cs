@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using Robust.Server.GameObjects;
 using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Events;
@@ -61,7 +60,7 @@ public sealed class MapMigrationSystem : EntitySystem
             if (!TryReadFile(migrationFile, out var mapping))
                 continue;
 
-            mappings = mappings ?? new List<MappingDataNode>();
+            mappings ??= new();
             mappings.Add(mapping);
         }
 

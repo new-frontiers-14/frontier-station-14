@@ -5,8 +5,9 @@
   playTimeTracker: JobBartender
   setPreference: false # Frontier
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 10800
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 1800 #0.5 hr
   startingGear: BartenderGear
   icon: "JobIconBartender"
   supervisors: job-supervisors-hire # Frontier

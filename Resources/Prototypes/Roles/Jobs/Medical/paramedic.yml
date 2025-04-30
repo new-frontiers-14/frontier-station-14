@@ -5,8 +5,9 @@
   playTimeTracker: JobParamedic
   setPreference: false # Frontier
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 10800
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 9000 #2.5 hrs
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
   supervisors: job-supervisors-hire # Frontier

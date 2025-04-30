@@ -3,7 +3,8 @@ using Content.Server.DeviceNetwork.Components;
 using Content.Server.Medical.CrewMonitoring;
 using Content.Server.Station.Systems;
 using Content.Shared.Power;
-using Robust.Shared.Map;
+using Content.Shared.DeviceNetwork.Components;
+using Robust.Shared.Map; // Frontier // FRONTIER MERGE: needed?
 
 namespace Content.Server.DeviceNetwork.Systems;
 

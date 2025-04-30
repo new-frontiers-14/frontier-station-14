@@ -19,7 +19,18 @@ role-type-familiar-color = #6495ed
 role-type-silicon-color = #6495ed
 role-type-silicon-antagonist-color =#c832e6
 
-# FRONTIER MERGE - move these
-role-type-emotional-support-pet-color = lightpink
-role-type-pirate-color = #d82000
-# END FRONTIER MERGE
+# Ideally, subtype names should be short
+role-subtype-traitor = Traitor
+role-subtype-thief = Thief
+role-subtype-ninja = Ninja
+role-subtype-nukie = Nukie
+role-subtype-traitor-reinforcement = Reinforcement
+role-subtype-revolutionary = Rev
+role-subtype-head-revolutionary = Head Rev
+role-subtype-initial-infected = Infected
+role-subtype-zombie = Zombie
+role-subtype-dragon = Dragon
+role-subtype-survivor = Survivor
+role-subtype-subverted = Subverted
+role-subtype-paradox-clone = Paradox
+role-subtype-wizard = Wizard

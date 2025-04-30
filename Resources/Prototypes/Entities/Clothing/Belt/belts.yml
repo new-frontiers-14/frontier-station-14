@@ -471,7 +471,8 @@
     sprite: Clothing/Belt/security.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  # - type: Storage # Frontier: commented out whitelist
+  # Frontier: commented out whitelist
+  # - type: Storage
   #   whitelist:
   #     tags:
   #       - CigPack
@@ -483,6 +484,7 @@
   #       - MagazineMagnum
   #       - CombatKnife
   #       - Truncheon
+  #       - HandGrenade
   #     components:
   #       - Stunbaton
   #       - FlashOnTrigger
@@ -494,6 +496,7 @@
   #       - DoorRemote
   #       - Whistle
   #       - BalloonPopper
+  # End Frontier: commented out whitelist
   - type: ItemMapper
     mapLayers:
       flashbang:
@@ -658,7 +661,7 @@
   - type: Clothing
     sprite: Clothing/Belt/militarywebbing.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.1
 
 - type: entity
   parent: ClothingBeltMilitaryWebbing

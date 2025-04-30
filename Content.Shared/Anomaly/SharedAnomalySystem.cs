@@ -164,10 +164,11 @@ public abstract class SharedAnomalySystem : EntitySystem
         if (!Timing.IsFirstTimePredicted)
             return;
 
-        Audio.PlayPvs(component.SupercriticalSound, Transform(uid).Coordinates);
-
         if (_net.IsServer)
+        {
+            Audio.PlayPvs(component.SupercriticalSound, Transform(uid).Coordinates);
             Log.Info($"Raising supercritical event. Entity: {ToPrettyString(uid)}");
+        }
 
         var powerMod = 1f;
         if (component.CurrentBehavior != null)
@@ -373,7 +374,7 @@ public abstract class SharedAnomalySystem : EntitySystem
             if (Timing.CurTime <= super.EndTime)
                 continue;
             DoAnomalySupercriticalEvent(ent, anom);
-            RemComp(ent, super);
+            // Removal of the supercritical component is handled by DoAnomalySupercriticalEvent
         }
     }
 

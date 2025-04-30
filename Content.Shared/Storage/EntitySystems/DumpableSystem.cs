@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Shared._DV.SmartFridge; // DeltaV - ough why do you not use events for this
 using Content.Shared.Disposal;
+using Content.Shared.Disposal.Components;
+using Content.Shared.Disposal.Unit;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
@@ -44,7 +46,7 @@ public sealed class DumpableSystem : EntitySystem
         if (!args.CanReach || args.Handled)
             return;
 
-        if (!_disposalUnitSystem.HasDisposals(args.Target) && !HasComp<PlaceableSurfaceComponent>(args.Target))
+        if (!HasComp<DisposalUnitComponent>(args.Target) && !HasComp<PlaceableSurfaceComponent>(args.Target))
             return;
 
         if (!TryComp<StorageComponent>(uid, out var storage))
@@ -85,7 +87,7 @@ public sealed class DumpableSystem : EntitySystem
         if (!TryComp<StorageComponent>(uid, out var storage) || !storage.Container.ContainedEntities.Any())
             return;
 
-        if (_disposalUnitSystem.HasDisposals(args.Target) || HasComp<SmartFridgeComponent>(args.Target)) // DeltaV - ough why do you not use events for this
+        if (HasComp<DisposalUnitComponent>(args.Target) || HasComp<SmartFridgeComponent>(args.Target)) // DeltaV - ough why do you not use events for this)
         {
             UtilityVerb verb = new()
             {
@@ -146,7 +148,7 @@ public sealed class DumpableSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-        DumpContents(uid, args.Args.Target, args.Args.User, component);
+        DumpContents(uid, args.Args.Target, args.Args.User, component); // DeltaV
     }
 
     // DeltaV: Refactor to allow dumping that doesn't require a verb
@@ -164,7 +166,7 @@ public sealed class DumpableSystem : EntitySystem
 
         var dumped = false;
 
-        if (_disposalUnitSystem.HasDisposals(target))
+        if (HasComp<DisposalUnitComponent>(target))
         {
             dumped = true;
 
@@ -219,4 +221,5 @@ public sealed class DumpableSystem : EntitySystem
             _audio.PlayPredicted(component.DumpSound, uid, user);
         }
     }
+    // End DeltaV: Refactor to allow dumping that doesn't require a verb
 }

@@ -1,17 +1,13 @@
+using System.Linq;
 using Content.Server.Cargo.Components;
-using Content.Shared.Stacks;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
-using Content.Shared.GameTicking;
-using Robust.Shared.Map;
-using Robust.Shared.Random;
+using Content.Shared.Cargo.Prototypes;
+using Content.Shared.CCVar;
 using Robust.Shared.Audio;
-using Content.Shared.Whitelist; // Frontier
-using Content.Server._NF.Cargo.Components; // Frontier
-using Content.Shared._NF.Bank.Components; // Frontier
-using Content.Shared.Mobs; // Frontier
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -21,70 +17,40 @@ public sealed partial class CargoSystem
      * Handles cargo shuttle / trade mechanics.
      */
 
-    [Dependency] EntityWhitelistSystem _whitelist = default!; // Frontier
-
-    // Frontier addition:
-    // The maximum distance from the console to look for pallets.
-    private const int DefaultPalletDistance = 8;
-
     private static readonly SoundPathSpecifier ApproveSound = new("/Audio/Effects/Cargo/ping.ogg");
+    private bool _lockboxCutEnabled;
 
     private void InitializeShuttle()
     {
         SubscribeLocalEvent<TradeStationComponent, GridSplitEvent>(OnTradeSplit);
 
-        SubscribeLocalEvent<CargoShuttleConsoleComponent, ComponentStartup>(OnCargoShuttleConsoleStartup);
-
         SubscribeLocalEvent<CargoPalletConsoleComponent, CargoPalletSellMessage>(OnPalletSale);
         SubscribeLocalEvent<CargoPalletConsoleComponent, CargoPalletAppraiseMessage>(OnPalletAppraise);
         SubscribeLocalEvent<CargoPalletConsoleComponent, BoundUIOpenedEvent>(OnPalletUIOpen);
 
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        _cfg.OnValueChanged(CCVars.LockboxCutEnabled, (enabled) => { _lockboxCutEnabled = enabled; }, true);
     }
 
     #region Console
-
-    private void UpdateCargoShuttleConsoles(EntityUid shuttleUid, CargoShuttleComponent _)
+    private void UpdatePalletConsoleInterface(EntityUid uid)
     {
-        // Update pilot consoles that are already open.
-        _console.RefreshDroneConsoles();
-
-        // Update order consoles.
-        var shuttleConsoleQuery = AllEntityQuery<CargoShuttleConsoleComponent>();
-
-        while (shuttleConsoleQuery.MoveNext(out var uid, out var _))
+        if (Transform(uid).GridUid is not { } gridUid)
         {
-            var stationUid = _station.GetOwningStation(uid);
-            if (stationUid != shuttleUid)
-                continue;
-
-            UpdateShuttleState(uid, stationUid);
-        }
-    }
-
-    private void UpdatePalletConsoleInterface(Entity<CargoPalletConsoleComponent> uid) // Frontier: EntityUid<Entity
-    {
-        if (Transform(uid).GridUid is not EntityUid gridUid)
-        {
-            _uiSystem.SetUiState(uid.Owner, CargoPalletConsoleUiKey.Sale, // Frontier: uid<uid.Owner
-            new CargoPalletConsoleInterfaceState(0, 0, false));
+            _uiSystem.SetUiState(uid,
+                CargoPalletConsoleUiKey.Sale,
+                new CargoPalletConsoleInterfaceState(0, 0, false));
             return;
         }
-        // Frontier: per-object market modification
-        GetPalletGoods(uid, gridUid, out var toSell, out var amount, out var noModAmount);
-        if (TryComp<MarketModifierComponent>(uid, out var priceMod))
-        {
-            amount *= priceMod.Mod;
-        }
-        amount += noModAmount;
-        // End Frontier
-        _uiSystem.SetUiState(uid.Owner, CargoPalletConsoleUiKey.Sale, // Frontier: uid<uid.Owner
-            new CargoPalletConsoleInterfaceState((int) amount, toSell.Count, true));
+        GetPalletGoods(gridUid, out var toSell, out var goods);
+        var totalAmount = goods.Sum(t => t.Item3);
+        _uiSystem.SetUiState(uid,
+            CargoPalletConsoleUiKey.Sale,
+            new CargoPalletConsoleInterfaceState((int) totalAmount, toSell.Count, true));
     }
 
     private void OnPalletUIOpen(EntityUid uid, CargoPalletConsoleComponent component, BoundUIOpenedEvent args)
     {
-        UpdatePalletConsoleInterface((uid, component)); // Frontier: EntityUid<Entity
+        UpdatePalletConsoleInterface(uid);
     }
 
     /// <summary>
@@ -97,29 +63,7 @@ public sealed partial class CargoSystem
 
     private void OnPalletAppraise(EntityUid uid, CargoPalletConsoleComponent component, CargoPalletAppraiseMessage args)
     {
-        UpdatePalletConsoleInterface((uid, component)); // Frontier: EntityUid<Entity
-    }
-
-    private void OnCargoShuttleConsoleStartup(EntityUid uid, CargoShuttleConsoleComponent component, ComponentStartup args)
-    {
-        var station = _station.GetOwningStation(uid);
-        UpdateShuttleState(uid, station);
-    }
-
-    private void UpdateShuttleState(EntityUid uid, EntityUid? station = null)
-    {
-        TryComp<StationCargoOrderDatabaseComponent>(station, out var orderDatabase);
-        TryComp<CargoShuttleComponent>(orderDatabase?.Shuttle, out var shuttle);
-
-        var orders = GetProjectedOrders(uid, station ?? EntityUid.Invalid, orderDatabase, shuttle);
-        var shuttleName = orderDatabase?.Shuttle != null ? MetaData(orderDatabase.Shuttle.Value).EntityName : string.Empty;
-
-        if (_uiSystem.HasUi(uid, CargoConsoleUiKey.Shuttle))
-            _uiSystem.SetUiState(uid, CargoConsoleUiKey.Shuttle, new CargoShuttleConsoleBoundUserInterfaceState(
-                station != null ? MetaData(station.Value).EntityName : Loc.GetString("cargo-shuttle-console-station-unknown"),
-                string.IsNullOrEmpty(shuttleName) ? Loc.GetString("cargo-shuttle-console-shuttle-not-found") : shuttleName,
-                orders
-            ));
+        UpdatePalletConsoleInterface(uid);
     }
 
     #endregion
@@ -134,74 +78,9 @@ public sealed partial class CargoSystem
     }
 
     #region Shuttle
-
-    /// <summary>
-    /// Returns the orders that can fit on the cargo shuttle.
-    /// </summary>
-    private List<CargoOrderData> GetProjectedOrders(
-        EntityUid consoleUid,
-        EntityUid shuttleUid,
-        StationCargoOrderDatabaseComponent? component = null,
-        CargoShuttleComponent? shuttle = null)
-    {
-        var orders = new List<CargoOrderData>();
-
-        if (component == null || shuttle == null || component.Orders.Count == 0)
-            return orders;
-
-        var spaceRemaining = GetCargoSpace(consoleUid, shuttleUid);
-        for (var i = 0; i < component.Orders.Count && spaceRemaining > 0; i++)
-        {
-            var order = component.Orders[i];
-            if (order.Approved)
-            {
-                var numToShip = order.OrderQuantity - order.NumDispatched;
-                if (numToShip > spaceRemaining)
-                {
-                    // We won't be able to fit the whole order on, so make one
-                    // which represents the space we do have left:
-                    var reducedOrder = new CargoOrderData(order.OrderId,
-                            order.ProductId, order.ProductName, order.Price, spaceRemaining, order.Requester, order.Reason, null);
-                    orders.Add(reducedOrder);
-                }
-                else
-                {
-                    orders.Add(order);
-                }
-                spaceRemaining -= numToShip;
-            }
-        }
-
-        return orders;
-    }
-
-    /// <summary>
-    /// Get the amount of space the cargo shuttle can fit for orders.
-    /// </summary>
-    private int GetCargoSpace(EntityUid consoleUid, EntityUid gridUid)
-    {
-        var space = GetCargoPallets(consoleUid, gridUid, BuySellType.Buy).Count;
-        return space;
-    }
-
-    /// <summary>
-    /// Frontier addition - calculates distance between two EntityCoordinates
-    /// Used to check for cargo pallets around the console instead of on the grid.
-    /// </summary>
-    /// <param name="point1">first point to get distance between</param>
-    /// <param name="point2">second point to get distance between</param>
-    /// <returns></returns>
-    public static double CalculateDistance(EntityCoordinates point1, EntityCoordinates point2)
-    {
-        var xDifference = point2.X - point1.X;
-        var yDifference = point2.Y - point1.Y;
-
-        return Math.Sqrt(xDifference * xDifference + yDifference * yDifference);
-    }
-
     /// GetCargoPallets(gridUid, BuySellType.Sell) to return only Sell pads
     /// GetCargoPallets(gridUid, BuySellType.Buy) to return only Buy pads
-    private List<(EntityUid Entity, CargoPalletComponent Component, TransformComponent PalletXform)> GetCargoPallets(EntityUid consoleUid, EntityUid gridUid, BuySellType requestType = BuySellType.All)
+    private List<(EntityUid Entity, CargoPalletComponent Component, TransformComponent PalletXform)> GetCargoPallets(EntityUid gridUid, BuySellType requestType = BuySellType.All)
     {
         _pads.Clear();
 
@@ -209,21 +88,8 @@ public sealed partial class CargoSystem
 
         while (query.MoveNext(out var uid, out var comp, out var compXform))
         {
-            // Frontier addition - To support multiple cargo selling stations we add a distance check for the pallets.
-            var distance = CalculateDistance(compXform.Coordinates, Transform(consoleUid).Coordinates);
-            var maxPalletDistance = DefaultPalletDistance;
-
-            // Get the mapped checking distance from the console
-            if (TryComp<CargoPalletConsoleComponent>(consoleUid, out var cargoShuttleComponent))
-            {
-                maxPalletDistance = cargoShuttleComponent.PalletDistance;
-            }
-
-            var isTooFarAway = distance > maxPalletDistance;
-            // End of Frontier addition
-
             if (compXform.ParentUid != gridUid ||
-                !compXform.Anchored || isTooFarAway)
+                !compXform.Anchored)
             {
                 continue;
             }
@@ -265,17 +131,14 @@ public sealed partial class CargoSystem
 
     #region Station
 
-    private bool SellPallets(Entity<CargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out double amount, out double noMultiplierAmount) // Frontier: first arg to Entity, add noMultiplierAmount
+    private bool SellPallets(EntityUid gridUid, out HashSet<(EntityUid, OverrideSellComponent?, double)> goods)
     {
-        GetPalletGoods(consoleUid, gridUid, out var toSell, out amount, out noMultiplierAmount); // Frontier: add noMultiplierAmount
-
-        Log.Debug($"Cargo sold {toSell.Count} entities for {amount} (plus {noMultiplierAmount} without mods)"); // Frontier: add section in parentheses
+        GetPalletGoods(gridUid, out var toSell, out goods);
 
         if (toSell.Count == 0)
             return false;
 
-
-        var ev = new EntitySoldEvent(toSell, gridUid); // Frontier: add gridUid
+        var ev = new EntitySoldEvent(toSell);
         RaiseLocalEvent(ref ev);
 
         foreach (var ent in toSell)
@@ -286,18 +149,19 @@ public sealed partial class CargoSystem
         return true;
     }
 
-    private void GetPalletGoods(Entity<CargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out HashSet<EntityUid> toSell, out double amount, out double noMultiplierAmount) // Frontier: first arg to Entity, add noMultiplierAmount
+    private void GetPalletGoods(EntityUid gridUid, out HashSet<EntityUid> toSell,  out HashSet<(EntityUid, OverrideSellComponent?, double)> goods)
     {
-        amount = 0;
-        noMultiplierAmount = 0;
+        goods = new HashSet<(EntityUid, OverrideSellComponent?, double)>();
         toSell = new HashSet<EntityUid>();
 
-        foreach (var (palletUid, _, _) in GetCargoPallets(consoleUid, gridUid, BuySellType.Sell))
+        foreach (var (palletUid, _, _) in GetCargoPallets(gridUid, BuySellType.Sell))
         {
             // Containers should already get the sell price of their children so can skip those.
             _setEnts.Clear();
 
-            _lookup.GetEntitiesIntersecting(palletUid, _setEnts,
+            _lookup.GetEntitiesIntersecting(
+                palletUid,
+                _setEnts,
                 LookupFlags.Dynamic | LookupFlags.Sundries);
 
             foreach (var ent in _setEnts)
@@ -313,11 +177,6 @@ public sealed partial class CargoSystem
                     continue;
                 }
 
-                // Frontier: whitelisted consoles
-                if (_whitelist.IsWhitelistFail(consoleUid.Comp.Whitelist, ent))
-                    continue;
-                // End Frontier
-
                 if (_blacklistQuery.HasComponent(ent))
                     continue;
 
@@ -325,27 +184,17 @@ public sealed partial class CargoSystem
                 if (price == 0)
                     continue;
                 toSell.Add(ent);
-
-                // Frontier: check for items that are immune to market modifiers
-                if (HasComp<IgnoreMarketModifierComponent>(ent))
-                    noMultiplierAmount += price;
-                else
-                    amount += price;
-                // End Frontier: check for items that are immune to market modifiers
+                goods.Add((ent, CompOrNull<OverrideSellComponent>(ent), price));
             }
         }
     }
 
     private bool CanSell(EntityUid uid, TransformComponent xform)
     {
-        // Frontier: Look for blacklisted items and stop the selling of the container.
-        if (_blacklistQuery.HasComponent(uid))
+        if (_mobQuery.HasComponent(uid))
+        {
             return false;
-
-        // Frontier: allow selling dead mobs
-        if (_mobQuery.TryComp(uid, out var mob) && mob.CurrentState != MobState.Dead)
-            return false;
-        // End Frontier
+        }
 
         var complete = IsBountyComplete(uid, out var bountyEntities);
 
@@ -367,36 +216,50 @@ public sealed partial class CargoSystem
     {
         var xform = Transform(uid);
 
-        if (xform.GridUid is not EntityUid gridUid)
+        if (_station.GetOwningStation(uid) is not { } station ||
+            !TryComp<StationBankAccountComponent>(station, out var bankAccount))
         {
-            _uiSystem.SetUiState(uid, CargoPalletConsoleUiKey.Sale,
-            new CargoPalletConsoleInterfaceState(0, 0, false));
             return;
         }
 
-        if (!SellPallets((uid, component), gridUid, out var price, out var noMultiplierPrice)) // Frontier: convert first arg to Entity, add noMultiplierPrice
+        if (xform.GridUid is not { } gridUid)
+        {
+            _uiSystem.SetUiState(uid,
+                CargoPalletConsoleUiKey.Sale,
+                new CargoPalletConsoleInterfaceState(0, 0, false));
+            return;
+        }
+
+        if (!SellPallets(gridUid, out var goods))
             return;
 
-        // Frontier: market modifiers & immune objects
-        if (TryComp<MarketModifierComponent>(uid, out var priceMod))
+        var baseDistribution = CreateAccountDistribution((station, bankAccount));
+        foreach (var (_, sellComponent, value) in goods)
         {
-            price *= priceMod.Mod;
+            Dictionary<ProtoId<CargoAccountPrototype>, double> distribution;
+            if (sellComponent != null)
+            {
+                var cut = _lockboxCutEnabled ? bankAccount.LockboxCut : bankAccount.PrimaryCut;
+                distribution = new Dictionary<ProtoId<CargoAccountPrototype>, double>
+                {
+                    { sellComponent.OverrideAccount, cut },
+                    { bankAccount.PrimaryAccount, 1.0 - cut },
+                };
+            }
+            else
+            {
+                distribution = baseDistribution;
+            }
+
+            UpdateBankAccount((station, bankAccount), (int) Math.Round(value), distribution, false);
         }
-        price += noMultiplierPrice;
-        // End Frontier: market modifiers & immune objects
-        var stackPrototype = _protoMan.Index<StackPrototype>(component.CashType);
-        _stack.Spawn((int) price, stackPrototype, xform.Coordinates);
+
+        Dirty(station, bankAccount);
         _audio.PlayPvs(ApproveSound, uid);
-        UpdatePalletConsoleInterface((uid, component)); // Frontier: EntityUid<Entity
+        UpdatePalletConsoleInterface(uid);
     }
 
     #endregion
-
-    private void OnRoundRestart(RoundRestartCleanupEvent ev)
-    {
-        Reset();
-        CleanupTradeCrateDestinations(); // Frontier
-    }
 }
 
 /// <summary>
@@ -404,4 +267,4 @@ public sealed partial class CargoSystem
 /// deleted but after the price has been calculated.
 /// </summary>
 [ByRefEvent]
-public readonly record struct EntitySoldEvent(HashSet<EntityUid> Sold, EntityUid Grid);
+public readonly record struct EntitySoldEvent(HashSet<EntityUid> Sold);
