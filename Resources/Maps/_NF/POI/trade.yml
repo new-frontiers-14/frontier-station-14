@@ -4,8 +4,8 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/29/2025 08:00:10
-  entityCount: 6467
+  time: 04/30/2025 06:56:27
+  entityCount: 6468
 maps: []
 grids:
 - 1
@@ -2658,6 +2658,7 @@ entities:
       devices:
       - 6455
       - 6454
+      - 6445
   - uid: 6079
     components:
     - type: Transform
@@ -3750,7 +3751,7 @@ entities:
       pos: 39.5,-1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -5186.481
+      secondsUntilStateChange: -5294.1772
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -4262,7 +4263,7 @@ entities:
   - uid: 1760
     components:
     - type: Transform
-      pos: 37.38501,-3.5936685
+      pos: 37.670864,-3.724741
       parent: 1
 - proto: BoxFolderBlue
   entities:
@@ -13687,6 +13688,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 24.5,0.5
       parent: 1
+- proto: EmergencyRollerBedSpawnFolded
+  entities:
+  - uid: 6464
+    components:
+    - type: Transform
+      pos: 37.34274,-3.396616
+      parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 3554
@@ -14629,6 +14637,11 @@ entities:
     - type: Transform
       pos: 35.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 2475
 - proto: FloorDrain
   entities:
   - uid: 877
@@ -21086,7 +21099,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 2475
     - type: AtmosPipeColor
@@ -21653,7 +21665,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
-      - invalid
       - invalid
       deviceLists:
       - 2475
@@ -23196,7 +23207,7 @@ entities:
   - uid: 3545
     components:
     - type: Transform
-      pos: 37.713135,-3.3436685
+      pos: 37.53024,-3.537241
       parent: 1
 - proto: Mirror
   entities:
