@@ -109,6 +109,9 @@
         shader: unshaded
   - type: Clothing
     sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
   - type: Construction
     graph: NFGoblinMadeWirecutter
     node: NFGoblinMadeWirecutter
@@ -506,3 +509,152 @@
   - type: Construction
     graph: NFGoblinMadeTrayScanner
     node: NFGoblinMadeTrayScanner
+
+#region signaller
+- type: entity
+  id: NFGoblinMadeRemoteSignaller
+  parent: [ NFBaseGoblinMadeTools, RemoteSignaller ]
+  name: remote winkah
+  description: An improvised remote signaller capable of sending signals to objects within a small radius of about 10 meters.
+  components:
+  - type: Tag
+    tags:
+    - GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/signaller.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/signaller.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/signaller.rsi
+  - type: WirelessNetworkConnection
+    range: 10
+  - type: Construction
+    graph: NFGoblinMadeRemoteSignaller
+    node: NFGoblinMadeRemoteSignaller
+
+#region lantern
+- type: entity
+  id: NFGoblinMadeLantern
+  parent: [ NFBaseGoblinMadeTools, FlashlightLantern ]
+  name: glimmah
+  description: An improvised lantern. How is it possible to put a power cell and a light bulb inside a glass bottle without breaking either of those items?
+  components:
+  - type: Tag
+    tags:
+    - Flashlight
+    - GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/lantern.rsi
+    layers:
+    - state: lantern
+    - state: lantern-overlay
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/lantern.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+    storedRotation: 0
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/lantern.rsi
+  - type: PointLight
+    enabled: false
+    mask: null
+    radius: 4
+    energy: 2.5
+    color: "#FFC458"
+    netsync: false
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: NFGoblinMadePowerCell
+  - type: Construction
+    graph: NFGoblinMadeRemoteSignaller
+    node: NFGoblinMadeRemoteSignaller
+
+#region power cell
+- type: entity
+  id: NFGoblinMadePowerCell
+  parent: [ NFBaseGoblinMadeTools, PowerCellSmall ]
+  name: powah cell
+  description: An improvised power cell. How long will you be able to resist the temptation to drink the electrolyte?
+  suffix: Goblin Made, Full
+  components:
+  - type: Tag
+    tags:
+      - PowerCell
+      - PowerCellSmall
+      - GoblinMade
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/power_cell.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      color: "#0084ff"
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: icon
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/power_cell.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/power_cell.rsi
+  - type: MachinePart
+    part: PowerCell
+    rating: 1 # Ideally 0
+
+- type: entity
+  id: NFGoblinMadePowerCellDepleted
+  parent: NFGoblinMadePowerCell
+  suffix: Goblin Made, Empty
+  components:
+  - type: Battery
+    maxCharge: 360
+    startingCharge: 0
+  - type: Construction
+    graph: NFGoblinMadePowerCellDepleted
+    node: NFGoblinMadePowerCellDepleted

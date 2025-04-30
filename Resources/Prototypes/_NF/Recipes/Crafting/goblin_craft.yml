@@ -204,6 +204,57 @@
     state: icon
   objectType: Item
 
+#region signaller
+- type: construction
+  name: goblin remote winkah
+  id: NFGoblinMadeRemoteSignaller
+  graph: NFGoblinMadeRemoteSignaller
+  startNode: start
+  targetNode: NFGoblinMadeRemoteSignaller
+  category: construction-category-tools
+  description: An improvised remote signaller capable of sending signals to objects within a small radius of about 10 meters.
+  entityWhitelist:
+    tags:
+    - GoblinCraft
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/signaller.rsi
+    state: icon
+  objectType: Item
+
+#region lantern
+- type: construction
+  name: goblin glimmah
+  id: NFGoblinMadeLantern
+  graph: NFGoblinMadeLantern
+  startNode: start
+  targetNode: NFGoblinMadeLantern
+  category: construction-category-tools
+  description: An improvised lantern.
+  entityWhitelist:
+    tags:
+    - GoblinCraft
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/lantern.rsi
+    state: lantern
+  objectType: Item
+
+#region power cell
+- type: construction
+  name: goblin powah cell
+  id: NFGoblinMadePowerCellDepleted
+  graph: NFGoblinMadePowerCellDepleted
+  startNode: start
+  targetNode: NFGoblinMadePowerCellDepleted
+  category: construction-category-tools
+  description: An improvised power cell.
+  entityWhitelist:
+    tags:
+    - GoblinCraft
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/power_cell.rsi
+    state: icon
+  objectType: Item
+
 # furniture
 #region banner
 - type: construction
