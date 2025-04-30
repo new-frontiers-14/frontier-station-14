@@ -1,12 +1,12 @@
 # clothes
 #region robes
 - type: construction
-  name: goblin traditional robes
+  name: traditional robes
   id: ClothingOuterCoatRobesGoblin
   graph: ClothingOuterCoatRobesGoblin
   startNode: start
   targetNode: ClothingOuterCoatRobesGoblin
-  category: construction-category-clothing
+  category: construction-category-goblin
   description: Traditional robes of goblinkind. Very regal.
   entityWhitelist:
     tags:
@@ -18,12 +18,12 @@
 
 #region EVA
 - type: construction
-  name: goblin traditional EVA robes
+  name: traditional EVA robes
   id: ClothingOuterEVASuitGoblin
   graph: ClothingOuterEVASuitGoblin
   startNode: start
   targetNode: ClothingOuterEVASuitGoblin
-  category: construction-category-clothing
+  category: construction-category-goblin
   description: Traditional robes of goblinkind made EVA-capable. Very regal.
   entityWhitelist:
     tags:
@@ -35,12 +35,12 @@
 
 #region trash duffel
 - type: construction
-  name: goblin trashel
+  name: trashel
   id: NFGoblinMadeClothingBackpackDuffelTrashBlue
   graph: NFGoblinMadeClothingBackpackDuffelTrashBlue
   startNode: start
   targetNode: NFGoblinMadeClothingBackpackDuffelTrashBlue
-  category: construction-category-clothing
+  category: construction-category-goblin
   description: A duffel made out of trash bag.
   entityWhitelist:
     tags:
@@ -50,14 +50,31 @@
     state: icon
   objectType: Item
 
+#region trash backpack
+- type: construction
+  name: trashpack
+  id: NFGoblinMadeClothingBackpackTrashBlue
+  graph: NFGoblinMadeClothingBackpackTrashBlue
+  startNode: start
+  targetNode: NFGoblinMadeClothingBackpackTrashBlue
+  category: construction-category-goblin
+  description: A backpack made out of trash bag.
+  entityWhitelist:
+    tags:
+    - GoblinCraft
+  icon:
+    sprite: _NF/Clothing/Back/Backpacks/trashpack_blue.rsi
+    state: icon
+  objectType: Item
+
 #region trash pouch
 - type: construction
-  name: goblin pouch
+  name: pouch
   id: NFGoblinMadeTrashPouch
   graph: NFGoblinMadeTrashPouch
   startNode: start
   targetNode: NFGoblinMadeTrashPouch
-  category: construction-category-clothing
+  category: construction-category-goblin
   description: A pouch made out of trash bag.
   entityWhitelist:
     tags:
@@ -70,13 +87,13 @@
 # tools
 #region multitool
 - type: construction
-  name: goblin 'acking jig
+  name: "'ackin' jig"
   id: NFGoblinMadeMultitool
   graph: NFGoblinMadeMultitool
   startNode: start
   targetNode: NFGoblinMadeMultitool
-  category: construction-category-tools
-  description: An improvised multitool pieced together from faulty circuit board, broken display, bent antennae and stuffed into a discarded wrapper for additional protection against elements.
+  category: construction-category-goblin
+  description: An improvised multitool.
   entityWhitelist:
     tags:
     - GoblinCraft
@@ -87,13 +104,13 @@
 
 #region wirecutter
 - type: construction
-  name: goblin wiresnippah
+  name: wiresnippah
   id: NFGoblinMadeWirecutter
   graph: NFGoblinMadeWirecutter
   startNode: start
   targetNode: NFGoblinMadeWirecutter
-  category: construction-category-tools
-  description: A wirecutter made out of glass shards, metal bits, cloth, and some wires. What's up with all the sparking, though?
+  category: construction-category-goblin
+  description: An improvised wirecutter.
   entityWhitelist:
     tags:
     - GoblinCraft
@@ -104,13 +121,13 @@
 
 #region screwdriver
 - type: construction
-  name: goblin lectro-drivah
+  name: lectro-drivah
   id: NFGoblinMadeScrewdriver
   graph: NFGoblinMadeScrewdriver
   startNode: start
   targetNode: NFGoblinMadeScrewdriver
-  category: construction-category-tools
-  description: An improvised electrical screwdriver, not much in terms of torque, but your wrists will be less sore.
+  category: construction-category-goblin
+  description: An improvised electrical screwdriver.
   entityWhitelist:
     tags:
     - GoblinCraft
@@ -121,13 +138,13 @@
 
 #region crowbar
 - type: construction
-  name: goblin lectro-jilt
+  name: lectro-jilt
   id: NFGoblinMadeCrowbar
   graph: NFGoblinMadeCrowbar
   startNode: start
   targetNode: NFGoblinMadeCrowbar
-  category: construction-category-tools
-  description: The next step in crowbar evolution - jack. Enhanced with an improvised electrical winch.
+  category: construction-category-goblin
+  description: An improvised crowbar.
   entityWhitelist:
     tags:
     - GoblinCraft
@@ -138,13 +155,13 @@
 
 #region wrench
 - type: construction
-  name: goblin lectro-spannah
+  name: lectro-spannah
   id: NFGoblinMadeWrench
   graph: NFGoblinMadeWrench
   startNode: start
   targetNode: NFGoblinMadeWrench
-  category: construction-category-tools
-  description: An improvised electrical wrench, not much in terms of torque, but your wrists will be less sore.
+  category: construction-category-goblin
+  description: An improvised electrical wrench.
   entityWhitelist:
     tags:
     - GoblinCraft
@@ -155,13 +172,13 @@
 
 #region welder
 - type: construction
-  name: goblin burnah torch
+  name: burnah torch
   id: NFGoblinMadeWelder
   graph: NFGoblinMadeWelder
   startNode: start
   targetNode: NFGoblinMadeWelder
-  category: construction-category-tools
-  description: An improvised welding tool made out of a plastic bottle, an empty soda can, a spray nozzle, and a leaking battery.
+  category: construction-category-goblin
+  description: An improvised welding tool.
   entityWhitelist:
     tags:
     - GoblinCraft
@@ -172,13 +189,13 @@
 
 #region mini hoe
 - type: construction
-  name: goblin lectro-scratchah
+  name: lectro-scratchah
   id: NFGoblinMadeMiniHoe
   graph: NFGoblinMadeMiniHoe
   startNode: start
   targetNode: NFGoblinMadeMiniHoe
-  category: construction-category-tools
-  description: A small modification for the tried and true electrical screwdriver device. Weeds , your end is nigh.
+  category: construction-category-goblin
+  description: An improvised mini hoe.
   entityWhitelist:
     tags:
     - GoblinCraft
@@ -189,13 +206,13 @@
 
 #region minig drill
 - type: construction
-  name: goblin pneumatic 'ammah
+  name: "pneumatic 'ammah"
   id: NFGoblinMadeMiningDrill
   graph: NFGoblinMadeMiningDrill
   startNode: start
   targetNode: NFGoblinMadeMiningDrill
-  category: construction-category-tools
-  description: The pickaxe is dead; hail the new king of manual mining - the improvised pneumatic hammer.
+  category: construction-category-goblin
+  description: An improvised mining drill.
   entityWhitelist:
     tags:
     - GoblinCraft
@@ -206,13 +223,13 @@
 
 #region tray scanner
 - type: construction
-  name: goblin stash oglah
+  name: stash oglah
   id: NFGoblinMadeTrayScanner
   graph: NFGoblinMadeTrayScanner
   startNode: start
   targetNode: NFGoblinMadeTrayScanner
-  category: construction-category-tools
-  description: With this tool you no longer have to memorize where you've hidden your stash.
+  category: construction-category-goblin
+  description: An improvised T-Ray scanner.
   entityWhitelist:
     tags:
     - GoblinCraft
@@ -223,13 +240,13 @@
 
 #region signaller
 - type: construction
-  name: goblin remote winkah
+  name: remote winkah
   id: NFGoblinMadeRemoteSignaller
   graph: NFGoblinMadeRemoteSignaller
   startNode: start
   targetNode: NFGoblinMadeRemoteSignaller
-  category: construction-category-tools
-  description: An improvised remote signaller capable of sending signals to objects within a small radius of about 10 meters.
+  category: construction-category-goblin
+  description: An improvised remote signaller.
   entityWhitelist:
     tags:
     - GoblinCraft
@@ -240,12 +257,12 @@
 
 #region lantern
 - type: construction
-  name: goblin glimmah
+  name: glimmah
   id: NFGoblinMadeLantern
   graph: NFGoblinMadeLantern
   startNode: start
   targetNode: NFGoblinMadeLantern
-  category: construction-category-tools
+  category: construction-category-goblin
   description: An improvised lantern.
   entityWhitelist:
     tags:
@@ -257,12 +274,12 @@
 
 #region power cell
 - type: construction
-  name: goblin powah cell
+  name: powah cell
   id: NFGoblinMadePowerCellDepleted
   graph: NFGoblinMadePowerCellDepleted
   startNode: start
   targetNode: NFGoblinMadePowerCellDepleted
-  category: construction-category-tools
+  category: construction-category-goblin
   description: An improvised power cell.
   entityWhitelist:
     tags:
@@ -272,11 +289,28 @@
     state: icon
   objectType: Item
 
+#region lv cable
+- type: construction
+  name: low voltage cables
+  id: CableApcStack10
+  graph: CableApcStack10
+  startNode: start
+  targetNode: CableApcStack10
+  category: construction-category-goblin
+  description: Coil with 10 cables.
+  entityWhitelist:
+    tags:
+    - GoblinCraft
+  icon:
+    sprite: Objects/Tools/cable-coils.rsi
+    state: coillv-10
+  objectType: Item
+
 # furniture
 #region banner
 - type: construction
   id: BannerGoblin01
-  name: goblinkind banner
+  name: goblin banner
   description: A banner displaying the ancient goblinkind logo.
   entityWhitelist:
     tags:
@@ -284,10 +318,32 @@
   graph: NFGoblinMadeBanner
   startNode: start
   targetNode: BannerGoblin01
-  category: construction-category-furniture
+  category: construction-category-goblin
   icon:
     sprite: _NF/Structures/Decoration/banner.rsi
     state: banner_goblin
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+# vehicles
+#region dumpster-car
+- type: construction
+  id: NFGoblinMadeVehicleDumpster
+  name: "dumpstah ra'lah"
+  description: A dumpster turned into a vehicle.
+  entityWhitelist:
+    tags:
+    - GoblinCraft
+  graph: NFGoblinMadeVehicleDumpster
+  startNode: start
+  targetNode: NFGoblinMadeVehicleDumpster
+  category: construction-category-goblin
+  icon:
+    sprite: _NF/Objects/Vehicles/dumpster.rsi
+    state: dumpster
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

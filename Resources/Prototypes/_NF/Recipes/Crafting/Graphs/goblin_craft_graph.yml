@@ -65,6 +65,27 @@
   - node: NFGoblinMadeClothingBackpackDuffelTrashBlue
     entity: NFGoblinMadeClothingBackpackDuffelTrashBlue
 
+#region trash backpack
+- type: constructionGraph
+  id: NFGoblinMadeClothingBackpackTrashBlue
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeClothingBackpackTrashBlue
+      steps:
+      - tag: TrashBag
+        name: trash bag
+        icon:
+          sprite: Objects/Specific/Janitorial/trashbag.rsi
+          state: blue-icon-0
+        doAfter: 0.5
+      - material: Cable
+        amount: 5
+        doAfter: 0.5
+  - node: NFGoblinMadeClothingBackpackTrashBlue
+    entity: NFGoblinMadeClothingBackpackTrashBlue
+
 #region trash pouch
 - type: constructionGraph
   id: NFGoblinMadeTrashPouch
@@ -567,6 +588,30 @@
   - node: NFGoblinMadePowerCellDepleted
     entity: NFGoblinMadePowerCellDepleted
 
+#region power cell
+- type: constructionGraph
+  id: CableApcStack10
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CableApcStack10
+      steps:
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: cheesiehonkers-trash
+        doAfter: 1
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: boritos-trash
+        doAfter: 1
+  - node: CableApcStack10
+    entity: CableApcStack10
+
 #region banner
 - type: constructionGraph
   id: NFGoblinMadeBanner
@@ -600,3 +645,42 @@
           steps:
             - tool: Screwing
               doAfter: 1
+
+#region dumpster-car
+- type: constructionGraph
+  id: NFGoblinMadeVehicleDumpster
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFGoblinMadeVehicleDumpster
+      steps:
+      - tag: GoblinVehicleDumpster
+        name: dumpster
+        icon:
+          sprite: _NF/Structures/Storage/magnetbox.rsi
+          state: rubbishbox
+        doAfter: 1
+      - tag: NFChairFolding
+        name: folding chair
+        icon:
+          sprite: Structures/Furniture/folding_chair.rsi
+          state: folding
+        doAfter: 1
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: boritos-trash
+        doAfter: 0.2
+      - tag: Trash
+        name: trash
+        icon:
+          sprite: Objects/Consumable/Food/snacks.rsi
+          state: chips-trash
+        doAfter: 0.2
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+  - node: NFGoblinMadeVehicleDumpster
+    entity: NFGoblinMadeVehicleDumpster
