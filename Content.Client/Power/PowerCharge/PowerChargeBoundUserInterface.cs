@@ -20,7 +20,7 @@ public sealed class PowerChargeBoundUserInterface : BoundUserInterface
     // Frontier: Add action
     public void ActionButton()
     {
-        SendMessage(new ActionMessage());
+        SendMessage(new PowerChargeActionMessage());
     }
     // Frontier End
 
@@ -31,6 +31,7 @@ public sealed class PowerChargeBoundUserInterface : BoundUserInterface
             return;
 
         _window = this.CreateWindow<PowerChargeWindow>();
+        _window.SetActionUI(component.ActionUI); // Frontier
         _window.UpdateWindow(this, Loc.GetString(component.WindowTitle));
     }
 

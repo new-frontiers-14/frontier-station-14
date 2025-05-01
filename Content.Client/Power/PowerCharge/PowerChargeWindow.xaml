@@ -1,8 +1,8 @@
-<controls:FancyWindow xmlns="https://spacestation14.io" 
+<controls:FancyWindow xmlns="https://spacestation14.io"
                 xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-                MinSize="270 175"
-                SetSize="360 210">
-    <BoxContainer Margin="4 0" Orientation="Horizontal"> <!-- Frontier: Min Size 130<175 SetSize 180<210-->
+                MinSize="270 130"
+                SetSize="360 180">
+    <BoxContainer Margin="4 0" Orientation="Horizontal">
         <BoxContainer Orientation="Vertical" HorizontalExpand="True">
             <GridContainer Margin="2 0 0 0" Columns="2">
                 <!-- Power -->
@@ -24,8 +24,10 @@
                 <ProgressBar Name="ChargeBar" MaxValue="255">
                     <Label Name="ChargeText" Margin="4 0" Text="0 %" />
                 </ProgressBar>
-                <Label Visible="False" Name="ActionButtonText" Text="{Loc 'power-charge-window-action'}" HorizontalExpand="True" StyleClasses="StatusFieldTitle" /> <!-- Frontier: ActivateButton -->
-                <Button Disabled="True" Visible="False" Name="ActionButton" Text="{Loc 'power-charge-window-power-action'}" MinWidth="120" /> <!-- Frontier: ActivateButton -->
+                <!-- Frontier: activate button -->
+                <Label Visible="False" Name="ActionButtonText" Text="{Loc 'power-charge-window-action'}" HorizontalExpand="True" StyleClasses="StatusFieldTitle" />
+                <Button Disabled="True" Visible="False" Name="ActionButton" Text="{Loc 'power-charge-window-power-action'}" MinWidth="120" />
+                <!-- End Frontier: activate button -->
             </GridContainer>
         </BoxContainer>
         <PanelContainer Margin="12 0 0 0" StyleClasses="Inset" VerticalAlignment="Center">

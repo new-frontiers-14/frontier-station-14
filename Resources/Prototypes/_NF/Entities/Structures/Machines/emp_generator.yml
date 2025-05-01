@@ -1,8 +1,8 @@
 - type: entity
-  id: MEMPGenerator
+  id: MobileEmpGenerator
   parent: [BaseStructureDisableToolUse, BaseC2ContrabandUnredeemable, BaseMachinePowered, ConstructibleMachine]
-  name: mobile emp generator
-  description: A major EMP blast pulse to disable shuttles.
+  name: mobile EMP generator
+  description: Creates giant EMP blasts to disable shuttles.
   placement:
     mode: AlignTileAny
   components:
@@ -24,18 +24,40 @@
     fuelCost: 10
     doAfterDelay: 5
   - type: PowerCharge
-    windowTitle: memp-generator-window-title
+    windowTitle: emp-generator-window-title
     idlePower: 50
     activePower: 2500
+    activeChargingPower: 15000
     actionUI: true
-  - type: MEMPGenerator
+  - type: EmpGenerator
     lightRadiusMin: 0.75
     lightRadiusMax: 2.5
+  - type: EmpDescription
+    range: 100
+    energyConsumption: 1000000
+    disableDuration: 60
+  - type: EmpGeneratorVisuals
     spriteMap:
       broken: "broken"
       unpowered: "off"
       off: "off"
       on: "on"
+    thresholds:
+    - maxCharge: 0.2
+      state: null
+      visible: false
+    - maxCharge: 0.4
+      state: startup
+      visible: true
+    - maxCharge: 0.6
+      state: idle
+      visible: true
+    - maxCharge: 0.8
+      state: activating
+      visible: true
+    - maxCharge: 1000.0 # bigger value
+      state: activated
+      visible: true
   - type: ActivatableUI
     key: enum.PowerChargeUiKey.Key
   - type: ActivatableUIRequiresPower
@@ -46,20 +68,20 @@
   - type: Appearance
   - type: PointLight
     radius: 2.5
-    energy: 0.5
+    energy: 0.7
     # Gravity generator is a large machine, not casting shadows is fine within the radius set above.
     castShadows: false
-    color: "#a8ffd9"
+    color: "#85c6ff"
   - type: Sprite
     sprite: _NF/Structures/Machines/memp_mini.rsi
     snapCardinals: true
     layers:
       - state: on
-        map: ["enum.MEMPGeneratorVisualLayers.Base"]
+        map: ["enum.EmpGeneratorVisualLayers.Base"]
       - sprite: _NF/Structures/Machines/memp_core.rsi
         state: activated
         shader: unshaded
-        map: ["enum.MEMPGeneratorVisualLayers.Core"]
+        map: ["enum.EmpGeneratorVisualLayers.Core"]
         scale: "0.4,0.4"
         offset: "0,0.2"
   - type: Fixtures
@@ -91,6 +113,6 @@
             max: 1
   - type: WiresPanel
   - type: Machine
-    board: MEMPMachineCircuitboard
+    board: MobileEmpGeneratorMachineCircuitboard
   - type: StaticPrice
     price: 300

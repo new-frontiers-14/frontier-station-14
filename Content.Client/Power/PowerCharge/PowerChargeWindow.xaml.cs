@@ -37,9 +37,7 @@ public sealed partial class PowerChargeWindow : FancyWindow
         else
             OffButton.Pressed = true;
 
-        ActionButton.Visible = state.Action; // Frontier
-        ActionButtonText.Visible = state.Action; // Frontier
-        ActionButton.Disabled = state.ActionUnlocked; // Frontier
+        ActionButton.Disabled = !state.ActionUnlocked; // Frontier
 
         PowerLabel.Text = Loc.GetString(
             "power-charge-window-power-label",
@@ -74,4 +72,14 @@ public sealed partial class PowerChargeWindow : FancyWindow
 
         EtaLabel.SetOnlyStyleClass(state.EtaSeconds >= 0 ? "Caution" : "Disabled");
     }
+
+    // Frontier: action button
+    public void SetActionUI(bool actionUI)
+    {
+        MinSize = new(MinSize.X, float.Max(MinSize.Y, actionUI ? 175 : 130));
+        SetSize = new(SetSize.X, float.Max(SetSize.Y, actionUI ? 210 : 180));
+        ActionButton.Visible = actionUI;
+        ActionButtonText.Visible = actionUI;
+    }
+    // End Frontier: action button
 }
