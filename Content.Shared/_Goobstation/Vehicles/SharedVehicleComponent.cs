@@ -11,10 +11,10 @@ public sealed partial class VehicleComponent : Component
     [DataField, AutoNetworkedField] // Frontier: ViewVariables to DataField & AutoNetworked
     public EntityUid? Driver;
 
-    [ViewVariables]
+    [DataField, AutoNetworkedField] // Frontier: VV<DataField, AutoNetwork
     public EntityUid? HornAction;
 
-    [ViewVariables]
+    [DataField, AutoNetworkedField] // Frontier: VV<DataField, AutoNetwork
     public EntityUid? SirenAction;
 
     // public bool SirenEnabled = false; // Frontier
