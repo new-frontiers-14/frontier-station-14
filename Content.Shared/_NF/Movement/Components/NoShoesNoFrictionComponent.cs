@@ -17,21 +17,21 @@ public sealed partial class NoShoesNoFrictionComponent : Component
     /// Modified mob friction while having no shoes
     /// </summary>
     [AutoNetworkedField]
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables]
     public float MobFriction = 0.5f;
 
     /// <summary>
     /// Modified mob friction while having no shoes
     /// </summary>
     [AutoNetworkedField]
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables]
     public float MobFrictionNoInput = 0.05f;
 
     /// <summary>
     /// Modified mob acceleration while having no shoes
     /// </summary>
     [AutoNetworkedField]
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables]
     public float MobAcceleration = 2.0f;
 
     /// <summary>

@@ -30,7 +30,7 @@ public sealed class NoShoesNoFrictionSystem : EntitySystem
             return;
 
         var hasShoes = _inventory.TryGetSlotEntity(uid, component.Slot, out var worn);
-        bool blacklist = hasShoes && worn.HasValue && _whitelistSystem.IsBlacklistFailOrNull(component.Blacklist, worn.Value);
+        bool blacklist = hasShoes && IsBlacklisted(uid, component, worn);
 
         if (blacklist)
             UpdateFriction(uid, MovementSpeedModifierComponent.DefaultFriction, MovementSpeedModifierComponent.DefaultFrictionNoInput, MovementSpeedModifierComponent.DefaultAcceleration, speedModifier);
@@ -41,14 +41,23 @@ public sealed class NoShoesNoFrictionSystem : EntitySystem
         if (!TryComp(uid, out MovementSpeedModifierComponent? speedModifier))
             return;
 
-        var hasShoes = _inventory.TryGetSlotEntity(uid, component.Slot, out var _);
+        var hasShoes = _inventory.TryGetSlotEntity(uid, component.Slot, out var worn);
 
         if (!hasShoes)
             UpdateFriction(uid, component.MobFriction, component.MobFrictionNoInput, component.MobAcceleration, speedModifier);
     }
 
+    /// <summary>
+    /// Updates the friction and acceleration of an entity based on whether they are wearing shoes.
+    /// </summary>
     private void UpdateFriction(EntityUid uid, float friction, float? frictionNoInput, float acceleration, MovementSpeedModifierComponent speedModifier)
     {
+
         _speedModifierSystem.ChangeFriction(uid, friction, frictionNoInput, acceleration, speedModifier);
+
+    }
+    private bool IsBlacklisted(EntityUid uid, NoShoesNoFrictionComponent component, EntityUid? worn)
+    {
+        return worn.HasValue && _whitelistSystem.IsBlacklistFailOrNull(component.Blacklist, worn.Value);
     }
 }
