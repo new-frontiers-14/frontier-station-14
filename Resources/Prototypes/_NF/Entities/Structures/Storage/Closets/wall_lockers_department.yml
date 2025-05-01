@@ -10,8 +10,6 @@
     - state: base
       map: ["enum.StorageVisualLayers.Base"]
       color: "#42658d"
-    - state: fillEva-0
-      map: ["enum.StorageFillLayers.Fill"]
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
       color: "#42658d"
@@ -26,9 +24,6 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
-  - type: StorageFillVisualizer
-    maxFillLevels: 6
-    fillBaseName: fillEva
 # endregion
 
 #region Engineering
@@ -146,6 +141,8 @@
     - state: base
       map: ["enum.StorageVisualLayers.Base"]
       color: "#fff4e2"
+    - state: fillMed-0
+      map: ["enum.StorageFillLayers.Fill"]
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
       color: "#fff4e2"
@@ -160,6 +157,9 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+  - type: StorageFillVisualizer
+    maxFillLevels: 11
+    fillBaseName: fillMed
 
 - type: entity
   id: LockerWallColorChemistry
