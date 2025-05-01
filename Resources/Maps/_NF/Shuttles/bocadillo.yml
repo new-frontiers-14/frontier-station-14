@@ -4,8 +4,8 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/01/2025 07:15:12
-  entityCount: 275
+  time: 05/01/2025 08:00:17
+  entityCount: 276
 maps: []
 grids:
 - 2
@@ -681,13 +681,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -8.5,5.5
       parent: 2
-- proto: ClosetChefFilled
-  entities:
-  - uid: 233
-    components:
-    - type: Transform
-      pos: 1.5,6.5
-      parent: 2
 - proto: ClothingBeltPlantFilled
   entities:
   - uid: 108
@@ -1294,6 +1287,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -10.5,5.5
       parent: 2
+- proto: Gyroscope
+  entities:
+  - uid: 185
+    components:
+    - type: Transform
+      pos: -9.5,4.5
+      parent: 2
 - proto: hydroponicsTray
   entities:
   - uid: 8
@@ -1383,11 +1383,10 @@ entities:
       parent: 2
 - proto: LockerWallMaterialsBasic10Filled
   entities:
-  - uid: 178
+  - uid: 276
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,2.5
+      pos: 1.5,7.5
       parent: 2
 - proto: LockerWallMaterialsFuelUraniumFilled
   entities:
@@ -1396,6 +1395,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -6.5,4.5
+      parent: 2
+- proto: MaterialReclaimer
+  entities:
+  - uid: 233
+    components:
+    - type: Transform
+      pos: -1.5,3.5
       parent: 2
 - proto: NFHolopadShip
   entities:
@@ -1507,7 +1513,7 @@ entities:
   - uid: 139
     components:
     - type: Transform
-      pos: -1.5,3.5
+      pos: 1.5,6.5
       parent: 2
 - proto: SheetSteel
   entities:
@@ -1606,6 +1612,11 @@ entities:
     components:
     - type: Transform
       pos: -8.5,2.5
+      parent: 2
+  - uid: 277
+    components:
+    - type: Transform
+      pos: 4.5,4.5
       parent: 2
 - proto: ShuttleWindow
   entities:
@@ -1711,6 +1722,8 @@ entities:
         - Pressed: Toggle
         258:
         - Pressed: Toggle
+        277:
+        - Pressed: Toggle
   - uid: 260
     components:
     - type: Transform
@@ -1766,13 +1779,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,3.5
-      parent: 2
-- proto: Gyroscope
-  entities:
-  - uid: 185
-    components:
-    - type: Transform
-      pos: -9.5,4.5
       parent: 2
 - proto: SpawnPointLatejoin
   entities:
