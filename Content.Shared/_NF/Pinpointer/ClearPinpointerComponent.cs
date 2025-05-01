@@ -20,7 +20,13 @@ public sealed partial class ClearPinpointerComponent : Component
     /// The message to print when the item is used on somebody else.
     /// </summary>
     [DataField]
-    public LocId? OtherMessage;
+    public LocId? UseOnOthersMessage;
+
+    /// <summary>
+    /// The message to print when the item is used on yourself.
+    /// </summary>
+    [DataField]
+    public LocId? UseOnSelfMessage;
 
     /// <summary>
     /// The amount of time it takes to clear an item's pinpointer status.

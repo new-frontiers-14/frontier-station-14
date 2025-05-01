@@ -20,10 +20,10 @@ public sealed partial class LimitedChargesVisualizerSystem : EntitySystem
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite)) return;
 
-        if (sprite.LayerMapTryGet(LimitedChargesVisualLayers.Charges, out _))
+        if (sprite.LayerMapTryGet(LimitedChargesVisualLayers.Charges, out var chargeLayer))
         {
-            sprite.LayerSetState(LimitedChargesVisualLayers.Charges, $"{component.ChargePrefix}-{component.ChargeSteps - 1}");
-            sprite.LayerSetVisible(LimitedChargesVisualLayers.Charges, false);
+            sprite.LayerSetState(chargeLayer, $"{component.ChargePrefix}-{component.ChargeSteps - 1}");
+            sprite.LayerSetVisible(chargeLayer, false);
         }
     }
 
@@ -41,15 +41,16 @@ public sealed partial class LimitedChargesVisualizerSystem : EntitySystem
 
         var step = ContentHelpers.RoundToLevels((int)current, (int)capacity, component.ChargeSteps);
 
+        int chargeLayer;
         if (step == 0 && !component.ZeroVisible)
         {
-            if (sprite.LayerMapTryGet(LimitedChargesVisualLayers.Charges, out _))
-                sprite.LayerSetVisible(LimitedChargesVisualLayers.Charges, false);
+            if (sprite.LayerMapTryGet(LimitedChargesVisualLayers.Charges, out chargeLayer))
+                sprite.LayerSetVisible(chargeLayer, false);
         }
-        else if (sprite.LayerMapTryGet(LimitedChargesVisualLayers.Charges, out _))
+        else if (sprite.LayerMapTryGet(LimitedChargesVisualLayers.Charges, out chargeLayer))
         {
-            sprite.LayerSetVisible(LimitedChargesVisualLayers.Charges, true);
-            sprite.LayerSetState(LimitedChargesVisualLayers.Charges, $"{component.ChargePrefix}-{step}");
+            sprite.LayerSetVisible(chargeLayer, true);
+            sprite.LayerSetState(chargeLayer, $"{component.ChargePrefix}-{step}");
         }
     }
 }

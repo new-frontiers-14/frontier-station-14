@@ -39,8 +39,16 @@ public sealed class ClearPinpointerSystem : EntitySystem
             return;
         }
 
-        if (ent.Comp.OtherMessage != null)
-            _popup.PopupEntity(Loc.GetString(ent.Comp.OtherMessage, ("user", Identity.Entity(args.User, EntityManager))), args.Target.Value, args.Target.Value, PopupType.Large);
+        if (args.User == args.Target)
+        {
+            if (ent.Comp.UseOnSelfMessage != null)
+                _popup.PopupEntity(Loc.GetString(ent.Comp.UseOnSelfMessage, ("user", Identity.Entity(args.User, EntityManager))), args.Target.Value, args.Target.Value, PopupType.Small);
+        }
+        else
+        {
+            if (ent.Comp.UseOnOthersMessage != null)
+                _popup.PopupEntity(Loc.GetString(ent.Comp.UseOnOthersMessage, ("user", Identity.Entity(args.User, EntityManager))), args.Target.Value, args.Target.Value, PopupType.Large);
+        }
 
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.ClearTime, new ClearPinpointerDoAfterEvent(), ent, target: args.Target, used: ent)
         {
