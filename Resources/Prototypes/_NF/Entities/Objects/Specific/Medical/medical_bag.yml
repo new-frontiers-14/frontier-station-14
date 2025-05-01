@@ -1,9 +1,9 @@
 - type: entity
   name: medical bag
   id: MedicalBag
-  parent: BaseStorageItem
+  parent: NFBaseClothingBeltStorageBag
   description: A medical bag designed to hold topicals and small reagent containers. For the medic on the go.
-  components:  
+  components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Medical/medical_bag.rsi
     layers:
@@ -16,12 +16,7 @@
     quickEquip: false
     slots:
     - belt
-  - type: Item
-    size: Ginormous
   - type: Storage
-    maxItemSize: Normal
-    grid:
-    - 0,0,5,3
     quickInsert: true
     areaInsert: true
     whitelist:

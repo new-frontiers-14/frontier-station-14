@@ -1,8 +1,8 @@
 # DEPARTMENTS
-## Command
+#region Command
 - type: entity
   id: LockerWallColorCaptain
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: captain wall locker
   components:
   - type: Sprite
@@ -10,6 +10,8 @@
     - state: base
       map: ["enum.StorageVisualLayers.Base"]
       color: "#42658d"
+    - state: fillEva-0
+      map: ["enum.StorageFillLayers.Fill"]
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
       color: "#42658d"
@@ -24,11 +26,15 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+  - type: StorageFillVisualizer
+    maxFillLevels: 6
+    fillBaseName: fillEva
+# endregion
 
-## Engineering
+#region Engineering
 - type: entity
   id: LockerWallColorEngineer
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: engineer wall locker
   components:
   - type: Sprite
@@ -53,7 +59,7 @@
 
 - type: entity
   id: LockerWallColorAtmosTech
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: atmospheric technician wall locker
   components:
   - type: Sprite
@@ -75,11 +81,12 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+# endregion
 
-## Supply
+#region Supply
 - type: entity
   id: LockerWallColorCargo
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: cargo technician wall locker
   components:
   - type: Sprite
@@ -104,7 +111,7 @@
 
 - type: entity
   id: LockerWallColorSalvage
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: salvage specialist wall locker
   components:
   - type: Sprite
@@ -126,11 +133,12 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+# endregion
 
-## Medical
+#region Medical
 - type: entity
   id: LockerWallColorMedical
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: medical wall locker
   components:
   - type: Sprite
@@ -155,7 +163,7 @@
 
 - type: entity
   id: LockerWallColorChemistry
-  parent: LockerWallColorBase
+  parent: LockerWallColorBase # Too mcuh entities inside for limited grid inventory
   name: chemistry wall locker
   components:
   - type: Sprite
@@ -177,11 +185,12 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+# endregion
 
-## Service
+#region Service
 - type: entity
   id: LockerWallColorServiceWorker
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: service worker wall locker
   components:
   - type: Sprite
@@ -204,10 +213,10 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
 
-- type: entity  
+- type: entity
   id: LockerWallColorHydroponics
   categories: [ HideSpawnMenu ] # debloat spawn menu
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: botanist wall locker
   components:
   - type: Sprite
@@ -229,11 +238,12 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+# endregion
 
-## Generic
+#region Generic
 - type: entity
   id: LockerWallColorGeneric
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: wall locker
   components:
   - type: Sprite
@@ -258,7 +268,7 @@
 
 - type: entity
   id: LockerWallColorGenericBlue
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: wall locker
   suffix: Frontier, Blue
   components:
@@ -284,7 +294,7 @@
 
 - type: entity
   id: LockerWallColorGenericGreen
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: wall locker
   suffix: Frontier, Green
   components:
@@ -310,7 +320,7 @@
 
 - type: entity
   id: LockerWallColorGenericBlack
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: wall locker
   suffix: Frontier, Black
   components:
@@ -333,3 +343,4 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+# endregion

@@ -1,3 +1,4 @@
+#region base
 - type: entity # Base for yml-colored lockers
   abstract: true
   id: LockerWallColorBase
@@ -27,11 +28,54 @@
       entity_storage: !type:Container
       paper_label: !type:ContainerSlot # Defined for any locker inheriting a physical one.
 
-# Fuel / materials storage
+# base for yml-colored lockers with grid inventories
+- type: entity
+  id: NFBaseLockerGridInvWallColor
+  parent: [ ShelfBaseReinforced, BaseStructureWallmount ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/wall_locker_color.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: fillEva-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: StorageFillVisualizer
+    maxFillLevels: 6
+    fillBaseName: fillEva
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: Storage
+    grid:
+    - 0,0,5,7
+    maxItemSize: Ginormous
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        decal1:
+          True: { visible: false }
+          False: { visible: true }
+        decal2:
+          True: { visible: false }
+          False: { visible: true }
+        enum.StorageFillLayers.Fill:
+          True: { visible: true }
+          False: { visible: false }
+# endregion
+
+#region Fuel / mats storage
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallColorFuelPlasma
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: plasma fuel wall locker
   components:
   - type: Sprite
@@ -57,7 +101,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallColorUranium
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: uranium fuel wall locker
   components:
   - type: Sprite
@@ -82,7 +126,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallColorWelding
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: welding fuel wall locker
   components:
   - type: Sprite
@@ -108,7 +152,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallColorAme
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: AME fuel wall locker
   components:
   - type: Sprite
@@ -134,7 +178,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallColorBananium
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: bananium fuel wall locker
   components:
   - type: Sprite
@@ -159,7 +203,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallColorMaterials
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: materials wall locker
   components:
   - type: Sprite
@@ -181,12 +225,13 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+# endregion
 
-# Safety equipment: radiation protection, boihazard etc.
+#region safety equipment
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallColorL1Fire
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: L1 fire suit wall locker
   components:
   - type: Sprite
@@ -208,7 +253,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallColorL2Radiation
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: L2 radiation suit wall locker
   components:
   - type: Sprite
@@ -231,7 +276,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallColorL3Biohazard
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: L3 biohazard suit wall locker
   components:
   - type: Sprite
@@ -253,7 +298,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallColorL4Bomb
-  parent: LockerWallColorBase
+  parent: NFBaseLockerGridInvWallColor
   name: L4 bomb suit wall locker
   components:
   - type: Sprite
@@ -271,8 +316,9 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+# endregion
 
-# Other: Chemistry wall locker
+#region Other
 - type: entity
   id: LockerWallChemistry
   parent: [BaseStructureWallmount, LockerWallMedical]
@@ -335,3 +381,4 @@
     stateBaseClosed: generic
     stateDoorOpen: generic_open
     stateDoorClosed: orange_door
+# endregion
