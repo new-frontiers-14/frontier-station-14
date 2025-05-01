@@ -4,7 +4,7 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/30/2025 16:14:25
+  time: 05/01/2025 16:11:13
   entityCount: 247
 maps: []
 grids:
@@ -34,6 +34,7 @@ entities:
       name: Paladin
     - type: Transform
       pos: -0.4917612,-0.4486041
+      parent: invalid
     - type: BecomesStation
       id: Paladin
     - type: MapGrid
@@ -424,6 +425,14 @@ entities:
     - type: Transform
       pos: 2.5,1.5
       parent: 1
+- proto: BorgClock
+  entities:
+  - uid: 105
+    components:
+    - type: Transform
+      pos: 1.5,1.5
+      parent: 1
+    - type: ForceAnchor
 - proto: ButtonFrameCaution
   entities:
   - uid: 37
@@ -903,11 +912,11 @@ entities:
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 105
+  - uid: 77
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,1.5
+      rot: 1.5707963267948966 rad
+      pos: -1.5,3.5
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
@@ -915,7 +924,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -1.5,1.5
+      pos: -1.5,2.5
       parent: 1
 - proto: FaxMachineShip
   entities:
@@ -1349,8 +1358,8 @@ entities:
   - uid: 126
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,3.5
+      rot: 3.141592653589793 rad
+      pos: 0.5,1.5
       parent: 1
 - proto: MagazineGrenadeEMP
   entities:
@@ -1500,16 +1509,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-0.5
       parent: 1
-- proto: ShelfRMetalSecurity
-  entities:
-  - uid: 73
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,2.5
-      parent: 1
-    - type: Storage
-      clickInsert: False
 - proto: ShuttersWindow
   entities:
   - uid: 42
@@ -1550,11 +1549,13 @@ entities:
       bodyType: Static
 - proto: StructureGunRackWallmountedNfsd
   entities:
-  - uid: 77
+  - uid: 73
     components:
     - type: Transform
-      pos: 1.5,1.5
+      pos: -1.5,1.5
       parent: 1
+    - type: WallMount
+      arc: 1.5707963267948966 rad
 - proto: SubstationWallBasic
   entities:
   - uid: 75
