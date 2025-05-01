@@ -7,6 +7,14 @@
     job_id: Contractor
 
 - type: entity
+  id: SpawnPointContractorInterview
+  parent: SpawnPointContractor
+  name: contractor applicant
+  components:
+  - type: SpawnPoint
+    job_id: ContractorInterview
+
+- type: entity
   id: SpawnPointMercenary
   parent: SpawnPointJobBase
   name: mercenary
@@ -18,6 +26,14 @@
     layers:
       - state: green
       - state: mercenary
+
+- type: entity
+  id: SpawnPointMercenaryInterview
+  parent: SpawnPointMercenary
+  name: mercenary applicant
+  components:
+  - type: SpawnPoint
+    job_id: MercenaryInterview
 
 - type: entity
   id: SpawnPointPilot
@@ -33,34 +49,45 @@
       - state: pilot
 
 - type: entity
-  id: SpawnPointPirate
+  id: SpawnPointPilotInterview
+  parent: SpawnPointPilot
+  name: pilot applicant
+  components:
+  - type: SpawnPoint
+    job_id: PilotInterview
+
+- type: entity
+  id: SpawnPointNFPirate
   parent: SpawnPointJobBase
   name: pirate
+  suffix: Frontier
   components:
   - type: SpawnPoint
-    job_id: Pirate
+    job_id: NFPirate
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-red
 
 - type: entity
-  id: SpawnPointPirateFirstMate
+  id: SpawnPointNFPirateFirstMate
   parent: SpawnPointJobBase
   name: pirate first mate
+  suffix: Frontier
   components:
   - type: SpawnPoint
-    job_id: PirateFirstMate
+    job_id: NFPirateFirstMate
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-red
 
 - type: entity
-  id: SpawnPointPirateCaptain
+  id: SpawnPointNFPirateCaptain
   parent: SpawnPointJobBase
   name: pirate captain
+  suffix: Frontier
   components:
   - type: SpawnPoint
-    job_id: PirateCaptain
+    job_id: NFPirateCaptain
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-red
@@ -94,7 +121,7 @@
 - type: entity
   id: SpawnPointERTMailCarrier
   parent: SpawnPointJobBase
-  name: ERTmailcarrier
+  name: ERT mail carrier
   components:
   - type: SpawnPoint
     job_id: ERTMailCarrier
@@ -103,6 +130,19 @@
     layers:
       - state: green
       - state: ertmailcarrier
+
+- type: entity
+  id: SpawnPointDirectorOfCare
+  parent: SpawnPointJobBase
+  name: director of care
+  components:
+  - type: SpawnPoint
+    job_id: DirectorOfCare
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: medic
 
 - type: entity
   id: SpawnPointStationRepresentative
@@ -156,6 +196,7 @@
   id: NFSpawnPointDetective
   parent: SpawnPointDetective
   name: detective
+  suffix: Frontier
   components:
   - type: SpawnPoint
     job_id: NFDetective
@@ -171,6 +212,7 @@
 - type: entity
   id: NFSpawnPointJanitor
   parent: SpawnPointJanitor
+  suffix: Frontier
   components:
   - type: SpawnPoint
     job_id: NFJanitor

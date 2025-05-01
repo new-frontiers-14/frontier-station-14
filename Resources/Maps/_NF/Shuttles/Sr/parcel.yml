@@ -14,11 +14,11 @@ entities:
     components:
     - type: MetaData
       name: Parcel
-    - type: BecomesStation
-      id: Parcel
     - type: Transform
       pos: -0.48958334,-0.5208333
       parent: invalid
+    - type: BecomesStation
+      id: Parcel
     - type: MapGrid
       chunks:
         0,0:
@@ -795,38 +795,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,-3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
   - uid: 26
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 89
@@ -1149,6 +1123,13 @@ entities:
     - type: Transform
       pos: 6.5,2.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 91
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 100
@@ -1188,12 +1169,8 @@ entities:
     - type: Transform
       pos: 6.5,1.5
       parent: 1
-    - type: FuelGenerator
-      on: False
     - type: MaterialStorageMagnetPickup
       magnetEnabled: True
-    - type: Physics
-      bodyType: Static
 - proto: PowerCellRecharger
   entities:
   - uid: 202
@@ -1665,7 +1642,7 @@ entities:
     - type: Transform
       pos: -2.5,-1.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 149
     components:

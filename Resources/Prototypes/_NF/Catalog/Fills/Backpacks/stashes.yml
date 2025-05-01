@@ -1,0 +1,82 @@
+# Filled stashed bags variants
+#region Base
+- type: entity
+  abstract: true
+  id: NFBaseStashAnchored
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    fixedRotation: true
+    canCollide: false
+
+#region Random
+- type: entity
+  parent: [ NFBaseStashAnchored, NFClothingBackpackDuffelColorBlack, StorageFillStashValuables ]
+  id: DuffelBlackStashValuables
+
+- type: entity
+  parent: [ NFBaseStashAnchored, NFClothingBackpackDuffelColorBlue, StorageFillStashValuables ]
+  id: DuffelBlueStashValuables
+
+- type: entity
+  parent: [ NFBaseStashAnchored, NFClothingBackpackDuffelColorGreen, StorageFillStashValuables ]
+  id: DuffelGreenStashValuables
+
+- type: entity
+  parent: [ NFBaseStashAnchored, NFClothingBackpackDuffelColorOrange, StorageFillStashValuables ]
+  id: DuffelOrangeStashValuables
+
+- type: entity
+  parent: [ NFBaseStashAnchored, NFClothingBackpackDuffelColorRed, StorageFillStashValuables ]
+  id: DuffelRedStashValuables
+
+- type: entity
+  parent: [ NFBaseStashAnchored, NFClothingBackpackDuffelColorPurple, StorageFillStashValuables ]
+  id: DuffelPurpleStashValuables
+
+- type: entity
+  parent: [ NFBaseStashAnchored, NFClothingBackpackDuffelColorBrownLight, StorageFillStashValuables ]
+  id: DuffelBrownLightStashValuables
+
+- type: entity
+  parent: [ NFBaseStashAnchored, NFClothingBackpackDuffelColorBrown, StorageFillStashValuables ]
+  id: DuffelBrownStashValuables
+
+- type: entity
+  parent: [ NFBaseStashAnchored, NFClothingBackpackDuffelColorWhite, StorageFillStashValuables ]
+  id: DuffelWhiteStashValuables
+
+#region Thematic
+# Drinker
+- type: entity
+  parent: [ NFBaseStashAnchored, ClothingBackpackDuffelTrauma, StorageFillStashDrinks ]
+  id: DuffelTraumaStashDrinks
+
+# Mercenary
+- type: entity
+  parent: [ NFBaseStashAnchored, ClothingBackpackDuffelPrivateSecurity, StorageFillStashMercenary ]
+  id: DuffelPrivateSecurityStashMercenary
+
+# Embezzler
+- type: entity
+  parent: [ NFBaseStashAnchored, ClothingBackpackDuffelCargo, StorageFillStashEmbezzled ]
+  id: DuffelCargoStashEmbezzled
+
+# Smoker
+- type: entity
+  parent: [ NFBaseStashAnchored, ClothingBackpackDuffelAtmospherics, StorageFillStashSmokes ]
+  id: DuffelAtmosphericsStashSmokes
+
+# Punk
+- type: entity
+  parent: [ NFBaseStashAnchored, NFClothingBackpackDuffelColorRandom, StorageFillStashPunkThreads ]
+  id: DuffelPunkStashThreads
+
+# Contraband
+- type: entity
+  parent: [ NFBaseStashAnchored, ClothingBackpackDuffelSyndicate, StorageFillStashContraband ]
+  id: DuffelSyndicateStashContraband

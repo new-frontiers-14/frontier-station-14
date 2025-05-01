@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Nightlight
+  parent: BaseVessel
+  name: FSB Nightlight
+  description: The Far Star Biotech company is please to present the most forward facing testbed for the effects of bioregenerative nutrient on humanoid physiology to date! Bone Apple Teeth!
+  price: 45000 # Botany bay
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/nightlight.yml
+  guidebookPage: ShipyardNightlight
+  class:
+  - Kitchen
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Nightlight
+  mapName: 'FSB Nightlight'
+  mapPath: /Maps/_NF/Shuttles/nightlight.yml
+  minPlayers: 0
+  stations:
+    Nightlight:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Nightlight {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

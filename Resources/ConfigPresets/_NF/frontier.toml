@@ -1,0 +1,86 @@
+[game]
+desc = "Frontier Station is a unique twist on the traditional Space Station gameplay. On Frontier, everyone can be the captain of their own ship to venture forth and explore space beyond the station! Salvage, mine, research, trade, explore, or pirate your way to riches on the vast Frontier!"
+lobbyenabled = true
+lobbyduration = 180
+
+# New players can't join a server without admins
+[game.panic_bunker]
+enabled = true
+min_overall_minutes = 240
+disable_with_admins = true
+enable_without_admins = true
+show_reason = true
+custom_reason = "You have not played on a Frontier servers long enough to connect to this server. Please play on Frontier servers until you have more playtime."
+
+[infolinks]
+discord    = "https://discord.gg/frontier"
+github     = "https://github.com/new-frontiers-14/frontier-station-14"
+website    = "https://www.frontierstation14.com"
+wiki       = "https://frontierstation.wiki.gg"
+patreon    = "https://patreon.com/FrontierStation14"
+bug_report = "https://github.com/new-frontiers-14/frontier-station-14/issues"
+appeal     = "https://discord.gg/akvNtmRd7e"
+
+[net]
+max_connections = 1024
+tickrate = 30
+
+[vote]
+restart_required_ratio = 0.85
+preset_enabled = false
+
+[netres]
+limit = 10.0
+
+[admin]
+see_own_notes = true
+deadmin_on_join = true
+allow_multi_server_play = false
+
+[admin.alert]
+min_players_sharing_connection = 2
+
+[server]
+id = "frontier"
+rules_file = "FrontierRuleset"
+uptime_restart_minutes = 0
+
+[discord]
+rich_main_icon_id = "frontier"
+
+# general mrp stuff
+[ic]
+flavor_text = true
+punctuation = true
+
+[worldgen]
+enabled = true
+
+[rules]
+time = 60
+
+[ahelp]
+admin_prefix = false
+admin_prefix_webhook = false
+
+[votekick]
+enabled = false
+eligible_number = 5
+initiator_ghost_requirement = false
+voter_ghost_requirement = false
+
+[atmos]
+space_wind = true
+
+[shuttle]
+arrivals = false
+emergency_dock_time = 360 # an extra 2 minutes over the default
+emergency_transit_time_min = 300
+auto_call_extension_time = 45
+emergency_early_launch_allowed = false
+
+[biomass]
+easy_mode = false # reclaimer can work on soul-ful bodies, mrp server
+
+[control]
+storage_limit = 3

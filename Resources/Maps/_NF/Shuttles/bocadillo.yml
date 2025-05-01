@@ -17,11 +17,11 @@ entities:
     components:
     - type: MetaData
       name: Bocadillo
-    - type: BecomesStation
-      id: Bocadillo
     - type: Transform
       pos: -0.4375,-1.703125
       parent: invalid
+    - type: BecomesStation
+      id: Bocadillo
     - type: MapGrid
       chunks:
         0,0:
@@ -620,19 +620,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,1.5
       parent: 2
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 132
@@ -1233,6 +1220,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.5,4.5
       parent: 2
+- proto: NFHolopadShip
+  entities:
+  - uid: 86
+    components:
+    - type: Transform
+      pos: -7.5,6.5
+      parent: 2
 - proto: NitrogenCanister
   entities:
   - uid: 141
@@ -1260,10 +1254,6 @@ entities:
     - type: Transform
       pos: -8.5,3.5
       parent: 2
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: Poweredlight
   entities:
   - uid: 38
@@ -1309,20 +1299,6 @@ entities:
     - type: Transform
       pos: 0.5,6.5
       parent: 2
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: SheetSteel
   entities:
   - uid: 201
@@ -1561,13 +1537,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,0.5
       parent: 2
-- proto: VendingMachineChefDrobe
-  entities:
-  - uid: 146
-    components:
-    - type: Transform
-      pos: -7.5,6.5
-      parent: 2
 - proto: VendingMachineChefvend
   entities:
   - uid: 100
@@ -1802,7 +1771,7 @@ entities:
     - type: Transform
       pos: -6.5,3.5
       parent: 2
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 139
     components:

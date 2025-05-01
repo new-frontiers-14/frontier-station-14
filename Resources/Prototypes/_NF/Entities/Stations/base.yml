@@ -17,6 +17,12 @@
   abstract: true
   components:
   - type: StationRenameFaxes
+  
+- type: entity
+  id: BaseStationRenameHolopads
+  abstract: true
+  components:
+  - type: StationRenameHolopads
 
 - type: entity
   id: BaseStationRenameWarpPoints
@@ -44,6 +50,12 @@
   abstract: true
   components:
   - type: StationDampening
+
+- type: entity
+  id: NFBaseStationCargo
+  abstract: true
+  components:
+    - type: StationCargoOrderDatabase
 
 - type: entity
   id: BaseStationCargoMarket
@@ -97,6 +109,7 @@
       - RCD # Dup charges
       - Storage # Till fixed
       - StorageFill # Till fixed
+      - BindToStation # no laundering your rental ship machines
     whitelistOverride:
       components:
       - UraniumMaterials # Counts as food
@@ -113,3 +126,9 @@
   abstract: true
   components:
     - type: StationDeadDropHintExempt
+
+- type: entity
+  id: BaseStationBusDepot
+  abstract: true
+  components:
+  - type: StationBusDepot

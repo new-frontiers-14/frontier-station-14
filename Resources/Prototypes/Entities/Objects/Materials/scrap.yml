@@ -77,7 +77,9 @@
       - state: metal-1
         map: [ "base" ]
   - type: Item
-    size: Ginormous
+    size: Large
+    shape:
+    - 0,0,4,4 # 5x5
     heldPrefix: metal
   - type: MultiHandedItem
   - type: RandomSprite
@@ -93,7 +95,7 @@
 - type: entity
   parent: BaseScrap
   id: ScrapGlass
-  name: scrap circuitry
+  name: fried circuitry # Frontier: scrap<fried - prevent confusion with scrap ore
   description: A huge lump of various circuits, strangely fused together. You could likely extract some materials out of this.
   components:
   - type: Sprite
@@ -135,7 +137,9 @@
         junk-airlock-1: ""
         junk-airlock-2: ""
   - type: Item
-    size: Ginormous
+    size: Large
+    shape:
+    - 0,0,4,4 # 5x5
     heldPrefix: "airlock"
   - type: MultiHandedItem
   - type: PhysicalComposition
@@ -273,7 +277,9 @@
     layers:
     - state: junk-firelock-1
   - type: Item
-    size: Ginormous
+    size: Large
+    shape:
+    - 0,0,4,4 # 5x5
     heldPrefix: firelock-1
   - type: MultiHandedItem
   - type: PhysicalComposition
@@ -290,7 +296,9 @@
     layers:
     - state: junk-firelock-2
   - type: Item
-    size: Ginormous
+    size: Large
+    shape:
+    - 0,0,4,4 # 5x5
     heldPrefix: firelock-2
   - type: MultiHandedItem
   - type: PhysicalComposition

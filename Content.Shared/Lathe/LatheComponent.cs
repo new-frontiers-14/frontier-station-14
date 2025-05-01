@@ -1,4 +1,5 @@
 using Content.Shared.Construction.Prototypes;
+using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Research.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -10,22 +11,22 @@ namespace Content.Shared.Lathe
     public sealed partial class LatheComponent : Component
     {
         /// <summary>
-        /// All of the recipes that the lathe has by default
+        /// All of the recipe packs that the lathe has by default
         /// </summary>
         [DataField]
-        public List<ProtoId<LatheRecipePrototype>> StaticRecipes = new();
+        public List<ProtoId<LatheRecipePackPrototype>> StaticPacks = new();
 
         /// <summary>
-        /// All of the recipes that the lathe is capable of researching
+        /// All of the recipe packs that the lathe is capable of researching
         /// </summary>
         [DataField]
-        public List<ProtoId<LatheRecipePrototype>> DynamicRecipes = new();
+        public List<ProtoId<LatheRecipePackPrototype>> DynamicPacks = new();
 
         /// <summary>
         /// The lathe's construction queue
         /// </summary>
         [DataField]
-        public List<LatheRecipePrototype> Queue = new();
+        public List<LatheRecipeBatch> Queue = new(); // Frontier: LatheRecipePrototype<LatheRecipeBatch
 
         /// <summary>
         /// The sound that plays when the lathe is producing an item, if any
@@ -140,6 +141,23 @@ namespace Content.Shared.Lathe
             getUnavailable = forced;
         }
     }
+
+    // Frontier: batch lathe recipes
+    [Serializable]
+    public sealed partial class LatheRecipeBatch : EntityEventArgs
+    {
+        public LatheRecipePrototype Recipe;
+        public int ItemsPrinted;
+        public int ItemsRequested;
+
+        public LatheRecipeBatch(LatheRecipePrototype recipe, int itemsPrinted, int itemsRequested)
+        {
+            Recipe = recipe;
+            ItemsPrinted = itemsPrinted;
+            ItemsRequested = itemsRequested;
+        }
+    }
+    // End Frontier
 
     /// <summary>
     /// Event raised on a lathe when it starts producing a recipe.

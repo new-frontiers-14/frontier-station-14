@@ -1,4 +1,5 @@
-﻿- type: entity
+﻿# A floating, singular grid, useful for space junk or asteroids
+- type: entity
   id: NFBaseDebris
   abstract: true
   components:
@@ -6,7 +7,10 @@
   - type: LocalityLoader
   - type: GCAbleObject
     queue: SpaceDebris
+  - type: MapGrid
   - type: LinkedLifecycleGridParent
   - type: ProtectedGrid
     preventArtifactTriggers: true
   - type: PreventPilot
+  - type: IFF
+    flags: HideLabel

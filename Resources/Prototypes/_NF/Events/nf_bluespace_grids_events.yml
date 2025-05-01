@@ -12,7 +12,7 @@
     weight: 5
     duration: 1350
     maxDuration: 1560
-    reoccurrenceDelay: 480 # 8 hours
+    reoccurrenceDelay: 360 # 6 hours
     requiredJobs:
       Sheriff: 1
   - type: BluespaceErrorRule
@@ -29,12 +29,11 @@
         - type: IFF
           color: "#E10F9B"
         - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
         - type: LinkedLifecycleGridParent
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
+        - type: ForceAnchor # Added post-FTL, so anchoring is fine.
         paths:
         - /Maps/_NF/Bluespace/cache.yml
     rewardAccounts:
@@ -54,7 +53,7 @@
     weight: 5
     duration: 1020
     maxDuration: 1350
-    reoccurrenceDelay: 480 # 8 hours
+    reoccurrenceDelay: 360 # 6 hours
     requiredJobs:
       Sheriff: 1
   - type: BluespaceErrorRule
@@ -70,13 +69,11 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
         - type: LinkedLifecycleGridParent
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/vault.yml
     rewardAccounts:
@@ -97,7 +94,7 @@
     weight: 5
     duration: 590
     maxDuration: 780
-    reoccurrenceDelay: 480 # 8 hours
+    reoccurrenceDelay: 360 # 6 hours
     requiredJobs:
       Sheriff: 1
   - type: BluespaceErrorRule
@@ -113,13 +110,11 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
         - type: LinkedLifecycleGridParent
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/vaultsmall.yml
     rewardAccounts:
@@ -140,7 +135,7 @@
     weight: 1
     duration: 1800
     maxDuration: 2400
-    reoccurrenceDelay: 480 # Only once per shift possible
+    reoccurrenceDelay: 360 # 6 hours
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -154,13 +149,11 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
         - type: LinkedLifecycleGridParent
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/syndieftlintercept.yml
 
@@ -179,7 +172,7 @@
     weight: 1
     duration: 900
     maxDuration: 1200
-    reoccurrenceDelay: 480 # 8 hours
+    reoccurrenceDelay: 360 # 6 hours
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -193,13 +186,11 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
         - type: LinkedLifecycleGridParent
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/wizardprobealt.yml
 
@@ -218,7 +209,7 @@
     weight: 1
     duration: 1800
     maxDuration: 2400
-    reoccurrenceDelay: 480 # 8 hours
+    reoccurrenceDelay: 360 # 6 hours
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -232,13 +223,11 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
         - type: LinkedLifecycleGridParent
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/bloodmoon.yml
 
@@ -269,18 +258,16 @@
           enabled: true
           inherent: true
         - type: IFF
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
         - type: LinkedLifecycleGridParent
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
+        - type: ForceAnchor
         paths:
         - /Maps/_NF/Bluespace/cave.yml
 
 - type: entity
-  id: BluespaceBrokenMcDelivery
+  id: NFBluespaceBrokenMcDelivery
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent

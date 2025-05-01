@@ -18,7 +18,7 @@ reagent-name-cryoxadone = cryoxadone
 reagent-desc-cryoxadone = A cryogenics chemical. Useful in treating asphyxiation and bloodloss, but only works in temperatures under 213K. It can treat and rejuvenate plants when applied in small doses. Works regardless of the patient being alive or dead.
 
 reagent-name-doxarubixadone = doxarubixadone
-reagent-desc-doxarubixadone = A cryogenics chemical. Heals certain types of cellular damage done by Slimes and improper use of other chemicals. Works regardless of the patient being alive or dead.
+reagent-desc-doxarubixadone = A cryogenics chemical. Heals cellular damage caused by dangerous gasses and chemicals. Works regardless of the patient being alive or dead.
 # End Frontier
 
 reagent-name-dermaline = dermaline
@@ -54,7 +54,8 @@ reagent-desc-barozine = A potent chemical that prevents pressure damage. Causes 
 reagent-name-phalanximine = phalanximine
 reagent-desc-phalanximine = An advanced chemical used in the treatment of cancer. Causes moderate radiation poisoning on organics and vomiting. Can potentially remove the death gene on plants.
 
-reagent-name-polypyrylium-oligomers = Polypyrylium Oligomers
+# Frontier: no caps
+reagent-name-polypyrylium-oligomers = polypyrylium oligomers
 reagent-desc-polypyrylium-oligomers = A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. Heals asphyxiation and brute damage. Stops bleeding over time.
 
 reagent-name-ambuzol = ambuzol

@@ -11,10 +11,10 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using System.Linq;
-using Content.Server.Shipyard.Systems;
-using Content.Shared.Shipyard.Components;
+using Content.Server._NF.Shipyard.Systems; // Frontier
+using Content.Shared._NF.Shipyard.Components; // Frontier
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
-using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
+using static Content.Shared._NF.Shipyard.Components.ShuttleDeedComponent; // Frontier
 using Content.Shared.Access;
 
 namespace Content.Server.Access.Systems;
@@ -101,7 +101,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             var targetIdComponent = EntityManager.GetComponent<IdCardComponent>(targetId);
             var targetAccessComponent = EntityManager.GetComponent<AccessComponent>(targetId);
 
-            var jobProto = new ProtoId<AccessLevelPrototype>(string.Empty);
+            var jobProto = new ProtoId<JobPrototype>(string.Empty); // Frontier: AccessLevelPrototype<JobPrototype
             if (TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
                 && keyStorage.Key is {} key
                 && _record.TryGetRecord<GeneralStationRecord>(key, out var record))
@@ -143,7 +143,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         string newFullName,
         string newJobTitle,
         List<ProtoId<AccessLevelPrototype>> newAccessList,
-        ProtoId<AccessLevelPrototype> newJobProto,
+        ProtoId<JobPrototype> newJobProto, // Frontier: AccessLevelPrototype<JobPrototype
         EntityUid player,
         IdCardConsoleComponent? component = null)
     {

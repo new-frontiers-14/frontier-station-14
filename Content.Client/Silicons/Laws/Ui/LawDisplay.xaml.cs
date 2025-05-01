@@ -34,7 +34,8 @@ public sealed partial class LawDisplay : Control
         var identifier = law.LawIdentifierOverride ?? $"{law.Order}";
         var lawIdentifier = Loc.GetString("laws-ui-law-header", ("id", identifier));
         var lawDescription = Loc.GetString(law.LawString);
-        var lawIdentifierPlaintext = FormattedMessage.RemoveMarkupPermissive(lawIdentifier);
+        //var lawIdentifierPlaintext = FormattedMessage.RemoveMarkupPermissive(lawIdentifier); // Frontier
+        var lawIdentifierPlaintext = FormattedMessage.RemoveMarkupPermissive(law.LawPrintOverride != null ? Loc.GetString("laws-ui-law-header", ("id", law.LawPrintOverride)) : lawIdentifier); // Frontier
         var lawDescriptionPlaintext = FormattedMessage.RemoveMarkupPermissive(lawDescription);
 
         LawNumberLabel.SetMarkup(lawIdentifier);

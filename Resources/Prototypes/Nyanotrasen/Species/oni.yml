@@ -7,9 +7,9 @@
   markingLimits: MobOniMarkingLimits
   sprites: MobHumanSprites
   skinColoration: Hues
-  maleFirstNames: names_oni_male
-  femaleFirstNames: names_oni_female
-  lastNames: names_oni_location
+  maleFirstNames: NamesOniMale
+  femaleFirstNames: NamesOniFemale
+  lastNames: NamesOniLocation
   naming: LastNoFirst
 
 - type: markingPoints
@@ -29,11 +29,19 @@
       points: 1 # Frontier
       required: false # Frontier
     Chest:
-      points: 1
+      points: 4 # Frontier 1<4
       required: false
     Legs:
-      points: 2
+      points: 8 # Frontier 2<8
       required: false
     Arms:
-      points: 2
+      points: 8 # Frontier 2<8
       required: false
+    # Frontier: apparently these don't exist on Delta
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false
+    # End Frontier

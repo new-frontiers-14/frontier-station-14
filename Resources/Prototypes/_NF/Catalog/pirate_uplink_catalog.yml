@@ -31,7 +31,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateHardsuitElite
@@ -50,7 +50,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateCaptainCrateFilled
@@ -69,7 +69,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateCrateFilled
@@ -136,7 +136,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateBlunderbuss
@@ -203,7 +203,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkEnergyCutlass
@@ -222,7 +222,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateAnchor
@@ -293,7 +293,7 @@
   name:  uplink-pirate-shotgunammo-name
   description: uplink-pirate-shotgunammo-desc
   productEntity: BoxLethalshot
-  icon: { sprite: Objects/Storage/boxes.rsi, state: shelllethal }
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi, state: base }
   cost:
     Doubloon: 2
   categories:
@@ -309,7 +309,7 @@
   name:  uplink-pirate-revolverammo-name
   description: uplink-pirate-revolverammo-desc
   productEntity: MagazineBoxMagnum
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi, state: base }
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi, state: base }
   cost:
     Doubloon: 2
   categories:
@@ -325,7 +325,7 @@
   name:  uplink-pirate-flintlockammo-name
   description: uplink-pirate-flintlockammo-desc
   productEntity: MagazineBoxAntiMateriel
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi, state: base }
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi, state: base }
   cost:
     Doubloon: 2
   categories:
@@ -399,3 +399,57 @@
       whitelist:
         tags:
           - PirateUplink
+
+- type: listing
+  id: UplinkPirateAccessConfigurator
+  name:  uplink-pirate-accessconfigurator-captain-name
+  description: uplink-pirate-accessconfigurator-captain-desc
+  productEntity: AccessConfiguratorAntag
+  icon: { sprite: _NF/Objects/Tools/antag_access_configurator.rsi, state: icon }
+  cost:
+    Doubloon: 3
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+
+- type: listing
+  id: UplinkRadioImplanterFreelance
+  name: uplink-pirate-radio-implanter-name
+  description: uplink-pirate-radio-implanter-desc
+  productEntity: RadioImplanterFreelance
+  icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: pirate_label }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: PirateRepairKit
+  name: uplink-pirate-repair-kit-name
+  description: uplink-pirate-repair-kit-desc
+  productEntity: PirateRepairKit
+  icon: { sprite: _NF/Objects/Tools/Toolboxes/toolbox_pirate.rsi, state: icon }
+  cost:
+    Doubloon: 3
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+  categories:
+  - UplinkPirateUtility

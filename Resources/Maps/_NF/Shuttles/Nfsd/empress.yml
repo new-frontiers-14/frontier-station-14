@@ -29,11 +29,11 @@ entities:
     components:
     - type: MetaData
       name: Empress
-    - type: BecomesStation
-      id: Empress
     - type: Transform
       pos: -0.46484375,0.90625
       parent: invalid
+    - type: BecomesStation
+      id: Empress
     - type: MapGrid
       chunks:
         0,0:
@@ -1492,13 +1492,15 @@ entities:
     - type: Transform
       pos: 24.5,2.5
       parent: 1
-- proto: AirlockMedicalGlassLockedSecurity
+- proto: AirlockBrigmedicGlassLocked
   entities:
   - uid: 644
     components:
     - type: Transform
       pos: -2.5,5.5
       parent: 1
+- proto: AirlockMedicalGlassLockedSecurity
+  entities:
   - uid: 678
     components:
     - type: Transform
@@ -11467,6 +11469,16 @@ entities:
     - type: Transform
       pos: -13.5,0.5
       parent: 1
+  - uid: 1052
+    components:
+    - type: Transform
+      pos: -12.5,1.5
+      parent: 1
+  - uid: 1092
+    components:
+    - type: Transform
+      pos: -10.5,1.5
+      parent: 1
 - proto: LockerNfsdSergeant
   entities:
   - uid: 667
@@ -11649,6 +11661,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -18.5,-4.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 846
+    components:
+    - type: Transform
+      pos: -0.5,-13.5
+      parent: 1
 - proto: NfsdDeployableBarrier
   entities:
   - uid: 611
@@ -11670,6 +11689,38 @@ entities:
     components:
     - type: Transform
       pos: -10.5,-1.5
+      parent: 1
+- proto: NFPrisonerClosetWallOrangeFilled
+  entities:
+  - uid: 609
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -10.5,5.5
+      parent: 1
+  - uid: 610
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.5,5.5
+      parent: 1
+  - uid: 847
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,5.5
+      parent: 1
+  - uid: 864
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -20.5,3.5
+      parent: 1
+  - uid: 865
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -20.5,5.5
       parent: 1
 - proto: NfsdTechFab
   entities:
@@ -12594,7 +12645,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,8.5
       parent: 1
-- proto: PoweredlightColoredFrostyBlue
+- proto: PoweredlightCyan
   entities:
   - uid: 2109
     components:
@@ -13039,7 +13090,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 27.5,8.5
       parent: 1
-- proto: RandomBook
+- proto: NFRandomBook
   entities:
   - uid: 877
     components:
@@ -16833,18 +16884,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -16.5,1.5
-      parent: 1
-- proto: WardrobePrisonFilled
-  entities:
-  - uid: 609
-    components:
-    - type: Transform
-      pos: -12.5,1.5
-      parent: 1
-  - uid: 610
-    components:
-    - type: Transform
-      pos: -10.5,1.5
       parent: 1
 - proto: WarpPoint
   entities:

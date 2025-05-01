@@ -20,18 +20,30 @@ public sealed class SpriteFadeSystem : EntitySystem
 
     private readonly HashSet<FadingSpriteComponent> _comps = new();
 
+    private EntityQuery<SpriteComponent> _spriteQuery;
+    private EntityQuery<SpriteFadeComponent> _fadeQuery;
+    private EntityQuery<FadingSpriteComponent> _fadingQuery;
+
     private const float TargetAlpha = 0.4f;
     private const float ChangeRate = 1f;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _spriteQuery = GetEntityQuery<SpriteComponent>();
+        _fadeQuery = GetEntityQuery<SpriteFadeComponent>();
+        _fadingQuery = GetEntityQuery<FadingSpriteComponent>();
+
         SubscribeLocalEvent<FadingSpriteComponent, ComponentShutdown>(OnFadingShutdown);
     }
 
     private void OnFadingShutdown(EntityUid uid, FadingSpriteComponent component, ComponentShutdown args)
     {
-        if (MetaData(uid).EntityLifeStage >= EntityLifeStage.Terminating || !TryComp<SpriteComponent>(uid, out var sprite))
+        if (!TryComp(uid, out MetaDataComponent? meta)) // Frontier
+            return; // Frontier
+
+        if (meta.EntityLifeStage >= EntityLifeStage.Terminating || !TryComp<SpriteComponent>(uid, out var sprite)) // Frontier: MetaData(uid)<meta
             return;
 
         sprite.Color = sprite.Color.WithAlpha(component.OriginalAlpha);
@@ -42,28 +54,26 @@ public sealed class SpriteFadeSystem : EntitySystem
         base.FrameUpdate(frameTime);
 
         var player = _playerManager.LocalEntity;
-        var spriteQuery = GetEntityQuery<SpriteComponent>();
         var change = ChangeRate * frameTime;
 
         if (TryComp(player, out TransformComponent? playerXform) &&
             _stateManager.CurrentState is GameplayState state &&
-            spriteQuery.TryGetComponent(player, out var playerSprite))
+            _spriteQuery.TryGetComponent(player, out var playerSprite))
         {
-            var fadeQuery = GetEntityQuery<SpriteFadeComponent>();
             var mapPos = _transform.GetMapCoordinates(_playerManager.LocalEntity!.Value, xform: playerXform);
 
             // Also want to handle large entities even if they may not be clickable.
             foreach (var ent in state.GetClickableEntities(mapPos))
             {
                 if (ent == player ||
-                    !fadeQuery.HasComponent(ent) ||
-                    !spriteQuery.TryGetComponent(ent, out var sprite) ||
+                    !_fadeQuery.HasComponent(ent) ||
+                    !_spriteQuery.TryGetComponent(ent, out var sprite) ||
                     sprite.DrawDepth < playerSprite.DrawDepth)
                 {
                     continue;
                 }
 
-                if (!TryComp<FadingSpriteComponent>(ent, out var fading))
+                if (!_fadingQuery.TryComp(ent, out var fading))
                 {
                     fading = AddComp<FadingSpriteComponent>(ent);
                     fading.OriginalAlpha = sprite.Color.A;
@@ -85,7 +95,7 @@ public sealed class SpriteFadeSystem : EntitySystem
             if (_comps.Contains(comp))
                 continue;
 
-            if (!spriteQuery.TryGetComponent(uid, out var sprite))
+            if (!_spriteQuery.TryGetComponent(uid, out var sprite))
                 continue;
 
             var newColor = Math.Min(sprite.Color.A + change, comp.OriginalAlpha);

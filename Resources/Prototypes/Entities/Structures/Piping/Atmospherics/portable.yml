@@ -30,6 +30,7 @@
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
+      visible: false
     - state: draining
       shader: unshaded
       visible: false
@@ -94,6 +95,10 @@
                 max: 2
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
+  - type: GuideHelp
+    guides:
+    - PortableScrubber
+  - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   id: SpaceHeater
@@ -179,6 +184,9 @@
                 max: 3
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
+  - type: GuideHelp
+    guides:
+    - Thermomachines
 
 - type: entity
   parent: SpaceHeater

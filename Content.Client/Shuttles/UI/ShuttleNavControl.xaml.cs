@@ -249,17 +249,23 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 shouldDrawIFF &= ShowIFFShuttles;
             }
 
-            shouldDrawIFF = NfCheckShouldDrawIffRangeCondition(shouldDrawIFF, gridBody, curGridToView); // Frontier code
+            //var mapCenter = curGridToWorld. * gridBody.LocalCenter;
+            //shouldDrawIFF = NfCheckShouldDrawIffRangeCondition(shouldDrawIFF, mapCenter, curGridToWorld); // Frontier code
+            // Frontier: range checks
+            var gridMapPos = _transform.ToMapCoordinates(new EntityCoordinates(gUid, gridBody.LocalCenter)).Position;
+            shouldDrawIFF = NfCheckShouldDrawIffRangeCondition(shouldDrawIFF, gridMapPos - mapPos.Position);
+            // End Frontier
 
             if (shouldDrawIFF)
             {
-                var gridCentre = Vector2.Transform(gridBody.LocalCenter, curGridToView);
-                gridCentre.Y = -gridCentre.Y;
+                //var gridCentre = Vector2.Transform(gridBody.LocalCenter, curGridToView);
+                //gridCentre.Y = -gridCentre.Y;
 
                 // Frontier: IFF drawing functions
                 // The actual position in the UI. We offset the matrix position to render it off by half its width
                 // plus by the offset.
-                var uiPosition = ScalePosition(gridCentre) / UIScale;
+                //var uiPosition = ScalePosition(gridCentre) / UIScale;
+                var uiPosition = Vector2.Transform(gridBody.LocalCenter, curGridToView) / UIScale;
 
                 // Confines the UI position within the viewport.
                 var uiXCentre = (int) Width / 2;
@@ -288,7 +294,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 // Distant stations that are not player controlled ships
                 var isDistantPOI = iff != null || (iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0);
 
-                var distance = gridCentre.Length();
+                var distance = Vector2.Distance(gridMapPos, mapPos.Position);
 
                 if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
                 {
@@ -296,8 +302,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
                     var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName)!, ("distance", displayedDistance));
 
-                    var mapCoords = _transform.GetWorldPosition(gUid);
-                    var coordsText = $"({mapCoords.X:0.0}, {mapCoords.Y:0.0})";
+                    var coordsText = $"({gridMapPos.X:0.0}, {gridMapPos.Y:0.0})";
 
                     // Calculate unscaled offsets.
                     var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
@@ -369,7 +374,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         const float sqrt2 = 1.41421356f;
         const float dockRadius = DockScale * sqrt2;
         // Worst-case bounds used to cull a dock:
-        Box2 viewBounds = new Box2(-dockRadius, -dockRadius, Size.X + dockRadius, Size.Y + dockRadius);
+        Box2 viewBounds = new Box2(-dockRadius, -dockRadius, PixelSize.X + dockRadius, PixelSize.Y + dockRadius); // Frontier: Size<PixelSize
         if (_docks.TryGetValue(nent, out var docks))
         {
             foreach (var state in docks)
@@ -382,7 +387,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     continue;
                 }
 
-                var color = Color.ToSrgb(Color.Magenta);
+                //var color = Color.ToSrgb(Color.Magenta); // Frontier
+                var color = Color.ToSrgb(state.HighlightedRadarColor); // Frontier
 
                 var verts = new[]
                 {

@@ -65,3 +65,20 @@
     state: closed
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  name: crate storage rack
+  id: CrateStorageRackConstruction
+  graph: CrateStorageRack
+  startNode: start
+  targetNode: rack
+  category: construction-category-structures
+  description: Capable of storing up to 4 crates at once, needs a power fork to insert or remove crates.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: _NF/Structures/Storage/crate_storage_rack.rsi
+    state: fill-0
+  conditions:
+    - !type:TileNotBlocked

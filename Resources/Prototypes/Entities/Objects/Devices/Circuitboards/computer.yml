@@ -96,6 +96,8 @@
       prototype: ComputerStationRecords
     - type: ComputerTabletopBoard # Frontier
       prototype: ComputerTabletopStationRecords # Frontier
+    - type: ComputerWallmountBoard # Frontier
+      prototype: ComputerWallmountStationRecords # Frontier
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -207,12 +209,12 @@
   name: surveillance wireless camera monitor board
   description: A computer printed circuit board for a surveillance wireless camera monitor.
   components:
-    - type: Sprite
-      state: cpu_security
-    - type: ComputerBoard
-      prototype: ComputerSurveillanceWirelessCameraMonitor
-    - type: ComputerTabletopBoard # Frontier
-      prototype: ComputerTabletopSurveillanceWirelessCameraMonitor # Frontier
+  - type: Sprite
+    state: cpu_service
+  - type: ComputerBoard
+    prototype: ComputerSurveillanceWirelessCameraMonitor
+  - type: ComputerTabletopBoard # Frontier
+    prototype: ComputerTabletopSurveillanceWirelessCameraMonitor # Frontier
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -281,6 +283,8 @@
       prototype: ComputerCrewMonitoring
     - type: ComputerTabletopBoard # Frontier
       prototype: ComputerTabletopCrewMonitoring # Frontier
+    - type: ComputerWallmountBoard # Frontier
+      prototype: ComputerWallmountCrewMonitoring # Frontier
 
 - type: entity
   parent: [BaseComputerCircuitboard, BaseC2ContrabandUnredeemable] # Frontier: BaseGrandTheftContraband<BaseC2ContrabandUnredeemable
@@ -339,6 +343,28 @@
       prototype: SyndicateComputerComms
     - type: ComputerTabletopBoard # Frontier
       prototype: SyndicateComputerTabletopComms # Frontier
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseC3WizardContraband ] # Frontier: BaseSyndicateContraband<BaseC3WizardContraband
+  id: WizardCommsComputerCircuitboard
+  name: wizard communications computer board
+  description: A computer printed circuit board for a wizard communications console.
+  components:
+  - type: Sprite
+    state: cpu_wizard
+  - type: ComputerBoard
+    prototype: WizardComputerComms
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCentcommContraband ]
+  id: CentcommCommsComputerCircuitboard
+  name: central command communications computer board
+  description: A computer printed circuit board for a central command communications console.
+  components:
+  - type: Sprite
+    state: cpu_centcomm
+  - type: ComputerBoard
+    prototype: CentcommComputerComms
 
 - type: entity
   parent: BaseComputerCircuitboard

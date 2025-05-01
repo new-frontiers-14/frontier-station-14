@@ -27,7 +27,7 @@ using Content.Shared.FixedPoint; // Frontier
 using Robust.Shared.Configuration; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared._NF.Bank; // Frontier
-using Content.Shared.Bank.Components; // Frontier
+using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Server._NF.Bank; // Frontier
 using Content.Shared._NF.Bank.BUI; // Frontier
 
