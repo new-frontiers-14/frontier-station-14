@@ -30,7 +30,7 @@ public sealed partial class PowerChargeComponent : SharedPowerChargeComponent
     /// <summary>
     /// Power consumed when <see cref="SwitchedOn"/> is true and the machine is not fully charged.
     /// </summary>
-    [DataField("activeChargingPower")]
+    [DataField("activeChargingPower", required: true)]
     public float ActiveChargingPowerUse { get; set; }
     // End Frontier
 
