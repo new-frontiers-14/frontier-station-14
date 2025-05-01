@@ -524,7 +524,7 @@ public sealed class MoverController : SharedMoverController
                 var finalForce = Vector2Dot(totalForce, properAccel.Normalized()) * properAccel.Normalized();
 
                 if (localVel.Length() >= maxVelocity.Length() && Vector2.Dot(totalForce, localVel) > 0f)
-                    finalForce = Vector2.Zero; // burn would be faster if used as such
+                    finalForce -= Vector2.Dot(totalForce, localVel.Normalized()) * localVel.Normalized(); // Frontier: instead of setting to zero, subtract the inline component
 
                 if (finalForce.Length() > properAccel.Length())
                     finalForce = properAccel; // don't overshoot
