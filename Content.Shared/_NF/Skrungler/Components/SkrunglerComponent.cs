@@ -92,7 +92,7 @@ public sealed partial class SkrunglerComponent : Component
     public TimeSpan BaseProcessingTimePerUnitMass = TimeSpan.FromSeconds(0.5);
 
     /// <summary>
-    /// The machine part that increses the processing speed.
+    /// The machine part that increases the processing speed.
     /// </summary>
     [DataField]
     public ProtoId<MachinePartPrototype> MachinePartProcessingSpeed = "Manipulator";
