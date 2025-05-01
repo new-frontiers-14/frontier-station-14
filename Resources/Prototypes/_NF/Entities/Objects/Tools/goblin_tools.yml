@@ -49,6 +49,7 @@
   - type: TriggerOnSpawn
   - type: TimedDespawn
     lifetime: 5
+# endregion
 
 #region malfunctions
 - type: entity
@@ -155,13 +156,14 @@
     table: !type:NestedSelector
       tableId: TableGoblinMadeToolMalfunction
       prob: 1.00
+# endregion
 
 # tools
 #region multitool
 - type: entity
   id: NFGoblinMadeMultitool
   parent: [ NFBaseGoblinMadeTools, Multitool ]
-  name: "'acking jig"
+  name: hacking jig
   description: "An improvised multitool pieced together from faulty circuit board, broken display, bent antennae and stuffed into a discarded wrapper for additional protection against elements."
   components:
   - type: Sprite
@@ -211,12 +213,13 @@
   - type: Construction
     graph: NFGoblinMadeMultitool
     node: NFGoblinMadeMultitool
+# endregion
 
-#region wire cutter
+#region wirecutter
 - type: entity
   id: NFGoblinMadeWirecutter
   parent: [ NFBaseGoblinMadeTools, Wirecutter ]
-  name: wiresnippah
+  name: wiresnipper
   description: A wire cutter made out of glass shards, metal bits, cloth, and some wires. What's up with all the sparking, though?
   components:
   - type: Sprite
@@ -253,12 +256,13 @@
   - type: Construction
     graph: NFGoblinMadeWirecutter
     node: NFGoblinMadeWirecutter
+# endregion
 
 #region screwdriver
 - type: entity
   id: NFGoblinMadeScrewdriver
   parent: [ NFBaseGoblinMadeTools, Screwdriver ]
-  name: lectro-drivah
+  name: electro-driver
   description: An improvised electrical screwdriver, not much in terms of torque, but your wrists will be less sore.
   components:
   - type: Sprite
@@ -298,12 +302,13 @@
   - type: Construction
     graph: NFGoblinMadeScrewdriver
     node: NFGoblinMadeScrewdriver
+# endregion
 
 #region crowbar
 - type: entity
   id: NFGoblinMadeCrowbar
   parent: [ NFBaseGoblinMadeTools, Crowbar ]
-  name: lectro-jilt
+  name: electro-jilt
   description: The next step in crowbar evolution - jack. Enhanced with an improvised electrical winch.
   components:
   - type: Sprite
@@ -340,12 +345,13 @@
   - type: Construction
     graph: NFGoblinMadeCrowbar
     node: NFGoblinMadeCrowbar
+# endregion
 
 #region wrench
 - type: entity
   id: NFGoblinMadeWrench
   parent: [ NFBaseGoblinMadeTools, Wrench ]
-  name: lectro-spannah
+  name: electro-spanner
   description: An improvised electrical wrench, not much in terms of torque, but your wrists will be less sore.
   components:
   - type: Sprite
@@ -397,12 +403,13 @@
   - type: Construction
     graph: NFGoblinMadeWrench
     node: NFGoblinMadeWrench
+# endregion
 
 #region welder
 - type: entity
   id: NFGoblinMadeWelder
   parent: [ NFBaseGoblinMadeTools, Welder ]
-  name: burnah torch
+  name: burner torch
   description: An improvised welding tool made out of a plastic bottle, an empty soda can, a spray nozzle, and a leaking battery.
   components:
   - type: Sprite
@@ -454,6 +461,7 @@
           can8: ""
           can9: ""
           can10: ""
+# endregion
 
 - type: entity
   id: NFGoblinMadeWelderEmpty
@@ -468,12 +476,13 @@
   - type: Construction
     graph: NFGoblinMadeWelder
     node: NFGoblinMadeWelder
+# endregion
 
 #region mini hoe
 - type: entity
   id: NFGoblinMadeMiniHoe
   parent: [ NFBaseGoblinMadeTools, HydroponicsToolMiniHoe ]
-  name: lectro-scratchah
+  name: electro-scratcher
   description: A small modification for the tried and true electrical screwdriver device. Weeds , your end is nigh.
   components:
   - type: EmitSoundOnLand
@@ -513,12 +522,13 @@
   - type: Construction
     graph: NFGoblinMadeMiniHoe
     node: NFGoblinMadeMiniHoe
+# endregion
 
 #region minig drill
 - type: entity
   id: NFGoblinMadeMiningDrill
   parent: [ NFBaseGoblinMadeTools, MiningDrill ]
-  name: pneumatic 'ammah
+  name: pneumatic hammer
   description: The pickaxe is dead; hail the new king of manual mining - the improvised pneumatic hammer.
   components:
   - type: Sprite
@@ -558,12 +568,13 @@
   - type: Construction
     graph: NFGoblinMadeMiningDrill
     node: NFGoblinMadeMiningDrill
+# endregion
 
 #region tray scanner
 - type: entity
   id: NFGoblinMadeTrayScanner
   parent: [ NFBaseGoblinMadeTools, trayScanner ]
-  name: stash oglah
+  name: stash ogler
   description: With this tool you no longer have to memorise where you've hid you stash.
   components:
   - type: Sprite
@@ -620,12 +631,13 @@
   - type: Construction
     graph: NFGoblinMadeTrayScanner
     node: NFGoblinMadeTrayScanner
+# endregion
 
 #region signaller
 - type: entity
   id: NFGoblinMadeRemoteSignaller
   parent: [ NFBaseGoblinMadeTools, RemoteSignaller ]
-  name: remote winkah
+  name: remote winker
   description: An improvised remote signaller capable of sending signals to objects within a small radius of about 10 meters.
   components:
   - type: Sprite
@@ -657,12 +669,13 @@
   - type: Construction
     graph: NFGoblinMadeRemoteSignaller
     node: NFGoblinMadeRemoteSignaller
+# endregion
 
 #region lantern
 - type: entity
   id: NFGoblinMadeLantern
   parent: [ NFBaseGoblinMadeTools, FlashlightLantern ]
-  name: glimmah
+  name: glimmer
   description: An improvised lantern. How is it possible to put a power cell and a light bulb inside a glass bottle without breaking either of those items?
   components:
   - type: Sprite
@@ -707,12 +720,13 @@
   - type: Construction
     graph: NFGoblinMadeRemoteSignaller
     node: NFGoblinMadeRemoteSignaller
+# endregion
 
 #region power cell
 - type: entity
   id: NFGoblinMadePowerCell
   parent: [ NFBaseGoblinMadeTools, PowerCellSmall ]
-  name: powah cell
+  name: power cell
   description: An improvised power cell. How long will you be able to resist the temptation to drink the electrolyte?
   suffix: Goblin Made, Full
   components:
@@ -757,3 +771,4 @@
   - type: Construction
     graph: NFGoblinMadePowerCellDepleted
     node: NFGoblinMadePowerCellDepleted
+# endregion
