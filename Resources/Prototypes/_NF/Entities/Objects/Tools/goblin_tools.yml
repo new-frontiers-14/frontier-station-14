@@ -40,6 +40,7 @@
       Steel: 100 # That's what you get for recycling 1 wrapper
   - type: StaticPrice
     price: 0 # Can't get rich :(
+  - type: GoblinMade
 
 - type: entity
   id: NFBaseGoblinMadeToolsMalfunction
@@ -163,11 +164,6 @@
   name: "'acking jig"
   description: "An improvised multitool pieced together from faulty circuit board, broken display, bent antennae and stuffed into a discarded wrapper for additional protection against elements."
   components:
-  - type: Tag
-    tags:
-    - Multitool
-    - DoorElectronicsConfigurator
-    - GoblinMade
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/multitool.rsi
     layers:
@@ -223,11 +219,6 @@
   name: wiresnippah
   description: A wire cutter made out of glass shards, metal bits, cloth, and some wires. What's up with all the sparking, though?
   components:
-  - type: Tag
-    tags:
-    - PlantSampleTaker
-    - Wirecutter
-    - GoblinMade
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
     layers:
@@ -270,10 +261,6 @@
   name: lectro-drivah
   description: An improvised electrical screwdriver, not much in terms of torque, but your wrists will be less sore.
   components:
-  - type: Tag
-    tags:
-    - Screwdriver
-    - GoblinMade
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/screwdriver.rsi
     layers:
@@ -319,10 +306,6 @@
   name: lectro-jilt
   description: The next step in crowbar evolution - jack. Enhanced with an improvised electrical winch.
   components:
-  - type: Tag
-    tags:
-    - Crowbar
-    - GoblinMade
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/crowbar.rsi
     layers:
@@ -365,10 +348,6 @@
   name: lectro-spannah
   description: An improvised electrical wrench, not much in terms of torque, but your wrists will be less sore.
   components:
-  - type: Tag
-    tags:
-    - Wrench
-    - GoblinMade
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/wrench.rsi
     layers:
@@ -426,9 +405,6 @@
   name: burnah torch
   description: An improvised welding tool made out of a plastic bottle, an empty soda can, a spray nozzle, and a leaking battery.
   components:
-  - type: Tag
-    tags:
-    - GoblinMade
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/welder.rsi
     layers:
@@ -500,11 +476,6 @@
   name: lectro-scratchah
   description: A small modification for the tried and true electrical screwdriver device. Weeds , your end is nigh.
   components:
-  - type: Tag
-    tags:
-    - Hoe
-    - BotanyHoe
-    - GoblinMade
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/wrench_drop.ogg
@@ -550,10 +521,6 @@
   name: pneumatic 'ammah
   description: The pickaxe is dead; hail the new king of manual mining - the improvised pneumatic hammer.
   components:
-  - type: Tag
-    tags:
-    - Pickaxe
-    - GoblinMade
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/handdrill.rsi
     layers:
@@ -599,9 +566,6 @@
   name: stash oglah
   description: With this tool you no longer have to memorise where you've hid you stash.
   components:
-  - type: Tag
-    tags:
-    - GoblinMade
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/tray.rsi
     layers:
@@ -664,9 +628,6 @@
   name: remote winkah
   description: An improvised remote signaller capable of sending signals to objects within a small radius of about 10 meters.
   components:
-  - type: Tag
-    tags:
-    - GoblinMade
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/signaller.rsi
     layers:
@@ -704,10 +665,6 @@
   name: glimmah
   description: An improvised lantern. How is it possible to put a power cell and a light bulb inside a glass bottle without breaking either of those items?
   components:
-  - type: Tag
-    tags:
-    - Flashlight
-    - GoblinMade
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/lantern.rsi
     layers:
@@ -759,11 +716,6 @@
   description: An improvised power cell. How long will you be able to resist the temptation to drink the electrolyte?
   suffix: Goblin Made, Full
   components:
-  - type: Tag
-    tags:
-      - PowerCell
-      - PowerCellSmall
-      - GoblinMade
   - type: Sprite
     sprite: _NF/Objects/Tools/goblin_tools/power_cell.rsi
     layers:

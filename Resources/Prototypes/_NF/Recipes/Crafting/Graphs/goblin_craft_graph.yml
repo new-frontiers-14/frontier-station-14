@@ -23,7 +23,7 @@
       edges:
         - to: ClothingOuterEVASuitGoblin
           steps:
-            - tag: ClothingRobesGoblin
+            - component: GoblinClothingRobes
               name: goblin traditional robes
               icon:
                 sprite: _NF/Clothing/OuterClothing/Coats/goblin_robes.rsi
@@ -655,13 +655,13 @@
     edges:
     - to: NFGoblinMadeVehicleDumpster
       steps:
-      - tag: GoblinVehicleDumpster
+      - component: GoblinVehicle
         name: dumpster
         icon:
           sprite: _NF/Structures/Storage/magnetbox.rsi
           state: rubbishbox
         doAfter: 1
-      - tag: NFChairFolding
+      - component: NFChairFolding
         name: folding chair
         icon:
           sprite: Structures/Furniture/folding_chair.rsi
