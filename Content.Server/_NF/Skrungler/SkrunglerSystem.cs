@@ -1,116 +1,128 @@
+using Content.Server.Body.Components;
+using Content.Server.Construction;
+using Content.Server.Fluids.EntitySystems;
 using Content.Server.Ghost;
-using Content.Server._NF.Skrungler.Components;
+using Content.Server.Materials;
+using Content.Server.Power.Components;
 using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared._NF.Skrungler;
+using Content.Shared._NF.Skrungler.Components;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Database;
-using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Materials;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared._NF.Skrungler;
 using Content.Shared.Popups;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Standing;
-using Content.Shared.Storage;
-using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
-using Content.Shared.Jittering;
-using Content.Shared.Audio;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Chemistry.Components;
-using Content.Server.Fluids.EntitySystems;
-using Content.Server.Construction;
-using Content.Shared.Materials;
-using Content.Server.Materials;
-using Content.Shared.Power;
-using Content.Shared.Construction.Components;
-using Content.Server.Power.Components;
-using Content.Server.Body.Components;
-using Robust.Shared.Physics.Components;
 
 namespace Content.Server._NF.Skrungler;
 
-public sealed class SkrunglerSystem : EntitySystem
+/// <inheritdoc/>
+public sealed class SkrunglerSystem : SharedSkrunglerSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly GhostSystem _ghostSystem = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly SharedMindSystem _minds = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedJitteringSystem _jitteringSystem = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly PuddleSystem _puddleSystem = default!;
+    [Dependency] private readonly GhostSystem _ghost = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MaterialStorageSystem _material = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly PuddleSystem _puddle = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private readonly SharedMindSystem _minds = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
 
-    [ValidatePrototypeId<MaterialPrototype>]
-    public const string FuelPrototype = "FuelGradePlasma";
+    private readonly ProtoId<MaterialPrototype> _fuelPrototype = "FuelGradePlasma";
 
+    private EntityQuery<ApcPowerReceiverComponent> _powerReceiverQuery;
+
+    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ActiveSkrunglerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<ActiveSkrunglerComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<SkrunglerComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<ActiveSkrunglerComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
-        SubscribeLocalEvent<SkrunglerComponent, GetVerbsEvent<AlternativeVerb>>(AddskrungelVerb);
+        SubscribeLocalEvent<SkrunglerComponent, GetVerbsEvent<AlternativeVerb>>(AddSkrunglerVerb);
         SubscribeLocalEvent<SkrunglerComponent, SuicideByEnvironmentEvent>(OnSuicideByEnvironment);
-        SubscribeLocalEvent<ActiveSkrunglerComponent, StorageOpenAttemptEvent>(OnAttemptOpen);
-        SubscribeLocalEvent<SkrunglerComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<SkrunglerComponent, RefreshPartsEvent>(OnRefreshParts);
         SubscribeLocalEvent<SkrunglerComponent, UpgradeExamineEvent>(OnUpgradeExamine);
+
+        _powerReceiverQuery = GetEntityQuery<ApcPowerReceiverComponent>();
     }
 
-    private void OnExamine(EntityUid uid, SkrunglerComponent component, ExaminedEvent args)
+    /// <inheritdoc/>
+    public override void Update(float frameTime)
     {
-        if (!TryComp<AppearanceComponent>(uid, out var appearance))
-            return;
+        base.Update(frameTime);
 
-        using (args.PushGroup(nameof(SkrunglerComponent)))
+        // TODO: Move to shared when EntityStorage is in shared
+        var query = EntityQueryEnumerator<SkrunglerComponent, EntityStorageComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var skrungler, out var storage, out var xform))
         {
-            if (_appearance.TryGetData<bool>(uid, SkrunglerVisuals.Skrungling, out var isSkrungling, appearance) &&
-                isSkrungling)
+            // Not active
+            if (!skrungler.Active)
+                continue;
+
+            // Can't run if it requires power and isn't powered
+            if (_powerReceiverQuery.TryComp(uid, out var powerReceiver) &&
+                !_power.IsPowered((uid, powerReceiver)))
+                continue;
+
+            var curTime = Timing.CurTime;
+
+            if (curTime > skrungler.NextMessTime)
             {
-                args.PushMarkup(Loc.GetString("skrungler-entity-storage-component-on-examine-details-is-running",
-                    ("owner", uid)));
+                if (_random.Prob(0.2f) && skrungler.BloodReagent is not null)
+                {
+                    Solution blood = new();
+                    blood.AddReagent(skrungler.BloodReagent, 50);
+                    _puddle.TrySpillAt(uid, blood, out _);
+                }
+                skrungler.NextMessTime = curTime + skrungler.MessInterval;
+                // TODO perf: maybe use deltas for this? state is kinda big
+                Dirty(uid, skrungler);
             }
 
-            if (_appearance.TryGetData<bool>(uid, StorageVisuals.HasContents, out var hasContents, appearance) &&
-                hasContents)
+            if (curTime < skrungler.FinishProcessingTime)
+                continue;
+
+            var actualYield = (int) skrungler.CurrentExpectedYield; // can only have integer
+            skrungler.CurrentExpectedYield -= actualYield; // store non-integer leftovers
+
+            var fuel = _material.SpawnMultipleFromMaterial(actualYield, _fuelPrototype, xform.Coordinates);
+            foreach (var fuelEntity in fuel)
             {
-                args.PushMarkup(Loc.GetString("skrungler-entity-storage-component-on-examine-details-has-contents"));
+                _containers.Insert(fuelEntity, storage.Contents);
             }
-            else
-            {
-                args.PushMarkup(Loc.GetString("skrungler-entity-storage-component-on-examine-details-empty"));
-            }
+
+            skrungler.BloodReagent = null;
+            _entityStorage.OpenStorage(uid, storage);
+            EndProcessingVisuals((uid, skrungler));
+            skrungler.Active = false;
+            Dirty(uid, skrungler);
         }
     }
 
-    private void OnAttemptOpen(EntityUid uid, ActiveSkrunglerComponent component, ref StorageOpenAttemptEvent args)
+    private void AddSkrunglerVerb(Entity<SkrunglerComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        args.Cancelled = true;
-    }
+        if (ent.Comp.Active)
+            return;
 
-    private void AddskrungelVerb(EntityUid uid, SkrunglerComponent component, GetVerbsEvent<AlternativeVerb> args)
-    {
-        if (!TryComp<EntityStorageComponent>(uid, out var storage))
+        // TODO: Prediction
+        if (!TryComp(ent, out EntityStorageComponent? storage))
             return;
 
         if (!args.CanAccess || !args.CanInteract || args.Hands == null || storage.Open)
-            return;
-
-        if (HasComp<ActiveSkrunglerComponent>(uid))
             return;
 
         AlternativeVerb verb = new()
@@ -118,54 +130,39 @@ public sealed class SkrunglerSystem : EntitySystem
             Text = Loc.GetString("skrungel-verb-get-data-text"),
             // TODO VERB ICON add flame/burn symbol?
 
-            Act = () => TryProcessing(uid, component, storage),
-            Impact = LogImpact.High // could be a body? or evidence? I dunno.
+            Act = () => TryStartProcessing((ent, ent.Comp, storage)),
+            Impact = LogImpact.High, // could be a body? or evidence? I dunno.
         };
+
         args.Verbs.Add(verb);
     }
 
-    public bool TryProcessing(EntityUid uid, SkrunglerComponent component, EntityStorageComponent? storage = null)
+    private void TryStartProcessing(Entity<SkrunglerComponent, EntityStorageComponent> ent)
     {
-        if (!Resolve(uid, ref storage))
-            return false;
-
-        if (storage.Open || storage.Contents.ContainedEntities.Count < 1)
-            return false;
-
-        // Refuse to accept alive mobs and dead-but-connected players
-        var entity = storage.Contents.ContainedEntities[0];
-        if (entity is not { Valid: true })
-            return false;
-
-        if (TryComp<MobStateComponent>(entity, out var comp) && !_mobState.IsDead(entity, comp))
-            return false;
-
-        if (_minds.TryGetMind(entity, out var _, out var mind) && mind.Session?.State?.Status == SessionStatus.InGame)
-            return false;
-
-        StartProcessing(entity, new Entity<SkrunglerComponent>(uid, component));
-        return true;
-    }
-
-    private void StartProcessing(EntityUid toProcess, Entity<SkrunglerComponent> ent, PhysicsComponent? physics = null)
-    {
-        if (!Resolve(toProcess, ref physics))
+        if (ent.Comp2.Open || ent.Comp2.Contents.ContainedEntities.Count < 1)
             return;
 
-        var component = ent.Comp;
-        AddComp<ActiveSkrunglerComponent>(ent);
+        // Refuse to accept alive mobs and dead-but-connected players
+        var containedEntity = ent.Comp2.Contents.ContainedEntities[0];
+        if (containedEntity is not { Valid: true })
+            return;
 
-        if (TryComp<BloodstreamComponent>(toProcess, out var stream))
-        {
-            component.BloodReagent = stream.BloodReagent;
-        }
+        if (TryComp<MobStateComponent>(containedEntity, out var comp) && !_mobState.IsDead(containedEntity, comp))
+            return;
 
-        var expectedYield = physics.FixturesMass * component.YieldPerUnitMass;
-        component.CurrentExpectedYield += expectedYield;
+        if (_minds.TryGetMind(containedEntity, out _, out var mind) &&
+            mind.Session?.State.Status == SessionStatus.InGame)
+            return;
 
-        component.ProcessingTimer = physics.FixturesMass * component.ProcessingTimePerUnitMass;
+        StartProcessing(containedEntity, ent);
+    }
 
-        QueueDel(toProcess);
+    protected override void StartProcessing(EntityUid uid, Entity<SkrunglerComponent> skrungler)
+    {
+        base.StartProcessing(uid, skrungler);
+
+        if (TryComp<BloodstreamComponent>(uid, out var stream))
+            skrungler.Comp.BloodReagent = stream.BloodReagent;
     }
 
     private void OnSuicideByEnvironment(Entity<SkrunglerComponent> ent, ref SuicideByEnvironmentEvent args)
@@ -173,25 +170,27 @@ public sealed class SkrunglerSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (HasComp<ActiveSkrunglerComponent>(ent))
+        if (ent.Comp.Active)
             return;
 
-        if (TryComp<ApcPowerReceiverComponent>(ent, out var power) && !power.Powered)
+        if (_powerReceiverQuery.TryComp(ent, out var powerReceiver) &&
+            _power.IsPowered((ent, powerReceiver)))
             return;
 
-        if (TryComp(args.Victim, out ActorComponent? actor) && _minds.TryGetMind(args.Victim, out var mindId, out var mind))
+        if (_minds.TryGetMind(args.Victim, out var mindId, out var mind))
         {
-            _ghostSystem.OnGhostAttempt(mindId, false, mind: mind);
+            _ghost.OnGhostAttempt(mindId, false, mind: mind);
 
             if (mind.OwnedEntity is { Valid: true } entity)
-            {
                 _popup.PopupEntity(Loc.GetString("skrungler-entity-storage-component-suicide-message"), entity);
-            }
         }
 
         _popup.PopupEntity(Loc.GetString("skrungler-entity-storage-component-suicide-message-others",
-            ("victim", Identity.Entity(args.Victim, EntityManager))),
-            args.Victim, Filter.PvsExcept(args.Victim), true, PopupType.LargeCaution);
+                ("victim", Identity.Entity(args.Victim, EntityManager))),
+            args.Victim,
+            Filter.PvsExcept(args.Victim),
+            true,
+            PopupType.LargeCaution);
 
         if (_entityStorage.CanInsert(args.Victim, ent))
         {
@@ -200,111 +199,34 @@ public sealed class SkrunglerSystem : EntitySystem
             _entityStorage.Insert(args.Victim, ent);
         }
         else
-        {
-            EntityManager.DeleteEntity(args.Victim);
-        }
+            Del(args.Victim);
 
         _entityStorage.CloseStorage(ent);
         StartProcessing(args.Victim, ent);
         args.Handled = true;
     }
 
-    public override void Update(float frameTime)
+    private void OnRefreshParts(Entity<SkrunglerComponent> ent, ref RefreshPartsEvent args)
     {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<ActiveSkrunglerComponent, SkrunglerComponent, EntityStorageComponent>();
-        while (query.MoveNext(out var uid, out var act, out var skrug, out var storage))
-        {
-            skrug.ProcessingTimer -= frameTime;
-            skrug.RandomMessTimer -= frameTime;
-
-            if (skrug.RandomMessTimer <= 0)
-            {
-                if (_robustRandom.Prob(0.2f) && skrug.BloodReagent is not null)
-                {
-                    Solution blood = new();
-                    blood.AddReagent(skrug.BloodReagent, 50);
-                    _puddleSystem.TrySpillAt(uid, blood, out _);
-                }
-                skrug.RandomMessTimer += (float)skrug.RandomMessInterval.TotalSeconds;
-            }
-
-            if (skrug.ProcessingTimer > 0)
-            {
-                continue;
-            }
-
-            var actualYield = (int)(skrug.CurrentExpectedYield); // can only have integer
-            skrug.CurrentExpectedYield = skrug.CurrentExpectedYield - actualYield; // store non-integer leftovers
-
-            if (!Resolve(uid, ref storage))
-                return;
-
-            var fuel = _material.SpawnMultipleFromMaterial(actualYield, FuelPrototype, Transform(uid).Coordinates);
-            foreach (var fuelEntity in fuel)
-            {
-                _containers.Insert(fuelEntity, storage.Contents);
-            }
-
-            skrug.BloodReagent = null;
-            _entityStorage.OpenStorage(uid, storage);
-            RemCompDeferred<ActiveSkrunglerComponent>(uid);
-        }
-    }
-
-    private void OnInit(EntityUid uid, ActiveSkrunglerComponent component, ComponentInit args)
-    {
-        _appearance.SetData(uid, SkrunglerVisuals.SkrunglingBase, true);
-        _appearance.SetData(uid, SkrunglerVisuals.Skrungling, true);
-        _jitteringSystem.AddJitter(uid, 2, 10);
-        _audio.PlayPvs(component.SkrungStartSound, uid);
-        _audio.PlayPvs(component.SkrunglerSound, uid);
-        _ambientSoundSystem.SetAmbience(uid, true);
-    }
-
-    private void OnShutdown(EntityUid uid, ActiveSkrunglerComponent component, ComponentShutdown args)
-    {
-        _appearance.SetData(uid, SkrunglerVisuals.SkrunglingBase, false);
-        _appearance.SetData(uid, SkrunglerVisuals.Skrungling, false);
-        RemComp<JitteringComponent>(uid);
-        _audio.PlayPvs(component.SkrungFinishSound, uid);
-        _ambientSoundSystem.SetAmbience(uid, false);
-    }
-
-    private void OnPowerChanged(EntityUid uid, SkrunglerComponent component, ref PowerChangedEvent args)
-    {
-        if (args.Powered)
-        {
-            if (component.ProcessingTimer > 0)
-                EnsureComp<ActiveSkrunglerComponent>(uid);
-        }
-        else
-            RemComp<ActiveSkrunglerComponent>(uid);
-    }
-
-    private void OnUnanchorAttempt(EntityUid uid, ActiveSkrunglerComponent component, UnanchorAttemptEvent args)
-    {
-        args.Cancel();
-    }
-
-    private void OnRefreshParts(EntityUid uid, SkrunglerComponent component, RefreshPartsEvent args)
-    {
-        var laserRating = args.PartRatings[component.MachinePartProcessingSpeed];
-        var manipRating = args.PartRatings[component.MachinePartYieldAmount];
+        var laserRating = args.PartRatings[ent.Comp.MachinePartProcessingSpeed];
+        var manipRating = args.PartRatings[ent.Comp.MachinePartYieldAmount];
 
         // Processing time slopes downwards with part rating.
-        component.ProcessingTimePerUnitMass =
-            component.BaseProcessingTimePerUnitMass / MathF.Pow(component.PartRatingSpeedMultiplier, laserRating - 1);
+        ent.Comp.ProcessingTimePerUnitMass =
+            ent.Comp.BaseProcessingTimePerUnitMass / MathF.Pow(ent.Comp.PartRatingSpeedMultiplier, laserRating - 1);
 
         // Yield slopes upwards with part rating.
-        component.YieldPerUnitMass =
-            component.BaseYieldPerUnitMass * MathF.Pow(component.PartRatingYieldAmountMultiplier, manipRating - 1);
+        ent.Comp.YieldPerUnitMass =
+            ent.Comp.BaseYieldPerUnitMass * MathF.Pow(ent.Comp.PartRatingYieldAmountMultiplier, manipRating - 1);
+
+        Dirty(ent);
     }
 
-    private void OnUpgradeExamine(EntityUid uid, SkrunglerComponent component, UpgradeExamineEvent args)
+    private void OnUpgradeExamine(Entity<SkrunglerComponent> ent, ref UpgradeExamineEvent args)
     {
-        args.AddPercentageUpgrade("skrungler-component-upgrade-speed", component.BaseProcessingTimePerUnitMass / component.ProcessingTimePerUnitMass);
-        args.AddPercentageUpgrade("skrungler-component-upgrade-fuel-yield", component.YieldPerUnitMass / component.BaseYieldPerUnitMass);
+        args.AddPercentageUpgrade("skrungler-component-upgrade-speed",
+            (float) (ent.Comp.BaseProcessingTimePerUnitMass / ent.Comp.ProcessingTimePerUnitMass));
+        args.AddPercentageUpgrade("skrungler-component-upgrade-fuel-yield",
+            ent.Comp.YieldPerUnitMass / ent.Comp.BaseYieldPerUnitMass);
     }
 }

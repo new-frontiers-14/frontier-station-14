@@ -1,50 +1,57 @@
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Construction.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server._NF.Skrungler.Components;
+namespace Content.Shared._NF.Skrungler.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class SkrunglerComponent : Component
 {
+    [DataField, AutoNetworkedField]
+    public bool Active;
+
     /// <summary>
     /// This gets set for each mob it processes.
     /// When it hits 0, there is a chance for the skrungler to either spill blood.
     /// </summary>
-    [DataField, ViewVariables]
-    public float RandomMessTimer = 0f;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
+    public TimeSpan NextMessTime;
 
     /// <summary>
-    /// The interval for <see cref="RandomMessTimer"/>.
+    /// The interval for <see cref="NextMessTime"/>.
     /// </summary>
-    [DataField, ViewVariables]
-    public TimeSpan RandomMessInterval = TimeSpan.FromSeconds(5);
+    [DataField]
+    public TimeSpan MessInterval = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// This gets set for each mob it processes.
     /// When it hits 0, spit out fuel.
     /// </summary>
-    [DataField, ViewVariables]
-    public float ProcessingTimer = default;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
+    public TimeSpan FinishProcessingTime;
 
     /// <summary>
     /// Amount of fuel that the mob being processed will yield.
     /// This is calculated from the YieldPerUnitMass.
     /// Also stores non-integer leftovers.
     /// </summary>
-    [DataField, ViewVariables]
-    public float CurrentExpectedYield = 0f;
+    [DataField, AutoNetworkedField]
+    public float CurrentExpectedYield;
 
     /// <summary>
     /// The reagent that will be spilled while processing a mob.
     /// </summary>
-    [DataField, ViewVariables]
-    public string? BloodReagent;
+    [DataField]
+    public ProtoId<ReagentPrototype>? BloodReagent;
 
     /// <summary>
     /// How many units of fuel it produces for each unit of mass.
     /// </summary>
-    [DataField, ViewVariables]
-    public float YieldPerUnitMass = default;
+    [DataField]
+    public float YieldPerUnitMass;
 
     /// <summary>
     /// The base yield per mass unit when no components are upgraded.
@@ -55,8 +62,8 @@ public sealed partial class SkrunglerComponent : Component
     /// <summary>
     /// Machine part whose rating modifies the yield per mass.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-    public string MachinePartYieldAmount = "MatterBin";
+    [DataField]
+    public ProtoId<MachinePartPrototype> MachinePartYieldAmount = "MatterBin";
 
     /// <summary>
     /// How much the machine part quality affects the yield.
@@ -68,27 +75,27 @@ public sealed partial class SkrunglerComponent : Component
     /// <summary>
     /// How many seconds to take to insert an entity per unit of its mass.
     /// </summary>
-    [DataField, ViewVariables]
+    [DataField]
     public float BaseInsertionDelay = 0.1f;
 
     /// <summary>
     /// The time it takes to process a mob, per mass.
     /// </summary>
-    [DataField, ViewVariables]
-    public float ProcessingTimePerUnitMass = default;
+    [DataField]
+    public TimeSpan ProcessingTimePerUnitMass;
 
     /// <summary>
     /// The base time per mass unit that it takes to process a mob
     /// when no components are upgraded.
     /// </summary>
     [DataField]
-    public float BaseProcessingTimePerUnitMass = 0.5f;
+    public TimeSpan BaseProcessingTimePerUnitMass = TimeSpan.FromSeconds(0.5);
 
     /// <summary>
     /// The machine part that increses the processing speed.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-    public string MachinePartProcessingSpeed = "Manipulator";
+    [DataField]
+    public ProtoId<MachinePartPrototype> MachinePartProcessingSpeed = "Manipulator";
 
     /// <summary>
     /// How much the machine part quality affects the yield.
@@ -96,4 +103,13 @@ public sealed partial class SkrunglerComponent : Component
     /// </summary>
     [DataField]
     public float PartRatingSpeedMultiplier = 1.35f;
+
+    [DataField]
+    public SoundSpecifier SkrungStartSound = new SoundCollectionSpecifier("gib");
+
+    [DataField]
+    public SoundSpecifier SkrunglerSound = new SoundPathSpecifier("/Audio/Machines/reclaimer_startup.ogg");
+
+    [DataField]
+    public SoundSpecifier SkrungFinishSound = new SoundPathSpecifier("/Audio/Machines/ding.ogg");
 }
