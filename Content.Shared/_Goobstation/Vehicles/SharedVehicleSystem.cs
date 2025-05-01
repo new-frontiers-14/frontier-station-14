@@ -71,20 +71,20 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     // Frontier
     private void OnMapInit(EntityUid uid, VehicleComponent component, MapInitEvent args)
     {
-        bool dirty = false;
+        bool actionsUpdated = false;
         if (component.HornSound != null)
         {
             _actionContainer.EnsureAction(uid, ref component.HornAction, HornActionId);
-            dirty = true;
+            actionsUpdated = true;
         }
 
         if (component.SirenSound != null)
         {
             _actionContainer.EnsureAction(uid, ref component.SirenAction, SirenActionId);
-            dirty = true;
+            actionsUpdated = true;
         }
 
-        if (dirty)
+        if (actionsUpdated)
             Dirty(uid, component);
     }
     // End Frontier
