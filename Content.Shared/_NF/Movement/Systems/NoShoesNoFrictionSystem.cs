@@ -55,7 +55,8 @@ public sealed class NoShoesNoFrictionSystem : EntitySystem
 
         _speedModifierSystem.ChangeFriction(uid, friction, frictionNoInput, acceleration, speedModifier);
 
-    }
+    }
+
     private bool IsBlacklisted(EntityUid uid, NoShoesNoFrictionComponent component, EntityUid? worn)
     {
         return worn.HasValue && _whitelistSystem.IsBlacklistFailOrNull(component.Blacklist, worn.Value);
