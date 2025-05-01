@@ -190,6 +190,14 @@
               # Brute: -4 # Frontier
               # Burn: -6 # Frontier
               # Toxin: -4 # Frontier
+        # Frontier: Sheleg
+        - !type:ModifyBloodLevel
+          conditions:
+          - !type:OrganType
+            type: Sheleg
+            shouldHave: true
+          amount: 0.1
+        # Frontier: Sheleg
 
 - type: reagent
   id: Doxarubixadone
