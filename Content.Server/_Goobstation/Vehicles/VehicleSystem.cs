@@ -7,14 +7,21 @@ namespace Content.Server._Goobstation.Vehicles; // Frontier: migrate under _Goob
 public sealed class VehicleSystem : SharedVehicleSystem
 {
     //// Frontier: logic for adding and removing RadarBlipComponent if strapped or not
-    protected override void OnStrapped(Entity<VehicleComponent> uid, ref StrappedEvent args)
+    /// <summary>
+    /// Configures the radar blip for a vehicle entity.
+    /// </summary>
+    private void SetupVehicleRadarBlip(Entity<VehicleComponent> uid)
     {
-        base.OnStrapped(uid, ref args);
-
         var blip = EnsureComp<RadarBlipComponent>(uid);
         blip.RadarColor = Color.Cyan;
         blip.Scale = 1f;
         blip.VisibleFromOtherGrids = true;
+    }
+
+    protected override void OnStrapped(Entity<VehicleComponent> uid, ref StrappedEvent args)
+    {
+        base.OnStrapped(uid, ref args);
+        SetupVehicleRadarBlip(uid);
     }
 
     protected override void OnUnstrapped(Entity<VehicleComponent> uid, ref UnstrappedEvent args)

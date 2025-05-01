@@ -34,14 +34,22 @@ public sealed class JetpackSystem : SharedJetpackSystem
 
     // Frontier: add RadarBlipComponent logic for adding and removal if active or not
     /// <summary>
-    /// Adds radar blip to jetpacks when they are activated
+    /// Configures the radar blip for a jetpack entity.
     /// </summary>
-    private void OnJetpackActivated(EntityUid uid, ActiveJetpackComponent component, ComponentStartup args)
+    private void SetupJetpackRadarBlip(EntityUid uid)
     {
         var blip = EnsureComp<RadarBlipComponent>(uid);
         blip.RadarColor = Color.Cyan;
         blip.Scale = 1f;
         blip.VisibleFromOtherGrids = true;
+    }
+
+    /// <summary>
+    /// Adds radar blip to jetpacks when they are activated
+    /// </summary>
+    private void OnJetpackActivated(EntityUid uid, ActiveJetpackComponent component, ComponentStartup args)
+    {
+        SetupJetpackRadarBlip(uid);
     }
 
     /// <summary>

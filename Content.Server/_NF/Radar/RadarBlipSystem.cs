@@ -8,6 +8,7 @@ namespace Content.Server._NF.Radar;
 
 public sealed partial class RadarBlipSystem : EntitySystem
 {
+    private const double BlipStaleSeconds = 1.0;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     public override void Initialize()
     {
@@ -15,6 +16,9 @@ public sealed partial class RadarBlipSystem : EntitySystem
         SubscribeNetworkEvent<RequestBlipsEvent>(OnBlipsRequested);
     }
 
+    /// <summary>
+    /// Handles a network request for radar blips and sends the blip data to the requesting client.
+    /// </summary>
     private void OnBlipsRequested(RequestBlipsEvent ev, EntitySessionEventArgs args)
     {
         if (!TryGetEntity(ev.Radar, out var radarUid))
@@ -29,6 +33,9 @@ public sealed partial class RadarBlipSystem : EntitySystem
         RaiseNetworkEvent(giveEv, args.SenderSession);
     }
 
+    /// <summary>
+    /// Assembles a list of radar blips visible to the given radar console.
+    /// </summary>
     private List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> AssembleBlipsReport(EntityUid uid, RadarConsoleComponent? component = null)
     {
         var blips = new List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)>();
@@ -90,6 +97,9 @@ public sealed partial class RadarBlipSystem : EntitySystem
         return blips;
     }
 
+    /// <summary>
+    /// Determines if a projectile blip should be skipped based on map context.
+    /// </summary>
     private bool ShouldSkipProjectileBlip(EntityUid blipUid, TransformComponent blipXform, MapId radarMapId)
     {
         if (TryComp<ProjectileComponent>(blipUid, out var projectile))
@@ -110,6 +120,9 @@ public sealed partial class RadarBlipSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Adds a blip to the list, converting to grid-local coordinates if needed.
+    /// </summary>
     private void AddGridOrWorldBlip(List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> blips, EntityUid? blipGrid, Vector2 blipPosition, RadarBlipComponent blip)
     {
         if (blipGrid != null)

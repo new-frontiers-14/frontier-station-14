@@ -28,6 +28,9 @@ public enum RadarBlipShape
     Ring
 }
 
+/// <summary>
+/// Event sent from the server to the client containing radar blip data.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class GiveBlipsEvent : EntityEventArgs
 {
@@ -38,22 +41,40 @@ public sealed class GiveBlipsEvent : EntityEventArgs
     /// </summary>
     public readonly List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> Blips;
 
-    // Constructor for back-compatibility
+    /// <summary>
+    /// Backwards-compatible constructor for legacy blip format.
+    /// </summary>
+    /// <param name="blips">List of blips as (position, scale, color).</param>
     public GiveBlipsEvent(List<(Vector2, float, Color)> blips)
     {
         Blips = blips.Select(b => ((NetEntity?)null, b.Item1, b.Item2, b.Item3, RadarBlipShape.Circle)).ToList();
     }
 
+    /// <summary>
+    /// Constructor for the full blip format.
+    /// </summary>
+    /// <param name="blips">List of blips as (grid, position, scale, color, shape).</param>
     public GiveBlipsEvent(List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> blips)
     {
         Blips = blips;
     }
 }
 
+/// <summary>
+/// Event sent from the client to the server to request radar blip data.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class RequestBlipsEvent : EntityEventArgs
 {
-    public NetEntity Radar;
+    /// <summary>
+    /// The radar entity for which blips are being requested.
+    /// </summary>
+    public readonly NetEntity Radar;
+
+    /// <summary>
+    /// Constructor for RequestBlipsEvent.
+    /// </summary>
+    /// <param name="radar">The radar entity.</param>
     public RequestBlipsEvent(NetEntity radar)
     {
         Radar = radar;
