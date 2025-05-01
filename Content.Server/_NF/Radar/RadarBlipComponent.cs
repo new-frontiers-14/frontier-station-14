@@ -12,38 +12,48 @@ public sealed partial class RadarBlipComponent : Component
     /// Color that gets shown on the radar screen.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("radarColor")]
-    public Color RadarColor = Color.Red;
+    private Color _radarColor = Color.Red;
+    public Color RadarColor { get => _radarColor; set => _radarColor = value; }
 
     /// <summary>
     /// Color that gets shown on the radar screen when the blip is highlighted.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("highlightedRadarColor")]
-    public Color HighlightedRadarColor = Color.OrangeRed;
+    private Color _highlightedRadarColor = Color.OrangeRed;
+    public Color HighlightedRadarColor { get => _highlightedRadarColor; set => _highlightedRadarColor = value; }
 
     /// <summary>
     /// Scale of the blip.
     /// </summary>
     [DataField]
-    public float Scale = 1;
+    private float _scale = 1;
+    public float Scale { get => _scale; set => _scale = value; }
 
     /// <summary>
     /// The shape of the blip on the radar.
     /// </summary>
     [DataField]
-    public RadarBlipShape Shape = RadarBlipShape.Circle;
+    private RadarBlipShape _shape = RadarBlipShape.Circle;
+    public RadarBlipShape Shape { get => _shape; set => _shape = value; }
 
     /// <summary>
     /// Whether this blip should be shown even when parented to a grid.
     /// </summary>
     [DataField]
-    public bool RequireNoGrid = false;
+    private bool _requireNoGrid = false;
+    public bool RequireNoGrid { get => _requireNoGrid; set => _requireNoGrid = value; }
 
     /// <summary>
     /// Whether this blip should be visible on radar across different grids.
     /// </summary>
     [DataField]
-    public bool VisibleFromOtherGrids = false;
+    private bool _visibleFromOtherGrids = false;
+    public bool VisibleFromOtherGrids { get => _visibleFromOtherGrids; set => _visibleFromOtherGrids = value; }
 
+    /// <summary>
+    /// Whether this blip is enabled and should be shown on radar.
+    /// </summary>
     [DataField]
-    public bool Enabled = true;
+    private bool _enabled = true;
+    public bool Enabled { get => _enabled; set => _enabled = value; }
 }

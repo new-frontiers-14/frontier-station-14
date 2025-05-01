@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared._NF.Radar;
 using Content.Shared.Projectiles;
 using Content.Shared.Shuttles.Components;
+using Robust.Shared.Map;
 
 namespace Content.Server._NF.Radar;
 
@@ -32,95 +33,95 @@ public sealed partial class RadarBlipSystem : EntitySystem
     {
         var blips = new List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)>();
 
-        if (Resolve(uid, ref component))
+        if (!Resolve(uid, ref component))
+            return blips;
+
+        var radarXform = Transform(uid);
+        var radarPosition = _xform.GetWorldPosition(uid);
+        var radarGrid = _xform.GetGrid(uid);
+        var radarMapId = radarXform.MapID;
+
+        var blipQuery = EntityQueryEnumerator<RadarBlipComponent, TransformComponent>();
+
+        while (blipQuery.MoveNext(out var blipUid, out var blip, out var blipXform))
         {
-            var radarXform = Transform(uid);
-            var radarPosition = _xform.GetWorldPosition(uid);
-            var radarGrid = _xform.GetGrid(uid);
-            var radarMapId = radarXform.MapID;
-
-            var blipQuery = EntityQueryEnumerator<RadarBlipComponent, TransformComponent>();
-
-            while (blipQuery.MoveNext(out var blipUid, out var blip, out var blipXform))
+            if (!blip.Enabled)
             {
-                if (!blip.Enabled)
+                Log.Debug($"Blip {blipUid} skipped: not enabled.");
+                continue;
+            }
+
+            if (ShouldSkipProjectileBlip(blipUid, blipXform, radarMapId))
+                continue;
+
+            var blipPosition = _xform.GetWorldPosition(blipUid);
+            var distance = (blipPosition - radarPosition).Length();
+            if (distance > component.MaxRange)
+            {
+                Log.Debug($"Blip {blipUid} skipped: out of range.");
+                continue;
+            }
+
+            var blipGrid = _xform.GetGrid(blipUid);
+
+            if (blip.RequireNoGrid)
+            {
+                if (blipGrid != null)
+                {
+                    Log.Debug($"Blip {blipUid} skipped: has grid but requires none.");
                     continue;
-
-                // Don't show radar blips for projectiles on different maps than the one they were fired from
-                if (TryComp<ProjectileComponent>(blipUid, out var projectile))
-                {
-                    // If the projectile is on a different map than the radar, don't show it
-                    if (blipXform.MapID != radarMapId)
-                        continue;
-
-                    // If we can determine the shooter and they're on a different map, don't show the blip
-                    if (projectile.Shooter != null &&
-                        TryComp<TransformComponent>(projectile.Shooter, out var shooterXform) &&
-                        shooterXform.MapID != blipXform.MapID)
-                        continue;
                 }
-
-                var blipPosition = _xform.GetWorldPosition(blipUid);
-                var distance = (blipPosition - radarPosition).Length();
-                if (distance > component.MaxRange)
+                blips.Add((null, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
+            }
+            else if (blip.VisibleFromOtherGrids)
+            {
+                AddGridOrWorldBlip(blips, blipGrid, blipPosition, blip);
+            }
+            else
+            {
+                if (blipGrid != radarGrid)
+                {
+                    Log.Debug($"Blip {blipUid} skipped: not on same grid as radar.");
                     continue;
-
-                var blipGrid = _xform.GetGrid(blipUid);
-
-                if (blip.RequireNoGrid)
-                {
-                    if (blipGrid != null)
-                        continue;
-
-                    // For free-floating blips without a grid, use world position with null grid
-                    blips.Add((null, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
                 }
-                else if (blip.VisibleFromOtherGrids)
-                {
-                    // For blips that should be visible from other grids, add them regardless of grid
-                    // If on a grid, use grid-relative coordinates
-                    if (blipGrid != null)
-                    {
-                        // Local position relative to grid
-                        var gridMatrix = _xform.GetWorldMatrix(blipGrid.Value);
-                        Matrix3x2.Invert(gridMatrix, out var invGridMatrix);
-                        var localPos = Vector2.Transform(blipPosition, invGridMatrix);
-
-                        // Add grid-relative blip with grid entity ID
-                        blips.Add((GetNetEntity(blipGrid.Value), localPos, blip.Scale, blip.RadarColor, blip.Shape));
-                    }
-                    else
-                    {
-                        // Fallback to world position with null grid
-                        blips.Add((null, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
-                    }
-                }
-                else
-                {
-                    // If we're requiring grid, make sure they're on the same grid
-                    if (blipGrid != radarGrid)
-                        continue;
-
-                    // For grid-aligned blips, store grid NetEntity and grid-local position
-                    if (blipGrid != null)
-                    {
-                        // Local position relative to grid
-                        var gridMatrix = _xform.GetWorldMatrix(blipGrid.Value);
-                        Matrix3x2.Invert(gridMatrix, out var invGridMatrix);
-                        var localPos = Vector2.Transform(blipPosition, invGridMatrix);
-
-                        // Add grid-relative blip with grid entity ID
-                        blips.Add((GetNetEntity(blipGrid.Value), localPos, blip.Scale, blip.RadarColor, blip.Shape));
-                    }
-                    else
-                    {
-                        // Fallback to world position with null grid
-                        blips.Add((null, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
-                    }
-                }
+                AddGridOrWorldBlip(blips, blipGrid, blipPosition, blip);
             }
         }
-
         return blips;
+    }
+
+    private bool ShouldSkipProjectileBlip(EntityUid blipUid, TransformComponent blipXform, MapId radarMapId)
+    {
+        if (TryComp<ProjectileComponent>(blipUid, out var projectile))
+        {
+            if (blipXform.MapID != radarMapId)
+            {
+                Log.Debug($"Projectile blip {blipUid} skipped: different map.");
+                return true;
+            }
+            if (projectile.Shooter != null &&
+                TryComp<TransformComponent>(projectile.Shooter, out var shooterXform) &&
+                shooterXform.MapID != blipXform.MapID)
+            {
+                Log.Debug($"Projectile blip {blipUid} skipped: shooter on different map.");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void AddGridOrWorldBlip(List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> blips, EntityUid? blipGrid, Vector2 blipPosition, RadarBlipComponent blip)
+    {
+        if (blipGrid != null)
+        {
+            var gridMatrix = _xform.GetWorldMatrix(blipGrid.Value);
+            Matrix3x2.Invert(gridMatrix, out var invGridMatrix);
+            var localPos = Vector2.Transform(blipPosition, invGridMatrix);
+            blips.Add((GetNetEntity(blipGrid.Value), localPos, blip.Scale, blip.RadarColor, blip.Shape));
+        }
+        else
+        {
+            blips.Add((null, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
+        }
     }
 }

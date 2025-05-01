@@ -4,16 +4,27 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.Radar;
 
+/// <summary>
+/// The shape of the radar blip.
+/// </summary>
 [Serializable, NetSerializable]
 public enum RadarBlipShape
 {
+    /// <summary>Circle shape.</summary>
     Circle,
+    /// <summary>Square shape.</summary>
     Square,
+    /// <summary>Triangle shape.</summary>
     Triangle,
+    /// <summary>Star shape.</summary>
     Star,
+    /// <summary>Diamond shape.</summary>
     Diamond,
+    /// <summary>Hexagon shape.</summary>
     Hexagon,
+    /// <summary>Arrow shape.</summary>
     Arrow,
+    /// <summary>Ring shape.</summary>
     Ring
 }
 

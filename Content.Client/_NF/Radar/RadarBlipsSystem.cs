@@ -71,11 +71,7 @@ public sealed partial class RadarBlipsSystem : EntitySystem
 
                 result.Add((finalWorldPos, blip.Scale, blip.Color, blip.Shape));
             }
-            else
-            {
-                // Grid not found, skip this blip
-                continue;
-            }
+            // else: Grid not found, skip this blip
         }
 
         return result;
