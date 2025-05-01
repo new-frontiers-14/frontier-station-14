@@ -273,15 +273,24 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (removeDriver) // Frontier
             vehicleComp.Driver = null;
 
+        // Frontier: dirty actions
         if (vehicleComp.HornAction != null)
+        {
             _actions.RemoveAction(driver, vehicleComp.HornAction);
+            Dirty(vehicle, vehicleComp);
+        }
 
         if (vehicleComp.SirenAction != null)
+        {
             _actions.RemoveAction(driver, vehicleComp.SirenAction);
+            Dirty(vehicle, vehicleComp);
+        }
 
-        // Frontier: flashlight actions
         if (TryComp<UnpoweredFlashlightComponent>(vehicle, out var flashlight))
+        {
             _actions.RemoveAction(driver, flashlight.ToggleActionEntity);
+            Dirty(vehicle, flashlight);
+        }
         // End Frontier
 
         if (removeDriver) // Frontier
