@@ -1,6 +1,10 @@
 # Inventory template fills
+# The items here will be spawned inside a duffel bag
+# Currently duffel's inventory size is 8x5 (40),
+# so arbitrary total cap for spawned item footprint is ~30
+# (to account for item geometry)
 #region tables: valuables
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 2
   id: TableStorageFillStashCash
   table: !type:AllSelector
     children:
@@ -13,29 +17,42 @@
       - id: SpaceCash30000
         weight: 3
 
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 1
   id: TableStorageFillStashCoins
-  table: !type:AllSelector
+  table: !type:GroupSelector
     children:
       - !type:GroupSelector
         children:
         - id: TreasureCoinDiamond # 500 spesos for one
-          amount: !type:RangeNumberSelector
-            range: 1, 10
+        - id: TreasureCoinDiamond3
+        - id: TreasureCoinDiamond5
+        - id: TreasureCoinDiamond10
+      - !type:GroupSelector
+        children:
         - id: TreasureCoinAdamantine # 250 spesos for one
-          amount: !type:RangeNumberSelector
-            range: 1, 10
+        - id: TreasureCoinAdamantine3
+        - id: TreasureCoinAdamantine5
+        - id: TreasureCoinAdamantine10
+      - !type:GroupSelector
+        children:
         - id: TreasureCoinGold # 175 spesos for one
-          amount: !type:RangeNumberSelector
-            range: 1, 10
+        - id: TreasureCoinGold3
+        - id: TreasureCoinGold5
+        - id: TreasureCoinGold10
+      - !type:GroupSelector
+        children:
         - id: TreasureCoinSilver # 135 spesos for one
-          amount: !type:RangeNumberSelector
-            range: 1, 10
+        - id: TreasureCoinSilver3
+        - id: TreasureCoinSilver5
+        - id: TreasureCoinSilver10
+      - !type:GroupSelector
+        children:
         - id: TreasureCoinIron # 75 spesos for one
-          amount: !type:RangeNumberSelector
-            range: 1, 10
+        - id: TreasureCoinIron3
+        - id: TreasureCoinIron5
+        - id: TreasureCoinIron10
 
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 4
   id: TableStorageFillStashJewelry
   table: !type:AllSelector
     children:
@@ -56,7 +73,7 @@
         - id: ClothingMaskGoldenCursed # 5000 spesos for one
           weight: 1
 
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 10
   id: TableStorageFillStashTobacco
   table: !type:GroupSelector
     children:
@@ -89,7 +106,7 @@
         - id: TobaccoPouchRedFilled
         - id: TobaccoPouchBrownFilled
 
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 12
   id: TableStorageFillStashBooze
   table: !type:GroupSelector
     children:
@@ -114,7 +131,7 @@
             range: 1, 6
 
 #region tables: spoiled food
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 2
   id: TableStorageFillStashFoodSpoiled
   table: !type:GroupSelector
     children:
@@ -132,7 +149,7 @@
       - id: FoodSaladCaesarMoldy
 
 #region tables: weapons
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 16
   id: TableStorageFillStashWeaponCasesGuns
   table: !type:GroupSelector
     children:
@@ -179,7 +196,7 @@
       - id: WeaponCaseShortLaserGunExpedition
 
 #region tables: clutter
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 8
   id: MaintFluffTableTrimmed
   table: !type:GroupSelector
     children:
@@ -226,7 +243,7 @@
       - id: PonderingOrb
       - id: ClothingShoesSkates
 
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 16
   id: TableStorageFillStashPunk
   table: !type:AllSelector
     children:
@@ -287,7 +304,7 @@
       - id: ClothingEyesPunkInfoShades
 
 #region tables: contraband
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 21
   id: TableStorageFillStashContraband
   table: !type:AllSelector
     children:
@@ -315,98 +332,98 @@
        - id: WeaponCaseShortViper
 
 #region tables: combination
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 7
   id: TableStorageFillStashValuables
   table: !type:AllSelector
     children:
     # Cash and Coins
     - !type:AllSelector
       children:
-      - !type:NestedSelector
-        tableId: TableStorageFillStashCash # From 5000 to 30000 spesos
-      - !type:NestedSelector
-        tableId: TableStorageFillStashCoins # From 750 to ~20000 spesos
-      - !type:NestedSelector
+      - !type:NestedSelector # Max Inv. footprint: 4
         tableId: TableStorageFillStashJewelry # From 10 to 5000 spesos
+      - !type:NestedSelector # Max Inv. footprint: 2
+        tableId: TableStorageFillStashCash # From 5000 to 30000 spesos
+      - !type:NestedSelector # Max Inv. footprint: 1
+        tableId: TableStorageFillStashCoins # From 75 to ~5000 spesos
 
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 31
   id: TableStorageFillStashLoot
   table: !type:AllSelector
     children:
-    # Cash and Coins
-    - !type:NestedSelector
-      tableId: TableStorageFillStashValuables
     # Maint Fluff
-    - !type:NestedSelector
+    - !type:NestedSelector # Max Inv. footprint: 8x3
       tableId: MaintFluffTableTrimmed
       rolls: !type:RangeNumberSelector
-        range: 2, 6
+        range: 1, 3
+    # Cash and Coins
+    - !type:NestedSelector # Max Inv. footprint: 7
+      tableId: TableStorageFillStashValuables
 
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 23
   id: TableStorageFillStashMercenary
   table: !type:AllSelector
     children:
-    # Cash and Coins
-    - !type:NestedSelector
-      tableId: TableStorageFillStashValuables
-    # Booze
-    - !type:NestedSelector
+    # Weapons
+    - !type:NestedSelector # Max Inv. footprint: 16
       tableId: TableStorageFillStashWeaponCasesGuns
+    # Cash and Coins
+    - !type:NestedSelector # Max Inv. footprint: 7
+      tableId: TableStorageFillStashValuables
 
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 17
   id: TableStorageFillStashSmokes
   table: !type:AllSelector
     children:
-    # Cash and Coins
-    - !type:NestedSelector
-      tableId: TableStorageFillStashValuables
     # Smokes
-    - !type:NestedSelector
+    - !type:NestedSelector # Max Inv. footprint: 10
       tableId: TableStorageFillStashTobacco
+    # Cash and Coins
+    - !type:NestedSelector # Max Inv. footprint: 7
+      tableId: TableStorageFillStashValuables
 
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 19
   id: TableStorageFillStashDrinks
   table: !type:AllSelector
     children:
-    # Cash and Coins
-    - !type:NestedSelector
-      tableId: TableStorageFillStashValuables
     # Booze
-    - !type:NestedSelector
+    - !type:NestedSelector # Max Inv. footprint: 12
       tableId: TableStorageFillStashBooze
+    # Cash and Coins
+    - !type:NestedSelector # Max Inv. footprint: 7
+      tableId: TableStorageFillStashValuables
 
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 19
   id: TableStorageFillStashEmbezzled
   table: !type:AllSelector
     children:
     # Cash and Coins
     - !type:AllSelector
       children:
-      - !type:NestedSelector
-        tableId: TableStorageFillStashCash
-        rolls: !type:RangeNumberSelector
-          range: 1, 2 # From 10000 to 60000 spesos
-      - !type:NestedSelector
-        tableId: TableStorageFillStashCoins
-        rolls: !type:RangeNumberSelector
-          range: 1, 3 # From 2250 to ~60000 spesos
-      - !type:NestedSelector
+      - !type:NestedSelector # Max Inv. footprint: 12
         tableId: TableStorageFillStashJewelry
         rolls: !type:RangeNumberSelector
-          range: 1, 3 # From 30 to 15000 spesos
+          range: 1, 3 # From 10 to 15000 spesos
+      - !type:NestedSelector # Max Inv. footprint: 4
+        tableId: TableStorageFillStashCash
+        rolls: !type:RangeNumberSelector
+          range: 1, 2 # From 5 to 60000 spesos
+      - !type:NestedSelector # Max Inv. footprint: 3
+        tableId: TableStorageFillStashCoins
+        rolls: !type:RangeNumberSelector
+          range: 1, 3 # From 75 to 15000 spesos
 
-- type: entityTable
+- type: entityTable # Max Inv. footprint: 31
   id: TableStorageFillStashPunkThreads
   table: !type:AllSelector
     children:
     # Punk threads
-    - !type:NestedSelector
+    - !type:NestedSelector # Max Inv. footprint: 16
       tableId: TableStorageFillStashPunk
     # Booze
-    - !type:NestedSelector
+    - !type:NestedSelector # Max Inv. footprint: 12
       tableId: TableStorageFillStashBooze
     # Cash and Coins
-    - !type:NestedSelector
+    - !type:NestedSelector # Max Inv. footprint: 7
       tableId: TableStorageFillStashValuables
       rolls: !type:RangeNumberSelector
         range: 0, 1
