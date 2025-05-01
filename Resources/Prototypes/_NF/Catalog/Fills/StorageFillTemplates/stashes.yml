@@ -61,43 +61,29 @@
     - id: IngotSilver # 450 per full stack
     - id: TowelColorGold # 10 per one, but think of the PRESTIGE!
     - id: ClothingNeckBling # 10 per one, but think of the PRESTIGE!
-    - id: WristwatchGold # 500 spesos for one
+    - id: WristwatchGold # 500 spesos for one (footprint: 4)
       weight: 3
-    - id: ClothingMaskGoldenCursed # 5000 spesos for one
+    - id: ClothingMaskGoldenCursed # 5000 spesos for one (footprint: 4?)
       weight: 1
 
-- type: entityTable # Max Inv. footprint: 10
+- type: entityTable # Max Inv. footprint: 9
   id: TableStorageFillStashTobacco
-  table: !type:GroupSelector
+  table: !type:AllSelector
     children:
-    - !type:AllSelector
+    - !type:GroupSelector
       children:
-      - id: FlippoEngravedLighter
       - id: CigarGoldCase
-    - !type:AllSelector
-      children:
-      - id: SmokingPipe
-      - id: FlippoEngravedLighter
-      - id: TobaccoPouchBrownFilled
-      - id: TobaccoPouchPurpleFilled
-    - !type:AllSelector
-      children:
-      - id: SmokingPipe
-      - id: FlippoEngravedLighter
-      - id: TobaccoPouchPurpleFilled
-      - id: TobaccoPouchBlueFilled
-    - !type:AllSelector
-      children:
-      - id: SmokingPipe
-      - id: FlippoEngravedLighter
-      - id: TobaccoPouchBlueFilled
-      - id: TobaccoPouchRedFilled
-    - !type:AllSelector
-      children:
-      - id: SmokingPipe
-      - id: FlippoEngravedLighter
-      - id: TobaccoPouchRedFilled
-      - id: TobaccoPouchBrownFilled
+      - !type:AllSelector
+        children:
+        - id: SmokingPipe
+        - !type:GroupSelector
+          children:
+          - id: TobaccoPouchBlueFilled
+          - id: TobaccoPouchBrownFilled
+          - id: TobaccoPouchPurpleFilled
+          - id: TobaccoPouchRedFilled
+          amount: 2
+    - id: FlippoEngravedLighter
 
 - type: entityTable # Max Inv. footprint: 12
   id: TableStorageFillStashBooze
@@ -295,10 +281,21 @@
   id: TableStorageFillStashContraband
   table: !type:AllSelector
     children:
-    - id: SyndicateBusinessCard
-    - id: BoxID
+    - id: BoxID # (footprint: 9)
       prob: 0.2
-    - !type:GroupSelector # Cash
+    - !type:GroupSelector # Weapons (footprint: 4)
+       children:
+       - id: WeaponCaseShortCobra
+       - id: WeaponCaseShortViper
+    - !type:GroupSelector # Tools (footprint: 2)
+      children:
+      - id: CameraBug
+      - id: ClothingMaskGasVoiceChameleon
+      - id: Emag
+      - id: StorageImplanter
+      - id: RadioJammer
+    - id: SyndicateBusinessCard # (footprint: 1)
+    - !type:GroupSelector # Cash (footprint: 1)
       children:
       - id: Telecrystal1
         weight: 80
@@ -306,17 +303,6 @@
         weight: 18
       - id: Telecrystal10
         weight: 2
-    - !type:GroupSelector # Tools
-      children:
-      - id: CameraBug
-      - id: ClothingMaskGasVoiceChameleon
-      - id: Emag
-      - id: StorageImplanter
-      - id: RadioJammer
-    - !type:GroupSelector # Weapons
-       children:
-       - id: WeaponCaseShortCobra
-       - id: WeaponCaseShortViper
 
 #region tables: combination
 - type: entityTable # Max Inv. footprint: 7
