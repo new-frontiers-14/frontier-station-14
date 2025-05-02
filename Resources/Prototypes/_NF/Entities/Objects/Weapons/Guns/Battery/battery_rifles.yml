@@ -2,7 +2,7 @@
 #region Laser
 - type: entity
   id: NFWeaponEnergyRifleCarbine
-  parent: [ NFBaseWeaponFrameEnergyRifleNanotrasen, NFBaseWeaponEnergyRifleFireModes ]
+  parent: [ NFBaseWeaponEnergyRifleFireModes, NFBaseWeaponFrameEnergyRifleNanotrasen ]
   name: laser carbine
   suffix: Frontier
   description: |-
@@ -15,7 +15,7 @@
 
 - type: entity
   id: NFWeaponEnergyRifleCarbinePractice
-  parent: [ NFBaseWeaponFrameEnergyRifleNanotrasen, NFBaseWeaponEnergyGunPractice ]
+  parent: [ NFBaseWeaponEnergyGunPractice, NFBaseWeaponFrameEnergyRifleNanotrasen ]
   name: practice laser carbine
   suffix: Frontier
   description: |-
@@ -29,7 +29,7 @@
 #region Pulse
 - type: entity
   id: NFWeaponEnergyRiflePulse
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameEnergyRifleNanotrasen, NFBaseWeaponEnergyRifleHitScanPulse ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleHitScanPulse, NFBaseWeaponFrameEnergyRifleNanotrasen ]
   name: pulse rifle
   description: |-
     A weapon that is almost as infamous as its users. On the handle is a label that says 'for authorized use only.'
@@ -45,7 +45,7 @@
 #region Other
 - type: entity
   name: emp emitter
-  parent: [BaseC2ContrabandUnredeemable, NFBaseWeaponFrameEnergyRifleNanotrasen, NFBaseWeaponEnergyRifleEmp ]
+  parent: [BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleEmp, NFBaseWeaponFrameEnergyRifleNanotrasen ]
   id: WeaponEmpEmitter
   description: |-
     Releases electromagnetic pulses that disrupt or damage many electronic devices or drain power cells, has a slow self charging nuclear powered battery.
@@ -65,8 +65,6 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
