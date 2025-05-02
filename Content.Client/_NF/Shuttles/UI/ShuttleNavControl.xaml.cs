@@ -39,6 +39,10 @@ namespace Content.Client.Shuttles.UI
 
         public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None; // ServiceFlags
 
+        /// <summary>
+        /// Updates the radar UI with the latest navigation state and sets additional NF-specific state.
+        /// </summary>
+        /// <param name="state">The navigation interface state.</param>
         private void NFUpdateState(NavInterfaceState state)
         {
 
@@ -53,7 +57,12 @@ namespace Content.Client.Shuttles.UI
             ServiceFlags = state.ServiceFlags;
         }
 
-        // Maximum IFF Distance - checks distance to object, draws if closer than max range
+        /// <summary>
+        /// Checks if an IFF marker should be drawn based on distance and maximum IFF range.
+        /// </summary>
+        /// <param name="shouldDrawIff">Whether the IFF marker would otherwise be drawn.</param>
+        /// <param name="distance">The distance vector to the object.</param>
+        /// <returns>True if the IFF marker should be drawn, false otherwise.</returns>
         private bool NFCheckShouldDrawIffRangeCondition(bool shouldDrawIff, Vector2 distance)
         {
             if (shouldDrawIff && MaximumIFFDistance >= 0.0f)
@@ -67,6 +76,9 @@ namespace Content.Client.Shuttles.UI
             return shouldDrawIff;
         }
 
+        /// <summary>
+        /// Adds a blip to the blip data list for later drawing.
+        /// </summary>
         private static void NFAddBlipToList(List<BlipData> blipDataList, bool isOutsideRadarCircle, Vector2 uiPosition, int uiXCentre, int uiYCentre, Color color)
         {
             blipDataList.Add(new BlipData
@@ -82,6 +94,9 @@ namespace Content.Client.Shuttles.UI
          * Frontier - Adds blip style triangles that are on ships or pointing towards ships on the edges of the radar.
          * Draws blips at the BlipData's uiPosition and uses VectorToPosition to rotate to point towards ships.
          */
+        /// <summary>
+        /// Draws blip triangles for ships or points towards ships on the radar edge.
+        /// </summary>
         private void NFDrawBlips(DrawingHandleBase handle, List<BlipData> blipDataList)
         {
             var blipValueList = new Dictionary<Color, ValueList<Vector2>>();

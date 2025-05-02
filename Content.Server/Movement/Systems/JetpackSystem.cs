@@ -1,6 +1,5 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server._NF.Radar; //Frontier
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Collections;
@@ -12,18 +11,6 @@ public sealed class JetpackSystem : SharedJetpackSystem
 {
     [Dependency] private readonly GasTankSystem _gasTank = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!; // Frontier
-
-    // Frontier: Initialize jetpack component subscriptions
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        // Subscribe to ActiveJetpackComponent events
-        SubscribeLocalEvent<ActiveJetpackComponent, ComponentStartup>(OnJetpackActivated);
-        SubscribeLocalEvent<ActiveJetpackComponent, ComponentShutdown>(OnJetpackDeactivated);
-    }
-    // End Frontier
 
     protected override bool CanEnable(EntityUid uid, JetpackComponent component)
     {
@@ -31,35 +18,6 @@ public sealed class JetpackSystem : SharedJetpackSystem
                TryComp<GasTankComponent>(uid, out var gasTank) &&
                !(gasTank.Air.TotalMoles < component.MoleUsage);
     }
-
-    // Frontier: add RadarBlipComponent logic for adding and removal if active or not
-    /// <summary>
-    /// Configures the radar blip for a jetpack entity.
-    /// </summary>
-    private void SetupJetpackRadarBlip(EntityUid uid)
-    {
-        var blip = EnsureComp<RadarBlipComponent>(uid);
-        blip.RadarColor = Color.Cyan;
-        blip.Scale = 1f;
-        blip.VisibleFromOtherGrids = true;
-    }
-
-    /// <summary>
-    /// Adds radar blip to jetpacks when they are activated
-    /// </summary>
-    private void OnJetpackActivated(EntityUid uid, ActiveJetpackComponent component, ComponentStartup args)
-    {
-        SetupJetpackRadarBlip(uid);
-    }
-
-    /// <summary>
-    /// Removes radar blip from jetpacks when they are deactivated
-    /// </summary>
-    private void OnJetpackDeactivated(EntityUid uid, ActiveJetpackComponent component, ComponentShutdown args)
-    {
-        RemComp<RadarBlipComponent>(uid);
-    }
-    // End Frontier
 
     public override void Update(float frameTime)
     {

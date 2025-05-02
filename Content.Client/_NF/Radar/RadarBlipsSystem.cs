@@ -6,7 +6,7 @@ namespace Content.Client._NF.Radar;
 
 public sealed partial class RadarBlipsSystem : EntitySystem
 {
-    private const double BlipStaleSeconds = 1.0;
+    private const double BlipStaleSeconds = 3.0;
     private static readonly List<(Vector2, float, Color, RadarBlipShape)> EmptyBlipList = new();
     private static readonly List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> EmptyRawBlipList = new();
     private TimeSpan _lastRequestTime = TimeSpan.Zero;

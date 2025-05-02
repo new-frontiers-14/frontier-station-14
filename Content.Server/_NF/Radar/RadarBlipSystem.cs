@@ -1,5 +1,7 @@
 using System.Numerics;
+using Content.Shared._Goobstation.Vehicles;
 using Content.Shared._NF.Radar;
+using Content.Shared.Movement.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
@@ -10,10 +12,14 @@ public sealed partial class RadarBlipSystem : EntitySystem
 {
     private const double BlipStaleSeconds = 1.0;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeNetworkEvent<RequestBlipsEvent>(OnBlipsRequested);
+
+        SubscribeLocalEvent<ActiveJetpackComponent, ComponentStartup>(OnJetpackActivated);
+        SubscribeLocalEvent<ActiveJetpackComponent, ComponentShutdown>(OnJetpackDeactivated);
     }
 
     /// <summary>
@@ -136,5 +142,40 @@ public sealed partial class RadarBlipSystem : EntitySystem
         {
             blips.Add((null, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
         }
+    }
+
+    /// <summary>
+    /// Configures the radar blip for a jetpack or vehicle entity.
+    /// </summary>
+    private void SetupRadarBlip(EntityUid uid, Color color, float scale, bool visibleFromOtherGrids)
+    {
+        var blip = EnsureComp<RadarBlipComponent>(uid);
+        blip.RadarColor = color;
+        blip.Scale = scale;
+        blip.VisibleFromOtherGrids = visibleFromOtherGrids;
+    }
+
+    /// <summary>
+    /// Adds radar blip to jetpacks when they are activated.
+    /// </summary>
+    private void OnJetpackActivated(EntityUid uid, ActiveJetpackComponent component, ComponentStartup args)
+    {
+        SetupRadarBlip(uid, Color.Cyan, 1f, true);
+    }
+
+    /// <summary>
+    /// Removes radar blip from jetpacks when they are deactivated.
+    /// </summary>
+    private void OnJetpackDeactivated(EntityUid uid, ActiveJetpackComponent component, ComponentShutdown args)
+    {
+        RemComp<RadarBlipComponent>(uid);
+    }
+
+    /// <summary>
+    /// Configures the radar blip for a vehicle entity.
+    /// </summary>
+    public void SetupVehicleRadarBlip(Entity<VehicleComponent> uid)
+    {
+        SetupRadarBlip(uid, Color.Cyan, 1f, true);
     }
 }
