@@ -42,55 +42,6 @@
       params:
         volume: -5
 
-#region WizDen: Rubber
-- type: entity
-  id: NFWeaponPistolMk58Nonlethal
-  parent: NFWeaponPistolMk58
-  suffix: Frontier, Less-lethal
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazinePistol35Rubber
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - NFMagazinePistol35
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35Rubber
-        priority: 1
-        whitelist:
-          tags:
-            - NFCartridgePistol35
-
-- type: entity
-  parent: NFWeaponPistolN1984
-  id: NFWeaponPistolN1984Nonlethal
-  suffix: Frontier, Less-lethal
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazinePistol45Rubber
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - NFMagazinePistol45
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol45Rubber
-        priority: 1
-        whitelist:
-          tags:
-            - NFCartridgePistol45
-
 #region DeltaV
 - type: entity
   id: NFWeaponPistolUniversal

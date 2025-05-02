@@ -38,7 +38,7 @@
     disableDuration: 10
 
 - type: entity
-  id: BulletRocketEmp
+  id: NFBulletRocketEmp
   name: rocket
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -102,7 +102,7 @@
     disableDuration: 30
 
 - type: entity
-  id: BulletNFCannonBallEmp
+  id: NFBulletCannonBallEmp
   name: shockshot
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -329,6 +329,11 @@
     muzzleFlash: NFMuzzleFlashEffectOmnilaser
 
 - type: entity
+  parent: PelletShotgunFlare
+  id: NFPelletShotgunFlare
+  categories: [ HideSpawnMenu ]
+
+- type: entity
   parent: TeslaGunBullet
   id: NFTeslaGunBullet
   categories: [ HideSpawnMenu ]
@@ -364,8 +369,3 @@
     proto: NFPelletGlass
     count: 5
     spread: 10
-
-- type: entity
-  parent: PelletShotgunFlare
-  id: NFPelletShotgunFlare
-  categories: [ HideSpawnMenu ]
