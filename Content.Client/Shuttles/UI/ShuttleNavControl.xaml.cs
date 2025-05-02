@@ -63,17 +63,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     private List<Entity<MapGridComponent>> _grids = new();
 
-    // Frontier: constants for gunnery system
-    // These 2 handle timing updates
-    private const float RadarUpdateInterval = 0f;
-    private float _updateAccumulator = 0f;
-
-    private bool _isMouseDown;
-    private bool _isMouseInside;
-    private Vector2 _lastMousePos;
-    private float _lastFireTime;
-    private const float FireRateLimit = 0.1f; // 100ms between shots
-    // End Frontier
     public ShuttleNavControl() : base(64f, 256f, 256f)
     {
         RobustXamlLoader.Load(this);
@@ -432,8 +421,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 DrawBlipShape(handle, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape);
             }
         }
+        // End Frontier
     }
-    // End Frontier
 
     private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3x2 gridToView)
     {

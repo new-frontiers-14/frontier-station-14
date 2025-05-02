@@ -14,8 +14,20 @@ namespace Content.Client.Shuttles.UI
 {
     public sealed partial class ShuttleNavControl : BaseShuttleControl
     {
+        // Constants for gunnery system
+        // These 2 handle timing updates
+        private const float RadarUpdateInterval = 0f;
+        private float _updateAccumulator = 0f;
+
+        private bool _isMouseDown;
+        private bool _isMouseInside;
+        private Vector2 _lastMousePos;
+        private float _lastFireTime;
+        private const float FireRateLimit = 0.1f; // 100ms between shots
+
         public InertiaDampeningMode DampeningMode { get; set; }
-        public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None; // Frontier
+
+        public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None; // ServiceFlags
 
         private void NFUpdateState(NavInterfaceState state)
         {
