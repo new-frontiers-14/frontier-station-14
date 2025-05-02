@@ -9,11 +9,16 @@ using Robust.Client.UserInterface;
 using Robust.Shared.Input;
 using Robust.Shared.Timing;
 using Content.Shared._NF.Radar;
+using Content.Client._NF.Radar;
+using Content.Client.Station;
 
 namespace Content.Client.Shuttles.UI
 {
     public sealed partial class ShuttleNavControl : BaseShuttleControl
     {
+        private readonly StationSystem _station;
+        private readonly RadarBlipsSystem _blips;
+
         // Constants for gunnery system
         // These 2 handle timing updates
         private const float RadarUpdateInterval = 0f;
@@ -24,6 +29,11 @@ namespace Content.Client.Shuttles.UI
         private Vector2 _lastMousePos;
         private float _lastFireTime;
         private const float FireRateLimit = 0.1f; // 100ms between shots
+
+        // Constants for IFF system
+        public float MaximumIFFDistance { get; set; } = -1f;
+        public bool HideCoords { get; set; } = false;
+        private static Color _dockLabelColor = Color.White;
 
         public InertiaDampeningMode DampeningMode { get; set; }
 
