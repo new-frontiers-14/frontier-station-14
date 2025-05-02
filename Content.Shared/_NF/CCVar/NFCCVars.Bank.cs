@@ -6,8 +6,8 @@ public sealed partial class NFCCVars
 {
     /// <summary>
     /// Starting balance for a new character
+    /// TODO: Fix this to work in HumanoidCharacterProfile.cs
     /// </summary>
-    public const int CompileTimeDefaultBalance = 50000;
-    public static readonly CVarDef<int> DefaultBalance =
-        CVarDef.Create("nf14.default.balance", CompileTimeDefaultBalance, CVar.SERVERONLY);
+    //public static readonly CVarDef<int> DefaultBalance =
+    //    CVarDef.Create("nf14.bank.default_balance", 50000, CVar.SERVERONLY);
 }
