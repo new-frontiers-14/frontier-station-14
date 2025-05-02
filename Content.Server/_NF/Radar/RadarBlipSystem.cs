@@ -10,7 +10,6 @@ namespace Content.Server._NF.Radar;
 
 public sealed partial class RadarBlipSystem : EntitySystem
 {
-    private const double BlipStaleSeconds = 1.0;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
 
     public override void Initialize()
