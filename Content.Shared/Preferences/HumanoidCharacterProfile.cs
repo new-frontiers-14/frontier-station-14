@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
-using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -33,7 +34,7 @@ namespace Content.Shared.Preferences
         public const int MaxLoadoutNameLength = 32;
         public const int MaxDescLength = 512;
 
-        public const int DefaultBalance = 30000;
+        public static readonly int DefaultBalance = NFCCVars.CompileTimeDefaultBalance; // Frontier
 
         //private readonly Dictionary<string, JobPriority> _jobPriorities; // Frontier: commented out during merge.
         //private readonly List<string> _antagPreferences; // Frontier: commented out during merge.
@@ -222,7 +223,7 @@ namespace Content.Shared.Preferences
         }
 
         // TODO: This should eventually not be a visual change only.
-        public static HumanoidCharacterProfile Random(HashSet<string>? ignoredSpecies = null, int balance = DefaultBalance)
+        public static HumanoidCharacterProfile Random(HashSet<string>? ignoredSpecies = null, int balance = NFCCVars.CompileTimeDefaultBalance)
         {
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             var random = IoCManager.Resolve<IRobustRandom>();
@@ -236,7 +237,7 @@ namespace Content.Shared.Preferences
             return RandomWithSpecies(species: species, balance: balance);
         }
 
-        public static HumanoidCharacterProfile RandomWithSpecies(string species = SharedHumanoidAppearanceSystem.DefaultSpecies, int balance = DefaultBalance)
+        public static HumanoidCharacterProfile RandomWithSpecies(string species = SharedHumanoidAppearanceSystem.DefaultSpecies, int balance = NFCCVars.CompileTimeDefaultBalance)
         {
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             var random = IoCManager.Resolve<IRobustRandom>();
