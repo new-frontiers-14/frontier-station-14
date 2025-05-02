@@ -65,7 +65,7 @@
 - type: entity
   parent: NFWeaponLauncherChinaLake
   suffix: EMP
-  id: WeaponLauncherChinaLakeEmp
+  id: NFWeaponLauncherChinaLakeEmp
   components:
   - type: BallisticAmmoProvider
     proto: NFGrenadeEMP
@@ -73,14 +73,14 @@
 - type: entity
   suffix: EMP
   parent: [ BaseC2ContrabandUnredeemable, NFWeaponLauncherRocket ]
-  id: WeaponLauncherRocketEmp
+  id: NFWeaponLauncherRocketEmp
   components:
   - type: BallisticAmmoProvider
     proto: NFCartridgeRocketEmp
 
 - type: entity
   parent: [ BaseC1Contraband, NFWeaponLauncherChinaLake ]
-  id: WeaponMailLake
+  id: NFWeaponLauncherMail
   name: RPDS
   description: The Rapid Parcel Delivery System, a mail carrier's right hand. Launches mail capsules.
   components:
@@ -104,7 +104,7 @@
 
 - type: entity
   parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponLauncherChamber40mmGrenadesSingleShot, NFBaseWeaponFrameLauncherNanotrasen ]
-  id: WeaponLauncherNfsdLake
+  id: NFWeaponLauncherGrenadeNfsd
   name: NGP-40 projector
   description: Single shot grenade launcher able to lob both grenades and darts!
   components:
