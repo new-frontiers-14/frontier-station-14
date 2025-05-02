@@ -126,37 +126,6 @@
     state: plainwhite
 
 - type: entity
-  name: cotton burger
-  parent: FoodBurgerPlain
-  id: FoodBurgerCotton
-  description: It's so pretty... white?
-  components:
-  - type: FlavorProfile
-    flavors:
-    - cotton
-    - bread
-  - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/burger.rsi
-    state: plaincotton
-  - type: Food
-    requiresSpecialDigestion: true
-  - type: Tag
-    tags:
-    - ClothMade
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 3
-        - ReagentId: Fiber
-          Quantity: 6
-  - type: MothFood
-
-- type: entity
   name: cotton cheeseburger
   parent: FoodBurgerPlain
   id: FoodBurgerCottonCheese
