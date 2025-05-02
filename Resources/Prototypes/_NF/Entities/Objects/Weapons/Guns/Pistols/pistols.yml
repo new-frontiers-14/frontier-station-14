@@ -1,7 +1,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponPistolMk58
-  parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber35 ]
+  parent: [ NFBaseWeaponPistolChamber35, NFBaseWeaponFramePistolNanotrasen ]
   name: mk58
   description: A cheap semiauto sidearm.
   components:
@@ -15,7 +15,7 @@
 
 - type: entity
   id: NFWeaponPistolN1984
-  parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber45 ]
+  parent: [ NFBaseWeaponPistolChamber45, NFBaseWeaponFramePistolNanotrasen ]
   name: N1984
   description: |-
     The sidearm of any self respecting officer. On the handle is a label that says 'for authorized use only.'
@@ -27,35 +27,35 @@
 
 - type: entity
   id: NFWeaponPistolCobra
-  parent: [ NFBaseWeaponFramePistolCybersun, NFBaseWeaponPistolChamber45 ]
+  parent: [ NFBaseWeaponPistolChamber45, NFBaseWeaponFramePistolCybersun ]
   name: cobra
   description: |-
     A rugged, robust operator handgun with inbuilt silencer. An illegal firearm often used by Syndicate agents.
   components:
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Pistols/cobra.rsi
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Pistols/cobra.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
       params:
         volume: -5
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Pistols/cobra.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Pistols/cobra.rsi
 
 #region DeltaV
 - type: entity
   id: NFWeaponPistolUniversal
-  parent: [ NFBaseWeaponFramePistolNanotrasen, NFBaseWeaponPistolChamber35 ]
+  parent: [ NFBaseWeaponPistolChamber35, NFBaseWeaponFramePistolNanotrasen ]
   name: mk32 "Universal"
   description: The Mark 32 Offensive Handgun.
   components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/universal.ogg
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi
   - type: Clothing
     sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/_DV/Weapons/Guns/Gunshots/universal.ogg
 
 - type: entity
   id: NFWeaponPistolUniversalNfsd

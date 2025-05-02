@@ -1,4 +1,4 @@
-# Rockets
+#region Rockets
 
 - type: entity
   parent: [BaseItem, BaseC2ContrabandUnredeemable]
@@ -52,40 +52,57 @@
     energyConsumption: 2700000
     disableDuration: 30
 
-# Grenades
+#region Grenades
+- type: entity
+  parent: BaseGrenade
+  id: NFBaseGrenade40mm
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Grenade
+    - NFCartridgeGrenade40mm
 
 - type: entity
-  parent: GrenadeBaton
+  parent: [ NFBaseGrenade40mm, GrenadeBaton ]
   id: NFGrenadeBaton
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeBaton
 
 - type: entity
-  parent: GrenadeBlast
+  parent: [ NFBaseGrenade40mm, GrenadeBlast ]
   id: NFGrenadeBlast
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeBlast
 
 - type: entity
-  parent: GrenadeFlash
+  parent: [ NFBaseGrenade40mm, GrenadeFlash ]
   id: NFGrenadeFlash
   components:
+  - type: Tag
+    tags:
+    - NFCartridgeGrenade40mm
+    - NFCartridgeGrenade40mmFlash
   - type: CartridgeAmmo
     proto: NFBulletGrenadeFlash
 
 - type: entity
-  parent: GrenadeFrag
+  parent: [ NFBaseGrenade40mm, GrenadeFrag ]
   id: NFGrenadeFrag
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeFrag
 
 - type: entity
-  parent: GrenadeEMP
+  parent: [ NFBaseGrenade40mm, GrenadeEMP ]
   id: NFGrenadeEMP
   components:
+  - type: Tag
+    tags:
+    - NFCartridgeGrenade40mm
+    - NFCartridgeGrenade40mmEmp
   - type: CartridgeAmmo
     proto: NFBulletGrenadeEMP
   - type: EmpDescription

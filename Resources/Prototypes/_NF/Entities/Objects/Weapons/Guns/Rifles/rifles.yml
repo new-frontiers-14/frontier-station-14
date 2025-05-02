@@ -1,7 +1,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponRifleBarlowsBolt
-  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleSteelbolt, NFBaseWeaponRifleChamber30, BaseGunMelee ]
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponRifleChamber30, NFBaseWeaponFrameRifleSteelbolt, BaseGunMelee ]
   name: Barlows bolt-action rifle # Renamed: real brand name
   description: A weapon for hunting, or endless trench warfare. Equipped with bayonet.
   components:
@@ -14,7 +14,7 @@
 
 - type: entity
   id: NFWeaponRifleMusket
-  parent: [ NFBaseWeaponFrameRifleSteelbolt, NFBaseWeaponRifleChamber60 ]
+  parent: [ NFBaseWeaponRifleChamber60, NFBaseWeaponFrameRifleSteelbolt ]
   name: musket
   description: This should've been in a museum long before you were born.
   components:
@@ -54,7 +54,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponRifleCeremonial
-  parent: [ NFBaseWeaponFrameRifleFrontierGunsmith, NFBaseWeaponRifleChamber20 ]
+  parent: [ NFBaseWeaponRifleChamber20, NFBaseWeaponFrameRifleFrontierGunsmith ]
   name: ceremonial rifle
   description: A ceremonial variant of the Mark 1 Rifle, in tasteful blue and white.
   components:
@@ -66,7 +66,7 @@
 #region Frontier
 - type: entity
   id: NFWeaponRifleRepeater
-  parent: [ NFBaseWeaponFrameRifleFrontierGunsmith, NFBaseWeaponRifleChamber20 ]
+  parent: [ NFBaseWeaponRifleChamber20, NFBaseWeaponFrameRifleFrontierGunsmith ]
   name: N2524 pattern repeater
   description: A civilian grade lever action firearm, favored by space cowboys across the Frontier for its reliability.
   components:
@@ -79,7 +79,7 @@
 
 - type: entity
   id: NFWeaponRifleSVS
-  parent: [ BaseGunMelee, NFBaseItemWeaponGunMagazineFed, NFBaseWeaponFrameRifleFrontierGunsmith, NFBaseWeaponRifleAssaultChamber30LowCapacity ]
+  parent: [ BaseGunMelee, NFBaseItemWeaponGunMagazineFed, NFBaseWeaponRifleAssaultChamber30LowCapacity, NFBaseWeaponFrameRifleFrontierGunsmith ]
   name: SVS-42
   description: Originally designed by Samonov, this old surplus battle rifle looks like it's seen a few wars. Equipped with bayonet.
   components:

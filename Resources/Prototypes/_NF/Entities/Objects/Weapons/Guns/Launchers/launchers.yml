@@ -1,7 +1,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponLauncherChinaLake
-  parent: [ NFBaseWeaponFrameLauncherGorlex, NFBaseWeaponLauncherChamber40mmGrenades ]
+  parent: [ NFBaseWeaponLauncherChamber40mmGrenades, NFBaseWeaponFrameLauncherGorlex ]
   name: GP-40 grenade launcher
   description: PLOOP.
   components:
@@ -22,7 +22,7 @@
 
 - type: entity
   id: NFWeaponLauncherRocket
-  parent: [ NFBaseWeaponFrameLauncherGorlex, NFBaseWeaponLauncherChamberRockets ]
+  parent: [ NFBaseWeaponLauncherChamberRockets, NFBaseWeaponFrameLauncherGorlex ]
   name: GSW rocket launcher mk4
   description: A modified ancient rocket-propelled grenade launcher.
   components:
@@ -47,7 +47,7 @@
 
 - type: entity
   id: NFWeaponLauncherPirateCannon
-  parent: [ NFBaseWeaponFrameLauncherSteelbolt, NFBaseWeaponLauncherChamberCannonBalls ]
+  parent: [ NFBaseWeaponLauncherChamberCannonBalls, NFBaseWeaponFrameLauncherSteelbolt ]
   name: pirate cannon
   description: Kaboom!
   components:
@@ -103,7 +103,7 @@
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
 - type: entity
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponLauncherChamber40mmGrenadesSingleShot, NFBaseWeaponFrameLauncherNanotrasen ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponLauncherChamber40mmGrenadesNfsdSingleShot, NFBaseWeaponFrameLauncherNanotrasen ]
   id: NFWeaponLauncherGrenadeNfsd
   name: NGP-40 projector
   description: Single shot grenade launcher able to lob both grenades and darts!

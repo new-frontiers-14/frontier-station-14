@@ -6,6 +6,9 @@
   description: |-
     A viper for use by cyborgs. Creates .35 ammo on the fly from an internal ammo fabricator, which slowly self-charges.
   components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
   - type: Clothing
@@ -22,7 +25,7 @@
 
 - type: entity
   id: NFWeaponPistolViper
-  parent: [ NFBaseWeaponFrameMachinePistolGorlex, NFBaseWeaponPistolChamber35HighCapacity ]
+  parent: [ NFBaseWeaponPistolChamber35HighCapacity, NFBaseWeaponFrameMachinePistolGorlex ]
   name: viper
   description: |-
     A small, easily concealable machine pistol. An illegal firearm often used by Syndicate agents.
@@ -35,7 +38,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponPistolPollock
-  parent: [ NFBaseWeaponFrameMachinePistolNanotrasen, NFBaseWeaponPistolChamber35 ]
+  parent: [ NFBaseWeaponPistolChamber35, NFBaseWeaponFrameMachinePistolNanotrasen ]
   name: pollock
   description: A compact and mass-produced combat pistol.
   components:

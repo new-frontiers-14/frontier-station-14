@@ -101,7 +101,7 @@
     proto: NFGrenadeFrag
 
 - type: entity
-  id: NFBaseWeaponLauncherChamber40mmGrenadesSingleShot
+  id: NFBaseWeaponLauncherChamber40mmGrenadesNfsdSingleShot
   abstract: true
   components:
   - type: Gun
@@ -117,7 +117,8 @@
         whitelist:
           tags:
             - NFTrackingDart
-            - Grenade
+            - NFCartridgeGrenade40mmEmp
+            - NFCartridgeGrenade40mmFlash
   - type: ChamberMagazineAmmoProvider
     autoCycle: false
     boltClosed: false

@@ -1,7 +1,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponSubMachineGunAtreides
-  parent: [ NFBaseWeaponFrameSubMachineGunGorlex, NFBaseWeaponSubMachineGunChamber35 ]
+  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunGorlex ]
   name: Atreides
   description: |-
     Pla-ket-ket-ket-ket! An illegal firearm often used by Syndicate agents.
@@ -16,7 +16,7 @@
 
 - type: entity
   id: NFWeaponSubMachineGunC20r
-  parent: [ NFBaseWeaponFrameSubMachineGunCybersun, NFBaseWeaponSubMachineGunChamber35 ]
+  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunCybersun ]
   name: C-20r
   description: |-
     An illegal firearm that is often used by the infamous nuclear operatives.
@@ -37,7 +37,7 @@
 
 - type: entity
   id: NFWeaponSubMachineGunDrozd
-  parent: [ NFBaseWeaponFrameSubMachineGunNanotrasen, NFBaseWeaponSubMachineGunChamber35 ]
+  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunNanotrasen ]
   name: Drozd
   description: A fully automatic SMG.
   components: &drozdComponents
@@ -51,7 +51,7 @@
 
 - type: entity
   id: NFWeaponSubMachineGunDrozdLessLethal # Frontier-specific rubber variant
-  parent: [ NFBaseWeaponFrameSubMachineGunNanotrasen, NFBaseWeaponSubMachineGunChamber35Rubber ]
+  parent: [ NFBaseWeaponSubMachineGunChamber35Rubber, NFBaseWeaponFrameSubMachineGunNanotrasen ]
   name: Drozd
   description: A fully automatic SMG.
   suffix: Frontier, Less-Lethal
@@ -59,7 +59,7 @@
 
 - type: entity
   id: NFWeaponSubMachineGunWt550
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameSubMachineGunNanotrasen, NFBaseWeaponSubMachineGunChamber35TopMounted ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponSubMachineGunChamber35TopMounted, NFBaseWeaponFrameSubMachineGunNanotrasen ]
   name: WT-550
   description: |-
     An excellent SMG. On the receiver is a label that says 'for authorized use only.'
@@ -89,7 +89,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponSubMachineGunTypewriter
-  parent: [ NFBaseWeaponFrameSubMachineGunFrontierGunsmith, NFBaseWeaponSubMachineGunChamber35 ]
+  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunFrontierGunsmith ]
   name: Typewriter
   description: |-
     A modern take on the classic design used by mobsters throughout space and time.
