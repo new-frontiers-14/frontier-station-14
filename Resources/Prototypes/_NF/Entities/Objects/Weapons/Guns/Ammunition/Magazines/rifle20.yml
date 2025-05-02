@@ -200,7 +200,7 @@
 #region .20 Novalite
 - type: entity
   parent: BaseMagazineRifle
-  id: MagazineNovaliteC1Empty
+  id: NFMagazineClipRifle20Empty
   name: clip (.20 rifle, any)
   suffix: empty
   components:
@@ -214,7 +214,7 @@
     whitelist:
       tags:
         - NFCartridgeRifle20
-    capacity: 16
+    capacity: 15
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -232,7 +232,7 @@
   - type: Appearance
 
 - type: entity
-  parent: MagazineNovaliteC1Empty
+  parent: NFMagazineClipRifle20Empty
   id: NFMagazineClipRifle20
   name: clip (.20 rifle)
   suffix: full
@@ -247,8 +247,8 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  parent: MagazineNovaliteC1Empty
-  id: MagazineNovaliteC1Rubber
+  parent: NFMagazineClipRifle20Empty
+  id: NFMagazineClipRifle20Rubber
   name: clip (.20 rifle, rubber)
   suffix: full
   components:
