@@ -49,7 +49,7 @@
           shouldHave: true
 
 - type: reagent
-  id: ook
+  id: Ook
   name: reagent-name-ook
   desc: reagent-desc-ook
   flavor: hairy
@@ -67,13 +67,11 @@
         - !type:Polymorph
           prototype: ArtifactMonkey
           conditions:
-            - !type:OrganType
-              type: Animal
-              shouldHave: false
+            - !type:NFIsHumanoid
             - !type:ReagentThreshold
               min: 50
         - !type:AdjustReagent
-          reagent: ook
+          reagent: Ook
           amount: -20
           conditions:
             - !type:ReagentThreshold
