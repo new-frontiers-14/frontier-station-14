@@ -34,8 +34,6 @@
     availableModes:
       - SemiAuto
       - FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: SpeedModifiedOnWield
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -87,6 +85,8 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-energybolt-medium
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: NFBulletLaserMedium
     fireCost: 80
@@ -103,6 +103,8 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-pulse-low
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: NFPulse
     fireCost: 80

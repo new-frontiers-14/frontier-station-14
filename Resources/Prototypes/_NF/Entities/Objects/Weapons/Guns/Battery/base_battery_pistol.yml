@@ -27,8 +27,6 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: Battery # Default: 16 shots with 60 fireCost
     maxCharge: 960
     startingCharge: 960
@@ -76,6 +74,8 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-energybolt-low
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: NFBulletLaserLow
     fireCost: 60
@@ -92,6 +92,8 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-energybolt-disabler-pistol
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: NFBulletDisabler
     fireCost: 60
@@ -102,6 +104,8 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-energybolt-disabler-practice
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: NFBulletLaserPractice
     fireCost: 30
@@ -112,6 +116,8 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-hitscan-low
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: HitscanBatteryAmmoProvider
     proto: NFRedLightLaser
     fireCost: 60
@@ -122,6 +128,8 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-pulse-low
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: NFPulse
     fireCost: 60

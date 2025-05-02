@@ -28,8 +28,6 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: SpeedModifiedOnWield
     walkModifier: 0.1
     sprintModifier: 0.1
@@ -72,6 +70,8 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-hitscan-high-p
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: NFRedSpecialLaser
     fireCost: 120
@@ -82,6 +82,8 @@
   components:
   - type: Gun
     examineCaliber: gun-examine-hitscan-xray
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: NFXrayLaser
     fireCost: 120

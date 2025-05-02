@@ -6,13 +6,13 @@
   description: |-
     Pla-ket-ket-ket-ket! An illegal firearm often used by Syndicate agents.
   components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/SMGs/atreides.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/SMGs/atreides.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
 
 - type: entity
   id: NFWeaponSubMachineGunC20r
@@ -21,15 +21,15 @@
   description: |-
     An illegal firearm that is often used by the infamous nuclear operatives.
   components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: Sprite
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
   - type: ChamberMagazineAmmoProvider
     autoEject: true
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 6
@@ -41,13 +41,13 @@
   name: Drozd
   description: A fully automatic SMG.
   components: &drozdComponents
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/SMGs/drozd.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/SMGs/drozd.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
 
 - type: entity
   id: NFWeaponSubMachineGunDrozdLessLethal # Frontier-specific rubber variant
@@ -94,10 +94,10 @@
   description: |-
     A modern take on the classic design used by mobsters throughout space and time.
   components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/typewriter.ogg
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/SMGs/typewriter.rsi
   - type: Clothing
     sprite: _DV/Objects/Weapons/Guns/SMGs/typewriter.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/_DV/Weapons/Guns/Gunshots/typewriter.ogg
