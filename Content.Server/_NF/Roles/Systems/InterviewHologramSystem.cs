@@ -226,8 +226,7 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
 
         _mind.TransferTo(mindUid.Value, newEntity);
         _chat.DispatchServerMessage(session, Loc.GetString("interview-hologram-message-accepted"), suppressLog: true);
-        _roles.MindTryRemoveRole<JobRoleComponent>(mindUid.Value);
-        _roles.MindAddJobRole(mindUid.Value, jobPrototype: ent.Comp.Job);
+        _roles.MindAddJobRole(mindUid.Value, jobPrototype: ent.Comp.Job); // Overwrites
 
         // Run spawn event for game rules, traits, etc.
         _gameTicker.PlayersJoinedRoundNormally++;
