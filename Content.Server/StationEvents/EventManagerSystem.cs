@@ -9,12 +9,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.EntityTable;
-using Content.Server.Station.Systems; // Frontier
-using Content.Shared.Roles.Jobs; // Frontier
 using Content.Server.Mind; // Frontier
-using Robust.Shared.Enums; // Frontier
-using Content.Shared.Roles; // Frontier
-using Content.Server._NF.Players; // Frontier
+using Content.Server._NF.Roles.Systems; // Frontier
 
 namespace Content.Server.StationEvents;
 
@@ -27,7 +23,7 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] public readonly GameTicker GameTicker = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly JobPresentSystem _jobs = default!; // Frontier
+    [Dependency] private readonly JobTrackingSystem _jobs = default!; // Frontier
 
     [Dependency] private readonly MindSystem _mindSystem = default!;
 
@@ -285,10 +281,8 @@ public sealed class EventManagerSystem : EntitySystem
         // Frontier: require jobs to run event
         foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs)
         {
-            if (_jobs.getNumberOfActiveRoles(jobProtoId) < numJobs)
-            {
+            if (_jobs.GetNumberOfActiveRoles(jobProtoId, false) < numJobs)
                 return false;
-            }
         }
         // End Frontier
 
