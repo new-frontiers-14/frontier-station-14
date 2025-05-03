@@ -4,8 +4,8 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/27/2025 02:48:12
-  entityCount: 432
+  time: 05/03/2025 14:52:42
+  entityCount: 429
 maps: []
 grids:
 - 1
@@ -472,7 +472,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -5294.0576
+      secondsUntilStateChange: -5385.391
       state: Opening
   - uid: 115
     components:
@@ -483,7 +483,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -1237.5209
+      secondsUntilStateChange: -1328.8542
       state: Opening
 - proto: APCBasic
   entities:
@@ -1204,40 +1204,6 @@ entities:
     - type: Transform
       pos: 3.5,-8.5
       parent: 1
-- proto: ClosetWall
-  entities:
-  - uid: 283
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,-9.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14926
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 284
-          - 285
 - proto: ClosetWallO2N2Filled
   entities:
   - uid: 372
@@ -2363,15 +2329,6 @@ entities:
     - type: Transform
       pos: 2.5048978,-6.4175787
       parent: 1
-- proto: SheetUranium
-  entities:
-  - uid: 285
-    components:
-    - type: Transform
-      parent: 283
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: SheetUranium1
   entities:
   - uid: 296
@@ -3107,13 +3064,4 @@ entities:
     - type: Transform
       pos: -5.383454,-2.254345
       parent: 1
-- proto: Wrench
-  entities:
-  - uid: 284
-    components:
-    - type: Transform
-      parent: 283
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 ...
