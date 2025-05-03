@@ -1045,12 +1045,13 @@
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Moth/moth_chitter.ogg
-  - type: Extractable #Frontier
+  #Frontier: Juice that makes you Chitter
+  - type: Extractable 
     juiceSolution: 
       reagents: 
       - ReagentId: JuiceThatMakesYouChitter 
         Quantity: 30
-  - type: SolutionContainerManager #Frontier
+  - type: SolutionContainerManager 
     solutions:
       food:
         maxVol: 20
@@ -1059,7 +1060,7 @@
           Quantity: 10
         - ReagentId: JuiceThatMakesYouChitter
           Quantity: 10 
-
+   #End Frontier
 ## Cheapo Figurines
 
 - type: entity
