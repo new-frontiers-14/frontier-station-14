@@ -1,10 +1,10 @@
 using System.Numerics;
-using Content.Server._NF.M_Emp;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.DeviceLinking; // Frontier
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -67,28 +67,28 @@ namespace Content.Server.Shuttles.Components
         public TimeSpan NextFire = TimeSpan.Zero;
 
         // Frontier: upgradeable parts, togglable thrust
-        [DataField("machinePartThrust", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-        public string MachinePartThrust = "Capacitor";
+        [DataField]
+        public ProtoId<MachinePartPrototype> MachinePartThrust = "Capacitor";
 
-        [DataField("partRatingThrustMultiplier")]
-        public float PartRatingThrustMultiplier = 1.15f; // Frontier - PR #1292 1.5f<1.15f
+        [DataField]
+        public float[] ThrustPerPartLevel = [130, 170, 210, 250];
 
         /// <summary>
-        ///     Frontier - Amount of charge this needs from an APC per second to function.
+        /// Load on the power network, in watts.
         /// </summary>
         public float OriginalLoad { get; set; } = 0;
 
         /// <summary>
-        ///     Frontier - Make linkable to buttons
+        /// Togglable thrusters
         /// </summary>
-        [DataField("onPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))] // Frontier
-        public string OnPort = "On"; // Frontier
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string OnPort = "On";
 
-        [DataField("offPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))] // Frontier
-        public string OffPort = "Off"; // Frontier
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string OffPort = "Off";
 
-        [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))] // Frontier
-        public string TogglePort = "Toggle"; // Frontier
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string TogglePort = "Toggle";
         // End Frontier: upgradeable parts, togglable thrust
     }
 
