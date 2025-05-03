@@ -87,6 +87,7 @@ guide-entry-shipyard-stasis = Stasis
 guide-entry-shipyard-tide = Tide
 guide-entry-shipyard-vagabond = Vagabond
 guide-entry-shipyard-vitalis = Vitalis
+guide-entry-shipyard-nook = Nook
 
 # Rules entries
 guide-entry-frontier-rule-zero-tolerance = Zero Tolerance
