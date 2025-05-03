@@ -1,4 +1,4 @@
-﻿<controls:FancyWindow xmlns="https://spacestation14.io"
+<controls:FancyWindow xmlns="https://spacestation14.io"
                 xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                 MinSize="270 130"
                 SetSize="360 180">
@@ -24,6 +24,10 @@
                 <ProgressBar Name="ChargeBar" MaxValue="255">
                     <Label Name="ChargeText" Margin="4 0" Text="0 %" />
                 </ProgressBar>
+                <!-- Frontier: activate button -->
+                <Label Visible="False" Name="ActionButtonText" Text="{Loc 'power-charge-window-action'}" HorizontalExpand="True" StyleClasses="StatusFieldTitle" />
+                <Button Disabled="True" Visible="False" Name="ActionButton" Text="{Loc 'power-charge-window-power-action'}" MinWidth="120" />
+                <!-- End Frontier: activate button -->
             </GridContainer>
         </BoxContainer>
         <PanelContainer Margin="12 0 0 0" StyleClasses="Inset" VerticalAlignment="Center">
