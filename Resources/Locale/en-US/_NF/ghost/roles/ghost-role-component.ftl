@@ -13,7 +13,7 @@ ghost-role-information-clugg-description = Ugg! Clugg love eat meat. Find new ho
 
 ghost-role-information-clarpy-name = Clarpy
 ghost-role-information-clarpy-description = Avast ye mail! wanted by Nanotrasen for crimes against mice.
-ghost-role-information-clarpy-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all other pirates.
+ghost-role-information-clarpy-rules = You are an old [color=red][bold]Pirate[/bold][/color] cat, help out the other pirates, and remember to take your meds.
 
 ghost-role-information-cult-cat-name = Blood Cult Cat
 ghost-role-information-cult-cat-description = Founded the Blood Cult out of boredom.
