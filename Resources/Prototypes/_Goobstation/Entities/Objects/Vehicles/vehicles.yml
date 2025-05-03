@@ -1,0 +1,295 @@
+- type: entity
+  id: BaseVehicle
+  abstract: true
+  save: false
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Vehicle
+    # renderOver: East, SouthEast, South, SouthWest, West # Frontier
+    renderOver: East, South, West # Frontier
+  - type: Strap
+    position: Stand
+    unbuckleDistanceSquared: 0.09 # Frontier
+    maintainSpriteLayers: true # Frontier
+  - type: Appearance
+  - type: AmbientSound
+    sound: "/Audio/Effects/Vehicle/vehicleengineidle.ogg"
+    range: 10
+    volume: -10
+    enabled: false
+  - type: InputMover
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Access
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 100
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+        hard: true
+  - type: Pullable
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"] # Frontier: swap back to Breakage?
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: MovementSpeedModifier
+    acceleration: 8
+    friction: 5 # wheels dont stop instantly
+    baseSprintSpeed: 6
+    baseWalkSpeed: 4.5 # default walking speed
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
+  - type: StaticPrice
+    price: 750 # Frontier: 2500<750
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: RequireProjectileTarget
+
+- type: entity
+  id: VehicleSecway
+  parent: BaseVehicle
+  name: secway
+  description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
+  components:
+  - type: Sprite
+    sprite: Objects/Vehicles/secway.rsi
+    state: vehicle
+    noRot: true
+  - type: Vehicle
+    # renderOver: North, NorthEast, NorthWest # Frontier
+    renderOver: West, South, East # Frontier
+    southOffset: 0, -0.1 # Frontier
+    northOffset: 0, -0.1 # Frontier
+    eastOffset: 0, -0.1 # Frontier
+    westOffset: 0, -0.1 # Frontier
+    hornSound:
+      collection: NFVehicleHorn # Frontier: DeskBell<NFVehicleHorn
+      params:
+        variation: 0.125
+    sirenSound:
+      collection: PoliceSiren
+      params:
+        variation: 0.125
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - SecwayKeys
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
+  - type: RotatingLight
+    speed: 190
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    energy: 2
+    color: "#FF4020"
+    mask: /Textures/Effects/LightMasks/double_cone.png
+
+- type: entity
+  id: VehicleSyndicateSegway
+  parent: VehicleSecway
+  name: syndicate segway
+  description: Be an enemy of the corporation, in style.
+  components:
+  - type: Sprite
+    sprite: Objects/Vehicles/syndicatesegway.rsi
+    state: vehicle
+    renderOver: North, NorthEast, NorthWest
+    noRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - SyndicateSegwayKeys
+  - type: PointLight
+    color: "#3db83b"
+
+- type: entity
+  id: VehicleATV
+  parent: BaseVehicle
+  name: ATV
+  description: All-Tile Vehicle.
+  categories: [HideSpawnMenu] # Frontier: use NF variant
+  components:
+  - type: Sprite
+    sprite: Objects/Vehicles/atv.rsi
+    state: vehicle
+    noRot: true
+  - type: Vehicle
+    hornSound:
+      collection: NFVehicleHorn # Frontier: BikeHorn<NFVehicleHorn
+      params:
+        variation: 0.125
+    # renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest # Frontier
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ATVKeys
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
+
+- type: entity
+  id: VehicleJanicart
+  parent: BaseVehicle
+  name: janicart
+  description: The janitor's trusty steed.
+  categories: [HideSpawnMenu] # Frontier: use NF variant
+  components:
+  - type: Sprite
+    sprite: Objects/Vehicles/janicart.rsi
+    state: vehicle
+    noRot: true
+  - type: Vehicle
+    # renderOver: North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest # Frontier
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - JanicartKeys
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
+
+- type: entity
+  id: VehicleWheelchair
+  parent: [ BaseVehicle, BaseFoldable, BaseItem ]
+  name: wheelchair
+  description: A chair with big wheels. It looks like you can move in these on your own.
+  components:
+  - type: Sprite
+    sprite: Objects/Vehicles/wheelchair.rsi
+    layers:
+    - state: vehicle
+      map: ["unfoldedLayer"]
+    - state: vehicle_folded
+      map: ["foldedLayer"]
+      visible: false
+    noRot: true
+  - type: Vehicle
+    requiredHands: 1 # Frontier: 0<1
+    engineRunning: true
+    # renderOver: South, SouthEast, SouthWest # Frontier
+    renderOver: North # Frontier
+    southOffset: 0, -0.15 # Frontier
+    northOffset: 0, -0.15 # Frontier
+    eastOffset: -0.05, -0.15 # Frontier
+    westOffset: 0.05, -0.15 # Frontier
+  - type: MovementSpeedModifier
+    acceleration: 10
+    friction: 10
+    baseSprintSpeed: 3.5
+    baseWalkSpeed: 2.5
+  - type: StaticPrice
+    price: 75
+  #- type: PhysicalComposition # Frontier
+    #materialComposition: # Frontier
+      #Steel: 125 # Frontier
+      #Plastic: 125 # Frontier
+
+- type: entity
+  parent: VehicleWheelchair
+  id: VehicleWheelchairFolded
+  suffix: folded
+  components:
+    - type: Foldable
+      folded: true
+
+
+- type: entity
+  id: VehicleHoverchair
+  parent: BaseVehicle
+  name: hoverchair
+  description: A luxury hoverchair, kick back and relax.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Vehicles/hoverchair.rsi
+    layers:
+    - state: vehicle
+    - state: vehicle_unshaded # Frontier
+      shader: unshaded # Frontier
+    noRot: true
+  - type: Vehicle
+    requiredHands: 0
+    engineRunning: true
+    # renderOver: North, NorthEast, NorthWest, East, West # Frontier: looks odd
+    renderOver: West, North, East # Frontier
+    southOffset: 0, -0.08 # Frontier
+    northOffset: 0, -0.08 # Frontier
+    eastOffset: 0, -0.08 # Frontier
+    westOffset: 0, -0.08 # Frontier
+  - type: MovementSpeedModifier
+    acceleration: 5 # Frontier: 10<5
+    friction: 2.5 # Frontier: 0.5<2.5
+    baseSprintSpeed: 3.5
+    baseWalkSpeed: 2.5
+  - type: StaticPrice
+    price: 175
+  #- type: PhysicalComposition # Frontier
+    #materialComposition: # Frontier
+      #Steel: 125 # Frontier
+      #Plastic: 125 # Frontier
+  - type: ItemSlots # Frontier
+    slots: {} # Frontier: no keys required

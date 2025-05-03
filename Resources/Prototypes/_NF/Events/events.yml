@@ -3,12 +3,10 @@
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: NFBreakerFlip
-    - id: NFCockroachMigration
     - id: NFGasLeak
     - id: NFIonStorm
-    - id: MouseMigration
     - id: NFPowerGridCheck
-    - id: RandomSentience
+    - id: NFRandomSentience
     - id: NFSolarFlare
     - id: NFVentClog
     - id: NFBluespaceCargoCrate
@@ -27,17 +25,6 @@
     duration: 1
     minimumPlayers: 15
   - type: BreakerFlipRule
-
-- type: entity
-  id: NFFalseAlarm
-  parent: BaseGameRule
-  components:
-  - type: StationEvent
-    weight: 2 # Frontier: 15<2
-    earliestStart: 15
-    duration: 1
-    reoccurrenceDelay: 240 # Frontier: 4 hours
-  - type: FalseAlarmRule
 
 - type: entity
   id: NFGasLeak
@@ -75,29 +62,16 @@
   components:
   - type: StationEvent
     weight: 4
-    earliestStart: 15 # Frontier
-    reoccurrenceDelay: 45 # Frontier
-    startAnnouncement: station-event-solar-flare-nf-start-announcement # Frontier: add nf-
-    endAnnouncement: station-event-solar-flare-nf-end-announcement # Frontier: add nf-
+    earliestStart: 15
+    reoccurrenceDelay: 45
+    startAnnouncement: station-event-solar-flare-nf-start-announcement
+    endAnnouncement: station-event-solar-flare-nf-end-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
-    onlyJamHeadsets: true
-    affectedChannels:
-    - Common
-    extraChannels:
-    - Command
-    - Engineering
-    - Medical
-    - Science
-    - Security
-    - Service
-    - Supply
-    - Traffic # Frontier
-    - Nfsd # Frontier
-    extraCount: 2
+    allChannels: true
     lightBreakChancePerSecond: 0.0003
     doorToggleChancePerSecond: 0.001
 
