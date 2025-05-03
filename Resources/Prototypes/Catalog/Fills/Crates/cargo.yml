@@ -104,12 +104,12 @@
       prob: 0.001
       orGroup: Canister
     #weapons
-    # - id: WeaponPulseCarbine # Frontier: FIXME
-    #   prob: 0.0001
-    #   orGroup: Weapons
-    # - id: WeaponRifleAk # Frontier: FIXME
-    #   prob: 0.0001
-    #   orGroup: Weapons
+    - id: NFWeaponEnergyRifleAssaultPulseCarbine # Frontier: WeaponPulseCarbine<NFWeaponEnergyRifleAssaultPulseCarbine
+      prob: 0.0001
+      orGroup: Weapons
+    - id: WeaponRifleAssaultSm # Frontier: WeaponRifleAk<WeaponRifleAssaultSm
+      prob: 0.0001
+      orGroup: Weapons
     - id: NFWeaponLauncherPirateCannon # Frontier: WeaponLauncherPirateCannon<NFWeaponLauncherPirateCannon
       prob: 0.001
       orGroup: Weapons
@@ -119,9 +119,9 @@
     - id: NFWeaponRifleBarlowsBolt # Frontier: WeaponSniperMosin<NFWeaponRifleBarlowsBolt
       prob: 0.01
       orGroup: Weapons
-    # - id: WeaponMakeshiftLaser # Frontier: FIXME
-    #   prob: 0.001
-    #   orGroup: Weapons
+    - id: NFWeaponEnergyPistolMakeshift # Frontier: WeaponMakeshiftLaser<NFWeaponEnergyPistolMakeshift
+      prob: 0.001
+      orGroup: Weapons
     - id: Sledgehammer
       prob: 0.001
       orGroup: Weapons
@@ -131,10 +131,10 @@
     - id: ThrowingStar
       prob: 0.01
       orGroup: Weapons
-    # - id: WeaponLaserGun # Frontier: FIXME
-    #   prob: 0.001
-    #   orGroup: Weapons
-    - id: NFWeaponShotgunHandmade # Frontier: FIXME
+    - id: NFWeaponEnergyPistolLaser # Frontier: WeaponLaserGun<NFWeaponEnergyPistolLaser
+      prob: 0.001
+      orGroup: Weapons
+    - id: NFWeaponShotgunHandmade # Frontier: WeaponShotgunHandmade<NFWeaponShotgunHandmade
       prob: 0.01
       orGroup: Weapons
     - id: WeaponFlareGun
@@ -394,7 +394,7 @@
     - id: WeakKudzu
       prob: 0.01
       orGroup: NotUseful
-    - id: NFMagazineFoamBox # Frontier
+    - id: NFMagazineBoxFoam # Frontier: MagazineFoamBox<
       prob: 0.001
       orGroup: NotUseful
     - id: NFBoxDonkSoftBox # Frontier: use NF variant
