@@ -142,15 +142,3 @@
       steps:
       - tool: Cutting
         doAfter: 3
-
-  - node: nest
-    entity: WebNest
-    edges:
-    - to: start
-      completed:
-      - !type:SpawnPrototype
-        prototype: MaterialWebSilk1
-        amount: 5
-      steps:
-      - tool: Cutting
-        doAfter: 2
