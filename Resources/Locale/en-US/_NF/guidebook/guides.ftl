@@ -4,6 +4,7 @@ guide-entry-bank = NT Galactic Bank
 guide-entry-piloting = Piloting
 guide-entry-startinggear = Starting Equipment
 guide-entry-hiring = Hiring Crew
+guide-entry-interviews = Interviews
 guide-entry-expeditions = Expeditions
 guide-entry-sector-topology = Sector Topology
 guide-entry-cargo-hauling = Cargo Hauling
@@ -69,6 +70,7 @@ guide-entry-shipyard-lantern = Lantern
 guide-entry-shipyard-legman = Legman
 guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-loader = Loader
+guide-entry-shipyard-lyrae = Lyrae
 guide-entry-shipyard-mccargo = McCargo
 guide-entry-shipyard-mcdelivery = McDelivery
 guide-entry-shipyard-nightlight = Nightlight
@@ -85,6 +87,7 @@ guide-entry-shipyard-stasis = Stasis
 guide-entry-shipyard-tide = Tide
 guide-entry-shipyard-vagabond = Vagabond
 guide-entry-shipyard-vitalis = Vitalis
+guide-entry-shipyard-nook = Nook
 
 # Rules entries
 guide-entry-frontier-rule-zero-tolerance = Zero Tolerance

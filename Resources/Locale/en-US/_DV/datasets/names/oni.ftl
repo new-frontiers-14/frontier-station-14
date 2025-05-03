@@ -1,16 +1,16 @@
 ## Male, First
-#陽
+# 陽
 names-oni-last-male-dataset-1 = Kiyoshi
-#明
+# 明
 names-oni-last-male-dataset-2 = Satoshi
-#光
+# 光
 names-oni-last-male-dataset-3 = Teru
 names-oni-last-male-dataset-4 = Hiroshi
-#天
+# 天
 names-oni-last-male-dataset-5 = Takashi
-#永一
+# 永一
 names-oni-last-male-dataset-6 = Eeichi
-#永一朗
+# 永一朗
 names-oni-last-male-dataset-7 = Eeichirou
 names-oni-last-male-dataset-8 = Kyousaburou
 names-oni-last-male-dataset-9 = Tsutomu
@@ -20,35 +20,35 @@ names-oni-last-male-dataset-12 = Kenji
 names-oni-last-male-dataset-13 = Kenichi
 names-oni-last-male-dataset-14 = Susumu
 names-oni-last-male-dataset-15 = Kyounosuke
-#Mars
+# Mars
 names-oni-last-male-dataset-16 = Suisei
-#Reference
+# Reference
 names-oni-last-male-dataset-17 = Shuten
 
 ## Female, First
-#星
+# 星
 names-oni-last-female-dataset-1 = Akari
 names-oni-last-female-dataset-2 = Kira
 names-oni-last-female-dataset-3 = Kirameki
-#陽
+# 陽
 names-oni-last-female-dataset-4 = Aki
 names-oni-last-female-dataset-5 = Akiho
 names-oni-last-female-dataset-6 = Akimi
-#明
+# 明
 names-oni-last-female-dataset-7 = Akashi
 names-oni-last-female-dataset-8 = Saya
-#月
+# 月
 names-oni-last-female-dataset-9 = Aporo
 names-oni-last-female-dataset-10 = Arute
 names-oni-last-female-dataset-11 = Meguru
-#天
+# 天
 names-oni-last-female-dataset-12 = Tiara
 names-oni-last-female-dataset-13 = Suisei
-#水
+# 水
 names-oni-last-female-dataset-14 = Io
 names-oni-last-female-dataset-15 = Aoi
 names-oni-last-female-dataset-16 = Mizu
-#epic references
+# epic references
 names-oni-last-female-dataset-17 = Shuten
 names-oni-last-female-dataset-18 = Suika
 
