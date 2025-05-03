@@ -20,6 +20,20 @@
       path: /Audio/Voice/Moth/squeak_moth.ogg
   - type: UseDelay
     delay: 2
+  - type: Extractable #Frontier
+    juiceSolution: 
+      reagents: 
+      - ReagentId: JuiceThatMakesYouChitter 
+        Quantity: 30
+  - type: SolutionContainerManager #Frontier
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: JuiceThatMakesYouChitter
+          Quantity: 10 
 
 - type: entity
   parent: BasePlushieMoff

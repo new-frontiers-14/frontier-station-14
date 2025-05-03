@@ -1,0 +1,17 @@
+- type: reagent
+  id: JuiceThatMakesYouChitter
+  name: reagent-name-chitter
+  group: Toxins
+  desc: reagent-desc-chitter
+  physicalDesc: reagent-physical-desc-vibrant
+  flavor: chitter
+  color: "#CC00CC"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.25
+      effects:
+      - !type:Emote
+        emote: ReagentChitter
+        showInChat: true
+        force: true
+        probability: 0.5
