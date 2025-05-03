@@ -81,6 +81,7 @@
         whitelist: &whitelist35
           tags:
             - NFMagazinePistol35
+            - NFMagazineHighCapacityPistol35
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber35Standard
         name: Chamber
@@ -92,11 +93,9 @@
 
 - type: entity
   id: NFBaseWeaponPistolChamber35HighCapacity
-  parent: NFBaseWeaponPistolChamber
+  parent: NFBaseWeaponPistolChamber35
   abstract: true
   components:
-  - type: Gun
-    examineCaliber: gun-examine-caliber-35
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -110,12 +109,10 @@
       gun_chamber: *chamber35Standard
 
 - type: entity
-  id: NFBaseWeaponPistolChamber35HighCapacityNfsd
-  parent: NFBaseWeaponPistolChamber
+  id: NFBaseWeaponPistolChamber35HighCapacityOverpressure
+  parent: NFBaseWeaponPistolChamber35
   abstract: true
   components:
-  - type: Gun
-    examineCaliber: gun-examine-caliber-35
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -129,6 +126,29 @@
       gun_chamber:
         name: Chamber
         startingItem: NFCartridgePistol35Overpressure
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgePistol35
+
+- type: entity
+  id: NFBaseWeaponPistolChamber35HighCapacityRubber
+  parent: NFBaseWeaponPistolChamber35
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineHighCapacityPistol35Overpressure
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist: *whitelist35
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35Rubber
         priority: 1
         whitelist:
           tags:
