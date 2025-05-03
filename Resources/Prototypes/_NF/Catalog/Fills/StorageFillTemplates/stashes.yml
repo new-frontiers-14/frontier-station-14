@@ -1,0 +1,470 @@
+# Inventory template fills
+
+# The items here will be spawned inside a duffel bag
+# Currently duffel's inventory size is 8x5 (40),
+# so arbitrary total cap for spawned item footprint is ~30
+# (to account for item geometry)
+
+#region tables: valuables
+- type: entityTable # Max Inv. footprint: 2
+  id: TableStorageFillStashCash
+  table: !type:GroupSelector
+    children:
+    - id: SpaceCash5000
+      weight: 70
+    - id: SpaceCash15000
+      weight: 27
+    - id: SpaceCash30000
+      weight: 3
+
+- type: entityTable # Max Inv. footprint: 1
+  id: TableStorageFillStashCoins
+  table: !type:GroupSelector
+    children:
+    # Diamonds: 500 spesos for one
+    - id: TreasureCoinDiamond 
+    - id: TreasureCoinDiamond3
+    - id: TreasureCoinDiamond5
+    - id: TreasureCoinDiamond10
+    # Adamantine: 250 spesos for one
+    - id: TreasureCoinAdamantine
+    - id: TreasureCoinAdamantine3
+    - id: TreasureCoinAdamantine5
+    - id: TreasureCoinAdamantine10
+    # Gold: 175 spesos for one
+    - id: TreasureCoinGold
+    - id: TreasureCoinGold3
+    - id: TreasureCoinGold5
+    - id: TreasureCoinGold10
+    # Silver: 135 spesos for one
+    - id: TreasureCoinSilver
+    - id: TreasureCoinSilver3
+    - id: TreasureCoinSilver5
+    - id: TreasureCoinSilver10
+    # Iron: 75 spesos for one
+    - id: TreasureCoinIron
+    - id: TreasureCoinIron3
+    - id: TreasureCoinIron5
+    - id: TreasureCoinIron10
+
+- type: entityTable # Max Inv. footprint: 4
+  id: TableStorageFillStashJewelry
+  table: !type:GroupSelector
+    children:
+    - id: GoldRing # 300 spesos for one
+    - id: GoldRingDiamond # 1500 spesos for one
+    - id: GoldRingGem # 2100 spesos for one
+    - id: SilverRing # 275 spesos for one
+    - id: SilverRingDiamond # 1400 spesos for one
+    - id: SilverRingGem # 2000 spesos for one
+    - id: IngotGold # 600 per full stack
+    - id: IngotSilver # 450 per full stack
+    - id: TowelColorGold # 10 per one, but think of the PRESTIGE!
+    - id: ClothingNeckBling # 10 per one, but think of the PRESTIGE!
+    - id: WristwatchGold # 500 spesos for one (footprint: 4)
+      weight: 3
+    - id: ClothingMaskGoldenCursed # 5000 spesos for one (footprint: 4?)
+      weight: 1
+
+- type: entityTable # Max Inv. footprint: 9
+  id: TableStorageFillStashTobacco
+  table: !type:AllSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: CigarGoldCase
+      - !type:AllSelector
+        children:
+        - id: SmokingPipe
+        - !type:GroupSelector
+          children:
+          - id: TobaccoPouchBlueFilled
+          - id: TobaccoPouchBrownFilled
+          - id: TobaccoPouchPurpleFilled
+          - id: TobaccoPouchRedFilled
+          rolls: !type:ConstantNumberSelector
+            value: 2
+    - id: FlippoEngravedLighter
+
+- type: entityTable # Max Inv. footprint: 12
+  id: TableStorageFillStashBooze
+  table: !type:GroupSelector
+    children:
+    - id: DrinkSakeBottleFull
+    - id: DrinkGinBottleFull
+    - id: DrinkRumBottleFull
+    - id: DrinkVodkaBottleFull
+    - id: DrinkTequilaBottleFull
+    - id: DrinkWhiskeyBottleFull
+    - id: DrinkAbsintheBottleFull
+    - id: DrinkCognacBottleFull
+    - id: DrinkMopwataBottleRandom
+    - id: DrinkAleBottleFull
+      amount: !type:RangeNumberSelector
+        range: 1, 6
+    - id: DrinkBeerBottleFull
+      amount: !type:RangeNumberSelector
+        range: 1, 6
+
+#region tables: spoiled food
+- type: entityTable # Max Inv. footprint: 2
+  id: TableStorageFillStashFoodSpoiled
+  table: !type:GroupSelector
+    children:
+    - id: FoodBurgerBaconRotten
+    - id: FoodBurgerCheeseRotten
+    - id: FoodBurgerEmpoweredRotten
+    - id: FoodBurgerBigBiteRotten
+    - id: FoodBurgerPlainRotten
+    - id: FoodRiceEggMoldy
+    - id: FoodSoupMeatballMoldy
+    - id: FoodNoodlesMoldy
+    - id: FoodNoodlesMeatballMoldy
+    - id: FoodSaladCaesarMoldy
+
+#region tables: weapons
+- type: entityTable # Max Inv. footprint: 16
+  id: TableStorageFillStashWeaponCasesGuns
+  table: !type:GroupSelector
+    children:
+    # T1
+    - !type:GroupSelector
+      weight: 95
+      children:
+      - !type:AllSelector
+        children:
+        - id: WeaponCaseShortMk58Expedition
+        - id: WeaponCaseShortAmmoBoxLethal35
+      - !type:AllSelector
+        children:
+        - id: WeaponCaseShortUniversalExpedition
+        - id: WeaponCaseShortAmmoBoxLethal35
+      - !type:AllSelector
+        children:
+        - id: WeaponCaseShortPollockExpedition
+        - id: WeaponCaseShortAmmoBoxLethal35
+      - !type:AllSelector
+        children:
+        - id: WeaponCaseShortFaithExpedition
+        - id: WeaponCaseShortAmmoBoxLethal45
+      - !type:AllSelector
+        children:
+        - id: WeaponCaseShortDeckardExpedition
+        - id: WeaponCaseShortAmmoBoxLethal45
+      - !type:AllSelector
+        children:
+        - id: WeaponCaseShortLuckyExpedition
+        - id: WeaponCaseShortAmmoBoxLethal45
+    # T2
+    - !type:GroupSelector
+      weight: 5
+      children:
+      - !type:AllSelector
+        children:
+        - id: WeaponCaseShortN1984Expedition
+        - id: WeaponCaseShortAmmoBoxLethal45
+      - !type:AllSelector
+        children:
+        - id: WeaponCaseShortViper
+        - id: WeaponCaseShortAmmoBoxLethal35
+      - id: WeaponCaseShortLaserGunExpedition
+
+#region tables: clutter
+- type: entityTable # Max Inv. footprint: 8
+  id: MaintFluffTableTrimmed
+  table: !type:GroupSelector
+    children:
+    # Common Group
+    - !type:GroupSelector
+      weight: 75
+      children:
+      # Gar glasses
+      - !type:GroupSelector
+        children:
+        - id: ClothingEyesGlassesGar
+        - id: ClothingEyesGlassesGarOrange
+        - id: ClothingEyesGlassesGarGiga
+      - id: Wristwatch
+        weight: 0.5
+      - id: ClothingHeadHatCake
+      - id: ClothingHeadHatSkub
+      - id: ClothingHeadHatCone
+      - id: ClothingShoeSlippersDuck
+      - id: ClothingEyesEyepatch
+      - id: ClothingHandsGlovesLatex
+      - id: ChemistryBottleMysteryLiquid
+      - !type:AllSelector
+        children:
+        - id: ClothingOuterCoatJensen
+        - id: ClothingEyesGlassesJensen
+    # Uncommon Group
+    - !type:GroupSelector
+      weight: 23
+      children:
+      # Cult
+      - !type:AllSelector
+        children:
+        - id: ClothingOuterCoatBloodCultRobes
+        - id: ClothingShoesCult
+      - id: ClothingNeckCloakHerald
+      - id: ClothingHandsGlovesNitrile
+      - id: ClothingHandsGlovesPowerglove
+    # Rare Group
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - id: Skub
+      - id: PonderingOrb
+      - id: ClothingShoesSkates
+
+- type: entityTable # Max Inv. footprint: 16
+  id: TableStorageFillStashPunk
+  table: !type:AllSelector
+    children:
+    # Jumpsuits (max footprint: 4)
+    - !type:GroupSelector
+      children:
+      - id: ClothingUniformRandomPunkCroptop
+      - id: ClothingUniformRandomPunkTanktop
+      - id: ClothingUniformRandomArmlessNoSkirt
+      - id: ClothingUniformRandomPunkCroptopShorts
+      - id: ClothingUniformRandomPunkTanktopShorts
+      - id: ClothingUniformRandomPunkPantsOnly
+      - id: ClothingUniformRandomPunkShortsOnly
+    # Outerclothing (max footprint: 4)
+    - !type:GroupSelector
+      children:
+      - !type:GroupSelector
+        weight: 70
+        children:
+        - id: ClothingOuterCoatBomberRandomized
+        - id: ClothingOuterCoatLettermanRandomized
+      - !type:GroupSelector
+        weight: 15
+        children:
+        - id: ClothingOuterCoatJacketLettermanMagenta
+        - id: ClothingOuterCoatBomberPinkSleeves
+      - !type:GroupSelector
+        weight: 10
+        children:
+        - id: ClothingOuterCoatAcidRaincoat
+        - id: ClothingOuterCoatAcidRaincoatBlue
+        - id: ClothingOuterCoatAcidRaincoatGreen
+        - id: ClothingOuterCoatAcidRaincoatMagenta
+        - id: ClothingOuterCoatAcidRaincoatYellow
+      - !type:GroupSelector
+        weight: 5
+        children:
+        - id: ClothingOuterCoatBomberPunkRed
+        - id: ClothingOuterCoatJacketLeather
+        - id: ClothingOuterCoatJacketBiker
+        - id: ClothingOuterCoatJacketJamrock
+        - id: ClothingOuterCoatBomberAerostatic
+        - id: ClothingOuterCoatJacketLettermanBlue
+        - id: ClothingOuterCoatJacketLettermanBrown
+        - id: ClothingOuterCoatJacketLettermanRed
+    # Fluff
+    - !type:GroupSelector
+      children:
+      - id: ClothingShoesBootsPunkRandomized
+      - id: HoloGraffitiProjectorEmpty
+      - id: NFPouchPunk
+        amount: !type:RangeNumberSelector
+          range: 1, 2
+      - id: GroundCannabis
+        amount: !type:RangeNumberSelector
+          range: 1, 3
+      - id: ClothingEyesPunkGoggles
+      - id: ClothingEyesPunkInfoShades
+
+#region tables: contraband
+- type: entityTable # Max Inv. footprint: 21
+  id: TableStorageFillStashContraband
+  table: !type:AllSelector
+    children:
+    - id: BoxID # (footprint: 9)
+      prob: 0.2
+    - !type:GroupSelector # Weapons (footprint: 4)
+       children:
+       - id: WeaponCaseShortCobra
+       - id: WeaponCaseShortViper
+    - !type:GroupSelector # Tools (footprint: 2)
+      children:
+      - id: CameraBug
+      - id: ClothingMaskGasVoiceChameleon
+      - id: Emag
+      - id: StorageImplanter
+      - id: RadioJammer
+    - id: SyndicateBusinessCard # (footprint: 1)
+    - !type:GroupSelector # Cash (footprint: 1)
+      children:
+      - id: Telecrystal1
+        weight: 80
+      - id: Telecrystal5
+        weight: 18
+      - id: Telecrystal10
+        weight: 2
+
+#region tables: combination
+- type: entityTable # Max Inv. footprint: 7
+  id: TableStorageFillStashValuables
+  table: !type:AllSelector
+    children:
+    # Cash and Coins
+    - !type:NestedSelector # Max Inv. footprint: 4
+      tableId: TableStorageFillStashJewelry # From 10 to 5000 spesos
+    - !type:NestedSelector # Max Inv. footprint: 2
+      tableId: TableStorageFillStashCash # From 5000 to 30000 spesos
+    - !type:NestedSelector # Max Inv. footprint: 1
+      tableId: TableStorageFillStashCoins # From 75 to ~5000 spesos
+
+- type: entityTable # Max Inv. footprint: 31
+  id: TableStorageFillStashLoot
+  table: !type:AllSelector
+    children:
+    # Maint Fluff
+    - !type:NestedSelector # Max Inv. footprint: 8x3
+      tableId: MaintFluffTableTrimmed
+      rolls: !type:RangeNumberSelector
+        range: 1, 3
+    # Cash and Coins
+    - !type:NestedSelector # Max Inv. footprint: 7
+      tableId: TableStorageFillStashValuables
+
+- type: entityTable # Max Inv. footprint: 23
+  id: TableStorageFillStashMercenary
+  table: !type:AllSelector
+    children:
+    # Weapons
+    - !type:NestedSelector # Max Inv. footprint: 16
+      tableId: TableStorageFillStashWeaponCasesGuns
+    # Cash and Coins
+    - !type:NestedSelector # Max Inv. footprint: 7
+      tableId: TableStorageFillStashValuables
+
+- type: entityTable # Max Inv. footprint: 17
+  id: TableStorageFillStashSmokes
+  table: !type:AllSelector
+    children:
+    # Smokes
+    - !type:NestedSelector # Max Inv. footprint: 10
+      tableId: TableStorageFillStashTobacco
+    # Cash and Coins
+    - !type:NestedSelector # Max Inv. footprint: 7
+      tableId: TableStorageFillStashValuables
+
+- type: entityTable # Max Inv. footprint: 19
+  id: TableStorageFillStashDrinks
+  table: !type:AllSelector
+    children:
+    # Booze
+    - !type:NestedSelector # Max Inv. footprint: 12
+      tableId: TableStorageFillStashBooze
+    # Cash and Coins
+    - !type:NestedSelector # Max Inv. footprint: 7
+      tableId: TableStorageFillStashValuables
+
+- type: entityTable # Max Inv. footprint: 19
+  id: TableStorageFillStashEmbezzled
+  table: !type:AllSelector
+    children:
+    # Cash and Coins
+    - !type:NestedSelector # Max Inv. footprint: 12
+      tableId: TableStorageFillStashJewelry
+      rolls: !type:RangeNumberSelector
+        range: 1, 3 # From 10 to 15000 spesos
+    - !type:NestedSelector # Max Inv. footprint: 4
+      tableId: TableStorageFillStashCash
+      rolls: !type:RangeNumberSelector
+        range: 1, 2 # From 5 to 60000 spesos
+    - !type:NestedSelector # Max Inv. footprint: 3
+      tableId: TableStorageFillStashCoins
+      rolls: !type:RangeNumberSelector
+        range: 1, 3 # From 75 to 15000 spesos
+
+- type: entityTable # Max Inv. footprint: 31
+  id: TableStorageFillStashPunkThreads
+  table: !type:AllSelector
+    children:
+    # Punk threads
+    - !type:NestedSelector # Max Inv. footprint: 16
+      tableId: TableStorageFillStashPunk
+    # Booze
+    - !type:NestedSelector # Max Inv. footprint: 12
+      tableId: TableStorageFillStashBooze
+    # Cash and Coins
+    - !type:NestedSelector # Max Inv. footprint: 7
+      tableId: TableStorageFillStashValuables
+      rolls: !type:RangeNumberSelector
+        range: 0, 1
+
+#region storage fills
+- type: entity
+  abstract: true
+  id: StorageFillStashValuables
+  suffix: Stash, Valuables
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: TableStorageFillStashValuables
+
+- type: entity
+  abstract: true
+  id: StorageFillStashMercenary
+  suffix: Stash, Weapons
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: TableStorageFillStashMercenary
+
+- type: entity
+  abstract: true
+  id: StorageFillStashSmokes
+  suffix: Stash, Smokes
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: TableStorageFillStashSmokes
+
+- type: entity
+  abstract: true
+  id: StorageFillStashDrinks
+  suffix: Stash, Drinks
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: TableStorageFillStashDrinks
+
+- type: entity
+  abstract: true
+  id: StorageFillStashEmbezzled
+  suffix: Stash, Embezzled Funds
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: TableStorageFillStashEmbezzled
+
+- type: entity
+  abstract: true
+  id: StorageFillStashPunkThreads
+  suffix: Stash, Punk Threads
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: TableStorageFillStashPunkThreads
+
+- type: entity
+  abstract: true
+  id: StorageFillStashContraband
+  suffix: Stash, Syndicate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: TableStorageFillStashContraband
