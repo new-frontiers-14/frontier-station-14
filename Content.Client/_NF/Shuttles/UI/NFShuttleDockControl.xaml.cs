@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client.Shuttles.Systems;
+using Content.Client.Shuttles.UI;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
@@ -12,10 +13,10 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 
-namespace Content.Client.Shuttles.UI;
+namespace Content.Client._NF.Shuttles.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class ShuttleDockControl : BaseShuttleControl
+public sealed partial class NFShuttleDockControl : BaseShuttleControl
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
@@ -56,7 +57,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
 
-    public ShuttleDockControl() : base(2f, 32f, 8f)
+    public NFShuttleDockControl() : base(2f, 32f, 8f)
     {
         RobustXamlLoader.Load(this);
         _dockSystem = EntManager.System<DockingSystem>();
@@ -105,6 +106,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         }
 
         DrawCircles(handle);
+        DrawNorthLine(handle, _angle.Value); // Frontier Corvax: north line drawing
         var gridNent = EntManager.GetNetEntity(GridEntity);
         var mapPos = _xformSystem.ToMapCoordinates(_coordinates.Value);
         var ourGridToWorld = _xformSystem.GetWorldMatrix(GridEntity.Value);
@@ -126,24 +128,29 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
 
         if (viewedDockPos != null)
         {
-            viewedDockPos = viewedDockPos.Value + _angle.Value.RotateVec(new Vector2(0f,-0.6f) * MinimapScale);
+            viewedDockPos = viewedDockPos.Value + _angle.Value.RotateVec(new Vector2(0f, -0.6f) * MinimapScale);
         }
 
         var canDockChange = _timing.CurTime > _nextDockChange;
-        var lineOffset = (float) _timing.RealTime.TotalSeconds * 30f;
+        var lineOffset = (float)_timing.RealTime.TotalSeconds * 30f;
+
+        var viewedDockType = _viewedState?.DockType ?? DockType.None; // Frontier: cache dock type
+        var viewedReceiveOnly = _viewedState?.ReceiveOnly ?? true; // Frontier: cache receive only
 
         foreach (var grid in _grids)
         {
             EntManager.TryGetComponent(grid.Owner, out IFFComponent? iffComp);
 
-            if (grid.Owner != GridEntity && !_shuttles.CanDraw(grid.Owner, iffComp: iffComp))
-                continue;
+            bool drawShipGeometry = grid.Owner == GridEntity || _shuttles.CanDraw(grid.Owner, iffComp: iffComp);
 
             var curGridToWorld = _xformSystem.GetWorldMatrix(grid.Owner);
             var curGridToView = curGridToWorld * worldToSelectedDock * selectedDockToView;
-            var color = _shuttles.GetIFFColor(grid.Owner, grid.Owner == GridEntity, component: iffComp);
+            if (drawShipGeometry)
+            {
+                var color = _shuttles.GetIFFColor(grid.Owner, grid.Owner == GridEntity, component: iffComp);
 
-            DrawGrid(handle, curGridToView, grid, color);
+                DrawGrid(handle, curGridToView, grid, color);
+            }
 
             // Draw any docks on that grid
             if (!DockState.Docks.TryGetValue(EntManager.GetNetEntity(grid), out var gridDocks))
@@ -186,38 +193,36 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                 };
 
                 var collisionCenter = verts[0] + verts[1] + verts[3] + verts[5];
+                Color otherDockColor = Color.ToSrgb(dock.RadarColor);
 
-                var otherDockConnection = Color.ToSrgb(Color.Pink);
-                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, otherDockConnection.WithAlpha(0.2f));
-                handle.DrawPrimitives(DrawPrimitiveTopology.LineList, verts, otherDockConnection);
-
-                // Draw the dock itself
-                var dockBL = Vector2.Transform(dock.Coordinates.Position + new Vector2(-0.5f, -0.5f), curGridToView);
-                var dockBR = Vector2.Transform(dock.Coordinates.Position + new Vector2(0.5f, -0.5f), curGridToView);
-                var dockTR = Vector2.Transform(dock.Coordinates.Position + new Vector2(0.5f, 0.5f), curGridToView);
-                var dockTL = Vector2.Transform(dock.Coordinates.Position + new Vector2(-0.5f, 0.5f), curGridToView);
-
-                verts = new[]
+                if (drawShipGeometry)
                 {
-                    dockBL,
-                    dockBR,
-                    dockBR,
-                    dockTR,
-                    dockTR,
-                    dockTL,
-                    dockTL,
-                    dockBL
-                };
+                    var otherDockConnection = Color.ToSrgb(Color.Pink);
+                    handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, otherDockConnection.WithAlpha(0.2f));
+                    handle.DrawPrimitives(DrawPrimitiveTopology.LineList, verts, otherDockConnection);
 
-                Color otherDockColor;
+                    // Draw the dock itself
+                    var dockBL = Vector2.Transform(dock.Coordinates.Position + new Vector2(-0.5f, -0.5f), curGridToView);
+                    var dockBR = Vector2.Transform(dock.Coordinates.Position + new Vector2(0.5f, -0.5f), curGridToView);
+                    var dockTR = Vector2.Transform(dock.Coordinates.Position + new Vector2(0.5f, 0.5f), curGridToView);
+                    var dockTL = Vector2.Transform(dock.Coordinates.Position + new Vector2(-0.5f, 0.5f), curGridToView);
 
-                if (HighlightedDock == dock.Entity)
-                {
-                    otherDockColor = Color.ToSrgb(Color.Magenta);
-                }
-                else
-                {
-                    otherDockColor = Color.ToSrgb(Color.Purple);
+                    verts = new[]
+                    {
+                        dockBL,
+                        dockBR,
+                        dockBR,
+                        dockTR,
+                        dockTR,
+                        dockTL,
+                        dockTL,
+                        dockBL
+                    };
+
+                    if (HighlightedDock == dock.Entity)
+                    {
+                        otherDockColor = Color.ToSrgb(dock.HighlightedRadarColor);
+                    }
                 }
 
                 /*
@@ -235,6 +240,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                 if (dockButton != null && dock.GridDockedWith != null)
                 {
                     dockButton.Disabled = !canDockChange;
+                    dockButton.Visible = true; // Frontier: undock should always be visible.
                 }
 
                 // If the dock is in range then also do highlighting
@@ -264,23 +270,33 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                             var canDock = distanceSq < maxDockDistSq && inAlignment;
 
                             if (dockButton != null)
-                                dockButton.Disabled = !canDock || !canDockChange;
+                            {
+                                dockButton.Disabled = !canDock && dock.GridDockedWith == null || !canDockChange; // Frontier: add "&& dock.GridDockedWith == null"
+                                dockButton.Visible = dock.GridDockedWith != null || (dock.DockType & viewedDockType) != DockType.None && !viewedReceiveOnly; // Frontier: do not enable docking for receive-only docks
+                            }
 
                             var lineColor = inAlignment ? Color.Lime : Color.Red;
                             handle.DrawDottedLine(viewedDockPos.Value, collisionCenter, lineColor, offset: lineOffset);
                         }
+                        else if (dockButton != null)
+                        {
+                            dockButton.Visible = dock.GridDockedWith != null; // Frontier: do not enable docking for receive-only docks
+                        }
 
                         canDraw = true;
                     }
-                    else
+                    else if (dockButton != null)
                     {
-                        if (dockButton != null)
-                            dockButton.Disabled = true;
+                        dockButton.Disabled = true;
+                        dockButton.Visible = dock.GridDockedWith != null || (dock.DockType & viewedDockType) != DockType.None && !viewedReceiveOnly; // Frontier
                     }
                 }
 
-                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, otherDockColor.WithAlpha(0.2f));
-                handle.DrawPrimitives(DrawPrimitiveTopology.LineList, verts, otherDockColor);
+                if (drawShipGeometry)
+                {
+                    handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, otherDockColor.WithAlpha(0.2f));
+                    handle.DrawPrimitives(DrawPrimitiveTopology.LineList, verts, otherDockColor);
+                }
 
                 // Position the dock control above it
                 var container = _dockContainers[dock];
@@ -311,7 +327,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
             ScalePosition(Vector2.Transform(new Vector2(-0.5f, 0.5f), rotation)),
             ScalePosition(Vector2.Transform(new Vector2(0.5f, -0.5f), rotation)));
 
-        var dockColor = Color.Magenta;
+        var dockColor = _viewedState?.HighlightedRadarColor ?? Color.Magenta; // Frontier - use ViewedState
         var connectionColor = Color.Pink;
 
         handle.DrawRect(ourDockConnection, connectionColor.WithAlpha(0.2f));
@@ -339,14 +355,10 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         _viewedState = null;
 
         foreach (var btn in _dockButtons.Values)
-        {
             btn.Dispose();
-        }
 
         foreach (var container in _dockContainers.Values)
-        {
             container.Dispose();
-        }
 
         _dockButtons.Clear();
         _dockContainers.Clear();
@@ -436,7 +448,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
 
                 container.AddChild(new Label()
                 {
-                    Text = dock.Name,
+                    Text = dock.LabelName ?? dock.Name, // Frontier: add dock.LabelName
                     HorizontalAlignment = HAlignment.Center,
                 });
 
