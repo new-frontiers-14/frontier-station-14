@@ -110,22 +110,8 @@
 
 - type: entity
   parent: ShipVoucherFrontierJanitor
-  id: ShipVoucherFrontierMailCarrier
-  name: mail carrier ship voucher
-  description: Allows for one free mail ship purchase from the Frontier Staff Shipyard. Destroyed on sale.
-  components:
-  - type: Sprite
-    layers:
-    - state: blue
-    - state: vouchermailcarrier
-  - type: ShipyardVoucher
-    access:
-    - Mail
-
-- type: entity
-  parent: ShipVoucherFrontierJanitor
   id: ShipVoucherFrontierStc
-  name: station traffic controll ship voucher
+  name: station traffic controller ship voucher
   description: Allows for one free tug ship purchase from the Frontier Staff Shipyard. Destroyed on sale.
   components:
   - type: Sprite
