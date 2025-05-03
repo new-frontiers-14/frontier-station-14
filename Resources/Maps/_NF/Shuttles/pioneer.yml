@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 251.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 05/01/2025 23:04:45
+  entityCount: 108
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   30: FloorDark
@@ -225,11 +236,11 @@ entities:
       id: Pioneer
 - proto: AirAlarm
   entities:
-  - uid: 49
+  - uid: 62
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 0.5,-3.5
+      pos: -0.5,-3.5
       parent: 1
     - type: DeviceList
       devices:
@@ -318,13 +329,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-3.5
-      parent: 1
-- proto: BoxFolderRed
-  entities:
-  - uid: 62
-    components:
-    - type: Transform
-      pos: -0.28687096,1.5974178
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -483,13 +487,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-0.5
       parent: 1
-- proto: DrinkWaterJug
-  entities:
-  - uid: 65
-    components:
-    - type: Transform
-      pos: -0.27645433,2.0661678
-      parent: 1
 - proto: EmergencyLight
   entities:
   - uid: 43
@@ -520,6 +517,13 @@ entities:
     components:
     - type: Transform
       pos: -0.5,2.5
+      parent: 1
+- proto: FolderSpawner
+  entities:
+  - uid: 50
+    components:
+    - type: Transform
+      pos: -0.23774767,2.1417854
       parent: 1
 - proto: GasMixerOn
   entities:
@@ -622,8 +626,10 @@ entities:
       pos: -0.5,-0.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
-      - 49
+      - 62
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -635,8 +641,10 @@ entities:
       pos: -0.5,0.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
-      - 49
+      - 62
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -688,6 +696,29 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,2.5
       parent: 1
+- proto: LockerWallMaterialsFuelPlasmaFilled
+  entities:
+  - uid: 49
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-3.5
+      parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 53
+    components:
+    - type: Transform
+      pos: 0.5,0.5
+      parent: 1
+- proto: NFMagnetBoxOre
+  entities:
+  - uid: 103
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-2.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 58
@@ -698,14 +729,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: OreBox
-  entities:
-  - uid: 103
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-2.5
-      parent: 1
 - proto: OxygenCanister
   entities:
   - uid: 35
@@ -724,9 +747,7 @@ entities:
       pos: -0.5,-1.5
       parent: 1
     - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
+      targetPower: 6000
 - proto: Poweredlight
   entities:
   - uid: 110
@@ -777,13 +798,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,3.5
-      parent: 1
-- proto: SheetPlasma
-  entities:
-  - uid: 50
-    components:
-    - type: Transform
-      pos: -0.51729774,-1.5106921
       parent: 1
 - proto: ShuttersWindow
   entities:
@@ -983,18 +997,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,-2.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 85
     components:
     - type: Transform
       pos: 0.5,0.5
-      parent: 1
-- proto: WeaponGrapplingGun
-  entities:
-  - uid: 53
-    components:
-    - type: Transform
-      pos: 0.22354567,2.3995013
       parent: 1
 ...
