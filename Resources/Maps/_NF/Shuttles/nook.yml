@@ -4,7 +4,7 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/01/2025 07:53:10
+  time: 05/03/2025 16:20:45
   entityCount: 305
 maps: []
 grids:
@@ -363,17 +363,18 @@ entities:
       version: 2
       data:
         tiles:
-          0,-1:
-            0: 65250
           0,0:
             0: 1646
-            1: 36864
+            2: 36864
           -1,0:
-            1: 194
+            1: 128
+            2: 66
+          0,-1:
+            0: 61410
           1,0:
-            2: 1792
+            1: 1792
             0: 38
-            1: 2048
+            2: 2048
           1,-1:
             0: 25190
           0,-3:
@@ -381,13 +382,13 @@ entities:
           0,-2:
             0: 61166
           -1,-2:
-            2: 14
+            1: 14
             0: 52224
           -1,-1:
-            0: 52420
+            0: 52424
           1,-2:
             0: 30208
-            2: 14
+            1: 14
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -405,7 +406,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -420,7 +421,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          immutable: True
+          temperature: 293.15
           moles:
           - 0
           - 0
@@ -971,7 +972,7 @@ entities:
     - type: Transform
       pos: -1.4824347,-1.6206781
       parent: 1
-- proto: ClosetWallO2N2FilledRandom
+- proto: ClosetWallO2N2Filled
   entities:
   - uid: 94
     components:
