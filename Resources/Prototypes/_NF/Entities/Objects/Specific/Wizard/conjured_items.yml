@@ -189,3 +189,26 @@
     proto: SoapletBloodCult
     count: 35
     spread: 40
+
+- type: entity
+  name: brick
+  id: BrickConjured
+  parent:
+  - BaseBullet
+  - ConjuredObject10
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 8
+        Structural: 10
+  - type: StaminaDamageOnCollide
+    damage: 20
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Objects/Specific/Wizard/conjuredbrick.rsi
+    layers:
+    - state: blastwave
+  - type: Ammo
+    muzzleFlash: null

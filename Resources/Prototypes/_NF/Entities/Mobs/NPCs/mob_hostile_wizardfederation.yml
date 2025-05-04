@@ -143,6 +143,27 @@
     soundGunshot:
       path: /Audio/Effects/teleport_arrival.ogg
 
+# Brick Wizard, shoots magic bricks that smack targets (8 blunt damage on hit)
+# Look for magic brick here:\Resources\Prototypes\_NF\Entities\Objects\Specific\Wizard\conjured_items.yml
+- type: entity
+  name: Brick Wizard
+  parent: MobWizFedlBase
+  id: MobWizFedWizardBrick
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardBrickGear
+  - type: BasicEntityAmmoProvider
+    proto: BrickConjured
+    capacity: 8
+    count: 8
+  - type: Gun
+    showExamineText: false
+    fireRate: 6
+    soundGunshot:
+        collection: Woosh
+
 # Wizards in hardsuits
 - type: entity
   name: Blue Wizard
