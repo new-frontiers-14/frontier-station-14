@@ -147,6 +147,11 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                 EquipRoleName(jobEntity, loadout, roleProto!);
             }
 
+            // Frontier: equip loadouts on custom job entities
+            if (prototype?.StartingGear is not null)
+                EquipStartingGear(jobEntity, prototype.StartingGear, raiseEvent: false);
+            // End Frontier: equip loadouts on custom job entities
+
             DoJobSpecials(job, jobEntity);
             _identity.QueueIdentityUpdate(jobEntity);
             return jobEntity;
