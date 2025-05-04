@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
+using Content.Shared.Emp;
 using Content.Shared.Power.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -32,11 +33,21 @@ public abstract class SharedPowerReceiverSystem : EntitySystem
         Dirty(uid, receiver);
     }
 
+    // Frontier: upstream (#28984) - MIT
+    public bool TryTogglePower(EntityUid uid, bool playSwitchSound = true, SharedApcPowerReceiverComponent? receiver = null, EntityUid? user = null)
+    {
+        if (HasComp<EmpDisabledComponent>(uid))
+            return false;
+
+        return TogglePower(uid, playSwitchSound, receiver, user);
+    }
+    // End Frontier: upstream (#28984) - MIT
+
     /// <summary>
     /// Turn this machine on or off.
     /// Returns true if we turned it on, false if we turned it off.
     /// </summary>
-    public bool TogglePower(EntityUid uid, bool playSwitchSound = true, SharedApcPowerReceiverComponent? receiver = null, EntityUid? user = null)
+    protected bool TogglePower(EntityUid uid, bool playSwitchSound = true, SharedApcPowerReceiverComponent? receiver = null, EntityUid? user = null) // Frontier: public<private (intentional breaks)
     {
         if (!ResolveApc(uid, ref receiver))
             return true;

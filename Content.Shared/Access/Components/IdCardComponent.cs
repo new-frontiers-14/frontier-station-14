@@ -66,18 +66,17 @@ public sealed partial class IdCardComponent : Component
     [DataField]
     public bool CanMicrowave = true;
 
-    // Frontier
-    [DataField("soundError")]
+    // Frontier: sounds for shipyard RCD, etc.
+    [DataField]
     public SoundSpecifier ErrorSound =
         new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
 
-    // Frontier
-    [DataField("soundSwipe")]
+    [DataField]
     public SoundSpecifier SwipeSound =
         new SoundPathSpecifier("/Audio/Machines/id_swipe.ogg");
 
-    // Frontier
-    [DataField("soundInsert")]
+    [DataField]
     public SoundSpecifier InsertSound =
         new SoundPathSpecifier("/Audio/Machines/id_insert.ogg");
+    // End Frontier
 }

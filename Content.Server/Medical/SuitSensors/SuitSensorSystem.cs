@@ -28,7 +28,8 @@ using Content.Shared.DeviceNetwork.Components;
 using System.Numerics; //Frontier
 using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Server.Explosion.EntitySystems; // Frontier
-using Content.Server._NF.Medical.SuitSensors; // Frontier
+using Content.Server._NF.Medical.SuitSensors;
+using Content.Shared.Emp; // Frontier
 
 namespace Content.Server.Medical.SuitSensors;
 
@@ -276,6 +277,9 @@ public sealed class SuitSensorSystem : EntitySystem
     {
         args.Affected = true;
         args.Disabled = true;
+
+        if (HasComp<EmpDisabledComponent>(uid)) // Frontier: don't double disable sensors
+            return; // Frontier
 
         component.PreviousMode = component.Mode;
         SetSensor((uid, component), SuitSensorMode.SensorOff, null);

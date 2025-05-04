@@ -99,7 +99,7 @@ public sealed partial class GhostComponent : Component
     /// Internal field value for CanReturnFromCryo.
     /// </summary>
     [DataField, AutoNetworkedField]
-    private bool CanReturnFromCryo;
+    public bool CanReturnFromCryo;
     // End Frontier: cryo functions
 }
 

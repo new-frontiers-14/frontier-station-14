@@ -468,7 +468,7 @@ public enum LogType
     /// <summary>
     /// Artifact node got activated.
     /// </summary>
-    ArtifactNode = 101
+    ArtifactNode = 101,
 
     // Frontier Station Specific
     #region Frontier Values
