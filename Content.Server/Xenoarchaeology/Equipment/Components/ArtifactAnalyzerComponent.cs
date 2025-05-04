@@ -1,46 +1,46 @@
-using Content.Server.Xenoarchaeology.XenoArtifacts;
-using Content.Shared.Construction.Prototypes;
 using Robust.Shared.Audio;
-using Robust.Shared.Serialization.TypeSerializers.Implementations;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.GameStates;
 
-namespace Content.Server.Xenoarchaeology.Equipment.Components;
+namespace Content.Shared.Xenoarchaeology.Equipment.Components;
 
 /// <summary>
 /// A machine that is combined and linked to the <see cref="AnalysisConsoleComponent"/>
 /// in order to analyze artifacts and extract points.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class ArtifactAnalyzerComponent : Component
 {
     /// <summary>
     /// How long it takes to analyze an artifact
     /// </summary>
-    [DataField("analysisDuration", customTypeSerializer: typeof(TimespanSerializer))]
+    [DataField]
     public TimeSpan AnalysisDuration = TimeSpan.FromSeconds(30);
+
+    /// <summary>
+    /// The current artifact placed on this analyzer.
+    /// Can be null if none are present.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? CurrentArtifact;
 
     /// <summary>
     /// The corresponding console entity.
     /// Can be null if not linked.
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? Console;
 
+    /// <summary>
+    /// Marker, if artifact graph data is ready for printing.
+    /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public bool ReadyToPrint = false;
 
-    [DataField("scanFinishedSound")]
-    public SoundSpecifier ScanFinishedSound = new SoundPathSpecifier("/Audio/Machines/scan_finish.ogg");
-
-    #region Analysis Data
-    [DataField]
-    public EntityUid? LastAnalyzedArtifact;
-
+    // Frontier: power adjustments
+    /// <summary>
+    /// The original power load of the analyzer in watts
+    /// </summary>
     [ViewVariables]
-    public ArtifactNode? LastAnalyzedNode;
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    public int? LastAnalyzerPointValue;
-    #endregion
-    public float OriginalLoad { get; set; } = 0; // Frontier
+    public float OriginalLoad;
+    // End Frontier: power adjustments
 }
