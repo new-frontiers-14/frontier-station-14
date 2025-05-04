@@ -4,8 +4,8 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/30/2025 05:32:41
-  entityCount: 411
+  time: 05/04/2025 01:19:57
+  entityCount: 410
 maps: []
 grids:
 - 1
@@ -350,12 +350,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,0.5
       parent: 1
-    - type: Door
-      secondsUntilStateChange: -1442.8201
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
 - proto: AirSensor
   entities:
   - uid: 254
@@ -364,6 +358,8 @@ entities:
       pos: 1.5,-14.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 255
 - proto: APCBasic
@@ -2031,14 +2027,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-4.5
       parent: 1
-- proto: LockerWallMaterialsBasic10Filled
-  entities:
-  - uid: 244
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.5,-3.5
-      parent: 1
 - proto: LockerWallMaterialsFuelUraniumFilled
   entities:
   - uid: 230
@@ -2100,8 +2088,6 @@ entities:
     - type: Transform
       pos: -3.5,-3.5
       parent: 1
-    - type: FuelGenerator
-      targetPower: 25000
 - proto: PosterLegitSafetyMothPiping
   entities:
   - uid: 247
