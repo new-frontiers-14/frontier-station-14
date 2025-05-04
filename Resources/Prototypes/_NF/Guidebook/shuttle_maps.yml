@@ -456,6 +456,7 @@
 
 - type: entity
   parent: PosterBase
+  
   id: ShuttleMapPhantom
   name: "NTC Phantom"
   description: "Detailed map of a Phantom shuttle."
@@ -464,4 +465,14 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: phantom
+    scale: 1.2, 1.2
+
+  id: ShuttleMapNook
+  name: "WSE Nook"
+  description: "Detailed map of a Nook shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: nook
     scale: 1.2, 1.2
