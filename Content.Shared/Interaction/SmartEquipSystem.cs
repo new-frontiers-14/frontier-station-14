@@ -35,6 +35,7 @@ public sealed class SmartEquipSystem : EntitySystem
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.SmartEquipBackpack, InputCmdHandler.FromDelegate(HandleSmartEquipBackpack, handle: false, outsidePrediction: false))
             .Bind(ContentKeyFunctions.SmartEquipBelt, InputCmdHandler.FromDelegate(HandleSmartEquipBelt, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipWallet, InputCmdHandler.FromDelegate(HandleSmartEquipWallet, handle: false, outsidePrediction: false)) // Frontier
             .Register<SmartEquipSystem>();
     }
 
@@ -54,7 +55,12 @@ public sealed class SmartEquipSystem : EntitySystem
     {
         HandleSmartEquip(session, "belt");
     }
-
+    // Frontier: smart-equip to wallet
+    private void HandleSmartEquipWallet(ICommonSession? session)
+    {
+        HandleSmartEquip(session, "wallet");
+    }
+    // End Frontier: smart-equip to wallet
     private void HandleSmartEquip(ICommonSession? session, string equipmentSlot)
     {
         if (session is not { } playerSession)
