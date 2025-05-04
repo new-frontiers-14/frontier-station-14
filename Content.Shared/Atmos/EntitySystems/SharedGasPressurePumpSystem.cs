@@ -80,7 +80,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
 
         var pumpOn = ent.Comp1.Enabled && _receiver.IsPowered(ent.Owner);
         _appearance.SetData(ent, PumpVisuals.Enabled, pumpOn, ent.Comp2);
-        _appearance.SetData(ent, PumpVisuals.PumpingInwards, ent.Comp1.PumpingInwards, appearance); // Frontier
+        _appearance.SetData(ent, PumpVisuals.PumpingInwards, ent.Comp1.PumpingInwards); // Frontier
     }
 
     private void OnToggleStatusMessage(Entity<GasPressurePumpComponent> ent, ref GasPressurePumpToggleStatusMessage args)
@@ -118,20 +118,20 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
     }
 
     // Frontier - bidirectional pumps
-    public void OnPumpSetDirectionMessage(EntityUid uid, GasPressurePumpComponent pump, GasPressurePumpChangePumpDirectionMessage args)
+    public void OnPumpSetDirectionMessage(Entity<GasPressurePumpComponent> ent, ref GasPressurePumpChangePumpDirectionMessage args)
     {
-        if (!pump.SettableDirection || pump.PumpingInwards == args.Inwards)
+        if (!ent.Comp.SettableDirection || ent.Comp.PumpingInwards == args.Inwards)
             return;
 
-        var temp = pump.OutletName;
-        pump.OutletName = pump.InletName;
-        pump.InletName = temp;
+        var temp = ent.Comp.OutletName;
+        ent.Comp.OutletName = ent.Comp.InletName;
+        ent.Comp.InletName = temp;
 
-        pump.PumpingInwards = args.Inwards;
+        ent.Comp.PumpingInwards = args.Inwards;
         _adminLogger.Add(LogType.AtmosDirectionChanged, LogImpact.Medium,
             $"{ToPrettyString(args.Actor):player} set the direction on {ToPrettyString(uid):device} to {(args.Inwards ? "in" : "out")}");
-        Dirty(uid, pump);
-        UpdateAppearance(uid, pump);
+        Dirty(ent);
+        UpdateAppearance(ent);
     }
     // End Frontier
 }

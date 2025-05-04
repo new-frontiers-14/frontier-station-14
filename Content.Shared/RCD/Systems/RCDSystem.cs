@@ -197,8 +197,8 @@ public sealed class RCDSystem : EntitySystem
         if (!IsRCDOperationStillValid(uid, component, gridUid.Value, mapGrid, tile, position, args.Target, args.User))
             return;
 
-        if (!IsAuthorized(mapGridData.Value.GridUid, uid, component, args))
-            return;
+        if (!IsAuthorized(gridUid, uid, component, args)) // Frontier: shipyard RCD
+            return; // Frontier
 
         if (!_net.IsServer)
             return;
