@@ -271,7 +271,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             grantedActions.Add(flashlight.ToggleActionEntity.Value);
             _flashlight.SetLight((vehicle, flashlight), flashlight.LightOn, quiet: true);
         }
-        _actions.GrantActions(driver, grantedActions, vehicle);
+        // Only try to grant actions if the vehicle actually has them.
+        if (grantedActions.Count > 0)
+            _actions.GrantActions(driver, grantedActions, vehicle);
         // End Frontier
     }
 
