@@ -9,31 +9,31 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Flow
+  id: Argyroneta
   parent: BaseVessel
-  name: NT Flow
+  name: NT Argyroneta
   description: A bulk gas hauling shuttle, used for delivering large volumes of gas to remote stations.
   price: 18500 # Appraises to 17430, T1
   category: Small
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/flow.yml
-  guidebookPage: ShipyardFlow # TODO: actually make a guidebook page
+  shuttlePath: /Maps/_NF/Shuttles/argyroneta.yml
+  guidebookPage: ShipyardArgyroneta # TODO: actually make a guidebook page
   class:
   - Engineering
   engine:
-  - Plasma
+  - Uranium
 
 - type: gameMap
-  id: Flow
-  mapName: 'NT Flow'
-  mapPath: /Maps/_NF/Shuttles/flow.yml
+  id: Argyroneta
+  mapName: 'NT Argyroneta'
+  mapPath: /Maps/_NF/Shuttles/argyroneta.yml
   minPlayers: 0
   stations:
     Flow:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Flow {1}'
+          mapNameTemplate: 'Argyroneta {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
