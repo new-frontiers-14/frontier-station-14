@@ -60,21 +60,14 @@ namespace Content.Server.Lathe
         [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
         [Dependency] private readonly StackSystem _stack = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
-<<<<<<< HEAD
-        [Dependency] private readonly ContrabandTurnInSystem _contraband = default!; // Frontier
-=======
         [Dependency] private readonly RadioSystem _radio = default!;
->>>>>>> 0e586e3faeb7119fb01a248c7ac7c6084f9ad7b2
+        [Dependency] private readonly ContrabandTurnInSystem _contraband = default!; // Frontier
 
         /// <summary>
         /// Per-tick cache
         /// </summary>
         private readonly List<GasMixture> _environments = new();
-<<<<<<< HEAD
-        private readonly HashSet<ProtoId<LatheRecipePrototype>> _availableRecipes = new();
         private const int MaxItemsPerRequest = 100_000; // Frontier
-=======
->>>>>>> 0e586e3faeb7119fb01a248c7ac7c6084f9ad7b2
 
         public override void Initialize()
         {
