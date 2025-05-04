@@ -129,7 +129,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
 
         ent.Comp.PumpingInwards = args.Inwards;
         _adminLogger.Add(LogType.AtmosDirectionChanged, LogImpact.Medium,
-            $"{ToPrettyString(args.Actor):player} set the direction on {ToPrettyString(uid):device} to {(args.Inwards ? "in" : "out")}");
+            $"{ToPrettyString(args.Actor):player} set the direction on {ToPrettyString(ent):device} to {(args.Inwards ? "in" : "out")}");
         Dirty(ent);
         UpdateAppearance(ent);
     }
