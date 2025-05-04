@@ -60,6 +60,7 @@ public abstract partial class SharedMoverController : VirtualController
     protected EntityQuery<NoRotateOnMoveComponent> NoRotateQuery;
     protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery;
     protected EntityQuery<MapGridComponent> MapGridQuery;
+    protected EntityQuery<NoShoesSilentFootstepsComponent> NoShoesSilentQuery; // DeltaV - NoShoesSilentFootstepsComponent
 
     private static readonly ProtoId<TagPrototype> FootstepSoundTag = "FootstepSound";
 
@@ -91,6 +92,7 @@ public abstract partial class SharedMoverController : VirtualController
         CanMoveInAirQuery = GetEntityQuery<CanMoveInAirComponent>();
         FootstepModifierQuery = GetEntityQuery<FootstepModifierComponent>();
         MapGridQuery = GetEntityQuery<MapGridComponent>();
+        NoShoesSilentQuery = GetEntityQuery<NoShoesSilentFootstepsComponent>(); // DeltaV - NoShoesSilentFootstepsComponent
 
         InitializeInput();
         InitializeRelay();
@@ -501,6 +503,25 @@ public abstract partial class SharedMoverController : VirtualController
 
         mobMover.StepSoundDistance -= distanceNeeded;
 
+        // Frontier: check outer clothes
+        // If you have a hardsuit or power armor on that goes around your boots, it's the hardsuit that hits the floor.
+        // Check should happen before NoShoesSilentFootsteps check - loud power armor should count as wearing shoes.
+        if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing) &&
+            FootstepModifierQuery.TryComp(outerClothing, out var outerModifier))
+        {
+            sound = outerModifier.FootstepSoundCollection;
+            return sound != null;
+        }
+        // End Frontier
+
+        // DeltaV - Don't play the sound if they have no shoes and the component
+        if (NoShoesSilentQuery.HasComp(uid) &&
+            !_inventory.TryGetSlotEntity(uid, "shoes", out _))
+        {
+            return false;
+        }
+        // End DeltaV code
+
         if (FootstepModifierQuery.TryComp(uid, out var moverModifier))
         {
             sound = moverModifier.FootstepSoundCollection;
@@ -553,25 +574,6 @@ public abstract partial class SharedMoverController : VirtualController
                 sound = soundEv.Sound;
                 return true;
             }
-
-            // Frontier: check outer clothes
-            // If you have a hardsuit or power armor on that goes around your boots, it's the hardsuit that hits the floor.
-            // Check should happen before NoShoesSilentFootsteps check - loud power armor should count as wearing shoes.
-            if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing) &&
-                TryComp<FootstepModifierComponent>(outerClothing, out var outerModifier))
-            {
-                sound = outerModifier.FootstepSoundCollection;
-                return sound != null;
-            }
-            // End Frontier
-
-            // If got the component in yml and no shoes = no sound. Delta V
-            if (_entities.TryGetComponent(uid, out NoShoesSilentFootstepsComponent? _) &&
-                !_inventory.TryGetSlotEntity(uid, "shoes", out var _))
-            {
-                return false;
-            }
-            // Delta V NoShoesSilentFootsteps till here.
 
             if (_inventory.TryGetSlotEntity(uid, "shoes", out var shoes) &&
                 FootstepModifierQuery.TryComp(maybeFootstep, out var footstep))
