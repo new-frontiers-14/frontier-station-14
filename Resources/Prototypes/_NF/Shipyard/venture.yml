@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Venture
+  parent: BaseVessel
+  name: FSB Venture
+  description: A budget mining and recovery shuttle for corporations unwilling to operate outside of a shoestring budget. Brought to you by the Far Star Biotech corporation!
+  price: 16500
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/venture.yml
+  guidebookPage: ShipyardVenture
+  class:
+  - Salvage
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Venture
+  mapName: 'FSB Venture'
+  mapPath: /Maps/_NF/Shuttles/venture.yml
+  minPlayers: 0
+  stations:
+    Venture:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Venture {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
