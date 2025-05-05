@@ -11,7 +11,7 @@
   - type: Item
     size: Small
   - type: CartridgeAmmo
-    proto: BulletRocket
+    proto: NFBulletRocket
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -66,6 +66,7 @@
 - type: entity
   parent: [ NFBaseGrenade40mm, GrenadeBaton ]
   id: NFGrenadeBaton
+  name: baton grenade
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeBaton
@@ -73,6 +74,7 @@
 - type: entity
   parent: [ NFBaseGrenade40mm, GrenadeBlast ]
   id: NFGrenadeBlast
+  name: blast grenade
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeBlast
@@ -80,6 +82,7 @@
 - type: entity
   parent: [ NFBaseGrenade40mm, GrenadeFlash ]
   id: NFGrenadeFlash
+  name: flash grenade
   components:
   - type: Tag
     tags:
@@ -91,6 +94,7 @@
 - type: entity
   parent: [ NFBaseGrenade40mm, GrenadeFrag ]
   id: NFGrenadeFrag
+  name: frag grenade
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeFrag
@@ -98,6 +102,7 @@
 - type: entity
   parent: [ NFBaseGrenade40mm, GrenadeEMP ]
   id: NFGrenadeEMP
+  name: EMP grenade
   components:
   - type: Tag
     tags:

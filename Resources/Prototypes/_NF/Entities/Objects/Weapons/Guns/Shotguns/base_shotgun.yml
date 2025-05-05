@@ -1,6 +1,6 @@
 #region frame
 - type: entity
-  id: NFBaseWeaponShotgun
+  id: NFBaseWeaponFrameShotgun
   parent: [ NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGun ]
   abstract: true
   components:
@@ -28,7 +28,7 @@
     class: weapon-details-class-shotgun
 
 - type: entity
-  id: NFBaseWeaponShotgunWieldable
+  id: NFBaseWeaponFrameShotgunWieldable
   parent: [ NFBaseWeaponEncumbranceRifle, NFBaseWeaponShotgun ]
   abstract: true
   components:
@@ -39,14 +39,9 @@
     minAngle: -10.9
     maxAngle: -21.8
 
-- type: entity
-  id: NFBaseWeaponShotgunWieldableMagazineFed
-  parent: [ NFBaseItemWeaponGunMagazineFed, NFBaseWeaponShotgunWieldable ]
-  abstract: true
-
 #region chamber
 - type: entity
-  id: NFBaseWeaponShotgunShell50
+  id: NFBaseWeaponShotgunChamber50
   abstract: true
   components:
   - type: Gun
@@ -65,7 +60,8 @@
         ents: []
 
 - type: entity
-  id: NFBaseWeaponShotgunShell50Magazine
+  parent: NFBaseItemWeaponGunMagazineFed
+  id: NFBaseWeaponShotgunChamber50Magazine
   abstract: true
   components:
   - type: Gun

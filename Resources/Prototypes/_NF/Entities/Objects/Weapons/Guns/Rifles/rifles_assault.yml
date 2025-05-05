@@ -18,7 +18,7 @@
 - type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultM90GrenadeLauncher
   parent: [ NFBaseWeaponRifleAssaultChamber20, NFBaseWeaponFrameRifleAssaultCybersun ]
-  name: M90-GL
+  name: M-90gl
   description: |-
     An older bullpup carbine model, with an attached underbarrel grenade launcher. An illegal firearm often used by Syndicate agents.
   components:
@@ -42,6 +42,9 @@
     magState: mag
     steps: 3
     zeroVisible: true
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
 
 #region WizDen: Rubber
 - type: entity
@@ -136,5 +139,3 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
-      params:
-        variation: 0.125
