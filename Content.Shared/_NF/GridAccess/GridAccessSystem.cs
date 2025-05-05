@@ -81,27 +81,15 @@ namespace Content.Shared._NF.GridAccess
             {
                 return true;
             }
-            // var mapGrid = Comp<MapGridComponent>(gridId.Value);
-            // var gridUid = mapGrid.Owner; // why was this a thing
 
-            // Frontier - Remove all grid-access device use on outpost. Ignore if ProtectionOverride is true.
-            if (!comp.ProtectionOverride && TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventRCDUse)
-            {
-                // _popup.PopupClient(Loc.GetString("rcd-component-use-blocked"), used, user);
-                popupMessage = "use-blocked";
-                return false;
-            }
-
-            // Frontier - LinkedShuttleUid requirements to use Shipyard Remote.
+            // Frontier - LinkedShuttleUid requirements to use Shipyard devices.
             if (comp.LinkedShuttleUid == null)
             {
-                // _popup.PopupClient(Loc.GetString("rcd-component-no-id-swiped"), used, user);
                 popupMessage = "no-id-swiped";
                 return false;
             }
             if (comp.LinkedShuttleUid != gridUid)
             {
-                // _popup.PopupClient(Loc.GetString("rcd-component-can-only-build-authorized-ship"), used, user);
                 popupMessage = "unauthorized-ship";
                 return false;
             }

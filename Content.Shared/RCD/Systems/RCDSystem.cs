@@ -134,6 +134,7 @@ public class RCDSystem : EntitySystem
             return;
 
         var user = args.User;
+        var used = args.Used;
         var location = args.ClickLocation;
 
         // Initial validity checks
@@ -146,17 +147,24 @@ public class RCDSystem : EntitySystem
             return;
         }
 
-        if (!IsRCDOperationStillValid(uid, component, mapGridData.Value, args.Target, args.User))
+        if (!IsRCDOperationStillValid(uid, component, mapGridData.Value, args.Target, user))
             return;
+
+        // Frontier - Remove all RCD use on outpost.
+        if (TryComp<ProtectedGridComponent>(mapGridData.Value.GridUid, out var prot) && prot.PreventRCDUse)
+        {
+            _popup.PopupClient(Loc.GetString("rcd-component-use-blocked"), used, user);
+            return;
+        }
 
         // Frontier - Grid access restriction
         if (TryComp<GridAccessComponent>(args.Used, out var gridAccessComponent))
         {
-            if (!_gridAccessSystem.IsAuthorized(mapGridData.Value.GridUid, gridAccessComponent, args.Used, args.User, out var popupMessage))
+            if (!_gridAccessSystem.IsAuthorized(mapGridData.Value.GridUid, gridAccessComponent, used, user, out var popupMessage))
             {
                 if (popupMessage != null)
                 {
-                    _popup.PopupClient(Loc.GetString("rcd-component-" + popupMessage), args.Used, args.User);
+                    _popup.PopupClient(Loc.GetString("rcd-component-" + popupMessage), used, user);
                 }
                 return;
             }
