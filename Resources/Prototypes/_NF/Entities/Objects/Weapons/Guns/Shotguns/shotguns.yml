@@ -3,8 +3,8 @@
   id: NFWeaponShotgunBulldog
   parent:
   - BaseC3SyndicateContraband
-  - NFBaseWeaponFrameShotgunWieldable
   - NFBaseWeaponShotgunChamber50Magazine
+  - NFBaseWeaponFrameShotgunWieldable
   name: Bulldog
   description: |-
     An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids.
@@ -77,7 +77,7 @@
 
 - type: entity
   id: NFWeaponShotgunSawn
-  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgun ]
   name: sawn-off shotgun
   description: |-
     Groovy!
@@ -88,7 +88,6 @@
     sprite: _DV/Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: Item
     size: Normal
-    sprite: _DV/Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: BallisticAmmoProvider
     capacity: 2
   - type: NFWeaponDetails
@@ -106,7 +105,7 @@
 
 - type: entity
   id: NFWeaponShotgunHandmade
-  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgun ]
   name: handmade pistol
   description: |-
     Looks unreliable, but legal.
@@ -144,9 +143,9 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: BallisticAmmoProvider
     capacity: 1
   - type: NFWeaponDetails
