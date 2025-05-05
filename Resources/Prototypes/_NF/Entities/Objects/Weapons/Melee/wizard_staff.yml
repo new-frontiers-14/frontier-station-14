@@ -25,15 +25,15 @@
     - WizardStaff
 
 - type: entity
-  name: nf base staff
+  name: wizard staff nf
   parent: WizardStaffMeleeBase
   id: WizardStaffMeleeBaseNF
   components:
   - type: Item
-    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
     heldPrefix: staff
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
     state: nothing
   - type: MeleeWeapon
     attackRate: 1.1
@@ -91,9 +91,7 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 16
-    angle: 0
-    animation: WeaponArcThrust
+        Blunt: 20
 
 # Blood Cult
 - type: entity
