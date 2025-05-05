@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Doors.Systems;
 using Content.Server.Power.EntitySystems;
+using Content.Shared._NF.GridAccess; // Frontier
 using Content.Shared.Access.Components;
 using Content.Shared.Database;
 using Content.Shared.Doors.Components;
@@ -17,6 +18,7 @@ namespace Content.Shared.Remotes
         [Dependency] private readonly AirlockSystem _airlock = default!;
         [Dependency] private readonly DoorSystem _doorSystem = default!;
         [Dependency] private readonly ExamineSystemShared _examine = default!;
+        [Dependency] private readonly GridAccessSystem _gridAccessSystem = default!; // Frontier
 
         public override void Initialize()
         {
@@ -31,7 +33,8 @@ namespace Content.Shared.Remotes
 
             if (args.Handled
                 || args.Target == null
-                || !TryComp<DoorComponent>(args.Target, out var doorComp) // If it isn't a door we don't use it
+                || !TryComp<DoorComponent>(args.Target, out var doorComp)
+                // If it isn't a door we don't use it
                 // Only able to control doors if they are within your vision and within your max range.
                 // Not affected by mobs or machines anymore.
                 || !_examine.InRangeUnOccluded(args.User,
@@ -49,6 +52,21 @@ namespace Content.Shared.Remotes
             {
                 Popup.PopupEntity(Loc.GetString("door-remote-no-power"), args.User, args.User);
                 return;
+            }
+
+            // Frontier - Grid access restriction
+            if (TryComp<GridAccessComponent>(entity.Owner, out var gridAccessComponent))
+            {
+                string? popupMessage = null;
+                if (!_gridAccessSystem.TryGetGridUid(args.ClickLocation, out var mapGridUid)
+                || !_gridAccessSystem.IsAuthorized(mapGridUid, gridAccessComponent, args.Used, args.User, out popupMessage))
+                {
+                    if (popupMessage != null)
+                    {
+                        Popup.PopupEntity(Loc.GetString("door-remote-" + popupMessage), args.Used, args.User);
+                    }
+                    return;
+                }
             }
 
             if (TryComp<AccessReaderComponent>(args.Target, out var accessComponent)

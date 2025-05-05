@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 251.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 05/05/2025 17:51:02
+  entityCount: 1620
+maps:
+- 962
+grids:
+- 179
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   89: FloorSteel
@@ -382,7 +393,6 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
-    - type: LoadedMap
 - proto: AdvancedCapacitorStockPart
   entities:
   - uid: 266
@@ -1037,13 +1047,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5470388,-3.54282
-      parent: 179
-- proto: BoxSurvivalNFOxygenExtended
-  entities:
-  - uid: 419
-    components:
-    - type: Transform
-      pos: -10.598265,6.692403
       parent: 179
 - proto: Brutepack
   entities:
@@ -4415,6 +4418,13 @@ entities:
     - type: Transform
       pos: -0.8674887,-3.1671295
       parent: 179
+- proto: DoorRemoteShipyard
+  entities:
+  - uid: 1620
+    components:
+    - type: Transform
+      pos: -2.703125,4.427419
+      parent: 179
 - proto: DrinkBeerglass
   entities:
   - uid: 688
@@ -4985,18 +4995,16 @@ entities:
     - TimedDespawn
 - proto: hydroponicsTray
   entities:
-  - uid: 756
-    components:
-    - type: Transform
-      pos: 2.5,14.5
-      parent: 179
-- proto: hydroponicsTrayAnchored
-  entities:
   - uid: 423
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,15.5
+      parent: 179
+  - uid: 756
+    components:
+    - type: Transform
+      pos: 2.5,14.5
       parent: 179
 - proto: HypoBrigmedic
   entities:
@@ -5394,13 +5402,6 @@ entities:
         - 0
         - 0
         - 0
-- proto: M_Emp
-  entities:
-  - uid: 1399
-    components:
-    - type: Transform
-      pos: -8.5,-0.5
-      parent: 179
 - proto: Machete
   entities:
   - uid: 1556
@@ -5658,6 +5659,13 @@ entities:
     - type: Transform
       pos: -4.752078,10.904018
       parent: 179
+- proto: MobileEmpGenerator
+  entities:
+  - uid: 1399
+    components:
+    - type: Transform
+      pos: -8.5,-0.5
+      parent: 179
 - proto: ModularGrenade
   entities:
   - uid: 435
@@ -5711,6 +5719,13 @@ entities:
     components:
     - type: Transform
       pos: -6.3051395,8.791253
+      parent: 179
+- proto: NFBoxSurvivalExtended
+  entities:
+  - uid: 419
+    components:
+    - type: Transform
+      pos: -10.598265,6.692403
       parent: 179
 - proto: NFEnergyPickaxe
   entities:
@@ -7156,6 +7171,27 @@ entities:
     - type: Transform
       pos: -3.5,2.5
       parent: 179
+- proto: SpawnPointNFPirate
+  entities:
+  - uid: 1466
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointNFPirateCaptain
+  entities:
+  - uid: 1465
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointNFPirateFirstMate
+  entities:
+  - uid: 1464
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
 - proto: SpawnPointObserver
   entities:
   - uid: 679
@@ -7166,27 +7202,6 @@ entities:
 - proto: SpawnPointPilot
   entities:
   - uid: 1463
-    components:
-    - type: Transform
-      pos: -3.5,2.5
-      parent: 179
-- proto: SpawnPointPirate
-  entities:
-  - uid: 1466
-    components:
-    - type: Transform
-      pos: -3.5,2.5
-      parent: 179
-- proto: SpawnPointPirateCaptain
-  entities:
-  - uid: 1465
-    components:
-    - type: Transform
-      pos: -3.5,2.5
-      parent: 179
-- proto: SpawnPointPirateFirstMate
-  entities:
-  - uid: 1464
     components:
     - type: Transform
       pos: -3.5,2.5
@@ -10105,13 +10120,6 @@ entities:
     - type: Transform
       pos: -3.5226438,-0.45543313
       parent: 179
-- proto: WeaponNFLaserPistol
-  entities:
-  - uid: 1202
-    components:
-    - type: Transform
-      pos: -3.433327,-1.5
-      parent: 179
 - proto: WeaponLaserTurboNF
   entities:
   - uid: 1494
@@ -10139,6 +10147,13 @@ entities:
     components:
     - type: Transform
       pos: -2.2345388,-3.19907
+      parent: 179
+- proto: WeaponNFLaserPistol
+  entities:
+  - uid: 1202
+    components:
+    - type: Transform
+      pos: -3.433327,-1.5
       parent: 179
 - proto: WeaponPistolCHIMP
   entities:
