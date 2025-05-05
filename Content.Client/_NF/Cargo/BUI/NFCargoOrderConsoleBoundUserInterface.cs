@@ -123,7 +123,6 @@ public sealed class NFCargoOrderConsoleBoundUserInterface : BoundUserInterface
         AccountName = cState.Name;
 
         Populate(cState.Orders);
-        _menu?.UpdateCargoCapacity(OrderCount, OrderCapacity);
         _menu?.UpdateBankData(AccountName, BankBalance);
     }
 
