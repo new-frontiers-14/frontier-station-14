@@ -36,9 +36,9 @@
     This is an antique laser pistol with two settings: disable and kill. All craftsmanship is of the highest quality. It is decorated with a mahogany grip and chrome filigree. The object menaces with spikes of energy. On the item is an image of a captain and a clown. The clown is dead. The captain is striking a heroic pose.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
+    sprite: _NF/Objects/Weapons/Guns/Battery/antiquelasergun.rsi
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
+    sprite: _NF/Objects/Weapons/Guns/Battery/antiquelasergun.rsi
   - type: Battery # 26 shots
     maxCharge: 1560
     startingCharge: 1560
@@ -49,6 +49,12 @@
     tags:
     - Sidearm
     - WeaponAntiqueLaser
+  - type: Item
+    inhandVisuals: # FIXME: preventing overwrites from the energy gun system
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
 
 - type: entity
   categories: [ DoNotMap ]
@@ -62,6 +68,9 @@
     sprite: _DV/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
   - type: Clothing
     sprite: _DV/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
+  - type: Item
+    heldPrefix: lethal
+    inhandVisuals: {} # FIXME: overwriting antique laser
 
 - type: entity
   id: NFWeaponEnergyPistolLaserAdvanced
@@ -71,9 +80,17 @@
     An experimental civilian grade high-energy laser pistol with a self-charging nuclear battery and two settings: disable and kill.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+    sprite: _NF/Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+    layers: # firemode left shaded vs. parent
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mode-lethal
+      map: [ "Firemode" ]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+    sprite: _NF/Objects/Weapons/Guns/Battery/advancedlasergun.rsi
   - type: Battery # 26 shots
     maxCharge: 1560
     startingCharge: 1560
@@ -86,16 +103,10 @@
   description: |-
     An older model of civilian-grade laser pistol with two settings: disable and kill.
   components:
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi
   - type: Item
     size: Small
     inhandVisuals:

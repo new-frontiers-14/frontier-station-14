@@ -26,6 +26,7 @@ gun-examine-hitscan-high = 1400J energy beam
 gun-examine-hitscan-high-p = 1900J energy beam
 gun-examine-hitscan-xray = 1900J X-ray beam
 gun-examine-energybolt-low = 750J energy bolt
+gun-examine-energybolt-low-disabler-pistol = 750J energy/disabler bolt
 gun-examine-energybolt-high = 1400J energy bolt
 gun-examine-energybolt-disabler-pistol = 750J disabler bolt
 gun-examine-energybolt-disabler-practice = 25J disabler bolt
