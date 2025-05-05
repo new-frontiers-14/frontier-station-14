@@ -14,17 +14,22 @@ public sealed class WeaponDetailsSystem : EntitySystem
     private void OnGunExamined(Entity<NFWeaponDetailsComponent> ent, ref GunExamineEvent args)
     {
         args.Msg.PushNewline();
-        args.Msg.PushNewline();
 
         if (ent.Comp.Manufacturer != null)
+        {
+            args.Msg.PushNewline();
             args.Msg.AddMarkupPermissive(Loc.GetString("gun-examine-nf-manufacturer",
                 ("color", SharedGunSystem.FireRateExamineColor),
                 ("manufacturercolor", ent.Comp.ManufacturerColor),
                 ("value", Loc.GetString(ent.Comp.Manufacturer))));
+        }
 
         if (ent.Comp.Class != null)
+        {
+            args.Msg.PushNewline();
             args.Msg.AddMarkupPermissive(Loc.GetString("gun-examine-nf-class",
                 ("color", SharedGunSystem.FireRateExamineColor),
                 ("value", Loc.GetString(ent.Comp.Class))));
+        }
     }
 }
