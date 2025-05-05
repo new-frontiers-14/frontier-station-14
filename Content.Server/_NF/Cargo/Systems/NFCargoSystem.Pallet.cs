@@ -9,7 +9,9 @@ using Robust.Shared.Audio;
 using Content.Shared.Whitelist; // Frontier
 using Content.Server._NF.Cargo.Components; // Frontier
 using Content.Shared._NF.Bank.Components; // Frontier
-using Content.Shared.Mobs; // Frontier
+using Content.Shared.Mobs;
+using Content.Shared._NF.Cargo;
+using Content.Shared._NF.Cargo.BUI; // Frontier
 
 namespace Content.Server._NF.Cargo.Systems;
 
@@ -255,14 +257,14 @@ public sealed partial class NFCargoSystem
         return true;
     }
 
-    private void OnPalletSale(Entity<NFCargoPalletConsoleComponent> ent, CargoPalletSellMessage args)
+    private void OnPalletSale(Entity<NFCargoPalletConsoleComponent> ent, ref CargoPalletSellMessage args)
     {
         if (!TryComp(ent, out TransformComponent? xform))
             return;
 
         if (xform.GridUid is not EntityUid gridUid)
         {
-            _ui.SetUiState(ent, NFCargoPalletConsoleUiKey.Sale,
+            _ui.SetUiState(ent.Owner, NFCargoPalletConsoleUiKey.Sale,
             new NFCargoPalletConsoleInterfaceState(0, 0, false));
             return;
         }

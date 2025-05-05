@@ -110,7 +110,7 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             // Frontier: set projectiles to map parent
             if (ent != null)
-                _transform.SetParent(ent.Value, fromEnt.EntityId);
+                TransformSystem.SetParent(ent.Value, fromEnt.EntityId);
             // End Frontier: set projectiles to map parent
 
             // pneumatic cannon doesn't shoot bullets it just throws them, ignore ammo handling

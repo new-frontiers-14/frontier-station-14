@@ -13,7 +13,7 @@ namespace Content.Server._NF.Cargo.Systems;
 public sealed partial class NFCargoSystem
 {
     [Dependency] private GameTicker _gameTicker = default!;
-    [Dependency] private SharedHandLabelerSystem _label = default!;
+    [Dependency] private LabelSystem _label = default!;
     private readonly List<EntityUid> _destinations = new();
 
     private void InitializeTradeCrates()
@@ -61,7 +61,7 @@ public sealed partial class NFCargoSystem
             if (TryComp<TradeCrateDestinationComponent>(destination, out var destComp))
                 _appearance.SetData(ent, TradeCrateVisuals.DestinationIcon, destComp.DestinationProto.Id);
             if (TryComp(destination, out MetaDataComponent? metadata))
-                _label.AddLabelTo(ent, metadata.EntityName);
+                _label.Label(ent, metadata.EntityName);
         }
 
         if (ent.Comp.ExpressDeliveryDuration > TimeSpan.Zero)

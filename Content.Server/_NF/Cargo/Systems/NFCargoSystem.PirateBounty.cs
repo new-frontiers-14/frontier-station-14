@@ -17,11 +17,15 @@ using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Stacks;
+using Content.Shared.Labels.EntitySystems;
+using Content.Server.NameIdentifier;
 
 namespace Content.Server._NF.Cargo.Systems;
 
 public sealed partial class NFCargoSystem
 {
+    [Dependency] private readonly NameIdentifierSystem _nameIdentifier = default!;
+
     [ValidatePrototypeId<NameIdentifierGroupPrototype>]
     private const string PirateBountyNameIdentifierGroup = "Bounty"; // Use the bounty name ID group (0-999) for now.
 
@@ -168,7 +172,7 @@ public sealed partial class NFCargoSystem
             msg.PushNewline();
         }
         msg.TryAddMarkup(Loc.GetString("pirate-bounty-console-manifest-reward", ("reward", BankSystemExtensions.ToDoubloonString(prototype.Reward))), out var _);
-        _paperSystem.SetContent((uid, paper), msg.ToMarkup());
+        _paper.SetContent((uid, paper), msg.ToMarkup());
     }
 
     private bool TryGetPirateBountyLabel(EntityUid uid,
@@ -222,7 +226,7 @@ public sealed partial class NFCargoSystem
             return false;
 
         // todo: consider making the pirate bounties weighted.
-        var allBounties = _protoMan.EnumeratePrototypes<PirateBountyPrototype>().ToList();
+        var allBounties = _proto.EnumeratePrototypes<PirateBountyPrototype>().ToList();
         var filteredBounties = new List<PirateBountyPrototype>();
         foreach (var proto in allBounties)
         {
@@ -239,10 +243,8 @@ public sealed partial class NFCargoSystem
     [PublicAPI]
     public bool TryAddPirateBounty(EntityUid serviceId, string bountyId, SectorPirateBountyDatabaseComponent? component = null)
     {
-        if (!_protoMan.TryIndex<PirateBountyPrototype>(bountyId, out var bounty))
-        {
+        if (!_proto.TryIndex<PirateBountyPrototype>(bountyId, out var bounty))
             return false;
-        }
 
         return TryAddPirateBounty(serviceId, bounty, component);
     }
@@ -339,7 +341,7 @@ public sealed partial class NFCargoSystem
         while (query.MoveNext(out var uid, out _, out var ui))
         {
             var untilNextSkip = db.NextSkipTime - _timing.CurTime;
-            _uiSystem.SetUiState((uid, ui), PirateConsoleUiKey.Bounty, new PirateBountyConsoleState(db.Bounties, untilNextSkip));
+            _ui.SetUiState((uid, ui), PirateConsoleUiKey.Bounty, new PirateBountyConsoleState(db.Bounties, untilNextSkip));
         }
     }
 
@@ -384,7 +386,7 @@ public sealed partial class NFCargoSystem
         {
             if (bounty.Accepted)
             {
-                if (!_protoMan.TryIndex(bounty.Bounty, out var bountyPrototype))
+                if (!_proto.TryIndex(bounty.Bounty, out var bountyPrototype))
                     continue;
                 if (bountyPrototype.SpawnChest)
                 {

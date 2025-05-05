@@ -73,7 +73,6 @@ public sealed class GasPressurePumpSystem : SharedGasPressurePumpSystem
             LogImpact.Medium,
             $"{ToPrettyString(actor):player} set the direction on {ToPrettyString(ent):device} to {(inwards ? "in" : "out")}");
         Dirty(ent);
-        UpdateAppearance(ent, ent.Comp);
     }
 
     public void SetPumpPressure(Entity<GasPressurePumpComponent> ent, float pressure, EntityUid actor)
@@ -92,7 +91,6 @@ public sealed class GasPressurePumpSystem : SharedGasPressurePumpSystem
             LogImpact.Medium,
             $"{ToPrettyString(actor):player} set the power on {ToPrettyString(ent):device} to {enabled}");
         Dirty(ent);
-        UpdateAppearance(ent, ent.Comp);
     }
     // End Frontier: server-side pump accessors
 }

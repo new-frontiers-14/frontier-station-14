@@ -14,6 +14,7 @@ using Content.Shared.Coordinates;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
+using Content.Server._NF.Cargo.Systems;
 
 namespace Content.Server._NF.Contraband.Systems;
 

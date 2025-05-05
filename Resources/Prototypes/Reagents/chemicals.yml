@@ -76,8 +76,8 @@
     Acidic:
       methods: [ Touch ]
       effects:
-      - !type:NFActivateArtifact # Frontier: ActivateArtifact<NFActivateArtifact
-      # - !type:ArtifactUnlock # FRONTIER MERGE, what to do with xenoarch
+      # - !type:NFActivateArtifact # Frontier: ActivateArtifact<NFActivateArtifact
+      - !type:ArtifactUnlock # FRONTIER MERGE, what to do with xenoarch
         conditions:
         - !type:ReagentThreshold
           min: 5

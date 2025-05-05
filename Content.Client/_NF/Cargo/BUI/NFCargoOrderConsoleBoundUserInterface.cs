@@ -1,6 +1,4 @@
-using Content.Shared.Cargo;
 using Content.Client.Cargo.UI;
-using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.IdentityManagement;
@@ -10,13 +8,15 @@ using Robust.Shared.Utility;
 using Robust.Shared.Prototypes;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using Content.Shared._NF.Cargo.BUI;
+using Content.Shared._NF.Cargo;
+using Content.Client._NF.Cargo.UI;
 
 namespace Content.Client._NF.Cargo.BUI;
 
 public sealed class NFCargoOrderConsoleBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
-    private CargoConsoleMenu? _menu;
+    private NFCargoConsoleMenu? _menu;
 
     /// <summary>
     /// This is the separate popup window for individual orders.
@@ -52,7 +52,7 @@ public sealed class NFCargoOrderConsoleBoundUserInterface : BoundUserInterface
 
         var spriteSystem = EntMan.System<SpriteSystem>();
         var dependencies = IoCManager.Instance!;
-        _menu = new CargoConsoleMenu(Owner, EntMan, dependencies.Resolve<IPrototypeManager>(), spriteSystem);
+        _menu = new NFCargoConsoleMenu(Owner, EntMan, dependencies.Resolve<IPrototypeManager>(), spriteSystem);
         var localPlayer = dependencies.Resolve<IPlayerManager>().LocalEntity;
         var description = new FormattedMessage();
 
@@ -100,7 +100,7 @@ public sealed class NFCargoOrderConsoleBoundUserInterface : BoundUserInterface
         _menu.OpenCentered();
     }
 
-    private void Populate(List<CargoOrderData> orders)
+    private void Populate(List<NFCargoOrderData> orders)
     {
         if (_menu == null) return;
 

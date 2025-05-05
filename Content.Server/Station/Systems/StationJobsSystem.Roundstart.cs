@@ -304,7 +304,7 @@ public sealed partial class StationJobsSystem
             _random.Shuffle(givenStations);
 
             // Frontier: get player session
-            _playerManager.TryGetSessionById(player, out var nfSession);
+            _player.TryGetSessionById(player, out var nfSession);
             // End Frontier
 
             foreach (var station in givenStations)

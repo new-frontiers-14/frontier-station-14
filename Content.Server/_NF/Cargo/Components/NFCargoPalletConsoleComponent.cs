@@ -1,5 +1,7 @@
 using Content.Server._NF.Cargo.Systems;
+using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Cargo.Components;
 
@@ -7,6 +9,11 @@ namespace Content.Server._NF.Cargo.Components;
 [Access(typeof(NFCargoSystem))]
 public sealed partial class NFCargoPalletConsoleComponent : Component
 {
+    // The distance in a radius around the console to check for cargo pallets
+    // Can be modified individually when mapping, so that consoles have a further reach
+    [DataField]
+    public ProtoId<StackPrototype> CashType = "Credit";
+
     // The distance in a radius around the console to check for cargo pallets
     // Can be modified individually when mapping, so that consoles have a further reach
     [DataField]

@@ -1,4 +1,5 @@
 using Content.Client.Cargo.UI;
+using Content.Shared._NF.Cargo.BUI;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Events;
 using Robust.Client.UserInterface;

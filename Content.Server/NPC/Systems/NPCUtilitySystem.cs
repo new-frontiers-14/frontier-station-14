@@ -380,13 +380,9 @@ public sealed class NPCUtilitySystem : EntitySystem
                 }
             // Frontier: stun conditions
             case TargetIsNotStunnedCon:
-            {
-                return _statusEffectsSystem.HasStatusEffect(targetUid, "Stun") ? 0f : 1f;
-            }
-            case TargetIsStunnedCon:
-            {
-                return _statusEffectsSystem.HasStatusEffect(targetUid, "Stun") ? 1f : 0f;
-            }
+                {
+                    return HasComp<StunnedComponent>(targetUid) ? 0f : 1f;
+                }
             // End Frontier
             default:
                 throw new NotImplementedException();

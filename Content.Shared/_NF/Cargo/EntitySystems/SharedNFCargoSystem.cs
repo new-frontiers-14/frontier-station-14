@@ -17,8 +17,7 @@ public abstract class SharedNFCargoSystem : EntitySystem
 public enum NFCargoConsoleUiKey : byte
 {
     Orders,
-    Bounty,
-    Shuttle,
+    Bounty, // FRONTIER MERGE: unused?
     Telepad
 }
 

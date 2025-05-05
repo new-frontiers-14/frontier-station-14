@@ -1,18 +1,22 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._NF.Cargo.BUI;
+namespace Content.Shared.Cargo.BUI;
 
 [NetSerializable, Serializable]
-public sealed class NFCargoConsoleInterfaceState(
-    string name,
-    int count,
-    int capacity,
-    int balance,
-    List<NFCargoOrderData> orders) : BoundUserInterfaceState
+public sealed class CargoConsoleInterfaceState : BoundUserInterfaceState
 {
-    public string Name = name;
-    public int Count = count;
-    public int Capacity = capacity;
-    public int Balance = balance;
-    public List<NFCargoOrderData> Orders = orders;
+    public string Name;
+    public int Count;
+    public int Capacity;
+    public NetEntity Station;
+    public List<CargoOrderData> Orders;
+
+    public CargoConsoleInterfaceState(string name, int count, int capacity, NetEntity station, List<CargoOrderData> orders)
+    {
+        Name = name;
+        Count = count;
+        Capacity = capacity;
+        Station = station;
+        Orders = orders;
+    }
 }

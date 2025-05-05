@@ -3,27 +3,23 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._NF.Cargo.BUI;
 
 [NetSerializable, Serializable]
-public sealed class NFCargoPalletConsoleInterfaceState : BoundUserInterfaceState
+public sealed class NFCargoPalletConsoleInterfaceState(
+    int appraisal,
+    int count,
+    bool enabled) : BoundUserInterfaceState
 {
     /// <summary>
-    /// estimated apraised value of all the entities on top of pallets on the same grid as the console
+    /// The estimated apraised value of all the entities on top of pallets on the same grid as the console.
     /// </summary>
-    public int Appraisal;
+    public int Appraisal = appraisal;
 
     /// <summary>
-    /// number of entities on top of pallets on the same grid as the console
+    /// The number of entities on top of pallets on the same grid as the console.
     /// </summary>
-    public int Count;
+    public int Count = count;
 
     /// <summary>
-    /// are the buttons enabled
+    /// True if the buttons should be enabled.
     /// </summary>
-    public bool Enabled;
-
-    public NFCargoPalletConsoleInterfaceState(int appraisal, int count, bool enabled)
-    {
-        Appraisal = appraisal;
-        Count = count;
-        Enabled = enabled;
-    }
+    public bool Enabled = enabled;
 }
