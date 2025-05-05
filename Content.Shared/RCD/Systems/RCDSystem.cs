@@ -12,7 +12,7 @@ using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
-using Content.Shared._NF.Shipyard.Components; // Frontier
+using Content.Shared._NF.GridAccess; // Frontier
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Shared.Audio.Systems;
@@ -49,6 +49,7 @@ public class RCDSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private readonly GridAccessSystem _gridAccessSystem = default!; // Frontier
 
     private readonly int _instantConstructionDelay = 0;
     private readonly EntProtoId _instantConstructionFx = "EffectRCDConstruct0";
@@ -68,7 +69,6 @@ public class RCDSystem : EntitySystem
         SubscribeLocalEvent<RCDComponent, DoAfterAttemptEvent<RCDDoAfterEvent>>(OnDoAfterAttempt);
         SubscribeLocalEvent<RCDComponent, RCDSystemMessage>(OnRCDSystemMessage);
         SubscribeNetworkEvent<RCDConstructionGhostRotationEvent>(OnRCDconstructionGhostRotationEvent);
-        SubscribeLocalEvent<IdCardComponent, AfterInteractEvent>(OnIdCardSwipeHappened); // Frontier
     }
 
     #region Event handling
@@ -128,54 +128,6 @@ public class RCDSystem : EntitySystem
         args.PushMarkup(msg);
     }
 
-    /**
-     * Frontier - ability to swipe rcd for authorizations to build on specific grids
-     */
-    private void OnIdCardSwipeHappened(EntityUid uid, IdCardComponent comp, ref AfterInteractEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (args.Target is not { Valid: true } target || !args.CanReach)
-            return;
-
-        var rcdEntityUid = target;
-
-        // Is this id card interacting with a shipyard RCD? If not, ignore it.
-        if (!TryComp<RCDComponent>(rcdEntityUid, out var rcdComponent) || !rcdComponent.IsShipyardRCD)
-            return;
-
-        // RCD found, we're handling this event.
-        args.Handled = true;
-
-        // If the id card has no registered ship we cant continue.
-        if (!TryComp<ShuttleDeedComponent>(comp.Owner, out var shuttleDeedComponent))
-        {
-            _popup.PopupClient(Loc.GetString("rcd-component-missing-id-deed"),
-                uid, args.User, PopupType.Medium);
-            _audio.PlayPredicted(comp.ErrorSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
-            return;
-        }
-
-        // Swiping it again removes the authorization on it.
-        if (rcdComponent.LinkedShuttleUid != null)
-        {
-            _popup.PopupClient(Loc.GetString("rcd-component-id-card-removed"),
-                uid, args.User, PopupType.Medium);
-            _audio.PlayPredicted(comp.SwipeSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
-            rcdComponent.LinkedShuttleUid = null;
-        }
-        else
-        {
-            _popup.PopupClient(Loc.GetString("rcd-component-id-card-accepted"),
-                uid, args.User, PopupType.Medium);
-            _audio.PlayPredicted(comp.InsertSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
-            rcdComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
-        }
-
-        Dirty(rcdComponent.Owner, rcdComponent);
-    }
-
     private void OnAfterInteract(EntityUid uid, RCDComponent component, AfterInteractEvent args)
     {
         if (args.Handled || !args.CanReach)
@@ -197,8 +149,18 @@ public class RCDSystem : EntitySystem
         if (!IsRCDOperationStillValid(uid, component, mapGridData.Value, args.Target, args.User))
             return;
 
-        if (!IsAuthorized(mapGridData.Value.GridUid, uid, component, args))
-            return;
+        // Frontier - Grid access restriction
+        if (TryComp<GridAccessComponent>(args.Used, out var gridAccessComponent))
+        {
+            if (!_gridAccessSystem.IsAuthorized(mapGridData.Value.GridUid, gridAccessComponent, args.Used, args.User, out var popupMessage))
+            {
+                if (popupMessage != null)
+                {
+                    _popup.PopupClient(Loc.GetString("rcd-component-" + popupMessage), args.Used, args.User);
+                }
+                return;
+            }
+        }
 
         if (!_net.IsServer)
             return;
@@ -276,43 +238,6 @@ public class RCDSystem : EntitySystem
 
         if (!_doAfter.TryStartDoAfter(doAfterArgs))
             QueueDel(effect);
-    }
-
-    /**
-     * Frontier - Stops RCD functions if there is a protected grid component on it, and adds shipyard rcd limitations.
-     */
-    private bool IsAuthorized(EntityUid? gridId, EntityUid uid, RCDComponent comp, AfterInteractEvent args)
-    {
-        if (gridId == null)
-        {
-            return true;
-        }
-        var mapGrid = Comp<MapGridComponent>(gridId.Value);
-        var gridUid = mapGrid.Owner;
-
-        // Frontier - Remove all RCD use on outpost.
-        if (TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventRCDUse)
-        {
-            _popup.PopupClient(Loc.GetString("rcd-component-use-blocked"), uid, args.User);
-            return false;
-        }
-
-        // Frontier - LinkedShuttleUid requirements to use Shipyard RCD.
-        if (comp.IsShipyardRCD)
-        {
-            if (comp.LinkedShuttleUid == null)
-            {
-                _popup.PopupClient(Loc.GetString("rcd-component-no-id-swiped"), uid, args.User);
-                return false;
-            }
-            if (comp.LinkedShuttleUid != gridUid)
-            {
-                _popup.PopupClient(Loc.GetString("rcd-component-can-only-build-authorized-ship"), uid, args.User);
-                return false;
-            }
-        }
-
-        return true;
     }
 
     private void OnDoAfterAttempt(EntityUid uid, RCDComponent component, DoAfterAttemptEvent<RCDDoAfterEvent> args)

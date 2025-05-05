@@ -69,18 +69,11 @@ public sealed partial class RCDComponent : Component
     /// </remarks>
     [ViewVariables(VVAccess.ReadOnly)]
     public Transform ConstructionTransform { get; private set; } = default!;
-    
+
     /// <summary>
     /// Frontier - Shipyard RCD
     /// A flag that limits RCD to the authorized ships.
     /// </summary>
     [DataField("isShipyardRCD"), AutoNetworkedField]
     public bool IsShipyardRCD;
-    
-    /// <summary>
-    /// Frontier - Shipyard RCD
-    /// The uid to which this RCD is limited to be used on.
-    /// </summary>
-    [DataField("linkedShuttleUid"), AutoNetworkedField]
-    public EntityUid? LinkedShuttleUid = null;
 }
