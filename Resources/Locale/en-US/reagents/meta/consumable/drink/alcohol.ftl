@@ -143,7 +143,8 @@ reagent-name-driest-martini = driest martini
 reagent-desc-driest-martini = Only for the experienced. You think you see sand floating in the glass.
 
 reagent-name-eggnog = eggnog
-reagent-desc-eggnog = Not enough egg.
+# Frontier: longer description
+reagent-desc-eggnog = Creamy, sweet, and slightly boozy. Fully nogged.
 
 reagent-name-electric-shark = electric shark
 reagent-desc-electric-shark = Fun Shark fact: Selachians make up 20% of Space Station 16’s Engineering staff!
