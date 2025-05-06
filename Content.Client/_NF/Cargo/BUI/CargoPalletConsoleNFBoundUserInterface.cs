@@ -1,17 +1,16 @@
 using Content.Client.Cargo.UI;
 using Content.Shared._NF.Cargo.BUI;
-using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Events;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.Cargo.BUI;
 
-public sealed class NFCargoPalletConsoleBoundUserInterface : BoundUserInterface
+public sealed class CargoPalletConsoleNFBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
     private CargoPalletMenu? _menu;
 
-    public NFCargoPalletConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    public CargoPalletConsoleNFBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
 

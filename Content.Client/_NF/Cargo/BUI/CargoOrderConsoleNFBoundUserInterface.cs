@@ -13,7 +13,8 @@ using Content.Client._NF.Cargo.UI;
 
 namespace Content.Client._NF.Cargo.BUI;
 
-public sealed class NFCargoOrderConsoleBoundUserInterface : BoundUserInterface
+// Suffixed to avoid 
+public sealed class CargoOrderConsoleNFBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
     private NFCargoConsoleMenu? _menu;
@@ -42,7 +43,7 @@ public sealed class NFCargoOrderConsoleBoundUserInterface : BoundUserInterface
     [ViewVariables]
     private CargoProductPrototype? _product;
 
-    public NFCargoOrderConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    public CargoOrderConsoleNFBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
 

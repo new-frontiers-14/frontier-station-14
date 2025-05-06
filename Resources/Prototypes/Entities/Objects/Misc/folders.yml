@@ -290,18 +290,18 @@
         whitelist:
           tags:
           - Write
-  - type: NFCargoOrderConsole
-    removeLimitAccess: [ "Quartermaster" ]
+  - type: NFCargoOrderConsole # Frontier: use NF variant
+    # removeLimitAccess: [ "Quartermaster" ] # Frontier
     taxAccounts: # Frontier
       Frontier: 0.25 # Frontier
       Nfsd: 0.15 # Frontier
   - type: ActivatableUI
     verbText: qm-clipboard-computer-verb-text
-    key: enum.NFCargoConsoleUiKey.Orders
+    key: enum.NFCargoConsoleUiKey.Orders # Frontier: NF prefix
   - type: UserInterface
     interfaces:
-      enum.NFCargoConsoleUiKey.Orders:
-        type: CargoOrderConsoleBoundUserInterface
+      enum.NFCargoConsoleUiKey.Orders: # Frontier: NF prefix
+        type: CargoOrderConsoleNFBoundUserInterface # Frontier: NF suffix
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
   - type: MeleeWeapon
