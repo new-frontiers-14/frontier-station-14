@@ -290,17 +290,17 @@
         whitelist:
           tags:
           - Write
-  - type: CargoOrderConsole
+  - type: NFCargoOrderConsole
     removeLimitAccess: [ "Quartermaster" ]
     taxAccounts: # Frontier
       Frontier: 0.25 # Frontier
       Nfsd: 0.15 # Frontier
   - type: ActivatableUI
     verbText: qm-clipboard-computer-verb-text
-    key: enum.CargoConsoleUiKey.Orders
+    key: enum.NFCargoConsoleUiKey.Orders
   - type: UserInterface
     interfaces:
-      enum.CargoConsoleUiKey.Orders:
+      enum.NFCargoConsoleUiKey.Orders:
         type: CargoOrderConsoleBoundUserInterface
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
