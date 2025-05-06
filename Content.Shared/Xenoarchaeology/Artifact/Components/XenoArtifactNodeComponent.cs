@@ -50,13 +50,13 @@ public sealed partial class XenoArtifactNodeComponent : Component
     /// The maximum amount of times a node can be generically activated before becoming useless
     /// </summary>
     [DataField, AutoNetworkedField]
-    public int MaxDurability = 5;
+    public int MaxDurability = 1; // Frontier: 5<1
 
     /// <summary>
     /// The variance from MaxDurability present when a node is created.
     /// </summary>
     [DataField]
-    public MinMax MaxDurabilityCanDecreaseBy = new(0, 2);
+    public MinMax MaxDurabilityCanDecreaseBy = new(0, 0); // Frontier: "0, 2"<"0, 0"
     #endregion
 
     #region Research

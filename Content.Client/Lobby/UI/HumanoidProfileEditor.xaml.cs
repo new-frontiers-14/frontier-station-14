@@ -51,7 +51,6 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
-        private readonly EntityWhitelistSystem _whitelist; // Frontier
 
         private readonly SpriteSystem _sprite;
 
@@ -133,8 +132,6 @@ namespace Content.Client.Lobby.UI
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
-
-            _whitelist = _entManager.System<EntityWhitelistSystem>(); // Frontier
 
             ImportButton.OnPressed += args =>
             {

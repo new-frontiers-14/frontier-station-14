@@ -5,19 +5,24 @@ using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Content.Shared.Xenoarchaeology.Artifact.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._NF.CCVar; // Frontier
+using Robust.Shared.Configuration; // Frontier
 
 namespace Content.Shared.Xenoarchaeology.Artifact;
 
 public abstract partial class SharedXenoArtifactSystem
 {
     [Dependency] private readonly EntityTableSystem _entityTable =  default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
 
     private EntityQuery<XenoArtifactComponent> _xenoArtifactQuery;
     private EntityQuery<XenoArtifactNodeComponent> _nodeQuery;
+    private bool _singleUseNodes; // Frontier
 
     private void InitializeNode()
     {
         SubscribeLocalEvent<XenoArtifactNodeComponent, MapInitEvent>(OnNodeMapInit);
+        Subs.CVar(_cfg, NFCCVars.XenoarchSingleUseNodes, OnSetSingleUseNodes, true); // Frontier
 
         _xenoArtifactQuery = GetEntityQuery<XenoArtifactComponent>();
         _nodeQuery = GetEntityQuery<XenoArtifactNodeComponent>();
@@ -29,8 +34,13 @@ public abstract partial class SharedXenoArtifactSystem
     private void OnNodeMapInit(Entity<XenoArtifactNodeComponent> ent, ref MapInitEvent args)
     {
         XenoArtifactNodeComponent nodeComponent = ent;
-        nodeComponent.MaxDurability -= nodeComponent.MaxDurabilityCanDecreaseBy.Next(RobustRandom);
+        // Frontier: max durability
+        if (_singleUseNodes)
+            nodeComponent.MaxDurability = 1;
+        else
+            nodeComponent.MaxDurability -= nodeComponent.MaxDurabilityCanDecreaseBy.Next(RobustRandom);
         SetNodeDurability((ent, ent), nodeComponent.MaxDurability);
+        // End Frontier
     }
 
     /// <summary> Gets node component by node entity uid. </summary>
@@ -396,4 +406,11 @@ public abstract partial class SharedXenoArtifactSystem
         var predecessorNodes = GetPredecessorNodes((artifact, artifact), node);
         nodeComponent.ResearchValue = (int)(Math.Pow(1.25, Math.Pow(predecessorNodes.Count, 1.5f)) * nodeComponent.BasePointValue * durabilityMultiplier);
     }
+
+    // Frontier: ensure single use nodes
+    private void OnSetSingleUseNodes(bool value)
+    {
+        _singleUseNodes = value;
+    }
+    // End Frontier
 }
