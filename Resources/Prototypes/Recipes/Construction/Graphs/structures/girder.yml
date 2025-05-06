@@ -134,6 +134,24 @@
               amount: 2
               doAfter: 2
 
+        # Frontier: interior shuttle wall
+        - to: shuttleInteriorWall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: MetalRod
+              amount: 2
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        # End Frontier: interior shuttle wall
+
     - node: wall
       entity: WallSolid
       edges:
@@ -454,3 +472,22 @@
           steps:
             - tool: Welding
               doAfter: 5
+
+    # Frontier: interior shuttle walls
+    - node: shuttleInteriorWall
+      entity: WallShuttleInterior
+      edges:
+        - to: girder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 2
+          steps:
+            - tool: Welding
+              doAfter: 10
+            - tool: Screwing
+              doAfter: 1
+    # End Frontier: interior shuttle walls
