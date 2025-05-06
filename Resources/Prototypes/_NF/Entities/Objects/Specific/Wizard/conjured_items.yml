@@ -40,13 +40,9 @@
     damage:
       types:
         Piercing: 14
-    soundHit:
-      path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
   - type: TimedDespawn
     lifetime: 10
   - type: SpaceGarbage
-  - type: TileFrictionModifier
-      modifier: 0.0
 
 
 
@@ -254,3 +250,5 @@
     - state: brick
   - type: Ammo
     muzzleFlash: null
+      soundHit:
+      collection: Brick
