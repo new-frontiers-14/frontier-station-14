@@ -10,3 +10,4 @@ lathe-category-magazines-nf = Magazines
 # Biogen
 lathe-category-nf-animal-cubes = Animal Cubes
 lathe-category-seeds = Seeds
+lathe-category-soda = Soda
