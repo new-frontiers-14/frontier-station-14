@@ -1,27 +1,22 @@
 using Content.Server.Cargo.Components;
-using Content.Shared.Stacks;
+using Content.Server._NF.Cargo.Components;
+using Content.Shared._NF.Bank.Components;
+using Content.Shared._NF.Cargo.BUI;
 using Content.Shared.Cargo;
-using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Events;
 using Content.Shared.GameTicking;
-using Robust.Shared.Map;
-using Robust.Shared.Audio;
-using Content.Shared.Whitelist; // Frontier
-using Content.Server._NF.Cargo.Components; // Frontier
-using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared.Mobs;
-using Content.Shared._NF.Cargo;
-using Content.Shared._NF.Cargo.BUI; // Frontier
+using Robust.Shared.Audio;
+using Robust.Shared.Map;
 
 namespace Content.Server._NF.Cargo.Systems;
 
+/// <summary>
+/// Handles cargo pallet (sale) mechanics.
+/// Based off of CargoSystem
+/// </summary>
 public sealed partial class NFCargoSystem
 {
-    /*
-     * Handles cargo pallet (sale) mechanics.
-     */
-
-    // Frontier addition:
     // The maximum distance from the console to look for pallets.
     private const int DefaultPalletDistance = 8;
 
@@ -42,7 +37,7 @@ public sealed partial class NFCargoSystem
     {
         if (Transform(ent).GridUid is not EntityUid gridUid)
         {
-            _ui.SetUiState(ent.Owner, NFCargoPalletConsoleUiKey.Sale,
+            _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale,
             new NFCargoPalletConsoleInterfaceState(0, 0, false));
             return;
         }
@@ -55,7 +50,7 @@ public sealed partial class NFCargoSystem
         }
         amount += noModAmount;
 
-        _ui.SetUiState(ent.Owner, NFCargoPalletConsoleUiKey.Sale,
+        _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale,
             new NFCargoPalletConsoleInterfaceState((int)amount, toSell.Count, true));
     }
 
@@ -106,7 +101,6 @@ public sealed partial class NFCargoSystem
             return _pads;
 
         var query = AllEntityQuery<CargoPalletComponent, TransformComponent>();
-        var ourPosition = _transform.GetWorldPosition(consoleUid);
         while (query.MoveNext(out var uid, out var comp, out var compXform))
         {
             // Short-path easy checks
@@ -122,7 +116,7 @@ public sealed partial class NFCargoSystem
             var maxPalletDistance = DefaultPalletDistance;
 
             // Get the mapped checking distance from the console
-            if (TryComp<CargoPalletConsoleComponent>(consoleUid, out var cargoShuttleComponent))
+            if (TryComp<NFCargoPalletConsoleComponent>(consoleUid, out var cargoShuttleComponent))
                 maxPalletDistance = cargoShuttleComponent.PalletDistance;
 
             if (distance > maxPalletDistance)
@@ -134,43 +128,20 @@ public sealed partial class NFCargoSystem
 
         return _pads;
     }
-
-    private List<(EntityUid Entity, CargoPalletComponent Component, TransformComponent Transform)>
-        GetFreeCargoPallets(EntityUid gridUid,
-            List<(EntityUid Entity, CargoPalletComponent Component, TransformComponent Transform)> pallets)
-    {
-        _setEnts.Clear();
-
-        List<(EntityUid Entity, CargoPalletComponent Component, TransformComponent Transform)> outList = new();
-
-        foreach (var pallet in pallets)
-        {
-            var aabb = _lookup.GetAABBNoContainer(pallet.Entity, pallet.Transform.LocalPosition, pallet.Transform.LocalRotation);
-
-            if (_lookup.AnyLocalEntitiesIntersecting(gridUid, aabb, LookupFlags.Dynamic))
-                continue;
-
-            outList.Add(pallet);
-        }
-
-        return outList;
-    }
-
     #endregion
 
     #region Station
 
     private bool SellPallets(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out double amount, out double noMultiplierAmount) // Frontier: first arg to Entity, add noMultiplierAmount
     {
-        GetPalletGoods(consoleUid, gridUid, out var toSell, out amount, out noMultiplierAmount); // Frontier: add noMultiplierAmount
+        GetPalletGoods(consoleUid, gridUid, out var toSell, out amount, out noMultiplierAmount);
 
-        Log.Debug($"Cargo sold {toSell.Count} entities for {amount} (plus {noMultiplierAmount} without mods)"); // Frontier: add section in parentheses
+        Log.Debug($"Cargo sold {toSell.Count} entities for {amount} (plus {noMultiplierAmount} without mods)");
 
         if (toSell.Count == 0)
             return false;
 
-
-        var ev = new NFEntitySoldEvent(toSell, gridUid); // Frontier: add gridUid
+        var ev = new NFEntitySoldEvent(toSell, gridUid);
         RaiseLocalEvent(ref ev);
 
         foreach (var ent in toSell)
@@ -206,10 +177,8 @@ public sealed partial class NFCargoSystem
                     continue;
                 }
 
-                // Frontier: whitelisted consoles
                 if (_whitelist.IsWhitelistFail(consoleUid.Comp.Whitelist, ent))
                     continue;
-                // End Frontier
 
                 if (_blacklistQuery.HasComponent(ent))
                     continue;
@@ -219,12 +188,11 @@ public sealed partial class NFCargoSystem
                     continue;
                 toSell.Add(ent);
 
-                // Frontier: check for items that are immune to market modifiers
+                // Check for items that are immune to market modifiers
                 if (HasComp<IgnoreMarketModifierComponent>(ent))
                     noMultiplierAmount += price;
                 else
                     amount += price;
-                // End Frontier: check for items that are immune to market modifiers
             }
         }
     }
@@ -264,7 +232,7 @@ public sealed partial class NFCargoSystem
 
         if (xform.GridUid is not EntityUid gridUid)
         {
-            _ui.SetUiState(ent.Owner, NFCargoPalletConsoleUiKey.Sale,
+            _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale,
             new NFCargoPalletConsoleInterfaceState(0, 0, false));
             return;
         }
@@ -279,7 +247,7 @@ public sealed partial class NFCargoSystem
         }
         price += noMultiplierPrice;
 
-        var stackPrototype = _proto.Index<StackPrototype>(ent.Comp.CashType);
+        var stackPrototype = _proto.Index(ent.Comp.CashType);
         _stack.Spawn((int)price, stackPrototype, xform.Coordinates);
         _audio.PlayPvs(ApproveSound, ent);
         UpdatePalletConsoleInterface(ent);

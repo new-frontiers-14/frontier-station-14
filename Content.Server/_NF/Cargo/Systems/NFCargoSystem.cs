@@ -1,12 +1,10 @@
 using Content.Server.Cargo.Components;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Popups;
-using Content.Server.Shuttles.Systems;
 using Content.Server.Stack;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
-using Content.Server.Radio.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Paper;
@@ -44,7 +42,6 @@ public sealed partial class NFCargoSystem : SharedNFCargoSystem
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
@@ -55,11 +52,9 @@ public sealed partial class NFCargoSystem : SharedNFCargoSystem
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<CargoSellBlacklistComponent> _blacklistQuery;
     private EntityQuery<MobStateComponent> _mobQuery;
-    private EntityQuery<TradeStationComponent> _tradeQuery;
     private EntityQuery<ContainerManagerComponent> _containerQuery;
 
     private HashSet<EntityUid> _setEnts = new();
-    private List<EntityUid> _listEnts = new();
     private List<(EntityUid, CargoPalletComponent, TransformComponent)> _pads = new();
 
     public override void Initialize()
@@ -69,7 +64,6 @@ public sealed partial class NFCargoSystem : SharedNFCargoSystem
         _xformQuery = GetEntityQuery<TransformComponent>();
         _blacklistQuery = GetEntityQuery<CargoSellBlacklistComponent>();
         _mobQuery = GetEntityQuery<MobStateComponent>();
-        _tradeQuery = GetEntityQuery<TradeStationComponent>();
 
         InitializeConsole();
         InitializeShuttle();

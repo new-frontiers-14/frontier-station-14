@@ -9,7 +9,7 @@
     board: AdvancedRadarConsoleCircuitboard
   - type: RadarConsole
     maxRange: 768
-    maxIffRange: 1100 # roughly sqrt(2) * 768
+    maxIffRange: 1100 # a bit over sqrt(2) * 768
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -45,13 +45,13 @@
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
-  - type: CargoPalletConsole
+  - type: NFCargoPalletConsole
   - type: ActivatableUI
     key: enum.CargoPalletConsoleUiKey.Sale
   - type: UserInterface
     interfaces:
       enum.CargoPalletConsoleUiKey.Sale:
-        type: CargoPalletConsoleBoundUserInterface
+        type: CargoPalletConsoleNFBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Computer

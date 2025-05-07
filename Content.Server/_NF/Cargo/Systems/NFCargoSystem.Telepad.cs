@@ -4,7 +4,6 @@ using Content.Server.Construction;
 using Content.Server.Power.Components;
 using Content.Shared._NF.Cargo.Components;
 using Content.Shared.Cargo;
-using Content.Shared.Cargo.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Power;
 using Robust.Shared.Audio;
@@ -41,7 +40,7 @@ public sealed partial class NFCargoSystem
 
             if (!TryComp<DeviceLinkSinkComponent>(uid, out var sinkComponent) ||
                 sinkComponent.LinkedSources.FirstOrNull() is not { } console ||
-                !HasComp<CargoOrderConsoleComponent>(console))
+                !HasComp<NFCargoOrderConsoleComponent>(console))
             {
                 comp.Accumulator = comp.Delay;
                 continue;

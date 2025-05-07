@@ -16,27 +16,6 @@ public abstract class SharedNFCargoSystem : EntitySystem
 [NetSerializable, Serializable]
 public enum NFCargoConsoleUiKey : byte
 {
-    Orders,
-    Bounty, // FRONTIER MERGE: unused?
-    Telepad
+    Orders
 }
 
-[NetSerializable, Serializable]
-public enum NFCargoPalletConsoleUiKey : byte
-{
-    Sale
-}
-
-[Serializable, NetSerializable]
-public enum NFCargoTelepadState : byte
-{
-    Unpowered,
-    Idle,
-    Teleporting,
-};
-
-[Serializable, NetSerializable]
-public enum NFCargoTelepadVisuals : byte
-{
-    State,
-};

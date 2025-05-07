@@ -6,14 +6,13 @@ using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Utility;
 using Robust.Shared.Prototypes;
-using static Robust.Client.UserInterface.Controls.BaseButton;
 using Content.Shared._NF.Cargo.BUI;
 using Content.Shared._NF.Cargo;
 using Content.Client._NF.Cargo.UI;
 
 namespace Content.Client._NF.Cargo.BUI;
 
-// Suffixed to avoid 
+// Suffixed to avoid BUI collisions (see RT#5648)
 public sealed class CargoOrderConsoleNFBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
@@ -23,7 +22,7 @@ public sealed class CargoOrderConsoleNFBoundUserInterface : BoundUserInterface
     /// This is the separate popup window for individual orders.
     /// </summary>
     [ViewVariables]
-    private CargoConsoleOrderMenu? _orderMenu;
+    private NFCargoConsoleOrderMenu? _orderMenu;
 
     [ViewVariables]
     public string? AccountName { get; private set; }
@@ -64,7 +63,7 @@ public sealed class CargoOrderConsoleNFBoundUserInterface : BoundUserInterface
         else
             orderRequester = string.Empty;
 
-        _orderMenu = new CargoConsoleOrderMenu();
+        _orderMenu = new NFCargoConsoleOrderMenu(OrderCapacity);
 
         _menu.OnClose += Close;
 
@@ -88,8 +87,6 @@ public sealed class CargoOrderConsoleNFBoundUserInterface : BoundUserInterface
 
             _orderMenu.OpenCentered();
         };
-        _menu.OnOrderApproved += ApproveOrder;
-        _menu.OnOrderCanceled += RemoveOrder;
         _orderMenu.SubmitButton.OnPressed += (_) =>
         {
             if (AddOrder())
@@ -125,6 +122,7 @@ public sealed class CargoOrderConsoleNFBoundUserInterface : BoundUserInterface
 
         Populate(cState.Orders);
         _menu?.UpdateBankData(AccountName, BankBalance);
+        _orderMenu?.SetOrderCapacity(OrderCapacity);
     }
 
     protected override void Dispose(bool disposing)
@@ -140,10 +138,12 @@ public sealed class CargoOrderConsoleNFBoundUserInterface : BoundUserInterface
     private bool AddOrder()
     {
         var orderAmt = _orderMenu?.Amount.Value ?? 0;
-        if (orderAmt < 1 || orderAmt > OrderCapacity)
+        if (orderAmt < 1)
         {
             return false;
         }
+
+        orderAmt = int.Min(orderAmt, OrderCapacity);
 
         SendMessage(new CargoConsoleAddOrderMessage(
             _orderMenu?.Requester.Text ?? "",
@@ -152,26 +152,5 @@ public sealed class CargoOrderConsoleNFBoundUserInterface : BoundUserInterface
             orderAmt));
 
         return true;
-    }
-
-    private void RemoveOrder(ButtonEventArgs args)
-    {
-        if (args.Button.Parent?.Parent is not CargoOrderRow row || row.Order == null)
-            return;
-
-        SendMessage(new CargoConsoleRemoveOrderMessage(row.Order.OrderId));
-    }
-
-    private void ApproveOrder(ButtonEventArgs args)
-    {
-        if (args.Button.Parent?.Parent is not CargoOrderRow row || row.Order == null)
-            return;
-
-        if (OrderCount >= OrderCapacity)
-            return;
-
-        SendMessage(new CargoConsoleApproveOrderMessage(row.Order.OrderId));
-        // Most of the UI isn't predicted anyway so.
-        // _menu?.UpdateCargoCapacity(OrderCount + row.Order.Amount, OrderCapacity);
     }
 }

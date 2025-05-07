@@ -1,5 +1,4 @@
 using Robust.Shared.Serialization;
-using System.Text;
 
 namespace Content.Shared._NF.Cargo;
 
@@ -49,9 +48,6 @@ public sealed partial class NFCargoOrderData
 
     [DataField]
     public string Reason { get; private set; }
-    public bool Approved;
-    [DataField]
-    public string? Approver;
 
     [DataField]
     public NetEntity? Computer = null;
@@ -66,24 +62,5 @@ public sealed partial class NFCargoOrderData
         Requester = requester;
         Reason = reason;
         Computer = computer;
-    }
-
-    public void SetApproverData(string? approver)
-    {
-        Approver = approver;
-    }
-
-    public void SetApproverData(string? fullName, string? jobTitle)
-    {
-        var sb = new StringBuilder();
-        if (!string.IsNullOrWhiteSpace(fullName))
-        {
-            sb.Append($"{fullName} ");
-        }
-        if (!string.IsNullOrWhiteSpace(jobTitle))
-        {
-            sb.Append($"({jobTitle})");
-        }
-        Approver = sb.ToString();
     }
 }

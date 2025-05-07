@@ -1,23 +1,18 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server.Cargo.Components;
-using Content.Server.Station.Components;
+using Content.Server._NF.Cargo.Components;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Bank.Components;
-using Content.Shared.Cargo;
+using Content.Shared._NF.Cargo;
+using Content.Shared._NF.Cargo.Components;
+using Content.Shared._NF.Cargo.BUI;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Database;
+using Content.Shared.Labels.Components;
 using Content.Shared.Paper;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
-using Content.Shared.Labels.Components;
-using Content.Shared._NF.Cargo;
-using Content.Server._NF.Cargo.Components;
-using Content.Shared._NF.Cargo.Components;
-using Content.Shared._NF.Cargo.BUI;
 
 namespace Content.Server._NF.Cargo.Systems;
 
@@ -37,11 +32,8 @@ public sealed partial class NFCargoSystem
     public void InitializeConsole()
     {
         SubscribeLocalEvent<NFCargoOrderConsoleComponent, CargoConsoleAddOrderMessage>(OnAddOrderMessage);
-        SubscribeLocalEvent<NFCargoOrderConsoleComponent, CargoConsoleRemoveOrderMessage>(OnRemoveOrderMessage);
-        SubscribeLocalEvent<NFCargoOrderConsoleComponent, CargoConsoleApproveOrderMessage>(OnApproveOrderMessage);
         SubscribeLocalEvent<NFCargoOrderConsoleComponent, BoundUIOpenedEvent>(OnOrderUIOpened);
         SubscribeLocalEvent<NFCargoOrderConsoleComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<NFCargoOrderConsoleComponent, BankBalanceUpdatedEvent>(OnOrderBalanceUpdated);
         ResetOrders();
     }
 
@@ -69,7 +61,7 @@ public sealed partial class NFCargoSystem
             var query = EntityQueryEnumerator<NFCargoOrderConsoleComponent>();
             while (query.MoveNext(out var uid, out var comp))
             {
-                if (!_ui.IsUiOpen(uid, CargoConsoleUiKey.Orders)) continue;
+                if (!_ui.IsUiOpen(uid, NFCargoConsoleUiKey.Orders)) continue;
 
                 var station = _station.GetOwningStation(uid);
                 UpdateOrderState((uid, comp), station);
@@ -78,10 +70,12 @@ public sealed partial class NFCargoSystem
     }
 
     #region Interface
-
-    private void OnApproveOrderMessage(Entity<NFCargoOrderConsoleComponent> ent, ref CargoConsoleApproveOrderMessage args)
+    private void OnAddOrderMessage(Entity<NFCargoOrderConsoleComponent> ent, ref CargoConsoleAddOrderMessage args)
     {
         if (args.Actor is not { Valid: true } player)
+            return;
+
+        if (args.Amount <= 0)
             return;
 
         if (!_accessReader.IsAllowed(player, ent))
@@ -91,42 +85,30 @@ public sealed partial class NFCargoSystem
             return;
         }
 
-        // Frontier: orders require a bank account.
-        if (!TryComp<BankAccountComponent>(player, out var bankAccount))
+        if (!HasComp<BankAccountComponent>(player))
         {
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-nf-no-bank-account"));
             PlayDenySound(ent);
             return;
         }
 
-        // No station to deduct from.
-        if (!TryGetOrderDatabase(ent, out var station, out var orderDatabase))
+        if (!TryGetOrderDatabase(ent, out var dbUid, out var orderDatabase))
         {
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-station-not-found"));
             PlayDenySound(ent);
             return;
         }
 
-        // Find our order again. It might have been dispatched or approved already.
-        NFCargoOrderData? order = null;
-        foreach (var dbOrder in orderDatabase.Orders)
+        if (!_proto.TryIndex<CargoProductPrototype>(args.CargoProductId, out var product))
         {
-            if (dbOrder.OrderId == args.OrderId && !dbOrder.Approved)
-            {
-                order = dbOrder;
-                break;
-            }
+            Log.Error($"Tried to add invalid cargo product {args.CargoProductId} as order!");
+            return;
         }
-        if (order == null)
+
+        if (!ent.Comp.AllowedGroups.Contains(product.Group))
             return;
 
-        // Invalid order
-        if (!_proto.HasIndex<EntityPrototype>(order.ProductId))
-        {
-            ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
-            PlayDenySound(ent);
-            return;
-        }
+        var data = GetOrderData(EntityManager.GetNetEntity(ent), args, product, GenerateOrderId(orderDatabase));
 
         var amount = GetOutstandingOrderCount(orderDatabase);
         var capacity = orderDatabase.Capacity;
@@ -140,36 +122,19 @@ public sealed partial class NFCargoSystem
         }
 
         // Cap orders so someone can't spam thousands.
-        var cappedAmount = Math.Min(capacity - amount, order.OrderQuantity);
+        data.OrderQuantity = Math.Min(capacity - amount, data.OrderQuantity);
 
-        if (cappedAmount != order.OrderQuantity)
-        {
-            order.OrderQuantity = cappedAmount;
-            ConsolePopup(args.Actor, Loc.GetString("cargo-console-snip-snip"));
-            PlayDenySound(ent);
-        }
-
-        var cost = order.Price * order.OrderQuantity;
+        var cost = data.Price * data.OrderQuantity;
 
         // Not enough balance
-        if (cost > bankAccount.Balance)
+        if (!_bank.TryBankWithdraw(player, cost))
         {
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", cost)));
             PlayDenySound(ent);
             return;
         }
 
-        order.Approved = true;
-        _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
-
-        if (TryComp(ent, out MetaDataComponent? meta))
-            ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", meta.EntityName)));
-
-        // Log order approval
-        _adminLogger.Add(LogType.Action, LogImpact.Low,
-            $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] with balance at {bankAccount.Balance}");
-
-        // Frontier: account balances, taxing vendor purchases
+        // Give a stipend to station accounts for vendor purchases
         foreach (var (account, taxCoeff) in ent.Comp.TaxAccounts)
         {
             if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
@@ -177,89 +142,14 @@ public sealed partial class NFCargoSystem
             var tax = (int)Math.Floor(cost * taxCoeff);
             _bank.TrySectorDeposit(account, tax, LedgerEntryType.CargoTax);
         }
-        _bank.TryBankWithdraw(player, cost);
 
-        UpdateOrders(station.Value);
-    }
-
-    private EntityUid? TryFulfillOrder(EntityUid consoleUid, StationDataComponent stationData, NFCargoOrderData order, NFStationCargoOrderDatabaseComponent orderDatabase)
-    {
-        // No slots at the trade station
-        EntityUid? tradeDestination = null;
-
-        // Try to fulfill from any station where possible, if the pad is not occupied.
-        foreach (var trade in stationData.Grids)
-        {
-            var tradePads = GetCargoPallets(consoleUid, trade, BuySellType.Buy);
-            _random.Shuffle(tradePads);
-
-            var freePads = GetFreeCargoPallets(trade, tradePads);
-            if (freePads.Count >= order.OrderQuantity) //check if the station has enough free pallets
-            {
-                foreach (var pad in freePads)
-                {
-                    var coordinates = new EntityCoordinates(trade, pad.Transform.LocalPosition);
-
-                    if (FulfillOrder(order, coordinates, orderDatabase.PrinterOutput))
-                    {
-                        tradeDestination = trade;
-                        order.NumDispatched++;
-                        if (order.OrderQuantity <= order.NumDispatched) //Spawn a crate on free pellets until the order is fulfilled.
-                            break;
-                    }
-                }
-            }
-
-            if (tradeDestination != null)
-                break;
-        }
-
-        return tradeDestination;
-    }
-
-    private void OnRemoveOrderMessage(EntityUid uid, NFCargoOrderConsoleComponent component, CargoConsoleRemoveOrderMessage args)
-    {
-        if (!TryGetOrderDatabase(uid, out var dbUid, out var orderDatabase))
-            return;
-
-        RemoveOrder(dbUid!.Value, args.OrderId, orderDatabase);
-    }
-
-    private void OnAddOrderMessage(Entity<NFCargoOrderConsoleComponent> ent, ref CargoConsoleAddOrderMessage args)
-    {
-        if (args.Actor is not { Valid: true } player)
-            return;
-
-        if (args.Amount <= 0)
-            return;
-
-        if (!HasComp<BankAccountComponent>(player))
-            return;
-
-        if (!TryGetOrderDatabase(ent, out var dbUid, out var orderDatabase))
-            return;
-
-        if (!_proto.TryIndex<CargoProductPrototype>(args.CargoProductId, out var product))
-        {
-            Log.Error($"Tried to add invalid cargo product {args.CargoProductId} as order!");
-            return;
-        }
-
-        if (!ent.Comp.AllowedGroups.Contains(product.Group))
-            return;
-
-        var data = GetOrderData(EntityManager.GetNetEntity(ent), args, product, GenerateOrderId(orderDatabase));
-
-        if (!TryAddOrder(dbUid.Value, data, orderDatabase))
-        {
-            PlayDenySound(ent);
-            return;
-        }
+        AddOrder(dbUid.Value, data, orderDatabase);
 
         // Log order addition
         _adminLogger.Add(LogType.Action, LogImpact.Low,
-            $"{ToPrettyString(player):user} added order [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, requester:{data.Requester}, reason:{data.Reason}]");
+            $"{ToPrettyString(player):user} added & approved order [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, requester:{data.Requester}, reason:{data.Reason}]");
 
+        _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
     }
 
     private void OnOrderUIOpened(Entity<NFCargoOrderConsoleComponent> ent, ref BoundUIOpenedEvent args)
@@ -270,21 +160,12 @@ public sealed partial class NFCargoSystem
 
     #endregion
 
-
-    private void OnOrderBalanceUpdated(Entity<NFCargoOrderConsoleComponent> ent, ref BankBalanceUpdatedEvent args)
-    {
-        if (!_ui.IsUiOpen(ent.Owner, CargoConsoleUiKey.Orders))
-            return;
-
-        UpdateOrderState(ent, args.Station); // Frontier: add ent.Comp
-    }
-
     private void UpdateOrderState(Entity<NFCargoOrderConsoleComponent> ent, EntityUid? station)
     {
         if (!TryComp(ent, out TransformComponent? xform) || xform.GridUid is not { } stationGrid)
             return;
 
-        var uiUsers = _ui.GetActors((ent, null), CargoConsoleUiKey.Orders);
+        var uiUsers = _ui.GetActors((ent, null), NFCargoConsoleUiKey.Orders);
         foreach (var user in uiUsers)
         {
             if (!TryComp(user, out MetaDataComponent? meta))
@@ -308,7 +189,7 @@ public sealed partial class NFCargoSystem
                 balance,
                 filteredOrders);
 
-            _ui.SetUiState(ent.Owner, CargoConsoleUiKey.Orders, state);
+            _ui.SetUiState(ent.Owner, NFCargoConsoleUiKey.Orders, state);
         }
     }
 
@@ -332,11 +213,7 @@ public sealed partial class NFCargoSystem
         var amount = 0;
 
         foreach (var order in component.Orders)
-        {
-            if (!order.Approved)
-                continue;
             amount += order.OrderQuantity - order.NumDispatched;
-        }
 
         return amount;
     }
@@ -360,41 +237,10 @@ public sealed partial class NFCargoSystem
         }
     }
 
-    public bool AddAndApproveOrder(
-        EntityUid dbUid,
-        string spawnId,
-        string name,
-        int cost,
-        int qty,
-        string sender,
-        string description,
-        string dest,
-        NFStationCargoOrderDatabaseComponent component,
-        StationDataComponent stationData
-    )
-    {
-        DebugTools.Assert(_proto.HasIndex<EntityPrototype>(spawnId));
-        // Make an order
-        var id = GenerateOrderId(component);
-        var order = new NFCargoOrderData(id, spawnId, name, cost, qty, sender, description, null);
-
-        // Approve it now
-        order.SetApproverData(dest, sender);
-        order.Approved = true;
-
-        // Log order addition
-        _adminLogger.Add(LogType.Action, LogImpact.Low,
-            $"AddAndApproveOrder {description} added order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}]");
-
-        // Add it to the list
-        return TryAddOrder(dbUid, order, component);
-    }
-
-    private bool TryAddOrder(EntityUid dbUid, NFCargoOrderData data, NFStationCargoOrderDatabaseComponent component)
+    private void AddOrder(EntityUid dbUid, NFCargoOrderData data, NFStationCargoOrderDatabaseComponent component)
     {
         component.Orders.Add(data);
         UpdateOrders(dbUid);
-        return true;
     }
 
     private static int GenerateOrderId(NFStationCargoOrderDatabaseComponent orderDB)
@@ -424,7 +270,7 @@ public sealed partial class NFCargoSystem
 
     private static bool PopFrontOrder(List<NetEntity> consoleUidList, NFStationCargoOrderDatabaseComponent orderDB, [NotNullWhen(true)] out NFCargoOrderData? orderOut)
     {
-        var orderIdx = orderDB.Orders.FindIndex(order => order.Approved && consoleUidList.Any(consoleUid => consoleUid == order.Computer));
+        var orderIdx = orderDB.Orders.FindIndex(order => consoleUidList.Any(consoleUid => consoleUid == order.Computer));
         if (orderIdx == -1)
         {
             orderOut = null;
@@ -479,7 +325,7 @@ public sealed partial class NFCargoSystem
                     ("orderQuantity", order.OrderQuantity),
                     ("requester", order.Requester),
                     ("reason", order.Reason),
-                    ("approver", order.Approver ?? string.Empty)));
+                    ("approver", order.Requester)));
 
             // attempt to attach the label to the item
             if (TryComp<PaperLabelComponent>(item, out var label))

@@ -5,6 +5,7 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.Cargo.BUI;
 
+// Suffixed to avoid BUI collisions (see RT#5648)
 public sealed class CargoPalletConsoleNFBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]

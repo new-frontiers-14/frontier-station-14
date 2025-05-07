@@ -947,11 +947,11 @@
   #   channels: # Frontier
   #   - Supply # Frontier
   - type: ActivatableUI
-    key: enum.CargoConsoleUiKey.Orders
+    key: enum.NFCargoConsoleUiKey.Orders # Frontier: 
   - type: UserInterface
     interfaces:
-      enum.CargoConsoleUiKey.Orders:
-        type: CargoOrderConsoleBoundUserInterface
+      enum.NFCargoConsoleUiKey.Orders:
+        type: CargoOrderConsoleNFBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Computer
@@ -1404,6 +1404,7 @@
   parent: BaseComputerAiAccess
   name: cargo sale computer
   description: Used to sell goods loaded onto cargo pallets.
+  categories: [HideSpawnMenu, DoNotMap] # Frontier
   components:
   - type: Sprite
     layers:
