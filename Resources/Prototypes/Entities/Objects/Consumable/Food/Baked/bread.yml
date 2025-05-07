@@ -600,14 +600,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 62
+        maxVol: 50 # Frontier: 48<50
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
         - ReagentId: Protein
           Quantity: 12
-        - ReagentId: Flavorol
-          Quantity: 15
+        - ReagentId: Flavorol # Frontier
+          Quantity: 8 # Frontier
 # Tastes like bread, tofu.
 
 - type: entity
@@ -633,8 +633,8 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2.4
-        - ReagentId: Flavorol
-          Quantity: 3
+        - ReagentId: Flavorol # Frontier
+          Quantity: 1.6 # Frontier
 
 - type: entity
   name: xeno meat bread
