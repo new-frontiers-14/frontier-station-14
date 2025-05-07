@@ -25,10 +25,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
-using System.Numerics; //Frontier
 using Content.Server.Salvage.Expeditions; // Frontier
-using Content.Server.Explosion.EntitySystems; // Frontier
-using Content.Server._NF.Medical.SuitSensors;
+using Content.Server._NF.Medical.SuitSensors; // Frontier
 using Content.Shared.Emp; // Frontier
 
 namespace Content.Server.Medical.SuitSensors;
