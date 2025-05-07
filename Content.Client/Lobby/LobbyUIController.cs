@@ -352,7 +352,15 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     {
         var highPriorityJob = profile.JobPriorities.FirstOrDefault(p => p.Value == JobPriority.High).Key;
         // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract (what is resharper smoking?)
-        return _prototypeManager.Index<JobPrototype>(highPriorityJob.Id ?? SharedGameTicker.FallbackOverflowJob);
+        // Frontier: Proper fallback for missing prototypes
+        //return _prototypeManager.Index<JobPrototype>(highPriorityJob.Id ?? SharedGameTicker.FallbackOverflowJob);
+        if (highPriorityJob.Id is { } highPriorityJobId &&
+            _prototypeManager.TryIndex<JobPrototype>(highPriorityJobId, out var job))
+        {
+            return job;
+        }
+        return _prototypeManager.Index<JobPrototype>(SharedGameTicker.FallbackOverflowJob);
+        // End Frontier
     }
 
     public void GiveDummyLoadout(EntityUid uid, RoleLoadout? roleLoadout)
