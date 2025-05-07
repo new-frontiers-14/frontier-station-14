@@ -214,7 +214,7 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
         var hasInfo = _xenoArtifact.HasUnlockedPredecessor(artifact.Value, node.Value);
 
         // Frontier: hide xenoarch effects
-        var description = (lockedState != 1) ?
+        var description = (lockedState == 0) ?
             Loc.GetString("analysis-console-info-effect-unknown") :
             _ent.GetComponentOrNull<MetaDataComponent>(node.Value)?.EntityDescription ?? string.Empty;
         EffectValueLabel.SetMarkup(Loc.GetString("analysis-console-info-effect-value",

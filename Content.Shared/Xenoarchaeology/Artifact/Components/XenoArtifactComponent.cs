@@ -56,7 +56,7 @@ public sealed partial class XenoArtifactComponent : Component
     /// to determine the monetary value of the artifact.
     /// </summary>
     [DataField]
-    public float PriceMultiplier = 0.10f;
+    public float PriceMultiplier = 0.40f; // Frontier: 0.10f<0.0f
 
     #region Unlocking
     /// <summary>
