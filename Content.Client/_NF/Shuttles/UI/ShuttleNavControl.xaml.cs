@@ -68,19 +68,19 @@ namespace Content.Client.Shuttles.UI
             {
                 var triangleShapeVectorPoints = new[]
                 {
-                new Vector2(0, 0),
-                new Vector2(RadarBlipSize, 0),
-                new Vector2(RadarBlipSize * 0.5f, RadarBlipSize)
-            };
+                    new Vector2(0, 0),
+                    new Vector2(RadarBlipSize, 0),
+                    new Vector2(RadarBlipSize * 0.5f, RadarBlipSize)
+                };
 
                 if (blipData.IsOutsideRadarCircle)
                 {
                     // Calculate the angle of rotation
-                    var angle = (float) Math.Atan2(blipData.VectorToPosition.Y, blipData.VectorToPosition.X) + -1.6f;
+                    var angle = (float)Math.Atan2(blipData.VectorToPosition.Y, blipData.VectorToPosition.X) + -1.6f;
 
                     // Manually create a rotation matrix
-                    var cos = (float) Math.Cos(angle);
-                    var sin = (float) Math.Sin(angle);
+                    var cos = (float)Math.Cos(angle);
+                    var sin = (float)Math.Sin(angle);
                     float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
 
                     // Rotate each vertex
