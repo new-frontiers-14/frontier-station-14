@@ -18,7 +18,7 @@ public sealed class AlertLevelSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    // [Dependency] private readonly StationSystem _stationSystem = default!; // Frontier: sector-wide alerts
     [Dependency] private readonly GameTicker _ticker = default!; // Frontier
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
 

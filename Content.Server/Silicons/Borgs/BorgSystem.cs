@@ -31,7 +31,6 @@ using Content.Shared.Wires;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
@@ -64,7 +63,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly AccessSystem _access = default!; // Frontier
 
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     [ValidatePrototypeId<JobPrototype>]
     public const string BorgJobId = "Borg";

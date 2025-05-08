@@ -160,22 +160,21 @@ public sealed partial class NFCargoConsoleMenu : FancyWindow
                 ProductName =
                 {
                     Text = Loc.GetString(
-                        "cargo-console-menu-populate-orders-cargo-order-row-product-name-text",
+                        "cargo-console-menu-nf-populate-orders-cargo-order-row-product-name-text",
+                        ("total", order.OrderQuantity),
                         ("productName", productName),
-                        ("orderAmount", order.OrderQuantity),
-                        ("orderRequester", order.Requester))
+                        ("purchaser", order.Purchaser))
                 },
-                Description = {Text = Loc.GetString("cargo-console-menu-order-reason-description",
-                                                    ("reason", order.Reason))}
+                Quantity =
+                {
+                    Text = Loc.GetString(
+                        "cargo-console-menu-nf-populate-orders-cargo-order-row-product-quantity-text",
+                        ("remaining", order.OrderQuantity - order.NumDispatched)
+                    )
+                }
             };
             Orders.AddChild(row);
         }
-    }
-
-    public void UpdateCargoCapacity(int count, int capacity)
-    {
-        // TODO: Rename + Loc.
-        ShuttleCapacityLabel.Text = $"{count}/{capacity}";
     }
 
     public void UpdateBankData(string name, int bankBalance)

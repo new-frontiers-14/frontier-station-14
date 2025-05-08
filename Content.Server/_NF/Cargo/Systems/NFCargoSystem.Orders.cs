@@ -6,7 +6,6 @@ using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Cargo;
 using Content.Shared._NF.Cargo.Components;
 using Content.Shared._NF.Cargo.BUI;
-using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Database;
@@ -147,7 +146,7 @@ public sealed partial class NFCargoSystem
 
         // Log order addition
         _adminLogger.Add(LogType.Action, LogImpact.Low,
-            $"{ToPrettyString(player):user} added & approved order [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, requester:{data.Requester}, reason:{data.Reason}]");
+            $"{ToPrettyString(player):user} placed an order [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, purchaser:{data.Purchaser}, notes:{data.Notes}]");
 
         _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
     }
@@ -319,13 +318,13 @@ public sealed partial class NFCargoSystem
             _meta.SetEntityName(printed, val);
 
             _paper.SetContent((printed, paper), Loc.GetString(
-                    "cargo-console-paper-print-text",
+                    "cargo-console-nf-paper-print-text",
                     ("orderNumber", order.OrderId),
                     ("itemName", MetaData(item).EntityName),
+                    ("orderIndex", order.NumDispatched + 1),
                     ("orderQuantity", order.OrderQuantity),
-                    ("requester", order.Requester),
-                    ("reason", order.Reason),
-                    ("approver", order.Requester)));
+                    ("purchaser", order.Purchaser),
+                    ("notes", order.Notes)));
 
             // attempt to attach the label to the item
             if (TryComp<PaperLabelComponent>(item, out var label))

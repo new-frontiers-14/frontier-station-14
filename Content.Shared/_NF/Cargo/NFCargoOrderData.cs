@@ -44,23 +44,23 @@ public sealed partial class NFCargoOrderData
     public int NumDispatched = 0;
 
     [DataField]
-    public string Requester { get; private set; }
+    public string Purchaser { get; private set; }
 
     [DataField]
-    public string Reason { get; private set; }
+    public string Notes { get; private set; }
 
     [DataField]
     public NetEntity? Computer = null;
 
-    public NFCargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, NetEntity? computer)
+    public NFCargoOrderData(int orderId, string productId, string productName, int price, int amount, string purchaser, string notes, NetEntity? computer)
     {
         OrderId = orderId;
         ProductId = productId;
         ProductName = productName;
         Price = price;
         OrderQuantity = amount;
-        Requester = requester;
-        Reason = reason;
+        Purchaser = purchaser;
+        Notes = notes;
         Computer = computer;
     }
 }

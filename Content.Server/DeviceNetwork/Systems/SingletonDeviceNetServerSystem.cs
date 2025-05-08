@@ -4,7 +4,7 @@ using Content.Server.Medical.CrewMonitoring;
 using Content.Server.Station.Systems;
 using Content.Shared.Power;
 using Content.Shared.DeviceNetwork.Components;
-using Robust.Shared.Map; // Frontier // FRONTIER MERGE: needed?
+using Robust.Shared.Map; // Frontier
 
 namespace Content.Server.DeviceNetwork.Systems;
 
@@ -15,7 +15,7 @@ namespace Content.Server.DeviceNetwork.Systems;
 public sealed class SingletonDeviceNetServerSystem : EntitySystem
 {
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    // [Dependency] private readonly StationSystem _stationSystem = default!; // Frontier: map-wide singletons
 
     public override void Initialize()
     {
@@ -31,6 +31,7 @@ public sealed class SingletonDeviceNetServerSystem : EntitySystem
         return Resolve(serverId, ref serverComponent) && serverComponent.Active;
     }
 
+    // Frontier: map-wide servers
     /// <summary>
     /// Returns the address of the currently active server for the given map (instead of station id) if there is one.<br/>
     /// What kind of server you're trying to get the active instance of is determined by the component type parameter TComp.<br/>
@@ -85,6 +86,7 @@ public sealed class SingletonDeviceNetServerSystem : EntitySystem
         address = null;
         return address != null;
     }
+    // End Frontier
 
     /// <summary>
     /// Disconnects the server losing power

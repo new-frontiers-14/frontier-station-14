@@ -29,6 +29,7 @@ using Content.Shared.NameModifier.Components;
 using Content.Shared.Power;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Tag; // Frontier
+using Robust.Shared.Prototypes; // Frontier
 
 namespace Content.Server.Fax;
 
@@ -53,6 +54,7 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!; // Frontier
 
     private const string PaperSlotId = "Paper";
+    private static readonly ProtoId<TagPrototype> NFPaperStampProtectedTag = "NFPaperStampProtected";
 
     public override void Initialize()
     {
@@ -492,7 +494,7 @@ public sealed class FaxSystem : EntitySystem
                                        paper.StampState,
                                        paper.StampedBy,
                                        paper.EditingDisabled,
-                                       _tag.HasTag(sendEntity.Value, "NFPaperStampProtected")); // Frontier: add stamp protection
+                                       _tag.HasTag(sendEntity.Value, NFPaperStampProtectedTag)); // Frontier: add stamp protection
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -553,7 +555,7 @@ public sealed class FaxSystem : EntitySystem
             { FaxConstants.FaxPaperLabelData, labelComponent?.CurrentLabel },
             { FaxConstants.FaxPaperContentData, paper.Content },
             { FaxConstants.FaxPaperLockedData, paper.EditingDisabled },
-            { FaxConstants.FaxPaperStampProtectedData, _tag.HasTag(sendEntity.Value, "NFPaperStampProtected") }, // Frontier
+            { FaxConstants.FaxPaperStampProtectedData, _tag.HasTag(sendEntity.Value, NFPaperStampProtectedTag) }, // Frontier
         };
 
         if (metadata.EntityPrototype != null)
@@ -644,7 +646,7 @@ public sealed class FaxSystem : EntitySystem
             // Frontier: stamp protection
             if (printout.StampProtected)
             {
-                _tag.AddTag(printed, "NFPaperStampProtected");
+                _tag.AddTag(printed, NFPaperStampProtectedTag);
             }
             // End Frontier
         }

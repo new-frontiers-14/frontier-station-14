@@ -1,5 +1,6 @@
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Bank.Events;
+using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.Bank.UI;
 
@@ -13,20 +14,12 @@ public sealed class StationAdminConsoleBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        _menu = new StationAdminConsoleMenu();
-        _menu.WithdrawRequest += OnWithdraw;
-        _menu.DepositRequest += OnDeposit;
-        _menu.OnClose += Close;
-        _menu.PopulateReasons();
-        _menu.OpenCentered();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (disposing)
+        if (_menu == null)
         {
-            _menu?.Dispose();
+            _menu = this.CreateWindow<StationAdminConsoleMenu>();
+            _menu.WithdrawRequest += OnWithdraw;
+            _menu.DepositRequest += OnDeposit;
+            _menu.PopulateReasons();
         }
     }
 

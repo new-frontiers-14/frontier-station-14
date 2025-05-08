@@ -29,7 +29,6 @@ public sealed class PartExchangerSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StorageSystem _storage = default!;
     [Dependency] private readonly StackSystem _stack = default!;
-    [Dependency] private readonly EntityManager _entity = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

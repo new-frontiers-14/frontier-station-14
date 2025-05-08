@@ -44,6 +44,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
     private readonly HttpClient _httpClient = new();
 
     private readonly ProtoId<GamePresetPrototype> _fallbackPresetID = "NFPirates";
+    private ISawmill _sawmill = default!;
 
     public sealed class PlayerRoundBankInformation
     {
@@ -78,6 +79,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetachedEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         _player.PlayerStatusChanged += PlayerManagerOnPlayerStatusChanged;
+        _sawmill = Logger.GetSawmill("debris");
     }
 
     protected override void AppendRoundEndText(EntityUid uid, NFAdventureRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent ev)
@@ -140,8 +142,9 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
             relayText += '\n';
             highScore.RemoveAt(0);
         }
-        ReportRound(relayText);
-        ReportLedger();
+        // Fire and forget.
+        _ = ReportRound(relayText);
+        _ = ReportLedger();
     }
 
     private void OnPlayerSpawningEvent(PlayerSpawnCompleteEvent ev)
@@ -242,7 +245,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
 
     private async Task ReportRound(string message, int color = 0x77DDE7)
     {
-        Logger.InfoS("discord", message);
+        _sawmill.Info(message);
         string webhookUrl = _cfg.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
         if (webhookUrl == string.Empty)
             return;
@@ -282,7 +285,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         var ledgerPrintout = _bank.GetLedgerPrintout();
         if (string.IsNullOrEmpty(ledgerPrintout))
             return;
-        Logger.InfoS("discord", ledgerPrintout);
+        _sawmill.Info(ledgerPrintout);
 
         var serverName = _baseServer.ServerName;
         var gameTicker = _entSys.GetEntitySystemOrNull<GameTicker>();
@@ -318,7 +321,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         var reply = await request.Content.ReadAsStringAsync();
         if (!request.IsSuccessStatusCode)
         {
-            Logger.ErrorS("mining", $"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {reply}");
+            _sawmill.Error($"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {reply}");
         }
     }
 

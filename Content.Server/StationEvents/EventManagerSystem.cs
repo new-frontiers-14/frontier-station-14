@@ -25,8 +25,6 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly JobTrackingSystem _jobs = default!; // Frontier
 
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;
 

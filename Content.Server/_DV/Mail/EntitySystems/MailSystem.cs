@@ -62,7 +62,7 @@ namespace Content.Server._DV.Mail.EntitySystems
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IdCardSystem _idCardSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
-        [Dependency] private readonly MindSystem _mindSystem = default!;
+        // [Dependency] private readonly MindSystem _mindSystem = default!; // Frontier: warning suppression
         [Dependency] private readonly OpenableSystem _openable = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
@@ -80,6 +80,9 @@ namespace Content.Server._DV.Mail.EntitySystems
         [Dependency] private readonly IPlayerManager _player = default!; // Frontier
 
         private ISawmill _sawmill = default!;
+        private static readonly ProtoId<TagPrototype> MailTag = "Mail"; // Frontier
+        private static readonly ProtoId<TagPrototype> TrashTag = "Trash"; // Frontier
+        private static readonly ProtoId<TagPrototype> RecyclableTag = "Recyclable"; // Frontier
 
         public override void Initialize()
         {
@@ -783,7 +786,7 @@ namespace Content.Server._DV.Mail.EntitySystems
                 SetupMail(mail, component, candidate);
                 validTeleporters[index].HadMail = true;
 
-                _tagSystem.AddTag(mail, "Mail"); // Frontier
+                _tagSystem.AddTag(mail, MailTag); // Frontier
             }
 
             for (int i = 0; i < validTeleporters.Count; i++)
@@ -820,8 +823,8 @@ namespace Content.Server._DV.Mail.EntitySystems
                 _handsSystem.PickupOrDrop(user, entity);
             }
 
-            _tagSystem.AddTag(uid, "Trash");
-            _tagSystem.AddTag(uid, "Recyclable");
+            _tagSystem.AddTag(uid, TrashTag);
+            _tagSystem.AddTag(uid, RecyclableTag);
             component.IsEnabled = false;
             UpdateMailTrashState(uid, true);
         }

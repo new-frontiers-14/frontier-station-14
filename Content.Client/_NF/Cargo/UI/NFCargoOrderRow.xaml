@@ -8,19 +8,19 @@
                      MinSize="32 32"
                      RectClipContent="True" />
         <Control MinWidth="5"/>
-        <BoxContainer Orientation="Vertical"
+        <BoxContainer Orientation="Horizontal"
                       HorizontalExpand="True"
                       VerticalExpand="True">
             <Label Name="ProductName"
                    Access="Public"
                    HorizontalExpand="True"
-                   StyleClasses="LabelSubText"
-                   ClipText="True" />
-            <Label Name="Description"
+                   ClipText="True"
+                   FontColorOverride="gray" />
+            <Label Name="Quantity"
                    Access="Public"
-                   HorizontalExpand="True"
-                   StyleClasses="LabelSubText"
-                   ClipText="True" />
+                   Align="Right"
+                   FontColorOverride="gray"
+                   Margin="5 0 5 0" />
         </BoxContainer>
     </BoxContainer>
 </PanelContainer>

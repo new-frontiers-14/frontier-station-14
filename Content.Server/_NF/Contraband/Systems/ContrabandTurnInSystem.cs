@@ -66,9 +66,6 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
     {
         var player = args.Actor;
 
-        if (player == null)
-            return;
-
         UpdatePalletConsoleInterface(uid, component);
     }
 
@@ -83,9 +80,6 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
     private void OnPalletAppraise(EntityUid uid, ContrabandPalletConsoleComponent component, ContrabandPalletAppraiseMessage args)
     {
         var player = args.Actor;
-
-        if (player == null)
-            return;
 
         UpdatePalletConsoleInterface(uid, component);
     }
@@ -196,9 +190,6 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
     private void OnPalletSale(EntityUid uid, ContrabandPalletConsoleComponent component, ContrabandPalletSellMessage args)
     {
         var player = args.Actor;
-
-        if (player == null)
-            return;
 
         if (Transform(uid).GridUid is not EntityUid gridUid)
         {

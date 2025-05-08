@@ -82,7 +82,7 @@ public sealed class CargoOrderConsoleNFBoundUserInterface : BoundUserInterface
             _orderMenu.ProductName.Text = row.ProductName.Text;
             _orderMenu.PointCost.Text = row.PointCost.Text;
             _orderMenu.Requester.Text = orderRequester;
-            _orderMenu.Reason.Text = "";
+            _orderMenu.Notes.Text = "";
             _orderMenu.Amount.Value = 1;
 
             _orderMenu.OpenCentered();
@@ -147,7 +147,7 @@ public sealed class CargoOrderConsoleNFBoundUserInterface : BoundUserInterface
 
         SendMessage(new CargoConsoleAddOrderMessage(
             _orderMenu?.Requester.Text ?? "",
-            _orderMenu?.Reason.Text ?? "",
+            _orderMenu?.Notes.Text ?? "",
             _product?.ID ?? "",
             orderAmt));
 

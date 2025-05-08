@@ -52,7 +52,6 @@ public sealed partial class NFCargoSystem : SharedNFCargoSystem
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<CargoSellBlacklistComponent> _blacklistQuery;
     private EntityQuery<MobStateComponent> _mobQuery;
-    private EntityQuery<ContainerManagerComponent> _containerQuery;
 
     private HashSet<EntityUid> _setEnts = new();
     private List<(EntityUid, CargoPalletComponent, TransformComponent)> _pads = new();

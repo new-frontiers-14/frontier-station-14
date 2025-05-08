@@ -1,15 +1,9 @@
-using Content.Server.Atmos.EntitySystems;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
-using Robust.Server.GameObjects;
-using Content.Shared.Atmos;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Network;
 using Content.Shared.Inventory;
-using Robust.Server.Player;
 using Content.Shared._NF.AirFreshener.Components;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
 
@@ -21,12 +15,8 @@ namespace Content.Server._NF.Traits.Assorted;
 public sealed class StinkyTraitSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     /// <inheritdoc/>
@@ -42,12 +32,12 @@ public sealed class StinkyTraitSystem : EntitySystem
             _random.NextFloat(component.TimeBetweenIncidents.X, component.TimeBetweenIncidents.Y);
     }
 
-    public void AdjustStinkyTraitTimer(EntityUid uid, int TimerReset, StinkyTraitComponent? stinky = null)
+    public void AdjustStinkyTraitTimer(EntityUid uid, int timerReset, StinkyTraitComponent? stinky = null)
     {
         if (!Resolve(uid, ref stinky, false))
             return;
 
-        stinky.NextIncidentTime = TimerReset;
+        stinky.NextIncidentTime = timerReset;
     }
 
     private void OnExamined(EntityUid uid, StinkyTraitComponent component, ExaminedEvent args)

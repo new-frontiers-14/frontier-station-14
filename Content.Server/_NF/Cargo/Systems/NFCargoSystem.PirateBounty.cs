@@ -28,6 +28,7 @@ public sealed partial class NFCargoSystem
     [ValidatePrototypeId<NameIdentifierGroupPrototype>]
     private const string PirateBountyNameIdentifierGroup = "Bounty"; // Use the bounty name ID group (0-999) for now.
 
+    private EntityQuery<ContainerManagerComponent> _containerQuery;
     private EntityQuery<PirateBountyLabelComponent> _pirateBountyLabelQuery;
 
     private readonly TimeSpan _redemptionDelay = TimeSpan.FromSeconds(2);
@@ -43,6 +44,7 @@ public sealed partial class NFCargoSystem
         SubscribeLocalEvent<SectorPirateBountyDatabaseComponent, MapInitEvent>(OnPirateMapInit);
 
         _pirateBountyLabelQuery = GetEntityQuery<PirateBountyLabelComponent>();
+        _containerQuery = GetEntityQuery<ContainerManagerComponent>();
     }
 
     private void OnPirateBountyConsoleOpened(EntityUid uid, PirateBountyConsoleComponent component, BoundUIOpenedEvent args)

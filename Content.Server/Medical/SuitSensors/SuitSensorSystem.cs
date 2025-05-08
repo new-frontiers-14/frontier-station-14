@@ -41,7 +41,6 @@ public sealed class SuitSensorSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     // [Dependency] private readonly StationSystem _stationSystem = default!; // Frontier
-    [Dependency] private readonly MetaDataSystem _metaData = default!; // Frontier
     [Dependency] private readonly SingletonDeviceNetServerSystem _singletonServerSystem = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
@@ -392,7 +391,7 @@ public sealed class SuitSensorSystem : EntitySystem
 
         // check if sensor is enabled and worn by user
         // Frontier: sensors work off grids
-        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || !HasComp<MobStateComponent>(sensor.User) ) // || transform.GridUid == null
+        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || !HasComp<MobStateComponent>(sensor.User)) // || transform.GridUid == null
             return null;
         // End Frontier
 

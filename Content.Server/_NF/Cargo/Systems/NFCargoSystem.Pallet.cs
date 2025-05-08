@@ -8,12 +8,13 @@ using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
+using System.Numerics;
 
 namespace Content.Server._NF.Cargo.Systems;
 
 /// <summary>
 /// Handles cargo pallet (sale) mechanics.
-/// Based off of CargoSystem
+/// Based off of Wizden's CargoSystem.
 /// </summary>
 public sealed partial class NFCargoSystem
 {
@@ -248,7 +249,8 @@ public sealed partial class NFCargoSystem
         price += noMultiplierPrice;
 
         var stackPrototype = _proto.Index(ent.Comp.CashType);
-        _stack.Spawn((int)price, stackPrototype, xform.Coordinates);
+        var stackUid = _stack.Spawn((int)price, stackPrototype, xform.Coordinates);
+        _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
         _audio.PlayPvs(ApproveSound, ent);
         UpdatePalletConsoleInterface(ent);
     }

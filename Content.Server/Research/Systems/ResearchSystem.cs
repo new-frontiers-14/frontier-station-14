@@ -21,7 +21,7 @@ namespace Content.Server.Research.Systems
         [Dependency] private readonly AccessReaderSystem _accessReader = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly RadioSystem _radio = default!;
+        // [Dependency] private readonly RadioSystem _radio = default!; // Frontier
         [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
