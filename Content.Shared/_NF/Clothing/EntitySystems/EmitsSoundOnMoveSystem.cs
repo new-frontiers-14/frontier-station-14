@@ -1,23 +1,18 @@
-using System.Numerics;
 using Content.Shared._NF.Clothing.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._NF.Clothing.EntitySystems;
 
 public sealed class EmitsSoundOnMoveSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedMapSystem _grid = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
 
     private EntityQuery<InputMoverComponent> _moverQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;

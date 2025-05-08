@@ -43,7 +43,7 @@ namespace Content.Server.Light.EntitySystems
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly DamageOnInteractSystem _damageOnInteractSystem = default!;
 
-        [Dependency] protected readonly IRobustRandom RobustRandom = default!; // Frontier
+        [Dependency] private readonly IRobustRandom _random = default!; // Frontier
 
         private static readonly TimeSpan ThunkDelay = TimeSpan.FromSeconds(2);
         public const string LightBulbContainer = "light_bulb";
@@ -436,11 +436,13 @@ namespace Content.Server.Light.EntitySystems
 
         private void OnEmpPulse(EntityUid uid, PoweredLightComponent component, ref EmpPulseEvent args)
         {
-            if (RobustRandom.Prob(component.LightBreakChance))
+            // Frontier: break lights probabilistically
+            if (_random.Prob(component.LightBreakChance))
             {
                 if (TryDestroyBulb(uid, component))
                     args.Affected = true;
             }
+            // End Frontier: break lights probabilistically
         }
     }
 }

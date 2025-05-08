@@ -3,21 +3,20 @@
  * Copyright (c) 2024 New Frontiers Contributors
  * See AGPLv3.txt for details.
  */
+using Content.Server.Administration.Logs;
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Bank.Events;
 using Content.Shared.Coordinates;
+using Content.Shared.Database;
 using Content.Shared.Stacks;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Content.Server.Administration.Logs;
-using Content.Shared.Database;
-using Robust.Shared.Audio.Systems;
-using Content.Shared._NF.Bank.BUI;
 
 namespace Content.Server._NF.Bank;
 

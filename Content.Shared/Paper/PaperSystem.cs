@@ -31,7 +31,6 @@ public sealed class PaperSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedIdCardSystem _idCardSystem = default!; // Frontier
     [Dependency] private readonly UseDelaySystem _useDelay = default!; // Frontier
 
     private const int ReapplyLimit = 10; // Frontier: limits on reapplied stamps
@@ -203,7 +202,7 @@ public sealed class PaperSystem : EntitySystem
         {
             // Frontier: assign DisplayStampInfo before stamp
             var stampInfo = GetStampInfo(stampComp);
-            if (_tagSystem.HasTag(args.Used, "Write"))
+            if (_tagSystem.HasTag(args.Used, WriteTag))
             {
                 TrySign(entity, args.User, args.Used);
             }
@@ -388,7 +387,7 @@ public sealed class PaperSystem : EntitySystem
             return;
 
         // Pens have a `Write` tag.
-        if (!args.Using.HasValue || !_tagSystem.HasTag(args.Using.Value, "Write"))
+        if (!args.Using.HasValue || !_tagSystem.HasTag(args.Using.Value, WriteTag))
             return;
 
         AlternativeVerb verb = new()

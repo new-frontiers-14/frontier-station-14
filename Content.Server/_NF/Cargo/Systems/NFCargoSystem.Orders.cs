@@ -321,7 +321,7 @@ public sealed partial class NFCargoSystem
                     "cargo-console-nf-paper-print-text",
                     ("orderNumber", order.OrderId),
                     ("itemName", MetaData(item).EntityName),
-                    ("orderIndex", order.NumDispatched + 1),
+                    ("orderIndex", order.NumDispatched),
                     ("orderQuantity", order.OrderQuantity),
                     ("purchaser", order.Purchaser),
                     ("notes", order.Notes)));

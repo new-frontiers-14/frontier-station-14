@@ -1,20 +1,16 @@
 using System.Linq;
-using Robust.Client.GameObjects;
-using static Robust.Client.GameObjects.SpriteComponent;
-using Content.Client.Kitchen.Components;
+using Content.Client.Nyanotrasen.Kitchen.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Hands;
 using Content.Shared.Nyanotrasen.Kitchen.Components;
-using Robust.Shared.Prototypes;
-using Content.Shared.Nyanotrasen.Kitchen.Prototypes;
-using Content.Client.Nyanotrasen.Kitchen.Components;
+using Robust.Client.GameObjects;
+using static Robust.Client.GameObjects.SpriteComponent;
 
 namespace Content.Client.Kitchen.Visualizers
 {
     public sealed class DeepFriedVisualizerSystem : VisualizerSystem<DeepFriedComponent>
     {
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly IPrototypeManager _prototype = default!;
 
         private const string FriedShader = "Crispy";
         private const string SpectralShader = "Spectral";

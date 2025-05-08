@@ -144,7 +144,7 @@ public sealed class RCDSystem : EntitySystem
         args.Handled = true;
 
         // If the id card has no registered ship we cant continue.
-        if (!TryComp<ShuttleDeedComponent>(comp.Owner, out var shuttleDeedComponent))
+        if (!TryComp<ShuttleDeedComponent>(uid, out var shuttleDeedComponent))
         {
             _popup.PopupClient(Loc.GetString("rcd-component-missing-id-deed"),
                 uid, args.User, PopupType.Medium);
@@ -168,7 +168,7 @@ public sealed class RCDSystem : EntitySystem
             rcdComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
         }
 
-        Dirty(rcdComponent.Owner, rcdComponent);
+        Dirty(rcdEntityUid, rcdComponent);
     }
 
     private void OnAfterInteract(EntityUid uid, RCDComponent component, AfterInteractEvent args)
@@ -278,17 +278,16 @@ public sealed class RCDSystem : EntitySystem
             QueueDel(effect);
     }
 
-    /**
-     * Frontier - Stops RCD functions if there is a protected grid component on it, and adds shipyard rcd limitations.
-     */
+    // Frontier: grid-bound RCD
+    /// <summary>
+    /// Stops RCD functions if there is a protected grid component on it, and adds shipyard rcd limitations.
+    /// </summary>
     private bool IsAuthorized(EntityUid? gridId, EntityUid uid, RCDComponent comp, AfterInteractEvent args)
     {
-        if (gridId == null)
-        {
+        if (gridId is not {} gridUid)
             return true;
-        }
+
         var mapGrid = Comp<MapGridComponent>(gridId.Value);
-        var gridUid = mapGrid.Owner;
 
         // Frontier - Remove all RCD use on outpost.
         if (TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventRCDUse)
@@ -314,6 +313,7 @@ public sealed class RCDSystem : EntitySystem
 
         return true;
     }
+    // End Frontier: grid-bound RCD
 
     private void OnDoAfterAttempt(EntityUid uid, RCDComponent component, DoAfterAttemptEvent<RCDDoAfterEvent> args)
     {

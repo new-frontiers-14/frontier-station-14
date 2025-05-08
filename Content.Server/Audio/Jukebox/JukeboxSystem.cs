@@ -17,6 +17,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 {
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private readonly TransformSystem _transform = default!; // Frontier
 
     public override void Initialize()
     {
@@ -59,9 +60,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             component.AudioStream = Audio.PlayPvs(jukeboxProto.Path, uid, AudioParams.Default.WithMaxDistance(10f))?.Entity;
             // Frontier: wallmount jukebox
             if (TryComp<TransformComponent>(component.AudioStream, out var xform))
-            {
-                xform.LocalPosition = component.AudioOffset;
-            }
+                _transform.SetLocalPosition(component.AudioStream.Value, component.AudioOffset, xform);
             // End Frontier
             Dirty(uid, component);
         }
