@@ -43,7 +43,7 @@ namespace Content.Shared._NF.GridAccess
             args.Handled = true;
 
             // If the id card has no registered ship we cant continue.
-            if (!TryComp<ShuttleDeedComponent>(comp.Owner, out var shuttleDeedComponent))
+            if (!TryComp<ShuttleDeedComponent>(uid, out var shuttleDeedComponent))
             {
                 _popup.PopupClient(Loc.GetString("grid-access-missing-id-deed"),
                     uid, args.User, PopupType.Medium);
@@ -67,7 +67,7 @@ namespace Content.Shared._NF.GridAccess
                 gridAccessComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
             }
 
-            Dirty(gridAccessComponent.Owner, gridAccessComponent);
+            Dirty(rcdEntityUid, gridAccessComponent);
         }
 
         /**
