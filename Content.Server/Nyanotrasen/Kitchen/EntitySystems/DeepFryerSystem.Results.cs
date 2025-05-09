@@ -10,6 +10,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC;
+using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nyanotrasen.Kitchen.Prototypes;
 using Content.Shared.Paper;
