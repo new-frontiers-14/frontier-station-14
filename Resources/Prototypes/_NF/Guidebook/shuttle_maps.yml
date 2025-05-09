@@ -421,7 +421,7 @@
 - type: entity
   parent: PosterBase
   id: ShuttleMapSpirit
-  name: "NM Spirit"
+  name: "FSB Spirit"
   description: "Detailed map of a Spirit shuttle."
   categories: [ HideSpawnMenu ]
   components:
@@ -433,13 +433,25 @@
 - type: entity
   parent: PosterBase
   id: ShuttleMapStasis
-  name: "NM Stasis"
+  name: "FSB Stasis"
   description: "Detailed map of a Stasis shuttle."
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: stasis
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapSurveyor
+  name: "FSB Surveyor"
+  description: "Detailed map of a Surveyor shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: surveyor
     scale: 1.2, 1.2
 
 - type: entity
