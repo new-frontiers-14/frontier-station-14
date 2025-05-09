@@ -47,9 +47,9 @@ public sealed class OreSiloSystem : SharedOreSiloSystem
             var name = Identity.Name(client, EntityManager);
             var beacon = _navMap.GetNearestBeaconString(client.Owner, onlyName: true);
 
-            var txt = Loc.GetString("ore-silo-ui-itemlist-entry",
+            var txt = Loc.GetString("ore-silo-ui-nf-itemlist-entry", // Frontier: use NF key
                 ("name", name),
-                ("beacon", beacon),
+                // ("beacon", beacon), // Frontier
                 ("linked", ent.Comp.Clients.Contains(client)),
                 ("inRange", true));
 
@@ -64,9 +64,9 @@ public sealed class OreSiloSystem : SharedOreSiloSystem
             var beacon = _navMap.GetNearestBeaconString(client, onlyName: true);
             var inRange = CanTransmitMaterials((ent, ent, xform), client);
 
-            var txt = Loc.GetString("ore-silo-ui-itemlist-entry",
+            var txt = Loc.GetString("ore-silo-ui-nf-itemlist-entry", // Frontier: use NF key
                 ("name", name),
-                ("beacon", beacon),
+                // ("beacon", beacon), // Frontier
                 ("linked", ent.Comp.Clients.Contains(client)),
                 ("inRange", inRange));
 
