@@ -455,7 +455,18 @@ public enum LogType
     /// </summary>
     AdminCommands = 98,
 
+    /// <summary>
+    /// A player was selected or assigned antag status
+    /// </summary>
+    AntagSelection = 99,
+
+    /// <summary>
+    /// Logs related to botany, such as planting and harvesting crops
+    /// </summary>
+    Botany = 100,
+
     // Frontier Station Specific
+    #region Frontier Values
     ATMUsage = 200,
     ShipYardUsage = 201,
     ShuttleRecordsUsage = 202,
@@ -480,4 +491,10 @@ public enum LogType
     /// A medical bounty was redeemed.
     /// </summary>
     MedicalBountyRedeemed = 207,
+    /// <summary>
+    /// Shuttle info was changed.
+    /// </summary>
+    ShuttleInfoChanged = 208,
+    #endregion Frontier Values
+    // End Frontier
 }

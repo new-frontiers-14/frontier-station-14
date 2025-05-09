@@ -1,0 +1,1031 @@
+# DEPARTMENTAL (MISSING UPSTREAM)
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelJanitor
+  name: janitor duffel
+  description: This bad boy can fit so many cleaning implements!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#ebdc36"
+    - state: icon-sling
+      color: "#8c347f"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#8c347f"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#ebdc36"
+      - state: equipped-BACKPACK-sling
+        color: "#8c347f"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#444444"
+      - state: equipped-BACKPACK-handle
+        color: "#8c347f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#ebdc36"
+      - state: inhand-left-sling
+        color: "#8c347f"
+      - state: inhand-left-decal-straps
+        color: "#444444"
+      - state: inhand-left-handle
+        color: "#8c347f"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#ebdc36"
+      - state: inhand-right-sling
+        color: "#8c347f"
+      - state: inhand-right-decal-straps
+        color: "#444444"
+      - state: inhand-right-handle
+        color: "#8c347f"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelChaplain
+  name: chaplain duffel
+  description: Don't forget to extinguish the censer before putting it inside.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#6a6a6a"
+    - state: icon-sling
+      color: "#6d6152"
+    - state: icon-decal-straps
+      color: "#702525"
+    - state: icon-handle
+      color: "#444444"
+    - state: icon-decal-religious-cross
+      color: "#d6a033"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#6a6a6a"
+      - state: equipped-BACKPACK-sling
+        color: "#6d6152"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#702525"
+      - state: equipped-BACKPACK-handle
+        color: "#444444"
+      - state: equipped-BACKPACK-decal-medical-cross
+        color: "#d6a033"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#6a6a6a"
+      - state: inhand-left-sling
+        color: "#6d6152"
+      - state: inhand-left-decal-straps
+        color: "#702525"
+      - state: inhand-left-handle
+        color: "#444444"
+      - state: inhand-left-zipper
+      - state: inhand-left-decal-medical-cross
+        color: "#d6a033"
+      right:
+      - state: inhand-right-base
+        color: "#6a6a6a"
+      - state: inhand-right-sling
+        color: "#6d6152"
+      - state: inhand-right-decal-straps
+        color: "#702525"
+      - state: inhand-right-handle
+        color: "#444444"
+      - state: inhand-right-zipper
+      - state: inhand-right-decal-medical-cross
+        color: "#d6a033"
+
+# FRONTIER SPECIFIC
+- type: entity
+  parent: NFClothingDuffel
+  id: ClothingBackpackDuffelMercenary
+  name: mercenary duffel
+  description: A duffel that has been in many dangerous places, a reliable combat duffel.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#6e6e38"
+    - state: icon-sling
+      color: "#444444"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#444444"
+    - state: icon-zipper
+      color: "#bbbb7a"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#6e6e38"
+      - state: equipped-BACKPACK-sling
+        color: "#444444"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#49492f"
+      - state: equipped-BACKPACK-handle
+        color: "#49492f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#6e6e38"
+      - state: inhand-left-sling
+        color: "#444444"
+      - state: inhand-left-decal-straps
+        color: "#49492f"
+      - state: inhand-left-handle
+        color: "#49492f"
+      - state: inhand-left-zipper
+        color: "#bbbb7a"
+      right:
+      - state: inhand-right-base
+        color: "#6e6e38"
+      - state: inhand-right-sling
+        color: "#444444"
+      - state: inhand-right-decal-straps
+        color: "#49492f"
+      - state: inhand-right-handle
+        color: "#49492f"
+      - state: inhand-right-zipper
+        color: "#bbbb7a"
+
+- type: entity
+  parent: NFClothingDuffel
+  id: ClothingBackpackDuffelPilot
+  name: pilot duffel
+  description: A duffelbag produced for a True Ace.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#3e2516"
+    - state: icon-sling
+      color: "#444444"
+    - state: icon-decal-straps
+      color: "#776756"
+    - state: icon-handle
+      color: "#776756"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#3e2516"
+      - state: equipped-BACKPACK-sling
+        color: "#444444"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#776756"
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#3e2516"
+      - state: inhand-left-sling
+        color: "#444444"
+      - state: inhand-left-decal-straps
+        color: "#776756"
+      - state: inhand-left-handle
+        color: "#776756"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#3e2516"
+      - state: inhand-right-sling
+        color: "#444444"
+      - state: inhand-right-decal-straps
+        color: "#776756"
+      - state: inhand-right-handle
+        color: "#776756"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: ClothingBackpackDuffelPrivateSecurity
+  name: private security duffel
+  description: A robust duffelbag produced for a rugged operator on a salary.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#2286bd"
+    - state: icon-sling
+      color: "#9d1c1c"
+    - state: icon-decal-straps
+      color: "#935c3f"
+    - state: icon-handle
+      color: "#935c3f"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#2286bd"
+      - state: equipped-BACKPACK-sling
+        color: "#9d1c1c"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#935c3f"
+      - state: equipped-BACKPACK-handle
+        color: "#935c3f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#2286bd"
+      - state: inhand-left-sling
+        color: "#9d1c1c"
+      - state: inhand-left-decal-straps
+        color: "#935c3f"
+      - state: inhand-left-handle
+        color: "#935c3f"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#2286bd"
+      - state: inhand-right-sling
+        color: "#9d1c1c"
+      - state: inhand-right-decal-straps
+        color: "#935c3f"
+      - state: inhand-right-handle
+        color: "#935c3f"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelMailCarrier
+  name: mail carrier duffel
+  description: A robust duffelbag produced for a rugged mail carrier.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#4d9be6"
+    - state: icon-sling
+      color: "#6d6152"
+    - state: icon-decal-straps
+      color: "#b33831"
+    - state: icon-handle
+      color: "#6d6152"
+    - state: icon-zipper
+    - state: icon-decal-mail
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#4d9be6"
+      - state: equipped-BACKPACK-sling
+        color: "#6d6152"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#b33831"
+      - state: equipped-BACKPACK-handle
+        color: "#6d6152"
+      - state: equipped-BACKPACK-decal-mail
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#4d9be6"
+      - state: inhand-left-sling
+        color: "#6d6152"
+      - state: inhand-left-decal-straps
+        color: "#b33831"
+      - state: inhand-left-decal-medical-cross
+        color: "#c7dcd0"
+      - state: inhand-left-handle
+        color: "#6d6152"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#4d9be6"
+      - state: inhand-right-sling
+        color: "#6d6152"
+      - state: inhand-right-decal-straps
+        color: "#b33831"
+      - state: inhand-right-decal-medical-cross
+        color: "#c7dcd0"
+      - state: inhand-right-handle
+        color: "#6d6152"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: ClothingBackpackDuffelSr
+  name: station representative duffel
+  description: No expense was spared in crafting of this premium duffelbag.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#2c6a30"
+    - state: icon-sling
+      color: "#fbe6b8"
+    - state: icon-decal-straps
+      color: "#f2b833"
+    - state: icon-handle
+      color: "#fbe6b8"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#2c6a30"
+      - state: equipped-BACKPACK-sling
+        color: "#fbe6b8"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#f2b833"
+      - state: equipped-BACKPACK-handle
+        color: "#fbe6b8"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#2c6a30"
+      - state: inhand-left-sling
+        color: "#fbe6b8"
+      - state: inhand-left-decal-straps
+        color: "#f2b833"
+      - state: inhand-left-handle
+        color: "#fbe6b8"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#2c6a30"
+      - state: inhand-right-sling
+        color: "#fbe6b8"
+      - state: inhand-right-decal-straps
+        color: "#f2b833"
+      - state: inhand-right-handle
+        color: "#fbe6b8"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: ClothingBackpackDuffelTrauma
+  name: trauma duffel
+  description: A duffelbag produced for an ERT specialist.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#ca4545"
+    - state: icon-sling
+      color: "#4d4d5d"
+    - state: icon-decal-straps
+      color: "#4d4d5d"
+    - state: icon-handle
+      color: "#4d4d5d"
+    - state: icon-decal-medical-cross
+      color: "#ede984"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#ca4545"
+      - state: equipped-BACKPACK-sling
+        color: "#4d4d5d"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#4d4d5d"
+      - state: equipped-BACKPACK-handle
+        color: "#4d4d5d"
+      - state: equipped-BACKPACK-decal-medical-cross
+        color: "#ede984"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#ca4545"
+      - state: inhand-left-sling
+        color: "#4d4d5d"
+      - state: inhand-left-decal-straps
+        color: "#4d4d5d"
+      - state: inhand-left-handle
+        color: "#4d4d5d"
+      - state: inhand-left-decal-medical-cross
+        color: "#ede984"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#ca4545"
+      - state: inhand-right-sling
+        color: "#4d4d5d"
+      - state: inhand-right-decal-straps
+        color: "#4d4d5d"
+      - state: inhand-right-handle
+        color: "#4d4d5d"
+      - state: inhand-right-decal-medical-cross
+        color: "#ede984"
+      - state: inhand-right-zipper
+
+# COLOR
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelColorBlack
+  name: black duffel
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#535353"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#776756"
+    - state: icon-zipper
+      color: "#ffffff"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#535353"
+      - state: equipped-BACKPACK-sling
+        color: "#776756"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#444444"
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#535353"
+      - state: inhand-left-sling
+        color: "#776756"
+      - state: inhand-left-decal-straps
+        color: "#444444"
+      - state: inhand-left-handle
+        color: "#776756"
+      - state: inhand-left-zipper
+        color: "#ffffff"
+      right:
+      - state: inhand-right-base
+        color: "#535353"
+      - state: inhand-right-sling
+        color: "#776756"
+      - state: inhand-right-decal-straps
+        color: "#444444"
+      - state: inhand-right-handle
+        color: "#776756"
+      - state: inhand-right-zipper
+        color: "#ffffff"
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelColorBlue
+  name: blue duffel
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#0089EF"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#776756"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#0089EF"
+      - state: equipped-BACKPACK-sling
+        color: "#776756"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#444444"
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#0089EF"
+      - state: inhand-left-sling
+        color: "#776756"
+      - state: inhand-left-decal-straps
+        color: "#444444"
+      - state: inhand-left-handle
+        color: "#776756"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#0089EF"
+      - state: inhand-right-sling
+        color: "#776756"
+      - state: inhand-right-decal-straps
+        color: "#444444"
+      - state: inhand-right-handle
+        color: "#776756"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelColorGreen
+  name: green duffel
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#5ABF2F"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#776756"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#5ABF2F"
+      - state: equipped-BACKPACK-sling
+        color: "#776756"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#444444"
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#5ABF2F"
+      - state: inhand-left-sling
+        color: "#776756"
+      - state: inhand-left-decal-straps
+        color: "#444444"
+      - state: inhand-left-handle
+        color: "#776756"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#5ABF2F"
+      - state: inhand-right-sling
+        color: "#776756"
+      - state: inhand-right-decal-straps
+        color: "#444444"
+      - state: inhand-right-handle
+        color: "#776756"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelColorOrange
+  name: orange duffel
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#EF8100"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#776756"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#EF8100"
+      - state: equipped-BACKPACK-sling
+        color: "#776756"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#444444"
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#EF8100"
+      - state: inhand-left-sling
+        color: "#776756"
+      - state: inhand-left-decal-straps
+        color: "#444444"
+      - state: inhand-left-handle
+        color: "#776756"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#EF8100"
+      - state: inhand-right-sling
+        color: "#776756"
+      - state: inhand-right-decal-straps
+        color: "#444444"
+      - state: inhand-right-handle
+        color: "#776756"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelColorRed
+  name: red duffel
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#940000"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#776756"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#940000"
+      - state: equipped-BACKPACK-sling
+        color: "#776756"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#444444"
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#940000"
+      - state: inhand-left-sling
+        color: "#776756"
+      - state: inhand-left-decal-straps
+        color: "#444444"
+      - state: inhand-left-handle
+        color: "#776756"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#940000"
+      - state: inhand-right-sling
+        color: "#776756"
+      - state: inhand-right-decal-straps
+        color: "#444444"
+      - state: inhand-right-handle
+        color: "#776756"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelColorPurple
+  name: purple duffel
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#9C0DE1"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#776756"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#9C0DE1"
+      - state: equipped-BACKPACK-sling
+        color: "#776756"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#444444"
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#9C0DE1"
+      - state: inhand-left-sling
+        color: "#776756"
+      - state: inhand-left-decal-straps
+        color: "#444444"
+      - state: inhand-left-handle
+        color: "#776756"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#9C0DE1"
+      - state: inhand-right-sling
+        color: "#776756"
+      - state: inhand-right-decal-straps
+        color: "#444444"
+      - state: inhand-right-handle
+        color: "#776756"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelColorBrownLight
+  name: light brown duffel
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#C09F72"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#776756"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#C09F72"
+      - state: equipped-BACKPACK-sling
+        color: "#776756"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#444444"
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#C09F72"
+      - state: inhand-left-sling
+        color: "#776756"
+      - state: inhand-left-decal-straps
+        color: "#444444"
+      - state: inhand-left-handle
+        color: "#776756"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#C09F72"
+      - state: inhand-right-sling
+        color: "#776756"
+      - state: inhand-right-decal-straps
+        color: "#444444"
+      - state: inhand-right-handle
+        color: "#776756"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelColorBrown
+  name: brown duffel
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#723A02"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#776756"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#723A02"
+      - state: equipped-BACKPACK-sling
+        color: "#776756"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#444444"
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#723A02"
+      - state: inhand-left-sling
+        color: "#776756"
+      - state: inhand-left-decal-straps
+        color: "#444444"
+      - state: inhand-left-handle
+        color: "#776756"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#723A02"
+      - state: inhand-right-sling
+        color: "#776756"
+      - state: inhand-right-decal-straps
+        color: "#444444"
+      - state: inhand-right-handle
+        color: "#776756"
+      - state: inhand-right-zipper
+
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelColorWhite
+  name: white duffel
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#ffffff"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#776756"
+    - state: icon-zipper
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#ffffff"
+      - state: equipped-BACKPACK-sling
+        color: "#776756"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#444444"
+      - state: equipped-BACKPACK-handle
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#ffffff"
+      - state: inhand-left-sling
+        color: "#776756"
+      - state: inhand-left-decal-straps
+        color: "#444444"
+      - state: inhand-left-handle
+        color: "#776756"
+      - state: inhand-left-zipper
+      right:
+      - state: inhand-right-base
+        color: "#ffffff"
+      - state: inhand-right-sling
+        color: "#776756"
+      - state: inhand-right-decal-straps
+        color: "#444444"
+      - state: inhand-right-handle
+        color: "#776756"
+      - state: inhand-right-zipper
+
+# RANDOMIZED
+- type: entity
+  parent: NFClothingDuffel
+  id: NFClothingBackpackDuffelColorRandom
+  name: punk duffel
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      map: [ "iconDuffelMain" ]
+    - state: icon-sling
+      map: [ "iconDuffelSling" ]
+    - state: icon-decal-straps
+      map: [ "iconDuffelStraps" ]
+    - state: icon-handle
+      map: [ "iconDuffelHandle" ]
+    - state: icon-zipper
+      map: [ "iconDuffelZipper" ]
+      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        map: [ "equippedDuffelBase" ]
+      - state: equipped-BACKPACK-sling
+        map: [ "equippedDuffelSling" ]
+      - state: equipped-BACKPACK-decal-straps
+        map: [ "equippedDuffelStraps" ]
+      - state: equipped-BACKPACK-handle
+        map: [ "equippedDuffelHandle" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        map: [ "leftDuffelBase" ]
+      - state: inhand-left-sling
+        map: [ "leftDuffelSling" ]
+      - state: inhand-left-decal-straps
+        map: [ "leftDuffelStraps" ]
+      - state: inhand-left-handle
+        map: [ "leftDuffelHandle" ]
+      - state: inhand-left-zipper
+        map: [ "leftDuffelZipper" ]
+        shader: unshaded
+      right:
+      - state: inhand-right-base
+        map: [ "rightDuffelBase" ]
+      - state: inhand-right-sling
+        map: [ "rightDuffelSling" ]
+      - state: inhand-right-decal-straps
+        map: [ "rightDuffelStraps" ]
+      - state: inhand-right-handle
+        map: [ "rightDuffelHandle" ]
+      - state: inhand-right-zipper
+        map: [ "rightDuffelZipper" ]
+        shader: unshaded
+  - type: RandomSprite
+    available:
+    # icon
+    - iconDuffelMain:
+        icon-base: Base
+      iconDuffelSling:
+        icon-sling: Sling
+      iconDuffelStraps:
+        icon-decal-straps: Straps
+      iconDuffelHandle:
+        icon-handle: Handle
+      iconDuffelZipper:
+        icon-zipper: Zipper
+    # clothing
+      equippedDuffelBase:
+        equipped-BACKPACK-base: Base
+      equippedDuffelSling:
+        equipped-BACKPACK-sling: Sling
+      equippedDuffelStraps:
+        equipped-BACKPACK-decal-straps: Straps
+      equippedDuffelHandle:
+        equipped-BACKPACK-handle: Handle
+    # left hand
+      leftDuffelBase:
+        inhand-left-base: Base
+      leftDuffelSling:
+        inhand-left-sling: Sling
+      leftDuffelStraps:
+        inhand-left-decal-straps: Straps
+      leftDuffelHandle:
+        inhand-left-handle: Handle
+      leftDuffelZipper:
+        inhand-left-zipper: Zipper
+    # right hand
+      rightDuffelBase:
+        inhand-right-base: Base
+      rightDuffelSling:
+        inhand-right-sling: Sling
+      rightDuffelStraps:
+        inhand-right-decal-straps: Straps
+      rightDuffelHandle:
+        inhand-right-handle: Handle
+      rightDuffelZipper:
+        inhand-right-zipper: Zipper
+    mappedColors:
+      Base: Cyberpunk
+      Sling: Cyberpunk
+      Straps: Cyberpunk
+      Handle: Cyberpunk
+      Zipper: CyberpunkNeon

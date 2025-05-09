@@ -268,6 +268,32 @@
   # - type: GuideHelp # Frontier
   #   guides: # Frontier
   #   - Pirate # Frontier: eventually?  maybe?
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerPirateBounty
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerPirateBountyBroken
+  name: broken pirate bounty computer
+  description: This console has seen better days. Can be repaired with a repair kit.
+  components:
+  - type: Construction
+    graph: ComputerPirateBounty
+    node: start
 
 - type: entity
   name: plunder exchange computer
@@ -292,6 +318,32 @@
     cashType: Doubloon
     faction: Pirates
     locStringPrefix: pirate-
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerContrabandPalletConsolePirate
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerContrabandPalletConsolePirateBroken
+  name: broken plunder exchange computer
+  description: This console has seen better days. Can be repaired with a repair kit.
+  components:
+  - type: Construction
+    graph: ComputerContrabandPalletConsolePirate
+    node: start
 
 - type: entity
   name: pirate bounty redemption computer
@@ -325,6 +377,32 @@
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerPirateBountyRedemption
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerPirateBountyRedemptionBroken
+  name: broken pirate bounty redemption computer
+  description: This console has seen better days. Can be repaired with a repair kit.
+  components:
+  - type: Construction
+    graph: ComputerPirateBountyRedemption
+    node: start
 
 - type: entity
   id: ComputerSalvageExpeditionDebug

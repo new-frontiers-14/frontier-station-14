@@ -159,7 +159,7 @@
 - type: entity
   name: white office chair
   id: ChairOfficeLight
-  parent: OfficeChairBase
+  parent: RollingOfficeChairBase # Goobstation - rolling chair, definition under _Goobstation
   components:
   - type: Sprite
     state: office-white
@@ -198,6 +198,8 @@
   components:
   - type: Sprite
     state: shuttle
+  - type: Rotatable # Frontier
+    rotateWhileAnchored: true # Frontier
   - type: Construction
     graph: Seat
     node: chairPilotSeat
@@ -355,6 +357,7 @@
     graph: Seat
     node: chairFolding
   - type: DamageExaminable
+  - type: NFChairFolding # Frontier: Crafting
 
 - type: entity
   parent: ChairFolding

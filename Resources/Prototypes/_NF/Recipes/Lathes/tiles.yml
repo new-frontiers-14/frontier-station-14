@@ -17,10 +17,31 @@
 
 - type: latheRecipe
   abstract: true
+  id: NFBaseFloorTileGoldRecipe
+  parent: NFBaseFloorTileRecipe
+  materials:
+    Gold: 25
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseFloorTileWoodRecipe
+  parent: NFBaseFloorTileRecipe
+  materials:
+    Wood: 25
+
+- type: latheRecipe
+  abstract: true
   id: NFBaseFloorTileClothRecipe
   parent: NFBaseFloorTileRecipe
   materials:
     Cloth: 100
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseFloorTileBioRecipe
+  parent: NFBaseFloorTileRecipe
+  materials:
+    Biomass: 2
 
 # Recipes
 
@@ -58,10 +79,8 @@
 
 - type: latheRecipe
   id: FloorTileItemGold
-  parent: NFBaseFloorTileRecipe
+  parent: NFBaseFloorTileGoldRecipe
   result: FloorTileItemGold
-  materials:
-    Gold: 25
 
 - type: latheRecipe
   id: FloorTileItemMono
@@ -211,3 +230,83 @@
   result: FloorTileItemFlesh
   materials:
     Meaterial: 100
+
+- type: latheRecipe
+  id: FloorTileItemGoldMono
+  parent: NFBaseFloorTileGoldRecipe
+  result: FloorTileItemGoldMono
+
+- type: latheRecipe
+  id: FloorTileItemSilverMono
+  parent: NFBaseFloorTileSilverRecipe
+  result: FloorTileItemSilverMono
+
+- type: latheRecipe
+  id: FloorTileItemGreenMono
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemGreenMono
+
+- type: latheRecipe
+  id: FloorTileItemLightBlueMono
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemLightBlueMono
+
+- type: latheRecipe
+  id: FloorTileItemLightGreenMono
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemLightGreenMono
+
+- type: latheRecipe
+  id: FloorTileItemLightPinkMono
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemLightPinkMono
+
+- type: latheRecipe
+  id: FloorTileItemLightYellowMono
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemLightYellowMono
+
+- type: latheRecipe
+  id: FloorTileItemOrangeMono
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemOrangeMono
+
+- type: latheRecipe
+  id: FloorTileItemSus
+  parent: NFBaseFloorTileClothRecipe
+  result: FloorTileItemSus
+
+- type: latheRecipe
+  id: FloorTileItemLightRedMono
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemLightRedMono
+
+- type: latheRecipe
+  id: FloorTileItemRedMono
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemRedMono
+
+- type: latheRecipe
+  id: FloorTileItemCheckerboardWood
+  parent: NFBaseFloorTileWoodRecipe
+  result: FloorTileItemCheckerboardWood
+
+- type: latheRecipe
+  id: FloorTileItemLightMosaicWood
+  parent: NFBaseFloorTileWoodRecipe
+  result: FloorTileItemLightMosaicWood
+
+- type: latheRecipe
+  id: FloorTileItemFancyWood
+  parent: NFBaseFloorTileWoodRecipe
+  result: FloorTileItemFancyWood
+
+- type: latheRecipe
+  id: FloorTileItemVersaillesWood
+  parent: NFBaseFloorTileWoodRecipe
+  result: FloorTileItemVersaillesWood
+
+- type: latheRecipe
+  id: FloorTileItemCheese
+  parent: NFBaseFloorTileBioRecipe
+  result: FloorTileItemCheese

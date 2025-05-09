@@ -7,4 +7,6 @@ lathe-category-clothes-nf = Clothes
 lathe-category-medical-nf = Medical
 
 # Biogen
+lathe-category-nf-animal-cubes = Animal Cubes
 lathe-category-seeds = Seeds
+lathe-category-soda = Soda

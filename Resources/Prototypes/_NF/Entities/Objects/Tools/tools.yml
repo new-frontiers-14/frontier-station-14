@@ -63,3 +63,124 @@
   - type: ToolTileCompatible
   - type: UseDelay
     delay: 1
+
+- type: entity
+  name: pirate repair kit
+  parent: [BaseItem, BaseC3PirateContraband]
+  id: PirateRepairKit
+  description: A collection of equipment needed to repair a pirate console.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/toolbox_drop.ogg
+  - type: Sprite
+    sprite: _NF/Objects/Tools/Toolboxes/toolbox_pirate.rsi
+    state: icon
+  - type: NFPirateToolbox
+  - type: StaticPrice
+    price: 0
+  # Lines below taken from ToolboxBase.
+  - type: Item
+    size: Ginormous
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+
+#Other
+- type: entity
+  name: the people's shovel
+  parent: Shovel
+  id: NFShovel
+  description: "An old relic from the Glorious Leader. Capable of 18 functions, including digging, chopping, cutting, picking, prying, wire cutting, shoveling."
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/cm-shovel.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 11
+        Slash: 3
+        Structural: 1
+  - type: Item
+    sprite: _NF/Objects/Tools/cm-shovel.rsi
+  - type: StaticPrice
+    price: 2000
+  - type: Sharp
+  - type: ToolTileCompatible
+  - type: Prying
+    enabled: false
+  - type: Tag
+    tags:
+    - BotanyShovel
+    - Wirecutter
+    - Screwdriver
+    - Crowbar
+    - Pickaxe
+  - type: Tool
+    qualities:
+      - Digging
+    speedModifier: 0.4
+    useSound:
+      path: /Audio/Items/shovel_dig.ogg
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Digging
+        sprite:
+          sprite: _NF/Objects/Tools/cm-shovel.rsi
+          state: icon
+        useSound:
+          path: /Audio/Items/shovel_dig.ogg
+        changeSound:
+          path: /Audio/Items/shovel_dig.ogg
+      - behavior: Screwing
+        sprite:
+          sprite: _NF/Objects/Tools/cm-shovel.rsi
+          state: icon
+        useSound:
+          path: /Audio/Items/screwdriver.ogg
+        changeSound:
+          path: /Audio/Items/shovel_dig.ogg
+      - behavior: Anchoring
+        sprite:
+          sprite: _NF/Objects/Tools/cm-shovel.rsi
+          state: icon
+        useSound:
+          path: /Audio/Items/ratchet.ogg
+        changeSound:
+          path: /Audio/Items/shovel_dig.ogg
+      - behavior: 
+        - Prying
+        - Axing
+        sprite:
+          sprite: _NF/Objects/Tools/cm-shovel.rsi
+          state: icon
+        useSound:
+          path: /Audio/Items/crowbar.ogg
+        changeSound:
+          path: /Audio/Items/shovel_dig.ogg
+      - behavior: 
+        - Cutting
+        - Slicing
+        - Sawing
+        sprite:
+          sprite: _NF/Objects/Tools/cm-shovel.rsi
+          state: icon
+        useSound:
+          path: /Audio/Items/wirecutter.ogg
+        changeSound:
+          path: /Audio/Items/shovel_dig.ogg
+  - type: ThrowingAngle
+    angle: 45
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 4
+        Slash: 1
+  - type: BalloonPopper
+  - type: Utensil
+    types:
+      - Knife

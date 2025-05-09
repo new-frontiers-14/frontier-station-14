@@ -73,9 +73,12 @@ public abstract class SharedLatheSystem : EntitySystem
         if (!HasRecipe(uid, recipe, component))
             return false;
 
+        if (amount <= 0) // Frontier
+            return false; // Frontier
+
         foreach (var (material, needed) in recipe.Materials)
         {
-            var adjustedAmount = AdjustMaterial(needed, recipe.ApplyMaterialDiscount, component.MaterialUseMultiplier);
+            var adjustedAmount = AdjustMaterial(needed, recipe.ApplyMaterialDiscount, component.FinalMaterialUseMultiplier); // Frontier: FinalMaterialUseMultiplier<MaterialUseMultiplier
 
             if (_materialStorage.GetMaterialAmount(uid, material) < adjustedAmount * amount)
                 return false;

@@ -21,6 +21,12 @@ public sealed partial class IFFComponent : Component
     public IFFFlags Flags = IFFFlags.None;
 
     /// <summary>
+    /// Frontier: Shuttle service flags.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
+    public ServiceFlags ServiceFlags = ServiceFlags.None;
+
+    /// <summary>
     /// Color for this to show up on IFF.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
@@ -57,4 +63,16 @@ public enum IFFFlags : byte
     IsPlayerShuttle = 4,
 
     // TODO: Need one that hides its outline, just replace it with a bunch of triangles or lines or something.
+}
+
+/// <summary>
+/// Frontier: Shuttle service flags.
+/// </summary>
+[Flags]
+public enum ServiceFlags : byte
+{
+    None = 0,
+    Services = 1,
+    Trade = 2,
+    Social = 4,
 }

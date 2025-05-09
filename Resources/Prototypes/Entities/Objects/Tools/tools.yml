@@ -481,7 +481,10 @@
     soundHit:
       collection: MetalThud
   - type: Item
-    size: Normal
+    size: Large # Frontier Normal<Large
+    shape: # Frontier
+    - 0,0,3,0 # Frontier
+    storedRotation: 45 # Frontier
     sprite: Objects/Tools/shovel.rsi
   - type: PhysicalComposition
     materialComposition:
@@ -495,7 +498,7 @@
       - Digging
     speedModifier: 0.5 # Frontier
     useSound:
-      path: /Audio/Nyanotrasen/Items/shovel_dig.ogg
+      path: /Audio/Items/shovel_dig.ogg
   # - type: EarthDigging # Frontier
   - type: Shovel
   - type: ToolTileCompatible # Frontier

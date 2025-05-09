@@ -73,6 +73,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
 
         // Misc events
         SubscribeLocalEvent<HolopadUserComponent, EmoteEvent>(OnEmote);
+        SubscribeLocalEvent<HolopadUserComponent, NFEntityEmotedEvent>(OnCustomEmote); // Frontier
         SubscribeLocalEvent<HolopadUserComponent, JumpToCoreEvent>(OnJumpToCore);
         SubscribeLocalEvent<HolopadComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleProjectorVerb);
         SubscribeLocalEvent<HolopadComponent, EntRemovedFromContainerMessage>(OnAiRemove);
@@ -363,7 +364,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
                 continue;
 
             var receivingHolopads = GetLinkedHolopads(linkedHolopad);
-            var range = receivingHolopads.Count > 1 ? ChatTransmitRange.HideChat : ChatTransmitRange.GhostRangeLimit;
+            var range = receivingHolopads.Count > 1 ? ChatTransmitRange.HideChat : ChatTransmitRange.GhostRangeLimitNoAdminCheck; // Frontier: GhostRangeLimit<GhostRangeLimitNoAdminCheck
 
             foreach (var receiver in receivingHolopads)
             {
@@ -379,6 +380,37 @@ public sealed class HolopadSystem : SharedHolopadSystem
             }
         }
     }
+
+    // Frontier: allow custom emotes
+    private void OnCustomEmote(Entity<HolopadUserComponent> entity, ref NFEntityEmotedEvent args)
+    {
+        foreach (var linkedHolopad in entity.Comp.LinkedHolopads)
+        {
+            // Treat the ability to hear speech as the ability to also perceive emotes
+            // (these are almost always going to be linked)
+            if (!HasComp<ActiveListenerComponent>(linkedHolopad))
+                continue;
+
+            if (TryComp<TelephoneComponent>(linkedHolopad, out var linkedHolopadTelephone) && linkedHolopadTelephone.Muted)
+                continue;
+
+            var receivingHolopads = GetLinkedHolopads(linkedHolopad);
+            var range = receivingHolopads.Count > 1 ? ChatTransmitRange.HideChat : ChatTransmitRange.GhostRangeLimitNoAdminCheck;
+
+            foreach (var receiver in receivingHolopads)
+            {
+                if (receiver.Comp.Hologram == null)
+                    continue;
+
+                // Name is based on the physical identity of the user
+                var ent = Identity.Entity(entity, EntityManager);
+                var name = Loc.GetString("holopad-hologram-name", ("name", ent));
+
+                _chatSystem.TrySendInGameICMessage(receiver.Comp.Hologram.Value, args.Emote, InGameICChatType.Emote, range, nameOverride: name, checkRadioPrefix: false, ignoreActionBlocker: true);
+            }
+        }
+    }
+    // End Frontier: allow custom emotes
 
     private void OnJumpToCore(Entity<HolopadUserComponent> entity, ref JumpToCoreEvent args)
     {

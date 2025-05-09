@@ -20,7 +20,6 @@ public sealed partial class StationOrCrewLargeControl : PickerControl
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
         _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
-        _gameTicker.LobbyJobsAvailableUpdated += UpdateUi;
 
         StationButton.OnPressed += StationButtonOnOnPressed;
         CrewButton.OnPressed += CrewButtonOnOnPressed;
@@ -33,6 +32,12 @@ public sealed partial class StationOrCrewLargeControl : PickerControl
         NoStationsAvailableLabel.Visible = !StationJobInformationExtensions.IsAnyStationAvailable(obj);
         CrewButton.Disabled = !StationJobInformationExtensions.IsAnyCrewJobAvailable(obj);
         NoCrewsAvailableLabel.Visible = !StationJobInformationExtensions.IsAnyCrewJobAvailable(obj);
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
+        _gameTicker.LobbyJobsAvailableUpdated += UpdateUi;
     }
 
     protected override void ExitedTree()

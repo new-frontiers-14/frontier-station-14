@@ -20,38 +20,41 @@
     - type: AccessOverrider
       accessLevels:
       - Armory
-      - Atmospherics
-      - Bar
+      # - Atmospherics # Frontier
+      # - Bar # Frontier
+      - Bailiff # Frontier
       - Brig
-      - Detective
+      - Brigmedic # Frontier
       - Captain
-      - Cargo
-      - Chapel
-      - Chemistry
-      - ChiefEngineer
-      - ChiefMedicalOfficer
+      # - Cargo # Frontier
+      # - Chapel # Frontier
+      # - Chemistry # Frontier
+      # - ChiefEngineer # Frontier
+      # - ChiefMedicalOfficer # Frontier
       - Command
-      - Engineering
+      - Detective # Frontier - moved down
+      # - Engineering # Frontier
       - External
       - Frontier # Frontier
-      - HeadOfPersonnel
-      - HeadOfSecurity
-      - Hydroponics
+      # - Hydroponics # Frontier
       - Janitor
-      - Kitchen
-      - Lawyer
+      # - Kitchen # Frontier
+      # - Lawyer # Frontier
       - Mail # Frontier
       - Maintenance
       - Medical
       - Mercenary # Frontier
-      - Quartermaster
-      - Research
-      - ResearchDirector
-      - Salvage
+      # - Quartermaster # Frontier
+      # - Research # Frontier
+      # - ResearchDirector # Frontier
+      # - Salvage # Frontier
       - Security
+      - Sergeant # Frontier
       - Service
+      - HeadOfSecurity # Frontier: reordered for "Sheriff"
+      - HeadOfPersonnel # Frontier: reordered for "Station Representative"
       - StationTrafficController # Frontier
-      - Theatre
+      # - Theatre # Frontier
       privilegedIdSlot:
         name: id-card-console-privileged-id
         ejectSound: /Audio/Machines/id_swipe.ogg
@@ -92,10 +95,11 @@
   - type: AccessOverrider
     accessLevels:
     - Armory
+    - StationAi # Frontier: reordered for "Artificial Intelligence"
     - Atmospherics
     - Bar
     - Brig
-    - Detective
+    - Brigmedic # Frontier
     - Captain
     - Cargo
     - Chapel
@@ -104,12 +108,12 @@
     - ChiefMedicalOfficer
     - Command
     - Cryogenics
+    - Borg # Frontier: reordered for "Cyborg"
+    - Detective # Frontier: moved down
     - EmergencyShuttleRepealAll
     - Engineering
     - External
     - Frontier # Frontier
-    - HeadOfPersonnel
-    - HeadOfSecurity
     - Hydroponics
     - Janitor
     - Kitchen
@@ -122,9 +126,12 @@
     - Quartermaster
     - Research
     - ResearchDirector
+    - BasicSilicon # Frontier: reordered for "Robot"
     - Salvage
     - Security
     - Service
+    - HeadOfSecurity # Frontier: reordered for "Sheriff"
+    - HeadOfPersonnel # Frontier: reordered for "Station Representative"
     - StationTrafficController # Frontier
     - Theatre
     - CentralCommand

@@ -27,7 +27,7 @@ namespace Content.IntegrationTests.Tests.GameRules
             MaxTimeRestartRuleComponent maxTime = null;
             await server.WaitPost(() =>
             {
-                sGameTicker.StartGameRule("MaxTimeRestart", out var ruleEntity);
+                sGameTicker.StartGameRule("NFMaxTimeRestart", out var ruleEntity); // Frontier: use NF variant (upstream abstracted)
                 Assert.That(entityManager.TryGetComponent<MaxTimeRestartRuleComponent>(ruleEntity, out maxTime));
             });
 

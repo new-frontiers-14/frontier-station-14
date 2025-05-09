@@ -2,29 +2,31 @@ using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 using Content.Server.Salvage.Magnet;
+using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Procedural;
 using Content.Shared.Radio;
 using Content.Shared.Salvage.Magnet;
 using Robust.Shared.Exceptions;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Salvage;
 
 public sealed partial class SalvageSystem
 {
-    [Dependency] private readonly IRuntimeLog _runtimeLog = default!;
-
     [ValidatePrototypeId<RadioChannelPrototype>]
     private const string MagnetChannel = "Supply";
 
     private EntityQuery<SalvageMobRestrictionsComponent> _salvMobQuery;
+    private EntityQuery<MobStateComponent> _mobStateQuery;
 
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _detachEnts = new();
 
     private void InitializeMagnet()
     {
         _salvMobQuery = GetEntityQuery<SalvageMobRestrictionsComponent>();
+        _mobStateQuery = GetEntityQuery<MobStateComponent>();
 
         SubscribeLocalEvent<SalvageMagnetDataComponent, MapInitEvent>(OnMagnetDataMapInit);
 
@@ -45,19 +47,7 @@ public sealed partial class SalvageSystem
             return;
         }
 
-        var index = args.Index;
-        async void TryTakeMagnetOffer()
-        {
-            try
-            {
-                await TakeMagnetOffer((station.Value, dataComp), index, (uid, component));
-            }
-            catch (Exception e)
-            {
-                _runtimeLog.LogException(e, $"{nameof(SalvageSystem)}.{nameof(TakeMagnetOffer)}");
-            }
-        }
-        TryTakeMagnetOffer();
+        TakeMagnetOffer((station.Value, dataComp), args.Index, (uid, component));
     }
 
     private void OnMagnetStartup(EntityUid uid, SalvageMagnetComponent component, ComponentStartup args)
@@ -153,6 +143,21 @@ public sealed partial class SalvageSystem
                     continue;
 
                 if (_salvMobQuery.HasComp(mobUid))
+                    continue;
+
+                bool CheckParents(EntityUid uid)
+                {
+                    do
+                    {
+                        uid = _transform.GetParentUid(uid);
+                        if (_mobStateQuery.HasComp(uid))
+                            return true;
+                    }
+                    while (uid != xform.GridUid && uid != EntityUid.Invalid);
+                    return false;
+                }
+
+                if (CheckParents(mobUid))
                     continue;
 
                 // Can't parent directly to map as it runs grid traversal.
@@ -280,12 +285,12 @@ public sealed partial class SalvageSystem
         {
             case AsteroidOffering asteroid:
                 var grid = _mapManager.CreateGridEntity(salvMap);
-                await _dungeon.GenerateDungeonAsync(asteroid.DungeonConfig, asteroid.Id, grid.Owner, grid.Comp, Vector2i.Zero, seed); // Frontier: added asteroid.Id - FIXME: value makes no sense.
+                await _dungeon.GenerateDungeonAsync(asteroid.DungeonConfig, asteroid.Id, grid.Owner, grid.Comp, Vector2i.Zero, seed); // Frontier: add asteroid.Id
                 break;
             case DebrisOffering debris:
                 var debrisProto = _prototypeManager.Index<DungeonConfigPrototype>(debris.Id);
                 var debrisGrid = _mapManager.CreateGridEntity(salvMap);
-                await _dungeon.GenerateDungeonAsync(debrisProto, debrisProto.ID, debrisGrid.Owner, debrisGrid.Comp, Vector2i.Zero, seed); // Frontier: debrisProto.ID
+                await _dungeon.GenerateDungeonAsync(debrisProto, debris.Id, debrisGrid.Owner, debrisGrid.Comp, Vector2i.Zero, seed); // Frontier: add debris.Id
                 break;
             case SalvageOffering wreck:
                 var salvageProto = wreck.SalvageMap;

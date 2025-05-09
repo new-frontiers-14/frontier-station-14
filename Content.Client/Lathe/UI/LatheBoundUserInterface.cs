@@ -1,3 +1,4 @@
+using Content.Shared._NF.Lathe; // Frontier
 using Content.Shared.Lathe;
 using Content.Shared.Research.Components;
 using JetBrains.Annotations;
@@ -30,6 +31,13 @@ namespace Content.Client.Lathe.UI
             {
                 SendMessage(new LatheQueueRecipeMessage(recipe, amount));
             };
+
+            // Frontier: lathe queue manipulation messages
+            _menu.QueueDeleteAction += index => SendMessage(new LatheDeleteRequestMessage(index));
+            _menu.QueueMoveUpAction += index => SendMessage(new LatheMoveRequestMessage(index, -1));
+            _menu.QueueMoveDownAction += index => SendMessage(new LatheMoveRequestMessage(index, 1));
+            _menu.DeleteFabricatingAction += () => SendMessage(new LatheAbortFabricationMessage());
+            // End Frontier
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)
