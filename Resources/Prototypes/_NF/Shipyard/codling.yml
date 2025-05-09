@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Codling
+  parent: BaseVessel
+  name: MOFF Codling
+  description: A cargo container outfitted to be space-capable and equipped for salvaging and mining either on its own or as part of a fleet. Manufactured by Langstad-Voigt Heavy Industries.
+  price: 100 # ~9781$ on mapinit + 15% markup
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/Codling.yml
+  guidebookPage: Null
+  class:
+  - Salvage
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Codling
+  mapName: 'MOFF Codling'
+  mapPath: /Maps/_NF/Shuttles/Codling.yml
+  minPlayers: 0
+  stations:
+    Codling:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Codling {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Contractor: [ 0, 0 ]
+          Pilot: [ 0, 0 ]
+          Mercenary: [ 0, 0 ]
