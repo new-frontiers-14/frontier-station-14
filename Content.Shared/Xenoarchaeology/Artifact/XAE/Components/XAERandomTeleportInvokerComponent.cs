@@ -13,7 +13,7 @@ public sealed partial class XAERandomTeleportInvokerComponent : Component
     /// The max distance that the artifact will teleport.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float MaxRange = 15f;
+    public float MaxRange = 30f; // Frontier: 15<30
 
     /// <summary>
     /// The min distance that the artifact will teleport.

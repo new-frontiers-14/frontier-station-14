@@ -13,4 +13,12 @@ public sealed partial class XAEPortalComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntProtoId PortalProto = "PortalArtifact";
+
+    // Frontier: range limit
+    /// <summary>
+    /// Maximum range that the target entity should be from the portal, in meters.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float MaxRange = 1000f;
+    // End Frontier
 }
