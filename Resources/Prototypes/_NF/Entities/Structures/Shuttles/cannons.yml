@@ -44,3 +44,68 @@
     magState: mag
     steps: 3
     zeroVisible: false
+
+- type: entity
+  id: NFShuttleGunKinetic
+  parent: [ ShuttleGunBase, ConstructibleMachine]
+  name: PTK-1500e "Matter Dematerializer"
+  description: Mining turret, Great for mining from afar provided ammo is supplied.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shuttles/kinetic.rsi
+    layers:
+    - state: ptk-800
+    - state: mag-7
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 2
+    selectedMode: SemiAuto
+    angleDecay: 45
+    minAngle: 5
+    maxAngle: 15
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      params:
+        variation: 0.12
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        insertSound:
+          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+          params:
+            pitch: 2
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        whitelist:
+          tags:
+            - MagazinePTK
+        gun_chamber:
+          name: Chamber
+          startingItem: CartridgePTK
+          priority: 1
+          whitelist:
+          tags:
+            - CartridgePTK
+  - type: Machine
+    board: NFShuttleGunKineticMachineCircuitboard
+  - type: ExtensionCableReceiver # Frontier
+  - type: ApcPowerReceiver # Frontier
+    powerLoad: 1500 # Frontier

@@ -1,0 +1,14 @@
+- type: entity
+  id: CartridgePTK
+  name: cartridge (PTK)
+  parent: CartridgeLightRifleRubber
+  components:
+  - type: CartridgeAmmo
+    proto: BulletKineticShuttle
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Tag
+    tags:
+      - CartridgePTK
