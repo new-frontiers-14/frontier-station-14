@@ -16,10 +16,10 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Server.Materials.Components; // Frontier
 using System.Linq;
 using Content.Shared.Research.Prototypes;
-using Content.Server._NF.Cargo.Components;
+using Content.Server._NF.Cargo.Components; // Frontier
+using Content.Server.Materials.Components; // Frontier
 
 namespace Content.Server.Cargo.Systems;
 
