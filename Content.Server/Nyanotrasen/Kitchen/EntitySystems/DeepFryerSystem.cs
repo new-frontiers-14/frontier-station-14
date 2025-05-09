@@ -55,6 +55,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared._NF.Kitchen.Components; // Frontier
 using Content.Server._NF.Kitchen.Components; // Frontier
+using Content.Shared.NameModifier.EntitySystems; // Frontier
 
 namespace Content.Server.Nyanotrasen.Kitchen.EntitySystems;
 
@@ -81,6 +82,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     [Dependency] private readonly AmbientSoundSystem _ambientSoundSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly NameModifierSystem _nameModifier = default!; // Frontier
 
     private static readonly string CookingDamageType = "Heat";
     private static readonly float CookingDamageAmount = 10.0f;
@@ -743,8 +745,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
 
     private void OnInitDeepFried(EntityUid uid, DeepFriedComponent component, ComponentInit args)
     {
-        var meta = MetaData(uid);
-        component.OriginalName = meta.EntityName;
+        component.OriginalName = _nameModifier.GetBaseName(uid); // Frontier: prevent reapplying name modifiers
         UpdateDeepFriedName(uid, component);
     }
 
