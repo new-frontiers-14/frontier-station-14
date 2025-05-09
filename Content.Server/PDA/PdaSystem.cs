@@ -195,12 +195,16 @@ namespace Content.Server.PDA
 
             var programs = _cartridgeLoader.GetAvailablePrograms(uid, loader);
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
-            var balance = 0; // frontier
-            if (actorUid != null && TryComp<BankAccountComponent>(actorUid, out var account)) // frontier
-                balance = account.Balance; // frontier
-            var ownedShipName = ""; // Frontier
-            if (TryComp<ShuttleDeedComponent>(pda.ContainedId, out var shuttleDeedComp)) // Frontier
-                ownedShipName = ShipyardSystem.GetFullName(shuttleDeedComp); // Frontier
+
+            // Frontier: balance & ship deeds
+            var balance = 0;
+            if (actorUid != null && TryComp<BankAccountComponent>(actorUid, out var account))
+                balance = account.Balance;
+            var ownedShipName = "";
+            if (TryComp<ShuttleDeedComponent>(pda.ContainedId, out var shuttleDeedComp))
+                ownedShipName = ShipyardSystem.GetFullName(shuttleDeedComp);
+            // End Frontier: balance & ship deeds
+
             var state = new PdaUpdateState(
                 programs,
                 GetNetEntity(loader.ActiveProgram),
