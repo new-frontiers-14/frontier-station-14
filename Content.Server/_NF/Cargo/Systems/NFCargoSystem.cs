@@ -20,7 +20,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Whitelist;
 using Content.Server._NF.Bank;
 using Robust.Server.Containers;
-using Robust.Shared.Containers;
 
 namespace Content.Server._NF.Cargo.Systems;
 

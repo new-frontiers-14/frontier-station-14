@@ -5,6 +5,7 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.PacifiedZone;
 
@@ -17,7 +18,7 @@ public sealed class PacifiedZoneGeneratorSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly AdminSystem _admin = default!;
 
-    private const string Alert = "PacifiedZone";
+    private static readonly ProtoId<AlertPrototype> AlertProto = "PacifiedZone";
 
     public override void Initialize()
     {
@@ -118,12 +119,12 @@ public sealed class PacifiedZoneGeneratorSystem : EntitySystem
     private void EnableAlert(EntityUid entity, PacifiedComponent pacified)
     {
         _alerts.ClearAlert(entity, pacified.PacifiedAlert);
-        _alerts.ShowAlert(entity, Alert);
+        _alerts.ShowAlert(entity, AlertProto);
     }
 
     // Hides our pacified zone alert.
     private void DisableAlert(EntityUid entity)
     {
-        _alerts.ClearAlert(entity, Alert);
+        _alerts.ClearAlert(entity, AlertProto);
     }
 }
