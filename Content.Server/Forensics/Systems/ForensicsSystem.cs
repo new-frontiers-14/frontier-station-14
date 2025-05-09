@@ -317,7 +317,6 @@ namespace Content.Server.Forensics
 
                 if (HasComp<FingerprintMaskComponent>(gloves))
                     return;
-                // FRONTIER MERGE: is this fine?
             }
 
             if (TryComp<FingerprintComponent>(user, out var fingerprint) && CanAccessFingerprint(user, out _))
