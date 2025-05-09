@@ -369,29 +369,6 @@
 
 #region Other
 - type: entity
-  id: LockerWallChemistry
-  parent: [BaseStructureWallmount, LockerWallMedical]
-  name: chemistry wall locker
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Storage/wall_locker.rsi
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: med
-    stateDoorOpen: med_open
-    stateDoorClosed: chem_door
-  - type: ContainerContainer
-    containers:
-      entity_storage: !type:Container
-        showEnts: False
-        occludes: True
-        ents: []
-      paper_label: !type:ContainerSlot
-        showEnts: False
-        occludes: True
-        ent: null
-
-- type: entity
   id: ClosetWallN2
   name: emergency nitrogen wall closet
   parent: BaseWallCloset
