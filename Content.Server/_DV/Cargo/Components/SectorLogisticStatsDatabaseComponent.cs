@@ -1,5 +1,4 @@
 using Content.Server._DV.Cargo.Systems;
-using Content.Shared.Cargo;
 using Content.Shared.CartridgeLoader.Cartridges;
 
 namespace Content.Server._DV.Cargo.Components;

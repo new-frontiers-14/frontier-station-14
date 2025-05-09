@@ -407,7 +407,10 @@ public abstract partial class SharedXenoArtifactSystem
         nodeComponent.ResearchValue = (int)(Math.Pow(1.25, Math.Pow(predecessorNodes.Count, 1.5f)) * nodeComponent.BasePointValue * durabilityMultiplier);
         // Frontier: remove value from using artifexium
         if (node.Comp.ArtifexiumUsed)
+        {
+            nodeComponent.ResearchValue -= 500;
             nodeComponent.ResearchValue /= 2;
+        }
         // End Frontier: remove value from using artifexium
 
     }

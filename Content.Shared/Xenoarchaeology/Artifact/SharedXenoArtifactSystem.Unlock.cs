@@ -82,7 +82,7 @@ public abstract partial class SharedXenoArtifactSystem
             if (ent.Comp1.ArtifexiumApplied)
             {
                 node.Value.Comp.ArtifexiumUsed = true;
-                node.Value.Comp.ResearchValue = 0;
+                UpdateNodeResearchValue(node.Value);
                 Dirty(node.Value);
             }
             // End Frontier
