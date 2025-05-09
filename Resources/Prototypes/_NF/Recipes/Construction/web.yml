@@ -1,3 +1,4 @@
+
 - type: construction
   name: web nest
   id: WebNest
@@ -13,5 +14,8 @@
   placementMode: SnapgridCenter
   canRotate: false
   canBuildInImpassable: false
+  entityWhitelist:
+    tags:
+    - SpiderCraft
   conditions:
     - !type:TileNotBlocked
