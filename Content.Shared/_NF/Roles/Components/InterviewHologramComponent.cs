@@ -11,7 +11,7 @@ namespace Content.Shared._NF.Roles.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class InterviewHologramComponent : Component
 {
-    // Hologram parameters:
+    #region Hologram
     /// <summary>
     /// Name of the shader to use
     /// </summary>
@@ -59,8 +59,15 @@ public sealed partial class InterviewHologramComponent : Component
     /// </summary>
     [DataField(serverOnly: true)]
     public bool AppearanceApplied;
+    #endregion Hologram
 
-    // Application parameters:
+    #region Interview
+    /// <summary>
+    /// The job this user is applying for.
+    /// </summary>
+    [DataField]
+    public EntityUid Station;
+
     /// <summary>
     /// The job this user is applying for.
     /// </summary>
@@ -84,9 +91,9 @@ public sealed partial class InterviewHologramComponent : Component
     /// </summary>
     [DataField(serverOnly: true)]
     public bool NotificationsSent;
+    #endregion Interview
 
-    // Action parameters:
-
+    #region Actions
     [DataField]
     public EntProtoId ToggleApprovalAction = "ActionInterviewToggleApproval";
 
@@ -97,4 +104,5 @@ public sealed partial class InterviewHologramComponent : Component
 
     [DataField, AutoNetworkedField]
     public EntityUid? CancelApplicationActionEntity;
+    #endregion Actions
 }

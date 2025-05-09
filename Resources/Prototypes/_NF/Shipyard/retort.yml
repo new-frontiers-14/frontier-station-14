@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Retort
+  parent: BaseVessel
+  name: FSB Retort
+  description: A medium engineering vessel designed and deployed by the Far Star Biotech corporation to provide infrastructure support for deep space operations.
+  price: 60000 # TODO: Get eggs at store - Dusty Lens
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/retort.yml
+  guidebookPage: ShipyardRetort
+  class:
+  - Atmospherics
+  engine:
+  - Bananium
+
+- type: gameMap
+  id: Retort
+  mapName: 'FSB Retort'
+  mapPath: /Maps/_NF/Shuttles/retort.yml
+  minPlayers: 0
+  stations:
+    Retort:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Retort {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
