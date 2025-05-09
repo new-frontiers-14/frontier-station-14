@@ -103,6 +103,7 @@
   - type: InstantAction
     icon: _NF/Interface/Actions/acceptOff.png
     iconOn: _NF/Interface/Actions/accept.png
+    checkCanInteract: false
     itemIconStyle: NoItem
     useDelay: 3
     event: !type:ToggleApplicantApprovalEvent
@@ -114,6 +115,7 @@
   components:
   - type: InstantAction
     icon: _NF/Interface/Actions/paperFire.png
+    checkCanInteract: false
     itemIconStyle: NoItem
     useDelay: 3
     event: !type:CancelInterviewEvent
