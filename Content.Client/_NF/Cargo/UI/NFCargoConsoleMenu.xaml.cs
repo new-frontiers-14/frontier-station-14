@@ -142,10 +142,11 @@ public sealed partial class NFCargoConsoleMenu : FancyWindow
     /// <summary>
     ///     Populates the list of orders and requests.
     /// </summary>
-    public void PopulateOrders(IEnumerable<NFCargoOrderData> orders)
+    public void PopulateOrders(IEnumerable<NFCargoOrderData> orders, int orderCapacity)
     {
         Orders.DisposeAllChildren();
 
+        var quantitySum = 0;
         foreach (var order in orders)
         {
             if (!_protoManager.TryIndex<EntityPrototype>(order.ProductId, out var product))
@@ -174,7 +175,9 @@ public sealed partial class NFCargoConsoleMenu : FancyWindow
                 }
             };
             Orders.AddChild(row);
+            quantitySum += order.OrderQuantity - order.NumDispatched;
         }
+        ShuttleCapacityLabel.Text = Loc.GetString("cargo-console-menu-nf-order-capacity", ("count", quantitySum), ("capacity", orderCapacity));
     }
 
     public void UpdateBankData(string name, int bankBalance)

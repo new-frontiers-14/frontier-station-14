@@ -145,7 +145,23 @@ public sealed partial class CreditsWindow : DefaultWindow
                     if (statesNode is not SequenceDataNode states)
                         throw new Exception("Missing a list of states.");
 
-                    var copyright = copyrightNode.ToString();
+                    // Frontier: handle copyright lists
+                    string copyright;
+                    if (copyrightNode is SequenceDataNode copyrightSequence)
+                    {
+                        copyright = string.Empty;
+                        foreach (var value in copyrightSequence)
+                        {
+                            if (!string.IsNullOrEmpty(copyright))
+                                copyright += "\n";
+                            copyright += value.ToString();
+                        }
+                    }
+                    else
+                    {
+                        copyright = copyrightNode.ToString();
+                    }
+                    // End Frontier
                     var files = states.Select(n => (MappingDataNode)n)
                         .Select(n => n.Get("name") + ".png");
 

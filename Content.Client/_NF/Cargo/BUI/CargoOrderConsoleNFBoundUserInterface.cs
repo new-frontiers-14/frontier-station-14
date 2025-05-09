@@ -104,7 +104,7 @@ public sealed class CargoOrderConsoleNFBoundUserInterface : BoundUserInterface
 
         _menu.PopulateProducts();
         _menu.PopulateCategories();
-        _menu.PopulateOrders(orders);
+        _menu.PopulateOrders(orders, OrderCapacity);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

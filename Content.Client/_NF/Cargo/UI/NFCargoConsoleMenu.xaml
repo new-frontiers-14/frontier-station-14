@@ -17,6 +17,12 @@
                    Text="-" />
         </BoxContainer>
         <BoxContainer Orientation="Horizontal">
+            <Label Text="{Loc 'cargo-console-menu-order-capacity-label'}"
+                   StyleClasses="LabelKeyText" />
+            <Label Name="ShuttleCapacityLabel"
+                   Text="0/20" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal">
             <OptionButton Name="Categories"
                           Prefix="{Loc 'cargo-console-menu-categories-label'}"
                           HorizontalExpand="True" />

@@ -1,6 +1,7 @@
 ## UI
 cargo-console-menu-nf-populate-orders-cargo-order-row-product-name-text = {CAPITALIZE($productName)} (x{$total}) for {$purchaser}
 cargo-console-menu-nf-populate-orders-cargo-order-row-product-quantity-text = {$remaining} left
+cargo-console-menu-nf-order-capacity = {$count}/{$capacity}
 cargo-console-order-nf-menu-notes-label = Notes:
 
 ## Orders
