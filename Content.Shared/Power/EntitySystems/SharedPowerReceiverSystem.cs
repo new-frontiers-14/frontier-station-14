@@ -47,7 +47,7 @@ public abstract class SharedPowerReceiverSystem : EntitySystem
     /// Turn this machine on or off.
     /// Returns true if we turned it on, false if we turned it off.
     /// </summary>
-    protected bool TogglePower(EntityUid uid, bool playSwitchSound = true, SharedApcPowerReceiverComponent? receiver = null, EntityUid? user = null) // Frontier: public<private (intentional breaks)
+    protected bool TogglePower(EntityUid uid, bool playSwitchSound = true, SharedApcPowerReceiverComponent? receiver = null, EntityUid? user = null) // Frontier: public<protected (intentional with upstream EMP cherry-pick, should show breaks)
     {
         if (!ResolveApc(uid, ref receiver))
             return true;
@@ -78,8 +78,8 @@ public abstract class SharedPowerReceiverSystem : EntitySystem
         // NOOP on server because client has 0 idea of load so we can't raise it properly in shared.
     }
 
-	/// <summary>
-	/// Checks if entity is APC-powered device, and if it have power.
+    /// <summary>
+    /// Checks if entity is APC-powered device, and if it have power.
     /// </summary>
     public bool IsPowered(Entity<SharedApcPowerReceiverComponent?> entity)
     {

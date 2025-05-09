@@ -378,7 +378,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             -dockRadius * UIScale,
             -dockRadius * UIScale,
             (Size.X + dockRadius) * UIScale,
-            (Size.Y + dockRadius) * UIScale); // FRONTIER MERGE: does this work?
+            (Size.Y + dockRadius) * UIScale);
 
         if (_docks.TryGetValue(nent, out var docks))
         {
