@@ -2,7 +2,6 @@ using Content.Shared._EstacaoPirata.Cards.Hand;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
-using Robust.Client.UserInterface;
 
 namespace Content.Client._EstacaoPirata.Cards.Hand.UI;
 

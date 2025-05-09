@@ -9,12 +9,13 @@ using Content.Shared.Shuttles.Components;
 using Robust.Client.Graphics;
 using Robust.Shared.Collections;
 
+// Purposefully colliding with base namespace.
 namespace Content.Client.Shuttles.UI;
 
 public sealed partial class ShuttleNavControl
 {
     public InertiaDampeningMode DampeningMode { get; set; }
-    public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None; // Frontier
+    public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None;
 
     private void NfUpdateState(NavInterfaceState state)
     {

@@ -19,9 +19,12 @@ public sealed class CargoPalletConsoleNFBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        _menu = this.CreateWindow<CargoPalletMenu>();
-        _menu.AppraiseRequested += OnAppraisal;
-        _menu.SellRequested += OnSell;
+        if (_menu == null)
+        {
+            _menu = this.CreateWindow<CargoPalletMenu>();
+            _menu.AppraiseRequested += OnAppraisal;
+            _menu.SellRequested += OnSell;
+        }
     }
 
     private void OnAppraisal()
