@@ -3,12 +3,14 @@ using Content.Shared.Charges.Components;
 using Content.Shared.Examine;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
+using Robust.Shared.Serialization; // Frontier
 
 namespace Content.Shared.Charges.Systems;
 
 public abstract class SharedChargesSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming _timing = default!;
+    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!; // Frontier
 
     /*
      * Despite what a bunch of systems do you don't need to continuously tick linear number updates and can just derive it easily.
@@ -126,6 +128,10 @@ public abstract class SharedChargesSystem : EntitySystem
 
         action.Comp1.LastCharges = Math.Clamp(action.Comp1.LastCharges + addCharges, 0, action.Comp1.MaxCharges);
         Dirty(action.Owner, action.Comp1);
+        // Frontier: set visuals
+        Appearance.SetData(action, LimitedChargeVisuals.Charges, action.Comp1.LastCharges);
+        Appearance.SetData(action, LimitedChargeVisuals.MaxCharges, action.Comp1.MaxCharges);
+        // End Frontier: set visuals
     }
 
     public bool TryUseCharge(Entity<LimitedChargesComponent?> entity)
@@ -236,3 +242,12 @@ public abstract class SharedChargesSystem : EntitySystem
             entity.Comp1.MaxCharges);
     }
 }
+
+// Frontier: limited charge visuals
+[Serializable, NetSerializable]
+public enum LimitedChargeVisuals : byte
+{
+    Charges,
+    MaxCharges
+}
+// End Frontier
