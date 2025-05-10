@@ -232,7 +232,6 @@
   parent: [ ClosetWallEmergency, StorageFillO2 ]
   id: ClosetWallO2Filled
   suffix: Filled
-
 # endregion
 
 # region Safety gear
@@ -266,21 +265,52 @@
   - LockerMedicalFilled
   name: medical doctor's wall locker
   suffix: Filled, Frontier
+  components: # fixes sprite errors from parenting
+  - type: EntityStorageVisuals
+    stateBaseClosed: base
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      paper_label: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      entity_storage: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 
 - type: entity
   id: LockerWallColorMedicalFilled
   parent:
   - LockerWallColorMedical
+  - BaseStructureWallmount
   - LockerWallMedicalFilled
   name: medicine wall locker
   suffix: Filled, Frontier
+  components: # fixes sprite errors from parenting
+  - type: EntityStorageVisuals
+    stateBaseClosed: base
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      entity_storage: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 # endregion
 
 # region Chemistry
-- type: entity
-  id: LockerWallChemistryFilled
-  parent: [LockerWallChemistry, LockerChemistryFilled]
-
 - type: entity
   id: LockerWallColorChemistryFilled
   suffix: Filled, Frontier
@@ -289,6 +319,25 @@
   - BaseStructureWallmount
   - LockerChemistryFilled
   name: chemistry wall locker
+  components: # fixes sprite errors from parenting
+  - type: EntityStorageVisuals
+    stateBaseClosed: base
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      paper_label: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      entity_storage: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 # endregion
 
 # region Departments
@@ -296,12 +345,36 @@
   id: LockerWallColorHydroponicsFilled
   suffix: Filled, Frontier
   parent: [LockerWallColorHydroponics, LockerBotanistFilled]
+  components: # fixes sprite errors from parenting
+  - type: EntityStorageVisuals
+    stateBaseClosed: base
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      paper_label: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      entity_storage: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 
 - type: entity
   id: LockerWallColorHydroponicsEmpty
   suffix: Empty, Frontier
   parent:
   - LockerWallColorHydroponics
-  - BaseStructureWallmount  
+  - BaseStructureWallmount
   name: botanist wall locker
+  components: # fixes sprite errors from parenting
+  - type: EntityStorageVisuals
+    stateBaseClosed: base
+    stateDoorOpen: open
+    stateDoorClosed: door
 # endregion
