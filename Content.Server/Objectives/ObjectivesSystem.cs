@@ -1,6 +1,5 @@
 using Content.Server.GameTicking;
 using Content.Server.Shuttles.Systems;
-using Content.Shared._DV.CustomObjectiveSummary; // DeltaV
 using Content.Shared.Cuffs.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
@@ -13,14 +12,15 @@ using Robust.Shared.Random;
 using System.Linq;
 using System.Text;
 using Content.Server.Objectives.Commands;
-using Content.Shared._DV.CCVars;
-using Content.Shared._DV.CustomObjectiveSummary; // DeltaV
 using Content.Shared.CCVar;
 using Content.Shared.Prototypes;
 using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
+using Content.Shared._DV.CCVars; // DeltaV
+using Content.Shared._DV.CustomObjectiveSummary; // DeltaV
+using Content.Shared._NF.CCVar; // Frontier
 
 namespace Content.Server.Objectives;
 
@@ -38,6 +38,8 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
 
     private bool _showGreentext;
 
+    private bool _showObjectives; // Frontier: hide objectives
+
     private int _maxLengthSummaryLength; // DeltaV
 
     public override void Initialize()
@@ -47,6 +49,8 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
 
         Subs.CVar(_cfg, CCVars.GameShowGreentext, value => _showGreentext = value, true);
+
+        Subs.CVar(_cfg, NFCCVars.GameShowObjectives, value => _showObjectives = value, true); // Frontier
 
         Subs.CVar(_cfg, DCCVars.MaxObjectiveSummaryLength, len => _maxLengthSummaryLength = len, true); // DeltaV
 
@@ -65,6 +69,10 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     /// </summary>
     private void OnRoundEndText(RoundEndTextAppendEvent ev)
     {
+        // Frontier: hide objectives
+        if (!_showObjectives)
+            return;
+
         // go through each gamerule getting data for the roundend summary.
         var summaries = new Dictionary<string, Dictionary<string, List<(EntityUid, string)>>>();
         var query = EntityQueryEnumerator<GameRuleComponent>();
@@ -194,7 +202,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                         agentSummary.AppendLine(Loc.GetString(
                             "objectives-objective-fail",
                             ("objective", objectiveTitle),
-                            ("progress", (int)(progress * 100)),
+                            ("progress", (int) (progress * 100)),
                             ("markupColor", "red")
                         ));
                     }
