@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 251.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 05/03/2025 11:48:37
+  entityCount: 476
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   33: FloorDark
@@ -2186,7 +2197,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,8.5
       parent: 1
-- proto: M_Emp
+- proto: MobileEmpGenerator
   entities:
   - uid: 156
     components:
@@ -2766,6 +2777,13 @@ entities:
     components:
     - type: Transform
       pos: 4.5,3.5
+      parent: 1
+- proto: ToolboxMechanicalFilledAllTools
+  entities:
+  - uid: 476
+    components:
+    - type: Transform
+      pos: 7.3817058,-1.5259165
       parent: 1
 - proto: VendingMachineTankDispenserEVA
   entities:

@@ -1,0 +1,119 @@
+# region Entities
+- type: entity
+  parent: BaseMob
+  id: InterviewHologram
+  abstract: true
+  components:
+  # Cherry-picking stuff from BaseMobSpecies
+  - type: Sprite
+    drawdepth: Mobs
+  - type: StatusIcon
+    bounds: -0.5,-0.5,0.5,0.5
+  - type: HumanoidAppearance
+    species: Human
+  - type: Fixtures
+    fixtures: # Fixtures taken from species/base.yml
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 185
+        restitution: 0.0
+        mask:
+        - SmallMobMask # Pass "through" doors
+        layer:
+        - SmallMobLayer # Pass "through" doors
+  - type: FloorOcclusion
+  - type: Identity
+  - type: AnimationPlayer
+  - type: SSDIndicator
+  - type: MindContainer
+    showExamineInfo: true
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Emoting
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: Inventory
+    templateId: hostilehumanoid # Supports loadouts
+  - type: InventorySlots
+  - type: InteractionOutline
+  - type: Clickable
+  - type: MobState # if this is missing, it'll be dead, and ghosting keeps the mind around, which is bad.
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3.5
+  # Interview-specific things
+  - type: InterviewHologram
+    shaderName: Hologram
+    color1: "#65b8e2"
+    color2: "#3a6981"
+    alpha: 0.9
+    intensity: 2
+    scrollRate: 0.125
+  - type: NFSalvageMobRestrictions
+    leaveGridPopup: hologram-return-to-shuttle
+    addComponentsLeaveGrid:
+    - type: TimedDespawn
+      lifetime: 10
+    removeComponentsReturnGrid:
+    - type: TimedDespawn
+  - type: ActionsContainer
+
+- type: entity
+  id: InterviewHologramContractor
+  parent: InterviewHologram
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: InterviewHologram
+    job: Contractor
+
+- type: entity
+  id: InterviewHologramPilot
+  parent: InterviewHologram
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: InterviewHologram
+    job: Pilot
+
+- type: entity
+  id: InterviewHologramMercenary
+  parent: InterviewHologram
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: InterviewHologram
+    job: Mercenary
+
+# region Actions
+
+- type: entity
+  id: ActionInterviewToggleApproval
+  name: Toggle Approval
+  description: Toggles whether or not you approve to work with this crew.
+  components:
+  - type: InstantAction
+    icon: _NF/Interface/Actions/acceptOff.png
+    iconOn: _NF/Interface/Actions/accept.png
+    itemIconStyle: NoItem
+    useDelay: 3
+    event: !type:ToggleApplicantApprovalEvent
+
+- type: entity
+  id: ActionInterviewCancel
+  name: Cancel Application
+  description: Cancel your application and return to the lobby.
+  components:
+  - type: InstantAction
+    icon: _NF/Interface/Actions/paperFire.png
+    itemIconStyle: NoItem
+    useDelay: 3
+    event: !type:CancelInterviewEvent
