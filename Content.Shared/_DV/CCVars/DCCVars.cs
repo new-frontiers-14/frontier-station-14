@@ -47,12 +47,6 @@ public sealed class DCCVars
     //    CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
 
     /// <summary>
-    ///     Controls if round-end window shows whether the objective was completed or not.
-    /// </summary>
-    public static readonly CVarDef<bool>
-        GameShowGreentext = CVarDef.Create("game.showgreentext", false, CVar.ARCHIVE | CVar.SERVERONLY);
-
-    /// <summary>
     ///    Maximum number of characters in objective summaries.
     /// </summary>
     public static readonly CVarDef<int> MaxObjectiveSummaryLength =
