@@ -39,7 +39,6 @@
         - LowImpassable
   - type: StaticPrice
     price: 35 # The same price as dead (-20)
-  - type: BadFood # Frontier: stop eating your friends
 
 - type: entity
   parent: RehydratableItem
@@ -69,6 +68,7 @@
   - type: Tag
     tags:
     - Meat
+  - type: BadFood # Frontier: stop eating your friends
 
 - type: entity
   parent: RehydratableAnimalCube
@@ -153,7 +153,7 @@
       cube:
         maxVol: 24 # needs 1u room for water
         reagents: # equals one piece of raw meat - plus a deadly toxin!
-        - ReagentId: UncookedAnimalProteins
+        - ReagentId: Enzyme # Frontier: UncookedAnimalProteins<Enzyme
           Quantity: 9
         - ReagentId: Fat
           Quantity: 9

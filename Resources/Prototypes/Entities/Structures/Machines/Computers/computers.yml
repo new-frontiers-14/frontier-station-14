@@ -924,7 +924,7 @@
   id: ComputerCargoOrders
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess] # Frontier: add BaseStructureDisableToolUse, BaseStructureIndestructible
   name: cargo request computer
-  description: Used to order supplies and approve requests.
+  description: Used to purchase supplies in from central command. # Frontier
   components:
   - type: Sprite
     layers:
@@ -981,6 +981,7 @@
   parent: ComputerCargoOrders
   name: engineering request computer
   description: Used by the engineering department to order supplies.
+  categories: [HideSpawnMenu] # Frontier
   components:
   - type: Sprite
     layers:
@@ -1013,6 +1014,7 @@
   parent: ComputerCargoOrders
   name: medical request computer
   description: Used by the medical department to order supplies.
+  categories: [HideSpawnMenu] # Frontier
   components:
   - type: Sprite
     layers:
@@ -1045,6 +1047,7 @@
   parent: ComputerCargoOrders
   name: science request computer
   description: Used by the science department to order supplies.
+  categories: [HideSpawnMenu] # Frontier
   components:
   - type: Sprite
     layers:
@@ -1077,6 +1080,7 @@
   parent: ComputerCargoOrders
   name: security request computer
   description: Used by the security department to order supplies.
+  categories: [HideSpawnMenu] # Frontier
   components:
   - type: Sprite
     layers:
@@ -1109,6 +1113,7 @@
   parent: ComputerCargoOrders
   name: service request computer
   description: Used by the service department to order supplies.
+  categories: [HideSpawnMenu] # Frontier
   components:
   - type: Sprite
     layers:
@@ -1141,6 +1146,7 @@
   parent: BaseComputerAiAccess
   name: cargo bounty computer
   description: Used to manage currently active bounties.
+  categories: [HideSpawnMenu] # Frontier
   components:
   - type: Sprite
     layers:
@@ -1181,6 +1187,7 @@
   id: ComputerFundingAllocation
   name: funding allocation computer
   description: Terminal for controlling the distribution of funds and pay to departments.
+  categories: [HideSpawnMenu] # Frontier
   components:
   - type: Sprite
     layers:

@@ -62,7 +62,8 @@ reagent-name-acid-spit = acidspit
 reagent-desc-acid-spit = A drink for the daring, can be deadly if incorrectly prepared!
 
 reagent-name-alien-brain-hemorrhage = alien brain hemorrhage
-reagent-desc-alien-brain-hemorrhage = You might want to get that checked out at Med.
+# Frontier: no "at Med"
+reagent-desc-alien-brain-hemorrhage = You might want to get that checked out.
 
 reagent-name-allies-cocktail = allies cocktail
 reagent-desc-allies-cocktail = A drink made from your allies, not as sweet as when made from your enemies.
