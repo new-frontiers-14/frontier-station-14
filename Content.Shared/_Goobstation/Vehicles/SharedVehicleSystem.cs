@@ -19,6 +19,7 @@ using Content.Shared.Popups; // Frontier
 using Robust.Shared.Network; // Frontier
 using Content.Shared._NF.Vehicle.Components; // Frontier
 using Content.Shared.Movement.Pulling.Events; // Frontier
+using Robust.Shared.Timing; // Frontier
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
@@ -35,6 +36,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!; // Frontier
     [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
     [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
+    [Dependency] private readonly ActionContainerSystem _actionContainer = default!; // Frontier
+    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
@@ -43,6 +46,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<VehicleComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<VehicleComponent, MapInitEvent>(OnMapInit); // Frontier
         SubscribeLocalEvent<VehicleComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<VehicleComponent, StrapAttemptEvent>(OnStrapAttempt);
         SubscribeLocalEvent<VehicleComponent, StrappedEvent>(OnStrapped);
@@ -64,6 +68,27 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         _appearance.SetData(uid, VehicleState.DrawOver, false);
     }
 
+    // Frontier
+    private void OnMapInit(EntityUid uid, VehicleComponent component, MapInitEvent args)
+    {
+        bool actionsUpdated = false;
+        if (component.HornSound != null)
+        {
+            _actionContainer.EnsureAction(uid, ref component.HornAction, HornActionId);
+            actionsUpdated = true;
+        }
+
+        if (component.SirenSound != null)
+        {
+            _actionContainer.EnsureAction(uid, ref component.SirenAction, SirenActionId);
+            actionsUpdated = true;
+        }
+
+        if (actionsUpdated)
+            Dirty(uid, component);
+    }
+    // End Frontier
+
     private void OnRemove(EntityUid uid, VehicleComponent component, ComponentRemove args)
     {
         if (component.Driver == null)
@@ -82,6 +107,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         // Frontier: check key slot
         if (args.Container.ID != component.KeySlotId)
             return;
+        if (!_timing.IsFirstTimePredicted)
+            return;
         // End Frontier: check key slot
 
         component.EngineRunning = true;
@@ -99,6 +126,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     {
         // Frontier: check key slot
         if (args.Container.ID != component.KeySlotId)
+            return;
+        if (!_timing.IsFirstTimePredicted)
             return;
         // End Frontier: check key slot
 
@@ -229,19 +258,22 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (!TryComp<VehicleComponent>(vehicle, out var vehicleComp))
             return;
 
-        if (vehicleComp.HornSound != null)
-            _actions.AddAction(driver, ref vehicleComp.HornAction, HornActionId, vehicle);
+        // Frontier: grant existing actions
+        List<EntityUid> grantedActions = new();
+        if (vehicleComp.HornAction != null)
+            grantedActions.Add(vehicleComp.HornAction.Value);
 
-        if (vehicleComp.SirenSound != null)
-            _actions.AddAction(driver, ref vehicleComp.SirenAction, SirenActionId, vehicle);
+        if (vehicleComp.SirenAction != null)
+            grantedActions.Add(vehicleComp.SirenAction.Value);
 
-        // Frontier: add flashlight action
-        if (TryComp<UnpoweredFlashlightComponent>(vehicle, out var flashlight))
+        if (TryComp<UnpoweredFlashlightComponent>(vehicle, out var flashlight) && flashlight.ToggleActionEntity != null)
         {
-            var lightEnabled = flashlight.LightOn;
-            _actions.AddAction(driver, ref flashlight.ToggleActionEntity, flashlight.ToggleAction, vehicle);
-            _flashlight.SetLight((vehicle, flashlight), lightEnabled, quiet: true);
+            grantedActions.Add(flashlight.ToggleActionEntity.Value);
+            _flashlight.SetLight((vehicle, flashlight), flashlight.LightOn, quiet: true);
         }
+        // Only try to grant actions if the vehicle actually has them.
+        if (grantedActions.Count > 0)
+            _actions.GrantActions(driver, grantedActions, vehicle);
         // End Frontier
     }
 
@@ -273,16 +305,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (removeDriver) // Frontier
             vehicleComp.Driver = null;
 
-        if (vehicleComp.HornAction != null)
-            _actions.RemoveAction(driver, vehicleComp.HornAction);
-
-        if (vehicleComp.SirenAction != null)
-            _actions.RemoveAction(driver, vehicleComp.SirenAction);
-
-        // Frontier: flashlight actions
-        if (TryComp<UnpoweredFlashlightComponent>(vehicle, out var flashlight))
-            _actions.RemoveAction(driver, flashlight.ToggleActionEntity);
-        // End Frontier
+        _actions.RemoveProvidedActions(driver, vehicle); // Frontier: don't remove actions, just provide/revoke them
 
         if (removeDriver) // Frontier
             _virtualItem.DeleteInHandsMatching(driver, vehicle);
