@@ -26,10 +26,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using System.Numerics; //Frontier modification
-using Content.Server.Salvage.Expeditions;
-using Content.Server.Explosion.EntitySystems;
-using Content.Server._NF.Medical.SuitSensors; // Frontier modification
+using Content.Server.Salvage.Expeditions; // Frontier
+using Content.Server._NF.Medical.SuitSensors; // Frontier
+using Content.Shared.Emp; // Frontier
 
 namespace Content.Server.Medical.SuitSensors;
 
@@ -277,6 +276,9 @@ public sealed class SuitSensorSystem : EntitySystem
     {
         args.Affected = true;
         args.Disabled = true;
+
+        if (HasComp<EmpDisabledComponent>(uid)) // Frontier: don't double count 
+            return; // Frontier
 
         component.PreviousMode = component.Mode;
         SetSensor((uid, component), SuitSensorMode.SensorOff, null);
