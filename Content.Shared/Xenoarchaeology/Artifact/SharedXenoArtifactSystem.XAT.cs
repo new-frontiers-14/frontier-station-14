@@ -76,16 +76,21 @@ public abstract partial class SharedXenoArtifactSystem
         else if (node != null)
         {
             var index = GetIndex(ent, node.Value);
+            // Frontier: lenience with node unlocking
 
-            var predecessorNodeIndices = GetPredecessorNodes((ent, ent), index);
-            var successorNodeIndices = GetSuccessorNodes((ent, ent), index);
-            if (unlockingComp.TriggeredNodeIndexes.Count == 0
-                || unlockingComp.TriggeredNodeIndexes.All(
-                    x => predecessorNodeIndices.Contains(x) || successorNodeIndices.Contains(x)
-                )
-               )
-                // we add time on each new trigger, if it is not going to fail us
+            // var predecessorNodeIndices = GetPredecessorNodes((ent, ent), index);
+            // var successorNodeIndices = GetSuccessorNodes((ent, ent), index);
+            // if (unlockingComp.TriggeredNodeIndexes.Count == 0
+            //     || unlockingComp.TriggeredNodeIndexes.All(
+            //         x => predecessorNodeIndices.Contains(x) || successorNodeIndices.Contains(x)
+            //     )
+            //    )
+            //     // we add time on each new trigger, if it is not going to fail us
+            //     unlockingComp.EndTime += ent.Comp.UnlockStateIncrementPerNode;
+
+            if (!unlockingComp.TriggeredNodeIndexes.Contains(index))
                 unlockingComp.EndTime += ent.Comp.UnlockStateIncrementPerNode;
+            // End Frontier: lenience with node unlocking
         }
 
         if (node != null && unlockingComp.TriggeredNodeIndexes.Add(GetIndex(ent, node.Value)))
