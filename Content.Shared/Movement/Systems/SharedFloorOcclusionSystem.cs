@@ -1,5 +1,6 @@
 using Content.Shared.Movement.Components;
 using Robust.Shared.Physics.Events;
+using Content.Shared.StepTrigger.Systems; // imp edit
 
 namespace Content.Shared.Movement.Systems;
 
@@ -13,6 +14,8 @@ public abstract class SharedFloorOcclusionSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<FloorOccluderComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<FloorOccluderComponent, EndCollideEvent>(OnEndCollide);
+        SubscribeLocalEvent<FloorOccluderComponent, StepTriggeredOffEvent>(OnStepTriggered); // imp edit
+        SubscribeLocalEvent<FloorOccluderComponent, StepTriggerAttemptEvent>(OnStepTriggerAttempt); // imp edit
     }
 
     private void OnStartCollide(Entity<FloorOccluderComponent> entity, ref StartCollideEvent args)
@@ -48,4 +51,32 @@ public abstract class SharedFloorOcclusionSystem : EntitySystem
     {
 
     }
+
+    /// <summary>
+    /// Imp: Occludes an entity. Moved from OnStartCollide() to allow it to be re-used in OnStepTriggered().
+    /// </summary>
+    private void Occlude(Entity<FloorOccluderComponent> ent, EntityUid other)
+    {
+        if (!TryComp<FloorOcclusionComponent>(other, out var occlusion) ||
+            occlusion.Colliding.Contains(ent.Owner))
+        {
+            return;
+        }
+
+        occlusion.Colliding.Add(ent.Owner);
+        Dirty(other, occlusion);
+        SetEnabled((other, occlusion));
+    }
+
+    private void OnStepTriggered(Entity<FloorOccluderComponent> entity, ref StepTriggeredOffEvent args)
+    {
+        var other = args.Tripper;
+        Occlude(entity, other);
+    }
+
+    private static void OnStepTriggerAttempt(Entity<FloorOccluderComponent> entity, ref StepTriggerAttemptEvent args)
+    {
+        args.Continue = true;
+    }
+    // Imp End
 }
