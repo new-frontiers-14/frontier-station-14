@@ -261,7 +261,8 @@ flavor-complex-screwdriver = like spiked orange juice
 flavor-complex-jack-rose = like a testimony
 flavor-complex-jungle-bird = like you’re in a tropical aviary
 flavor-complex-kalimotxo = like fancy spiked cola
-flavor-complex-vampiro = fruity, savoury, and spicy
+# Frontier: savoury<savory
+flavor-complex-vampiro = fruity, savory, and spicy
 flavor-complex-bronx = like mildly sweet, alcoholic fruit
 flavor-complex-monkey-business = like going ape
 flavor-complex-vodka-red-bool = like a heart attack
