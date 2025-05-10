@@ -48,3 +48,30 @@
         reagents:
         - ReagentId: Mannitol
           Quantity: 10
+
+- type: entity
+  name: pill
+  suffix: Sheleg emergency pill
+  parent: Pill
+  id: NFPillSheleg
+  description: A safe way to stabilize Sheleg patients in critical condition for personnel without advanced medical knowledge.
+  components:
+  - type: Pill
+    pillType: 9
+  - type: Sprite
+    state: pill10
+  - type: Label
+    currentLabel: sheleg emergency pill
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Cryoxadone
+          Quantity: 3
+        - ReagentId: Stellibinin
+          Quantity: 2
+        - ReagentId: Traumoxadone
+          Quantity: 1
+        - ReagentId: Aloxadone
+          Quantity: 1

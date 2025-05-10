@@ -1,6 +1,6 @@
 # Species
 - type: loadoutEffectGroup
-  id: NitrogenBreatherNF
+  id: NFNitrogenBreather
   effects:
   - !type:SpeciesLoadoutEffect
     species:
@@ -8,13 +8,21 @@
     - Vox
 
 - type: loadoutEffectGroup
-  id: OxygenBreatherNF
+  id: NFOxygenBreather
   effects:
   - !type:SpeciesLoadoutEffect
     species:
     - SlimePerson
     - Vox
+    - Sheleg # Different meds
     inverted: true
+
+- type: loadoutEffectGroup
+  id: NFSheleg
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Sheleg
 
 - type: loadoutEffectGroup
   id: ShoesCapableNF
@@ -23,6 +31,29 @@
     species:
     - Diona
     inverted: true
+
+- type: loadoutEffectGroup
+  id: NFHeadwearCapable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Sheleg
+    inverted: true
+
+- type: loadoutEffectGroup
+  id: NFCoatCapable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Sheleg
+    inverted: true
+
+- type: loadoutEffectGroup
+  id: NFOuterSuitRequired
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Sheleg
 
 - type: loadoutEffectGroup
   id: NFNotDocOrStc

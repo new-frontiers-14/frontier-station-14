@@ -252,18 +252,6 @@
 
 - type: entity
   parent: PosterBase
-  id: ShuttleMapLantern
-  name: "NC Lantern"
-  description: "Detailed map of a Lantern shuttle."
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
-    state: lantern
-    scale: 1.2, 1.2
-
-- type: entity
-  parent: PosterBase
   id: ShuttleMapLegman
   name: "NC Legman"
   description: "Detailed map of a Legman shuttle."
@@ -372,6 +360,18 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapRetort
+  name: "FSB Retort"
+  description: "Detailed map of a Retort shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: retort
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapSearchlight
   name: "NM Searchlight"
   description: "Detailed map of a Searchlight shuttle."
@@ -452,4 +452,16 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: vagabond
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapNook
+  name: "WSE Nook"
+  description: "Detailed map of a Nook shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: nook
     scale: 1.2, 1.2

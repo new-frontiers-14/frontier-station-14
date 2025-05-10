@@ -1,0 +1,118 @@
+- type: entity
+  id: MobileEmpGenerator
+  parent: [BaseStructureDisableToolUse, BaseC2ContrabandUnredeemable, BaseMachinePowered, ConstructibleMachine]
+  name: mobile EMP generator
+  description: Creates giant EMP blasts to disable shuttles.
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: StationAiWhitelist
+  - type: AmbientSound
+    enabled: false
+    volume: -6
+    range: 7
+    sound:
+      path: /Audio/Ambience/Objects/gravity_gen_hum.ogg
+  - type: Transform
+    anchored: true
+  - type: ApcPowerReceiver
+    powerLoad: 2500
+  - type: ExtensionCableReceiver
+  - type: Physics
+    bodyType: Static
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 5
+  - type: PowerCharge
+    windowTitle: emp-generator-window-title
+    idlePower: 50
+    activePower: 2500
+    activeChargingPower: 15000
+    actionUI: true
+  - type: EmpGenerator
+    lightRadiusMin: 0.75
+    lightRadiusMax: 2.5
+  - type: EmpDescription
+    range: 100
+    energyConsumption: 1000000
+    disableDuration: 60
+  - type: EmpGeneratorVisuals
+    spriteMap:
+      broken: "broken"
+      unpowered: "off"
+      off: "off"
+      on: "on"
+    thresholds:
+    - maxCharge: 0.2
+      state: null
+      visible: false
+    - maxCharge: 0.4
+      state: startup
+      visible: true
+    - maxCharge: 0.6
+      state: idle
+      visible: true
+    - maxCharge: 0.8
+      state: activating
+      visible: true
+    - maxCharge: 1000.0 # bigger value
+      state: activated
+      visible: true
+  - type: ActivatableUI
+    key: enum.PowerChargeUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.PowerChargeUiKey.Key:
+        type: PowerChargeBoundUserInterface
+  - type: Appearance
+  - type: PointLight
+    radius: 2.5
+    energy: 0.7
+    # Gravity generator is a large machine, not casting shadows is fine within the radius set above.
+    castShadows: false
+    color: "#85c6ff"
+  - type: Sprite
+    sprite: _NF/Structures/Machines/memp_mini.rsi
+    snapCardinals: true
+    layers:
+      - state: on
+        map: ["enum.EmpGeneratorVisualLayers.Base"]
+      - sprite: _NF/Structures/Machines/memp_core.rsi
+        state: activated
+        shader: unshaded
+        map: ["enum.EmpGeneratorVisualLayers.Core"]
+        scale: "0.4,0.4"
+        offset: "0,0.2"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 3125
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MachineFrameDestroyed:
+            min: 1
+            max: 1
+  - type: WiresPanel
+  - type: Machine
+    board: MobileEmpGeneratorMachineCircuitboard
+  - type: StaticPrice
+    price: 300

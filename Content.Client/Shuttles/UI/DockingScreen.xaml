@@ -2,13 +2,13 @@
                HorizontalExpand="True"
                xmlns:controls="https://spacestation14.io"
                xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
-               xmlns:ui="clr-namespace:Content.Client.Shuttles.UI">
-    <ui:ShuttleDockControl Name="DockingControl"
+               xmlns:ui="clr-namespace:Content.Client._NF.Shuttles.UI"> <!-- Frontier: move UI over to _NF namespace -->
+    <ui:NFShuttleDockControl Name="DockingControl"
                        MouseFilter="Stop"
                        VerticalAlignment="Stretch"
                        VerticalExpand="True"
                        HorizontalExpand="True"
-                       Margin="5 4 10 5"/>
+                       Margin="5 4 10 5"/> <!-- Frontier: use NF variant -->
     <controls:BoxContainer Name="RightDisplayDock"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Right"

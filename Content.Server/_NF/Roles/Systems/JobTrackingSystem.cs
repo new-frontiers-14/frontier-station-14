@@ -67,7 +67,6 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
             return;
 
         OpenJob(ent);
-        ent.Comp.Active = false;
     }
 
     private void OnJobBeforeCryoEntered(Entity<JobTrackingComponent> ent, ref CryosleepBeforeMindRemovedEvent ev)
@@ -76,7 +75,6 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
             return;
 
         OpenJob(ent);
-        ent.Comp.Active = false; // Entity shouldn't persist, but if something goes wrong, ensure consistent state.
         ev.DeleteEntity = true;
     }
 
@@ -87,6 +85,8 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
 
         if (!TryComp<StationJobsComponent>(ent.Comp.SpawnStation, out var stationJobs))
             return;
+
+        ent.Comp.Active = false;
 
         try
         {

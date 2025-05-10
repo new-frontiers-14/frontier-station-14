@@ -1,5 +1,17 @@
 - type: loadout
+  id: StcForcedClothingOuterEVASuitStc
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NFOuterSuitRequired
+  price: 0
+  equipment:
+    outerClothing: ClothingOuterEVASuitStc
+
+- type: loadout
   id: StcClothingHeadHatStcCap
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFHeadwearCapable
   price: 0
   equipment:
     head: ClothingHeadHatStcCap

@@ -28,6 +28,12 @@ public sealed class NFPirateRuleSystem : GameRuleSystem<NFPirateRuleComponent>
         var ent = args.EntityUid;
         _antag.SendBriefing(ent, MakeBriefing(ent), null, null);
 
+        if (TryComp(ent, out AutoPirateComponent? pirate) && !pirate.ApplyFaction)
+            return;
+
+        if (TryComp(ent, out AutoPirateCaptainComponent? captain) && !captain.ApplyFaction)
+            return;
+
         _npcFaction.RemoveFaction(ent, mindId.Comp.NanoTrasenFaction, false);
         _npcFaction.AddFaction(ent, mindId.Comp.PirateFaction);
     }

@@ -1,10 +1,7 @@
 <Document>
   # KILDERKIN-CLASS SERVICE SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="BoozeDispenser"/>
-  <GuideEntityEmbed Entity="SodaDispenser"/>
-  <GuideEntityEmbed Entity="VendingMachineBooze"/>
-  <GuideEntityEmbed Entity="DrinkKegWood"/>
+  <GuideEntityEmbed Entity="NFPosterContrabandLvhiShuttle" Caption=""/>
   </Box>
   <Box>
   <GuideEntityEmbed Entity="ShuttleMapKilderkin" Caption=""/>
@@ -21,70 +18,8 @@
 	
   "A medium-sized space bar. In addition to the bar is equipped with hydroponics. Manufactured by Langstad-Voigt Heavy Industries."
   
-  # PREFLIGHT CHECKLIST
+  # Tips on running LVHI Legman shuttles
+  - Optimal Target Power (kW) for S.U.P.E.R.P.A.C.M.A.N. generator unit is 26 [bold]kW[/bold]. If you've added additional machines, check both APC units to see shuttle's power draw and adjust generator Target Power accordingly. For more general info on power grid see guidebook article [textlink="Power" link="Power"].
+  - For basics of shuttle piloting see [textlink="Piloting" link="Piloting"].
   
-  ## 1. Power supply
-  
-  ## 1.1. Battery units
-  <Box>
-  <GuideEntityEmbed Entity="SMESBasic"/>
-  <GuideEntityEmbed Entity="SubstationBasic"/>
-  <GuideEntityEmbed Entity="APCBasic"/>
-  </Box>
-  
-  - Check that the SMES unit is anchored to the floor.
-  - Check that the substation unit is anchored to the floor.
-  - Check that the APC unit's Main Breaker is toggled on.
-  - Check the APC unit's current Load* (W).
-  
-  ## 1.2. P.A.C.M.A.N. generator unit
-  <Box>
-  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
-  <GuideEntityEmbed Entity="SheetPlasma"/>
-  </Box>
-  
-  - Check that P.A.C.M.A.N. generator units are anchored to the floor.
-  - Check that P.A.C.M.A.N. generator units are fueled. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
-  - Check that P.A.C.M.A.N. generator units are set to HV output.
-  - Set Target Power to 13** [bold]kW[/bold] on each generator unit.
-  - Start P.A.C.M.A.N. generator units.
-  
-  ## 2. Atmospherics
-  
-  ## 2.1. Distribution Loop
-  <Box>
-  <GuideEntityEmbed Entity="AirCanister"/>
-  <GuideEntityEmbed Entity="GasPort"/>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  </Box>
-  
-  - Check that the air canister is anchored to connector port.
-  - Check that the distribution pump is set to 101kPa.
-  - Enable the distribution pump.
-  
-  ## 2.2. Waste Loop
-  <Box>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  <GuideEntityEmbed Entity="AirAlarm"/>
-  </Box>
-    
-  - Enable waste loop pump.
-  - Disable Auto Mode on the Air Alarm in the Engine Room.
-  - Set the Air Alarm in the Engine Room to Filtering (Wide).
-  
-  ## 3. Other checks
-  <Box>
-  <GuideEntityEmbed Entity="Gyroscope"/>
-  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  </Box>
-  
-  - Check that the gyroscope is anchored, powered, and enabled.
-  - Check that the mini gravity generator is anchored, powered, and enabled.
-  
-  ## Sidenotes
-  
-  * - Kilderkin-class service ships are equipped with two APC units that can be used to appraise the ship's total power consumption. Unmodified Kilderkin-class ship requires 24.2 kW of power to remain operational.
-  
-  ** - Kilderkin-class service ships have higher power demand than single standard P.A.C.M.A.N. generator unit can provide at optimal settings, however the ship comes equipped with two P.A.C.M.A.N. generator units, recommended target power output for each P.A.C.M.A.N. generator unit is 13 kW.
-
 </Document>

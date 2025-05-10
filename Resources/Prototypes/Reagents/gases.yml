@@ -32,6 +32,9 @@
         - !type:OrganType
           type: Vox
           shouldHave: false
+        - !type:OrganType # Frontier
+          type: Sheleg # Frontier
+          shouldHave: false # Frontier
         ratios:
           CarbonDioxide: 1.0
           Oxygen: -1.0
@@ -54,6 +57,20 @@
             type: Vox
         clear: true
         time: 5
+        # Frontier: Sheleg start block
+      - !type:Oxygenate
+        conditions:
+        - !type:OrganType
+          type: Sheleg
+      - !type:ModifyLungGas
+        conditions:
+        - !type:OrganType
+          type: Sheleg
+          shouldHave: true
+        ratios:
+          WaterVapor: 1.0
+          Oxygen: -1.0
+        # Frontier: Sheleg end block
 
 - type: reagent
   id: Plasma

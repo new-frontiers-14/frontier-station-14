@@ -268,5 +268,27 @@ namespace Content.Shared.Humanoid.Markings
             alpha = sprite.LayerAlpha;
             return true;
         }
+
+        // Frontier: allow markings to force a specific color
+        public Color? MustMatchColor(string species, HumanoidVisualLayers layer, out float alpha, IPrototypeManager? prototypeManager = null)
+        {
+            IoCManager.Resolve(ref prototypeManager);
+            var speciesProto = prototypeManager.Index<SpeciesPrototype>(species);
+            if (
+                !prototypeManager.TryIndex(speciesProto.SpriteSet, out HumanoidSpeciesBaseSpritesPrototype? baseSprites) ||
+                !baseSprites.Sprites.TryGetValue(layer, out var spriteName) ||
+                !prototypeManager.TryIndex(spriteName, out HumanoidSpeciesSpriteLayer? sprite) ||
+                sprite == null ||
+                !sprite.ForcedColoring
+            )
+            {
+                alpha = 1f;
+                return null;
+            }
+
+            alpha = sprite.LayerAlpha;
+            return speciesProto.ForcedMarkingColor;
+        }
+        // End Frontier
     }
 }

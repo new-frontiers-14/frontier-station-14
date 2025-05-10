@@ -1072,3 +1072,21 @@
   - type: Item
     shape:
     - 0,0,1,1
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: MobileComputerTabletopCommsFlatpack
+  name: communication console flatpack
+  description: A flatpack used for constructing a communication console.
+  components:
+  - type: Flatpack
+    entity: MobileComputerTabletopComms
+  - type: Sprite
+    layers:
+    - state: medical_console
+  - type: StaticPrice
+    price: 0
+  - type: CargoSellBlacklist
+  - type: Item
+    shape:
+    - 0,0,1,1

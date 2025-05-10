@@ -1,4 +1,16 @@
 - type: loadout
+  id: NfsdForcedClothingOuterEVASuitNfsd
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NFOuterSuitRequired
+  price: 0
+  equipment:
+    outerClothing: ClothingOuterEVASuitNfsd
+
+- type: loadout
   id: NfsdOuterClothing
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
   equipment:
     outerClothing: ClothingOuterArmorNfsd

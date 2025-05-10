@@ -502,6 +502,17 @@ public sealed partial class MarkingPicker : Control
             }
         }
 
+        // Frontier: Color overwrite
+        if (_markingManager.MustMatchColor(_currentSpecies, marking.BodyPart, out var _, _prototypeManager) is Color forcedColor)
+        {
+            // Color everything in forced color
+            for (var i = 0; i < marking.Sprites.Count; i++)
+            {
+                markingObject.SetColor(i, forcedColor);
+            }
+        }
+        // End Frontier
+
         markingObject.Forced = Forced;
 
         _currentMarkings.AddBack(_selectedMarkingCategory, markingObject);

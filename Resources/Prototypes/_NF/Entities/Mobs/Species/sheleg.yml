@@ -1,0 +1,160 @@
+- type: entity
+  save: false
+  name: Urist McIce
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobSheleg
+  abstract: true
+  components:
+  - type: Sprite
+    scale: 1.15, 1.2 # tall but dont make it too thin or its going to look bad
+  - type: HumanoidAppearance
+    species: Sheleg
+    hideLayersOnEquip:
+    - Hair
+    - HeadTop
+    - Snout # Nose, tusks
+  - type: Hunger
+    baseDecayRate: 0.0083
+  - type: Thirst
+    baseDecayRate: 0.15
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: Icon
+    sprite: _NF/Mobs/Species/Sheleg/parts.rsi
+    state: full
+  - type: Body
+    prototype: Sheleg
+    requiredLegs: 2
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Sheleg
+  - type: Speech
+    speechSounds: Sheleg
+    speechVerb: Sheleg
+#    allowedEmotes: [ 'Belch' ]
+  - type: TypingIndicator
+    proto: sheleg
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatSheleg
+      amount: 5
+  - type: Bloodstream
+    bloodReagent: Cryoxadone
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 3
+        Cold: 2
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 1
+  - type: Stamina
+  - type: Vocal
+    sounds:
+      Male: UnisexSheleg
+      Female: UnisexSheleg
+      Unsexed: UnisexSheleg
+  - type: DamageVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#16297e"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+  - type: SlowOnDamage # The pain resist is high but not gone
+    speedModifierThresholds:
+      60: 0.9
+      80: 0.7
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Water, SpaceCleaner, SoapReagent ]
+      methods: [ Touch ]
+      effects:
+      - !type:WashCreamPieReaction
+    - reagents: [ Potassium ]
+      methods: [ Touch ]
+      effects:
+      - !type:Emote
+        emote: Scream
+        probability: 0.2
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "barozine-effect-skin-burning" ]
+        probability: 0.33
+      - !type:Jitter
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 180
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Flammable # Ice skin, we cannot lower the firestacks as it will make them too powerfull to lava and other fires, but we should make it fade faster
+    firestackFade: -0.2 # 2 times faster fade
+  - type: Temperature # TODO: Balance
+    heatDamageThreshold: 273.15
+    coldDamageThreshold: 0
+    currentTemperature: 100 # Opporozidone is 150
+    specificHeat: 42
+    heatDamage:
+      types:
+        Heat : 10 #per second, scales with temperature & other constants
+  - type: ThermalRegulator
+    metabolismHeat: 800
+    radiatedHeat: 100
+    implicitHeatRegulation: 500
+    sweatHeatRegulation: 2000
+    shiveringHeatRegulation: 0
+    normalBodyTemperature: 100.00 # Opporozidone is 150
+    thermalRegulationTemperatureThreshold: 2
+  - type: TemperatureSpeed
+    thresholds: # What did you think they will go slower?
+      293: 1.0
+      280: 1.0
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 100
+    damage:
+      types:
+        Heat: -0.025
+  - type: BlockInjection
+    blockHypospray: true
+    blockInjectOnProjectile: true
+  - type: NoShoesNoFriction
+    blacklist:
+      components:
+      - Skates
+  - type: AutoToggleableOuterClothing
+
+- type: entity
+  save: false
+  name: Urist McIce
+  parent: BaseSpeciesDummy
+  id: MobShelegDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy sheleg meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Sheleg

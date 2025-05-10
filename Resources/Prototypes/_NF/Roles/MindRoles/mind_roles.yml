@@ -20,3 +20,15 @@
   - type: MindRole
     roleType: EmotionalSupportPet
   - type: GhostRoleMarkerRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleGhostRoleNFPirate
+  name: Pirate Ghost Role
+  suffix: Frontier
+  components:
+  - type: MindRole
+    antagPrototype: NFPirate
+    roleType: NFPirate
+  - type: GhostRoleMarkerRole
+  - type: NFPirateRole

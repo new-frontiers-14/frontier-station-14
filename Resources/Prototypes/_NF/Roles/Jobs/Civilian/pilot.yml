@@ -6,7 +6,6 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 43200
-  startingGear: PilotGear
   icon: "JobIconPilot" 
   supervisors: job-supervisors-hire
   weight: 2 # Prioritize station & department jobs
@@ -18,5 +17,25 @@
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
 
+# Interview variant
+- type: job
+  id: PilotInterview
+  name: job-name-pilot-interview
+  description: job-description-pilot
+  playTimeTracker: JobPilotInterview
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 43200
+  setPreference: false
+  startingGear: PilotHologramGear
+  icon: "JobIconPilot"
+  supervisors: job-supervisors-hire
+  accessGroups:
+  - GeneralAccess
+  jobEntity: InterviewHologramPilot
+
 - type: startingGear
-  id: PilotGear
+  id: PilotHologramGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPilot
+    shoes: ClothingShoesBootsPilot

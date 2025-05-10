@@ -47,3 +47,35 @@
         - !type:OrganType
           type: Goblin
           shouldHave: true
+
+- type: reagent
+  id: Ook
+  name: reagent-name-ook
+  desc: reagent-desc-ook
+  flavor: hairy
+  physicalDesc: reagent-physical-desc-thick
+  color: "#7c3d00"
+  metabolisms:
+    Drink:
+      metabolismRate: 0.25
+      effects:
+        - !type:Emote
+          emote: MonkeyScreeches
+          showInChat: true
+          force: true
+          probability: 0.12
+        - !type:Polymorph
+          prototype: ArtifactMonkey
+          conditions:
+            - !type:NFIsHumanoid
+            - !type:ReagentThreshold
+              min: 50
+        - !type:AdjustReagent
+          reagent: Ook
+          amount: -20
+          conditions:
+            - !type:ReagentThreshold
+              min: 50
+        - !type:GenericStatusEffect
+          key: Stutter
+          component: ScrambledAccent

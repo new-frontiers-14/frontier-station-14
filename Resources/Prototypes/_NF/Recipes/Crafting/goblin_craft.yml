@@ -1,0 +1,351 @@
+# clothes
+#region robes
+- type: construction
+  name: traditional goblin robes
+  id: ClothingOuterCoatRobesGoblin
+  graph: ClothingOuterCoatRobesGoblin
+  startNode: start
+  targetNode: ClothingOuterCoatRobesGoblin
+  category: construction-category-goblin
+  description: Traditional robes of goblinkind. Very regal.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Clothing/OuterClothing/Coats/goblin_robes.rsi
+    state: icon
+  objectType: Item
+
+#region EVA
+- type: construction
+  name: traditional goblin EVA robes
+  id: ClothingOuterEVASuitGoblin
+  graph: ClothingOuterEVASuitGoblin
+  startNode: start
+  targetNode: ClothingOuterEVASuitGoblin
+  category: construction-category-goblin
+  description: Traditional robes of goblinkind made EVA-capable. Very regal.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Clothing/OuterClothing/Suits/goblin_eva_robes.rsi
+    state: icon
+  objectType: Item
+
+#region trash duffel
+- type: construction
+  name: trashel
+  id: NFGoblinMadeClothingBackpackDuffelTrashBlue
+  graph: NFGoblinMadeClothingBackpackDuffelTrashBlue
+  startNode: start
+  targetNode: NFGoblinMadeClothingBackpackDuffelTrashBlue
+  category: construction-category-goblin
+  description: A duffel made out of trash bag.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Clothing/Back/Duffels/trashel_blue.rsi
+    state: icon
+  objectType: Item
+
+#region trash backpack
+- type: construction
+  name: trashpack
+  id: NFGoblinMadeClothingBackpackTrashBlue
+  graph: NFGoblinMadeClothingBackpackTrashBlue
+  startNode: start
+  targetNode: NFGoblinMadeClothingBackpackTrashBlue
+  category: construction-category-goblin
+  description: A backpack made out of trash bag.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Clothing/Back/Backpacks/trashpack_blue.rsi
+    state: icon
+  objectType: Item
+
+#region trash pouch
+- type: construction
+  name: trashuch
+  id: NFGoblinMadeTrashPouch
+  graph: NFGoblinMadeTrashPouch
+  startNode: start
+  targetNode: NFGoblinMadeTrashPouch
+  category: construction-category-goblin
+  description: A pouch made out of trash bag.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Storage/Pouches/trash_pouch.rsi
+    state: closed
+  objectType: Item
+
+# tools
+#region multitool
+- type: construction
+  name: hacking jig
+  id: NFGoblinMadeMultitool
+  graph: NFGoblinMadeMultitool
+  startNode: start
+  targetNode: NFGoblinMadeMultitool
+  category: construction-category-goblin
+  description: An improvised multitool.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/multitool.rsi
+    state: icon
+  objectType: Item
+
+#region wirecutter
+- type: construction
+  name: wiresnipper
+  id: NFGoblinMadeWirecutter
+  graph: NFGoblinMadeWirecutter
+  startNode: start
+  targetNode: NFGoblinMadeWirecutter
+  category: construction-category-goblin
+  description: An improvised wirecutter.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
+    state: icon
+  objectType: Item
+
+#region screwdriver
+- type: construction
+  name: electro-driver
+  id: NFGoblinMadeScrewdriver
+  graph: NFGoblinMadeScrewdriver
+  startNode: start
+  targetNode: NFGoblinMadeScrewdriver
+  category: construction-category-goblin
+  description: An improvised electrical screwdriver.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/screwdriver.rsi
+    state: screwdriver-base
+  objectType: Item
+
+#region crowbar
+- type: construction
+  name: electro-jilt
+  id: NFGoblinMadeCrowbar
+  graph: NFGoblinMadeCrowbar
+  startNode: start
+  targetNode: NFGoblinMadeCrowbar
+  category: construction-category-goblin
+  description: An improvised crowbar.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/crowbar.rsi
+    state: icon
+  objectType: Item
+
+#region wrench
+- type: construction
+  name: electro-spanner
+  id: NFGoblinMadeWrench
+  graph: NFGoblinMadeWrench
+  startNode: start
+  targetNode: NFGoblinMadeWrench
+  category: construction-category-goblin
+  description: An improvised electrical wrench.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/wrench.rsi
+    state: icon
+  objectType: Item
+
+#region welder
+- type: construction
+  name: burner torch
+  id: NFGoblinMadeWelder
+  graph: NFGoblinMadeWelder
+  startNode: start
+  targetNode: NFGoblinMadeWelder
+  category: construction-category-goblin
+  description: An improvised welding tool.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/welder.rsi
+    state: icon
+  objectType: Item
+
+#region mini hoe
+- type: construction
+  name: electro-scratcher
+  id: NFGoblinMadeMiniHoe
+  graph: NFGoblinMadeMiniHoe
+  startNode: start
+  targetNode: NFGoblinMadeMiniHoe
+  category: construction-category-goblin
+  description: An improvised mini hoe.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/hoe.rsi
+    state: hoe-base
+  objectType: Item
+
+#region minig drill
+- type: construction
+  name: pneumatic hammer
+  id: NFGoblinMadeMiningDrill
+  graph: NFGoblinMadeMiningDrill
+  startNode: start
+  targetNode: NFGoblinMadeMiningDrill
+  category: construction-category-goblin
+  description: An improvised mining drill.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/handdrill.rsi
+    state: icon
+  objectType: Item
+
+#region tray scanner
+- type: construction
+  name: stash ogler
+  id: NFGoblinMadeTrayScanner
+  graph: NFGoblinMadeTrayScanner
+  startNode: start
+  targetNode: NFGoblinMadeTrayScanner
+  category: construction-category-goblin
+  description: An improvised T-Ray scanner.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/tray.rsi
+    state: icon
+  objectType: Item
+
+#region signaller
+- type: construction
+  name: remote winker
+  id: NFGoblinMadeRemoteSignaller
+  graph: NFGoblinMadeRemoteSignaller
+  startNode: start
+  targetNode: NFGoblinMadeRemoteSignaller
+  category: construction-category-goblin
+  description: An improvised remote signaller.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/signaller.rsi
+    state: icon
+  objectType: Item
+
+#region lantern
+- type: construction
+  name: glimmer
+  id: NFGoblinMadeLantern
+  graph: NFGoblinMadeLantern
+  startNode: start
+  targetNode: NFGoblinMadeLantern
+  category: construction-category-goblin
+  description: An improvised lantern.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/lantern.rsi
+    state: lantern
+  objectType: Item
+
+#region power cell
+- type: construction
+  name: power cell
+  id: NFGoblinMadePowerCellDepleted
+  graph: NFGoblinMadePowerCellDepleted
+  startNode: start
+  targetNode: NFGoblinMadePowerCellDepleted
+  category: construction-category-goblin
+  description: An improvised power cell.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: _NF/Objects/Tools/goblin_tools/power_cell.rsi
+    state: icon
+  objectType: Item
+
+#region lv cable
+- type: construction
+  name: lv cables
+  id: CableApcStack10
+  graph: CableApcStack10
+  startNode: start
+  targetNode: CableApcStack10
+  category: construction-category-goblin
+  description: Coil with 10 cables.
+  entityWhitelist:
+    components:
+    - Goblin
+  icon:
+    sprite: Objects/Tools/cable-coils.rsi
+    state: coillv-10
+  objectType: Item
+
+# furniture
+#region banner
+- type: construction
+  id: BannerGoblin01
+  name: goblin banner
+  description: A banner displaying the ancient goblinkind logo.
+  entityWhitelist:
+    components:
+    - Goblin
+  graph: NFGoblinMadeBanner
+  startNode: start
+  targetNode: BannerGoblin01
+  category: construction-category-goblin
+  icon:
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: banner_goblin
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+# vehicles
+#region dumpster-car
+- type: construction
+  id: NFGoblinMadeVehicleDumpster
+  name: dumpster rattler
+  description: A dumpster turned into a vehicle.
+  entityWhitelist:
+    components:
+    - Goblin
+  graph: NFGoblinMadeVehicleDumpster
+  startNode: start
+  targetNode: NFGoblinMadeVehicleDumpster
+  category: construction-category-goblin
+  icon:
+    sprite: _NF/Objects/Vehicles/dumpster.rsi
+    state: dumpster
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

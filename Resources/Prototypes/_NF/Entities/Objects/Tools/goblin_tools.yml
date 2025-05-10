@@ -1,0 +1,774 @@
+#region base
+- type: entity
+  id: NFBaseGoblinMadeTools
+  suffix: Goblin Made
+  abstract: true
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnGoblinMadeToolMalfunction
+    chance: 0.05
+    intervalSeconds: 1200 # 20 min
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpawnGoblinMadeToolMalfunction:
+            min: 1
+            max: 1
+  - type: Clothing # Apparently a lot of upstream tools have equipped sprites, but this bit isn't defined there
+    quickEquip: false
+    slots:
+    - Belt
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100 # That's what you get for recycling 1 wrapper
+  - type: StaticPrice
+    price: 0 # Can't get rich :(
+  - type: GoblinMade
+
+- type: entity
+  id: NFBaseGoblinMadeToolsMalfunction
+  abstract: true
+  components:
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 5
+# endregion
+
+#region malfunctions
+- type: entity
+  id: NFGoblinMadeToolMalfunctionEmp
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 5000
+
+- type: entity
+  id: NFGoblinMadeToolMalfunctionFlash
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FlashOnTrigger
+    range: 4
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+
+- type: entity
+  id: NFGoblinMadeToolMalfunctionSmoke
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SmokeOnTrigger
+    duration: 3
+    spreadAmount: 1
+  - type: SoundOnTrigger
+    sound: /Audio/Effects/smoke.ogg
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Effects/Smoke-grenade.ogg
+
+- type: entity
+  id: NFGoblinMadeToolMalfunctionFireBomb
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: FireBomb
+    totalIntensity: 5
+    intensitySlope: 2.5
+    maxIntensity: 1
+    canCreateVacuum: false
+
+- type: entity
+  id: NFGoblinMadeToolMalfunctionExplosion
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 5
+    intensitySlope: 2.5
+    maxIntensity: 1
+    canCreateVacuum: false
+
+- type: entity
+  id: NFGoblinMadeToolMalfunctionCryo
+  parent: NFBaseGoblinMadeToolsMalfunction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Cryo
+    totalIntensity: 5
+    intensitySlope: 2.5
+    maxIntensity: 1
+    canCreateVacuum: false
+
+- type: entityTable
+  id: TableGoblinMadeToolMalfunction
+  table: !type:GroupSelector
+    children:
+    - id: NFGoblinMadeToolMalfunctionEmp
+      weight: 30
+    - id: NFGoblinMadeToolMalfunctionFlash
+      weight: 20
+    - id: NFGoblinMadeToolMalfunctionSmoke
+      weight: 35
+    - id: NFGoblinMadeToolMalfunctionFireBomb
+      weight: 5
+    - id: NFGoblinMadeToolMalfunctionExplosion
+      weight: 5
+    - id: NFGoblinMadeToolMalfunctionCryo
+      weight: 5
+
+- type: entity
+  id: SpawnGoblinMadeToolMalfunction
+  parent: MarkerBasePlaceFree
+  name: goblin tool malfunction
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableGoblinMadeToolMalfunction
+      prob: 1.00
+# endregion
+
+# tools
+#region multitool
+- type: entity
+  id: NFGoblinMadeMultitool
+  parent: [ NFBaseGoblinMadeTools, Multitool ]
+  name: hacking jig
+  description: "An improvised multitool pieced together from faulty circuit board, broken display, bent antennae and stuffed into a discarded wrapper for additional protection against elements."
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/multitool.rsi
+    layers:
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers
+      map: [ "iconMultitoolWrapper" ]
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: icon-text-unshaded
+      shader: unshaded
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/multitool.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/multitool.rsi
+  - type: RandomSprite
+    available:
+      - iconMultitoolWrapper:
+          cheesiehonkers: ""
+          cnds: ""
+          chips: ""
+          boritos: ""
+          pistachio: ""
+          raisins: ""
+          semki: ""
+          susjerky: ""
+          chinese1: ""
+          chinese2: ""
+          chinese3: ""
+          chinese4: ""
+  - type: Construction
+    graph: NFGoblinMadeMultitool
+    node: NFGoblinMadeMultitool
+# endregion
+
+#region wirecutter
+- type: entity
+  id: NFGoblinMadeWirecutter
+  parent: [ NFBaseGoblinMadeTools, Wirecutter ]
+  name: wiresnipper
+  description: A wire cutter made out of glass shards, metal bits, cloth, and some wires. What's up with all the sparking, though?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
+    layers:
+    - state: icon
+    - state: icon-color
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          icon-color: Rainbow
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/wirecutters.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+  - type: Construction
+    graph: NFGoblinMadeWirecutter
+    node: NFGoblinMadeWirecutter
+# endregion
+
+#region screwdriver
+- type: entity
+  id: NFGoblinMadeScrewdriver
+  parent: [ NFBaseGoblinMadeTools, Screwdriver ]
+  name: electro-driver
+  description: An improvised electrical screwdriver, not much in terms of torque, but your wrists will be less sore.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/screwdriver.rsi
+    layers:
+    - state: screwdriver-base
+    - state: screwdriver-wires
+      map: [ "iconScrewdriverWires" ]
+    - state: screwdriver-unshaded
+      shader: unshaded
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/screwdriver.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/screwdriver.rsi
+  - type: RandomSprite
+    available:
+    - iconScrewdriverWires:
+        screwdriver-wires: Rainbow
+  - type: Tool
+    qualities:
+      - Screwing
+    useSound: /Audio/Items/drill_use.ogg
+  - type: Construction
+    graph: NFGoblinMadeScrewdriver
+    node: NFGoblinMadeScrewdriver
+# endregion
+
+#region crowbar
+- type: entity
+  id: NFGoblinMadeCrowbar
+  parent: [ NFBaseGoblinMadeTools, Crowbar ]
+  name: electro-jilt
+  description: The next step in crowbar evolution - jack. Enhanced with an improvised electrical winch.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/crowbar.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/crowbar.rsi
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/crowbar.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+    storedSprite:
+      sprite: _NF/Objects/Tools/goblin_tools/crowbar.rsi
+      state: storage
+  - type: Tool
+    qualities:
+      - Prying
+    useSound: /Audio/Items/drill_use.ogg
+  - type: Construction
+    graph: NFGoblinMadeCrowbar
+    node: NFGoblinMadeCrowbar
+# endregion
+
+#region wrench
+- type: entity
+  id: NFGoblinMadeWrench
+  parent: [ NFBaseGoblinMadeTools, Wrench ]
+  name: electro-spanner
+  description: An improvised electrical wrench, not much in terms of torque, but your wrists will be less sore.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/wrench.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: can1
+      map: ["randomWrenchCan"]
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/wrench.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+    storedSprite:
+      sprite: _NF/Objects/Tools/goblin_tools/wrench.rsi
+      state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/wrench.rsi
+  - type: Tool
+    qualities:
+      - Anchoring
+    useSound: /Audio/Items/drill_use.ogg
+  - type: RandomSprite
+    available:
+      - randomWrenchCan:
+          can1: ""
+          can2: ""
+          can3: ""
+          can4: ""
+          can5: ""
+          can6: ""
+          can7: ""
+          can8: ""
+          can9: ""
+          can10: ""
+  - type: Construction
+    graph: NFGoblinMadeWrench
+    node: NFGoblinMadeWrench
+# endregion
+
+#region welder
+- type: entity
+  id: NFGoblinMadeWelder
+  parent: [ NFBaseGoblinMadeTools, Welder ]
+  name: burner torch
+  description: An improvised welding tool made out of a plastic bottle, an empty soda can, a spray nozzle, and a leaking battery.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/welder.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: can1
+      map: ["randomWelderCan"]
+    - state: welder_flame
+      visible: false
+      shader: unshaded
+      map: ["enum.ToggleVisuals.Layer"]
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/welder.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/welder.rsi
+  - type: RandomSprite
+    available:
+      - randomWelderCan:
+          can1: ""
+          can2: ""
+          can3: ""
+          can4: ""
+          can5: ""
+          can6: ""
+          can7: ""
+          can8: ""
+          can9: ""
+          can10: ""
+# endregion
+
+- type: entity
+  id: NFGoblinMadeWelderEmpty
+  parent: NFGoblinMadeWelder
+  suffix: Goblin Made, Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents: []
+        maxVol: 100
+  - type: Construction
+    graph: NFGoblinMadeWelder
+    node: NFGoblinMadeWelder
+# endregion
+
+#region mini hoe
+- type: entity
+  id: NFGoblinMadeMiniHoe
+  parent: [ NFBaseGoblinMadeTools, HydroponicsToolMiniHoe ]
+  name: electro-scratcher
+  description: A small modification for the tried and true electrical screwdriver device. Weeds , your end is nigh.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/wrench_drop.ogg
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/hoe.rsi
+    layers:
+    - state: hoe-base
+    - state: hoe-wires
+      map: [ "iconHoeWires" ]
+    - state: hoe-unshaded
+      shader: unshaded
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/hoe.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+    storedRotation: -90
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/hoe.rsi
+  - type: RandomSprite
+    available:
+    - iconHoeWires:
+        hoe-wires: Rainbow
+  - type: Construction
+    graph: NFGoblinMadeMiniHoe
+    node: NFGoblinMadeMiniHoe
+# endregion
+
+#region minig drill
+- type: entity
+  id: NFGoblinMadeMiningDrill
+  parent: [ NFBaseGoblinMadeTools, MiningDrill ]
+  name: pneumatic hammer
+  description: The pickaxe is dead; hail the new king of manual mining - the improvised pneumatic hammer.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/handdrill.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/handdrill.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/handdrill.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -45
+    soundHit:
+      path: "/Audio/_NF/Items/Jackhammer/jackhammer-short.ogg"
+    attackRate: 2
+    damage:
+      groups:
+        Brute: 1.25
+      types:
+        Structural: 5
+  - type: Construction
+    graph: NFGoblinMadeMiningDrill
+    node: NFGoblinMadeMiningDrill
+# endregion
+
+#region tray scanner
+- type: entity
+  id: NFGoblinMadeTrayScanner
+  parent: [ NFBaseGoblinMadeTools, trayScanner ]
+  name: stash ogler
+  description: With this tool you no longer have to memorise where you've hid you stash.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/tray.rsi
+    layers:
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers
+      map: [ "iconTrayWrapper" ]
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: tray-off
+      map: ["baseTRay"]
+      shader: unshaded
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.TrayScannerVisual.Visual:
+        baseTRay:
+          On: { state: tray-on }
+          Off: { state: tray-off }
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/tray.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/tray.rsi
+  - type: RandomSprite
+    available:
+      - iconTrayWrapper:
+          cheesiehonkers: ""
+          cnds: ""
+          chips: ""
+          boritos: ""
+          pistachio: ""
+          raisins: ""
+          semki: ""
+          susjerky: ""
+          chinese1: ""
+          chinese2: ""
+          chinese3: ""
+          chinese4: ""
+  - type: Construction
+    graph: NFGoblinMadeTrayScanner
+    node: NFGoblinMadeTrayScanner
+# endregion
+
+#region signaller
+- type: entity
+  id: NFGoblinMadeRemoteSignaller
+  parent: [ NFBaseGoblinMadeTools, RemoteSignaller ]
+  name: remote winker
+  description: An improvised remote signaller capable of sending signals to objects within a small radius of about 10 meters.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/signaller.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/signaller.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/signaller.rsi
+  - type: WirelessNetworkConnection
+    range: 10
+  - type: Construction
+    graph: NFGoblinMadeRemoteSignaller
+    node: NFGoblinMadeRemoteSignaller
+# endregion
+
+#region lantern
+- type: entity
+  id: NFGoblinMadeLantern
+  parent: [ NFBaseGoblinMadeTools, FlashlightLantern ]
+  name: glimmer
+  description: An improvised lantern. How is it possible to put a power cell and a light bulb inside a glass bottle without breaking either of those items?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/lantern.rsi
+    layers:
+    - state: lantern
+    - state: lantern-overlay
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/lantern.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+    storedRotation: 0
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/lantern.rsi
+  - type: PointLight
+    enabled: false
+    mask: null
+    radius: 4
+    energy: 2.5
+    color: "#FFC458"
+    netsync: false
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: NFGoblinMadePowerCell
+  - type: Construction
+    graph: NFGoblinMadeRemoteSignaller
+    node: NFGoblinMadeRemoteSignaller
+# endregion
+
+#region power cell
+- type: entity
+  id: NFGoblinMadePowerCell
+  parent: [ NFBaseGoblinMadeTools, PowerCellSmall ]
+  name: power cell
+  description: An improvised power cell. How long will you be able to resist the temptation to drink the electrolyte?
+  suffix: Goblin Made, Full
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/goblin_tools/power_cell.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      color: "#0084ff"
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: icon
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/goblin_tools/power_cell.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+        state: overlay-inhand-right
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Tools/goblin_tools/power_cell.rsi
+  - type: MachinePart
+    part: PowerCell
+    rating: 1 # Ideally 0
+
+- type: entity
+  id: NFGoblinMadePowerCellDepleted
+  parent: NFGoblinMadePowerCell
+  suffix: Goblin Made, Empty
+  components:
+  - type: Battery
+    maxCharge: 360
+    startingCharge: 0
+  - type: Construction
+    graph: NFGoblinMadePowerCellDepleted
+    node: NFGoblinMadePowerCellDepleted
+# endregion

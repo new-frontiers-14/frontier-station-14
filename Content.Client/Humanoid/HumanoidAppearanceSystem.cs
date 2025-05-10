@@ -172,6 +172,19 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         var facialHair = new Marking(profile.Appearance.FacialHairStyleId,
             new[] { facialHairColor });
 
+        // Frontier: Match hair and facial hair colors to the forced color if it exists
+        if (_markingManager.MustMatchColor(profile.Species, HumanoidVisualLayers.Hair, out var forcedHairAlpha, _prototypeManager) is Color forcedHairColor)
+        {
+            profile.Appearance.SkinColor.WithAlpha(forcedHairAlpha);
+            hairColor = forcedHairColor;
+        }
+        if (_markingManager.MustMatchColor(profile.Species, HumanoidVisualLayers.FacialHair, out var forcedFacialHairAlpha, _prototypeManager) is Color forcedFacialHairColor)
+        {
+            profile.Appearance.SkinColor.WithAlpha(forcedFacialHairAlpha);
+            facialHairColor = forcedFacialHairColor;
+        }
+        // End Frontier
+
         if (_markingManager.CanBeApplied(profile.Species, profile.Sex, hair, _prototypeManager))
         {
             markings.AddBack(MarkingCategories.Hair, hair);

@@ -1,4 +1,4 @@
-# Random graffiti
+#region randomSpawner
 - type: entity # Used as overlay for "vandalised" machines
   abstract: true
   id: PunkHoloGraffitiOverlay
@@ -89,13 +89,18 @@
     - HoloGraffitiHighlighted19
     - HoloGraffitiHighlighted20
     - HoloGraffitiHighlighted21
+    - HoloGraffitiHighlighted22
+    - HoloGraffitiHighlighted23
+    - HoloGraffitiHighlighted24
+    - HoloGraffitiHighlighted25
+    - HoloGraffitiHighlighted26
+    - HoloGraffitiHighlighted27
     chance: 1.0
     offset: 0.0
 
-# Graffiti base
+#region base
 - type: entity
   id: HoloGraffiti
-  #parent: BaseSign
   name: holograffiti
   description: A graffiti composed of hard light. Can be easily removed by force.
   abstract: true
@@ -105,7 +110,6 @@
   - type: WallMount
     arc: 360
   - type: Clickable
-  #- type: InteractionOutline
   - type: Rotatable
   - type: Physics
     bodyType: Static
@@ -131,7 +135,7 @@
   - type: StaticPrice
     price: 0
 
-# Graffiti simple
+#region simple
 - type: entity
   id: HoloGraffitiSimple01
   parent: HoloGraffiti
@@ -550,7 +554,7 @@
     - graffiti:
         holograffiti22: Cyberpunk
 
-# Graffiti highlighted
+#region highlighted
 - type: entity
   id: HoloGraffitiHighlighted01
   parent: HoloGraffiti
@@ -1069,3 +1073,147 @@
         holograffiti21: Cyberpunk
       highlight:
         holograffiti_highlight21: CyberpunkNeon
+
+- type: entity
+  id: HoloGraffitiHighlighted22
+  parent: HoloGraffiti
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/highlighted.rsi
+    layers:
+    - state: holograffiti22
+      map: [ "graffiti" ]
+      scale: 0.75, 0.75
+    - state: holograffiti_highlight22
+      map: [ "highlight" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti22: Cyberpunk
+      highlight:
+        holograffiti_highlight22: CyberpunkNeon
+
+- type: entity
+  id: HoloGraffitiHighlighted23
+  parent: HoloGraffiti
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/highlighted.rsi
+    layers:
+    - state: holograffiti23
+      map: [ "graffiti" ]
+      scale: 0.75, 0.75
+    - state: holograffiti_highlight23
+      map: [ "highlight" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti23: Cyberpunk
+      highlight:
+        holograffiti_highlight23: CyberpunkNeon
+
+- type: entity
+  id: HoloGraffitiHighlighted24
+  parent: HoloGraffiti
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/highlighted.rsi
+    layers:
+    - state: holograffiti24
+      map: [ "graffiti" ]
+      scale: 0.75, 0.75
+    - state: holograffiti_highlight24
+      map: [ "highlight" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti24: Cyberpunk
+      highlight:
+        holograffiti_highlight24: CyberpunkNeon
+
+- type: entity
+  id: HoloGraffitiHighlighted25
+  parent: HoloGraffiti
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/highlighted.rsi
+    layers:
+    - state: holograffiti25
+      map: [ "graffiti" ]
+      scale: 0.75, 0.75
+    - state: holograffiti_highlight25
+      map: [ "highlight" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti25: Cyberpunk
+      highlight:
+        holograffiti_highlight25: CyberpunkNeon
+
+- type: entity
+  id: HoloGraffitiHighlighted26
+  parent: HoloGraffiti
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/highlighted.rsi
+    layers:
+    - state: holograffiti26
+      map: [ "graffiti" ]
+      scale: 0.75, 0.75
+    - state: holograffiti_highlight26
+      map: [ "highlight" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti26: Cyberpunk
+      highlight:
+        holograffiti_highlight26: CyberpunkNeon
+
+- type: entity
+  id: HoloGraffitiHighlighted27
+  parent: HoloGraffiti
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/highlighted.rsi
+    layers:
+    - state: holograffiti27
+      map: [ "graffiti" ]
+      scale: 0.75, 0.75
+    - state: holograffiti_highlight27
+      map: [ "highlight" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti27: Cyberpunk
+      highlight:
+        holograffiti_highlight27: CyberpunkNeon
