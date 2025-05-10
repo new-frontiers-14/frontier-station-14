@@ -153,7 +153,7 @@
           doAfter: 14
 
 - type: entity
-  id: WeaponTurretLaserSyndicateNF
+  id: WeaponTurretLaserNFSyndicate
   name: laser turret
   suffix: Frontier, Syndicate
   parent:
@@ -175,7 +175,7 @@
     fireCost: 10
   - type: NpcFactionMember
     factions:
-    - SyndicateNF
+    - NFSyndicate
 
 - type: entity
   id: WeaponTurretLaserHostileNF
@@ -183,7 +183,7 @@
   suffix: Frontier, Hostile
   parent:
   - BaseC3Contraband
-  - WeaponTurretLaserSyndicateNF
+  - WeaponTurretLaserNFSyndicate
   components:
   - type: NpcFactionMember
     factions:
