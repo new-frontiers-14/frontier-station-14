@@ -1,3 +1,4 @@
+# region Machines
 - type: latheRecipe
   id: SalvageTechFabCircuitboardNF
   parent: [BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory]
@@ -10,6 +11,14 @@
   id: BlueprintLithographMachineCircuitboard
   parent: [BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory]
   result: BlueprintLithographMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 900
+
+- type: latheRecipe
+  id: MaterialSiloMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory]
+  result: MaterialSiloMachineCircuitboard
   materials:
     Steel: 800
     Glass: 900
@@ -85,7 +94,7 @@
     Steel: 800
     Glass: 900
 
-# Thrusters
+# region Thrusters
 - type: latheRecipe
   id: ThrusterSecurityMachineCircuitboard
   parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
@@ -111,7 +120,7 @@
     Steel: 140
     Glass: 300
 
-# Gyroscope
+# region Gyroscopes
 - type: latheRecipe
   id: GyroscopeSecurityMachineCircuitboard
   parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
@@ -137,7 +146,7 @@
   parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: SmallGyroscopeMachineCircuitboard
 
-# Generators
+# region Generators
 - type: latheRecipe
   id: PortableGeneratorDKMachineCircuitboard
   parent: [ BaseGoldCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
