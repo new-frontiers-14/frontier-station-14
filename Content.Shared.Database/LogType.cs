@@ -495,6 +495,11 @@ public enum LogType
     /// </summary>
     MedicalBountyRedeemed = 207,
 
+    /// <summary>
+    /// Shuttle info was changed.
+    /// </summary>
+    ShuttleInfoChanged = 208,
+
     // DeltaV Station Specific
 
     /// <summary>
