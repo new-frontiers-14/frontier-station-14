@@ -77,6 +77,7 @@
   id: CrateFunSharkPlushieBulk
   parent: CrateGenericSteel
   name: bulk soft toy shark crate
+  abstract: true # Frontier
   description: A crate filled with a variety of everyone's favorite finned friend. Rawr!
   components:
   - type: EntityTableContainerFill
@@ -313,7 +314,7 @@
 
 - type: entity
   id: CrateFunFoamGuns
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable # Frontier: CratePlastic<CratePlasticBiodegradable
   name: Foam Force crate
   description: Contains four Foam Force rifles, some grenades, and extra ammo. It's [REDACTED] or nothing!
   components:
