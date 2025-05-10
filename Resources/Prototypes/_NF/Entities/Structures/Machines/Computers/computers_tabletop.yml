@@ -300,6 +300,26 @@
       state: generic_keys
 
 - type: entity
+  parent: [BaseStructureComputerTabletop, ComputerComms]
+  id: MobileComputerTabletopComms
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: comm
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_keys
+
+- type: entity
   parent: [BaseStructureComputerTabletop, SyndicateComputerComms]
   id: SyndicateComputerTabletopComms
   components:
@@ -333,7 +353,7 @@
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
       state: generic_keyboard_tabletop
     - map: ["computerLayerScreen"]
-      sprite: Structures/Machines/computers.rsi
+      sprite: _NF/Structures/Machines/computers.rsi
       state: solar_screen
     - map: ["computerLayerKeys"]
       sprite: Structures/Machines/computers.rsi

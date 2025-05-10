@@ -1,15 +1,19 @@
 using Content.Server.Administration.Commands;
 using Content.Server.Antag;
+using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Zombies;
 using Content.Shared.Administration;
 using Content.Shared.Database;
+using Content.Shared.Humanoid;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Server._NF.GameTicking.Rules.Components; // Frontier
+using Content.Server._NF.Pirate.Components; // Frontier
 
 namespace Content.Server.Administration.Systems;
 
@@ -17,15 +21,16 @@ public sealed partial class AdminVerbSystem
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly ZombieSystem _zombie = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultTraitorRule = "Traitor";
 
-    // [ValidatePrototypeId<EntityPrototype>] // Frontier: no initial infected verb
-    // private const string DefaultInitialInfectedRule = "Zombie"; // Frontier: no initial infected verb
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string DefaultInitialInfectedRule = "Zombie";
 
-    // [ValidatePrototypeId<EntityPrototype>] // Frontier: no nuke op verb
-    // private const string DefaultNukeOpRule = "LoneOpsSpawn"; // Frontier: no nuke op verb
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string DefaultNukeOpRule = "LoneOpsSpawn";
 
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultRevsRule = "Revolutionary";
@@ -35,6 +40,9 @@ public sealed partial class AdminVerbSystem
 
     [ValidatePrototypeId<StartingGearPrototype>]
     private const string PirateGearId = "PirateGear";
+
+    private readonly EntProtoId _paradoxCloneRuleId = "ParadoxCloneSpawn";
+    private readonly EntProtoId _pirateRuleId = "NFPirate"; // Frontier
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -52,84 +60,106 @@ public sealed partial class AdminVerbSystem
 
         var targetPlayer = targetActor.PlayerSession;
 
+        var traitorName = Loc.GetString("admin-verb-text-make-traitor");
         Verb traitor = new()
         {
-            Text = Loc.GetString("admin-verb-text-make-traitor"),
+            Text = traitorName,
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Wallmounts/posters.rsi"), "poster5_contraband"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Misc/job_icons.rsi"), "Syndicate"),
             Act = () =>
             {
                 _antag.ForceMakeAntag<TraitorRuleComponent>(targetPlayer, DefaultTraitorRule);
             },
             Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-traitor"),
+            Message = string.Join(": ", traitorName,  Loc.GetString("admin-verb-make-traitor")),
         };
         args.Verbs.Add(traitor);
 
-        // Frontier: comment this out, no initial infected verb
-        // Verb initialInfected = new()
-        // {
-        //     Text = Loc.GetString("admin-verb-text-make-initial-infected"),
-        //     Category = VerbCategory.Antag,
-        //     Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "InitialInfected"),
-        //     Act = () =>
-        //     {
-        //         _antag.ForceMakeAntag<ZombieRuleComponent>(targetPlayer, DefaultInitialInfectedRule);
-        //     },
-        //     Impact = LogImpact.High,
-        //     Message = Loc.GetString("admin-verb-make-initial-infected"),
-        // };
-        // args.Verbs.Add(initialInfected);
-        // End Frontier
+        var initialInfectedName = Loc.GetString("admin-verb-text-make-initial-infected");
+        Verb initialInfected = new()
+        {
+            Text = initialInfectedName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "InitialInfected"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<ZombieRuleComponent>(targetPlayer, DefaultInitialInfectedRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", initialInfectedName, Loc.GetString("admin-verb-make-initial-infected")),
+        };
+        //args.Verbs.Add(initialInfected); // Frontier: comment this out, no initial infected verb
 
+        var zombieName = Loc.GetString("admin-verb-text-make-zombie");
         Verb zombie = new()
         {
-            Text = Loc.GetString("admin-verb-text-make-zombie"),
+            Text = zombieName,
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/Actions/zombie-turn.png")),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "Zombie"),
             Act = () =>
             {
                 _zombie.ZombifyEntity(args.Target);
             },
             Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-zombie"),
+            Message = string.Join(": ", zombieName, Loc.GetString("admin-verb-make-zombie")),
         };
         args.Verbs.Add(zombie);
 
-        // Frontier: comment this out, no nuke op verb
-        // Verb nukeOp = new()
-        // {
-        //     Text = Loc.GetString("admin-verb-text-make-nuclear-operative"),
-        //     Category = VerbCategory.Antag,
-        //     Icon = new SpriteSpecifier.Rsi(new("/Textures/Structures/Wallmounts/signs.rsi"), "radiation"),
-        //     Act = () =>
-        //     {
-        //         _antag.ForceMakeAntag<NukeopsRuleComponent>(targetPlayer, DefaultNukeOpRule);
-        //     },
-        //     Impact = LogImpact.High,
-        //     Message = Loc.GetString("admin-verb-make-nuclear-operative"),
-        // };
-        // args.Verbs.Add(nukeOp);
-        // End Frontier
-
-        Verb pirate = new()
+        var nukeOpName = Loc.GetString("admin-verb-text-make-nuclear-operative");
+        Verb nukeOp = new()
         {
-            Text = Loc.GetString("admin-verb-text-make-pirate"),
+            Text = nukeOpName,
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Clothing/Head/Hats/pirate.rsi"), "icon"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Clothing/Head/Hardsuits/syndicate.rsi"), "icon"),
             Act = () =>
             {
-                // pirates just get an outfit because they don't really have logic associated with them
-                SetOutfitCommand.SetOutfit(args.Target, PirateGearId, EntityManager);
+                _antag.ForceMakeAntag<NukeopsRuleComponent>(targetPlayer, DefaultNukeOpRule);
             },
             Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-pirate"),
+            Message = string.Join(": ", nukeOpName, Loc.GetString("admin-verb-make-nuclear-operative")),
+        };
+        //args.Verbs.Add(nukeOp); // Frontier: comment this out, no nuke op verb
+
+        // Frontier: custom pirate verb
+        var pirateName = Loc.GetString("admin-verb-text-make-nf-pirate");
+        Verb pirate = new()
+        {
+            Text = pirateName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_NF/Interface/Misc/job_icons.rsi"), "pirate"),
+            Act = () =>
+            {
+                EnsureComp<AutoPirateComponent>(args.User); // Frontier: needed to pass the pirate whitelist
+                _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, _pirateRuleId);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", pirateName, Loc.GetString("admin-verb-make-nf-pirate")),
         };
         args.Verbs.Add(pirate);
+        // End Frontier: custom pirate verb
 
+        // Frontier: pirate captain verb
+        var pirateCaptainName = Loc.GetString("admin-verb-text-make-nf-pirate-captain");
+        Verb pirateCaptain = new()
+        {
+            Text = pirateCaptainName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_NF/Interface/Misc/job_icons.rsi"), "piratecaptain"),
+            Act = () =>
+            {
+                EnsureComp<AutoPirateCaptainComponent>(args.User); // Pass the pirate captain whitelist
+                _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, _pirateRuleId);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", pirateName, Loc.GetString("admin-verb-make-nf-pirate-captain")),
+        };
+        args.Verbs.Add(pirateCaptain);
+        // End Frontier
+
+        var headRevName = Loc.GetString("admin-verb-text-make-head-rev");
         Verb headRev = new()
         {
-            Text = Loc.GetString("admin-verb-text-make-head-rev"),
+            Text = headRevName,
             Category = VerbCategory.Antag,
             Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "HeadRevolutionary"),
             Act = () =>
@@ -137,13 +167,14 @@ public sealed partial class AdminVerbSystem
                 _antag.ForceMakeAntag<RevolutionaryRuleComponent>(targetPlayer, DefaultRevsRule);
             },
             Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-head-rev"),
+            Message = string.Join(": ", headRevName, Loc.GetString("admin-verb-make-head-rev")),
         };
-        args.Verbs.Add(headRev);
+        //args.Verbs.Add(headRev); // Frontier
 
+        var thiefName = Loc.GetString("admin-verb-text-make-thief");
         Verb thief = new()
         {
-            Text = Loc.GetString("admin-verb-text-make-thief"),
+            Text = thiefName,
             Category = VerbCategory.Antag,
             Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Clothing/Hands/Gloves/Color/black.rsi"), "icon"),
             Act = () =>
@@ -151,8 +182,32 @@ public sealed partial class AdminVerbSystem
                 _antag.ForceMakeAntag<ThiefRuleComponent>(targetPlayer, DefaultThiefRule);
             },
             Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-thief"),
+            Message = string.Join(": ", thiefName, Loc.GetString("admin-verb-make-thief")),
         };
         args.Verbs.Add(thief);
+
+        var paradoxCloneName = Loc.GetString("admin-verb-text-make-paradox-clone");
+        Verb paradox = new()
+        {
+            Text = paradoxCloneName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "ParadoxClone"),
+            Act = () =>
+            {
+                var ruleEnt = _gameTicker.AddGameRule(_paradoxCloneRuleId);
+
+                if (!TryComp<ParadoxCloneRuleComponent>(ruleEnt, out var paradoxCloneRuleComp))
+                    return;
+
+                paradoxCloneRuleComp.OriginalBody = args.Target; // override the target player
+
+                _gameTicker.StartGameRule(ruleEnt);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", paradoxCloneName, Loc.GetString("admin-verb-make-paradox-clone")),
+        };
+
+        if (HasComp<HumanoidAppearanceComponent>(args.Target)) // only humanoids can be cloned
+            args.Verbs.Add(paradox);
     }
 }

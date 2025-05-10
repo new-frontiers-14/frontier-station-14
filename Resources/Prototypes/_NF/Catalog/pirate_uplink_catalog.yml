@@ -31,7 +31,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateHardsuitElite
@@ -50,7 +50,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateCaptainCrateFilled
@@ -69,7 +69,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateCrateFilled
@@ -136,7 +136,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateBlunderbuss
@@ -203,7 +203,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkEnergyCutlass
@@ -222,7 +222,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateAnchor
@@ -417,7 +417,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkRadioImplanterFreelance
@@ -436,7 +436,7 @@
   - UplinkPirateUtility
 
 - type: listing
-  id: PirateRepairKit
+  id: UplinkPirateRepairKit
   name: uplink-pirate-repair-kit-name
   description: uplink-pirate-repair-kit-desc
   productEntity: PirateRepairKit
@@ -450,6 +450,38 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateIonizedBluespaceDustBag
+  name: uplink-pirate-ionized-dust-bag-name
+  description: uplink-pirate-ionized-dust-bag-desc
+  productEntity: IonizedBluespaceDustBag
+  icon: { sprite: _NF/Objects/Specific/Pirate/bluespace_dust.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPiratePinpointerScanner
+  name: uplink-pirate-pinpointer-target-scanner-name
+  description: uplink-pirate-pinpointer-target-scanner-desc
+  productEntity: PinpointerScanner
+  icon: { sprite: _NF/Objects/Specific/Pirate/pinpointer_scanner.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
   categories:
   - UplinkPirateUtility

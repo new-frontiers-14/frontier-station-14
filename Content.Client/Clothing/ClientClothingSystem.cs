@@ -162,7 +162,7 @@ public sealed class ClientClothingSystem : ClothingSystem
 
         var state = $"equipped-{correctedSlot}";
 
-        if (clothing.EquippedPrefix != null)
+        if (!string.IsNullOrEmpty(clothing.EquippedPrefix))
             state = $"{clothing.EquippedPrefix}-equipped-{correctedSlot}";
 
         if (clothing.EquippedState != null)
@@ -342,9 +342,13 @@ public sealed class ClientClothingSystem : ClothingSystem
 
             if (displacementData is not null)
             {
+                // Frontier: revise race check
                 //Checking that the state is not tied to the current race. In this case we don't need to use the displacement maps.
-                if (layerData.State is not null && inventory.SpeciesId is not null && layerData.State.EndsWith(inventory.SpeciesId))
+                //if (layerData.State is not null && inventory.SpeciesId is not null && layerData.State.EndsWith(inventory.SpeciesId))
+                //    continue;
+                if (layer.State.Name is not null && inventory.SpeciesId is not null && layer.State.Name.EndsWith(inventory.SpeciesId))
                     continue;
+                // End Frontier: revise race check
 
                 if (_displacement.TryAddDisplacement(displacementData, sprite, index, key, revealedLayers))
                     index++;

@@ -159,9 +159,13 @@
 - type: entity
   parent: BaseMobDragon
   id: MobDragon
+  abstract: true # Frontier: use NF variants
   components:
   - type: Dragon
     spawnRiftAction: ActionSpawnRift
+  - type: GhostRole
+    mindRoles:
+    - MindRoleDragon
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
@@ -190,13 +194,14 @@
     projectileSpeed: 5
 
 - type: entity
-  parent: [NFMobRestrictions, BaseMobDragon, MobNonHumanHostileBase, NFMobBossRestrictions ] # Frontier: add NFMobRestrictions, MobNonHumanHostileBase, NFMobBossRestrictions
+  abstract: true # Frontier: use NF variant
+  parent: [BaseMobDragon, MobNonHumanHostileBase]
   id: MobDragonDungeon
   suffix: Dungeon
   components:
   - type: GhostRole
     description: ghost-role-information-space-dragon-dungeon-description
-    rules: ghost-role-information-dungeon-boss-rules # Frontier: ghost-role-information-space-dragon-dungeon-rules<ghost-role-information-dungeon-boss-rules
+    rules: ghost-role-information-space-dragon-dungeon-rules
     raffle:
       settings: default
   - type: SlowOnDamage
@@ -205,23 +210,17 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      250: Dead # Frontier: 200<250
+      200: Dead
   # less meat spawned since it's a lot easier to kill
   - type: Butcherable
     spawned:
     - id: FoodMeatDragon
       amount: 3
-    - id: DragonEgg #Frontier
-      amount: 1 #Frontier
-      prob: 0.3 #Frontier
   # half damage, spread evenly
   - type: MeleeWeapon
     damage:
       groups:
-        Brute: 15 # Frontier: 12<15
-  - type: ActionGun #Frontier
-    action: ActionDragonsBreath #Frontier
-    gunProto: DragonsBreathGun #Frontier
+        Brute: 12
 
 - type: entity
   id: ActionSpawnRift

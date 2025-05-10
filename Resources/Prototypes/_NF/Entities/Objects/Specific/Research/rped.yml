@@ -6,9 +6,21 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Research/rped.rsi
-    state: icon
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     sprite: _NF/Objects/Specific/Research/rped.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
     size: Normal
   - type: PartExchanger
   - type: Storage

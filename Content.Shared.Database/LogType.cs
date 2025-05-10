@@ -455,8 +455,17 @@ public enum LogType
     /// </summary>
     AdminCommands = 98,
 
-    // Frontier Station Specific
+    /// <summary>
+    /// A player was selected or assigned antag status
+    /// </summary>
+    AntagSelection = 99,
 
+    /// <summary>
+    /// Logs related to botany, such as planting and harvesting crops
+    /// </summary>
+    Botany = 100,
+
+    // Frontier Station Specific
     ATMUsage = 200,
     ShipYardUsage = 201,
     ShuttleRecordsUsage = 202,

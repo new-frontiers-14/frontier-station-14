@@ -101,9 +101,11 @@
   - ContractorClothingUniformJumpskirtLawyerGood
   - ContractorClothingUniformRandomPunkCroptop # Punkish (Randomized visuals)
   - ContractorClothingUniformRandomPunkTanktop # Punkish (Randomized visuals)
-  - ContractorClothingUniformRandomArmlessNoSkirt # Punkish (Randomized visuals)
   - ContractorClothingUniformRandomPunkCroptopShorts # Punkish (Randomized visuals)
   - ContractorClothingUniformRandomPunkTanktopShorts # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomPunkPantsOnly # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomPunkShortsOnly # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomArmlessNoSkirt # Punkish (Randomized visuals)
   - ContractorClothingUniformRandomArmless
   - ContractorClothingUniformRandomStandard
   - ContractorClothingUniformRandomShorts
@@ -205,7 +207,6 @@
   - ContractorClothingUniformJumpskirtBlueTurtleneckDress
   - ContractorClothingUniformJumpskirtYellowTurtleneckDress
   - ContractorClothingUniformJumpskirtYellowOldDress
-
   fallbacks:
   - ContractorClothingUniformJumpsuitColorGrey
   - ContractorClothingUniformJumpskirtColorGrey
@@ -240,6 +241,7 @@
   - ContractorClothingBackpackMessengerScience
   - ContractorClothingBackpackMedical
   - ContractorClothingBackpackDuffelMedical
+  - ContractorClothingBackpackDuffelTrauma
   - ContractorClothingBackpackSatchelMedical
   - ContractorClothingBackpackMessengerMedical
   - ContractorClothingBackpackChemistry
@@ -263,7 +265,18 @@
   - ContractorClothingBackpackDuffelAtmospherics
   - ContractorClothingBackpackSatchelAtmospherics
   - ContractorClothingBackpackMessengerAtmospherics
+  - ContractorNFClothingBackpackDuffelChaplain
   - ContractorClothingBackpackMessengerChaplain
+  - ContractorNFClothingBackpackDuffelColorBlack
+  - ContractorNFClothingBackpackDuffelColorWhite
+  - ContractorNFClothingBackpackDuffelColorBlue
+  - ContractorNFClothingBackpackDuffelColorGreen
+  - ContractorNFClothingBackpackDuffelColorOrange
+  - ContractorNFClothingBackpackDuffelColorRed
+  - ContractorNFClothingBackpackDuffelColorPurple
+  - ContractorNFClothingBackpackDuffelColorBrownLight
+  - ContractorNFClothingBackpackDuffelColorBrown
+  - ContractorNFClothingBackpackDuffelColorRandom
   - ContractorClothingBackpackMessengerColorBlack
   - ContractorClothingBackpackMessengerColorWhite
   - ContractorClothingBackpackMessengerColorBlue
@@ -273,6 +286,7 @@
   - ContractorClothingBackpackMessengerColorPurple
   - ContractorClothingBackpackMessengerColorBrownLight
   - ContractorClothingBackpackMessengerColorBrown
+  - ContractorClothingBackpackMessengerColorRandom
   - ContractorClothingBackpackClown
   - ContractorClothingBackpackDuffelClown
   - ContractorClothingBackpackSatchelClown
@@ -626,6 +640,7 @@
   - ContractorClothingNeckCloakTrans
   - ContractorClothingNeckCloakAro
   - ContractorClothingNeckCloakAce
+  - ContractorClothingNeckCloakAroace
   - ContractorClothingNeckCloakBi
   - ContractorClothingNeckCloakIntersex
   - ContractorClothingNeckCloakEnby
@@ -636,6 +651,7 @@
   - ClothingNeckLGBTPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
+  - ClothingNeckAroacePin
   - ClothingNeckBisexualPin
   - ClothingNeckGayPin
   - ClothingNeckIntersexPin
@@ -853,13 +869,16 @@
   name: loadout-group-contractor-survival-box
   minLimit: 1
   loadouts:
-  - ContractorBoxSurvivalNFOxygen
-  - ContractorBoxSurvivalNFNitrogen
-  - ContractorBoxSurvivalNFOxygenExtended
-  - ContractorBoxSurvivalNFNitrogenExtended
+  - ContractorNFBoxSurvival
+  - ContractorNFBoxSurvivalNitrogen
+  - ContractorNFBoxSurvivalExtended
+  - ContractorNFBoxSurvivalExtendedNitrogen
+  - ContractorNFBoxSurvivalSheleg
+  - ContractorNFBoxSurvivalExtendedSheleg
   fallbacks:
-  - ContractorBoxSurvivalNFOxygen
-  - ContractorBoxSurvivalNFNitrogen
+  - ContractorNFBoxSurvival
+  - ContractorNFBoxSurvivalNitrogen
+  - ContractorNFBoxSurvivalSheleg
 
 - type: loadoutGroup
   id: ContractorEncryptionKey

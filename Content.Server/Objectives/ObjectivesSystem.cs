@@ -12,13 +12,14 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
 using System.Text;
-using Content.Server.Objectives.Commands; // DeltaV
-using Content.Shared._DV.CCVars; // DeltaV
-using Content.Shared.CCVar; // DeltaV
+using Content.Server.Objectives.Commands;
+using Content.Shared._DV.CCVars;
+using Content.Shared._DV.CustomObjectiveSummary; // DeltaV
+using Content.Shared.CCVar;
 using Content.Shared.Prototypes;
 using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
-using Robust.Shared.Configuration; // DeltaV
+using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Objectives;
@@ -31,11 +32,11 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly SharedJobSystem _job = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // DeltaV
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private IEnumerable<string>? _objectives;
 
-    private bool _showGreentext; // DeltaV
+    private bool _showGreentext;
 
     private int _maxLengthSummaryLength; // DeltaV
 
@@ -45,7 +46,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
 
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
 
-        Subs.CVar(_cfg, DCCVars.GameShowGreentext, value => _showGreentext = value, true); // Frontier
+        Subs.CVar(_cfg, CCVars.GameShowGreentext, value => _showGreentext = value, true);
 
         Subs.CVar(_cfg, DCCVars.MaxObjectiveSummaryLength, len => _maxLengthSummaryLength = len, true); // DeltaV
 
@@ -175,7 +176,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                     totalObjectives++;
 
                     agentSummary.Append("- ");
-                    if (!_showGreentext) // DeltaV
+                    if (!_showGreentext)
                     {
                         agentSummary.AppendLine(objectiveTitle);
                     }
@@ -193,14 +194,14 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                         agentSummary.AppendLine(Loc.GetString(
                             "objectives-objective-fail",
                             ("objective", objectiveTitle),
-                            ("progress", (int) (progress * 100)),
+                            ("progress", (int)(progress * 100)),
                             ("markupColor", "red")
                         ));
                     }
                 }
             }
 
-            var successRate = totalObjectives > 0 ? (float) completedObjectives / totalObjectives : 0f;
+            var successRate = totalObjectives > 0 ? (float)completedObjectives / totalObjectives : 0f;
             // Begin DeltaV Additions - custom objective response.
             if (TryComp<CustomObjectiveSummaryComponent>(mindId, out var customComp) &&
                 customComp.ObjectiveSummary.Length <= _maxLengthSummaryLength)

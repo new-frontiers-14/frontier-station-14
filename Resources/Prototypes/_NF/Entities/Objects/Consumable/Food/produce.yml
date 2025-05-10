@@ -18,6 +18,8 @@
           Quantity: 4
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/pear.rsi
+  - type: Item
+    heldPrefix: produce
   - type: Produce
     seedId: pear
   - type: Extractable
@@ -54,6 +56,8 @@
           Quantity: 1
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/coffee.rsi
+  - type: Item
+    heldPrefix: produce
   - type: Produce
     seedId: coffee
   - type: Tag
@@ -85,6 +89,8 @@
           Quantity: 6
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/avocado.rsi
+  - type: Item
+    heldPrefix: produce
   - type: Produce
     seedId: avocado
   - type: SliceableFood
@@ -151,6 +157,8 @@
           Quantity: 4
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
+  - type: Item
+    heldPrefix: produce
   - type: Produce
     seedId: cucumber
   - type: SliceableFood
@@ -220,6 +228,8 @@
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
     state: pickle
+  - type: Item
+    heldPrefix: pickle
   - type: SliceableFood
     count: 4
     slice: FoodPickleSlice
@@ -287,7 +297,8 @@
           Quantity: 5
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/bees.rsi
-    state: produce
+  - type: Item
+    heldPrefix: produce
   - type: Extractable
     grindableSolutionName: food
     juiceSolution:
@@ -337,7 +348,8 @@
           Quantity: 5
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
-    state: produce
+  - type: Item
+    heldPrefix: produce
   - type: Tag
     tags:
       - Fruit
@@ -367,6 +379,8 @@
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
     state: produce-roasted
+  - type: Item
+    heldPrefix: produce-roasted
   - type: Tag
     tags:
       - Fruit
@@ -410,3 +424,29 @@
   - type: DeepFrySpawn
     cycles: 2
     output: FoodOnionRings
+
+- type: entity
+  name: monkanana
+  parent: FoodProduceBase
+  id: FoodMonkanana
+  description: Looks like a monkeyfied banana.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - hairy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Ook
+          Quantity: 10
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/monkanana.rsi
+  - type: Produce
+    seedId: monkanana
+  - type: Extractable
+    grindableSolutionName: food
+  - type: Tag
+    tags:
+      - Fruit

@@ -8,7 +8,7 @@
       Brute:
         collection: GlassSmash
   - type: Sprite
-    sprite: Objects/Power/light_bulb.rsi
+    sprite: _NF/Objects/Power/light_bulb.rsi # Frontier: greyscale version
     layers:
       - map: [ enum.LightBulbVisualLayers.Base ]
         state: normal
@@ -204,6 +204,7 @@
   id: LightBulbBroken
   description: A light bulb.
   components:
+  - type: GoblinPreciousTrash # Frontier
   - type: LightBulb
     startingState: Broken
     bulb: Bulb
@@ -258,6 +259,7 @@
   id: LightTubeBroken
   description: A light fixture.
   components:
+  - type: GoblinPreciousTrash # Frontier
   - type: LightBulb
     startingState: Broken
 
@@ -349,6 +351,21 @@
 
 - type: entity
   parent: BaseLightTubeCrystal
+  name: yellow crystal light tube
+  id: LightTubeCrystalYellow
+  components:
+  - type: LightBulb
+    color: "#ffde46"
+  - type: Construction
+    graph: YellowLight
+    node: icon
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+    - id: ShardCrystalYellow
+
+- type: entity
+  parent: BaseLightTubeCrystal
   name: pink crystal light tube
   id: LightTubeCrystalPink
   components:
@@ -376,6 +393,24 @@
     refineResult:
     - id: SheetGlass1
     - id: ShardCrystalOrange
+
+- type: entity
+  parent: BaseLightTubeCrystal
+  name: black crystal light tube
+  description: A high power high energy bulb which has a small colored crystal inside. It isn't very bright.
+  id: LightTubeCrystalBlack
+  components:
+  - type: LightBulb
+    color: "#363636"
+    lightEnergy: 1
+    lightRadius: 8
+  - type: Construction
+    graph: BlackLight
+    node: icon
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+    - id: ShardCrystalBlack
 
 - type: entity
   parent: BaseLightTubeCrystal
@@ -456,6 +491,21 @@
 
 - type: entity
   parent: BaseLightbulbCrystal
+  name: yellow crystal light bulb
+  id: LightBulbCrystalYellow
+  components:
+  - type: LightBulb
+    color: "#ffde46"
+  - type: Construction
+    graph: YellowLightBulb
+    node: icon
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+    - id: ShardCrystalYellow
+
+- type: entity
+  parent: BaseLightbulbCrystal
   name: pink crystal light bulb
   id: LightBulbCrystalPink
   components:
@@ -483,6 +533,24 @@
     refineResult:
     - id: SheetGlass1
     - id: ShardCrystalOrange
+
+- type: entity
+  parent: BaseLightbulbCrystal
+  name: black crystal light bulb
+  description: A high power high energy bulb which has a small colored crystal inside. It isn't very bright.
+  id: LightBulbCrystalBlack
+  components:
+  - type: LightBulb
+    color: "#363636"
+    lightEnergy: 1
+    lightRadius: 8
+  - type: Construction
+    graph: BlackLightBulb
+    node: icon
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+    - id: ShardCrystalBlack
 
 - type: entity
   parent: BaseLightbulbCrystal
