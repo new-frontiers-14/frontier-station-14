@@ -1,4 +1,4 @@
-# Base game vehicles
+#region Base game vehicles
 - type: entity
   parent: VehicleATV
   id: NFVehicleATV
@@ -64,6 +64,7 @@
   - type: RandomMetadata
     descriptionSegments: [DescriptionsATV]
 
+#region skeleton bike
 - type: entity
   parent: BaseVehicle
   id: NFVehicleSkeletonMotorcycle
@@ -126,6 +127,7 @@
         enum.StorageUiKey.Key:
           type: StorageBoundUserInterface
 
+#region unicycle
 - type: entity
   id: VehicleUnicycle
   parent: [BaseVehicle, BaseFoldable, BaseItem]
@@ -194,7 +196,7 @@
     sprite: Objects/Vehicles/janicart.rsi
     state: destroyed
 
-# New Frontier vehicles
+#region hoverbike
 - type: entity
   parent: NFVehicleATV
   id: NFVehicleHoverbike
@@ -295,6 +297,7 @@
           params:
             volume: -3
 
+#region janicart
 # Enhanced version of the vanilla Janicart that adds a bucket and mop slot.
 - type: entity
   id: NFVehicleJanicart
@@ -803,3 +806,73 @@
           components:
             - Gun
         priority: 2
+
+#region dumpster
+- type: entity
+  id: NFGoblinMadeVehicleDumpster
+  parent: [ BaseVehicle, NFMagnetBoxRubbish ]
+  name: dumpster
+  description: It only has one wheel!
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnGoblinMadeToolMalfunction
+    chance: 0.05
+    intervalSeconds: 1200 # 20 min
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: GoblinMade
+  - type: Vehicle
+    renderOver: None
+    northOffset: 0, -0.15
+    southOffset: 0, -0.15
+    eastOffset: 0, -0.15
+    westOffset: 0, -0.15
+    engineRunning: true
+    hornSound:
+      collection: CarBeeps
+      params:
+        variation: 0.125
+  - type: Sprite
+    sprite: _NF/Objects/Vehicles/dumpster.rsi
+    layers:
+    - state: dumpster
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - sprite: _NF/Structures/Storage/magnetbox.rsi
+      state: controller
+    - sprite: _NF/Structures/Storage/magnetbox.rsi
+      state: controller-on
+      visible: False
+      map: [ "enum.ToggleVisuals.Layer" ]
+      shader: unshaded
+    - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
+      state: overlay-icon
+      shader: unshaded
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 0.8
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 240
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: ItemSlots
+    slots: {} # no keys required
+  - type: Construction
+    graph: NFGoblinMadeVehicleDumpster
+    node: NFGoblinMadeVehicleDumpster
