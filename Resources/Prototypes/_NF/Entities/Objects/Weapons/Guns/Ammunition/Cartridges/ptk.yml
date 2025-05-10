@@ -1,11 +1,14 @@
 - type: entity
   id: CartridgePTK
   name: cartridge (PTK)
-  parent: CartridgeLightRifleRubber
+  parent: [BaseCartridge, BaseC1Contraband, RecyclableItemSteelTiny]
   components:
   - type: CartridgeAmmo
     proto: BulletKineticShuttle
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
   - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]

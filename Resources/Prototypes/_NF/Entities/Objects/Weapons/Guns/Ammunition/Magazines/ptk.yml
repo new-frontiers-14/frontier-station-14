@@ -1,19 +1,75 @@
 - type: entity
   parent: BaseMagazinePistolHighCapacity
-  id: MagazinePTK
+  id: BaseMagazinePTK
   name: "PTK Magazine"
   description: |-
    A magazine for a PTK mining turret
-  suffix: empty
   components:
+  - type: Tag
+    tags:
+      - Magazine
+      - MagazinePTK
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
         - Cartridge
         - CartridgePTK
-    proto: CartridgePTK
     capacity: 50
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Turret/box_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 11
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazinePTKEmpty
+  name: "PTK Magazine (Empty)"
+  description: |-
+   A magazine for a PTK mining turret
+  suffix: filled
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Turret/box_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 11
+    zeroVisible: false
+  - type: Appearance
+
+  - type: entity
+  id: MagazinePTKFilled
+  name: "PTK Magazine"
+  description: |-
+   A magazine for a PTK mining turret
+  suffix: filled
+  components:
+  - type: BallisticAmmoProvider
+    proto: BulletKineticShuttle
   - type: Item
     size: Small
   - type: ContainerContainer

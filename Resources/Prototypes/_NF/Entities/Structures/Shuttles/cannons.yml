@@ -49,7 +49,7 @@
   id: NFShuttleGunKinetic
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: PTK-1500e "Matter Dematerializer"
-  description: Mining turret, Great for mining from afar provided ammo is supplied.
+  description: Mining turret, great for mining from afar provided ammo is supplied.
   categories: [ DoNotMap ]
   components:
   - type: Sprite
@@ -97,15 +97,16 @@
         whitelist:
           tags:
             - MagazinePTK
-        gun_chamber:
-          name: Chamber
-          startingItem: CartridgePTK
-          priority: 1
-          whitelist:
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
           tags:
             - CartridgePTK
   - type: Machine
     board: NFShuttleGunKineticMachineCircuitboard
+  - type: ChamberMagazineAmmoProvider
+    soundRack: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: ExtensionCableReceiver # Frontier
   - type: ApcPowerReceiver # Frontier
     powerLoad: 1500 # Frontier
