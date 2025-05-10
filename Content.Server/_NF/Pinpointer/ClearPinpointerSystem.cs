@@ -1,4 +1,3 @@
-using Content.Server.Charges.Systems;
 using Content.Server.Pinpointer;
 using Content.Shared._NF.Pinpointer;
 using Content.Shared.Charges.Components;
