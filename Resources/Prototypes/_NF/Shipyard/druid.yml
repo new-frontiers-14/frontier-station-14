@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Druid
+  parent: BaseVessel
+  name: FSB Druid
+  description: A medium service vessel providing botanical and chemical services to support the needs of the Frontier. Designed, developed and deployed by the Far Star Biotech company to render aid wherever it is needed.
+  price: 45000 # 15% t2.
+  category: Medium
+  group: Medical
+  shuttlePath: /Maps/_NF/Shuttles/druid.yml
+  guidebookPage: ShipyardDruid
+  class:
+  - Botany
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Druid
+  mapName: 'FSB Druid'
+  mapPath: /Maps/_NF/Shuttles/druid.yml
+  minPlayers: 0
+  stations:
+    Druid:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Druid {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
