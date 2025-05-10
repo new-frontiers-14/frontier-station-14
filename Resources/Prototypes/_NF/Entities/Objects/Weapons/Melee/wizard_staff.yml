@@ -25,6 +25,29 @@
     - WizardStaff
 
 - type: entity
+  name: wizard staff nf
+  parent: WizardStaffMeleeBase
+  id: WizardStaffMeleeBaseNF
+  components:
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
+    heldPrefix: staff
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Basic/staves.rsi
+    state: nothing
+  - type: MeleeWeapon
+    attackRate: 1.1
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 12
+    angle: 0
+    animation: WeaponArcThrust
+  - type: Tag
+    tags:
+    - WizardStaff
+
+- type: entity
   name: inert red wizard staff
   parent: WizardStaffMeleeBase
   id: WizardStaffMeleeRed
@@ -53,6 +76,22 @@
     heldPrefix: healing
   - type: Sprite
     state: healing
+
+- type: entity
+  name: inert brick wizard staff
+  parent: WizardStaffMeleeBaseNF
+  id: WizardStaffMeleeBrick
+  components:
+  - type: Item
+    heldPrefix: brick
+  - type: Sprite
+    state: brick
+  - type: MeleeWeapon
+    attackRate: 0.95
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 18
 
 # Blood Cult
 - type: entity

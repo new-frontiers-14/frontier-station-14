@@ -173,3 +173,23 @@
         Caustic: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.60
+
+- type: entity
+  parent: [ ClothingOuterStorageBase, BaseC3WizardContraband ]
+  id: ClothingOuterWizardBrick
+  name: brick wizard coat
+  description: ClothingOuterWizardBrick
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/wizard/brickwizard.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/wizard/brickwizard.rsi
+  - type: Armor # Open = less armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
