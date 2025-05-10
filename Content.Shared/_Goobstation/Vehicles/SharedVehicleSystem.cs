@@ -209,7 +209,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         // AddHorns(driver, ent); // Frontier: delay until mounted
     }
 
-    private void OnStrapped(Entity<VehicleComponent> ent, ref StrappedEvent args)
+    protected virtual void OnStrapped(Entity<VehicleComponent> ent, ref StrappedEvent args) // Frontier: private<protected virtual
     {
         var driver = args.Buckle.Owner;
 
@@ -229,7 +229,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         Mount(driver, ent.Owner);
     }
 
-    private void OnUnstrapped(Entity<VehicleComponent> ent, ref UnstrappedEvent args)
+    protected virtual void OnUnstrapped(Entity<VehicleComponent> ent, ref UnstrappedEvent args) // Frontier: private<protected virtual
     {
         if (ent.Comp.Driver != args.Buckle.Owner)
             return;
