@@ -7,6 +7,23 @@
   components:
   - type: Item
     storedRotation: -90
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#8FCBCB"
+      - state: base-module-inhand-left
+        color: "#A1A1A1"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#7D7D7D"
+      right:
+      - state: base-icon-inhand-right
+        color: "#8FCBCB"
+      - state: base-module-inhand-right
+        color: "#A1A1A1"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#7D7D7D"
   - type: Sprite
     sprite: Objects/Specific/Robotics/borgmodule.rsi
   - type: BorgModule
@@ -49,6 +66,22 @@
   - type: Tag
     tags:
     - BorgModuleCargo
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#EBD8B7"
+      - state: base-module-inhand-left
+        color: "#613D1D"
+      - state: base-stripes-inhand-left
+        color: "#593718"
+      right:
+      - state: base-icon-inhand-right
+        color: "#EBD8B7"
+      - state: base-module-inhand-right
+        color: "#613D1D"
+      - state: base-stripes-inhand-right
+        color: "#593718"
 
 - type: entity
   id: BaseBorgModuleEngineering
@@ -58,6 +91,24 @@
   - type: Tag
     tags:
     - BorgModuleEngineering
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#8FCBCB"
+      - state: base-module-inhand-left
+        color: "#BA3939"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#DEC343"
+      right:
+      - state: base-icon-inhand-right
+        color: "#8FCBCB"
+      - state: base-module-inhand-right
+        color: "#BA3939"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#DEC343"
 
 - type: entity
   id: BaseBorgModuleJanitor
@@ -67,6 +118,24 @@
   - type: Tag
     tags:
     - BorgModuleJanitor
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#CFA2E4"
+      - state: base-module-inhand-left
+        color: "#753186"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#404040"
+      right:
+      - state: base-icon-inhand-right
+        color: "#CFA2E4"
+      - state: base-module-inhand-right
+        color: "#753186"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#404040"
 
 - type: entity
   id: BaseBorgModuleMedical
@@ -76,6 +145,51 @@
   - type: Tag
     tags:
     - BorgModuleMedical
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#EEF5F5"
+      - state: base-module-inhand-left
+        color: "#5A96BB"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#C3C3C3"
+      right:
+      - state: base-icon-inhand-right
+        color: "#EEF5F5"
+      - state: base-module-inhand-right
+        color: "#5A96BB"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#C3C3C3"
+
+- type: entity
+  id: BaseBorgModuleScience
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BorgModuleScience
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#FFAEB6"
+      - state: base-module-inhand-left
+        color: "#9C0DE1"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#C3C3C3"
+      right:
+      - state: base-icon-inhand-right
+        color: "#FFAEB6"
+      - state: base-module-inhand-right
+        color: "#9C0DE1"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#C3C3C3"
 
 - type: entity
   id: BaseBorgModuleService
@@ -85,24 +199,79 @@
   - type: Tag
     tags:
     - BorgModuleService
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#F3F3F3"
+      - state: base-module-inhand-left
+        color: "#3A3A3A"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#313131"
+      right:
+      - state: base-icon-inhand-right
+        color: "#F3F3F3"
+      - state: base-module-inhand-right
+        color: "#3A3A3A"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#313131"
 
 - type: entity
   id: BaseBorgModuleSyndicate
   parent: BaseBorgModule
   abstract: true
   components:
-    - type: Tag
-      tags:
-        - BorgModuleSyndicate
+  - type: Tag
+    tags:
+    - BorgModuleSyndicate
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#FF0000"
+      - state: base-module-inhand-left
+        color: "#891417"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#7B0F12"
+      right:
+      - state: base-icon-inhand-right
+        color: "#FF0000"
+      - state: base-module-inhand-right
+        color: "#891417"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#7B0F12"
+      
 
 - type: entity
   id: BaseBorgModuleSyndicateAssault
   parent: BaseBorgModule
   abstract: true
   components:
-    - type: Tag
-      tags:
-        - BorgModuleSyndicateAssault
+  - type: Tag
+    tags:
+    - BorgModuleSyndicateAssault
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#FF0000"
+      - state: base-module-inhand-left
+        color: "#891417"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#7B0F12"
+      right:
+      - state: base-icon-inhand-right
+        color: "#FF0000"
+      - state: base-module-inhand-right
+        color: "#891417"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#7B0F12"
 
 # generic modules
 - type: entity
@@ -117,11 +286,48 @@
   - type: ItemBorgModule
     moduleId: Cables # Frontier
     items:
-    - CableApcStackLingering10
-    - CableMVStackLingering10
-    - CableHVStackLingering10
+    # - CableApcStackLingering10 # DeltaV
+    # - CableMVStackLingering10 # DeltaV
+    # - CableHVStackLingering10 # DeltaV
     - Wirecutter
     - trayScanner
+  # Begin DeltaV Additions - wires module can assemble electronics
+  - type: DroppableBorgModule
+    moduleId: Cables
+    items:
+    - id: CableApcStack
+      whitelist:
+        components:
+        - CablePlacer
+      displayName: borg-placeholder-display-name-cable-coil
+    - id: CableMVStack
+      whitelist:
+        components:
+        - CablePlacer
+      displayName: borg-placeholder-display-name-cable-coil
+    - id: CableHVStack
+      whitelist:
+        components:
+        - CablePlacer
+      displayName: borg-placeholder-display-name-cable-coil
+  # End DeltaV Additions
+  # Frontier: placeholders
+    placeholders:
+    - id: APCElectronics
+      whitelist:
+        components:
+        - Electronics
+        - MachineBoard
+        - ComputerBoard
+      displayName: borg-placeholder-display-name-electronics
+    - id: StationRecordsComputerCircuitboard
+      whitelist:
+        components:
+        - Electronics
+        - MachineBoard
+        - ComputerBoard
+      displayName: borg-placeholder-display-name-electronics
+  # End Frontier: placeholders
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: wire-module }
 
@@ -153,6 +359,7 @@
   id: BorgModuleGPS
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: GPS cyborg module
+  categories: [ HideSpawnMenu ] # Frontier: useless
   components:
   - type: Sprite
     layers:
@@ -209,7 +416,7 @@
 - type: entity
   id: BorgModuleAppraisal
   parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
-  name: appraisal cyborg module
+  name: cargo cyborg module # Frontier: appraisal<cargo
   components:
   - type: Sprite
     layers:
@@ -219,6 +426,22 @@
     moduleId: Appraisal # Frontier
     items:
     - AppraisalTool
+  # Frontier: droppable items
+  - type: DroppableBorgModule
+    moduleId: Appraisal
+    items: []
+    placeholders:
+    - id: CrateTradeSecureNormal
+      whitelist:
+        components:
+        - TradeCrate
+      displayName: borg-placeholder-display-name-trading-crate
+    - id: CrateTradeSecureNormal
+      whitelist:
+        components:
+        - TradeCrate
+      displayName: borg-placeholder-display-name-trading-crate
+  # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: appraisal-module }
 
@@ -302,13 +525,44 @@
     layers:
     - state: engineering
     - state: icon-construction
-  - type: ItemBorgModule
-    moduleId: Construction # Frontier
+  # Frontier: ItemBorgModule replaced with droppable variants
+  - type: DroppableBorgModule
+    moduleId: Construction
     items:
-    - SheetSteelLingering0
-    - SheetGlassLingering0
-    - PartRodMetalLingering0
-    - FloorTileItemSteelLingering0
+    - id: ConstructionBag
+      whitelist:
+        components:
+        - NFConstructionBag
+    placeholders:
+    - id: SheetSteel
+      whitelist:
+        tags:
+        - Ingot
+        - RodMetal1
+        - Sheet
+        components:
+        - ConstructionMaterials
+      displayName: borg-placeholder-display-name-construction-material
+    - id: SheetGlass
+      whitelist:
+        tags:
+        - Ingot
+        - RodMetal1
+        - Sheet
+        components:
+        - ConstructionMaterials
+      displayName: borg-placeholder-display-name-construction-material
+    - id: FloorTileItemSteel
+      whitelist:
+        components:
+        - FloorTile
+      displayName: borg-placeholder-display-name-floor-tile
+    - id: ThrusterFlatpack
+      whitelist:
+        components:
+        - Flatpack
+      displayName: borg-placeholder-display-name-flatpack
+    # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: construction-module }
 
@@ -344,6 +598,17 @@
     - LightReplacer
     - Crowbar
     - Screwdriver
+  # Frontier: droppable items
+  - type: DroppableBorgModule
+    moduleId: LightReplacer
+    items: []
+    placeholders:
+    - id: LightBulb
+      whitelist:
+        components:
+        - LightBulb
+      displayName: borg-placeholder-display-name-lights
+  # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: light-replacer-module }
 
@@ -361,7 +626,7 @@
     items:
     - MopItem
     # - Bucket # Frontier
-    - TrashBag
+    # - TrashBag # Frontier
   # Frontier: droppable items
   - type: DroppableBorgModule
     moduleId: Cleaning
@@ -370,6 +635,10 @@
       whitelist:
         tags:
         - Bucket
+    - id: TrashBag
+      whitelist:
+        tags:
+        - TrashBag
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
@@ -388,9 +657,23 @@
     items:
     - AdvMopItem
     - HoloprojectorBorg
-    - SprayBottleSpaceCleaner
+    # - SprayBottleSpaceCleaner # Frontier
     - Dropper
-    - TrashBag
+    # - TrashBag # Frontier
+  # Frontier: droppable items
+  - type: DroppableBorgModule
+    moduleId: AdvancedCleaning
+    items:
+    - id: SprayBottleSpaceCleaner
+      whitelist:
+        tags:
+        - Spray
+      displayName: borg-placeholder-display-name-spray-bottle
+    - id: TrashBag
+      whitelist:
+        tags:
+        - TrashBag
+  # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-cleaning-module }
 
@@ -421,15 +704,44 @@
     layers:
     - state: medical
     - state: icon-treatment
+  # Frontier: droppable borg modules (largely from Delta-V#3119, thank you deltanedas)
   - type: ItemBorgModule
     moduleId: Treatment # Frontier
     items:
     - HandheldHealthAnalyzerUnpowered
-    - Brutepack10Lingering
-    - Ointment10Lingering
-    - Gauze10Lingering
-    - Bloodpack10Lingering
-    - Syringe
+    # - Brutepack10Lingering
+    # - Ointment10Lingering
+    # - Gauze10Lingering
+    # - Bloodpack10Lingering
+    # - Syringe
+  - type: DroppableBorgModule
+    moduleId: Treatment
+    items:
+    - id: Brutepack
+      whitelist:
+        components:
+        - Healing
+      displayName: borg-placeholder-display-name-topical-medication
+    - id: Ointment
+      whitelist:
+        components:
+        - Healing
+      displayName: borg-placeholder-display-name-topical-medication
+    - id: Gauze
+      whitelist:
+        components:
+        - Healing
+      displayName: borg-placeholder-display-name-topical-medication
+    - id: Bloodpack
+      whitelist:
+        components:
+        - Healing
+      displayName: borg-placeholder-display-name-topical-medication
+    - id: Syringe
+      whitelist:
+        tags:
+        - Syringe
+  # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: treatment-module }
 
@@ -486,7 +798,7 @@
 # todo: if science ever gets their own custom robot, add more "sci" modules.
 - type: entity
   id: BorgModuleArtifact
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleScience, BaseProviderBorgModule ]
   name: artifact cyborg module
   components:
   - type: Sprite
@@ -502,7 +814,7 @@
 
 - type: entity
   id: BorgModuleAnomaly
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleScience, BaseProviderBorgModule ]
   name: anomaly cyborg module
   components:
   - type: Sprite
@@ -525,6 +837,7 @@
   id: BorgModuleService
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
   name: service cyborg module
+  categories: [HideSpawnMenu] # Frontier
   components:
   - type: Sprite
     layers:
@@ -534,28 +847,11 @@
     moduleId: Service # Frontier
     items:
     - Pen
-    # - BooksBag # Frontier
+    - BooksBag
     - HandLabeler
-    # - Lighter # Frontier
-    # - DrinkShaker # Frontier
+    - Lighter
+    - DrinkShaker
     - BorgDropper
-  # Frontier: droppable items
-  - type: DroppableBorgModule
-    moduleId: Service
-    items:
-    - id: BooksBag
-      whitelist:
-        components:
-        - NFBookBag
-    - id: Lighter
-      whitelist:
-        components:
-        - NFLighter
-    - id: DrinkShaker
-      whitelist:
-        components:
-        - NFShaker
-  # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: service-module }
 
@@ -568,12 +864,40 @@
     layers:
     - state: service
     - state: icon-musique
-  - type: ItemBorgModule
+  # Begin DeltaV Removals - replaced by hands
+  #- type: ItemBorgModule
+  #  moduleId: Music # Frontier
+  #  items:
+  #  - SynthesizerInstrument
+  #  - ElectricGuitarInstrument
+  #  - SaxophoneInstrument
+  # End DeltaV Removals
+  # Begin DeltaV Additions
+  - type: DroppableBorgModule
     moduleId: Music # Frontier
     items:
-    - SynthesizerInstrument
-    - ElectricGuitarInstrument
-    - SaxophoneInstrument
+    - id: SynthesizerInstrument
+      whitelist:
+        requireAll: true # no picking up harpies or grand pianos
+        components:
+        - Instrument
+        - Item
+      displayName: borg-placeholder-display-name-musical-instrument # Frontier
+    - id: ElectricGuitarInstrument
+      whitelist:
+        requireAll: true
+        components:
+        - Instrument
+        - Item
+      displayName: borg-placeholder-display-name-musical-instrument # Frontier
+    - id: SaxophoneInstrument
+      whitelist:
+        requireAll: true
+        components:
+        - Instrument
+        - Item
+      displayName: borg-placeholder-display-name-musical-instrument # Frontier
+  # End DeltaV Additions
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: musical-module }
 
@@ -593,6 +917,7 @@
     - HydroponicsToolSpade
     - HydroponicsToolClippers
     # - Bucket # Frontier
+    - BorgDropper # Frontier
   # Frontier: droppable borg items
   - type: DroppableBorgModule
     moduleId: Gardening
@@ -601,6 +926,12 @@
       whitelist:
         tags:
         - Bucket
+    placeholders:
+    - id: AppleSeeds
+      whitelist:
+        components:
+        - Seed
+      displayName: borg-placeholder-display-name-seeds # Frontier
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
@@ -628,6 +959,12 @@
       whitelist:
         components:
         - NFPlantBag
+    placeholders:
+    - id: FoodApple
+      whitelist:
+        components:
+        - Produce
+      displayName: borg-placeholder-display-name-produce # Frontier
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: harvesting-module }
@@ -647,6 +984,20 @@
     - BikeHorn
     - ClownRecorder
     - BikeHornInstrument
+  # Frontier: droppable items
+  - type: DroppableBorgModule
+    moduleId: Clowning # Frontier
+    items: []
+    placeholders:
+    - id: TrashBananaPeel
+      whitelist:
+        tags:
+        - BananaPeel
+    - id: FoodPieBananaCream
+      whitelist:
+        components:
+        - CreamPie
+  # End Frontier: droppable items
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: clowning-module }
 
@@ -667,6 +1018,24 @@
     - EnergyDaggerLoud
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#FF0000"
+      - state: base-module-inhand-left
+        color: "#891417"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#7B0F12"
+      right:
+      - state: base-icon-inhand-right
+        color: "#FF0000"
+      - state: base-module-inhand-right
+        color: "#891417"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#7B0F12"
 
 - type: entity
   id: BorgModuleOperative
@@ -740,3 +1109,21 @@
         - SelfDestructSeq
     - type: BorgModuleIcon
       icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-martyr-module }
+    - type: Item
+      inhandVisuals:
+        left:
+        - state: base-icon-inhand-left
+          color: "#FF0000"
+        - state: base-module-inhand-left
+          color: "#891417"
+        - state: base-part-inhand-left
+        - state: base-stripes-inhand-left
+          color: "#7B0F12"
+        right:
+        - state: base-icon-inhand-right
+          color: "#FF0000"
+        - state: base-module-inhand-right
+          color: "#891417"
+        - state: base-part-inhand-right
+        - state: base-stripes-inhand-right
+          color: "#7B0F12"

@@ -1,4 +1,4 @@
-# BASE
+#region base
 - type: entity
   id: NFPouchBase
   name: pouch
@@ -55,6 +55,7 @@
           Closed: { visible: true }
 
 # VARIANTS
+#region utility
 - type: entity
   id: NFPouchUtility
   parent: NFPouchBase
@@ -126,7 +127,7 @@
         color: "#9a733f"
 
 # COLORED DEPARTMENTAL
-## CONTRACTORS
+#region contractor
 - type: entity
   id: NFPouchContractor
   parent: NFPouchUtility
@@ -176,6 +177,7 @@
         color: "#777b83"
 
 ## COMMAND
+#region SR
 - type: entity
   id: NFPouchSr
   parent: NFPouchUtility
@@ -228,6 +230,7 @@
       - state: equipped-BELT
         color: "#194214"
 
+#region captains
 - type: entity
   id: NFPouchCaptain
   parent: NFPouchUtility
@@ -283,6 +286,7 @@
         color: "#3a6781"
 
 ## ENGINEERING
+#region engineer
 - type: entity
   id: NFPouchEngineering
   parent: NFPouchUtility
@@ -334,6 +338,7 @@
       - state: equipped-BELT
         color: "#ffde15"
 
+#region atmos
 - type: entity
   id: NFPouchAtmospherics
   parent: NFPouchEngineering
@@ -370,6 +375,7 @@
       color: "#00a9ff"
 
 ## SUPPLY
+#region cargo
 - type: entity
   id: NFPouchCargo
   parent: NFPouchUtility
@@ -402,6 +408,7 @@
       map: [ "pouchFill1" ]
       visible: false
 
+#region salvage
 - type: entity
   id: NFPouchSalvage
   parent: NFPouchUtility
@@ -454,6 +461,7 @@
         color: "#786243"
 
 ## MEDICAL
+#region first aid
 - type: entity
   id: NFPouchFirstAid
   parent: NFPouchBase
@@ -557,6 +565,7 @@
         color: "#5a96bb"
 
 ## SCIENCE
+#region scientist
 - type: entity
   id: NFPouchScience
   parent: NFPouchUtility
@@ -609,6 +618,7 @@
         color: "#eeeeee"
 
 ## SERVICE
+#region janitor
 - type: entity
   id: NFPouchJanitor
   parent: NFPouchUtility
@@ -658,6 +668,7 @@
       - state: equipped-BELT
         color: "#ebdc36"
 
+#region botanist
 - type: entity
   id: NFPouchHydroponics
   parent: NFPouchUtility
@@ -709,6 +720,7 @@
       - state: equipped-BELT
         color: "#7dd465"
 
+#region chaplain
 - type: entity
   id: NFPouchChaplain
   parent: NFPouchUtility
@@ -763,6 +775,7 @@
       - state: equipped-BELT
         color: "#3e3e48"
 
+#region mime
 - type: entity
   id: NFPouchMime
   parent: NFPouchUtility
@@ -814,6 +827,7 @@
       - state: equipped-BELT
         color: "#eeeeee"
 
+#region clown
 - type: entity
   id: NFPouchClown
   parent: NFPouchUtility
@@ -865,6 +879,7 @@
       - state: equipped-BELT
         color: "#00ff00"
 
+#region mail
 - type: entity
   id: NFPouchMailCarrier
   parent: NFPouchUtility
@@ -917,6 +932,7 @@
         color: "#4960ed"
 
 ## WILDCARDS
+#region mercanary
 - type: entity
   id: NFPouchMercenary
   parent: NFPouchUtility
@@ -965,6 +981,7 @@
       - state: equipped-BELT
         color: "#7b7b3f"
 
+#region private security
 - type: entity
   id: NFPouchPrivateSecurity
   parent: NFPouchUtility
@@ -1017,6 +1034,7 @@
         color: "#935c3f"
 
 ## NFSD
+#region nfsd
 - type: entity
   id: NFPouchNfsd
   parent: NFPouchUtility
@@ -1068,6 +1086,7 @@
       - state: equipped-BELT
         color: "#a9947d"
 
+#region pirate
 - type: entity
   id: NFPouchPirate
   parent: NFPouchUtility
@@ -1176,6 +1195,7 @@
         color: "#5c3714"
 
 # Tobacco
+#region tobacco
 - type: entity
   id: NFTobaccoPouch
   parent: NFPouchBase
@@ -1239,6 +1259,7 @@
     - Trash
 
 # Punk
+#region punk
 - type: entity
   id: NFPouchPunk
   parent: NFPouchBase
@@ -1321,3 +1342,54 @@
       pocket:
       - state: equipped-BELT
         color: "#555555"
+
+#region trash
+- type: entity
+  id: NFGoblinMadeTrashPouch
+  parent: [ RecyclableItemPlasticSmall, NFPouchBase ]
+  name: trashuch
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Pouches/trash_pouch.rsi
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: fill-trash-1
+      map: [ "pouchFill1" ]
+      visible: false
+    - state: fill-trash-2
+      map: [ "pouchFill2" ]
+      visible: false
+    - state: fill-trash-3
+      map: [ "pouchFill3" ]
+      visible: false
+    - state: fill-trash-4
+      map: [ "pouchFill4" ]
+      visible: false
+  - type: Item
+    sprite: _NF/Objects/Storage/Pouches/trash_pouch.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Storage/Pouches/trash_pouch.rsi
+  - type: GoblinMade
+  - type: Dumpable
+  - type: Storage
+    maxItemSize: Small
+    areaInsert: true
+    storageOpenSound:
+      collection: trashBagRustle
+    storageInsertSound:
+      collection: trashBagRustle
+    whitelist:
+      tags:
+        - Cartridge
+        - Trash
+      components:
+        - GoblinMade
+    blacklist:
+      components: []
+  - type: Construction
+    graph: NFGoblinMadeTrashPouch
+    node: NFGoblinMadeTrashPouch

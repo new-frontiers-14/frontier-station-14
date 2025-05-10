@@ -152,7 +152,7 @@ public sealed partial class MarkingSet
 
         var toRemove = new List<(MarkingCategories category, string id)>();
         var speciesProto = prototypeManager.Index<SpeciesPrototype>(species);
-        var onlyWhitelisted = prototypeManager.Index<MarkingPointsPrototype>(speciesProto.MarkingPoints).OnlyWhitelisted;
+        var onlyWhitelisted = prototypeManager.Index(speciesProto.MarkingPoints).OnlyWhitelisted;
 
         foreach (var (category, list) in Markings)
         {
@@ -189,10 +189,12 @@ public sealed partial class MarkingSet
             {
                 foreach (var marking in list)
                 {
-                    if (markingManager.TryGetMarking(marking, out var prototype) &&
-                        markingManager.MustMatchSkin(species, prototype.BodyPart, out var alpha, prototypeManager))
+                    if (markingManager.TryGetMarking(marking, out var prototype)) // Frontier: modified this test to add forced marking test 
                     {
-                        marking.SetColor(skinColor.Value.WithAlpha(alpha));
+                        if (markingManager.MustMatchSkin(species, prototype.BodyPart, out var alpha, prototypeManager))
+                            marking.SetColor(skinColor.Value.WithAlpha(alpha));
+                        else if (markingManager.MustMatchColor(species, prototype.BodyPart, out var forcedAlpha, prototypeManager) is Color forcedColor)
+                            marking.SetColor(forcedColor.WithAlpha(forcedAlpha));
                     }
                 }
             }

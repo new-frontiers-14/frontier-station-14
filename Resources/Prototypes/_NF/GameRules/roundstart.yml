@@ -86,18 +86,80 @@
     children:
     - id: NFSmugglingFaxBig
 
+- type: entity
+  parent: BaseGameRule
+  id: NFPirate
+  components:
+  - type: NFPirateRule
+  - type: AntagObjectives
+    objectives:
+    - NFPiratePlunderObjective
+    - NFPirateBountyObjective
+  - type: AntagSelection
+    agentName: nf-pirate-round-end-agent-name
+    definitions:
+    - prefRoles: [ NFPirate ]
+      max: 999
+      playerRatio: -1
+      lateJoinAdditional: true
+      allowNonHumans: true
+      multiAntagSetting: All
+      components:
+      - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - NFPirate
+      mindRoles:
+      - MindRoleNFPirate
+      whitelist:
+        components:
+        - AutoPirate
+      briefing:
+        sound: "/Audio/_NF/Misc/pirate_greeting.ogg"
+    - prefRoles: [ NFPirateCaptain ]
+      max: 999
+      playerRatio: -1
+      lateJoinAdditional: true
+      allowNonHumans: true
+      multiAntagSetting: All
+      components:
+      - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - NFPirate
+      whitelist:
+        components:
+        - AutoPirateCaptain
+      mindRoles:
+      - MindRoleNFPirate
+      briefing:
+        sound: "/Audio/_NF/Misc/pirate_greeting.ogg"
+
+# Concrete ignored upstream definitions
+- type: entity
+  id: NFSandbox
+  parent: Sandbox
+
+- type: entity
+  id: NFMaxTimeRestart
+  parent: BaseGameRule
+  components:
+  - type: MaxTimeRestartRule
+    roundMaxTime: 300
+    roundEndDelay: 10
+
 # variation passes
 - type: entity
-  id: FrontierRoundstartVariation
+  id: NFRoundstartVariation
   parent: BaseGameRule
   components:
   - type: RoundstartStationVariationRule
     rules:
-    - id: BasicPoweredLightVariationPass
-    - id: BasicTrashVariationPass
-    - id: BasicPuddleMessVariationPass
-    - id: BasicBindToStationVariationPass
-    # - id: BasicDeadDropHintVariationPass # ccvar for it found at smuggling.min_hints/smuggling.max_hints
+    - id: NFBasicPoweredLightVariationPass
+    - id: NFBasicTrashVariationPass
+    - id: NFBasicPuddleMessVariationPass
+    - id: NFBasicBindToStationVariationPass
+    # - id: NFBasicDeadDropHintVariationPass # ccvar for it found at smuggling.min_hints/smuggling.max_hints
 
 - type: entityTable
   id: NFGameRulesTable
@@ -106,7 +168,7 @@
       - !type:NestedSelector
         tableId: NFBasicCalmEventsTable
       - !type:NestedSelector
-        tableId: CalmPestEventsTable
+        tableId: NFCalmPestEventsTable
 
 - type: entity
   id: NFBasicStationEventScheduler

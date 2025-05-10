@@ -42,7 +42,7 @@ public sealed partial class ShipyardConsoleComponent : Component
     /// If non-empty, specifies the new job title that should be given to the owner of the ship.
     /// </summary>
     [DataField]
-    public string? NewJobTitle = null;
+    public LocId? NewJobTitle;
 
     /// <summary>
     /// Access levels to be added to the owner's ID card.

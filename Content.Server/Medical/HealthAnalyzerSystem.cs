@@ -199,6 +199,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         var bloodAmount = float.NaN;
         var bleeding = false;
         var unrevivable = false;
+        var unclonable = false; // Frontier
 
         if (TryComp<BloodstreamComponent>(target, out var bloodstream) &&
             _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName,
@@ -211,13 +212,19 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
 
+        // Frontier: add unclonable
+        if (TryComp<UnclonableComponent>(target, out var unclonableComp) && unclonableComp.Analyzable)
+            unclonable = true;
+        // End Frontier: add unclonable
+
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
             bodyTemperature,
             bloodAmount,
             scanMode,
             bleeding,
-            unrevivable
+            unrevivable,
+            unclonable // Frontier
         ));
     }
 }
