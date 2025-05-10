@@ -466,6 +466,7 @@ public enum LogType
     Botany = 100,
 
     // Frontier Station Specific
+    #region Frontier Values
     ATMUsage = 200,
     ShipYardUsage = 201,
     ShuttleRecordsUsage = 202,
@@ -499,11 +500,14 @@ public enum LogType
     /// Shuttle info was changed.
     /// </summary>
     ShuttleInfoChanged = 208,
+    #endregion Frontier Values
+    // Frontier End
 
     // DeltaV Station Specific
-
+    #region DeltaV Values
     /// <summary>
     /// Remove greentexts - Replace with custom responses #2940
     /// </summary>
     ObjectiveSummary = 422,
+    #endregion DeltaV Values
 }
