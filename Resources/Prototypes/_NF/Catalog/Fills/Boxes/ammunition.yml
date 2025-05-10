@@ -1,69 +1,90 @@
-# CaselessRifle
-- type: entity
-  name: box of .25 caseless (rubber) magazines
-  parent: BoxMagazine
-  id: BoxMagazineCaselessRifleRubber
-  description: A box full of
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineCaselessRifleRubber
-        amount: 4
-
-# LightRifle
-- type: entity
-  name: box of .30 rifle (rubber) magazines
-  parent: BoxMagazine
-  id: BoxMagazineLightRifleRubber
-  description: A box full of .30 rifle (practice) magazines.
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineLightRifleRubber
-        amount: 4
-
-- type: entity
-  name: box of Vector (rubber) magazines
-  parent: BoxMagazine
-  id: BoxMagazineMagnumSubMachineGunRubber
-  description: A box full of Vector (rubber) magazines.
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineMagnumSubMachineGunRubber
-        amount: 3
-
-# Pistol
-- type: entity
-  name: box of pistol .35 auto (rubber) magazines
-  parent: BoxMagazine
-  id: BoxMagazinePistolRubber
-  description: A box full of pistol .35 auto (rubber) magazines.
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazinePistolRubber
-        amount: 4
-
-- type: entity
-  name: box of SMG .35 auto (rubber) magazines
-  parent: BoxMagazine
-  id: BoxMagazinePistolSubMachineGunRubber
-  description: A box full of SMG .35 auto (rubber) magazines.
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazinePistolSubMachineGunRubber
-        amount: 3
-
-# Rifle
+#region .20 rifle
 - type: entity
   name: box of .20 rifle (rubber) magazines
   parent: BoxMagazine
-  id: BoxMagazineRifleRubber
+  id: NFBoxMagazineRifle20Rubber
   description: A box full of .20 rifle (rubber) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: MagazineRifleRubber
+      - id: NFMagazineRifle20Rubber
+        amount: 4
+
+- type: entity
+  name: box of .20 rifle (overpressure) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazineRifle20Overpressure
+  description: A box full of .20 rifle (overpressure) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineRifle20Overpressure
+        amount: 4
+
+#region .30 rifle
+- type: entity
+  name: box of .30 rifle (rubber) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazineRifle30Rubber
+  description: A box full of .30 rifle (rubber) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineRifle30Rubber
+        amount: 4
+
+- type: entity
+  name: box of .30 rifle (overpressure) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazineRifle30Overpressure
+  description: A box full of .30 rifle (overpressure) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineRifle30Overpressure
+        amount: 4
+
+#region .35 pistol
+- type: entity
+  name: box of pistol (.35 pistol, rubber) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazinePistol35Rubber
+  description: A box full of pistol (.35 pistol, rubber) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineHighCapacityPistol35Rubber
+        amount: 4
+
+- type: entity
+  name: box of pistol (.35 pistol, practice) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazinePistol35Practice
+  description: A box full of pistol (.35 pistol, practice) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineHighCapacityPistol35Practice
+        amount: 4
+
+- type: entity
+  name: box of SMG (.35 pistol, rubber) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazinePistolSubMachineGun35Rubber
+  description: A box full of SMG (.35 pistol, rubber) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineSubMachineGun35Rubber
+        amount: 3
+
+- type: entity
+  name: box of pistol (.35 pistol, overpressure) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazineHighCapacityPistol35Overpressure
+  description: A box full of pistol (.35 pistol, overpressure) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineHighCapacityPistol35Overpressure
         amount: 4

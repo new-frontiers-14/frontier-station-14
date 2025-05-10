@@ -8,7 +8,7 @@
     whitelist:
       tags:
         - CartridgeMagnum
-    proto: CartridgeMagnum
+    # proto: CartridgeMagnum # Frontier
     capacity: 12
   - type: Item
     size: Small
@@ -16,7 +16,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi # Frontier: add _NF prefix
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -30,7 +30,7 @@
   name: ammunition box (.45 magnum)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnum
+    # proto: CartridgeMagnum # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -44,7 +44,7 @@
   name: ammunition box (.45 magnum practice)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnumPractice
+    # proto: CartridgeMagnumPractice # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -59,7 +59,7 @@
   name: ammunition box (.45 magnum incendiary)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnumIncendiary
+    # proto: CartridgeMagnumIncendiary # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -74,7 +74,7 @@
   name: ammunition box (.45 magnum uranium)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnumUranium
+    # proto: CartridgeMagnumUranium # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -89,7 +89,7 @@
   name: ammunition box (.45 magnum armor-piercing)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnumAP
+    # proto: CartridgeMagnumAP # Frontier
   - type: Sprite
     layers:
     - state: base

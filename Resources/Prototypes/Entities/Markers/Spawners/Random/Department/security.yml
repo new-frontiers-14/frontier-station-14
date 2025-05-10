@@ -1,4 +1,4 @@
-# Security 
+# Security
 - type: entity
   name: security loot spawner
   suffix: Gear, Simple
@@ -40,7 +40,7 @@
         - BoxHandcuff
         - BoxFlashbang
         - TearGasGrenade
-        - WeaponDisabler
+        - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
         - Stunbaton
       rareChance: 0.05
       prototypes:
@@ -52,7 +52,7 @@
         - SecurityWhistle
         - Tourniquet
       chance: 0.85
- 
+
 # Armory loot spawner
 # Automatics are a complete mess right now, so the AK-MS And WT-550 have been commented out for consistency's sake. I have no idea what role these guns are supposed to fufill.
 - type: entity
@@ -71,8 +71,8 @@
     - type: RandomSpawner
       rarePrototypes:
         - ClothingHeadHelmetSwat
-        - WeaponShotgunEnforcer
-#        - WeaponRifleAk
+        - NFWeaponShotgunEnforcer # Frontier: WeaponShotgunEnforcer<NFWeaponShotgunEnforcer
+#        - NFWeaponRifleAssaultSm # Frontier: Ak<NFWeaponRifleAssaultSm
       rareChance: 0.05
       prototypes:
         - RiotShield
@@ -83,13 +83,13 @@
         - ClothingOuterArmorBasic
         - ClothingOuterArmorRiot
         - ClothingOuterArmorBulletproof
-#        - WeaponSubMachineGunWt550
-        - WeaponDisabler
-        - WeaponPistolMk58
-        - WeaponRifleLecter
-        - WeaponSubMachineGunDrozd
-        - WeaponLaserCarbine
-        - WeaponShotgunKammerer
+#        - NFWeaponSubMachineGunWt550 # Frontier: WeaponSubMachineGunWt550<NFWeaponSubMachineGunWt550
+        - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+        - NFWeaponPistolMk58 # Frontier WeaponPistolMk58<NFWeaponPistolMk58
+        - NFWeaponRifleAssaultLecter # Frontier: WeaponRifleLecter<NFWeaponRifleAssaultLecter
+        - NFWeaponSubMachineGunDrozd # Frontier: WeaponSubMachineGunDrozd<NFWeaponSubMachineGunDrozd
+        - NFWeaponEnergyRifleCarbine # Frontier: WeaponLaserCarbine<NFWeaponEnergyRifleCarbine
+        - NFWeaponShotgunKammerer # Frontier: WeaponShotgunKammerer<NFWeaponShotgunKammerer
       chance: 0.95
       offset: 0.0
 
@@ -106,17 +106,17 @@
           state: icon
     - type: RandomSpawner
       rarePrototypes:
-        - WeaponShotgunEnforcer
-#        - WeaponRifleAk
+        - NFWeaponShotgunEnforcer # Frontier: WeaponShotgunEnforcer<NFWeaponShotgunEnforcer
+#        - NFWeaponRifleAssaultSm # Frontier: WeaponRifleAk<NFWeaponRifleAssaultSm
       rareChance: 0.05
       prototypes:
-#        - WeaponSubMachineGunWt550
-        - WeaponDisabler
-        - WeaponPistolMk58
-        - WeaponRifleLecter
-        - WeaponSubMachineGunDrozd
-        - WeaponLaserCarbine
-        - WeaponShotgunKammerer
+#        - NFWeaponSubMachineGunWt550 # Frontier: WeaponSubMachineGunWt550<NFWeaponSubMachineGunWt550
+        - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler< NFWeaponEnergyPistolDisabler
+        - NFWeaponPistolMk58 # Frontier: WeaponPistolMk58<NFWeaponPistolMk58
+        - NFWeaponRifleAssaultLecter # Frontier WeaponRifleAssaultLecter<NFWeaponRifleAssaultLecter
+        - NFWeaponSubMachineGunDrozd # Frontier WeaponSubMachineGunDrozd<NFWeaponSubMachineGunDrozd
+        - NFWeaponEnergyRifleCarbine # Frontier: WeaponLaserCarbine<NFWeaponEnergyRifleCarbine
+        - NFWeaponShotgunKammerer # Frontier: WeaponShotgunKammerer<NFWeaponShotgunKammerer
       chance: 0.95
       offset: 0.0
 

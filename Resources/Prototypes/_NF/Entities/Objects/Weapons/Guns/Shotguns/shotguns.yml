@@ -1,17 +1,199 @@
+#region WizDen
 - type: entity
-  parent: WeaponShotgunSawn
-  id: WeaponShotgunSawnNonlethal
-  suffix: Non-lethal
+  id: NFWeaponShotgunBulldog
+  parent:
+  - BaseC3SyndicateContraband
+  - NFBaseWeaponShotgunChamber50Magazine
+  - NFBaseWeaponFrameShotgunWieldable
+  name: Bulldog
+  description: |-
+    An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids.
   components:
-  - type: BallisticAmmoProvider
-    capacity: 2
-    proto: ShellShotgunBeanbag
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works
 
 - type: entity
-  parent: WeaponShotgunKammerer
-  id: WeaponShotgunKammererNonlethal
-  suffix: Non-lethal
+  id: NFWeaponShotgunDoubleBarreled
+  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  name: double-barreled shotgun
+  description: |-
+    An immortal classic. A civilian grade shotgun.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+  - type: BallisticAmmoProvider
+    capacity: 2
+  - type: Construction
+    graph: NFShotgunSawn
+    node: start
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
+
+- type: entity
+  id: NFWeaponShotgunEnforcer
+  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  name: Enforcer
+  description: |-
+    A premium semi-automatic shotgun, featuring an upgraded tube capacity.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  id: NFWeaponShotgunKammerer
+  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  name: Kammerer
+  description: |-
+    An old yet faithful design, and a favorite among irregular forces on many worlds.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+  - type: BallisticAmmoProvider
+    capacity: 5
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  id: NFWeaponShotgunSawn
+  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgun ]
+  name: sawn-off shotgun
+  description: |-
+    Groovy!
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Shotguns/sawn.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Shotguns/sawn.rsi
+  - type: Item
+    size: Normal
+  - type: BallisticAmmoProvider
+    capacity: 2
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-custom-made
+
+- type: entity
+  id: NFWeaponShotgunSawnEmpty
+  parent: NFWeaponShotgunSawn
   components:
   - type: BallisticAmmoProvider
-    capacity: 4
-    proto: ShellShotgunBeanbag
+    proto: null
+  - type: Construction
+    graph: NFShotgunSawn
+    node: shotgunsawn
+
+- type: entity
+  id: NFWeaponShotgunHandmade
+  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgun ]
+  name: handmade pistol
+  description: |-
+    Looks unreliable, but legal.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    capacity: 1
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-custom-made
+
+- type: entity
+  id: NFWeaponShotgunHandmadeEmpty
+  parent: NFWeaponShotgunHandmade
+  suffix: Frontier, Empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Construction
+    graph: NFShotgunSawn
+    node: handmadepistol
+    deconstructionTarget: null
+
+- type: entity
+  id: NFWeaponShotgunBlunderbuss
+  parent: [ BaseC3PirateContraband, NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  name: blunderbuss
+  description: |-
+    Deadly at close range, an illegal shotgun often found at the side of a pirate.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
+  - type: BallisticAmmoProvider
+    capacity: 1
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-steelbolt-tool-forge
+
+- type: entity
+  id: NFWeaponShotgunImprovised
+  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  name: improvised shotgun
+  description: |-
+    A shitty, but legal, hand-made shotgun. It can only hold one round in the chamber.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun_inhands_64x.rsi
+  - type: BallisticAmmoProvider
+    capacity: 1
+    proto: null
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
+  - type: Construction
+    graph: ImprovisedShotgunGraph
+    node: shotgun
+
+#region Less-lethal
+- type: entity
+  id: NFWeaponShotgunSawnLessLethal
+  parent: NFWeaponShotgunSawn
+  suffix: Less-lethal
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBeanbag
+
+- type: entity
+  id: NFWeaponShotgunKammererLessLethal
+  parent: NFWeaponShotgunKammerer
+  suffix: Less-lethal
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBeanbag
+
+- type: entity
+  id: NFWeaponShotgunEnforcerLessLethal
+  parent: NFWeaponShotgunEnforcer
+  suffix: Less-lethal
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBeanbag

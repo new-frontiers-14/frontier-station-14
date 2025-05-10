@@ -1,14 +1,400 @@
+# WizDen
+#region base
 - type: entity
-  id: CartridgeRifleRubber
-  name: cartridge (.20 rifle rubber)
+  id: NFBaseCartridgeRifle10
+  name: cartridge (.10 rifle)
+  parent: BaseCartridgeHeavyRifle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - NFCartridgeRifle10
+
+- type: entity
+  id: NFBaseCartridgeRifle20
+  name: cartridge (.20 rifle)
   parent: BaseCartridgeRifle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - NFCartridgeRifle20
+
+- type: entity
+  id: NFBaseCartridgeRifle25
+  name: cartridge (.25 rifle)
+  parent: BaseCartridgeCaselessRifle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - NFCartridgeRifle25
+
+- type: entity
+  id: NFBaseCartridgeRifle30
+  name: cartridge (.30 rifle)
+  parent: BaseCartridgeLightRifle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - NFCartridgeRifle30
+
+- type: entity
+  id: NFBaseCartridgeRifle60
+  name: cartridge (.60 rifle)
+  parent: CartridgeAntiMateriel
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - NFCartridgeRifle60
+
+#region .10 rifle
+- type: entity
+  id: NFCartridgeRifle10
+  name: cartridge (.10 rifle)
+  parent: NFBaseCartridgeRifle10
   components:
   - type: CartridgeAmmo
-    proto: BulletRifleRubber
+    proto: NFBulletRifle10
   - type: Sprite
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#43c4f7"
+        color: "#666666"
+
+- type: entity
+  id: NFCartridgeRifle10Practice
+  name: cartridge (.10 rifle, practice)
+  parent: NFBaseCartridgeRifle10
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle10Practice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dddddd"
+
+- type: entity
+  id: NFCartridgeRifle10Rubber
+  name: cartridge (.10 rifle, rubber)
+  parent: NFBaseCartridgeRifle10
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle10Rubber
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#00b0ff"
+
+#region .20 rifle
+- type: entity
+  id: NFCartridgeRifle20
+  name: cartridge (.20 rifle)
+  parent: NFBaseCartridgeRifle20
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle20
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#666666"
+
+- type: entity
+  id: NFCartridgeRifle20Overpressure
+  name: cartridge (.20 rifle, overpressure)
+  parent: NFBaseCartridgeRifle20
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle20Overpressure
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff8d00"
+
+- type: entity
+  id: NFCartridgeRifle20Incendiary
+  name: cartridge (.20 rifle, incendiary)
+  parent: NFBaseCartridgeRifle20
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle20Incendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff0000"
+
+- type: entity
+  id: NFCartridgeRifle20Uranium
+  name: cartridge (.20 rifle, uranium)
+  parent: NFBaseCartridgeRifle20
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle20Uranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#00ff00"
+
+- type: entity
+  id: NFCartridgeRifle20Practice
+  name: cartridge (.20 rifle, practice)
+  parent: NFBaseCartridgeRifle20
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle20Practice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dddddd"
+
+- type: entity
+  id: NFCartridgeRifle20Rubber # CartridgeRifleRubber
+  name: cartridge (.20 rifle, rubber)
+  parent: NFBaseCartridgeRifle20
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle20Rubber
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#00b0ff"
+
+#region .25 rifle
+- type: entity
+  id: NFCartridgeRifle25
+  name: cartridge (.25 rifle)
+  parent: NFBaseCartridgeRifle25
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle25
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#666666"
+
+- type: entity
+  id: NFCartridgeRifle25Overpressure
+  name: cartridge (.25 rifle, overpressure)
+  parent: NFBaseCartridgeRifle25
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle25Overpressure
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff8d00"
+
+- type: entity
+  id: NFCartridgeRifle25Incendiary
+  name: cartridge (.25 rifle, incendiary)
+  parent: NFBaseCartridgeRifle25
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle25Incendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff0000"
+
+- type: entity
+  id: NFCartridgeRifle25Uranium
+  name: cartridge (.25 rifle, uranium)
+  parent: NFBaseCartridgeRifle25
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle25Uranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#00ff00"
+
+- type: entity
+  id: NFCartridgeRifle25Practice
+  name: cartridge (.25 rifle, practice)
+  parent: NFBaseCartridgeRifle25
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle25Practice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dddddd"
+
+- type: entity
+  id: NFCartridgeRifle25Rubber # CartridgeCaselessRifleRubber
+  name: cartridge (.25 rifle, rubber)
+  parent: NFBaseCartridgeRifle25
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle25Rubber
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#00b0ff"
+
+#region .30 rifle
+- type: entity
+  id: NFCartridgeRifle30
+  name: cartridge (.30 rifle)
+  parent: NFBaseCartridgeRifle30
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle30
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#666666"
+
+- type: entity
+  id: NFCartridgeRifle30Overpressure
+  name: cartridge (.30 rifle, overpressure)
+  parent: NFBaseCartridgeRifle30
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle30Overpressure
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff8d00"
+
+- type: entity
+  id: NFCartridgeRifle30Incendiary
+  name: cartridge (.30 rifle, incendiary)
+  parent: NFBaseCartridgeRifle30
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle30Incendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff0000"
+
+- type: entity
+  id: NFCartridgeRifle30Uranium
+  name: cartridge (.30 rifle, uranium)
+  parent: NFBaseCartridgeRifle30
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle20Uranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#00ff00"
+
+- type: entity
+  id: NFCartridgeRifle30Practice
+  name: cartridge (.30 rifle, practice)
+  parent: NFBaseCartridgeRifle30
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle30Practice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dddddd"
+
+- type: entity
+  id: NFCartridgeRifle30Rubber # CartridgeLightRifleRubber
+  name: cartridge (.30 rifle, rubber)
+  parent: NFBaseCartridgeRifle30
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle30Rubber
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#00b0ff"
+
+#region .60 rifle
+- type: entity
+  id: NFCartridgeRifle60
+  name: cartridge (.60 rifle)
+  parent: NFBaseCartridgeRifle60
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle60
+  - type: Sprite
+    layers: # TODO: add tip
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+
+- type: entity
+  id: NFCartridgeRifle60Rubber
+  name: cartridge (.60 rifle, rubber)
+  parent: NFBaseCartridgeRifle60
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle60Rubber
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]

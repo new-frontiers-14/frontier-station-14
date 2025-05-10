@@ -9,7 +9,7 @@
       - Cartridge
       - CartridgePistol
   - type: CartridgeAmmo
-    proto: BulletPistol
+    # proto: BulletPistol # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -21,20 +21,22 @@
     price: 1
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgePistol
   name: cartridge (.35 auto)
   parent: BaseCartridgePistol
   components:
   - type: CartridgeAmmo
-    proto: BulletPistol
+    # proto: BulletPistol # Frontier
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgePistolPractice
   name: cartridge (.35 auto practice)
   parent: BaseCartridgePistol
   components:
   - type: CartridgeAmmo
-    proto: BulletPistolPractice
+    # proto: BulletPistolPractice # Frontier
   -  type: Sprite
      layers:
        - state: base
@@ -44,12 +46,13 @@
          color: "#dbdbdb"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgePistolIncendiary
   name: cartridge (.35 auto incendiary)
   parent: BaseCartridgePistol
   components:
   - type: CartridgeAmmo
-    proto: BulletPistolIncendiary
+    # proto: BulletPistolIncendiary # Frontier
   - type: Sprite
     layers:
       - state: base
@@ -59,12 +62,13 @@
         color: "#ff6e52"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgePistolUranium
   name: cartridge (.35 auto uranium)
   parent: BaseCartridgePistol
   components:
   - type: CartridgeAmmo
-    proto: BulletPistolUranium
+    # proto: BulletPistolUranium # Frontier
   - type: Sprite
     layers:
       - state: base

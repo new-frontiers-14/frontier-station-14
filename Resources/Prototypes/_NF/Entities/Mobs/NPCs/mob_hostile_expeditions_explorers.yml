@@ -14,12 +14,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      130: Dead
+      80: Critical
+      105: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+      48: 0.7
+      64: 0.5
   - type: DamageStateVisuals
     rotate: true
   - type: RotationVisuals
@@ -196,14 +196,16 @@
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKineticLowPower
+    proto: NFBulletKineticLowPower
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
     fireRate: 0.5
-    minAngle: 31
-    maxAngle: 45
+    minAngle: 10
+    maxAngle: 40
+    angleIncrease: 5
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -291,7 +293,7 @@
     - sprite: Clothing/OuterClothing/Hardsuits/spatio.rsi
       state: equipped-OUTERCLOTHING
     # Weapons
-    - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_sawn.rsi
       state: inhand-right
     - sprite: Objects/Weapons/Melee/crusher_dagger.rsi
       state: inhand-left
@@ -301,15 +303,17 @@
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKineticLowPower
+    proto: NFBulletKineticLowPower
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
     fireRate: 0.75
     selectedMode: FullAuto
-    minAngle: 31
-    maxAngle: 45
+    minAngle: 15
+    maxAngle: 40
+    angleIncrease: 5
+    angleDecay: 3
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
@@ -410,14 +414,16 @@
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKineticMediumPower
+    proto: NFBulletKineticMediumPower
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
     fireRate: 0.75
-    minAngle: 1
-    maxAngle: 5
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -462,18 +468,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      120: 0.7
-      160: 0.5
+      160: Dead
   - type: Stamina
-    critThreshold: 600
+    critThreshold: 480
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 195
+        damage: 155
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -558,8 +560,8 @@
     energy: 3
   - type: MobThresholds
     thresholds:
-      120: Critical
-      150: Dead
+      100: Critical
+      130: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       60: 0.7
@@ -607,8 +609,10 @@
     capacity: 1
     count: 1
   - type: Gun
-    minAngle: 1
-    maxAngle: 5
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 5
+    angleDecay: 3
     fireRate: 1
     selectedMode: FullAuto
     availableModes:

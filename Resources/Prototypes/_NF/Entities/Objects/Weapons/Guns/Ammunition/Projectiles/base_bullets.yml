@@ -1,0 +1,352 @@
+#region NFBase
+- type: entity
+  id: NFBaseBullet
+  parent: BaseBullet
+  abstract: true
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/bullets.rsi
+    layers:
+    - state: bullet
+      color: "#ddddddFF"
+      shader: unshaded
+    - state: bullet-trace
+      color: "#ddddddBB"
+      shader: unshaded
+  - type: Tracer
+    color: "#ddddddFF"
+    length: 1.5
+
+- type: entity
+  id: NFBaseBulletTrigger
+  parent: BaseBulletTrigger
+  abstract: true
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/bullets.rsi
+    layers:
+    - state: bullet
+      color: "#ddddddFF"
+      shader: unshaded
+    - state: bullet-trace
+      color: "#ddddddBB"
+      shader: unshaded
+  - type: Tracer
+    color: "#ddddddFF"
+    length: 1.5
+
+- type: entity
+  id: NFBasePellet
+  parent: NFBaseBullet
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: pellet
+      color: "#ddddddFF"
+      shader: unshaded
+    - state: pellet-trace
+      color: "#ddddddBB"
+      shader: unshaded
+  - type: Tracer
+    color: "#ddddddFF"
+    length: 1
+
+#region Bullets
+- type: entity
+  id: NFBaseBulletOverpressure
+  parent: NFBaseBullet
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: bullet
+      color: "#ff8d00FF"
+      shader: unshaded
+    - state: bullet-trace
+      color: "#ff8d00BB"
+      shader: unshaded
+  - type: Tracer
+    color: "#ff8d00FF"
+    length: 1.5
+
+- type: entity
+  id: NFBaseBulletIncendiary
+  parent: NFBaseBullet
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: bullet
+      color: "#ff0000FF"
+      shader: unshaded
+    - state: bullet-trace
+      color: "#ff0000BB"
+      shader: unshaded
+  - type: PointLight
+    enabled: true
+    color: "#ff4300"
+    radius: 1.1
+    energy: 3.0
+  - type: IgniteOnCollide
+    fireStacks: 0.25
+  - type: IgnitionSource
+    ignited: true
+  - type: Tracer
+    color: "#ff0000FF"
+    length: 1.5
+
+- type: entity
+  id: NFBaseBulletUranium
+  parent: NFBaseBullet
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: bullet
+      color: "#00ff00FF"
+      shader: unshaded
+    - state: bullet-trace
+      color: "#9BE792BB"
+      shader: unshaded
+  - type: PointLight
+    enabled: true
+    color: "#9BE792"
+    radius: 1.1
+    energy: 3.0
+  - type: Tracer
+    color: "#00ff00FF"
+    length: 1.5
+
+- type: entity
+  id: NFBaseBulletPractice
+  parent: NFBaseBullet
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: bullet
+      color: "#ddddddFF"
+      shader: unshaded
+    - state: bullet-trace
+      color: "#ddddddBB"
+      shader: unshaded
+  - type: Tracer
+    color: "#ddddddFF"
+    length: 1.5
+
+- type: entity
+  id: NFBaseBulletEmp
+  parent: NFBaseBulletTrigger
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: bullet
+      color: "#00ffffFF"
+      shader: unshaded
+    - state: bullet-trace
+      color: "#00ffffBB"
+      shader: unshaded
+  - type: PointLight
+    enabled: true
+    color: "#00ffff"
+    radius: 1.1
+    energy: 3.0
+  - type: Tracer
+    color: "#00ffffFF"
+    length: 1.5
+
+- type: entity
+  id: NFBaseBulletRubber
+  parent: NFBaseBullet
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: bullet
+      color: "#00b0ffFF"
+      shader: unshaded
+    - state: bullet-trace
+      color: "#00b0ffBB"
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/snap.ogg
+  - type: StaminaDamageOnCollide
+    damage: 15
+  - type: Tracer
+    color: "#00b0ffFF"
+    length: 1.5
+
+- type: entity
+  id: NFBaseBulletExplosive
+  parent: NFBaseBulletTrigger
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: bullet
+      color: "#ffff00FF"
+      shader: unshaded
+    - state: bullet-trace
+      color: "#ffff00BB"
+      shader: unshaded
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 2
+    intensitySlope: 1
+    totalIntensity: 6
+    maxTileBreak: 0
+  - type: PointLight
+    enabled: true
+    color: "#ffff00FF"
+    radius: 1.1
+    energy: 3.0
+  - type: Tracer
+    color: "#ffff00FF"
+    length: 1.5
+
+- type: entity
+  id: NFBaseBulletAP
+  parent: NFBaseBullet
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: bullet
+      color: "#330000FF"
+      shader: unshaded
+    - state: bullet-trace
+      color: "#666666BB"
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 8
+    ignoreResistances: true
+  - type: Tracer
+    color: "#666666FF"
+    length: 1.5
+
+#region AntiMateriel
+- type: entity
+  id: NFBaseBulletAntiMateriel
+  parent: NFBaseBullet
+  abstract: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30
+        Structural: 200
+    penetrationThreshold: 360
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: Tracer
+    color: "#ddddddFF"
+    length: 3
+
+- type: entity
+  id: NFBaseBulletAntiMaterielRubber
+  parent: NFBaseBulletRubber
+  abstract: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 10
+  - type: StaminaDamageOnCollide
+    damage: 60
+  - type: Tracer
+    color: "#00b0ffFF"
+    length: 3
+
+#region Pellets
+- type: entity
+  id: NFBasePelletOverpressure
+  parent: NFBaseBulletOverpressure
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: pellet
+      color: "#ff8d00FF"
+      shader: unshaded
+    - state: pellet-trace
+      color: "#ff8d00BB"
+      shader: unshaded
+  - type: Tracer
+    color: "#ff8d00FF"
+    length: 1
+
+- type: entity
+  id: NFBasePelletIncendiary
+  parent: NFBaseBulletIncendiary
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: pellet
+      color: "#ff0000FF"
+      shader: unshaded
+    - state: pellet-trace
+      color: "#ff0000BB"
+      shader: unshaded
+  - type: PointLight
+    enabled: true
+    color: "#ff4300"
+    radius: 1.1
+    energy: 3.0
+  - type: IgniteOnCollide
+    fireStacks: 0.25
+  - type: IgnitionSource
+    ignited: true
+  - type: Tracer
+    color: "#ff0000FF"
+    length: 1
+
+- type: entity
+  id: NFBasePelletUranium
+  parent: NFBaseBullet
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: pellet
+      color: "#00ff00FF"
+      shader: unshaded
+    - state: pellet-trace
+      color: "#9BE792BB"
+      shader: unshaded
+  - type: PointLight
+    enabled: true
+    color: "#9BE792"
+    radius: 1.1
+    energy: 1.0
+  - type: Tracer
+    color: "#00ff00FF"
+    length: 1
+
+- type: entity
+  id: NFBasePelletPractice
+  parent: NFBaseBullet
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: pellet
+      color: "#ddddddFF"
+      shader: unshaded
+    - state: pellet-trace
+      color: "#ddddddBB"
+      shader: unshaded
+  - type: Tracer
+    color: "#ddddddFF"
+    length: 1

@@ -1,0 +1,14 @@
+# Ignored upstream redefinitions
+
+- type: entity
+  parent: NFBaseMagazineBoxRifle20 # It goes in a saw, its funny.
+  id: NFMagazineBoxFoam
+  name: ammunition box (foam)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - BulletFoam
+    proto: NFBulletFoam
+    capacity: 100

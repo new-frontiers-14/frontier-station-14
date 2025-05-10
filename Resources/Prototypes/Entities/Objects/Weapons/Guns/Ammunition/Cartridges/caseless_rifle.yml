@@ -22,20 +22,22 @@
     price: 1
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeCaselessRifle
   name: cartridge (.25 caseless)
   parent: BaseCartridgeCaselessRifle
   components:
   - type: CartridgeAmmo
-    proto: BulletCaselessRifle
+    # proto: BulletCaselessRifle # Frontier
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeCaselessRiflePractice
   name: cartridge (.25 caseless practice)
   parent: BaseCartridgeCaselessRifle
   components:
   - type: CartridgeAmmo
-    proto: BulletCaselessRiflePractice
+    # proto: BulletCaselessRiflePractice # Frontier
   - type: Sprite
     layers:
       - state: base

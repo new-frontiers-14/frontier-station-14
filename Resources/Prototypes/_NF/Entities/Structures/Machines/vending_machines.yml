@@ -695,7 +695,39 @@
     energy: 1.6
     color: "#4b93ad"
 
-# POI versions of upstream machines
+- type: entity
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  id: VendingMachinePickNPack
+  name: Pick-n-Pack
+  description: Putting arms in your hands since 2549.
+  components:
+  - type: VendingMachine
+    pack: PickNPackInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: VandalizedBountyVendAds
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/picknpackvend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.4
+    energy: 1.7
+    softness: 0.9
+    offset: "0, -0.6"
+    color: "#EEEEFF"
+
+#region POI versions of upstream machines
 
 - type: entity
   parent: [VendingMachineAmmo, BaseStructureDisableAnchoring]
@@ -786,3 +818,78 @@
   components:
   - type: VendingMachine
     pack: TankDispenserEVAPOIInventory
+
+- type: entity
+  parent: [VendingMachinePickNPack, BaseStructureDisableAnchoring]
+  id: VendingMachinePickNPackPOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: PickNPackPOIInventory
+  - type: AccessReader
+    access: [["Mercenary"], ["Security"], ["HeadOfPersonnel"], ["HeadOfSecurity"]]
+  - type: ActivatableUIRequiresAccess
+
+#region DEBUG
+- type: entity
+  categories: [ DoNotMap ]
+  parent: VendingMachineBountyVendPunk
+  id: DEBUGVendingMachineRangedWeapons
+  name: All Guns
+  suffix: DEBUG, Guns
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.16,0.3,0.16"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: VendingMachine
+    pack: DEBUGVendingMachineInventoryRangedWeapons
+
+- type: entity
+  categories: [ DoNotMap ]
+  parent: VendingMachineClothingPunk
+  id: DEBUGVendingMachineMagazines
+  name: All Gun Magazines
+  suffix: DEBUG, Magazines
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.16,0.3,0.16"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: VendingMachine
+    pack: DEBUGVendingMachineInventoryMagazines
+
+- type: entity
+  categories: [ DoNotMap ]
+  parent: VendingMachineClothingPunk
+  id: DEBUGVendingMachineAmmoBoxes
+  name: All Ammo Boxes
+  suffix: DEBUG, Ammo Boxes
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.16,0.3,0.16"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: VendingMachine
+    pack: DEBUGVendingMachineInventoryAmmoBoxes

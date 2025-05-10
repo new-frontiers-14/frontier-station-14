@@ -1,0 +1,27 @@
+# DeltaV
+#region Laser
+- type: entity
+  id: NFWeaponEnergySubMachineGunDeltaV
+  parent: [ NFBaseWeaponEnergySubMachineGunFireModes, NFBaseWeaponFrameEnergySubMachineGunNanotrasen ]
+  name: energy submachine gun
+  description: |-
+    An advanced hybrid energy submachine gun with two settings: disable and kill. On the handle is a label that says 'for authorized use only.'
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Battery/energygun.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Battery/energygun.rsi
+
+#region Diasblers
+- type: entity
+  id: NFWeaponEnergySubMachineGunDisabler
+  parent: [ NFBaseWeaponEnergySubMachineGunDisabler, NFBaseWeaponFrameEnergySubMachineGunNanotrasen ]
+  name: disabler submachine gun
+  suffix: Frontier
+  description: |-
+    Advanced weapon that exhausts organic targets, weakening them until they collapse. On the handle is a label that says 'for authorized use only.'
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi

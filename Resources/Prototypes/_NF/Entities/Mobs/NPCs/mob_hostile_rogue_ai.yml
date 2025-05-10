@@ -70,8 +70,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      140: Dead
+      64: Critical
+      110: Dead
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -80,8 +80,8 @@
     allowRevives: true
   - type: SlowOnDamage
     speedModifierThresholds:
-      48: 0.7
-      64: 0.5
+      40: 0.7
+      52: 0.5
   - type: HealthExaminable
     examinableTypes:
       - Blunt
@@ -176,12 +176,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      60: Critical
-      120: Dead
+      48: Critical
+      100: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      36: 0.7
-      48: 0.5
+      30: 0.7
+      40: 0.5
   - type: Stamina
     critThreshold: 600
 
@@ -190,7 +190,7 @@
   abstract: true
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletEnergyGunLaser
+    proto: NFBulletLaserLow
     fireCost: 100
 
 - type: entity
@@ -198,7 +198,7 @@
   abstract: true
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: NFRedLightLaser
     fireCost: 100
 
 - type: entity
@@ -235,19 +235,21 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      30: Critical
-      90: Dead
+      24: Critical
+      72: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      18: 0.7
-      24: 0.5
+      14: 0.7
+      20: 0.5
   - type: Stamina
     critThreshold: 600
   - type: Gun
     showExamineText: false
     fireRate: 0.75
-    minAngle: 0
+    minAngle: 5
     maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 3
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
   - type: FootstepModifier
@@ -260,7 +262,7 @@
     sound: /Audio/Effects/shuttle_thruster.ogg
 
 # VARIATIONS
-## Tier 1
+#region Tier 1
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
@@ -455,13 +457,15 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: NFRedLightLaser
     fireCost: 100
   - type: Gun
     showExamineText: false
     fireRate: 0.7
     minAngle: 5
-    maxAngle: 10
+    maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -485,7 +489,7 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 15
+        Slash: 12
         Structural: 20
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
@@ -578,7 +582,7 @@
       shader: unshaded
       color: "#0055cc"
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletDisabler
+    proto: NFBulletDisablerLow
     fireCost: 100
 
 - type: entity
@@ -604,7 +608,7 @@
       shader: unshaded
       color: "#ffff00"
   - type: ProjectileBatteryAmmoProvider
-    proto: AnomalousParticleSigmaStrong
+    proto: NFBulletKineticLowPower
     fireCost: 100
 
 - type: entity
@@ -659,7 +663,7 @@
       params:
         variation: 0.250
 
-## Tier 2
+#region Tier 2
 - type: entity
   parent:
   - MobRogueSiliconBase
@@ -802,8 +806,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.8
-    minAngle: 0
-    maxAngle: 5
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -860,6 +866,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.075
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -874,7 +884,7 @@
     autoRecharge: true
     autoRechargeRate: 5
 
-## Tier 3
+#region Tier 3
 - type: entity
   parent:
   - MobRogueSiliconBase
@@ -911,16 +921,16 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      110: Critical
-      160: Dead
+      88: Critical
+      130: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      66: 0.7
-      88: 0.5
+      54: 0.7
+      70: 0.5
   - type: Stamina
     critThreshold: 600
   - type: ProjectileBatteryAmmoProvider
-    proto: TeslaGunBullet
+    proto: NFTeslaGunBullet
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -932,8 +942,10 @@
     projectileSpeed: 10
     showExamineText: false
     fireRate: 0.75
-    minAngle: 0
+    minAngle: 5
     maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 3
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
@@ -943,7 +955,7 @@
     energy: 1.5
     color: "#47f8ff"
 
-## Tier 4 Boss
+#region Tier 4 Boss
 - type: entity
   parent:
   - MobRogueSiliconDroneBase
@@ -987,22 +999,24 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Critical
-      400: Dead
+      160: Critical
+      320: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      120: 0.7
-      160: 0.5
+      96: 0.7
+      130: 0.5
   - type: Stamina
     critThreshold: 600
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaserPractice # RedLaser
+    proto: NFRedLaserPractice
     fireCost: 10
   - type: Gun
     showExamineText: false
     fireRate: 8
     minAngle: 1
     maxAngle: 10
+    angleIncrease: 1
+    angleDecay: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -1043,16 +1057,16 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
-      400: Dead
+      240: Critical
+      360: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      200: 0.7
-      260: 0.5
+      144: 0.7
+      192: 0.5
   - type: Stamina
     critThreshold: 600
   - type: BasicEntityAmmoProvider
-    proto: CartridgeRocketMiniNF
+    proto: NFCartridgeRocketMini
     capacity: 10
     count: 10
   - type: Gun
@@ -1069,8 +1083,7 @@
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
 
-
-### Asteroid scrap bots: no regen
+#region Asteroid
 ## Tier 1
 - type: entity
   parent:
@@ -1290,7 +1303,7 @@
     prototypes:
     - MobRogueSiliconLootT1
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: NFRedLightLaser
     fireCost: 100
   - type: Gun
     showExamineText: false

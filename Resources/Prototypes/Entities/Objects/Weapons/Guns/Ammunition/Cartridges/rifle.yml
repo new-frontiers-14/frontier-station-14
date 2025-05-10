@@ -9,7 +9,7 @@
       - Cartridge
       - CartridgeRifle
   - type: CartridgeAmmo
-    proto: BulletRifle
+    # proto: BulletRifle # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -21,20 +21,22 @@
     price: 1
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeRifle
   name: cartridge (.20 rifle)
   parent: BaseCartridgeRifle
   components:
   - type: CartridgeAmmo
-    proto: BulletRifle
+    # proto: BulletRifle # Frontier
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeRiflePractice
   name: cartridge (.20 rifle practice)
   parent: BaseCartridgeRifle
   components:
   - type: CartridgeAmmo
-    proto: BulletRiflePractice
+    # proto: BulletRiflePractice # Frontier
   - type: Sprite
     layers:
       - state: base
@@ -44,12 +46,13 @@
         color: "#dbdbdb"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeRifleIncendiary
   name: cartridge (.20 rifle incendiary)
   parent: BaseCartridgeRifle
   components:
   - type: CartridgeAmmo
-    proto: BulletRifleIncendiary
+    # proto: BulletRifleIncendiary # Frontier
   - type: Sprite
     layers:
       - state: base
@@ -59,12 +62,13 @@
         color: "#ff6e52"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeRifleUranium
   name: cartridge (.20 rifle uranium)
   parent: BaseCartridgeRifle
   components:
   - type: CartridgeAmmo
-    proto: BulletRifleUranium
+    # proto: BulletRifleUranium # Frontier
   - type: Sprite
     layers:
       - state: base

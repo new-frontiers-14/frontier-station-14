@@ -11,9 +11,6 @@
     damage:
       types:
         Piercing: 28
-  - type: Tracer # Frontier
-    color: "#000000FF" # Frontier
-    length: 1.5 # Frontier
 
 - type: entity
   id: PelletShotgunBeanbag
@@ -30,9 +27,6 @@
         Blunt: 10
   - type: StaminaDamageOnCollide
     damage: 30 # 4 hits to stun
-  - type: Tracer # Frontier
-    color: "#004A00FF" # Frontier
-    length: 1.5 # Frontier
 
 - type: entity
   id: PelletShotgun
@@ -54,7 +48,7 @@
   parent: PelletShotgun
   components:
   - type: ProjectileSpread
-    proto: PelletShotgun
+    # proto: PelletShotgun # Frontier
     count: 6
     spread: 15
 
@@ -81,7 +75,7 @@
   parent: PelletShotgunIncendiary
   components:
   - type: ProjectileSpread
-    proto: PelletShotgunIncendiary
+    # proto: PelletShotgunIncendiary # Frontier
     count: 6
     spread: 15
 
@@ -105,7 +99,7 @@
   parent: PelletShotgunPractice
   components:
   - type: ProjectileSpread
-    proto: PelletShotgunPractice
+    # proto: PelletShotgunPractice # Frontier
     count: 6
     spread: 15
 
@@ -130,7 +124,7 @@
   parent: PelletShotgunImprovised
   components:
   - type: ProjectileSpread
-    proto: PelletShotgunImprovised
+    # proto: PelletShotgunImprovised # Frontier
     count: 10
     spread: 45
 
@@ -160,9 +154,6 @@
     solution: ammo
   - type: InjectableSolution
     solution: ammo
-  - type: Tracer # Frontier
-    color: "#49CECEFF" # Frontier
-    length: 1.5 # Frontier
 
 - type: entity
   id: PelletShotgunFlare
@@ -225,13 +216,6 @@
       types:
         Radiation: 5
         Piercing: 5
-  - type: Tracer # Frontier
-    color: "#9BE792FF" # Frontier
-    length: 1.5 # Frontier
-  - type: PointLight # Frontier
-    radius: 1.1 # Frontier
-    energy: 1 # Frontier
-    color: "#9BE792FF" # Frontier
 
 - type: entity
   id: PelletShotgunUraniumSpread
@@ -239,7 +223,7 @@
   parent: PelletShotgunUranium
   components:
   - type: ProjectileSpread
-    proto: PelletShotgunUranium
+    # proto: PelletShotgunUranium # Frontier
     count: 5
     spread: 6
 
@@ -267,7 +251,7 @@
   parent: PelletGrapeshot
   components:
   - type: ProjectileSpread
-    proto: PelletGrapeshot
+    # proto: PelletGrapeshot # Frontier
     count: 5
     spread: 40
 
@@ -297,6 +281,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: ProjectileSpread
-    proto: PelletGlass
+    # proto: PelletGlass # Frontier
     count: 5
     spread: 10

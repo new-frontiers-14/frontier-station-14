@@ -29,6 +29,9 @@ uplink-security-lethalarmory-desc = A crate containing weapons necessary to fill
 uplink-security-nonlethalarmory-name = Non-lethal Armory Stock Crate
 uplink-security-nonlethalarmory-desc = A crate containing non-lethal weapons necessary to fill an armory.
 
+uplink-security-mk32-name = MK32
+uplink-security-mk32-desc = The Mark 32 Offensive Service Pistol.
+
 uplink-security-mk58-name = MK58
 uplink-security-mk58-desc = Cheap, standard issue sidearm. Uses .35 Auto.
 
@@ -92,26 +95,26 @@ uplink-security-emprocket-desc = An EMP rocket for the RPG-7.
 uplink-security-thrusterkit-name = Thruster Upgrade Kit
 uplink-security-thrusterkit-desc = Contains 12 super capaciters. Perfect for upgrading three thrusters.
 
-uplink-security-magazinepistol-name = .35 Auto Pistol Magazines
-uplink-security-magazinepistol-desc = A box containing 4 filled .35 auto magazines.
+uplink-security-magazinepistol-name = .35 Pistol +P Magazines
+uplink-security-magazinepistol-desc = A box containing 4 filled .35 pistol (overpressure) pistol magazines.
 
-uplink-security-magazinepistol-rubber-name = .35 Auto Pistol Rubber Magazines
-uplink-security-magazinepistol-rubber-desc = A box containing 4 filled .35 auto (rubber) magazines.
+uplink-security-magazinepistol-rubber-name = .35 Pistol Rubber Magazines
+uplink-security-magazinepistol-rubber-desc = A box containing 4 filled .35 pistol (rubber) pistol magazines.
 
-uplink-security-20riflemagazine-name = .20 Rifle Magazines
-uplink-security-20riflemagazine-desc = A box containing 4 filled .20 rifle magazines.
+uplink-security-20riflemagazine-name = .20 Rifle +P Magazines
+uplink-security-20riflemagazine-desc = A box containing 4 filled .20 rifle (overpressure) magazines.
 
 uplink-security-20riflemagazine-rubber-name = .20 Rifle Rubber Magazines
 uplink-security-20riflemagazine-rubber-desc = A box containing 4 filled .20 rifle (rubber) magazines.
 
-uplink-security-30riflemagazine-name = .30 Rifle Magazines
-uplink-security-30riflemagazine-desc = A box containing 4 filled .30 rifle magazines.
+uplink-security-30riflemagazine-name = .30 Rifle +P Magazines
+uplink-security-30riflemagazine-desc = A box containing 4 filled .30 rifle (overpressure) magazines.
 
 uplink-security-30riflemagazine-rubber-name = .30 Rifle Rubber Magazines
 uplink-security-30riflemagazine-rubber-desc = a Box containing 4 filled .30 rifle (rubber) magazines.
 
-uplink-security-wt550magazine-name = .35 Auto Top-mounted Magazines
-uplink-security-wt550magazine-desc = A box containing 3 filled .35 auto top-mounted magazines.
+uplink-security-wt550magazine-name = .35 +P Top-mounted Magazines
+uplink-security-wt550magazine-desc = A box containing 3 filled .35 pistol (overpressure) top-mounted magazines.
 
 uplink-security-hypo-name = Hypospray
 uplink-security-hypo-desc = A sterile medical injector for instant delivery of medications.
@@ -123,7 +126,7 @@ uplink-security-medkit-name = Combat Medkit
 uplink-security-medkit-desc = A kit containing advanced medical supplies suitable for use in the field.
 
 uplink-security-inspector-name = Inspector
-uplink-security-inspector-desc = Standard issue revolver. Cheaply mass produced and found in all corners of the known universe. Uses .45 magnum.
+uplink-security-inspector-desc = Standard issue revolver. Cheaply mass produced and found in all corners of the known universe. Uses .45 pistol.
 
 uplink-security-mateba-name = Mateba
 uplink-security-mateba-desc = The Mateba Autorevolver's unique barrel alignment and recoil driven cylinder and hammer allow for unparalleled fire rate and accuracy.
@@ -155,10 +158,10 @@ uplink-security-energyshield-desc = An exotic energy shield that blocks most inc
 uplink-security-swat-name = Swat Gas Mask
 uplink-security-swat-desc = A full-face covering version of the standard issue NFSD Gas Mask.
 
-uplink-security-speedloader-name = .45 Magnum Speed Loader
-uplink-security-speedloader-desc = A revolver speed loader that comes pre-loaded with .45 magnum cartridges.
+uplink-security-speedloader-name = .45 Pistol Speed Loader
+uplink-security-speedloader-desc = A revolver speed loader that comes pre-loaded with .45 pistol cartridges.
 
-uplink-security-speedloaderrubber-name = .45 Magnum Rubber Speed Loader
+uplink-security-speedloaderrubber-name = .45 Pistol Rubber Speed Loader
 uplink-security-speedloaderrubber-desc = A revolver speed loader that comes pre-loaded with .45 rubber cartridges.
 
 uplink-security-shotlethal-name = Lethal Shotgun Shells
@@ -224,6 +227,9 @@ uplink-security-spaceblade-sec-desc = The latest in stun tech.
 uplink-security-contraband-forensics-module-name = Contraband Forenics Module
 uplink-security-contraband-forensics-module-desc = A program for scanning and reporting contraband dead drops and pods for bounties. Slots into a forensic scanner.
 
+uplink-security-lasercanon-name = laser cannon
+uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
+
 # region Pirate
 uplink-pirate-hardsuit-name = Pirate Hardsuit
 uplink-pirate-hardsuit-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
@@ -250,7 +256,7 @@ uplink-pirate-blunderbuss-name = Blunderbuss
 uplink-pirate-blunderbuss-desc = Deadly at close range, an illegal shotgun often found at the side of a pirate.
 
 uplink-pirate-revolver-name = Pirate Revolver
-uplink-pirate-revolver-desc = An odd, illegal, old-looking revolver, favoured by pirate crews. Uses .45 magnum ammo.
+uplink-pirate-revolver-desc = An odd, illegal, old-looking revolver, favoured by pirate crews. Uses .45 pistol ammo.
 
 uplink-pirate-cannon-name = Pirate Cannon
 uplink-pirate-cannon-desc = Kaboom!
@@ -277,7 +283,7 @@ uplink-pirate-shotgunammo-name = Blunderbuss Shell Box
 uplink-pirate-shotgunammo-desc = A box of .50 shotgun shells, used in the blunderbuss.
 
 uplink-pirate-revolverammo-name = Pirate Revolver Ammo Box
-uplink-pirate-revolverammo-desc = A box of .45 magnum rounds, used in the pirate revolver.
+uplink-pirate-revolverammo-desc = A box of .45 pistol rounds, used in the pirate revolver.
 
 uplink-pirate-flintlockammo-name = Flintlock Pistol Ammo Box
 uplink-pirate-flintlockammo-desc = A box of .60 anti-materiel rounds, used in the flintlock pistol.
@@ -324,6 +330,17 @@ uplink-spaceblade-syndicate-desc = Made from real metal!
 
 uplink-emag-pass-name = Disposable Emag
 uplink-emag-pass-desc = A card used to hack devices. Usable three times.
+
+uplink-revolver-ritland-name = Ritland-45
+uplink-revolver-ritland-desc = Usually reliable, heavy revolver. Do you feel lucky, punk?
+
+uplink-pistol-cobra45-desc = A rugged, robust operator handgun with inbuilt silencer. Uses .45 pistol ammo.
+
+uplink-pistol-magazine-cobra-name = Cobra .45 pistol magazine
+uplink-pistol-magazine-cobra-desc = A loaded magazine for Cobra .45 pistol.
+
+uplink-speedloader-magnum-non-ap-name = .45 pistol speed loader
+uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pistol caliber rounds.
 
 uplink-syndicate-segway-name = Syndicate Segway
 uplink-syndicate-segway-desc = Move around in style without dirtying your blood red boots.

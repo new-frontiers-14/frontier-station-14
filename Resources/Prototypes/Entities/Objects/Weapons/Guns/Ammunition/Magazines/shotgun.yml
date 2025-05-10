@@ -34,6 +34,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineShotgunEmpty
   name: ammo drum (.50 shells any)
   suffix: empty
@@ -43,12 +44,13 @@
     proto: null
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineShotgun
   name: ammo drum (.50 pellet)
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgun
+    # proto: ShellShotgun # Frontier
   - type: Sprite
     layers:
     - state: pellets
@@ -57,12 +59,13 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineShotgunBeanbag
   name: ammo drum (.50 beanbags)
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgunBeanbag
+    # proto: ShellShotgunBeanbag # Frontier
   - type: Sprite
     layers:
     - state: beanbag
@@ -71,12 +74,13 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineShotgunSlug
   name: ammo drum (.50 slug)
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgunSlug
+    # proto: ShellShotgunSlug # Frontier
   - type: Sprite
     layers:
     - state: slug
@@ -85,12 +89,13 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineShotgunIncendiary
   name: ammo drum (.50 incendiary)
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgunIncendiary
+    # proto: ShellShotgunIncendiary # Frontier
   - type: Sprite
     layers:
     - state: slug

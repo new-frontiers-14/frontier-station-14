@@ -19,14 +19,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      130: Dead
+      80: Critical
+      100: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+      48: 0.7
+      64: 0.5
   - type: Stamina
-    critThreshold: 100
+    critThreshold: 80
   - type: DamageStateVisuals
     rotate: true
   - type: RotationVisuals
@@ -48,7 +48,7 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Slash: 15
+        Slash: 12
         Structural: 20
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
@@ -142,12 +142,16 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: BulletPistol
+    proto: NFCartridgePistol35
     capacity: 4
     count: 4
   - type: Gun
     showExamineText: false
-    fireRate: 0.5
+    minAngle: 10
+    maxAngle: 21
+    angleIncrease: 4
+    angleDecay: 3
+    fireRate: 1
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -184,14 +188,16 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: CartridgeRifle
+    proto: NFCartridgeRifle20
     capacity: 10
     count: 10
   - type: Gun
     showExamineText: false
     fireRate: 0.85
-    minAngle: 1
-    maxAngle: 10
+    minAngle: 8
+    maxAngle: 20
+    angleIncrease: 3
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -277,14 +283,16 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: CartridgeRifle
-    capacity: 8
-    count: 8
+    proto: NFCartridgePistol35
+    capacity: 6
+    count: 6
   - type: Gun
     showExamineText: false
-    fireRate: 2.0
-    minAngle: 1
-    maxAngle: 15
+    minAngle: 11
+    maxAngle: 25
+    angleIncrease: 3
+    angleDecay: 3
+    fireRate: 2
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -325,14 +333,16 @@
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
-    proto: ShellShotgun
+    proto: NFShellShotgunBuckshot
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
     fireRate: 2
-    minAngle: 1
-    maxAngle: 10
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 5
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -369,8 +379,8 @@
       state: equipped-NECK-on
       color: "#a9b6bd"
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserLow
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -381,8 +391,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 1
-    minAngle: 1
-    maxAngle: 10
+    minAngle: 8
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -434,7 +446,7 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: CartridgeRifle
+    proto: NFCartridgeRifle25
     capacity: 2
     count: 2
   - type: RechargeBasicEntityAmmo
@@ -444,8 +456,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 4
-    minAngle: 5
+    minAngle: 8
     maxAngle: 20
+    angleIncrease: 4
+    angleDecay: 3
     selectedMode: Burst
     availableModes:
     - Burst
@@ -487,14 +501,16 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: CartridgeMagnum
+    proto: NFCartridgeRifle30
     capacity: 10
     count: 10
   - type: Gun
     showExamineText: false
-    fireRate: 0.6
-    minAngle: 1
-    maxAngle: 15
+    fireRate: 1
+    minAngle: 3
+    maxAngle: 20
+    angleIncrease: 3
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
