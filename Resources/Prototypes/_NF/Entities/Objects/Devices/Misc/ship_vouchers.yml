@@ -61,6 +61,25 @@
     accessGroups: # Frontier
     - GeneralNfsdAccess # Frontier
 
+- type: entity
+  parent: ShipVoucherNfsdSergeant
+  id: ShipVoucherNfsdSheriff
+  name: NFSD sheriff ship voucher
+  description: Allows for one free small to capital NFSD ship purchase. Destroyed on sale.
+  components:
+  - type: Sprite
+    layers:
+    - state: nfsd
+    - state: vouchersheriff
+  - type: ShipyardVoucher
+    access:
+    - Armory
+    - Detective
+    - Sergeant # Frontier
+    - Bailiff # Frontier
+    accessGroups: # Frontier
+    - GeneralNfsdAccess # Frontier
+
 # Frontier vouchers
 - type: entity
   parent: BaseShipVoucher
