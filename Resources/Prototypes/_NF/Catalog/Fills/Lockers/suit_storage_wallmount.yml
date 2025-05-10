@@ -29,6 +29,14 @@
     access: [["HeadOfPersonnel"]]
 
 - type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitStc ]
+  id: SuitStorageWallmountEVAStc
+  suffix: EVA, Station Traffic Controller
+  components:
+  - type: AccessReader
+    access: [["StationTrafficController"]]
+
+- type: entity
   parent: [ SuitStorageWallmount, StorageFillEVASuitCaptain ]
   id: SuitStorageWallmountEVACaptain
   suffix: EVA, Captain

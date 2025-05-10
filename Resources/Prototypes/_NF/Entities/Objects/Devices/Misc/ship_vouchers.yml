@@ -121,3 +121,17 @@
   - type: ShipyardVoucher
     access:
     - Brig # odd, but potentially restricts cadets in lieu of a security guard-only access level
+
+- type: entity
+  parent: ShipVoucherFrontierJanitor
+  id: ShipVoucherFrontierStc
+  name: station traffic controller ship voucher
+  description: Allows for one free tug ship purchase from the Frontier Staff Shipyard. Destroyed on sale.
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - state: voucherstationguard
+  - type: ShipyardVoucher
+    access:
+    - StationTrafficController
