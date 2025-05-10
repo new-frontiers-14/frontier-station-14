@@ -65,6 +65,7 @@ namespace Content.Server.Lathe
         /// </summary>
         private readonly List<GasMixture> _environments = new();
         private readonly HashSet<ProtoId<LatheRecipePrototype>> _availableRecipes = new();
+        private const int MaxItemsPerRequest = 100_000; // Frontier
 
         public override void Initialize()
         {
@@ -189,6 +190,7 @@ namespace Content.Server.Lathe
             // Frontier: argument check
             if (quantity <= 0)
                 return false;
+            quantity = int.Min(quantity, MaxItemsPerRequest);
             // Frontier: argument check
 
             if (!CanProduce(uid, recipe, quantity, component)) // Frontier: 1<quantity
@@ -197,7 +199,7 @@ namespace Content.Server.Lathe
             foreach (var (mat, amount) in recipe.Materials)
             {
                 var adjustedAmount = recipe.ApplyMaterialDiscount
-                    ? (int) (-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
+                    ? (int)(-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
                     : -amount;
                 adjustedAmount *= quantity; // Frontier
 

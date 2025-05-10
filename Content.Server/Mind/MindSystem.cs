@@ -1,3 +1,4 @@
+using Content.Server._NF.CryoSleep; // Frontier
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
@@ -24,6 +25,7 @@ public sealed class MindSystem : SharedMindSystem
     [Dependency] private readonly GhostSystem _ghosts = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly PvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private readonly CryoSleepSystem _cryo = default!; // Frontier
 
     public override void Initialize()
     {
@@ -222,6 +224,7 @@ public sealed class MindSystem : SharedMindSystem
             component = EnsureComp<MindContainerComponent>(entity.Value);
             var ghostComponent = Comp<GhostComponent>(entity.Value);
             _ghosts.SetCanReturnToBody(ghostComponent, false);
+            _ghosts.SetCanReturnFromCryo(ghostComponent, mind.UserId != null ? _cryo.HasCryosleepingBody(mind.UserId.Value) : false); // Frontier
         }
 
         var oldEntity = mind.OwnedEntity;

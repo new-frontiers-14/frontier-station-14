@@ -91,6 +91,29 @@ public sealed partial class GhostComponent : Component
 
     [DataField("canReturnToBody"), AutoNetworkedField]
     private bool _canReturnToBody;
+
+    // Frontier: cryo functions
+    /// <summary>
+    /// Internal field value for CanReturnFromCryo.
+    /// </summary>
+    [DataField("canReturnFromCryo"), AutoNetworkedField]
+    private bool _canReturnFromCryo;
+
+    /// <summary>
+    /// Changed by <see cref="SharedGhostSystem.SetCanReturnFromCryo"/>
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool CanReturnFromCryo
+    {
+        get => _canReturnFromCryo;
+        set
+        {
+            if (_canReturnFromCryo == value) return;
+            _canReturnFromCryo = value;
+            Dirty();
+        }
+    }
+    // End Frontier: cryo functions
 }
 
 public sealed partial class ToggleFoVActionEvent : InstantActionEvent { }

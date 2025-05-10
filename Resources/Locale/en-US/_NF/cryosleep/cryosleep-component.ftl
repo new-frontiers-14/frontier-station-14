@@ -1,12 +1,15 @@
 ## UI
 cryopod-examine-empty = Empty
 cryopod-examine-occupied = Occupied
+cryopod-verb-target-unknown = Unknown
 accept-cryo-window-accept-button = Accept
 accept-cryo-window-deny-button = Cancel
 accept-cryo-window-prompt-text-part = Enter cryo sleep and finish your shift?
+accept-cryo-window-prompt-stored = Your body will be stored for {PLAYTIME($time)}.
+accept-cryo-window-prompt-not-stored = Your body will not be stored, but your job slot will be reopened if you haven't done it yourself.
 accept-cryo-window-title = Cryo Sleep Chamber
 
-cryo-wakeup-window-title = Waking up
+cryo-wakeup-window-title = Waking Up
 cryo-wakeup-window-accept-button = Accept
 cryo-wakeup-window-deny-button = Cancel
 cryo-wakeup-window-rules = You are going to try to return from your cryosleep! You do not know anything that happened since the moment you went to sleep. Accept this and continue?

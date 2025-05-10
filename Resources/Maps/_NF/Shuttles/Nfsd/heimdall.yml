@@ -1014,6 +1014,11 @@ entities:
     - type: Transform
       pos: 5.5,-2.5
       parent: 2
+  - uid: 95
+    components:
+    - type: Transform
+      pos: 0.5,7.5
+      parent: 2
   - uid: 246
     components:
     - type: Transform
@@ -1074,15 +1079,15 @@ entities:
     - type: Transform
       pos: -3.5,0.5
       parent: 2
+  - uid: 94
+    components:
+    - type: Transform
+      pos: -4.5,-0.5
+      parent: 2
   - uid: 96
     components:
     - type: Transform
       pos: -4.5,0.5
-      parent: 2
-  - uid: 183
-    components:
-    - type: Transform
-      pos: -4.5,-0.5
       parent: 2
   - uid: 239
     components:
@@ -1101,7 +1106,7 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 2
-  - uid: 99
+  - uid: 156
     components:
     - type: Transform
       pos: 0.5,6.5
@@ -1135,14 +1140,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,8.5
-      parent: 2
-- proto: ClosetWallO2N2FilledRandom
-  entities:
-  - uid: 104
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-2.5
       parent: 2
 - proto: ComputerIFF
   entities:
@@ -1183,24 +1180,23 @@ entities:
       parent: 2
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 94
+  - uid: 99
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -1.5,-2.5
+      pos: 0.5,-2.5
       parent: 2
 - proto: EmergencyLight
   entities:
+  - uid: 183
+    components:
+    - type: Transform
+      pos: -3.5,0.5
+      parent: 2
   - uid: 303
     components:
     - type: Transform
       pos: 0.5,-3.5
-      parent: 2
-  - uid: 343
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,-1.5
       parent: 2
   - uid: 344
     components:
@@ -1217,8 +1213,8 @@ entities:
   - uid: 346
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,1.5
+      rot: 3.141592653589793 rad
+      pos: 0.5,-1.5
       parent: 2
 - proto: ExtinguisherCabinetFilled
   entities:
@@ -1857,25 +1853,19 @@ entities:
     - type: Transform
       pos: 6.5,1.5
       parent: 2
-- proto: PosterLegitSMPiping
+- proto: PosterLegitSafetyMothPiping
   entities:
   - uid: 188
     components:
     - type: Transform
       pos: 2.5,5.5
       parent: 2
-- proto: PoweredLEDSmallLight
+- proto: Poweredlight
   entities:
-  - uid: 189
+  - uid: 230
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-3.5
-      parent: 2
-  - uid: 191
-    components:
-    - type: Transform
-      pos: -5.5,0.5
+      pos: 3.5,0.5
       parent: 2
 - proto: PoweredlightGreen
   entities:
@@ -1884,20 +1874,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 7.5,2.5
-      parent: 2
-- proto: PoweredlightLED
-  entities:
-  - uid: 95
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-1.5
-      parent: 2
-  - uid: 192
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,-1.5
       parent: 2
 - proto: PoweredlightRed
   entities:
@@ -1918,6 +1894,27 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,3.5
+      parent: 2
+- proto: PoweredSmallLight
+  entities:
+  - uid: 191
+    components:
+    - type: Transform
+      pos: -5.5,0.5
+      parent: 2
+  - uid: 192
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-1.5
+      parent: 2
+- proto: PoweredWarmSmallLight
+  entities:
+  - uid: 189
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-3.5
       parent: 2
 - proto: RandomPosterLegit
   entities:
@@ -2181,7 +2178,7 @@ entities:
       parent: 2
 - proto: SuitStorageWallmountDeputy
   entities:
-  - uid: 156
+  - uid: 343
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -2591,13 +2588,12 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 2
-- proto: WallWeaponCapacitorRecharger
+- proto: WallWeaponCapacitorRechargerOmnidirectional
   entities:
-  - uid: 230
+  - uid: 104
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,-2.5
+      pos: -1.5,-2.5
       parent: 2
 - proto: WarpPoint
   entities:
