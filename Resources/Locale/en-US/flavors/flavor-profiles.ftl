@@ -266,6 +266,18 @@ flavor-complex-themartinez = like violets and lemon vodka
 flavor-complex-cogchamp = like brass
 flavor-complex-white-gilgamesh = like lightly carbonated cream
 flavor-complex-antifreeze = warm
+flavor-complex-caipirinha = like Brazil
+flavor-complex-daiquiri = like rum, lime and sugar
+flavor-complex-deathintheafternoon = like anise and champagne 
+flavor-complex-empress75 = like tyrian purple
+flavor-complex-espressomartini = like vodka and coffee
+flavor-complex-mayojito = like stomach turmoil
+flavor-complex-mimeosa = like silence and oranges
+flavor-complex-mimosa = like an early brunch
+flavor-complex-moscowmule = like vodka and ginger ale
+flavor-complex-thesunalsorises = like an absinthe daiquiri
+# Frontier: egg<lemon
+flavor-complex-whiskeysour = like sweetened whiskey and lemon
 flavor-complex-zombiecocktail = like eating brains
 flavor-complex-absinthe = like anise
 flavor-complex-blue-curacao = like orange flowers
@@ -284,7 +296,8 @@ flavor-complex-devils-kiss = like cannibalism
 flavor-complex-driest-martini = like a drunk mimic
 flavor-complex-erika-surprise = like the bartender made a mistake
 flavor-complex-gin-fizz = refreshing and lemony
-flavor-complex-gildlager = like the Tzar's gold
+# Frontier: Tzar<Tsar
+flavor-complex-gildlager = like the Tsar's gold
 flavor-complex-grog = like a sea shanty
 flavor-complex-hippies-delight = like your blood pressure is dropping
 flavor-complex-hooch = like it would be delicious if you were a diesel engine
@@ -303,6 +316,7 @@ flavor-complex-toxins-special = like space exploration
 flavor-complex-vodka-martini = like a spy movie from Russia
 flavor-complex-vodka-tonic = refreshingly bitter
 flavor-complex-coconut-rum = like nutty fermented sugar
+flavor-complex-bacchus-blessing = like a wall of bricks
 
 ### This is exactly what pilk tastes like. I'm not even joking. I might've been a little drunk though
 flavor-complex-pilk = like sweet milk

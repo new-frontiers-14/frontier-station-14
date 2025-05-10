@@ -30,6 +30,8 @@ public sealed class ScreenSystem : EntitySystem
     {
         if (args.Data.TryGetValue(ShuttleTimerMasks.ShuttleMap, out _))
             ShuttleTimer(uid, component, args);
+        else if (args.Data.TryGetValue(ScreenMasks.LocalGrid, out _)) // Frontier: grid-local messages
+            ScreenLocalText(uid, component, args); // Frontier
         else
             ScreenText(uid, component, args);
     }
@@ -112,4 +114,31 @@ public sealed class ScreenSystem : EntitySystem
         if (args.Data.TryGetValue(ScreenMasks.Color, out Color color))
             _appearanceSystem.SetData(uid, TextScreenVisuals.Color, color);
     }
+
+    // Frontier: grid-local text messages
+    /// <summary>
+    /// Send a text message to a particular grid, ignoring map differences.
+    /// </summary>
+    private void ScreenLocalText(EntityUid uid, ScreenComponent component, DeviceNetworkPacketEvent args)
+    {
+        // don't allow text updates if there's an active timer
+        // (and just check here so the server doesn't have to track them)
+        if (_appearanceSystem.TryGetData(uid, TextScreenVisuals.TargetTime, out TimeSpan target)
+            && target > _gameTiming.CurTime)
+            return;
+
+        var screenGrid = Transform(uid).GridUid;
+
+        if (screenGrid != null
+            && args.Data.TryGetValue(ScreenMasks.LocalGrid, out EntityUid? targetGridUid)
+            && targetGridUid == screenGrid // targetGridUid implicitly not null
+            && args.Data.TryGetValue(ScreenMasks.Text, out string? text)
+            && text != null
+            )
+        {
+            _appearanceSystem.SetData(uid, TextScreenVisuals.DefaultText, text);
+            _appearanceSystem.SetData(uid, TextScreenVisuals.ScreenText, text);
+        }
+    }
+    // End Frontier: grid-local text messages
 }

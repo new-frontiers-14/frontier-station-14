@@ -3,6 +3,8 @@ using Content.Server._NF.Trade;
 using Content.Server.GameTicking;
 using Content.Shared._NF.Trade;
 using Content.Shared.Examine;
+using Content.Shared.Labels.EntitySystems;
+using Content.Shared.Throwing;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
@@ -10,6 +12,7 @@ namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
 public sealed partial class CargoSystem
 {
     [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private SharedLabelSystem _label = default!;
     private readonly List<EntityUid> _destinations = new();
 
     private void InitializeTradeCrates()
@@ -18,6 +21,7 @@ public sealed partial class CargoSystem
         SubscribeLocalEvent<TradeCrateComponent, ComponentInit>(OnTradeCrateInit);
         SubscribeLocalEvent<TradeCrateComponent, ComponentRemove>(OnTradeCrateRemove);
         SubscribeLocalEvent<TradeCrateComponent, ExaminedEvent>(OnTradeCrateExamined);
+        SubscribeLocalEvent<TradeCrateComponent, ThrowItemAttemptEvent>(OnTradeCrateThrow);
 
         SubscribeLocalEvent<TradeCrateDestinationComponent, ComponentInit>(OnDestinationInit);
         SubscribeLocalEvent<TradeCrateDestinationComponent, ComponentRemove>(OnDestinationRemove);
@@ -55,6 +59,8 @@ public sealed partial class CargoSystem
             ent.Comp.DestinationStation = destination;
             if (TryComp<TradeCrateDestinationComponent>(destination, out var destComp))
                 _appearance.SetData(ent, TradeCrateVisuals.DestinationIcon, destComp.DestinationProto.Id);
+            if (TryComp(destination, out MetaDataComponent? metadata))
+                _label.Label(ent, metadata.EntityName);
         }
 
         if (ent.Comp.ExpressDeliveryDuration > TimeSpan.Zero)
@@ -91,6 +97,12 @@ public sealed partial class CargoSystem
 
         var shiftTime = ent.Comp.ExpressDeliveryTime - _gameTicker.RoundStartTimeSpan;
         ev.PushMarkup(Loc.GetString("trade-crate-priority-time", ("time", shiftTime.Value.ToString(@"hh\:mm\:ss"))));
+    }
+
+    private void OnTradeCrateThrow(Entity<TradeCrateComponent> ent, ref ThrowItemAttemptEvent ev)
+    {
+        // Borgs can pick these up, don't let them be thrown.
+        ev.Cancelled = true;
     }
 
     private void DisableTradeCratePriority(EntityUid uid)

@@ -62,12 +62,24 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Space between grids within hyperspace.
     /// </summary>
-    private const float Buffer = 5f;
+    private const float Buffer = 500f; // Frontier: 5 < 500
 
     /// <summary>
     /// How many times we try to proximity warp close to something before falling back to map-wideAABB.
     /// </summary>
     private const int FTLProximityIterations = 15; // Frontier: 5<15
+
+    // Frontier: coordinate rollover
+    /// <summary>
+    /// Maximum X coordinate before rolling over.
+    /// </summary>
+    private const float MaxCoord = 20000f;
+
+    /// <summary>
+    /// Amount to subtract from X coordinate on rollover.
+    /// </summary>
+    private const float CoordRollover = 40000f;
+    // End Frontier: coordinate rollover
 
     private readonly HashSet<EntityUid> _lookupEnts = new();
     private readonly HashSet<EntityUid> _immuneEnts = new();
@@ -420,6 +432,11 @@ public sealed partial class ShuttleSystem
         xform.LocalRotation = Angle.Zero;
         _index += width + Buffer;
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, comp.TravelTime - DefaultArrivalTime);
+
+        // Frontier: rollover coordinates
+        if (_index > MaxCoord)
+            _index -= CoordRollover;
+        // End Frontier
 
         Enable(uid, component: body);
         _physics.SetLinearVelocity(uid, new Vector2(0f, 20f), body: body);

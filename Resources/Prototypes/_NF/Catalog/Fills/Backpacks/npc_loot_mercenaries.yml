@@ -10,14 +10,58 @@
   suffix: NPC Loot
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Duffels/mercenary.rsi
-    state: icon
-  - type: Item
-    size: Normal
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    layers:
+    - state: icon-base
+      color: "#6e6e38"
+    - state: icon-sling
+      color: "#444444"
+    - state: icon-decal-straps
+      color: "#444444"
+    - state: icon-handle
+      color: "#444444"
+    - state: icon-zipper
+      color: "#bbbb7a"
   - type: Clothing
     quickEquip: false
     slots:
     - back
+    sprite: _NF/Clothing/Back/Duffels/color.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-base
+        color: "#6e6e38"
+      - state: equipped-BACKPACK-sling
+        color: "#444444"
+      - state: equipped-BACKPACK-decal-straps
+        color: "#49492f"
+      - state: equipped-BACKPACK-handle
+        color: "#49492f"
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#6e6e38"
+      - state: inhand-left-sling
+        color: "#444444"
+      - state: inhand-left-decal-straps
+        color: "#49492f"
+      - state: inhand-left-handle
+        color: "#49492f"
+      - state: inhand-left-zipper
+        color: "#bbbb7a"
+      right:
+      - state: inhand-right-base
+        color: "#6e6e38"
+      - state: inhand-right-sling
+        color: "#444444"
+      - state: inhand-right-decal-straps
+        color: "#49492f"
+      - state: inhand-right-handle
+        color: "#49492f"
+      - state: inhand-right-zipper
+        color: "#bbbb7a"
 
 ## BELT - for ammo and mags
 - type: entity
@@ -283,9 +327,6 @@
   id: ClothingBackpackDuffelMecranaryTier3Medic
   categories: [ HideSpawnMenu ]
   components:
-  - type: Sprite
-    sprite: Clothing/Back/Duffels/medical.rsi
-    state: icon
   - type: SpawnItemsOnUse
     items:
     # Cash
@@ -296,7 +337,7 @@
     - id: SpaceCash1000
       prob: 0.2
     # Weapons
-    - id: WeaponLaserPistolNF
+    - id: WeaponNFLaserPistol
       prob: 0.9
     - id: SawElectric
       prob: 0.7
@@ -358,9 +399,6 @@
   id: ClothingBackpackDuffelMecranaryTier3Assault
   categories: [ HideSpawnMenu ]
   components:
-  - type: Sprite
-    sprite: Clothing/Back/Duffels/duffel.rsi
-    state: icon
   - type: SpawnItemsOnUse
     items:
     # Cash

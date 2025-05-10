@@ -15,6 +15,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -25,10 +26,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using System.Numerics; //Frontier modification
-using Content.Server.Salvage.Expeditions;
-using Content.Server.Explosion.EntitySystems;
-using Content.Server._NF.Medical.SuitSensors; // Frontier modification
+using Content.Server.Salvage.Expeditions; // Frontier
+using Content.Server._NF.Medical.SuitSensors; // Frontier
+using Content.Shared.Emp; // Frontier
 
 namespace Content.Server.Medical.SuitSensors;
 
@@ -49,6 +49,7 @@ public sealed class SuitSensorSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
 
     public override void Initialize()
     {
@@ -276,6 +277,9 @@ public sealed class SuitSensorSystem : EntitySystem
         args.Affected = true;
         args.Disabled = true;
 
+        if (HasComp<EmpDisabledComponent>(uid)) // Frontier: don't double count 
+            return; // Frontier
+
         component.PreviousMode = component.Mode;
         SetSensor((uid, component), SuitSensorMode.SensorOff, null);
 
@@ -365,6 +369,20 @@ public sealed class SuitSensorSystem : EntitySystem
         {
             var msg = Loc.GetString("suit-sensor-mode-state", ("mode", GetModeName(mode)));
             _popupSystem.PopupEntity(msg, sensors, userUid.Value);
+        }
+    }
+
+    /// <summary>
+    ///     Set all suit sensors on the equipment someone is wearing to the specified mode.
+    /// </summary>
+    public void SetAllSensors(EntityUid target, SuitSensorMode mode, SlotFlags slots = SlotFlags.All )
+    {
+        // iterate over all inventory slots
+        var slotEnumerator = _inventory.GetSlotEnumerator(target, slots);
+        while (slotEnumerator.NextItem(out var item, out _))
+        {
+            if (TryComp<SuitSensorComponent>(item, out var sensorComp))
+                SetSensor((item, sensorComp), mode);
         }
     }
 

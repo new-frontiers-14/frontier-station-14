@@ -1,15 +1,31 @@
 # Mail-only items. If/when these get used for anything else, please move them to another folder.
 # Pranks: admin items or effects put into an envelope, released when opened or damaged.
 - type: entity
-  id: DelayedSmoke
+  id: BaseDelayedItem
   parent: BaseItem
-  categories: [ HideSpawnMenu ]
-  name: delayed smoke
-  suffix: "(10s)"
+  abstract: true
+  name: delayed item
+  description: If you're seeing this, something went wrong!
   components:
   - type: Sprite
     sprite: error.rsi
     state: error
+  - type: DelayedItem
+
+- type: entity
+  id: BaseDamageableDelayedItem
+  parent: BaseDelayedItem
+  abstract: true
+  components:
+  - type: Damageable
+
+- type: entity
+  id: DelayedSmoke
+  parent: BaseDamageableDelayedItem
+  categories: [ HideSpawnMenu ]
+  name: delayed smoke
+  suffix: "(10s)"
+  components:
   - type: DelayedItem
     item: AdminInstantEffectSmoke10
 
@@ -25,13 +41,10 @@
 
 - type: entity
   id: DelayedEMP
-  parent: BaseItem
+  parent: BaseDamageableDelayedItem
   categories: [ HideSpawnMenu ]
   name: delayed EMP (7 meters)
   components:
-  - type: Sprite
-    sprite: error.rsi
-    state: error
   - type: DelayedItem
     item: AdminInstantEffectEMP7
 
@@ -40,15 +53,71 @@
 # Delay the emotional support pet so they don't suffocate.
 - type: entity
   id: DelayedPetCarrierNPCEmotionalSupportSafe
-  parent: BaseItem
+  parent: BaseDelayedItem # Do not spawn a ghost role when this takes damage.
   categories: [ HideSpawnMenu ]
   name: delayed emotional support pet
   components:
-  - type: Sprite
-    sprite: error.rsi
-    state: error
   - type: DelayedItem
     item: PetCarrierNPCEmotionalSupportSafe
+
+- type: entityTable
+  id: NFRandomCritter
+  table: !type:GroupSelector
+    children:
+    # Bugs (weight: 2)
+    - id: MobCockroach
+      weight: 0.34
+    - id: MobSlug
+      weight: 0.34
+    - id: MobBee
+      weight: 0.34
+    - id: MobButterfly
+      weight: 0.34
+    - id: MobSnail
+      weight: 0.34
+      # Uncommon
+    - id: MobMothroach
+      weight: 0.15
+      # Rare
+    - id: MobRosyMothroach
+      weight: 0.05
+    - id: MobSnailMoth
+      weight: 0.05
+    - id: MobSnailSpeed
+      weight: 0.05
+    # Small reptiles (weight: 1)
+    - id: MobLizard
+      weight: 0.34
+    - id: MobSnake
+      weight: 0.33
+    - id: MobFrog
+      weight: 0.33
+    # Small mammals (weight: 1)
+    - id: MobMouse
+      weight: 0.33
+    - id: MobMouse1
+      weight: 0.33
+    - id: MobMouse2
+      weight: 0.33
+    - id: MobMouseCancer
+      weight: 0.01 # Rare
+
+- type: entity
+  id: NFRandomCritter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: NFRandomCritter
+
+- type: entity
+  id: DelayedNFRandomCritter
+  parent: BaseDelayedItem # Do not spawn a ghost role when this takes damage.
+  categories: [ HideSpawnMenu ]
+  name: delayed random critter
+  components:
+  - type: DelayedItem
+    item: NFRandomCritter
 
 - type: entity
   id: SyringeCognizine
@@ -81,7 +150,7 @@
             Quantity: 15
 
 - type: entity
-  id: NecrosolChemistryBottle
+  id: ChemistryBottleNecrosol
   parent: BaseChemistryBottleFilled
   suffix: necrosol
   components:

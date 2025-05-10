@@ -23,7 +23,11 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Server.Labels.Components;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Database;
+using Content.Shared._NF.BindToStation; // Frontier
+using Content.Server.Station.Systems; // Frontier
 
 namespace Content.Server.Botany.Systems;
 
@@ -42,6 +46,8 @@ public sealed class PlantHolderSystem : EntitySystem
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly StationSystem _station = default!; // Frontier
 
 
     public const float HydroponicsSpeedMultiplier = 1f;
@@ -156,6 +162,18 @@ public sealed class PlantHolderSystem : EntitySystem
         {
             if (component.Seed == null)
             {
+                // Frontier
+                if (TryComp<BindToStationComponent>(entity.Owner, out var bindToStation)
+                    && bindToStation.Enabled
+                    && bindToStation.BoundStation != null
+                    && _station.GetOwningStation(entity.Owner) != bindToStation.BoundStation)
+                {
+                    _popup.PopupCursor(Loc.GetString("plant-holder-component-bound-to-station"),
+                        args.User, PopupType.Medium);
+                    return;
+                }
+                // End Frontier
+
                 if (!_botany.TryGetSeed(seeds, out var seed))
                     return;
 
@@ -187,6 +205,9 @@ public sealed class PlantHolderSystem : EntitySystem
 
                 CheckLevelSanity(uid, component);
                 UpdateSprite(uid, component);
+
+                if (seed.PlantLogImpact != null)
+                    _adminLogger.Add(LogType.Botany, seed.PlantLogImpact.Value, $"{ToPrettyString(args.User):player} planted  {Loc.GetString(seed.Name):seed} at Pos:{Transform(uid).Coordinates}.");
 
                 return;
             }

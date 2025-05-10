@@ -69,6 +69,16 @@
     sprite: _NF/Structures/Wallmounts/posters.rsi
     state: nf_poster7_legit
 
+- type: entity
+  parent: PosterBase
+  id: NFPosterLegitGunTurnIn
+  name: "Turn In Your Guns!"
+  description: The NFSD reminds you to give in your unregistered guns found planetside. The FUCs these are worth help keep the department running. Do your duty!
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster8_legit
+
 # Contraband posters
 - type: entity
   parent: PosterBase
@@ -251,3 +261,27 @@
   - type: Sprite
     sprite: _NF/Structures/Wallmounts/posters.rsi
     state: nf_poster18_contraband
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandFsbNightlight
+  name: "Far Star Biotech Nightlight"
+  description: "The FSB Nightlight, chasing the night away."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster20_contraband      
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+    color: "#F8F6F0"
+
+- type: entity
+  parent: PosterBase
+  id: NFPosterContrabandFsbRetort
+  name: "Far Star Biotech Retort"
+  description: "The FSB Retort! Ignite your potential!"
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+    state: nf_poster19_contraband

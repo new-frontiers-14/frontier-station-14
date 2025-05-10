@@ -10,16 +10,23 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 14
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
         - ReagentId: Vitamin
-          Quantity: 5
+          Quantity: 4
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/pear.rsi
+  - type: Item
+    heldPrefix: produce
   - type: Produce
     seedId: pear
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuicePear
+        Quantity: 10
   - type: Tag
     tags:
       - Fruit
@@ -49,6 +56,8 @@
           Quantity: 1
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/coffee.rsi
+  - type: Item
+    heldPrefix: produce
   - type: Produce
     seedId: coffee
   - type: Tag
@@ -80,6 +89,8 @@
           Quantity: 6
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/avocado.rsi
+  - type: Item
+    heldPrefix: produce
   - type: Produce
     seedId: avocado
   - type: SliceableFood
@@ -146,6 +157,8 @@
           Quantity: 4
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
+  - type: Item
+    heldPrefix: produce
   - type: Produce
     seedId: cucumber
   - type: SliceableFood
@@ -215,6 +228,8 @@
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
     state: pickle
+  - type: Item
+    heldPrefix: pickle
   - type: SliceableFood
     count: 4
     slice: FoodPickleSlice
@@ -282,16 +297,14 @@
           Quantity: 5
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/bees.rsi
-    state: produce
+  - type: Item
+    heldPrefix: produce
   - type: Extractable
     grindableSolutionName: food
     juiceSolution:
       reagents:
       - ReagentId: Honey
         Quantity: 5
-  - type: Tag
-    tags:
-      - Vegetable
 
 - type: entity
   name: sliced potato
@@ -316,3 +329,124 @@
   - type: DeepFrySpawn
     cycles: 2
     output: FoodMealFries
+
+- type: entity
+  name: everyspice pods
+  parent: FoodProduceBase
+  id: FoodEveryspice
+  description: The long, pale pods of the everyspice plant. A flavorful addition to food when ground.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - spices
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Everyspice
+          Quantity: 5
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
+  - type: Item
+    heldPrefix: produce
+  - type: Tag
+    tags:
+      - Fruit
+  - type: AtmosExposed
+  - type: Temperature
+  - type: Construction
+    graph: Everyspice
+    node: start
+    defaultTarget: FoodEveryspiceRoasted
+
+- type: entity
+  name: roasted everyspice pods
+  parent: FoodProduceBase
+  id: FoodEveryspiceRoasted
+  description: Aromatic, charred pods of the everyspice plant. A piquant addition to food when ground.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - peppery
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Blackpepper
+          Quantity: 5
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
+    state: produce-roasted
+  - type: Item
+    heldPrefix: produce-roasted
+  - type: Tag
+    tags:
+      - Fruit
+  - type: Construction
+    graph: Everyspice
+    node: FoodEveryspiceRoasted
+
+- type: entity
+  name: battered onion rings
+  parent: FoodBase
+  id: FoodOnionRingsBattered
+  description: Onion rings dredged in a gloopy flour and egg mixture.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - onion
+      - raw-egg
+      - chalky
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/onion.rsi
+    state: onionrings-battered
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8.5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Allicin
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Flour
+          Quantity: 1.5
+        - ReagentId: Egg
+          Quantity: 2
+  - type: Tag
+    tags:
+    - Vegetable
+    - Slice
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodOnionRings
+
+- type: entity
+  name: monkanana
+  parent: FoodProduceBase
+  id: FoodMonkanana
+  description: Looks like a monkeyfied banana.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - hairy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Ook
+          Quantity: 10
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/monkanana.rsi
+  - type: Produce
+    seedId: monkanana
+  - type: Extractable
+    grindableSolutionName: food
+  - type: Tag
+    tags:
+      - Fruit

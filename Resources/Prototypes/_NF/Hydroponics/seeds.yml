@@ -1,0 +1,200 @@
+- type: seed
+  id: spesos
+  name: seeds-spesos-name
+  noun: seeds-noun-seeds
+  displayName: seeds-spesos-display-name
+  plantRsi: _NF/Objects/Specific/Hydroponics/spesostree.rsi
+  packetPrototype: SpesosTreeSeeds
+  productPrototypes:
+    - SpaceCash
+  harvestRepeat: Repeat
+  lifespan: 45
+  maturation: 15
+  production: 8
+  yield: 3
+  potency: 10
+  growthStages: 2
+  idealLight: 6
+
+- type: seed
+  id: pear
+  name: seeds-pear-name
+  noun: seeds-noun-seeds
+  displayName: seeds-pear-display-name
+  plantRsi: _NF/Objects/Specific/Hydroponics/pear.rsi
+  packetPrototype: PearSeeds
+  productPrototypes:
+    - FoodPear
+  harvestRepeat: Repeat
+  lifespan: 55
+  maturation: 6
+  production: 6
+  yield: 3
+  potency: 10
+  idealLight: 6
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: seed
+  id: coffee
+  name: seeds-coffee-name
+  noun: seeds-noun-seeds
+  displayName: seeds-coffee-display-name
+  plantRsi: _NF/Objects/Specific/Hydroponics/coffee.rsi
+  packetPrototype: CoffeeSeeds
+  productPrototypes:
+    - FoodCoffee
+  lifespan: 25
+  maturation: 9
+  production: 1
+  yield: 2
+  potency: 5
+  idealLight: 8
+  growthStages: 5
+  harvestRepeat: Repeat
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 2
+      Max: 8
+      PotencyDivisor: 16
+    Theobromine:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: seed
+  id: avocado
+  name: seeds-avocado-name
+  noun: seeds-noun-seeds
+  displayName: seeds-avocado-display-name
+  plantRsi: _NF/Objects/Specific/Hydroponics/avocado.rsi
+  packetPrototype: AvocadoSeeds
+  productPrototypes:
+    - FoodAvocado
+  lifespan: 55
+  maturation: 6
+  production: 6
+  yield: 3
+  potency: 10
+  idealLight: 6
+  growthStages: 5
+  harvestRepeat: Repeat
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: seed
+  id: cucumber
+  name: seeds-cucumber-name
+  noun: seeds-noun-seeds
+  displayName: seeds-cucumber-display-name
+  plantRsi: _NF/Objects/Specific/Hydroponics/cucumber.rsi
+  packetPrototype: CucumberSeeds
+  productPrototypes:
+    - FoodCucumber
+  lifespan: 50
+  maturation: 7
+  production: 5
+  yield: 4
+  potency: 10
+  growthStages: 5
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: seed
+  id: bees
+  name: seeds-bees-name
+  noun: seeds-noun-nothing
+  packetName: botany-seed-jar-name
+  displayName: seeds-bees-display-name
+  plantRsi: _NF/Objects/Specific/Hydroponics/bees.rsi
+  packetPrototype: BeeSeeds
+  productPrototypes:
+    - FoodHoneyComb
+  lifespan: 60
+  maturation: 7
+  production: 5
+  yield: 4
+  potency: 10
+  growthStages: 4
+  harvestRepeat: Repeat
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+  preventSwabbing: true # they're bees
+
+- type: seed
+  id: everyspice
+  name: seeds-everyspice-name
+  noun: seeds-noun-seeds
+  displayName: seeds-everyspice-display-name
+  plantRsi: _NF/Objects/Specific/Hydroponics/everyspice.rsi
+  packetPrototype: EveryspiceSeeds
+  productPrototypes:
+    - FoodEveryspice
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 6
+  production: 6
+  yield: 2
+  potency: 20
+  idealLight: 9 # tropical-ish
+  idealHeat: 303
+  chemicals:
+    Everyspice:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+
+- type: seed
+  id: monkanana
+  name: seeds-monkanana-name
+  noun: seeds-noun-seeds
+  displayName: seeds-monkanana-display-name
+  plantRsi: _NF/Objects/Specific/Hydroponics/monkanana.rsi
+  packetPrototype: MonkananaSeeds
+  productPrototypes:
+    - FoodMonkanana
+  harvestRepeat: Repeat
+  lifespan: 50
+  maturation: 12
+  production: 6
+  growthStages: 4
+  potency: 10
+  yield: 3
+  idealLight: 9
+  waterConsumption: 0.60
+  idealHeat: 298
+  chemicals:
+    ook:
+      Min: 4
+      Max: 16
+      PotencyDivisor: 10

@@ -25,9 +25,17 @@ public sealed class BiomeSelectionSystem : BaseWorldSystem
     private void OnWorldChunkAdded(EntityUid uid, BiomeSelectionComponent component, ref WorldChunkAddedEvent args)
     {
         var coords = args.Coords;
+        var lengthSquared = WorldGen.ChunkToWorldCoordsCentered(coords).LengthSquared(); // Frontier: cache world coords of center of chunk
+
         foreach (var biomeId in component.Biomes)
         {
             var biome = _proto.Index<BiomePrototype>(biomeId);
+
+            // Frontier: check range
+            if (!CheckBiomeRange(biome, lengthSquared))
+                continue;
+            // End Frontier
+
             if (!CheckBiomeValidity(args.Chunk, biome, coords))
                 continue;
 
@@ -49,6 +57,17 @@ public sealed class BiomeSelectionSystem : BaseWorldSystem
 
         component.Biomes = sorted; // my hopes and dreams rely on this being pre-sorted by priority.
     }
+
+    // Frontier: check that a given point (passed as the square of its length) meets the range requirements of a biome
+    private bool CheckBiomeRange(BiomePrototype biome, float centerLengthSquared)
+    {
+        if (biome.DistanceRangeSquared == null)
+            return true;
+
+        return centerLengthSquared >= biome.DistanceRangeSquared.Value.X
+            && centerLengthSquared <= biome.DistanceRangeSquared.Value.Y;
+    }
+    // End Frontier
 
     private bool CheckBiomeValidity(EntityUid chunk, BiomePrototype biome, Vector2i coords)
     {

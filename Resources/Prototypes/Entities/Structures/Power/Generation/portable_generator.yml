@@ -170,7 +170,7 @@
       multiplier: 0.01
     - type: MaterialStorage
       storageLimit: 3000
-      materialWhiteList: [Plasma, FuelGradePlasma] # Frontier: add FuelGradePlasma
+      materialWhiteList: [Plasma, FuelGradePlasma, RawPlasma] # Frontier: add FuelGradePlasma, RawPlasma
     - type: PortableGenerator
       startChance: 0.8
     - type: UpgradePowerSupplier
@@ -190,11 +190,18 @@
     - type: PowerSupplier
       supplyRampRate: 5000
       supplyRampTolerance: 1500
-    - type: MaterialStorageMagnetPickup # Frontier
-      range: 0.30 # Frontier
-    - type: FuelGradeAdapter # Frontier
-      inputMaterial: Plasma # Frontier
-      outputMaterial: FuelGradePlasma # Frontier
+    # Frontier: magnet pickup, fuel adapter
+    - type: MaterialStorageMagnetPickup
+      range: 0.30
+    - type: FuelGradeAdapter
+      conversions:
+      - input: Plasma
+        output: FuelGradePlasma
+        rate: 1
+      - input: RawPlasma
+        output: FuelGradePlasma
+        rate: 0.5
+    # End Frontier: magnet pickup, fuel adapter
 
 - type: entity
   name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator
@@ -239,7 +246,7 @@
       multiplier: 0.01
     - type: MaterialStorage
       storageLimit: 3000
-      materialWhiteList: [Uranium, FuelGradeUranium] # Frontier: add FuelGradeUranium
+      materialWhiteList: [Uranium, FuelGradeUranium, RawUranium] # Frontier: add FuelGradeUranium, RawUranium
     - type: PortableGenerator
     - type: UpgradePowerSupplier
       powerSupplyMultiplier: 1.25
@@ -254,11 +261,18 @@
     - type: PowerSupplier
       supplyRampRate: 7500
       supplyRampTolerance: 2500
-    - type: MaterialStorageMagnetPickup # Frontier
-      range: 0.30 # Frontier
-    - type: FuelGradeAdapter # Frontier
-      inputMaterial: Uranium # Frontier
-      outputMaterial: FuelGradeUranium # Frontier
+    # Frontier: magnet pickup, fuel adapter
+    - type: MaterialStorageMagnetPickup
+      range: 0.30
+    - type: FuelGradeAdapter
+      conversions:
+      - input: Uranium
+        output: FuelGradeUranium
+        rate: 1
+      - input: RawUranium
+        output: FuelGradeUranium
+        rate: 0.5
+    # End Frontier: magnet pickup, fuel adapter
 
 - type: entity
   name: J.R.P.A.C.M.A.N.-type portable generator
@@ -378,3 +392,4 @@
           behaviors:
             - !type:SolutionExplosionBehavior
               solution: tank
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability

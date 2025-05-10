@@ -188,7 +188,8 @@ public enum EmagType : byte
 {
     None = 0,
     Interaction = 1 << 1,
-    Access = 1 << 2
+    Access = 1 << 2,
+    StationBound = 1 << 3 // Frontier
 }
 /// <summary>
 /// Shows a popup to emag user (client side only!) and adds <see cref="EmaggedComponent"/> to the entity when handled

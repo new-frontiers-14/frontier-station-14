@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server._NF.RoundNotifications.Events; // Frontier
 using Content.Server.Announcements;
 using Content.Server.Discord;
 using Content.Server.GameTicking.Events;
@@ -437,7 +438,7 @@ namespace Content.Server.GameTicking
             UpdateLateJoinStatus();
             AnnounceRound();
             UpdateInfoText();
-            RaiseLocalEvent(new RoundStartedEvent(RoundId));
+            RaiseLocalEvent(new RoundStartedEvent(RoundId)); // Frontier
             SendRoundStartedDiscordMessage();
 
 #if EXCEPTION_TOLERANCE
@@ -602,7 +603,6 @@ namespace Content.Server.GameTicking
 
             _replayRoundPlayerInfo = listOfPlayerInfoFinal;
             _replayRoundText = roundEndText;
-            RaiseLocalEvent(new RoundEndedEvent(RoundId, roundDuration));
         }
 
         private async void SendRoundEndDiscordMessage()

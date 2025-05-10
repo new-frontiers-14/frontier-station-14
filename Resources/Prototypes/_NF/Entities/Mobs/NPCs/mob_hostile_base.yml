@@ -21,7 +21,7 @@
     sweatHeatRegulation: 2000
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 25
+    thermalRegulationTemperatureThreshold: 2
   - type: MovedByPressure
   - type: Insulated
 
@@ -89,7 +89,6 @@
   components:
   - type: NFSalvageMobRestrictions
     addComponentsOnDeath:
-    - type: Uncloneable
     - type: Unrevivable
     - type: Strippable
     - type: UserInterface
@@ -107,8 +106,6 @@
     - type: Access
     - type: Timer
     - type: TimedSpawner
-    - type: Advertise
-      pack: FuelVendAds # placeholder, required field, unused
     - type: Jittering
 
 - type: entity
@@ -375,16 +372,16 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
-      amount: 5
+    - id: FoodMeatRotten
+      amount: 2
   - type: NpcFactionMember
     factions:
     - SimpleHostile
   - type: Carriable # Carrying system from nyanotrasen.
   - type: Advertise
     pack: syndicatehumanoidchatter
-    minimumWait: 120 # 1 * 2
-    maximumWait: 240 # 2 * 60
+    minimumWait: 120
+    maximumWait: 240
     nextAdvertisementTime: 0
   - type: FTLKnockdownImmune
   - type: Respirator
@@ -501,3 +498,14 @@
     - SimpleHostile
   - type: Carriable # Kept for consistency with other mobs
   - type: FTLKnockdownImmune
+
+# Parent for consistent roadkill settings
+- type: entity
+  abstract: true
+  id: NFMobRoadkillable
+  components:
+  - type: Roadkill
+    killSpeed: 25
+    destroySpeed: 40 # yeehaw
+    destroySound:
+      collection: gib
