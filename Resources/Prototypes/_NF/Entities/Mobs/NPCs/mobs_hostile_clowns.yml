@@ -1,0 +1,407 @@
+- type: entity
+  name: behonker
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat ]
+  id: NFBossMobBaseMobBehonker
+  abstract: true
+  description: A floating demon aspect of the honkmother.
+  components:
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: HitscanBatteryAmmoProvider
+      proto: RedLaser
+      fireCost: 62.5
+    - type: Battery
+      maxCharge: 1000
+      startingCharge: 1000
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 40
+    - type: Gun
+      fireRate: 0.75
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_clown.ogg
+    - type: SpamEmitSound
+      sound:
+        collection: BikeHorn
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: Speech
+      speechVerb: Cluwne
+    - type: CombatMode
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3
+      baseSprintSpeed: 5
+      weightlessModifier: 1.5
+    - type: Sprite
+      sprite: Mobs/Demons/behonker.rsi
+      layers:
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: alive
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: Physics
+      bodyType: KinematicController
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.40
+          density: 100
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: MobState
+    - type: InnateTool
+      tools:
+        - id: WeaponBehonkerLaser
+        - id: BikeHorn
+    - type: UserInterface
+      interfaces:
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        400: Dead
+    - type: Metabolizer
+      solutionOnBody: false
+      updateInterval: 0.25
+      metabolizerTypes: [ Dragon ]
+      groups:
+        - id: Medicine
+        - id: Cryogenic # Frontier
+        - id: Poison
+    - type: Butcherable
+      spawned:
+        - id: MaterialBananium1
+          amount: 2
+        - id: WeaponBehonkerLaser
+          amount: 1
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      damage:
+        types:
+          Piercing: 10
+          Slash: 10
+    - type: Anomaly
+      pulseSound:
+        collection: BananiumHorn
+        params:
+          volume: 5
+    - type: Input
+      context: "human"
+    - type: Bloodstream
+      bloodMaxVolume: 300
+      bloodReagent: Laughter
+
+- type: entity
+  name: behonker
+  parent: NFBossMobBaseMobBehonker
+  id: NFBossMobBehonkerElectrical
+  suffix: "Pyro, NPC"
+  components:
+    - type: PyroclasticAnomaly
+    - type: TempAffectingAnomaly
+      tempChangePerSecond: 25
+      hotspotExposeTemperature: 1000
+    - type: GasProducerAnomaly
+      releasedGas: 3
+      releaseOnMaxSeverity: true
+      spawnRadius: 0
+
+- type: entity
+  name: behonker
+  parent: NFBossMobBaseMobBehonker
+  id: NFBossMobBehonkerPyro
+  suffix: "Electrical, NPC"
+  components:
+  - type: ElectricityAnomaly
+  - type: Electrified
+
+- type: entity
+  name: behonker
+  parent: NFBossMobBaseMobBehonker
+  id: NFBossMobBehonkerGrav
+  suffix: "Grav, NPC"
+  components:
+  - type: GravityAnomaly
+
+- type: entity
+  name: behonker
+  parent: NFBossMobBaseMobBehonker
+  id: NFBossMobBehonkerIce
+  suffix: "Ice, NPC"
+  components:
+  - type: Anomaly
+  - type: ExplosionAnomaly
+    supercriticalExplosion: Cryo
+    explosionTotalIntensity: 1000
+    explosionDropoff: 1
+    explosionMaxTileIntensity: 10
+  - type: ProjectileAnomaly
+    projectilePrototype: ProjectileIcicle
+  - type: TempAffectingAnomaly
+    tempChangePerSecond: -25
+    hotspotExposeTemperature: -1000
+  - type: GasProducerAnomaly
+    releasedGas: 8 # Frezon. Please replace if there is a better way to specify this
+    releaseOnMaxSeverity: true
+    spawnRadius: 0
+
+- type: entity
+  parent: MobSpiderBase
+  id: NFMobClownSpiderAngryBase
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+
+- type: entity
+  name: clown spider, NPC
+  parent: NFMobClownSpiderAngryBase
+  id: MobClownSpiderNPC
+  description: Combines the two most terrifying things in existence, spiders and clowns.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: clown
+        sprite: Mobs/Animals/clownspider.rsi
+    - type: Butcherable
+      spawned:
+        - id: MaterialBananium1
+          amount: 1
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: clown
+        Critical:
+          Base: dead
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        180: Dead
+    - type: Spider
+      webPrototype: SpiderWebClown
+    - type: MeleeWeapon
+      altDisarm: false
+      angle: 0
+      animation: WeaponArcBite
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      damage:
+        types:
+          Piercing: 8
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepClownFast
+    - type: Speech
+      speechVerb: Cluwne
+    - type: Bloodstream
+      bloodMaxVolume: 150
+      bloodReagent: Laughter
+
+#UIV NPC clown mob base
+- type: entity
+  name: Clown
+  abstract: true
+  parent:
+  - MobNonHumanHostileBase
+  - MobHumanoidInvetory
+  - NFMobRestrictions
+  id: MobClownBase
+  description: A joyous, terrible thing, twisted and warped in The Honkmother's light.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Body
+    prototype: HumanSyntheticOrgans # Took this from the syndicate NPCs to give these clowns posin resist
+    requiredLegs: 2
+  - type: Flammable
+    fireSpread: true
+    canResistFire: true
+    damage:
+      types:
+        Heat: 0
+  - type: Stamina
+    critThreshold: 400
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      72: 0.7
+      96: 0.5
+  - type: DamageStateVisuals
+    rotate: true
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: AutoWakeUp
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+
+- type: entity
+  name: Enlightened mime
+  parent:
+  - MobClownBase
+  - MobHumanoidHostileAISimpleRanged
+  id: MobClownUIVMime
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+      - ClownUIVMimeGear
+  - type: Stamina
+    critThreshold: 500
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 6
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: Advertise
+    pack: mimehumanoidchatter
+    minimumWait: 30
+    maximumWait: 120
+    nextAdvertisementTime: 10
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      160: Dead
+  - type: BasicEntityAmmoProvider
+    proto: BulletMagnum
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 1.0
+    minAngle: 1
+    maxAngle: 35
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  name: Twisted Clown
+  parent:
+  - MobClownBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobClownUIVClown
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+      - ClownUIVClownGear
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+  - type: Stamina
+    critThreshold: 500
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Critical
+      160: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 6
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+
+- type: entity
+  name: Twisted Clown Stunner
+  parent:
+  - MobClownBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobClownUIVClownPie
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+      - ClownUIVClownGearPie
+  - type: Stamina
+    critThreshold: 500
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Critical
+      100: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 6
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+
+- type: entity
+  name: Horrid Clewne
+  parent:
+  - MobClownBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobClownUIVCluwne
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+      - ClownUIVCluwneGear
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    thresholds:
+      0: Alive
+      40: Critical
+      60: Dead
+  - type: Stamina
+    critThreshold: 500
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 6
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
