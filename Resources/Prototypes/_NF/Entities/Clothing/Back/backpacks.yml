@@ -51,3 +51,30 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Backpacks/nfsd_cream.rsi
+
+- type: entity
+  parent: [ RecyclableItemPlasticSmall, NFClothingBackpack ]
+  id: NFGoblinMadeClothingBackpackTrashBlue
+  name: trashpack
+  description: This bad boy can fit so much trash!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/trashpack_blue.rsi
+  - type: GoblinMade
+  - type: Dumpable
+  - type: Storage
+    quickInsert: true
+    areaInsert: true
+    storageOpenSound:
+      collection: trashBagRustle
+    storageInsertSound:
+      collection: trashBagRustle
+    whitelist:
+      tags:
+        - Cartridge
+        - Trash
+      components:
+        - GoblinMade
+  - type: Construction
+    graph: NFGoblinMadeClothingBackpackTrashBlue
+    node: NFGoblinMadeClothingBackpackTrashBlue

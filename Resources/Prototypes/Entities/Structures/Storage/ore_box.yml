@@ -1,11 +1,12 @@
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier: Use NF variant
   id: OreBox
   name: ore box
-  description: A large storage container for collecting and holding unprocessed ores and fragments. # Frontier - was: A large storage container for holding unprocessed ores.
+  description: A large storage container for holding unprocessed ores.
   parent: BaseStructureDynamic
   components:
   - type: StaticPrice
-    price: 625  # Frontier - 500<625
+    price: 500
   - type: Anchorable
   - type: InteractionOutline
   - type: Damageable
@@ -15,13 +16,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 450 # Frontier - 150<450
+        damage: 150
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 300 # Frontier 100<300
+        damage: 100
       behaviors:
       - !type:EmptyAllContainersBehaviour
       - !type:SpawnEntitiesBehavior
@@ -32,8 +33,6 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
-  - type: PirateBountyItem # Frontier
-    id: OreBox # Frontier
 
   # orebox-specific
   - type: Sprite
@@ -53,14 +52,13 @@
           False: { visible: true }
   - type: Storage
     grid:
-    - 0,0,19,9 # DeltaV: Expanded to ore bag of holding storage
+    - 0,0,9,5
     maxItemSize: Normal
     storageOpenSound: /Audio/Effects/closetopen.ogg
     storageCloseSound: /Audio/Effects/closetclose.ogg
     whitelist:
       tags:
       - Ore
-      - ArtifactFragment  # Frontier
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
@@ -69,9 +67,6 @@
     containers:
       storagebase: !type:Container
         ents: [ ]
-  - type: Dumpable # Frontier
-  - type: MagnetPickup # Frontier
-    range: 1.5 # Ore bag has a range of 1.0
   - type: Fixtures
     fixtures:
       fix1:
@@ -81,7 +76,6 @@
         # very not dense to make it easy to pull
         density: 20
         mask:
-        #- MachineMask
-        - SmallMobMask  # Frontier
+        - MachineMask
         layer:
         - MachineLayer

@@ -6,21 +6,40 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 108000
-  startingGear: MercenaryGear
-  canBeAntag: true
   icon: "JobIconMercenary"
   supervisors: job-supervisors-hire
   weight: 3 # Prioritize station & department jobs
   displayWeight: 20 # Second from the bottom
-  setPreference: true
   access:
   - Mercenary
-  accessGroups: # Frontier
+  accessGroups:
   - GeneralAccess
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
 
+# Interview variant
+- type: job
+  id: MercenaryInterview
+  name: job-name-mercenary-interview
+  description: job-mercenary-pilot
+  playTimeTracker: JobMercenaryInterview
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 108000
+  setPreference: false
+  startingGear: MercenaryHologramGear
+  icon: "JobIconMercenary"
+  supervisors: job-supervisors-hire
+  access:
+  - Mercenary
+  accessGroups:
+  - GeneralAccess
+  jobEntity: InterviewHologramMercenary
+
 - type: startingGear
-  id: MercenaryGear
+  id: MercenaryHologramGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    shoes: ClothingShoesBootsMercenary
