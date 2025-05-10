@@ -58,4 +58,14 @@ public sealed partial class SpaceHeaterComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float PowerConsumption = 3500f;
+
+    // Frontier: max/min cutoff
+    /// <summary>
+    /// Maximum temperature the device works at.
+    /// </summary>
+    [DataField]
+    [GuidebookData]
+    public float MaxFunctionalTemperature = Atmospherics.T0C + 100;
+    // End Frontier
+
 }

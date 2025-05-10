@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Shipyard.Components;
 
-[RegisterComponent, AutoGenerateComponentPause]
+[RegisterComponent]
 public sealed partial class ShipyardVoucherComponent : Component
 {
     /// <summary>

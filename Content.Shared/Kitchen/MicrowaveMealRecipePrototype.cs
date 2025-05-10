@@ -43,8 +43,8 @@ namespace Content.Shared.Kitchen
 
         // Frontier: separate microwave recipe types.
 
-        [DataField(customTypeSerializer: typeof(FlagSerializer<MicrowaveRecipeTypeFlags>))]
-        public int RecipeType = (int)MicrowaveRecipeType.Microwave;
+        [DataField(required: true, customTypeSerializer: typeof(FlagSerializer<MicrowaveRecipeTypeFlags>))]
+        public int RecipeType;
 
         [DataField]
         public bool HideInGuidebook;

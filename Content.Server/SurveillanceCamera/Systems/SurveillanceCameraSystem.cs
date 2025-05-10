@@ -1,16 +1,16 @@
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 //using Content.Server.Emp; // Frontier: Upstream - #28984
-using Content.Server.Power.Components;
+using Content.Server.Power.Components; // Frontier
 using Content.Shared.ActionBlocker;
 using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Power;
 using Content.Shared.SurveillanceCamera;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.SurveillanceCamera;
 
@@ -413,22 +413,22 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         }
 
         _appearance.SetData(uid, SurveillanceCameraVisualsKey.Key, key, appearance);
-
-        //private void OnEmpPulse(EntityUid uid, SurveillanceCameraComponent component, ref EmpPulseEvent args) // Frontier: Upstream - #28984
-        //{
-        //    if (component.Active)
-        //    {
-        //        args.Affected = true;
-        //        args.Disabled = true;
-        //        SetActive(uid, false);
-        //    }
-        //}
-
-        //private void OnEmpDisabledRemoved(EntityUid uid, SurveillanceCameraComponent component, ref EmpDisabledRemoved args)
-        //{
-        //    SetActive(uid, true);
-        //}
     }
+
+    //private void OnEmpPulse(EntityUid uid, SurveillanceCameraComponent component, ref EmpPulseEvent args) // Frontier: Upstream - #28984
+    //{
+    //    if (component.Active)
+    //    {
+    //        args.Affected = true;
+    //        args.Disabled = true;
+    //        SetActive(uid, false);
+    //    }
+    //}
+
+    //private void OnEmpDisabledRemoved(EntityUid uid, SurveillanceCameraComponent component, ref EmpDisabledRemoved args)
+    //{
+    //    SetActive(uid, true);
+    //}
 }
 
 public sealed class OnSurveillanceCameraViewerAddEvent : EntityEventArgs

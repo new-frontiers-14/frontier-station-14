@@ -461,7 +461,6 @@
     - Shovel
     - MineralScannerUnpowered
     # - OreBag # Frontier
-    - Crowbar
     - RadioHandheldNF # Frontier: RadioHandheld<RadioHandheldNF
   # Frontier: droppable borg items
   - type: DroppableBorgModule
@@ -543,7 +542,7 @@
         components:
         - ConstructionMaterials
       displayName: borg-placeholder-display-name-construction-material
-    - id: SheetGlass
+    - id: FloorTileItemSteel
       whitelist:
         tags:
         - Ingot
@@ -552,11 +551,15 @@
         components:
         - ConstructionMaterials
       displayName: borg-placeholder-display-name-construction-material
-    - id: FloorTileItemSteel
+    - id: CapacitorStockPart
       whitelist:
+        tags:
+        - Ingot
+        - RodMetal1
+        - Sheet
         components:
-        - FloorTile
-      displayName: borg-placeholder-display-name-floor-tile
+        - ConstructionMaterials
+      displayName: borg-placeholder-display-name-construction-material
     - id: ThrusterFlatpack
       whitelist:
         components:
@@ -809,6 +812,11 @@
     moduleId: Artifact # Frontier
     items:
     - NodeScanner
+    - Multitool
+    - Wrench
+    - SprayBottle
+    - Beaker
+    - Syringe
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: node-scanner-module }
 

@@ -1,13 +1,13 @@
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Medical.SuitSensors;
 using Content.Server.Power.Components;
 //using Content.Server.Station.Systems;
 using Robust.Shared.Map; // Frontier modification
 using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Medical.SuitSensor;
 using Robust.Shared.Timing;
+using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.Medical.CrewMonitoring;
 

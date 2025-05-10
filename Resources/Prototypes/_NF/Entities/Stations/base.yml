@@ -55,7 +55,7 @@
   id: NFBaseStationCargo
   abstract: true
   components:
-    - type: StationCargoOrderDatabase
+    - type: NFStationCargoOrderDatabase
 
 - type: entity
   id: BaseStationCargoMarket
@@ -105,7 +105,7 @@
       - MindContainer # Positronic brains
       - Body # No corpses
       - MobPrice # Animals (live or dead) and the like
-      - Artifact # Unique, abusable for research points
+      - XenoArtifact # Unique, abusable for research points
       - RCD # Dup charges
       - Storage # Till fixed
       - StorageFill # Till fixed

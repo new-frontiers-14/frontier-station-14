@@ -105,12 +105,12 @@ public sealed partial class MicrowaveSystem : EntitySystem
                 return;
             }
 
-            if (_tag.HasTag(item, "Metal") && component.CanIrradiate)
+            if (_tag.HasTag(item, MetalTag) && component.CanIrradiate)
             {
                 malfunctioning = true;
             }
 
-            if (_tag.HasTag(item, "Plastic") && (component.CanHeat || component.CanIrradiate))
+            if (_tag.HasTag(item, PlasticTag) && (component.CanHeat || component.CanIrradiate))
             {
                 var junk = Spawn(component.BadRecipeEntityId, Transform(uid).Coordinates);
                 _container.Insert(junk, component.Storage);

@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using Robust.Server.GameObjects;
 using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Events;
@@ -18,7 +17,9 @@ namespace Content.Server.Maps;
 /// </summary>
 public sealed class MapMigrationSystem : EntitySystem
 {
+#if DEBUG // Frontier
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
+#endif // Frontier
     [Dependency] private readonly IResourceManager _resMan = default!;
 
     private static readonly string[] MigrationFiles = { "/migration.yml", "/nf_migration.yml" }; // Frontier: use array of migration files
@@ -61,7 +62,7 @@ public sealed class MapMigrationSystem : EntitySystem
             if (!TryReadFile(migrationFile, out var mapping))
                 continue;
 
-            mappings = mappings ?? new List<MappingDataNode>();
+            mappings ??= new();
             mappings.Add(mapping);
         }
 
@@ -96,13 +97,13 @@ public sealed class MapMigrationSystem : EntitySystem
         {
             foreach (var (key, value) in mapping)
             {
-                if (key is not ValueDataNode keyNode || value is not ValueDataNode valueNode)
+                if (value is not ValueDataNode valueNode)
                     continue;
 
                 if (string.IsNullOrWhiteSpace(valueNode.Value) || valueNode.Value == "null")
-                    ev.DeletedPrototypes.Add(keyNode.Value);
+                    ev.DeletedPrototypes.Add(key);
                 else
-                    ev.RenamedPrototypes.Add(keyNode.Value, valueNode.Value);
+                    ev.RenamedPrototypes.Add(key, valueNode.Value);
             }
         }
         // End Delta-V

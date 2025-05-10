@@ -6,7 +6,12 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Medical/hypomini.rsi
-    state: hypo
+    layers:
+    - state: hypo
+      map: ["enum.SolutionContainerLayers.Base"]
+    - state: hypo_fill1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: Item
     sprite: _NF/Objects/Specific/Medical/hypomini.rsi
   - type: SolutionContainerManager
@@ -23,8 +28,13 @@
     delay: 2.5
   - type: StaticPrice
     price: 550
-  - type: PirateBountyItem # Frontier
-    id: HypoMini # Frontier
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: hypo_fill
+    solutionName: hypospray
+  - type: PirateBountyItem
+    id: HypoMini
 
 - type: entity
   name: NTCS-102 hypospray
@@ -34,7 +44,12 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi
-    state: hypo
+    layers:
+    - state: hypo
+      map: ["enum.SolutionContainerLayers.Base"]
+    - state: hypo_fill1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: Item
     sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi
 
@@ -46,7 +61,12 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Medical/hypominilimitededition.rsi
-    state: hypo
+    layers:
+    - state: hypo
+      map: ["enum.SolutionContainerLayers.Base"]
+    - state: hypo_fill1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: Item
     sprite: _NF/Objects/Specific/Medical/hypominilimitededition.rsi
 

@@ -11,9 +11,12 @@ public sealed partial class StackPriceComponent : Component
     /// </summary>
     [DataField("price", required: true)]
     public double Price;
+
+    // Frontier: vend price
     /// <summary>
     /// The price a full stack of this object sells for from a vendor.
     /// </summary>
     [DataField]
     public double VendPrice;
+    // End Frontier
 }

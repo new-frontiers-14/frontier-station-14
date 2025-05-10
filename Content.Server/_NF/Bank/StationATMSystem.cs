@@ -8,21 +8,16 @@ using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Bank.Events;
 using Content.Shared.Coordinates;
 using Content.Shared.Stacks;
-using Content.Server.Station.Systems;
-using Content.Server.Cargo.Systems;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Robust.Shared.Containers;
 using System.Linq;
-using Content.Shared._NF.Bank.BUI;
 
 namespace Content.Server._NF.Bank;
 
 public sealed partial class BankSystem
 {
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly CargoSystem _cargo = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!;
 
     private void InitializeStationATM()
@@ -168,7 +163,7 @@ public sealed partial class BankSystem
         }
 
         // and then check them against the ATM's CashType
-        if (_prototypeManager.Index<StackPrototype>(component.CashType) != _prototypeManager.Index<StackPrototype>(stackComponent.StackTypeId))
+        if (_prototypeManager.Index(component.CashType) != _prototypeManager.Index<StackPrototype>(stackComponent.StackTypeId))
         {
             _log.Info($"{stackComponent.StackTypeId} is not {component.CashType}");
             ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-wrong-cash"));
@@ -261,7 +256,7 @@ public sealed partial class BankSystem
 
     private void OnATMUIOpen(EntityUid uid, StationBankATMComponent component, BoundUIOpenedEvent args)
     {
-        if (args.Actor is not { Valid : true } player)
+        if (args.Actor is not { Valid: true } player)
             return;
 
         GetInsertedCashAmount(component, out var deposit);
@@ -323,11 +318,11 @@ public sealed partial class BankSystem
 
     private void PlayDenySound(EntityUid uid, StationBankATMComponent component)
     {
-        _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
+        _audio.PlayPvs(_audio.ResolveSound(component.ErrorSound), uid);
     }
 
     private void PlayConfirmSound(EntityUid uid, StationBankATMComponent component)
     {
-        _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid);
+        _audio.PlayPvs(_audio.ResolveSound(component.ConfirmSound), uid);
     }
 }

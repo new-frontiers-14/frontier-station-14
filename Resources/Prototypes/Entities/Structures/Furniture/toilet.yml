@@ -12,6 +12,8 @@
       map: [ "enum.DisposalUnitVisualLayers.Unanchored" ]
     - state: disposal
       map: [ "enum.DisposalUnitVisualLayers.Base" ]
+    - state: disposal-charging
+      map: [ "enum.DisposalUnitVisualLayers.BaseCharging" ]
     - state: disposal-flush
       map: [ "enum.DisposalUnitVisualLayers.OverlayFlush" ]
     - state: dispover-charge
@@ -33,8 +35,6 @@
       components:
       - HumanoidAppearance
   - type: DisposalUnit
-    autoEngageEnabled: false
-    noUI: true
     blacklist:
       components:
 #      - HumanoidAppearance # Frontier - Allow goblins to jump inside.

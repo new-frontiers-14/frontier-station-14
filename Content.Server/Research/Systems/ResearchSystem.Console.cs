@@ -12,7 +12,7 @@ namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
-    [Dependency] private readonly EmagSystem _emag = default!;
+    // [Dependency] private readonly EmagSystem _emag = default!; // Frontier: useless
 
     private void InitializeConsole()
     {
@@ -44,7 +44,7 @@ public sealed partial class ResearchSystem
         if (!UnlockTechnology(uid, args.Id, act))
             return;
 
-        // Frontier: silent R&D computers
+        // Frontier: silent R&D computers, useless
         /*
         if (!_emag.CheckFlag(uid, EmagType.Interaction))
         {

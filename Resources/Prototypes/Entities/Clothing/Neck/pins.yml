@@ -135,6 +135,17 @@
 
 - type: entity
   parent: ClothingNeckPinBase
+  id: ClothingNeckPluralPin
+  name: plural pin
+  description: Be plural do crimes. # Frontier: consistent grammar
+  components:
+  - type: Sprite
+    state: plural
+  - type: Clothing
+    equippedPrefix: plural
+
+- type: entity
+  parent: ClothingNeckPinBase
   id: ClothingNeckOmnisexualPin
   name: omnisexual pin
   description: Be omni do crime.
@@ -148,12 +159,23 @@
   parent: ClothingNeckPinBase
   id: ClothingNeckGenderqueerPin
   name: genderqueer pin
-  description: Be crime do gender. # Frontier: grammar
+  description: Be crime do gender. # Frontier: consistent grammar
   components:
   - type: Sprite
     state: gender
   - type: Clothing
     equippedPrefix: gender
+
+- type: entity
+  parent: ClothingNeckPinBase
+  id: ClothingNeckGenderfluidPin
+  name: genderfluid pin
+  description: Be gender be fluid. # Frontier: consistent grammar
+  components:
+  - type: Sprite
+    state: fluid
+  - type: Clothing
+    equippedPrefix: fluid
 
 - type: entity
   parent: ClothingNeckPinBase

@@ -6,16 +6,19 @@ using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
+using Robust.Shared.Serialization; // Frontier
 
 namespace Content.Shared.Access.Systems;
 
 public abstract class SharedIdCardSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedAccessSystem _access = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -251,11 +254,56 @@ public abstract class SharedIdCardSystem : EntitySystem
                 ("jobSuffix", jobSuffix));
         _metaSystem.SetEntityName(uid, val);
     }
-    
+
     private static string ExtractFullTitle(IdCardComponent idCardComponent)
     {
         return $"{idCardComponent.FullName} ({CultureInfo.CurrentCulture.TextInfo.ToTitleCase(idCardComponent.LocalizedJobTitle ?? string.Empty)})"
             .Trim();
+    }
+
+    public void SetExpireTime(Entity<ExpireIdCardComponent?> ent, TimeSpan time)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+        ent.Comp.ExpireTime = time;
+        Dirty(ent);
+    }
+
+    public void SetPermanent(Entity<ExpireIdCardComponent?> ent, bool val)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+        ent.Comp.Permanent = val;
+        Dirty(ent);
+    }
+
+    /// <summary>
+    /// Marks an <see cref="ExpireIdCardComponent"/> as expired, setting the accesses.
+    /// </summary>
+    public virtual void ExpireId(Entity<ExpireIdCardComponent> ent)
+    {
+        if (ent.Comp.Expired)
+            return;
+
+        _access.TrySetTags(ent, ent.Comp.ExpiredAccess);
+        ent.Comp.Expired = true;
+        Dirty(ent);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        var query = EntityQueryEnumerator<ExpireIdCardComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.Expired || comp.Permanent)
+                continue;
+
+            if (_timing.CurTime < comp.ExpireTime)
+                continue;
+
+            ExpireId((uid, comp));
+        }
     }
 
     // Frontier: rename IDs & shuttles

@@ -9,15 +9,15 @@ public sealed partial class AppraisalCartridgeComponent : Component
     /// <summary>
     /// The list of appraised items
     /// </summary>
-    [DataField("appraisedItems")]
+    [DataField]
     public List<AppraisedItem> AppraisedItems = new();
 
     /// <summary>
     /// Limits the amount of items that can be saved
     /// </summary>
-    [DataField("maxSavedItems")]
+    [DataField]
     public int MaxSavedItems { get; set; } = 9;
 
-    [DataField("soundScan")]
+    [DataField]
     public SoundSpecifier SoundScan = new SoundPathSpecifier("/Audio/Machines/scan_finish.ogg");
 }

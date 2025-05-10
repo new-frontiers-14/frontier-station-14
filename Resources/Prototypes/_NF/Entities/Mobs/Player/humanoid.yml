@@ -11,10 +11,6 @@
     - type: Sprite
       sprite: _NF/Markers/jobs.rsi
       state: ertmailcarrier
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
     - type: RandomHumanoidSpawner
       settings: ERTMailCarrier
 
@@ -22,18 +18,16 @@
   id: ERTMailCarrier
   parent: ERTLeader
   components:
-    - type: MindShield
     - type: GhostRole
       name: ghost-role-information-ert-mailcarrier-name
       description: ghost-role-information-ert-mailcarrier-description
       rules: ghost-role-information-nonantagonist-rules
-    - type: GhostTakeoverAvailable
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
+      raffle:
+        settings: short
+      job: ERTMailCarrier
     - type: Loadout
       prototypes: [ ERTMailCarrierGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTMailCarrierEVA
@@ -51,11 +45,6 @@
   id: ERTMailCarrierEVA
   parent: ERTMailCarrier
   components:
-    - type: MindShield
-    - type: GhostRole
-      name: ghost-role-information-ert-mailcarrier-name
-      description: ghost-role-information-ert-mailcarrier-description
-      rules: ghost-role-information-nonantagonist-rules
-    - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ERTMailCarrierGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]

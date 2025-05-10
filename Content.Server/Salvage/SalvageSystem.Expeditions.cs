@@ -252,13 +252,11 @@ public sealed partial class SalvageSystem
             EntityManager,
             _timing,
             _logManager,
-            _mapManager,
             _prototypeManager,
             _anchorable,
             _biome,
             _dungeon,
             _metaData,
-            _transform,
             _mapSystem,
             _station, // Frontier
             _shuttle, // Frontier

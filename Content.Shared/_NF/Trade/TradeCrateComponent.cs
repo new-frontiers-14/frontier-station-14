@@ -1,5 +1,5 @@
 using System.Threading;
-using Content.Shared.Cargo;
+using Content.Shared._NF.Cargo;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._NF.Trade;
@@ -7,7 +7,7 @@ namespace Content.Shared._NF.Trade;
 /// <summary>
 /// This is used to mark an entity to be used as a trade crate
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause, Access(typeof(SharedCargoSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause, Access(typeof(SharedNFCargoSystem))]
 public sealed partial class TradeCrateComponent : Component
 {
     /// <summary>

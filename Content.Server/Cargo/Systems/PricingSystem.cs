@@ -16,9 +16,10 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Server.Materials.Components; // Frontier
 using System.Linq;
 using Content.Shared.Research.Prototypes;
+using Content.Server._NF.Cargo.Components; // Frontier
+using Content.Server.Materials.Components; // Frontier
 
 namespace Content.Server.Cargo.Systems;
 
@@ -37,7 +38,7 @@ public sealed class PricingSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<MobPriceComponent, PriceCalculationEvent>(CalculateMobPrice);
+        SubscribeLocalEvent<MobPriceComponent, PriceCalculationEvent>(CalculateMobPrice); // Frontier
 
         _consoleHost.RegisterCommand("appraisegrid",
             "Calculates the total value of the given grids.",

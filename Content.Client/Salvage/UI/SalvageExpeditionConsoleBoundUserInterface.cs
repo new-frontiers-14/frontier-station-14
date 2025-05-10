@@ -19,7 +19,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
     [ViewVariables]
     private SalvageExpeditionWindow? _window; // Frontier: OfferingWindow<SalvageExpeditionWindow
 
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
+    // [Dependency] private readonly IConfigurationManager _cfgManager = default!; // Frontier: warning suppression
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
 

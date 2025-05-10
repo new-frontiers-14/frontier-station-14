@@ -221,13 +221,26 @@
         tags:
         - GlassBeaker
         - DrinkGlass
-      displayName: borg-placeholder-display-name-glassware
+        components:
+        - Utensil
+        - NFCookware
+      displayName: borg-placeholder-display-name-cookware
+    - id: FoodPlateTin
+      whitelist:
+        tags:
+        - GlassBeaker
+        - DrinkGlass
+        components:
+        - Utensil
+        - NFCookware
+      displayName: borg-placeholder-display-name-cookware
     placeholders:
     - id: ReagentContainerFlour
       whitelist:
         components:
         - Food
         - Produce
+        - NFIngredient
         tags:
         - Ingredient
       displayName: borg-placeholder-display-name-food-or-ingredients
@@ -236,6 +249,7 @@
         components:
         - Food
         - Produce
+        - NFIngredient
         tags:
         - Ingredient
       displayName: borg-placeholder-display-name-food-or-ingredients

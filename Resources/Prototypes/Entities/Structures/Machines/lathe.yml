@@ -119,6 +119,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -197,6 +198,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -299,6 +301,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: RequireProjectileTarget
 
 - type: entity
@@ -347,6 +350,7 @@
       - Sheet
       - RawMaterial
       - Ingot
+  - type: OreSiloClient
   - type: GuideHelp
     guides:
     - Robotics
@@ -422,6 +426,8 @@
     - SecurityAmmoStatic
     - SecurityWeaponsStatic
     dynamicPacks:
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
     - SecurityEquipment
     # - SecurityBoards # Frontier
     - SecurityExplosives
@@ -434,6 +440,9 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
+  # - type: LatheAnnouncing # Frontier: spammy
+  #   channels: [Security] # Frontier
 
 - type: entity
   id: AmmoTechFab
@@ -467,6 +476,7 @@
           - Sheet
           - RawMaterial
           - Ingot
+    - type: OreSiloClient
 
 - type: entity
   id: MedicalTechFab
@@ -507,6 +517,9 @@
     board: MedicalTechFabCircuitboard
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
+  - type: OreSiloClient
+  # - type: LatheAnnouncing # Frontier: spammy
+  #   channels: [Medical] # Frontier
 
 - type: entity
   parent: BaseLathe

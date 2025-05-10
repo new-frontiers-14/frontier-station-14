@@ -1,22 +1,18 @@
 using Content.Server.Cargo.Systems;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
-using Content.Shared.Popups;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Random;
 using Content.Shared.Timing;
 using Content.Shared.Cargo.Components;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
+/// <summary>
+/// A system for appraisal cartridges, which turn your PDA into a price gun.
+/// </summary>
 public sealed class AppraisalCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly CargoSystem _bountySystem = default!;
     [Dependency] private readonly CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly PricingSystem _pricingSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {

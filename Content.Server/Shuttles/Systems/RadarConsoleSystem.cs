@@ -7,8 +7,6 @@ using Content.Shared.PowerCell;
 using Content.Shared.Movement.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Content.Shared.PowerCell;
-using Content.Shared.Movement.Components;
 
 namespace Content.Server.Shuttles.Systems;
 

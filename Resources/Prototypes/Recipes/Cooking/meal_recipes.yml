@@ -785,6 +785,16 @@
     CottonBol: 4
   recipeType: Oven # Frontier
 
+- type: microwaveMealRecipe
+  id: RecipeWorldpeasPizza
+  name: world peazza recipe
+  result: FoodPizzaWorldpeas
+  time: 30
+  solids:
+    FoodDoughFlat: 1
+    FoodWorldPeas: 3
+  recipeType: Oven # Frontier
+
 #Italian
 - type: microwaveMealRecipe
   id: RecipeBoiledSpaghetti
@@ -1489,6 +1499,8 @@
   solids:
     FoodDoughTortillaFlat: 1
     FoodPlateSmall: 1
+  recipeType: # Frontier
+  - Oven # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeNachosCheesy
@@ -1502,6 +1514,8 @@
     FoodCheeseSlice: 1
     FoodDoughTortillaFlat: 1
     FoodPlateSmall: 1
+  recipeType: # Frontier
+  - Oven # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeNachosCuban
@@ -1515,6 +1529,8 @@
     FoodChiliPepper: 1
     FoodDoughTortillaFlat: 1
     FoodPlateSmall: 1
+  recipeType: # Frontier
+  - Oven # Frontier
 
 - type: microwaveMealRecipe
   id: RecipePopcorn
@@ -1972,6 +1988,14 @@
     FoodDonkpocketCarp: 1
   recipeType: Microwave # Frontier
 
+- type: microwaveMealRecipe
+  id: RecipeDonkpocketMoth
+  name: warm moth-pocket recipe
+  result: FoodDonkpocketMothWarm
+  time: 5
+  solids:
+    FoodDonkpocketMoth: 1
+  recipeType: Microwave # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeHotChili
@@ -2601,3 +2625,13 @@
     FoodButterSlice: 1
   recipeType: Oven # Frontier
 
+- type: microwaveMealRecipe
+  id: RecipeGrilledCheeseSandwichCotton
+  name: cotton grilled cheese sandwich recipe
+  result: FoodBakedGrilledCheeseSandwichCotton
+  time: 10
+  solids:
+    FoodBreadCottonSlice: 2
+    FoodCheeseSlice: 1
+    FoodButterSlice: 1
+  recipeType: Oven # Frontier

@@ -1,4 +1,4 @@
-﻿using Content.Server.Worldgen.Components.Carvers;
+using Content.Server.Worldgen.Components.Carvers;
 using Content.Server.Worldgen.Systems.Debris;
 
 namespace Content.Server.Worldgen.Systems.Carvers;
@@ -25,7 +25,7 @@ public sealed class NoiseRangeCarverSystem : EntitySystem
             return;
         // End Frontier
 
-        var coords = WorldGen.WorldToChunkCoords(args.Coords.ToMapPos(EntityManager, _transform));
+        var coords = WorldGen.WorldToChunkCoords(_transform.ToMapCoordinates(args.Coords).Position);
         var val = _index.Evaluate(uid, component.NoiseChannel, coords);
 
         foreach (var (low, high) in component.Ranges)

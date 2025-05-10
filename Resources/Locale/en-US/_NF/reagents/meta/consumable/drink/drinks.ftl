@@ -27,6 +27,3 @@ reagent-desc-honey-iced-tea = Tea with a splash of honey.
 
 reagent-name-wassail = wassail
 reagent-desc-wassail = Hot mulled ale.
-
-reagent-name-eggnog = eggnog
-reagent-desc-eggnog = Creamy, sweet, and slightly boozy. Fully nogged.

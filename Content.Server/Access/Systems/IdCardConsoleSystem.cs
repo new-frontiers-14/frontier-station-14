@@ -1,21 +1,27 @@
+using System.Linq;
+using Content.Server.Chat.Systems;
+using Content.Server.Containers;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Access.Components;
+using static Content.Shared.Access.Components.IdCardConsoleComponent;
 using Content.Shared.Access.Systems;
+using Content.Shared.Access;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Construction;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
-using Content.Shared.StatusIcon;
+using Content.Shared.Throwing;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using System.Linq;
+using Robust.Shared.Random;
 using Content.Server._NF.Shipyard.Systems; // Frontier
 using Content.Shared._NF.Shipyard.Components; // Frontier
-using static Content.Shared.Access.Components.IdCardConsoleComponent;
 using static Content.Shared._NF.Shipyard.Components.ShuttleDeedComponent; // Frontier
-using Content.Shared.Access;
 
 namespace Content.Server.Access.Systems;
 
@@ -29,7 +35,11 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
     [Dependency] private readonly AccessSystem _access = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ShipyardSystem _shipyard = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly ShipyardSystem _shipyard = default!; // Frontier
 
     public override void Initialize()
     {
@@ -42,6 +52,11 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         SubscribeLocalEvent<IdCardConsoleComponent, ComponentStartup>(UpdateUserInterface);
         SubscribeLocalEvent<IdCardConsoleComponent, EntInsertedIntoContainerMessage>(UpdateUserInterface);
         SubscribeLocalEvent<IdCardConsoleComponent, EntRemovedFromContainerMessage>(UpdateUserInterface);
+        SubscribeLocalEvent<IdCardConsoleComponent, DamageChangedEvent>(OnDamageChanged);
+
+        // Intercept the event before anyone can do anything with it!
+        SubscribeLocalEvent<IdCardConsoleComponent, MachineDeconstructedEvent>(OnMachineDeconstructed,
+            before: [typeof(EmptyOnMachineDeconstructSystem), typeof(ItemSlotsSystem)]);
     }
 
     private void OnWriteToTargetIdMessage(EntityUid uid, IdCardConsoleComponent component, SharedIdCardSystem.WriteToTargetIdMessage args)
@@ -101,9 +116,9 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             var targetIdComponent = EntityManager.GetComponent<IdCardComponent>(targetId);
             var targetAccessComponent = EntityManager.GetComponent<AccessComponent>(targetId);
 
-            var jobProto = new ProtoId<JobPrototype>(string.Empty); // Frontier: AccessLevelPrototype<JobPrototype
+            var jobProto = targetIdComponent.JobPrototype ?? new ProtoId<JobPrototype>(string.Empty); // Frontier: AccessLevelPrototype<JobPrototype
             if (TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
-                && keyStorage.Key is {} key
+                && keyStorage.Key is { } key
                 && _record.TryGetRecord<GeneralStationRecord>(key, out var record))
             {
                 jobProto = record.JobPrototype;
@@ -164,6 +179,13 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         }
 
         UpdateStationRecord(uid, targetId, newFullName, newJobTitle, job);
+        if ((!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
+            || keyStorage.Key is not { } key
+            || !_record.TryGetRecord<GeneralStationRecord>(key, out _))
+            && newJobProto != string.Empty)
+        {
+            Comp<IdCardComponent>(targetId).JobPrototype = newJobProto;
+        }
 
         if (!newAccessList.TrueForAll(x => component.AccessLevels.Contains(x)))
         {
@@ -282,4 +304,46 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
         _record.Synchronize(key);
     }
+
+    private void OnMachineDeconstructed(Entity<IdCardConsoleComponent> entity, ref MachineDeconstructedEvent args)
+    {
+        TryDropAndThrowIds(entity.AsNullable());
+    }
+
+    private void OnDamageChanged(Entity<IdCardConsoleComponent> entity, ref DamageChangedEvent args)
+    {
+        if (TryDropAndThrowIds(entity.AsNullable()))
+            _chat.TrySendInGameICMessage(entity, Loc.GetString("id-card-console-damaged"), InGameICChatType.Speak, true);
+    }
+
+    #region PublicAPI
+
+    /// <summary>
+    ///     Tries to drop any IDs stored in the console, and then tries to throw them away.
+    ///     Returns true if anything was ejected and false otherwise.
+    /// </summary>
+    public bool TryDropAndThrowIds(Entity<IdCardConsoleComponent?, ItemSlotsComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2))
+            return false;
+
+        var didEject = false;
+
+        foreach (var slot in ent.Comp2.Slots.Values)
+        {
+            if (slot.Item == null || slot.ContainerSlot == null)
+                continue;
+
+            var item = slot.Item.Value;
+            if (_container.Remove(item, slot.ContainerSlot))
+            {
+                _throwing.TryThrow(item, _random.NextVector2(), baseThrowSpeed: 5f);
+                didEject = true;
+            }
+        }
+
+        return didEject;
+    }
+
+    #endregion
 }

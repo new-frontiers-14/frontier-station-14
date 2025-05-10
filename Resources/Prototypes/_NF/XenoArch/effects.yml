@@ -1,0 +1,20 @@
+- type: entity
+  id: NFXenoArtifactEffectSpawnGrimforgedConstruct
+  parent: BaseXenoArtifactEffect
+  description: Create grimforged construct
+  components:
+  - type: XenoArtifactNode
+    maxDurability: 1
+    maxDurabilityCanDecreaseBy:
+      min: 0
+      max: 0
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: MobGrimForged
+          weight: 1.0

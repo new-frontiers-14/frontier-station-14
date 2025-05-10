@@ -465,6 +465,11 @@ public enum LogType
     /// </summary>
     Botany = 100,
 
+    /// <summary>
+    /// Artifact node got activated.
+    /// </summary>
+    ArtifactNode = 101,
+
     // Frontier Station Specific
     #region Frontier Values
     ATMUsage = 200,

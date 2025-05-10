@@ -16,10 +16,8 @@ using System.Numerics;
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
-using Robust.Shared.Map.Components;
 using Content.Server._NF.Station.Components;
 using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.EntitySerialization;
 using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Shipyard.Systems;
@@ -27,7 +25,6 @@ namespace Content.Server._NF.Shipyard.Systems;
 public sealed partial class ShipyardSystem : SharedShipyardSystem
 {
     [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly DockingSystem _docking = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;

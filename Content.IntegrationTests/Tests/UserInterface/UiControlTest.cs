@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Client.Chat.UI;
 using Content.Client.LateJoin;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.ContentPack;
@@ -15,7 +14,6 @@ public sealed class UiControlTest
     // You should not be adding to this.
     private Type[] _ignored = new Type[]
     {
-        typeof(EmotesMenu),
         typeof(LateJoinGui),
         typeof(CryosleepWakeupWindow), // Frontier: FIXME - refactor this window into EUI(?) pattern, this thing subscribes to events
     };

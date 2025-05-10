@@ -1,5 +1,6 @@
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Bank.Events;
+using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.Bank.UI;
 
@@ -13,18 +14,10 @@ public sealed class BankATMWithdrawOnlyMenuBoundUserInterface : BoundUserInterfa
     {
         base.Open();
 
-        _menu = new WithdrawBankATMMenu();
-        _menu.WithdrawRequest += OnWithdraw;
-        _menu.OnClose += Close;
-        _menu.OpenCentered();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (disposing)
+        if (_menu == null)
         {
-            _menu?.Dispose();
+            _menu = this.CreateWindow<WithdrawBankATMMenu>();
+            _menu.WithdrawRequest += OnWithdraw;
         }
     }
 

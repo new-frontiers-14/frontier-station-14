@@ -19,6 +19,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
+using Robust.Server.Player; // Frontier
 
 namespace Content.Server.Morgue;
 
@@ -33,7 +34,7 @@ public sealed class CrematoriumSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _minds = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!; // Frontier
-    [Dependency] private readonly SharedMindSystem _mind = default!; // frontier
+    [Dependency] private readonly IPlayerManager _player = default!; // Frontier
 
     public override void Initialize()
     {
@@ -128,8 +129,9 @@ public sealed class CrematoriumSystem : EntitySystem
             return false;
         if (TryComp<MobStateComponent>(entity, out var comp) && !_mobState.IsDead(entity, comp))
             return false;
-        if (_mind.TryGetMind(entity, out var _, out var mind) && mind.Session?.State?.Status == SessionStatus.InGame)
+        if (_player.TryGetSessionByEntity(entity, out var session) && session.State.Status == SessionStatus.InGame)
             return false;
+        // End Frontier
 
         return Cremate(uid, component, storage);
     }
