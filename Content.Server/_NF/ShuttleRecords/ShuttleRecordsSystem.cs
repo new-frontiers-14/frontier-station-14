@@ -42,6 +42,7 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
             return;
 
         record.TimeOfPurchase = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+        record.OriginalName = record.Name;
         component.ShuttleRecords[record.EntityUid] = record;
         RefreshStateForAll();
     }
@@ -74,6 +75,23 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
 
         record = component.ShuttleRecords[uid];
         return true;
+    }
+
+    public bool TrySetSaleTime(NetEntity uid)
+    {
+        if (TryGetRecord(uid, out var record))
+        {
+            record.TimeOfSale = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+            TryUpdateRecord(record);
+            return true;
+        }
+        return false;
+    }
+
+    public string GetStatsPrintout()
+    {
+
+        return "";
     }
 
     private bool TryGetShuttleRecordsDataComponent([NotNullWhen(true)] out SectorShuttleRecordsComponent? component)

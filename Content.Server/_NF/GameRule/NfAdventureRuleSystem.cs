@@ -12,6 +12,7 @@ using Content.Server.Discord;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules;
+using Content.Server._NF.ShuttleRecords;
 using Content.Shared._NF.Bank;
 using Content.Shared._NF.CCVar;
 using Content.Shared.GameTicking;
@@ -40,6 +41,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
     [Dependency] private readonly PointOfInterestSystem _poi = default!;
     [Dependency] private readonly IBaseServer _baseServer = default!;
     [Dependency] private readonly IEntitySystemManager _entSys = default!;
+    [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -299,6 +301,43 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
                 {
                     Title = Loc.GetString("adventure-webhook-ledger-start"),
                     Description = ledgerPrintout,
+                    Color = color,
+                    Footer = new EmbedFooter
+                    {
+                        Text = Loc.GetString(
+                            "adventure-webhook-footer",
+                            ("serverName", serverName),
+                            ("roundId", runId)),
+                    },
+                },
+            },
+        };
+        await SendWebhookPayload(webhookUrl, payload);
+    }
+
+    private async Task ReportShipyardStats(int color = 0x55DD3F)
+    {
+        string webhookUrl = _cfg.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
+        if (webhookUrl == string.Empty)
+            return;
+
+        var shipyardStatsPrintout = _shuttleRecordsSystem.GetStatsPrintout();
+        if (string.IsNullOrEmpty(shipyardStatsPrintout))
+            return;
+        Logger.InfoS("discord", shipyardStatsPrintout);
+
+        var serverName = _baseServer.ServerName;
+        var gameTicker = _entSys.GetEntitySystemOrNull<GameTicker>();
+        var runId = gameTicker != null ? gameTicker.RoundId : 0;
+
+        var payload = new WebhookPayload
+        {
+            Embeds = new List<Embed>
+            {
+                new()
+                {
+                    Title = Loc.GetString("adventure-webhook-shipstats-start"),
+                    Description = shipyardStatsPrintout,
                     Color = color,
                     Footer = new EmbedFooter
                     {
