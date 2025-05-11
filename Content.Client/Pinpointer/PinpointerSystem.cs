@@ -20,8 +20,14 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         var query = EntityQueryEnumerator<PinpointerComponent, SpriteComponent>();
         while (query.MoveNext(out var _, out var pinpointer, out var sprite))
         {
+            // Frontier: ensure question mark is aligned with the screen
             if (!pinpointer.HasTarget)
+            {
+                sprite.LayerSetRotation(PinpointerLayers.Screen, Angle.Zero);
                 continue;
+            }
+            // End Frontier: ensure question mark is aligned with the screen
+
             var eye = _eyeManager.CurrentEye;
             var angle = pinpointer.ArrowAngle + eye.Rotation;
 
