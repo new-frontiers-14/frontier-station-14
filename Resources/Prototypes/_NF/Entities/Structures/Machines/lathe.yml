@@ -189,10 +189,9 @@
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi
     layers:
-    - state: icon
+    - state: mercenary-hacked
       map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: mercenary
-    - state: unlit
+    - state: unlit-hacked
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
     - state: inserting
@@ -209,11 +208,12 @@
   - type: PointLight
     radius: 1.5
     energy: 2
+    color: "#85daeb"
   - type: RgbLightController
     layers: [ 0 ]
   - type: Lathe
-    idleState: icon
-    runningState: icon
+    idleState: mercenary-hacked
+    runningState: mercenary-hacked
     staticPacks:
     - NFHackedMercenaryTechfabDeprecatedStatic
     dynamicPacks:
