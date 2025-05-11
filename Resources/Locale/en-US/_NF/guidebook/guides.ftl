@@ -65,6 +65,7 @@ guide-entry-shipyard-hauler = Hauler
 guide-entry-shipyard-harbormaster = Harbormaster
 guide-entry-shipyard-honker = Honker
 guide-entry-shipyard-investigator = Investigator
+guide-entry-shipyard-izakaya = Izakaya
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern = Lantern
