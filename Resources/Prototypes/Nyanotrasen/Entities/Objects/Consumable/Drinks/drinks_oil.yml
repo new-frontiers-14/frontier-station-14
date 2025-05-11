@@ -1,29 +1,19 @@
+# Frontier: redefined to be closer to cartons
 - type: entity
   parent: 
-  - DrinkCartonVisualsOpenable # Frontier
-  - DrinkCartonBaseLargeFull # Frontier: DrinkBottleBaseEmpty<DrinkCartonBaseLargeFull
+  - RecyclableItemPlasticMedium
+  - DrinkCartonVisualsOpenable
+  - DrinkCartonBaseLargeFull
   id: BaseOilJar
   abstract: true
   components:
   - type: Sprite
     sprite: Nyanotrasen/Objects/Consumable/Drinks/oil_jar.rsi
-    state: icon
-    layers:
-      - state: icon
-        map: ["drinkCanIcon"]
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.OpenableVisuals.Opened:
-        drinkCanIcon:
-          True: {state: "icon_open"}
-          False: {state: "icon"}
-  - type: PhysicalComposition
-    materialComposition:
-      Plastic: 50
   - type: SolutionTransfer
     canChangeTransferAmount: true
     maxTransferAmount: 100
+# End Frontier: redefined to be closer to cartons
 
 - type: entity
   parent: BaseOilJar
