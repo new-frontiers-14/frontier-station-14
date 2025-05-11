@@ -47,23 +47,23 @@ namespace Content.Shared._NF.GridAccess
             {
                 _popup.PopupClient(Loc.GetString("grid-access-missing-id-deed"),
                     uid, args.User, PopupType.Medium);
-                _audio.PlayPredicted(comp.ErrorSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
+                _audio.PlayLocal(comp.ErrorSound, rcdEntityUid, args.User);
                 return;
             }
 
             // Swiping it again removes the authorization on it.
-            if (gridAccessComponent.LinkedShuttleUid != null)
+            if (gridAccessComponent.LinkedShuttleUid == shuttleDeedComponent.ShuttleUid)
             {
                 _popup.PopupClient(Loc.GetString("grid-access-id-card-removed"),
                     uid, args.User, PopupType.Medium);
-                _audio.PlayPredicted(comp.SwipeSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
+                _audio.PlayLocal(comp.ErrorSound, rcdEntityUid, args.User);
                 gridAccessComponent.LinkedShuttleUid = null;
             }
-            else
+            else // Transfering or setting a new ID card
             {
                 _popup.PopupClient(Loc.GetString("grid-access-id-card-accepted"),
                     uid, args.User, PopupType.Medium);
-                _audio.PlayPredicted(comp.InsertSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
+                _audio.PlayLocal(comp.ErrorSound, rcdEntityUid, args.User);
                 gridAccessComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
             }
 
