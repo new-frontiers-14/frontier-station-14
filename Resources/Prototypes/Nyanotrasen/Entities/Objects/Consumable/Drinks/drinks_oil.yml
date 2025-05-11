@@ -1,5 +1,7 @@
 - type: entity
-  parent: DrinkBottleBaseEmpty
+  parent: 
+  - DrinkCartonVisualsOpenable # Frontier
+  - DrinkCartonBaseLargeFull # Frontier: DrinkBottleBaseEmpty<DrinkCartonBaseLargeFull
   id: BaseOilJar
   abstract: true
   components:
@@ -16,6 +18,12 @@
         drinkCanIcon:
           True: {state: "icon_open"}
           False: {state: "icon"}
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+    maxTransferAmount: 100
 
 - type: entity
   parent: BaseOilJar
