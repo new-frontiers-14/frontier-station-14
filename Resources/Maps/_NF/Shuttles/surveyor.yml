@@ -4,8 +4,8 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/11/2025 22:07:27
-  entityCount: 263
+  time: 05/11/2025 22:58:25
+  entityCount: 260
 maps: []
 grids:
 - 1
@@ -919,15 +919,15 @@ entities:
       parent: 1
 - proto: ConstructionBag
   entities:
-  - uid: 51
+  - uid: 57
     components:
     - type: Transform
-      pos: 3.3458571,-3.3054097
+      pos: 3.312623,-2.409645
       parent: 1
   - uid: 210
     components:
     - type: Transform
-      pos: 3.3041906,-2.357493
+      pos: 3.312623,-3.253395
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -1549,21 +1549,8 @@ entities:
       parent: 1
     - type: FuelGenerator
       targetPower: 14000
-- proto: PottedPlantRandom
-  entities:
-  - uid: 262
-    components:
-    - type: Transform
-      pos: 1.5,-0.5
-      parent: 1
 - proto: Poweredlight
   entities:
-  - uid: 57
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,1.5
-      parent: 1
   - uid: 206
     components:
     - type: Transform
@@ -1596,6 +1583,14 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 7.5,-3.5
+      parent: 1
+- proto: PoweredlightLED
+  entities:
+  - uid: 51
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,1.5
       parent: 1
 - proto: PoweredlightRed
   entities:
@@ -1632,12 +1627,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,1.5
       parent: 1
-  - uid: 261
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,1.5
-      parent: 1
 - proto: RailingCornerSmall
   entities:
   - uid: 85
@@ -1645,12 +1634,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,2.5
-      parent: 1
-  - uid: 263
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,2.5
       parent: 1
 - proto: ReinforcedWindow
   entities:
