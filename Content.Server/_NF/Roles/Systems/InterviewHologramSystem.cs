@@ -1,14 +1,15 @@
 using Content.Server.Actions;
+using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.PDA.Ringer;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
-using Content.Server.StationRecords;
-using Content.Server.StationRecords.Systems;
 using Content.Shared._NF.Roles.Components;
 using Content.Shared._NF.Roles.Events;
 using Content.Shared.Chat;
+using Content.Shared.Database;
+using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
@@ -16,7 +17,9 @@ using Content.Shared.Mind.Components;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Jobs;
 using Content.Shared.Verbs;
+using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -25,8 +28,10 @@ namespace Content.Server._NF.Roles.Systems;
 
 public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
 {
+    [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private IChatManager _chat = default!;
     [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IServerPreferencesManager _prefs = default!;
     [Dependency] private ActionsSystem _actions = default!;
@@ -35,8 +40,8 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
     [Dependency] private RingerSystem _ringer = default!;
     [Dependency] private SharedHumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private StationJobsSystem _stationJobs = default!;
-    [Dependency] private StationRecordsSystem _stationRecords = default!;
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
     [Dependency] private StationSystem _station = default!;
 
@@ -44,12 +49,18 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<InterviewHologramComponent, PlayerSpawnCompleteEvent>(OnHologramPlayerSpawnComplete);
         SubscribeLocalEvent<InterviewHologramComponent, MapInitEvent>(OnHologramMapInit);
         SubscribeLocalEvent<InterviewHologramComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternativeVerb);
         SubscribeLocalEvent<InterviewHologramComponent, MindRemovedMessage>(OnHologramMindRemoved);
         SubscribeLocalEvent<InterviewHologramComponent, MindAddedMessage>(OnHologramMindAdded);
         SubscribeLocalEvent<InterviewHologramComponent, CancelInterviewEvent>(OnHologramCancelInterview);
         SubscribeLocalEvent<InterviewHologramComponent, DismissInterviewEvent>(OnHologramDismissInterview);
+    }
+
+    private void OnHologramPlayerSpawnComplete(Entity<InterviewHologramComponent> ent, ref PlayerSpawnCompleteEvent ev)
+    {
+        ent.Comp.Station = ev.Station;
     }
 
     private void OnHologramMapInit(Entity<InterviewHologramComponent> ent, ref MapInitEvent ev)
@@ -195,28 +206,50 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
         if (mindUid == null || !_mind.TryGetSession(mindUid, out var session))
             return;
 
-        HumanoidCharacterProfile? profile = null;
+        HumanoidCharacterProfile profile;
         if (_prefs.GetPreferences(session.UserId).SelectedCharacter is HumanoidCharacterProfile currentProfile)
             profile = currentProfile;
+        else
+            profile = HumanoidCharacterProfile.Random();
 
         // Prevent reopening the applicant's slot.
         RemComp<JobTrackingComponent>(ent);
 
-        // Spawn new entity.
-        var station = _station.GetOwningStation(ent);
+        // Spawn and inhabit new entity, tell them they got the job.
         var newEntity = _stationSpawning.SpawnPlayerMob(xform.Coordinates,
             ent.Comp.Job,
             profile,
-            station,
+            ent.Comp.Station,
             entity: null,
             session: session
             );
 
-        if (profile != null && TryComp<StationRecordsComponent>(station, out var stationRecords))
-            _stationRecords.CreateGeneralRecord(station.Value, newEntity, profile, ent.Comp.Job, stationRecords);
-
         _mind.TransferTo(mindUid.Value, newEntity);
         _chat.DispatchServerMessage(session, Loc.GetString("interview-hologram-message-accepted"), suppressLog: true);
+        _roles.MindAddJobRole(mindUid.Value, jobPrototype: ent.Comp.Job); // Overwrites
+
+        // Run spawn event for game rules, traits, etc.
+        _gameTicker.PlayersJoinedRoundNormally++;
+        var aev = new PlayerSpawnCompleteEvent(newEntity,
+            session,
+            ent.Comp.Job,
+            lateJoin: true,
+            silent: true,
+            joinOrder: _gameTicker.PlayersJoinedRoundNormally, // Increment regardless (unused as of writing)
+            ent.Comp.Station,
+            profile);
+        RaiseLocalEvent(newEntity, aev, true);
+
+        // Log the acceptance.
+        string stationName;
+        if (TryComp(ent.Comp.Station, out MetaDataComponent? meta))
+            stationName = $"station {meta.EntityName:stationName}";
+        else
+            stationName = "an unknown station";
+
+        _adminLogger.Add(LogType.LateJoin,
+            LogImpact.Medium,
+            $"Player {session.Name} controlling {ToPrettyString(ent):entity} has been spawned via interview on {stationName} as a {ent.Comp.Job:jobName}.");
 
         // Delete the old hologram.
         QueueDel(ent);
@@ -224,11 +257,49 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
 
     private void OnHologramCancelInterview(Entity<InterviewHologramComponent> ent, ref CancelInterviewEvent ev)
     {
+        // Log cancellation
+        string player;
+        if (_playerManager.TryGetSessionByEntity(ent, out var session))
+            player = $"Player {session.Name}";
+        else
+            player = $"Someone";
+
+        var stationUid = _station.GetOwningStation(ent);
+        string station;
+        if (stationUid != null && TryComp(stationUid, out MetaDataComponent? meta))
+            station = $"station {meta.EntityName:stationName}";
+        else
+            station = "an unknown station";
+
+        _adminLogger.Add(LogType.LateJoin,
+            LogImpact.Medium,
+            $"{player} controlling {ToPrettyString(ent):entity} cancelled their interview on {station} for a {ent.Comp.Job:jobName} position.");
+
+        // Run dismissal
         DismissHologram(ent, message: Loc.GetString("interview-hologram-message-cancelled"));
     }
 
     private void OnHologramDismissInterview(Entity<InterviewHologramComponent> ent, ref DismissInterviewEvent ev)
     {
+        // Log cancellation
+        string player;
+        if (_playerManager.TryGetSessionByEntity(ent, out var session))
+            player = $"Player {session.Name}";
+        else
+            player = $"Someone";
+
+        var stationUid = _station.GetOwningStation(ent);
+        string station;
+        if (stationUid != null && TryComp(stationUid, out MetaDataComponent? meta))
+            station = $"station {meta.EntityName:stationName}";
+        else
+            station = "an unknown station";
+
+        _adminLogger.Add(LogType.LateJoin,
+            LogImpact.Medium,
+            $"{player} controlling {ToPrettyString(ev.Dismisser):entity} dismissed {ToPrettyString(ent):entity} from their interview on {station} for a {ent.Comp.Job:jobName} position.");
+
+        // Run dismissal
         DismissHologram(ent, ev.ReopenSlot, message: Loc.GetString("interview-hologram-message-dismissed"));
     }
 
