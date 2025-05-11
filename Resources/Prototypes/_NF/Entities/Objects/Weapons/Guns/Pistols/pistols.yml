@@ -63,7 +63,7 @@
   name: mk32-M "Universal" service pistol
   description: |-
     The Mark 32 Offensive Service Pistol. On the handle is a label that says 'for authorized use only.'
-  components:
+  components: &universalComponents
   - type: Gun
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/universal.ogg
@@ -72,3 +72,5 @@
 - type: entity
   id: NFWeaponPistolUniversalNfsdLessLethal
   parent: [ NFBaseWeaponPistolChamber35HighCapacityRubber, NFWeaponPistolUniversalNfsd ]
+  suffix: Frontier, Less-lethal
+  components: *universalComponents
