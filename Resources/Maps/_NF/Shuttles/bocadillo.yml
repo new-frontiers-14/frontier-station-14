@@ -4,8 +4,8 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/01/2025 08:32:06
-  entityCount: 277
+  time: 05/11/2025 04:34:34
+  entityCount: 285
 maps: []
 grids:
 - 2
@@ -683,10 +683,10 @@ entities:
       parent: 2
 - proto: ClothingBeltPlantFilled
   entities:
-  - uid: 108
+  - uid: 278
     components:
     - type: Transform
-      pos: -0.43719846,6.5612144
+      pos: 1.5377722,6.583379
       parent: 2
 - proto: ComputerTabletopShuttle
   entities:
@@ -711,6 +711,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,1.5
       parent: 2
+- proto: CrateMaterialBiomass
+  entities:
+  - uid: 233
+    components:
+    - type: Transform
+      pos: -1.5,4.5
+      parent: 2
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 132
@@ -726,6 +733,13 @@ entities:
     - type: Transform
       pos: 2.6402364,4.6301794
       parent: 2
+- proto: DVSmartFridge
+  entities:
+  - uid: 166
+    components:
+    - type: Transform
+      pos: -0.5,6.5
+      parent: 2
 - proto: EmergencyLight
   entities:
   - uid: 221
@@ -733,6 +747,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,3.5
+      parent: 2
+- proto: ExtinguisherCabinetFilled
+  entities:
+  - uid: 280
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,2.5
       parent: 2
 - proto: FaxMachineShip
   entities:
@@ -781,6 +803,18 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+- proto: FolderSpawner
+  entities:
+  - uid: 284
+    components:
+    - type: Transform
+      pos: -9.289769,5.927129
+      parent: 2
+  - uid: 285
+    components:
+    - type: Transform
+      pos: 2.069606,4.599004
+      parent: 2
 - proto: FoodCondimentSqueezeBottleKetchup
   entities:
   - uid: 30
@@ -1275,6 +1309,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -10.5,6.5
       parent: 2
+  - uid: 201
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,7.5
+      parent: 2
   - uid: 203
     components:
     - type: Transform
@@ -1286,6 +1326,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -10.5,5.5
+      parent: 2
+  - uid: 245
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,7.5
       parent: 2
 - proto: Gyroscope
   entities:
@@ -1335,10 +1381,10 @@ entities:
       parent: 2
 - proto: KitchenDeepFryer
   entities:
-  - uid: 175
+  - uid: 164
     components:
     - type: Transform
-      pos: -5.5,6.5
+      pos: 2.5,6.5
       parent: 2
 - proto: KitchenElectricRange
   entities:
@@ -1381,12 +1427,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,1.5
       parent: 2
-- proto: LockerWallMaterialsBasic10Filled
+- proto: LockerWallMaterialsBasicFilled
   entities:
-  - uid: 276
+  - uid: 108
     components:
     - type: Transform
-      pos: 1.5,7.5
+      rot: 3.141592653589793 rad
+      pos: -1.5,2.5
       parent: 2
 - proto: LockerWallMaterialsFuelUraniumFilled
   entities:
@@ -1398,10 +1445,10 @@ entities:
       parent: 2
 - proto: MaterialReclaimer
   entities:
-  - uid: 233
+  - uid: 43
     components:
     - type: Transform
-      pos: -1.5,3.5
+      pos: -5.5,6.5
       parent: 2
 - proto: NFHolopadShip
   entities:
@@ -1409,13 +1456,6 @@ entities:
     components:
     - type: Transform
       pos: -7.5,6.5
-      parent: 2
-- proto: NFMagnetBoxPlant
-  entities:
-  - uid: 245
-    components:
-    - type: Transform
-      pos: -2.5,4.5
       parent: 2
 - proto: NitrogenCanister
   entities:
@@ -1429,10 +1469,10 @@ entities:
       bodyType: Static
 - proto: OilJarCorn
   entities:
-  - uid: 5
+  - uid: 231
     components:
     - type: Transform
-      pos: 0.18926954,6.758712
+      pos: 1.0221472,6.692754
       parent: 2
 - proto: OilJarOlive
   entities:
@@ -1508,28 +1548,27 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,1.5
       parent: 2
+- proto: RandomPosterAny
+  entities:
+  - uid: 283
+    components:
+    - type: Transform
+      pos: -4.5,7.5
+      parent: 2
 - proto: ServiceTechFab
   entities:
   - uid: 139
     components:
     - type: Transform
-      pos: 1.5,6.5
+      pos: -1.5,3.5
       parent: 2
-- proto: SheetSteel
+- proto: ShelfKitchen
   entities:
-  - uid: 201
+  - uid: 175
     components:
     - type: Transform
-      pos: -0.46497625,6.6167703
-      parent: 2
-    - type: Stack
-      count: 15
-- proto: ShelfWallFreezerDark
-  entities:
-  - uid: 231
-    components:
-    - type: Transform
-      pos: 2.5,7.5
+      rot: -1.5707963267948966 rad
+      pos: 3.5,4.5
       parent: 2
 - proto: ShuttersNormalOpen
   entities:
@@ -1618,8 +1657,24 @@ entities:
     - type: Transform
       pos: 4.5,4.5
       parent: 2
+  - uid: 281
+    components:
+    - type: Transform
+      pos: 0.5,7.5
+      parent: 2
+  - uid: 282
+    components:
+    - type: Transform
+      pos: 1.5,7.5
+      parent: 2
 - proto: ShuttleWindow
   entities:
+  - uid: 5
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,7.5
+      parent: 2
   - uid: 6
     components:
     - type: Transform
@@ -1631,11 +1686,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,3.5
-      parent: 2
-  - uid: 43
-    components:
-    - type: Transform
-      pos: -1.5,7.5
       parent: 2
   - uid: 45
     components:
@@ -1675,6 +1725,12 @@ entities:
     - type: Transform
       pos: 4.5,4.5
       parent: 2
+  - uid: 178
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,7.5
+      parent: 2
   - uid: 198
     components:
     - type: Transform
@@ -1686,6 +1742,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -9.5,7.5
+      parent: 2
+  - uid: 276
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,7.5
       parent: 2
 - proto: SignalButtonDirectional
   entities:
@@ -1751,6 +1813,10 @@ entities:
         256:
         - Pressed: Toggle
         257:
+        - Pressed: Toggle
+        281:
+        - Pressed: Toggle
+        282:
         - Pressed: Toggle
   - uid: 273
     components:
@@ -1859,10 +1925,10 @@ entities:
     - type: Transform
       pos: -4.5,6.5
       parent: 2
-  - uid: 164
+  - uid: 167
     components:
     - type: Transform
-      pos: -0.5,6.5
+      pos: 1.5,6.5
       parent: 2
 - proto: Thruster
   entities:
@@ -1903,10 +1969,10 @@ entities:
       parent: 2
 - proto: VariantCubeBox
   entities:
-  - uid: 178
+  - uid: 279
     components:
     - type: Transform
-      pos: 0.0026258826,6.4872017
+      pos: 1.1158972,6.536504
       parent: 2
 - proto: WallShuttle
   entities:
@@ -1985,16 +2051,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,7.5
-      parent: 2
-  - uid: 166
-    components:
-    - type: Transform
-      pos: 1.5,7.5
-      parent: 2
-  - uid: 167
-    components:
-    - type: Transform
-      pos: 0.5,7.5
       parent: 2
   - uid: 168
     components:
