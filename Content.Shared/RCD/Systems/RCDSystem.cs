@@ -148,23 +148,23 @@ public sealed class RCDSystem : EntitySystem
         {
             _popup.PopupClient(Loc.GetString("rcd-component-missing-id-deed"),
                 uid, args.User, PopupType.Medium);
-            _audio.PlayPredicted(comp.ErrorSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
+            _audio.PlayLocal(comp.ErrorSound, rcdEntityUid, args.User);
             return;
         }
 
         // Swiping it again removes the authorization on it.
-        if (rcdComponent.LinkedShuttleUid != null)
+        if (rcdComponent.LinkedShuttleUid == shuttleDeedComponent.ShuttleUid)
         {
             _popup.PopupClient(Loc.GetString("rcd-component-id-card-removed"),
                 uid, args.User, PopupType.Medium);
-            _audio.PlayPredicted(comp.SwipeSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
+            _audio.PlayLocal(comp.SwipeSound, rcdEntityUid, args.User);
             rcdComponent.LinkedShuttleUid = null;
         }
-        else
+        else // Transfering or setting a new ID card
         {
             _popup.PopupClient(Loc.GetString("rcd-component-id-card-accepted"),
                 uid, args.User, PopupType.Medium);
-            _audio.PlayPredicted(comp.InsertSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
+            _audio.PlayLocal(comp.InsertSound, rcdEntityUid, args.User);
             rcdComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
         }
 

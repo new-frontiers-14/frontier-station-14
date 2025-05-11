@@ -208,10 +208,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
 
         var shuttleOwner = Name(player).Trim();
-        AssignShuttleDeedProperties(deedID, shuttleUid, name, shuttleOwner, voucherUsed);
+        AssignShuttleDeedProperties((targetId, deedID), shuttleUid, name, shuttleOwner, voucherUsed);
 
         var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttleUid);
-        AssignShuttleDeedProperties(deedShuttle, shuttleUid, name, shuttleOwner, voucherUsed);
+        AssignShuttleDeedProperties((shuttleUid, deedShuttle), shuttleUid, name, shuttleOwner, voucherUsed);
 
         if (!voucherUsed && component.NewJobTitle != null)
         {
@@ -772,12 +772,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     }
 
     #region Deed Assignment
-    void AssignShuttleDeedProperties(ShuttleDeedComponent deed, EntityUid? shuttleUid, string? shuttleName, string? shuttleOwner, bool purchasedWithVoucher)
+    void AssignShuttleDeedProperties(Entity<ShuttleDeedComponent> deed, EntityUid? shuttleUid, string? shuttleName, string? shuttleOwner, bool purchasedWithVoucher)
     {
-        deed.ShuttleUid = shuttleUid;
-        TryParseShuttleName(deed, shuttleName!);
-        deed.ShuttleOwner = shuttleOwner;
-        deed.PurchasedWithVoucher = purchasedWithVoucher;
+        deed.Comp.ShuttleUid = shuttleUid;
+        TryParseShuttleName(deed.Comp, shuttleName!);
+        deed.Comp.ShuttleOwner = shuttleOwner;
+        deed.Comp.PurchasedWithVoucher = purchasedWithVoucher;
+        Dirty(deed);
     }
 
     private void OnInitDeedSpawner(EntityUid uid, StationDeedSpawnerComponent component, MapInitEvent args)
@@ -796,7 +797,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _idSystem.TryChangeFullName(uid, output); // Update the card with owner name
 
         var deedID = EnsureComp<ShuttleDeedComponent>(uid);
-        AssignShuttleDeedProperties(deedID, shuttleDeed.ShuttleUid, shuttleDeed.ShuttleName, shuttleDeed.ShuttleOwner, shuttleDeed.PurchasedWithVoucher);
+        AssignShuttleDeedProperties((uid, deedID), shuttleDeed.ShuttleUid, shuttleDeed.ShuttleName, shuttleDeed.ShuttleOwner, shuttleDeed.PurchasedWithVoucher);
     }
     #endregion
 
