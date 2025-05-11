@@ -114,13 +114,13 @@
   components:
   - type: ItemSlots
     slots:
-      gun_magazine: &mag35Standard
+      gun_magazine:
         name: Magazine
         startingItem: NFMagazineSubMachineGun35
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
-        whitelist:
+        whitelist: &mag35Whitelist
           tags:
             - NFMagazineSubMachineGunPistol35
         whitelistFailPopup: gun-magazine-whitelist-fail
@@ -139,7 +139,14 @@
   components:
   - type: ItemSlots
     slots:
-      gun_magazine: *mag35Standard
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineSubMachineGun35Rubber
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist: *mag35Whitelist
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber35Rubber
         name: Chamber
         startingItem: NFCartridgePistol35Rubber
@@ -155,13 +162,13 @@
   components:
   - type: ItemSlots
     slots:
-      gun_magazine: &mag35TopMounted
+      gun_magazine:
         name: Magazine
         startingItem: NFMagazineSubMachineGunTopMounted35
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
-        whitelist:
+        whitelist: &mag35TopMountedWhitelist
           tags:
             - NFMagazineSubMachineGunTopMountedPistol35
       gun_chamber: *chamber35Standard
@@ -173,5 +180,11 @@
   components:
   - type: ItemSlots
     slots:
-      gun_magazine: *mag35TopMounted
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineSubMachineGunTopMounted35Rubber
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist: *mag35TopMountedWhitelist
       gun_chamber: *chamber35Rubber

@@ -551,7 +551,7 @@
     state: white
 
 - type: entity
-  name: toy RPG
+  name: toy rocket launcher
   parent: [BaseClearContraband, NFWeaponLauncherRocket]
   id: WeaponLauncherRocketToy
   suffix: Toy
@@ -581,6 +581,9 @@
   - type: EmitSoundOnCollide
     sound:
       collection: ToySqueak
+  - type: EyeCursorOffset # clear the offset
+    maxOffset: 0
+    pvsIncrease: 0
 
 - type: entity
   id: BulletFoamRPG
