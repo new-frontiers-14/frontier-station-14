@@ -95,13 +95,13 @@
     examineCaliber: gun-examine-caliber-20
   - type: ItemSlots
     slots:
-      gun_magazine: &mag20Standard
+      gun_magazine:
         name: Magazine
         startingItem: NFMagazineRifle20
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
-        whitelist:
+        whitelist: &mag20Whitelist
           tags:
             - NFMagazineRifle20
             - NFMagazineDrumRifle20
@@ -121,7 +121,14 @@
   components:
   - type: ItemSlots
     slots:
-      gun_magazine: *mag20Standard
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineRifle20Rubber
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist: *mag20Whitelist
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: NFCartridgeRifle20Rubber
@@ -168,7 +175,7 @@
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
-        whitelist: &magazine30Whitelist
+        whitelist: &mag30Whitelist
           tags:
             - NFMagazineRifle30
             - NFMagazineLowCapacityRifle30
@@ -194,7 +201,7 @@
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
-        whitelist: *magazine30Whitelist
+        whitelist: *mag30Whitelist
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber30Rubber
         name: Chamber
@@ -215,7 +222,7 @@
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
-        whitelist: *magazine30Whitelist
+        whitelist: *mag30Whitelist
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: *chamber30Standard
 
@@ -232,6 +239,6 @@
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
-        whitelist: *magazine30Whitelist
+        whitelist: *mag30Whitelist
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: *chamber30Rubber
