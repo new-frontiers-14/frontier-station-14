@@ -115,19 +115,26 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
             if (shipTypes.TryGetValue(record.OriginalName, out var value))
             {
                 value.Count += 1;
+                if (EntityManager.TryGetEntity(record.EntityUid, out _)) // check if the ship still exists
+                    value.AbandonedCount += 1;
 
-                if (record.TimeOfPurchase is not null)
+                if (record.TimeOfPurchase is not null && record.TimeOfSale is not null)
                 {
-                    // Use roundend as the 'sale' time for ship lifespan if it was never sold, or was otherwise deleted without being sold somehow
-                    value.Lifetimes.Add((record.TimeOfSale ?? currentTime).Subtract(record.TimeOfPurchase.Value));
+                    value.Lifetimes.Add(record.TimeOfSale.Value.Subtract(record.TimeOfPurchase.Value));
                 }
             }
         }
         var sortedSummaries = shipTypes.OrderByDescending(record => record.Value.Count).ThenBy(record => record.Key);
 
-        foreach (var record in sortedSummaries){
-            var averageLifetime = TimeSpan.FromSeconds(record.Value.Lifetimes.Average(timeSpan => timeSpan.TotalSeconds)).ToString(@"hh\:mm");
-            builder.AppendLine($"{record.Key}: {record.Value.Count} | Average lifetime: {averageLifetime}");
+        foreach (var record in sortedSummaries)
+        {
+            var averageLifetime = "N/A";
+            if (record.Value.Lifetimes.Count != 0)
+            {
+                averageLifetime = TimeSpan.FromSeconds(record.Value.Lifetimes.Average(timeSpan => timeSpan.TotalSeconds)).ToString(@"hh\:mm");
+            }
+
+            builder.AppendLine($"{record.Key}: {record.Value.Count} | {record.Value.AbandonedCount} | Average lifetime: {averageLifetime}");
         }
         builder.AppendLine();
         return builder.ToString();
@@ -149,6 +156,7 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
     private class RecordSummary()
     {
         public int Count = 0;
+        public int AbandonedCount = 0;
         public List<TimeSpan> Lifetimes = new();
     }
 }
