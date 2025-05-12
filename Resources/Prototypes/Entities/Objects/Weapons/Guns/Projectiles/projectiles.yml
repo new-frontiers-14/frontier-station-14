@@ -1302,6 +1302,39 @@
     energyConsumption: 50000
     disableDuration: 60
 
+- type: entity
+  id: BulletCannonBallRubber
+  categories: [ HideSpawnMenu ]
+  parent: PelletCannonBallRubber
+  components:
+  - type: ProjectileSpread
+    proto: PelletCannonBallRubber
+    count: 6
+    spread: 15
+
+- type: entity
+  id: PelletCannonBallRubber
+  name: rubber shot
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: rubbershot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1.5
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/snap.ogg
+  - type: StaminaDamageOnCollide
+    damage: 14 # 84 stamina damage if all pellets connect
+  - type: Tracer
+    color: "#206EEFFF"
+    length: 1.5
+
+
 # DeltaV projectiles
 # For whatever magical reasons, I cannot put those in the DeltaV folders without having errors.
 

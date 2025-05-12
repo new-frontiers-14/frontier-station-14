@@ -35,3 +35,15 @@
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     state: ball-emp
+
+- type: entity
+  id: CannonBallRubber
+  name: rubbershot
+  parent: BaseCannonBall
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCannonBallRubber
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: ball-rubber
