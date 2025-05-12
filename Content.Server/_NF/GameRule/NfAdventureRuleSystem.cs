@@ -147,6 +147,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         }
         ReportRound(relayText);
         ReportLedger();
+        ReportShipyardStats();
     }
 
     private void OnPlayerSpawningEvent(PlayerSpawnCompleteEvent ev)
