@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using System.Linq;
 using Content.Server._NF.SectorServices;
 using Content.Server._NF.ShuttleRecords.Components;
 using Content.Server.Administration.Logs;
@@ -12,6 +13,8 @@ using Content.Shared._NF.Shipyard.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 using Robust.Shared.Toolshed.Commands.Values;
+using Content.Server.StationRecords.Systems;
+using Microsoft.CodeAnalysis.Elfie.Extensions;
 
 namespace Content.Server._NF.ShuttleRecords;
 
@@ -115,12 +118,19 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
 
                 if (record.TimeOfPurchase is not null)
                 {
+                    // Use roundend as the 'sale' time for ship lifespan if it was never sold, or was otherwise deleted without being sold somehow
                     value.Lifetimes.Add((record.TimeOfSale ?? currentTime).Subtract(record.TimeOfPurchase.Value));
                 }
             }
         }
+        var sortedSummaries = shipTypes.OrderByDescending(record => record.Value.Count).ThenBy(record => record.Key);
 
-        return "";
+        foreach (var record in sortedSummaries){
+            var averageLifetime = TimeSpan.FromSeconds(record.Value.Lifetimes.Average(timeSpan => timeSpan.TotalSeconds)).ToString(@"hh\:mm");
+            builder.AppendLine($"{record.Key}: {record.Value.Count} | Average lifetime: {averageLifetime}");
+        }
+        builder.AppendLine();
+        return builder.ToString();
     }
 
     private bool TryGetShuttleRecordsDataComponent([NotNullWhen(true)] out SectorShuttleRecordsComponent? component)
