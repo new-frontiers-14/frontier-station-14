@@ -15,6 +15,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.Network; // EE edit
 
 namespace Content.Shared.Actions;
 
@@ -29,6 +30,8 @@ public abstract class SharedActionsSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+
+    [Dependency] private readonly INetManager _net = default!; // EE edit
 
     public override void Initialize()
     {
@@ -815,8 +818,8 @@ public abstract class SharedActionsSystem : EntitySystem
         if (!ResolveActionData(actionId, ref action))
             return false;
 
-        DebugTools.Assert(action.Container == null ||
-                          (TryComp(action.Container, out ActionsContainerComponent? containerComp)
+        DebugTools.Assert(_net.IsClient || action.Container == null || // EE edit
+                         (TryComp(action.Container, out ActionsContainerComponent? containerComp)
                            && containerComp.Container.Contains(actionId)));
 
         if (action.AttachedEntity != null)
