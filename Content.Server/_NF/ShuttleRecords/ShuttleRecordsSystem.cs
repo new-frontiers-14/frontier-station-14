@@ -126,6 +126,13 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         }
         var sortedSummaries = shipTypes.OrderByDescending(record => record.Value.Count).ThenBy(record => record.Key);
 
+        int totalShips = 0;
+        int totalAbandoned = 0;
+        List<TimeSpan> totalLifetimes = new();
+
+        builder.AppendLine("```");
+        builder.AppendLine("Num | Abnd | Avg time | Type");
+        builder.AppendLine("-----------------------------------");
         foreach (var record in sortedSummaries)
         {
             var averageLifetime = "N/A";
@@ -133,10 +140,17 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
             {
                 averageLifetime = TimeSpan.FromSeconds(record.Value.Lifetimes.Average(timeSpan => timeSpan.TotalSeconds)).ToString(@"hh\:mm");
             }
+            totalShips += record.Value.Count;
+            totalAbandoned += record.Value.AbandonedCount;
+            totalLifetimes.AddRange(record.Value.Lifetimes);
 
-            builder.AppendLine($"{record.Key}: {record.Value.Count} | {record.Value.AbandonedCount} | Average lifetime: {averageLifetime}");
+            builder.AppendLine($"{record.Value.Count.ToString().PadLeft(3)} |{record.Value.AbandonedCount.ToString().PadLeft(5)} |{averageLifetime.PadLeft(9)} | {record.Key}");
         }
-        builder.AppendLine();
+        builder.AppendLine("-----------------------------------");
+        var totalAvgLifetime = "N/A";
+        totalAvgLifetime = TimeSpan.FromSeconds(totalLifetimes.Average(timeSpan => timeSpan.TotalSeconds)).ToString(@"hh\:mm");
+        builder.AppendLine($"{totalShips.ToString().PadLeft(3)} |{totalAbandoned.ToString().PadLeft(5)} |{totalAvgLifetime.PadLeft(9)} |");
+        builder.AppendLine("```");
         return builder.ToString();
     }
 
