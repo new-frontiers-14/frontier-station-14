@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: AF-Buyrcsp2
+# Discord: Buyrcsp2
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Izakaya
+  parent: BaseVessel
+  name: SSS Izakaya
+  description: A medium-size, japanese-style restaurant/pub ship with a large dining area, and equally large kitchen.
+  price: 82000 # ~68000 appraisal price, ~20% markup
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/izakaya.yml
+  guidebookPage: ShipyardIzakaya
+  class:
+  - Kitchen
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Izakaya
+  mapName: 'SSS Izakaya'
+  mapPath: /Maps/_NF/Shuttles/izakaya.yml
+  minPlayers: 0
+  stations:
+    Izakaya:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Izakaya {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
