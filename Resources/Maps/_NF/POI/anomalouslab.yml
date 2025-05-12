@@ -18,6 +18,7 @@ entities:
     components:
     - type: MetaData
     - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -78,18 +79,11 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -1619,16 +1613,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,17.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 1764
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,14.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelMiddle
   entities:
   - uid: 96
@@ -1637,32 +1627,24 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,16.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 98
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -4.5,15.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 1765
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,15.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 1812
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,16.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelRight
   entities:
   - uid: 97
@@ -1671,16 +1653,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,14.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 1813
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,17.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BoxEncryptionKeyScience
   entities:
   - uid: 650
@@ -4398,13 +4376,6 @@ entities:
     components:
     - type: Transform
       pos: 15.5,-13.5
-      parent: 1
-- proto: NFClosetBombFilled
-  entities:
-  - uid: 335
-    components:
-    - type: Transform
-      pos: 4.5,4.5
       parent: 1
 - proto: ClosetEmergencyFilledRandom
   entities:
@@ -8170,6 +8141,20 @@ entities:
     - type: Transform
       pos: 13.938791,8.600368
       parent: 1
+- proto: NFClosetBombFilled
+  entities:
+  - uid: 335
+    components:
+    - type: Transform
+      pos: 4.5,4.5
+      parent: 1
+- proto: NFHolopadLaboratory
+  entities:
+  - uid: 1050
+    components:
+    - type: Transform
+      pos: 3.5,-3.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 78
@@ -9570,6 +9555,62 @@ entities:
     components:
     - type: Transform
       pos: 16.5,-11.5
+      parent: 1
+- proto: SpawnMobXenoT1
+  entities:
+  - uid: 323
+    components:
+    - type: Transform
+      pos: 6.5,-5.5
+      parent: 1
+  - uid: 334
+    components:
+    - type: Transform
+      pos: -11.5,-3.5
+      parent: 1
+  - uid: 337
+    components:
+    - type: Transform
+      pos: 16.5,-13.5
+      parent: 1
+  - uid: 351
+    components:
+    - type: Transform
+      pos: -14.5,-14.5
+      parent: 1
+  - uid: 651
+    components:
+    - type: Transform
+      pos: -14.5,-6.5
+      parent: 1
+- proto: SpawnMobXenoT2
+  entities:
+  - uid: 339
+    components:
+    - type: Transform
+      pos: 7.5,6.5
+      parent: 1
+  - uid: 352
+    components:
+    - type: Transform
+      pos: 15.5,10.5
+      parent: 1
+- proto: SpawnMobXenoT3
+  entities:
+  - uid: 295
+    components:
+    - type: Transform
+      pos: 1.5,-1.5
+      parent: 1
+  - uid: 338
+    components:
+    - type: Transform
+      pos: -5.5,16.5
+      parent: 1
+  - uid: 665
+    components:
+    - type: Transform
+      pos: 16.5,-15.5
       parent: 1
 - proto: SpawnVehicleJanicart
   entities:
@@ -11522,61 +11563,5 @@ entities:
     components:
     - type: Transform
       pos: 16.5,-1.5
-      parent: 1
-- proto: XenoAISpawnerEasy
-  entities:
-  - uid: 323
-    components:
-    - type: Transform
-      pos: 6.5,-5.5
-      parent: 1
-  - uid: 334
-    components:
-    - type: Transform
-      pos: -11.5,-3.5
-      parent: 1
-  - uid: 337
-    components:
-    - type: Transform
-      pos: 16.5,-13.5
-      parent: 1
-  - uid: 351
-    components:
-    - type: Transform
-      pos: -14.5,-14.5
-      parent: 1
-  - uid: 651
-    components:
-    - type: Transform
-      pos: -14.5,-6.5
-      parent: 1
-- proto: XenoAISpawnerHard
-  entities:
-  - uid: 295
-    components:
-    - type: Transform
-      pos: 1.5,-1.5
-      parent: 1
-  - uid: 338
-    components:
-    - type: Transform
-      pos: -5.5,16.5
-      parent: 1
-  - uid: 665
-    components:
-    - type: Transform
-      pos: 16.5,-15.5
-      parent: 1
-- proto: XenoAISpawnerMedium
-  entities:
-  - uid: 339
-    components:
-    - type: Transform
-      pos: 7.5,6.5
-      parent: 1
-  - uid: 352
-    components:
-    - type: Transform
-      pos: 15.5,10.5
       parent: 1
 ...

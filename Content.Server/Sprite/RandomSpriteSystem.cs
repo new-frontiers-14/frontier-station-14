@@ -27,6 +27,15 @@ public sealed class RandomSpriteSystem: SharedRandomSpriteSystem
         if (component.Available.Count == 0)
             return;
 
+        // Frontier: select mapped colours
+        Dictionary<string, Color> mappedColors = new();
+        foreach (var (key, value) in component.MappedColors)
+        {
+            if (_prototype.TryIndex<ColorPalettePrototype>(value, out var palette))
+                mappedColors[key] = _random.Pick(palette.Colors.Values);
+        }
+        // End Frontier: select mapped colours
+
         var groups = new List<Dictionary<string, Dictionary<string, string?>>>();
         if (component.GetAllGroups)
         {
@@ -52,6 +61,12 @@ public sealed class RandomSpriteSystem: SharedRandomSpriteSystem
                 {
                     if (selectedState.Value == $"Inherit")
                         color = previousColor;
+                    // Frontier: mapped colours
+                    else if (mappedColors.TryGetValue(selectedState.Value, out var mappedColor))
+                    {
+                        color = mappedColor;
+                    }
+                    // End Frontier
                     else
                     {
                         color = _random.Pick(_prototype.Index<ColorPalettePrototype>(selectedState.Value).Colors.Values);

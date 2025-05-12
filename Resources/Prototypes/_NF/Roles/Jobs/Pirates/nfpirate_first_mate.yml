@@ -1,0 +1,46 @@
+- type: job
+  id: NFPirateFirstMate
+  name: job-name-nf-pirate-first-mate
+  description: job-description-nf-pirate-first-mate
+  playTimeTracker: JobPirateFirstMate
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 129600 # 36 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10800 # 3 hours
+  whitelisted: true
+  startingGear: NFPirateFirstMateGear
+  alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  canBeAntag: true
+  icon: "JobIconNFPirateFirstMate"
+  supervisors: job-supervisors-captain
+  weight: 30
+  displayWeight: 30
+  setPreference: true
+  access:
+  - Pirate
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AutoPirate
+    - type: SpecialSectorStationRecord # must be given on spawn
+      recordGeneration: FalseRecord
+  - !type:AddImplantSpecial
+    implants: [ FreelanceTrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: NFPirateFirstMateGear
+  equipment:
+    ears: ClothingHeadsetAltFreelancer
+    belt: ClothingBeltUtility
+    pocket1: BasePirateUplinkPirateCrew
+  storage:
+    back:
+    - AppraisalTool

@@ -1,4 +1,66 @@
 - type: entity
+  name: tracking dart
+  id: NFDartTracking
+  parent: Dart
+  components:
+  - type: ThrowingAngle
+    angle: 0
+  - type: EmbeddableProjectile
+    embedOnThrow: false
+    sound: /Audio/Weapons/star_hit.ogg
+    removalTime: 5
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    damage:
+      types:
+        Piercing: 4
+  - type: Tag
+    tags:
+    - NFTrackingDart
+  - type: Ammo
+    muzzleFlash: null
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/tracking_dart.rsi
+    rotation: -45
+    layers:
+    - state: icon
+      map: [ base ]
+    - state: unshaded
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+
+- type: entity
+  name: tracking kit box
+  parent: BoxDarts
+  id: NFBoxDartsTracking
+  description: A box of tracking darts and pinpointers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFDartTracking
+        amount: 3
+      - id: PinpointerUniversal
+        amount: 3
+
+- type: entity
   name: dartboard
   id: TargetDartsFlatpack
   parent: BaseNFFlatpack

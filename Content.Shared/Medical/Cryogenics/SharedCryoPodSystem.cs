@@ -20,6 +20,7 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
+    [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
@@ -156,14 +157,37 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
     protected void OnEmagged(EntityUid uid, CryoPodComponent? cryoPodComponent, ref GotEmaggedEvent args)
     {
         if (!Resolve(uid, ref cryoPodComponent))
-        {
             return;
-        }
+
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (cryoPodComponent.PermaLocked && cryoPodComponent.Locked)
+            return;
 
         cryoPodComponent.PermaLocked = true;
         cryoPodComponent.Locked = true;
         args.Handled = true;
     }
+
+    // Frontier: demag
+    protected void OnUnemagged(EntityUid uid, CryoPodComponent? cryoPodComponent, ref GotUnEmaggedEvent args)
+    {
+        if (!Resolve(uid, ref cryoPodComponent))
+            return;
+
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        // Clear fields regardless of their state
+        cryoPodComponent.PermaLocked = false;
+        cryoPodComponent.Locked = false;
+        args.Handled = true;
+    }
+    // End Frontier: demag
 
     protected void OnCryoPodPryFinished(EntityUid uid, CryoPodComponent cryoPodComponent, CryoPodPryFinished args)
     {

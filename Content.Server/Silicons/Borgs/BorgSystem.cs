@@ -164,7 +164,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         base.OnInserted(uid, component, args);
 
-        if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(args.Entity, out var mindId, out var mind))
+        if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(args.Entity, out var mindId, out var mind) && args.Container == component.BrainContainer)
         {
             _mind.TransferTo(mindId, uid, mind: mind);
         }
@@ -174,8 +174,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         base.OnRemoved(uid, component, args);
 
-        if (HasComp<BorgBrainComponent>(args.Entity) &
-            _mind.TryGetMind(uid, out var mindId, out var mind))
+        if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(uid, out var mindId, out var mind) && args.Container == component.BrainContainer)
         {
             _mind.TransferTo(mindId, args.Entity, mind: mind);
         }
@@ -324,7 +323,11 @@ public sealed partial class BorgSystem : SharedBorgSystem
         _access.SetAccessEnabled(uid, true);
         // End Frontier
 
-        _powerCell.SetDrawEnabled(uid, _mobState.IsAlive(uid));
+        if (_powerCell.HasDrawCharge(uid))
+        {
+            Toggle.TryActivate(uid);
+            _powerCell.SetDrawEnabled(uid, _mobState.IsAlive(uid));
+        }
         _appearance.SetData(uid, BorgVisuals.HasPlayer, true);
     }
 

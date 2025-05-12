@@ -1,9 +1,26 @@
 - type: entity
   name: crispy
   id: MobCatCrispy
-  parent: FoodMealFries
+  parent: EdibleBase
   description: Mistakes were made.
   components:
+  - type: FlavorProfile
+    flavors:
+    - potatoes
+    - salty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45 # Using the sausage bread values, fries get eaten too quickly.
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 5
   - type: Sprite
     noRot: true
     drawdepth: Mobs

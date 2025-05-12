@@ -1,4 +1,4 @@
-﻿using Content.Shared.Bank.Components;
+﻿using Content.Shared._NF.Bank.Components;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;

@@ -37,6 +37,9 @@
   name: mercenary techfab machine board
   description: A machine printed circuit board for a mercenary techfab.
   components:
+    - type: Sprite
+      sprite: _NF/Objects/Misc/module.rsi
+      state: nfsd # dumb, but we don't really have a merc module at the moment
     - type: MachineBoard
       prototype: MercenaryTechFab
       requirements:
@@ -84,6 +87,36 @@
           amount: 2
           defaultPrototype: Beaker
 
+- type: entity
+  id: GasMiningDrillMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: gas mining drill machine board
+  description: A machine printed circuit board for a gas mining drill.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: GasMiningDrill
+      requirements:
+        Manipulator: 3
+      stackRequirements:
+        Steel: 10
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+
+- type: entity
+  id: GaslockFrameMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: portable gaslock machine board
+  description: A machine printed circuit board for a gas mining drill.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: GaslockFrame
+      stackRequirements:
+        Steel: 10
+    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+
 # TechFab
 - type: entity
   id: NfsdTechFabCircuitboard
@@ -103,6 +136,8 @@
   parent: BaseMachineCircuitboard
   name: security thruster machine board
   components:
+  - type: Sprite
+    state: security
   - type: MachineBoard
     prototype: ThrusterSecurity
     requirements:
@@ -115,6 +150,9 @@
   parent: BaseMachineCircuitboard
   name: NFSD thruster machine board
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: nfsd
   - type: MachineBoard
     prototype: ThrusterNfsd
     requirements:
@@ -127,6 +165,8 @@
   parent: BaseMachineCircuitboard
   name: small thruster machine board
   components:
+  - type: Sprite
+    state: supply
   - type: MachineBoard
     prototype: SmallThruster
     requirements:
@@ -145,6 +185,8 @@
   parent: BaseMachineCircuitboard
   name: security gyroscope machine board
   components:
+  - type: Sprite
+    state: security
   - type: MachineBoard
     prototype: GyroscopeSecurity
     requirements:
@@ -158,6 +200,8 @@
   parent: BaseMachineCircuitboard
   name: small security gyroscope machine board
   components:
+  - type: Sprite
+    state: security
   - type: MachineBoard
     prototype: SmallGyroscopeSecurity
     requirements:
@@ -173,6 +217,9 @@
   parent: BaseMachineCircuitboard
   name: NFSD gyroscope machine board
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: nfsd
   - type: MachineBoard
     prototype: GyroscopeNfsd
     requirements:
@@ -186,6 +233,9 @@
   parent: BaseMachineCircuitboard
   name: small NFSD gyroscope machine board
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: nfsd
   - type: MachineBoard
     prototype: SmallGyroscopeNfsd
     requirements:
@@ -201,6 +251,8 @@
   parent: BaseMachineCircuitboard
   name: small gyroscope machine board
   components:
+  - type: Sprite
+    state: supply
   - type: MachineBoard
     prototype: SmallGyroscope
     requirements:
@@ -213,12 +265,15 @@
 
 - type: entity
   parent: BaseMachineCircuitboard
-  id: M_EmpMachineCircuitboard
-  name: M_EMP Generator machine board
+  id: MobileEmpGeneratorMachineCircuitboard
+  name: mobile EMP generator machine board
   description: A machine printed circuit board for a mobile EMP generator.
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: nfsd
   - type: MachineBoard
-    prototype: M_Emp
+    prototype: MobileEmpGenerator
     requirements:
       Capacitor: 4
     stackRequirements:
@@ -226,15 +281,37 @@
       Cable: 2
 
 - type: entity
-  id: PortableGeneratorHyperPacmanMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: H.Y.P.E.R.P.A.C.M.A.N.-type portable generator machine board
-  description: A machine printed circuit board for a shredder.
+  id: PortableGeneratorDKMachineCircuitboard
+  parent: [ BaseMachineCircuitboard, BaseC2ContrabandUnredeemable ]
+  name: D-K-type portable generator machine board
+  description: A machine printed circuit board for a D-K-type portable generator.
   components:
     - type: Sprite
       state: engineering
     - type: MachineBoard
-      prototype: PortableGeneratorHyperPacman
+      prototype: PortableGeneratorDK
+      requirements:
+        Capacitor: 2
+      stackRequirements:
+        CableHV: 10
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 200
+      chemicalComposition:
+        Silicon: 20
+    - type: StaticPrice
+      price: 40
+
+- type: entity
+  id: PortableGeneratorDKJrMachineCircuitboard
+  parent: [ BaseMachineCircuitboard, BaseC1Contraband ]
+  name: D-K Jr.-type portable generator machine board
+  description: A machine printed circuit board for a D-K Jr.-type portable generator.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: PortableGeneratorDKJr
       requirements:
         Capacitor: 2
       stackRequirements:
@@ -351,7 +428,7 @@
 
 - type: entity
   id: CondimentDispenserCircuitboard
-  parent: BaseMachineCircuitboard  
+  parent: BaseMachineCircuitboard
   name: condiment dispenser machine board
   description: A machine printed circuit board for a condiment dispenser.
   components:
@@ -375,3 +452,22 @@
   components:
   - type: MachineBoard
     prototype: MiniStationAnchor
+
+- type: entity
+  id: PortablePumpMachineCircuitBoard
+  parent: BaseMachineCircuitboard
+  name: portable pump machine board
+  description: A machine printed circuit board for a portable pump.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: PortablePump
+    requirements:
+      Manipulator: 2
+    stackRequirements:
+      Cable: 2
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker

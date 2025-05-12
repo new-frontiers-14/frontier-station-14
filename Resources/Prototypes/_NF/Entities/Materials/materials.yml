@@ -10,3 +10,35 @@
   - type: Tag
     tags:
     - MaterialHideRosyMothroach
+
+- type: entity
+  parent: MaterialBiomass
+  id: MaterialBiomass50
+  suffix: 50
+  components:
+  - type: Stack
+    count: 50
+
+- type: entity
+  id: CrateMaterialBiomass50
+  parent: CrateMaterialBiomass
+  name: biomass crate
+  suffix: 50
+  description: 50 units of biomass. Yum.
+  components:
+  - type: StorageFill
+    contents:
+    - id: MaterialBiomass50
+      amount: 1
+
+- type: entity
+  id: CrateMcCargoMaterialBiomass50
+  parent: CrateFreezerMcCargo
+  name: mcbiomass crate
+  suffix: 50
+  description: 50 units of biomass. Not for grilling.
+  components:
+  - type: StorageFill
+    contents:
+    - id: MaterialBiomass50
+      amount: 1

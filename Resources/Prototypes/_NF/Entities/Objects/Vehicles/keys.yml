@@ -1,11 +1,23 @@
 - type: entity
-  parent: BaseItem
+  parent: BaseKey
+  id: VehicleKeySkeletonMotorcycle
+  name: skeleton motorcycle keys
+  description: A beautiful set of keys adorned with a skull.
+  components:
+    - type: Tag
+      tags:
+        - VehicleKey
+        - SkeletonMotorcycleKeys
+    - type: Sprite
+      sprite: Objects/Vehicles/motorbike.rsi
+      state: keys
+
+- type: entity
+  parent: BaseKey
   id: VehicleKeyHoverbikeNF
   name: hoverbike keys
   description: Cute bibelot.
   components:
-  - type: Item
-    size: Tiny
   - type: Tag
     tags:
     - VehicleKey
@@ -15,3 +27,20 @@
     state: keys
   - type: StaticPrice
     price: 50
+
+# Upstream definitions
+- type: entity
+  parent: VehicleKeyATV
+  id: VehicleKeySkeleton
+  name: vehicle skeleton keys
+  description: Unlock any vehicle.
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - JanicartKeys
+    - SecwayKeys
+    - ATVKeys
+    - SyndicateSegwayKeys
+    - SkeletonMotorcycleKeys
+    - HoverbikeKeys

@@ -111,7 +111,8 @@
     follow: true
     location: nuclear bomb
   - type: FTLSmashImmune
-  - type: DisableShipyardSale # Frontier
+  - type: ShipyardSellCondition # Frontier
+    blockSale: true # Frontier
     reason: shipyard-console-dangerous-materials # Frontier
     allowedShipyardTypes: # Frontier:
     - Syndicate # Frontier

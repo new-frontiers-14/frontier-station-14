@@ -4,7 +4,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Bank.Components;
+namespace Content.Shared._NF.Bank.Components;
 
 [RegisterComponent, NetworkedComponent]
 

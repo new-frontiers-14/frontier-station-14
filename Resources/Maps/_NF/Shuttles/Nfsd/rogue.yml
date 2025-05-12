@@ -14,11 +14,11 @@ entities:
     components:
     - type: MetaData
       name: Rogue
-    - type: BecomesStation
-      id: Rogue
     - type: Transform
       pos: 2.2425354,-3.692793
       parent: invalid
+    - type: BecomesStation
+      id: Rogue
     - type: MapGrid
       chunks:
         0,0:
@@ -650,6 +650,13 @@ entities:
     - type: Transform
       pos: 0.48425126,3.4548554
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 128
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 1
 - proto: PlastitaniumWindow
   entities:
   - uid: 14
@@ -690,7 +697,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 1
-- proto: PoweredlightColoredFrostyBlue
+- proto: PoweredlightCyan
   entities:
   - uid: 94
     components:
@@ -889,7 +896,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,1.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 122
     components:

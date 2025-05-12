@@ -32,10 +32,12 @@ public sealed partial class SiliconLawContainer : BoxContainer
             if (Corrupted.Pressed)
             {
                 _law!.LawIdentifierOverride = CorruptedString;
+                _law!.LawPrintOverride = Loc.GetString("silicon-law-print-error"); // Frontier
             }
             else
             {
                 _law!.LawIdentifierOverride = null;
+                _law!.LawPrintOverride = null; // Frontier
             }
         };
 

@@ -1,0 +1,148 @@
+## Static recipes
+
+- type: latheRecipePack
+  id: SecurityEquipmentStatic
+  recipes:
+  - ClothingEyesHudSecurity
+  - ForensicPad
+  - Handcuffs
+  - TargetClown
+  - TargetHuman
+  - TargetSyndicate
+  - Zipties
+
+# Practice ammo/mags and practice weapons
+- type: latheRecipePack
+  id: SecurityPracticeStatic
+  recipes:
+  - BoxShotgunPractice
+  - MagazineBoxLightRiflePractice
+  - MagazineBoxMagnumPractice
+  - MagazineBoxPistolPractice
+  - MagazineBoxRiflePractice
+  - WeaponDisablerPractice
+  - WeaponLaserCarbinePractice
+  # - WeaponFlareGunSecurity # Frontier
+
+# Shared between secfab and emagged autolathe
+- type: latheRecipePack
+  id: SecurityAmmoStatic
+  recipes:
+  - BoxLethalshot
+  - BoxShotgunSlug
+  - MagazineBoxLightRifle
+  - MagazineBoxLightRifleRubber # Frontier
+  - MagazineBoxMagnum
+  - MagazineBoxMagnumRubber # Frontier
+  - MagazineBoxPistol
+  - MagazineBoxPistolRubber # Frontier
+  - MagazineBoxRifle
+  - MagazineBoxRifleRubber # Frontier
+  - MagazineLightRifle
+  - MagazineLightRifleRubber # Frontier
+  - MagazineLightRifleEmpty
+  - MagazinePistol
+  - MagazinePistolRubber # Frontier
+  - MagazinePistolEmpty
+  - MagazinePistolSubMachineGun
+  - MagazinePistolSubMachineGunRubber # Frontier
+  - MagazinePistolSubMachineGunEmpty
+  - MagazinePistolSubMachineGunTopMounted
+  - MagazinePistolSubMachineGunTopMountedEmpty
+  - MagazineRifle
+  - MagazineRifleEmpty
+  - MagazineShotgun
+  - MagazineShotgunEmpty
+  - MagazineShotgunSlug
+  - SpeedLoaderMagnum
+  - SpeedLoaderMagnumEmpty
+  - SpeedLoaderRifleHeavy # Frontier
+  - SpeedLoaderRifleHeavyEmpty # Frontier
+  - MagazineNovaliteC1Empty # Frontier
+  - MagazineNovaliteC1 # Frontier
+  - MagazineNovaliteC1Rubber # Frontier
+
+- type: latheRecipePack
+  id: SecurityWeaponsStatic
+  recipes:
+  - Flash
+  - Stunbaton
+  - CombatKnife
+  - RiotShield
+
+## Dynamic recipes
+
+- type: latheRecipePack
+  id: SecurityEquipment
+  recipes:
+  - ClothingBackpackElectropack
+  - HoloprojectorSecurity
+  - PortableRecharger
+  - PowerCageHigh
+  - PowerCageMedium
+  - PowerCageSmall
+  - TelescopicShield
+
+- type: latheRecipePack
+  id: SecurityBoards
+  abstract: true # Frontier: finally, spammable shuttle guns
+  recipes:
+  - ShuttleGunDusterCircuitboard
+  - ShuttleGunFriendshipCircuitboard
+  - ShuttleGunPerforatorCircuitboard
+  - ShuttleGunSvalinnMachineGunCircuitboard
+
+- type: latheRecipePack
+  parent:
+  - ScienceExplosives # sec gets everything for modular grenade making that sci does
+  id: SecurityExplosives
+  recipes:
+  - ExplosivePayload
+  - GrenadeBlast
+  - GrenadeEMP
+  - GrenadeFlash
+  - MagazineGrenadeEmpty
+
+# Shared between secfab and emagged protolathe
+- type: latheRecipePack
+  id: SecurityAmmo
+  recipes:
+  - BoxBeanbag
+  # - BoxShotgunIncendiary # Frontier
+  # - BoxShotgunUranium # Frontier
+  - BoxShellTranquilizer
+  # - MagazineBoxLightRifleIncendiary # Frontier
+  # - MagazineBoxLightRifleUranium # Frontier
+  # - MagazineBoxMagnumIncendiary # Frontier
+  # - MagazineBoxMagnumUranium # Frontier
+  # - MagazineBoxPistolIncendiary # Frontier
+  # - MagazineBoxPistolUranium # Frontier
+  # - MagazineBoxRifleIncendiary # Frontier
+  # - MagazineBoxRifleUranium # Frontier
+  # - MagazineLightRifleIncendiary # Frontier
+  # - MagazineLightRifleUranium # Frontier
+  # - MagazinePistolIncendiary # Frontier
+  # - MagazinePistolUranium # Frontier
+  # - MagazinePistolSubMachineGunIncendiary # Frontier
+  # - MagazinePistolSubMachineGunUranium # Frontier
+  # - MagazineRifleIncendiary # Frontier
+  # - MagazineRifleUranium # Frontier
+  - MagazineShotgunBeanbag
+  # - MagazineShotgunIncendiary # Frontier
+  # - SpeedLoaderMagnumIncendiary # Frontier
+  # - SpeedLoaderMagnumUranium # Frontier
+
+- type: latheRecipePack
+  id: SecurityWeapons
+  recipes:
+  - Truncheon
+  - WeaponAdvancedLaser
+  - WeaponLaserCannon
+  - WeaponLaserCarbine
+  - WeaponXrayCannon
+
+- type: latheRecipePack
+  id: SecurityDisablers
+  recipes:
+  - WeaponDisabler
+  - WeaponDisablerSMG

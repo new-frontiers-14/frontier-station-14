@@ -9,7 +9,7 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
-using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
+using Content.Shared._NF.Shipyard.Components; // Frontier
 
 namespace Content.Client.Access.UI
 {
@@ -243,7 +243,7 @@ namespace Content.Client.Access.UI
             var suffix = ShipSuffixLineEdit.Text;
 
             // We skip suffix validation because it's immutable and is ignored by the server
-            var valid = name.Length <= MaxNameLength
+            var valid = name.Length <= ShuttleDeedComponent.MaxNameLength
                 && name.Trim().Length >= 3; // Arbitrary client-side number, should hopefully be long enough.
 
             ShipNameSaveButton.Disabled = !_interfaceEnabled || !valid;

@@ -50,7 +50,6 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
-        private readonly EntityWhitelistSystem _whitelist; // Frontier
 
         private FlavorText.FlavorText? _flavorText;
         private TextEdit? _flavorTextEdit;
@@ -129,8 +128,6 @@ namespace Content.Client.Lobby.UI
             _resManager = resManager;
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
-
-            _whitelist = _entManager.System<EntityWhitelistSystem>(); // Frontier
 
             ImportButton.OnPressed += args =>
             {
@@ -407,13 +404,13 @@ namespace Content.Client.Lobby.UI
 
             #endregion Jobs
 
-            TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-antags-tab"));
+            //TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-antags-tab")); // Frontier
 
             RefreshTraits();
 
             #region Markings
 
-            TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
+            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-markings-tab")); // Frontier: 4<3
 
             Markings.OnMarkingAdded += OnMarkingChange;
             Markings.OnMarkingRemoved += OnMarkingChange;
@@ -491,7 +488,7 @@ namespace Content.Client.Lobby.UI
             TraitsList.DisposeAllChildren();
 
             var traits = _prototypeManager.EnumeratePrototypes<TraitPrototype>().OrderBy(t => Loc.GetString(t.Name)).ToList();
-            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab"));
+            TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-traits-tab")); // Frontier: 3<2
 
             if (traits.Count < 1)
             {
@@ -629,6 +626,8 @@ namespace Content.Client.Lobby.UI
 
         public void RefreshAntags()
         {
+            // Frontier: no antags
+            /*
             AntagList.DisposeAllChildren();
             var items = new[]
             {
@@ -687,6 +686,8 @@ namespace Content.Client.Lobby.UI
 
                 AntagList.AddChild(antagContainer);
             }
+            */
+            // End Frontier: no antags
         }
 
         private void SetDirty()
@@ -848,7 +849,7 @@ namespace Content.Client.Lobby.UI
 
             foreach (var department in departments)
             {
-                var departmentName = Loc.GetString($"department-{department.ID}");
+                var departmentName = Loc.GetString(department.Name);
 
                 if (!_jobCategories.TryGetValue(department.ID, out var category))
                 {
@@ -1024,6 +1025,13 @@ namespace Content.Client.Lobby.UI
             _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
             _loadoutWindow.OpenCenteredLeft();
 
+            _loadoutWindow.OnNameChanged += name =>
+            {
+                roleLoadout.EntityName = name;
+                Profile = Profile.WithLoadout(roleLoadout);
+                SetDirty();
+            };
+
             _loadoutWindow.OnLoadoutPressed += (loadoutGroup, loadoutProto) =>
             {
                 roleLoadout.AddLoadout(loadoutGroup, loadoutProto, _prototypeManager);
@@ -1135,6 +1143,22 @@ namespace Content.Client.Lobby.UI
                     Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
                     break;
                 }
+                // Frontier: Sheleg
+                case HumanoidSkinColor.ShelegToned:
+                {
+                    if (!Skin.Visible)
+                    {
+                        Skin.Visible = true;
+                        RgbSkinColorContainer.Visible = false;
+                    }
+
+                    var color = SkinColor.ShelegSkinTone((int)Skin.Value);
+
+                    Markings.CurrentSkinColor = color;
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+                    break;
+                }
+                // End Frontier
             }
 
             ReloadProfilePreview();
@@ -1364,6 +1388,20 @@ namespace Content.Client.Lobby.UI
 
                     break;
                 }
+                // Frontier: Sheleg
+                case HumanoidSkinColor.ShelegToned:
+                    {
+                    if (!Skin.Visible)
+                    {
+                        Skin.Visible = true;
+                        RgbSkinColorContainer.Visible = false;
+                    }
+
+                    Skin.Value = SkinColor.ShelegSkinToneFromColor(Profile.Appearance.SkinColor);
+
+                    break;
+                }
+                // End Frontier
             }
 
         }
@@ -1466,6 +1504,12 @@ namespace Content.Client.Lobby.UI
                     {
                         hairColor = Profile.Appearance.SkinColor;
                     }
+                    // Frontier: Forced hair color
+                    else if (_markingManager.MustMatchColor(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager) is Color matchedColor)
+                    {
+                        hairColor = matchedColor;
+                    }
+                    // End Frontier
                     else
                     {
                         hairColor = Profile.Appearance.HairColor;
@@ -1500,6 +1544,12 @@ namespace Content.Client.Lobby.UI
                     {
                         facialHairColor = Profile.Appearance.SkinColor;
                     }
+                    // Frontier: Forced hair color
+                    else if (_markingManager.MustMatchColor(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager) is Color matchedColor)
+                    {
+                        facialHairColor = matchedColor;
+                    }
+                    // End Frontier
                     else
                     {
                         facialHairColor = Profile.Appearance.FacialHairColor;

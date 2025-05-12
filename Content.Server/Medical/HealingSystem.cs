@@ -72,7 +72,10 @@ public sealed class HealingSystem : EntitySystem
             _bloodstreamSystem.TryModifyBleedAmount(entity.Owner, healing.BloodlossModifier);
             if (isBleeding != bloodstream.BleedAmount > 0)
             {
-                _popupSystem.PopupEntity(Loc.GetString("medical-item-stop-bleeding"), entity, args.User);
+                var popup = (args.User == entity.Owner)
+                    ? Loc.GetString("medical-item-stop-bleeding-self")
+                    : Loc.GetString("medical-item-stop-bleeding", ("target", Identity.Entity(entity.Owner, EntityManager)));
+                _popupSystem.PopupEntity(popup, entity, args.User);
             }
         }
 
@@ -80,7 +83,7 @@ public sealed class HealingSystem : EntitySystem
         if (healing.ModifyBloodLevel != 0)
             _bloodstreamSystem.TryModifyBloodLevel(entity.Owner, healing.ModifyBloodLevel);
 
-        var healed = _damageable.TryChangeDamage(entity.Owner, healing.Damage, true, origin: args.Args.User);
+        var healed = _damageable.TryChangeDamage(entity.Owner, healing.Damage * _damageable.UniversalTopicalsHealModifier, true, origin: args.Args.User);
 
         if (healed == null && healing.BloodlossModifier != 0)
             return;
@@ -115,15 +118,15 @@ public sealed class HealingSystem : EntitySystem
         _audio.PlayPvs(healing.HealingEndSound, entity.Owner, AudioHelpers.WithVariation(0.125f, _random).WithVolume(1f));
 
         // Logic to determine the whether or not to repeat the healing action
-        args.Repeat = (HasDamage(entity.Owner, entity.Comp, healing) && !dontRepeat); // Frontier: add entity.Owner
+        args.Repeat = (HasDamage(entity, healing) && !dontRepeat);
         if (!args.Repeat && !dontRepeat)
             _popupSystem.PopupEntity(Loc.GetString("medical-item-finished-using", ("item", args.Used)), entity.Owner, args.User);
         args.Handled = true;
     }
 
-    private bool HasDamage(EntityUid target, DamageableComponent component, HealingComponent healing)
+    private bool HasDamage(Entity<DamageableComponent> ent, HealingComponent healing)
     {
-        var damageableDict = component.Damage.DamageDict;
+        var damageableDict = ent.Comp.Damage.DamageDict;
         var healingDict = healing.Damage.DamageDict;
         foreach (var type in healingDict)
         {
@@ -133,24 +136,22 @@ public sealed class HealingSystem : EntitySystem
             }
         }
 
-        // Frontier: check if this healing item can restore the target's blood or staunch their bleeding
-        var hasBloodstream = TryComp<BloodstreamComponent>(target, out var bloodstream);
-
-        if (healing.ModifyBloodLevel > 0
-            && hasBloodstream
-            && _solutionContainerSystem.ResolveSolution(target, bloodstream!.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)
-            && bloodSolution.Volume < bloodSolution.MaxVolume)
+        if (TryComp<BloodstreamComponent>(ent, out var bloodstream))
         {
-            return true;
-        }
+            // Is ent missing blood that we can restore?
+            if (healing.ModifyBloodLevel > 0
+                && _solutionContainerSystem.ResolveSolution(ent.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)
+                && bloodSolution.Volume < bloodSolution.MaxVolume)
+            {
+                return true;
+            }
 
-        if (healing.BloodlossModifier < 0
-            && hasBloodstream
-            && bloodstream!.BleedAmount > 0)
-        {
-            return true;
+            // Is ent bleeding and can we stop it?
+            if (healing.BloodlossModifier < 0 && bloodstream.BleedAmount > 0)
+            {
+                return true;
+            }
         }
-        // End Frontier
 
         return false;
     }
@@ -191,16 +192,7 @@ public sealed class HealingSystem : EntitySystem
         if (TryComp<StackComponent>(uid, out var stack) && stack.Count < 1)
             return false;
 
-        // Frontier: extra conditions moved into HasDamage
-        // var anythingToDo =
-        // HasDamage(targetDamage, component) ||
-        // component.ModifyBloodLevel > 0 // Special case if healing item can restore lost blood...
-        //     && TryComp<BloodstreamComponent>(target, out var bloodstream)
-        //     && _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)
-        //     && bloodSolution.Volume < bloodSolution.MaxVolume; // ...and there is lost blood to restore.
-        // End Frontier
-
-        if (!HasDamage(target, targetDamage, component)) // Frontier: anythingToDo<!HasDamage
+        if (!HasDamage((target, targetDamage), component))
         {
             _popupSystem.PopupEntity(Loc.GetString("medical-item-cant-use", ("item", uid)), uid, user);
             return false;

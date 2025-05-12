@@ -80,6 +80,9 @@
   - type: Construction
     graph: Intercom
     node: intercom
+    containers:
+    - board
+    - key_slots
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
@@ -239,8 +242,9 @@
 - type: entity
   id: IntercomCommand
   parent: [BaseStructureIndestructible, BaseIntercomSecure] # Frontier - added BaseStructureIndestructible
-  suffix: Command, DO NOT MAP # Frontier - Added DO NOT MAP
+  suffix: Command
   description: An intercom. It's been reinforced with metal.
+  categories: [ DoNotMap ] # Frontier
   components:
   - type: ContainerFill
     containers:
@@ -296,7 +300,7 @@
 - type: entity
   id: IntercomSecurity
   parent: [BaseStructureIndestructible, BaseIntercomSecure] # Frontier - added BaseStructureIndestructible
-  suffix: Security # Frontier - Not adding DO NOT MAP. (Prototype is already matched by "Security" for sec shipyard.)
+  suffix: Security
   description: An intercom. It's been reinforced with metal from security helmets, making it a bitch-and-a-half to open.
   components:
   - type: ContainerFill
@@ -339,7 +343,8 @@
 - type: entity
   id: IntercomAll
   parent: [BaseStructureIndestructible, Intercom] # Frontier - added BaseStructureIndestructible
-  suffix: All, DO NOT MAP # Frontier - Added DO NOT MAP
+  suffix: All
+  categories: [ DoNotMap ] # Frontier
   components:
   - type: ContainerFill
     containers:
@@ -348,3 +353,16 @@
       key_slots:
       - EncryptionKeyCommon
       - EncryptionKeyStationMaster
+
+- type: entity
+  id: IntercomFreelance
+  parent: Intercom
+  suffix: Freelance
+  components:
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyFreelance

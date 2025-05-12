@@ -6,25 +6,37 @@
   components:
   - type: MagnetPickup
     range: 2
+  # Frontier: layered sprite
   - type: Sprite
-    sprite: _NF/Objects/Specific/Mining/ore_bag_holding.rsi # Frontier
-    # state: icon # Frontier
-    layers: # Frontier
-    - state: icon # Frontier
-    - state: icon-unlit # Frontier
-      shader: unshaded # Frontier
+    sprite: _NF/Objects/Specific/Mining/ore_bag_holding.rsi
+    layers:
+    - state: icon
+    - state: icon-on
+      visible: false
+      map: [ "enum.ToggleVisuals.Layer" ]
+    - state: icon-unlit
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  # End Frontier: sprite revisions
   - type: Clothing
     sprite: _NF/Objects/Specific/Mining/ore_bag_holding.rsi # Frontier
   - type: Storage
     grid:
     - 0,0,19,9
-  - type: Item # Frontier
-    inhandVisuals: # Frontier
-      left: # Frontier
-      - state: inhand-left # Frontier
-      - state: inhand-left-unlit # Frontier
-        shader: unshaded # Frontier
-      right: # Frontier
-      - state: inhand-right # Frontier
-      - state: inhand-right-unlit # Frontier
-        shader: unshaded # Frontier
+  # Frontier: item visuals
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unlit
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unlit
+        shader: unshaded
+  # End Frontier

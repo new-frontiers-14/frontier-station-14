@@ -28,7 +28,7 @@
     state: pda
   - type: Pda
     paiSlot:
-      priority: -2
+      priority: -3 # Frontier: -2<-3
       whitelist:
         components:
         - PAI
@@ -38,13 +38,15 @@
       whitelist:
         tags:
         - Write
-    bookSlot: # Frontier
-      startingItem: HyperlinkBookSpaceLaw
+    # Frontier: space law slot
+    bookSlot:
+      startingItem: NFHyperlinkBookSpaceLaw
       priority: -2
       whitelist:
         tags:
         - BookSpaceLaw
         - BookNfsdSop
+    # End Frontier: space law slot
     idSlot:
       name: access-id-card-component-default
       ejectSound: /Audio/Machines/id_swipe.ogg
@@ -88,6 +90,7 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - NewsReaderCartridge
       - BountyContractsCartridge # Frontier
       - AstroNavCartridge # Frontier
@@ -138,6 +141,28 @@
   - type: ToggleableGhostRole # Frontier: Literally only for the wipe verb and nothing else.
     wipeVerbText: pda-wipe-device-verb-text # Frontier
     wipeVerbPopup: pda-wiped-device # Frontier
+    mindRoles: [] # Frontier: no default value here
+  - type: ShipyardSellCondition # Frontier: Teleport to shipyard console on sale
+    preserveOnSale: true
+
+- type: entity
+  parent: BasePDA
+  id: BaseWidePDA
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda"
+    - state: "light_overlay_wide"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay_wide"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
 
 - type: entity
   parent: BasePDA
@@ -148,6 +173,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - BountyContractsCartridge # Frontier
     - AstroNavCartridge # Frontier
@@ -160,12 +186,13 @@
   # Frontier: cartridges moved to loadouts
   # components:
   # - type: CartridgeLoader
-    # uiKey: enum.PdaUiKey.Key
-    # preinstalled:
-      # - CrewManifestCartridge
-      # - NotekeeperCartridge
-      # - NewsReaderCartridge
-      # - MedTekCartridge
+  #   uiKey: enum.PdaUiKey.Key
+  #   preinstalled:
+  #     - CrewManifestCartridge
+  #     - NotekeeperCartridge
+  #     - NanoTaskCartridge
+  #     - NewsReaderCartridge
+  #     - MedTekCartridge
   # End Frontier
 
 - type: entity
@@ -385,11 +412,46 @@
   components:
   - type: Pda
     id: MimeIDCard
-    idSlot: #  rewrite without sound because mime
-      name: ID Card
+    paiSlot:
+      priority: -3 # Frontier: -2<-3
+      ejectSound: null
+      insertSound: null
+      whitelist:
+        components:
+        - PAI
+    idSlot:
+      name: access-id-card-component-default
+      ejectSound: null # mime is silent
+      insertSound: null
       whitelist:
         components:
         - IdCard
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+      ejectSound: null
+      insertSound: null
+    # Frontier: silent book slot
+    bookSlot:
+      startingItem: NFHyperlinkBookSpaceLaw
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
+      ejectSound: null
+      insertSound: null
+    # End Frontier: silent book slot
+  - type: CartridgeLoader
+    cartridgeSlot:
+      ejectSound: null
+      insertSound: null
+      whitelist:
+        components:
+        - Cartridge
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -489,11 +551,12 @@
   # Frontier: cartridges moved to loadouts
   # - type: CartridgeLoader
   #   uiKey: enum.PdaUiKey.Key
-    # preinstalled:
-    #   - CrewManifestCartridge
-    #   - NotekeeperCartridge
-    #   - NewsReaderCartridge
-    #   - AstroNavCartridge
+  #   preinstalled:
+  #     - CrewManifestCartridge
+  #     - NotekeeperCartridge
+  #     - NanoTaskCartridge
+  #     - NewsReaderCartridge
+  #     - AstroNavCartridge
   # End Frontier
 
 - type: entity
@@ -515,7 +578,7 @@
     state: pda-bartender
 
 - type: entity
-  parent: BasePDA
+  parent: BaseWidePDA
   id: LibrarianPDA
   name: librarian PDA
   description: Smells like books.
@@ -842,6 +905,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
@@ -910,6 +974,7 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
       - WantedListCartridge
@@ -935,6 +1000,7 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - NewsReaderCartridge
       - LogProbeCartridge
       - WantedListCartridge
@@ -1058,6 +1124,7 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - AstroNavCartridge # Frontier
 
 - type: entity
@@ -1085,6 +1152,7 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
       - WantedListCartridge
@@ -1257,6 +1325,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
@@ -1284,6 +1353,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
@@ -1297,6 +1367,13 @@
   components:
   - type: Pda
     id: CluwneIDCard
+    penSlot:
+      startingItem: CrayonGreen
+      ejectSound: /Audio/Items/bikehorn.ogg
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -1306,13 +1383,6 @@
     borderColor: "#1c8f4d"
   - type: Icon
     state: pda-cluwne
-    penSlot:
-      startingItem: CrayonGreen
-      ejectSound: /Audio/Items/bikehorn.ogg
-      priority: -1
-      whitelist:
-        tags:
-        - Write
   - type: Unremoveable
 
 - type: entity
@@ -1431,6 +1501,7 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - MedTekCartridge
 
 - type: entity
@@ -1463,3 +1534,27 @@
         type: HealthAnalyzerBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
+
+- type: entity
+  parent: BaseWidePDA
+  id: WizardPDA
+  name: wizard PDA
+  description: You hear faint whispers coming from it.
+  components:
+  - type: Pda
+    id: WizardIDCard
+    penSlot:
+      startingItem: PenWiz
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-wizard
+  - type: PdaBorderColor
+    borderColor: "#7F3300"
+  - type: Icon
+    state: pda-wizard

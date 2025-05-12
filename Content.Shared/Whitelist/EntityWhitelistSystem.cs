@@ -1,5 +1,3 @@
-// Frontier: TODO
-// This file contain code from Wizden PR #33322 5e7a840 and need to be updated and fully replaced with new version when its ready.
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Item;
 using Content.Shared.Roles;
@@ -14,78 +12,11 @@ public sealed class EntityWhitelistSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
-    private readonly Dictionary<string, (ComponentAvailability availability, ComponentRegistration? registration)> _componentCache = new();
 
     public override void Initialize()
     {
         base.Initialize();
         _itemQuery = GetEntityQuery<ItemComponent>();
-
-        foreach (var registration in _factory.GetAllRegistrations())
-        {
-            _componentCache[registration.Name] = (ComponentAvailability.Available, registration);
-        }
-    }
-
-    /// <summary>
-    /// Converts strings to registrations once and caches the result
-    /// </summary>
-    private void EnsureRegistrations(EntityWhitelist list)
-    {
-        // If we've already converted the Components, no need to do it again
-        if (list.Registrations != null)
-            return;
-
-        // Initialize registrations list
-        var capacity = (list.Components?.Length ?? 0) + (list.MindRoles?.Length ?? 0);
-        list.Registrations = new List<ComponentRegistration>(capacity);
-
-        // Process both component lists
-        ProcessNames(list.Components);
-        ProcessNames(list.MindRoles);
-        return;
-
-        void ProcessNames(string[]? names)
-        {
-            if (names == null)
-                return;
-
-            foreach (var name in names)
-            {
-                // Skip if we already know it's unknown (cached with null registration)
-                if (_componentCache.TryGetValue(name, out var cached))
-                {
-                    if (cached.registration != null && !list.Registrations.Contains(cached.registration))
-                    {
-                        list.Registrations.Add(cached.registration);
-                    }
-                    continue;
-                }
-
-                // First time seeing this component name
-                var availability = _factory.GetComponentAvailability(name);
-                ComponentRegistration? registration = null;
-
-                if (availability == ComponentAvailability.Available)
-                {
-                    _factory.TryGetRegistration(name, out registration);
-                }
-
-                else if (availability == ComponentAvailability.Unknown)
-                {
-                    // Only log unknown components once when we first see them
-                    Log.Error($"Unknown component name {name} passed to EntityWhitelist!");
-                }
-
-                // Cache the result (including nulls for unknown components)
-                _componentCache[name] = (availability, registration);
-
-                if (registration != null && !list.Registrations.Contains(registration))
-                {
-                    list.Registrations.Add(registration);
-                }
-            }
-        }
     }
 
     /// <inheritdoc cref="IsValid(Content.Shared.Whitelist.EntityWhitelist,Robust.Shared.GameObjects.EntityUid)"/>
@@ -116,28 +47,23 @@ public sealed class EntityWhitelistSystem : EntitySystem
     /// </summary>
     public bool IsValid(EntityWhitelist list, EntityUid uid)
     {
-        // Fast path for empty lists
-        if ((list.Components == null || list.Components.Length == 0) &&
-            (list.MindRoles == null || list.MindRoles.Length == 0) &&
-            (list.Tags == null || list.Tags.Count == 0) &&
-            (list.Registrations == null || list.Registrations.Count == 0) &&
-            list.Sizes == null)
+        if (list.Components != null)
         {
-            return list.RequireAll;
+            if (list.Registrations == null)
+            {
+                var regs = StringsToRegs(list.Components);
+                list.Registrations = new List<ComponentRegistration>();
+                list.Registrations.AddRange(regs);
+            }
         }
 
-        // Convert Components and MindRoles to Registrations
-        EnsureRegistrations(list);
-
-        // Check mind roles first
-        if (list.MindRoles is { Length: > 0 })
+        if (list.MindRoles != null)
         {
-            foreach (var roleName in list.MindRoles)
-            {
-                if (!_componentCache.TryGetValue(roleName, out var cached) || cached.registration == null)
-                    continue;
+            var regs = StringsToRegs(list.MindRoles);
 
-                if (_roles.MindHasRole(uid, cached.registration.Type, out _))
+            foreach (var role in regs)
+            {
+                if ( _roles.MindHasRole(uid, role.Type, out _))
                 {
                     if (!list.RequireAll)
                         return true;
@@ -147,7 +73,6 @@ public sealed class EntityWhitelistSystem : EntitySystem
             }
         }
 
-        // Check registrations
         if (list.Registrations != null && list.Registrations.Count > 0)
         {
             foreach (var reg in list.Registrations)
@@ -162,35 +87,21 @@ public sealed class EntityWhitelistSystem : EntitySystem
             }
         }
 
-        // Check sizes
         if (list.Sizes != null && _itemQuery.TryComp(uid, out var itemComp))
         {
             if (list.Sizes.Contains(itemComp.Size))
-            {
-                if (!list.RequireAll)
-                    return true;
-            }
-            else if (list.RequireAll)
-                return false;
+                return true;
         }
 
-        // Check tags
-        if (list.Tags == null)
-            return list.RequireAll;
-
-        var hasTag = list.RequireAll
-            ? _tag.HasAllTags(uid, list.Tags)
-            : _tag.HasAnyTag(uid, list.Tags);
-
-        if (!list.RequireAll && hasTag)
-            return true;
-
-        if (list.RequireAll && !hasTag)
-            return false;
+        if (list.Tags != null)
+        {
+            return list.RequireAll
+                ? _tag.HasAllTags(uid, list.Tags)
+                : _tag.HasAnyTag(uid, list.Tags);
+        }
 
         return list.RequireAll;
     }
-
     /// The following are a list of "helper functions" that are basically the same as each other
     /// to help make code that uses EntityWhitelist a bit more readable because at the moment
     /// it is quite clunky having to write out component.Whitelist == null ? true : _whitelist.IsValid(component.Whitelist, uid)
@@ -274,5 +185,29 @@ public sealed class EntityWhitelistSystem : EntitySystem
     public bool IsBlacklistFailOrNull(EntityWhitelist? blacklist, EntityUid uid)
     {
         return IsWhitelistFailOrNull(blacklist, uid);
+    }
+
+    private List<ComponentRegistration> StringsToRegs(string[]? input)
+    {
+        var list = new List<ComponentRegistration>();
+
+        if (input == null || input.Length == 0)
+            return list;
+
+        foreach (var name in input)
+        {
+            var availability = _factory.GetComponentAvailability(name);
+            if (_factory.TryGetRegistration(name, out var registration)
+                && availability == ComponentAvailability.Available)
+            {
+                list.Add(registration);
+            }
+            else if (availability == ComponentAvailability.Unknown)
+            {
+                Log.Error($"StringsToRegs failed: Unknown component name {name} passed to EntityWhitelist!");
+            }
+        }
+
+        return list;
     }
 }

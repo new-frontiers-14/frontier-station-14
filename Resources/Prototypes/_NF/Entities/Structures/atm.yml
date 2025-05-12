@@ -30,7 +30,7 @@
       swap: false
       whitelist:
         components:
-          - Currency
+          - Cash
   - type: ActivatableUI
     key: enum.BankATMMenuUiKey.ATM
   - type: UserInterface
@@ -58,7 +58,7 @@
   - type: UserInterface
     interfaces:
       enum.BankATMMenuUiKey.ATM:
-        type: WithdrawBankATMMenuBoundUserInterface
+        type: BankATMWithdrawOnlyMenuBoundUserInterface
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBankATMDeposit]
@@ -198,13 +198,13 @@
       swap: false
       whitelist:
         components:
-          - Currency
+          - Cash
   - type: ActivatableUI
     key: enum.BankATMMenuUiKey.ATM
   - type: UserInterface
     interfaces:
       enum.BankATMMenuUiKey.ATM:
-        type: StationBankATMMenuBoundUserInterface
+        type: StationAdminConsoleBoundUserInterface
   - type: ActivatableUIRequiresAccess
   - type: ActivatableUIRequiresPower
   - type: ItemSlots

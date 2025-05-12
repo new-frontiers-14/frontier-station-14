@@ -52,6 +52,7 @@ public sealed class RandomEntityPopulatorSystem : BaseWorldSystem
 
                     Spawn(proto, coords);
                 }
+                placeables.Clear();
             }
         }
     }

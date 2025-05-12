@@ -4478,18 +4478,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 9.5,11.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 388
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -12.5,10.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 677
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,-1.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: KitchenReagentGrinder
   entities:
   - uid: 643
@@ -4599,6 +4605,13 @@ entities:
     - type: Transform
       pos: 1.633827,4.46507
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 267
+    components:
+    - type: Transform
+      pos: 12.5,11.5
+      parent: 1
 - proto: NFSignDock
   entities:
   - uid: 665
@@ -4648,13 +4661,6 @@ entities:
     - type: Transform
       pos: 9.5,10.5
       parent: 1
-- proto: PaperBin5
-  entities:
-  - uid: 642
-    components:
-    - type: Transform
-      pos: 12.5,11.5
-      parent: 1
 - proto: PinpointerUniversal
   entities:
   - uid: 312
@@ -4669,19 +4675,11 @@ entities:
     - type: Transform
       pos: 5.5,2.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
   - uid: 153
     components:
     - type: Transform
       pos: 4.5,2.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PortableScrubber
   entities:
   - uid: 623
@@ -4954,13 +4952,6 @@ entities:
     components:
     - type: Transform
       pos: 5.5,4.5
-      parent: 1
-- proto: StorageCanister
-  entities:
-  - uid: 648
-    components:
-    - type: Transform
-      pos: 2.5,7.5
       parent: 1
 - proto: Saw
   entities:
@@ -5502,6 +5493,11 @@ entities:
       parent: 1
 - proto: StorageCanister
   entities:
+  - uid: 648
+    components:
+    - type: Transform
+      pos: 2.5,7.5
+      parent: 1
   - uid: 702
     components:
     - type: Transform
@@ -5604,11 +5600,6 @@ entities:
     components:
     - type: Transform
       pos: 12.5,12.5
-      parent: 1
-  - uid: 267
-    components:
-    - type: Transform
-      pos: 12.5,11.5
       parent: 1
   - uid: 268
     components:
@@ -6379,7 +6370,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,8.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 679
     components:

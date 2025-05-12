@@ -121,7 +121,13 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/Equipment/plant_bag.rsi
-    state: icon
+    # Frontier: layered sprite
+    layers:
+    - state: icon
+    - state: icon-on
+      visible: False
+      map: [ "enum.ToggleVisuals.Layer" ]
+    # End Frontier
   - type: Item
     storedRotation: -90
     size: Ginormous # Frontier
@@ -141,3 +147,27 @@
         - Seed
   - type: Dumpable
   - type: MagnetPickup # Frontier
+    magnetEnabled: false # Frontier
+    magnetCanBeEnabled: false # Frontier
+  - type: NFPlantBag # Frontier
+  # Begin DeltaV Additions: toggle magnet from White Dream
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onUse: false # Frontier
+    onAltUse: true # Frontier
+    onActivate: false # Frontier
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: True }
+          False: { visible: False }
+  # End DeltaV Additions

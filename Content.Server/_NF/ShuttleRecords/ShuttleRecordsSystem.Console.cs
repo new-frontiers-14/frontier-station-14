@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server._NF.Bank;
 using Content.Server.Cargo.Components;
 using Content.Shared._NF.Bank.BUI;
@@ -7,7 +7,7 @@ using Content.Shared._NF.ShuttleRecords.Components;
 using Content.Shared._NF.ShuttleRecords.Events;
 using Content.Shared.Access.Components;
 using Content.Shared.Database;
-using Content.Shared.Shipyard.Components;
+using Content.Shared._NF.Shipyard.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 

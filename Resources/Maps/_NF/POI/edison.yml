@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/21/2025 23:45:58
+  entityCount: 4324
+maps: []
+grids:
+- 2
+orphans:
+- 2
+nullspace: []
 tilemap:
   0: Space
   32: FloorConcreteSmooth
@@ -3160,19 +3171,7 @@ entities:
         2038:
         - DoorStatus: DoorBolt
         - DoorStatus: Close
-- proto: AirlockGlass
-  entities:
-  - uid: 110
-    components:
-    - type: Transform
-      pos: 8.5,9.5
-      parent: 2
-  - uid: 111
-    components:
-    - type: Transform
-      pos: 8.5,10.5
-      parent: 2
-- proto: AirlockGlassShuttle
+- proto: AirlockExternalGlassShuttleTransit
   entities:
   - uid: 2041
     components:
@@ -3275,6 +3274,18 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -36.5,0.5
+      parent: 2
+- proto: AirlockGlass
+  entities:
+  - uid: 110
+    components:
+    - type: Transform
+      pos: 8.5,9.5
+      parent: 2
+  - uid: 111
+    components:
+    - type: Transform
+      pos: 8.5,10.5
       parent: 2
 - proto: AirlockMaint
   entities:
@@ -4529,6 +4540,23 @@ entities:
     components:
     - type: Transform
       pos: 11.435642,9.570946
+      parent: 2
+- proto: BusSchedule
+  entities:
+  - uid: 4322
+    components:
+    - type: Transform
+      pos: 2.5,-25.5
+      parent: 2
+  - uid: 4323
+    components:
+    - type: Transform
+      pos: -29.5,-2.5
+      parent: 2
+  - uid: 4324
+    components:
+    - type: Transform
+      pos: 30.5,1.5
       parent: 2
 - proto: ButtonFrameCaution
   entities:
@@ -11741,7 +11769,7 @@ entities:
     - type: Transform
       pos: 12.5,12.5
       parent: 2
-- proto: ComputerWallmountWithdrawBankATM
+- proto: ComputerWallmountBankATM
   entities:
   - uid: 3182
     components:
@@ -19098,7 +19126,7 @@ entities:
     - type: Transform
       pos: -5.5,24.5
       parent: 2
-- proto: GasSaleConsole
+- proto: GasSaleConsoleHigh
   entities:
   - uid: 4274
     components:
@@ -21447,6 +21475,13 @@ entities:
     - type: Transform
       pos: 11.61501,9.490756
       parent: 2
+- proto: NFHolopadEdisonReception
+  entities:
+  - uid: 4321
+    components:
+    - type: Transform
+      pos: 0.5,-4.5
+      parent: 2
 - proto: NitrogenCanister
   entities:
   - uid: 2109
@@ -21701,7 +21736,7 @@ entities:
     - type: Transform
       pos: 2.5,-14.5
       parent: 2
-- proto: PosterLegitSMFires
+- proto: PosterLegitSafetyMothFires
   entities:
   - uid: 3964
     components:

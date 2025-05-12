@@ -25,7 +25,7 @@ public sealed class HarpyVisualsSystem : EntitySystem
     {
         if (args.Slot == "outerClothing" && HasComp<HarpyHideWingsComponent>(args.Equipment)) // Frontier: Swap tag to comp
         {
-            _humanoidSystem.SetLayerVisibility(uid, HumanoidVisualLayers.RArm, false);
+            _humanoidSystem.SetLayerVisibility(uid, HumanoidVisualLayers.RArmExtension, false); // Frontier: RArm<RArmExtension
             _humanoidSystem.SetLayerVisibility(uid, HumanoidVisualLayers.Tail, false);
         }
     }
@@ -34,7 +34,7 @@ public sealed class HarpyVisualsSystem : EntitySystem
     {
         if (args.Slot == "outerClothing" && HasComp<HarpyHideWingsComponent>(args.Equipment)) // Frontier: Swap tag to comp
         {
-            _humanoidSystem.SetLayerVisibility(uid, HumanoidVisualLayers.RArm, true);
+            _humanoidSystem.SetLayerVisibility(uid, HumanoidVisualLayers.RArmExtension, true); // Frontier: RArm<RArmExtension
             _humanoidSystem.SetLayerVisibility(uid, HumanoidVisualLayers.Tail, true);
         }
     }

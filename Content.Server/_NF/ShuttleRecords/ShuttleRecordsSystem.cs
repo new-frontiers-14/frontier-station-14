@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using Content.Server._NF.SectorServices;
 using Content.Server._NF.ShuttleRecords.Components;
 using Content.Server.Administration.Logs;
@@ -7,7 +7,7 @@ using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.ShuttleRecords;
 using Content.Shared.Access.Systems;
-using Content.Shared.Shipyard.Components;
+using Content.Shared._NF.Shipyard.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 

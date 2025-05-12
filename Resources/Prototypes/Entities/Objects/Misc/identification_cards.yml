@@ -28,6 +28,8 @@
   - type: StaticPrice # Frontier
     price: 5 # Frontier The card need to cost less then the PDA that comes with a card and a pen in it.
   - type: CargoSellBlacklist # Frontier
+  - type: ShipyardSellCondition # Frontier: Teleport to shipyard console on sale
+    preserveOnSale: true
 
 #IDs with layers
 
@@ -804,6 +806,21 @@
 
 - type: entity
   parent: IDCardStandard
+  id: WizardIDCard
+  name: wizard ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: wizard
+    - state: idwizard
+  - type: Access
+    tags:
+    - Wizard
+    - External
+    - Maintenance
+
+- type: entity
+  parent: IDCardStandard
   id: UniversalIDCard
   name: universal ID card
   suffix: Admin
@@ -824,11 +841,21 @@
   - type: Access
     groups:
     - AllAccess
+    - Silicon
     tags:
     - CentralCommand
     - NuclearOperative
     - SyndicateAgent
     - Wizard
+    - Pirate # Frontier
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  - type: AgentIDCard
+  - type: ActivatableUI
+    key: enum.AgentIDCardUiKey.Key
+    inHandsOnly: true
+  - type: UserInterface
+    interfaces:
+      enum.AgentIDCardUiKey.Key:
+        type: AgentIDCardBoundUserInterface

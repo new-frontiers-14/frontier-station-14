@@ -91,6 +91,8 @@
     name: ghost-role-information-rat-king-name
     description: ghost-role-information-rat-king-description
     rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -114,11 +116,11 @@
     price: 2500 # rat wealth
   - type: RandomMetadata
     nameSegments:
-    - RegalRatNameKingdom
-    - RegalRatNameTitle
-  # - type: GuideHelp # Frontier: removed from guidebook
-  #   guides: # Frontier: removed from guidebook
-  #   - MinorAntagonists # Frontier: removed from guidebook
+    - NamesRegalratKingdom
+    - NamesRegalratTitle
+  # - type: GuideHelp # Frontier: irrelevant
+  #   guides:
+  #   - MinorAntagonists
   - type: Grammar
     attributes:
       gender: male

@@ -538,7 +538,7 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: Schooner
-- proto: AirlockGlassShuttle
+- proto: AirlockGlassShuttleSyndicatePirateLocked
   entities:
   - uid: 3
     components:
@@ -905,8 +905,6 @@ entities:
     - type: Transform
       pos: 1.5,12.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaMiddle
   entities:
   - uid: 26
@@ -914,8 +912,6 @@ entities:
     - type: Transform
       pos: 0.5,12.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaRight
   entities:
   - uid: 27
@@ -923,8 +919,6 @@ entities:
     - type: Transform
       pos: -0.5,12.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: ButtonFrameCaution
   entities:
   - uid: 2
@@ -2178,6 +2172,13 @@ entities:
     - type: Transform
       pos: -2.5,7.5
       parent: 1
+- proto: HandLabeler
+  entities:
+  - uid: 336
+    components:
+    - type: Transform
+      pos: -1.3946776,-8.26584
+      parent: 1
 - proto: HeadSkeleton
   entities:
   - uid: 265
@@ -2237,6 +2238,13 @@ entities:
     components:
     - type: Transform
       pos: -2.5,9.5
+      parent: 1
+- proto: NFHolopadShipAntag
+  entities:
+  - uid: 337
+    components:
+    - type: Transform
+      pos: 0.5,-7.5
       parent: 1
 - proto: NFSignDock
   entities:
@@ -2340,10 +2348,6 @@ entities:
     - type: Transform
       pos: -0.5,8.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandDonk
   entities:
   - uid: 284
@@ -2493,6 +2497,11 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-8.5
+      parent: 1
+  - uid: 338
+    components:
+    - type: Transform
+      pos: -1.5,-8.5
       parent: 1
 - proto: Railing
   entities:
@@ -3455,7 +3464,7 @@ entities:
     - type: Transform
       pos: 0.5,9.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 470
     components:
