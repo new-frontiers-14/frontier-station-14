@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using Content.Server._NF.SectorServices;
 using Content.Server._NF.ShuttleRecords.Components;
 using Content.Server.Administration.Logs;
@@ -10,6 +11,7 @@ using Content.Shared.Access.Systems;
 using Content.Shared._NF.Shipyard.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
+using Robust.Shared.Toolshed.Commands.Values;
 
 namespace Content.Server._NF.ShuttleRecords;
 
@@ -88,8 +90,35 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         return false;
     }
 
-    public string GetStatsPrintout()
+    public string? GetStatsPrintout()
     {
+        if (!TryGetShuttleRecordsDataComponent(out var records))
+        {
+            return null;
+        }
+
+        StringBuilder builder = new();
+        Dictionary<String, RecordSummary> shipTypes = new(); // committing crimes against structs here
+        var currentTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+
+        foreach (var record in records.ShuttleRecords.Values)
+        {
+            if (record.OriginalName is null)
+                continue;
+
+            if (!shipTypes.ContainsKey(record.OriginalName))
+                shipTypes.Add(record.OriginalName, new RecordSummary());
+
+            if (shipTypes.TryGetValue(record.OriginalName, out var value))
+            {
+                value.Count += 1;
+
+                if (record.TimeOfPurchase is not null)
+                {
+                    value.Lifetimes.Add((record.TimeOfSale ?? currentTime).Subtract(record.TimeOfPurchase.Value));
+                }
+            }
+        }
 
         return "";
     }
@@ -107,4 +136,10 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         component = null;
         return false;
     }
+    private class RecordSummary()
+    {
+        public int Count = 0;
+        public List<TimeSpan> Lifetimes = new();
+    }
 }
+
