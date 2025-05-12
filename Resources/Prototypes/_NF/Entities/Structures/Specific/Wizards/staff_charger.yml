@@ -1,0 +1,56 @@
+- type: entity
+  id: StaffRechargerWizard
+  parent: [ BaseMachine, ConstructibleMachine ]
+  name: staff altar
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/Wizard/recharger_altar.rsi
+    snapCardinals: true
+    layers:
+    - map: ["enum.PowerChargerVisualLayers.Base"]
+      state: "empty"
+    - map: ["enum.PowerChargerVisualLayers.Light"]
+      state: "light-off"
+      shader: "unshaded"
+  - type: Machine
+    board: ScrollWizardStaffRechargerAltar
+  - type: Appearance
+  - type: Charger
+    chargeRate: 40
+    slotId: charger_slot
+  - type: Anchorable
+    delay: 1
+  - type: StaticPrice
+    price: 250
+  - type: PowerChargerVisuals
+  - type: ContainerContainer
+    containers:
+      charger_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - WizardStaffRechargeable
+
+- type: entity
+  id: StaffRechargerCult
+  parent: StaffRechargerWizard
+  name: cult staff altar
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/recharger_altar_cult.rsi
+  - type: Machine
+    board: ScrollCultStaffRechargerAltar
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - BloodCultStaffRechargeable
