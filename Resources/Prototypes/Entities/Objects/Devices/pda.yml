@@ -413,7 +413,7 @@
   - type: Pda
     id: MimeIDCard
     paiSlot:
-      priority: -2
+      priority: -3 # Frontier: -2<-3
       ejectSound: null
       insertSound: null
       whitelist:
@@ -434,6 +434,17 @@
         - Write
       ejectSound: null
       insertSound: null
+    # Frontier: silent book slot
+    bookSlot:
+      startingItem: NFHyperlinkBookSpaceLaw
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
+      ejectSound: null
+      insertSound: null
+    # End Frontier: silent book slot
   - type: CartridgeLoader
     cartridgeSlot:
       ejectSound: null

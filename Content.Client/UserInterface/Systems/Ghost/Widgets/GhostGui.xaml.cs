@@ -57,7 +57,7 @@ public sealed partial class GhostGui : UIWidget
         _respawnTime = respawnTime;
     }
 
-    public void Update(int? roles, bool? canReturnToBody, bool canUncryo)
+    public void Update(int? roles, bool? canReturnToBody, bool? canUncryo)
     {
         ReturnToBodyButton.Disabled = !canReturnToBody ?? true;
 
@@ -75,7 +75,7 @@ public sealed partial class GhostGui : UIWidget
 
         TargetWindow.Populate();
 
-        CryosleepReturnButton.Disabled = !canUncryo;
+        CryosleepReturnButton.Disabled = !canUncryo ?? true; // Frontier
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
