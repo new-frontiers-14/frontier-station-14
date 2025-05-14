@@ -4,8 +4,8 @@ meta:
   engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/14/2025 06:38:40
-  entityCount: 792
+  time: 05/14/2025 15:19:24
+  entityCount: 790
 maps: []
 grids:
 - 1
@@ -3845,7 +3845,7 @@ entities:
   - uid: 666
     components:
     - type: Transform
-      pos: 8.089838,-0.64192104
+      pos: 7.9462614,-0.31765008
       parent: 1
 - proto: MatchstickSpent
   entities:
@@ -3897,16 +3897,6 @@ entities:
       bodyType: Static
 - proto: Paper
   entities:
-  - uid: 668
-    components:
-    - type: Transform
-      pos: 7.699213,-0.32942104
-      parent: 1
-  - uid: 669
-    components:
-    - type: Transform
-      pos: 7.746088,-0.25129604
-      parent: 1
   - uid: 673
     components:
     - type: Transform
@@ -4290,13 +4280,19 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 14.5,-4.5
       parent: 1
-- proto: RubberStampEngineer
+- proto: RubberStampTrader
   entities:
-  - uid: 667
+  - uid: 591
     components:
     - type: Transform
-      pos: 8.074213,-0.18879604
+      pos: 7.8525114,-0.48952508
       parent: 1
+    - type: UseDelay
+      delays:
+        stamp:
+          endTime: 164.3329454
+          startTime: 195.4998045
+          length: 1
 - proto: SalvageTechfabNF
   entities:
   - uid: 568
@@ -4432,6 +4428,10 @@ entities:
         211:
         - Pressed: Toggle
         210:
+        - Pressed: Toggle
+        657:
+        - Pressed: Toggle
+        656:
         - Pressed: Toggle
   - uid: 658
     components:
