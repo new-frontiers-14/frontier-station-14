@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Content.Server._NF.SectorServices;
 using Content.Server._NF.ShuttleRecords.Components;
 using Content.Server.Administration.Logs;
@@ -93,8 +95,9 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         return false;
     }
 
-    public string? GetStatsPrintout()
+    public string? GetStatsPrintout(out byte[]? rawData)
     {
+        rawData = null;
         if (!TryGetShuttleRecordsDataComponent(out var records))
         {
             return null;
@@ -136,6 +139,10 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         }
 
         var sortedSummaries = shipTypes.OrderByDescending(record => record.Value.Count).ThenBy(record => record.Key);
+
+        // export raw data as a file for discord
+
+        rawData = JsonSerializer.SerializeToUtf8Bytes(shipTypes, new JsonSerializerOptions { WriteIndented = true });
 
         /* eventual discord message should be of the format
         ```

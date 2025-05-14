@@ -322,7 +322,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         if (webhookUrl == string.Empty)
             return;
 
-        var shipyardStatsPrintout = _shuttleRecordsSystem.GetStatsPrintout();
+        var shipyardStatsPrintout = _shuttleRecordsSystem.GetStatsPrintout(out var rawData);
         if (string.IsNullOrEmpty(shipyardStatsPrintout))
             return;
         Logger.InfoS("discord", shipyardStatsPrintout);
@@ -350,7 +350,16 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
                 },
             },
         };
-        await SendWebhookPayload(webhookUrl, payload);
+
+        MultipartFormDataContent form = new MultipartFormDataContent();
+        var ser_payload = JsonSerializer.Serialize(payload);
+        var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
+        form.Add(content, "payload_json");
+        if (rawData is not null)
+        {
+            form.Add(new ByteArrayContent(rawData, 0, rawData.Length), "Document", $"shipstats-{serverName}-{runId}.txt");
+        }
+        await SendWebhookPayload(webhookUrl, form);
     }
 
     private async Task SendWebhookPayload(string webhookUrl, WebhookPayload payload)
@@ -364,6 +373,17 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
             Logger.ErrorS("mining", $"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {reply}");
         }
     }
+
+    private async Task SendWebhookPayload(string webhookUrl, MultipartFormDataContent payload)
+    {
+        var request = await _httpClient.PostAsync($"{webhookUrl}?wait=true", payload);
+        var reply = await request.Content.ReadAsStringAsync();
+        if (!request.IsSuccessStatusCode)
+        {
+            Logger.ErrorS("mining", $"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {reply}");
+        }
+    }
+
 
     // https://discord.com/developers/docs/resources/channel#message-object-message-structure
     private struct WebhookPayload
