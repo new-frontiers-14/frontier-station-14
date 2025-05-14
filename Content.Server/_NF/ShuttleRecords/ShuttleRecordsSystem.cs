@@ -102,8 +102,11 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
 
         StringBuilder builder = new();
         Dictionary<String, RecordSummary> shipTypes = new(); // committing crimes against structs here
-        var currentTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+        var totalShips = 0;
+        var totalAbandoned = 0;
+        List<TimeSpan> totalLifetimes = new();
 
+        // sort through the records and use originalname to categorise ships
         foreach (var record in records.ShuttleRecords.Values)
         {
             if (record.OriginalName is null)
@@ -115,41 +118,63 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
             if (shipTypes.TryGetValue(record.OriginalName, out var value))
             {
                 value.Count += 1;
+                totalShips += 1;
+
                 if (EntityManager.TryGetEntity(record.EntityUid, out _)) // check if the ship still exists
+                {
                     value.AbandonedCount += 1;
+                    totalAbandoned += 1;
+                }
 
                 if (record.TimeOfPurchase is not null && record.TimeOfSale is not null)
                 {
-                    value.Lifetimes.Add(record.TimeOfSale.Value.Subtract(record.TimeOfPurchase.Value));
+                    var lifetime = record.TimeOfSale.Value.Subtract(record.TimeOfPurchase.Value);
+                    value.Lifetimes.Add(lifetime);
+                    totalLifetimes.Add(lifetime);
                 }
             }
         }
+
         var sortedSummaries = shipTypes.OrderByDescending(record => record.Value.Count).ThenBy(record => record.Key);
 
-        int totalShips = 0;
-        int totalAbandoned = 0;
-        List<TimeSpan> totalLifetimes = new();
+        /* eventual discord message should be of the format
+        ```
+         Num │ Abnd │ Avg time │ Type
+        ─────┼──────┼──────────┼───────────
+        1234 │ 1234 │    00:00 │ NAME
+        1234 │ 1234 │    00:00 │ NAME
+        1234 │ 1234 │    00:00 │ NAME
+        ─────┼──────┼──────────┼───────────
+        1234 │ 1234 │    00:00 │
+        ```
+        */
 
         builder.AppendLine("```");
-        builder.AppendLine("Num | Abnd | Avg time | Type");
-        builder.AppendLine("-----------------------------------");
+        builder.AppendLine(" Num │ Abnd │ Avg time │ Type");
+        builder.AppendLine("─────┼──────┼──────────┼───────────");
         foreach (var record in sortedSummaries)
         {
+            // fallback, in case every ship of this type was abandoned this round and there are no lifetimes to report
             var averageLifetime = "N/A";
             if (record.Value.Lifetimes.Count != 0)
             {
                 averageLifetime = TimeSpan.FromSeconds(record.Value.Lifetimes.Average(timeSpan => timeSpan.TotalSeconds)).ToString(@"hh\:mm");
             }
-            totalShips += record.Value.Count;
-            totalAbandoned += record.Value.AbandonedCount;
-            totalLifetimes.AddRange(record.Value.Lifetimes);
 
-            builder.AppendLine($"{record.Value.Count.ToString().PadLeft(3)} |{record.Value.AbandonedCount.ToString().PadLeft(5)} |{averageLifetime.PadLeft(9)} | {record.Key}");
+            // pad data for formatting
+            var num = record.Value.Count.ToString().PadLeft(4);
+            var abandoned = record.Value.AbandonedCount.ToString().PadLeft(5);
+            var avgTime = averageLifetime.PadLeft(9);
+
+            builder.AppendLine($"{num} │{abandoned} │{avgTime} │ {record.Key}");
         }
-        builder.AppendLine("-----------------------------------");
+
+        builder.AppendLine("─────┼──────┼──────────┼───────────");
+
+        // fallback, in case somehow every single ship was abandoned this round and there are no lifetimes to report
         var totalAvgLifetime = "N/A";
         totalAvgLifetime = TimeSpan.FromSeconds(totalLifetimes.Average(timeSpan => timeSpan.TotalSeconds)).ToString(@"hh\:mm");
-        builder.AppendLine($"{totalShips.ToString().PadLeft(3)} |{totalAbandoned.ToString().PadLeft(5)} |{totalAvgLifetime.PadLeft(9)} |");
+        builder.AppendLine($"{totalShips.ToString().PadLeft(4)} │{totalAbandoned.ToString().PadLeft(5)} │{totalAvgLifetime.PadLeft(9)} │");
         builder.AppendLine("```");
         return builder.ToString();
     }
