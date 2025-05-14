@@ -227,6 +227,63 @@
   color: "#c6c8cc"
   meltingPoint: 65.5
   boilingPoint: 759.0
+  # Frontier: Sheleg
+  metabolisms: 
+    Food:
+      effects:
+      - !type:AdjustTemperature
+        conditions:
+        - !type:OrganType
+          type: Sheleg
+          shouldHave: true
+        - !type:Temperature
+          max: 293.15
+        amount: 100000 # thermal energy, not temperature!
+      - !type:AdjustTemperature
+        conditions:
+        - !type:OrganType
+          type: Sheleg
+          shouldHave: true
+        - !type:Temperature
+          min: 293.15
+        amount: -10000
+      - !type:ChemVomit
+        probability: 0.15
+        conditions:
+        - !type:OrganType
+          type: Sheleg
+          shouldHave: true
+        - !type:ReagentThreshold
+          min: 30
+      - !type:PopupMessage
+        conditions:
+        - !type:OrganType
+          type: Sheleg
+          shouldHave: true
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+      - !type:Emote
+        conditions:
+        - !type:OrganType
+          type: Sheleg
+          shouldHave: true
+        emote: Scream
+        probability: 0.2
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:OrganType
+          type: Sheleg
+          shouldHave: true
+        key: Stutter
+        component: StutteringAccent
+      - !type:Jitter
+        conditions:
+        - !type:OrganType
+          type: Sheleg
+          shouldHave: true
+  # End Frontier: Sheleg
 
 - type: reagent
   id: Phosphorus
