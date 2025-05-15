@@ -69,3 +69,38 @@
     layers:
       - state: internals
       - state: extendedtank
+
+# Sheleg
+- type: entity
+  parent: BoxSurvival
+  id: NFBoxSurvivalSheleg
+  suffix: Oxygen
+  components:
+  - type: StorageFill
+    contents:
+      - id: EmergencyOxygenTankFilled
+      - id: NFPillSheleg
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: Flare
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: emergencytank
+
+- type: entity
+  parent: BoxSurvivalEngineering
+  id: NFBoxSurvivalExtendedSheleg
+  suffix: Oxygen
+  components:
+  - type: StorageFill
+    contents:
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: NFPillSheleg
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: CrowbarPocket
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: extendedtank

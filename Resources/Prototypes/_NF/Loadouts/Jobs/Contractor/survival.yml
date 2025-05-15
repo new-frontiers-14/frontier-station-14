@@ -19,6 +19,16 @@
     back:
     - NFBoxSurvivalNitrogen
 
+- type: loadout
+  id: ContractorNFBoxSurvivalSheleg
+  name: oxygen survival box
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFSheleg
+  storage:
+    back:
+    - NFBoxSurvivalSheleg
+
 #T1
 - type: loadout
   id: ContractorNFBoxSurvivalExtended
@@ -47,3 +57,17 @@
   storage:
     back:
     - NFBoxSurvivalExtendedNitrogen
+
+- type: loadout
+  id: ContractorNFBoxSurvivalExtendedSheleg
+  name: extended-oxygen survival box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFSheleg
+  price: 1000
+  storage:
+    back:
+    - NFBoxSurvivalExtendedSheleg
