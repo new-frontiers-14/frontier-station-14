@@ -8,7 +8,7 @@
     whitelist:
       tags:
         - CartridgeMagnum
-    proto: CartridgeMagnum
+    # proto: CartridgeMagnum # Frontier
     capacity: 12
   - type: Item
     size: Small
@@ -16,7 +16,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi # Frontier: add _NF prefix
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -31,7 +31,7 @@
   description: A cardboard box of .45 magnum rounds. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnum
+    # proto: CartridgeMagnum # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -46,7 +46,7 @@
   description: A cardboard box of .45 magnum rounds. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnumPractice
+    # proto: CartridgeMagnumPractice # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -62,7 +62,7 @@
   description: A cardboard box of .45 magnum rounds. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnumIncendiary
+    # proto: CartridgeMagnumIncendiary # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -78,7 +78,7 @@
   description: A cardboard box of .45 magnum rounds. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnumUranium
+    # proto: CartridgeMagnumUranium # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -94,7 +94,7 @@
   description: A cardboard box of .45 magnum rounds. Intended to hold rare armor-piercing ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnumAP
+    # proto: CartridgeMagnumAP # Frontier
   - type: Sprite
     layers:
     - state: base

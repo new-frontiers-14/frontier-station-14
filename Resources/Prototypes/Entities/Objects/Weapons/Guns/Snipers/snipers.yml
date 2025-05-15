@@ -27,7 +27,7 @@
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
   - type: BallisticAmmoProvider
     capacity: 10
-    proto: CartridgeLightRifle
+    # proto: CartridgeLightRifle # Frontier
     whitelist:
       tags:
       - CartridgeLightRifle
@@ -39,6 +39,7 @@
     price: 500
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: Kardashev-Mosin
   parent: [BaseWeaponSniper, BaseGunWieldable, BaseGunMelee, BaseC3SyndicateContraband] # Frontier: BaseMajorContraband<BaseC3SyndicateContraband, added BaseGunMelee
   id: WeaponSniperMosin
@@ -46,14 +47,9 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
-  - type: CursorOffsetRequiresWield # Frontier
-  - type: EyeCursorOffset # Frontier
-    maxOffset: 1.5 # Frontier
-    pvsIncrease: 0.15 # Frontier
-  - type: AltFireMelee # Frontier
-    attackType: Light # Frontier
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: Hristov
   parent: [BaseWeaponSniper, BaseGunWieldable, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponSniperHristov
@@ -76,7 +72,7 @@
       tags:
       - CartridgeAntiMateriel
     capacity: 5
-    proto: CartridgeAntiMateriel
+    # proto: CartridgeAntiMateriel # Frontier
   - type: SpeedModifiedOnWield
     walkModifier: 0.25
     sprintModifier: 0.25
@@ -86,6 +82,7 @@
     pvsIncrease: 0.3
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: musket
   parent: [ BaseWeaponSniper, BaseGunWieldable, BaseGunMelee, BaseC2Contraband ] # Frontier: BaseMajorContraband<BaseC2Contraband, add BaseGunMelee
   id: Musket
@@ -111,7 +108,7 @@
       tags:
       - CartridgeAntiMateriel
     capacity: 1
-    proto: CartridgeAntiMateriel
+    # proto: CartridgeAntiMateriel # Frontier
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -126,6 +123,7 @@
     attackType: Light # Frontier
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: flintlock pistol
   parent: [BaseWeaponSniper, BaseC3PirateContraband] # Frontier: BaseMajorContraband<BaseC3PirateContraband
   id: WeaponPistolFlintlock
@@ -152,7 +150,7 @@
       tags:
         - CartridgeMagnum # changed from Anti-material rifle rounds because it's a flintlock pistol not a Hristov 
     capacity: 1
-    proto: CartridgeMagnum
+    # proto: CartridgeMagnum # Frontier
   - type: StaticPrice
     price: 0
 

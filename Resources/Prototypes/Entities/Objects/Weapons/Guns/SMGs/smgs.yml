@@ -21,7 +21,7 @@
     fireRate: 8
     burstFireRate: 8
     angleIncrease: 3
-    angleDecay: 16  
+    angleDecay: 16
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -36,7 +36,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGun
+        # startingItem: MagazinePistolSubMachineGun # Frontier
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -46,7 +46,7 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        # startingItem: CartridgePistol # Frontier
         priority: 1
         whitelist:
           tags:
@@ -59,6 +59,7 @@
     price: 500
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: Atreides
   parent: [BaseWeaponSubMachineGun, BaseC3SyndicateContraband] # Frontier: BaseMajorContraband<BaseC3SyndicateContraband
   id: WeaponSubMachineGunAtreides
@@ -82,6 +83,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: C-20r submachine gun
   parent: [BaseWeaponSubMachineGun, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponSubMachineGunC20r
@@ -120,6 +122,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: Drozd
   parent: [BaseWeaponSubMachineGun, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: WeaponSubMachineGunDrozd
@@ -156,7 +159,7 @@
       slots:
         gun_magazine:
           name: Magazine
-          startingItem: MagazinePistolSubMachineGun
+          # startingItem: MagazinePistolSubMachineGun # Frontier
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
           priority: 2
@@ -166,7 +169,7 @@
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
           name: Chamber
-          startingItem: CartridgePistol
+          # startingItem: CartridgePistol # Frontier
           priority: 1
           whitelist:
             tags:
@@ -178,6 +181,7 @@
     - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: WT550
   parent: [ BaseWeaponSubMachineGun, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: WeaponSubMachineGunWt550
@@ -205,7 +209,7 @@
     minAngle: 1
     maxAngle: 6
     angleIncrease: 1.5
-    angleDecay: 6  
+    angleDecay: 6
     selectedMode: FullAuto
     shotsPerBurst: 5
     burstCooldown: 0.2
@@ -218,7 +222,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunTopMounted
+        # startingItem: MagazinePistolSubMachineGunTopMounted # Frontier
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -228,7 +232,7 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        # startingItem: CartridgePistol # Frontier
         priority: 1
         whitelist:
           tags:

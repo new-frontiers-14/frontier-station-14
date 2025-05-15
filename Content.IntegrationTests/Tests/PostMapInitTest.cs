@@ -33,11 +33,10 @@ namespace Content.IntegrationTests.Tests
         private const bool SkipTestMaps = true;
         private const string TestMapsPath = "/Maps/_NF/Test/"; // Frontier: _NF
 
-        // Frontier: TODO - define this to our set of maps of interest
         private static readonly string[] NoSpawnMaps =
         {
-            "CentComm",
-            "Dart"
+            // "CentComm", // Frontier: no upstream maps
+            // "Dart" // Frontier: no upstream maps
         };
 
         private static readonly string[] Grids =
@@ -155,7 +154,7 @@ namespace Content.IntegrationTests.Tests
             var cfg = server.ResolveDependency<IConfigurationManager>();
             Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
-            var shuttleFolder = new ResPath("/Maps/Shuttles");
+            var shuttleFolder = new ResPath("/Maps/_NF/Shuttles"); // Frontier: use NF maps
             var shuttles = resMan
                 .ContentFindFiles(shuttleFolder)
                 .Where(filePath =>

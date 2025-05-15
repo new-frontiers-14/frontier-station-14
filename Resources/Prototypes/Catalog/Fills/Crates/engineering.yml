@@ -196,15 +196,16 @@
     - id: RCD
 
 - type: entity
+  abstract: true # Frontier
   id: CrateParticleDecelerators
   parent: CrateEngineeringSecure
   name: particle decelerators crate
   description: A crate containing 3 Particle Decelerators.
   components:
   - type: StorageFill
-    contents:
-    - id: WeaponParticleDecelerator
-      amount: 3
+    contents: [] # Frontier
+    # - id: WeaponParticleDecelerator # Frontier
+    #   amount: 3 # Frontier
 
 - type: entity
   id: CrateEngineeringSpaceHeater

@@ -144,7 +144,7 @@
     - ReportingStatic # DeltaV
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - SecurityAmmoStatic
+    - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -230,10 +230,10 @@
     - NFPouches # Frontier
   - type: EmagLatheRecipes
     emagDynamicPacks:
-    - SecurityAmmo
+    - NfsdAmmoStatic # Frontier: SecurityAmmo<NfsdAmmoStatic
     - SecurityExplosives
     - SecurityEquipment
-    - SecurityWeapons
+    #- SecurityWeapons # Frontier
     - SyringeGuns # Delta-V
 
 - type: entity
@@ -422,8 +422,8 @@
     runningState: icon
     staticPacks:
     - SecurityEquipmentStatic
-    - SecurityPracticeStatic
-    - SecurityAmmoStatic
+    - NfsdPracticeStatic # Frontier: SecurityPracticeStatic<NfsdPracticeStatic
+    - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
     - SecurityWeaponsStatic
     dynamicPacks:
     - SalvageSecurityBoards
@@ -431,9 +431,9 @@
     - SecurityEquipment
     # - SecurityBoards # Frontier
     - SecurityExplosives
-    - SecurityAmmo
-    - SecurityWeapons
-    - SecurityDisablers
+    #- SecurityAmmo # Frontier
+    #- SecurityWeapons # Frontier
+    #- SecurityDisablers # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
@@ -469,7 +469,7 @@
       idleState: icon
       runningState: icon
       staticPacks:
-      - SecurityAmmoStatic
+      - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
     - type: MaterialStorage
       whitelist:
         tags:
