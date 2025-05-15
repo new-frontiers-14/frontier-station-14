@@ -1,6 +1,7 @@
 using Content.Shared.Movement.Components;
 using Robust.Shared.Physics.Events;
-using Content.Shared.StepTrigger.Systems; // imp edit
+using Content.Shared.StepTrigger.Components; // imp edit
+using Content.Shared.StepTrigger.Systems; // Imp edit
 
 namespace Content.Shared.Movement.Systems;
 
@@ -14,23 +15,30 @@ public abstract class SharedFloorOcclusionSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<FloorOccluderComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<FloorOccluderComponent, EndCollideEvent>(OnEndCollide);
-        SubscribeLocalEvent<FloorOccluderComponent, StepTriggeredOffEvent>(OnStepTriggered); // imp edit
-        SubscribeLocalEvent<FloorOccluderComponent, StepTriggerAttemptEvent>(OnStepTriggerAttempt); // imp edit
+        SubscribeLocalEvent<FloorOccluderComponent, StepTriggeredOffEvent>(OnStepTriggered); // Imp edit
+        SubscribeLocalEvent<FloorOccluderComponent, StepTriggerAttemptEvent>(OnStepTriggerAttempt); // Imp edit
     }
 
     private void OnStartCollide(Entity<FloorOccluderComponent> entity, ref StartCollideEvent args)
     {
-        var other = args.OtherEntity;
+        // Imp edit
+        //var other = args.OtherEntity;
 
-        if (!TryComp<FloorOcclusionComponent>(other, out var occlusion) ||
-            occlusion.Colliding.Contains(entity.Owner))
-        {
+        //if (!TryComp<FloorOcclusionComponent>(other, out var occlusion) ||
+        //    occlusion.Colliding.Contains(entity.Owner))
+        //{
+        //    return;
+        //}
+        
+        //occlusion.Colliding.Add(entity.Owner);
+        //Dirty(other, occlusion);
+        //SetEnabled((other, occlusion));
+
+        if (HasComp<StepTriggerComponent>(entity))
             return;
-        }
 
-        occlusion.Colliding.Add(entity.Owner);
-        Dirty(other, occlusion);
-        SetEnabled((other, occlusion));
+        var other = args.OtherEntity;
+        Occlude(entity, other);
     }
 
     private void OnEndCollide(Entity<FloorOccluderComponent> entity, ref EndCollideEvent args)
