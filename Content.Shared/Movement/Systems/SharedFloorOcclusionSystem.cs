@@ -39,6 +39,7 @@ public abstract class SharedFloorOcclusionSystem : EntitySystem
 
         var other = args.OtherEntity;
         Occlude(entity, other);
+        // Imp End
     }
 
     private void OnEndCollide(Entity<FloorOccluderComponent> entity, ref EndCollideEvent args)
