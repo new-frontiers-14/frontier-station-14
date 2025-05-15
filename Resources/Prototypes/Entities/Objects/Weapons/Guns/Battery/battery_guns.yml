@@ -851,14 +851,14 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: BoltTempgunCold
+    # proto: BoltTempgunCold # Frontier
     fireCost: 100
   - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: BoltTempgunCold
-      fireCost: 100
-    - proto: BoltTempgunHot
-      fireCost: 100
+    fireModes: [] # Frontier: add empty list
+    # - proto: BoltTempgunCold # Frontier
+    #   fireCost: 100 # Frontier
+    # - proto: BoltTempgunHot # Frontier
+    #   fireCost: 100 # Frontier
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000

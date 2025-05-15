@@ -85,14 +85,14 @@
     
   # Weapon systems
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletEnergyTurretDisabler
+    # proto: BulletEnergyTurretDisabler # Frontier
     fireCost: 100
   - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: BulletEnergyTurretDisabler
-      fireCost: 100
-    - proto: BulletEnergyTurretLaser
-      fireCost: 100
+    fireModes: [] # Frontier: add empty list
+    # - proto: BulletEnergyTurretDisabler # Frontier
+    #   fireCost: 100 # Frontier
+    # - proto: BulletEnergyTurretLaser # Frontier
+    #   fireCost: 100 # Frontier
   - type: TurretTargetSettings
     exemptAccessLevels:
     - Security
