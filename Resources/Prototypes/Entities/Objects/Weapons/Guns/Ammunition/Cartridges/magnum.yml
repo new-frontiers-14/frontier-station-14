@@ -9,7 +9,7 @@
       - Cartridge
       - CartridgeMagnum
   - type: CartridgeAmmo
-    proto: BulletMagnum
+    # proto: BulletMagnum # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -21,20 +21,22 @@
     price: 1
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeMagnum
   name: cartridge (.45 magnum)
   parent: BaseCartridgeMagnum
   components:
   - type: CartridgeAmmo
-    proto: BulletMagnum
+    # proto: BulletMagnum # Frontier
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeMagnumPractice
   name: cartridge (.45 magnum practice)
   parent: BaseCartridgeMagnum
   components:
   - type: CartridgeAmmo
-    proto: BulletMagnumPractice
+    # proto: BulletMagnumPractice # Frontier
   - type: Sprite
     layers:
       - state: base
@@ -44,12 +46,13 @@
         color: "#dbdbdb"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeMagnumIncendiary
   name: cartridge (.45 magnum incendiary)
   parent: BaseCartridgeMagnum
   components:
   - type: CartridgeAmmo
-    proto: BulletMagnumIncendiary
+    # proto: BulletMagnumIncendiary # Frontier
   - type: Sprite
     layers:
       - state: base
@@ -59,12 +62,13 @@
         color: "#ff6e52"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeMagnumAP
   name: cartridge (.45 magnum armor-piercing)
   parent: BaseCartridgeMagnum
   components:
   - type: CartridgeAmmo
-    proto: BulletMagnumAP
+    # proto: BulletMagnumAP # Frontier
   - type: Sprite
     layers:
       - state: base
@@ -74,12 +78,13 @@
         color: "#0a0a0a"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeMagnumUranium
   name: cartridge (.45 magnum uranium)
   parent: BaseCartridgeMagnum
   components:
   - type: CartridgeAmmo
-    proto: BulletMagnumUranium
+    # proto: BulletMagnumUranium # Frontier
   - type: Sprite
     layers:
       - state: base
