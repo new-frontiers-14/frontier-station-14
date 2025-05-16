@@ -1,0 +1,73 @@
+#region Pulse
+# WizDen
+- type: entity
+  id: NFWeaponEnergyRifleAssaultPulseCarbine
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleAssaultHitScanPulse, NFBaseWeaponFrameEnergyRifleAssaultNanotrasen ]
+  name: pulse carbine
+  description: |-
+    A high tech energy carbine favoured by the NT-ERT operatives. On the handle is a label that says 'for authorized use only.'
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: Battery # 40 shots
+    maxCharge: 3200
+    startingCharge: 3200
+
+#region Laser
+# Frontier
+- type: entity
+  id: NFWeaponEnergyLightMachineGunTurbo
+  parent: [ NFBaseWeaponEnergyRifleAssaultFireModes, NFBaseWeaponFrameEnergyRifleAssaultCybersun ]
+  name: turbo laser mk3
+  description: |-
+    A turbo laser ripped from the guardian unit. Appears to be a rather old model. Doesn't seem to be working properly. Supposedly highly illegal.
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: Item
+    size: Ginormous
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/turbo_laser.rsi
+    layers:
+    - state: icon-base
+    - state: charge-level-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+    sprite: _NF/Objects/Weapons/Guns/Battery/turbo_laser.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-back
+      - state: equipped-unshaded
+        shader: unshaded
+      suitstorage:
+      - state: equipped-back
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: Battery # 50 shots
+    maxCharge: 4000
+    startingCharge: 4000
+  - type: MagazineVisuals
+    magState: charge-level
+    steps: 6
+    zeroVisible: true

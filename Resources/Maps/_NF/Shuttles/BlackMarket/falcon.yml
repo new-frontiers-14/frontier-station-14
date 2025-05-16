@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 251.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 05/12/2025 02:57:29
+  entityCount: 572
+maps: []
+grids:
+- 3
+orphans:
+- 3
+nullspace: []
 tilemap:
   0: Space
   12: FloorBar
@@ -1355,7 +1366,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-8.5
       parent: 3
-- proto: CannonBall
+- proto: NFCannonBall
   entities:
   - uid: 548
     components:
@@ -1385,7 +1396,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: CannonBallGlassshot
+- proto: NFCannonBallGlassshot
   entities:
   - uid: 543
     components:
@@ -1415,7 +1426,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: CannonBallGrapeshot
+- proto: NFCannonBallGrapeshot
   entities:
   - uid: 540
     components:
@@ -3236,21 +3247,21 @@ entities:
     - type: Transform
       pos: -0.5,-7.5
       parent: 3
-- proto: SpawnPointPirate
+- proto: SpawnPointNFPirate
   entities:
   - uid: 525
     components:
     - type: Transform
       pos: -0.5,-11.5
       parent: 3
-- proto: SpawnPointPirateCaptain
+- proto: SpawnPointNFPirateCaptain
   entities:
   - uid: 538
     components:
     - type: Transform
       pos: 1.5,-5.5
       parent: 3
-- proto: SpawnPointPirateFirstMate
+- proto: SpawnPointNFPirateFirstMate
   entities:
   - uid: 537
     components:
@@ -3449,12 +3460,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-18.5
-      parent: 3
-  - uid: 119
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,-18.5
       parent: 3
 - proto: ToolboxElectrical
   entities:

@@ -49,7 +49,7 @@
     sprite: Objects/Materials/Sheets/metal.rsi
     state: plasteel_3
   product: CrateMaterialPlasteel
-  cost: 7500 # Frontier: 4800<7500
+  cost: 1600
   category: cargoproduct-category-name-materials
   group: market
 
@@ -71,7 +71,7 @@
     sprite: Objects/Materials/Sheets/other.rsi
     state: plasma_3
   product: CrateMaterialPlasma
-  cost: 3000 # Frontier: 2000<3000
+  cost: 1500
   category: cargoproduct-category-name-materials
   group: market
 
@@ -93,6 +93,28 @@
     state: paper_3
   product: CrateMaterialPaper
   cost: 1000
+  category: cargoproduct-category-name-materials
+  group: market
+
+- type: cargoProduct
+  id: MaterialBasic
+  abstract: true # Frontier
+  icon:
+    sprite: Objects/Materials/Sheets/other.rsi
+    state: generic_materials
+  product: CrateMaterialBasicResource
+  cost: 1660
+  category: cargoproduct-category-name-materials
+  group: market
+
+- type: cargoProduct
+  id: MaterialSilo
+  abstract: true # Frontier
+  icon:
+    sprite: Structures/Machines/silo.rsi
+    state: silo
+  product: CrateMaterialSilo
+  cost: 5000
   category: cargoproduct-category-name-materials
   group: market
 
