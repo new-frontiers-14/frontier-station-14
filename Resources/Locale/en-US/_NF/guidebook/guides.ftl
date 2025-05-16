@@ -23,6 +23,8 @@ guide-entry-medical-doc = Director of Care
 
 # Reference entries
 guide-entry-medicalrecipes = Medical Recipes
+guide-entry-weapons-ranged-archetypes = Ranged Weapon Archetypes
+guide-entry-weapons-color-codes-ammo = Ammmunition Color Codes
 
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
@@ -65,6 +67,7 @@ guide-entry-shipyard-hauler = Hauler
 guide-entry-shipyard-harbormaster = Harbormaster
 guide-entry-shipyard-honker = Honker
 guide-entry-shipyard-investigator = Investigator
+guide-entry-shipyard-izakaya = Izakaya
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern = Lantern
@@ -81,6 +84,7 @@ guide-entry-shipyard-phoenix = Phoenix
 guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-placebo = Placebo
 guide-entry-shipyard-prospector = Prospector
+guide-entry-shipyard-retort = Retort
 guide-entry-shipyard-searchlight = Searchlight
 guide-entry-shipyard-sparrow = Sparrow
 guide-entry-shipyard-skipper = Skipper
