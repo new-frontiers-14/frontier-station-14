@@ -2,6 +2,10 @@ using Content.Shared._NF.Roles.Components;
 using Content.Shared._NF.Roles.Events;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Hands;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Item;
+using Content.Shared.Paper;
 
 namespace Content.Server._NF.Roles.Systems;
 
@@ -15,6 +19,28 @@ public abstract partial class SharedInterviewHologramSystem : EntitySystem
 
         SubscribeLocalEvent<InterviewHologramComponent, SetCaptainApprovedEvent>(OnSetCaptainApproved);
         SubscribeLocalEvent<InterviewHologramComponent, ToggleApplicantApprovalEvent>(OnToggleApplicantApproval);
+
+        SubscribeLocalEvent<InterviewHologramComponent, UseAttemptEvent>(OnUseAttempt);
+        SubscribeLocalEvent<InterviewHologramComponent, InteractionAttemptEvent>(OnAttemptInteract);
+        SubscribeLocalEvent<InterviewHologramComponent, DropAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<InterviewHologramComponent, PickupAttemptEvent>(OnAttempt);
+    }
+
+    private void OnAttemptInteract(Entity<InterviewHologramComponent> ent, ref InteractionAttemptEvent args)
+    {
+        if (!HasComp<PaperComponent>(args.Target))
+            args.Cancelled = true;
+    }
+
+    private void OnUseAttempt(EntityUid uid, InterviewHologramComponent component, ref UseAttemptEvent args)
+    {
+        if (!HasComp<PaperComponent>(args.Used))
+            args.Cancel();
+    }
+
+    private void OnAttempt(EntityUid uid, InterviewHologramComponent component, CancellableEntityEventArgs args)
+    {
+        args.Cancel();
     }
 
     private void OnSetCaptainApproved(Entity<InterviewHologramComponent> ent, ref SetCaptainApprovedEvent ev)
