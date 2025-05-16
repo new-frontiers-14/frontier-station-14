@@ -14,8 +14,10 @@ using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules;
 using Content.Shared._NF.Bank;
 using Content.Shared._NF.CCVar;
+using Content.Shared._NF.Roles.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Silicons.Borgs.Components;
 using Robust.Server;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -157,8 +159,12 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
             EnsureComp<CargoSellBlacklistComponent>(mobUid);
 
             // Store player info with the bank balance - we have it directly, and BankSystem won't have a cache yet.
-            if (!_players.ContainsKey(mobUid))
+            if (!_players.ContainsKey(mobUid)
+                && !HasComp<BorgChassisComponent>(mobUid)
+                && !HasComp<InterviewHologramComponent>(mobUid))
+            {
                 _players[mobUid] = new PlayerRoundBankInformation(ev.Profile.BankBalance, MetaData(mobUid).EntityName, ev.Player.UserId);
+            }
         }
     }
 
