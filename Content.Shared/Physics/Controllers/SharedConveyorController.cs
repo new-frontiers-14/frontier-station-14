@@ -1,5 +1,7 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Shared.Conveyor;
+using Content.Shared.Damage; // Frontier
+using Content.Shared.Damage.Components; // Frontier
 using Content.Shared.Gravity;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
@@ -12,6 +14,7 @@ using Robust.Shared.Physics.Controllers;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Threading;
+using Content.Shared._NF.Trade; // Frontier
 
 namespace Content.Shared.Physics.Controllers;
 
@@ -110,6 +113,21 @@ public abstract class SharedConveyorController : VirtualController
         if (!args.OtherFixture.Hard || args.OtherBody.BodyType == BodyType.Static)
             return;
 
+        // Frontier: Damage trade crates on impact
+        if (HasComp<TradeCrateComponent>(otherUid))
+        {
+            EnsureComp<DamageOnHighSpeedImpactComponent>(otherUid, out var impact);
+
+            if (impact != null)
+            {
+                impact.MinimumSpeed = 0.01f;
+                DamageSpecifier damage = new();
+                damage.DamageDict.Add("Structural", 5);
+                impact.Damage = damage;
+            }
+        }
+        // End Frontier
+
         EnsureComp<ConveyedComponent>(otherUid);
     }
 
@@ -172,6 +190,11 @@ public abstract class SharedConveyorController : VirtualController
             if (!IsConveyed((ent.Entity.Owner, ent.Entity.Comp2)))
             {
                 RemComp<ConveyedComponent>(ent.Entity.Owner);
+
+                // Frontier: Damage trade crates on impact
+                if (HasComp<TradeCrateComponent>(ent.Entity.Owner))
+                    RemComp<DamageOnHighSpeedImpactComponent>(ent.Entity.Owner);
+                // End Frontier
             }
         }
     }

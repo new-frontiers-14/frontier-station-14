@@ -1,4 +1,5 @@
 using Content.Shared.Damage.Systems;
+using Content.Shared.Physics.Controllers; // Frontier
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -8,7 +9,7 @@ namespace Content.Shared.Damage.Components;
 /// <summary>
 /// Should the entity take damage / be stunned if colliding at a speed above MinimumSpeed?
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(DamageOnHighSpeedImpactSystem))]
+[RegisterComponent, NetworkedComponent, Access(typeof(DamageOnHighSpeedImpactSystem), typeof(SharedConveyorController))] // Frontier: Added SharedConveyorController
 public sealed partial class DamageOnHighSpeedImpactComponent : Component
 {
     [DataField("minimumSpeed"), ViewVariables(VVAccess.ReadWrite)]
