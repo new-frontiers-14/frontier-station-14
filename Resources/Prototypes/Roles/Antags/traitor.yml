@@ -5,6 +5,9 @@
   setPreference: false # Frontier: true<false
   objective: roles-antag-syndicate-agent-objective
   # guides: [ Traitors ] # Frontier: removed, irrelevant
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 3600 # 1h
 
 - type: antag
   id: TraitorSleeper
@@ -13,6 +16,9 @@
   setPreference: false # Frontier: true<false
   objective: roles-antag-syndicate-agent-sleeper-objective
   # guides: [ Traitors ] # Frontier: removed, irrelevant
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 3600 # 1h
 
 # Syndicate Operative Outfit - Monkey
 - type: startingGear
@@ -32,7 +38,7 @@
     gloves: ClothingHandsGlovesColorBlack
   storage:
     back:
-    - WeaponPistolViper
+    - NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
     - PinpointerSyndicateNuclear
     - DeathAcidifierImplanter
 
@@ -48,7 +54,7 @@
   id: SyndicateReinforcementMedic
   parent: SyndicateOperativeClothing
   equipment:
-    pocket1: WeaponPistolViper
+    pocket1: NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
   inhand:
     - MedkitCombatFilled
 
@@ -58,13 +64,13 @@
   equipment:
     id: AgentIDCard
     mask: ClothingMaskGasVoiceChameleon
-    pocket1: WeaponPistolViper
+    pocket1: NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
 
 - type: startingGear
   id: SyndicateReinforcementThief
   parent: SyndicateOperativeClothing
   equipment:
-    pocket1: WeaponPistolViper
+    pocket1: NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
   inhand:
     - ToolboxSyndicateFilled
   storage:
