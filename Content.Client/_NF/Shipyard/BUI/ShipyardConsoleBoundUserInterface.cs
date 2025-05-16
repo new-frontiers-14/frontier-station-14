@@ -3,13 +3,14 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared._NF.Shipyard.Events;
 using static Robust.Client.UserInterface.Controls.BaseButton;
+using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.Shipyard.BUI;
 
 public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
 {
     private ShipyardConsoleMenu? _menu;
-    private ShipyardRulesPopup? _rulesWindow;
+    // private ShipyardRulesPopup? _rulesWindow; // Frontier
     public int Balance { get; private set; }
 
     public int? ShipSellValue { get; private set; }
@@ -21,23 +22,25 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
-        _menu = new ShipyardConsoleMenu(this);
-        // Disable the NFSD popup for now.
-        // var rules = new FormattedMessage();
-        // _rulesWindow = new ShipyardRulesPopup(this);
-        _menu.OpenCentered();
-        // if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) UiKey)
-        // {
-        //     rules.AddText(Loc.GetString($"shipyard-rules-default1"));
-        //     rules.PushNewline();
-        //     rules.AddText(Loc.GetString($"shipyard-rules-default2"));
-        //     _rulesWindow.ShipRules.SetMessage(rules);
-        //     _rulesWindow.OpenCentered();
-        // }
-        _menu.OnClose += Close;
-        _menu.OnOrderApproved += ApproveOrder;
-        _menu.OnSellShip += SellShip;
-        _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent("ShipyardConsole-targetId"));
+        if (_menu == null)
+        {
+            _menu = this.CreateWindow<ShipyardConsoleMenu>();
+            _menu.OnOrderApproved += ApproveOrder;
+            _menu.OnSellShip += SellShip;
+            _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent("ShipyardConsole-targetId"));
+
+            // Disable the NFSD popup for now.
+            // var rules = new FormattedMessage();
+            // _rulesWindow = new ShipyardRulesPopup(this);
+            // if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) UiKey)
+            // {
+            //     rules.AddText(Loc.GetString($"shipyard-rules-default1"));
+            //     rules.PushNewline();
+            //     rules.AddText(Loc.GetString($"shipyard-rules-default2"));
+            //     _rulesWindow.ShipRules.SetMessage(rules);
+            //     _rulesWindow.OpenCentered();
+            // }
+        }
     }
 
     private void Populate(List<string> availablePrototypes, List<string> unavailablePrototypes, bool freeListings, bool validId)
@@ -63,15 +66,6 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         var castState = (ShipyardConsoleInterfaceState) state;
         Populate(castState.ShipyardPrototypes.available, castState.ShipyardPrototypes.unavailable, castState.FreeListings, castState.IsTargetIdPresent);
         _menu?.UpdateState(castState);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        if (!disposing) return;
-
-        _menu?.Dispose();
     }
 
     private void ApproveOrder(ButtonEventArgs args)
