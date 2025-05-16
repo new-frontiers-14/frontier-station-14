@@ -5,8 +5,8 @@
   description: Cold pillow, guaranteed.
   components:
   - type: Sprite
-    netsync: false
     sprite: _NF/Structures/Machines/cryopod.rsi
+    snapCardinals: true # Frontier
     layers:
     - state: closed
   - type: Physics
@@ -45,8 +45,8 @@
   description: A teleporter to return lost bodies with bounties on them. Dispenses cash on teleport.
   components:
   - type: Sprite
-    noRot: true
     sprite: _NF/Structures/Machines/body_retrieval_unit.rsi
+    snapCardinals: true # Frontier
     layers:
     - state: closed
       map: ["base"]

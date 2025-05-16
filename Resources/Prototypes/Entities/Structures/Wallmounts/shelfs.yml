@@ -323,12 +323,17 @@
     - 0,0,5,1
     - 0,3,5,4
     maxItemSize: Normal
-    # whitelist: # Frontier
-    #   tags: # Frontier
-    #     - DrinkGlass # Frontier
-    #     - DrinkBottle # Frontier
-    #     - DrinkCan # Frontier
-    #     - Beer # Frontier
+    # Frontier: no whitelist
+    # whitelist:
+    #   tags:
+    #     - DrinkGlass
+    #     - DrinkBottle
+    #     - DrinkCan
+    #     - Beer
+    #     - Wine
+    #   components:
+    #     - ReactionMixer
+    # End Frontier: no whitelist
   - type: Construction
     graph: Shelf
     node: ShelfBar
@@ -377,24 +382,35 @@
     - 0,0,5,1
     - 0,3,5,4
     maxItemSize: Normal
-    # whitelist: # Frontier
-    #   tags: # Frontier
-    #     - DrinkBottle # Frontier
-    #     - DrinkCan # Frontier
-    #     - DrinkCup # Frontier
-    #     - DrinkGlass # Frontier
-    #     - BoxCardboard # Frontier
-    #     - MonkeyCube # Frontier
-    #     - Enzyme # Frontier
-    #     - Mayo # Frontier
-    #     - Packet # Frontier
-    #     - Cleaver # Frontier
-    #     - Knife # Frontier
-    #     - KitchenKnife # Frontier
-    #     - RollingPin # Frontier
-    #     - Ingredient # Frontier
-    #     - Trash # Frontier
-    #     - Plastic # Frontier
+    # Frontier: no whitelist
+    # whitelist:
+    #   tags:
+    #     - DrinkBottle
+    #     - DrinkCan
+    #     - DrinkCup
+    #     - DrinkGlass
+    #     - BoxCardboard
+    #     - MonkeyCube
+    #     - Enzyme
+    #     - Mayo
+    #     - Packet
+    #     - Cleaver
+    #     - Knife
+    #     - KitchenKnife
+    #     - RollingPin
+    #     - Ingredient
+    #     - Trash
+    #     - Plastic
+    #     - SaltShaker
+    #     - PepperShaker
+    #     - Ketchup
+    #     - Hotsauce
+    #     - Coldsauce
+    #     - BBQsauce
+    #   components:
+    #     - Utensil
+    #     - Bin
+    # End Frontier: no whitelist
   - type: Construction
     graph: Shelf
     node: ShelfKitchen
@@ -449,11 +465,18 @@
     - 0,0,5,1
     - 0,3,5,4
     maxItemSize: Normal
-    # whitelist: # Frontier
-    #   tags: # Frontier
-    #     - ChemDispensable # Frontier
-    #     - GlassBeaker # Frontier
-    #     - Bottle # Frontier
+    # Frontier: no whitelist
+    # whitelist:
+    #   tags:
+    #     - ChemDispensable
+    #     - GlassBeaker
+    #     - Bottle
+    #     - Medkit
+    #     - CentrifugeCompatible
+    #     - PillCanister
+    #     - Syringe
+    #     - Spray
+    # End Frontier: no whitelist
   - type: Construction
     graph: Shelf
     node: ShelfChemistry

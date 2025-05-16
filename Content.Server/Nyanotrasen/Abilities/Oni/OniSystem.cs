@@ -1,5 +1,4 @@
 using Content.Server.Tools;
-using Content.Shared.Tools.Components;
 using Content.Shared.Damage.Events;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
@@ -11,7 +10,6 @@ namespace Content.Server.Abilities.Oni
 {
     public sealed class OniSystem : EntitySystem
     {
-        [Dependency] private readonly ToolSystem _toolSystem = default!;
         [Dependency] private readonly SharedGunSystem _gunSystem = default!;
 
         private const double GunInaccuracyFactor = 17.0; // Frontier (20x<18x -> 10% buff)
