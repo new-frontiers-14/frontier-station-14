@@ -1,4 +1,4 @@
-using System.Linq; // Frontier: cherry-pick upstream#35041
+using System.Linq;
 using System.Numerics;
 using Content.Client.Examine;
 using Content.Client.Hands.Systems;
@@ -49,7 +49,7 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
     public Angle DraggingRotation = Angle.Zero;
     public bool StaticStorageUIEnabled;
     public bool OpaqueStorageWindow;
-    private int _openStorageLimit = -1; // Frontier: cherry-pick upstream#35041
+    private int _openStorageLimit = -1;
 
     public bool IsDragging => _menuDragHelper.IsDragging;
     public ItemGridPiece? CurrentlyDragging => _menuDragHelper.Dragged;
@@ -68,15 +68,13 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
         _configuration.OnValueChanged(CCVars.StaticStorageUI, OnStaticStorageChanged, true);
         _configuration.OnValueChanged(CCVars.OpaqueStorageWindow, OnOpaqueWindowChanged, true);
         _configuration.OnValueChanged(CCVars.StorageWindowTitle, OnStorageWindowTitle, true);
-        _configuration.OnValueChanged(CCVars.StorageLimit, OnStorageLimitChanged, true); // Frontier: cherry-pick upstream#35041
+        _configuration.OnValueChanged(CCVars.StorageLimit, OnStorageLimitChanged, true);
     }
 
-    // Frontier: cherry-pick upstream#35041
     private void OnStorageLimitChanged(int obj)
     {
         _openStorageLimit = obj;
     }
-    // End Frontier: cherry-pick upstream#35041
 
     private void OnStorageWindowTitle(bool obj)
     {
@@ -109,8 +107,6 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
 
         if (StaticStorageUIEnabled)
         {
-            // Frontier: cherry-pick upstream#35041
-            // UIManager.GetActiveUIWidgetOrNull<HotbarGui>()?.StorageContainer.AddChild(window);
             var hotbar = UIManager.GetActiveUIWidgetOrNull<HotbarGui>();
             // this lambda handles the nested storage case
             // during nested storage, a parent window hides and a child window is
@@ -130,6 +126,12 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
                 child.SetPositionInParent(invisibleIndex);
             };
 
+            if (hotbar != null)
+            {
+                hotbar.DoubleStorageContainer.Visible = _openStorageLimit == 2;
+                hotbar.SingleStorageContainer.Visible = _openStorageLimit != 2;
+            }
+
             if (_openStorageLimit == 2)
             {
                 if (hotbar?.LeftStorageContainer.Children.Any(c => c.Visible) == false) // we're comparing booleans because it's bool? and not bool from the optional chaining
@@ -148,7 +150,6 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
                 hotbar?.SingleStorageContainer.AddChild(window);
                 reorder(hotbar?.SingleStorageContainer, window);
             }
-            // End Frontier: cherry-pick upstream#35041
             _closeRecentWindowUIController.SetMostRecentlyInteractedWindow(window);
         }
         else
@@ -318,12 +319,19 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
                 var position = targetStorage.GetMouseGridPieceLocation(dragEnt, dragLoc);
                 var newLocation = new ItemStorageLocation(DraggingRotation, position);
 
-                EntityManager.RaisePredictiveEvent(new StorageSetItemLocationEvent(
-                    EntityManager.GetNetEntity(draggingGhost.Entity),
-                    EntityManager.GetNetEntity(sourceStorage),
-                    newLocation));
+                if (!_storage.ItemFitsInGridLocation(dragEnt, sourceStorage, newLocation))
+                {
+                    window.Reclaim(control.Location, control);
+                }
+                else
+                {
+                    EntityManager.RaisePredictiveEvent(new StorageSetItemLocationEvent(
+                        EntityManager.GetNetEntity(draggingGhost.Entity),
+                        EntityManager.GetNetEntity(sourceStorage),
+                        newLocation));
 
-                window.Reclaim(newLocation, control);
+                    window.Reclaim(newLocation, control);
+                }
             }
             // Dragging to new storage
             else if (targetStorage?.StorageEntity != null && targetStorage != window)
@@ -384,6 +392,17 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
     {
         if (DraggingGhost == null)
             return false;
+
+        var player = _player.LocalEntity;
+
+        // If the attached storage is closed then stop dragging
+        if (player == null ||
+            !_storage.TryGetStorageLocation(DraggingGhost.Entity, out var container, out _, out _) ||
+            !_ui.IsUiOpen(container.Owner, StorageComponent.StorageUiKey.Key, player.Value))
+        {
+            DraggingGhost.Orphan();
+            return false;
+        }
 
         SetDraggingRotation();
         return true;

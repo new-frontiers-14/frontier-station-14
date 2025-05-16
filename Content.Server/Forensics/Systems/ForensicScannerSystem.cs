@@ -1,11 +1,6 @@
 using System.Linq;
 using System.Text;
 using Content.Server.Popups;
-using Content.Server.Stack; // Frontier
-using Content.Server._NF.Smuggling; // Frontier
-using Content.Server._NF.Smuggling.Components; // Frontier
-using Content.Server.Cargo.Systems; // Frontier
-using Content.Server.Radio.EntitySystems; // Frontier
 using Content.Shared.UserInterface;
 using Content.Shared.DoAfter;
 using Content.Shared.Forensics;
@@ -13,24 +8,28 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
 using Content.Shared.Verbs;
-using Content.Shared.Stacks; // Frontier
-using Content.Shared.Radio; // Frontier
-using Robust.Shared.Prototypes; // Frontier
 using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
-using Content.Shared.Containers.ItemSlots; // Frontier
+using Content.Server.Chemistry.Containers.EntitySystems;
+using Robust.Shared.Prototypes;
 using Content.Server._NF.SectorServices; // Frontier
-using Content.Shared.FixedPoint; // Frontier
-using Robust.Shared.Configuration; // Frontier
-using Content.Shared._NF.CCVar; // Frontier
+using Content.Server._NF.Smuggling; // Frontier
+using Content.Server._NF.Smuggling.Components; // Frontier
+using Content.Server.Radio.EntitySystems; // Frontier
+using Content.Server.Stack; // Frontier
 using Content.Shared._NF.Bank; // Frontier
 using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Server._NF.Bank; // Frontier
 using Content.Shared._NF.Bank.BUI; // Frontier
-
+using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared.Containers.ItemSlots; // Frontier
+using Content.Shared.FixedPoint; // Frontier
+using Content.Shared.Stacks; // Frontier
+using Content.Shared.Radio; // Frontier
+using Robust.Shared.Configuration; // Frontier
 // todo: remove this stinky LINQy
 
 namespace Content.Server.Forensics
@@ -48,12 +47,10 @@ namespace Content.Server.Forensics
         [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
         [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly StackSystem _stackSystem = default!; // Frontier
-        [Dependency] private readonly SharedAudioSystem _audio = default!; // Frontier
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Frontier
         [Dependency] private readonly RadioSystem _radio = default!; // Frontier
         [Dependency] private readonly DeadDropSystem _deadDrop = default!; // Frontier
         [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Frontier
-        [Dependency] private readonly CargoSystem _cargo = default!; // Frontier
         [Dependency] private readonly SectorServiceSystem _service = default!; // Frontier
         [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
         [Dependency] private readonly BankSystem _bank = default!; // Frontier
@@ -61,6 +58,8 @@ namespace Content.Server.Forensics
         // Frontier: payout constants
         // Temporary values, sane defaults, will be overwritten by CVARs.
         private int _minFUCPayout = 2;
+
+        private SoundSpecifier _confirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
 
         private const int ActiveUnusedDeadDropSpesoReward = 20000;
         private const float ActiveUnusedDeadDropFUCReward = 2.0f;
@@ -71,6 +70,8 @@ namespace Content.Server.Forensics
         private const int DropPodSpesoReward = 10000;
         private const float DropPodFUCReward = 1.0f;
         // End Frontier: payout constants
+
+        private static readonly ProtoId<TagPrototype> DNASolutionScannableTag = "DNASolutionScannable";
 
         public override void Initialize()
         {
@@ -99,8 +100,7 @@ namespace Content.Server.Forensics
         /// </summary>
         private void GiveReward(EntityUid uidOrigin, EntityUid target, int spesoAmount, FixedPoint2 fucAmount, string msg)
         {
-            SoundSpecifier confirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
-            _audio.PlayPvs(_audio.GetSound(confirmSound), uidOrigin);
+            _audioSystem.PlayPvs(_audioSystem.ResolveSound(_confirmSound), uidOrigin);
 
             if (spesoAmount > 0)
                 _bank.TrySectorDeposit(SectorBankAccount.Nfsd, spesoAmount, LedgerEntryType.AntiSmugglingBonus);
@@ -226,7 +226,7 @@ namespace Content.Server.Forensics
                 }
                 // End Frontier: contraband poster/pod scanning
 
-                if (_tag.HasTag(args.Args.Target.Value, "DNASolutionScannable"))
+                if (_tag.HasTag(args.Args.Target.Value, DNASolutionScannableTag))
                 {
                     scanner.SolutionDNAs = _forensicsSystem.GetSolutionsDNA(args.Args.Target.Value);
                 } else

@@ -5,6 +5,9 @@
   setPreference: false # Frontier: true<false
   objective: roles-antag-syndicate-agent-objective
   # guides: [ Traitors ] # Frontier: removed, irrelevant
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 3600 # 1h
 
 - type: antag
   id: TraitorSleeper
@@ -13,6 +16,9 @@
   setPreference: false # Frontier: true<false
   objective: roles-antag-syndicate-agent-sleeper-objective
   # guides: [ Traitors ] # Frontier: removed, irrelevant
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 3600 # 1h
 
 # Syndicate Operative Outfit - Monkey
 - type: startingGear
