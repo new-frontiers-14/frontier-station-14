@@ -82,6 +82,22 @@
   - type: Transform
 
 # region Shuttles
+
+# A simple shuttle for buses, etc.
+- type: entity
+  id: StandardFrontierBusVessel
+  parent:
+  - BaseStation
+  - BaseStationRenameFaxes
+  - BaseStationRenameHolopads
+  - BaseStationRenameWarpPoints
+  - BaseStationSiliconLawFrontierShips
+  - BaseStationDeadDropHintExempt # No hints on ship generation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: ExtraShuttleInformation
+
 - type: entity
   id: StandardFrontierVessel
   parent:

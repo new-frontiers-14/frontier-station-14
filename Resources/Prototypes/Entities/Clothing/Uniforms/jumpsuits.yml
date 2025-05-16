@@ -397,6 +397,17 @@
     sprite: Clothing/Uniforms/Jumpsuit/hos_parade.rsi
 
 - type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: ClothingUniformJumpsuitCommandGeneric
+  name: command jumpsuit
+  description: A generic Command-colored jumpsuit not associated with any particular department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/commandgeneric.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/commandgeneric.rsi
+
+- type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHydroponics
   name: hydroponics jumpsuit
@@ -526,7 +537,7 @@
 - type: entity
   parent: ClothingUniformBase # Frontier: remove BaseCommandContraband
   id: ClothingUniformJumpsuitQMTurtleneck
-  name: quartermasters's turtleneck
+  name: quartermaster's turtleneck # Frontier: not plural
   description: A sharp turtleneck made for the hardy work environment of supply.
   components:
     - type: Sprite
@@ -537,7 +548,7 @@
 - type: entity
   parent: ClothingUniformBase # Frontier: remove BaseCommandContraband
   id: ClothingUniformJumpsuitQMFormal
-  name: quartermasters's formal suit
+  name: quartermaster's formal suit # Frontier: not plural
   description: Inspired by the quartermasters of military's past, the perfect outfit for supplying a formal occasion.
   components:
     - type: Sprite

@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Client.Station; // Frontier
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
@@ -13,6 +12,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
+using Content.Client.Station; // Frontier
 
 namespace Content.Client.Shuttles.UI;
 
@@ -374,7 +374,12 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         const float sqrt2 = 1.41421356f;
         const float dockRadius = DockScale * sqrt2;
         // Worst-case bounds used to cull a dock:
-        Box2 viewBounds = new Box2(-dockRadius, -dockRadius, PixelSize.X + dockRadius, PixelSize.Y + dockRadius); // Frontier: Size<PixelSize
+        Box2 viewBounds = new Box2(
+            -dockRadius * UIScale,
+            -dockRadius * UIScale,
+            (Size.X + dockRadius) * UIScale,
+            (Size.Y + dockRadius) * UIScale);
+
         if (_docks.TryGetValue(nent, out var docks))
         {
             foreach (var state in docks)
