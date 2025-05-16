@@ -465,6 +465,11 @@ public enum LogType
     /// </summary>
     Botany = 100,
 
+    /// <summary>
+    /// Artifact node got activated.
+    /// </summary>
+    ArtifactNode = 101,
+
     // Frontier Station Specific
     #region Frontier Values
     ATMUsage = 200,
@@ -491,6 +496,10 @@ public enum LogType
     /// A medical bounty was redeemed.
     /// </summary>
     MedicalBountyRedeemed = 207,
+    /// <summary>
+    /// Shuttle info was changed.
+    /// </summary>
+    ShuttleInfoChanged = 208,
     #endregion Frontier Values
     // End Frontier
 }

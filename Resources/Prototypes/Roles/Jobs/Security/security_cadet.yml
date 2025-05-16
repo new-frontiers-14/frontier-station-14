@@ -8,7 +8,7 @@
       time: 36000 #10 hrs
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 54000 #15 hrs
+      time: 18000 #5 hrs
       inverted: true # stop playing intern if you're good at security!
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
@@ -38,9 +38,9 @@
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58
+    pocket1: NFWeaponPistolMk58 # Frontier: use NF variant
     pocket2: BookSecurity
   storage:
     back:
     - Flash
-    - MagazinePistol
+    - NFMagazinePistol35 # Frontier: MagazinePistol<NFMagazinePistol35

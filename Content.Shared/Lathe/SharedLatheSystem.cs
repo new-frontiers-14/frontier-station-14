@@ -36,6 +36,25 @@ public abstract class SharedLatheSystem : EntitySystem
     }
 
     /// <summary>
+    /// Get the set of all recipes that a lathe could possibly ever create (e.g., if all techs were unlocked).
+    /// </summary>
+    public HashSet<ProtoId<LatheRecipePrototype>> GetAllPossibleRecipes(LatheComponent component)
+    {
+        var recipes = new HashSet<ProtoId<LatheRecipePrototype>>();
+        foreach (var pack in component.StaticPacks)
+        {
+            recipes.UnionWith(_proto.Index(pack).Recipes);
+        }
+
+        foreach (var pack in component.DynamicPacks)
+        {
+            recipes.UnionWith(_proto.Index(pack).Recipes);
+        }
+
+        return recipes;
+    }
+
+    /// <summary>
     /// Add every recipe in the list of recipe packs to a single hashset.
     /// </summary>
     public void AddRecipesFromPacks(HashSet<ProtoId<LatheRecipePrototype>> recipes, IEnumerable<ProtoId<LatheRecipePackPrototype>> packs)
@@ -72,6 +91,9 @@ public abstract class SharedLatheSystem : EntitySystem
             return false;
         if (!HasRecipe(uid, recipe, component))
             return false;
+
+        if (amount <= 0) // Frontier
+            return false; // Frontier
 
         foreach (var (material, needed) in recipe.Materials)
         {
