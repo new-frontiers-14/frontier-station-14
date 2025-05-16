@@ -61,7 +61,6 @@ guide-entry-shipyard-crossroads = Crossroads
 guide-entry-shipyard-eagle = Eagle
 guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
-guide-entry-shipyard-gourd = Gourd
 guide-entry-shipyard-hammer = Hammer
 guide-entry-shipyard-hauler = Hauler
 guide-entry-shipyard-harbormaster = Harbormaster
