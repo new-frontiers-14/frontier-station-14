@@ -1,0 +1,21 @@
+- type: entity
+  id: NFBaseAmmunitionBox
+  parent: [ BaseItem, RecyclableItemCardboard ]
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: Appearance

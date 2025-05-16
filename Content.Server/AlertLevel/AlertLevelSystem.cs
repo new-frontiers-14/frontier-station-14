@@ -18,7 +18,7 @@ public sealed class AlertLevelSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    // [Dependency] private readonly StationSystem _stationSystem = default!; // Frontier: sector-wide alerts
     [Dependency] private readonly GameTicker _ticker = default!; // Frontier
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
 
@@ -152,6 +152,20 @@ public sealed class AlertLevelSystem : EntitySystem
         // End Frontier
 
         return alert.CurrentDelay;
+    }
+
+    /// <summary>
+    /// Get the default alert level for a station entity.
+    /// Returns an empty string if the station has no alert levels defined.
+    /// </summary>
+    /// <param name="station">The station entity.</param>
+    public string GetDefaultLevel(Entity<AlertLevelComponent?> station)
+    {
+        if (!Resolve(station.Owner, ref station.Comp) || station.Comp.AlertLevels == null)
+        {
+            return string.Empty;
+        }
+        return station.Comp.AlertLevels.DefaultLevel;
     }
 
     /// <summary>
