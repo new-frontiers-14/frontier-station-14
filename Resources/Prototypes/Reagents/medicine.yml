@@ -83,6 +83,12 @@
         key: Jitter
         time: 3.0
         type: Remove
+      - !type:GenericStatusEffect
+        key: Drowsiness
+        component: Drowsiness
+        time: 1.5
+        type: Add
+        refresh: false
       - !type:HealthChange
         damage:
           types:
@@ -882,6 +888,9 @@
     Medicine:
       effects:
       - !type:ChemHealEyeDamage
+    Sheleg: # Frontier
+      effects: # Frontier
+      - !type:ChemHealEyeDamage # Frontier
 
 - type: reagent
   id: Cognizine

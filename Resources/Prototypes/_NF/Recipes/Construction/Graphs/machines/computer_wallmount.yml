@@ -122,6 +122,9 @@
         computer: Wallmount
       edges:
         - to: monitorUnsecured
+          completed:
+            - !type:RaiseEvent
+                event: !type:MachineDeconstructedEvent
           steps:
             - tool: Prying
               doAfter: 1

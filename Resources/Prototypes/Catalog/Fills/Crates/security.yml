@@ -28,8 +28,8 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponDisabler
-        amount: 3
+      - id: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+        amount: 3 # Frontier
       - id: Stunbaton
         amount: 3
       - id: BoxFlashbang
@@ -93,4 +93,19 @@
       - id: TrackingImplanter
         amount: 4
 
-# Cosmetic Crates
+- type: entity
+  parent: CrateSecgear
+  id: CrateSecNonlethalThrowables
+  name: nonlethal throwables crate
+  description: Contains one box each of flashbangs, stingers, tear gas grenades, and four bolas. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxFlashbang
+      amount: 1
+    - id: BoxStinger
+      amount: 1
+    - id: BoxTearGas
+      amount: 1
+    - id: Bola # replace with 4 e-bolas when added
+      amount: 4
