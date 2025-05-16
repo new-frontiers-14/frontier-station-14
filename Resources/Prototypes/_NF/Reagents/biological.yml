@@ -8,7 +8,6 @@
   color: "#364500"
   recognizable: true
   physicalDesc: reagent-physical-desc-pungent
-  slippery: false
   footstepSound:
     collection: FootstepBlood
     params:
@@ -49,9 +48,9 @@
           shouldHave: true
 
 - type: reagent
-  id: Ook
-  name: reagent-name-ook
-  desc: reagent-desc-ook
+  id: Primatine
+  name: reagent-name-primatine
+  desc: reagent-desc-primatine
   flavor: hairy
   physicalDesc: reagent-physical-desc-thick
   color: "#7c3d00"
@@ -63,7 +62,7 @@
           emote: MonkeyScreeches
           showInChat: true
           force: true
-          probability: 0.12
+          probability: 0.18
         - !type:Polymorph
           prototype: ArtifactMonkey
           conditions:
@@ -71,7 +70,7 @@
             - !type:ReagentThreshold
               min: 50
         - !type:AdjustReagent
-          reagent: Ook
+          reagent: Primatine
           amount: -20
           conditions:
             - !type:ReagentThreshold

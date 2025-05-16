@@ -245,6 +245,8 @@ public abstract partial class SharedHandsSystem : EntitySystem
         }
         RaiseLocalEvent(entity, new PickedUpEvent(uid, entity), false); // Frontier
 
+        _interactionSystem.DoContactInteraction(uid, entity); //Possibly fires twice if manually picked up via interacting with the object
+
         if (log)
         {
             // Frontier modification: adds extra things to the log

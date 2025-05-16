@@ -1,7 +1,7 @@
-using Content.Server.Charges.Systems;
 using Content.Server.Pinpointer;
 using Content.Shared._NF.Pinpointer;
 using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -15,7 +15,7 @@ public sealed class ClearPinpointerSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly PinpointerSystem _pinpointer = default!;
-    [Dependency] private readonly ChargesSystem _charges = default!;
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
 
     public override void Initialize()
     {
@@ -31,7 +31,7 @@ public sealed class ClearPinpointerSystem : EntitySystem
             return;
 
         TryComp<LimitedChargesComponent>(ent, out var charges);
-        if (_charges.IsEmpty(ent, charges))
+        if (_charges.IsEmpty((ent, charges)))
         {
             if (ent.Comp.EmptyMessage != null)
                 _popup.PopupEntity(Loc.GetString(ent.Comp.EmptyMessage), args.User, args.User);
@@ -66,7 +66,7 @@ public sealed class ClearPinpointerSystem : EntitySystem
             return;
 
         TryComp<LimitedChargesComponent>(ent, out var charges);
-        if (_charges.IsEmpty(ent, charges))
+        if (!_charges.TryUseCharge((ent, charges)))
         {
             if (ent.Comp.EmptyMessage != null)
                 _popup.PopupEntity(Loc.GetString(ent.Comp.EmptyMessage), args.User, args.User);
@@ -85,9 +85,6 @@ public sealed class ClearPinpointerSystem : EntitySystem
             }
             RemComp<PinpointerTargetComponent>(args.Target.Value);
         }
-
-        if (charges != null)
-            _charges.UseCharge(ent, charges);
 
         if (ent.Comp.DestroyAfterUse)
             QueueDel(ent.Owner);
