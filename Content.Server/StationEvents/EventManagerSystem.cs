@@ -9,12 +9,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.EntityTable;
-using Content.Server.Station.Systems; // Frontier
-using Content.Shared.Roles.Jobs; // Frontier
 using Content.Server.Mind; // Frontier
-using Robust.Shared.Enums; // Frontier
-using Content.Shared.Roles; // Frontier
-using Content.Server._NF.Players; // Frontier
+using Content.Server._NF.Roles.Systems; // Frontier
 
 namespace Content.Server.StationEvents;
 
@@ -27,9 +23,7 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] public readonly GameTicker GameTicker = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly JobPresentSystem _jobs = default!; // Frontier
-
-    [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly JobTrackingSystem _jobs = default!; // Frontier
 
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;
@@ -64,7 +58,10 @@ public sealed class EventManagerSystem : EntitySystem
     /// </summary>
     public void RunRandomEvent(EntityTableSelector limitedEventsTable)
     {
-        if (!TryBuildLimitedEvents(limitedEventsTable, out var limitedEvents))
+        var availableEvents = AvailableEvents(); // handles the player counts and individual event restrictions.
+                                                 // Putting this here only makes any sense in the context of the toolshed commands in BasicStationEventScheduler. Kill me.
+
+        if (!TryBuildLimitedEvents(limitedEventsTable, availableEvents, out var limitedEvents))
         {
             Log.Warning("Provided event table could not build dict!");
             return;
@@ -89,11 +86,13 @@ public sealed class EventManagerSystem : EntitySystem
     /// <summary>
     /// Returns true if the provided EntityTableSelector gives at least one prototype with a StationEvent comp.
     /// </summary>
-    public bool TryBuildLimitedEvents(EntityTableSelector limitedEventsTable, out Dictionary<EntityPrototype, StationEventComponent> limitedEvents)
+    public bool TryBuildLimitedEvents(
+        EntityTableSelector limitedEventsTable,
+        Dictionary<EntityPrototype, StationEventComponent> availableEvents,
+        out Dictionary<EntityPrototype, StationEventComponent> limitedEvents
+        )
     {
         limitedEvents = new Dictionary<EntityPrototype, StationEventComponent>();
-
-        var availableEvents = AvailableEvents(); // handles the player counts and individual event restrictions
 
         if (availableEvents.Count == 0)
         {
@@ -285,10 +284,8 @@ public sealed class EventManagerSystem : EntitySystem
         // Frontier: require jobs to run event
         foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs)
         {
-            if (_jobs.getNumberOfActiveRoles(jobProtoId) < numJobs)
-            {
+            if (_jobs.GetNumberOfActiveRoles(jobProtoId, false) < numJobs)
                 return false;
-            }
         }
         // End Frontier
 

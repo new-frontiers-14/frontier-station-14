@@ -63,7 +63,7 @@
   - type: Flatpack
     entity: PowerCellRecharger
   - type: StaticPrice
-    price: 55
+    price: 15
   - type: Sprite
     layers:
     - state: power_charger
@@ -77,7 +77,7 @@
   - type: Flatpack
     entity: WeaponCapacitorRecharger
   - type: StaticPrice
-    price: 15
+    price: 55
 
 - type: entity
   parent: BaseNFFlatpack
@@ -96,8 +96,8 @@
 - type: entity
   parent: BaseNFFlatpack
   id: PortableGeneratorJrPacmanFlatpack
-  name: J.R.P.A.C.M.A.N.-type portable generator flatpack
-  description: A flatpack used for constructing a J.R.P.A.C.M.A.N.-type portable generator.
+  name: J.R.P.A.C.M.A.N. portable generator flatpack
+  description: A flatpack used for constructing a J.R.P.A.C.M.A.N. portable generator.
   components:
   - type: Flatpack
     entity: PortableGeneratorJrPacman
@@ -108,8 +108,8 @@
 - type: entity
   parent: PortableGeneratorJrPacmanFlatpack
   id: PortableGeneratorPacmanFlatpack
-  name: P.A.C.M.A.N.-type portable generator flatpack
-  description: A flatpack used for constructing a P.A.C.M.A.N.-type portable generator.
+  name: P.A.C.M.A.N. portable generator flatpack
+  description: A flatpack used for constructing a P.A.C.M.A.N. portable generator.
   components:
   - type: Flatpack
     entity: PortableGeneratorPacman
@@ -117,8 +117,8 @@
 - type: entity
   parent: PortableGeneratorJrPacmanFlatpack
   id: PortableGeneratorSuperPacmanFlatpack
-  name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator flatpack
-  description: A flatpack used for constructing a S.U.P.E.R.P.A.C.M.A.N.-type portable generator.
+  name: S.U.P.E.R.P.A.C.M.A.N. portable generator flatpack
+  description: A flatpack used for constructing a S.U.P.E.R.P.A.C.M.A.N. portable generator.
   components:
   - type: Flatpack
     entity: PortableGeneratorSuperPacman
@@ -347,7 +347,8 @@
     entity: HydroponicsTrayEmpty
   - type: Sprite
     layers:
-    - state: service_tray
+    - sprite: Objects/Devices/flatpack.rsi
+      state: hydroponics-tray
 
 - type: entity
   parent: UniformPrinterFlatpack
@@ -1072,6 +1073,24 @@
   components:
   - type: Flatpack
     entity: ComputerTabletopStationAdminBankATMMedical
+  - type: Sprite
+    layers:
+    - state: medical_console
+  - type: StaticPrice
+    price: 0
+  - type: CargoSellBlacklist
+  - type: Item
+    shape:
+    - 0,0,1,1
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: MobileComputerTabletopCommsFlatpack
+  name: communication console flatpack
+  description: A flatpack used for constructing a communication console.
+  components:
+  - type: Flatpack
+    entity: MobileComputerTabletopComms
   - type: Sprite
     layers:
     - state: medical_console

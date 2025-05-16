@@ -38,6 +38,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ISerializationManager _serManager = default!;
     [Dependency] private readonly MarkingManager _markingManager = default!;
+    [Dependency] private readonly GrammarSystem _grammarSystem = default!;
 
     [ValidatePrototypeId<SpeciesPrototype>]
     public const string DefaultSpecies = "Human";
@@ -156,8 +157,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
 
         targetHumanoid.Gender = sourceHumanoid.Gender;
+
         if (TryComp<GrammarComponent>(target, out var grammar))
-            grammar.Gender = sourceHumanoid.Gender;
+            _grammarSystem.SetGender((target, grammar), sourceHumanoid.Gender);
 
         Dirty(target, targetHumanoid);
     }
@@ -407,6 +409,19 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var facialHairColor = _markingManager.MustMatchSkin(profile.Species, HumanoidVisualLayers.FacialHair, out var facialHairAlpha, _proto)
             ? profile.Appearance.SkinColor.WithAlpha(facialHairAlpha) : profile.Appearance.FacialHairColor;
 
+        // Frontier: Match hair and facial hair colors to the forced color if it exists
+        if (_markingManager.MustMatchColor(profile.Species, HumanoidVisualLayers.Hair, out var forcedHairAlpha, _proto) is Color forcedHairColor)
+        {
+            profile.Appearance.SkinColor.WithAlpha(forcedHairAlpha);
+            hairColor = forcedHairColor;
+        }
+        if (_markingManager.MustMatchColor(profile.Species, HumanoidVisualLayers.FacialHair, out var forcedFacialHairAlpha, _proto) is Color forcedFacialHairColor)
+        {
+            profile.Appearance.SkinColor.WithAlpha(forcedFacialHairAlpha);
+            facialHairColor = forcedFacialHairColor;
+        }
+        // End Frontier
+
         if (_markingManager.Markings.TryGetValue(profile.Appearance.HairStyleId, out var hairPrototype) &&
             _markingManager.CanBeApplied(profile.Species, profile.Sex, hairPrototype, _proto))
         {
@@ -438,7 +453,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.Gender = profile.Gender;
         if (TryComp<GrammarComponent>(uid, out var grammar))
         {
-            grammar.Gender = profile.Gender;
+            _grammarSystem.SetGender((uid, grammar), profile.Gender);
         }
 
         humanoid.Age = profile.Age;

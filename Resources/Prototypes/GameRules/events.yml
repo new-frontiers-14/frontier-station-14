@@ -169,8 +169,8 @@
     duration: null
   - type: SpaceSpawnRule
     spawnDistance: 0
-  - type: AntagSpawner
-    prototype: MobDragon
+  # - type: AntagSpawner # Frontier
+    # prototype: MobDragon # Frontier
   - type: DragonRule
   - type: AntagObjectives
     objectives:
@@ -232,6 +232,7 @@
         nameSegments:
         - NamesNinjaTitle
         - NamesNinja
+        nameFormat: name-format-ninja
       mindRoles:
       - MindRoleNinja
 
@@ -318,6 +319,7 @@
         nameSegments:
         - NamesWizardFirst
         - NamesWizardLast
+        nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
 
@@ -550,6 +552,7 @@
         nameSegments:
         - NamesSyndicatePrefix
         - NamesSyndicateNormal
+        nameFormat: name-format-nukie-generic
       - type: NpcFactionMember
         factions:
         - Syndicate

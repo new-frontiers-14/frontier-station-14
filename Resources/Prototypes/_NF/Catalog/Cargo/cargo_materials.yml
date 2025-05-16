@@ -30,7 +30,7 @@
   cost: 5000
   category: cargoproduct-category-name-materials
   group: market
-  
+
 - type: cargoProduct
   id: MaterialWaterTankHighCapacity
   abstract: true
@@ -45,9 +45,19 @@
 - type: cargoProduct
   id: CargoConstructionBox
   icon:
-    sprite:  /Textures/_NF/Structures/Storage/constructionbox.rsi
+    sprite:  /Textures/_NF/Structures/Storage/magnetbox.rsi
     state: constructionbox
-  product: ConstructionBox
+  product: NFMagnetBoxConstruction
+  cost: 1000
+  category: cargoproduct-category-name-materials
+  group: market
+
+- type: cargoProduct
+  id: CargoRubbishBox
+  icon:
+    sprite:  /Textures/_NF/Structures/Storage/magnetbox.rsi
+    state: rubbishbox
+  product: NFMagnetBoxRubbish
   cost: 1000
   category: cargoproduct-category-name-materials
   group: market

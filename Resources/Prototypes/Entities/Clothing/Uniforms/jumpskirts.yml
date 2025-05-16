@@ -133,7 +133,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtDetective
-  name: detective hard-worn suit # Frontier - Added detective to name
+  name: detective hard-worn suitskirt # Frontier - Added detective to name
   description: Someone who wears this means business.
   components:
     - type: Sprite
@@ -144,7 +144,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtDetectiveGrey
-  name: detective noir suit # Frontier - Added detective to name
+  name: detective noir suitskirt # Frontier - Added detective to name
   description: A hard-boiled private investigator's grey suit, complete with tie clip.
   components:
     - type: Sprite
@@ -175,7 +175,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/hop.rsi
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseC2ContrabandUnredeemable, ClothingUniformSkirtBase] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
   id: ClothingUniformJumpskirtHoS
   name: head of security's jumpskirt
   description: It's bright red and rather crisp, much like security's victims tend to be.
@@ -200,7 +200,7 @@
         sprite: Clothing/Uniforms/Jumpsuit/hos.rsi
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseC2ContrabandUnredeemable, ClothingUniformSkirtBase] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
   id: ClothingUniformJumpskirtHoSAlt
   name: head of security's turtleneck
   description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Head of Security.
@@ -211,7 +211,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/hos_alt.rsi
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseC2ContrabandUnredeemable, ClothingUniformSkirtBase] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
   id: ClothingUniformJumpskirtHoSParadeMale
   name: head of security's parade uniform
   description: A head of security's luxury-wear, for special occasions.
@@ -220,6 +220,17 @@
     sprite: Clothing/Uniforms/Jumpskirt/hos_parade.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/hos_parade.rsi
+
+- type: entity
+  parent: [BaseCommandContraband, ClothingUniformSkirtBase]
+  id: ClothingUniformJumpskirtCommandGeneric
+  name: command jumpskirt
+  description: A generic Command-colored jumpsuit not associated with any particular department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/commandgeneric.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/commandgeneric.rsi
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -340,7 +351,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase # Frontier: remove BaseCommandContraband
   id: ClothingUniformJumpskirtQMTurtleneck
-  name: quartermasters's turtleneck
+  name: quartermaster's turtleneck # Frontier: not plural
   description: A sharp turtleneck made for the hardy work environment of supply.
   components:
     - type: Sprite
@@ -382,7 +393,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/roboticist.rsi
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseC2ContrabandUnredeemable, ClothingUniformSkirtBase] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: ClothingUniformJumpskirtSec
   name: security jumpskirt
   description: A jumpskirt made of strong material, providing robust protection.
@@ -408,7 +419,7 @@
 
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseC2ContrabandUnredeemable, ClothingUniformSkirtBase] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: ClothingUniformJumpskirtWarden
   name: warden's uniform
   description: A formal security suit for officers complete with Nanotrasen belt buckle.
@@ -489,7 +500,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/centcomformaldress.rsi
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseC2ContrabandUnredeemable, ClothingUniformSkirtBase] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
   id: ClothingUniformJumpskirtHosFormal
   name: hos's formal dress
   description: A dress for special occasions.
@@ -500,7 +511,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/hosformaldress.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformSkirtBase, BaseC3SyndicateContraband, ContrabandClothing ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing
+  parent: [BaseC3SyndicateContraband, UnsensoredClothingUniformSkirtBase, ContrabandClothing ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing
   id: ClothingUniformJumpskirtOperative
   name: operative jumpskirt
   description: Uniform for elite syndicate operatives performing tactical operations in deep space.
@@ -614,7 +625,7 @@
       sprite: Clothing/Uniforms/Jumpskirt/lawyergood.rsi
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: added BaseC3SyndicateContraband, ContrabandClothing
+  parent: [BaseC3SyndicateContraband, ClothingUniformSkirtBase, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing
   id: ClothingUniformJumpskirtSyndieFormalDress
   name: syndicate formal dress
   description: "The syndicate's uniform is made in an elegant style, it's even a pity to do dirty tricks in this."
@@ -680,7 +691,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/senior_physician.rsi
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseC2ContrabandUnredeemable, ClothingUniformSkirtBase] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: ClothingUniformJumpskirtSeniorOfficer
   name: senior officer jumpskirt
   description: A sign of skill and prestige within the security department.
@@ -691,7 +702,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/senior_officer.rsi
 
 - type: entity
-  parent: [ClothingUniformSkirtBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseC2ContrabandUnredeemable, ClothingUniformSkirtBase] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: ClothingUniformJumpskirtSecGrey
   name: grey security jumpskirt
   description: A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood.

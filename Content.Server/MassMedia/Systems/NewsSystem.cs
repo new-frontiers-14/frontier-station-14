@@ -32,7 +32,7 @@ public sealed class NewsSystem : SharedNewsSystem
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    // [Dependency] private readonly StationSystem _station = default!; // Frontier
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
 

@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server._NF.CryoSleep; // Frontier
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers; // Frontier
 using Content.Server.Cargo.Systems; // Frontier
@@ -30,6 +31,7 @@ using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
+using Content.Shared.Warps;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -55,7 +57,7 @@ namespace Content.Server.Ghost
         [Dependency] private readonly MindSystem _minds = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly ISharedPlayerManager _player = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly VisibilitySystem _visibilitySystem = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
@@ -71,9 +73,12 @@ namespace Content.Server.Ghost
         [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly NameModifierSystem _nameMod = default!;
         [Dependency] private readonly IAdminManager _admin = default!; // Frontier
+        [Dependency] private readonly CryoSleepSystem _cryo = default!; // Frontier
 
         private EntityQuery<GhostComponent> _ghostQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
+
+        private static readonly ProtoId<TagPrototype> AllowGhostShownByEventTag = "AllowGhostShownByEvent";
 
         public override void Initialize()
         {
@@ -384,7 +389,7 @@ namespace Content.Server.Ghost
 
         private IEnumerable<GhostWarp> GetPlayerWarps(EntityUid except)
         {
-            foreach (var player in _playerManager.Sessions)
+            foreach (var player in _player.Sessions)
             {
                 if (player.AttachedEntity is not {Valid: true} attached)
                     continue;
@@ -425,7 +430,7 @@ namespace Content.Server.Ghost
             var entityQuery = EntityQueryEnumerator<GhostComponent, VisibilityComponent>();
             while (entityQuery.MoveNext(out var uid, out var _, out var vis))
             {
-                if (!_tag.HasTag(uid, "AllowGhostShownByEvent"))
+                if (!_tag.HasTag(uid, AllowGhostShownByEventTag))
                     continue;
 
                 if (visible)
@@ -462,7 +467,7 @@ namespace Content.Server.Ghost
             if (spawnPosition?.IsValid(EntityManager) != true)
                 return false;
 
-            var mapUid = spawnPosition?.GetMapUid(EntityManager);
+            var mapUid = _transformSystem.GetMap(spawnPosition.Value);
             var gridUid = spawnPosition?.EntityId;
             // Test if the map is being deleted
             if (mapUid == null || TerminatingOrDeleted(mapUid.Value))
@@ -504,15 +509,16 @@ namespace Content.Server.Ghost
             // However, that should rarely happen.
             if (!string.IsNullOrWhiteSpace(mind.Comp.CharacterName))
                 _metaData.SetEntityName(ghost, mind.Comp.CharacterName);
-            else if (!string.IsNullOrWhiteSpace(mind.Comp.Session?.Name))
-                _metaData.SetEntityName(ghost, mind.Comp.Session.Name);
+            else if (mind.Comp.UserId is { } userId && _player.TryGetSessionById(userId, out var session))
+                _metaData.SetEntityName(ghost, session.Name);
 
             if (mind.Comp.TimeOfDeath.HasValue)
             {
-                SetTimeOfDeath(ghost, mind.Comp.TimeOfDeath!.Value, ghostComponent);
+                SetTimeOfDeath((ghost, ghostComponent), mind.Comp.TimeOfDeath!.Value);
             }
 
-            SetCanReturnToBody(ghostComponent, canReturn);
+            SetCanReturnToBody((ghost, ghostComponent), canReturn);
+            SetCanReturnFromCryo(ghostComponent, mind.Comp.UserId != null ? _cryo.HasCryosleepingBody(mind.Comp.UserId.Value) : false); // Frontier
 
             if (canReturn)
                 _minds.Visit(mind.Owner, ghost, mind.Comp);
@@ -550,9 +556,9 @@ namespace Content.Server.Ghost
 
             if (mind.PreventGhosting && !forced)
             {
-                if (mind.Session != null) // Logging is suppressed to prevent spam from ghost attempts caused by movement attempts
+                if (_player.TryGetSessionById(mind.UserId, out var session)) // Logging is suppressed to prevent spam from ghost attempts caused by movement attempts
                 {
-                    _chatManager.DispatchServerMessage(mind.Session, Loc.GetString("comp-mind-ghosting-prevented"),
+                    _chatManager.DispatchServerMessage(session, Loc.GetString("comp-mind-ghosting-prevented"),
                         true);
                 }
 
