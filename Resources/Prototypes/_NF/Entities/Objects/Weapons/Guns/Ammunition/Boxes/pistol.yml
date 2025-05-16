@@ -1,33 +1,283 @@
-# Upstream
+#region base
 - type: entity
-  parent: BaseMagazineBoxPistol
-  id: MagazineBoxPistolRubber
-  name: ammunition box (.35 auto rubber)
+  id: NFBaseAmmunitionBoxPistol35
+  parent: NFBaseAmmunitionBox
+  name: ammunition box (.35 pistol)
+  abstract: true
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistolRubber
+    whitelist:
+      tags:
+        - NFCartridgePistol35
+    proto: NFCartridgePistol35
+    capacity: 80
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+
+- type: entity
+  id: NFBaseAmmunitionBoxPistol45
+  parent: NFBaseAmmunitionBox
+  name: ammunition box (.45 pistol)
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - NFCartridgePistol45
+    proto: NFCartridgePistol45
+    capacity: 60
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+
+#region .35 pistol
+- type: entity
+  id: NFAmmunitionBoxPistol35
+  parent: NFBaseAmmunitionBoxPistol35
+  name: ammunition box (.35 pistol)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35
+  - type: Sprite
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+      color: "#3b7b9c"
+    - state: decal-calibre-35
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-    - state: rubber
+
+- type: entity
+  id: NFAmmunitionBoxPistol35Overpressure
+  parent: NFBaseAmmunitionBoxPistol35
+  name: ammunition box (.35 pistol, overpressure)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Overpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#3b7b9c"
+    - state: decal-01
+      color: "#ff8d00"
+    - state: decal-calibre-35
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxPistol35Practice
+  parent: NFBaseAmmunitionBoxPistol35
+  name: ammunition box (.35 pistol, practice)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#3b7b9c"
+    - state: decal-01
+    - state: decal-calibre-35
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxPistol35Incendiary
+  parent: NFBaseAmmunitionBoxPistol35
+  name: ammunition box (.35 pistol, incendiary)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#3b7b9c"
+    - state: decal-01
+      color: "#ff0000"
+    - state: decal-calibre-35
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxPistol35Uranium
+  parent: NFBaseAmmunitionBoxPistol35
+  name: ammunition box (.35 pistol, uranium)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#3b7b9c"
+    - state: decal-01
+      color: "#00ff00"
+    - state: decal-calibre-35
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 # Frontier
+# .35 pistol
 - type: entity
-  parent: BaseMagazineBoxPistol
-  id: MagazineBoxPistolEmp
-  name: ammunition box (.35 auto emp)
+  id: NFAmmunitionBoxPistol35Rubber # MagazineBoxPistolRubber
+  parent: NFBaseAmmunitionBoxPistol35
+  name: ammunition box (.35 pistol, rubber)
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistolEmp
+    proto: NFCartridgePistol35Rubber
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+      color: "#3b7b9c"
+    - state: decal-01
+      color: "#00b0ff"
+    - state: decal-calibre-35
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-    - state: emp
+
+- type: entity
+  id: NFAmmunitionBoxPistol35Emp # MagazineBoxPistolEmp
+  parent: NFBaseAmmunitionBoxPistol35
+  name: ammunition box (.35 pistol, EMP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Emp
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#3b7b9c"
+    - state: decal-01
+      color: "#00ffff"
+    - state: decal-calibre-35
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+# WizDen
+#region .45 pistol
+- type: entity
+  id: NFAmmunitionBoxPistol45
+  parent: NFBaseAmmunitionBoxPistol45
+  name: ammunition box (.45 pistol)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#7d3c40"
+    - state: decal-calibre-45
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxPistol45Overpressure
+  parent: NFBaseAmmunitionBoxPistol45
+  name: ammunition box (.45 pistol, overpressure)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Overpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#7d3c40"
+    - state: decal-01
+      color: "#ff8d00"
+    - state: decal-calibre-45
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxPistol45Practice
+  parent: NFBaseAmmunitionBoxPistol45
+  name: ammunition box (.45 pistol, practice)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#7d3c40"
+    - state: decal-01
+    - state: decal-calibre-45
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxPistol45Incendiary
+  parent: NFBaseAmmunitionBoxPistol45
+  name: ammunition box (.45 pistol, incendiary)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#7d3c40"
+    - state: decal-01
+      color: "#ff0000"
+    - state: decal-calibre-45
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxPistol45Uranium
+  parent: NFBaseAmmunitionBoxPistol45
+  name: ammunition box (.45 pistol, uranium)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#7d3c40"
+    - state: decal-01
+      color: "#00ff00"
+    - state: decal-calibre-45
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Frontier
+# .45 pistol
+- type: entity
+  id: NFAmmunitionBoxPistol45Rubber # MagazineBoxPistolRubber
+  parent: NFBaseAmmunitionBoxPistol45
+  name: ammunition box (.45 pistol, rubber)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#7d3c40"
+    - state: decal-01
+      color: "#00b0ff"
+    - state: decal-calibre-45
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: NFAmmunitionBoxPistol45Emp # MagazineBoxPistolEmp
+  parent: NFBaseAmmunitionBoxPistol45
+  name: ammunition box (.45 pistol, EMP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol45Emp
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#7d3c40"
+    - state: decal-01
+      color: "#00ffff"
+    - state: decal-calibre-45
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

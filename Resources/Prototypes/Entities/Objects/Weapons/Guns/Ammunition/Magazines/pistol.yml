@@ -32,6 +32,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: BaseMagazinePistolHighCapacity
   name: machine pistol magazine (.35 auto)
   parent: [BaseItem, BaseC1Contraband, RecyclableItemSteelTiny] # Frontier: added RecyclableItemSteelTiny, BaseC1Contraband
@@ -65,6 +66,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: BaseMagazinePistolSubMachineGun  # Yeah it's weird but it's pistol caliber
   name: SMG magazine (.35 auto)
   parent: [BaseItem, BaseC1Contraband, RecyclableItemSteelTiny] # Frontier: added RecyclableItemSteelTiny, BaseSecurityContraband<BaseC1Contraband
@@ -78,7 +80,7 @@
     whitelist:
       tags:
         - CartridgePistol
-    capacity: 35
+    capacity: 30
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -98,16 +100,18 @@
   - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolSubMachineGunTopMounted
   name: WT550 magazine (.35 auto top-mounted)
   parent: [ BaseItem, BaseC1Contraband, RecyclableItemSteelTiny ] # Frontier: BaseSecurityContraband<BaseC1Contraband, added RecyclableItemSteelTiny
+  description: Unconventional 30-round top feeding magazine for the WT550 SMG. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: Tag
     tags:
       - MagazinePistolSubMachineGunTopMounted
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistol
+    # proto: CartridgePistol # Frontier
     whitelist:
       tags:
       - CartridgePistol
@@ -129,20 +133,24 @@
       ballistic-ammo: !type:Container
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolSubMachineGunTopMountedEmpty
   name: WT550 magazine (.35 auto top-mounted any)
   parent: MagazinePistolSubMachineGunTopMounted
+  description: Unconventional 30-round top feeding magazine for the WT550 SMG.
   components:
   - type: BallisticAmmoProvider
     proto: null
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistol
   name: pistol magazine (.35 auto)
   parent: BaseMagazinePistol
+  description: 10-round single-stack magazine for pistols. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol
+    # proto: CartridgePistol # Frontier
   - type: Sprite
     layers:
     - state: red
@@ -151,10 +159,12 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolEmpty
   name: pistol magazine (.35 auto any)
   suffix: empty
   parent: MagazinePistol
+  description: 10-round single-stack magazine for pistols.
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -167,20 +177,24 @@
 
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolIncendiary
   name: pistol magazine (.35 auto incendiary)
   parent: MagazinePistol
+  description: 10-round single-stack magazine for pistols. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistolIncendiary
+    # proto: CartridgePistolIncendiary # Frontier
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolPractice
   name: pistol magazine (.35 auto practice)
   parent: BaseMagazinePistol
+  description: 10-round single-stack magazine for pistols. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistolPractice
+    # proto: CartridgePistolPractice # Frontier
   - type: Sprite
     layers:
     - state: practice
@@ -189,12 +203,14 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolUranium
   name: pistol magazine (.35 auto uranium)
   parent: BaseMagazinePistol
+  description: 10-round single-stack magazine for pistols. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistolUranium
+    # proto: CartridgePistolUranium # Frontier
   - type: Sprite
     layers:
     - state: uranium
@@ -203,6 +219,7 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolHighCapacityEmpty
   name: machine pistol magazine (.35 auto any)
   suffix: empty
@@ -218,12 +235,13 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolHighCapacity
   name: machine pistol magazine (.35 auto)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol
+    # proto: CartridgePistol # Frontier
   - type: Sprite
     layers:
     - state: red
@@ -232,12 +250,13 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolHighCapacityPractice
   name: machine pistol magazine (.35 auto practice)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol
+    # proto: CartridgePistol # Frontier
   - type: Sprite
     layers:
     - state: practice
@@ -246,13 +265,14 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolSubMachineGun
   name: SMG magazine (.35 auto)
   parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine for submachine guns. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
-    capacity: 30
-    proto: CartridgePistol
+    # proto: CartridgePistol # Frontier
     whitelist:
       tags:
         - CartridgePistol
@@ -266,10 +286,12 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolSubMachineGunEmpty
   name: SMG magazine (.35 auto any)
   suffix: empty
   parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine for submachine guns.
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -281,12 +303,14 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolSubMachineGunPractice
   name: SMG magazine (.35 auto practice)
   parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine for submachine guns. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistolPractice
+    # proto: CartridgePistolPractice # Frontier
   - type: Sprite
     layers:
     - state: practice
@@ -295,12 +319,14 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolSubMachineGunUranium
   name: SMG magazine (.35 auto uranium)
   parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine for submachine guns. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistolUranium
+    # proto: CartridgePistolUranium # Frontier
   - type: Sprite
     layers:
     - state: uranium
@@ -309,9 +335,11 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   parent: BaseMagazinePistolSubMachineGun
   id: MagazinePistolSubMachineGunIncendiary
   name: SMG magazine (.35 auto incendiary)
+  description: 30-round double-stack magazine for submachine guns. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistolIncendiary
+    # proto: CartridgePistolIncendiary # Frontier
