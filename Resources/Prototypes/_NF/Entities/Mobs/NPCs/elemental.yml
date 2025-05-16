@@ -8,6 +8,12 @@
     factions:
     - SimpleHostile # Because AI stupid ass hell right now
   - type: MovementIgnoreGravity # Or they just can't do something
+  - type: MobThresholds # ~20% health nerf from gun rebalance
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: Stamina
+    critThreshold: 120
 
 - type: entity
   parent: NFMobOreCrab
