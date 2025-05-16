@@ -1,3 +1,4 @@
+
 - type: entity
   parent: ComputerRadar
   id: ComputerAdvancedRadar # Frontier
@@ -8,7 +9,7 @@
     board: AdvancedRadarConsoleCircuitboard
   - type: RadarConsole
     maxRange: 768
-    maxIffRange: null # Frontier
+    maxIffRange: 1100 # a bit over sqrt(2) * 768
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -20,6 +21,7 @@
     - map: ["computerLayerKeys"]
       state: generic_keys
 
+#region Cargo Sale
 - type: entity
   name: cargo sale computer
   suffix: Normal
@@ -35,21 +37,20 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      sprite: _NF/Structures/Machines/computers.rsi
-      state: cargo_sale
+      state: transfer
     - map: ["computerLayerKeys"]
       state: tech_key
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
-  - type: CargoPalletConsole
+  - type: NFCargoPalletConsole
   - type: ActivatableUI
     key: enum.CargoPalletConsoleUiKey.Sale
   - type: UserInterface
     interfaces:
       enum.CargoPalletConsoleUiKey.Sale:
-        type: CargoPalletConsoleBoundUserInterface
+        type: CargoPalletConsoleNFBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Computer
@@ -146,6 +147,7 @@
     energy: 1.6
     color: "#c94242"
 
+#region IFF
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerIFFSyndicate]
   id: ComputerIFFPOI
@@ -167,6 +169,7 @@
   - type: Computer
     board: Null
 
+#region Cargo Market
 - type: entity
   name: cargo market computer
   abstract: true
@@ -228,6 +231,7 @@
   - type: MarketModifier
     mod: 8
 
+#region Pirate
 - type: entity
   id: ComputerPirateBounty
   parent: BaseComputer
@@ -412,6 +416,7 @@
     - type: SalvageExpeditionConsole
       debug: true
 
+#region Gas Sale
 - type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]
   id: GasSaleConsole
@@ -477,7 +482,7 @@
   - type: MarketModifier
     mod: 0.5
 
-# Station Traffic Controller consoles
+#region Traffic
 - type: entity
   id: BaseComputerTraffic
   abstract: true
