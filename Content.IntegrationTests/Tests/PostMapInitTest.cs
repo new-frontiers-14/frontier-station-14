@@ -70,6 +70,38 @@ namespace Content.IntegrationTests.Tests
         };
 
         private static readonly string[] GameMaps = FrontierConstants.GameMapPrototypes; // Frontier: not inline constants
+        // Frontier: comment out upstream game maps
+        /*
+        private static readonly string[] GameMaps =
+        {
+            "Dev",
+            "TestTeg",
+            "Fland",
+            "Meta",
+            "Packed",
+            "Omega",
+            "Bagel",
+            "CentComm",
+            "Box",
+            "Core",
+            "Marathon",
+            "MeteorArena",
+            "Saltern",
+            "Reach",
+            "Train",
+            "Oasis",
+            "Gate",
+            "Amber",
+            "Loop",
+            "Plasma",
+            "Elkridge",
+            "Convex",
+            "Relic",
+            "dm01-entryway"
+
+        };
+        */
+        // End Frontier: comment out upstream game maps
 
         /// <summary>
         /// Asserts that specific files have been saved as grids and not maps.
