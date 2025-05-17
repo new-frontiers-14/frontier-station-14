@@ -165,7 +165,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         component.Selecting = true;
         component.SelectAccumulator = 0;
         component.AudioStream = Audio.Stop(component.AudioStream);
-        component.FirstPlay = !wasPlaying;
+        component.FirstPlay = true; // Prevent shuffling
         if (wasPlaying)
         {
             var msg = new JukeboxPlayingMessage();
