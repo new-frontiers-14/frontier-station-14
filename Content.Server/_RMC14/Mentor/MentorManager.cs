@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
@@ -32,9 +32,9 @@ public sealed class MentorManager : IPostInjectInit
     [Dependency] private readonly UserDbDataManager _userDb = default!;
 
     private const string RateLimitKey = "MentorHelp";
-    private static readonly ProtoId<JobPrototype> MentorJob = "StationRepresentative"; // Frontier
+    private static readonly ProtoId<JobPrototype> MentorJob = "CMSeniorEnlistedAdvisor";
 
-    private readonly List<ICommonSession> _activeMentors = new();
+    private readonly HashSet<ICommonSession> _activeMentors = new();
     private readonly Dictionary<NetUserId, bool> _mentors = new();
     private readonly Dictionary<NetUserId, (TimeSpan Timestamp, bool Typing)> _typingUpdateTimestamps = new();
     private readonly Dictionary<NetUserId, List<NetUserId>> _destinationClaims = new();
@@ -44,13 +44,6 @@ public sealed class MentorManager : IPostInjectInit
     {
         var userId = player.UserId;
         var isMentor = await _db.IsJobWhitelisted(player.UserId, MentorJob, cancel);
-
-        // Frontier: check global whitelist
-        if (!isMentor && !cancel.IsCancellationRequested)
-        {
-            isMentor = await _db.GetWhitelistStatusAsync(player.UserId);
-        }
-        // End Frontier
 
         if (!isMentor)
         {
@@ -207,7 +200,8 @@ public sealed class MentorManager : IPostInjectInit
             $"SERVER: {author.UserName} has claimed this mentor help",
             DateTime.Now,
             true,
-            isAdmin
+            isAdmin,
+            true
         );
         var messages = new List<MentorMessage> { mentorMsg };
         var receive = new MentorMessagesReceivedMsg { Messages = messages };
@@ -235,6 +229,32 @@ public sealed class MentorManager : IPostInjectInit
 
         var destination = new NetUserId(message.Destination);
         Unclaim(author, destination, false);
+    }
+
+    private void OnConnected(object? sender, NetChannelArgs args)
+    {
+        try
+        {
+            var msg = $"SERVER: {args.Channel.UserName} has reconnected to the server.";
+            SendMentorMessage(args.Channel.UserId, args.Channel.UserName, null, null, msg, args.Channel, false);
+        }
+        catch (Exception e)
+        {
+            _log.RootSawmill.Error($"Error sending mentor help client connected message:{e}");
+        }
+    }
+
+    private void OnDisconnected(object? sender, NetDisconnectedArgs args)
+    {
+        try
+        {
+            var msg = $"SERVER: {args.Channel.UserName} has disconnected.";
+            SendMentorMessage(args.Channel.UserId, args.Channel.UserName, null, null, msg, args.Channel, false);
+        }
+        catch (Exception e)
+        {
+            _log.RootSawmill.Error($"Error sending mentor help client disconnect message:{e}");
+        }
     }
 
     private void Unclaim(INetChannel author, NetUserId destination, bool disconnect)
@@ -270,7 +290,8 @@ public sealed class MentorManager : IPostInjectInit
             $"SERVER: {author.UserName} has given up their claim for this mentor help",
             DateTime.Now,
             true,
-            isAdmin
+            isAdmin,
+            true
         );
         var messages = new List<MentorMessage> { mentorMsg };
         var receive = new MentorMessagesReceivedMsg { Messages = messages };
@@ -302,31 +323,42 @@ public sealed class MentorManager : IPostInjectInit
         _net.ServerSendMessage(msg, player.Channel);
     }
 
-    private void SendMentorMessage(NetUserId destination, string destinationName, ICommonSession author, string authorName, string message, INetChannel destinationChannel)
+    private void SendMentorMessage(
+        NetUserId destination,
+        string destinationName,
+        ICommonSession? author,
+        string? authorName,
+        string message,
+        INetChannel? destinationChannel,
+        bool create = true)
     {
         if (string.IsNullOrWhiteSpace(message))
             return;
 
-        var recipients = new HashSet<INetChannel> { destinationChannel };
+        var recipients = new HashSet<INetChannel>();
+        if (destinationChannel != null)
+            recipients.Add(destinationChannel);
+
         var isMentor = false;
         foreach (var active in _activeMentors)
         {
-            if (active.UserId == author.UserId)
+            if (author != null && active.UserId == author.UserId)
                 isMentor = true;
 
             recipients.Add(active.Channel);
         }
 
-        var isAdmin = _admin.IsAdmin(author);
+        var isAdmin = author != null && _admin.IsAdmin(author);
         var mentorMsg = new MentorMessage(
             destination,
             destinationName,
-            author.UserId,
+            author?.UserId,
             authorName,
             message,
             DateTime.Now,
             isMentor,
-            isAdmin
+            isAdmin,
+            create
         );
         var messages = new List<MentorMessage> { mentorMsg };
         var receive = new MentorMessagesReceivedMsg { Messages = messages };
@@ -342,7 +374,8 @@ public sealed class MentorManager : IPostInjectInit
             }
         }
 
-        SendTypingUpdate(author.Channel, destination, false);
+        if (author != null)
+            SendTypingUpdate(author.Channel, destination, false);
     }
 
     private void SendTypingUpdate(INetChannel author, Guid destination, bool typing)
@@ -370,7 +403,7 @@ public sealed class MentorManager : IPostInjectInit
 
     public IEnumerable<ICommonSession> GetActiveMentors()
     {
-        return _activeMentors.AsReadOnly();
+        return _activeMentors;
     }
 
     public void ReMentor(NetUserId user)
@@ -420,6 +453,9 @@ public sealed class MentorManager : IPostInjectInit
         _net.RegisterNetMessage<MentorClientUnclaimMsg>(OnClientUnclaim);
         _net.RegisterNetMessage<MentorClaimMsg>();
         _net.RegisterNetMessage<MentorUnclaimMsg>();
+
+        _net.Connected += OnConnected;
+        _net.Disconnect += OnDisconnected;
 
         _userDb.AddOnLoadPlayer(LoadData);
         _userDb.AddOnFinishLoad(FinishLoad);
