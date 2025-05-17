@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 248.0.2
+  engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/09/2025 07:56:21
-  entityCount: 1814
+  time: 05/15/2025 22:21:19
+  entityCount: 1815
 maps:
 - 1814
 grids:
@@ -1940,13 +1940,6 @@ entities:
     - type: Transform
       pos: -2.234375,-3.453125
       parent: 179
-- proto: BoxSurvivalNFOxygenExtended
-  entities:
-  - uid: 419
-    components:
-    - type: Transform
-      pos: -10.598265,6.692403
-      parent: 179
 - proto: Brutepack
   entities:
   - uid: 150
@@ -3785,26 +3778,6 @@ entities:
     - type: Transform
       pos: -6.5,-11.5
       parent: 179
-- proto: NFCannonBall
-  entities:
-  - uid: 954
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.7637842,17.141552
-      parent: 179
-  - uid: 1430
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5867009,17.516552
-      parent: 179
-  - uid: 1431
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.3679509,17.15197
-      parent: 179
 - proto: CapacitorStockPart
   entities:
   - uid: 704
@@ -5338,6 +5311,13 @@ entities:
     - type: Transform
       pos: -0.8674887,-3.1671295
       parent: 179
+- proto: DoorRemoteShipyard
+  entities:
+  - uid: 1815
+    components:
+    - type: Transform
+      pos: -2.703125,4.427419
+      parent: 179
 - proto: DrinkBeerglass
   entities:
   - uid: 688
@@ -6315,13 +6295,6 @@ entities:
         - 0
         - 0
         - 0
-- proto: M_Emp
-  entities:
-  - uid: 1399
-    components:
-    - type: Transform
-      pos: -8.5,-0.5
-      parent: 179
 - proto: Machete
   entities:
   - uid: 1556
@@ -6380,41 +6353,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5,10.5
-      parent: 179
-- proto: NFMagazineGrenadeBaton
-  entities:
-  - uid: 1424
-    components:
-    - type: Transform
-      pos: -7.550851,17.250177
-      parent: 179
-- proto: NFMagazineGrenadeBlast
-  entities:
-  - uid: 1425
-    components:
-    - type: Transform
-      pos: -8.571684,16.500177
-      parent: 179
-- proto: NFMagazineGrenadeEMP
-  entities:
-  - uid: 1412
-    components:
-    - type: Transform
-      pos: -9.435917,17.239761
-      parent: 179
-- proto: NFMagazineGrenadeFlash
-  entities:
-  - uid: 1426
-    components:
-    - type: Transform
-      pos: -7.550851,16.448093
-      parent: 179
-- proto: NFMagazineGrenadeFrag
-  entities:
-  - uid: 1427
-    components:
-    - type: Transform
-      pos: -9.436268,16.427261
       parent: 179
 - proto: MailingUnit
   entities:
@@ -6579,6 +6517,13 @@ entities:
     - type: Transform
       pos: -4.752078,10.904018
       parent: 179
+- proto: MobileEmpGenerator
+  entities:
+  - uid: 1399
+    components:
+    - type: Transform
+      pos: -8.5,-0.5
+      parent: 179
 - proto: ModularGrenade
   entities:
   - uid: 435
@@ -6633,12 +6578,74 @@ entities:
     - type: Transform
       pos: -6.3051395,8.791253
       parent: 179
+- proto: NFBoxSurvivalExtended
+  entities:
+  - uid: 419
+    components:
+    - type: Transform
+      pos: -10.598265,6.692403
+      parent: 179
+- proto: NFCannonBall
+  entities:
+  - uid: 954
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.7637842,17.141552
+      parent: 179
+  - uid: 1430
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5867009,17.516552
+      parent: 179
+  - uid: 1431
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.3679509,17.15197
+      parent: 179
 - proto: NFEnergyPickaxe
   entities:
   - uid: 437
     components:
     - type: Transform
       pos: -2.359375,-0.15625
+      parent: 179
+- proto: NFMagazineGrenadeBaton
+  entities:
+  - uid: 1424
+    components:
+    - type: Transform
+      pos: -7.550851,17.250177
+      parent: 179
+- proto: NFMagazineGrenadeBlast
+  entities:
+  - uid: 1425
+    components:
+    - type: Transform
+      pos: -8.571684,16.500177
+      parent: 179
+- proto: NFMagazineGrenadeEMP
+  entities:
+  - uid: 1412
+    components:
+    - type: Transform
+      pos: -9.435917,17.239761
+      parent: 179
+- proto: NFMagazineGrenadeFlash
+  entities:
+  - uid: 1426
+    components:
+    - type: Transform
+      pos: -7.550851,16.448093
+      parent: 179
+- proto: NFMagazineGrenadeFrag
+  entities:
+  - uid: 1427
+    components:
+    - type: Transform
+      pos: -9.436268,16.427261
       parent: 179
 - proto: NfsdTechFab
   entities:
@@ -6675,12 +6682,24 @@ entities:
     - type: Transform
       pos: -3.5,10.5
       parent: 179
-- proto: NFWeaponEnergyRifleCarbine
+- proto: NFWeaponEnergyLightMachineGunTurbo
   entities:
-  - uid: 1801
+  - uid: 1494
     components:
     - type: Transform
-      pos: -20.473234,3.1700552
+      pos: -3.471971,0.6138556
+      parent: 179
+- proto: NFWeaponEnergyPistolLaser
+  entities:
+  - uid: 1202
+    components:
+    - type: Transform
+      pos: -3.433327,-1.5
+      parent: 179
+  - uid: 1803
+    components:
+    - type: Transform
+      pos: -20.3205,0.34193015
       parent: 179
 - proto: NFWeaponEnergyRifleAssaultPulseCarbine
   entities:
@@ -6688,6 +6707,13 @@ entities:
     components:
     - type: Transform
       pos: -20.48886,2.1544302
+      parent: 179
+- proto: NFWeaponEnergyRifleCarbine
+  entities:
+  - uid: 1801
+    components:
+    - type: Transform
+      pos: -20.473234,3.1700552
       parent: 179
 - proto: NFWeaponEnergyRifleSniperCannon
   entities:
@@ -6721,6 +6747,13 @@ entities:
     components:
     - type: Transform
       pos: -2.578125,-1.40625
+      parent: 179
+- proto: NFWeaponLauncherMail
+  entities:
+  - uid: 268
+    components:
+    - type: Transform
+      pos: -2.2345388,-3.19907
       parent: 179
 - proto: NFWeaponLauncherMultipleRocket
   entities:
@@ -6760,6 +6793,13 @@ entities:
     - type: Transform
       pos: -20.5,0.5
       parent: 179
+- proto: NFWeaponPkaSawn
+  entities:
+  - uid: 1204
+    components:
+    - type: Transform
+      pos: -6.5111876,-2.5449483
+      parent: 179
 - proto: NFWeaponRifleAssaultSm
   entities:
   - uid: 949
@@ -6771,6 +6811,13 @@ entities:
     components:
     - type: Transform
       pos: -20.5,2.5
+      parent: 179
+- proto: NFWeaponRifleRepeater
+  entities:
+  - uid: 1670
+    components:
+    - type: Transform
+      pos: -20.5,3.5
       parent: 179
 - proto: NFWeaponRifleSniperHristov
   entities:
@@ -8185,6 +8232,27 @@ entities:
     - type: Transform
       pos: -3.5,2.5
       parent: 179
+- proto: SpawnPointNFPirate
+  entities:
+  - uid: 1466
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointNFPirateCaptain
+  entities:
+  - uid: 1465
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointNFPirateFirstMate
+  entities:
+  - uid: 1464
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
 - proto: SpawnPointObserver
   entities:
   - uid: 679
@@ -8195,27 +8263,6 @@ entities:
 - proto: SpawnPointPilot
   entities:
   - uid: 1463
-    components:
-    - type: Transform
-      pos: -3.5,2.5
-      parent: 179
-- proto: SpawnPointPirate
-  entities:
-  - uid: 1466
-    components:
-    - type: Transform
-      pos: -3.5,2.5
-      parent: 179
-- proto: SpawnPointPirateCaptain
-  entities:
-  - uid: 1465
-    components:
-    - type: Transform
-      pos: -3.5,2.5
-      parent: 179
-- proto: SpawnPointPirateFirstMate
-  entities:
-  - uid: 1464
     components:
     - type: Transform
       pos: -3.5,2.5
@@ -11506,46 +11553,6 @@ entities:
     components:
     - type: Transform
       pos: -8.590513,-1.4515159
-      parent: 179
-- proto: NFWeaponEnergyPistolLaser
-  entities:
-  - uid: 1202
-    components:
-    - type: Transform
-      pos: -3.433327,-1.5
-      parent: 179
-  - uid: 1803
-    components:
-    - type: Transform
-      pos: -20.3205,0.34193015
-      parent: 179
-- proto: NFWeaponEnergyLightMachineGunTurbo
-  entities:
-  - uid: 1494
-    components:
-    - type: Transform
-      pos: -3.471971,0.6138556
-      parent: 179
-- proto: NFWeaponLauncherMail
-  entities:
-  - uid: 268
-    components:
-    - type: Transform
-      pos: -2.2345388,-3.19907
-      parent: 179
-- proto: NFWeaponPkaSawn
-  entities:
-  - uid: 1204
-    components:
-    - type: Transform
-      pos: -6.5111876,-2.5449483
-      parent: 179
-- proto: NFWeaponRifleRepeater
-  entities:
-  - uid: 1670
-    components:
-    - type: Transform
-      pos: -20.5,3.5
       parent: 179
 - proto: WelderExperimental
   entities:
