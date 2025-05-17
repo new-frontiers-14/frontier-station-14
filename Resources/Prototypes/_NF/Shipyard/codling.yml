@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: Voltron9100
+# Discord: Dogitch
+
+# Maintainer Info
+# GitHub: Voltron9100
+# Discord: Dogitch
+
+# Shuttle Notes:
+#This one is mine :3 Please don't touch her!!'
+- type: vessel
+  id: Codling
+  parent: BaseVessel
+  name: MOFF Codling
+  description: Following in the spirit of, Langstad-Voigt Heavy Industries, Montegomery Olsons Freighter Fabrications, created the Codling. Cheap, compact, but with everything you'd need to begin tearing up the Frontier of it's resources.'
+  price: 18000
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/Codling.yml
+  guidebookPage: Null
+  class:
+  - Salvage
+- - Mining
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Codling
+  mapName: 'MOFF Codling'
+  mapPath: /Maps/_NF/Shuttles/Codling.yml
+  minPlayers: 0
+  stations:
+    Codling:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Codling {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Contractor: [ 0, 0 ]
+          Pilot: [ 0, 0 ]
+          Mercenary: [ 0, 0 ]
