@@ -1,17 +1,24 @@
 using System.Numerics;
 using Content.Shared._NF.Radar;
-using Robust.Shared.Physics;
 using Robust.Shared.Timing;
 
 namespace Content.Client._NF.Radar;
 
-public sealed partial class RadarBlipsSystem : EntitySystem
+/// <summary>
+/// A system for requesting, receiving, and caching radar blips.
+/// Sends off ad hoc requests for blips, caches them for a period of time, and then 
+/// </summary>
+/// <remarks>
+/// Ported from Monolith's RadarBlipsSystem.
+/// </remarks>
+public sealed partial class RadarBlipSystem : EntitySystem
 {
     private const double BlipStaleSeconds = 3.0;
     private static readonly List<(Vector2, float, Color, RadarBlipShape)> EmptyBlipList = new();
     private static readonly List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> EmptyRawBlipList = new();
     private TimeSpan _lastRequestTime = TimeSpan.Zero;
-    private static readonly TimeSpan RequestThrottle = TimeSpan.FromMilliseconds(250);
+    // Minimum time between requests.  Slightly larger than the server-side value.
+    private static readonly TimeSpan RequestThrottle = TimeSpan.FromMilliseconds(1250);
 
     // Maximum distance for blips to be considered visible
     private const float MaxBlipRenderDistance = 256f;

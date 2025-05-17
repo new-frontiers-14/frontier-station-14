@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Shuttles.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause] // Frontier: add AutoGenerateComponentPause
 [Access(typeof(SharedRadarConsoleSystem))]
 public sealed partial class RadarConsoleComponent : Component
 {
@@ -38,5 +38,11 @@ public sealed partial class RadarConsoleComponent : Component
     /// </summary>
     [DataField]
     public bool HideCoords = false;
+
+    /// <summary>
+    /// The last request time where blips were returned.
+    /// </summary>
+    [DataField, AutoPausedField]
+    public TimeSpan LastRadarBlipRequest;
     // End Frontier
 }
