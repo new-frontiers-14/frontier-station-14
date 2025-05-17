@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/17/2025 04:07:44
-  entityCount: 245
+  time: 05/17/2025 04:29:17
+  entityCount: 247
 maps: []
 grids:
 - 201
@@ -1293,6 +1293,13 @@ entities:
     - type: Transform
       pos: -1.6436251,3.657899
       parent: 201
+- proto: Gyroscope
+  entities:
+  - uid: 87
+    components:
+    - type: Transform
+      pos: 1.5,-5.5
+      parent: 201
 - proto: LockerSalvageSpecialistFilled
   entities:
   - uid: 103
@@ -1681,13 +1688,6 @@ entities:
     - type: Transform
       pos: 1.5,-7.5
       parent: 201
-- proto: SmallGyroscope
-  entities:
-  - uid: 87
-    components:
-    - type: Transform
-      pos: 1.5,-5.5
-      parent: 201
 - proto: SmokingPipeFilledTobacco
   entities:
   - uid: 175
@@ -1984,6 +1984,20 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,-3.5
+      parent: 201
+- proto: WarningN2
+  entities:
+  - uid: 183
+    components:
+    - type: Transform
+      pos: -3.5,-5.5
+      parent: 201
+- proto: WarningO2
+  entities:
+  - uid: 182
+    components:
+    - type: Transform
+      pos: -4.5,-4.5
       parent: 201
 - proto: WarpPoint
   entities:
