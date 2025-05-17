@@ -281,13 +281,14 @@ namespace Content.Client.Shuttles.UI
         {
             const int points = 5;
             const float innerRatio = 0.4f;
-            var vertices = new Vector2[points * 2];
+            var vertices = new Vector2[points * 2 + 1];
 
+            vertices[0] = position;
             for (var i = 0; i < points * 2; i++)
             {
                 var angle = i * Math.PI / points;
                 var radius = i % 2 == 0 ? size : size * innerRatio;
-                vertices[i] = position + new Vector2(
+                vertices[i + 1] = position + new Vector2(
                     (float)Math.Sin(angle) * radius,
                     -(float)Math.Cos(angle) * radius
                 );
