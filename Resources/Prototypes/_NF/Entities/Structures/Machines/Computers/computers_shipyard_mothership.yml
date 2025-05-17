@@ -83,6 +83,28 @@
     - Apothecary
     - Tyne
 
+# The caladrius console
+- type: entity
+  id: CaladriusMothershipComputer
+  parent: BaseMothershipComputer
+  name: caladrius shipyard console
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_medical
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_medical
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ShipyardListing
+    shuttles:
+    - Spirit
+    - Tyne
+
 # The GASBENDA-A-A-AH (sick metal guitar riff) console
 - type: entity
   id: GasbenderMothershipComputer
