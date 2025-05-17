@@ -1,22 +1,39 @@
 using System.Numerics;
 using Content.Shared._Goobstation.Vehicles;
 using Content.Shared._NF.Radar;
+using Content.Shared.GameTicking;
 using Content.Shared.Movement.Components;
-using Content.Shared.Projectiles;
 using Content.Shared.Shuttles.Components;
-using Robust.Shared.Map;
+using Robust.Shared.Network;
+using Robust.Shared.Timing;
 
 namespace Content.Server._NF.Radar;
 
+/// <summary>
+/// A system for requesting, receiving, and caching radar blips.
+/// Sends off ad hoc requests for blips, caches them for a period of time, and then 
+/// </summary>
+/// <remarks>
+/// Ported from Monolith's RadarBlipsSystem.
+/// </remarks>
 public sealed partial class RadarBlipSystem : EntitySystem
 {
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+
+    private Dictionary<NetUserId, TimeSpan> _nextBlipRequest = new();
+
+    // The minimum amount of time between handled blip requests.
+    private static readonly TimeSpan MinRequestPeriod = TimeSpan.FromSeconds(1);
+    // Maximum distance for blips to be considered visible
+    private const float MaxBlipRenderDistance = 300f;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeNetworkEvent<RequestBlipsEvent>(OnBlipsRequested);
 
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         SubscribeLocalEvent<ActiveJetpackComponent, ComponentStartup>(OnJetpackActivated);
         SubscribeLocalEvent<ActiveJetpackComponent, ComponentShutdown>(OnJetpackDeactivated);
     }
@@ -32,26 +49,42 @@ public sealed partial class RadarBlipSystem : EntitySystem
         if (!TryComp<RadarConsoleComponent>(radarUid, out var radar))
             return;
 
-        var blips = AssembleBlipsReport((EntityUid)radarUid, radar);
+        if (_nextBlipRequest.TryGetValue(args.SenderSession.UserId, out var requestTime) && _timing.RealTime < requestTime)
+            return;
+
+        _nextBlipRequest[args.SenderSession.UserId] = _timing.RealTime + MinRequestPeriod;
+
+        var blips = AssembleBlipsReport((radarUid.Value, radar));
 
         var giveEv = new GiveBlipsEvent(blips);
         RaiseNetworkEvent(giveEv, args.SenderSession);
     }
 
     /// <summary>
+    /// Clears blip request data between rounds.
+    /// </summary>
+    public void OnRoundRestart(RoundRestartCleanupEvent ev)
+    {
+        _nextBlipRequest.Clear();
+    }
+
+    /// <summary>
     /// Assembles a list of radar blips visible to the given radar console.
     /// </summary>
-    private List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> AssembleBlipsReport(EntityUid uid, RadarConsoleComponent? component = null)
+    private List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> AssembleBlipsReport(Entity<RadarConsoleComponent> ent)
     {
         var blips = new List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)>();
 
-        if (!Resolve(uid, ref component))
+        if (!TryComp(ent, out TransformComponent? radarXform))
             return blips;
-
-        var radarXform = Transform(uid);
-        var radarPosition = _xform.GetWorldPosition(uid);
-        var radarGrid = _xform.GetGrid(uid);
+        var radarPosition = _xform.GetWorldPosition(ent);
+        var radarGrid = radarXform.GridUid;
         var radarMapId = radarXform.MapID;
+        var radarRange = MathF.Min(ent.Comp.MaxRange, MaxBlipRenderDistance);
+
+        // Non-positive range, nothing to return.
+        if (radarRange <= 0)
+            return blips;
 
         var blipQuery = EntityQueryEnumerator<RadarBlipComponent, TransformComponent>();
 
@@ -63,84 +96,44 @@ public sealed partial class RadarBlipSystem : EntitySystem
                 continue;
             }
 
-            if (ShouldSkipProjectileBlip(blipUid, blipXform, radarMapId))
+            if (blipXform.MapID != radarMapId)
+            {
+                Log.Debug($"Blip {blipUid} skipped: different map.");
                 continue;
+            }
+
+            // Run cheaper grid checks before distance checks
+            var blipGrid = blipXform.GridUid;
+            if (blip.RequireNoGrid && blipGrid != null)
+            {
+                Log.Debug($"Blip {blipUid} skipped: has grid but requires none.");
+                continue;
+            }
+
+            if (!blip.VisibleFromOtherGrids && blipGrid != radarGrid)
+            {
+                Log.Debug($"Blip {blipUid} skipped: not on same grid as radar.");
+                continue;
+            }
 
             var blipPosition = _xform.GetWorldPosition(blipUid);
             var distance = (blipPosition - radarPosition).Length();
-            if (distance > component.MaxRange)
+            if (distance > radarRange)
             {
                 Log.Debug($"Blip {blipUid} skipped: out of range.");
                 continue;
             }
 
-            var blipGrid = _xform.GetGrid(blipUid);
-
-            if (blip.RequireNoGrid)
+            // Convert blip position to grid coords if needed.
+            NetEntity? blipNetGrid = null;
+            if (blipGrid != null)
             {
-                if (blipGrid != null)
-                {
-                    Log.Debug($"Blip {blipUid} skipped: has grid but requires none.");
-                    continue;
-                }
-                blips.Add((null, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
+                blipNetGrid = GetNetEntity(blipGrid.Value);
+                blipPosition = Vector2.Transform(blipPosition, _xform.GetInvWorldMatrix(blipGrid.Value));
             }
-            else if (blip.VisibleFromOtherGrids)
-            {
-                AddGridOrWorldBlip(blips, blipGrid, blipPosition, blip);
-            }
-            else
-            {
-                if (blipGrid != radarGrid)
-                {
-                    Log.Debug($"Blip {blipUid} skipped: not on same grid as radar.");
-                    continue;
-                }
-                AddGridOrWorldBlip(blips, blipGrid, blipPosition, blip);
-            }
+            blips.Add((blipNetGrid, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
         }
         return blips;
-    }
-
-    /// <summary>
-    /// Determines if a projectile blip should be skipped based on map context.
-    /// </summary>
-    private bool ShouldSkipProjectileBlip(EntityUid blipUid, TransformComponent blipXform, MapId radarMapId)
-    {
-        if (TryComp<ProjectileComponent>(blipUid, out var projectile))
-        {
-            if (blipXform.MapID != radarMapId)
-            {
-                Log.Debug($"Projectile blip {blipUid} skipped: different map.");
-                return true;
-            }
-            if (projectile.Shooter != null &&
-                TryComp<TransformComponent>(projectile.Shooter, out var shooterXform) &&
-                shooterXform.MapID != blipXform.MapID)
-            {
-                Log.Debug($"Projectile blip {blipUid} skipped: shooter on different map.");
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Adds a blip to the list, converting to grid-local coordinates if needed.
-    /// </summary>
-    private void AddGridOrWorldBlip(List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> blips, EntityUid? blipGrid, Vector2 blipPosition, RadarBlipComponent blip)
-    {
-        if (blipGrid != null)
-        {
-            var gridMatrix = _xform.GetWorldMatrix(blipGrid.Value);
-            Matrix3x2.Invert(gridMatrix, out var invGridMatrix);
-            var localPos = Vector2.Transform(blipPosition, invGridMatrix);
-            blips.Add((GetNetEntity(blipGrid.Value), localPos, blip.Scale, blip.RadarColor, blip.Shape));
-        }
-        else
-        {
-            blips.Add((null, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
-        }
     }
 
     /// <summary>

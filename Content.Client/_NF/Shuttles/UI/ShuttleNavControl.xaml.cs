@@ -17,7 +17,7 @@ namespace Content.Client.Shuttles.UI
     public sealed partial class ShuttleNavControl : BaseShuttleControl
     {
         private readonly StationSystem _station;
-        private readonly RadarBlipsSystem _blips;
+        private readonly RadarBlipSystem _blips;
 
         // Constants for gunnery system
         // These 2 handle timing updates
@@ -281,10 +281,10 @@ namespace Content.Client.Shuttles.UI
         {
             const int points = 5;
             const float innerRatio = 0.4f;
-            var vertices = new Vector2[points * 2 + 1];
+            var vertices = new Vector2[points * 2 + 2]; // outer and inner point, five times, plus a center point and the original drawn point
 
             vertices[0] = position;
-            for (var i = 0; i < points * 2; i++)
+            for (var i = 0; i <= points * 2; i++)
             {
                 var angle = i * Math.PI / points;
                 var radius = i % 2 == 0 ? size : size * innerRatio;

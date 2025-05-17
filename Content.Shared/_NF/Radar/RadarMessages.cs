@@ -61,7 +61,9 @@ public sealed class GiveBlipsEvent : EntityEventArgs
 }
 
 /// <summary>
-/// Event sent from the client to the server to request radar blip data.
+/// A request for radar blips around a given entity.
+/// Entity must have the RadarConsoleComponent to receive a response.
+/// Requests are rate-limited server-side, unhandled messages will not receive a response.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class RequestBlipsEvent : EntityEventArgs
