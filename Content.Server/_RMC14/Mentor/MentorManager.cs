@@ -32,7 +32,7 @@ public sealed class MentorManager : IPostInjectInit
     [Dependency] private readonly UserDbDataManager _userDb = default!;
 
     private const string RateLimitKey = "MentorHelp";
-    private static readonly ProtoId<JobPrototype> MentorJob = "CMSeniorEnlistedAdvisor";
+    private static readonly ProtoId<JobPrototype> MentorJob = "StationRepresentative"; // Frontier
 
     private readonly HashSet<ICommonSession> _activeMentors = new();
     private readonly Dictionary<NetUserId, bool> _mentors = new();
