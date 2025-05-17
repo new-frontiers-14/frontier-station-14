@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 255.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 05/17/2025 11:22:36
+  entityCount: 101
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   88: FloorShuttleWhite
@@ -284,6 +295,14 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 1
+- proto: ComputerWallmountStationRecords
+  entities:
+  - uid: 61
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,2.5
+      parent: 1
 - proto: ComputerWallmountWithdrawBankATM
   entities:
   - uid: 68
@@ -534,14 +553,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: NoticeBoardNF
-  entities:
-  - uid: 61
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,2.5
-      parent: 1
 - proto: OxygenCanister
   entities:
   - uid: 98
@@ -672,7 +683,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         79:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: SignCargoDock
   entities:
   - uid: 30
