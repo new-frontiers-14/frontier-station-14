@@ -13,6 +13,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Content.Client.Station; // Frontier
+using Content.Client._NF.Radar; // Frontier
 
 namespace Content.Client.Shuttles.UI;
 
@@ -63,7 +64,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         // Frontier
         _station = EntManager.System<StationSystem>();
-        _blips = EntManager.System<RadarBlipsSystem>();
+        _blips = EntManager.System<RadarBlipSystem>();
 
         OnMouseEntered += HandleMouseEntered;
         OnMouseExited += HandleMouseExited;
