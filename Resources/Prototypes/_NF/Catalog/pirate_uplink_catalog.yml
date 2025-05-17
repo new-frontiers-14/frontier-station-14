@@ -142,7 +142,7 @@
   id: UplinkPirateBlunderbuss
   name:  uplink-pirate-blunderbuss-name
   description: uplink-pirate-blunderbuss-desc
-  productEntity: WeaponShotgunBlunderbuss
+  productEntity: NFWeaponShotgunBlunderbuss
   icon: { sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi, state: icon }
   cost:
     Doubloon: 2
@@ -158,7 +158,7 @@
   id: UplinkPirateRevolver
   name:  uplink-pirate-revolver-name
   description: uplink-pirate-revolver-desc
-  productEntity: WeaponRevolverPirate
+  productEntity: NFWeaponRevolverPirate
   icon: { sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi, state: icon }
   cost:
     Doubloon: 1
@@ -174,7 +174,7 @@
   id: UplinkPirateCannon
   name:  uplink-pirate-cannon-name
   description: uplink-pirate-cannon-desc
-  productEntity: WeaponLauncherPirateCannon
+  productEntity: NFWeaponLauncherPirateCannon
   icon: { sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi, state: icon }
   cost:
     Doubloon: 6
@@ -190,7 +190,7 @@
   id: UplinkFlintlock
   name:  uplink-pirate-flintlock-name
   description: uplink-pirate-flintlock-desc
-  productEntity: WeaponPistolFlintlock
+  productEntity: NFWeaponPistolFlintlock
   icon: { sprite: Objects/Weapons/Guns/Snipers/flintlock.rsi, state: base }
   cost:
     Doubloon: 2
@@ -292,7 +292,7 @@
   id: UplinkPirateShotgunAmmo
   name:  uplink-pirate-shotgunammo-name
   description: uplink-pirate-shotgunammo-desc
-  productEntity: BoxLethalshot
+  productEntity: NFAmmunitionBoxShellShotgunBuckshot
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi, state: base }
   cost:
     Doubloon: 2
@@ -308,8 +308,8 @@
   id: UplinkPirateRevolverAmmo
   name:  uplink-pirate-revolverammo-name
   description: uplink-pirate-revolverammo-desc
-  productEntity: MagazineBoxMagnum
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi, state: base }
+  productEntity: NFAmmunitionBoxPistol45
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: base }
   cost:
     Doubloon: 2
   categories:
@@ -324,8 +324,8 @@
   id: UplinkPirateFlintlockAmmo
   name:  uplink-pirate-flintlockammo-name
   description: uplink-pirate-flintlockammo-desc
-  productEntity: MagazineBoxAntiMateriel
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi, state: base }
+  productEntity: NFAmmunitionBoxRifle60
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: base }
   cost:
     Doubloon: 2
   categories:
@@ -353,10 +353,10 @@
           - PirateUplink
 
 - type: listing
-  id: UplinkPirateCannonballEmp
+  id: UplinkPirateNFCannonBallEmp
   name:  uplink-pirate-cannonball-emp-name
   description: uplink-pirate-cannonball-emp-desc
-  productEntity: CratePirateChestCannonBallEmp
+  productEntity: CratePirateChestNFCannonBallEmp
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: ball-emp }
   cost:
     Doubloon: 2
@@ -436,7 +436,7 @@
   - UplinkPirateUtility
 
 - type: listing
-  id: PirateRepairKit
+  id: UplinkPirateRepairKit
   name: uplink-pirate-repair-kit-name
   description: uplink-pirate-repair-kit-desc
   productEntity: PirateRepairKit
@@ -451,5 +451,37 @@
     - !type:BuyerJobCondition
       whitelist:
         - NFPirateCaptain
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateIonizedBluespaceDustBag
+  name: uplink-pirate-ionized-dust-bag-name
+  description: uplink-pirate-ionized-dust-bag-desc
+  productEntity: IonizedBluespaceDustBag
+  icon: { sprite: _NF/Objects/Specific/Pirate/bluespace_dust.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPiratePinpointerScanner
+  name: uplink-pirate-pinpointer-target-scanner-name
+  description: uplink-pirate-pinpointer-target-scanner-desc
+  productEntity: PinpointerScanner
+  icon: { sprite: _NF/Objects/Specific/Pirate/pinpointer_scanner.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
   categories:
   - UplinkPirateUtility
