@@ -1,0 +1,15 @@
+- type: entity
+  id: CigCartonMcCargo
+  parent: CigCartonGreen
+  name: McSmokes carton
+  description: A carton containing 6 packets of McSmokes.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Cigarettes/Cartons/mccargo.rsi
+    state: icon
+  - type: Item
+    sprite: _NF/Objects/Consumable/Smokeables/Cigarettes/Cartons/mccargo.rsi
+  - type: StorageFill
+    contents:
+      - id: CigPackMcCargo
+        amount: 5
