@@ -40,6 +40,7 @@ public static partial class PoolManager
         (CVars.NetBufferSize.Name, "0"),
         (CCVars.InteractionRateLimitCount.Name, "9999999"),
         (CCVars.InteractionRateLimitPeriod.Name, "0.1"),
+        (CCVars.MovementMobPushing.Name, "false"),
         (RMCCVars.RMCMentorHelpRateLimitPeriod.Name, "2.0"), // Frontier: postinject seems to fail
         (RMCCVars.RMCMentorHelpRateLimitCount.Name, "10"), // Frontier: postinject seems to fail
         (CCVars.GameLobbyDefaultPreset.Name, "secret"), // Frontier: Adventure takes ages, default to secret

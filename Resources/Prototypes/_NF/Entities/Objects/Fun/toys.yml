@@ -105,8 +105,9 @@
     tags:
     - Soap
   - type: Slippery
-    paralyzeTime: 0.7
-    launchForwardsMultiplier: 0.5
+    slipData:
+      paralyzeTime: 0.7
+      launchForwardsMultiplier: 0.5
   - type: StepTrigger
     intersectRatio: 0.2
   - type: CollisionWake
@@ -551,8 +552,8 @@
     state: white
 
 - type: entity
-  name: toy RPG
-  parent: [BaseClearContraband, WeaponLauncherRocket]
+  name: toy rocket launcher
+  parent: [BaseClearContraband, NFWeaponLauncherRocket]
   id: WeaponLauncherRocketToy
   suffix: Toy
   description: A plush toy, this launches foam "grenades". There are stitches on the side that spell out "SAM".
@@ -581,6 +582,9 @@
   - type: EmitSoundOnCollide
     sound:
       collection: ToySqueak
+  # - type: EyeCursorOffset # clear the offset
+    # maxOffset: 0
+    # pvsIncrease: 0
 
 - type: entity
   id: BulletFoamRPG
@@ -602,12 +606,42 @@
     - type: StaminaDamageOnCollide
       damage: 20
 
+- type: entity
+  parent: [BaseClearContraband, NFBaseWeaponFrameRevolverFoamForce, NFBaseWeaponRevolverChamberCap]
+  id: NFRevolverCapGun
+  suffix: Frontier
+  name: cap gun
+  description: Looks almost like the real thing! Ages 8 and up.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/toys.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+    clumsyProof: true
+
+- type: entity
+  parent: [BaseC3SyndicateContraband, NFBaseWeaponFrameRevolverFoamForce, NFBaseWeaponRevolverChamber45Cap]
+  id: NFRevolverCapGunFake
+  suffix: Fake, Frontier
+  name: cap gun
+  description: Looks almost like the real thing! Ages 8 and up.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/toys.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: Objects/Fun/toys.rsi
+    heldPrefix: capgun
+  - type: Contraband
+    hideValues: true
+
 # Grown cap gun, in toys.yml for consistency with fake parent
 - type: entity
-  parent: [BaseC3SyndicateContrabandNoValue, RevolverCapGunFake] # Frontier: added BaseC3SyndicateContraband
-  id: RevolverCapGunFakeGrown
+  parent: [BaseC3SyndicateContrabandNoValue, NFRevolverCapGunFake] # Frontier: added BaseC3SyndicateContraband
+  id: NFRevolverCapGunFakeGrown
   categories: [ HideSpawnMenu ]
   suffix: Fake, Grown
-  components:
-  - type: RevolverAmmoProvider
-    proto: CartridgeMagnum # Base has AP rounds

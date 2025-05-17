@@ -9,7 +9,7 @@ namespace Content.Server.Clock;
 public sealed class ClockSystem : SharedClockSystem
 {
     [Dependency] private readonly PvsOverrideSystem _pvsOverride = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    // [Dependency] private readonly IRobustRandom _robustRandom = default!; // Frontier: predictable shift times
 
     /// <inheritdoc/>
     public override void Initialize()
