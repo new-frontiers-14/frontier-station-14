@@ -3,11 +3,11 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Popups;
-using Content.Server.DeviceLinking.Events; // Frontier
 using Content.Server.DeviceLinking.Systems; // Frontier
-using Content.Server.DeviceNetwork; // Frontier
-using Content.Server.DeviceNetwork.Systems; // Frontier
 using Content.Server.Power.Components; // Frontier
+using Content.Shared.DeviceNetwork; // Frontier
+using Content.Shared.DeviceLinking.Events; // Frontier
+using Content.Shared.DeviceNetwork.Events; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -95,37 +95,23 @@ public sealed class StationAnchorSystem : EntitySystem
     private void OnSignalReceived(EntityUid uid, StationAnchorComponent component, ref SignalReceivedEvent args)
     {
         if (args.Port == component.OffPort)
-        {
             SetAnchorPower((uid, component), false);
-        }
         else if (args.Port == component.OnPort)
-        {
             SetAnchorPower((uid, component), true);
-        }
         else if (args.Port == component.TogglePort)
             ToggleAnchorPower((uid, component));
     }
 
     private void SetAnchorPower(Entity<StationAnchorComponent> ent, bool value)
     {
-        if (!EntityManager.TryGetComponent<PowerChargeComponent>(ent, out var entPowerHandler))
-        {
-            Logger.Error($"Unable to find PowerChargeComponent in StationAnchor. ID:{ent.Owner}");
-            return;
-        }
-
-        _chargeSystem.SetSwitchedOn(ent, entPowerHandler, value);
+        if (TryComp<PowerChargeComponent>(ent, out var entPowerHandler))
+            _chargeSystem.SetSwitchedOn(ent, entPowerHandler, value);
     }
 
     private void ToggleAnchorPower(Entity<StationAnchorComponent> ent)
     {
-        if (!EntityManager.TryGetComponent<PowerChargeComponent>(ent, out var entPowerHandler))
-        {
-            Logger.Error($"Unable to find PowerChargeComponent in StationAnchor. ID:{ent.Owner}");
-            return;
-        }
-
-        _chargeSystem.SetSwitchedOn(ent, entPowerHandler, !entPowerHandler.SwitchedOn);
+        if (TryComp<PowerChargeComponent>(ent, out var entPowerHandler))
+            _chargeSystem.SetSwitchedOn(ent, entPowerHandler, !entPowerHandler.SwitchedOn);
     }
     // End Frontier: anchor device linking
 

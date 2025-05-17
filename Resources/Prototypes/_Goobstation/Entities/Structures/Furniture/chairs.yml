@@ -1,0 +1,64 @@
+- type: entity
+  save: true # Frontier: not sure about vehicles saving generally, but office chairs seem fine
+  name: chair
+  id: RollingOfficeChairBase
+  description: Scoot from desk to desk because standing is for interns.
+  parent: BaseVehicle
+  abstract: true
+  components:
+  - type: Anchorable
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Sprite
+    sprite: Structures/Furniture/chairs.rsi
+    noRot: true
+  - type: Strap
+    position: Stand
+    # buckleOffset: "0,-0.05" # Frontier
+  - type: Vehicle
+    requiredHands: 0
+    engineRunning: true
+    # renderOver: North, NorthEast, NorthWest # Frontier
+    renderOver: North # Frontier
+    southOffset: 0, -0.05 # Frontier
+    northOffset: 0, -0.05 # Frontier
+    eastOffset: 0, -0.05 # Frontier
+    westOffset: 0, -0.05 # Frontier
+  - type: MovementSpeedModifier
+    acceleration: 10
+    friction: 3.5
+    baseSprintSpeed: 2.5
+    baseWalkSpeed: 1.5
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 75
+        mask:
+        - TableMask
+  - type: StaticPrice
+    price: 50
+  - type: ItemSlots # Frontier: remove key slot
+    slots: {} # Frontier

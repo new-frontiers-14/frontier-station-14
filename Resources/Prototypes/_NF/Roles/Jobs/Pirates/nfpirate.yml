@@ -1,0 +1,45 @@
+- type: job
+  id: NFPirate
+  name: job-name-nf-pirate
+  description: job-description-nf-pirate
+  playTimeTracker: JobPirate
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 86400 # 24 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10800 # 3 hrs
+  startingGear: NFPirateGear
+  alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  canBeAntag: true
+  icon: "JobIconNFPirate"
+  supervisors: job-supervisors-nf-pirate
+  weight: 20
+  displayWeight: 20
+  setPreference: true
+  access:
+  - Pirate
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AutoPirate
+    - type: SpecialSectorStationRecord # must be given on spawn
+      recordGeneration: FalseRecord
+  - !type:AddImplantSpecial
+    implants: [ FreelanceTrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: NFPirateGear
+  equipment:
+    ears: ClothingHeadsetAltFreelancer
+    belt: ClothingBeltUtility
+    pocket1: BasePirateUplinkPirateCrew
+  storage:
+    back:
+    - AppraisalTool

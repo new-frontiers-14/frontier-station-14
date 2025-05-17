@@ -4,6 +4,7 @@ using System.Numerics;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
+using Content.Server.Ghost;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
@@ -22,6 +23,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server._Corvax.Respawn; // Frontier
+using Content.Shared._NF.Roles.Components; // Frontier
 
 namespace Content.Server.GameTicking
 {
@@ -100,6 +102,9 @@ namespace Content.Server.GameTicking
                 if (job == null)
                 {
                     var playerSession = _playerManager.GetSessionById(netUser);
+                    var evNoJobs = new NoJobsAvailableSpawningEvent(playerSession); // Used by gamerules to wipe their antag slot, if they got one
+                    RaiseLocalEvent(evNoJobs);
+
                     _chatManager.DispatchServerMessage(playerSession, Loc.GetString("job-not-available-wait-in-lobby"));
                 }
                 else
@@ -211,6 +216,9 @@ namespace Content.Server.GameTicking
                     JoinAsObserver(player);
                 }
 
+                var evNoJobs = new NoJobsAvailableSpawningEvent(player); // Used by gamerules to wipe their antag slot, if they got one
+                RaiseLocalEvent(evNoJobs);
+
                 _chatManager.DispatchServerMessage(player,
                     Loc.GetString("game-ticker-player-no-jobs-available-when-joining"));
                 return;
@@ -242,6 +250,14 @@ namespace Content.Server.GameTicking
             var mob = mobMaybe!.Value;
 
             _mind.TransferTo(newMind, mob);
+
+            // Frontier: ensure jobs are tracked
+            var jobComp = EnsureComp<JobTrackingComponent>(mob);
+            jobComp.Job = jobId;
+            jobComp.SpawnStation = station;
+            jobComp.Active = true;
+            Dirty(mob, jobComp);
+            // End Frontier
 
             _roles.MindAddJobRole(newMind, silent: silent, jobPrototype:jobId);
             var jobName = _jobs.MindTryGetJobName(newMind);
@@ -434,7 +450,7 @@ namespace Content.Server.GameTicking
                 // Ideally engine would just spawn them on grid directly I guess? Right now grid traversal is handling it during
                 // update which means we need to add a hack somewhere around it.
                 var spawn = _robustRandom.Pick(_possiblePositions);
-                var toMap = spawn.ToMap(EntityManager, _transform);
+                var toMap = _transform.ToMapCoordinates(spawn);
 
                 if (_mapManager.TryFindGridAt(toMap, out var gridUid, out _))
                 {

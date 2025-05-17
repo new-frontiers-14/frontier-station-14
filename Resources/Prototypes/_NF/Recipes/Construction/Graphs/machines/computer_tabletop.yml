@@ -124,6 +124,9 @@
         computer: Tabletop
       edges:
         - to: monitorUnsecured
+          completed:
+            - !type:RaiseEvent
+                event: !type:MachineDeconstructedEvent
           conditions:
             - !type:AllWiresCut {}
           steps:

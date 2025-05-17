@@ -9,11 +9,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Projectiles;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
-using Content.Shared.StatusEffect;
-using Content.Shared.Eye.Blinding.Components; // Frontier
-using Content.Shared.Eye.Blinding.Systems; // Frontier
-using Robust.Shared.Random; // Frontier
-using Content.Server.Chat.Systems; // Frontier
 
 namespace Content.Server.Projectiles;
 
@@ -26,10 +21,6 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     [Dependency] private readonly GunSystem _guns = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
 
-    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!; // Frontier
-    [Dependency] private readonly BlindableSystem _blindingSystem = default!; // Frontier
-    [Dependency] private readonly IRobustRandom _random = default!; // Frontier
-    [Dependency] private readonly ChatSystem _chat = default!; // Frontier
 
     public override void Initialize()
     {
@@ -57,11 +48,6 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         var ev = new ProjectileHitEvent(component.Damage * _damageableSystem.UniversalProjectileDamageModifier, target, component.Shooter);
         RaiseLocalEvent(uid, ref ev);
 
-        if (component.RandomBlindChance > 0.0f && _random.Prob(component.RandomBlindChance)) // Frontier - bb make you go blind
-        {
-            TryBlind(target);
-        }
-
         var otherName = ToPrettyString(target);
         var damageRequired = _destructibleSystem.DestroyedAt(target);
         if (TryComp<DamageableComponent>(target, out var damageableComponent))
@@ -80,7 +66,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             }
 
             _adminLogger.Add(LogType.BulletHit,
-                HasComp<ActorComponent>(target) ? LogImpact.Extreme : LogImpact.High,
+                LogImpact.Medium,
                 $"Projectile {ToPrettyString(uid):projectile} shot by {ToPrettyString(component.Shooter!.Value):user} hit {otherName:target} and dealt {modifiedDamage.GetTotal():damage} damage");
         }
 
@@ -139,28 +125,5 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         {
             RaiseNetworkEvent(new ImpactEffectEvent(component.ImpactEffect, GetNetCoordinates(xform.Coordinates)), Filter.Pvs(xform.Coordinates, entityMan: EntityManager));
         }
-    }
-
-    private void TryBlind(EntityUid target) // Frontier - bb make you go blind
-    {
-        if (!TryComp<BlindableComponent>(target, out var blindable) || blindable.IsBlind)
-            return;
-
-        var eyeProtectionEv = new GetEyeProtectionEvent();
-        RaiseLocalEvent(target, eyeProtectionEv);
-
-        var time = (float)(TimeSpan.FromSeconds(2) - eyeProtectionEv.Protection).TotalSeconds;
-        if (time <= 0)
-            return;
-
-        var emoteId = "Scream";
-        _chat.TryEmoteWithoutChat(target, emoteId);
-
-        // Add permanent eye damage if they had zero protection, also somewhat scale their temporary blindness by
-        // how much damage they already accumulated.
-        _blindingSystem.AdjustEyeDamage((target, blindable), 1);
-        var statusTimeSpan = TimeSpan.FromSeconds(time * MathF.Sqrt(blindable.EyeDamage));
-        _statusEffectsSystem.TryAddStatusEffect(target, TemporaryBlindnessSystem.BlindingStatusEffect,
-            statusTimeSpan, false, TemporaryBlindnessSystem.BlindingStatusEffect);
     }
 }

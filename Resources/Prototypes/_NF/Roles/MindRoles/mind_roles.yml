@@ -1,9 +1,34 @@
+# Pirate
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleNFPirate
+  name: Pirate Role
+  suffix: Frontier
+  components:
+  - type: MindRole
+    antagPrototype: NFPirate
+    roleType: NFPirate
+  - type: NFPirateRole
+
 #Ghost Roles
 - type: entity
   parent: BaseMindRole
   id: MindRoleGhostRoleEmotionalSupportPet
-  name: Ghost Role (Emotional Support Pet)
+  name: Emotional Support Pet Role
+  suffix: Frontier
   components:
   - type: MindRole
     roleType: EmotionalSupportPet
   - type: GhostRoleMarkerRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleGhostRoleNFPirate
+  name: Pirate Ghost Role
+  suffix: Frontier
+  components:
+  - type: MindRole
+    antagPrototype: NFPirate
+    roleType: NFPirate
+  - type: GhostRoleMarkerRole
+  - type: NFPirateRole

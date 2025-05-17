@@ -1,109 +1,3 @@
-
-# Ammo
-## Uranium
-
-- type: entity
-  parent: NFBaseBlueprintExpeditionArmory
-  id: NFBlueprintBoxShotgunUranium
-  name: uranium shotgun ammo blueprint
-  description: A blueprint with a schematic of uranium shotgun ammo. It can be inserted into an autolathe or a techfab.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - BoxShotgunUranium
-
-- type: entity
-  parent: NFBaseBlueprintExpeditionArmory
-  id: NFBlueprintMagazineBoxRifleUranium
-  name: uranium .20 ammo blueprint
-  description: A blueprint with a schematic of uranium .20 rifle ammo. It can be inserted into an autolathe or a techfab.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - MagazineBoxRifleUranium
-
-- type: entity
-  parent: NFBaseBlueprintExpeditionArmory
-  id: NFBlueprintMagazineBoxLightRifleUranium
-  name: uranium .30 ammo blueprint
-  description: A blueprint with a schematic for uranium .30 rifle ammo. It can be inserted into an autolathe or a techfab.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - MagazineBoxLightRifleUranium
-
-- type: entity
-  parent: NFBaseBlueprintExpeditionArmory
-  id: NFBlueprintMagazineBoxMagnumUranium
-  name: uranium .45 ammo blueprint
-  description: A blueprint with a schematic for uranium .45 ammo. It can be inserted into an autolathe or a techfab.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - MagazineBoxMagnumUranium
-
-- type: entity
-  parent: NFBaseBlueprintExpeditionArmory
-  id: NFBlueprintMagazineBoxPistolUranium
-  name: uranium .35 ammo blueprint
-  description: A blueprint with a schematic for uranium .35 ammo. It can be inserted into an autolathe or a techfab.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - MagazineBoxPistolUranium
-
-## Incendiary
-
-- type: entity
-  parent: NFBaseBlueprintExpeditionArmory
-  id: NFBlueprintBoxShotgunIncendiary
-  name: incendiary shotgun ammo blueprint
-  description: A blueprint with a schematic for incendiary shotgun ammo. It can be inserted into an autolathe or a techfab.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - BoxShotgunIncendiary
-
-- type: entity
-  parent: NFBaseBlueprintExpeditionArmory
-  id: NFBlueprintMagazineBoxRifleIncendiary
-  name: incendiary .20 ammo blueprint
-  description: A blueprint with a schematic for incendiary .20 rifle ammo. It can be inserted into an autolathe or a techfab.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - MagazineBoxRifleIncendiary
-
-- type: entity
-  parent: NFBaseBlueprintExpeditionArmory
-  id: NFBlueprintMagazineBoxLightRifleIncendiary
-  name: incendiary .30 ammo blueprint
-  description: A blueprint with a schematic for incendiary .30 rifle ammo. It can be inserted into an autolathe or a techfab.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - MagazineBoxLightRifleIncendiary
-
-- type: entity
-  parent: NFBaseBlueprintExpeditionArmory
-  id: NFBlueprintMagazineBoxMagnumIncendiary
-  name: incendiary .45 ammo blueprint
-  description: A blueprint with a schematic for incendiary .45 ammo. It can be inserted into an autolathe or a techfab.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - MagazineBoxMagnumIncendiary
-
-- type: entity
-  parent: NFBaseBlueprintExpeditionArmory
-  id: NFBlueprintMagazineBoxPistolIncendiary
-  name: incendiary .35 ammo blueprint
-  description: A blueprint with a schematic for incendiary .35 ammo. It can be inserted into an autolathe or a techfab.
-  components:
-  - type: Blueprint
-    providedRecipes:
-    - MagazineBoxPistolIncendiary
-
 # Guns
 
 - type: entity
@@ -114,7 +8,7 @@
   components:
   - type: Blueprint
     providedRecipes:
-    - WeaponLaserCannon
+    - NFWeaponEnergyRifleSniperCannon
 
 - type: entity
   parent: NFBaseBlueprintExpeditionArmory
@@ -124,7 +18,17 @@
   components:
   - type: Blueprint
     providedRecipes:
-    - WeaponXrayCannon
+    - NFWeaponEnergyRifleSniperXrayCannon
+
+- type: entity
+  parent: BaseBlueprintExpedition
+  id: NFBlueprintWeaponTemperatureGun
+  name: temperature gun blueprint
+  description: A blueprint with a schematic of a temperature gun. It can be inserted into an autolathe or a techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - NFWeaponEnergyRifleTemperature
 
 # Tools
 

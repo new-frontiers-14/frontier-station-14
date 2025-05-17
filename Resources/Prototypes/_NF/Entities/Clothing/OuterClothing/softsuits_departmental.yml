@@ -231,6 +231,60 @@
 
 - type: entity
   parent: NFDepartmentalEVASuit
+  id: ClothingOuterEVASuitStc
+  name: station traffic controller EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to station traffic controllers.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-base
+      color: "#1560bd"
+    - state: icon-decals-01
+      color: "#fe5c00"
+    - state: icon-reinforced-points
+      color: "#704900"
+    - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#1560bd"
+      - state: inhand-left-decals-01
+        color: "#fe5c00"
+      - state: inhand-left-reinforced-points
+        color: "#704900"
+      - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right-base
+        color: "#1560bd"
+      - state: inhand-right-decals-01
+        color: "#fe5c00"
+      - state: inhand-right-reinforced-points
+        color: "#704900"
+      - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#1560bd"
+      - state: equipped-decals-01
+        color: "#fe5c00"
+      - state: equipped-reinforced-points
+        color: "#704900"
+      - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetStc
+
+- type: entity
+  parent: NFDepartmentalEVASuit
   id: ClothingOuterEVASuitCaptain
   name: captain EVA suit
   description: An EVA suit with a built-in helmet commonly issued to captains.
@@ -665,6 +719,60 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetJanitor
+
+- type: entity
+  parent: NFDepartmentalEVASuit
+  id: ClothingOuterEVASuitValet
+  name: valet EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to valets.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-base
+      color: "#e6001f"
+    - state: icon-decals-01
+      color: "#f2b833"
+    - state: icon-reinforced-points
+      color: "#606275"
+    - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#e6001f"
+      - state: inhand-left-decals-01
+        color: "#f2b833"
+      - state: inhand-left-reinforced-points
+        color: "#606275"
+      - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right-base
+        color: "#e6001f"
+      - state: inhand-right-decals-01
+        color: "#f2b833"
+      - state: inhand-right-reinforced-points
+        color: "#606275"
+      - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#e6001f"
+      - state: equipped-decals-01
+        color: "#f2b833"
+      - state: equipped-reinforced-points
+        color: "#606275"
+      - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetValet
 
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -1269,6 +1377,116 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetNfsd
+
+#region Pirate
+- type: entity
+  parent: NFDepartmentalEVASuit
+  id: ClothingOuterEVASuitPirate
+  name: pirate EVA suit
+  description: An EVA suit with a built-in helmet commonly used by pirates.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-base
+      color: "#d4a365"
+    - state: icon-decals-01
+      color: "#4b0e10"
+    - state: icon-reinforced-points
+      color: "#784f1e"
+    - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#d4a365"
+      - state: inhand-left-decals-01
+        color: "#4b0e10"
+      - state: inhand-left-reinforced-points
+        color: "#784f1e"
+      - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right-base
+        color: "#d4a365"
+      - state: inhand-right-decals-01
+        color: "#4b0e10"
+      - state: inhand-right-reinforced-points
+        color: "#784f1e"
+      - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#d4a365"
+      - state: equipped-decals-01
+        color: "#4b0e10"
+      - state: equipped-reinforced-points
+        color: "#784f1e"
+      - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetPirate
+
+#region Prisoner
+- type: entity
+  parent: NFDepartmentalEVASuit
+  id: ClothingOuterEVASuitPrisoner
+  name: prisoner EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to prisoners.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-base
+      color: "#ff8300"
+    - state: icon-decals-01
+      color: "#384d2f"
+    - state: icon-reinforced-points
+      color: "#493926"
+    - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#ff8300"
+      - state: inhand-left-decals-01
+        color: "#384d2f"
+      - state: inhand-left-reinforced-points
+        color: "#493926"
+      - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right-base
+        color: "#ff8300"
+      - state: inhand-right-decals-01
+        color: "#384d2f"
+      - state: inhand-right-reinforced-points
+        color: "#493926"
+      - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#ff8300"
+      - state: equipped-decals-01
+        color: "#384d2f"
+      - state: equipped-reinforced-points
+        color: "#493926"
+      - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetPrisoner
 
 #region Player Factions
 - type: entity

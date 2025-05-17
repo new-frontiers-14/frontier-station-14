@@ -4,6 +4,7 @@ guide-entry-bank = NT Galactic Bank
 guide-entry-piloting = Piloting
 guide-entry-startinggear = Starting Equipment
 guide-entry-hiring = Hiring Crew
+guide-entry-interviews = Interviews
 guide-entry-expeditions = Expeditions
 guide-entry-sector-topology = Sector Topology
 guide-entry-cargo-hauling = Cargo Hauling
@@ -22,6 +23,8 @@ guide-entry-medical-doc = Director of Care
 
 # Reference entries
 guide-entry-medicalrecipes = Medical Recipes
+guide-entry-weapons-ranged-archetypes = Ranged Weapon Archetypes
+guide-entry-weapons-color-codes-ammo = Ammmunition Color Codes
 
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
@@ -41,6 +44,7 @@ guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-barge = Barge
+guide-entry-shipyard-baroness = Baroness
 guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
 guide-entry-shipyard-bodkin = Bodkin
@@ -53,6 +57,7 @@ guide-entry-shipyard-charon = Charon
 guide-entry-shipyard-chisel = Chisel
 guide-entry-shipyard-comet = Comet
 guide-entry-shipyard-construct = Construct
+guide-entry-shipyard-crossroads = Crossroads
 guide-entry-shipyard-eagle = Eagle
 guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
@@ -62,20 +67,24 @@ guide-entry-shipyard-hauler = Hauler
 guide-entry-shipyard-harbormaster = Harbormaster
 guide-entry-shipyard-honker = Honker
 guide-entry-shipyard-investigator = Investigator
+guide-entry-shipyard-izakaya = Izakaya
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern = Lantern
 guide-entry-shipyard-legman = Legman
 guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-loader = Loader
+guide-entry-shipyard-lyrae = Lyrae
 guide-entry-shipyard-mccargo = McCargo
 guide-entry-shipyard-mcdelivery = McDelivery
 guide-entry-shipyard-nightlight = Nightlight
+guide-entry-shipyard-nook = Nook
 guide-entry-shipyard-pathfinder = Pathfinder
 guide-entry-shipyard-phoenix = Phoenix
 guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-placebo = Placebo
 guide-entry-shipyard-prospector = Prospector
+guide-entry-shipyard-retort = Retort
 guide-entry-shipyard-searchlight = Searchlight
 guide-entry-shipyard-sparrow = Sparrow
 guide-entry-shipyard-skipper = Skipper
@@ -83,6 +92,7 @@ guide-entry-shipyard-spirit = Spirit
 guide-entry-shipyard-stasis = Stasis
 guide-entry-shipyard-tide = Tide
 guide-entry-shipyard-vagabond = Vagabond
+guide-entry-shipyard-vitalis = Vitalis
 
 # Rules entries
 guide-entry-frontier-rule-zero-tolerance = Zero Tolerance

@@ -119,6 +119,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -143,7 +144,7 @@
     - ReportingStatic # DeltaV
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - SecurityAmmoStatic
+    - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -197,6 +198,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -228,10 +230,10 @@
     - NFPouches # Frontier
   - type: EmagLatheRecipes
     emagDynamicPacks:
-    - SecurityAmmo
+    - NfsdAmmoStatic # Frontier: SecurityAmmo<NfsdAmmoStatic
     - SecurityExplosives
     - SecurityEquipment
-    - SecurityWeapons
+    #- SecurityWeapons # Frontier
     - SyringeGuns # Delta-V
   # Frontier: accept blueprints
   - type: BlueprintReceiver
@@ -310,6 +312,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: RequireProjectileTarget
 
 - type: entity
@@ -330,6 +333,7 @@
   description: Creates parts for robotics and other mechanical needs.
   components:
   - type: Sprite
+    snapCardinals: true # Frontier
     sprite: Structures/Machines/exosuit_fabricator.rsi
     layers:
     - state: fab-idle
@@ -358,6 +362,7 @@
       - Sheet
       - RawMaterial
       - Ingot
+  - type: OreSiloClient
   - type: GuideHelp
     guides:
     - Robotics
@@ -411,6 +416,7 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/techfab.rsi
+    snapCardinals: true # Frontier
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -429,22 +435,27 @@
     runningState: icon
     staticPacks:
     - SecurityEquipmentStatic
-    - SecurityPracticeStatic
-    - SecurityAmmoStatic
+    - NfsdPracticeStatic # Frontier: SecurityPracticeStatic<NfsdPracticeStatic
+    - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
     - SecurityWeaponsStatic
     dynamicPacks:
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
     - SecurityEquipment
     # - SecurityBoards # Frontier
     - SecurityExplosives
-    - SecurityAmmo
-    - SecurityWeapons
-    - SecurityDisablers
+    #- SecurityAmmo # Frontier
+    #- SecurityWeapons # Frontier
+    #- SecurityDisablers # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
+  # - type: LatheAnnouncing # Frontier: spammy
+  #   channels: [Security] # Frontier
 
 - type: entity
   id: AmmoTechFab
@@ -454,6 +465,7 @@
   components:
     - type: Sprite
       sprite: Structures/Machines/techfab.rsi
+      snapCardinals: true # Frontier
       layers:
         - state: icon
           map: ["enum.LatheVisualLayers.IsRunning"]
@@ -471,13 +483,14 @@
       idleState: icon
       runningState: icon
       staticPacks:
-      - SecurityAmmoStatic
+      - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
     - type: MaterialStorage
       whitelist:
         tags:
           - Sheet
           - RawMaterial
           - Ingot
+    - type: OreSiloClient
     - type: BlueprintReceiver # Frontier
       whitelist: # Frontier
         tags: # Frontier
@@ -491,6 +504,7 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/techfab.rsi
+    snapCardinals: true # Frontier
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -522,6 +536,9 @@
     board: MedicalTechFabCircuitboard
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
+  - type: OreSiloClient
+  # - type: LatheAnnouncing # Frontier: spammy
+  #   channels: [Medical] # Frontier
   - type: BlueprintReceiver # Frontier
     whitelist: # Frontier
       tags: # Frontier
@@ -562,6 +579,10 @@
     - Carpets
     - Bedsheets
     - NFFloorTilesCarpet # Frontier
+    - NFUniformColored #Frontier
+    - NFUniformMilitary # Frontier
+    - NFUniformSpecial # Frontier
+    - NFUniformCloaks # Frontier
     - NFWallets # Frontier
     dynamicPacks: # Frontier
     - NFPouches # Frontier
@@ -624,6 +645,7 @@
     - FriendlyCubesStatic # Frontier
     - NFBioGenIngredientsStatic # Frontier
     - NFBioGenMaterialsStatic # Frontier
+    - NFBioGenSodaStatic # Frontier
     - NFBioGenSeedsStatic # Frontier
     - NFBioGenSeedsMedicalStatic # Frontier
     - NFBioGenSoil # Frontier
@@ -651,6 +673,7 @@
   components:
     - type: Sprite
       sprite: Structures/Machines/ore_processor.rsi
+      snapCardinals: true # Frontier
       layers:
         - state: icon
           map: ["enum.LatheVisualLayers.IsRunning"]
@@ -705,6 +728,7 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/sheetifier.rsi
+    snapCardinals: true # Frontier
     layers:
     - state: base_machine
       map: ["enum.LatheVisualLayers.IsRunning"]

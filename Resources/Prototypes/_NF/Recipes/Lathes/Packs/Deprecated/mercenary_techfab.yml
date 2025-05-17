@@ -43,7 +43,7 @@
   - AirTank
 # Mercenary techfab
 ## Clothing / Armor
-  - RiotShield
+  - NFRiotShield
   - ClothingNeckIFFNeutral
   - ClothingNeckIFFGreen
   - ClothingNeckIFFRed
@@ -78,35 +78,37 @@
   - WeaponCaseShortAmmo
   - WeaponCaseShortExplosives
 ## Weapons
-  - CombatKnife
-  - WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-  - WeaponLaserPistolNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-  - WeaponRevolverArgenti
-  - WeaponPistolMk58NF
-  - WeaponShotgunDoubleBarreled
-  - WeaponRifleNovaliteC1
-  - WeaponRifleGestio
+  - NFCombatKnife
+  #- WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+  - NFWeaponEnergyPistolLaser # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+  - NFWeaponRevolverArgenti
+  - NFWeaponPistolMk58
+  - NFWeaponShotgunDoubleBarreled
+  - NFWeaponRifleAssaultNovaliteC1
+  - NFWeaponRifleAssaultGestio
   - BaseBallBatNF
   - CrossbowModern
   - WeaponPistolPollock
 ## Ammo boxes
-  - BoxLethalshot
-  - MagazineBoxLightRifle
-  - MagazineBoxPistol
-  - MagazineBoxRifle
+  - NFAmmunitionBoxPistol35
+  - NFAmmunitionBoxShellShotgunBuckshot
+  - NFAmmunitionBoxRifle20
+  - NFAmmunitionBoxRifle30
   - CrossbowBolt
   - CrossbowBoltBroadhead
-  - BoxBeanbag
-  - BoxShotgunSlug
-  - MagazineBoxLightRifleRubber
-  - MagazineBoxMagnumRubber
-  - MagazineBoxPistolRubber
-  - MagazineBoxRifleRubber
+  - NFAmmunitionBoxShellShotgunBeanbag
+  - NFAmmunitionBoxShellShotgunSlug
+  - NFAmmunitionBoxRifle30Rubber
+  - NFAmmunitionBoxPistol35Rubber
+  - NFAmmunitionBoxPistol45Rubber
+  - NFAmmunitionBoxRifle20Rubber
 ## Mags / Speedloaders / Clips
-  - MagazineNovaliteC1Empty
-  - MagazineNovaliteC1
-  - MagazineNovaliteC1Rubber
+  - NFMagazinePistol35Empty
+  - NFSpeedLoaderPistol35Empty
+  - NFSpeedLoaderPistol45Empty
+  - NFMagazineClipRifle20Empty
   - MagazineLightRifleLowCapacityEmpty
+<<<<<<< HEAD
   - MagazineLightRifleLowCapacity
   - MagazineLightRifleLowCapacityRubber
   - MagazineLightRifle
@@ -124,3 +126,89 @@
   - MagazinePistolRubber
   - MagazineLightRifleRubber
   - MagazineShotgunBeanbag
+=======
+
+- type: latheRecipePack
+  id: NFMercenaryTechfabDynamicDeprecated
+  recipes:
+# Shared lathe recipes
+## Advanced tools
+  - WelderExperimental
+  - JawsOfLife
+  - PowerDrill
+  - JetpackVoid
+  - PowerCellHigh
+  # - PowerCellHyperNF
+  - PowerCellMicroreactor
+# Mercenary techfab
+## Armor
+  - NFTelescopicShield
+  - ClothingOuterArmorBulletproofNF
+  - ClothingOuterCoatBHTrench
+  - ClothingOuterArmorPunkRandomized
+  - ClothingOuterArmorPunkRed
+  - ClothingOuterArmorPunkGreen
+  - ClothingOuterArmorPunkOrange
+  - ClothingOuterArmorElitePunkRandomized
+  - ClothingBeltPunkRandomized
+  - ClothingShoesBootsPunkRandomized
+  - ClothingEyesPunkGoggles
+  - ClothingEyesPunkInfoShades
+  - ClothingMaskPunkHalf
+  - ClothingUniformRandomPunkTanktop
+  - ClothingUniformRandomPunkTanktopShorts
+  - ClothingUniformRandomPunkCroptop
+  - ClothingUniformRandomPunkCroptopShorts
+  - ClothingOuterCoatLettermanRandomized
+  - ClothingOuterCoatBomberRandomized
+## EVA / Hardsuits
+  - ClothingOuterHardsuitCap
+  - ClothingOuterHardsuitMercenary
+  - ClothingOuterHardsuitPrivateSecurity
+  - ClothingOuterHardsuitScaf
+  - ClothingShoesBootsMagSecurity
+  - ClothingShoesBootsMagMercenary
+## Utilities
+  - NFForensicPad
+  - ClothingEyesHudBountyHunter
+  - ClothingEyesPunkInfoShades
+  - PinpointerUniversalNF
+  - NFHandcuffs
+  - NFPortableRecharger
+  - SignalTrigger
+  - TimerTrigger
+  - VoiceTrigger
+  - TurboItemRechargerCircuitboard
+  - ClothingBackpackHolding
+  - ClothingBackpackSatchelHolding
+  - ClothingBackpackDuffelHolding
+  - ClothingBackpackMessengerHolding
+  - FlashlightSecliteNF
+## Weapons
+  - WeaponGrapplingGun
+  - BolaNF
+  - FlashPayload
+  - ChemicalPayload
+## Ammo boxes
+  - NFAmmunitionBoxShellShotgunBeanbag
+  - NFAmmunitionBoxRifle20Rubber
+  - NFAmmunitionBoxRifle30Rubber
+  - NFAmmunitionBoxPistol35Rubber
+  - NFAmmunitionBoxPistol45Rubber
+  - NFAmmunitionBoxPistol35Overpressure
+  - NFAmmunitionBoxPistol45Overpressure
+  - NFAmmunitionBoxRifle20Overpressure
+  - NFAmmunitionBoxRifle30Overpressure
+  # Magazines
+  - NFMagazineClipRifle20Empty
+  - MagazineLightRifleLowCapacityEmpty
+  - NFMagazinePistol35Empty
+  - NFMagazineRifle20Empty
+  - NFMagazineRifle30Empty
+  - NFMagazinePistol45Empty
+  - NFMagazineHighCapacityPistol35Empty
+  - NFMagazineSubMachineGun35Empty
+  - NFMagazineSubMachineGunTopMounted35Empty
+  - NFMagazineDrumRifle20Empty
+  - MagazineAsmgtUniversalEmpty
+>>>>>>> 45984eace0b230bc79cc598b33a2902576cbabd8
