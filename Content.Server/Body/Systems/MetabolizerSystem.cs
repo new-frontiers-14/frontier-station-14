@@ -183,6 +183,11 @@ namespace Content.Server.Body.Systems
                     // Remove $rate, as long as there's enough reagent there to actually remove that much
                     mostToRemove = FixedPoint2.Clamp(rate, 0, quantity);
 
+                    // Frontier: skip applying effects in metabolism
+                    if (group.SkipEffects)
+                        continue;
+                    // End Frontier
+
                     float scale = (float) mostToRemove / (float) rate;
 
                     // if it's possible for them to be dead, and they are,

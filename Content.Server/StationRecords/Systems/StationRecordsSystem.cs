@@ -88,8 +88,8 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         }
     }
 
-    private void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
-        string? jobId, StationRecordsComponent records)
+    public void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
+        string? jobId, StationRecordsComponent records) // Frontier: private<public
     {
         // TODO make PlayerSpawnCompleteEvent.JobId a ProtoId
         if (string.IsNullOrEmpty(jobId)
