@@ -24,7 +24,7 @@
       tags:
         - BulletFoam
     capacity: 40
-    proto: BulletFoam
+    # proto: BulletFoam # Frontier
   - type: Sprite
     sprite: Objects/Storage/boxes.rsi
     layers:
@@ -37,17 +37,17 @@
   name: cap gun cartridge box
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCap
+    # proto: CartridgeCap # Frontier
     capacity: 20
   - type: MagazineVisuals
-    magState: mag # Frontier: mag-cap<mag
+    magState: mag-cap
     steps: 4
     zeroVisible: false
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi # Frontier: add _NF prefix
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi
     layers:
       - state: capbase # Frontier: base<capbase
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-1 # Frontier: mag-cap-1<mag-1
+      - state: mag-cap-1
         map: ["enum.GunVisualLayers.Mag"]
       # - state: capbase # Frontier

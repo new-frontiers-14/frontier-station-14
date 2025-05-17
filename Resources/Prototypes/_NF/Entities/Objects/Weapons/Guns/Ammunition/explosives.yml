@@ -1,19 +1,49 @@
-# Rockets
+#region Rockets
 
 - type: entity
-  id: CartridgeRocketEmp
-  name: PG-7VL emp
-  parent: BaseItem
-  description: A 1.5 emp warhead designed for the RPG-7 launcher. Has tubular shape.
+  parent: [BaseItem, BaseC2ContrabandUnredeemable]
+  id: NFBaseCartridgeRocket
+  abstract: true
   components:
   - type: Tag
     tags:
       - CartridgeRocket
   - type: Item
-    size: Tiny
+    size: Small
   - type: CartridgeAmmo
-    proto: BulletRocketEmp
+    proto: NFBulletRocket
     deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rpg
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  parent: NFBaseCartridgeRocket
+  id: NFCartridgeRocket
+  name: GR-44 grenade
+  description: A 1.5" warhead designed for GSW rocket launchers. Has tubular shape.
+
+- type: entity
+  parent: NFBaseCartridgeRocket
+  id: NFCartridgeRocketSlow
+  name: GR-22 "Easy Pete" grenade
+  description: A 1.5" warhead designed for GSW rocket launchers. It's unusually slow.
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletWeakRocket
+  - type: Sprite
+    state: frag
+
+- type: entity
+  parent: NFBaseCartridgeRocket
+  id: NFCartridgeRocketEmp
+  name: GR-44E EMP grenade
+  description: A 1.5" EMP warhead designed for GSW rocket launchers. Has tubular shape.
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRocketEmp
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     state: rpg-emp
@@ -22,16 +52,113 @@
     energyConsumption: 2700000
     disableDuration: 30
 
-# Cannon Balls
+#region Grenades
 - type: entity
-  id: CannonBallEmp
-  name: shockshot
-  suffix: EMP
-  parent: BaseCannonBall
+  parent: BaseGrenade
+  id: NFBaseGrenade40mm
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Grenade
+    - NFCartridgeGrenade40mm
+
+- type: entity
+  parent: [ NFBaseGrenade40mm, GrenadeBaton ]
+  id: NFGrenadeBaton
+  name: baton grenade round
   components:
   - type: CartridgeAmmo
-    proto: BulletCannonBallEmp
+    proto: NFBulletGrenadeBaton
+
+- type: entity
+  parent: [ NFBaseGrenade40mm, GrenadeBlast ]
+  id: NFGrenadeBlast
+  name: blast grenade round
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletGrenadeBlast
+
+- type: entity
+  parent: [ NFBaseGrenade40mm, GrenadeCleanade ]
+  id: NFGrenadeCleanade
+  name: cleanade grenade round
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletGrenadeCleanade
+
+- type: entity
+  parent: [ NFBaseGrenade40mm, GrenadeFlash ]
+  id: NFGrenadeFlash
+  name: flash grenade round
+  components:
+  - type: Tag
+    tags:
+    - NFCartridgeGrenade40mm
+    - NFCartridgeGrenade40mmFlash
+  - type: CartridgeAmmo
+    proto: NFBulletGrenadeFlash
+
+- type: entity
+  parent: [ NFBaseGrenade40mm, GrenadeFrag ]
+  id: NFGrenadeFrag
+  name: frag grenade round
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletGrenadeFrag
+
+- type: entity
+  parent: [ NFBaseGrenade40mm, GrenadeEMP ]
+  id: NFGrenadeEMP
+  name: EMP grenade round
+  components:
+  - type: Tag
+    tags:
+    - NFCartridgeGrenade40mm
+    - NFCartridgeGrenade40mmEmp
+  - type: CartridgeAmmo
+    proto: NFBulletGrenadeEMP
+  - type: EmpDescription
+    range: 5
+    energyConsumption: 2700000
+    disableDuration: 10
+
+# Cannon Balls
+
+- type: entity
+  parent: CannonBall
+  id: NFCannonBall
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletCannonBall
+
+- type: entity
+  parent: CannonBallGrapeshot
+  id: NFCannonBallGrapeshot
+  components:
+  - type: CartridgeAmmo
+    proto: NFPelletGrapeshotSpread
+
+- type: entity
+  parent: CannonBallGlassshot
+  id: NFCannonBallGlassshot
+  components:
+  - type: CartridgeAmmo
+    proto: NFPelletGlassSpread
+
+- type: entity
+  parent: BaseCannonBall
+  id: NFCannonBallEmp
+  name: shockshot
+  suffix: EMP
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletCannonBallEmp
     deleteOnSpawn: true
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/projectiles2.rsi
     state: ball-emp
+  - type: EmpDescription
+    range: 4
+    energyConsumption: 2700000
+    disableDuration: 60
