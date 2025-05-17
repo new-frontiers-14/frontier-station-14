@@ -128,6 +128,10 @@
     bodyType: Static
   - type: Fixtures
     fixtures:
+      fix1: # EE: Blood in context menu
+        shape: # EE: Blood in context menu
+          !type:PhysShapeCircle # EE: Blood in context menu
+          radius: 0.25 # EE: Blood in context menu
       slipFixture:
         shape:
           !type:PhysShapeAabb
@@ -169,3 +173,4 @@
   - type: Tag
     tags:
     - DNASolutionScannable
+  - type: PuddleFootPrints # DeltaV - EE Blood Puddle
