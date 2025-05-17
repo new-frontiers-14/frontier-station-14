@@ -1,0 +1,15 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'custom-objective-window-title'}"
+                      MinSize="300 250"
+                      SetSize="550 370">
+    <BoxContainer Orientation="Vertical" Margin="10 10 20 0">
+        <Label HorizontalAlignment="Center" Text="{Loc 'custom-objective-window-explain'}" />
+        <TextEdit Name="ObjectiveSummaryTextEdit" MaxHeight="500" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="200">
+            <Label Name="PlaceholderText" HorizontalAlignment="Center" VerticalAlignment="Center" StyleClasses="PlaceholderText" Text="{Loc 'custom-objective-window-explain-type-here'}" />
+        </TextEdit>
+        <Label Name="CharacterLimitLabel" HorizontalAlignment="Center" StyleClasses="LabelSmall"/>
+        <Label HorizontalAlignment="Center" Text="{Loc 'custom-objective-window-explain-edit'}" />
+        <Button Name="SubmitButton" Text="{Loc 'custom-objective-window-submit-button-text'}" Margin="0 10 0 10" />
+    </BoxContainer>
+</controls:FancyWindow>
