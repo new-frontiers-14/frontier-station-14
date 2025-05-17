@@ -29,6 +29,33 @@
   - type: StorageFillVisualizer
     maxFillLevels: 9
     fillBaseName: fillGeneric
+
+- type: entity
+  id: LockerWallColorStc
+  parent: LockerWallColorBase
+  name: station traffic controller wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#1560bd"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#1560bd"
+    - state: door-decal-line-03
+      map: [ decal1 ]
+      color: "#fe5c00"
+    - state: door-decal-captain-01
+      map: [ decal2 ]
+      color: "#fe5c00"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: AccessReader
+    access: [["StationTrafficController"]]
 # endregion
 
 #region Engineering

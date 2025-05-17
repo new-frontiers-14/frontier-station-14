@@ -7,28 +7,29 @@
 # Discord: erhardsteinhauer
 
 # Shuttle Notes:
-# 
+#
 - type: vessel
   id: Harbormaster
   parent: BaseVessel
   name: LVHI Harbormaster
   description: A small tugboat. Manufactured by Langstad-Voigt Heavy Industries.
-  price: 31500 # ~27196$ on mapinit + 15% markup
+  price: 28500 # ~26700$ on mapinit + 1400 from ~5% markup
   category: Small
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/harbormaster.yml
+  group: Sr
+  access: StationTrafficController
+  shuttlePath: /Maps/_NF/Shuttles/Sr/harbormaster.yml
   guidebookPage: ShipyardHarbormaster
   class:
   - Civilian
   engine:
-  - Plasma
+  - Bananium
 
 - type: gameMap
   id: Harbormaster
   mapName: 'Harbormaster'
-  mapPath: /Maps/_NF/Shuttles/harbormaster.yml
+  mapPath: /Maps/_NF/Shuttles/Sr/harbormaster.yml
   minPlayers: 0
-  stations: 
+  stations:
     Harbormaster:
       stationProto: StandardFrontierVessel
       components:
