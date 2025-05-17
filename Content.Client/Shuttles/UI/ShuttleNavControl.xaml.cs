@@ -12,7 +12,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
-using Content.Client._NF.Radar; // Frontier
 using Content.Client.Station; // Frontier
 
 namespace Content.Client.Shuttles.UI;

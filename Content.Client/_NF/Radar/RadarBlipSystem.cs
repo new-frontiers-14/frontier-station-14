@@ -6,7 +6,7 @@ namespace Content.Client._NF.Radar;
 
 /// <summary>
 /// A system for requesting, receiving, and caching radar blips.
-/// Sends off ad hoc requests for blips, caches them for a period of time, and then 
+/// Sends off ad hoc requests for blips, caches them for a period of time, and draws them when requested.
 /// </summary>
 /// <remarks>
 /// Ported from Monolith's RadarBlipsSystem.

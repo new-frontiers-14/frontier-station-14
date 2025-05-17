@@ -10,8 +10,7 @@ using Robust.Shared.Timing;
 namespace Content.Server._NF.Radar;
 
 /// <summary>
-/// A system for requesting, receiving, and caching radar blips.
-/// Sends off ad hoc requests for blips, caches them for a period of time, and then 
+/// A system that handles and rate-limits client-made requests for radar blips.
 /// </summary>
 /// <remarks>
 /// Ported from Monolith's RadarBlipsSystem.
@@ -21,7 +20,7 @@ public sealed partial class RadarBlipSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
 
-    private Dictionary<NetUserId, TimeSpan> _nextBlipRequest = new();
+    private Dictionary<NetUserId, TimeSpan> _nextBlipRequestPerUser = new();
 
     // The minimum amount of time between handled blip requests.
     private static readonly TimeSpan MinRequestPeriod = TimeSpan.FromSeconds(1);
@@ -49,10 +48,10 @@ public sealed partial class RadarBlipSystem : EntitySystem
         if (!TryComp<RadarConsoleComponent>(radarUid, out var radar))
             return;
 
-        if (_nextBlipRequest.TryGetValue(args.SenderSession.UserId, out var requestTime) && _timing.RealTime < requestTime)
+        if (_nextBlipRequestPerUser.TryGetValue(args.SenderSession.UserId, out var requestTime) && _timing.RealTime < requestTime)
             return;
 
-        _nextBlipRequest[args.SenderSession.UserId] = _timing.RealTime + MinRequestPeriod;
+        _nextBlipRequestPerUser[args.SenderSession.UserId] = _timing.RealTime + MinRequestPeriod;
 
         var blips = AssembleBlipsReport((radarUid.Value, radar));
 
@@ -65,7 +64,7 @@ public sealed partial class RadarBlipSystem : EntitySystem
     /// </summary>
     public void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
-        _nextBlipRequest.Clear();
+        _nextBlipRequestPerUser.Clear();
     }
 
     /// <summary>
