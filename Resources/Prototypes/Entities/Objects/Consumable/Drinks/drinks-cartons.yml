@@ -151,7 +151,7 @@
     sprite: Objects/Consumable/Drinks/cream.rsi
 
 - type: entity
-  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseLargeFull]
+  parent: [RecyclableItemPlasticMedium, DrinkCartonVisualsOpenable, DrinkCartonBaseLargeFull] # Frontier: added RecyclableItemPlasticMedium
   id: DrinkMilkCarton
   name: milk
   description: An opaque white liquid produced by the mammary glands of mammals.
@@ -166,7 +166,7 @@
     sprite: Objects/Consumable/Drinks/milk.rsi
 
 - type: entity
-  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseLargeFull]
+  parent: [RecyclableItemPlasticMedium, DrinkCartonVisualsOpenable, DrinkCartonBaseLargeFull] # Frontier: added RecyclableItemPlasticMedium
   id: DrinkSoyMilkCarton
   name: soy milk
   description: White and nutritious soy goodness!
@@ -181,7 +181,7 @@
     sprite: Objects/Consumable/Drinks/soymilk.rsi
 
 - type: entity
-  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseLargeFull]
+  parent: [RecyclableItemPlasticMedium, DrinkCartonVisualsOpenable, DrinkCartonBaseLargeFull] # Frontier: added RecyclableItemPlasticMedium
   id: DrinkOatMilkCarton
   name: oat milk
   description: It's oat milk. Tan and nutritious goodness!
@@ -209,3 +209,18 @@
           Quantity: 50
   - type: Sprite
     sprite: Objects/Consumable/Drinks/lemonjuice.rsi
+    
+- type: entity
+  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
+  id: DrinkJuicePineappleCarton
+  name: pineapple juice
+  description: Tastes like a tropical vacation far from space.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: JuicePineapple
+          Quantity: 50
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/pineapplejuice.rsi

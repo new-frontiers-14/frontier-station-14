@@ -19,8 +19,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!; // Frontier
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!; // Frontier
     [Dependency] private readonly TransformSystem _transform = default!; // Frontier
+    [Dependency] private readonly UserInterfaceSystem _userInterface = default!; // Frontier
 
     public override void Initialize()
     {

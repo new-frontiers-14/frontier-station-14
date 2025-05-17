@@ -1,26 +1,103 @@
-# Rubber
+#region WizDen
 - type: entity
-  name: Drozd
-  parent: WeaponSubMachineGunDrozd
-  id: WeaponSubMachineGunDrozdRubber
-  suffix: Non-Lethal
+  id: NFWeaponSubMachineGunAtreides
+  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunGorlex ]
+  name: Atreides
+  description: |-
+    Pla-ket-ket-ket-ket! An illegal firearm often used by Syndicate agents.
   components:
-    - type: ItemSlots
-      slots:
-        gun_magazine:
-          name: Magazine
-          startingItem: MagazinePistolSubMachineGunRubber
-          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-          priority: 2
-          whitelist:
-            tags:
-              - MagazinePistolSubMachineGun
-          whitelistFailPopup: gun-magazine-whitelist-fail
-        gun_chamber:
-          name: Chamber
-          startingItem: CartridgePistolRubber
-          priority: 1
-          whitelist:
-            tags:
-              - CartridgePistol
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/SMGs/atreides.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/SMGs/atreides.rsi
+
+- type: entity
+  id: NFWeaponSubMachineGunC20r
+  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunCybersun ]
+  name: C-20r
+  description: |-
+    An illegal firearm that is often used by the infamous nuclear operatives.
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+
+- type: entity
+  id: NFWeaponSubMachineGunDrozd
+  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunNanotrasen ]
+  name: Drozd
+  description: A fully automatic SMG.
+  components: &drozdComponents
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/SMGs/drozd.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/SMGs/drozd.rsi
+
+- type: entity
+  id: NFWeaponSubMachineGunDrozdLessLethal # Frontier-specific rubber variant
+  parent: [ NFBaseWeaponSubMachineGunChamber35Rubber, NFBaseWeaponFrameSubMachineGunNanotrasen ]
+  name: Drozd
+  description: A fully automatic SMG.
+  suffix: Frontier, Less-Lethal
+  components: *drozdComponents
+
+- type: entity
+  id: NFWeaponSubMachineGunWt550
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponSubMachineGunChamber35TopMounted, NFBaseWeaponFrameSubMachineGunNanotrasen ]
+  name: WT-550
+  description: |-
+    An excellent SMG. On the receiver is a label that says 'for authorized use only.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/SMGs/wt550.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: base-unshaded
+        map: ["enum.GunVisualLayers.BaseUnshaded"]
+        shader: unshaded
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: mag-unshaded-0
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/SMGs/wt550.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+
+#region DeltaV
+- type: entity
+  id: NFWeaponSubMachineGunTypewriter
+  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunFrontierGunsmith ]
+  name: Typewriter
+  description: |-
+    A modern take on the classic design used by mobsters throughout space and time.
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/typewriter.ogg
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/SMGs/typewriter.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/SMGs/typewriter.rsi

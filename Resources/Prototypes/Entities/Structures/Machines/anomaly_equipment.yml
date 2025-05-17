@@ -163,18 +163,20 @@
   - type: Emitter
     onState: firing
     powerUseActive: 100
-    boltType: AnomalousParticleDelta
+    # Frontier: use NF prefixes
+    boltType: NFAnomalousParticleDelta
     underpoweredState: underpowered
     selectableTypes:
-    - AnomalousParticleDelta
-    - AnomalousParticleEpsilon
-    - AnomalousParticleZeta
-    - AnomalousParticleSigma
+    - NFAnomalousParticleDelta
+    - NFAnomalousParticleEpsilon
+    - NFAnomalousParticleZeta
+    - NFAnomalousParticleSigma
     setTypePorts:
-      SetParticleDelta: AnomalousParticleDelta
-      SetParticleEpsilon: AnomalousParticleEpsilon
-      SetParticleZeta: AnomalousParticleZeta
-      SetParticleSigma: AnomalousParticleSigma
+      SetParticleDelta: NFAnomalousParticleDelta
+      SetParticleEpsilon: NFAnomalousParticleEpsilon
+      SetParticleZeta: NFAnomalousParticleZeta
+      SetParticleSigma: NFAnomalousParticleSigma
+    # End Frontier: use NF prefixes
     fireBurstSize: 1
     baseFireBurstDelayMin: 2
     baseFireBurstDelayMax: 6
@@ -273,6 +275,7 @@
     materialWhiteList:
 #    - Plasma # Frontier
     - Bananium # Frontier
+  - type: OreSiloClient
   - type: Fixtures
     fixtures:
       fix1:
