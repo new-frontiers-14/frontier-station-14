@@ -234,9 +234,11 @@ internal sealed partial class ChatManager : IChatManager
             case OOCChatType.Admin:
                 SendAdminChat(player, message);
                 break;
-            case OOCChatType.Mentor: // RMC14
-                SendMentorChat(player, message); // RMC14
-                break; // RMC14
+            // RMC14
+            case OOCChatType.Mentor:
+                SendMentorChat(player, message);
+                break;
+            // RMC14 End
         }
     }
 
@@ -308,7 +310,8 @@ internal sealed partial class ChatManager : IChatManager
         _adminLogger.Add(LogType.Chat, $"Admin chat from {player:Player}: {message}");
     }
 
-    private void SendMentorChat(ICommonSession player, string message) // RMC14
+    // RMC14
+    private void SendMentorChat(ICommonSession player, string message)
     {
         if (!_mentor.IsMentor(player.UserId))
         {
@@ -338,6 +341,7 @@ internal sealed partial class ChatManager : IChatManager
 
         _adminLogger.Add(LogType.Chat, $"Mentor chat from {player:Player}: {message}");
     }
+    // RMC14 End
 
     #endregion
 

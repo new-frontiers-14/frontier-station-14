@@ -217,8 +217,10 @@ public sealed class ChatUIController : UIController
         _input.SetInputCommand(ContentKeyFunctions.FocusAdminChat,
             InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Admin)));
 
-        _input.SetInputCommand(ContentKeyFunctions.FocusAdminChat, // RMC14
-            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Mentor))); // RMC14
+        // RMC14
+        _input.SetInputCommand(ContentKeyFunctions.FocusAdminChat,
+            InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Mentor)));
+        // RMC14 End
 
         _input.SetInputCommand(ContentKeyFunctions.FocusRadio,
             InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.Radio)));
@@ -568,11 +570,13 @@ public sealed class ChatUIController : UIController
             CanSendChannels |= ChatSelectChannel.Admin;
         }
 
-        if (_staffHelpUI.IsMentor) // RMC14
+        // RMC14
+        if (_staffHelpUI.IsMentor)
         {
             FilterableChannels |= ChatChannel.MentorChat;
             CanSendChannels |= ChatSelectChannel.Mentor;
         }
+        // RMC14 End
 
         SelectableChannels = CanSendChannels;
 
