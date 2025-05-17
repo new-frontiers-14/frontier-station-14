@@ -4,12 +4,14 @@ using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 
 namespace Content.Server._DV.CustomObjectiveSummary;
 
 public sealed class CustomObjectiveSummarySystem : EntitySystem
 {
     [Dependency] private readonly IServerNetManager _net = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
@@ -47,7 +49,7 @@ public sealed class CustomObjectiveSummarySystem : EntitySystem
             if (mind.Comp.Objectives.Count == 0)
                 continue;
 
-            if (!_mind.TryGetSession(mind, out var session))
+            if (!_player.TryGetSessionById(mind.Comp.UserId, out var session))
                 continue;
 
             RaiseNetworkEvent(new CustomObjectiveSummaryOpenMessage(), session);
