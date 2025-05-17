@@ -158,14 +158,20 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxSelected(EntityUid uid, JukeboxComponent component, JukeboxSelectedMessage args)
     {
-        if (!Audio.IsPlaying(component.AudioStream))
+        // Frontier: allow selecting songs while they're playing
+        bool wasPlaying = Audio.IsPlaying(component.AudioStream);
+        component.SelectedSongId = args.SongId;
+        DirectSetVisualState(uid, JukeboxVisualState.Select);
+        component.Selecting = true;
+        component.SelectAccumulator = 0;
+        component.AudioStream = Audio.Stop(component.AudioStream);
+        component.FirstPlay = !wasPlaying;
+        if (wasPlaying)
         {
-            component.SelectedSongId = args.SongId;
-            DirectSetVisualState(uid, JukeboxVisualState.Select);
-            component.Selecting = true;
-            component.AudioStream = Audio.Stop(component.AudioStream);
-            component.FirstPlay = true;// Frontier
+            var msg = new JukeboxPlayingMessage();
+            OnJukeboxPlay(uid, component, ref msg);
         }
+        // End Frontier
 
         Dirty(uid, component);
     }
