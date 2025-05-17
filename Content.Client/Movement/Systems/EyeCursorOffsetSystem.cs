@@ -71,6 +71,8 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
 
             component.TargetPosition = mouseActualRelativePos;
 
+            // Frontier Start: Remove smooth panning to reduce motion sickness
+            /*
             //Makes the view not jump immediately when moving the cursor fast.
             if (component.CurrentPosition != component.TargetPosition)
             {
@@ -81,6 +83,10 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
                 }
                 component.CurrentPosition += vectorOffset;
             }
+            */
+            component.CurrentPosition = component.TargetPosition;
+            // Frontier End: Remove smooth panning to reduce motion sickness
+
         }
         return component.CurrentPosition;
     }
