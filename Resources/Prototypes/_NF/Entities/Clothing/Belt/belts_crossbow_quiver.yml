@@ -1,7 +1,7 @@
 ﻿- type: entity
   parent: NFClothingBeltStorageBase
   id: ClothingBeltQuiverCrossbow
-  name: quiver (bolts)
+  name: quiver (bolts, any)
   description: Can hold up to 25 bolts, and fits snug around your waist.
   components:
   - type: Sprite
@@ -44,6 +44,7 @@
 - type: entity
   parent: ClothingBeltQuiverCrossbow
   id: ClothingBeltQuiverCrossbowFilledBolt
+  name: quiver (bolts)
   suffix: Filled, Bolts
   components:
   - type: StorageFill
@@ -54,6 +55,7 @@
 - type: entity
   parent: ClothingBeltQuiverCrossbow
   id: ClothingBeltQuiverCrossbowFilledUranium
+  name: quiver (bolts, uranium)
   suffix: Filled, Uranium Tip
   components:
   - type: StorageFill
@@ -64,6 +66,7 @@
 - type: entity
   parent: ClothingBeltQuiverCrossbow
   id: ClothingBeltQuiverCrossbowFilledPlasma
+  name: quiver (bolts, plasma)
   suffix: Filled, Plasma Tip
   components:
   - type: StorageFill
