@@ -138,12 +138,13 @@ public sealed partial class RadarBlipSystem : EntitySystem
     /// <summary>
     /// Configures the radar blip for a jetpack or vehicle entity.
     /// </summary>
-    private void SetupRadarBlip(EntityUid uid, Color color, float scale, bool visibleFromOtherGrids)
+    private void SetupRadarBlip(EntityUid uid, Color color, float scale, bool visibleFromOtherGrids = true, bool requireNoGrid = false)
     {
         var blip = EnsureComp<RadarBlipComponent>(uid);
         blip.RadarColor = color;
         blip.Scale = scale;
         blip.VisibleFromOtherGrids = visibleFromOtherGrids;
+        blip.RequireNoGrid = requireNoGrid;
     }
 
     /// <summary>
@@ -151,7 +152,7 @@ public sealed partial class RadarBlipSystem : EntitySystem
     /// </summary>
     private void OnJetpackActivated(EntityUid uid, ActiveJetpackComponent component, ComponentStartup args)
     {
-        SetupRadarBlip(uid, Color.Cyan, 1f, true);
+        SetupRadarBlip(uid, Color.Cyan, 1f, true, true);
     }
 
     /// <summary>
@@ -167,6 +168,6 @@ public sealed partial class RadarBlipSystem : EntitySystem
     /// </summary>
     public void SetupVehicleRadarBlip(Entity<VehicleComponent> uid)
     {
-        SetupRadarBlip(uid, Color.Cyan, 1f, true);
+        SetupRadarBlip(uid, Color.Cyan, 1f, true, true);
     }
 }
