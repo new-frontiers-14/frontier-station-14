@@ -40,6 +40,7 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
         {
             SendMessage(new JukeboxStopMessage());
         };
+
         _menu.OnSongSelected += SelectSong;
 
         // Frontier: Shuffle & Repeat

@@ -146,6 +146,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     {
         Stop(entity);
     }
+
     // Frontier: Modified Stop() function for the Shuffling & Replay features.
     private void Stop(Entity<JukeboxComponent> entity)
     {
