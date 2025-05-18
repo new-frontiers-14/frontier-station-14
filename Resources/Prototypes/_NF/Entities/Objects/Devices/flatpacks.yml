@@ -181,6 +181,15 @@
   - type: Flatpack
     entity: SmallThruster
 
+- type: entity
+  parent: BaseNFFlatpack
+  id: GravityGeneratorMiniFlatpack
+  name: mini gravity generator flatpack
+  description: A flatpack used for constructing a mini gravity generator.
+  components:
+  - type: Flatpack
+    entity: GravityGeneratorMini
+
 #region Science
 - type: entity
   parent: BaseNFFlatpack
@@ -648,6 +657,17 @@
   - type: Sprite
     layers:
     - state: supply_gun
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ComputerSolarControlFlatpack
+  name: solar control computer flatpack
+  description: A flatpack used for constructing a solar control computer.
+  components:
+  - type: Flatpack
+    entity: ComputerSolarControl
+  - type: StaticPrice
+    price: 150
 
 #region Servers
 - type: entity
