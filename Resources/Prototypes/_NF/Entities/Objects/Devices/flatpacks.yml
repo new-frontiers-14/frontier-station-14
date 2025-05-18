@@ -190,14 +190,9 @@
   components:
   - type: Flatpack
     entity: ExosuitFabricator
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    layers:
-    - state: science_lathe
 
 - type: entity
-  parent: ExosuitFabricatorFlatpack
+  parent: BaseNFFlatpack
   id: CircuitImprinterFlatpack
   name: circuit imprinter flatpack
   description: A flatpack used for constructing a circuit imprinter.
@@ -206,16 +201,21 @@
     entity: CircuitImprinter
 
 - type: entity
-  parent: ExosuitFabricatorFlatpack
+  parent: BaseNFFlatpack
   id: ProtolatheFlatpack
   name: protolathe flatpack
   description: A flatpack used for constructing a protolathe.
   components:
   - type: Flatpack
     entity: Protolathe
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    layers:
+    - state: science_lathe
 
 - type: entity
-  parent: ExosuitFabricatorFlatpack
+  parent: ProtolatheFlatpack
   id: MachineArtifactAnalyzerFlatpack
   name: artifact analyzer flatpack
   description: A flatpack used for constructing an artifact analyzer.
@@ -227,7 +227,7 @@
     - state: science_artifact_analyzer
 
 - type: entity
-  parent: ExosuitFabricatorFlatpack
+  parent: ProtolatheFlatpack
   id: MachineAnomalyVesselFlatpack
   name: anomaly vessel flatpack
   description: A flatpack used for constructing an anomaly vessel.
@@ -239,7 +239,7 @@
     - state: science_anomaly_vessel
 
 - type: entity
-  parent: ExosuitFabricatorFlatpack
+  parent: ProtolatheFlatpack
   id: MachineAPEFlatpack
   name: A.P.E. flatpack
   description: A flatpack used for constructing an A.P.E..
@@ -251,7 +251,7 @@
     - state: science_ape
 
 - type: entity
-  parent: ExosuitFabricatorFlatpack
+  parent: ProtolatheFlatpack
   id: MachineArtifactCrusherFlatpack
   name: artifact crusher flatpack
   description: A flatpack used for constructing an artifact crusher.
@@ -260,7 +260,7 @@
     entity: MachineArtifactCrusher
 
 - type: entity
-  parent: ExosuitFabricatorFlatpack
+  parent: ProtolatheFlatpack
   id: MachineAnomalyVesselExperimentalFlatpack
   name: experimental anomaly vessel flatpack
   description: A flatpack used for constructing an experimental anomaly vessel.
@@ -269,7 +269,7 @@
     entity: MachineAnomalyVesselExperimental
 
 - type: entity
-  parent: ExosuitFabricatorFlatpack
+  parent: ProtolatheFlatpack
   id: MachineAnomalyGeneratorFlatpack
   name: anomaly generator flatpack
   description: A flatpack used for constructing an anomaly generator.
@@ -278,7 +278,7 @@
     entity: MachineAnomalyGenerator
 
 - type: entity
-  parent: ExosuitFabricatorFlatpack
+  parent: ProtolatheFlatpack
   id: BlueprintLithographFlatpack
   name: blueprint lithograph flatpack
   description: A flatpack used for constructing a blueprint lithograph.
@@ -327,6 +327,9 @@
   components:
   - type: Flatpack
     entity: MaterialReclaimer
+  - type: Sprite
+    layers:
+    - state: supply_lathe
 
 - type: entity
   parent: UniformPrinterFlatpack
