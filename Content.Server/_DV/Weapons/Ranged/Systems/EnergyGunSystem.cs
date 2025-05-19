@@ -25,7 +25,7 @@ public sealed class EnergyGunSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<EnergyGunComponent, UseInHandEvent>(OnInteractHandEvent, after: [typeof(SharedGunSystem)]); // Frontier: add after
+        SubscribeLocalEvent<EnergyGunComponent, UseInHandEvent>(OnInteractHandEvent, after: [typeof(SharedGunSystem)]); // Frontier: add after, swap to UseInHandEvent
         SubscribeLocalEvent<EnergyGunComponent, GetVerbsEvent<Verb>>(OnGetVerb);
         SubscribeLocalEvent<EnergyGunComponent, ExaminedEvent>(OnExamined);
     }
