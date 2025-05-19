@@ -22,7 +22,8 @@ public sealed partial class AntagSelectionSystem
     /// </summary>
     public bool TryGetNextAvailableDefinition(Entity<AntagSelectionComponent> ent,
         [NotNullWhen(true)] out AntagSelectionDefinition? definition,
-        int? players = null)
+        int? players = null,
+        EntityUid? targetEntity = null)
     {
         definition = null;
 
@@ -39,6 +40,13 @@ public sealed partial class AntagSelectionSystem
         foreach (var def in ent.Comp.Definitions)
         {
             var target = GetTargetAntagCount(ent, null, def);
+
+            // Frontier: ignore non-whitelisted/blacklisted entities
+            if (targetEntity != null
+                && (_whitelist.IsWhitelistFail(def.Whitelist, targetEntity.Value)
+                || _whitelist.IsBlacklistPass(def.Blacklist, targetEntity.Value)))
+                continue;
+            // End Frontier
 
             if (mindCount < target)
             {
@@ -335,7 +343,7 @@ public sealed partial class AntagSelectionSystem
     {
         var rule = ForceGetGameRuleEnt<T>(defaultRule);
 
-        if (!TryGetNextAvailableDefinition(rule, out var def))
+        if (!TryGetNextAvailableDefinition(rule, out var def, targetEntity:player?.AttachedEntity)) // Frontier: add player
             def = rule.Comp.Definitions.Last();
         MakeAntag(rule, player, def.Value);
     }
