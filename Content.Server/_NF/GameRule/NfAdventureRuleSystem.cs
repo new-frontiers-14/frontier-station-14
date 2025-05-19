@@ -8,11 +8,11 @@ using Content.Server._NF.Bank;
 using Content.Server._NF.GameRule.Components;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server.Cargo.Components;
-using Content.Server.Discord;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules;
 using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
@@ -23,7 +23,6 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Server._NF.GameRule;
 
@@ -157,8 +156,11 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
             EnsureComp<CargoSellBlacklistComponent>(mobUid);
 
             // Store player info with the bank balance - we have it directly, and BankSystem won't have a cache yet.
-            if (!_players.ContainsKey(mobUid))
+            if (!_players.ContainsKey(mobUid)
+                && HasComp<BankAccountComponent>(mobUid))
+            {
                 _players[mobUid] = new PlayerRoundBankInformation(ev.Profile.BankBalance, MetaData(mobUid).EntityName, ev.Player.UserId);
+            }
         }
     }
 
