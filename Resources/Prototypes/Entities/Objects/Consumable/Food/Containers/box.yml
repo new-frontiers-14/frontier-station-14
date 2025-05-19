@@ -66,6 +66,7 @@
     - box5
     - pink-box6
   - type: Appearance
+  - type: NFIngredient # Frontier
 
 # Egg
 
@@ -173,6 +174,7 @@
   #           max: 12
   #     - !type:DoActsBehavior
   #       acts: [ "Destruction" ]
+  - type: NFIngredient # Frontier
 
 - type: entity
   parent: FoodContainerEgg
@@ -229,6 +231,7 @@
     stateDoorClosed: box
   - type: StaticPrice
     price: 0
+  - type: NFIngredient # Frontier
 
 - type: entity
   name: pizza box
@@ -272,6 +275,9 @@
       orGroup: Pizza
     - id: FoodPizzaCotton
       prob: 0.10
+      orGroup: Pizza
+    - id: FoodPizzaWorldpeas
+      prob: 0.05
       orGroup: Pizza
     - id: KnifePlastic
   
@@ -344,6 +350,7 @@
     - box5
     - box6
   - type: Appearance
+  - type: NFIngredient # Frontier
 
 # Donkpocket
 
@@ -369,6 +376,7 @@
     contents:
     - id: FoodDonkpocket
       amount: 6
+  - type: NFIngredient # Frontier
 
 - type: entity
   parent: FoodBoxDonkpocket
@@ -482,6 +490,20 @@
       amount: 6
 
 - type: entity
+  parent: FoodBoxDonkpocket
+  id: FoodBoxDonkpocketMoth
+  name: box of moth-pockets
+  components:
+  - type: Sprite
+    state: moth-box
+  - type: Item
+    sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
+  - type: StorageFill
+    contents:
+    - id: FoodDonkpocketMoth
+      amount: 6
+
+- type: entity
   id: HappyHonk
   parent: [ BoxCardboard, BaseBagOpenClose ]
   name: happy honk meal
@@ -559,7 +581,7 @@
         orGroup: GiftPool
       - id: ToySword
         orGroup: GiftPool
-      - id: RevolverCapGun
+      - id: NFRevolverCapGun # Frontier: RevolverCapGun<NFRevolverCapGun
         orGroup: GiftPool
       - id: ToyRubberDuck
         orGroup: GiftPool
@@ -569,6 +591,7 @@
       - id: GoldenBikeHorn
         prob: 0.1
         orGroup: GiftPool
+  - type: NFIngredient # Frontier
 
 - type: entity
   id: HappyHonkMime
@@ -759,7 +782,82 @@
         orGroup: GiftPool
       - id: ToySword
         orGroup: GiftPool
-      - id: RevolverCapGun
+      - id: NFRevolverCapGun # Frontier: RevolverCapGun<NFRevolverCapGun
+        orGroup: GiftPool
+      - id: ToyRubberDuck
+        orGroup: GiftPool
+      - id: BikeHorn
+        prob: 0.5
+        orGroup: GiftPool
+      - id: GoldenBikeHorn
+        prob: 0.1
+        orGroup: GiftPool
+
+- type: entity
+  id: FoodMealHappyHonkBigBite
+  parent: HappyHonk
+  name: Happy Honk Big Bite Meal
+  description: Someone paid good money to get this fast food meal shipped out this way. It smells fresh, somehow.
+  components:
+  - type: StorageFill
+    contents:
+      - id: FoodBurgerBig
+        amount: 1
+      - id: FoodMealFriesCheesy
+        amount: 1
+      - id: DrinkColaBottleFull
+        amount: 1
+      - id: FoodPieAppleSlice
+        amount: 1
+      - id: ToyMouse
+        orGroup: GiftPool
+      - id: ToyAi
+        orGroup: GiftPool
+      - id: ToyNuke
+        orGroup: GiftPool
+      - id: ToyFigurinePassenger
+        orGroup: GiftPool
+      - id: ToyGriffin
+        orGroup: GiftPool
+      - id: ToyHonk
+        orGroup: GiftPool
+      - id: ToyIan
+        orGroup: GiftPool
+      - id: ToyMarauder
+        orGroup: GiftPool
+      - id: ToyMauler
+        orGroup: GiftPool
+      - id: ToyGygax
+        orGroup: GiftPool
+      - id: ToyOdysseus
+        orGroup: GiftPool
+      - id: ToyOwlman
+        orGroup: GiftPool
+      - id: ToyDeathRipley
+        orGroup: GiftPool
+      - id: ToyPhazon
+        orGroup: GiftPool
+      - id: ToyFireRipley
+        orGroup: GiftPool
+      - id: ToyReticence
+        orGroup: GiftPool
+      - id: ToyRipley
+        orGroup: GiftPool
+      - id: ToySeraph
+        orGroup: GiftPool
+      - id: ToyDurand
+        orGroup: GiftPool
+      - id: ToySkeleton
+        orGroup: GiftPool
+      - id: FoamBlade
+        orGroup: GiftPool
+      - id: ClothingHeadHatBunny
+        orGroup: GiftPool
+      - id: PersonalAI
+        orGroup: GiftPool
+      - id: ToySword
+        orGroup: GiftPool
+      - id: NFRevolverCapGun # Frontier: RevolverCapGun<NFRevolverCapGun
         orGroup: GiftPool
       - id: ToyRubberDuck
         orGroup: GiftPool
