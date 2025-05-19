@@ -7,33 +7,33 @@
 # Discord: erhardsteinhauer
 
 # Shuttle Notes:
-# 
+#
 - type: vessel
-  id: Harbormaster
+  id: Adder
   parent: BaseVessel
-  name: LVHI Harbormaster
-  description: A small tugboat. Manufactured by Langstad-Voigt Heavy Industries.
-  price: 31500 # ~27196$ on mapinit + 15% markup
+  name: LVHI Adder
+  description: A small maneuverable shuttle designed for mining. Manufactured by Langstad-Voigt Heavy Industries.
+  price: 17500 # ~16400$ on mapinit + ~5% (820$) markup
   category: Small
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/harbormaster.yml
-  guidebookPage: ShipyardHarbormaster
+  shuttlePath: /Maps/_NF/Shuttles/adder.yml
+  guidebookPage: ShipyardAdder
   class:
-  - Civilian
+  - Salvage
   engine:
   - Plasma
 
 - type: gameMap
-  id: Harbormaster
-  mapName: 'Harbormaster'
-  mapPath: /Maps/_NF/Shuttles/harbormaster.yml
+  id: Adder
+  mapName: 'Adder'
+  mapPath: /Maps/_NF/Shuttles/adder.yml
   minPlayers: 0
-  stations: 
-    Harbormaster:
+  stations:
+    Adder:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Harbormaster {1}'
+          mapNameTemplate: 'Adder {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
