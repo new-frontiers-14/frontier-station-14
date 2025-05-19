@@ -56,6 +56,14 @@
     Glass: 900
 
 - type: latheRecipe
+  id: MaterialReclaimerMachineCircuitboard
+  parent: BaseCircuitboardRecipe
+  result: MaterialReclaimerMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 900
+
+- type: latheRecipe
   parent: [BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory]
   id: CondimentDispenserCircuitboard
   result: CondimentDispenserCircuitboard
@@ -93,6 +101,12 @@
   materials:
     Steel: 800
     Glass: 900
+
+# region Consoles
+- type: latheRecipe
+  id: ResearchComputerCircuitboard
+  parent: [BaseGoldCircuitboardRecipe, BaseResearchComputerRecipeCategory]
+  result: ResearchComputerCircuitboard
 
 # region Thrusters
 - type: latheRecipe
