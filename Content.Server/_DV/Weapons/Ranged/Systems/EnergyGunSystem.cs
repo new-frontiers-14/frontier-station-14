@@ -84,7 +84,7 @@ public sealed class EnergyGunSystem : EntitySystem
         }
     }
 
-    private void OnInteractHandEvent(EntityUid uid, EnergyGunComponent component, UseInHandEvent args)
+    private void OnInteractHandEvent(EntityUid uid, EnergyGunComponent component, UseInHandEvent args) // Frontier: swap args to UseInHandEvent
     {
         if (args.Handled) // Frontier
             return; // Frontier
