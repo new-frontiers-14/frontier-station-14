@@ -6,12 +6,6 @@ using Robust.Client.Input;
 using Robust.Shared.Map;
 using Robust.Client.Player;
 using Robust.Client.UserInterface; // Frontier
-using Content.Client.Viewport;
-using Content.Client.UserInterface.Screens;
-using Robust.Client.UserInterface.CustomControls;
-using Content.Client.UserInterface.ControlExtensions;
-using Content.Client.UserInterface.Controls;
-using System.Linq; // Frontier
 
 namespace Content.Client.Movement.Systems;
 
@@ -22,7 +16,6 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!; // Frontier
 
     // This value is here to make sure the user doesn't have to move their mouse
     // all the way out to the edge of the screen to get the full offset.
