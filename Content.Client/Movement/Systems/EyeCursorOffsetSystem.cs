@@ -48,18 +48,8 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
     {
         var localPlayer = _player.LocalEntity;
         var mousePos = _inputManager.MouseScreenPosition;
-        // Frontier Start: fix seperated UI layout offsets
-        if (_userInterfaceManager.ActiveScreen is null)
-            return null;
-
-        var mainViewportList = _userInterfaceManager.ActiveScreen.GetControlOfType<MainViewport>();
-        if (mainViewportList.Count == 0 || mainViewportList[0] is null)
-            return null;
-
-        //var screenSize = _clyde.MainWindow.Size;
-        var screenSize = mainViewportList[0].PixelSize; // replace the mainwindow size with just the size of the viewport
-        // Frontier End: fix seperated UI layout offsets
-
+        var screenControl = _eyeManager.MainViewport as Control; // Frontier
+        var screenSize = screenControl?.PixelSize ?? _clyde.MainWindow.Size; // Frontier: fix separated UI layout offsets
         var minValue = MathF.Min(screenSize.X / 2, screenSize.Y / 2) * _edgeOffset;
 
         var mouseNormalizedPos = new Vector2(-(mousePos.X - screenSize.X / 2) / minValue, (mousePos.Y - screenSize.Y / 2) / minValue); // X needs to be inverted here for some reason, otherwise it ends up flipped.
