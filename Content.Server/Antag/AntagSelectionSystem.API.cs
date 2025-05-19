@@ -23,7 +23,7 @@ public sealed partial class AntagSelectionSystem
     public bool TryGetNextAvailableDefinition(Entity<AntagSelectionComponent> ent,
         [NotNullWhen(true)] out AntagSelectionDefinition? definition,
         int? players = null,
-        EntityUid? targetEntity = null)
+        EntityUid? targetEntity = null) // Frontier: add targetEntity
     {
         definition = null;
 
@@ -343,7 +343,7 @@ public sealed partial class AntagSelectionSystem
     {
         var rule = ForceGetGameRuleEnt<T>(defaultRule);
 
-        if (!TryGetNextAvailableDefinition(rule, out var def, targetEntity:player?.AttachedEntity)) // Frontier: add player
+        if (!TryGetNextAvailableDefinition(rule, out var def, targetEntity: player?.AttachedEntity)) // Frontier: add targetEntity
             def = rule.Comp.Definitions.Last();
         MakeAntag(rule, player, def.Value);
     }
