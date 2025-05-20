@@ -38,7 +38,7 @@ const clBody = lines.slice(clHeaderIndex + 1);
 // Check for at least one valid changelog entry
 const hasValidEntry = clBody.some(line => EntryRegex.test(line));
 if (!hasValidEntry) {
-  console.error("PR has an empty changelog. Changelog must contain at least one changelog entry in the format '- add:', '- remove:', '- tweak:', or '- fix:' (with a colon immediately after the keyword).");
+  console.error("PR has no valid changelog entries. Either remove the changelog completely, or use entries of the format '- add: text', '- remove: text', '- tweak: text', or '- fix: text'.");
   process.exit(1);
 }
 
