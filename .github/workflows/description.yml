@@ -32,7 +32,7 @@ jobs:
         # Check for at least one changelog entry (add:, remove:, tweak:, fix:) outside comments
         if ! echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -Eiq "(^|[ *-]+)(add:|remove:|tweak:|fix:)"; then
           echo "PR description must contain at least one changelog entry (add:, remove:, tweak:, or fix:) with a colon (:) immediately after the keyword, outside comments."
-          exit 1
+          EXIT_CODE=1
         fi
 
         # Check that all changelog entries are valid (must be add:, remove:, tweak:, or fix: with colon)
@@ -40,5 +40,10 @@ jobs:
         if [ -n "$INVALID_ENTRIES" ]; then
           echo "Invalid changelog entry types found (only add:, remove:, tweak:, or fix: are allowed):"
           echo "$INVALID_ENTRIES"
+          EXIT_CODE=1
+        fi
+
+        # Exit with error if any check failed
+        if [ "$EXIT_CODE" = "1" ]; then
           exit 1
         fi
