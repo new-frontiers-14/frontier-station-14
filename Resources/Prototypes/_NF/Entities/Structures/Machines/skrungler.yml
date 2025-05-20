@@ -1,7 +1,7 @@
 - type: entity
   id: Skrungler
   name: skrungler
-  parent: [ BaseC3ContrabandUnredeemable, BaseMachinePowered, ConstructibleMachine ]
+  parent: [ BaseC3CultContraband, BaseMachinePowered, ConstructibleMachine ]
   description: A vile machine that produces fuel from dead bodies.
   placement:
     mode: SnapgridCenter
@@ -14,10 +14,6 @@
     - state: skrungler_tray
       offset: 0, -1
       map: ["enum.StorageVisualLayers.Door"]
-    - state: skrungler_contents_light
-      visible: false
-      map: ["enum.SkrunglerVisualLayers.LightContent"]
-      shader: unshaded
     - state: skrungler_base
       visible: false
       map: ["enum.SkrunglerVisualLayers.SkrunglingBase"]
@@ -64,9 +60,6 @@
           True: { visible: true }
           False: { visible: false }
       enum.StorageVisuals.HasContents:
-        enum.SkrunglerVisualLayers.LightContent:
-          True: { visible: true }
-          False: { visible: false }
   - type: Transform
     anchored: true
     noRot: false
