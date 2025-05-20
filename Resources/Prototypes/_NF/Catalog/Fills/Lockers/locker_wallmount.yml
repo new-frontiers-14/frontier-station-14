@@ -261,6 +261,20 @@
   suffix: Frontier, Filled
 # endregion
 
+#region Supply
+- type: entity
+  id: LockerWallColorSalvageFilled
+  parent: LockerWallColorSalvage
+  name: salvage specialist wall locker
+  suffix: Filled, Frontier
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: LockerFillSalvageSpecialist
+
+# endregion
+
 # region Medical
 - type: entity
   id: LockerWallColorMedicalDoctorFilled

@@ -3,6 +3,106 @@
 # contraband or otherwise restricted items or machines
 
 # Clutter
+- type: entityTable
+  id: TableRandomDrinkMug
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: DrinkMug
+    - id: DrinkMugMetal
+    - id: DrinkMugBlack
+    - id: DrinkMugBlue
+    - id: DrinkMugGreen
+    - id: DrinkMugRed
+    - id: DrinkMugOne
+    - id: DrinkMugDog
+    - id: DrinkMugHeart
+    - id: DrinkMugMoebius
+    - id: DrinkMugRainbow
+
+- type: entity
+  id: SpawnRandomDrinkMug
+  parent: MarkerBasePlaceFree
+  name: random mug
+  suffix: Ship
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.5, 0.5
+      - sprite: Objects/Consumable/Drinks/mug_moebius.rsi
+        state: icon-0
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: green
+        scale: 0.7, 0.7
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableRandomDrinkMug
+      prob: 1.00
+
+- type: entityTable
+  id: TableRandomDrinkFlask
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: DrinkFlaskBar
+    - id: DrinkFlaskOld
+    - id: DrinkShinyFlask
+    - id: DrinkVacuumFlask
+    - id: DrinkFlask
+    - id: DrinkDetFlask
+
+- type: entityTable
+  id: TableRandomTowel
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: TowelColorBlack
+    - id: TowelColorBlue
+    - id: TowelColorGreen
+    - id: TowelColorRed
+    - id: TowelColorWhite
+    - id: TowelColorYellow
+    - id: TowelColorPink
+    - id: TowelColorOrange
+    - id: TowelColorPurple
+    - id: TowelColorBrown
+    - id: TowelColorGray
+    - id: TowelColorTeal
+    - id: TowelColorMaroon
+    - id: TowelColorSilver
+    - id: TowelColorMime
+    - id: TowelColorGold
+    - id: TowelColorLightBlue
+    - id: TowelColorLightBrown
+    - id: TowelColorDarkBlue
+    - id: TowelColorDarkGreen
+    - id: TowelColorNT
+
+- type: entity
+  id: SpawnRandomTowel
+  parent: MarkerBasePlaceFree
+  name: random towel
+  suffix: Ship
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.5, 0.5
+      - sprite: Clothing/Multiple/towel.rsi
+        state: icon
+        color: "#EAE8E8"
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: green
+        scale: 0.7, 0.7
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableRandomTowel
+      prob: 1.00
 
 # Tools
 
@@ -13,19 +113,16 @@
   id: TableRandomSuitStorageMercenary
   table: !type:GroupSelector
     children:
-    # Common
-    - !type:GroupSelector
-      children:
-      - id: SuitStorageMercenary
-      - id: SuitStoragePrivateSecurity
-      - id: SuitStorageEVAMercenary
-      - id: SuitStorageEVAPrivateSec
+    - id: SuitStorageMercenary
+    - id: SuitStoragePrivateSecurity
+    - id: SuitStorageEVAMercenary
+    - id: SuitStorageEVAPrivateSec
 
 - type: entity
   id: SpawnShuttleGearSuitStorageUnitsMercenary
   parent: MarkerBase
   name: random suit storage unit
-  suffix: "Shuttle, Mercenary"
+  suffix: Ship
   components:
   - type: Sprite
     layers:
@@ -83,7 +180,7 @@
   id: SpawnShuttleVendomatsClothes
   parent: MarkerBase
   name: random vendomat
-  suffix: "Shuttle, Clothes"
+  suffix: Ship
   components:
   - type: Sprite
     layers:
@@ -100,3 +197,40 @@
       prob: 1.00
 
 # Other
+- type: entityTable
+  id: TableRandomSignRedDigits
+  table: !type:GroupSelector
+    children:
+    # Common
+    - id: SignRedOne
+    - id: SignRedTwo
+    - id: SignRedThree
+    - id: SignRedFour
+    - id: SignRedFive
+    - id: SignRedSix
+    - id: SignRedSeven
+    - id: SignRedEight
+    - id: SignRedNine
+    - id: SignRedZero
+
+- type: entity
+  id: SpawnRandomSignRedDigits
+  parent: MarkerBasePlaceFree
+  name: random number sign
+  suffix: Ship
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.5, 0.5
+      - sprite: Structures/Wallmounts/signs.rsi
+        state: five
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: green
+        scale: 0.6, 0.6
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableRandomSignRedDigits
+      prob: 1.00
