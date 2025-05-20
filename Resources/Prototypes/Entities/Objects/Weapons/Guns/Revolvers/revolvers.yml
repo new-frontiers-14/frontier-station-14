@@ -40,7 +40,7 @@
         - CartridgeMagnum
         - SpeedLoaderMagnum
     mayTransfer: true # Frontier
-    proto: CartridgeMagnum
+    # proto: CartridgeMagnum # Frontier
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
@@ -52,10 +52,11 @@
     price: 50
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: Deckard
   parent: [BaseWeaponRevolver, BaseC1Contraband] # Frontier: BaseSecurityCommandContraband<BaseC1Contraband
   id: WeaponRevolverDeckard
-  description: A rare, civilian grade custom-built revolver. Use when there is no time for Voight-Kampff test. Uses .45 magnum ammo.
+  description: A beautifully machined, custom-built revolver. Used when there is no time for the Voight-Kampff test. Loads 5 rounds of .45 magnum.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/deckard.rsi
@@ -80,10 +81,11 @@
     price: 150
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: Inspector
   parent: [BaseWeaponRevolver, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: WeaponRevolverInspector
-  description: A detective's best friend. Uses .45 magnum ammo. On the handle is a label that says 'for authorized use only.'
+  description: A single-action revolver manufactured by various companies. It is readily available on the civilian market, making it a popular choice among private investigators. You feel lucky just holding it. Loads 6 rounds of .45 magnum.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
@@ -95,10 +97,11 @@
     ammoSlots: [ null, null, null, null, null, null ]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: Mateba
   parent: [BaseWeaponRevolver, BaseC2ContrabandUnredeemable] # Frontier: BaseMajorContraband<BaseC2ContrabandUnredeemable
   id: WeaponRevolverMateba
-  description: The iconic sidearm of the dreaded death squads. Uses .45 magnum ammo. On the handle is a label that says 'for authorized use only.'
+  description: A modern revolver used by Nanotrasen’s elite, near mythical ‘Death Squad’ task force. Its unique trigger action and barrel placement enable a high fire rate with minimal muzzle flip. Many have looked down this barrel, but few have lived to tell of it. Loads 6 rounds of .45 magnum.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
@@ -110,18 +113,20 @@
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   parent: WeaponRevolverMateba
   id: WeaponRevolverMatebaAP # For deathsquad
   suffix: armor-piercing
   components:
   - type: RevolverAmmoProvider
-    proto: CartridgeMagnumAP
+    # proto: CartridgeMagnumAP # Frontier
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: Python
   parent: [BaseWeaponRevolver, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponRevolverPython
-  description: An illegal revolver favoured by Syndicate agents. Uses .45 magnum ammo. # Frontier
+  description: A powerful double-action revolver manufactured by the Syndicate. Loud and flashy, perfect for any agent looking to make a statement. Loads 6 rounds of .45 magnum.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/python.rsi
@@ -140,6 +145,7 @@
     price: 1
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier (also removed from uplink)
   parent: WeaponRevolverPython
   id: WeaponRevolverPythonAP # For the uplink.
   suffix: armor-piercing
@@ -149,14 +155,15 @@
       tags:
         - CartridgeMagnum
         - SpeedLoaderMagnum
-    proto: CartridgeMagnumAP
+    # proto: CartridgeMagnumAP # Frontier
 
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: pirate revolver
   parent: [BaseWeaponRevolver, BaseC3PirateContraband] # Frontier: BaseMinorContraband<BaseC3PirateContraband
   id: WeaponRevolverPirate
-  description: An odd, illegal, old-looking revolver, favoured by pirate crews. Uses .45 magnum ammo. # Frontier
+  description: A crude single-action revolver handmade by a space pirate. Old and covered in rust, it somehow still works. Loads 5 rounds of .45 magnum.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi
@@ -171,3 +178,17 @@
     capacity: 5
     chambers: [ True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null ]
+
+- type: entity
+  name: pirate revolver
+  parent: WeaponRevolverPirate
+  id: WeaponRevolverPirateEmpty
+  description: An odd, old-looking revolver, favoured by pirate crews. Uses .45 magnum ammo.
+  suffix: Empty
+  components:
+  - type: RevolverAmmoProvider
+    proto: null
+    capacity: 5
+    chambers: [ null, null, null, null, null ]
+    ammoSlots: [ null, null, null, null, null ]
+    

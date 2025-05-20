@@ -199,6 +199,7 @@
   name: R&D server machine board
   description: A machine printed circuit board for the R&D server.
   components:
+  - type: BindToStationExemption # Frontier
   - type: Sprite
     state: science
   - type: MachineBoard
@@ -864,7 +865,7 @@
 - type: entity
   id: PortableGeneratorPacmanMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: P.A.C.M.A.N.-type portable generator machine board
+  name: P.A.C.M.A.N. portable generator machine board # Frontier: no -type
   components:
     - type: Sprite
       state: engineering
@@ -914,7 +915,7 @@
 - type: entity
   id: PortableGeneratorSuperPacmanMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator machine board
+  name: S.U.P.E.R.P.A.C.M.A.N. portable generator machine board # Frontier: no -type
   components:
     - type: Sprite
       state: engineering
@@ -935,7 +936,7 @@
 - type: entity
   id: PortableGeneratorJrPacmanMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: J.R.P.A.C.M.A.N.-type portable generator machine board
+  name: J.R.P.A.C.M.A.N. portable generator machine board # Frontier: no -type
   components:
     - type: Sprite
       state: engineering
@@ -1046,6 +1047,19 @@
       Manipulator: 1 # Frontier stackRequirements<requirements
     stackRequirements:
       Steel: 1
+
+- type: entity
+  id: MaterialSiloMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: material silo machine board
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: MachineMaterialSilo
+    stackRequirements:
+      MatterBin: 4
+      Cable: 1
 
 - type: entity
   id: OreProcessorMachineCircuitboard

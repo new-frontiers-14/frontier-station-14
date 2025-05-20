@@ -9,7 +9,7 @@
       - Cartridge
       - CartridgeMagnum
   - type: CartridgeAmmo
-    proto: BulletMagnum
+    # proto: BulletMagnum # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -21,20 +21,24 @@
     price: 1
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeMagnum
   name: cartridge (.45 magnum)
   parent: BaseCartridgeMagnum
+  description: Heavy magnum cartridge mostly used by revolvers. Standard kinetic ammunition is common and useful in most situations.
   components:
   - type: CartridgeAmmo
-    proto: BulletMagnum
+    # proto: BulletMagnum # Frontier
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeMagnumPractice
   name: cartridge (.45 magnum practice)
   parent: BaseCartridgeMagnum
+  description: Heavy magnum cartridge mostly used by revolvers. Chalk ammunition is generally non-harmful, used for practice.
   components:
   - type: CartridgeAmmo
-    proto: BulletMagnumPractice
+    # proto: BulletMagnumPractice # Frontier
   - type: Sprite
     layers:
       - state: base
@@ -44,12 +48,14 @@
         color: "#dbdbdb"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeMagnumIncendiary
   name: cartridge (.45 magnum incendiary)
   parent: BaseCartridgeMagnum
+  description: Heavy magnum cartridge mostly used by revolvers. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
   components:
   - type: CartridgeAmmo
-    proto: BulletMagnumIncendiary
+    # proto: BulletMagnumIncendiary # Frontier
   - type: Sprite
     layers:
       - state: base
@@ -59,12 +65,14 @@
         color: "#ff6e52"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeMagnumAP
   name: cartridge (.45 magnum armor-piercing)
   parent: BaseCartridgeMagnum
+  description: Heavy magnum cartridge mostly used by revolvers. Armor piercing ammunition is renowned for its ability to cut straight through body armor.
   components:
   - type: CartridgeAmmo
-    proto: BulletMagnumAP
+    # proto: BulletMagnumAP # Frontier
   - type: Sprite
     layers:
       - state: base
@@ -74,12 +82,14 @@
         color: "#0a0a0a"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: CartridgeMagnumUranium
   name: cartridge (.45 magnum uranium)
   parent: BaseCartridgeMagnum
+  description: Heavy magnum cartridge mostly used by revolvers. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.
   components:
   - type: CartridgeAmmo
-    proto: BulletMagnumUranium
+    # proto: BulletMagnumUranium # Frontier
   - type: Sprite
     layers:
       - state: base
@@ -87,4 +97,3 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#65fe08"
-
