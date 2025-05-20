@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/20/2025 04:03:35
+  time: 05/20/2025 04:51:09
   entityCount: 387
 maps: []
 grids:
@@ -2061,14 +2061,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-1.5
       parent: 1
-- proto: PoweredlightExterior
-  entities:
-  - uid: 194
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,5.5
-      parent: 1
 - proto: PoweredlightGreen
   entities:
   - uid: 365
@@ -2082,6 +2074,14 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-5.5
+      parent: 1
+- proto: PoweredlightSodium
+  entities:
+  - uid: 194
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,5.5
       parent: 1
 - proto: PoweredSmallLight
   entities:
@@ -2595,11 +2595,78 @@ entities:
     - type: Transform
       pos: -3.5,-3.5
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        142:
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
+        148:
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
+        150:
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
+        151:
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
   - uid: 101
     components:
     - type: Transform
       pos: -1.5,1.5
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        103:
+        - - Left
+          - Forward
+        - - Right
+          - Forward
+        - - Middle
+          - Off
+        130:
+        - - Left
+          - Forward
+        - - Right
+          - Forward
+        - - Middle
+          - Off
+        131:
+        - - Left
+          - Forward
+        - - Right
+          - Forward
+        - - Middle
+          - Off
+        134:
+        - - Left
+          - Forward
+        - - Right
+          - Forward
+        - - Middle
+          - Off
+        147:
+        - - Left
+          - Forward
+        - - Right
+          - Forward
+        - - Middle
+          - Off
   - uid: 149
     components:
     - type: Transform
@@ -2608,6 +2675,34 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         103:
+        - - Left
+          - Forward
+        - - Right
+          - Forward
+        - - Middle
+          - Off
+        130:
+        - - Left
+          - Forward
+        - - Right
+          - Forward
+        - - Middle
+          - Off
+        131:
+        - - Left
+          - Forward
+        - - Right
+          - Forward
+        - - Middle
+          - Off
+        134:
+        - - Left
+          - Forward
+        - - Right
+          - Forward
+        - - Middle
+          - Off
+        147:
         - - Left
           - Forward
         - - Right
