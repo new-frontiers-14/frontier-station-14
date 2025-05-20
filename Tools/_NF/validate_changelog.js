@@ -1,4 +1,10 @@
+// Dependencies
 const fs = require('fs');
+
+// Regexes
+const HeaderRegex = /^\s*(?::cl:|🆑) *([a-z0-9_\-, ]+)?\s+/im; // :cl: or 🆑 [0] followed by optional author name [1]
+const EntryRegex = /^ *[*-]? *(add|remove|tweak|fix): *([^\n\r]+)\r?$/img; // * or - followed by change type [0] and change message [1]
+const CommentRegex = /<!--.*?-->/gs; // HTML comments
 
 // Read GitHub event payload
 const eventPath = process.env.GITHUB_EVENT_PATH;
@@ -15,10 +21,10 @@ if (!prDescription) {
 }
 
 // Remove HTML comments
-const uncommented = prDescription.replace(/<!--[\s\S]*?-->/g, '\n');
+const uncommented = prDescription.replace(CommentRegex, '');
 
 // Find :cl: or 🆑 at the start of a line (ignoring leading whitespace)
-const clHeaderMatch = uncommented.match(/^\s*(:cl:|🆑)/m);
+const clHeaderMatch = uncommented.match(HeaderRegex);
 if (!clHeaderMatch) {
   console.log('No changelog header found at the start of a line (:cl: or 🆑) outside comments. Skipping changelog entry checks.');
   process.exit(0);
@@ -26,14 +32,13 @@ if (!clHeaderMatch) {
 
 // Extract lines after the first :cl: or 🆑 header
 const lines = uncommented.split('\n');
-const clHeaderIndex = lines.findIndex(line => /^\s*(:cl:|🆑)/.test(line));
+const clHeaderIndex = lines.findIndex(line => HeaderRegex.test(line));
 const clBody = lines.slice(clHeaderIndex + 1);
 
 // Check for at least one valid changelog entry
-const validEntryRegex = /^\s*[-*]\s*(add:|remove:|tweak:|fix:)/;
-const hasValidEntry = clBody.some(line => validEntryRegex.test(line));
+const hasValidEntry = clBody.some(line => EntryRegex.test(line));
 if (!hasValidEntry) {
-  console.error("PR description must contain at least one changelog entry in the format '- add:', '- remove:', '- tweak:', or '- fix:' (with a colon immediately after the keyword), outside comments.");
+  console.error("PR has an empty changelog. Changelog must contain at least one changelog entry in the format '- add:', '- remove:', '- tweak:', or '- fix:' (with a colon immediately after the keyword).");
   process.exit(1);
 }
 
