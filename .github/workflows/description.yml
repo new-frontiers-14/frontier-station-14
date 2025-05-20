@@ -23,14 +23,14 @@ jobs:
         # Remove HTML comments from the PR description
         PR_DESCRIPTION_UNCOMMENTED=$(echo "$PR_DESCRIPTION" | sed -E ':a;N;$!ba;s/<!--([^-]|-[^-]|--[^>])*-->/\n/g')
 
-        # Check for changelog header (:cl: or 🆑) outside comments
-        if ! echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -Eiq "(^|\s)(:cl:|🆑)"; then
-          echo "No changelog header found (:cl: or 🆑) outside comments. Skipping changelog entry checks."
+        # Check for changelog header (:cl: or 🆑) at the start of a line, outside comments
+        if ! echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -Eq "^\s*(:cl:|🆑)"; then
+          echo "No changelog header found at the start of a line (:cl: or 🆑) outside comments. Skipping changelog entry checks."
           exit 0
         fi
 
-        # Extract lines after the first :cl: or 🆑 header
-        CL_START=$(echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -inE "(^|\s)(:cl:|🆑)" | head -n1 | cut -d: -f1)
+        # Extract lines after the first :cl: or 🆑 header at the start of a line
+        CL_START=$(echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -nE "^\s*(:cl:|🆑)" | head -n1 | cut -d: -f1)
         if [ -n "$CL_START" ]; then
           CL_BODY=$(echo "$PR_DESCRIPTION_UNCOMMENTED" | tail -n +$((CL_START + 1)))
         else
