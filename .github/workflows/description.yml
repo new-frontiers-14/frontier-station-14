@@ -1,4 +1,4 @@
-name: PR Description Validator
+name: Description: Changelogs Validator
 
 on:
   pull_request:
@@ -6,13 +6,13 @@ on:
 
 jobs:
   validate-pr-description:
-    name: Validate PR Description
+    name: Validate PR Changelogs
     runs-on: ubuntu-latest
     steps:
     - name: Set up workspace
       uses: actions/checkout@v2
 
-    - name: Validate PR Description
+    - name: Validate PR Changelogs
       run: |
         # Ensure jq is installed
         sudo apt-get install jq
