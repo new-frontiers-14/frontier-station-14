@@ -5,18 +5,18 @@ on:
     types: [opened, edited, reopened]
 
 jobs:
-  validate-pr-description:
+  validate-changelogs:
     name: Validate Changelogs
     runs-on: ubuntu-latest
     steps:
     - name: Set up workspace
       uses: actions/checkout@v2
 
-    - name: Setup Git
-      run: |
-          git config --global user.name "${{ vars.CHANGELOG_USER }}"
-          git config --global user.email "${{ vars.CHANGELOG_EMAIL }}"
-      shell: bash
+    - name: Checkout Master
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.BOT_TOKEN }}
+        ref: master
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
@@ -25,6 +25,6 @@ jobs:
 
     - name: Validate Changelogs
       run: |
-          cd "Tools/_NF/changelog"
-          node validate_changelog.js
+        cd "Tools/_NF/changelog"
+        node validate_changelog.js
       shell: bash
