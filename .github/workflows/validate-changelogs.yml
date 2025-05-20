@@ -4,6 +4,9 @@ on:
   pull_request:
     types: [opened, edited, reopened]
 
+env:
+  GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+
 jobs:
   validate-changelogs:
     name: Validate Changelogs
