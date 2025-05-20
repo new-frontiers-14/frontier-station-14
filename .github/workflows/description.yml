@@ -29,16 +29,24 @@ jobs:
           exit 0
         fi
 
-        # Check for at least one changelog entry (- add:, - remove:, - tweak:, - fix:) outside comments
-        if ! echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -Eiq "^\s*[-*]\s*(add:|remove:|tweak:|fix:)"; then
+        # Extract lines after the first :cl: or 🆑 header
+        CL_START=$(echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -inE "(^|\s)(:cl:|🆑)" | head -n1 | cut -d: -f1)
+        if [ -n "$CL_START" ]; then
+          CL_BODY=$(echo "$PR_DESCRIPTION_UNCOMMENTED" | tail -n +$((CL_START + 1)))
+        else
+          CL_BODY=""
+        fi
+
+        # Check for at least one valid changelog entry in the format '- add:', '- remove:', '- tweak:', or '- fix:'
+        if ! echo "$CL_BODY" | grep -Eiq "^\s*[-*]\s*(add:|remove:|tweak:|fix:)"; then
           echo "PR description must contain at least one changelog entry in the format '- add:', '- remove:', '- tweak:', or '- fix:' (with a colon immediately after the keyword), outside comments."
           EXIT_CODE=1
         fi
 
-        # Check that all changelog entries are valid (must be - add:, - remove:, - tweak:, or - fix: with colon)
-        INVALID_ENTRIES=$(echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -Eio '^\s*[-*]\s*[a-zA-Z0-9_\-]+:' | grep -viE '^\s*[-*]\s*(add|remove|tweak|fix):' || true)
+        # Check that all changelog entries after :cl: are valid
+        INVALID_ENTRIES=$(echo "$CL_BODY" | grep -Eio '^\s*[-*]\s*[a-zA-Z0-9_\-]+:' | grep -viE '^\s*[-*]\s*(add:|remove:|tweak:|fix:)$' || true)
         if [ -n "$INVALID_ENTRIES" ]; then
-          echo "Invalid changelog entry types found (only '- add:', '- remove:', '- tweak:', or '- fix:' are allowed, and must have a colon immediately after the keyword):"
+          echo "Invalid changelog entry types found after :cl: (only '- add:', '- remove:', '- tweak:', or '- fix:' are allowed, and must have a colon immediately after the keyword):"
           echo "$INVALID_ENTRIES"
           EXIT_CODE=1
         fi
