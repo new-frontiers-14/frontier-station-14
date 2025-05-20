@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using Content.Server._NF.SectorServices;
 using Content.Server._NF.ShuttleRecords.Components;
 using Content.Server.Administration.Logs;
@@ -12,9 +11,7 @@ using Content.Shared._NF.ShuttleRecords;
 using Content.Shared.Access.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
-using Robust.Shared.Toolshed.Commands.Values;
-using Content.Server.StationRecords.Systems;
-using Microsoft.CodeAnalysis.Elfie.Extensions;
+
 
 namespace Content.Server._NF.ShuttleRecords;
 
