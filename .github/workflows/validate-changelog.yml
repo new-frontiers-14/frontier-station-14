@@ -1,4 +1,4 @@
-name: "Description: Changelogs Validator"
+name: "Description: Changelog Validator"
 
 on:
   pull_request:
@@ -8,8 +8,8 @@ env:
   GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
 
 jobs:
-  validate-changelogs:
-    name: Validate Changelogs
+  validate-changelog:
+    name: Validate Changelog
     runs-on: ubuntu-latest
     steps:
     - name: Set up workspace
@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Validate Changelogs
+    - name: Validate Changelog
       run: |
         cd "Tools/_NF/changelog"
         node validate_changelog.js
