@@ -1,5 +1,6 @@
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Construction.Prototypes;
+using Content.Shared.Stacks;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -7,6 +8,10 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._NF.Skrungler.Components;
 
+/// <summary>
+/// An entity that can process mobs into fuel, spilling their blood into a puddle around the machine.
+/// Great for parties.
+/// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class SkrunglerComponent : Component
 {
@@ -48,16 +53,22 @@ public sealed partial class SkrunglerComponent : Component
     public ProtoId<ReagentPrototype>? BloodReagent;
 
     /// <summary>
+    /// The output of the mob being processed.
+    /// </summary>
+    [DataField(required: true)]
+    public ProtoId<StackPrototype> OutputStackType;
+
+    /// <summary>
     /// How many units of fuel it produces for each unit of mass.
     /// </summary>
     [DataField]
     public float YieldPerUnitMass;
 
     /// <summary>
-    /// The base yield per mass unit when no components are upgraded.
+    /// The base yield (in stack count) per mass unit when no components are upgraded.
     /// </summary>
     [DataField]
-    public float BaseYieldPerUnitMass = 20.0f;
+    public float BaseYieldPerUnitMass = 0.2f;
 
     /// <summary>
     /// Machine part whose rating modifies the yield per mass.

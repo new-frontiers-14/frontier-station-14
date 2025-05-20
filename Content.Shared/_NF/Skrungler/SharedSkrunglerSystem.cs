@@ -94,7 +94,7 @@ public abstract class SharedSkrunglerSystem : EntitySystem
     {
         _appearance.SetData(ent, SkrunglerVisuals.SkrunglingBase, true);
         _appearance.SetData(ent, SkrunglerVisuals.Skrungling, true);
-        _jittering.AddJitter(ent, 2, 10);
+        _jittering.AddJitter(ent, -85, 0); // High frequency, low amplitude jitter.
         _audio.PlayPvs(ent.Comp.SkrungStartSound, ent);
         _audio.PlayPvs(ent.Comp.SkrunglerSound, ent);
         _ambientSound.SetAmbience(ent, true);
