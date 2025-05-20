@@ -12,9 +12,6 @@ jobs:
     name: Validate Changelog
     runs-on: ubuntu-latest
     steps:
-    - name: Set up workspace
-      uses: actions/checkout@v2
-
     - name: Checkout Master
       uses: actions/checkout@v3
       with:
@@ -24,7 +21,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: 18.x
 
     - name: Validate Changelog
       run: |
