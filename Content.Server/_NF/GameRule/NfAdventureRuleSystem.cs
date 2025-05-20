@@ -357,7 +357,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         form.Add(content, "payload_json");
         if (rawData is not null)
         {
-            form.Add(new ByteArrayContent(rawData, 0, rawData.Length), "Document", $"shipstats-{serverName}-{runId}.txt");
+            form.Add(new ByteArrayContent(rawData, 0, rawData.Length), "Document", $"shipstats-{serverName}-{runId}.json");
         }
         await SendWebhookPayload(webhookUrl, form);
     }
