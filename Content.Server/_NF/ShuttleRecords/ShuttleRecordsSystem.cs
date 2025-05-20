@@ -142,7 +142,7 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
 
         // export raw data as a file for discord
 
-        rawData = JsonSerializer.SerializeToUtf8Bytes(shipTypes, new JsonSerializerOptions { WriteIndented = true });
+        rawData = JsonSerializer.SerializeToUtf8Bytes(shipTypes, new JsonSerializerOptions { WriteIndented = true, IncludeFields = true });
 
         /* eventual discord message should be of the format
         ```
