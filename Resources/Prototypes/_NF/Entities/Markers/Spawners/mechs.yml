@@ -1,0 +1,14 @@
+- type: entity
+  name: Emu PLU Spawner
+  id: SpawnMechEMU
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _NF/Objects/Specific/Mech/mecha.rsi
+        state: emu-empty
+  - type: ConditionalSpawner
+    prototypes:
+      - MechEmuCargo
+  - type: StaticPrice
+    price: 10000 #The economy is out of control
