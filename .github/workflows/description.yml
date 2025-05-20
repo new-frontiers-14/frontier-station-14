@@ -20,14 +20,17 @@ jobs:
         # Fetch PR description using jq
         PR_DESCRIPTION=$(jq -r ".pull_request.body" "$GITHUB_EVENT_PATH")
 
-        # Check for changelog header (:cl: or 🆑)
-        if ! echo "$PR_DESCRIPTION" | grep -Eiq "(^|\s)(:cl:|🆑)"; then
-          echo "No changelog header found (:cl: or 🆑). Skipping changelog entry checks."
+        # Remove HTML comments from the PR description
+        PR_DESCRIPTION_UNCOMMENTED=$(echo "$PR_DESCRIPTION" | sed -E ':a;N;$!ba;s/<!--([^-]|-[^-]|--[^>])*-->/\n/g')
+
+        # Check for changelog header (:cl: or 🆑) outside comments
+        if ! echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -Eiq "(^|\s)(:cl:|🆑)"; then
+          echo "No changelog header found (:cl: or 🆑) outside comments. Skipping changelog entry checks."
           exit 0
         fi
 
-        # Check for at least one changelog entry (add:, remove:, tweak:, fix:)
-        if ! echo "$PR_DESCRIPTION" | grep -Eiq "(^|[ *-]+)(add|remove|tweak|fix):"; then
-          echo "PR description must contain at least one changelog entry (add:, remove:, tweak:, or fix:)."
+        # Check for at least one changelog entry (add:, remove:, tweak:, fix:) outside comments
+        if ! echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -Eiq "(^|[ *-]+)(add|remove|tweak|fix):"; then
+          echo "PR description must contain at least one changelog entry (add:, remove:, tweak:, or fix:) outside comments."
           exit 1
         fi
