@@ -2,7 +2,7 @@ name: "Changelog Validator"
 
 on:
   pull_request:
-    types: [opened, edited, reopened]
+    types: [opened, edited, reopened, synchronize]
 
 env:
   GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
@@ -22,6 +22,6 @@ jobs:
 
     - name: Validate Changelog
       run: |
-        cd "Tools/_NF/changelog"
+        cd "Tools/_NF"
         node validate_changelog.js
       shell: bash
