@@ -64,6 +64,10 @@
   - type: CargoSellBlacklist
   - type: ShipyardSellCondition # Frontier: Teleport to shipyard console on sale
     preserveOnSale: true
+  - type: FaxableObject # frontier: If blueprints can be faxed, why not be able to fax money for the blueprint?
+  - type: Paper #If I need to make a whole new tag for cash that would be unfortunate
+    destroyOnFax: true
+    destroyMessage: fax-delete-paper-money-launder #End Frontier
 
 - type: material
   id: Credit
