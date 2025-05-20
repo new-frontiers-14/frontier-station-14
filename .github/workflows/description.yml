@@ -36,9 +36,9 @@ jobs:
         fi
 
         # Check that all changelog entries are valid (must be add:, remove:, tweak:, or fix: with colon)
-        INVALID_ENTRIES=$(echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -Eio '^[ \t*-]*(\w+):' | grep -viE '^[ \t*-]*(add:|remove:|tweak:|fix:)$' || true)
+        INVALID_ENTRIES=$(echo "$PR_DESCRIPTION_UNCOMMENTED" | grep -Eio '^[ \t*-]*[a-zA-Z0-9_\-]+:' | grep -viE '^[ \t*-]*(add:|remove:|tweak:|fix:)$' || true)
         if [ -n "$INVALID_ENTRIES" ]; then
-          echo "Invalid changelog entry types found (only add:, remove:, tweak:, or fix: are allowed):"
+          echo "Invalid changelog entry types found (only add:, remove:, tweak:, or fix: are allowed, and must have a colon immediately after the keyword):"
           echo "$INVALID_ENTRIES"
           EXIT_CODE=1
         fi
