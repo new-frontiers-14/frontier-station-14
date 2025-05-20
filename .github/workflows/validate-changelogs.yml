@@ -12,6 +12,12 @@ jobs:
     - name: Set up workspace
       uses: actions/checkout@v2
 
+    - name: Setup Git
+      run: |
+          git config --global user.name "${{ vars.CHANGELOG_USER }}"
+          git config --global user.email "${{ vars.CHANGELOG_EMAIL }}"
+      shell: bash
+
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
