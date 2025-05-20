@@ -2,8 +2,6 @@ using Content.Server.Body.Components;
 using Content.Server.Construction;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Ghost;
-using Content.Server.Materials;
-using Content.Server.Power.Components;
 using Content.Server.Stack;
 using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
@@ -25,6 +23,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Skrungler;
 
@@ -121,9 +120,8 @@ public sealed class SkrunglerSystem : SharedSkrunglerSystem
 
         AlternativeVerb verb = new()
         {
-            Text = Loc.GetString("skrungel-verb-get-data-text"),
-            // TODO VERB ICON add flame/burn symbol?
-
+            Text = Loc.GetString("skrungle-verb-activate"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
             Act = () => TryStartProcessing((ent, ent.Comp, storage)),
             Impact = LogImpact.High, // could be a body? or evidence? I dunno.
         };
