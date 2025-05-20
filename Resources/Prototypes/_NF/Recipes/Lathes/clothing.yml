@@ -25,6 +25,14 @@
 
 - type: latheRecipe
   abstract: true
+  id: NFBaseCardboardRecipe
+  parent: NFBaseJumpsuitRecipe
+  materials:
+    Cardboard: 100
+  completetime: 1
+
+- type: latheRecipe
+  abstract: true
   id: NFBaseBootRecipe # And gloves and wallets
   parent: NFBaseJumpsuitRecipe
   materials:
@@ -41,6 +49,15 @@
     Glass: 500
 
 # Recipes
+
+# Hats (head)
+- type: latheRecipe
+  id: ClothingHeadHatMcCrown
+  parent: NFBaseCardboardRecipe
+  result: ClothingHeadHatMcCrown
+  categories:
+  - Brand
+  - ClothesNF
 
 # Jumpsuits
 - type: latheRecipe
