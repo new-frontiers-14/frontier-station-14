@@ -44,7 +44,7 @@ if (!hasValidEntry) {
 
 // Check that every non-empty line after :cl: is a valid changelog entry
 const invalidEntries = clBody.filter(line =>
-  line.trim() !== '' && !validEntryRegex.test(line)
+  line.trim() !== '' && !EntryRegex.test(line)
 );
 
 if (invalidEntries.length > 0) {
