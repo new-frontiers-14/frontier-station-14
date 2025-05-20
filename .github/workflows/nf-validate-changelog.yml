@@ -1,4 +1,4 @@
-name: "Description: Changelog Validator"
+name: "Changelog Validator"
 
 on:
   pull_request:
@@ -9,14 +9,11 @@ env:
 
 jobs:
   validate-changelog:
-    name: Validate Changelog
+    name: Changelog validator
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Master
-      uses: actions/checkout@v3
-      with:
-        token: ${{ secrets.BOT_TOKEN }}
-        ref: master
+      uses: actions/checkout@v4.2.2
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
