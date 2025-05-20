@@ -2,7 +2,7 @@
   id: Skrungler
   name: skrungler
   parent: [ BaseC3ContrabandUnredeemable, BaseMachinePowered, ConstructibleMachine ]
-  description: A skrungler, a vile machine that is able to produce plasma fuel from dead bodies.
+  description: A vile machine that produces fuel from dead bodies.
   placement:
     mode: SnapgridCenter
   components:
@@ -71,6 +71,7 @@
     anchored: true
     noRot: false
   - type: Skrungler
+    outputStackType: FuelSkrungle
   - type: AmbientSound
     enabled: false
     volume: -5

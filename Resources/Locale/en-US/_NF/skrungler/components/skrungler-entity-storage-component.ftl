@@ -6,7 +6,7 @@ skrungler-entity-storage-component-suicide-message = You skrungle yourself!
 skrungler-entity-storage-component-suicide-message-others = {$victim} is skrungling {$victim}!
 
 # CremateVerb
-skrungel-verb-get-data-text = Skrungel
+skrungle-verb-activate = Skrungle
 
 # Upgrades
 skrungler-component-upgrade-speed = speed

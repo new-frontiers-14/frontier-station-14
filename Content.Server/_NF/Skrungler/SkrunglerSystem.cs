@@ -2,8 +2,7 @@ using Content.Server.Body.Components;
 using Content.Server.Construction;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Ghost;
-using Content.Server.Materials;
-using Content.Server.Power.Components;
+using Content.Server.Stack;
 using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared._NF.Skrungler;
@@ -12,7 +11,6 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Database;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Materials;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -20,32 +18,30 @@ using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Standing;
 using Content.Shared.Verbs;
+using Robust.Server.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Skrungler;
 
 /// <inheritdoc/>
 public sealed class SkrunglerSystem : SharedSkrunglerSystem
 {
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
     [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MaterialStorageSystem _material = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly SharedMindSystem _minds = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+    [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
-
-    private readonly ProtoId<MaterialPrototype> _fuelPrototype = "FuelGradePlasma";
-
-    private EntityQuery<ApcPowerReceiverComponent> _powerReceiverQuery;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -56,8 +52,6 @@ public sealed class SkrunglerSystem : SharedSkrunglerSystem
         SubscribeLocalEvent<SkrunglerComponent, SuicideByEnvironmentEvent>(OnSuicideByEnvironment);
         SubscribeLocalEvent<SkrunglerComponent, RefreshPartsEvent>(OnRefreshParts);
         SubscribeLocalEvent<SkrunglerComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-
-        _powerReceiverQuery = GetEntityQuery<ApcPowerReceiverComponent>();
     }
 
     /// <inheritdoc/>
@@ -74,8 +68,7 @@ public sealed class SkrunglerSystem : SharedSkrunglerSystem
                 continue;
 
             // Can't run if it requires power and isn't powered
-            if (_powerReceiverQuery.TryComp(uid, out var powerReceiver) &&
-                !_power.IsPowered((uid, powerReceiver)))
+            if (!_power.IsPowered(uid))
                 continue;
 
             var curTime = Timing.CurTime;
@@ -96,10 +89,10 @@ public sealed class SkrunglerSystem : SharedSkrunglerSystem
             if (curTime < skrungler.FinishProcessingTime)
                 continue;
 
-            var actualYield = (int) skrungler.CurrentExpectedYield; // can only have integer
+            var actualYield = (int)skrungler.CurrentExpectedYield; // can only have integer
             skrungler.CurrentExpectedYield -= actualYield; // store non-integer leftovers
 
-            var fuel = _material.SpawnMultipleFromMaterial(actualYield, _fuelPrototype, xform.Coordinates);
+            var fuel = _stack.SpawnMultiple(skrungler.OutputStackType, actualYield, xform.Coordinates);
             foreach (var fuelEntity in fuel)
             {
                 _containers.Insert(fuelEntity, storage.Contents);
@@ -127,9 +120,8 @@ public sealed class SkrunglerSystem : SharedSkrunglerSystem
 
         AlternativeVerb verb = new()
         {
-            Text = Loc.GetString("skrungel-verb-get-data-text"),
-            // TODO VERB ICON add flame/burn symbol?
-
+            Text = Loc.GetString("skrungle-verb-activate"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
             Act = () => TryStartProcessing((ent, ent.Comp, storage)),
             Impact = LogImpact.High, // could be a body? or evidence? I dunno.
         };
@@ -150,9 +142,11 @@ public sealed class SkrunglerSystem : SharedSkrunglerSystem
         if (TryComp<MobStateComponent>(containedEntity, out var comp) && !_mobState.IsDead(containedEntity, comp))
             return;
 
-        if (_minds.TryGetMind(containedEntity, out _, out var mind) &&
-            mind.Session?.State.Status == SessionStatus.InGame)
+        if (_player.TryGetSessionByEntity(containedEntity, out var session) &&
+            session.State.Status == SessionStatus.InGame)
+        {
             return;
+        }
 
         StartProcessing(containedEntity, ent);
     }
@@ -173,8 +167,7 @@ public sealed class SkrunglerSystem : SharedSkrunglerSystem
         if (ent.Comp.Active)
             return;
 
-        if (_powerReceiverQuery.TryComp(ent, out var powerReceiver) &&
-            _power.IsPowered((ent, powerReceiver)))
+        if (!_power.IsPowered(ent.Owner))
             return;
 
         if (_minds.TryGetMind(args.Victim, out var mindId, out var mind))
@@ -225,7 +218,7 @@ public sealed class SkrunglerSystem : SharedSkrunglerSystem
     private void OnUpgradeExamine(Entity<SkrunglerComponent> ent, ref UpgradeExamineEvent args)
     {
         args.AddPercentageUpgrade("skrungler-component-upgrade-speed",
-            (float) (ent.Comp.BaseProcessingTimePerUnitMass / ent.Comp.ProcessingTimePerUnitMass));
+            (float)(ent.Comp.BaseProcessingTimePerUnitMass / ent.Comp.ProcessingTimePerUnitMass));
         args.AddPercentageUpgrade("skrungler-component-upgrade-fuel-yield",
             ent.Comp.YieldPerUnitMass / ent.Comp.BaseYieldPerUnitMass);
     }
