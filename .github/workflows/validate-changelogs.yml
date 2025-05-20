@@ -6,11 +6,19 @@ on:
 
 jobs:
   validate-pr-description:
-    name: Validate PR Changelogs
+    name: Validate Changelogs
     runs-on: ubuntu-latest
     steps:
     - name: Set up workspace
       uses: actions/checkout@v2
 
-    - name: Validate PR Changelogs
-      run: node .github/Tools/_NF/validate_changelog.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Validate Changelogs
+      run: |
+          cd "Tools/_NF/changelog"
+          node validate_changelog.js
+      shell: bash
