@@ -16,6 +16,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._NF.Lathe.UI;
 
+/// <summary>
+/// Main window for the blueprint lathe.
+/// Works like the lathe menu, though it selects blueprints by category
+/// and allows multiple recipe selection on the same blueprint.
+/// </summary>
 [GenerateTypedNameReferences]
 public sealed partial class BlueprintLatheNFMenu : DefaultWindow
 {

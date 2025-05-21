@@ -311,7 +311,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
 
     protected override bool HasRecipes(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, int[] requestedRecipes, BlueprintLatheComponent component)
     {
-        if (!PrintableRecipesByType.TryGetValue(blueprintType, out var blueprintTypeRecipes))
+        if (!PrintableRecipesByType.TryGetValue(blueprintType, out _))
             return false;
 
         var availableRecipesByType = GetAvailableRecipes(uid);
@@ -325,17 +325,22 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
                 return false;
         }
 
-        // For each set, compare what we want against what we have
+        // For each set, compare what we want against what we have.
+        // An empty requested set should fail (you can't print an empty blueprint).
+        bool anythingRequested = false;
         for (int i = 0; i < Math.Min(requestedRecipes.Length, availableRecipes.Length); i++)
         {
-            if ((requestedRecipes[i] & ~availableRecipes[i]) != 0)
-                return false;
+            if (requestedRecipes[i] != 0)
+            {
+                anythingRequested = true;
+                if ((requestedRecipes[i] & ~availableRecipes[i]) != 0)
+                    return false;
+            }
         }
 
-        return true;
+        return anythingRequested;
     }
 
-    // TODO: Not sure if we need this.
     protected override bool HasRecipe(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, ProtoId<LatheRecipePrototype> recipe, BlueprintLatheComponent component)
     {
         if (!PrintableRecipes.TryGetValue(recipe, out var recipeInfo)

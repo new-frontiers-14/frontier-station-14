@@ -41,6 +41,7 @@ public abstract class SharedBlueprintLatheSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return false;
+
         // TODO: should we reduce the set of recipes down to what we do have (and fail on empty) if this asks for things we don't have vs. failing?
         if (!HasRecipes(uid, blueprintType, recipe, component))
             return false;
@@ -69,7 +70,7 @@ public abstract class SharedBlueprintLatheSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return false;
-        // TODO: should we reduce the set of recipes down to what we do have (and fail on empty) if this asks for things we don't have vs. failing?
+
         if (!HasRecipe(uid, blueprintType, recipe, component))
             return false;
 
