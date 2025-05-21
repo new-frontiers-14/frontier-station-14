@@ -3,6 +3,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._NF.Lathe;
 
+/// <summary>
+/// A given client's state for a blueprint-printing lathe.
+/// </summary>
 [RegisterComponent]
 public sealed partial class BlueprintLatheClientStateComponent : Component
 {
