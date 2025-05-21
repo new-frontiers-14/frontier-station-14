@@ -43,6 +43,8 @@
     staticPacks:
     - NFServiceTechfabDeprecatedStatic
     - ReportingStatic # DeltaV
+    dynamicPacks:
+    - NFServiceTechfabDeprecated
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFServiceTechfabDeprecatedEmagStatic
@@ -51,6 +53,35 @@
       tags:
       - NFBlueprintServiceTechfab
   - type: OreSiloClient
+
+- type: entity
+  parent: ServiceTechFab
+  id: McServiceTechFab
+  name: mcservice techfab
+  description: Prints equipment for mcservice staff.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: mcservice
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: McServiceTechFabCircuitboard
+  - type: Lathe
+    staticPacks:
+    - NFServiceTechfabDeprecatedStatic
+    - ReportingStatic # DeltaV
+    - NFMcServiceTechfabStatic
+    dynamicPacks:
+    - NFServiceTechfabDeprecated
 
 - type: entity
   parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
