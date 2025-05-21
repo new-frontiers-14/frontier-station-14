@@ -246,9 +246,12 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         {
             if (PrintableRecipes.TryGetValue(recipe, out var value))
             {
-                var index = value.index / 32;
-                var intValue = 1 << (value.index % 32);
-                args.UnlockedRecipes[value.blueprint][index] |= intValue;
+                foreach (var recipeInfo in value)
+                {
+                    var index = recipeInfo.index / 32;
+                    var intValue = 1 << (recipeInfo.index % 32);
+                    args.UnlockedRecipes[recipeInfo.blueprint][index] |= intValue;
+                }
             }
         }
     }
@@ -342,19 +345,29 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
 
     protected override bool HasRecipe(EntityUid uid, ProtoId<BlueprintPrototype> blueprintType, ProtoId<LatheRecipePrototype> recipe, BlueprintLatheComponent component)
     {
-        if (!PrintableRecipes.TryGetValue(recipe, out var recipeInfo)
-            || recipeInfo.blueprint != blueprintType) // belt and suspenders, but blueprintType isn't needed
-        {
+        if (!PrintableRecipes.TryGetValue(recipe, out var recipeInfo))
             return false;
+
+        int? maybeIndex = null;
+        foreach (var recipeBlueprintType in recipeInfo)
+        {
+            if (recipeBlueprintType.blueprint == blueprintType)
+            {
+                maybeIndex = recipeBlueprintType.index;
+                break;
+            }
         }
 
+        if (maybeIndex is not { } index)
+            return false;
+
         var recipeDict = GetAvailableRecipes(uid);
-        if (!recipeDict.TryGetValue(recipeInfo.blueprint, out var intArray)
-            || intArray.Length < (recipeInfo.index + 31) / 32)
+        if (!recipeDict.TryGetValue(blueprintType, out var intArray)
+            || intArray.Length < (index + 31) / 32)
         {
             return false;
         }
-        return (intArray[recipeInfo.index / 32] & (1 << (recipeInfo.index % 32))) != 0;
+        return (intArray[index / 32] & (1 << (index % 32))) != 0;
     }
 
     #region UI Messages

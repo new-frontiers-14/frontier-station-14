@@ -1,5 +1,4 @@
 using Content.Shared._NF.Research.Prototypes;
-using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Materials;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
@@ -16,12 +15,10 @@ public abstract class SharedBlueprintLatheSystem : EntitySystem
     [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
 
     /// <summary>
-    /// A lookup table of all printable recipes and the blueprint type they're printable as.
+    /// A lookup table of all printable recipes and the blueprint types they can be printed as.
     /// </summary>
-    /// <remarks>
-    /// Value in each pair is kept for convenience rather than looking up recipe, then tech, then discipline.
-    /// </remarks>
-    public readonly Dictionary<ProtoId<LatheRecipePrototype>, (ProtoId<BlueprintPrototype> blueprint, int index)> PrintableRecipes = new();
+    public readonly Dictionary<ProtoId<LatheRecipePrototype>, List<(ProtoId<BlueprintPrototype> blueprint, int index)>> PrintableRecipes = new();
+
     /// <summary>
     /// A lookup table of all printable blueprint types and each recipe that prints as that type.
     /// Each list must be sorted alphabetically, and these indices are used as indices in a bitset in print requests.
@@ -132,7 +129,12 @@ public abstract class SharedBlueprintLatheSystem : EntitySystem
             int index = 0;
             foreach (var recipe in recipeList)
             {
-                PrintableRecipes[recipe] = (blueprintType, index);
+                if (!PrintableRecipes.TryGetValue(recipe, out var blueprintList))
+                {
+                    PrintableRecipes.Add(recipe, new());
+                    blueprintList = PrintableRecipes[recipe];
+                }
+                blueprintList.Add((blueprintType, index));
                 index++;
             }
         }

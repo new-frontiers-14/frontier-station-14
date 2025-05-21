@@ -62,7 +62,7 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
             PopulateRecipes();
         };
 
-        FilterOption.OnItemSelected += OnItemSelected;
+        BlueprintTypeOption.OnItemSelected += OnItemSelected;
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
         DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke();
@@ -240,22 +240,22 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
             .OrderBy(p => Loc.GetString(p.Name))
             .ToList();
 
-        FilterOption.Clear();
+        BlueprintTypeOption.Clear();
         var selectedIndex = false;
         foreach (var blueprintType in sortedBlueprintTypes)
         {
             var index = BlueprintTypes.IndexOf(blueprintType.ID);
-            FilterOption.AddItem(Loc.GetString(blueprintType.Name), index);
+            BlueprintTypeOption.AddItem(Loc.GetString(blueprintType.Name), index);
             if (blueprintType == selectedCategory)
             {
-                FilterOption.SelectId(index);
+                BlueprintTypeOption.SelectId(index);
                 selectedIndex = true;
             }
         }
 
         // Default to whatever the first item is.  No blueprint type is not a valid selection.
         if (!selectedIndex)
-            FilterOption.SelectId(0);
+            BlueprintTypeOption.SelectId(0);
     }
 
     /// <summary>
@@ -335,7 +335,7 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
             return;
         }
 
-        FilterOption.SelectId(obj.Id);
+        BlueprintTypeOption.SelectId(obj.Id);
         if (obj.Id == -1)
         {
             if (clientLathe.CurrentBlueprintType != null)
