@@ -27,6 +27,10 @@
   components:
   - type: Sprite
     state: sandwich
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - icecream # Frontier
 
 - type: entity
   name: strawberry ice-cream sandwich
@@ -36,6 +40,11 @@
   components:
   - type: Sprite
     state: sandwich-strawberry
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - berry # Frontier
+    - icecream # Frontier
 
 - type: entity
   name: space freezy
@@ -88,8 +97,13 @@
     - state: popsicle
       color: orange
   - type: Food
-    trash: 
+    trash:
     - FoodFrozenPopsicleTrash
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - icecream # Frontier
+    - orange # Frontier
 
 - type: entity
   name: berry creamsicle
@@ -104,11 +118,16 @@
     - state: popsicle
       color: red
   - type: Food
-    trash: 
+    trash:
     - FoodFrozenPopsicleTrash
   - type: Tag
     tags:
     - Fruit
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - icecream # Frontier
+    - berry # Frontier
 
 - type: entity
   name: jumbo ice-cream
@@ -121,7 +140,7 @@
     - state: stick
     - state: jumbo
   - type: Food
-    trash: 
+    trash:
     - FoodFrozenPopsicleTrash
   - type: SolutionContainerManager
     solutions:
@@ -152,7 +171,7 @@
         - state: alpha-filling
     #      color: foo
     - type: Food
-      trash: 
+      trash:
       - FoodFrozenSnowconeTrash
     - type: SolutionContainerManager
       solutions:
@@ -165,6 +184,10 @@
               Quantity: 2
             - ReagentId: Sugar
               Quantity: 2
+    - type: FlavorProfile # Frontier: add flavour profile
+      flavors: # Frontier
+      - sweet # Frontier
+      - cold # Frontier
 
 - type: entity
   name: flavorless snowcone
@@ -179,6 +202,10 @@
         reagents:
           - ReagentId: Ice
             Quantity: 8
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - ice # Frontier
+    - cold # Frontier
 
 - type: entity
   name: berry snowcone
@@ -191,11 +218,16 @@
     - state: cone
     - state: berry
   - type: Food
-    trash: 
+    trash:
     - FoodFrozenSnowconeTrash
   - type: Tag
     tags:
     - Fruit
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - cold # Frontier
+    - berry # Frontier
 
 - type: entity
   name: fruit salad snowcone
@@ -208,11 +240,17 @@
     - state: cone
     - state: fruitsalad
   - type: Food
-    trash: 
+    trash:
     - FoodFrozenSnowconeTrash
   - type: Tag
     tags:
     - Fruit
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - cold # Frontier
+    - sour # Frontier
+    - ginfizz # Frontier - "refreshing and lemony", makes sense
 
 - type: entity
   name: clowncone
@@ -225,8 +263,13 @@
     - state: cone
     - state: clown
   - type: Food
-    trash: 
+    trash:
     - FoodFrozenSnowconeTrash
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - cold # Frontier
+    - funny # Frontier
 
 - type: entity
   name: mime snowcone
@@ -239,8 +282,13 @@
     - state: cone
     - state: mime
   - type: Food
-    trash: 
+    trash:
     - FoodFrozenSnowconeTrash
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - cold # Frontier
+    - funny # Frontier
 
 - type: entity
   name: rainbow snowcone
@@ -253,7 +301,7 @@
     - state: cone
     - state: rainbow
   - type: Food
-    trash: 
+    trash:
     - FoodFrozenSnowconeTrash
 
 # Trash
