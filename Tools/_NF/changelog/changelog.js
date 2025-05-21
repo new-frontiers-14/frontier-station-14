@@ -33,6 +33,9 @@ async function main() {
         author = user.login;
     }
 
+    // Offset results past the header
+    commentlessBody = commentlessBody.slice(HeaderRegex.lastIndex);
+
     // Get all changes from the body
     const entries = getChanges(commentlessBody);
 
