@@ -1,9 +1,7 @@
-namespace Content.Server.Explosion.Components;
+namespace Content.Server._NF.Explosion.Components;
 
 /// <summary>
-/// Frontier: Triggers on the entity hitting something else as a projectile.
+/// Triggers on the entity hitting something else as a projectile.
 /// </summary>
 [RegisterComponent]
-public sealed partial class TriggerOnProjectileHitComponent : Component
-{
-}
+public sealed partial class TriggerOnProjectileHitComponent : Component;

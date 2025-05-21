@@ -49,7 +49,7 @@
   id: ComputerShipyard
   components:
   - type: ShipyardConsole
-    newJobTitle: Captain
+    newJobTitle: job-name-captain
 
 - type: entity
   id: ComputerShipyardSecurity
@@ -209,13 +209,13 @@
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
-      state: computer_blackmarket
+      state: computer_expedition
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket
+      state: shipyard
     - map: ["computerLayerKeys"]
-      state: blackmarket_key
+      state: telesci_key
 
 - type: entity
   id: ComputerShipyardScrap
@@ -233,13 +233,13 @@
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
-      state: computer_blackmarket
+      state: computer_scrap
     - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
+      state: scrap_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket
+      state: shipyard_scrap
     - map: ["computerLayerKeys"]
-      state: blackmarket_key
+      state: scrap_key
 
 - type: entity
   id: ComputerShipyardMedical

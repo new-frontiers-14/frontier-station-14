@@ -1,0 +1,52 @@
+#region frame
+- type: entity
+  id: NFBaseWeaponFrameMachinePistol
+  parent: [ NFBaseWeaponEncumbranceMachinePistol, NFBaseItemWeaponGunMagazineFed ]
+  name: machine pistol
+  abstract: true
+  components:
+  - type: Gun
+    projectileSpeed: 22.5
+    minAngle: 6.2
+    maxAngle: 18.6
+    angleIncrease: 1
+    angleDecay: 0.5
+    fireRate: 4
+    burstFireRate: 5
+    shotsPerBurst: 3
+    burstCooldown: 1
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - Burst
+  - type: NFWeaponDetails
+    class: weapon-details-class-machine-pistol
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameMachinePistolNanotrasen
+  parent: NFBaseWeaponFrameMachinePistol
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 7
+    maxAngle: 21
+    angleIncrease: 1.25
+    angleDecay: 0.5
+    fireRate: 3.5
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  id: NFBaseWeaponFrameMachinePistolGorlex
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameMachinePistol ]
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 8
+    maxAngle: 21
+    angleIncrease: 1.5
+    angleDecay: 0.75
+    fireRate: 4
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works

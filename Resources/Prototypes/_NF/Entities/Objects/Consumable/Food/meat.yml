@@ -1,4 +1,33 @@
 # Raw
+- type: entity
+  parent: FoodMeatRotten
+  id: FoodMeatGoblin
+  name: raw goblin meat
+  description: Just look at that marbling! Wait, is that microplastic?
+  components:
+  - type: Sprite
+    state: rotten
+    color: lime
+
+- type: entity
+  parent: FoodFrozenBase
+  id: FoodMeatSheleg
+  name: raw sheleg meat
+  description: A slab of cold.. meat?
+  components:
+  - type: Food
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    state: sheleg
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Ice
+          Quantity: 7
+        - ReagentId: Cryoxadone
+          Quantity: 3
 
 - type: entity
   name: prime-cut cat meat

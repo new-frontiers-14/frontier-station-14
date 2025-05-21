@@ -39,6 +39,15 @@ public sealed class NFCCVars
         CVarDef.Create("nf14.uncryo.maxtime", 180 * 60f, CVar.SERVER | CVar.REPLICATED);
 
     /*
+     *  Game
+     */
+    /// <summary>
+    /// If false, the game will not display the round's objectives in the summary window.
+    /// </summary>
+    public static readonly CVarDef<bool> GameShowObjectives =
+        CVarDef.Create("nf14.game.showobjectives", false, CVar.ARCHIVE | CVar.SERVERONLY);
+
+    /*
      *  Public Transit
      */
     /// <summary>
@@ -114,13 +123,19 @@ public sealed class NFCCVars
     /// Cooldown for failed missions.
     /// </summary>
     public static readonly CVarDef<float> SalvageExpeditionFailedCooldown =
-        CVarDef.Create("salvage.expedition_failed_cooldown", 1200f, CVar.REPLICATED);
+        CVarDef.Create("nf14.salvage.expedition_failed_cooldown", 1200f, CVar.REPLICATED);
 
     /// <summary>
-    /// Whether salvage expedition rewards is enabled.
+    /// Transit time in hyperspace in seconds.
     /// </summary>
-    public static readonly CVarDef<bool> SalvageExpeditionRewardsEnabled =
-        CVarDef.Create("nf14.salvage.expedition_rewards_enabled", false, CVar.REPLICATED);
+    public static readonly CVarDef<float> SalvageExpeditionTravelTime =
+        CVarDef.Create("nf14.salvage.expedition_travel_time", 50f, CVar.REPLICATED);
+
+    /// <summary>
+    /// Whether or not to skip the expedition proximity check.
+    /// </summary>
+    public static readonly CVarDef<bool> SalvageExpeditionProximityCheck =
+        CVarDef.Create("nf14.salvage.expedition_proximity_check", true, CVar.REPLICATED);
 
     /*
      * Smuggling
@@ -235,4 +250,24 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<float> SalvageExpeditionMusicVolume =
         CVarDef.Create("nf14.audio.expedition_music_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /*
+     * Interface
+     */
+
+    /// <summary>
+    /// If true, the admin overlay will display the players starting position.
+    /// </summary>
+    public static readonly CVarDef<bool> AdminOverlayBalance =
+        CVarDef.Create("nf14.ui.admin_overlay_balance", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /*
+     * Xenoarchaeology
+     */
+
+    /// <summary>
+    /// If true, the admin overlay will display the players starting position.
+    /// </summary>
+    public static readonly CVarDef<bool> XenoarchSingleUseNodes =
+        CVarDef.Create("nf14.xenoarch.single_use_nodes", true, CVar.REPLICATED);
 }

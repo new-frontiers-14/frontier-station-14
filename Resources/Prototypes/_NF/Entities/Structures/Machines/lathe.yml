@@ -22,8 +22,8 @@
   description: Prints equipment for service staff.
   components:
   - type: Sprite
-    netsync: false
     sprite: Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -48,6 +48,36 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFServiceTechfabDeprecatedEmagStatic
+  - type: OreSiloClient
+
+- type: entity
+  parent: [ BlueprintReceiverBase, ServiceTechFab ]
+  id: McServiceTechFab
+  name: mcservice techfab
+  description: Prints equipment for mcservice staff.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: mcservice
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: McServiceTechFabCircuitboard
+  - type: Lathe
+    staticPacks:
+    - NFServiceTechfabDeprecatedStatic
+    - ReportingStatic # DeltaV
+    - NFMcServiceTechfabStatic
+    dynamicPacks:
+    - NFServiceTechfabDeprecated
 
 - type: entity
   parent: [ BlueprintReceiverBase, BaseLatheLube ]
@@ -56,8 +86,8 @@
   description: Prints equipment for engineers.
   components:
   - type: Sprite
-    netsync: false
     sprite: Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -78,6 +108,7 @@
     - NFEngineeringTechfabDeprecatedStatic
     dynamicPacks:
     - NFEngineeringTechfabDeprecated
+  - type: OreSiloClient
 
 - type: entity
   parent: [ BlueprintReceiverBase, BaseLatheLube ]
@@ -86,8 +117,8 @@
   description: Prints equipment for salvagers.
   components:
   - type: Sprite
-    netsync: false
     sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -111,6 +142,7 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFSalvageTechfabDeprecatedEmag
+  - type: OreSiloClient
 
 - type: entity
   id: NfsdTechFab
@@ -120,6 +152,7 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -138,12 +171,11 @@
     runningState: icon
     staticPacks:
     - NFNfsdTechfabDeprecatedStatic
+    - NfsdPracticeStatic
+    - NfsdAmmoStatic
     - ReportingStatic # DeltaV
     dynamicPacks:
-    - NFNfsdTechfabDeprecated
-  - type: EmagLatheRecipes
-    emagStaticPacks:
-    - NFNfsdTechfabDeprecatedEmag
+    - NFNfsdTechfabDynamicDeprecated
 
 - type: entity
   id: MercenaryTechFab
@@ -153,6 +185,7 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -171,11 +204,10 @@
     runningState: icon
     staticPacks:
     - NFMercenaryTechfabDeprecatedStatic
+    - NfsdPracticeStatic
     dynamicPacks:
-    - NFMercenaryTechfabDeprecated
-  - type: EmagLatheRecipes
-    emagStaticPacks:
-    - NFMercenaryTechfabDeprecatedEmag
+    - NFMercenaryTechfabDynamicDeprecated
+  - type: OreSiloClient
 
 - type: entity
   id: MercenaryTechFabHacked
@@ -188,11 +220,11 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
-    - state: icon
+    - state: mercenary-hacked
       map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: mercenary
-    - state: unlit
+    - state: unlit-hacked
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
     - state: inserting
@@ -209,15 +241,17 @@
   - type: PointLight
     radius: 1.5
     energy: 2
+    color: "#85daeb"
   - type: RgbLightController
     layers: [ 0 ]
   - type: Lathe
-    idleState: icon
-    runningState: icon
+    idleState: mercenary-hacked
+    runningState: mercenary-hacked
     staticPacks:
     - NFHackedMercenaryTechfabDeprecatedStatic
     dynamicPacks:
     - NFHackedMercenaryTechfabDeprecated
+  - type: OreSiloClient
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseLathe]
@@ -295,6 +329,7 @@
     dynamicPacks:
     - NFBlueprints
   - type: RequireProjectileTarget
+  - type: OreSiloClient
 
 - type: entity
   id: ScrapProcessor
@@ -304,6 +339,7 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/scrap_processor.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -329,6 +365,7 @@
     productValueModifier: null
     staticPacks:
     - NFScrapStatic
+  - type: OreSiloClient
 
 - type: entity
   id: BiogeneratorFill

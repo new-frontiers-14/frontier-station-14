@@ -77,7 +77,7 @@
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
   - type: Sprite
-    sprite: Structures/Shuttles/thruster.rsi
+    sprite: _NF/Structures/Shuttles/thruster.rsi # Frontier: use _NF prefix
     layers:
     - state: base
       map: ["enum.ThrusterVisualLayers.Base"]
@@ -90,18 +90,20 @@
       shader: unshaded
       visible: false
       offset: 0, 1
-  - type: DeviceNetwork # frontier
-    deviceNetId: Wireless # frontier
-    receiveFrequencyId: BasicDevice # frontier
-  - type: WirelessNetworkConnection # frontier
-    range: 200 # frontier
-  - type: DeviceLinkSink # frontier
-    ports: # frontier
-    - On # frontier
-    - Off # frontier
-    - Toggle # frontier
-  - type: PirateBountyItem # Frontier
-    id: Thruster # Frontier
+  # Frontier: linkable thrusters, pirate bounties
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+  - type: PirateBountyItem
+    id: Thruster
+  # End Frontier
 
 - type: entity
   id: ThrusterUnanchored
@@ -124,7 +126,7 @@
     needsPower: false
     powerLoad: 0
   - type: Sprite
-    sprite: Structures/Shuttles/thruster.rsi
+    sprite: _NF/Structures/Shuttles/thruster.rsi # Frontier: use _NF prefix
     layers:
     - state: base
       map: ["enum.ThrusterVisualLayers.Base"]
@@ -150,9 +152,10 @@
     baseThrust: 2000
     thrust: 2000
     machinePartThrust: Manipulator
+    thrustPerPartLevel: [2000, 2500, 3000, 3500] # Frontier: upgradable gyroscopes
   - type: Sprite
     # Listen I'm not the biggest fan of the sprite but it was the most appropriate thing I could find.
-    sprite: Structures/Shuttles/gyroscope.rsi
+    sprite: _NF/Structures/Shuttles/gyroscope.rsi # Frontier: add _NF prefix
     snapCardinals: true
     layers:
     - state: base
@@ -232,7 +235,7 @@
     needsPower: false
     powerLoad: 0
   - type: Sprite
-    sprite: Structures/Shuttles/gyroscope.rsi
+    sprite: _NF/Structures/Shuttles/gyroscope.rsi # Frontier: add _NF prefix
     snapCardinals: true
     layers:
     - state: base

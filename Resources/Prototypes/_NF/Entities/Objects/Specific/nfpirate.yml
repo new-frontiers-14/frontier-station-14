@@ -1,0 +1,201 @@
+# region Doubloons
+- type: entity
+  name: doubloon
+  parent: BaseItem
+  id: Doubloon
+  suffix: 20 DB
+  description: A dirty gold coin used for nefarious pirate exchanges.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Pirate/pirate_doubloon.rsi
+    state: doubloon
+  - type: Item
+    sprite: _NF/Objects/Specific/Pirate/pirate_doubloon.rsi
+    size: Tiny
+  - type: Stack
+    count: 20
+    stackType: Doubloon
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      Doubloon: 1
+
+- type: entity
+  parent: Doubloon
+  id: Doubloon1
+  suffix: 1 DB
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: Doubloon
+  id: Doubloon5
+  suffix: 5 DB
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: Doubloon
+  id: Doubloon10
+  suffix: 10 DB
+  components:
+  - type: Stack
+    count: 10
+
+# region Uplinks
+- type: entity
+  parent: [ BaseItem, StorePresetPirateUplink ]
+  id: BasePirateUplink
+  name: pirate uplink
+  description: A coconut with an antenna?
+  suffix: Empty
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pirate_uplink.rsi
+    layers:
+    - state: icon
+      scale: 0.7, 0.7
+    - state: icon-overlay
+      scale: 0.7, 0.7
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Devices/pirate_uplink.rsi
+    heldPrefix: icon
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Tag
+    tags:
+    - PirateUplink
+
+- type: entity
+  parent: BasePirateUplink
+  id: BasePirateUplinkRadioDebug
+  suffix: Pirate, DEBUG
+  components:
+  - type: Store
+    balance:
+      Doubloon: 99999
+
+- type: entity
+  parent: BasePirateUplink
+  id: BasePirateUplinkRadioPirateCaptain
+  suffix: P. Captain 20
+  components:
+  - type: Store
+    balance:
+      Doubloon: 20
+
+- type: entity
+  parent: BasePirateUplink
+  id: BasePirateUplinkPirateCrew
+  suffix: Crew 15
+  components:
+  - type: Store
+    balance:
+      Doubloon: 15
+
+# region Misc Items
+- type: entity
+  parent: BaseItem
+  id: IonizedBluespaceDustBag
+  name: bag of ionized bluespace dust
+  description: Claimed by some to clear magnetic navigational fields. Claimed by others to be a bag of blue dust.
+  components:
+  - type: ClearPinpointer
+    emptyMessage: bluespace-dust-no-dust-left
+    useOnOthersMessage: bluespace-dust-interact-other
+    useOnSelfMessage: bluespace-dust-interact-self
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Pirate/bluespace_dust.rsi
+    layers:
+    - state: base
+    - state: charge-3
+      map: [ "enum.LimitedChargesVisualLayers.Charges" ]
+  - type: LimitedCharges
+  - type: LimitedChargesVisuals
+    chargeSteps: 4
+    chargePrefix: charge
+  - type: Appearance
+
+- type: entity
+  id: PinpointerScannerUnpowered
+  parent: BaseItem
+  name: pinpointer target scanner
+  description: A scanner that looks for pinpointer signatures.
+  suffix: Unpowered
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Pirate/pinpointer_scanner.rsi
+    layers:
+      - state: icon
+      - state: icon-on
+        visible: false
+        map: ["on"]
+      - state: icon-on-unlit
+        shader: unshaded
+        visible: false
+        map: ["on-unlit"]
+      - state: sweep-unlit
+        shader: unshaded
+        visible: false
+        map: ["sweep-unlit"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        on:
+          True: { visible: true }
+          False: { visible: false }
+        on-unlit:
+          True: { visible: true }
+          False: { visible: false }
+        sweep-unlit:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ItemToggle
+  - type: ProximityBeeper
+    minRange: 3
+  - type: ProximityDetector
+    range: 10
+    criteria:
+      components:
+      - PinpointerTarget
+  - type: Beeper
+    isMuted: true
+    minBeepInterval: 0.25
+    maxBeepInterval: 1.0
+    beepSound:
+      path: "/Audio/Items/locator_beep.ogg"
+      params:
+        maxDistance: 1
+        volume: -8
+
+- type: entity
+  id: PinpointerScanner
+  parent: [ PinpointerScannerUnpowered, PowerCellSlotSmallItem ]
+  suffix: Powered
+  components:
+  - type: PowerCellDraw
+    drawRate: 1
+    useRate: 0
+  - type: ToggleCellDraw
+
+- type: entity
+  id: PinpointerScannerEmpty
+  parent: PinpointerScanner
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

@@ -1,0 +1,90 @@
+<Document>
+  # CROSSROADS-CLASS SERVICE SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="Airlock" Caption="Docking"/>
+  <GuideEntityEmbed Entity="FloraTree" Caption="Nature"/>
+  <GuideEntityEmbed Entity="SaxophoneInstrument" Caption="Entertainment"/>
+  </Box>
+    [color=#a4885c]Ship Size:[/color] Medium
+
+	[color=#a4885c]Recommended Crew:[/color] 2-4
+
+	[color=#a4885c]Power Gen Type:[/color] Uranium
+
+	[color=#a4885c]Expeditions:[/color] None
+
+	[color=#a4885c]IFF Console:[/color] None
+
+  "The PHI Crossroads is a spacious meeting point for anyone looking to relax on the frontier. The Crossroad's many docking points, alongside its spacious, open, and lush interior, make it a helpful central hub for growing communities."
+
+  # PREFLIGHT CHECKLIST
+
+  ## 1. Power supply
+
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+
+  - Check that the SMES unit is anchored to the floor.
+  - Check that the substation unit is anchored to the wall.
+  - Check that the four APC units have their Main Breakers toggled on.
+  - Check the APC units' current Load* (W).
+
+  ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator units
+  <Box>
+  <GuideEntityEmbed Entity="PortableGeneratorSuperPacman" Caption="Generators"/>
+  <GuideEntityEmbed Entity="SheetUranium"/>
+  <GuideEntityEmbed Entity="SignRadiationMed"/>
+  </Box>
+
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units are anchored to the floor.
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units have fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units is set to HV output.
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units' target power are set to 15-30** [bold]kW[/bold] depending on power need.
+  - Start S.U.P.E.R.P.A.C.M.A.N. generator units.
+
+  ## 2. Atmospherics
+  <Box>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  </Box>
+
+  - Check that the O2 canister is anchored to connector port.
+  - Check that the N2 canister is anchored to connector port.
+  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
+  - Check that the gas mixer is set to 101kPa.
+  - Check that the gas mixer is enabled.
+  - Check that the waste pump is enabled. This is located on the bridge.
+
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  <GuideEntityEmbed Entity="MiniStationAnchor"/>
+  </Box>
+
+  - Check that the gyroscope is anchored, powered, and enabled.
+  - Check that the mini gravity generator is anchored, powered, and enabled.
+  - Check that the mini station anchor, located in Cargo, is switched off.
+
+  ## Sidenotes
+
+  * - Crossroads-class service ships are equipped with three APC units that can be used to appraise the ship's total power consumption. One can check the ship's total power consumption against the S.U.P.E.R.P.A.C.M.A.N. generator unit Target Power output: to keep SMES, substation, and APC fully charged, S.U.P.E.R.P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
+
+  ** - Crossroads-class service ships can be run on standard S.U.P.E.R.P.A.C.M.A.N. generator unit settings, but may need to be adjusted to higher outputs in emergencies such as gravity failure or prolonged power outages.
+
+  ** - Crossroads-class service ships feature two function buttons in the bridge to toggle power to thrusters the miniature station anchor, which can be manually toggled in cargo. When parked using these methods, the S.U.P.E.R.P.A.C.M.A.N. generators can be tuned down to 8** [bold]kW[/bold] to save on fuel costs.
+
+  <Box>
+  <GuideEntityEmbed Entity="SignRadiationMed"/>
+  <GuideEntityEmbed Entity="ClothingOuterSuitRad"/>
+  <GuideEntityEmbed Entity="GeigerCounter"/>
+  </Box>
+  Note: Be sure to take all necessary protective measures when working with radioactive materials: use a radiation suit, engage internals, make sure to enable Geiger's counter, wash your hands after, and keep radiation shutters closed at all times.
+
+</Document>

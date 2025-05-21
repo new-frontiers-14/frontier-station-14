@@ -39,7 +39,7 @@ public sealed class BindToStationSystem : EntitySystem
             && TryComp<ExtensionCableReceiverComponent>(ent.Owner, out var receiver)
             && _station.GetOwningStation(ent.Owner) != ent.Comp.BoundStation)
         {
-            _extensionCable.Disconnect(ent.Owner, receiver);
+            _extensionCable.Disconnect((ent.Owner, receiver));
         }
     }
 
@@ -99,11 +99,11 @@ public sealed class BindToStationSystem : EntitySystem
                 && TryComp(target, out TransformComponent? xform)
                 && xform.Anchored)
             {
-                _extensionCable.Connect(target, receiver);
+                _extensionCable.Connect((target, receiver));
             }
             else
             {
-                _extensionCable.Disconnect(target, receiver);
+                _extensionCable.Disconnect((target, receiver));
             }
         }
     }

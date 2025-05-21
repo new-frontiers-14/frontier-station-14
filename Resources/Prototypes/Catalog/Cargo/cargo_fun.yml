@@ -98,6 +98,17 @@
   group: market
 
 - type: cargoProduct
+  id: CrateFunFoamGuns
+  abstract: true # Frontier
+  icon:
+    sprite: Objects/Weapons/Guns/Rifles/foam_rifle.rsi
+    state: icon
+  product: CrateFunFoamGuns
+  cost: 3000
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
   id: FunPlushies
   abstract: true # Frontier
   icon:
@@ -115,6 +126,17 @@
     sprite: Objects/Fun/toys.rsi
     state: plushie_lizard
   product: CrateFunLizardPlushieBulk
+  cost: 500
+  category: cargoproduct-category-name-fun
+  group: market
+  
+- type: cargoProduct
+  id: FunSharkPlushies
+  abstract: true # Frontier
+  icon:
+    sprite: Objects/Fun/sharkplush.rsi
+    state: blue
+  product: CrateFunSharkPlushieBulk
   cost: 500
   category: cargoproduct-category-name-fun
   group: market
@@ -224,7 +246,7 @@
     sprite: Objects/Vehicles/atv.rsi
     state: vehicle
   product: CrateFunATV
-  cost: 1500
+  cost: 5000 # Frontier: 1500<5000
   category: cargoproduct-category-name-fun
   group: market
 

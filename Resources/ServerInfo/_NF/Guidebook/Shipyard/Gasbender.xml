@@ -1,102 +1,27 @@
 <Document>
   # GASBENDER-CLASS ENGINEERING SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="PowerDrill"/>
-  <GuideEntityEmbed Entity="JawsOfLife"/>
-  <GuideEntityEmbed Entity="ShipyardRCD"/>
-  <GuideEntityEmbed Entity="HolofanProjector"/>
-  </Box>
-  <Box>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  <GuideEntityEmbed Entity="GasFilterFlipped"/>
-  <GuideEntityEmbed Entity="GasVentScrubber"/>
+  <GuideEntityEmbed Entity="NFPosterContrabandLvhiSpace" Caption=""/>
   </Box>
   <Box>
   <GuideEntityEmbed Entity="ShuttleMapGasbender" Caption=""/>
   </Box>
     [color=#a4885c]Ship Size:[/color] Medium
-	
+
 	[color=#a4885c]Recommended Crew:[/color] 3-6
-	
-	[color=#a4885c]Power Gen Type:[/color] AME
-	
-	[color=#a4885c]Expeditions:[/color] Yes
-	
+
+	[color=#a4885c]Power Gen Type:[/color] Bananium
+
+	[color=#a4885c]Expeditions:[/color] None
+
 	[color=#a4885c]IFF Console:[/color] None
-	
-  "The Gasbender is a medium-sized engineering vessel outfitted for deep space construction projects and gas collection on planets. Features atmospherics setup with mixing/ignition chamber. Designed to work in pair with smaller salvage ship. Manufactured by Langstad-Voigt Heavy Industries."
-    
-    # PREFLIGHT CHECKLIST
-  
-  ## 1. Power supply
-  
-  ## 1.1. Battery units
-  <Box>
-  <GuideEntityEmbed Entity="SMESBasic"/>
-  <GuideEntityEmbed Entity="SubstationBasic"/>
-  <GuideEntityEmbed Entity="APCBasic"/>
-  </Box>
-  
-  - Check that the SMES unit is anchored to the floor.
-  - Check that the substation unit is anchored to the floor.
-  - Check that the APC unit's Main Breaker is toggled on.
-  - Check the APC unit's current Load* (W).
-  
-  ## 1.2. AME generator unit.
-  <Box>
-  <GuideEntityEmbed Entity="AmeController"/>
-  <GuideEntityEmbed Entity="AmeJar"/>
-  </Box>
-  
-  - Check that the AME core is properly shielded.
-  - Check that the AME controller unit is anchored to the floor.
-  - Check the AME controller unit Fuel Status.
-  - Check the AME controller unit Injection Amount.
-  - Enable Injection.
-  
-  ## 2. Atmospherics
-  
-  ## 2.1. Distribution Loop
-  <Box>
-  <GuideEntityEmbed Entity="OxygenCanister"/>
-  <GuideEntityEmbed Entity="NitrogenCanister"/>
-  <GuideEntityEmbed Entity="GasMixer"/>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  </Box>
-  
-  - Check that the O2 output pump is set to 101kPa.
-  - Enable the O2 output pump.
-  - Check that the N2 output pump is set to 101kPa.
-  - Enable N2 output pump.
-  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
-  - Check that the gas mixer is set to 101kPa.
-  - Enable gas mixer.
-  - Check that the distribution pump is set to 101kPa.
-  - Enable distribution pump.
-  
-  ## 2.2. Waste Loop
-  <Box>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  <GuideEntityEmbed Entity="AirAlarm"/>
-  </Box>
-    
-  - Enable waste loop pump.
-  - Disable Auto Mode on the Air Alarm in the Engine Room.
-  - Set the Air Alarm in the Engine Room to Filtering (Wide).
-  
-  ## 3. Other checks
-  <Box>
-  <GuideEntityEmbed Entity="Gyroscope"/>
-  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  <GuideEntityEmbed Entity="BlastDoor"/>
-  </Box>
-  
-  - Check that the gyroscope is anchored, powered, and enabled.
-  - Check that the mini gravity generator is anchored, powered, and enabled.
-  - Check that the blast doors are closed.
-  
-  ## Sidenotes
-  
-  * - Gasbender-class engineering ships are equipped with a five APC units that can be used to appraise the ship's total power consumption. Unmodified Gasbender-class ship requires 40 kW of power to remain operational.
+
+  "The Gasbender is a medium-sized engineering vessel outfitted for deep space construction projects and gas mining. Features atmospherics setup with mixing/ignition chamber. Designed to work in pair with smaller salvage ship. Manufactured by Langstad-Voigt Heavy Industries."
+
+  # Tips on running LVHI Gasbender shuttles
+  - The total power load for the shuttle in standard complectation is 49 [bold]kW[/bold]. For more general info on the power grid, see the guidebook article [textlink="Power" link="Power"], and for more info about the Antimatter Engine, see the guidebook article [textlink="AME" link="AME"].
+  - The shuttle comes with necessary equipment for Offshore Gas Mining. To learn the basics, see the guidebook article [textlink="Offshore Gas Mining" link="OffshoreGasMining"].
+  - For more general info on atmospherics see the guidebook article about [textlink="Atmospherics" link="Atmospherics"].
+  - For basics of shuttle piloting see [textlink="Piloting" link="Piloting"].
 
 </Document>
