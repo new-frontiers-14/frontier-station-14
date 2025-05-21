@@ -1,9 +1,6 @@
 // Dependencies
 const fs = require("fs");
 
-// Use GitHub token if available
-if (process.env.GITHUB_TOKEN) axios.defaults.headers.common["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
-
 // Regexes
 const HeaderRegex = /^\s*(?::cl:|🆑) *([a-z0-9_\-, ]+)?\s+/im; // :cl: or 🆑 [0] followed by optional author name [1]
 const EntryRegex = /^ *[*-]? *(add|remove|tweak|fix): *([^\n\r]+)\r?$/img; // * or - followed by change type [0] and change message [1]
@@ -14,7 +11,7 @@ async function main() {
     // Read GitHub event payload
     const eventPath = process.env.GITHUB_EVENT_PATH;
     if (!eventPath) {
-        console.error('GITHUB_EVENT_PATH not set.');
+        console.error("GITHUB_EVENT_PATH not set.");
         process.exit(1);
     }
     const event = JSON.parse(fs.readFileSync(eventPath, 'utf8'));
@@ -33,7 +30,7 @@ async function main() {
     // Get all changes from the body
     const results = getChanges(commentlessBody);
 
-    if (results.entries.length() <= 0)
+    if (results.entries.length <= 0)
     {
         console.log("PR has a changelog header but no valid entries. Either remove the changelog completely, or use entries of the format '- add: text', '- remove: text', '- tweak: text', or '- fix: text'.");
         return process.exit(1);
