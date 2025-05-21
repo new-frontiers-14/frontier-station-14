@@ -53,7 +53,9 @@ async function main() {
     if (!success)
         return process.exit(1);
 
-    console.log(`Changelog is valid. Author: "${author}"`)
+    console.log("Changelog is valid.")
+    if (author)
+        console.log(`Author: "${author}"`)
     console.log("Entries:");
     results.entries.forEach((entry) => {
         console.log(`${entry.type}: ${entry.message}`);
