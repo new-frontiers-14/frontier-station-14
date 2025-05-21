@@ -46,7 +46,7 @@ async function main() {
         return process.exit(1);
 
     console.log("Changelog is valid. Entries:");
-    results.errors.forEach((entry) => {
+    results.entries.forEach((entry) => {
         console.log(`${entry.type}: ${entry.message}`);
     });
 }
