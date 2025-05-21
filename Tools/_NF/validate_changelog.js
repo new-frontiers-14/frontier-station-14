@@ -1,5 +1,5 @@
 // Dependencies
-const fs = require("fs");
+const axios = require("axios");
 
 // Use GitHub token if available
 if (process.env.GITHUB_TOKEN) axios.defaults.headers.common["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
