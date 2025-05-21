@@ -2,7 +2,7 @@
 const fs = require("fs");
 
 // Regexes
-const HeaderRegex = /^\s*(?::cl:|🆑) *([a-z0-9_\-, ]+)?\s*/img; // :cl: or 🆑 [0] followed by optional author name [1]
+const HeaderRegex = /^\s*(?::cl:|🆑) *([a-z0-9_\-, ]+)?/img; // :cl: or 🆑 [0] followed by optional author name [1]
 const EntryRegex = /^ *[*-]? *(\w+): *([^\n\r]+)\r?$/img; // * or - followed by change type [0] and change message [1]
 const CommentRegex = /<!--.*?-->/gs; // HTML comments
 
@@ -27,6 +27,11 @@ async function main() {
         return;
     }
 
+    let author = headerMatch[1];
+    if (author) {
+        author = author.trim();
+    }
+
     // Offset results past the header
     commentlessBody = commentlessBody.slice(HeaderRegex.lastIndex);
 
@@ -48,7 +53,7 @@ async function main() {
     if (!success)
         return process.exit(1);
 
-    console.log(`Changelog is valid. Author: "${headerMatch[1]}"`)
+    console.log(`Changelog is valid. Author: "${author}"`)
     console.log("Entries:");
     results.entries.forEach((entry) => {
         console.log(`${entry.type}: ${entry.message}`);
