@@ -218,6 +218,36 @@
     fillBaseName: fillMed
 
 - type: entity
+  id: LockerWallColorParamedic
+  parent: NFBaseLockerGridInvWallColor
+  name: paramedic wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#2c6946"
+    - state: fillMed-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#2c6946"
+    - state: door-decal-line-04
+      map: [ decal1 ]
+      color: "#8c1e50"
+    - state: door-decal-med-01
+      map: [ decal2 ]
+      color: "#8c1e50"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: StorageFillVisualizer
+    maxFillLevels: 11
+    fillBaseName: fillMed
+
+- type: entity
   id: LockerWallColorChemistry
   parent: NFBaseLockerGridInvWallColor
   name: chemistry wall locker
