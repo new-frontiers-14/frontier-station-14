@@ -438,15 +438,15 @@
     - NfsdPracticeStatic # Frontier: SecurityPracticeStatic<NfsdPracticeStatic
     - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
     - SecurityWeaponsStatic
-    dynamicPacks:
-    - SalvageSecurityBoards
-    - SalvageSecurityWeapons
-    - SecurityEquipment
+    # dynamicPacks:
+    # - SalvageSecurityBoards # Frontier
+    # - SalvageSecurityWeapons # Frontier
+    # - SecurityEquipment # Frontier
     # - SecurityBoards # Frontier
-    - SecurityExplosives
-    #- SecurityAmmo # Frontier
-    #- SecurityWeapons # Frontier
-    #- SecurityDisablers # Frontier
+    # - SecurityExplosives # Frontier
+    # - SecurityAmmo # Frontier
+    # - SecurityWeapons # Frontier
+    # - SecurityDisablers # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
@@ -528,10 +528,8 @@
     - EmptyMedkitsStatic
     - SurgeryStatic
     - NFMedicalStatic # Frontier
-    dynamicPacks:
-    - Chemistry
-    - SyringeGuns # DeltaV
-    - NFMedical # Frontier
+    # dynamicPacks: # Frontier
+    # - Chemistry # Frontier
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
