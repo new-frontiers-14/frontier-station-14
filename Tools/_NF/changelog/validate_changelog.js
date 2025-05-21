@@ -2,7 +2,7 @@
 const fs = require("fs");
 
 // Regexes
-const HeaderRegex = /^\s*(?::cl:|🆑) *([a-z0-9_\-, ]+)?\s+/img; // :cl: or 🆑 [0] followed by optional author name [1]
+const HeaderRegex = /^\s*(?::cl:|🆑) *([a-z0-9_\-, ]+)?/img; // :cl: or 🆑 [0] followed by optional author name [1]
 const EntryRegex = /^ *[*-]? *(\w+): *([^\n\r]+)\r?$/img; // * or - followed by change type [0] and change message [1]
 const CommentRegex = /<!--.*?-->/gs; // HTML comments
 
