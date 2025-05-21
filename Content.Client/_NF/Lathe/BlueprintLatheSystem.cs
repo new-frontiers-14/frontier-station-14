@@ -10,7 +10,12 @@ using Content.Shared._NF.Research.Prototypes;
 
 namespace Content.Client._NF.Lathe;
 
-// Effectively a carbon copy of the existing lathe system.
+/// <summary>
+/// A system to print blueprints with one or more recipes on them.
+/// Recipes are grouped by blueprint type and stored in lathe packs.
+/// All recipe sets are stored/sent using bitsets.
+/// Each printed item is a blueprint with the requested set of recipes.
+/// </summary>
 public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -71,4 +76,3 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         return true;
     }
 }
-
