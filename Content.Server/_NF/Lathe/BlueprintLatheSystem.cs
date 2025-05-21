@@ -34,7 +34,6 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
     [Dependency] private readonly UserInterfaceSystem _uiSys = default!;
     [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
     [Dependency] private readonly ReagentSpeedSystem _reagentSpeed = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
 
     /// <summary>
     /// Per-tick cache

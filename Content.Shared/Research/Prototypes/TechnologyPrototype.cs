@@ -70,14 +70,6 @@ public sealed partial class TechnologyPrototype : IPrototype
     /// </summary>
     [DataField]
     public IReadOnlyList<GenericUnlock> GenericUnlocks = new List<GenericUnlock>();
-
-    // Frontier: tech blueprints
-    /// <summary>
-    /// The type of blueprint recipes in this technology discipline default to.
-    /// </summary>
-    [DataField]
-    public ProtoId<BlueprintPrototype>? Blueprint;
-    // End Frontier
 }
 
 [DataDefinition]

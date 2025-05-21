@@ -71,14 +71,5 @@ namespace Content.Shared.Research.Prototypes
         /// </summary>
         [DataField]
         public List<ProtoId<LatheCategoryPrototype>> Categories = new();
-
-        // Frontier: tech blueprints
-        /// <summary>
-        /// The type of blueprint this recipe expects to be printed as.
-        /// If null, defaults to the prototype for the technology it's in, then the discipline.
-        /// </summary>
-        [DataField]
-        public ProtoId<BlueprintPrototype>? Blueprint;
-        // End Frontier
     }
 }

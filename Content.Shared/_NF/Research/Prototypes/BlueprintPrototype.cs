@@ -1,3 +1,4 @@
+using Content.Shared.Lathe.Prototypes;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._NF.Research.Prototypes;
@@ -23,4 +24,10 @@ public sealed partial class BlueprintPrototype : IPrototype
     /// </summary>
     [DataField]
     public LocId Name = string.Empty;
+
+    /// <summary>
+    /// List of packs associated with this blueprint.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<LatheRecipePackPrototype>> Packs = new();
 }

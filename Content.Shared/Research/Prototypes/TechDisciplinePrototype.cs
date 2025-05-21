@@ -46,12 +46,4 @@ public sealed partial class TechDisciplinePrototype : IPrototype
     /// </summary>
     [DataField("lockoutTier")]
     public int LockoutTier = 4; // Frontier: 3<4
-
-    // Frontier: tech blueprints
-    /// <summary>
-    /// The type of blueprint recipes in this technology discipline default to.
-    /// </summary>
-    [DataField]
-    public ProtoId<BlueprintPrototype>? Blueprint;
-    // End Frontier
 }

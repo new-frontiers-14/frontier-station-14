@@ -95,7 +95,7 @@
   id: NFBaseBlueprintFaxable
   name: blueprint
   description: A blueprint with schematics on it. It can be inserted into an autolathe or sent via fax.
-  categories: [HideSpawnMenu, DoNotMap]
+  abstract: true
   components:
   - type: FaxableObject
   - type: Paper
@@ -282,7 +282,7 @@
 - type: entity
   parent: NFBaseBlueprintFaxable
   id: NFBlueprintMedical
-  name: service blueprint
+  name: medical blueprint
   description: A blueprint with medical schematics on it. It can be inserted into a medical techfab or sent via fax.
   categories: [HideSpawnMenu, DoNotMap]
   components:
@@ -350,7 +350,6 @@
       - state: inhand-right-text
   - type: Tag
     tags:
-    - NFBlueprintNfsdTechfab
     - NFBlueprintMercenaryTechfab
     - Document
     - Paper
@@ -401,7 +400,7 @@
   - type: Paper
     stampState: paper_stamp-rd
     stampedBy:
-    - reapply: False
+    - reapply: false
       stampType: RubberStamp
       stampedColor: '#1F66A0FF'
       stampedName: stamp-component-stamped-name-confidential
