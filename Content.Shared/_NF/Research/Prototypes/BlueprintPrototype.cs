@@ -6,7 +6,7 @@ namespace Content.Shared._NF.Research.Prototypes;
 /// <summary>
 /// This is a prototype for a type of blueprint.
 /// </summary>
-[Prototype("blueprint")]
+[Prototype]
 public sealed partial class BlueprintPrototype : IPrototype
 {
     /// <inheritdoc/>
