@@ -207,7 +207,7 @@ public sealed partial class FaxPrintout
     {
     }
 
-    public FaxPrintout(string content, string name, string? label = null, string? prototypeId = null, string? stampState = null, List<StampDisplayInfo>? stampedBy = null, bool locked = false, bool stampProtected = false, HashSet<ProtoId<LatheRecipePrototype>>? blueprintRecipes = null) // Frontier: add stampProtected
+    public FaxPrintout(string content, string name, string? label = null, string? prototypeId = null, string? stampState = null, List<StampDisplayInfo>? stampedBy = null, bool locked = false, bool stampProtected = false, HashSet<ProtoId<LatheRecipePrototype>>? blueprintRecipes = null) // Frontier: add stampProtected, blueprintRecipes
     {
         Content = content;
         Name = name;
