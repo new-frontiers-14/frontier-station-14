@@ -22,12 +22,12 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        cd "Tools/changelog"
+        cd "Tools/_NF/changelog"
         npm install
       shell: bash
 
     - name: Validate Changelog
       run: |
-        cd "Tools/_NF"
+        cd "Tools/_NF/changelog"
         node validate_changelog.js
       shell: bash
