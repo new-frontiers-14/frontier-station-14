@@ -1,0 +1,186 @@
+#region base weapon
+- type: entity
+  id: NFBaseItemWeaponGun
+  parent: [ BaseC1Contraband, BaseItem ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+  - type: AmmoCounter
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  id: NFBaseItemWeaponGunMagazineFed
+  parent: NFBaseItemWeaponGun
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+
+#region Encumbrance
+# Pistols / Revolvers
+- type: entity
+  id: NFBaseWeaponEncumbrancePistol
+  abstract: true
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+  - type: Tag
+    tags:
+    - Sidearm
+
+- type: entity
+  id: NFBaseWeaponEncumbranceMachinePistol
+  parent: NFBaseWeaponEncumbrancePistol
+  abstract: true
+  components:
+  - type: Item
+    shape:
+    - 0,0,2,0
+    - 0,1,0,1
+
+# SMGs
+- type: entity
+  id: NFBaseWeaponEncumbranceSubMachineGun
+  abstract: true
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,2
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
+# Rifles / Shotguns
+- type: entity
+  id: NFBaseWeaponEncumbranceRifle
+  abstract: true
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,2
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.8
+    sprintModifier: 0.8
+
+# Assault Rifles
+- type: entity
+  id: NFBaseWeaponEncumbranceRifleAssault
+  abstract: true
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,2
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
+
+# Launchers
+- type: entity
+  id: NFBaseWeaponEncumbranceLauncher
+  abstract: true
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,3
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.3
+    sprintModifier: 0.3
+
+# Sniper Rifles / LMGs
+- type: entity
+  id: NFBaseWeaponEncumbranceSniper
+  abstract: true
+  components:
+  - type: Item
+    size: Huge
+    #shape:
+    #- 0,0,4,3
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.3
+    sprintModifier: 0.3
+
+#region Crossbows
+- type: entity
+  id: NFBaseWeaponEncumbranceCrossbow
+  abstract: true
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,1
+    - 1,1,2,3
+    storedRotation: -45
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+
+- type: entity
+  id: NFBaseWeaponEncumbranceCrossbowHand
+  abstract: true
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,1
+    storedRotation: -45
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - Belt
+    - suitStorage
