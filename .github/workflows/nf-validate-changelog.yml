@@ -20,12 +20,6 @@ jobs:
       with:
         node-version: 18.x
 
-    - name: Install Dependencies
-      run: |
-        cd "Tools/_NF/changelog"
-        npm install
-      shell: bash
-
     - name: Validate Changelog
       run: |
         cd "Tools/_NF/changelog"

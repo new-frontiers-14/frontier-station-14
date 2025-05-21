@@ -1,5 +1,5 @@
 // Dependencies
-const axios = require("axios");
+const fs = require("fs");
 
 // Use GitHub token if available
 if (process.env.GITHUB_TOKEN) axios.defaults.headers.common["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
@@ -11,9 +11,14 @@ const CommentRegex = /<!--.*?-->/gs; // HTML comments
 
 // Main function
 async function main() {
-    // Get PR details
-    const pr = await axios.get(`https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/pulls/${process.env.PR_NUMBER}`);
-    const { merged_at, body, user } = pr.data;
+    // Read GitHub event payload
+    const eventPath = process.env.GITHUB_EVENT_PATH;
+    if (!eventPath) {
+        console.error('GITHUB_EVENT_PATH not set.');
+        process.exit(1);
+    }
+    const event = JSON.parse(fs.readFileSync(eventPath, 'utf8'));
+    const body = event.pull_request && event.pull_request.body ? event.pull_request.body : '';
 
     // Remove comments from the body
     commentlessBody = body.replace(CommentRegex, '');
