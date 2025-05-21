@@ -11,12 +11,6 @@
     Steel: 300
     Cloth: 300
     Durathread: 500
-  blueprints: &allBlueprints
-  - Service
-  - Engineering
-  - Salvage
-  - Science
-  - Mercenary # NFSD excluded - debloat, LRP
 
 - type: latheRecipe
   abstract: true
@@ -28,7 +22,6 @@
     Steel: 300
     Cloth: 100
     Durathread: 50
-  blueprints: []
 
 - type: latheRecipe
   abstract: true
@@ -42,7 +35,6 @@
     Durathread: 2000
     Silver: 1500
     Gold: 1000
-  blueprints: []
 
 - type: latheRecipe
   abstract: true
@@ -56,7 +48,6 @@
     Durathread: 2000
     Silver: 1500
     Gold: 1000
-  blueprints: []
 
 - type: latheRecipe
   abstract: true
@@ -66,7 +57,6 @@
   materials:
     Silver: 1000
     Gold: 500
-  blueprints: []
 
 # Recipes
 
@@ -107,8 +97,6 @@
   id: ClothingOuterHardsuitEVAPrisoner
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterHardsuitEVAPrisoner
-  blueprints:
-  - NFSD
 
 - type: latheRecipe # Probably should be available via T2-T3
   id: ClothingOuterHardsuitAncientEVA
@@ -133,15 +121,11 @@
   id: ClothingOuterEVASuitEngineer
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitEngineer
-  blueprints:
-  - Engineering
 
 - type: latheRecipe
   id: ClothingOuterEVASuitAtmosTech
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitAtmosTech
-  blueprints:
-  - Engineering
 
 - type: latheRecipe
   id: ClothingOuterEVASuitCargo
@@ -152,36 +136,26 @@
   id: ClothingOuterEVASuitSalvage
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitSalvage
-  blueprints:
-  - Salvage
 
 - type: latheRecipe
   id: ClothingOuterEVASuitMedic
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitMedic
-  blueprints:
-  - Medical
 
 - type: latheRecipe
   id: ClothingOuterEVASuitScientist
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitScientist
-  blueprints:
-  - Science
 
 - type: latheRecipe
   id: ClothingOuterEVASuitJanitor
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitJanitor
-  blueprints:
-  - Service
 
 - type: latheRecipe
   id: ClothingOuterEVASuitServiceWorker
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitServiceWorker
-  blueprints:
-  - Service
 
 - type: latheRecipe
   id: ClothingOuterEVASuitPilot
@@ -197,50 +171,36 @@
   id: ClothingOuterEVASuitPrivateSec
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitPrivateSec
-  blueprints:
-  - Mercenary
 
 - type: latheRecipe
   id: ClothingOuterEVASuitNfsd
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitNfsd
-  blueprints:
-  - NFSD
 
 - type: latheRecipe
   id: ClothingOuterEVASuitChaplain
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitChaplain
-  blueprints:
-  - Service
 
 - type: latheRecipe
   id: ClothingOuterEVASuitBoxerRed
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitBoxerRed
-  blueprints:
-  - Service
 
 - type: latheRecipe
   id: ClothingOuterEVASuitBoxerGreen
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitBoxerGreen
-  blueprints:
-  - Service
 
 - type: latheRecipe
   id: ClothingOuterEVASuitBoxerBlue
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitBoxerBlue
-  blueprints:
-  - Service
 
 - type: latheRecipe
   id: ClothingOuterEVASuitBoxerYellow
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitBoxerYellow
-  blueprints:
-  - Service
 
 # EVA helmets
 
@@ -264,89 +224,68 @@
     Cloth: 300
     Durathread: 1500
     Silver: 1000
-  blueprints: *allBlueprints
 
 # Departmental hardsuits (T2 research)
 - type: latheRecipe
   id: ClothingOuterHardsuitAtmos
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitAtmos
-  blueprints:
-  - Engineering
 
 - type: latheRecipe
   id: ClothingOuterHardsuitEngineering
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitEngineering
-  blueprints:
-  - Engineering
 
 - type: latheRecipe
   id: ClothingOuterHardsuitSpatio
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitSpatio
-  blueprints:
-  - Salvage
 
 - type: latheRecipe
   id: ClothingOuterHardsuitSalvage
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitSalvage
-  blueprints:
-  - Salvage
 
 - type: latheRecipe
   id: ClothingOuterHardsuitClown
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitClown
-  blueprints:
-  - Service
 
 - type: latheRecipe
   id: ClothingOuterHardsuitMime
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitMime
-  blueprints:
-  - Service
 
 - type: latheRecipe
   id: ClothingOuterHardsuitPilot
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitPilot
-  blueprints: *allBlueprints
 
 - type: latheRecipe
   id: ClothingOuterHardsuitMercenary
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitMercenary
-  blueprints: *allBlueprints
 
 - type: latheRecipe
   id: ClothingOuterHardsuitPrivateSecurity
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitPrivateSecurity
-  blueprints: *allBlueprints
 
 # Departmental heads hardsuits (T3 research)
 - type: latheRecipe
   id: ClothingOuterHardsuitCap
   parent: NFBaseHardSuitArmoredRecipe
   result: ClothingOuterHardsuitCap
-  blueprints: *allBlueprints
 
 - type: latheRecipe
   id: ClothingOuterHardsuitScaf
   parent: NFBaseHardSuitArmoredRecipe
   result: ClothingOuterHardsuitScaf
-  blueprints:
-  - Mercenary
 
 - type: latheRecipe
   id: ClothingOuterHardsuitEngineeringWhite
   parent: NFBaseHardSuitArmoredRecipe
   result: ClothingOuterHardsuitEngineeringWhite
-  blueprints:
-  - Engineering
 
 - type: latheRecipe
   id: ClothingOuterHardsuitMedical
@@ -360,22 +299,16 @@
     Durathread: 2000
     Silver: 1500
     Gold: 1000
-  blueprints:
-  - Medical
 
 - type: latheRecipe
   id: ClothingOuterHardsuitRd
   parent: NFBaseHardSuitArmoredRecipe
   result: ClothingOuterHardsuitRd
-  blueprints:
-  - Science
 
 - type: latheRecipe
   id: ClothingOuterHardsuitLuxury
   parent: NFBaseHardSuitArmoredRecipe
   result: ClothingOuterHardsuitLuxury
-  blueprints:
-  - Salvage
 
 - type: latheRecipe
   id: ClothingOuterHardsuitMaximPrototype
@@ -388,29 +321,19 @@
     Durathread: 2000
     Silver: 1000
     Gold: 2000
-  blueprints:
-  - Mercenary
 
 # Magboots
 - type: latheRecipe
   id: ClothingShoesBootsMagAdv
   parent: NFBaseMagBootsRecipe
   result: ClothingShoesBootsMagAdv
-  blueprints:
-  - Science
-  - Engineering
-  - Salvage
 
 - type: latheRecipe
   id: ClothingShoesBootsMagSecurity
   parent: NFBaseMagBootsRecipe
   result: ClothingShoesBootsMagSecurity
-  blueprints:
-  - Mercenary
 
 - type: latheRecipe
   id: ClothingShoesBootsMagMercenary
   parent: NFBaseMagBootsRecipe
   result: ClothingShoesBootsMagMercenary
-  blueprints:
-  - Mercenary
