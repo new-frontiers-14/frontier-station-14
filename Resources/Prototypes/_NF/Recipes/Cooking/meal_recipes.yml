@@ -1016,7 +1016,7 @@
   time: 5
   group: Dessert
   solids:
-    FoodCakePlainSlice: 2 # seems cursed, but ice cream sandwiches are actually made with cake
+    FoodCakeChocolateSlice: 2 # seems cursed, but ice cream sandwiches are actually made with cake
   reagents:
     IceCream: 10
   recipeType:
@@ -1146,6 +1146,76 @@
   reagents:
     Ice: 10
     Nothing: 4 # the sound of silence
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePopsicleLicorice
+  name: licorice creamsicle
+  result: FoodFrozenPopsicleLicorice
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    IceCream: 8
+    Everyspice: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSundae
+  name: ice cream sundae
+  result: FoodFrozenSundae
+  time: 5
+  group: Dessert
+  solids:
+    FoodBakedWaffleCone: 1
+    FoodCherry: 1 # critical
+  reagents:
+    IceCream: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeFreezy
+  name: space freezy
+  result: FoodFrozenFreezy
+  time: 5
+  group: Dessert
+  solids:
+    FoodBakedWaffleCone: 1
+  reagents:
+    IceCream: 8
+    JuiceBerry: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeCornuto
+  name: choco horn
+  result: FoodFrozenCornuto
+  time: 5
+  group: Dessert
+  solids:
+    FoodBakedWaffleCone: 1
+    FoodSnackChocolateBar: 1
+  reagents:
+    IceCream: 8
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePopsicleJumbo
+  name: jumbo popsicle
+  result: FoodFrozenPopsicleJumbo
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenPopsicleTrash: 1
+    FoodSnackChocolateBar: 1
+  reagents:
+    IceCream: 8
   recipeType:
   - Assembler
 

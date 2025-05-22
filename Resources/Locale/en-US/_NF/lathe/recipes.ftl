@@ -30,5 +30,3 @@ lathe-recipe-NFFoodBoxSushi-name = sushi tray (empty)
 lathe-recipe-DrinkKegSteel-name = cask (steel)
 lathe-recipe-DrinkKegWood-name = cask (wood)
 lathe-recipe-DrinkKegPlastic-name = cask (plastic)
-lathe-recipe-FoodFrozenPopsicleTrash-name = popsicle stick
-lathe-recipe-DrinkWaterCup-name = water cup

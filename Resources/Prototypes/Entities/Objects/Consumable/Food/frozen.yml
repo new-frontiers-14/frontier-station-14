@@ -54,18 +54,27 @@
   components:
   - type: Sprite
     state: spacefreezy
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - blueraspberry # Frontier
+    - icecream # Frontier
 
 - type: entity
-  name: ice-cream sundae
+  name: ice cream sundae # Frontier: no hyphen
   parent: FoodFrozenBase
   id: FoodFrozenSundae
   description: A classic dessert.
   components:
   - type: Sprite
-    state: spacefreezy
+    state: sundae # Frontier: spacefreezy<sundae
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - icecream # Frontier
 
 - type: entity
-  name: cornuto
+  name: choco horn # Frontier: cornuto<choco horn
   parent: FoodFrozenBase
   id: FoodFrozenCornuto
   description: A Neapolitan vanilla and chocolate ice-cream cone. It menaces with a sprinkling of caramelized nuts.
@@ -81,6 +90,11 @@
           Quantity: 10
         - ReagentId: Theobromine
           Quantity: 1
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - icecream # Frontier
+    - chocolate # Frontier
 
 # Popsicle
 
@@ -145,12 +159,17 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 20 # Frontier: 30<20
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
         - ReagentId: Theobromine
           Quantity: 1
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - icecream # Frontier
+    - chocolate # Frontier
 
 # Snowcone
 
@@ -288,7 +307,7 @@
     flavors: # Frontier
     - sweet # Frontier
     - cold # Frontier
-    - funny # Frontier
+    - silence # Frontier
 
 - type: entity
   name: rainbow snowcone
@@ -303,6 +322,11 @@
   - type: Food
     trash:
     - FoodFrozenSnowconeTrash
+  - type: FlavorProfile # Frontier: add flavour profile
+    flavors: # Frontier
+    - sweet # Frontier
+    - cold # Frontier
+    - magical # Frontier
 
 # Trash
 
