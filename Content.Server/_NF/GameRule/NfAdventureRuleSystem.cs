@@ -327,9 +327,13 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         if (webhookUrl == string.Empty)
             return;
 
-        var shipyardStatsPrintout = _shuttleRecordsSystem.GetStatsPrintout(out var rawData);
-        if (string.IsNullOrEmpty(shipyardStatsPrintout))
+        var shipyardStats = _shuttleRecordsSystem.GetStatsPrintout();
+        if (shipyardStats is null)
             return;
+
+        var shipyardStatsPrintout = shipyardStats.Value.Item1;
+        var serialisedData = shipyardStats.Value.Item2;
+
         Logger.InfoS("discord", shipyardStatsPrintout);
 
         var serverName = _baseServer.ServerName;
@@ -360,9 +364,9 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         var ser_payload = JsonSerializer.Serialize(payload);
         var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
         form.Add(content, "payload_json");
-        if (rawData is not null)
+        if (serialisedData is not null)
         {
-            form.Add(new ByteArrayContent(rawData, 0, rawData.Length), "Document", $"shipstats-{serverName}-{runId}.json");
+            form.Add(new ByteArrayContent(serialisedData, 0, serialisedData.Length), "Document", $"shipstats-{serverName}-{runId}.json");
         }
         await SendWebhookPayload(webhookUrl, form);
     }

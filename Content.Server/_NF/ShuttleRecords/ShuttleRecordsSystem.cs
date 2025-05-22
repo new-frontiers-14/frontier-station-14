@@ -89,9 +89,8 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         return false;
     }
 
-    public string? GetStatsPrintout(out byte[]? rawData)
+    public (string, byte[])? GetStatsPrintout()
     {
-        rawData = null;
         if (!TryGetShuttleRecordsDataComponent(out var records))
         {
             return null;
@@ -136,7 +135,7 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
 
         // export raw data as a file for discord
 
-        rawData = JsonSerializer.SerializeToUtf8Bytes(shipTypes, new JsonSerializerOptions { WriteIndented = true, IncludeFields = true });
+        var rawData = JsonSerializer.SerializeToUtf8Bytes(shipTypes, new JsonSerializerOptions { WriteIndented = true, IncludeFields = true });
 
         /* eventual discord message should be of the format
         ```
@@ -163,11 +162,7 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
             }
 
             // pad data for formatting
-            var num = record.Value.Count.ToString().PadLeft(4);
-            var abandoned = record.Value.AbandonedCount.ToString().PadLeft(5);
-            var avgTime = averageLifetime.PadLeft(9);
-
-            builder.AppendLine($"{num} │{abandoned} │{avgTime} │ {record.Key}");
+            builder.AppendLine($"{record.Value.Count,4} | {record.Value.AbandonedCount,4} |{averageLifetime,9} | {record.Key}");
         }
 
         builder.AppendLine("─────┼──────┼──────────┼───────────");
@@ -175,9 +170,9 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         // fallback, in case somehow every single ship was abandoned this round and there are no lifetimes to report
         var totalAvgLifetime = "N/A";
         totalAvgLifetime = TimeSpan.FromSeconds(totalLifetimes.Average(timeSpan => timeSpan.TotalSeconds)).ToString(@"hh\:mm");
-        builder.AppendLine($"{totalShips.ToString().PadLeft(4)} │{totalAbandoned.ToString().PadLeft(5)} │{totalAvgLifetime.PadLeft(9)} │");
+        builder.AppendLine($"{totalShips.ToString(),4} │ {totalAbandoned.ToString(),4} │{totalAvgLifetime,9} │");
         builder.AppendLine("```");
-        return builder.ToString();
+        return (builder.ToString(), rawData);
     }
 
     private bool TryGetShuttleRecordsDataComponent([NotNullWhen(true)] out SectorShuttleRecordsComponent? component)
