@@ -1,6 +1,4 @@
-using System.Numerics;
 using Content.Server._NF.Roadkill.Components;
-using Content.Server.Database;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -10,13 +8,14 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Projectiles;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Roadkill.Systems;
 
+/// <summary>
+/// Kills and/or gibs entities (useful for space mobs) when they collide with a quickly moving grid.
+/// </summary>
 public sealed class RoadkillSystem : EntitySystem
 {
     [Dependency] private readonly PhysicsSystem _physics = default!;
@@ -24,7 +23,6 @@ public sealed class RoadkillSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
 
     private readonly ProtoId<DamageTypePrototype> _bluntDamageType = "Blunt";
     private readonly FixedPoint2 _extraDamage = 20;

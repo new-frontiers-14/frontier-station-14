@@ -1,5 +1,17 @@
 - type: entity
   parent: PosterBase
+  id: ShuttleMapAdder
+  name: "LVHI Adder"
+  description: "Detailed map of a Adder shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: adder
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapAmbition
   name: "UAC Ambition"
   description: "Detailed map of a Ambition shuttle."
@@ -85,7 +97,7 @@
 - type: entity
   parent: PosterBase
   id: ShuttleMapCeres
-  name: "SBB Ceres"
+  name: "BB Ceres"
   description: "Detailed map of a Ceres shuttle."
   categories: [ HideSpawnMenu ]
   components:
@@ -336,18 +348,6 @@
 
 - type: entity
   parent: PosterBase
-  id: ShuttleMapPioneer
-  name: "NC Pioneer"
-  description: "Detailed map of a Pioneer shuttle."
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
-    state: pioneer
-    scale: 1.2, 1.2
-
-- type: entity
-  parent: PosterBase
   id: ShuttleMapPlacebo
   name: "NC Placebo"
   description: "Detailed map of a Placebo shuttle."
@@ -421,7 +421,7 @@
 - type: entity
   parent: PosterBase
   id: ShuttleMapSpirit
-  name: "NM Spirit"
+  name: "FSB Spirit"
   description: "Detailed map of a Spirit shuttle."
   categories: [ HideSpawnMenu ]
   components:
@@ -433,13 +433,25 @@
 - type: entity
   parent: PosterBase
   id: ShuttleMapStasis
-  name: "NM Stasis"
+  name: "FSB Stasis"
   description: "Detailed map of a Stasis shuttle."
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: stasis
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapSurveyor
+  name: "FSB Surveyor"
+  description: "Detailed map of a Surveyor shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: surveyor
     scale: 1.2, 1.2
 
 - type: entity
