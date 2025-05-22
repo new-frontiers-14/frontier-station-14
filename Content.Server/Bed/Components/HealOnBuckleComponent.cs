@@ -32,7 +32,7 @@ namespace Content.Server.Bed.Components
         /// If true, this will only heal when powered
         /// </summary>
         [DataField]
-        public bool WorksOnDead;
+        public bool WorksOnTheDead;
 
         /// <summary>
         /// If true, this will only heal when powered

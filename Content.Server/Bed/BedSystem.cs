@@ -64,7 +64,7 @@ namespace Content.Server.Bed
             base.Update(frameTime);
 
             var query = EntityQueryEnumerator<HealOnBuckleHealingComponent, HealOnBuckleComponent, StrapComponent>();
-            while (query.MoveNext(out var uid, out _, out var bedComponent, out var strapComponent)) // Frontier: add healComponent
+            while (query.MoveNext(out var uid, out _, out var bedComponent, out var strapComponent))
             {
                 if (_timing.CurTime < bedComponent.NextHealTime)
                     continue;
@@ -76,7 +76,7 @@ namespace Content.Server.Bed
 
                 foreach (var healedEntity in strapComponent.BuckledEntities)
                 {
-                    if (!bedComponent.WorksOnDead && _mobStateSystem.IsDead(healedEntity)) // Frontier: add WorksOnDead check
+                    if (!bedComponent.WorksOnTheDead && _mobStateSystem.IsDead(healedEntity)) // Frontier: add WorksOnTheDead check
                         continue;
 
                     var damage = bedComponent.Damage;
