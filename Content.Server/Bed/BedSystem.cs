@@ -27,6 +27,7 @@ namespace Content.Server.Bed
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly PowerReceiverSystem _power = default!; // Frontier
 
         public override void Initialize()
         {
@@ -70,6 +71,9 @@ namespace Content.Server.Bed
                     continue;
 
                 bedComponent.NextHealTime += TimeSpan.FromSeconds(bedComponent.HealTime);
+
+                if (bedComponent.RequiresPower && !_power.IsPowered(uid)) // Frontier
+                    continue; // Frontier
 
                 if (strapComponent.BuckledEntities.Count == 0)
                     continue;
