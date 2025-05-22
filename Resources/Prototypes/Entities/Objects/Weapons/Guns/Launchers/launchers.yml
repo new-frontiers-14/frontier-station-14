@@ -21,8 +21,9 @@
         ents: []
 
 - type: entity
+  abstract: true # Frontier: use NF variant
   name: china lake
-  parent: [BaseWeaponLauncher, BaseGunWieldable, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseWeaponLauncher, BaseGunWieldable, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3Contraband
   id: WeaponLauncherChinaLake
   description: PLOOP.
   components:
@@ -49,11 +50,53 @@
       tags:
         - Grenade
     capacity: 3
-    proto: GrenadeFrag
+    # proto: GrenadeFrag # Frontier
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
 
 - type: entity
+  abstract: true # Frontier: create NF variant if we want this
+  parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseC3Contraband ] # Frontier: BaseMajorContraband<BaseC3SyndicateContraband
+  id: WeaponLauncherHydra
+  name: hydra
+  description: PLOOP... FSSSSSS
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/hydra_launcher.rsi
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Launchers/hydra_launcher.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: ContainerContainer
+    containers:
+      revolver-ammo: !type:Container
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    # proto: GrenadeCleanade # Frontier: create NF variant if we want this
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+    soundEject:
+      path: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
+
+- type: entity
+  abstract: true # Frontier: use NF variant
   name: RPG-7
   parent: [ BaseWeaponLauncher, BaseC3Contraband ] # Frontier: BaseMajorContraband<BaseC3Contraband
   id: WeaponLauncherRocket
@@ -76,7 +119,7 @@
     whitelist:
       tags:
         - CartridgeRocket
-    proto: CartridgeRocket
+    # proto: CartridgeRocket # Frontier
     capacity: 1
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
@@ -87,6 +130,7 @@
   - type: Appearance
 
 - type: entity
+  abstract: true # Frontier: use NF variant
   name: multiple rocket launcher
   parent: BaseWeaponLauncher
   id: WeaponLauncherMultipleRocket
@@ -112,7 +156,7 @@
     whitelist:
       tags:
         - CartridgeRocket
-    proto: CartridgeRocketSlow
+    # proto: CartridgeRocketSlow # Frontier
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: MagazineVisuals
@@ -122,8 +166,9 @@
   - type: Appearance
 
 - type: entity
+  abstract: true # Frontier: use NF variant
   name: pirate cannon
-  parent: [BaseC3PirateContraband, BaseWeaponLauncher] # Frontier: added C3PirateContraband
+  parent: [BaseWeaponLauncher]
   id: WeaponLauncherPirateCannon
   description: Kaboom!
   components:
@@ -149,7 +194,7 @@
         tags:
           - CannonBall
       capacity: 1
-      proto: CannonBall
+      # proto: CannonBall # Frontier
       soundInsert:
         path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
 
@@ -255,7 +300,7 @@
       fireRate: 0.5
       clumsyProof: true
     - type: BasicEntityAmmoProvider
-      proto: GrapplingHook
+      proto: NFGrapplingHook # Frontier: use NF variant
       capacity: 1
     - type: Sprite
       sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi

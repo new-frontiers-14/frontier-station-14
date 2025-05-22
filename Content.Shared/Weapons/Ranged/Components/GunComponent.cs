@@ -9,7 +9,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Shared.Weapons.Ranged.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
-// [Access(typeof(SharedGunSystem))] Frontier: Commenting this out because OniSystem (shared) needs to access this component
+// [Access(typeof(SharedGunSystem))] Frontier: Commenting this out because OniSystem (server) needs to access this component
 public sealed partial class GunComponent : Component
 {
     #region Sound

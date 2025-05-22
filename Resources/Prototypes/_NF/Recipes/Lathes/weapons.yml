@@ -1,43 +1,43 @@
 # region Ranged weapons
 - type: latheRecipe
-  id: WeaponNFLaserPistol
+  id: NFWeaponEnergyPistolLaser
+  result: NFWeaponEnergyPistolLaser
   parent: BaseWeaponRecipeLong
-  result: WeaponNFLaserPistol
   materials:
     Steel: 1200
     Glass: 800
     Silver: 850
 
 - type: latheRecipe
-  id: WeaponRevolverArgenti
+  id: NFWeaponRevolverArgenti
+  result: NFWeaponRevolverArgenti
   parent: BaseWeaponRecipeLong
-  result: WeaponRevolverArgenti
   materials:
     Steel: 1500
     Plasteel: 500
 
 - type: latheRecipe
-  id: WeaponPistolMk58NF
+  id: NFWeaponPistolMk58
+  result: NFWeaponPistolMk58
   parent: BaseWeaponRecipeLong
-  result: WeaponPistolMk58
   materials:
     Steel: 1000
     Plasteel: 1200
     Plastic: 1500
 
 - type: latheRecipe
-  id: WeaponShotgunDoubleBarreled
+  id: NFWeaponShotgunDoubleBarreled
+  result: NFWeaponShotgunDoubleBarreled
   parent: BaseWeaponRecipeLong
-  result: WeaponShotgunDoubleBarreled
   materials:
     Steel: 2000
     Plasteel: 800
     Wood: 1000
 
 - type: latheRecipe
-  id: WeaponShotgunKammererNF
+  id: NFWeaponShotgunKammerer
+  result: NFWeaponShotgunKammerer
   parent: BaseWeaponRecipeLong
-  result: WeaponShotgunKammerer
   materials:
     Steel: 500
     Plasteel: 1500
@@ -45,18 +45,18 @@
     Plastic: 500
 
 - type: latheRecipe
-  id: WeaponRifleNovaliteC1
+  id: NFWeaponRifleAssaultNovaliteC1
+  result: NFWeaponRifleAssaultNovaliteC1
   parent: BaseWeaponRecipeLong
-  result: WeaponRifleNovaliteC1
   materials:
     Steel: 2500
     Plasteel: 1200
     Plastic: 1500
 
 - type: latheRecipe
-  id: WeaponRifleGestio
+  id: NFWeaponRifleAssaultGestio
+  result: NFWeaponRifleAssaultGestio
   parent: BaseWeaponRecipeLong
-  result: WeaponRifleGestio
   materials:
     Steel: 2500
     Plasteel: 1200
@@ -64,15 +64,44 @@
 
 - type: latheRecipe
   id: CrossbowModern
-  parent: BaseWeaponRecipeLong
   result: CrossbowModern
+  parent: BaseWeaponRecipeLong
   materials:
     Steel: 1000
     Plasteel: 500
     Durathread: 500
     Plastic: 500
 
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: NFWeaponHoloflareGun
+  result: NFWeaponHoloflareGun  
+  materials:
+    Steel: 300
+    Glass: 200
+    Plastic: 200
+
 # region Melee weapons
+- type: latheRecipe
+  id: NFWeaponPka
+  result: NFWeaponPka
+  parent: BaseWeaponRecipeLong
+  materials:
+    Steel: 1000
+    Glass: 500
+    Silver: 100
+
+- type: latheRecipe
+  id: NFWeaponPkaCannon
+  result: NFWeaponPkaCannon
+  parent: BaseWeaponRecipeLong
+  materials:
+    Plasteel: 1000
+    Glass: 750
+    Silver: 100
+    Gold: 100
+
+# Melee weapons
 - type: latheRecipe
   id: BaseBallBatNF
   parent: BaseWeaponRecipeLong
@@ -105,14 +134,6 @@
     Plastic: 200
 
 - type: latheRecipe
-  id: KatanaNF
-  parent: BaseWeaponRecipeLong
-  result: Katana
-  materials:
-    Plasteel: 500
-    Plastic: 300
-
-- type: latheRecipe
   id: WeaponCrusher
   parent: BaseWeaponRecipeLong
   result: WeaponCrusher
@@ -139,3 +160,11 @@
     Glass: 500
     Plastic: 50
     Gold: 100
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: SurvivalKnife
+  result: SurvivalKnife
+  materials:
+    Steel: 250
+    Plastic: 100
