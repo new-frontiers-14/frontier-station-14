@@ -34,6 +34,7 @@
     - MobWizFedWizardBlueHardsuit
     - MobWizFedWizardRedHardsuit
     - MobWizFedWizardVioletHardsuit
+    - MobWizFedWizardBrickHardsuit
     rarePrototypes:
     - MobWizFedWizardSoapHardsuit
     rareChance: 0.1
@@ -165,3 +166,17 @@
   - type: ConditionalSpawner
     prototypes:
       - MobWizFedWizardSoapHardsuit
+
+- type: entity
+  name: Brick Wizard Spawner
+  suffix: AI, Hardsuit
+  id: SpawnMobWizFedWizardBrickHardsuit
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardBrickHardsuit
