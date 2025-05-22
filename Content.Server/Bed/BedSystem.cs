@@ -64,7 +64,7 @@ namespace Content.Server.Bed
             base.Update(frameTime);
 
             var query = EntityQueryEnumerator<HealOnBuckleHealingComponent, HealOnBuckleComponent, StrapComponent>();
-            while (query.MoveNext(out var uid, out _, out var bedComponent, out var strapComponent))
+            while (query.MoveNext(out var uid, out _, out var bedComponent, out var strapComponent)) // Frontier: add healComponent
             {
                 if (_timing.CurTime < bedComponent.NextHealTime)
                     continue;
@@ -76,13 +76,29 @@ namespace Content.Server.Bed
 
                 foreach (var healedEntity in strapComponent.BuckledEntities)
                 {
-                    if (_mobStateSystem.IsDead(healedEntity))
+                    if (!bedComponent.WorksOnDead && _mobStateSystem.IsDead(healedEntity)) // Frontier: add WorksOnDead check
                         continue;
 
                     var damage = bedComponent.Damage;
 
                     if (HasComp<SleepingComponent>(healedEntity))
                         damage *= bedComponent.SleepMultiplier;
+
+                    // Frontier: limit damage
+                    if (bedComponent.MaxDamage != null)
+                    {
+                        if (!TryComp(healedEntity, out DamageableComponent? damageable))
+                            continue;
+
+                        damage = new(damage); // Ensure this is a copy.
+
+                        foreach (var key in bedComponent.Damage.DamageDict.Keys)
+                        {
+                            if (!damageable.Damage.DamageDict.TryGetValue(key, out var healedDamage) || healedDamage < bedComponent.MaxDamage)
+                                damage.DamageDict[key] = 0;
+                        }
+                    }
+                    // End Frontier: limit damage
 
                     _damageableSystem.TryChangeDamage(healedEntity, damage, true, origin: uid);
                 }

@@ -1,0 +1,65 @@
+- type: entity
+  id: TraumaBed
+  name: trauma bed
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  description: A bed for treating patients who've underwent extensive bodily trauma. Uses immense electrical power to reshape and coerce the body back into working order.
+  components:
+  - type: AntiRotOnBuckle
+  - type: HealOnBuckle
+    damage:
+      types:
+        Cold: -16
+        Heat: -16
+        Caustic: -16
+        Radiation: -16
+    maxDamage: 1000
+    requiresPower: true
+    sleepMultiplier: 1
+  - type: Sprite
+    sprite: Structures/Machines/stasis_bed.rsi
+    noRot: true
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+      map: ["enum.StasisBedVisualLayers.IsOn"]
+  - type: Appearance
+  - type: ApcPowerReceiver
+    powerLoad: 50000 # Yes.
+  - type: ExtensionCableReceiver
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+  - type: Strap
+    position: Down
+    rotation: -90
+  - type: Machine
+    board: null
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.05"
+        density: 190
+        mask:
+        - LowImpassable
+  - type: GuideHelp
+    guides:
+    - Medical Doctor
+  - type: PowerSwitch
