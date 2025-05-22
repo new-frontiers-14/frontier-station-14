@@ -409,6 +409,17 @@
         Glass: 2
         Cable: 4
 
+- type: entity
+  id: UniformPrinterStaffMachineCircuitboard
+  parent: UniformPrinterMachineCircuitboard
+  name: staff uniform printer machine board
+  description: A machine printed circuit board for a staff uniform printer.
+  components:
+  - type: Sprite
+    state: command
+  - type: MachineBoard
+    prototype: UniformPrinterStaff
+
 # Removed from upstream definitions
 - type: entity
   id: MaterialReclaimerMachineCircuitboard
