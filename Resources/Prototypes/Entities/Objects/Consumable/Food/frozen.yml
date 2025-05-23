@@ -322,11 +322,28 @@
   - type: Food
     trash:
     - FoodFrozenSnowconeTrash
-  - type: FlavorProfile # Frontier: add flavour profile
-    flavors: # Frontier
-    - sweet # Frontier
-    - cold # Frontier
-    - magical # Frontier
+  # Frontier: flavors, custom fill
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - cold
+    - magical
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+          - ReagentId: SpaceDrugs
+            Quantity: 4
+          - ReagentId: MindBreakerToxin
+            Quantity: 2.5
+          - ReagentId: Happiness
+            Quantity: 2.5
+          - ReagentId: Psicodine
+            Quantity: 1
+          - ReagentId: Sugar
+            Quantity: 2
+  # End Frontier: flavors, custom fill
 
 # Trash
 
