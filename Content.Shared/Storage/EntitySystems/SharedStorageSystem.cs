@@ -16,13 +16,14 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
-using Content.Shared.Nyanotrasen.Item.PseudoItem;
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Lock;
 using Content.Shared.Materials;
 using Content.Shared.Placeable;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Content.Shared.Storage.Components;
+using Content.Shared.Tag;
 using Content.Shared.Timing;
 using Content.Shared.Storage.Events;
 using Content.Shared.Verbs;
@@ -40,6 +41,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Rounding;
+using Content.Shared.Nyanotrasen.Item.PseudoItem; // Frontier
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -67,6 +70,7 @@ public abstract class SharedStorageSystem : EntitySystem
     [Dependency] private   readonly SharedStackSystem _stack = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
+    [Dependency] private   readonly TagSystem _tag = default!;
     [Dependency] protected readonly UseDelaySystem UseDelay = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
@@ -141,16 +145,16 @@ public abstract class SharedStorageSystem : EntitySystem
         SubscribeLocalEvent<StorageComponent, OpenStorageImplantEvent>(OnImplantActivate);
         SubscribeLocalEvent<StorageComponent, AfterInteractEvent>(AfterInteract);
         SubscribeLocalEvent<StorageComponent, DestructionEventArgs>(OnDestroy);
-        SubscribeLocalEvent<BoundUserInterfaceMessageAttempt>(OnBoundUIAttempt);
+        SubscribeLocalEvent<StorageComponent, BoundUserInterfaceMessageAttempt>(OnBoundUIAttempt);
         SubscribeLocalEvent<StorageComponent, BoundUIOpenedEvent>(OnBoundUIOpen);
         SubscribeLocalEvent<StorageComponent, LockToggledEvent>(OnLockToggled);
-        SubscribeLocalEvent<MetaDataComponent, StackCountChangedEvent>(OnStackCountChanged);
-
         SubscribeLocalEvent<StorageComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
         SubscribeLocalEvent<StorageComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
         SubscribeLocalEvent<StorageComponent, ContainerIsInsertingAttemptEvent>(OnInsertAttempt);
-
         SubscribeLocalEvent<StorageComponent, AreaPickupDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<StorageComponent, GotReclaimedEvent>(OnReclaimed);
+
+        SubscribeLocalEvent<MetaDataComponent, StackCountChangedEvent>(OnStackCountChanged);
 
         SubscribeAllEvent<OpenNestedStorageEvent>(OnStorageNested);
         SubscribeAllEvent<StorageTransferItemEvent>(OnStorageTransfer);
@@ -159,16 +163,32 @@ public abstract class SharedStorageSystem : EntitySystem
         SubscribeAllEvent<StorageInsertItemIntoLocationEvent>(OnInsertItemIntoLocation);
         SubscribeAllEvent<StorageSaveItemLocationEvent>(OnSaveItemLocation);
 
-        SubscribeLocalEvent<StorageComponent, GotReclaimedEvent>(OnReclaimed);
+        SubscribeLocalEvent<ItemSizeChangedEvent>(OnItemSizeChanged);
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.OpenBackpack, InputCmdHandler.FromDelegate(HandleOpenBackpack, handle: false))
             .Bind(ContentKeyFunctions.OpenBelt, InputCmdHandler.FromDelegate(HandleOpenBelt, handle: false))
+            .Bind(ContentKeyFunctions.OpenWallet, InputCmdHandler.FromDelegate(HandleOpenWallet, handle: false)) // Frontier
             .Register<SharedStorageSystem>();
 
         Subs.CVar(_cfg, CCVars.NestedStorage, OnNestedStorageCvar, true);
 
         UpdatePrototypeCache();
+    }
+
+    private void OnItemSizeChanged(ref ItemSizeChangedEvent ev)
+    {
+        var itemEnt = new Entity<ItemComponent?>(ev.Entity, null);
+
+        if (!TryGetStorageLocation(itemEnt, out var container, out var storage, out var loc))
+        {
+            return;
+        }
+
+        if (!ItemFitsInGridLocation((itemEnt.Owner, itemEnt.Comp), (container.Owner, storage), loc))
+        {
+            ContainerSystem.Remove(itemEnt.Owner, container, force: true);
+        }
     }
 
     private void OnNestedStorageCvar(bool obj)
@@ -277,17 +297,18 @@ public abstract class SharedStorageSystem : EntitySystem
         if (!UI.IsUiOpen(uid, args.UiKey))
         {
             UpdateAppearance((uid, storageComp, null));
-            Audio.PlayPredicted(storageComp.StorageCloseSound, uid, args.Actor);
+            if (!_tag.HasTag(args.Actor, storageComp.SilentStorageUserTag))
+                Audio.PlayPredicted(storageComp.StorageCloseSound, uid, args.Actor);
         }
 
-        // Frontier: cherry-pick upstream #37075
+        // Frontier: cherry-pick upstream #35075
         if (TryComp<RecentlyOpenedStoragesComponent>(args.Actor, out var recently))
         {
             recently.OpenedStorages.ForEach(it => it.Remove(GetNetEntity(uid)));
             recently.OpenedStorages.RemoveAll(it => it.Count == 0);
             Dirty(args.Actor, recently);
         }
-        // End Frontier: cherry-pick upstream #37075
+        // End Frontier: cherry-pick upstream #35075
     }
 
     private void AddUiVerb(EntityUid uid, StorageComponent component, GetVerbsEvent<ActivationVerb> args)
@@ -326,6 +347,26 @@ public abstract class SharedStorageSystem : EntitySystem
                 new("/Textures/Interface/VerbIcons/open.svg.192dpi.png"));
         }
         args.Verbs.Add(verb);
+    }
+
+    /// <summary>
+    /// Tries to get the storage location of an item.
+    /// </summary>
+    public bool TryGetStorageLocation(Entity<ItemComponent?> itemEnt, [NotNullWhen(true)] out BaseContainer? container, out StorageComponent? storage, out ItemStorageLocation loc)
+    {
+        loc = default;
+        storage = null;
+
+        if (!ContainerSystem.TryGetContainingContainer(itemEnt, out container) ||
+            container.ID != StorageComponent.ContainerId ||
+            !TryComp(container.Owner, out storage) ||
+            !_itemQuery.Resolve(itemEnt, ref itemEnt.Comp, false))
+        {
+            return false;
+        }
+
+        loc = storage.StoredItems[itemEnt];
+        return true;
     }
 
     public void OpenStorageUI(EntityUid uid, EntityUid actor, StorageComponent? storageComp = null, bool silent = true)
@@ -367,7 +408,7 @@ public abstract class SharedStorageSystem : EntitySystem
         if (!UI.TryOpenUi(uid, StorageComponent.StorageUiKey.Key, entity))
             return;
 
-        // Frontier: cherry-pick upstream#37075
+        // Frontier: cherry-pick upstream#35075
         var recently = EnsureComp<RecentlyOpenedStoragesComponent>(entity);
 
         if (!recently.OpenedStorages.Any(inner => inner.Contains(GetNetEntity(uid))))
@@ -386,9 +427,9 @@ public abstract class SharedStorageSystem : EntitySystem
             }
             Dirty(entity, recently);
         }
-        // End Frontier: cherry-pick upstream#37075
+        // End Frontier: cherry-pick upstream#35075
 
-        if (!silent)
+        if (!silent && !_tag.HasTag(entity, storageComp.SilentStorageUserTag))
         {
             Audio.PlayPredicted(storageComp.StorageOpenSound, uid, entity);
 
@@ -460,7 +501,7 @@ public abstract class SharedStorageSystem : EntitySystem
         }
         else
         {
-            // Frontier: cherry-pick upstream#37075
+            // Frontier: cherry-pick upstream#35075
             // OpenStorageUI(uid, args.User, storageComp, false);
             if (ContainerSystem.TryGetContainingContainer((args.Target, null, null), out var container) &&
                 UI.IsUiOpen(container.Owner, StorageComponent.StorageUiKey.Key, args.User))
@@ -477,7 +518,7 @@ public abstract class SharedStorageSystem : EntitySystem
 
                 OpenStorageUI(uid, args.User, storageComp, false);
             }
-            // End Frontier: cherry-pick upstream#37075
+            // End Frontier: cherry-pick upstream#35075
         }
 
         args.Handled = true;
@@ -650,7 +691,8 @@ public abstract class SharedStorageSystem : EntitySystem
         // If we picked up at least one thing, play a sound and do a cool animation!
         if (successfullyInserted.Count > 0)
         {
-            Audio.PlayPredicted(component.StorageInsertSound, uid, args.User, _audioParams);
+            if (!_tag.HasTag(args.User, component.SilentStorageUserTag))
+                Audio.PlayPredicted(component.StorageInsertSound, uid, args.User, _audioParams);
             EntityManager.RaiseSharedEvent(new AnimateInsertingEntitiesEvent(
                 GetNetEntity(uid),
                 GetNetEntityList(successfullyInserted),
@@ -693,7 +735,8 @@ public abstract class SharedStorageSystem : EntitySystem
                 $"{ToPrettyString(player):player} is attempting to take {ToPrettyString(item):item} out of {ToPrettyString(storage):storage}");
 
             if (_sharedHandsSystem.TryPickupAnyHand(player, item, handsComp: player.Comp)
-                && storage.Comp.StorageRemoveSound != null)
+                && storage.Comp.StorageRemoveSound != null
+                && !_tag.HasTag(player, storage.Comp.SilentStorageUserTag))
             {
                 Audio.PlayPredicted(storage.Comp.StorageRemoveSound, storage, player, _audioParams);
             }
@@ -761,14 +804,23 @@ public abstract class SharedStorageSystem : EntitySystem
 
     private void OnStorageTransfer(StorageTransferItemEvent msg, EntitySessionEventArgs args)
     {
-        if (!TryGetEntity(msg.ItemEnt, out var itemEnt))
+        if (!TryGetEntity(msg.ItemEnt, out var itemUid) || !TryComp(itemUid, out ItemComponent? itemComp))
             return;
 
         var localPlayer = args.SenderSession.AttachedEntity;
+        var itemEnt = new Entity<ItemComponent?>(itemUid.Value, itemComp);
 
-        if (!TryComp(localPlayer, out HandsComponent? handsComp) || !_sharedHandsSystem.TryPickup(localPlayer.Value, itemEnt.Value, handsComp: handsComp, animate: false))
+        // Validate the source storage
+        if (!TryGetStorageLocation(itemEnt, out var container, out _, out _) ||
+            !ValidateInput(args, GetNetEntity(container.Owner), out _, out _))
+        {
+            return;
+        }
+
+        if (!TryComp(localPlayer, out HandsComponent? handsComp) || !_sharedHandsSystem.TryPickup(localPlayer.Value, itemEnt, handsComp: handsComp, animate: false))
             return;
 
+        // Validate the target storage
         if (!ValidateInput(args, msg.StorageEnt, msg.ItemEnt, out var player, out var storage, out var item, held: true))
             return;
 
@@ -804,7 +856,7 @@ public abstract class SharedStorageSystem : EntitySystem
         UpdateAppearance((ent.Owner, ent.Comp, null));
     }
 
-    // Frontier: cherry-pick upstream#37075
+    // Frontier: cherry-pick upstream#35075
     private int CountOpenInterfaces(EntityUid actor, EntityUid? excluding)
     {
         var count = 0;
@@ -831,9 +883,9 @@ public abstract class SharedStorageSystem : EntitySystem
 
         return count;
     }
-    // End Frontier: cherry-pick upstream#37075
+    // End Frontier: cherry-pick upstream#35075
 
-    private void OnBoundUIAttempt(BoundUserInterfaceMessageAttempt args)
+    private void OnBoundUIAttempt(Entity<StorageComponent> ent, ref BoundUserInterfaceMessageAttempt args)
     {
         if (args.UiKey is not StorageComponent.StorageUiKey.Key ||
             _openStorageLimit == -1 ||
@@ -843,7 +895,7 @@ public abstract class SharedStorageSystem : EntitySystem
 
         var uid = args.Target;
         var actor = args.Actor;
-        // Frontier: cherry-pick upstream #37075
+        // Frontier: cherry-pick upstream #35075
         // var count = 0;
 
         // if (_userQuery.TryComp(actor, out var userComp))
@@ -882,7 +934,7 @@ public abstract class SharedStorageSystem : EntitySystem
             }
             Dirty(actor, comp);
         }
-        // End Frontier: cherry-pick upstream#37075
+        // End Frontier: cherry-pick upstream#35075
     }
 
     private void OnEntInserted(Entity<StorageComponent> entity, ref EntInsertedIntoContainerMessage args)
@@ -967,6 +1019,12 @@ public abstract class SharedStorageSystem : EntitySystem
         _appearance.SetData(uid, StorageVisuals.Open, isOpen, appearance);
         _appearance.SetData(uid, SharedBagOpenVisuals.BagState, isOpen ? SharedBagState.Open : SharedBagState.Closed, appearance);
 
+        if (TryComp<StorageFillVisualizerComponent>(uid, out var storageFillVisualizerComp))
+        {
+            var level = ContentHelpers.RoundToLevels(used, capacity, storageFillVisualizerComp.MaxFillLevels);
+            _appearance.SetData(uid, StorageFillVisuals.FillLevel, level, appearance);
+        }
+
         // HideClosedStackVisuals true sets the StackVisuals.Hide to the open state of the storage.
         // This is for containers that only show their contents when open. (e.g. donut boxes)
         if (storage.HideStackVisualsWhenClosed)
@@ -998,8 +1056,10 @@ public abstract class SharedStorageSystem : EntitySystem
 
             Insert(target, entity, out _, user: user, targetComp, playSound: false);
         }
-
-        Audio.PlayPredicted(sourceComp.StorageInsertSound, target, user, _audioParams);
+        if (user != null
+            && (!_tag.HasTag(user.Value, sourceComp.SilentStorageUserTag)
+                || !_tag.HasTag(user.Value, targetComp.SilentStorageUserTag)))
+            Audio.PlayPredicted(sourceComp.StorageInsertSound, target, user, _audioParams);
     }
 
     /// <summary>
@@ -1172,12 +1232,17 @@ public abstract class SharedStorageSystem : EntitySystem
          * For now we just treat items as always being the same size regardless of stack count.
          */
 
+        // Check if the sound is expected to play.
+        // If there is an user, the sound will not play if they have the SilentStorageUserTag
+        // If there is no user, only playSound is checked.
+        var canPlaySound = playSound && (user == null || !_tag.HasTag(user.Value, storageComp.SilentStorageUserTag));
+
         if (!stackAutomatically || !_stackQuery.TryGetComponent(insertEnt, out var insertStack))
         {
             if (!ContainerSystem.Insert(insertEnt, storageComp.Container))
                 return false;
 
-            if (playSound)
+            if (canPlaySound)
                 Audio.PlayPredicted(storageComp.StorageInsertSound, uid, user, _audioParams);
 
             return true;
@@ -1207,7 +1272,7 @@ public abstract class SharedStorageSystem : EntitySystem
             return false;
         }
 
-        if (playSound)
+        if (canPlaySound)
             Audio.PlayPredicted(storageComp.StorageInsertSound, uid, user, _audioParams);
 
         return true;
@@ -1617,6 +1682,8 @@ public abstract class SharedStorageSystem : EntitySystem
         }
     }
 
+
+
     private void HandleOpenBackpack(ICommonSession? session)
     {
         HandleToggleSlotUI(session, "back");
@@ -1626,7 +1693,12 @@ public abstract class SharedStorageSystem : EntitySystem
     {
         HandleToggleSlotUI(session, "belt");
     }
-
+    // Frontier: open wallet
+    private void HandleOpenWallet(ICommonSession? session)
+    {
+        HandleToggleSlotUI(session, "wallet");
+    }
+    // End Frontier: open wallet
     private void HandleToggleSlotUI(ICommonSession? session, string slot)
     {
         if (session is not { } playerSession)

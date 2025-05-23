@@ -5,18 +5,12 @@
     - node: start
       edges:
         - to: grilleDiagonal
-          completed:
-            - !type:SnapToGrid {} # Frontier: use default ctor
-              # southRotation: true # Frontier
           steps:
             - material: MetalRod
               amount: 2
               doAfter: 1
               
         - to: clockworkGrilleDiagonal
-          completed:
-            - !type:SnapToGrid {} # Frontier: use default ctor
-              # southRotation: true # Frontier
           steps:
             - material: MetalRod
               amount: 2

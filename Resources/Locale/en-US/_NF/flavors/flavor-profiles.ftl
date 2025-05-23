@@ -17,3 +17,4 @@ flavor-complex-spices = like spices
 flavor-complex-cinnamon = like cinnamon
 flavor-complex-antiseptic = like chemical lavender
 flavor-complex-swamp = like watching a beautiful sunset in nature
+flavor-complex-hairy = hairy and pungent

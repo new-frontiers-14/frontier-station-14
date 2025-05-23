@@ -128,3 +128,16 @@
   - type: Icon
     sprite: _NF/Objects/Consumable/Drinks/swampkiss.rsi
     state: icon
+
+# mystery liquid bottle
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ChemistryBottleMysteryLiquid
+  suffix: Mystery liquid
+  components:
+  - type: RandomFillSolution
+    solution: drink
+    weightedRandomId: RandomFillStrangePill
+  - type: PressurizedSolution
+    solution: drink
+

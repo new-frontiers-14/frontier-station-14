@@ -1,8 +1,8 @@
 using Content.Client.Rotation;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Rotation;
-using Content.Shared.Vehicle.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 
@@ -22,6 +22,15 @@ internal sealed class BuckleSystem : SharedBuckleSystem
         SubscribeLocalEvent<StrapComponent, MoveEvent>(OnStrapMoveEvent);
         SubscribeLocalEvent<BuckleComponent, BuckledEvent>(OnBuckledEvent);
         SubscribeLocalEvent<BuckleComponent, UnbuckledEvent>(OnUnbuckledEvent);
+        SubscribeLocalEvent<BuckleComponent, AttemptMobCollideEvent>(OnMobCollide);
+    }
+
+    private void OnMobCollide(Entity<BuckleComponent> ent, ref AttemptMobCollideEvent args)
+    {
+        if (ent.Comp.Buckled)
+        {
+            args.Cancelled = true;
+        }
     }
 
     private void OnStrapMoveEvent(EntityUid uid, StrapComponent component, ref MoveEvent args)
@@ -42,8 +51,10 @@ internal sealed class BuckleSystem : SharedBuckleSystem
         if (args.NewRotation == args.OldRotation)
             return;
 
-        //if (HasComp<VehicleComponent>(component.LastEntityBuckledTo)) // Umbra
-        //    return; // Umbra
+        // Frontier: maintain sprite order
+        if (component.MaintainSpriteLayers)
+            return;
+        // End Frontier
 
         if (!TryComp<SpriteComponent>(uid, out var strapSprite))
             return;
@@ -84,6 +95,11 @@ internal sealed class BuckleSystem : SharedBuckleSystem
 
         if (!TryComp<SpriteComponent>(ent.Owner, out var buckledSprite))
             return;
+
+        // Frontier: maintain sprite order
+        if (args.Strap.Comp.MaintainSpriteLayers)
+            return;
+        // End Frontier
 
         var angle = _xformSystem.GetWorldRotation(args.Strap) + _eye.CurrentEye.Rotation; // Get true screen position, or close enough
 

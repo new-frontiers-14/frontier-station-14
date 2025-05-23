@@ -62,7 +62,7 @@ public sealed partial class LatheMenu : DefaultWindow
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
         DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke(); // Frontier
-        DeleteFabricating.AddStyleClass("OpenLeft");
+        DeleteFabricating.AddStyleClass("OpenLeft"); // Frontier
     }
 
     public void SetEntity(EntityUid uid)
@@ -75,19 +75,11 @@ public sealed partial class LatheMenu : DefaultWindow
             {
                 ServerListButton.Visible = false;
             }
+
+            AmountLineEdit.SetText(latheComponent.DefaultProductionAmount.ToString());
         }
 
         MaterialsList.SetOwner(Entity);
-    }
-
-    protected override void Opened()
-    {
-        base.Opened();
-
-        if (_entityManager.TryGetComponent<LatheComponent>(Entity, out var latheComp))
-        {
-            AmountLineEdit.SetText(latheComp.DefaultProductionAmount.ToString());
-        }
     }
 
     /// <summary>
