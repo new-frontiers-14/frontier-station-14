@@ -42,6 +42,7 @@ guide-entry-expedition-xenos = Xenos
 # Shipyard entries
 guide-entry-shipyard-adder = Adder
 guide-entry-shipyard-akupara = Akupara
+guide-entry-shipyard-albatross = Albatross
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-barge = Barge

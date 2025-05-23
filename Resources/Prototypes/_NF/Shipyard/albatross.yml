@@ -1,0 +1,45 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Albatross
+  parent: BaseVessel
+  name: FSB Albatross
+  description: A deep space endurance shuttle designed to support FSB infrastructure and the bulk good transport needs of the Frontier.
+  price: 40000 #t1 cargo + 10k for emu
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/albatross.yml
+  guidebookPage: ShipyardAlbatross
+  class:
+  - Cargo
+  engine:
+  - Uranium
+  - Solar
+
+- type: gameMap
+  id: Albatross
+  mapName: 'FSB Albatross'
+  mapPath: /Maps/_NF/Shuttles/albatross.yml
+  minPlayers: 0
+  stations:
+    Albatross:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Albatross {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
