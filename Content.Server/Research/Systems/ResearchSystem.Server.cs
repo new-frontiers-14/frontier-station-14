@@ -201,6 +201,9 @@ public sealed partial class ResearchSystem
 
     private void OnServerParentChanged(Entity<ResearchServerComponent> ent, ref EntParentChangedMessage args)
     {
+        if (TerminatingOrDeleted(ent))
+            return;
+
         EntityUid? serverGrid = null;
         if (TryComp(ent, out TransformComponent? xform))
             serverGrid = xform.GridUid;

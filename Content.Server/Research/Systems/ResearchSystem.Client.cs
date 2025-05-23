@@ -146,7 +146,7 @@ public sealed partial class ResearchSystem
     // Frontier: remove connection when parent changed
     private void OnClientParentChanged(Entity<ResearchClientComponent> ent, ref EntParentChangedMessage args)
     {
-        if (ent.Comp.Server == null)
+        if (TerminatingOrDeleted(ent) || ent.Comp.Server == null)
             return;
 
         // If the client and the server are no longer on the same grid, disconnect them.
