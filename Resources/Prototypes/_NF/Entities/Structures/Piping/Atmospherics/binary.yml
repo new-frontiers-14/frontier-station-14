@@ -256,3 +256,79 @@
   - type: Machine
     board: GaslockFrameMachineCircuitboard
   - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+
+
+- type: entity
+  parent: [ BaseMachine, ConstructibleMachine ]
+  id: DiamondDepositor
+  name: diamond depositor
+  description: Gradually converts carbon dioxide into diamonds at high temperatures and pressures.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: Structures/Machines/gasrecycler.rsi
+    layers:
+    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeStraight
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: running
+    - state: unlit
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.PumpVisuals.Enabled:
+        enabled:
+          True: { state: running }
+          False: { state: unlit }
+  - type: Appearance
+  - type: PipeColorVisuals
+  - type: Rotatable
+  - type: DiamondDepositor
+    spawnName: MaterialDiamond1
+  - type: ItemSlots
+    slots:
+      seed:
+        name: diamond-depositor-slot-name-seed
+        whitelist:
+          components:
+          - NFCoal
+  - type: NFGasRecyclerVisuals
+  - type: PipeRestrictOverlap
+  - type: NodeContainer
+    nodes:
+      inlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: North
+      outlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: AtmosDevice
+  - type: AtmosPipeColor
+  - type: AmbientSound
+    enabled: true
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/gas_pump.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Machine
+    board: null # TODO: add board
+  - type: AtmosMonitoringConsoleDevice
+    navMapBlip: GasValve
