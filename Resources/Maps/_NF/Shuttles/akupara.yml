@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/23/2025 14:29:50
-  entityCount: 746
+  time: 05/23/2025 15:09:26
+  entityCount: 748
 maps: []
 grids:
 - 1
@@ -988,6 +988,14 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-2.5
+      parent: 1
+- proto: ButtonFrameCaution
+  entities:
+  - uid: 747
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,12.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -4529,6 +4537,43 @@ entities:
     - type: Transform
       pos: 7.5,5.5
       parent: 1
+- proto: SignalButton
+  entities:
+  - uid: 748
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,12.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        577:
+        - - Pressed
+          - Toggle
+        606:
+        - - Pressed
+          - Toggle
+        94:
+        - - Pressed
+          - Toggle
+        29:
+        - - Pressed
+          - Toggle
+        580:
+        - - Pressed
+          - Toggle
+        579:
+        - - Pressed
+          - Toggle
+        578:
+        - - Pressed
+          - Toggle
+        581:
+        - - Pressed
+          - Toggle
+        53:
+        - - Pressed
+          - Toggle
 - proto: SignalButtonDirectional
   entities:
   - uid: 318
