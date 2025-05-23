@@ -430,3 +430,40 @@
   - type: MaterialStorage
     storage:
       Biomass: 50
+
+- type: entity
+  parent: UniformPrinter
+  id: UniformPrinterStaff
+  name: staff uniform printer
+  description: Prints new or replacement uniforms for staff.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/staff_uniform_printer.rsi
+  - type: Machine
+    board: UniformPrinterStaffMachineCircuitboard
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [[ HeadOfPersonnel, HeadOfSecurity ]]
+  - type: Lathe
+    staticPacks:
+    - ClothingCivilian
+    - ClothingCargo
+    - ClothingCommand
+    - ClothingEngineering
+    - ClothingMedical
+    - ClothingScience
+    - ClothingSecurity
+    - ClothingService
+    - WinterCoats
+    - Ties
+    - Scarves
+    - Carpets
+    - Bedsheets
+    - NFFloorTilesCarpet
+    - NFUniformColored
+    - NFUniformMilitary
+    - NFUniformSpecial
+    - NFUniformCloaks
+    - NFUniformCommand
+    - NFWallets
+    # keeping the dynamicPacks from the parent
