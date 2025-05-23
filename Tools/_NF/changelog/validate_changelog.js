@@ -9,6 +9,8 @@ const CommentRegex = /<!--.*?-->/gs; // HTML comments
 // Main function
 async function main() {
     // Check changelog directory.
+    // TODO: restore this when we set up the environment variable
+    /*
     if (!process.env.CHANGELOG_DIR) {
         console.log("CHANGELOG_DIR not defined, exiting.");
         return process.exit(1);
@@ -20,6 +22,7 @@ async function main() {
         console.log(`Cannot find changelog at "${ChangelogFilePath}", exiting.`);
         return process.exit(1);
     }
+    */
 
     // Read GitHub event payload
     const eventPath = process.env.GITHUB_EVENT_PATH;
