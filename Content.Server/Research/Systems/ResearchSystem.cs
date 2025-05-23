@@ -25,7 +25,7 @@ namespace Content.Server.Research.Systems
         // [Dependency] private readonly RadioSystem _radio = default!; // Frontier
         [Dependency] private readonly StationSystem _station = default!;
 
-        private static readonly HashSet<Entity<ResearchServerComponent>> ClientLookup = new();
+        private readonly HashSet<Entity<ResearchServerComponent>> ClientLookup = new(); // Frontier: not static
 
         public override void Initialize()
         {
