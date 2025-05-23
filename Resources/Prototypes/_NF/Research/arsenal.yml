@@ -1,4 +1,45 @@
-# Tier 1
+# region Tier 1
+
+- type: technology
+  id: BasicAmmunitionProduction
+  name: research-technology-basic-ammunition
+  icon:
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+    state: base
+  discipline: Arsenal
+  tier: 1
+  cost: 2000
+  recipeUnlocks:
+  - NFAmmunitionBoxShellShotgunBuckshot
+  - NFAmmunitionBoxShellShotgunSlug
+  - NFAmmunitionBoxRifle20
+  - NFAmmunitionBoxRifle30
+  - NFAmmunitionBoxPistol35
+  - NFAmmunitionBoxPistol45
+  - NFSpeedLoaderPistol35Empty
+  - NFSpeedLoaderPistol45Empty
+  - NFMagazineClipRifle20Empty
+  - MagazineLightRifleLowCapacityEmpty
+  - NFMagazinePistol35Empty
+
+- type: technology
+  id: NonlethalAmmunition
+  name: research-technology-nonlethal-ammunition
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    state: beanbag
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - NFAmmunitionBoxShellShotgunBeanbag
+  - NFAmmunitionBoxRifle20Rubber
+  - NFAmmunitionBoxRifle30Rubber
+  - NFAmmunitionBoxPistol35Rubber
+  - NFAmmunitionBoxPistol45Rubber
+  - NFAmmunitionBoxShellShotgunTranquilizer
+  technologyPrerequisites:
+  - BasicAmmunitionProduction
 
 - type: technology
   id: BountyHunting
@@ -10,20 +51,18 @@
   tier: 1
   cost: 10000
   recipeUnlocks:
-  - Stunbaton
   - BolaNF
-  - Handcuffs
+  - NFHandcuffs
   - ClothingOuterArmorBulletproofNF
   - ClothingOuterCoatBHTrench
   - PinpointerUniversalNF
   - ClothingEyesHudBountyHunter
-  - WeaponShotgunKammererNF
-  - ForensicPad
+  - NFForensicPad
   - FlashlightSecliteNF
   technologyPrerequisites:
-  - AdvancedRiotControl
+  - NonlethalAmmunition
 
-# Tier 2
+# region Tier 2
 
 - type: technology
   id: MagnetsTechCombat
@@ -53,7 +92,7 @@
   - ClothingOuterHardsuitMercenary
   - ClothingOuterHardsuitPrivateSecurity
   technologyPrerequisites:
-  - AdvancedRiotControl
+  - NFAdvancedRiotControl
   - HardsuitsAdvanced
 
 - type: technology
@@ -66,9 +105,6 @@
   tier: 2
   cost: 15000
   recipeUnlocks:
-  - KatanaNF
-  - KukriKnifeNF
-  - MacheteNF
   - ClothingEyesPunkInfoShades
   - ClothingOuterArmorPunkRandomized
   - ClothingOuterArmorPunkRed
@@ -89,7 +125,40 @@
   technologyPrerequisites:
   - BountyHunting
 
-# Tier 3
+- type: technology
+  id: ImprovedPistolAmmo
+  name: research-technology-pistol-ammo-improved
+  icon:
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+    state: base
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - NFAmmunitionBoxPistol35Overpressure
+  - NFAmmunitionBoxPistol45Overpressure
+  - NFMagazineHighCapacityPistol35Empty
+  - NFMagazineSubMachineGun35Empty
+  - NFMagazineSubMachineGunTopMounted35Empty
+  - NFMagazinePistol45Empty
+  technologyPrerequisites:
+  - BountyHunting
+
+- type: technology
+  id: ImprovedSalvageWeapons
+  name: research-technology-salvage-weapons-improved
+  icon:
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - NFWeaponPkaCannon
+  technologyPrerequisites:
+  - NFSalvageWeapons
+
+# region Tier 3
 
 - type: technology
   id: HardsuitsArmoredAdvanced
@@ -102,6 +171,135 @@
   cost: 25000
   recipeUnlocks:
   - ClothingOuterHardsuitScaf
-  - BlueprintClothingOuterHardsuitScaf
   technologyPrerequisites:
   - HardsuitsArmored
+
+- type: technology
+  id: ImprovedRifleAmmo
+  name: research-technology-rifle-ammo-improved
+  icon:
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
+    state: base
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - NFAmmunitionBoxRifle20Overpressure
+  - NFAmmunitionBoxRifle30Overpressure
+  - NFMagazineRifle20Empty
+  - NFMagazineRifle30Empty
+  - NFMagazineDrumRifle20Empty
+  - MagazineAsmgtUniversalEmpty
+  technologyPrerequisites:
+  - ImprovedPistolAmmo
+
+- type: technology
+  id: BulkRifleAmmo
+  name: research-technology-rifle-ammo-bulk
+  icon:
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi
+    state: base
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - NFAmmunitionBoxBigRifle20
+  - NFAmmunitionBoxBigRifle20Overpressure
+  - NFAmmunitionBoxBigRifle30
+  - NFAmmunitionBoxBigRifle30Overpressure
+  technologyPrerequisites:
+  - ImprovedRifleAmmo
+
+# region Upstream
+
+# Tier 1
+
+- type: technology
+  id: NFSalvageWeapons
+  name: research-technology-salvage-weapons
+  icon:
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - NFWeaponPka
+  - WeaponCrusher
+  - WeaponCrusherDagger
+  - WeaponCrusherGlaive
+
+- type: technology
+  id: NFAdvancedRiotControl
+  name: research-technology-advanced-riot-control
+  icon:
+    sprite: Objects/Weapons/Melee/truncheon.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 8000
+  recipeUnlocks:
+  - NFTelescopicShield
+
+- type: technology
+  id: NFExplosiveTechnology
+  name: research-technology-explosive-technology
+  icon:
+    sprite: Objects/Devices/payload.rsi
+    state: payload-explosive-armed
+  discipline: Arsenal
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - SignallerAdvanced
+  - SignalTrigger
+  - VoiceTrigger
+  - TimerTrigger
+  - FlashPayload
+  - ChemicalPayload
+
+- type: technology
+  id: NFSpecialMeans
+  name: research-technology-special-means
+  icon:
+    sprite: Clothing/Back/Backpacks/electropack.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - NFClothingBackpackElectropack
+
+# Tier 2
+- type: technology
+  id: NFBasicShuttleArmament
+  name: research-technology-basic-shuttle-armament
+  icon:
+    sprite: Structures/Power/cage_recharger.rsi
+    state: full
+  discipline: Arsenal
+  tier: 2
+  cost: 10500
+  recipeUnlocks:
+  - PowerCageRechargerCircuitboard
+  - PowerCageSmall
+  - PowerCageMedium
+  - PowerCageHigh
+  - NFMagazineGrenadeEmpty
+  - NFGrenadeFlash
+  - NFGrenadeEMP
+  technologyPrerequisites:
+  - NFSalvageWeapons
+
+# Tier 3
+- type: technology
+  id: NFPortableMicrofusionWeaponry
+  name: research-technology-portable-microfusion-weaponry
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - NFPortableRecharger

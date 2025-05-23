@@ -99,7 +99,7 @@
 
 ## plastic explosives
 - type: entity
-  name: box of breaching charges grenades
+  name: box of breaching charge grenades
   parent: BoxBundleNfsd
   id: BoxBreachingCharges
   description: A box full of breaching charges.
@@ -107,4 +107,15 @@
   - type: StorageFill
     contents:
       - id: BreachingCharge
+        amount: 4
+
+- type: entity
+  name: EMP projectiles box
+  parent: BoxMagazine
+  id: BoxEmpGrenadesAmmo
+  description: A box of EMP projectile grenades.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFGrenadeEMP
         amount: 4
