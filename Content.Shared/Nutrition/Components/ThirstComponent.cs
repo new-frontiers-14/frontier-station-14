@@ -10,6 +10,24 @@ namespace Content.Shared.Nutrition.Components;
 [AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class ThirstComponent : Component
 {
+    // Frontier
+    /// <summary>
+    /// The thirst value as authoritatively set by the server as of <see cref="LastAuthoritativeThirstChangeTime"/>.
+    /// This value should be updated relatively infrequently. To get the current thirst, which changes with each update,
+    /// use <see cref="ThirstSystem.GetThirst"/>.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    [AutoNetworkedField]
+    public float LastAuthoritativeThirstValue;
+
+    /// <summary>
+    /// The time at which <see cref="LastAuthoritativeThirstValue"/> was last updated.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
+    [AutoNetworkedField]
+    public TimeSpan LastAuthoritativeThirstChangeTime;
+    // Frontier End
+
     // Base stuff
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("baseDecayRate")]

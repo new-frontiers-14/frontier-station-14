@@ -107,6 +107,10 @@ public sealed class ThirstSystem : EntitySystem
             component.ThirstThresholds[ThirstThreshold.OverHydrated]
         );
 
+        // Frontier
+        SetAuthoritativeThirstValue((uid, component), amount);
+        // Frontier End
+
         DirtyField(uid, component, nameof(ThirstComponent.CurrentThirst));
     }
 
@@ -168,6 +172,16 @@ public sealed class ThirstSystem : EntitySystem
             _alerts.ClearAlertCategory(uid, component.ThirstyCategory);
         }
 
+        // Frontier
+        if (component.ThirstThresholds.TryGetValue(component.CurrentThirstThreshold, out var modifier))
+        {
+            component.ActualDecayRate = component.BaseDecayRate * modifier;
+            DirtyField(uid, component, nameof(ThirstComponent.ActualDecayRate));
+            SetAuthoritativeThirstValue((uid, component), GetThirst(component));
+        }
+        component.LastThirstThreshold = component.CurrentThirstThreshold;
+        // Frontier End
+
         DirtyField(uid, component, nameof(ThirstComponent.LastThirstThreshold));
         DirtyField(uid, component, nameof(ThirstComponent.ActualDecayRate));
 
@@ -225,4 +239,42 @@ public sealed class ThirstSystem : EntitySystem
             UpdateEffects(uid, thirst);
         }
     }
+
+    // Frontier
+    private static float ClampThirstWithinThresholds(ThirstComponent component, float thirstValue)
+    {
+        return Math.Clamp(thirstValue,
+            component.ThirstThresholds[ThirstThreshold.Dead],
+            component.ThirstThresholds[ThirstThreshold.OverHydrated]);
+    }
+
+    /// <summary>
+    /// Gets the current thirst value of the given <see cref="ThirstComponent"/>.
+    /// </summary>
+    public float GetThirst(ThirstComponent component)
+    {
+        var dt = _timing.CurTime - component.LastAuthoritativeThirstChangeTime;
+        var value = component.LastAuthoritativeThirstValue - (float)dt.TotalSeconds * component.ActualDecayRate;
+        return ClampThirstWithinThresholds(component, value);
+    }
+
+    private void SetAuthoritativeThirstValue(Entity<ThirstComponent> entity, float value)
+    {
+        entity.Comp.LastAuthoritativeThirstChangeTime = _timing.CurTime;
+        entity.Comp.LastAuthoritativeThirstValue = ClampThirstWithinThresholds(entity.Comp, value);
+        DirtyField(entity.Owner, entity.Comp, nameof(ThirstComponent.LastAuthoritativeThirstChangeTime));
+        DirtyField(entity.Owner, entity.Comp, nameof(ThirstComponent.LastAuthoritativeThirstValue));
+    }
+
+    /// <summary>
+    /// A check that returns if the entity is below a thirst threshold.
+    /// </summary>
+    public bool IsThirstBelowState(EntityUid uid, ThirstThreshold threshold, float amount, ThirstComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp))
+            return false; // It's never going to go thirsty, so it's probably fine to assume that it's not... you know, thirsty.
+
+        return GetThirstThreshold(comp, amount) < threshold;
+    }
+    // Frontier End
 }

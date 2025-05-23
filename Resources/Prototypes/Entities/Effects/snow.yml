@@ -1,0 +1,42 @@
+- type: entity
+  id: NFDirtEffect
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: _NF/Effects/material_splash.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+      - state: dirt1
+        map: [ "random" ]
+  - type: RandomSprite
+    available:
+      - random:
+          dirt1: ""
+          dirt2: ""
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: AnimationPlayer
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/Items/shovel_dig.ogg
+
+- type: entity
+  id: NFSnowEffect
+  parent: NFDirtEffect
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    layers:
+      - state: snow1
+        map: [ "random" ]
+  - type: RandomSprite
+    available:
+      - random:
+          snow1: ""
+          snow2: ""
