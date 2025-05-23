@@ -81,6 +81,9 @@ public sealed partial class ResearchSystem
 
     private void OnClientAnchorStateChanged(Entity<ResearchClientComponent> ent, ref AnchorStateChangedEvent args)
     {
+        if (LifeStage(ent) != EntityLifeStage.MapInitialized) // Frontier: remove whenever the bug here gets sorted out
+            return; // Frontier: already registered on map init, no need to register before, no need to register on teardown
+
         if (args.Anchored)
         {
             if (ent.Comp.Server is not null)
