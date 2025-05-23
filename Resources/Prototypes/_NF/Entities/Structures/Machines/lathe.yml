@@ -1,5 +1,5 @@
 - type: entity
-  id: BlueprintReceiverBase
+  id: NFBlueprintReceiverBase
   abstract: true
   components:
   - type: BlueprintReceiver
@@ -16,7 +16,7 @@
     - blueprint
 
 - type: entity
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   id: ServiceTechFab
   name: service techfab
   description: Prints equipment for service staff.
@@ -43,15 +43,17 @@
     staticPacks:
     - NFServiceTechfabDeprecatedStatic
     - ReportingStatic # DeltaV
-    dynamicPacks:
-    - NFServiceTechfabDeprecated
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFServiceTechfabDeprecatedEmagStatic
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintServiceTechfab
   - type: OreSiloClient
 
 - type: entity
-  parent: [ BlueprintReceiverBase, ServiceTechFab ]
+  parent: ServiceTechFab
   id: McServiceTechFab
   name: mcservice techfab
   description: Prints equipment for mcservice staff.
@@ -76,11 +78,9 @@
     - NFServiceTechfabDeprecatedStatic
     - ReportingStatic # DeltaV
     - NFMcServiceTechfabStatic
-    dynamicPacks:
-    - NFServiceTechfabDeprecated
 
 - type: entity
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   id: EngineeringTechFab
   name: engineering techfab
   description: Prints equipment for engineers.
@@ -106,12 +106,14 @@
     runningState: icon
     staticPacks:
     - NFEngineeringTechfabDeprecatedStatic
-    dynamicPacks:
-    - NFEngineeringTechfabDeprecated
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintEngineeringTechfab
   - type: OreSiloClient
 
 - type: entity
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   id: SalvageTechfabNF
   name: salvage techfab
   description: Prints equipment for salvagers.
@@ -137,16 +139,18 @@
     runningState: icon
     staticPacks:
     - NFSalvageTechfabDeprecatedStatic
-    dynamicPacks:
-    - NFSalvageTechfabDeprecated
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFSalvageTechfabDeprecatedEmag
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintSalvageTechfab
   - type: OreSiloClient
 
 - type: entity
   id: NfsdTechFab
-  parent: [ BlueprintReceiverBase, SecurityTechFab ]
+  parent: [ NFBlueprintReceiverBase, SecurityTechFab ]
   name: NFSD techfab
   description: Prints equipment for use by NFSD.
   components:
@@ -174,12 +178,10 @@
     - NfsdPracticeStatic
     - NfsdAmmoStatic
     - ReportingStatic # DeltaV
-    dynamicPacks:
-    - NFNfsdTechfabDynamicDeprecated
 
 - type: entity
   id: MercenaryTechFab
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   name: mercenary techfab
   description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
   components:
@@ -205,13 +207,16 @@
     staticPacks:
     - NFMercenaryTechfabDeprecatedStatic
     - NfsdPracticeStatic
-    dynamicPacks:
-    - NFMercenaryTechfabDynamicDeprecated
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintMercenaryTechfab
   - type: OreSiloClient
 
 - type: entity
   id: MercenaryTechFabHacked
   parent:
+  - BaseC3Contraband
   - MercenaryTechFab
   - BaseHyperlathe
   - PunkHoloGraffitiOverlay # Prototype can be located at /Resources/Prototypes/_NF/Entities/Structures/Holographic/graffiti.yml
@@ -249,9 +254,12 @@
     runningState: mercenary-hacked
     staticPacks:
     - NFHackedMercenaryTechfabDeprecatedStatic
-    dynamicPacks:
-    - NFHackedMercenaryTechfabDeprecated
   - type: OreSiloClient
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintMercenaryTechfab
+      - NFBlueprintNfsdTechfab
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseLathe]
@@ -299,13 +307,13 @@
   - type: MaterialStorage
     whitelist:
       tags:
-        - PrizeTicket
+      - PrizeTicket
 
 - type: entity
   id: BlueprintLithograph
-  parent: BaseLatheLube
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: blueprint lithograph
-  description: Prints blueprints.
+  description: Prints any blueprints for recipes unlocked on the tech server it's linked to.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/blueprint_printer.rsi
@@ -318,16 +326,62 @@
       map: ["enum.PowerDeviceVisualLayers.Powered"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Appearance
+  - type: WiresVisuals
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: BlueprintLathe
+    blueprintPrintMaterials:
+      Paper: 300
+    blueprintPrintTime: 5
+  - type: BlueprintLatheClientState # persistent, per-client UI state
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: WiresPanel
+  - type: ActivatableUI
+    key: enum.BlueprintLatheUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.BlueprintLatheUiKey.Key:
+        type: BlueprintLatheNFBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: StaticPrice
+    price: 800
+  - type: ResearchClient
+  - type: TechnologyDatabase
+  - type: MaterialStorageMagnetPickup
+    range: 0.30
   - type: Machine
     board: BlueprintLithographMachineCircuitboard
-  - type: Lathe
-    producingSound: /Audio/Machines/circuitprinter.ogg
-    idleState: icon
-    runningState: building
-    staticPacks:
-    - PowerCellsStatic
-    dynamicPacks:
-    - NFBlueprints
   - type: RequireProjectileTarget
   - type: OreSiloClient
 
