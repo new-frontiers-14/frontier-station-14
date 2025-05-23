@@ -220,7 +220,7 @@ public sealed partial class AnomalySystem
     // Frontier: disable anomaly if it goes off-grid
     private void OnVesselParentChanged(Entity<AnomalyVesselComponent> ent, ref EntParentChangedMessage args)
     {
-        if (ent.Comp.Anomaly is not { } anom)
+        if (TerminatingOrDeleted(ent) || ent.Comp.Anomaly is not { } anom)
             return;
 
         if (!TryComp(ent, out TransformComponent? xform)
