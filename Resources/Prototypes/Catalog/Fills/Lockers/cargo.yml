@@ -3,7 +3,7 @@
   table: !type:AllSelector
     children:
     # - id: OxygenTankFilled # Frontier
-    - id: AirTankFilled # Frontier
+    - id: NFTankO2N2EqualFilled # Frontier
     - id: ClothingShoesBootsMag
     - id: ClothingOuterHardsuitSpatio
     - id: ClothingMaskGasExplorer
@@ -13,19 +13,16 @@
   id: LockerFillSalvageSpecialist
   table: !type:AllSelector
     children:
-    - id: ClothingEyesGlassesMeson # Frontier
-    - id: ClothingBeltUtilityEngineering # Frontier: Filled<Engineering
+    - id: ClothingBeltUtilityFilled
     - id: SurvivalKnife
-    - id: RadioHandheldNF # Frontier - RadioHandheld<RadioHandheldNF
-    - id: OreBag # Frontier
+    - id: HandheldGPSBasic
+    - id: RadioHandheld
     - id: AppraisalTool
-    # - id: Flare # Frontier
-    #   prob: 0.3 # Frontier
-    #   rolls: !type:ConstantNumberSelector # Frontier
-    #     value: 3 # Frontier
-    - id: BoxDispenserFlare # Frontier
-    - id: Pickaxe # Frontier
-    - id: NFWeaponPka # Frontier
+    - id: FireExtinguisher
+    - id: Flare
+      prob: 0.3
+      rolls: !type:ConstantNumberSelector
+        value: 3
 
 - type: entity
   id: LockerSalvageSpecialistFilledHardsuit
@@ -39,7 +36,7 @@
           - !type:NestedSelector
             tableId: FillSalvageSpecialistHardsuitSpatio
           - !type:NestedSelector
-            tableId: LockerFillSalvageSpecialist
+            tableId: NFStorageFillGearSalvageSpecialist # Frontier: LockerFillSalvageSpecialist<NFStorageFillGearSalvageSpecialist
 
 - type: entity
   id: LockerSalvageSpecialistFilled
@@ -49,4 +46,4 @@
     - type: EntityTableContainerFill
       containers:
         entity_storage: !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
+          tableId: NFStorageFillGearSalvageSpecialist # Frontier: LockerFillSalvageSpecialist<NFStorageFillGearSalvageSpecialist
