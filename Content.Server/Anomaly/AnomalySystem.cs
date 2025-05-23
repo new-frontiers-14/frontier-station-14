@@ -54,6 +54,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         SubscribeLocalEvent<AnomalyComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<AnomalyComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<AnomalyComponent, StartCollideEvent>(OnStartCollide);
+        SubscribeLocalEvent<AnomalyComponent, EntParentChangedMessage>(OnAnomalyParentChanged); // Frontier
 
 
         InitializeGenerator();
@@ -130,6 +131,28 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
                 SetBehavior(anomaly, GetRandomBehavior());
         }
     }
+
+    // Frontier: disable anomaly if it goes off-grid
+    private void OnAnomalyParentChanged(Entity<AnomalyComponent> ent, ref EntParentChangedMessage args)
+    {
+        if (ent.Comp.ConnectedVessel is not { } vessel)
+            return;
+
+        if (!TryComp(ent, out TransformComponent? xform)
+            || !TryComp(vessel, out TransformComponent? vesselXform)
+            || xform.GridUid != vesselXform.GridUid)
+        {
+            ent.Comp.ConnectedVessel = null;
+            _radiation.SetSourceEnabled(vessel, false);
+            if (TryComp(vessel, out AnomalyVesselComponent? vesselComp))
+            {
+                vesselComp.Anomaly = null;
+                UpdateVesselAppearance(vessel, vesselComp);
+            }
+            Popup.PopupEntity(Loc.GetString("anomaly-vessel-component-anomaly-cleared"), vessel);
+        }
+    }
+    // End Frontier: disable anomaly if it goes off-grid
 
     /// <summary>
     /// Gets the amount of research points generated per second for an anomaly.

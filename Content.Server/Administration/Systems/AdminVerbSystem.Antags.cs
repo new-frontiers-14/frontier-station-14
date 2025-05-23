@@ -120,7 +120,7 @@ public sealed partial class AdminVerbSystem
         };
         //args.Verbs.Add(nukeOp); // Frontier: comment this out, no nuke op verb
 
-        // Frontier: custom pirate verb
+        // Frontier: custom pirate verbs
         var pirateName = Loc.GetString("admin-verb-text-make-nf-pirate");
         Verb pirate = new()
         {
@@ -136,9 +136,23 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", pirateName, Loc.GetString("admin-verb-make-nf-pirate")),
         };
         args.Verbs.Add(pirate);
-        // End Frontier: custom pirate verb
 
-        // Frontier: pirate captain verb
+        var pirateFirstMateName = Loc.GetString("admin-verb-text-make-nf-pirate-first-mate");
+        Verb pirateFirstMate = new()
+        {
+            Text = pirateFirstMateName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_NF/Interface/Misc/job_icons.rsi"), "piratefirstmate"),
+            Act = () =>
+            {
+                EnsureComp<AutoPirateFirstMateComponent>(args.User); // Frontier: needed to pass the pirate whitelist
+                _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, _pirateRuleId);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", pirateFirstMateName, Loc.GetString("admin-verb-make-nf-pirate-first-mate")),
+        };
+        args.Verbs.Add(pirateFirstMate);
+
         var pirateCaptainName = Loc.GetString("admin-verb-text-make-nf-pirate-captain");
         Verb pirateCaptain = new()
         {
@@ -151,7 +165,7 @@ public sealed partial class AdminVerbSystem
                 _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, _pirateRuleId);
             },
             Impact = LogImpact.High,
-            Message = string.Join(": ", pirateName, Loc.GetString("admin-verb-make-nf-pirate-captain")),
+            Message = string.Join(": ", pirateCaptainName, Loc.GetString("admin-verb-make-nf-pirate-captain")),
         };
         args.Verbs.Add(pirateCaptain);
         // End Frontier

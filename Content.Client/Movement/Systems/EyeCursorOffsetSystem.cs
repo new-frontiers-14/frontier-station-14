@@ -5,6 +5,7 @@ using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Shared.Map;
 using Robust.Client.Player;
+using Robust.Client.UserInterface; // Frontier
 
 namespace Content.Client.Movement.Systems;
 
@@ -40,7 +41,8 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
     {
         var localPlayer = _player.LocalEntity;
         var mousePos = _inputManager.MouseScreenPosition;
-        var screenSize = _clyde.MainWindow.Size;
+        var screenControl = _eyeManager.MainViewport as Control; // Frontier
+        var screenSize = screenControl?.PixelSize ?? _clyde.MainWindow.Size; // Frontier: fix separated UI layout offsets
         var minValue = MathF.Min(screenSize.X / 2, screenSize.Y / 2) * _edgeOffset;
 
         var mouseNormalizedPos = new Vector2(-(mousePos.X - screenSize.X / 2) / minValue, (mousePos.Y - screenSize.Y / 2) / minValue); // X needs to be inverted here for some reason, otherwise it ends up flipped.
@@ -71,6 +73,8 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
 
             component.TargetPosition = mouseActualRelativePos;
 
+            // Frontier Start: Remove smooth panning to reduce motion sickness
+            /*
             //Makes the view not jump immediately when moving the cursor fast.
             if (component.CurrentPosition != component.TargetPosition)
             {
@@ -81,6 +85,10 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
                 }
                 component.CurrentPosition += vectorOffset;
             }
+            */
+            component.CurrentPosition = component.TargetPosition;
+            // Frontier End: Remove smooth panning to reduce motion sickness
+
         }
         return component.CurrentPosition;
     }

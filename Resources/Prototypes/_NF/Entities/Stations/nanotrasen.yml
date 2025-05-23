@@ -18,6 +18,15 @@
   components:
   - type: Transform
 
+# region Dev
+- type: entity
+  id: DebugFrontierStation
+  suffix: DEBUG # TODO: Fix this, its here to stop PrototypeSaveTest fail
+  parent:
+  - StandardFrontierStation
+  - MarketFrontierOutpost
+  categories: [ HideSpawnMenu ]
+
 # region POIs
 - type: entity
   id: StandardFrontierOutpost

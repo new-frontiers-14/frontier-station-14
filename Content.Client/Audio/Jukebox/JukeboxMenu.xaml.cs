@@ -28,6 +28,7 @@ public sealed partial class JukeboxMenu : FancyWindow
     /// </summary>
     public event Action<bool>? OnPlayPressed;
     public event Action? OnStopPressed;
+    public event Action<JukeboxPlaybackMode>? OnModeChanged; // Frontier
     public event Action<ProtoId<JukeboxPrototype>>? OnSongSelected;
     public event Action<float>? SetTime;
 
@@ -61,6 +62,19 @@ public sealed partial class JukeboxMenu : FancyWindow
             OnStopPressed?.Invoke();
         };
         PlaybackSlider.OnReleased += PlaybackSliderKeyUp;
+
+        // Frontier: Shuffle & Repeat
+        ShuffleButton.OnToggled += args =>
+        {
+            RepeatButton.Pressed = false;
+            OnModeChanged?.Invoke(ShuffleButton.Pressed ? JukeboxPlaybackMode.Shuffle : JukeboxPlaybackMode.Single);
+        };
+        RepeatButton.OnToggled += args =>
+        {
+            ShuffleButton.Pressed = false;
+            OnModeChanged?.Invoke(RepeatButton.Pressed ? JukeboxPlaybackMode.Repeat : JukeboxPlaybackMode.Single);
+        };
+        // End Frontier: Shuffle & Repeat
 
         SetPlayPauseButton(_audioSystem.IsPlaying(_audio), force: true);
     }
@@ -163,4 +177,20 @@ public sealed partial class JukeboxMenu : FancyWindow
             SongName.Text = "---";
         }
     }
+
+    // Frontier: Shuffle & Repeat
+    public void UpdateState(BoundUserInterfaceState state)
+    {
+        if (state is not JukeboxInterfaceState convState)
+            return;
+
+        UpdateJukeboxButtons(convState);
+    }
+
+    private void UpdateJukeboxButtons(JukeboxInterfaceState state)
+    {
+        ShuffleButton.Pressed = state.PlaybackMode == JukeboxPlaybackMode.Shuffle;
+        RepeatButton.Pressed = state.PlaybackMode == JukeboxPlaybackMode.Repeat;
+    }
+    // End Frontier: Shuffle & Repeat
 }

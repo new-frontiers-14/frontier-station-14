@@ -51,6 +51,35 @@
   - type: OreSiloClient
 
 - type: entity
+  parent: [ BlueprintReceiverBase, ServiceTechFab ]
+  id: McServiceTechFab
+  name: mcservice techfab
+  description: Prints equipment for mcservice staff.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: mcservice
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: McServiceTechFabCircuitboard
+  - type: Lathe
+    staticPacks:
+    - NFServiceTechfabDeprecatedStatic
+    - ReportingStatic # DeltaV
+    - NFMcServiceTechfabStatic
+    dynamicPacks:
+    - NFServiceTechfabDeprecated
+
+- type: entity
   parent: [ BlueprintReceiverBase, BaseLatheLube ]
   id: EngineeringTechFab
   name: engineering techfab
@@ -347,3 +376,40 @@
   - type: MaterialStorage
     storage:
       Biomass: 50
+
+- type: entity
+  parent: UniformPrinter
+  id: UniformPrinterStaff
+  name: staff uniform printer
+  description: Prints new or replacement uniforms for staff.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/staff_uniform_printer.rsi
+  - type: Machine
+    board: UniformPrinterStaffMachineCircuitboard
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [[ HeadOfPersonnel, HeadOfSecurity ]]
+  - type: Lathe
+    staticPacks:
+    - ClothingCivilian
+    - ClothingCargo
+    - ClothingCommand
+    - ClothingEngineering
+    - ClothingMedical
+    - ClothingScience
+    - ClothingSecurity
+    - ClothingService
+    - WinterCoats
+    - Ties
+    - Scarves
+    - Carpets
+    - Bedsheets
+    - NFFloorTilesCarpet
+    - NFUniformColored
+    - NFUniformMilitary
+    - NFUniformSpecial
+    - NFUniformCloaks
+    - NFUniformCommand
+    - NFWallets
+    # keeping the dynamicPacks from the parent

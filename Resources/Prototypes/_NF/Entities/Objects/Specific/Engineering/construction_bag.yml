@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseStorageItem
+  parent: NFBaseClothingBeltStorageBag
   id: ConstructionBag
   name: construction bag
   description: A robust bag for construction specialists and engineers alike to carry large amounts of construction materials. Magnetises any nearby construction materials when attached to a belt.
@@ -23,14 +23,7 @@
   - type: Clothing
     sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
     quickEquip: false
-    slots:
-    - belt
-  - type: Item
-    size: Ginormous
   - type: Storage
-    maxItemSize: Normal
-    grid:
-    - 0,0,9,3
     quickInsert: true
     areaInsert: true
     whitelist:

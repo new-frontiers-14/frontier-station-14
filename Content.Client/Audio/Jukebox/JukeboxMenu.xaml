@@ -1,5 +1,5 @@
 <ui:FancyWindow xmlns="https://spacestation14.io" xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
-                SetSize="400 500" Title="{Loc 'jukebox-menu-title'}">
+                SetSize="420 500" MinSize="420 200" Title="{Loc 'jukebox-menu-title'}"> <!-- Frontier: SetSize width 400<420, Add MinSize -->
     <BoxContainer Margin="4 0" Orientation="Vertical">
         <ItemList Name="MusicList" SelectMode="Button" Margin="3 3 3 3"
         HorizontalExpand="True" VerticalExpand="True" SizeFlagsStretchRatio="8"/>
@@ -12,6 +12,10 @@
         VerticalExpand="False" SizeFlagsStretchRatio="1">
             <Button Name="PlayButton" Text="{Loc 'jukebox-menu-buttonplay'}" />
             <Button Name="StopButton" Text="{Loc 'jukebox-menu-buttonstop'}" />
+            <!-- Frontier: Shuffle & Repeat -->
+            <Button Name="ShuffleButton" Text="{Loc 'jukebox-menu-buttonshuffle'}" ToggleMode="True"/>
+            <Button Name="RepeatButton" Text="{Loc 'jukebox-menu-buttonrepeat'}" ToggleMode="True"/>
+            <!-- End Frontier: Shuffle & Repeat -->
             <Label Name="DurationLabel" Text="00:00 / 00:00" HorizontalAlignment="Right" HorizontalExpand="True"/>
         </BoxContainer>
     </BoxContainer>

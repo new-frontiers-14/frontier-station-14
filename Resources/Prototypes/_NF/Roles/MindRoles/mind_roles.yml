@@ -10,6 +10,22 @@
     roleType: NFPirate
   - type: NFPirateRole
 
+- type: entity
+  parent: MindRoleNFPirate
+  id: MindRoleNFPirateFirstMate
+  name: Pirate First Mate Role
+  components:
+  - type: MindRole
+    antagPrototype: NFPirateFirstMate
+
+- type: entity
+  parent: MindRoleNFPirate
+  id: MindRoleNFPirateCaptain
+  name: Pirate Captain Role
+  components:
+  - type: MindRole
+    antagPrototype: NFPirateCaptain
+
 #Ghost Roles
 - type: entity
   parent: BaseMindRole

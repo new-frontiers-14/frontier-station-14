@@ -98,31 +98,14 @@
   - type: AntagSelection
     agentName: nf-pirate-round-end-agent-name
     definitions:
-    - prefRoles: [ NFPirate ]
-      max: 999
-      playerRatio: -1
-      lateJoinAdditional: true
-      allowNonHumans: true
-      multiAntagSetting: All
-      components:
-      - type: MailDisabled
-      - type: NpcFactionMember
-        factions:
-        - NFPirate
-      mindRoles:
-      - MindRoleNFPirate
-      whitelist:
-        components:
-        - AutoPirate
-      briefing:
-        sound: "/Audio/_NF/Misc/pirate_greeting.ogg"
+    # Pirate Captain role
     - prefRoles: [ NFPirateCaptain ]
       max: 999
       playerRatio: -1
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: All
-      components:
+      components: &pirateComponents
       - type: MailDisabled
       - type: NpcFactionMember
         factions:
@@ -131,9 +114,35 @@
         components:
         - AutoPirateCaptain
       mindRoles:
-      - MindRoleNFPirate
-      briefing:
+      - MindRoleNFPirateCaptain
+      briefing: &pirateBriefing
         sound: "/Audio/_NF/Misc/pirate_greeting.ogg"
+    # Pirate First Mate role
+    - prefRoles: [ NFPirateFirstMate ]
+      max: 999
+      playerRatio: -1
+      lateJoinAdditional: true
+      allowNonHumans: true
+      multiAntagSetting: All
+      components: *pirateComponents
+      mindRoles:
+      - MindRoleNFPirateFirstMate
+      whitelist:
+        components:
+        - AutoPirateFirstMate
+      briefing: *pirateBriefing
+    # Pirate role
+    - prefRoles: [ NFPirate ]
+      max: 999
+      playerRatio: -1
+      lateJoinAdditional: true
+      allowNonHumans: true
+      multiAntagSetting: All
+      components: *pirateComponents
+      mindRoles:
+      - MindRoleNFPirate
+      # no whitelist, catchall
+      briefing: *pirateBriefing
 
 # Concrete ignored upstream definitions
 - type: entity
