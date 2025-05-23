@@ -805,6 +805,13 @@
       color: "#384d2f"
     - state: icon-visor
       color: "#52843f"
+  - type: ToggleableLightVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-head-light-siren
+        color: red
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     clothingVisuals:
@@ -815,6 +822,15 @@
         color: "#384d2f"
       - state: equipped-head-visor
         color: "#52843f"
+  - type: ItemTogglePointLight
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 2
+    color: red
+    mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: RotatingLight
+    speed: 360
 
 #region pirates
 - type: entity
@@ -832,6 +848,13 @@
       color: "#784f1e"
     - state: icon-visor
       color: "#68b4ff"
+  - type: ToggleableLightVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-head-light-siren
+        color: gold
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     clothingVisuals:
@@ -842,6 +865,15 @@
         color: "#784f1e"
       - state: equipped-head-visor
         color: "#68b4ff"
+  - type: ItemTogglePointLight
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 2
+    color: gold
+    mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: RotatingLight
+    speed: 360
 
 #region prisoner
 - type: entity

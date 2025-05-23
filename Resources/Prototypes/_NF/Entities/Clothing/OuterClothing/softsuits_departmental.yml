@@ -1464,7 +1464,7 @@
 
 #region NFSD
 - type: entity
-  parent: NFDepartmentalEVASuit
+  parent: NFDepartmentalEVASuitShoulderLight
   id: ClothingOuterEVASuitNfsd
   name: NFSD EVA suit
   description: An EVA suit with a built-in helmet commonly issued to NFSD personnel.
@@ -1477,9 +1477,15 @@
       color: "#384d2f"
     - state: icon-reinforced-points
       color: "#493926"
+    - state: icon-shoulder-light
+      color: "#384d2f"
     - state: icon-breathing-gear
     - state: icon-unshaded
       shader: unshaded
+    - state: icon-shoulder-light-overlay-unshaded
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
   - type: Item
     inhandVisuals:
       left:
@@ -1511,6 +1517,8 @@
         color: "#384d2f"
       - state: equipped-reinforced-points
         color: "#493926"
+      - state: equipped-shoulder-light
+        color: "#384d2f"
       - state: equipped-breathing-gear
       - state: equipped-unshaded
         shader: unshaded
@@ -1519,7 +1527,7 @@
 
 #region Pirate
 - type: entity
-  parent: NFDepartmentalEVASuit
+  parent: NFDepartmentalEVASuitShoulderLight
   id: ClothingOuterEVASuitPirate
   name: pirate EVA suit
   description: An EVA suit with a built-in helmet commonly used by pirates.
@@ -1532,9 +1540,15 @@
       color: "#4b0e10"
     - state: icon-reinforced-points
       color: "#784f1e"
+    - state: icon-shoulder-light
+      color: "#4b0e10"
     - state: icon-breathing-gear
     - state: icon-unshaded
       shader: unshaded
+    - state: icon-shoulder-light-overlay-unshaded
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
   - type: Item
     inhandVisuals:
       left:
@@ -1566,6 +1580,8 @@
         color: "#4b0e10"
       - state: equipped-reinforced-points
         color: "#784f1e"
+      - state: equipped-shoulder-light
+        color: "#4b0e10"
       - state: equipped-breathing-gear
       - state: equipped-unshaded
         shader: unshaded
