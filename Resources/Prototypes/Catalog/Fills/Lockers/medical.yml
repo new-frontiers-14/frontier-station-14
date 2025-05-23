@@ -41,32 +41,29 @@
   table: !type:AllSelector
     children:
     - id: HandheldHealthAnalyzer
-      prob: 1.0 # Frontier: 0.6<1.0
-    # - id: ClothingHeadMirror # Frontier
-    #   prob: 0.1 # Frontier
+      prob: 0.6
+    - id: ClothingHeadMirror
+      prob: 0.1
     - id: ClothingHandsGlovesLatex
-    # - id: ClothingHeadsetMedical # Frontier
+    - id: ClothingHeadsetMedical
     - id: ClothingEyesHudMedical
-    # Frontier: less clothing bloat
-    # - !type:GroupSelector
-    #   children:
-    #   - id: ClothingHeadHatSurgcapGreen
-    #     weight: 0.1
-    #   - id: ClothingHeadHatSurgcapPurple
-    #     weight: 0.05
-    #   - id: ClothingHeadHatSurgcapBlue
-    #     weight: 0.90
-    # - !type:GroupSelector
-    #   children:
-    #   - id: UniformScrubsColorBlue
-    #     weight: 0.5
-    #   - id: UniformScrubsColorGreen
-    #     weight: 0.1
-    #   - id: UniformScrubsColorPurple
-    #     weight: 0.05
-    # End Frontier: less clothing bloat
+    - !type:GroupSelector
+       children:
+       - id: ClothingHeadHatSurgcapGreen
+         weight: 0.1
+       - id: ClothingHeadHatSurgcapPurple
+         weight: 0.05
+       - id: ClothingHeadHatSurgcapBlue
+         weight: 0.90
+    - !type:GroupSelector
+       children:
+       - id: UniformScrubsColorBlue
+         weight: 0.5
+       - id: UniformScrubsColorGreen
+         weight: 0.1
+       - id: UniformScrubsColorPurple
+         weight: 0.05
     - id: ClothingMaskSterile
-    - id: ClothingBeltMedicalFilled # Frontier
 
 - type: entity
   parent: LockerMedical
@@ -76,7 +73,7 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillMedicalDoctor
+        tableId: NFStorageFillGearMedicalDoctor # Frontier: LockerFillMedicalDoctor<NFStorageFillGearMedicalDoctor
 
 - type: entity
   parent: LockerWallMedical
@@ -87,27 +84,27 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillMedicalDoctor
+        tableId: NFStorageFillGearMedicalDoctor # Frontier: LockerFillMedicalDoctor<NFStorageFillGearMedicalDoctor
 
 - type: entityTable
   id: LockerFillChemistry
   table: !type:AllSelector
     children:
-    #- id: BoxSyringe # Frontier
-    #- id: BoxBeaker # Frontier
-    #- id: BoxBeaker # Frontier
-      #prob: 0.3 # Frontier
-    #- id: BoxPillCanister # Frontier
-    #- id: BoxBottle # Frontier
-    #- id: BoxVial # Frontier
+    - id: BoxSyringe
+    - id: BoxBeaker
+    - id: BoxBeaker
+      prob: 0.3
+    - id: BoxPillCanister
+    - id: BoxBottle
+    - id: BoxVial
     - id: PlasmaChemistryVial
     - id: ChemBag
-    - id: ClothingEyesGlassesChemical # Frontier
-    #- id: ClothingHandsGlovesLatex # Frontier
-    # - id: ClothingHeadsetMedical # Frontier
-    #- id: ClothingMaskSterile # Frontier
-    # - id: HandLabeler # Frontier
-    #   prob: 0.5 # Frontier
+    - id: ClothingEyesGlassesChemical
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingHeadsetMedical
+    - id: ClothingMaskSterile
+    - id: HandLabeler
+      prob: 0.5
 
 - type: entity
   parent: LockerChemistry
@@ -117,26 +114,26 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillChemistry
+        tableId: NFStorageFillGearChemistry # Frontier: LockerFillChemistry<NFStorageFillGearChemistry
 
 - type: entityTable
   id: LockerFillParamedic
   table: !type:AllSelector
     children:
-    # - id: ClothingOuterHardsuitVoidParamed # Frontier
-    # - id: ClothingOuterCoatParamedicWB # Frontier
-    # - id: ClothingHeadHatParamedicsoft # Frontier
-    # - id: ClothingOuterWinterPara # Frontier
-    # - id: ClothingUniformJumpsuitParamedic # Frontier
-    # - id: ClothingUniformJumpskirtParamedic # Frontier
+    - id: ClothingOuterHardsuitVoidParamed
+    - id: ClothingOuterCoatParamedicWB
+    - id: ClothingHeadHatParamedicsoft
+    - id: ClothingOuterWinterPara
+    - id: ClothingUniformJumpsuitParamedic
+    - id: ClothingUniformJumpskirtParamedic
     - id: ClothingEyesHudMedical
-    #- id: ClothingHandsGlovesLatex # Frontier
-    # - id: ClothingHeadsetMedical # Frontier
-    #- id: ClothingMaskSterile # Frontier
-    # - id: HandheldGPSBasic # Frontier
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingHeadsetMedical
+    - id: ClothingMaskSterile
+    - id: HandheldGPSBasic
     - id: MedkitFilled
-      prob: 1.0 # Frontier: 0.3<1.0
-    - id: ClothingBeltMedicalEMTFilled # Frontier
+      prob: 0.3
+    - id: ClothingBeltMedicalEMTFilled
 
 - type: entity
   parent: LockerParamedic
@@ -146,4 +143,4 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillParamedic
+        tableId: NFStorageFillGearParamedic # Frontier: LockerFillParamedic<NFStorageFillGearParamedic
