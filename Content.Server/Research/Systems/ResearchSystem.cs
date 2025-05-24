@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Logs;
-using Content.Server.Station.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Popups;
@@ -23,9 +22,8 @@ namespace Content.Server.Research.Systems
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         // [Dependency] private readonly RadioSystem _radio = default!; // Frontier
-        [Dependency] private readonly StationSystem _station = default!;
 
-        private static readonly HashSet<Entity<ResearchServerComponent>> ClientLookup = new();
+        private readonly HashSet<Entity<ResearchServerComponent>> ClientLookup = new(); // Frontier: not static
 
         public override void Initialize()
         {
