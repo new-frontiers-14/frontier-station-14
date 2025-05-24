@@ -6,6 +6,14 @@ const axios = require("axios");
 // Use GitHub token if available
 if (process.env.GITHUB_TOKEN) axios.defaults.headers.common["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
 
+// Check changelog directory.
+if (!process.env.CHANGELOG_DIR) {
+    console.log("CHANGELOG_DIR not defined, exiting.");
+    return process.exit(1);
+}
+
+const ChangelogFilePath = `../../../${process.env.CHANGELOG_DIR}`
+
 // Regexes
 const HeaderRegex = /^\s*(?::cl:|🆑) *([a-z0-9_\-, ]+)?/img; // :cl: or 🆑 [0] followed by optional author name [1]
 const EntryRegex = /^ *[*-]? *(add|remove|tweak|fix): *([^\n\r]+)\r?$/img; // * or - followed by change type [0] and change message [1]
@@ -125,7 +133,7 @@ function getChanges(body) {
 // Get the highest changelog number from the changelogs file
 function getHighestCLNumber() {
     // Read changelogs file
-    const file = fs.readFileSync(`../../${process.env.CHANGELOG_DIR}`, "utf8");
+    const file = fs.readFileSync(ChangelogFilePath, "utf8");
 
     // Get list of CL numbers
     const data = yaml.load(file);
@@ -140,8 +148,8 @@ function writeChangelog(entry) {
     let data = { Entries: [] };
 
     // Create a new changelogs file if it does not exist
-    if (fs.existsSync(`../../${process.env.CHANGELOG_DIR}`)) {
-        const file = fs.readFileSync(`../../${process.env.CHANGELOG_DIR}`, "utf8");
+    if (fs.existsSync(ChangelogFilePath)) {
+        const file = fs.readFileSync(ChangelogFilePath, "utf8");
         data = yaml.load(file);
     }
 
@@ -149,7 +157,7 @@ function writeChangelog(entry) {
 
     // Write updated changelogs file
     fs.writeFileSync(
-        `../../${process.env.CHANGELOG_DIR}`,
+        ChangelogFilePath,
         "Entries:\n" +
             yaml.dump(data.Entries, { indent: 2 }).replace(/^---/, "")
     );
