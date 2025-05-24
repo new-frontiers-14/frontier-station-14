@@ -135,7 +135,8 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     // Frontier: disable anomaly if it goes off-grid
     private void OnAnomalyParentChanged(Entity<AnomalyComponent> ent, ref EntParentChangedMessage args)
     {
-        if (ent.Comp.ConnectedVessel is not { } vessel)
+        // If this entity is being destroyed, no need to fiddle with components
+        if (TerminatingOrDeleted(ent) || ent.Comp.ConnectedVessel is not { } vessel)
             return;
 
         if (!TryComp(ent, out TransformComponent? xform)
