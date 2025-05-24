@@ -11,3 +11,17 @@
             doAfter: 10
   - node: icon
     entity: ClothingHandsKnuckleDustersBrass
+  
+  # Frontier: crass knuckledusters
+    edges:
+      - to: crass
+        steps:
+        - tag: WhoopieCushion
+          icon:
+            sprite: Objects/Fun/whoopie.rsi
+            state: icon
+          name: construction-graph-tag-whoopie-cushion
+          doAfter: 2
+  - node: crass
+    entity: WeaponBrassKnucklesWhoopie
+  # End Frontier

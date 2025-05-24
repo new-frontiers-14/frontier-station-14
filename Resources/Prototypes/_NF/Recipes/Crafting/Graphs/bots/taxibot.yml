@@ -1,5 +1,5 @@
 - type: constructionGraph
-  id: HoverTaxiBot
+  id: TaxiBot
   start: start
   graph:
   - node: start
@@ -23,13 +23,7 @@
           state: l_hand
         name: borg arm
         doAfter: 2
-      - tag: SmallThrusterMachineCircuitboard
-        icon:
-          sprite: Objects/Misc/module.rsi
-          state: generic
-        name: construction-graph-tag-nf-small-thruster-machine-circuitboard
-        doAfter: 2
       - material: Steel
         amount: 10
   - node: bot
-    entity: MobHoverTaxiBot
+    entity: MobTaxiBot
