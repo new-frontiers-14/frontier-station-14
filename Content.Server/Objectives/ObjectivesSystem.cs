@@ -35,6 +35,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     private IEnumerable<string>? _objectives;
 
     private bool _showGreentext;
+
     private bool _showObjectives; // Frontier: hide objectives
 
     public override void Initialize()
@@ -44,6 +45,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
 
         Subs.CVar(_cfg, CCVars.GameShowGreentext, value => _showGreentext = value, true);
+
         Subs.CVar(_cfg, NFCCVars.GameShowObjectives, value => _showObjectives = value, true); // Frontier
 
         _prototypeManager.PrototypesReloaded += CreateCompletions;
@@ -201,7 +203,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                 }
             }
 
-            var successRate = totalObjectives > 0 ? (float) completedObjectives / totalObjectives : 0f;
+            var successRate = totalObjectives > 0 ? (float)completedObjectives / totalObjectives : 0f;
             agentSummaries.Add((agentSummary.ToString(), successRate, completedObjectives));
         }
 
