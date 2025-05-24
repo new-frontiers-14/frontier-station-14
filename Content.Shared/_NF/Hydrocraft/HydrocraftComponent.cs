@@ -15,52 +15,39 @@ public sealed partial class HydrocraftComponent : Component
     /// <summary>
     /// The text that pops up whenever sericulture fails for not having enough thirst.
     /// </summary>
-    [DataField("popupText")]
-    [ViewVariables(VVAccess.ReadWrite)]
-    [AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public string PopupText = "hydrocraft-failure-thirst";
 
     /// <summary>
     /// What will be produced at the end of the action.
     /// </summary>
-    [DataField(required: true)]
-    [ViewVariables(VVAccess.ReadWrite)]
-    [AutoNetworkedField]
+    [DataField(required: true), AutoNetworkedField]
     public EntProtoId EntityProduced;
 
     /// <summary>
     /// The entity needed to actually preform sericulture. This will be granted (and removed) upon the entity's creation.
     /// </summary>
-    [DataField(required: true)]
-    [ViewVariables(VVAccess.ReadWrite)]
-    [AutoNetworkedField]
+    [DataField(required: true), AutoNetworkedField]
     public EntProtoId Action;
 
-    [AutoNetworkedField]
-    [DataField("actionEntity")]
+    [DataField, AutoNetworkedField]
     public EntityUid? ActionEntity;
 
     /// <summary>
     /// How long will it take to make.
     /// </summary>
-    [DataField("productionLength")]
-    [ViewVariables(VVAccess.ReadWrite)]
-    [AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public float ProductionLength = 3f;
 
     /// <summary>
     /// This will subtract (not add, don't get this mixed up) from the current thirst of the mob doing sericulture.
     /// </summary>
-    [DataField("thirstCost")]
-    [ViewVariables(VVAccess.ReadWrite)]
-    [AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public float ThirstCost = 5f;
 
     /// <summary>
     /// The lowest thirst threshold that this mob can be in before it's allowed to spin silk.
     /// </summary>
-    [DataField("minThirstThreshold")]
-    [ViewVariables(VVAccess.ReadWrite)]
-    [AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public ThirstThreshold MinThirstThreshold = ThirstThreshold.Okay;
 }
