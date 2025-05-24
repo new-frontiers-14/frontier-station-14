@@ -57,32 +57,6 @@
     shuttles:
     - McDelivery
 
-# The caduceus console
-- type: entity
-  id: CaduceusMothershipComputer
-  parent: BaseMothershipComputer
-  name: caduceus shipyard console
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Machines/computers.rsi
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer_medical
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: shipyard_medical
-    - map: ["computerLayerKeys"]
-      state: telesci_key
-  - type: ShipyardListing
-    shuttles:
-    - Spirit
-    - Searchlight
-    - Beaker
-    - Eagle
-    - Apothecary
-    - Tyne
-
 # The caladrius console
 - type: entity
   id: CaladriusMothershipComputer
