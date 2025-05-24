@@ -30,4 +30,3 @@ reagent-desc-wassail = Hot mulled ale.
 
 reagent-name-swamp-kiss = swamp kiss
 reagent-desc-swamp-kiss = Looks like creamy swamp water, only missing some tadpoles.
-
