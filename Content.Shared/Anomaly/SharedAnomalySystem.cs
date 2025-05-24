@@ -51,38 +51,19 @@ public abstract class SharedAnomalySystem : EntitySystem
         if (!TryComp<CorePoweredThrowerComponent>(args.Weapon, out var corePowered) || !TryComp<PhysicsComponent>(ent, out var body))
             return;
 
-<<<<<<< HEAD
-        // Frontier: affect physics only for non-infectious anomalies
-        if (!HasComp<InnerBodyAnomalyComponent>(ent.Owner))
-        {
-            // anomalies are static by default, so we have set them to dynamic to be throwable
-            _physics.SetBodyType(ent, BodyType.Dynamic, body: body);
-        }
-        // End Frontier
-=======
         // anomalies are static by default, so we have set them to dynamic to be throwable
         // only regular anomalies are static, so the check is meant to filter out things such as infection anomalies, which affect players
         if (TryComp<PhysicsComponent>(ent, out var physics) && physics.BodyType == BodyType.Static)
             _physics.SetBodyType(ent, BodyType.Dynamic, body: body);
->>>>>>> 494861dc3d938b752567bead5bf40132fba03107
         ChangeAnomalyStability(ent, Random.NextFloat(corePowered.StabilityPerThrow.X, corePowered.StabilityPerThrow.Y), ent.Comp);
     }
 
     private void OnLand(Entity<AnomalyComponent> ent, ref LandEvent args)
     {
-<<<<<<< HEAD
-        // Frontier: early return if infectious anomaly
-        if (HasComp<InnerBodyAnomalyComponent>(ent))
-            return;
-        // End Frontier
-
-        // revert back to static
-=======
         // revert back to static, but only if the object was dynamic (such as thrown anomalies, but not anomaly infected players)
         if (!TryComp<PhysicsComponent>(ent, out var body) || body.BodyType != BodyType.Dynamic)
             return;
 
->>>>>>> 494861dc3d938b752567bead5bf40132fba03107
         _physics.SetBodyType(ent, BodyType.Static);
     }
 
