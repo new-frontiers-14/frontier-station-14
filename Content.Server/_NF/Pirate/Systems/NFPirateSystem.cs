@@ -1,4 +1,3 @@
-using Content.Server._NF.GameTicking.Rules.Components;
 using Content.Server._NF.Pirate.Components;
 using Content.Server.Antag;
 using Content.Shared.Mind.Components;
@@ -17,6 +16,7 @@ public sealed class AutoPirateSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<AutoPirateComponent, MindAddedMessage>(OnMindAdded);
+        SubscribeLocalEvent<AutoPirateFirstMateComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<AutoPirateCaptainComponent, MindAddedMessage>(OnMindAdded);
     }
 
@@ -25,6 +25,6 @@ public sealed class AutoPirateSystem : EntitySystem
         if (!_player.TryGetSessionById(args.Mind.Comp.UserId, out var session))
             return;
 
-        _antag.ForceMakeAntag<NFPirateRuleComponent>(session, "NFPirate");
+        _antag.ForceMakeAntag<AutoPirateComponent>(session, "NFPirate");
     }
 }
