@@ -455,7 +455,7 @@
 
 #Knuckledusters
 - type: entity
-  parent: [ClothingHandsBase, BaseMinorContraband]
+  parent: [ClothingHandsBase, BaseC1Contraband] # Frontier: BaseMinorContraband
   id: ClothingHandsKnuckleDusters
   name: knuckle dusters
   description: "Cold plasteel knuckle dusters, makes your punches hit much harder."
@@ -481,7 +481,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHandsKnuckleDusters, BaseMinorContraband] #Craftable version of base knuckledusters
+  parent: [ClothingHandsKnuckleDusters, BaseC1Contraband] #Craftable version of base knuckledusters # Frontier: BaseMinorContraband
   id: ClothingHandsKnuckleDustersBrass
   name: brass knuckle dusters
   description: "Brass knuckle dusters, just like how they used to make em and still hit just as hard."
@@ -499,7 +499,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHandsBase, BaseGrandTheftContraband]
+  parent: [ClothingHandsBase, BaseC1Contraband] # Frontier: BaseGrandTheftContraband<BaseC1Contraband
   id: ClothingHandsKnuckleDustersQM
   name: QM's golden knuckle dusters
   description: "24karat gold infused with plasteel and branded with the Nanotrasen logo. A true symbol of the Quartermaster's might."
@@ -527,7 +527,7 @@
     stealGroup: ClothingHandsKnuckleDustersQM
 
 - type: entity
-  parent: [ClothingHandsBase, BaseSyndicateContraband]
+  parent: [ClothingHandsBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: ClothingHandsKnuckleDustersSyndicate
   name: syndicate knuckle dusters
   description: "Plastitanium knuckle dusters branded with the blood-red S. A real man beats someone to death with these."
@@ -553,7 +553,7 @@
 
 - type: entity
   name: stun knuckle dusters
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseSecurityContraband]
+  parent: [ClothingHandsBase, BaseToggleClothing, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
   id: ClothingHandsKnuckleDustersStun
   description: A pair of knuckle dusters combined with the tech of a stun baton. This makes beating tiders a whole lot easier.
   components:
