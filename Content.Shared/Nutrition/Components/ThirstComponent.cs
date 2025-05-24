@@ -16,15 +16,13 @@ public sealed partial class ThirstComponent : Component
     /// This value should be updated relatively infrequently. To get the current thirst, which changes with each update,
     /// use <see cref="ThirstSystem.GetThirst"/>.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
-    [AutoNetworkedField]
+    [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public float LastAuthoritativeThirstValue;
 
     /// <summary>
     /// The time at which <see cref="LastAuthoritativeThirstValue"/> was last updated.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
-    [AutoNetworkedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
     public TimeSpan LastAuthoritativeThirstChangeTime;
     // Frontier End
 
