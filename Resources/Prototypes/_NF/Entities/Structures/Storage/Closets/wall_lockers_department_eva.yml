@@ -250,6 +250,37 @@
     maxFillLevels: 6
     fillBaseName: fillEva
 
+- type: entity
+  categories: [ HideSpawnMenu ] # debloat spawn menu
+  id: LockerWallEVAColorParamedic
+  parent: NFBaseLockerGridInvWallColor
+  name: paramedic EVA wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#2c6946"
+    - state: fillEva-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#2c6946"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#8c1e50"
+    - state: door-decal-eva-02
+      map: [ decal2 ]
+      color: "#8c1e50"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: StorageFillVisualizer
+    maxFillLevels: 6
+    fillBaseName: fillEva
+
 #region Research
 - type: entity
   categories: [ HideSpawnMenu ] # debloat spawn menu

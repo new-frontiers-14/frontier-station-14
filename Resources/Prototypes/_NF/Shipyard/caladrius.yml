@@ -8,32 +8,33 @@
 
 # Shuttle Notes:
 #
+
 - type: vessel
-  id: Retort
+  id: Caladrius
   parent: BaseVessel
-  name: FSB Retort
-  description: A medium engineering vessel designed and deployed by the Far Star Biotech corporation to provide infrastructure support for deep space operations.
-  price: 61000 # TODO: Get creggs at store - Dusty Lens
-  category: Medium
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/retort.yml
-  guidebookPage: ShipyardRetort
+  name: FSB Caladrius
+  description: A medical carrier produced by the Far Star Biotech corporation. Designed for large scale colonization support, humanitarian relief and post-disaster investigation and recovery operations.
+  price: 200000 # 140000 + 40% markup for low economic T3
+  category: Large
+  group: Medical
+  shuttlePath: /Maps/_NF/Shuttles/caladrius.yml
+  guidebookPage: ShipyardCaladrius
   class:
-  - Atmospherics
+  - Medical
   engine:
   - Bananium
 
 - type: gameMap
-  id: Retort
-  mapName: 'FSB Retort'
-  mapPath: /Maps/_NF/Shuttles/retort.yml
+  id: Caladrius
+  mapName: 'FSB Caladrius'
+  mapPath: /Maps/_NF/Shuttles/caladrius.yml
   minPlayers: 0
   stations:
-    Retort:
+    Caladrius:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Retort {1}'
+          mapNameTemplate: 'Caladrius {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
