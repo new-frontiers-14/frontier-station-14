@@ -81,6 +81,9 @@ public sealed partial class ResearchSystem
 
     private void OnClientAnchorStateChanged(Entity<ResearchClientComponent> ent, ref AnchorStateChangedEvent args)
     {
+        if (LifeStage(ent) != EntityLifeStage.MapInitialized) // Frontier: remove whenever the bug here gets sorted out
+            return; // Frontier: already registered on map init, no need to register before, no need to register on teardown
+
         if (args.Anchored)
         {
             if (ent.Comp.Server is not null)
@@ -146,7 +149,7 @@ public sealed partial class ResearchSystem
     // Frontier: remove connection when parent changed
     private void OnClientParentChanged(Entity<ResearchClientComponent> ent, ref EntParentChangedMessage args)
     {
-        if (ent.Comp.Server == null)
+        if (TerminatingOrDeleted(ent) || ent.Comp.Server == null)
             return;
 
         // If the client and the server are no longer on the same grid, disconnect them.
