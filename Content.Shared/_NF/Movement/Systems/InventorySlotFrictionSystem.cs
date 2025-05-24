@@ -22,9 +22,11 @@ public sealed class InventorySlotFrictionSystem : EntitySystem
         SubscribeLocalEvent<InventorySlotFrictionComponent, RefreshFrictionModifiersEvent>(OnRefreshFrictionModifiers);
     }
 
+    /// <remarks>
+    /// A bit naive, could apply only when the particular slot is filled/emptied.
+    /// </remarks>
     private void OnDidEquipped(Entity<InventorySlotFrictionComponent> ent, ref ClothingDidEquippedEvent args)
     {
-        // A little bit naive but we can update 
         _move.RefreshFrictionModifiers(ent);
     }
 
@@ -34,8 +36,7 @@ public sealed class InventorySlotFrictionSystem : EntitySystem
     }
 
     /// <summary>
-    /// Refreshing friction modifiers: if we don't have shoes, remove friction.
-    /// If we do have 
+    /// Refreshing friction modifiers: check for inventory slot item, adjust friction if needed.
     /// </summary>
     private void OnRefreshFrictionModifiers(Entity<InventorySlotFrictionComponent> ent,
         ref RefreshFrictionModifiersEvent args)
