@@ -112,7 +112,22 @@
     solutions:
       drink:
         maxVol: 10
-  - type: NFIngredient
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkSwampKiss
+  suffix: swamp kiss
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: SwampKiss
+          Quantity: 30
+  - type: Icon
+    sprite: _NF/Objects/Consumable/Drinks/swampkiss.rsi
+    state: icon
 
 # mystery liquid bottle
 - type: entity
@@ -125,3 +140,4 @@
     weightedRandomId: RandomFillStrangePill
   - type: PressurizedSolution
     solution: drink
+
