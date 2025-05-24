@@ -28,6 +28,9 @@ using Robust.Shared.Player;
 using Content.Shared.NameModifier.Components;
 using Content.Shared.Power;
 using Content.Shared.DeviceNetwork.Components;
+using Content.Server._NF.Lathe; // Frontier
+using Content.Shared.Research.Components; // Frontier
+using Content.Shared.Research.Prototypes; // Frontier
 using Content.Shared.Tag; // Frontier
 using Robust.Shared.Prototypes; // Frontier
 
@@ -52,6 +55,7 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly FaxecuteSystem _faxecute = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly TagSystem _tag = default!; // Frontier
+    [Dependency] private readonly BlueprintLatheSystem _blueprint = default!; // Frontier
 
     private const string PaperSlotId = "Paper";
     private static readonly ProtoId<TagPrototype> NFPaperStampProtectedTag = "NFPaperStampProtected";
@@ -319,8 +323,9 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
                     args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampProtectedData, out bool? stampProtected); // Frontier
+                    args.Data.TryGetValue(FaxConstants.FaxBlueprintRecipes, out HashSet<ProtoId<LatheRecipePrototype>>? blueprintRecipes); // Frontier
 
-                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false, stampProtected ?? false); // Frontier: add stampProtected
+                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false, stampProtected ?? false, blueprintRecipes); // Frontier: add stampProtected, blueprintRecipes
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -486,6 +491,11 @@ public sealed class FaxSystem : EntitySystem
         TryComp<LabelComponent>(sendEntity, out var labelComponent);
         TryComp<NameModifierComponent>(sendEntity, out var nameMod);
 
+        // Frontier: get blueprint recipes
+        HashSet<ProtoId<LatheRecipePrototype>>? blueprintRecipes = null;
+        if (TryComp<BlueprintComponent>(sendEntity, out var blueprints))
+            blueprintRecipes = blueprints.ProvidedRecipes;
+
         // TODO: See comment in 'Send()' about not being able to copy whole entities
         var printout = new FaxPrintout(paper.Content,
                                        nameMod?.BaseName ?? metadata.EntityName,
@@ -494,7 +504,9 @@ public sealed class FaxSystem : EntitySystem
                                        paper.StampState,
                                        paper.StampedBy,
                                        paper.EditingDisabled,
-                                       _tag.HasTag(sendEntity.Value, NFPaperStampProtectedTag)); // Frontier: add stamp protection
+                                       _tag.HasTag(sendEntity.Value, NFPaperStampProtectedTag), // Frontier
+                                       blueprintRecipes // Frontier
+                                       );
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -557,6 +569,13 @@ public sealed class FaxSystem : EntitySystem
             { FaxConstants.FaxPaperLockedData, paper.EditingDisabled },
             { FaxConstants.FaxPaperStampProtectedData, _tag.HasTag(sendEntity.Value, NFPaperStampProtectedTag) }, // Frontier
         };
+
+        // Frontier: blueprint recipes
+        if (TryComp<BlueprintComponent>(sendEntity, out var blueprint))
+        {
+            payload[FaxConstants.FaxBlueprintRecipes] = blueprint.ProvidedRecipes;
+        }
+        // End Frontier: blueprint recipes
 
         if (metadata.EntityPrototype != null)
         {
@@ -650,6 +669,11 @@ public sealed class FaxSystem : EntitySystem
             }
             // End Frontier
         }
+
+        // Frontier: blueprint recipes
+        if (TryComp<BlueprintComponent>(printed, out var blueprint))
+            _blueprint.SetBlueprintRecipes((printed, blueprint), printout.BlueprintRecipes);
+        // End Frontier: blueprint recipes
 
         _metaData.SetEntityName(printed, printout.Name);
 
