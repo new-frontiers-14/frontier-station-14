@@ -92,7 +92,7 @@
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: FuelGradeBananium
     - type: MaterialStorage
-      materialWhiteList: [Bananium, FuelGradeBananium, RawBananium]
+      materialWhiteList: [Bananium, FuelGradeBananium, RawBananium, Skrungle]
     - type: PowerMonitoringDevice
       sprite: _NF/Structures/Power/Generation/portable_generator.rsi
       state: portgen1
@@ -109,6 +109,9 @@
       - input: RawBananium
         output: FuelGradeBananium
         rate: 0.5
+      - input: Skrungle
+        output: FuelGradeBananium
+        rate: 0.25
     - type: Geiger
       showExamine: true
       broadcastAudio: true
