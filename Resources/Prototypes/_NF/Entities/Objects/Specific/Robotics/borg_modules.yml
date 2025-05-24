@@ -1,32 +1,4 @@
 - type: entity
-  id: BorgModuleAdvancedMining
-  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
-  name: advanced mining cyborg module
-  components:
-  - type: Sprite
-    layers:
-    - state: cargo
-    - state: icon-advancedmining
-      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
-  - type: ItemBorgModule
-    moduleId: NFAdvancedMining
-    items:
-    - MiningDrillDiamond
-    - Shovel
-    - AdvancedMineralScannerUnpowered
-    - JawsOfLife
-    - RadioHandheldNF
-  - type: DroppableBorgModule
-    moduleId: NFAdvancedMining
-    items:
-    - id: OreBagOfHolding
-      whitelist:
-        components:
-        - NFOreBag
-  - type: BorgModuleIcon
-    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-drill-module }
-
-- type: entity
   id: BorgModuleAdvancedParamedic
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
   name: chemical recovery cyborg module

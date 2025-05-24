@@ -600,7 +600,17 @@
     - MiningDrillDiamond
     - Shovel
     - AdvancedMineralScannerUnpowered
-    - OreBagOfHolding
+    # - OreBagOfHolding # Frontier
+    - RadioHandheldNF # Frontier
+  # Frontier: droppable items
+  - type: DroppableBorgModule
+    moduleId: NFAdvancedMining
+    items:
+    - id: OreBagOfHolding
+      whitelist:
+        components:
+        - NFOreBag
+  # End Frontier: droppable items
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }
 
