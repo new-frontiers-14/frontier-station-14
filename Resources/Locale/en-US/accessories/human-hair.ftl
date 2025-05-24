@@ -163,7 +163,8 @@ marking-HumanHairShorthairg = Short Hair 7
 marking-HumanHair80s = Short Hair 80s
 marking-HumanHairRosa = Short Hair Rosa
 marking-HumanHairB = Shoulder-length Hair
-marking-HumanHairBAlt = Shoulder-length Hair (Over eye)
+# Frontier: caps on Eye
+marking-HumanHairBAlt = Shoulder-length Hair (Over Eye)
 marking-HumanHairSidecut = Sidecut
 marking-HumanHairSkinhead = Skinhead
 marking-HumanHairProtagonist = Slightly Long Hair
