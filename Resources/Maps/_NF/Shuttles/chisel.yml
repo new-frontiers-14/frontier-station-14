@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/24/2025 18:50:37
-  entityCount: 401
+  time: 05/24/2025 20:03:24
+  entityCount: 402
 maps: []
 grids:
 - 1
@@ -606,9 +606,11 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 18
       - 96
+      - 394
+      - 18
       - 35
+      - 366
   - uid: 154
     components:
     - type: Transform
@@ -1365,6 +1367,14 @@ entities:
     - type: Transform
       pos: 6.3519025,-1.3410995
       parent: 1
+- proto: Cobweb1
+  entities:
+  - uid: 379
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -5.5,2.5
+      parent: 1
 - proto: ComputerTabletopShuttle
   entities:
   - uid: 168
@@ -1993,6 +2003,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 126
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -2035,6 +2048,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 126
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 387
