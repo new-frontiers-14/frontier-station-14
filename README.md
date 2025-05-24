@@ -80,5 +80,6 @@ Additional repos that we have ported features from without subdirectories are li
 
 | Fork Name | Fork Repository | License |
 |-----------|-----------------|---------|
+| Crystall Edge 14 | https://github.com/crystallpunk-14/crystall-punk-14 | CLA |
 | Space Station 14 | https://github.com/space-wizards/space-station-14 | MIT |
 | White Dream | https://github.com/WWhiteDreamProject/wwdpublic | AGPL 3.0 |
