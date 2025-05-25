@@ -409,6 +409,17 @@
         Glass: 2
         Cable: 4
 
+- type: entity
+  id: UniformPrinterStaffMachineCircuitboard
+  parent: UniformPrinterMachineCircuitboard
+  name: staff uniform printer machine board
+  description: A machine printed circuit board for a staff uniform printer.
+  components:
+  - type: Sprite
+    state: command
+  - type: MachineBoard
+    prototype: UniformPrinterStaff
+
 # Removed from upstream definitions
 - type: entity
   id: MaterialReclaimerMachineCircuitboard
@@ -471,3 +482,24 @@
       GlassBeaker:
         amount: 2
         defaultPrototype: Beaker
+
+- type: entity
+  id: SkrunglerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: skrungler machine board
+  description: A machine printed circuit board for a skrungler.
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: Skrungler
+    requirements:
+      MatterBin: 2
+      Manipulator: 1
+    stackRequirements:
+      Steel: 5
+    tagRequirements:
+      Knife:
+        amount: 2
+        defaultPrototype: KitchenKnife
+        examineName: construction-insert-info-examine-name-knife

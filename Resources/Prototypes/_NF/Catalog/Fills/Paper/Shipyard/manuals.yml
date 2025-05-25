@@ -48,6 +48,15 @@
 
 - type: entity
   parent: ShipyardInfoBase
+  id: ShipyardCaladriusInfo
+  name: Caladrius user manual
+  components:
+  - type: GuideHelp
+    guides:
+    - ShipyardCaladrius
+
+- type: entity
+  parent: ShipyardInfoBase
   id: ShipyardCeresInfo
   name: Ceres user manual
   components:
@@ -108,15 +117,6 @@
   - type: GuideHelp
     guides:
     - ShipyardLiquidator
-
-- type: entity
-  parent: ShipyardInfoBase
-  id: ShipyardPioneerInfo
-  name: Pioneer user manual
-  components:
-  - type: GuideHelp
-    guides:
-    - ShipyardPioneer
 
 - type: entity
   parent: ShipyardInfoBase
