@@ -11,3 +11,4 @@ construction-graph-tag-toolbox = a toolbox
 construction-graph-tag-ore = ore
 construction-graph-tag-crystal-orange = an orange crystal shard
 construction-graph-tag-mothroach-hide = a mothroach hide
+construction-graph-tag-syringe = a syringe

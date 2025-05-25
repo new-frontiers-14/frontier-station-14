@@ -1,4 +1,4 @@
-stack-scrap-ore = scrap {$amount ->
+stack-scrap-chunk = scrap {$amount ->
     [1] chunk
     *[other] chunks
 }
@@ -89,7 +89,7 @@ stack-fuel-grade-bananium = fuel-grade bananium
 stack-skrungle = skrungle
 
 stack-dark-grass-floor = dark grass floor
-stack-dark-light-floor = light grass floor
+stack-light-grass-floor = light grass floor
 stack-dirt-floor = dirt floor
 stack-bedrock = bedrock
 stack-gold-mono-tile = gold mono tile
