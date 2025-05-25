@@ -50,5 +50,5 @@ public sealed class DCCVars
     ///    Maximum number of characters in objective summaries.
     /// </summary>
     public static readonly CVarDef<int> MaxObjectiveSummaryLength =
-        CVarDef.Create("game.max_objective_summary_length", 512, CVar.SERVER | CVar.REPLICATED); // Frontier: 256<512
+        CVarDef.Create("game.max_objective_summary_length", 256, CVar.SERVER | CVar.REPLICATED);
 }
