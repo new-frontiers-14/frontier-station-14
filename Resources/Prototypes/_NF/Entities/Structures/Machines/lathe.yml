@@ -467,3 +467,17 @@
     - NFUniformCommand
     - NFWallets
     # keeping the dynamicPacks from the parent
+
+- type: entity
+  parent: UniformPrinter
+  id: PirateStitcher
+  name: pirate stitcher
+  description: This brand new uniform printer has been "found" and repurposed to print only the highest couture.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/pirate_stitcher.rsi
+  - type: Machine
+    board: PirateStitcherCircuitboard
+  - type: Lathe
+    staticPacks:
+    - NFPirateClothing
