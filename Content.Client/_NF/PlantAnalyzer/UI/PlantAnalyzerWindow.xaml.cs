@@ -19,7 +19,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
 
     private const string IndentedNewline = "\n   ";
 
-    public PlantAnalyzerWindow(PlantAnalyzerBoundUserInterface owner)
+    public PlantAnalyzerWindow()
     {
         RobustXamlLoader.Load(this);
 
@@ -30,7 +30,10 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         OnButton.ToggleMode = true;
         OffButton.Group = _buttonGroup;
         OffButton.ToggleMode = true;
+    }
 
+    public void SetupCallbacks(PlantAnalyzerBoundUserInterface owner)
+    {
         OnButton.OnPressed += _ => owner.AdvPressed(true);
         OffButton.OnPressed += _ => owner.AdvPressed(false);
     }
@@ -115,7 +118,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
                 mutations.Append(IndentedNewline);
                 mutations.Append(Loc.GetString("plant-analyzer-mutation-seedless"));
             }
-            if (advInst.Mutations.HasFlag(MutationFlags.Ligneous)) 
+            if (advInst.Mutations.HasFlag(MutationFlags.Ligneous))
             {
                 mutations.Append(IndentedNewline);
                 mutations.Append(Loc.GetString("plant-analyzer-mutation-ligneous"));
