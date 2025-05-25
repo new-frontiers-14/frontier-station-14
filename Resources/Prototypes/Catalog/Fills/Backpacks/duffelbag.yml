@@ -38,10 +38,10 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponShotgunBulldog
-      - id: MagazineShotgun
-      - id: MagazineShotgun
-      - id: MagazineShotgun
+      - id: NFWeaponShotgunBulldog # Frontier: WeaponShotgunBulldog<NFWeaponShotgunBulldog
+      - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
+      - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
+      - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
 #     - id: ThermalImagingGoggles
 
 - type: entity
@@ -52,33 +52,33 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponSubMachineGunC20r
-      - id: MagazinePistolSubMachineGun
+      - id: NFWeaponSubMachineGunC20r # Frontier: WeaponSubMachineGunC20r<NFWeaponSubMachineGunC20r
+      - id: NFMagazineSubMachineGun35 # Frontier: MagazinePistolSubMachineGun<NFMagazineSubMachineGun35
         amount: 2
 #     - id: SMGSuppressor
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledRevolver
-  name: Python bundle
+  name: ritland-45 bundle # Frontier
   description: "Go loud and proud with a fully loaded Magnum Python, bundled with two speed loaders."
   components:
   - type: StorageFill
     contents:
-      - id: WeaponRevolverPythonAP
-      - id: SpeedLoaderMagnumAP
+      - id: NFWeaponRevolverRitland45 # Frontier: WeaponRevolverPythonAP<NFWeaponRevolverRitland45
+      - id: NFSpeedLoaderPistol45 # Frontier: SpeedLoaderMagnumAP<NFSpeedLoaderPistol45
         amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledLMG
-  name: L6 Saw bundle
+  name: GSW LMG-6 bundle # Frontier: "L6 Saw bundle"<"GSW LMG-6 bundle"
   description: "More dakka: The iconic L6 lightmachinegun, bundled with 2 box magazines."
   components:
   - type: StorageFill
     contents:
-      - id: WeaponLightMachineGunL6
-      - id: MagazineLightRifleBox
+      - id: NFWeaponLightMachineGunL6 # Frontier: WeaponLightMachineGunL6<NFWeaponLightMachineGunL6
+      - id: NFMagazineBoxRifle20 # Frontier: MagazineLightRifleBox<NFMagazineBoxRifle20
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -88,10 +88,10 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponLauncherChinaLake
-      - id: GrenadeBlast
+      - id: NFWeaponLauncherChinaLake # Frontier: WeaponLauncherChinaLake<NFWeaponLauncherChinaLake
+      - id: NFGrenadeBlast # Frontier: GrenadeBlast<NFGrenadeBlast
         amount: 4
-      - id: GrenadeFrag
+      - id: NFGrenadeFrag # Frontier: GrenadeFrag<NFGrenadeFrag
         amount: 4
 
 - type: entity
@@ -102,14 +102,14 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponRifleM90GrenadeLauncher
-      - id: MagazineRifle
+      - id: NFWeaponRifleAssaultM90GrenadeLauncher # Frontier: WeaponRifleM90GrenadeLauncher<NFWeaponRifleAssaultM90GrenadeLauncher
+      - id: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
         amount: 2
-      - id: GrenadeBlast
+      - id: NFGrenadeBlast # Frontier: GrenadeBlast<NFGrenadeBlast
         amount: 2
-      - id: GrenadeFlash
+      - id: NFGrenadeFlash # Frontier: GrenadeFlash<NFGrenadeFlash
         amount: 2
-      - id: GrenadeFrag
+      - id: NFGrenadeFrag # Frontier: GrenadeFrag<NFGrenadeFrag
         amount: 2
 
 - type: entity
@@ -120,11 +120,11 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGun
+      - id: NFMagazineSubMachineGun35 # Frontier: MagazinePistolSubMachineGun<NFMagazineSubMachineGun35
         amount: 4
-      - id: MagazineShotgun
+      - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
         amount: 4
-      - id: MagazineLightRifleBox
+      - id: NFMagazineBoxRifle20 # Frontier: MagazineLightRifleBox<NFMagazineBoxRifle20
         amount: 2
 
 - type: entity
@@ -228,19 +228,6 @@
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
-  id: ClothingBackpackDuffelSyndicateRaidBundle
-  name: syndicate raid suit bundle
-  description: "Contains the Syndicate's durable raid armor suit."
-  components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterArmorRaid
-      - id: ClothingHeadHelmetRaid
-      - id: ClothingMaskGasSyndicate
-      - id: ClothingHandsGlovesCombat
-
-- type: entity
-  parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateHardsuitBundle
   name: syndicate hardsuit bundle
   description: "Contains the Syndicate's signature blood red hardsuit."
@@ -289,8 +276,8 @@
   - type: StorageFill
     contents:
       - id: SyringeRomerol
-      - id: WeaponRevolverPython
-      - id: MagazineBoxMagnumIncendiary
+      - id: NFWeaponRevolverRitland45 # Frontier: WeaponRevolverPython<NFWeaponRevolverRitland45
+      - id: NFAmmunitionBoxPistol45Incendiary # Frontier: MagazineBoxMagnumIncendiary<NFAmmunitionBoxPistol45Incendiary
       - id: PillAmbuzolPlus
       - id: PillAmbuzol
         amount: 3

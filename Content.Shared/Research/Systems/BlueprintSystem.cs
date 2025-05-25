@@ -1,3 +1,4 @@
+using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Lathe;
@@ -7,6 +8,7 @@ using Content.Shared.Research.Prototypes;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Shared.Research.Systems;
 
@@ -15,6 +17,9 @@ public sealed class BlueprintSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!; // Frontier
+
+    private const int MaxExaminedRecipes = 5; // Frontier
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -22,6 +27,7 @@ public sealed class BlueprintSystem : EntitySystem
         SubscribeLocalEvent<BlueprintReceiverComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BlueprintReceiverComponent, AfterInteractUsingEvent>(OnAfterInteract);
         SubscribeLocalEvent<BlueprintReceiverComponent, LatheGetRecipesEvent>(OnGetRecipes);
+        SubscribeLocalEvent<BlueprintComponent, ExaminedEvent>(OnBlueprintExamined); // Frontier
     }
 
     private void OnStartup(Entity<BlueprintReceiverComponent> ent, ref ComponentStartup args)
@@ -64,7 +70,7 @@ public sealed class BlueprintSystem : EntitySystem
 
         _container.Insert(blueprint.Owner, _container.GetContainer(ent, ent.Comp.ContainerId));
 
-        var ev = new TechnologyDatabaseModifiedEvent();
+        var ev = new TechnologyDatabaseModifiedEvent(blueprint.Comp.ProvidedRecipes.Select(it => it.Id).ToList());
         RaiseLocalEvent(ent, ref ev);
         return true;
     }
@@ -73,12 +79,14 @@ public sealed class BlueprintSystem : EntitySystem
     {
         if (_entityWhitelist.IsWhitelistFail(ent.Comp.Whitelist, blueprint))
         {
+            _popup.PopupPredicted(Loc.GetString("blueprint-receiver-popup-invalid-type"), ent, user); // Frontier
             return false;
         }
 
         if (blueprint.Comp.ProvidedRecipes.Count == 0)
         {
             Log.Error($"Attempted to insert blueprint {ToPrettyString(blueprint)} with no recipes.");
+            _popup.PopupPredicted(Loc.GetString("blueprint-receiver-popup-no-recipes"), ent, user); // Frontier
             return false;
         }
 
@@ -111,4 +119,43 @@ public sealed class BlueprintSystem : EntitySystem
 
         return recipes;
     }
+
+    // Frontier
+    public void OnBlueprintExamined(Entity<BlueprintComponent> ent, ref ExaminedEvent args)
+    {
+        using (args.PushGroup(nameof(BlueprintComponent)))
+        {
+            if (ent.Comp.ProvidedRecipes.Count <= 0)
+            {
+                args.PushMarkup(Loc.GetString("blueprint-description-none"));
+                return;
+            }
+
+            args.PushMarkup(Loc.GetString("blueprint-description"));
+            int count = 0;
+            foreach (var recipe in ent.Comp.ProvidedRecipes)
+            {
+                if (!_proto.TryIndex(recipe, out var proto))
+                    continue;
+
+                string name;
+                if (proto.Name != null)
+                    name = Loc.GetString(proto.Name);
+                else if (_proto.TryIndex(proto.Result, out var prototype))
+                    name = prototype.Name;
+                else
+                    continue;
+
+                args.PushMarkup(Loc.GetString("blueprint-description-item", ("name", name)));
+                count++;
+                if (count >= MaxExaminedRecipes)
+                    break;
+            }
+            if (ent.Comp.ProvidedRecipes.Count > MaxExaminedRecipes)
+            {
+                args.PushMarkup(Loc.GetString("blueprint-count-others", ("count", ent.Comp.ProvidedRecipes.Count - MaxExaminedRecipes)));
+            }
+        }
+    }
+    // End Frontier
 }

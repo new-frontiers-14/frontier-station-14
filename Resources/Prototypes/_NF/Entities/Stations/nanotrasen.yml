@@ -18,6 +18,15 @@
   components:
   - type: Transform
 
+# region Dev
+- type: entity
+  id: DebugFrontierStation
+  suffix: DEBUG # TODO: Fix this, its here to stop PrototypeSaveTest fail
+  parent:
+  - StandardFrontierStation
+  - MarketFrontierOutpost
+  categories: [ HideSpawnMenu ]
+
 # region POIs
 - type: entity
   id: StandardFrontierOutpost
@@ -73,6 +82,22 @@
   - type: Transform
 
 # region Shuttles
+
+# A simple shuttle for buses, etc.
+- type: entity
+  id: StandardFrontierBusVessel
+  parent:
+  - BaseStation
+  - BaseStationRenameFaxes
+  - BaseStationRenameHolopads
+  - BaseStationRenameWarpPoints
+  - BaseStationSiliconLawFrontierShips
+  - BaseStationDeadDropHintExempt # No hints on ship generation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: ExtraShuttleInformation
+
 - type: entity
   id: StandardFrontierVessel
   parent:

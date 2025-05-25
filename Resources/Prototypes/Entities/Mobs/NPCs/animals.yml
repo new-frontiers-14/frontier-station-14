@@ -339,6 +339,7 @@
   - type: Item
     size: Tiny
   - type: HTN
+    constantlyReplan: false
     rootTask:
       task: MouseCompound
   - type: Physics
@@ -443,7 +444,7 @@
       - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
+    proto: NFCartridgeRifle25 # Frontier: CartridgeCaselessRifle<NFCartridgeRifle25 (still caseless)
     capacity: 500
   - type: CombatMode
   - type: HTN
@@ -485,7 +486,7 @@
   - type: GhostTakeoverAvailable
   - type: Speech
     speechVerb: Moth
-    speechSounds: Squeak
+    speechSounds: Moth # Frontier: Squeak<Moth (upstream#37297)
     allowedEmotes: ['Chitter', 'Squeak']
   - type: FaxableObject
     insertingState: inserting_mothroach
@@ -1709,6 +1710,7 @@
     factions:
       - Mouse
   - type: HTN
+    constantlyReplan: false
     rootTask:
       task: MouseCompound
   - type: Physics
@@ -3036,12 +3038,17 @@
   - type: Tag
     tags:
     - VimPilot
-  - type: HTN # DeltaV - make all cats eat mice
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 4
+  # DeltaV: get cats to fight with mice
+  - type: HTN
     rootTask:
       task: SimpleHostileCompound
-  - type: NpcFactionMember # DeltaV - give cats faction so they fight mice
+  - type: NpcFactionMember
     factions:
     - Cat
+  # End DeltaV
 
 - type: entity
   name: calico cat
