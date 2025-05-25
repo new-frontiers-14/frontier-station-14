@@ -1,0 +1,20 @@
+# waffle cone
+- type: constructionGraph
+  id: WaffleCone
+  start: start
+  graph:
+
+  - node: start
+    entity: FoodBakedWaffle
+    edges:
+    - to: cone
+      steps:
+      - tool: Rolling
+        doAfter: 1
+      completed:
+      - !type:SpawnPrototype
+        prototype: FoodBakedWaffleCone
+        amount: 2 # spawn 2 for 3 total
+
+  - node: cone
+    entity: FoodBakedWaffleCone
