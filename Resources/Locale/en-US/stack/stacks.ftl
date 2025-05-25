@@ -24,18 +24,20 @@ stack-cloth = {$amount ->
     [1] cloth
     *[other] cloths
 }
+# Frontier: caps
 stack-lv-cable = {$amount ->
-    [1] lv cable
-    *[other] lv cables
+    [1] LV cable
+    *[other] LV cables
 }
 stack-mv-cable = {$amount ->
-    [1] mv cable
-    *[other] mv cables
+    [1] MV cable
+    *[other] MV cables
 }
 stack-hv-cable = {$amount ->
-    [1] hv cable
-    *[other] hv cables
+    [1] HV cable
+    *[other] HV cables
 }
+# End Frontier: caps
 stack-wood-plank = {$amount ->
     [1] wood plank
     *[other] wood planks
