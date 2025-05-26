@@ -2,10 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Content.Server.Construction.Components;
 using Content.Shared.Construction.Components;
-using Content.Shared.Construction.Prototypes;
-using Content.Shared.Stacks;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using Content.Shared.Construction.Prototypes; // Frontier
 
 namespace Content.IntegrationTests.Tests;
 
@@ -166,10 +165,10 @@ public sealed class MachineBoardTest
     };
 
     /// <summary>
-    /// Check machine requirements for stacks that are machine upgrades.
+    /// Check machine requirements for miscategorized machine part requirements.
     /// </summary>
     [Test]
-    public async Task TestValidateBoardStackRequirements()
+    public async Task TestValidateBoardMachinePartRequirements()
     {
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
@@ -223,7 +222,7 @@ public sealed class MachineBoardTest
                     {
                         if (_invalidTags.Contains(tagReq))
                         {
-                            Assert.Fail($"Entity {p.ID} has a tagRequirement for {tagReq}, which should be listed into a machine part requirement.");
+                            Assert.Fail($"Entity {p.ID} has a tagRequirement for {tagReq}, which should be converted into a machine part requirement.");
                             continue;
                         }
                     }
