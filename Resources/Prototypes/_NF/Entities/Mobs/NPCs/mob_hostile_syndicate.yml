@@ -1,8 +1,11 @@
+#region base
 - type: entity
   name: syndicate naval agent
   abstract: true
   categories: [ HideSpawnMenu ]
   parent:
+  - MobStaminaFodder
+  - MobMovementSpeedModifierRanged
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
@@ -44,11 +47,8 @@
     deleteOrgans: true
     gib: false
     useArgumentEntity: true
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
-# Humans
+#region Humans
 # Syndicate Captain, "armed" with AP Python
 - type: entity
   name: syndicate captain
@@ -498,6 +498,8 @@
 - type: entity
   name: captive
   parent:
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobHumanoidHostileBase
   - MobHumanoidHostileAISimpleMelee
   - NFMobRestrictions
@@ -523,17 +525,16 @@
     removeComponentsOnDeath:
     - type: Prying
     - type: Tool
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
+#region boss
 # Syndicate Commander, "armed" with AK
 - type: entity
   name: syndicate commander # Mega Fauna for Dungeons
   parent:
+  - NFMobBossRestrictions
+  - MobHostileBossBase
   - MobSyndicateNavalBase
   #- MobLaserReflect # Added to prevent laser abuse from players
-  - NFMobBossRestrictions
   id: MobSyndicateNavalCommanderA
   description: A regional commander of Syndicate operations, this officer holds ultimate local command and responsibility. Armed with an assault rifle and heavily armored.
   categories: [ HideSpawnMenu ]
@@ -541,8 +542,6 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalCommanderGearA
-    - type: Stamina
-      critThreshold: 500 # Extra hard to incapacitate and loot
     - type: AutoImplant
       implants:
       - DeathRattleImplant
@@ -659,6 +658,8 @@
 - type: entity
   name: syndicate mime
   parent:
+  - MobStaminaSpecial
+  - MobMovementSpeedModifierSpecial
   - MobSyndicateNavalBase
   - MobHumanoidHostileAISimpleMelee
   id: MobSyndicateNavalMime
@@ -667,11 +668,6 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalMimeGear
-    - type: Stamina
-      critThreshold: 500
-    - type: MovementSpeedModifier
-      baseWalkSpeed: 4
-      baseSprintSpeed: 6
     - type: Advertise
       pack: mimehumanoidchatter
       minimumWait: 120
@@ -682,7 +678,9 @@
 # Look for chems here: /Resources/Prototypes/_NF/Entities/Objects/Weapons/Ammunition/Projectiles/chem.yml
 - type: entity
   name: syndicate chemwarrior
-  parent: MobSyndicateNavalBase
+  parent:
+  - MobStaminaSpecial
+  - MobSyndicateNavalBase
   id: MobSyndicateNavalChemwarriorA
   description: Carrying tanks filled with dangerous chemicals, chemwarriors attack their enemies with a noxious spray.
   categories: [ HideSpawnMenu ]

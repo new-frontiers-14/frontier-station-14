@@ -1,5 +1,5 @@
 # BASE
-## AI packages
+#region AI packages
 - type: entity
   id: MobRogueSiliconAISimpleMelee
   abstract: true
@@ -38,11 +38,13 @@
       SoundTargetInLOS: !type:SoundPathSpecifier
         path: /Audio/Effects/double_beep.ogg
 
-## Mob base
+#region Mob base
 - type: entity
   name: hivemind unit
   abstract: true
   parent:
+  - MobMovementSpeedModifierRanged
+  - MobStaminaBoss # No stunning bots
   - BaseC3MobConstruct
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
@@ -90,8 +92,6 @@
       - Heat
       - Shock
     locPrefix: silicon
-  - type: Stamina
-    critThreshold: 100
   - type: Repairable
     doAfterDelay: 10
     allowSelfRepair: true
@@ -126,12 +126,10 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepBorg
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   id: MobRogueSiliconScrapBase
   name: scrap unit
@@ -182,8 +180,6 @@
     speedModifierThresholds:
       30: 0.7
       40: 0.5
-  - type: Stamina
-    critThreshold: 600
 
 - type: entity
   id: MobRogueSiliconProjectileBatteryAmmo
@@ -241,8 +237,6 @@
     speedModifierThresholds:
       14: 0.7
       20: 0.5
-  - type: Stamina
-    critThreshold: 600
   - type: Gun
     showExamineText: false
     fireRate: 0.75
@@ -265,6 +259,7 @@
 #region Tier 1
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -328,6 +323,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -378,6 +374,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -476,6 +473,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -613,6 +611,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierSpecial
   - MobRogueSiliconDroneBase
   id: MobRogueSiliconViscerator
   name: viscerator unit
@@ -648,9 +647,6 @@
     speedModifierThresholds:
       7: 0.7
       10: 0.5
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 5
-    baseWalkSpeed: 5
   - type: MeleeWeapon
     attackRate: 1.0
     animation: WeaponArcClaw
@@ -666,6 +662,7 @@
 #region Tier 2
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -704,6 +701,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -820,6 +818,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   id: MobRogueSiliconCatcher
@@ -887,6 +886,7 @@
 #region Tier 3
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -927,8 +927,6 @@
     speedModifierThresholds:
       54: 0.7
       70: 0.5
-  - type: Stamina
-    critThreshold: 600
   - type: ProjectileBatteryAmmoProvider
     proto: NFTeslaGunBullet
     fireCost: 100
@@ -1005,8 +1003,6 @@
     speedModifierThresholds:
       96: 0.7
       130: 0.5
-  - type: Stamina
-    critThreshold: 600
   - type: HitscanBatteryAmmoProvider
     proto: NFRedLaserPractice
     fireCost: 10
@@ -1063,8 +1059,6 @@
     speedModifierThresholds:
       144: 0.7
       192: 0.5
-  - type: Stamina
-    critThreshold: 600
   - type: BasicEntityAmmoProvider
     proto: NFCartridgeRocketMini
     capacity: 10
@@ -1094,9 +1088,6 @@
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.6 # -20% from normal speed
-    baseSprintSpeed : 3.6 # -20% from normal speed
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootT0
@@ -1163,9 +1154,6 @@
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.6 # -20% from normal speed
-    baseSprintSpeed : 3.6 # -20% from normal speed
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootT0
@@ -1219,9 +1207,6 @@
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.6 # -20% from normal speed
-    baseSprintSpeed : 3.6 # -20% from normal speed
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootT0

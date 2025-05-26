@@ -3,6 +3,8 @@
   name: Wizard
   abstract: true
   parent:
+  - MobMovementSpeedModifierRanged
+  - MobStaminaSpecial
   - MobHumanoidHostileBase
   - MobPassiveRegen
   - MobHumanoidInvetory
@@ -24,8 +26,6 @@
     damage:
       types:
         Heat: 0
-  - type: Stamina
-    critThreshold: 400
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -47,9 +47,6 @@
     deleteOrgans: true
     gib: false
     useArgumentEntity: true
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 # Humans
 # Blue Wizard, summons 2 Blue Curacao Elementals
