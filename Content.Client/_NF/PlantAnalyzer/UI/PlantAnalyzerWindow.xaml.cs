@@ -19,7 +19,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
 
     private const string IndentedNewline = "\n   ";
 
-    public Action<bool> OnAdvancedModeChanged;
+    public Action<bool>? OnAdvancedModeChanged;
 
     public PlantAnalyzerWindow()
     {
