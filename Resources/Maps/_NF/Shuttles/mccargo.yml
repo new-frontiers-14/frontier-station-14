@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/17/2025 11:10:41
-  entityCount: 948
+  time: 05/26/2025 22:42:25
+  entityCount: 951
 maps: []
 grids:
 - 1
@@ -1417,10 +1417,11 @@ entities:
       parent: 1
 - proto: ButchCleaver
   entities:
-  - uid: 235
+  - uid: 234
     components:
     - type: Transform
-      pos: 2.484521,5.558209
+      rot: 3.141592653589793 rad
+      pos: 2.197165,5.594097
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -2403,29 +2404,17 @@ entities:
       parent: 1
 - proto: CigCartonMcCargo
   entities:
-  - uid: 20
+  - uid: 31
     components:
     - type: Transform
-      pos: 1.3860587,4.700082
-      parent: 1
-  - uid: 49
-    components:
-    - type: Transform
-      pos: 1.6568921,4.5958433
-      parent: 1
-- proto: ClosetChefFilled
-  entities:
-  - uid: 206
-    components:
-    - type: Transform
-      pos: -1.5,9.5
+      pos: 1.5168028,4.5823884
       parent: 1
 - proto: ClothingBeltChefFilled
   entities:
-  - uid: 227
+  - uid: 20
     components:
     - type: Transform
-      pos: 1.3907709,5.6311765
+      pos: 1.2943872,5.66359
       parent: 1
 - proto: ClothingBeltUtilityEngineering
   entities:
@@ -2808,15 +2797,10 @@ entities:
       parent: 1
 - proto: DrinkGlass
   entities:
-  - uid: 31
-    components:
-    - type: Transform
-      pos: 2.6512809,4.6135755
-      parent: 1
   - uid: 42
     components:
     - type: Transform
-      pos: 2.6616974,4.8012056
+      pos: 2.2380424,4.7646136
       parent: 1
   - uid: 104
     components:
@@ -2831,12 +2815,27 @@ entities:
   - uid: 130
     components:
     - type: Transform
-      pos: 2.4012809,4.6135755
+      pos: 2.7473016,4.7584367
       parent: 1
   - uid: 131
     components:
     - type: Transform
-      pos: 2.4116974,4.8012056
+      pos: 2.7503881,4.6163626
+      parent: 1
+  - uid: 634
+    components:
+    - type: Transform
+      pos: 2.491129,4.761525
+      parent: 1
+  - uid: 839
+    components:
+    - type: Transform
+      pos: 2.491129,4.6194515
+      parent: 1
+  - uid: 840
+    components:
+    - type: Transform
+      pos: 2.2349558,4.613274
       parent: 1
   - uid: 871
     components:
@@ -4543,22 +4542,32 @@ entities:
   - uid: 129
     components:
     - type: Transform
-      pos: 0.362599,4.8363476
+      pos: 0.30814266,4.7399054
       parent: 1
   - uid: 137
     components:
     - type: Transform
-      pos: 0.7271823,4.815514
+      pos: 0.332834,4.9221306
       parent: 1
   - uid: 176
     components:
     - type: Transform
-      pos: 0.33134896,4.7321806
+      pos: 0.7186365,4.891245
       parent: 1
-  - uid: 703
+  - uid: 206
     components:
     - type: Transform
-      pos: 0.74801564,4.721764
+      pos: 0.7186365,4.798588
+      parent: 1
+  - uid: 227
+    components:
+    - type: Transform
+      pos: 0.30814266,4.848005
+      parent: 1
+  - uid: 838
+    components:
+    - type: Transform
+      pos: 0.71555007,4.671957
       parent: 1
 - proto: hydroponicsTray
   entities:
@@ -4654,10 +4663,10 @@ entities:
       parent: 1
 - proto: KitchenKnife
   entities:
-  - uid: 234
+  - uid: 703
     components:
     - type: Transform
-      pos: 1.9428543,5.558209
+      pos: 2.5527737,5.513398
       parent: 1
 - proto: KitchenMicrowave
   entities:
@@ -4717,6 +4726,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -9.5,4.5
       parent: 1
+- proto: LockerWallEVAColorCargoFilled
+  entities:
+  - uid: 235
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -9.5,5.5
+      parent: 1
 - proto: LockerWallMaterialsBasicFilled
   entities:
   - uid: 638
@@ -4747,6 +4764,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -7.5,8.5
+      parent: 1
+- proto: McServiceTechFab
+  entities:
+  - uid: 339
+    components:
+    - type: Transform
+      pos: -1.5,8.5
       parent: 1
 - proto: Mirror
   entities:
@@ -5349,13 +5373,6 @@ entities:
     - type: Transform
       pos: -7.5,5.5
       parent: 1
-- proto: McServiceTechFab
-  entities:
-  - uid: 339
-    components:
-    - type: Transform
-      pos: -1.5,8.5
-      parent: 1
 - proto: ShelfWallFreezerWhite
   entities:
   - uid: 868
@@ -5897,14 +5914,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,11.5
-      parent: 1
-- proto: SuitStorageWallmountEVACargo
-  entities:
-  - uid: 634
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -9.5,5.5
       parent: 1
 - proto: SurveillanceCameraRouterSupply
   entities:
@@ -6831,6 +6840,13 @@ entities:
     components:
     - type: Transform
       pos: -2.5,7.5
+      parent: 1
+- proto: WardrobeCargoFilled
+  entities:
+  - uid: 49
+    components:
+    - type: Transform
+      pos: -1.5,9.5
       parent: 1
 - proto: WarpPoint
   entities:
