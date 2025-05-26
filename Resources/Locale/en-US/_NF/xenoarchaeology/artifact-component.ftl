@@ -1,4 +1,3 @@
-
 artifact-node-nf-class-1 = [color=#ff2bb1]Hylic[/color]
 artifact-node-nf-class-2 = [color=#ff8b2b]Psychic[/color]
 artifact-node-nf-class-3 = [color=#a9ff38]Noumenal[/color]
