@@ -164,6 +164,7 @@
     - type: Strippable
     - type: UserInterface
 
+#region Despawn timers
 - type: entity
   abstract: true
   id: NFMobTimedDespawn30
@@ -219,7 +220,9 @@
   components:
   - type: TimedDespawn
     lifetime: 3000
+#endregion
 
+#region Movement
 - type: entity
   save: false
   id: MobEnhancedMovement
@@ -244,8 +247,9 @@
 #  - type: Access
 #    groups:
 #    - AllAccess
+#endregion
 
-# Dungeon boss
+#region Dungeon boss
 - type: entity
   id: MobHostileBossBase
   abstract: true
@@ -265,8 +269,9 @@
     - DoorBumpOpener
     - CannotSuicide
   - type: FTLKnockdownImmune
+#endregion
 
-# Inventories
+#region Inventories
 - type: entity # All slots are fillable, most of them are "hidden"
   save: false
   id: MobHumanoidInvetory
@@ -284,8 +289,9 @@
   - type: Inventory
     templateId: hostilehumanoidsimplified # Does not support loadouts
   - type: InventorySlots
+#endregion
 
-# AI packages
+#region AI packages
 - type: entity
   id: MobHumanoidHostileAISimpleMelee
   abstract: true
@@ -336,6 +342,7 @@
         true
 #      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
 #        true
+#endregion
 
 # Human NPC, uses equipment, immune to vacuum/low pressure
 - type: entity
