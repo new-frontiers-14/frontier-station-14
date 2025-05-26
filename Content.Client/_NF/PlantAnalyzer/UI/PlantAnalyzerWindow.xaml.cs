@@ -19,6 +19,8 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
 
     private const string IndentedNewline = "\n   ";
 
+    public Action<bool> OnAdvancedModeChanged;
+
     public PlantAnalyzerWindow()
     {
         RobustXamlLoader.Load(this);
@@ -28,14 +30,10 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
 
         OnButton.Group = _buttonGroup;
         OnButton.ToggleMode = true;
+        OnButton.OnPressed += (_) => OnAdvancedModeChanged?.Invoke(true);
         OffButton.Group = _buttonGroup;
         OffButton.ToggleMode = true;
-    }
-
-    public void SetupCallbacks(PlantAnalyzerBoundUserInterface owner)
-    {
-        OnButton.OnPressed += _ => owner.AdvPressed(true);
-        OffButton.OnPressed += _ => owner.AdvPressed(false);
+        OffButton.OnPressed += (_) => OnAdvancedModeChanged?.Invoke(false);
     }
 
     public void Populate(PlantAnalyzerScannedSeedPlantInformation msg)

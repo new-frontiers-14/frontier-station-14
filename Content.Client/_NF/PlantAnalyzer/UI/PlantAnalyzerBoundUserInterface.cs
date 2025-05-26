@@ -20,8 +20,8 @@ public sealed class PlantAnalyzerBoundUserInterface : BoundUserInterface
         if (_window == null)
         {
             _window = this.CreateWindowCenteredLeft<PlantAnalyzerWindow>();
-            _window.SetupCallbacks(this);
             _window.Title = Loc.GetString("plant-analyzer-interface-title");
+            _window.OnAdvancedModeChanged += AdvPressed;
         }
     }
 
