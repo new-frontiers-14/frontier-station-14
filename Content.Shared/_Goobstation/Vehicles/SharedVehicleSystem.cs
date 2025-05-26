@@ -293,7 +293,6 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         }
 
         _mover.SetRelay(driver, vehicle);
-        _interaction.SetRelay(pilot, mech, irelay); // Frontier
 
         AddHorns(driver, vehicle); // Frontier
     }
