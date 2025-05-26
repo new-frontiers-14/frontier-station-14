@@ -11,14 +11,15 @@ using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Prototypes; // Frontier
+using Content.Shared._NF.Vehicle.Components; // Frontier
+using Content.Shared.Interaction; // Frontier
 using Content.Shared.Light.Components; // Frontier
 using Content.Shared.Light.EntitySystems; // Frontier
 using Content.Shared.Movement.Pulling.Components; // Frontier
+using Content.Shared.Movement.Pulling.Events; // Frontier
 using Content.Shared.Popups; // Frontier
 using Robust.Shared.Network; // Frontier
-using Content.Shared._NF.Vehicle.Components; // Frontier
-using Content.Shared.Movement.Pulling.Events; // Frontier
+using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Timing; // Frontier
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
@@ -38,6 +39,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!; // Frontier
     [Dependency] private readonly IGameTiming _timing = default!; // Frontier
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!; // Frontier
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
@@ -291,6 +293,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         }
 
         _mover.SetRelay(driver, vehicle);
+        _interaction.SetRelay(pilot, mech, irelay); // Frontier
 
         AddHorns(driver, vehicle); // Frontier
     }
