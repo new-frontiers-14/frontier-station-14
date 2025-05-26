@@ -15,7 +15,7 @@ public sealed partial class MachineBoardComponent : Component
     /// Entities needed to construct this machine, discriminated by component.
     /// </summary>
     [DataField]
-    public Dictionary<ProtoId<MachinePartPrototype>, int> Requirements = new();
+    public Dictionary<ProtoId<MachinePartPrototype>, GenericPartInfo> Requirements = new();
     // End Frontier
 
     /// <summary>
