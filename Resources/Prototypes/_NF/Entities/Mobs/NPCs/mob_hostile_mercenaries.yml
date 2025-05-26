@@ -1,8 +1,10 @@
-# Base
+#region Base
 - type: entity
   name: mercenary
   abstract: true
   parent:
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - BaseC3MobHuman
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
@@ -25,8 +27,6 @@
     speedModifierThresholds:
       48: 0.7
       64: 0.5
-  - type: Stamina
-    critThreshold: 80
   - type: DamageStateVisuals
     rotate: true
   - type: RotationVisuals
@@ -60,12 +60,9 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 # Variations
-## Tier 1
+#region Tier 1
 - type: entity
   name: mercenary soldier
   parent:
@@ -113,7 +110,9 @@
 
 - type: entity
   name: mercenary soldier
-  parent: MobMercenaryBase
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobMercenaryBase
   id: MobMercenarySoldierPistol
   description: Low-ranking soldiers armed with a variety of surplus weapons.
   categories: [ HideSpawnMenu ]
@@ -203,7 +202,7 @@
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
 
-## Tier 2
+#region Tier 2
 - type: entity
   name: mercenary breacher
   parent:
@@ -252,7 +251,9 @@
 
 - type: entity
   name: mercenary breacher
-  parent: MobMercenaryBase
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobMercenaryBase
   id: MobMercenarySoldierRevolver
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
   categories: [ HideSpawnMenu ]
@@ -300,7 +301,9 @@
 
 - type: entity
   name: mercenary breacher
-  parent: MobMercenaryBase
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobMercenaryBase
   id: MobMercenaryBreacherShotgun
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
   categories: [ HideSpawnMenu ]
@@ -348,10 +351,12 @@
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
 
-## Tier 3
+#region Tier 3
 - type: entity
   name: mercenary paramedic
-  parent: MobMercenaryBase
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobMercenaryBase
   id: MobMercenarySpecialistMedic
   description: Experienced mercenaries, specialists are practised and proficient in combat or support roles, possibly both.
   categories: [ HideSpawnMenu ]
@@ -415,7 +420,9 @@
 
 - type: entity
   name: mercenary ranger
-  parent: MobMercenaryBase
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobMercenaryBase
   id: MobMercenarySpecialistAssault
   categories: [ HideSpawnMenu ]
   components:
@@ -465,10 +472,13 @@
     - Burst
     soundGunshot: /Audio/_NF/Weapons/Guns/Gunshots/rifle.ogg
 
-## Tier 4 - Boss
+#region Tier 4 - Boss
 - type: entity
   name: mercenary captain
-  parent: [ MobMercenaryBase, NFMobBossRestrictions ]
+  parent:
+   - MobHostileBossBase
+   - NFMobBossRestrictions
+   - MobMercenaryBase
   id: MobMercenaryCaptain
   description: The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
   categories: [ HideSpawnMenu ]

@@ -1,7 +1,11 @@
 # Based on https://github.com/space-wizards/space-station-14/pull/26883 by @Vonsant, sprites by belay5 (discord)
 # BASE
 - type: entity
-  parent: [ MobNonHumanHostileBase, NFMobRestrictions ]
+  parent:
+  - MobStaminaSpecial
+  - MobMovementSpeedModifierMelee
+  - MobNonHumanHostileBase
+  - NFMobRestrictions
   id: BaseMobDinosaurExpeditions
   name: dinosaur
   description: Enigmatic behemoths from a bygone era, known for their imposing stature and formidable presence.
@@ -70,9 +74,6 @@
     tags:
     - FootstepSound
     - DoorBumpOpener
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 # MOBS
 # Sorted by health pool (less health ~= faster and harder hitting)
@@ -107,9 +108,6 @@
       types:
         Slash: 8
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 4.1
-    baseWalkSpeed: 4.1
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepAsteroid
@@ -145,9 +143,6 @@
         Slash: 8
         Caustic: 2
         Structural: 25
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 4.3
-    baseWalkSpeed: 4.3
 
 - type: entity
   parent: BaseMobDinosaurExpeditions
@@ -187,9 +182,6 @@
       types:
         Slash: 18
         Structural: 30
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 4.5
-    baseWalkSpeed: 4.5
 
 - type: entity
   parent: BaseMobDinosaurExpeditions
@@ -229,12 +221,11 @@
       types:
         Blunt: 6
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 4
-    baseWalkSpeed: 4
 
 - type: entity
-  parent: BaseMobDinosaurExpeditions
+  parent:
+  - MobMovementSpeedModifierRanged
+  - BaseMobDinosaurExpeditions
   id: MobDinosaurKentroExpeditions
   name: kentrosaurus
   description: On the smaller side of dinosaurs, Kentrosaurus generally measure around 4–4.5 m, and weigh about 700–1,600 kg. Its elongated head and beak are used to bite off plant material or tear off limbs.
@@ -276,7 +267,9 @@
     baseWalkSpeed: 2.5
 
 - type: entity
-  parent: BaseMobDinosaurExpeditions
+  parent:
+  - MobMovementSpeedModifierRanged
+  - BaseMobDinosaurExpeditions
   id: MobDinosaurTrikeExpeditions
   name: triceratops
   description: Bearing a large bony frill with three horns on its skull, this massive quadruped is one of the most recognizable of all dinosaurs and the best-known ceratopsian. Typically tries to gore whatever it attacks.
@@ -313,12 +306,11 @@
       types:
         Piercing: 12
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 3
-    baseWalkSpeed: 3
 
 - type: entity
-  parent: BaseMobDinosaurExpeditions
+  parent:
+  - MobMovementSpeedModifierRanged
+  - BaseMobDinosaurExpeditions
   id: MobDinosaurAnkiExpeditions
   name: ankylosaurus
   description: Typically between between 6 and 8 meters long and between 4.8 and 8 tons in weight, this lumbering beast shouldn't be underestimated. Its wide, low skull and robust body can take a beating and still survive, and the large club on the end of its tail can be used as a weapon.
@@ -355,9 +347,6 @@
       types:
         Blunt: 12
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 2
-    baseWalkSpeed: 2
 
 - type: entity
   parent: BaseMobDinosaurExpeditions
@@ -397,12 +386,11 @@
       types:
         Blunt: 12
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 4.5
-    baseWalkSpeed: 4.5
 
 - type: entity
-  parent: BaseMobDinosaurExpeditions
+  parent:
+  - MobMovementSpeedModifierRanged
+  - BaseMobDinosaurExpeditions
   id: MobDinosaurStegoExpeditions
   name: stegosaurus
   description: Large and heavily built, these herbivorous quadrupeds have rounded backs, short fore limbs, long hind limbs, and tails held high in the air. Lumbering, but lethal up close.
@@ -440,13 +428,13 @@
         Blunt: 12
         Piercing: 8
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 3
-    baseWalkSpeed: 3
 
-# EXPEDITION BOSS
+#region EXPEDITION BOSS
 - type: entity
-  parent: [ BaseMobDinosaurExpeditions, NFMobBossRestrictions ]
+  parent:
+  - NFMobBossRestrictions
+  - MobHostileBossBase
+  - BaseMobDinosaurExpeditions
   id: MobDinosaurTrexExpeditions
   name: tyrannosaurus
   description: A massive therapod, its giant thorax is balanced by a long, heavy tail. Relative to its large and powerful hind limbs, the forelimbs of Tyrannosaurus are short but incredible powerful for their size, and they have two clawed digits.
@@ -484,6 +472,3 @@
         Slash: 15
         Piercing: 10
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 4.5
-    baseWalkSpeed: 4.5
