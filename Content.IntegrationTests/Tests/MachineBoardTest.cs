@@ -141,7 +141,7 @@ public sealed class MachineBoardTest
         await pair.CleanReturnAsync();
     }
 
-    // Frontier: 
+    // Frontier: machine part tests
     /// <summary>
     /// Invalid stack types for MachineBoard components, should be listed as requirements.
     /// </summary>
@@ -241,4 +241,5 @@ public sealed class MachineBoardTest
 
         await pair.CleanReturnAsync();
     }
+    // End Frontier: machine part tests
 }
