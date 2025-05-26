@@ -1,6 +1,10 @@
-# BASE
+#region BASE
 - type: entity
-  parent: [ MobNonHumanHostileBase, NFMobRestrictions ]
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobStaminaFodder
+  - NFMobRestrictions
+  - MobNonHumanHostileBase
   id: BaseMobArgocyteExpeditions
   name: argocyte
   description: |-
@@ -55,9 +59,6 @@
         Structural: 20
   - type: Body
     prototype: Animal
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 3.5
-    baseWalkSpeed : 3
   - type: TypingIndicator
     proto: alien
   - type: ReplacementAccent
@@ -79,7 +80,7 @@
       amount: 3
 
 # VARIANTS
-## Stalkers morphotype
+#region Stalkers morphotype
 - type: entity
   parent: BaseMobArgocyteExpeditions
   id: MobArgocyteSlurvaExpeditions
@@ -120,9 +121,6 @@
       types:
         Slash: 3
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 3
-    baseWalkSpeed : 3
 
 - type: entity
   parent: BaseMobArgocyteExpeditions
@@ -164,12 +162,11 @@
       types:
         Slash: 6
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 3.5
-    baseWalkSpeed : 3.5
 
 - type: entity
-  parent: BaseMobArgocyteExpeditions
+  parent:
+  - MobMovementSpeedModifierMelee
+  - BaseMobArgocyteExpeditions
   id: MobArgocyteSwiperExpeditions
   name: swiper
   description: The third lifecycle stage of the Stalker morphotype. Roaming scavengers, usually out on reconnaisance or gathering materials.
@@ -197,12 +194,11 @@
       types:
         Slash: 8
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 4
-    baseWalkSpeed: 4
 
 - type: entity
-  parent: BaseMobArgocyteExpeditions
+  parent:
+  - MobMovementSpeedModifierMelee
+  - BaseMobArgocyteExpeditions
   id: MobArgocyteGliderExpeditions
   name: glider
   description: The fourth lifecycle stage of the Stalker morphotype. Born and bred hunters, these stalk and prey upon smaller wildlife.
@@ -230,12 +226,11 @@
       types:
         Slash: 10
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 4.5
-    baseWalkSpeed: 4.5
 
 - type: entity
-  parent: BaseMobArgocyteExpeditions
+  parent:
+  - MobMovementSpeedModifierSpecial
+  - BaseMobArgocyteExpeditions
   id: MobArgocyteCrawlerExpeditions
   name: crawler
   description: The fifth lifecycle stage of the Stalker morphotype. These deadly pack animals ambush and maul unsuspecting travelers.
@@ -263,9 +258,6 @@
       types:
         Slash: 12
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 5
-    baseWalkSpeed: 5
   - type: Butcherable
     spawned:
     - id: SpawnDungeonLootMaterialsBasicSingle
@@ -274,7 +266,9 @@
       amount: 5
 
 - type: entity
-  parent: BaseMobArgocyteExpeditions
+  parent:
+  - MobMovementSpeedModifierMelee
+  - BaseMobArgocyteExpeditions
   id: MobArgocyteFounderExpeditions
   name: founder
   description: The last known lifecycle stage of the Stalker morphotype. Most often seen in mature hives preparing for an expansion.
@@ -303,9 +297,6 @@
       types:
         Slash: 14
         Structural: 25
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 4.5
-    baseWalkSpeed: 4.5
   - type: Butcherable
     spawned:
     - id: SpawnDungeonLootMaterialsBasicFull
@@ -313,7 +304,7 @@
     - id: FoodMeatXeno
       amount: 7
 
-## Guardian morphotype
+#region Guardian morphotype
 - type: entity
   parent: BaseMobArgocyteExpeditions
   id: MobArgocyteBarrierExpeditions
@@ -384,9 +375,6 @@
       types:
         Blunt: 8
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 3.5
-    baseWalkSpeed : 3.5
 
 - type: entity
   parent: BaseMobArgocyteExpeditions
@@ -416,9 +404,6 @@
     damage:
       types:
         Blunt: 10
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 3.5
-    baseWalkSpeed : 3.5
   - type: Butcherable
     spawned:
     - id: SpawnDungeonLootMaterialsBasicSingle
@@ -498,8 +483,12 @@
     - id: FoodMeatXeno
       amount: 7
 
+#region boss
 - type: entity
-  parent: [ BaseMobArgocyteExpeditions, NFMobBossRestrictions ]
+  parent:
+  - NFMobBossRestrictions
+  - MobHostileBossBase
+  - BaseMobArgocyteExpeditions
   id: MobArgocyteLeviathingExpeditions
   name: leviathing
   description: The final known lifecycle stage of the Guardian morphotype. These hulking beasts lead attacks on the hive's enemies.

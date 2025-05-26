@@ -27,6 +27,17 @@
 
 - type: entity
   save: false
+  id: MobLaserReflect
+  abstract: true
+  components:
+  - type: Reflect
+    reflectProb: 0.8
+    reflects:
+      - Energy
+
+# region Regeneration
+- type: entity
+  save: false
   id: MobPassiveRegenWeak
   abstract: true
   components:
@@ -72,17 +83,9 @@
         Brute: -0.5
         Burn: -0.5
         Airloss: -1
+#endregion
 
-- type: entity
-  save: false
-  id: MobLaserReflect
-  abstract: true
-  components:
-  - type: Reflect
-    reflectProb: 0.8
-    reflects:
-      - Energy
-
+#region Restrictions
 - type: entity
   abstract: true
   id: NFMobRestrictions
@@ -163,6 +166,7 @@
     removeComponentsOnRevival:
     - type: Strippable
     - type: UserInterface
+#endregion
 
 #region Despawn timers
 - type: entity
@@ -244,9 +248,71 @@
     speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
-#  - type: Access
-#    groups:
-#    - AllAccess
+  - type: Access
+    groups:
+    - AllAccess
+
+- type: entity # For reference 4.5 is the speed of unencombered humans
+  save: false
+  id: MobMovementSpeedModifierMelee
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+
+- type: entity
+  save: false
+  id: MobMovementSpeedModifierRanged
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 3.5
+
+- type: entity
+  save: false
+  id: MobMovementSpeedModifierSpecial
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
+
+- type: entity
+  save: false
+  id: MobMovementSpeedModifierBoss
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+#endregion
+
+#region Stamina
+- type: entity
+  save: false
+  id: MobStaminaFodder
+  abstract: true
+  components:
+  - type: Stamina
+    critThreshold: 100
+
+- type: entity
+  save: false
+  id: MobStaminaSpecial
+  abstract: true
+  components:
+  - type: Stamina
+    critThreshold: 300
+
+- type: entity
+  save: false
+  id: MobStaminaBoss
+  abstract: true
+  components:
+  - type: Stamina
+    critThreshold: 500
 #endregion
 
 #region Dungeon boss
@@ -255,6 +321,8 @@
   abstract: true
   parent:
   - MobEnhancedMovement
+  - MobStaminaBoss
+  - MobMovementSpeedModifierBoss
   - MobPassiveRegenWeak
   - NFMobRestrictions
   components:
@@ -344,12 +412,15 @@
 #        true
 #endregion
 
+#region NPC types
 # Human NPC, uses equipment, immune to vacuum/low pressure
 - type: entity
   suffix: AI, Hostile
   abstract: true
   parent:
   - NFMobAtmos
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobBloodstream
   - MobFlammable
   - MobEnhancedMovement
@@ -369,8 +440,6 @@
       0: Alive
       80: Critical
       120: Dead
-  - type: Stamina
-    critThreshold: 100
   - type: SlowOnDamage
     speedModifierThresholds:
       40: 0.7
@@ -405,6 +474,8 @@
   abstract: true
   parent:
   - BaseMob
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobDamageable
   - MobCombat
   - NFMobAtmos
@@ -455,8 +526,6 @@
       0: Alive
       65: Critical
       100: Dead
-  - type: Stamina
-    critThreshold: 100
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -475,6 +544,8 @@
   abstract: true
   parent:
   - MobFlammable
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobEnhancedMovement
   - MobHumanoidHostileAISimpleMelee
   - BaseC3MobCreature
@@ -505,7 +576,9 @@
     - SimpleHostile
   - type: Carriable # Kept for consistency with other mobs
   - type: FTLKnockdownImmune
+#endregion
 
+#region Roadkill
 # Parent for consistent roadkill settings
 - type: entity
   abstract: true
@@ -516,3 +589,4 @@
     destroySpeed: 40 # yeehaw
     destroySound:
       collection: gib
+#endregion
