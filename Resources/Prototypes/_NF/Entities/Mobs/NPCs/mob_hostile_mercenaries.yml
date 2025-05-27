@@ -14,6 +14,8 @@
   id: MobMercenaryBase
   description: A mercenary, merc, soldier of fortune, hired gun, dog of war.
   components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
   - type: Damageable
     damageModifierSet: MobMercenaryDamageModifierSet
   - type: NpcFactionMember
@@ -526,3 +528,210 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+
+#region Space, Tier 1
+- type: entity
+  id: MobMercenaryEVAKitTier1
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-base
+      color: "#7b7b3f"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-decals-01
+      color: "#b8b873"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-reinforced-points
+      color: "#3e3e48"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-breathing-gear
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-unshaded
+      shader: unshaded
+    # Helmet
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-base
+      color: "#7b7b3f"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-reinforced-points
+      color: "#27272e"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-visor
+      color: "#f5fc95"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-light
+      shader: unshaded
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+  - type: PointLight
+    color: "#7b7b3f"
+    enabled: true
+    radius: 3
+    energy: 1
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
+- type: entity
+  id: MobMercenarySoldierEVAKnife
+  parent:
+  - MobMovementSpeedModifierEVAMelee
+  - MobMercenaryEVAKitTier1
+  - MobMercenarySoldierKnife
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobMercenarySoldierEVAPistol
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier1
+  - MobMercenarySoldierPistol
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobMercenarySoldierEVANovalite
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier1
+  - MobMercenarySoldierNovalite
+  categories: [ HideSpawnMenu ]
+
+#region Space, Tier 2
+- type: entity
+  id: MobMercenaryEVAKitTier2
+  parent: MobMercenaryEVAKitTier1
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _NF/Clothing/OuterClothing/Hardsuits/mercenary.rsi
+      state: equipped-OUTERCLOTHING
+    # Helmet
+    - sprite: _NF/Clothing/Head/Hardsuits/mercenary.rsi
+      state: on-equipped-HELMET
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+
+- type: entity
+  id: MobMercenaryBreacherEVAMachete
+  parent:
+  - MobMovementSpeedModifierEVAMelee
+  - MobMercenaryEVAKitTier2
+  - MobMercenaryBreacherMachete
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobMercenaryBreacherEVARevolver
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier2
+  - MobMercenarySoldierRevolver
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobMercenaryBreacherEVAShotgun
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier2
+  - MobMercenaryBreacherShotgun
+  categories: [ HideSpawnMenu ]
+
+#region Space, Tier 3
+- type: entity
+  id: MobMercenaryEVAKitTier3
+  parent: MobMercenaryEVAKitTier1
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _NF/Clothing/OuterClothing/Hardsuits/private_security.rsi
+      state: equipped-OUTERCLOTHING
+    # Helmet
+    - sprite: _NF/Clothing/Head/Hardsuits/private_security.rsi
+      state: on-equipped-HELMET
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+
+- type: entity
+  id: MobMercenarySpecialistEVAMedic
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier3
+  - MobMercenarySpecialistMedic
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobMercenarySpecialistEVAAssault
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier3
+  - MobMercenarySpecialistAssault
+  categories: [ HideSpawnMenu ]
+
+#region Space, Tier 4 - Boss
+- type: entity
+  id: MobMercenaryEVAKitTier4
+  parent: MobMercenaryEVAKitTier1
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _NF/Clothing/OuterClothing/Hardsuits/scaf.rsi
+      state: equipped-OUTERCLOTHING
+    # Helmet
+    - sprite: _NF/Clothing/Head/Hardsuits/scaf.rsi
+      state: off-equipped-HELMET
+    # Mantle
+    - sprite: Clothing/Neck/mantles/qmmantle.rsi
+      state: equipped-NECK
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+
+- type: entity
+  id: MobMercenaryCaptainEVA
+  parent:
+  - MobMercenaryEVAKitTier4
+  - MobMercenaryCaptain
+  categories: [ HideSpawnMenu ]

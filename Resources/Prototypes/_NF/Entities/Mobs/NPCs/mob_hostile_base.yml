@@ -252,7 +252,7 @@
     groups:
     - AllAccess
 
-- type: entity # For reference 4.5 is the speed of unencombered humans
+- type: entity # For reference 4.5 is the speed of unencumbered humans
   save: false
   id: MobMovementSpeedModifierMelee
   abstract: true
@@ -263,12 +263,30 @@
 
 - type: entity
   save: false
+  id: MobMovementSpeedModifierEVAMelee
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.8 # ~15% slowdown
+    baseSprintSpeed : 3.8 # ~15% slowdown
+
+- type: entity
+  save: false
   id: MobMovementSpeedModifierRanged
   abstract: true
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
     baseSprintSpeed : 3.5
+
+- type: entity
+  save: false
+  id: MobMovementSpeedModifierEVARanged
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3 # ~15% slowdown
+    baseSprintSpeed : 3 # ~15% slowdown
 
 - type: entity
   save: false

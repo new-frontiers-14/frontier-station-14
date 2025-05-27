@@ -738,11 +738,12 @@
     capacity: 1
     count: 1
 
-# Void Troopers
+#region Void Troopers
 # Syndicate Captain, "armed" with Python
 - type: entity
   name: syndicate captain
   parent:
+  - MobMovementSpeedModifierEVARanged
   - MobSyndicateNavalCaptainA
   #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalCaptainVoid
@@ -759,6 +760,7 @@
 # Second Officer, "armed" with Advanced Laser Pistol
 - type: entity
   parent:
+  - MobMovementSpeedModifierEVARanged
   - MobSyndicateNavalSecondOfficerA
   #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalSecondOfficerVoid
@@ -771,6 +773,7 @@
 # Syndicate Security Operative, "armed" with Atreides SMG
 - type: entity
   parent:
+  - MobMovementSpeedModifierEVARanged
   - MobSyndicateNavalOperatorA
   #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalOperatorVoid
@@ -783,6 +786,7 @@
 # Syndicate Engineer, "armed" with shotgun
 - type: entity
   parent:
+  - MobMovementSpeedModifierEVARanged
   - MobSyndicateNavalEngineerA
   #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalEngineerVoid
@@ -801,6 +805,7 @@
 # Syndicate Deckhand, "armed" with Viper
 - type: entity
   parent:
+  - MobMovementSpeedModifierEVARanged
   - MobSyndicateNavalDeckhandA
   #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalDeckhandVoid
@@ -815,6 +820,7 @@
 # Syndicate Medic, "armed" poisoned darts
 - type: entity
   parent:
+  - MobMovementSpeedModifierEVARanged
   - MobSyndicateNavalMedicA
   #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalMedicVoid
