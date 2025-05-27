@@ -74,10 +74,6 @@ public abstract partial class SharedXenoArtifactSystem
         SoundSpecifier? soundEffect;
         if (TryGetNodeFromUnlockState(ent, out var node))
         {
-            SetNodeUnlocked((ent, artifactComponent), node.Value);
-            ActivateNode((ent, ent), (node.Value, node.Value), null, null, Transform(ent).Coordinates, true); // Frontier: false<true
-            unlockAttemptResultMsg = "artifact-unlock-state-end-success";
-
             // Frontier: remove value if artifexium used
             if (ent.Comp1.ArtifexiumApplied)
             {
@@ -86,6 +82,10 @@ public abstract partial class SharedXenoArtifactSystem
                 Dirty(node.Value);
             }
             // End Frontier
+
+            SetNodeUnlocked((ent, artifactComponent), node.Value);
+            ActivateNode((ent, ent), (node.Value, node.Value), null, null, Transform(ent).Coordinates, true); // Frontier: false<true
+            unlockAttemptResultMsg = "artifact-unlock-state-end-success";
 
             // as an experiment - unlocking node doesn't activate it, activation is left for player to decide.
             // var activated = ActivateNode((ent, artifactComponent), node.Value, null, null, Transform(ent).Coordinates, false);

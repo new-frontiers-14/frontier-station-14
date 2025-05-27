@@ -303,6 +303,41 @@
   - type: StaticPrice
     vendPrice: 0
 
+- type: entity
+  parent: [BaseC3CultContrabandNoValue, BaseItem]
+  id: FuelSkrungle
+  name: skrungle
+  description: An unholy fuel that powers most generators. It resonates with dark energies.
+  suffix: 20
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Skrungle: 100
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Fuel/fuelgrade_material.rsi
+    layers:
+    - state: skrungle
+      map: ["base"]
+  - type: Appearance
+  - type: StaticPrice
+    price: 0
+    vendPrice: 5000
+  - type: Stack
+    stackType: FuelSkrungle
+    count: 20
+  - type: NFFuel # Frontier
+
+- type: entity
+  parent: FuelSkrungle
+  id: FuelSkrungle1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+  - type: StaticPrice
+    vendPrice: 0
+
 #Reinforced Jug chem fills.
 
 - type: entity

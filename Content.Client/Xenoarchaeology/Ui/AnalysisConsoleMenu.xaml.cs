@@ -243,7 +243,7 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
         }
 
         ClassValueLabel.SetMarkup(Loc.GetString("analysis-console-info-class-value",
-            ("class", Loc.GetString($"artifact-node-class-{Math.Min(6, predecessorNodes.Count + 1)}"))));
+            ("class", Loc.GetString($"artifact-node-nf-class-{Math.Min(8, predecessorNodes.Count + 1)}")))); // Frontier: add nf-, 6<8
     }
 }
 

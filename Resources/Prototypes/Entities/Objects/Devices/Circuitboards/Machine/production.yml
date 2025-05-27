@@ -1057,8 +1057,9 @@
     state: supply
   - type: MachineBoard
     prototype: MachineMaterialSilo
+    requirements: # Frontier
+      MatterBin: 4 # Frontier: stackRequirements<requirements
     stackRequirements:
-      MatterBin: 4
       Cable: 1
 
 - type: entity
@@ -1296,8 +1297,9 @@
     state: supply
   - type: MachineBoard
     prototype: CargoMailTeleporter
+    requirements: # Frontier
+      Capacitor: 2 # Frontier: stackRequirements<requirements
     stackRequirements:
-      Capacitor: 2
       Steel: 5
 
 - type: entity

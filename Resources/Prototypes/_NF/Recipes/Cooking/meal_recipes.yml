@@ -373,7 +373,7 @@
     FoodOnionSlice: 1
   recipeType:
   - Assembler
-   
+
 # Donuts (uncooked as well as glazed) - frying handled by DeepFrySpawnComponent per-entity
 
 - type: microwaveMealRecipe
@@ -1006,6 +1006,233 @@
     Water: 15
   recipeType:
   - Oven
+
+# Frozen desserts
+
+- type: microwaveMealRecipe
+  id: RecipeIceCreamSandwich
+  name: ice-cream sandwich
+  result: FoodFrozenSandwich
+  time: 5
+  group: Dessert
+  solids:
+    FoodCakeChocolateSlice: 2 # seems cursed, but ice cream sandwiches are actually made with cake
+  reagents:
+    IceCream: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeIceCreamSandwichStrawberry
+  name: strawberry ice-cream sandwich
+  result: FoodFrozenSandwichStrawberry
+  time: 5
+  group: Dessert
+  solids:
+    FoodCakePlainSlice: 2
+  reagents:
+    IceCream: 8
+    JuiceBerry: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePopsicleOrange
+  name: orange creamsicle
+  result: FoodFrozenPopsicleOrange
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenPopsicleTrash: 1 # recycling!
+  reagents:
+    IceCream: 8
+    JuiceOrange: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePopsicleBerry
+  name: berry creamsicle
+  result: FoodFrozenPopsicleBerry
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    IceCream: 8
+    JuiceBerry: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePopsicleLicorice
+  name: licorice creamsicle
+  result: FoodFrozenPopsicleLicorice
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    IceCream: 8
+    Everyspice: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePopsicleJumbo
+  name: jumbo popsicle
+  result: FoodFrozenPopsicleJumbo
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenPopsicleTrash: 1
+    FoodSnackChocolateBar: 1
+  reagents:
+    IceCream: 8
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeBase
+  name: sweet snowcone
+  result: FoodFrozenSnowconeBase
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 10
+    Sugar: 4
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconePlain
+  name: flavorless snowcone
+  result: FoodFrozenSnowcone
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeBerry
+  name: berry snowcone
+  result: FoodFrozenSnowconeBerry
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 10
+    JuiceBerry: 4
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeFruit
+  name: fruit salad snowcone
+  result: FoodFrozenSnowconeFruit
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 8
+    JuiceLemon: 2
+    JuiceLime: 2
+    JuiceOrange: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeClown
+  name: clowncone
+  result: FoodFrozenSnowconeClown
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 10
+    Laughter: 4
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeMime
+  name: mime snowcone
+  result: FoodFrozenSnowconeMime
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 10
+    Nothing: 4 # the sound of silence
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeRainbow
+  name: rainbow snowcone
+  result: FoodFrozenSnowconeRainbow
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+    GroundCannabisRainbow: 1
+  reagents:
+    Ice: 10
+    Sugar: 4 # because it's sweet
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSundae
+  name: ice cream sundae
+  result: FoodFrozenSundae
+  time: 5
+  group: Dessert
+  solids:
+    FoodBakedWaffleCone: 1
+    FoodCherry: 1 # critical
+  reagents:
+    IceCream: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeFreezy
+  name: space freezy
+  result: FoodFrozenFreezy
+  time: 5
+  group: Dessert
+  solids:
+    FoodBakedWaffleCone: 1
+  reagents:
+    IceCream: 8
+    JuiceBerry: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeCornuto
+  name: choco horn
+  result: FoodFrozenCornuto
+  time: 5
+  group: Dessert
+  solids:
+    FoodBakedWaffleCone: 1
+    FoodSnackChocolateBar: 1
+  reagents:
+    IceCream: 8
+  recipeType:
+  - Assembler
 
 # NOT ACTUAL FOOD
 

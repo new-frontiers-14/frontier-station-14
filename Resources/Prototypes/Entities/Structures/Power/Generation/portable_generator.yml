@@ -170,7 +170,7 @@
       multiplier: 0.01
     - type: MaterialStorage
       storageLimit: 3000
-      materialWhiteList: [Plasma, FuelGradePlasma, RawPlasma] # Frontier: add FuelGradePlasma, RawPlasma
+      materialWhiteList: [Plasma, FuelGradePlasma, RawPlasma, Skrungle] # Frontier: add FuelGradePlasma, RawPlasma, Scrungle
     - type: PortableGenerator
       startChance: 0.8
     - type: UpgradePowerSupplier
@@ -201,6 +201,9 @@
       - input: RawPlasma
         output: FuelGradePlasma
         rate: 0.5
+      - input: Skrungle
+        output: FuelGradePlasma
+        rate: 1
     # End Frontier: magnet pickup, fuel adapter
 
 - type: entity
@@ -246,7 +249,7 @@
       multiplier: 0.01
     - type: MaterialStorage
       storageLimit: 3000
-      materialWhiteList: [Uranium, FuelGradeUranium, RawUranium] # Frontier: add FuelGradeUranium, RawUranium
+      materialWhiteList: [Uranium, FuelGradeUranium, RawUranium, Skrungle] # Frontier: add FuelGradeUranium, RawUranium, Skrungle
     - type: PortableGenerator
     - type: UpgradePowerSupplier
       powerSupplyMultiplier: 1.25
@@ -270,6 +273,9 @@
         output: FuelGradeUranium
         rate: 1
       - input: RawUranium
+        output: FuelGradeUranium
+        rate: 0.5
+      - input: Skrungle
         output: FuelGradeUranium
         rate: 0.5
     # End Frontier: magnet pickup, fuel adapter
