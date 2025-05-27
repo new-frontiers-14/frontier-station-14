@@ -1,5 +1,5 @@
 # Based on https://github.com/space-wizards/space-station-14/pull/26883 by @Vonsant, sprites by belay5 (discord)
-# BASE
+#region BASE
 - type: entity
   parent:
   - MobStaminaSpecial
@@ -77,9 +77,12 @@
 
 # MOBS
 # Sorted by health pool (less health ~= faster and harder hitting)
+#region compsognathus
 - type: entity
-  parent: BaseMobDinosaurExpeditions
   id: MobDinosaurCompyExpeditions
+  parent:
+  - MobMovementSpeedModifierSpecial
+  - BaseMobDinosaurExpeditions
   name: compsognathus
   description: Compsognathus is a genus of small, bipedal, carnivorous theropods. They have long hind legs and longer tails, which they used for balance during locomotion. Their forelimbs are small but beware of their claws.
   categories: [ HideSpawnMenu ]
@@ -112,9 +115,12 @@
     footstepSoundCollection:
       collection: FootstepAsteroid
 
+#region dilophosaurus
 - type: entity
-  parent: BaseMobDinosaurExpeditions
   id: MobDinosaurDiloExpeditions
+  parent:
+  - MobMovementSpeedModifierSpecial
+  - BaseMobDinosaurExpeditions
   name: dilophosaurus
   description: With a name meaning "two-crested lizard", these measure in at about 7 m in length and 400 kg in weight. Slender and lightly built, these are very agile.
   categories: [ HideSpawnMenu ]
@@ -144,9 +150,12 @@
         Caustic: 2
         Structural: 25
 
+#region velociraptor
 - type: entity
-  parent: BaseMobDinosaurExpeditions
   id: MobDinosaurRaptorExpeditions
+  parent:
+  - MobMovementSpeedModifierSpecial
+  - BaseMobDinosaurExpeditions
   name: velociraptor
   description: A bipedal, featherless carnivore with a long tail. Each of its hindfeet has an enlarged sickle-shaped claw, which is used to tackle and restrain prey. Very fast, exercise caution.
   categories: [ HideSpawnMenu ]
@@ -183,6 +192,7 @@
         Slash: 18
         Structural: 30
 
+#region parasaurolophus
 - type: entity
   parent: BaseMobDinosaurExpeditions
   id: MobDinosaurParaExpeditions
@@ -222,6 +232,7 @@
         Blunt: 6
         Structural: 20
 
+#region kentrosaurus
 - type: entity
   parent:
   - MobMovementSpeedModifierRanged
@@ -262,10 +273,8 @@
       types:
         Blunt: 10
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 2.5
-    baseWalkSpeed: 2.5
 
+#region triceratops
 - type: entity
   parent:
   - MobMovementSpeedModifierRanged
@@ -307,6 +316,7 @@
         Piercing: 12
         Structural: 20
 
+#region ankylosaurus
 - type: entity
   parent:
   - MobMovementSpeedModifierRanged
@@ -348,6 +358,7 @@
         Blunt: 12
         Structural: 20
 
+#region spinosaurus
 - type: entity
   parent: BaseMobDinosaurExpeditions
   id: MobDinosaurSpinoExpeditions
@@ -387,6 +398,7 @@
         Blunt: 12
         Structural: 20
 
+#region stegosaurus
 - type: entity
   parent:
   - MobMovementSpeedModifierRanged
@@ -429,7 +441,7 @@
         Piercing: 8
         Structural: 20
 
-#region EXPEDITION BOSS
+#region tyrannosaurus (boss)
 - type: entity
   parent:
   - NFMobBossRestrictions

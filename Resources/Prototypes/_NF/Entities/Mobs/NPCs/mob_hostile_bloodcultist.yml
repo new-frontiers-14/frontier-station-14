@@ -258,13 +258,11 @@
   description: Elevated above their mortal forms by Nar'Sie herself as a reward for their devotion.
   categories: [ HideSpawnMenu ]
   parent:
-  - MobMovementSpeedModifierBoss
-  - MobStaminaBoss
+  #- MobLaserReflect # Added to prevent laser abuse from players
+  - NFMobBossRestrictions
+  - MobHostileBossBase
   - MobNonHumanHostileBase
   - MobHumanoidHostileAIComplex
-  #- MobLaserReflect # Added to prevent laser abuse from players
-  - NFMobRestrictions
-  - NFMobBossRestrictions
   id: MobBloodCultistAscended
   components:
   - type: NpcFactionMember
