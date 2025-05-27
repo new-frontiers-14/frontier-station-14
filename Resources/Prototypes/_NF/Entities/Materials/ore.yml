@@ -105,7 +105,7 @@
   id: TableScrapProcessorRandomBoard
   table: !type:GroupSelector
     children:
-    # T1: Common machine boards (available from circuin imprinter or flatpack vendor)
+    # T1: Common machine boards (available from circuit imprinter or flatpack vendor)
     - !type:GroupSelector
       weight: 93
       children:
@@ -114,26 +114,41 @@
       - id: SpaceHeaterMachineCircuitBoard
       - id: PortableGeneratorJrPacmanMachineCircuitboard
       - id: PortableGeneratorPacmanMachineCircuitboard
+      - id: PortableGeneratorSuperPacmanMachineCircuitboard
       - id: CellRechargerCircuitboard
-      - id: MiniGravityGeneratorCircuitboard
-      - id: ThrusterMachineCircuitboard
+      - id: BorgChargerCircuitboard
+      - id: WeaponCapacitorRechargerCircuitboard
       - id: ExosuitFabricatorMachineCircuitboard
       - id: UniformPrinterMachineCircuitboard
+      - id: OreProcessorMachineCircuitboard
+      - id: FlatpackerMachineCircuitboard
+      - id: MiniGravityGeneratorCircuitboard
+      - id: ThrusterMachineCircuitboard
+      - id: GyroscopeMachineCircuitboard
+      - id: OreProcessorMachineCircuitboard
+      - id: JukeboxCircuitBoard
+      - id: MaterialSiloMachineCircuitboard
+      - id: SurveillanceWirelessCameraMovableCircuitboard
+      - id: ComputerTelevisionCircuitboard
     # T2: specialised machine boards (techfabs)
     - !type:GroupSelector
       weight: 5.5
       children:
+      - id: SpaceVillainArcadeComputerCircuitboard
+      - id: MiniStationAnchorCircuitboard
       - id: CircuitImprinterMachineCircuitboard
-      - id: FlatpackerMachineCircuitboard
       - id: EngineeringTechFabCircuitboard
       - id: SalvageTechFabCircuitboardNF
       - id: ServiceTechFabCircuitboard
-      - id: PortableGeneratorSuperPacmanMachineCircuitboard
-      - id: OreProcessorMachineCircuitboard
+      - id: McServiceTechFabCircuitboard
       - id: MaterialReclaimerMachineCircuitboard
       - id: SpaceHeaterMachineCircuitBoard
       - id: ReagentGrinderMachineCircuitboard
-    # T3: upgrade machine boards
+      - id: PortableGeneratorDKJrMachineCircuitboard
+      - id: BoozeDispenserMachineCircuitboard
+      - id: DawInstrumentMachineCircuitboard
+      - id: GasRecyclerMachineCircuitboard
+    # T3: cool machine boards
     - !type:GroupSelector
       weight: 1
       children:
@@ -142,18 +157,29 @@
       - id: EmitterCircuitboard
       - id: CondenserMachineCircuitBoard
       - id: AutolatheHyperConvectionMachineCircuitboard
+      - id: CircuitImprinterHyperConvectionMachineCircuitboard
       - id: TurboItemRechargerCircuitboard
       - id: ShuttleGunKineticCircuitboard
       - id: OreProcessorIndustrialMachineCircuitboard
+      - id: AmmoTechFabCircuitboard
+      - id: PortablePumpMachineCircuitBoard
+      - id: HotplateMachineCircuitboard
     # T4: core department tech boards
     - !type:GroupSelector
       weight: 0.5
       children:
+      - id: ReagentGrinderIndustrialMachineCircuitboard
       - id: ChemMasterMachineCircuitboard
       - id: ElectrolysisUnitMachineCircuitboard
       - id: StasisBedMachineCircuitboard
       - id: ResearchComputerCircuitboard
       - id: ResearchAndDevelopmentServerMachineCircuitboard
+      - id: MercenaryTechFabCircuitboardNF
+      - id: MercenaryTechFabCircuitboardHackedNF
+      - id: PortableGeneratorDKMachineCircuitboard
+      - id: GaslockFrameMachineCircuitboard
+      - id: MedicalTechFabCircuitboard
+      - id: MedicalAssemblerMachineCircuitboard
 
 - type: entity
   id: ScrapProcessorRandomBoard
