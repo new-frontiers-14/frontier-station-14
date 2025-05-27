@@ -68,7 +68,7 @@ uplink-security-wt550-desc = A fully automatic submachine gun. This design uses 
 uplink-security-energygun-name = Energy Gun
 uplink-security-energygun-desc = A semi-automatic energy gun capable of firing both non-lethal stun bolts, as well as overcharged lethal energy bolts. Has an internal battery, but requires using a security charging dock.
 
-uplink-security-emprpg-name = RPG-7
+uplink-security-emprpg-name = EMP Rocket Launcher
 uplink-security-emprpg-desc = A rocket propelled grenade launcher. Comes with 1 EMP round.
 
 uplink-security-empgrenade-name = EMP Grenade
@@ -90,7 +90,7 @@ uplink-security-key-name = NFSD Encryption Keys
 uplink-security-key-desc = A box of 4 encryption keys that give access to the NFSD radio channel.
 
 uplink-security-emprocket-name = EMP Rocket
-uplink-security-emprocket-desc = An EMP rocket for the RPG-7.
+uplink-security-emprocket-desc = An EMP rocket for the GSW rocket launcher.
 
 uplink-security-thrusterkit-name = Thruster Upgrade Kit
 uplink-security-thrusterkit-desc = Contains 12 super capaciters. Perfect for upgrading three thrusters.
