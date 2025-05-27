@@ -632,3 +632,78 @@
     itemIconStyle: BigAction
   - type: UseDelay
     delay: 50
+
+#region space, t1
+- type: entity
+  id: MobExplorerMeleeEVAT1
+  parent:
+  - MobMovementSpeedModifierEVAMelee
+  - MobExplorerMeleeT1
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobExplorerRangedEVAT1
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobExplorerRangedT1
+  categories: [ HideSpawnMenu ]
+
+#region space, t2
+- type: entity
+  id: MobExplorerMeleeEVAT2
+  parent:
+  - MobMovementSpeedModifierEVAMelee
+  - MobExplorerMeleeT2
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobExplorerRangedEVAT2
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobExplorerRangedT2
+  categories: [ HideSpawnMenu ]
+
+#region space, t3
+- type: entity
+  id: MobExplorerMeleeEVAT3
+  parent:
+  - MobMovementSpeedModifierEVAMelee
+  - MobExplorerMeleeT3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobExplorerRangedEVAT3
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobExplorerRangedT3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobExplorerHaulerEVA
+  parent: MobExplorerHauler
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 155
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpawnMobExplorerEVAT2:
+            min: 1
+            max: 1
+          RipleyChassis:
+            min: 1
+            max: 1
+          RipleyCentralElectronics:
+            min: 1
+            max: 1
+          RipleyPeripheralsElectronics:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
