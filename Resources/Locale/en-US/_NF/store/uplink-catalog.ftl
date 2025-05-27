@@ -227,7 +227,7 @@ uplink-security-spaceblade-sec-desc = The latest in stun tech.
 uplink-security-contraband-forensics-module-name = Contraband Forenics Module
 uplink-security-contraband-forensics-module-desc = A program for scanning and reporting contraband dead drops and pods for bounties. Slots into a forensic scanner.
 
-uplink-security-lasercanon-name = laser cannon
+uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
 # region Pirate
@@ -336,10 +336,10 @@ uplink-revolver-ritland-desc = Usually reliable, heavy revolver. Do you feel luc
 
 uplink-pistol-cobra45-desc = A rugged, robust operator handgun with inbuilt silencer. Uses .45 pistol ammo.
 
-uplink-pistol-magazine-cobra-name = Cobra .45 pistol magazine
+uplink-pistol-magazine-cobra-name = Cobra .45 Pistol Magazine
 uplink-pistol-magazine-cobra-desc = A loaded magazine for Cobra .45 pistol.
 
-uplink-speedloader-magnum-non-ap-name = .45 pistol speed loader
+uplink-speedloader-magnum-non-ap-name = .45 Pistol Speed Loader
 uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pistol caliber rounds.
 
 uplink-syndicate-segway-name = Syndicate Segway
