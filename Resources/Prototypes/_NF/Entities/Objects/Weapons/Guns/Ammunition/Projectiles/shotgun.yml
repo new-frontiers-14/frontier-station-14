@@ -12,6 +12,17 @@
 
 - type: entity
   categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunOverpressure
+  name: pellet (.50)
+  parent: NFBasePelletOverpressure
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 5
+
+- type: entity
+  categories: [ HideSpawnMenu ]
   id: NFPelletShotgunIncendiary
   name: pellet (.50 incendiary)
   parent: NFBasePelletIncendiary
@@ -104,6 +115,14 @@
   components:
   - type: ProjectileSpread
     proto: NFPelletShotgun
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunOverpressureSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunOverpressure]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletShotgunOverpressure
 
 - type: entity
   categories: [ HideSpawnMenu ]
