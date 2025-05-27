@@ -70,6 +70,14 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepThud
+  - type: SpamEmitSound
+    minInterval: 10
+    maxInterval: 60
+    sound:
+      collection: NFDinosaurBreath
+      params:
+        variation: 0.125
+  - type: SoundWhileAlive
   - type: Tag
     tags:
     - FootstepSound
@@ -484,3 +492,61 @@
         Slash: 15
         Piercing: 10
         Structural: 20
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-t-rex-dungeon-name
+    description: ghost-role-information-t-rex-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  - type: ActionGun
+    action: ActionTRexRoar
+    gunProto: TRexRoarGun
+
+- type: entity
+  id: TRexRoarGun
+  name: TRex Roar Gun
+  description: Needed to emit the roar.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 20
+    rechargeSound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletTRexRoar
+    capacity: 1
+    count: 1
+  - type: Gun
+    minAngle: 5
+    maxAngle: 15
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Animals/space_dragon_roar.ogg
+    soundEmpty: null
+    projectileSpeed: 5
+  - type: UseDelay
+    delay: 20
+
+- type: entity
+  id: ActionTRexRoar
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Roar[/color]"
+  description: "Emits a powerful roar, intimidating and stunning nearby foe. [color=yellow]40 second cooldown.[/color]"
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : _NF/Effects/steam.rsi, state: steam }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
+  - type: UseDelay
+    delay: 40

@@ -63,6 +63,12 @@ ghost-role-information-explorer-captain-dungeon-description = You got to this fa
 ghost-role-information-punk-boss-dungeon-name = Punk gang leader
 ghost-role-information-punk-boss-dungeon-description = Defend the expedition dungeon and your loot with other punks from NT squares!
 
+ghost-role-information-t-rex-dungeon-name = Tyrannosaurus Rex
+ghost-role-information-t-rex-dungeon-description = Feel the rush of the hunt and let your instincts guide you to slaughter your prey!
+
+ghost-role-information-leviathing-dungeon-name = Leviathing
+ghost-role-information-leviathing-dungeon-description = Protect the burrow and ensure the thriving of the brood!
+
 ghost-role-information-dungeon-boss-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all dungeon mobs.
                                         Fight players within the dungeon, defend your dungeon.
                                         Please note that [color=yellow]all server rules still apply.[/color] Additionally:
