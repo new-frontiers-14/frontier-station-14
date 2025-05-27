@@ -86,9 +86,14 @@
 #endregion
 
 #region Restrictions
+
+# A base restriction set.
+# Should be applied on any mob base with MobEnhancedMovement,
+# or on upstream definitions.
+# This should not be used on non-abstract Frontier mobs.
 - type: entity
   abstract: true
-  id: NFMobRestrictions
+  id: NFBaseMobRestrictions
   components:
   - type: NFSalvageMobRestrictions
     addComponentsOnDeath:
@@ -111,6 +116,8 @@
     - type: TimedSpawner
     - type: Jittering
 
+# Restriction modifiers.
+# Will be applied on top of NFBaseMobRestrictions.
 - type: entity
   abstract: true
   id: NFMobBossRestrictions
@@ -342,7 +349,7 @@
   - MobStaminaBoss
   - MobMovementSpeedModifierBoss
   - MobPassiveRegenWeak
-  - NFMobRestrictions
+  - NFBaseMobRestrictions
   components:
   - type: Hands
   - type: Puller
@@ -445,6 +452,7 @@
   - BaseMobSpecies
   - MobHumanoidHostileAIComplex
   - BaseC3MobHuman
+  - NFBaseMobRestrictions
   id: MobHumanoidHostileBase
   components:
   - type: NPCRetaliation
@@ -502,6 +510,7 @@
   - MobEnhancedMovement
   - MobHumanoidHostileAIComplex
   - BaseC3MobCreature
+  - NFBaseMobRestrictions
   id: MobNonHumanHostileBase
   components:
   - type: NPCRetaliation
@@ -567,6 +576,7 @@
   - MobEnhancedMovement
   - MobHumanoidHostileAISimpleMelee
   - BaseC3MobCreature
+  - NFBaseMobRestrictions
   id: NFMobSimpleHostileBase
   components:
   - type: NPCRetaliation
