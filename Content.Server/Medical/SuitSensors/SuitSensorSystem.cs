@@ -187,8 +187,10 @@ public sealed class SuitSensorSystem : EntitySystem
 
     private void OnEquipped(EntityUid uid, SuitSensorComponent component, ref ClothingGotEquippedEvent args)
     {
-        if (HasComp<DisableSuitSensorsComponent>(args.Wearer)) // Frontier: entities with disabled suit sensors must never be set as a valid user.
-            return; // Frontier
+        // Frontier: entities with "Always" disabled suit sensors must never be set as a valid user.
+        if (TryComp<DisableSuitSensorComponent>(args.Wearer, out var disableSuitSensors) && disableSuitSensors.Always)
+            return;
+        // End Frontier
 
         component.User = args.Wearer;
     }
@@ -256,8 +258,10 @@ public sealed class SuitSensorSystem : EntitySystem
         if (args.Container.ID != component.ActivationContainer)
             return;
 
-        if (HasComp<DisableSuitSensorsComponent>(args.Container.Owner)) // Frontier: entities with disabled suit sensors must never be set as a valid user.
-            return; // Frontier
+        // Frontier: entities with "Always" disabled suit sensors must never be set as a valid user.
+        if (TryComp<DisableSuitSensorComponent>(args.Container.Owner, out var disableSuitSensors) && disableSuitSensors.Always)
+            return;
+        // End Frontier
 
         component.User = args.Container.Owner;
     }
