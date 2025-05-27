@@ -9,15 +9,15 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Albatross
+  id: Jellyfish
   parent: BaseVessel
-  name: FSB Albatross
+  name: FSB Jellyfish
   description: A deep space endurance shuttle designed to support FSB infrastructure and the bulk good transport needs of the Frontier.
-  price: 42000 #t1 cargo + 10k for emu
+  price: 44000 #t1 cargo + 10k for emu
   category: Medium
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/albatross.yml
-  guidebookPage: ShipyardAlbatross
+  shuttlePath: /Maps/_NF/Shuttles/jellyfish.yml
+  guidebookPage: ShipyardJellyfish
   class:
   - Cargo
   engine:
@@ -25,16 +25,16 @@
   - Solar
 
 - type: gameMap
-  id: Albatross
-  mapName: 'FSB Albatross'
-  mapPath: /Maps/_NF/Shuttles/albatross.yml
+  id: Jellyfish
+  mapName: 'FSB Jellyfish'
+  mapPath: /Maps/_NF/Shuttles/jellyfish.yml
   minPlayers: 0
   stations:
-    Albatross:
+    Jellyfish:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Albatross {1}'
+          mapNameTemplate: 'Jellyfish {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

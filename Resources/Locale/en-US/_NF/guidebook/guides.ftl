@@ -42,7 +42,6 @@ guide-entry-expedition-xenos = Xenos
 # Shipyard entries
 guide-entry-shipyard-adder = Adder
 guide-entry-shipyard-akupara = Akupara
-guide-entry-shipyard-albatross = Albatross
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-barge = Barge
@@ -72,6 +71,7 @@ guide-entry-shipyard-harbormaster = Harbormaster
 guide-entry-shipyard-honker = Honker
 guide-entry-shipyard-investigator = Investigator
 guide-entry-shipyard-izakaya = Izakaya
+guide-entry-shipyard-jellyfish = Jellyfish
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern = Lantern
