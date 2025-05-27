@@ -60,7 +60,7 @@
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol45Overpressure
+      proto: NFCartridgePistol45Uranium
       capacity: 1
       count: 1
     - type: Gun
@@ -80,7 +80,7 @@
       prototypes:
         - SyndicateNavalCaptainGearB
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol45
+      proto: NFBulletPistol45Incendiary
       capacity: 1
       count: 1
 
@@ -93,7 +93,7 @@
       prototypes:
         - SyndicateNavalCaptainGearC
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol45
+      proto: NFCartridgePistol45Overpressure
       capacity: 1
       count: 1
 
@@ -126,7 +126,7 @@
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
-      proto: NFShellShotgunSlug
+      proto: NFShellShotgunUranium
       capacity: 1
       count: 1
     - type: Gun
@@ -150,7 +150,7 @@
       prototypes:
         - SyndicateNavalEngineerGearB
     - type: BasicEntityAmmoProvider
-      proto: NFShellShotgunBuckshot
+      proto: NFShellShotgunIncendiary
       capacity: 1
       count: 1
 
@@ -162,6 +162,10 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalEngineerGearC
+    - type: BasicEntityAmmoProvider
+      proto: NFShellShotgunBuckshotOverpressure
+      capacity: 1
+      count: 1
 
 - type: entity
   parent: MobSyndicateNavalEngineerB
@@ -323,7 +327,7 @@
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol35
+      proto: NFCartridgePistol35Uranium
       capacity: 7
       count: 7
     - type: Gun
@@ -364,6 +368,10 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalOperatorGearD
+    - type: BasicEntityAmmoProvider
+      proto: NFCartridgePistol35Overpressure
+      capacity: 7
+      count: 7
 
 # Syndicate Grenadier, "armed" with china lake
 - type: entity
@@ -546,7 +554,7 @@
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgeRifle25
+      proto: NFCartridgeRifle25Uranium
       capacity: 4
       count: 4
     - type: Gun
@@ -566,7 +574,7 @@
       prototypes:
         - SyndicateNavalCommanderGearB
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgeRifle25
+      proto: NFCartridgeRifle25Incendiary
       capacity: 4
       count: 4
     - type: Gun
@@ -585,6 +593,10 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalCommanderGearC
+    - type: BasicEntityAmmoProvider
+      proto: NFCartridgeRifle25Overpressure
+      capacity: 4
+      count: 4
 
 - type: entity
   parent: MobSyndicateNavalCommanderB
@@ -594,6 +606,10 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalCommanderGearD
+    - type: BasicEntityAmmoProvider
+      proto: NFCartridgeRifle25
+      capacity: 4
+      count: 4
 
 # Syndicate Deckhand, "armed" with Viper
 - type: entity
@@ -611,7 +627,7 @@
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
-      proto: NFBulletPistol35
+      proto: NFBulletPistol35Uranium
       capacity: 4
       count: 4
     - type: Gun
@@ -630,6 +646,10 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalDeckhandGearB
+    - type: BasicEntityAmmoProvider
+      proto: NFBulletPistol35Incendiary
+      capacity: 4
+      count: 4
 
 - type: entity
   parent: MobSyndicateNavalDeckhandA
@@ -639,6 +659,10 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalDeckhandGearC
+    - type: BasicEntityAmmoProvider
+      proto: NFBulletPistol35Overpressure
+      capacity: 4
+      count: 4
 
 - type: entity
   parent: MobSyndicateNavalDeckhandA
@@ -753,7 +777,7 @@
       prototypes:
         - SyndicateNavalCaptainVoidGear
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol45
+      proto: NFCartridgePistol45Uranium
       capacity: 1
       count: 1
 
@@ -798,7 +822,7 @@
       prototypes:
         - SyndicateNavalEngineerVoidGear
     - type: BasicEntityAmmoProvider
-      proto: NFShellShotgunBuckshot
+      proto: NFShellShotgunUranium
       capacity: 1
       count: 1
 
