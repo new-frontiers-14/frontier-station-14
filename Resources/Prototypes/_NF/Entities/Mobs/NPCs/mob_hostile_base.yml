@@ -590,3 +590,15 @@
     destroySound:
       collection: gib
 #endregion
+
+#region Gibb
+- type: entity
+  abstract: true
+  id: NFMobNoEquipmentOnGib
+  components:
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true

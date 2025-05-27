@@ -4,6 +4,7 @@
   abstract: true
   categories: [ HideSpawnMenu ]
   parent:
+  - NFMobNoEquipmentOnGib
   - MobStaminaFodder
   - MobMovementSpeedModifierRanged
   - MobHumanoidHostileBase
@@ -41,12 +42,6 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
-  - type: TriggerOnBeingGibbed
-  - type: GibOnTrigger
-    deleteItems: true
-    deleteOrgans: true
-    gib: false
-    useArgumentEntity: true
 
 #region Humans
 # Syndicate Captain, "armed" with AP Python

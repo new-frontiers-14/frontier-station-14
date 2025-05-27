@@ -2,6 +2,7 @@
   name: blood cultist
   abstract: true
   parent:
+  - NFMobNoEquipmentOnGib
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
   - NFMobRestrictions
@@ -20,12 +21,6 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
-  - type: TriggerOnBeingGibbed
-  - type: GibOnTrigger
-    deleteItems: true
-    deleteOrgans: true
-    gib: false
-    useArgumentEntity: true
 
 #region Humans
 # Blood Cult Priest, ranged mab, bolts deal 10 slash damage
