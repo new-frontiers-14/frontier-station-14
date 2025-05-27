@@ -1,5 +1,4 @@
 - type: entity
-  save: false
   id: NFMobAtmos
   abstract: true
   components:
@@ -26,7 +25,6 @@
   - type: Insulated
 
 - type: entity
-  save: false
   id: MobLaserReflect
   abstract: true
   components:
@@ -37,7 +35,6 @@
 
 # region Regeneration
 - type: entity
-  save: false
   id: MobPassiveRegenWeak
   abstract: true
   components:
@@ -52,7 +49,6 @@
         Airloss: -1
 
 - type: entity
-  save: false
   id: MobPassiveRegen
   abstract: true
   components:
@@ -68,7 +64,6 @@
         Airloss: -1
 
 - type: entity
-  save: false
   id: MobPassiveRegenStrong
   abstract: true
   components:
@@ -235,7 +230,6 @@
 
 #region Movement
 - type: entity
-  save: false
   id: MobEnhancedMovement
   abstract: true
   components:
@@ -260,7 +254,6 @@
     - AllAccess
 
 - type: entity # For reference 4.5 is the speed of unencumbered humans
-  save: false
   id: MobMovementSpeedModifierMelee
   abstract: true
   components:
@@ -269,7 +262,6 @@
     baseSprintSpeed : 4.5
 
 - type: entity
-  save: false
   id: MobMovementSpeedModifierEVAMelee
   abstract: true
   components:
@@ -278,7 +270,6 @@
     baseSprintSpeed : 3.8 # ~15% slowdown
 
 - type: entity
-  save: false
   id: MobMovementSpeedModifierRanged
   abstract: true
   components:
@@ -287,7 +278,6 @@
     baseSprintSpeed : 3.5
 
 - type: entity
-  save: false
   id: MobMovementSpeedModifierEVARanged
   abstract: true
   components:
@@ -296,7 +286,6 @@
     baseSprintSpeed : 3 # ~15% slowdown
 
 - type: entity
-  save: false
   id: MobMovementSpeedModifierSpecial
   abstract: true
   components:
@@ -305,7 +294,6 @@
     baseSprintSpeed : 5
 
 - type: entity
-  save: false
   id: MobMovementSpeedModifierBoss
   abstract: true
   components:
@@ -316,7 +304,6 @@
 
 #region Stamina
 - type: entity
-  save: false
   id: MobStaminaFodder
   abstract: true
   components:
@@ -324,7 +311,6 @@
     critThreshold: 80
 
 - type: entity
-  save: false
   id: MobStaminaSpecial
   abstract: true
   components:
@@ -332,7 +318,6 @@
     critThreshold: 200
 
 - type: entity
-  save: false
   id: MobStaminaBoss
   abstract: true
   components:
@@ -367,7 +352,6 @@
 
 #region Inventories
 - type: entity # All slots are fillable, most of them are "hidden"
-  save: false
   id: MobHumanoidInvetory
   abstract: true
   components:
@@ -376,7 +360,6 @@
   - type: InventorySlots
 
 - type: entity # Slots for loot containers: pockets, belt, back
-  save: false
   id: MobHumanoidInvetorySimplified
   abstract: true
   components:
@@ -441,6 +424,7 @@
 #region NPC types
 # Human NPC, uses equipment, immune to vacuum/low pressure
 - type: entity
+  save: false
   suffix: AI, Hostile
   abstract: true
   parent:
@@ -497,6 +481,7 @@
 
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
+  save: false
   suffix: AI, Hostile
   abstract: true
   parent:
@@ -568,6 +553,7 @@
 
 # A simpler base for extending existing mobs (e.g. carp, kangaroos, snakes, xenos)
 - type: entity
+  save: false
   suffix: Frontier, Hostile
   abstract: true
   parent:
