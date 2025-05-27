@@ -98,3 +98,70 @@
     - SpawnDungeonLootPartsEngi
     - SpawnDungeonLootCircuitBoard
     rareChance: 0.005
+
+# Spawner for scrap processor: spawns random machine board, occasionally useful one
+
+- type: entityTable
+  id: TableScrapProcessorRandomBoard
+  table: !type:GroupSelector
+    children:
+    # T1: Common machine boards (available from circuin imprinter or flatpack vendor)
+    - !type:GroupSelector
+      weight: 93
+      children:
+      - id: AutolatheMachineCircuitboard
+      - id: CutterMachineCircuitboard
+      - id: SpaceHeaterMachineCircuitBoard
+      - id: PortableGeneratorJrPacmanMachineCircuitboard
+      - id: PortableGeneratorPacmanMachineCircuitboard
+      - id: CellRechargerCircuitboard
+      - id: MiniGravityGeneratorCircuitboard
+      - id: ThrusterMachineCircuitboard
+      - id: ExosuitFabricatorMachineCircuitboard
+      - id: UniformPrinterMachineCircuitboard
+    # T2: specialised machine boards (techfabs)
+    - !type:GroupSelector
+      weight: 5.5
+      children:
+      - id: CircuitImprinterMachineCircuitboard
+      - id: FlatpackerMachineCircuitboard
+      - id: EngineeringTechFabCircuitboard
+      - id: SalvageTechFabCircuitboardNF
+      - id: ServiceTechFabCircuitboard
+      - id: PortableGeneratorSuperPacmanMachineCircuitboard
+      - id: OreProcessorMachineCircuitboard
+      - id: MaterialReclaimerMachineCircuitboard
+      - id: SpaceHeaterMachineCircuitBoard
+      - id: ReagentGrinderMachineCircuitboard
+    # T3: upgrade machine boards
+    - !type:GroupSelector
+      weight: 1
+      children:
+      - id: HellfireHeaterMachineCircuitBoard
+      - id: HellfireFreezerMachineCircuitBoard
+      - id: EmitterCircuitboard
+      - id: CondenserMachineCircuitBoard
+      - id: AutolatheHyperConvectionMachineCircuitboard
+      - id: TurboItemRechargerCircuitboard
+      - id: ShuttleGunKineticCircuitboard
+      - id: OreProcessorIndustrialMachineCircuitboard
+    # T4: core department tech boards
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: ChemMasterMachineCircuitboard
+      - id: ElectrolysisUnitMachineCircuitboard
+      - id: StasisBedMachineCircuitboard
+      - id: ResearchComputerCircuitboard
+      - id: ResearchAndDevelopmentServerMachineCircuitboard
+
+- type: entity
+  id: ScrapProcessorRandomBoard
+  parent: MarkerBasePlaceFree
+  name: filter out functional machine boards
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableScrapProcessorRandomBoard
+      prob: 0.7
