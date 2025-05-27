@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/27/2025 07:20:20
+  time: 05/27/2025 07:38:37
   entityCount: 673
 maps: []
 grids:
@@ -3393,8 +3393,6 @@ entities:
     - type: Transform
       pos: -1.5,-9.5
       parent: 1
-    - type: FuelGenerator
-      targetPower: 31000
 - proto: PosterLegitSafetyMothHardhat
   entities:
   - uid: 260
@@ -3873,7 +3871,7 @@ entities:
         20:
         - - Pressed
           - Toggle
-        210:
+        503:
         - - Pressed
           - Toggle
         270:
@@ -3882,7 +3880,7 @@ entities:
         269:
         - - Pressed
           - Toggle
-        635:
+        210:
         - - Pressed
           - Toggle
         267:
@@ -3947,6 +3945,18 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,-3.5
+      parent: 1
+- proto: SmallThruster
+  entities:
+  - uid: 210
+    components:
+    - type: Transform
+      pos: 5.5,4.5
+      parent: 1
+  - uid: 503
+    components:
+    - type: Transform
+      pos: -4.5,4.5
       parent: 1
 - proto: SMESBasic
   entities:
@@ -4334,11 +4344,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -9.5,-0.5
       parent: 1
-  - uid: 210
-    components:
-    - type: Transform
-      pos: -4.5,4.5
-      parent: 1
   - uid: 266
     components:
     - type: Transform
@@ -4378,11 +4383,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-8.5
-      parent: 1
-  - uid: 635
-    components:
-    - type: Transform
-      pos: 5.5,4.5
       parent: 1
 - proto: ToolboxElectricalFilled
   entities:
