@@ -188,7 +188,7 @@ public sealed class SuitSensorSystem : EntitySystem
     private void OnEquipped(EntityUid uid, SuitSensorComponent component, ref ClothingGotEquippedEvent args)
     {
         // Frontier: entities with "Always" disabled suit sensors must never be set as a valid user.
-        if (TryComp<DisableSuitSensorComponent>(args.Wearer, out var disableSuitSensors) && disableSuitSensors.Always)
+        if (TryComp<DisableSuitSensorComponent>(args.Wearer, out var disableSuitSensor) && disableSuitSensor.Always)
             return;
         // End Frontier
 
