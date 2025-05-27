@@ -81,8 +81,10 @@
 # VARIANTS
 #region Stalkers morphotype
 - type: entity
-  parent: BaseMobArgocyteExpeditions
   id: MobArgocyteSlurvaExpeditions
+  parent:
+  - MobMovementSpeedModifierSpecial
+  - BaseMobArgocyteExpeditions
   name: slurva
   description: The first lifecycle stage of the Stalker morphotype. A pathetic creature, incapable of doing much. It is better to kill it now before it has a chance to mature.
   components:
@@ -122,8 +124,10 @@
         Structural: 20
 
 - type: entity
-  parent: BaseMobArgocyteExpeditions
   id: MobArgocyteSkitterExpeditions
+  parent:
+  - MobMovementSpeedModifierSpecial
+  - BaseMobArgocyteExpeditions
   name: skitter
   description: The second lifecycle stage of the Stalker morphotype. Still small, these creatures tend to travel in small packs for safety.
   components:
@@ -163,10 +167,10 @@
         Structural: 20
 
 - type: entity
+  id: MobArgocyteSwiperExpeditions
   parent:
   - MobMovementSpeedModifierMelee
   - BaseMobArgocyteExpeditions
-  id: MobArgocyteSwiperExpeditions
   name: swiper
   description: The third lifecycle stage of the Stalker morphotype. Roaming scavengers, usually out on reconnaisance or gathering materials.
   components:
@@ -305,8 +309,10 @@
 
 #region Guardian morphotype
 - type: entity
-  parent: BaseMobArgocyteExpeditions
   id: MobArgocyteBarrierExpeditions
+  parent:
+  - MobMovementSpeedModifierMelee
+  - BaseMobArgocyteExpeditions
   name: barrier
   description: The first lifecycle stage of the Guardian morphotype. Equally as pathetic as the "Slurva". Not yet fully formed, its protective plates are still soft.
   components:
@@ -506,6 +512,30 @@
     thresholds:
       0: Alive
       400: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 395
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: blood
+          params:
+            variation: 0.250
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobArgocyteSwarm:
+            min: 1
+            max: 2
+          SpawnDungeonLootMaterialsValuableFull:
+            min: 0
+            max: 1
+          FoodMeatXeno:
+            min: 4
+            max: 10
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: SlowOnDamage
     speedModifierThresholds:
       240: 0.7
