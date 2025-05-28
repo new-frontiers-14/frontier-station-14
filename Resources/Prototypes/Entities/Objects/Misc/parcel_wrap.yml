@@ -51,6 +51,10 @@
           "Huge": { state: "parcel-large" }
           "Ginormous": { state: "parcel-large" }
       # Frontier: labelable parcels
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
       enum.PaperLabelVisuals.LabelType:
         enum.PaperLabelVisuals.Layer:
           Paper: { state: paper }
@@ -66,6 +70,7 @@
     - state: paper # Frontier: labelable parcels
       sprite: _NF/Objects/Misc/parcel_labels.rsi # Frontier
       map: ["enum.PaperLabelVisuals.Layer"] # Frontier
+      visible: false # Frontier
   - type: WrappedParcel
     unwrapDelay: 0.5
     unwrapSound:
