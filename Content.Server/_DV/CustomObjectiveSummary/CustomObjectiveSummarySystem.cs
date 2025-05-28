@@ -24,11 +24,13 @@ public sealed class CustomObjectiveSummarySystem : EntitySystem
     [Dependency] private readonly ObjectivesSystem _objectives = default!; // Frontier
 
     private int _maxLengthSummaryLength; // Frontier: moved from ObjectiveSystem
+    private Dictionary<NetUserId, PlayerStory> _stories = new(); // Frontier: store one story per user per round
 
     public override void Initialize()
     {
         SubscribeLocalEvent<EvacShuttleLeftEvent>(OnEvacShuttleLeft);
         // SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEnd); // Frontier
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestarted); // Frontier
 
         _net.RegisterNetMessage<CustomObjectiveClientSetObjective>(OnCustomObjectiveFeedback);
 
@@ -37,12 +39,24 @@ public sealed class CustomObjectiveSummarySystem : EntitySystem
 
     private void OnCustomObjectiveFeedback(CustomObjectiveClientSetObjective msg)
     {
-        if (!_mind.TryGetMind(msg.MsgChannel.UserId, out var mind))
+        if (!_mind.TryGetMind(msg.MsgChannel.UserId, out var mind) || mind is not { } mindEnt)
             return;
 
         if (mind.Value.Comp.Objectives.Count == 0)
             return;
 
+        var characterName = _objectives.GetTitle((mindEnt, mindEnt.Comp), mindEnt.Comp.CharacterName ?? Loc.GetString("custom-objective-unknown-name"));
+        if (_stories.TryGetValue(msg.MsgChannel.UserId, out var story))
+        {
+            story.CharacterName = characterName;
+            story.Story = msg.Summary;
+        }
+        else
+        {
+            _stories[msg.MsgChannel.UserId] = new PlayerStory(characterName, msg.Summary);
+        }
+
+        // Ensure that the current mind has their summary setup (so they can come back to it if disconnected)
         var comp = EnsureComp<CustomObjectiveSummaryComponent>(mind.Value);
 
         comp.ObjectiveSummary = msg.Summary;
@@ -88,43 +102,30 @@ public sealed class CustomObjectiveSummarySystem : EntitySystem
     // Frontier: custom objective text
     public string GetCustomObjectiveText()
     {
-        var allMinds = _mind.GetAliveHumans();
-
         StringBuilder objectiveText = new();
 
-        foreach (var mind in allMinds)
+        foreach (var story in _stories.Values)
         {
-            if (TryComp<CustomObjectiveSummaryComponent>(mind, out var customComp) &&
-                customComp.ObjectiveSummary.Length > 0)
-            {
-                customComp.ObjectiveSummary.Trim();
-                if (customComp.ObjectiveSummary.Length > _maxLengthSummaryLength)
-                    customComp.ObjectiveSummary = customComp.ObjectiveSummary.Substring(0, _maxLengthSummaryLength);
+            story.Story.Trim();
+            if (story.Story.Length > _maxLengthSummaryLength)
+                story.Story = story.Story.Substring(0, _maxLengthSummaryLength);
 
-                var title = _objectives.GetTitle((mind, mind.Comp), mind.Comp.CharacterName ?? Loc.GetString("custom-objective-unknown-name"));
-                objectiveText.AppendLine(Loc.GetString("custom-objective-intro", ("title", title)));
-
-                // // We have to spit it like this to make it readable. Yeah, it sucks but for some reason the entire thing
-                // // is just one long string...
-                // var words = customComp.ObjectiveSummary.Split(" ");
-                // var currentLine = "";
-                // foreach (var word in words)
-                // {
-                //     currentLine += word + " ";
-
-                //     // magic number
-                //     if (currentLine.Length <= 50)
-                //         continue;
-
-                //     objectiveText.AppendLine(Loc.GetString("custom-objective-format", ("line", currentLine)));
-                //     currentLine = "";
-                // }
-                objectiveText.AppendLine(Loc.GetString("custom-objective-format", ("line", FormattedMessage.EscapeText(customComp.ObjectiveSummary))));
-
-                objectiveText.AppendLine("");
-            }
+            objectiveText.AppendLine(Loc.GetString("custom-objective-intro", ("title", story.CharacterName)));
+            objectiveText.AppendLine(Loc.GetString("custom-objective-format", ("line", FormattedMessage.EscapeText(story.Story))));
+            objectiveText.AppendLine("");
         }
         return objectiveText.ToString();
+    }
+
+    private void OnRoundRestarted(RoundRestartCleanupEvent args)
+    {
+        _stories.Clear();
+    }
+
+    sealed class PlayerStory(string characterName, string story)
+    {
+        public string CharacterName = characterName;
+        public string Story = story;
     }
     // End Frontier
 }

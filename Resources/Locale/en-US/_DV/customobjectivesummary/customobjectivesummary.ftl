@@ -9,8 +9,3 @@ custom-objective-window-explain-edit = You can always edit this anytime before t
 
 # End of round
 custom-objective-format = [color=#FFAEC9]{$line}[/color]
-
-# Frontier: extra end of round formats
-custom-objective-intro = {$title} wrote:
-custom-objective-unknown-name = Anonymous
-# End Frontier
