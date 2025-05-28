@@ -14,6 +14,7 @@ using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Server._NF.Kitchen.Components; // Frontier
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -264,5 +265,10 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
         EnsureComp<TagComponent>(start);
 
         _tag.TryAddTags(start, elementTags.Tags);
+
+        // Frontier: ensure moth food is moth food
+        if (HasComp<MothFoodComponent>(element))
+            EnsureComp<MothFoodComponent>(start);
+        // End Frontier
     }
 }
