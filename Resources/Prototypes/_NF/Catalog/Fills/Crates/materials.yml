@@ -10,11 +10,19 @@
       amount: 3
 
 - type: entity
+  id: CrateMaterialBiomass50
+  parent: CrateMaterialBiomass
+  suffix: 50 biomass
+  components:
+  - type: StorageFill
+    contents:
+    - id: MaterialBiomass50
+      amount: 1
+
+- type: entity
   id: CrateMaterialBiomass
   parent: CrateFreezer
-  name: biomass crate
-  suffix: 300 # Frontier label for distinction
-  description: 300 units of biomass. Yum.
+  suffix: 300 biomass
   components:
   - type: StorageFill
     contents:
