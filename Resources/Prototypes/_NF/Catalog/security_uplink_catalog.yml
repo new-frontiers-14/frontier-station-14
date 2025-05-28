@@ -1210,3 +1210,33 @@
     - !type:BuyerJobCondition
       whitelist:
         - Sheriff
+
+- type: listing
+  id: UplinkSecurityNightGoggles
+  name: uplink-night-vision-name
+  description: uplink-security-night-vision-desc
+  productEntity: ClothingEyesNightVisionNfsdGoggles
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityThermalGoggles
+  name: uplink-thermal-vision-name
+  description: uplink-security-thermal-vision-desc
+  productEntity: ClothingEyesThermalVisionGoggles
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
