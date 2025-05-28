@@ -68,7 +68,7 @@ uplink-security-wt550-desc = A fully automatic submachine gun. This design uses 
 uplink-security-energygun-name = Energy Gun
 uplink-security-energygun-desc = A semi-automatic energy gun capable of firing both non-lethal stun bolts, as well as overcharged lethal energy bolts. Has an internal battery, but requires using a security charging dock.
 
-uplink-security-emprpg-name = RPG-7
+uplink-security-emprpg-name = EMP Rocket Launcher
 uplink-security-emprpg-desc = A rocket propelled grenade launcher. Comes with 1 EMP round.
 
 uplink-security-empgrenade-name = EMP Grenade
@@ -90,7 +90,7 @@ uplink-security-key-name = NFSD Encryption Keys
 uplink-security-key-desc = A box of 4 encryption keys that give access to the NFSD radio channel.
 
 uplink-security-emprocket-name = EMP Rocket
-uplink-security-emprocket-desc = An EMP rocket for the RPG-7.
+uplink-security-emprocket-desc = An EMP rocket for the GSW rocket launcher.
 
 uplink-security-thrusterkit-name = Thruster Upgrade Kit
 uplink-security-thrusterkit-desc = Contains 12 super capaciters. Perfect for upgrading three thrusters.
@@ -227,7 +227,7 @@ uplink-security-spaceblade-sec-desc = The latest in stun tech.
 uplink-security-contraband-forensics-module-name = Contraband Forenics Module
 uplink-security-contraband-forensics-module-desc = A program for scanning and reporting contraband dead drops and pods for bounties. Slots into a forensic scanner.
 
-uplink-security-lasercanon-name = laser cannon
+uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
 # region Pirate
@@ -321,6 +321,9 @@ uplink-pirate-ionized-dust-bag-desc = A bag of dust that can clear pinpointers p
 uplink-pirate-pinpointer-target-scanner-name = Pinpointer Target Scanner
 uplink-pirate-pinpointer-target-scanner-desc = A jury-rigged scanner that can find objects targeted by pinpointers. Batteries included, lubber.
 
+uplink-pirate-pirate-stitcher-name = Pirate Stitcher
+uplink-pirate-pirate-stitcher-desc = A circuit board for a pirate stitcher. Assemble it to make pirate clothing and goodies!
+
 # region Syndicate
 uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
 uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.
@@ -336,10 +339,10 @@ uplink-revolver-ritland-desc = Usually reliable, heavy revolver. Do you feel luc
 
 uplink-pistol-cobra45-desc = A rugged, robust operator handgun with inbuilt silencer. Uses .45 pistol ammo.
 
-uplink-pistol-magazine-cobra-name = Cobra .45 pistol magazine
+uplink-pistol-magazine-cobra-name = Cobra .45 Pistol Magazine
 uplink-pistol-magazine-cobra-desc = A loaded magazine for Cobra .45 pistol.
 
-uplink-speedloader-magnum-non-ap-name = .45 pistol speed loader
+uplink-speedloader-magnum-non-ap-name = .45 Pistol Speed Loader
 uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pistol caliber rounds.
 
 uplink-syndicate-segway-name = Syndicate Segway
