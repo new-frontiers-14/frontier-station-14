@@ -258,7 +258,7 @@ public sealed class SuitSensorSystem : EntitySystem
         if (args.Container.ID != component.ActivationContainer)
             return;
 
-        // Frontier: entities with "Always" disabled suit sensors must never be set as a valid user.
+        // Frontier: opt out of suit sensor registration
         if (TryComp<DisableSuitSensorsComponent>(args.Container.Owner, out var disableSuitSensor) && disableSuitSensor.RemoveRegistration)
             return;
         // End Frontier
