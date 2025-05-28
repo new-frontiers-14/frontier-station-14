@@ -5,8 +5,8 @@ using Content.Shared.Access.Components;
 using Content.Shared.Tiles;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map; // Frontier
-using System.Diagnostics.CodeAnalysis; // Frontier
+using Robust.Shared.Map;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared._NF.GridAccess
 {
@@ -22,7 +22,7 @@ namespace Content.Shared._NF.GridAccess
         {
             base.Initialize();
 
-            SubscribeLocalEvent<IdCardComponent, AfterInteractEvent>(OnIdCardSwipeHappened); // Frontier
+            SubscribeLocalEvent<IdCardComponent, AfterInteractEvent>(OnIdCardSwipeHappened);
         }
 
         private void OnIdCardSwipeHappened(EntityUid uid, IdCardComponent comp, ref AfterInteractEvent args)
@@ -56,23 +56,24 @@ namespace Content.Shared._NF.GridAccess
             {
                 _popup.PopupClient(Loc.GetString("grid-access-id-card-removed"),
                     uid, args.User, PopupType.Medium);
-                _audio.PlayLocal(comp.ErrorSound, rcdEntityUid, args.User);
+                _audio.PlayLocal(comp.SwipeSound, rcdEntityUid, args.User);
                 gridAccessComponent.LinkedShuttleUid = null;
             }
             else // Transfering or setting a new ID card
             {
                 _popup.PopupClient(Loc.GetString("grid-access-id-card-accepted"),
                     uid, args.User, PopupType.Medium);
-                _audio.PlayLocal(comp.ErrorSound, rcdEntityUid, args.User);
+                _audio.PlayLocal(comp.InsertSound, rcdEntityUid, args.User);
                 gridAccessComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
             }
 
             Dirty(rcdEntityUid, gridAccessComponent);
         }
 
-        /**
-        * Frontier - Adds shipyard remote limitations.
-        */
+        /// <summary>
+        /// Gets a tool's authorization for a given GridUid.
+        /// Returns an incomplete, non-localized string for popups.
+        /// </summary>
         public bool IsAuthorized(EntityUid? gridUid, GridAccessComponent comp, EntityUid used, EntityUid user, out string? popupMessage)
         {
             popupMessage = null;
@@ -82,7 +83,7 @@ namespace Content.Shared._NF.GridAccess
                 return true;
             }
 
-            // Frontier - LinkedShuttleUid requirements to use Shipyard devices.
+            // LinkedShuttleUid requirements to use Shipyard devices.
             if (comp.LinkedShuttleUid == null)
             {
                 popupMessage = "no-id-swiped";
@@ -104,7 +105,7 @@ namespace Content.Shared._NF.GridAccess
             if (mapGridUid == null)
             {
                 location = location.AlignWithClosestGridTile(1.75f, EntityManager);
-                mapGridUid = _sharedTransformSystem.GetGrid(location); // location.GetGridUid(EntityManager);
+                mapGridUid = _sharedTransformSystem.GetGrid(location);
 
                 // Check if we got a grid ID the second time round
                 if (mapGridUid == null)
