@@ -533,7 +533,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (_timing.CurTime >= component.NextDenySoundTime)
         {
             component.NextDenySoundTime = _timing.CurTime + component.DenySoundDelay;
-            _audio.PlayPvs(_audio.ResolveSound(component.ErrorSound), ent);
+            _audio.PlayPvs(_audio.ResolveSound(component.ErrorSound), consoleUid);
         }
     }
 
