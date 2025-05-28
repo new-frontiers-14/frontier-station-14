@@ -430,11 +430,15 @@
   id: BiogeneratorFill
   parent: Biogenerator
   name: biogenerator
-  suffix: Biomass, 50
+  suffix: Biomass, 200
   components:
   - type: MaterialStorage
     storage:
-      Biomass: 50
+      Biomass: 200
+  - type: ContainerFill
+    containers:
+      beaker_slot:
+      - LargeBeaker
 
 - type: entity
   parent: UniformPrinter
