@@ -38,6 +38,7 @@
   - type: ContainerContainer
     containers:
       contents: !type:ContainerSlot
+      paper_label: !type:ContainerSlot # Frontier: labelable parcels
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -49,21 +50,21 @@
           "Large": { state: "parcel-medium" }
           "Huge": { state: "parcel-large" }
           "Ginormous": { state: "parcel-large" }
-      # Frontier: paper label
+      # Frontier: labelable parcels
       enum.PaperLabelVisuals.LabelType:
         enum.PaperLabelVisuals.Layer:
           Paper: { state: paper }
           Bounty: { state: bounty }
           CaptainsPaper: { state: captains_paper }
           Invoice: { state: invoice }
-      # End Frontier: paper label
+      # End Frontier: labelable parcels
   - type: Sprite
     sprite: Objects/Misc/ParcelWrap/wrapped_parcel.rsi
     layers:
     - state: parcel-medium
       map: [ "enum.WrappedParcelVisuals.Layer" ]
-    - state: paper # Frontier: paper label
-      sprite: Structures/Storage/Crates/labels.rsi # Frontier
+    - state: paper # Frontier: labelable parcels
+      sprite: _NF/Objects/Misc/parcel_labels.rsi # Frontier
       map: ["enum.PaperLabelVisuals.Layer"] # Frontier
   - type: WrappedParcel
     unwrapDelay: 0.5
