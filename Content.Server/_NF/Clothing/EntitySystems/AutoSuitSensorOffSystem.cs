@@ -8,7 +8,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Roles;
 
-namespace Content.Server._NF.Clothing.EntitySystems;
+namespace Content.Server._NF.Medical.SuitSensors;
 
 public sealed class AutoSuitSensorOffSystem : EntitySystem
 {
