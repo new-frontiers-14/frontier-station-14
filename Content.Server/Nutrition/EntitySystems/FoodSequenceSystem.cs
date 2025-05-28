@@ -215,6 +215,8 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
         if (!TryComp<FoodComponent>(element, out var elementFood))
             return;
 
+        startFood.RequiresSpecialDigestion |= elementFood.RequiresSpecialDigestion; // Frontier: merge special digestion
+
         if (!_solutionContainer.TryGetSolution(start, startFood.Solution, out var startSolutionEntity, out var startSolution))
             return;
 
