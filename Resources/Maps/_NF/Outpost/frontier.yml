@@ -1,16 +1,16 @@
 meta:
   format: 7
-  category: Map
-  engineVersion: 247.2.0
+  category: Grid
+  engineVersion: 255.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/22/2025 01:21:01
-  entityCount: 5522
-maps:
-- 5691
+  time: 05/28/2025 05:58:20
+  entityCount: 5519
+maps: []
 grids:
 - 2173
-orphans: []
+orphans:
+- 2173
 nullspace: []
 tilemap:
   0: Space
@@ -48,7 +48,7 @@ entities:
     - type: MetaData
       name: Frontier Outpost
     - type: Transform
-      parent: 5691
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -181,43 +181,37 @@ entities:
         path: /Audio/Effects/alert.ogg
     - type: WorldGenDistanceCarver
       distanceThresholds:
-        # Dead zone
-        - maxDistance: 1000
-          prob: 0.0
-        # Sparse zone
-        - maxDistance: 1400
-          prob: 0.1
-        - maxDistance: 1800
-          prob: 0.2
-        - maxDistance: 2200
-          prob: 0.3
-        - maxDistance: 2600
-          prob: 0.4
-        - maxDistance: 3000
-          prob: 0.5
-        - maxDistance: 3400
-          prob: 0.6
-        - maxDistance: 3800
-          prob: 0.7
-        - maxDistance: 4200
-          prob: 0.8
-        - maxDistance: 4600
-          prob: 0.9
-        # Main world
-        - maxDistance: 14000
-          prob: 1.0
-        # Outer sparse zone
-        - maxDistance: 14500
-          prob: 0.8
-        - maxDistance: 15000
-          prob: 0.6
-        - maxDistance: 15500
-          prob: 0.4
-        - maxDistance: 16000
-          prob: 0.2
-        # Outer dead zone
-        - maxDistance: 99999999 # ~ 100 million
-          prob: 0.0
+      - prob: 0
+        maxDistance: 1000
+      - prob: 0.1
+        maxDistance: 1400
+      - prob: 0.2
+        maxDistance: 1800
+      - prob: 0.3
+        maxDistance: 2200
+      - prob: 0.4
+        maxDistance: 2600
+      - prob: 0.5
+        maxDistance: 3000
+      - prob: 0.6
+        maxDistance: 3400
+      - prob: 0.7
+        maxDistance: 3800
+      - prob: 0.8
+        maxDistance: 4200
+      - prob: 0.9
+        maxDistance: 4600
+      - maxDistance: 14000
+      - prob: 0.8
+        maxDistance: 14500
+      - prob: 0.6
+        maxDistance: 15000
+      - prob: 0.4
+        maxDistance: 15500
+      - prob: 0.2
+        maxDistance: 16000
+      - prob: 0
+        maxDistance: 100000000
     - type: DecalGrid
       chunkCollection:
         version: 2
@@ -3605,7 +3599,7 @@ entities:
             0: 47903
           -9,3:
             0: 34831
-            3: 8704
+            2: 8704
           -8,4:
             0: 2187
             1: 768
@@ -3745,13 +3739,13 @@ entities:
             0: 63931
           -10,3:
             0: 13087
-            2: 34816
+            3: 34816
           -10,4:
             0: 3
-            2: 8
+            3: 8
             1: 3840
           -9,4:
-            3: 2
+            2: 2
             0: 8
             1: 3840
           -16,0:
@@ -3977,8 +3971,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 0
           - 6666.982
+          - 0
           - 0
           - 0
           - 0
@@ -3992,8 +3986,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 6666.982
           - 0
+          - 6666.982
           - 0
           - 0
           - 0
@@ -4022,20 +4016,6 @@ entities:
     - type: SpreaderGrid
     - type: IFF
       readOnly: True
-  - uid: 5691
-    components:
-    - type: MetaData
-      name: map 1234
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: PhysicsMap
-    - type: GridTree
-    - type: MovedGrids
-    - type: Broadphase
-    - type: Parallax
-      parallax: FrontierStation
-    - type: OccluderTree
 - proto: ActionToggleLight
   entities:
   - uid: 2428
@@ -5154,9 +5134,11 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         3746:
-        - DoorStatus: Close
+        - - DoorStatus
+          - Close
         3745:
-        - DoorStatus: Close
+        - - DoorStatus
+          - Close
   - uid: 2982
     components:
     - type: Transform
@@ -5168,9 +5150,11 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         3746:
-        - DoorStatus: Close
+        - - DoorStatus
+          - Close
         3745:
-        - DoorStatus: Close
+        - - DoorStatus
+          - Close
   - uid: 3745
     components:
     - type: Transform
@@ -5182,9 +5166,11 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         2976:
-        - DoorStatus: Close
+        - - DoorStatus
+          - Close
         2982:
-        - DoorStatus: Close
+        - - DoorStatus
+          - Close
   - uid: 3746
     components:
     - type: Transform
@@ -5196,9 +5182,11 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         2976:
-        - DoorStatus: Close
+        - - DoorStatus
+          - Close
         2982:
-        - DoorStatus: Close
+        - - DoorStatus
+          - Close
 - proto: AirlockSeviceFrontierLocked
   entities:
   - uid: 389
@@ -18583,13 +18571,6 @@ entities:
       parent: 2173
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 4601
-    components:
-    - type: Transform
-      pos: -50.5,5.5
-      parent: 2173
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 4634
     components:
     - type: Transform
@@ -19424,6 +19405,13 @@ entities:
       parent: 2173
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 2314
+    components:
+    - type: Transform
+      pos: -51.5,5.5
+      parent: 2173
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 2470
     components:
     - type: Transform
@@ -20427,14 +20415,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -49.5,4.5
-      parent: 2173
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 4598
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -50.5,4.5
       parent: 2173
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -24117,6 +24097,14 @@ entities:
       parent: 2173
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 2264
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -50.5,4.5
+      parent: 2173
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 2516
     components:
     - type: Transform
@@ -24268,14 +24256,6 @@ entities:
     components:
     - type: Transform
       pos: -42.5,4.5
-      parent: 2173
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 4600
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -51.5,5.5
       parent: 2173
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -24849,6 +24829,13 @@ entities:
       parent: 2173
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 2265
+    components:
+    - type: Transform
+      pos: -50.5,5.5
+      parent: 2173
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 2769
     components:
     - type: Transform
@@ -24932,14 +24919,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -29.5,-29.5
-      parent: 2173
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 4579
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -50.5,4.5
       parent: 2173
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -27706,18 +27685,6 @@ entities:
     - type: Transform
       pos: -54.5,18.5
       parent: 2173
-- proto: MailBag
-  entities:
-  - uid: 805
-    components:
-    - type: Transform
-      pos: 29.810764,16.661615
-      parent: 2173
-  - uid: 807
-    components:
-    - type: Transform
-      pos: 29.342014,16.547031
-      parent: 2173
 - proto: MailingUnit
   entities:
   - uid: 207
@@ -27976,6 +27943,25 @@ entities:
     components:
     - type: Transform
       pos: 15.5,13.5
+      parent: 2173
+- proto: NFMailBag
+  entities:
+  - uid: 805
+    components:
+    - type: Transform
+      pos: 29.810764,16.661615
+      parent: 2173
+  - uid: 807
+    components:
+    - type: Transform
+      pos: 29.342014,16.547031
+      parent: 2173
+- proto: NFRandomBook
+  entities:
+  - uid: 2063
+    components:
+    - type: Transform
+      pos: 51.5,10.5
       parent: 2173
 - proto: NFSignBus
   entities:
@@ -28379,7 +28365,7 @@ entities:
     - type: Transform
       pos: 42.5,17.5
       parent: 2173
-- proto: PosterLegitSMEpi
+- proto: PosterLegitSafetyMothEpi
   entities:
   - uid: 4839
     components:
@@ -28387,7 +28373,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -54.5,9.5
       parent: 2173
-- proto: PosterLegitSMPills
+- proto: PosterLegitSafetyMothPills
   entities:
   - uid: 4838
     components:
@@ -28395,7 +28381,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -46.5,15.5
       parent: 2173
-- proto: PosterLegitSMPoisoning
+- proto: PosterLegitSafetyMothPoisoning
   entities:
   - uid: 765
     components:
@@ -29101,13 +29087,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 39.5,22.5
       parent: 2173
-- proto: PoweredlightUltraviolet
-  entities:
-  - uid: 2064
-    components:
-    - type: Transform
-      pos: 51.5,10.5
-      parent: 2173
 - proto: PoweredlightLED
   entities:
   - uid: 4191
@@ -29118,6 +29097,13 @@ entities:
       parent: 2173
     - type: ApcPowerReceiver
       powerLoad: 0
+- proto: PoweredlightUltraviolet
+  entities:
+  - uid: 2064
+    components:
+    - type: Transform
+      pos: 51.5,10.5
+      parent: 2173
 - proto: PoweredSmallLight
   entities:
   - uid: 269
@@ -29564,13 +29550,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -49.5,11.5
-      parent: 2173
-- proto: NFRandomBook
-  entities:
-  - uid: 2063
-    components:
-    - type: Transform
-      pos: 51.5,10.5
       parent: 2173
 - proto: RandomFoodMeal
   entities:
@@ -31836,7 +31815,7 @@ entities:
     - type: Transform
       pos: 42.5,19.5
       parent: 2173
-- proto: SignSec
+- proto: SignSecurity
   entities:
   - uid: 2154
     components:
@@ -33201,9 +33180,12 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         6083:
-        - Left: Forward
-        - Right: Forward
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Forward
+        - - Middle
+          - Off
 - proto: UniformPrinterStaff
   entities:
   - uid: 2042
@@ -36910,7 +36892,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         2642:
-        - DoorStatus: Close
+        - - DoorStatus
+          - Close
   - uid: 2803
     components:
     - type: Transform
@@ -36927,7 +36910,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         2643:
-        - DoorStatus: Close
+        - - DoorStatus
+          - Close
   - uid: 3726
     components:
     - type: Transform
