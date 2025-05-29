@@ -285,6 +285,12 @@
       - NFMagazineClipRifle20
   - type: Item
     size: Small
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_novalite_clip.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -306,13 +312,6 @@
     steps: 16
     zeroVisible: false
   - type: Appearance
-  - type: Item
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_novalite_clip.rsi
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      right:
-      - state: inhand-right-mag
 
 - type: entity
   parent: NFMagazineClipRifle20Empty
