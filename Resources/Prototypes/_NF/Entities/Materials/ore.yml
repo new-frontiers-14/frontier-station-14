@@ -66,38 +66,188 @@
   color: "#FFD700"
   price: 0.02
 
-# Spawner for lathe: yield random mats if processed in ore processor
+# Spawner for scrap processor: spawns random materials
+
+- type: entityTable
+  id: TableScrapProcessorRandomMaterials
+  table: !type:GroupSelector
+    children:
+    # For reference 1 scrap chumk = 2 spesos
+    # T1: 0.5 - 8.75 spesos per mat
+    - !type:GroupSelector
+      weight: 60
+      children:
+      - id: MaterialCardboard1
+      - id: SheetPaper1
+      - id: MaterialCloth1
+      - id: SheetSteel1
+      - id: SheetGlass1
+      - id: MaterialBones1
+      - id: SheetRGlass1
+      - id: PartRodMetal1
+      - id: SheetClockworkGlass1
+    # T2:  10 - 15 spesos per mat
+    - !type:GroupSelector
+      weight: 30
+      children:
+      - id: MaterialWoodPlank1
+      - id: SheetPlastic1
+      - id: SheetBrass1
+      - id: IngotSilver1
+      - id: MaterialDurathread1
+    # T3: 15 - 26 spesos per mat
+    - !type:GroupSelector
+      weight: 7
+      children:
+      - id: SheetUranium1
+      - id: SheetPlasma1
+      - id: IngotGold1
+      - id: SheetUGlass1
+      - id: SheetPGlass1
+      - id: SheetRUGlass1
+      - id: SheetRPGlass1
+      - id: SheetPlasteel1
+      - id: MaterialSheetMeat1
+    # T4: 26 - 50 spesos per mat
+    - !type:GroupSelector
+      weight: 2.99
+      children:
+      - id: MaterialBananium1
+    # T5: 1000+ spesos per mat
+    - !type:GroupSelector
+      weight: 0.01
+      children:
+      - id: MaterialBluespace1 # 1500
+      - id: MaterialDiamond1 # 2000
+
 - type: entity
-  name: refined scrap
-  id: SpawnRandomRefinedScrap
+  id: ScrapProcessorRandomMaterial
   parent: MarkerBasePlaceFree
-  categories: [ HideSpawnMenu ]
+  name: filter out usable materials
   components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: _NF/Objects/Materials/ore.rsi
-        state: scrapore
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootOresSingle
-    - SpawnDungeonLootToolsBasicEngineering
-    chance: 1.0
+  - type: EntityTableSpawner
     offset: 0.0
-    rarePrototypes:
-    - MaterialBananium1
-    - MaterialBones1
-    - SpawnDungeonLootMaterialsValuableSingle
-    - SpawnDungeonLootPartsEngi
-    - SpawnDungeonLootCircuitBoard
-    rareChance: 0.005
+    table: !type:NestedSelector
+      tableId: TableScrapProcessorRandomMaterials
+      prob: 0.7
+
+# Spawner for scrap processor: spawns random parts
+
+- type: entityTable
+  id: TableScrapProcessorRandomParts
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      # T1
+      weight: 90
+      children:
+      - id: CableApcStack1
+      - id: CableMVStack1
+      - id: CableHVStack1
+      - id: CapacitorStockPart
+      - id: MicroManipulatorStockPart
+      - id: MatterBinStockPart
+      - id: Igniter
+      - id: PowerCellMedium
+    - !type:GroupSelector
+      # T2
+      weight: 7
+      children:
+      - id: AdvancedCapacitorStockPart
+      - id: NanoManipulatorStockPart
+      - id: AdvancedMatterBinStockPart
+      - id: SignalTrigger
+      - id: TimerTrigger
+      - id: VoiceTrigger
+      - id: ProximitySensor
+      - id: PowerCellHigh
+    - !type:GroupSelector
+      # T3
+      weight: 3
+      children:
+      - id: SuperCapacitorStockPart
+      - id: PicoManipulatorStockPart
+      - id: SuperMatterBinStockPart
+      - id: PowerCellHyper
+
+- type: entity
+  id: ScrapProcessorRandomPart
+  parent: MarkerBasePlaceFree
+  name: filter out usable parts
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableScrapProcessorRandomParts
+      prob: 0.7
+
+# Spawner for scrap processor: spawns random tools
+
+- type: entityTable
+  id: TableScrapProcessorRandomTools
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      # T1
+      weight: 90
+      children:
+      - id: Crowbar
+      - id: Screwdriver
+      - id: Wrench
+      - id: Wirecutter
+      - id: WelderEmpty
+      - id: AppraisalTool
+      - id: Multitool
+      - id: GeigerCounter
+      - id: trayScanner
+      - id: GasAnalyzer
+      - id: HydroponicsToolMiniHoe
+      - id: HydroponicsToolClippers
+      - id: HydroponicsToolSpade
+      - id: HydroponicsToolHatchet
+      - id: HydroponicsToolScythe
+      - id: Pickaxe
+      - id: SprayPainter
+      - id: EmptyFlashlightLantern
+      - id: ClothingEyesGlassesMeson
+      - id: SpectralLocatorEmpty
+      - id: NodeScanner
+      - id: AnomalyScanner
+    - !type:GroupSelector
+      # T2
+      weight: 7
+      children:
+      - id: MedicalAppraisalTool
+      - id: HandheldHealthAnalyzerEmpty
+      - id: ForensicScanner
+      - id: HandHeldMassScannerEmpty
+      - id: MineralScannerEmpty
+      - id: WelderIndustrialEmpty
+      - id: GasDepositLocatorEmpty
+      - id: HoloGraffitiProjectorEmpty
+      - id: HoloprojectorEmpty
+      - id: HolofanProjectorEmpty
+      - id: NFWeaponHoloflareGun
+      - id: MiningDrill
+    - !type:GroupSelector
+      # T3
+      weight: 3
+      children:
+      - id: HoloprojectorFieldEmpty
+      - id: PlantAnalyzerEmpty
+      - id: RPED
+      - id: ShipyardRCD
+
+- type: entity
+  id: ScrapProcessorRandomTools
+  parent: MarkerBasePlaceFree
+  name: filter out usable tools
+  components:
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableScrapProcessorRandomTools
+      prob: 0.7
 
 # Spawner for scrap processor: spawns random machine board, occasionally useful one
 
