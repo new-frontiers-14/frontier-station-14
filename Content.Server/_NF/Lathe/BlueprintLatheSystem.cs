@@ -537,7 +537,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
     /// </remarks>
     public void RemoveBlueprintRecipe(Entity<BlueprintComponent> ent, ProtoId<LatheRecipePrototype> recipe, bool dirty = true)
     {
-        var removed = ent.Comp.ProvidedRecipes.Remove(recipe)
+        var removed = ent.Comp.ProvidedRecipes.Remove(recipe);
         if (removed && dirty)
             Dirty(ent, ent.Comp);
     }

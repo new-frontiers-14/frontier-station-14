@@ -58,7 +58,7 @@ public sealed class RandomBlueprintSystem : EntitySystem
                 if (packTuple.count >= recipeIndex)
                 {
                     // Find relative index in pack hashset
-                    curIndex = packTuple.count - curIndex;
+                    curIndex = recipeIndex - curIndex;
                     recipeIndex = 0;
                     foreach (var recipe in packTuple.pack.Recipes)
                     {
@@ -67,6 +67,7 @@ public sealed class RandomBlueprintSystem : EntitySystem
                             _blueprintLathe.AddBlueprintRecipe((ent, blueprintComp), recipe, false);
                             break;
                         }
+                        recipeIndex++;
                     }
                     break;
                 }
