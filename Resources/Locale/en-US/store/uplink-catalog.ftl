@@ -230,8 +230,10 @@ uplink-knives-kit-desc = A set of 4 syndicate branded throwing knives, perfect f
 uplink-meds-bundle-name = Interdyne Medical Bundle
 uplink-meds-bundle-desc = An assortment of autoinjectors and premium medical equipment to cover for every possible situation. Contains an elite compact defibrillator that can be used as a weapon.
 
+# Frontier: L6<LMG-6
 uplink-ammo-bundle-name = Ammo Bundle
-uplink-ammo-bundle-desc = Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW.
+uplink-ammo-bundle-desc = Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the LMG-6.
+# End Frontier: L6<LMG-6
 
 uplink-sniper-bundle-name = Sniper Bundle
 uplink-sniper-bundle-desc = An inconspicuous briefcase that contains a Hristov, 10 spare bullets and a convenient disguise.
@@ -245,8 +247,10 @@ uplink-buldog-bundle-desc = Lean and mean: Contains the popular Bulldog Shotgun 
 uplink-grenade-launcher-bundle-name = China-Lake Bundle
 uplink-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 11 rounds of varying destructive capability.
 
-uplink-l6-saw-bundle-name = L6 Saw Bundle
-uplink-l6-saw-bundle-desc = More dakka: The iconic L6 light machine gun, bundled with 2 box magazines.
+# Frontier: L6<LMG-6
+uplink-l6-saw-bundle-name = LMG-6 Bundle
+uplink-l6-saw-bundle-desc = More dakka: The iconic LMG-6 light machine gun, bundled with 2 box magazines.
+# End Frontier
 
 uplink-zombie-bundle-name = Syndicate Zombie Bundle
 uplink-zombie-bundle-desc = An all-in-one kit for unleashing the undead upon a station.
