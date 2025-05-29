@@ -478,7 +478,9 @@
         color: "#db7372"
 
 #region Random
+# Must be mapped as non savable - purposefully nondeterministic.
 - type: entity
+  save: false
   parent: NFBlueprintEngineering
   id: NFBlueprintEngineeringRandom
   components:
@@ -488,6 +490,7 @@
     maxRolls: 2
 
 - type: entity
+  save: false
   parent: NFBlueprintSalvage
   id: NFBlueprintSalvageRandom
   components:
@@ -497,6 +500,7 @@
     maxRolls: 2
 
 - type: entity
+  save: false
   parent: NFBlueprintScience
   id: NFBlueprintScienceRandom
   components:
@@ -506,6 +510,7 @@
     maxRolls: 2
 
 - type: entity
+  save: false
   parent: NFBlueprintService
   id: NFBlueprintServiceRandom
   components:
@@ -515,6 +520,7 @@
     maxRolls: 3
 
 - type: entity
+  save: false
   parent: NFBlueprintMedical
   id: NFBlueprintMedicalRandom
   components:
@@ -524,6 +530,7 @@
     maxRolls: 2
 
 - type: entity
+  save: false
   parent: NFBlueprintArsenal
   id: NFBlueprintArsenalRandom
   components:
