@@ -1,92 +1,23 @@
 <Document>
   # CHISEL-CLASS SALVAGE SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="MiningDrill"/>
-  <GuideEntityEmbed Entity="OreBag"/>
-  <GuideEntityEmbed Entity="SalvageTechfabNF"/>
-  <GuideEntityEmbed Entity="MaterialReclaimer"/>
-  </Box>  
-  <Box>
   <GuideEntityEmbed Entity="ShuttleMapChisel" Caption=""/>
   </Box>
     [color=#a4885c]Ship Size:[/color] Small
-	
-	[color=#a4885c]Recommended Crew:[/color] 2-4
-	
-	[color=#a4885c]Power Gen Type:[/color] Plasma
-	
+
+	[color=#a4885c]Recommended Crew:[/color] 3+
+
+	[color=#a4885c]Power Gen Type:[/color] Uranium
+
 	[color=#a4885c]Expeditions:[/color] None
-	
+
 	[color=#a4885c]IFF Console:[/color] None
-	
-  "Standard small size multipurpose vessel, originally meant to aid in ship scrapping."
-    
-  # PREFLIGHT CHECKLIST
-  
-  ## 1. Power supply
-  
-  ## 1.1. Battery units
-  <Box>
-  <GuideEntityEmbed Entity="SMESBasic"/>
-  <GuideEntityEmbed Entity="SubstationWallBasic"/>
-  <GuideEntityEmbed Entity="APCBasic"/>
-  </Box>
-  
-  - Check that the SMES unit is anchored to the floor.
-  - Check that the substation unit is anchored to the floor.
-  - Check that the APC unit's Main Breaker is toggled on.
-  - Check the APC unit's current Load* (W).
-  
-  ## 1.2. P.A.C.M.A.N. generator unit
-  <Box>
-  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
-  <GuideEntityEmbed Entity="SheetPlasma"/>
-  </Box>
-  
-  - Check that P.A.C.M.A.N. generator units are anchored to the floor.
-  - Check that P.A.C.M.A.N. generator units are fueled. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
-  - Check that P.A.C.M.A.N. generator units are set to HV output.
-  - Set Target Power to 10** [bold]kW[/bold] on each generator unit.
-  - Start P.A.C.M.A.N. generator units.
-  
-  ## 2. Atmospherics
-  
-  ## 2.1. Distribution Loop
-  <Box>
-  <GuideEntityEmbed Entity="AirCanister"/>
-  <GuideEntityEmbed Entity="GasPort"/>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  </Box>
-  
-  - Check that the air canister is anchored to connector port.
-  - Check that the distribution pump is set to 101kPa.
-  - Enable the distribution pump.
-  
-  ## 2.2. Waste Loop
-  <Box>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  <GuideEntityEmbed Entity="AirAlarm"/>
-  </Box>
-    
-  - Enable waste loop pump.
-  - Disable Auto Mode on the Air Alarm in the Engine Room.
-  - Set the Air Alarm in the Engine Room to Filtering (Wide).
-  
-  ## 3. Other checks
-  <Box>
-  <GuideEntityEmbed Entity="Gyroscope"/>
-  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  <GuideEntityEmbed Entity="BlastDoor"/>
-  </Box>
-  
-  - Check that the gyroscope is anchored, powered, and enabled.
-  - Check that the mini gravity generator is anchored, powered, and enabled.
-  - Check that the bow blast doors are closed.
-  
-  ## Sidenotes
-  
-  * - Chisel-class salvage ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption. Unmodified Chisel-class ship requires 19.6 kW of power to remain operational.
-  
-  ** - Chisel-class salvage ships have higher power demand than single standard P.A.C.M.A.N. generator unit can provide at optimal settings, however the ship comes equipped with two P.A.C.M.A.N. generator units, recommended target power output for each P.A.C.M.A.N. generator unit is 10 kW.
+
+  "Standard small-size vessel, originally meant to aid in ship scrapping, now modified to function as a multipurpose salvage/mining/cargo-hauling shuttle."
+
+  # Tips on running ICR Chisel shuttles
+  - Optimal Target Power (kW) for S.U.P.E.R.P.A.C.M.A.N. generator unit is 24 [bold]kW[/bold]. If you've added additional machines, check APC unit to see shuttle's power draw and adjust generator Target Power accordingly. For more general info on power grid see guidebook article [textlink="Power" link="Power"].
+  - There is a conveyor belt line running under material processing machines in the shuttle's aft area. One can use the table to dump the contents of their ore bags and then activate the belt via a nearby lever.
+  - For basics of shuttle piloting see [textlink="Piloting" link="Piloting"].
 
 </Document>
