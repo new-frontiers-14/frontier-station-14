@@ -1,5 +1,7 @@
 #region Base
+# All bases must not be map savable
 - type: entity
+  save: false
   id: BaseStackRandom
   abstract: true
   suffix: Random
@@ -9,6 +11,7 @@
     max: 30
 
 - type: entity
+  save: false
   id: BaseStackRandomLow
   abstract: true
   suffix: Random, Low
@@ -18,6 +21,7 @@
     max: 15
 
 - type: entity
+  save: false
   id: BaseStackRandomValuable
   abstract: true
   suffix: Random
