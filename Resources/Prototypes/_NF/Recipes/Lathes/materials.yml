@@ -28,12 +28,12 @@
     RawScrap: 2000
 
 - type: latheRecipe
-  id: SmeltScrapRandomBoard
-  result: ScrapProcessorRandomBoard
+  id: SmeltScrapMaterials
+  result: SpawnRandomScrapMaterial
   parent: BaseMaterialsNoDiscountRecipe
-  completetime: 2
+  completetime: 0.1
   icon:
-    sprite: Objects/Misc/module.rsi
-    state: cpu_service
+    sprite: _NF/Objects/Materials/ore.rsi
+    state: scrapore
   materials:
-    RawScrap: 9100
+    RawScrap: 3000

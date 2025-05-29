@@ -81,6 +81,7 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
+  - type: EntityTableSpawner
   - type: RandomSpawner
     prototypes:
     - SpawnDungeonLootMaterialsBasicSingle
@@ -183,12 +184,43 @@
       - id: McServiceTechFabCircuitboard
 
 - type: entity
-  id: ScrapProcessorRandomBoard
+  name: refined scrap
+  id: SpawnRandomScrapMaterial
   parent: MarkerBasePlaceFree
-  name: filter out functional machine boards
+  categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Materials/ore.rsi
+        state: scrapore
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
   - type: EntityTableSpawner
-    offset: 0.0
-    table: !type:NestedSelector
-      tableId: TableScrapProcessorRandomBoard
-      prob: 0.7
+  table: !type:GroupSelector
+    children:
+    - id: PartRodMetalRandom
+    - id: SheetGlassRandom
+    - id: SheetBrassRandom
+    - id: SheetRGlassRandom
+    - id: SheetPlasteelRandom
+    - id: SheetPlasticRandom
+    - id: SheetPlasmaRandom
+    - id: SheetUraniumRandom
+    - id: IngotSilverRandom
+    - id: IngotGoldRandom
+    - id: MaterialBananiumRandom
+    - id: MaterialClothRandom
+    - id: MaterialDurathreadRandom
+    - id: SheetUGlassRandom
+    - id: SheetPGlassRandom
+    - id: SheetRUGlassRandom
+    - id: SheetRPGlassRandom
+    - id: SheetClockworkGlassRandom
+    - id: MaterialBluespaceRandom
+    - id: MaterialDiamondRandom
+    - id: MaterialBonesRandom
+    - id: CableHVStackRandom
+    - id: CableMVStackRandom
+    - id: CableApcStackRandom
