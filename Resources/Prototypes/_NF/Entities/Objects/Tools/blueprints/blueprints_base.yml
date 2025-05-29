@@ -89,7 +89,6 @@
   - type: Blueprint
     providedRecipes: []
 
-# region Generic
 - type: entity
   parent: NFBaseBlueprint
   id: NFBaseBlueprintFaxable
@@ -477,3 +476,87 @@
         color: "#d21a1a"
       - state: inhand-right-text
         color: "#db7372"
+
+#region Random
+- type: entity
+  parent: NFBlueprintEngineering
+  id: NFBlueprintEngineeringRandom
+  components:
+  - type: RandomBlueprint
+    blueprint: Engineering
+    minRolls: 1
+    maxRolls: 2
+
+- type: entity
+  parent: NFBlueprintSalvage
+  id: NFBlueprintSalvageRandom
+  components:
+  - type: RandomBlueprint
+    blueprint: Salvage
+    minRolls: 1
+    maxRolls: 2
+
+- type: entity
+  parent: NFBlueprintScience
+  id: NFBlueprintScienceRandom
+  components:
+  - type: RandomBlueprint
+    blueprint: Science
+    minRolls: 1
+    maxRolls: 2
+
+- type: entity
+  parent: NFBlueprintService
+  id: NFBlueprintServiceRandom
+  components:
+  - type: RandomBlueprint
+    blueprint: Service
+    minRolls: 2 # likely to roll pouches, therefore extra rolls
+    maxRolls: 3
+
+- type: entity
+  parent: NFBlueprintMedical
+  id: NFBlueprintMedicalRandom
+  components:
+  - type: RandomBlueprint
+    blueprint: Medical
+    minRolls: 1
+    maxRolls: 2
+
+- type: entity
+  parent: NFBlueprintArsenal
+  id: NFBlueprintArsenalRandom
+  components:
+  - type: RandomBlueprint
+    blueprint: ArsenalMerc
+    minRolls: 1
+    maxRolls: 2
+
+- type: entity
+  name: refined scrap
+  id: SpawnRandomScrapBlueprint
+  parent: MarkerBasePlaceFree
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Materials/ore.rsi
+        state: scrapore
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: TableScrapProcessorRandomBlueprint
+
+- type: entityTable
+  id: TableScrapProcessorRandomBlueprint
+  table: !type:GroupSelector
+    children:
+    - id: NFBlueprintEngineeringRandom
+    - id: NFBlueprintSalvageRandom
+    - id: NFBlueprintScienceRandom
+    - id: NFBlueprintServiceRandom
+    - id: NFBlueprintMedicalRandom
+    - id: NFBlueprintArsenalRandom

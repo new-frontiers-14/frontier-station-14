@@ -3,30 +3,37 @@
   id: BaseStackRandom
   abstract: true
   suffix: Random
-  component:
+  components:
   - type: RandomStackCount
-    range: 5, 30
+    min: 5
+    max: 30
 
 - type: entity
   id: BaseStackRandomLow
   abstract: true
   suffix: Random, Low
-  component:
+  components:
   - type: RandomStackCount
-    range: 3, 15
+    min: 3
+    max: 15
 
 - type: entity
   id: BaseStackRandomValuable
   abstract: true
   suffix: Random
-  component:
+  components:
   - type: RandomStackCount
-    range: 1, 5
+    min: 1
+    max: 5
 
 #region Normal
 - type: entity
   parent: [BaseStackRandom, PartRodMetal1]
   id: PartRodMetalRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetGlass1]
+  id: SheetSteelRandom
 
 - type: entity
   parent: [BaseStackRandom, SheetGlass1]
@@ -116,6 +123,10 @@
 - type: entity
   parent: [BaseStackRandomLow, PartRodMetal1]
   id: PartRodMetalRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetGlass1]
+  id: SheetSteelRandomLow
 
 - type: entity
   parent: [BaseStackRandomLow, SheetGlass1]

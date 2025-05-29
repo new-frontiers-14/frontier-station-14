@@ -1,5 +1,3 @@
-using Content.Shared.Destructible.Thresholds;
-
 namespace Content.Server._NF.Stacks.Components;
 
 /// <summary>
@@ -10,5 +8,8 @@ namespace Content.Server._NF.Stacks.Components;
 public sealed partial class RandomStackCountComponent : Component
 {
     [DataField]
-    public MinMax Range;
+    public int Min;
+
+    [DataField]
+    public int Max;
 }

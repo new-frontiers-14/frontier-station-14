@@ -17,6 +17,6 @@ public sealed class RandomStackSystem : EntitySystem
 
     private void OnInit(Entity<RandomStackCountComponent> ent, ref ComponentInit init)
     {
-        _stack.SetCount(ent, _random.Next(ent.Comp.Range.Min, ent.Comp.Range.Max));
+        _stack.SetCount(ent, _random.Next(ent.Comp.Min, ent.Comp.Max + 1));
     }
 }

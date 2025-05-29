@@ -197,7 +197,8 @@
         state: questionmark
         color: red
   - type: EntityTableSpawner
-    table: TableScrapProcessorRandomMaterial
+    table: !type:NestedSelector
+      tableId: TableScrapProcessorRandomMaterial
 
 - type: entityTable
   id: TableScrapProcessorRandomMaterial
