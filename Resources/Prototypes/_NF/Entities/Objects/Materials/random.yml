@@ -6,7 +6,7 @@
   abstract: true
   suffix: Random
   components:
-  - type: RandomStackCount
+  - type: RandomStackCount # Avg: 15
     min: 5
     max: 30
 
@@ -16,17 +16,17 @@
   abstract: true
   suffix: Random, Low
   components:
-  - type: RandomStackCount
+  - type: RandomStackCount # Avg: 9
     min: 3
     max: 15
 
 - type: entity
   save: false
-  id: BaseStackRandomValuable
+  id: BaseStackRandomVeryLow
   abstract: true
   suffix: Random
   components:
-  - type: RandomStackCount
+  - type: RandomStackCount # Avg: 3
     min: 1
     max: 5
 
@@ -232,15 +232,39 @@
   parent: [BaseStackRandomLow, CableApcStack1]
   id: CableApcStackRandomLow
 
-#region Valuable
 - type: entity
-  parent: [BaseStackRandomValuable, MaterialBluespace1]
-  id: MaterialBluespaceRandom
+  parent: [BaseStackRandomLow, CableApcStack1]
+  id: CableApcStackRandomLow
 
 - type: entity
-  parent: [BaseStackRandomValuable, MaterialDiamond1]
-  id: MaterialDiamondRandom
+  parent: [BaseStackRandomLow, MaterialBluespace1]
+  id: MaterialBluespaceRandomLow
 
 - type: entity
-  parent: [BaseStackRandomValuable, MaterialBones1]
-  id: MaterialBonesRandom
+  parent: [BaseStackRandomLow, MaterialDiamond1]
+  id: MaterialDiamondRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, MaterialBones1]
+  id: MaterialBonesRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, ArtifactFragment]
+  id: ArtifactFragmentRandomLow
+
+#region Very Low
+- type: entity
+  parent: [BaseStackRandomVeryLow, MaterialBluespace1]
+  id: MaterialBluespaceRandomVeryLow
+
+- type: entity
+  parent: [BaseStackRandomVeryLow, MaterialDiamond1]
+  id: MaterialDiamondRandomVeryLow
+
+- type: entity
+  parent: [BaseStackRandomVeryLow, MaterialBones1]
+  id: MaterialBonesRandomVeryLow
+
+- type: entity
+  parent: [BaseStackRandomVeryLow, ArtifactFragment]
+  id: ArtifactFragmentRandomVeryLow

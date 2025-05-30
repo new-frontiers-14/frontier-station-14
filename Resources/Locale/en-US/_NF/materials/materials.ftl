@@ -1,8 +1,6 @@
-# Metals
-materials-scrap = scrap
-
 # Ores
 materials-raw-scrap = unsorted scrap
+materials-raw-scrap-tech = scrap technological components
 
 # Other
 materials-reinforced-uranium-glass = reinforced uranium glass

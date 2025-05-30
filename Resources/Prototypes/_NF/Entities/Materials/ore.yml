@@ -1,9 +1,27 @@
-
 - type: entity
   parent: OreBase
   id: ScrapOre
+  name: technological scrap
+  description: Various bits of previously used machinery, now all non-functional. Needs to be processed to use.
+  suffix: Full
+  components:
+  - type: GoblinPreciousTrash # Frontier
+  - type: Stack
+    stackType: ScrapOreTech
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Materials/ore.rsi
+      state: scrapore
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawScrapTech: 100
+
+- type: entity
+  parent: OreBase
+  id: ScrapMaterialOre
   name: scrap chunks
-  description: Various bits of previously used machinery. Needs to be sorted or processed to use.
+  description: Smashed together pieces of spacecraft, now it's junk. Needs to be processed to use.
   suffix: Full
   components:
   - type: GoblinPreciousTrash # Frontier
@@ -12,7 +30,7 @@
   - type: Sprite
     layers:
     - sprite: _NF/Objects/Materials/ore.rsi
-      state: scrapore
+      state: scrapmaterials
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -21,16 +39,77 @@
 # Ore vein
 - type: ore
   id: NFOreScrap
-  oreEntity: ScrapOre3
+  oreEntity: ScrapOreRandom3
   minOreYield: 1
   maxOreYield: 5
 
+- type: entity
+  id: ScrapOreRandom3
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ScrapOre3
+    rarePrototypes:
+    - ScrapOreTech3
+    rareChance: 0.1
+
+- type: entity
+  id: ScrapOre20RandomLowTech
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ScrapOre20
+    rarePrototypes:
+    - ScrapOreTech20
+    rareChance: 0.3
+
+- type: entity
+  id: ScrapOre20RandomHighTech
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ScrapOre20
+    rarePrototypes:
+    - ScrapOreTech20
+    rareChance: 0.6
+
 # Stacks
 - type: stack
-  id: ScrapOre
-  name: scrap ore
+  id: ScrapOreTech
+  name: scrap technical components
   icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
-  spawn: ScrapOre1
+  spawn: ScrapOreTech1
+  maxCount: 100
+
+- type: entity
+  parent: ScrapOreTech
+  id: ScrapOreTech1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: ScrapOreTech
+  id: ScrapOreTech3
+  suffix: 3
+  components:
+  - type: Stack
+    count: 3
+
+- type: entity
+  parent: ScrapOreTech
+  id: ScrapOreTech1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: stack
+  id: ScrapOre
+  name: scrap chunks
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
+  spawn: ScrapOreTech1
   maxCount: 100
 
 - type: entity
@@ -57,19 +136,30 @@
   - type: Stack
     count: 20
 
+# Materials
+
 - type: material
   id: RawScrap
   stackEntity: ScrapOre1
   name: materials-raw-scrap
   unit: materials-unit-chunk
-  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapmaterials }
   color: "#FFD700"
+  price: 0.02
+
+- type: material
+  id: RawScrapTech
+  stackEntity: ScrapOreTech1
+  name: materials-raw-scrap-tech
+  unit: materials-unit-chunk
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
+  color: "#478200" # circuitboard green
   price: 0.02
 
 # Spawner for lathe: yield random mats if processed in ore processor
 - type: entity
-  name: refined scrap
-  id: SpawnRandomRefinedScrap
+  name: scavenged technology
+  id: SpawnRandomScrapTech
   parent: MarkerBasePlaceFree
   categories: [ HideSpawnMenu ]
   components:
@@ -81,25 +171,21 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
-  - type: RandomSpawner
-    prototypes:
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootOresSingle
-    - SpawnDungeonLootToolsBasicEngineering
-    chance: 1.0
-    offset: 0.0
-    rarePrototypes:
-    - MaterialBananium1
-    - MaterialBones1
-    - SpawnDungeonLootMaterialsValuableSingle
-    - SpawnDungeonLootPartsEngi
-    - SpawnDungeonLootCircuitBoard
-    rareChance: 0.005
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: TableScrapProcessorRandomTech
 
 # Spawner for scrap processor: spawns random machine board, occasionally useful one
+- type: entityTable
+  id: TableScrapProcessorRandomTech
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      table: TableScrapProcessorRandomBoard
+      weight: 0.75
+    - !type:NestedSelector
+      table: TableRandomBlueprint # random blueprints with 1-2 (or 3) recipes on them
+      weight: 0.25
 
 - type: entityTable
   id: TableScrapProcessorRandomBoard
@@ -183,7 +269,7 @@
       - id: McServiceTechFabCircuitboard
 
 - type: entity
-  name: refined scrap
+  name: reprocessed scrap materials
   id: SpawnRandomScrapMaterial
   parent: MarkerBasePlaceFree
   categories: [ HideSpawnMenu ]
@@ -192,7 +278,7 @@
     layers:
       - state: green
       - sprite: _NF/Objects/Materials/ore.rsi
-        state: scrapore
+        state: scrapmaterials
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
@@ -204,27 +290,64 @@
   id: TableScrapProcessorRandomMaterial
   table: !type:GroupSelector
     children:
+    # Normal yield (Avg: 15/stack)
+    - id: SheetSteelRandom
+      weight: 2.25
     - id: PartRodMetalRandom
+      weight: 0.75
     - id: SheetGlassRandom
-    - id: SheetBrassRandom
+      weight: 1
     - id: SheetRGlassRandom
+      weight: 0.5
+    - id: SheetBrassRandom
+      weight: 0.5
     - id: SheetPlasteelRandom
+      weight: 0.3
     - id: SheetPlasticRandom
+      weight: 1
+    - id: SheetPaperRandom
+      weight: 0.1
+    - id: MaterialCardboardRandom
+      weight: 0.1
+    - id: MaterialWoodPlankRandom
+      weight: 0.2
     - id: SheetPlasmaRandom
+      weight: 0.4
     - id: SheetUraniumRandom
+      weight: 0.3
     - id: IngotSilverRandom
+      weight: 0.3
     - id: IngotGoldRandom
+      weight: 0.2
     - id: MaterialBananiumRandom
+      weight: 0.2
     - id: MaterialClothRandom
+      weight: 0.2
     - id: MaterialDurathreadRandom
+      weight: 0.2
     - id: SheetUGlassRandom
+      weight: 0.15
     - id: SheetPGlassRandom
+      weight: 0.175
     - id: SheetRUGlassRandom
+      weight: 0.1
     - id: SheetRPGlassRandom
+      weight: 0.125
     - id: SheetClockworkGlassRandom
-    - id: MaterialBluespaceRandom
-    - id: MaterialDiamondRandom
-    - id: MaterialBonesRandom
+      weight: 0.1
     - id: CableHVStackRandom
+      weight: 0.2
     - id: CableMVStackRandom
+      weight: 0.2
     - id: CableApcStackRandom
+      weight: 0.2
+    # Low yield (Avg: 9/stack)
+    - id: MaterialBonesRandomLow
+      weight: 0.1
+    - id: MaterialArtifactFragmentRandomLow
+      weight: 0.025
+    - id: MaterialDiamondRandom
+      weight: 0.01
+    # Very low yield (Avg: 3/stack)
+    - id: MaterialBluespaceRandomVeryLow
+      weight: 0.015
