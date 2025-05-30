@@ -1,15 +1,19 @@
+using Content.Server._NF.Cargo.Components; // Frontier
 using Content.Server.Administration;
 using Content.Server.Body.Systems;
 using Content.Server.Cargo.Components;
-using Content.Shared.Chemistry.EntitySystems;
+using Content.Server.Materials.Components; // Frontier
 using Content.Shared.Administration;
 using Content.Shared.Body.Components;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Construction.Components; // Frontier
 using Content.Shared.Materials;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Research.Prototypes;
 using Content.Shared.Stacks;
 using Robust.Shared.Console;
 using Robust.Shared.Containers;
@@ -17,9 +21,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared.Research.Prototypes;
-using Content.Server._NF.Cargo.Components; // Frontier
-using Content.Server.Materials.Components; // Frontier
 
 namespace Content.Server.Cargo.Systems;
 
@@ -198,6 +199,13 @@ public sealed class PricingSystem : EntitySystem
             return ev.Price;
 
         var price = ev.Price;
+
+        // Frontier - Add flatpack price
+        var flatpackPrice = GetFlatpacksPrice(prototype);
+        if (!flatpackPrice.Equals(0.0))
+            return flatpackPrice;
+        // End Frontier
+
         price += GetMaterialsPrice(prototype);
         price += GetSolutionsPrice(prototype);
         // Can't use static price with stackprice
@@ -261,6 +269,13 @@ public sealed class PricingSystem : EntitySystem
         var price = ev.Price;
         //TODO: Add an OpaqueToAppraisal component or similar for blocking the recursive descent into containers, or preventing material pricing.
         // DO NOT FORGET TO UPDATE ESTIMATED PRICING
+
+        // Frontier - Add flatpack price
+        var flatpackPrice = GetFlatpacksPrice(uid);
+        if (!flatpackPrice.Equals(0.0))
+            return flatpackPrice;
+        // End Frontier
+
         price += GetMaterialsPrice(uid);
         price += GetSolutionsPrice(uid);
 
@@ -405,8 +420,8 @@ public sealed class PricingSystem : EntitySystem
         return price;
     }
 
-    // New Frontiers - Stack Vendor Prices - Gets overwrite values for vendor prices.
-    // This code is licensed under AGPLv3. See AGPLv3.txt
+    // Frontier
+    // Stack Vendor Prices - Gets overwrite values for vendor prices.
     private double GetVendPrice(EntityPrototype prototype)
     {
         var price = 0.0;
@@ -427,7 +442,48 @@ public sealed class PricingSystem : EntitySystem
 
         return price;
     }
-    // End of modified code
+
+    // Calc Flatpack Price.
+    private double GetFlatpackPrice(FlatpackComponent component)
+    {
+        var price = 0.0;
+
+        // With this:
+        var flatpackPrice = 0.0;
+        if (component.Entity != null && _prototypeManager.TryIndex<EntityPrototype>(component.Entity, out var proto))
+        {
+            flatpackPrice = GetStaticPrice(proto);
+        }
+        price += flatpackPrice;
+
+        return price;
+    }
+
+    private double GetFlatpacksPrice(EntityUid uid)
+    {
+        var price = 0.0;
+
+        if (TryComp<FlatpackComponent>(uid, out var flatpackComp))
+        {
+            price += GetFlatpackPrice(flatpackComp);
+        }
+
+        return price;
+    }
+
+    private double GetFlatpacksPrice(EntityPrototype prototype)
+    {
+        var price = 0.0;
+
+        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(FlatpackComponent)), out var flatpackManager))
+        {
+            var flatpackComp = (FlatpackComponent)flatpackManager.Component;
+            price += GetFlatpackPrice(flatpackComp);
+        }
+
+        return price;
+    }
+    // End Frontier
 
     /// <summary>
     /// Appraises a grid, this is mainly meant to be used by yarrs.
