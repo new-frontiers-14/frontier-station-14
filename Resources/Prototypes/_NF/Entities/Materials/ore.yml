@@ -185,10 +185,10 @@
     children:
     - !type:NestedSelector
       tableId: TableScrapProcessorRandomBoard
-      weight: 0.6
+      weight: 0.7
     - !type:NestedSelector
       tableId: TableRandomBlueprint # random blueprints with 1-2 (or 3) recipes on them
-      weight: 0.4
+      weight: 0.3
 
 - type: entityTable
   id: TableScrapProcessorRandomBoard
@@ -254,6 +254,7 @@
       - id: DeepFryerMachineCircuitboard
       - id: PortableScrubberMachineCircuitBoard
       - id: GaslockFrameMachineCircuitboard
+      - id: ResearchAndDevelopmentServerMachineCircuitboard
     # T3: cool machine boards
     - !type:GroupSelector
       weight: 1.5
@@ -279,7 +280,6 @@
       - id: ElectrolysisUnitMachineCircuitboard
       - id: StasisBedMachineCircuitboard
       - id: ResearchComputerCircuitboard
-      - id: ResearchAndDevelopmentServerMachineCircuitboard
       - id: MercenaryTechFabCircuitboardNF
       - id: MercenaryTechFabCircuitboardHackedNF
       - id: PortableGeneratorDKMachineCircuitboard
