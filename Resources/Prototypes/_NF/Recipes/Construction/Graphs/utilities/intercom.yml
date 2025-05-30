@@ -1,0 +1,115 @@
+- type: constructionGraph
+  id: IntercomRadio
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: assembly
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 2.0
+
+  - node: assembly
+    entity: IntercomRadioAssembly
+    edges:
+    - to: wired
+      steps:
+      - material: Cable
+        amount: 2
+        doAfter: 1
+      completed:
+      - !type:VisualizerDataInt
+        key: "enum.ConstructionVisuals.Layer"
+        data: 1
+    - to: start
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity {}
+      steps:
+      - tool: Welding
+        doAfter: 2
+
+  - node: wired
+    entity: IntercomRadioAssembly
+    edges:
+    - to: electronics
+      steps:
+      - tag: IntercomElectronics
+        store: board
+        name: "intercomRadio electronics"
+        icon:
+          sprite: "Objects/Misc/module.rsi"
+          state: "id_mod"
+        doAfter: 1
+      - tag: Radio
+        name: handicomms
+        icon:
+          sprite: _NF/Objects/Devices/communication.rsi
+          state: base
+        doAfter: 1
+    - to: assembly
+      completed:
+      - !type:GivePrototype
+        prototype: CableApcStack1
+        amount: 2
+      - !type:VisualizerDataInt
+        key: "enum.ConstructionVisuals.Layer"
+        data: 0
+      steps:
+      - tool: Cutting
+        doAfter: 1
+
+  - node: electronics
+    edges:
+    - to: intercomRadio
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: intercomRadio
+    entity: IntercomRadioConstructed
+    doNotReplaceInheritingEntities: true
+    actions:
+    - !type:SetWiresPanelSecurity
+      wiresAccessible: true
+    edges:
+    - to: wired
+      conditions:
+      - !type:AllWiresCut {}
+      - !type:WirePanel {}
+      - !type:ContainerNotEmpty
+        container: board
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 1
+    - to: intercomRadioReinforced
+      conditions:
+      - !type:WirePanel
+      steps:
+      - material: Steel
+        amount: 1
+      - tool: Welding
+        doAfter: 1
+
+  - node: intercomRadioReinforced
+    actions:
+    - !type:SetWiresPanelSecurity
+      examine: wires-panel-component-on-examine-security-level2
+      wiresAccessible: false
+    edges:
+    - to: intercomRadio
+      conditions:
+      - !type:WirePanel
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+      steps:
+      - tool: Welding
+        doAfter: 5

@@ -12,3 +12,22 @@
   icon:
     sprite: _NF/Structures/Storage/canister.rsi
     state: storage
+
+# INTERCOM
+- type: construction
+  name: radio intercom
+  id: IntercomRadioAssembly
+  graph: IntercomRadio
+  startNode: start
+  targetNode: intercomRadio
+  category: construction-category-structures
+  description: An radio intercom.
+  icon:
+    sprite: Structures/Wallmounts/intercom.rsi
+    state: base
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
