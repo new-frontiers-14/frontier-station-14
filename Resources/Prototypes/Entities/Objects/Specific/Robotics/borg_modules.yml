@@ -782,6 +782,15 @@
       whitelist:
         components:
         - Spray
+    placeholders:
+    - id: CleanerGrenade
+      whitelist:
+        components:
+        - NFCleanade
+    - id: CleanerGrenade
+      whitelist:
+        components:
+        - NFCleanade
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
@@ -808,16 +817,21 @@
   - type: DroppableBorgModule
     moduleId: AdvancedCleaning
     items:
-    - id: SprayBottleSpaceCleaner
-      whitelist:
-        tags:
-        - Spray
-      displayName: borg-placeholder-display-name-spray-bottle
-    - id: BluespaceBeaker
+    - id: Bucket
       whitelist:
         tags:
         - GlassBeaker
-      displayName: borg-placeholder-display-name-spray-bottle
+        - Bucket
+      displayName: borg-placeholder-display-name-glass-beaker
+    placeholders:
+    - id: CleanerGrenade
+      whitelist:
+        components:
+        - NFCleanade
+    - id: CleanerGrenade
+      whitelist:
+        components:
+        - NFCleanade
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-cleaning-module }
@@ -924,7 +938,7 @@
     moduleId: Chemical # Frontier
     items:
     - HandheldHealthAnalyzerUnpowered
-    - Syringe
+    # - Syringe # Frontier
     - BorgDropper
     # - BorgVial # Frontier
     # - BorgVial # Frontier
@@ -933,6 +947,10 @@
   - type: DroppableBorgModule
     moduleId: Artifact
     items:
+    - id: Syringe
+      whitelist:
+        tags:
+        - Syringe
     - id: BaseChemistryEmptyVial
       whitelist:
         tags:
@@ -964,7 +982,7 @@
     items:
     - HandheldHealthAnalyzerUnpowered
     - BorgHypo
-    - Syringe
+    # - Syringe # Frontier
     # - BorgDropper # Frontier
     # - BorgBeaker # Frontier
     # - BorgBeaker # Frontier
@@ -972,6 +990,10 @@
   - type: DroppableBorgModule
     moduleId: AdvancedTreatment
     items:
+    - id: Syringe
+      whitelist:
+        tags:
+        - Syringe
     - id: Beaker
       whitelist:
         tags:
