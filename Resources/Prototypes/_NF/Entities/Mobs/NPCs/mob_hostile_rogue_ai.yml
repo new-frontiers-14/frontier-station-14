@@ -126,7 +126,15 @@
   - type: AutoWakeUp
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: FootstepBorg
+      collection: NFScrapbotFootstep
+  - type: SpamEmitSound
+    minInterval: 10
+    maxInterval: 60
+    sound:
+      collection: NFScrapbotChatter
+      params:
+        variation: 0.125
+  - type: SoundWhileAlive
 
 - type: entity
   parent:
@@ -252,9 +260,9 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: SoundWhileAlive
   - type: AmbientSound
-    volume: -9
+    volume: -6
     range: 5
-    sound: /Audio/Effects/shuttle_thruster.ogg
+    sound: /Audio/_NF/Effects/Scrapbots/thruster-droning.ogg
 
 # VARIATIONS
 #region Tier 1
@@ -444,9 +452,9 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: SoundWhileAlive
   - type: AmbientSound
-    volume: -9
+    volume: -6
     range: 5
-    sound: /Audio/Effects/shuttle_thruster.ogg
+    sound: /Audio/_NF/Effects/Scrapbots/thruster-droning.ogg
 
 - type: entity
   parent:
@@ -1272,9 +1280,9 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: SoundWhileAlive
   - type: AmbientSound
-    volume: -9
+    volume: -6
     range: 5
-    sound: /Audio/Effects/shuttle_thruster.ogg
+    sound: /Audio/_NF/Effects/Scrapbots/thruster-droning.ogg
 
 - type: entity
   parent:
