@@ -420,6 +420,18 @@
   - type: MachineBoard
     prototype: UniformPrinterStaff
 
+- type: entity
+  id: PirateStitcherCircuitboard
+  parent: [UniformPrinterMachineCircuitboard, BaseC3PirateContrabandNoValue]
+  name: pirate stitcher machine board
+  description: Clearly brand new.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: pirate_stitcher
+  - type: MachineBoard
+    prototype: PirateStitcher
+
 # Removed from upstream definitions
 - type: entity
   id: MaterialReclaimerMachineCircuitboard
