@@ -185,10 +185,10 @@
     children:
     - !type:NestedSelector
       tableId: TableScrapProcessorRandomBoard
-      weight: 0.75
+      weight: 0.6
     - !type:NestedSelector
       tableId: TableRandomBlueprint # random blueprints with 1-2 (or 3) recipes on them
-      weight: 0.25
+      weight: 0.4
 
 - type: entityTable
   id: TableScrapProcessorRandomBoard
@@ -196,7 +196,7 @@
     children:
     # T1: Common machine boards (available from circuit imprinter or flatpack vendor)
     - !type:GroupSelector
-      weight: 93
+      weight: 80
       children:
       - id: AutolatheMachineCircuitboard
       - id: CutterMachineCircuitboard
@@ -214,14 +214,23 @@
       - id: MiniGravityGeneratorCircuitboard
       - id: ThrusterMachineCircuitboard
       - id: GyroscopeMachineCircuitboard
-      - id: OreProcessorMachineCircuitboard
       - id: JukeboxCircuitBoard
       - id: MaterialSiloMachineCircuitboard
       - id: SurveillanceWirelessCameraMovableCircuitboard
       - id: ComputerTelevisionCircuitboard
+      - id: PortableScrubberMachineCircuitBoard
+      - id: ShredderMachineCircuitboard
+      - id: StationMapCircuitboard
+      - id: SMESMachineCircuitboard
+      - id: SubstationMachineCircuitboard
+      - id: ChemDispenserMachineCircuitboard
+      - id: SodaDispenserMachineCircuitboard
+      - id: BoozeDispenserMachineCircuitboard
+      - id: MiniGravityGeneratorCircuitboard
+      - id: MiniStationAnchorCircuitboard
     # T2: specialised machine boards (techfabs)
     - !type:GroupSelector
-      weight: 5.5
+      weight: 18
       children:
       - id: SpaceVillainArcadeComputerCircuitboard
       - id: BlockGameArcadeComputerCircuitboard
@@ -237,9 +246,17 @@
       - id: BoozeDispenserMachineCircuitboard
       - id: DawInstrumentMachineCircuitboard
       - id: GasRecyclerMachineCircuitboard
+      - id: FlatpackerMachineCircuitboard
+      - id: SolarControlComputerCircuitboard
+      - id: ThermomachineHeaterMachineCircuitBoard
+      - id: ThermomachineFreezerMachineCircuitBoard
+      - id: SeedExtractorMachineCircuitboard
+      - id: DeepFryerMachineCircuitboard
+      - id: PortableScrubberMachineCircuitBoard
+      - id: GaslockFrameMachineCircuitboard
     # T3: cool machine boards
     - !type:GroupSelector
-      weight: 1
+      weight: 1.5
       children:
       - id: HellfireHeaterMachineCircuitBoard
       - id: HellfireFreezerMachineCircuitBoard
@@ -266,7 +283,6 @@
       - id: MercenaryTechFabCircuitboardNF
       - id: MercenaryTechFabCircuitboardHackedNF
       - id: PortableGeneratorDKMachineCircuitboard
-      - id: GaslockFrameMachineCircuitboard
       - id: MedicalTechFabCircuitboard
       - id: MedicalAssemblerMachineCircuitboard
       - id: McServiceTechFabCircuitboard
