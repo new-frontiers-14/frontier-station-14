@@ -426,7 +426,7 @@
     # - CableMVStackLingering10 # DeltaV
     # - CableHVStackLingering10 # DeltaV
     - Wirecutter
-    - Crowbar
+    - Crowbar # Frontier
     - trayScanner
   # Begin DeltaV Additions - wires module can assemble electronics
   - type: DroppableBorgModule
@@ -448,23 +448,6 @@
         - CablePlacer
       displayName: borg-placeholder-display-name-cable-coil
   # End DeltaV Additions
-  # Frontier: placeholders
-    placeholders:
-    - id: APCElectronics
-      whitelist:
-        components:
-        - Electronics
-        - MachineBoard
-        - ComputerBoard
-      displayName: borg-placeholder-display-name-electronics
-    - id: StationRecordsComputerCircuitboard
-      whitelist:
-        components:
-        - Electronics
-        - MachineBoard
-        - ComputerBoard
-      displayName: borg-placeholder-display-name-electronics
-  # End Frontier: placeholders
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: wire-module }
 
@@ -473,26 +456,19 @@
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: fire extinguisher cyborg module # Frontier: thruster<fire extinguisher
   # description: NT assigned a team to design a jetpack for cyborg units, but they ran out of funding and just made a bigger fire extinguisher. It comes with a integrated GPS and mass scanner though! # Frontier
-  description: A module to help extinguish of fires.
+  description: A module to help extinguish fires.
   components:
   - type: Sprite
     layers:
     - state: generic
     - state: icon-fire-extinguisher
   # Frontier: droppable borg items
-  #- type: ItemBorgModule
-  #  items:
-  #  - BorgFireExtinguisher
+  - type: ItemBorgModule
+    items:
+    - BorgFireExtinguisher
   # - BorgHandheldGPSBasic
   # - HandHeldMassScannerBorg
-  - type: DroppableBorgModule
-    moduleId: FireExtinguisher
-    items:
-    - id: FireExtinguisher
-      whitelist:
-        tags:
-        - FireExtinguisher
-  # End Frontier
+  # End Frontier: todo - metal foam grenade? fire axe?
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: extinguisher-module }
 
@@ -628,7 +604,7 @@
     moduleId: GrapplingGun # Frontier
     items:
     - WeaponGrapplingGun
-    - BorgFireExtinguisher
+    # - BorgFireExtinguisher # Frontier: just use the jetpack module
     - BorgHandheldGPSBasic
     - HandHeldMassScannerBorg
   - type: BorgModuleIcon
@@ -707,6 +683,13 @@
         components:
         - Flatpack
       displayName: borg-placeholder-display-name-flatpack
+    - id: StationRecordsComputerCircuitboard
+      whitelist:
+        components:
+        - Electronics
+        - MachineBoard
+        - ComputerBoard
+      displayName: borg-placeholder-display-name-electronics
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: construction-module }
@@ -746,9 +729,9 @@
     moduleId: LightReplacer # Frontier
     items:
     - LightReplacer
-    - BorgTrashBag
+    # - BorgTrashBag
     - Plunger
-    - SoapBorg
+    # - SoapBorg
   # Frontier: droppable items
   - type: DroppableBorgModule
     moduleId: LightReplacer
@@ -759,6 +742,14 @@
         components:
         - LightBulb
       displayName: borg-placeholder-display-name-lights
+    - id: TrashBag
+      whitelist:
+        tags:
+        - TrashBag
+    - id: Soap
+      whitelist:
+        tags:
+        - Soap
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: light-replacer-module }
@@ -914,8 +905,8 @@
     items:
     - HandheldHealthAnalyzerUnpowered
     - DefibrillatorOneHandedUnpowered
-    - BorgFireExtinguisher
-    - BorgHandheldGPSBasic
+    # - BorgFireExtinguisher # Frontier
+    # - BorgHandheldGPSBasic # Frontier
     - HandLabeler
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
@@ -935,9 +926,26 @@
     - HandheldHealthAnalyzerUnpowered
     - Syringe
     - BorgDropper
-    - BorgVial
-    - BorgVial
-    - BorgVial
+    # - BorgVial # Frontier
+    # - BorgVial # Frontier
+    # - BorgVial # Frontier
+  # Frontier: droppable vials
+  - type: DroppableBorgModule
+    moduleId: Artifact
+    items:
+    - id: BaseChemistryEmptyVial
+      whitelist:
+        tags:
+        - CentrifugeCompatible
+    - id: BaseChemistryEmptyVial
+      whitelist:
+        tags:
+        - CentrifugeCompatible
+    - id: BaseChemistryEmptyVial
+      whitelist:
+        tags:
+        - CentrifugeCompatible
+  # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
@@ -991,11 +999,24 @@
     moduleId: Artifact # Frontier
     items:
     - NodeScanner
-    - SprayBottle
+    # - SprayBottle # Frontier
     - GasAnalyzer
     - BorgDropper
-    - BorgVial
+    # - BorgVial # Frontier
     - GeigerCounter
+  # Frontier: droppable vials
+  - type: DroppableBorgModule
+    moduleId: Artifact
+    items:
+    - id: BaseChemistryEmptyVial
+      whitelist:
+        tags:
+        - CentrifugeCompatible
+    - id: SprayBottle
+      whitelist:
+        components:
+        - Spray
+  # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: node-scanner-module }
 
@@ -1015,8 +1036,31 @@
     - AnomalyLocatorUnpowered
     - AnomalyLocatorWideUnpowered
     - HandLabeler
-    - SheetRGlassLingering0
-    - SheetRPGlassLingering0
+    # - SheetRGlassLingering0 # Frontier
+    # - SheetRPGlassLingering0 # Frontier
+  # Frontier: droppable vials
+  - type: DroppableBorgModule
+    moduleId: Artifact
+    placeholders:
+    - id: SheetRGlass
+      whitelist:
+        tags:
+        - Ingot
+        - RodMetal1
+        - Sheet
+        components:
+        - ConstructionMaterials
+      displayName: borg-placeholder-display-name-construction-material
+    - id: SheetRPGlass
+      whitelist:
+        tags:
+        - Ingot
+        - RodMetal1
+        - Sheet
+        components:
+        - ConstructionMaterials
+      displayName: borg-placeholder-display-name-construction-material
+  # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: anomaly-module }
 
@@ -1025,7 +1069,7 @@
   id: BorgModuleService
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
   name: service cyborg module
-  categories: [HideSpawnMenu] # Frontier
+  categories: [HideSpawnMenu] # Frontier: unused, use NF variants
   components:
   - type: Sprite
     layers:
