@@ -74,7 +74,7 @@ public sealed class ItemCougherSystem : EntitySystem
         _popup.PopupPredicted(msg, ent, ent);
         _audio.PlayPredicted(ent.Comp.Sound, ent, ent);
 
-        var path = _audio.GetSound(ent.Comp.Sound);
+        var path = _audio.ResolveSound(ent.Comp.Sound); // Frontier: resolve sound
         var coughing = EnsureComp<CoughingUpItemComponent>(ent);
         coughing.NextCough = _timing.CurTime + _audio.GetAudioLength(path);
         args.Handled = true;
