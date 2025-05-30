@@ -766,7 +766,7 @@
   - type: ItemBorgModule
     moduleId: Cleaning # Frontier
     items:
-    - MopItem
+    # - MopItem # Frontier
     # - BorgBucket # Frontier
     # - BorgSprayBottle # Frontier
     - HoloprojectorBorg
@@ -774,6 +774,10 @@
   - type: DroppableBorgModule
     moduleId: Cleaning
     items:
+    - id: MopItem
+      whitelist:
+        components:
+        - Absorbent # go go borg towel
     - id: Bucket
       whitelist:
         tags:
