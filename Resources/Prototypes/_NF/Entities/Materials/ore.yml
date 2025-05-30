@@ -1,3 +1,4 @@
+#region Scrap ore
 - type: entity
   parent: OreBase
   id: ScrapOreTech
@@ -24,7 +25,7 @@
   description: Smashed together pieces of spacecraft, now it's junk. Needs to be processed to use.
   suffix: Full
   components:
-  - type: GoblinPreciousTrash # Frontier
+  - type: GoblinPreciousTrash
   - type: Stack
     stackType: ScrapOre
   - type: Sprite
@@ -36,47 +37,14 @@
     materialComposition:
       RawScrap: 100
 
-# Ore vein
+#region Ore vein
 - type: ore
   id: NFOreScrap
   oreEntity: ScrapOreRandom3
   minOreYield: 1
   maxOreYield: 5
 
-- type: entity
-  id: ScrapOreRandom3
-  category: [HideSpawnMenu]
-  components:
-  - type: RandomSpawner
-    prototypes:
-    - ScrapOre3
-    rarePrototypes:
-    - ScrapOreTech3
-    rareChance: 0.1
-
-- type: entity
-  id: ScrapOre20RandomLowTech
-  category: [HideSpawnMenu]
-  components:
-  - type: RandomSpawner
-    prototypes:
-    - ScrapOre20
-    rarePrototypes:
-    - ScrapOreTech20
-    rareChance: 0.3
-
-- type: entity
-  id: ScrapOre20RandomHighTech
-  category: [HideSpawnMenu]
-  components:
-  - type: RandomSpawner
-    prototypes:
-    - ScrapOre20
-    rarePrototypes:
-    - ScrapOreTech20
-    rareChance: 0.6
-
-# Stacks
+#region Stacks
 - type: stack
   id: ScrapOreTech
   name: tech scrap chunks
@@ -139,8 +107,29 @@
   - type: Stack
     count: 20
 
-# Materials
+- type: entity
+  id: ScrapOre20RandomLowTech
+  category: [HideSpawnMenu]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ScrapOre20
+    rarePrototypes:
+    - ScrapOreTech20
+    rareChance: 0.3
 
+- type: entity
+  id: ScrapOre20RandomHighTech
+  category: [HideSpawnMenu]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ScrapOre20
+    rarePrototypes:
+    - ScrapOreTech20
+    rareChance: 0.6
+
+# region Materials
 - type: material
   id: RawScrap
   stackEntity: ScrapOre1
@@ -159,12 +148,24 @@
   color: "#478200" # circuitboard green
   price: 0.02
 
+#region Random spawners
+# Ore spawner (random between material and tech scrap)
+- type: entity
+  id: ScrapOreRandom3
+  category: [HideSpawnMenu]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ScrapOre3
+    rarePrototypes:
+    - ScrapOreTech3
+    rareChance: 0.1
+
 # Spawner for lathe: yield random mats if processed in ore processor
 - type: entity
-  name: scavenged technology
-  id: SpawnRandomScrapTech
   parent: MarkerBasePlaceFree
-  categories: [ HideSpawnMenu ]
+  id: SpawnRandomScrapTech
+  name: scavenged technology
   components:
   - type: Sprite
     layers:
