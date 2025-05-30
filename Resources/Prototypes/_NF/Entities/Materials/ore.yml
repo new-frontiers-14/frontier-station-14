@@ -1,6 +1,6 @@
 - type: entity
   parent: OreBase
-  id: ScrapOre
+  id: ScrapOreTech
   name: technological scrap
   description: Various bits of previously used machinery, now all non-functional. Needs to be processed to use.
   suffix: Full
@@ -19,7 +19,7 @@
 
 - type: entity
   parent: OreBase
-  id: ScrapMaterialOre
+  id: ScrapOre
   name: scrap chunks
   description: Smashed together pieces of spacecraft, now it's junk. Needs to be processed to use.
   suffix: Full
@@ -76,7 +76,7 @@
 # Stacks
 - type: stack
   id: ScrapOreTech
-  name: scrap technical components
+  name: technological scrap
   icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
   spawn: ScrapOreTech1
   maxCount: 100
@@ -99,17 +99,17 @@
 
 - type: entity
   parent: ScrapOreTech
-  id: ScrapOreTech1
-  suffix: Single
+  id: ScrapOreTech20
+  suffix: 20
   components:
   - type: Stack
-    count: 1
+    count: 20
 
 - type: stack
   id: ScrapOre
   name: scrap chunks
   icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
-  spawn: ScrapOreTech1
+  spawn: ScrapOre1
   maxCount: 100
 
 - type: entity
@@ -181,10 +181,10 @@
   table: !type:GroupSelector
     children:
     - !type:NestedSelector
-      table: TableScrapProcessorRandomBoard
+      tableId: TableScrapProcessorRandomBoard
       weight: 0.75
     - !type:NestedSelector
-      table: TableRandomBlueprint # random blueprints with 1-2 (or 3) recipes on them
+      tableId: TableRandomBlueprint # random blueprints with 1-2 (or 3) recipes on them
       weight: 0.25
 
 - type: entityTable
@@ -344,11 +344,10 @@
     # Reduced yield (Avg: 9/stack)
     - id: MaterialBonesRandomReduced
       weight: 0.1
-    - id: MaterialDiamondRandomReduced
-      weight: 0.01
     - id: MaterialArtifactFragmentRandomReduced
       weight: 0.025
-    # Very low yield (Avg: 5/stack)
+    # Low yield (Avg: 5/stack)
+    - id: MaterialDiamondRandomLow
+      weight: 0.01
     - id: MaterialBluespaceRandomLow
       weight: 0.015
-      amount: 2
