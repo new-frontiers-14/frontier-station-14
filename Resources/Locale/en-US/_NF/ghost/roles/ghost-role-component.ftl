@@ -69,6 +69,10 @@ ghost-role-information-t-rex-dungeon-description = Feel the rush of the hunt and
 ghost-role-information-leviathing-dungeon-name = Leviathing
 ghost-role-information-leviathing-dungeon-description = Protect the burrow and ensure the thriving of the brood!
 
+ghost-role-information-one-star-unit-dungeon-name = One Star Unit
+ghost-role-information-guardian-unit-dungeon-name = Guardian Unit
+ghost-role-information-one-star-unit-dungeon-description = [11201010111002] Obey your AI overlord's instructions, work with other automatons, defend the installation, and destroy the intruders [1110220001010002220]
+
 ghost-role-information-dungeon-boss-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all dungeon mobs.
                                         Fight players within the dungeon, defend your dungeon.
                                         Please note that [color=yellow]all server rules still apply.[/color] Additionally:

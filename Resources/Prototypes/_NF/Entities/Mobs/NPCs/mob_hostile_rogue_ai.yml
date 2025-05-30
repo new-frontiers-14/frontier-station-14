@@ -1033,11 +1033,37 @@
     radius: 2
     energy: 2.5
     color: "#47f8ff"
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-guardian-unit-dungeon-name
+    description: ghost-role-information-one-star-unit-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  # Radar
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar
+  - type: RadarConsole
+    followEntity: true
+    maxIffRange: 256
+    hideCoords: true
+  - type: ComplexInteraction # Needed to interact with innate radar console
 
 - type: entity
   parent:
   - MobRogueSiliconBase
   - MobPassiveRegen
+  - NFMobBossRestrictions # Cannot use HostileBossBase, conflicts with silicon definitions
   id: MobRogueSiliconBoss
   name: one star unit
   description: An autonomous combat-grade mech, typically used for offensive operations. Now a rogue AI's elite guard. Equipped with missile launchers, exercise extreme caution.
@@ -1069,7 +1095,7 @@
       144: 0.7
       192: 0.5
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgeRocketMini
+    proto: NFBulletRocketMini # NFCartridgeRocketMini
     capacity: 10
     count: 10
   - type: Gun
@@ -1085,6 +1111,31 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-one-star-unit-dungeon-name
+    description: ghost-role-information-one-star-unit-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  # Radar
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar
+  - type: RadarConsole
+    followEntity: true
+    maxIffRange: 256
+    hideCoords: true
+  - type: ComplexInteraction # Needed to interact with innate radar console
 
 #region Asteroid
 ## Tier 1
