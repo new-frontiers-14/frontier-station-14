@@ -60,6 +60,9 @@ ghost-role-information-aberrant-flesh-horror-dungeon-description = Defend the ex
 ghost-role-information-explorer-captain-dungeon-name = Explorer Captain
 ghost-role-information-explorer-captain-dungeon-description = You got to this facility first! Defend the expedition dungeon and your loot with other explorers!
 
+ghost-role-information-mercenary-captain-dungeon-name = Mercenary Captain
+ghost-role-information-mercenary-captain-dungeon-description = You have a job to do. Don't let anyone stand in your way. Defend the installation and your employer's property with other soldiers of fortune!
+
 ghost-role-information-punk-boss-dungeon-name = Punk gang leader
 ghost-role-information-punk-boss-dungeon-description = Defend the expedition dungeon and your loot with other punks from NT squares!
 

@@ -526,6 +526,63 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: EyeCursorOffset
+    maxOffset: 10
+    pvsIncrease: 1
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-mercenary-captain-dungeon-name
+    description: ghost-role-information-mercenary-captain-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  - type: ActionGun
+    action: ActionSideArmFan
+    gunProto: GunSideArmFan
+
+- type: entity
+  id: GunSideArmFan
+  name: trusty Lucky 45
+  description: Shoots bullets.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFCartridgePistol45Incendiary
+    capacity: 6
+    count: 6
+  - type: Gun
+    minAngle: 2
+    maxAngle: 8
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+    soundEmpty: null
+    projectileSpeed: 30
+
+- type: entity
+  id: ActionSideArmFan
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Lucky 45[/color]"
+  description: "Luck always beats skill, ya weasel. [color=yellow]5 second between ammo recharges.[/color]"
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : _DV/Objects/Weapons/Guns/Revolvers/lucky.rsi, state: icon }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
 
 #region Space, Tier 1
 - type: entity
