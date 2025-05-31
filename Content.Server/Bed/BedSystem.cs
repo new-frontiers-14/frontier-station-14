@@ -27,6 +27,7 @@ namespace Content.Server.Bed
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly PowerReceiverSystem _power = default!; // Frontier
 
         public override void Initialize()
         {
@@ -71,18 +72,37 @@ namespace Content.Server.Bed
 
                 bedComponent.NextHealTime += TimeSpan.FromSeconds(bedComponent.HealTime);
 
+                if (bedComponent.RequiresPower && !_power.IsPowered(uid)) // Frontier
+                    continue; // Frontier
+
                 if (strapComponent.BuckledEntities.Count == 0)
                     continue;
 
                 foreach (var healedEntity in strapComponent.BuckledEntities)
                 {
-                    if (_mobStateSystem.IsDead(healedEntity))
+                    if (!bedComponent.WorksOnTheDead && _mobStateSystem.IsDead(healedEntity)) // Frontier: add WorksOnTheDead check
                         continue;
 
                     var damage = bedComponent.Damage;
 
                     if (HasComp<SleepingComponent>(healedEntity))
                         damage *= bedComponent.SleepMultiplier;
+
+                    // Frontier: limit damage
+                    if (bedComponent.MaxDamage != null)
+                    {
+                        if (!TryComp(healedEntity, out DamageableComponent? damageable))
+                            continue;
+
+                        damage = new(damage); // Ensure this is a copy.
+
+                        foreach (var key in bedComponent.Damage.DamageDict.Keys)
+                        {
+                            if (!damageable.Damage.DamageDict.TryGetValue(key, out var healedDamage) || healedDamage < bedComponent.MaxDamage)
+                                damage.DamageDict[key] = 0;
+                        }
+                    }
+                    // End Frontier: limit damage
 
                     _damageableSystem.TryChangeDamage(healedEntity, damage, true, origin: uid);
                 }
