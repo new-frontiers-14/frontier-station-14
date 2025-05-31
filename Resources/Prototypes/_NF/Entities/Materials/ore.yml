@@ -179,17 +179,20 @@
     table: !type:NestedSelector
       tableId: TableScrapProcessorRandomTech
 
-# Spawner for scrap processor: spawns random machine board, occasionally useful one
+# Spawner for scrap processor: spawns random machine board / blueptint / tool / machine part, occasionally a useful one
 - type: entityTable
   id: TableScrapProcessorRandomTech
   table: !type:GroupSelector
     children:
     - !type:NestedSelector
       tableId: TableScrapProcessorRandomBoard
-      weight: 0.7
+      weight: 0.6
     - !type:NestedSelector
       tableId: TableRandomBlueprint # random blueprints with 1-2 (or 3) recipes on them
-      weight: 0.3
+      weight: 0.25
+    - !type:NestedSelector
+      tableId: TableScrapProcessorRandomToolsParts
+      weight: 0.15
 
 - type: entityTable
   id: TableScrapProcessorRandomBoard
@@ -287,6 +290,49 @@
       - id: MedicalTechFabCircuitboard
       - id: MedicalAssemblerMachineCircuitboard
       - id: McServiceTechFabCircuitboard
+
+- type: entityTable
+  id: TableScrapProcessorRandomToolsParts
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      # T1: advanced tools and parts
+      weight: 80
+      children:
+      - id: SpectralLocatorEmpty
+      - id: HandheldHealthAnalyzerEmpty
+      - id: MineralScannerEmpty
+      - id: GasDepositLocatorEmpty
+      - id: HoloGraffitiProjectorEmpty
+      - id: HolofanProjectorEmpty
+      - id: MiningDrill
+      - id: PowerDrill
+      - id: JawsOfLife
+      - id: PlantAnalyzerEmpty
+      - id: ShipyardRCDAmmo
+      - id: AdvancedCapacitorStockPart
+      - id: NanoManipulatorStockPart
+      - id: AdvancedMatterBinStockPart
+      - id: PowerCellHigh
+    - !type:GroupSelector
+      # T2: more advanced tools and parts
+      weight: 18
+      children:
+      - id: RPED
+      - id: ShipyardRCD
+      - id: ShipyardRCDAmmo
+      - id: AdvancedMineralScannerEmpty
+      - id: SuperCapacitorStockPart
+      - id: PicoManipulatorStockPart
+      - id: SuperMatterBinStockPart
+      - id: PowerCellHyper
+    - !type:GroupSelector
+      # T3: cool tools and parts
+      weight: 2
+      children:
+      - id: WelderExperimental
+      - id: MiningDrillDiamond
+      - id: HoloprojectorFieldEmpty
 
 - type: entity
   name: reprocessed scrap materials
