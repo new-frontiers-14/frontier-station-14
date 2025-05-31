@@ -1,6 +1,6 @@
 # Base prototype is in Resources\Prototypes\_NF\Recipes\Lathes\sheet.yml
 
-# Raw mats
+#region Raw mats
 - type: latheRecipe
   id: Durathread
   result: MaterialDurathread1
@@ -16,6 +16,7 @@
   materials:
     Paper: 10
 
+#region scrap processor
 - type: latheRecipe
   id: SmeltScrapMaterials
   result: SpawnRandomScrapMaterial
@@ -23,8 +24,8 @@
   categories:
   - Materials
   icon:
-    sprite: _NF/Objects/Materials/ore.rsi
-    state: scrapmaterials
+    sprite: Objects/Materials/Sheets/other.rsi
+    state: generic_materials
   materials:
     RawScrap: 3000
 
@@ -34,7 +35,7 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2 # similar to ore processor rates
   icon:
-    sprite: Objects/Materials/Sheets/other.rsi
-    state: generic_materials
+    sprite: _NF/Structures/Machines/scrap_processor.rsi
+    state: boards_blueprints
   materials:
     RawScrapTech: 3000
