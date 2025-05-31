@@ -60,8 +60,21 @@ ghost-role-information-aberrant-flesh-horror-dungeon-description = Defend the ex
 ghost-role-information-explorer-captain-dungeon-name = Explorer Captain
 ghost-role-information-explorer-captain-dungeon-description = You got to this facility first! Defend the expedition dungeon and your loot with other explorers!
 
+ghost-role-information-mercenary-captain-dungeon-name = Mercenary Captain
+ghost-role-information-mercenary-captain-dungeon-description = You have a job to do. Don't let anyone stand in your way. Defend the installation and your employer's property with other soldiers of fortune!
+
 ghost-role-information-punk-boss-dungeon-name = Punk gang leader
 ghost-role-information-punk-boss-dungeon-description = Defend the expedition dungeon and your loot with other punks from NT squares!
+
+ghost-role-information-t-rex-dungeon-name = Tyrannosaurus Rex
+ghost-role-information-t-rex-dungeon-description = Feel the rush of the hunt and let your instincts guide you to slaughter your prey!
+
+ghost-role-information-leviathing-dungeon-name = Leviathing
+ghost-role-information-leviathing-dungeon-description = Protect the burrow and ensure the thriving of the brood!
+
+ghost-role-information-one-star-unit-dungeon-name = One Star Unit
+ghost-role-information-guardian-unit-dungeon-name = Guardian Unit
+ghost-role-information-one-star-unit-dungeon-description = [11201010111002] Obey your AI overlord's instructions, work with other automatons, defend the installation, and destroy the intruders [1110220001010002220]
 
 ghost-role-information-dungeon-boss-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all dungeon mobs.
                                         Fight players within the dungeon, defend your dungeon.

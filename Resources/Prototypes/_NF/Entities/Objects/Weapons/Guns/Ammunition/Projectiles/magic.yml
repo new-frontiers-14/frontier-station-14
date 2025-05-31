@@ -92,6 +92,29 @@
   - type: Ammo
     muzzleFlash: null
 
+- type: entity # For t-rex
+  parent: BaseBullet
+  id: BulletTRexRoar
+  name: t-rex roar
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StaminaDamageOnCollide
+    damage: 100
+  - type: Projectile
+    damage:
+      types:
+        Asphyxiation: 0
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Effects/steam.rsi
+    layers:
+    - state: steam
+      color: "#0099ff"
+      scale: 2.0,2.0
+      shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+
 - type: entity
   id: ProjectileIcicleLowDamage
   parent: ProjectileIcicle

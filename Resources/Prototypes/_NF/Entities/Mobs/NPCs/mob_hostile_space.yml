@@ -1,7 +1,7 @@
 #region base
 - type: entity
   id: NFMobSpaceBase
-  parent: [ NFMobRestrictions, NFMobSimpleHostileBase, NFMobRoadkillable ]
+  parent: [ MobMovementSpeedModifierMelee, MobStaminaFodder, NFBaseMobRestrictions, NFMobSimpleHostileBase, NFMobRoadkillable ]
   suffix: Frontier
   categories: [ HideSpawnMenu ]
   abstract: true
@@ -13,9 +13,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      70: Dead
-  - type: Stamina
-    critThreshold: 120
+      60: Dead
 
 #region mobs
 - type: entity
@@ -68,5 +66,3 @@
     thresholds:
       0: Alive
       12: Dead
-  - type: Stamina
-    critThreshold: 30
