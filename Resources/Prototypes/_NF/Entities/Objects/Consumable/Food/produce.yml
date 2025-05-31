@@ -424,3 +424,33 @@
   - type: DeepFrySpawn
     cycles: 2
     output: FoodOnionRings
+
+- type: entity
+  name: monkanana
+  parent: FoodProduceBase
+  id: FoodMonkanana
+  description: Looks like a monkeyfied banana.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - hairy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Primatine
+          Quantity: 10
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/monkanana.rsi
+  - type: Produce
+    seedId: monkanana
+  - type: Extractable
+    grindableSolutionName: food
+  - type: Tag
+    tags:
+      - Fruit

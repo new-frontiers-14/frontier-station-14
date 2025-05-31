@@ -183,7 +183,10 @@ public sealed class TemperatureSystem : EntitySystem
 
     private void OnRejuvenate(EntityUid uid, TemperatureComponent comp, RejuvenateEvent args)
     {
-        ForceChangeTemperature(uid, Atmospherics.T20C, comp);
+        if (TryComp<ThermalRegulatorComponent>(uid, out var regulator)) // Frontier: Look for normal body temperature and use it
+            ForceChangeTemperature(uid, regulator.NormalBodyTemperature, comp);
+        else
+            ForceChangeTemperature(uid, Atmospherics.T20C, comp);
     }
 
     private void ServerAlert(EntityUid uid, AlertsComponent status, OnTemperatureChangeEvent args)

@@ -1,5 +1,5 @@
 - type: entity
-  id: BlueprintReceiverBase
+  id: NFBlueprintReceiverBase
   abstract: true
   components:
   - type: BlueprintReceiver
@@ -16,14 +16,14 @@
     - blueprint
 
 - type: entity
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   id: ServiceTechFab
   name: service techfab
   description: Prints equipment for service staff.
   components:
   - type: Sprite
-    netsync: false
     sprite: Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -42,22 +42,54 @@
     runningState: icon
     staticPacks:
     - NFServiceTechfabDeprecatedStatic
+    - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
-    dynamicPacks:
-    - NFServiceTechfabDeprecated
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFServiceTechfabDeprecatedEmagStatic
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintServiceTechfab
+  - type: OreSiloClient
 
 - type: entity
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: ServiceTechFab
+  id: McServiceTechFab
+  name: mcservice techfab
+  description: Prints equipment for mcservice staff.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: mcservice
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: McServiceTechFabCircuitboard
+  - type: Lathe
+    staticPacks:
+    - NFServiceTechfabDeprecatedStatic
+    - NFPaperAndPaperAccessories
+    - ReportingStatic # DeltaV
+    - NFMcServiceTechfabStatic
+
+- type: entity
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   id: EngineeringTechFab
   name: engineering techfab
   description: Prints equipment for engineers.
   components:
   - type: Sprite
-    netsync: false
     sprite: Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -76,18 +108,21 @@
     runningState: icon
     staticPacks:
     - NFEngineeringTechfabDeprecatedStatic
-    dynamicPacks:
-    - NFEngineeringTechfabDeprecated
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintEngineeringTechfab
+  - type: OreSiloClient
 
 - type: entity
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   id: SalvageTechfabNF
   name: salvage techfab
   description: Prints equipment for salvagers.
   components:
   - type: Sprite
-    netsync: false
     sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -106,20 +141,24 @@
     runningState: icon
     staticPacks:
     - NFSalvageTechfabDeprecatedStatic
-    dynamicPacks:
-    - NFSalvageTechfabDeprecated
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFSalvageTechfabDeprecatedEmag
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintSalvageTechfab
+  - type: OreSiloClient
 
 - type: entity
   id: NfsdTechFab
-  parent: [ BlueprintReceiverBase, SecurityTechFab ]
+  parent: [ NFBlueprintReceiverBase, SecurityTechFab ]
   name: NFSD techfab
   description: Prints equipment for use by NFSD.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -138,21 +177,24 @@
     runningState: icon
     staticPacks:
     - NFNfsdTechfabDeprecatedStatic
+    - NfsdPracticeStatic
+    - NfsdAmmoStatic
     - ReportingStatic # DeltaV
-    dynamicPacks:
-    - NFNfsdTechfabDeprecated
-  - type: EmagLatheRecipes
-    emagStaticPacks:
-    - NFNfsdTechfabDeprecatedEmag
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintNfsdTechfab
+  - type: OreSiloClient
 
 - type: entity
   id: MercenaryTechFab
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
   name: mercenary techfab
   description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -171,15 +213,17 @@
     runningState: icon
     staticPacks:
     - NFMercenaryTechfabDeprecatedStatic
-    dynamicPacks:
-    - NFMercenaryTechfabDeprecated
-  - type: EmagLatheRecipes
-    emagStaticPacks:
-    - NFMercenaryTechfabDeprecatedEmag
+    - NfsdPracticeStatic
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintMercenaryTechfab
+  - type: OreSiloClient
 
 - type: entity
   id: MercenaryTechFabHacked
   parent:
+  - BaseC3Contraband
   - MercenaryTechFab
   - BaseHyperlathe
   - PunkHoloGraffitiOverlay # Prototype can be located at /Resources/Prototypes/_NF/Entities/Structures/Holographic/graffiti.yml
@@ -188,11 +232,11 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
     layers:
-    - state: icon
+    - state: mercenary-hacked
       map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: mercenary
-    - state: unlit
+    - state: unlit-hacked
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
     - state: inserting
@@ -209,15 +253,20 @@
   - type: PointLight
     radius: 1.5
     energy: 2
+    color: "#85daeb"
   - type: RgbLightController
     layers: [ 0 ]
   - type: Lathe
-    idleState: icon
-    runningState: icon
+    idleState: mercenary-hacked
+    runningState: mercenary-hacked
     staticPacks:
     - NFHackedMercenaryTechfabDeprecatedStatic
-    dynamicPacks:
-    - NFHackedMercenaryTechfabDeprecated
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintMercenaryTechfab
+      - NFBlueprintNfsdTechfab
+  - type: OreSiloClient
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseLathe]
@@ -265,13 +314,13 @@
   - type: MaterialStorage
     whitelist:
       tags:
-        - PrizeTicket
+      - PrizeTicket
 
 - type: entity
   id: BlueprintLithograph
-  parent: BaseLatheLube
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: blueprint lithograph
-  description: Prints blueprints.
+  description: Prints any blueprints for recipes unlocked on the tech server it's linked to.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/blueprint_printer.rsi
@@ -284,17 +333,64 @@
       map: ["enum.PowerDeviceVisualLayers.Powered"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Appearance
+  - type: WiresVisuals
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: BlueprintLathe
+    blueprintPrintMaterials:
+      Paper: 300
+    blueprintPrintTime: 5
+  - type: BlueprintLatheClientState # persistent, per-client UI state
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: WiresPanel
+  - type: ActivatableUI
+    key: enum.BlueprintLatheUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.BlueprintLatheUiKey.Key:
+        type: BlueprintLatheNFBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: StaticPrice
+    price: 800
+  - type: ResearchClient
+  - type: TechnologyDatabase
+  - type: MaterialStorageMagnetPickup
+    range: 0.30
   - type: Machine
     board: BlueprintLithographMachineCircuitboard
-  - type: Lathe
-    producingSound: /Audio/Machines/circuitprinter.ogg
-    idleState: icon
-    runningState: building
-    staticPacks:
-    - PowerCellsStatic
-    dynamicPacks:
-    - NFBlueprints
   - type: RequireProjectileTarget
+  - type: OreSiloClient
 
 - type: entity
   id: ScrapProcessor
@@ -304,6 +400,7 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/scrap_processor.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -329,13 +426,69 @@
     productValueModifier: null
     staticPacks:
     - NFScrapStatic
+  - type: OreSiloClient
 
 - type: entity
   id: BiogeneratorFill
   parent: Biogenerator
   name: biogenerator
-  suffix: Biomass, 50
+  suffix: Biomass, 200
   components:
   - type: MaterialStorage
     storage:
-      Biomass: 50
+      Biomass: 200
+  - type: ContainerFill
+    containers:
+      beaker_slot:
+      - LargeBeaker
+
+- type: entity
+  parent: UniformPrinter
+  id: UniformPrinterStaff
+  name: staff uniform printer
+  description: Prints new or replacement uniforms for staff.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/staff_uniform_printer.rsi
+  - type: Machine
+    board: UniformPrinterStaffMachineCircuitboard
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [[ HeadOfPersonnel, HeadOfSecurity ]]
+  - type: Lathe
+    staticPacks:
+    - ClothingCivilian
+    - ClothingCargo
+    - ClothingCommand
+    - ClothingEngineering
+    - ClothingMedical
+    - ClothingScience
+    - ClothingSecurity
+    - ClothingService
+    - WinterCoats
+    - Ties
+    - Scarves
+    - Carpets
+    - Bedsheets
+    - NFFloorTilesCarpet
+    - NFUniformColored
+    - NFUniformMilitary
+    - NFUniformSpecial
+    - NFUniformCloaks
+    - NFUniformCommand
+    - NFWallets
+    # keeping the dynamicPacks from the parent
+
+- type: entity
+  parent: UniformPrinter
+  id: PirateStitcher
+  name: pirate stitcher
+  description: This brand new uniform printer has been "found" and repurposed to print only the highest couture.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/pirate_stitcher.rsi
+  - type: Machine
+    board: PirateStitcherCircuitboard
+  - type: Lathe
+    staticPacks:
+    - NFPirateClothing

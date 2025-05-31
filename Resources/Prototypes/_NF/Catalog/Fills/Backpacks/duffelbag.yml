@@ -6,8 +6,8 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponLauncherChinaLakeEmp
-      - id: GrenadeEMP
+      - id: NFWeaponLauncherChinaLakeEmp
+      - id: NFGrenadeEMP
         amount: 8
 
 - type: entity
@@ -55,7 +55,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponLauncherNfsdLake
+      - id: NFWeaponLauncherGrenadeNfsd
       - id: NFBoxDartsTracking
 
 - type: entity
@@ -66,9 +66,9 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponLauncherNfsdLake
-      - id: GrenadeEMP
-        amount: 12
+      - id: NFWeaponLauncherGrenadeNfsd
+      - id: NFGrenadeEMP
+        amount: 10
 
 # Not a duffelbag, but stored with other uplink-related backpacks
 - type: entity
@@ -80,7 +80,7 @@
       contents:
         - id: BoxSurvival
         - id: Cutlass
-        - id: WeaponRevolverPirate
+        - id: NFWeaponRevolverPirate
         - id: ClothingEyesEyepatch
 
 #Departmental EVA bundles
@@ -136,6 +136,12 @@
   parent: [ ClothingBackpackDuffelMedical, StorageFillEVASuitMedic ]
   id: ClothingBackpackDuffelEVABundleMedical
   name: medical specialist EVA bundle
+  suffix: Filled
+
+- type: entity
+  parent: [ ClothingBackpackDuffelTrauma, StorageFillEVASuitParamedicAlt ]
+  id: ClothingBackpackDuffelEVABundleParamedicAlt
+  name: paramedic EVA bundle
   suffix: Filled
 
 - type: entity
@@ -220,4 +226,10 @@
   parent: [ ClothingBackpackDuffelNfsdBrown, StorageFillEVASuitNfsd ]
   id: ClothingBackpackDuffelEVABundleNfsd
   name: NFSD EVA bundle
+  suffix: Filled
+
+- type: entity
+  parent: [ NFClothingBackpackDuffelColorRed, StorageFillEVASuitStc ]
+  id: ClothingBackpackDuffelEVABundleStc
+  name: STC EVA bundle
   suffix: Filled

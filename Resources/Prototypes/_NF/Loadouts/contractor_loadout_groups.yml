@@ -39,6 +39,10 @@
   - ContractorClothingUniformJumpskirtColorRed
   - ContractorClothingUniformJumpsuitColorPurple
   - ContractorClothingUniformJumpskirtColorPurple
+  - ContractorClothingUniformJumpsuitColorLightBrown
+  - ContractorClothingUniformJumpskirtColorLightBrown
+  - ContractorClothingUniformJumpsuitColorBrown
+  - ContractorClothingUniformJumpskirtColorBrown
   - ContractorClothingUniformJumpsuitColorPink
   - ContractorClothingUniformJumpskirtColorPink
   - ContractorClothingUniformJumpsuitColorDarkBlue
@@ -207,7 +211,6 @@
   - ContractorClothingUniformJumpskirtBlueTurtleneckDress
   - ContractorClothingUniformJumpskirtYellowTurtleneckDress
   - ContractorClothingUniformJumpskirtYellowOldDress
-
   fallbacks:
   - ContractorClothingUniformJumpsuitColorGrey
   - ContractorClothingUniformJumpskirtColorGrey
@@ -650,6 +653,7 @@
   - ContractorClothingNeckCloakLesbian
   - ContractorBedsheetRainbow
   - ClothingNeckLGBTPin
+  - ClothingNeckAllyPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
   - ClothingNeckAroacePin
@@ -659,7 +663,10 @@
   - ClothingNeckLesbianPin
   - ClothingNeckNonBinaryPin
   - ClothingNeckPansexualPin
+  - ClothingNeckPluralPin
   - ClothingNeckOmnisexualPin
+  - ClothingNeckGenderqueerPin
+  - ClothingNeckGenderfluidPin
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
@@ -870,13 +877,16 @@
   name: loadout-group-contractor-survival-box
   minLimit: 1
   loadouts:
-  - ContractorBoxSurvivalNFOxygen
-  - ContractorBoxSurvivalNFNitrogen
-  - ContractorBoxSurvivalNFOxygenExtended
-  - ContractorBoxSurvivalNFNitrogenExtended
+  - ContractorNFBoxSurvival
+  - ContractorNFBoxSurvivalNitrogen
+  - ContractorNFBoxSurvivalExtended
+  - ContractorNFBoxSurvivalExtendedNitrogen
+  - ContractorNFBoxSurvivalSheleg
+  - ContractorNFBoxSurvivalExtendedSheleg
   fallbacks:
-  - ContractorBoxSurvivalNFOxygen
-  - ContractorBoxSurvivalNFNitrogen
+  - ContractorNFBoxSurvival
+  - ContractorNFBoxSurvivalNitrogen
+  - ContractorNFBoxSurvivalSheleg
 
 - type: loadoutGroup
   id: ContractorEncryptionKey

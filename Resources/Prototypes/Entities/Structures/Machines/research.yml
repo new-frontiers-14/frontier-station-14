@@ -2,10 +2,12 @@
   id: ResearchAndDevelopmentServer
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: R&D server
-  description: Contains the collective knowledge of the station's scientists. Destroying it would send them back to the stone age. You don't want that do you?
+  description: Contains the extent of somebody's hard-earned knowledge. Handle with care. # Frontier: separate description
   components:
+  - type: BindToStationExemption # Frontier
   - type: Sprite
     sprite: Structures/Machines/server.rsi
+    snapCardinals: true # Frontier
     layers:
       - state: server
       - state: variant-research

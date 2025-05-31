@@ -15,12 +15,16 @@ public sealed partial class ContrabandPalletMenu : FancyWindow
 
     private string _locPrefix = string.Empty;
 
-    public ContrabandPalletMenu(string locPrefix)
+    public ContrabandPalletMenu()
     {
         RobustXamlLoader.Load(this);
         SellButton.OnPressed += OnSellPressed;
         AppraiseButton.OnPressed += OnAppraisePressed;
 
+    }
+
+    public void SetWindowText(string locPrefix)
+    {
         _locPrefix = locPrefix ?? string.Empty;
 
         Title = Loc.GetString($"{_locPrefix}contraband-pallet-console-menu-title");
