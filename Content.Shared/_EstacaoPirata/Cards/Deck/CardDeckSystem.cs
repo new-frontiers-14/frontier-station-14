@@ -25,7 +25,7 @@ public sealed class CardDeckSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly CardStackSystem _cardStackSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    // [Dependency] private readonly IRobustRandom _random = default!; // Frontier
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     public readonly EntProtoId CardDeckBaseName = "CardDeckBase";

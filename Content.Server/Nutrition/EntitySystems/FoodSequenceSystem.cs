@@ -9,10 +9,12 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Nutrition.Prototypes;
 using Content.Shared.Popups;
+using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Server._NF.Kitchen.Components; // Frontier
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -129,6 +131,13 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
             return false;
         }
 
+        // Prevents plushies with items hidden in them from being added to prevent deletion of items
+        // If more of these types of checks need to be added, this should be changed to an event or something.
+        if (TryComp<SecretStashComponent>(element, out var stashComponent) && stashComponent.ItemContainer.Count != 0)
+        {
+            return false;
+        }
+
         //Generate new visual layer
         var flip = start.Comp.AllowHorizontalFlip && _random.Prob(0.5f);
         var layer = new FoodSequenceVisualLayer(elementIndexed,
@@ -207,6 +216,8 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
         if (!TryComp<FoodComponent>(element, out var elementFood))
             return;
 
+        startFood.RequiresSpecialDigestion |= elementFood.RequiresSpecialDigestion; // Frontier: merge special digestion
+
         if (!_solutionContainer.TryGetSolution(start, startFood.Solution, out var startSolutionEntity, out var startSolution))
             return;
 
@@ -254,5 +265,10 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
         EnsureComp<TagComponent>(start);
 
         _tag.TryAddTags(start, elementTags.Tags);
+
+        // Frontier: ensure moth food is moth food
+        if (HasComp<MothFoodComponent>(element))
+            EnsureComp<MothFoodComponent>(start);
+        // End Frontier
     }
 }

@@ -13,6 +13,7 @@ salvage-expedition-announcement-elimination-entity-fallback = target
 
 salvage-expedition-shuttle-not-found = Cannot locate shuttle.
 salvage-expedition-not-everyone-aboard = Not all crew aboard! {CAPITALIZE(THE($target))} is still out there!
+salvage-expedition-failed = Expedition is failed.
 
 # Salvage mods
 salvage-time-mod-standard-time = Normal Duration

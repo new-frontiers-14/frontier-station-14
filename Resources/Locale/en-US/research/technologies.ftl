@@ -35,6 +35,7 @@ research-technology-wave-particle-harnessing = Wave Particle Harnessing
 research-technology-advanced-riot-control = Advanced Riot Control
 research-technology-portable-microfusion-weaponry = Portable Microfusion Weaponry
 research-technology-experimental-battery-ammo = Experimental Battery Ammo
+research-technology-kinetic-modifications = Kinetic Modifications
 # Frontier: Shuttle Basic < Basic Shuttle
 research-technology-basic-shuttle-armament = Basic Shuttle Armament
 research-technology-advanced-shuttle-weapon = Advanced Shuttle Weapons
@@ -72,5 +73,6 @@ research-technology-meat-manipulation = Meat Manipulation
 research-technology-honk-mech = H.O.N.K. Mech
 research-technology-advanced-spray = Advanced Spray
 research-technology-bluespace-cargo-transport = Bluespace Cargo Transport
+research-technology-clowning-utilities = Clowning Utilities
 research-technology-quantum-fiber-weaving = Quantum Fiber Weaving
 research-technology-bluespace-chemistry = Bluespace Chemistry

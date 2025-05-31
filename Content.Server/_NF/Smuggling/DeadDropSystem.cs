@@ -205,7 +205,7 @@ public sealed class DeadDropSystem : EntitySystem
         // If station is terminating, or if we aren't on one, nothing to do here.
         if (station == null ||
             !station.Value.Valid ||
-            MetaData(station.Value).EntityLifeStage >= EntityLifeStage.Terminating)
+            TerminatingOrDeleted(station.Value))
         {
             return;
         }
@@ -233,7 +233,7 @@ public sealed class DeadDropSystem : EntitySystem
 
             // If the item is tearing down, do nothing for now.
             // FIXME: separate sector-wide scheduler?
-            if (MetaData(item.ent).EntityLifeStage >= EntityLifeStage.Terminating)
+            if (TerminatingOrDeleted(item.ent))
                 return;
 
             AddDeadDrop(item.ent);

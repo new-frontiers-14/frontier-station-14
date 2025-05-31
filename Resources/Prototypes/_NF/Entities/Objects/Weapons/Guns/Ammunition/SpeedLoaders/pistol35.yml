@@ -31,6 +31,13 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol35/speed_loader.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
 
 # .35 pistol, speed loader
 - type: entity
@@ -63,6 +70,14 @@
     - state: decal-01
     - state: base-6
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripe
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripe
 
 # Frontier
 # .35 pistol, speed loader
@@ -81,3 +96,13 @@
       color: "#00b0ff"
     - state: base-6
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripe
+        color: "#00b0ff"

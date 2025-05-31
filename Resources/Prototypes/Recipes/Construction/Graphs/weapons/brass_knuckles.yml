@@ -1,0 +1,27 @@
+- type: constructionGraph
+  id: ClothingHandsKnuckleDustersBrass
+  start: start
+  graph:
+  - node: start
+    edges:
+      - to: icon
+        steps:
+          - material: Brass
+            amount: 6
+            doAfter: 10
+  - node: icon
+    entity: ClothingHandsKnuckleDustersBrass
+  
+  # Frontier: crass knuckle dusters
+    edges:
+      - to: crass
+        steps:
+        - tag: WhoopieCushion
+          icon:
+            sprite: Objects/Fun/whoopie.rsi
+            state: icon
+          name: construction-graph-tag-whoopie-cushion
+          doAfter: 2
+  - node: crass
+    entity: WeaponBrassKnucklesWhoopie
+  # End Frontier

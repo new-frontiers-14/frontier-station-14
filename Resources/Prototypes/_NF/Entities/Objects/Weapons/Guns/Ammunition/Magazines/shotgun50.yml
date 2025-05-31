@@ -19,6 +19,14 @@
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
   - type: Item
     size: Small
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/drum.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -60,6 +68,16 @@
       color: "#333333"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#333333"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#333333"
 
 - type: entity
   id: NFMagazineShotgunDrumBeanbag
@@ -76,6 +94,16 @@
       color: "#00b0ff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"
 
 - type: entity
   id: NFMagazineShotgunDrumSlug
@@ -92,6 +120,16 @@
       color: "#333333"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#333333"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#333333"
 
 - type: entity
   id: NFMagazineShotgunDrumIncendiary
@@ -108,3 +146,13 @@
       color: "#ff0000"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"

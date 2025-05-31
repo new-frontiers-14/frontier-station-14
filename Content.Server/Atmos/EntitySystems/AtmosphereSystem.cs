@@ -29,7 +29,6 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly InternalsSystem _internals = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly GasTileOverlaySystem _gasTileOverlaySystem = default!;
@@ -58,7 +57,6 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
         UpdatesAfter.Add(typeof(NodeGroupSystem));
 
-        InitializeBreathTool();
         InitializeGases();
         InitializeCommands();
         InitializeCVars();

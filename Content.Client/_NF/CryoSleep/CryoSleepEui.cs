@@ -51,12 +51,16 @@ public sealed class CryoSleepEui : BaseEui
 
     public override void Opened()
     {
+        base.Opened();
+
         IoCManager.Resolve<IClyde>().RequestWindowAttention();
         _window.OpenCentered();
     }
 
     public override void Closed()
     {
+        base.Closed();
+
         _window.Close();
     }
 }

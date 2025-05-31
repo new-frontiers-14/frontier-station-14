@@ -55,13 +55,13 @@
   damage:
     types:
       Heat: 20
-  muzzleFlash:
+  muzzleFlash: &specialMuzzleFlash
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_beam_heavy2
-  travelFlash:
+  travelFlash: &specialTravelFlash
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: beam_heavy2
-  impactFlash:
+  impactFlash: &specialImpactFlash
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: impact_beam_heavy2
   maxLength: 21
@@ -111,3 +111,17 @@
   travelFlash: *lightTravelFlash
   impactFlash: *lightImpactFlash
   maxLength: 21
+
+# Shuttle guns
+
+# Whatstone - got a rough value based on 
+- type: hitscan
+  id: NFRedShuttleLaser
+  maxLength: 60
+  damage:
+    types:
+      Heat: 30
+      Structural: 10
+  muzzleFlash: *specialMuzzleFlash
+  travelFlash: *specialTravelFlash
+  impactFlash: *specialImpactFlash

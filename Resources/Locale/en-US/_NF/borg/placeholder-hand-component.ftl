@@ -6,6 +6,7 @@ borg-placeholder-display-name-electronics = electronics
 borg-placeholder-display-name-flatpack = flatpacks
 borg-placeholder-display-name-food-or-ingredients = food/ingredients
 borg-placeholder-display-name-fuel = fuel
+borg-placeholder-display-name-glass-beaker = beaker
 borg-placeholder-display-name-glassware = glassware
 borg-placeholder-display-name-jetpack = jetpack
 borg-placeholder-display-name-lighter = lighter

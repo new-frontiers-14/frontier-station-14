@@ -199,7 +199,11 @@ public sealed partial class NFCargoSystem
 
     private void PlayDenySound(Entity<NFCargoOrderConsoleComponent> ent)
     {
-        _audio.PlayPvs(_audio.ResolveSound(ent.Comp.ErrorSound), ent);
+        if (_timing.CurTime >= ent.Comp.NextDenySoundTime)
+        {
+            ent.Comp.NextDenySoundTime = _timing.CurTime + ent.Comp.DenySoundDelay;
+            _audio.PlayPvs(_audio.ResolveSound(ent.Comp.ErrorSound), ent);
+        }
     }
 
     private static NFCargoOrderData GetOrderData(NetEntity consoleUid, CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id)

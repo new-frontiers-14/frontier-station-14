@@ -10,6 +10,7 @@
   - type: Tag
     tags:
     - Donut
+    - VoxFood
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/donut.rsi
   - type: SolutionContainerManager
@@ -22,8 +23,18 @@
   - type: Item
     sprite: Objects/Consumable/Food/Baked/donut.rsi
     size: Tiny
-  - type: StaticPrice
-    price: 14
+  - type: StaticPrice # Frontier
+    price: 14 # Frontier
+
+- type: entity
+  abstract: true
+  parent: FoodDonutBase
+  id: FoodDonutFruitBase
+  components:
+  - type: Tag
+    tags:
+    - Donut
+    - Fruit
 # Tastes like donut.
 
 # The sprinkles are now an overlay, so you can put them on any donut! If we really
@@ -111,7 +122,7 @@
   - type: Tag
     tags:
     - Meat
-    - Donut # Frontier
+    - Donut
 # Tastes like meat.
 
 - type: entity
@@ -298,7 +309,7 @@
 
 - type: entity
   name: apple jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutFruitBase
   id: FoodDonutJellyApple
   description: Goes great with a shot of cinnamon schnapps.
   components:
@@ -313,10 +324,7 @@
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
-  - type: Tag
-    tags:
-    - Fruit
-    - Donut # Frontier
+
 # Tastes like jelly-donut, green apples.
 
 - type: entity
@@ -361,7 +369,7 @@
 
 - type: entity
   name: blue pumpkin jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutFruitBase
   id: FoodDonutJellyBluePumpkin
   description: Goes great with a mug of soothing drunken blue pumpkin.
   components:
@@ -380,15 +388,11 @@
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
-  - type: Tag
-    tags:
-    - Fruit
-    - Donut # Frontier
 # Tastes like jelly-donut, blue pumpkin.
 
 - type: entity
   name: bungo jelly-donut
-  parent: FoodDonutBase
+  parent: FoodDonutFruitBase
   id: FoodDonutJellyBungo
   description: Goes great with a mason jar of hippie's delight.
   components:
@@ -403,10 +407,6 @@
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
-  - type: Tag
-    tags:
-    - Fruit # Apparently this is a fruit. Huh.
-    - Donut # Frontier
 # Tastes like jelly-donut, tropical sweetness.
 
 - type: entity

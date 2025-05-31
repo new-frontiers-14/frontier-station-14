@@ -14,3 +14,4 @@ changelog-button-new-entries = Changelog (new!)
 # Frontier: Changelog<Upstream
 changelog-tab-title-Changelog = Upstream
 changelog-tab-title-Admin = Admin
+changelog-tab-title-Maps = Maps

@@ -1,5 +1,6 @@
 using Content.Shared._NF.PlantAnalyzer;
 using JetBrains.Annotations;
+using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.PlantAnalyzer.UI;
 
@@ -16,12 +17,12 @@ public sealed class PlantAnalyzerBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
-        _window = new PlantAnalyzerWindow(this)
+        if (_window == null)
         {
-            Title = Loc.GetString("plant-analyzer-interface-title"),
-        };
-        _window.OnClose += Close;
-        _window.OpenCenteredLeft();
+            _window = this.CreateWindowCenteredLeft<PlantAnalyzerWindow>();
+            _window.Title = Loc.GetString("plant-analyzer-interface-title");
+            _window.OnAdvancedModeChanged += AdvPressed;
+        }
     }
 
     protected override void ReceiveMessage(BoundUserInterfaceMessage message)
@@ -37,17 +38,5 @@ public sealed class PlantAnalyzerBoundUserInterface : BoundUserInterface
     public void AdvPressed(bool scanMode)
     {
         SendMessage(new PlantAnalyzerSetMode(scanMode));
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (!disposing)
-            return;
-
-        if (_window != null)
-            _window.OnClose -= Close;
-
-        _window?.Dispose();
     }
 }

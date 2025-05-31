@@ -34,14 +34,14 @@
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledShotgun
   name: Bulldog bundle
-  description: "Lean and mean: Contains the popular Bulldog Shotgun and four 12g buckshot drums." #, and a pair of Thermal Imaging Goggles.
+  description: "Lean and mean: Contains the popular Bulldog Shotgun, a 12g slug drum, and four 12g buckshot drums." #, and a pair of Thermal Imaging Goggles.
   components:
   - type: StorageFill
     contents:
       - id: NFWeaponShotgunBulldog # Frontier: WeaponShotgunBulldog<NFWeaponShotgunBulldog
       - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
-      - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
-      - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
+        amount: 3
+      - id: NFMagazineShotgunDrumSlug # Frontier: MagazineShotgunSlug<NFMagazineShotgunDrumSlug
 #     - id: ThermalImagingGoggles
 
 - type: entity
@@ -116,7 +116,7 @@
   parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateAmmoFilled
   name: ammo bundle
-  description: "Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW."
+  description: "Reloading! Contains 4 magazines for the C-20r, 5 drums for the Bulldog, and 2 ammo boxes for the L6 SAW."
   components:
   - type: StorageFill
     contents:
@@ -124,6 +124,8 @@
         amount: 4
       - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
         amount: 4
+      - id: NFMagazineShotgunDrumSlug # Frontier: MagazineShotgunSlug<NFMagazineShotgunDrumSlug
+        amount: 1
       - id: NFMagazineBoxRifle20 # Frontier: MagazineLightRifleBox<NFMagazineBoxRifle20
         amount: 2
 
@@ -220,7 +222,7 @@
   - type: StorageFill
     contents:
       - id: ClothingHeadHelmetSyndicate
-      - id: ClothingOuterHardsuitSyndicate
+      - id: ClothingOuterEVASuitSyndicate
       - id: ClothingMaskGasSyndicate
       - id: ClothingHandsGlovesColorYellowBudget
       - id: DoubleEmergencyOxygenTankFilled

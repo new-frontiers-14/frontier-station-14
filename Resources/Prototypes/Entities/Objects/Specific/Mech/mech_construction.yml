@@ -442,7 +442,8 @@
       helmet:
         whitelist:
           tags:
-          - HelmetEVA
+          # - HelmetEVA # Frontier
+          - SuitEVA # Frontier: phasing separate EVA helmets out
       left_leg:
         whitelist:
           tags:
@@ -458,7 +459,8 @@
   - type: MechAssembly
     finishedPrototype: VimChassis
     requiredParts:
-      HelmetEVA: false
+      # HelmetEVA: false # Frontier
+      SuitEVA: false # Frontier: phasing separate EVA helmets out
       BorgLeg: false
   - type: Sprite
     state: harness

@@ -1,5 +1,6 @@
 # Metals
 materials-scrap = scrap
+materials-bluespace = bluespace
 
 # Ores
 materials-raw-scrap = unsorted scrap
