@@ -61,6 +61,7 @@ guide-entry-shipyard-comet = Comet
 guide-entry-shipyard-construct = Construct
 guide-entry-shipyard-copperhead = Copperhead
 guide-entry-shipyard-crossroads = Crossroads
+guide-entry-shipyard-druid = Druid
 guide-entry-shipyard-eagle = Eagle
 guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
