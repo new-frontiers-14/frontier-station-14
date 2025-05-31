@@ -17,45 +17,24 @@
     Paper: 10
 
 - type: latheRecipe
-  id: SmeltScrapRandomMaterial
-  result: ScrapProcessorRandomMaterial
+  id: SmeltScrapMaterials
+  result: SpawnRandomScrapMaterial
+  completetime: 2 # similar to ore processor rates
+  categories:
+  - Materials
+  icon:
+    sprite: _NF/Objects/Materials/ore.rsi
+    state: scrapmaterials
+  materials:
+    RawScrap: 3000
+
+- type: latheRecipe
+  id: SmeltScrapTech
+  result: SpawnRandomScrapTech
   parent: BaseMaterialsNoDiscountRecipe
-  completetime: 0.1
+  completetime: 2 # similar to ore processor rates
   icon:
     sprite: Objects/Materials/Sheets/other.rsi
     state: generic_materials
   materials:
-    RawScrap: 2600
-
-- type: latheRecipe
-  id: SmeltScrapRandomPart
-  result: ScrapProcessorRandomPart
-  parent: BaseMaterialsNoDiscountRecipe
-  completetime: 2
-  icon:
-    sprite: _NF/Objects/Misc/stock_parts.rsi
-    state: nano_mani
-  materials:
-    RawScrap: 5400
-
-- type: latheRecipe
-  id: SmeltScrapRandomTools
-  result: ScrapProcessorRandomTools
-  parent: BaseMaterialsNoDiscountRecipe
-  completetime: 2
-  icon:
-    sprite: Objects/Tools/t-ray.rsi
-    state: tray-off
-  materials:
-    RawScrap: 6300
-
-- type: latheRecipe
-  id: SmeltScrapRandomBoard
-  result: ScrapProcessorRandomBoard
-  parent: BaseMaterialsNoDiscountRecipe
-  completetime: 2
-  icon:
-    sprite: Objects/Misc/module.rsi
-    state: cpu_service
-  materials:
-    RawScrap: 9100
+    RawScrapTech: 3000
