@@ -57,15 +57,21 @@
 - type: entity
   id: BorgModuleRCDShipyard
   parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule ]
-  name: shipyard RCD cyborg module
+  name: engineering cyborg module
   components:
   - type: Sprite
     layers:
     - state: engineering
     - state: icon-rcd-shipyard
       sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: ShipyardRCD
+    items:
+    - GasAnalyzer
+    - HolofanProjectorBorg
+    - GeigerCounter
   - type: DroppableBorgModule
-    moduleId: RCD
+    moduleId: ShipyardRCD
     items:
     - id: ShipyardRCD
       whitelist:
