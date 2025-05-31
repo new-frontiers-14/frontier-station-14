@@ -1,15 +1,13 @@
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server._NF.Construction.Components
+namespace Content.Server._NF.Construction.Components;
+
+/// <summary>
+/// Used for construction graphs in building wallmount computers.
+/// </summary>
+[RegisterComponent]
+public sealed partial class ComputerWallmountBoardComponent : Component
 {
-    /// <summary>
-    /// Used for construction graphs in building wallmount computers.
-    /// </summary>
-    [RegisterComponent]
-    public sealed partial class ComputerWallmountBoardComponent : Component
-    {
-        [DataField("prototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string? Prototype { get; private set; }
-    }
+    [DataField]
+    public EntProtoId? Prototype { get; private set; }
 }
