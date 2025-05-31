@@ -10,6 +10,7 @@ adventure-webhook-top-profit = made a total profit of {$amount}.
 adventure-webhook-top-loss = lost a total of {$amount}.
 
 adventure-webhook-ledger-start = Ledger Summary
+adventure-webhook-shipstats-start = Shipyard Statistics
 
 adventure-webhook-footer =
     Server: {$serverName}
