@@ -24,7 +24,7 @@
   name: food-sequence-content-ham
   sprites:
   - sprite: _NF/Objects/Consumable/Food/meat.rsi
-    state: slice
+    state: normalhamslice # no bone, sad day
 
 - type: foodSequenceElement
   id: Cucumber
@@ -359,7 +359,7 @@
   name: food-sequence-cotton-burger-content-plushie-cat
   sprites:
   - sprite: _NF/Objects/Fun/catplushie.rsi
-    state: siamese
+    state: siames
 
 # Tabby cat plushie
 - type: foodSequenceElement
@@ -397,7 +397,7 @@
   - sprite: _NF/Objects/Fun/emotional_support_rpg.rsi
     state: base
 
-# Moth2 plushies
+# Moth1 plushies
 - type: foodSequenceElement
   id: PlushieMoth1
   scale: 0.8, 0.8
@@ -405,6 +405,15 @@
   sprites:
   - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
     state: moff1
+
+# Moth2 plushies
+- type: foodSequenceElement
+  id: PlushieMoth2
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff2
 
 # Moth3 plushies
 - type: foodSequenceElement
