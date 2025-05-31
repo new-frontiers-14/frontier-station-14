@@ -696,7 +696,7 @@
 - type: entity
   id: BorgModuleRCD
   parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule ]
-  name: engineering cyborg module
+  name: advanced engineering cyborg module # Frontier: add "advanced"
   components:
   - type: Sprite
     layers:
@@ -706,8 +706,8 @@
     moduleId: RCD # Frontier
     items:
     - RCDRecharging
-    - BorgFireExtinguisher
-    - BorgHandheldGPSBasic
+    # - BorgFireExtinguisher # Frontier: use jetpack module
+    # - BorgHandheldGPSBasic # Frontier: use jetpack module
     - GasAnalyzer
     - HolofanProjectorBorg
     - GeigerCounter
