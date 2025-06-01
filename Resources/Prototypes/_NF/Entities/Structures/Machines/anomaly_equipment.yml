@@ -1,0 +1,29 @@
+- type: entity
+  id: MachineMiniAnomalyGenerator
+  parent: MachineAnomalyGenerator
+  name: mini anomaly generator
+  description: The peak of pseudoscientific technology.
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/Anomaly/mini_anomaly_generator.rsi
+    offset: 0,0.5
+    noRot: true
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: StaticPrice
+    price: 1500
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 50
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
