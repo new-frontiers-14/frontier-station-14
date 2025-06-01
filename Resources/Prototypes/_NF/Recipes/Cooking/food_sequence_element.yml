@@ -1,5 +1,6 @@
 - type: foodSequenceElement
   id: Pear
+  scale: 0.8, 0.8
   name: food-sequence-content-pear
   sprites:
   - sprite: _NF/Objects/Specific/Hydroponics/pear.rsi
@@ -26,6 +27,7 @@
 
 - type: foodSequenceElement
   id: Ham
+  scale: 0.8, 0.8
   name: food-sequence-content-ham
   sprites:
   - sprite: _NF/Objects/Consumable/Food/meat.rsi
@@ -37,6 +39,7 @@
 
 - type: foodSequenceElement
   id: Cucumber
+  scale: 0.8, 0.8
   name: food-sequence-content-ham
   sprites:
   - sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
@@ -47,6 +50,7 @@
 
 - type: foodSequenceElement
   id: Pickle
+  scale: 0.8, 0.8
   name: food-sequence-content-pickle
   sprites:
   - sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
@@ -91,6 +95,48 @@
     state: patty
   tags:
   - Cooked
+  - Meat
+
+- type: foodSequenceElement
+  id: CarpSushi
+  scale: 0.8, 0.8
+  name: food-sequence-content-sushi
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    state: carpsushislice
+  tags:
+  - Sushi
+
+- type: foodSequenceElement
+  id: AvocadoSushi
+  scale: 0.8, 0.8
+  name: food-sequence-content-sushi
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    state: avocadosushislice
+  tags:
+  - Sushi
+
+- type: foodSequenceElement
+  id: CuredCarpSushi
+  scale: 0.8, 0.8
+  name: food-sequence-content-sushi
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    state: freshsushislice
+  tags:
+  - Sushi
+  - Meat
+
+- type: foodSequenceElement
+  id: GasStationSushi
+  scale: 0.8, 0.8
+  name: food-sequence-content-sushi
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    state: gassushislice
+  tags:
+  - Sushi
   - Meat
 
 # Jester plushie
