@@ -9,7 +9,6 @@ using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Player;
-using Content.Shared.UserInterface; // Frontier
 
 namespace Content.Server.Radiation.Systems;
 
@@ -25,7 +24,7 @@ public sealed class GeigerSystem : SharedGeigerSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<GeigerComponent, ActivateInWorldEvent>(OnActivate, after: [typeof(ActivatableUISystem)]); // Frontier: add after
+        SubscribeLocalEvent<GeigerComponent, ActivateInWorldEvent>(OnActivate);
 
         SubscribeLocalEvent<GeigerComponent, GotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<GeigerComponent, GotEquippedHandEvent>(OnEquippedHand);
