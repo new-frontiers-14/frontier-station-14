@@ -1,6 +1,6 @@
 # Ores
-materials-raw-scrap = scrap chunks
-materials-raw-scrap-tech = tech scrap chunks
+materials-raw-scrap = scrap
+materials-raw-scrap-tech = tech scrap
 
 # Other
 materials-reinforced-uranium-glass = reinforced uranium glass
