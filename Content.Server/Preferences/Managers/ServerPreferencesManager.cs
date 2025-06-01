@@ -89,7 +89,7 @@ namespace Content.Server.Preferences.Managers
                 await SetProfile(userId, message.Slot, message.Profile);
         }
 
-        public async Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile)
+        public async Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile, bool validateFields = true) // Frontier: add validateFields
         {
             if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
             {
@@ -106,7 +106,7 @@ namespace Content.Server.Preferences.Managers
             profile.EnsureValid(session, _dependencies);
 
             // Frontier: check for profile modifications (based on Monolith's impl)
-            if (profile is HumanoidCharacterProfile humanProfile)
+            if (validateFields && profile is HumanoidCharacterProfile humanProfile)
             {
                 if (curPrefs.Characters.TryGetValue(slot, out var existingProfile) &&
                     existingProfile is HumanoidCharacterProfile humanoidEditingTarget)
