@@ -7,6 +7,7 @@ food-sequence-content-honeycomb = honey
 food-sequence-content-everyspice = spicy
 food-sequence-content-monkanana = monke
 food-sequence-content-ham = ham
+food-sequence-taco-content-meat-patty = hamburguesa
 food-sequence-cotton-burger-content-plushie-jester = jester
 food-sequence-cotton-burger-content-plushie-botanist = botanist
 food-sequence-cotton-burger-content-plushie-engineer = engineer

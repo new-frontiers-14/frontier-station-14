@@ -908,7 +908,7 @@
 
 - type: entity
   name: toy rocket launcher
-  parent: [BaseClearContraband, NFWeaponLauncherRocket]
+  parent: [BaseClearContraband, BasePlushie, NFWeaponLauncherRocket]
   id: WeaponLauncherRocketToy
   suffix: Toy
   description: A plush toy, this launches foam "grenades". There are stitches on the side that spell out "SAM".
@@ -948,12 +948,13 @@
   id: BulletFoamRPG
   description: Looks like the REAL THING... if you squint. I hope your target's wearing face protection.
   name: foam RPG rocket
-  parent: BaseItem
+  parent: BasePlushie
   components:
     - type: Tag
       tags:
         - NFFoamRPG
         - Trash
+        - ClothMade
     - type: Ammo
     - type: Sprite
       sprite: _NF/Objects/Fun/emotional_support_rocket.rsi

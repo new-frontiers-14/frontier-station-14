@@ -4,6 +4,8 @@
   sprites:
   - sprite: _NF/Objects/Specific/Hydroponics/pear.rsi
     state: produce
+  tags:
+  - Fruit
 
 - type: foodSequenceElement
   id: Hairball
@@ -18,6 +20,9 @@
   sprites:
   - sprite: _NF/Objects/Specific/Hydroponics/avocado.rsi
     state: slice
+  tags:
+  - Fruit
+  - Slice
 
 - type: foodSequenceElement
   id: Ham
@@ -25,6 +30,10 @@
   sprites:
   - sprite: _NF/Objects/Consumable/Food/meat.rsi
     state: normalhamslice # no bone, sad day
+  tags:
+  - Cooked
+  - Meat
+  - Slice
 
 - type: foodSequenceElement
   id: Cucumber
@@ -32,6 +41,9 @@
   sprites:
   - sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
     state: slice
+  tags:
+  - Vegetable
+  - Slice
 
 - type: foodSequenceElement
   id: Pickle
@@ -39,6 +51,9 @@
   sprites:
   - sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
     state: pickleslice
+  tags:
+  - Vegetable
+  - Slice
 
 - type: foodSequenceElement
   id: Honeycomb
@@ -55,6 +70,8 @@
   sprites:
   - sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
     state: produce-roasted
+  tags:
+  - Fruit
 
 - type: foodSequenceElement
   id: Monkanana
@@ -63,6 +80,18 @@
   sprites:
   - sprite: _NF/Objects/Specific/Hydroponics/monkanana.rsi
     state: produce
+  tags:
+  - Fruit
+
+- type: foodSequenceElement
+  id: MeatPattyTaco
+  name: food-sequence-taco-content-meat-patty
+  sprites:
+  - sprite: Objects/Consumable/Food/meat.rsi
+    state: patty
+  tags:
+  - Cooked
+  - Meat
 
 # Jester plushie
 - type: foodSequenceElement
