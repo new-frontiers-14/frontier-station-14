@@ -219,7 +219,8 @@
       - SetParticleEpsilon
       - SetParticleZeta
       - SetParticleSigma
-  - type: BindToStationExemption #Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+  - type: BindToStation # Frontier
+    enabled: false # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
 
 - type: entity
   id: MachineAnomalyGenerator
@@ -334,3 +335,4 @@
   - type: GuideHelp
     guides:
     - AnomalousResearch
+  - type: BindToStation # Frontier

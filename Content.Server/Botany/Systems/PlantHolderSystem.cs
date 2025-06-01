@@ -179,7 +179,7 @@ public sealed class PlantHolderSystem : EntitySystem
             if (component.Seed == null)
             {
                 // Frontier
-                if (TryComp<BindToStationComponent>(entity.Owner, out var bindToStation)
+                if (TryComp<StationBoundObjectComponent>(entity.Owner, out var bindToStation)
                     && bindToStation.Enabled
                     && bindToStation.BoundStation != null
                     && _station.GetOwningStation(entity.Owner) != bindToStation.BoundStation)
