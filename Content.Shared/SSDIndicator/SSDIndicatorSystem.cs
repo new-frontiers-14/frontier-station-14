@@ -80,6 +80,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
         {
             // Forces the entity to sleep when the time has come
             if(ssd.IsSSD &&
+                !ssd.PreventSleep && // Frontier
                 ssd.FallAsleepTime <= _timing.CurTime &&
                 !TerminatingOrDeleted(uid) &&
                 !HasComp<ForcedSleepingComponent>(uid)) // Don't add the component if the entity has it from another sources

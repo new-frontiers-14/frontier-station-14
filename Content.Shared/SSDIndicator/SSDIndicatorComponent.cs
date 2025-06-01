@@ -33,4 +33,13 @@ public sealed partial class SSDIndicatorComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public bool ForcedSleepAdded = false;
+
+    // Frontier: skip sleeping
+    /// <summary>
+    ///     Required to don't remove forced sleep from other sources
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public bool PreventSleep = false;
+    // End Frontier
 }
