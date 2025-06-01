@@ -147,6 +147,81 @@
         - ReagentId: Protein
           Quantity: 9
 
+- type: entity
+  name: whole raw chicken
+  parent: FoodMeatRawBase
+  id: FoodMeatWholeChicken
+  description: A whole raw chicken. Remember to wash your hands!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: bird-whole
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 18
+        - ReagentId: Fat
+          Quantity: 18
+  - type: SliceableFood
+    count: 2
+    slice: FoodMeatChicken
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+
+- type: entity
+  name: whole raw duck
+  parent: FoodMeatRawBase
+  id: FoodMeatWholeDuck
+  description: A whole raw duck. Remember to wash your hands!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: bird-whole
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 18
+        - ReagentId: Fat
+          Quantity: 18
+  - type: SliceableFood
+    count: 2
+    slice: FoodMeatDuck
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+
+- type: entity
+  name: whole raw penguin
+  parent: FoodMeatRawBase
+  id: FoodMeatWholePenguin
+  description: A whole raw penguin. Remember to wash your hands!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: bird-whole
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 18
+        - ReagentId: Fat
+          Quantity: 18
+  - type: SliceableFood
+    count: 2
+    slice: FoodMeatPenguin
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+
 # Cooked
 
 - type: entity
@@ -217,3 +292,75 @@
     tags:
       - Slice
       - Meat
+
+- type: entity
+  name: whole cooked chicken
+  parent: FoodMeatBase
+  id: FoodMeatWholeChickenCooked
+  description: A whole cooked chicken. It's probably cooked all the way through.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: bird-whole-cooked
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 10
+  - type: SliceableFood
+    count: 2
+    slice: FoodMeatChickenCooked
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+
+- type: entity
+  name: whole cooked duck
+  parent: FoodMeatBase
+  id: FoodMeatWholeDuckCooked
+  description: A whole cooked duck. You can imagine it gazing at your mournfully.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: bird-whole-cooked
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 10
+  - type: SliceableFood
+    count: 2
+    slice: FoodMeatDuckCooked
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+
+- type: entity
+  name: whole cooked penguin
+  parent: FoodMeatBase
+  id: FoodMeatWholePenguinCooked
+  description: A whole cooked penguin. There is no way to morally justify what you have done here.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: bird-whole-cooked
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 10
+  - type: SliceableFood
+    count: 2
+    slice: FoodMeatPenguinCooked
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
