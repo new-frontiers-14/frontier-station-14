@@ -12,6 +12,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Content.Shared._NF.Vehicle.Components; // Frontier
+using Content.Shared.ActionBlocker; // Frontier
 using Content.Shared.Interaction; // Frontier
 using Content.Shared.Light.Components; // Frontier
 using Content.Shared.Light.EntitySystems; // Frontier
@@ -37,6 +38,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!; // Frontier
     [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
     [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Frontier
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!; // Frontier
     [Dependency] private readonly IGameTiming _timing = default!; // Frontier
     [Dependency] private readonly SharedInteractionSystem _interaction = default!; // Frontier
@@ -303,6 +305,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             return;
 
         RemComp<RelayInputMoverComponent>(driver);
+        _actionBlocker.UpdateCanMove(driver); // Frontier: bugfix, relay input mover only updates on shutdown, not remove
 
         if (removeDriver) // Frontier
             vehicleComp.Driver = null;
