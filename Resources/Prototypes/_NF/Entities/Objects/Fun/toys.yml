@@ -943,12 +943,16 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: WeaponLauncherRocketToy
+  - type: ContainerContainer
+    containers:
+      stash: !type:ContainerSlot {}
+      ballistic-ammo: !type:Container {}
 
 - type: entity
   id: BulletFoamRPG
   description: Looks like the REAL THING... if you squint. I hope your target's wearing face protection.
   name: foam RPG rocket
-  parent: BasePlushie
+  parent: BaseItem
   components:
     - type: Tag
       tags:
