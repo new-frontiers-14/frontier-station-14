@@ -29,7 +29,7 @@ public sealed partial class ConstructionSystem
         // Frontier - we mirror the bind to grid component from any existing machine board onto the resultant machine to prevent high-grading
         foreach (var board in component.BoardContainer.ContainedEntities)
         {
-            if (TryComp<BindToStationComponent>(board, out var binding))
+            if (TryComp<StationBoundObjectComponent>(board, out var binding))
                 _bindToStation.BindToStation(uid, binding.BoundStation, binding.Enabled);
         }
         // End Frontier
