@@ -39,7 +39,7 @@ public sealed class EmpGeneratorSystem : EntitySystem
 
     private void OnAction(Entity<EmpGeneratorComponent> ent, ref PowerChargeActionEvent args)
     {
-        if (TryComp<BindToStationComponent>(ent, out var stationBound)
+        if (TryComp<StationBoundObjectComponent>(ent, out var stationBound)
             && _station.GetOwningStation(ent) != stationBound.BoundStation)
             return;
 
