@@ -176,6 +176,7 @@ public sealed partial class AnomalySystem
         else
             msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-point-output", ("point", GetAnomalyPointValue(anomaly, anomalyComp))));
         //Frontier: Point earned
+        msg.PushNewline();
         if (secret != null && secret.Secret.Contains(AnomalySecretData.PointsEarned))
             msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-point-earned-unknown"));
         else
