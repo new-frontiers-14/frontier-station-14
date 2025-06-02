@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._DV.CustomObjectiveSummary; // DeltaV
 using Content.Client.CharacterInfo;
 using Content.Client.Gameplay;
 using Content.Client.Stylesheets;
@@ -31,6 +32,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
     [Dependency] private readonly ILogManager _logMan = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly CustomObjectiveSummaryUIController _objective = default!; // DeltaV
 
     [UISystemDependency] private readonly CharacterInfoSystem _characterInfo = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
@@ -56,19 +58,20 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         _window = UIManager.CreateWindow<CharacterWindow>();
         LayoutContainer.SetAnchorPreset(_window, LayoutContainer.LayoutPreset.CenterTop);
 
-
+        _window.OnClose += DeactivateButton;
+        _window.OnOpen += ActivateButton;
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.OpenCharacterMenu,
-                 InputCmdHandler.FromDelegate(_ => ToggleWindow()))
-             .Register<CharacterUIController>();
+                InputCmdHandler.FromDelegate(_ => ToggleWindow()))
+            .Register<CharacterUIController>();
     }
 
     public void OnStateExited(GameplayState state)
     {
         if (_window != null)
         {
-            _window.Dispose();
+            _window.Close();
             _window = null;
         }
 
@@ -105,18 +108,27 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         }
 
         CharacterButton.OnPressed += CharacterButtonPressed;
+    }
 
-        if (_window == null)
+    private void DeactivateButton()
+    {
+        if (CharacterButton == null)
         {
             return;
         }
 
-        _window.OnClose += DeactivateButton;
-        _window.OnOpen += ActivateButton;
+        CharacterButton.Pressed = false;
     }
 
-    private void DeactivateButton() => CharacterButton!.Pressed = false;
-    private void ActivateButton() => CharacterButton!.Pressed = true;
+    private void ActivateButton()
+    {
+        if (CharacterButton == null)
+        {
+            return;
+        }
+
+        CharacterButton.Pressed = true;
+    }
 
     private void CharacterUpdated(CharacterData data)
     {
@@ -150,7 +162,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
 
             var objectiveLabel = new RichTextLabel
             {
-                StyleClasses = {StyleNano.StyleClassTooltipActionTitle}
+                StyleClasses = { StyleNano.StyleClassTooltipActionTitle }
             };
             objectiveLabel.SetMessage(objectiveText);
 
@@ -174,6 +186,19 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
 
             _window.Objectives.AddChild(objectiveControl);
         }
+        // Begin DeltaV Additions - Custom objective summary
+        if (objectives.Count > 0)
+        {
+            var button = new Button
+            {
+                Text = Loc.GetString("custom-objective-button-text"),
+                Margin = new Thickness(0, 10, 0, 10)
+            };
+            button.OnPressed += _ => _objective.OpenWindow();
+
+            _window.Objectives.AddChild(button);
+        }
+        // End DeltaV Additions
 
         if (briefing != null)
         {
@@ -211,18 +236,11 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         if (!_ent.TryGetComponent<MindComponent>(container.Mind.Value, out var mind))
             return;
 
-        var roleText = Loc.GetString("role-type-crew-aligned-name");
-        var color = Color.White;
-        if (_prototypeManager.TryIndex(mind.RoleType, out var proto))
-        {
-            roleText = Loc.GetString(proto.Name);
-            color = proto.Color;
-        }
-        else
-            _sawmill.Error($"{_player.LocalEntity} has invalid Role Type '{mind.RoleType}'. Displaying '{roleText}' instead");
+        if (!_prototypeManager.TryIndex(mind.RoleType, out var proto))
+            _sawmill.Error($"Player '{_player.LocalSession}' has invalid Role Type '{mind.RoleType}'. Displaying default instead");
 
-        _window.RoleType.Text = roleText;
-        _window.RoleType.FontColorOverride = color;
+        _window.RoleType.Text = Loc.GetString(proto?.Name ?? "role-type-crew-aligned-name");
+        _window.RoleType.FontColorOverride = proto?.Color ?? Color.White;
     }
 
     private void CharacterDetached(EntityUid uid)
@@ -245,10 +263,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         if (_window == null)
             return;
 
-        if (CharacterButton != null)
-        {
-            CharacterButton.SetClickPressed(!_window.IsOpen);
-        }
+        CharacterButton?.SetClickPressed(!_window.IsOpen);
 
         if (_window.IsOpen)
         {

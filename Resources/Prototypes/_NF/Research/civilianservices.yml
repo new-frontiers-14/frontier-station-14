@@ -4,8 +4,8 @@
   id: FoodService
   name: research-technology-food-service
   icon:
-    sprite: Structures/Machines/juicer.rsi
-    state: juicer1
+    sprite: Structures/Machines/grinder.rsi
+    state: grinder_beaker_attached
   discipline: CivilianServices
   tier: 1
   cost: 7500
@@ -15,6 +15,35 @@
   - ElectricGrillMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
   - SodaDispenserMachineCircuitboard
+
+- type: technology
+  id: MiscellaneousItemsOrganization
+  name: research-technology-personal-storage-solutions
+  icon:
+    sprite: _NF/Objects/Storage/Pouches/pouch.rsi
+    state: closed
+  discipline: CivilianServices
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - NFPouchUtility
+  - NFPouchEngineering
+  - NFPouchFirstAid
+  - NFPouchFirstAidAlt
+  - NFPouchScience
+  - NFPouchSalvage
+  - NFPouchAtmospherics
+  - NFPouchHydroponics
+  - NFPouchChaplain
+  - NFPouchPunk
+  - NFPouchMercenary
+  - NFPouchPrivateSecurity
+  - NFPouchJanitor
+  - NFPouchContractor
+  - NFPouchClown
+  - NFPouchMime
+  - NFPouchCaptain
+  - NFPouchCargo
 
 # Tier 2
 

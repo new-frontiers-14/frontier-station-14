@@ -1,5 +1,5 @@
 - type: entity
-  parent: DoorRemoteDefault
+  parent: [DoorRemoteDefault, BaseCommandContraband]
   id: DoorRemoteNfsd
   name: NFSD door remote
   components:
@@ -12,4 +12,4 @@
       color: "#4b653e"
   - type: Access
     groups:
-    - Security
+    - AllNfsdAccess

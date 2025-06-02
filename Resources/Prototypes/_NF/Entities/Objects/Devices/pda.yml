@@ -13,9 +13,11 @@
   id: NFAdminPDA
   components:
   - type: CartridgeLoader
+    diskSpace: 20
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
+      - NanoTaskCartridge
       - NewsReaderCartridge
       - BountyContractsCartridge
       - AstroNavCartridge
@@ -116,7 +118,7 @@
         - Write
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseCommandContraband]
   id: SheriffPDA
   name: sheriff PDA
   description: Whosoever bears this PDA is the law.
@@ -130,6 +132,12 @@
         tags:
         - BookSpaceLaw
         - BookNfsdSop
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
@@ -144,6 +152,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - BountyContractsCartridge
     - AstroNavCartridge
@@ -338,7 +347,7 @@
     state: pda-pal
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseCommandContraband]
   id: SrPDA
   name: station representative PDA
   description: Looks like it's been clawed on.
@@ -365,6 +374,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - BountyContractsCartridge
     - AstroNavCartridge
@@ -373,11 +383,12 @@
 
 - type: entity
   parent: PiratePDA
-  id: PirateNFPDA
+  id: NFPiratePDA
   name: pirate PDA
+  suffix: Frontier
   components:
   - type: Pda
-    id: PirateNFIDCard
+    id: NFPirateIDCard
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
@@ -386,11 +397,12 @@
 
 - type: entity
   parent: PiratePDA
-  id: PirateCaptainNFPDA
+  id: NFPirateCaptainPDA
   name: pirate captain PDA
+  suffix: Frontier
   components:
   - type: Pda
-    id: PirateCaptainNFIDCard
+    id: NFPirateCaptainIDCard
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
@@ -399,11 +411,12 @@
 
 - type: entity
   parent: PiratePDA
-  id: PirateFirstMateNFPDA
+  id: NFPirateFirstMatePDA
   name: pirate first mate PDA
+  suffix: Frontier
   components:
   - type: Pda
-    id: PirateFirstMateNFIDCard
+    id: NFPirateFirstMateIDCard
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
@@ -448,7 +461,7 @@
         pda-janitor
 
 - type: entity
-  parent: CMOPDA
+  parent: [CMOPDA, BaseCommandContraband]
   id: DocPDA
   name: director of care PDA
   description: It smells like disinfectant.
@@ -476,8 +489,9 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - BountyContractsCartridge
-    - AstroNavCartridge    
+    - AstroNavCartridge
     - LedgerCartridge
     - MedTekCartridge #medtek preloaded. Should be ok.

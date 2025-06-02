@@ -8,6 +8,23 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconMailCarrier
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi # /Textures/DeltaV</Textures/_NF
+    state: mailcarrier # nyanoMailCarrier<mailcarrier
+  jobName: job-name-mail-carrier
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconDoc
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
+    state: nfmsdoc
+  jobName: job-name-doc
+  allowSelection: false # Frontier: no impersonating command staff, literally 1984
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconMercenary
   icon:
     sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
@@ -24,27 +41,27 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconPirate
+  id: JobIconNFPirate
   icon:
     sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
     state: pirate
-  jobName: job-name-pirate
+  jobName: job-name-nf-pirate
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconPirateCaptain
+  id: JobIconNFPirateCaptain
   icon:
     sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
     state: piratecaptain
-  jobName: job-name-pirate-captain
+  jobName: job-name-nf-pirate-captain
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconPirateFirstMate
+  id: JobIconNFPirateFirstMate
   icon:
     sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
     state: piratefirstmate
-  jobName: job-name-pirate-first-mate
+  jobName: job-name-nf-pirate-first-mate
 
 - type: jobIcon
   parent: JobIcon
@@ -144,13 +161,11 @@
   jobName: job-name-sheriff
   allowSelection: false # Frontier: no impersonating command staff, literally 1984
 
-  # Medical positions
-
 - type: jobIcon
   parent: JobIcon
-  id: JobIconDoc
+  id: JobIconPrisonGuard
   icon:
-    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
-    state: nfmsdoc
-  jobName: job-name-doc
-  allowSelection: false # Frontier: no impersonating command staff, literally 1984
+    sprite: /Textures/_DV/Interface/Misc/job_icons.rsi
+    state: nyanoPrisonGuard
+  jobName: job-name-guard
+  allowSelection: false # Frontier: don't display, no job

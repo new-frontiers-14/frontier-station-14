@@ -1,6 +1,7 @@
 # List of matchers that are always illegal to use. These always supercede CONDITIONALLY_ILLEGAL_MATCHES.
 ILLEGAL_MATCHES = [
     "DO NOT MAP",
+    "DoNotMap",
     "DEBUG",
     "Admeme",
     "CaptainSabre",
@@ -17,7 +18,7 @@ ILLEGAL_MATCHES = [
     "SpawnPointPassenger",
     "Python",
     "SalvageShuttleMarker",
-    "FTLPoint"
+    "FTLPoint",
 ]
 # List of specific legal entities that override the above.  Does not check suffixes.
 LEGAL_OVERRIDES = [
@@ -58,6 +59,12 @@ CONDITIONALLY_ILLEGAL_MATCHES = {
     "PointOfInterest": [
         "Plastitanium",
         "Security",
-        "HighSecDoor"
+        "HighSecDoor",
+        "WallPlastitaniumIndestructible",
+        "WallPlastitaniumDiagonalIndestructible",
+        "PlastititaniumWindowIndestructible",
+        "PlastititaniumWindowDiagonalIndestructible",
+        "ClosetMaintenanceFilledRandom",
+        "ClosetWallMaintenanceFilledRandom",
     ]
 }

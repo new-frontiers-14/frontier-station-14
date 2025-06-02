@@ -1,0 +1,31 @@
+- type: bountyContractCollection
+  id: Command
+  order: 1
+  notificationType: Radio
+  name: bounty-contract-collection-name-command
+  writeAccess:
+  - HeadOfPersonnel
+  - HeadOfSecurity
+  deleteAccess:
+  - HeadOfPersonnel
+  - HeadOfSecurity
+  categories:
+  - Criminal
+  - Vacancy
+  - Construction
+  - Service
+  - Other
+
+- type: bountyContractCollection
+  id: Public
+  order: 2
+  notificationType: PDA
+  name: bounty-contract-collection-name-public
+  deleteAccess:
+  - HeadOfPersonnel
+  - HeadOfSecurity
+  categories:
+  - Vacancy
+  - Construction
+  - Service
+  - Other

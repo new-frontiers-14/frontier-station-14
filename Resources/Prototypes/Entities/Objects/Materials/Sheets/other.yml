@@ -110,6 +110,7 @@
   - type: Tag
     tags:
     - Sheet
+  - type: NFFuel # Frontier
 
 - type: entity
   parent: SheetPlasma
@@ -131,6 +132,16 @@
     state: plasma
   - type: Stack
     count: 1
+
+- type: entity
+  parent: SheetPlasma
+  id: SheetPlasmaLingering0
+  name: plasma
+  suffix: 0, Lingering
+  components:
+  - type: Stack
+    lingering: true
+    count: 0
 
 - type: entity
   parent: SheetOtherBase
@@ -235,6 +246,7 @@
           Quantity: 2
         canReact: false
   - type: UraniumMaterials # Frontier
+  - type: NFFuel # Frontier
 
 - type: entity
   parent: SheetUranium

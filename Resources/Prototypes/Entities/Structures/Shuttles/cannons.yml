@@ -2,40 +2,22 @@
 
 - type: entity
   id: ShuttleGunBase
+  parent: BaseStructure
   name: shittle gun
   abstract: true
-  placement:
-    mode: SnapgridCenter
   components:
   - type: Appearance
-  - type: Clickable
   - type: InteractionOutline
   - type: Anchorable
-  - type: Pullable
   - type: Rotatable
-  - type: Physics
-    bodyType: Static
   - type: ContainerContainer
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 450
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Electronic
-  - type: Transform
-    anchored: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
@@ -63,7 +45,7 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: LSE-400c "Svalinn machine gun"
   description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire.
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
@@ -76,7 +58,7 @@
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
-      gun_magazine: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot
   - type: Destructible
     thresholds:
     - trigger:
@@ -100,9 +82,11 @@
     zeroVisible: true
   - type: Machine
     board: ShuttleGunSvalinnMachineGunCircuitboard
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
   - type: ItemSlots
     slots:
-      gun_magazine:
+      cell_slot:
         name: Magazine
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
@@ -110,14 +94,16 @@
           tags:
             - PowerCell
             - PowerCellSmall
-  - type: MagazineAmmoProvider
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedLightLaser # Frontier: use NF prefix
+    fireCost: 50
 
 - type: entity
   id: ShuttleGunPerforator
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: LSE-1200c "Perforator"
   description: Advanced stationary laser unit. Annihilates electronics and is extremely dangerous to health! Uses the power cage to fire.
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
@@ -130,7 +116,7 @@
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
-      gun_magazine: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot
   - type: Destructible
     thresholds:
     - trigger:
@@ -153,16 +139,20 @@
     zeroVisible: true
   - type: Machine
     board: ShuttleGunPerforatorCircuitboard
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
   - type: ItemSlots
     slots:
-      gun_magazine:
+      cell_slot:
         name: Magazine
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
             - PowerCage
-  - type: MagazineAmmoProvider
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedShuttleLaser # Frontier: use NF variant
+    fireCost: 150
 
 # ---- Launchers ----
 # naming: EXP (Explosion) + conventional power + suffix (g for Grenade, c for RPG Cartridge) + Name
@@ -173,7 +163,7 @@
   parent: [ShuttleGunBase] # Frontier: Removed ConstructibleMachine
   name: EXP-320g "Friendship"
   description: A small stationary grenade launcher that holds 2 grenades.
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
@@ -227,7 +217,7 @@
   parent: [ShuttleGunBase, ConstructibleMachine]
   name: EXP-2100g "Duster"
   description: A powerful stationary grenade launcher. A cartridge is required for use.
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
@@ -316,12 +306,12 @@
       tags:
         - CannonBall
     capacity: 1
-    proto: CannonBall
+    proto: NFCannonBall # Frontier: use NF variant
     soundInsert:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: NpcFactionMember # Frontier
     factions: # Frontier
-    - PirateNF # Frontier
+    - NFPirate # Frontier
   - type: Rotatable # Frontier
     rotateWhileAnchored: true # Frontier
 
@@ -330,7 +320,7 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: PTK-1500e "Matter Dematerializer" # Frontier: "800"<"1500e" (consistent with naming scheme)
   description: Mining turret, effective for blasting hardened targets, but overpowered for softer rock. Gradually accumulates charges on its own. # Frontier: description changed
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/kinetic.rsi
@@ -372,7 +362,7 @@
         pitch: 1.2
         variation: 0.08
   - type: BasicEntityAmmoProvider
-    proto: BulletKineticShuttle
+    proto: NFBulletKineticShuttle
     capacity: 10
     count: 10
   - type: Machine

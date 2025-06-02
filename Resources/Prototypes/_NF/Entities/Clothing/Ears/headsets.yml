@@ -1,5 +1,6 @@
 - type: entity
   id: ClothingHeadsetCommon
+  parent: BaseClearContraband
   name: headset
   description: An updated, modular intercom that fits over the head. Takes encryption keys.
   abstract: true
@@ -122,7 +123,7 @@
 #doc headset
 
 - type: entity
-  parent: ClothingHeadsetCMO
+  parent: [ClothingHeadsetCMO, BaseCommandContraband]
   id: ClothingHeadsetDoc
   name: doc's headset
   description: Letting the DoC know what's up. Takes encryption keys.
@@ -131,4 +132,3 @@
     containers:
       key_slots:
       - EncryptionKeyDoc
-      - EncryptionKeyCentCom

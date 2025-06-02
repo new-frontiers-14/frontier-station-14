@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.DeviceLinking.Events;
-using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -13,6 +12,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Content.Shared.GameTicking;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Tag;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -25,17 +25,20 @@ public sealed class AccessReaderSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedGameTicker _gameTicker = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedStationRecordsSystem _recordsSystem = default!;
+
+    private static readonly ProtoId<TagPrototype> PreventAccessLoggingTag = "PreventAccessLogging";
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<AccessReaderComponent, GotEmaggedEvent>(OnEmagged);
-        SubscribeLocalEvent<AccessReaderComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - DEMAG
         SubscribeLocalEvent<AccessReaderComponent, LinkAttemptEvent>(OnLinkAttempt);
 
         SubscribeLocalEvent<AccessReaderComponent, ComponentGetState>(OnGetState);
@@ -73,26 +76,29 @@ public sealed class AccessReaderSystem : EntitySystem
     {
         if (args.User == null) // AutoLink (and presumably future external linkers) have no user.
             return;
-        if (!HasComp<EmaggedComponent>(uid) && !IsAllowed(args.User.Value, uid, component))
+        if (!IsAllowed(args.User.Value, uid, component))
             args.Cancel();
     }
 
+    // Frontier: TODO - cache for demag?
     private void OnEmagged(EntityUid uid, AccessReaderComponent reader, ref GotEmaggedEvent args)
     {
-        //if (!reader.BreakOnEmag) // Frontier
-        //    return; // Frontier
-        if (reader.ImmuneToEmag) // Frontier
-            return; // Frontier
-        args.Handled = true;
-        reader.Enabled = false;
-        reader.AccessLog.Clear();
-        Dirty(uid, reader);
-    }
+        if (!_emag.CompareFlag(args.Type, EmagType.Access))
+            return;
 
-    private void OnUnEmagged(EntityUid uid, AccessReaderComponent reader, ref GotUnEmaggedEvent args) // Frontier - DEMAG
-    {
+        if (!reader.BreakOnAccessBreaker)
+            return;
+
+        if (!GetMainAccessReader(uid, out var accessReader))
+            return;
+
+        if (accessReader.Value.Comp.AccessLists.Count < 1)
+            return;
+
+        args.Repeatable = true;
         args.Handled = true;
-        reader.Enabled = true;
+        accessReader.Value.Comp.AccessLists.Clear();
+        accessReader.Value.Comp.AccessLog.Clear();
         Dirty(uid, reader);
     }
 
@@ -115,13 +121,13 @@ public sealed class AccessReaderSystem : EntitySystem
         var access = FindAccessTags(user, accessSources);
         FindStationRecordKeys(user, out var stationKeys, accessSources);
 
-        if (IsAllowed(access, stationKeys, target, reader))
-        {
-            LogAccess((target, reader), user);
-            return true;
-        }
+        if (!IsAllowed(access, stationKeys, target, reader))
+            return false;
 
-        return false;
+        if (!_tag.HasTag(user, PreventAccessLoggingTag))
+            LogAccess((target, reader), user);
+
+        return true;
     }
 
     public bool GetMainAccessReader(EntityUid uid, [NotNullWhen(true)] out Entity<AccessReaderComponent>? ent)
@@ -146,6 +152,7 @@ public sealed class AccessReaderSystem : EntitySystem
                 return true;
             }
         }
+
         return true;
     }
 

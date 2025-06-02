@@ -110,12 +110,11 @@
   - type: PotentialDeadDrop
     hintText: dead-drop-hint-vendor
   - type: VendingMachine
-    pack: "" # Mandatory value
+    pack: EmptyVendingMachineInventory # Mandatory, use empty inventory
     taxAccounts:
       Frontier: 0.25
       Nfsd: 0.15
     cashSlot:
-      whitelistFailPopup: bank-ATM-cashSlot-item-wont-fit
       whitelist:
         components:
         - Cash
@@ -127,6 +126,7 @@
   - type: ContainerContainer
     containers:
       cash_slot: !type:ContainerSlot
+  - type: BindToStation # Frontier
   # End Frontier
 
 - type: entity
@@ -1476,7 +1476,7 @@
 
 - type: entity
   id: VendingMachineWallmount
-  parent: VendingMachine
+  parent: [BaseStructureWallmount, VendingMachine] # Frontier: add BaseStructureWallmount
   name: vending machine
   abstract: true
   placement:

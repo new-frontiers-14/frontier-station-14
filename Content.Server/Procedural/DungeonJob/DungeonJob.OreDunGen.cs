@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Content.Shared.Maps;
+using Content.Shared.Maps; // Upstream#33105
 using Content.Shared.Procedural;
 using Content.Shared.Procedural.Components;
 using Content.Shared.Procedural.DungeonLayers;
@@ -21,6 +21,8 @@ public sealed partial class DungeonJob
     {
         // Doesn't use dungeon data because layers and we don't need top-down support at the moment.
 
+        // Upstream#33105 - maskable room generation (Thank you, TheShuEd!)
+        var emptyTiles = false;
         var replaceEntities = new Dictionary<Vector2i, EntityUid>();
         var availableTiles = new List<Vector2i>();
         var tiles = _maps.GetAllTilesEnumerator(_gridUid, _grid);
@@ -73,6 +75,7 @@ public sealed partial class DungeonJob
             if (!ValidateResume())
                 return;
         }
+        // End Upstream#33105 - maskable room generation (Thank you, TheShuEd!)
 
         var remapping = new Dictionary<EntProtoId, EntProtoId>();
 
@@ -148,7 +151,7 @@ public sealed partial class DungeonJob
 
             if (groupSize > 0)
             {
-                _sawmill.Warning($"Found remaining group size for ore veins of {gen.Entity.Id ?? "null"}!");
+                _sawmill.Warning($"Found remaining group size for ore veins of {gen.Entity.Id ?? "null"}!"); // Upstream#33105 - Replacement<Entity.Id
             }
         }
     }

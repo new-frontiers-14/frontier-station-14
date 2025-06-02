@@ -39,3 +39,34 @@
       - id: NitrogenTankFilled
         prob: 0.20
         orGroup: EmergencyTankOrRegularTank
+
+- type: entity
+  abstract: true
+  id: StorageFillO2N2
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterSuitEmergency
+      - id: ClothingMaskBreath
+      - id: OxygenTankFilled
+      - id: NitrogenTankFilled
+
+- type: entity
+  abstract: true
+  id: StorageFillN2
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterSuitEmergency
+      - id: ClothingMaskBreath
+      - id: NitrogenTankFilled
+
+- type: entity
+  abstract: true
+  id: StorageFillO2
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterSuitEmergency
+      - id: ClothingMaskBreath
+      - id: OxygenTankFilled

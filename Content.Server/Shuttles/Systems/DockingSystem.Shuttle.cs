@@ -85,7 +85,7 @@ public sealed partial class DockingSystem
             return false;
 
         shuttleDockedAABB = matty.TransformBox(shuttleAABB);
-        gridRotation = (targetGridRotation + offsetAngle).Reduced();
+        gridRotation = offsetAngle.Reduced();
         return true;
     }
 
@@ -132,6 +132,7 @@ public sealed partial class DockingSystem
         EntityUid targetGrid,
         EntityCoordinates coordinates,
         Angle angle,
+        bool fallback = true,
         DockType dockType = DockType.Airlock) // Frontier
     {
         var gridDocks = GetDocks(targetGrid);
@@ -145,6 +146,11 @@ public sealed partial class DockingSystem
             {
                 return config;
             }
+        }
+
+        if (fallback && configs.Count > 0)
+        {
+            return configs.First();
         }
 
         return null;
@@ -215,7 +221,8 @@ public sealed partial class DockingSystem
                     var spawnPosition = new EntityCoordinates(targetGridXform.MapUid!.Value, _transform.ToMapCoordinates(gridPosition).Position);
 
                     // TODO: use tight bounds
-                    var dockedBounds = new Box2Rotated(shuttleAABB.Translated(spawnPosition.Position), targetAngle, spawnPosition.Position);
+                    var targetWorldAngle = (targetGridAngle + targetAngle).Reduced(); // Frontier
+                    var dockedBounds = new Box2Rotated(shuttleAABB.Translated(spawnPosition.Position), targetWorldAngle, spawnPosition.Position); // Frontier: targetAngle<targetWorldAngle
 
                     // Check if there's no intersecting grids (AKA oh god it's docking at cargo).
                     grids.Clear();
@@ -352,7 +359,9 @@ public sealed partial class DockingSystem
             // If it's a map check no hard collidable anchored entities overlap
             if (isMap)
             {
-                foreach (var tile in _mapSystem.GetLocalTilesIntersecting(gridEntity.Owner, gridEntity.Comp, aabb))
+                var localTiles = _mapSystem.GetLocalTilesEnumerator(gridEntity.Owner, gridEntity.Comp, aabb);
+
+                while (localTiles.MoveNext(out var tile))
                 {
                     var anchoredEnumerator = _mapSystem.GetAnchoredEntitiesEnumerator(gridEntity.Owner, gridEntity.Comp, tile.GridIndices);
 

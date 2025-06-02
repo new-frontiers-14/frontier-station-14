@@ -1,3 +1,4 @@
+# NFSD
 - type: entity
   id: ShuttleGunFriendshipNfsd
   parent: [BaseStructureDisableToolUse, ShuttleGunFriendship]
@@ -13,3 +14,33 @@
   components:
   - type: Machine
     board: Null
+
+# Mail
+- type: entity
+  id: ShuttleGunMailLauncher
+  parent: [ ShuttleGunFriendship ]
+  name: FWD-6500m "Priority"
+  description: You've got mail! A small stationary mail launcher that holds 2 mail capsules.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Shuttles/maillauncher.rsi
+    layers:
+    - state: mail-launcher
+    - state: mag-2
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    projectileSpeed: 30
+    defaultDirection: 0, -30 # Target 30 m in front of the cannon in case it's indoors.
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - MailCapsule
+    capacity: 2
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Machine
+    board: null
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false

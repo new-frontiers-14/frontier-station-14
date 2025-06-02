@@ -7,6 +7,7 @@
   components:
   - type: PowerCharge
     activePower: 500
+    activeChargingPower: 500
   - type: ApcPowerReceiver
     powerLoad: 500
   - type: StaticPrice
@@ -39,4 +40,6 @@
   suffix: Off
   components:
   - type: StationAnchor
+    switchedOn: false
+  - type: PowerCharge
     switchedOn: false

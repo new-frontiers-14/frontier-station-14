@@ -1,13 +1,21 @@
 - type: entity
   name: ore bag
   id: OreBag
-  parent: BaseStorageItem
+  parent: NFBaseClothingBeltStorageBag # Frontier: BaseStorageItem<NFBaseClothingBeltStorageBag
   description: A robust bag for salvage specialists and miners alike to carry large amounts of ore. Magnetises any nearby ores when attached to a belt.
   components:
   - type: MagnetPickup
+    magnetEnabled: false # Frontier
+    magnetCanBeEnabled: false # Frontier
   - type: Sprite
     sprite: Objects/Specific/Mining/ore_bag.rsi
-    state: icon
+    # Frontier: layered sprite
+    layers:
+    - state: icon
+    - state: icon-on
+      visible: False
+      map: [ "enum.ToggleVisuals.Layer" ]
+    # End Frontier
   - type: Clothing
     sprite: Objects/Specific/Mining/ore_bag.rsi
     quickEquip: false
@@ -18,7 +26,7 @@
   - type: Storage
     maxItemSize: Normal
     grid:
-    - 0,0,9,3
+    - 0,0,11,3 # Frontier: 9<11, a few extra slots to compensate for inventory fills
     quickInsert: true
     areaInsert: true
     whitelist:
@@ -27,3 +35,34 @@
         - Ore
   - type: Dumpable
   - type: NFOreBag # Frontier
+  # Begin DeltaV Additions: toggle magnet from White Dream
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onUse: false
+    onAltUse: true
+    onActivate: false
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: True }
+          False: { visible: False }
+  # End DeltaV Additions
+
+- type: entity
+  parent: OreBag
+  id: BorgOreBag
+  name: integrated ore bag
+  description: A large ore bag built into the frame of a mining cyborg.
+  components:
+    - type: Storage
+      grid:
+      - 0,0,9,5

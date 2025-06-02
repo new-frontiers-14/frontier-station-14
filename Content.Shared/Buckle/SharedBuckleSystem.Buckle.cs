@@ -16,7 +16,6 @@ using Content.Shared.Standing;
 using Content.Shared.Storage.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
-using Content.Shared.Vehicle.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
@@ -26,6 +25,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Movement.Components; // Frontier
 
 namespace Content.Shared.Buckle;
 
@@ -167,16 +167,6 @@ public abstract partial class SharedBuckleSystem
 
     private void OnBuckleStandAttempt(EntityUid uid, BuckleComponent component, StandAttemptEvent args)
     {
-        //Let entities stand back up while on vehicles so that they can be knocked down when slept/stunned
-        //This prevents an exploit that allowed people to become partially invulnerable to stuns
-        //while on vehicles
-
-        if (component.BuckledTo != null)
-        {
-            var buckle = component.BuckledTo;
-            if (TryComp<VehicleComponent>(buckle, out _))
-                return;
-        }
         if (component.Buckled)
             args.Cancel();
     }
@@ -189,9 +179,11 @@ public abstract partial class SharedBuckleSystem
 
     private void OnBuckleUpdateCanMove(EntityUid uid, BuckleComponent component, UpdateCanMoveEvent args)
     {
-        if (component.Buckled && // Umbra
-            !HasComp<VehicleComponent>(component.BuckledTo)) // buckle+vehicle shitcode // Umbra
-            args.Cancel(); // Umbra
+        if (HasComp<RelayInputMoverComponent>(uid)) // Frontier: allow relaying input when buckled
+            return; // Frontier: allow relaying input when buckled
+
+        if (component.Buckled)
+            args.Cancel();
     }
 
     public bool IsBuckled(EntityUid uid, BuckleComponent? component = null)
@@ -429,7 +421,7 @@ public abstract partial class SharedBuckleSystem
 
     public bool TryUnbuckle(Entity<BuckleComponent?> buckle, EntityUid? user, bool popup)
     {
-        if (!Resolve(buckle.Owner, ref buckle.Comp))
+        if (!Resolve(buckle.Owner, ref buckle.Comp, false))
             return false;
 
         if (!CanUnbuckle(buckle, user, popup, out var strap))
@@ -471,7 +463,7 @@ public abstract partial class SharedBuckleSystem
         var buckleXform = Transform(buckle);
         var oldBuckledXform = Transform(strap);
 
-        if (buckleXform.ParentUid == strap.Owner && !Terminating(buckleXform.ParentUid))
+        if (buckleXform.ParentUid == strap.Owner && !Terminating(oldBuckledXform.ParentUid))
         {
             _transform.PlaceNextTo((buckle, buckleXform), (strap.Owner, oldBuckledXform));
             buckleXform.ActivelyLerping = false;
