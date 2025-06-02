@@ -1,3 +1,7 @@
+# Metals
+materials-scrap = scrap
+materials-bluespace = bluespace
+
 # Ores
 materials-raw-scrap = scrap
 materials-raw-scrap-tech = tech scrap

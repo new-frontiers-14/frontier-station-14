@@ -398,4 +398,5 @@
           behaviors:
             - !type:SolutionExplosionBehavior
               solution: tank
-    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+    - type: BindToStation # Frontier
+      enabled: false # Frontier - should be draggable between stations
