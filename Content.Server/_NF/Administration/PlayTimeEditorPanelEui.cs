@@ -46,7 +46,7 @@ public sealed class PlayTimeEditorPanelEui : BaseEui
         if (msg is not PlayTimeEditorEuiMessage message)
             return;
 
-        PlaytimeTime(message.PlayerId, message.TimeData, message.Overwrite);
+        _ = PlaytimeTime(message.PlayerId, message.TimeData, message.Overwrite);
     }
 
     public async void PlaytimeTime(string playerId, List<PlayTimeEditorData> timeData, bool overwrite)
