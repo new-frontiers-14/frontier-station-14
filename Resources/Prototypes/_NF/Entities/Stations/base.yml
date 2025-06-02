@@ -17,7 +17,7 @@
   abstract: true
   components:
   - type: StationRenameFaxes
-  
+
 - type: entity
   id: BaseStationRenameHolopads
   abstract: true
@@ -109,7 +109,7 @@
       - RCD # Dup charges
       - Storage # Till fixed
       - StorageFill # Till fixed
-      - BindToStation # no laundering your rental ship machines
+      - StationBoundObject # no laundering your rental ship machines
     whitelistOverride:
       components:
       - UraniumMaterials # Counts as food
