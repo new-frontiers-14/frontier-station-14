@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 251.0.0
+  engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 04/27/2025 13:26:38
-  entityCount: 757
+  time: 06/02/2025 20:45:17
+  entityCount: 760
 maps: []
 grids:
 - 1
@@ -74,6 +74,7 @@ entities:
     - type: BecomesStation
       id: Lyrae
     - type: Shuttle
+      dampingModifier: 0.25
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -664,7 +665,7 @@ entities:
             1: 43568
             0: 142
           2,2:
-            1: 44714
+            1: 43690
           2,3:
             1: 204
           3,0:
@@ -691,9 +692,9 @@ entities:
             0: 52876
           -3,1:
             0: 78
-            1: 25600
+            1: 17408
           -3,2:
-            1: 61030
+            1: 18022
           -3,3:
             1: 206
           -3,-1:
@@ -2248,7 +2249,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         158:
-        - ArtifactAnalyzerSender: ArtifactAnalyzerReceiver
+        - - ArtifactAnalyzerSender
+          - ArtifactAnalyzerReceiver
 - proto: ComputerFrame
   entities:
   - uid: 288
@@ -3783,6 +3785,21 @@ entities:
     - type: Transform
       pos: -3.4148612,6.1472397
       parent: 1
+- proto: MachineAnomalyVessel
+  entities:
+  - uid: 759
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,-2.5
+      parent: 1
+- proto: MachineAPE
+  entities:
+  - uid: 760
+    components:
+    - type: Transform
+      pos: 7.5,0.5
+      parent: 1
 - proto: MachineArtifactAnalyzer
   entities:
   - uid: 158
@@ -3797,10 +3814,19 @@ entities:
     - type: Transform
       pos: -8.5,-7.5
       parent: 1
+- proto: MachineMaterialSilo
+  entities:
   - uid: 451
     components:
     - type: Transform
       pos: 4.5,4.5
+      parent: 1
+- proto: MachineMiniAnomalyGenerator
+  entities:
+  - uid: 687
+    components:
+    - type: Transform
+      pos: 5.5,-2.5
       parent: 1
 - proto: MatterBinStockPart
   entities:
@@ -4339,7 +4365,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         634:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 413
     components:
     - type: Transform
@@ -4349,11 +4376,14 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         456:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         746:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         747:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 479
     components:
     - type: Transform
@@ -4363,7 +4393,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         695:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 531
     components:
     - type: MetaData
@@ -4375,13 +4406,17 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         503:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         498:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         505:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         504:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 532
     components:
     - type: MetaData
@@ -4393,15 +4428,20 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         501:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         500:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         499:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         506:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         502:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 607
     components:
     - type: Transform
@@ -4411,7 +4451,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         695:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 609
     components:
     - type: Transform
@@ -4421,7 +4462,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         634:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: SignBridge
   entities:
   - uid: 280
