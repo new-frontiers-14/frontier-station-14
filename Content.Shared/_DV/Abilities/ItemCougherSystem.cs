@@ -1,6 +1,5 @@
 using Content.Shared.Actions;
 using Content.Shared.Actions.Events;
-using Content.Shared.Charges.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
@@ -19,7 +18,6 @@ public sealed class ItemCougherSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!; // Frontier: FIXME - update this to whatever delta does.
 
     private EntityQuery<ItemCougherComponent> _query;
 
@@ -80,19 +78,26 @@ public sealed class ItemCougherSystem : EntitySystem
         var coughing = EnsureComp<CoughingUpItemComponent>(ent);
         coughing.NextCough = _timing.CurTime + _audio.GetAudioLength(path);
         args.Handled = true;
+
+        // disable it until another system calls EnableAction
+        SetActionEnabled((ent, ent.Comp), false);
     }
 
     /// <summary>
-    /// Adds a charge to the coughing action.
-    /// Other systems have to call this.
+    /// Enables the coughing action.
+    /// Other systems have to call this, this is not used internally.
     /// </summary>
     public void EnableAction(Entity<ItemCougherComponent?> ent)
     {
-        if (!_query.Resolve(ent, ref ent.Comp) || ent.Comp.ActionEntity is not { } action)
+        SetActionEnabled(ent, true);
+    }
+
+    public void SetActionEnabled(Entity<ItemCougherComponent?> ent, bool enabled)
+    {
+        if (!_query.Resolve(ent, ref ent.Comp) || ent.Comp.ActionEntity is not {} action)
             return;
 
-        _charges.SetCharges(action, 1); // Frontier: update this to whatever delta does
-        _actions.SetEnabled(action, true);
+        _actions.SetEnabled(action, enabled);
     }
 }
 

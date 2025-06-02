@@ -29,6 +29,14 @@
     access: [["HeadOfPersonnel"]]
 
 - type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitStc ]
+  id: SuitStorageWallmountEVAStc
+  suffix: EVA, Station Traffic Controller
+  components:
+  - type: AccessReader
+    access: [["StationTrafficController"]]
+
+- type: entity
   parent: [ SuitStorageWallmount, StorageFillEVASuitCaptain ]
   id: SuitStorageWallmountEVACaptain
   suffix: EVA, Captain
@@ -73,6 +81,13 @@
 - type: entity
   parent: [ SuitStorageWallmount, StorageFillEVASuitParamedic ]
   id: SuitStorageWallmountParamedic
+  suffix: Voidsuit, Paramedic
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitParamedicAlt ]
+  id: SuitStorageWallmountParamedicAlt
   suffix: EVA, Paramedic
   components:
   - type: AccessReader
