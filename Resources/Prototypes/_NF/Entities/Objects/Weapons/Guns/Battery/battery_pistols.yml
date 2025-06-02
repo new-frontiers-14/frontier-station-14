@@ -94,6 +94,9 @@
   - type: Battery # 26 shots
     maxCharge: 1560
     startingCharge: 1560
+  - type: BatterySelfRecharger # Recharges 1 shot per 3 seconds
+    autoRecharge: true
+    autoRechargeRate: 20
 
 # Frontier
 - type: entity
@@ -190,6 +193,9 @@
   id: NFWeaponPistolCHIMPUpgraded
   parent: WeaponPistolCHIMPUpgraded
   components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFAnomalousParticleDeltaStrong
+    fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: NFAnomalousParticleDeltaStrong
@@ -203,7 +209,7 @@
     - proto: NFAnomalousParticleSigmaStrong
       fireCost: 100
 
-# Frontier
+#region Holoflare pistol
 - type: entity
   id: NFWeaponHoloflareGun
   parent: [ NFBaseWeaponFrameEnergyPistol ]
@@ -243,8 +249,8 @@
       path: /Audio/Weapons/Guns/Gunshots/flaregun.ogg
     projectileSpeed: 15
   - type: Battery
-    maxCharge: 720
-    startingCharge: 720
+    maxCharge: 1200
+    startingCharge: 1200
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 10
