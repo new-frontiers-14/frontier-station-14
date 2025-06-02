@@ -86,11 +86,11 @@ public partial class ChatBox : UIWidget
 
 
         // EE - Chat stacking
-        var index = _chatStackList.FindIndex(data => data.WrappedMessage == msg.WrappedMessage);
+        var index = _chatStackList.FindIndex(data => data.Channel == msg.Channel && data.Entity == msg.SenderEntity && data.Message == msg.Message); // Frontier: add entity, channel, use message, not wrapped message
 
         if (index == -1) // this also handles chatstack being disabled, since FindIndex won't find anything in an empty array
         {
-            TrackNewMessage(msg.WrappedMessage, color);
+            TrackNewMessage(msg.WrappedMessage, color, msg.Message, msg.SenderEntity, msg.Channel); // Frontier: add Message, SenderEntity
             AddLine(msg.WrappedMessage, color);
             return;
         }
@@ -123,7 +123,7 @@ public partial class ChatBox : UIWidget
     }
 
     // EE - Chat stacking
-    private void TrackNewMessage(string wrappedMessage, Color colorOverride)
+    private void TrackNewMessage(string wrappedMessage, Color colorOverride, string message, NetEntity entity, ChatChannel channel) // Frontier: add message, entity, channel
     {
         if (!ChatStackEnabled)
             return;
@@ -131,7 +131,7 @@ public partial class ChatBox : UIWidget
         if (_chatStackList.Count == _chatStackList.Capacity)
             _chatStackList.RemoveAt(_chatStackList.Capacity - 1);
 
-        _chatStackList.Insert(0, new ChatStackData(wrappedMessage, colorOverride));
+        _chatStackList.Insert(0, new ChatStackData(wrappedMessage, colorOverride, message, entity, channel)); // Frontier: add message, entity, channel
     }
 
     private void OnChannelSelect(ChatSelectChannel channel)
@@ -272,13 +272,19 @@ public partial class ChatBox : UIWidget
     // EE - Chat stacking
     private sealed class ChatStackData
     {
+        public NetEntity Entity; // Frontier: speaker
+        public string Message; // Frontier: base message
+        public ChatChannel Channel; // Frontier: channel
         public string WrappedMessage;
         public Color ColorOverride;
         public int RepeatCount = 0;
-        public ChatStackData(string wrappedMessage, Color colorOverride)
+        public ChatStackData(string wrappedMessage, Color colorOverride, string message, NetEntity entity, ChatChannel channel)
         {
             WrappedMessage = wrappedMessage;
             ColorOverride = colorOverride;
+            Message = message; // Frontier
+            Entity = entity; // Frontier
+            Channel = channel; // Frontier
         }
     }
     // End EE - Chat stacking
