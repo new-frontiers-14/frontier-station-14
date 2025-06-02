@@ -30,3 +30,7 @@ lathe-recipe-NFFoodBoxSushi-name = sushi tray (empty)
 lathe-recipe-DrinkKegSteel-name = cask (steel)
 lathe-recipe-DrinkKegWood-name = cask (wood)
 lathe-recipe-DrinkKegPlastic-name = cask (plastic)
+
+# Paper
+lathe-recipe-NFSheetPaperFromWood-name = paper (wood)
+lathe-recipe-NFSheetPaperFromCardboard-name = paper (cardboard)

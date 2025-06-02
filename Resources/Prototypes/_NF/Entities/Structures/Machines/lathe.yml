@@ -42,6 +42,7 @@
     runningState: icon
     staticPacks:
     - NFServiceTechfabDeprecatedStatic
+    - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
   - type: EmagLatheRecipes
     emagStaticPacks:
@@ -76,6 +77,7 @@
   - type: Lathe
     staticPacks:
     - NFServiceTechfabDeprecatedStatic
+    - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
     - NFMcServiceTechfabStatic
 
@@ -178,6 +180,11 @@
     - NfsdPracticeStatic
     - NfsdAmmoStatic
     - ReportingStatic # DeltaV
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintNfsdTechfab
+  - type: OreSiloClient
 
 - type: entity
   id: MercenaryTechFab
@@ -254,12 +261,12 @@
     runningState: mercenary-hacked
     staticPacks:
     - NFHackedMercenaryTechfabDeprecatedStatic
-  - type: OreSiloClient
   - type: BlueprintReceiver
     whitelist:
       tags:
       - NFBlueprintMercenaryTechfab
       - NFBlueprintNfsdTechfab
+  - type: OreSiloClient
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseLathe]
@@ -425,11 +432,15 @@
   id: BiogeneratorFill
   parent: Biogenerator
   name: biogenerator
-  suffix: Biomass, 50
+  suffix: Biomass, 200
   components:
   - type: MaterialStorage
     storage:
-      Biomass: 50
+      Biomass: 200
+  - type: ContainerFill
+    containers:
+      beaker_slot:
+      - LargeBeaker
 
 - type: entity
   parent: UniformPrinter
@@ -467,3 +478,17 @@
     - NFUniformCommand
     - NFWallets
     # keeping the dynamicPacks from the parent
+
+- type: entity
+  parent: UniformPrinter
+  id: PirateStitcher
+  name: pirate stitcher
+  description: This brand new uniform printer has been "found" and repurposed to print only the highest couture.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/pirate_stitcher.rsi
+  - type: Machine
+    board: PirateStitcherCircuitboard
+  - type: Lathe
+    staticPacks:
+    - NFPirateClothing

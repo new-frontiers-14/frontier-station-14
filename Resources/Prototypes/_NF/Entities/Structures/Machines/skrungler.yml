@@ -10,7 +10,7 @@
     sprite: _NF/Structures/Storage/skrungler.rsi
     layers:
     - state: skrungler_closed
-      map: ["enum.SkrunglerVisualLayers.Base", "enum.StorageVisualLayers.Base"]
+      map: ["enum.StorageVisualLayers.Base"]
     - state: skrungler_tray
       offset: 0, -1
       map: ["enum.StorageVisualLayers.Door"]
@@ -59,7 +59,6 @@
         enum.SkrunglerVisualLayers.Skrungling:
           True: { visible: true }
           False: { visible: false }
-      enum.StorageVisuals.HasContents:
   - type: Transform
     anchored: true
     noRot: false
