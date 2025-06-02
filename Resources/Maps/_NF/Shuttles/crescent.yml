@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/02/2025 20:36:50
-  entityCount: 3703
+  time: 06/02/2025 21:43:08
+  entityCount: 3702
 maps: []
 grids:
 - 1
@@ -840,7 +840,8 @@ entities:
           6,7:
             0: 28791
           6,8:
-            0: 12927
+            0: 639
+            2: 12288
           7,5:
             0: 9008
           7,6:
@@ -860,16 +861,16 @@ entities:
           -6,11:
             3: 68
           5,8:
-            0: 32768
+            2: 32768
           5,9:
-            0: 136
+            2: 136
             3: 49152
           5,10:
             3: 19660
           5,11:
             3: 68
           6,9:
-            0: 51
+            2: 51
             3: 12288
           6,10:
             3: 17
@@ -1771,23 +1772,13 @@ entities:
       injecting: True
     - type: ContainerContainer
       containers:
-        AmeFuel: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 92
         fuelSlot: !type:ContainerSlot
           showEnts: False
           occludes: True
-          ent: 1174
+          ent: 92
 - proto: AmeJar
   entities:
   - uid: 92
-    components:
-    - type: Transform
-      parent: 91
-    - type: Physics
-      canCollide: False
-  - uid: 1174
     components:
     - type: Transform
       parent: 91
