@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Content.Server.Administration;
 using Content.Server.Administration.Commands;
 using Content.Server.Administration.Managers;
@@ -46,7 +47,7 @@ public sealed class PlayTimeEditorPanelEui : BaseEui
         if (msg is not PlayTimeEditorEuiMessage message)
             return;
 
-        _ = PlaytimeTime(message.PlayerId, message.TimeData, message.Overwrite);
+        _ = Task.Run(() => PlaytimeTime(message.PlayerId, message.TimeData, message.Overwrite));
     }
 
     public async void PlaytimeTime(string playerId, List<PlayTimeEditorData> timeData, bool overwrite)
