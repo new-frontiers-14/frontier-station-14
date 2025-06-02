@@ -195,7 +195,7 @@ namespace Content.Server.Power.EntitySystems
         private void OnReceiverAnchorStateChanged(Entity<ExtensionCableReceiverComponent> receiver, ref AnchorStateChangedEvent args)
         {
             // Frontier - check for a grid bound lock on an entity, if it exists is not on the proper grid, don't connect
-            var gridBound = TryComp<BindToStationComponent>(receiver, out var binding) &&
+            var gridBound = TryComp<StationBoundObjectComponent>(receiver, out var binding) &&
                             binding.Enabled &&
                             binding.BoundStation != null &&
                              _station.GetOwningStation(receiver) != binding.BoundStation;
