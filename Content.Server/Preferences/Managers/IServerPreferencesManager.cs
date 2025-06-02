@@ -21,6 +21,6 @@ namespace Content.Server.Preferences.Managers
         IEnumerable<KeyValuePair<NetUserId, ICharacterProfile>> GetSelectedProfilesForPlayers(List<NetUserId> userIds);
         bool HavePreferencesLoaded(ICommonSession session);
         Task RefreshPreferencesAsync(ICommonSession session, CancellationToken cancel);
-        Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile);
+        Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile, bool validateFields = true); // Frontier: add validateFields
     }
 }

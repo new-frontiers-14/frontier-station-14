@@ -40,6 +40,14 @@
     steps: 7
     zeroVisible: false
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
@@ -60,6 +68,12 @@
       #       use the one it was printed for.
       - state: base-6
         map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
@@ -92,6 +106,18 @@
     steps: 7
     zeroVisible: false
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#ea5800"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#ea5800"
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
@@ -114,6 +140,18 @@
     steps: 7
     zeroVisible: false
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#540000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#540000"
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
@@ -136,3 +174,15 @@
     steps: 7
     zeroVisible: false
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-ammo
+      - state: inhand-left-stripe
+        color: "#00cd42"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-ammo
+      - state: inhand-right-stripe
+        color: "#00cd42"
