@@ -1,9 +1,12 @@
 - type: foodSequenceElement
   id: Pear
+  scale: 0.8, 0.8
   name: food-sequence-content-pear
   sprites:
   - sprite: _NF/Objects/Specific/Hydroponics/pear.rsi
     state: produce
+  tags:
+  - Fruit
 
 - type: foodSequenceElement
   id: Hairball
@@ -11,3 +14,604 @@
   sprites:
   - sprite: Nyanotrasen/Objects/Specific/Species/felinid.rsi
     state: icon
+
+- type: foodSequenceElement
+  id: Avocado
+  name: food-sequence-content-avocado
+  sprites:
+  - sprite: _NF/Objects/Specific/Hydroponics/avocado.rsi
+    state: slice
+  tags:
+  - Fruit
+  - Slice
+
+- type: foodSequenceElement
+  id: Ham
+  scale: 0.8, 0.8
+  name: food-sequence-content-ham
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: normalhamslice # no bone, sad day
+  tags:
+  - Cooked
+  - Meat
+  - Slice
+
+- type: foodSequenceElement
+  id: Cucumber
+  scale: 0.8, 0.8
+  name: food-sequence-content-ham
+  sprites:
+  - sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
+    state: slice
+  tags:
+  - Vegetable
+  - Slice
+
+- type: foodSequenceElement
+  id: Pickle
+  scale: 0.8, 0.8
+  name: food-sequence-content-pickle
+  sprites:
+  - sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
+    state: pickleslice
+  tags:
+  - Vegetable
+  - Slice
+
+- type: foodSequenceElement
+  id: Honeycomb
+  scale: 0.6, 0.6
+  name: food-sequence-content-honeycomb
+  sprites:
+  - sprite: _NF/Objects/Specific/Hydroponics/bees.rsi
+    state: produce
+
+- type: foodSequenceElement
+  id: Everyspice
+  scale: 0.8, 0.8
+  name: food-sequence-content-everyspice
+  sprites:
+  - sprite: _NF/Objects/Specific/Hydroponics/everyspice.rsi
+    state: produce-roasted
+  tags:
+  - Fruit
+
+- type: foodSequenceElement
+  id: Monkanana
+  scale: 0.8, 0.8
+  name: food-sequence-content-monkanana
+  sprites:
+  - sprite: _NF/Objects/Specific/Hydroponics/monkanana.rsi
+    state: produce
+  tags:
+  - Fruit
+
+- type: foodSequenceElement
+  id: MeatPattyTaco
+  name: food-sequence-taco-content-meat-patty
+  sprites:
+  - sprite: Objects/Consumable/Food/meat.rsi
+    state: patty
+  tags:
+  - Cooked
+  - Meat
+
+- type: foodSequenceElement
+  id: CarpSushi
+  scale: 0.8, 0.8
+  name: food-sequence-content-sushi
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    state: carpsushislice
+  tags:
+  - Sushi
+
+- type: foodSequenceElement
+  id: AvocadoSushi
+  scale: 0.8, 0.8
+  name: food-sequence-content-sushi
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    state: avocadosushislice
+  tags:
+  - Sushi
+
+- type: foodSequenceElement
+  id: CuredCarpSushi
+  scale: 0.8, 0.8
+  name: food-sequence-content-sushi
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    state: freshsushislice
+  tags:
+  - Sushi
+  - Meat
+
+- type: foodSequenceElement
+  id: GasStationSushi
+  scale: 0.8, 0.8
+  name: food-sequence-content-sushi
+  sprites:
+  - sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    state: gassushislice
+  tags:
+  - Sushi
+  - Meat
+
+# Jester plushie
+- type: foodSequenceElement
+  id: JesterPlushie
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-jester
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_jester
+
+# Botanist plushie
+- type: foodSequenceElement
+  id: NFPlushieBotanist
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-botanist
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_botanist
+
+# Engineer plushie
+- type: foodSequenceElement
+  id: NFPlushieEngineer
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-engineer
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_engineer
+
+# Construction plushie
+- type: foodSequenceElement
+  id: NFPlushieConstruction
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-construction
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_construction
+
+# CMO plushie
+- type: foodSequenceElement
+  id: NFPlushieCmo
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-cmo
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_cmo
+
+# Sharkminnow plushie
+- type: foodSequenceElement
+  id: NFPlushieSharkMinnow
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-sharkminnow
+  sprites:
+  - sprite: _NF/Objects/Fun/sharkminnow.rsi
+    state: sharkminnowplush
+
+# Janitor plushie
+- type: foodSequenceElement
+  id: PlushieJanitor
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-janitor
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_janitor
+
+# Gnome plushie
+- type: foodSequenceElement
+  id: PlushieGnome
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-gnome
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: gnome
+
+# Loveable plushie
+- type: foodSequenceElement
+  id: NFPlushieLoveable
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-loveable
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: loveable
+
+# Deer plushie
+- type: foodSequenceElement
+  id: PlushieDeer
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-deer
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: deer
+
+# IPC plushie
+- type: foodSequenceElement
+  id: PlushieIpc
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-ipc
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: ipc
+
+# Grey plushie
+- type: foodSequenceElement
+  id: PlushieGrey
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-grey
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: grey
+
+# Abductor plushie
+- type: foodSequenceElement
+  id: PlushieAbductor
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-abductor
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: abductor
+
+# Abductor agent plushie
+- type: foodSequenceElement
+  id: PlushieAbductorAgent
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-abductor-agent
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: abductor_agent
+
+# Red fox plushie
+- type: foodSequenceElement
+  id: PlushieRedFox
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-fox
+  sprites:
+  - sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: red
+
+# Purple fox plushie
+- type: foodSequenceElement
+  id: PlushiePurpleFox
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-fox
+  sprites:
+  - sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: purple
+
+# Pink fox plushie
+- type: foodSequenceElement
+  id: PlushiePinkFox
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-fox
+  sprites:
+  - sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: pink
+
+# Orange fox plushie
+- type: foodSequenceElement
+  id: PlushieOrangeFox
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-fox
+  sprites:
+  - sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: orange
+
+# Marble fox plushie
+- type: foodSequenceElement
+  id: PlushieMarbleFox
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-fox
+  sprites:
+  - sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: marble
+
+# Crimson fox plushie
+- type: foodSequenceElement
+  id: PlushieCrimsonFox
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-fox
+  sprites:
+  - sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: crimson
+
+# Coffee fox plushie
+- type: foodSequenceElement
+  id: PlushieCoffeeFox
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-fox
+  sprites:
+  - sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: coffee
+
+# Blue fox plushie
+- type: foodSequenceElement
+  id: PlushieBlueFox
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-fox
+  sprites:
+  - sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: blue
+
+# Black fox plushie
+- type: foodSequenceElement
+  id: PlushieBlackFox
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-fox
+  sprites:
+  - sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: black
+
+# Vulpkanin plushie
+- type: foodSequenceElement
+  id: PlushieVulp
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-vulpkanin
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_vulp
+
+# Mail vulpkanin plushie
+- type: foodSequenceElement
+  id: PlushieMailVulp
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-vulpkanin
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_mailvulp
+
+# Pirate moth plushie
+- type: foodSequenceElement
+  id: PlushieYarrMoth
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_yarrmoth
+
+# Corgi plushie
+- type: foodSequenceElement
+  id: PlushieCorgi
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-corgi
+  sprites:
+  - sprite: _NF/Objects/Fun/corgiplushie.rsi
+    state: corgi
+
+# Girly corgi plushie
+- type: foodSequenceElement
+  id: PlushieGirlyCorgi
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-corgi
+  sprites:
+  - sprite: _NF/Objects/Fun/corgiplushie.rsi
+    state: girlycorgi
+
+# Robot corgi plushie
+- type: foodSequenceElement
+  id: PlushieRobotCorgi
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-corgi
+  sprites:
+  - sprite: _NF/Objects/Fun/corgiplushie.rsi
+    state: robotcorgi
+
+# Black cat plushie
+- type: foodSequenceElement
+  id: PlushieCatBlack
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-cat
+  sprites:
+  - sprite: _NF/Objects/Fun/catplushie.rsi
+    state: black
+
+# Grey cat plushie
+- type: foodSequenceElement
+  id: PlushieCatGrey
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-cat
+  sprites:
+  - sprite: _NF/Objects/Fun/catplushie.rsi
+    state: grey
+
+# Orange cat plushie
+- type: foodSequenceElement
+  id: PlushieCatOrange
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-cat
+  sprites:
+  - sprite: _NF/Objects/Fun/catplushie.rsi
+    state: orange
+
+# Siamese cat plushie
+- type: foodSequenceElement
+  id: PlushieCatSiamese
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-cat
+  sprites:
+  - sprite: _NF/Objects/Fun/catplushie.rsi
+    state: siames
+
+# Tabby cat plushie
+- type: foodSequenceElement
+  id: PlushieCatTabby
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-cat
+  sprites:
+  - sprite: _NF/Objects/Fun/catplushie.rsi
+    state: tabby
+
+# Tabby cat plushie
+- type: foodSequenceElement
+  id: PlushieCatTuxedo
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-cat
+  sprites:
+  - sprite: _NF/Objects/Fun/catplushie.rsi
+    state: tuxedo
+
+# White cat plushie
+- type: foodSequenceElement
+  id: PlushieCatWhite
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-cat
+  sprites:
+  - sprite: _NF/Objects/Fun/catplushie.rsi
+    state: white
+
+# Rocket launcher plushie
+- type: foodSequenceElement
+  id: WeaponLauncherRocketToy
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-rpg
+  sprites:
+  - sprite: _NF/Objects/Fun/emotional_support_rpg.rsi
+    state: base
+
+# Moth1 plushies
+- type: foodSequenceElement
+  id: PlushieMoth1
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff1
+
+# Moth2 plushies
+- type: foodSequenceElement
+  id: PlushieMoth2
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff2
+
+# Moth3 plushies
+- type: foodSequenceElement
+  id: PlushieMoth3
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff3
+
+# Moth4 plushies
+- type: foodSequenceElement
+  id: PlushieMoth4
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff4
+
+# Moth5 plushies
+- type: foodSequenceElement
+  id: PlushieMoth5
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff5
+
+# Moth6 plushies
+- type: foodSequenceElement
+  id: PlushieMoth6
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff6
+
+# Moth7 plushies
+- type: foodSequenceElement
+  id: PlushieMoth7
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff7
+
+# Moth8 plushies
+- type: foodSequenceElement
+  id: PlushieMoth8
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff8
+
+# Moth9 plushies
+- type: foodSequenceElement
+  id: PlushieMoth9
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff9
+
+# Moth10 plushies
+- type: foodSequenceElement
+  id: PlushieMoth10
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff10
+
+# Moth11 plushies
+- type: foodSequenceElement
+  id: PlushieMoth11
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff11
+
+# Moth12 plushies
+- type: foodSequenceElement
+  id: PlushieMoth12
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff12
+
+# Moth13 plushies
+- type: foodSequenceElement
+  id: PlushieMoth13
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff13
+
+# Moth14 plushies
+- type: foodSequenceElement
+  id: PlushieMoth14
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moff14
+
+# Moffisician plushies
+- type: foodSequenceElement
+  id: PlushieMoffsician
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moffsician
+
+# Moffbar plushies
+- type: foodSequenceElement
+  id: PlushieMoffbar
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-moth
+  sprites:
+  - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moffbar

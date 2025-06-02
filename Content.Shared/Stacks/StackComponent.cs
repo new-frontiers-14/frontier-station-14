@@ -79,13 +79,12 @@ namespace Content.Shared.Stacks
         [ViewVariables(VVAccess.ReadWrite)]
         public List<string> LayerStates = new();
 
-        // Frontier: transforming Amount, MaxCount in speso stacks 
         /// <summary>
-        /// An optional function to adjust the layers used for a stack's appearance.
+        /// An optional function to convert the amounts used to adjust a stack's appearance.
+        /// Useful for different denominations of cash, for example.
         /// </summary>
         [DataField]
         public StackLayerFunction LayerFunction = StackLayerFunction.None;
-        // End Frontier
     }
 
     [Serializable, NetSerializable]
@@ -102,5 +101,20 @@ namespace Content.Shared.Stacks
             MaxCount = maxCount;
             Lingering = lingering;
         }
+    }
+
+    [Serializable, NetSerializable]
+    public enum StackLayerFunction : byte
+    {
+        // <summary>
+        // No operation performed.
+        // </summary>
+        None,
+
+        // <summary>
+        // Arbitrarily thresholds the stack amount for each layer.
+        // Expects entity to have StackLayerThresholdComponent.
+        // </summary>
+        Threshold
     }
 }
