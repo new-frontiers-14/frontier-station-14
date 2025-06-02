@@ -107,6 +107,14 @@
       count: 15
       minGroupSize: 1
       maxGroupSize: 2
+    - !type:OreDunGen
+      # replacement: IronRock # upstream#33105
+      entityMask: # upstream#33105
+      - IronRock # upstream#33105
+      entity: IronRockGibtonite
+      count: 60 # you don't really hit it on purpose so it should be common
+      minGroupSize: 1
+      maxGroupSize: 1
     # upstream#33105
     # Decoration
     - !type:OreDunGen

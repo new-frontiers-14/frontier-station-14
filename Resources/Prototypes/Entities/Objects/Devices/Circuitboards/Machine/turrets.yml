@@ -17,11 +17,15 @@
       ProximitySensor:
         amount: 1
         defaultPrototype: ProximitySensor
-    componentRequirements:
-      PowerCell:
-        amount: 1
-        defaultPrototype: PowerCellMedium
-        examineName: construction-insert-info-examine-name-power-cell 
+    # Frontier: convert power cell to machine part req
+    # componentRequirements:
+    #   PowerCell:
+    #     amount: 1
+    #     defaultPrototype: PowerCellMedium
+    #     examineName: construction-insert-info-examine-name-power-cell
+    requirements:
+      PowerCell: 1
+    # End Frontier: convert power cell to machine part req
         
 - type: entity
   id: WeaponEnergyTurretAIMachineCircuitboard

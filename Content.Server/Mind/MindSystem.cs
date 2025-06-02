@@ -71,7 +71,7 @@ public sealed class MindSystem : SharedMindSystem
         TransferTo(mindId, null, createGhost: false, mind: mind);
         DebugTools.AssertNull(mind.OwnedEntity);
 
-        if (!component.GhostOnShutdown || _gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
+        if (!component.GhostOnShutdown || !_players.TryGetSessionById(mind.UserId, out _) || _gameTicker.RunLevel == GameRunLevel.PreRoundLobby) // SS220 ghost-del-fix
             return;
 
         var ghost = _ghosts.SpawnGhost((mindId, mind), uid);
