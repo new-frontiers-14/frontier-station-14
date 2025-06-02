@@ -36,7 +36,7 @@ public sealed partial class ConstructionSystem
         var boardContainer = _container.EnsureContainer<Container>(component.Owner, "board");
         foreach (var board in boardContainer.ContainedEntities)
         {
-            if (TryComp<BindToStationComponent>(board, out var binding))
+            if (TryComp<StationBoundObjectComponent>(board, out var binding))
                 _bindToStation.BindToStation(component.Owner, binding.BoundStation, binding.Enabled);
         }
         // End Frontier
