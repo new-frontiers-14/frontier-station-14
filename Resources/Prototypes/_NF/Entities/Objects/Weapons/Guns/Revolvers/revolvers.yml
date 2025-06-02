@@ -1,53 +1,164 @@
+#region WizDen
 - type: entity
-  name: Argenti
-  parent: [ BaseC1Contraband, BaseWeaponRevolver ]
-  id: WeaponRevolverArgenti
-  description: The civilian grade Argenti Type 20 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well. Uses .20 rifle ammo.
+  id: NFWeaponRevolverInspector
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverNanotrasen ]
+  name: inspector
+  description: |-
+    A detective's best friend. On the handle is a label that says 'for authorized use only.'
   components:
   - type: Sprite
-    scale: 0.75 , 0.75
+    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
+
+- type: entity
+  id: NFWeaponRevolverWard45
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverNanotrasen ]
+  name: ward-45
+  description: |-
+    The iconic sidearm of the dreaded death squads. On the handle is a label that says 'for authorized use only.'
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+
+- type: entity
+  id: NFWeaponRevolverDeckard
+  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverFrontierGunsmith ]
+  name: deckard
+  description: |-
+    A rare, civilian grade custom-built revolver. Use when there is no time for Voight-Kampff test.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Revolvers/deckard.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-3
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/deckard.rsi
+  - type: RevolverAmmoProvider
+    capacity: 5
+    chambers: [ True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null ]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+
+- type: entity
+  id: NFWeaponRevolverRitland45
+  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverGorlex ]
+  name: ritland-45
+  description: |-
+    An illegal revolver favoured by Syndicate agents.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Revolvers/python.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/python.rsi
+
+- type: entity
+  id: NFWeaponRevolverPirate
+  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverSteelbolt ]
+  name: pirate revolver
+  description: |-
+    An odd, illegal, old-looking revolver, favoured by pirate crews.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi
+
+- type: entity
+  id: NFWeaponPistolFlintlock
+  parent: [ NFBaseWeaponRevolverChamber60, NFBaseWeaponFrameRevolverSteelbolt ]
+  name: flintlock pistol
+  description: |-
+    A pirate's companion. Yarrr! An illegal weapon often used by pirates.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Revolvers/flintlock.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Revolvers/flintlock.rsi
+  - type: UseDelay
+    delay: 8
+
+# WizDen: Rubber
+- type: entity
+  id: NFWeaponRevolverDeckardExpeditionGrifty
+  parent: NFWeaponRevolverDeckardExpedition
+  categories: [ HideSpawnMenu ]
+  name: Customer Service Resolver
+
+#region DeltaV
+- type: entity
+  id: NFWeaponRevolverFitz
+  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverFrontierGunsmith ]
+  name: fitz special
+  description: |-
+    A compact and concealable self defence snub revolver.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/fitz.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/fitz.rsi
+
+- type: entity
+  id: NFWeaponRevolverFaith
+  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverFrontierGunsmith ]
+  name: faith
+  description: |-
+    Delivers blessings in bullet form.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/faith.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/faith.rsi
+  - type: RevolverAmmoProvider
+    capacity: 4
+    chambers: [ True, True, True, True ]
+    ammoSlots: [ null, null, null, null ]
+
+- type: entity
+  id: NFWeaponRevolverLucky
+  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverFrontierGunsmith ]
+  name: lucky
+  description: |-
+    Luck always beats skill, ya weasel.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/lucky.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Revolvers/lucky.rsi
+
+#region Frontier
+- type: entity
+  id: NFWeaponRevolverArgenti
+  parent: [ NFBaseWeaponRevolverChamber35, NFBaseWeaponFrameRevolverFrontierGunsmith ]
+  name: argenti
+  description: |-
+    The civilian grade Argenti Type 35 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well.
+  components:
+  - type: Sprite
+    scale: 0.75, 0.75
     sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
-  - type: Gun
-    fireRate: 2.5
-    resetOnHandSelected: false
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - CartridgeRifle
-        - SpeedLoaderRifleHeavy
-    capacity: 8
-    proto: CartridgeRifle
-    chambers: [ True, True, True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null, null, null ]
   - type: StaticPrice
     price: 200
 
+# Frontier: Rubber
 - type: entity
-  parent: WeaponRevolverArgenti
-  id: WeaponRevolverArgentiNonlethal
-  suffix: Non-lethal
+  id: NFWeaponRevolverArgentiLessLethal
+  parent: NFWeaponRevolverArgenti
+  suffix: Frontier, Less-lethal
   components:
   - type: RevolverAmmoProvider
-    capacity: 8
-    proto: CartridgeRifleRubber
-    chambers: [ True, True, True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null, null, null ]
-
-- type: entity
-  parent: WeaponRevolverDeckard
-  id: WeaponRevolverDeckardNonlethal
-  suffix: Non-lethal
-  components:
-  - type: RevolverAmmoProvider
-    capacity: 5
-    proto: CartridgeMagnumRubber
-    chambers: [ True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null ]
-
-- type: entity
-  parent: WeaponRevolverDeckardExpedition
-  id: WeaponRevolverDeckardExpeditionGrifty
-  categories: [ HideSpawnMenu ]
-  name: Customer Service Resolver
+    proto: NFCartridgePistol35Rubber

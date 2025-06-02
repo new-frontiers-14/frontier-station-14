@@ -7,19 +7,18 @@
   - ClothingOuterHardsuitBase
   id: NFClothingOuterEVASuitBase
   components:
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
   - type: Item
     shape:
     - 0,0,3,2
-  - type: ClothingSpeedModifier # Changed to 5% because the suit doesn't provide any protection other than from low pressure
-    walkModifier: 0.95
-    sprintModifier: 0.95
-  - type: HeldSpeedModifier
   - type: Clothing
     # For immersion
     equipSound: /Audio/Mecha/mechmove03.ogg
     unequipSound: /Audio/Mecha/mechmove03.ogg
-    equipDelay: 2
-    unequipDelay: 2
+    #equipDelay: 2
+    #unequipDelay: 2
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}

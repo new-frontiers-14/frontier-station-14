@@ -2,23 +2,23 @@
   id: LockerFillQuarterMaster
   table: !type:AllSelector
     children:
-#    - id: BoxEncryptionKeyCargo # Frontier
-#    - id: BoxFolderQmClipboard # Frontier
-#    - id: CargoBountyComputerCircuitboard # Frontier
-#    - id: CargoRequestComputerCircuitboard # Frontier
-#    - id: CargoSaleComputerCircuitboard # Frontier
-#    - id: CargoShuttleComputerCircuitboard # Frontier
-#    - id: CargoShuttleConsoleCircuitboard # Frontier
-#    - id: SalvageMagnetMachineCircuitboard # Frontier
-#    - id: CigPackGreen # Frontier
-#      prob: 0.50 # Frontier
+    # - id: BoxEncryptionKeyCargo # Frontier
+    # - id: BoxFolderQmClipboard # Frontier
+    # - id: CargoBountyComputerCircuitboard # Frontier
+    # - id: CargoRequestComputerCircuitboard # Frontier
+    # - id: CargoSaleComputerCircuitboard # Frontier
+    # - id: CargoShuttleConsoleCircuitboard # Frontier
+    # - id: SalvageMagnetMachineCircuitboard # Frontier
+    # - id: CigPackGreen # Frontier
+    #   prob: 0.50 # Frontier
     - id: ClothingHeadsetAltCargo
 #    - id: DoorRemoteCargo # Frontier
     - id: RubberStampApproved
     - id: RubberStampDenied
     - id: RubberStampQm
-#    - id: AstroNavCartridge # Frontier
-#    - id: MailTeleporterMachineCircuitboard # Frontier
+    # - id: AstroNavCartridge # Frontier
+    # - id: ClothingHandsKnuckleDustersQM # Frontier
+    # - id: MailTeleporterMachineCircuitboard # Frontier
     - id: ClothingBeltUtilityEngineering # Frontier
 
 - type: entity
@@ -50,9 +50,13 @@
 #    - id: PlushieNuke # Frontier
 #      prob: 0.1 # Frontier
     - id: RubberStampCaptain
-#    - id: SpaceCash1000 # Frontier
-#    - id: WeaponDisabler # Frontier
-#    - id: ClothingEyesGlassesCommand # Frontier
+    # - id: SpaceCash1000 # Frontier
+    # - id: WeaponDisabler # Frontier
+    # - id: ClothingEyesGlassesCommand # Frontier
+    # - id: HeadSkeleton # A skull to accompany your skeleton crew # Frontier
+    #   conditions: # Frontier
+    #   - !type:PlayerCountCondition # Frontier
+    #     max: 15 # Frontier
 
 # No laser table + Laser table
 - type: entityTable
@@ -61,7 +65,7 @@
     children:
     - !type:NestedSelector
       tableId: LockerFillCaptainNoLaser
-#    - id: WeaponAntiqueLaser # Frontier
+    # - id: WeaponAntiqueLaser # Frontier
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -72,7 +76,7 @@
     - id: ClothingMaskGasCaptain
 #    - id: JetpackCaptainFilled # Frontier
 #    - id: OxygenTankFilled # Frontier
-    - id: AirTankFilled # Frontier
+    - id: NFTankO2N2EqualFilled # Frontier
     - id: JetpackMiniFilled # Frontier
 
 # No laser locker, used when the antique laser is placed in the special display crate
@@ -126,13 +130,15 @@
 #      prob: 0.25 # Frontier
       # Fuck the HoP they don't deserve fucking cigars.
       # Yes they do fuck you.
-#    - id: ClothingBackpackIan # Frontier
-#      prob: 0.5 # Frontier
-#    - id: ClothingHeadsetCommand # Frontier
-#    - id: ClothingNeckGoldmedal # Frontier
-#    - id: DoorRemoteService # Frontier
-#    - id: HoPIDCard # Frontier
-#    - id: IDComputerCircuitboard # Frontier
+    # - id: ClothingBackpackIan # Frontier
+    #   prob: 0.5 # Frontier
+    # - id: ClothingHeadsetCommand # Frontier
+    # - id: ClothingNeckGoldmedal # Frontier
+    # - id: DoorRemoteService # Frontier
+    # - id: HoPIDCard # Frontier
+    # - id: IDComputerCircuitboard # Frontier
+    # - id: FundingAllocationComputerCircuitboard # Frontier
+    # - id: CargoRequestServiceComputerCircuitboard # Frontier
     - id: RubberStampApproved
     - id: RubberStampDenied
 #    - id: RubberStampHop # Frontier
@@ -162,9 +168,10 @@
     - id: ClothingEyesGlassesMeson
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingHeadsetAltEngineering
-#    - id: DoorRemoteEngineering # Frontier
-#    - id: RCD # Frontier
-#    - id: RCDAmmo # Frontier
+    # - id: DoorRemoteEngineering # Frontier
+    # - id: CargoRequestEngineeringComputerCircuitboard # Frontier
+    # - id: RCD # Frontier
+    # - id: RCDAmmo # Frontier
     - id: RubberStampCE
     - id: ShipyardRCD # Frontier
     - id: ShipyardRCDAmmo # Frontier
@@ -181,7 +188,7 @@
     - id: ClothingShoesBootsMag # Frontier
 #    - id: JetpackVoidFilled # Frontier
 #    - id: OxygenTankFilled # Frontier
-    - id: AirTankFilled # Frontier
+    - id: NFTankO2N2EqualFilled # Frontier
     - id: JetpackMiniFilled # Frontier
 
 # No hardsuit locker
@@ -225,11 +232,12 @@
 #    - id: ClothingMaskSterile # Frontier - bloat
 #    - id: DoorRemoteMedical # Frontier - bloat
     - id: HandheldCrewMonitor
-#    - id: Hypospray # Frontier - balance
+    # - id: Hypospray # Frontier - balance
     - id: HypoMini # Frontier
-#    - id: MedicalTechFabCircuitboard # Frontier - bloat
-#    - id: MedkitFilled # Frontier - bloat
-#    - id: RubberStampCMO # Frontier - MOM stamp
+    # - id: MedicalTechFabCircuitboard # Frontier - bloat
+    # - id: CargoRequestMedicalComputerCircuitboard # Frontier - bloat
+    # - id: MedkitFilled # Frontier - bloat
+    # - id: RubberStampCMO # Frontier - MOM stamp
     - id: MedTekCartridge
     - id: ClothingBeltMedicalFilled # Frontier - add more bloat
     - id: RubberStampDoctor # Frontier
@@ -242,7 +250,7 @@
     - id: ClothingMaskBreathMedical
     - id: ClothingOuterHardsuitMedical
 #    - id: OxygenTankFilled # Frontier
-    - id: AirTankFilled # Frontier
+    - id: NFTankO2N2EqualFilled # Frontier
     - id: JetpackMiniFilled # Frontier
 
 # No hardsuit locker
@@ -281,10 +289,11 @@
 #    - id: CircuitImprinterMachineCircuitboard # Frontier
     - id: ClothingBeltUtilityEngineering # Frontier: ClothingBeltUtilityFilled<ClothingBeltUtilityEngineering
     - id: ClothingHeadsetAltScience
-#    - id: DoorRemoteResearch # Frontier
-#    - id: HandTeleporter # Frontier
-#    - id: ProtolatheMachineCircuitboard # Frontier
-#    - id: ResearchComputerCircuitboard # Frontier
+    # - id: DoorRemoteResearch # Frontier
+    # - id: HandTeleporter # Frontier
+    # - id: ProtolatheMachineCircuitboard # Frontier
+    # - id: ResearchComputerCircuitboard # Frontier
+    # - id: CargoRequestScienceComputerCircuitboard # Frontier
     - id: RubberStampRd
 
 # Hardsuit table, used for suit storage as well
@@ -294,8 +303,8 @@
     children:
     - id: ClothingMaskBreath
     - id: ClothingOuterHardsuitRd
-#    - id: OxygenTankFilled # Frontier
-    - id: AirTankFilled # Frontier
+    # - id: OxygenTankFilled # Frontier
+    - id: NFTankO2N2EqualFilled # Frontier
     - id: JetpackMiniFilled # Frontier
 
 # No hardsuit locker
@@ -338,14 +347,15 @@
 #    - id: ClothingEyesGlassesSecurity # Frontier
 #    - id: ClothingHeadsetAltSecurity # Frontier
     - id: ClothingMaskNeckGaiter
-#    - id: ClothingOuterCoatHoSTrench # Frontier
-#    - id: ClothingShoesBootsJack # Frontier
-#    - id: DoorRemoteSecurity # Frontier
-#    - id: HoloprojectorSecurity # Frontier
-#    - id: RubberStampHos # Frontier
-#    - id: SecurityTechFabCircuitboard # Frontier
-#    - id: WeaponDisabler # Frontier
-#    - id: WantedListCartridge # Frontier
+    # - id: ClothingOuterCoatHoSTrench # Frontier
+    # - id: ClothingShoesBootsJack # Frontier
+    # - id: DoorRemoteSecurity # Frontier
+    # - id: HoloprojectorSecurity # Frontier
+    # - id: RubberStampHos # Frontier
+    # - id: SecurityTechFabCircuitboard # Frontier
+    # - id: CargoRequestSecurityComputerCircuitboard # Frontier
+    # - id: WeaponDisabler # Frontier
+    # - id: WantedListCartridge # Frontier
     - id: DrinkHosFlask
     - id: ClothingUniformJumpskirtHoSAlt # Frontier: consistency with old fill
     - id: ClothingUniformJumpsuitHoSAlt # Frontier: consistency with old fill
@@ -404,7 +414,7 @@
     access: [ [ "Command" ] ]
   - type: StorageFill
     contents:
-    - id: WeaponRevolverDeckard
+    - id: NFWeaponRevolverDeckard # Frontier: WeaponRevolverDeckard<NFWeaponRevolverDeckard
     - id: ClothingOuterHardsuitBasic
     - id: JetpackBlue
     - id: SpaceCash1000

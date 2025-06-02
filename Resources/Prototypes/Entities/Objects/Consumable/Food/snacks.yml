@@ -10,6 +10,7 @@
   - type: Tag
     tags:
       - FoodSnack
+      - VoxFood
   - type: Sprite
     sprite: Objects/Consumable/Food/snacks.rsi
   - type: SolutionContainerManager
@@ -182,10 +183,10 @@
   - type: Item
 
 - type: entity
-  name: sweetie's pistachios
+  name: Sweetie's pistachios
   parent: FoodSnackBase
   id: FoodSnackPistachios
-  description: Sweeties's name-brand pistachios. probably won't give you diseases. Probably.
+  description: Sweeties' name-brand pistachios. Probably won't give you diseases. Probably. # Frontier: no s post-apostrophe
   components:
   - type: FlavorProfile
     flavors:
@@ -200,6 +201,7 @@
   - type: Tag
     tags:
     - Fruit # Seed of a fruit, you can yell at me
+    - Pistachios # Added tag due to CrateFoodGetMore interaction with BountyFruit.
 
 - type: entity
   name: popcorn
@@ -485,7 +487,6 @@
   - type: StaticPrice
     price: 21
 
-
 - type: entity
   id: FoodSnackMREBrownieOpen
   parent: FoodSnackBase
@@ -508,6 +509,9 @@
           Quantity: 10
         - ReagentId: Theobromine
           Quantity: 3
+  - type: Tag
+    tags:
+    - VoxFood
 
 # Trash
 
@@ -533,7 +537,16 @@
       Steel: 100
   - type: SpaceGarbage
   - type: StaticPrice
-    price: 1
+    price: 1 # Frontier: 0<1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: ToxinTrash
+          Quantity: 5
+  - type: Food
+    requiresSpecialDigestion: true
 
 - type: entity
   categories: [ HideSpawnMenu ]

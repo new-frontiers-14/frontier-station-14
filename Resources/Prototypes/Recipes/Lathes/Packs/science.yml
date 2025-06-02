@@ -29,6 +29,7 @@
   - HoloprojectorField
   - SignallerAdvanced
   # - DeviceQuantumSpinInverter # Frontier
+  - DeviceDesynchronizer
 
 - type: latheRecipePack
   id: ScienceClothing
@@ -49,10 +50,13 @@
 - type: latheRecipePack
   id: ScienceWeapons
   recipes:
-  - WeaponPistolCHIMP
+  - NFWeaponPistolCHIMP # Frontier: add NF prefix
   # - WeaponForceGun # Frontier
-  - WeaponLaserSvalinn
-  - WeaponProtoKineticAccelerator
+  - NFWeaponPka # Frontier: WeaponProtoKineticAccelerator<NFWeaponPka
+  - NFWeaponPkaCannon # Frontier
+  # - PKAUpgradeDamage # Frontier
+  # - PKAUpgradeRange # Frontier
+  # - PKAUpgradeFireRate # Frontier
   # - WeaponTetherGun # Frontier
   - WeaponGauntletGorilla
 
@@ -94,6 +98,7 @@
   - APECircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ArtifactCrusherMachineCircuitboard
+  - ResearchComputerCircuitboard # Frontier: add research computer
 
 - type: latheRecipePack
   id: CameraBoards
