@@ -199,13 +199,14 @@
   name: R&D server machine board
   description: A machine printed circuit board for the R&D server.
   components:
-  - type: BindToStationExemption # Frontier
   - type: Sprite
     state: science
   - type: MachineBoard
     prototype: ResearchAndDevelopmentServer
     stackRequirements:
       Plasma: 5
+  - type: BindToStation # Frontier
+    enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: BiogeneratorMachineCircuitboard
@@ -373,7 +374,8 @@
       stackRequirements:
         Cable: 1
         Glass: 1
-    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+    - type: BindToStation # Frontier
+      enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: ThermomachineFreezerMachineCircuitBoard
@@ -486,7 +488,8 @@
     stackRequirements:
       Cable: 5
       Glass: 2
-  - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+  - type: BindToStation # Frontier
+    enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: SpaceHeaterMachineCircuitBoard
@@ -953,7 +956,8 @@
         Silicon: 20
     - type: StaticPrice
       price: 40
-    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+    - type: BindToStation # Frontier
+      enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: ReagentGrinderMachineCircuitboard
