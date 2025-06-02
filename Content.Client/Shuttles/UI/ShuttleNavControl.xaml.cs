@@ -486,7 +486,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         return (value - MidPointVector) / MinimapScale;
     }
 
-    public class BlipData
+    public sealed class BlipData
     {
         public bool IsOutsideRadarCircle { get; set; }
         public Vector2 UiPosition { get; set; }

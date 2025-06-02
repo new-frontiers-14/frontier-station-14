@@ -41,12 +41,14 @@ using Content.Shared._NF.ShuttleRecords;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Forensics.Components;
 using Robust.Server.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
 public sealed partial class ShipyardSystem : SharedShipyardSystem
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IServerPreferencesManager _prefManager = default!;
@@ -528,7 +530,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private void PlayDenySound(EntityUid playerUid, EntityUid consoleUid, ShipyardConsoleComponent component)
     {
-        _audio.PlayEntity(component.ErrorSound, playerUid, consoleUid);
+        if (_timing.CurTime >= component.NextDenySoundTime)
+        {
+            component.NextDenySoundTime = _timing.CurTime + component.DenySoundDelay;
+            _audio.PlayPvs(_audio.ResolveSound(component.ErrorSound), consoleUid);
+        }
     }
 
     private void PlayConfirmSound(EntityUid playerUid, EntityUid consoleUid, ShipyardConsoleComponent component)
