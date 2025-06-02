@@ -129,6 +129,8 @@ if __name__ == "__main__":
                     continue
                 proto_id = item["id"]
                 proto_name = item["name"] if "name" in item.keys() else ""
+                if proto_name is None:
+                    proto_name = ""
                 proto_suffixes = str(item["suffix"]).split(", ") if "suffix" in item.keys() else list()
                 proto_categories = item["categories"] if "categories" in item.keys() else list()
                 if proto_categories is None:
