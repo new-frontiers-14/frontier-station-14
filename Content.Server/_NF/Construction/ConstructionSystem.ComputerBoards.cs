@@ -1,4 +1,4 @@
-using Content.Server._NF.Construction.Components;
+using Content.Shared._NF.Construction.Components;
 using Content.Shared.Examine;
 
 namespace Content.Server.Construction; //Uses base namespace to extend ConstructionSystem behaviour
