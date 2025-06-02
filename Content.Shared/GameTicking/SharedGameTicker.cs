@@ -260,6 +260,10 @@ namespace Content.Shared.GameTicking
         /// </summary>
         public ResolvedSoundSpecifier? RestartSound;
 
+        // Frontier: custom objectives
+        public string CustomObjectiveText;
+        // End Frontier
+
         public RoundEndMessageEvent(
             string gamemodeTitle,
             string roundEndText,
@@ -267,7 +271,8 @@ namespace Content.Shared.GameTicking
             int roundId,
             int playerCount,
             RoundEndPlayerInfo[] allPlayersEndInfo,
-            ResolvedSoundSpecifier? restartSound)
+            ResolvedSoundSpecifier? restartSound,
+            string customObjectiveText) // Frontier
         {
             GamemodeTitle = gamemodeTitle;
             RoundEndText = roundEndText;
@@ -276,6 +281,7 @@ namespace Content.Shared.GameTicking
             PlayerCount = playerCount;
             AllPlayersEndInfo = allPlayersEndInfo;
             RestartSound = restartSound;
+            CustomObjectiveText = customObjectiveText; // Frontier
         }
     }
 

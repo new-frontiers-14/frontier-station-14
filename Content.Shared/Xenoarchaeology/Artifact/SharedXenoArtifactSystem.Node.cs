@@ -404,14 +404,11 @@ public abstract partial class SharedXenoArtifactSystem
             : 1f + durabilityEffect;
 
         var predecessorNodes = GetPredecessorNodes((artifact, artifact), node);
-        nodeComponent.ResearchValue = (int)(Math.Pow(1.25, Math.Pow(predecessorNodes.Count, 1.5f)) * nodeComponent.BasePointValue * durabilityMultiplier);
-        // Frontier: remove value from using artifexium
+        nodeComponent.ResearchValue = (int)(Math.Pow(1.4, Math.Pow(predecessorNodes.Count + 1, 1.2f)) * nodeComponent.BasePointValue * durabilityMultiplier); // Frontier: add one to count, 1.25<1.4, 1.5<1.2
+        // Frontier: remove value from using artifexium, different value sets
         if (node.Comp.ArtifexiumUsed)
-        {
-            nodeComponent.ResearchValue -= 500;
-            nodeComponent.ResearchValue /= 2;
-        }
-        // End Frontier: remove value from using artifexium
+            nodeComponent.ResearchValue = (int)Math.Pow(nodeComponent.ResearchValue - 700, 0.9);
+        // End Frontier: remove value from using artifexium, different value sets
 
     }
 

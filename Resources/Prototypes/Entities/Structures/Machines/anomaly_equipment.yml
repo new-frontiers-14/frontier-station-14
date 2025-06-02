@@ -100,7 +100,7 @@
     drawdepth: Mobs
   - type: SpriteFade
   - type: AnomalyVessel
-    pointMultiplier: 2
+    pointMultiplier: 1.25 # Frontier: 2<1.25
   - type: RadiationSource
     intensity: 0.75
     slope: 0.1
@@ -219,11 +219,12 @@
       - SetParticleEpsilon
       - SetParticleZeta
       - SetParticleSigma
-  - type: BindToStationExemption #Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+  - type: BindToStation # Frontier
+    enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: MachineAnomalyGenerator
-  parent: [BaseStructureDisableToolUse, BaseMachinePowered] # Frontier - BaseStructureDisableToolUse
+  parent: [BaseMachinePowered]
   name: anomaly generator
   description: The peak of pseudoscientific technology.
   placement:
@@ -334,3 +335,4 @@
   - type: GuideHelp
     guides:
     - AnomalousResearch
+  - type: BindToStation # Frontier

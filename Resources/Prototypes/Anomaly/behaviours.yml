@@ -62,7 +62,7 @@
   description: anomaly-behavior-delayed-force
   pulseFrequencyModifier: 2
   pulsePowerModifier: 2
-  
+
 - type: anomalyBehavior
   id: Rapid
   earnPointModifier: 1.15
@@ -95,7 +95,7 @@
   earnPointModifier: 0.8
   particleSensivity: 0.5
   description: anomaly-behavior-nonsensivity
-  
+
 - type: anomalyBehavior
   id: Sensivity
   earnPointModifier: 1.2
@@ -106,19 +106,19 @@
 
 - type: anomalyBehavior
   id: Fast
-  earnPointModifier: 1.9
+  earnPointModifier: 1.65 # Frontier: 1.9<1.65
   pulseFrequencyModifier: 0.5
   description: anomaly-behavior-fast
 
 - type: anomalyBehavior
   id: Strenght
   pulsePowerModifier: 1.5
-  earnPointModifier: 1.4
+  earnPointModifier: 1.3 # Frontier: 1.4<1.3
   description: anomaly-behavior-strenght
 
 - type: anomalyBehavior
   id: Inconstancy
-  earnPointModifier: 1.7
+  earnPointModifier: 1.45 # Frontier: 1.7<1.45
   description: anomaly-behavior-inconstancy
   components:
   - type: ShuffleParticlesAnomaly
@@ -127,7 +127,7 @@
 
 - type: anomalyBehavior
   id: InconstancyParticle
-  earnPointModifier: 1.8
+  earnPointModifier: 1.55 # Frontier: 1.8<1.55
   description: anomaly-behavior-inconstancy
   components:
   - type: ShuffleParticlesAnomaly
@@ -136,7 +136,7 @@
 
 - type: anomalyBehavior
   id: Jumping
-  earnPointModifier: 1.8
+  earnPointModifier: 1.55 # Frontier: 1.8<1.55
   description: anomaly-behavior-moving
   components:
   - type: ChaoticJump
@@ -148,7 +148,7 @@
 
 - type: anomalyBehavior
   id: FullUnknown
-  earnPointModifier: 1.9
+  earnPointModifier: 1.65 # Frontier: 1.9<1.65
   description: anomaly-behavior-secret
   components:
   - type: SecretDataAnomaly
@@ -157,7 +157,7 @@
 
 - type: anomalyBehavior
   id: Invisibility
-  earnPointModifier: 1.6
+  earnPointModifier: 1.4 # Frontier: 1.6<1.4
   description: anomaly-behavior-invisibility
   components:
   - type: Stealth
@@ -170,7 +170,7 @@
 
 - type: anomalyBehavior
   id: JumpingUnknown
-  earnPointModifier: 1.9
+  earnPointModifier: 1.65 # Frontier: 1.9<1.65
   description: anomaly-behavior-moving
   components:
   - type: ChaoticJump
@@ -185,7 +185,7 @@
 
 - type: anomalyBehavior
   id: FastUnknown
-  earnPointModifier: 1.9
+  earnPointModifier: 1.65 # Frontier: 1.9<1.65
   pulseFrequencyModifier: 0.5
   description: anomaly-behavior-fast
   components:
@@ -195,7 +195,7 @@
 
 - type: anomalyBehavior
   id: InconstancyParticleUnknown
-  earnPointModifier: 1.95
+  earnPointModifier: 1.7 # Frontier: 1.95<1.7
   description: anomaly-behavior-inconstancy
   components:
   - type: ShuffleParticlesAnomaly
@@ -207,7 +207,7 @@
 
 - type: anomalyBehavior
   id: InvisibilityJumping
-  earnPointModifier: 1.95
+  earnPointModifier: 1.7 # Frontier: 1.95<1.7
   description: anomaly-behavior-invisibility
   components:
   - type: ChaoticJump

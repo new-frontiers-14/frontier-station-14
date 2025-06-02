@@ -3,7 +3,6 @@
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: NFBreakerFlip
-    - id: NFGasLeak
     - id: NFIonStorm
     - id: NFPowerGridCheck
     - id: NFRandomSentience
@@ -25,19 +24,6 @@
     duration: 1
     minimumPlayers: 15
   - type: BreakerFlipRule
-
-- type: entity
-  id: NFGasLeak
-  parent: BaseStationEventShortDelay
-  components:
-  - type: StationEvent
-    startAnnouncement: station-event-gas-leak-nf-start-announcement # Frontier: add nf-
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
-    endAnnouncement: station-event-gas-leak-nf-end-announcement # Frontier: add nf-
-    weight: 8
-    earliestStart: 15 # Frontier
-  - type: GasLeakRule
 
 - type: entity
   id: NFPowerGridCheck
