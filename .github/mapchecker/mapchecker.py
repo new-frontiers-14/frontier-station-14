@@ -131,6 +131,8 @@ if __name__ == "__main__":
                 proto_name = item["name"] if "name" in item.keys() else ""
                 proto_suffixes = str(item["suffix"]).split(", ") if "suffix" in item.keys() else list()
                 proto_categories = item["categories"] if "categories" in item.keys() else list()
+                if proto_categories is None:
+                    proto_categories = list()
 
                 check_result = check_prototype(proto_id, proto_name, proto_suffixes, proto_categories)
                 if check_result is False:
