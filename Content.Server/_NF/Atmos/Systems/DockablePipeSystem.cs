@@ -1,9 +1,9 @@
 using Content.Server._NF.Atmos.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Shuttles.Events;
 using Content.Shared._NF.Atmos.Visuals;
+using Content.Shared.NodeContainer;
 using Robust.Server.GameObjects;
 
 namespace Content.Server._NF.Atmos.Systems;
