@@ -95,8 +95,8 @@ public sealed partial class AnomalySystem
 
         for (var i = 0; i < 20; i++) // Frontier: 25<20
         {
-            var randomX = Random.Next((int)gridBounds.Left, (int)gridBounds.Right);
-            var randomY = Random.Next((int)gridBounds.Bottom, (int)gridBounds.Top);
+            var randomX = Random.Next((int) gridBounds.Left, (int) gridBounds.Right);
+            var randomY = Random.Next((int) gridBounds.Bottom, (int) gridBounds.Top);
 
             var tile = new Vector2i(randomX, randomY);
 
@@ -118,7 +118,7 @@ public sealed partial class AnomalySystem
                     continue;
                 if (body.BodyType != BodyType.Static ||
                     !body.Hard ||
-                    (body.CollisionLayer & (int)CollisionGroup.Impassable) == 0)
+                    (body.CollisionLayer & (int) CollisionGroup.Impassable) == 0)
                     continue;
 
                 valid = false;
