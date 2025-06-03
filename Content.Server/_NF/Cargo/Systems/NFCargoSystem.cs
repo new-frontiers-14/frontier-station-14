@@ -20,6 +20,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Whitelist;
 using Content.Server._NF.Bank;
 using Robust.Server.Containers;
+using Content.Server.Hands.Systems;
 
 namespace Content.Server._NF.Cargo.Systems;
 
@@ -47,6 +48,7 @@ public sealed partial class NFCargoSystem : SharedNFCargoSystem
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<CargoSellBlacklistComponent> _blacklistQuery;
