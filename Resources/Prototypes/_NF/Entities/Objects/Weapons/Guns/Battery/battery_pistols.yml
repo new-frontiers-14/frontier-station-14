@@ -1,0 +1,287 @@
+# WizDen
+#region Laser
+- type: entity
+  id: NFWeaponEnergyPistolLaserSvalinn
+  parent: [ NFBaseWeaponFrameEnergyPistolNanotrasen, BaseWeaponPowerCellSmall ]
+  name: svalinn
+  description: A cheap and widely used laser pistol.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
+
+- type: entity
+  id: NFWeaponEnergyPistolLaserMakeshift
+  parent: [ NFBaseWeaponEnergyPistolHitScan, NFBaseWeaponFrameEnergyPistolFrontierGunsmith ]
+  name: makeshift laser pistol
+  description: Better pray it won't burn your hands off. At least it's legal.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/makeshift.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/makeshift.rsi
+  - type: Battery # 14 shots
+    maxCharge: 840
+    startingCharge: 840
+  - type: BatterySelfRecharger # doesn't recharge
+    autoRecharge: false
+
+- type: entity
+  categories: [ DoNotMap ]
+  id: NFWeaponEnergyPistolLaserAntique
+  parent: [ NFBaseWeaponEnergyPistolFireModes, NFBaseWeaponFrameEnergyPistolNanotrasen ]
+  name: antique laser pistol
+  description: |-
+    This is an antique laser pistol with two settings: disable and kill. All craftsmanship is of the highest quality. It is decorated with a mahogany grip and chrome filigree. The object menaces with spikes of energy. On the item is an image of a captain and a clown. The clown is dead. The captain is striking a heroic pose.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/antiquelasergun.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/antiquelasergun.rsi
+  - type: Battery # 26 shots
+    maxCharge: 1560
+    startingCharge: 1560
+  - type: BatterySelfRecharger # Recharges 1 shot per 2 seconds
+    autoRecharge: true
+    autoRechargeRate: 30
+  - type: Tag
+    tags:
+    - Sidearm
+    - WeaponAntiqueLaser
+  - type: Item
+    inhandVisuals: # FIXME: preventing overwrites from the energy gun system
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  categories: [ DoNotMap ]
+  id: NFWeaponEnergyPistolLaserX01Multiphase
+  parent: [ BaseC2ContrabandUnredeemable, NFWeaponEnergyPistolLaserAntique ]
+  name: X-01 multiphase energy gun
+  description: |-
+    This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes. On the handle is a label that says 'for authorized use only.'
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
+  - type: Clothing
+    sprite: _DV/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
+  - type: Item
+    heldPrefix: lethal
+    inhandVisuals: {} # FIXME: overwriting antique laser
+
+- type: entity
+  id: NFWeaponEnergyPistolLaserAdvanced
+  parent: [ NFBaseWeaponEnergyPistolFireModes, NFBaseWeaponFrameEnergyPistolNanotrasen ]
+  name: advanced laser pistol
+  description: |-
+    An experimental civilian grade high-energy laser pistol with a self-charging nuclear battery and two settings: disable and kill.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+    layers: # firemode left shaded vs. parent
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mode-lethal
+      map: [ "Firemode" ]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+  - type: Battery # 26 shots
+    maxCharge: 1560
+    startingCharge: 1560
+  - type: BatterySelfRecharger # Recharges 1 shot per 3 seconds
+    autoRecharge: true
+    autoRechargeRate: 20
+
+# Frontier
+- type: entity
+  id: NFWeaponEnergyPistolLaser
+  parent: [ NFBaseWeaponEnergyPistolFireModes, NFBaseWeaponFrameEnergyPistolNanotrasen ]
+  name: laser pistol
+  description: |-
+    An older model of civilian-grade laser pistol with two settings: disable and kill.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
+
+#region Pulse
+- type: entity
+  id: NFWeaponEnergyPistolPulse
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyPistolHitScanPulse, NFBaseWeaponFrameEnergyPistolNanotrasen ]
+  name: pulse pistol
+  description: |-
+    A state of the art energy pistol favoured as a sidearm by the NT operatives. On the handle is a label that says 'for authorized use only.'
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+  - type: Battery # 20 shots
+    maxCharge: 1200
+    startingCharge: 1200
+
+#region Disablers
+- type: entity
+  id: NFWeaponEnergyPistolDisabler
+  parent: [ NFBaseWeaponEnergyPistolDisabler, NFBaseWeaponFrameEnergyPistolNanotrasen ]
+  name: disabler pistol
+  description: |-
+    A civilian grade self-defense weapon that exhausts organic targets, weakening them until they collapse.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/disabler.rsi
+  - type: Battery # 20 shots
+    maxCharge: 1200
+    startingCharge: 1200
+
+- type: entity
+  id: NFWeaponEnergyPistolDisablerPractice
+  parent: [ NFBaseWeaponEnergyGunPractice, NFBaseWeaponFrameEnergyPistolNanotrasen ]
+  name: practice disabler pistol
+  description: |-
+    A self-defense weapon that exhausts organic targets, weakening them until they collapse. This one has been undertuned for cadets making it mostly harmless.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/practice_disabler.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/practice_disabler.rsi
+
+#region Other
+# Wizden ignored prototypes
+- type: entity
+  id: NFWeaponPistolCHIMP
+  parent: WeaponPistolCHIMP
+  components:
+  # - type: Gun
+  #   soundGunshot:
+  #     path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFAnomalousParticleDeltaStrong
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFAnomalousParticleDeltaStrong
+      fireCost: 100
+    - proto: NFAnomalousParticleEpsilonStrong
+      fireCost: 100
+    - proto: NFAnomalousParticleZetaStrong
+      fireCost: 100
+    - proto: NFAnomalousParticleSigmaStrong
+      fireCost: 100
+
+- type: entity
+  id: NFWeaponPistolCHIMPUpgraded
+  parent: WeaponPistolCHIMPUpgraded
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFAnomalousParticleDeltaStrong
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFAnomalousParticleDeltaStrong
+      fireCost: 100
+    - proto: NFAnomalousParticleEpsilonStrong
+      fireCost: 100
+    - proto: NFAnomalousParticleOmegaStrong
+      fireCost: 100
+    - proto: NFAnomalousParticleZetaStrong
+      fireCost: 100
+    - proto: NFAnomalousParticleSigmaStrong
+      fireCost: 100
+
+#region Holoflare pistol
+- type: entity
+  id: NFWeaponHoloflareGun
+  parent: [ NFBaseWeaponFrameEnergyPistol ]
+  name: holoflare pistol
+  description: |-
+    A modification of a civilian-grade laser pistol that can project holoflares onto surfaces.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+    - state: mode-cyan
+      shader: unshaded
+      map: [ "Firemode" ]
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-holoflare
+    selectedMode: SemiAuto
+    fireRate: 2
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/flaregun.ogg
+    projectileSpeed: 15
+  - type: Battery
+    maxCharge: 1200
+    startingCharge: 1200
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
+  - type: ProjectileBatteryAmmoProvider
+    proto: HoloFlareCyan
+    fireCost: 240
+  - type: EnergyGun
+    fireModes:
+    - proto: HoloFlareCyan
+      fireCost: 240
+      name: cyan
+      state: cyan
+    - proto: HoloFlareRed
+      fireCost: 240
+      name: red
+      state: red
+    - proto: HoloFlareYellow
+      fireCost: 240
+      name: yellow
+      state: yellow
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.EnergyGunFireModeVisuals.State:
+        Firemode:
+          Cyan: { state: mode-cyan }
+          Red: { state: mode-red }
+          Yellow: { state: mode-yellow }
+  - type: StaticPrice
+    price: 250

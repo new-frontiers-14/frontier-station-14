@@ -17,6 +17,15 @@
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
   - type: Item
     size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#d73307"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#d73307"
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -34,6 +43,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineShotgunEmpty
   name: ammo drum (.50 shells any)
   suffix: empty
@@ -43,57 +53,101 @@
     proto: null
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineShotgun
   name: ammo drum (.50 pellet)
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgun
+    # proto: ShellShotgun # Frontier
   - type: Sprite
     layers:
     - state: pellets
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ba7710"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ba7710"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineShotgunBeanbag
   name: ammo drum (.50 beanbags)
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgunBeanbag
+    # proto: ShellShotgunBeanbag # Frontier
   - type: Sprite
     layers:
     - state: beanbag
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#30722d"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#30722d"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineShotgunSlug
   name: ammo drum (.50 slug)
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgunSlug
+    # proto: ShellShotgunSlug # Frontier
   - type: Sprite
     layers:
     - state: slug
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#72382d"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#72382d"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineShotgunIncendiary
   name: ammo drum (.50 incendiary)
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgunIncendiary
+    # proto: ShellShotgunIncendiary # Frontier
   - type: Sprite
     layers:
     - state: slug
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#72382d"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#72382d"

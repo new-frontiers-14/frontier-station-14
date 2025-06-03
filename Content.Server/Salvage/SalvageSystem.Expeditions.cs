@@ -184,13 +184,13 @@ public sealed partial class SalvageSystem
         {
             component.NextOffer = _timing.CurTime + TimeSpan.FromSeconds(_cooldown);
             component.CooldownTime = TimeSpan.FromSeconds(_cooldown);
-            Announce(uid, Loc.GetString("salvage-expedition-mission-completed"));
+            Announce(uid, Loc.GetString("salvage-expedition-completed"));
         }
         else
         {
             component.NextOffer = _timing.CurTime + TimeSpan.FromSeconds(_failedCooldown);
             component.CooldownTime = TimeSpan.FromSeconds(_failedCooldown);
-            Announce(uid, Loc.GetString("salvage-expedition-mission-failed"));
+            Announce(uid, Loc.GetString("salvage-expedition-failed"));
         }
         // End Frontier: separate timeout/announcement for success/failures
         component.ActiveMission = 0;
@@ -252,13 +252,11 @@ public sealed partial class SalvageSystem
             EntityManager,
             _timing,
             _logManager,
-            _mapManager,
             _prototypeManager,
             _anchorable,
             _biome,
             _dungeon,
             _metaData,
-            _transform,
             _mapSystem,
             _station, // Frontier
             _shuttle, // Frontier

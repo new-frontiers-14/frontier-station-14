@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   name: proto-kinetic accelerator
   id: WeaponProtoKineticAccelerator
   parent: [WeaponProtoKineticAcceleratorBase, BaseC1Contraband] # Frontier: BaseCargoContraband<BaseC1Contraband
@@ -13,9 +14,10 @@
       map: [ "empty-icon" ]
   # todo: add itemcomponent with inhandVisuals states using unused texture and animation assets in kinetic_accelerator.rsi
   # todo: add clothingcomponent with clothingVisuals states using unused texture and animations assets in kinetic_accelerator.rsi
-  - type: Construction #Frontier
-    graph: PKASawn #Frontier
-    node: start #Frontier
-    deconstructionTarget: null #Frontier
-  - type: Wieldable # Frontier
-  # todo: add clothingcomponent with clothingVisuals states using unused texture and animations assets in kinetic_accelerator.rsi
+  - type: UpgradeableGun
+    whitelist:
+      tags:
+      - PKAUpgrade
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container

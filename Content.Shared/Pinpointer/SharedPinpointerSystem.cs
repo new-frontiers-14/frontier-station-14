@@ -1,3 +1,4 @@
+using Content.Shared._NF.Pinpointer;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -23,8 +24,7 @@ public abstract class SharedPinpointerSystem : EntitySystem
         SubscribeLocalEvent<PinpointerComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
         SubscribeLocalEvent<PinpointerComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<PinpointerComponent, ExaminedEvent>(OnExamined);
-        // Frontier
-        SubscribeLocalEvent<PinpointerComponent, PinpointerDoAfterEvent>(OnPinpointerDoAfter);
+        SubscribeLocalEvent<PinpointerComponent, PinpointerDoAfterEvent>(OnPinpointerDoAfter); // Frontier
     }
 
     /// <summary>
@@ -70,6 +70,23 @@ public abstract class SharedPinpointerSystem : EntitySystem
         if (args.Cancelled)
             return;
 
+        // Frontier: two-way pinpointer tracking
+        if (component.SetsTarget)
+        {
+            if (TryComp<PinpointerTargetComponent>(component.Target, out var pinpointerTarget))
+            {
+                pinpointerTarget.Entities.Remove(uid);
+                if (pinpointerTarget.Entities.Count <= 0)
+                    RemComp<PinpointerTargetComponent>(component.Target.Value);
+            }
+            if (args.Target != null)
+            {
+                pinpointerTarget = EnsureComp<PinpointerTargetComponent>(args.Target.Value);
+                pinpointerTarget.Entities.Add(uid);
+            }
+        }
+        // End Frontier: two-way pinpointer tracking
+
         component.Target = args.Target;
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(args.User):player} set target of {ToPrettyString(uid):pinpointer} to {ToPrettyString(component.Target):target}");
         if (component.UpdateTargetName)
@@ -86,6 +103,23 @@ public abstract class SharedPinpointerSystem : EntitySystem
 
         if (pinpointer.Target == target)
             return;
+
+        // Frontier: two-way pinpointer tracking
+        if (pinpointer.SetsTarget)
+        {
+            if (TryComp<PinpointerTargetComponent>(pinpointer.Target, out var pinpointerTarget))
+            {
+                pinpointerTarget.Entities.Remove(uid);
+                if (pinpointerTarget.Entities.Count <= 0)
+                    RemComp<PinpointerTargetComponent>(pinpointer.Target.Value);
+            }
+            if (target != null)
+            {
+                pinpointerTarget = EnsureComp<PinpointerTargetComponent>(target.Value);
+                pinpointerTarget.Entities.Add(uid);
+            }
+        }
+        // End Frontier: two-way pinpointer tracking
 
         pinpointer.Target = target;
         if (pinpointer.UpdateTargetName)

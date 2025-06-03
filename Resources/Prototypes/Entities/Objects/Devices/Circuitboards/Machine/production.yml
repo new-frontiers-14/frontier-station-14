@@ -205,6 +205,8 @@
     prototype: ResearchAndDevelopmentServer
     stackRequirements:
       Plasma: 5
+  - type: BindToStation # Frontier
+    enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: BiogeneratorMachineCircuitboard
@@ -372,7 +374,8 @@
       stackRequirements:
         Cable: 1
         Glass: 1
-    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+    - type: BindToStation # Frontier
+      enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: ThermomachineFreezerMachineCircuitBoard
@@ -485,7 +488,8 @@
     stackRequirements:
       Cable: 5
       Glass: 2
-  - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+  - type: BindToStation # Frontier
+    enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: SpaceHeaterMachineCircuitBoard
@@ -864,7 +868,7 @@
 - type: entity
   id: PortableGeneratorPacmanMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: P.A.C.M.A.N.-type portable generator machine board
+  name: P.A.C.M.A.N. portable generator machine board # Frontier: no -type
   components:
     - type: Sprite
       state: engineering
@@ -914,7 +918,7 @@
 - type: entity
   id: PortableGeneratorSuperPacmanMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator machine board
+  name: S.U.P.E.R.P.A.C.M.A.N. portable generator machine board # Frontier: no -type
   components:
     - type: Sprite
       state: engineering
@@ -935,7 +939,7 @@
 - type: entity
   id: PortableGeneratorJrPacmanMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: J.R.P.A.C.M.A.N.-type portable generator machine board
+  name: J.R.P.A.C.M.A.N. portable generator machine board # Frontier: no -type
   components:
     - type: Sprite
       state: engineering
@@ -952,7 +956,8 @@
         Silicon: 20
     - type: StaticPrice
       price: 40
-    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+    - type: BindToStation # Frontier
+      enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: ReagentGrinderMachineCircuitboard
@@ -1046,6 +1051,20 @@
       Manipulator: 1 # Frontier stackRequirements<requirements
     stackRequirements:
       Steel: 1
+
+- type: entity
+  id: MaterialSiloMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: material silo machine board
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: MachineMaterialSilo
+    requirements: # Frontier
+      MatterBin: 4 # Frontier: stackRequirements<requirements
+    stackRequirements:
+      Cable: 1
 
 - type: entity
   id: OreProcessorMachineCircuitboard
@@ -1282,8 +1301,9 @@
     state: supply
   - type: MachineBoard
     prototype: CargoMailTeleporter
+    requirements: # Frontier
+      Capacitor: 2 # Frontier: stackRequirements<requirements
     stackRequirements:
-      Capacitor: 2
       Steel: 5
 
 - type: entity
