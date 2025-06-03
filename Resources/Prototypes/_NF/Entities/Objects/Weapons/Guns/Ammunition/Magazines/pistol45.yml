@@ -23,6 +23,15 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#666666"
+      right:
+      - state: inhand-right-mag
+        color: "#666666"
 
 - type: entity
   id: NFBaseMagazinePistolSubMachineGun45
@@ -50,6 +59,13 @@
     magState: mag
     steps: 6
     zeroVisible: false
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol45/smg_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
 
 #region standard mags .45
 - type: entity
@@ -84,6 +100,18 @@
       color: "#ff8d00"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#666666"
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+        color: "#666666"
+      - state: inhand-right-stripe
+        color: "#ff8d00"
 
 - type: entity
   id: NFMagazinePistol45Incendiary
@@ -101,6 +129,18 @@
       color: "#ff0000"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#666666"
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+        color: "#666666"
+      - state: inhand-right-stripe
+        color: "#ff0000"
 
 - type: entity
   id: NFMagazinePistol45Uranium
@@ -118,6 +158,18 @@
       color: "#00ff00"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#666666"
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+        color: "#666666"
+      - state: inhand-right-stripe
+        color: "#00ff00"
 
 - type: entity
   id: NFMagazinePistol45Practice
@@ -134,6 +186,16 @@
     - state: decal-01
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#666666"
+      - state: inhand-left-stripe
+      right:
+      - state: inhand-right-mag
+        color: "#666666"
+      - state: inhand-right-stripe
 
 - type: entity
   id: NFMagazinePistol45Rubber
@@ -151,6 +213,18 @@
       color: "#00b0ff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#666666"
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+        color: "#666666"
+      - state: inhand-right-stripe
+        color: "#00b0ff"
 
 # Frontier
 #region smg mags .45
@@ -185,6 +259,16 @@
       color: "#ff8d00"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff8d00"
 
 - type: entity
   id: NFMagazineSubMachineGun45Rubber
@@ -201,3 +285,13 @@
       color: "#00b0ff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"

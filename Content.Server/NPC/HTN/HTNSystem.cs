@@ -310,7 +310,8 @@ public sealed class HTNSystem : EntitySystem
         count = 0;
     }
 
-    private bool IsNPCActive(EntityUid entity) // Frontier
+    // Frontier: skip handling entities on unloaded chunks
+    private bool IsNPCActive(EntityUid entity)
     {
         var transform = Transform(entity);
 
@@ -321,6 +322,7 @@ public sealed class HTNSystem : EntitySystem
 
         return _loadedQuery.TryGetComponent(chunk, out var loaded) && loaded.Loaders is not null;
     }
+    // End Frontier: skip handling entities on unloaded chunks
 
     private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
     {

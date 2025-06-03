@@ -239,10 +239,16 @@
     Meaterial: 200
 
 - type: latheRecipe
+  abstract: true # Frontier: replaced by NFSheetPaperFromWood
   id: SheetPaper
   result: SheetPaper1
-  categories: [Materials] # Frontier
   completetime: 1
-  applyMaterialDiscount: false # Frontier
   materials:
     Wood: 50
+
+- type: latheRecipe
+  id: MaterialClothCotton
+  result: MaterialCloth1
+  completetime: 1
+  materials:
+    Cotton: 200 #my pyrocloth keeps catching on fire whenever I make it!
