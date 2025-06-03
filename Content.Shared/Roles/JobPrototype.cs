@@ -10,7 +10,7 @@ namespace Content.Shared.Roles
     /// <summary>
     ///     Describes information for a single job on the station.
     /// </summary>
-    [Prototype("job")]
+    [Prototype]
     public sealed partial class JobPrototype : IPrototype
     {
         [ViewVariables]
@@ -50,11 +50,13 @@ namespace Content.Shared.Roles
         [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
         public HashSet<JobRequirement>? Requirements;
 
-        [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)] // Frontier
-        public Dictionary<string, HashSet<JobRequirement>>? AlternateRequirementSets; // Frontier: sets of requirements - one must be matched in order to 
-
-        [DataField("whitelistRequired")]
-        public bool WhitelistRequired = false;
+        // Frontier: alternate requirement sets
+        /// <summary>
+        /// Alternate sets of requirements - one must be matched in order to spawn as this job.
+        /// </summary>
+        [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
+        public Dictionary<string, HashSet<JobRequirement>>? AlternateRequirementSets;
+        // End Frontier: alternate requirement sets
 
         /// <summary>
         ///     When true - the station will have anouncement about arrival of this player.
@@ -137,6 +139,13 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField("jobEntity", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string? JobEntity = null;
+
+        /// <summary>
+        /// Entity to use as a preview in the lobby/character editor.
+        /// Same restrictions as <see cref="JobEntity"/> apply.
+        /// </summary>
+        [DataField]
+        public EntProtoId? JobPreviewEntity = null;
 
         [DataField]
         public ProtoId<JobIconPrototype> Icon { get; private set; } = "JobIconUnknown";

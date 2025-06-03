@@ -3,7 +3,9 @@ ghost-gui-ghost-warp-button = Ghost Warp
 ghost-gui-ghost-roles-button = Ghost Roles ({$count})
 ghost-gui-toggle-ghost-visibility-popup-on = Enabled visibility of ghosts.
 ghost-gui-toggle-ghost-visibility-popup-off = Disabled visibility of ghosts.
-ghost-gui-toggle-lighting-manager-popup = Toggled all lighting.
+ghost-gui-toggle-lighting-manager-popup-normal = Lighting normal.
+ghost-gui-toggle-lighting-manager-popup-personal-light = Enabled personal light.
+ghost-gui-toggle-lighting-manager-popup-fullbright = Fullbright mode.
 ghost-gui-toggle-fov-popup = Toggled field-of-view.
 ghost-gui-respawn = Respawn
 ghost-gui-uncryo = Un-cryo
@@ -16,6 +18,7 @@ ghost-target-window-current-button = Warp: {$name}
 ghost-target-window-warp-to-most-followed = Warp to Most Followed
 
 ghost-roles-window-title = Ghost Roles
+ghost-roles-window-available-button = Available ({$rolesCount})
 ghost-roles-window-join-raffle-button = Join raffle
 ghost-roles-window-raffle-in-progress-button =
     Join raffle ({$time} left, { $players ->

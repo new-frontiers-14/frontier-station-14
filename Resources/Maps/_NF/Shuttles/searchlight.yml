@@ -350,25 +350,25 @@ entities:
             0: 275
           0,-1:
             0: 13079
-            2: 2048
+            1: 2048
           -1,0:
             0: 8
           0,1:
-            1: 16
+            2: 16
           1,0:
-            2: 13107
+            1: 13107
           1,-1:
-            2: 14080
+            1: 14080
             0: 3
           1,1:
-            2: 4371
+            1: 4371
           -1,-3:
             0: 60552
-            2: 2
+            1: 2
           -1,-2:
             0: 52974
           -1,-1:
-            2: 1
+            1: 1
             0: 34828
           -1,-4:
             0: 32768
@@ -376,13 +376,13 @@ entities:
             0: 4096
           0,-3:
             0: 29459
-            2: 8
+            1: 8
             3: 34816
           0,-2:
             0: 32755
           1,-3:
             3: 4096
-            2: 16384
+            1: 16384
           1,-2:
             0: 13104
         uniqueMixes:
@@ -402,7 +402,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -417,7 +417,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          immutable: True
+          temperature: 293.15
           moles:
           - 0
           - 0
@@ -450,7 +450,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: searchlight
+      id: Searchlight
 - proto: AirAlarm
   entities:
   - uid: 34
@@ -1138,19 +1138,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-11.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 221
@@ -1696,7 +1683,7 @@ entities:
   - uid: 134
     components:
     - type: Transform
-      pos: 1.5,-1.5
+      pos: -1.5,-7.5
       parent: 1
 - proto: HandheldHealthAnalyzer
   entities:
@@ -1707,10 +1694,10 @@ entities:
       parent: 1
 - proto: LockerEngineerFilled
   entities:
-  - uid: 106
+  - uid: 214
     components:
     - type: Transform
-      pos: -1.5,-7.5
+      pos: 1.5,-9.5
       parent: 1
 - proto: LockerWallMaterialsFuelPlasmaFilled
   entities:
@@ -1754,6 +1741,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-9.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 106
+    components:
+    - type: Transform
+      pos: 1.5,-1.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 102
@@ -1794,17 +1788,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-7.5
-      parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
-- proto: PottedPlantRandom
-  entities:
-  - uid: 214
-    components:
-    - type: Transform
-      pos: 1.5,-9.5
       parent: 1
 - proto: PowerCellRecharger
   entities:
@@ -2483,7 +2466,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-6.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 133
     components:

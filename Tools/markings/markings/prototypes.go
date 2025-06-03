@@ -68,6 +68,7 @@ type MarkingPrototype struct {
 	MarkingCategory    string            `yaml:"markingCategory"`
 	SpeciesRestriction []string          `yaml:"speciesRestriction,omitempty"`
 	Sprites            []SpriteSpecifier `yaml:"sprites"`
+	Shader             string?           `yaml:"shader"` // impstation
 }
 
 type SpriteSpecifier struct {

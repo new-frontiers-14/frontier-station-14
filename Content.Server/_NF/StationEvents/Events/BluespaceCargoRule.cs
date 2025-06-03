@@ -8,7 +8,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Configuration;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.CCVar;
+using Content.Shared._NF.CCVar;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -53,7 +53,7 @@ public sealed class BluespaceCargoRule : StationEventSystem<BluespaceCargoRuleCo
         var xform = Transform(grid);
 
         var targetCoords = xform.Coordinates;
-        var gridBounds = gridComp.LocalAABB.Scale(_configuration.GetCVar(CCVars.CargoGenerationGridBoundsScale));
+        var gridBounds = gridComp.LocalAABB.Scale(_configuration.GetCVar(NFCCVars.CrateGenerationGridBoundsScale));
 
         for (var i = 0; i < 25; i++)
         {

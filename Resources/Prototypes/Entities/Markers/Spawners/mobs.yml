@@ -283,6 +283,7 @@
   name: Space Bear Spawner
   id: SpawnMobBear
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -305,7 +306,7 @@
       sprite: Mobs/Aliens/Carps/space.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobCarp
+    - NFMobCarp # Frontier MobCarp<NFMobCarp
 
 - type: entity
   name: Magicarp Spawner
@@ -319,7 +320,7 @@
       sprite: Mobs/Aliens/Carps/magic.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobCarpMagic
+    - NFMobCarpMagic # Frontier MobCarpMagic<NFMobCarpMagic
 
 - type: entity
   name: Holocarp Spawner
@@ -333,12 +334,13 @@
       sprite: Mobs/Aliens/Carps/holo.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobCarpHolo
+    - NFMobCarpHolo # Frontier MobCarpHolo<NFMobCarpHolo
 
 - type: entity
   name: Space Sharkminnow Spawner
   id: SpawnMobShark
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -409,6 +411,7 @@
   name: Space Kangaroo Spawner
   id: SpawnMobKangaroo
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -437,6 +440,7 @@
   name: Space Spider Spawner
   id: SpawnMobSpaceSpider
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -451,6 +455,7 @@
   name: Space Cobra Spawner
   id: SpawnMobSpaceCobra
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -609,7 +614,7 @@
       sprite: Mobs/Aliens/Xenos/purple_snake.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobPurpleSnake
+    - NFMobPurpleSnake # Frontier MobPurpleSnake<NFMobPurpleSnake
 
 - type: entity
   name: Small Purple Snake Spawner
@@ -623,7 +628,7 @@
       sprite: Mobs/Aliens/Xenos/purple_snake.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobSmallPurpleSnake
+    - NFMobSmallPurpleSnake # Frontier MobSmallPurpleSnake<NFMobSmallPurpleSnake
 
 - type: entity
   name: Slug Spawner
@@ -806,10 +811,10 @@
       sprite: Mobs/Elemental/orecrab.rsi
   - type: RandomSpawner
     prototypes:
-      - MobSpawnCrabUranium
-      - MobSpawnCrabIron
-      - MobSpawnCrabQuartz
-      - MobSpawnCrabSilver
+      - NFMobSpawnCrabUranium # Frontier: use NF variant
+      - NFMobSpawnCrabIron # Frontier: use NF variant
+      - NFMobSpawnCrabQuartz # Frontier: use NF variant
+      - NFMobSpawnCrabSilver # Frontier: use NF variant
 
 - type: entity
   name: luminous person spawner
@@ -880,3 +885,46 @@
   - type: ConditionalSpawner
     prototypes:
     - MobHonkBot
+
+- type: entity
+  name: gingerbread man Spawner
+  id: SpawnMobGingerbreadAI
+  suffix: Ghostrole
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: full
+        sprite: Mobs/Species/Gingerbread/parts.rsi
+  - type: ConditionalSpawner
+    prototypes:
+      - MobGingerbreadAI
+
+- type: entity
+  name: Reindeer Buck Spawner
+  id: SpawnMobReindeerBuck
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: reindeer_buck_still
+      sprite: Mobs/Animals/reindeer_buck.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobReindeerBuck
+
+- type: entity
+  name: Reindeer Doe Spawner
+  id: SpawnMobReindeerDoe
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: reindeer_doe_still
+      sprite: Mobs/Animals/reindeer_doe.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobReindeerDoe

@@ -9,6 +9,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
 using Robust.Client.UserInterface.RichText;
+using Content.Client.UserInterface.RichText;
 using Robust.Shared.Input;
 
 namespace Content.Client.Paper.UI
@@ -44,10 +45,25 @@ namespace Content.Client.Paper.UI
             typeof(BulletTag),
             typeof(ColorTag),
             typeof(HeadingTag),
-            typeof(ItalicTag)
+            typeof(ItalicTag),
+            typeof(MonoTag)
         };
 
         public event Action<string>? OnSaved;
+
+        private int _MaxInputLength = -1;
+        public int MaxInputLength
+        {
+            get
+            {
+                return _MaxInputLength;
+            }
+            set
+            {
+                _MaxInputLength = value;
+                UpdateFillState();
+            }
+        }
 
         public PaperWindow()
         {
@@ -64,9 +80,19 @@ namespace Content.Client.Paper.UI
             {
                 if (args.Function == EngineKeyFunctions.MultilineTextSubmit)
                 {
-                    RunOnSaved();
-                    args.Handle();
+                    // SaveButton is disabled when we hit the max input limit. Just check
+                    // that flag instead of trying to calculate the input length again
+                    if (!SaveButton.Disabled)
+                    {
+                        RunOnSaved();
+                        args.Handle();
+                    }
                 }
+            };
+
+            Input.OnTextChanged += args =>
+            {
+                UpdateFillState();
             };
 
             SaveButton.OnPressed += _ =>
@@ -127,6 +153,7 @@ namespace Content.Client.Paper.UI
 
             PaperContent.ModulateSelfOverride = visuals.ContentImageModulate;
             WrittenTextLabel.ModulateSelfOverride = visuals.FontAccentColor;
+            FillStatus.ModulateSelfOverride = visuals.FontAccentColor;
 
             var contentImage = visuals.ContentImagePath != null ? _resCache.GetResource<TextureResource>(visuals.ContentImagePath) : null;
             if (contentImage != null)
@@ -304,7 +331,29 @@ namespace Content.Client.Paper.UI
 
         private void RunOnSaved()
         {
+            // Prevent further saving while text processing still in
+            SaveButton.Disabled = true;
             OnSaved?.Invoke(Rope.Collapse(Input.TextRope));
+        }
+
+        private void UpdateFillState()
+        {
+            if (MaxInputLength != -1)
+            {
+                var inputLength = Input.TextLength;
+
+                FillStatus.Text = Loc.GetString("paper-ui-fill-level",
+                    ("currentLength", inputLength),
+                    ("maxLength", MaxInputLength));
+
+                // Disable the save button if we've gone over the limit
+                SaveButton.Disabled = inputLength > MaxInputLength;
+            }
+            else
+            {
+                FillStatus.Text = "";
+                SaveButton.Disabled = false;
+            }
         }
     }
 }

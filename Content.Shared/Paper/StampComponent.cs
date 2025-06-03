@@ -64,11 +64,18 @@ public sealed partial class StampComponent : Component
     [DataField("sound")]
     public SoundSpecifier? Sound = null;
 
-    // Frontier: allow reapplying stamps
+    // Frontier: allow reapplying stamps, protected stamps
     /// <summary>
     /// Whether or not a stamp can be reapplied
     /// </summary>
     [DataField("reapply")]
     public bool Reapply { get; set; } = false;
-    // End Frontier: allow reapplying stamps
+
+    /// <summary>
+    /// When true, stamped papers are marked as protected
+    /// </summary>
+
+    [DataField]
+    public bool Protected = false;
+    // End Frontier
 }

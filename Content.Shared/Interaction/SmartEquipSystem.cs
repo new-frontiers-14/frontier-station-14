@@ -5,6 +5,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Input;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
+using Content.Shared.Stacks;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Whitelist;
@@ -34,6 +35,7 @@ public sealed class SmartEquipSystem : EntitySystem
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.SmartEquipBackpack, InputCmdHandler.FromDelegate(HandleSmartEquipBackpack, handle: false, outsidePrediction: false))
             .Bind(ContentKeyFunctions.SmartEquipBelt, InputCmdHandler.FromDelegate(HandleSmartEquipBelt, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipWallet, InputCmdHandler.FromDelegate(HandleSmartEquipWallet, handle: false, outsidePrediction: false)) // Frontier
             .Register<SmartEquipSystem>();
     }
 
@@ -53,7 +55,12 @@ public sealed class SmartEquipSystem : EntitySystem
     {
         HandleSmartEquip(session, "belt");
     }
-
+    // Frontier: smart-equip to wallet
+    private void HandleSmartEquipWallet(ICommonSession? session)
+    {
+        HandleSmartEquip(session, "wallet");
+    }
+    // End Frontier: smart-equip to wallet
     private void HandleSmartEquip(ICommonSession? session, string equipmentSlot)
     {
         if (session is not { } playerSession)
@@ -151,8 +158,13 @@ public sealed class SmartEquipSystem : EntitySystem
             _hands.TryDrop(uid, hands.ActiveHand, handsComp: hands);
             _storage.Insert(slotItem, handItem.Value, out var stacked, out _);
 
-            if (stacked != null)
-                _hands.TryPickup(uid, stacked.Value, handsComp: hands);
+            // if the hand item stacked with the things in inventory, but there's no more space left for the rest
+            // of the stack, place the stack back in hand rather than dropping it on the floor
+            if (stacked != null && !_storage.CanInsert(slotItem, handItem.Value, out _))
+            {
+                if (TryComp<StackComponent>(handItem.Value, out var handStack) && handStack.Count > 0)
+                    _hands.TryPickup(uid, handItem.Value, handsComp: hands);
+            }
 
             return;
         }

@@ -85,7 +85,7 @@
         factor: 0.2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.3
+        amount: 0.15
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/goldencat.rsi
     state: icon_empty
@@ -108,7 +108,7 @@
         factor: 1
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.4
+        amount: 0.15
       - !type:ExplosionReactionEffect
         explosionType: Default
         maxIntensity: 0.1
@@ -138,7 +138,7 @@
         factor: 0.8
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.4
+        amount: 0.25
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/torpedojuice.rsi
     state: icon_empty
@@ -161,7 +161,7 @@
         factor: 0.5
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.2
+        amount: 0.08
       - !type:SatiateHunger
         factor: 0.1
       - !type:HealthChange
@@ -198,3 +198,42 @@
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/honeyicedtea.rsi
     state: icon
+
+- type: reagent
+  id: WassailMulledAle
+  name: reagent-name-wassail
+  parent: BaseAlcohol
+  desc: reagent-desc-wassail
+  physicalDesc: reagent-physical-desc-spicy
+  flavor: wassail
+  color: "#AD2D00"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:PopupMessage # a nice warm soothing drink
+        type: Local
+        visualType: Medium
+        messages:
+        - "drinks-effect-nf-wassail"
+        probability: 0.1
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/wassail.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+- type: reagent
+  id: Eggnog
+  name: reagent-name-eggnog
+  parent: BaseAlcohol
+  desc: reagent-desc-eggnog
+  physicalDesc: reagent-physical-desc-thick
+  flavor: creamy
+  color: "#ffebc4"
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/eggnog.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 8
+  metamorphicFillBaseName: fill
+  metamorphicChangeColor: false

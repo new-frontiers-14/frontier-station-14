@@ -14,6 +14,7 @@ public abstract class SharedArtifactCrusherSystem : EntitySystem
     [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
     [Dependency] protected readonly SharedAudioSystem AudioSystem = default!;
     [Dependency] protected readonly SharedContainerSystem ContainerSystem = default!;
+    [Dependency] private readonly EmagSystem _emag = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -25,6 +26,7 @@ public abstract class SharedArtifactCrusherSystem : EntitySystem
         SubscribeLocalEvent<ArtifactCrusherComponent, StorageOpenAttemptEvent>(OnStorageOpenAttempt);
         SubscribeLocalEvent<ArtifactCrusherComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<ArtifactCrusherComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<ArtifactCrusherComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier: demag
     }
 
     private void OnInit(Entity<ArtifactCrusherComponent> ent, ref ComponentInit args)
@@ -40,9 +42,33 @@ public abstract class SharedArtifactCrusherSystem : EntitySystem
 
     private void OnEmagged(Entity<ArtifactCrusherComponent> ent, ref GotEmaggedEvent args)
     {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (_emag.CheckFlag(ent, EmagType.Interaction))
+            return;
+
+        if (ent.Comp.AutoLock)
+            return;
+
         ent.Comp.AutoLock = true;
         args.Handled = true;
     }
+
+    // Frontier: demag
+    private void OnUnemagged(Entity<ArtifactCrusherComponent> ent, ref GotUnEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(ent, EmagType.Interaction))
+            return;
+
+        if (ent.Comp.AutoLock)
+            ent.Comp.AutoLock = false;
+        args.Handled = true;
+    }
+    // End Frontier
 
     private void OnStorageOpenAttempt(Entity<ArtifactCrusherComponent> ent, ref StorageOpenAttemptEvent args)
     {

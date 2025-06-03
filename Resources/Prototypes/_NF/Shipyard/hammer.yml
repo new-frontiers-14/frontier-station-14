@@ -10,9 +10,10 @@
 #
 - type: vessel
   id: Hammer
+  parent: BaseVessel
   name: SBB Hammer
   description: A mobile engineering platform for deep-space repairs, upgrades and remodelling.
-  price: 40000
+  price: 44000 # Appraises at 38257, ~15% markup
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/hammer.yml
@@ -38,6 +39,6 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

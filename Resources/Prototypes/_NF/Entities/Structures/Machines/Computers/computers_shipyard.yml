@@ -49,7 +49,7 @@
   id: ComputerShipyard
   components:
   - type: ShipyardConsole
-    newJobTitle: Captain
+    newJobTitle: job-name-captain
 
 - type: entity
   id: ComputerShipyardSecurity
@@ -81,8 +81,8 @@
 - type: entity
   id: ComputerShipyardNfsd
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
-  name: nfsd shipyard console
-  description: Used to buy nfsd patrol vessels
+  name: NFSD shipyard console
+  description: Used to buy NFSD patrol vessels.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -109,7 +109,7 @@
   id: ComputerShipyardSyndicate
   parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyardBase]
   name: syndicate shipyard console
-  description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
+  description: Used to buy ships not available through other means.
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Syndicate
@@ -130,14 +130,17 @@
       state: blackmarket_key
   - type: ShipyardConsole
     shipyardChannel: Syndicate
-    secretShipyardChannel: Nfsd
-    salesTax: 0.3
+    #secretShipyardChannel: Nfsd #Find out via communicating with other players
+    taxAccounts:
+      Invalid: 0.30
+    ignoreBaseSaleRate: true # Fixed 70% sale rate.
+    canTransferDeed: false
 
 - type: entity
   id: ComputerShipyardBlackMarket
   parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyardBase]
   name: black market shipyard console
-  description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
+  description: Used to buy ill-gotten vesssels for nefarious purposes.
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.BlackMarket
@@ -158,14 +161,43 @@
       state: blackmarket_key
   - type: ShipyardConsole
     shipyardChannel: Freelance
-    secretShipyardChannel: Nfsd
-    salesTax: 0.3
+    #secretShipyardChannel: Nfsd #Find out via communicating with other players
+    taxAccounts:
+      Invalid: 0.30
+    ignoreBaseSaleRate: true # Fixed 70% sale rate.
+    canTransferDeed: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerShipyardBlackMarket
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerShipyardBlackMarketBroken
+  name: broken black market shipyard console
+  description: This console has seen better days. Can be repaired with a repair kit.
+  components:
+  - type: Construction
+    graph: ComputerShipyardBlackMarket
+    node: start
 
 - type: entity
   id: ComputerShipyardExpedition
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: expedition shipyard console
-  description: Used to buy ships outfitted for planetary expeditions
+  description: Used to buy ships outfitted for planetary expeditions.
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Expedition
@@ -177,19 +209,19 @@
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
-      state: computer_blackmarket
+      state: computer_expedition
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket
+      state: shipyard
     - map: ["computerLayerKeys"]
-      state: blackmarket_key
+      state: telesci_key
 
 - type: entity
   id: ComputerShipyardScrap
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: scrapyard console
-  description: Used to purchase and sell "shuttles"
+  description: Used to purchase and sell "shuttles".
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Scrap
@@ -201,13 +233,37 @@
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
-      state: computer_blackmarket
+      state: computer_scrap
+    - map: ["computerLayerKeyboard"]
+      state: scrap_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_scrap
+    - map: ["computerLayerKeys"]
+      state: scrap_key
+
+- type: entity
+  id: ComputerShipyardMedical
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: medical shipyard console
+  description: Used to purchase and sell medical shuttles
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Medical
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Medical:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_medical
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket
+      state: shipyard_medical
     - map: ["computerLayerKeys"]
-      state: blackmarket_key
+      state: telesci_key
 
 - type: entity
   id: ComputerShipyardSr

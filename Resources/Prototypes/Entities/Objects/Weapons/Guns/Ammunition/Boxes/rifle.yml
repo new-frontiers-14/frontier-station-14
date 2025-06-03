@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
   id: BaseMagazineBoxRifle
   components:
   - type: BallisticAmmoProvider
@@ -16,10 +16,10 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi # Frontier: add _NF prefix
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 4
     zeroVisible: false
   - type: Appearance
 
@@ -28,22 +28,20 @@
   parent: BaseMagazineBoxRifle
   id: MagazineBoxRifleBig
   name: ammunition box (.20 rifle)
+  suffix: Big
   components:
   - type: BallisticAmmoProvider
     capacity: 200
     proto: CartridgeRifle
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi # Frontier
-    state: bigdisplay # Frontier
   - type: Sprite
     layers:
-    - state: base-b
+    - state: base-b # Frontier: base-big<base-b
       map: ["enum.GunVisualLayers.Base"]
-    - state: magb-1
+    - state: magb-1 # Frontier: mag-big-1<magb-1
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
-    magState: magb
-    steps: 2
+    magState: magb # Frontier: mag-big<magb
+    steps: 4
     zeroVisible: false
   - type: Appearance
 
@@ -54,9 +52,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi # Frontier
-    state: display # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -71,9 +66,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRiflePractice
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi # Frontier
-    state: practicedisplay # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -89,9 +81,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleIncendiary
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi # Frontier
-    state: incendiarydisplay # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -107,9 +96,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleUranium
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi # Frontier
-    state: uraniumdisplay # Frontier
   - type: Sprite
     layers:
     - state: base

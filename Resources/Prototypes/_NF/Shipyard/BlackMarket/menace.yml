@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Menace
+  parent: BaseVesselAntag
   name: Menace
   description: 'Mail is no longer an option: you either receive it or you die.'
   price: 21000
@@ -29,7 +30,7 @@
   minPlayers: 0
   stations:
     Menace:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierAntagVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Parcel {1}' # Fake name eh?
@@ -37,4 +38,5 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          availableJobs: {}
+          availableJobs:
+            NFPirate: [ 0, 0 ]

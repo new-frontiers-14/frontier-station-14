@@ -18,6 +18,8 @@ entities:
     - type: Transform
       pos: -0.48958334,-0.53125
       parent: invalid
+    - type: BecomesStation
+      id: Loader
     - type: MapGrid
       chunks:
         0,0:
@@ -740,6 +742,14 @@ entities:
     - type: Transform
       pos: 1.5,6.5
       parent: 1
+- proto: ComputerWallmountWithdrawBankATM
+  entities:
+  - uid: 255
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-0.5
+      parent: 1
 - proto: ConveyorBelt
   entities:
   - uid: 78
@@ -1399,10 +1409,10 @@ entities:
       parent: 1
 - proto: LockerQuarterMasterFilled
   entities:
-  - uid: 132
+  - uid: 256
     components:
     - type: Transform
-      pos: -0.5,5.5
+      pos: 0.5,0.5
       parent: 1
 - proto: LockerWallMaterialsFuelPlasmaFilled
   entities:
@@ -1411,6 +1421,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-4.5
+      parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 132
+    components:
+    - type: Transform
+      pos: -0.5,5.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -1460,10 +1477,6 @@ entities:
     - type: Transform
       pos: -1.5,-2.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: Poweredlight
   entities:
   - uid: 126
@@ -1913,7 +1926,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,7.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 2
     components:

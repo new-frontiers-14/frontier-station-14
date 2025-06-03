@@ -71,6 +71,9 @@
     - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-stake
       map: [ stake ]
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-shell
+      map: [ shrapnel ]
       visible: false
   - type: Item
     size: Normal
@@ -110,6 +113,7 @@
           - CrossbowBoltExplosive
           - CrossbowBoltEMP
           - CrossbowBoltIncendiary
+          - CrossbowBoltShrapnel
           - Plunger
           - Bread
           - MailCapsule
@@ -136,6 +140,7 @@
     - bread
     - mail
     - stake
+    - shrapnel
     mapLayers:
       bolt:
         whitelist:
@@ -193,6 +198,10 @@
         whitelist:
           tags:
           - WeaponMeleeStake
+      shrapnel:
+        whitelist:
+          tags:
+          - CrossbowBoltShrapnel
 
 - type: entity
   id: BaseCrossbowWieldable

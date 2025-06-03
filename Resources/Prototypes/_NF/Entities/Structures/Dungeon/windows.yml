@@ -3,7 +3,8 @@
 - type: entity
   id: WindowMurkyDungeon
   abstract: true
-  suffix: DO NOT MAP, Dungeon only
+  suffix: Dungeon only, DO NOT MAP
+  # categories: [ DoNotMap ] # FIXME - shouldn't be mapped on shuttles/POIs, bluespace events might be fine
   description: A murky glass window, it's hard to see what's on the other side.
   components:
   - type: Fixtures
@@ -19,7 +20,8 @@
 - type: entity
   id: WindowDirectionalMurkyDungeon
   abstract: true
-  suffix: DO NOT MAP, Dungeon only
+  suffix: Dungeon only, DO NOT MAP
+  # categories: [ DoNotMap ] # FIXME - shouldn't be mapped on shuttles/POIs, bluespace events might be fine
   description: A murky glass window, it's hard to see what's on the other side.
   components:
   - type: Fixtures
@@ -44,10 +46,10 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/window.rsi
+    sprite: _NF/Structures/Windows/window.rsi # Frontier
     color: "#ffd38c"
   - type: Icon
-    sprite: Structures/Windows/window.rsi
+    sprite: _NF/Structures/Windows/window.rsi # Frontier
     state: full
     color: "#ffd38c"
 
@@ -61,10 +63,10 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/reinforced_window.rsi
+    sprite: _NF/Structures/Windows/reinforced_window.rsi # Frontier
     color: "#ffd38c"
   - type: Icon
-    sprite: Structures/Windows/reinforced_window.rsi
+    sprite: _NF/Structures/Windows/reinforced_window.rsi # Frontier
     color: "#ffd38c"
 
 # Mining window
@@ -109,10 +111,10 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/plasma_window.rsi
+    sprite: _NF/Structures/Windows/plasma_window.rsi # Frontier
     color: "#ffd38c"
   - type: Icon
-    sprite: Structures/Windows/plasma_window.rsi
+    sprite: _NF/Structures/Windows/plasma_window.rsi # Frontier
     color: "#ffd38c"
 
 # Plasma reinforced window
@@ -125,10 +127,10 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/reinforced_plasma_window.rsi
+    sprite: _NF/Structures/Windows/reinforced_plasma_window.rsi # Frontier
     color: "#ffd38c"
   - type: Icon
-    sprite: Structures/Windows/reinforced_plasma_window.rsi
+    sprite: _NF/Structures/Windows/reinforced_plasma_window.rsi # Frontier
     color: "#ffd38c"
 
 # Uranium reinforced window
@@ -141,10 +143,10 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/reinforced_uranium_window.rsi
+    sprite: _NF/Structures/Windows/reinforced_uranium_window.rsi # Frontier
     color: "#ffd38c"
   - type: Icon
-    sprite: Structures/Windows/reinforced_uranium_window.rsi
+    sprite: _NF/Structures/Windows/reinforced_uranium_window.rsi # Frontier
     color: "#ffd38c"
 
 # Directional

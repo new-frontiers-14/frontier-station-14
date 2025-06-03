@@ -19,13 +19,14 @@ shipyard-console-sale-organic-aboard = All crew must disembark. {$name} is still
 shipyard-console-sale-invalid-ship = Ship is invalid and cannot be sold.
 shipyard-console-sale-unknown-reason = Ship cannot be sold: {reason}
 shipyard-console-deed-label = Registered Ship:
-shipyard-console-appraisal-label = Shuttle Estimated Value:{" "}
+shipyard-console-appraisal-label = Shuttle Resale Value:{" "}
 shipyard-console-no-voucher-redemptions = All voucher redemptions have been used.
 shipyard-console-invalid-voucher-type = This voucher cannot be used at this console.
 
 shipyard-console-contraband-onboard = Smuggled contraband detected onboard.
 shipyard-console-station-resources = Vital station resources detected onboard.
 shipyard-console-dangerous-materials = Dangerous materials detected onboard.
+shipyard-console-fallback-prevent-sale = YML-class bugs detected onboard. Please file a bug report when possible.
 
 shipyard-console-menu-size-label = Size:{" "}
 shipyard-console-menu-class-label = Class:{" "}

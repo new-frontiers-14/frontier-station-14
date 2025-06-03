@@ -10,7 +10,7 @@
     sprite: _NF/Clothing/Belt/arcadia.rsi
 
 - type: entity
-  parent: [ ChaplainClothes, NFClothingBeltStorageBase ]
+  parent: NFClothingBeltStorageBase
   id: ClothingBeltChaplainSash
   name: chaplain sash
   description: Who knew that scarves can be also tied around your waist?
@@ -65,7 +65,7 @@
 - type: entity
   parent: [ BaseC2ContrabandUnredeemable, ClothingBeltAssault ]
   id: ClothingBeltNfsd
-  name: nfsd belt
+  name: NFSD belt
   description: A tactical assault belt.
   components:
   - type: Sprite
@@ -76,7 +76,7 @@
 - type: entity
   parent: [ BaseC2ContrabandUnredeemable, ClothingBeltSecurityWebbing ]
   id: ClothingBeltNfsdWebbing
-  name: nfsd webbing
+  name: NFSD webbing
   description: A tactical assault webbing.
   components:
   - type: Sprite
@@ -84,3 +84,21 @@
   - type: Clothing
     sprite: _NF/Clothing/Belt/nfsd_webbing.rsi
   - type: CatWearable
+
+# Ported from Nyano
+- type: entity
+  parent: NFClothingBeltStorageBase # muh belt parity
+  id: ClothingBeltMartialBlack
+  name: black belt
+  description: This is the most martial of all the belts.
+  components:
+  - type: MeleeWeapon
+    attackRate: 1.25
+    damage:
+      types:
+        Blunt: 1
+        Slash: 1
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/martial_black.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/martial_black.rsi

@@ -12,7 +12,7 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 5
+        maxVol: 10
   - type: RefillableSolution
     solution: hypospray
   - type: ExaminableSolution
@@ -23,6 +23,8 @@
     delay: 2.5
   - type: StaticPrice
     price: 550
+  - type: PirateBountyItem # Frontier
+    id: HypoMini # Frontier
 
 - type: entity
   name: NTCS-102 hypospray
@@ -59,3 +61,359 @@
     state: medipen
   - type: Item
     sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#666865"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#666865"
+      - state: base-colorB-inhand-right
+
+- type: entity
+  parent: ChemicalMedipen
+  id: NFChemicalMedipen
+  abstract: true
+  components:
+  - type: Item
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+  - type: Hypospray
+    solutionName: pen
+    onlyAffectsMobs: false
+    injectOnly: true
+    transferAmount: 15 # Explicitly redefined in case parent changes
+  - type: Tag
+    tags: []
+
+- type: entity
+  name: hemostasis auto-injector
+  parent: NFChemicalMedipen
+  id: HemostasisAutoInjector
+  description: A rapid dose of coagulants and circulatory fluids. Contains tranexamic acid and saline.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#1d7e84"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#1d7e84"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    layers:
+    - state: hemostasispen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: hemostasispen_empty
+  - type: Hypospray
+    transferAmount: 20
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: TranexamicAcid
+          Quantity: 5
+        - ReagentId: Saline
+          Quantity: 15
+
+- type: entity
+  name: stimulant auto-injector
+  parent: NFChemicalMedipen
+  id: StimulantAutoInjector
+  description: A rapid dose of potent stimulants and governing agents. Contains desoxyephedrine and dylovene. Use with extreme caution.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#fff400"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#fff400"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: stimulantpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: stimulantpen_empty
+  - type: Hypospray
+    transferAmount: 20
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 10
+        - ReagentId: Dylovene
+          Quantity: 10
+
+- type: entity
+  name: crisis auto-injector
+  parent: NFChemicalMedipen
+  id: CrisisAutoInjector
+  description: A rapid dose of stabilizers and vasodialaters for use on critically injured patients. Contains inaprovaline and dexalin plus.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#c60032"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#c60032"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: crisispen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: crisispen_empty
+  - type: Hypospray
+    transferAmount: 20
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Inaprovaline
+          Quantity: 10
+        - ReagentId: DexalinPlus
+          Quantity: 10
+
+- type: entity
+  name: lacerinol auto-injector
+  parent: NFChemicalMedipen
+  id: LacerAutoInjector
+  description: A rapid dose of lacerinol and tranexamic acid, intended for combat applications.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#558255"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#558255"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: lacerpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: lacerpen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Lacerinol
+          Quantity: 10
+        - ReagentId: TranexamicAcid
+          Quantity: 5
+
+- type: entity
+  name: bruizine auto-injector
+  parent: NFChemicalMedipen
+  id: BruizAutoInjector
+  description: A rapid dose of bruizine and tranexamic acid, intended for combat applications.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#c60032"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#c60032"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: bruizpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: bruizpen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Bruizine
+          Quantity: 10
+        - ReagentId: TranexamicAcid
+          Quantity: 5
+
+- type: entity
+  name: polypyrylium oligomers auto-injector
+  parent: NFChemicalMedipen
+  id: PolyAutoInjector
+  description: A rapid dose of polyp... polypyryl... polypyryliu.... It contains extract of spaceman's trumpet. Intended to address brute damage and asphyxiation.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#9423ff"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#9423ff"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: polypen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: polypen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: PolypyryliumOligomers
+          Quantity: 15
+
+- type: entity
+  name: barkeeper's friend auto-injector
+  parent: NFChemicalMedipen
+  id: EthylredoxrazineAutoInjector
+  description: A rapid dose of ethanol neutralizers and anti-toxins for customers who have maybe had enough for the night. Contains ethylredoxrazine and dylovene.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#2d5708"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#2d5708"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: barkeepersfriend
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: barkeepersfriend_empty
+  - type: Hypospray
+    transferAmount: 20
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Ethylredoxrazine
+          Quantity: 15
+        - ReagentId: Dylovene
+          Quantity: 5
+
+- type: entity
+  parent: BaseItem
+  id: BorgHypoNoRefill
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/borghypo.rsi
+    layers:
+    - state: borghypo
+      map: [ enum.SolutionContainerLayers.Base ]
+    - state: fill-1
+      visible: false
+      map: [ enum.SolutionContainerLayers.Fill ]
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+    injectOnly: true
+  - type: UseDelay
+    delay: 0.5
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 7
+    fillBaseName: fill-
+
+- type: entity
+  parent: BorgHypoNoRefill
+  id: BorgHypoTricordrazine
+  description: A sterile injector for rapid administration of drugs to patients. This one synthesizes tricordrazine.
+  name: tricordrazine hypo
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/borghypo.rsi
+    layers:
+    - state: hypocyan
+      map: [ enum.SolutionContainerLayers.Base ]
+    - state: fill-1
+      visible: false
+      map: [ enum.SolutionContainerLayers.Fill ]
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Tricordrazine
+        Quantity: 5
+    duration: 7.5
+
+- type: entity
+  parent: BorgHypoNoRefill
+  id: BorgHypoInaprovaline
+  description: A sterile injector for rapid administration of drugs to patients. This one synthesizes inaprovaline.
+  name: inaprovaline hypo
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/borghypo.rsi
+    layers:
+    - state: hypomaroon
+      map: [ enum.SolutionContainerLayers.Base ]
+    - state: fill-1
+      visible: false
+      map: [ enum.SolutionContainerLayers.Fill ]
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Inaprovaline
+        Quantity: 5
+    duration: 7.5

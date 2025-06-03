@@ -1,4 +1,5 @@
 using Content.Shared._NF.LoggingExtensions; // Frontier
+using Content.Shared._NF.Item; // Frontier
 using Content.Shared.Clothing.Components;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
@@ -116,7 +117,7 @@ public abstract partial class SharedHandsSystem : EntitySystem
                 && (itemPos.Position - TransformSystem.GetMapCoordinates(uid, xform: xform).Position).Length() <= MaxAnimationRange
                 && MetaData(entity).VisibilityMask == MetaData(uid).VisibilityMask) // Don't animate aghost pickups.
             {
-                var initialPosition = EntityCoordinates.FromMap(coordinateEntity, itemPos, TransformSystem, EntityManager);
+                var initialPosition = TransformSystem.ToCoordinates(coordinateEntity, itemPos);
                 _storage.PlayPickupAnimation(entity, initialPosition, xform.Coordinates, itemXform.LocalRotation, uid);
             }
         }
@@ -198,12 +199,14 @@ public abstract partial class SharedHandsSystem : EntitySystem
     /// <summary>
     ///     Puts an item into any hand, preferring the active hand, or puts it on the floor.
     /// </summary>
+    /// <param name="dropNear">If true, the item will be dropped near the owner of the hand if possible.</param>
     public void PickupOrDrop(
         EntityUid? uid,
         EntityUid entity,
         bool checkActionBlocker = true,
         bool animateUser = false,
         bool animate = true,
+        bool dropNear = false,
         HandsComponent? handsComp = null,
         ItemComponent? item = null)
     {
@@ -215,13 +218,18 @@ public abstract partial class SharedHandsSystem : EntitySystem
             // TODO make this check upwards for any container, and parent to that.
             // Currently this just checks the direct parent, so items can still teleport through containers.
             ContainerSystem.AttachParentToContainerOrGrid((entity, Transform(entity)));
+
+            if (dropNear && uid.HasValue)
+            {
+                TransformSystem.PlaceNextTo(entity, uid.Value);
+            }
         }
     }
 
     /// <summary>
     ///     Puts an entity into the player's hand, assumes that the insertion is allowed. In general, you should not be calling this function directly.
     /// </summary>
-    public virtual void DoPickup(EntityUid uid, Hand hand, EntityUid entity, HandsComponent? hands = null)
+    public virtual void DoPickup(EntityUid uid, Hand hand, EntityUid entity, HandsComponent? hands = null, bool log = true)
     {
         if (!Resolve(uid, ref hands))
             return;
@@ -235,11 +243,15 @@ public abstract partial class SharedHandsSystem : EntitySystem
             Log.Error($"Failed to insert {ToPrettyString(entity)} into users hand container when picking up. User: {ToPrettyString(uid)}. Hand: {hand.Name}.");
             return;
         }
+        RaiseLocalEvent(entity, new PickedUpEvent(uid, entity), false); // Frontier
 
-        // Frontier modification: adds extra things to the log
-        var extraLogs = LoggingExtensions.GetExtraLogs(EntityManager, entity);
+        if (log)
+        {
+            // Frontier modification: adds extra things to the log
+            var extraLogs = LoggingExtensions.GetExtraLogs(EntityManager, entity);
 
-        _adminLogger.Add(LogType.Pickup, LogImpact.Low, $"{ToPrettyString(uid):user} picked up {ToPrettyString(entity):entity}{extraLogs}");
+            _adminLogger.Add(LogType.Pickup, LogImpact.Low, $"{ToPrettyString(uid):user} picked up {ToPrettyString(entity):entity}{extraLogs}");
+        }
 
         Dirty(uid, hands);
 

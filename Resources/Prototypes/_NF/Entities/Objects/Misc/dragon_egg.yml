@@ -44,6 +44,8 @@
     description: ghost-role-information-baby-dragon-description
     rules: ghost-role-information-baby-dragon-rules
     prototype: BabyDragon
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
   - type: GhostRoleMobSpawner
     prototype: MobSpawnBabyDragon
   - type: SolutionContainerManager
@@ -104,7 +106,7 @@
     state: dragon
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Nyanotrasen/shogi_piece_clack.ogg
+      path: /Audio/_NF/Animals/dragon_hatch.ogg
   - type: Fixtures
     fixtures:
       portalFixture:

@@ -1,7 +1,5 @@
-
 - type: entity
-  abstract: true
-  parent: ClothingBackpack
+  parent: [BaseSubfloorAnchorStorage, ClothingBackpack]
   id: NFClothingBackpack
   components:
   - type: Storage
@@ -15,8 +13,7 @@
     - 0,0,6,3
 
 - type: entity
-  abstract: true
-  parent: ClothingBackpackDuffel
+  parent: [BaseSubfloorAnchorStorage, ClothingBackpackDuffel]
   id: NFClothingDuffel
   components:
   - type: Storage
@@ -33,7 +30,7 @@
   abstract: true
   parent: NFClothingBackpack
   id: NFClothingMessenger
-  components:  
+  components:
   ## One 4x4 pocket, four 2x2 pockets
   - type: Storage
     grid:

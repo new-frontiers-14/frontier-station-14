@@ -78,3 +78,19 @@
   - type: Construction
     graph: WallFreezer
     node: ShelfWallFreezerDark
+
+- type: entity
+  parent: ShelfRMetal
+  id: ShelfRMetalSecurity
+  suffix: Security, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  parent: ShelfRWood
+  id: ShelfRWoodSecurity
+  suffix: Security, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"]]

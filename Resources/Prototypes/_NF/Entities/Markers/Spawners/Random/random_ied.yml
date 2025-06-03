@@ -1,0 +1,79 @@
+- type: entityTable
+  id: NFTableRandomConcealedMine
+  table: !type:GroupSelector
+    children:
+    # Explosive
+    - !type:GroupSelector
+      children:
+      - id: NFToolboxMineExplosive
+        weight: 1
+      - id: NFWetFloorSignMineExplosive
+        weight: 1
+      - id: NFPlushieMineExplosive
+        weight: 36
+      - id: NFBoxMineExplosive
+        weight: 18
+      - id: NFTrashMineExplosive
+        weight: 19
+      - id: NFScrapMineExplosive
+        weight: 25
+    # Cryo
+    - !type:GroupSelector
+      children:
+      - id: NFToolboxMineCryo
+        weight: 1
+      - id: NFWetFloorSignMineCryo
+        weight: 1
+      - id: NFPlushieMineCryo
+        weight: 36
+      - id: NFBoxMineCryo
+        weight: 18
+      - id: NFTrashMineCryo
+        weight: 19
+      - id: NFScrapMineCryo
+        weight: 25
+    # Fire
+    - !type:GroupSelector
+      children:
+      - id: NFToolboxMineFire
+        weight: 1
+      - id: NFWetFloorSignMineFire
+        weight: 1
+      - id: NFPlushieMineFire
+        weight: 36
+      - id: NFBoxMineFire
+        weight: 19
+      - id: NFTrashMineFire
+        weight: 18
+      - id: NFScrapMineFire
+        weight: 25
+
+- type: entity
+  name: random mine spawner
+  id: NFConcealedMineSpawner
+  parent: MarkerBasePlaceFree
+  suffix: Frontier
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring1
+      color: "#990000"
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring2
+      color: "#009900"
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_wiring3
+      color: "#000099"
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: cheesiehonkers-trash
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      state: ied_display
+    - sprite: _NF/Objects/Weapons/Bombs/ied_overlay.rsi
+      shader: unshaded
+      state: ied_light
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: NFTableRandomConcealedMine
+      prob: 1.00

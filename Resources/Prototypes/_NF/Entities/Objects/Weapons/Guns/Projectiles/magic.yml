@@ -1,6 +1,26 @@
 ﻿## Bullets
 - type: entity
   parent: BaseBulletTrigger
+  id: BulletFireBolt
+  name: fire bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 2
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: blastwave
+  - type: Ammo
+    muzzleFlash: null
+  - type: IgniteOnCollide
+    fireStacks: 2
+
+- type: entity
+  parent: BaseBulletTrigger
   id: BulletMagicBolt
   name: magic bolt
   categories: [ HideSpawnMenu ]
@@ -109,42 +129,34 @@
     sprite: _NF/Effects/wizardbeams.rsi
     state: lightning-hit-01
 
-# Experimental spells
-# TODO: split spells into 3 tiers aprentice, adept, master.
-# Fire magic
-# TODO: slow moving spread of fireballs, cluster fireball, cluster cluster fireball, fissure (entity, that shoots fireballs in every direction periodically)
+- type: entity # For blood cult cat
+  parent: BaseBullet
+  id: BulletEldritchHand
+  name: eldritch hand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StaminaDamageOnCollide
+    damage: 100
+  - type: Projectile
+    damage:
+      types:
+        Asphyxiation: 0
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Effects/bloodcultprojectiles.rsi
+    layers:
+    - state: hand
+  - type: Ammo
+    muzzleFlash: null
 
-# Apprentice level "spells"
 - type: entity
-  parent: BaseBulletTrigger
-  id: BulletFireBolt
-  name: fire bolt
+  id: ProjectileIcicleLowDamage
+  parent: ProjectileIcicle
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
       types:
-        Heat: 2
-  - type: Sprite
-    noRot: false
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
-    layers:
-    - state: infernoshot
-  - type: Ammo
-    muzzleFlash: null
-  - type: IgniteOnCollide
-    fireStacks: 2
-
-- type: entity
-  id: BulletFireBoltSpreadSphere
-  categories: [ HideSpawnMenu ]
-  parent: BaseItem
-  components:
-  - type: Ammo
-    muzzleFlash: null
-  - type: ProjectileSpread
-    proto: BulletFireBolt
-    count: 60
-    spread: 360
-
-# Cluster fire ball
+        Piercing: 4
+        Cold: 4
+        Structural: 10

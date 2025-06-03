@@ -1,10 +1,28 @@
+# Base prototype is in Resources\Prototypes\_NF\Recipes\Lathes\sheet.yml
+
 # Raw mats
 - type: latheRecipe
   id: Durathread
   result: MaterialDurathread1
-  completetime: 0
-  category: NFMaterials
-  applyMaterialDiscount: false
+  parent: BaseMaterialsNoDiscountRecipe
   materials:
     Plastic: 100
     Cloth: 100
+
+- type: latheRecipe # TODO: move somewhere else
+  id: PaperFromSheetPaper
+  result: Paper
+  parent: BaseMaterialsNoDiscountRecipe
+  materials:
+    Paper: 10
+
+- type: latheRecipe
+  id: SmeltScrap
+  result: SpawnRandomRefinedScrap
+  parent: BaseMaterialsNoDiscountRecipe
+  completetime: 0.1
+  icon:
+    sprite: _NF/Objects/Materials/ore.rsi
+    state: scrapore
+  materials:
+    RawScrap: 2000

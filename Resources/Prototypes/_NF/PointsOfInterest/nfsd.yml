@@ -10,14 +10,20 @@
 #
 - type: pointOfInterest
   id: Nfsd
+  parent: BasePOI
   name: 'NFSD Outpost'
-  rangeMin: 750
-  rangeMax: 1000
-  IFFColor: "#8e6444" #brown to match the color of uniform and the color of the pants of the nearest pirates
+  minimumDistance: 750
+  maximumDistance: 1000
   spawnGroup: Required
   gridPath: /Maps/_NF/POI/nfsd.yml
-  gridProtection:
-  - EmpEvents
+  addComponents:
+  - type: IFF
+    color: "#ae7d57"
+  - type: ProtectedGrid
+    preventEmpEvents: true
+  - type: StationTransit
+    routes:
+      SpawnPoints: 10
 
 - type: gameMap
   id: Nfsd
@@ -46,6 +52,9 @@
             Cadet: [ 0, 0 ]
             # Others:
             PublicAffairsLiaison: [ 1, 1 ]
+          tags:
+          - HeadOfPersonnel
+          - HeadOfSecurity
         - type: StationDeadDropReporting
           messageSet: Nfsd
         - type: StationDeadDropHintExempt

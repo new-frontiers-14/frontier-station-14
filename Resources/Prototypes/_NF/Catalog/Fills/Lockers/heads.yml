@@ -39,11 +39,23 @@
   - type: StorageFill
     contents:
       - id: SrIDCard
-      - id: ClothingHeadsetCentCom # Frontier
       - id: BoxHandcuff # Frontier
       - id: IDComputerCircuitboard
       - id: CommsComputerCircuitboard # Frontier
       - id: MedalCase # Frontier
+      - id: Demag # Frontier
+
+- type: entity
+  id: LockerNfsdSheriffFilled
+  suffix: Filled
+  parent: LockerNfsdSheriff
+  components:
+  - type: StorageFill
+    contents:
+      - id: ShriffIDCard
+      - id: BoxHandcuff # Frontier
+      - id: CommsComputerCircuitboard # Frontier
+      - id: MedalCaseNfsd # Frontier
       - id: Demag # Frontier
 
 - type: entity

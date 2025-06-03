@@ -32,7 +32,7 @@
         amount: 2
 
 - type: entity
-  parent: ClothingBackpackDuffelMedical
+  parent: ClothingBackpackDuffelTrauma
   id: ClothingBackpackDuffelSurgeryAdvancedFilled
   name: advanced surgical duffel bag
   description: "A large duffel bag for holding extra medical supplies - this one seems to be designed for holding advanced surgical tools."
@@ -56,7 +56,7 @@
   - type: StorageFill
     contents:
       - id: WeaponLauncherNfsdLake
-      - id: BoxTrackingDarts
+      - id: NFBoxDartsTracking
 
 - type: entity
   parent: ClothingBackpackDuffelNfsdBrown
@@ -85,7 +85,7 @@
 
 #Departmental EVA bundles
 - type: entity
-  parent: [ ClothingBackpackDuffel, StorageFillEVASuitContractor ]
+  parent: [ NFClothingDuffel, StorageFillEVASuitContractor ]
   id: ClothingBackpackDuffelEVABundleContractor
   name: contractor EVA bundle
   suffix: Filled
@@ -97,7 +97,7 @@
   suffix: Filled
 
 - type: entity
-  parent: [ ClothingBackpackDuffelCaptain, StorageFillEVASuitSr ]
+  parent: [ ClothingBackpackDuffelSr, StorageFillEVASuitSr ]
   id: ClothingBackpackDuffelEVABundleSr
   name: station representative EVA bundle
   suffix: Filled
@@ -145,49 +145,49 @@
   suffix: Filled
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, StorageFillEVASuitJanitor ]
+  parent: [ NFClothingBackpackDuffelJanitor, StorageFillEVASuitJanitor ]
   id: ClothingBackpackDuffelEVABundleJanitor
   name: janitor EVA bundle
   suffix: Filled
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, StorageFillEVASuitServiceWorker ]
+  parent: [ NFClothingDuffel, StorageFillEVASuitServiceWorker ]
   id: ClothingBackpackDuffelEVABundleServiceWorker
   name: service worker EVA bundle
   suffix: Filled
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, StorageFillEVASuitChaplain ]
+  parent: [ NFClothingBackpackDuffelChaplain, StorageFillEVASuitChaplain ]
   id: ClothingBackpackDuffelEVABundleChaplain
   name: chaplain EVA bundle
   suffix: Filled
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, StorageFillEVASuitBoxerRed ]
+  parent: [ NFClothingDuffel, StorageFillEVASuitBoxerRed ]
   id: ClothingBackpackDuffelEVABundleBoxerRed
   name: boxer EVA bundle
   suffix: Filled, Red
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, StorageFillEVASuitBoxerGreen ]
+  parent: [ NFClothingDuffel, StorageFillEVASuitBoxerGreen ]
   id: ClothingBackpackDuffelEVABundleBoxerGreen
   name: boxer EVA bundle
   suffix: Filled, Green
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, StorageFillEVASuitBoxerBlue ]
+  parent: [ NFClothingDuffel, StorageFillEVASuitBoxerBlue ]
   id: ClothingBackpackDuffelEVABundleBoxerBlue
   name: boxer EVA bundle
   suffix: Filled, Blue
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, StorageFillEVASuitBoxerYellow ]
+  parent: [ NFClothingDuffel, StorageFillEVASuitBoxerYellow ]
   id: ClothingBackpackDuffelEVABundleBoxerYellow
   name: boxer EVA bundle
   suffix: Filled, Yellow
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, StorageFillEVASuitBoxerRandom ]
+  parent: [ NFClothingDuffel, StorageFillEVASuitBoxerRandom ]
   id: ClothingBackpackDuffelEVABundleBoxerRandom
   name: boxer EVA bundle
   suffix: Filled, Random
@@ -199,7 +199,7 @@
   suffix: Filled
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, StorageFillEVASuitMail ]
+  parent: [ NFClothingBackpackDuffelMailCarrier, StorageFillEVASuitMail ]
   id: ClothingBackpackDuffelEVABundleMail
   name: mail carrier EVA bundle
   suffix: Filled
@@ -211,7 +211,7 @@
   suffix: Filled
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, StorageFillEVASuitPrivateSec ]
+  parent: [ ClothingBackpackDuffelPrivateSecurity, StorageFillEVASuitPrivateSec ]
   id: ClothingBackpackDuffelEVABundlePrivateSec
   name: private security EVA bundle
   suffix: Filled
@@ -219,5 +219,5 @@
 - type: entity
   parent: [ ClothingBackpackDuffelNfsdBrown, StorageFillEVASuitNfsd ]
   id: ClothingBackpackDuffelEVABundleNfsd
-  name: nfsd EVA bundle
+  name: NFSD EVA bundle
   suffix: Filled

@@ -1,0 +1,67 @@
+- type: entity
+  id: NFCrateSalvageAssortedGoodies
+  suffix: Filled, Salvage Random
+  categories: [ HideSpawnMenu ]
+  parent: CrateGenericSteel
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: NFSalvageAssortedGoodies
+        rolls: !type:RangeNumberSelector
+          range: -1, 3 # -1 used because of strange counting, actual values: [0, 1, 2, 3], ~25% chance of each.
+
+- type: entityTable
+  id: NFSalvageAssortedGoodies
+  table: !type:GroupSelector
+    children:
+    # Mats
+    - id: SheetSteel
+      weight: 0.15
+    - id: SheetGlass
+      weight: 0.15
+    - id: SheetPlasma
+      weight: 0.1
+    - id: IngotGold
+      weight: 0.1
+    - id: IngotSilver
+      weight: 0.1
+    - id: SheetPlastic
+      weight: 0.1
+    - id: SheetUranium
+      weight: 0.1
+    - id: SheetPlasteel
+      weight: 0.1
+    - id: MaterialWoodPlank
+      weight: 0.1
+    - id: MaterialCloth
+      weight: 0.1
+    - id: MaterialDurathread
+      weight: 0.01
+    - id: MaterialCardboard
+      weight: 0.01
+    - id: SheetPaper
+      weight: 0.01
+    - id: SheetBrass
+      weight: 0.01
+    - id: MaterialBananium
+      weight: 0.00001
+    - id: MaterialDiamond
+      weight: 0.0000001
+    - id: MaterialBluespace
+      weight: 0.00000001 # Yes I mean it
+      # Disk
+    - id: ResearchDisk5000
+      weight: 0.001
+    - id: ResearchDisk10000
+      weight: 0.0005
+
+- type: entity
+  id: NFCrateSalvageAssortedGoodiesPlastic
+  categories: [ HideSpawnMenu ]
+  parent: [ CratePlastic, NFCrateSalvageAssortedGoodies ]
+
+- type: entity
+  id: NFCrateSalvageAssortedGoodiesTrashCart
+  categories: [ HideSpawnMenu ]
+  parent: [ CrateTrashCart, NFCrateSalvageAssortedGoodies ]

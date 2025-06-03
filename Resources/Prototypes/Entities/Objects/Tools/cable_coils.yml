@@ -25,10 +25,14 @@
   - type: StaticPrice
     price: 0
   - type: StackPrice
-    price: 0.6 # Frontier: 2.25<0.6
+    price: 2.25
   - type: PhysicalComposition
     materialComposition:
-      Steel: 10
+      Steel: 15
+  - type: GuideHelp
+    guides:
+    - VoltageNetworks
+    - Power
 
 - type: entity
   id: CableHVStack
@@ -206,6 +210,9 @@
       state: coillv-10
     - type: Stack
       count: 10
+    - type: Construction # Frontier
+      graph: CableApcStack10 # Frontier
+      node: CableApcStack10 # Frontier
 
 - type: entity
   parent: CableApcStack10

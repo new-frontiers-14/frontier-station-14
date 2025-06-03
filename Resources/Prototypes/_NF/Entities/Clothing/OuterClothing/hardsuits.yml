@@ -3,7 +3,7 @@
   parent: ClothingOuterHardsuitBaseNF
   id: ClothingOuterHardsuitMercenary # stats are of luxury mining hardsuit
   name: mercenary hardsuit
-  description: A special suit that protects from the danger of space, employed by mercenary forces. Not certified to be blunderbuss proof.
+  description: A special suit that protects from the danger of space, employed by mercenary forces. Not certified to be blunderbuss-proof.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/mercenary.rsi
@@ -71,8 +71,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPilot
-  - type: StaticPrice
-    price: 195
 
 #ERT Mail Carrier Hardsuit
 - type: entity
@@ -150,8 +148,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBaseNFNfsd
   id: ClothingOuterHardsuitNfsdBronze
-  name: nfsd bronze patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  name: NFSD bronze patrol suit
+  description: The standard-issue NFSD space proof suit for patrol duty. This bronze variant has cadet rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
@@ -177,8 +175,8 @@
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
   id: ClothingOuterHardsuitNfsdSilver
-  name: nfsd silver patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  name: NFSD silver patrol suit
+  description: The standard-issue NFSD space proof suit for patrol duty. This silver variant has officer rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
@@ -190,8 +188,8 @@
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
   id: ClothingOuterHardsuitNfsdGold
-  name: nfsd gold patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  name: NFSD gold patrol suit
+  description: The standard-issue NFSD space proof suit for patrol duty. This gold variant has supervisor rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
@@ -203,8 +201,8 @@
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
   id: ClothingOuterHardsuitNfsdSheriff
-  name: nfsd sheriff patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  name: NFSD sheriff patrol suit
+  description: The standard-issue NFSD space proof suit for patrol duty. This gold variant has sheriff rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
@@ -216,8 +214,8 @@
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
   id: ClothingOuterHardsuitNfsdBrigmedic
-  name: nfsd brigmedic patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  name: NFSD brigmedic patrol suit
+  description: The standard-issue NFSD space proof suit for patrol duty. This brighter variant has brigmedic rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
@@ -229,8 +227,8 @@
 - type: entity
   parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut] # Jugger Suit
   id: ClothingOuterHardsuitNfsdExperimental
-  name: experimental nfsd hardsuit
-  description: An experimental nfsd hardsuit, never before seen!
+  name: NFSD experimental combat suit
+  description: A very heavily armored NFSD suit. This space proof marvel of engineering uses state of the art alloys to provide immense protection while sacrificing little mobility.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi
@@ -262,8 +260,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBaseNFNfsd
   id: ClothingOuterHardsuitNfsdCombat
-  name: nfsd combat hardsuit
-  description: Medium armored hardsuit helmet for NFSD raids.
+  name: NFSD combat suit
+  description: A heavily armored NFSD suit. Space proof, with thick armor plating at the expense of mobility.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi
@@ -290,8 +288,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBaseNFNfsd
   id: ClothingOuterHardsuitNfsdCommand
-  name: nfsd command hardsuit
-  description: Medium armored hardsuit helmet for NFSD raids.
+  name: NFSD command combat suit
+  description: A heavily armored NFSD suit. Space proof, with thick armor plating at the expense of mobility. This variant has supervisor rank markings.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_command.rsi
@@ -318,7 +316,7 @@
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitScaf
-  name: scaf hardsuit
+  name: SCAF hardsuit
   description: A green and brown combat hardsuit. Old yet sturdy nonetheless.
   components:
   - type: Sprite
@@ -344,6 +342,8 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitScaf
+  - type: PirateBountyItem
+    id: ClothingOuterHardsuitScaf
 
 # Tactical Maid Hardsuit
 
@@ -370,8 +370,8 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ClothingSpeedModifier # So many layers of stain protection makes it very heavy
-    walkModifier: 0.55
-    sprintModifier: 0.55
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: HeldSpeedModifier
   - type: FootstepModifier
     footstepSoundCollection:

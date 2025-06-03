@@ -48,9 +48,6 @@ entities:
       bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
-    - type: IFF
-      color: '#FFC000FF'
-      flags: HideLabel
     - type: OccluderTree
     - type: Shuttle
     - type: GridPathfinding
@@ -171,7 +168,7 @@ entities:
       - 227
       - 213
       - 215
-- proto: AirlockExternalGlass
+- proto: AirlockExternalGlassPirateLocked
   entities:
   - uid: 142
     components:
@@ -183,7 +180,7 @@ entities:
     - type: Transform
       pos: -4.5,0.5
       parent: 201
-- proto: AirlockGlassShuttle
+- proto: AirlockGlassShuttleSyndicatePirateLocked
   entities:
   - uid: 18
     components:
@@ -1155,6 +1152,13 @@ entities:
     - type: Transform
       pos: -4.5,2.5
       parent: 201
+- proto: HandLabeler
+  entities:
+  - uid: 238
+    components:
+    - type: Transform
+      pos: -0.38987,3.5138426
+      parent: 201
 - proto: LockerWallMaterialsFuelPlasmaFilled
   entities:
   - uid: 120
@@ -1177,6 +1181,13 @@ entities:
     components:
     - type: Transform
       pos: 1.6783751,-4.3457556
+      parent: 201
+- proto: NFHolopadShipAntag
+  entities:
+  - uid: 229
+    components:
+    - type: Transform
+      pos: -0.5,1.5
       parent: 201
 - proto: NitrogenCanister
   entities:
@@ -1245,10 +1256,6 @@ entities:
     - type: Transform
       pos: 0.5,-6.5
       parent: 201
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PowerCellRecharger
   entities:
   - uid: 197
@@ -1301,6 +1308,11 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-2.5
+      parent: 201
+  - uid: 225
+    components:
+    - type: Transform
+      pos: -0.5,3.5
       parent: 201
 - proto: ReinforcedWindow
   entities:
@@ -1672,7 +1684,7 @@ entities:
     - type: Transform
       pos: 0.5,-3.5
       parent: 201
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 199
     components:

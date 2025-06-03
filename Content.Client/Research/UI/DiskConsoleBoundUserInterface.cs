@@ -28,7 +28,7 @@ namespace Content.Client.Research.UI
             {
                 SendMessage(new DiskConsolePrintDiskMessage());
             };
-            _menu.OnPrintRareButtonPressed += () =>
+            _menu.OnPrintRareButtonPressed += () => // Frontier: Rare disk
             {
                 SendMessage(new DiskConsolePrintRareDiskMessage());
             };

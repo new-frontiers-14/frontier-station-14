@@ -2,7 +2,7 @@
   parent: BaseItem
   id: SpaceCashExpedition
   name: spesos
-  description: Hard-earned credits. Fresh from the digital cash mint. Smells like success and unpaid taxes.
+  description: A briefcase full of bills fresh from the digital mint. Smells like success and unpaid taxes.
   abstract: true
   categories: [ HideSpawnMenu ]
   suffix: Money
@@ -13,7 +13,7 @@
   - type: Item
     size: Ginormous
     sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
-  - type: CargoSellBlacklist # We dont want this to be sold by mistake, and so you cannot sell this on a cargo depo
+  - type: IgnoreMarketModifier # Worth exactly what it says.
 
 - type: entity
   parent: SpaceCashExpedition

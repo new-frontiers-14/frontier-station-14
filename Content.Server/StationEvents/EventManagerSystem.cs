@@ -9,8 +9,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.EntityTable;
-using Content.Server.Station.Systems; // Frontier
-using Content.Server.Station.Components; // Frontier
+using Content.Server.Mind; // Frontier
+using Content.Server._NF.Roles.Systems; // Frontier
 
 namespace Content.Server.StationEvents;
 
@@ -23,7 +23,9 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] public readonly GameTicker GameTicker = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!; // Frontier
+    [Dependency] private readonly JobTrackingSystem _jobs = default!; // Frontier
+
+    [Dependency] private readonly MindSystem _mindSystem = default!;
 
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;
@@ -151,20 +153,20 @@ public sealed class EventManagerSystem : EntitySystem
             return null;
         }
 
-        var sumOfWeights = 0;
+        var sumOfWeights = 0.0f;
 
         foreach (var stationEvent in availableEvents.Values)
         {
-            sumOfWeights += (int) stationEvent.Weight;
+            sumOfWeights += stationEvent.Weight;
         }
 
-        sumOfWeights = _random.Next(sumOfWeights);
+        sumOfWeights = _random.NextFloat(sumOfWeights);
 
         foreach (var (proto, stationEvent) in availableEvents)
         {
-            sumOfWeights -= (int) stationEvent.Weight;
+            sumOfWeights -= stationEvent.Weight;
 
-            if (sumOfWeights <= 0)
+            if (sumOfWeights <= 0.0f)
             {
                 return proto.ID;
             }
@@ -213,7 +215,7 @@ public sealed class EventManagerSystem : EntitySystem
             if (prototype.Abstract)
                 continue;
 
-            if (!prototype.TryGetComponent<StationEventComponent>(out var stationEvent))
+            if (!prototype.TryGetComponent<StationEventComponent>(out var stationEvent, EntityManager.ComponentFactory))
                 continue;
 
             allEvents.Add(prototype, stationEvent);
@@ -276,17 +278,11 @@ public sealed class EventManagerSystem : EntitySystem
             return false;
         }
 
-        // Frontier: require jobs to run event - TODO: actually count jobs, compare vs. numJobs
+        // Frontier: require jobs to run event
         foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs)
         {
-            var jobPrototype = _prototype.Index(jobProtoId);
-            var query = EntityQueryEnumerator<StationJobsComponent>();
-            while (query.MoveNext(out var station, out var comp))
-            {
-                // If a job slot is open, nobody has the job, or the player with the job should be leaving.
-                if (_stationJobs.TryGetJobSlot(station, jobPrototype, out var slots, comp) && slots >= 1)
-                    return false;
-            }
+            if (_jobs.GetNumberOfActiveRoles(jobProtoId, false) < numJobs)
+                return false;
         }
         // End Frontier
 

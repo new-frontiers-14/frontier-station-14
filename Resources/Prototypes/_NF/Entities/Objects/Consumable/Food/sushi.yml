@@ -111,6 +111,55 @@
     size: Tiny
 
 - type: entity
+  name:  fresh fish sushi
+  parent: [FoodBaseSushi, FoodMealBase]
+  id: CuredCarpSushi
+  description: Less risky, still delicious. You're still not sure where the seaweed came from.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cucumber
+      - fishy
+  - type: Sprite
+    state: freshsushi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: CucumberWater
+          Quantity: 3
+  - type: SliceableFood
+    count: 6
+    slice: FoodMealCarpSushiSlice
+
+- type: entity
+  name: fresh fish sushi
+  parent: [FoodBaseSushi, FoodInjectableBase]
+  id: FoodMealCuredCarpSushiSlice
+  description: Even less risky, still delicious. You're still not sure where the seaweed came from.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cucumber
+      - fishy
+  - type: Sprite
+    state: freshsushislice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: CucumberWater
+          Quantity: .5
+  - type: Item
+    size: Tiny
+
+- type: entity
   name: gas station sushi
   parent: [FoodBaseSushi, FoodInjectableBase]
   id: FoodMealGasSafeSushiSlice

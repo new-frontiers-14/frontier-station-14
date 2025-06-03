@@ -10,3 +10,15 @@
   - type: Item
     sprite: _NF/Objects/Misc/pens.rsi
     heldPrefix: pen_pal
+
+- type: entity
+  id: NFBaseUnprotectedAdvancedPen
+  parent: BaseAdvancedPen
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Write
+    - NFWriteIgnoreUnprotectedStamps # Weaker version of WriteIgnoreStamps
+    - Pickaxe
+    - Pen

@@ -1,7 +1,8 @@
 - type: vessel
   id: Empress
+  parent: BaseVessel
   name: NSF Empress
-  description: A large patrol vessel capable of carrying up to 3 smaller faster attack ships. the flagship vessel of the nfsd.
+  description: A large patrol vessel capable of carrying up to 4 smaller faster attack ships. The flagship vessel of the NFSD.
   price: 170000 #Appraisal value is 150000
   category: Large
   group: Security
@@ -28,9 +29,4 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          availableJobs:
-#            PrisonGuard: [ 0, 0 ]
-#            SecurityOfficer: [ 0, 0 ]
-#            Warden: [ 0, 0 ]
-#            Brigmedic: [ 0, 0 ]
-            Chef: [ 0, 0 ]
+          availableJobs: {} # Removed the chef since we dont have a real loadout for it

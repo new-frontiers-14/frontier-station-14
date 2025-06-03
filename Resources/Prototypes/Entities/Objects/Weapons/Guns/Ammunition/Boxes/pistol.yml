@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
   id: BaseMagazineBoxPistol
   name: ammunition box (.35 auto)
   components:
@@ -17,10 +17,10 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi # Frontier: _NF prefix
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 3
     zeroVisible: false
   - type: Appearance
 
@@ -32,9 +32,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistol
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi # Frontier
-    state: display # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -49,9 +46,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolPractice
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi # Frontier
-    state: practicedisplay # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -67,9 +61,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolIncendiary
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi # Frontier
-    state: incendiarydisplay # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -85,9 +76,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolUranium
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi # Frontier
-    state: uraniumdisplay # Frontier
   - type: Sprite
     layers:
     - state: base

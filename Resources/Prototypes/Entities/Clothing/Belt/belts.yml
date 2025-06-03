@@ -15,34 +15,35 @@
     # TODO: Fill this out more.
     # whitelist: # Frontier: commented out whitelist
       # tags:
-        # - Powerdrill
-        # - Wirecutter
-        # - Crowbar
-        # - Screwdriver
-        # - Flashlight
-        # - Wrench
-        # - GeigerCounter
-        # - Flare
-        # - CableCoil
-        # - CigPack
-        # - Radio
-        # - HolofanProjector
-        # - Multitool
-        # - AppraisalTool
-        # - JawsOfLife
-        # - GPS
-        # - WeldingMask
+      #   - Powerdrill
+      #   - Wirecutter
+      #   - Crowbar
+      #   - Screwdriver
+      #   - Flashlight
+      #   - Wrench
+      #   - GeigerCounter
+      #   - Flare
+      #   - CableCoil
+      #   - CigPack
+      #   - Radio
+      #   - HolofanProjector
+      #   - Multitool
+      #   - AppraisalTool
+      #   - JawsOfLife
+      #   - GPS
+      #   - WeldingMask
       # components:
-        # - SprayPainter
-        # - NetworkConfigurator
-        # - RCD
-        # - RCDAmmo
-        # - Welder
-        # - PowerCell
-        # - Geiger
-        # - TrayScanner
-        # - GasAnalyzer
-        # - HandLabeler
+      #   - StationMap
+      #   - SprayPainter
+      #   - NetworkConfigurator
+      #   - RCD
+      #   - RCDAmmo
+      #   - Welder
+      #   - PowerCell
+      #   - Geiger
+      #   - TrayScanner
+      #   - GasAnalyzer
+      #   - HandLabeler
   - type: ItemMapper
     mapLayers:
       drill:
@@ -95,34 +96,35 @@
     #- 0,0,9,1 # Frontier
     # TODO: Fill this out more.
     # whitelist: # Frontier: commented out whitelist
-      # tags:
-        # - Wirecutter
-        # - Crowbar
-        # - Screwdriver
-        # - Flashlight
-        # - Wrench
-        # - GeigerCounter
-        # - Flare
-        # - CableCoil
-        # - Powerdrill
-        # - JawsOfLife
-        # - CigPack
-        # - Radio
-        # - HolofanProjector
-        # - Multitool
-        # - AppraisalTool
-      # components:
-        # - SprayPainter
-        # - NetworkConfigurator
-        # - RCD
-        # - RCDAmmo
-        # - Welder
-        # - Flash
-        # - Handcuff
-        # - PowerCell
-        # - Geiger
-        # - TrayScanner
-        # - GasAnalyzer
+    #   tags:
+    #     - Wirecutter
+    #     - Crowbar
+    #     - Screwdriver
+    #     - Flashlight
+    #     - Wrench
+    #     - GeigerCounter
+    #     - Flare
+    #     - CableCoil
+    #     - Powerdrill
+    #     - JawsOfLife
+    #     - CigPack
+    #     - Radio
+    #     - HolofanProjector
+    #     - Multitool
+    #     - AppraisalTool
+    #   components:
+    #     - StationMap
+    #     - SprayPainter
+    #     - NetworkConfigurator
+    #     - RCD
+    #     - RCDAmmo
+    #     - Welder
+    #     - Flash
+    #     - Handcuff
+    #     - PowerCell
+    #     - Geiger
+    #     - TrayScanner
+    #     - GasAnalyzer
   - type: ItemMapper
     mapLayers:
       drill:
@@ -201,7 +203,7 @@
   - type: Appearance
 
 - type: entity
-  parent: [ JanitorClothes, NFClothingBeltStorageBase ] # Frontier: added JanitorClothes
+  parent: NFClothingBeltStorageBase
   id: ClothingBeltJanitor
   name: janibelt
   description: A belt used to hold most janitorial supplies.
@@ -458,7 +460,7 @@
   - type: Appearance
 
 - type: entity
-  parent: [ClothingBeltStorageBase, BaseC1Contraband] # Frontier: BaseRestrictedContraband<BaseC1Contraband
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
   id: ClothingBeltSecurity
   name: security belt
   description: Can hold security gear like handcuffs and flashes.
@@ -467,31 +469,31 @@
     sprite: Clothing/Belt/security.rsi
   - type: Clothing
     sprite: Clothing/Belt/security.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
   # - type: Storage # Frontier: commented out whitelist
-    # whitelist:
-      # tags:
-        # - CigPack
-        # - Taser
-        # - SecBeltEquip
-        # - Radio
-        # - Sidearm
-        # - MagazinePistol
-        # - MagazineMagnum
-        # - CombatKnife
-        # - Truncheon
-        # - AppraisalTool # Frontier
-      # components:
-        # - Stunbaton
-        # - FlashOnTrigger
-        # - SmokeOnTrigger
-        # - Flash
-        # - Handcuff
-        # - BallisticAmmoProvider
-        # - CartridgeAmmo
-        # - DoorRemote
-        # - Whistle
-        # - HolosignProjector
-        # - BalloonPopper
+  #   whitelist:
+  #     tags:
+  #       - CigPack
+  #       - Taser
+  #       - SecBeltEquip
+  #       - Radio
+  #       - Sidearm
+  #       - MagazinePistol
+  #       - MagazineMagnum
+  #       - CombatKnife
+  #       - Truncheon
+  #     components:
+  #       - Stunbaton
+  #       - FlashOnTrigger
+  #       - SmokeOnTrigger
+  #       - Flash
+  #       - Handcuff
+  #       - BallisticAmmoProvider
+  #       - CartridgeAmmo
+  #       - DoorRemote
+  #       - Whistle
+  #       - BalloonPopper
   - type: ItemMapper
     mapLayers:
       flashbang:
@@ -544,7 +546,7 @@
 # Belts without visualizers
 
 - type: entity
-  parent: [ClothingBeltAmmoProviderBase, BaseC1Contraband] # Frontier: BaseRestrictedContraband<BaseC1Contraband
+  parent: [ClothingBeltAmmoProviderBase, BaseC1Contraband] # Frontier: BaseSecurityBartenderContraband<BaseC1Contraband
   id: ClothingBeltBandolier
   name: bandolier
   description: A bandolier for holding shotgun ammunition.
@@ -700,7 +702,7 @@
     sprite: Clothing/Belt/suspenders_black.rsi
 
 - type: entity
-  parent: [NFClothingBeltStorageBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, added BaseC3WizardContraband, ContrabandClothing as parent
+  parent: [NFClothingBeltStorageBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseMagicalContraband<BaseC3WizardContraband, ContrabandClothing as parent
   id: ClothingBeltWand
   name: wizard belt # Frontier: changed the name from 'wand belt' -> 'wizard belt'
   description: A belt designed to hold various rods of power. A veritable fanny pack of exotic magic.

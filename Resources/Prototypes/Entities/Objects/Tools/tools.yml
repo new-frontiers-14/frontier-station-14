@@ -42,7 +42,7 @@
     materialComposition:
       Steel: 100
   - type: StaticPrice
-    price: 15
+    price: 15 # Frontier 30<15
 
 - type: entity
   name: screwdriver
@@ -86,7 +86,7 @@
     materialComposition:
       Steel: 100
   - type: StaticPrice
-    price: 15
+    price: 15 # Frontier 30<15
 
 - type: entity
   name: wrench
@@ -125,7 +125,10 @@
     materialComposition:
       Steel: 100
   - type: StaticPrice
-    price: 15
+    price: 11 # Frontier 22<11
+  - type: GuideHelp
+    guides:
+    - Construction
 
 - type: entity
   name: multitool
@@ -173,7 +176,13 @@
       Steel: 100
       Plastic: 100
   - type: StaticPrice
-    price: 35
+    price: 28 # Frontier 56<28
+  - type: GuideHelp
+    guides:
+    - Networking
+    - WirePanels
+    - Airlocks
+    - InspectingPower
 
 - type: entity
   name: network configurator
@@ -221,10 +230,10 @@
         enum.NetworkConfiguratorUiKey.Link:
           type: NetworkConfiguratorBoundUserInterface
     - type: StaticPrice
-      price: 25
+      price: 28 # Frontier 56<28
     - type: GuideHelp
       guides:
-      - NetworkConfigurator
+      - Networking
 
 #Power tools
 #Later on these should switch probably switch damage when changing the tool behavior.
@@ -272,7 +281,7 @@
       Steel: 300
       Plastic: 100
   - type: StaticPrice
-    price: 60
+    price: 50 # Frontier 100<50
   - type: MeleeWeapon
     wideAnimationRotation: -90
     attackRate: 1.5
@@ -312,7 +321,6 @@
   - type: LimitedCharges
     maxCharges: 30
     charges: 30
-  - type: UseDelay
   - type: Sprite
     sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     state: icon
@@ -328,7 +336,7 @@
       Steel: 600
       Plastic: 100
   - type: StaticPrice
-    price: 110
+    price: 55 # Frontier 110<55
     vendPrice: 5000 # Frontier
   - type: UserInterface
     interfaces:
@@ -387,7 +395,7 @@
       Steel: 100
       Plastic: 100
   - type: StaticPrice
-    price: 40
+    price: 30 # Frontier 60<30
     vendPrice: 1000 # Frontier
 
 - type: entity
@@ -473,21 +481,24 @@
     soundHit:
       collection: MetalThud
   - type: Item
-    size: Normal
+    size: Large # Frontier Normal<Large
+    shape: # Frontier
+    - 0,0,3,0 # Frontier
+    storedRotation: 45 # Frontier
     sprite: Objects/Tools/shovel.rsi
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
       Wood: 50
   - type: StaticPrice
-    price: 25
+    price: 12.5 # Frontier 25<12.5
   # Delta V: Adds tool quality for digging
   - type: Tool
     qualities:
       - Digging
     speedModifier: 0.5 # Frontier
     useSound:
-      path: /Audio/Nyanotrasen/Items/shovel_dig.ogg
+      path: /Audio/Items/shovel_dig.ogg
   # - type: EarthDigging # Frontier
   - type: Shovel
   - type: ToolTileCompatible # Frontier
@@ -525,3 +536,6 @@
   - type: Tag
     tags:
     - RollingPin
+  - type: Construction
+    graph: WoodenRollingPin
+    node: rollingpin

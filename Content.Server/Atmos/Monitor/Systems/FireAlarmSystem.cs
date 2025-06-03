@@ -21,6 +21,7 @@ public sealed class FireAlarmSystem : EntitySystem
 {
     [Dependency] private readonly AtmosDeviceNetworkSystem _atmosDevNet = default!;
     [Dependency] private readonly AtmosAlarmableSystem _atmosAlarmable = default!;
+    [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
@@ -30,6 +31,7 @@ public sealed class FireAlarmSystem : EntitySystem
         SubscribeLocalEvent<FireAlarmComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<FireAlarmComponent, DeviceListUpdateEvent>(OnDeviceListSync);
         SubscribeLocalEvent<FireAlarmComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<FireAlarmComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
     }
 
     private void OnDeviceListSync(EntityUid uid, FireAlarmComponent component, DeviceListUpdateEvent args)
@@ -77,11 +79,37 @@ public sealed class FireAlarmSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, FireAlarmComponent component, ref GotEmaggedEvent args)
     {
-        if (TryComp<AtmosAlarmableComponent>(uid, out var alarmable))
-        {
-            // Remove the atmos alarmable component permanently from this device.
-            _atmosAlarmable.ForceAlert(uid, AtmosAlarmType.Emagged, alarmable);
-            RemCompDeferred<AtmosAlarmableComponent>(uid);
-        }
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        if (!TryComp<AtmosAlarmableComponent>(uid, out var alarmable))
+            return;
+
+        // Remove the atmos alarmable component permanently from this device.
+        _atmosAlarmable.ForceAlert(uid, AtmosAlarmType.Emagged, alarmable);
+        RemCompDeferred<AtmosAlarmableComponent>(uid);
+        args.Handled = true;
     }
+
+    // Frontier: demag
+    private void OnUnemagged(EntityUid uid, FireAlarmComponent component, ref GotUnEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(uid, EmagType.Interaction))
+            return;
+
+        if (!HasComp<AtmosAlarmableComponent>(uid))
+        {
+            // Restore the atmos alarmable component to this device.
+            var alarmable = EnsureComp<AtmosAlarmableComponent>(uid);
+            _atmosAlarmable.Reset(uid, alarmable);
+        }
+        args.Handled = true;
+    }
+    // End Frontier
 }

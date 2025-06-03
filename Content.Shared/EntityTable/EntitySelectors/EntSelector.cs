@@ -20,7 +20,7 @@ public sealed partial class EntSelector : EntityTableSelector
         IEntityManager entMan,
         IPrototypeManager proto)
     {
-        var num = (int) Math.Round(Amount.Get(rand, entMan, proto));
+        var num = (int) Math.Floor(Amount.Get(rand, entMan, proto)); // Frontier: Round<Floor
         for (var i = 0; i < num; i++)
         {
             yield return Id;

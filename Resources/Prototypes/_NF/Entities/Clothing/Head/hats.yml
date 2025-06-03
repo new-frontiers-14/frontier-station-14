@@ -11,7 +11,7 @@
   - type: HamsterWearable
 
 - type: entity
-  parent: [ ChaplainClothes, ClothingHeadBaseButcherable ]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatPilgrim
   name: pilgrim's hat
   description: "Thou shalt not suffer a turkey to live."
@@ -22,7 +22,7 @@
     sprite: _NF/Clothing/Head/Hats/pilgrim_hat.rsi
 
 - type: entity
-  parent: [ ChaplainClothes, ClothingHeadBaseButcherable ]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatWideBrimmed
   name: wide-brimmed hat
   description: Works great as frisbee substitute.
@@ -33,7 +33,7 @@
     sprite: _NF/Clothing/Head/Hats/widebrim_hat.rsi
 
 - type: entity
-  parent: [ ChaplainClothes, ClothingHeadBaseButcherable ]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatCardinal
   name: cardinal's hat
   description: Keeps your head well protected from sun and reason.
@@ -44,7 +44,7 @@
     sprite: _NF/Clothing/Head/Hats/cardinal_hat.rsi
 
 - type: entity
-  parent: [ ChaplainClothes, ClothingHeadBaseButcherable ]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatWitchhunter
   name: witch hunter's hat
   description: "Thou shalt not suffer a witch to live."
@@ -55,7 +55,7 @@
     sprite: _NF/Clothing/Head/Hats/witch_hunter_hat.rsi
 
 - type: entity
-  parent: [ ChaplainClothes, ClothingHeadBaseButcherable ]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatBishopMitre
   name: bishop's mitre
   description: How to wear this thing? Ah! The other way around!
@@ -66,7 +66,7 @@
     sprite: _NF/Clothing/Head/Hats/bishop_mitre.rsi
 
 - type: entity
-  parent: [ ChaplainClothes, ClothingHeadBaseButcherable ]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatKippah
   name: kippah
   description: Worn on the head like a dome.
@@ -77,7 +77,7 @@
     sprite: _NF/Clothing/Head/Hats/kippah.rsi
 
 - type: entity
-  parent: [ ChaplainClothes, ClothingHeadBaseButcherable ]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatHoodCardinalHood
   categories: [ HideSpawnMenu ]
   name: cardinal's hood
@@ -138,7 +138,7 @@
 - type: entity
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatNfsdBeretGreen
-  name: nfsd beret
+  name: NFSD beret
   description: A green beret for use by NFSD officers.
   components:
   - type: Sprite
@@ -150,7 +150,7 @@
 - type: entity
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatNfsdBeretBrown
-  name: nfsd beret
+  name: NFSD beret
   description: A brown beret for use by NFSD officers.
   components:
   - type: Sprite
@@ -162,7 +162,7 @@
 - type: entity
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatNfsdBeretCream
-  name: nfsd beret
+  name: NFSD beret
   description: A cream beret for use by NFSD officers.
   components:
   - type: Sprite
@@ -174,7 +174,7 @@
 - type: entity
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatNfsdCampaign
-  name: nfsd campaign hat
+  name: NFSD campaign hat
   description: Yeehaw, partner.
   components:
   - type: Sprite
@@ -197,24 +197,26 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+  - type: PirateBountyItem
+    id: CampaignHat
 
 - type: entity
   parent: ClothingHeadHatNfsdCampaign
   id: ClothingHeadHatNfsdCampaignFilled
-  name: nfsd campaign hat
+  name: NFSD campaign hat
   description: Yeehaw, partner.
   suffix: Filled
   components:
   - type: StorageFill
     contents:
       - id: FlippoEngravedLighter
-      - id: CigarGold 
+      - id: CigarGold
         amount: 3
 
 - type: entity
   parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatNfsdSmallCampaign
-  name: nfsd campaign cap
+  name: NFSD campaign cap
   description: All yee, no haw.
   components:
   - type: Sprite
@@ -222,6 +224,8 @@
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/nfsd_campaign_small.rsi
   - type: CatWearable
+  - type: PirateBountyItem
+    id: CampaignHat
 
 - type: entity
   parent: ClothingHeadHatHopcap
@@ -246,7 +250,7 @@
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/sr_beret.rsi
   - type: CatWearable
-    
+
 - type: entity
   parent: ClothingHeadHatHopcap
   id: ClothingHeadHatStcCap
@@ -258,3 +262,9 @@
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/stc_cap.rsi
   - type: HamsterWearable
+    
+- type: entity
+  parent: ClothingHeadHatBeretHoS
+  id: ClothingHeadHatBeretCommander
+  name: commander's beret
+  description: A black beret with a commander's rank emblem.

@@ -1,5 +1,6 @@
 using Content.Shared.Random;
 using Robust.Shared.Prototypes;
+using Content.Shared.Whitelist; // Frontier
 
 namespace Content.Shared.Mining.Components;
 
@@ -28,4 +29,16 @@ public sealed partial class OreVeinComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<OrePrototype>? CurrentOre;
+
+    /// <summary>
+    /// Frontier: if this ore is somehow "ruined", set this to true before destroying the entity.
+    /// </summary>
+    [DataField]
+    public bool PreventSpawning;
+
+    /// <summary>
+    /// Frontier: whitelist to check when gathering materials - these entities are too strong and ruin the ore.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? GatherDestructionWhitelist;
 }

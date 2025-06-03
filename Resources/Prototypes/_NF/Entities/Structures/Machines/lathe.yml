@@ -17,104 +17,6 @@
 
 - type: entity
   parent: [ BlueprintReceiverBase, BaseLatheLube ]
-  id: ScienceTechFab
-  name: science techfab
-  description: Prints equipment for use by the epistemics department.
-  components:
-  - type: Sprite
-    netsync: false
-    sprite: Structures/Machines/techfab.rsi
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: sci
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: ScienceTechFabCircuitboard
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-    staticRecipes: 
-    # Shared lathe recipes
-    ## Basic tools
-      - Wirecutter
-      - Screwdriver
-      - Welder
-      - Wrench
-      - CrowbarGreen
-      - Multitool
-      - FlashlightLantern
-      - AppraisalTool
-      - HandLabeler
-      - Signaller
-      - ClothingMaskWeldingGas
-    ## Basic storage
-      - ToolboxArtisticNF
-      - ToolboxElectricalNF
-      - ToolboxMechanicalNF
-      - ToolboxEmergencyNF
-    ## Basic parts
-      - CableStack
-      - LightTube
-      - LedLightTube
-      - SodiumLightTube
-      - ExteriorLightTube
-      - LightBulb
-      - LedLightBulb
-      - ConveyorBeltAssembly
-      - PowerCellSmall
-      - PowerCellMedium
-    ## Basic electronics
-      - SignalTimerElectronics
-      - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
-      - WeaponCapacitorRechargerCircuitboard
-    ## Basic EVA:
-      - ClothingOuterEVASuitContractor
-      - ClothingOuterEVASuitPilot
-      - AirTank
-      - HandheldGPSBasic
-    # Science techfab
-    ## Tools
-      - NodeScanner
-    ## Basic EVA:
-      - ClothingOuterEVASuitScientist
-    dynamicRecipes:
-    # Shared lathe recipes
-    ## Advanced tools
-      - WelderExperimental
-      - JawsOfLife
-      - PowerDrill
-      - JetpackVoid
-      - PowerCellHigh
-      #- PowerCellHyperNF
-      - PowerCellMicroreactor
-      - BluespaceBeaker
-      - VialBluespace
-      - CryostasisBeaker
-      - ClothingBackpackHolding
-      - ClothingBackpackSatchelHolding
-      - ClothingBackpackDuffelHolding
-      - ClothingBackpackMessengerHolding 
-      - ChemicalPayload
-      - Bucket
-      - MopItem
-      - SprayBottle
-      - FireExtinguisher
-      - CableStack
-      - CableMVStack
-      - CableHVStack
-      - ClothingOuterHardsuitBasic
-      - ClothingOuterHardsuitRd
-
-- type: entity
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
   id: ServiceTechFab
   name: service techfab
   description: Prints equipment for service staff.
@@ -138,147 +40,14 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticRecipes: 
-    # Shared lathe recipes
-    ## Basic tools
-      - Wirecutter
-      - Screwdriver
-      - Welder
-      - Wrench
-      - CrowbarGreen
-      - Multitool
-      - FlashlightLantern
-      - AppraisalTool
-      - HandLabeler
-      - Signaller
-      - ClothingMaskWeldingGas
-    ## Basic storage
-      - ToolboxArtisticNF
-      - ToolboxElectricalNF
-      - ToolboxMechanicalNF
-      - ToolboxEmergencyNF
-      - NFBoxMREEmpty
-      - NFHappyHonkEmpty
-      - NFHappyHonkMimeEmpty
-      - NFHappyHonkMcCargoEmpty
-      - NFFoodBoxPizza
-      - NFFoodBoxDonutEmpty
-      - NFFoodBoxNuggetEmpty
-      - NFFoodContainerEggEmpty
-      - NFFoodBoxSushi
-    ## Basic parts
-      - CableStack
-      - LightTube
-      - LedLightTube
-      - SodiumLightTube
-      - ExteriorLightTube
-      - LightBulb
-      - LedLightBulb
-      - ConveyorBeltAssembly
-      - PowerCellSmall
-      - PowerCellMedium
-    ## Basic electronics
-      - SignalTimerElectronics
-      - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
-      - WeaponCapacitorRechargerCircuitboard
-    ## Basic EVA:
-      - ClothingOuterEVASuitContractor
-      - ClothingOuterEVASuitPilot
-      - AirTank
-      - HandheldGPSBasic
-    # Service techfab
-    ## Tools
-      - LightReplacer
-      - MopBucket
-      - TrashBag
-      - Bucket
-      - MopItem
-      - SprayBottle
-      - MiniHoe
-      - HydroponicsToolScythe
-      - HydroponicsToolHatchet
-      - Spade
-      - Clippers
-      - ServiceSelectiveDropper
-      - PlantBag
-      - Beaker
-      - LargeBeaker
-      - Jug
-      - MailCapsule
-      - LanternNF
-      - PillCanister
-      - ChemistryEmptyBottle01
-      - Mousetrap
-      - Holoprojector
-      - Shovel
-    ## Kitchen
-      - DrinkMug
-      - DrinkMugMetal
-      - DrinkGlass
-      - KitchenKnife
-      - ButchCleaver
-      - ServiceRollingPin
-      - ServiceSpoon
-      - ServiceFork
-      - ServicePairedChopsticks
-      - ServiceFoodBowlBig
-      - ServiceFoodPlate
-      - ServiceFoodPlateSmall
-      - ServiceFoodPlateTin
-      - ServiceFoodKebabSkewer
-      - DrinkShotGlass
-      - DrinkGlassCoupeShaped
-      - CustomDrinkJug
-      - FoodPlatePlastic
-      - FoodPlateSmallPlastic
-      - NapkinDrum
-      - Napkin
-    ## EVA
-      - ClothingOuterEVASuitHydro
-      - ClothingOuterEVASuitJanitor
-      - ClothingOuterEVASuitServiceWorker
-      - ClothingOuterEVASuitChaplain
-      - ClothingOuterEVASuitBoxerRed
-      - ClothingOuterEVASuitBoxerGreen
-      - ClothingOuterEVASuitBoxerBlue
-      - ClothingOuterEVASuitBoxerYellow
-    ## Materials
-      - SheetPaper
-      - NFMaterialCardboard1Processed
-    ## Misc
-      - ClothingHeadHatCone
-      - FireExtinguisher
-      - WetFloorSign
-    dynamicRecipes:
-    # Shared lathe recipes
-    ## Advanced tools
-      - WelderExperimental
-      - JawsOfLife
-      - PowerDrill
-      - JetpackVoid
-      - PowerCellHigh
-      - PowerCellMicroreactor
-    # Service techfab
-      - SynthesizerInstrument
-      - ClothingOuterHardsuitBasic
-      - ClothingOuterHardsuitPilot
-      - ClothingOuterHardsuitClown
-      - ClothingOuterHardsuitMime
-      - AdvMopItem
-      - WeaponSprayNozzle
-      - ClothingBackpackWaterTank
-      - MegaSprayBottle
-      - TimerTrigger
-      - ChemicalPayload
-      - BluespaceBeaker
-      - SyringeBluespace
-      - PlantBagOfHolding
-      - PlantAnalyzer
+    staticPacks:
+    - NFServiceTechfabDeprecatedStatic
+    - ReportingStatic # DeltaV
+    dynamicPacks:
+    - NFServiceTechfabDeprecated
   - type: EmagLatheRecipes
-    emagStaticRecipes:
-      - NFHappyHonkNukieEmpty
-      - NFHappyHonkCluwneEmpty
+    emagStaticPacks:
+    - NFServiceTechfabDeprecatedEmagStatic
 
 - type: entity
   parent: [ BlueprintReceiverBase, BaseLatheLube ]
@@ -305,142 +74,10 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticRecipes:
-    # Shared lathe recipes
-    ## Basic tools
-      - Wirecutter
-      - Screwdriver
-      - Welder
-      - Wrench
-      - CrowbarGreen
-      - Multitool
-      - FlashlightLantern
-      - AppraisalTool
-      - HandLabeler
-      - Signaller
-      - ClothingMaskWeldingGas
-    ## Basic storage
-      - ToolboxArtisticNF
-      - ToolboxElectricalNF
-      - ToolboxMechanicalNF
-      - ToolboxEmergencyNF
-    ## Basic parts
-      - CableStack
-      - LightTube
-      - LedLightTube
-      - SodiumLightTube
-      - ExteriorLightTube
-      - LightBulb
-      - LedLightBulb
-      - ConveyorBeltAssembly
-      - PowerCellSmall
-      - PowerCellMedium
-    ## Basic electronics
-      - SignalTimerElectronics
-      - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
-      - WeaponCapacitorRechargerCircuitboard
-    ## Basic EVA
-      - ClothingOuterEVASuitContractor
-      - ClothingOuterEVASuitPilot
-      - AirTank
-      - HandheldGPSBasic
-    # Engineering techfab
-    ## Tools
-      - NetworkConfigurator
-      - SprayPainter
-      - TRayScanner
-      - GasAnalyzer
-      - Holoprojector
-      - LightReplacer
-      - WelderIndustrial
-      - WelderIndustrialAdvanced
-      - HolofanProjector
-    ## Parts
-      - MicroManipulatorStockPart
-      - MatterBinStockPart
-      - CapacitorStockPart
-      - Igniter
-      - CableMVStack
-      - CableHVStack
-    ## Electronics
-      - IntercomElectronics
-      - FirelockElectronics
-      - DoorElectronics
-      - AirAlarmElectronics
-      - StationMapElectronics
-      - FireAlarmElectronics
-      - MailingUnitElectronics
-      - APCElectronics
-      - SMESMachineCircuitboard
-      - SubstationMachineCircuitboard
-      - SmallThrusterMachineCircuitboard
-      - SmallGyroscopeMachineCircuitboard
-      - WallmountSubstationElectronics
-      - SolarControlComputerCircuitboard
-      - SolarTrackerElectronics
-      - SolarAssemblyFlatpack
-      - ShuttleConsoleCircuitboard
-      - PortableGeneratorPacmanMachineCircuitboard
-      - PortableGeneratorSuperPacmanMachineCircuitboard
-      - PortableGeneratorJrPacmanMachineCircuitboard
-      - ThrusterMachineCircuitboard
-      - GyroscopeMachineCircuitboard
-      - MiniGravityGeneratorCircuitboard
-    ## Clothing
-      - UtilityBelt
-      - ConstructionBag
-    ## EVA
-      - ClothingHeadHelmetEVA
-      - ClothingHeadHelmetEVALarge
-      - ClothingOuterEVASuitEngineer
-      - ClothingOuterEVASuitAtmosTech
-    ## Materials
-      - Durathread
-      - NFSheetRGlassProcessed
-      - NFSheetPGlass1Processed
-      - NFSheetRPGlass1Processed
-      - NFSheetPlasteel1Processed
-      - NFSheetUGlass1Processed
-      - NFSheetRUGlass1Processed
-    ## Misc
-      - ClothingHeadHatCone
-    dynamicRecipes:
-    # Shared lathe recipes
-    ## Advanced tools
-      - WelderExperimental
-      - JawsOfLife
-      - PowerDrill
-      - JetpackVoid
-      - PowerCellHigh
-      - PowerCellMicroreactor
-    # Engineering techfab
-      - Flash
-      - MicroManipulatorStockPart
-      - NanoManipulatorStockPart
-      - PicoManipulatorStockPart
-      - FemtoManipulatorStockPart
-      - MatterBinStockPart
-      - AdvancedMatterBinStockPart
-      - SuperMatterBinStockPart
-      - BluespaceMatterBinStockPart
-      - CapacitorStockPart
-      - AdvancedCapacitorStockPart
-      - SuperCapacitorStockPart
-      - QuadraticCapacitorStockPart
-      - RPED
-      - MiningDrill
-      - MiningDrillDiamond
-      - SprayBottle
-      - FireExtinguisher
-      - ShipyardRCD
-      - ShipyardRCDAmmo
-      - SignallerAdvanced
-      - ClothingOuterHardsuitBasic
-      - ClothingOuterHardsuitAtmos
-      - ClothingOuterHardsuitEngineering
-      - ClothingOuterHardsuitEngineeringWhite
-      - ConstructionBagOfHolding
+    staticPacks:
+    - NFEngineeringTechfabDeprecatedStatic
+    dynamicPacks:
+    - NFEngineeringTechfabDeprecated
 
 - type: entity
   parent: [ BlueprintReceiverBase, BaseLatheLube ]
@@ -467,110 +104,19 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticRecipes:
-    # Shared lathe recipes
-    ## Basic tools
-      - Wirecutter
-      - Screwdriver
-      - Welder
-      - Wrench
-      - CrowbarGreen
-      - Multitool
-      - FlashlightLantern
-      - AppraisalTool
-      - HandLabeler
-      - Signaller
-      - ClothingMaskWeldingGas
-    ## Basic storage
-      - ToolboxArtisticNF
-      - ToolboxElectricalNF
-      - ToolboxMechanicalNF
-      - ToolboxEmergencyNF
-    ## Basic parts
-      - CableStack
-      - LightTube
-      - LedLightTube
-      - SodiumLightTube
-      - ExteriorLightTube
-      - LightBulb
-      - LedLightBulb
-      - ConveyorBeltAssembly
-      - PowerCellSmall
-      - PowerCellMedium
-    ## Basic electronics
-      - SignalTimerElectronics
-      - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
-      - WeaponCapacitorRechargerCircuitboard
-    ## Basic EVA:
-      - ClothingOuterEVASuitContractor
-      - ClothingOuterEVASuitPilot
-      - AirTank
-      - HandheldGPSBasic
-    # Salvage techfab
-      - ClothingOuterEVASuitCargo
-      - ClothingOuterEVASuitSalvage
-      - ClothingBeltSalvageWebbing
-      - Pickaxe
-      - RadioHandheldNF
-      - Floodlight
-      - FlareLathe
-      - GlowstickBlue
-      - GlowstickBase
-      - GlowstickPurple
-      - GlowstickRedLathe
-      - GlowstickYellow
-      - OreBag
-      - MiningDrill
-      - WeaponProtoKineticAccelerator
-      - ClothingNeckIFFNeutral
-      - ClothingNeckIFFGreen
-      - ClothingNeckIFFRed
-      - ClothingNeckIFFBlue
-      - ClothingNeckIFFOrange
-      - ClothingNeckIFFPurple
-      - LanternNF
-    dynamicRecipes:
-    # Shared lathe recipes
-    ## Advanced tools
-      - WelderExperimental
-      - JawsOfLife
-      - PowerDrill
-      - JetpackVoid
-      - PowerCellHigh
-      - PowerCellMicroreactor
-    # Salvage techfab
-      - CableMVStack
-      - CableHVStack
-      - WeaponCrusher
-      - WeaponCrusherDagger
-      - WeaponCrusherGlaive
-      - WeaponGrapplingGun
-      - ClothingBackpackHolding
-      - ClothingBackpackSatchelHolding
-      - ClothingBackpackDuffelHolding
-      - ClothingBackpackMessengerHolding
-      - OreBagOfHolding
-      - ClothingOuterHardsuitBasic
-      - ClothingOuterHardsuitSpatio
-      - ClothingOuterHardsuitSalvage
-      - ClothingOuterHardsuitLuxury
-      - ClothingOuterHardsuitMaximPrototype
+    staticPacks:
+    - NFSalvageTechfabDeprecatedStatic
+    dynamicPacks:
+    - NFSalvageTechfabDeprecated
   - type: EmagLatheRecipes
-    emagStaticRecipes:
-       - ShellTranquilizer
-       - MagazineBoxPistol
-       - MagazineBoxMagnum
-       - MagazineBoxRifle
-       - MagazineBoxLightRifle
-#       - GrenadeBlast
-       - ClothingHeadHelmetCosmonaut
+    emagStaticPacks:
+    - NFSalvageTechfabDeprecatedEmag
 
 - type: entity
   id: NfsdTechFab
-  parent: [ SecurityTechFab, BlueprintReceiverBase ]
-  name: nfsd techfab
-  description: Prints equipment for use by nfsd.
+  parent: [ BlueprintReceiverBase, SecurityTechFab ]
+  name: NFSD techfab
+  description: Prints equipment for use by NFSD.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi
@@ -587,6 +133,17 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: NfsdTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    - NFNfsdTechfabDeprecatedStatic
+    - ReportingStatic # DeltaV
+    dynamicPacks:
+    - NFNfsdTechfabDeprecated
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - NFNfsdTechfabDeprecatedEmag
 
 - type: entity
   id: MercenaryTechFab
@@ -612,191 +169,13 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticRecipes:
-    # Shared lathe recipes
-    ## Basic tools
-      - Wirecutter
-      - Screwdriver
-      - Welder
-      - Wrench
-      - CrowbarGreen
-      - Multitool
-      - FlashlightLantern
-      - AppraisalTool
-      - HandLabeler
-      - Signaller
-      - ClothingMaskWeldingGas
-    ## Basic storage
-      - ToolboxArtisticNF
-      - ToolboxElectricalNF
-      - ToolboxMechanicalNF
-      - ToolboxEmergencyNF
-    ## Basic parts
-      - CableStack
-      - LightTube
-      - LedLightTube
-      - SodiumLightTube
-      - ExteriorLightTube
-      - LightBulb
-      - LedLightBulb
-      - ConveyorBeltAssembly
-      - PowerCellSmall
-      - PowerCellMedium
-    ## Basic electronics
-      - SignalTimerElectronics
-      - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
-      - WeaponCapacitorRechargerCircuitboard
-    ## Basic EVA:
-      - ClothingOuterEVASuitContractor
-      - ClothingOuterEVASuitPilot
-      - AirTank
-      - HandheldGPSBasic
-    # Mercenary techfab
-    ## Clothing / Armor
-      - RiotShield
-      - ClothingNeckIFFNeutral
-      - ClothingNeckIFFGreen
-      - ClothingNeckIFFRed
-      - ClothingNeckIFFBlue
-      - ClothingNeckIFFOrange
-      - ClothingNeckIFFPurple
-      - ClothingHeadHelmetMercenary
-      - ClothingHeadHelmetBasic
-      - ClothingOuterVestWebMercenary
-      - ClothingOuterVestWebMercenaryBlack
-      - ClothingBeltMercenaryWebbing
-      - ClothingBeltMilitaryWebbing
-      - ClothingHandsMercenaryGlovesCombat
-      - ClothingHandsGlovesCombat
-      - ClothingShoesBootsMercenary
-      - ClothingShoesBootsCombat
-      - ClothingShoesBootsJack
-      - ClothingEyesGlassesMercenary
-      - ClothingEyesGlassesSunglasses
-      - ClothingMaskGasMercenary
-      - ClothingMaskBreathMedicalSecurity
-      - ClothingMaskGasSecurity
-      - ClothingBeltBandolier
-    ## EVA / Hardsuits
-      - ClothingOuterEVASuitMercenary
-      - ClothingOuterEVASuitPrivateSec
-    ## Storage
-      - MedkitCombat
-      - WeaponCaseShort
-      - WeaponCaseLong
-      - WeaponCaseHeavy
-      - WeaponCaseShortAmmo
-      - WeaponCaseShortExplosives
-    ## Weapons
-      - CombatKnife
-      - WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-      - WeaponLaserPistolNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-      - WeaponRevolverArgenti
-      - WeaponPistolMk58NF
-      - WeaponShotgunDoubleBarreled
-      - WeaponRifleNovaliteC1
-      - WeaponRifleGestio
-      - BaseBallBatNF
-      - CrossbowModern
-    ## Ammo boxes
-      - BoxLethalshot
-      - MagazineBoxLightRifle
-      - MagazineBoxPistol
-      - MagazineBoxRifle
-      - CrossbowBolt
-      - CrossbowBoltBroadhead
-    ## Mags / Speedloaders / Clips
-      - MagazineNovaliteC1Empty
-      - MagazineNovaliteC1
-      - MagazineLightRifleLowCapacityEmpty
-      - MagazineLightRifleLowCapacity
-      - MagazineLightRifle
-      - MagazineLightRifleEmpty
-      - MagazineRifle
-      - MagazineRifleEmpty
-      - MagazinePistol
-      - MagazinePistolEmpty
-      - SpeedLoaderRifleHeavy
-      - SpeedLoaderRifleHeavyEmpty
-    dynamicRecipes:
-    # Shared lathe recipes
-    ## Advanced tools
-      - WelderExperimental
-      - JawsOfLife
-      - PowerDrill
-      - JetpackVoid
-      - PowerCellHigh
-      # - PowerCellHyperNF
-      - PowerCellMicroreactor
-    # Mercenary techfab
-    ## Armor
-      - TelescopicShield
-      - ClothingOuterArmorBulletproofNF
-      - ClothingOuterCoatBHTrench
-      - ClothingOuterArmorPunkRandomized
-      - ClothingOuterArmorPunkRed
-      - ClothingOuterArmorPunkGreen
-      - ClothingOuterArmorPunkOrange
-      - ClothingOuterArmorElitePunkRandomized
-      - ClothingBeltPunkRandomized
-      - ClothingShoesBootsPunkRandomized
-      - ClothingEyesPunkGoggles
-      - ClothingEyesPunkInfoShades
-      - ClothingMaskPunkHalf
-      - ClothingUniformRandomPunkTanktop
-      - ClothingUniformRandomPunkTanktopShorts
-      - ClothingUniformRandomPunkCroptop
-      - ClothingUniformRandomPunkCroptopShorts
-      - ClothingOuterCoatLettermanRandomized
-      - ClothingOuterCoatBomberRandomized
-    ## EVA / Hardsuits
-      - ClothingOuterHardsuitCap
-      - ClothingOuterHardsuitMercenary
-      - ClothingOuterHardsuitPrivateSecurity
-      - ClothingOuterHardsuitScaf
-      - ClothingShoesBootsMagCombat
-      - ClothingShoesBootsMagMercenary
-    ## Utilities
-      - ForensicPad
-      - ClothingEyesHudBountyHunter
-      - ClothingEyesPunkInfoShades
-      - PinpointerUniversalNF
-      - Handcuffs
-      - SignalTrigger
-      - PortableRecharger
-      - TimerTrigger
-      - VoiceTrigger
-      - TurboItemRechargerCircuitboard
-      - ClothingBackpackHolding
-      - ClothingBackpackSatchelHolding
-      - ClothingBackpackDuffelHolding
-      - ClothingBackpackMessengerHolding
-      - FlashlightSecliteNF
-    ## Weapons
-      - WeaponGrapplingGun
-      - KatanaNF
-      - KukriKnifeNF
-      - MacheteNF
-      - Stunbaton
-      - BolaNF
-      - ExplosivePayload
-      - FlashPayload
-      - ChemicalPayload
-      - WeaponShotgunKammererNF
-      - WeaponAdvancedLaser # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-      - WeaponAntiqueLaserNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-      - WeaponLaserCarbine
-      - WeaponDisabler
-    ## Mags / Speedloaders / Clips
-    ## Ammo boxes
-      - BoxBeanbag
-      - BoxShellTranquilizer
-      - MagazineBoxLightRifleRubber
-      - MagazineBoxMagnumRubber
-      - MagazineBoxPistolRubber
-      - MagazineBoxRifleRubber
-      - MagazineShotgunBeanbag
+    staticPacks:
+    - NFMercenaryTechfabDeprecatedStatic
+    dynamicPacks:
+    - NFMercenaryTechfabDeprecated
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - NFMercenaryTechfabDeprecatedEmag
 
 - type: entity
   id: MercenaryTechFabHacked
@@ -835,163 +214,10 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticRecipes:
-    # Shared lathe recipes
-    ## Basic tools
-      - Wirecutter
-      - Screwdriver
-      - Welder
-      - Wrench
-      - CrowbarGreen
-      - Multitool
-      - HandLabeler
-      - Signaller
-      - ClothingMaskWeldingGas
-    ## Basic storage
-      - ToolboxArtisticNF
-      - ToolboxElectricalNF
-      - ToolboxMechanicalNF
-      - ToolboxEmergencyNF
-    ## Basic parts
-      - CableStack
-      - LightTube
-      - LedLightTube
-      - SodiumLightTube
-      - ExteriorLightTube
-      - LightBulb
-      - LedLightBulb
-      - ConveyorBeltAssembly
-      - PowerCellSmall
-      - PowerCellMedium
-    ## Basic electronics
-      - SignalTimerElectronics
-      - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
-      - WeaponCapacitorRechargerCircuitboard
-    ## Basic EVA:
-      - ClothingOuterEVASuitContractor
-      - ClothingOuterEVASuitPilot
-      - AirTank
-      - HandheldGPSBasic
-    # Mercenary techfab
-    ## Utility
-      - ColoredLightTubeRedNF
-      - ColoredLightTubeBlackLightNF
-      - ColoredLightTubeFrostyBlueNF
-    ## Clothing / Armor
-      - RiotShield
-      - ClothingHandsMercenaryGlovesCombat
-      - ClothingHandsGlovesCombat
-      - ClothingOuterArmorPunkRandomized
-      - ClothingOuterArmorPunkRed
-      - ClothingOuterArmorPunkGreen
-      - ClothingOuterArmorPunkOrange
-      - ClothingOuterArmorElitePunkRandomized
-      - ClothingBeltPunkRandomized
-      - ClothingShoesBootsPunkRandomized
-      - ClothingEyesPunkGoggles
-      - ClothingEyesPunkInfoShades
-      - ClothingMaskPunkHalf
-      - ClothingUniformRandomPunkTanktop
-      - ClothingUniformRandomPunkTanktopShorts
-      - ClothingUniformRandomPunkCroptop
-      - ClothingUniformRandomPunkCroptopShorts
-      - ClothingOuterCoatLettermanRandomized
-      - ClothingOuterCoatBomberRandomized
-    ## Storage
-      - MedkitCombat
-      - WeaponCaseShort
-      - WeaponCaseLong
-      - WeaponCaseHeavy
-      - WeaponCaseShortAmmo
-      - WeaponCaseShortExplosives
-    ## Weapons
-      - WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-      - WeaponLaserPistolNF
-      - WeaponPistolMk58NF
-      - WeaponRifleNovaliteC1
-      - WeaponRifleGestio
-      - BaseBallBatNF
-      - KatanaNF
-      - KukriKnifeNF
-    ## Ammo boxes
-      - BoxLethalshot
-      - MagazineBoxLightRifle
-      - MagazineBoxPistol
-      - MagazineBoxRifle
-    ## Mags / Speedloaders / Clips
-      - MagazineNovaliteC1Empty
-      - MagazineNovaliteC1
-      - MagazineLightRifleLowCapacityEmpty
-      - MagazineLightRifleLowCapacity
-      - MagazineLightRifle
-      - MagazineLightRifleEmpty
-      - MagazineRifle
-      - MagazineRifleEmpty
-      - MagazinePistol
-      - MagazinePistolEmpty
-      - SpeedLoaderRifleHeavy
-      - SpeedLoaderRifleHeavyEmpty
-    dynamicRecipes:
-    # Shared lathe recipes
-    ## Advanced tools
-      - WelderExperimental
-      - JawsOfLife
-      - PowerDrill
-      - JetpackVoid
-      - PowerCellHigh
-      - PowerCellMicroreactor
-    # Mercenary techfab
-    ## Armor
-      - TelescopicShield
-      - ClothingOuterArmorBulletproofNF
-      - ClothingOuterCoatBHTrench
-    ## EVA / Hardsuits
-      - ClothingOuterHardsuitCap
-      - ClothingOuterHardsuitMercenary
-      - ClothingOuterHardsuitPrivateSecurity
-      - ClothingOuterHardsuitScaf
-      - ClothingShoesBootsMagCombat
-      - ClothingShoesBootsMagMercenary
-    ## Utilities
-      - PinpointerUniversalNF
-      - Handcuffs
-      - SignalTrigger
-      - PortableRecharger
-      - TimerTrigger
-      - VoiceTrigger
-      - TurboItemRechargerCircuitboard
-      - ClothingBackpackHolding
-      - ClothingBackpackSatchelHolding
-      - ClothingBackpackDuffelHolding
-      - ClothingBackpackMessengerHolding
-      - FlashlightSecliteNF
-    ## Weapons
-      - GrenadeBlast
-      - GrenadeEMP
-      - GrenadeFlash
-      - Truncheon
-      - MacheteNF
-      - Stunbaton
-      - BolaNF
-      - ChemicalPayload
-      - WeaponShotgunKammererNF
-      - WeaponAdvancedLaser # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-      - WeaponAntiqueLaserNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-      - WeaponLaserCarbine
-      - WeaponDisabler
-      - WeaponLaserCannon
-    ## Ammo boxes
-      - BoxShotgunIncendiary
-      - MagazineBoxLightRifleIncendiary
-      - MagazineBoxMagnumIncendiary
-      - MagazineBoxPistolIncendiary
-      - MagazineBoxRifleIncendiary
-      - BoxShotgunUranium
-      - MagazineBoxLightRifleUranium
-      - MagazineBoxMagnumUranium
-      - MagazineBoxPistolUranium
-      - MagazineBoxRifleUranium
+    staticPacks:
+    - NFHackedMercenaryTechfabDeprecatedStatic
+    dynamicPacks:
+    - NFHackedMercenaryTechfabDeprecated
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseLathe]
@@ -1031,101 +257,11 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    staticRecipes:
-      - PrizeBallRecipe
-      - PlushieHampterRecipe
-      - PlushieVulpRecipe
-      - PlushieBeeRecipe
-      - PlushieLizardRecipe
-      - PlushieSpaceLizardRecipe
-      - PlushieVoxRecipe
-      - PlushieMoffRecipe
-      - PlushieMoffsicianRecipe
-      - PlushieMoffbarRecipe
-      - PlushieDionaRecipe
-      - PlushieSharkGreyRecipe
-      - PlushieSharkBlueRecipe
-      - PlushieSharkPinkRecipe
-      - PlushieRatvarRecipe
-      - PlushieNarRecipe
-      - PlushieSlimeRecipe
-      - PlushieSnakeRecipe
-      - PlushieCarpRecipe
-      - PlasticBananaRecipe
-      - BeachBallRecipe
-      - BasketballRecipe
-      - FootballRecipe
-      - ToyHammerRecipe
-      - WhoopieCushionRecipe
-      - ClownRecorderRecipe
-      - PonderingOrbRecipe
-      - CrayonBoxRecipe
-      - CrayonRainbowRecipe
-      - PlushieLampRecipe
-      - PlushieAtmosianRecipe
-      - PlushieRounyRecipe
-      - PlushieXenoRecipe
-      - FoamCrossbowRecipe
-      - BoxDonkSoftBoxRecipe
-      - RevolverCapGunRecipe
-      - BoxCartridgeCapRecipe
-      - ToyAmongPequenoRecipe
-      - FoamCutlassRecipe
-      - FoamBladeRecipe
-      - ToyRubberDuckRecipe
-      - ToyMouseRecipe
-      - ToyAiRecipe
-      - ToyGriffinRecipe
-      - ToyHonkRecipe
-      - ToyIanRecipe
-      - ToyMarauderRecipe
-      - ToyGygaxRecipe
-      - ToyOdysseusRecipe
-      - ToyOwlmanRecipe
-      - ToyPhazonRecipe
-      - ToyFireRipleyRecipe
-      - ToyReticenceRecipe
-      - ToyRipleyRecipe
-      - ToySeraphRecipe
-      - ToyDurandRecipe
-      - ToySkeletonRecipe
-      - FaceHuggerPlushieRecipe
-      - PetRockCarrierkRecipe
-      - PlushieGnomeRecipe
-      - PlushieLoveableRecipe
-      - PlushieDeerRecipe
-      - PlushieIpcRecipe
-      - PlushieGreyRecipe
-      - PlushieRedFoxRecipe
-      - PlushiePurpleFoxRecipe
-      - PlushiePinkFoxRecipe
-      - PlushieOrangeFoxRecipe
-      - PlushieMarbleFoxRecipe
-      - PlushieCrimsonFoxRecipe
-      - PlushieCoffeeFoxRecipe
-      - PlushieBlueFoxRecipe
-      - PlushieBlackFoxRecipe
-      - PlushieCorgiRecipe
-      - PlushieGirlyCorgiRecipe
-      - PlushieRobotCorgiRecipe
-      - PlushieCatBlackRecipe
-      - PlushieCatOrangeRecipe
-      - PlushieCatSiamesRecipe
-      - PlushieCatTabbyRecipe
-      - PlushieCatTuxedoRecipe
-      - PlushieCatWhiteRecipe
+    staticPacks:
+    - NFPrizeCounterStatic
   - type: EmagLatheRecipes
-    emagStaticRecipes:
-      - PlushieJesterRecipe
-      - PlushieJanitorRecipe
-      - PlushieNukeRecipe
-      - PlushieRGBeeRecipe
-      - BalloonCorgiRecipe
-      - BalloonSynRecipe
-      - ToyNukeRecipe
-      - ToyMaulerRecipe
-      - PlushieAbductorRecipe
-      - PlushieAbductorAgentRecipe
+    emagStaticPacks:
+    - NFPrizeCounterEmag
   - type: MaterialStorage
     whitelist:
       tags:
@@ -1154,44 +290,52 @@
     producingSound: /Audio/Machines/circuitprinter.ogg
     idleState: icon
     runningState: building
-    staticRecipes:
-    - NFBlueprintPowerCellMediumPrinted
-    dynamicRecipes:
-    # Engineering
-    - NFBlueprintPowerDrill
-    - NFBlueprintJawsOfLife
-    - NFBlueprintWelderExperimental
-    - NFBlueprintShipyardRCDAmmo
-    - NFBlueprintPowerCellMicroreactor
-    - NFBlueprintSignallerAdvanced
-    - NFBlueprintClothingBackpackHolding
-    - NFBlueprintClothingBackpackSatchelHolding
-    - NFBlueprintClothingBackpackMessengerHolding
-    - NFBlueprintClothingBackpackDuffelHolding
-    - NFBlueprintConstructionBagOfHolding
-    - NFBlueprintPortableRecharger
-    # Medical
-    - NFBlueprintBluespaceBeaker
-    - NFBlueprintSyringeBluespace
-    - NFBlueprintVialBluespace
-    # Salvage
-    - NFBlueprintOreBagOfHolding
-    - NFBlueprintMiningDrillDiamond
-    - NFBlueprintAdvancedMineralScannerEmpty
-    - NFBlueprintClothingOuterHardsuitMaximPrototype
-    # Science
-    - NFBlueprintRped
-    - NFBlueprintSuperCapacitorStockPart
-    - NFBlueprintPicoManipulatorStockPart
-    - NFBlueprintSuperMatterBinStockPart
-    - NFBlueprintClothingShoesBootsMagAdv
-    # Service
-    - NFBlueprintAdvMopItem
-    - NFBlueprintPlantAnalyzerEmpty
-    - NFBlueprintPlantBagOfHolding
-    # Armory
-    - NFBlueprintWeaponAntiqueLaser
-    - NFBlueprintWeaponLaserSvalinn
-    - NFBlueprintPortableRecharger
-    - BlueprintClothingOuterHardsuitScaf
+    staticPacks:
+    - PowerCellsStatic
+    dynamicPacks:
+    - NFBlueprints
   - type: RequireProjectileTarget
+
+- type: entity
+  id: ScrapProcessor
+  parent: BaseLatheLube
+  name: scrap processor
+  description: It produces sheets and ingots using scrap.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/scrap_processor.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unshaded
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: NFScrapProcessorCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Ore
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    unlitIdleState: unshaded
+    unlitRunningState: building-unshaded
+    defaultProductionAmount: 10
+    productValueModifier: null
+    staticPacks:
+    - NFScrapStatic
+
+- type: entity
+  id: BiogeneratorFill
+  parent: Biogenerator
+  name: biogenerator
+  suffix: Biomass, 50
+  components:
+  - type: MaterialStorage
+    storage:
+      Biomass: 50

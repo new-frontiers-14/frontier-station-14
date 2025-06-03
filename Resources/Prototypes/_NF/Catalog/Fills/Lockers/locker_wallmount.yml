@@ -25,6 +25,11 @@
   suffix: Filled, Bananium
 
 - type: entity
+  parent: [ LockerWallColorBananium, StorageFillMaterialsFuelBananium2 ]
+  id: LockerWallMaterialsFuelBananiumFilled2
+  suffix: Filled, Bananium (x2 Generators)
+
+- type: entity
   parent: [ LockerWallColorAme, StorageFillMaterialsFuelAmeJar ]
   id: LockerWallMaterialsFuelAmeJarFilled
   suffix: Filled, AME Jar (x2)
@@ -189,6 +194,17 @@
   parent: [ LockerWallEVAColorLvhi, StorageFillEVASuitLvhi ]
   id: LockerWallEVAColorLvhiFilled
   suffix: Frontier, Filled
+
+- type: entity
+  parent: [ LockerWallEVAColorFsb, StorageFillEVASuitFsb ]
+  id: LockerWallEVAColorFsbFilled
+  suffix: Frontier, Filled
+
+- type: entity
+  parent: [ LockerWallEVAColorFsb ]
+  id: LockerWallEVAColorFsbEmpty
+  suffix: Frontier, Empty
+
 # endregion
 
 # region Emergency
@@ -201,6 +217,22 @@
   parent: [ ClosetWallO2N2, StorageFillO2N2Random ]
   id: ClosetWallO2N2FilledRandom
   suffix: Filled, Random
+
+- type: entity
+  parent: [ ClosetWallN2, StorageFillN2 ]
+  id: ClosetWallN2Filled
+  suffix: Filled
+
+- type: entity
+  parent: [ ClosetWallO2N2, StorageFillO2N2 ]
+  id: ClosetWallO2N2Filled
+  suffix: Filled
+
+- type: entity
+  parent: [ ClosetWallEmergency, StorageFillO2 ]
+  id: ClosetWallO2Filled
+  suffix: Filled
+
 # endregion
 
 # region Safety gear
@@ -257,4 +289,19 @@
   - BaseStructureWallmount
   - LockerChemistryFilled
   name: chemistry wall locker
+# endregion
+
+# region Departments
+- type: entity
+  id: LockerWallColorHydroponicsFilled
+  suffix: Filled, Frontier
+  parent: [LockerWallColorHydroponics, LockerBotanistFilled]
+
+- type: entity
+  id: LockerWallColorHydroponicsEmpty
+  suffix: Empty, Frontier
+  parent:
+  - LockerWallColorHydroponics
+  - BaseStructureWallmount  
+  name: botanist wall locker
 # endregion

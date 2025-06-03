@@ -27,7 +27,7 @@ public sealed class MutationSystem : EntitySystem
     {
         foreach (var mutation in _randomMutations.mutations)
         {
-            if (Random(mutation.BaseOdds * severity))
+            if (Random(Math.Min(mutation.BaseOdds * severity, 1.0f)))
             {
                 if (mutation.AppliesToPlant)
                 {
@@ -87,6 +87,12 @@ public sealed class MutationSystem : EntitySystem
 
         CrossGasses(ref result.ExudeGasses, a.ExudeGasses);
         CrossGasses(ref result.ConsumeGasses, a.ConsumeGasses);
+
+        // Frontier: ensure clip/swab/seed safety propagates
+        result.PreventClipping |= a.PreventClipping;
+        result.PreventSwabbing |= a.PreventSwabbing;
+        result.PermanentlySeedless |= a.PermanentlySeedless;
+        // End Frontier
 
         // LINQ Explanation
         // For the list of mutation effects on both plants, use a 50% chance to pick each one.

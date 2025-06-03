@@ -26,7 +26,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
 
-    private const int PlaytimeOpenGuidebook = 60;
+    private const int PlaytimeOpenGuidebook = 180; // Frontier 60<180
 
     private GuidebookWindow? _guideWindow;
     private MenuButton? GuidebookButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.GuidebookButton;
@@ -210,7 +210,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
 
         // Expand up to depth-2.
         _guideWindow.Tree.SetAllExpanded(false);
-        _guideWindow.Tree.SetAllExpanded(true, 1);
+        _guideWindow.Tree.SetAllExpanded(true, 0); // Frontier: 1->0 (too many entries at depth 2)
 
         _guideWindow.OpenCenteredRight();
     }

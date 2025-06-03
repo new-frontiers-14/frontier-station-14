@@ -1,8 +1,27 @@
 # Mail-only items. If/when these get used for anything else, please move them to another folder.
 # Pranks: admin items or effects put into an envelope, released when opened or damaged.
 - type: entity
-  id: DelayedSmoke
+  id: BaseDelayedItem
   parent: BaseItem
+  abstract: true
+  name: delayed item
+  description: If you're seeing this, something went wrong!
+  components:
+  - type: Sprite
+    sprite: error.rsi
+    state: error
+  - type: DelayedItem
+
+- type: entity
+  id: BaseDamageableDelayedItem
+  parent: BaseDelayedItem
+  abstract: true
+  components:
+  - type: Damageable
+
+- type: entity
+  id: DelayedSmoke
+  parent: BaseDamageableDelayedItem
   categories: [ HideSpawnMenu ]
   name: delayed smoke
   suffix: "(10s)"
@@ -22,7 +41,7 @@
 
 - type: entity
   id: DelayedEMP
-  parent: BaseItem
+  parent: BaseDamageableDelayedItem
   categories: [ HideSpawnMenu ]
   name: delayed EMP (7 meters)
   components:
@@ -34,12 +53,71 @@
 # Delay the emotional support pet so they don't suffocate.
 - type: entity
   id: DelayedPetCarrierNPCEmotionalSupportSafe
-  parent: BaseItem
+  parent: BaseDelayedItem # Do not spawn a ghost role when this takes damage.
   categories: [ HideSpawnMenu ]
   name: delayed emotional support pet
   components:
   - type: DelayedItem
     item: PetCarrierNPCEmotionalSupportSafe
+
+- type: entityTable
+  id: NFRandomCritter
+  table: !type:GroupSelector
+    children:
+    # Bugs (weight: 2)
+    - id: MobCockroach
+      weight: 0.34
+    - id: MobSlug
+      weight: 0.34
+    - id: MobBee
+      weight: 0.34
+    - id: MobButterfly
+      weight: 0.34
+    - id: MobSnail
+      weight: 0.34
+      # Uncommon
+    - id: MobMothroach
+      weight: 0.15
+      # Rare
+    - id: MobRosyMothroach
+      weight: 0.05
+    - id: MobSnailMoth
+      weight: 0.05
+    - id: MobSnailSpeed
+      weight: 0.05
+    # Small reptiles (weight: 1)
+    - id: MobLizard
+      weight: 0.34
+    - id: MobSnake
+      weight: 0.33
+    - id: MobFrog
+      weight: 0.33
+    # Small mammals (weight: 1)
+    - id: MobMouse
+      weight: 0.33
+    - id: MobMouse1
+      weight: 0.33
+    - id: MobMouse2
+      weight: 0.33
+    - id: MobMouseCancer
+      weight: 0.01 # Rare
+
+- type: entity
+  id: NFRandomCritter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: NFRandomCritter
+
+- type: entity
+  id: DelayedNFRandomCritter
+  parent: BaseDelayedItem # Do not spawn a ghost role when this takes damage.
+  categories: [ HideSpawnMenu ]
+  name: delayed random critter
+  components:
+  - type: DelayedItem
+    item: NFRandomCritter
 
 - type: entity
   id: SyringeCognizine
@@ -72,7 +150,7 @@
             Quantity: 15
 
 - type: entity
-  id: NecrosolChemistryBottle
+  id: ChemistryBottleNecrosol
   parent: BaseChemistryBottleFilled
   suffix: necrosol
   components:
@@ -93,36 +171,54 @@
   parent: DrinkVodkaBottleFull
   name: Moment of Clarity vodka bottle
   description: When things get a bit hectic, all you need is a Moment of Clarity.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_vodkabottle.rsi
 
 - type: entity
   id: DrinkPremiumGinBottleFull
   parent: DrinkGinBottleFull
   name: Harry's gin bottle
   description: An interesting set of botanicals, for sure. Is that pumpkin?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_ginbottle.rsi
 
 - type: entity
   id: DrinkPremiumTequilaBottleFull
   parent: DrinkTequilaBottleFull
   name: Casa del Eorg tequila bottle
   description: Save the best for last. Casa del Eorg, 100% agave.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_tequilabottle.rsi
 
 - type: entity
   id: DrinkPremiumWhiskeyBottleFull
   parent: DrinkWhiskeyBottleFull
   name: Ol' Prowler 18 whiskey bottle
   description: Surprisingly smooth, it has a nasty habit of sneaking up on you.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_whiskeybottle.rsi
 
 - type: entity
   id: DrinkPremiumRumBottleFull
   parent: DrinkRumBottleFull
   name: Redeemer's Bounty rum bottle
   description: Well, you asked for it. Navy strength.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_rumbottle.rsi
 
 - type: entity
   id: DrinkPremiumAbsintheBottleFull
   parent: DrinkAbsintheBottleFull
   name: Bureaucracy's Kiss absinthe bottle
   description: A refined taste that tends to linger.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_absinthebottle.rsi
 
 - type: entity
   id: CigarPlatinumCase
@@ -134,6 +230,8 @@
     contents:
     - id: CigarPlatinum
       amount: 8
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Cigars/case-platinum.rsi
 
 - type: entity
   id: CigarPlatinum
@@ -147,10 +245,7 @@
     state: unlit-icon
   - type: Clothing
     sprite: _NF/Objects/Consumable/Smokeables/Cigars/cigar-platinum.rsi
-    slots: [ mask ]
     equippedPrefix: unlit
-  - type: Item
-    size: Tiny
 
 - type: entity
   id: CigarPlatinumSpent

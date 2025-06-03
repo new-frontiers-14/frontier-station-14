@@ -12,7 +12,8 @@ using static Content.Shared.Paper.PaperComponent;
 using Content.Shared.Timing; // Frontier
 using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Verbs; // Frontier
-using Content.Shared.Ghost; // Frontier
+using Content.Shared.Ghost;
+using Robust.Shared.Prototypes; // Frontier
 
 namespace Content.Shared.Paper;
 
@@ -31,6 +32,8 @@ public sealed class PaperSystem : EntitySystem
 
     private const int ReapplyLimit = 10; // Frontier: limits on reapplied stamps
     private const int StampLimit = 100; // Frontier: limits on total stamps on a page (should be able to get a signature from everybody on the server on a page)
+    private readonly ProtoId<TagPrototype> _paperProtectedByStampTag = "NFPaperStampProtected"; // Frontier
+    private readonly ProtoId<TagPrototype> _paperWeakIgnoreTag = "NFWriteIgnoreUnprotectedStamps"; // Frontier
 
     public override void Initialize()
     {
@@ -134,42 +137,67 @@ public sealed class PaperSystem : EntitySystem
     private void OnInteractUsing(Entity<PaperComponent> entity, ref InteractUsingEvent args)
     {
         // only allow editing if there are no stamps or when using a cyberpen
-        var editable = entity.Comp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps");
-        if (_tagSystem.HasTag(args.Used, "Write") && editable)
+        var editable = entity.Comp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps")
+                       || _tagSystem.HasTag(args.Used, _paperWeakIgnoreTag) && !_tagSystem.HasTag(entity, _paperProtectedByStampTag); // Frontier: protected stamps
+        if (_tagSystem.HasTag(args.Used, "Write"))
         {
-            if (entity.Comp.EditingDisabled)
+            if (editable)
             {
-                var paperEditingDisabledMessage = Loc.GetString("paper-tamper-proof-modified-message");
-                _popupSystem.PopupEntity(paperEditingDisabledMessage, entity, args.User);
+                // Frontier - Restrict writing to entities with ActorComponent, players only
+                if (!HasComp<ActorComponent>(args.User))
+                {
+                    args.Handled = true;
+                    return;
+                }
+                // End Frontier
 
+                if (entity.Comp.EditingDisabled)
+                {
+                    var paperEditingDisabledMessage = Loc.GetString("paper-tamper-proof-modified-message");
+                    _popupSystem.PopupEntity(paperEditingDisabledMessage, entity, args.User);
+
+                    args.Handled = true;
+                    return;
+                }
+
+                var ev = new PaperWriteAttemptEvent(entity.Owner);
+                RaiseLocalEvent(args.User, ref ev);
+                if (ev.Cancelled)
+                {
+                    if (ev.FailReason is not null)
+                    {
+                        var fileWriteMessage = Loc.GetString(ev.FailReason);
+                        _popupSystem.PopupClient(fileWriteMessage, entity.Owner, args.User);
+                    }
+
+                    args.Handled = true;
+                    return;
+                }
+
+                var writeEvent = new PaperWriteEvent(args.User, entity);
+                RaiseLocalEvent(args.Used, ref writeEvent);
+
+                entity.Comp.Mode = PaperAction.Write;
+                _uiSystem.OpenUi(entity.Owner, PaperUiKey.Key, args.User);
+                UpdateUserInterface(entity);
                 args.Handled = true;
                 return;
             }
-            var writeEvent = new PaperWriteEvent(entity, args.User);
-            RaiseLocalEvent(args.Used, ref writeEvent);
-
-            // Frontier - Restrict writing to entities with ActorComponent, players only
-            if (!TryComp<ActorComponent>(args.User, out var actor))
-                return;
-
-            entity.Comp.Mode = PaperAction.Write;
-            _uiSystem.OpenUi(entity.Owner, PaperUiKey.Key, args.User);
-            UpdateUserInterface(entity);
-            args.Handled = true;
-            return;
         }
 
         // If a stamp, attempt to stamp paper
         if (TryComp<StampComponent>(args.Used, out var stampComp) &&
             !StampDelayed(args.Used)) // Frontier: check stamp is delayed, defer TryStamp
         {
-            var stampInfo = GetStampInfo(stampComp); // Frontier: assign DisplayStampInfo before stamp
+            // Frontier: assign DisplayStampInfo before stamp
+            var stampInfo = GetStampInfo(stampComp);
             if (_tagSystem.HasTag(args.Used, "Write"))
             {
                 TrySign(entity, args.User, args.Used);
             }
             else if (TryStamp(entity, stampInfo, stampComp.StampState))
-            { // End Frontier
+            {
+                // End Frontier: assign DisplayStampInfo before stamp
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
                         ("user", args.User),
@@ -184,9 +212,15 @@ public sealed class PaperSystem : EntitySystem
 
                 _audio.PlayPredicted(stampComp.Sound, entity, args.User);
 
-                UpdateUserInterface(entity);
+                // Frontier: stamp delay and protection
+                DelayStamp(args.Used);
 
-                DelayStamp(args.Used); // Frontier: prevent stamp spam
+                // Note: mode is not changed here, anyone with an open paper may still save changes.
+                if (stampComp.Protected)
+                    _tagSystem.AddTag(entity, _paperProtectedByStampTag);
+                // End Frontier
+
+                UpdateUserInterface(entity);
             } // Frontier: added an indent level
         }
     }
@@ -203,12 +237,19 @@ public sealed class PaperSystem : EntitySystem
 
     private void OnInputTextMessage(Entity<PaperComponent> entity, ref PaperInputTextMessage args)
     {
+        var ev = new PaperWriteAttemptEvent(entity.Owner);
+        RaiseLocalEvent(args.Actor, ref ev);
+        if (ev.Cancelled)
+            return;
+
         if (args.Text.Length <= entity.Comp.ContentSize)
         {
             SetContent(entity, args.Text);
 
+            var paperStatus = string.IsNullOrWhiteSpace(args.Text) ? PaperStatus.Blank : PaperStatus.Written;
+
             if (TryComp<AppearanceComponent>(entity, out var appearance))
-                _appearance.SetData(entity, PaperVisuals.Status, PaperStatus.Written, appearance);
+                _appearance.SetData(entity, PaperVisuals.Status, paperStatus, appearance);
 
             if (TryComp(entity, out MetaDataComponent? meta))
                 _metaSystem.SetEntityDescription(entity, "", meta);
@@ -249,7 +290,33 @@ public sealed class PaperSystem : EntitySystem
         return true;
     }
 
-    // FRONTIER - stamp precondition
+    /// <summary>
+    ///     Copy any stamp information from one piece of paper to another.
+    /// </summary>
+    public void CopyStamps(Entity<PaperComponent?> source, Entity<PaperComponent?> target)
+    {
+        if (!Resolve(source, ref source.Comp) || !Resolve(target, ref target.Comp))
+            return;
+
+        target.Comp.StampedBy = new List<StampDisplayInfo>(source.Comp.StampedBy);
+        target.Comp.StampState = source.Comp.StampState;
+        Dirty(target);
+
+        // Frontier: apply stamp protection
+        if (_tagSystem.HasTag(source, _paperProtectedByStampTag))
+            _tagSystem.AddTag(target, _paperProtectedByStampTag);
+        // End Frontier: apply stamp protection
+
+        if (TryComp<AppearanceComponent>(target, out var appearance))
+        {
+            // delete any stamps if the stamp state is null
+            _appearance.SetData(target, PaperVisuals.Stamp, target.Comp.StampState ?? "", appearance);
+        }
+    }
+
+    // Frontier: stamp functions
+    #region Frontier
+    // stamp precondition
     private bool CanStamp(StampDisplayInfo stampInfo, PaperComponent paperComp)
     {
         if (paperComp.StampedBy.Count >= StampLimit)
@@ -260,21 +327,21 @@ public sealed class PaperSystem : EntitySystem
             return !paperComp.StampedBy.Contains(stampInfo); // Original precondition
     }
 
-    // FRONTIER - stamp reapplication: checks if a given stamp is delayed
+    // stamp reapplication: checks if a given stamp is delayed
     private bool StampDelayed(EntityUid stampUid)
     {
         return TryComp<UseDelayComponent>(stampUid, out var delay) &&
             _useDelay.IsDelayed((stampUid, delay), "stamp");
     }
 
-    // FRONTIER - stamp reapplication: resets the delay on a given stamp
+    // stamp reapplication: resets the delay on a given stamp
     private void DelayStamp(EntityUid stampUid)
     {
         if (TryComp<UseDelayComponent>(stampUid, out var delay))
             _useDelay.TryResetDelay(stampUid, false, delay, "stamp");
     }
 
-    // FRONTIER - Pen signing: Adds the sign verb for pen signing
+    // Pen signing: Adds the sign verb for pen signing
     private void AddSignVerb(EntityUid uid, PaperComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
@@ -300,7 +367,7 @@ public sealed class PaperSystem : EntitySystem
         args.Verbs.Add(verb);
     }
 
-    // FRONTIER - TrySign method, attempts to place a signature
+    // TrySign method, attempts to place a signature
     public bool TrySign(Entity<PaperComponent> paper, EntityUid signer, EntityUid pen)
     {
         if (!TryComp<StampComponent>(pen, out var stamp))
@@ -349,10 +416,12 @@ public sealed class PaperSystem : EntitySystem
 
         return false;
     }
+    #endregion Frontier
+    // End Frontier
 
     public void SetContent(Entity<PaperComponent> entity, string content)
     {
-        entity.Comp.Content = content + '\n';
+        entity.Comp.Content = content;
         Dirty(entity);
         UpdateUserInterface(entity);
 
@@ -377,3 +446,10 @@ public sealed class PaperSystem : EntitySystem
 /// </summary>
 [ByRefEvent]
 public record struct PaperWriteEvent(EntityUid User, EntityUid Paper);
+
+/// <summary>
+/// Cancellable event for attempting to write on a piece of paper.
+/// </summary>
+/// <param name="paper">The paper that the writing will take place on.</param>
+[ByRefEvent]
+public record struct PaperWriteAttemptEvent(EntityUid Paper, string? FailReason = null, bool Cancelled = false);

@@ -2,7 +2,7 @@
   name: brass knuckles
   parent: ClothingHandsBase
   id: WeaponBrassKnuckles
-  description: Ever wanted to punch just a little harder? S.E.S.W.C has what you need!
+  description: When you need to punch just a little harder.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/brassknuckles.rsi
@@ -24,14 +24,14 @@
       coefficients:
         Shock: 1.05 # oh no so conductive
   - type: Insulated
-    coefficient: 1.5 # Extra damage. Don't punch wires, kids.
+    coefficient: 1.5
   - type: Tag
     tags:
     - BrassKnucklesNF
     - WhitelistChameleon
   - type: PhysicalComposition
     materialComposition:
-      Brass: 300 # 1000<300
+      Brass: 100
   - type: StaticPrice
     price: 30 # Ensures these can be sold and have a reasonable vending value
 

@@ -1,0 +1,26 @@
+﻿<PanelContainer xmlns="https://spacestation14.io"
+                Access="Public"
+                HorizontalExpand="True"
+                VerticalExpand="True"
+                MinSize="250 300">
+    <BoxContainer Orientation="Vertical" SeparationOverride="4">
+        <Label Name="ShuttleName" Margin="4 0 0 0" />
+        <Label Name="ShuttleOwner" Margin="4 0 0 0" />
+        <Label Name="ShuttleActivity" Margin="4 0 0 0" />
+        <Label Name="ShuttlePrice" Margin="4 0 0 0" />
+        <RichTextLabel Name="TimeOfPurchase" Margin="4 0 0 0" Access="Public" />
+        <Label Name="VoucherStatus" Margin="4 0 0 0" FontColorOverride="Yellow" />
+        <Button Name="CopyDeedButton"
+                Access="Public"
+                Text=""
+                TextAlign="Center"
+                Margin="5"
+                StyleIdentifier="mainMenu">
+
+            <BoxContainer Orientation="Vertical" Access="Public" Margin="5">
+                <Label Name="CopyDeedButtonLabel" Access="Public" Text="{Loc 'shuttle-records-copy-deed-button'}"/>
+                <Label Name="TransactionCostLabel" Text=""/>
+            </BoxContainer>
+        </Button>
+    </BoxContainer>
+</PanelContainer>

@@ -1,0 +1,50 @@
+- type: entity
+  name: plant bag of holding
+  id: PlantBagOfHolding
+  parent: PlantBag
+  description: A robust bag of holding for fruitful botanists with more plants than pockets.
+  components:
+  - type: Sprite
+    sprite: _DV/Objects/Specific/Hydroponics/plant_bag_holding.rsi
+    layers:
+    - state: icon
+    - state: icon-unlit
+      shader: unshaded
+    # Frontier: magnet toggle layer
+    - state: icon-on
+      visible: False
+      map: [ "enum.ToggleVisuals.Layer" ]
+    # End Frontier: magnet toggle layer
+  - type: Clothing
+    sprite: _DV/Objects/Specific/Hydroponics/plant_bag_holding.rsi
+  - type: Storage
+    grid:
+    - 0,0,19,9
+  - type: Item # Frontier
+    inhandVisuals: # Frontier
+      left: # Frontier
+      - state: inhand-left # Frontier
+      - state: inhand-left-unlit # Frontier
+        shader: unshaded # Frontier
+      right: # Frontier
+      - state: inhand-right # Frontier
+      - state: inhand-right-unlit # Frontier
+        shader: unshaded # Frontier
+  # Frontier: magnet toggle from White Dream 
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  # End Frontier

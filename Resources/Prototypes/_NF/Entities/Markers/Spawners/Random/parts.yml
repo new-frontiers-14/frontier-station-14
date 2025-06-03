@@ -1,46 +1,26 @@
 - type: entity
-  name: Salvage T2 Machine Parts Spawner
+  name: salvage t2 machine parts spawner
   id: SalvagePartsT2Spawner
   parent: MarkerBase
-  components:
-    - type: Sprite
-      layers:
-        - state: red
-        - sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
-          state: advanced_matter_bin
-    - type: RandomSpawner
-      prototypes:
-        - AdvancedCapacitorStockPart
-        - NanoManipulatorStockPart
-        - AdvancedMatterBinStockPart
-      offset: 0.0
-
-- type: entity
-  parent: MarkerBase
-  id: SalvagePartsT3T4Spawner
-  name: tier 3/4 machine part
+  suffix: Spawner
   components:
   - type: Sprite
     layers:
+    - state: red
     - sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
-      state: super_matter_bin
+      state: advanced_matter_bin
   - type: RandomSpawner
-    rarePrototypes:
-    - QuadraticCapacitorStockPart
-    - FemtoManipulatorStockPart
-    - BluespaceMatterBinStockPart
-    rareChance: 0.05
     prototypes:
-    - SuperCapacitorStockPart
-    - PicoManipulatorStockPart
-    - SuperMatterBinStockPart
+    - AdvancedCapacitorStockPart
+    - NanoManipulatorStockPart
+    - AdvancedMatterBinStockPart
     chance: 0.95
-    offset: 0.0
+    offset: 0.5
 
 - type: entity
   parent: MarkerBase
   id: SalvagePartsT3Spawner
-  name: tier 3 machine part
+  name: salvage t3 machine parts spawner
   suffix: Spawner
   components:
   - type: Sprite
@@ -52,12 +32,36 @@
     - SuperCapacitorStockPart
     - PicoManipulatorStockPart
     - SuperMatterBinStockPart
-    offset: 0.0
+    chance: 0.95
+    offset: 0.5
+
+- type: entity
+  parent: MarkerBase
+  id: SalvagePartsT3T4Spawner
+  name: salvage t3/4 machine parts spawner
+  suffix: Spawner
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
+      state: super_matter_bin
+  - type: RandomSpawner
+    prototypes:
+    - SuperCapacitorStockPart
+    - PicoManipulatorStockPart
+    - SuperMatterBinStockPart
+    chance: 0.95
+    rarePrototypes:
+    - QuadraticCapacitorStockPart
+    - FemtoManipulatorStockPart
+    - BluespaceMatterBinStockPart
+    rareChance: 0.05
+    offset: 0.5
 
 - type: entity
   parent: MarkerBase
   id: SalvagePartsT4Spawner
-  name: tier 4 machine part
+  name: salvage t4 machine parts spawner
   suffix: Spawner
   components:
   - type: Sprite
@@ -69,4 +73,5 @@
     - QuadraticCapacitorStockPart
     - PicoManipulatorStockPart
     - BluespaceMatterBinStockPart
-    offset: 0.0
+    chance: 0.95
+    offset: 0.5

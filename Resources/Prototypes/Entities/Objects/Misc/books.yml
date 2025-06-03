@@ -1,9 +1,12 @@
 - type: entity
   name: book
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemPaper] # Frontier: added RecyclableItemPaper
   id: BookBase
   description: A hardcover book.
   components:
+  - type: PhysicalComposition # Frontier
+    materialComposition: # Frontier
+      Paper: 50 # Frontier
   - type: Sprite
     sprite: Objects/Misc/books.rsi
     layers:
@@ -62,6 +65,15 @@
     openOnActivation: true
     guides:
     - NF14 # Frontier: SS14<NF14
+  - type: MeleeWeapon  # Should write it again since BaseGuidebook doesn't inherit BookBase
+    soundHit:
+      collection: Punch
+    damage:
+      types:
+        Blunt: 1
+  - type: DamageOtherOnHit
+    damage:
+      types:
 
 - type: entity
   id: BookSpaceEncyclopedia

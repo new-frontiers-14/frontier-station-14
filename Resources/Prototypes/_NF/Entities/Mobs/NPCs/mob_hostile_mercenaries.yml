@@ -35,8 +35,8 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
-      amount: 5
+    - id: FoodMeatRotten
+      amount: 2
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1.5
     rechargeSound:
@@ -60,6 +60,9 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
 
 # Variations
 ## Tier 1
@@ -446,12 +449,12 @@
     selectedMode: Burst
     availableModes:
     - Burst
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/rifle3.ogg
+    soundGunshot: /Audio/_NF/Weapons/Guns/Gunshots/rifle.ogg
 
 ## Tier 4 - Boss
 - type: entity
   name: mercenary captain
-  parent: MobMercenaryBase
+  parent: [ MobMercenaryBase, NFMobBossRestrictions ]
   id: MobMercenaryCaptain
   description: The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
   categories: [ HideSpawnMenu ]

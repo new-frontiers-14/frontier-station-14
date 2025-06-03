@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub:
 # Discord: Checkraze
 
 # Maintainer Info
@@ -10,12 +10,16 @@
 # The local Science lab
 - type: pointOfInterest
   id: AnomalousGeode
+  parent: BasePOI
   name: 'Anomalous Geode'
-  rangeMin: 2100
-  rangeMax: 3800
-  IFFColor: "#ffa600" #yellorange for nuetral civillian
+  minimumDistance: 2100
+  maximumDistance: 3800
   spawnGroup: ScienceLab
   gridPath: /Maps/_NF/POI/anomalousgeode.yml
+  addComponents:
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: AnomalousGeode

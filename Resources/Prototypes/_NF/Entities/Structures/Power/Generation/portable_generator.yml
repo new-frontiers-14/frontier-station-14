@@ -1,4 +1,4 @@
-﻿# Base generator for powered on, anchored versions for shuttles
+# Base generator for powered on, anchored versions for shuttles
 - type: entity
   id: BaseGeneratorShuttle
   abstract: true
@@ -19,7 +19,7 @@
   components:
   - type: MaterialStorage
     storage:
-      Plasma: 1000
+      FuelGradePlasma: 1000
 
 - type: entity
   parent:
@@ -30,7 +30,7 @@
   components:
   - type: MaterialStorage
     storage:
-      Uranium: 1000
+      FuelGradeUranium: 1000
 
 - type: entity
   parent:
@@ -48,16 +48,16 @@
             Quantity: 70 # Frontier - 35<70
 
 - type: entity
-  name: H.Y.P.E.R.P.A.C.M.A.N.-type portable generator
+  name: D-K-type portable generator
   description: |-
-    Next gen generator for powering stations.
-    Runs off bananium and is rated for up to 100 kW.
-    Very radioactive without protection.
-  parent: 
+    A prototype Dunn-Kikko fission reactor. Use with caution.
+    Runs off bananium and is rated for up to 120 kW.
+    Highly radioactive without protection.
+  parent:
   - PortableGeneratorSuperPacman
-  - BaseC3Contraband # Why will you have this thing?
-  id: PortableGeneratorHyperPacman
-  suffix: Bananium, 60 kW
+  - BaseC2ContrabandUnredeemable # Need a doctor's note to run this.
+  id: PortableGeneratorDK
+  suffix: Bananium, Rad+, 60 kW
   components:
     - type: Sprite
       sprite: _NF/Structures/Power/Generation/portable_generator.rsi
@@ -77,24 +77,22 @@
           enum.GeneratorVisualLayers.Unlit:
             True: { visible: true }
             False: { visible: false }
-
     - type: Machine
-      board: PortableGeneratorHyperPacmanMachineCircuitboard
+      board: PortableGeneratorDKMachineCircuitboard
     - type: FuelGenerator
       minTargetPower: 10000
-      maxTargetPower: 100000
+      maxTargetPower: 120000 # 12 rad/s at full output, _just_ safe directly behind a reinforced wall
       targetPower: 60000
       optimalPower: 60000
-      # 15 minutes per stack at full power
-      optimalBurnRate: 0.005
-      # still decent power curve
-      fuelEfficiencyConstant: 0.75
+      # ~22 minutes per stack at full power - 80 kJ per stack, 240 kJ per 30 units
+      optimalBurnRate: 0.0075
+      # leaky, worse power curve
+      fuelEfficiencyConstant: 0.5
       radiationColor: "#00bfff"
     - type: SolidFuelGeneratorAdapter
-      fuelMaterial: Bananium
-      ejectedFuelProtoId: FuelBananium
+      fuelMaterial: FuelGradeBananium
     - type: MaterialStorage
-      materialWhiteList: [Bananium]
+      materialWhiteList: [Bananium, FuelGradeBananium, RawBananium]
     - type: PowerMonitoringDevice
       sprite: _NF/Structures/Power/Generation/portable_generator.rsi
       state: portgen1
@@ -108,15 +106,78 @@
     - type: PowerSupplier
       supplyRampRate: 10000
       supplyRampTolerance: 3000
+    - type: FuelGradeAdapter
+      conversions:
+      - input: Bananium
+        output: FuelGradeBananium
+        rate: 1
+      - input: RawBananium
+        output: FuelGradeBananium
+        rate: 0.5
 
 - type: entity
   parent:
   - BaseGeneratorShuttle
-  - PortableGeneratorHyperPacman
-  id: PortableGeneratorHyperPacmanShuttle
-  suffix: Bananium, 60 kW, Ship
+  - PortableGeneratorDK
+  id: PortableGeneratorDKShuttle
+  suffix: Bananium, Rad+, 60 kW, Ship
   categories: [ HideSpawnMenu ] # Mm, start-on rad source
   components:
     - type: MaterialStorage
       storage:
-        Bananium: 1000
+        FuelGradeBananium: 1000
+
+- type: entity
+  name: D-K Jr.-type portable generator
+  description: |-
+    A miniaturized Dunn-Kikko fission reactor. Use with caution.
+    Runs off bananium and is rated for up to 100 kW.
+    Quite radioactive without protection.
+  parent:
+  - BaseC1Contraband # Mildly illegal. Just enough to add some spice to your life.
+  - PortableGeneratorDK
+  id: PortableGeneratorDKJr
+  suffix: Bananium, Rad-, 60 kW
+  components:
+    - type: Sprite
+      sprite: Structures/Power/Generation/portable_generator.rsi
+      layers:
+        - state: portgen2
+          map: [ "enum.GeneratorVisualLayers.Body" ]
+        - state: portgen_on_unlit
+          map: [ "enum.GeneratorVisualLayers.Unlit" ]
+          shader: unshaded
+          visible: false
+    - type: GenericVisualizer
+      visuals:
+        enum.GeneratorVisuals.Running:
+          enum.GeneratorVisualLayers.Body:
+            True: { state: portgen2on }
+            False: { state: portgen2 }
+          enum.GeneratorVisualLayers.Unlit:
+            True: { visible: true }
+            False: { visible: false }
+    - type: Machine
+      board: PortableGeneratorDKJrMachineCircuitboard
+    - type: FuelGenerator
+      maxTargetPower: 100000
+      # still decent power curve
+      fuelEfficiencyConstant: 0.75
+      radiationIntensity: 0.00004 # 4 rad/s at full output, 2.4 at optimal settings
+    - type: PowerMonitoringDevice
+      sprite: Structures/Power/Generation/portable_generator.rsi
+      state: portgen2
+    - type: AmbientSound
+      sound:
+        path: /Audio/Items/Geiger/high.ogg
+
+- type: entity
+  parent:
+  - BaseGeneratorShuttle
+  - PortableGeneratorDKJr
+  id: PortableGeneratorDKJrShuttle
+  suffix: Bananium, Rad-, 60 kW, Ship
+  components:
+    - type: MaterialStorage
+      storage:
+        FuelGradeBananium: 1000

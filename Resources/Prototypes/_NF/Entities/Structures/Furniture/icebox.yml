@@ -1,0 +1,39 @@
+- type: entity
+  name: ice box
+  description: This delightful machine is slowly filling with ice!
+  id: IceboxEmpty
+  parent: SinkEmpty
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Furniture/icebox.rsi
+    layers:
+      - state: icebox
+      - map: [ "enum.SolutionContainerLayers.Fill" ]
+        state: icebox_fill-1
+        visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: icebox_fill-
+    solutionName: drainBuffer
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: Ice
+        Quantity: 1
+
+- type: entity
+  name: ice box
+  id: Icebox
+  parent: IceboxEmpty
+  suffix: Ice
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drainBuffer:
+        maxVol: 100
+      tank:
+        reagents:
+        - ReagentId: Ice
+          Quantity: 500

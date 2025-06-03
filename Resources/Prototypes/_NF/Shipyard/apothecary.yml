@@ -10,11 +10,12 @@
 #
 - type: vessel
   id: Apothecary
+  parent: BaseVessel
   name: FSB Apothecary
   description: A small medical and chemistry support vessel. Deployed by the Far Star Biotech company to provide aid and medical services to the Frontier.
-  price: 35500 # TODO: fix this value, gettings to pass - Whatstone
+  price: 36000 # 15% markup for Tier 2 Med + .5 botany
   category: Small
-  group: Shipyard
+  group: Medical
   shuttlePath: /Maps/_NF/Shuttles/apothecary.yml
   guidebookPage: ShipyardApothecary
   class:
@@ -28,7 +29,7 @@
   mapName: 'FSB Apothecary'
   mapPath: /Maps/_NF/Shuttles/apothecary.yml
   minPlayers: 0
-  stations: 
+  stations:
     Apothecary:
       stationProto: StandardFrontierVessel
       components:
@@ -39,6 +40,6 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

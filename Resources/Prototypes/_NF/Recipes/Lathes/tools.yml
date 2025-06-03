@@ -3,7 +3,8 @@
 - type: latheRecipe
   abstract: true
   id: NFBaseToolsRecipe
-  category: Tools
+  categories:
+  - Tools
   completetime: 3.5
 
 # Recipes
@@ -37,7 +38,8 @@
 - type: latheRecipe
   id: MedicalAppraisalTool
   result: MedicalAppraisalTool
-  category: Tools
+  categories:
+  - Tools
   completetime: 3.5
   materials:
     Steel: 500
@@ -86,8 +88,8 @@
 
 - type: latheRecipe
   id: ShipyardRCD
-  result: ShipyardRCDEmpty
   parent: NFBaseToolsRecipe
+  result: ShipyardRCDEmpty
   completetime: 4
   materials:
     Steel: 1000
@@ -95,8 +97,8 @@
 
 - type: latheRecipe
   id: ShipyardRCDAmmo
-  result: ShipyardRCDAmmo
   parent: NFBaseToolsRecipe
+  result: ShipyardRCDAmmo
   completetime: 2.4
   materials:
     Steel: 500
@@ -112,3 +114,16 @@
     Steel: 650
     Plastic: 150
     Gold: 50
+
+# Holopickaxe
+- type: latheRecipe
+  id: NFEnergyPickaxe
+  result: NFEnergyPickaxe
+  categories:
+  - Tools
+  completetime: 4
+  materials:
+    Steel: 1000
+    Plastic: 500
+    Glass: 500
+    Gold: 800

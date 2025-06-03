@@ -1,0 +1,165 @@
+- type: entity
+  id: NFSpawnMobXenoBurrower
+  name: xeno burrower spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/burrower.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobXeno
+
+- type: entity
+  id: NFSpawnMobXenoDrone
+  name: xeno drone spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/drone.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobXenoDrone
+
+- type: entity
+  id: NFSpawnMobXenoPraetorian
+  name: xeno praetorian spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/praetorian.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobXenoPraetorian
+
+- type: entity
+  id: NFSpawnMobXenoRavager
+  name: xeno ravager spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/ravager.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobXenoRavager
+
+- type: entity
+  id: NFSpawnMobXenoRunner
+  name: xeno runner spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/runner.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobXenoRunner
+
+- type: entity
+  id: NFSpawnMobXenoSpitter
+  name: xeno spitter spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/spitter.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobXenoSpitter
+
+- type: entity
+  id: NFSpawnMobXenoQueen
+  name: xeno queen spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/queen.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - NFMobXenoQueen
+
+- type: entity
+  name: xeno spawner
+  suffix: AI, Hostile, T1
+  parent: MarkerBase
+  id: NFSpawnMobXenoT1
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Xenos/drone.rsi
+      state: crit
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - NFMobXeno
+    - NFMobXenoDrone
+    rarePrototypes:
+    - NFMobXenoPraetorian
+    - NFMobXenoRunner
+    - NFMobXenoSpitter
+    rareChance: 0.10
+
+- type: entity
+  suffix: AI, Hostile, T2
+  parent: NFSpawnMobXenoT1
+  id: NFSpawnMobXenoT2
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - NFMobXeno
+    - NFMobXenoPraetorian
+    - NFMobXenoDrone
+    - NFMobXenoRunner
+    - NFMobXenoSpitter
+    rarePrototypes:
+    - NFMobXenoRavager
+    rareChance: 0.10
+
+- type: entity
+  suffix: AI, Hostile, T3
+  parent: NFSpawnMobXenoT1
+  id: NFSpawnMobXenoT3
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - NFMobXenoPraetorian
+    - NFMobXenoRunner
+    - NFMobXenoSpitter
+    - NFMobXenoRavager
+    rarePrototypes:
+    - NFMobXenoDrone
+    - NFMobXeno
+    rareChance: 0.10

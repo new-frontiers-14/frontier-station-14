@@ -1,0 +1,195 @@
+- type: entity
+  parent: [ BaseStructureDynamic, BaseMachinePowered, ConstructibleMachine ]
+  id: GasMiningDrill
+  name: gas mining drill
+  description: A powerful, luggable drill for mining gas deposits on asteroids. Outputs gas through a pipe.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Appearance
+  - type: PipeColorVisuals
+  - type: Rotatable
+  - type: AtmosPipeColor
+  - type: AtmosDevice
+    joinSystem: true
+  - type: UserInterface
+    interfaces:
+      enum.GasPressurePumpUiKey.Key:
+        type: GasDepositExtractorBoundUserInterface
+  - type: ActivatableUI
+    inHandsOnly: false
+    key: enum.GasPressurePumpUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: WiresPanel
+  - type: WiresVisuals
+  - type: PipeRestrictOverlap
+  - type: NodeContainer
+    nodes:
+      outlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: Transform
+    noRot: false
+  - type: DeviceNetwork
+    deviceNetId: AtmosDevices
+    receiveFrequencyId: AtmosMonitor
+    transmitFrequencyId: AtmosMonitor
+    sendBroadcastAttemptEvent: true
+    examinableAddress: true
+    prefix: device-address-prefix-gas-drill
+  - type: WiredNetworkConnection
+  - type: PowerSwitch
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Atmospherics/extractor.rsi
+    snapCardinals: true
+    granularLayersRendering: true
+    layers:
+      - state: pipe
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+        renderingStrategy: Default
+      - state: drill-off
+        map: [ "drill" ]
+      - state: base
+      - state: base-powered
+        shader: unshaded
+        visible: false
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      - state: drill-empty-unlit
+        shader: unshaded
+        map: [ "light" ]
+        visible: false
+      - state: panel
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.GasDepositExtractorVisuals.State:
+        drill:
+          Off: { state: drill-off }
+          Blocked: { state: drill-off }
+          Empty: { state: drill-off }
+          Low: { state: drill }
+          On: { state: drill }
+        light:
+          Off: { visible: false }
+          Blocked: { state: drill-blocked-unlit, visible: true }
+          Empty: { state: drill-empty-unlit, visible: true }
+          Low: { state: drill-low-unlit, visible: true }
+          On: { state: drill-on-unlit, visible: true }
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Machine
+    board: GasMiningDrillMachineCircuitboard
+  - type: GasDepositExtractor
+    baseExtractionRate: 50 # 50 mol/s => 20 kmol in ~6.6 min
+    extractionRate: 50 
+    extractionRateMultiplier: 1.2 # max rate: 86.4 mol/s => 20 kmol in ~3.9 min
+    port: outlet
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35" # a little smaller, should fit through doors
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+
+- type: entity
+  parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseMachinePowered ]
+  id: GasSalePoint
+  name: gas sale point
+  suffix: Internal
+  description: Gas piped into here can be sold using the linked console. Bluespace linked to massive storage vaults off-site.
+  components:
+  - type: Transform
+    noRot: false
+  - type: NodeContainer
+    nodes:
+      inlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: DeviceNetwork
+    prefix: device-address-prefix-sale-point
+  - type: WiredNetworkConnection # still needed?
+  - type: Sprite
+    sprite: _NF/Structures/Piping/Atmospherics/salepoint.rsi
+    layers:
+      - state: base
+      - state: base-unlit
+        shader: unshaded
+      - state: on-unlit
+        shader: unshaded
+        visible: false
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      - state: pipe
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Machine
+    board: Null # FIXME
+  - type: GasSalePoint
+  - type: CargoSellBlacklist
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      machine_board: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      machine_parts: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+  - type: AtmosDevice
+
+- type: entity
+  parent: [ GasSalePoint, BaseGaslock ]
+  id: GasSalePort
+  name: gas sale port
+  suffix: Dockable
+  components:
+  - type: NodeContainer
+    nodes:
+      inlet:
+        !type:DockablePipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: Sprite
+    sprite: _NF/Structures/Piping/Atmospherics/salepoint.rsi
+    layers:
+      - state: base
+      - state: base-unlit
+        shader: unshaded
+      - state: struts
+      - state: docked-unlit
+        shader: unshaded
+        visible: false
+        map: [ "docked-unlit" ]
+      - state: on-unlit
+        shader: unshaded
+        visible: false
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      - state: pipe
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+  - type: DockablePipe
+    dockNodeName: inlet
+    internalNodeName: inlet
+  - type: GenericVisualizer
+    visuals:
+      enum.DockablePipeVisuals.Docked:
+        docked-unlit:
+          True: { visible: true }
+          False: { visible: false }

@@ -102,7 +102,7 @@
     materialComposition:
       Steel: 200
   - type: StaticPrice
-    price: 25
+    price: 20 # Frontier 40<20
   - type: IgnitionSource
     temperature: 700
 
@@ -171,6 +171,8 @@
       reagents:
       - ReagentId: WeldingFuel
         Quantity: 1
+  - type: RequiresEyeProtection
+    statusEffectTime: 5 # less harmful; sunglasses can block it
 
 - type: entity
   name: emergency welding tool

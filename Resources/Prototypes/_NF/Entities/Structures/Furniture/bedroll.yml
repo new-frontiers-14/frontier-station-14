@@ -1,0 +1,176 @@
+- type: entity
+  id: NFBedroll
+  parent: [BaseItem, BaseDeployFoldable, RecyclableItemClothBasic]
+  name: bedroll
+  description: When there's nowhere else to sleep, you'll want to bring at least one thing of comfort. The tag on it states to unfold it before rest, but who needs rules anyway, right?
+  components:
+  - type: PlaceableSurface # For bedsheets
+    placeCentered: true
+    positionOffset: 0, -0.001 # Make sure the bed is placed behind the blanket
+  - type: HealOnBuckle # Regular bed values, plus bonus cold recovery
+    damage:
+      types:
+        Poison: -0.1
+        Blunt: -0.1
+        Cold: -0.1
+  - type: Transform
+    noRot: true
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _NF/Structures/Furniture/bedroll.rsi
+    noRot: true
+    layers:
+    - state: bedroll01
+      map: ["unfoldedLayer"]
+    - state: bedroll01_folded
+      map: ["foldedLayer"]
+      visible: false
+  - type: MovedByPressure
+  - type: DamageOnHighSpeedImpact
+    soundHit:
+      collection: MetalThud
+  - type: InteractionOutline
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 40
+        mask:
+        - MobMask
+  - type: Damageable
+    damageModifierSet: Inflatable
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              MaterialCloth1:
+                min: 1
+                max: 2
+  - type: Pullable
+  - type: Strap
+    position: Down
+    rotation: -90
+    buckleOffset: "0,-0.15"
+    #buckleOnInteractHand: False
+  - type: Appearance
+  - type: StaticPrice
+    price: 20
+  - type: Construction
+    graph: GraphNFBedrollFolded
+    node: NFBedrollFolded
+
+- type: entity
+  parent: NFBedroll
+  id: NFBedrollFolded
+  suffix: folded
+  components:
+  - type: Foldable
+    folded: true
+  - type: Strap
+    enabled: False
+
+- type: entity
+  id: NFBedrollAlt
+  parent: NFBedroll
+  suffix: alt
+  components:
+  - type: Sprite
+    noRot: true
+    layers:
+    - state: bedroll02
+      map: ["unfoldedLayer"]
+    - state: bedroll02_folded
+      map: ["foldedLayer"]
+      visible: false
+  - type: Appearance
+  - type: Construction
+    graph: GraphNFBedrollFolded
+    node: NFBedrollAltFolded
+
+- type: entity
+  parent: NFBedrollAlt
+  id: NFBedrollAltFolded
+  suffix: folded, alt
+  components:
+  - type: Foldable
+    folded: true
+  - type: Strap
+    enabled: False
+
+- type: entity # McHobo special
+  id: NFBedrollStained
+  parent: NFBedroll
+  description: Glamping used to look different back in my days.
+  suffix: Stained
+  components:
+  - type: Sprite
+    layers:
+    - state: bedroll01
+      map: ["unfoldedLayer"]
+    - state: bedroll01_folded
+      map: ["foldedLayer"]
+      visible: false
+    - state: overlay_stain_01
+      map: ["bedrollStain"]
+      visible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.FoldedVisuals.State: # Copypasta from BaseFoldable b/c collections don't merge when overriding component prototypes.
+        foldedLayer:
+          True: {visible: true}
+          False: {visible: false}
+        unfoldedLayer:
+          True: {visible: false}
+          False: {visible: true}
+        bedrollStain:
+          True: {visible: false}
+          False: {visible: true}
+  - type: RandomSprite
+    available:
+      - unfoldedLayer:
+          bedroll01: ""
+          bedroll02: ""
+        bedrollStain:
+          overlay_stain_01: LiquidsBiological
+          overlay_stain_02: LiquidsBiological
+          overlay_stain_03: LiquidsBiological
+          overlay_stain_04: LiquidsBiological
+
+- type: entity # McHobo bed spawner
+  id: McHoboBedsRandom
+  name: stained bedroll spawner
+  suffix: Random
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Structures/Furniture/bedroll.rsi
+      state: bedroll01_folded
+  - type: RandomSpawner
+    prototypes:
+    - NFBedrollStained
+    - Mattress
+    chance: 1
+
+- type: entity
+  parent: NFBedrollStained
+  id: NFBedrollStainedFolded
+  suffix: folded, stained
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Foldable
+    folded: true
+  - type: Strap
+    enabled: False

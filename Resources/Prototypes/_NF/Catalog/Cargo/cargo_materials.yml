@@ -1,15 +1,4 @@
 - type: cargoProduct
-  id: Materials
-  abstract: true
-  icon:
-    sprite: Objects/Materials/Sheets/metal.rsi
-    state: steel_3
-  product: CrateMaterials
-  cost: 8400 # TODO: Lower the cost back when possible
-  category: cargoproduct-category-name-materials
-  group: market
-
-- type: cargoProduct
   id: MaterialUranium
   abstract: true
   icon:
@@ -41,7 +30,7 @@
   cost: 5000
   category: cargoproduct-category-name-materials
   group: market
-  
+
 - type: cargoProduct
   id: MaterialWaterTankHighCapacity
   abstract: true
@@ -50,5 +39,25 @@
     state: highwatertank-2
   product: WaterTankHighCapacity
   cost: 3300
+  category: cargoproduct-category-name-materials
+  group: market
+
+- type: cargoProduct
+  id: CargoConstructionBox
+  icon:
+    sprite:  /Textures/_NF/Structures/Storage/magnetbox.rsi
+    state: constructionbox
+  product: NFMagnetBoxConstruction
+  cost: 1000
+  category: cargoproduct-category-name-materials
+  group: market
+
+- type: cargoProduct
+  id: CargoRubbishBox
+  icon:
+    sprite:  /Textures/_NF/Structures/Storage/magnetbox.rsi
+    state: rubbishbox
+  product: NFMagnetBoxRubbish
+  cost: 1000
   category: cargoproduct-category-name-materials
   group: market

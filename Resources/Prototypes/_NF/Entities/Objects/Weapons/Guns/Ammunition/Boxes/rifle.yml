@@ -1,26 +1,19 @@
 - type: entity
-  parent: BaseMagazineBoxRifle
+  parent: MagazineBoxRifleBig
   id: MagazineBoxRifleBigRubber
   name: ammunition box (.20 rifle rubber)
   components:
   - type: BallisticAmmoProvider
     capacity: 200
     proto: CartridgeRifleRubber
-  - type: Icon
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
-    state: bigpracticedisplay
   - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
     layers:
     - state: base-b
       map: ["enum.GunVisualLayers.Base"]
-    - state: magb-1
+    - state: magb-3
       map: ["enum.GunVisualLayers.Mag"]
     - state: practice-b
-  - type: MagazineVisuals
-    magState: magb
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
 
 - type: entity
   parent: BaseMagazineBoxRifle
@@ -29,13 +22,11 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleRubber
-  - type: Icon
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
-    state: rubberdisplay
   - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
+    - state: mag-3
       map: ["enum.GunVisualLayers.Mag"]
     - state: rubber

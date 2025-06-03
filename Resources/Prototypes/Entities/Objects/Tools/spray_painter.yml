@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   id: SprayPainter
   name: spray painter
   description: A spray painter for painting airlocks and pipes.
@@ -30,5 +30,6 @@
       distro: '#0055cc'
       air: '#03fcd3'
       mix: '#947507'
+      external: '#9955cc' # Frontier
   - type: StaticPrice
-    price: 40
+    price: 20 # Frontier 40<20

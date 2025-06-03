@@ -3,10 +3,10 @@
   <Box>
   <GuideEntityEmbed Entity="ChemMaster"/>
   <GuideEntityEmbed Entity="SeedExtractor"/>
-  <GuideEntityEmbed Entity="hydroponicsTrayAnchored"/>
+  <GuideEntityEmbed Entity="hydroponicsTray"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="UnstableMutagenChemistryBottle"/>
+  <GuideEntityEmbed Entity="ChemistryBottleUnstableMutagen"/>
   <GuideEntityEmbed Entity="FoodSpacemansTrumpet"/>
   <GuideEntityEmbed Entity="GasVentScrubber"/>
   <GuideEntityEmbed Entity="StorageCanister"/>
@@ -51,7 +51,7 @@
   - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit is anchored to the floor.
   - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
   - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit is set to HV output.
-  - Set Target Power for 32 [bold]k[/bold]W.
+  - Set Target Power for 29 [bold]k[/bold]W.
   - Start the S.U.P.E.R.P.A.C.M.A.N. generator unit.
 
   ## 2. Atmospherics
@@ -67,10 +67,10 @@
 
   - Check if the O2 canister and N2 canister are anchored to their connector ports.
   - Check the air canister connection port, if required.**
-  - Check if the gas mixer labelled "Air" has its mixing ratio and output pressure set correctly.
-  - Find the gas filter labelled "Nitrogen" and set it to filter nitrogen.
-  - Find the gas filter labelled "Oxygen" and set it to filter oxygen.
-  - Enable the gas mixer labelled "Air".
+  - Check if the gas mixer has its mixing ratio and output pressure set correctly.
+  - Find the filter leading into the nitrogen canister and set it to filter nitrogen.
+  - Find the filter leading into the oxygen canister and set it to filter oxygen.
+  - Enable the gas mixer.
 
   ## 2.2. Waste Loop
   <Box>
@@ -87,13 +87,13 @@
   - Set all Air Alarms to Filtering (Wide).
 
   To purge waste gases without collecting them:
-  - Open the manual valve labelled "Waste".
+  - Open the manual valve leading to the waste vent.
 
   To collect waste gases:
-  - Keep the manual valve labelled "Waste" closed.
+  - Keep the waste vent manual valve closed.
   - Ensure a storage canister is connected into the collection connector port.
-  - Set the Gas Filter labelled "Waste" to the waste gas you wish to store.
-  - Enable the volumetric gas pump labelled "Waste".
+  - Set the auxiliary network Gas Filter to the waste gas you wish to store.
+  - Enable the volumetric gas pump leading into the collection port.
   - Monitor contents of storage canister. Replace storage canister as necessary.
   
    To correct cabin O2-N2 overpressure:
@@ -112,7 +112,7 @@
 
   ## Sidenotes
 
-  * - Akupara-class vessels are equipped with three APC units that can be used to appraise the ship's total power consumption. Unmodified Akupara-class vessels require 32 kW of power to remain operational.
+  * - Akupara-class vessels are equipped with three APC units that can be used to appraise the ship's total power consumption. Unmodified Akupara-class vessels require 29 kW of power to remain operational.
 
   ** - Since the Akupara's distribution loop uses a gas mixer, it does not need pre-mixed air for optimal atmospherics. However, it features a port to accept pre-mixed air.
 

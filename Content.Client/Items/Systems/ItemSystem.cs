@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Hands;
+using Content.Shared.Hands.Components; // Frontier
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
 using Robust.Client.GameObjects;
@@ -111,5 +112,16 @@ public sealed class ItemSystem : SharedItemSystem
         result = new() { layer };
         return true;
     }
+
+    // Frontier: settable inhand visuals
+    /// <summary>
+    /// Sets an item's inhand visuals and send out an update.
+    /// </summary>
+    public void SetVisuals(EntityUid uid, ItemComponent item, Dictionary<HandLocation, List<PrototypeLayerData>> visuals)
+    {
+        item.InhandVisuals = visuals;
+        VisualsChanged(uid);
+    }
+    // End Frontier
     #endregion
 }

@@ -1,0 +1,33 @@
+- type: constructionGraph
+  id: NFStorageCanister
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: storagecanister
+      steps:
+      - material: Plasteel
+        amount: 5
+        doAfter: 5
+
+  - node: storagecanister
+    entity: StorageCanister
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetPlasteel1
+        amount: 3
+      - !type:DeleteEntity
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      - tool: Cutting
+        doAfter: 1
+      - tool: Welding
+        doAfter: 5
+      - tool: Prying
+        doAfter: 2

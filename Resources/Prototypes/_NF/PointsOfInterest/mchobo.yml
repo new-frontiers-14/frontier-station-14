@@ -8,15 +8,19 @@
 
 # Notes:
 # Dumping ground of broken dreams and broken ships.
-# Based on the McCargo built by Dvir01 (https://github.com/dvir001) and ruined with drunken pride by Tych0. 
+# Based on the McCargo built by Dvir01 (https://github.com/dvir001) and ruined with drunken pride by Tych0.
 - type: pointOfInterest
   id: McHobo
+  parent: BasePOI
   name: Derelict McCargo
-  rangeMin: 3250
-  rangeMax: 5600
-  IFFColor: "#ffa600" #yellorange for faction style
+  minimumDistance: 3250
+  maximumDistance: 5600
   spawnGroup: Scrapyard
   gridPath: /Maps/_NF/POI/mchobo.yml
+  addComponents:
+  - type: StationTransit
+    routes:
+      SpawnPoints: 50
 
 - type: gameMap
   id: McHobo
@@ -29,3 +33,4 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: "Derelict McCargo"
+        - type: BindToStationVariationPassExemption

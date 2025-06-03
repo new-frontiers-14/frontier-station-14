@@ -350,7 +350,7 @@
   categories: [ HideSpawnMenu ] # debloat spawn menu
   id: LockerWallEVAColorNfsd
   parent: LockerWallColorBase
-  name: nfsd EVA wall locker
+  name: NFSD EVA wall locker
   components:
   - type: Sprite
     layers:
@@ -553,6 +553,32 @@
     - state: door-decal-eva-01
       map: [ decal2 ]
       color: "#e48545"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  categories: [ HideSpawnMenu ] # debloat spawn menu
+  id: LockerWallEVAColorFsb
+  parent: LockerWallColorBase
+  name: FSB EVA wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#8497B2"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#8497B2"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#e48545"
+    - state: door-decal-eva-02
+      map: [ decal2 ]
+      color: "#EEF5F7"
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]

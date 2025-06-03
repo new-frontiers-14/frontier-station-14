@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
   id: BaseMagazineBoxMagnum
   components:
   - type: BallisticAmmoProvider
@@ -16,10 +16,10 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi # Frontier: add _NF prefix
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 4
     zeroVisible: false
   - type: Appearance
 
@@ -31,9 +31,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnum
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi # Frontier
-    state: display # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -48,9 +45,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumPractice
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi # Frontier
-    state: practicedisplay # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -66,9 +60,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumIncendiary
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi # Frontier
-    state: incendiarydisplay # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -84,9 +75,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumUranium
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi # Frontier
-    state: uraniumdisplay # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -102,9 +90,6 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumAP
-  - type: Icon # Frontier
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi # Frontier
-    state: piercingdisplay # Frontier
   - type: Sprite
     layers:
     - state: base

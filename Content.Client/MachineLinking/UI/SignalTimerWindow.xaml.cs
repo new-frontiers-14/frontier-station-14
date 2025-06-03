@@ -17,6 +17,7 @@ public sealed partial class SignalTimerWindow : DefaultWindow
     public event Action<string>? OnCurrentTextChanged;
     public event Action<string>? OnCurrentDelayMinutesChanged;
     public event Action<string>? OnCurrentDelaySecondsChanged;
+    public event Action<bool>? OnCurrentRepeatChanged; //Frontier: Repeat Changed handler
 
     private TimeSpan? _triggerTime;
 
@@ -32,6 +33,7 @@ public sealed partial class SignalTimerWindow : DefaultWindow
         CurrentTextEdit.OnTextChanged += e => OnCurrentTextChange(e.Text);
         CurrentDelayEditMinutes.OnTextChanged += e => OnCurrentDelayMinutesChange(e.Text);
         CurrentDelayEditSeconds.OnTextChanged += e => OnCurrentDelaySecondsChange(e.Text);
+        CurrentRepeatEdit.OnToggled += e => OnCurrentRepeatChange(e.Pressed); //Frontier: Repeat OnToggled
         StartTimer.OnPressed += _ => StartTimerWeh();
     }
 
@@ -76,6 +78,13 @@ public sealed partial class SignalTimerWindow : DefaultWindow
         }
         OnCurrentTextChanged?.Invoke(text);
     }
+
+    // Frontier: OnCurrentRepeatChange handler
+    public void OnCurrentRepeatChange(bool toggled)
+    {
+        OnCurrentRepeatChanged?.Invoke(toggled);
+    }
+    //End Frontier
 
     public void OnCurrentDelayMinutesChange(string text)
     {
@@ -141,6 +150,13 @@ public sealed partial class SignalTimerWindow : DefaultWindow
     {
         CurrentTextEdit.Text = text;
     }
+
+    // Frontier: SetCurrentRepeat
+    public void SetCurrentRepeat(bool repeat)
+    {
+        CurrentRepeatEdit.Pressed = repeat;
+    }
+    // End Frontier
 
     public void SetCurrentDelayMinutes(string delay)
     {

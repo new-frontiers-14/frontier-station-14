@@ -3,6 +3,7 @@
   id: ClothingBackpackDuffel
   name: duffel bag
   description: A large duffel bag for holding extra things.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Clothing/Back/Duffels/duffel.rsi
@@ -64,7 +65,7 @@
         collection: BikeHorn
 
 - type: entity
-  parent: [NFClothingDuffel, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband, ClothingBackpackDuffel<NFClothingDuffel
+  parent: [NFClothingDuffel, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband, ClothingBackpackDuffel<NFClothingDuffel
   id: ClothingBackpackDuffelSecurity
   name: security duffel bag
   description: A large duffel bag for holding extra security related goods.
@@ -73,7 +74,7 @@
       sprite: Clothing/Back/Duffels/security.rsi
 
 - type: entity
-  parent: [NFClothingDuffel, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband, ClothingBackpackDuffel<NFClothingDuffel
+  parent: [NFClothingDuffel, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable, ClothingBackpackDuffel<NFClothingDuffel
   id: ClothingBackpackDuffelBrigmedic
   name: brigmedic duffel bag
   description: A large duffel bag for holding extra medical related goods.
@@ -248,7 +249,7 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-    - 0,0,11,4
+    - 0,0,7,7 # Frontier: Was 0,0,19,9
   - type: ClothingSpeedModifier
     sprintModifier: 1 # makes its stats identical to other variants of bag of holding
   - type: HeldSpeedModifier

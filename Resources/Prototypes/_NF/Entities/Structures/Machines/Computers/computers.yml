@@ -23,7 +23,7 @@
 - type: entity
   name: cargo sale computer
   suffix: Normal
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerPalletConsoleNFMarket
   description: Used to sell goods loaded onto cargo pallets.
   abstract: true
@@ -35,7 +35,8 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: request
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: cargo_sale
     - map: ["computerLayerKeys"]
       state: tech_key
   - type: PointLight
@@ -62,7 +63,7 @@
   suffix: VeryHigh
   components:
   - type: MarketModifier
-    mod: 1.75
+    mod: 1.50
 
 - type: entity
   parent: ComputerPalletConsoleNFMarket
@@ -70,7 +71,7 @@
   suffix: High
   components:
   - type: MarketModifier
-    mod: 1.50
+    mod: 1.25
 
 - type: entity
   parent: ComputerPalletConsoleNFMarket
@@ -98,7 +99,7 @@
 
 - type: entity
   name: contraband exchange computer
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerContrabandPalletConsole
   description: Used to exchange contraband for Frontier Uplink Coins.
   components:
@@ -169,69 +170,37 @@
 - type: entity
   name: cargo market computer
   abstract: true
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerMarketConsoleNFBase
   description: Used to buy goods from the station's market system.
   placement:
     mode: SnapgridCenter
   components:
-    - type: MeleeSound
-      soundGroups:
-        Brute:
-          collection: MetalGlassBreak
-    - type: Computer
-    - type: ApcPowerReceiver
-      powerLoad: 200
-    - type: ExtensionCableReceiver
-    - type: ActivatableUIRequiresPower
-    - type: Sprite
-      netsync: false
-      noRot: true
-      sprite: Structures/Machines/computers.rsi
-      layers:
-        - map: ["computerLayerBody"]
-          state: computer
-        - map: ["computerLayerKeyboard"]
-          state: generic_keyboard
-        - map: ["computerLayerScreen"]
-          state: request
-        - map: ["computerLayerKeys"]
-          state: tech_key
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.ComputerVisuals.Powered:
-          computerLayerScreen:
-            True: { visible: true, shader: unshaded }
-            False: { visible: false }
-          computerLayerKeys:
-            True: { visible: true, shader: unshaded }
-            False: { visible: true, shader: shaded }
-    - type: LitOnPowered
-    - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      color: "#b89f25"
-      enabled: false
-      mask: /Textures/Effects/LightMasks/cone.png
-      autoRot: true
-      offset: "0, 0.4" # shine from the top, not bottom of the computer
-      castShadows: false
-    - type: EmitSoundOnUIOpen
-      sound:
-        collection: Keyboard
-    - type: MarketConsole
-    - type: ActivatableUI
-      key: enum.MarketConsoleUiKey.Default
-    - type: UserInterface
-      interfaces:
-        enum.MarketConsoleUiKey.Default:
-          type: MarketConsoleBoundUserInterface
-        enum.WiresUiKey.Key:
-          type: WiresBoundUserInterface
-    - type: MarketModifier
-      mod: 1
-      
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: cargo_market
+    - map: ["computerLayerKeys"]
+      state: tech_key
+  - type: MarketConsole
+  - type: ActivatableUI
+    key: enum.MarketConsoleUiKey.Default
+  - type: UserInterface
+    interfaces:
+      enum.MarketConsoleUiKey.Default:
+        type: MarketConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: MarketModifier
+    mod: 1
+  - type: Computer
+    board: Null
+
 - type: entity
   name: cargo market computer
   parent: ComputerMarketConsoleNFBase
@@ -244,6 +213,15 @@
 - type: entity
   name: cargo market computer
   parent: ComputerMarketConsoleNFBase
+  id: ComputerMarketConsoleNFNormal
+  suffix: Normal
+  components:
+  - type: MarketModifier
+    mod: 6
+
+- type: entity
+  name: cargo market computer
+  parent: ComputerMarketConsoleNFBase
   id: ComputerMarketConsoleNFHigh
   suffix: High
   components:
@@ -252,7 +230,7 @@
 
 - type: entity
   id: ComputerPirateBounty
-  parent: BaseComputerAiAccess
+  parent: BaseComputer
   name: pirate bounty computer
   description: Avast, get ye pirate bounties here.
   components:
@@ -271,7 +249,7 @@
     spawnChestSound:
       path: /Audio/Effects/Lightning/lightningbolt.ogg
       params:
-        volume: -2
+        volume: -5
         variation: 0.2
   - type: ActivatableUI
     key: enum.PirateConsoleUiKey.Bounty
@@ -290,6 +268,32 @@
   # - type: GuideHelp # Frontier
   #   guides: # Frontier
   #   - Pirate # Frontier: eventually?  maybe?
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerPirateBounty
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerPirateBountyBroken
+  name: broken pirate bounty computer
+  description: This console has seen better days. Can be repaired with a repair kit.
+  components:
+  - type: Construction
+    graph: ComputerPirateBounty
+    node: start
 
 - type: entity
   name: plunder exchange computer
@@ -314,6 +318,32 @@
     cashType: Doubloon
     faction: Pirates
     locStringPrefix: pirate-
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerContrabandPalletConsolePirate
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerContrabandPalletConsolePirateBroken
+  name: broken plunder exchange computer
+  description: This console has seen better days. Can be repaired with a repair kit.
+  components:
+  - type: Construction
+    graph: ComputerContrabandPalletConsolePirate
+    node: start
 
 - type: entity
   name: pirate bounty redemption computer
@@ -347,6 +377,32 @@
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerPirateBountyRedemption
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerPirateBountyRedemptionBroken
+  name: broken pirate bounty redemption computer
+  description: This console has seen better days. Can be repaired with a repair kit.
+  components:
+  - type: Construction
+    graph: ComputerPirateBountyRedemption
+    node: start
 
 - type: entity
   id: ComputerSalvageExpeditionDebug
@@ -355,6 +411,71 @@
   components:
     - type: SalvageExpeditionConsole
       debug: true
+
+- type: entity
+  parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]
+  id: GasSaleConsole
+  name: gas sale console
+  description: Sells gas pumped into any nearby gas sale ports or points.
+  suffix: Normal
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: gas_sale_point
+    - map: ["computerLayerKeys"]
+      state: atmos_key
+  - type: GasSaleConsole
+  - type: ActivatableUI
+    key: enum.GasSaleConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.GasSaleConsoleUiKey.Key:
+        type: GasSaleConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: Null # FIXME
+  - type: MarketModifier
+    buy: false
+    mod: 1
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleVeryHigh
+  suffix: VeryHigh
+  components:
+  - type: MarketModifier
+    mod: 1.5
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleHigh
+  suffix: High
+  components:
+  - type: MarketModifier
+    mod: 1.25
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleLow
+  suffix: Low
+  components:
+  - type: MarketModifier
+    mod: 0.75
+
+- type: entity
+  parent: GasSaleConsole
+  id: GasSaleConsoleVeryLow
+  suffix: VeryLow
+  components:
+  - type: MarketModifier
+    mod: 0.5
 
 # Station Traffic Controller consoles
 - type: entity
@@ -398,7 +519,7 @@
 - type: entity
   parent: BaseComputerTrafficLocal
   id: ComputerShuttleFrontierOutpostLocal
-  name: frontier outpost traffic console
+  name: Frontier Outpost traffic console
   description: Monitors the traffic around Frontier Outpost.
   suffix: Local
   components:
@@ -408,7 +529,7 @@
 - type: entity
   parent: BaseComputerTrafficRemote
   id: ComputerShuttleFrontierOutpostRemote
-  name: frontier outpost traffic console
+  name: Frontier Outpost traffic console
   description: Monitors the traffic around Frontier Outpost.
   suffix: Remote
   components:
@@ -418,7 +539,7 @@
 - type: entity
   parent: BaseComputerTrafficLocal
   id: ComputerShuttleTradeOutpostLocal
-  name: trade outpost traffic console
+  name: Trade Outpost traffic console
   suffix: Local
   description: Monitors the traffic around the Trade Outpost.
   components:
@@ -428,7 +549,7 @@
 - type: entity
   parent: BaseComputerTrafficRemote
   id: ComputerShuttleTradeOutpostRemote
-  name: trade outpost traffic console
+  name: Trade Outpost traffic console
   suffix: Remote
   description: Monitors the traffic around the Trade Outpost.
   components:

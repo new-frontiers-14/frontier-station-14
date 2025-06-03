@@ -38,11 +38,4 @@ public sealed partial class SolidFuelGeneratorAdapterComponent : Component
     /// </summary>
     [DataField("multiplier"), ViewVariables(VVAccess.ReadWrite)]
     public float Multiplier;
-
-    /// <summary>
-    /// Frontier: entity to spawn for ejected fuel.  If null, will spawn material stacks as normal.
-    /// </summary>
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public string? EjectedFuelProtoId;
 }

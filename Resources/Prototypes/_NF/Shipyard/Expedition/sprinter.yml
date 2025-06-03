@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Sprinter
+  parent: BaseVessel
   name: KC Sprinter
   description: A light freighter often picked by bounty hunters due to its quick acceleration, expedition capable.
   price: 56800 # ~$43700 on mapinit plus ~30% markup
@@ -38,6 +39,6 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

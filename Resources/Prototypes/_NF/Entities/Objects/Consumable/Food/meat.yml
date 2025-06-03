@@ -1,4 +1,33 @@
 # Raw
+- type: entity
+  parent: FoodMeatRotten
+  id: FoodMeatGoblin
+  name: raw goblin meat
+  description: Just look at that marbling! Wait, is that microplastic?
+  components:
+  - type: Sprite
+    state: rotten
+    color: lime
+
+- type: entity
+  parent: FoodFrozenBase
+  id: FoodMeatSheleg
+  name: raw sheleg meat
+  description: A slab of cold.. meat?
+  components:
+  - type: Food
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    state: sheleg
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Ice
+          Quantity: 7
+        - ReagentId: Cryoxadone
+          Quantity: 3
 
 - type: entity
   name: prime-cut cat meat
@@ -24,6 +53,101 @@
     price: 750
 #  - type: StealTarget
 #    stealGroup: FoodMeatCat
+
+- type: entity
+  name: breaded chicken
+  parent: FoodMeatChicken
+  id: FoodMeatChickenBattered
+  description: Chicken dredged in a gloopy flour and egg mixture.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: chicken-battered
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodMeatChickenFried
+  - type: SliceableFood
+    count: 3
+    slice: FoodMeatChickenCutletBattered
+
+- type: entity
+  name: breaded chicken cutlet
+  parent: FoodMeatChickenCutlet
+  id: FoodMeatChickenCutletBattered
+  description: A cut of chicken, dredged in a gloopy flour and egg mixture.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: cutlet-battered
+  - type: DeepFrySpawn
+    cycles: 1
+    output: FoodBakedNugget
+
+- type: entity
+  name: raw fish fillet
+  parent: FoodMeatBase
+  id: FoodCuredCarp
+  description: A slice of fresh space fish, safe to eat. Smells like space and fish.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fishy
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: cured-carp
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 9
+        - ReagentId: Fat
+          Quantity: 9
+  
+- type: entity
+  name: battered raw fish fillet
+  parent: FoodCuredCarp
+  id: FoodCuredCarpBattered
+  description: A slice of fresh space fish, dredged in a gloopy flour and egg mixture.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: cured-carp-battered
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodCuredCarpFried
+
+- type: entity
+  name: fried fish
+  parent: FoodCuredCarp
+  id: FoodCuredCarpFried
+  description: A delicious slice of fish, crispy and fried to perfection.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+  - type: FlavorProfile
+    flavors:
+      - oily
+      - fishy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: cured-carp-fried
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Protein
+          Quantity: 9
+
+# Cooked
 
 - type: entity
   name: honey glazed ham

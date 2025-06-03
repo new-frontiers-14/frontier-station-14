@@ -1,0 +1,113 @@
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeIncandescent
+  suffix: Incandescent
+  components:
+  - type: PointLight
+    enabled: true
+    color: "#FFD1A3" # 4000K color temp
+    energy: 1.0
+    radius: 6
+    softness: 1.1
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulb
+
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeLed
+  suffix: LED
+  components:
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: LedLightBulb
+
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeService
+  suffix: Service
+  components:
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: ServiceLightBulb
+
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeSodium
+  suffix: Sodium
+  components:
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: SodiumLightBulb
+
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeExterior
+  suffix: Exterior
+  components:
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: ExteriorLightBulb
+
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeCyan
+  suffix: Cyan
+  components:
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalCyan
+
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeBlue
+  suffix: Blue
+  components:
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalBlue
+
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobePink
+  suffix: Pink
+  components:
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalPink
+
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeOrange
+  suffix: Orange
+  components:
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalOrange
+
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeRed
+  suffix: Red
+  components:
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalRed
+      
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeGreen
+  suffix: Green
+  components:
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: LightBulbCrystalGreen

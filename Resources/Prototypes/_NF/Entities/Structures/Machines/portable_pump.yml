@@ -1,0 +1,118 @@
+- type: entity
+  id: PortablePump
+  parent: [BaseMachinePowered, SmallConstructibleMachine, StructureWheeled]
+  name: portable pump
+  description: Drains puddles around it. Has a slot for a backup power cell and an overflow evaporation tray. A sticker on the side says "Do not submerge in water."
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: _NF/Structures/Machines/portable_pump.rsi
+    noRot: true
+    layers:
+    - state: base
+    - state: pumping
+      map: ["enum.AdvDrainVisualState.IsDraining"]
+    - state: powered
+      shader: unshaded
+      map: ["enum.AdvDrainVisualState.IsRunning"]
+    - state: voiding
+      shader: unshaded
+      map: ["enum.AdvDrainVisualState.IsVoiding"]
+      visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: {visible: true}
+          False: {visible: false}
+      enum.AdvDrainVisualState.IsRunning:
+        enum.AdvDrainVisualState.IsRunning:
+          True: {visible: true}
+          False: {visible: false}
+      enum.AdvDrainVisualState.IsDraining:
+        enum.AdvDrainVisualState.IsDraining:
+          True: {visible: true}
+          False: {visible: false}
+      enum.AdvDrainVisualState.IsVoiding:
+        enum.AdvDrainVisualState.IsVoiding:
+          True: {visible: true}
+          False: {visible: false}
+  - type: PortableScrubberVisuals
+    idleState: icon
+    runningState: icon-running
+    readyState: unlit
+    fullState: unlit-full
+  - type: AmbientSound
+    enabled: false
+    volume: -5
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/drain.ogg
+  - type: Machine
+    board: PortablePumpMachineCircuitBoard
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 600
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 300
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              SheetSteel1:
+                min: 1
+                max: 3
+              SheetGlass1:
+                min: 1
+                max: 2
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+  - type: SolutionContainerManager
+    solutions:
+      drainBuffer:
+        maxVol: 1200
+  - type: DrainableSolution
+    solution: drainBuffer
+  - type: AdvDrain
+    unitsDestroyedThreshold: 600
+  - type: DumpableSolution
+    solution: drainBuffer
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      machine_board: !type:Container # FIXME: Why do these need to be defined here?  What's missing?
+      machine_parts: !type:Container
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+  - type: ApcPowerReceiver
+    powerLoad: 1000

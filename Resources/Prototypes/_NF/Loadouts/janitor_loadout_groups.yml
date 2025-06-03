@@ -32,8 +32,16 @@
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
-  - ContractorClothingOuterVestTank
   - JanitorNFClothingOuterWinterJani
   - JanitorNFWetFloorSign
+
+- type: loadoutGroup
+  id: JanitorBackpack
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - JanitorNFClothingBackpackDuffelJanitor
+  - JanitorClothingBackpackMessengerJanitor
+  subgroups:
+  - ContractorBackpack
   fallbacks:
-  - ContractorClothingOuterVestTank
+  - JanitorClothingBackpackMessengerJanitor

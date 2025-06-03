@@ -95,3 +95,32 @@
   - type: Icon
     sprite: _NF/Objects/Consumable/Drinks/beesknees.rsi
     state: icon
+
+# condiment cup
+- type: entity
+  parent: DrinkWaterCup
+  id: CondimentCup
+  name: condiment cup
+  description: A flimsy cup that can be filled with condiments. Warranty void if filled with other things.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/condiment_cup.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/condiment_cup.rsi
+  - type: CondimentCup
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 10
+
+# mystery liquid bottle
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ChemistryBottleMysteryLiquid
+  suffix: Mystery liquid
+  components:
+  - type: RandomFillSolution
+    solution: drink
+    weightedRandomId: RandomFillStrangePill
+  - type: PressurizedSolution
+    solution: drink

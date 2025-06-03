@@ -1,17 +1,16 @@
 using System.Collections.Frozen;
+using System.Collections.Immutable;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-
-using Content.Shared.DeltaV.Harpy;
 
 namespace Content.Server.Chat.Systems;
 
 // emotes using emote prototype
 public partial class ChatSystem
 {
-    private FrozenDictionary<string, EmotePrototype> _wordEmoteDict = FrozenDictionary<string, EmotePrototype>.Empty;
+    private FrozenDictionary<string, ImmutableList<EmotePrototype>> _wordEmoteDict = FrozenDictionary<string, ImmutableList<EmotePrototype>>.Empty; // DeltaV - Multiple emotes
 
     protected override void OnPrototypeReload(PrototypesReloadedEventArgs obj)
     {
@@ -22,7 +21,7 @@ public partial class ChatSystem
 
     private void CacheEmotes()
     {
-        var dict = new Dictionary<string, EmotePrototype>();
+        var dict = new Dictionary<string, ImmutableList<EmotePrototype>>(); // DeltaV - Multiple triggers for the same emote
         var emotes = _prototypeManager.EnumeratePrototypes<EmotePrototype>();
         foreach (var emote in emotes)
         {
@@ -31,12 +30,16 @@ public partial class ChatSystem
                 var lowerWord = word.ToLower();
                 if (dict.TryGetValue(lowerWord, out var value))
                 {
-                    var errMsg = $"Duplicate of emote word {lowerWord} in emotes {emote.ID} and {value.ID}";
-                    Log.Error(errMsg);
+                    // Begin DeltaV modification - Multiple emotes for the same words
+                    dict[lowerWord] = value.Add(emote);
+
+                    var errMsg = $"Duplicate of emote word {lowerWord}";
+                    Log.Warning(errMsg);
+
                     continue;
                 }
 
-                dict.Add(lowerWord, emote);
+                dict.Add(lowerWord, ImmutableList.Create(emote)); // End DeltaV modification
             }
         }
 
@@ -161,17 +164,24 @@ public partial class ChatSystem
     /// </summary>
     /// <param name="uid"></param>
     /// <param name="textInput"></param>
-    private void TryEmoteChatInput(EntityUid uid, string textInput)
+    private bool TryEmoteChatInput(EntityUid uid, string textInput) // Frontier: void<bool
     {
         var actionTrimmedLower = TrimPunctuation(textInput.ToLower());
-        if (!_wordEmoteDict.TryGetValue(actionTrimmedLower, out var emote))
-            return;
+        if (!_wordEmoteDict.TryGetValue(actionTrimmedLower, out var emotes)) // DeltaV, renames to emotes
+            return false; // Frontier: add false
 
-        if (!AllowedToUseEmote(uid, emote))
-            return;
+        bool validEmote = false; // DeltaV - Multiple emotes for the same trigger
+        foreach (var emote in emotes)
+        {
+            if (!AllowedToUseEmote(uid, emote))
+                continue;
 
-        InvokeEmoteEvent(uid, emote);
-        return;
+            InvokeEmoteEvent(uid, emote);
+            validEmote = true; // DeltaV
+            break; // Frontier: break on first emote (avoid playing multiple sounds at once)
+        }
+
+        return validEmote; // Frontier
 
         static string TrimPunctuation(string textInput)
         {
@@ -198,20 +208,29 @@ public partial class ChatSystem
     /// <returns></returns>
     private bool AllowedToUseEmote(EntityUid source, EmotePrototype emote)
     {
-        // New Frontiers - Harpy Mimicry - Allows harpies to mimic other species,
-        //      bypasses whitelist checks
-        // This code is licensed under AGPLv3. See AGPLv3.txt
-        if (!TryComp<SpeechComponent>(source, out var speech) ||
-            !speech.MimicEmotes && (_whitelistSystem.IsWhitelistFail(emote.Whitelist, source) || _whitelistSystem.IsBlacklistPass(emote.Blacklist, source)))
-            return false;
+        // If emote is in AllowedEmotes, it will bypass whitelist and blacklist
+        if (TryComp<SpeechComponent>(source, out var speech) &&
+            speech.AllowedEmotes.Contains(emote.ID))
+        {
+            return true;
+        }
 
-        if (!emote.Available &&
-            !speech.AllowedEmotes.Contains(emote.ID))
+        // Check the whitelist and blacklist
+        if (_whitelistSystem.IsWhitelistFail(emote.Whitelist, source) ||
+            _whitelistSystem.IsBlacklistPass(emote.Blacklist, source))
+        {
             return false;
+        }
+
+        // Check if the emote is available for all
+        if (!emote.Available)
+        {
+            return false;
+        }
 
         return true;
-        // End of modified code
     }
+
 
     private void InvokeEmoteEvent(EntityUid uid, EmotePrototype proto)
     {

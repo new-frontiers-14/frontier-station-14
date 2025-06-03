@@ -55,6 +55,7 @@
     windowTitle: gravity-generator-window-title
     idlePower: 50
     activePower: 2500
+    activeChargingPower: 2500 # Frontier
   - type: GravityGenerator
     lightRadiusMin: 0.75
     lightRadiusMax: 2.5
@@ -79,6 +80,8 @@
     color: "#a8ffd9"
   - type: StaticPrice
     price: 0 # Frontier 5000<0
+  - type: PirateBountyItem # Frontier
+    id: GravityGenerator # Frontier
 
 - type: entity
   id: GravityGeneratorMini
@@ -134,6 +137,7 @@
   - type: PowerCharge
     idlePower: 15
     activePower: 500
+    activeChargingPower: 500 # Frontier
   - type: GravityGenerator
     lightRadiusMin: 0.75
     lightRadiusMax: 2.5

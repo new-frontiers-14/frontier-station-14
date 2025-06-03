@@ -15,6 +15,7 @@ public sealed class AlertLevelInterceptionRule : StationEventSystem<AlertLevelIn
 
         if (!TryGetRandomStation(out var chosenStation))
             return;
+        // Frontier - note: levels are globally set/gotten, regardless of arg
         if (_alertLevelSystem.GetLevel(chosenStation.Value) != "green")
             return;
 

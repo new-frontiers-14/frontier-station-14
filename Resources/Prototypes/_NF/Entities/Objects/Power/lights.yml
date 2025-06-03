@@ -1,0 +1,35 @@
+- type: entity
+  parent: BaseLightTubeCrystal
+  name: ultraviolet light tube
+  id: LightTubeUltraviolet
+  description: A high power high energy bulb which has a small colored crystal inside.
+  components:
+  - type: LightBulb
+    color: "#5D0CED"
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+
+- type: entity
+  parent: LightBulb
+  name: sodium light bulb
+  id: SodiumLightBulb
+  description: A harsh lightbulb that both alarms and depresses you.
+  components:
+  - type: LightBulb
+    color: "#FFAF38"
+    lightEnergy: 4
+    lightRadius: 8
+    lightSoftness: 0.7
+
+- type: entity
+  parent: LightBulb
+  name: exterior light bulb
+  id: ExteriorLightBulb
+  description: A colorful light bulb with a small colored crystal inside.
+  components:
+  - type: LightBulb
+    color: "#B4FCF0"
+    lightEnergy: 4.5
+    lightRadius: 8
+    lightSoftness: 0.7

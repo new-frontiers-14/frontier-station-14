@@ -1,13 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Item;
+using Content.Shared.Roles;
 using Content.Shared.Tag;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Whitelist;
 
 public sealed class EntityWhitelistSystem : EntitySystem
 {
     [Dependency] private readonly IComponentFactory _factory = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
@@ -47,9 +48,32 @@ public sealed class EntityWhitelistSystem : EntitySystem
     public bool IsValid(EntityWhitelist list, EntityUid uid)
     {
         if (list.Components != null)
-            EnsureRegistrations(list);
+        {
+            if (list.Registrations == null)
+            {
+                var regs = StringsToRegs(list.Components);
+                list.Registrations = new List<ComponentRegistration>();
+                list.Registrations.AddRange(regs);
+            }
+        }
 
-        if (list.Registrations != null)
+        if (list.MindRoles != null)
+        {
+            var regs = StringsToRegs(list.MindRoles);
+
+            foreach (var role in regs)
+            {
+                if ( _roles.MindHasRole(uid, role.Type, out _))
+                {
+                    if (!list.RequireAll)
+                        return true;
+                }
+                else if (list.RequireAll)
+                    return false;
+            }
+        }
+
+        if (list.Registrations != null && list.Registrations.Count > 0)
         {
             foreach (var reg in list.Registrations)
             {
@@ -78,150 +102,6 @@ public sealed class EntityWhitelistSystem : EntitySystem
 
         return list.RequireAll;
     }
-
-    /// <summary>
-    /// FRONTIER ADDITION:
-    /// Checks for a prototype
-    /// </summary>
-    /// <param name="list">The list to check</param>
-    /// <param name="prototype">the prototype to check</param>
-    /// <returns>True if it is valid</returns>
-    public bool IsPrototypeValid(EntityWhitelist list, EntityPrototype prototype)
-    {
-        if (list.Components != null)
-            EnsureRegistrations(list);
-
-        if (list.Registrations != null)
-        {
-            foreach (var reg in list.Registrations)
-            {
-                if (prototype.Components.ContainsKey(reg.Name) || prototype.Components.ContainsKey(reg.Type.ToString()))
-                {
-                    if (!list.RequireAll)
-                        return true;
-                }
-                else if (list.RequireAll)
-                    return false;
-            }
-        }
-
-        if (list.Sizes != null && prototype.Components.TryGetComponent("Item", out var itemComp) && itemComp is ItemComponent component)
-        {
-            if (list.Sizes.Contains(component.Size))
-                return true;
-        }
-
-        if (list.Tags != null)
-        {
-            if (prototype.Components.TryGetComponent("Tag", out var tagComponent) &&
-                tagComponent is TagComponent comp)
-            {
-                return list.RequireAll
-                    ? _tag.HasAllTags(comp, list.Tags)
-                    : _tag.HasAnyTag(comp, list.Tags);
-            }
-
-        }
-
-        return list.RequireAll;
-    }
-
-    /// <summary>
-    /// FRONTIER ADDITION
-    /// Checks if a given EntityPrototype passes the given whitelist
-    /// </summary>
-    /// <param name="whitelist">The whitelist to check</param>
-    /// <param name="prototype">The prototype to check</param>
-    /// <returns></returns>
-    public bool IsPrototypeWhitelistPass(EntityWhitelist? whitelist, EntityPrototype prototype)
-    {
-        return whitelist != null && IsPrototypeValid(whitelist, prototype);
-    }
-
-    /// <summary>
-    /// FRONTIER ADDITION
-    /// Checks if a given EntityPrototype passes the given whitelist
-    /// </summary>
-    /// <param name="whitelist">The whitelist to check</param>
-    /// <param name="prototype">The prototype to check</param>
-    /// <returns></returns>
-    public bool IsPrototypeWhitelistFail(EntityWhitelist? whitelist, EntityPrototype prototype)
-    {
-        return whitelist != null && !IsPrototypeValid(whitelist, prototype);
-    }
-
-    /// <summary>
-    /// FRONTIER ADDITION
-    /// Checks if a given EntityPrototype passes the given whitelist, or if the whitelist is null
-    /// </summary>
-    /// <param name="whitelist">The whitelist to check</param>
-    /// <param name="prototype">The prototype to check</param>
-    /// <returns></returns>
-    public bool IsPrototypeWhitelistPassOrNull(EntityWhitelist? whitelist, EntityPrototype prototype)
-    {
-        return whitelist == null || IsPrototypeValid(whitelist, prototype);
-    }
-
-    /// <summary>
-    /// FRONTIER ADDITION
-    /// Checks if a given EntityPrototype passes the given whitelist, or if the whitelist is null
-    /// </summary>
-    /// <param name="whitelist">The whitelist to check</param>
-    /// <param name="prototype">The prototype to check</param>
-    /// <returns></returns>
-    public bool IsPrototypeWhitelistFailOrNull(EntityWhitelist? whitelist, EntityPrototype prototype)
-    {
-        return whitelist == null || !IsPrototypeValid(whitelist, prototype);
-    }
-
-    /// <summary>
-    /// FRONTIER ADDITION
-    /// Checks if a given EntityPrototype passes the given blacklist
-    /// </summary>
-    /// <param name="blacklist">The whitelist to check</param>
-    /// <param name="prototype">The prototype to check</param>
-    /// <returns></returns>
-    public bool IsPrototypeBlacklistPass(EntityWhitelist? blacklist, EntityPrototype prototype)
-    {
-        return IsPrototypeWhitelistPass(blacklist, prototype);
-    }
-
-    /// <summary>
-    /// FRONTIER ADDITION
-    /// Checks if a given EntityPrototype fails the given blacklist
-    /// </summary>
-    /// <param name="blacklist">The whitelist to check</param>
-    /// <param name="prototype">The prototype to check</param>
-    /// <returns></returns>
-    public bool IsPrototypeBlacklistFail(EntityWhitelist? blacklist, EntityPrototype prototype)
-    {
-        return IsPrototypeWhitelistFail(blacklist, prototype);
-    }
-
-    /// <summary>
-    /// FRONTIER ADDITION
-    /// Checks if a given EntityPrototype passes the given blacklist, or if the blacklist is null
-    /// </summary>
-    /// <param name="blacklist">The whitelist to check</param>
-    /// <param name="prototype">The prototype to check</param>
-    /// <returns></returns>
-    public bool IsPrototypeBlacklistPassOrNull(EntityWhitelist? blacklist, EntityPrototype prototype)
-    {
-        return IsPrototypeWhitelistPassOrNull(blacklist, prototype);
-    }
-
-    /// <summary>
-    /// FRONTIER ADDITION
-    /// Checks if a given EntityPrototype fails the given blacklist, or if the blacklist is null
-    /// </summary>
-    /// <param name="blacklist">The whitelist to check</param>
-    /// <param name="prototype">The prototype to check</param>
-    /// <returns></returns>
-    public bool IsPrototypeBlacklistFailOrNull(EntityWhitelist? blacklist, EntityPrototype prototype)
-    {
-        return IsPrototypeWhitelistFailOrNull(blacklist, prototype);
-    }
-
     /// The following are a list of "helper functions" that are basically the same as each other
     /// to help make code that uses EntityWhitelist a bit more readable because at the moment
     /// it is quite clunky having to write out component.Whitelist == null ? true : _whitelist.IsValid(component.Whitelist, uid)
@@ -307,24 +187,27 @@ public sealed class EntityWhitelistSystem : EntitySystem
         return IsWhitelistFailOrNull(blacklist, uid);
     }
 
-    private void EnsureRegistrations(EntityWhitelist list)
+    private List<ComponentRegistration> StringsToRegs(string[]? input)
     {
-        if (list.Components == null)
-            return;
+        var list = new List<ComponentRegistration>();
 
-        list.Registrations = new List<ComponentRegistration>();
-        foreach (var name in list.Components)
+        if (input == null || input.Length == 0)
+            return list;
+
+        foreach (var name in input)
         {
             var availability = _factory.GetComponentAvailability(name);
             if (_factory.TryGetRegistration(name, out var registration)
                 && availability == ComponentAvailability.Available)
             {
-                list.Registrations.Add(registration);
+                list.Add(registration);
             }
             else if (availability == ComponentAvailability.Unknown)
             {
-                Log.Warning($"Unknown component name {name} passed to EntityWhitelist!");
+                Log.Error($"StringsToRegs failed: Unknown component name {name} passed to EntityWhitelist!");
             }
         }
+
+        return list;
     }
 }

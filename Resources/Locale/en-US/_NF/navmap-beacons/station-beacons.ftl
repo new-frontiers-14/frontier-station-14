@@ -23,6 +23,8 @@ station-beacon-head = Head
 station-beacon-atmos-nf = Atmospherics
 station-beacon-atmos-burn = Burn Chamber
 station-beacon-atmos-collector = Gas Collector Array
+station-beacon-lobby = Lobby
+station-beacon-doc-office = DoC's Office
 
 station-beacon-eva-access = EVA Access
 station-beacon-dock-one = Dock 1

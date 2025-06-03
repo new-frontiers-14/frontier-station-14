@@ -10,15 +10,17 @@
 #
 - type: vessel
   id: Liquidator
+  parent: BaseVessel
   name: LVHI Liquidator
-  description: A small vessel equipped with everything you need to make even the dirtiest ship squeaky clean (ducky slippers included). Manufactured by Langstad-Voigt Heavy Industries.
-  price: 27300 # ~23800$ on mapinit + 3500$ from 15% markup
+  description: A small shipbreaker/salvage vessel equipped with everything a small crew need for extended work shift in deep space. Manufactured by Langstad-Voigt Heavy Industries.
+  price: 27500 # ~25000$ on mapinit + 10% markup
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/liquidator.yml
   guidebookPage: ShipyardLiquidator
   class:
-  - Civilian
+  - Salvage
+  - Cargo
   engine:
   - Uranium
 
@@ -38,6 +40,6 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

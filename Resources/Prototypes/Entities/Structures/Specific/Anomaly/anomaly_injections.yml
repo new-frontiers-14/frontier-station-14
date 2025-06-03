@@ -310,11 +310,11 @@
       - WallSpawnAsteroid
       - WallSpawnAsteroid
       - WallSpawnAsteroidSilver
-      - WallSpawnAsteroidSilverCrab
+      - NFWallSpawnAsteroidSilverCrab # Frontier: use NF variant
       - WallSpawnAsteroidIron
-      - WallSpawnAsteroidIronCrab
+      - NFWallSpawnAsteroidIronCrab # Frontier: use NF variant
       - WallSpawnAsteroidQuartz
-      - WallSpawnAsteroidQuartzCrab
+      - NFWallSpawnAsteroidQuartzCrab # Frontier: use NF variant
     - settings:
         spawnOnPulse: true
         maxAmount: 3
@@ -337,17 +337,46 @@
       - WallSpawnAsteroid
       - WallSpawnAsteroid
       - WallSpawnAsteroidSilver
-      - WallSpawnAsteroidSilverCrab
+      - NFWallSpawnAsteroidSilverCrab # Frontier: use NF variant
       - WallSpawnAsteroidIron
-      - WallSpawnAsteroidIronCrab
+      - NFWallSpawnAsteroidIronCrab # Frontier: use NF variant
       - WallSpawnAsteroidQuartz
-      - WallSpawnAsteroidQuartzCrab
+      - NFWallSpawnAsteroidQuartzCrab # Frontier: use NF variant
     - settings:
         spawnOnSuperCritical: true
         minAmount: 3
         maxAmount: 5
         maxRange: 3
       spawns:
-      - MobSpawnCrabSilver
-      - MobSpawnCrabIron
-      - MobSpawnCrabQuartz
+      - NFMobSpawnCrabSilver # Frontier: use NF variant
+      - NFMobSpawnCrabIron # Frontier: use NF variant
+      - NFMobSpawnCrabQuartz # Frontier: use NF variant
+
+- type: entity
+  parent: AnomalyInjectionBase
+  id: AnomalyInjectionSanta
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#db8127"
+  - type: EntitySpawnAnomaly
+    entries:
+    - settings:
+        spawnOnPulse: true
+        minAmount: 1
+        maxAmount: 3
+        maxRange: 5
+      spawns:
+      - PresentRandomUnsafe
+      - PresentRandom
+      - PresentRandomCoal
+      - PresentRandomCash
+      - ClothingHeadHatSantahat
+      - FoodCakeChristmasSlice
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 5
+        maxAmount: 10
+        maxRange: 6
+      spawns:
+      - PresentRandomInsane

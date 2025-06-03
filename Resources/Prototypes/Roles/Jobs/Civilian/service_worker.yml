@@ -1,4 +1,4 @@
-﻿- type: job
+- type: job
   id: ServiceWorker
   name: job-name-serviceworker
   description: job-description-serviceworker
@@ -9,9 +9,16 @@
       time: 10800
   startingGear: ServiceWorkerGear
   icon: "JobIconServiceWorker"
-  supervisors: job-supervisors-hire # Frontier
+  supervisors: job-supervisors-service
   accessGroups: # Frontier
   - GeneralAccess # Frontier
+  # access: # Frontier
+  # - Service # Frontier
+  # - Maintenance # Frontier
+  # - Bar # Frontier
+  # - Kitchen # Frontier
+  # extendedAccess: # Frontier
+  # - Hydroponics # Frontier
 
 - type: startingGear
   id: ServiceWorkerGear

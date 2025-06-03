@@ -1,40 +1,6 @@
 # T1: common
 - type: entity
   name: random weapon
-  id: SpawnInhandMeleeWeaponPunkGangLow
-  parent: MarkerBase
-  suffix: "Punk, Melee, T1"
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Weapons/Melee/cult_blade.rsi
-        state: icon
-  - type: RandomSpawner
-    prototypes:
-    - BrokenBottle
-    - ButchCleaver
-    - Screwdriver
-    - Crowbar
-    - Shiv
-    - ReinforcedShiv
-    - PlasmaShiv
-    - UraniumShiv
-    - ScalpelShiv
-    - BaseBallBat
-    - Machete
-    - KukriKnife
-    chance: 1.0
-    offset: 0.0
-    rarePrototypes:
-    - Katana
-    - Truncheon
-    rareChance: 0.05
-
-- type: entity
-  name: random weapon
   id: SpawnDungeonLootMeleeT1
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Melee, T1"
@@ -87,12 +53,16 @@
   - type: RandomSpawner
     prototypes:
     - WeaponCaseShortMk58Expedition
+    - WeaponCaseShortUniversalExpedition
+    - WeaponCaseShortPollockExpedition
+    - WeaponCaseShortFaithExpedition
     - WeaponCaseShortArgentiExpedition
     - WeaponCaseShortLaserGunExpedition
     #- WeaponCaseShortHandmadeExpedition
     #- WeaponCaseLongShotgunDoubleBarreledExpedition
     - WeaponCaseShortSawnExpedition
     - WeaponCaseLongMosinExpedition
+    - WeaponCaseLongSniperCeremonialExpedition
     chance: 1.0
     offset: 0.0
     rarePrototypes:
@@ -178,12 +148,14 @@
     - WeaponCaseShortDeckardExpedition
     - WeaponCaseShortRevolverPirate
     - WeaponCaseShortPython
+    - WeaponCaseShortFitzExpedition
+    - WeaponCaseShortLuckyExpedition
     - WeaponCaseLongGestioExpedition
     - WeaponCaseLongWeaponRifleNovaliteC1Expedition
     - WeaponCaseLongKammererExpedition
     - WeaponCaseLongEnergyGunExpedition
     - WeaponCaseLongRepeaterExpedition
-    - WeaponCaseLongSVTExpedition
+    - WeaponCaseLongSVSExpedition
     chance: 1.0
     offset: 0.0
     rarePrototypes:
@@ -269,7 +241,6 @@
     - WeaponCaseLongDrozdExpedition
     - WeaponCaseLongLecterExpedition
     - WeaponCaseLongLaserCarbineExpedition
-    - WeaponCaseLongHristovExpedition
     - WeaponCaseShortSvalinnExpedition
     - WeaponCaseShortAdvancedLaserExpedition
     #- WeaponCaseLongMusketExpedition
@@ -353,12 +324,13 @@
   - type: RandomSpawner
     prototypes:
     - WeaponCaseShortN1984Expedition
+    - WeaponCaseShortAntiqueLaserExpedition
     - WeaponCaseLongM90Expedition
     - WeaponCaseLongC20r
-    - WeaponCaseLongAkExpedition
-    - WeaponCaseHeavyAsmgtExpeditions
+    - WeaponCaseLongAk
     - WeaponCaseLongEnforcerExpedition
     - WeaponCaseLongLaserCannonExpedition
+    - WeaponCaseLongVulcanExpedition
     chance: 1.0
     offset: 0.0
     rarePrototypes:
@@ -438,6 +410,9 @@
     - WeaponCaseLongLightMachineGunL6
     - WeaponCaseHeavyAsmgtExpeditions
     - WeaponCaseLongXrayCannonExpedition
+    - WeaponCaseLongJackdaw
+    - WeaponCaseLongTypewriterExpedition
+    - WeaponCaseLongHristovExpedition
     chance: 1.0
     offset: 0.0
 

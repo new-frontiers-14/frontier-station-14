@@ -1,0 +1,17 @@
+- type: entity
+  name: leviathing spawner
+  id: SpawnMobArgocyteLeviathingExpeditions
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_large.rsi
+      state: leviathing
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: ConditionalSpawner
+    prototypes:
+    - MobArgocyteLeviathingExpeditions

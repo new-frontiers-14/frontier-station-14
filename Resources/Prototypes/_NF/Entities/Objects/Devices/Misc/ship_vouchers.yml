@@ -20,12 +20,13 @@
   - type: StaticPrice
     price: 0
   - type: CargoSellBlacklist
+  - type: NFShipyardVoucher # FIXME - whitelist component to prevent misprediction
 
 # NFSD vouchers
 - type: entity
   parent: BaseShipVoucher
   id: ShipVoucherNfsdSergeant
-  name: nfsd sergeant ship voucher
+  name: NFSD sergeant ship voucher
   description: Allows for one free small to medium NFSD ship purchase. Destroyed on sale.
   components:
   - type: Sprite
@@ -45,7 +46,7 @@
 - type: entity
   parent: ShipVoucherNfsdSergeant
   id: ShipVoucherNfsdBailiff
-  name: nfsd bailiff ship voucher
+  name: NFSD bailiff ship voucher
   description: Allows for one free small to capital NFSD ship purchase. Destroyed on sale.
   components:
   - type: Sprite

@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub:
 # Discord: Terezi (??)
 
 # Maintainer Info
@@ -10,11 +10,15 @@
 # Down at your local saloon
 - type: pointOfInterest
   id: CaseysCasino
+  parent: BasePOI
   name: "Crazy Casey's Casino"
-  rangeMin: 3250
-  rangeMax: 5600
-  IFFColor: "#ffa600" #yellorange for faction style
+  minimumDistance: 3250
+  maximumDistance: 5600
   gridPath: /Maps/_NF/POI/caseyscasino.yml
+  addComponents:
+  - type: StationTransit
+    routes:
+      MinorPointsOfInterest: 20
 
 - type: gameMap
   id: CaseysCasino

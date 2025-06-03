@@ -10,12 +10,19 @@
 # Down at your local saloon
 - type: pointOfInterest
   id: ThePit
+  parent: BasePOI
   name: "The Pit"
-  rangeMin: 2200
-  rangeMax: 4200
+  minimumDistance: 2200
+  maximumDistance: 4200
   spawnGroup: Arena
-  IFFColor: "#ffa600" #yellorange for faction style
   gridPath: /Maps/_NF/POI/arena.yml
+  addComponents:
+  - type: StationTransit
+    routes:
+      MinorPointsOfInterest: 50
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: ThePit

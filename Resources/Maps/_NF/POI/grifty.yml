@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/21/2025 23:53:24
+  entityCount: 898
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   30: FloorDark
@@ -16,9 +27,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Grifty
     - type: Transform
-      pos: -0.484375,-0.47654724
       parent: invalid
     - type: MapGrid
       chunks:
@@ -41,8 +50,8 @@ entities:
     - type: Broadphase
     - type: Physics
       bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
+      angularDamping: 0.05
+      linearDamping: 0.05
       fixedRotation: False
       bodyType: Dynamic
     - type: Fixtures
@@ -50,8 +59,6 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -544,39 +551,7 @@ entities:
       linkedPorts:
         755:
         - DoorStatus: InputA
-- proto: AirlockGlass
-  entities:
-  - uid: 7
-    components:
-    - type: Transform
-      pos: -5.5,-0.5
-      parent: 1
-  - uid: 18
-    components:
-    - type: Transform
-      pos: -7.5,-0.5
-      parent: 1
-  - uid: 34
-    components:
-    - type: Transform
-      pos: -6.5,-0.5
-      parent: 1
-  - uid: 378
-    components:
-    - type: Transform
-      pos: 5.5,-0.5
-      parent: 1
-  - uid: 379
-    components:
-    - type: Transform
-      pos: 6.5,-0.5
-      parent: 1
-  - uid: 380
-    components:
-    - type: Transform
-      pos: 7.5,-0.5
-      parent: 1
-- proto: AirlockGlassShuttle
+- proto: AirlockExternalGlassShuttleTransitMinorPOI
   entities:
   - uid: 8
     components:
@@ -643,6 +618,38 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-6.5
+      parent: 1
+- proto: AirlockGlass
+  entities:
+  - uid: 7
+    components:
+    - type: Transform
+      pos: -5.5,-0.5
+      parent: 1
+  - uid: 18
+    components:
+    - type: Transform
+      pos: -7.5,-0.5
+      parent: 1
+  - uid: 34
+    components:
+    - type: Transform
+      pos: -6.5,-0.5
+      parent: 1
+  - uid: 378
+    components:
+    - type: Transform
+      pos: 5.5,-0.5
+      parent: 1
+  - uid: 379
+    components:
+    - type: Transform
+      pos: 6.5,-0.5
+      parent: 1
+  - uid: 380
+    components:
+    - type: Transform
+      pos: 7.5,-0.5
       parent: 1
 - proto: APCBasic
   entities:
@@ -1547,6 +1554,18 @@ entities:
     components:
     - type: Transform
       pos: 1.750885,5.4413614
+      parent: 1
+- proto: BusSchedule
+  entities:
+  - uid: 570
+    components:
+    - type: Transform
+      pos: -4.5,-2.5
+      parent: 1
+  - uid: 649
+    components:
+    - type: Transform
+      pos: 4.5,-2.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -2503,16 +2522,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,2.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        ShipyardConsole-targetId: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: ComputerWithdrawBankATM
   entities:
   - uid: 209
@@ -2521,17 +2530,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
 - proto: DefibrillatorCabinetFilledOpen
   entities:
   - uid: 569
@@ -4303,9 +4301,6 @@ entities:
     - type: Transform
       pos: -8.5,7.5
       parent: 1
-    - type: Door
-      secondsUntilStateChange: -7255.033
-      state: Opening
 - proto: Lamp
   entities:
   - uid: 564
@@ -4477,14 +4472,14 @@ entities:
     - type: Transform
       pos: 9.5,7.5
       parent: 1
-- proto: PosterLegitSMFires
+- proto: PosterLegitSafetyMothFires
   entities:
   - uid: 6
     components:
     - type: Transform
       pos: -5.5,7.5
       parent: 1
-- proto: PoweredlightColoredFrostyBlue
+- proto: PoweredlightCyan
   entities:
   - uid: 732
     components:
@@ -4656,7 +4651,7 @@ entities:
     - type: Transform
       pos: -1.5,5.5
       parent: 1
-- proto: RandomPosterContrabandDeadDrop
+- proto: RandomPosterContraband
   entities:
   - uid: 44
     components:
@@ -4668,11 +4663,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,4.5
-      parent: 1
-  - uid: 570
-    components:
-    - type: Transform
-      pos: 4.5,-2.5
       parent: 1
   - uid: 573
     components:
@@ -4728,11 +4718,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,5.5
-      parent: 1
-  - uid: 809
-    components:
-    - type: Transform
-      pos: -4.5,-2.5
       parent: 1
   - uid: 811
     components:
@@ -5424,7 +5409,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,1.5
       parent: 1
-- proto: ToiletMemeSpawner
+- proto: ToiletEmpty
   entities:
   - uid: 326
     components:
@@ -6000,7 +5985,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-0.5
       parent: 1
-- proto: WarpPointNFGrifty
+- proto: WarpPoint
   entities:
   - uid: 742
     components:

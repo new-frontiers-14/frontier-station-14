@@ -53,7 +53,7 @@
 
 - type: entity
   name: AKMS
-  parent: [BaseWeaponRifle, BaseC3SyndicateContraband] # Frontier: BaseRestrictedContraband<BaseC3SyndicateContraband
+  parent: [BaseWeaponRifle, BaseC3SyndicateContraband] # Frontier: BaseSecurityContraband<BaseC3SyndicateContraband
   id: WeaponRifleAk
   description: An iconic weapon of war. Uses .30 rifle ammo. An illegal firearm often used by Syndicate agents.
   components:
@@ -99,6 +99,8 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: PirateBountyItem # Frontier
+    id: AKMS # Frontier
 
 - type: entity
   name: M-90gl
@@ -146,19 +148,19 @@
 
 - type: entity
   name: Lecter
-  parent: [BaseWeaponRifle, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseWeaponRifle, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: WeaponRifleLecter
   description: A high end military grade assault rifle. Uses .20 rifle ammo. On the receiver is a label that says 'for authorized use only.'
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
+    sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi # Frontier: add _NF prefix
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
+    sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi # Frontier: add _NF prefix
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg

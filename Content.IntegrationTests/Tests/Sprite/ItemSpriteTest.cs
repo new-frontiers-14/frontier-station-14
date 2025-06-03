@@ -28,7 +28,8 @@ public sealed class PrototypeSaveTest
     {
         // The only prototypes that should get ignored are those that REQUIRE setup to get a sprite. At that point it is
         // the responsibility of the spawner to ensure that a valid sprite is set.
-        "VirtualItem"
+        "VirtualItem",
+        "HandPlaceholder" // Frontier
     };
 
     [Test]
@@ -40,7 +41,7 @@ public sealed class PrototypeSaveTest
 
         await pair.Client.WaitPost(() =>
         {
-            foreach (var proto in pair.GetPrototypesWithComponent<ItemComponent>(Ignored))
+            foreach (var (proto, _) in pair.GetPrototypesWithComponent<ItemComponent>(Ignored))
             {
                 var dummy = pair.Client.EntMan.Spawn(proto.ID);
                 pair.Client.EntMan.RunMapInit(dummy, pair.Client.MetaData(dummy));

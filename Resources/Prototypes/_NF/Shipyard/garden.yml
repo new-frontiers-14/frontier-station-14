@@ -10,9 +10,10 @@
 # 
 - type: vessel
   id: Garden
+  parent: BaseVessel
   name: HS Garden
   description: A small botany vessel dedicated to horiticultural experimentation.
-  price: 26000
+  price: 30000
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/garden.yml
@@ -38,6 +39,6 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

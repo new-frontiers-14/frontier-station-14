@@ -44,6 +44,26 @@ namespace Content.Server.EntityEffects.Effects
 
             var damageSpec = new DamageSpecifier(Damage);
 
+            var universalReagentDamageModifier = entSys.GetEntitySystem<DamageableSystem>().UniversalReagentDamageModifier;
+            var universalReagentHealModifier = entSys.GetEntitySystem<DamageableSystem>().UniversalReagentHealModifier;
+
+            if (universalReagentDamageModifier != 1 || universalReagentHealModifier != 1)
+            {
+                foreach (var (type, val) in damageSpec.DamageDict)
+                {
+                    if (val < 0f)
+                    {
+                        damageSpec.DamageDict[type] = val * universalReagentHealModifier;
+                    }
+                    if (val > 0f)
+                    {
+                        damageSpec.DamageDict[type] = val * universalReagentDamageModifier;
+                    }
+                }
+            }
+
+            damageSpec = entSys.GetEntitySystem<DamageableSystem>().ApplyUniversalAllModifiers(damageSpec);
+
             foreach (var group in prototype.EnumeratePrototypes<DamageGroupPrototype>())
             {
                 if (!damageSpec.TryGetDamageInGroup(group, out var amount))
@@ -55,16 +75,20 @@ namespace Content.Server.EntityEffects.Effects
                 if (relevantTypes.Count != group.DamageTypes.Count)
                     continue;
 
-                var sum = FixedPoint2.Zero;
-                foreach (var type in group.DamageTypes)
+                // Frontier: explicitly check that all damage types have the same amount
+                var firstValue = relevantTypes.FirstOrDefault().Value;
+                bool allValuesEqual = true;
+                foreach (var type in relevantTypes)
                 {
-                    sum += damageSpec.DamageDict.GetValueOrDefault(type);
+                    if (FixedPoint2.Abs(type.Value - firstValue) >= 0.02) // Need to account for remainder issues
+                    {
+                        allValuesEqual = false;
+                        break;
+                    }
                 }
-
-                // if the total sum of all the types equal the damage amount,
-                // assume that they're evenly distributed.
-                if (sum != amount)
+                if (!allValuesEqual)
                     continue;
+                // End Frontier
 
                 var sign = FixedPoint2.Sign(amount);
 
@@ -114,17 +138,37 @@ namespace Content.Server.EntityEffects.Effects
         public override void Effect(EntityEffectBaseArgs args)
         {
             var scale = FixedPoint2.New(1);
+            var damageSpec = new DamageSpecifier(Damage);
 
             if (args is EntityEffectReagentArgs reagentArgs)
             {
                 scale = ScaleByQuantity ? reagentArgs.Quantity * reagentArgs.Scale : reagentArgs.Scale;
             }
 
-            args.EntityManager.System<DamageableSystem>().TryChangeDamage(
-                args.TargetEntity,
-                Damage * scale,
-                IgnoreResistances,
-                interruptsDoAfters: false);
+            var universalReagentDamageModifier = args.EntityManager.System<DamageableSystem>().UniversalReagentDamageModifier;
+            var universalReagentHealModifier = args.EntityManager.System<DamageableSystem>().UniversalReagentHealModifier;
+
+            if (universalReagentDamageModifier != 1 || universalReagentHealModifier != 1)
+            {
+                foreach (var (type, val) in damageSpec.DamageDict)
+                {
+                    if (val < 0f)
+                    {
+                        damageSpec.DamageDict[type] = val * universalReagentHealModifier;
+                    }
+                    if (val > 0f)
+                    {
+                        damageSpec.DamageDict[type] = val * universalReagentDamageModifier;
+                    }
+                }
+            }
+
+            args.EntityManager.System<DamageableSystem>()
+                .TryChangeDamage(
+                    args.TargetEntity,
+                    damageSpec * scale,
+                    IgnoreResistances,
+                    interruptsDoAfters: false);
         }
     }
 }

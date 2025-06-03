@@ -519,7 +519,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: svnugget
+      id: Nugget
 - proto: Airlock
   entities:
   - uid: 2
@@ -1148,17 +1148,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,-6.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-    - type: ItemSlots
 - proto: DefibrillatorEmpty
   entities:
   - uid: 96
@@ -1226,15 +1215,13 @@ entities:
     - type: Transform
       pos: 12.5,-1.5
       parent: 1
-- proto: FloraTree05
+- proto: FloraTree
   entities:
   - uid: 86
     components:
     - type: Transform
       pos: 4.5,-1.5
       parent: 1
-- proto: FloraTree06
-  entities:
   - uid: 87
     components:
     - type: Transform
@@ -1565,38 +1552,6 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
-- proto: MouseTimedSpawner
-  entities:
-  - uid: 146
-    components:
-    - type: Transform
-      pos: 6.5,-6.5
-      parent: 1
-  - uid: 147
-    components:
-    - type: Transform
-      pos: 8.5,-4.5
-      parent: 1
-  - uid: 148
-    components:
-    - type: Transform
-      pos: 10.5,-6.5
-      parent: 1
-  - uid: 149
-    components:
-    - type: Transform
-      pos: 4.5,-0.5
-      parent: 1
-  - uid: 150
-    components:
-    - type: Transform
-      pos: 9.5,-1.5
-      parent: 1
-  - uid: 151
-    components:
-    - type: Transform
-      pos: 12.5,-3.5
-      parent: 1
 - proto: MousetrapArmed
   entities:
   - uid: 94
@@ -1605,6 +1560,13 @@ entities:
       pos: 9.402631,-7.5150394
       parent: 1
     - type: StepTriggerActive
+- proto: NFHolopadShip
+  entities:
+  - uid: 97
+    components:
+    - type: Transform
+      pos: 3.5,-0.5
+      parent: 1
 - proto: PortableGeneratorPacman
   entities:
   - uid: 152
@@ -1745,33 +1707,6 @@ entities:
     components:
     - type: Transform
       pos: 11.303192,-1.3316066
-      parent: 1
-- proto: SalvageSeedSpawnerLow
-  entities:
-  - uid: 106
-    components:
-    - type: Transform
-      pos: 7.5,-0.5
-      parent: 1
-  - uid: 179
-    components:
-    - type: Transform
-      pos: 9.5,0.5
-      parent: 1
-  - uid: 180
-    components:
-    - type: Transform
-      pos: 8.5,-0.5
-      parent: 1
-  - uid: 181
-    components:
-    - type: Transform
-      pos: 10.5,0.5
-      parent: 1
-  - uid: 182
-    components:
-    - type: Transform
-      pos: 9.5,-1.5
       parent: 1
 - proto: ShardGlass
   entities:

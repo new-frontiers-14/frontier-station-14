@@ -51,8 +51,6 @@
     canCollide: false
   - type: StealTarget
     stealGroup: LAMP
-  - type: StaticPrice
-    price: 5
 
 - type: entity
   name: lamp
@@ -133,7 +131,7 @@
 - type: entity
   name: interrogator lamp
   id: LampInterrogator
-  parent: BaseLamp
+  parent: BaseLamp # Frontier: removed BaseSecurityContraband
   description: Ultra-bright lamp for the bad cop.
   components:
   - type: Sprite
@@ -193,9 +191,11 @@
   - type: Item
     size: Normal
   - type: Sprite
+    sprite: Objects/Misc/Lights/lights.rsi
     layers:
       - state: floodlight
-      - state: floodlight_on
+        map: [ "base" ]
+      - state: floodlight-on
         shader: unshaded
         visible: false
         map: [ "light" ]
@@ -239,8 +239,6 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: StaticPrice
-    price: 75
 
 - type: entity
   name: broken floodlight
@@ -248,9 +246,14 @@
   parent: BaseItem
   description: A pole with powerful mounted lights on it. It's broken.
   components:
+  - type: GoblinPreciousTrash # Frontier
+  - type: Item
+    size: Normal
+    sprite: Objects/Misc/Lights/lights.rsi
+    heldPrefix: floodlight-broken
   - type: Sprite
     sprite: Objects/Misc/Lights/lights.rsi
-    state: floodlight_broken
+    state: floodlight-broken
   - type: Anchorable
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -273,7 +276,7 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
-            min: 0 # Frontier: 1<0
+            min: 1
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -286,8 +289,4 @@
           bounds: "-0.2, -0.5, 0.2, 0.5"
         density: 50
         mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: StaticPrice # Frontier
-    price: 6 # Frontier: TODO - tests at 6
+        - HighImpassable

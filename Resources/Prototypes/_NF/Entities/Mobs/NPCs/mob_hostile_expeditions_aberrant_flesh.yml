@@ -47,6 +47,9 @@
         Structural: 20
   - type: ReplacementAccent
     accent: genericAggressive
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
 
 # MOBS
 - type: entity
@@ -337,7 +340,7 @@
 
 # EXPEDITION BOSS
 - type: entity
-  parent: [ BaseMobFleshExpeditions, MobHostileBossBase ]
+  parent: [ BaseMobFleshExpeditions, MobHostileBossBase, NFMobBossRestrictions ]
   id: MobHorrorExpeditions
   name: aberrant flesh horror
   description: Tougher and more resilient than most aberrant flesh monsters. Has sharp, bony protrusions and highly developed musculature.
@@ -387,6 +390,8 @@
     rules: ghost-role-information-dungeon-boss-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
   - type: GhostTakeoverAvailable
   - type: ActionGun
     action: ActionBoneSpike

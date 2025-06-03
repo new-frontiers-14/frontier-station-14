@@ -38,6 +38,53 @@
     Steel: 800
     Glass: 900
 
+- type: latheRecipe
+  id: NFScrapProcessorCircuitboard
+  parent: BaseCircuitboardRecipe
+  result: NFScrapProcessorCircuitboard
+  materials:
+    Steel: 800
+    Glass: 900
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: CondimentDispenserCircuitboard
+  result: CondimentDispenserCircuitboard
+  materials:
+    Steel: 100
+    Glass: 500
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: MiniStationAnchorCircuitboard
+  result: MiniStationAnchorCircuitboard
+  completetime: 8
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: PortablePumpMachineCircuitBoard
+  result: PortablePumpMachineCircuitBoard
+  materials:
+    Steel: 100
+    Glass: 500
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: GasMiningDrillMachineCircuitboard
+  result: GasMiningDrillMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 900
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: GaslockFrameMachineCircuitboard
+  result: GaslockFrameMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 900
+
 # Thrusters
 - type: latheRecipe
   id: ThrusterSecurityMachineCircuitboard
@@ -92,9 +139,17 @@
 
 # Generators
 - type: latheRecipe
-  id: PortableGeneratorHyperPacmanMachineCircuitboard
+  id: PortableGeneratorDKMachineCircuitboard
   parent: BaseCircuitboardRecipe
-  result: PortableGeneratorHyperPacmanMachineCircuitboard
+  result: PortableGeneratorDKMachineCircuitboard
+  materials:
+     Steel: 350
+     Glass: 350
+
+- type: latheRecipe
+  id: PortableGeneratorDKJrMachineCircuitboard
+  parent: BaseCircuitboardRecipe
+  result: PortableGeneratorDKJrMachineCircuitboard
   materials:
      Steel: 350
      Glass: 350

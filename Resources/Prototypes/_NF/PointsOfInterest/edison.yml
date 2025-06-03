@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub:
 # Discord: Checkraze
 
 # Maintainer Info
@@ -7,27 +7,36 @@
 # Discord: ???
 
 # Notes:
-# 
-# - type: pointOfInterest
-  # id: Edison
-  # name: 'Edison Power Plant'
-  # rangeMin: 3650
-  # rangeMax: 6400
-  # IFFColor: "#3737C8" #blue the color of NT
-  # spawnGroup: Required
-  # gridPath: /Maps/_NF/POI/edison.yml 
+#
+- type: pointOfInterest
+  id: Edison
+  parent: BasePOI
+  name: 'Edison Power Plant'
+  minimumDistance: 2650
+  maximumDistance: 5400
+  spawnGroup: Required
+  gridPath: /Maps/_NF/POI/edison.yml
+  addComponents:
+  - type: IFF
+    color: "#3737F8"
+  - type: StationTransit
+    routes:
+      SpawnPoints: 40
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
-# - type: gameMap
-  # id: Edison
-  # mapName: 'Edison Power Plant'
-  # mapPath: /Maps/_NF/POI/edison.yml
-  # minPlayers: 0
-  # stations:
-    # Edison:
-      # stationProto: RecordsFrontierOutpost
-      # components:
-        # - type: StationNameSetup
-          # mapNameTemplate: 'Edison Power Plant'
+- type: gameMap
+  id: Edison
+  mapName: 'Edison Power Plant'
+  mapPath: /Maps/_NF/POI/edison.yml
+  minPlayers: 0
+  stations:
+    Edison:
+      stationProto: RecordsFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Edison Power Plant'
         # - type: StationJobs
           # availableJobs:
             # Pilot: [ 0, 0 ]

@@ -22,7 +22,8 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: NukeDisk
-  - type: DisableShipyardSale # Frontier
+  - type: ShipyardSellCondition # Frontier
+    blockSale: true # Frontier
     reason: shipyard-console-station-resources # Frontier
     allowedShipyardTypes: # Frontier: mail profits removed, sector in shambles
     - Syndicate # Frontier
@@ -40,3 +41,6 @@
     state: icon
   - type: StaticPrice
     price: 1 # it's worth even less than normal items. Perfection.
+  - type: Tag
+    tags:
+    - FakeNukeDisk

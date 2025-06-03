@@ -3,7 +3,8 @@
 - type: latheRecipe
   abstract: true
   id: NFBaseLightTubeRecipe
-  category: Lights
+  categories:
+  - Lights
   completetime: 2
   materials:
     Steel: 50
@@ -71,6 +72,13 @@
     Steel: 150
 
 - type: latheRecipe
+  id: BoxDispenserFlare
+  result: BoxDispenserFlare
+  parent: NFBaseLightTubeRecipe
+  materials:
+    Steel: 1800
+
+- type: latheRecipe
   id: GlowstickBlue
   result: GlowstickBlue
   parent: NFBaseGlowstickRecipe
@@ -125,17 +133,23 @@
   result: ClothingNeckIFFPurple
   parent: NFWearableIFFRecipe
 
-- type: latheRecipe
-  id: ColoredLightTubeRedNF
-  result: ColoredLightTubeRed
+- type: latheRecipe # Remove this ones we have a black crystal
+  id: LightTubeUltraviolet
+  result: LightTubeUltraviolet
   parent: NFBaseLightTubeRecipe
 
 - type: latheRecipe
-  id: ColoredLightTubeBlackLightNF
-  result: ColoredLightTubeBlackLight
-  parent: NFBaseLightTubeRecipe
+  id: JanicartFlatpack
+  result: JanicartFlatpack
+  materials:
+    Steel: 2000
+    Glass: 1000
+    Plastic: 800
+    Uranium: 250
 
 - type: latheRecipe
-  id: ColoredLightTubeFrostyBlueNF
-  result: ColoredLightTubeFrostyBlue
-  parent: NFBaseLightTubeRecipe
+  id: NFClothingShoesBootsMoon
+  result: NFClothingShoesBootsMoon
+  completetime: 2
+  materials:
+    Steel: 600

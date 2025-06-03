@@ -21,10 +21,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Unidentified Vessel
     - type: Transform
-      pos: -0.5156249,-0.5312496
-      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -1092,8 +1089,6 @@ entities:
     - type: Transform
       pos: 11.5,-7.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaRight
   entities:
   - uid: 1079
@@ -1101,8 +1096,6 @@ entities:
     - type: Transform
       pos: 10.5,-7.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BloodCollector
   entities:
   - uid: 1137
@@ -6045,6 +6038,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 18.5,-11.5
       parent: 1
+- proto: SpawnMobCatBloodCult
+  entities:
+  - uid: 351
+    components:
+    - type: Transform
+      pos: 17.5,13.5
+      parent: 1
 - proto: StructureMeleeWeaponRackBloodCultFilled
   entities:
   - uid: 470
@@ -7726,12 +7726,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,-4.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 468
     components:
-    - type: MetaData
-      name: Blood Moon
     - type: Transform
       pos: 4.5,-17.5
       parent: 1

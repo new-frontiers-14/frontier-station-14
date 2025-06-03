@@ -10,14 +10,19 @@
 # Byarr
 - type: pointOfInterest
   id: Cove
+  parent: BasePOI
   name: Pirate Cove
-  rangeMin: 10000
-  rangeMax: 15000
-  IFFColor: "#C83737" #red the color of ebil
-  IFFFlags: [HideLabel]
-  allowIFFChanges: true
+  minimumDistance: 10000
+  maximumDistance: 15000
+  spawnGamePreset: [ NFPirate ]
   spawnGroup: Required
   gridPath: /Maps/_NF/POI/cove.yml
+  hideWarp: true
+  addComponents:
+  - type: IFF
+    color: "#C83737"
+    flags: [HideLabel, Hide]
+    readOnly: false
 
 - type: gameMap
   id: Cove
@@ -36,9 +41,11 @@
           stationDescription: 'frontier-lobby-pirate-description'
         - type: StationJobs
           availableJobs:
-            PirateCaptain: [ 1, 1 ]
-            PirateFirstMate: [ 1, 1 ]
-            Pirate: [ 0, 0 ]
+            NFPirateCaptain: [ 1, 1 ]
+            NFPirateFirstMate: [ 1, 1 ]
+            NFPirate: [ 0, 0 ]
         - type: StationDeadDropReporting
           messageSet: Pirate
         - type: StationDeadDropHintExempt
+        - type: TradeCrateWildcardDestination
+        - type: BindToStationVariationPassExemption

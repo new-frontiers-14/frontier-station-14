@@ -1,0 +1,43 @@
+- type: entity
+  name: condiment cup dispenser
+  description: It holds little condiment cups. They claim to be recyled.
+  id: CondimentCupDispenser
+  parent: [BaseItem, PaperBin]
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Service/condiment_cup_dispenser.rsi
+    state: dispenser0
+  - type: ItemMapper
+    sprite: _NF/Objects/Specific/Service/condiment_cup_dispenser.rsi
+    mapLayers:
+      dispenser1:
+        whitelist:
+          components:
+          - CondimentCup
+  - type: Bin
+    whitelist:
+      components:
+      - CondimentCup
+
+- type: entity
+  name: condiment cup dispenser
+  suffix: 10
+  description: It holds little condiment cups. They claim to be recyled.
+  id: CondimentCupDispenser10
+  parent: CondimentCupDispenser
+  components:
+  - type: Bin
+    initialContents:
+    - CondimentCup
+    - CondimentCup
+    - CondimentCup
+    - CondimentCup
+    - CondimentCup
+    - CondimentCup
+    - CondimentCup
+    - CondimentCup
+    - CondimentCup
+    - CondimentCup
+    whitelist:
+      components:
+      - CondimentCup

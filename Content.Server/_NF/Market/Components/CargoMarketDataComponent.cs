@@ -1,4 +1,4 @@
-﻿using Content.Server._NF.Market.Systems;
+using Content.Server._NF.Market.Systems;
 using Content.Shared._NF.Market;
 using Content.Shared.Whitelist;
 
@@ -30,5 +30,5 @@ public sealed partial class CargoMarketDataComponent : Component
     /// Particular items that may override the blacklist.
     /// </summary>
     [DataField]
-    public EntProtoIdWhitelist? OverrideList;
+    public EntityWhitelist? WhitelistOverride;
 }

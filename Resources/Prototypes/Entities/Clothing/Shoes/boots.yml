@@ -11,17 +11,18 @@
   - type: Matchbox
 
 - type: entity
-  parent: [ClothingShoesMilitaryBase, BaseC1Contraband] # Frontier: BaseRestrictedContraband<BaseC1Contraband
+  parent: [ClothingShoesMilitaryBase, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
   id: ClothingShoesBootsJack
   name: jackboots
-  description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time.
+  # description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time. # Frontier
+  description: Combat boots for combat scenarios or combat situations. All combat, all the time. # Frontier
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/jackboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/jackboots.rsi
-  - type: ClothingSlowOnDamageModifier
-    modifier: 0.5
+  # - type: ClothingSlowOnDamageModifier # Frontier: weird one-off
+  #   modifier: 0.5 # Frontier: weird one-off
 
 - type: entity
   parent: ClothingShoesBaseButcherable
@@ -47,7 +48,7 @@
     sprite: Clothing/Shoes/Boots/performer.rsi
 
 - type: entity
-  parent: [ClothingShoesMilitaryBase, BaseC1Contraband] # Frontier: BaseRestrictedContraband<BaseC1Contraband
+  parent: [ClothingShoesMilitaryBase, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
   id: ClothingShoesBootsCombat
   name: combat boots
   description: Robust combat boots for combat scenarios or combat situations. All combat, all the time.
@@ -71,9 +72,14 @@
     sprite: Clothing/Shoes/Boots/highheelboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/highheelboots.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHighHeels
+      params:
+        variation: 0.09
 
 - type: entity
-  parent: ClothingShoesMilitaryBase # Frontier: removed BaseRestrictedContraband
+  parent: [ ClothingShoesMilitaryBase ] # Frontier: removed BaseRestrictedContraband
   id: ClothingShoesBootsMercenary # Frontier: Merc to Mercenary
   name: mercenary boots
   description: Boots that have gone through many conflicts and that have proven their combat reliability.
@@ -145,7 +151,7 @@
     sprite: Clothing/Shoes/Boots/winterbootssci.rsi
 
 - type: entity
-  parent: [ClothingShoesBaseWinterBoots, ClothingShoesMilitaryBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ClothingShoesBaseWinterBoots, ClothingShoesMilitaryBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: ClothingShoesBootsWinterSec
   name: security winter boots
   components:
@@ -187,6 +193,10 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 10
+  - type: Butcherable
+    spawned:
+    - id: MaterialWebSilk1
+      amount: 2
   - type: Construction
     graph: WebObjects
     node: boots
@@ -204,6 +214,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSpurs
+      params:
+        variation: 0.09
 
 - type: entity
   parent: ClothingShoesBootsCowboyBrown

@@ -16,8 +16,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared._EstacaoPirata.Cards.Deck;
 
 /// <summary>
-/// This handles card decks
-///
+///     This handles card decks
 /// </summary>
 public sealed class CardDeckSystem : EntitySystem
 {

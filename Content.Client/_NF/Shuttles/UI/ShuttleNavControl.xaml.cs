@@ -5,6 +5,7 @@ using Content.Shared._NF.Shuttles.Events;
 using Content.Shared.Shuttles.BUIStates;
 using Robust.Shared.Physics.Components;
 using System.Numerics;
+using Content.Shared.Shuttles.Components;
 using Robust.Client.Graphics;
 using Robust.Shared.Collections;
 
@@ -13,6 +14,7 @@ namespace Content.Client.Shuttles.UI
     public sealed partial class ShuttleNavControl
     {
         public InertiaDampeningMode DampeningMode { get; set; }
+        public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None; // Frontier
 
         private void NfUpdateState(NavInterfaceState state)
         {
@@ -25,18 +27,16 @@ namespace Content.Client.Shuttles.UI
             }
 
             DampeningMode = state.DampeningMode;
+            ServiceFlags = state.ServiceFlags;
         }
 
         // New Frontiers - Maximum IFF Distance - checks distance to object, draws if closer than max range
         // This code is licensed under AGPLv3. See AGPLv3.txt
-        private bool NfCheckShouldDrawIffRangeCondition(bool shouldDrawIff, PhysicsComponent gridBody, Matrix3x2 matty)
+        private bool NfCheckShouldDrawIffRangeCondition(bool shouldDrawIff, Vector2 distance)
         {
             if (shouldDrawIff && MaximumIFFDistance >= 0.0f)
             {
-                var gridCentre = Vector2.Transform(gridBody.LocalCenter, matty);
-                var distance = gridCentre.Length();
-
-                if (distance > MaximumIFFDistance)
+                if (distance.Length() > MaximumIFFDistance)
                 {
                     shouldDrawIff = false;
                 }

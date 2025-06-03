@@ -72,6 +72,12 @@
           components:
           - MachineBoard
           - ComputerBoard
+        # Frontier: keep grid-bound machines as they are
+        blacklist:
+          components:
+          - BindToStation
+        whitelistFailPopup: flatpacker-item-cannot-be-flatpacked
+        # End Frontier: keep grid-bound machines as they are
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
@@ -82,6 +88,8 @@
     - machine_parts
     - machine_board
     - board_slot
+  - type: MaterialStorageMagnetPickup # Frontier
+    range: 0.30 # Frontier
 #  - type: StaticPrice # Frontier
 #    price: 2000
 

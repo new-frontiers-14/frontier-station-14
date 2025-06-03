@@ -18,10 +18,7 @@ entities:
   - uid: 10
     components:
     - type: MetaData
-      name: CargoDepot
     - type: Transform
-      pos: -0.5,-0.5208335
-      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -50,17 +47,10 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 999999
-      linearDamping: 999999
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
     - type: Shuttle
-      angularDamping: 999999
-      linearDamping: 999999
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -362,7 +352,6 @@ entities:
             264: 5,2
             265: 5,-2
             266: 5,-4
-            289: -1,0
         - node:
             angle: 1.5707963267948966 rad
             color: '#FFFFFFFF'
@@ -372,7 +361,6 @@ entities:
             260: -5,2
             261: -5,-2
             262: -5,-4
-            290: 1,0
         - node:
             color: '#A4610696'
             id: MiniTileCheckerAOverlay
@@ -3470,18 +3458,7 @@ entities:
     - type: Transform
       pos: 4.5,10.5
       parent: 10
-- proto: ComputerMarketConsoleNFHigh
-  entities:
-  - uid: 466
-    components:
-    - type: Transform
-      pos: 0.5,-0.5
-      parent: 10
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          ents: []
-- proto: ComputerPalletConsoleNFHighMarket
+- proto: ComputerPalletConsoleNFLowMarket
   entities:
   - uid: 7
     components:
@@ -3657,14 +3634,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,-1.5
-      parent: 10
-- proto: CrateMachine
-  entities:
-  - uid: 465
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,0.5
       parent: 10
 - proto: d6Dice
   entities:
@@ -7345,12 +7314,11 @@ entities:
     - type: Transform
       pos: 3.5,-2.5
       parent: 10
-- proto: WarpPointNFCargo
+- proto: WarpPoint
   entities:
   - uid: 292
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 0.5,0.5
       parent: 10
 ...

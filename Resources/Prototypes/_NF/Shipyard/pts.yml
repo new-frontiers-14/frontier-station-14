@@ -10,9 +10,10 @@
 #
 - type: vessel
   id: PTS
+  parent: BaseVessel
   name: NC Personal Transport
   description: A small transport shuttle with space for 4 passengers. Comes with the latest audio entertainment technology.
-  price: 16500 # $14325 after appraisal + $1200 (~5% markup)
+  price: 17500 # $16634 after appraisal + ~5% markup
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/pts.yml
@@ -31,13 +32,12 @@
     PTS:
       stationProto: StandardFrontierVessel
       components:
-        - type: StationNameSetup
-          mapNameTemplate: 'PTS {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+      - type: StationNameSetup
+        mapNameTemplate: 'PTS {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          ContractorInterview: [ 0, 0 ]
+          PilotInterview: [ 0, 0 ]
+          MercenaryInterview: [ 0, 0 ]

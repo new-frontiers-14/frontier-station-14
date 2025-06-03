@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Crescent
+  parent: BaseVessel
   name: KC Crescent
   description: The Crescent, named for its exterior shape, is a vessel focused on providing service, medical aide, and scientific breakthroughs for smaller vessels.
   price: 350020 # It do be like this.
@@ -40,7 +41,7 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
 #            StationAi: [ 0, 1 ]

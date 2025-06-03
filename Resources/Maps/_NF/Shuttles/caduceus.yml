@@ -897,7 +897,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: caduceus
+      id: Caduceus
 - proto: AirAlarm
   entities:
   - uid: 1169
@@ -6444,13 +6444,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 16.5,-16.5
       parent: 1
-- proto: HeadBorgMedical
-  entities:
-  - uid: 1454
-    components:
-    - type: Transform
-      pos: 16.493662,-12.606645
-      parent: 1
 - proto: hydroponicsTrayAnchored
   entities:
   - uid: 796
@@ -6550,19 +6543,26 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.155892,-3.23566
       parent: 1
-- proto: LeftArmBorgMedical
+- proto: LeftArmBorg
   entities:
   - uid: 1453
     components:
     - type: Transform
       pos: 13.550231,-14.493188
       parent: 1
-- proto: LeftLegBorgMedical
+- proto: LeftLegBorg
   entities:
   - uid: 1452
     components:
     - type: Transform
       pos: 15.226535,-12.567066
+      parent: 1
+- proto: LightHeadBorg
+  entities:
+  - uid: 1454
+    components:
+    - type: Transform
+      pos: 16.493662,-12.606645
       parent: 1
 - proto: LockerChemistryFilled
   entities:
@@ -6687,6 +6687,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -9.5,-15.5
+      parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 1121
+    components:
+    - type: Transform
+      pos: 0.5,8.5
       parent: 1
 - proto: NFSignDock
   entities:
@@ -7057,14 +7064,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 16.5,-19.5
       parent: 1
-- proto: RightArmBorgMedical
+- proto: RightArmBorg
   entities:
   - uid: 1448
     components:
     - type: Transform
       pos: 11.081971,-13.213505
       parent: 1
-- proto: RightLegBorgMedical
+- proto: RightLegBorg
   entities:
   - uid: 1451
     components:
@@ -8112,7 +8119,7 @@ entities:
     - type: Transform
       pos: 15.488791,-11.472113
       parent: 1
-- proto: TorsoBorgMedical
+- proto: TorsoBorg
   entities:
   - uid: 1447
     components:
@@ -9453,7 +9460,7 @@ entities:
     - type: Transform
       pos: 6.5,-16.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 1277
     components:

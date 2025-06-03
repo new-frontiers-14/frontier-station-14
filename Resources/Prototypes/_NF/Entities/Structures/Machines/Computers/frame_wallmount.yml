@@ -1,0 +1,76 @@
+- type: entity
+  id: BaseStructureComputerWallmount
+  parent: [BaseStructureWallmount, BaseStructure]
+  suffix: Wallmount
+  abstract: true
+  components:
+    - type: Anchorable
+    - type: InteractionOutline
+    - type: Construction
+      graph: ComputerWallmount
+      node: wallmount computer
+    - type: Sprite
+      sprite: _NF/Structures/Machines/computer_wallmount.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - map: [ "computerLayerBody" ]
+          sprite: _NF/Structures/Machines/computer_wallmount.rsi
+          state: computer_wallmount
+        - map: [ "computerLayerScreen" ]
+          sprite: _NF/Structures/Machines/computer_wallmount.rsi
+          state: screen_generic
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Electronic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+            - !type:ChangeConstructionNodeBehavior
+              node: monitorBroken
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+    - type: StaticPrice
+      price: 100
+
+- type: entity
+  parent: BaseStructureComputerWallmount
+  name: computer
+  id: ComputerWallmountFrame
+  components:
+  - type: Construction
+    graph: ComputerWallmount
+    node: frameUnsecured
+    containers:
+      - board
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Structures/Machines/computer_wallmount.rsi
+    layers:
+    - state: computer_wallmount_frame
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          frameUnsecured: { state: computer_wallmount_frame }
+          boardUnsecured: { state: computer_board_exposed }
+          missingWires: { state: computer_needs_wires }
+          monitorMissing: { state: computer_no_monitor }
+          monitorUnsecured: { state: computer_monitor_unscrewed }
+
+- type: entity
+  parent: [BaseStructureWallmount, ComputerBroken]
+  id: ComputerWallmountBroken
+  suffix: Wallmount
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Structures/Machines/computer_wallmount.rsi
+    state: broken_wallmount
