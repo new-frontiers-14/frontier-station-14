@@ -6,7 +6,6 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Timing; // Frontier
-using Content.Shared.Stacks; // Frontier
 
 namespace Content.Shared.Anomaly.Components;
 
@@ -297,7 +296,7 @@ public sealed partial class AnomalyComponent : Component
     /// The last time this anomaly earned points. Prevents double counting.
     /// </summary>
     [ViewVariables]
-    public ProtoId<StackPrototype>? CrystalPrototype = "Anomalite";
+    public EntProtoId? CrystalPrototype = "Anomalite";
     // End Frontier: point generation, crystal generation fields
 }
 
