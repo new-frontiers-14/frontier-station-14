@@ -296,7 +296,7 @@ public sealed partial class AnomalyComponent : Component
     /// The last time this anomaly earned points. Prevents double counting.
     /// </summary>
     [DataField]
-    public EntProtoId? CrystalPrototype = "Anomalite";
+    public EntProtoId? CrystalPrototype = "MaterialAnomalite1";
     // End Frontier: point generation, crystal generation fields
 }
 
