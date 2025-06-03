@@ -9,15 +9,15 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Courier
+  id: Express
   parent: BaseVessel
-  name: FSB Courier
+  name: FSB Express
   description: A small endurance shuttle for express logistics support in Frontier space.
   price: 18000
   category: Small
   group: Sr
   access: Mail
-  shuttlePath: /Maps/_NF/Shuttles/Sr/courier.yml
+  shuttlePath: /Maps/_NF/Shuttles/Sr/express.yml
   guidebookPage: Null
   class:
   - Cargo
@@ -26,16 +26,16 @@
   - Solar
 
 - type: gameMap
-  id: Courier
-  mapName: 'FSB Courier'
-  mapPath: /Maps/_NF/Shuttles/Sr/courier.yml
+  id: Express
+  mapName: 'FSB Express'
+  mapPath: /Maps/_NF/Shuttles/Sr/express.yml
   minPlayers: 0
   stations:
-    Courier:
+    Express:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Courier {1}'
+          mapNameTemplate: 'Express {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
