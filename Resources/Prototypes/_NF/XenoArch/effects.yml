@@ -18,3 +18,20 @@
         children:
         - id: MobGrimForged
           weight: 1.0
+
+- type: entity
+  id: NFXenoArtifactEffectAnomaliteSpawn
+  parent: BaseXenoArtifactEffect
+  description: Create anomalite
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 1, 3
+        children:
+        - id: Anomalite1

@@ -91,11 +91,12 @@ public sealed partial class AnomalySystem
 
         var targetCoords = xform.Coordinates;
         var gridBounds = gridComp.LocalAABB.Scale(_configuration.GetCVar(CCVars.AnomalyGenerationGridBoundsScale));
+        bool validTarget = false; // Frontier
 
-        for (var i = 0; i < 25; i++)
+        for (var i = 0; i < 20; i++) // Frontier: 25<20
         {
-            var randomX = Random.Next((int) gridBounds.Left, (int) gridBounds.Right);
-            var randomY = Random.Next((int) gridBounds.Bottom, (int)gridBounds.Top);
+            var randomX = Random.Next((int)gridBounds.Left, (int)gridBounds.Right);
+            var randomY = Random.Next((int)gridBounds.Bottom, (int)gridBounds.Top);
 
             var tile = new Vector2i(randomX, randomY);
 
@@ -117,7 +118,7 @@ public sealed partial class AnomalySystem
                     continue;
                 if (body.BodyType != BodyType.Static ||
                     !body.Hard ||
-                    (body.CollisionLayer & (int) CollisionGroup.Impassable) == 0)
+                    (body.CollisionLayer & (int)CollisionGroup.Impassable) == 0)
                     continue;
 
                 valid = false;
@@ -148,8 +149,28 @@ public sealed partial class AnomalySystem
                 continue;
 
             targetCoords = pos;
+            validTarget = true; // Frontier
             break;
         }
+
+        // Frontier: one final test - if the spawn point is within an anti-anomaly zone, just don't generate it.
+        if (!validTarget) // Frontier
+        {
+            var mapPos = _transform.ToMapCoordinates(targetCoords);
+            var antiAnomalyZonesQueue = AllEntityQuery<AntiAnomalyZoneComponent, TransformComponent>();
+            while (antiAnomalyZonesQueue.MoveNext(out _, out var zone, out var antiXform))
+            {
+                if (antiXform.MapID != mapPos.MapId)
+                    continue;
+
+                var antiCoordinates = _transform.GetWorldPosition(antiXform);
+
+                var delta = antiCoordinates - mapPos.Position;
+                if (delta.LengthSquared() < zone.ZoneRadius * zone.ZoneRadius)
+                    return;
+            }
+        }
+        // End Frontier: one final test - if the spawn point is within an anti-anomaly zone, just don't generate it.
 
         Spawn(toSpawn, targetCoords);
     }
