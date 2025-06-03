@@ -101,7 +101,8 @@
         Manipulator: 3
       stackRequirements:
         Steel: 10
-    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+    - type: BindToStation
+      enabled: false # should be draggable between stations
 
 - type: entity
   id: GaslockFrameMachineCircuitboard
@@ -115,7 +116,8 @@
       prototype: GaslockFrame
       stackRequirements:
         Steel: 10
-    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+    - type: BindToStation
+      enabled: false # should be draggable between stations
 
 # TechFab
 - type: entity

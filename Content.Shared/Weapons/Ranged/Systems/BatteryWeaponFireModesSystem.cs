@@ -82,9 +82,10 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
 
     private void OnUseInHandEvent(EntityUid uid, BatteryWeaponFireModesComponent component, UseInHandEvent args)
     {
-        if (args.Handled) // Frontier
-            return; // Frontier
+        if(args.Handled)
+            return;
 
+        args.Handled = true;
         TryCycleFireMode(uid, component, args.User);
     }
 
