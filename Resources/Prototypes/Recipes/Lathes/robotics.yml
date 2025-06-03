@@ -124,28 +124,28 @@
 
 - type: latheRecipe
   parent: BaseBorgModuleRecipe
-  id: BorgModuleCable
-  result: BorgModuleCable
+  id: BorgModuleTool
+  result: BorgModuleTool
 
 - type: latheRecipe
   parent: BaseBorgModuleRecipe
   id: BorgModuleFireExtinguisher
   result: BorgModuleFireExtinguisher
 
-- type: latheRecipe
-  parent: BaseBorgModuleRecipe
-  id: BorgModuleGPS
-  result: BorgModuleGPS
+# Cargo Modules
 
 - type: latheRecipe
-  parent: BaseBorgModuleRecipe
-  id: BorgModuleRadiationDetection
-  result: BorgModuleRadiationDetection
-
-- type: latheRecipe
-  parent: BaseBorgModuleRecipe
-  id: BorgModuleTool
-  result: BorgModuleTool
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModuleAdvancedMining
+  result: BorgModuleAdvancedMining
+  # Frontier: higher cost
+  materials:
+    Steel: 1000
+    Glass: 1000
+    Plastic: 250
+    Bluespace: 200 # OreBagOfHolding Bluespace price
+    Diamond: 100 # MiningDrillDiamond Diamond price
+  # End Frontier: higher cost
 
 # Engineering Modules
 
@@ -163,40 +163,11 @@
 
 # Medical Modules
 
-# Frontier: base modules for a medical cyborg
-
-# - type: latheRecipe
-#   parent: BaseGoldBorgModuleRecipe
-#   id: BorgModuleAdvancedTreatment
-#   result: BorgModuleAdvancedTreatment
-
-# - type: latheRecipe
-#   parent: BaseGoldBorgModuleRecipe
-#   id: BorgModuleDefibrillator
-#   result: BorgModuleDefibrillator
-
-# End Frontier
-
-# Science Modules
-
 - type: latheRecipe
-  parent: BaseBorgModuleRecipe
-  id: BorgModuleArtifact
-  result: BorgModuleArtifact
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModuleAdvancedChemical
+  result: BorgModuleAdvancedChemical
 
-- type: latheRecipe
-  parent: BaseBorgModuleRecipe
-  id: BorgModuleAnomaly
-  result: BorgModuleAnomaly
+# Science Modules (if we add a advanced sci module that requires crafting)
 
 # Service Modules
-
-- type: latheRecipe
-  parent: BaseBorgModuleRecipe
-  id: BorgModuleGardening
-  result: BorgModuleGardening
-
-- type: latheRecipe
-  parent: BaseBorgModuleRecipe
-  id: BorgModuleHarvesting
-  result: BorgModuleHarvesting
