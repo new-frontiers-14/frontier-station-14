@@ -512,9 +512,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 20
-    rechargeSound:
-      path: /Audio/Animals/space_dragon_roar.ogg
+    rechargeCooldown: 40
   - type: BasicEntityAmmoProvider
     proto: BulletTRexRoar
     capacity: 1
@@ -526,12 +524,9 @@
     selectedMode: FullAuto
     availableModes:
       - FullAuto
-    soundGunshot:
-      path: /Audio/Animals/space_dragon_roar.ogg
+    soundGunshot: null
     soundEmpty: null
     projectileSpeed: 5
-  - type: UseDelay
-    delay: 20
 
 - type: entity
   id: ActionTRexRoar
@@ -540,11 +535,12 @@
   description: "Emits a powerful roar, intimidating and stunning nearby foe. [color=yellow]40 second cooldown.[/color]"
   components:
   - type: WorldTargetAction
-    icon: { sprite : _NF/Effects/steam.rsi, state: steam }
+    icon: { sprite : _NF/Effects/sonic_wave.rsi, state: icon, color: "#0099FF" }
     event: !type:ActionGunShootEvent
     priority: 2
     checkCanAccess: false
     range: 0
     itemIconStyle: BigAction
-  - type: UseDelay
-    delay: 40
+    useDelay: 40
+    sound:
+      path: /Audio/Animals/space_dragon_roar.ogg
