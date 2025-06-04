@@ -1,0 +1,33 @@
+- type: entity
+  name: Plant-B-Gone
+  parent: PlantBGoneSpray
+  id: PlantBGoneSprayEmpty
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        reagents: []
+        maxVol: 100
+
+- type: entity
+  parent: WeedSpray
+  id: WeedSprayEmpty
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        reagents: []
+        maxVol: 50
+
+- type: entity
+  parent: PestSpray
+  id: PestSprayEmpty
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        reagents: []
+        maxVol: 50
