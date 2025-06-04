@@ -142,6 +142,7 @@
     - NFLights # Frontier
     - NFServiceStatic # Frontier
     - ReportingStatic # DeltaV
+    - NFPaperAndPaperAccessories # Frontier
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
@@ -235,6 +236,17 @@
     - SecurityEquipment
     #- SecurityWeapons # Frontier
     - SyringeGuns # Delta-V
+  # Frontier: accept blueprints
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintProtolathe
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  # End Frontier: accept blueprints
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -427,15 +439,15 @@
     - NfsdPracticeStatic # Frontier: SecurityPracticeStatic<NfsdPracticeStatic
     - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
     - SecurityWeaponsStatic
-    dynamicPacks:
-    - SalvageSecurityBoards
-    - SalvageSecurityWeapons
-    - SecurityEquipment
+    # dynamicPacks:
+    # - SalvageSecurityBoards # Frontier
+    # - SalvageSecurityWeapons # Frontier
+    # - SecurityEquipment # Frontier
     # - SecurityBoards # Frontier
-    - SecurityExplosives
-    #- SecurityAmmo # Frontier
-    #- SecurityWeapons # Frontier
-    #- SecurityDisablers # Frontier
+    # - SecurityExplosives # Frontier
+    # - SecurityAmmo # Frontier
+    # - SecurityWeapons # Frontier
+    # - SecurityDisablers # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
@@ -448,7 +460,7 @@
 
 - type: entity
   id: AmmoTechFab
-  parent: [BlueprintReceiverBase, BaseLatheLube] # Frontier: added BlueprintReceiverBase
+  parent: [NFBlueprintReceiverBase, BaseLatheLube] # Frontier: added NFBlueprintReceiverBase
   name: ammo techfab
   description: Prints the bare minimum of bullets that any budget military or armory could need. Nothing fancy.
   components:
@@ -480,10 +492,14 @@
           - RawMaterial
           - Ingot
     - type: OreSiloClient
+    - type: BlueprintReceiver # Frontier
+      whitelist: # Frontier
+        tags: # Frontier
+        - NFBlueprintMercenaryTechfab # Frontier
 
 - type: entity
   id: MedicalTechFab
-  parent: [ BlueprintReceiverBase, BaseLatheLube ] # Frontier: added BlueprintReceiverBase
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ] # Frontier: added NFBlueprintReceiverBase
   name: medical techfab
   description: Prints equipment for use by the medbay.
   components:
@@ -513,10 +529,8 @@
     - EmptyMedkitsStatic
     - SurgeryStatic
     - NFMedicalStatic # Frontier
-    dynamicPacks:
-    - Chemistry
-    - SyringeGuns # DeltaV
-    - NFMedical # Frontier
+    # dynamicPacks: # Frontier
+    # - Chemistry # Frontier
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -524,6 +538,10 @@
   - type: OreSiloClient
   # - type: LatheAnnouncing # Frontier: spammy
   #   channels: [Medical] # Frontier
+  - type: BlueprintReceiver # Frontier
+    whitelist: # Frontier
+      tags: # Frontier
+      - NFBlueprintMedicalTechfab # Frontier
 
 - type: entity
   parent: BaseLathe
@@ -726,6 +744,8 @@
       tags:
       - Raw
       - Wooden
+      - Boll
+      - RawMaterial # Frontier
   - type: Lathe
     idleState: base_machine
     runningState: base_machine_processing

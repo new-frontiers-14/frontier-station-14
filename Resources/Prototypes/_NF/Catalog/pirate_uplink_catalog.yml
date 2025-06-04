@@ -2,7 +2,7 @@
   id: UplinkPirateHardsuit
   name:  uplink-pirate-hardsuit-name
   description: uplink-pirate-hardsuit-desc
-  productEntity: ClothingOuterHardsuitPirateEVA
+  productEntity: ClothingOuterEVASuitPirate
   icon: { sprite: Clothing/OuterClothing/Hardsuits/pirateeva.rsi, state: icon }
   cost:
     Doubloon: 2
@@ -293,7 +293,7 @@
   name:  uplink-pirate-shotgunammo-name
   description: uplink-pirate-shotgunammo-desc
   productEntity: NFAmmunitionBoxShellShotgunBuckshot
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi, state: base }
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-buckshot }
   cost:
     Doubloon: 2
   categories:
@@ -309,7 +309,7 @@
   name:  uplink-pirate-revolverammo-name
   description: uplink-pirate-revolverammo-desc
   productEntity: NFAmmunitionBoxPistol45
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: base }
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: icon-45 }
   cost:
     Doubloon: 2
   categories:
@@ -325,7 +325,7 @@
   name:  uplink-pirate-flintlockammo-name
   description: uplink-pirate-flintlockammo-desc
   productEntity: NFAmmunitionBoxRifle60
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: base }
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60 }
   cost:
     Doubloon: 2
   categories:
@@ -483,5 +483,25 @@
       whitelist:
         tags:
           - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPiratePirateStitcher
+  name: uplink-pirate-pirate-stitcher-name
+  description: uplink-pirate-pirate-stitcher-desc
+  productEntity: PirateStitcherCircuitboard
+  icon: { sprite: _NF/Objects/Misc/module.rsi, state: pirate_stitcher }
+  cost:
+    Doubloon: 4
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+        - NFPirateFirstMate
   categories:
   - UplinkPirateUtility

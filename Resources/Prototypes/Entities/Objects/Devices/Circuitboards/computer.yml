@@ -20,6 +20,7 @@
         Glass: 230
       chemicalComposition:
         Silicon: 20
+    - type: BindToStation # Frontier
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -225,21 +226,9 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
-  id: CargoShuttleComputerCircuitboard
-  name: cargo shuttle computer board
-  description: A computer printed circuit board for a cargo shuttle computer.
-  categories: [ HideSpawnMenu ] # Frontier
-  components:
-    - type: Sprite
-      state: cpu_supply
-    - type: ComputerBoard
-      prototype: ComputerCargoShuttle
-
-- type: entity
-  parent: BaseComputerCircuitboard
   id: SalvageExpeditionsComputerCircuitboard
-  name: salvage expeditions computer board
-  description: A computer printed circuit board for a salvage expeditions computer.
+  name: expedition console board # Frontier: "salvage expeditions computer" < "expedition console"
+  description: A computer printed circuit board for an expedition console. # Frontier: "salvage expeditions computer" < "expedition console"
   components:
     - type: Sprite
       state: cpu_supply

@@ -234,3 +234,25 @@
   - type: SliceableFood
     count: 3
     slice: FoodDoughPastryBaseRaw
+
+- type: entity
+  parent: FoodBakedBase
+  id: FoodBakedWaffleCone
+  name: waffle cone
+  description: A sugary waffle cone. Top with ice cream!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    state: wafflecone
+  - type: Construction
+    graph: WaffleCone
+    node: cone
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Sugar
+          Quantity: 1
