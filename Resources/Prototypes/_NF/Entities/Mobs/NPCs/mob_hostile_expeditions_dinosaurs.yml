@@ -535,7 +535,8 @@
   description: "Emits a powerful roar, intimidating and stunning nearby foe. [color=yellow]40 second cooldown.[/color]"
   components:
   - type: WorldTargetAction
-    icon: { sprite : _NF/Effects/sonic_wave.rsi, state: icon, color: "#0099FF" }
+    icon: { sprite: _NF/Effects/sonic_wave.rsi, state: icon }
+    iconColor: "#0099FF"
     event: !type:ActionGunShootEvent
     priority: 2
     checkCanAccess: false
