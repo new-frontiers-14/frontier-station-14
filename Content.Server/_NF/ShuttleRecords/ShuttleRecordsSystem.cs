@@ -116,15 +116,15 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
                 value.Count += 1;
                 totalShips += 1;
 
-                if (EntityManager.TryGetEntity(record.EntityUid, out _)) // check if the ship still exists
+                if (EntityManager.EntityExists(record.EntityUid)) // check if the ship still exists
                 {
                     value.AbandonedCount += 1;
                     totalAbandoned += 1;
                 }
 
-                if (record.TimeOfPurchase is not null && record.TimeOfSale is not null)
+                if (record.TimeOfPurchase is { } purchaseTime && record.TimeOfSale is { } saleTime)
                 {
-                    var lifetime = record.TimeOfSale.Value.Subtract(record.TimeOfPurchase.Value);
+                    var lifetime = saleTime.Subtract(purchaseTime);
                     value.Lifetimes.Add(lifetime);
                     totalLifetimes.Add(lifetime);
                 }
@@ -169,7 +169,8 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
 
         // fallback, in case somehow every single ship was abandoned this round and there are no lifetimes to report
         var totalAvgLifetime = "N/A";
-        totalAvgLifetime = TimeSpan.FromSeconds(totalLifetimes.Average(timeSpan => timeSpan.TotalSeconds)).ToString(@"hh\:mm");
+        if (totalLifetimes.Count > 0)
+            totalAvgLifetime = TimeSpan.FromSeconds(totalLifetimes.Average(timeSpan => timeSpan.TotalSeconds)).ToString(@"hh\:mm");
         builder.AppendLine($"{totalShips.ToString(),4} │ {totalAbandoned.ToString(),4} │{totalAvgLifetime,9} │");
         builder.AppendLine("```");
         return (builder.ToString(), rawData);
@@ -188,6 +189,7 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         component = null;
         return false;
     }
+
     private class RecordSummary()
     {
         public int Count = 0;
