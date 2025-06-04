@@ -116,7 +116,7 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
                 value.Count += 1;
                 totalShips += 1;
 
-                if (EntityManager.EntityExists(record.EntityUid)) // check if the ship still exists
+                if (EntityManager.TryGetEntity(record.EntityUid, out _)) // check if the ship still exists
                 {
                     value.AbandonedCount += 1;
                     totalAbandoned += 1;
