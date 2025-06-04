@@ -1,4 +1,4 @@
-﻿## Bullets
+﻿#region Bullets
 - type: entity
   parent: BaseBulletTrigger
   id: BulletFireBolt
@@ -62,7 +62,7 @@
   parent: BaseBulletTrigger
   id: BulletBloodCultHand
   name: blood hand
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -81,7 +81,7 @@
   parent: BaseBulletTrigger
   id: BulletIceGlobe
   name : ice globe
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -98,7 +98,39 @@
   - type: Ammo
     muzzleFlash: null
 
-## Hitscan
+- type: entity
+  id: ProjectileIcicleLowDamage
+  parent: ProjectileIcicle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 4
+        Cold: 4
+        Structural: 10
+
+- type: entity # For blood cult cat
+  parent: BaseBullet
+  id: BulletEldritchHand
+  name: eldritch hand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StaminaDamageOnCollide
+    damage: 100
+  - type: Projectile
+    damage:
+      types:
+        Asphyxiation: 0
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Effects/bloodcultprojectiles.rsi
+    layers:
+    - state: hand
+  - type: Ammo
+    muzzleFlash: null
+
+#region Hitscan
 - type: hitscan
   id: BloodCultLaser
   damage:
@@ -129,34 +161,17 @@
     sprite: _NF/Effects/wizardbeams.rsi
     state: lightning-hit-01
 
-- type: entity # For blood cult cat
-  parent: BaseBullet
-  id: BulletEldritchHand
-  name: eldritch hand
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StaminaDamageOnCollide
-    damage: 100
-  - type: Projectile
-    damage:
-      types:
-        Asphyxiation: 0
-  - type: Sprite
-    noRot: false
-    sprite: _NF/Effects/bloodcultprojectiles.rsi
-    layers:
-    - state: hand
-  - type: Ammo
-    muzzleFlash: null
-
-- type: entity
-  id: ProjectileIcicleLowDamage
-  parent: ProjectileIcicle
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 4
-        Cold: 4
-        Structural: 10
+- type: hitscan
+  id: CausticBeam
+  damage:
+    types:
+      Caustic: 8
+  muzzleFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: green-beam-01
+  travelFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: green-beam-01
+  impactFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: green-beam-01

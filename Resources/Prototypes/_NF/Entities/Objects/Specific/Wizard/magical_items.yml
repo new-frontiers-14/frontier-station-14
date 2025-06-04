@@ -1,0 +1,53 @@
+# Teapot of infinite tea
+- type: entity
+  id: DrinkTeapotEndless
+  parent: DrinkTeapot
+  name: the teapot of infinite tea
+  description: An elegant teapot that quickly replenishes tea inside.
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/teapot.rsi # temporary
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Tea
+          Quantity: 100
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Tea
+        Quantity: 5
+  - type: SolutionPurge
+    solution: drink
+    preserve:
+    - Tea
+    quantity: 10
+
+# Wallet of boundless greed
+- type: entity
+  id: ClothingWalletInfiniteGrid
+  parent: ClothingWalletLeatherBrown
+  name: the leather wallet of boundless greed
+  description: Surprisingly thick. Careful not to lose it, and don't sit on it.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Wallet/leather.rsi # temporary
+  - type: Dumpable
+  - type: MagnetPickup
+    magnetEnabled: false
+
+# The Shaker (it's just shaking shaker)
+- type: entity
+  id: DrinkShakerShaking
+  parent: DrinkShaker
+  name: the shaker
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/shaker.rsi # temporary
+    state: icon
+  - type: Item
+    sprite: Objects/Consumable/Drinks/shaker.rsi # temporary
+  - type: Jittering

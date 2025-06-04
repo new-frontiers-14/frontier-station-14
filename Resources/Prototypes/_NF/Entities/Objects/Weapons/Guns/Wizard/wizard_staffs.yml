@@ -1,4 +1,4 @@
-# BASE
+#region base
 - type: entity
   parent: BaseItem
   id: WeaponChargedStaffBase
@@ -49,7 +49,7 @@
   - type: BloodCultStaffRechargeable
 
 # VARIATIONS
-## WIZARDS
+#region wizard staffs
 - type: entity
   id: WeaponChargedStaffWizardLightning
   parent:
@@ -206,7 +206,39 @@
   - type: StaticPrice
     price: 190
 
-## CULTISTS
+- type: entity
+  id: WeaponChargedStaffWizardCaustic
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  name: wizard caustic beam staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    layers:
+    - state: nothing
+    - state: nothing-unshaded
+      shader: unshaded
+      color: "#26e200"
+  - type: ProjectileBatteryAmmoProvider
+    proto: CausticBeam
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: staff-inhand-left
+      - state: staff-inhand-left-unshaded
+        shader: unshaded
+      color: "#26e200"
+      right:
+      - state: staff-inhand-right
+      - state: staff-inhand-right-unshaded
+        shader: unshaded
+      color: "#26e200"
+  - type: StaticPrice
+    price: 190
+
+#region blood cult staffs
 - type: entity
   id: WeaponChargedStaffCultistBoltDark
   parent:
