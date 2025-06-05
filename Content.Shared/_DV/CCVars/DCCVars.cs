@@ -45,4 +45,10 @@ public sealed class DCCVars
     /// </summary>
     //public static readonly CVarDef<bool> Shipyard =
     //    CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
+
+    /// <summary>
+    ///    Maximum number of characters in objective summaries.
+    /// </summary>
+    public static readonly CVarDef<int> MaxObjectiveSummaryLength =
+        CVarDef.Create("game.max_objective_summary_length", 256, CVar.SERVER | CVar.REPLICATED);
 }

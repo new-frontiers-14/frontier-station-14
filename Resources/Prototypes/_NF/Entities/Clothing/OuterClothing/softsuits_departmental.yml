@@ -10,6 +10,75 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
 
+- type: entity
+  abstract: true
+  parent: NFDepartmentalEVASuit
+  id: NFDepartmentalEVASuitShoulderLight
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-base
+    - state: icon-decals-01
+    - state: icon-reinforced-points
+    - state: icon-shoulder-light
+    - state: icon-breathing-gear
+    - state: icon-unshaded
+    - state: icon-shoulder-light-overlay-unshaded
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
+  - type: Battery # Apparently lights on helmets don't work without batteries. Bummer.
+    maxCharge: 600 #lights drain 3/s but recharge of 2 makes this 1/s. Therefore 600 is 10 minutes of light.
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 2 #recharge of 2 makes total drain 1w / s so max charge is 1:1 with time. Time to fully charge should be 5 minutes. Having recharge gives light an extended flicker period which gives you some warning to return to light area.
+  - type: Appearance
+  - type: ToggleableLightVisuals
+    spriteLayer: light
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-shoulder-light-overlay-unshaded
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+      - state: equipped-decals-01
+      - state: equipped-reinforced-points
+      - state: equipped-shoulder-light
+      - state: equipped-breathing-gear
+      - state: equipped-unshaded
+  - type: PointLight
+    #color: "#adffe6"
+    enabled: false
+    radius: 3
+    energy: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
 #region Departmental suits
 - type: entity
   parent: NFDepartmentalEVASuit
@@ -339,7 +408,7 @@
 
 #region Engineering
 - type: entity
-  parent: NFDepartmentalEVASuit
+  parent: NFDepartmentalEVASuitShoulderLight
   id: ClothingOuterEVASuitEngineer
   name: engineer EVA suit
   description: An EVA suit with a built-in helmet commonly issued to engineers.
@@ -352,9 +421,15 @@
       color: "#ff7f00"
     - state: icon-reinforced-points
       color: "#ff7f00"
+    - state: icon-shoulder-light
+      color: "#ff7f00"
     - state: icon-breathing-gear
     - state: icon-unshaded
       shader: unshaded
+    - state: icon-shoulder-light-overlay-unshaded
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
   - type: Item
     inhandVisuals:
       left:
@@ -385,6 +460,8 @@
       - state: equipped-decals-01
         color: "#ff7f00"
       - state: equipped-reinforced-points
+        color: "#ff7f00"
+      - state: equipped-shoulder-light
         color: "#ff7f00"
       - state: equipped-breathing-gear
       - state: equipped-unshaded
@@ -609,6 +686,68 @@
         shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetMedic
+
+- type: entity
+  parent: NFDepartmentalEVASuitShoulderLight
+  id: ClothingOuterEVASuitParamedic
+  name: paramedic EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to paramedics.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-base
+      color: "#2c6946"
+    - state: icon-decals-01
+      color: "#8c1e50"
+    - state: icon-reinforced-points
+      color: "#d6e6f3"
+    - state: icon-shoulder-light
+      color: "#2c6946"
+    - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
+    - state: icon-shoulder-light-overlay-unshaded
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#2c6946"
+      - state: inhand-left-decals-01
+        color: "#8c1e50"
+      - state: inhand-left-reinforced-points
+        color: "#d6e6f3"
+      - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right-base
+        color: "#2c6946"
+      - state: inhand-right-decals-01
+        color: "#8c1e50"
+      - state: inhand-right-reinforced-points
+        color: "#d6e6f3"
+      - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#2c6946"
+      - state: equipped-decals-01
+        color: "#8c1e50"
+      - state: equipped-reinforced-points
+        color: "#d6e6f3"
+      - state: equipped-shoulder-light
+        color: "#2c6946"
+      - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetParamedic
 
 #region Science
 - type: entity
@@ -1325,7 +1464,7 @@
 
 #region NFSD
 - type: entity
-  parent: NFDepartmentalEVASuit
+  parent: NFDepartmentalEVASuitShoulderLight
   id: ClothingOuterEVASuitNfsd
   name: NFSD EVA suit
   description: An EVA suit with a built-in helmet commonly issued to NFSD personnel.
@@ -1338,9 +1477,15 @@
       color: "#384d2f"
     - state: icon-reinforced-points
       color: "#493926"
+    - state: icon-shoulder-light
+      color: "#384d2f"
     - state: icon-breathing-gear
     - state: icon-unshaded
       shader: unshaded
+    - state: icon-shoulder-light-overlay-unshaded
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
   - type: Item
     inhandVisuals:
       left:
@@ -1372,6 +1517,8 @@
         color: "#384d2f"
       - state: equipped-reinforced-points
         color: "#493926"
+      - state: equipped-shoulder-light
+        color: "#384d2f"
       - state: equipped-breathing-gear
       - state: equipped-unshaded
         shader: unshaded
@@ -1380,7 +1527,7 @@
 
 #region Pirate
 - type: entity
-  parent: NFDepartmentalEVASuit
+  parent: NFDepartmentalEVASuitShoulderLight
   id: ClothingOuterEVASuitPirate
   name: pirate EVA suit
   description: An EVA suit with a built-in helmet commonly used by pirates.
@@ -1393,9 +1540,15 @@
       color: "#4b0e10"
     - state: icon-reinforced-points
       color: "#784f1e"
+    - state: icon-shoulder-light
+      color: "#4b0e10"
     - state: icon-breathing-gear
     - state: icon-unshaded
       shader: unshaded
+    - state: icon-shoulder-light-overlay-unshaded
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
   - type: Item
     inhandVisuals:
       left:
@@ -1427,6 +1580,8 @@
         color: "#4b0e10"
       - state: equipped-reinforced-points
         color: "#784f1e"
+      - state: equipped-shoulder-light
+        color: "#4b0e10"
       - state: equipped-breathing-gear
       - state: equipped-unshaded
         shader: unshaded

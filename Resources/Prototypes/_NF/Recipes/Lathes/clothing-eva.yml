@@ -77,6 +77,16 @@
   parent: NFBaseEVASuitRecipe
   result: ClothingOuterEVASuitMailman
 
+- type: latheRecipe
+  id: ClothingOuterEVASuitPrisoner
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitPrisoner
+
+- type: latheRecipe # EMAG
+  id: ClothingOuterEVASuitPirate
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitPirate
+
 # - type: latheRecipe
   # id: ClothingOuterHardsuitEVA
   # parent: NFBaseEVASuitRecipe
@@ -93,11 +103,6 @@
     Durathread: 2500
     Silver: 1000
 
-- type: latheRecipe
-  id: ClothingOuterHardsuitEVAPrisoner
-  parent: NFBaseEVASuitRecipe
-  result: ClothingOuterHardsuitEVAPrisoner
-
 - type: latheRecipe # Probably should be available via T2-T3
   id: ClothingOuterHardsuitAncientEVA
   parent: NFBaseEVASuitRecipe
@@ -106,15 +111,6 @@
     Glass: 500
     Plasteel: 1500
     Durathread: 2500
-
-- type: latheRecipe # EMAG
-  id: ClothingOuterHardsuitSyndicate
-  parent: NFBaseEVASuitRecipe
-  result: ClothingOuterHardsuitSyndicate
-  materials:
-    Steel: 200
-    Cloth: 300
-    Durathread: 600
 
 - type: latheRecipe
   id: ClothingOuterEVASuitContractor
@@ -212,15 +208,6 @@
   result: ClothingOuterEVASuitBoxerYellow
 
 # EVA helmets
-- type: latheRecipe
-  id: ClothingHeadHelmetEVA
-  parent: NFBaseEVAHelmetRecipe
-  result: ClothingHeadHelmetEVA
-
-- type: latheRecipe
-  id: ClothingHeadHelmetEVALarge
-  parent: NFBaseEVAHelmetRecipe
-  result: ClothingHeadHelmetEVALarge
 
 # - type: latheRecipe # Probably should be available via T2-T3
   # id: ClothingHeadHelmetAncient
@@ -235,11 +222,6 @@
   id: ClothingHeadHelmetCosmonaut
   parent: NFBaseEVAHelmetRecipe
   result: ClothingHeadHelmetCosmonaut
-
-- type: latheRecipe # EMAG
-  id: ClothingHeadHelmetSyndicate
-  parent: NFBaseEVAHelmetRecipe
-  result: ClothingHeadHelmetSyndicate
 
 # Basic hardsuits (T1 research)
 - type: latheRecipe
@@ -284,11 +266,6 @@
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitMime
 
-- type: latheRecipe # EMAG (honestly, not particularly good stats on this one)
-  id: ClothingOuterHardsuitPirateEVA
-  parent: NFBaseHardSuitRecipe
-  result: ClothingOuterHardsuitPirateEVA
-
 - type: latheRecipe
   id: ClothingOuterHardsuitPilot
   parent: NFBaseHardSuitRecipe
@@ -303,11 +280,6 @@
   id: ClothingOuterHardsuitPrivateSecurity
   parent: NFBaseHardSuitRecipe
   result: ClothingOuterHardsuitPrivateSecurity
-
-- type: latheRecipe
-  id: ClothingOuterHardsuitBrigmedic
-  parent: NFBaseHardSuitRecipe
-  result: ClothingOuterHardsuitBrigmedic
 
 # Departmental heads hardsuits (T3 research)
 - type: latheRecipe
@@ -359,18 +331,6 @@
     Durathread: 2000
     Silver: 1000
     Gold: 2000
-
-# Better security hardsuits (T3 Research)
-
-- type: latheRecipe
-  id: ClothingOuterHardsuitSecurity
-  parent: NFBaseHardSuitArmoredRecipe
-  result: ClothingOuterHardsuitSecurity
-
-- type: latheRecipe
-  id: ClothingOuterHardsuitWarden
-  parent: NFBaseHardSuitArmoredRecipe
-  result: ClothingOuterHardsuitWarden
 
 # Magboots
 - type: latheRecipe
