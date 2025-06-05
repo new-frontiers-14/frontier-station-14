@@ -6,6 +6,7 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Windoors/clockwork_windoor.rsi
+  - type: Destructible # Wizden#37444
     thresholds:
     - trigger:
         !type:DamageTrigger
@@ -23,8 +24,8 @@
             min: 1
             max: 2
           SheetBrass1:
-            min: 2
-            max: 4
+            min: 1 # Frontier: 2<1
+            max: 2 # Frontier: 4<2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction

@@ -143,7 +143,7 @@
       projectile:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.15,-0.3,0.15,0.3"
+          bounds: "-0.1,-0.2,0.1,0.2"
         hard: false
         mask:
         - Opaque
@@ -403,3 +403,33 @@
     proto: NFPelletGlass
     count: 5
     spread: 10
+
+# region Do Not Use
+
+# defined to avoid linter issues
+# these should not be used in non-abstract entities
+
+- type: entity
+  parent: BulletLaserSpread
+  id: NFBulletLaserSpread
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: AntiParticlesProjectile
+  id: NFAntiParticlesProjectile
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletDisablerPractice
+  id: NFBulletDisablerPractice
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletDisablerSmg
+  id: NFBulletDisablerSmg
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BulletTaser
+  id: NFBulletTaser
+  categories: [ HideSpawnMenu ]
