@@ -11,6 +11,7 @@
   cost: 5000
   recipeUnlocks:
   - ProximitySensor
+  position: -5, 2 # Frontier
 
 - type: technology
   id: BasicAnomalousResearch
@@ -27,6 +28,7 @@
   - AnomalyLocatorWide
   - APECircuitboard
   - AnomalyVesselCircuitboard
+  position: -5, -4 # Frontier
 
 - type: technology
   id: BasicXenoArcheology
@@ -42,6 +44,7 @@
   - AnalysisComputerCircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ResearchComputerCircuitboard # Frontier: add research computer
+  position: -5, 0 # Frontier
 
 # Frontier: no tech disks
 # - type: technology
@@ -69,6 +72,7 @@
   recipeUnlocks:
   - ClothingShoesBootsMagSci
   - NFClothingShoesBootsMoon # Frontier ClothingShoesBootsMoon<NFClothingShoesBootsMoon
+  position: -5, 6 # Frontier
 
 - type: technology
   id: AnomalyCoreHarnessing
@@ -81,22 +85,9 @@
   cost: 10000
   recipeUnlocks:
   - WeaponGauntletGorilla
+  position: -3, -2 # Frontier
 
 # Tier 2
-
-- type: technology
-  id: AdvancedParts
-  name: research-technology-advanced-parts
-  icon:
-    sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
-    state: advanced_matter_bin
-  discipline: Experimental
-  tier: 2
-  cost: 10000
-  recipeUnlocks:
-  - AdvancedCapacitorStockPart
-  - AdvancedMatterBinStockPart
-  - NanoManipulatorStockPart
 
 - type: technology
   id: AbnormalArtifactManipulation
@@ -109,6 +100,7 @@
   cost: 5000
   recipeUnlocks:
   - ArtifactCrusherMachineCircuitboard
+  position: -3, 0 # Frontier
 
 - type: technology
   id: AdvancedAnomalyResearch
@@ -125,6 +117,7 @@
   - AnomalyVesselExperimentalCircuitboard
   technologyPrerequisites:
   - BasicAnomalousResearch
+  position: -3, -4 # Frontier
 
 - type: technology
   id: DeterrenceTechnologies
@@ -138,6 +131,7 @@
   recipeUnlocks:
   # - WeaponParticleDecelerator # Frontier - Cancer gun that skip walls
   - HoloprojectorField
+  position: -1, 4 # Frontier
 
 # Frontier
 # - type: technology
@@ -181,3 +175,4 @@
   cost: 10000
   recipeUnlocks:
   - DeviceDesynchronizer
+  position: -1, 6 # Frontier
