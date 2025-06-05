@@ -461,7 +461,7 @@ public sealed partial class ServerApi : IPostInjectInit
                     _chatManager.ChatMessageToAll(ChatChannel.AdminChat, body.Message, adminMessage, source: EntityUid.Invalid, hideChat: false, recordReplay: false);
                     break;
                 case 1: // Admin Alert
-                    _chatManager.SendAdminAlert(body.ShowTag ? "(DC) " + body.Username : body.Message);
+                    _chatManager.SendAdminAlert(body.ShowTag ? "(DC) " + body.Message : body.Message);
                     break;
                 case 2: // OOC Chat
                     if (body.Username == null || body.Username == "")
