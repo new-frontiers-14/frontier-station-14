@@ -74,7 +74,7 @@ namespace Content.Shared._NF.GridAccess
         /// Gets a tool's authorization for a given GridUid.
         /// Returns an incomplete, non-localized string for popups.
         /// </summary>
-        public bool IsAuthorized(EntityUid? gridUid, GridAccessComponent comp, out string? popupMessage)
+        public static bool IsAuthorized(EntityUid? gridUid, GridAccessComponent comp, out string? popupMessage)
         {
             popupMessage = null;
 
