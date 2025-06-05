@@ -34,7 +34,7 @@ namespace Content.Shared.Remotes
             if (args.Handled
                 || args.Target == null
                 || !TryComp<DoorComponent>(args.Target, out var doorComp)
-                // If it isn't a door we don't use it
+                // Frontier - If it isn't a Door we don't use it
                 // Only able to control doors if they are within your vision and within your max range.
                 // Not affected by mobs or machines anymore.
                 || !_examine.InRangeUnOccluded(args.User,
@@ -54,7 +54,7 @@ namespace Content.Shared.Remotes
                 return;
             }
 
-            // Frontier - Grid access restriction
+            // Frontier: Grid access restriction
             if (TryComp<GridAccessComponent>(entity.Owner, out var gridAccessComponent))
             {
                 if (!doorComp.RemoteCompatible)
@@ -64,7 +64,7 @@ namespace Content.Shared.Remotes
                 }
                 string? popupMessage = null;
                 if (!_gridAccessSystem.TryGetGridUid(args.ClickLocation, out var mapGridUid)
-                || !_gridAccessSystem.IsAuthorized(mapGridUid, gridAccessComponent, args.Used, args.User, out popupMessage))
+                || !_gridAccessSystem.IsAuthorized(mapGridUid, gridAccessComponent, out popupMessage))
                 {
                     if (popupMessage != null)
                     {
@@ -73,6 +73,7 @@ namespace Content.Shared.Remotes
                     return;
                 }
             }
+            // End Frontier: Grid access restriction
 
             if (TryComp<AccessReaderComponent>(args.Target, out var accessComponent)
                 && !_doorSystem.HasAccess(args.Target.Value, args.Used, doorComp, accessComponent))

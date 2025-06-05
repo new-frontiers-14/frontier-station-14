@@ -129,7 +129,7 @@ public sealed class RCDSystem : EntitySystem
             return;
 
         var user = args.User;
-        var used = args.Used;
+        var used = args.Used; // Frontier
         var location = args.ClickLocation;
         var prototype = _protoManager.Index(component.ProtoId);
 
@@ -150,6 +150,7 @@ public sealed class RCDSystem : EntitySystem
         if (!IsRCDOperationStillValid(uid, component, gridUid.Value, mapGrid, tile, position, args.Target, args.User))
             return;
 
+        // Frontier: grid-access restrictions
         // Frontier - Remove all RCD use on outpost.
         if (TryComp<ProtectedGridComponent>(gridUid.Value, out var prot) && prot.PreventRCDUse)
         {
@@ -160,7 +161,7 @@ public sealed class RCDSystem : EntitySystem
         // Frontier - Grid access restriction
         if (TryComp<GridAccessComponent>(args.Used, out var gridAccessComponent))
         {
-            if (!_gridAccessSystem.IsAuthorized(gridUid.Value, gridAccessComponent, used, user, out var popupMessage))
+            if (!_gridAccessSystem.IsAuthorized(gridUid.Value, gridAccessComponent, out var popupMessage))
             {
                 if (popupMessage != null)
                 {
@@ -169,6 +170,7 @@ public sealed class RCDSystem : EntitySystem
                 return;
             }
         }
+        // End Frontier: grid-access restrictions
 
         if (!_net.IsServer)
             return;

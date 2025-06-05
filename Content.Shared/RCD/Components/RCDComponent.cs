@@ -56,12 +56,14 @@ public sealed partial class RCDComponent : Component
     /// Contains no position data
     /// </remarks>
     [ViewVariables(VVAccess.ReadOnly)]
-    public Transform ConstructionTransform { get; private set; } = default!;
+    public Transform ConstructionTransform { get; private set; }
 
+    // Frontier: ship-based RCDs
     /// <summary>
     /// Frontier - Shipyard RCD
     /// A flag that limits RCD to the authorized ships.
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool IsShipyardRCD;
+    // End Frontier: ship-based RCDs
 }

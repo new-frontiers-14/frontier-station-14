@@ -74,13 +74,13 @@ namespace Content.Shared._NF.GridAccess
         /// Gets a tool's authorization for a given GridUid.
         /// Returns an incomplete, non-localized string for popups.
         /// </summary>
-        public bool IsAuthorized(EntityUid? gridUid, GridAccessComponent comp, EntityUid used, EntityUid user, out string? popupMessage)
+        public bool IsAuthorized(EntityUid? gridUid, GridAccessComponent comp, out string? popupMessage)
         {
             popupMessage = null;
 
             if (gridUid == null)
             {
-                return true;
+                return false;
             }
 
             // LinkedShuttleUid requirements to use Shipyard devices.
