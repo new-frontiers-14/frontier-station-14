@@ -1,4 +1,5 @@
 using Content.Server.Shuttles.Components;
+using Content.Shared.NodeContainer;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.NodeContainer.Nodes;

@@ -56,6 +56,10 @@
           Quantity: .5
   - type: Item
     size: Tiny
+  - type: FoodSequenceElement
+    entries:
+      Burger: AvocadoSushi
+      Taco: AvocadoSushi
 
 - type: entity
   name: carp sushi
@@ -83,6 +87,10 @@
   - type: SliceableFood
     count: 6
     slice: FoodMealCarpSushiSlice
+  - type: Tag
+    tags:
+      - Sushi
+      - Meat
 
 - type: entity
   name: carp sushi
@@ -109,6 +117,14 @@
           Quantity: .5
   - type: Item
     size: Tiny
+  - type: Tag
+    tags:
+      - Sushi
+      - Meat
+  - type: FoodSequenceElement
+    entries:
+      Burger: CarpSushi
+      Taco: CarpSushi
 
 - type: entity
   name:  fresh fish sushi
@@ -134,6 +150,10 @@
   - type: SliceableFood
     count: 6
     slice: FoodMealCarpSushiSlice
+  - type: Tag
+    tags:
+      - Sushi
+      - Meat
 
 - type: entity
   name: fresh fish sushi
@@ -158,6 +178,14 @@
           Quantity: .5
   - type: Item
     size: Tiny
+  - type: Tag
+    tags:
+      - Sushi
+      - Meat
+  - type: FoodSequenceElement
+    entries:
+      Burger: CuredCarpSushi
+      Taco: CuredCarpSushi
 
 - type: entity
   name: gas station sushi
@@ -182,6 +210,14 @@
           Quantity: 5
   - type: Item
     size: Tiny
+  - type: Tag
+    tags:
+      - Sushi
+      - Meat
+  - type: FoodSequenceElement
+    entries:
+      Burger: GasStationSushi
+      Taco: GasStationSushi
 
 - type: entity
   parent: [FoodBaseSushi, FoodMealGasSafeSushiSlice]
