@@ -14,7 +14,7 @@ namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
-    // [Dependency] private readonly EmagSystem _emag = default!; // Frontier: useless
+    // [Dependency] private readonly EmagSystem _emag = default!; // Frontier: silent R&D computers, useless
 
     private void InitializeConsole()
     {
@@ -24,7 +24,7 @@ public sealed partial class ResearchSystem
         SubscribeLocalEvent<ResearchConsoleComponent, ResearchRegistrationChangedEvent>(OnConsoleRegistrationChanged);
         SubscribeLocalEvent<ResearchConsoleComponent, TechnologyDatabaseModifiedEvent>(OnConsoleDatabaseModified);
         SubscribeLocalEvent<ResearchConsoleComponent, TechnologyDatabaseSynchronizedEvent>(OnConsoleDatabaseSynchronized);
-        //SubscribeLocalEvent<ResearchConsoleComponent, GotEmaggedEvent>(OnEmagged); // Frontier: unneeded
+        //SubscribeLocalEvent<ResearchConsoleComponent, GotEmaggedEvent>(OnEmagged); // Frontier: silent R&D computers, useless
     }
 
     private void OnConsoleUnlock(EntityUid uid, ResearchConsoleComponent component, ConsoleUnlockTechnologyMessage args)
@@ -71,6 +71,7 @@ public sealed partial class ResearchSystem
     private void OnConsoleBeforeUiOpened(EntityUid uid, ResearchConsoleComponent component, BeforeActivatableUIOpenEvent args)
     {
         SyncClientWithServer(uid);
+        UpdateConsoleInterface(uid, component); // Frontier: ensure first open has a valid tech state
     }
 
     private void UpdateConsoleInterface(EntityUid uid, ResearchConsoleComponent? component = null, ResearchClientComponent? clientComponent = null)

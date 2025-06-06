@@ -56,13 +56,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             VerticalExpand="True"
             Margin="5"
             SizeFlagsStretchRatio="5">
-            <RichTextLabel Name="NoPrereqLabel" HorizontalAlignment="Center" Text="{Loc 'research-console-no-tech-requirements'}" Visible="True"/>
             <BoxContainer Name="PrereqsContainer"
                           Orientation="Vertical"
                           VerticalExpand="True"
                           Margin="5"
-                          SizeFlagsStretchRatio="1"
-                          Visible="False">
+                          SizeFlagsStretchRatio="1"> <!-- Frontier: remove Visible-->
                 <Label Text="{Loc 'research-console-required-text'}"
                         HorizontalAlignment="Center"/>
                 <customControls:HSeparator StyleClasses="LowDivider"
@@ -79,6 +77,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                             Name="RequiredTechContainer"
                             Orientation="Vertical"
                             VerticalExpand="True">
+                            <!-- Frontier: move NoPrereqLabel into RequiredTechContainer-->
+                            <RichTextLabel Name="NoPrereqLabel" HorizontalAlignment="Center" Text="{Loc 'research-console-no-tech-requirements'}" Visible="True"/>
+                            <!-- End Frontier: move NoPrereqLabel into RequiredTechContainer-->
                         </BoxContainer>
                     </ScrollContainer>
                 </PanelContainer>

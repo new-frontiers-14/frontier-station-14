@@ -88,6 +88,7 @@
   - WeaponGauntletGorilla
   technologyPrerequisites: # Frontier
   - BasicAnomalousResearch # Frontier
+  - BasicXenoArcheology # Frontier
   position: 1, -6 # Frontier
 
 # Tier 2
@@ -130,13 +131,15 @@
   icon:
     sprite: Objects/Devices/Holoprojectors/field.rsi # Frontier particle_decelerator.rsi<field.rsi
     state: icon # Frontier base<icon
-  discipline: Experimental
+  discipline: Arsenal # Frontier: Experimental<Arsenal
   tier: 2
   cost: 7500
   recipeUnlocks:
   # - WeaponParticleDecelerator # Frontier - Cancer gun that skip walls
   - HoloprojectorField
-  position: -1, -5 # Frontier
+  technologyPrerequisites: # Frontier
+  - NFAdvancedRiotControl # Frontier
+  position: -1, -4 # Frontier
 
 # Frontier
 # - type: technology
@@ -180,4 +183,6 @@
   cost: 10000
   recipeUnlocks:
   - DeviceDesynchronizer
+  technologyPrerequisites: # Frontier
+  - QuantumFiberWeaving # Frontier
   position: 0, 1 # Frontier

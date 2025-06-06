@@ -7,6 +7,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using Content.Client._Goobstation.Research.UI;
 using Content.Client.Lathe;
 using Content.Client.Research;
@@ -73,10 +74,14 @@ public sealed partial class FancyTechnologyInfoPanel : Control
 
     private void InitializePrerequisites(TechnologyPrototype proto, ResearchSystem research, SpriteSystem sprite)
     {
+        // Frontier: required techs always visible, label in required techs
+        foreach (var child in RequiredTechContainer.Children.ToList())
+        {
+            if (child != NoPrereqLabel)
+                RequiredTechContainer.RemoveChild(child);
+        }
+        // End Frontier: required techs always visible, label in required techs
         NoPrereqLabel.Visible = proto.TechnologyPrerequisites.Count == 0;
-        PrereqsContainer.Visible = !NoPrereqLabel.Visible;
-
-        RequiredTechContainer.RemoveAllChildren();
         foreach (var techId in proto.TechnologyPrerequisites)
         {
             var tech = _proto.Index(techId);

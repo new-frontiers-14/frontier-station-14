@@ -13,7 +13,9 @@
   - AdvancedCapacitorStockPart
   - AdvancedMatterBinStockPart
   - NanoManipulatorStockPart
-  position: 3, -7
+  technologyPrerequisites:
+  - AnomalyCoreHarnessing
+  position: 2, -6
 
 - type: technology
   id: RapidPartExchange
@@ -28,7 +30,7 @@
   - RPED
   technologyPrerequisites:
   - AdvancedParts
-  position: 4, -6
+  position: 3, -5
 
 # Tier 3
 
@@ -47,7 +49,7 @@
   - PicoManipulatorStockPart
   technologyPrerequisites:
   - AdvancedParts
-  position: 4, -7
+  position: 3, -6
 
 - type: technology
   id: MagnetsTechAdvanced
@@ -57,9 +59,11 @@
     state: icon
   discipline: Experimental
   tier: 3
-  cost: 10000
+  cost: 20000 # Frontier: 10000<20000
   recipeUnlocks:
   - ClothingShoesBootsMagAdv
+  - ClothingShoesBootsMagSecurity
+  - ClothingShoesBootsMagMercenary
   technologyPrerequisites:
   - MagnetsTech
   position: -2, 1

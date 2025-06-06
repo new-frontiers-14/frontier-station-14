@@ -84,7 +84,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// <summary>
     /// Frontier: the distance between elements on the grid.
     /// </summary>
-    private static readonly Vector2i DefaultPosition = new Vector2i(45, 250);
+    private static readonly Vector2i DefaultPosition = Vector2i.Zero; //Frontier: "45,250" < "0,0"
 
     private Box2i _bounds = new(DefaultPosition, DefaultPosition);
 
