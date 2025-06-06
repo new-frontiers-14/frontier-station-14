@@ -1,7 +1,10 @@
-using Content.Shared.Actions;
 using Content.Shared._EE.CCVar; // EE
+using Content.Shared._NF.Radar; // Frontier
+using Content.Shared.Actions;
+using Content.Shared.Emag.Systems;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Lock;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
@@ -194,11 +197,22 @@ public abstract class SharedJetpackSystem : EntitySystem
         {
             SetupUser(user.Value, uid, component);
             EnsureComp<ActiveJetpackComponent>(uid);
+            // Frontier
+            if (component.RadarBlip) // add radar blip when jetpack is activated
+            {
+                var blip = EnsureComp<RadarBlipComponent>(uid);
+                blip.RadarColor = Color.Cyan;
+                blip.Scale = 1f;
+                blip.VisibleFromOtherGrids = true;
+                blip.RequireNoGrid = true;
+            }
+            // End Frontier
         }
         else
         {
             RemoveUser(user.Value, component);
             RemComp<ActiveJetpackComponent>(uid);
+            RemComp<RadarBlipComponent>(uid); // Frontier: remove radar blip when jetpack is deactivated
         }
 
         Appearance.SetData(uid, JetpackVisuals.Enabled, enabled);
