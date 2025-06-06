@@ -84,7 +84,7 @@ public sealed partial class AnomalySystem
         UpdateGeneratorUi(uid, component);
     }
 
-    public void SpawnOnRandomGridLocation(EntityUid grid, string toSpawn, Entity<AnomalyGeneratorComponent>? generator)
+    public void SpawnOnRandomGridLocation(EntityUid grid, string toSpawn, Entity<AnomalyGeneratorComponent>? generator = null) // Frontier: add generator
     {
         if (!TryComp<MapGridComponent>(grid, out var gridComp))
             return;
