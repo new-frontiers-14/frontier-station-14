@@ -6,4 +6,4 @@ anomaly-scanner-anomalite-expected-unknown = Expected anomalite: [color=red]ERRO
 anomaly-vessel-component-off-grid = The anomaly must be on the same body as the vessel!
 anomaly-vessel-component-anomaly-cleared = The vessel hisses as its anomaly link is lost.
 
-anomaly-generator-refund-popup = The generator stops, spitting out material.
+anomaly-generator-refund-message = Anomaly inhibitors detected. Generate in another area.

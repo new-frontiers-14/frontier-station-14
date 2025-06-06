@@ -11,7 +11,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Content.Shared.Power;
-using Content.Shared.Popups; // Frontier
+using Content.Server.Chat.Systems; // Frontier
 
 namespace Content.Server.Anomaly;
 
@@ -24,7 +24,7 @@ public sealed partial class AnomalySystem
 {
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
+    [Dependency] private readonly ChatSystem _chat = default!; // Frontier
 
     private void InitializeGenerator()
     {
@@ -176,7 +176,7 @@ public sealed partial class AnomalySystem
                         _stack.Spawn(genEnt.Comp.RefundAmount, genEnt.Comp.RefundStackType, generatorXform.Coordinates);
                         genEnt.Comp.CooldownEndTime = TimeSpan.Zero;
                         UpdateGeneratorUi(genEnt, genEnt.Comp);
-                        _popup.PopupEntity(Loc.GetString("anomaly-generator-refund-popup"), genEnt);
+                        _chat.TrySendInGameICMessage(genEnt, Loc.GetString("anomaly-generator-refund-message"), InGameICChatType.Speak, hideChat: true);
                     }
                     return;
                 }
