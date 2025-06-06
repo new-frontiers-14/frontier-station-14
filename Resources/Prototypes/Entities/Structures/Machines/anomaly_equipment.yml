@@ -338,15 +338,17 @@
   - type: GuideHelp
     guides:
     - AnomalousResearch
-  - type: BindToStation # Frontier
-  - type: TypingIndicator # Frontier
-    proto: robot # Frontier
-  - type: Speech # Frontier
-    speechVerb: Robotic # Frontier
-    speechSounds: Borg # Frontier
-  - type: SpookySpeaker # Frontier
-    messageSet: SpookySpeakerMessagesAnomalyGenerator # Frontier
-    speakChance: 0.2 # Frontier
-  - type: SentienceTarget # Frontier
-    flavorKind: station-event-random-sentience-flavor-mechanical # Frontier
+  # Frontier: extra anomaly generator fields
+  - type: BindToStation
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: SpookySpeaker
+    messageSet: SpookySpeakerMessagesAnomalyGenerator
+    speakChance: 0.2
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-mechanical
     weight: 0.2 # 5 anomaly generators = 1 animal
+  # End Frontier: extra anomaly generator fields
