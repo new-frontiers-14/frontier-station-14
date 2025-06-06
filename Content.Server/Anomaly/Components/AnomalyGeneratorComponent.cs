@@ -1,6 +1,7 @@
 using Content.Shared.Anomaly;
 using Content.Shared.Materials;
 using Content.Shared.Radio;
+using Content.Shared.Stacks;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -69,4 +70,18 @@ public sealed partial class AnomalyGeneratorComponent : Component
     /// </summary>
     [DataField("generatingFinishedSound")]
     public SoundSpecifier? GeneratingFinishedSound;
+
+    // Frontier: refund material on failure to generate.
+    /// <summary>
+    /// The material needed to generate an anomaly
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<StackPrototype> RefundStackType = "MaterialAnomalite1";
+
+    /// <summary>
+    /// Stack count to return on refund
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int RefundAmount = 3;
+    // End Frontier
 }
