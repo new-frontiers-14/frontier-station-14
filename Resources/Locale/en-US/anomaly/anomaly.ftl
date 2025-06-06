@@ -79,7 +79,8 @@ anomaly-generator-flavor-right = v1.1
 
 anomaly-behavior-unknown = [color=red]ERROR. Cannot be read.[/color]
 
-anomaly-behavior-title = behavior deviation analysis:
+# Frontier: caps
+anomaly-behavior-title = Behavior Deviation Analysis:
 anomaly-behavior-point =[color=gold]Anomaly produces {$mod}% of the points[/color]
 
 anomaly-behavior-safe = [color=forestgreen]The anomaly is extremely stable. Extremely rare pulsations.[/color]
