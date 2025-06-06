@@ -41,7 +41,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
 
         TechnologyNameLabel.Text = Loc.GetString(proto.Name);
         DisciplineTexture.Texture = sprite.Frame0(_proto.Index(proto.Discipline).Icon);
-        TechnologyTexture.Texture = sprite.Frame0(proto.Icon);
+        TechnologyTexture.Texture = sprite.Frame0(proto.Icon); // Frontier
 
         InitializePrerequisites(proto, research, sprite);
 

@@ -15,7 +15,7 @@
   - MineralScannerEmpty
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
-  position: -5, -5 # Frontier
+  position: 3, -10 # Frontier
 
 - type: technology
   id: SpaceScanning
@@ -29,7 +29,8 @@
   recipeUnlocks:
   - RadarConsoleCircuitboard
   - HandHeldMassScanner
-  position: -5, 5 # Frontier
+  - ProximitySensor # Frontier
+  position: 3, -9 # Frontier
 
 - type: technology
   id: AdvancedPowercells
@@ -44,7 +45,7 @@
   - PowerCellHigh
   - TurboItemRechargerCircuitboard
   - SMESAdvancedMachineCircuitboard
-  position: -5, -3 # Frontier
+  position: -3, 10 # Frontier
 
 - type: technology
   id: MechanicalCompression
@@ -57,7 +58,9 @@
   cost: 10000
   recipeUnlocks:
   - FlatpackerMachineCircuitboard
-  position: -3, 1 # Frontier
+  technologyPrerequisites: # Frontier
+  - IndustrialEngineering # Frontier
+  position: -2, 6 # Frontier
 
 - type: technology
   id: IndustrialEngineering
@@ -74,7 +77,7 @@
   - CircuitImprinterHyperConvectionMachineCircuitboard
   - SheetifierMachineCircuitboard
   - MaterialSiloMachineCircuitboard # Frontier
-  position: -5, 0 # Frontier
+  position: -3, 7 # Frontier
 
 - type: technology
   id: PowerGeneration
@@ -92,7 +95,9 @@
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
   - EmitterCircuitboard
-  position: -3, -1 # Frontier
+  technologyPrerequisites: # Frontier
+  - AdvancedPowercells # Frontier
+  position: -2, 10 # Frontier
 
 - type: technology
   id: AtmosphericTech
@@ -106,7 +111,9 @@
   recipeUnlocks:
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
-  position: -3, 3 # Frontier
+  technologyPrerequisites: # Frontier
+  - IndustrialEngineering # Frontier
+  position: -2, 8 # Frontier
 
 - type: technology
   id: RipleyAPLU
@@ -116,7 +123,7 @@
     state: ripley
   discipline: Industrial
   tier: 1
-  cost: 7500
+  cost: 10000 # Frontier: 7500<10000
   recipeUnlocks:
   - RipleyHarness
   - RipleyLArm
@@ -127,7 +134,9 @@
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
   - MechEquipmentFork # Frontier
-  position: -3, -3 # Frontier
+  technologyPrerequisites: # Frontier
+  - IndustrialEngineering # Frontier
+  position: 1, 8 # Frontier
 
 # Tier 2
 
@@ -148,7 +157,9 @@
   - MiniStationAnchorCircuitboard # Frontier
   - SmallThrusterMachineCircuitboard # Frontier
   - SmallGyroscopeMachineCircuitboard # Frontier
-  position: -3, 5 # Frontier
+  technologyPrerequisites: # Frontier
+  - SpaceScanning # Frontier
+  position: 4, -9 # Frontier
 
 - type: technology
   id: AdvancedAtmospherics
@@ -166,7 +177,7 @@
 #  - FireExtinguisherBluespace # DeltaV
   technologyPrerequisites:
   - AtmosphericTech
-  position: -1, 3 # Frontier
+  position: -1, 8 # Frontier
 
 - type: technology
   id: AdvancedToolsTechnology
@@ -185,7 +196,7 @@
     - BorgModuleAdvancedTool
     # - Fulton # Frontier
     # - FultonBeacon # Frontier
-  position: -1, -3 # Frontier
+  position: 1, 9 # Frontier
 
 - type: technology
   id: MassExcavation
@@ -201,7 +212,9 @@
     - MiningDrillDiamond
     - AdvancedMineralScannerEmpty
     - BorgModuleAdvancedMining
-  position: 0, -5 # Frontier
+  technologyPrerequisites: # Frontier
+  - SalvageEquipment # Frontier
+  position: 4, -10 # Frontier
 
 # Tier 3
 
@@ -213,13 +226,16 @@
     state: holding
   discipline: Industrial
   tier: 3
-  cost: 15000
+  cost: 20000 # Frontier: 15000<20000
   recipeUnlocks:
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
   - ClothingBackpackMessengerHolding # Frontier
-  position: 0, -1 # Frontier
+  - ConstructionBagOfHolding # Frontier
+  technologyPrerequisites: # Frontier
+  - MechanicalCompression # Frontier
+  position: -1, 4 # Frontier
 
 - type: technology
   id: PortableFission
@@ -229,13 +245,14 @@
     state: microreactor
   discipline: Industrial
   tier: 3
-  cost: 10000
+  cost: 20000 # Frontier: 10000<20000
   recipeUnlocks:
   - PowerCellMicroreactor
   - PortableGeneratorDKJrMachineCircuitboard # Frontier
+  - NFPortableRecharger # Frontier
   technologyPrerequisites:
-  - AdvancedPowercells
-  position: 1, 1 # Frontier
+  - PowerGeneration # Frontier: AdvancedPowercells<PowerGeneration
+  position: -1, 10 # Frontier
 
 - type: technology
   id: RapidConstruction
@@ -249,4 +266,6 @@
   recipeUnlocks:
     - ShipyardRCD # Frontier: RCD<ShipyardRCD
     - ShipyardRCDAmmo # Frontier: RCDAmmo<ShipyardRCDAmmo
-  position: 2, -1 # Frontier
+  technologyPrerequisites:
+  - Compression # Frontier: AdvancedPowercells<PowerGeneration
+  position: -1, 6 # Frontier

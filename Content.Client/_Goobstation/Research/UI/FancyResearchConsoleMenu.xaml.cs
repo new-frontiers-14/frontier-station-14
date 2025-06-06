@@ -74,7 +74,19 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// Global position that all tech relates to.
     /// For dragging mostly
     /// </summary>
-    private Vector2 _position = new Vector2(45, 250);
+    private Vector2 _position = DefaultPosition;
+
+    /// <summary>
+    /// Frontier: the distance between elements on the grid.
+    /// </summary>
+    private const int GridSize = 110;
+
+    /// <summary>
+    /// Frontier: the distance between elements on the grid.
+    /// </summary>
+    private static readonly Vector2i DefaultPosition = new Vector2i(45, 250);
+
+    private Box2i _bounds = new(DefaultPosition, DefaultPosition);
 
     public FancyResearchConsoleMenu()
     {
@@ -100,6 +112,35 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     {
         DragContainer.RemoveAllChildren();
         List = dict;
+        var bounds = new Box2i(); // Frontier
+        var boundsSet = false; // Frontier
+
+        // Frontier: generate bounding box, ensure position is within bounds
+        foreach (var tech in List)
+        {
+            var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
+            var position = DefaultPosition + (GridSize * proto.Position.X, GridSize * proto.Position.Y);
+            if (!boundsSet)
+            {
+                bounds.BottomLeft = position;
+                bounds.TopRight = position;
+                boundsSet = true;
+            }
+            else
+            {
+                bounds.Left = int.Min(position.X, bounds.Left);
+                bounds.Bottom = int.Min(position.Y, bounds.Bottom);
+                bounds.Right = int.Max(position.X, bounds.Right);
+                bounds.Top = int.Max(position.Y, bounds.Top);
+            }
+        }
+        if (boundsSet)
+        {
+            _bounds = bounds;
+            _position.X = Math.Clamp(_position.X, bounds.Left, bounds.Right);
+            _position.Y = Math.Clamp(_position.Y, bounds.Bottom, bounds.Top);
+        }
+        // End Frontier: generate bounding box, ensure position is within bounds
 
         foreach (var tech in List)
         {
@@ -109,7 +150,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             DragContainer.AddChild(control);
 
             // Set position for all tech, relating to _position
-            LayoutContainer.SetPosition(control, _position + proto.Position * 150);
+            LayoutContainer.SetPosition(control, _position + proto.Position * GridSize);
             control.SelectAction += SelectTech;
 
             if (tech.Key == CurrentTech)
@@ -169,12 +210,18 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         if (!_draggin)
             return;
 
+        // Frontier: bound motion to a box
+        var originalPosition = _position;
         _position += args.Relative;
+        _position.X = Math.Clamp(_position.X, _bounds.Left, _bounds.Right);
+        _position.Y = Math.Clamp(_position.Y, _bounds.Bottom, _bounds.Top);
+        var diff = _position - originalPosition;
+        // End Frontier: bound motion to a box
 
         // Move all tech
         foreach (var child in DragContainer.Children)
         {
-            LayoutContainer.SetPosition(child, child.Position + args.Relative);
+            LayoutContainer.SetPosition(child, child.Position + diff); // Frontier: args.Relative<diff
         }
     }
 
@@ -222,13 +269,13 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// </summary>
     public void Recenter()
     {
-        _position = new(45, 250);
+        _position = DefaultPosition;
         foreach (var item in DragContainer.Children)
         {
             if (item is not FancyResearchConsoleItem research)
                 continue;
 
-            LayoutContainer.SetPosition(item, _position + research.Prototype.Position * 150);
+            LayoutContainer.SetPosition(item, _position + research.Prototype.Position * GridSize);
         }
     }
 

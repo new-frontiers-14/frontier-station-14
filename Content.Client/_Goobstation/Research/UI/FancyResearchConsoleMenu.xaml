@@ -11,7 +11,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                       xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls;assembly=Content.Client"
                       xmlns:goob="clr-namespace:Content.Client._Goobstation.Research.UI"
                       Title="{Loc 'research-console-menu-title'}"
-                      SetSize="1260 850">
+                      SetSize="1260 850"
+                      MinSize="600 400"> <!-- Frontier: add MinSize-->
     <BoxContainer Orientation="Vertical"
                   HorizontalExpand="True"
                   VerticalExpand="True">
@@ -40,7 +41,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                           Margin="0 0 0 10">
                 <PanelContainer Name="ResearchesContainer" VerticalExpand="True" HorizontalExpand="True">
                     <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="#1E1E1EFF" /> <!-- Frontier: panel to 1E1E1E -->
+                        <gfx:StyleBoxFlat BackgroundColor="#182050FF" /> <!-- Frontier: panel to 182050 -->
                     </PanelContainer.PanelOverride>
                     <!-- Frontier: destroy AnimatedTextureRect -->
                     <goob:ResearchesContainerPanel

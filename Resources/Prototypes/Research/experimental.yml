@@ -1,17 +1,18 @@
 # Tier 1
 
-- type: technology
-  id: BasicRobotics
-  name: research-technology-basic-robotics
-  icon:
-    sprite: Structures/Machines/exosuit_fabricator.rsi
-    state: fab-idle
-  discipline: Experimental
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - ProximitySensor
-  position: -5, 2 # Frontier
+# Frontier: moved to SpaceScanning
+# - type: technology
+#   id: BasicRobotics
+#   name: research-technology-basic-robotics
+#   icon:
+#     sprite: Structures/Machines/exosuit_fabricator.rsi
+#     state: fab-idle
+#   discipline: Experimental
+#   tier: 1
+#   cost: 5000
+#   recipeUnlocks:
+#   - ProximitySensor
+# End Frontier
 
 - type: technology
   id: BasicAnomalousResearch
@@ -28,7 +29,7 @@
   - AnomalyLocatorWide
   - APECircuitboard
   - AnomalyVesselCircuitboard
-  position: -5, -4 # Frontier
+  position: 0, -7 # Frontier
 
 - type: technology
   id: BasicXenoArcheology
@@ -44,7 +45,7 @@
   - AnalysisComputerCircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ResearchComputerCircuitboard # Frontier: add research computer
-  position: -5, 0 # Frontier
+  position: 0, -5 # Frontier
 
 # Frontier: no tech disks
 # - type: technology
@@ -72,7 +73,7 @@
   recipeUnlocks:
   - ClothingShoesBootsMagSci
   - NFClothingShoesBootsMoon # Frontier ClothingShoesBootsMoon<NFClothingShoesBootsMoon
-  position: -5, 6 # Frontier
+  position: -3, 1 # Frontier
 
 - type: technology
   id: AnomalyCoreHarnessing
@@ -85,7 +86,9 @@
   cost: 10000
   recipeUnlocks:
   - WeaponGauntletGorilla
-  position: -3, -2 # Frontier
+  technologyPrerequisites: # Frontier
+  - BasicAnomalousResearch # Frontier
+  position: 1, -6 # Frontier
 
 # Tier 2
 
@@ -100,7 +103,9 @@
   cost: 5000
   recipeUnlocks:
   - ArtifactCrusherMachineCircuitboard
-  position: -3, 0 # Frontier
+  technologyPrerequisites: # Frontier
+  - BasicXenoArcheology # Frontier
+  position: 1, -5 # Frontier
 
 - type: technology
   id: AdvancedAnomalyResearch
@@ -117,7 +122,7 @@
   - AnomalyVesselExperimentalCircuitboard
   technologyPrerequisites:
   - BasicAnomalousResearch
-  position: -3, -4 # Frontier
+  position: 1, -7 # Frontier
 
 - type: technology
   id: DeterrenceTechnologies
@@ -131,7 +136,7 @@
   recipeUnlocks:
   # - WeaponParticleDecelerator # Frontier - Cancer gun that skip walls
   - HoloprojectorField
-  position: -1, 4 # Frontier
+  position: -1, -5 # Frontier
 
 # Frontier
 # - type: technology
@@ -175,4 +180,4 @@
   cost: 10000
   recipeUnlocks:
   - DeviceDesynchronizer
-  position: -1, 6 # Frontier
+  position: 0, 1 # Frontier

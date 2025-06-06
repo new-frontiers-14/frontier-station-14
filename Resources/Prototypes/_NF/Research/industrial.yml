@@ -1,19 +1,6 @@
 # Tier 1
 
 - type: technology
-  id: ConstructionBags
-  name: research-technology-construction-bags
-  icon:
-    sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
-    state: icon
-  discipline: Industrial
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - ConstructionBagOfHolding
-  position: 1, -3 # Frontier
-
-- type: technology
   id: HardsuitsBasic
   name: research-technology-hardsuits-basic
   icon:
@@ -24,7 +11,7 @@
   cost: 5000
   recipeUnlocks:
   - ClothingOuterHardsuitBasic
-  position: -5, 7 # Frontier
+  position: -3, -2
 
 - type: technology
   id: HardsuitsSpecialized
@@ -45,7 +32,7 @@
   - ClothingOuterHardsuitPilot
   technologyPrerequisites:
   - HardsuitsBasic
-  position: -3, 7 # Frontier
+  position: -2, -1
 
 - type: technology
   id: AtmosphericDrilling
@@ -59,7 +46,7 @@
   recipeUnlocks:
   - GasMiningDrillMachineCircuitboard
   - GaslockFrameMachineCircuitboard
-  position: -1, 1 # Frontier
+  position: -1, 7
 
 # Tier 2
 
@@ -79,7 +66,7 @@
   - ClothingOuterHardsuitLuxury
   technologyPrerequisites:
   - HardsuitsSpecialized
-  position: -1, 7 # Frontier
+  position: -2, -2
 
 # Tier 3
 
@@ -98,4 +85,4 @@
 #    - ClothingOuterHardsuitAncientEVA
   technologyPrerequisites:
   - HardsuitsAdvanced
-  position: 1, 7 # Frontier
+  position: -1, -2

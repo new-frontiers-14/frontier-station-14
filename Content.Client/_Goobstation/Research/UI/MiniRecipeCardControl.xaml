@@ -24,11 +24,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 StyleClasses="ButtonSquare"
                 Margin="0">
             <BoxContainer Orientation="Horizontal" Margin="0">
-                <TextureRect Name="Showcase"
+                <EntityPrototypeView Name="Showcase"
                              HorizontalExpand="False"
                              VerticalExpand="False"
                              Margin="1"
-                             TextureScale="1 1"/>
+                             Scale="1 1"/> <!-- Frontier: TextureRect<EntityPrototypeView -->
                 <Control MinWidth="5"/>
                 <RichTextLabel Name="NameLabel" StyleClasses="LabelSubText" VerticalAlignment="Center"/>
             </BoxContainer>

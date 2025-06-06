@@ -31,7 +31,8 @@ public sealed partial class MiniRecipeCardControl : Control
         NameLabel.SetMessage(lathe.GetRecipeName(proto));
 
         if (proto.Result.HasValue)
-            Showcase.Texture = sprite.Frame0(prototypeManager.Index(proto.Result.Value));
+            // Showcase.Texture = sprite.Frame0(prototypeManager.Index(proto.Result.Value)); // Frontier
+            Showcase.SetPrototype(proto.Result);
 
         if (proto.Description.HasValue)
         {

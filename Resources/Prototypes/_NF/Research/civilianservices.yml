@@ -15,7 +15,7 @@
   - ElectricGrillMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
   - SodaDispenserMachineCircuitboard
-  position: -5, -5
+  position: 2, -3
 
 - type: technology
   id: MiscellaneousItemsOrganization
@@ -45,23 +45,9 @@
   - NFPouchMime
   - NFPouchCaptain
   - NFPouchCargo
-  position: -5, -3
+  position: -2, 4
 
 # Tier 2
-
-- type: technology
-  id: ChemicalDispensary
-  name: research-technology-chemical-dispensary
-  icon:
-    sprite: Structures/dispensers.rsi
-    state: industrial-working
-  discipline: CivilianServices
-  tier: 2
-  cost: 10000
-  recipeUnlocks:
-  - ChemMasterMachineCircuitboard
-  - ChemDispenserMachineCircuitboard
-  position: -3, -1
 
 - type: technology
   id: IndustrialMedicine
@@ -71,11 +57,13 @@
     state: icon
   discipline: CivilianServices
   tier: 2
-  cost: 5000
+  cost: 15000
   recipeUnlocks:
+  - ChemMasterMachineCircuitboard
+  - ChemDispenserMachineCircuitboard
   - MedicalAssemblerMachineCircuitboard
   - HotplateMachineCircuitboard
-  position: -1, -1
+  position: 2, 4
 
 # Tier 3
 
@@ -90,7 +78,9 @@
   cost: 15000
   recipeUnlocks:
   - JetpackVoid
-  position: 1, -1
+  technologyPrerequisites:
+  - AdvancedToolsTechnology
+  position: 2, 10
 
 - type: technology
   id: AdvancedFoodService
@@ -106,17 +96,6 @@
   - ServiceSelectiveDropper
   - KitchenAssemblerMachineCircuitboard
   - ElectricRangeMachineCircuitboard
-  position: 1, -5
-
-- type: technology
-  id: MobileSanitation
-  name: research-technology-mobile-sanitation
-  icon:
-    sprite: Objects/Vehicles/janicart.rsi
-    state: icon
-  discipline: CivilianServices
-  tier: 2
-  cost: 5000
-  recipeUnlocks:
-    - JanicartFlatpack
-  position: 1, 3
+  technologyPrerequisites:
+  - FoodService
+  position: 3, -3
