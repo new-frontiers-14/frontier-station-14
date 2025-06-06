@@ -75,19 +75,17 @@ public abstract partial class SharedXenoArtifactSystem
         SoundSpecifier? soundEffect;
 
         // Frontier: Disable activations on protected grids
-        var xform = Transform(ent);
         var gridProtected = false;
-        if (xform.GridUid != null)
+        if (TryComp(ent, out TransformComponent? xform)
+            && TryComp<ProtectedGridComponent>(xform.GridUid, out var prot)
+            && prot.PreventArtifactTriggers)
         {
-            if (TryComp<ProtectedGridComponent>(xform.GridUid.Value, out var prot) && prot.PreventArtifactTriggers)
-            {
-                gridProtected = true;
-            }
+            gridProtected = true;
         }
+
+        Entity<XenoArtifactNodeComponent>? node = null;
+        if (!gridProtected && TryGetNodeFromUnlockState(ent, out node))
         // End Frontier: Disable activations on protected grids
-
-
-        if (!gridProtected && TryGetNodeFromUnlockState(ent, out var node)) // Frontier, add grid protection check
         {
             // Frontier: remove value if artifexium used
             if (ent.Comp1.ArtifexiumApplied)
