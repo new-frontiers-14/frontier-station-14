@@ -9,6 +9,6 @@ public sealed partial class GridAccessComponent : Component
     /// Frontier - Grid access
     /// The uid to which this device is limited to be used on.
     /// </summary>
-    [DataField("linkedShuttleUid"), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public EntityUid? LinkedShuttleUid = null;
 }

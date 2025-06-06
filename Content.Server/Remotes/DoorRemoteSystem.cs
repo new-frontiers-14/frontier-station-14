@@ -56,19 +56,21 @@ namespace Content.Shared.Remotes
             // Frontier: Grid access restriction
             if (TryComp<GridAccessComponent>(entity.Owner, out var gridAccessComponent))
             {
-                if (!doorComp.RemoteCompatible)
-                {
-                    Popup.PopupEntity(Loc.GetString("door-remote-use-blocked"), args.Used, args.User);
-                    return;
-                }
                 string? popupMessage = null;
-                if (!_gridAccessSystem.TryGetGridUid(args.ClickLocation, out var mapGridUid)
-                || !GridAccessSystem.IsAuthorized(mapGridUid, gridAccessComponent, out popupMessage))
+                if (!TryComp(args.Target.Value, out TransformComponent? xform)
+                    || xform.GridUid == null
+                    || !GridAccessSystem.IsAuthorized(xform.GridUid, gridAccessComponent, out popupMessage))
                 {
                     if (popupMessage != null)
                     {
                         Popup.PopupEntity(Loc.GetString("door-remote-" + popupMessage), args.Used, args.User);
                     }
+                    return;
+                }
+
+                if (!doorComp.RemoteCompatible)
+                {
+                    Popup.PopupEntity(Loc.GetString("door-remote-use-blocked"), args.Used, args.User);
                     return;
                 }
             }

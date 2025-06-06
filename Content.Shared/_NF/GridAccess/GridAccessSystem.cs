@@ -2,117 +2,95 @@ using Content.Shared.Popups;
 using Content.Shared.Interaction;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Components;
-using Content.Shared.Tiles;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
-using System.Diagnostics.CodeAnalysis;
 
-namespace Content.Shared._NF.GridAccess
+namespace Content.Shared._NF.GridAccess;
+
+public sealed class GridAccessSystem : EntitySystem
 {
-    public sealed class GridAccessSystem : EntitySystem
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+
+    [Dependency] private readonly SharedTransformSystem _sharedTransformSystem = default!;
+
+    public override void Initialize()
     {
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
+        base.Initialize();
 
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
+        SubscribeLocalEvent<IdCardComponent, AfterInteractEvent>(OnIdCardSwipeHappened);
+    }
 
-        [Dependency] private readonly SharedTransformSystem _sharedTransformSystem = default!;
+    private void OnIdCardSwipeHappened(EntityUid uid, IdCardComponent comp, ref AfterInteractEvent args)
+    {
+        if (args.Handled)
+            return;
 
-        public override void Initialize()
+        if (args.Target is not { Valid: true } target || !args.CanReach)
+            return;
+
+        var rcdEntityUid = target;
+
+        // Is this id card interacting with a grid-access device? If not, ignore it.
+        if (!TryComp<GridAccessComponent>(rcdEntityUid, out var gridAccessComponent))
+            return;
+
+        // Device found, we're handling this event.
+        args.Handled = true;
+
+        // If the id card has no registered ship we cant continue.
+        if (!TryComp<ShuttleDeedComponent>(uid, out var shuttleDeedComponent))
         {
-            base.Initialize();
-
-            SubscribeLocalEvent<IdCardComponent, AfterInteractEvent>(OnIdCardSwipeHappened);
+            _popup.PopupClient(Loc.GetString("grid-access-missing-id-deed"),
+                uid, args.User, PopupType.Medium);
+            _audio.PlayLocal(comp.ErrorSound, rcdEntityUid, args.User);
+            return;
         }
 
-        private void OnIdCardSwipeHappened(EntityUid uid, IdCardComponent comp, ref AfterInteractEvent args)
+        // Swiping it again removes the authorization on it.
+        if (gridAccessComponent.LinkedShuttleUid == shuttleDeedComponent.ShuttleUid)
         {
-            if (args.Handled)
-                return;
-
-            if (args.Target is not { Valid: true } target || !args.CanReach)
-                return;
-
-            var rcdEntityUid = target;
-
-            // Is this id card interacting with a grid-access device? If not, ignore it.
-            if (!TryComp<GridAccessComponent>(rcdEntityUid, out var gridAccessComponent))
-                return;
-
-            // Device found, we're handling this event.
-            args.Handled = true;
-
-            // If the id card has no registered ship we cant continue.
-            if (!TryComp<ShuttleDeedComponent>(uid, out var shuttleDeedComponent))
-            {
-                _popup.PopupClient(Loc.GetString("grid-access-missing-id-deed"),
-                    uid, args.User, PopupType.Medium);
-                _audio.PlayLocal(comp.ErrorSound, rcdEntityUid, args.User);
-                return;
-            }
-
-            // Swiping it again removes the authorization on it.
-            if (gridAccessComponent.LinkedShuttleUid == shuttleDeedComponent.ShuttleUid)
-            {
-                _popup.PopupClient(Loc.GetString("grid-access-id-card-removed"),
-                    uid, args.User, PopupType.Medium);
-                _audio.PlayLocal(comp.SwipeSound, rcdEntityUid, args.User);
-                gridAccessComponent.LinkedShuttleUid = null;
-            }
-            else // Transfering or setting a new ID card
-            {
-                _popup.PopupClient(Loc.GetString("grid-access-id-card-accepted"),
-                    uid, args.User, PopupType.Medium);
-                _audio.PlayLocal(comp.InsertSound, rcdEntityUid, args.User);
-                gridAccessComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
-            }
-
-            Dirty(rcdEntityUid, gridAccessComponent);
+            _popup.PopupClient(Loc.GetString("grid-access-id-card-removed"),
+                uid, args.User, PopupType.Medium);
+            _audio.PlayLocal(comp.SwipeSound, rcdEntityUid, args.User);
+            gridAccessComponent.LinkedShuttleUid = null;
+        }
+        else // Transfering or setting a new ID card
+        {
+            _popup.PopupClient(Loc.GetString("grid-access-id-card-accepted"),
+                uid, args.User, PopupType.Medium);
+            _audio.PlayLocal(comp.InsertSound, rcdEntityUid, args.User);
+            gridAccessComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
         }
 
-        /// <summary>
-        /// Gets a tool's authorization for a given GridUid.
-        /// Returns an incomplete, non-localized string for popups.
-        /// </summary>
-        public static bool IsAuthorized(EntityUid? gridUid, GridAccessComponent comp, out string? popupMessage)
+        Dirty(rcdEntityUid, gridAccessComponent);
+    }
+
+    /// <summary>
+    /// Gets a tool's authorization for a given GridUid.
+    /// Returns an incomplete, non-localized string for popups.
+    /// </summary>
+    public static bool IsAuthorized(EntityUid? gridUid, GridAccessComponent comp, out string? popupMessage)
+    {
+        popupMessage = null;
+
+        if (gridUid == null)
         {
-            popupMessage = null;
-
-            if (gridUid == null)
-            {
-                return false;
-            }
-
-            // LinkedShuttleUid requirements to use Shipyard devices.
-            if (comp.LinkedShuttleUid == null)
-            {
-                popupMessage = "no-id-swiped";
-                return false;
-            }
-            if (comp.LinkedShuttleUid != gridUid)
-            {
-                popupMessage = "unauthorized-ship";
-                return false;
-            }
-
-            return true;
+            return false;
         }
 
-        public bool TryGetGridUid(EntityCoordinates location, [NotNullWhen(true)] out EntityUid? mapGridUid)
+        // LinkedShuttleUid requirements to use Shipyard devices.
+        if (comp.LinkedShuttleUid == null)
         {
-            mapGridUid = _sharedTransformSystem.GetGrid(location);
-
-            if (mapGridUid == null)
-            {
-                location = location.AlignWithClosestGridTile(1.75f, EntityManager);
-                mapGridUid = _sharedTransformSystem.GetGrid(location);
-
-                // Check if we got a grid ID the second time round
-                if (mapGridUid == null)
-                    return false;
-            }
-
-            return true;
+            popupMessage = "no-id-swiped";
+            return false;
         }
+        if (comp.LinkedShuttleUid != gridUid)
+        {
+            popupMessage = "unauthorized-ship";
+            return false;
+        }
+
+        return true;
     }
 }
