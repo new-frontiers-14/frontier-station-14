@@ -87,7 +87,7 @@ public abstract partial class SharedXenoArtifactSystem
         // End Frontier: Disable activations on protected grids
 
 
-        if (TryGetNodeFromUnlockState(ent, out var node) && !gridProtected) // Frontier, add grid protection check
+        if (!gridProtected && TryGetNodeFromUnlockState(ent, out var node)) // Frontier, add grid protection check
         {
             // Frontier: remove value if artifexium used
             if (ent.Comp1.ArtifexiumApplied)

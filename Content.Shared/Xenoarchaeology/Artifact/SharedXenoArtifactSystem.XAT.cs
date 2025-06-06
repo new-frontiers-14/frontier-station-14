@@ -65,10 +65,10 @@ public abstract partial class SharedXenoArtifactSystem
             return;
 
         // Frontier: Disable activations on protected grids
-        var xform = Transform(ent);
-        if (xform.GridUid != null)
+        if (TryComp(ent, out TransformComponent? xform)
+            && TryComp(xform.GridUid, out var prot)
+            && prot.PreventArtifactTriggers)
         {
-            if (TryComp<ProtectedGridComponent>(xform.GridUid.Value, out var prot) && prot.PreventArtifactTriggers)
                 return;
         }
         // End Frontier: Disable activations on protected grids
