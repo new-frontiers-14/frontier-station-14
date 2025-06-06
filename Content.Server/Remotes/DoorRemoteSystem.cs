@@ -47,12 +47,6 @@ namespace Content.Shared.Remotes
 
             args.Handled = true;
 
-            if (!this.IsPowered(args.Target.Value, EntityManager))
-            {
-                Popup.PopupEntity(Loc.GetString("door-remote-no-power"), args.User, args.User);
-                return;
-            }
-
             // Frontier: Grid access restriction
             if (TryComp<GridAccessComponent>(entity.Owner, out var gridAccessComponent))
             {
@@ -75,6 +69,12 @@ namespace Content.Shared.Remotes
                 }
             }
             // End Frontier: Grid access restriction
+
+            if (!this.IsPowered(args.Target.Value, EntityManager))
+            {
+                Popup.PopupEntity(Loc.GetString("door-remote-no-power"), args.User, args.User);
+                return;
+            }
 
             if (TryComp<AccessReaderComponent>(args.Target, out var accessComponent)
                 && !_doorSystem.HasAccess(args.Target.Value, args.Used, doorComp, accessComponent))
