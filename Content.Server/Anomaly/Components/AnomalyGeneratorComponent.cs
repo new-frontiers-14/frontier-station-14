@@ -76,7 +76,7 @@ public sealed partial class AnomalyGeneratorComponent : Component
     /// The material needed to generate an anomaly
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<StackPrototype> RefundStackType = "MaterialAnomalite1";
+    public ProtoId<StackPrototype> RefundStackType = "Anomalite";
 
     /// <summary>
     /// Stack count to return on refund

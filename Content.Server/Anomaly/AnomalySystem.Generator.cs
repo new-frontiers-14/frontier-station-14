@@ -175,6 +175,7 @@ public sealed partial class AnomalySystem
                     {
                         _stack.Spawn(genEnt.Comp.RefundAmount, genEnt.Comp.RefundStackType, generatorXform.Coordinates);
                         genEnt.Comp.CooldownEndTime = TimeSpan.Zero;
+                        UpdateGeneratorUi(genEnt, genEnt.Comp);
                         _popup.PopupEntity(Loc.GetString("anomaly-generator-refund-popup"), genEnt);
                     }
                     return;
