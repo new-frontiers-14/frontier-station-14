@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/07/2025 10:18:29
+  time: 06/07/2025 13:22:08
   entityCount: 763
 maps: []
 grids:
@@ -1369,10 +1369,10 @@ entities:
       parent: 1
 - proto: BorgCharger
   entities:
-  - uid: 141
+  - uid: 21
     components:
     - type: Transform
-      pos: -4.5,0.5
+      pos: -7.5,4.5
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -3788,6 +3788,12 @@ entities:
       parent: 1
 - proto: LockerWallEVAColorScientistFilled
   entities:
+  - uid: 452
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,3.5
+      parent: 1
   - uid: 720
     components:
     - type: Transform
@@ -3824,15 +3830,15 @@ entities:
       parent: 1
 - proto: MachineArtifactAnalyzer
   entities:
+  - uid: 141
+    components:
+    - type: Transform
+      pos: -8.5,-7.5
+      parent: 1
   - uid: 158
     components:
     - type: Transform
       pos: 10.5,-7.5
-      parent: 1
-  - uid: 452
-    components:
-    - type: Transform
-      pos: -8.5,-7.5
       parent: 1
 - proto: MachineMaterialSilo
   entities:
@@ -3916,7 +3922,7 @@ entities:
       pos: -1.5,-5.5
       parent: 1
     - type: FuelGenerator
-      targetPower: 50000
+      targetPower: 65000
 - proto: PosterContrabandHackingGuide
   entities:
   - uid: 459
@@ -4597,14 +4603,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-5.5
-      parent: 1
-- proto: SuitStorageWallmountBasic
-  entities:
-  - uid: 21
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,3.5
       parent: 1
 - proto: Table
   entities:
@@ -5490,6 +5488,6 @@ entities:
   - uid: 725
     components:
     - type: Transform
-      pos: -3.5,0.5
+      pos: -4.5,0.5
       parent: 1
 ...
