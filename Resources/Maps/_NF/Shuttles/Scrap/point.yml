@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/02/2025 20:32:59
-  entityCount: 313
+  time: 06/07/2025 12:26:54
+  entityCount: 314
 maps: []
 grids:
 - 1
@@ -510,6 +510,11 @@ entities:
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
+  - uid: 187
+    components:
+    - type: Transform
+      pos: -2.5,10.5
+      parent: 1
   - uid: 317
     components:
     - type: Transform
@@ -725,6 +730,13 @@ entities:
     - type: Transform
       pos: 2.5,5.5
       parent: 1
+- proto: Autolathe
+  entities:
+  - uid: 191
+    components:
+    - type: Transform
+      pos: 5.5,3.5
+      parent: 1
 - proto: Barricade
   entities:
   - uid: 94
@@ -782,6 +794,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5149784,3.8242848
       parent: 1
+- proto: BlueprintLithograph
+  entities:
+  - uid: 189
+    components:
+    - type: Transform
+      pos: 5.5,0.5
+      parent: 1
 - proto: BodyBag
   entities:
   - uid: 252
@@ -791,11 +810,10 @@ entities:
       parent: 1
 - proto: BookScientistsGuidebook
   entities:
-  - uid: 368
+  - uid: 188
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.4660971,1.5004066
+      pos: 1.5964348,10.511613
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -1090,6 +1108,13 @@ entities:
     - type: Transform
       pos: -2.2679517,9.0194025
       parent: 1
+- proto: CircuitImprinter
+  entities:
+  - uid: 190
+    components:
+    - type: Transform
+      pos: -1.5,5.5
+      parent: 1
 - proto: ClosetWallFireFilledRandom
   entities:
   - uid: 51
@@ -1179,6 +1204,13 @@ entities:
     components:
     - type: Transform
       pos: 6.489027,7.482724
+      parent: 1
+- proto: DrinkJarWhat
+  entities:
+  - uid: 25
+    components:
+    - type: Transform
+      pos: 5.4297686,0.81728184
       parent: 1
 - proto: EmptyFlashlightLantern
   entities:
@@ -1722,9 +1754,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,6.5
       parent: 1
-- proto: LockerWallMaterialsFuelPlasmaFilled2
+- proto: LockerWallMaterialsFuelUraniumFilled2
   entities:
-  - uid: 180
+  - uid: 70
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -1751,18 +1783,6 @@ entities:
     components:
     - type: Transform
       pos: -0.5,10.5
-      parent: 1
-- proto: MachineFrameDestroyed
-  entities:
-  - uid: 258
-    components:
-    - type: Transform
-      pos: 2.5,8.5
-      parent: 1
-  - uid: 283
-    components:
-    - type: Transform
-      pos: -1.5,5.5
       parent: 1
 - proto: MachineMiniAnomalyGenerator
   entities:
@@ -1809,17 +1829,17 @@ entities:
     - type: Transform
       pos: 0.7276165,5.244207
       parent: 1
-- proto: PortableGeneratorPacmanShuttle
+- proto: PortableGeneratorSuperPacmanShuttle
   entities:
-  - uid: 70
-    components:
-    - type: Transform
-      pos: 4.5,3.5
-      parent: 1
-  - uid: 204
+  - uid: 185
     components:
     - type: Transform
       pos: 2.5,5.5
+      parent: 1
+  - uid: 186
+    components:
+    - type: Transform
+      pos: 4.5,3.5
       parent: 1
 - proto: PosterBroken
   entities:
@@ -1918,6 +1938,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,3.5
       parent: 1
+- proto: Protolathe
+  entities:
+  - uid: 180
+    components:
+    - type: Transform
+      pos: 2.5,8.5
+      parent: 1
 - proto: Rack
   entities:
   - uid: 225
@@ -1925,13 +1952,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,8.5
-      parent: 1
-- proto: RandomFoodSingle
-  entities:
-  - uid: 314
-    components:
-    - type: Transform
-      pos: 5.5,0.5
       parent: 1
 - proto: ResearchAndDevelopmentServer
   entities:
@@ -1992,13 +2012,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,9.5
       parent: 1
-- proto: Spaceshroom
-  entities:
-  - uid: 256
-    components:
-    - type: Transform
-      pos: 1.5,10.5
-      parent: 1
 - proto: SpawnPointLatejoin
   entities:
   - uid: 263
@@ -2034,11 +2047,6 @@ entities:
       parent: 1
 - proto: TableWood
   entities:
-  - uid: 25
-    components:
-    - type: Transform
-      pos: 5.5,0.5
-      parent: 1
   - uid: 141
     components:
     - type: Transform
