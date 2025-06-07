@@ -41,7 +41,7 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
             return;
 
         PredictRoll(ent, args.Outputs, args.User);
-        args.Handled = true;
+        args = args.WithHandled(true);
     }
 
     // Predicts a roll on the client side for responsive UI

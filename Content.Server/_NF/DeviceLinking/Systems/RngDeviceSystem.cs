@@ -57,7 +57,7 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
     {
         // Ensure we have the server component
         var serverComp = EnsureComp<RngDeviceServerComponent>(ent.Owner);
-        
+
         _deviceLink.EnsureSinkPorts(ent.Owner, serverComp.InputPort);
 
         // Initialize the ports array based on output count

@@ -1,5 +1,6 @@
 using Robust.Shared.Serialization;
 using Robust.Shared.GameStates;
+using Content.Shared.UserInterface;
 
 namespace Content.Shared._NF.DeviceLinking.Components
 {
@@ -77,35 +78,20 @@ namespace Content.Shared._NF.DeviceLinking.Components
     }
 
     [Serializable, NetSerializable]
-    public sealed class RngDeviceToggleMuteMessage : BoundUserInterfaceMessage
+    public sealed class RngDeviceToggleMuteMessage(bool muted) : BoundUserInterfaceMessage
     {
-        public bool Muted { get; }
-
-        public RngDeviceToggleMuteMessage(bool muted)
-        {
-            Muted = muted;
-        }
+        public bool Muted { get; } = muted;
     }
 
     [Serializable, NetSerializable]
-    public sealed class RngDeviceToggleEdgeModeMessage : BoundUserInterfaceMessage
+    public sealed class RngDeviceToggleEdgeModeMessage(bool edgeMode) : BoundUserInterfaceMessage
     {
-        public bool EdgeMode { get; }
-
-        public RngDeviceToggleEdgeModeMessage(bool edgeMode)
-        {
-            EdgeMode = edgeMode;
-        }
+        public bool EdgeMode { get; } = edgeMode;
     }
 
     [Serializable, NetSerializable]
-    public sealed class RngDeviceSetTargetNumberMessage : BoundUserInterfaceMessage
+    public sealed class RngDeviceSetTargetNumberMessage(int targetNumber) : BoundUserInterfaceMessage
     {
-        public int TargetNumber { get; }
-
-        public RngDeviceSetTargetNumberMessage(int targetNumber)
-        {
-            TargetNumber = targetNumber;
-        }
+        public int TargetNumber { get; } = targetNumber;
     }
 }
