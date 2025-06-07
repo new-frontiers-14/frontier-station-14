@@ -8,7 +8,8 @@ highlights-quartermaster = Quartermaster, "QM", Cargo, Bridge, Command
 highlights-research-director = Research Director, "RD", Science, "Sci", Bridge, Command
 
 # Security
-highlights-detective = Detective, "Det", Security, "Sec"
+# Frontier: matches by job title, moved to _NF
+# highlights-detective = Detective, "Det", Security, "Sec"
 highlights-security-cadet = Security Cadet, Secoff, Cadet, Security, "Sec"
 highlights-security-officer = Security Officer, Secoff, Officer, Security, "Sec"
 highlights-warden = Warden, "Ward", Security, "Sec"
