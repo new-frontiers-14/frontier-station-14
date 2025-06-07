@@ -1,4 +1,5 @@
 using Robust.Shared.Serialization;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared._NF.DeviceLinking.Components
 {
@@ -25,6 +26,55 @@ namespace Content.Shared._NF.DeviceLinking.Components
     }
 
     #endregion
+
+    /// <summary>
+    /// Shared component for RNG device that contains networked UI state data
+    /// </summary>
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+    public sealed partial class RngDeviceComponent : Component
+    {
+        /// <summary>
+        /// Number of output ports this device has.
+        /// </summary>
+        [DataField("outputs"), AutoNetworkedField]
+        public int Outputs { get; set; } = 6;
+
+        /// <summary>
+        /// Current signal state of the device
+        /// </summary>
+        [DataField("state"), AutoNetworkedField]
+        public SignalState State { get; set; } = SignalState.Low;
+
+        /// <summary>
+        /// Whether the device is muted
+        /// </summary>
+        [DataField("muted"), AutoNetworkedField]
+        public bool Muted { get; set; }
+
+        /// <summary>
+        /// Target number for percentile dice (1-100). Only used when Outputs = 2.
+        /// </summary>
+        [DataField("targetNumber"), AutoNetworkedField]
+        public int TargetNumber { get; set; } = 50;
+
+        /// <summary>
+        /// When enabled, sends High signal to selected port and Low signals to others
+        /// </summary>
+        [DataField("edgeMode"), AutoNetworkedField]
+        public bool EdgeMode { get; set; }
+
+        /// <summary>
+        /// The last value rolled (1-100 for percentile, 1-N for other dice)
+        /// </summary>
+        [DataField("lastRoll"), AutoNetworkedField]
+        public int LastRoll { get; set; }
+
+        /// <summary>
+        /// The last output port that was triggered
+        /// </summary>
+        [DataField("lastOutputPort"), AutoNetworkedField]
+        public int LastOutputPort { get; set; }
+    }
 
     /// <summary>
     /// Represents the state of an RNG device that can be sent to the client

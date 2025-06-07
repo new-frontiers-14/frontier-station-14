@@ -24,6 +24,9 @@ public sealed class RngDeviceBoundUserInterface(EntityUid owner, Enum uiKey) : B
         _window.OnTargetNumberChanged += OnTargetNumberChanged;
 
         _window.OpenCentered();
+
+        // Initial update when opening
+        Update();
     }
 
     private void OnMuteToggled(bool muted)
@@ -41,17 +44,17 @@ public sealed class RngDeviceBoundUserInterface(EntityUid owner, Enum uiKey) : B
         SendMessage(new RngDeviceSetTargetNumberMessage(targetNumber));
     }
 
-    protected override void UpdateState(BoundUserInterfaceState state)
+    public override void Update()
     {
-        base.UpdateState(state);
+        base.Update();
 
-        if (_window == null || state is not RngDeviceBoundUserInterfaceState cast)
+        if (_window == null || !EntMan.TryGetComponent<RngDeviceComponent>(Owner, out var component))
             return;
 
-        _window.SetMuted(cast.Muted);
-        _window.SetEdgeMode(cast.EdgeMode);
-        _window.SetTargetNumber(cast.TargetNumber);
-        _window.SetTargetNumberVisibility(cast.Outputs == 2);
+        _window.SetMuted(component.Muted);
+        _window.SetEdgeMode(component.EdgeMode);
+        _window.SetTargetNumber(component.TargetNumber);
+        _window.SetTargetNumberVisibility(component.Outputs == 2);
     }
 
     protected override void Dispose(bool disposing)

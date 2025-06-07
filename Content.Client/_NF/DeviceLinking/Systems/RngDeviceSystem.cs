@@ -18,42 +18,35 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
-    private Dictionary<EntityUid, RngDeviceBoundUserInterfaceState> _lastStates = new();
-
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<RngDeviceComponent, AfterAutoHandleStateEvent>(OnRngDeviceState);
         SubscribeLocalEvent<RngDeviceVisualsComponent, RollEvent>(OnRoll);
-        SubscribeLocalEvent<RngDeviceVisualsComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<RngDeviceVisualsComponent, BoundUIOpenedEvent>(OnUIOpened);
+        SubscribeLocalEvent<RngDeviceComponent, ExaminedEvent>(OnExamine);
     }
 
-    private void OnUIOpened(Entity<RngDeviceVisualsComponent> ent, ref BoundUIOpenedEvent args)
+    private void OnRngDeviceState(Entity<RngDeviceComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (args.UiKey is not RngDeviceUiKey.Key)
-            return;
-
-        // Store the UI state for later use in examine
-        if (_ui.TryGetUiState<RngDeviceBoundUserInterfaceState>(args.Entity, RngDeviceUiKey.Key, out var state) &&
-            state is RngDeviceBoundUserInterfaceState rngState)
+        // Update any open BUIs when component data changes
+        if (_ui.TryGetOpenUi(ent.Owner, RngDeviceUiKey.Key, out var bui))
         {
-            _lastStates[args.Entity] = rngState;
+            bui.Update();
         }
     }
 
-    private void OnExamine(Entity<RngDeviceVisualsComponent> ent, ref ExaminedEvent args)
+    private void OnExamine(Entity<RngDeviceComponent> ent, ref ExaminedEvent args)
     {
-        // Try to get the last UI state for this entity
-        if (!_lastStates.TryGetValue(ent, out var state))
+        if (!args.IsInDetailsRange)
             return;
 
         // Use args.PushGroup to organize the examine text
         using (args.PushGroup("RngDevice"))
         {
-            args.PushMarkup(Loc.GetString("rng-device-examine-last-roll", ("roll", state.LastRoll)));
+            args.PushMarkup(Loc.GetString("rng-device-examine-last-roll", ("roll", ent.Comp.LastRoll)));
 
-            if (state.Outputs == 2)  // Only show port info for percentile die
-                args.PushMarkup(Loc.GetString("rng-device-examine-last-port", ("port", state.LastOutputPort)));
+            if (ent.Comp.Outputs == 2)  // Only show port info for percentile die
+                args.PushMarkup(Loc.GetString("rng-device-examine-last-port", ("port", ent.Comp.LastOutputPort)));
         }
     }
 
@@ -71,11 +64,10 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
     {
         int roll;
         // Only use target number for percentile dice (outputs == 2)
-        // And only if we have a cached state from the UI being opened previously.
-        if (outputs == 2 && _lastStates.TryGetValue(ent, out var state))
+        if (outputs == 2 && TryComp<RngDeviceComponent>(ent, out var rngComp))
         {
             // Use the overload that takes targetNumber
-            (roll, _) = GenerateRoll(outputs, state.TargetNumber);
+            (roll, _) = GenerateRoll(outputs, rngComp.TargetNumber);
         }
         else
         {
