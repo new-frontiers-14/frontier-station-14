@@ -41,6 +41,12 @@ namespace Content.Shared._NF.DeviceLinking.Components
         public int Outputs = 6;
 
         /// <summary>
+        /// The state prefix for visual updates and UI title (e.g. "percentile", "d6", etc.).
+        /// </summary>
+        [DataField, AutoNetworkedField]
+        public string StatePrefix = "d6";
+
+        /// <summary>
         /// Current signal state of the device
         /// </summary>
         [DataField("state"), AutoNetworkedField]

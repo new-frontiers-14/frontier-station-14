@@ -55,5 +55,6 @@ public sealed class RngDeviceBoundUserInterface(EntityUid owner, Enum uiKey) : B
         _window.SetEdgeMode(component.EdgeMode);
         _window.SetTargetNumber(component.TargetNumber);
         _window.SetTargetNumberVisibility(component.Outputs == 2);
+        _window.SetDeviceType(component.StatePrefix);
     }
 }

@@ -18,7 +18,7 @@ using Content.Shared._NF.DeviceLinking.Visuals;
 using Robust.Shared.Timing;
 using Robust.Shared.GameObjects;
 using Content.Shared.Examine;
-using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Map;
 using Content.Shared._NF.DeviceLinking.Systems;
@@ -41,10 +41,10 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
 
         SubscribeLocalEvent<RngDeviceComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<RngDeviceComponent, SignalReceivedEvent>(OnSignalReceived);
-        SubscribeLocalEvent<RngDeviceComponent, InteractHandEvent>(OnInteract);
+        SubscribeLocalEvent<RngDeviceComponent, UseInHandEvent>(OnUseInHand);
     }
 
-    private void OnInteract(Entity<RngDeviceComponent> ent, ref InteractHandEvent args)
+    private void OnUseInHand(Entity<RngDeviceComponent> ent, ref UseInHandEvent args)
     {
         if (!TryComp<ActorComponent>(args.User, out var actor))
             return;
@@ -73,6 +73,10 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
         {
             throw new InvalidOperationException($"StatePrefix not set for RngDevice with {ent.Comp.Outputs} outputs. StatePrefix must be set in the prototype.");
         }
+
+        // Copy StatePrefix to shared component so it's accessible to the client
+        ent.Comp.StatePrefix = serverComp.StatePrefix;
+        Dirty(ent);
     }
 
     private void OnSignalReceived(Entity<RngDeviceComponent> ent, ref SignalReceivedEvent args)
@@ -122,7 +126,7 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
             10 => roll == 10 ? 0 : roll,  // Show "0" for 10
             _ => roll
         };
-        _appearance.SetData(uid, RngDeviceVisuals.State, $"{serverComp.StatePrefix}_{stateNumber}", appearance);
+        _appearance.SetData(uid, RngDeviceVisuals.State, $"{component.StatePrefix}_{stateNumber}", appearance);
     }
 
     private void HandleNormalModeSignal(EntityUid uid, int outputPort)
