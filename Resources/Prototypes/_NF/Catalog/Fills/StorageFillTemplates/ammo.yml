@@ -255,12 +255,22 @@
 
 - type: entity # Rubber
   abstract: true
+  id: StorageFillAmmoBoxBeanbagShotgun
+  suffix: Shotgun, Beanbag, x2 boxes
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFAmmunitionBoxShellShotgunBeanbag
+      amount: 2
+
+- type: entity # Rubbershot
+  abstract: true
   id: StorageFillAmmoBoxRubberShotgun
   suffix: Shotgun, Rubber, x2 boxes
   components:
   - type: StorageFill
     contents:
-    - id: NFAmmunitionBoxShellShotgunBeanbag
+    - id: NFAmmunitionBoxShellShotgunRubber
       amount: 2
 
 - type: entity # Practice
