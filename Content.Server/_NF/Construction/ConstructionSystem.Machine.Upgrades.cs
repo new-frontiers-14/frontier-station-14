@@ -1,15 +1,15 @@
-using System.Linq; // Frontier
+using System.Linq;
 using Content.Server.Construction.Components;
 using Content.Shared.Construction.Components;
-using Content.Shared.Construction.Prototypes; // Frontier
+using Content.Shared.Construction.Prototypes;
 using Content.Shared.Examine;
-using Content.Shared.Interaction.Events; // Frontier
 using Content.Shared.Stacks;
-using Content.Shared.Verbs; // Frontier
-using Robust.Shared.Prototypes; // Frontier
+using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Construction; //Uses base namespace to extend ConstructionSystem behaviour
+
+// Adopted from Wizard's Den's abandoned ConstructionSystem machine part system.
 
 public struct MachinePartState
 {
