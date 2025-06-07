@@ -2,13 +2,26 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   id: NFPelletShotgun
-  name: pellet (.50)
+  name: pellet (.50 buckshot)
   parent: NFBasePellet
   components:
   - type: Projectile
     damage:
       types:
         Piercing: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunRubber
+  name: pellet (.50 rubbershot)
+  parent: NFBaseBulletRubber
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 0
+  - type: StaminaDamageOnCollide
+    damage: 7 # 15 hits, 3 shots to stun
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -80,13 +93,15 @@
   categories: [ HideSpawnMenu ]
   id: NFPelletShotgunGrapeshot
   name: pellet (.50 grapeshot)
-  parent: NFBasePellet
+  parent: NFBasePelletRubber
   components:
   - type: Projectile
     damage:
       types:
-        Piercing: 5
-        Structural: 5
+        Piercing: 0
+        Structural: 0
+  - type: StaminaDamageOnCollide
+    damage: 30 # 4 hits to stun
 
 #region PelletsSpread
 - type: entity
@@ -104,6 +119,14 @@
   components:
   - type: ProjectileSpread
     proto: NFPelletShotgun
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunRubberSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunRubber]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletShotgunRubber
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -174,7 +197,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 10
+        Blunt: 0
   - type: StaminaDamageOnCollide
     damage: 30 # 4 hits to stun
 
@@ -182,7 +205,7 @@
   categories: [ HideSpawnMenu ]
   id: NFShotgunSlugFlare
   parent: NFPelletShotgunFlare
-  name: slug (.50)
+  name: slug (.50 flare)
   components:
   - type: Sprite
     noRot: false
@@ -215,7 +238,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 1
+        Blunt: 0
   - type: SolutionContainerManager
     solutions:
       ammo:
