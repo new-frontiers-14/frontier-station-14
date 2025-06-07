@@ -67,7 +67,24 @@
   result: MaterialCardboard1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    Paper: 100
+    Paper: 100 # 1 paper makes 1 cardboard and vice versa
+
+# Replaces SheetPaper
+- type: latheRecipe
+  id: NFSheetPaperFromWood
+  name: lathe-recipe-NFSheetPaperFromWood-name
+  result: SheetPaper1
+  parent: BaseMaterialsNoDiscountRecipe
+  materials:
+    Wood: 50
+
+- type: latheRecipe
+  id: NFSheetPaperFromCardboard
+  name: lathe-recipe-NFSheetPaperFromCardboard-name
+  result: SheetPaper1
+  parent: BaseMaterialsNoDiscountRecipe
+  materials:
+    Cardboard: 100 # 1 paper makes 1 cardboard and vice versa
 
 # Scrap ore
 # See the table for pricing here: https://docs.google.com/spreadsheets/d/1iXhlXwGOCthbExhnvaG8Q1KeVUp2pEptO8rXSRtYxvI/edit?usp=sharing

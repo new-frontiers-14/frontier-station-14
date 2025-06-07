@@ -1,0 +1,8 @@
+artifact-node-nf-class-1 = [color=#ff2bb1]Hylic[/color]
+artifact-node-nf-class-2 = [color=#ff8b2b]Psychic[/color]
+artifact-node-nf-class-3 = [color=#a9ff38]Noumenal[/color]
+artifact-node-nf-class-4 = [color=#2bfff8]Archon[/color]
+artifact-node-nf-class-5 = [color=#7883ff]Luminary[/color]
+artifact-node-nf-class-6 = [color=#be78ff]Demiurge[/color]
+artifact-node-nf-class-7 = [color=#ffda8a]Aeonic[/color]
+artifact-node-nf-class-8 = [color=#ffffff]Monadic[/color]
