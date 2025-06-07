@@ -477,7 +477,38 @@
   productEntity: PinpointerScanner
   icon: { sprite: _NF/Objects/Specific/Pirate/pinpointer_scanner.rsi, state: icon }
   cost:
-    Doubloon: 2
+    Doubloon: 3
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateNightGoggles
+  name: uplink-night-vision-name
+  description: uplink-night-vision-desc
+  productEntity: ClothingEyesNightVisionGogglesSyndie
+  discountCategory: rareDiscounts
+  cost:
+    Doubloon: 3
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateThermalGoggles
+  name: uplink-thermal-vision-name
+  description: uplink-thermal-vision-desc
+  productEntity: ClothingEyesThermalVisionGogglesSyndie
+  cost:
+    Doubloon: 3
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
