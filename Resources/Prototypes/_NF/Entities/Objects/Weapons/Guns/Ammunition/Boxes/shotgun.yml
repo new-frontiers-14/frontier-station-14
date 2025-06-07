@@ -33,6 +33,24 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  id: NFAmmunitionBoxShellShotgunRubber
+  parent: NFBaseAmmunitionBoxShellShotgun
+  name: shell box (.50 rubbershot)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunRubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#00b0ff"
+    - state: decal-shell-rubber
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
   id: NFAmmunitionBoxShellShotgunIncendiary
   parent: NFBaseAmmunitionBoxShellShotgun
   name: shell box (.50 incendiary)

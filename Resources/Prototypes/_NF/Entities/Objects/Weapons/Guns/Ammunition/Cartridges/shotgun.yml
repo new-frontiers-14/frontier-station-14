@@ -35,6 +35,21 @@
     proto: NFPelletShotgunSpread
 
 - type: entity
+  id: NFShellShotgunRubber
+  name: shell (.50 rubbershot)
+  parent: NFBaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+    - state: rubber
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFPelletShotgunRubberSpread
+  - type: SpentAmmoVisuals
+    state: "rubber"
+
+- type: entity
   id: NFShellShotgunIncendiary
   name: shell (.50 incendiary)
   parent: NFBaseShellShotgun

@@ -12,6 +12,19 @@
 
 - type: entity
   categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunRubber
+  name: pellet (.50 rubbershot)
+  parent: NFBaseBulletRubber
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 0
+  - type: StaminaDamageOnCollide
+    damage: 7 # 15 hits, 3 shots to stun
+
+- type: entity
+  categories: [ HideSpawnMenu ]
   id: NFPelletShotgunIncendiary
   name: pellet (.50 incendiary)
   parent: NFBasePelletIncendiary
@@ -107,6 +120,14 @@
 
 - type: entity
   categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunRubberSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunRubber]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletShotgunRubber
+
+- type: entity
+  categories: [ HideSpawnMenu ]
   id: NFPelletShotgunIncendiarySpread
   parent: [NFBasePelletShotgunSpread, NFPelletShotgunIncendiary]
   components:
@@ -174,7 +195,6 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 10
         Blunt: 0
   - type: StaminaDamageOnCollide
     damage: 30 # 4 hits to stun
@@ -216,7 +236,6 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 1
         Blunt: 0
   - type: SolutionContainerManager
     solutions:

@@ -91,6 +91,32 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
+      color: "#897e6a"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#897e6a"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#897e6a"
+
+- type: entity
+  id: NFMagazineShotgunDrumRubbershot
+  name: ammo drum (.50 shells, rubbershot)
+  parent: NFBaseMagazineShotgunDrum
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunRubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
       color: "#00b0ff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
