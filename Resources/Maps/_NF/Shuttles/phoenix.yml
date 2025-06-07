@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/02/2025 20:23:50
-  entityCount: 760
+  time: 06/07/2025 09:20:44
+  entityCount: 762
 maps: []
 grids:
 - 1
@@ -1783,6 +1783,20 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-6.5
       parent: 1
+- proto: BlueprintLithograph
+  entities:
+  - uid: 637
+    components:
+    - type: Transform
+      pos: 2.5,4.5
+      parent: 1
+- proto: BorgCharger
+  entities:
+  - uid: 490
+    components:
+    - type: Transform
+      pos: -1.5,2.5
+      parent: 1
 - proto: BoxFolderClipboard
   entities:
   - uid: 94
@@ -2620,6 +2634,13 @@ entities:
     - type: Transform
       pos: 5.5,4.5
       parent: 1
+- proto: ClothingHandsGlovesRobohands
+  entities:
+  - uid: 762
+    components:
+    - type: Transform
+      pos: -3.141442,2.5733297
+      parent: 1
 - proto: ClothingOuterCoatRobo
   entities:
   - uid: 250
@@ -2742,13 +2763,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-3.5
-      parent: 1
-- proto: CrateServiceJanitorialSupplies
-  entities:
-  - uid: 270
-    components:
-    - type: Transform
-      pos: -7.5,7.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -4438,13 +4452,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.8444803,-0.27319288
       parent: 1
-- proto: MechEquipmentGrabber
-  entities:
-  - uid: 490
-    components:
-    - type: Transform
-      pos: -3.1641889,2.6734304
-      parent: 1
 - proto: MicroManipulatorStockPart
   entities:
   - uid: 491
@@ -4471,12 +4478,19 @@ entities:
     - type: Transform
       pos: 1.633827,4.46507
       parent: 1
-- proto: Multitool
+- proto: MopBucketFull
   entities:
-  - uid: 495
+  - uid: 270
     components:
     - type: Transform
-      pos: 0.45144963,11.395395
+      pos: -7.5,7.5
+      parent: 1
+- proto: MopItem
+  entities:
+  - uid: 503
+    components:
+    - type: Transform
+      pos: -7.414266,7.5577774
       parent: 1
 - proto: NFAshtray
   entities:
@@ -4532,13 +4546,6 @@ entities:
     components:
     - type: Transform
       pos: 9.5,10.5
-      parent: 1
-- proto: PinpointerUniversal
-  entities:
-  - uid: 503
-    components:
-    - type: Transform
-      pos: -5.998787,10.62704
       parent: 1
 - proto: PlasticFlapsAirtightClear
   entities:
@@ -5411,6 +5418,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -11.5,8.5
       parent: 1
+- proto: TrashBag
+  entities:
+  - uid: 761
+    components:
+    - type: Transform
+      pos: -7.2234077,7.410325
+      parent: 1
 - proto: TwoWayLever
   entities:
   - uid: 636
@@ -5476,13 +5490,6 @@ entities:
           - Reverse
         - - Middle
           - Off
-- proto: VendingMachineRoboDrobe
-  entities:
-  - uid: 637
-    components:
-    - type: Transform
-      pos: -1.5,2.5
-      parent: 1
 - proto: WallReinforced
   entities:
   - uid: 638
@@ -6135,6 +6142,11 @@ entities:
       parent: 1
 - proto: WeaponGrapplingGun
   entities:
+  - uid: 495
+    components:
+    - type: Transform
+      pos: -6.1808767,10.701071
+      parent: 1
   - uid: 752
     components:
     - type: Transform
