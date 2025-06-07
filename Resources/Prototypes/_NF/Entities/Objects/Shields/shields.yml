@@ -9,3 +9,16 @@
     sprite: _NF/Objects/Weapons/Melee/e_shield.rsi
   - type: PointLight
     color: green
+
+- type: entity
+  name: metal shield
+  parent: [BaseC1Contraband, RiotShield ]
+  id: NFMetalShield
+  description: A sturdy metal shield. It has a window so you can wink at whatever is hitting you.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    state: metal-icon
+  - type: Item
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    heldPrefix: metal
