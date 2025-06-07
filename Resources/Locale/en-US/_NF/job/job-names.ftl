@@ -24,6 +24,8 @@ job-name-stc = Station Traffic Controller
 job-name-sr = Station Representative
 job-name-valet = Valet
 
+job-name-overall = Overall
+
 # Job titles
 job-title-ert-mail-carrier = ERT Mail Carrier
 
