@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/07/2025 11:09:31
+  time: 06/07/2025 11:13:51
   entityCount: 3726
 maps: []
 grids:
@@ -688,9 +688,8 @@ entities:
           4,2:
             0: 4095
           4,3:
-            2: 17
+            2: 85
             0: 61440
-            5: 68
           -1,-1:
             0: 65024
           -4,0:
@@ -753,9 +752,8 @@ entities:
           5,2:
             0: 4095
           5,3:
-            6: 17
+            2: 85
             0: 61440
-            7: 68
           5,4:
             0: 15
             2: 16896
@@ -1001,51 +999,6 @@ entities:
           - 0
           - 0
           - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 2500
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 2500
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 2500
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
           - 0
           - 0
           - 0
@@ -1986,12 +1939,42 @@ entities:
   - uid: 131
     components:
     - type: Transform
-      pos: 16.5,13.5
+      pos: 20.5,12.5
       parent: 1
   - uid: 132
     components:
     - type: Transform
+      pos: 20.5,13.5
+      parent: 1
+  - uid: 143
+    components:
+    - type: Transform
+      pos: 16.5,13.5
+      parent: 1
+  - uid: 144
+    components:
+    - type: Transform
       pos: 16.5,12.5
+      parent: 1
+  - uid: 145
+    components:
+    - type: Transform
+      pos: 18.5,13.5
+      parent: 1
+  - uid: 146
+    components:
+    - type: Transform
+      pos: 18.5,12.5
+      parent: 1
+  - uid: 147
+    components:
+    - type: Transform
+      pos: 22.5,12.5
+      parent: 1
+  - uid: 148
+    components:
+    - type: Transform
+      pos: 22.5,13.5
       parent: 1
   - uid: 1227
     components:
@@ -2491,42 +2474,6 @@ entities:
     components:
     - type: Transform
       pos: -8.5,14.5
-      parent: 1
-- proto: AtmosFixShuttleNitrogenMarker
-  entities:
-  - uid: 143
-    components:
-    - type: Transform
-      pos: 20.5,12.5
-      parent: 1
-  - uid: 144
-    components:
-    - type: Transform
-      pos: 20.5,13.5
-      parent: 1
-- proto: AtmosFixShuttleOxygenMarker
-  entities:
-  - uid: 145
-    components:
-    - type: Transform
-      pos: 22.5,12.5
-      parent: 1
-  - uid: 146
-    components:
-    - type: Transform
-      pos: 22.5,13.5
-      parent: 1
-- proto: AtmosFixShuttlePlasmaMarker
-  entities:
-  - uid: 147
-    components:
-    - type: Transform
-      pos: 18.5,13.5
-      parent: 1
-  - uid: 148
-    components:
-    - type: Transform
-      pos: 18.5,12.5
       parent: 1
 - proto: Autolathe
   entities:
@@ -7644,14 +7591,14 @@ entities:
       parent: 1
 - proto: CondimentCupDispenser10
   entities:
-  - uid: 2265
+  - uid: 2268
     components:
     - type: Transform
       pos: 2.5,-1.5
       parent: 1
 - proto: CondimentDispenser
   entities:
-  - uid: 2268
+  - uid: 2271
     components:
     - type: Transform
       pos: 3.5,-1.5
@@ -17033,13 +16980,6 @@ entities:
     - type: Transform
       pos: 19.5,11.5
       parent: 1
-- proto: PlasmaCanister
-  entities:
-  - uid: 2271
-    components:
-    - type: Transform
-      pos: 18.5,13.5
-      parent: 1
 - proto: PlushieAtmosian
   entities:
   - uid: 2273
@@ -19232,6 +19172,11 @@ entities:
       parent: 1
 - proto: StorageCanister
   entities:
+  - uid: 2265
+    components:
+    - type: Transform
+      pos: 18.5,13.5
+      parent: 1
   - uid: 2671
     components:
     - type: Transform
@@ -23602,14 +23547,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -10.5,3.5
       parent: 1
-- proto: WarningCO2
-  entities:
-  - uid: 3421
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 16.5,11.5
-      parent: 1
 - proto: WarningN2
   entities:
   - uid: 3422
@@ -23626,16 +23563,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 22.5,11.5
       parent: 1
-- proto: WarningPlasma
+- proto: WarningWaste
   entities:
+  - uid: 3421
+    components:
+    - type: Transform
+      pos: 16.5,11.5
+      parent: 1
   - uid: 3424
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 18.5,11.5
       parent: 1
-- proto: WarningWaste
-  entities:
   - uid: 3425
     components:
     - type: Transform
