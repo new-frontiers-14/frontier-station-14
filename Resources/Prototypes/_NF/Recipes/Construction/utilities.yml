@@ -7,3 +7,19 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
+
+# INTERCOM
+- type: construction
+  name: radio intercom
+  id: IntercomRadioAssembly
+  graph: IntercomRadio
+  startNode: start
+  targetNode: intercomRadio
+  category: construction-category-structures
+  description: An radio intercom.
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
