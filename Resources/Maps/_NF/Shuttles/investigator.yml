@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/07/2025 09:46:12
-  entityCount: 804
+  time: 06/07/2025 09:48:47
+  entityCount: 805
 maps: []
 grids:
 - 2
@@ -694,11 +694,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-3.5
       parent: 2
-  - uid: 335
+  - uid: 333
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,2.5
+      rot: -1.5707963267948966 rad
+      pos: 12.5,1.5
       parent: 2
 - proto: AtmosDeviceFanDirectional
   entities:
@@ -1280,7 +1280,7 @@ entities:
       parent: 2
 - proto: BlueprintLithograph
   entities:
-  - uid: 172
+  - uid: 336
     components:
     - type: Transform
       pos: 7.5,-0.5
@@ -1346,6 +1346,11 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-0.5
+      parent: 2
+  - uid: 43
+    components:
+    - type: Transform
+      pos: 12.5,1.5
       parent: 2
   - uid: 99
     components:
@@ -1611,11 +1616,6 @@ entities:
     components:
     - type: Transform
       pos: 7.5,2.5
-      parent: 2
-  - uid: 490
-    components:
-    - type: Transform
-      pos: 6.5,2.5
       parent: 2
   - uid: 679
     components:
@@ -2256,6 +2256,21 @@ entities:
       parent: 2
 - proto: CableMV
   entities:
+  - uid: 75
+    components:
+    - type: Transform
+      pos: 11.5,1.5
+      parent: 2
+  - uid: 172
+    components:
+    - type: Transform
+      pos: 11.5,0.5
+      parent: 2
+  - uid: 175
+    components:
+    - type: Transform
+      pos: 11.5,-0.5
+      parent: 2
   - uid: 200
     components:
     - type: Transform
@@ -2270,6 +2285,21 @@ entities:
     components:
     - type: Transform
       pos: -3.5,1.5
+      parent: 2
+  - uid: 213
+    components:
+    - type: Transform
+      pos: 11.5,-1.5
+      parent: 2
+  - uid: 214
+    components:
+    - type: Transform
+      pos: 10.5,-1.5
+      parent: 2
+  - uid: 219
+    components:
+    - type: Transform
+      pos: 9.5,-1.5
       parent: 2
   - uid: 257
     components:
@@ -2301,35 +2331,10 @@ entities:
     - type: Transform
       pos: -0.5,-3.5
       parent: 2
-  - uid: 336
-    components:
-    - type: Transform
-      pos: 6.5,2.5
-      parent: 2
-  - uid: 337
-    components:
-    - type: Transform
-      pos: 7.5,2.5
-      parent: 2
-  - uid: 338
-    components:
-    - type: Transform
-      pos: 8.5,2.5
-      parent: 2
-  - uid: 339
-    components:
-    - type: Transform
-      pos: 8.5,1.5
-      parent: 2
   - uid: 340
     components:
     - type: Transform
-      pos: 8.5,0.5
-      parent: 2
-  - uid: 341
-    components:
-    - type: Transform
-      pos: 8.5,-0.5
+      pos: 12.5,1.5
       parent: 2
   - uid: 342
     components:
@@ -2656,7 +2661,7 @@ entities:
       parent: 2
 - proto: ClothingBeltUtilityEngineering
   entities:
-  - uid: 213
+  - uid: 338
     components:
     - type: Transform
       pos: 10.560434,-2.435741
@@ -2717,7 +2722,7 @@ entities:
       parent: 2
 - proto: ComputerTabletopResearchAndDevelopment
   entities:
-  - uid: 175
+  - uid: 337
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -2853,7 +2858,7 @@ entities:
       parent: 2
 - proto: ExosuitFabricator
   entities:
-  - uid: 219
+  - uid: 341
     components:
     - type: Transform
       pos: 7.5,0.5
@@ -3762,12 +3767,12 @@ entities:
       parent: 2
 - proto: HandheldArtifactContainer
   entities:
-  - uid: 422
+  - uid: 486
     components:
     - type: Transform
       pos: 3.5,2.5
       parent: 2
-  - uid: 477
+  - uid: 490
     components:
     - type: Transform
       pos: 2.5,0.5
@@ -3781,7 +3786,7 @@ entities:
       parent: 2
 - proto: LockerResearchDirectorFilled
   entities:
-  - uid: 75
+  - uid: 335
     components:
     - type: Transform
       pos: 11.5,-0.5
@@ -3841,7 +3846,7 @@ entities:
       parent: 2
 - proto: MachineMiniAnomalyGenerator
   entities:
-  - uid: 333
+  - uid: 478
     components:
     - type: Transform
       pos: 10.5,1.5
@@ -4044,10 +4049,10 @@ entities:
     - type: Transform
       pos: -4.5,-0.5
       parent: 2
-  - uid: 478
+  - uid: 477
     components:
     - type: Transform
-      pos: 12.5,1.5
+      pos: 6.5,2.5
       parent: 2
 - proto: ReinforcedPlasmaWindow
   entities:
@@ -4820,7 +4825,7 @@ entities:
       parent: 2
 - proto: SuitStorageWallmountRD
   entities:
-  - uid: 214
+  - uid: 339
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -4838,12 +4843,6 @@ entities:
     - type: Transform
       pos: -2.5,-4.5
       parent: 2
-  - uid: 43
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 11.5,-2.5
-      parent: 2
   - uid: 114
     components:
     - type: Transform
@@ -4854,6 +4853,12 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-2.5
+      parent: 2
+  - uid: 286
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 11.5,-2.5
       parent: 2
   - uid: 364
     components:
@@ -5398,7 +5403,7 @@ entities:
       parent: 2
 - proto: WindoorSecure
   entities:
-  - uid: 286
+  - uid: 422
     components:
     - type: Transform
       pos: 11.5,2.5
