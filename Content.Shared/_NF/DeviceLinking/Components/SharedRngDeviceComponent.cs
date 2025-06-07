@@ -20,15 +20,15 @@ namespace Content.Shared._NF.DeviceLinking.Components
     [Serializable, NetSerializable]
     public enum SignalState : byte
     {
-        Momentary, // Instantaneous pulse high, compatibility behavior
-        Low,
-        High
+        Momentary = 0, // Instantaneous pulse high, compatibility behavior
+        Low = 1,
+        High = 2
     }
 
     #endregion
 
     /// <summary>
-    /// Shared component for RNG device that contains networked UI state data
+    /// Shared component for RNG device that contains UI-relevant data that needs to be networked to clients.
     /// </summary>
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class RngDeviceComponent : Component
@@ -36,8 +36,8 @@ namespace Content.Shared._NF.DeviceLinking.Components
         /// <summary>
         /// Number of output ports this device has.
         /// </summary>
-        [DataField("outputs"), AutoNetworkedField]
-        public int Outputs { get; set; } = 6;
+        [DataField, AutoNetworkedField]
+        public int Outputs = 6;
 
         /// <summary>
         /// Current signal state of the device
@@ -48,65 +48,32 @@ namespace Content.Shared._NF.DeviceLinking.Components
         /// <summary>
         /// Whether the device is muted
         /// </summary>
-        [DataField("muted"), AutoNetworkedField]
-        public bool Muted { get; set; }
+        [DataField, AutoNetworkedField]
+        public bool Muted;
 
         /// <summary>
         /// Target number for percentile dice (1-100). Only used when Outputs = 2.
         /// </summary>
-        [DataField("targetNumber"), AutoNetworkedField]
-        public int TargetNumber { get; set; } = 50;
+        [DataField, AutoNetworkedField]
+        public int TargetNumber = 50;
 
         /// <summary>
         /// When enabled, sends High signal to selected port and Low signals to others
         /// </summary>
-        [DataField("edgeMode"), AutoNetworkedField]
-        public bool EdgeMode { get; set; }
+        [DataField, AutoNetworkedField]
+        public bool EdgeMode;
 
         /// <summary>
         /// The last value rolled (1-100 for percentile, 1-N for other dice)
         /// </summary>
-        [DataField("lastRoll"), AutoNetworkedField]
-        public int LastRoll { get; set; }
+        [DataField, AutoNetworkedField]
+        public int LastRoll;
 
         /// <summary>
         /// The last output port that was triggered
         /// </summary>
-        [DataField("lastOutputPort"), AutoNetworkedField]
-        public int LastOutputPort { get; set; }
-    }
-
-    /// <summary>
-    /// Represents the state of an RNG device that can be sent to the client
-    /// </summary>
-    [Serializable, NetSerializable]
-    public sealed class RngDeviceBoundUserInterfaceState : BoundUserInterfaceState
-    {
-        public int LastRoll { get; }
-        public int LastOutputPort { get; }
-        public bool Muted { get; }
-        public bool EdgeMode { get; }
-        public int TargetNumber { get; }
-        public int Outputs { get; }
-        public SignalState State { get; }
-
-        public RngDeviceBoundUserInterfaceState(
-            int lastRoll,
-            int lastOutputPort,
-            bool muted,
-            bool edgeMode,
-            int targetNumber,
-            int outputs,
-            SignalState state)
-        {
-            LastRoll = lastRoll;
-            LastOutputPort = lastOutputPort;
-            Muted = muted;
-            EdgeMode = edgeMode;
-            TargetNumber = targetNumber;
-            Outputs = outputs;
-            State = state;
-        }
+        [DataField, AutoNetworkedField]
+        public int LastOutputPort;
     }
 
     [Serializable, NetSerializable]

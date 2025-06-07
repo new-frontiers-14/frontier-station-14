@@ -4,14 +4,15 @@ using Content.Shared._NF.DeviceLinking.Events;
 using Robust.Client.GameObjects;
 using Robust.Shared.Timing;
 using Content.Shared.Popups;
-using Content.Shared.Examine;
 using static Content.Shared._NF.DeviceLinking.Visuals.RngDeviceVisuals;
 using Content.Shared.UserInterface;
 using Content.Shared._NF.DeviceLinking.Systems;
 
 namespace Content.Client._NF.DeviceLinking.Systems;
 
-// Client-side system for RNG device functionality
+/// <summary>
+/// Client-side system for RNG device functionality
+/// </summary>
 public sealed class RngDeviceSystem : SharedRngDeviceSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -23,7 +24,6 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
         base.Initialize();
         SubscribeLocalEvent<RngDeviceComponent, AfterAutoHandleStateEvent>(OnRngDeviceState);
         SubscribeLocalEvent<RngDeviceVisualsComponent, RollEvent>(OnRoll);
-        SubscribeLocalEvent<RngDeviceComponent, ExaminedEvent>(OnExamine);
     }
 
     private void OnRngDeviceState(Entity<RngDeviceComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -32,21 +32,6 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
         if (_ui.TryGetOpenUi(ent.Owner, RngDeviceUiKey.Key, out var bui))
         {
             bui.Update();
-        }
-    }
-
-    private void OnExamine(Entity<RngDeviceComponent> ent, ref ExaminedEvent args)
-    {
-        if (!args.IsInDetailsRange)
-            return;
-
-        // Use args.PushGroup to organize the examine text
-        using (args.PushGroup("RngDevice"))
-        {
-            args.PushMarkup(Loc.GetString("rng-device-examine-last-roll", ("roll", ent.Comp.LastRoll)));
-
-            if (ent.Comp.Outputs == 2)  // Only show port info for percentile die
-                args.PushMarkup(Loc.GetString("rng-device-examine-last-port", ("port", ent.Comp.LastOutputPort)));
         }
     }
 
