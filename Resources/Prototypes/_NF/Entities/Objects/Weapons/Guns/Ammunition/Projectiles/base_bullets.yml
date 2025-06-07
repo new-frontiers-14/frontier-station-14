@@ -54,6 +54,23 @@
     color: "#ddddddFF"
     length: 1
 
+- type: entity
+  id: NFBasePelletRubber
+  parent: NFBaseBulletRubber
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: pellet
+      color: "#00b0ffFF"
+      shader: unshaded
+    - state: pellet-trace
+      color: "#00b0ffBB"
+      shader: unshaded
+  - type: Tracer
+    color: "#00b0ffFF"
+    length: 1
+
 #region Bullets
 - type: entity
   id: NFBaseBulletOverpressure
