@@ -119,6 +119,11 @@
     - TeslaEngine
     - SingularityTeslaEngine
     - Power
+  - type: DangerTethered # Frontier
+  - type: RadarBlip # Frontier
+    scale: 4
+    shape: Star
+    visibleFromOtherGrids: true
 
 - type: entity
   id: TeslaMiniEnergyBall
@@ -154,3 +159,7 @@
       shader: unshaded # Wizden#37444
   - type: Electrified
     requirePower: false
+  - type: DangerTethered # Frontier
+  - type: RadarBlip # Frontier
+    shape: Star # Frontier
+    visibleFromOtherGrids: true # Frontier
