@@ -1,5 +1,5 @@
 # BASE
-## AI packages
+#region AI packages
 - type: entity
   id: MobRogueSiliconAISimpleMelee
   abstract: true
@@ -38,11 +38,14 @@
       SoundTargetInLOS: !type:SoundPathSpecifier
         path: /Audio/Effects/double_beep.ogg
 
-## Mob base
+#region Mob base
 - type: entity
   name: hivemind unit
   abstract: true
   parent:
+  - NFMobNoEquipmentOnGib
+  - MobMovementSpeedModifierRanged
+  - MobStaminaBoss # No stunning bots
   - BaseC3MobConstruct
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
@@ -90,8 +93,6 @@
       - Heat
       - Shock
     locPrefix: silicon
-  - type: Stamina
-    critThreshold: 100
   - type: Repairable
     doAfterDelay: 10
     allowSelfRepair: true
@@ -125,13 +126,19 @@
   - type: AutoWakeUp
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: FootstepBorg
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
+      collection: NFScrapbotFootstep
+  - type: SpamEmitSound
+    minInterval: 10
+    maxInterval: 60
+    sound:
+      collection: NFScrapbotChatter
+      params:
+        variation: 0.125
+  - type: SoundWhileAlive
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   id: MobRogueSiliconScrapBase
   name: scrap unit
@@ -181,8 +188,6 @@
     speedModifierThresholds:
       30: 0.7
       40: 0.5
-  - type: Stamina
-    critThreshold: 600
 
 - type: entity
   id: MobRogueSiliconProjectileBatteryAmmo
@@ -239,8 +244,6 @@
     speedModifierThresholds:
       14: 0.7
       20: 0.5
-  - type: Stamina
-    critThreshold: 600
   - type: Gun
     showExamineText: false
     fireRate: 0.75
@@ -255,14 +258,15 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: SoundWhileAlive
   - type: AmbientSound
-    volume: -9
+    volume: -6
     range: 5
-    sound: /Audio/Effects/shuttle_thruster.ogg
+    sound: /Audio/_NF/Effects/Scrapbots/thruster-droning.ogg
 
 # VARIATIONS
 #region Tier 1
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -326,6 +330,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -376,6 +381,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -444,9 +450,9 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: SoundWhileAlive
   - type: AmbientSound
-    volume: -9
+    volume: -6
     range: 5
-    sound: /Audio/Effects/shuttle_thruster.ogg
+    sound: /Audio/_NF/Effects/Scrapbots/thruster-droning.ogg
 
 - type: entity
   parent:
@@ -474,6 +480,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -611,6 +618,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierSpecial
   - MobRogueSiliconDroneBase
   id: MobRogueSiliconViscerator
   name: viscerator unit
@@ -646,9 +654,6 @@
     speedModifierThresholds:
       7: 0.7
       10: 0.5
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 5
-    baseWalkSpeed: 5
   - type: MeleeWeapon
     attackRate: 1.0
     animation: WeaponArcClaw
@@ -664,6 +669,7 @@
 #region Tier 2
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -701,6 +707,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -816,6 +823,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   id: MobRogueSiliconCatcher
@@ -882,6 +890,7 @@
 #region Tier 3
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -921,8 +930,6 @@
     speedModifierThresholds:
       54: 0.7
       70: 0.5
-  - type: Stamina
-    critThreshold: 600
   - type: ProjectileBatteryAmmoProvider
     proto: NFTeslaGunBullet
     fireCost: 100
@@ -955,7 +962,7 @@
   - MobRogueSiliconDroneBase
   - MobPassiveRegen
   - MobRogueSiliconHitscanBatteryAmmo
-  - NFMobBossRestrictions
+  - NFMobBossRestrictions # Cannot use HostileBossBase, conflicts with silicon definitions
   id: MobRogueSiliconGuardian
   name: guardian unit
   description: An advanced security silicon, typically used to safeguard high-security areas such as vaults and server rooms. After being hacked, this unit carries out the AI's will.
@@ -999,8 +1006,6 @@
     speedModifierThresholds:
       96: 0.7
       130: 0.5
-  - type: Stamina
-    critThreshold: 600
   - type: HitscanBatteryAmmoProvider
     proto: NFRedLaserPractice
     fireCost: 10
@@ -1022,11 +1027,37 @@
     radius: 2
     energy: 2.5
     color: "#47f8ff"
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-guardian-unit-dungeon-name
+    description: ghost-role-information-one-star-unit-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  # Radar
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar
+  - type: RadarConsole
+    followEntity: true
+    maxIffRange: 256
+    hideCoords: true
+  - type: ComplexInteraction # Needed to interact with innate radar console
 
 - type: entity
   parent:
   - MobRogueSiliconBase
   - MobPassiveRegen
+  - NFMobBossRestrictions # Cannot use HostileBossBase, conflicts with silicon definitions
   id: MobRogueSiliconBoss
   name: one star unit
   description: An autonomous combat-grade mech, typically used for offensive operations. Now a rogue AI's elite guard. Equipped with missile launchers, exercise extreme caution.
@@ -1056,10 +1087,8 @@
     speedModifierThresholds:
       144: 0.7
       192: 0.5
-  - type: Stamina
-    critThreshold: 600
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgeRocketMini
+    proto: NFBulletRocketMini # NFCartridgeRocketMini
     capacity: 10
     count: 10
   - type: Gun
@@ -1075,6 +1104,31 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-one-star-unit-dungeon-name
+    description: ghost-role-information-one-star-unit-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  # Radar
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar
+  - type: RadarConsole
+    followEntity: true
+    maxIffRange: 256
+    hideCoords: true
+  - type: ComplexInteraction # Needed to interact with innate radar console
 
 #region Asteroid
 ## Tier 1
@@ -1087,9 +1141,6 @@
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.6 # -20% from normal speed
-    baseSprintSpeed : 3.6 # -20% from normal speed
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootT0
@@ -1156,9 +1207,6 @@
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.6 # -20% from normal speed
-    baseSprintSpeed : 3.6 # -20% from normal speed
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootT0
@@ -1212,9 +1260,6 @@
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.6 # -20% from normal speed
-    baseSprintSpeed : 3.6 # -20% from normal speed
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootT0
@@ -1279,9 +1324,9 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: SoundWhileAlive
   - type: AmbientSound
-    volume: -9
+    volume: -6
     range: 5
-    sound: /Audio/Effects/shuttle_thruster.ogg
+    sound: /Audio/_NF/Effects/Scrapbots/thruster-droning.ogg
 
 - type: entity
   parent:
