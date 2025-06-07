@@ -211,11 +211,13 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             return;
 
         // Frontier: bound motion to a box
-        var originalPosition = _position;
-        _position += args.Relative;
-        _position.X = Math.Clamp(_position.X, _bounds.Left, _bounds.Right);
-        _position.Y = Math.Clamp(_position.Y, _bounds.Bottom, _bounds.Top);
-        var diff = _position - originalPosition;
+        // FIXME: this bounding doesn't work
+        // var originalPosition = _position;
+        // _position += args.Relative;
+        // _position.X = Math.Clamp(_position.X, _bounds.Left, _bounds.Right);
+        // _position.Y = Math.Clamp(_position.Y, _bounds.Bottom, _bounds.Top);
+        // var diff = _position - originalPosition;
+        var diff = args.Relative;
         // End Frontier: bound motion to a box
 
         // Move all tech
