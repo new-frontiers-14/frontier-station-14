@@ -305,6 +305,22 @@
           - PirateUplink
 
 - type: listing
+  id: UplinkPirateShotgunAmmoRubber
+  name:  uplink-pirate-shotgunammo-rubber-name
+  description: uplink-pirate-shotgunammo-rubber-desc
+  productEntity: NFAmmunitionBoxShellShotgunBuckshotRubber
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-buckshot }
+  cost:
+    Doubloon: 1
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
   id: UplinkPirateRevolverAmmo
   name:  uplink-pirate-revolverammo-name
   description: uplink-pirate-revolverammo-desc
@@ -321,13 +337,45 @@
           - PirateUplink
 
 - type: listing
+  id: UplinkPirateRevolverAmmoRubber
+  name:  uplink-pirate-revolverammo-rubber-name
+  description: uplink-pirate-revolverammo-rubber-desc
+  productEntity: NFAmmunitionBoxPistol45Rubber
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: icon-45 }
+  cost:
+    Doubloon: 1
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
   id: UplinkPirateFlintlockAmmo
   name:  uplink-pirate-flintlockammo-name
   description: uplink-pirate-flintlockammo-desc
-  productEntity: NFAmmunitionBoxRifle60
+  productEntity: NFAmmunitionBoxRifle60Rubber
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60 }
   cost:
     Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateFlintlockAmmoRubber
+  name:  uplink-pirate-flintlockammo-rubber-name
+  description: uplink-pirate-flintlockammo-desc
+  productEntity: NFAmmunitionBoxRifle60Rubber
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60 }
+  cost:
+    Doubloon: 1
   categories:
     - UplinkPirateAmmo
   conditions:

@@ -164,17 +164,20 @@ uplink-security-speedloader-desc = A revolver speed loader that comes pre-loaded
 uplink-security-speedloaderrubber-name = .45 Pistol Rubber Speed Loader
 uplink-security-speedloaderrubber-desc = A revolver speed loader that comes pre-loaded with .45 rubber cartridges.
 
-uplink-security-shotlethal-name = Lethal Shotgun Shells
+uplink-security-shotlethal-name = Lethal Shotgun Buckshot Shells
 uplink-security-shotlethal-desc = A box of lethal .50 calibre buckshot shotgun shells.
 
-uplink-security-shotbeanbag-name = Beanbag Shotgun Shells
+uplink-security-shotslug-name = Lethal Shotgun Slug Shells
+uplink-security-shotslug-desc = A box of lethal .50 calibre slug shotgun shells.
+
+uplink-security-shotrubber-name = Non-lethal Shotgun Rubbershot Shells
+uplink-security-shotrubber-desc = A box of non-lethal .50 calibre rubber shotgun shells.
+
+uplink-security-shotbeanbag-name = Non-lethal Shotgun Beanbag Shells
 uplink-security-shotbeanbag-desc = A box of non-lethal .50 calibre beanbag shotgun shells.
 
 uplink-security-shotincend-name = Incendiary Shotgun Shells
 uplink-security-shotincend-desc = A box of lethal .50 calibre incendiary shotgun shells.
-
-uplink-security-shotslug-name = Lethal Shotgun Slug Shells
-uplink-security-shotslug-desc = A box of lethal .50 calibre slug shotgun shells.
 
 uplink-security-cash1000-name = 1,000 Spesos
 uplink-security-cash1000-desc = Cold, hard cash.
@@ -279,14 +282,23 @@ uplink-pirate-satchel-desc = An inconspicuous satchel filled with pirate goodies
 uplink-pirate-flintlock-name = Flintlock Pistol
 uplink-pirate-flintlock-desc = A pirate captain's companion. Yarrr! Uses .60 anti-materiel ammo.
 
-uplink-pirate-shotgunammo-name = Blunderbuss Shell Box
-uplink-pirate-shotgunammo-desc = A box of .50 shotgun shells, used in the blunderbuss.
+uplink-pirate-shotgunammo-name = Blunderbuss Buckshot Box
+uplink-pirate-shotgunammo-desc = A box of lethal .50 calibre buckshot shells, used in the blunderbuss.
 
-uplink-pirate-revolverammo-name = Pirate Revolver Ammo Box
-uplink-pirate-revolverammo-desc = A box of .45 pistol rounds, used in the pirate revolver.
+uplink-pirate-shotgunammo-rubber-name = Blunderbuss Rubbershot Box
+uplink-pirate-shotgunammo-rubber-desc = A box of non-lethal .50 shotgun rubber shells, used in the blunderbuss.
 
-uplink-pirate-flintlockammo-name = Flintlock Pistol Ammo Box
-uplink-pirate-flintlockammo-desc = A box of .60 anti-materiel rounds, used in the flintlock pistol.
+uplink-pirate-revolverammo-name = Pirate Revolver Lethal Ammo Box
+uplink-pirate-revolverammo-desc = A box of lethal .45 pistol rounds, used in the pirate revolver.
+
+uplink-pirate-revolverammo-rubber-name = Pirate Revolver Rubber Ammo Box
+uplink-pirate-revolverammo-rubber-desc = A box non-lethal of .45 pistol rounds, used in the pirate revolver.
+
+uplink-pirate-flintlockammo-name = Flintlock Pistol Lethal Ammo Box
+uplink-pirate-flintlockammo-desc = A box of lethal .60 anti-materiel rounds, used in the flintlock pistol.
+
+uplink-pirate-flintlockammo-rubber-name = Flintlock Pistol Rubber Ammo Box
+uplink-pirate-flintlockammo-rubber-desc = A box of non-lethal .60 anti-personnel rounds, used in the flintlock pistol.
 
 uplink-pirate-ecutlass-name = Energy Cutlass
 uplink-pirate-ecutlass-desc = An energy cutlass!

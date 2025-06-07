@@ -928,6 +928,22 @@
           - SecurityUplink
 
 - type: listing
+  id: UplinkSecurityShotRubber
+  name:  uplink-security-shotrubber-name
+  description: uplink-security-shotrubber-desc
+  productEntity: NFAmmunitionBoxShellShotgunRubber
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-rubber }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
   id: UplinkSecurityShotSlug
   name:  uplink-security-shotslug-name
   description: uplink-security-shotslug-desc
