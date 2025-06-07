@@ -1,4 +1,3 @@
-using Content.Server._NF.Auth;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -30,6 +29,9 @@ using Content.Shared.Chat;
 using Content.Shared.Kitchen;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
+using Content.Server._NF.Auth; // Frontier
+using Content.Server._RMC14.Discord; // RMC14
+using Content.Server._RMC14.Mentor; // RMC14
 
 namespace Content.Server.IoC
 {
@@ -79,6 +81,8 @@ namespace Content.Server.IoC
             IoCManager.Register<MultiServerKickManager>();
             IoCManager.Register<CVarControlManager>();
             IoCManager.Register<MiniAuthManager>(); //Frontier
+            IoCManager.Register<RMCDiscordManager>(); // RMC14
+            IoCManager.Register<MentorManager>(); // RMC14
         }
     }
 }
