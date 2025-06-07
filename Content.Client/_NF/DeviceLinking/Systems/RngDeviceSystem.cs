@@ -73,13 +73,16 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
         if (!TryComp<AppearanceComponent>(ent, out var appearance))
             return;
 
-        var statePrefix = outputs == 2 ? "percentile" : $"d{outputs}";
+        // Get the StatePrefix from the RngDeviceComponent
+        if (!TryComp<RngDeviceComponent>(ent, out var rngComp))
+            return;
+
         var stateNumber = outputs switch
         {
             2 => roll == 100 ? 0 : (roll / 10) * 10,  // Show "00" for 100, otherwise round down to nearest 10
             10 => roll == 10 ? 0 : roll,  // Show "0" for 10
             _ => roll
         };
-        _appearance.SetData(ent, State, $"{statePrefix}_{stateNumber}", appearance);
+        _appearance.SetData(ent, State, $"{rngComp.StatePrefix}_{stateNumber}", appearance);
     }
 }

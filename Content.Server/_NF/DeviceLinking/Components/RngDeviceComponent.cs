@@ -29,10 +29,4 @@ public sealed partial class RngDeviceServerComponent : Component
     /// </summary>
     [DataField]
     public SignalState State = SignalState.Low;
-
-    /// <summary>
-    /// The state prefix for visual updates (e.g. "percentile", "d6", etc.).
-    /// </summary>
-    [DataField]
-    public string StatePrefix = "d6";
 }

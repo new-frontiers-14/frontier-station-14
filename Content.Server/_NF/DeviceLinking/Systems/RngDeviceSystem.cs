@@ -68,14 +68,6 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
         }
         _deviceLink.EnsureSourcePorts(ent.Owner, ports);
 
-        // Ensure the state prefix is set in the server component
-        if (string.IsNullOrEmpty(serverComp.StatePrefix))
-        {
-            throw new InvalidOperationException($"StatePrefix not set for RngDevice with {ent.Comp.Outputs} outputs. StatePrefix must be set in the prototype.");
-        }
-
-        // Copy StatePrefix to shared component so it's accessible to the client
-        ent.Comp.StatePrefix = serverComp.StatePrefix;
         Dirty(ent);
     }
 
