@@ -15,6 +15,9 @@
   - HydroponicsTrayMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
   - PlantAnalyzer # Frontier
+  technologyPrerequisites: # Frontier
+  - FoodService # Frontier
+  position: 3, -2 # Frontier
 
 - type: technology
   id: CritterMechs
@@ -35,6 +38,9 @@
   - HamtrPeripheralsElectronics
   - MechEquipmentGrabberSmall
   - VimHarness
+  technologyPrerequisites: # Frontier
+  - AdvancedToolsTechnology # Frontier
+  position: 2, 9 # Frontier
 
 - type: technology
   id: AudioVisualCommunication
@@ -55,6 +61,7 @@
   - TelecomServerCircuitboard
 #  - HolopadMachineCircuitboard # Frontier: needs work before use
   - NFHolopadShipMachineCircuitboard # Frontier
+  position: 2, -1 # Frontier
 
 - type: technology
   id: AdvancedEntertainment
@@ -71,6 +78,9 @@
     - DawInstrumentMachineCircuitboard
     - MassMediaCircuitboard
     - JukeboxCircuitBoard
+  technologyPrerequisites: # Frontier
+  - AudioVisualCommunication # Frontier
+  position: 3, -1 # Frontier
 
 - type: technology
   id: MeatManipulation
@@ -85,6 +95,9 @@
   - FatExtractorMachineCircuitboard
   - BiogeneratorMachineCircuitboard # Frontier BiofabricatorMachineCircuitboard<BiogeneratorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
+  technologyPrerequisites: # Frontier
+  - AdvancedFoodService # Frontier
+  position: 4, -3 # Frontier
 
 # Tier 2
 
@@ -104,6 +117,9 @@
   - FauxTileAstroIce
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
+  technologyPrerequisites: # Frontier
+  - IndustrialEngineering # Frontier
+  position: -2, 9 # Frontier
 
 - type: technology
   id: BiochemicalStasis
@@ -119,6 +135,9 @@
   - CryoPodMachineCircuitboard
   - CryostasisBeaker
   - SyringeCryostasis
+  technologyPrerequisites: # Frontier
+  - IndustrialMedicine # Frontier
+  position: 3, 5 # Frontier
 
 - type: technology # Merge with other T2 medical research if possible!
   id: MechanizedTreatment
@@ -132,6 +151,9 @@
   recipeUnlocks:
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedParamedic # Frontier
+  technologyPrerequisites: # Frontier
+  - IndustrialMedicine # Frontier
+  position: 3, 2 # Frontier
 
 - type: technology
   id: AdvancedCleaning
@@ -144,10 +166,13 @@
   cost: 10000
   recipeUnlocks:
   - AdvMopItem
-  - MegaSprayBottle
+  # - MegaSprayBottle # Frontier
   - BorgModuleAdvancedCleaning
-  - ReinforcedJug # Frontier
   - PortablePumpMachineCircuitBoard # Frontier
+  - JanicartFlatpack
+  technologyPrerequisites: # Frontier
+  - AdvancedSpray # Frontier
+  position: 3, 0 # Frontier
 
 - type: technology
   id: HONKMech
@@ -168,6 +193,9 @@
   - HonkerPeripheralsElectronics
   - HonkerTargetingElectronics
   - MechEquipmentHorn
+  technologyPrerequisites: # Frontier
+  - AdvancedToolsTechnology # Frontier
+  position: 2, 7 # Frontier
 
 - type: technology
   id: AdvancedSpray
@@ -181,6 +209,9 @@
   recipeUnlocks:
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
+  - ReinforcedJug # Frontier
+  - MegaSprayBottle # Frontier
+  position: 2, 0 # Frontier
 
 # Frontier
 
@@ -209,6 +240,9 @@
   cost: 4000
   recipeUnlocks:
   - PushHorn
+  technologyPrerequisites: # Frontier
+  - HONKMech # Frontier
+  position: 3, 7 # Frontier
 
 # Tier 3
 
@@ -235,6 +269,9 @@
   cost: 15000 # Frontier - 10000<15000
   recipeUnlocks:
   - ClothingShoesBootsSpeed
+  technologyPrerequisites: # Frontier
+  - MagnetsTechAdvanced # Frontier
+  position: -1, 1 # Frontier
 
 - type: technology
   id: BluespaceChemistry
@@ -250,3 +287,6 @@
   - SyringeBluespace
   - JugBluespace # Frontier
   - VialBluespace # Frontier
+  technologyPrerequisites: # Frontier
+  - IndustrialMedicine # Frontier
+  position: 3, 3 # Frontier

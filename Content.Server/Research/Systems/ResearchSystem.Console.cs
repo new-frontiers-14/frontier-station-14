@@ -7,12 +7,14 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
+using Content.Shared._Goobstation.Research; // Goobstation: R&D Console Rework
+using System.Linq; // R&D Console Rework
 
 namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
-    // [Dependency] private readonly EmagSystem _emag = default!; // Frontier: useless
+    // [Dependency] private readonly EmagSystem _emag = default!; // Frontier: silent R&D computers, useless
 
     private void InitializeConsole()
     {
@@ -22,7 +24,7 @@ public sealed partial class ResearchSystem
         SubscribeLocalEvent<ResearchConsoleComponent, ResearchRegistrationChangedEvent>(OnConsoleRegistrationChanged);
         SubscribeLocalEvent<ResearchConsoleComponent, TechnologyDatabaseModifiedEvent>(OnConsoleDatabaseModified);
         SubscribeLocalEvent<ResearchConsoleComponent, TechnologyDatabaseSynchronizedEvent>(OnConsoleDatabaseSynchronized);
-        //SubscribeLocalEvent<ResearchConsoleComponent, GotEmaggedEvent>(OnEmagged); // Frontier: unneeded
+        //SubscribeLocalEvent<ResearchConsoleComponent, GotEmaggedEvent>(OnEmagged); // Frontier: silent R&D computers, useless
     }
 
     private void OnConsoleUnlock(EntityUid uid, ResearchConsoleComponent component, ConsoleUnlockTechnologyMessage args)
@@ -69,6 +71,7 @@ public sealed partial class ResearchSystem
     private void OnConsoleBeforeUiOpened(EntityUid uid, ResearchConsoleComponent component, BeforeActivatableUIOpenEvent args)
     {
         SyncClientWithServer(uid);
+        UpdateConsoleInterface(uid, component); // Frontier: ensure first open has a valid tech state
     }
 
     private void UpdateConsoleInterface(EntityUid uid, ResearchConsoleComponent? component = null, ResearchClientComponent? clientComponent = null)
@@ -76,19 +79,41 @@ public sealed partial class ResearchSystem
         if (!Resolve(uid, ref component, ref clientComponent, false))
             return;
 
-        ResearchConsoleBoundInterfaceState state;
+        // Goobstation: R&D Console Rework Start
+        var allTechs = PrototypeManager.EnumeratePrototypes<TechnologyPrototype>();
+        Dictionary<string, ResearchAvailability> techList;
+        var points = 0;
 
-        if (TryGetClientServer(uid, out _, out var serverComponent, clientComponent))
+        if (TryGetClientServer(uid, out var serverUid, out var server, clientComponent) &&
+            TryComp<TechnologyDatabaseComponent>(serverUid, out var db))
         {
-            var points = clientComponent.ConnectedToServer ? serverComponent.Points : 0;
-            state = new ResearchConsoleBoundInterfaceState(points);
+            var unlockedTechs = new HashSet<string>(db.UnlockedTechnologies);
+            techList = allTechs.ToDictionary(
+                proto => proto.ID,
+                proto =>
+                {
+                    if (unlockedTechs.Contains(proto.ID))
+                        return ResearchAvailability.Researched;
+
+                    var prereqsMet = proto.TechnologyPrerequisites.All(p => unlockedTechs.Contains(p));
+                    var canAfford = server.Points >= proto.Cost;
+
+                    return prereqsMet ?
+                        (canAfford ? ResearchAvailability.Available : ResearchAvailability.PrereqsMet)
+                        : ResearchAvailability.Unavailable;
+                });
+
+            if (clientComponent != null)
+                points = clientComponent.ConnectedToServer ? server.Points : 0;
         }
         else
         {
-            state = new ResearchConsoleBoundInterfaceState(default);
+            techList = allTechs.ToDictionary(proto => proto.ID, _ => ResearchAvailability.Unavailable);
         }
 
-        _uiSystem.SetUiState(uid, ResearchConsoleUiKey.Key, state);
+        _uiSystem.SetUiState(uid, ResearchConsoleUiKey.Key,
+            new ResearchConsoleBoundInterfaceState(points, techList));
+        // Goobstation: R&D Console Rework End
     }
 
     private void OnPointsChanged(EntityUid uid, ResearchConsoleComponent component, ref ResearchServerPointsChangedEvent args)

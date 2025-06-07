@@ -1,6 +1,23 @@
 # Tier 2
 
 - type: technology
+  id: AdvancedParts
+  name: research-technology-advanced-parts
+  icon:
+    sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
+    state: advanced_matter_bin
+  discipline: Experimental
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - AdvancedCapacitorStockPart
+  - AdvancedMatterBinStockPart
+  - NanoManipulatorStockPart
+  technologyPrerequisites:
+  - AnomalyCoreHarnessing
+  position: 2, -6
+
+- type: technology
   id: RapidPartExchange
   name: research-technology-rped
   icon:
@@ -11,6 +28,9 @@
   cost: 7500
   recipeUnlocks:
   - RPED
+  technologyPrerequisites:
+  - AdvancedParts
+  position: 3, -5
 
 # Tier 3
 
@@ -27,6 +47,9 @@
   - SuperCapacitorStockPart
   - SuperMatterBinStockPart
   - PicoManipulatorStockPart
+  technologyPrerequisites:
+  - AdvancedParts
+  position: 3, -6
 
 - type: technology
   id: MagnetsTechAdvanced
@@ -36,11 +59,14 @@
     state: icon
   discipline: Experimental
   tier: 3
-  cost: 10000
+  cost: 20000 # Frontier: 10000<20000
   recipeUnlocks:
   - ClothingShoesBootsMagAdv
+  - ClothingShoesBootsMagSecurity
+  - ClothingShoesBootsMagMercenary
   technologyPrerequisites:
   - MagnetsTech
+  position: -2, 1
 
 - type: technology
   id: HardsuitsExperimentalRD
@@ -53,3 +79,6 @@
   cost: 15000
   recipeUnlocks:
   - ClothingOuterHardsuitRd
+  technologyPrerequisites:
+  - HardsuitsArmored
+  position: 0, -2
