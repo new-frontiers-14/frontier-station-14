@@ -65,12 +65,5 @@ public sealed partial class RCDComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool IsShipyardRCD;
-
-    /// <summary>
-    /// Frontier - Shipyard RCD
-    /// The uid to which this RCD is limited to be used on.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid? LinkedShuttleUid = null;
     // End Frontier: ship-based RCDs
 }
