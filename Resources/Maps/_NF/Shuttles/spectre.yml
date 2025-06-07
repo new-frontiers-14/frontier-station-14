@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/06/2025 14:07:43
-  entityCount: 1264
+  time: 06/07/2025 10:02:42
+  entityCount: 1272
 maps: []
 grids:
 - 3
@@ -1277,6 +1277,12 @@ entities:
     - type: Transform
       pos: 1.5,0.5
       parent: 3
+    - type: DeviceList
+      devices:
+      - 958
+      - 973
+      - 974
+      - 1093
   - uid: 989
     components:
     - type: Transform
@@ -1522,6 +1528,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-4.5
       parent: 3
+    - type: DeviceNetwork
+      deviceLists:
+      - 972
   - uid: 975
     components:
     - type: Transform
@@ -1689,13 +1698,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
-      parent: 3
-- proto: AnomalyLocator
-  entities:
-  - uid: 156
-    components:
-    - type: Transform
-      pos: 5.5,-0.5
       parent: 3
 - proto: APCBasic
   entities:
@@ -2210,6 +2212,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,15.5
+      parent: 3
+- proto: BlueprintLithograph
+  entities:
+  - uid: 156
+    components:
+    - type: Transform
+      pos: -0.5,1.5
       parent: 3
 - proto: BoozeDispenser
   entities:
@@ -3898,6 +3907,13 @@ entities:
     - type: Transform
       pos: 2.5,14.5
       parent: 3
+- proto: Dropper
+  entities:
+  - uid: 1086
+    components:
+    - type: Transform
+      pos: 5.444812,-0.5593647
+      parent: 3
 - proto: ExosuitFabricator
   entities:
   - uid: 735
@@ -4053,6 +4069,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 54
+      - 972
   - uid: 1094
     components:
     - type: Transform
@@ -4493,14 +4510,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,4.5
-      parent: 3
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 643
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,-2.5
       parent: 3
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -5471,6 +5480,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-2.5
       parent: 3
+    - type: DeviceNetwork
+      deviceLists:
+      - 972
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 984
@@ -5530,6 +5542,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-1.5
       parent: 3
+    - type: DeviceNetwork
+      deviceLists:
+      - 972
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 959
@@ -5852,6 +5867,35 @@ entities:
     - type: Transform
       pos: 3.5,-0.5
       parent: 3
+- proto: HandheldArtifactContainer
+  entities:
+  - uid: 1032
+    components:
+    - type: Transform
+      pos: -4.5,4.5
+      parent: 3
+  - uid: 1036
+    components:
+    - type: Transform
+      pos: -4.5,3.5
+      parent: 3
+  - uid: 1039
+    components:
+    - type: Transform
+      pos: 5.5,4.5
+      parent: 3
+  - uid: 1044
+    components:
+    - type: Transform
+      pos: 7.5,4.5
+      parent: 3
+- proto: HandLabeler
+  entities:
+  - uid: 1078
+    components:
+    - type: Transform
+      pos: 5.538562,-1.893625
+      parent: 3
 - proto: HospitalCurtainsOpen
   entities:
   - uid: 890
@@ -5863,6 +5907,20 @@ entities:
     components:
     - type: Transform
       pos: -0.5,20.5
+      parent: 3
+- proto: KitchenReagentGrinder
+  entities:
+  - uid: 120
+    components:
+    - type: Transform
+      pos: 5.5,-1.5
+      parent: 3
+- proto: LargeBeaker
+  entities:
+  - uid: 643
+    components:
+    - type: Transform
+      pos: 5.403145,-0.090289116
       parent: 3
 - proto: LockerCaptainFilled
   entities:
@@ -5884,18 +5942,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,20.5
-      parent: 3
-- proto: LockerScienceFilled
-  entities:
-  - uid: 645
-    components:
-    - type: Transform
-      pos: 8.5,1.5
-      parent: 3
-  - uid: 988
-    components:
-    - type: Transform
-      pos: 8.5,0.5
       parent: 3
 - proto: LockerWallColorL1FireFilled
   entities:
@@ -5992,6 +6038,18 @@ entities:
     - type: Transform
       pos: 0.5,4.5
       parent: 3
+- proto: MonkeyCubeWrapped
+  entities:
+  - uid: 1084
+    components:
+    - type: Transform
+      pos: 5.7677283,0.00352633
+      parent: 3
+  - uid: 1085
+    components:
+    - type: Transform
+      pos: 5.7677283,-0.28834313
+      parent: 3
 - proto: MopBucketFull
   entities:
   - uid: 447
@@ -6020,6 +6078,18 @@ entities:
     components:
     - type: Transform
       pos: -0.5,25.5
+      parent: 3
+- proto: NFLockerScienceFilled
+  entities:
+  - uid: 645
+    components:
+    - type: Transform
+      pos: 8.5,1.5
+      parent: 3
+  - uid: 988
+    components:
+    - type: Transform
+      pos: 8.5,0.5
       parent: 3
 - proto: NitrogenCanister
   entities:
@@ -8962,12 +9032,5 @@ entities:
     components:
     - type: Transform
       pos: 6.5,13.5
-      parent: 3
-- proto: Wrench
-  entities:
-  - uid: 120
-    components:
-    - type: Transform
-      pos: 5.5,-0.5
       parent: 3
 ...
