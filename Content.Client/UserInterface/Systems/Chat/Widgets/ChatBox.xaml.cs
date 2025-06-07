@@ -48,9 +48,10 @@ public partial class ChatBox : UIWidget
         ChatInput.Input.OnFocusExit += OnFocusExit;
         ChatInput.ChannelSelector.OnChannelSelect += OnChannelSelect;
         ChatInput.FilterButton.Popup.OnChannelFilter += OnChannelFilter;
-
+        ChatInput.FilterButton.Popup.OnNewHighlights += OnNewHighlights;
         _controller = UserInterfaceManager.GetUIController<ChatUIController>();
         _controller.MessageAdded += OnMessageAdded;
+        _controller.HighlightsUpdated += OnHighlightsUpdated;
         _controller.RegisterChat(this);
 
         // EE - Chat stacking
@@ -136,6 +137,11 @@ public partial class ChatBox : UIWidget
         _chatStackList.Insert(0, new ChatStackData(wrappedMessage, colorOverride, message, entity, channel)); // Frontier: add message, entity, channel
     }
 
+    private void OnHighlightsUpdated(string highlights)
+    {
+        ChatInput.FilterButton.Popup.UpdateHighlights(highlights);
+    }
+
     private void OnChannelSelect(ChatSelectChannel channel)
     {
         _controller.UpdateSelectedChannel(this);
@@ -164,6 +170,11 @@ public partial class ChatBox : UIWidget
         {
             _controller.ClearUnfilteredUnreads(channel);
         }
+    }
+
+    private void OnNewHighlights(string highlighs)
+    {
+        _controller.UpdateHighlights(highlighs);
     }
 
     public void AddLine(string message, Color color, int repeat = 0) // EE - Chat stacking - repeat
