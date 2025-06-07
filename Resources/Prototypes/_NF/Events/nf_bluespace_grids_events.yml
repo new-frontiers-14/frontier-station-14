@@ -54,8 +54,6 @@
     duration: 1020
     maxDuration: 1350
     reoccurrenceDelay: 360 # 6 hours
-    requiredJobs:
-      Sheriff: 1
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -77,7 +75,9 @@
         paths:
         - /Maps/_NF/Bluespace/vault.yml
     rewardAccounts:
-      Nfsd: 1.0
+      Nfsd: 0.33
+      Frontier: 0.33
+      Medical: 0.33
 
 - type: entity
   id: BluespaceVaultSmallError
@@ -95,8 +95,6 @@
     duration: 590
     maxDuration: 780
     reoccurrenceDelay: 360 # 6 hours
-    requiredJobs:
-      Sheriff: 1
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -118,7 +116,9 @@
         paths:
         - /Maps/_NF/Bluespace/vaultsmall.yml
     rewardAccounts:
-      Nfsd: 1.0
+      Nfsd: 0.33
+      Frontier: 0.33
+      Medical: 0.33
 
 - type: entity
   id: BluespaceSyndicateFTLInterception
