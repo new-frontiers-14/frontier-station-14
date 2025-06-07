@@ -188,7 +188,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
         }
         else if (bountyPayout > 0)
         {
-            var stackUid = _stack.Spawn(bountyPayout, "SpaceCash", Transform(uid).Coordinates);
+            var stackUid = _stack.Spawn(bountyPayout, "Credit", Transform(uid).Coordinates);
             if (!_hands.TryPickupAnyHand(ev.Actor, stackUid))
                 _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
 
