@@ -1,0 +1,39 @@
+# Author Info
+# Discord: LoakaOfTheWind
+#
+- type: vessel
+  id: Geode
+  parent: BaseVessel
+  name: CLU Geode
+  description: Guaranteed* to appear as nothing more than a chunk of rock on scanners, this Certifiably Legitimate trading vessel has what you need to close those deals before your next inspection.
+  price: 49500
+  category: Medium
+  group: Scrap
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/geode.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Civilian
+  - Salvage
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Geode
+  mapName: 'CLU Geode'
+  mapPath: /Maps/_NF/Shuttles/Scrap/geode.yml
+  minPlayers: 0
+  stations:
+    Geode:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Geode {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
