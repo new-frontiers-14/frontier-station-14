@@ -55,8 +55,8 @@ public sealed class RngDeviceSystem : SharedRngDeviceSystem
 
     private void OnInit(Entity<RngDeviceComponent> ent, ref ComponentInit args)
     {
-        // Ensure we have the server component
-        var serverComp = EnsureComp<RngDeviceServerComponent>(ent.Owner);
+        if (!TryComp<RngDeviceServerComponent>(ent.Owner, out var serverComp))
+            return;
 
         _deviceLink.EnsureSinkPorts(ent.Owner, serverComp.InputPort);
 
