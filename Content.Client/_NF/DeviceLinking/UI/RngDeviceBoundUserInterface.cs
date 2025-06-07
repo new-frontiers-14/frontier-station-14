@@ -56,11 +56,4 @@ public sealed class RngDeviceBoundUserInterface(EntityUid owner, Enum uiKey) : B
         _window.SetTargetNumber(component.TargetNumber);
         _window.SetTargetNumberVisibility(component.Outputs == 2);
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (!disposing) return;
-        _window?.Dispose();
-    }
 }
