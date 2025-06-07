@@ -271,7 +271,7 @@ uplink-pirate-cannonball-emp-name = Shockshot Chest
 uplink-pirate-cannonball-emp-desc = A chest full of charged balls that cause an EMP on impact.
 
 uplink-pirate-grapeshot-name = Grapeshot Chest
-uplink-pirate-grapeshot-desc = A chest full of cluster balls made to shoot a wide spread of small projectiles.
+uplink-pirate-grapeshot-desc = A chest full of clustered grapes made to shoot a wide spread of small non-lethal projectiles.
 
 uplink-pirate-glassshot-name = Glassshot Chest
 uplink-pirate-glassshot-desc = A chest full of brittle glass balls that will fire multiple projectiles in a tight spread.
