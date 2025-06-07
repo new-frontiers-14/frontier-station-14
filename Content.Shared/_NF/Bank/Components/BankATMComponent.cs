@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio;
