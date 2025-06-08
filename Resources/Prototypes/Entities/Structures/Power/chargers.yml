@@ -72,6 +72,7 @@
   parent: BaseItemRecharger
   id: PowerCellRecharger
   name: cell recharger
+  categories: [HideSpawnMenu] # Frontier: use the weapon recharger
   components:
   - type: Sprite
     sprite: Structures/Power/cell_recharger.rsi
@@ -150,6 +151,7 @@
   parent: BaseItemRecharger
   id: WeaponCapacitorRecharger
   name: recharger
+  description: A stainless steel case for recharging power cells and weapons with integral batteries. # Frontier
   components:
   - type: Sprite
     sprite: Structures/Power/recharger.rsi
@@ -160,11 +162,16 @@
     slots:
       charger_slot:
         ejectOnInteract: true
+        name: power-cell-slot-component-slot-name-default # Frontier
         whitelist:
           components:
           - HitscanBatteryAmmoProvider
           - ProjectileBatteryAmmoProvider
           - Stunbaton
+          - PowerCell # Frontier
+        blacklist: # Frontier
+          tags: # Frontier
+          - PotatoBattery # Frontier
 
 - type: entity
   parent: BaseItemRecharger
@@ -207,7 +214,7 @@
       shader: "unshaded"
   - type: WallMount
   - type: Charger
-    chargeRate: 25
+    chargeRate: 20 # Frontier: 25<20, consistent charging
   - type: ItemSlots
     slots:
       charger_slot:
@@ -217,6 +224,10 @@
           - HitscanBatteryAmmoProvider
           - ProjectileBatteryAmmoProvider
           - Stunbaton
+          - PowerCell # Frontier
+        blacklist: # Frontier
+          tags: # Frontier
+          - PotatoBattery # Frontier
 
 - type: entity
   parent: BaseRecharger
