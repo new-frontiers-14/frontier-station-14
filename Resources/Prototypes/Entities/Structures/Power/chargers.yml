@@ -200,12 +200,14 @@
           - PotatoBattery
 
 - type: entity
-  parent: [BaseStructureWallmount, BaseItemRecharger] # Frontier: add BaseStructureWallmount
+  parent: [BaseStructureDisablePrying, BaseStructureWallmount, BaseItemRecharger] # Frontier: add BaseStructureWallmount, BaseStructureDisablePrying
   id: WallWeaponCapacitorRecharger
   name: wall recharger
+  description: A sleek steel inlay for recharging power cells and weapons with integral batteries. # Frontier
   components:
   - type: Sprite
-    sprite: Structures/Power/wall_recharger.rsi
+    snapCardinals: false # imp
+    sprite: _NF/Structures/Power/wall_recharger.rsi # Frontier: use _NF variant
     layers:
     - map: ["enum.PowerChargerVisualLayers.Base"]
       state: "empty"
@@ -228,6 +230,13 @@
         blacklist: # Frontier
           tags: # Frontier
           - PotatoBattery # Frontier
+  # imp start
+  - type: Machine
+    board: WeaponCapacitorRechargerCircuitboard
+  - type: Construction
+    graph: WallWeaponCapacitorRecharger
+    node: wall_recharger
+  # imp end
 
 - type: entity
   parent: BaseRecharger
