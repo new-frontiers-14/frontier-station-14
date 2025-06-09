@@ -1,0 +1,20 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      SetSize="400 200">
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal">
+            <Label Name="Text" Text="{Loc 'adjustable-power-set-load'}" StyleClasses="LabelKeyText"/>
+            <LineEdit Name="Value" Text="0"/>
+            <OptionButton Name="PowerDropDown"/>
+            <Button Name="SubmitButton" Text="{Loc 'adjustable-power-submit'}"/>
+            <Control HorizontalExpand="True"/>
+            <Button Name="TogglePowerButton" Text="{Loc 'adjustable-power-submit'}"/>
+        </BoxContainer>
+        <RichTextLabel Name="ArbitraryText" Visible="False"/>
+        <Label Name="UnsavedChanges"
+                Text="{Loc 'adjustable-power-unsaved-changes'}"
+                Visible="False"
+                HorizontalAlignment="Right"
+                FontColorOverride="yellow"/>
+    </BoxContainer>
+</controls:FancyWindow>

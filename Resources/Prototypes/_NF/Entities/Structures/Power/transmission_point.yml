@@ -7,31 +7,32 @@
   placement:
     mode: SnapgridCenter
   components:
+    - type: Transform
+      noRot: true
     - type: AmbientSound
       volume: -5
       sound:
         path: /Audio/Ambience/_NF/Ambience/power-hum.ogg
     - type: Sprite
-      sprite: Structures/Power/smes.rsi
-      snapCardinals: true
+      sprite: _NF/Structures/Power/transmission_point.rsi
+      snapCardinals: false
+      noRot: true
       layers:
-        - state: smes
-        - map: ["enum.SmesVisualLayers.Charge"]
-          state: "smes-og1" # -og0 does not exist
+        - state: base
+        - state: base-unlit
           shader: unshaded
-          visible: false
-        - map: ["enum.SmesVisualLayers.Input"]
-          state: "smes-oc0"
-          shader: unshaded
-        - map: ["enum.SmesVisualLayers.Output"]
-          state: "smes-op1"
-          shader: unshaded
-        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-          state: smes-open
-    - type: Smes
+          map: ["unlit"]
+        - state: base-foreground
     - type: Appearance
-    - type: Battery
-      startingCharge: 0
+    - type: GenericVisualizer
+      visuals:
+        enum.PowerDeviceVisuals.Powered:
+          unlit:
+            True: { visible: true }
+            False: { visible: false }
+    - type: PowerTransmission
+    - type: PowerConsumer
+      drawRate: 1
     - type: ExaminableBattery
     - type: NodeContainer
       examinable: true
@@ -39,37 +40,12 @@
         input:
           !type:CableTerminalPortNode
           nodeGroupID: HVPower
-        output:
-          !type:CableDeviceNode
-          nodeGroupID: HVPower
     - type: PowerMonitoringDevice
-      group: SMES
-      sourceNode: input
-      loadNode: output
-      collectionName: smes
-      sprite: Structures/Power/smes.rsi
-      state: static
-    - type: BatteryDischarger
-      voltage: High
-      node: output
-    - type: BatteryCharger
-      voltage: High
-      node: input
-    - type: PowerNetworkBattery
-      maxSupply: 150000
-      maxChargeRate: 5000
-      supplyRampTolerance: 5000
-      supplyRampRate: 1000
-    - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      color: "#c9c042"
-      castShadows: false
-    - type: WiresPanel
-    - type: WiresVisuals
-    - type: Machine
-      board: SMESMachineCircuitboard
-    - type: StationInfiniteBatteryTarget
+      group: Consumer
+      loadNode: input
+      collectionName: transmissionpoint
+      sprite: _NF/Structures/Power/transmission_point.rsi
+      state: icon
     - type: Electrified
       onHandInteract: false
       onInteractUsing: false
@@ -77,41 +53,14 @@
       requirePower: true
       highVoltageNode: input
       mediumVoltageNode: output
-    - type: Damageable
-      damageContainer: StructuralInorganic
-      damageModifierSet: StructuralMetallicStrong
-    - type: BatterySensor
-    - type: DeviceNetwork
-      deviceNetId: AtmosDevices
-      receiveFrequencyId: AtmosMonitor
-      transmitFrequencyId: AtmosMonitor
-      prefix: device-address-prefix-smes
-      sendBroadcastAttemptEvent: true
-      examinableAddress: true
     - type: WiredNetworkConnection
     - type: GuideHelp
       guides:
-      - PowerStorage
       - VoltageNetworks
       - Power
-    # Frontier: upgradable SMES
-    - type: UpgradeBattery
-      maxChargeMultiplier: 2
-      baseMaxCharge: 8000000
-    - type: UpgradePowerSupplyRamping
-      scaling: Linear
-      supplyRampingMultiplier: 1
-    # End Frontier: upgradable SMES
-
-    # Interface
-    - type: BatteryInterface
-      minChargeRate: 5000
-      maxChargeRate: 150000
-      minSupply: 5000
-      maxSupply: 150000
     - type: UserInterface
       interfaces:
-        enum.BatteryUiKey.Key:
-          type: BatteryBoundUserInterface
+        enum.AdjustablePowerDrawUiKey.Key:
+          type: AdjustablePowerDrawBoundUserInterface
     - type: ActivatableUI
-      key: enum.BatteryUiKey.Key
+      key: enum.AdjustablePowerDrawUiKey.Key
