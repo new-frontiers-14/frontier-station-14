@@ -28,7 +28,6 @@ using Content.Server._NF.Bank; // Frontier
 using Content.Server.Preferences.Managers; // Frontier
 using System.Linq; // Frontier
 using Content.Server.CartridgeLoader; // Frontier
-using System.Diagnostics; // Frontier
 using Content.Shared.CartridgeLoader; // Frontier
 using Robust.Server.GameObjects; // Frontier
 
@@ -326,12 +325,12 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     {
         if (!InventorySystem.TryGetSlotEntity(entity, "id", out var slotEnt))
         {
-            Debug.Assert(false, $"Entity {entity} has a non-empty cartridge loadout, but doesn't have anything in their ID slot!");
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty cartridge loadout, but doesn't have anything in their ID slot!");
             return;
         }
         if (!TryComp<CartridgeLoaderComponent>(slotEnt, out var cartridgeLoader))
         {
-            Debug.Assert(false, $"Entity {entity} has a non-empty cartridge loadout, but the item in their ID slot isn't a cartridge loader!");
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty cartridge loadout, but the item in their ID slot isn't a cartridge loader!");
             return;
         }
         var coords = _xformSystem.GetMapCoordinates(entity);
@@ -341,7 +340,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             if (!_cartridgeLoader.InstallCartridge(slotEnt.Value, spawnedEntity, cartridgeLoader))
             {
                 QueueDel(spawnedEntity);
-                Debug.Assert(false, $"Entity {entity} could not install cartridge {entProto} into their PDA {slotEnt.Value}!");
+                DebugTools.Assert(false, $"Entity {entity} could not install cartridge {entProto} into their PDA {slotEnt.Value}!");
             }
         }
     }
