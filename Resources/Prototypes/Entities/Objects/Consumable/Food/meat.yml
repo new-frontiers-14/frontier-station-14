@@ -217,6 +217,7 @@
   components:
   - type: Sprite
     state: bird
+    color: "#BBBBFF" # Frontier
   - type: SolutionContainerManager
     solutions:
       food:
@@ -267,6 +268,7 @@
   components:
   - type: Sprite
     state: bird
+    color: "#FFBBBB" # Frontier
   - type: SolutionContainerManager
     solutions:
       food:
@@ -1239,8 +1241,8 @@
     node: cooked meat patty
   - type: FoodSequenceElement
     entries:
-      Burger: MeatSteak
-      Taco: MeatSteak
+      Burger: MeatPatty
+      Taco: MeatPattyTaco # Frontier: add Taco
 
 - type: entity
   name: boiled snail
