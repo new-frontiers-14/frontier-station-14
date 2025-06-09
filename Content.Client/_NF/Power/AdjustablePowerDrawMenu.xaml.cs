@@ -18,6 +18,9 @@ public sealed partial class AdjustablePowerDrawMenu : FancyWindow
     // The entity that this UI is for.
     private EntityUid _entity;
 
+    // True if there are unsaved changes that should be maintained.
+    private bool _unsavedChanges;
+
     // Events for the BUI to subscribe to.
     public event Action<float>? OnSetLoad;
     public event Action<bool>? OnSetPowered;
@@ -32,6 +35,8 @@ public sealed partial class AdjustablePowerDrawMenu : FancyWindow
         PowerDropDown.AddItem("MW", 2);
         PowerDropDown.AddItem("GW", 3);
 
+        PowerDropDown.OnPressed += _ => SetUnsavedChanges();
+        Load.OnTextChanged += _ => SetUnsavedChanges();
         SubmitButton.OnPressed += _ => CheckAndInvokeLoad();
         TogglePowerButton.OnPressed += _ => OnSetPowered?.Invoke(TogglePowerButton.Pressed);
     }
@@ -47,27 +52,30 @@ public sealed partial class AdjustablePowerDrawMenu : FancyWindow
     {
         TogglePowerButton.Pressed = msg.On;
 
+        if (_unsavedChanges)
+            return;
+
         // Get power in proper units
         if (msg.Load >= 0)
         {
             if (msg.Load >= 1_000_000_000)
             {
-                Load.Text = $"{msg.Load / 1_000_000_000:F2}";
+                Load.Text = $"{msg.Load / 1_000_000_000:G3}";
                 PowerDropDown.TrySelect(3);
             }
             else if (msg.Load >= 1_000_000)
             {
-                Load.Text = $"{msg.Load / 1_000_000:F2}";
+                Load.Text = $"{msg.Load / 1_000_000:G3}";
                 PowerDropDown.TrySelect(2);
             }
             else if (msg.Load >= 1_000)
             {
-                Load.Text = $"{msg.Load / 1_000:F2}";
+                Load.Text = $"{msg.Load / 1_000:G3}";
                 PowerDropDown.TrySelect(1);
             }
             else
             {
-                Load.Text = $"{msg.Load:F2}";
+                Load.Text = $"{msg.Load:G3}";
                 PowerDropDown.TrySelect(0);
             }
         }
@@ -75,6 +83,24 @@ public sealed partial class AdjustablePowerDrawMenu : FancyWindow
 
     private void CheckAndInvokeLoad()
     {
+        _unsavedChanges = false;
+        UnsavedChanges.Visible = false;
 
+        if (!float.TryParse(Load.Text, out var result))
+            return;
+
+        if (!float.IsFinite(result) || !float.IsPositive(result))
+            return;
+
+        if (PowerDropDown.SelectedId > 0)
+            result *= MathF.Pow(1000.0f, PowerDropDown.SelectedId);
+
+        OnSetLoad?.Invoke(result);
+    }
+
+    private void SetUnsavedChanges()
+    {
+        _unsavedChanges = true;
+        UnsavedChanges.Visible = true;
     }
 }

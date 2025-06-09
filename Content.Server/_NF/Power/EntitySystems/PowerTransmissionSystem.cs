@@ -115,7 +115,7 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
     {
         if (args.Load >= 0 && TryComp(ent, out PowerConsumerComponent? power))
         {
-            power.NetworkLoad.DesiredPower = args.Load;
+            power.DrawRate = args.Load;
             UpdateUI(ent, power);
         }
     }
@@ -131,7 +131,7 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
             new AdjustablePowerDrawBuiState
             {
                 On = power.NetworkLoad.Enabled,
-                Load = power.NetworkLoad.ReceivingPower
+                Load = power.DrawRate
             });
     }
 }

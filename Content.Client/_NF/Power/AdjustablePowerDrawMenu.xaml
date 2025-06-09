@@ -4,7 +4,7 @@
     <BoxContainer Orientation="Vertical">
         <BoxContainer Orientation="Horizontal">
             <Label Name="Text" Text="{Loc 'adjustable-power-set-load'}" StyleClasses="LabelKeyText"/>
-            <LineEdit Name="Load" Text="0"/>
+            <LineEdit Name="Load" HorizontalExpand="True" MinSize="70 0" />
             <OptionButton Name="PowerDropDown"/>
             <Button Name="SubmitButton" Text="{Loc 'adjustable-power-submit'}"/>
             <Control HorizontalExpand="True"/>
