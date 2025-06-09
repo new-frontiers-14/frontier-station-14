@@ -6,9 +6,16 @@ namespace Content.Server._NF.Power.Components;
 [RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class PowerTransmissionComponent : Component
 {
+    #region Power
+    ///<summary>
+    /// The name of the node to be connected/disconnected.
+    ///</summary>
+    [DataField]
+    public string NodeName = "input";
+
     ///<summary>
     /// The period between depositing money into a sector account.
-    /// Also the T in Tk*a^log10(x/T) for rate calculation
+    /// Also the T in Tk*a^(log10(x/T)-R) for rate calculation
     ///</summary>
     [DataField]
     public TimeSpan DepositPeriod = TimeSpan.FromSeconds(20);
@@ -31,7 +38,9 @@ public sealed partial class PowerTransmissionComponent : Component
     ///</summary>
     [DataField(required: true)]
     public SectorBankAccount Account = SectorBankAccount.Invalid;
+    #endregion Power Sale
 
+    #region Linear Rates
     ///<summary>
     /// The rate per joule to credit the account while in the linear mode.
     ///</summary>
@@ -39,23 +48,33 @@ public sealed partial class PowerTransmissionComponent : Component
     public float LinearRate = 0.00005f; // $1/20 kJ
 
     ///<summary>
-    /// The maximum value (inclusive) of the linear mode per deposit, in joules
+    /// The maximum value (inclusive) of the linear mode per deposit, in watts
     ///</summary>
     [DataField]
-    public float LinearMaxValue = 20000000; // 20 MJ (1 MW * 20 s) ($50/s)
+    public float LinearMaxValue = 1_000_000; // 1 MW ($50/s)
+    #endregion Linear Rates
 
-    // Logarithmic fields: at very high levels of power generation, incremental gains decrease logarithmically to prevent runaway
+    // Logarithmic fields: at very high levels of power generation, incremental gains decrease logarithmically to prevent runaway cash generation
+    #region Logarithmic Rates
 
     ///<summary>
-    /// The base on power the logarithmic mode (a in Tk*a^log10(x/T))
+    /// The base on power the logarithmic mode: a in Tk*a^(log10(x/T)-R)
     ///</summary>
     [DataField]
     public float LogarithmRateBase = 3.0f;
 
     ///<summary>
-    /// The coefficient of the logarithmic mode (k in Tk*a^log10(x/T))
-    /// Note: should be set to LinearRate*LinearMaxValue*log10(LinearMaxValue) for a continuous function.
+    /// The coefficient of the logarithmic mode: k in Tk*a^(log10(x/T)-R)
+    /// Note: should be set to LinearRate*LinearMaxValue for a continuous function.
     ///</summary>
     [DataField]
-    public float LogarithmCoefficient = 8.33333f;
+    public float LogarithmCoefficient = 50f;
+
+    ///<summary>
+    /// The exponential subtrahend of the logarithmic mode: R in Tk*a^(log10(x/T)-R)
+    /// Note: should be set to log10(LinearMaxValue) for a continuous function.
+    ///</summary>
+    [DataField]
+    public float LogarithmSubtrahend = 6.0f; // log10(1_000_000)
+    #endregion Logarithmic Rates
 }

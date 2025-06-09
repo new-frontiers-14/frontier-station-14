@@ -20,6 +20,7 @@ public sealed class AdjustablePowerDrawBuiState : BoundUserInterfaceState
 {
     public bool On;
     public float Load;
+    public string? Text;
 }
 
 /// <summary>
