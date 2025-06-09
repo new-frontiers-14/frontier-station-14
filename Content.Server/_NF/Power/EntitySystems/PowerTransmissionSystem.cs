@@ -1,23 +1,36 @@
 using Content.Server._NF.Bank;
 using Content.Server._NF.Power.Components;
 using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared.Examine;
+using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._NF.Power.EntitySystems;
 
 public sealed partial class PowerTransmissionSystem : EntitySystem
 {
-    [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private BankSystem _bank = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        UpdatesAfter.Add(typeof(PowerNetSystem));
+
         SubscribeLocalEvent<PowerTransmissionComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<PowerTransmissionComponent, ExaminedEvent>(OnExamined);
+
+        Subs.BuiEvents<PowerTransmissionComponent>(
+            AdjustablePowerDrawUiKey.Key,
+            subs =>
+            {
+                subs.Event<AdjustablePowerDrawSetEnabledMessage>(HandleSetEnabled);
+                subs.Event<AdjustablePowerDrawSetLoadMessage>(HandleSetLoad);
+            });
     }
 
     private void OnMapInit(Entity<PowerTransmissionComponent> ent, ref MapInitEvent args)
@@ -27,17 +40,17 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
 
     private void OnExamined(Entity<PowerTransmissionComponent> ent, ref ExaminedEvent args)
     {
-        if (TryComp(ent, out ApcPowerReceiverComponent? power))
+        if (TryComp(ent, out PowerConsumerComponent? power))
             args.PushMarkup(Loc.GetString("power-transmission-examine", ("value", power.NetworkLoad)));
     }
 
     public override void Update(float frameTime)
     {
-        var query = EntityQuery<PowerTransmissionComponent, ApcPowerReceiverComponent>();
-        while (query.MoveNext(out var xmit, out var power))
+        var query = EntityQueryEnumerator<PowerTransmissionComponent, PowerConsumerComponent>();
+        while (query.MoveNext(out _, out var xmit, out var power))
         {
-            if (!power.PowerDisabled)
-                xmit.AccumulatedEnergy += power.PowerReceived * frameTime;
+            if (power.NetworkLoad.Enabled)
+                xmit.AccumulatedEnergy += power.NetworkLoad.ReceivingPower * frameTime;
 
             if (_timing.CurTime >= xmit.NextDeposit)
             {
@@ -87,5 +100,38 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
         {
             return ent.Comp.LogarithmCoefficient * MathF.Pow(ent.Comp.LogarithmRateBase, MathF.Log10(power));
         }
+    }
+
+    private void HandleSetEnabled(Entity<PowerTransmissionComponent> ent, ref AdjustablePowerDrawSetEnabledMessage args)
+    {
+        if (TryComp(ent, out PowerConsumerComponent? power))
+        {
+            power.NetworkLoad.Enabled = args.On;
+            UpdateUI(ent, power);
+        }
+    }
+
+    private void HandleSetLoad(Entity<PowerTransmissionComponent> ent, ref AdjustablePowerDrawSetLoadMessage args)
+    {
+        if (args.Load >= 0 && TryComp(ent, out PowerConsumerComponent? power))
+        {
+            power.NetworkLoad.DesiredPower = args.Load;
+            UpdateUI(ent, power);
+        }
+    }
+
+    private void UpdateUI(Entity<PowerTransmissionComponent> ent, PowerConsumerComponent power)
+    {
+        if (!_ui.IsUiOpen(ent.Owner, AdjustablePowerDrawUiKey.Key))
+            return;
+
+        _ui.SetUiState(
+            ent.Owner,
+            AdjustablePowerDrawUiKey.Key,
+            new AdjustablePowerDrawBuiState
+            {
+                On = power.NetworkLoad.Enabled,
+                Load = power.NetworkLoad.ReceivingPower
+            });
     }
 }

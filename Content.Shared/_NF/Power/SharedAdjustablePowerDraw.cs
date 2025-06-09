@@ -35,7 +35,7 @@ public sealed class AdjustablePowerDrawSetEnabledMessage(bool on) : BoundUserInt
 /// Sent client to server to change the input breaker state on a large battery.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class AdjustablePowerDrawSetLoad(float load) : BoundUserInterfaceMessage
+public sealed class AdjustablePowerDrawSetLoadMessage(float load) : BoundUserInterfaceMessage
 {
     public float Load = load;
 }

@@ -1,7 +1,6 @@
 - type: entity
-  abstract: true
   id: PowerTransmissionPoint
-  parent: [ BaseMachine, ConstructibleMachine ]
+  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine ]
   name: power transmission point
   description: A gargantuan machine for offsite power transmission using quantum entanglement.
   placement:
@@ -9,20 +8,34 @@
   components:
     - type: Transform
       noRot: true
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-1.45,-1.45,0.45,0.45"
+          density: 500
+          mask:
+          - LargeMobMask
+          layer:
+          - WallLayer
     - type: AmbientSound
       volume: -5
       sound:
-        path: /Audio/Ambience/_NF/Ambience/power-hum.ogg
+        path: /Audio/_NF/Ambience/power-hum.ogg
     - type: Sprite
       sprite: _NF/Structures/Power/transmission_point.rsi
+      offset: -0.5,1.0
       snapCardinals: false
       noRot: true
+      drawdepth: Mobs
       layers:
         - state: base
         - state: base-unlit
           shader: unshaded
           map: ["unlit"]
         - state: base-foreground
+    - type: SpriteFade
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -31,6 +44,7 @@
             True: { visible: true }
             False: { visible: false }
     - type: PowerTransmission
+      account: Edison
     - type: PowerConsumer
       drawRate: 1
     - type: ExaminableBattery

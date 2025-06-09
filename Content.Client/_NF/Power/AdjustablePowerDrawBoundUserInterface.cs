@@ -1,4 +1,4 @@
-using Content.Client._NF.Power.Battery;
+using Content.Client._NF.Power;
 using Content.Client.UserInterface;
 using Content.Shared._NF.Power;
 using Content.Shared.Power;
@@ -38,11 +38,8 @@ public sealed class AdjustablePowerDrawBoundUserInterface : BoundUserInterface, 
         _menu = this.CreateWindow<AdjustablePowerDrawMenu>();
         _menu.SetEntity(Owner);
 
-        _menu.OnPowerSet += val => _pred!.SendMessage(new AdjustablePowerDrawSetLoad(val));
-        _menu.On += val => _pred!.SendMessage(new BatterySetOutputBreakerMessage(val));
-
-        _menu.OnChargeRate += val => _chargeRateCoalescer.Set(val);
-        _menu.OnDischargeRate += val => _dischargeRateCoalescer.Set(val);
+        _menu.OnSetLoad += val => _pred!.SendMessage(new AdjustablePowerDrawSetLoadMessage(val));
+        _menu.OnSetPowered += val => _pred!.SendMessage(new AdjustablePowerDrawSetEnabledMessage(val));
     }
 
     void IBuiPreTickUpdate.PreTickUpdate()
@@ -53,19 +50,22 @@ public sealed class AdjustablePowerDrawBoundUserInterface : BoundUserInterface, 
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
-        if (state is not BatteryBuiState batteryState)
+        if (state is not AdjustablePowerDrawBuiState powerState)
             return;
 
         foreach (var replayMsg in _pred!.MessagesToReplay())
         {
             switch (replayMsg)
             {
-                case BatterySetInputBreakerMessage setInputBreaker:
-                    batteryState.CanCharge = setInputBreaker.On;
+                case AdjustablePowerDrawSetLoadMessage setLoad:
+                    powerState.Load = setLoad.Load;
+                    break;
+                case AdjustablePowerDrawSetEnabledMessage setEnabled:
+                    powerState.On = setEnabled.On;
                     break;
             }
         }
 
-        _menu?.Update(batteryState);
+        _menu?.Update(powerState);
     }
 }
