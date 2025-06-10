@@ -1,6 +1,5 @@
 using Content.Shared._Goobstation.Vehicles;
 using Content.Shared._NF.Radar;
-using Content.Shared.CardboardBox;
 using Content.Shared.GameTicking;
 using Content.Shared.Movement.Components;
 using Content.Shared.Shuttles.Components;
