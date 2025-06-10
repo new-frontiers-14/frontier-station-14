@@ -3,13 +3,13 @@ using Content.Server.Xenoarchaeology.Artifact.XAE.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Teleportation.Systems;
-using Content.Shared.Tiles;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.XAE;
 using Robust.Shared.Collections;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Tiles; // Frontier
 
 namespace Content.Server.Xenoarchaeology.Artifact.XAE;
 
@@ -46,7 +46,7 @@ public sealed class XAEPortalSystem : BaseXAESystem<XAEPortalComponent>
 
                 if (Vector2.Distance(_transform.GetMapCoordinates(uid, xform).Position, entPosition) > ent.Comp.MaxRange)
                     continue;
-                // End Frontier: ensure range check (don't teleport people from across the map)
+                // End Frontier: ensure range check (don't teleport people from across the map or off of protected grids)
 
                 validMinds.Add(uid);
             }
