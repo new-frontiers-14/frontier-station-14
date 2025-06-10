@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared._Goobstation.Vehicles;
 using Content.Shared._NF.Radar;
 using Content.Shared.GameTicking;
@@ -5,7 +6,6 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
-using System.Numerics;
 
 namespace Content.Server._NF.Radar;
 
