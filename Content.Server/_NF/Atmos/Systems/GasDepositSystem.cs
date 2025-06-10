@@ -4,6 +4,8 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Audio;
+using Content.Server.Construction;
+using Content.Server.Hands.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
@@ -15,16 +17,16 @@ using Content.Shared._NF.Atmos.Events;
 using Content.Shared._NF.Atmos.Prototypes;
 using Content.Shared._NF.Atmos.Systems;
 using Content.Shared._NF.Atmos.Visuals;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Binary.Components;
-using Content.Shared._NF.Bank.Components;
+using Content.Shared.Coordinates;
 using Content.Shared.Database;
 using Content.Shared.Power;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Server.Construction;
 
 namespace Content.Server._NF.Atmos.Systems;
 
@@ -40,8 +42,10 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
     [Dependency] private readonly StackSystem _stack = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
 
     /// <summary>
     /// The fraction that a deposit's volume should be depleted to before it is considered "low volume".
@@ -272,7 +276,9 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
             amount *= priceMod.Mod;
 
         var stackPrototype = _prototype.Index(ent.Comp.CashType);
-        _stack.Spawn((int)amount, stackPrototype, xform.Coordinates);
+        var stackUid = _stack.Spawn((int)amount, stackPrototype, args.Actor.ToCoordinates());
+        if (!_hands.TryPickupAnyHand(args.Actor, stackUid))
+            _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
         _audio.PlayPvs(ent.Comp.ApproveSound, ent);
         UI.SetUiState(ent.Owner,
             GasSaleConsoleUiKey.Key,
