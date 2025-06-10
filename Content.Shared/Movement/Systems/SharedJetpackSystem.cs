@@ -1,10 +1,9 @@
+using Content.Shared.Actions;
 using Content.Shared._EE.CCVar; // EE
 using Content.Shared._NF.Radar; // Frontier
-using Content.Shared.Actions;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Lock;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
