@@ -194,3 +194,74 @@
         docked-unlit:
           True: { visible: true }
           False: { visible: false }
+
+- type: entity
+  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine ]
+  id: EnergyAerator
+  name: energy aerator
+  description: An enormous machine that converts huge amounts of power into breathable air.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,1.45,1.45"
+        density: 500
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: NodeContainer
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+        enabled: false
+      port:
+        !type:PortablePipeNode
+        nodeGroupID: Pipe
+        rotationsEnabled: false
+        volume: 1
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: _NF/Structures/Machines/gas_converter.rsi
+    layers:
+    - state: base
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.DockablePipeVisuals.Docked:
+        docked-unlit:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerConsumer
+    drawRate: 100000
+  - type: PowerMonitoringDevice
+    group: Consumer
+    loadNode: input
+    collectionName: transmissionpoint
+    sprite: _NF/Structures/Power/transmission_point_icon.rsi
+    state: icon
+  - type: WiredNetworkConnection
+  - type: UserInterface
+    interfaces:
+      enum.AdjustablePowerDrawUiKey.Key:
+        type: AdjustablePowerDrawBoundUserInterface
+  - type: ActivatableUI
+    key: enum.AdjustablePowerDrawUiKey.Key
+  - type: GasSpawnPowerConsumer
+    spawnMixture:
+      moles:
+      - 0.78
+      - 0.22
+      temperature: 5273 # ~ 5000 deg C, you're turning energy into a gas
+    energyPerMole: 100000 # 100 kJ/mol
+  - type: GasCanister
+    air:
+      volume: 10000 # big tank to store backup

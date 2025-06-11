@@ -1,17 +1,17 @@
-using Content.Shared._NF.Bank.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server._NF.Power.Components;
+namespace Content.Server._NF.Manufacturing.Components;
 
 /// <summary>
-/// An entity with this will pay out a given sector bank account regularly depending on the amount of power received.
-/// Payouts occur at a fixed period, but the rate of pay depends on the average power input over that period.
-/// At high power input, the incremental rate of pay diminishes logarithmically.
+/// An entity with this will produce an entity over time after accumulating charge.
+/// Entities are output after a given amount of energy is accumulated.
+/// At high power input, energy accumulated diminishes logarithmically.
 /// </summary>
 [RegisterComponent, AutoGenerateComponentPause]
-public sealed partial class PowerTransmissionComponent : Component
+public sealed partial class EntitySpawnPowerConsumerComponent : Component
 {
-    #region Power
+    #region Generation
     ///<summary>
     /// The name of the node to be connected/disconnected.
     ///</summary>
@@ -23,14 +23,14 @@ public sealed partial class PowerTransmissionComponent : Component
     /// Also the T in Tk*a^(log10(x/T)-R) for rate calculation
     ///</summary>
     [DataField]
-    public TimeSpan DepositPeriod = TimeSpan.FromSeconds(20);
+    public TimeSpan SpawnCheckPeriod = TimeSpan.FromSeconds(20);
 
     ///<summary>
     /// The next time this power plant is selling accumulated power.
     /// Should not be changedduring runtime, will cause errors in deposit amounts.
     ///</summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
-    public TimeSpan NextDeposit;
+    public TimeSpan NextSpawnCheck;
 
     ///<summary>
     /// The total energy accumulated, in joules.
@@ -39,28 +39,36 @@ public sealed partial class PowerTransmissionComponent : Component
     public float AccumulatedEnergy;
 
     ///<summary>
-    /// The account to deposit funds from sold energy into.
+    /// The total energy accumulated this spawn check, in joules.
+    ///</summary>
+    [DataField]
+    public float AccumulatedSpawnCheckEnergy;
+
+    ///<summary>
+    /// The name of the container to output the
+    ///</summary>
+    [DataField]
+    public string SlotName = "output";
+
+    ///<summary>
+    /// The entity prototype ID to spawn when enough energy is accumulated.
     ///</summary>
     [DataField(required: true)]
-    public SectorBankAccount Account = SectorBankAccount.Invalid;
-    #endregion Power Sale
-
-    #region Linear Rates
-    ///<summary>
-    /// The rate per joule to credit the account while in the linear mode.
-    ///</summary>
-    [DataField]
-    public float LinearRate = 0.00005f; // $1/20 kJ
+    public EntProtoId Spawn;
 
     ///<summary>
-    /// The maximum value (inclusive) of the linear mode per deposit, in watts
+    /// The necessary energy to spawn a unit in the output
+    ///</summary>
+    [DataField(required: true)]
+    public float EnergyPerSpawn;
+    #endregion Generation
+
+    #region Efficiency Scaling
+    ///<summary>
+    /// The maximum power to increase without logarithmic reduction.
     ///</summary>
     [DataField]
-    public float LinearMaxValue = 1_000_000; // 1 MW ($50/s)
-    #endregion Linear Rates
-
-    // Logarithmic fields: at very high levels of power generation, incremental gains decrease logarithmically to prevent runaway cash generation
-    #region Logarithmic Rates
+    public float LinearMaxValue = 1_000_000;
 
     ///<summary>
     /// The base on power the logarithmic mode: a in Tk*a^(log10(x/T)-R)
@@ -70,10 +78,10 @@ public sealed partial class PowerTransmissionComponent : Component
 
     ///<summary>
     /// The coefficient of the logarithmic mode: k in Tk*a^(log10(x/T)-R)
-    /// Note: should be set to LinearRate*LinearMaxValue for a continuous function.
+    /// Note: should be set to LinearMaxValue for a continuous function.
     ///</summary>
     [DataField]
-    public float LogarithmCoefficient = 50f;
+    public float LogarithmCoefficient = 1_000_000f;
 
     ///<summary>
     /// The exponential subtrahend of the logarithmic mode: R in Tk*a^(log10(x/T)-R)

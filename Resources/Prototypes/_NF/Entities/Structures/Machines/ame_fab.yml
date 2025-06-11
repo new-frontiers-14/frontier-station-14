@@ -1,0 +1,71 @@
+
+- type: entity
+  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructure ]
+  id: AntiMatterFabricator
+  name: anti-matter fabricator
+  description: A colossal machine that converts power into antimatter and stores it in AME fuel jars in a slot.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,1.45,1.45"
+        density: 500
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: NodeContainer
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+        enabled: false
+      outlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: _NF/Structures/Machines/AMEFab/base.rsi
+    layers:
+    - state: base
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.DockablePipeVisuals.Docked:
+        docked-unlit:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerConsumer
+    drawRate: 100000
+  - type: PowerMonitoringDevice
+    group: Consumer
+    loadNode: input
+    collectionName: transmissionpoint
+    sprite: _NF/Structures/Power/transmission_point_icon.rsi
+    state: icon
+  - type: WiredNetworkConnection
+  - type: UserInterface
+    interfaces:
+      enum.AdjustablePowerDrawUiKey.Key:
+        type: AdjustablePowerDrawBoundUserInterface
+  - type: ActivatableUI
+    key: enum.AdjustablePowerDrawUiKey.Key
+  - type: EntitySpawnPowerConsumer
+    spawn: AmeJarBig
+    energyPerSpawn: 1200000000 # 1.2 GJ (75% base eff.)
+  - type: ItemSlots
+    slots:
+      output:
+        swap: false
+        insertOnInteract: false
+        ejectOnInteract: true
+
+
