@@ -2620,22 +2620,12 @@ entities:
       parent: 2
 - proto: Airlock
   entities:
-  - uid: 113
-    components:
-    - type: Transform
-      pos: 14.5,14.5
-      parent: 2
-  - uid: 114
-    components:
-    - type: Transform
-      pos: 13.5,14.5
-      parent: 2
   - uid: 2150
     components:
     - type: Transform
       pos: 16.5,10.5
       parent: 2
-- proto: AirlockAtmospherics
+- proto: AirlockAtmosphericsEngineeringLocked
   entities:
   - uid: 4275
     components:
@@ -2662,6 +2652,16 @@ entities:
     - type: Transform
       pos: -13.5,9.5
       parent: 2
+  - uid: 4327
+    components:
+    - type: Transform
+      pos: -7.5,9.5
+      parent: 2
+  - uid: 4328
+    components:
+    - type: Transform
+      pos: -7.5,10.5
+      parent: 2
 - proto: AirlockChiefEngineerGlassLocked
   entities:
   - uid: 2689
@@ -2669,18 +2669,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,8.5
-      parent: 2
-- proto: AirlockCommand
-  entities:
-  - uid: 112
-    components:
-    - type: Transform
-      pos: 16.5,17.5
-      parent: 2
-  - uid: 115
-    components:
-    - type: Transform
-      pos: 16.5,16.5
       parent: 2
 - proto: AirlockEngineering
   entities:
@@ -2909,6 +2897,26 @@ entities:
       parent: 2
 - proto: AirlockEngineeringLocked
   entities:
+  - uid: 112
+    components:
+    - type: Transform
+      pos: 16.5,17.5
+      parent: 2
+  - uid: 113
+    components:
+    - type: Transform
+      pos: 14.5,14.5
+      parent: 2
+  - uid: 114
+    components:
+    - type: Transform
+      pos: 13.5,14.5
+      parent: 2
+  - uid: 115
+    components:
+    - type: Transform
+      pos: 16.5,16.5
+      parent: 2
   - uid: 2152
     components:
     - type: Transform
@@ -2952,71 +2960,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,20.5
-      parent: 2
-- proto: AirlockExternal
-  entities:
-  - uid: 4291
-    components:
-    - type: Transform
-      pos: 23.5,20.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        4292:
-        - - DoorStatus
-          - DoorBolt
-        - - DoorStatus
-          - Close
-  - uid: 4292
-    components:
-    - type: Transform
-      pos: 23.5,24.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        4291:
-        - - DoorStatus
-          - DoorBolt
-        - - DoorStatus
-          - Close
-  - uid: 4293
-    components:
-    - type: Transform
-      pos: -11.5,36.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        4294:
-        - - DoorStatus
-          - DoorBolt
-        - - DoorStatus
-          - Close
-  - uid: 4294
-    components:
-    - type: Transform
-      pos: -11.5,32.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        4293:
-        - - DoorStatus
-          - DoorBolt
-        - - DoorStatus
-          - Close
-- proto: AirlockExternalAtmosphericsLocked
-  entities:
-  - uid: 3057
-    components:
-    - type: Transform
-      pos: -19.5,32.5
       parent: 2
 - proto: AirlockExternalGlass
   entities:
@@ -3213,6 +3156,67 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         2038:
+        - - DoorStatus
+          - DoorBolt
+        - - DoorStatus
+          - Close
+  - uid: 3057
+    components:
+    - type: Transform
+      pos: -19.5,32.5
+      parent: 2
+  - uid: 4291
+    components:
+    - type: Transform
+      pos: 23.5,20.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        4292:
+        - - DoorStatus
+          - DoorBolt
+        - - DoorStatus
+          - Close
+  - uid: 4292
+    components:
+    - type: Transform
+      pos: 23.5,24.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        4291:
+        - - DoorStatus
+          - DoorBolt
+        - - DoorStatus
+          - Close
+  - uid: 4293
+    components:
+    - type: Transform
+      pos: -11.5,36.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        4294:
+        - - DoorStatus
+          - DoorBolt
+        - - DoorStatus
+          - Close
+  - uid: 4294
+    components:
+    - type: Transform
+      pos: -11.5,32.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        4293:
         - - DoorStatus
           - DoorBolt
         - - DoorStatus
@@ -21186,7 +21190,7 @@ entities:
     - type: Transform
       pos: 16.5,35.5
       parent: 2
-- proto: HighSecDoor
+- proto: HighSecEngineeringLocked
   entities:
   - uid: 2159
     components:
@@ -21237,7 +21241,7 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-- proto: LockableButton
+- proto: LockableButtonEngineering
   entities:
   - uid: 949
     components:
@@ -21267,6 +21271,22 @@ entities:
         - - Pressed
           - Toggle
         2103:
+        - - Pressed
+          - Toggle
+  - uid: 2121
+    components:
+    - type: Transform
+      pos: -17.5,32.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        2098:
+        - - Pressed
+          - Toggle
+        2099:
+        - - Pressed
+          - Toggle
+        2100:
         - - Pressed
           - Toggle
   - uid: 2119
@@ -21303,24 +21323,6 @@ entities:
         2100:
         - - Pressed
           - Toggle
-  - uid: 2121
-    components:
-    - type: Transform
-      pos: -17.5,32.5
-      parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        2098:
-        - - Pressed
-          - Toggle
-        2099:
-        - - Pressed
-          - Toggle
-        2100:
-        - - Pressed
-          - Toggle
-- proto: LockableButtonEngineering
-  entities:
   - uid: 2126
     components:
     - type: Transform
