@@ -1646,9 +1646,9 @@
   components:
   - type: Sprite
     sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
-    shader: unshaded
     layers:
     - state: tesla_projectile
+      shader: unshaded # Wizden#37444
   - type: PointLight
     enabled: true
     radius: 5
@@ -1672,8 +1672,9 @@
   components:
   - type: Sprite
     sprite: Objects/Fun/toys.rsi
-    state: orb
-    shader: unshaded
+    layers: # Wizden#37444
+    - state: orb # Wizden#37444
+      shader: unshaded # Wizden#37444
   - type: PointLight
     radius: 2
     color: "#00CCFF"
@@ -1897,7 +1898,6 @@
   - type: Sprite
     sprite: Objects/Fun/whoopie.rsi
     state: icon
-    quickEquip: false
   - type: EmitSoundOnUse
     sound:
       collection: Parp
