@@ -47,7 +47,7 @@
   - type: PowerTransmission
     account: Edison
   - type: PowerConsumer
-    drawRate: 1
+    drawRate: 100000
   - type: ExaminableBattery
   - type: NodeContainer
     examinable: true
@@ -55,6 +55,7 @@
       input:
         !type:CableDeviceNode
         nodeGroupID: HVPower
+        enabled: false
   - type: PowerMonitoringDevice
     group: Consumer
     loadNode: input
