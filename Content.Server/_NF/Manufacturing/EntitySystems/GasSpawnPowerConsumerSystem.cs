@@ -15,6 +15,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._NF.Manufacturing.EntitySystems;
 
+/// <summary>
+/// Consumes large quantities of power, scales excessive overage down to reasonable values.
+/// Spawns gas regularly depending on the amount of power received.
+/// </summary>
 public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;

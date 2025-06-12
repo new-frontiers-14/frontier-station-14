@@ -13,6 +13,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._NF.Manufacturing.EntitySystems;
 
+/// <summary>
+/// Consumes large quantities of power, scales excessive overage down to reasonable values.
+/// Spawns entities when thresholds reached.
+/// </summary>
 public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -164,6 +168,7 @@ public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
             });
     }
 
+    // Prevent insertion from any users - should only be handled by the system.
     private void OnItemSlotInsertAttempt(Entity<EntitySpawnPowerConsumerComponent> ent, ref ItemSlotInsertAttemptEvent args)
     {
         if (args.User != null)
