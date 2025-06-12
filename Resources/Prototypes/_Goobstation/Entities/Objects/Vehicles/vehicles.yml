@@ -22,7 +22,7 @@
   - type: InteractionOutline
   - type: Access
   - type: Physics
-    bodyType: Dynamic
+    bodyType: KinematicController # Frontier: Dynamic<KinematicController - it moves, it's kinematic
   - type: Fixtures
     fixtures:
       fix1:
@@ -137,7 +137,6 @@
   - type: Sprite
     sprite: Objects/Vehicles/syndicatesegway.rsi
     state: vehicle
-    renderOver: North, NorthEast, NorthWest
     noRot: true
   - type: ItemSlots
     slots:
