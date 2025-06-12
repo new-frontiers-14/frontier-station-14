@@ -41,7 +41,6 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Frontier
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!; // Frontier
     [Dependency] private readonly IGameTiming _timing = default!; // Frontier
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!; // Frontier
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
