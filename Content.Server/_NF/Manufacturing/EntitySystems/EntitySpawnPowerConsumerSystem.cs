@@ -58,7 +58,14 @@ public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
     private void OnExamined(Entity<EntitySpawnPowerConsumerComponent> ent, ref ExaminedEvent args)
     {
         if (TryComp(ent, out PowerConsumerComponent? power))
+        {
             args.PushMarkup(Loc.GetString("entity-spawn-power-consumer-examine", ("value", power.DrawRate)));
+
+            if (power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0)
+                args.PushMarkup("power-receiver-component-on-examine-powered");
+            else
+                args.PushMarkup("power-receiver-component-on-examine-unpowered");
+        }
     }
 
     public override void Update(float frameTime)
