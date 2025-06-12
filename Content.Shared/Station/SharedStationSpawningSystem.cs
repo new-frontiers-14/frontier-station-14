@@ -112,14 +112,6 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             name = Loc.GetString(_random.Pick(nameData.Values));
         }
 
-        // Frontier: apply name modifiers
-        if (TryComp<NameIdentifierComponent>(entity, out var nameIdentifier))
-        {
-            // Append our name identifier (why have a pseudonym for a role that has a complete name identifier group?)
-            name = $"{name} {nameIdentifier.FullIdentifier}";
-        }
-        // End Frontier
-
         if (!string.IsNullOrEmpty(name))
         {
             _metadata.SetEntityName(entity, name);
