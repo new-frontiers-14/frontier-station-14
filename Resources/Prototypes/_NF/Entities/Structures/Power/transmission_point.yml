@@ -34,6 +34,7 @@
       - state: base-unlit
         shader: unshaded
         map: ["unlit"]
+        visible: false
       - state: base-foreground
   - type: SpriteFade
   - type: Appearance
@@ -77,3 +78,8 @@
         type: AdjustablePowerDrawBoundUserInterface
   - type: ActivatableUI
     key: enum.AdjustablePowerDrawUiKey.Key
+  - type: PointLight
+    color: "#00ccff"
+    energy: 4
+    radius: 7
+    enabled: false

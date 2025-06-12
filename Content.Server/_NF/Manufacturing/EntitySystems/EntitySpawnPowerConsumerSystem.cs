@@ -99,8 +99,7 @@ public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
                 }
             }
 
-            if (_appearanceQuery.TryComp(uid, out var appearance))
-                _appearance.SetData(uid, PowerDeviceVisuals.Powered, power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0, appearance);
+            _appearance.SetData(uid, PowerDeviceVisuals.Powered, power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0);
         }
     }
 
