@@ -82,7 +82,9 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
                 }
 
                 xmit.AccumulatedEnergy = 0.0f;
-                _bank.TrySectorDeposit(xmit.Account, (int)depositValue, LedgerEntryType.PowerTransmission);
+                var depositSpesos = (int)depositValue;
+                if (depositSpesos > 0)
+                    _bank.TrySectorDeposit(xmit.Account, depositSpesos, LedgerEntryType.PowerTransmission);
             }
         }
     }
