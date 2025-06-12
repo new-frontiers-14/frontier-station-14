@@ -60,7 +60,7 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
         while (query.MoveNext(out var uid, out var xmit, out var power))
         {
             if (power.NetworkLoad.Enabled)
-                xmit.AccumulatedEnergy += power.NetworkLoad.ReceivingPower * frameTime;
+                xmit.AccumulatedSpawnCheckEnergy += power.NetworkLoad.ReceivingPower * frameTime;
 
             if (_timing.CurTime >= xmit.NextSpawnCheck)
             {
@@ -68,16 +68,31 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
 
                 if (!TryComp<GasCanisterComponent>(uid, out var canister))
                 {
-                    xmit.AccumulatedEnergy = 0;
+                    xmit.AccumulatedSpawnCheckEnergy = 0;
+                    continue;
+                }
+
+                if (!float.IsFinite(xmit.AccumulatedSpawnCheckEnergy) || !float.IsPositive(xmit.AccumulatedSpawnCheckEnergy))
+                {
+                    xmit.AccumulatedSpawnCheckEnergy = 0;
                     continue;
                 }
 
                 // Ensure accumulated energy is never infinite.
                 if (!float.IsFinite(xmit.AccumulatedEnergy) || !float.IsPositive(xmit.AccumulatedEnergy))
-                {
                     xmit.AccumulatedEnergy = 0;
-                    continue;
+
+                // Adjust spawn check energy
+                if (xmit.AccumulatedSpawnCheckEnergy <= xmit.LinearMaxValue * xmit.SpawnCheckPeriod.TotalSeconds)
+                {
+                    xmit.AccumulatedEnergy += xmit.AccumulatedSpawnCheckEnergy;
                 }
+                else
+                {
+                    var spawnCheckPeriodSeconds = (float)xmit.SpawnCheckPeriod.TotalSeconds;
+                    xmit.AccumulatedEnergy += spawnCheckPeriodSeconds * xmit.LogarithmCoefficient * MathF.Pow(xmit.LogarithmRateBase, MathF.Log10(xmit.AccumulatedEnergy / spawnCheckPeriodSeconds) - xmit.LogarithmSubtrahend);
+                }
+                xmit.AccumulatedSpawnCheckEnergy = 0;
 
                 // Require at least enough energy for one mole of gas before actually producing anything.
                 if (xmit.AccumulatedEnergy >= xmit.EnergyPerMole)
@@ -119,7 +134,7 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
         else
             actualPower = ent.Comp.LogarithmCoefficient * MathF.Pow(ent.Comp.LogarithmRateBase, MathF.Log10(power) - ent.Comp.LogarithmSubtrahend);
 
-        return ent.Comp.EnergyPerMole / actualPower;
+        return actualPower / ent.Comp.EnergyPerMole;
     }
 
     private void OnUIOpen(Entity<GasSpawnPowerConsumerComponent> ent, ref AfterActivatableUIOpenEvent args)

@@ -6,74 +6,74 @@
   placement:
     mode: SnapgridCenter
   components:
-    - type: Transform
-      noRot: true
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-1.45,-1.45,1.45,1.45"
-          density: 500
-          mask:
-          - LargeMobMask
-          layer:
-          - WallLayer
-    - type: AmbientSound
-      volume: -5
-      sound:
-        path: /Audio/_NF/Ambience/power-hum.ogg
-    - type: Sprite
-      sprite: _NF/Structures/Power/transmission_point.rsi
-      offset: 0,1
-      snapCardinals: false
-      noRot: true
-      drawdepth: Mobs
-      layers:
-        - state: base
-        - state: base-unlit
-          shader: unshaded
-          map: ["unlit"]
-        - state: base-foreground
-    - type: SpriteFade
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.PowerDeviceVisuals.Powered:
-          unlit:
-            True: { visible: true }
-            False: { visible: false }
-    - type: PowerTransmission
-      account: Edison
-    - type: PowerConsumer
-      drawRate: 1
-    - type: ExaminableBattery
-    - type: NodeContainer
-      examinable: true
-      nodes:
-        input:
-          !type:CableDeviceNode
-          nodeGroupID: HVPower
-    - type: PowerMonitoringDevice
-      group: Consumer
-      loadNode: input
-      collectionName: transmissionpoint
-      sprite: _NF/Structures/Power/transmission_point_icon.rsi
-      state: icon
-    - type: Electrified
-      onHandInteract: false
-      onInteractUsing: false
-      onBump: false
-      requirePower: true
-      highVoltageNode: input
-    - type: WiredNetworkConnection
-    - type: GuideHelp
-      guides:
-      - VoltageNetworks
-      - Power
-    - type: UserInterface
-      interfaces:
-        enum.AdjustablePowerDrawUiKey.Key:
-          type: AdjustablePowerDrawBoundUserInterface
-    - type: ActivatableUI
-      key: enum.AdjustablePowerDrawUiKey.Key
+  - type: Anchorable
+    flags: None
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,1.45,1.45"
+        density: 500
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: AmbientSound
+    volume: -5
+    sound:
+      path: /Audio/_NF/Ambience/power-hum.ogg
+  - type: Sprite
+    sprite: _NF/Structures/Power/transmission_point.rsi
+    offset: 0,1
+    snapCardinals: false
+    noRot: true
+    drawdepth: Mobs
+    layers:
+      - state: base
+      - state: base-unlit
+        shader: unshaded
+        map: ["unlit"]
+      - state: base-foreground
+  - type: SpriteFade
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        unlit:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerTransmission
+    account: Edison
+  - type: PowerConsumer
+    drawRate: 1
+  - type: ExaminableBattery
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Consumer
+    loadNode: input
+    collectionName: transmissionpoint
+    sprite: _NF/Structures/Power/transmission_point_icon.rsi
+    state: icon
+  - type: Electrified
+    onHandInteract: false
+    onInteractUsing: false
+    onBump: false
+    requirePower: true
+    highVoltageNode: input
+  - type: WiredNetworkConnection
+  - type: GuideHelp
+    guides:
+    - VoltageNetworks
+    - Power
+  - type: UserInterface
+    interfaces:
+      enum.AdjustablePowerDrawUiKey.Key:
+        type: AdjustablePowerDrawBoundUserInterface
+  - type: ActivatableUI
+    key: enum.AdjustablePowerDrawUiKey.Key

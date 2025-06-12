@@ -70,7 +70,7 @@ public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
                 // Adjust spawn check energy
                 if (float.IsFinite(xmit.AccumulatedSpawnCheckEnergy) && float.IsPositive(xmit.AccumulatedSpawnCheckEnergy))
                 {
-                    if (xmit.AccumulatedSpawnCheckEnergy <= xmit.LinearMaxValue)
+                    if (xmit.AccumulatedSpawnCheckEnergy <= xmit.LinearMaxValue * xmit.SpawnCheckPeriod.TotalSeconds)
                         xmit.AccumulatedEnergy += xmit.AccumulatedSpawnCheckEnergy;
                     else
                     {

@@ -195,6 +195,7 @@
           True: { visible: true }
           False: { visible: false }
 
+# When mapping this, ensure the middle square has HV cable and a connector port, it should work.
 - type: entity
   parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine ]
   id: EnergyAerator
@@ -203,8 +204,8 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: Transform
-    noRot: true
+  - type: Anchorable
+    flags: None
   - type: Fixtures
     fixtures:
       fix1:
@@ -263,5 +264,9 @@
       temperature: 5273 # ~ 5000 deg C, you're turning energy into a gas
     energyPerMole: 100000 # 100 kJ/mol
   - type: GasCanister
-    air:
+    gasMixture:
       volume: 10000 # big tank to store backup
+  - type: AtmosDevice
+    requireAnchored: false
+    joinSystem: true
+  - type: GasPortable # for the connector port

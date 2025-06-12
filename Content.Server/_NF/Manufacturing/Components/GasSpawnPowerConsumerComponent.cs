@@ -24,7 +24,7 @@ public sealed partial class GasSpawnPowerConsumerComponent : Component
     /// Also the T in Tk*a^(log10(x/T)-R) for rate calculation
     ///</summary>
     [DataField]
-    public TimeSpan SpawnCheckPeriod = TimeSpan.FromSeconds(20);
+    public TimeSpan SpawnCheckPeriod = TimeSpan.FromSeconds(4);
 
     ///<summary>
     /// The next time this power plant is selling accumulated power.
@@ -38,6 +38,12 @@ public sealed partial class GasSpawnPowerConsumerComponent : Component
     ///</summary>
     [DataField]
     public float AccumulatedEnergy;
+
+    ///<summary>
+    /// The energy accumulated this spawn check, in watts.
+    ///</summary>
+    [DataField]
+    public float AccumulatedSpawnCheckEnergy;
 
     ///<summary>
     /// The total amount of energy required to spawn one mole of gas.

@@ -1,14 +1,14 @@
 
 - type: entity
-  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructure ]
+  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine ]
   id: AntiMatterFabricator
   name: anti-matter fabricator
   description: A colossal machine that converts power into antimatter and stores it in AME fuel jars in a slot.
   placement:
     mode: SnapgridCenter
   components:
-  - type: Transform
-    noRot: true
+  - type: Anchorable
+    flags: None
   - type: Fixtures
     fixtures:
       fix1:
