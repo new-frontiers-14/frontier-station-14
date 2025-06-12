@@ -8,6 +8,7 @@ using Content.Shared._NF.Bank;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared.Examine;
 using Content.Shared.NodeContainer;
+using Content.Shared.Power;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
@@ -17,14 +18,20 @@ namespace Content.Shared._NF.Power.EntitySystems;
 public sealed partial class PowerTransmissionSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly NodeContainerSystem _node = default!;
     [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
+    [Dependency] private readonly PointLightSystem _pointLight = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+
+    private EntityQuery<AppearanceComponent> _appearanceQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
 
         UpdatesAfter.Add(typeof(PowerNetSystem));
 
@@ -55,7 +62,7 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
     public override void Update(float frameTime)
     {
         var query = EntityQueryEnumerator<PowerTransmissionComponent, PowerConsumerComponent>();
-        while (query.MoveNext(out _, out var xmit, out var power))
+        while (query.MoveNext(out var uid, out var xmit, out var power))
         {
             if (power.NetworkLoad.Enabled)
                 xmit.AccumulatedEnergy += power.NetworkLoad.ReceivingPower * frameTime;
@@ -85,6 +92,14 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
                 var depositSpesos = (int)depositValue;
                 if (depositSpesos > 0)
                     _bank.TrySectorDeposit(xmit.Account, depositSpesos, LedgerEntryType.PowerTransmission);
+            }
+
+            bool powered = power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0;
+            if (powered != xmit.LastPowered)
+            {
+                _appearance.SetData(uid, PowerDeviceVisuals.Powered, powered);
+                _pointLight.SetEnabled(uid, powered);
+                xmit.LastPowered = powered;
             }
         }
     }

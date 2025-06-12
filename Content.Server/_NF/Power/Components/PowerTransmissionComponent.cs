@@ -82,4 +82,10 @@ public sealed partial class PowerTransmissionComponent : Component
     [DataField]
     public float LogarithmSubtrahend = 6.0f; // log10(1_000_000)
     #endregion Logarithmic Rates
+
+    ///<summary>
+    /// True if the entity was powered last tick.
+    ///</summary>
+    [ViewVariables]
+    public bool LastPowered;
 }

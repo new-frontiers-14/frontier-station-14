@@ -7,6 +7,7 @@ using Content.Shared._NF.Power;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Examine;
 using Content.Shared.NodeContainer;
+using Content.Shared.Power;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
@@ -20,13 +21,18 @@ namespace Content.Shared._NF.Manufacturing.EntitySystems;
 public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly NodeContainerSystem _node = default!;
     [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
+    private EntityQuery<AppearanceComponent> _appearanceQuery;
+
     public override void Initialize()
     {
         base.Initialize();
+
+        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
 
         UpdatesAfter.Add(typeof(PowerNetSystem));
 
@@ -75,7 +81,9 @@ public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
                 if (float.IsFinite(xmit.AccumulatedSpawnCheckEnergy) && float.IsPositive(xmit.AccumulatedSpawnCheckEnergy))
                 {
                     if (xmit.AccumulatedSpawnCheckEnergy <= xmit.LinearMaxValue * xmit.SpawnCheckPeriod.TotalSeconds)
+                    {
                         xmit.AccumulatedEnergy += xmit.AccumulatedSpawnCheckEnergy;
+                    }
                     else
                     {
                         var spawnCheckPeriodSeconds = (float)xmit.SpawnCheckPeriod.TotalSeconds;
@@ -90,6 +98,9 @@ public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
                     TrySpawnInContainer(xmit.Spawn, uid, xmit.SlotName, out _);
                 }
             }
+
+            if (_appearanceQuery.TryComp(uid, out var appearance))
+                _appearance.SetData(uid, PowerDeviceVisuals.Powered, power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0, appearance);
         }
     }
 

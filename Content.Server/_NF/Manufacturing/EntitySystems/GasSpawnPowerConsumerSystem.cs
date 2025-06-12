@@ -9,6 +9,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.Examine;
 using Content.Shared.NodeContainer;
+using Content.Shared.Power;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
@@ -22,15 +23,20 @@ namespace Content.Shared._NF.Manufacturing.EntitySystems;
 public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly NodeContainerSystem _node = default!;
     [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+
+    private EntityQuery<AppearanceComponent> _appearanceQuery;
     private GasMixture _mixture = new();
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
 
         UpdatesAfter.Add(typeof(PowerNetSystem));
 
@@ -87,14 +93,17 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
                     xmit.AccumulatedEnergy = 0;
 
                 // Adjust spawn check energy
-                if (xmit.AccumulatedSpawnCheckEnergy <= xmit.LinearMaxValue * xmit.SpawnCheckPeriod.TotalSeconds)
+                if (float.IsFinite(xmit.AccumulatedSpawnCheckEnergy) && float.IsPositive(xmit.AccumulatedSpawnCheckEnergy))
                 {
-                    xmit.AccumulatedEnergy += xmit.AccumulatedSpawnCheckEnergy;
-                }
-                else
-                {
-                    var spawnCheckPeriodSeconds = (float)xmit.SpawnCheckPeriod.TotalSeconds;
-                    xmit.AccumulatedEnergy += spawnCheckPeriodSeconds * xmit.LogarithmCoefficient * MathF.Pow(xmit.LogarithmRateBase, MathF.Log10(xmit.AccumulatedEnergy / spawnCheckPeriodSeconds) - xmit.LogarithmSubtrahend);
+                    if (xmit.AccumulatedSpawnCheckEnergy <= xmit.LinearMaxValue * xmit.SpawnCheckPeriod.TotalSeconds)
+                    {
+                        xmit.AccumulatedEnergy += xmit.AccumulatedSpawnCheckEnergy;
+                    }
+                    else
+                    {
+                        var spawnCheckPeriodSeconds = (float)xmit.SpawnCheckPeriod.TotalSeconds;
+                        xmit.AccumulatedEnergy += spawnCheckPeriodSeconds * xmit.LogarithmCoefficient * MathF.Pow(xmit.LogarithmRateBase, MathF.Log10(xmit.AccumulatedEnergy / spawnCheckPeriodSeconds) - xmit.LogarithmSubtrahend);
+                    }
                 }
                 xmit.AccumulatedSpawnCheckEnergy = 0;
 
@@ -117,6 +126,8 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
                     xmit.AccumulatedEnergy = 0;
                 }
             }
+
+            _appearance.SetData(uid, PowerDeviceVisuals.Powered, power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0);
         }
     }
 

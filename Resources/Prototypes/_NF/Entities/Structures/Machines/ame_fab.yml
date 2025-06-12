@@ -21,28 +21,54 @@
         layer:
         - WallLayer
   - type: NodeContainer
+    examinable: true
     nodes:
       input:
         !type:CableDeviceNode
         nodeGroupID: HVPower
         enabled: false
-      outlet:
-        !type:PipeNode
-        nodeGroupID: Pipe
-        pipeDirection: South
   - type: Sprite
     noRot: true
     drawdepth: Mobs
-    sprite: _NF/Structures/Machines/AMEFab/base.rsi
+    sprite: _NF/Structures/Machines/AMEFab/32x32.rsi # needed for item mapper
     layers:
-    - state: base
+    - sprite: _NF/Structures/Machines/AMEFab/base.rsi
+      state: base
+    - state: dial
+      offset: -0.5, 0.5
+      map: [ dial ]
+    - sprite: _NF/Structures/Machines/AMEFab/64x32.rsi
+      state: flywheel
+      offset: 0.5, 0.5
+      map: [ flywheel ]
+    - sprite: _NF/Structures/Machines/AMEFab/64x32.rsi
+      state: press
+      offset: -0.5, 0
+      map: [ press ]
+    - state: slot-full
+      offset: 1, 0.5
+      map: [ slot-full ]
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.DockablePipeVisuals.Docked:
-        docked-unlit:
-          True: { visible: true }
-          False: { visible: false }
+      enum.PowerDeviceVisuals.Powered:
+        dial:
+          True: { state: dial-animated }
+          False: { state: dial }
+        flywheel:
+          True: { state: flywheel-animated }
+          False: { state: flywheel }
+        press:
+          True: { state: press-animated }
+          False: { state: press }
+  - type: ItemMapper
+    containerWhitelist:
+    - output
+    mapLayers:
+      slot-full:
+        whitelist:
+          components:
+          - NFFuel
   - type: PowerConsumer
     drawRate: 100000
   - type: PowerMonitoringDevice
