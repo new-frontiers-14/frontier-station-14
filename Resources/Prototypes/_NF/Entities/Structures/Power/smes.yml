@@ -1,4 +1,4 @@
-# Big ol' SMES. 20 SMESeses.
+# Big ol' SMES. 10 SMESeses.
 - type: entity
   id: SMESBig
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseSMES]
@@ -29,19 +29,19 @@
       - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
         state: bles-open
   - type: UpgradeBattery
-    baseMaxCharge: 160000000
+    baseMaxCharge: 80000000
   - type: BatteryInterface
-    minChargeRate: 100000
-    maxChargeRate: 3000000
-    minSupply: 100000
-    maxSupply: 3000000
+    minChargeRate: 50000
+    maxChargeRate: 1500000
+    minSupply: 50000
+    maxSupply: 1500000
   - type: Battery
-    maxCharge: 160000000
+    maxCharge: 80000000
   - type: PowerNetworkBattery
-    maxSupply: 3000000
-    maxChargeRate: 100000
-    supplyRampTolerance: 100000
-    supplyRampRate: 20000
+    maxSupply: 1500000
+    maxChargeRate: 50000
+    supplyRampTolerance: 50000
+    supplyRampRate: 10000
   - type: PointLight
     radius: 3
     energy: 1.6
@@ -68,9 +68,9 @@
 
 - type: entity
   abstract: true
-  id: SMESBig16MW
+  id: SMESBig8MW
   parent: SMESBig
-  suffix: 16 MW
+  suffix: 8 MW
   components:
   - type: Battery
-    startingCharge: 16000000
+    startingCharge: 8000000
