@@ -8,6 +8,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Content.Shared.Xenoarchaeology.Artifact.XAT.Components;
+using Content.Shared.Tiles; // Frontier
 
 namespace Content.Shared.Xenoarchaeology.Artifact;
 
@@ -62,6 +63,15 @@ public abstract partial class SharedXenoArtifactSystem
         // without real knowledge about triggers
         if (!force && _timing.CurTime < ent.Comp.NextUnlockTime)
             return;
+
+        // Frontier: Disable activations on protected grids
+        if (TryComp(ent, out TransformComponent? xform)
+            && TryComp<ProtectedGridComponent>(xform.GridUid, out var prot)
+            && prot.PreventArtifactTriggers)
+        {
+            return;
+        }
+        // End Frontier: Disable activations on protected grids
 
         if (!_unlockingQuery.TryGetComponent(ent, out var unlockingComp))
         {
