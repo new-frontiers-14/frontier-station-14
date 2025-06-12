@@ -6,8 +6,8 @@
   abstract: true
   suffix: Random
   components:
-  - type: RandomStackCount # Avg: 17.5
-    min: 5
+  - type: RandomStackCount # Avg: 17.5<20
+    min: 10 # 5<10
     max: 30
 
 - type: entity
@@ -16,9 +16,9 @@
   abstract: true
   suffix: Random, Reduced
   components:
-  - type: RandomStackCount # Avg: 9
-    min: 3
-    max: 15
+  - type: RandomStackCount # Avg: 9<15
+    min: 6 # 3<6
+    max: 24 # 15<24
 
 - type: entity
   save: false
@@ -26,9 +26,9 @@
   abstract: true
   suffix: Random, Low
   components:
-  - type: RandomStackCount # Avg: 5
-    min: 2
-    max: 8
+  - type: RandomStackCount # Avg: 5<10
+    min: 4 # 2<4
+    max: 16 # 8<16
 
 - type: entity
   save: false
