@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/07/2025 09:25:12
+  time: 06/11/2025 07:23:49
   entityCount: 762
 maps: []
 grids:
@@ -4503,6 +4503,13 @@ entities:
     - type: Transform
       pos: 12.5,11.5
       parent: 1
+- proto: NFLockerScienceFilled
+  entities:
+  - uid: 512
+    components:
+    - type: Transform
+      pos: 8.5,10.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 498
@@ -4595,13 +4602,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,3.5
-      parent: 1
-- proto: PottedPlantRandom
-  entities:
-  - uid: 512
-    components:
-    - type: Transform
-      pos: 8.5,10.5
       parent: 1
 - proto: PowerCellRecharger
   entities:
@@ -5223,13 +5223,12 @@ entities:
   - uid: 605
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,12.5
+      pos: 6.5,11.5
       parent: 1
-  - uid: 606
+  - uid: 610
     components:
     - type: Transform
-      pos: 8.5,11.5
+      pos: 7.5,11.5
       parent: 1
 - proto: StorageCanister
   entities:
@@ -5245,31 +5244,13 @@ entities:
     - type: Transform
       pos: 1.5,2.5
       parent: 1
-- proto: SuitStorageRD
+- proto: SuitStorageEVAScientist
   entities:
-  - uid: 610
+  - uid: 606
     components:
     - type: Transform
       pos: 5.5,10.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: SuitStorageSalv
   entities:
   - uid: 611
