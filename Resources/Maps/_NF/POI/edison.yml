@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/12/2025 21:00:28
+  time: 06/12/2025 21:04:06
   entityCount: 4323
 maps: []
 grids:
@@ -7521,6 +7521,11 @@ entities:
     - type: Transform
       pos: -1.5,27.5
       parent: 2
+  - uid: 440
+    components:
+    - type: Transform
+      pos: 3.5,22.5
+      parent: 2
   - uid: 441
     components:
     - type: Transform
@@ -7611,10 +7616,10 @@ entities:
     - type: Transform
       pos: -3.5,28.5
       parent: 2
-  - uid: 498
+  - uid: 496
     components:
     - type: Transform
-      pos: 3.5,22.5
+      pos: 4.5,22.5
       parent: 2
   - uid: 499
     components:
@@ -7639,7 +7644,7 @@ entities:
   - uid: 510
     components:
     - type: Transform
-      pos: 3.5,23.5
+      pos: -2.5,23.5
       parent: 2
   - uid: 572
     components:
@@ -10019,11 +10024,11 @@ entities:
       parent: 2
 - proto: CableTerminal
   entities:
-  - uid: 496
+  - uid: 444
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 4.5,23.5
+      pos: 4.5,22.5
       parent: 2
   - uid: 497
     components:
@@ -11536,15 +11541,16 @@ entities:
       parent: 2
 - proto: ComputerPowerMonitoring
   entities:
+  - uid: 1072
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,23.5
+      parent: 2
   - uid: 1612
     components:
     - type: Transform
       pos: 21.5,19.5
-      parent: 2
-  - uid: 2646
-    components:
-    - type: Transform
-      pos: -2.5,22.5
       parent: 2
 - proto: ComputerSolarControl
   entities:
@@ -13890,6 +13896,14 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 498
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,7.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 502
     components:
     - type: Transform
@@ -14233,14 +14247,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 3691
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,7.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 3712
     components:
     - type: Transform
@@ -21382,10 +21388,10 @@ entities:
     - type: Transform
       pos: -2.5,24.5
       parent: 2
-  - uid: 1072
+  - uid: 2646
     components:
     - type: Transform
-      pos: -2.5,23.5
+      pos: -2.5,22.5
       parent: 2
 - proto: LockerWallColorAtmosTech
   entities:
@@ -21719,7 +21725,7 @@ entities:
   - uid: 3253
     components:
     - type: Transform
-      pos: -0.5,36.5
+      pos: 3.5,23.5
       parent: 2
 - proto: PortableGeneratorJrPacmanMachineCircuitboard
   entities:
@@ -24398,15 +24404,15 @@ entities:
       parent: 2
 - proto: SMESBig
   entities:
-  - uid: 440
-    components:
-    - type: Transform
-      pos: 3.5,23.5
-      parent: 2
   - uid: 3604
     components:
     - type: Transform
       pos: 3.5,24.5
+      parent: 2
+  - uid: 3691
+    components:
+    - type: Transform
+      pos: 3.5,22.5
       parent: 2
 - proto: SMESMachineCircuitboard
   entities:
@@ -24803,11 +24809,6 @@ entities:
       parent: 2
 - proto: SubstationBasic
   entities:
-  - uid: 444
-    components:
-    - type: Transform
-      pos: 3.5,22.5
-      parent: 2
   - uid: 2181
     components:
     - type: Transform
