@@ -4,6 +4,7 @@
  * See AGPLv3.txt for details.
  */
 using Content.Server.Administration.Logs;
+using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Shared._NF.Bank.BUI;
@@ -29,6 +30,8 @@ public sealed partial class BankSystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
 
     private void InitializeATM()
     {
@@ -84,7 +87,9 @@ public sealed partial class BankSystem
 
         //spawn the cash stack of whatever cash type the ATM is configured to.
         var stackPrototype = _prototypeManager.Index<StackPrototype>(component.CashType);
-        _stackSystem.Spawn(args.Amount, stackPrototype, uid.ToCoordinates());
+        var cashStack = _stackSystem.Spawn(args.Amount, stackPrototype, player.ToCoordinates());
+        if (!_hands.TryPickupAnyHand(player, cashStack))
+            _transform.SetLocalRotation(cashStack, Angle.Zero); // Orient these to grid north instead of map north
 
         _uiSystem.SetUiState(uid, args.UiKey,
             new BankATMMenuInterfaceState(bank.Balance, true, deposit));
