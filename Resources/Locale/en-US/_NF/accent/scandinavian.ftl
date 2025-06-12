@@ -19,7 +19,7 @@ accent-scandinavian-words-6-1 = hi
 accent-scandinavian-words-replace-6 = hej
 
 accent-scandinavian-words-7 = goodbye
-accent-scandinavian-words-replace-7 = Ha det
+accent-scandinavian-words-replace-7 = ha det
 
 accent-scandinavian-words-8 = bye
 accent-scandinavian-words-replace-8 = farvel
