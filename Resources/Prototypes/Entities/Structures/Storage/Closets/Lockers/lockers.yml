@@ -288,6 +288,7 @@
   id: LockerScientist
   parent: LockerBase
   name: scientist's locker
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -295,7 +296,7 @@
     stateDoorOpen: science_open
     stateDoorClosed: science_door
   - type: AccessReader
-#    access: [ [ "Research" ] ] # Frontier
+    access: [ [ "Research" ] ]
 
 # HoS
 - type: entity
