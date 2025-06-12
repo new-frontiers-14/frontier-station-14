@@ -22,7 +22,8 @@ using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.IoC;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
-using Content.IntegrationTests.Tests._NF;
+using Robust.Shared.Map.Events;
+using Content.IntegrationTests.Tests._NF; // Frontier
 
 namespace Content.IntegrationTests.Tests
 {
@@ -32,11 +33,10 @@ namespace Content.IntegrationTests.Tests
         private const bool SkipTestMaps = true;
         private const string TestMapsPath = "/Maps/_NF/Test/"; // Frontier: _NF
 
-        // Frontier: TODO - define this to our set of maps of interest
         private static readonly string[] NoSpawnMaps =
         {
-            "CentComm",
-            "Dart"
+            // "CentComm", // Frontier: no upstream maps
+            // "Dart" // Frontier: no upstream maps
         };
 
         private static readonly string[] Grids =
@@ -44,8 +44,6 @@ namespace Content.IntegrationTests.Tests
             // Frontier: no upstream maps, define our own.
             // "/Maps/centcomm.yml",
             AdminTestArenaSystem.ArenaMapPath,
-            "/Maps/_NF/Shuttles/Admin/fishbowl.yml",
-            "/Maps/_NF/Shuttles/Bus/publicts.yml",
             "/Maps/_NF/Shuttles/Admin/fishbowl.yml"
             // End Frontier
         };
@@ -72,6 +70,38 @@ namespace Content.IntegrationTests.Tests
         };
 
         private static readonly string[] GameMaps = FrontierConstants.GameMapPrototypes; // Frontier: not inline constants
+        // Frontier: comment out upstream game maps
+        /*
+        private static readonly string[] GameMaps =
+        {
+            "Dev",
+            "TestTeg",
+            "Fland",
+            "Meta",
+            "Packed",
+            "Omega",
+            "Bagel",
+            "CentComm",
+            "Box",
+            "Core",
+            "Marathon",
+            "MeteorArena",
+            "Saltern",
+            "Reach",
+            "Train",
+            "Oasis",
+            "Gate",
+            "Amber",
+            "Loop",
+            "Plasma",
+            "Elkridge",
+            "Convex",
+            "Relic",
+            "dm01-entryway"
+
+        };
+        */
+        // End Frontier: comment out upstream game maps
 
         /// <summary>
         /// Asserts that specific files have been saved as grids and not maps.
@@ -124,7 +154,7 @@ namespace Content.IntegrationTests.Tests
             var cfg = server.ResolveDependency<IConfigurationManager>();
             Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
-            var shuttleFolder = new ResPath("/Maps/Shuttles");
+            var shuttleFolder = new ResPath("/Maps/_NF/Shuttles"); // Frontier: use NF maps
             var shuttles = resMan
                 .ContentFindFiles(shuttleFolder)
                 .Where(filePath =>
@@ -218,9 +248,12 @@ namespace Content.IntegrationTests.Tests
             // End Frontier
 
             var deps = server.ResolveDependency<IEntitySystemManager>().DependencyCollection;
+            var ev = new BeforeEntityReadEvent();
+            server.EntMan.EventBus.RaiseEvent(EventSource.Local, ev);
+
             foreach (var map in v7Maps)
             {
-                Assert.That(IsPreInit(map, loader, deps));
+                Assert.That(IsPreInit(map, loader, deps, ev.RenamedPrototypes, ev.DeletedPrototypes));
             }
 
             // Check that the test actually does manage to catch post-init maps and isn't just blindly passing everything.
@@ -233,12 +266,12 @@ namespace Content.IntegrationTests.Tests
             // First check that a pre-init version passes
             var path = new ResPath($"{nameof(NoSavedPostMapInitTest)}.yml");
             Assert.That(loader.TrySaveMap(id, path));
-            Assert.That(IsPreInit(path, loader, deps));
+            Assert.That(IsPreInit(path, loader, deps, ev.RenamedPrototypes, ev.DeletedPrototypes));
 
             // and the post-init version fails.
             await server.WaitPost(() => mapSys.InitializeMap(id));
             Assert.That(loader.TrySaveMap(id, path));
-            Assert.That(IsPreInit(path, loader, deps), Is.False);
+            Assert.That(IsPreInit(path, loader, deps, ev.RenamedPrototypes, ev.DeletedPrototypes), Is.False);
 
             await pair.CleanReturnAsync();
         }
@@ -271,7 +304,11 @@ namespace Content.IntegrationTests.Tests
             });
         }
 
-        private bool IsPreInit(ResPath map, MapLoaderSystem loader, IDependencyCollection deps)
+        private bool IsPreInit(ResPath map,
+            MapLoaderSystem loader,
+            IDependencyCollection deps,
+            Dictionary<string, string> renamedPrototypes,
+            HashSet<string> deletedPrototypes)
         {
             if (!loader.TryReadFile(map, out var data))
             {
@@ -279,7 +316,12 @@ namespace Content.IntegrationTests.Tests
                 return false;
             }
 
-            var reader = new EntityDeserializer(deps, data, DeserializationOptions.Default);
+            var reader = new EntityDeserializer(deps,
+                data,
+                DeserializationOptions.Default,
+                renamedPrototypes,
+                deletedPrototypes);
+
             if (!reader.TryProcessData())
             {
                 Assert.Fail($"Failed to process {map}");

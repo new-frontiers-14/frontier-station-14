@@ -12,7 +12,7 @@
     whitelist:
       tags:
         - CartridgeCaselessRifle
-    proto: CartridgeCaselessRifle
+    # proto: CartridgeCaselessRifle # Frontier
     capacity: 30
   - type: Item
     size: Small
@@ -33,13 +33,14 @@
   - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: BaseMagazineCaselessRifleShort
   name: "caseless rifle short magazine (.25 caseless)"
   parent: BaseMagazineCaselessRifle
   abstract: true
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
+    # proto: CartridgeCaselessRifle # Frontier
     capacity: 10
   - type: Item
     size: Tiny
@@ -52,6 +53,7 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: BaseMagazinePistolCaselessRifle
   name: "pistol magazine (.25 caseless)"
   parent: BaseMagazineCaselessRifle
@@ -64,7 +66,7 @@
     whitelist:
       tags:
         - CartridgeCaselessRifle
-    proto: CartridgeCaselessRifle
+    # proto: CartridgeCaselessRifle # Frontier
     capacity: 10
   - type: Item
     size: Small
@@ -82,12 +84,13 @@
   - type: Appearance
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineCaselessRifle10x24
   name: "box magazine (.25 caseless)"
   parent: BaseMagazineCaselessRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
+    # proto: CartridgeCaselessRifle # Frontier
     capacity: 99
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/10x24.rsi
@@ -97,15 +100,17 @@
     zeroVisible: false
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolCaselessRifle
   name: "pistol magazine (.25 caseless)"
   parent: BaseMagazinePistolCaselessRifle
+  description: 10-round magazine for the Cobra pistol. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
+    # proto: CartridgeCaselessRifle # Frontier
     capacity: 10
   - type: Sprite
-    slayers:
+    layers: # Wizden#37444
     - state: red
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
@@ -115,14 +120,22 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazinePistolCaselessRiflePractice
   name: "pistol magazine (.25 caseless practice)"
   parent: BaseMagazinePistolCaselessRifle
+  description: 10-round magazine for the Cobra pistol. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRiflePractice
+    # proto: CartridgeCaselessRiflePractice # Frontier
     capacity: 10
   - type: Sprite
     layers:
@@ -135,42 +148,75 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ea5800"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ea5800"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineCaselessRifle
   name: "magazine (.25 caseless)"
   parent: BaseMagazineCaselessRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
+    # proto: CartridgeCaselessRifle # Frontier
   - type: Sprite
     layers:
     - state: red
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#9b0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#9b0000"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineCaselessRiflePractice
   name: "magazine (.25 caseless practice)"
   parent: BaseMagazineCaselessRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRiflePractice
+    # proto: CartridgeCaselessRiflePractice # Frontier
   - type: Sprite
     layers:
     - state: practice
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ea5800"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ea5800"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineCaselessRifleShort
   name: "short magazine (.25 caseless)"
   parent: BaseMagazineCaselessRifleShort
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
+    # proto: CartridgeCaselessRifle # Frontier
     capacity: 20
   - type: Sprite
     layers:
@@ -178,14 +224,25 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#9b0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#9b0000"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineCaselessRifleShortPractice
   name: "short magazine (.25 caseless practice)"
   parent: BaseMagazineCaselessRifleShort
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRiflePractice
+    # proto: CartridgeCaselessRiflePractice # Frontier
     capacity: 20
   - type: Sprite
     layers:
@@ -193,3 +250,13 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ea5800"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ea5800"

@@ -1,6 +1,6 @@
 # Species
 - type: loadoutEffectGroup
-  id: NitrogenBreatherNF
+  id: NFNitrogenBreather
   effects:
   - !type:SpeciesLoadoutEffect
     species:
@@ -8,41 +8,52 @@
     - Vox
 
 - type: loadoutEffectGroup
-  id: OxygenBreatherNF
+  id: NFOxygenBreather
   effects:
   - !type:SpeciesLoadoutEffect
     species:
-    - Arachnid
-    - Diona
-    - Dwarf
-    - Human
-    - Moth
-    - Reptilian
-    - Goblin
-    - Oni
-    - Felinid
-    - Vulpkanin
-    - Harpy
-    - Rodentia
+    - SlimePerson
+    - Vox
+    - Sheleg # Different meds
+    inverted: true
+
+- type: loadoutEffectGroup
+  id: NFSheleg
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Sheleg
 
 - type: loadoutEffectGroup
   id: ShoesCapableNF
   effects:
   - !type:SpeciesLoadoutEffect
     species:
-    - Arachnid
-    - Dwarf
-    - Human
-    - Moth
-    - Reptilian
-    - SlimePerson
-    - Vox
-    - Goblin
-    - Oni
-    - Felinid
-    - Vulpkanin
-    - Harpy
-    - Rodentia
+    - Diona
+    inverted: true
+
+- type: loadoutEffectGroup
+  id: NFHeadwearCapable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Sheleg
+    inverted: true
+
+- type: loadoutEffectGroup
+  id: NFCoatCapable
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Sheleg
+    inverted: true
+
+- type: loadoutEffectGroup
+  id: NFOuterSuitRequired
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Sheleg
 
 - type: loadoutEffectGroup
   id: NFNotDocOrStc
@@ -58,11 +69,3 @@
   - !type:RoleBlacklistLoadoutEffect
     blacklist:
     - JobDirectorOfCare
-
-- type: loadoutEffectGroup
-  id: NotFemaleNF
-  effects:
-  - !type:SexLoadoutEffect
-    sex:
-    - Male
-    - Unsexed

@@ -113,6 +113,7 @@
       - BorgChassis
       - RoboticsConsole
   - type: WiresPanel
+    openingTool: Prying
   - type: ActivatableUIRequiresPanel
   - type: NameIdentifier
     group: Silicon
@@ -156,6 +157,7 @@
     sounds:
       Unsexed: UnisexSilicon
     screamAction: null
+  - type: DamagedSiliconAccent
   - type: UnblockableSpeech
   - type: FootstepModifier
     footstepSoundCollection:
@@ -216,8 +218,8 @@
       id: blinking
       interpolate: Nearest
       maxDuration: 1.0
-      minValue: 0.1
-      maxValue: 2.0
+      startValue: 0.1 # Wizden#37444
+      endValue: 2.0 # Wizden#37444
       isLooped: true
   - type: ToggleableLightVisuals
   - type: PointLight
@@ -235,6 +237,8 @@
     - DoorBumpOpener
     - FootstepSound
     - CanPilot
+    - SiliconEmotes
+    - Unimplantable
   - type: Emoting
   - type: GuideHelp
     guides:
@@ -283,8 +287,7 @@
   components:
   - type: RandomMetadata
     nameSegments:
-      # - names_borg # Frontier
-      - NFNamesBorgUnlocalized # Frontier
+      - NFNamesBorg # Frontier: use NF variant
   - type: NpcFactionMember
     factions:
     - NanoTrasen
@@ -292,6 +295,8 @@
     enabled: false
     groups:
     - AllAccess
+    tags:
+    - Borg
 #  - type: AccessReader
 #    access: [["Command"], ["Research"]]
   - type: ShowJobIcons

@@ -11,9 +11,9 @@
 - type: vessel
   id: Ceres
   parent: BaseVessel
-  name: SBB Ceres
+  name: BB Ceres
   description: A medium-size, high-class restaurant ship with ample seating, integrated botany and a dining room for VIP guests
-  price: 60000 # ~5% markup - TODO: fix this value, just getting tests to pass - Whatstone
+  price: 69500 # ~10% markup, big luxury restaurant
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/ceres.yml
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Ceres
-  mapName: 'SBB Ceres'
+  mapName: 'BB Ceres'
   mapPath: /Maps/_NF/Shuttles/ceres.yml
   minPlayers: 0
   stations:
@@ -39,6 +39,6 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

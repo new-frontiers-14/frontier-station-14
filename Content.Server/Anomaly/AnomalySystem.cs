@@ -18,6 +18,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Server.Stack; // Frontier
 
 namespace Content.Server.Anomaly;
 
@@ -34,12 +35,13 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly MaterialStorageSystem _material = default!;
     [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
+    // [Dependency] private readonly StationSystem _station = default!; // Frontier
+    // [Dependency] private readonly RadioSystem _radio = default!; // Frontier
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly RadiationSystem _radiation = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly StackSystem _stack = default!; // Frontier
 
     public const float MinParticleVariation = 0.8f;
     public const float MaxParticleVariation = 1.2f;
@@ -54,6 +56,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         SubscribeLocalEvent<AnomalyComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<AnomalyComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<AnomalyComponent, StartCollideEvent>(OnStartCollide);
+        SubscribeLocalEvent<AnomalyComponent, EntParentChangedMessage>(OnAnomalyParentChanged); // Frontier
 
 
         InitializeGenerator();
@@ -130,6 +133,29 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
                 SetBehavior(anomaly, GetRandomBehavior());
         }
     }
+
+    // Frontier: disable anomaly if it goes off-grid
+    private void OnAnomalyParentChanged(Entity<AnomalyComponent> ent, ref EntParentChangedMessage args)
+    {
+        // If this entity is being destroyed, no need to fiddle with components
+        if (TerminatingOrDeleted(ent) || ent.Comp.ConnectedVessel is not { } vessel)
+            return;
+
+        if (!TryComp(ent, out TransformComponent? xform)
+            || !TryComp(vessel, out TransformComponent? vesselXform)
+            || xform.GridUid != vesselXform.GridUid)
+        {
+            ent.Comp.ConnectedVessel = null;
+            _radiation.SetSourceEnabled(vessel, false);
+            if (TryComp(vessel, out AnomalyVesselComponent? vesselComp))
+            {
+                vesselComp.Anomaly = null;
+                UpdateVesselAppearance(vessel, vesselComp);
+            }
+            Popup.PopupEntity(Loc.GetString("anomaly-vessel-component-anomaly-cleared"), vessel);
+        }
+    }
+    // End Frontier: disable anomaly if it goes off-grid
 
     /// <summary>
     /// Gets the amount of research points generated per second for an anomaly.
@@ -219,4 +245,16 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         EntityManager.RemoveComponents(anomaly, behavior.Components);
     }
     #endregion
+
+    // Frontier: crystal spawning
+    protected override void SpawnCrystals(Entity<AnomalyComponent> ent)
+    {
+        if (ent.Comp.CrystalPrototype == null || ent.Comp.PointsPerCrystalUnit <= 0)
+            return;
+
+        int numCrystals = int.Min(ent.Comp.PointsEarned / ent.Comp.PointsPerCrystalUnit, ent.Comp.MaxCrystals);
+        if (numCrystals > 0)
+            _stack.SpawnMultiple(ent.Comp.CrystalPrototype, numCrystals, ent);
+    }
+    // End Frontier: crystal spawning
 }

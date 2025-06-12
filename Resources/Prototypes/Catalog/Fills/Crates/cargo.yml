@@ -9,6 +9,17 @@
     - id: ClothingOuterHardsuitLuxury
 
 - type: entity
+  id: CrateCargoParcelWrap
+  parent: CrateGenericSteel
+  name: parcel wrap crate
+  description: All your parcel wrapping needs in one crate, containing three rolls of parcel wrap.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ParcelWrap
+      amount: 3
+
+- type: entity
   id: CrateCargoGambling
   name: the grand lottery $$$
   description: A box containing treasure beyond your greatest imaginations!
@@ -104,22 +115,22 @@
       prob: 0.001
       orGroup: Canister
     #weapons
-    - id: WeaponPulseCarbine
+    - id: NFWeaponEnergyRifleAssaultPulseCarbine # Frontier: WeaponPulseCarbine<NFWeaponEnergyRifleAssaultPulseCarbine
       prob: 0.0001
       orGroup: Weapons
-    - id: WeaponRifleAk
+    - id: NFWeaponRifleAssaultSm # Frontier: WeaponRifleAk<NFWeaponRifleAssaultSm
       prob: 0.0001
       orGroup: Weapons
-    - id: WeaponLauncherPirateCannon
+    - id: NFWeaponLauncherPirateCannon # Frontier: WeaponLauncherPirateCannon<NFWeaponLauncherPirateCannon
       prob: 0.001
       orGroup: Weapons
-    - id: WeaponPistolCHIMP
+    - id: NFWeaponPistolCHIMP # Frontier: FWeaponPistolCHIMP<NFWeaponPistolCHIMP
       prob: 0.001
       orGroup: Weapons
-    - id: WeaponSniperMosin
+    - id: NFWeaponRifleBarlowsBolt # Frontier: WeaponSniperMosin<NFWeaponRifleBarlowsBolt
       prob: 0.01
       orGroup: Weapons
-    - id: WeaponMakeshiftLaser
+    - id: NFWeaponEnergyPistolLaserMakeshift # Frontier: WeaponMakeshiftLaser<NFWeaponEnergyPistolLaserMakeshift
       prob: 0.001
       orGroup: Weapons
     - id: Sledgehammer
@@ -131,10 +142,10 @@
     - id: ThrowingStar
       prob: 0.01
       orGroup: Weapons
-    - id: WeaponLaserGun
+    - id: NFWeaponEnergyPistolLaser # Frontier: WeaponLaserGun<NFWeaponEnergyPistolLaser
       prob: 0.001
       orGroup: Weapons
-    - id: WeaponShotgunHandmade
+    - id: NFWeaponShotgunHandmade # Frontier: WeaponShotgunHandmade<NFWeaponShotgunHandmade
       prob: 0.01
       orGroup: Weapons
     - id: WeaponFlareGun
@@ -158,7 +169,7 @@
     - id: WeaponTurretXeno
       prob: 0.01
       orGroup: Weapons
-    - id: WeaponRifleFoam
+    - id: NFWeaponRifleFoam # Frontier: WeaponRifleFoam<NFWeaponRifleFoam
       prob: 0.03
       orGroup: Weapons
     #clothing
@@ -373,7 +384,7 @@
     - id: ClothingHandsGlovesColorYellowBudget
       prob: 0.01
       orGroup: NotUseful
-    - id: CartridgeCap
+    - id: NFCartridgeCap # Frontier: CartridgeCap<NFCartridgeCap
       prob: 0.01
       orGroup: NotUseful
     - id: EncryptionKeyCommon
@@ -394,10 +405,10 @@
     - id: WeakKudzu
       prob: 0.01
       orGroup: NotUseful
-    - id: MagazineFoamBox
+    - id: NFMagazineBoxFoam # Frontier: MagazineFoamBox<
       prob: 0.001
       orGroup: NotUseful
-    - id: BoxDonkSoftBox
+    - id: NFBoxDonkSoftBox # Frontier: use NF variant
       prob: 0.008
       orGroup: NotUseful
     - id: GrenadeFoamDart

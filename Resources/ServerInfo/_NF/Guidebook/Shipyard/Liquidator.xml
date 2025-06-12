@@ -1,21 +1,14 @@
 <Document>
-  # LIQUIDATOR-CLASS SERVICE SHUTTLE
+  # LIQUIDATOR-CLASS SALVAGE SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="JanitorialTrolley"/>
-  <GuideEntityEmbed Entity="MopItem"/>
-  <GuideEntityEmbed Entity="TrashBag"/>
-  </Box>  
-  <Box>
-  <GuideEntityEmbed Entity="SprayBottleSpaceCleaner"/>
-  <GuideEntityEmbed Entity="LightReplacer"/>
-  <GuideEntityEmbed Entity="ClothingShoeSlippersDuck"/>
+  <GuideEntityEmbed Entity="NFPosterContrabandLvhiStation" Caption=""/>
   </Box>
   <Box>
   <GuideEntityEmbed Entity="ShuttleMapLiquidator" Caption=""/>
   </Box>
     [color=#a4885c]Ship Size:[/color] Small
 	
-	[color=#a4885c]Recommended Crew:[/color] 1+
+	[color=#a4885c]Recommended Crew:[/color] 2+
 	
 	[color=#a4885c]Power Gen Type:[/color] Uranium
 	
@@ -23,93 +16,11 @@
 	
 	[color=#a4885c]IFF Console:[/color] None
 	
-  "A small vessel equipped with everything you need to make even the dirtiest ship squeaky clean (ducky slippers included). Manufactured by Langstad-Voigt Heavy Industries."
+  "A small shipbreaker/salvage vessel equipped with everything a small crew need for extended work shift in deep space. Manufactured by Langstad-Voigt Heavy Industries."
     
-  # PREFLIGHT CHECKLIST
+  # Tips on running LVHI Liquidator shuttles
+  - Optimal Target Power (kW) for S.U.P.E.R.P.A.C.M.A.N. generator unit is 16 [bold]kW[/bold]. If you've added additional machines, check APC unit to see shuttle's power draw and adjust generator Target Power accordingly. For more general info on power grid see guidebook article [textlink="Power" link="Power"].
+  - Shuttle atmos waste loop doesn't vent filtered gases into space, instead waste gases are collected in storage canister. Make sure to keep an eye on storage canister pressure and if need be vent it manually in space. Alternatively, accumulated waste gases can be used for refilling jet packs. For more general info on atmospherics see guidebook article about [textlink="Atmospherics" link="Atmospherics"].
+  - For basics of shuttle piloting see [textlink="Piloting" link="Piloting"].
   
-  ## 1. Power supply
-  
-  ## 1.1. Battery units
-  <Box>
-  <GuideEntityEmbed Entity="SMESBasic"/>
-  <GuideEntityEmbed Entity="SubstationBasic"/>
-  <GuideEntityEmbed Entity="APCBasic"/>
-  </Box>
-  
-  - Check that the SMES unit is anchored to the floor.
-  - Check that the substation unit is anchored to the floor.
-  - Check that the APC unit's Main Breaker is toggled on.
-  - Check the APC unit's current Load* (W).
-  
-  ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator unit
-  <Box>
-  <GuideEntityEmbed Entity="PortableGeneratorSuperPacman"/>
-  <GuideEntityEmbed Entity="SheetUranium"/>
-  <GuideEntityEmbed Entity="SignRadiationMed"/>
-  </Box>
-  
-  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator unit is anchored to the floor.
-  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
-  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator unit is set to HV output.
-  - Set Target Power for 21-22** [bold]kW[/bold].
-  - Start the S.U.P.E.R.P.A.C.M.A.N. generator unit.
-  
-  ## 2. Atmospherics
-  
-  ## 2.1. Distribution Loop
-  <Box>
-  <GuideEntityEmbed Entity="GasPort"/>
-  <GuideEntityEmbed Entity="OxygenCanister"/>
-  <GuideEntityEmbed Entity="NitrogenCanister"/>
-  <GuideEntityEmbed Entity="GasMixer"/>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  </Box>
-  
-  - Check that the O2 canister is anchored to connector port.
-  - Check that the O2 output pump is set to 101kPa.
-  - Enable the O2 output pump.
-  - Check that the N2 canister is anchored to connector port.
-  - Check that the N2 output pump is set to 101kPa.
-  - Enable N2 output pump.
-  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
-  - Check that the gas mixer is set to 101kPa.
-  - Enable gas mixer.
-  - Check that the distribution pump is set to 101kPa.
-  - Enable distribution pump.
-  
-  ## 2.2. Waste Loop
-  <Box>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  <GuideEntityEmbed Entity="AirAlarm"/>
-  </Box>
-    
-  - Enable waste loop pump.
-  - Disable Auto Mode on the Air Alarm in the Engine Room.
-  - Set the Air Alarm in the Engine Room to Filtering (Wide).
-  
-  ## 3. Other checks
-  <Box>
-  <GuideEntityEmbed Entity="Gyroscope"/>
-  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  <GuideEntityEmbed Entity="BlastDoor"/>
-  </Box>
-  
-  - Check that the gyroscope is anchored, powered, and enabled.
-  - Check that the mini gravity generator is anchored, powered, and enabled.
-  - Check that the blast doors are closed.
-  
-  ## Sidenotes
-  
-  * - Liquidator-class service ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption. One can check the ship's total power consumption against the S.U.P.E.R.P.A.C.M.A.N. generator unit Target Power output: to keep SMES, substation, and APC fully charged, S.U.P.E.R.P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
-  
-  ** - Liquidator-class service ships have higher power demand than a standard P.A.C.M.A.N. can provide at optimal settings, and come equipped with a S.U.P.E.R.P.A.C.M.A.N. instead. Please note that the recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 22 kW.
-  
-  <Box>
-  <GuideEntityEmbed Entity="SignRadiationMed"/>
-  <GuideEntityEmbed Entity="ClothingOuterSuitRad"/>
-  <GuideEntityEmbed Entity="GeigerCounter"/>
-  <GuideEntityEmbed Entity="ShuttersRadiation"/>
-  </Box>
-  Note: Be sure to take all necessary protective measures when working with radioactive materials: use a radiation suit, engage internals, make sure to enable Geiger's counter, wash your hands after, and keep radiation shutters closed at all times.
-
 </Document>

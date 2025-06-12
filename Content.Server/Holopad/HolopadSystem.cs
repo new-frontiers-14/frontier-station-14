@@ -9,6 +9,7 @@ using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Holopad;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Labels.Components;
+using Content.Shared.Power;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Speech;
 using Content.Shared.Telephone;
@@ -73,10 +74,13 @@ public sealed class HolopadSystem : SharedHolopadSystem
 
         // Misc events
         SubscribeLocalEvent<HolopadUserComponent, EmoteEvent>(OnEmote);
+        SubscribeLocalEvent<HolopadUserComponent, NFEntityEmotedEvent>(OnCustomEmote); // Frontier
         SubscribeLocalEvent<HolopadUserComponent, JumpToCoreEvent>(OnJumpToCore);
         SubscribeLocalEvent<HolopadComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleProjectorVerb);
         SubscribeLocalEvent<HolopadComponent, EntRemovedFromContainerMessage>(OnAiRemove);
 
+        SubscribeLocalEvent<HolopadComponent, EntParentChangedMessage>(OnParentChanged);
+        SubscribeLocalEvent<HolopadComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<HolopadComponent, MapInitEvent>(OnHolopadMapInit); // Frontier
     }
 
@@ -310,7 +314,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
                 if (receiverHolopad.Comp.Hologram == null)
                     continue;
 
-                _appearanceSystem.SetData(receiverHolopad.Comp.Hologram.Value.Owner, TypingIndicatorVisuals.IsTyping, ev.IsTyping);
+                _appearanceSystem.SetData(receiverHolopad.Comp.Hologram.Value.Owner, TypingIndicatorVisuals.State, ev.State);
             }
         }
     }
@@ -363,7 +367,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
                 continue;
 
             var receivingHolopads = GetLinkedHolopads(linkedHolopad);
-            var range = receivingHolopads.Count > 1 ? ChatTransmitRange.HideChat : ChatTransmitRange.GhostRangeLimit;
+            var range = receivingHolopads.Count > 1 ? ChatTransmitRange.HideChat : ChatTransmitRange.GhostRangeLimitNoAdminCheck; // Frontier: GhostRangeLimit<GhostRangeLimitNoAdminCheck
 
             foreach (var receiver in receivingHolopads)
             {
@@ -379,6 +383,37 @@ public sealed class HolopadSystem : SharedHolopadSystem
             }
         }
     }
+
+    // Frontier: allow custom emotes
+    private void OnCustomEmote(Entity<HolopadUserComponent> entity, ref NFEntityEmotedEvent args)
+    {
+        foreach (var linkedHolopad in entity.Comp.LinkedHolopads)
+        {
+            // Treat the ability to hear speech as the ability to also perceive emotes
+            // (these are almost always going to be linked)
+            if (!HasComp<ActiveListenerComponent>(linkedHolopad))
+                continue;
+
+            if (TryComp<TelephoneComponent>(linkedHolopad, out var linkedHolopadTelephone) && linkedHolopadTelephone.Muted)
+                continue;
+
+            var receivingHolopads = GetLinkedHolopads(linkedHolopad);
+            var range = receivingHolopads.Count > 1 ? ChatTransmitRange.HideChat : ChatTransmitRange.GhostRangeLimitNoAdminCheck;
+
+            foreach (var receiver in receivingHolopads)
+            {
+                if (receiver.Comp.Hologram == null)
+                    continue;
+
+                // Name is based on the physical identity of the user
+                var ent = Identity.Entity(entity, EntityManager);
+                var name = Loc.GetString("holopad-hologram-name", ("name", ent));
+
+                _chatSystem.TrySendInGameICMessage(receiver.Comp.Hologram.Value, args.Emote, InGameICChatType.Emote, range, nameOverride: name, checkRadioPrefix: false, ignoreActionBlocker: true);
+            }
+        }
+    }
+    // End Frontier: allow custom emotes
 
     private void OnJumpToCore(Entity<HolopadUserComponent> entity, ref JumpToCoreEvent args)
     {
@@ -434,6 +469,17 @@ public sealed class HolopadSystem : SharedHolopadSystem
             return;
 
         _telephoneSystem.EndTelephoneCalls((entity, entityTelephone));
+    }
+
+    private void OnParentChanged(Entity<HolopadComponent> entity, ref EntParentChangedMessage args)
+    {
+        UpdateHolopadControlLockoutStartTime(entity);
+    }
+
+    private void OnPowerChanged(Entity<HolopadComponent> entity, ref PowerChangedEvent args)
+    {
+        if (args.Powered)
+            UpdateHolopadControlLockoutStartTime(entity);
     }
 
     #endregion
@@ -581,7 +627,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
                 continue;
 
             if (user == null)
-                _appearanceSystem.SetData(linkedHolopad.Comp.Hologram.Value.Owner, TypingIndicatorVisuals.IsTyping, false);
+                _appearanceSystem.SetData(linkedHolopad.Comp.Hologram.Value.Owner, TypingIndicatorVisuals.State, false);
 
             linkedHolopad.Comp.Hologram.Value.Comp.LinkedEntity = user;
             Dirty(linkedHolopad.Comp.Hologram.Value);
@@ -682,11 +728,10 @@ public sealed class HolopadSystem : SharedHolopadSystem
         _telephoneSystem.TerminateTelephoneCalls(sourceTelephoneEntity);
 
         // Find all holopads in range of the source
-        var sourceXform = Transform(source);
         var receivers = new HashSet<Entity<TelephoneComponent>>();
 
-        var query = AllEntityQuery<HolopadComponent, TelephoneComponent, TransformComponent>();
-        while (query.MoveNext(out var receiver, out var receiverHolopad, out var receiverTelephone, out var receiverXform))
+        var query = AllEntityQuery<HolopadComponent, TelephoneComponent>();
+        while (query.MoveNext(out var receiver, out var receiverHolopad, out var receiverTelephone))
         {
             var receiverTelephoneEntity = new Entity<TelephoneComponent>(receiver, receiverTelephone);
 
@@ -747,6 +792,33 @@ public sealed class HolopadSystem : SharedHolopadSystem
         }
 
         return linkedHolopads;
+    }
+
+    private void UpdateHolopadControlLockoutStartTime(Entity<HolopadComponent> source)
+    {
+        if (!TryComp<TelephoneComponent>(source, out var sourceTelephone))
+            return;
+
+        var sourceTelephoneEntity = new Entity<TelephoneComponent>(source, sourceTelephone);
+        var isDirty = false;
+
+        var query = AllEntityQuery<HolopadComponent, TelephoneComponent>();
+        while (query.MoveNext(out var receiver, out var receiverHolopad, out var receiverTelephone))
+        {
+            var receiverTelephoneEntity = new Entity<TelephoneComponent>(receiver, receiverTelephone);
+
+            if (!_telephoneSystem.IsSourceInRangeOfReceiver(sourceTelephoneEntity, receiverTelephoneEntity))
+                continue;
+
+            if (receiverHolopad.ControlLockoutStartTime > source.Comp.ControlLockoutStartTime)
+            {
+                source.Comp.ControlLockoutStartTime = receiverHolopad.ControlLockoutStartTime;
+                isDirty = true;
+            }
+        }
+
+        if (isDirty)
+            Dirty(source);
     }
 
     private void SetHolopadAmbientState(Entity<HolopadComponent> entity, bool isEnabled)

@@ -10,7 +10,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 28
+        Piercing: 40
+        Structural: 15
+
 
 - type: entity
   id: PelletShotgunBeanbag
@@ -41,6 +43,8 @@
     damage:
       types:
         Piercing: 10
+        Structural: 15
+
 
 - type: entity
   id: PelletShotgunSpread
@@ -48,7 +52,7 @@
   parent: PelletShotgun
   components:
   - type: ProjectileSpread
-    proto: PelletShotgun
+    # proto: PelletShotgun # Frontier
     count: 6
     spread: 15
 
@@ -75,7 +79,7 @@
   parent: PelletShotgunIncendiary
   components:
   - type: ProjectileSpread
-    proto: PelletShotgunIncendiary
+    # proto: PelletShotgunIncendiary # Frontier
     count: 6
     spread: 15
 
@@ -99,7 +103,7 @@
   parent: PelletShotgunPractice
   components:
   - type: ProjectileSpread
-    proto: PelletShotgunPractice
+    # proto: PelletShotgunPractice # Frontier
     count: 6
     spread: 15
 
@@ -124,7 +128,7 @@
   parent: PelletShotgunImprovised
   components:
   - type: ProjectileSpread
-    proto: PelletShotgunImprovised
+    # proto: PelletShotgunImprovised # Frontier
     count: 10
     spread: 45
 
@@ -223,7 +227,7 @@
   parent: PelletShotgunUranium
   components:
   - type: ProjectileSpread
-    proto: PelletShotgunUranium
+    # proto: PelletShotgunUranium # Frontier
     count: 5
     spread: 6
 
@@ -251,7 +255,7 @@
   parent: PelletGrapeshot
   components:
   - type: ProjectileSpread
-    proto: PelletGrapeshot
+    # proto: PelletGrapeshot # Frontier
     count: 5
     spread: 40
 
@@ -281,6 +285,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: ProjectileSpread
-    proto: PelletGlass
+    # proto: PelletGlass # Frontier
     count: 5
     spread: 10

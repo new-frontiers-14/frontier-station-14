@@ -1,0 +1,60 @@
+- type: entity
+  id: MechEmu
+  parent: BaseMech
+  name: Emu PLU
+  description: An older model of cargo hauler mech, the Emu Power Loading Unit has a single integral power fork module.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _NF/Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: emu-empty
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_NF/Mecha/mechstep.ogg
+      params:
+        volume: -5
+  - type: Mech
+    baseState: emu
+    openState: emu-open
+    brokenState: emu-broken
+    mechToPilotDamageMultiplier: 0.75
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    startingEquipment:
+    - MechEquipmentFork
+    canRemoveEquipment: false
+    maxEquipmentAmount: 1
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 10
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 5
+
+- type: entity
+  id: MechEmuBattery
+  parent: MechEmu
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+- type: entity
+  id: MechEmuCargo
+  parent: MechEmu
+  suffix: Cargo, Med Battery
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellMedium

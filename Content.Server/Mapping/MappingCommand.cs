@@ -2,8 +2,6 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.GameTicking;
 using Content.Shared.Administration;
-using Content.Shared.CCVar;
-using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization;
@@ -11,6 +9,7 @@ using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
+using Content.Shared.Administration.Managers; // Frontier
 
 namespace Content.Server.Mapping
 {
@@ -18,8 +17,7 @@ namespace Content.Server.Mapping
     sealed class MappingCommand : IConsoleCommand
     {
         [Dependency] private readonly IEntityManager _entities = default!;
-        [Dependency] private readonly IMapManager _map = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly ISharedAdminManager _admin = default!; // Frontier
 
         public string Command => "mapping";
         public string Description => Loc.GetString("cmd-mapping-desc");
@@ -158,9 +156,14 @@ namespace Content.Server.Mapping
                 shell.ExecuteCommand("aghost");
             }
 
-            // don't interrupt mapping with events or auto-shuttle
-            shell.ExecuteCommand("changecvar events.enabled false");
-            shell.ExecuteCommand("changecvar shuttle.auto_call_time 0");
+            // Frontier: check if user is the host before disabling events
+            if (_admin.HasAdminFlag(player, AdminFlags.Host))
+            {
+                // don't interrupt mapping with events or auto-shuttle
+                shell.ExecuteCommand("changecvar events.enabled false");
+                shell.ExecuteCommand("changecvar shuttle.auto_call_time 0");
+            }
+            // End Frontier: check if user is the host before disabling events
 
             var auto = _entities.System<MappingSystem>();
             if (grid != null)

@@ -142,7 +142,7 @@
 # NFSD Brigmedic
 - type: entity
   id: LockerNfsdBrigmedic
-  parent: [NFLockerBaseSecure, LockerSecurity]
+  parent: NFLockerBaseSecure
   name: NFSD locker
   suffix: Brigmedic
   components:
@@ -150,6 +150,8 @@
     stateBaseClosed: nfsd_brigmed
     stateDoorOpen: nfsd_brigmed_open
     stateDoorClosed: nfsd_brigmed_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
 
 # NFSD Gold - Sergeant
 - type: entity
@@ -200,3 +202,25 @@
     stateDoorOpen: sr_open
     stateDoorClosed: sr_door
 
+#FSB
+- type: entity
+  id: ClosetFsbEva
+  name: FSB EVA suit locker
+  parent: NFLockerBaseSecure
+  description: It's a storage unit that could contain a Far Star Biotech EVA suit. It may also contain other things.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/closet.rsi
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: fsb
+    stateDoorOpen: fsb_open
+    stateDoorClosed: fsb_door
+
+# Upstream to Frontier Swap
+- type: entity
+  id: NFLockerScientist
+  parent: LockerScientist
+  components:
+  - type: AccessReader
+    access: [ ]

@@ -1,0 +1,155 @@
+# Base rack
+- type: entity
+  parent: BaseStructure
+  id: BaseCrateStorageRack
+  abstract: true
+  name: crate storage rack frame
+  description: Like a half-built shelf, but bigger!
+  components:
+  - type: InteractionOutline
+  - type: Climbable
+  - type: Damageable
+  - type: Destructible # about as strong as a rack
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures: &rackFixture
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - TableMask # Consistent with girder
+        layer:
+        - TableLayer # Consistent with girder
+
+- type: entity
+  parent: BaseCrateStorageRack
+  id: CrateStorageRack
+  name: crate storage rack
+  description: Capable of storing up to 4 crates at once, needs a power fork to insert or remove crates.
+  components:
+  - type: CrateStorageRack
+  - type: Sprite
+    sprite: _NF/Structures/Storage/crate_storage_rack.rsi
+    snapCardinals: true
+    layers:
+    - state: fill-0
+      map: [ "enum.StorageFillLayers.Fill" ]
+  - type: StaticPrice
+    price: 100
+  - type: ContainerContainer
+    containers:
+      item-container: !type:Container
+  - type: ContainerCountVisualizer
+    containerName: item-container
+    maxCount: 4
+    maxFillLevels: 5
+    fillBaseName: fill
+  - type: Appearance
+  - type: Construction
+    graph: CrateStorageRack
+    node: rack
+  - type: Destructible # relatively strong, prevent easy destruction
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# intermediate entities for construction graph
+- type: entity
+  parent: BaseCrateStorageRack
+  id: CrateStorageRackBase
+  name: crate storage rack base
+  description: The humble beginnings of a crate storage rack. Build up!
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/crate_storage_rack.rsi
+    snapCardinals: true
+    layers:
+    - state: frame
+  - type: Construction
+    graph: CrateStorageRack
+    node: base
+    defaultTarget: rack
+
+- type: entity
+  parent: BaseCrateStorageRack
+  id: CrateStorageRackFrameEmpty
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/crate_storage_rack.rsi
+    snapCardinals: true
+    layers:
+    - state: tallframe
+  - type: Construction
+    graph: CrateStorageRack
+    node: emptyframe
+    defaultTarget: rack
+
+- type: entity
+  parent: BaseCrateStorageRack
+  id: CrateStorageRackFrame
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/crate_storage_rack.rsi
+    snapCardinals: true
+    layers:
+    - state: superstructure
+  - type: Construction
+    graph: CrateStorageRack
+    node: frame
+    defaultTarget: rack
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

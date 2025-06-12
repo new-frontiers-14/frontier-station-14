@@ -3,16 +3,31 @@
   name: job-name-contractor
   description: job-description-contractor
   playTimeTracker: JobPassenger
-  startingGear: ContractorGear
   icon: "JobIconContractor"
   supervisors: job-supervisors-hire
   displayWeight: 40 # Top
-  accessGroups: # Frontier
-  - GeneralAccess # Frontier
+  accessGroups:
+  - GeneralAccess
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
 
+# Interview variant
+- type: job
+  id: ContractorInterview
+  name: job-name-contractor-interview
+  description: job-description-contractor
+  playTimeTracker: JobContractorInterview
+  startingGear: ContractorHologramGear
+  icon: "JobIconContractor"
+  supervisors: job-supervisors-hire
+  accessGroups:
+  - GeneralAccess
+  jobEntity: InterviewHologramContractor
+
 - type: startingGear
-  id: ContractorGear
+  id: ContractorHologramGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack

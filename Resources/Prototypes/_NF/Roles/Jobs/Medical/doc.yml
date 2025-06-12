@@ -23,6 +23,8 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+      - type: MedicalBountyBankPayment # any medical bounties sold go directly into the bank
+        account: Medical
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -34,6 +36,7 @@
     pocket2: MedicalAppraisalTool
   storage:
     back:
-    - RubberStampDoc
-    - BoxFolderMedicalDoctor
     - StationAdministrationConsoleFlatpack
+    - MobileComputerTabletopCommsFlatpack
+    - BoxFolderMedicalDoctor
+    - RubberStampDoc

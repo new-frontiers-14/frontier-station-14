@@ -3,13 +3,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
+using Content.Shared._NF.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Preferences;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Preferences.Managers
@@ -25,7 +25,6 @@ namespace Content.Server.Preferences.Managers
         [Dependency] private readonly IServerDbManager _db = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IDependencyCollection _dependencies = default!;
-        [Dependency] private readonly IPrototypeManager _protos = default!;
         [Dependency] private readonly ILogManager _log = default!;
         [Dependency] private readonly UserDbDataManager _userDb = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
@@ -90,7 +89,7 @@ namespace Content.Server.Preferences.Managers
                 await SetProfile(userId, message.Slot, message.Profile);
         }
 
-        public async Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile)
+        public async Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile, bool validateFields = true) // Frontier: add validateFields
         {
             if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
             {
@@ -105,6 +104,29 @@ namespace Content.Server.Preferences.Managers
             var session = _playerManager.GetSessionById(userId);
 
             profile.EnsureValid(session, _dependencies);
+
+            // Frontier: check for profile modifications (based on Monolith's impl)
+            if (validateFields && profile is HumanoidCharacterProfile humanProfile)
+            {
+                if (curPrefs.Characters.TryGetValue(slot, out var existingProfile) &&
+                    existingProfile is HumanoidCharacterProfile humanoidEditingTarget)
+                {
+                    if (humanProfile.BankBalance != humanoidEditingTarget.BankBalance)
+                    {
+                        _sawmill.Info($"{session.Name} has tried to modify a character's money (expected: {humanoidEditingTarget.BankBalance} requested: {humanProfile.BankBalance}). They may be using a modified client!");
+                        profile = humanProfile.WithBankBalance(humanoidEditingTarget.BankBalance);
+                    }
+                }
+                else
+                {
+                    if (humanProfile.BankBalance != HumanoidCharacterProfile.DefaultBalance)
+                    {
+                        _sawmill.Info($"{session.Name} tried to create a character with a non-default balance (expected: {HumanoidCharacterProfile.DefaultBalance} requested: {humanProfile.BankBalance}). They may be using a modified client!");
+                        profile = humanProfile.WithBankBalance(HumanoidCharacterProfile.DefaultBalance);
+                    }
+                }
+            }
+            // End Frontier: check for profile modifications (based on Monolith's impl)
 
             var profiles = new Dictionary<int, ICharacterProfile>(curPrefs.Characters)
             {

@@ -119,6 +119,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -140,9 +141,11 @@
     - NFSalvageStatic # Frontier
     - NFLights # Frontier
     - NFServiceStatic # Frontier
+    - ReportingStatic # DeltaV
+    - NFPaperAndPaperAccessories # Frontier
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - SecurityAmmoStatic
+    - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -196,6 +199,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -227,11 +231,22 @@
     - NFPouches # Frontier
   - type: EmagLatheRecipes
     emagDynamicPacks:
-    - SecurityAmmo
+    - NfsdAmmoStatic # Frontier: SecurityAmmo<NfsdAmmoStatic
     - SecurityExplosives
     - SecurityEquipment
-    - SecurityWeapons
+    #- SecurityWeapons # Frontier
     - SyringeGuns # Delta-V
+  # Frontier: accept blueprints
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintProtolathe
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  # End Frontier: accept blueprints
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -298,6 +313,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: RequireProjectileTarget
 
 - type: entity
@@ -318,6 +334,7 @@
   description: Creates parts for robotics and other mechanical needs.
   components:
   - type: Sprite
+    snapCardinals: true # Frontier
     sprite: Structures/Machines/exosuit_fabricator.rsi
     layers:
     - state: fab-idle
@@ -346,6 +363,7 @@
       - Sheet
       - RawMaterial
       - Ingot
+  - type: OreSiloClient
   - type: GuideHelp
     guides:
     - Robotics
@@ -399,6 +417,7 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/techfab.rsi
+    snapCardinals: true # Frontier
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -417,31 +436,37 @@
     runningState: icon
     staticPacks:
     - SecurityEquipmentStatic
-    - SecurityPracticeStatic
-    - SecurityAmmoStatic
+    - NfsdPracticeStatic # Frontier: SecurityPracticeStatic<NfsdPracticeStatic
+    - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
     - SecurityWeaponsStatic
-    dynamicPacks:
-    - SecurityEquipment
+    # dynamicPacks:
+    # - SalvageSecurityBoards # Frontier
+    # - SalvageSecurityWeapons # Frontier
+    # - SecurityEquipment # Frontier
     # - SecurityBoards # Frontier
-    - SecurityExplosives
-    - SecurityAmmo
-    - SecurityWeapons
-    - SecurityDisablers
+    # - SecurityExplosives # Frontier
+    # - SecurityAmmo # Frontier
+    # - SecurityWeapons # Frontier
+    # - SecurityDisablers # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
+  # - type: LatheAnnouncing # Frontier: spammy
+  #   channels: [Security] # Frontier
 
 - type: entity
   id: AmmoTechFab
-  parent: [BlueprintReceiverBase, BaseLatheLube] # Frontier: added BlueprintReceiverBase
+  parent: [NFBlueprintReceiverBase, BaseLatheLube] # Frontier: added NFBlueprintReceiverBase
   name: ammo techfab
   description: Prints the bare minimum of bullets that any budget military or armory could need. Nothing fancy.
   components:
     - type: Sprite
       sprite: Structures/Machines/techfab.rsi
+      snapCardinals: true # Frontier
       layers:
         - state: icon
           map: ["enum.LatheVisualLayers.IsRunning"]
@@ -459,22 +484,28 @@
       idleState: icon
       runningState: icon
       staticPacks:
-      - SecurityAmmoStatic
+      - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
     - type: MaterialStorage
       whitelist:
         tags:
           - Sheet
           - RawMaterial
           - Ingot
+    - type: OreSiloClient
+    - type: BlueprintReceiver # Frontier
+      whitelist: # Frontier
+        tags: # Frontier
+        - NFBlueprintMercenaryTechfab # Frontier
 
 - type: entity
   id: MedicalTechFab
-  parent: [ BlueprintReceiverBase, BaseLatheLube ] # Frontier: added BlueprintReceiverBase
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube ] # Frontier: added NFBlueprintReceiverBase
   name: medical techfab
   description: Prints equipment for use by the medbay.
   components:
   - type: Sprite
     sprite: Structures/Machines/techfab.rsi
+    snapCardinals: true # Frontier
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -498,14 +529,19 @@
     - EmptyMedkitsStatic
     - SurgeryStatic
     - NFMedicalStatic # Frontier
-    dynamicPacks:
-    - Chemistry
-    - SyringeGuns # DeltaV
-    - NFMedical # Frontier
+    # dynamicPacks: # Frontier
+    # - Chemistry # Frontier
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
+  - type: OreSiloClient
+  # - type: LatheAnnouncing # Frontier: spammy
+  #   channels: [Medical] # Frontier
+  - type: BlueprintReceiver # Frontier
+    whitelist: # Frontier
+      tags: # Frontier
+      - NFBlueprintMedicalTechfab # Frontier
 
 - type: entity
   parent: BaseLathe
@@ -542,6 +578,11 @@
     - Carpets
     - Bedsheets
     - NFFloorTilesCarpet # Frontier
+    - NFUniformColored #Frontier
+    - NFUniformMilitary # Frontier
+    - NFUniformSpecial # Frontier
+    - NFUniformCloaks # Frontier
+    - NFWallets # Frontier
     dynamicPacks: # Frontier
     - NFPouches # Frontier
   - type: EmagLatheRecipes
@@ -554,6 +595,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient # Frontier
 
 - type: entity
   id: Biogenerator
@@ -562,7 +604,7 @@
   description: Converts plants into biomass, which can be used to construct useful items.
   components:
   - type: Sprite
-    sprite: Structures/Machines/biofabricator.rsi
+    sprite: _NF/Structures/Machines/biofabricator.rsi # Frontier: use NF version
     snapCardinals: true
     layers:
     - state: icon
@@ -574,6 +616,9 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: beaker # Frontier
+      map: ["beaker"] # Frontier
+      visible: false # Frontier
   - type: Machine
     board: BiogeneratorMachineCircuitboard
   - type: MaterialStorage
@@ -600,13 +645,25 @@
     - FriendlyCubesStatic # Frontier
     - NFBioGenIngredientsStatic # Frontier
     - NFBioGenMaterialsStatic # Frontier
+    - NFBioGenSodaStatic # Frontier
     - NFBioGenSeedsStatic # Frontier
     - NFBioGenSeedsMedicalStatic # Frontier
     - NFBioGenSoil # Frontier
-  - type: EmagLatheRecipes # Frontier
-    emagStaticPacks: # Frontier
-    - HostileCubesStatic # Frontier
-    - NFBioGenIngredientsDangerous # Frontier
+    - NFBioGenAnimalCubesStatic #Frontier
+  # Frontier: emag lathe recipes, item mapper
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - HostileCubesStatic
+    - NFBioGenIngredientsDangerous
+  - type: ItemMapper
+    mapLayers:
+      beaker:
+        whitelist: null # We shouldn't really care what goes in it
+    containerWhitelist:
+    - beaker_slot
+    spriteLayers:
+    - beaker
+  # End Frontier: emag lathe recipes, item mapper
 
 - type: entity
   parent: BaseLathe
@@ -616,6 +673,7 @@
   components:
     - type: Sprite
       sprite: Structures/Machines/ore_processor.rsi
+      snapCardinals: true # Frontier
       layers:
         - state: icon
           map: ["enum.LatheVisualLayers.IsRunning"]
@@ -643,6 +701,7 @@
       # - RGlassSmelting # Frontier: raw mats only
     - type: PlaceableSurface # DeltaV: Allow ore bags to dump into it directly
       isPlaceable: false # but not place on it if you just click it with a random item
+    - type: OreSiloClient # Frontier
 
 - type: entity
   parent: OreProcessor
@@ -670,6 +729,7 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/sheetifier.rsi
+    snapCardinals: true # Frontier
     layers:
     - state: base_machine
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -686,11 +746,14 @@
       tags:
       - Raw
       - Wooden
+      - Boll
+      - RawMaterial # Frontier
   - type: Lathe
     idleState: base_machine
     runningState: base_machine_processing
     staticPacks:
     - SheetifierStatic
+  - type: OreSiloClient # Frontier
 
 - type: entity
   parent: BaseLathe
@@ -738,3 +801,4 @@
         - RawMaterial
         - Plastic
         - Ingot # Frontier
+  - type: OreSiloClient # Frontier

@@ -126,6 +126,7 @@
   - type: ContainerContainer
     containers:
       cash_slot: !type:ContainerSlot
+  - type: BindToStation # Frontier
   # End Frontier
 
 - type: entity
@@ -1475,7 +1476,7 @@
 
 - type: entity
   id: VendingMachineWallmount
-  parent: VendingMachine
+  parent: [BaseStructureWallmount, VendingMachine] # Frontier: add BaseStructureWallmount
   name: vending machine
   abstract: true
   placement:

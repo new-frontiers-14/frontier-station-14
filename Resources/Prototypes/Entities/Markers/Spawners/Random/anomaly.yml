@@ -22,14 +22,15 @@
     - AnomalyFlora
     - AnomalyShadow
     - AnomalyTech
-    # - AnomalySanta
-    rareChance: 0.3
+    #- AnomalySanta
+    rareChance: 0.125 # Frontier: 0.3<0.125 (3/10 to 1/8)
     rarePrototypes:
     - RandomAnomalyInjectorSpawner
     offset: 0.15 # not to put it higher. The anomaly sychnronizer looks for anomalies within this radius, and if the radius is higher, the anomaly can be attracted from a neighboring tile.
 
 - type: entity
   id: RandomRockAnomalySpawner
+  name: random rock anomaly spawner
   parent: MarkerBase
   components:
   - type: Sprite
@@ -40,12 +41,12 @@
   - type: RandomSpawner
     prototypes:
     - AnomalyRockIron
+    - AnomalyRockCoal
     - AnomalyRockSilver
+    - AnomalyRockGold
     - AnomalyRockQuartz
     - AnomalyRockUranium
     - AnomalyRockBananium # Frontier
-    - AnomalyRockCoal # Frontier
-    - AnomalyRockGold # Frontier
     - AnomalyRockPlasma # Frontier
     - AnomalyRockSalt # Frontier
     chance: 1
@@ -53,6 +54,7 @@
 
 - type: entity
   id: RandomAnomalyInjectorSpawner
+  name: random anomaly injector spawner
   parent: MarkerBase
   components:
   - type: Sprite
@@ -74,4 +76,3 @@
     - AnomalyTrapRock
     # - AnomalySanta
     chance: 1
-  

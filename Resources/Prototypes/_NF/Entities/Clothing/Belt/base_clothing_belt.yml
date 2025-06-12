@@ -16,6 +16,21 @@
 
 - type: entity
   abstract: true
+  parent: ClothingBeltStorageBase
+  id: NFBaseClothingBeltStorageBag
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,9,3
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,3,2
+
+- type: entity
+  abstract: true
   parent: ClothingBeltAmmoProviderBase
   id: NFClothingBeltAmmoProviderBase
   components:

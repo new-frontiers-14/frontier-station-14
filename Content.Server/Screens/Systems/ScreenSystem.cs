@@ -2,6 +2,8 @@ using Content.Shared.TextScreen;
 using Content.Server.Screens.Components;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.DeviceNetwork.Events;
 using Robust.Shared.Timing;
 
 
@@ -30,6 +32,8 @@ public sealed class ScreenSystem : EntitySystem
     {
         if (args.Data.TryGetValue(ShuttleTimerMasks.ShuttleMap, out _))
             ShuttleTimer(uid, component, args);
+        else if (args.Data.TryGetValue(ScreenMasks.LocalGrid, out _)) // Frontier: grid-local messages
+            ScreenLocalText(uid, component, args); // Frontier
         else
             ScreenText(uid, component, args);
     }
@@ -63,7 +67,7 @@ public sealed class ScreenSystem : EntitySystem
     /// <summary>
     /// Determines if/how a timer packet affects this screen.
     /// Currently there are 2 broadcast domains: Arrivals, and every other screen.
-    /// Domain is determined by the <see cref="DeviceNetworkComponent.TransmitFrequencyId"/> on each timer.
+    /// Domain is determined by the <see cref="Shared.DeviceNetwork.Components.DeviceNetworkComponent.TransmitFrequencyId"/> on each timer.
     /// Each broadcast domain is divided into subnets. Screen MapUid determines subnet.
     /// Subnets are the shuttle, source, and dest. Source/dest change each jump.
     /// This is required to send different timers to the shuttle/terminal/station.
@@ -112,4 +116,31 @@ public sealed class ScreenSystem : EntitySystem
         if (args.Data.TryGetValue(ScreenMasks.Color, out Color color))
             _appearanceSystem.SetData(uid, TextScreenVisuals.Color, color);
     }
+
+    // Frontier: grid-local text messages
+    /// <summary>
+    /// Send a text message to a particular grid, ignoring map differences.
+    /// </summary>
+    private void ScreenLocalText(EntityUid uid, ScreenComponent component, DeviceNetworkPacketEvent args)
+    {
+        // don't allow text updates if there's an active timer
+        // (and just check here so the server doesn't have to track them)
+        if (_appearanceSystem.TryGetData(uid, TextScreenVisuals.TargetTime, out TimeSpan target)
+            && target > _gameTiming.CurTime)
+            return;
+
+        var screenGrid = Transform(uid).GridUid;
+
+        if (screenGrid != null
+            && args.Data.TryGetValue(ScreenMasks.LocalGrid, out EntityUid? targetGridUid)
+            && targetGridUid == screenGrid // targetGridUid implicitly not null
+            && args.Data.TryGetValue(ScreenMasks.Text, out string? text)
+            && text != null
+            )
+        {
+            _appearanceSystem.SetData(uid, TextScreenVisuals.DefaultText, text);
+            _appearanceSystem.SetData(uid, TextScreenVisuals.ScreenText, text);
+        }
+    }
+    // End Frontier: grid-local text messages
 }

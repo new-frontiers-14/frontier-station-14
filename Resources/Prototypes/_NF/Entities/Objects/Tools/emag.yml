@@ -1,4 +1,20 @@
 - type: entity
+  parent: [EmagUnlimited, RecyclableItemPlasticSmall]
+  id: EmagPass
+  name: disposable cryptographic sequencer
+  description: A disposable card made by the Syndicate to hack devices. Works three times.
+  suffix: Limited, 3 Uses
+  components:
+  - type: NFEmagPass
+  - type: LimitedCharges
+  - type: Sprite
+    sprite: _NF/Objects/Tools/emagpass.rsi
+  - type: Item
+    sprite: _NF/Objects/Tools/emagpass.rsi
+    storedRotation: -90
+    size: Tiny
+
+- type: entity
   parent: [BaseItem, BaseCommandContraband]
   id: DemagUnlimited
   name: cryptographic resequencer
@@ -6,7 +22,7 @@
   description: The all-in-one unhacking solution. The last bastion of order. The iconic DEMAG.
   components:
   - type: Emag
-    emagType: [Interaction, Access]
+    emagType: [Interaction, Access, StationBound]
     demag: true
   - type: Sprite
     sprite: _NF/Objects/Tools/demag.rsi
@@ -17,6 +33,29 @@
 - type: entity
   parent: DemagUnlimited
   id: Demag
+  suffix: Limited
+  components:
+  - type: LimitedCharges
+  - type: AutoRecharge
+
+- type: entity
+  parent: [BaseItem, BaseC3PirateContraband]
+  id: PmagUnlimited
+  name: machine liberator
+  suffix: Unlimited
+  description: A portable package for machine DRM removal. Freebooter approved and tested.
+  components:
+  - type: Emag
+    emagType: [StationBound]
+  - type: Sprite
+    sprite: _NF/Objects/Tools/pmag.rsi
+    state: icon
+  - type: Item
+    sprite: _NF/Objects/Tools/pmag.rsi
+
+- type: entity
+  parent: PmagUnlimited
+  id: Pmag
   suffix: Limited
   components:
   - type: LimitedCharges

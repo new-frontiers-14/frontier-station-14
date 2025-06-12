@@ -16,6 +16,7 @@ using Content.Server.Body.Components;
 using System.Linq;
 using Robust.Server.Audio;
 using Content.Shared.DoAfter; // Frontier
+using Content.Shared._DV.Chemistry.Components; // Frontier
 
 namespace Content.Server.Chemistry.EntitySystems;
 
@@ -46,8 +47,9 @@ public sealed class HypospraySystem : SharedHypospraySystem
 
     private bool TryUseHypospray(Entity<HyposprayComponent> entity, EntityUid target, EntityUid user)
     {
-        // if target is ineligible but is a container, try to draw from the container
-        if (!EligibleEntity(target, EntityManager, entity)
+        // if target is ineligible but is a container, try to draw from the container if allowed
+        if (entity.Comp.CanContainerDraw
+            && !EligibleEntity(target, EntityManager, entity)
             && _solutionContainers.TryGetDrawableSolution(target, out var drawableSolution, out _))
         {
             return TryDraw(entity, target, drawableSolution.Value, user);
@@ -119,6 +121,14 @@ public sealed class HypospraySystem : SharedHypospraySystem
             if (_useDelay.IsDelayed((uid, delayComp)))
                 return false;
         }
+
+        // Frontier: Block hypospray injections
+        if (TryComp<BlockInjectionComponent>(target, out var blockInjection) && blockInjection.BlockHypospray)
+        {
+            _popup.PopupEntity(Loc.GetString("injector-component-deny-user"), target, user);
+            return false;
+        }
+        // End Frontier
 
         string? msgFormat = null;
 

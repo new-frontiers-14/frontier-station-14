@@ -1,0 +1,35 @@
+- type: vessel
+  parent: BaseVessel
+  id: Vitalis
+  name: CTC Vitalis
+  description: A medium medical support vessel designed for cryogenic deployment.
+  price: 75000 #Appraisal is 53480
+  category: Medium
+  group: Medical
+  shuttlePath: /Maps/_NF/Shuttles/vitalis.yml
+  guidebookPage: ShipyardVitalis
+  class:
+  - Medical
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Vitalis
+  mapName: 'CTC Vitalis'
+  mapPath: /Maps/_NF/Shuttles/vitalis.yml
+  minPlayers: 0
+  stations:
+    Vitalis:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Vitalis {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
+

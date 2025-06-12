@@ -31,9 +31,12 @@ public sealed class AirFilterSystem : EntitySystem
         if (air.Pressure >= intake.Pressure)
             return;
 
-        var map = _atmosphere.AllowMapGasExtraction ? args.Map : null; // Frontier
+        // Frontier: check running gas extraction
+        if (!_atmosphere.AtmosInputCanRunOnMap(args.Map))
+            return;
+        // End Frontier
 
-        var environment = _atmosphere.GetContainingMixture(uid, args.Grid, map, true, true); // Frontier: args.Map<map
+        var environment = _atmosphere.GetContainingMixture(uid, args.Grid, args.Map, true, true);
         // nothing to intake from
         if (environment == null)
             return;
