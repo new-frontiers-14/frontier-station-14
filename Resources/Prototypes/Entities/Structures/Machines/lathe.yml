@@ -596,6 +596,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient # Frontier
 
 - type: entity
   id: Biogenerator
@@ -701,6 +702,7 @@
       # - RGlassSmelting # Frontier: raw mats only
     - type: PlaceableSurface # DeltaV: Allow ore bags to dump into it directly
       isPlaceable: false # but not place on it if you just click it with a random item
+    - type: OreSiloClient # Frontier
 
 - type: entity
   parent: OreProcessor
@@ -752,6 +754,7 @@
     runningState: base_machine_processing
     staticPacks:
     - SheetifierStatic
+  - type: OreSiloClient # Frontier
 
 - type: entity
   parent: BaseLathe
@@ -799,3 +802,4 @@
         - RawMaterial
         - Plastic
         - Ingot # Frontier
+  - type: OreSiloClient # Frontier
