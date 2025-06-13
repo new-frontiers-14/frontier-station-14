@@ -42,6 +42,7 @@ jobs:
             echo "::error file=$file::Trailing whitespace found"
             has_trailing_whitespace=1
           fi
+          
           # Check for missing EOF newline
           if [ -f "$file" ] && [ -s "$file" ]; then
             last_char=$(tail -c 1 "$file")
@@ -51,8 +52,8 @@ jobs:
             fi
           fi
         done
-        
         unset IFS
+        
         if [ "$has_trailing_whitespace" -eq 1 ] || [ "$has_missing_eof_newline" -eq 1 ]; then
           echo "Issues found: trailing whitespace or missing EOF newline."
           echo "We recommend using an IDE to prevent this from happening."
