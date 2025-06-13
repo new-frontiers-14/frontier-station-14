@@ -35,6 +35,7 @@ jobs:
         printf '%s\n' "$ALL_CHANGED_FILES" | while IFS= read -r file; do
           [ -z "$file" ] && continue
           echo "Checking $file"
+          
           # Check for trailing whitespace
           if grep -qP '[ \t]+$' "$file"; then
             echo "::error file=$file::Trailing whitespace found"
@@ -56,4 +57,3 @@ jobs:
           echo "We recommend using an IDE to prevent this from happening."
           exit 1
         fi
-
