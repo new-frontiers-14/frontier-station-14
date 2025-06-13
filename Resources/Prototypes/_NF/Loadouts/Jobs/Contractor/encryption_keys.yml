@@ -7,7 +7,7 @@
 
 - type: loadout
   id: ContractorEncryptionKeyMedical
-  effects:
+  hideEffects:
   - !type:GroupLoadoutEffect
     proto: NFNotDoc
   price: 20
@@ -25,6 +25,9 @@
 - type: loadout
   id: ContractorEncryptionKeyEngineering
   price: 20
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFNotEngineering
   storage:
     back:
     - EncryptionKeyEngineering

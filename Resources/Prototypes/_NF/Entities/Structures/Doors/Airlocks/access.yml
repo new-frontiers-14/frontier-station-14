@@ -1,4 +1,13 @@
-# Airlocks
+# region Airlocks
+- type: entity
+  parent: AirlockAtmospherics
+  id: AirlockAtmosphericsEngineeringLocked
+  suffix: Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
+
 - type: entity
   parent: AirlockCommandLocked
   id: AirlockFrontierLocked
@@ -161,7 +170,7 @@
     containers:
       board: [ DoorElectronicsMailCarrier ]
 
-# Glass Airlocks
+# region Glass Airlocks
 - type: entity
   parent: AirlockCommandGlassLocked
   id: AirlockFrontierGlassLocked
@@ -306,7 +315,17 @@
     containers:
       board: [ DoorElectronicsPirate ]
 
-# Airtight Hatch
+# region HighSecDoors
+- type: entity
+  parent: HighSecDoor
+  id: HighSecEngineeringLocked
+  suffix: Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
+
+# region Airtight Hatch
 - type: entity
   parent: AirlockHatch
   id: AirlockHatchPirateLocked
