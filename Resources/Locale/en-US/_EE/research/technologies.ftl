@@ -1,2 +1,3 @@
-research-technology-night-vision = Night vision
-research-technology-thermal-vision = Thermal vision
+# Frontier: add caps
+research-technology-night-vision = Night Vision
+research-technology-thermal-vision = Thermal Vision
