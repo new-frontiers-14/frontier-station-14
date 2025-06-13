@@ -9,7 +9,7 @@
   - type: Item
     sprite: _NF/Objects/Materials/Scrap/generic.rsi
 
-#region variations
+#region handportable bits
 - type: entity
   id: NFScrapSilver
   parent: NFBaseScrap
@@ -60,3 +60,96 @@
       Steel: 500 # 5 sheets
       RawScrap: 1000 # 10 sheets
       Silver: 500 # 5 sheets
+
+#region broken machines
+- type: entity
+  id: ScrapGenericBrokenMachine
+  parent: BaseScrapLarge
+  name: ruined machine
+  description: The machine is in very poor condition and nonfunctional and cannot be repaired. You could likely extract some materials out of this.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Materials/Scrap/broken_machines.rsi
+    layers:
+    - state: autolathe
+      map: [ "base" ]
+  - type: RandomSprite
+    available:
+    - base:
+        autolathe: ""
+        gyroscope: ""
+        imprinter: ""
+        protolathe: ""
+        smes: ""
+        substation: ""
+        thruster: ""
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 3000 # 30 sheets
+      Plasma: 1000 # 10 sheets
+      Plastic: 2000 # 20 sheets
+      Silver: 1000 # 10 sheets
+      RawScrap: 1500 # 15 sheets
+      RawScrapTech: 300 # 3 sheet
+
+#region broken ancient machines
+- type: entity
+  id: ScrapGenericBrokenMachineAncient
+  parent: BaseScrapLarge
+  name: ruined ancient machine
+  description: The machine is not only ancient but also in very poor condition; there is no chance of it functioning or being restored. You could likely extract some materials out of this.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Materials/Scrap/broken_ancient_machines.rsi
+    layers:
+    - state: ancientanalyzer
+      map: [ "base" ]
+  - type: RandomSprite
+    available:
+    - base:
+        ancientanalyzer: ""
+        ancientcomputer: ""
+        ancientimprinter: ""
+        ancientlathe: ""
+        ancientproto: ""
+        ancientserver: ""
+  - type: PhysicalComposition
+    materialComposition:
+      Plasteel: 2000 # 20 sheets
+      Uranium: 1000 # 10 sheets
+      Plastic: 2000 # 20 sheets
+      Gold: 1000 # 10 sheets
+      RawScrap: 1000 # 10 sheets
+      RawScrapTech: 300 # 3 sheet
+
+#region ancient machines
+- type: entity
+  id: ScrapGenericMachineAncient
+  parent: BaseScrapLarge
+  name: ancient machine
+  description: It belongs to a museum. Or material reclaimer.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Materials/Scrap/ancient_machines.rsi
+    layers:
+    - state: perservedanalyzer
+      map: [ "base" ]
+  - type: RandomSprite
+    available:
+    - base:
+        perservedanalyzer: ""
+        perservedcomputer: ""
+        perservedimprinter: ""
+        perservedlathe: ""
+        perservedproto: ""
+        perservedserver: ""
+        perservedserver-2: ""
+  - type: PhysicalComposition
+    materialComposition:
+      Plasteel: 2000 # 20 sheets
+      Plastic: 2000 # 20 sheets
+      Gold: 1000 # 10 sheets
+      RawScrap: 3000 # 30 sheets
+      RawScrapTech: 1000 # 10 sheet
+  - type: StaticPrice
+    price: 2000
