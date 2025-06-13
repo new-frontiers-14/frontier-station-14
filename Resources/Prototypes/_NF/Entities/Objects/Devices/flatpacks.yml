@@ -56,20 +56,6 @@
 
 - type: entity
   parent: BaseNFFlatpack
-  id: PowerCellRechargerFlatpack
-  name: cell charger flatpack
-  description: A flatpack used for constructing a cell charger.
-  components:
-  - type: Flatpack
-    entity: PowerCellRecharger
-  - type: StaticPrice
-    price: 15
-  - type: Sprite
-    layers:
-    - state: power_charger
-
-- type: entity
-  parent: PowerCellRechargerFlatpack
   id: WeaponCapacitorRechargerFlatpack
   name: recharger flatpack
   description: A flatpack used for constructing a recharger.
@@ -78,6 +64,9 @@
     entity: WeaponCapacitorRecharger
   - type: StaticPrice
     price: 55
+  - type: Sprite
+    layers:
+    - state: power_charger
 
 - type: entity
   parent: BaseNFFlatpack
@@ -1012,17 +1001,6 @@
   components:
   - type: Flatpack
     entity: VendingMachineSeedsUnlocked
-
-- type: entity
-  parent: VendingMachineBoozeFlatpack
-  id: LockerBotanistFilledFlatpack
-  name: botanist's locker flatpack
-  description: A flatpack used for constructing a botanist's locker.
-  components:
-  - type: Flatpack
-    entity: LockerBotanistFilled
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: VendingMachineBoozeFlatpack
