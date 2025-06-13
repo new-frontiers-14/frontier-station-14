@@ -23,6 +23,7 @@ jobs:
             **.swsl
             **.json
             **.py
+            **.ftl
 
       - name: Debug changed files
         run: echo "${{ steps.changed-files.outputs.all_changed_files }}"
