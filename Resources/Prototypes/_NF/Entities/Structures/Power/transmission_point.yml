@@ -24,24 +24,36 @@
     sound:
       path: /Audio/_NF/Ambience/power-hum.ogg
   - type: Sprite
-    sprite: _NF/Structures/Power/transmission_point.rsi
+    sprite: _NF/Structures/Power/TransmissionPoint/base.rsi
     offset: 0,1
     snapCardinals: false
     noRot: true
     drawdepth: Mobs
     layers:
       - state: base
-      - state: base-unlit
+      - sprite: _NF/Structures/Power/TransmissionPoint/96x32.rsi
+        state: base-unlit
         shader: unshaded
         map: ["unlit"]
         visible: false
-      - state: base-foreground
+        offset: 0, 2
+      - sprite: _NF/Structures/Power/TransmissionPoint/96x32.rsi
+        state: base-foreground
+        offset: 0, 2
+      - sprite: _NF/Structures/Power/TransmissionPoint/32x32.rsi
+        state: panel-unlit
+        map: ["panel"]
+        visible: false
+        offset: 0, -2
   - type: SpriteFade
   - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
         unlit:
+          True: { visible: true }
+          False: { visible: false }
+        panel:
           True: { visible: true }
           False: { visible: false }
   - type: PowerTransmission

@@ -48,6 +48,10 @@
     - state: slot-full
       offset: 1, 0.5
       map: [ slot-full ]
+    - state: panel-unlit
+      offset: 1, -1
+      map: [ panel ]
+      visible: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -61,6 +65,9 @@
         press:
           True: { state: press-animated }
           False: { state: press }
+        panel:
+          True: { visible: true }
+          False: { visible: false }
   - type: ItemMapper
     containerWhitelist:
     - output

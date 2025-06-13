@@ -198,9 +198,9 @@
 # When mapping this, ensure the middle square has HV cable and a connector port, it should work.
 - type: entity
   parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine ]
-  id: EnergyAerator
-  name: energy aerator
-  description: An enormous machine that converts huge amounts of power into breathable air.
+  id: EnergyAirConverter
+  name: energy-to-air converter
+  description: An enormous machine that converts huge amounts of power into superheated air.
   placement:
     mode: SnapgridCenter
   components:
@@ -232,14 +232,32 @@
   - type: Sprite
     noRot: true
     drawdepth: Mobs
-    sprite: _NF/Structures/Machines/gas_converter.rsi
+    sprite: _NF/Structures/Machines/GasConverter/base.rsi
     layers:
     - state: base
+    - sprite: _NF/Structures/Machines/GasConverter/32x32.rsi
+      state: fan
+      map: [fan]
+      offset: -0.5, 1
+    - sprite: _NF/Structures/Machines/GasConverter/32x32.rsi
+      state: front-panel-unlit
+      shader: unshaded
+      map: [front-panel]
+      offset: 1, -1
+    - sprite: _NF/Structures/Machines/GasConverter/32x32.rsi
+      state: panel-unlit
+      map: [panel]
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.DockablePipeVisuals.Docked:
-        docked-unlit:
+      enum.PowerDeviceVisuals.Powered:
+        fan:
+          True: { state: fan-animated }
+          False: { state: fan }
+        front-panel:
+          True: { visible: true }
+          False: { visible: false }
+        panel:
           True: { visible: true }
           False: { visible: false }
   - type: PowerConsumer
@@ -249,7 +267,7 @@
     loadNode: input
     collectionName: transmissionpoint
     sprite: _NF/Structures/Power/transmission_point_icon.rsi
-    state: icon
+    state: icon # FIXME: no icon, machine doesn't appear on the power monitor
   - type: WiredNetworkConnection
   - type: UserInterface
     interfaces:
@@ -262,7 +280,7 @@
       moles:
       - 0.78
       - 0.22
-      temperature: 5273 # ~ 5000 deg C, you're turning energy into a gas
+      temperature: 5273 # ~ 5000 deg C, roughly when plasma turns back into gas
     energyPerMole: 100000 # 100 kJ/mol
   - type: GasCanister
     gasMixture:
