@@ -114,20 +114,20 @@ accent-scandinavian-words-35-b = pigs
 accent-scandinavian-words-replace-35 = svin
 
 accent-scandinavian-words-36 = snake
-accent-scandinavian-words-36 = slange
+accent-scandinavian-words-replace-36 = slange
 
 # danger hoses
 accent-scandinavian-words-37 = snakes
-accent-scandinavian-words-37 = slangar
+accent-scandinavian-words-replace-37 = slangar
 
 accent-scandinavian-words-38 = dragon
-accent-scandinavian-words-38 = drake
+accent-scandinavian-words-replace-38 = drake
 
 accent-scandinavian-words-39 = dragons
-accent-scandinavian-words-39 = drakar
+accent-scandinavian-words-replace-39 = drakar
 
 accent-scandinavian-words-40 = egg
-accent-scandinavian-words-40 = ägg
+accent-scandinavian-words-replace-40 = ägg
 
 accent-scandinavian-words-41 = eggs
-accent-scandinavian-words-41 = äggen
+accent-scandinavian-words-replace-41 = äggen
