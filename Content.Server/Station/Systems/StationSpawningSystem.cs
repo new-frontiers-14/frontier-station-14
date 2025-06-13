@@ -338,10 +338,9 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         {
             var spawnedEntity = Spawn(entProto, coords);
             if (!_cartridgeLoader.InstallCartridge(slotEnt.Value, spawnedEntity, cartridgeLoader))
-            {
-                QueueDel(spawnedEntity);
                 DebugTools.Assert(false, $"Entity {entity} could not install cartridge {entProto} into their PDA {slotEnt.Value}!");
-            }
+
+            QueueDel(spawnedEntity);
         }
     }
     // End Frontier: equip cartridges
