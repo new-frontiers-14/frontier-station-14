@@ -3,7 +3,7 @@ name: Trailing Whitespace Check
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize, ready_for_review]
+    types: [ opened, reopened, synchronize, ready_for_review ]
 
 jobs:
   build:
@@ -25,9 +25,6 @@ jobs:
             **.json
             **.py
             **.ftl
-
-      - name: Debug changed files
-        run: echo "${{ steps.changed-files.outputs.all_changed_files }}"
 
       - name: Check for trailing whitespace and EOF newline
         env:
