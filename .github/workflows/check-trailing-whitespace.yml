@@ -32,11 +32,9 @@ jobs:
         has_trailing_whitespace=0
         has_missing_eof_newline=0
         
-        IFS=$'\n'
-        for file in $ALL_CHANGED_FILES; do
+        printf '%s\n' "$ALL_CHANGED_FILES" | while IFS= read -r file; do
           [ -z "$file" ] && continue
           echo "Checking $file"
-          
           # Check for trailing whitespace
           if grep -qP '[ \t]+$' "$file"; then
             echo "::error file=$file::Trailing whitespace found"
@@ -52,7 +50,6 @@ jobs:
             fi
           fi
         done
-        unset IFS
         
         if [ "$has_trailing_whitespace" -eq 1 ] || [ "$has_missing_eof_newline" -eq 1 ]; then
           echo "Issues found: trailing whitespace or missing EOF newline."
