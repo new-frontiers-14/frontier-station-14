@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/07/2025 13:46:58
+  time: 06/13/2025 11:54:12
   entityCount: 1263
 maps: []
 grids:
@@ -21,6 +21,7 @@ tilemap:
   39: FloorDarkPlastic
   45: FloorFreezer
   46: FloorGlass
+  1: FloorHullReinforced
   63: FloorLino
   68: FloorMiningDark
   120: FloorWoodTile
@@ -42,7 +43,7 @@ entities:
           version: 6
         0,-1:
           ind: 0,-1
-          tiles: RAAAAAAARAAAAAAAegAAAAAAAAAAAAAALgAAAAACAAAAAAAAegAAAAAAegAAAAAAegAAAAAAegAAAAAAIQAAAAAAIQAAAAAAIQAAAAAAIQAAAAAAIQAAAAAAegAAAAAALgAAAAADLgAAAAAALgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAIQAAAAAAIQAAAAAAIQAAAAAAIQAAAAAAIQAAAAAALgAAAAAALgAAAAACLgAAAAAALgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAIQAAAAAAIQAAAAAAIQAAAAAALgAAAAACLgAAAAABLgAAAAAALgAAAAAALgAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAIQAAAAAAIQAAAAAALgAAAAAALgAAAAADLgAAAAADLgAAAAACLgAAAAAALgAAAAAALgAAAAAAegAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAIQAAAAAALgAAAAAALgAAAAACLgAAAAAALgAAAAADLgAAAAACLgAAAAADLgAAAAADRAAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAIQAAAAAALgAAAAAALgAAAAAALgAAAAABLgAAAAABLgAAAAADLgAAAAACLgAAAAABRAAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAegAAAAAAAAAAAAAALgAAAAAALgAAAAAALgAAAAAALgAAAAAALgAAAAAALgAAAAAAegAAAAAAegAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAegAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAALgAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAfQAAAAAAfQAAAAAAegAAAAAAAAAAAAAAAAAAAAAALQAAAAAALQAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAegAAAAAAAAAAAAAAAAAAAAAALQAAAAAALQAAAAAALQAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAfQAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAALQAAAAAALQAAAAAALQAAAAAALQAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          tiles: RAAAAAAARAAAAAAAegAAAAAAAAAAAAAALgAAAAACAAAAAAAAegAAAAAAegAAAAAAegAAAAAAegAAAAAAIQAAAAAAIQAAAAAAIQAAAAAAIQAAAAAAIQAAAAAAegAAAAAALgAAAAADLgAAAAAALgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAIQAAAAAAIQAAAAAAIQAAAAAAIQAAAAAAIQAAAAAALgAAAAAALgAAAAACLgAAAAAALgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAIQAAAAAAIQAAAAAAIQAAAAAALgAAAAACLgAAAAABLgAAAAAALgAAAAAALgAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAIQAAAAAAIQAAAAAALgAAAAAALgAAAAADLgAAAAADLgAAAAACLgAAAAAALgAAAAAALgAAAAAAegAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAIQAAAAAALgAAAAAALgAAAAACLgAAAAAALgAAAAADLgAAAAACLgAAAAADLgAAAAADRAAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAIQAAAAAALgAAAAAALgAAAAAALgAAAAABLgAAAAABLgAAAAADLgAAAAACLgAAAAABRAAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAegAAAAAAAAAAAAAALgAAAAAALgAAAAAALgAAAAAALgAAAAAALgAAAAAALgAAAAAAegAAAAAAegAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegAAAAAAAQAAAAAAPwAAAAAAPwAAAAAAPwAAAAAAAQAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAegAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAALQAAAAAALQAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAALQAAAAAALQAAAAAALQAAAAAAegAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAALQAAAAAALQAAAAAALQAAAAAALQAAAAAAegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
           version: 6
         -1,0:
           ind: -1,0
@@ -426,24 +427,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 10.5,-3.5
       parent: 1
-- proto: AirCanister
-  entities:
-  - uid: 581
-    components:
-    - type: Transform
-      anchored: True
-      pos: 12.5,-2.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
-  - uid: 582
-    components:
-    - type: Transform
-      anchored: True
-      pos: 12.5,-3.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: AirlockBloodCult
   entities:
   - uid: 2
@@ -3220,6 +3203,19 @@ entities:
     - type: Transform
       pos: 12.466469,9.250409
       parent: 1
+- proto: GasMixerOnFlipped
+  entities:
+  - uid: 379
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 11.5,-3.5
+      parent: 1
+    - type: GasMixer
+      inletTwoConcentration: 0.79
+      inletOneConcentration: 0.21
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
 - proto: GasOutletInjector
   entities:
   - uid: 1075
@@ -3543,6 +3539,14 @@ entities:
       color: '#990000FF'
 - proto: GasPipeStraight
   entities:
+  - uid: 365
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 11.5,-4.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 739
     components:
     - type: Transform
@@ -5247,14 +5251,6 @@ entities:
       color: '#990000FF'
 - proto: GasPipeTJunction
   entities:
-  - uid: 579
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 11.5,-3.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 769
     components:
     - type: Transform
@@ -5459,15 +5455,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 12.5,-3.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-- proto: GasPressurePumpOnMax
-  entities:
-  - uid: 352
-    components:
-    - type: Transform
-      pos: 11.5,-4.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -5728,6 +5715,26 @@ entities:
     - type: Transform
       pos: -9.28154,5.4968805
       parent: 1
+- proto: NitrogenCanister
+  entities:
+  - uid: 364
+    components:
+    - type: Transform
+      anchored: True
+      pos: 12.5,-3.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
+- proto: OxygenCanister
+  entities:
+  - uid: 352
+    components:
+    - type: Transform
+      anchored: True
+      pos: 12.5,-2.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: Paper
   entities:
   - uid: 493
@@ -5882,6 +5889,16 @@ entities:
       parent: 1
 - proto: SpawnMobBloodCultistAcolyte
   entities:
+  - uid: 367
+    components:
+    - type: Transform
+      pos: 7.5,11.5
+      parent: 1
+  - uid: 380
+    components:
+    - type: Transform
+      pos: -3.5,9.5
+      parent: 1
   - uid: 407
     components:
     - type: Transform
@@ -5902,28 +5919,30 @@ entities:
     - type: Transform
       pos: -5.5,9.5
       parent: 1
-  - uid: 477
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,9.5
-      parent: 1
-  - uid: 1260
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 7.5,11.5
-      parent: 1
 - proto: SpawnMobBloodCultistAscended
   entities:
-  - uid: 447
+  - uid: 369
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 15.5,9.5
       parent: 1
 - proto: SpawnMobBloodCultistCaster
   entities:
+  - uid: 368
+    components:
+    - type: Transform
+      pos: 18.5,0.5
+      parent: 1
+  - uid: 373
+    components:
+    - type: Transform
+      pos: 11.5,-17.5
+      parent: 1
+  - uid: 375
+    components:
+    - type: Transform
+      pos: -5.5,7.5
+      parent: 1
   - uid: 451
     components:
     - type: Transform
@@ -5949,39 +5968,35 @@ entities:
     - type: Transform
       pos: 12.5,-8.5
       parent: 1
-  - uid: 1228
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 11.5,-17.5
-      parent: 1
-  - uid: 1229
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 18.5,0.5
-      parent: 1
-  - uid: 1230
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,7.5
-      parent: 1
 - proto: SpawnMobBloodCultistPriest
   entities:
+  - uid: 374
+    components:
+    - type: Transform
+      pos: -0.5,0.5
+      parent: 1
   - uid: 450
     components:
     - type: Transform
       pos: 14.5,11.5
       parent: 1
-  - uid: 720
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,0.5
-      parent: 1
 - proto: SpawnMobBloodCultistZealotMelee
   entities:
+  - uid: 366
+    components:
+    - type: Transform
+      pos: -8.5,6.5
+      parent: 1
+  - uid: 370
+    components:
+    - type: Transform
+      pos: 14.5,-15.5
+      parent: 1
+  - uid: 376
+    components:
+    - type: Transform
+      pos: -11.5,-6.5
+      parent: 1
   - uid: 459
     components:
     - type: Transform
@@ -6002,24 +6017,6 @@ entities:
     - type: Transform
       pos: 20.5,-4.5
       parent: 1
-  - uid: 483
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -8.5,6.5
-      parent: 1
-  - uid: 1160
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -11.5,-6.5
-      parent: 1
-  - uid: 1259
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 14.5,-15.5
-      parent: 1
 - proto: SpawnMobBloodCultistZealotRanged
   entities:
   - uid: 464
@@ -6029,6 +6026,16 @@ entities:
       parent: 1
 - proto: SpawnMobBloodCultLeech
   entities:
+  - uid: 377
+    components:
+    - type: Transform
+      pos: -9.5,-10.5
+      parent: 1
+  - uid: 378
+    components:
+    - type: Transform
+      pos: 18.5,-11.5
+      parent: 1
   - uid: 462
     components:
     - type: Transform
@@ -6068,18 +6075,6 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-7.5
-      parent: 1
-  - uid: 1213
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -9.5,-10.5
-      parent: 1
-  - uid: 1258
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 18.5,-11.5
       parent: 1
 - proto: SpawnMobCatBloodCult
   entities:
