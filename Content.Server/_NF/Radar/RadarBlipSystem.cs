@@ -152,6 +152,9 @@ public sealed partial class RadarBlipSystem : EntitySystem
     /// </summary>
     private void OnJetpackActivated(EntityUid uid, ActiveJetpackComponent component, ComponentStartup args)
     {
+        if (TryComp<NoRadarBlipComponent>(uid, out _))
+            return; ///skip marked jetpacks
+
         SetupRadarBlip(uid, Color.Cyan, 1f, true, true);
     }
 
