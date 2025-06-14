@@ -63,7 +63,7 @@ public sealed class DeletionCensusSystem : EntitySystem
 
         Subs.CVar(_cfg, NFCCVars.GarbageCollectionEnabled, SetGarbageCollectionEnabled, true);
         Subs.CVar(_cfg, NFCCVars.GarbageCollectionPeriod, SetGarbageCollectionPeriod, true);
-        Subs.CVar(_cfg, NFCCVars.GarbageCollectionTally, SetGarbageCollectionEntitiesPerTick, true);
+        Subs.CVar(_cfg, NFCCVars.GarbageCollectionEntitiesPerTick, SetGarbageCollectionEntitiesPerTick, true);
         Subs.CVar(_cfg, NFCCVars.GarbageCollectionTally, SetGarbageCollectionTallyCount, true);
 
         // TODO: reset tally on reparent
