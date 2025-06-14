@@ -16,7 +16,7 @@ namespace Content.Server._NF.GC.Systems;
 /// Deletes unused entities parented on the main map if they've been on an unloaded chunk for a given number of passes.
 /// Each pass runs at a configurable period.
 /// </summary>
-public sealed class EntityDeletionSystem : EntitySystem
+public sealed class DeletionCensusSystem : EntitySystem
 {
     // Dependencies
     [Dependency] private readonly GameTicker _gameTicker = default!;
@@ -160,11 +160,11 @@ public sealed class EntityDeletionSystem : EntitySystem
     }
 
     /// <summary>
-    /// Returns
+    /// Returns if this entity is exempt from the deletion census.
     /// </summary>
-    /// <param name="uid"></param>
-    /// <returns></returns>
-    private bool ShouldSkipEntity(EntityUid uid)
+    /// <param name="uid">The entity to check.</param>
+    /// <returns>If this entity is exempt from the deletion census.</returns>
+    private bool IsExemptFromCensus(EntityUid uid)
     {
         if (_mindContainerQuery.TryComp(uid, out var mindContainer) && mindContainer.HasMind)
             return true;
@@ -172,11 +172,11 @@ public sealed class EntityDeletionSystem : EntitySystem
     }
 
     /// <summary>
-    /// C
+    /// Checks the next few children of the default map to see if they should be removed.
     /// </summary>
-    /// <param name="maxCount"></param>
-    /// <param name="worldController"></param>
-    /// <returns></returns>
+    /// <param name="maxCount">The maximum number of entities to check.</param>
+    /// <param name="worldController">The current world controller component of the default map.</param>
+    /// <returns>If there are more entities to be enumerated in the list.</returns>
     private bool CheckNextDefaultEntities(int maxCount, WorldControllerComponent worldController)
     {
         int count = 0;
@@ -189,7 +189,7 @@ public sealed class EntityDeletionSystem : EntitySystem
             if (EntityManager.EntityExists(uid)
                 && TryComp(uid, out TransformComponent? xform)
                 && xform.ParentUid == _defaultMapUid
-                && !ShouldSkipEntity(uid))
+                && !IsExemptFromCensus(uid))
             {
 
                 // Check chunk
@@ -215,11 +215,11 @@ public sealed class EntityDeletionSystem : EntitySystem
     }
 
     /// <summary>
-    /// CheckNextFTLEntities
+    /// Checks the next few children of the FTL map to see if they should be removed.
+    /// Non-exempt entities being present on the FTL map at all
     /// </summary>
-    /// <param name="maxCount"></param>
-    /// <param name="worldController"></param>
-    /// <returns></returns>
+    /// <param name="maxCount">The maximum number of entities to check.</param>
+    /// <returns>If there are more entities to be enumerated in the list.</returns>
     private bool CheckNextFTLEntities(int maxCount)
     {
         int count = 0;
@@ -231,7 +231,7 @@ public sealed class EntityDeletionSystem : EntitySystem
             if (EntityManager.EntityExists(uid)
                 && TryComp(uid, out TransformComponent? xform)
                 && xform.ParentUid == _ftlMapUid
-                && !ShouldSkipEntity(uid))
+                && !IsExemptFromCensus(uid))
             {
                 var tally = EnsureComp<DeletionCensusTallyComponent>(uid);
                 tally.ConsecutivePasses += 1;

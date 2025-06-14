@@ -1,6 +1,9 @@
 namespace Content.Server._NF.GC.Components;
 
-// Denotes entities
+/// <summary>
+/// Denotes entities that are exempt from the deletion census.
+/// Optionally propagates to child grids when split.
+/// </summary>
 [RegisterComponent]
 public sealed partial class DeletionCensusExemptComponent : Component
 {
