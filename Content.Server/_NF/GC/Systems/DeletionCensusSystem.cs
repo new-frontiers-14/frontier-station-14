@@ -3,10 +3,12 @@ using Content.Server.GameTicking;
 using Content.Server.Worldgen;
 using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Systems;
+using Content.Shared._NF.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 
 namespace Content.Server._NF.GC.Systems;
@@ -20,6 +22,7 @@ public sealed class DeletionCensusSystem : EntitySystem
 {
     // Dependencies
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
@@ -45,9 +48,10 @@ public sealed class DeletionCensusSystem : EntitySystem
     private TimeSpan _nextFtlCensusTime = TimeSpan.Zero;
 
     // GC parameters - TODO: move these to CCVars
-    private TimeSpan _censusPassPeriod = TimeSpan.FromMinutes(1);
-    private int _censusEntitiesPerFrame = 64;
-    private int _tallyMax = 3; // The number of tallies needed before queueing an entity to be deleted.
+    private bool _censusEnabled = true;
+    private TimeSpan _censusPassPeriod = TimeSpan.FromMinutes(10);
+    private int _censusEntitiesPerTick = 64;
+    private int _censusTallyMax = 3; // The number of tallies needed before queueing an entity to be deleted.
     public override void Initialize()
     {
         base.Initialize();
@@ -57,12 +61,40 @@ public sealed class DeletionCensusSystem : EntitySystem
         _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
         _worldControllerQuery = GetEntityQuery<WorldControllerComponent>();
 
+        Subs.CVar(_cfg, NFCCVars.GarbageCollectionEnabled, SetGarbageCollectionEnabled, true);
+        Subs.CVar(_cfg, NFCCVars.GarbageCollectionPeriod, SetGarbageCollectionPeriod, true);
+        Subs.CVar(_cfg, NFCCVars.GarbageCollectionTally, SetGarbageCollectionEntitiesPerTick, true);
+        Subs.CVar(_cfg, NFCCVars.GarbageCollectionTally, SetGarbageCollectionTallyCount, true);
+
         // TODO: reset tally on reparent
         SubscribeLocalEvent<DeletionCensusTallyComponent, EntParentChangedMessage>(OnDeletionParentChanged);
         SubscribeLocalEvent<DeletionCensusExemptComponent, GridSplitEvent>(OnExemptGridSplit);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
+    #region CVar handlers
+    private void SetGarbageCollectionEnabled(bool value)
+    {
+        _censusEnabled = value;
+    }
+
+    private void SetGarbageCollectionPeriod(int value)
+    {
+        _censusPassPeriod = TimeSpan.FromSeconds(value);
+    }
+
+    private void SetGarbageCollectionEntitiesPerTick(int value)
+    {
+        _censusEntitiesPerTick = value;
+    }
+
+    private void SetGarbageCollectionTallyCount(int value)
+    {
+        _censusTallyMax = value;
+    }
+    #endregion
+
+    #region Event handlers
     private void OnRoundRestart(RoundRestartCleanupEvent _)
     {
         _nextDefaultCensusTime = TimeSpan.Zero;
@@ -91,9 +123,14 @@ public sealed class DeletionCensusSystem : EntitySystem
             }
         }
     }
+    #endregion Event handlers
 
+    #region Update
     public override void Update(float frameTime)
     {
+        if (!_censusEnabled)
+            return;
+
         if (!_defaultChildEnumeratorValid)
         {
             if (_timing.CurTime >= _nextDefaultCensusTime)
@@ -121,7 +158,7 @@ public sealed class DeletionCensusSystem : EntitySystem
             if (!_worldControllerQuery.TryComp(_defaultMapUid, out var worldController))
                 _defaultChildEnumeratorValid = false;
             else
-                _defaultChildEnumeratorValid = CheckNextDefaultEntities(_censusEntitiesPerFrame, worldController);
+                _defaultChildEnumeratorValid = CheckNextDefaultEntities(_censusEntitiesPerTick, worldController);
         }
 
         if (!_ftlChildEnumeratorValid)
@@ -155,7 +192,7 @@ public sealed class DeletionCensusSystem : EntitySystem
         }
         else
         {
-            _ftlChildEnumeratorValid = CheckNextFTLEntities(_censusEntitiesPerFrame);
+            _ftlChildEnumeratorValid = CheckNextFTLEntities(_censusEntitiesPerTick);
         }
     }
 
@@ -200,7 +237,7 @@ public sealed class DeletionCensusSystem : EntitySystem
                 {
                     var tally = EnsureComp<DeletionCensusTallyComponent>(uid);
                     tally.ConsecutivePasses += 1;
-                    if (tally.ConsecutivePasses >= _tallyMax)
+                    if (tally.ConsecutivePasses >= _censusTallyMax)
                     {
                         Log.Info($"Deleting entity {uid} ({Name(uid)}) for inactivity.");
                         QueueDel(uid);
@@ -235,7 +272,7 @@ public sealed class DeletionCensusSystem : EntitySystem
             {
                 var tally = EnsureComp<DeletionCensusTallyComponent>(uid);
                 tally.ConsecutivePasses += 1;
-                if (tally.ConsecutivePasses >= _tallyMax)
+                if (tally.ConsecutivePasses >= _censusTallyMax)
                 {
                     QueueDel(uid);
                 }
@@ -246,4 +283,5 @@ public sealed class DeletionCensusSystem : EntitySystem
         }
         return false;
     }
+    #endregion Update
 }
