@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/14/2025 06:49:31
-  entityCount: 1486
+  time: 06/14/2025 15:41:28
+  entityCount: 1500
 maps: []
 grids:
 - 1
@@ -7292,9 +7292,9 @@ entities:
     - type: Transform
       pos: -3.2914124,-7.3609786
       parent: 1
-- proto: NFHolopadShipAntag
+- proto: NFHolopadShip
   entities:
-  - uid: 126
+  - uid: 52
     components:
     - type: Transform
       pos: 0.5,3.5
@@ -7969,13 +7969,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,3.5
-      parent: 1
-- proto: PowerCellRecharger
-  entities:
-  - uid: 291
-    components:
-    - type: Transform
-      pos: 12.5,1.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -8881,6 +8874,71 @@ entities:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
+  - uid: 1328
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,3.5
+      parent: 1
+- proto: SurveillanceCameraEngineering
+  entities:
+  - uid: 1330
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 16.5,3.5
+      parent: 1
+  - uid: 1331
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 19.5,6.5
+      parent: 1
+- proto: SurveillanceCameraGeneral
+  entities:
+  - uid: 1332
+    components:
+    - type: Transform
+      pos: 11.5,12.5
+      parent: 1
+  - uid: 1334
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,10.5
+      parent: 1
+  - uid: 1336
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,12.5
+      parent: 1
+  - uid: 1489
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -8.5,6.5
+      parent: 1
+  - uid: 1500
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,13.5
+      parent: 1
+  - uid: 1501
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,7.5
+      parent: 1
+- proto: SurveillanceCameraMedical
+  entities:
+  - uid: 162
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 12.5,2.5
+      parent: 1
 - proto: SurveillanceCameraRouterCommand
   entities:
   - uid: 65
@@ -8894,6 +8952,13 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-1.5
+      parent: 1
+- proto: SurveillanceCameraRouterGeneral
+  entities:
+  - uid: 126
+    components:
+    - type: Transform
+      pos: 1.5,-3.5
       parent: 1
 - proto: SurveillanceCameraRouterMedical
   entities:
@@ -8909,12 +8974,29 @@ entities:
     - type: Transform
       pos: 1.5,-2.5
       parent: 1
-- proto: SurveillanceCameraWirelessRouterConstructed
+- proto: SurveillanceCameraSecurity
   entities:
-  - uid: 52
+  - uid: 262
     components:
     - type: Transform
-      pos: 1.5,-3.5
+      rot: -1.5707963267948966 rad
+      pos: 6.5,-7.5
+      parent: 1
+  - uid: 289
+    components:
+    - type: Transform
+      pos: -0.5,-8.5
+      parent: 1
+  - uid: 1258
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-5.5
+      parent: 1
+  - uid: 1259
+    components:
+    - type: Transform
+      pos: 7.5,-0.5
       parent: 1
 - proto: TableCounterWood
   entities:
@@ -10219,6 +10301,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -6.5,-12.5
+      parent: 1
+- proto: WeaponCapacitorRecharger
+  entities:
+  - uid: 291
+    components:
+    - type: Transform
+      pos: 12.5,1.5
       parent: 1
 - proto: WindoorSecure
   entities:
