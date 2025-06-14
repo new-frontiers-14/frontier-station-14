@@ -255,7 +255,7 @@ public sealed class DeletionCensusSystem : EntitySystem
 
     /// <summary>
     /// Checks the next few children of the FTL map to see if they should be removed.
-    /// Non-exempt entities being present on the FTL map at all
+    /// Non-exempt entities being parented on the FTL map at all is grounds for removal.
     /// </summary>
     /// <param name="maxCount">The maximum number of entities to check.</param>
     /// <returns>If there are more entities to be enumerated in the list.</returns>
@@ -267,6 +267,7 @@ public sealed class DeletionCensusSystem : EntitySystem
             count++;
             var uid = _ftlChildEnumerator.Current;
 
+            // Check if entity is excluded
             if (EntityManager.EntityExists(uid)
                 && TryComp(uid, out TransformComponent? xform)
                 && xform.ParentUid == _ftlMapUid
