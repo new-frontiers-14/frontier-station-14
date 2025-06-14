@@ -239,7 +239,9 @@ public sealed class DeletionCensusSystem : EntitySystem
                     tally.ConsecutivePasses += 1;
                     if (tally.ConsecutivePasses >= _censusTallyMax)
                     {
-                        Log.Info($"Deleting entity {uid} ({Name(uid)}) for inactivity.");
+#if DEBUG
+                        Log.Debug($"Deleting entity {uid} ({Name(uid)}) for inactivity.");
+#endif
                         QueueDel(uid);
                     }
                 }
