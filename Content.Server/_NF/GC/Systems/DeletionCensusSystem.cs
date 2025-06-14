@@ -1,3 +1,5 @@
+// #define NF_CENSUS_DEBUG_LOG // Uncomment to enable debug logging
+
 using Content.Server._NF.GC.Components;
 using Content.Server.GameTicking;
 using Content.Server.Worldgen;
@@ -149,8 +151,14 @@ public sealed class DeletionCensusSystem : EntitySystem
                     }
                     _defaultChildEnumerator = _defaultMapChildren.GetEnumerator();
                     _defaultChildEnumeratorValid = true;
+#if NF_CENSUS_DEBUG_LOG
+                    Log.Info($"Default map census started.");
+#endif
                 }
                 _nextDefaultCensusTime = _timing.CurTime + _censusPassPeriod;
+#if NF_CENSUS_DEBUG_LOG
+                Log.Info($"Next default census attempt at {_nextDefaultCensusTime}.");
+#endif
             }
         }
         else
@@ -186,8 +194,14 @@ public sealed class DeletionCensusSystem : EntitySystem
                     }
                     _ftlChildEnumerator = _ftlMapChildren.GetEnumerator();
                     _ftlChildEnumeratorValid = true;
+#if NF_CENSUS_DEBUG_LOG
+                    Log.Info($"FTL map census started.");
+#endif
                 }
                 _nextFtlCensusTime = _timing.CurTime + _censusPassPeriod;
+#if NF_CENSUS_DEBUG_LOG
+                Log.Info($"Next FTL census attempt at {_nextDefaultCensusTime}.");
+#endif
             }
         }
         else
@@ -239,8 +253,8 @@ public sealed class DeletionCensusSystem : EntitySystem
                     tally.ConsecutivePasses += 1;
                     if (tally.ConsecutivePasses >= _censusTallyMax)
                     {
-#if DEBUG
-                        Log.Debug($"Deleting entity {uid} ({Name(uid)}) for inactivity.");
+#if NF_CENSUS_DEBUG_LOG
+                        Log.Info($"Deleting entity {uid} ({Name(uid)}) for inactivity.");
 #endif
                         QueueDel(uid);
                     }
@@ -248,9 +262,9 @@ public sealed class DeletionCensusSystem : EntitySystem
             }
 
             if (count >= maxCount)
-                return false;
+                return true;
         }
-        return true;
+        return false;
     }
 
     /// <summary>
@@ -282,9 +296,9 @@ public sealed class DeletionCensusSystem : EntitySystem
             }
 
             if (count >= maxCount)
-                return true;
+                return false;
         }
-        return false;
+        return true;
     }
     #endregion Update
 }
