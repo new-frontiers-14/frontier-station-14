@@ -285,7 +285,7 @@ public sealed class NFCCVars
     /// The period to run garbage collection at, in seconds.
     /// </summary>
     public static readonly CVarDef<int> GarbageCollectionPeriod =
-        CVarDef.Create("nf14.gc.period", 600, CVar.SERVER);
+        CVarDef.Create("nf14.gc.period", 900, CVar.SERVER);
 
     /// <summary>
     /// The number of entities to check per tick.

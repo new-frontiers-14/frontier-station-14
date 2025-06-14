@@ -47,9 +47,9 @@ public sealed class DeletionCensusSystem : EntitySystem
     private TimeSpan _nextDefaultCensusTime = TimeSpan.Zero;
     private TimeSpan _nextFtlCensusTime = TimeSpan.Zero;
 
-    // GC parameters - TODO: move these to CCVars
+    // GC parameters
     private bool _censusEnabled = true;
-    private TimeSpan _censusPassPeriod = TimeSpan.FromMinutes(10);
+    private TimeSpan _censusPassPeriod = TimeSpan.FromMinutes(15);
     private int _censusEntitiesPerTick = 64;
     private int _censusTallyMax = 3; // The number of tallies needed before queueing an entity to be deleted.
     public override void Initialize()
