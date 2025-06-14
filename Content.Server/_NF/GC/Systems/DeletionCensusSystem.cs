@@ -35,14 +35,14 @@ public sealed class EntityDeletionSystem : EntitySystem
     // Their children will be maintained between runs.
     private EntityUid _defaultMapUid;
     private EntityUid _ftlMapUid;
-    private HashSet<EntityUid> _defaultTransformSet = new();
-    private HashSet<EntityUid> _ftlTransformSet = new();
-    private bool _defaultEnumeratorValid = false;
-    private HashSet<EntityUid>.Enumerator _defaultEnumerator = default!;
-    private bool _ftlEnumeratorValid = false;
-    private HashSet<EntityUid>.Enumerator _ftlEnumerator = default!;
-    private TimeSpan _nextDefaultTime = TimeSpan.Zero;
-    private TimeSpan _nextFtlTime = TimeSpan.Zero;
+    private List<EntityUid> _defaultMapChildren = new();
+    private List<EntityUid> _ftlMapChildren = new();
+    private bool _defaultChildEnumeratorValid = false;
+    private List<EntityUid>.Enumerator _defaultChildEnumerator = default!;
+    private bool _ftlChildEnumeratorValid = false;
+    private List<EntityUid>.Enumerator _ftlChildEnumerator = default!;
+    private TimeSpan _nextDefaultCensusTime = TimeSpan.Zero;
+    private TimeSpan _nextFtlCensusTime = TimeSpan.Zero;
 
     // GC parameters - TODO: move these to CCVars
     private TimeSpan _censusPassPeriod = TimeSpan.FromMinutes(1);
@@ -65,12 +65,12 @@ public sealed class EntityDeletionSystem : EntitySystem
 
     private void OnRoundRestart(RoundRestartCleanupEvent _)
     {
-        _nextDefaultTime = TimeSpan.Zero;
-        _nextFtlTime = TimeSpan.Zero;
-        _defaultEnumerator = default!;
-        _ftlEnumerator = default!;
-        _defaultEnumeratorValid = false;
-        _ftlEnumeratorValid = false;
+        _nextDefaultCensusTime = TimeSpan.Zero;
+        _nextFtlCensusTime = TimeSpan.Zero;
+        _defaultChildEnumerator = default!;
+        _ftlChildEnumerator = default!;
+        _defaultChildEnumeratorValid = false;
+        _ftlChildEnumeratorValid = false;
         _defaultMapUid = EntityUid.Invalid;
         _ftlMapUid = EntityUid.Invalid;
     }
@@ -94,39 +94,39 @@ public sealed class EntityDeletionSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
-        if (!_defaultEnumeratorValid)
+        if (!_defaultChildEnumeratorValid)
         {
-            if (_timing.CurTime >= _nextDefaultTime)
+            if (_timing.CurTime >= _nextDefaultCensusTime)
             {
                 if (_defaultMapUid == EntityUid.Invalid && _map.TryGetMap(_gameTicker.DefaultMap, out var mapUid))
                     _defaultMapUid = mapUid.Value;
 
                 if (TryComp(_defaultMapUid, out TransformComponent? xform))
                 {
-                    _defaultTransformSet.Clear();
-                    _defaultTransformSet.EnsureCapacity(xform.ChildCount);
+                    _defaultMapChildren.Clear();
+                    _defaultMapChildren.EnsureCapacity(xform.ChildCount);
                     var enumerator = xform.ChildEnumerator;
                     while (enumerator.MoveNext(out var uid))
                     {
-                        _defaultTransformSet.Add(uid);
+                        _defaultMapChildren.Add(uid);
                     }
-                    _defaultEnumerator = _defaultTransformSet.GetEnumerator();
-                    _defaultEnumeratorValid = true;
+                    _defaultChildEnumerator = _defaultMapChildren.GetEnumerator();
+                    _defaultChildEnumeratorValid = true;
                 }
-                _nextDefaultTime = _timing.CurTime + _censusPassPeriod;
+                _nextDefaultCensusTime = _timing.CurTime + _censusPassPeriod;
             }
         }
         else
         {
             if (!_worldControllerQuery.TryComp(_defaultMapUid, out var worldController))
-                _defaultEnumeratorValid = false;
+                _defaultChildEnumeratorValid = false;
             else
-                _defaultEnumeratorValid = CheckNextDefaultEntities(_censusEntitiesPerFrame, worldController);
+                _defaultChildEnumeratorValid = CheckNextDefaultEntities(_censusEntitiesPerFrame, worldController);
         }
 
-        if (!_ftlEnumeratorValid)
+        if (!_ftlChildEnumeratorValid)
         {
-            if (_timing.CurTime >= _nextFtlTime)
+            if (_timing.CurTime >= _nextFtlCensusTime)
             {
                 if (_ftlMapUid == EntityUid.Invalid)
                 {
@@ -140,22 +140,22 @@ public sealed class EntityDeletionSystem : EntitySystem
 
                 if (TryComp(_ftlMapUid, out TransformComponent? xform))
                 {
-                    _ftlTransformSet.Clear();
-                    _ftlTransformSet.EnsureCapacity(xform.ChildCount);
+                    _ftlMapChildren.Clear();
+                    _ftlMapChildren.EnsureCapacity(xform.ChildCount);
                     var enumerator = xform.ChildEnumerator;
                     while (enumerator.MoveNext(out var uid))
                     {
-                        _ftlTransformSet.Add(uid);
+                        _ftlMapChildren.Add(uid);
                     }
-                    _ftlEnumerator = _ftlTransformSet.GetEnumerator();
-                    _ftlEnumeratorValid = true;
+                    _ftlChildEnumerator = _ftlMapChildren.GetEnumerator();
+                    _ftlChildEnumeratorValid = true;
                 }
-                _nextFtlTime = _timing.CurTime + _censusPassPeriod;
+                _nextFtlCensusTime = _timing.CurTime + _censusPassPeriod;
             }
         }
         else
         {
-            _ftlEnumeratorValid = CheckNextFTLEntities(_censusEntitiesPerFrame);
+            _ftlChildEnumeratorValid = CheckNextFTLEntities(_censusEntitiesPerFrame);
         }
     }
 
@@ -180,10 +180,10 @@ public sealed class EntityDeletionSystem : EntitySystem
     private bool CheckNextDefaultEntities(int maxCount, WorldControllerComponent worldController)
     {
         int count = 0;
-        while (_defaultEnumerator.MoveNext())
+        while (_defaultChildEnumerator.MoveNext())
         {
             count++;
-            var uid = _defaultEnumerator.Current;
+            var uid = _defaultChildEnumerator.Current;
 
             // Check if entity is excluded
             if (EntityManager.EntityExists(uid)
@@ -223,10 +223,10 @@ public sealed class EntityDeletionSystem : EntitySystem
     private bool CheckNextFTLEntities(int maxCount)
     {
         int count = 0;
-        while (_ftlEnumerator.MoveNext())
+        while (_ftlChildEnumerator.MoveNext())
         {
             count++;
-            var uid = _ftlEnumerator.Current;
+            var uid = _ftlChildEnumerator.Current;
 
             if (EntityManager.EntityExists(uid)
                 && TryComp(uid, out TransformComponent? xform)
