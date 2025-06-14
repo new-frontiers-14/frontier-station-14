@@ -18,6 +18,7 @@ namespace Content.Server._NF.GC.Systems;
 /// </summary>
 public sealed class EntityDeletionSystem : EntitySystem
 {
+    // Dependencies
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MapSystem _map = default!;
@@ -25,10 +26,10 @@ public sealed class EntityDeletionSystem : EntitySystem
     [Dependency] private readonly WorldControllerSystem _world = default!;
 
     // Entity queries
-    // EntityQuery<MapGridComponent> _mapGridQuery = default!;
+    EntityQuery<DeletionCensusExemptComponent> _deletionCensusExemptQuery = default!;
+    EntityQuery<LoadedChunkComponent> _loadedChunkQuery = default!;
     EntityQuery<MindContainerComponent> _mindContainerQuery = default!;
     EntityQuery<WorldControllerComponent> _worldControllerQuery = default!;
-    EntityQuery<LoadedChunkComponent> _loadedChunkQuery = default!;
 
     // These two will be cloned from the map's transform component at regular intervals.
     // Their children will be maintained between runs.
@@ -51,13 +52,14 @@ public sealed class EntityDeletionSystem : EntitySystem
     {
         base.Initialize();
 
-        // _mapGridQuery = GetEntityQuery<MapGridComponent>();
+        _deletionCensusExemptQuery = GetEntityQuery<DeletionCensusExemptComponent>();
+        _loadedChunkQuery = GetEntityQuery<LoadedChunkComponent>();
         _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
         _worldControllerQuery = GetEntityQuery<WorldControllerComponent>();
-        _loadedChunkQuery = GetEntityQuery<LoadedChunkComponent>();
 
         // TODO: reset tally on reparent
-        SubscribeLocalEvent<DeletionPassTallyComponent, EntParentChangedMessage>(OnDeletionParentChanged);
+        SubscribeLocalEvent<DeletionCensusTallyComponent, EntParentChangedMessage>(OnDeletionParentChanged);
+        SubscribeLocalEvent<DeletionCensusExemptComponent, GridSplitEvent>(OnExemptGridSplit);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
@@ -73,14 +75,25 @@ public sealed class EntityDeletionSystem : EntitySystem
         _ftlMapUid = EntityUid.Invalid;
     }
 
-    private void OnDeletionParentChanged(Entity<DeletionPassTallyComponent> ent, ref EntParentChangedMessage args)
+    private void OnDeletionParentChanged(Entity<DeletionCensusTallyComponent> ent, ref EntParentChangedMessage args)
     {
-        RemComp<DeletionPassTallyComponent>(ent);
+        RemComp<DeletionCensusTallyComponent>(ent);
+    }
+
+    private void OnExemptGridSplit(Entity<DeletionCensusExemptComponent> ent, ref GridSplitEvent args)
+    {
+        if (ent.Comp.PassOnGridSplit)
+        {
+            foreach (var grid in args.NewGrids)
+            {
+                var exemption = EnsureComp<DeletionCensusExemptComponent>(grid);
+                exemption.PassOnGridSplit = true;
+            }
+        }
     }
 
     public override void Update(float frameTime)
     {
-        int count;
         if (!_defaultEnumeratorValid)
         {
             if (_timing.CurTime >= _nextDefaultTime)
@@ -105,40 +118,10 @@ public sealed class EntityDeletionSystem : EntitySystem
         }
         else
         {
-            count = 0;
-            _worldControllerQuery.TryComp(_defaultMapUid, out var worldController);
-            while (_defaultEnumerator.MoveNext())
-            {
-                count++;
-                var uid = _defaultEnumerator.Current;
-
-                if (EntityManager.EntityExists(uid)
-                    && TryComp(uid, out TransformComponent? xform)
-                    && xform.ParentUid == _defaultMapUid
-                    && (!_mindContainerQuery.TryComp(uid, out var mindContainer)
-                    || !mindContainer.HasMind))
-                {
-                    if (!_world.TryGetChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(xform)).Floored(), _defaultMapUid, out var chunk, worldController)
-                        || !_loadedChunkQuery.TryGetComponent(chunk, out var loaded)
-                        || loaded.Loaders == null
-                        || loaded.Loaders.Count == 0)
-                    {
-                        var tally = EnsureComp<DeletionPassTallyComponent>(uid);
-                        tally.ConsecutivePasses += 1;
-                        if (tally.ConsecutivePasses >= _tallyMax)
-                        {
-                            Log.Info($"Deleting entity {uid} ({Name(uid)}) for inactivity.");
-                            QueueDel(uid);
-                        }
-                    }
-                }
-
-                if (count >= _censusEntitiesPerFrame)
-                    break;
-            }
-
-            if (count < _censusEntitiesPerFrame)
+            if (!_worldControllerQuery.TryComp(_defaultMapUid, out var worldController))
                 _defaultEnumeratorValid = false;
+            else
+                _defaultEnumeratorValid = CheckNextDefaultEntities(_censusEntitiesPerFrame, worldController);
         }
 
         if (!_ftlEnumeratorValid)
@@ -172,32 +155,95 @@ public sealed class EntityDeletionSystem : EntitySystem
         }
         else
         {
-            count = 0;
-            while (_ftlEnumerator.MoveNext())
-            {
-                count++;
-                var uid = _ftlEnumerator.Current;
+            _ftlEnumeratorValid = CheckNextFTLEntities(_censusEntitiesPerFrame);
+        }
+    }
 
-                if (EntityManager.EntityExists(uid)
-                    && TryComp(uid, out TransformComponent? xform)
-                    && xform.ParentUid == _ftlMapUid
-                    && (!_mindContainerQuery.TryComp(uid, out var mindContainer)
-                    || !mindContainer.HasMind))
+    /// <summary>
+    /// Returns
+    /// </summary>
+    /// <param name="uid"></param>
+    /// <returns></returns>
+    private bool ShouldSkipEntity(EntityUid uid)
+    {
+        if (_mindContainerQuery.TryComp(uid, out var mindContainer) && mindContainer.HasMind)
+            return true;
+        return _deletionCensusExemptQuery.HasComp(uid);
+    }
+
+    /// <summary>
+    /// C
+    /// </summary>
+    /// <param name="maxCount"></param>
+    /// <param name="worldController"></param>
+    /// <returns></returns>
+    private bool CheckNextDefaultEntities(int maxCount, WorldControllerComponent worldController)
+    {
+        int count = 0;
+        while (_defaultEnumerator.MoveNext())
+        {
+            count++;
+            var uid = _defaultEnumerator.Current;
+
+            // Check if entity is excluded
+            if (EntityManager.EntityExists(uid)
+                && TryComp(uid, out TransformComponent? xform)
+                && xform.ParentUid == _defaultMapUid
+                && !ShouldSkipEntity(uid))
+            {
+
+                // Check chunk
+                if (!_world.TryGetChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(xform)).Floored(), _defaultMapUid, out var chunk, worldController)
+                    || !_loadedChunkQuery.TryGetComponent(chunk, out var loaded)
+                    || loaded.Loaders == null
+                    || loaded.Loaders.Count == 0)
                 {
-                    var tally = EnsureComp<DeletionPassTallyComponent>(uid);
+                    var tally = EnsureComp<DeletionCensusTallyComponent>(uid);
                     tally.ConsecutivePasses += 1;
                     if (tally.ConsecutivePasses >= _tallyMax)
                     {
+                        Log.Info($"Deleting entity {uid} ({Name(uid)}) for inactivity.");
                         QueueDel(uid);
                     }
                 }
-
-                if (count >= _censusEntitiesPerFrame)
-                    break;
             }
 
-            if (count < _censusEntitiesPerFrame)
-                _ftlEnumeratorValid = false;
+            if (count >= maxCount)
+                return false;
         }
+        return true;
+    }
+
+    /// <summary>
+    /// CheckNextFTLEntities
+    /// </summary>
+    /// <param name="maxCount"></param>
+    /// <param name="worldController"></param>
+    /// <returns></returns>
+    private bool CheckNextFTLEntities(int maxCount)
+    {
+        int count = 0;
+        while (_ftlEnumerator.MoveNext())
+        {
+            count++;
+            var uid = _ftlEnumerator.Current;
+
+            if (EntityManager.EntityExists(uid)
+                && TryComp(uid, out TransformComponent? xform)
+                && xform.ParentUid == _ftlMapUid
+                && !ShouldSkipEntity(uid))
+            {
+                var tally = EnsureComp<DeletionCensusTallyComponent>(uid);
+                tally.ConsecutivePasses += 1;
+                if (tally.ConsecutivePasses >= _tallyMax)
+                {
+                    QueueDel(uid);
+                }
+            }
+
+            if (count >= maxCount)
+                return true;
+        }
+        return false;
     }
 }
