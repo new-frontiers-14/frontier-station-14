@@ -26,5 +26,25 @@ namespace Content.Server.Bed.Components
         public TimeSpan NextHealTime = TimeSpan.Zero; //Next heal
 
         [DataField] public EntityUid? SleepAction;
+
+        // Frontier: extra fields
+        /// <summary>
+        /// If true, this will heal dead mobs.
+        /// </summary>
+        [DataField]
+        public bool WorksOnTheDead;
+
+        /// <summary>
+        /// If true, this will only heal when powered.
+        /// </summary>
+        [DataField]
+        public bool RequiresPower;
+
+        /// <summary>
+        /// If not null, this bed will heal damage only up to a maximum damage threshold.
+        /// </summary>
+        [DataField]
+        public int? MaxDamage = null;
+        // End Frontier: extra fields
     }
 }
