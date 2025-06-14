@@ -1,4 +1,5 @@
 #nullable enable
+using Content.Shared._RMC14.CCVar;
 using Content.Shared.CCVar;
 using Robust.Shared;
 using Robust.Shared.Configuration;
@@ -40,8 +41,11 @@ public static partial class PoolManager
         (CCVars.InteractionRateLimitCount.Name, "9999999"),
         (CCVars.InteractionRateLimitPeriod.Name, "0.1"),
         (CCVars.MovementMobPushing.Name, "false"),
+        (RMCCVars.RMCMentorHelpRateLimitPeriod.Name, "2.0"), // Frontier: postinject seems to fail
+        (RMCCVars.RMCMentorHelpRateLimitCount.Name, "10"), // Frontier: postinject seems to fail
+        (CCVars.GameLobbyDefaultPreset.Name, "secret"), // Frontier: Adventure takes ages, default to secret
+        (CCVars.StaticStorageUI.Name, "true"),// Frontier: causes storage test failures
         (CCVars.GameLobbyDefaultPreset.Name, "nftest"), // Frontier: Adventure takes ages, default to nftest (no need to test events we will not run, e.g. meteor swarm)
-        (CCVars.StaticStorageUI.Name, "true"), // Frontier: causes storage test failures
         (CCVars.StorageLimit.Name, "1")// Frontier: test failures with multiple storage enabled
     };
 
