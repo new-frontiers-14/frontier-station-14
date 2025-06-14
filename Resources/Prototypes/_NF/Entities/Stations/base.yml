@@ -17,7 +17,7 @@
   abstract: true
   components:
   - type: StationRenameFaxes
-  
+
 - type: entity
   id: BaseStationRenameHolopads
   abstract: true
@@ -69,6 +69,7 @@
       - Metal
       - Ingot
       - RawMaterial
+      - ArtifactFragment
       - CrystalRed
       - CrystalGreen
       - CrystalPink
@@ -109,7 +110,7 @@
       - RCD # Dup charges
       - Storage # Till fixed
       - StorageFill # Till fixed
-      - BindToStation # no laundering your rental ship machines
+      - StationBoundObject # no laundering your rental ship machines
     whitelistOverride:
       components:
       - UraniumMaterials # Counts as food

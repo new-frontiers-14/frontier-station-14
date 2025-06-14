@@ -3,7 +3,7 @@
   id: MaterialHideRosyMothroach
   name: rosy maple mothroach hide
   description: A thin layer of rosy maple mothroach hide.
-  components:  
+  components:
   - type: Sprite
     sprite: _NF/Objects/Materials/rosymothroach.rsi
     state: hiderosymothroach
@@ -19,26 +19,48 @@
   - type: Stack
     count: 50
 
-- type: entity
-  id: CrateMaterialBiomass50
-  parent: CrateMaterialBiomass
-  name: biomass crate
-  suffix: 50
-  description: 50 units of biomass. Yum.
-  components:
-  - type: StorageFill
-    contents:
-    - id: MaterialBiomass50
-      amount: 1
+- type: material
+  id: Anomalite
+  stackEntity: MaterialAnomalite1
+  name: materials-anomalite
+  unit: materials-unit-crystal
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: anomalite }
+  color: "#D39CFF"
+  price: 2 # ~base 200/crystal, 1200 with buyback
 
 - type: entity
-  id: CrateMcCargoMaterialBiomass50
-  parent: CrateFreezerMcCargo
-  name: mcbiomass crate
-  suffix: 50
-  description: 50 units of biomass. Not for grilling.
+  parent: MaterialBase
+  id: MaterialAnomalite
+  name: anomalite
+  description: A slightly iridescent pink-purple crystal. It's humming quietly.
+  suffix: Full
   components:
-  - type: StorageFill
-    contents:
-    - id: MaterialBiomass50
-      amount: 1
+  - type: Stack
+    stackType: Anomalite
+    count: 10
+  - type: Sprite
+    sprite: _NF/Objects/Materials/ore.rsi
+    layers:
+    - state: anomalite
+    - state: anomalite-unshaded
+      shader: unshaded
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Anomalite: 100
+
+- type: entity
+  parent: MaterialAnomalite
+  id: MaterialAnomalite1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: MaterialAnomalite
+  id: MaterialAnomalite3
+  suffix: 3
+  components:
+  - type: Stack
+    count: 3
