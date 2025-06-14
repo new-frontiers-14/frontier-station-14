@@ -9,6 +9,9 @@ trait-stinky-in-range-self = Something smells foul!
 trait-goblin-accent-name = Goblin cant
 trait-goblin-accent-desc = You speak in a secret language many find annoying and not that secretive.
 
+trait-scandinavian-name = Scandinavian accent
+trait-scandinavian-desc = You have to assemble the sentence yourself.
+
 trait-pious-name = Pious
 trait-pious-desc = You are in touch with the gods, but your vows keep you from striking in anger.
 
