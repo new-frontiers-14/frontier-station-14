@@ -3,12 +3,14 @@
   name: Wizard
   abstract: true
   parent:
+  - NFMobNoEquipmentOnGib
+  - MobMovementSpeedModifierRanged
+  - MobStaminaSpecial
   - MobHumanoidHostileBase
   - MobPassiveRegen
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
   #- MobLaserReflect # Added to prevent laser abuse from players
-  - NFMobRestrictions
   id: MobWizFedlBase
   components:
   - type: NpcFactionMember
@@ -24,8 +26,6 @@
     damage:
       types:
         Heat: 0
-  - type: Stamina
-    critThreshold: 400
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -41,15 +41,6 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
-  - type: TriggerOnBeingGibbed
-  - type: GibOnTrigger
-    deleteItems: true
-    deleteOrgans: true
-    gib: false
-    useArgumentEntity: true
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 # Humans
 # Blue Wizard, summons 2 Blue Curacao Elementals
