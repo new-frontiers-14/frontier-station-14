@@ -224,6 +224,26 @@ public sealed class WorldControllerSystem : EntitySystem
         return CreateChunkEntity(chunk, map, controller);
     }
 
+    // Frontier: GetOrCreateChunk without the Create
+    /// <summary>
+    /// Attempts to get a chunk, if it exists.
+    /// </summary>
+    /// <param name="chunk">Chunk coordinates to get the chunk entity for.</param>
+    /// <param name="map">Map the chunk is in.</param>
+    /// <param name="chunkUid">The UID of the chunk entity, or Invalid if none was found.</param>
+    /// <param name="controller">The controller this chunk belongs to.</param>
+    /// <returns>Whether or not a chunk could be found.</returns>
+    [Pure]
+    public bool TryGetChunk(Vector2i chunk, EntityUid map, out EntityUid chunkUid, WorldControllerComponent? controller = null)
+    {
+        chunkUid = EntityUid.Invalid;
+        if (!Resolve(map, ref controller))
+            throw new Exception($"Tried to use {ToPrettyString(map)} as a world map, without actually being one.");
+
+        return controller.Chunks.TryGetValue(chunk, out chunkUid);
+    }
+    // End Frontier
+
     /// <summary>
     ///     Constructs a new chunk entity, attaching it to the map.
     /// </summary>

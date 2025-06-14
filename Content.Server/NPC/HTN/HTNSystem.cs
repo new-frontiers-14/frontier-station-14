@@ -315,10 +315,13 @@ public sealed class HTNSystem : EntitySystem
     {
         var transform = Transform(entity);
 
+        // No map - entity is on expedition
         if (!_mapQuery.TryGetComponent(transform.MapUid, out var worldComponent))
             return true;
 
-        var chunk = _world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(transform)).Floored(), transform.MapUid.Value, worldComponent);
+        // No loaded chunk, can't be active.
+        if (!_world.TryGetChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(transform)).Floored(), transform.MapUid.Value, out var chunk, worldComponent))
+            return false;
 
         return _loadedQuery.TryGetComponent(chunk, out var loaded) && loaded.Loaders is not null;
     }
