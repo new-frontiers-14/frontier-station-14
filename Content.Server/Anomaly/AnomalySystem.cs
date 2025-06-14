@@ -18,7 +18,9 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing; // Frontier
 using Content.Server.Stack; // Frontier
+using Content.Shared._NF.Anomaly; // Frontier
 
 namespace Content.Server.Anomaly;
 
@@ -42,6 +44,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly StackSystem _stack = default!; // Frontier
+    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
 
     public const float MinParticleVariation = 0.8f;
     public const float MaxParticleVariation = 1.2f;
@@ -68,7 +71,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     private void OnMapInit(Entity<AnomalyComponent> anomaly, ref MapInitEvent args)
     {
         anomaly.Comp.NextPulseTime = Timing.CurTime + GetPulseLength(anomaly.Comp) * 3; // longer the first time
-        ChangeAnomalyStability(anomaly, Random.NextFloat(anomaly.Comp.InitialStabilityRange.Item1 , anomaly.Comp.InitialStabilityRange.Item2), anomaly.Comp);
+        ChangeAnomalyStability(anomaly, Random.NextFloat(anomaly.Comp.InitialStabilityRange.Item1, anomaly.Comp.InitialStabilityRange.Item2), anomaly.Comp);
         ChangeAnomalySeverity(anomaly, Random.NextFloat(anomaly.Comp.InitialSeverityRange.Item1, anomaly.Comp.InitialSeverityRange.Item2), anomaly.Comp);
 
         ShuffleParticlesEffect(anomaly);
@@ -145,14 +148,8 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
             || !TryComp(vessel, out TransformComponent? vesselXform)
             || xform.GridUid != vesselXform.GridUid)
         {
-            ent.Comp.ConnectedVessel = null;
-            _radiation.SetSourceEnabled(vessel, false);
-            if (TryComp(vessel, out AnomalyVesselComponent? vesselComp))
-            {
-                vesselComp.Anomaly = null;
-                UpdateVesselAppearance(vessel, vesselComp);
-            }
-            Popup.PopupEntity(Loc.GetString("anomaly-vessel-component-anomaly-cleared"), vessel);
+            var expiryComp = EnsureComp<AnomalyLinkExpiryComponent>(vessel);
+            expiryComp.EndTime = _timing.CurTime + expiryComp.CheckFrequency;
         }
     }
     // End Frontier: disable anomaly if it goes off-grid
@@ -184,7 +181,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
 
         var severityValue = 1 / (1 + MathF.Pow(MathF.E, -7 * (component.Severity - 0.5f)));
 
-        return (int) ((component.MaxPointsPerSecond - component.MinPointsPerSecond) * severityValue * multiplier) + component.MinPointsPerSecond;
+        return (int)((component.MaxPointsPerSecond - component.MinPointsPerSecond) * severityValue * multiplier) + component.MinPointsPerSecond;
     }
 
     /// <summary>
@@ -210,6 +207,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
 
         UpdateGenerator();
         UpdateVessels();
+        UpdateLinkExpiry(); // Frontier
     }
 
     #region Behavior
