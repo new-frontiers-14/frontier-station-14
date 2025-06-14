@@ -1,6 +1,6 @@
-# Mostly ignores crafting composition of items making recycling wildly inefficient
-# and occasionally ignores item sizes too (eg toolbox is ginormous item, but is treated as RecyclableItemSteelMedium nonetheless)
-# Item sizes: Tiny, Small, Medium, Large, Huge, Ginormous
+# Mostly ignores crafting composition of items, making recycling wildly inefficient
+# and occasionally ignores item sizes too (e.g., the toolbox is a ginormous item but is treated as a RecyclableItemSteelMedium nonetheless).
+# Item sizes: Tiny, Small, Medium (Normal), Large, Huge, Ginormous
 
 # No materials
 - type: entity
@@ -50,6 +50,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 10
+      RawScrap: 10
 
 ## Small
 - type: entity # Weapon magazines, grenades idk
@@ -59,6 +60,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 20
+      RawScrap: 20
 
 ## Medium
 - type: entity # Jaws of life, toolboxes idk
@@ -68,6 +70,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 150
+      RawScrap: 50
 
 # Plastic
 ## Tiny
@@ -87,6 +90,7 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 25
+      RawScrap: 25
 
 ## Medium
 - type: entity # Spray bottles, glue/lube tubes, plungers etc
@@ -96,6 +100,7 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 50
+      RawScrap: 10
 
 # Simple Devices
 ## Tiny
@@ -107,6 +112,8 @@
     materialComposition:
       Plastic: 10
       Steel: 10
+      RawScrap: 10
+      RawScrapTech: 10
 
 ## Small
 - type: entity # Light replacers, sign projectors, flashlights, power cells etc
@@ -118,6 +125,8 @@
       Plastic: 25
       Steel: 25
       Glass: 25
+      RawScrap: 25
+      RawScrapTech: 25
 
 # Complex Devices
 ## Normal
@@ -131,6 +140,8 @@
       Glass: 50
       Silver: 20
       Gold: 10
+      RawScrap: 100
+      RawScrapTech: 20
 
 # Organic
 ## Tiny
