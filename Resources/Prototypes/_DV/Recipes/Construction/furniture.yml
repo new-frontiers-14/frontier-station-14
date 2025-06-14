@@ -1,0 +1,133 @@
+- type: construction
+  id: LGBTQFlag
+  graph: Flags
+  startNode: start
+  targetNode: LGBTQFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: TransFlag
+  graph: Flags
+  startNode: start
+  targetNode: TransFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: LesbianFlag
+  graph: Flags
+  startNode: start
+  targetNode: LesFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: GayFlag
+  graph: Flags
+  startNode: start
+  targetNode: GayFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: BiFlag
+  graph: Flags
+  startNode: start
+  targetNode: BiFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: EnbyFlag
+  graph: Flags
+  startNode: start
+  targetNode: EnbyFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: AroFlag
+  graph: Flags
+  startNode: start
+  targetNode: AroFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: IntersexFlag
+  graph: Flags
+  startNode: start
+  targetNode: IntersexFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: PanFlag
+  graph: Flags
+  startNode: start
+  targetNode: PanFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: AceFlag
+  graph: Flags
+  startNode: start
+  targetNode: AceFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: TransRoyalShrimpFlag
+  graph: Flags
+  startNode: start
+  targetNode: TransRoyalShrimpFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: tatamisingle # TODO unfuck all these tatami ids
+  graph: tatami
+  startNode: start
+  targetNode: tatamiSquare
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: tatamimat
+  graph: tatami
+  startNode: start
+  targetNode: tatamiPart
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
