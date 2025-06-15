@@ -1,25 +1,22 @@
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Atmos.Monitor.Components;
 using Content.Server.Atmos.Monitor.Systems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.Unary.Components;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Atmos;
-using Content.Shared.Atmos.Piping.Unary.Visuals;
 using Content.Shared.Atmos.Monitor;
 using Content.Shared.Atmos.Piping.Components;
 using Content.Shared.Atmos.Piping.Unary.Components;
+using Content.Shared.Atmos.Piping.Unary.Visuals;
 using Content.Shared.Audio;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Power;
 using Content.Shared.Tools.Systems;
 using JetBrains.Annotations;
@@ -69,10 +66,13 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             if (args.Grid is not {} grid)
                 return;
 
-            var map = _atmosphereSystem.AllowMapGasExtraction ? args.Map : null; // Frontier
+            // Frontier: check running gas extraction
+            if (!_atmosphereSystem.AtmosInputCanRunOnMap(args.Map))
+                return;
+            // End Frontier
 
             var position = _transformSystem.GetGridTilePositionOrDefault(uid);
-            var environment = _atmosphereSystem.GetTileMixture(grid, map, position, true); // Frontier: args.Map<map
+            var environment = _atmosphereSystem.GetTileMixture(grid, args.Map, position, true);
 
             Scrub(timeDelta, scrubber, environment, outlet);
 

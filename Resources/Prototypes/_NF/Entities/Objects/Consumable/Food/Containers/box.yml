@@ -1,4 +1,4 @@
-# Full
+# region Full
 - type: entity
   id: HappyHonkMcCargo
   parent: HappyHonk
@@ -274,6 +274,7 @@
     - tray4
     - tray5
     - tray6
+  - type: NFIngredient
 
 - type: entity
   parent: FoodBoxSushi
@@ -340,7 +341,27 @@
     - id: FoodMealGasBadSushiSlice
       orGroup: Slice6
 
-# Empty
+- type: entity
+  parent: BoxCardboard
+  id: FoodBoxWaffleCone
+  name: box of waffle cones
+  description: A box of Waffle Co. brand waffle cones. There's a mildly offputting picture of a smiling child on the box.
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    state: box # TODO: pretty sprites
+  - type: Storage
+    grid:
+    - 0,0,2,1
+    maxItemSize: Normal
+  - type: Item
+    size: Normal
+  - type: StorageFill
+    contents:
+    - id: FoodBakedWaffleCone
+      amount: 5
+
+# region Empty
 - type: entity
   id: BoxMREEmpty
   parent: BoxMRE

@@ -1,5 +1,21 @@
 # Frontier: keep these commented out - helps highlight errors that need to be fixed when pulling in upstream changes
 
+# used by the unique items of xenoborgs (like modules and stuff)
+- type: entity # Frontier: entities should be unused, keeping this around - remove if this changes
+  id: BaseXenoborgContraband
+  abstract: true
+#   components:
+#   - type: Contraband
+#     severity: Major # placeholder until they make a better severity
+
+# any type of magical items used by wizards and similiar
+# - type: entity
+#   id: BaseMagicalContraband
+#   abstract: true
+#   components:
+#   - type: Contraband
+#     severity: Magical
+
 # # any type of magical items used by wizards and similiar
 # - type: entity
 #   id: BaseMagicalContraband
@@ -174,6 +190,15 @@
 #   - type: Contraband
 #     allowedDepartments: [ Security ]
 #     allowedJobs: [ Bartender ]
+
+# - type: entity
+#   id: BaseSecurityBartenderZookeeperContraband
+#   parent: BaseRestrictedContraband
+#   abstract: true
+#   components:
+#   - type: Contraband
+#     allowedDepartments: [ Security ]
+#     allowedJobs: [ Bartender, Zookeeper ]
 
 # - type: entity
 #   id: BaseSecurityLawyerContraband

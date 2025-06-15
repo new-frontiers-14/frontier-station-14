@@ -8,6 +8,16 @@
     FoodDoughSlice: 1 # one third of a standard bread dough recipe
   recipeType: Oven # Frontier
 
+- type: microwaveMealRecipe
+  id: RecipeCottonBun
+  name: cotton bun recipe
+  result: FoodCottonBun
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughCottonSlice: 1
+  recipeType: Oven # Frontier
+
 #Bagels
 - type: microwaveMealRecipe
   id: RecipeBagel
@@ -669,7 +679,7 @@
   time: 15
   group: Savory
   solids:
-    FoodOnionSlice: 1
+    FoodOnionRingsBattered: 1 # Frontier FoodOnionSlice<FoodOnionRingsBattered
   recipeType: Oven # Frontier
 
 #Pizzas TODO: contruction graph based pizza
@@ -783,6 +793,16 @@
   solids:
     FoodDoughCottonFlat: 1
     CottonBol: 4
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeWorldpeasPizza
+  name: world peazza recipe
+  result: FoodPizzaWorldpeas
+  time: 30
+  solids:
+    FoodDoughFlat: 1
+    FoodWorldPeas: 3
   recipeType: Oven # Frontier
 
 #Italian
@@ -930,6 +950,7 @@
   group: Pasta
   solids:
     FoodNoodles: 2
+    FoodPlateSmall: 2
   recipeType: Oven # Frontier
 
 #Soups & Stew
@@ -1159,6 +1180,7 @@
   group: Soup
   reagents:
     Water: 5
+    Everyspice: 5 # Frontier
   solids:
     FoodBowlBig: 1
     FoodBungo: 2
@@ -1487,6 +1509,8 @@
   solids:
     FoodDoughTortillaFlat: 1
     FoodPlateSmall: 1
+  recipeType: # Frontier
+  - Oven # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeNachosCheesy
@@ -1500,6 +1524,8 @@
     FoodCheeseSlice: 1
     FoodDoughTortillaFlat: 1
     FoodPlateSmall: 1
+  recipeType: # Frontier
+  - Oven # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeNachosCuban
@@ -1513,6 +1539,8 @@
     FoodChiliPepper: 1
     FoodDoughTortillaFlat: 1
     FoodPlateSmall: 1
+  recipeType: # Frontier
+  - Oven # Frontier
 
 - type: microwaveMealRecipe
   id: RecipePopcorn
@@ -1747,6 +1775,8 @@
   result: FoodCakePumpkin
   time: 5
   group: Cake
+  reagents: # Frontier
+    Everyspice: 5 # Frontier
   solids:
     FoodCakePlain: 1
     FoodPumpkin: 1
@@ -1968,6 +1998,14 @@
     FoodDonkpocketCarp: 1
   recipeType: Microwave # Frontier
 
+- type: microwaveMealRecipe
+  id: RecipeDonkpocketMoth
+  name: warm moth-pocket recipe
+  result: FoodDonkpocketMothWarm
+  time: 5
+  solids:
+    FoodDonkpocketMoth: 1
+  recipeType: Microwave # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeHotChili
@@ -2597,3 +2635,13 @@
     FoodButterSlice: 1
   recipeType: Oven # Frontier
 
+- type: microwaveMealRecipe
+  id: RecipeGrilledCheeseSandwichCotton
+  name: cotton grilled cheese sandwich recipe
+  result: FoodBakedGrilledCheeseSandwichCotton
+  time: 10
+  solids:
+    FoodBreadCottonSlice: 2
+    FoodCheeseSlice: 1
+    FoodButterSlice: 1
+  recipeType: Oven # Frontier

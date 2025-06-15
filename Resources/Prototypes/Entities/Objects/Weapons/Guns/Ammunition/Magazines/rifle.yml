@@ -34,20 +34,32 @@
 
 # Magazines
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineRifle
   name: "magazine (.20 rifle)"
   parent: BaseMagazineRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle
+    # proto: CartridgeRifle # Frontier
   - type: Sprite
     layers:
     - state: red
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#9b0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#9b0000"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineRifleEmpty
   name: "magazine (.20 rifle any)"
   suffix: empty
@@ -61,39 +73,68 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineRifleIncendiary
   name: "magazine (.20 rifle incendiary)"
   parent: MagazineRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifleIncendiary
+    # proto: CartridgeRifleIncendiary # Frontier
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineRiflePractice
   name: "magazine (.20 rifle practice)"
   parent: BaseMagazineRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRiflePractice
+    # proto: CartridgeRiflePractice # Frontier
   - type: Sprite
     layers:
     - state: practice
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ea5800"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ea5800"
 
 - type: entity
+  categories: [ HideSpawnMenu ] # Frontier
   id: MagazineRifleUranium
   name: "magazine (.20 rifle uranium)"
   parent: BaseMagazineRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifleUranium
+    # proto: CartridgeRifleUranium # Frontier
   - type: Sprite
     layers:
     - state: uranium
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00cd42"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00cd42"

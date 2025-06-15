@@ -7,7 +7,7 @@
   - type: StorageFill
     contents:
       - id: MopItem
-      - id: MopBucket
+      - id: MopBucketCubeWrapped
       - id: Bucket
         amount: 1 # Frontier 3<1
       - id: WetFloorSign
@@ -90,6 +90,7 @@
     contents:
     - id: ClothingUniformJumpskirtPerformer
     - id: ClothingShoesBootsPerformer
+    - id: ClothingHeadPerformerWig
     - id: ClothingOuterSuitMonkey
     - id: ClothingHeadHatAnimalMonkey
     - id: ClothingNeckCloakMoth
@@ -98,7 +99,7 @@
     - id: ClothingShoesClown
     - id: ClothingUniformJumpskirtJanimaid
     - id: ClothingNeckCloakVoid
-    - id: RevolverCapGun
+    - id: NFRevolverCapGun # Frontier: RevolverCapGun<NFRevolverCapGun
     - id: BarberScissors
     - id: ClothingUniformJumpskirtOldDress
     - id: BikeHorn
@@ -199,7 +200,7 @@
       - id: BookMedicalReferenceBook
       - id: BookHowToSurvive
       - id: BookChemicalCompendium
-      - id: HyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<HyperlinkBookSpaceLaw
+      - id: NFHyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<NFHyperlinkBookSpaceLaw
 
 - type: entity
   id: CrateServiceSodaDispenser
@@ -362,3 +363,14 @@
         amount: 2
       - id: BoxCandleSmall
         amount: 2
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateServiceColorfulLights
+  name: colorful lights crate
+  description: It's not a party until it's hard to see, a little disorienting, and your ears hurt.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxLightbulbColorfulMixed
+    - id: BoxLighttubeColorfulMixed

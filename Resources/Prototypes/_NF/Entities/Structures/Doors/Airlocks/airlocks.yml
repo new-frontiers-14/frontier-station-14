@@ -54,21 +54,54 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  parent: AirlockMedicalGlassLockedSecurity
+  id: AirlockBrigmedicGlassLocked
+  suffix: Locked, Brigmedic
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBrigmedic ]
 # endregion
 
 # region External
 - type: entity
   parent: AirlockGlassShuttle
   id: AirlockExternalGlassShuttleTransit
-  suffix: External, PubTrans, Glass, Docking
+  suffix: Ext, Bus (R1), Glass, Docking
   components:
   - type: PriorityDock
     tag: DockTransit
 
 - type: entity
   parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleTransitTradeExpress
+  suffix: Ext, Bus (R2), NFSD, Glass, Docking
+  components:
+  - type: PriorityDock
+    tag: DockTransitTradeExpress
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleTransitMinorPOI
+  suffix: Ext, Route (R3), Glass, Docking
+  components:
+  - type: PriorityDock
+    tag: DockTransitMinorPOIs
+
+- type: entity
+  parent: AirlockGlassShuttleNfsd
+  id: AirlockExternalGlassShuttleNfsdTransitMinorPOI
+  suffix: Ext, Route (R3), NFSD, Glass, Docking
+  components:
+  - type: PriorityDock
+    tag: DockTransitMinorPOIs
+
+- type: entity
+  parent: AirlockGlassShuttle
   id: AirlockExternalGlassShuttleMcCargo
-  suffix: External, McCargo, Glass, Docking
+  suffix: Ext, McCargo, Glass, Docking
   categories: [ HideSpawnMenu ]
   components:
   - type: Docking

@@ -1,0 +1,108 @@
+# WizDen
+# NF base
+- type: entity
+  id: NFBaseSpeedLoaderPistol35
+  name: "speed loader (.35 pistol)"
+  parent: [ BaseC1Contraband, BaseItem, RecyclableItemSteelTiny ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFSpeedLoaderPistol35
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - NFCartridgePistol35
+    capacity: 8
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol35/speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: base
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol35/speed_loader.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+# .35 pistol, speed loader
+- type: entity
+  id: NFSpeedLoaderPistol35Empty
+  name: "speed loader (.35 pistol, any)"
+  parent: NFBaseSpeedLoaderPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFSpeedLoaderPistol35
+  name: "speed loader (.35 pistol)"
+  parent: NFBaseSpeedLoaderPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35
+
+- type: entity
+  id: NFSpeedLoaderPistol35Practice
+  name: "speed loader (.35 pistol, practice)"
+  parent: NFBaseSpeedLoaderPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripe
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripe
+
+# Frontier
+# .35 pistol, speed loader
+- type: entity
+  id: NFSpeedLoaderPistol35Rubber
+  name: "speed loader (.35 pistol, rubber)"
+  parent: NFBaseSpeedLoaderPistol35
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgePistol35Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right
+      - state: inhand-right-stripe
+        color: "#00b0ff"

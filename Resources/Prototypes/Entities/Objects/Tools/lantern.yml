@@ -21,8 +21,8 @@
           id: blinking
           interpolate: Nearest
           maxDuration: 1.0
-          minValue: 0.1
-          maxValue: 2.0
+          startValue: 0.1 # Wizden#37444
+          endValue: 2.0 # Wizden#37444
           isLooped: true
     - type: Sprite
       sprite: Objects/Tools/lantern.rsi
@@ -88,7 +88,6 @@
     - type: Flash
     - type: LimitedCharges
       maxCharges: 15
-      charges: 15
     - type: MeleeWeapon
       damage:
         types:

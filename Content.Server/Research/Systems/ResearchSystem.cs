@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Logs;
-using Content.Server.Station.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Popups;
@@ -19,11 +18,12 @@ namespace Content.Server.Research.Systems
         [Dependency] private readonly IAdminLogManager _adminLog = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+        [Dependency] private readonly EntityLookupSystem _lookup = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly RadioSystem _radio = default!;
-        [Dependency] private readonly StationSystem _station = default!;
-        [Dependency] private readonly EntityLookupSystem _lookup = default!;
+        // [Dependency] private readonly RadioSystem _radio = default!; // Frontier
+
+        private readonly HashSet<Entity<ResearchServerComponent>> ClientLookup = new(); // Frontier: not static
 
         public override void Initialize()
         {
@@ -37,19 +37,20 @@ namespace Content.Server.Research.Systems
         }
 
         /// <summary>
-        /// Gets a server based on it's unique numeric id.
+        /// Gets a server based on its unique numeric id.
         /// </summary>
+        /// <param name="client"></param>
         /// <param name="id"></param>
         /// <param name="serverUid"></param>
         /// <param name="serverComponent"></param>
         /// <returns></returns>
-        public bool TryGetServerById(int id, [NotNullWhen(true)] out EntityUid? serverUid, [NotNullWhen(true)] out ResearchServerComponent? serverComponent)
+        public bool TryGetServerById(EntityUid client, int id, [NotNullWhen(true)] out EntityUid? serverUid, [NotNullWhen(true)] out ResearchServerComponent? serverComponent)
         {
             serverUid = null;
             serverComponent = null;
 
-            var query = EntityQueryEnumerator<ResearchServerComponent>();
-            while (query.MoveNext(out var uid, out var server))
+            var query = GetServers(client).ToList();
+            foreach (var (uid, server) in query)
             {
                 if (server.Id != id)
                     continue;
@@ -64,14 +65,14 @@ namespace Content.Server.Research.Systems
         /// Gets the names of all the servers.
         /// </summary>
         /// <returns></returns>
-        public string[] GetServerNames()
+        public string[] GetServerNames(EntityUid client)
         {
-            var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
+            var allServers = GetServers(client).ToArray();
             var list = new string[allServers.Length];
 
             for (var i = 0; i < allServers.Length; i++)
             {
-                list[i] = allServers[i].ServerName;
+                list[i] = allServers[i].Comp.ServerName;
             }
 
             return list;
@@ -81,60 +82,29 @@ namespace Content.Server.Research.Systems
         /// Gets the ids of all the servers
         /// </summary>
         /// <returns></returns>
-        public int[] GetServerIds()
+        public int[] GetServerIds(EntityUid client)
         {
-            var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
+            var allServers = GetServers(client).ToArray();
             var list = new int[allServers.Length];
 
             for (var i = 0; i < allServers.Length; i++)
             {
-                list[i] = allServers[i].Id;
+                list[i] = allServers[i].Comp.Id;
             }
 
             return list;
         }
 
-        /// <summary>
-        /// Frontier copies of the original get servers. We need our research system to be isolated on a per-grid basis.
-        /// </summary>
-        /// <param name="gridUid"></param>
-        /// <returns></returns>
-        public string[] GetNFServerNames(EntityUid gridUid)
+        public HashSet<Entity<ResearchServerComponent>> GetServers(EntityUid client)
         {
-            var allServers = EntityQueryEnumerator<ResearchServerComponent>();
-            var list = new List<string>();
-            var station = _station.GetOwningStation(gridUid);
+            ClientLookup.Clear();
 
-            if (station is { } stationUid)
-            {
-                while (allServers.MoveNext(out var uid, out var comp))
-                {
-                    if (_station.GetOwningStation(uid) == stationUid)
-                        list.Add(comp.ServerName);
-                }
-            }
+            var clientXform = Transform(client);
+            if (clientXform.GridUid is not { } grid)
+                return ClientLookup;
 
-            var serverList = list.ToArray();
-            return serverList;
-        }
-
-        public int[] GetNFServerIds(EntityUid gridUid)
-        {
-            var allServers = EntityQueryEnumerator<ResearchServerComponent>();
-            var list = new List<int>();
-            var station = _station.GetOwningStation(gridUid);
-
-            if (station is { } stationUid)
-            {
-                while (allServers.MoveNext(out var uid, out var comp))
-                {
-                    if (_station.GetOwningStation(uid) == stationUid)
-                        list.Add(comp.Id);
-                }
-            }
-
-            var serverList = list.ToArray();
-            return serverList;
+            _lookup.GetGridEntities(grid, ClientLookup);
+            return ClientLookup;
         }
 
         public override void Update(float frameTime)

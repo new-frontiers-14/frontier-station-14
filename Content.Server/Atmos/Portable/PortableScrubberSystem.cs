@@ -57,6 +57,11 @@ namespace Content.Server.Atmos.Portable
             if (!component.Enabled)
                 return;
 
+            // Frontier: check running gas extraction
+            if (!_atmosphereSystem.AtmosInputCanRunOnMap(args.Map))
+                return;
+            // End Frontier
+
             // If we are on top of a connector port, empty into it.
             if (_nodeContainer.TryGetNode(uid, component.PortName, out PortablePipeNode? portableNode)
                 && portableNode.ConnectionsEnabled)
@@ -75,10 +80,8 @@ namespace Content.Server.Atmos.Portable
             if (args.Grid is not {} grid)
                 return;
 
-            var map = _atmosphereSystem.AllowMapGasExtraction ? args.Map : null; // Frontier
-
             var position = _transformSystem.GetGridTilePositionOrDefault(uid);
-            var environment = _atmosphereSystem.GetTileMixture(grid, map, position, true); // Frontier: args.Map<map
+            var environment = _atmosphereSystem.GetTileMixture(grid, args.Map, position, true);
 
             var running = Scrub(timeDelta, component, environment);
 

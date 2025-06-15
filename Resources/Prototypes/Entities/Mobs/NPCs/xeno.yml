@@ -80,7 +80,6 @@
       groups:
         Brute: 6
   - type: DamageStateVisuals
-    rotate: true
     states:
       Alive:
         Base: running
@@ -345,7 +344,7 @@
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 0.75
   - type: BasicEntityAmmoProvider
-    proto: BulletAcid
+    proto: NFBulletAcid # Frontier: use NF prefix
     capacity: 1
     count: 1
   - type: Gun

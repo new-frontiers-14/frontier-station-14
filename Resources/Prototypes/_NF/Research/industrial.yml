@@ -11,7 +11,6 @@
   cost: 5000
   recipeUnlocks:
   - ConstructionBagOfHolding
-  - NFBlueprintConstructionBagOfHolding
 
 - type: technology
   id: HardsuitsBasic
@@ -44,6 +43,19 @@
   - ClothingOuterHardsuitPilot
   technologyPrerequisites:
   - HardsuitsBasic
+
+- type: technology
+  id: AtmosphericDrilling
+  name: research-technology-atmospheric-drilling
+  icon:
+    sprite: _NF/Objects/Specific/Atmospherics/extractor.rsi
+    state: icon
+  discipline: Industrial
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - GasMiningDrillMachineCircuitboard
+  - GaslockFrameMachineCircuitboard
 
 # Tier 2
 
@@ -79,6 +91,5 @@
     - ClothingOuterHardsuitMaximPrototype
 #    - ClothingHeadHelmetAncient
 #    - ClothingOuterHardsuitAncientEVA
-    - NFBlueprintClothingOuterHardsuitMaximPrototype
   technologyPrerequisites:
   - HardsuitsAdvanced
