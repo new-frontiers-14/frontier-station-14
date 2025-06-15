@@ -11,11 +11,9 @@
   cost: 7500
   recipeUnlocks:
   - MiningDrill
-  - WeaponGrapplingGun # Frontier
   - MineralScannerEmpty
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
-  position: 3, -10 # Frontier
 
 - type: technology
   id: SpaceScanning
@@ -29,8 +27,6 @@
   recipeUnlocks:
   - RadarConsoleCircuitboard
   - HandHeldMassScanner
-  - ProximitySensor # Frontier
-  position: 3, -9 # Frontier
 
 - type: technology
   id: AdvancedPowercells
@@ -45,7 +41,6 @@
   - PowerCellHigh
   - TurboItemRechargerCircuitboard
   - SMESAdvancedMachineCircuitboard
-  position: -3, 10 # Frontier
 
 - type: technology
   id: MechanicalCompression
@@ -58,9 +53,6 @@
   cost: 10000
   recipeUnlocks:
   - FlatpackerMachineCircuitboard
-  technologyPrerequisites: # Frontier
-  - IndustrialEngineering # Frontier
-  position: -2, 6 # Frontier
 
 - type: technology
   id: IndustrialEngineering
@@ -76,8 +68,6 @@
   - ProtolatheHyperConvectionMachineCircuitboard
   - CircuitImprinterHyperConvectionMachineCircuitboard
   - SheetifierMachineCircuitboard
-  - MaterialSiloMachineCircuitboard # Frontier
-  position: -3, 7 # Frontier
 
 - type: technology
   id: PowerGeneration
@@ -95,9 +85,6 @@
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
   - EmitterCircuitboard
-  technologyPrerequisites: # Frontier
-  - AdvancedPowercells # Frontier
-  position: -2, 10 # Frontier
 
 - type: technology
   id: AtmosphericTech
@@ -111,9 +98,6 @@
   recipeUnlocks:
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
-  technologyPrerequisites: # Frontier
-  - IndustrialEngineering # Frontier
-  position: -2, 8 # Frontier
 
 - type: technology
   id: RipleyAPLU
@@ -123,7 +107,7 @@
     state: ripley
   discipline: Industrial
   tier: 1
-  cost: 10000 # Frontier: 7500<10000
+  cost: 7500
   recipeUnlocks:
   - RipleyHarness
   - RipleyLArm
@@ -133,10 +117,6 @@
   - RipleyCentralElectronics
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
-  - MechEquipmentFork # Frontier
-  technologyPrerequisites: # Frontier
-  - AdvancedToolsTechnology # Frontier
-  position: 2, 8 # Frontier
 
 # Tier 2
 
@@ -144,7 +124,7 @@
   id: Shuttlecraft
   name: research-technology-shuttlecraft
   icon:
-    sprite: _NF/Structures/Shuttles/gyroscope.rsi # Frontier: add _NF prefix
+    sprite: Structures/Shuttles/gyroscope.rsi
     state: base
   discipline: Industrial
   tier: 2
@@ -154,12 +134,6 @@
   - ThrusterMachineCircuitboard
   - GyroscopeMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
-  - MiniStationAnchorCircuitboard # Frontier
-  - SmallThrusterMachineCircuitboard # Frontier
-  - SmallGyroscopeMachineCircuitboard # Frontier
-  technologyPrerequisites: # Frontier
-  - SpaceScanning # Frontier
-  position: 4, -9 # Frontier
 
 - type: technology
   id: AdvancedAtmospherics
@@ -174,10 +148,8 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
-#  - FireExtinguisherBluespace # DeltaV
   technologyPrerequisites:
   - AtmosphericTech
-  position: -1, 8 # Frontier
 
 - type: technology
   id: AdvancedToolsTechnology
@@ -192,11 +164,9 @@
     - WelderExperimental
     - PowerDrill
     - JawsOfLife
-    - UtilityBeltChiefEngineer
     - BorgModuleAdvancedTool
-    # - Fulton # Frontier
-    # - FultonBeacon # Frontier
-  position: 1, 9 # Frontier
+    - Fulton
+    - FultonBeacon
 
 - type: technology
   id: MassExcavation
@@ -212,9 +182,6 @@
     - MiningDrillDiamond
     - AdvancedMineralScannerEmpty
     - BorgModuleAdvancedMining
-  technologyPrerequisites: # Frontier
-  - SalvageEquipment # Frontier
-  position: 4, -10 # Frontier
 
 # Tier 3
 
@@ -226,47 +193,23 @@
     state: holding
   discipline: Industrial
   tier: 3
-  cost: 20000 # Frontier: 15000<20000
+  cost: 15000
   recipeUnlocks:
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
-  - ClothingBackpackMessengerHolding # Frontier
-  - ConstructionBagOfHolding # Frontier
-  technologyPrerequisites: # Frontier
-  - MechanicalCompression # Frontier
-  - MiscellaneousItemsOrganization # Frontier
-  position: 0, 4 # Frontier
 
 - type: technology
-  id: PortableFission
-  name: research-technology-portable-fission
+  id: OptimizedMicrogalvanism
+  name: research-technology-optimized-microgalvanism
   icon:
     sprite: Objects/Power/power_cells.rsi
     state: microreactor
   discipline: Industrial
   tier: 3
-  cost: 20000 # Frontier: 10000<20000
-  recipeUnlocks:
-  - PowerCellMicroreactor
-  - PortableGeneratorDKJrMachineCircuitboard # Frontier
-  - NFPortableRecharger # Frontier
-  technologyPrerequisites:
-  - PowerGeneration # Frontier: AdvancedPowercells<PowerGeneration
-  position: -1, 10 # Frontier
-
-- type: technology
-  id: RapidConstruction
-  name: research-technology-rapid-construction
-  icon:
-    sprite: _NF/Objects/Tools/rcd.rsi
-    state: icon-shipyard # Frontier
-  discipline: Industrial
-  tier: 2
   cost: 10000
   recipeUnlocks:
-    - ShipyardRCD # Frontier: RCD<ShipyardRCD
-    - ShipyardRCDAmmo # Frontier: RCDAmmo<ShipyardRCDAmmo
+  - PowerCellMicroreactor
+  - PowerCellHyper
   technologyPrerequisites:
-  - MechanicalCompression # Frontier: AdvancedPowercells<PowerGeneration
-  position: -1, 6 # Frontier
+  - AdvancedPowercells
