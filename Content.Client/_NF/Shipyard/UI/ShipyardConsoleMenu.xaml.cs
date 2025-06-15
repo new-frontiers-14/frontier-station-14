@@ -30,7 +30,6 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private List<string> _lastUnavailableProtos = new();
     private bool _freeListings = false;
     private bool _validId = false;
-    // The currently confirming button
     private ConfirmButton? _currentlyConfirmingButton = null;
 
     public ShipyardConsoleMenu()
