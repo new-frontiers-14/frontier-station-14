@@ -35,6 +35,21 @@
     proto: NFPelletShotgunSpread
 
 - type: entity
+  id: NFShellShotgunBuckshotOverpressure
+  name: shell (.50 overpressure)
+  parent: NFBaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+        state: overpressure
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFPelletShotgunOverpressureSpread
+  - type: SpentAmmoVisuals
+    state: "overpressure"
+
+- type: entity
   id: NFShellShotgunIncendiary
   name: shell (.50 incendiary)
   parent: NFBaseShellShotgun
