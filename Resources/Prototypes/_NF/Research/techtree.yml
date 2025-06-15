@@ -195,8 +195,8 @@
   id: NFAdvancedPowercells
   name: research-technology-advanced-powercells
   icon:
-    sprite: Structures/Power/turbo_recharger.rsi
-    state: empty
+    sprite: Objects/Power/power_cells.rsi
+    state: high
   discipline: NFIndustrial
   tier: 1
   cost: 2500
@@ -994,8 +994,8 @@
   id: NFPortableFission
   name: research-technology-portable-fission
   icon:
-    sprite: Objects/Power/power_cells.rsi
-    state: microreactor
+    sprite: Objects/Power/portable_recharger.rsi
+    state: charging
   discipline: NFIndustrial
   tier: 1
   cost: 10000
@@ -1009,14 +1009,13 @@
   id: NFPowerGeneration2
   name: research-technology-portable-fission
   icon:
-    sprite: Objects/Power/power_cells.rsi
-    state: microreactor
+    sprite: Structures/Power/Generation/portable_generator.rsi
+    state: portgen2
   discipline: NFIndustrial
   tier: 1
   cost: 10000
   recipeUnlocks:
   - PortableGeneratorDKJrMachineCircuitboard
-  - NFPortableRecharger
   technologyPrerequisites:
   - NFPowerGeneration
   position: 3, 32
@@ -1025,8 +1024,8 @@
   id: NFEmitter
   name: research-technology-power-generation
   icon:
-    sprite: Structures/Power/Generation/portable_generator.rsi
-    state: portgen0
+    sprite: Structures/Power/Generation/Singularity/emitter.rsi
+    state: emitter2
   discipline: NFIndustrial
   tier: 1
   cost: 7500
