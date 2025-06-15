@@ -14,9 +14,9 @@
   - type: Gun
     projectileSpeed: 30
     minAngle: 2.2
-    maxAngle: 6.6
-    angleIncrease: 0.9
-    angleDecay: 2.7
+    maxAngle: 11
+    angleIncrease: 0.6
+    angleDecay: 3
     fireRate: 4
     selectedMode: FullAuto
     availableModes:
@@ -37,9 +37,9 @@
   components:
   - type: Gun
     minAngle: 2.5
-    maxAngle: 7.6
-    angleIncrease: 1
-    angleDecay: 3
+    maxAngle: 12.5
+    angleIncrease: 0.8
+    angleDecay: 2.7
     fireRate: 3.4
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-nanotrasen-munitions
@@ -50,6 +50,8 @@
   abstract: true
   components:
   - type: Gun
+    angleIncrease: 0.6
+    angleDecay: 4.2
     fireRate: 3.2
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-cybersun-industries
@@ -61,9 +63,9 @@
   components:
   - type: Gun
     minAngle: 2.6
-    maxAngle: 7.9
-    angleIncrease: 1.1
-    angleDecay: 3.3
+    maxAngle: 13
+    angleIncrease: 1.2
+    angleDecay: 3.8
     fireRate: 3.2
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-frontier-gunsmith-consortium

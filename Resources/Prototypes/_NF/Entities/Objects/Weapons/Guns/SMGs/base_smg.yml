@@ -9,13 +9,13 @@
     unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -0.8
-    maxAngle: -2.4
+    maxAngle: -4
   - type: Gun
     projectileSpeed: 22.5
     minAngle: 3.7
-    maxAngle: 11.1
-    angleIncrease: 1.5
-    angleDecay: 4.5
+    maxAngle: 18.5
+    angleIncrease: 1
+    angleDecay: 5
     fireRate: 6
     selectedMode: FullAuto
     availableModes:
@@ -34,9 +34,9 @@
   components:
   - type: Gun
     minAngle: 4.3
-    maxAngle: 12.8
-    angleIncrease: 1.7
-    angleDecay: 5.1
+    maxAngle: 21.5
+    angleIncrease: 1.4
+    angleDecay: 4.8
     fireRate: 5.1
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
@@ -47,6 +47,8 @@
   abstract: true
   components:
   - type: Gun
+    angleIncrease: 1.1
+    angleDecay: 7.7
     fireRate: 4.8
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-cybersun-industries
@@ -58,9 +60,9 @@
   components:
   - type: Gun
     minAngle: 4.1
-    maxAngle: 12.2
-    angleIncrease: 1.6
-    angleDecay: 4.8
+    maxAngle: 20.5
+    angleIncrease: 1.8
+    angleDecay: 6.5
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-gorlex-steel-works
 
@@ -71,9 +73,9 @@
   components:
   - type: Gun
     minAngle: 4.4
-    maxAngle: 13.3
-    angleIncrease: 1.8
-    angleDecay: 5.4
+    maxAngle: 22
+    angleIncrease: 2.1
+    angleDecay: 6.7
     fireRate: 4.8
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
