@@ -30,6 +30,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private List<string> _lastUnavailableProtos = new();
     private bool _freeListings = false;
     private bool _validId = false;
+    private ConfirmButton? _currentlyConfirmingButton = null;
 
     public ShipyardConsoleMenu()
     {
@@ -146,9 +147,23 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 Guidebook = { Disabled = prototype.GuidebookPage is null, TooltipDelay = 0.2f, ToolTip = prototype.Description },
                 Price = { Text = priceText },
             };
-            vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
+            vesselEntry.Purchase.OnConfirming += OnStartConfirmingPurchase;
+            vesselEntry.Purchase.OnPressed += (args) => { _currentlyConfirmingButton = null; OnOrderApproved?.Invoke(args); };
             Vessels.AddChild(vesselEntry);
         }
+    }
+
+    /// <summary>
+    /// Confirming handler: ensures that only one button is confirming at a time.
+    /// </summary>
+    private void OnStartConfirmingPurchase(ButtonEventArgs args)
+    {
+        if (args.Button is not ConfirmButton confirmButton)
+            return;
+
+        if (_currentlyConfirmingButton != null)
+            _currentlyConfirmingButton.ClearIsConfirming();
+        _currentlyConfirmingButton = confirmButton;
     }
 
     /// <summary>
