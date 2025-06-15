@@ -133,7 +133,7 @@ public sealed class ConfirmButton : Button
         switch (IsConfirming)
         {
             case false:
-                _nextCooldown = _gameTiming.CurTime + CooldownTime;
+                _nextCooldown  = _gameTiming.CurTime + CooldownTime;
                 _nextReset = _gameTiming.CurTime + ResetTime;
                 Disabled = true;
                 OnConfirming?.Invoke(buttonEvent); // Frontier
