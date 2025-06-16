@@ -126,6 +126,15 @@ public sealed class MagnetPickupSystem : EntitySystem
                 if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, near))
                     continue;
 
+                // FRONTIER - START
+                // Makes sure that after the last insertion, there is still bag space.
+                // Using a cheap 'how many slots left' vs 'how many we need' check, and additional stack check.
+                // Note: Unfortunately, this is still 'expensive' as it checks the entire bag, however its better than
+                // to rotate an item n^n times of every item in the bag to find the best fit, for every xy coordinate it has.
+                if (!_storage.HasSlotSpaceFor(uid, near))
+                    continue;
+                // FRONTIER - END
+
                 if (!_physicsQuery.TryGetComponent(near, out var physics) || physics.BodyStatus != BodyStatus.OnGround)
                     continue;
 

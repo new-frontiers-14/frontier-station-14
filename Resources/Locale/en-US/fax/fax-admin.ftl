@@ -12,5 +12,12 @@ admin-fax-message-placeholder = Your message here...
 admin-fax-stamp = Stamp icon:
 admin-fax-stamp-color = Stamp color:
 admin-fax-send = Send
-admin-fax-lock-page = Lock Page
-admin-fax-lock-page-tooltip = Lock the paper such that it cannot be edited even by things such as cybersun pens.
+# Frontier: edit lock page 
+admin-fax-lock-page = Lock Page (uneditable)
+admin-fax-lock-page-tooltip = Lock the paper such that it cannot be edited at all.
+# End Frontier
+
+# Frontier: stamp protection
+admin-fax-stamp-protect-page = Block Cybersun Pen
+admin-fax-stamp-protect-page-tooltip = Prevent the paper from being edited by Cybersun pens.
+# End Frontier: stamp protection

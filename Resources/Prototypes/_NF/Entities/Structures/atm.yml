@@ -219,6 +219,7 @@
   parent: BaseStationAdminBankATM
   id: StationAdminBankATMFrontier
   description: Used to transfer funds to and from Frontier Outpost's bank account.
+  suffix: Frontier
   components:
   - type: StationBankATM
     account: Frontier
@@ -227,6 +228,16 @@
   parent: BaseStationAdminBankATM
   id: StationAdminBankATMNfsd
   description: Used to transfer funds to and from NFSD's bank account.
+  suffix: NFSD
   components:
   - type: StationBankATM
     account: Nfsd
+
+- type: entity
+  parent: BaseStationAdminBankATM
+  id: StationAdminBankATMMedical
+  description: Used to transfer funds to and from the medical bank account.
+  suffix: Medical
+  components:
+  - type: StationBankATM
+    account: Medical

@@ -53,6 +53,8 @@
     - id: SheetSteel10
     - id: SheetGlass10
     - id: SheetPlastic10
+    - id: ScrapGeneratorFuelTank
+      weight: 0.5
     - id: PartRodMetal10
       weight: 0.33
     - id: MaterialWoodPlank10
@@ -68,6 +70,9 @@
   id: SalvageScrapLarge
   table: !type:GroupSelector
     children:
+    - !type:NestedSelector
+      tableId: RandomGeneratorTable
+      weight: 2
     - id: ScrapAirlock1
     - id: ScrapCloset
     - id: ScrapFirelock1
@@ -162,6 +167,7 @@
     - id: ClothingHeadHatFancyCrown
     - id: GoldenBikeHorn
     - id: ClothingHeadHatCatEars
+      weight: 0.001 # Frontier - 1 in 1000
     - id: TreasureCoinDiamond
       amount: !type:RangeNumberSelector
         range: 2, 5
@@ -264,3 +270,16 @@
       children:
       - id: JetpackBlueFilled
       - id: JetpackMiniFilled # Frontier JetpackBlackFilled<JetpackMiniFilled
+
+- type: entityTable
+  id: RandomGeneratorTable
+  table: !type:GroupSelector
+    children:
+    - id: ScrapGeneratorPlasmaLeaking
+    - id: ScrapGeneratorUraniumLeaking
+    - id: ScrapGeneratorPlasma
+      weight: 0.5
+    - id: ScrapGeneratorUranium
+      weight: 0.5
+    - id: ScrapGeneratorFrame
+      weight: 0.25

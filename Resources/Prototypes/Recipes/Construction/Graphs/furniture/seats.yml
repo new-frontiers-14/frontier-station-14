@@ -191,53 +191,62 @@
           steps:
             - tool: Screwing
               doAfter: 1
-
-        #Frontier: fancy wooden chairs
+    # Frontier: fancy wooden chairs
         - to: chairWoodFancyBlack
+          conditions:
+            - !type:NFStrapEmpty
           steps:
             - material: FloorCarpetBlack
               amount: 1
-
         - to: chairWoodFancyBlue
+          conditions:
+            - !type:NFStrapEmpty
           steps:
             - material: FloorCarpetBlue
               amount: 1
-
         - to: chairWoodFancyCyan
+          conditions:
+            - !type:NFStrapEmpty
           steps:
             - material: FloorCarpetCyan
               amount: 1
-
         - to: chairWoodFancyGreen
+          conditions:
+            - !type:NFStrapEmpty
           steps:
             - material: FloorCarpetGreen
               amount: 1
-
         - to: chairWoodFancyOrange
+          conditions:
+            - !type:NFStrapEmpty
           steps:
             - material: FloorCarpetOrange
               amount: 1
-
-        - to: chairWoodFancyPurple
-          steps:
-            - material: FloorCarpetPurple
-              amount: 1
-
         - to: chairWoodFancyPink
+          conditions:
+            - !type:NFStrapEmpty
           steps:
             - material: FloorCarpetPink
               amount: 1
-
+        - to: chairWoodFancyPurple
+          conditions:
+            - !type:NFStrapEmpty
+          steps:
+            - material: FloorCarpetPurple
+              amount: 1
         - to: chairWoodFancyRed
+          conditions:
+            - !type:NFStrapEmpty
           steps:
             - material: FloorCarpetRed
               amount: 1
-
         - to: chairWoodFancyWhite
+          conditions:
+            - !type:NFStrapEmpty
           steps:
             - material: FloorCarpetWhite
               amount: 1
-        #End Frontier
+    # End Frontier
 
     - node: chairMeat
       entity: ChairMeat
@@ -329,6 +338,8 @@
       entity: ChairWoodFancyBlack
       edges:
         - to: chairWood
+          conditions:
+            - !type:NFStrapEmpty
           completed:
             - !type:SpawnPrototype
               prototype: FloorCarpetItemBlack
@@ -341,6 +352,8 @@
       entity: ChairWoodFancyBlue
       edges:
         - to: chairWood
+          conditions:
+            - !type:NFStrapEmpty
           completed:
             - !type:SpawnPrototype
               prototype: FloorCarpetItemBlue
@@ -353,6 +366,8 @@
       entity: ChairWoodFancyCyan
       edges:
         - to: chairWood
+          conditions:
+            - !type:NFStrapEmpty
           completed:
             - !type:SpawnPrototype
               prototype: FloorCarpetItemCyan
@@ -365,6 +380,8 @@
       entity: ChairWoodFancyGreen
       edges:
         - to: chairWood
+          conditions:
+            - !type:NFStrapEmpty
           completed:
             - !type:SpawnPrototype
               prototype: FloorCarpetItemGreen
@@ -377,21 +394,11 @@
       entity: ChairWoodFancyOrange
       edges:
         - to: chairWood
+          conditions:
+            - !type:NFStrapEmpty
           completed:
             - !type:SpawnPrototype
               prototype: FloorCarpetItemOrange
-              amount: 1
-          steps:
-            - tool: Prying
-              doAfter: 1
-
-    - node: chairWoodFancyPink
-      entity: ChairWoodFancyPink
-      edges:
-        - to: chairWood
-          completed:
-            - !type:SpawnPrototype
-              prototype: FloorCarpetItemPink
               amount: 1
           steps:
             - tool: Prying
@@ -401,9 +408,25 @@
       entity: ChairWoodFancyPurple
       edges:
         - to: chairWood
+          conditions:
+            - !type:NFStrapEmpty
           completed:
             - !type:SpawnPrototype
               prototype: FloorCarpetItemPurple
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 1
+
+    - node: chairWoodFancyPink
+      entity: ChairWoodFancyPink
+      edges:
+        - to: chairWood
+          conditions:
+            - !type:NFStrapEmpty
+          completed:
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemPink
               amount: 1
           steps:
             - tool: Prying
@@ -413,6 +436,8 @@
       entity: ChairWoodFancyRed
       edges:
         - to: chairWood
+          conditions:
+            - !type:NFStrapEmpty
           completed:
             - !type:SpawnPrototype
               prototype: FloorCarpetItemRed
@@ -425,6 +450,8 @@
       entity: ChairWoodFancyWhite
       edges:
         - to: chairWood
+          conditions:
+            - !type:NFStrapEmpty
           completed:
             - !type:SpawnPrototype
               prototype: FloorCarpetItemWhite
@@ -432,3 +459,4 @@
           steps:
             - tool: Prying
               doAfter: 1
+    # End Frontier

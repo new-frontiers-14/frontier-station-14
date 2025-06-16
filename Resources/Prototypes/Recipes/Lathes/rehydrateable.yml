@@ -1,34 +1,41 @@
-# recipes should generally cost 1.5x to 2x of the biomass output of their mob
+# Base prototypes
 
 - type: latheRecipe
-  id: MonkeyCube
-  result: MonkeyCube
+  abstract: true
+  id: BaseCubeRecipe
   completetime: 300 # Frontier 30<300
   materials:
     Biomass: 70 # Frontier: 16<70, same as BioGenMonkeyCube recipe
 
+# Recipes
+
+# recipes should generally cost 1.5x to 2x of the biomass output of their mob
 - type: latheRecipe
-  id: KoboldCube
-  result: KoboldCube
-  completetime: 300 # Frontier 30<300
-  materials:
-    Biomass: 70 # Frontier: 16<70, same as BioGenKoboldCube recipe
+  parent: BaseCubeRecipe
+  id: MonkeyCube
+  result: MonkeyCube
 
 - type: latheRecipe
+  parent: BaseCubeRecipe
+  id: KoboldCube
+  result: KoboldCube
+
+- type: latheRecipe
+  parent: BaseCubeRecipe
   id: CowCube
   result: CowCube
-  completetime: 300 # Frontier 30<300
   materials:
     Biomass: 350 # Frontier: 120<350, went with 1 pound = 1 biomass, used average weight from wiki
 
 - type: latheRecipe
+  parent: BaseCubeRecipe
   id: GoatCube
   result: GoatCube
-  completetime: 300 # Frontier 30<300
   materials:
     Biomass: 50 # Frontier: 35<50, used average weight from wiki
 
 - type: latheRecipe
+  parent: BaseCubeRecipe
   id: MothroachCube
   result: MothroachCube
   completetime: 450 # prevent biblical floods, Frontier 45<450
@@ -36,6 +43,7 @@
     Biomass: 25 # a lot of materials wasted due to complex genetics # Frontier: 20<25
 
 - type: latheRecipe
+  parent: BaseCubeRecipe
   id: MouseCube
   result: MouseCube
   completetime: 200 # Frontier 15<200
@@ -43,21 +51,23 @@
     Biomass: 25 # Frontier: 12<25
 
 - type: latheRecipe
+  parent: MouseCube
   id: CockroachCube
   result: CockroachCube
-  completetime: 200 # Frontier 15<200
   materials:
     Biomass: 25 # Frontier: 16<25
 
 - type: latheRecipe
+  parent: BaseCubeRecipe
   id: SpaceCarpCube
   result: SpaceCarpCube
-  completetime: 400 # Frontier 30<400
+  completetime: 400 # Frontier
   materials:
     Biomass: 50 # Frontier: 24<50
     Plasma: 600
 
 - type: latheRecipe
+  parent: BaseCubeRecipe
   id: SpaceTickCube
   result: SpaceTickCube
   completetime: 250 # Frontier 15<250
@@ -66,6 +76,7 @@
     Plasma: 300 # less biomass but more plasma
 
 - type: latheRecipe
+  parent: BaseCubeRecipe
   id: AbominationCube
   result: AbominationCube
   completetime: 400 # Frontier 30<400

@@ -102,36 +102,54 @@
   parent: DrinkVodkaBottleFull
   name: Moment of Clarity vodka bottle
   description: When things get a bit hectic, all you need is a Moment of Clarity.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_vodkabottle.rsi
 
 - type: entity
   id: DrinkPremiumGinBottleFull
   parent: DrinkGinBottleFull
   name: Harry's gin bottle
   description: An interesting set of botanicals, for sure. Is that pumpkin?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_ginbottle.rsi
 
 - type: entity
   id: DrinkPremiumTequilaBottleFull
   parent: DrinkTequilaBottleFull
   name: Casa del Eorg tequila bottle
   description: Save the best for last. Casa del Eorg, 100% agave.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_tequilabottle.rsi
 
 - type: entity
   id: DrinkPremiumWhiskeyBottleFull
   parent: DrinkWhiskeyBottleFull
   name: Ol' Prowler 18 whiskey bottle
   description: Surprisingly smooth, it has a nasty habit of sneaking up on you.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_whiskeybottle.rsi
 
 - type: entity
   id: DrinkPremiumRumBottleFull
   parent: DrinkRumBottleFull
   name: Redeemer's Bounty rum bottle
   description: Well, you asked for it. Navy strength.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_rumbottle.rsi
 
 - type: entity
   id: DrinkPremiumAbsintheBottleFull
   parent: DrinkAbsintheBottleFull
   name: Bureaucracy's Kiss absinthe bottle
   description: A refined taste that tends to linger.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/premium_absinthebottle.rsi
 
 - type: entity
   id: CigarPlatinumCase
@@ -143,6 +161,8 @@
     contents:
     - id: CigarPlatinum
       amount: 8
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Cigars/case-platinum.rsi
 
 - type: entity
   id: CigarPlatinum
@@ -156,10 +176,7 @@
     state: unlit-icon
   - type: Clothing
     sprite: _NF/Objects/Consumable/Smokeables/Cigars/cigar-platinum.rsi
-    slots: [ mask ]
     equippedPrefix: unlit
-  - type: Item
-    size: Tiny
 
 - type: entity
   id: CigarPlatinumSpent

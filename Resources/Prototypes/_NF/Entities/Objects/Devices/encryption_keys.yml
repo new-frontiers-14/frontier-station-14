@@ -19,9 +19,9 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyNfsd
-  name: nfsd encryption key
+  name: NFSD encryption key
   suffix: DO NOT MAP
-  description: An encryption key for the new frontier security department channel.
+  description: An encryption key for the New Frontier Sheriff's Department channel.
   components:
   - type: EncryptionKey
     channels:
@@ -34,3 +34,24 @@
     layers:
     - state: crypt_gray
     - state: nfsd_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyDoc
+  name: medical dispatch encryption key
+  suffix: DO NOT MAP
+  description: An encryption key for coordinating medical dispatch.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Common
+    - Medical
+    - Command
+    defaultChannel: Common
+  - type: Item
+    sprite: _NF/Objects/Devices/encryption_keys.rsi
+  - type: Sprite
+    sprite: _NF/Objects/Devices/encryption_keys.rsi
+    layers:
+    - state: crypt_silver
+    - state: cmo_label

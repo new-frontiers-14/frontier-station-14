@@ -4,7 +4,7 @@ using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-using Content.Shared.DeltaV.Harpy;
+using Content.Shared._DV.Harpy;
 
 namespace Content.Server.Chat.Systems;
 

@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseItem
+  id: Gavel
+  name: gavel
+  description: A hardwood mallet made to keep order in the court.
+  components:
+    - type: Sprite
+      sprite: _DV/Objects/Specific/Justice/gavel.rsi
+      layers:
+        - state: icon
+    - type: MeleeWeapon
+      wideAnimationRotation: -90
+      damage:
+        types:
+          Blunt: 2
+    - type: Item
+      size: Small
+      sprite: _DV/Objects/Specific/Justice/gavel.rsi
+    - type: Tag
+      tags:
+        - Gavel

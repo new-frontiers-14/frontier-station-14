@@ -1,0 +1,29 @@
+- type: loadoutGroup
+  id: NFSpeciesSpecific # prefixed just for visual ID
+  name: loadout-group-breath-tool # if visible, rename
+  minLimit: 3
+  maxLimit: 3
+  hidden: true
+  loadouts:
+  - LoadoutTankHarness
+  - LoadoutSpeciesBreathTool
+  - LoadoutSpeciesVoxNitrogen
+  fallbacks:
+  - LoadoutTankHarness
+  - LoadoutSpeciesBreathTool
+  - LoadoutSpeciesVoxNitrogen
+
+- type: loadoutGroup
+  id: NfsdSpeciesSpecific
+  name: loadout-group-breath-tool # if visible, rename
+  minLimit: 3
+  maxLimit: 3
+  hidden: true
+  loadouts:
+  - LoadoutTankHarness
+  - NfsdVoxClothingMaskGasNfsd
+  - LoadoutSpeciesVoxNitrogen
+  fallbacks:
+  - LoadoutTankHarness
+  - NfsdVoxClothingMaskGasNfsd
+  - LoadoutSpeciesVoxNitrogen

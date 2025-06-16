@@ -1,7 +1,7 @@
 - type: entity
   id: CrateArmorySMGNfsd
   parent: CrateNfsdSecure1
-  name: nfsd SMG crate
+  name: NFSD SMG crate
   description: Contains two high-powered, semiautomatic rifles with four mags. Requires Armory access to open.
   components:
   - type: StorageFill
@@ -14,12 +14,12 @@
 - type: entity
   id: CrateArmoryShotgunNfsd
   parent: CrateNfsdSecure1
-  name: nfsd shotgun crate
+  name: NFSD shotgun crate
   description: For when the enemy absolutely needs to be replaced with lead. Contains two Enforcer Combat Shotguns, and some standard shotgun shells. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
-      - id: WeaponShotgunKammerer
+      - id: WeaponShotgunEnforcer
         amount: 2
       - id: BoxLethalshot
         amount: 3
@@ -27,7 +27,7 @@
 - type: entity
   id: CrateTrackingImplantsNfsd
   parent: CrateNfsdSecure1
-  name: nfsd tracking implants
+  name: NFSD tracking implants
   description: Contains a handful of tracking implanters. Good for prisoners you'd like to release but still keep track of.
   components:
   - type: StorageFill
@@ -38,7 +38,7 @@
 - type: entity
   parent: CrateNfsdSecure2
   id: CrateTrainingBombsNfsd
-  name: nfsd training bombs
+  name: NFSD training bombs
   description: Contains three low-yield training bombs for security to learn defusal and safe ordnance disposal, EOD suit not included. Requires Armory access to open.
   components:
   - type: StorageFill
@@ -49,7 +49,7 @@
 - type: entity
   id: CrateArmoryLaserNfsd
   parent: CrateNfsdSecure2
-  name: nfsd lasers crate
+  name: NFSD lasers crate
   description: Contains three standard-issue laser rifles. Requires Armory access to open.
   components:
   - type: StorageFill
@@ -60,7 +60,7 @@
 - type: entity
   id: CrateArmoryPistolsNfsd
   parent: CrateNfsdSecure2
-  name: nfsd pistols crate
+  name: NFSD pistols crate
   description: Contains two standard NT pistols with four mags. Requires Armory access to open.
   components:
   - type: StorageFill
@@ -73,13 +73,15 @@
 - type: entity
   id: CrateArmoryLethalNfsd
   parent: CrateNfsdSecure2
-  name: nfsd lethal armory crate
+  name: NFSD lethal armory crate
   description: Contains a standard armory stock kit.
   components:
   - type: StorageFill
     contents:
     - id: WeaponRifleLecter
       amount: 5
+    - id: WeaponRifleVulcan
+      amount: 4
     - id: WeaponSubMachineGunWt550
       amount: 4
     - id: WeaponShotgunEnforcer
@@ -90,13 +92,11 @@
       amount: 4
     - id: WeaponPistolMk58
       amount: 4
-    - id: WeaponRevolverInspector
-      amount: 4
 
 - type: entity
   id: CrateArmoryNonLethalNfsd
   parent: CrateNfsdSecure1
-  name: nfsd non-lethal armory crate
+  name: NFSD non-lethal armory crate
   description: Contains a non-lethal armory stock kit.
   components:
   - type: StorageFill
@@ -109,5 +109,9 @@
       amount: 5
     - id: WeaponRifleLecterRubber
       amount: 4
+    - id: WeaponRifleVulcanRubber
+      amount: 4
     - id: WeaponShotgunEnforcerRubber
+      amount: 4
+    - id: WeaponEnergyGun
       amount: 4

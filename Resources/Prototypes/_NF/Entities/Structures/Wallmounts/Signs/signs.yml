@@ -55,7 +55,7 @@
 - type: entity
   parent: BaseSignDirectionalNF
   id: SignDirectionalNfsd
-  name: nfsd outpost sign
+  name: NFSD outpost sign
   description: A direction sign, pointing out which way an NFSD outpost is.
   components:
   - type: Sprite
@@ -91,7 +91,7 @@
 - type: entity
   parent: NFBaseSign
   id: SignNfsd
-  name: nfsd sign
+  name: NFSD sign
   description: A sign that marks the area beyond as an NFSD area.
   components:
   - type: Sprite
@@ -100,8 +100,8 @@
 - type: entity
   parent: NFBaseSign
   id: SignNfsdArmoury
-  name: armoury sign
-  description: A sign that marks the area beyond as an NFSD armoury.
+  name: armory sign
+  description: A sign that marks the area beyond as an NFSD armory.
   components:
   - type: Sprite
     state: armoury
@@ -213,3 +213,11 @@
   components:
   - type: Sprite
     state: ems2
+
+- type: entity
+  parent: [NFBaseSign, SignInterrogation]
+  id: SignNfsdInterrogation
+  name: interrogation sign
+  components:
+  - type: Sprite
+    state: interrogation

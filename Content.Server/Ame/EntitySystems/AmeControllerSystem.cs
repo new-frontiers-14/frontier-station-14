@@ -113,6 +113,10 @@ public sealed class AmeControllerSystem : EntitySystem
                 UpdateUi(uid, controller);
             }
         }
+        // Frontier: turn AME off without a fuel container
+        else
+            SetInjecting(uid, false, null, controller);
+        // End Frontier
 
         controller.Stability = group.GetTotalStability();
 

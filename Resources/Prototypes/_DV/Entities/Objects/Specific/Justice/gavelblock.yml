@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseItem
+  id: GavelBlock
+  name: gavel block
+  description: A hardwood block that, when hit with a gavel, emits an aura of authority.
+  components:
+    - type: Sprite
+      sprite: _DV/Objects/Specific/Justice/gavelblock.rsi
+      layers:
+        - state: icon
+    - type: Item
+      size: Small
+    - type: Clickable
+    - type: EmitSoundOnInteractUsing
+      sound:
+        # path: /Audio/_DV/Items/gavel.ogg # Frontier
+        collection: NFGavel # Frontier
+      whitelist:
+        tags:
+          - Gavel
