@@ -2,6 +2,7 @@
 
 using Content.Server._NF.GC.Components;
 using Content.Server.GameTicking;
+using Content.Server.StationEvents.Events;
 using Content.Server.Worldgen;
 using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Systems;
@@ -11,6 +12,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Server._NF.GC.Systems;
@@ -26,6 +28,7 @@ public sealed class DeletionCensusSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly WorldControllerSystem _world = default!;
@@ -33,6 +36,7 @@ public sealed class DeletionCensusSystem : EntitySystem
     // Entity queries
     EntityQuery<DeletionCensusExemptComponent> _deletionCensusExemptQuery = default!;
     EntityQuery<LoadedChunkComponent> _loadedChunkQuery = default!;
+    EntityQuery<MapGridComponent> _mapGridQuery = default!;
     EntityQuery<MindContainerComponent> _mindContainerQuery = default!;
     EntityQuery<WorldControllerComponent> _worldControllerQuery = default!;
 
@@ -60,6 +64,7 @@ public sealed class DeletionCensusSystem : EntitySystem
 
         _deletionCensusExemptQuery = GetEntityQuery<DeletionCensusExemptComponent>();
         _loadedChunkQuery = GetEntityQuery<LoadedChunkComponent>();
+        _mapGridQuery = GetEntityQuery<MapGridComponent>();
         _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
         _worldControllerQuery = GetEntityQuery<WorldControllerComponent>();
 
@@ -256,7 +261,10 @@ public sealed class DeletionCensusSystem : EntitySystem
 #if NF_CENSUS_DEBUG_LOG
                         Log.Info($"Deleting entity {uid} ({Name(uid)}) for inactivity.");
 #endif
-                        QueueDel(uid);
+                        if (_mapGridQuery.HasComp(uid))
+                            _linkedLifecycleGrid.UnparentPlayersFromGrid(uid, deleteGrid: true);
+                        else
+                            QueueDel(uid);
                     }
                 }
             }
