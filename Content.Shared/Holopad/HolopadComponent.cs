@@ -56,6 +56,27 @@ public sealed partial class HolopadComponent : Component
     /// </summary>
     [DataField]
     public float ControlLockoutCoolDown { get; private set; } = 180f;
+
+    /// <summary>
+    /// Frontier - If true, will sync pad name with a station name.
+    /// </summary>
+    [ViewVariables]
+    [DataField]
+    public bool UseStationName { get; set; }
+
+    /// <summary>
+    /// Frontier - If added with UseStationName will add a Prefix to the name
+    /// </summary>
+    [ViewVariables]
+    [DataField]
+    public string? StationNamePrefix { get; set; } = null;
+
+    /// <summary>
+    /// Frontier - If added with UseStationName will add a suffix to the name
+    /// </summary>
+    [ViewVariables]
+    [DataField]
+    public string? StationNameSuffix { get; set; } = null;
 }
 
 #region: Event messages

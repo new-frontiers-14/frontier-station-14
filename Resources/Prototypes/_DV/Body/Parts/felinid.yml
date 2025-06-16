@@ -1,0 +1,131 @@
+- type: entity
+  abstract: true
+  parent: BasePart
+  id: PartFelinidBase
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+  # - type: BodyPart # Frontier: no shitmed
+  #   species: Felinid # Frontier: no shitmed
+
+- type: entity
+  parent: [ PartFelinidBase, BaseTorso ]
+  id: TorsoFelinid
+  name: "felinid torso"
+  # Frontier: add sprites
+  components:
+  - type: Sprite
+    state: "torso_m"
+  - type: Icon
+    state: "torso_m"
+  # End Frontier: add sprites
+
+- type: entity
+  parent: [ PartFelinidBase, BaseHead ]
+  id: HeadFelinid
+  name: "felinid head"
+  # Frontier: add sprites
+  components:
+  - type: Sprite
+    state: "head_m"
+  - type: Icon
+    state: "head_m"
+  # End Frontier: add sprites
+
+- type: entity
+  parent: [ PartFelinidBase, BaseLeftArm ]
+  id: LeftArmFelinid
+  name: "left felinid arm"
+  # Frontier: add sprites
+  components:
+  - type: Sprite
+    state: "l_arm"
+  - type: Icon
+    state: "l_arm"
+  # End Frontier: add sprites
+
+- type: entity
+  parent: [ PartFelinidBase, BaseRightArm ]
+  id: RightArmFelinid
+  name: "right felinid arm"
+  # Frontier: add sprites
+  components:
+  - type: Sprite
+    state: "r_arm"
+  - type: Icon
+    state: "r_arm"
+  # End Frontier: add sprites
+
+- type: entity
+  parent: [ PartFelinidBase, BaseLeftHand ]
+  id: LeftHandFelinid
+  name: "left felinid hand"
+  # Frontier: add sprites
+  components:
+  - type: Sprite
+    state: "l_hand"
+  - type: Icon
+    state: "l_hand"
+  # End Frontier: add sprites
+
+- type: entity
+  parent: [ PartFelinidBase, BaseRightHand ]
+  id: RightHandFelinid
+  name: "right felinid hand"
+  # Frontier: add sprites
+  components:
+  - type: Sprite
+    state: "r_hand"
+  - type: Icon
+    state: "r_hand"
+  # End Frontier: add sprites
+
+- type: entity
+  parent: [ PartFelinidBase, BaseLeftLeg ]
+  id: LeftLegFelinid
+  name: "left felinid leg"
+  # Frontier: add sprites
+  components:
+  - type: Sprite
+    state: "l_leg"
+  - type: Icon
+    state: "l_leg"
+  # End Frontier: add sprites
+
+- type: entity
+  parent: [ PartFelinidBase, BaseRightLeg ]
+  id: RightLegFelinid
+  name: "right felinid leg"
+  # Frontier: add sprites
+  components:
+  - type: Sprite
+    state: "r_leg"
+  - type: Icon
+    state: "r_leg"
+  # End Frontier: add sprites
+
+- type: entity
+  parent: [ PartFelinidBase, BaseLeftFoot ]
+  id: LeftFootFelinid
+  name: "left felinid foot"
+  # Frontier: add sprites
+  components:
+  - type: Sprite
+    state: "l_foot"
+  - type: Icon
+    state: "l_foot"
+  # End Frontier: add sprites
+
+- type: entity
+  parent: [ PartFelinidBase, BaseRightFoot ]
+  id: RightFootFelinid
+  name: "right felinid foot"
+  # Frontier: add sprites
+  components:
+  - type: Sprite
+    state: "r_foot"
+  - type: Icon
+    state: "r_foot"
+  # End Frontier: add sprites

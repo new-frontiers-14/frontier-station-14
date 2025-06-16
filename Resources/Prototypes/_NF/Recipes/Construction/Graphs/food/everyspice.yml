@@ -1,0 +1,17 @@
+# everyspice
+- type: constructionGraph
+  id: Everyspice
+  start: start
+  graph:
+
+  - node: start
+    edges:
+    - to: FoodEveryspiceRoasted
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 365 # ~92 C - arbitrarily set to take a while
+
+  - node: FoodEveryspiceRoasted
+    entity: FoodEveryspiceRoasted

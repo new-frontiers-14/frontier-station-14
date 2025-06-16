@@ -21,8 +21,8 @@
         id: blinking
         interpolate: Nearest
         maxDuration: 1.0
-        minValue: 0.1
-        maxValue: 2.0
+        startValue: 0.1 # Wizden#37444
+        endValue: 2.0 # Wizden#37444
         isLooped: true
   - type: PowerCellSlot
     cellSlotId: cell_slot
@@ -131,7 +131,7 @@
 - type: entity
   name: interrogator lamp
   id: LampInterrogator
-  parent: BaseLamp
+  parent: BaseLamp # Frontier: removed BaseSecurityContraband
   description: Ultra-bright lamp for the bad cop.
   components:
   - type: Sprite
@@ -159,7 +159,6 @@
   - type: Flash
   - type: LimitedCharges
     maxCharges: 3
-    charges: 3
   - type: AutoRecharge
     rechargeDuration: 30
   - type: MeleeWeapon
@@ -191,9 +190,11 @@
   - type: Item
     size: Normal
   - type: Sprite
+    sprite: Objects/Misc/Lights/lights.rsi
     layers:
       - state: floodlight
-      - state: floodlight_on
+        map: [ "base" ]
+      - state: floodlight-on
         shader: unshaded
         visible: false
         map: [ "light" ]
@@ -237,6 +238,10 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 500
+      Steel: 200
 
 - type: entity
   name: broken floodlight
@@ -244,9 +249,14 @@
   parent: BaseItem
   description: A pole with powerful mounted lights on it. It's broken.
   components:
+  - type: GoblinPreciousTrash # Frontier
+  - type: Item
+    size: Normal
+    sprite: Objects/Misc/Lights/lights.rsi
+    heldPrefix: floodlight-broken
   - type: Sprite
     sprite: Objects/Misc/Lights/lights.rsi
-    state: floodlight_broken
+    state: floodlight-broken
   - type: Anchorable
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -283,3 +293,7 @@
         density: 50
         mask:
         - HighImpassable
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 500
+      Steel: 200

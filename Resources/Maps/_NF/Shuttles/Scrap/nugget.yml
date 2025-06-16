@@ -1148,17 +1148,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,-6.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-    - type: ItemSlots
 - proto: DefibrillatorEmpty
   entities:
   - uid: 96
@@ -1226,15 +1215,13 @@ entities:
     - type: Transform
       pos: 12.5,-1.5
       parent: 1
-- proto: FloraTree05
+- proto: FloraTree
   entities:
   - uid: 86
     components:
     - type: Transform
       pos: 4.5,-1.5
       parent: 1
-- proto: FloraTree06
-  entities:
   - uid: 87
     components:
     - type: Transform
@@ -1573,6 +1560,13 @@ entities:
       pos: 9.402631,-7.5150394
       parent: 1
     - type: StepTriggerActive
+- proto: NFHolopadShip
+  entities:
+  - uid: 97
+    components:
+    - type: Transform
+      pos: 3.5,-0.5
+      parent: 1
 - proto: PortableGeneratorPacman
   entities:
   - uid: 152

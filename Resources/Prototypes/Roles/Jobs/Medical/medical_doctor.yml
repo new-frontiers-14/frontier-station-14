@@ -5,13 +5,18 @@
   playTimeTracker: JobMedicalDoctor
   setPreference: false # Frontier
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 10800
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 9000 #2.5 hrs
   startingGear: DoctorGear
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-hire # Frontier
   accessGroups: # Frontier
   - GeneralAccess # Frontier
+  # special: # Frontier
+  # - !type:GiveItemOnHolidaySpecial # Frontier
+  #   holiday: DoctorDay # Frontier
+  #   prototype: WehMedipen # Frontier
 
 - type: startingGear
   id: DoctorGear

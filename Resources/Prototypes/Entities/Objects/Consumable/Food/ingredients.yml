@@ -478,6 +478,7 @@
   - type: Tag
     tags:
     - Slice
+    - ClothMade
   - type: Construction
     graph: DoughRopeCotton
     node: start
@@ -495,7 +496,7 @@
   - type: MothFood # Frontier
 
 - type: entity
-  name: dough rope
+  name: cotton dough rope
   parent: FoodBakingBase
   id: FoodDoughCottonRope
   description: A thin noodle of cotton dough. Can be cooked into a cotton bagel.
@@ -518,6 +519,10 @@
           Quantity: 1.5
         - ReagentId: Fiber
           Quantity: 3.5
+  - type: Tag
+    tags:
+     - ClothMade
+     - Ingredient
   - type: Food # Frontier
     requiresSpecialDigestion: true # Frontier
   - type: MothFood # Frontier
@@ -527,7 +532,7 @@
   parent: FoodBakingBase
   id: FoodDoughPastryBaseRaw
   # description: Must be cooked before use. # Frontier: return when we have things using cooked pastry base
-  description: A starting point for donuts and pastries.
+  description: A starting point for donuts and pastries. # Frontier
   components:
   - type: Sprite
     state: dough-pastry

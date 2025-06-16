@@ -1,35 +1,52 @@
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
-using Robust.Shared.Prototypes; // Frontier
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Fluids;
 
 public abstract partial class SharedPuddleSystem
 {
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string Water = "Water";
+    public string[] GetEvaporatingReagents(Solution solution)
+    {
+        var evaporatingReagents = new List<string>();
+        foreach (ReagentPrototype solProto in solution.GetReagentPrototypes(_prototypeManager).Keys)
+        {
+            if (solProto.EvaporationSpeed > FixedPoint2.Zero)
+                evaporatingReagents.Add(solProto.ID);
+        }
+        return evaporatingReagents.ToArray();
+    }
 
-    private static readonly ProtoId<ReagentPrototype> FluorosulfuricAcid = "FluorosulfuricAcid"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> Vomit = "Vomit"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> Holywater = "Holywater"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> InsectBlood = "InsectBlood"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> AmmoniaBlood = "AmmoniaBlood"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> ZombieBlood = "ZombieBlood"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> Blood = "Blood"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> Slime = "Slime"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> CopperBlood = "CopperBlood"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> Sap = "Sap"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> Syrup = "Syrup"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> JuiceTomato = "JuiceTomato"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> Fiber = "Fiber"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> Nothing = "Nothing"; // Frontier
-    private static readonly ProtoId<ReagentPrototype> GoblinBlood = "GoblinBlood"; // Frontier
-
-    // Frontier: NOTE: if updating this list, keep up to date with AbsorbentSystem.EvaporationReagents
-    public static readonly string[] EvaporationReagents = [Water, Vomit, Holywater, InsectBlood, AmmoniaBlood, ZombieBlood, Blood, Slime, CopperBlood, FluorosulfuricAcid, Sap, Syrup, JuiceTomato, Fiber, Nothing, GoblinBlood]; // Frontier
+    public string[] GetAbsorbentReagents(Solution solution)
+    {
+        var absorbentReagents = new List<string>();
+        foreach (ReagentPrototype solProto in solution.GetReagentPrototypes(_prototypeManager).Keys)
+        {
+            if (solProto.Absorbent)
+                absorbentReagents.Add(solProto.ID);
+        }
+        return absorbentReagents.ToArray();
+    }
 
     public bool CanFullyEvaporate(Solution solution)
     {
-        return solution.GetTotalPrototypeQuantity(EvaporationReagents) == solution.Volume;
+        return solution.GetTotalPrototypeQuantity(GetEvaporatingReagents(solution)) == solution.Volume;
+    }
+
+    /// <summary>
+    /// Gets the evaporating speed of the reagents within a solution.
+    /// The speed at which a solution evaporates is the sum of the speed of all evaporating reagents in it.
+    /// </summary>
+    public Dictionary<string, FixedPoint2> GetEvaporationSpeeds(Solution solution)
+    {
+        var evaporatingSpeeds = new Dictionary<string, FixedPoint2>();
+        foreach (ReagentPrototype solProto in solution.GetReagentPrototypes(_prototypeManager).Keys)
+        {
+            if (solProto.EvaporationSpeed > FixedPoint2.Zero)
+            {
+                evaporatingSpeeds.Add(solProto.ID, solProto.EvaporationSpeed);
+            }
+        }
+        return evaporatingSpeeds;
     }
 }

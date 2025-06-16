@@ -22,6 +22,12 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Database;
+using Content.Shared.Labels.Components;
+using Content.Shared._NF.BindToStation; // Frontier
+using Content.Server.Station.Systems; // Frontier
 
 namespace Content.Server.Botany.Systems;
 
@@ -39,10 +45,15 @@ public sealed class PlantHolderSystem : EntitySystem
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly StationSystem _station = default!; // Frontier
 
     public const float HydroponicsSpeedMultiplier = 1f;
     public const float HydroponicsConsumptionMultiplier = 2f;
+
+    private static readonly ProtoId<TagPrototype> HoeTag = "Hoe";
+    private static readonly ProtoId<TagPrototype> PlantSampleTakerTag = "PlantSampleTaker";
 
     public override void Initialize()
     {
@@ -108,6 +119,20 @@ public sealed class PlantHolderSystem : EntitySystem
                                 ? "plant-holder-component-plant-old-adjective"
                                 : "plant-holder-component-plant-unhealthy-adjective"))));
                 }
+
+                // For future reference, mutations should only appear on examine if they apply to a plant, not to produce.
+
+                if (component.Seed.Ligneous)
+                    args.PushMarkup(Loc.GetString("mutation-plant-ligneous"));
+
+                if (component.Seed.TurnIntoKudzu)
+                    args.PushMarkup(Loc.GetString("mutation-plant-kudzu"));
+
+                if (component.Seed.CanScream)
+                    args.PushMarkup(Loc.GetString("mutation-plant-scream"));
+
+                if (component.Seed.Viable == false)
+                    args.PushMarkup(Loc.GetString("mutation-plant-unviable"));
             }
             else
             {
@@ -153,6 +178,18 @@ public sealed class PlantHolderSystem : EntitySystem
         {
             if (component.Seed == null)
             {
+                // Frontier
+                if (TryComp<StationBoundObjectComponent>(entity.Owner, out var bindToStation)
+                    && bindToStation.Enabled
+                    && bindToStation.BoundStation != null
+                    && _station.GetOwningStation(entity.Owner) != bindToStation.BoundStation)
+                {
+                    _popup.PopupCursor(Loc.GetString("plant-holder-component-bound-to-station"),
+                        args.User, PopupType.Medium);
+                    return;
+                }
+                // End Frontier
+
                 if (!_botany.TryGetSeed(seeds, out var seed))
                     return;
 
@@ -176,10 +213,17 @@ public sealed class PlantHolderSystem : EntitySystem
                 }
                 component.LastCycle = _gameTiming.CurTime;
 
+                if (TryComp<PaperLabelComponent>(args.Used, out var paperLabel))
+                {
+                    _itemSlots.TryEjectToHands(args.Used, paperLabel.LabelSlot, args.User);
+                }
                 QueueDel(args.Used);
 
                 CheckLevelSanity(uid, component);
                 UpdateSprite(uid, component);
+
+                if (seed.PlantLogImpact != null)
+                    _adminLogger.Add(LogType.Botany, seed.PlantLogImpact.Value, $"{ToPrettyString(args.User):player} planted  {Loc.GetString(seed.Name):seed} at Pos:{Transform(uid).Coordinates}.");
 
                 return;
             }
@@ -190,7 +234,7 @@ public sealed class PlantHolderSystem : EntitySystem
             return;
         }
 
-        if (_tagSystem.HasTag(args.Used, "Hoe"))
+        if (_tagSystem.HasTag(args.Used, HoeTag))
         {
             args.Handled = true;
             if (component.WeedLevel > 0)
@@ -230,7 +274,7 @@ public sealed class PlantHolderSystem : EntitySystem
             return;
         }
 
-        if (_tagSystem.HasTag(args.Used, "PlantSampleTaker"))
+        if (_tagSystem.HasTag(args.Used, PlantSampleTakerTag))
         {
             args.Handled = true;
             if (component.Seed == null)
@@ -238,6 +282,14 @@ public sealed class PlantHolderSystem : EntitySystem
                 _popup.PopupCursor(Loc.GetString("plant-holder-component-nothing-to-sample-message"), args.User);
                 return;
             }
+
+            // Frontier: prevent sampling unsamplable plants
+            if (component.Seed.PreventClipping)
+            {
+                _popup.PopupCursor(Loc.GetString("plant-holder-component-cannot-be-sampled-message"), args.User);
+                return;
+            }
+            // End Frontier
 
             if (component.Sampled)
             {

@@ -5,6 +5,7 @@
   description: A standard-issue Nanotrasen storage unit.
   abstract: true
   components:
+  - type: Animateable
   - type: ResistLocker
   - type: Transform
     noRot: true
@@ -26,14 +27,16 @@
   - type: MovedByPressure
   - type: PaperLabel
     labelSlot:
-      insertVerbText: Attach Label
-      ejectVerbText: Remove Label
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
       whitelist:
         components:
         - Paper
       blacklist:
         tags:
         - Book
+        components: # Frontier
+        - Blueprint # Frontier
   - type: ItemSlots
   - type: DamageOnHighSpeedImpact
     damage:
@@ -245,6 +248,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+      map: ["enum.StorageVisualLayers.Base"] # Frontier: test fixes
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -310,7 +314,7 @@
             max: 1
   - type: Appearance
   - type: EntityStorageVisuals
-    stateBase: base
+    stateBaseClosed: base # Frontier: stateBase<stateBaseClosed
     stateDoorOpen: base
     stateDoorClosed: door
   - type: LockVisuals

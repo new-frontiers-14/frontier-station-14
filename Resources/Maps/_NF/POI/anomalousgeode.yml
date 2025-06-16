@@ -21,6 +21,7 @@ entities:
     components:
     - type: MetaData
     - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -49,11 +50,6 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
-      angularDamping: 0.05
-      linearDamping: 0.05
-      fixedRotation: False
-      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
@@ -3616,6 +3612,13 @@ entities:
     - type: Transform
       pos: -7.717414,-11.295385
       parent: 1
+- proto: NFHolopadLaboratory
+  entities:
+  - uid: 665
+    components:
+    - type: Transform
+      pos: -2.5,-8.5
+      parent: 1
 - proto: NFSignDock
   entities:
   - uid: 771
@@ -3727,7 +3730,7 @@ entities:
     - type: Transform
       pos: -7.5,-12.5
       parent: 1
-- proto: RandomPosterContrabandDeadDrop
+- proto: RandomPosterContraband
   entities:
   - uid: 800
     components:
@@ -4532,6 +4535,32 @@ entities:
     - type: Transform
       pos: -1.5,25.5
       parent: 1
+- proto: SpawnMobXenoT1
+  entities:
+  - uid: 777
+    components:
+    - type: Transform
+      pos: -1.5,0.5
+      parent: 1
+  - uid: 778
+    components:
+    - type: Transform
+      pos: -1.5,-9.5
+      parent: 1
+- proto: SpawnMobXenoT2
+  entities:
+  - uid: 780
+    components:
+    - type: Transform
+      pos: 0.5,2.5
+      parent: 1
+- proto: SpawnMobXenoT3
+  entities:
+  - uid: 779
+    components:
+    - type: Transform
+      pos: -1.5,2.5
+      parent: 1
 - proto: SubstationBasic
   entities:
   - uid: 532
@@ -4768,31 +4797,5 @@ entities:
     components:
     - type: Transform
       pos: -7.154914,-11.451635
-      parent: 1
-- proto: XenoAISpawnerEasy
-  entities:
-  - uid: 777
-    components:
-    - type: Transform
-      pos: -1.5,0.5
-      parent: 1
-  - uid: 778
-    components:
-    - type: Transform
-      pos: -1.5,-9.5
-      parent: 1
-- proto: XenoAISpawnerHard
-  entities:
-  - uid: 779
-    components:
-    - type: Transform
-      pos: -1.5,2.5
-      parent: 1
-- proto: XenoAISpawnerMedium
-  entities:
-  - uid: 780
-    components:
-    - type: Transform
-      pos: 0.5,2.5
       parent: 1
 ...

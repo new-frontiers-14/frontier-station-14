@@ -16,11 +16,15 @@
   maximumDistance: 3800
   spawnGroup: ScienceLab
   gridPath: /Maps/_NF/POI/anomalousgeode.yml
+  addComponents:
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: AnomalousGeode
-  mapName: 'Anomalous Lab'
-  mapPath: /Maps/_NF/POI/anomalouslab.yml
+  mapName: 'Anomalous Geode'
+  mapPath: /Maps/_NF/POI/anomalousgeode.yml
   minPlayers: 0
   stations:
     AnomalousGeode:

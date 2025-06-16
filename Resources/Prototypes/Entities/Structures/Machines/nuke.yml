@@ -107,11 +107,18 @@
       Nuke: !type:ContainerSlot
   - type: StealTarget
     stealGroup: NuclearBomb
+  - type: Tag
+    tags:
+    - GhostOnlyWarp
   - type: WarpPoint
     follow: true
     location: nuclear bomb
+    blacklist:
+      tags:
+      - GhostOnlyWarp
   - type: FTLSmashImmune
-  - type: DisableShipyardSale # Frontier
+  - type: ShipyardSellCondition # Frontier
+    blockSale: true # Frontier
     reason: shipyard-console-dangerous-materials # Frontier
     allowedShipyardTypes: # Frontier:
     - Syndicate # Frontier

@@ -13,13 +13,11 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Content.Shared.Labels.Components;
-using Content.Shared.Chemistry.Components.SolutionManager; // Frontier
-using Content.Shared.Chemistry.Components; // Frontier
 using Content.Shared.Chemistry.Reagent; // Frontier
-using Content.Server.Labels; // Frontier
 using Content.Shared.Verbs; // Frontier
 using Content.Shared.Examine; // Frontier
 using Content.Server.Construction; // Frontier
+using Content.Shared.Labels.EntitySystems; // Frontier
 
 namespace Content.Server.Chemistry.EntitySystems
 {
@@ -38,6 +36,7 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly OpenableSystem _openable = default!;
         [Dependency] private readonly LabelSystem _label = default!; // Frontier
+        [Dependency] private readonly SharedContainerSystem _containers = default!; // Frontier
 
         public override void Initialize()
         {
@@ -279,8 +278,10 @@ namespace Content.Server.Chemistry.EntitySystems
             {
                 for (var i = 0; i < packPrototype.Inventory.Count && i < component.StorageSlots.Count; i++)
                 {
+                    if (component.StorageSlots[i].ContainerSlot == null)
+                        continue;
                     var item = Spawn(packPrototype.Inventory[i], Transform(uid).Coordinates);
-                    if (!_itemSlotsSystem.TryInsert(uid, component.StorageSlots[i].ID!, item, null, excludeUserAudio: true))
+                    if (!_containers.Insert(item, component.StorageSlots[i].ContainerSlot!)) // ContainerSystem.Insert is silent.
                         QueueDel(item);
                 }
             }

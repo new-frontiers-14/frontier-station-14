@@ -148,7 +148,7 @@
 
 - type: entity
   categories: [ HideSpawnMenu ]
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFCosplayWizard
   suffix: cosplay-wizard, extended
   components:
@@ -157,19 +157,23 @@
     - id: ClothingOuterWizard
     - id: ClothingHeadHatWizard
     - id: ClothingShoesWizard
+    - id: RubberStampWizard
     - id: WizardStaffMeleeBase
       orGroup: Staff
       prob: 0.6
     - id: PonderingOrb
       orGroup: Staff
-      prob: 0.3
+      prob: 0.27
+    - id: PonderingOrbWizard
+      orGroup: Staff
+      prob: 0.03
     - id: RGBStaff
       orGroup: Staff
       prob: 0.1
 
 - type: entity
   categories: [ HideSpawnMenu ]
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFCosplayMaid
   suffix: cosplay-maid, extended
   components:
@@ -286,6 +290,10 @@
     contents:
     - id: CigarGoldCase
       orGroup: Cigars
+      prob: 0.95
+    - id: CigarPlatinumCase
+      orGroup: Cigars
+      prob: 0.05
     - id: FlippoLighter
       orGroup: Lighter
       prob: 0.95
@@ -521,7 +529,7 @@
       orGroup: Plushie
     - id: PlushieMoffRandom
       orGroup: Plushie
-    - id: PlushieMoff
+    - id: PlushieMoth
       prob: 0.5
       orGroup: Plushie
     - id: PlushieMoffsician
@@ -725,7 +733,7 @@
   components:
   - type: Mail
     contents:
-    - id: HyperlinkBookSpaceLaw
+    - id: NFHyperlinkBookSpaceLaw
     - id: HyperlinkBookNfsdSop
     - id: PaperMailNFSpaceLaw
 
@@ -1022,48 +1030,6 @@
     - id: FoodDonutJellySlugcat
       amount: 2
       orGroup: Food
-    - id: FoodFrozenSandwich # ah yes, baked goods
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenFreezy
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenSundae
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenCornuto
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenPopsicleOrange
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenPopsicleBerry
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenPopsicleJumbo
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenSnowcone
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenSnowconeBerry
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenSnowconeFruit
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenSnowconeClown
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenSnowconeMime
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenSnowconeRainbow
-      amount: 2
-      orGroup: Food
-    - id: FoodFrozenSnowconeMime
-      amount: 2
-      orGroup: Food
     - id: FoodMealMint # unlucky
       amount: 2
       orGroup: Food
@@ -1147,7 +1113,7 @@
   - type: Mail
     contents:
     - id: ClothingHeadHatPwig
-    - id: Musket
+    - id: NFWeaponRifleMusket
     - id: CartridgeAntiMateriel
       amount: 2
     - id: PaperMailNTMusket
@@ -1186,18 +1152,17 @@
       prob: 0.50
     - id: PenHop
       orGroup: Pen
-      prob: 0.25
+      prob: 0.245
     - id: PenCap
       orGroup: Pen
-      prob: 0.25
-    # TODO: come up with a slightly less powerful version of these
+      prob: 0.245
     # Ultra-rare
-    # - id: CyberPen
-    #   orGroup: Pen
-    #   prob: 0.005
-    # - id: PenCentcom
-    #   orGroup: Pen
-    #   prob: 0.005
+    - id: CyberPen
+      orGroup: Pen
+      prob: 0.005
+    - id: PenWiz
+      orGroup: Pen
+      prob: 0.005
     - id: PaperMailNFPaperPusherAd
 
 - type: entity
@@ -1221,7 +1186,7 @@
   components:
   - type: Mail
     contents:
-    - id: Kardashev-MosinNonlethal
+    - id: NFWeaponRifleBarlowsBoltLessLethal # Frontier: WeaponSniperMosin<NFWeaponRifleBarlowsBolt
     - id: ClothingHeadHatUshanka
     - id: SyndicateWhistle
     - id: PaperMailNTConscript
@@ -1604,53 +1569,7 @@
   - type: Mail
     isFragile: true
     contents:
-      # Bugs (weight: 2)
-      - id: MobCockroach
-        orGroup: Critter
-        prob: 0.36
-      - id: MobSlug
-        orGroup: Critter
-        prob: 0.36
-      - id: MobArgocyteSlurva # honorary bug?
-        orGroup: Critter
-        prob: 0.36
-      - id: MobBee
-        orGroup: Critter
-        prob: 0.36
-      - id: MobButterfly
-        orGroup: Critter
-        prob: 0.36
-        # Uncommon
-      - id: MobMothroach
-        orGroup: Critter
-        prob: 0.15
-        # Rare
-      - id: MobRosyMothroach
-        orGroup: Critter
-        prob: 0.05
-      # Small reptiles (weight: 1)
-      - id: MobLizard
-        orGroup: Critter
-        prob: 0.34
-      - id: MobSnake
-        orGroup: Critter
-        prob: 0.33
-      - id: MobFrog
-        orGroup: Critter
-        prob: 0.33
-      # Small mammals (weight: 1)
-      - id: MobMouse
-        orGroup: Critter
-        prob: 0.33
-      - id: MobMouse1
-        orGroup: Critter
-        prob: 0.33
-      - id: MobMouse2
-        orGroup: Critter
-        prob: 0.33
-      - id: MobMouseCancer
-        orGroup: Critter
-        prob: 0.01 # Rare
+      - id: DelayedNFRandomCritter
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -1718,7 +1637,7 @@
   - type: Mail
     isFragile: true
     contents:
-      - id: NecrosolChemistryBottle
+      - id: ChemistryBottleNecrosol
       - id: Syringe
 
 - type: entity
@@ -1730,7 +1649,7 @@
   - type: Mail
     isFragile: true
     contents:
-      - id: OmnizineChemistryBottle
+      - id: ChemistryBottleOmnizine
       - id: Syringe
 
 - type: entity
@@ -1849,20 +1768,29 @@
   components:
   - type: Mail
     contents:
-      - id: VehicleATVNF
+      - id: NFVehicleATV
       - id: VehicleKeyATV
 
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseMailLarge
   id: MailNFSkeletonMotorcycle
-  suffix: ATV
+  suffix: Skeleton Motorcycle
   components:
   - type: Mail
     contents:
-      - id: VehicleSkeletonMotorcycleNF
+      - id: NFVehicleSkeletonMotorcycle
       - id: VehicleKeySkeleton
 
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMailLarge
+  id: MailNFHoverchair
+  suffix: Hoverchair
+  components:
+  - type: Mail
+    contents:
+      - id: VehicleHoverchair
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -1912,6 +1840,7 @@
         orGroup: Mask
       - id: ClothingMaskScaredMime
         orGroup: Mask
+      - id: MimePowersImplanter
 
 # Base Nyano mail
 

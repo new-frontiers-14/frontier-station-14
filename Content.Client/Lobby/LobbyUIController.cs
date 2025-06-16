@@ -43,7 +43,6 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
-    [UISystemDependency] private readonly LoadoutSystem _loadouts = default!;
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
@@ -353,7 +352,15 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     {
         var highPriorityJob = profile.JobPriorities.FirstOrDefault(p => p.Value == JobPriority.High).Key;
         // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract (what is resharper smoking?)
-        return _prototypeManager.Index<JobPrototype>(highPriorityJob.Id ?? SharedGameTicker.FallbackOverflowJob);
+        // Frontier: Proper fallback for missing prototypes
+        //return _prototypeManager.Index<JobPrototype>(highPriorityJob.Id ?? SharedGameTicker.FallbackOverflowJob);
+        if (highPriorityJob.Id is { } highPriorityJobId &&
+            _prototypeManager.TryIndex<JobPrototype>(highPriorityJobId, out var job))
+        {
+            return job;
+        }
+        return _prototypeManager.Index<JobPrototype>(SharedGameTicker.FallbackOverflowJob);
+        // End Frontier
     }
 
     public void GiveDummyLoadout(EntityUid uid, RoleLoadout? roleLoadout)
@@ -361,9 +368,12 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         if (roleLoadout == null)
             return;
 
-        foreach (var group in roleLoadout.SelectedLoadouts.Values)
+        if (!_prototypeManager.TryIndex(roleLoadout.Role, out RoleLoadoutPrototype? roleProto)) // Frontier
+            return; // Frontier
+
+        foreach (var group in roleLoadout.SelectedLoadouts.OrderBy(x => roleProto!.Groups.FindIndex(e => e == x.Key)))
         {
-            foreach (var loadout in group)
+            foreach (var loadout in group.Value) // Frontier: add .Value
             {
                 if (!_prototypeManager.TryIndex(loadout.Prototype, out var loadoutProto))
                     continue;
@@ -384,9 +394,12 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         // Apply loadout
         if (profile.Loadouts.TryGetValue(job.ID, out var jobLoadout))
         {
-            foreach (var loadouts in jobLoadout.SelectedLoadouts.Values)
+            if (!_prototypeManager.TryIndex(jobLoadout.Role, out RoleLoadoutPrototype? roleProto)) // Frontier
+                return; // Frontier
+
+            foreach (var loadouts in jobLoadout.SelectedLoadouts.OrderBy(x => roleProto!.Groups.FindIndex(e => e == x.Key))) // Frontier
             {
-                foreach (var loadout in loadouts)
+                foreach (var loadout in loadouts.Value) // Frontier: add .Value
                 {
                     if (!_prototypeManager.TryIndex(loadout.Prototype, out var loadoutProto))
                         continue;

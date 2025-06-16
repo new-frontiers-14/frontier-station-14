@@ -86,23 +86,25 @@
       whitelist:
         components:
         - MobState # admeme implanting a chair with tracking implant needs to give the chair mobstate so it can die first
-#    - type: SuitSensor # Frontier
-#      randomMode: false # Frontier
-#      controlsLocked: true # Frontier
-#      mode: SensorCords # Frontier
-#      activationContainer: "implant" # Frontier
-#    - type: DeviceNetwork # Frontier
-#      deviceNetId: Wireless # Frontier
-#      transmitFrequencyId: SuitSensor # Frontier
-#    - type: StationLimitedNetwork # Frontier
-#    - type: WirelessNetworkConnection # Frontier
-#      range: 500 # Frontier
+    # Frontier: no sensor, add rattle
+    # - type: SuitSensor
+    #   randomMode: false
+    #   controlsLocked: true
+    #   mode: SensorCords
+    #   activationContainer: "implant"
+    # - type: DeviceNetwork
+    #   deviceNetId: Wireless
+    #   transmitFrequencyId: SuitSensor
+    # - type: StationLimitedNetwork
+    # - type: WirelessNetworkConnection
+    #   range: 500
     - type: TriggerOnMobstateChange
       mobState:
       - Critical
       - Dead
     - type: Rattle
       radioChannel: "Nfsd"
+    # End Frontier: no sensor, add rattle
 
 #Traitor implants
 
@@ -120,7 +122,10 @@
         - Hands # no use giving a mouse a storage implant, but a monkey is another story...
     - type: Storage
       grid:
-      - 0,0,2,2
+      - 0,0,0,1
+      - 1,0,1,0
+      - 1,2,1,2
+      - 2,1,2,2
     - type: ContainerContainer
       containers:
         storagebase: !type:Container
@@ -142,6 +147,18 @@
       whitelist:
         components:
         - Cuffable # useless if you cant be cuffed
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplant
+  name: syndicate radio implant # Frontier: add syndicate
+  description: This implant grants access to the Syndicate channel without a headset.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - Syndicate
 
 - type: entity
   parent: [ BaseSubdermalImplant, StorePresetUplink ]
@@ -312,6 +329,17 @@
       - Dead
     - type: Rattle
 
+- type: entity
+  parent: BaseSubdermalImplant
+  id: FakeMindShieldImplant
+  name: fake mindshield implant
+  description: This implant allows the implanter to produce a fake signal that NT security huds use to identify individuals implanted with a mindshield.
+  categories: [ HideSpawnMenu ]
+  components:
+      - type: SubdermalImplant
+        implantAction: FakeMindShieldToggleAction
+      - type: FakeMindShieldImplant
+
 # Sec and Command implants
 
 - type: entity
@@ -322,7 +350,28 @@
   categories: [ HideSpawnMenu ]
   components:
    - type: SubdermalImplant
-     permanent: true
-   - type: Tag
-     tags:
-       - MindShield
+   - type: MindShieldImplant
+
+# Centcomm implants
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantCentcomm
+  name: radio implant
+  description: This implant grants access to the Centcomm channel without a headset. Only authorized for Centcomm employees.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - CentCom
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantCentcomm
+  name: centcomm death rattle implant
+  description: This implant will inform the Centcomm radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Rattle
+    radioChannel: CentCom

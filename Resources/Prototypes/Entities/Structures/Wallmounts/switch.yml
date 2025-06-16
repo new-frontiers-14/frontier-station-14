@@ -15,7 +15,7 @@
   - type: Physics
     canCollide: false
   - type: Sprite
-    drawdepth: SmallObjects
+    drawdepth: WallMountedItems # Frontier: SmallObjects<WallMountedItems
     sprite: Structures/Wallmounts/switch.rsi
     state: on
   - type: SignalSwitch
@@ -58,7 +58,7 @@
   - type: Physics
     canCollide: false
   - type: Sprite
-    drawdepth: SmallObjects
+    drawdepth: WallMountedItems # Frontier: SmallObjects<WallMountedItems
     sprite: Structures/Wallmounts/switch.rsi
     state: dead
   - type: UseDelay
@@ -123,7 +123,7 @@
     - type: Transform
       anchored: true
     - type: Sprite
-      drawdepth: SmallObjects
+      drawdepth: WallMountedItems # Frontier: SmallObjects<WallMountedItems
       sprite: Structures/Wallmounts/switch.rsi
       state: on
     - type: Rotatable
@@ -152,8 +152,9 @@
     - type: Clickable
     - type: InteractionOutline
     - type: Sprite
-      drawdepth: FloorObjects
+      drawdepth: HighFloorObjects
       sprite: Structures/conveyor.rsi
+      noRot: true
       layers:
         - state: switch-off
           map: ["enabled", "enum.TwoWayLeverState.Middle"]
@@ -239,7 +240,7 @@
   id: LockableButton
   name: lockable button
   parent: SignalButtonDirectional
-  categories: [ HideSpawnMenu ]
+  # categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Appearance
   - type: Lock
@@ -494,6 +495,14 @@
   - type: AccessReader
     access: [["Atmospherics"]]
 
+- type: entity
+  id: LockableButtonCentcomm
+  suffix: CentComm
+  parent: LockableButton
+  components:
+  - type: AccessReader
+    access: [["CentralCommand"]]
+
 # button frames
 
 - type: entity
@@ -527,6 +536,11 @@
     drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch_frame.rsi
     state: grey
+  # Frontier: constructible button frames
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameGreyNode
+  # End Frontier
 
 - type: entity
   id: ButtonFrameCaution
@@ -537,6 +551,11 @@
     drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch_frame.rsi
     state: caution
+  # Frontier: constructible button frames
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameCautionNode
+  # End Frontier
 
 - type: entity
   id: ButtonFrameCautionSecurity
@@ -547,6 +566,11 @@
     drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch_frame.rsi
     state: caution_security
+  # Frontier: constructible button frames
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameCautionSecurityNode
+  # End Frontier
 
 - type: entity
   id: ButtonFrameExit
@@ -557,6 +581,11 @@
     drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch_frame.rsi
     state: exit
+  # Frontier: constructible button frames
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameExitNode
+  # End Frontier
 
 - type: entity
   id: ButtonFrameJanitor
@@ -567,3 +596,8 @@
     drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch_frame.rsi
     state: janitor
+  # Frontier: constructible button frames
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameJanitorNode
+  # End Frontier

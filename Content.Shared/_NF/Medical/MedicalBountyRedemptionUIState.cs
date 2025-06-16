@@ -29,10 +29,12 @@ public sealed class MedicalBountyRedemptionUIState : BoundUserInterfaceState
 {
     public int BountyValue { get; }
     public MedicalBountyRedemptionStatus BountyStatus { get; }
+    public bool PaidToStation { get; }
 
-    public MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus bountyStatus, int bountyValue)
+    public MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus bountyStatus, int bountyValue, bool paidToStation)
     {
         BountyStatus = bountyStatus;
         BountyValue = bountyValue;
+        PaidToStation = paidToStation;
     }
 }

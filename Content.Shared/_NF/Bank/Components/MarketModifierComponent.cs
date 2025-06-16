@@ -1,4 +1,4 @@
-namespace Content.Shared.Bank.Components;
+namespace Content.Shared._NF.Bank.Components;
 
 /// <summary>
 /// This is used for applying a pricing modifier to things like vending machines.

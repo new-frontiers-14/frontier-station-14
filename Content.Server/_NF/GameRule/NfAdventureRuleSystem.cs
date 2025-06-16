@@ -11,10 +11,13 @@ using Content.Server.Cargo.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules;
+using Content.Server._NF.ShuttleRecords;
 using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
+using Robust.Server;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -35,10 +38,14 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly PointOfInterestSystem _poi = default!;
+    [Dependency] private readonly IBaseServer _baseServer = default!;
+    [Dependency] private readonly IEntitySystemManager _entSys = default!;
+    [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
 
     private readonly HttpClient _httpClient = new();
 
     private readonly ProtoId<GamePresetPrototype> _fallbackPresetID = "NFPirates";
+    private ISawmill _sawmill = default!;
 
     public sealed class PlayerRoundBankInformation
     {
@@ -73,6 +80,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetachedEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         _player.PlayerStatusChanged += PlayerManagerOnPlayerStatusChanged;
+        _sawmill = Logger.GetSawmill("debris");
     }
 
     protected override void AppendRoundEndText(EntityUid uid, NFAdventureRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent ev)
@@ -80,7 +88,10 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         ev.AddLine(Loc.GetString("adventure-list-start"));
         var allScore = new List<Tuple<string, int>>();
 
-        foreach (var (player, playerInfo) in _players)
+        var sortedPlayers = _players.ToList();
+        sortedPlayers.Sort((p1, p2) => p1.Value.Name.CompareTo(p2.Value.Name));
+
+        foreach (var (player, playerInfo) in sortedPlayers)
         {
             var endBalance = playerInfo.EndBalance;
             if (_bank.TryGetBalance(player, out var bankBalance))
@@ -135,8 +146,10 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
             relayText += '\n';
             highScore.RemoveAt(0);
         }
-        ReportRound(relayText);
-        ReportLedger();
+        // Fire and forget.
+        _ = ReportRound(relayText);
+        _ = ReportLedger();
+        _ = ReportShipyardStats();
     }
 
     private void OnPlayerSpawningEvent(PlayerSpawnCompleteEvent ev)
@@ -146,8 +159,11 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
             EnsureComp<CargoSellBlacklistComponent>(mobUid);
 
             // Store player info with the bank balance - we have it directly, and BankSystem won't have a cache yet.
-            if (!_players.ContainsKey(mobUid))
+            if (!_players.ContainsKey(mobUid)
+                && HasComp<BankAccountComponent>(mobUid))
+            {
                 _players[mobUid] = new PlayerRoundBankInformation(ev.Profile.BankBalance, MetaData(mobUid).EntityName, ev.Player.UserId);
+            }
         }
     }
 
@@ -237,10 +253,14 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
 
     private async Task ReportRound(string message, int color = 0x77DDE7)
     {
-        Logger.InfoS("discord", message);
+        _sawmill.Info(message);
         string webhookUrl = _cfg.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
         if (webhookUrl == string.Empty)
             return;
+
+        var serverName = _baseServer.ServerName;
+        var gameTicker = _entSys.GetEntitySystemOrNull<GameTicker>();
+        var runId = gameTicker != null ? gameTicker.RoundId : 0;
 
         var payload = new WebhookPayload
         {
@@ -251,6 +271,13 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
                     Title = Loc.GetString("adventure-webhook-list-start"),
                     Description = message,
                     Color = color,
+                    Footer = new EmbedFooter
+                    {
+                        Text = Loc.GetString(
+                            "adventure-webhook-footer",
+                            ("serverName", serverName),
+                            ("roundId", runId)),
+                    },
                 },
             },
         };
@@ -266,7 +293,11 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         var ledgerPrintout = _bank.GetLedgerPrintout();
         if (string.IsNullOrEmpty(ledgerPrintout))
             return;
-        Logger.InfoS("discord", ledgerPrintout);
+        _sawmill.Info(ledgerPrintout);
+
+        var serverName = _baseServer.ServerName;
+        var gameTicker = _entSys.GetEntitySystemOrNull<GameTicker>();
+        var runId = gameTicker != null ? gameTicker.RoundId : 0;
 
         var payload = new WebhookPayload
         {
@@ -277,10 +308,67 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
                     Title = Loc.GetString("adventure-webhook-ledger-start"),
                     Description = ledgerPrintout,
                     Color = color,
+                    Footer = new EmbedFooter
+                    {
+                        Text = Loc.GetString(
+                            "adventure-webhook-footer",
+                            ("serverName", serverName),
+                            ("roundId", runId)),
+                    },
                 },
             },
         };
         await SendWebhookPayload(webhookUrl, payload);
+    }
+
+    private async Task ReportShipyardStats(int color = 0x55DD3F)
+    {
+        string webhookUrl = _cfg.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
+        if (webhookUrl == string.Empty)
+            return;
+
+        var shipyardStats = _shuttleRecordsSystem.GetStatsPrintout();
+        if (shipyardStats is null)
+            return;
+
+        var shipyardStatsPrintout = shipyardStats.Value.Item1;
+        var serialisedData = shipyardStats.Value.Item2;
+
+        Logger.InfoS("discord", shipyardStatsPrintout);
+
+        var serverName = _baseServer.ServerName;
+        var gameTicker = _entSys.GetEntitySystemOrNull<GameTicker>();
+        var runId = gameTicker != null ? gameTicker.RoundId : 0;
+
+        var payload = new WebhookPayload
+        {
+            Embeds = new List<Embed>
+            {
+                new()
+                {
+                    Title = Loc.GetString("adventure-webhook-shipstats-start"),
+                    Description = shipyardStatsPrintout,
+                    Color = color,
+                    Footer = new EmbedFooter
+                    {
+                        Text = Loc.GetString(
+                            "adventure-webhook-footer",
+                            ("serverName", serverName),
+                            ("roundId", runId)),
+                    },
+                },
+            },
+        };
+
+        MultipartFormDataContent form = new MultipartFormDataContent();
+        var ser_payload = JsonSerializer.Serialize(payload);
+        var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
+        form.Add(content, "payload_json");
+        if (serialisedData is not null)
+        {
+            form.Add(new ByteArrayContent(serialisedData, 0, serialisedData.Length), "Document", $"shipstats-{serverName}-{runId}.json");
+        }
+        await SendWebhookPayload(webhookUrl, form);
     }
 
     private async Task SendWebhookPayload(string webhookUrl, WebhookPayload payload)
@@ -291,7 +379,17 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         var reply = await request.Content.ReadAsStringAsync();
         if (!request.IsSuccessStatusCode)
         {
-            Logger.ErrorS("mining", $"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {reply}");
+            _sawmill.Error($"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {reply}");
+        }
+    }
+
+    private async Task SendWebhookPayload(string webhookUrl, MultipartFormDataContent payload)
+    {
+        var request = await _httpClient.PostAsync($"{webhookUrl}?wait=true", payload);
+        var reply = await request.Content.ReadAsStringAsync();
+        if (!request.IsSuccessStatusCode)
+        {
+            _sawmill.Error($"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {reply}");
         }
     }
 

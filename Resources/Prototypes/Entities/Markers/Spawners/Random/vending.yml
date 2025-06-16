@@ -6,9 +6,9 @@
   components:
   - type: Sprite
     layers:
-      - state: red
-      - sprite: Structures/Machines/VendingMachines/random.rsi
-        state: any
+    - state: red
+    - sprite: Structures/Machines/VendingMachines/random.rsi
+      state: any
   - type: RandomSpawner
     prototypes:
       - VendingMachineCigs
@@ -32,3 +32,32 @@
       - VendingMachineStarkist
       - VendingMachineSpaceUp
     chance: 1
+
+
+- type: entityTable
+  id: ClothingVendorTable
+  table: !type:GroupSelector
+    children:
+    - id: VendingMachineClothing
+      weight: 40
+    - id: VendingMachineWinter
+      weight: 40
+    - id: VendingMachinePride
+      weight: 10
+    - id: VendingMachineTheater
+      weight: 10
+
+- type: entity
+  id: RandomVendingClothing
+  name: random vending machine spawner
+  suffix: Clothing
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Machines/VendingMachines/random.rsi
+      state: clothing
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: ClothingVendorTable

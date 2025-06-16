@@ -8,21 +8,21 @@ namespace Content.Shared._EstacaoPirata.Cards.Deck;
 [RegisterComponent]
 public sealed partial class CardDeckComponent : Component
 {
-    [DataField("shuffleSound")]
+    [DataField]
     public SoundSpecifier ShuffleSound = new SoundCollectionSpecifier("cardFan");
 
-    [DataField("pickUpSound")]
+    [DataField]
     public SoundSpecifier PickUpSound = new SoundCollectionSpecifier("cardSlide");
 
-    [DataField("placeDownSound")]
+    [DataField]
     public SoundSpecifier PlaceDownSound = new SoundCollectionSpecifier("cardShove");
 
-    [DataField("yOffset")]
+    [DataField]
     public float YOffset = 0.02f;
 
-    [DataField("scale")]
+    [DataField]
     public float Scale = 1;
 
-    [DataField("limit")]
+    [DataField]
     public int CardLimit = 5;
 }

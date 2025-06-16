@@ -1,4 +1,6 @@
+using System.Collections.Frozen;
 using Content.Shared._NF.BountyContracts;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.BountyContracts;
 
@@ -12,12 +14,18 @@ public sealed partial class BountyContractDataComponent : Component
     /// <summary>
     ///     Last registered contract id. Used to track contracts.
     /// </summary>
-    [DataField("lastId")]
+    [DataField]
     public uint LastId;
 
     /// <summary>
-    ///     All open bounty contracts by their contract id.
+    ///     All open bounty contracts, grouped by collection, listed by their contract id.
     /// </summary>
-    [DataField("contracts")]
-    public Dictionary<uint, BountyContract> Contracts = new();
+    [DataField]
+    public FrozenDictionary<ProtoId<BountyContractCollectionPrototype>, Dictionary<uint, BountyContract>>? Contracts = null;
+
+    /// <summary>
+    ///     A cached list of prototype IDs by their order
+    /// </summary>
+    [DataField]
+    public List<ProtoId<BountyContractCollectionPrototype>> OrderedCollections = new();
 }

@@ -10,7 +10,7 @@
 
 - type: loadoutGroup
   id: PrisonerPDA
-  name: loadout-group-contractor-id
+  name: loadout-group-contractor-pda
   hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - PrisonerPrisonerPDA
@@ -33,6 +33,17 @@
   loadouts:
   - PrisonerEmergencyOxygenTankFilled
   - PrisonerEmergencyNitrogenTankFilled
+  - PrisonerEmergencyOxygenTankFilledSheleg
   fallbacks:
   - PrisonerEmergencyOxygenTankFilled
   - PrisonerEmergencyNitrogenTankFilled
+  - PrisonerEmergencyOxygenTankFilledSheleg
+
+- type: loadoutGroup
+  id: PrisonerWallet
+  name: loadout-group-contractor-wallet
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - PrisonerClothingWalletLeatherPrisoner
+  fallbacks:
+  - PrisonerClothingWalletLeatherPrisoner

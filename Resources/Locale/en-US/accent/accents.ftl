@@ -98,7 +98,7 @@ accent-words-slimes-4 = Bluuump...
 accent-words-slimes-5 = Blabl blump!
 
 # Mothroach
-# accent-words-mothroach-1 = Chirp!
+accent-words-mothroach-1 = Chirp!
 
 # Crab
 accent-words-crab-1 = Click.

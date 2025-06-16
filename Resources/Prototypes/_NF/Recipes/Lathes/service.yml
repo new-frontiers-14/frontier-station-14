@@ -3,7 +3,8 @@
 - type: latheRecipe
   abstract: true
   id: BaseServiceItemsRecipe
-  category: KitchenNF
+  categories:
+  - KitchenNF
   completetime: 1
   materials:
     Steel: 75
@@ -76,7 +77,7 @@
 - type: latheRecipe
   id: FoodCondimentSqueezeBottleClear
   result: FoodCondimentSqueezeBottleClear
-  parent: BaseServiceItemsRecipe  
+  parent: BaseServiceItemsRecipe
   applyMaterialDiscount: false
   materials:
     Plastic: 50
@@ -84,25 +85,85 @@
 - type: latheRecipe
   id: SodiumLightBulb
   result: SodiumLightBulb
-  category: Lights
-  completetime: 2
-  materials:
-    Steel: 50
-    Glass: 50
+  parent: BaseLightRecipe
 
 - type: latheRecipe
   id: ExteriorLightBulb
   result: ExteriorLightBulb
-  category: Lights
-  completetime: 2
-  materials:
-    Steel: 50
-    Glass: 50
+  parent: BaseLightRecipe
 
 - type: latheRecipe
   id: DrinkIceBucketEmpty
   result: DrinkIceBucketEmpty
-  parent: BaseServiceItemsRecipe  
+  parent: BaseServiceItemsRecipe
   completetime: 2
   materials:
     Steel: 100
+
+- type: latheRecipe
+  id: DeskBell
+  result: DeskBell
+  parent: BaseServiceItemsRecipe
+  completetime: 2
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  id: BrbSign
+  result: BrbSign
+  parent: BaseServiceItemsRecipe
+  materials:
+    Cardboard: 200
+
+- type: latheRecipe
+  id: DrinkKegSteel
+  name: lathe-recipe-DrinkKegSteel-name
+  result: DrinkKegSteel
+  completetime: 2
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  id: DrinkKegPlastic
+  name: lathe-recipe-DrinkKegPlastic-name
+  result: DrinkKegPlastic
+  completetime: 2
+  materials:
+    Plastic: 300
+
+- type: latheRecipe
+  id: DrinkKegWood
+  name: lathe-recipe-DrinkKegWood-name
+  result: DrinkKegWood
+  completetime: 2
+  materials:
+    Wood: 300
+
+- type: latheRecipe
+  id: FoodFrozenPopsicleTrash
+  result: FoodFrozenPopsicleTrash # I know, it has 'trash' in the name, but it's used in cooking!
+  completetime: 0.5
+  materials:
+    Wood: 25
+
+- type: latheRecipe
+  id: DrinkWaterCup
+  result: DrinkWaterCup
+  completetime: 0.5
+  materials:
+    Paper: 25
+
+# Smokes
+- type: latheRecipe
+  id: CigPackMcCargo
+  result: CigPackMcCargo
+  completetime: 2
+  applyMaterialDiscount: false
+  categories:
+  - Brand
+  - General
+  - StorageNF
+  materials:
+    Plastic: 100
+    Steel: 100
+    Paper: 100

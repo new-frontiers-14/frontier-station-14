@@ -1,6 +1,6 @@
 using Content.Shared.Species.Components;
 using Content.Shared.Actions;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;

@@ -1,0 +1,33 @@
+# Spawners
+- type: entity
+  name: wyvern spawner
+  id: NFSpawnMobWyvern
+  parent: MarkerBase
+  suffix: AI, Hostile, Random
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+        scale: 0.7, 0.7
+      - sprite: _NF/Mobs/Aliens/Carps/wyvern.rsi
+        scale: 0.5, 0.5
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TableRandomWyvern
+      prob: 1.00
+
+# Tables
+- type: entityTable
+  id: TableRandomWyvern
+  table: !type:AllSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: NFMobRainbowWyvernIce
+      - id: NFMobRainbowWyvernFire
+      - id: NFMobRainbowWyvernCaustic

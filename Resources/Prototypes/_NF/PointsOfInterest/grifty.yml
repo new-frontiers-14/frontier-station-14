@@ -16,6 +16,13 @@
   maximumDistance: 5600
   spawnGroup: Scrapyard
   gridPath: /Maps/_NF/POI/grifty.yml
+  addComponents:
+  - type: StationTransit
+    routes:
+      SpawnPoints: 50
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
 
 - type: gameMap
   id: Grifty
@@ -28,3 +35,4 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: "Grifty's Gas n Grub"
+        - type: BindToStationVariationPassExemption

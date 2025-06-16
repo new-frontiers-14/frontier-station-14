@@ -5,6 +5,7 @@
   name: clurger recipe
   result: FoodBurgerClurger
   time: 10
+  group: Savory
   solids:
     FoodBreadBun: 1
     ClothingHeadMailCarrier: 1
@@ -17,9 +18,114 @@
   name: rosy mothroachburger recipe
   result: FoodBurgerRosyMothRoach
   time: 10
+  group: Savory
   solids:
     FoodBreadBun: 1
     MobRosyMothroach: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerRed
+  name: red pretty burger recipe
+  result: PrettyBurgerRed
+  time: 10
+  group: Savory
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonRed: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerOrange
+  name: orange pretty burger recipe
+  result: PrettyBurgerOrange
+  time: 10
+  group: Savory
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonOrange: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerYellow
+  name: yellow pretty burger recipe
+  result: PrettyBurgerYellow
+  time: 10
+  group: Savory
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonYellow: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerGreen
+  name: green pretty burger recipe
+  result: PrettyBurgerGreen
+  time: 10
+  group: Savory
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonGreen: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerBlue
+  name: blue pretty burger recipe
+  result: PrettyBurgerBlue
+  time: 10
+  group: Savory
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonBlue: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerPurple
+  name: purple pretty burger recipe
+  result: PrettyBurgerPurple
+  time: 10
+  group: Savory
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonPurple: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerWhite
+  name: white pretty burger recipe
+  result: PrettyBurgerWhite
+  time: 10
+  group: Savory
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonWhite: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerBlack
+  name: black pretty burger recipe
+  result: PrettyBurgerBlack
+  time: 10
+  group: Savory
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    CrayonBlack: 1
   recipeType:
   - Oven
 
@@ -30,6 +136,7 @@
   name: avocado toast recipe
   result: FoodBreadAvocadoToast
   time: 5
+  group: Breads
   solids:
     FoodBreadPlainSlice: 1
     FoodAvocadoSlice: 1
@@ -41,9 +148,11 @@
   name: breakfast bagel recipe
   result: FoodMealBreakfastBagel
   time: 5
+  group: Breakfast
+  reagents:
+    Egg: 12
   solids:
     FoodBagel: 1
-    FoodEgg: 2
     FoodAvocadoSlice: 1
     FoodCheeseSlice: 1
   recipeType:
@@ -54,9 +163,11 @@
   name: poppyseed breakfast bagel recipe
   result: FoodMealBreakfastBagelPoppy
   time: 5
+  group: Breakfast
+  reagents:
+    Egg: 12
   solids:
     FoodBagelPoppy: 1
-    FoodEgg: 2
     FoodAvocadoSlice: 1
     FoodCheeseSlice: 1
   recipeType:
@@ -67,6 +178,7 @@
   name: cucumber sandwich recipe
   result: FoodMealCucumberSandwich
   time: 5
+  group: Breads
   solids:
     FoodBreadPlainSlice: 2
     FoodCucumberSlice: 4
@@ -76,6 +188,70 @@
   recipeType:
   - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedChevreChaudCotton
+  name: cotton chevre chaud recipe
+  result: FoodBakedChevreChaudCotton
+  time: 5
+  group: Breads
+  solids:
+    FoodChevreSlice: 1
+    FoodBreadBaguetteCottonSlice: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+# Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
+
+- type: microwaveMealRecipe
+  id: RecipeCuredCarp
+  name: cured carp
+  result: FoodCuredCarp
+  time: 5
+  group: Savory # TODO: move to ingredients
+  solids:
+    FoodMeatFish: 1
+  reagents:
+    Stellibinin: 10
+  recipeType:
+  - Assembler
+
+# Birb
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedWholeChicken
+  name: whole baked chicken
+  result: FoodMeatWholeChickenCooked
+  time: 20
+  group: Meats
+  solids:
+    FoodMeatWholeChicken: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedWholeDuck
+  name: whole baked duck
+  result: FoodMeatWholeDuckCooked
+  time: 20
+  group: Meats
+  solids:
+    FoodMeatWholeDuck: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedWholePenguin
+  name: whole baked penguin
+  result: FoodMeatWholePenguinCooked
+  time: 20
+  group: Meats
+  solids:
+    FoodMeatWholePenguin: 1
+  recipeType:
+  - Oven
+
+
 # Sushi
 
 - type: microwaveMealRecipe
@@ -83,6 +259,7 @@
   name: avocado sushi recipe
   result: FoodMealAvocadoSushi
   time: 5
+  group: Savory
   solids:
     FoodAvocadoSlice: 2
     FoodCarrot: 1
@@ -98,10 +275,27 @@
   name: carp sushi recipe
   result: FoodMealCarpSushi
   time: 5
+  group: Savory
   solids:
     FoodAvocadoSlice: 2
     FoodCucumberSlice: 2
     FoodMeatFish: 1
+  reagents:
+    Rice: 15
+    Water: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeCuredCarpSushi
+  name: fresh fish sushi recipe
+  result: CuredCarpSushi
+  time: 5
+  group: Savory
+  solids:
+    FoodAvocadoSlice: 2
+    FoodCucumberSlice: 2
+    FoodCuredCarp: 1
   reagents:
     Rice: 15
     Water: 10
@@ -115,6 +309,7 @@
   name: greek salad recipe
   result: FoodSaladGreek
   time: 5
+  group: Salad
   reagents:
     Vinaigrette: 5
   solids:
@@ -130,6 +325,7 @@
   name: avocado salad recipe
   result: FoodSaladAvocado
   time: 5
+  group: Salad
   reagents:
     OilOlive: 5
     JuiceLime: 5
@@ -141,6 +337,22 @@
   recipeType:
   - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeCottonSalad
+  name: cotton salad recipe
+  result: FoodMothCottonSalad
+  time: 5
+  group: MothFood
+  reagents:
+    OilOlive: 5
+  solids:
+    FoodBowlBig: 1
+    FoodBreadCottonSlice: 1
+    FoodCheeseSlice: 1
+    FoodAmbrosiaVulgaris: 3
+  recipeType:
+  - Assembler
+
 # Fryer Prep
 
 - type: microwaveMealRecipe
@@ -148,6 +360,7 @@
   name: battered chicken recipe
   result: FoodMeatChickenBattered
   time: 5
+  group: Savory # TODO: move to ingredients
   reagents:
     Flour: 5
     Egg: 6
@@ -160,12 +373,40 @@
   id: RecipeBatteredChickenCutlet
   name: battered chicken cutlet recipe
   result: FoodMeatChickenCutletBattered
+  group: Savory # TODO: move to ingredients
   time: 2 # ~5 seconds for three
   reagents:
     Flour: 1.5 # ~1/3 of a click
     Egg: 2 # 1/3 of an egg
   solids:
     FoodMeatChickenCutlet: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeBatteredCuredCarp
+  name: battered fish recipe
+  result: FoodCuredCarpBattered
+  group: Savory
+  time: 5
+  reagents:
+    Flour: 5
+    Egg: 6
+  solids:
+    FoodCuredCarp: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeBatteredOnionRings
+  name: battered onion rings recipe
+  result: FoodOnionRingsBattered
+  time: 2 # ~5 seconds for three
+  reagents:
+    Flour: 1.5 # ~1/3 of a click
+    Egg: 2 # 1/3 of an egg
+  solids:
+    FoodOnionSlice: 1
   recipeType:
   - Assembler
 
@@ -176,6 +417,7 @@
   name: uncooked jelly donut recipe
   result: FoodDonutUncookedJelly
   time: 5
+  group: Dessert
   reagents:
     JuiceBerry: 2
     Sugar: 2
@@ -189,6 +431,7 @@
   name: donut recipe
   result: FoodDonutHomer
   time: 5
+  group: Dessert
   reagents:
     JuiceBerry: 2
     Sugar: 2
@@ -202,6 +445,7 @@
   name: chaos donut recipe
   result: FoodDonutChaos
   time: 5
+  group: Dessert
   solids:
     MaterialBluespace: 1
     FoodDonutPlain: 1
@@ -213,6 +457,7 @@
   name: meat donut recipe
   result: FoodDonutMeat
   time: 5
+  group: Dessert
   solids:
     FoodMeatCutletCooked: 1
     FoodDonutPlain: 1
@@ -224,6 +469,7 @@
   name: pink donut recipe
   result: FoodDonutPink
   time: 5
+  group: Dessert
   reagents:
     JuiceBerry: 2
   solids:
@@ -236,6 +482,7 @@
   name: spaceman's donut recipe
   result: FoodDonutSpaceman
   time: 5
+  group: Dessert
   reagents:
     PolypyryliumOligomers: 2
   solids:
@@ -249,6 +496,7 @@
   name: apple donut recipe
   result: FoodDonutApple
   time: 5
+  group: Dessert
   reagents:
     JuiceApple: 2
   solids:
@@ -261,6 +509,7 @@
   name: caramel donut recipe
   result: FoodDonutCaramel
   time: 5
+  group: Dessert
   reagents:
     Cream: 2
     Sugar: 2
@@ -274,6 +523,7 @@
   name: chocolate donut recipe
   result: FoodDonutChocolate
   time: 5
+  group: Dessert
   reagents:
     CocoaPowder: 2
     Sugar: 2
@@ -287,6 +537,7 @@
   name: blue pumpkin donut recipe
   result: FoodDonutBluePumpkin
   time: 5
+  group: Dessert
   reagents:
     JuiceBluePumpkin: 2
   solids:
@@ -299,6 +550,7 @@
   name: bungo donut recipe
   result: FoodDonutBungo
   time: 5
+  group: Dessert
   reagents:
     JuiceBungo: 2
   solids:
@@ -311,6 +563,7 @@
   name: matcha donut recipe
   result: FoodDonut
   time: 5
+  group: Dessert
   reagents:
     TeaPowder: 2
     Sugar: 2
@@ -324,6 +577,7 @@
   name: sweet pea donut recipe
   result: FoodDonutSweetpea
   time: 5
+  group: Dessert
   reagents:
     LaughinSyrup: 2
   solids:
@@ -336,6 +590,7 @@
   name: jelly-donut recipe
   result: FoodDonutJellyHomer
   time: 5
+  group: Dessert
   reagents:
     PinkDrink: 2
     Sugar: 2
@@ -349,6 +604,7 @@
   name: pink jelly-donut recipe
   result: FoodDonutJellyPink
   time: 5
+  group: Dessert
   reagents:
     PinkDrink: 2
   solids:
@@ -361,6 +617,7 @@
   name: spaceman's jelly-donut recipe
   result: FoodDonutJellySpaceman
   time: 5
+  group: Dessert
   reagents:
     PolypyryliumOligomers: 2
   solids:
@@ -373,6 +630,7 @@
   name: apple jelly-donut recipe
   result: FoodDonutJellyApple
   time: 5
+  group: Dessert
   reagents:
     JuiceApple: 2
   solids:
@@ -385,6 +643,7 @@
   name: caramel jelly-donut recipe
   result: FoodDonutJellyCaramel
   time: 5
+  group: Dessert
   reagents:
     Cream: 2
     Sugar: 2
@@ -398,6 +657,7 @@
   name: chocolate jelly-donut recipe
   result: FoodDonutJellyChocolate
   time: 5
+  group: Dessert
   reagents:
     CocoaPowder: 2
     Sugar: 2
@@ -411,6 +671,7 @@
   name: blue pumpkin jelly-donut
   result: FoodDonutJellyBluePumpkin
   time: 5
+  group: Dessert
   reagents:
     JuiceBluePumpkin: 2
   solids:
@@ -423,6 +684,7 @@
   name: bungo jelly-donut
   result: FoodDonutJellyBungo
   time: 5
+  group: Dessert
   reagents:
     JuiceBungo: 2
   solids:
@@ -435,6 +697,7 @@
   name: matcha jelly-donut
   result: FoodDonutJelly
   time: 5
+  group: Dessert
   reagents:
     TeaPowder: 2
     Sugar: 2
@@ -448,6 +711,7 @@
   name: sweet pea jelly-donut
   result: FoodDonutJellySweetpea
   time: 5
+  group: Dessert
   reagents:
     LaughinSyrup: 2
   solids:
@@ -460,6 +724,7 @@
 #   id: RecipeDonutJellySlugcat
 #   name: slugcat jelly-donut
 #   result: FoodDonutJellySweetpea
+#   group: Dessert
 #   time: 5
 #   reagents:
 #     Happiness: 1
@@ -476,6 +741,7 @@
   name: cat crispy recipe
   result: MobCatCrispy
   time: 15
+  group: Savory
   reagents:
     Cornoil: 10
     Cognizine: 5
@@ -491,6 +757,7 @@
   name: dragon omelette recipe
   result: FoodMealDragonOmelette
   time: 15
+  group: Breakfast
   solids:
     FoodButter: 1
   reagents:
@@ -507,6 +774,7 @@
   name: raisins recipe
   result: ReagentContainerRaisin # A little bit cursed, spawning a bag
   time: 30
+  group: Dessert # move to ingredients
   solids:
     FoodGrape: 5
   recipeType:
@@ -518,6 +786,7 @@
   name: pickle recipe
   result: FoodPickle
   time: 5
+  group: Savory # move to ingredients
   solids:
     FoodCucumber: 1
   reagents:
@@ -530,6 +799,7 @@
   name: poached pears recipe
   result: FoodMealPoachedPears
   time: 10
+  group: Dessert
   solids:
     FoodBowlBig: 1
     FoodPear: 3
@@ -544,6 +814,7 @@
   name: pears belle helene recipe
   result: FoodMealPearsBelleHelene
   time: 10
+  group: Dessert
   solids:
     FoodBowlBig: 1
     FoodPear: 3
@@ -559,6 +830,7 @@
   name: pear muffin recipe
   result: FoodBakedMuffinPear
   time: 10
+  group: Dessert
   solids:
     FoodPear: 1
     FoodSnackChocolateBar: 1
@@ -574,6 +846,7 @@
   name: pear and cheese tart recipe
   result: FoodTartPearCheese
   time: 15
+  group: Pie
   solids:
     FoodPlateTin: 1
     FoodDoughPie: 1
@@ -587,6 +860,7 @@
   name: honey bun recipe
   result: FoodBakedBunHoney
   time: 5
+  group: Breads
   solids:
     FoodBreadBun: 1
   reagents:
@@ -599,6 +873,7 @@
   name: honey challah recipe
   result: FoodBreadChallah
   time: 15
+  group: Breads
   solids:
     FoodDoughRope: 3
     PoppySeeds: 1
@@ -612,6 +887,7 @@
   name: honey glazed ham recipe
   result: FoodMeatGlazedHam
   time: 15
+  group: Savory
   solids:
     FoodMeat: 2
   reagents:
@@ -625,6 +901,7 @@
   name: honey apple streusel pie
   result: FoodPieAppleHoney
   time: 15
+  group: Pie
   solids:
     FoodPlateTin: 1
     FoodDoughPie: 1
@@ -640,8 +917,9 @@
   name: apple strudel bite
   result: FoodBakedAppleStrudelBite
   time: 5
+  group: BarsAndCookies
   solids:
-    FoodCroissantRaw: 1
+    FoodDoughPastryBaseRaw: 1
     FoodApple: 1
     FoodButterSlice: 1
   reagents:
@@ -649,28 +927,28 @@
   recipeType:
   - Oven
 
-# NOT ACTUAL FOOD
-
 - type: microwaveMealRecipe
-  id: RecipeDriedShrooms
-  name: dried shrooms recipe
-  result: ShroomsDried
-  time: 15
+  id: RecipeCinnamonRoll
+  name: cinnamon roll
+  result: FoodBakedCinnamonRoll
+  time: 5
+  group: Dessert
   solids:
-    FoodSpaceshroom: 1
-    FoodMushroom: 1
-    FoodFlyAmanita: 1
+    FoodDoughPastryBaseRaw: 1
+  reagents:
+    Sugar: 5
+    Everyspice: 5
   recipeType:
   - Oven
-  - Microwave
 
-# ramen
+# Pasta and Noodles
 
 - type: microwaveMealRecipe
   id: RecipeBasicNoodles
   name: basic noodles
   result: FoodMealBasicNoodles
   time: 10
+  group: Pasta
   solids:
     FoodBowlBig: 1
     FoodNoodlesBoiled: 1
@@ -685,14 +963,15 @@
   name: miso noodles
   result: FoodMealMisoNoodles
   time: 20
+  group: Pasta
   solids:
     FoodBowlBig: 1
     FoodNoodlesBoiled: 1
     FoodSoybeans: 1
-    FoodEgg: 1
     FoodButterSlice: 1
   reagents:
     Water: 20
+    Egg: 6
   recipeType:
   - Oven
 
@@ -701,39 +980,42 @@
   name: shio noodles
   result: FoodMealShioNoodles
   time: 15
+  group: Pasta
   solids:
     FoodBowlBig: 1
     FoodNoodlesBoiled: 1
     FoodCorn: 1
-  reagents:    
+  reagents:
     Water: 20
   recipeType:
   - Oven
 
 - type: microwaveMealRecipe
   id: RecipeShoyuNoodles
-  name: shoyunoodles
+  name: shoyu noodles
   result: FoodMealShoyuNoodles
   time: 20
+  group: Pasta
   solids:
     FoodBowlBig: 1
     FoodNoodlesBoiled: 1
-    FoodEgg: 1
     FoodCorn: 1
     FoodMeatBacon: 1
   reagents:
     Soysauce: 10
     Water: 10
+    Egg: 6
   recipeType:
   - Oven
 
 - type: microwaveMealRecipe
   id: RecipeSpicyNoodles
-  name: spicynoodles
+  name: spicy noodles
   result: FoodMealSpicyNoodles
   time: 20
+  group: Pasta
   solids:
-    FoodBowlBig: 1 
+    FoodBowlBig: 1
     FoodNoodlesBoiled: 1
     FoodTofuSlice: 1
     FoodChiliPepper: 1
@@ -744,12 +1026,13 @@
   - Oven
 
 - type: microwaveMealRecipe
-  id: RecipeTonkatsuNoodles
-  name: tonkatsu noodles
-  result: FoodMealTonkatsuNoodles
+  id: RecipeTonkotsuNoodles
+  name: tonkotsu noodles
+  result: FoodMealTonkotsuNoodles
   time: 20
+  group: Pasta
   solids:
-    FoodBowlBig: 1   
+    FoodBowlBig: 1
     FoodNoodlesBoiled: 1
     FoodSoybeans: 1
     FoodGarlic: 1
@@ -759,3 +1042,246 @@
     Water: 15
   recipeType:
   - Oven
+
+# Frozen desserts
+
+- type: microwaveMealRecipe
+  id: RecipeIceCreamSandwich
+  name: ice-cream sandwich
+  result: FoodFrozenSandwich
+  time: 5
+  group: Dessert
+  solids:
+    FoodCakeChocolateSlice: 2 # seems cursed, but ice cream sandwiches are actually made with cake
+  reagents:
+    IceCream: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeIceCreamSandwichStrawberry
+  name: strawberry ice-cream sandwich
+  result: FoodFrozenSandwichStrawberry
+  time: 5
+  group: Dessert
+  solids:
+    FoodCakePlainSlice: 2
+  reagents:
+    IceCream: 8
+    JuiceBerry: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePopsicleOrange
+  name: orange creamsicle
+  result: FoodFrozenPopsicleOrange
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenPopsicleTrash: 1 # recycling!
+  reagents:
+    IceCream: 8
+    JuiceOrange: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePopsicleBerry
+  name: berry creamsicle
+  result: FoodFrozenPopsicleBerry
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    IceCream: 8
+    JuiceBerry: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePopsicleLicorice
+  name: licorice creamsicle
+  result: FoodFrozenPopsicleLicorice
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    IceCream: 8
+    Everyspice: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePopsicleJumbo
+  name: jumbo popsicle
+  result: FoodFrozenPopsicleJumbo
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenPopsicleTrash: 1
+    FoodSnackChocolateBar: 1
+  reagents:
+    IceCream: 8
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeBase
+  name: sweet snowcone
+  result: FoodFrozenSnowconeBase
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 10
+    Sugar: 4
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconePlain
+  name: flavorless snowcone
+  result: FoodFrozenSnowcone
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeBerry
+  name: berry snowcone
+  result: FoodFrozenSnowconeBerry
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 10
+    JuiceBerry: 4
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeFruit
+  name: fruit salad snowcone
+  result: FoodFrozenSnowconeFruit
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 8
+    JuiceLemon: 2
+    JuiceLime: 2
+    JuiceOrange: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeClown
+  name: clowncone
+  result: FoodFrozenSnowconeClown
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 10
+    Laughter: 4
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeMime
+  name: mime snowcone
+  result: FoodFrozenSnowconeMime
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 10
+    Nothing: 4 # the sound of silence
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSnowconeRainbow
+  name: rainbow snowcone
+  result: FoodFrozenSnowconeRainbow
+  time: 5
+  group: Dessert
+  solids:
+    DrinkWaterCup: 1
+    GroundCannabisRainbow: 1
+  reagents:
+    Ice: 10
+    Sugar: 4 # because it's sweet
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeSundae
+  name: ice cream sundae
+  result: FoodFrozenSundae
+  time: 5
+  group: Dessert
+  solids:
+    FoodBakedWaffleCone: 1
+    FoodCherry: 1 # critical
+  reagents:
+    IceCream: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeFreezy
+  name: space freezy
+  result: FoodFrozenFreezy
+  time: 5
+  group: Dessert
+  solids:
+    FoodBakedWaffleCone: 1
+  reagents:
+    IceCream: 8
+    JuiceBerry: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeCornuto
+  name: choco horn
+  result: FoodFrozenCornuto
+  time: 5
+  group: Dessert
+  solids:
+    FoodBakedWaffleCone: 1
+    FoodSnackChocolateBar: 1
+  reagents:
+    IceCream: 8
+  recipeType:
+  - Assembler
+
+# NOT ACTUAL FOOD
+
+- type: microwaveMealRecipe
+  id: RecipeDriedShrooms
+  name: dried shrooms recipe
+  result: ShroomsDried
+  time: 15
+  group: Medicinal
+  solids:
+    FoodSpaceshroom: 1
+    FoodMushroom: 1
+    FoodFlyAmanita: 1
+  recipeType:
+  - Oven
+  - Microwave

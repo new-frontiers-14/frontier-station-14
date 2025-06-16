@@ -1,8 +1,8 @@
 using System.Threading;
 using Content.Server.Preferences.Managers;
 using Content.Server.GameTicking;
-using Content.Shared.Bank;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared.Preferences;
 using Robust.Shared.Player;
 using System.Diagnostics.CodeAnalysis;
@@ -181,7 +181,7 @@ public sealed partial class BankSystem : SharedBankSystem
             _log.Info($"TryBankWithdraw: {session.UserId} tried to adjust the balance of {profile.Name}, but they were not in the user's character set.");
             return false;
         }
-        _prefsManager.SetProfile(session.UserId, index, newProfile);
+        _prefsManager.SetProfile(session.UserId, index, newProfile, validateFields: false);
         newBalance = balance;
         // Update any active admin UI with new balance
         RaiseLocalEvent(new BalanceChangedEvent(session, newBalance.Value));
@@ -216,7 +216,7 @@ public sealed partial class BankSystem : SharedBankSystem
             _log.Info($"{session.UserId} tried to adjust the balance of {profile.Name}, but they were not in the user's character set.");
             return false;
         }
-        _prefsManager.SetProfile(session.UserId, index, newProfile);
+        _prefsManager.SetProfile(session.UserId, index, newProfile, validateFields: false);
         // Update any active admin UI with new balance
         RaiseLocalEvent(new BalanceChangedEvent(session, newBalance.Value));
         return true;

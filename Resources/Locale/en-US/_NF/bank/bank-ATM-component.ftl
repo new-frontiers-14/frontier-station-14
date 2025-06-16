@@ -10,6 +10,8 @@ bank-atm-menu-deposit-button = Deposit
 bank-atm-reason-label = For:{" "}
 bank-atm-description-label = Description:{" "}
 
+vending-machine-menu-cash-slot-label = Cash Slot:{" "}
+
 bank-insufficient-funds = Insufficient Funds
 bank-atm-menu-transaction-denied = Transaction Denied
 bank-atm-menu-deposit-successful = Deposit Accepted

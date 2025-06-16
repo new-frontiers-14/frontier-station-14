@@ -1,6 +1,6 @@
 - type: tile
   id: FloorPlanetDirt
-  name: tiles-dirt-floor
+  name: tiles-dirt-floor-undiggable # Frontier: add undiggable
   sprite: /Textures/Tiles/Planet/dirt.rsi/dirt.png
   variants: 4
   placementVariants:
@@ -125,7 +125,6 @@
   baseTurf: FloorDirt
   itemDrop: FloorTileItemSnow # Delta V
   deconstructTools: [ Digging ] # Frontier
-  # canShovel: true # Delta V # Frontier
   isSubfloor: true
   footstepSounds:
     collection: FootstepSnow
@@ -142,9 +141,7 @@
   friction: 0.05
   heatCapacity: 10000
   weather: true
-  mobFriction: 0.5
-  mobFrictionNoInput: 0.05
-  mobAcceleration: 2
+  mobAcceleration: 0.1
   indestructible: true
 
 # Dug snow
