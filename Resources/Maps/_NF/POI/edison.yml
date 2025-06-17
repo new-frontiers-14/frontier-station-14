@@ -12950,12 +12950,41 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,30.5
       parent: 2
-- proto: Firelock
+- proto: FirelockGlass
   entities:
+  - uid: 40
+    components:
+    - type: Transform
+      pos: 6.5,-1.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 3945
+      - 3944
+      - 3950
+  - uid: 47
+    components:
+    - type: Transform
+      pos: -4.5,-1.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 3945
+      - 3944
+      - 3950
+  - uid: 124
+    components:
+    - type: Transform
+      pos: -5.5,-1.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 3945
+      - 3944
+      - 3950
   - uid: 539
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -10.5,2.5
       parent: 2
   - uid: 549
@@ -13167,73 +13196,6 @@ entities:
       deviceLists:
       - 3124
       - 1081
-  - uid: 1755
-    components:
-    - type: Transform
-      pos: 5.5,25.5
-      parent: 2
-  - uid: 1756
-    components:
-    - type: Transform
-      pos: 7.5,25.5
-      parent: 2
-  - uid: 2595
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,4.5
-      parent: 2
-  - uid: 2772
-    components:
-    - type: Transform
-      pos: 3.5,30.5
-      parent: 2
-  - uid: 2835
-    components:
-    - type: Transform
-      pos: -2.5,30.5
-      parent: 2
-  - uid: 2940
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 23.5,20.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 1081
-- proto: FirelockGlass
-  entities:
-  - uid: 40
-    components:
-    - type: Transform
-      pos: 6.5,-1.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 3945
-      - 3944
-      - 3950
-  - uid: 47
-    components:
-    - type: Transform
-      pos: -4.5,-1.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 3945
-      - 3944
-      - 3950
-  - uid: 124
-    components:
-    - type: Transform
-      pos: -5.5,-1.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 3945
-      - 3944
-      - 3950
   - uid: 1712
     components:
     - type: Transform
@@ -13640,6 +13602,16 @@ entities:
     - type: Transform
       pos: -4.5,25.5
       parent: 2
+  - uid: 1755
+    components:
+    - type: Transform
+      pos: 5.5,25.5
+      parent: 2
+  - uid: 1756
+    components:
+    - type: Transform
+      pos: 7.5,25.5
+      parent: 2
   - uid: 1757
     components:
     - type: Transform
@@ -13705,6 +13677,29 @@ entities:
       - 3945
       - 3944
       - 3950
+  - uid: 2595
+    components:
+    - type: Transform
+      pos: 6.5,4.5
+      parent: 2
+  - uid: 2772
+    components:
+    - type: Transform
+      pos: 3.5,30.5
+      parent: 2
+  - uid: 2835
+    components:
+    - type: Transform
+      pos: -2.5,30.5
+      parent: 2
+  - uid: 2940
+    components:
+    - type: Transform
+      pos: 23.5,20.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 1081
 - proto: Gaslock
   entities:
   - uid: 355
