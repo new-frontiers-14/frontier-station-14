@@ -17,8 +17,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Robust.Shared.Audio; // frontier
-using Robust.Shared.Audio.Systems; // frontier
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -33,7 +31,7 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!; // frontier
+
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
 
@@ -78,9 +76,9 @@ public sealed class RadioSystem : EntitySystem
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
-    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true, SoundSpecifier? sound = null) // Frontier: added frequency , Added Sound modifier for event system
+    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true) // Frontier: added frequency
     {
-        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, frequency: frequency, escapeMarkup: escapeMarkup,sound); // Frontier: added frequency
+        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, frequency: frequency, escapeMarkup: escapeMarkup); // Frontier: added frequency
     }
 
     /// <summary>
@@ -88,8 +86,7 @@ public sealed class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
-    /// <param name="sound">Sound spesifier for the audio file to be played along with the message</param>  // frontier
-    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true, SoundSpecifier? sound = null) // Nuclear-14: add frequency
+    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true) // Nuclear-14: add frequency
     {
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
@@ -158,67 +155,45 @@ public sealed class RadioSystem : EntitySystem
 
         if (frequency == null) // Nuclear-14
             frequency = GetFrequency(messageSource, channel); // Nuclear-14
-        var playertarget = Filter.Empty();
 
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
             if (!radio.ReceiveAllChannels)
             {
                 if (!radio.Channels.Contains(channel.ID) || (TryComp<IntercomComponent>(receiver, out var intercom) &&
-                                                                 !intercom.SupportedChannels.Contains(channel.ID)))
+                                                             !intercom.SupportedChannels.Contains(channel.ID)))
                     continue;
             }
 
-            if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency)
-                continue;
+            if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency) // Nuclear-14
+                continue; // Nuclear-14
 
             if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
                 continue;
 
+            // don't need telecom server for long range channels or handheld radios and intercoms
             var needServer = !channel.LongRange && !sourceServerExempt;
             if (needServer && !hasActiveServer)
                 continue;
 
+            // check if message can be sent to specific receiver
             var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);
             RaiseLocalEvent(ref attemptEv);
             RaiseLocalEvent(receiver, ref attemptEv);
             if (attemptEv.Cancelled)
                 continue;
 
-            // Send the message
+            // send the message
             RaiseLocalEvent(receiver, ref ev);
-
-            // Frontier : handles sound path playing to the people with the radio & handling a odd edge case
-            var parent = receiver;
-            ActorComponent? actor = null;
-
-            if (TryComp<ActorComponent>(parent, out actor))
-            {
-                // We found the actor directly
-                playertarget.AddPlayer(actor.PlayerSession);
-            }
-            else
-            {
-                // Walk exactly 1 transform up
-                parent = Transform(parent).ParentUid;
-
-                if (TryComp<ActorComponent>(parent, out actor))
-                {
-                    // We found the actor on the parent
-                    playertarget.AddPlayer(actor.PlayerSession);
-                }
-            }
-
-            // Play the radio sound for all collected players
-            Audio.PlayGlobal(sound, playertarget, true); // End of frontier 
-            if (name != Name(messageSource))
-                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
-            else
-                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
-
-            _replay.RecordServerMessage(chat);
-            _messages.Remove(message);
         }
+
+        if (name != Name(messageSource))
+            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
+        else
+            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
+
+        _replay.RecordServerMessage(chat);
+        _messages.Remove(message);
     }
 
     /// <inheritdoc cref="TelecomServerComponent"/>
