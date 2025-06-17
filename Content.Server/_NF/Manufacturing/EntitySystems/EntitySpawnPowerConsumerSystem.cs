@@ -62,9 +62,9 @@ public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
             args.PushMarkup(Loc.GetString("entity-spawn-power-consumer-examine", ("value", power.DrawRate)));
 
             if (power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0)
-                args.PushMarkup("power-receiver-component-on-examine-powered");
+                args.PushMarkup(Loc.GetString("power-receiver-component-on-examine-powered"));
             else
-                args.PushMarkup("power-receiver-component-on-examine-unpowered");
+                args.PushMarkup(Loc.GetString("power-receiver-component-on-examine-unpowered"));
         }
     }
 
