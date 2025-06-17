@@ -80,6 +80,7 @@ guide-entry-shipyard-loader = Loader
 guide-entry-shipyard-lyrae = Lyrae
 guide-entry-shipyard-mccargo = McCargo
 guide-entry-shipyard-mcdelivery = McDelivery
+guide-entry-shipyard-metastable = Metastable II
 guide-entry-shipyard-nightlight = Nightlight
 guide-entry-shipyard-nook = Nook
 guide-entry-shipyard-pathfinder = Pathfinder
