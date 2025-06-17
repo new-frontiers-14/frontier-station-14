@@ -44,8 +44,8 @@ public sealed partial class AnomalySystem
                 return;
             }
 
-            // if they're within the max distance, leave the link as is
-            if (_coords.InRange(uid, anom, comp.MaxDistance))
+            // if they're within the max distance and are an infection anom, leave the link as is
+            if (HasComp<InnerBodyAnomalyComponent>(anom) && _coords.InRange(uid, anom, comp.MaxDistance))
                 return;
 
             vesselComp.Anomaly = null;
