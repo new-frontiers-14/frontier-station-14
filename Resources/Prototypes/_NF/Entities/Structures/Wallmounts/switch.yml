@@ -13,3 +13,87 @@
   components:
   - type: AccessReader
     access: [["Pirate"]]
+
+- type: entity
+  id: ButtonFrameThruster
+  parent: ButtonFrame
+  suffix: thruster
+  description: It's a frame for a switch that toggles thrusters on or off.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: thruster
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameThrusterNode
+
+- type: entity
+  id: ButtonFrameShutter
+  parent: ButtonFrame
+  suffix: Shutter
+  description: It's a frame for a switch that opens or closes shutters.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: grey
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameShutterNode
+
+- type: entity
+  id: ButtonFrameBolts
+  parent: ButtonFrame
+  suffix: Bolts
+  description: It's a frame for a switch that bolts airlocks.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: caution
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameBoltsNode
+
+- type: entity
+  id: ButtonFrameBlastDoor
+  parent: ButtonFrame
+  suffix: BlastDoor
+  description: It's a frame for a switch that opens or closes blast doors.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: caution
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameBlastDoorNode
+
+- type: entity
+  id: ButtonFrameEmergencyVent
+  parent: ButtonFrame
+  suffix: EmergencyVent
+  description: It's a frame for a switch that exposes a room to space.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: caution_security
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameEmergencyVentNode
+
+- type: entity
+  id: ButtonFrameLights
+  parent: ButtonFrame
+  suffix: Lights
+  description: It's a frame for a switch that toggles lights.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Structures/Wallmounts/switch_frame.rsi
+    state: grey
+  - type: Construction
+    graph: ButtonFrameGraph
+    node: ButtonFrameLightsNode
