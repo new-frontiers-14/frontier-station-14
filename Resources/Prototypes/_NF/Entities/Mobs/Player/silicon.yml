@@ -1,0 +1,860 @@
+
+
+#region Civilian
+- type: entity
+  id: NFAiHeldCivilian
+  parent: AiHeld
+  description: Components added / removed from an entity that gets inserted into an AI core.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Traffic
+    - Handheld
+    - Engineering
+    - Medical
+    - Science
+    - Supply
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Traffic
+    - Handheld
+    - Engineering
+    - Medical
+    - Science
+    - Supply
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+      enum.GeneralStationRecordConsoleKey.Key:
+        type: GeneralStationRecordConsoleBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+      enum.CommunicationsConsoleUiKey.Key:
+        type: CommunicationsConsoleBoundUserInterface
+      enum.HolopadUiKey.InteractionWindow:
+        type: HolopadBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+      enum.CrewMonitoringUIKey.Key:
+        toggleAction: ActionAGhostShowCrewMonitoring
+      enum.GeneralStationRecordConsoleKey.Key:
+        toggleAction: ActionAGhostShowStationRecords
+      enum.CommunicationsConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowCommunications
+      enum.HolopadUiKey.InteractionWindow:
+        toggleAction: ActionAGhostShowHolopad
+  - type: Telephone
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    listeningRange: 2
+    speakerVolume: Speak
+    transmissionRange: Map
+    unlistedNumber: false
+    requiresPower: false
+    allowSourceTransmit: true
+  - type: Holopad
+
+- type: entity
+  id: NFPlayerStationAiEmptyCivilian
+  name: AI Core
+  description: The latest in Artificial Intelligences.
+  parent:
+  - PlayerStationAiEmpty
+  suffix: Civilian, empty
+  components:
+  - type: ContainerComp
+    proto: NFAiHeldCivilian
+    container: station_ai_mind_slot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Telephone
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    listeningRange: 2
+    speakerVolume: Speak
+    transmissionRange: Map
+    unlistedNumber: false
+    requiresPower: false
+
+
+
+# The job-ready version of an AI spawn.
+- type: entity
+  id: NFPlayerStationAiCivilian
+  parent: NFPlayerStationAiEmptyCivilian
+  suffix: Civilian,Job spawn
+  components:
+  - type: ContainerSpawnPoint
+    containerId: station_ai_mind_slot
+    job: ShuttleAiCivilian
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    layers:
+    - state: base
+    - state: ai
+      shader: unshaded
+
+- type: entity
+  id: NFStationAiBrainCivilian
+  parent: PositronicBrain
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: Sprite
+    # Once it's in a core it's pretty much an abstract entity at that point.
+    visible: false
+  - type: BlockMovement
+    blockInteraction: false
+  - type: SiliconLawProvider
+    laws: Crewsimov
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+  - type: ComplexInteraction
+  - type: Actions
+  - type: Access
+    tags:
+    - CentralCommand
+    groups:
+    - AllAccess
+    - Silicon
+  - type: Eye
+    drawFov: false
+  - type: Examiner
+  - type: InputMover
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Tag
+    tags:
+    - HideContextMenu
+    - StationAi
+    - NoConsoleSound
+    - CanPilot
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
+  - type: NameIdentifier
+    group: StationAi
+
+#region NFSD
+- type: entity
+  id: NFAiHeldNFSD
+  parent: AiHeld
+  description: Components added / removed from an entity that gets inserted into an AI core.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Traffic
+    - Command
+    - NFSD
+    - Guard
+    - Handheld
+    - Engineering
+    - Medical
+    - Science
+    - Supply
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Traffic
+    - Command
+    - NFSD
+    - Guard
+    - Handheld
+    - Engineering
+    - Medical
+    - Science
+    - Supply
+  - type: HolographicAvatar
+    layerData:
+    - sprite: _NF/Mobs/Silicons/shuttle_ai.rsi
+      state: default-nfsd # for when will want to add custom hologram sprite, hardcoded shader will always make it blue
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+      enum.GeneralStationRecordConsoleKey.Key:
+        type: GeneralStationRecordConsoleBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+      enum.CommunicationsConsoleUiKey.Key:
+        type: CommunicationsConsoleBoundUserInterface
+      enum.HolopadUiKey.InteractionWindow:
+        type: HolopadBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+      enum.CrewMonitoringUIKey.Key:
+        toggleAction: ActionAGhostShowCrewMonitoring
+      enum.GeneralStationRecordConsoleKey.Key:
+        toggleAction: ActionAGhostShowStationRecords
+      enum.CommunicationsConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowCommunications
+      enum.HolopadUiKey.InteractionWindow:
+        toggleAction: ActionAGhostShowHolopad
+  - type: Telephone
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    listeningRange: 2
+    speakerVolume: Speak
+    transmissionRange: Map
+    unlistedNumber: false
+    requiresPower: false
+    allowSourceTransmit: true
+  - type: Holopad
+
+- type: entity
+  id: NFPlayerStationAiEmptyNFSD
+  name: AI Core
+  description: The latest in Artificial Intelligences.
+  parent:
+  - PlayerStationAiEmpty
+  suffix: NFSD, empty
+  components:
+  - type: ContainerComp
+    proto: NFAiHeldNFSD
+    container: station_ai_mind_slot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - type: Telephone
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    listeningRange: 2
+    speakerVolume: Speak
+    transmissionRange: Map
+    unlistedNumber: false
+    requiresPower: false
+
+
+
+# The job-ready version of an AI spawn.
+- type: entity
+  id: NFPlayerStationAiNFSD
+  parent: NFPlayerStationAiEmptyNFSD
+  suffix: NFSD,Job spawn
+  components:
+  - type: ContainerSpawnPoint
+    containerId: station_ai_mind_slot
+    job: ShuttleAiNFSD
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    layers:
+    - state: base
+    - state: ai
+      shader: unshaded
+
+- type: entity
+  id: NFStationAiBrainNFSD
+  parent: PositronicBrain
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: Sprite
+    # Once it's in a core it's pretty much an abstract entity at that point.
+    visible: false
+  - type: BlockMovement
+    blockInteraction: false
+  - type: SiliconLawProvider
+    laws: NFSDmov
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+  - type: ComplexInteraction
+  - type: Actions
+  - type: Access
+    tags:
+    - CentralCommand
+    groups:
+    - AllAccess
+    - Silicon
+  - type: Eye
+    drawFov: false
+  - type: Examiner
+  - type: InputMover
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Tag
+    tags:
+    - HideContextMenu
+    - StationAi
+    - NoConsoleSound
+    - CanPilot
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
+  - type: NameIdentifier
+    group: StationAi
+
+
+#region CentCom
+- type: entity
+  id: NFAiHeldCentCom
+  parent: AiHeld
+  description: Components added / removed from an entity that gets inserted into an AI core.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Traffic
+    - Handheld
+    - Engineering
+    - Medical
+    - Science
+    - Supply
+    - Command
+    - CentCom
+    - Service
+    - Guard
+    - NFSD
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Traffic
+    - Handheld
+    - Engineering
+    - Medical
+    - Science
+    - Supply
+    - Command
+    - CentCom
+    - Service
+    - Guard
+    - NFSD
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+      enum.GeneralStationRecordConsoleKey.Key:
+        type: GeneralStationRecordConsoleBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+      enum.CommunicationsConsoleUiKey.Key:
+        type: CommunicationsConsoleBoundUserInterface
+      enum.HolopadUiKey.InteractionWindow:
+        type: HolopadBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+      enum.CrewMonitoringUIKey.Key:
+        toggleAction: ActionAGhostShowCrewMonitoring
+      enum.GeneralStationRecordConsoleKey.Key:
+        toggleAction: ActionAGhostShowStationRecords
+      enum.CommunicationsConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowCommunications
+      enum.HolopadUiKey.InteractionWindow:
+        toggleAction: ActionAGhostShowHolopad
+  - type: Telephone
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    listeningRange: 2
+    speakerVolume: Speak
+    transmissionRange: Map
+    unlistedNumber: false
+    requiresPower: false
+    allowSourceTransmit: true
+  - type: Holopad
+
+- type: entity
+  id: NFPlayerStationAiEmptyCentCom
+  name: AI Core
+  description: The latest in Artificial Intelligences.
+  parent:
+  - PlayerStationAiEmpty
+  suffix: CentCom, empty
+  components:
+  - type: ContainerComp
+    proto: NFAiHeldCentCom
+    container: station_ai_mind_slot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Telephone
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    listeningRange: 2
+    speakerVolume: Speak
+    transmissionRange: Map
+    unlistedNumber: false
+    requiresPower: false
+
+
+
+# The job-ready version of an AI spawn.
+- type: entity
+  id: NFPlayerStationAiCentCom
+  parent: NFPlayerStationAiEmptyCentCom
+  suffix: CentCom,Job spawn
+  components:
+  - type: ContainerSpawnPoint
+    containerId: station_ai_mind_slot
+    job: ShuttleAiCentCom
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    layers:
+    - state: base
+    - state: ai
+      shader: unshaded
+
+- type: entity
+  id: NFStationAiBrainCentCom
+  parent: PositronicBrain
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: Sprite
+    # Once it's in a core it's pretty much an abstract entity at that point.
+    visible: false
+  - type: BlockMovement
+    blockInteraction: false
+  - type: SiliconLawProvider
+    laws: CentComsimov
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+  - type: ComplexInteraction
+  - type: Actions
+  - type: Access
+    tags:
+    - CentralCommand
+    groups:
+    - AllAccess
+    - Silicon
+  - type: Eye
+    drawFov: false
+  - type: Examiner
+  - type: InputMover
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Tag
+    tags:
+    - HideContextMenu
+    - StationAi
+    - NoConsoleSound
+    - CanPilot
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
+  - type: NameIdentifier
+    group: StationAi
+
+#region Freelance
+- type: entity
+  id: NFAiHeldFreelance
+  parent: AiHeld
+  description: Components added / removed from an entity that gets inserted into an AI core.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Traffic
+    - Handheld
+    - Engineering
+    - Medical
+    - Science
+    - Supply
+    - Freelance
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Traffic
+    - Handheld
+    - Engineering
+    - Medical
+    - Science
+    - Supply
+    - Freelance
+  - type: HolographicAvatar
+    layerData:
+    - sprite: _NF/Mobs/Silicons/shuttle_ai.rsi
+      state: default-freelancer # for when will want to add custom hologram sprite, hardcoded shader will always make it blue
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+      enum.GeneralStationRecordConsoleKey.Key:
+        type: GeneralStationRecordConsoleBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+      enum.CommunicationsConsoleUiKey.Key:
+        type: CommunicationsConsoleBoundUserInterface
+      enum.HolopadUiKey.InteractionWindow:
+        type: HolopadBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+      enum.CrewMonitoringUIKey.Key:
+        toggleAction: ActionAGhostShowCrewMonitoring
+      enum.GeneralStationRecordConsoleKey.Key:
+        toggleAction: ActionAGhostShowStationRecords
+      enum.CommunicationsConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowCommunications
+      enum.HolopadUiKey.InteractionWindow:
+        toggleAction: ActionAGhostShowHolopad
+  - type: Telephone
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    listeningRange: 2
+    speakerVolume: Speak
+    transmissionRange: Map
+    unlistedNumber: false
+    requiresPower: false
+    allowSourceTransmit: true
+  - type: Holopad
+
+- type: entity
+  id: NFPlayerStationAiEmptyFreelance
+  name: AI Core
+  description: The latest in Artificial Intelligences.
+  parent:
+  - PlayerStationAiEmpty
+  suffix: Freelance, empty
+  components:
+  - type: ContainerComp
+    proto: NFAiHeldFreelance
+    container: station_ai_mind_slot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Telephone
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    listeningRange: 2
+    speakerVolume: Speak
+    transmissionRange: Map
+    unlistedNumber: false
+    requiresPower: false
+
+
+
+# The job-ready version of an AI spawn.
+- type: entity
+  id: NFPlayerStationAiFreelance
+  parent: NFPlayerStationAiEmptyFreelance
+  suffix: Freelance,Job spawn
+  components:
+  - type: ContainerSpawnPoint
+    containerId: station_ai_mind_slot
+    job: ShuttleAiFreelance
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    layers:
+    - state: base
+    - state: ai
+      shader: unshaded
+
+- type: entity
+  id: NFStationAiBrainFreelance
+  parent: PositronicBrain
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: Sprite
+    # Once it's in a core it's pretty much an abstract entity at that point.
+    visible: false
+  - type: BlockMovement
+    blockInteraction: false
+  - type: SiliconLawProvider
+    laws: Arrrsimov
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+  - type: ComplexInteraction
+  - type: Actions
+  - type: Access
+    tags:
+    - Pirate
+    groups:
+    - AllAccess
+    - Silicon
+  - type: Eye
+    drawFov: false
+  - type: Examiner
+  - type: InputMover
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Tag
+    tags:
+    - HideContextMenu
+    - StationAi
+    - NoConsoleSound
+    - CanPilot
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
+  - type: NameIdentifier
+    group: StationAi
+
+#region Syndicate
+- type: entity
+  id: NFAiHeldSyndicate
+  parent: AiHeld
+  description: Components added / removed from an entity that gets inserted into an AI core.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Traffic
+    - Handheld
+    - Engineering
+    - Medical
+    - Science
+    - Supply
+    - Syndicate
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Traffic
+    - Handheld
+    - Engineering
+    - Medical
+    - Science
+    - Supply
+    - Syndicate
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+      enum.GeneralStationRecordConsoleKey.Key:
+        type: GeneralStationRecordConsoleBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+      enum.CommunicationsConsoleUiKey.Key:
+        type: CommunicationsConsoleBoundUserInterface
+      enum.HolopadUiKey.InteractionWindow:
+        type: HolopadBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+      enum.CrewMonitoringUIKey.Key:
+        toggleAction: ActionAGhostShowCrewMonitoring
+      enum.GeneralStationRecordConsoleKey.Key:
+        toggleAction: ActionAGhostShowStationRecords
+      enum.CommunicationsConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowCommunications
+      enum.HolopadUiKey.InteractionWindow:
+        toggleAction: ActionAGhostShowHolopad
+  - type: Telephone
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    listeningRange: 2
+    speakerVolume: Speak
+    transmissionRange: Map
+    unlistedNumber: false
+    requiresPower: false
+    allowSourceTransmit: true
+  - type: Holopad
+
+- type: entity
+  id: NFPlayerStationAiEmptySyndicate
+  name: AI Core
+  description: The latest in Artificial Intelligences.
+  parent:
+  - PlayerStationAiEmpty
+  suffix: Syndicate, empty
+  components:
+  - type: ContainerComp
+    proto: NFAiHeldSyndicate
+    container: station_ai_mind_slot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Telephone
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    listeningRange: 2
+    speakerVolume: Speak
+    transmissionRange: Map
+    unlistedNumber: false
+    requiresPower: false
+
+
+
+# The job-ready version of an AI spawn.
+- type: entity
+  id: NFPlayerStationAiSyndicate
+  parent: NFPlayerStationAiEmptySyndicate
+  suffix: Syndicate,Job spawn
+  components:
+  - type: ContainerSpawnPoint
+    containerId: station_ai_mind_slot
+    job: ShuttleAiSyndicate
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    layers:
+    - state: base
+    - state: ai
+      shader: unshaded
+
+- type: entity
+  id: NFStationAiBrainSyndicate
+  parent: PositronicBrain
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+  - type: Sprite
+    # Once it's in a core it's pretty much an abstract entity at that point.
+    visible: false
+  - type: BlockMovement
+    blockInteraction: false
+  - type: SiliconLawProvider
+    laws: SyndicateStatic
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+  - type: ComplexInteraction
+  - type: Actions
+  - type: Access
+    tags:
+    - Syndicate
+    groups:
+    - AllAccess
+    - Silicon
+  - type: Eye
+    drawFov: false
+  - type: Examiner
+  - type: InputMover
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Tag
+    tags:
+    - HideContextMenu
+    - StationAi
+    - NoConsoleSound
+    - CanPilot
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
+  - type: NameIdentifier
+    group: StationAi

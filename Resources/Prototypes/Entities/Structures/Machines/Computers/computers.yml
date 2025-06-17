@@ -194,6 +194,8 @@
     containers:
       key_slots:
       - EncryptionKeyTraffic
+  # Lets station AI pilot shuttle
+  - type: StationAiWhitelist
   # End Frontier
 
 - type: entity
@@ -907,7 +909,7 @@
   #   channels: # Frontier
   #   - Supply # Frontier
   - type: ActivatableUI
-    key: enum.NFCargoConsoleUiKey.Orders # Frontier: 
+    key: enum.NFCargoConsoleUiKey.Orders # Frontier:
   - type: UserInterface
     interfaces:
       enum.NFCargoConsoleUiKey.Orders:

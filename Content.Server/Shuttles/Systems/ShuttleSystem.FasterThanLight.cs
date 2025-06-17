@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Server._NF.Shuttles.Components; // Frontier: FTL knockdown immunity
+using Content.Shared._NF.Shuttles.Components; // Frontier: Making FTL on shuttles work with ShuttleFTL component
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
@@ -249,7 +250,8 @@ public sealed partial class ShuttleSystem
         {
 
             // Too large to FTL
-            if (FTLMassLimit > 0 &&  shuttlePhysics.Mass > FTLMassLimit)
+            // Frontier - doesn't contain ShuttleFTL component, which allows FTL
+            if (FTLMassLimit > 0 && shuttlePhysics.Mass > FTLMassLimit && !HasComp<ShuttleFTLComponent>(shuttleUid))
             {
                 reason = Loc.GetString("shuttle-console-mass");
                 return false;

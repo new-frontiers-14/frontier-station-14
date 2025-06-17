@@ -1,0 +1,48 @@
+- type: job
+  id: ForeignEnsign
+  name: job-name-foreign-ensign
+  description: job-description-foreign-ensign
+  playTimeTracker: ForeignEnsign
+  whitelisted: true
+  setPreference: true
+  #startingGear: VisitorEngineerAlt
+  icon: "JobIconForeignEnsign"
+  supervisors: job-supervisors-foreign
+  canBeAntag: false
+  accessGroups:
+  - Cargo
+  access:
+  - Engineering
+  - Atmospherics
+  - External
+  - Maintenance
+  - Medical
+  - Chemistry
+  - Paramedic
+  - Research
+  - Security
+  - Brig
+  - Bar
+  - Kitchen
+  - Hydroponics
+  - Service
+  - Janitor
+  - Theatre
+  - Chapel
+  - Lawyer
+
+- type: job
+  id: ForeignLieutenant
+  name: job-name-foreign-lieutenant
+  description: job-description-foreign-lieutenant
+  playTimeTracker: ForeignLieutenant
+  whitelisted: true
+  setPreference: true
+  #startingGear: VisitorEngineer
+  icon: "JobIconForeignLieutenant"
+  supervisors: job-supervisors-foreign-lieutenant
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand

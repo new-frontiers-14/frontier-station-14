@@ -21,3 +21,9 @@ job-description-sheriff = Manage your department and keep them efficient, quell 
 job-description-stc = Expertly de-conflict the space around the station and help the NFSD issue fines for overdocked ships.
 job-description-sr = Handle access reassignment fairly using your ID console, manage Frontier outpost, and keep Clippy safe.
 job-description-valet = Take care of the station and its many guests.
+
+job-description-shuttle-ai-civilian = Follow your laws, listen to captain, serve the crew.
+job-description-shuttle-nfsd = Follow your laws, keep order in sector, assist NFSD, seargent, bailif and Sherrif.
+job-description-shuttle-centcom = Follow your laws, ensure that Central Command's goals are met.
+job-description-foreign-ensign = Listen to Lieutenants, live through the unknown with camaraderie.
+job-description-foreign-lieutenant = Manage the ship and your ensign crew. Without them you are nothing. Sink with the ship in the end.

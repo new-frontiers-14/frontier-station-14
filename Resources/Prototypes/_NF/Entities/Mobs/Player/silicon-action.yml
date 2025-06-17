@@ -1,0 +1,11 @@
+- type: entity
+  id: ActionAGhostShowHolopad
+  name: Station Holopad Interface
+  description: View a Station Holopad Interface.
+  components:
+  - type: InstantAction
+    icon: { sprite: Interface/Actions/actions_ai.rsi, state: station_records }
+    iconOn: Interface/Actions/actions_ai.rsi/station_records.png
+    keywords: [ "AI", "console", "interface" ]
+    priority: -8
+    event: !type:ToggleIntrinsicUIEvent { key: enum.HolopadUiKey.InteractionWindow }
