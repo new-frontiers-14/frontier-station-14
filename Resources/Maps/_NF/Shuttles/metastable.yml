@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/17/2025 06:20:57
-  entityCount: 3048
+  time: 06/17/2025 08:38:25
+  entityCount: 3051
 maps: []
 grids:
 - 1
@@ -2396,8 +2396,7 @@ entities:
           1,-3:
             0: 65293
           1,-2:
-            5: 1
-            0: 30574
+            0: 30575
           1,-5:
             0: 11776
           2,-4:
@@ -2580,21 +2579,6 @@ entities:
           moles:
           - 0
           - 6666.982
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.14996
-          moles:
-          - 20.078888
-          - 75.53487
           - 0
           - 0
           - 0
@@ -8659,6 +8643,20 @@ entities:
     - type: Transform
       pos: 20.5,2.5
       parent: 1
+- proto: DefaultStationBeaconArmory
+  entities:
+  - uid: 2184
+    components:
+    - type: Transform
+      pos: 0.5,14.5
+      parent: 1
+- proto: DefaultStationBeaconArrivals
+  entities:
+  - uid: 2645
+    components:
+    - type: Transform
+      pos: 2.5,26.5
+      parent: 1
 - proto: DefaultStationBeaconArtifactLab
   entities:
   - uid: 1183
@@ -8778,10 +8776,10 @@ entities:
       parent: 1
 - proto: DefaultStationBeaconLibrary
   entities:
-  - uid: 2756
+  - uid: 2504
     components:
     - type: Transform
-      pos: -9.5,-3.5
+      pos: -11.5,-3.5
       parent: 1
 - proto: DefaultStationBeaconMedical
   entities:
@@ -15597,6 +15595,13 @@ entities:
     - type: Transform
       pos: 8.469776,6.3616776
       parent: 1
+- proto: MachineMaterialSilo
+  entities:
+  - uid: 2659
+    components:
+    - type: Transform
+      pos: 1.5,-2.5
+      parent: 1
 - proto: MaintenanceFluffSpawner
   entities:
   - uid: 1154
@@ -15725,10 +15730,10 @@ entities:
       bodyType: Static
 - proto: PaperBin20
   entities:
-  - uid: 2504
+  - uid: 2658
     components:
     - type: Transform
-      pos: 1.5,-2.5
+      pos: 2.5,-2.5
       parent: 1
 - proto: ParchisBoard
   entities:
@@ -16306,25 +16311,25 @@ entities:
       parent: 1
 - proto: RadioHandheldNF
   entities:
-  - uid: 2645
+  - uid: 2756
     components:
     - type: Transform
-      pos: 1.140625,-2.5625
+      pos: 2.8187907,-2.7056756
       parent: 1
-  - uid: 2658
+  - uid: 3031
     components:
     - type: Transform
-      pos: 1.296875,-2.625
+      pos: 2.6000407,-2.5494256
       parent: 1
-  - uid: 2659
+  - uid: 3050
     components:
     - type: Transform
-      pos: 1.578125,-2.671875
+      pos: 2.4906657,-2.4244256
       parent: 1
-  - uid: 2660
+  - uid: 3051
     components:
     - type: Transform
-      pos: 1.453125,-2.625
+      pos: 2.3812907,-2.2213006
       parent: 1
 - proto: Railing
   entities:
@@ -19790,12 +19795,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-13.5
       parent: 1
-  - uid: 2184
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-2.5
-      parent: 1
   - uid: 2525
     components:
     - type: Transform
@@ -19810,6 +19809,11 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-8.5
+      parent: 1
+  - uid: 2660
+    components:
+    - type: Transform
+      pos: 2.5,-2.5
       parent: 1
   - uid: 2816
     components:
