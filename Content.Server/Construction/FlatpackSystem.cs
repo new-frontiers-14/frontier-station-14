@@ -7,6 +7,8 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Power;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared._NF.BindToStation;
+using Content.Server._NF.BindToStation; // Frontier: station binding
 
 namespace Content.Server.Construction;
 
@@ -16,6 +18,7 @@ public sealed class FlatpackSystem : SharedFlatpackSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly BindToStationSystem _bindToStation = default!; // Frontier
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -121,5 +124,11 @@ public sealed class FlatpackSystem : SharedFlatpackSystem
 
             FinishPacking((uid, comp), false);
         }
+    }
+
+    // Frontier: binds a flatpack or the machine it creates to a station.
+    public override void BindToStation(EntityUid toBind, StationBoundObjectComponent bindingParams)
+    {
+        _bindToStation.BindToStation(toBind, bindingParams.BoundStation, bindingParams.Enabled);
     }
 }
