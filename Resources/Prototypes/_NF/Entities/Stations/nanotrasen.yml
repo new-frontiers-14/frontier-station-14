@@ -114,6 +114,11 @@
   components:
   - type: Transform
   - type: ExtraShuttleInformation
+  - type: StationJobs
+    availableJobs:
+      ContractorInterview: [ 0, 0 ]
+      PilotInterview: [ 0, 0 ]
+      MercenaryInterview: [ 0, 0 ]
 
 - type: entity
   id: StandardFrontierAntagVessel
@@ -124,6 +129,19 @@
   - type: Transform
   - type: ExtraShuttleInformation
     hiddenWithoutOpenJobs: true
+  - type: StationJobs
+    availableJobs:
+      NFPirate: [ 0, 0 ]
+
+- type: entity
+  id: StandardFrontierStaffVessel
+  parent:
+  - StandardFrontierVessel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: StationJobs
+    availableJobs: {} # Frontier staff latejoin onto Frontier Outpost
 
 - type: entity
   id: StandardFrontierSecurityVessel
@@ -132,6 +150,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
+  - type: StationJobs
+    availableJobs: {} # NFSD vessels have no jobs; latejoin onto the NFSD Outpost instead
 
 # region Expedition Shuttles
 - type: entity
