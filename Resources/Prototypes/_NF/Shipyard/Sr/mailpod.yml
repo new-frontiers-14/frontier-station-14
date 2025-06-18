@@ -31,12 +31,10 @@
   minPlayers: 0
   stations:
     MailPod:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierStaffVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Mail Pod {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
-        - type: StationJobs
-          availableJobs: {}
