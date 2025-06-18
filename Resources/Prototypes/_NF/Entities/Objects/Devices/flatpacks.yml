@@ -56,20 +56,6 @@
 
 - type: entity
   parent: BaseNFFlatpack
-  id: PowerCellRechargerFlatpack
-  name: cell charger flatpack
-  description: A flatpack used for constructing a cell charger.
-  components:
-  - type: Flatpack
-    entity: PowerCellRecharger
-  - type: StaticPrice
-    price: 15
-  - type: Sprite
-    layers:
-    - state: power_charger
-
-- type: entity
-  parent: PowerCellRechargerFlatpack
   id: WeaponCapacitorRechargerFlatpack
   name: recharger flatpack
   description: A flatpack used for constructing a recharger.
@@ -78,6 +64,9 @@
     entity: WeaponCapacitorRecharger
   - type: StaticPrice
     price: 55
+  - type: Sprite
+    layers:
+    - state: power_charger
 
 - type: entity
   parent: BaseNFFlatpack
