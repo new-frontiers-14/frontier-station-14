@@ -29,6 +29,7 @@
       - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
         state: bles-open
   - type: UpgradeBattery
+    maxChargeMultiplier: 1 # non-upgradeable
     baseMaxCharge: 80000000
   - type: BatteryInterface
     minChargeRate: 50000
@@ -65,6 +66,3 @@
         - LargeMobMask
         layer:
         - WallLayer
-  - type: UpgradeBattery
-    maxChargeMultiplier: 1 # non-upgradeable
-    baseMaxCharge: 80000000
