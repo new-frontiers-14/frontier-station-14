@@ -1,27 +1,30 @@
 using Content.Server._NF.Manufacturing.Components;
+using Content.Server.Materials;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Power.Nodes;
+using Content.Shared._NF.Manufacturing;
+using Content.Shared._NF.Manufacturing.Components;
+using Content.Shared._NF.Manufacturing.EntitySystems;
 using Content.Shared._NF.Power;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Examine;
+using Content.Shared.Materials;
 using Content.Shared.NodeContainer;
 using Content.Shared.Power;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._NF.Manufacturing.EntitySystems;
+namespace Content.Server._NF.Manufacturing.EntitySystems;
 
-/// <summary>
-/// Consumes large quantities of power, scales excessive overage down to reasonable values.
-/// Spawns entities when thresholds reached.
-/// </summary>
-public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
+/// <inheritdoc/>
+public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPowerConsumerSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
     [Dependency] private readonly NodeContainerSystem _node = default!;
     [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
@@ -39,7 +42,7 @@ public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
         SubscribeLocalEvent<EntitySpawnPowerConsumerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<EntitySpawnPowerConsumerComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<EntitySpawnPowerConsumerComponent, AfterActivatableUIOpenEvent>(OnUIOpen);
-        SubscribeLocalEvent<EntitySpawnPowerConsumerComponent, ItemSlotInsertAttemptEvent>(OnItemSlotInsertAttempt);
+        SubscribeLocalEvent<EntitySpawnPowerConsumerComponent, MaterialEntityInsertedEvent>(OnMaterialInserted);
 
         Subs.BuiEvents<EntitySpawnPowerConsumerComponent>(
             AdjustablePowerDrawUiKey.Key,
@@ -68,45 +71,70 @@ public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
         }
     }
 
+    private void OnMaterialInserted(Entity<EntitySpawnPowerConsumerComponent> ent, ref MaterialEntityInsertedEvent args)
+    {
+        if (ent.Comp.Processing)
+            return;
+
+        TryConsumeResources(ent);
+    }
+
+    private void TryConsumeResources(Entity<EntitySpawnPowerConsumerComponent> ent)
+    {
+        if (ent.Comp.Material == null
+            || ent.Comp.MaterialAmount <= 0
+            || _materialStorage.TryChangeMaterialAmount(ent, ent.Comp.Material, -ent.Comp.MaterialAmount))
+        {
+            ent.Comp.Processing = true;
+        }
+    }
+
     public override void Update(float frameTime)
     {
         var query = EntityQueryEnumerator<EntitySpawnPowerConsumerComponent, PowerConsumerComponent>();
-        while (query.MoveNext(out var uid, out var xmit, out var power))
+        while (query.MoveNext(out var uid, out var spawn, out var power))
         {
-            if (power.NetworkLoad.Enabled)
-                xmit.AccumulatedSpawnCheckEnergy += power.NetworkLoad.ReceivingPower * frameTime;
-
-            if (_timing.CurTime >= xmit.NextSpawnCheck)
+            if (spawn.Processing && power.NetworkLoad.Enabled)
             {
-                xmit.NextSpawnCheck += xmit.SpawnCheckPeriod;
+                spawn.AccumulatedSpawnCheckEnergy += power.NetworkLoad.ReceivingPower * frameTime;
+            }
+
+            if (_timing.CurTime >= spawn.NextSpawnCheck)
+            {
+                spawn.NextSpawnCheck += spawn.SpawnCheckPeriod;
 
                 // Ensure accumulated energy is never infinite.
-                if (!float.IsFinite(xmit.AccumulatedEnergy) || !float.IsPositive(xmit.AccumulatedEnergy))
-                    xmit.AccumulatedEnergy = 0;
+                if (!float.IsFinite(spawn.AccumulatedEnergy) || !float.IsPositive(spawn.AccumulatedEnergy))
+                    spawn.AccumulatedEnergy = 0;
 
                 // Adjust spawn check energy
-                if (float.IsFinite(xmit.AccumulatedSpawnCheckEnergy) && float.IsPositive(xmit.AccumulatedSpawnCheckEnergy))
+                if (float.IsFinite(spawn.AccumulatedSpawnCheckEnergy) && float.IsPositive(spawn.AccumulatedSpawnCheckEnergy))
                 {
-                    if (xmit.AccumulatedSpawnCheckEnergy <= xmit.LinearMaxValue * xmit.SpawnCheckPeriod.TotalSeconds)
+                    if (spawn.AccumulatedSpawnCheckEnergy <= spawn.LinearMaxValue * spawn.SpawnCheckPeriod.TotalSeconds)
                     {
-                        xmit.AccumulatedEnergy += xmit.AccumulatedSpawnCheckEnergy;
+                        spawn.AccumulatedEnergy += spawn.AccumulatedSpawnCheckEnergy;
                     }
                     else
                     {
-                        var spawnCheckPeriodSeconds = (float)xmit.SpawnCheckPeriod.TotalSeconds;
-                        xmit.AccumulatedEnergy += spawnCheckPeriodSeconds * xmit.LogarithmCoefficient * MathF.Pow(xmit.LogarithmRateBase, MathF.Log10(xmit.AccumulatedEnergy / spawnCheckPeriodSeconds) - xmit.LogarithmSubtrahend);
+                        var spawnCheckPeriodSeconds = (float)spawn.SpawnCheckPeriod.TotalSeconds;
+                        spawn.AccumulatedEnergy += spawnCheckPeriodSeconds * spawn.LogarithmCoefficient * MathF.Pow(spawn.LogarithmRateBase, MathF.Log10(spawn.AccumulatedEnergy / spawnCheckPeriodSeconds) - spawn.LogarithmSubtrahend);
                     }
                 }
-                xmit.AccumulatedSpawnCheckEnergy = 0.0f;
+                spawn.AccumulatedSpawnCheckEnergy = 0.0f;
 
-                if (xmit.AccumulatedEnergy >= xmit.EnergyPerSpawn)
+                if (spawn.AccumulatedEnergy >= spawn.EnergyPerSpawn)
                 {
-                    xmit.AccumulatedEnergy -= xmit.EnergyPerSpawn;
-                    TrySpawnInContainer(xmit.Spawn, uid, xmit.SlotName, out _);
+                    // End current run.
+                    spawn.AccumulatedEnergy = 0;
+                    spawn.Processing = false;
+                    TrySpawnInContainer(spawn.Spawn, uid, spawn.SlotName, out _);
+
+                    // Try to start next run.
+                    TryConsumeResources((uid, spawn));
                 }
             }
 
-            _appearance.SetData(uid, PowerDeviceVisuals.Powered, power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0);
+            UpdateAppearance(uid, spawn, power);
         }
     }
 
@@ -186,9 +214,12 @@ public sealed partial class EntitySpawnPowerConsumerSystem : EntitySystem
     }
 
     // Prevent insertion from any users - should only be handled by the system.
-    private void OnItemSlotInsertAttempt(Entity<EntitySpawnPowerConsumerComponent> ent, ref ItemSlotInsertAttemptEvent args)
+    private void UpdateAppearance(EntityUid uid, EntitySpawnPowerConsumerComponent spawner, PowerConsumerComponent power)
     {
-        if (args.User != null)
-            args.Cancelled = true;
+        if (_appearanceQuery.TryComp(uid, out var appearance))
+        {
+            _appearance.SetData(uid, PowerDeviceVisuals.Powered, power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0, appearance);
+            _appearance.SetData(uid, EntitySpawnMaterialVisuals.SufficientMaterial, spawner.Processing, appearance);
+        }
     }
 }

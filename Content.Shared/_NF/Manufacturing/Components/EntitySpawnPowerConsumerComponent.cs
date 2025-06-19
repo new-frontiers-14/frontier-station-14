@@ -1,7 +1,8 @@
+using Content.Shared.Materials;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server._NF.Manufacturing.Components;
+namespace Content.Shared._NF.Manufacturing.Components;
 
 /// <summary>
 /// An entity with this will produce an entity over time after accumulating charge.
@@ -15,51 +16,69 @@ public sealed partial class EntitySpawnPowerConsumerComponent : Component
     ///<summary>
     /// The name of the node to be connected/disconnected.
     ///</summary>
-    [DataField]
+    [DataField(serverOnly: true)]
     public string NodeName = "input";
 
     ///<summary>
     /// The period between depositing money into a sector account.
     /// Also the T in Tk*a^(log10(x/T)-R) for rate calculation
     ///</summary>
-    [DataField]
+    [DataField(serverOnly: true)]
     public TimeSpan SpawnCheckPeriod = TimeSpan.FromSeconds(20);
 
     ///<summary>
     /// The next time this power plant is selling accumulated power.
     /// Should not be changedduring runtime, will cause errors in deposit amounts.
     ///</summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    [DataField(serverOnly: true, customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextSpawnCheck;
 
     ///<summary>
     /// The total energy accumulated, in joules.
     ///</summary>
-    [DataField]
+    [DataField(serverOnly: true)]
     public float AccumulatedEnergy;
 
     ///<summary>
     /// The total energy accumulated this spawn check, in joules.
     ///</summary>
-    [DataField]
+    [DataField(serverOnly: true)]
     public float AccumulatedSpawnCheckEnergy;
 
     ///<summary>
-    /// The name of the container to output the
+    /// The material to use, if any.
     ///</summary>
-    [DataField]
+    [DataField(serverOnly: true)]
+    public ProtoId<MaterialPrototype>? Material;
+
+    ///<summary>
+    /// The amount of material to use for one unit of output.
+    ///</summary>
+    [DataField(serverOnly: true)]
+    public int MaterialAmount;
+
+    ///<summary>
+    /// If true, the machine is currently producing an entity, and has consumed any requisite materials.
+    ///</summary>
+    [DataField(serverOnly: true)]
+    public bool Processing;
+
+    ///<summary>
+    /// The name of the container to output the created entity.
+    ///</summary>
+    [DataField(serverOnly: true)]
     public string SlotName = "output";
 
     ///<summary>
     /// The entity prototype ID to spawn when enough energy is accumulated.
     ///</summary>
-    [DataField(required: true)]
+    [DataField(serverOnly: true, required: true)]
     public EntProtoId Spawn;
 
     ///<summary>
-    /// The necessary energy to spawn a unit in the output
+    /// The necessary energy to spawn a unit in the output slot.
     ///</summary>
-    [DataField(required: true)]
+    [DataField(serverOnly: true, required: true)]
     public float EnergyPerSpawn;
     #endregion Generation
 
@@ -67,27 +86,27 @@ public sealed partial class EntitySpawnPowerConsumerComponent : Component
     ///<summary>
     /// The maximum power to increase without logarithmic reduction.
     ///</summary>
-    [DataField]
+    [DataField(serverOnly: true)]
     public float LinearMaxValue = 1_000_000;
 
     ///<summary>
     /// The base on power the logarithmic mode: a in Tk*a^(log10(x/T)-R)
     ///</summary>
-    [DataField]
+    [DataField(serverOnly: true)]
     public float LogarithmRateBase = 3.0f;
 
     ///<summary>
     /// The coefficient of the logarithmic mode: k in Tk*a^(log10(x/T)-R)
     /// Note: should be set to LinearMaxValue for a continuous function.
     ///</summary>
-    [DataField]
+    [DataField(serverOnly: true)]
     public float LogarithmCoefficient = 1_000_000f;
 
     ///<summary>
     /// The exponential subtrahend of the logarithmic mode: R in Tk*a^(log10(x/T)-R)
     /// Note: should be set to log10(LinearMaxValue) for a continuous function.
     ///</summary>
-    [DataField]
+    [DataField(serverOnly: true)]
     public float LogarithmSubtrahend = 6.0f; // log10(1_000_000)
     #endregion Logarithmic Rates
 }

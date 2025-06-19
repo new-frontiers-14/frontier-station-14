@@ -3,7 +3,7 @@
   parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine ]
   id: AntiMatterFabricator
   name: anti-matter fabricator
-  description: A colossal machine that converts power into antimatter and stores it in AME fuel jars in a slot.
+  description: A colossal machine that converts plasteel and power into antimatter and stores it in AME fuel jars in a slot.
   placement:
     mode: SnapgridCenter
   components:
@@ -50,14 +50,21 @@
       map: [ slot-full ]
       visible: false
     - state: slot-unlit
-      offset: 1, 0
       map: [ slot-unlit ]
+      shader: unshaded
+      visible: false
+    - state: material-good
+      map: [ material ]
       shader: unshaded
       visible: false
     - state: panel-unlit
       offset: 1, -1
       map: [ panel ]
       shader: unshaded
+      visible: false
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      offset: 1, -0.5
       visible: false
   - type: Appearance
   - type: GenericVisualizer
@@ -75,6 +82,13 @@
         panel:
           True: { visible: true }
           False: { visible: false }
+        material:
+          True: { visible: true }
+          False: { visible: false }
+      enum.EntitySpawnMaterialVisuals.SufficientMaterial:
+        material:
+          True: { state: material-good }
+          False: { state: material-low }
   - type: ItemMapper
     containerWhitelist:
     - output
@@ -105,12 +119,24 @@
   - type: EntitySpawnPowerConsumer
     spawn: AmeJarBig
     energyPerSpawn: 1200000000 # 1.2 GJ (75% base eff.)
+    material: Plasteel
+    materialAmount: 500
   - type: ItemSlots
     slots:
       output:
         swap: false
         insertOnInteract: false
         ejectOnInteract: true
+        whitelist:
+          components:
+          - NFFuel
   - type: ContainerContainer
     containers:
       output: !type:ContainerSlot {}
+  - type: MaterialStorage
+    # whitelist:
+    #   tags:
+    #   - Sheet
+    materialWhiteList:
+    - Plasteel
+    storageLimit: 15000
