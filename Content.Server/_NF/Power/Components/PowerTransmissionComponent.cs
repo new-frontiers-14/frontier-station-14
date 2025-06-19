@@ -50,13 +50,13 @@ public sealed partial class PowerTransmissionComponent : Component
     /// The rate per joule to credit the account while in the linear mode.
     ///</summary>
     [DataField]
-    public float LinearRate = 0.00005f; // $1/20 kJ
+    public float LinearRate = 0.00001f; // $1/100 kJ
 
     ///<summary>
     /// The maximum value (inclusive) of the linear mode per deposit, in watts
     ///</summary>
     [DataField]
-    public float LinearMaxValue = 1_000_000; // 1 MW ($50/s)
+    public float LinearMaxValue = 1_000_000; // 1 MW ($10/s)
     #endregion Linear Rates
 
     // Logarithmic fields: at very high levels of power generation, incremental gains decrease logarithmically to prevent runaway cash generation
@@ -66,14 +66,14 @@ public sealed partial class PowerTransmissionComponent : Component
     /// The base on power the logarithmic mode: a in Tk*a^(log10(x/T)-R)
     ///</summary>
     [DataField]
-    public float LogarithmRateBase = 3.0f;
+    public float LogarithmRateBase = 2.5f;
 
     ///<summary>
     /// The coefficient of the logarithmic mode: k in Tk*a^(log10(x/T)-R)
     /// Note: should be set to LinearRate*LinearMaxValue for a continuous function.
     ///</summary>
     [DataField]
-    public float LogarithmCoefficient = 50f;
+    public float LogarithmCoefficient = 10f;
 
     ///<summary>
     /// The exponential subtrahend of the logarithmic mode: R in Tk*a^(log10(x/T)-R)
@@ -82,6 +82,11 @@ public sealed partial class PowerTransmissionComponent : Component
     [DataField]
     public float LogarithmSubtrahend = 6.0f; // log10(1_000_000)
     #endregion Logarithmic Rates
+
+    ///<summary>
+    ///</summary>
+    [DataField]
+    public float MaxValuePerSecond = 150.0f; // ~902 MW,
 
     ///<summary>
     /// True if the entity was powered last tick.

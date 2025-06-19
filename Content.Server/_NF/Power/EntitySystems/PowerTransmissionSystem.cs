@@ -57,12 +57,16 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
     {
         if (TryComp(ent, out PowerConsumerComponent? power))
         {
-            args.PushMarkup(Loc.GetString("power-transmission-examine", ("value", power.DrawRate)));
+            args.PushMarkup(Loc.GetString("power-transmission-examine", ("actual", power.ReceivedPower), ("requested", power.DrawRate)));
 
-            if (power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0)
-                args.PushMarkup(Loc.GetString("power-receiver-component-on-examine-powered"));
-            else
-                args.PushMarkup(Loc.GetString("power-receiver-component-on-examine-unpowered"));
+            var powered = power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0;
+            args.PushMarkup(
+                Loc.GetString("power-receiver-component-on-examine-main",
+                    ("stateText", Loc.GetString(powered
+                        ? "power-receiver-component-on-examine-powered"
+                        : "power-receiver-component-on-examine-unpowered"))
+                )
+            );
         }
     }
 
@@ -84,16 +88,19 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
                     return;
                 }
 
+                float totalPeriodSeconds = (float)xmit.DepositPeriod.TotalSeconds;
                 float depositValue;
-                if (xmit.AccumulatedEnergy <= xmit.LinearMaxValue * xmit.DepositPeriod.TotalSeconds)
+                if (xmit.AccumulatedEnergy <= xmit.LinearMaxValue * totalPeriodSeconds)
                 {
                     depositValue = xmit.AccumulatedEnergy * xmit.LinearRate;
                 }
                 else
                 {
-                    var depositPeriodSeconds = (float)xmit.DepositPeriod.TotalSeconds;
+                    var depositPeriodSeconds = totalPeriodSeconds;
                     depositValue = depositPeriodSeconds * xmit.LogarithmCoefficient * MathF.Pow(xmit.LogarithmRateBase, MathF.Log10(xmit.AccumulatedEnergy / depositPeriodSeconds) - xmit.LogarithmSubtrahend);
                 }
+
+                depositValue = MathF.Min(depositValue, xmit.MaxValuePerSecond * totalPeriodSeconds);
 
                 xmit.AccumulatedEnergy = 0.0f;
                 var depositSpesos = (int)depositValue;

@@ -1,4 +1,3 @@
-using Content.Server._NF.Manufacturing.Components;
 using Content.Server.Materials;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
@@ -8,7 +7,6 @@ using Content.Shared._NF.Manufacturing;
 using Content.Shared._NF.Manufacturing.Components;
 using Content.Shared._NF.Manufacturing.EntitySystems;
 using Content.Shared._NF.Power;
-using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Examine;
 using Content.Shared.Materials;
 using Content.Shared.NodeContainer;
@@ -62,12 +60,16 @@ public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPo
     {
         if (TryComp(ent, out PowerConsumerComponent? power))
         {
-            args.PushMarkup(Loc.GetString("entity-spawn-power-consumer-examine", ("value", power.DrawRate)));
+            args.PushMarkup(Loc.GetString("entity-spawn-power-consumer-examine", ("actual", power.ReceivedPower), ("requested", power.DrawRate)));
 
-            if (power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0)
-                args.PushMarkup(Loc.GetString("power-receiver-component-on-examine-powered"));
-            else
-                args.PushMarkup(Loc.GetString("power-receiver-component-on-examine-unpowered"));
+            var powered = power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0;
+            args.PushMarkup(
+                Loc.GetString("power-receiver-component-on-examine-main",
+                    ("stateText", Loc.GetString(powered
+                        ? "power-receiver-component-on-examine-powered"
+                        : "power-receiver-component-on-examine-unpowered"))
+                )
+            );
         }
     }
 

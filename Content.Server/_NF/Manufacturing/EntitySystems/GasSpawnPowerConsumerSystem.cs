@@ -62,12 +62,16 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
     {
         if (TryComp(ent, out PowerConsumerComponent? power))
         {
-            args.PushMarkup(Loc.GetString("entity-spawn-power-consumer-examine", ("value", power.DrawRate)));
+            args.PushMarkup(Loc.GetString("gas-spawn-power-consumer-examine", ("actual", power.ReceivedPower), ("requested", power.DrawRate)));
 
-            if (power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0)
-                args.PushMarkup(Loc.GetString("power-receiver-component-on-examine-powered"));
-            else
-                args.PushMarkup(Loc.GetString("power-receiver-component-on-examine-unpowered"));
+            var powered = power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0;
+            args.PushMarkup(
+                Loc.GetString("power-receiver-component-on-examine-main",
+                    ("stateText", Loc.GetString(powered
+                        ? "power-receiver-component-on-examine-powered"
+                        : "power-receiver-component-on-examine-unpowered"))
+                )
+            );
         }
     }
 
