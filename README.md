@@ -81,8 +81,8 @@ Content under these subdirectories originate from their respective forks and may
 
 Additional repos that we use code (denoted by comments) without subdirectories are listed below.
 
-| Fork Name | Fork Repository | License |
-|-----------|-----------------|---------|
+| Fork Name | Fork Repository | Original License |
+|-----------|-----------------|------------------|
 | Monolith | https://github.com/Monolith-Station/Monolith | AGPL 3.0 |
 | Space Station 14 ("Wizden"/"Upstream") | https://github.com/space-wizards/space-station-14 | MIT |
 | White Dream | https://github.com/WWhiteDreamProject/wwdpublic | AGPL 3.0 |
