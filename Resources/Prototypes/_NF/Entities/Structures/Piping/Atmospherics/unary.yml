@@ -232,20 +232,27 @@
   - type: Sprite
     noRot: true
     drawdepth: Mobs
-    sprite: _NF/Structures/Machines/GasConverter/base.rsi
+    sprite: _NF/Structures/Machines/GasConverter/32x32.rsi
     layers:
-    - state: base
-    - sprite: _NF/Structures/Machines/GasConverter/32x32.rsi
-      state: fan
+    - sprite: _NF/Structures/Machines/GasConverter/base.rsi
+      state: base
+    - state: fan
       map: [fan]
       offset: -0.5, 1
-    - sprite: _NF/Structures/Machines/GasConverter/32x32.rsi
-      state: front-panel-unlit
+    - state: front-panel-unlit
       shader: unshaded
       map: [front-panel]
       offset: 0, -1
-    - sprite: _NF/Structures/Machines/GasConverter/32x32.rsi
-      state: panel-unlit
+    - state: gas
+      color: "#FFFFFF22"
+      map: [gas]
+      offset: 1, 0.5
+    - state: window-unlit
+      shader: unshaded
+      map: [window]
+      offset: 0, 0.25
+    - state: panel-unlit
+      shader: unshaded
       map: [panel]
   - type: Appearance
   - type: GenericVisualizer
@@ -260,6 +267,15 @@
         panel:
           True: { visible: true }
           False: { visible: false }
+        window:
+          True: { visible: true }
+          False: { visible: false }
+      enum.GasCanisterVisuals.PressureState:
+        gas:
+          0: { color: "#FFFFFF22" }
+          1: { color: "#FFFFFF55" }
+          2: { color: "#FFFFFF88" }
+          3: { color: "#FFFFFFAA" }
   - type: PowerConsumer
     drawRate: 100000
   - type: PowerMonitoringDevice

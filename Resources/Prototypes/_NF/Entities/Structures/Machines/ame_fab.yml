@@ -46,11 +46,18 @@
       offset: -0.5, 0
       map: [ press ]
     - state: slot-full
-      offset: 1, 0.5
+      offset: 1, 0
       map: [ slot-full ]
+      visible: false
+    - state: slot-unlit
+      offset: 1, 0
+      map: [ slot-unlit ]
+      shader: unshaded
+      visible: false
     - state: panel-unlit
       offset: 1, -1
       map: [ panel ]
+      shader: unshaded
       visible: false
   - type: Appearance
   - type: GenericVisualizer
@@ -73,6 +80,10 @@
     - output
     mapLayers:
       slot-full:
+        whitelist:
+          components:
+          - NFFuel
+      slot-unlit:
         whitelist:
           components:
           - NFFuel
