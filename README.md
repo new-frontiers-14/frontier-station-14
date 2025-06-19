@@ -46,8 +46,8 @@ Build the server using `dotnet build`.
 
 ## License
 
-All code in the repository (with the exception of the _Emberfall subdirectories, see below) on any commit after 2fca06eaba205ae6fe3aceb8ae2a0594f0effee0 is licensed under the GNU Affero General Public License version 3.0, unless otherwise stated (note Attributions below). See `LICENSE-AGPLv3.txt`.
-On commits before 2fca06eaba205ae6fe3aceb8ae2a0594f0effee0, all code under _NF subdirectories is licensed under the MIT license unless otherwise stated. For all other subdirectories, refer to the Attributions section. See `LICENSE-MIT.txt`.
+All code in the repository (with the exception of the _Emberfall subdirectories, see below) on any commit after 2fca06eaba205ae6fe3aceb8ae2a0594f0effee0 is licensed under the GNU Affero General Public License version 3.0, unless otherwise stated (note Attributions below). See `LICENSE-AGPLv3.txt` for the terms, and `COPYRIGHT-AGPLv3.txt` for a list of applicable copyright info.
+On commits before 2fca06eaba205ae6fe3aceb8ae2a0594f0effee0, all code under _NF subdirectories is licensed under the MIT license unless otherwise stated. For all other directories, refer to the Attributions section. See `LICENSE-MIT.txt`.
 All _Emberfall subdirectories are licensed under MPLv2 Exhibit B. See `LICENSE-MPL.txt`.
 
 [2fca06eaba205ae6fe3aceb8ae2a0594f0effee0](https://github.com/new-frontiers-14/frontier-station-14/commit/2fca06eaba205ae6fe3aceb8ae2a0594f0effee0) was pushed on July 1, 2024 at 16:04 UTC
@@ -71,7 +71,7 @@ Content under these subdirectories originate from their respective forks and may
 | `_DV` | Delta-V | https://github.com/DeltaV-Station/Delta-v | AGPL 3.0 |
 | `_EE` | Einstein Engines | https://github.com/Simple-Station/Einstein-Engines | AGPL 3.0 |
 | `_Emberfall` | Emberfall | https://github.com/emberfall-14/emberfall | MPL 2.0* |
-| `_EstacaoPirata` | Estacao Pirata | https://github.com/Day-OS/estacao-pirata-14 | AGPL 3.0 |
+| `_EstacaoPirata` | Estacao Pirata | https://github.com/estacao-pirata/estacao-pirata | AGPL 3.0 |
 | `_Goobstation` | Goob Station | https://github.com/Goob-Station/Goob-Station | AGPL 3.0 |
 | `_Impstation` | Impstation | https://github.com/impstation/imp-station-14 | AGPL 3.0 |
 | `_NC14` | Nuclear 14 | https://github.com/Vault-Overseers/nuclear-14 | AGPL 3.0 |
