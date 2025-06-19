@@ -65,12 +65,6 @@
         - LargeMobMask
         layer:
         - WallLayer
-
-- type: entity
-  abstract: true
-  id: SMESBig8MW
-  parent: SMESBig
-  suffix: 8 MW
-  components:
-  - type: Battery
-    startingCharge: 8000000
+  - type: UpgradeBattery
+    maxChargeMultiplier: 1 # non-upgradeable
+    baseMaxCharge: 80000000
