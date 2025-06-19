@@ -180,10 +180,12 @@
   # Frontier: shuttle intercom
   - type: UserInterface
     interfaces:
-        enum.ShuttleConsoleUiKey.Key:
-          type: ShuttleConsoleBoundUserInterface
-        enum.IntercomUiKey.Key:
-          type: IntercomBoundUserInterface
+      enum.ShuttleConsoleUiKey.Key:
+        type: ShuttleConsoleBoundUserInterface
+      enum.IntercomUiKey.Key:
+        type: IntercomBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: ContainerContainer
     containers:
       board: !type:Container
@@ -909,7 +911,7 @@
   #   channels: # Frontier
   #   - Supply # Frontier
   - type: ActivatableUI
-    key: enum.NFCargoConsoleUiKey.Orders # Frontier:
+    key: enum.NFCargoConsoleUiKey.Orders # Frontier: use NF version
   - type: UserInterface
     interfaces:
       enum.NFCargoConsoleUiKey.Orders:
