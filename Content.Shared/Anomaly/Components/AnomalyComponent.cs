@@ -284,7 +284,7 @@ public sealed partial class AnomalyComponent : Component
     /// The basic number of points required to generate an output crystal
     /// </summary>
     [DataField]
-    public int PointsPerCrystalUnit = 5000;
+    public int PointsPerCrystalUnit = 4000;
 
     /// <summary>
     /// The multiplier for the number of points needed to generate subsequent crystals
