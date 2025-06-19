@@ -63,7 +63,7 @@ public sealed class DangerTetherSystem : EntitySystem
         }
     }
 
-    private bool AnyTetherInRange(EntityUid ent)
+    public bool AnyTetherInRange(EntityUid ent)
     {
         var targetCoords = _transform.GetMapCoordinates(ent);
         foreach (var tetherEntry in _tethers)
