@@ -15,6 +15,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._NF.Power.EntitySystems;
 
+/// <summary>
+/// Handles logic for the PowerTransmissionComponent.
+/// Consumes power, pays a sector bank account depending on the amount of power consumed.
+/// </summary>
 public sealed partial class PowerTransmissionSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -25,13 +29,9 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
     [Dependency] private readonly PointLightSystem _pointLight = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
-    private EntityQuery<AppearanceComponent> _appearanceQuery;
-
     public override void Initialize()
     {
         base.Initialize();
-
-        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
 
         UpdatesAfter.Add(typeof(PowerNetSystem));
 

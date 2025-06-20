@@ -222,7 +222,6 @@ public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPo
             });
     }
 
-    // Prevent insertion from any users - should only be handled by the system.
     private void UpdateAppearance(EntityUid uid, EntitySpawnPowerConsumerComponent spawner, PowerConsumerComponent power)
     {
         if (_appearanceQuery.TryComp(uid, out var appearance))
