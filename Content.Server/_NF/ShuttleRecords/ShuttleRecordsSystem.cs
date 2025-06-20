@@ -103,7 +103,7 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         var totalAbandoned = 0;
         List<TimeSpan> totalLifetimes = new();
 
-        // sort through the records and use originalname to categorise ships
+        // sort through the records and use VesselPrototypeId to categorise ships
         foreach (var record in records.ShuttleRecords.Values)
         {
             if (record.VesselPrototypeId is null)
