@@ -244,7 +244,7 @@
       map: [front-panel]
       offset: 0, -1
     - state: gas
-      color: "#FFFFFF22"
+      color: "#FFFFFF01"
       map: [gas]
       offset: 1, 0.5
     - state: window-unlit
@@ -272,9 +272,9 @@
           False: { visible: false }
       enum.GasCanisterVisuals.PressureState:
         gas:
-          0: { color: "#FFFFFF22" }
-          1: { color: "#FFFFFF55" }
-          2: { color: "#FFFFFF88" }
+          0: { color: "#FFFFFF01" }
+          1: { color: "#FFFFFF37" }
+          2: { color: "#FFFFFF6E" }
           3: { color: "#FFFFFFAA" }
   - type: PowerConsumer
     drawRate: 100000
@@ -297,7 +297,6 @@
       - 0.78
       - 0.22
       temperature: 5273 # ~ 5000 deg C, roughly when plasma turns back into gas
-    energyPerMole: 100000 # 100 kJ/mol
   - type: GasCanister
     gasMixture:
       volume: 10000 # big tank to store backup
