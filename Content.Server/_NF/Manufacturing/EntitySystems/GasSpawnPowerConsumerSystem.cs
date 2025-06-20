@@ -29,14 +29,11 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
     [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
-    private EntityQuery<AppearanceComponent> _appearanceQuery;
     private GasMixture _mixture = new();
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
 
         UpdatesAfter.Add(typeof(PowerNetSystem));
 
@@ -78,53 +75,55 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
     public override void Update(float frameTime)
     {
         var query = EntityQueryEnumerator<GasSpawnPowerConsumerComponent, PowerConsumerComponent>();
-        while (query.MoveNext(out var uid, out var xmit, out var power))
+        while (query.MoveNext(out var uid, out var spawn, out var power))
         {
             if (power.NetworkLoad.Enabled)
-                xmit.AccumulatedSpawnCheckEnergy += power.NetworkLoad.ReceivingPower * frameTime;
+                spawn.AccumulatedSpawnCheckEnergy += power.NetworkLoad.ReceivingPower * frameTime;
 
-            if (_timing.CurTime >= xmit.NextSpawnCheck)
+            if (_timing.CurTime >= spawn.NextSpawnCheck)
             {
-                xmit.NextSpawnCheck += xmit.SpawnCheckPeriod;
+                spawn.NextSpawnCheck += spawn.SpawnCheckPeriod;
 
                 if (!TryComp<GasCanisterComponent>(uid, out var canister))
                 {
-                    xmit.AccumulatedSpawnCheckEnergy = 0;
+                    spawn.AccumulatedSpawnCheckEnergy = 0;
                     continue;
                 }
 
-                if (!float.IsFinite(xmit.AccumulatedSpawnCheckEnergy) || !float.IsPositive(xmit.AccumulatedSpawnCheckEnergy))
+                if (!float.IsFinite(spawn.AccumulatedSpawnCheckEnergy) || !float.IsPositive(spawn.AccumulatedSpawnCheckEnergy))
                 {
-                    xmit.AccumulatedSpawnCheckEnergy = 0;
+                    spawn.AccumulatedSpawnCheckEnergy = 0;
                     continue;
                 }
 
                 // Ensure accumulated energy is never infinite.
-                if (!float.IsFinite(xmit.AccumulatedEnergy) || !float.IsPositive(xmit.AccumulatedEnergy))
-                    xmit.AccumulatedEnergy = 0;
+                if (!float.IsFinite(spawn.AccumulatedEnergy) || !float.IsPositive(spawn.AccumulatedEnergy))
+                    spawn.AccumulatedEnergy = 0;
 
                 // Adjust spawn check energy
-                if (float.IsFinite(xmit.AccumulatedSpawnCheckEnergy) && float.IsPositive(xmit.AccumulatedSpawnCheckEnergy))
+                if (float.IsFinite(spawn.AccumulatedSpawnCheckEnergy) && float.IsPositive(spawn.AccumulatedSpawnCheckEnergy))
                 {
-                    if (xmit.AccumulatedSpawnCheckEnergy <= xmit.LinearMaxValue * xmit.SpawnCheckPeriod.TotalSeconds)
+                    if (spawn.AccumulatedSpawnCheckEnergy <= spawn.LinearMaxValue * spawn.SpawnCheckPeriod.TotalSeconds)
                     {
-                        xmit.AccumulatedEnergy += xmit.AccumulatedSpawnCheckEnergy;
+                        spawn.AccumulatedEnergy += spawn.AccumulatedSpawnCheckEnergy;
                     }
                     else
                     {
-                        var spawnCheckPeriodSeconds = (float)xmit.SpawnCheckPeriod.TotalSeconds;
-                        xmit.AccumulatedEnergy += spawnCheckPeriodSeconds * xmit.LogarithmCoefficient * MathF.Pow(xmit.LogarithmRateBase, MathF.Log10(xmit.AccumulatedEnergy / spawnCheckPeriodSeconds) - xmit.LogarithmSubtrahend);
+                        var spawnCheckPeriodSeconds = (float)spawn.SpawnCheckPeriod.TotalSeconds;
+                        spawn.AccumulatedEnergy += spawnCheckPeriodSeconds * spawn.LogarithmCoefficient * MathF.Pow(spawn.LogarithmRateBase, MathF.Log10(spawn.AccumulatedEnergy / spawnCheckPeriodSeconds) - spawn.LogarithmSubtrahend);
                     }
                 }
-                xmit.AccumulatedSpawnCheckEnergy = 0;
+                spawn.AccumulatedSpawnCheckEnergy = 0;
 
                 // Require at least enough energy for one mole of gas before actually producing anything.
-                if (xmit.AccumulatedEnergy >= xmit.EnergyPerMole)
+                if (spawn.AccumulatedEnergy >= spawn.EnergyPerMole)
                 {
-                    _mixture.CopyFrom(xmit.SpawnMixture);
+                    _mixture.CopyFrom(spawn.SpawnMixture);
 
                     // Figure out how many moles we can spawn with the energy we have.
-                    var molesToSpawn = xmit.AccumulatedEnergy / xmit.EnergyPerMole;
+                    var molesToSpawn = spawn.AccumulatedEnergy / spawn.EnergyPerMole;
+
+                    molesToSpawn = MathF.Min(molesToSpawn, spawn.MaximumMolesPerSecond);
 
                     // Figure out how many moles will fit in the canister.
                     var deltaP = Atmospherics.MaxOutputPressure - canister.Air.Pressure;
@@ -134,7 +133,7 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
                     _mixture.Multiply(molesToSpawn / _mixture.TotalMoles);
                     _atmos.Merge(canister.Air, _mixture);
 
-                    xmit.AccumulatedEnergy = 0;
+                    spawn.AccumulatedEnergy = 0;
                 }
             }
 

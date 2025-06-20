@@ -114,12 +114,15 @@ public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPo
                 {
                     if (spawn.AccumulatedSpawnCheckEnergy <= spawn.LinearMaxValue * spawn.SpawnCheckPeriod.TotalSeconds)
                     {
+                        // Assuming MaxEnergyPerSecond is outside of the linear range.
                         spawn.AccumulatedEnergy += spawn.AccumulatedSpawnCheckEnergy;
                     }
                     else
                     {
                         var spawnCheckPeriodSeconds = (float)spawn.SpawnCheckPeriod.TotalSeconds;
-                        spawn.AccumulatedEnergy += spawnCheckPeriodSeconds * spawn.LogarithmCoefficient * MathF.Pow(spawn.LogarithmRateBase, MathF.Log10(spawn.AccumulatedEnergy / spawnCheckPeriodSeconds) - spawn.LogarithmSubtrahend);
+                        var totalPower = spawn.LogarithmCoefficient * MathF.Pow(spawn.LogarithmRateBase, MathF.Log10(spawn.AccumulatedEnergy / spawnCheckPeriodSeconds) - spawn.LogarithmSubtrahend);
+                        totalPower = MathF.Min(totalPower, spawn.MaxEnergyPerSecond);
+                        spawn.AccumulatedEnergy += totalPower * spawnCheckPeriodSeconds;
                     }
                 }
                 spawn.AccumulatedSpawnCheckEnergy = 0.0f;
@@ -153,7 +156,7 @@ public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPo
         }
 
         float actualPower;
-        if (power < ent.Comp.LinearMaxValue)
+        if (power <= ent.Comp.LinearMaxValue)
             actualPower = power;
         else
             actualPower = ent.Comp.LogarithmCoefficient * MathF.Pow(ent.Comp.LogarithmRateBase, MathF.Log10(power) - ent.Comp.LogarithmSubtrahend);

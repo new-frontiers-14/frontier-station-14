@@ -93,7 +93,7 @@ public sealed partial class EntitySpawnPowerConsumerComponent : Component
     /// The base on power the logarithmic mode: a in Tk*a^(log10(x/T)-R)
     ///</summary>
     [DataField(serverOnly: true)]
-    public float LogarithmRateBase = 3.0f;
+    public float LogarithmRateBase = 2.5f;
 
     ///<summary>
     /// The coefficient of the logarithmic mode: k in Tk*a^(log10(x/T)-R)
@@ -109,4 +109,10 @@ public sealed partial class EntitySpawnPowerConsumerComponent : Component
     [DataField(serverOnly: true)]
     public float LogarithmSubtrahend = 6.0f; // log10(1_000_000)
     #endregion Logarithmic Rates
+
+    ///<summary>
+    /// Maximum energy to store per second (maximum effective power).
+    ///</summary>
+    [DataField(serverOnly: true)]
+    public float MaxEnergyPerSecond = 15_000_000; // 80s per entity, ~910 MW
 }

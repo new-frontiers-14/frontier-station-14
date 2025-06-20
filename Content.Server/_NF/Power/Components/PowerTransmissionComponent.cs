@@ -86,7 +86,7 @@ public sealed partial class PowerTransmissionComponent : Component
     ///<summary>
     ///</summary>
     [DataField]
-    public float MaxValuePerSecond = 150.0f; // ~902 MW,
+    public float MaxValuePerSecond = 150.0f; // ~902 MW, ~$540k/h
 
     ///<summary>
     /// True if the entity was powered last tick.

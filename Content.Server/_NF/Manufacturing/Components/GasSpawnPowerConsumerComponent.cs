@@ -60,16 +60,16 @@ public sealed partial class GasSpawnPowerConsumerComponent : Component
 
     #region Linear Rates
     ///<summary>
-    /// The rate per joule to credit the account while in the linear mode.
+    /// The number of moles of gas to spawn per joule of power.
     ///</summary>
     [DataField]
-    public float LinearRate = 0.00005f; // $1/20 kJ
+    public float LinearRate = 0.000001f; // 1 mol/100 kW
 
     ///<summary>
     /// The maximum value (inclusive) of the linear mode per deposit, in watts
     ///</summary>
     [DataField]
-    public float LinearMaxValue = 1_000_000; // 1 MW ($50/s)
+    public float LinearMaxValue = 1_000_000; // 1 MW (10 mol/s)
     #endregion Linear Rates
 
     // Logarithmic fields: at very high levels of power generation, incremental gains decrease logarithmically to prevent runaway cash generation
@@ -79,14 +79,14 @@ public sealed partial class GasSpawnPowerConsumerComponent : Component
     /// The base on power the logarithmic mode: a in Tk*a^(log10(x/T)-R)
     ///</summary>
     [DataField]
-    public float LogarithmRateBase = 3.0f;
+    public float LogarithmRateBase = 2.5f;
 
     ///<summary>
     /// The coefficient of the logarithmic mode: k in Tk*a^(log10(x/T)-R)
     /// Note: should be set to LinearRate*LinearMaxValue for a continuous function.
     ///</summary>
     [DataField]
-    public float LogarithmCoefficient = 50f;
+    public float LogarithmCoefficient = 10f;
 
     ///<summary>
     /// The exponential subtrahend of the logarithmic mode: R in Tk*a^(log10(x/T)-R)
@@ -95,4 +95,10 @@ public sealed partial class GasSpawnPowerConsumerComponent : Component
     [DataField]
     public float LogarithmSubtrahend = 6.0f; // log10(1_000_000)
     #endregion Logarithmic Rates
+
+    ///<summary>
+    /// The maximum number of moles of gas to spawn, per second.
+    ///</summary>
+    [DataField]
+    public float MaximumMolesPerSecond = 150.0f; // ~902 MW
 }
