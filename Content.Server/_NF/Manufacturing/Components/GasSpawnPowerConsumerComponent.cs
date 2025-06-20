@@ -4,7 +4,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Server._NF.Manufacturing.Components;
 
 /// <summary>
-/// An entity with this will produce some amount of gas over time.
+/// An entity with this will produce some amount of gas over time if supplied with power.
 /// Gas is output at a regular frequency, and the amount of gas spawned scales with the amount of power given.
 /// At high power input, gas returns diminish logarithmically.
 /// Expected to be used with a GasCanister that can contain the mixture.
@@ -112,5 +112,5 @@ public sealed partial class GasSpawnPowerConsumerComponent : Component
     /// The maximum requestable power.
     ///</summary>
     [DataField]
-    public float MaximumRequestablePower = 1_000_000_000_000; // 1 TW
+    public float MaximumRequestablePower = 100_000_000_000; // 100 GW
 }

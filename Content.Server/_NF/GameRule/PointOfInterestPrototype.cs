@@ -23,7 +23,7 @@ public sealed partial class PointOfInterestPrototype : IPrototype, IInheritingPr
     public bool Abstract { get; private set; }
 
     /// <summary>
-    /// The name of this point of interest
+    /// The name of this point of interest.
     /// </summary>
     [DataField(required: true)]
     public string Name { get; private set; } = "";
@@ -47,13 +47,14 @@ public sealed partial class PointOfInterestPrototype : IPrototype, IInheritingPr
     public int MinimumDistance { get; private set; } = 5000;
 
     /// <summary>
-    /// Maximum range to spawn this POI at
+    /// Maximum range to spawn this POI at.
     /// </summary>
     [DataField]
     public int MaximumDistance { get; private set; } = 10000;
 
     /// <summary>
     /// Maximum clearance between this POI and others.
+    /// Measured between the origins of the respective grids.
     /// </summary>
     [DataField]
     public int MinimumClearance { get; private set; } = 400;

@@ -104,5 +104,5 @@ public sealed partial class PowerTransmissionComponent : Component
     /// The maximum requestable power, in watts.
     ///</summary>
     [DataField]
-    public float MaximumRequestablePower = 1_000_000_000_000; // 1 TW
+    public float MaximumRequestablePower = 100_000_000_000; // 100 GW
 }
