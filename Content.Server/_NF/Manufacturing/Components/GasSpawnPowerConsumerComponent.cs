@@ -49,7 +49,7 @@ public sealed partial class GasSpawnPowerConsumerComponent : Component
     /// The total amount of energy required to spawn one mole of gas.
     ///</summary>
     [DataField]
-    public float EnergyPerMole;
+    public float EnergyPerMole = 100_000;
 
     ///<summary>
     /// The total mixture to spawn per unit of energy.
