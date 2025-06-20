@@ -111,8 +111,8 @@ public sealed partial class EntitySpawnPowerConsumerComponent : Component
     #endregion Logarithmic Rates
 
     ///<summary>
-    /// Maximum energy to store per second (maximum effective power).
+    /// Maximum effective power to store towards spawning an item.
     ///</summary>
     [DataField(serverOnly: true)]
-    public float MaxEnergyPerSecond = 15_000_000; // 80s per entity, ~910 MW
+    public float MaxEffectivePower = 15_000_000; // 80s per entity, ~910 MW
 }

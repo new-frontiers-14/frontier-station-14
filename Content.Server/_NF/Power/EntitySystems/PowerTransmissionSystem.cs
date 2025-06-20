@@ -75,9 +75,11 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
         var query = EntityQueryEnumerator<PowerTransmissionComponent, PowerConsumerComponent>();
         while (query.MoveNext(out var uid, out var xmit, out var power))
         {
+            // Machine on?  Add power.
             if (power.NetworkLoad.Enabled)
                 xmit.AccumulatedEnergy += power.NetworkLoad.ReceivingPower * frameTime;
 
+            // If our time window has elapsed, scale your energy based on average power
             if (_timing.CurTime >= xmit.NextDeposit)
             {
                 xmit.NextDeposit += xmit.DepositPeriod;
@@ -89,18 +91,7 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
                 }
 
                 float totalPeriodSeconds = (float)xmit.DepositPeriod.TotalSeconds;
-                float depositValue;
-                if (xmit.AccumulatedEnergy <= xmit.LinearMaxValue * totalPeriodSeconds)
-                {
-                    depositValue = xmit.AccumulatedEnergy * xmit.LinearRate;
-                }
-                else
-                {
-                    var depositPeriodSeconds = totalPeriodSeconds;
-                    depositValue = depositPeriodSeconds * xmit.LogarithmCoefficient * MathF.Pow(xmit.LogarithmRateBase, MathF.Log10(xmit.AccumulatedEnergy / depositPeriodSeconds) - xmit.LogarithmSubtrahend);
-                }
-
-                depositValue = MathF.Min(depositValue, xmit.MaxValuePerSecond * totalPeriodSeconds);
+                float depositValue = GetPowerPayRate((uid, xmit), xmit.AccumulatedEnergy / totalPeriodSeconds) * totalPeriodSeconds;
 
                 xmit.AccumulatedEnergy = 0.0f;
                 var depositSpesos = (int)depositValue;
@@ -123,22 +114,20 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
     /// </summary>
     /// <param name="power">Input power level, in watts</param>
     /// <returns>Expected power sale value in spesos per second</returns>
-    public float GetPowerRate(Entity<PowerTransmissionComponent> ent, float power)
+    public float GetPowerPayRate(Entity<PowerTransmissionComponent> ent, float power)
     {
         if (!float.IsFinite(power) || !float.IsPositive(power))
         {
             return 0f;
         }
 
-        var depositPeriodSeconds = ent.Comp.DepositPeriod.TotalSeconds;
-        if (power <= ent.Comp.LinearMaxValue / depositPeriodSeconds)
-        {
-            return ent.Comp.LinearRate * power;
-        }
+        float depositValue;
+        if (power <= ent.Comp.LinearMaxValue)
+            depositValue = ent.Comp.LinearRate * power;
         else
-        {
-            return ent.Comp.LogarithmCoefficient * MathF.Pow(ent.Comp.LogarithmRateBase, MathF.Log10(power) - ent.Comp.LogarithmSubtrahend);
-        }
+            depositValue = ent.Comp.LogarithmCoefficient * MathF.Pow(ent.Comp.LogarithmRateBase, MathF.Log10(power) - ent.Comp.LogarithmSubtrahend);
+
+        return MathF.Min(depositValue, ent.Comp.MaxValuePerSecond);
     }
 
     private void OnUIOpen(Entity<PowerTransmissionComponent> ent, ref AfterActivatableUIOpenEvent args)
@@ -191,7 +180,7 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
             {
                 On = nodeEnabled,
                 Load = power.DrawRate,
-                Text = Loc.GetString("power-transmission-estimated-value", ("value", BankSystemExtensions.ToSpesoString((int)GetPowerRate(ent, power.DrawRate))))
+                Text = Loc.GetString("power-transmission-estimated-value", ("value", BankSystemExtensions.ToSpesoString((int)GetPowerPayRate(ent, power.DrawRate))))
             });
     }
 }

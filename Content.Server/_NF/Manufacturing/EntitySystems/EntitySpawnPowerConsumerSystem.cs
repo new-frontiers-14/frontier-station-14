@@ -112,18 +112,9 @@ public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPo
                 // Adjust spawn check energy
                 if (float.IsFinite(spawn.AccumulatedSpawnCheckEnergy) && float.IsPositive(spawn.AccumulatedSpawnCheckEnergy))
                 {
-                    if (spawn.AccumulatedSpawnCheckEnergy <= spawn.LinearMaxValue * spawn.SpawnCheckPeriod.TotalSeconds)
-                    {
-                        // Assuming MaxEnergyPerSecond is outside of the linear range.
-                        spawn.AccumulatedEnergy += spawn.AccumulatedSpawnCheckEnergy;
-                    }
-                    else
-                    {
-                        var spawnCheckPeriodSeconds = (float)spawn.SpawnCheckPeriod.TotalSeconds;
-                        var totalPower = spawn.LogarithmCoefficient * MathF.Pow(spawn.LogarithmRateBase, MathF.Log10(spawn.AccumulatedSpawnCheckEnergy / spawnCheckPeriodSeconds) - spawn.LogarithmSubtrahend);
-                        totalPower = MathF.Min(totalPower, spawn.MaxEnergyPerSecond);
-                        spawn.AccumulatedEnergy += totalPower * spawnCheckPeriodSeconds;
-                    }
+                    float totalPeriodSeconds = (float)spawn.SpawnCheckPeriod.TotalSeconds;
+                    var effectivePower = GetEffectivePower((uid, spawn), spawn.AccumulatedSpawnCheckEnergy / totalPeriodSeconds);
+                    spawn.AccumulatedEnergy += effectivePower * totalPeriodSeconds;
                 }
                 spawn.AccumulatedSpawnCheckEnergy = 0.0f;
 
@@ -144,6 +135,22 @@ public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPo
     }
 
     /// <summary>
+    /// Gets the actual effective power in watts for some amount of input power.
+    /// No range check on power.
+    /// </summary>
+    /// <param name="power">Input power level, in watts.</param>
+    /// <returns>Effective power, in watts.</returns>
+    private float GetEffectivePower(Entity<EntitySpawnPowerConsumerComponent> ent, float power)
+    {
+        float actualPower;
+        if (power <= ent.Comp.LinearMaxValue)
+            actualPower = power;
+        else
+            actualPower = ent.Comp.LogarithmCoefficient * MathF.Pow(ent.Comp.LogarithmRateBase, MathF.Log10(power) - ent.Comp.LogarithmSubtrahend);
+        return MathF.Min(actualPower, ent.Comp.MaxEffectivePower);
+    }
+
+    /// <summary>
     /// Gets the expected generation time for an object in seconds.
     /// </summary>
     /// <param name="power">Input power level, in watts</param>
@@ -155,13 +162,8 @@ public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPo
             return TimeSpan.Zero;
         }
 
-        float actualPower;
-        if (power <= ent.Comp.LinearMaxValue)
-            actualPower = power;
-        else
-            actualPower = ent.Comp.LogarithmCoefficient * MathF.Pow(ent.Comp.LogarithmRateBase, MathF.Log10(power) - ent.Comp.LogarithmSubtrahend);
-
-        return TimeSpan.FromSeconds(ent.Comp.EnergyPerSpawn / actualPower);
+        power = GetEffectivePower(ent, power);
+        return TimeSpan.FromSeconds(ent.Comp.EnergyPerSpawn / power);
     }
 
     private void OnUIOpen(Entity<EntitySpawnPowerConsumerComponent> ent, ref AfterActivatableUIOpenEvent args)

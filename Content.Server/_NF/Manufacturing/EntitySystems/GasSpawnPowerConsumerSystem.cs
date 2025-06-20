@@ -103,15 +103,9 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
                 // Adjust spawn check energy
                 if (float.IsFinite(spawn.AccumulatedSpawnCheckEnergy) && float.IsPositive(spawn.AccumulatedSpawnCheckEnergy))
                 {
-                    if (spawn.AccumulatedSpawnCheckEnergy <= spawn.LinearMaxValue * spawn.SpawnCheckPeriod.TotalSeconds)
-                    {
-                        spawn.AccumulatedEnergy += spawn.AccumulatedSpawnCheckEnergy;
-                    }
-                    else
-                    {
-                        var spawnCheckPeriodSeconds = (float)spawn.SpawnCheckPeriod.TotalSeconds;
-                        spawn.AccumulatedEnergy += spawnCheckPeriodSeconds * spawn.LogarithmCoefficient * MathF.Pow(spawn.LogarithmRateBase, MathF.Log10(spawn.AccumulatedSpawnCheckEnergy / spawnCheckPeriodSeconds) - spawn.LogarithmSubtrahend);
-                    }
+                    var totalPeriodSeconds = (float)spawn.SpawnCheckPeriod.TotalSeconds;
+                    var effectivePower = GetEffectivePower((uid, spawn), spawn.AccumulatedSpawnCheckEnergy / totalPeriodSeconds);
+                    spawn.AccumulatedEnergy += effectivePower * totalPeriodSeconds;
                 }
                 spawn.AccumulatedSpawnCheckEnergy = 0;
 
@@ -142,24 +136,35 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
     }
 
     /// <summary>
+    /// Gets the actual effective power in watts for some amount of input power.
+    /// No range check on power.
+    /// </summary>
+    /// <param name="power">Input power level, in watts.</param>
+    /// <returns>Effective power, in watts.</returns>
+    private float GetEffectivePower(Entity<GasSpawnPowerConsumerComponent> ent, float power)
+    {
+        float actualPower;
+        if (power <= ent.Comp.LinearMaxValue)
+            actualPower = power;
+        else
+            actualPower = ent.Comp.LogarithmCoefficient * MathF.Pow(ent.Comp.LogarithmRateBase, MathF.Log10(power) - ent.Comp.LogarithmSubtrahend);
+        return actualPower;
+    }
+
+    /// <summary>
     /// Gets the expected gas generation rate in moles per second.
     /// </summary>
     /// <param name="power">Input power level, in watts</param>
     /// <returns>Expected item generation time in seconds</returns>
-    public float GetSpawnPeriodSeconds(Entity<GasSpawnPowerConsumerComponent> ent, float power)
+    public float GetGasSpawnRate(Entity<GasSpawnPowerConsumerComponent> ent, float power)
     {
         if (!float.IsFinite(power) || !float.IsPositive(power))
         {
             return 0.0f;
         }
 
-        float actualPower;
-        if (power < ent.Comp.LinearMaxValue)
-            actualPower = power;
-        else
-            actualPower = ent.Comp.LogarithmCoefficient * MathF.Pow(ent.Comp.LogarithmRateBase, MathF.Log10(power) - ent.Comp.LogarithmSubtrahend);
-
-        return actualPower / ent.Comp.EnergyPerMole;
+        var numMoles = GetEffectivePower(ent, power) / ent.Comp.EnergyPerMole;
+        return MathF.Min(numMoles, ent.Comp.MaximumMolesPerSecond);
     }
 
     private void OnUIOpen(Entity<GasSpawnPowerConsumerComponent> ent, ref AfterActivatableUIOpenEvent args)
@@ -212,7 +217,7 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
             {
                 On = nodeEnabled,
                 Load = power.DrawRate,
-                Text = Loc.GetString("gas-spawn-power-consumer-value", ("value", GetSpawnPeriodSeconds(ent, power.DrawRate)))
+                Text = Loc.GetString("gas-spawn-power-consumer-value", ("value", GetGasSpawnRate(ent, power.DrawRate)))
             });
     }
 }
