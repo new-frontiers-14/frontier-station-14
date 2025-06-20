@@ -45,7 +45,7 @@ frontier-lobby-pirate-description = This is the ultimate hideout where scallywag
    - Socialize with other pirates
  {"["}color=gray]Some of the roles on this station are [color=lightblue]whitelist-only[/color] and require an application in the Discord to be accepted.[/color]
 
-frontier-lobby-edison-subtext = Where the mechanically minded mingle.
+frontier-lobby-edison-subtext = Where the mechanically-minded mingle.
 frontier-lobby-edison-description = Frontier's heavy industrial base. Here you can:
    - Work on engineering and atmospheric projects
    - Generate, use, and sell massive amounts of power

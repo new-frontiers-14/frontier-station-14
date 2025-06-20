@@ -108,7 +108,7 @@ public sealed partial class EntitySpawnPowerConsumerComponent : Component
     ///</summary>
     [DataField(serverOnly: true)]
     public float LogarithmSubtrahend = 6.0f; // log10(1_000_000)
-    #endregion Logarithmic Rates
+    #endregion Efficiency Scaling
 
     ///<summary>
     /// Maximum effective power to store towards spawning an item.

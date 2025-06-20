@@ -1,5 +1,6 @@
 using Content.Server._NF.Bank;
 using Content.Server._NF.Power.Components;
+using Content.Server.Audio;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -22,6 +23,7 @@ namespace Content.Shared._NF.Power.EntitySystems;
 public sealed partial class PowerTransmissionSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly NodeContainerSystem _node = default!;
@@ -106,6 +108,7 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
             {
                 _appearance.SetData(uid, PowerDeviceVisuals.Powered, powered);
                 _pointLight.SetEnabled(uid, powered);
+                _ambientSound.SetAmbience(uid, powered);
                 xmit.LastPowered = powered;
             }
         }
