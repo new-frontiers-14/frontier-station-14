@@ -5,7 +5,6 @@ using Content.Shared._NF.BindToStation;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
-using Robust.Server.Containers;
 
 namespace Content.Server._NF.BindToStation;
 

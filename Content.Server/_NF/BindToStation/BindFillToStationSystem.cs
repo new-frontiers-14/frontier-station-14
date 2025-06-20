@@ -7,6 +7,10 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._NF.BindToStation;
 
+/// <summary>
+/// A class that binds marked containers' contents to the station they start on.
+/// Needed because the binding variation pass runs before the objects have their own MapInit.
+/// </summary>
 public sealed class BindFillToStationSystem : EntitySystem
 {
     [Dependency] private readonly BindToStationSystem _bindToStation = default!;

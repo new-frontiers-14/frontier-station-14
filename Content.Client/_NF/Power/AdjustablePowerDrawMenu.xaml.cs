@@ -69,11 +69,9 @@ public sealed partial class AdjustablePowerDrawMenu : FancyWindow
             ArbitraryText.Visible = true;
         }
 
-        if (_unsavedChanges)
-            return;
-
-        // Get power in proper units
-        if (msg.Load >= 0)
+        // Set power text to current value in proper units
+        // unless user has pending changes
+        if (!_unsavedChanges && msg.Load >= 0)
         {
             if (msg.Load >= 1_000_000_000)
             {

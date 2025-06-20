@@ -126,10 +126,10 @@ public sealed class FlatpackSystem : SharedFlatpackSystem
         }
     }
 
-    // Frontier: binds a flatpack or the machine it creates to a station.
+    // Frontier: flatpack station binding
     protected override void BindToStation(EntityUid toBind, StationBoundObjectComponent bindingParams)
     {
         _bindToStation.BindToStation(toBind, bindingParams.BoundStation, bindingParams.Enabled);
     }
-    // End Frontier:
+    // End Frontier: flatpack station binding
 }
