@@ -137,8 +137,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         if (boundsSet)
         {
             _bounds = bounds;
-            _position.X = Math.Clamp(_position.X, bounds.Left, bounds.Right);
-            _position.Y = Math.Clamp(_position.Y, bounds.Bottom, bounds.Top);
         }
         // End Frontier: generate bounding box, ensure position is within bounds
 
@@ -211,13 +209,24 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             return;
 
         // Frontier: bound motion to a box
-        // FIXME: this bounding doesn't work
-        // var originalPosition = _position;
-        // _position += args.Relative;
-        // _position.X = Math.Clamp(_position.X, _bounds.Left, _bounds.Right);
-        // _position.Y = Math.Clamp(_position.Y, _bounds.Bottom, _bounds.Top);
-        // var diff = _position - originalPosition;
-        var diff = args.Relative;
+        var originalPosition = _position;
+        _position += args.Relative;
+
+        var viewSize = DragContainer.Size;
+
+        // we need to account for the size of the technology cards themselves, which is GridSize
+        var minX = Math.Min(-_bounds.Left, viewSize.X - _bounds.Right - GridSize);
+        var maxX = Math.Max(-_bounds.Left, viewSize.X - _bounds.Right - GridSize);
+        _position.X = Math.Clamp(_position.X, minX, maxX);
+
+        var minY = Math.Min(-_bounds.Bottom, viewSize.Y - _bounds.Top - GridSize);
+        var maxY = Math.Max(-_bounds.Bottom, viewSize.Y - _bounds.Top - GridSize);
+        _position.Y = Math.Clamp(_position.Y, minY, maxY);
+
+        var diff = _position - originalPosition;
+
+        if (diff.LengthSquared() < 1e-6f)
+            return;
         // End Frontier: bound motion to a box
 
         // Move all tech
