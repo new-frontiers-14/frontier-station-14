@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/19/2025 18:25:26
+  time: 06/20/2025 06:06:22
   entityCount: 741
 maps: []
 grids:
@@ -1893,18 +1893,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 9.5,3.5
       parent: 1
-- proto: CrateStorageRack
-  entities:
-  - uid: 322
-    components:
-    - type: Transform
-      pos: 10.5,-1.5
-      parent: 1
-  - uid: 323
-    components:
-    - type: Transform
-      pos: 11.5,-1.5
-      parent: 1
 - proto: d6Dice
   entities:
   - uid: 395
@@ -3681,6 +3669,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 10.5,-5.5
       parent: 1
+- proto: Rack
+  entities:
+  - uid: 322
+    components:
+    - type: Transform
+      pos: 10.5,-1.5
+      parent: 1
+  - uid: 323
+    components:
+    - type: Transform
+      pos: 11.5,-1.5
+      parent: 1
 - proto: RagItem
   entities:
   - uid: 334
@@ -4063,6 +4063,12 @@ entities:
         - - Pressed
           - DoorBolt
         333:
+        - - Pressed
+          - DoorBolt
+        17:
+        - - Pressed
+          - DoorBolt
+        186:
         - - Pressed
           - DoorBolt
   - uid: 51
