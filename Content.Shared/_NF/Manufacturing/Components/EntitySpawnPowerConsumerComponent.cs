@@ -115,4 +115,16 @@ public sealed partial class EntitySpawnPowerConsumerComponent : Component
     ///</summary>
     [DataField(serverOnly: true)]
     public float MaxEffectivePower = 15_000_000; // 80s per entity, ~910 MW
+
+    ///<summary>
+    /// The minimum requestable power.
+    ///</summary>
+    [DataField]
+    public float MinimumRequestablePower = 500; // 500 W
+
+    ///<summary>
+    /// The maximum requestable power.
+    ///</summary>
+    [DataField]
+    public float MaximumRequestablePower = 1_000_000_000_000; // 1 TW
 }

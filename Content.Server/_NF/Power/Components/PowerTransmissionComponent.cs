@@ -93,4 +93,16 @@ public sealed partial class PowerTransmissionComponent : Component
     ///</summary>
     [ViewVariables]
     public bool LastPowered;
+
+    ///<summary>
+    /// The minimum requestable power, in watts.
+    ///</summary>
+    [DataField]
+    public float MinimumRequestablePower = 500; // 500 W
+
+    ///<summary>
+    /// The maximum requestable power, in watts.
+    ///</summary>
+    [DataField]
+    public float MaximumRequestablePower = 1_000_000_000_000; // 1 TW
 }

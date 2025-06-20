@@ -238,7 +238,7 @@
       state: base
     - state: fan
       map: [fan]
-      offset: -0.5, 1
+      offset: -0.6875, 1 # 11/16, -22 px offset
     - state: front-panel-unlit
       shader: unshaded
       map: [front-panel]
@@ -273,9 +273,9 @@
       enum.GasCanisterVisuals.PressureState:
         gas:
           0: { color: "#FFFFFF01" }
-          1: { color: "#FFFFFF37" }
-          2: { color: "#FFFFFF6E" }
-          3: { color: "#FFFFFFAA" }
+          1: { color: "#FFFFFF22" }
+          2: { color: "#FFFFFF44" }
+          3: { color: "#FFFFFF66" }
   - type: PowerConsumer
     drawRate: 100000
   - type: PowerMonitoringDevice
@@ -300,6 +300,8 @@
   - type: GasCanister
     gasMixture:
       volume: 10000 # big tank to store backup
+    gasTankSlot:
+      locked: True # cannot be unlocked, unusable
   - type: AtmosDevice
     requireAnchored: false
     joinSystem: true

@@ -54,6 +54,8 @@ public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPo
     private void OnMapInit(Entity<EntitySpawnPowerConsumerComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextSpawnCheck = _timing.CurTime + ent.Comp.SpawnCheckPeriod;
+        if (TryComp(ent, out PowerConsumerComponent? power))
+            power.DrawRate = Math.Clamp(power.DrawRate, ent.Comp.MinimumRequestablePower, ent.Comp.MaximumRequestablePower);
     }
 
     private void OnExamined(Entity<EntitySpawnPowerConsumerComponent> ent, ref ExaminedEvent args)
@@ -192,7 +194,7 @@ public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPo
     {
         if (args.Load >= 0 && TryComp(ent, out PowerConsumerComponent? power))
         {
-            power.DrawRate = args.Load;
+            power.DrawRate = Math.Clamp(args.Load, ent.Comp.MinimumRequestablePower, ent.Comp.MaximumRequestablePower);
             UpdateUI(ent, power);
         }
     }

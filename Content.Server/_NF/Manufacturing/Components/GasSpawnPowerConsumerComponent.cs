@@ -101,4 +101,16 @@ public sealed partial class GasSpawnPowerConsumerComponent : Component
     ///</summary>
     [DataField]
     public float MaximumMolesPerSecond = 150.0f; // ~902 MW
+
+    ///<summary>
+    /// The minimum requestable power.
+    ///</summary>
+    [DataField]
+    public float MinimumRequestablePower = 500; // 500 W
+
+    ///<summary>
+    /// The maximum requestable power.
+    ///</summary>
+    [DataField]
+    public float MaximumRequestablePower = 1_000_000_000_000; // 1 TW
 }
