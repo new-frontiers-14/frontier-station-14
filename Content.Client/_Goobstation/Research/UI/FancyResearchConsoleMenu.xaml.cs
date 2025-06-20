@@ -79,7 +79,12 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// <summary>
     /// Frontier: the distance between elements on the grid.
     /// </summary>
-    private const int GridSize = 110;
+    private const int GridSize = 90;
+
+    /// <summary>
+    /// Frontier: technology cards size.
+    /// </summary>
+    private const int CardSize = 64;
 
     /// <summary>
     /// Frontier: the distance between elements on the grid.
@@ -214,13 +219,12 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
         var viewSize = DragContainer.Size;
 
-        // we need to account for the size of the technology cards themselves, which is GridSize
-        var minX = Math.Min(-_bounds.Left, viewSize.X - _bounds.Right - GridSize);
-        var maxX = Math.Max(-_bounds.Left, viewSize.X - _bounds.Right - GridSize);
+        var minX = Math.Min(-_bounds.Left, viewSize.X - _bounds.Right - CardSize);
+        var maxX = Math.Max(-_bounds.Left, viewSize.X - _bounds.Right - CardSize);
         _position.X = Math.Clamp(_position.X, minX, maxX);
 
-        var minY = Math.Min(-_bounds.Bottom, viewSize.Y - _bounds.Top - GridSize);
-        var maxY = Math.Max(-_bounds.Bottom, viewSize.Y - _bounds.Top - GridSize);
+        var minY = Math.Min(-_bounds.Bottom, viewSize.Y - _bounds.Top - CardSize);
+        var maxY = Math.Max(-_bounds.Bottom, viewSize.Y - _bounds.Top - CardSize);
         _position.Y = Math.Clamp(_position.Y, minY, maxY);
 
         var diff = _position - originalPosition;

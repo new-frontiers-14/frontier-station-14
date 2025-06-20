@@ -9,16 +9,16 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                  xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                  xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                  xmlns:goob="clr-namespace:Content.Client._Goobstation.Research.UI"
-                 Margin="5"
-                 HorizontalExpand="False">
-    <BoxContainer Orientation="Vertical" SetSize="74 74"> <!-- Frontier: "80 80" < "74 74" -->
+                 Margin="4"
+                 HorizontalExpand="False">  <!-- Frontier: Margin="5" < Margin="4" -->
+    <BoxContainer Orientation="Vertical" SetSize="64 64"> <!-- Frontier: "80 80" < "64 64" -->
         <PanelContainer VerticalExpand="True"
                         HorizontalExpand="True"
                         Name="Panel">
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="#162031"
                                        BorderColor="#4972A1"
-                                       BorderThickness="2"/>
+                                       BorderThickness="1.5"/> <!-- Frontier: "2" < "1.5" -->
             </PanelContainer.PanelOverride>
             <goob:DrawButton Name="Button"
                              Access="Public"
@@ -26,10 +26,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                              HorizontalExpand="True"/>
             <TextureRect
                 Name="ResearchDisplay"
-                TextureScale="2 2"
-                SetSize="64 64"
+                TextureScale="1.75 1.75"
+                SetSize="56 56" 
                 Stretch="KeepAspectCentered">
-            </TextureRect>
+            </TextureRect> <!-- Frontier: "2" < "1.75", "64 64" < "56 56" -->
         </PanelContainer>
     </BoxContainer>
 </LayoutContainer>
