@@ -49,7 +49,7 @@ public sealed class FlatpackSystem : SharedFlatpackSystem
 
     // Frontier: station binding
     // NOOP, all done server-side.
-    public override void BindToStation(EntityUid toBind, StationBoundObjectComponent bindingParams)
+    protected override void BindToStation(EntityUid toBind, StationBoundObjectComponent bindingParams)
     {
     }
     // End Frontier: station binding

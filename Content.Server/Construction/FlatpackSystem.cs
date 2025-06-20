@@ -7,7 +7,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Power;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared._NF.BindToStation;
+using Content.Shared._NF.BindToStation; // Frontier: station binding
 using Content.Server._NF.BindToStation; // Frontier: station binding
 
 namespace Content.Server.Construction;
@@ -127,8 +127,9 @@ public sealed class FlatpackSystem : SharedFlatpackSystem
     }
 
     // Frontier: binds a flatpack or the machine it creates to a station.
-    public override void BindToStation(EntityUid toBind, StationBoundObjectComponent bindingParams)
+    protected override void BindToStation(EntityUid toBind, StationBoundObjectComponent bindingParams)
     {
         _bindToStation.BindToStation(toBind, bindingParams.BoundStation, bindingParams.Enabled);
     }
+    // End Frontier:
 }

@@ -126,9 +126,7 @@ public sealed partial class AdjustablePowerDrawMenu : FancyWindow
         On = on;
         TogglePowerButton.Pressed = on;
 
-        if (on)
-            TogglePowerButton.Text = Loc.GetString("comp-gas-pump-ui-status-enabled");
-        else
-            TogglePowerButton.Text = Loc.GetString("comp-gas-pump-ui-status-disabled");
+        TogglePowerButton.Text = Loc.GetString(
+            on ? "comp-gas-pump-ui-status-enabled" : "comp-gas-pump-ui-status-disabled");
     }
 }

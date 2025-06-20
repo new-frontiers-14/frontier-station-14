@@ -157,5 +157,5 @@ public abstract class SharedFlatpackSystem : EntitySystem
     }
 
     // Frontier: a function to bind something to a station.  Will only be run serverside.
-    public abstract void BindToStation(EntityUid toBind, StationBoundObjectComponent bindingParams);
+    protected abstract void BindToStation(EntityUid toBind, StationBoundObjectComponent bindingParams);
 }
