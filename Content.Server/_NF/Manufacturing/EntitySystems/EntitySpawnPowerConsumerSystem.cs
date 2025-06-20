@@ -120,7 +120,7 @@ public sealed partial class EntitySpawnPowerConsumerSystem : SharedEntitySpawnPo
                     else
                     {
                         var spawnCheckPeriodSeconds = (float)spawn.SpawnCheckPeriod.TotalSeconds;
-                        var totalPower = spawn.LogarithmCoefficient * MathF.Pow(spawn.LogarithmRateBase, MathF.Log10(spawn.AccumulatedEnergy / spawnCheckPeriodSeconds) - spawn.LogarithmSubtrahend);
+                        var totalPower = spawn.LogarithmCoefficient * MathF.Pow(spawn.LogarithmRateBase, MathF.Log10(spawn.AccumulatedSpawnCheckEnergy / spawnCheckPeriodSeconds) - spawn.LogarithmSubtrahend);
                         totalPower = MathF.Min(totalPower, spawn.MaxEnergyPerSecond);
                         spawn.AccumulatedEnergy += totalPower * spawnCheckPeriodSeconds;
                     }

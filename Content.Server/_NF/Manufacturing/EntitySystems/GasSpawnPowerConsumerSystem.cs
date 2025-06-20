@@ -110,7 +110,7 @@ public sealed partial class GasSpawnPowerConsumerSystem : EntitySystem
                     else
                     {
                         var spawnCheckPeriodSeconds = (float)spawn.SpawnCheckPeriod.TotalSeconds;
-                        spawn.AccumulatedEnergy += spawnCheckPeriodSeconds * spawn.LogarithmCoefficient * MathF.Pow(spawn.LogarithmRateBase, MathF.Log10(spawn.AccumulatedEnergy / spawnCheckPeriodSeconds) - spawn.LogarithmSubtrahend);
+                        spawn.AccumulatedEnergy += spawnCheckPeriodSeconds * spawn.LogarithmCoefficient * MathF.Pow(spawn.LogarithmRateBase, MathF.Log10(spawn.AccumulatedSpawnCheckEnergy / spawnCheckPeriodSeconds) - spawn.LogarithmSubtrahend);
                     }
                 }
                 spawn.AccumulatedSpawnCheckEnergy = 0;
