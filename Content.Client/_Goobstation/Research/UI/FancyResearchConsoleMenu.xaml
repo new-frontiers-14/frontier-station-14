@@ -41,9 +41,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                           Margin="0 0 0 10">
                 <PanelContainer Name="ResearchesContainer" VerticalExpand="True" HorizontalExpand="True">
                     <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="#182050FF" /> <!-- Frontier: panel to 182050 -->
+                        <gfx:StyleBoxFlat BackgroundColor="#000000FF" />
                     </PanelContainer.PanelOverride>
-                    <!-- Frontier: destroy AnimatedTextureRect -->
                     <goob:ResearchesContainerPanel
                         HorizontalExpand="True"
                         VerticalExpand="True"
@@ -52,7 +51,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         RectClipContent="True">
                         <!-- There lives all of technologies -->
                     </goob:ResearchesContainerPanel>
-                    <!-- End Frontier: destroy AnimatedTextureRect -->
                     <Button Name="RecenterButton" Text="{Loc 'research-console-menu-recenter-button'}" MinHeight="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5 -5"/>
                 </PanelContainer>
             </BoxContainer>

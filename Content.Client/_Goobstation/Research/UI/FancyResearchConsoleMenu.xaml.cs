@@ -11,6 +11,7 @@
 
 using System.Linq;
 using System.Numerics;
+using Content.Client.Parallax;
 using Content.Client.Research;
 using Content.Client.UserInterface.Controls;
 using Content.Client._Goobstation.Research;
@@ -93,6 +94,8 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
     private Box2i _bounds = new(DefaultPosition, DefaultPosition);
 
+    private ParallaxControl _parallaxControl; // Frontier: Parallax control for the background
+
     public FancyResearchConsoleMenu()
     {
         RobustXamlLoader.Load(this);
@@ -100,6 +103,25 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         _research = _entity.System<ResearchSystem>();
         _sprite = _entity.System<SpriteSystem>();
         _accessReader = _entity.System<AccessReaderSystem>();
+
+        // Frontier: Initialize parallax background
+        _parallaxControl = new ParallaxControl
+        {
+            ParallaxPrototype = "OriginStation",
+            HorizontalExpand = true,
+            VerticalExpand = true,
+        };
+
+        // Add the parallax control to the ResearchesContainer at the beginning (bottom layer)
+        ResearchesContainer.AddChild(_parallaxControl);
+
+        // Ensure DragContainer is on top of the parallax by removing and re-adding it
+        if (ResearchesContainer.Children.Contains(DragContainer))
+        {
+            ResearchesContainer.RemoveChild(DragContainer);
+            ResearchesContainer.AddChild(DragContainer);
+        }
+        // End Frontier
 
         ServerButton.OnPressed += _ => OnServerButtonPressed?.Invoke();
         DragContainer.OnKeyBindDown += OnKeybindDown;
