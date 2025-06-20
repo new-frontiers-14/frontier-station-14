@@ -4,6 +4,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._NF.DangerTether;
 
+/// <summary>
+/// A system to handle tethering dangerous objects, and deleting them when out of range of any tether.
+/// Runs periodic checks to handle deletion.
+/// </summary>
 public sealed class DangerTetherSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
