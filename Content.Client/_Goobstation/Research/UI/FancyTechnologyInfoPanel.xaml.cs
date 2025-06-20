@@ -19,6 +19,8 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Input;
+using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Goobstation.Research.UI;
@@ -31,6 +33,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
 
     public TechnologyPrototype Prototype;
     public Action<TechnologyPrototype>? BuyAction;
+
     public FancyTechnologyInfoPanel(TechnologyPrototype proto, bool hasAccess, ResearchAvailability availability, SpriteSystem sprite)
     {
         RobustXamlLoader.Load(this);
@@ -69,7 +72,23 @@ public sealed partial class FancyTechnologyInfoPanel : Control
         );
 
         ResearchButton.Disabled = !hasAccess || availability != ResearchAvailability.Available;
-        ResearchButton.OnPressed += Bought;
+        
+        // Replace the event handling method to use a simpler approach
+        ResearchButton.OnPressed += args => 
+        {
+            Logger.Debug($"[Research] Research button pressed for {proto.ID}");
+            if (BuyAction != null)
+            {
+                Logger.Debug($"[Research] Triggering BuyAction for {proto.ID}");
+                BuyAction.Invoke(proto);
+            }
+            else
+            {
+                Logger.Error($"[Research] BuyAction is null for {proto.ID}");
+            }
+        };
+        
+        Logger.Debug($"[Research] Created tech panel: {proto.ID}, availability: {availability}, button disabled: {ResearchButton.Disabled}");
     }
 
     private void InitializePrerequisites(TechnologyPrototype proto, ResearchSystem research, SpriteSystem sprite)
@@ -103,12 +122,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
     protected override void ExitedTree()
     {
         base.ExitedTree();
-
-        ResearchButton.OnPressed -= Bought;
+        
+        // No need to explicitly remove handlers as the control is being destroyed
     }
-    private void Bought(BaseButton.ButtonEventArgs args)
-    {
-        BuyAction?.Invoke(Prototype);
-    }
-
 }
