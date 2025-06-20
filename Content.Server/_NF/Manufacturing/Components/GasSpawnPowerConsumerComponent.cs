@@ -86,7 +86,7 @@ public sealed partial class GasSpawnPowerConsumerComponent : Component
     /// Note: should be set to LinearRate*LinearMaxValue for a continuous function.
     ///</summary>
     [DataField]
-    public float LogarithmCoefficient = 10f;
+    public float LogarithmCoefficient = 1_000_000f;
 
     ///<summary>
     /// The exponential subtrahend of the logarithmic mode: R in Tk*a^(log10(x/T)-R)
