@@ -2,6 +2,7 @@ using Content.Server.Abilities.Mime;
 using Content.Server.Bible.Components;
 using Content.Server.Implants;
 using Content.Shared._NF.Implants.Components;
+using Content.Shared.Electrocution;
 using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
 using Content.Shared.Paper;
@@ -21,6 +22,10 @@ public sealed class NFImplantSystem : EntitySystem
         SubscribeLocalEvent<MimePowersImplantComponent, ImplantImplantedEvent>(OnMimeInserted);
         // Need access to the implant, this has to run before the implant is removed.
         SubscribeLocalEvent<MimePowersImplantComponent, EntGotRemovedFromContainerMessage>(OnMimeRemoved, before: [typeof(SubdermalImplantSystem)]);
+        SubscribeLocalEvent<InsulatedImplantComponent, ImplantImplantedEvent>(OnInsulatedInserted);
+        // Need access to the implant, this has to run before the implant is removed.
+        SubscribeLocalEvent<InsulatedImplantComponent, EntGotRemovedFromContainerMessage>(OnInsulatedRemoved, before: [typeof(SubdermalImplantSystem)]);
+
     }
 
     private void OnBibleInserted(EntityUid uid, BibleUserImplantComponent component, ImplantImplantedEvent args)
@@ -56,4 +61,20 @@ public sealed class NFImplantSystem : EntitySystem
 
         RemComp<MimePowersComponent>(implanted.ImplantedEntity.Value);
     }
+    private void OnInsulatedInserted(EntityUid uid, InsulatedImplantComponent component, ImplantImplantedEvent args)
+    {
+        if (!args.Implanted.HasValue)
+            return;
+
+        EnsureComp<InsulatedComponent>(args.Implanted.Value);
+    }
+
+    private void OnInsulatedRemoved(EntityUid uid, InsulatedImplantComponent component, EntGotRemovedFromContainerMessage args)
+    {
+        if (!TryComp<SubdermalImplantComponent>(uid, out var implanted) || implanted.ImplantedEntity == null)
+            return;
+
+        RemComp<InsulatedComponent>(implanted.ImplantedEntity.Value);
+    }
+
 }
