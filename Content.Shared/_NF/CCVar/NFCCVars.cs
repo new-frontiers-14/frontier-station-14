@@ -270,4 +270,32 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<bool> XenoarchSingleUseNodes =
         CVarDef.Create("nf14.xenoarch.single_use_nodes", true, CVar.REPLICATED);
+
+    /*
+     * Garbage Collection
+     */
+
+    /// <summary>
+    /// If true, garbage collection will be run.
+    /// </summary>
+    public static readonly CVarDef<bool> GarbageCollectionEnabled =
+        CVarDef.Create("nf14.gc.enabled", true, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// The period to run garbage collection at, in seconds.
+    /// </summary>
+    public static readonly CVarDef<int> GarbageCollectionPeriod =
+        CVarDef.Create("nf14.gc.period", 900, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// The number of entities to check per tick.
+    /// </summary>
+    public static readonly CVarDef<int> GarbageCollectionEntitiesPerTick =
+        CVarDef.Create("nf14.gc.entities_per_tick", 64, CVar.SERVER | CVar.ARCHIVE);
+
+    /// <summary>
+    /// The number of times an object must be seen as idle before being garbage collected.
+    /// </summary>
+    public static readonly CVarDef<int> GarbageCollectionTally =
+        CVarDef.Create("nf14.gc.idle_count", 3, CVar.SERVER | CVar.ARCHIVE);
 }
