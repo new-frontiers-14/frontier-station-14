@@ -1,11 +1,11 @@
 # region Common Prereqs
 - type: technology
   id: NFAdvancedParts
-  name: research-technology-advanced-parts
+  name: nf-research-technology-advanced-parts
   icon:
     sprite: _NF/Objects/Misc/stock_parts.rsi
     state: advanced_matter_bin
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 1000
   recipeUnlocks:
@@ -17,11 +17,11 @@
 # region Engineering
 - type: technology
   id: NFRapidPartExchange
-  name: research-technology-rped
+  name: nf-research-technology-rped
   icon:
     sprite: _NF/Objects/Specific/Research/rped.rsi
     state: icon
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 2500
   recipeUnlocks:
@@ -31,12 +31,12 @@
   position: 1, 0
 
 - type: technology
-  id: NFIndustrialEngineering
-  name: research-technology-industrial-engineering
+  id: NFEngineeringEngineering
+  name: nf-research-technology-industrial-engineering
   icon:
     sprite: Structures/Machines/protolathe_hypercon.rsi
     state: building
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -51,11 +51,11 @@
 
 - type: technology
   id: NFFauxAstroTiles
-  name: research-technology-faux-astro-tiles
+  name: nf-research-technology-faux-astro-tiles
   icon:
     sprite: Objects/Tiles/tile.rsi
     state: astroice
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 1000
   recipeUnlocks:
@@ -66,16 +66,16 @@
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
   technologyPrerequisites:
-  - NFIndustrialEngineering
+  - NFEngineeringEngineering
   position: 3, 1
 
 - type: technology
   id: NFMiscellaneousItemsOrganization
-  name: research-technology-personal-storage-solutions
+  name: nf-research-technology-personal-storage-solutions
   icon:
     sprite: _NF/Objects/Storage/Pouches/pouch.rsi
     state: closed
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 2500
   recipeUnlocks:
@@ -98,47 +98,47 @@
   - NFPouchCaptain
   - NFPouchCargo
   technologyPrerequisites:
-  - NFIndustrialEngineering
+  - NFEngineeringEngineering
   position: 3, 3
 
 - type: technology
   id: NFMechanicalCompression
-  name: research-technology-mechanical-compression
+  name: nf-research-technology-mechanical-compression
   icon:
     sprite: Structures/Machines/flatpacker.rsi
     state: base
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 5000
   recipeUnlocks:
   - FlatpackerMachineCircuitboard
   technologyPrerequisites:
-  - NFIndustrialEngineering
+  - NFEngineeringEngineering
   position: 3, 4
 
 - type: technology
   id: NFAtmosphericTech
-  name: research-technology-atmospheric-tech
+  name: nf-research-technology-atmospheric-tech
   icon:
     sprite: Structures/Piping/Atmospherics/thermomachine.rsi
     state: freezerOff
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 5000
   recipeUnlocks:
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
   technologyPrerequisites:
-  - NFIndustrialEngineering
+  - NFEngineeringEngineering
   position: 4, 0
 
 - type: technology
   id: NFAdvancedPersonalPropulsion
-  name: research-technology-advanced-personal-propulsion
+  name: nf-research-technology-advanced-personal-propulsion
   icon:
     sprite: Objects/Tanks/Jetpacks/void.rsi
     state: icon
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 15000
   recipeUnlocks:
@@ -149,11 +149,11 @@
 
 - type: technology
   id: NFBluespaceStorage
-  name: research-technology-bluespace-storage
+  name: nf-research-technology-bluespace-storage
   icon:
     sprite: Clothing/Back/Backpacks/holding.rsi
     state: holding
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 20000
   recipeUnlocks:
@@ -169,11 +169,11 @@
 
 - type: technology
   id: NFRapidConstruction
-  name: research-technology-rapid-construction
+  name: nf-research-technology-rapid-construction
   icon:
     sprite: _NF/Objects/Tools/rcd.rsi
     state: icon-shipyard
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -185,11 +185,11 @@
 
 - type: technology
   id: NFAdvancedToolsTechnology
-  name: research-technology-advanced-tools
+  name: nf-research-technology-advanced-tools
   icon:
     sprite: Objects/Tools/welder_experimental.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -198,16 +198,16 @@
     - JawsOfLife
     - BorgModuleAdvancedTool
   technologyPrerequisites:
-  - NFIndustrialEngineering
+  - NFEngineeringEngineering
   position: 4, 6
 
 - type: technology
   id: NFAdvancedAtmospherics
-  name: research-technology-advanced-atmospherics
+  name: nf-research-technology-advanced-atmospherics
   icon:
     sprite: Objects/Devices/Holoprojectors/atmos.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -221,11 +221,11 @@
 
 - type: technology
   id: NFAtmosphericDrilling
-  name: research-technology-atmospheric-drilling
+  name: nf-research-technology-atmospheric-drilling
   icon:
     sprite: _NF/Objects/Specific/Atmospherics/extractor.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -237,11 +237,11 @@
 
 - type: technology
   id: NFMatterEnergyConversion
-  name: research-technology-matter-energy-conversion
+  name: nf-research-technology-matter-energy-conversion
   icon:
     sprite: Objects/Tools/rcd.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 15000
   recipeUnlocks:
@@ -253,11 +253,11 @@
 
 - type: technology
   id: NFAdvancedBeltTechnology
-  name: research-technology-advanced-belt
+  name: nf-research-technology-advanced-belt
   icon:
     sprite: Clothing/Belt/ce.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 2500
   recipeUnlocks:
@@ -269,11 +269,11 @@
 # region Xenoarch
 - type: technology
   id: NFBasicXenoArcheology
-  name: research-technology-basic-xenoarcheology
+  name: nf-research-technology-basic-xenoarcheology
   icon:
     sprite: Structures/Machines/artifact_analyzer.rsi
     state: display
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 2500
   recipeUnlocks:
@@ -287,11 +287,11 @@
 
 - type: technology
   id: NFBasicAnomalousResearch
-  name: research-technology-basic-anomalous-research
+  name: nf-research-technology-basic-anomalous-research
   icon:
     sprite: Objects/Specific/Research/anomalyscanner.rsi
     state: icon
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -306,11 +306,11 @@
 
 - type: technology
   id: NFAbnormalArtifactManipulation
-  name: research-technology-abnormal-artifact-manipulation
+  name: nf-research-technology-abnormal-artifact-manipulation
   icon:
     sprite: Structures/Machines/artifact_crusher.rsi
     state: icon
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -321,11 +321,11 @@
 
 - type: technology
   id: NFAnomalyCoreHarnessing
-  name: research-technology-anomaly-harnessing
+  name: nf-research-technology-anomaly-harnessing
   icon:
     sprite: Objects/Weapons/Melee/gorilla.rsi
     state: icon
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -337,11 +337,11 @@
 
 - type: technology
   id: NFAdvancedAnomalyResearch
-  name: research-technology-advanced-anomaly-research
+  name: nf-research-technology-advanced-anomaly-research
   icon:
     sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
     state: base
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -353,11 +353,11 @@
 
 - type: technology
   id: NFBluespaceTimeManipulation
-  name: research-technology-bluespace-time-manipulation
+  name: nf-research-technology-bluespace-time-manipulation
   icon:
     sprite: Objects/Devices/desynchronizer.rsi
     state: icon
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -369,11 +369,11 @@
 
 - type: technology
   id: NFSuperParts
-  name: research-technology-super-parts
+  name: nf-research-technology-super-parts
   icon:
     sprite: _NF/Objects/Misc/stock_parts.rsi
     state: super_matter_bin
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 15000
   recipeUnlocks:
@@ -387,11 +387,11 @@
 # region Hardsuits
 - type: technology
   id: NFHardsuitsBasic
-  name: research-technology-hardsuits-basic
+  name: nf-research-technology-hardsuits-basic
   icon:
     sprite: Clothing/OuterClothing/Hardsuits/basic.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 2500
   recipeUnlocks:
@@ -402,11 +402,11 @@
 
 - type: technology
   id: NFHardsuitsSpecialized
-  name: research-technology-hardsuits-specialized
+  name: nf-research-technology-hardsuits-specialized
   icon:
     sprite: Clothing/OuterClothing/Hardsuits/engineering.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -423,11 +423,11 @@
 
 - type: technology
   id: NFHardsuitsMedical
-  name: research-technology-hardsuits-medical
+  name: nf-research-technology-hardsuits-medical
   icon:
     sprite: Clothing/OuterClothing/Hardsuits/medical.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -439,11 +439,11 @@
 
 - type: technology
   id: NFHardsuitsExperimentalRD
-  name: research-technology-hardsuits-experimental-rd
+  name: nf-research-technology-hardsuits-experimental-rd
   icon:
     sprite: Clothing/OuterClothing/Hardsuits/rd.rsi
     state: icon
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 15000
   recipeUnlocks:
@@ -455,11 +455,11 @@
 
 - type: technology
   id: NFHardsuitsArmored
-  name: research-technology-hardsuits-armored
+  name: nf-research-technology-hardsuits-armored
   icon:
     sprite: _NF/Clothing/OuterClothing/Hardsuits/mercenary.rsi
     state: icon
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 15000
   recipeUnlocks:
@@ -471,11 +471,11 @@
 
 - type: technology
   id: NFHardsuitsExperimentalIndustrial
-  name: research-technology-hardsuits-experimental-industrial
+  name: nf-research-technology-hardsuits-experimental-industrial
   icon:
     sprite: Clothing/OuterClothing/Hardsuits/maxim.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 15000
   recipeUnlocks:
@@ -487,11 +487,11 @@
 
 - type: technology
   id: NFHardsuitsArmoredAdvanced
-  name: research-technology-hardsuits-armored-advanced
+  name: nf-research-technology-hardsuits-armored-advanced
   icon:
     sprite: _NF/Clothing/OuterClothing/Hardsuits/scaf.rsi
     state: icon
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 25000
   recipeUnlocks:
@@ -505,11 +505,11 @@
 
 - type: technology
   id: NFBasicMedicine
-  name: research-technology-basic-medicine
+  name: nf-research-technology-basic-medicine
   icon:
     sprite: Structures/dispensers.rsi
     state: industrial-working
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -521,11 +521,11 @@
 
 - type: technology
   id: NFBluespaceChemistry
-  name: research-technology-bluespace-chemistry
+  name: nf-research-technology-bluespace-chemistry
   icon:
     sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
     state: beakerbluespace
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -538,12 +538,12 @@
   position: 1, 15
 
 - type: technology
-  id: NFIndustrialMedicine
-  name: research-technology-industrial-medicine
+  id: NFEngineeringMedicine
+  name: nf-research-technology-industrial-medicine
   icon:
     sprite: _NF/Structures/Machines/medical_assembler.rsi
     state: icon
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 15000
   recipeUnlocks:
@@ -555,11 +555,11 @@
 
 - type: technology
   id: NFHardsuitsAdvanced
-  name: research-technology-hardsuits-advanced
+  name: nf-research-technology-hardsuits-advanced
   icon:
     sprite: Clothing/OuterClothing/Hardsuits/engineering-white.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -572,11 +572,11 @@
 
 - type: technology
   id: NFBiochemicalStasis
-  name: research-technology-biochemical-stasis
+  name: nf-research-technology-biochemical-stasis
   icon:
     sprite: Structures/Machines/stasis_bed.rsi
     state: icon
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -585,50 +585,50 @@
   - CryostasisBeaker
   - SyringeCryostasis
   technologyPrerequisites:
-  - NFIndustrialMedicine
+  - NFEngineeringMedicine
   position: 3, 14
 
 - type: technology
   id: NFMechanizedTreatment
-  name: research-technology-mechanized-treatment
+  name: nf-research-technology-mechanized-treatment
   icon:
     sprite: Mobs/Silicon/chassis.rsi
     state: medical
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 5000
   recipeUnlocks:
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedParamedic
   technologyPrerequisites:
-  - NFIndustrialMedicine
+  - NFEngineeringMedicine
   position: 3, 15
 
 - type: technology
   id: NFSyringeGun
-  name: research-technology-syringe-gun
+  name: nf-research-technology-syringe-gun
   icon:
     sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
     state: syringe_gun
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 10000
   recipeUnlocks:
     - LauncherSyringe
     - MiniSyringe
   technologyPrerequisites:
-  - NFIndustrialMedicine
+  - NFEngineeringMedicine
   position: 3, 16
 
 # region Robotics & Mechs
 
 - type: technology
   id: NFBasicRobotics
-  name: research-technology-basic-robotics
+  name: nf-research-technology-basic-robotics
   icon:
     sprite: Structures/Machines/exosuit_fabricator.rsi
     state: fab-idle
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 2500
   recipeUnlocks:
@@ -639,11 +639,11 @@
 
 - type: technology
   id: NFRipleyAPLU
-  name: research-technology-ripley-aplu
+  name: nf-research-technology-ripley-aplu
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
     state: ripley
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -662,11 +662,11 @@
 
 - type: technology
   id: NFCritterMechs
-  name: research-technology-critter-mechs
+  name: nf-research-technology-critter-mechs
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
     state: hamtr
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -685,11 +685,11 @@
 
 - type: technology
   id: NFHONKMech
-  name: research-technology-honk-mech
+  name: nf-research-technology-honk-mech
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
     state: honker
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -709,11 +709,11 @@
 # region Entertainment & Comms
 - type: technology
   id: NFAudioVisualCommunication
-  name: research-technology-audio-visual-communication
+  name: nf-research-technology-audio-visual-communication
   icon:
     sprite: Structures/Wallmounts/camera.rsi
     state: cameracase
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 2500
   recipeUnlocks:
@@ -730,11 +730,11 @@
 
 - type: technology
   id: NFAdvancedEntertainment
-  name: research-technology-advanced-entertainment
+  name: nf-research-technology-advanced-entertainment
   icon:
     sprite: Structures/Machines/computers.rsi
     state: television
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -749,11 +749,11 @@
 
 - type: technology
   id: NFPushHorn
-  name: research-technology-clowning-utilities
+  name: nf-research-technology-clowning-utilities
   icon:
     sprite: Objects/Fun/push_horn.rsi
     state: icon
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 4000
   recipeUnlocks:
@@ -765,11 +765,11 @@
 # region Janitorial
 - type: technology
   id: NFAdvancedSpray
-  name: research-technology-advanced-spray
+  name: nf-research-technology-advanced-spray
   icon:
     sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
     state: icon
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -783,11 +783,11 @@
 
 - type: technology
   id: NFAdvancedCleaning
-  name: research-technology-advanced-cleaning
+  name: nf-research-technology-advanced-cleaning
   icon:
     sprite: Objects/Specific/Janitorial/advmop.rsi
     state: advmop
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -803,11 +803,11 @@
 # region Kitchen
 - type: technology
   id: NFFoodService
-  name: research-technology-food-service
+  name: nf-research-technology-food-service
   icon:
     sprite: Structures/Machines/grinder.rsi
     state: grinder_beaker_attached
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -822,11 +822,11 @@
 
 - type: technology
   id: NFAdvancedFoodService
-  name: research-technology-advanced-food-service
+  name: nf-research-technology-advanced-food-service
   icon:
     sprite: _NF/Structures/Machines/oven.rsi
     state: composite_off
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -840,11 +840,11 @@
 
 - type: technology
   id: NFHydroponics
-  name: research-technology-basic-hydroponics
+  name: nf-research-technology-basic-hydroponics
   icon:
     sprite: Structures/Machines/seed_extractor.rsi
     state: seedextractor
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -859,11 +859,11 @@
 
 - type: technology
   id: NFMeatManipulation
-  name: research-technology-meat-manipulation
+  name: nf-research-technology-meat-manipulation
   icon:
     sprite: Structures/Machines/fat_sucker.rsi
     state: display
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -877,11 +877,11 @@
 # region Magboots
 - type: technology
   id: NFMagnetsTech
-  name: research-technology-magnets-tech
+  name: nf-research-technology-magnets-tech
   icon:
     sprite: Clothing/Shoes/Boots/magboots-science.rsi
     state: icon
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 2500
   recipeUnlocks:
@@ -893,11 +893,11 @@
 
 - type: technology
   id: NFMagnetsTechAdvanced
-  name: research-technology-magnets-tech-advanced
+  name: nf-research-technology-magnets-tech-advanced
   icon:
     sprite: Clothing/Shoes/Boots/magboots-advanced.rsi
     state: icon
-  discipline: NFExperimental
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -910,11 +910,11 @@
 
 - type: technology
   id: NFQuantumFiberWeaving
-  name: research-technology-quantum-fiber-weaving
+  name: nf-research-technology-quantum-fiber-weaving
   icon:
     sprite: Clothing/Shoes/Boots/speedboots.rsi
     state: icon
-  discipline: NFCivilianServices
+  discipline: NFService
   tier: 1
   cost: 15000
   recipeUnlocks:
@@ -927,11 +927,11 @@
 # note: ties in with Salvage due to
 - type: technology
   id: NFAdvancedPowercells
-  name: research-technology-advanced-powercells
+  name: nf-research-technology-advanced-powercells
   icon:
     sprite: Objects/Power/power_cells.rsi
     state: high
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 2500
   recipeUnlocks:
@@ -942,11 +942,11 @@
 
 - type: technology
   id: NFAdvancedPowercells2
-  name: research-technology-advanced-powercells
+  name: nf-research-technology-advanced-powercells
   icon:
     sprite: Structures/Power/turbo_recharger.rsi
     state: empty
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -958,11 +958,11 @@
 
 - type: technology
   id: NFPowerGeneration
-  name: research-technology-power-generation
+  name: nf-research-technology-power-generation
   icon:
     sprite: Structures/Power/Generation/portable_generator.rsi
     state: portgen0
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -977,11 +977,11 @@
 
 - type: technology
   id: NFSpaceScanning
-  name: research-technology-space-scanning
+  name: nf-research-technology-space-scanning
   icon:
     sprite: Objects/Tools/handheld_mass_scanner.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -994,11 +994,11 @@
 
 - type: technology
   id: NFFission
-  name: research-technology-portable-fission
+  name: nf-research-technology-portable-fission
   icon:
     sprite: Objects/Power/power_cells.rsi
     state: microreactor
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -1009,11 +1009,11 @@
 
 - type: technology
   id: NFPortableFission
-  name: research-technology-portable-fission
+  name: nf-research-technology-portable-fission
   icon:
     sprite: Objects/Power/portable_recharger.rsi
     state: charging
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -1024,11 +1024,11 @@
 
 - type: technology
   id: NFPowerGeneration2
-  name: research-technology-portable-fission
+  name: nf-research-technology-portable-fission
   icon:
     sprite: Structures/Power/Generation/portable_generator.rsi
     state: portgen2
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -1039,11 +1039,11 @@
 
 - type: technology
   id: NFEmitter
-  name: research-technology-power-generation
+  name: nf-research-technology-power-generation
   icon:
     sprite: Structures/Power/Generation/Singularity/emitter.rsi
     state: emitter2
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -1054,11 +1054,11 @@
 
 - type: technology
   id: NFShuttlecraft
-  name: research-technology-shuttlecraft
+  name: nf-research-technology-shuttlecraft
   icon:
     sprite: _NF/Structures/Shuttles/gyroscope.rsi
     state: base
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -1077,11 +1077,11 @@
 # region Salvage
 - type: technology
   id: NFSalvageEquipment
-  name: research-technology-salvage-equipment
+  name: nf-research-technology-salvage-equipment
   icon:
     sprite: Objects/Tools/handdrill.rsi
     state: handdrill
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -1096,11 +1096,11 @@
 
 - type: technology
   id: NFMassExcavation
-  name: research-technology-excavation
+  name: nf-research-technology-excavation
   icon:
     sprite: Objects/Tools/handdrilldiamond.rsi
     state: handdrill
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -1113,11 +1113,11 @@
 
 - type: technology
   id: NFSalvageWeapons
-  name: research-technology-salvage-weapons
+  name: nf-research-technology-salvage-weapons
   icon:
     sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
     state: icon
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -1131,11 +1131,11 @@
 
 - type: technology
   id: NFBluespaceOreStorage
-  name: research-technology-excavation-storage
+  name: nf-research-technology-excavation-storage
   icon:
     sprite: _NF/Objects/Specific/Mining/ore_bag_holding.rsi
     state: icon
-  discipline: NFIndustrial
+  discipline: NFEngineering
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -1146,11 +1146,11 @@
 
 - type: technology
   id: NFImprovedSalvageWeapons
-  name: research-technology-salvage-weapons-improved
+  name: nf-research-technology-salvage-weapons-improved
   icon:
     sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
     state: icon
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -1162,11 +1162,11 @@
 # region Munitions
 - type: technology
   id: NFBasicAmmunitionProduction
-  name: research-technology-basic-ammunition
+  name: nf-research-technology-basic-ammunition
   icon:
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
     state: base
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 1000
   recipeUnlocks:
@@ -1185,11 +1185,11 @@
 
 - type: technology
   id: NFBountyHunting
-  name: research-technology-bounty-hunting
+  name: nf-research-technology-bounty-hunting
   icon:
     sprite: Objects/Weapons/Throwable/bola.rsi
     state: icon
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -1207,11 +1207,11 @@
 
 - type: technology
   id: NFNonlethalAmmunition
-  name: research-technology-nonlethal-ammunition
+  name: nf-research-technology-nonlethal-ammunition
   icon:
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
     state: beanbag
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 2500
   recipeUnlocks:
@@ -1227,11 +1227,11 @@
 
 - type: technology
   id: NFImprovedPistolAmmo
-  name: research-technology-pistol-ammo-improved
+  name: nf-research-technology-pistol-ammo-improved
   icon:
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
     state: base
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 2500
   recipeUnlocks:
@@ -1247,11 +1247,11 @@
 
 - type: technology
   id: NFAdvancedRiotControl
-  name: research-technology-advanced-riot-control
+  name: nf-research-technology-advanced-riot-control
   icon:
     sprite: Objects/Weapons/Melee/truncheon.rsi
     state: icon
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 8000
   recipeUnlocks:
@@ -1261,12 +1261,12 @@
   position: 2, 41
 
 - type: technology
-  id: NFArsenalStyle
-  name: research-technology-arsenal-style
+  id: NFArsenalMercenaryStyle
+  name: nf-research-technology-arsenal-style
   icon:
     sprite: Objects/Weapons/Melee/katana.rsi
     state: icon
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -1293,11 +1293,11 @@
 
 - type: technology
   id: NFImprovedRifleAmmo
-  name: research-technology-rifle-ammo-improved
+  name: nf-research-technology-rifle-ammo-improved
   icon:
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
     state: base
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -1313,11 +1313,11 @@
 
 - type: technology
   id: NFExplosiveTechnology
-  name: research-technology-explosive-technology
+  name: nf-research-technology-explosive-technology
   icon:
     sprite: Objects/Devices/payload.rsi
     state: payload-chemical-armed
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -1333,11 +1333,11 @@
 
 - type: technology
   id: NFDeterrenceTechnologies
-  name: research-technology-deterrence
+  name: nf-research-technology-deterrence
   icon:
     sprite: Objects/Devices/Holoprojectors/field.rsi
     state: icon
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 7500
   recipeUnlocks:
@@ -1348,11 +1348,11 @@
 
 - type: technology
   id: NFSpecialMeans
-  name: research-technology-special-means
+  name: nf-research-technology-special-means
   icon:
     sprite: Clothing/Back/Backpacks/electropack.rsi
     state: icon
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -1363,11 +1363,11 @@
 
 - type: technology
   id: NFBulkRifleAmmo
-  name: research-technology-rifle-ammo-bulk
+  name: nf-research-technology-rifle-ammo-bulk
   icon:
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi
     state: base
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 10000
   recipeUnlocks:
@@ -1381,11 +1381,11 @@
 
 - type: technology
   id: NFBasicShuttleArmament
-  name: research-technology-basic-shuttle-armament
+  name: nf-research-technology-basic-shuttle-armament
   icon:
     sprite: Structures/Power/cage_recharger.rsi
     state: full
-  discipline: NFArsenal
+  discipline: NFArsenalMercenary
   tier: 1
   cost: 10000
   recipeUnlocks:

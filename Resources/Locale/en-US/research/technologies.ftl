@@ -19,8 +19,7 @@ research-technology-advanced-tools = Advanced Tools
 research-technology-super-powercells = Super Powercells
 research-technology-bluespace-storage = Bluespace Storage
 research-technology-optimized-microgalvanism = Optimized Microgalvanism
-# Frontier: Space Scanning < Remote Detection
-research-technology-space-scanning = Remote Detection
+research-technology-space-scanning = Space Scanning
 research-technology-excavation = Mass Excavation
 
 research-technology-salvage-weapons = Salvage Weapons
@@ -37,8 +36,7 @@ research-technology-advanced-riot-control = Advanced Riot Control
 research-technology-portable-microfusion-weaponry = Portable Microfusion Weaponry
 research-technology-experimental-battery-ammo = Experimental Battery Ammo
 research-technology-kinetic-modifications = Kinetic Modifications
-# Frontier: Shuttle Basic < Basic Shuttle
-research-technology-basic-shuttle-armament = Basic Shuttle Armament
+research-technology-basic-shuttle-armament = Shuttle Basic Armament
 research-technology-advanced-shuttle-weapon = Advanced Shuttle Weapons
 research-technology-thermal-weaponry = Thermal Weaponry
 
@@ -72,8 +70,7 @@ research-technology-robotic-cleanliness = Robotic Cleanliness
 research-technology-advanced-cleaning = Advanced Cleaning
 research-technology-meat-manipulation = Meat Manipulation
 research-technology-honk-mech = H.O.N.K. Mech
-# Frontier: Advanced Spray < Applied Liquid Solutions
-research-technology-advanced-spray = Advanced Liquid Solutions
+research-technology-advanced-spray = Advanced Spray
 research-technology-launcher-syringe = Syringe Gun
 research-technology-bluespace-cargo-transport = Bluespace Cargo Transport
 research-technology-clowning-utilities = Clowning Utilities
