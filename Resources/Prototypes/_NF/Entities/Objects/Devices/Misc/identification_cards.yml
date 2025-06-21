@@ -116,6 +116,19 @@
 
 - type: entity
   parent: CadetIDCard
+  id: DrillSergeantIDCard
+  name: NFSD drill sergeant ID card
+  components:
+  - type: PresetIdCard
+    job: DrillSergeant
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+    - state: idnfsddrillsergeant
+
+- type: entity
+  parent: CadetIDCard
   id: BailiffIDCard
   name: NFSD bailiff ID card
   components:

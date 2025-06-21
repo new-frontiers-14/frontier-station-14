@@ -265,6 +265,32 @@
 
 - type: entity
   parent: BaseSecurityPDA
+  id: DrillSergeantPDA
+  name: drill sergeant PDA
+  description: You WILL be properly addressed. Drop and give me twenty.
+  components:
+  - type: Pda
+    id: DrillSergeantIDCard
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-drillsergeant
+  - type: PdaBorderColor
+    borderColor: "#FFFDD0"
+    accentHColor: "#896b49"
+  - type: Icon
+    state: pda-drillsergeant
+
+- type: entity
+  parent: BaseSecurityPDA
   id: BailiffPDA
   name: bailiff PDA
   description: Whosoever bears this PDA puts the law on their back.

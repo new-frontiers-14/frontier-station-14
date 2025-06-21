@@ -22,6 +22,9 @@ job-name-security-guard = Security Guard
 job-name-sheriff = Sheriff
 job-name-stc = Station Traffic Controller
 job-name-sr = Station Representative
+job-name-pal = Public Affairs Liaison
+job-name-doc = Director of Care
+job-name-drillsergeant = Drill Sergeant
 job-name-valet = Valet
 
 # Job titles
