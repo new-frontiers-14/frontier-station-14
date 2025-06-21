@@ -1,3 +1,4 @@
+#region planet
 - type: entity
   name: mercenary spawner
   id: SpawnMobMercenaryT1
@@ -113,3 +114,49 @@
     - MobMercenarySpecialistMedic
     - MobMercenarySpecialistAssault
     rareChance: 0.2
+
+#region space
+- type: entity
+  id: SpawnMobMercenaryEVAT1
+  parent: SpawnMobMercenaryT1
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobMercenarySoldierEVAKnife
+    - MobMercenarySoldierEVAPistol
+    - MobMercenarySoldierEVANovalite
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnMobMercenaryEVAT2
+    rareChance: 0.05
+
+- type: entity
+  id: SpawnMobMercenaryEVAT2
+  parent: SpawnMobMercenaryT2
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobMercenaryBreacherEVAMachete
+    - MobMercenaryBreacherEVARevolver
+    - MobMercenaryBreacherEVAShotgun
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnMobMercenaryEVAT3
+    rareChance: 0.05
+
+- type: entity
+  id: SpawnMobMercenaryEVAT3
+  parent: SpawnMobMercenaryT3
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobMercenarySpecialistEVAMedic
+    - MobMercenarySpecialistEVAAssault
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MobMercenarySpecialistEVAMedic
+    - MobMercenarySpecialistEVAAssault
+    rareChance: 0.05

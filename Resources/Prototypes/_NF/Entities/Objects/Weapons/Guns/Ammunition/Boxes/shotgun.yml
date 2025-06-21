@@ -33,6 +33,24 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  id: NFAmmunitionBoxShellShotgunOverpressure
+  parent: NFBaseAmmunitionBoxShellShotgun
+  name: shell box (.50 overpressure)
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBuckshotOverpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      color: "#897e6a"
+    - state: decal-01
+      color: "#ff8d00FF"
+    - state: decal-shell-overpressure
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
   id: NFAmmunitionBoxShellShotgunIncendiary
   parent: NFBaseAmmunitionBoxShellShotgun
   name: shell box (.50 incendiary)
