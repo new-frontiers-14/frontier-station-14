@@ -1,4 +1,5 @@
 # region Common Prereqs
+
 - type: technology
   id: NFAdvancedParts
   name: nf-research-technology-advanced-parts
@@ -15,6 +16,7 @@
   position: 0, 0
 
 # region Engineering
+
 - type: technology
   id: NFRapidPartExchange
   name: nf-research-technology-rped
@@ -31,23 +33,51 @@
   position: 1, 0
 
 - type: technology
-  id: NFEngineeringEngineering
+  id: NFIndustrialEngineering
   name: nf-research-technology-industrial-engineering
   icon:
     sprite: Structures/Machines/protolathe_hypercon.rsi
     state: building
   discipline: NFEngineering
   tier: 1
-  cost: 7500
+  cost: 5000
   recipeUnlocks:
   - AutolatheHyperConvectionMachineCircuitboard
   - ProtolatheHyperConvectionMachineCircuitboard
   - CircuitImprinterHyperConvectionMachineCircuitboard
-  - SheetifierMachineCircuitboard
-  - MaterialSiloMachineCircuitboard
   technologyPrerequisites:
   - NFRapidPartExchange
   position: 2, 0
+
+- type: technology
+  id: NFIndustrialSilo
+  name: nf-research-technology-industrial-silo
+  icon:
+    sprite: Structures/Machines/silo.rsi
+    state: silo
+  discipline: NFEngineering
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - MaterialSiloMachineCircuitboard
+  technologyPrerequisites:
+  - NFIndustrialEngineering
+  position: 3, 1
+
+- type: technology
+  id: NFIndustrialSheetifier
+  name: nf-research-technology-industrial-sheetifier
+  icon:
+    sprite: Structures/Machines/sheetifier.rsi
+    state: base_machine
+  discipline: NFEngineering
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - SheetifierMachineCircuitboard
+  technologyPrerequisites:
+  - NFIndustrialEngineering
+  position: 3, 2
 
 - type: technology
   id: NFFauxAstroTiles
@@ -66,8 +96,8 @@
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
   technologyPrerequisites:
-  - NFEngineeringEngineering
-  position: 3, 1
+  - NFIndustrialEngineering
+  position: 3, 3
 
 - type: technology
   id: NFMiscellaneousItemsOrganization
@@ -98,8 +128,8 @@
   - NFPouchCaptain
   - NFPouchCargo
   technologyPrerequisites:
-  - NFEngineeringEngineering
-  position: 3, 3
+  - NFMechanicalCompression
+  position: 5, 4
 
 - type: technology
   id: NFMechanicalCompression
@@ -113,8 +143,8 @@
   recipeUnlocks:
   - FlatpackerMachineCircuitboard
   technologyPrerequisites:
-  - NFEngineeringEngineering
-  position: 3, 4
+  - NFIndustrialEngineering
+  position: 4, 5
 
 - type: technology
   id: NFAtmosphericTech
@@ -129,7 +159,7 @@
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
   technologyPrerequisites:
-  - NFEngineeringEngineering
+  - NFIndustrialEngineering
   position: 4, 0
 
 - type: technology
@@ -140,12 +170,12 @@
     state: icon
   discipline: NFService
   tier: 1
-  cost: 15000
+  cost: 7500
   recipeUnlocks:
   - JetpackVoid
   technologyPrerequisites:
   - NFAtmosphericTech
-  position: 4, 2
+  position: 5, 3
 
 - type: technology
   id: NFBluespaceStorage
@@ -163,9 +193,8 @@
   - ClothingBackpackMessengerHolding
   - ConstructionBagOfHolding
   technologyPrerequisites:
-  - NFMechanicalCompression
   - NFMiscellaneousItemsOrganization
-  position: 4, 3
+  position: 6, 4
 
 - type: technology
   id: NFRapidConstruction
@@ -181,7 +210,7 @@
     - ShipyardRCDAmmo
   technologyPrerequisites:
   - NFMechanicalCompression
-  position: 4, 4
+  position: 5, 5
 
 - type: technology
   id: NFAdvancedToolsTechnology
@@ -198,12 +227,42 @@
     - JawsOfLife
     - BorgModuleAdvancedTool
   technologyPrerequisites:
-  - NFEngineeringEngineering
-  position: 4, 6
+  - NFIndustrialEngineering
+  position: 4, 7
 
 - type: technology
   id: NFAdvancedAtmospherics
   name: nf-research-technology-advanced-atmospherics
+  icon:
+    sprite: Structures/Piping/Atmospherics/hellfirethermomachine.rsi
+    state: freezerOff
+  discipline: NFEngineering
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - HellfireFreezerMachineCircuitBoard
+  technologyPrerequisites:
+  - NFAtmosphericTech
+  position: 5, 0
+
+- type: technology
+  id: NFAdvancedAtmosphericsPortable
+  name: nf-research-technology-advanced-atmospherics-portable
+  icon:
+    sprite: Structures/Piping/Atmospherics/Portable/portable_scrubber.rsi
+    state: icon
+  discipline: NFEngineering
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - PortableScrubberMachineCircuitBoard
+  technologyPrerequisites:
+  - NFAtmosphericTech
+  position: 5, 1
+
+- type: technology
+  id: NFAdvancedAtmosphericsTools
+  name: nf-research-technology-advanced-atmospherics-tools
   icon:
     sprite: Objects/Devices/Holoprojectors/atmos.rsi
     state: icon
@@ -211,13 +270,11 @@
   tier: 1
   cost: 7500
   recipeUnlocks:
-  - HellfireFreezerMachineCircuitBoard
-  - PortableScrubberMachineCircuitBoard
   - HolofanProjector
 #  - FireExtinguisherBluespace # DeltaV
   technologyPrerequisites:
-  - NFAtmosphericTech
-  position: 5, 0
+  - NFAdvancedAtmospherics
+  position: 6, 0
 
 - type: technology
   id: NFAtmosphericDrilling
@@ -233,7 +290,7 @@
   - GaslockFrameMachineCircuitboard
   technologyPrerequisites:
   - NFAtmosphericTech
-  position: 5, 1
+  position: 5, 2
 
 - type: technology
   id: NFMatterEnergyConversion
@@ -249,7 +306,7 @@
   technologyPrerequisites:
   - NFRapidConstruction
   - NFBluespaceStorage
-  position: 5, 3
+  position: 6, 5
 
 - type: technology
   id: NFAdvancedBeltTechnology
@@ -264,9 +321,10 @@
     - ClothingBeltChiefEngineer
   technologyPrerequisites:
   - NFAdvancedToolsTechnology
-  position: 5, 6
+  position: 5, 7
 
 # region Xenoarch
+
 - type: technology
   id: NFBasicXenoArcheology
   name: nf-research-technology-basic-xenoarcheology
@@ -283,7 +341,7 @@
   - ResearchComputerCircuitboard
   technologyPrerequisites:
   - NFAdvancedParts
-  position: 1, 8
+  position: 1, 9
 
 - type: technology
   id: NFBasicAnomalousResearch
@@ -302,7 +360,7 @@
   - AnomalyVesselCircuitboard
   technologyPrerequisites:
   - NFBasicXenoArcheology
-  position: 2, 8
+  position: 2, 9
 
 - type: technology
   id: NFAbnormalArtifactManipulation
@@ -317,7 +375,7 @@
   - ArtifactCrusherMachineCircuitboard
   technologyPrerequisites:
   - NFBasicXenoArcheology
-  position: 2, 9
+  position: 2, 10
 
 - type: technology
   id: NFAnomalyCoreHarnessing
@@ -333,7 +391,7 @@
   technologyPrerequisites:
   - NFBasicAnomalousResearch
   - NFAbnormalArtifactManipulation
-  position: 3, 9
+  position: 3, 10
 
 - type: technology
   id: NFAdvancedAnomalyResearch
@@ -349,7 +407,7 @@
   - AnomalyVesselExperimentalCircuitboard
   technologyPrerequisites:
   - NFBasicAnomalousResearch
-  position: 4, 8
+  position: 4, 9
 
 - type: technology
   id: NFBluespaceTimeManipulation
@@ -365,7 +423,7 @@
   technologyPrerequisites:
   - NFAdvancedToolsTechnology
   - NFAdvancedAnomalyResearch
-  position: 5, 7
+  position: 5, 8
 
 - type: technology
   id: NFSuperParts
@@ -382,9 +440,10 @@
   - PicoManipulatorStockPart
   technologyPrerequisites:
   - NFAdvancedAnomalyResearch
-  position: 5, 8
+  position: 5, 9
 
 # region Hardsuits
+
 - type: technology
   id: NFHardsuitsBasic
   name: nf-research-technology-hardsuits-basic
@@ -707,6 +766,7 @@
   position: 3, 18
 
 # region Entertainment & Comms
+
 - type: technology
   id: NFAudioVisualCommunication
   name: nf-research-technology-audio-visual-communication
@@ -763,6 +823,7 @@
   position: 3, 21
 
 # region Janitorial
+
 - type: technology
   id: NFAdvancedSpray
   name: nf-research-technology-advanced-spray
@@ -801,6 +862,7 @@
   position: 2, 23
 
 # region Kitchen
+
 - type: technology
   id: NFFoodService
   name: nf-research-technology-food-service
@@ -875,6 +937,7 @@
   position: 3, 25
 
 # region Magboots
+
 - type: technology
   id: NFMagnetsTech
   name: nf-research-technology-magnets-tech
@@ -924,7 +987,7 @@
   position: 3, 28
 
 # region Power / Shuttle
-# note: ties in with Salvage due to
+
 - type: technology
   id: NFAdvancedPowercells
   name: nf-research-technology-advanced-powercells
@@ -1075,6 +1138,7 @@
   position: 3, 34
 
 # region Salvage
+
 - type: technology
   id: NFSalvageEquipment
   name: nf-research-technology-salvage-equipment
@@ -1160,6 +1224,7 @@
   position: 3, 38
 
 # region Munitions
+
 - type: technology
   id: NFBasicAmmunitionProduction
   name: nf-research-technology-basic-ammunition
@@ -1261,7 +1326,7 @@
   position: 2, 41
 
 - type: technology
-  id: NFArsenalMercenaryStyle
+  id: NFArsenalStyle
   name: nf-research-technology-arsenal-style
   icon:
     sprite: Objects/Weapons/Melee/katana.rsi
@@ -1289,7 +1354,7 @@
   - ClothingOuterCoatBomberRandomized
   technologyPrerequisites:
   - NFBountyHunting
-  position: 2, 42
+  position: 1, 42
 
 - type: technology
   id: NFImprovedRifleAmmo
@@ -1359,7 +1424,7 @@
   - NFClothingBackpackElectropack
   technologyPrerequisites:
   - NFAdvancedRiotControl
-  position: 3, 42
+  position: 2, 42
 
 - type: technology
   id: NFBulkRifleAmmo
