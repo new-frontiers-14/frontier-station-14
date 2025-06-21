@@ -21,3 +21,4 @@ job-description-sheriff = Manage your department and keep them efficient, quell 
 job-description-stc = Expertly de-conflict the space around the station and help the NFSD issue fines for overdocked ships.
 job-description-sr = Handle access reassignment fairly using your ID console, manage Frontier outpost, and keep Clippy safe.
 job-description-valet = Take care of the station and its many guests.
+job-description-drillsergeant = Train cadets in the ways of the NFSD Standard Operating Procedures and Space Law.
