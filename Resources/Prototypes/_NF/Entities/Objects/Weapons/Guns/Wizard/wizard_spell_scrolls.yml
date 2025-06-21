@@ -1,0 +1,144 @@
+# Base
+- type: entity
+  id: SpellScrollRolled
+  name: spell scroll
+  parent: BaseItem
+  description: Rolled piece of paper emanating eldritch energies.
+  #abstract: true
+  #noSpawn: true
+  suffix: Folded
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+    layers:
+    - state: scroll-rolled
+    - state: scroll-seal-rolled
+      color: "red"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollBase
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: SpellScrollBase
+  parent: BaseItem
+  name: spell scroll
+  description: A piece of paper with arcane inscriptions on it.
+  #abstract: true
+  #noSpawn: true
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: scroll-0
+      map: ["enum.GunVisualLayers.Mag"]
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "red"
+      scale: 0.4, 0.4
+      offset: 0.01,-0.05
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-01
+      color: "red"
+      scale: 0.4, 0.4
+      offset: 0.01,-0.05
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-01
+      color: "red"
+      scale: 0.4, 0.4
+      offset: 0.01,-0.05
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-01
+      color: "red"
+      scale: 0.4, 0.4
+      offset: 0.01,-0.05
+    - state: scroll-seal-unrolled
+      color: "red"
+  - type: MagazineVisuals
+    magState: scroll
+    steps: 2
+    zeroVisible: true
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: BasicEntityAmmoProvider
+    proto: WaterElementalConjuredStaff
+    capacity: 1
+    count: 1
+  - type: StaticPrice
+    price: 500
+
+# Variants
+## Offencive
+- type: entity
+  id: SpellScrollRolledElementalWater
+  parent: SpellScrollRolled
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+    layers:
+    - state: scroll-rolled
+    - state: scroll-seal-rolled
+      color: "blue"
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpellScrollElementalWater
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: SpellScrollElementalWater
+  parent: SpellScrollBase
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+    layers:
+    - state: scroll-text
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-outer-01
+      color: "cyan"
+      scale: 0.4, 0.4
+      offset: 0.01,-0.05
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-inner-02
+      color: "cyan"
+      scale: 0.4, 0.4
+      offset: 0.01,-0.05
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-center-02
+      color: "cyan"
+      scale: 0.4, 0.4
+      offset: 0.01,-0.05
+    - sprite: _NF/Objects/Specific/Wizard/runes.rsi
+      state: rune-words-02
+      color: "cyan"
+      scale: 0.4, 0.4
+      offset: 0.01,-0.05
+    - state: scroll-seal-unrolled
+      color: "blue"
+  - type: BasicEntityAmmoProvider
+    proto: WaterElementalConjuredStaff
+    capacity: 1
+    count: 1
+
+## Utility
+
+## Memes
