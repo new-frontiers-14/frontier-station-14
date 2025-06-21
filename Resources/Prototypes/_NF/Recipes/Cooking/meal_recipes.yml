@@ -1043,6 +1043,42 @@
   recipeType:
   - Oven
 
+- type: microwaveMealRecipe
+  id: RecipeBunCotton
+  name: cotton bun recipe
+  result: FoodBunCotton
+  time: 5
+  group: Moth
+  solids:
+    FoodDoughCottonSlice: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerPlainCotton
+  name: plain cotton burger recipe
+  result: FoodBurgerCotton
+  time: 10
+  group: Moth
+  solids:
+    FoodBunCotton: 1
+    CottonBol: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerCottonCheese
+  name: cotton cheeseburger recipe
+  result: FoodBurgerCottonCheese
+  time: 10
+  group: Moth
+  solids:
+    FoodBunCotton: 1
+    CottonBol: 1
+    FoodCheeseSlice: 1
+  recipeType:
+  - Oven
+
 # Frozen desserts
 
 - type: microwaveMealRecipe
