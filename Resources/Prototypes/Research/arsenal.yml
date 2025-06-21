@@ -1,24 +1,19 @@
 # region FRONTIER - IGNORED
-
 # Tier 1
 
 - type: technology
   id: SalvageWeapons
   name: research-technology-salvage-weapons
   icon:
-    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi # Frontier: _NF prefix
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
     state: icon
   discipline: Arsenal
   tier: 1
   cost: 5000
   recipeUnlocks:
-  - NFWeaponPka # Frontier: WeaponProtoKineticAccelerator<NFWeaponPka
+  # - WeaponProtoKineticAccelerator # Frontier: moved to NFWeaponPka
   - ShuttleGunKineticCircuitboard
   # These are roundstart but not replenishable for salvage
-  - WeaponCrusher
-  - WeaponCrusherDagger
-  # This is not roundstart since its a direct upgrade
-  - WeaponCrusherGlaive
 
 - type: technology
   id: DraconicMunitions
@@ -29,18 +24,18 @@
   discipline: Arsenal
   tier: 1
   cost: 10000
-  # recipeUnlocks: # Frontier
-  # - BoxShotgunIncendiary # Frontier
-  # - MagazineRifleIncendiary # Frontier
-  # - MagazinePistolIncendiary # Frontier
-  # - MagazinePistolSubMachineGunIncendiary # Frontier
-  # - MagazineLightRifleIncendiary # Frontier
-  # - SpeedLoaderMagnumIncendiary # Frontier
-  # - MagazineShotgunIncendiary # Frontier
-  # - MagazineBoxPistolIncendiary # Frontier
-  # - MagazineBoxMagnumIncendiary # Frontier
-  # - MagazineBoxLightRifleIncendiary # Frontier
-  # - MagazineBoxRifleIncendiary # Frontier
+  recipeUnlocks:
+  - BoxShotgunIncendiary
+  - MagazineRifleIncendiary
+  - MagazinePistolIncendiary
+  - MagazinePistolSubMachineGunIncendiary
+  - MagazineLightRifleIncendiary
+  - SpeedLoaderMagnumIncendiary
+  - MagazineShotgunIncendiary
+  - MagazineBoxPistolIncendiary
+  - MagazineBoxMagnumIncendiary
+  - MagazineBoxLightRifleIncendiary
+  - MagazineBoxRifleIncendiary
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -51,8 +46,23 @@
   discipline: Arsenal
   tier: 1
   cost: 7500
-  # recipeUnlocks: # Frontier
-  # - WeaponLaserCarbine # Frontier
+  recipeUnlocks:
+  - WeaponLaserCarbine
+
+- type: technology
+  id: NonlethalAmmunition
+  name: research-technology-nonlethal-ammunition
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    state: beanbag
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - MagazineShotgunBeanbag
+  - BoxShellTranquilizer
+  - BoxBeanbag
+  - WeaponDisabler
 
 - type: technology
   id: UraniumMunitions
@@ -63,17 +73,17 @@
   discipline: Arsenal
   tier: 1
   cost: 7500
-  # recipeUnlocks: # Frontier
-  # - MagazineRifleUranium # Frontier
-  # - MagazinePistolUranium # Frontier
-  # - MagazinePistolSubMachineGunUranium # Frontier
-  # - MagazineLightRifleUranium # Frontier
-  # - SpeedLoaderMagnumUranium # Frontier
-  # - MagazineBoxPistolUranium # Frontier
-  # - MagazineBoxMagnumUranium # Frontier
-  # - MagazineBoxLightRifleUranium # Frontier
-  # - MagazineBoxRifleUranium # Frontier
-  # - BoxShotgunUranium # Frontier
+  recipeUnlocks:
+  - MagazineRifleUranium
+  - MagazinePistolUranium
+  - MagazinePistolSubMachineGunUranium
+  - MagazineLightRifleUranium
+  - SpeedLoaderMagnumUranium
+  - MagazineBoxPistolUranium
+  - MagazineBoxMagnumUranium
+  - MagazineBoxLightRifleUranium
+  - MagazineBoxRifleUranium
+  - BoxShotgunUranium
 
 - type: technology
   id: AdvancedRiotControl
@@ -84,11 +94,11 @@
   discipline: Arsenal
   tier: 1
   cost: 8000
-  # recipeUnlocks: # Frontier
-  # - Truncheon # Frontier
-  # - TelescopicShield # Frontier
-  # - HoloprojectorSecurity # Frontier
-  # - WeaponDisablerSMG # Frontier
+  recipeUnlocks:
+  - Truncheon
+  - TelescopicShield
+  - HoloprojectorSecurity
+  - WeaponDisablerSMG
 
 - type: technology
   id: ExplosiveTechnology
@@ -131,8 +141,8 @@
   discipline: Arsenal
   tier: 2
   cost: 10000
-  # recipeUnlocks: # Frontier
-  # - WeaponLaserCannon # Frontier
+  recipeUnlocks:
+  - WeaponLaserCannon
 
 - type: technology
   id: WaveParticleHarnessing
@@ -143,28 +153,22 @@
   discipline: Arsenal
   tier: 2
   cost: 10000
-  # recipeUnlocks: # Frontier
-  # - WeaponXrayCannon # Frontier
+  recipeUnlocks:
+  - WeaponXrayCannon
 
-# End Frontier: restricted arsenal research
-
-# Frontier: comment out PKA upgrades for now
-
-# - type: technology
-#   id: KineticModifications
-#   name: research-technology-kinetic-modifications
-#   icon:
-#     sprite: Objects/Tools/upgrade.rsi
-#     state: display
-#   discipline: Arsenal
-#   tier: 2
-#   cost: 7500
-#   recipeUnlocks:
-#   - PKAUpgradeDamage
-#   - PKAUpgradeRange
-#   - PKAUpgradeFireRate
-
-# End Frontier: comment out PKA upgrades for now
+- type: technology
+  id: KineticModifications
+  name: research-technology-kinetic-modifications
+  icon:
+    sprite: Objects/Tools/upgrade.rsi
+    state: display
+  discipline: Arsenal
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - PKAUpgradeDamage
+  - PKAUpgradeRange
+  - PKAUpgradeFireRate
 
 - type: technology
   id: BasicShuttleArmament
@@ -179,14 +183,14 @@
   - PowerCageRechargerCircuitboard
   - PowerCageSmall
   - PowerCageMedium
-  # - MagazineGrenadeEmpty # Frontier
-  # - GrenadeFlash # Frontier
-  # - GrenadeBlast # Frontier
-  # - ShuttleGunSvalinnMachineGunCircuitboard # Frontier
-  # - ShuttleGunPerforatorCircuitboard # Frontier
-  # - ShuttleGunFriendshipCircuitboard # Frontier
-  # technologyPrerequisites: # Frontier
-  # - SalvageWeapons # Frontier
+  - MagazineGrenadeEmpty
+  - GrenadeFlash
+  - GrenadeBlast
+  - ShuttleGunSvalinnMachineGunCircuitboard
+  - ShuttleGunPerforatorCircuitboard
+  - ShuttleGunFriendshipCircuitboard
+  technologyPrerequisites:
+  - SalvageWeapons
 
 # Tier 3
 
@@ -200,7 +204,7 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
-#  - WeaponAdvancedLaser # Frontier
+  - WeaponAdvancedLaser
   - PortableRecharger
 
 - type: technology
@@ -212,8 +216,8 @@
   discipline: Arsenal
   tier: 3
   cost: 15000
-  # recipeUnlocks: # Frontier
-  # - WeaponTemperatureGun # Frontier
+  recipeUnlocks:
+  - WeaponTemperatureGun
 
 - type: technology
   id: AdvancedShuttleWeapon
@@ -225,7 +229,8 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
-  # - GrenadeEMP # Frontier
+  - GrenadeEMP
   - PowerCageHigh
-  # technologyPrerequisites: # Frontier
-  # - BasicShuttleArmament # Frontier
+  - ShuttleGunDusterCircuitboard
+  technologyPrerequisites:
+  - BasicShuttleArmament

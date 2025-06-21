@@ -18,8 +18,9 @@ research-technology-advanced-atmospherics = Advanced Atmospherics
 research-technology-advanced-tools = Advanced Tools
 research-technology-super-powercells = Super Powercells
 research-technology-bluespace-storage = Bluespace Storage
-research-technology-portable-fission = Portable Fission
-research-technology-space-scanning = Space Scanning
+research-technology-optimized-microgalvanism = Optimized Microgalvanism
+# Frontier: Space Scanning < Remote Detection
+research-technology-space-scanning = Remote Detection
 research-technology-excavation = Mass Excavation
 
 research-technology-salvage-weapons = Salvage Weapons
@@ -71,7 +72,9 @@ research-technology-robotic-cleanliness = Robotic Cleanliness
 research-technology-advanced-cleaning = Advanced Cleaning
 research-technology-meat-manipulation = Meat Manipulation
 research-technology-honk-mech = H.O.N.K. Mech
-research-technology-advanced-spray = Advanced Spray
+# Frontier: Advanced Spray < Applied Liquid Solutions
+research-technology-advanced-spray = Advanced Liquid Solutions
+research-technology-launcher-syringe = Syringe Gun
 research-technology-bluespace-cargo-transport = Bluespace Cargo Transport
 research-technology-clowning-utilities = Clowning Utilities
 research-technology-quantum-fiber-weaving = Quantum Fiber Weaving
