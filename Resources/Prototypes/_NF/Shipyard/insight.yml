@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: Bluespace-Storm
+# Discord: its_bear
+
+# Shuttle Notes:
+# A Luxury Science ship. In the Ursadine Collective Exploration style.
+- type: vessel
+  id: Insight
+  parent: BaseVessel
+  name: UCE Insight
+  description: This 3 crew wreck diver shuttle has an artifact lab, an R&D suite, and salvage equipment.
+  price: 70000
+  category: Medium
+  group: Shipyard
+  shuttlePath: "/Maps/_NF/Shuttles/insight.yml"
+  guidebookPage: ShipyardInsight
+  class:
+  - Science
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Insight
+  mapName: 'UCE Insight'
+  mapPath: /Maps/_NF/Shuttles/insight.yml
+  minPlayers: 0
+  stations:
+    Insight:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Insight CIV{1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
