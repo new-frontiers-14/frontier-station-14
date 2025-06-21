@@ -22,7 +22,7 @@
     state: base
   discipline: NFArsenal
   tier: 1
-  cost: 2000
+  cost: 1000
   recipeUnlocks:
   - NFAmmunitionBoxShellShotgunBuckshot
   - NFAmmunitionBoxShellShotgunSlug
@@ -54,6 +54,26 @@
   position: 1, 0
 
 - type: technology
+  id: NFFauxAstroTiles
+  name: research-technology-faux-astro-tiles
+  icon:
+    sprite: Objects/Tiles/tile.rsi
+    state: astroice
+  discipline: NFCivilianServices
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - FauxTileAstroGrass
+  - FauxTileMowedAstroGrass
+  - FauxTileJungleAstroGrass
+  - FauxTileAstroIce
+  - FauxTileAstroSnow
+  - FauxTileAstroAsteroidSand
+  technologyPrerequisites:
+  - NFIndustrialEngineering
+  position: 1, 1
+
+- type: technology
   id: NFBasicXenoArcheology
   name: research-technology-basic-xenoarcheology
   icon:
@@ -61,7 +81,7 @@
     state: display
   discipline: NFExperimental
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - NodeScanner
   - AnalysisComputerCircuitboard
@@ -79,7 +99,7 @@
     state: icon
   discipline: NFIndustrial
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - ClothingOuterHardsuitBasic
   technologyPrerequisites:
@@ -87,20 +107,54 @@
   position: 1, 11
 
 - type: technology
-  id: NFIndustrialMedicine
-  name: research-technology-industrial-medicine
+  id: NFHardsuitsMedical
+  name: research-technology-hardsuits-medical
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/medical.rsi
+    state: icon
+  discipline: NFIndustrial
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - ClothingOuterHardsuitMedical
+  technologyPrerequisites:
+  - NFHardsuitsBasic
+  - NFBasicMedicine
+  position: 1, 12
+
+- type: technology
+  id: NFBasicMedicine
+  name: research-technology-basic-medicine
   icon:
     sprite: Structures/dispensers.rsi
     state: industrial-working
   discipline: NFCivilianServices
   tier: 1
-  cost: 15000
+  cost: 10000
   recipeUnlocks:
   - ChemMasterMachineCircuitboard
   - ChemDispenserMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedParts
   position: 1, 14
+
+- type: technology
+  id: NFBluespaceChemistry
+  name: research-technology-bluespace-chemistry
+  icon:
+    sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
+    state: beakerbluespace
+  discipline: NFCivilianServices
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - BluespaceBeaker
+  - SyringeBluespace
+  - JugBluespace
+  - VialBluespace
+  technologyPrerequisites:
+  - NFBasicMedicine
+  position: 1, 15
 
 - type: technology
   id: NFBasicRobotics
@@ -125,7 +179,7 @@
     state: cameracase
   discipline: NFCivilianServices
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - SurveillanceCameraRouterCircuitboard
   - SurveillanceWirelessCameraMovableCircuitboard
@@ -183,7 +237,7 @@
     state: icon
   discipline: NFExperimental
   tier: 1
-  cost: 7500
+  cost: 2500
   recipeUnlocks:
   - ClothingShoesBootsMagSci
   - NFClothingShoesBootsMoon
@@ -214,7 +268,7 @@
     state: handdrill
   discipline: NFIndustrial
   tier: 1
-  cost: 7500
+  cost: 5000
   recipeUnlocks:
   - MiningDrill
   - WeaponGrapplingGun
@@ -233,7 +287,7 @@
     state: icon
   discipline: NFArsenal
   tier: 1
-  cost: 10000
+  cost: 5000
   recipeUnlocks:
   - BolaNF
   - NFHandcuffs
@@ -255,7 +309,7 @@
     state: beanbag
   discipline: NFArsenal
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - NFAmmunitionBoxShellShotgunBeanbag
   - NFAmmunitionBoxRifle20Rubber
@@ -275,7 +329,7 @@
     state: base
   discipline: NFArsenal
   tier: 1
-  cost: 10000
+  cost: 2500
   recipeUnlocks:
   - NFAmmunitionBoxPistol35Overpressure
   - NFAmmunitionBoxPistol45Overpressure
@@ -363,23 +417,7 @@
   position: 2, 11
 
 - type: technology
-  id: NFHardsuitsMedical
-  name: research-technology-hardsuits-advanced
-  icon:
-    sprite: Clothing/OuterClothing/Hardsuits/engineering-white.rsi
-    state: icon
-  discipline: NFIndustrial
-  tier: 1
-  cost: 10000
-  recipeUnlocks:
-  - ClothingOuterHardsuitMedical
-  technologyPrerequisites:
-  - NFHardsuitsBasic
-  - NFIndustrialMedicine
-  position: 2, 12
-
-- type: technology
-  id: NFIndustrialMedicine2
+  id: NFIndustrialMedicine
   name: research-technology-industrial-medicine
   icon:
     sprite: _NF/Structures/Machines/medical_assembler.rsi
@@ -391,26 +429,8 @@
   - MedicalAssemblerMachineCircuitboard
   - HotplateMachineCircuitboard
   technologyPrerequisites:
-  - NFIndustrialMedicine
+  - NFBasicMedicine
   position: 2, 14
-
-- type: technology
-  id: NFBluespaceChemistry
-  name: research-technology-bluespace-chemistry
-  icon:
-    sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
-    state: beakerbluespace
-  discipline: NFCivilianServices
-  tier: 1
-  cost: 10000
-  recipeUnlocks:
-  - BluespaceBeaker
-  - SyringeBluespace
-  - JugBluespace
-  - VialBluespace
-  technologyPrerequisites:
-  - NFIndustrialMedicine
-  position: 2, 15
 
 - type: technology
   id: NFRipleyAPLU
@@ -541,7 +561,7 @@
     state: icon
   discipline: NFExperimental
   tier: 1
-  cost: 20000
+  cost: 10000
   recipeUnlocks:
   - ClothingShoesBootsMagAdv
   - ClothingShoesBootsMagSecurity
@@ -558,7 +578,7 @@
     state: empty
   discipline: NFIndustrial
   tier: 1
-  cost: 7500
+  cost: 5000
   recipeUnlocks:
   - TurboItemRechargerCircuitboard
   - SMESAdvancedMachineCircuitboard
@@ -627,7 +647,7 @@
     state: icon
   discipline: NFArsenal
   tier: 1
-  cost: 5000
+  cost: 7500
   recipeUnlocks:
   - NFWeaponPka
   - WeaponCrusher
@@ -660,7 +680,7 @@
     state: icon
   discipline: NFArsenal
   tier: 1
-  cost: 15000
+  cost: 10000
   recipeUnlocks:
   - ClothingEyesPunkInfoShades
   - ClothingOuterArmorPunkRandomized
@@ -691,7 +711,7 @@
     state: base
   discipline: NFArsenal
   tier: 1
-  cost: 15000
+  cost: 5000
   recipeUnlocks:
   - NFAmmunitionBoxRifle20Overpressure
   - NFAmmunitionBoxRifle30Overpressure
@@ -704,22 +724,6 @@
   position: 2, 43
 
 # region Group 3
-- type: technology
-  id: NFAtmosphericTech
-  name: research-technology-atmospheric-tech
-  icon:
-    sprite: Structures/Piping/Atmospherics/thermomachine.rsi
-    state: freezerOff
-  discipline: NFIndustrial
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - ThermomachineFreezerMachineCircuitBoard
-  - GasRecyclerMachineCircuitboard
-  technologyPrerequisites:
-  - NFIndustrialEngineering
-  position: 3, 0
-
 - type: technology
   id: NFMiscellaneousItemsOrganization
   name: research-technology-personal-storage-solutions
@@ -760,67 +764,12 @@
     state: base
   discipline: NFIndustrial
   tier: 1
-  cost: 10000
+  cost: 5000
   recipeUnlocks:
   - FlatpackerMachineCircuitboard
   technologyPrerequisites:
   - NFIndustrialEngineering
   position: 3, 4
-
-- type: technology
-  id: NFFauxAstroTiles
-  name: research-technology-faux-astro-tiles
-  icon:
-    sprite: Objects/Tiles/tile.rsi
-    state: astroice
-  discipline: NFCivilianServices
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - FauxTileAstroGrass
-  - FauxTileMowedAstroGrass
-  - FauxTileJungleAstroGrass
-  - FauxTileAstroIce
-  - FauxTileAstroSnow
-  - FauxTileAstroAsteroidSand
-  technologyPrerequisites:
-  - NFIndustrialEngineering
-  position: 3, 5
-
-- type: technology
-  id: NFAdvancedToolsTechnology
-  name: research-technology-advanced-tools
-  icon:
-    sprite: Objects/Tools/welder_experimental.rsi
-    state: icon
-  discipline: NFIndustrial
-  tier: 1
-  cost: 10000
-  recipeUnlocks:
-    - WelderExperimental
-    - PowerDrill
-    - JawsOfLife
-    - UtilityBeltChiefEngineer
-    - BorgModuleAdvancedTool
-  technologyPrerequisites:
-  - NFIndustrialEngineering
-  position: 3, 6
-
-- type: technology
-  id: NFAdvancedAnomalyResearch
-  name: research-technology-advanced-anomaly-research
-  icon:
-    sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
-    state: base
-  discipline: NFExperimental
-  tier: 1
-  cost: 10000
-  recipeUnlocks:
-  - NFWeaponPistolCHIMP
-  - AnomalyVesselExperimentalCircuitboard
-  technologyPrerequisites:
-  - NFBasicAnomalousResearch
-  position: 3, 8
 
 - type: technology
   id: NFAnomalyCoreHarnessing
@@ -870,7 +819,7 @@
   - CryostasisBeaker
   - SyringeCryostasis
   technologyPrerequisites:
-  - NFIndustrialMedicine2
+  - NFIndustrialMedicine
   position: 3, 14
 
 - type: technology
@@ -886,7 +835,7 @@
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedParamedic
   technologyPrerequisites:
-  - NFIndustrialMedicine2
+  - NFIndustrialMedicine
   position: 3, 15
 
 - type: technology
@@ -902,7 +851,7 @@
     - LauncherSyringe
     - MiniSyringe
   technologyPrerequisites:
-  - NFIndustrialMedicine2
+  - NFIndustrialMedicine
   position: 3, 16
 
 - type: technology
@@ -1028,7 +977,7 @@
     state: emitter2
   discipline: NFIndustrial
   tier: 1
-  cost: 7500
+  cost: 5000
   recipeUnlocks:
   - EmitterCircuitboard
   technologyPrerequisites:
@@ -1043,7 +992,7 @@
     state: base
   discipline: NFIndustrial
   tier: 1
-  cost: 10000
+  cost: 5000
   recipeUnlocks:
   - ShuttleConsoleCircuitboard
   - ThrusterMachineCircuitboard
@@ -1059,7 +1008,7 @@
 
 - type: technology
   id: NFBluespaceOreStorage
-  name: research-technology-excavation
+  name: research-technology-excavation-storage
   icon:
     sprite: _NF/Objects/Specific/Mining/ore_bag_holding.rsi
     state: icon
@@ -1080,7 +1029,7 @@
     state: icon
   discipline: NFArsenal
   tier: 1
-  cost: 10000
+  cost: 7500
   recipeUnlocks:
   - NFWeaponPkaCannon
   technologyPrerequisites:
@@ -1145,7 +1094,7 @@
     state: base
   discipline: NFArsenal
   tier: 1
-  cost: 15000
+  cost: 10000
   recipeUnlocks:
   - NFAmmunitionBoxBigRifle20
   - NFAmmunitionBoxBigRifle20Overpressure
@@ -1157,38 +1106,20 @@
 
 # region Group 4
 - type: technology
-  id: NFAdvancedAtmospherics
-  name: research-technology-advanced-atmospherics
+  id: NFAtmosphericTech
+  name: research-technology-atmospheric-tech
   icon:
-    sprite: Objects/Devices/Holoprojectors/atmos.rsi
-    state: icon
+    sprite: Structures/Piping/Atmospherics/thermomachine.rsi
+    state: freezerOff
   discipline: NFIndustrial
   tier: 1
-  cost: 7500
+  cost: 5000
   recipeUnlocks:
-  - HellfireFreezerMachineCircuitBoard
-  - PortableScrubberMachineCircuitBoard
-  - HolofanProjector
-#  - FireExtinguisherBluespace # DeltaV
+  - ThermomachineFreezerMachineCircuitBoard
+  - GasRecyclerMachineCircuitboard
   technologyPrerequisites:
-  - NFAtmosphericTech
+  - NFIndustrialEngineering
   position: 4, 0
-
-- type: technology
-  id: NFAtmosphericDrilling
-  name: research-technology-atmospheric-drilling
-  icon:
-    sprite: _NF/Objects/Specific/Atmospherics/extractor.rsi
-    state: icon
-  discipline: NFIndustrial
-  tier: 1
-  cost: 7500
-  recipeUnlocks:
-  - GasMiningDrillMachineCircuitboard
-  - GaslockFrameMachineCircuitboard
-  technologyPrerequisites:
-  - NFAtmosphericTech
-  position: 4, 1
 
 - type: technology
   id: NFAdvancedPersonalPropulsion
@@ -1242,36 +1173,37 @@
   position: 4, 4
 
 - type: technology
-  id: NFBluespaceTimeManipulation
-  name: research-technology-bluespace-time-manipulation
+  id: NFAdvancedToolsTechnology
+  name: research-technology-advanced-tools
   icon:
-    sprite: Objects/Devices/desynchronizer.rsi
+    sprite: Objects/Tools/welder_experimental.rsi
     state: icon
+  discipline: NFIndustrial
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+    - WelderExperimental
+    - PowerDrill
+    - JawsOfLife
+    - BorgModuleAdvancedTool
+  technologyPrerequisites:
+  - NFIndustrialEngineering
+  position: 4, 6
+
+- type: technology
+  id: NFAdvancedAnomalyResearch
+  name: research-technology-advanced-anomaly-research
+  icon:
+    sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
+    state: base
   discipline: NFExperimental
   tier: 1
   cost: 10000
   recipeUnlocks:
-  - DeviceDesynchronizer
+  - NFWeaponPistolCHIMP
+  - AnomalyVesselExperimentalCircuitboard
   technologyPrerequisites:
-  - NFAdvancedToolsTechnology
-  - NFAdvancedAnomalyResearch
-  position: 4, 7
-
-- type: technology
-  id: NFSuperParts
-  name: research-technology-super-parts
-  icon:
-    sprite: _NF/Objects/Misc/stock_parts.rsi
-    state: super_matter_bin
-  discipline: NFExperimental
-  tier: 1
-  cost: 15000
-  recipeUnlocks:
-  - SuperCapacitorStockPart
-  - SuperMatterBinStockPart
-  - PicoManipulatorStockPart
-  technologyPrerequisites:
-  - NFAdvancedAnomalyResearch
+  - NFBasicAnomalousResearch
   position: 4, 8
 
 - type: technology
@@ -1314,7 +1246,7 @@
     state: full
   discipline: NFArsenal
   tier: 1
-  cost: 10500
+  cost: 10000
   recipeUnlocks:
   - PowerCageRechargerCircuitboard
   - PowerCageSmall
@@ -1330,6 +1262,40 @@
 
 # region Group 5
 - type: technology
+  id: NFAdvancedAtmospherics
+  name: research-technology-advanced-atmospherics
+  icon:
+    sprite: Objects/Devices/Holoprojectors/atmos.rsi
+    state: icon
+  discipline: NFIndustrial
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - HellfireFreezerMachineCircuitBoard
+  - PortableScrubberMachineCircuitBoard
+  - HolofanProjector
+#  - FireExtinguisherBluespace # DeltaV
+  technologyPrerequisites:
+  - NFAtmosphericTech
+  position: 5, 0
+
+- type: technology
+  id: NFAtmosphericDrilling
+  name: research-technology-atmospheric-drilling
+  icon:
+    sprite: _NF/Objects/Specific/Atmospherics/extractor.rsi
+    state: icon
+  discipline: NFIndustrial
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - GasMiningDrillMachineCircuitboard
+  - GaslockFrameMachineCircuitboard
+  technologyPrerequisites:
+  - NFAtmosphericTech
+  position: 5, 1
+
+- type: technology
   id: NFMatterEnergyConversion
   name: research-technology-matter-energy-conversion
   icon:
@@ -1344,6 +1310,54 @@
   - NFRapidConstruction
   - NFBluespaceStorage
   position: 5, 3
+
+- type: technology
+  id: NFAdvancedBeltTechnology
+  name: research-technology-advanced-belt
+  icon:
+    sprite: Clothing/Belt/ce.rsi
+    state: icon
+  discipline: NFIndustrial
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+    - ClothingBeltChiefEngineer
+  technologyPrerequisites:
+  - NFAdvancedToolsTechnology
+  position: 5, 6
+
+- type: technology
+  id: NFBluespaceTimeManipulation
+  name: research-technology-bluespace-time-manipulation
+  icon:
+    sprite: Objects/Devices/desynchronizer.rsi
+    state: icon
+  discipline: NFExperimental
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - DeviceDesynchronizer
+  technologyPrerequisites:
+  - NFAdvancedToolsTechnology
+  - NFAdvancedAnomalyResearch
+  position: 5, 7
+
+- type: technology
+  id: NFSuperParts
+  name: research-technology-super-parts
+  icon:
+    sprite: _NF/Objects/Misc/stock_parts.rsi
+    state: super_matter_bin
+  discipline: NFExperimental
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - SuperCapacitorStockPart
+  - SuperMatterBinStockPart
+  - PicoManipulatorStockPart
+  technologyPrerequisites:
+  - NFAdvancedAnomalyResearch
+  position: 5, 8
 
 - type: technology
   id: NFHardsuitsExperimentalIndustrial
@@ -1365,7 +1379,7 @@
   id: NFHardsuitsArmoredAdvanced
   name: research-technology-hardsuits-armored-advanced
   icon:
-    sprite: Clothing/OuterClothing/Hardsuits/security.rsi
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/scaf.rsi
     state: icon
   discipline: NFArsenal
   tier: 1
