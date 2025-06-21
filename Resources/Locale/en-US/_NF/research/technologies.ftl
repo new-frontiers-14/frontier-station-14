@@ -1,16 +1,19 @@
 # Keep these alphabetical by key.
+research-technology-advanced-belt = Personal Tool Storage Solutions
 research-technology-advanced-food-service = Advanced Food Service
 research-technology-advanced-personal-propulsion = Advanced Personal Propulsion
 research-technology-arsenal-style = Punk Gear
 research-technology-atmospheric-drilling = Atmospheric Drilling
 research-technology-basic-ammunition = Basic Ammunition Production
 research-technology-bounty-hunting = Peacekeeping Basics
+research-technology-excavation-storage = Excavation Storage
 research-technology-hardsuits-advanced = Advanced Hardsuits
 research-technology-hardsuits-armored = Armored Hardsuits
 research-technology-hardsuits-armored-advanced = Advanced Armored Hardsuits
 research-technology-hardsuits-basic = Basic Hardsuits
 research-technology-hardsuits-experimental-industrial = Experimental Salvager Hardsuit
 research-technology-hardsuits-experimental-rd = Experimental Research Hardsuit
+research-technology-hardsuits-medical = Medical Hardsuits
 research-technology-hardsuits-specialized = Specialized Hardsuits
 research-technology-industrial-medicine = Industrial Chemistry
 research-technology-magnets-tech-advanced = Advanced Localized Magnetism
