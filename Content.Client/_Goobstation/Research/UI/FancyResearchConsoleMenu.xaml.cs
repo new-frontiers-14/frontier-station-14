@@ -96,6 +96,8 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
     private ParallaxControl _parallaxControl; // Frontier: Parallax control for the background
 
+    private float _verticalScrollSpeed = 50; // Frontier: Allow mouse scroll
+
     public FancyResearchConsoleMenu()
     {
         RobustXamlLoader.Load(this);
@@ -146,7 +148,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         foreach (var tech in List)
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
-            var position = DefaultPosition + (GridSize * proto.Position.X, GridSize * proto.Position.Y);
+            var position = DefaultPosition + (GridSize * proto.Position.X, GridSize * -proto.Position.Y); // Invert Y: higher coordinates are lower on the grid
             if (!boundsSet)
             {
                 bounds.BottomLeft = position;
@@ -164,6 +166,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         if (boundsSet)
         {
             _bounds = bounds;
+            ClampPosition(ref _position);
         }
         // End Frontier: generate bounding box, ensure position is within bounds
 
@@ -239,20 +242,9 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         var originalPosition = _position;
         _position += args.Relative;
 
-        var viewSize = DragContainer.Size;
-
-        var minX = Math.Min(-_bounds.Left, viewSize.X - _bounds.Right - CardSize);
-        var maxX = Math.Max(-_bounds.Left, viewSize.X - _bounds.Right - CardSize);
-        _position.X = Math.Clamp(_position.X, minX, maxX);
-
-        var minY = Math.Min(-_bounds.Bottom, viewSize.Y - _bounds.Top - CardSize);
-        var maxY = Math.Max(-_bounds.Bottom, viewSize.Y - _bounds.Top - CardSize);
-        _position.Y = Math.Clamp(_position.Y, minY, maxY);
+        ClampPosition(ref _position);
 
         var diff = _position - originalPosition;
-
-        if (diff.LengthSquared() < 1e-6f)
-            return;
         // End Frontier: bound motion to a box
 
         // Move all tech
@@ -328,4 +320,45 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     {
         public TechDisciplinePrototype Proto = proto;
     }
+
+    // Frontier: clamp view bounds
+    private void ClampPosition(ref Vector2 position)
+    {
+        var viewSize = DragContainer.Size;
+
+        var minX = _bounds.Left;
+        var maxX = _bounds.Right - viewSize.X - CardSize;
+        if (maxX <= minX)
+            position.X = minX;
+        else
+            position.X = Math.Clamp(position.X, minX, maxX);
+
+        var minY = _bounds.Bottom + viewSize.Y - CardSize; // positive window coords towards the bottom
+        var maxY = _bounds.Top;
+        if (maxY <= minY)
+            position.Y = maxY;
+        else
+            position.Y = Math.Clamp(position.Y, minY, maxY);
+    }
+
+    protected override void MouseWheel(GUIMouseWheelEventArgs args)
+    {
+        base.MouseWheel(args);
+
+        var originalPosition = _position;
+        _position.Y += args.Delta.Y * _verticalScrollSpeed;
+
+        ClampPosition(ref _position);
+
+        var diff = _position - originalPosition;
+
+        // Move all tech
+        foreach (var child in DragContainer.Children)
+        {
+            LayoutContainer.SetPosition(child, child.Position + diff);
+        }
+
+        args.Handle();
+    }
+    // End Frontier: clamp view bounds
 }
