@@ -10,8 +10,8 @@ namespace Content.Server._NF.BindToStation;
 
 public sealed class BindToStationSystem : EntitySystem
 {
-    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ExtensionCableSystem _extensionCable = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     public override void Initialize()
     {

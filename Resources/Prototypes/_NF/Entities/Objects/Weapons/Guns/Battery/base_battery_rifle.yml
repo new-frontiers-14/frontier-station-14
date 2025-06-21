@@ -119,3 +119,15 @@
   - type: ProjectileBatteryAmmoProvider
     proto: ProjectileEmp
     fireCost: 500
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleParticle
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-particle-stream
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFAntiParticlesProjectile
+    fireCost: 120 # 20 shots
