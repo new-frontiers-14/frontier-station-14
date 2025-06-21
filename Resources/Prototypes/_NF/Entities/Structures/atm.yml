@@ -241,3 +241,12 @@
   components:
   - type: StationBankATM
     account: Medical
+
+- type: entity
+  parent: BaseStationAdminBankATM
+  id: StationAdminBankATMCustom
+  description: Used to transfer funds to and from the local bank account.
+  suffix: Admeme
+  components:
+  - type: StationBankATM
+    account: Custom

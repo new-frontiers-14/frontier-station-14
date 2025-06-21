@@ -24,6 +24,15 @@ job-name-stc = Station Traffic Controller
 job-name-sr = Station Representative
 job-name-valet = Valet
 
+# Frontier admeme
+job-name-shuttle-ai-civilian = Civilian Shuttle AI
+job-name-shuttle-ai-nfsd = NFSD Shuttle AI
+job-name-shuttle-ai-centcom = CentCom Shuttle AI
+job-name-shuttle-ai-freelance = Freelance Shuttle AI
+job-name-shuttle-ai-syndicate = Syndicate Shuttle AI
+job-name-foreign-ensign = Ensign
+job-name-foreign-lieutenant = Lieutenant
+
 # Job titles
 job-title-ert-mail-carrier = ERT Mail Carrier
 
