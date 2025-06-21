@@ -133,3 +133,20 @@
   - type: Drink
   - type: Label
     currentLabel: reagent-name-soysauce
+
+- type: entity
+  parent: DrinkBottlePlasticBaseFull
+  id: DrinkMayoJug
+  name: mayonnaise jug
+  description: When this jug is emptied it will fall to you to fill it. Will you have the strength. Will you have the resolve.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 150
+        reagents:
+        - ReagentId: Mayo
+          Quantity: 150
+  - type: Drink
+  - type: Label
+    currentLabel: reagent-name-mayo
