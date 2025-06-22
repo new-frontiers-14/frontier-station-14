@@ -1,17 +1,21 @@
-using Content.Server._NF.Weapons.Rarity;
 using Content.Server.Storage.Events;
+using Content.Shared.Dataset;
 using Content.Shared.Storage;
-using Content.Shared.Storage.Components;
-using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Weapons.Ranged.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._NF.Weapons.Rarity;
 
+/// <summary>
+/// A stand-alone system intended to modularly sit atop the existing gun and weapon systems to create dynamic weapon rarities.
+/// </summary>
 public sealed partial class WeaponRaritySystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
+    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
+    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -39,11 +43,14 @@ public sealed partial class WeaponRaritySystem : EntitySystem
         if (gunComp == null || !gun.IsValid() )
             return;
 
+        //Basic functionality of 3 rarity levels
         var rarity = comp.Rarity;
         if (comp.RandomRarity)
         {
             rarity = _random.Next(0, 4);
         }
+
+        RenameGun(gun, rarity);
 
         while (rarity > 0)
         {
@@ -101,5 +108,33 @@ public sealed partial class WeaponRaritySystem : EntitySystem
 
         gunComp.ProjectileSpeed *= buff;
         gunComp.ProjectileSpeedModified *= buff;
+    }
+
+    private void RenameGun(EntityUid gun, int rarity)
+    {
+        var datasetUncommon = _protoMan.Index<LocalizedDatasetPrototype>("NFNamesGunsUncommon");
+        var datasetRare = _protoMan.Index<LocalizedDatasetPrototype>("NFNamesGunsRare");
+        var datasetEpic = _protoMan.Index<LocalizedDatasetPrototype>("NFNamesGunsEpic");
+
+        var meta = MetaData(gun);
+
+        if (rarity == 1)
+        {
+            var pick = _random.Pick(datasetUncommon.Values);
+            var newName = Loc.GetString(pick) + " " + meta.EntityName;
+            _metaSystem.SetEntityName(gun, newName, meta, false);
+        }
+        else if (rarity == 2)
+        {
+            var pick1 = _random.Pick(datasetUncommon.Values);
+            var pick2 = _random.Pick(datasetRare.Values);
+            var newName = Loc.GetString(pick2) + " " + Loc.GetString(pick1)+ " " + meta.EntityName;
+            _metaSystem.SetEntityName(gun, newName, meta, false);
+        }
+        else if (rarity >= 3)
+        {
+            var pick = _random.Pick(datasetEpic.Values);
+            _metaSystem.SetEntityName(gun, Loc.GetString(pick), meta, false);
+        }
     }
 }
