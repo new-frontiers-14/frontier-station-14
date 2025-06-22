@@ -1,31 +1,10 @@
 # Special gun cases that will randomize the stats of their spawned weapon
 - type: entity
   id: RareWeaponCase
+  categories: [ HideSpawnMenu ]
   components:
   - type: RareWeaponSpawnerCase
     randomRarity: true
-
-- type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
-  id: WeaponCaseLongXrayCannonExpedition
-  suffix: Dungeon, Xray Cannon, RareTest
-  components:
-  - type: StorageFill
-    contents:
-    - id: NFWeaponEnergyRifleSniperXrayCannonExpedition
-      amount: 1
-
-- type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
-  id: WeaponCaseLongC20r
-  suffix: Dungeon, C20r, RareTest
-  components:
-  - type: StorageFill
-    contents:
-    - id: NFWeaponSubMachineGunC20rExpedition
-      amount: 1
-    - id: NFMagazineSubMachineGun35
-      amount: 3
 
 # Gun cases with contraband (unregistered) guns for expeditions
 #region Pistols
