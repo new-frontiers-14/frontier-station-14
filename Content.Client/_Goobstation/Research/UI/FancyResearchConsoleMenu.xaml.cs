@@ -11,7 +11,6 @@
 
 using System.Linq;
 using System.Numerics;
-using Content.Client.Parallax;
 using Content.Client.Research;
 using Content.Client.UserInterface.Controls;
 using Content.Client._Goobstation.Research;
@@ -90,11 +89,9 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// <summary>
     /// Frontier: the distance between elements on the grid.
     /// </summary>
-    private static readonly Vector2i DefaultPosition = Vector2i.Zero; //Frontier: "45,250" < "0,0"
+    private static readonly Vector2i DefaultPosition = Vector2i.Zero; //Frontier: 45,250 < 0,0
 
     private Box2i _bounds = new(DefaultPosition, DefaultPosition);
-
-    private ParallaxControl _parallaxControl; // Frontier: Parallax control for the background
 
     private float _verticalScrollSpeed = 50; // Frontier: Allow mouse scroll
 
@@ -105,25 +102,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         _research = _entity.System<ResearchSystem>();
         _sprite = _entity.System<SpriteSystem>();
         _accessReader = _entity.System<AccessReaderSystem>();
-
-        // Frontier: Initialize parallax background
-        _parallaxControl = new ParallaxControl
-        {
-            ParallaxPrototype = "OriginStation",
-            HorizontalExpand = true,
-            VerticalExpand = true,
-        };
-
-        // Add the parallax control to the ResearchesContainer at the beginning (bottom layer)
-        ResearchesContainer.AddChild(_parallaxControl);
-
-        // Ensure DragContainer is on top of the parallax by removing and re-adding it
-        if (ResearchesContainer.Children.Contains(DragContainer))
-        {
-            ResearchesContainer.RemoveChild(DragContainer);
-            ResearchesContainer.AddChild(DragContainer);
-        }
-        // End Frontier
 
         ServerButton.OnPressed += _ => OnServerButtonPressed?.Invoke();
         DragContainer.OnKeyBindDown += OnKeybindDown;
@@ -333,7 +311,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         else
             position.X = Math.Clamp(position.X, minX, maxX);
 
-        var minY = _bounds.Bottom + viewSize.Y - CardSize; // positive window coords towards the bottom
+        var minY = _bounds.Bottom + viewSize.Y - RecenterButton.Height - CardSize; // positive window coords towards the bottom
         var maxY = _bounds.Top;
         if (maxY <= minY)
             position.Y = maxY;

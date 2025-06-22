@@ -48,11 +48,11 @@ public sealed class ResearchConsoleGoobBoundUserInterface : BoundUserInterface
             try
             {
                 Logger.Debug($"[Research] Sending ConsoleUnlockTechnologyMessage for tech ID: {id}");
-                
+
                 // Create and send the message
                 var message = new ConsoleUnlockTechnologyMessage(id);
                 SendMessage(message);
-                
+
                 // Log success
                 Logger.Info($"[Research] Sent unlock message for technology: {id}");
             }
@@ -102,18 +102,18 @@ public sealed class ResearchConsoleGoobBoundUserInterface : BoundUserInterface
             Logger.Warning("[Research] Console menu is null during state update");
             return;
         }
-        
+
         Logger.Debug($"[Research] Updating UI state with {castState.Points} points and {castState.Researches.Count} technologies");
-        
+
         var availableTechs = castState.Researches.Count(t => t.Value == ResearchAvailability.Available);
         Logger.Debug($"[Research] Available technologies: {availableTechs}");
-        
+
         if (!_consoleMenu.List.SequenceEqual(castState.Researches))
         {
             Logger.Debug("[Research] Technologies list changed, updating panels");
             _consoleMenu.UpdatePanels(castState.Researches);
         }
-        
+
         _consoleMenu.UpdateInformationPanel(castState.Points); // Frontier: always update panel
     }
 }

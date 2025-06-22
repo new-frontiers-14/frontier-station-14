@@ -41,7 +41,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                           Margin="0 0 0 10">
                 <PanelContainer Name="ResearchesContainer" VerticalExpand="True" HorizontalExpand="True">
                     <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="#000000FF" />
+                        <gfx:StyleBoxFlat BackgroundColor="#222226FF" />
                     </PanelContainer.PanelOverride>
                     <goob:ResearchesContainerPanel
                         HorizontalExpand="True"
@@ -63,7 +63,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                     VerticalExpand="True"
                     HorizontalExpand="True"
                     SizeFlagsStretchRatio="1"
-                    Margin="0"/>
+                    Margin="0">
+                    <!-- Frontier: add a placeholder so the scrollable interface doesn't immediately shrink, matches InfoPanel size -->
+                    <Control
+                        Margin="5"
+                        MinWidth="450"
+                        VerticalExpand="True"
+                        HorizontalExpand="True"/>
+                </BoxContainer>
             </PanelContainer>
         </BoxContainer>
     </BoxContainer>

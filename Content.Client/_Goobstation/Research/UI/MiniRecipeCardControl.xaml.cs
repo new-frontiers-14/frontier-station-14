@@ -32,7 +32,7 @@ public sealed partial class MiniRecipeCardControl : Control
 
         if (proto.Result.HasValue)
             // Showcase.Texture = sprite.Frame0(prototypeManager.Index(proto.Result.Value)); // Frontier
-            Showcase.SetPrototype(proto.Result);
+            Showcase.SetPrototype(proto.Result); // Frontier
 
         if (proto.Description.HasValue)
         {
