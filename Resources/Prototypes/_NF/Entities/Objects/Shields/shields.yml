@@ -24,9 +24,9 @@
     heldPrefix: metal
 
 - type: entity
-  name: reflective shield
-  parent: [ BaseC1Contraband, RiotLaserShield ]
   id: NFShieldReflective
+  parent: [ BaseC1Contraband, RiotLaserShield ]
+  name: reflective shield
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/shields.rsi
@@ -48,3 +48,24 @@
     reflects:
       - Energy
     reflectingInHands: true
+
+- type: entity
+  id: NFShieldBallistic
+  parent: [ BaseC1Contraband, RiotBulletShield ]
+  name: bullet resistant shield
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    state: bullet-icon
+  - type: Item
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    heldPrefix: bullet
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Piercing: 0.75
+    activeBlockModifier:
+      coefficients:
+        Piercing: 0.60
+      flatReductions:
+        Piercing: 1
