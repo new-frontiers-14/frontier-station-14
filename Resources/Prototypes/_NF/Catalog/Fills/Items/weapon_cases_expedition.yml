@@ -1,3 +1,23 @@
+# Special gun cases that will randomize the stats of their spawned weapon
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortRare
+  components:
+  - type: RareWeaponSpawnerCase
+    randomRarity: true
+
+- type: entity
+  parent: WeaponCaseShortRare
+  id: WeaponCaseShortMk58ExpeditionRareTest
+  suffix: Dungeon, Mk58, RareTest
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponPistolMk58Expedition
+      amount: 1
+    - id: NFMagazineHighCapacityPistol35
+      amount: 2
+
 # Gun cases with contraband (unregistered) guns for expeditions
 #region Pistols
 - type: entity

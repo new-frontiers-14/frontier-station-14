@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Humanoid.Components;
 using Content.Server.Spawners.Components;
 using Content.Server.Storage.Components;
+using Content.Server.Storage.Events;
 using Content.Shared.Item;
 using Content.Shared.Prototypes;
 using Content.Shared.Storage;
@@ -85,6 +86,11 @@ public sealed partial class StorageSystem
             ClearCantFillReasons();
             Del(ent);
         }
+
+        // Frontier - we raise an event to let other systems know their storages have completed filling
+        var StoreFillEv = new StorageFilledEvent();
+        RaiseLocalEvent(uid, ref StoreFillEv, broadcast: true);
+        // End Frontier
     }
 
     private void FillEntityStorage(Entity<StorageFillComponent?, EntityStorageComponent?> entity)
@@ -118,5 +124,9 @@ public sealed partial class StorageSystem
             Log.Error($"Tried to StorageFill {item} inside {ToPrettyString(uid)} but can't.");
             Del(ent);
         }
+        // Frontier - we raise an event to let other systems know their storages have completed filling
+        var StoreFillEv = new StorageFilledEvent();
+        RaiseLocalEvent(uid, ref StoreFillEv, broadcast: true);
+        // End Frontier
     }
 }
