@@ -76,7 +76,7 @@ public sealed partial class WeaponRaritySystem : EntitySystem
         if (!Resolve(gun, ref gunComp))
             return;
 
-        var buff = 1 - _random.NextFloat(0.1f, 0.25f);
+        var buff = 1 - _random.NextFloat(0.15f, 0.35f);
 
         gunComp.MinAngle *= buff;
         gunComp.MinAngleModified *= buff;
@@ -93,7 +93,7 @@ public sealed partial class WeaponRaritySystem : EntitySystem
         if (!Resolve(gun, ref gunComp))
             return;
 
-        var buff = 1 + _random.NextFloat(0.1f, 0.25f);
+        var buff = 1 + _random.NextFloat(0.15f, 0.35f);
 
         gunComp.FireRate *= buff;
         gunComp.FireRateModified *= buff;
@@ -104,7 +104,7 @@ public sealed partial class WeaponRaritySystem : EntitySystem
         if (!Resolve(gun, ref gunComp))
             return;
 
-        var buff = 1 + _random.NextFloat(0.1f, 0.25f);
+        var buff = 1 + _random.NextFloat(0.15f, 0.35f);
 
         gunComp.ProjectileSpeed *= buff;
         gunComp.ProjectileSpeedModified *= buff;
