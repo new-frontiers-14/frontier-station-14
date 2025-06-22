@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  parent: VendingMachine
   id: VendingMachineCuddlyCritterVend
   name: CuddlyCritterVend
   description: Step into the world of wonder and warmth with Cuddly Critters Vending Machine, a haven for plushie and toy enthusiasts alike.
@@ -299,7 +299,7 @@
       color: "#ff033e"
 
 - type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  parent: VendingMachine
   id: VendingMachineAutoTuneVend
   name: AutoTune
   description: Feeling BASSed? Time to TUNE into AutoVend! Take NOTES and let your audience TREBLE.
@@ -808,6 +808,16 @@
   components:
   - type: VendingMachine
     pack: BoozeOMatInventory
+
+- type: entity
+  parent: [VendingMachineCuddlyCritterVend, BaseStructureDisableAnchoring]
+  id: VendingMachineCuddlyCritterVendPOI
+  suffix: POI
+
+- type: entity
+  parent: [VendingMachineAutoTuneVend, BaseStructureDisableAnchoring]
+  id: VendingMachineAutoTuneVendPOI
+  suffix: POI
 
 # Gas Tank Dispenser
 
