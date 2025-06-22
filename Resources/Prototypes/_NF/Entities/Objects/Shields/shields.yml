@@ -22,3 +22,29 @@
   - type: Item
     sprite: _NF/Objects/Weapons/Melee/shields.rsi
     heldPrefix: metal
+
+- type: entity
+  name: reflective shield
+  parent: [ BaseC1Contraband, RiotLaserShield ]
+  id: NFShieldReflective
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    state: reflective-icon
+  - type: Item
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    heldPrefix: reflective
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Heat: 0.4
+    activeBlockModifier:
+      coefficients:
+        Heat: 0.5
+      flatReductions:
+        Heat: 1
+  - type: Reflect
+    reflectProb: 0.1
+    reflects:
+      - Energy
+    reflectingInHands: true
