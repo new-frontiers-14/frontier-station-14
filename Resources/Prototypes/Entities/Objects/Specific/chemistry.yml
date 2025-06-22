@@ -463,6 +463,14 @@
         map: ["enum.SolutionContainerLayers.Fill"]
         visible: false
       - state: syringeproj
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+  - type: Injector
+    minTransferAmount: 1
+    maxTransferAmount: 5
+    transferAmount: 5
   - type: SolutionContainerVisuals
     maxFillLevels: 3
     fillBaseName: minisyringe
@@ -484,7 +492,7 @@
     solution: injector
     updateInterval: 2
   - type: SolutionInjectOnEmbed
-    transferAmount: 0.5 # Frontier: 2 < 0.5
+    transferAmount: 0.5 # Frontier: 1 < 0.5
     solution: injector
   - type: Fixtures
     fixtures:
