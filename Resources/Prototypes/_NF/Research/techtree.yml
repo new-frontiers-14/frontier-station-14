@@ -124,7 +124,7 @@
   name: nf-research-technology-personal-storage-solutions
   icon:
     sprite: _NF/Objects/Storage/Pouches/pouch.rsi
-    state: closed
+    state: engineering-icon
   discipline: NFService
   tier: 1
   cost: 2500
@@ -302,21 +302,36 @@
 # note: depends on Engineering cluster
 
 - type: technology
-  id: NFAdvancedToolsTechnology
-  name: nf-research-technology-advanced-tools
+  id: NFAdvancedWelderTechnology
+  name: nf-research-technology-advanced-welder
   icon:
     sprite: Objects/Tools/welder_experimental.rsi
     state: icon
   discipline: NFEngineering
   tier: 1
-  cost: 7500
+  cost: 5000
   recipeUnlocks:
   - WelderExperimental
+  - ClothingMaskWeldingGas
+  technologyPrerequisites:
+  - NFIndustrialEngineering
+  position: 3, 6
+
+- type: technology
+  id: NFAdvancedToolsTechnology
+  name: nf-research-technology-advanced-tools
+  icon:
+    sprite: Objects/Tools/drill.rsi
+    state: drill_screw
+  discipline: NFEngineering
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
   - PowerDrill
   - JawsOfLife
   - BorgModuleAdvancedTool
   technologyPrerequisites:
-  - NFIndustrialEngineering
+  - NFAdvancedWelderTechnology
   position: 4, 6
 
 - type: technology
@@ -452,7 +467,7 @@
   - NFAdvancedAnomalyResearch
   position: 5, 8
 
-# region Magboots
+# region Magboots (TODO)
 
 - type: technology
   id: NFMagnetsTech
@@ -655,6 +670,21 @@
   position: 1, 12
 
 - type: technology
+  id: NFReinforcedJug
+  name: nf-research-technology-reinforced-jug
+  icon:
+    sprite: _NF/Objects/Specific/Chemistry/reinforced_jug.rsi
+    state: icon
+  discipline: NFService
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - ReinforcedJug
+  technologyPrerequisites:
+  - NFBiochemicalStasis
+  position: 1, 13
+
+- type: technology
   id: NFBasicMedicine
   name: nf-research-technology-basic-medicine
   icon:
@@ -685,6 +715,7 @@
   - JugBluespace
   - VialBluespace
   technologyPrerequisites:
+  - NFReinforcedJug
   - NFBasicMedicine
   position: 2, 13
 
@@ -909,7 +940,6 @@
   recipeUnlocks:
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
-  - ReinforcedJug
   - MegaSprayBottle
   technologyPrerequisites:
   - NFAdvancedParts
@@ -1205,7 +1235,6 @@
   - WeaponGrapplingGun
   - MineralScannerEmpty
   - OreProcessorIndustrialMachineCircuitboard
-  - ClothingMaskWeldingGas
   technologyPrerequisites:
   - NFAdvancedParts
   position: 1, 28
@@ -1326,11 +1355,11 @@
   id: NFArsenalStyle
   name: nf-research-technology-arsenal-style
   icon:
-    sprite: Objects/Weapons/Melee/katana.rsi
-    state: icon
+    sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_procedural.rsi
+    state: base_OuterClothing_armor_01
   discipline: NFArsenalMercenary
   tier: 1
-  cost: 10000
+  cost: 2500
   recipeUnlocks:
   - ClothingEyesPunkInfoShades
   - ClothingOuterArmorPunkRandomized
