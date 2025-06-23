@@ -87,7 +87,17 @@ public sealed class DeletionCensusSystem : EntitySystem
 
     private void SetGarbageCollectionPeriod(int value)
     {
+        if (value <= 0)
+            return;
+
         _censusPassPeriod = TimeSpan.FromSeconds(value);
+
+        // Ensure time until next census is within the requested period.
+        var newNextCensusTime = _timing.CurTime + _censusPassPeriod;
+        if (newNextCensusTime < _nextDefaultCensusTime)
+            _nextDefaultCensusTime = newNextCensusTime;
+        if (newNextCensusTime < _nextFtlCensusTime)
+            _nextFtlCensusTime = newNextCensusTime;
     }
 
     private void SetGarbageCollectionEntitiesPerTick(int value)
