@@ -29,6 +29,14 @@
     access: [["HeadOfPersonnel"]]
 
 - type: entity
+  parent: [ SuitStorageBase, StorageFillEVASuitStc ]
+  id: SuitStorageEVAStc
+  suffix: EVA, Station Traffic Controller
+  components:
+  - type: AccessReader
+    access: [["StationTrafficController"]]
+
+- type: entity
   parent: [ SuitStorageBase, StorageFillEVASuitCaptain ]
   id: SuitStorageEVACaptain
   suffix: EVA, Captain
@@ -71,8 +79,22 @@
   - type: AccessReader
 
 - type: entity
+  parent: [ LockerSalvageSpecialistFilled, StorageFillEVASuitSalvage ]
+  id: SuitStorageEVASalvageFilled
+  suffix: EVA, Salvage Specialist, Filled  
+  components:
+  - type: AccessReader
+
+- type: entity
   parent: [ SuitStorageBase, StorageFillEVASuitParamedic ]
   id: SuitStorageParamedic
+  suffix: Voidsuit, Paramedic
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageBase, StorageFillEVASuitParamedicAlt ]
+  id: SuitStorageParamedicAlt
   suffix: EVA, Paramedic
   components:
   - type: AccessReader
@@ -308,7 +330,7 @@
     contents:
         - id: NFTankO2N2EqualFilled
         - id: ClothingOuterHardsuitNfsdSilver
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd
   - type: AccessReader
@@ -324,7 +346,7 @@
     contents:
         - id: NFTankO2N2EqualFilled
         - id: ClothingOuterHardsuitNfsdBrigmedic
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd
   - type: AccessReader
@@ -340,7 +362,7 @@
     contents:
         - id: NFTankO2N2EqualFilled
         - id: ClothingOuterHardsuitNfsdGold
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd
   - type: AccessReader
@@ -356,7 +378,7 @@
     contents:
         - id: NFTankO2N2EqualFilled
         - id: ClothingOuterHardsuitNfsdGold
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd
   - type: AccessReader
@@ -388,7 +410,7 @@
     contents:
         - id: NFTankO2N2EqualFilled
         - id: ClothingOuterHardsuitNfsdCombat
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd
   - type: AccessReader
@@ -404,7 +426,7 @@
     contents:
         - id: NFTankO2N2EqualFilled
         - id: ClothingOuterHardsuitNfsdCommand
-        - id: ClothingMaskGasNfsd 
+        - id: ClothingMaskGasNfsd
         - id: JetpackNfsdFilled
         - id: ClothingShoesBootsMagNfsd
   - type: AccessReader

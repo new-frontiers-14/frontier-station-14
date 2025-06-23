@@ -26,9 +26,10 @@
   special:
   - !type:AddComponentSpecial
     components:
-    - type: AutoPirate
+    - type: AutoPirateFirstMate
     - type: SpecialSectorStationRecord # must be given on spawn
       recordGeneration: FalseRecord
+    - type: DisableSuitSensors
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
@@ -38,7 +39,6 @@
 - type: startingGear
   id: NFPirateFirstMateGear
   equipment:
-    ears: ClothingHeadsetAltFreelancer
     belt: ClothingBeltUtility
     pocket1: BasePirateUplinkPirateCrew
   storage:

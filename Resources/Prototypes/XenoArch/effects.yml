@@ -76,7 +76,7 @@
     - id: XenoArtifactPuddleRare
       weight: 2.0
     - id: XenoArtifactAnomalySpawn
-      weight: 10.0
+      weight: 4.0 # Frontier: 10.0<4.0
     - id: XenoArtifactIgnite
       weight: 2.0
     - id: XenoArtifactTeleport
@@ -127,6 +127,8 @@
       weight: 4.0
     - id: NFXenoArtifactEffectSpawnGrimforgedConstruct # Frontier
       weight: 1.5 # Frontier
+    - id: NFXenoArtifactEffectAnomaliteSpawn # Frontier
+      weight: 6.0 # Frontier
 
 - type: entityTable
   id: XenoArtifactEffectsHandheldOnlyTable
@@ -172,6 +174,7 @@
   id: XenoArtifactEffectUniversalIntercom
   parent: BaseOneTimeXenoArtifactEffect
   description: Obtains ability of long-distance communication device
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     components:
@@ -202,6 +205,7 @@
   id: XenoArtifactBecomeRandomInstrument
   parent: BaseOneTimeXenoArtifactEffect
   description: Obtains ability of musical instrument
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     components:
@@ -215,6 +219,7 @@
   id: XenoArtifactStorage
   parent: BaseOneTimeXenoArtifactEffect
   description: Obtains ability of hidden storage
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     components:
@@ -229,6 +234,7 @@
   id: XenoArtifactPhasing
   parent: BaseOneTimeXenoArtifactEffect
   description: Becomes phased
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAERemoveCollision
 
@@ -236,6 +242,7 @@
   id: XenoArtifactWandering
   parent: BaseOneTimeXenoArtifactEffect
   description: Starts to move sporadically
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     components:
@@ -249,6 +256,7 @@
   id: XenoArtifactSolutionStorage
   parent: BaseOneTimeXenoArtifactEffect
   description: Obtains ability of container for chemical solutions
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     components:
@@ -277,6 +285,7 @@
   id: XenoArtifactSpeedUp
   parent: BaseOneTimeXenoArtifactEffect
   description: Improves holder movement speed
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     components:
@@ -288,6 +297,7 @@
   id: XenoArtifactDrill
   parent: BaseOneTimeXenoArtifactEffect
   description: Obtains ability of drill
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     components:
@@ -304,6 +314,7 @@
   id: XenoArtifactGenerateEnergy
   parent: BaseOneTimeXenoArtifactEffect # todo - increment power, but only once per node
   description: Produces power
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     components:
@@ -320,6 +331,7 @@
   id: XenoArtifactGun
   parent: BaseOneTimeXenoArtifactEffect
   description: Obtains ability of firearm
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -351,6 +363,7 @@
   id: XenoArtifactGhost
   parent: BaseOneTimeXenoArtifactEffect
   description: Becomes sentient
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     components:
@@ -371,6 +384,7 @@
   id: XenoArtifactOmnitool
   parent: BaseOneTimeXenoArtifactEffect
   description: Obtains ability of omnitool
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     components:
@@ -417,7 +431,8 @@
 - type: entity
   id: XenoArtifactEffectBadFeeling
   parent: BaseXenoArtifactEffect
-  description: Broadcasts sublime message
+  description: Broadcasts foreboding message # Frontier: sublime<foreboding
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAETelepathic
     messages:
@@ -448,6 +463,7 @@
   id: XenoArtifactEffectGoodFeeling
   parent: BaseXenoArtifactEffect
   description: Broadcasts sublime message
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAETelepathic
     messages:
@@ -477,6 +493,7 @@
   id: XenoArtifactEffectJunkSpawn
   parent: BaseXenoArtifactEffect
   description: Create recyclable junk
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -500,6 +517,7 @@
   id: XenoArtifactEffectLightFlicker
   parent: BaseXenoArtifactEffect
   description: Minor electromagnetic interference
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAELightFlicker
 
@@ -507,6 +525,7 @@
   id: XenoArtifactPotassiumWave
   parent: BaseXenoArtifactEffect
   description: Produces potassium
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -534,6 +553,7 @@
   id: XenoArtifactFloraSpawn
   parent: BaseXenoArtifactEffect
   description: Produces flora
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -549,6 +569,7 @@
   id: XenoArtifactChemicalPuddle
   parent: BaseXenoArtifactEffect
   description: Produces puddle of chemical mixture # todo: make description say what exact chemical is produced, maybe add mixes into possible chemicals
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAECreatePuddle
     chemAmount:
@@ -585,6 +606,7 @@
   id: XenoArtifactThrowThingsAround
   parent: BaseXenoArtifactEffect
   description: Minor implosion
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEThrowThingsAround
 
@@ -592,6 +614,7 @@
   id: XenoArtifactColdWave
   parent: BaseXenoArtifactEffect
   description: Cools down surrounding gas
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAETemperature
     targetTemp: 50
@@ -600,6 +623,7 @@
   id: XenoArtifactHeatWave
   parent: BaseXenoArtifactEffect
   description: Heats up surrounding gas greatly
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAETemperature
     targetTemp: 500
@@ -608,6 +632,7 @@
   id: XenoArtifactFoamMild
   parent: BaseXenoArtifactEffect
   description: Produces chemical foam # todo: separate in 1 for each chemical for description? actually sounds like a very good idea
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEFoam
     replaceDescription: true
@@ -628,6 +653,7 @@
   id: XenoArtifactRandomInstrumentSpawn
   parent: BaseXenoArtifactEffect
   description: Creates musical instrument
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 2
@@ -648,6 +674,7 @@
   id: XenoArtifactMonkeySpawn
   parent: BaseXenoArtifactEffect
   description: Creates primate
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -671,6 +698,7 @@
   id: XenoArtifactRadioactive
   parent: BaseOneTimeXenoArtifactEffect
   description: Becomes mildly radioactive
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -684,6 +712,7 @@
   id: XenoArtifactChargeBattery
   parent: BaseXenoArtifactEffect
   description: Charges up batteries
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEChargeBattery
   - type: XAETelepathic
@@ -694,6 +723,7 @@
   id: XenoArtifactKnock
   parent: BaseXenoArtifactEffect
   description: Mild electromagnetic interference
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEKnock
   - type: XAELightFlicker
@@ -702,6 +732,7 @@
   id: XenoArtifactMagnet
   parent: BaseOneTimeXenoArtifactEffect
   description: Create small gravity well
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -716,6 +747,7 @@
   id: XenoArtifactMagnetNegative
   parent: BaseOneTimeXenoArtifactEffect
   description: Create small gravity well
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -730,6 +762,7 @@
   id: XenoArtifactStealth
   parent: BaseOneTimeXenoArtifactEffect
   description: Create light interference
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     components:
@@ -743,6 +776,7 @@
   id: XenoArtifactRareMaterialSpawn
   parent: BaseXenoArtifactEffect # todo: splice into different well-named effects, amounts should reflect how rare material is
   description: Create rare materials
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -773,6 +807,7 @@
   id: XenoArtifactRareMaterialSpawnSilver
   parent: BaseXenoArtifactEffect
   description: Create rare materials
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -796,6 +831,7 @@
   id: XenoArtifactRareMaterialSpawnPlasma
   parent: BaseXenoArtifactEffect
   description: Create plasma
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -819,6 +855,7 @@
   id: XenoArtifactRareMaterialSpawnGold
   parent: BaseXenoArtifactEffect
   description: Create gold
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -842,6 +879,7 @@
   id: XenoArtifactRareMaterialSpawnUranium
   parent: BaseXenoArtifactEffect
   description: Create uranium
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -865,6 +903,7 @@
   id: XenoArtifactAngryCarpSpawn
   parent: BaseXenoArtifactEffect
   description: Create hostile fish
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -888,6 +927,7 @@
   id: XenoArtifactFaunaSpawn
   parent: BaseXenoArtifactEffect
   description: Create friendly fauna
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 4
@@ -936,13 +976,14 @@
         - id: MobGoat
           amount: !type:RangeNumberSelector
             range: 1, 3
-        - id: MobMonkeySyndicateAgent #so lucky
-          prob: 0.03
+        # - id: MobMonkeySyndicateAgent #so lucky # Frontier
+        #   prob: 0.03 # Frontier
 
 - type: entity
   id: XenoArtifactCashSpawn
   parent: BaseXenoArtifactEffect
   description: Create money
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 2
@@ -972,6 +1013,7 @@
   id: XenoArtifactShatterWindows
   parent: BaseXenoArtifactEffect
   description: Break windows
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 3
@@ -991,6 +1033,7 @@
   id: XenoArtifactFoamGood
   parent: BaseXenoArtifactEffect
   description: Creates wave of helpful foam
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 7
@@ -1012,6 +1055,7 @@
   id: XenoArtifactFoamDangerous
   parent: BaseXenoArtifactEffect
   description: Creates wave of harmful foam
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEFoam
     minFoamAmount: 20
@@ -1034,6 +1078,7 @@
   id: XenoArtifactPuddleRare
   parent: BaseXenoArtifactEffect
   description: Creates puddle of helpful chemicals
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAECreatePuddle
     chemAmount:
@@ -1064,6 +1109,7 @@
   id: XenoArtifactAnomalySpawn
   parent: BaseOneTimeXenoArtifactEffect
   description: Creates anomaly
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1079,6 +1125,7 @@
   id: XenoArtifactIgnite
   parent: BaseXenoArtifactEffect
   description: Pyrokinesis
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEIgnite
     range: 7
@@ -1090,6 +1137,7 @@
   id: XenoArtifactTeleport
   parent: BaseXenoArtifactEffect
   description: Teleportation
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAERandomTeleportInvoker
 
@@ -1097,6 +1145,7 @@
   id: XenoArtifactEmp
   parent: BaseXenoArtifactEffect
   description: Dangerous electromagnetic interference
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 5
@@ -1109,6 +1158,7 @@
   id: XenoArtifactPolyMonkey
   parent: BaseXenoArtifactEffect
   description: Temporarily reshape flesh to fur
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEPolymorph
 
@@ -1116,6 +1166,7 @@
   id: XenoArtifactPolyLizard
   parent: BaseXenoArtifactEffect
   description: Temporarily reshape flesh to scale
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEPolymorph
     polymorphPrototypeName: ArtifactLizard
@@ -1124,6 +1175,7 @@
   id: XenoArtifactPolyLuminous
   parent: BaseXenoArtifactEffect
   description: Temporarily reshape flesh to light
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEPolymorph
     polymorphPrototypeName: ArtifactLuminous
@@ -1132,6 +1184,7 @@
   id: XenoArtifactRadioactiveStrong
   parent: BaseOneTimeXenoArtifactEffect
   description: Becomes highly radioactive
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1145,6 +1198,7 @@
   id: XenoArtifactMaterialSpawnGlass
   parent: BaseXenoArtifactEffect
   description: Create glass
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1160,6 +1214,7 @@
   id: XenoArtifactMaterialSpawnSteel
   parent: BaseXenoArtifactEffect
   description: Create steel
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1175,6 +1230,7 @@
   id: XenoArtifactMaterialSpawnPlastic
   parent: BaseXenoArtifactEffect
   description: Create plastic
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1190,6 +1246,7 @@
   id: XenoArtifactPortal
   parent: BaseXenoArtifactEffect
   description: Create short-living bluespace portal
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEPortal
 
@@ -1197,6 +1254,7 @@
   id: XenoArtifactArtifactSpawn
   parent: BaseXenoArtifactEffect
   description: Create artifact
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XenoArtifactNode
     maxDurability: 2
@@ -1217,6 +1275,7 @@
   id: XenoArtifactShuffle
   parent: BaseXenoArtifactEffect
   description: Switch places of sentient beings #not ALL beings, but oh well...
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEShuffle
   - type: XAETelepathic
@@ -1228,6 +1287,7 @@
   id: XenoArtifactHealAll
   parent: BaseXenoArtifactEffect
   description: Miraclous healing
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEDamageInArea
     damageChance: 1
@@ -1244,6 +1304,7 @@
   id: XenoArtifactTesla
   parent: BaseOneTimeXenoArtifactEffect
   description: Mass destruction
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1259,6 +1320,7 @@
   id: XenoArtifactSingularity
   parent: BaseOneTimeXenoArtifactEffect
   description: Imminent doom
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAEApplyComponents
     applyIfAlreadyHave: true
@@ -1274,12 +1336,13 @@
   id: XenoArtifactExplosionScary
   parent: BaseOneTimeXenoArtifactEffect
   description: Small scale high-speed nuclear reaction
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAETriggerExplosives
   - type: Explosive
     deleteAfterExplosion: false
     explosionType: Radioactive
-    totalIntensity: 300
+    totalIntensity: 100 # Frontier: 300<100
     intensitySlope: 2
     maxIntensity: 1.5
     canCreateVacuum: false
@@ -1289,20 +1352,22 @@
   id: XenoArtifactBoom
   parent: BaseOneTimeXenoArtifactEffect
   description: Explosion
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAETriggerExplosives
   - type: Explosive
     deleteAfterExplosion: false
     explosionType: Default
-    totalIntensity: 500
-    intensitySlope: 2.5
-    maxIntensity: 50
+    totalIntensity: 200 # Frontier: 500<200
+    intensitySlope: 5 # Frontier: 2.5<5
+    maxIntensity: 15 # Frontier: 50<15
     repeatable: true
 
 - type: entity
   id: XenoArtifactEffectCreationGasPlasma
   parent: BaseXenoArtifactEffect
   description: Expels plasma
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAECreateGas
     gases:
@@ -1312,6 +1377,7 @@
   id: XenoArtifactEffectCreationGasTritium
   parent: BaseXenoArtifactEffect
   description: Expels tritium
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAECreateGas
     gases:
@@ -1321,6 +1387,7 @@
   id: XenoArtifactEffectCreationGasAmmonia
   parent: BaseXenoArtifactEffect
   description: Expels ammonia
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAECreateGas
     gases:
@@ -1330,6 +1397,7 @@
   id: XenoArtifactEffectCreationGasFrezon
   parent: BaseXenoArtifactEffect
   description: Expels frezon
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAECreateGas
     gases:
@@ -1339,6 +1407,7 @@
   id: XenoArtifactEffectCreationGasNitrousOxide
   parent: BaseXenoArtifactEffect
   description: Expels nitrous oxide
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAECreateGas
     gases:
@@ -1348,6 +1417,7 @@
   id: XenoArtifactEffectCreationGasCarbonDioxide
   parent: BaseXenoArtifactEffect
   description: Expels carbon dioxide
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: XAECreateGas
     gases:

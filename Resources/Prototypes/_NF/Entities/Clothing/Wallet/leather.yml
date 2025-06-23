@@ -96,3 +96,30 @@
     - state: closed-coin
       map: ["closed-coin"]
       visible: false
+
+- type: entity
+  parent: ClothingWalletLeatherBrown
+  id: ClothingWalletLeatherPrisoner
+  name: prison wallet
+  description: Not what you expected.
+  components:
+  - type: Sprite
+    layers:
+    - state: closed-prisoner
+      map: ["closeLayer"]
+    - state: open-prisoner
+      map: ["openLayer"]
+      visible: false
+    - state: closed-paper
+      map: ["closed-paper"]
+      visible: false
+    - state: closed-cash
+      map: ["closed-cash"]
+      visible: false
+    - state: closed-coin
+      map: ["closed-coin"]
+      visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,1

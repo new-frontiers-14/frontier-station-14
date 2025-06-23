@@ -22,7 +22,7 @@
           steps:
             - component: ComputerWallmountBoard
               store: board
-              name: any wallmount computer circuit board
+              name: construction-graph-component-computer-wallmount-board
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "id_mod"
@@ -115,6 +115,7 @@
               amount: 2
           steps:
             - tool: Prying
+              doAfter: 1
 
     - node: wallmount computer
       entity: !type:BoardNodeEntity
