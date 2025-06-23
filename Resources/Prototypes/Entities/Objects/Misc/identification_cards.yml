@@ -25,11 +25,14 @@
     - WhitelistChameleonIdCard
   - type: StealTarget
     stealGroup: IDCard
-  - type: StaticPrice # Frontier
-    price: 5 # Frontier The card need to cost less then the PDA that comes with a card and a pen in it.
-  - type: CargoSellBlacklist # Frontier
-  - type: ShipyardSellCondition # Frontier: Teleport to shipyard console on sale
+  # Frontier: extra components
+  - type: StaticPrice
+    price: 5
+  - type: CargoSellBlacklist
+  - type: ShipyardSellCondition
     preserveOnSale: true
+  - type: DeletionCensusExempt
+  # End Frontier: extra components
 
 #IDs with layers
 
