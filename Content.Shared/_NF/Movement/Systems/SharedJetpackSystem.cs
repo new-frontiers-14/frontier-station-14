@@ -2,16 +2,14 @@ using Content.Shared._NF.Radar;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Movement.Components;
 
-namespace Content.Shared._NF.Movement.Systems;
+namespace Content.Shared.Movement.Systems;
 
-public sealed class SharedJetpackSystem : EntitySystem
+public abstract partial class SharedJetpackSystem : EntitySystem
 {
     [Dependency] private readonly EmagSystem _emag = default!;
 
-    public override void Initialize()
+    public void NfInitialize()
     {
-        base.Initialize();
-
         SubscribeLocalEvent<JetpackComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<JetpackComponent, GotUnEmaggedEvent>(OnUnEmagged);
     }
@@ -24,11 +22,8 @@ public sealed class SharedJetpackSystem : EntitySystem
         if (_emag.CheckFlag(uid, EmagType.Interaction))
             return;
 
-        if (component.RadarBlip)
-        {
-            component.RadarBlip = false;
-            RemComp<RadarBlipComponent>(uid); // This is needed if you emag mid flight
-        }
+        component.RadarBlip = false;
+        RemComp<RadarBlipComponent>(uid); // This is needed if you emag mid flight
 
         args.Handled = true;
     }
@@ -45,7 +40,18 @@ public sealed class SharedJetpackSystem : EntitySystem
             return;
 
         component.RadarBlip = true;
+        if (HasComp<ActiveJetpackComponent>(uid))
+            SetupRadarBlip(uid);
 
         args.Handled = true;
+    }
+
+    private void SetupRadarBlip(EntityUid uid)
+    {
+        var blip = EnsureComp<RadarBlipComponent>(uid);
+        blip.RadarColor = Color.Cyan;
+        blip.Scale = 1f;
+        blip.VisibleFromOtherGrids = true;
+        blip.RequireNoGrid = true;
     }
 }

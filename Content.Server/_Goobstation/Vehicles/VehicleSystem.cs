@@ -24,5 +24,16 @@ public sealed class VehicleSystem : SharedVehicleSystem
         RemComp<RadarBlipComponent>(uid);
         base.OnUnstrapped(uid, ref args);
     }
+
+    protected override void HandleEmag(Entity<VehicleComponent> ent)
+    {
+        RemComp<RadarBlipComponent>(ent);
+    }
+
+    protected override void HandleUnemag(Entity<VehicleComponent> ent)
+    {
+        if (ent.Comp.Driver != null)
+            _radar.SetupVehicleRadarBlip(ent);
+    }
     // End Frontier
 }
