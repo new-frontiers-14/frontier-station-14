@@ -1,40 +1,34 @@
 # Author Info
-# GitHub: ???
-# Discord: ???
-
-# Maintainer Info
-# GitHub: ???
-# Discord: ???
-
-# Shuttle Notes:
+# Discord: LoakaOfTheWind
 #
 - type: vessel
-  id: Sparrow
+  id: Geode
   parent: BaseVessel
-  name: NR Sparrow
-  description: A small research and engineering vessel.
-  price: 35000
-  category: Small
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/sparrow.yml
-  guidebookPage: ShipyardSparrow
+  name: CLU Geode
+  description: Built into a rock by the finest goblin engineers, this vessel has all the discrete trader needs to conduct business.
+  price: 52000 
+  category: Medium
+  group: Scrap
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/geode.yml
+  guidebookPage: ShipyardGeode
   class:
-  - Science
-  - Engineering
+  - Scrapyard
+  - Civilian
+  - Salvage
   engine:
   - Uranium
 
 - type: gameMap
-  id: Sparrow
-  mapName: 'NR Sparrow'
-  mapPath: /Maps/_NF/Shuttles/sparrow.yml
+  id: Geode
+  mapName: 'CLU Geode'
+  mapPath: /Maps/_NF/Shuttles/Scrap/geode.yml
   minPlayers: 0
   stations:
-    Sparrow:
+    Geode:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Sparrow {1}'
+          mapNameTemplate: 'Geode {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
