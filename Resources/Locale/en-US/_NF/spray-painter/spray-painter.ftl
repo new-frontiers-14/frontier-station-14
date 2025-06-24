@@ -28,7 +28,7 @@ spray-painter-style-cratesteel-ammo = Ammunition
 
 spray-painter-style-crateplastic-biodegradable = Biodegradable
 
-spray-painter-style-cratesecure-engineering = Mercenary
+spray-painter-style-cratesecure-mercenary = Mercenary
 spray-painter-style-cratesecure-private-security = Private security
 spray-painter-style-cratesecure-mercenary-ammo = Ammunition
 spray-painter-style-cratesecure-firearms = Firearms
