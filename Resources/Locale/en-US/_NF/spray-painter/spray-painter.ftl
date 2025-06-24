@@ -19,9 +19,9 @@ spray-painter-style-locker-nfsd-sheriff = NFSD (sheriff)
 spray-painter-style-locker-station-representative = Station representative
 spray-painter-style-locker-fsb = FSB
 
-spray-painter-style-closet-internals = Internals
+spray-painter-style-closet-internals = Internals (universal)
 
-spray-painter-style-wallcloset-internals = Internals
+spray-painter-style-wallcloset-internals = Internals (universal)
 
 # Crates
 spray-painter-style-cratesteel-ammo = Ammunition
