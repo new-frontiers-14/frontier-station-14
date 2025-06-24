@@ -47,14 +47,11 @@ Build the server using `dotnet build`.
 
 ## License
 
-Read LEGAL.md for legal information regarding code licensing, including a table of attributions for each namespace within the codebase.
+Read [LEGAL.md](https://github.com/new-frontiers-14/frontier-station-14/blob/master/LEGAL.md) for legal information regarding code licensing, including a table of attributions for each namespace within the codebase.
 
 Most assets are licensed under CC-BY-SA 3.0 unless stated otherwise. Assets have their license and the copyright in the metadata file. Example.
 
 Code taken from Emberfall was specifically relicensed under MIT terms with [permission from MilonPL](https://github.com/new-frontiers-14/frontier-station-14/pull/3607)
-
-All code in the repository (with the exception of the _Emberfall subdirectories, see below) on any commit after 2fca06eaba205ae6fe3aceb8ae2a0594f0effee0 is licensed under the GNU Affero General Public License version 3.0, unless otherwise stated (note Attributions below). See `LICENSE-AGPLv3.txt` for the terms, and `COPYRIGHT-AGPLv3.txt` for a list of applicable copyright info.
-On commits before 2fca06eaba205ae6fe3aceb8ae2a0594f0effee0, all code under _NF subdirectories is licensed under the MIT license unless otherwise stated. For all other directories, refer to the Attributions section. See `LICENSE-MIT.txt`.
 
 [2fca06eaba205ae6fe3aceb8ae2a0594f0effee0](https://github.com/new-frontiers-14/frontier-station-14/commit/2fca06eaba205ae6fe3aceb8ae2a0594f0effee0) was pushed on July 1, 2024 at 16:04 UTC
 

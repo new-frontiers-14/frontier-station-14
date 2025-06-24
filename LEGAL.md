@@ -16,19 +16,19 @@ This means they remain at liberty to contribute their work anywhere they please.
 
 The project as a whole is licensed under the terms of the [AGPLv3](https://github.com/new-frontiers-14/frontier-station-14/blob/master/LICENSE-AGPLv3.txt) and must be followed regardless of parent licenses.
 
-Where code from other authors is used, you must follow the terms of both the AGPLv3 and their license as given in the Attributions table below.  Copyright information for all AGPLv3-licensed code is listed in [COPYRIGHT-AGPLv3.txt](https://github.com/new-frontiers-14/frontier-station-14/blob/master/COPYRIGHT-AGPLv3.txt)
+Where code from other authors is used, you must follow the terms of both the AGPLv3 and their license as given in the Attributions table below. Copyright information for all AGPLv3-licensed code is listed in [COPYRIGHT-AGPLv3.txt](https://github.com/new-frontiers-14/frontier-station-14/blob/master/COPYRIGHT-AGPLv3.txt).
 
-For MIT this means you must not remove the copy of the MIT license from any distribution.
+For code taken under the MIT license, this means you must not remove the copy of the MIT license from any distribution.
 
 Code created by Frontier contributors is found in _NF Namespaces.
 
-Upstream code from Space Station 14 was taken under the MIT license. Any code not in a specific Namespace, excluding Nyanotrasen subdirectories, is sublicensed as MIT plus AGPLv3 from the Space Wizards Federation.
+Upstream code from [Space Station 14](https://github.com/space-wizards/space-station-14) was taken under [the MIT license](https://github.com/new-frontiers-14/frontier-station-14/blob/master/LICENSE-MIT.txt). Any code not in a specific Namespace, excluding Nyanotrasen subdirectories, is sublicensed as MIT plus AGPLv3 from the Space Wizards Federation.
 
 Assets have distinct licenses in attributions.yml and meta.json files which must be followed individually.
 
 ## Attributions
 
-The table below lists all Namespaces in the repository, includes a link to the source repository, and the original license that code was taken under.
+The table below lists all Namespaces (along with the Nyanotrasen subdirectory) in the repository, includes a link to the source repository, and the original license that code was taken under.
 
 | Subdirectory | Fork Name | Fork Repository | Original License |
 |--------------|-----------|-----------------|------------------|
@@ -39,7 +39,7 @@ The table below lists all Namespaces in the repository, includes a link to the s
 | `_DV` | Delta-V | https://github.com/DeltaV-Station/Delta-v | AGPL 3.0 |
 | `_EE` | Einstein Engines | https://github.com/Simple-Station/Einstein-Engines | AGPL 3.0 |
 | `_Emberfall` | Emberfall | https://github.com/emberfall-14/emberfall | [MIT (with permission)](https://github.com/new-frontiers-14/frontier-station-14/pull/3607) |
-| `_EstacaoPirata` | Estacao Pirata | https://github.com/Day-OS/estacao-pirata-14 | AGPL 3.0 |
+| `_EstacaoPirata` | Estacao Pirata | https://github.com/estacao-pirata/estacao-pirata | AGPL 3.0 |
 | `_Goobstation` | Goob Station | https://github.com/Goob-Station/Goob-Station | AGPL 3.0 |
 | `_Impstation` | Impstation | https://github.com/impstation/imp-station-14 | AGPL 3.0 |
 | `_NC14` | Nuclear 14 | https://github.com/Vault-Overseers/nuclear-14 | AGPL 3.0 |
