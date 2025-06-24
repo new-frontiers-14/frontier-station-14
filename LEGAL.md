@@ -30,8 +30,8 @@ Assets have distinct licenses in attributions.yml and meta.json files which must
 
 The table below lists all Namespaces (along with the Nyanotrasen subdirectory) in the repository, includes a link to the source repository, and the original license that code was taken under.
 
-| Subdirectory | Fork Name | Fork Repository | Original License |
-|--------------|-----------|-----------------|------------------|
+| Subdirectory | Fork Name | Source Repository | Original License |
+|--------------|-----------|-------------------|------------------|
 | `_NF` | Frontier Station | https://github.com/new-frontiers-14/frontier-station-14 | AGPL 3.0 |
 | `_CD` | Cosmatic Drift | https://github.com/cosmatic-drift-14/cosmatic-drift | MIT |
 | `_Corvax` | Corvax | https://github.com/space-syndicate/space-station-14 | MIT |
@@ -47,8 +47,8 @@ The table below lists all Namespaces (along with the Nyanotrasen subdirectory) i
 
 Additional repositories with ported code without Namespaces (denoted by comments) are listed below.
 
-| Fork Name | Fork Repository | Original License |
-|-----------|-----------------|------------------|
+| Fork Name | Source Repository | Original License |
+|-----------|-------------------|------------------|
 | Monolith | https://github.com/Monolith-Station/Monolith | AGPL 3.0 |
 | Space Station 14 ("Wizden"/"Upstream") | https://github.com/space-wizards/space-station-14 | MIT |
 | White Dream | https://github.com/WWhiteDreamProject/wwdpublic | AGPL 3.0 |
