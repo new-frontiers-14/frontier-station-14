@@ -30,6 +30,18 @@
     scientist: LockerScientist
     security: LockerSecurity
     welding: LockerWeldingSupplies
+    mail: LockerMailCarrier # Frontier
+    mercenary: LockerMercenary # Frontier
+    janitor: LockerJanitor # Frontier
+    pilot: LockerPilot # Frontier
+    nfsd: LockerNfsdEvidence # Frontier
+    nfsd-copper: LockerNfsdCopper # Frontier
+    nfsd-silver: LockerNfsdSilver # Frontier
+    nfsd-brigmedic: LockerNfsdBrigmedic # Frontier
+    nfsd-gold: LockerNfsdSergeant # Frontier
+    nfsd-sheriff: LockerNfsdSheriff # Frontier
+    station-representative: LockerStationRepresentative # Frontier
+    fsb: ClosetFsbEva # Frontier
 
 - type: paintableGroup
   id: Closet
@@ -50,6 +62,7 @@
     legal: ClosetLegal
     radiation: ClosetRadiationSuit
     tool: ClosetTool
+    internals: ClosetO2N2 # Frontier
 
 - type: paintableGroup
   id: WallCloset
@@ -64,12 +77,14 @@
     green: ClosetWallGreen
     grey: ClosetWallGrey
     mixed: ClosetWallMixed
-    nitrogen: ClosetWallEmergencyN2
+    nitrogen: ClosetWallN2 # Frontier: EmergencyN2<N2
     orange: ClosetWallOrange
     oxygen: ClosetWallEmergency
     pink: ClosetWallPink
     white: ClosetWallWhite
     yellow: ClosetWallYellow
+    internals: ClosetWallO2N2 # Frontier
+    # TODO: add in erhard's "color" locker styles
 
 - type: paintableGroup
   id: WallLocker
@@ -78,3 +93,4 @@
   styles:
     # evac: LockerWallEvacRepair # Frontier: not yet in, pending upstream merge
     medical: LockerWallMedical
+    # TODO: add in erhard's "color" locker styles
