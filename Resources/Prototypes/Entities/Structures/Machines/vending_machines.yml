@@ -126,7 +126,6 @@
   - type: ContainerContainer
     containers:
       cash_slot: !type:ContainerSlot
-  - type: BindToStation # Frontier
   # End Frontier
 
 - type: entity
@@ -1317,7 +1316,7 @@
   description: "A vending machine containing standard tools. A label reads: Tools for tools."
   components:
   - type: VendingMachine
-    pack: YouToolInventory
+    pack: NFYouToolInventory # Frontier: use NF variant
     offState: off
     brokenState: broken
     normalState: normal-unshaded
