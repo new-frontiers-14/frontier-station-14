@@ -1,4 +1,5 @@
-﻿- type: entity
+﻿#region Bullets
+- type: entity
   parent: BaseBulletTrigger
   id: BulletFireBolt
   name: fire bolt
@@ -57,20 +58,57 @@
   - type: Ammo
     muzzleFlash: null
 
-- type: hitscan
-  id: BloodCultLaser
-  damage:
-    types:
-      Slash: 8
-  muzzleFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
-  travelFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
-  impactFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
+- type: entity
+  parent: BaseBulletTrigger
+  id: BulletBloodCultHand
+  name: blood hand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Asphyxiation: 2
+        Blunt: 5
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Effects/bloodcultprojectiles.rsi
+    layers:
+    - state: hand
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
+  parent: BaseBulletTrigger
+  id: BulletIceGlobe
+  name : ice globe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Cold: 5
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: ice
+      shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
+  id: ProjectileIcicleLowDamage
+  parent: ProjectileIcicle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 4
+        Cold: 4
+        Structural: 10
 
 - type: entity # For blood cult cat
   parent: BaseBullet
@@ -92,14 +130,48 @@
   - type: Ammo
     muzzleFlash: null
 
-- type: entity
-  id: ProjectileIcicleLowDamage
-  parent: ProjectileIcicle
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 4
-        Cold: 4
-        Structural: 10
+#region Hitscan
+- type: hitscan
+  id: BloodCultLaser
+  damage:
+    types:
+      Slash: 8
+  muzzleFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+  travelFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+  impactFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: red_lightning
+
+- type: hitscan
+  id: WizardHitscanLightning
+  damage:
+    types:
+      Shock: 10
+  muzzleFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-muzzle-01
+  travelFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-beam-01
+  impactFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: lightning-hit-01
+
+- type: hitscan
+  id: CausticBeam
+  damage:
+    types:
+      Caustic: 8
+  muzzleFlash:
+    sprite: _NF/Effects/wizardbeams.rsi
+    state: green-beam-01
+  travelFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: green-beam-01
+  impactFlash:
+    sprite: _NF/Effects/bloodcultbeams.rsi
+    state: green-beam-01
