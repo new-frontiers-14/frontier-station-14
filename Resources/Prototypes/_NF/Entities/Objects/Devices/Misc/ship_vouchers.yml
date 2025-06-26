@@ -135,3 +135,22 @@
   - type: ShipyardVoucher
     access:
     - StationTrafficController
+
+# Medical Voucher
+- type: entity
+  parent: BaseShipVoucher
+  id: ShipVoucherFrontierDoc
+  name: medical ship voucher
+  description: Allows for one free medical ship purchase from the Medical Shipyard. Destroyed on sale.
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: voucherdoc
+  - type: Item
+    heldPrefix: silver
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    consoleType: Medical
+    access:
+    - Medical
