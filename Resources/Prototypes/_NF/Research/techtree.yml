@@ -1423,17 +1423,16 @@
   position: 2, 29
 
 - type: technology
-  id: NFPowerBasicGeneration
-  name: nf-research-technology-basic-power-generators
+  id: NFTrashPowerGeneration
+  name: nf-research-technology-trash-power-generators
   icon:
     sprite: Structures/Power/Generation/portable_generator.rsi
-    state: portgen0
+    state: portgen3
   discipline: NFEngineering
   tier: 1
   cost: 2500
   recipeUnlocks:
-  - PortableGeneratorDKJrMachineCircuitboard
-  - PortableGeneratorPacmanMachineCircuitboard
+  - PortableGeneratorJrPacman
   technologyPrerequisites:
   - NFAdvancedPowercells
   position: 2, 30
@@ -1500,18 +1499,18 @@
   position: 3, 29
 
 - type: technology
-  id: NFPowerGeneration
-  name: nf-research-technology-power-generators
+  id: NFBasicPowerGeneration
+  name: nf-research-technology-basic-power-generators
   icon:
     sprite: Structures/Power/Generation/portable_generator.rsi
-    state: portgen1
+    state: portgen0
   discipline: NFEngineering
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
-  - PortableGeneratorSuperPacmanMachineCircuitboard
+  - PortableGeneratorPacmanMachineCircuitboard
   technologyPrerequisites:
-  - NFPowerBasicGeneration
+  - NFTrashPowerGeneration
   position: 3, 30
 
 # Placeholder for Edison
@@ -1531,6 +1530,21 @@
 #   position: 3, 32
 
 - type: technology
+  id: NFPowerGeneration
+  name: nf-research-technology-power-generators
+  icon:
+    sprite: Structures/Power/Generation/portable_generator.rsi
+    state: portgen1
+  discipline: NFEngineering
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - PortableGeneratorSuperPacmanMachineCircuitboard
+  technologyPrerequisites:
+  - NFBasicPowerGeneration
+  position: 4, 30
+
+- type: technology
   id: NFAdvancedPowerGeneration
   name: nf-research-technology-fission-generators
   icon:
@@ -1538,12 +1552,12 @@
     state: portgen2
   discipline: NFEngineering
   tier: 1
-  cost: 7500
+  cost: 5000
   recipeUnlocks:
   - PortableGeneratorDKJrMachineCircuitboard
   technologyPrerequisites:
   - NFPowerGeneration
-  position: 4, 30
+  position: 5, 30
 
 # region Space
 
