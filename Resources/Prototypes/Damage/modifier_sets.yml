@@ -199,6 +199,13 @@
     Poison: 1
 
 - type: damageModifierSet
+  id: Yinglet # Bones snap easily, but very resistant to poison and their cells can take a lot of mangling
+  coefficients:
+    Blunt: 2
+    Poison: 0.6
+    Cellular: 0.8
+
+- type: damageModifierSet
   id: Zombie #Blunt resistant and immune to biological threats, but can be hacked apart and burned
   coefficients:
     Blunt: 0.6

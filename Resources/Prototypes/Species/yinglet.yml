@@ -1,0 +1,166 @@
+#as usual, copied from moth. make sure all references to moth are gone by the end
+- type: species
+  id: Yinglet
+  name: species-name-yinglet
+  roundStart: true
+  prototype: MobYinglet
+  sprites: MobYingletSprites
+  defaultSkinTone: "#ffda93"
+  markingLimits: MobYingletMarkingLimits
+  dollPrototype: MobYingletDummy
+  skinColoration: Hues
+  maleFirstNames: names_yinglet_first_male
+  femaleFirstNames: names_yinglet_first_female
+  naming: First
+  minAge: 2
+  youngAge: 6
+  oldAge: 12
+  maxAge: 30
+
+- type: speciesBaseSprites
+  id: MobYingletSprites
+  sprites:
+    Head: MobYingletHead
+    Snout: MobHumanoidAnyMarking
+    Chest: MobYingletTorso
+    Hair: MobHumanoidAnyMarking
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Eyes: MobYingletEyes
+    LArm: MobYingletLArm
+    RArm: MobYingletRArm
+    LHand: MobYingletLHand
+    RHand: MobYingletRHand
+    LLeg: MobYingletLLeg
+    RLeg: MobYingletRLeg
+    LFoot: MobYingletLFoot
+    RFoot: MobYingletRFoot
+
+- type: humanoidBaseSprite
+  id: MobYingletEyes
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: eyes
+
+- type: markingPoints
+  id: MobYingletMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ YingletTailHairless ]
+    Snout:
+      points: 1
+      required: true
+      defaultMarkings: [ YingletShelltoothLong ]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ YingletEarsLong ]
+    HeadSide:
+      points: 0
+      required: false
+    Head:
+      points: 0
+      required: false
+    Chest:
+      points: 0
+      required: false
+    Legs:
+      points: 0
+      required: false
+    Arms:
+      points: 0
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobYingletHead
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobYingletHeadMale
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobYingletHeadFemale
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobYingletTorso
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobYingletTorsoMale
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobYingletTorsoFemale
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobYingletLLeg
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobYingletLHand
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobYingletLArm
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobYingletLFoot
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobYingletRLeg
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobYingletRHand
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobYingletRArm
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobYingletRFoot
+  baseSprite:
+    sprite: Mobs/Species/Yinglet/parts.rsi
+    state: r_foot

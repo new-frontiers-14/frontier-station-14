@@ -1,0 +1,9 @@
+marking-YingletHairAfro = Afro
+marking-YingletHairFamilyMan = Family Man
+marking-YingletHairLong = Long
+marking-YingletHairLongMessy = Long Messy
+marking-YingletHairMessy = Messy
+marking-YingletHairPompador = Pompador
+marking-YingletHairPonytail = Ponytail
+marking-YingletHairSpiky = Spiky
+marking-YingletHairUpdo = Updo
