@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/25/2025 13:33:12
-  entityCount: 309
+  time: 06/27/2025 04:45:05
+  entityCount: 308
 maps: []
 grids:
 - 1
@@ -762,7 +762,7 @@ entities:
   - uid: 208
     components:
     - type: Transform
-      pos: -2.5978718,-4.429832
+      pos: -2.71875,-4.384052
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -956,16 +956,6 @@ entities:
     - type: Transform
       pos: 0.5,-10.5
       parent: 1
-  - uid: 209
-    components:
-    - type: Transform
-      pos: -1.5,-10.5
-      parent: 1
-  - uid: 225
-    components:
-    - type: Transform
-      pos: 2.5,-10.5
-      parent: 1
   - uid: 233
     components:
     - type: Transform
@@ -1070,7 +1060,7 @@ entities:
   - uid: 98
     components:
     - type: Transform
-      pos: 3.5016303,-4.3997374
+      pos: -2.28125,-4.415302
       parent: 1
 - proto: ClothingHeadHatWelding
   entities:
@@ -1742,6 +1732,14 @@ entities:
     - type: Transform
       pos: 1.5,-8.5
       parent: 1
+- proto: JukeboxWallmountShip
+  entities:
+  - uid: 235
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-3.5
+      parent: 1
 - proto: LockerWallEVAColorFsbFilled
   entities:
   - uid: 50
@@ -1913,7 +1911,7 @@ entities:
   - uid: 210
     components:
     - type: Transform
-      pos: 1.4490033,-4.351707
+      pos: 3.5212083,-4.44652
       parent: 1
 - proto: ReinforcedWindow
   entities:
@@ -2254,14 +2252,15 @@ entities:
   - uid: 192
     components:
     - type: Transform
-      pos: 1.4646283,-4.273582
+      pos: 3.5524583,-4.32152
       parent: 1
 - proto: TwoWayLever
   entities:
-  - uid: 215
+  - uid: 236
     components:
     - type: Transform
-      pos: 2.5,2.5
+      rot: 1.5707963267948966 rad
+      pos: -0.5,1.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -2591,14 +2590,6 @@ entities:
     - type: Transform
       pos: 1.5,-3.5
       parent: 1
-- proto: WallWeaponCapacitorRechargerOmnidirectional
-  entities:
-  - uid: 235
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-3.5
-      parent: 1
 - proto: WarningN2
   entities:
   - uid: 150
@@ -2626,6 +2617,12 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-4.5
+      parent: 1
+  - uid: 215
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-4.5
       parent: 1
 - proto: Window
   entities:
