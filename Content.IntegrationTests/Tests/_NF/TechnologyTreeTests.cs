@@ -26,6 +26,16 @@ public sealed class TechnologyTreeTests
                 {
                     Assert.That(techNamesByPosition.TryGetValue(tech.Position, out var techName), Is.False, $"Tech {tech.ID} has a duplicate position {tech.Position} with {techName}.");
                     techNamesByPosition[tech.Position] = tech.ID;
+
+                    foreach (var recipe in tech.RecipeUnlocks)
+                    {
+                        Assert.That(protoManager.TryIndex(recipe, out var proto), Is.True, $"Technology {tech.ID} unlocks recipe {recipe} which does not exist.");
+                    }
+
+                    foreach (var prereq in tech.TechnologyPrerequisites)
+                    {
+                        Assert.That(protoManager.TryIndex(prereq, out var proto), Is.True, $"Technology {tech.ID} has {prereq} as a pre-requisite, but {prereq} is not a valid technology.");
+                    }
                 }
             });
         });
