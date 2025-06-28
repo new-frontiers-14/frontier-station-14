@@ -46,15 +46,26 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
             _ => (Color.DarkRed, Color.PaleVioletRed, Color.Crimson)
         };
 
+        // Create rounded style box with 8px corner radius
+        var roundedStyle = new RoundedStyleBoxFlat
+        {
+            BackgroundColor = Color,
+            BorderColor = BorderColor,
+            BorderThickness = new Thickness(1.5f),
+            CornerRadius = 8f
+        };
+
+        Panel.PanelOverride = roundedStyle;
         UpdateColor();
     }
 
     private void UpdateColor()
     {
-        var panel = (StyleBoxFlat)Panel.PanelOverride!;
-        panel.BackgroundColor = Button.IsHovered ? HoveredColor : Color;
-
-        panel.BorderColor = BorderColor;
+        if (Panel.PanelOverride is RoundedStyleBoxFlat panel)
+        {
+            panel.BackgroundColor = Button.IsHovered ? HoveredColor : Color;
+            panel.BorderColor = BorderColor;
+        }
     }
 
     protected override void ExitedTree()
