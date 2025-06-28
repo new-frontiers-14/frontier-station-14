@@ -38,12 +38,12 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
     /// <summary>
     /// Currently selected tech
-    /// Exsists for better UI refreshing
+    /// Exists for better UI refreshing
     /// </summary>
     public ProtoId<TechnologyPrototype>? CurrentTech;
 
     /// <summary>
-    /// All technologies and their availablity
+    /// All technologies and their availability
     /// </summary>
     public Dictionary<string, ResearchAvailability> List = new();
 
@@ -62,6 +62,16 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// For dragging mostly
     /// </summary>
     private Vector2 _position = DefaultPosition;
+
+    /// <summary>
+    /// Captures the initial position to use with recenter button
+    /// </summary>
+    private Vector2 _initialViewPosition;
+
+    /// <summary>
+    /// Tracks if first initialization has happened
+    /// </summary>
+    private bool _firstInitialization = true;
 
     /// <summary>
     /// Frontier: the distance between elements on the grid.
@@ -95,8 +105,8 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         DragContainer.OnKeyBindUp += OnKeybindUp;
         RecenterButton.OnPressed += _ => Recenter();
 
+        // Empty initialization
         UpdatePanels(List);
-        Recenter();
     }
 
     public void SetEntity(EntityUid entity)
@@ -128,12 +138,22 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
                 bounds.Top = int.Max(position.Y, bounds.Top);
             }
         }
+
         if (boundsSet)
         {
             _bounds = bounds;
-            ClampPosition(ref _position);
+
+            // First-time initialization
+            if (_firstInitialization)
+            {
+                _position = DefaultPosition;
+                ClampPosition(ref _position);
+
+                // Store the initial position for recenter
+                _initialViewPosition = _position;
+                _firstInitialization = false;
+            }
         }
-        // End Frontier: generate bounding box, ensure position is within bounds
 
         foreach (var tech in List)
         {
@@ -143,7 +163,8 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             DragContainer.AddChild(control);
 
             // Set position for all tech, relating to _position
-            LayoutContainer.SetPosition(control, _position + proto.Position * GridSize);
+            var uiPosition = _position + proto.Position * GridSize;
+            LayoutContainer.SetPosition(control, uiPosition);
             control.SelectAction += SelectTech;
 
             if (tech.Key == CurrentTech)
@@ -245,7 +266,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// Selects a tech prototype and opens info panel
     /// </summary>
     /// <param name="proto">Tech proto</param>
-    /// <param name="availability">Tech availablity</param>
+    /// <param name="availability">Tech availability</param>
     public void SelectTech(TechnologyPrototype proto, ResearchAvailability availability)
     {
         InfoContainer.RemoveAllChildren();
@@ -259,17 +280,20 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     }
 
     /// <summary>
-    /// Sets <see cref="_position"/> to its default value
+    /// Resets the view exactly to the initial position when the UI was first opened
     /// </summary>
     public void Recenter()
     {
-        _position = DefaultPosition;
-        foreach (var item in DragContainer.Children)
-        {
-            if (item is not FancyResearchConsoleItem research)
-                continue;
+        // Preserve the current tech items but reset the positions
+        var diff = _initialViewPosition - _position;
 
-            LayoutContainer.SetPosition(item, _position + research.Prototype.Position * GridSize);
+        // First update the master position
+        _position = _initialViewPosition;
+
+        // Now update all child positions by the same delta
+        foreach (var child in DragContainer.Children)
+        {
+            LayoutContainer.SetPosition(child, child.Position + diff);
         }
     }
 
@@ -279,6 +303,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
         DragContainer.RemoveAllChildren();
         InfoContainer.RemoveAllChildren();
+        _firstInitialization = true;
     }
 
     private sealed partial class DisciplineButton(TechDisciplinePrototype proto) : Button
