@@ -151,25 +151,39 @@
     - CannotSuicide
     - DoorBumpOpener
   - type: ActionGun
-    action: ActionDragonsBreath
+    action: ActionDragonsBreathBaby
     gunProto: BabyDragonsSparkGun
 
 - type: entity
   categories: [ HideSpawnMenu ]
   id: BabyDragonsSparkGun
-  name: baby dragon's spark
-  description: For dragon's breathing
+  name: baby dragon spark
+  description: A tiny burning ember from a baby dragon.
   components:
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 120
-    rechargeSound:
-      path: /Audio/Animals/space_dragon_roar.ogg
   - type: BasicEntityAmmoProvider
     proto: BabyDragonSpark
     capacity: 1
     count: 1
   - type: Gun
-    soundGunshot:
-      path: /Audio/Animals/space_dragon_roar.ogg
+    soundGunshot: null
     soundEmpty: null
     projectileSpeed: 15
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: ActionDragonsBreathBaby
+  name: "[color=orange]Hatchling's Breath[/color]"
+  description: Spew out tiny flames at anyone foolish enough to attack you! Adorable.
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : Objects/Weapons/Guns/Projectiles/magic.rsi, state: fireball }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
+    useDelay: 120
+    sound:
+      path: /Audio/Animals/space_dragon_roar.ogg

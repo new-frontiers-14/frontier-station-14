@@ -116,6 +116,11 @@ public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: ad
         if (TryComp<PhysicsComponent>(user, out var physics))
             _physics.SetBodyStatus(user, physics, BodyStatus.InAir);
 
+        // Frontier: fix magboots vs. jetpack quibbles
+        component.AddedCanMoveInAir = !HasComp<CanMoveInAirComponent>(user);
+        EnsureComp<CanMoveInAirComponent>(user);
+        // End Frontier
+
         userComp.Jetpack = jetpackUid;
         userComp.WeightlessAcceleration = component.Acceleration;
         userComp.WeightlessModifier = component.WeightlessModifier;
@@ -130,6 +135,11 @@ public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: ad
             return;
 
         component.JetpackUser = null;
+
+        // Frontier: fix magboots vs. jetpack quibbles
+        if (component.AddedCanMoveInAir)
+            RemComp<CanMoveInAirComponent>(uid);
+        // End Frontier
 
         if (TryComp<PhysicsComponent>(uid, out var physics))
             _physics.SetBodyStatus(uid, physics, BodyStatus.OnGround);

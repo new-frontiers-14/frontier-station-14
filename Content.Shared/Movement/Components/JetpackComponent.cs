@@ -26,7 +26,10 @@ public sealed partial class JetpackComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("weightlessModifier")]
     public float WeightlessModifier = 1.2f;
 
-    // Frontier
+    // Frontier: extra fields
+    [DataField, AutoNetworkedField]
+    public bool AddedCanMoveInAir;
+
     [ViewVariables, DataField, AutoNetworkedField]
     public bool RadarBlip = true;
     // End Frontier
