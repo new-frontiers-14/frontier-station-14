@@ -1,14 +1,4 @@
-// SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 FaDeOkno <143940725+FaDeOkno@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 FaDeOkno <logkedr18@gmail.com>
-// SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using System.Linq;
-using Content.Client._Goobstation.Research;
 using Content.Shared._Goobstation.Research; // Make sure this import is present
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
@@ -16,7 +6,6 @@ using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Goobstation.Research.UI;
@@ -27,8 +16,9 @@ public sealed class ResearchConsoleGoobBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
     private FancyResearchConsoleMenu? _consoleMenu;  // Goobstation R&D Console rework - ResearchConsoleMenu -> FancyResearchConsoleMenu
-    private SharedAudioSystem _audioSystem = default!;
 
+    // Frontier
+    private SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     private ISawmill _sawmill = default!;
 
@@ -43,13 +33,14 @@ public sealed class ResearchConsoleGoobBoundUserInterface : BoundUserInterface
         _sawmill = _logManager.GetSawmill("research.console");
         _sawmill.Debug($"ResearchConsoleGoobBoundUserInterface created for {owner} with key {uiKey}");
     }
+    // End Frontier
 
     protected override void Open()
     {
         base.Open();
 
         var owner = Owner;
-        _sawmill.Debug($"Opening UI for {owner}");
+        _sawmill.Debug($"Opening UI for {owner}"); // Frontier: added debug log
 
         _consoleMenu = this.CreateWindow<FancyResearchConsoleMenu>();   // Goobstation R&D Console rework - ResearchConsoleMenu -> FancyResearchConsoleMenu
         _consoleMenu.SetEntity(owner);
@@ -60,28 +51,25 @@ public sealed class ResearchConsoleGoobBoundUserInterface : BoundUserInterface
         {
             try
             {
-                _sawmill.Debug($"Sending ConsoleUnlockTechnologyMessage for tech ID: {id}");
+                _sawmill.Debug($"Sending ConsoleUnlockTechnologyMessage for tech ID: {id}"); // Frontier: added debug log
 
                 // Create and send the message
                 var message = new ConsoleUnlockTechnologyMessage(id);
                 SendMessage(message);
 
-                // Play unlock sound - client-side only
-                _audioSystem.PlayPvs(UnlockSound, owner, AudioParams.Default);
+                _audioSystem.PlayPvs(UnlockSound, owner, AudioParams.Default); // Frontier: Play unlock sound - client-side only
 
-                // Log success
-                _sawmill.Info($"Sent unlock message for technology: {id}");
+                _sawmill.Info($"Sent unlock message for technology: {id}"); // Frontier: Log success
             }
-            catch (Exception ex)
+            catch (Exception ex) // Frontier: Log any exceptions that occur during message sending
             {
-                // Log any exceptions that occur during message sending
                 _sawmill.Error($"Error sending technology unlock message for {id}: {ex}");
             }
         };
 
         _consoleMenu.OnServerButtonPressed += () =>
         {
-            _sawmill.Debug("Sending ConsoleServerSelectionMessage");
+            _sawmill.Debug("Sending ConsoleServerSelectionMessage"); // Frontier: added debug log
             SendMessage(new ConsoleServerSelectionMessage());
         };
     }
@@ -96,7 +84,7 @@ public sealed class ResearchConsoleGoobBoundUserInterface : BoundUserInterface
         if (State is not ResearchConsoleBoundInterfaceState rState)
             return;
 
-        _sawmill.Debug("Reloading prototypes in UI");
+        _sawmill.Debug("Reloading prototypes in UI"); // Frontier: added debug log
         _consoleMenu?.UpdatePanels(rState.Researches);
         _consoleMenu?.UpdateInformationPanel(rState.Points);
     }
@@ -107,7 +95,7 @@ public sealed class ResearchConsoleGoobBoundUserInterface : BoundUserInterface
 
         if (state is not ResearchConsoleBoundInterfaceState castState)
         {
-            _sawmill.Warning("Received non-ResearchConsoleBoundInterfaceState state");
+            _sawmill.Warning("Received non-ResearchConsoleBoundInterfaceState state"); // Frontier: added debug log
             return;
         }
 
@@ -115,18 +103,18 @@ public sealed class ResearchConsoleGoobBoundUserInterface : BoundUserInterface
         // Thats for avoiding refresh spam when only points are updated
         if (_consoleMenu == null)
         {
-            _sawmill.Warning("Console menu is null during state update");
+            _sawmill.Warning("Console menu is null during state update"); // Frontier: added debug log
             return;
         }
 
-        _sawmill.Debug($"Updating UI state with {castState.Points} points and {castState.Researches.Count} technologies");
+        _sawmill.Debug($"Updating UI state with {castState.Points} points and {castState.Researches.Count} technologies"); // Frontier: added debug log
 
         var availableTechs = castState.Researches.Count(t => t.Value == ResearchAvailability.Available);
-        _sawmill.Debug($"Available technologies: {availableTechs}");
+        _sawmill.Debug($"Available technologies: {availableTechs}"); // Frontier: added debug log
 
         if (!_consoleMenu.List.SequenceEqual(castState.Researches))
         {
-            _sawmill.Debug("Technologies list changed, updating panels");
+            _sawmill.Debug("Technologies list changed, updating panels"); // Frontier: added debug log
             _consoleMenu.UpdatePanels(castState.Researches);
         }
 
