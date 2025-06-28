@@ -171,10 +171,6 @@
   parent: NFBaseBulletRubber
   name: slug (.50 beanbag)
   components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 0
   - type: StaminaDamageOnCollide
     damage: 30 # 4 hits to stun
 
@@ -212,10 +208,6 @@
     - state: pellet-trace
       color: "#00ffffBB"
       shader: unshaded
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 0
   - type: SolutionContainerManager
     solutions:
       ammo:
