@@ -192,15 +192,15 @@
   components:
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 5
-    rechargeSound:
-      path: /Audio/Animals/space_dragon_roar.ogg
+    rechargeSound: null # Frontier
+    #  path: /Audio/Animals/space_dragon_roar.ogg # Frontier
   - type: BasicEntityAmmoProvider
     proto: ProjectileDragonsBreath
     capacity: 1
     count: 1
   - type: Gun
-    soundGunshot:
-      path: /Audio/Animals/space_dragon_roar.ogg
+    soundGunshot: null # Frontier
+    #  path: /Audio/Animals/space_dragon_roar.ogg # Frontier
     soundEmpty: null
     projectileSpeed: 5
 
@@ -271,3 +271,6 @@
     checkCanAccess: false
     range: 0
     itemIconStyle: BigAction
+    useDelay: 5 # Frontier
+    sound: # Frontier
+      path: /Audio/Animals/space_dragon_roar.ogg # Frontier
