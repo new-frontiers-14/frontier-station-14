@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Shared._Goobstation.Research; // Make sure this import is present
+using Content.Shared._Goobstation.Research;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
