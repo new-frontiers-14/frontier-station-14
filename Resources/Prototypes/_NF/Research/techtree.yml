@@ -268,16 +268,19 @@
   position: 5, 2
 
 - type: technology
-  id: NFAdvancedPersonalPropulsion
-  name: nf-research-technology-advanced-personal-propulsion
+  id: NFPersonalPropulsion
+  name: nf-research-technology-personal-propulsion
   icon:
-    sprite: Objects/Tanks/Jetpacks/void.rsi
+    sprite: Objects/Tanks/Jetpacks/blue.rsi
     state: icon
   discipline: NFSalvage
   tier: 1
   cost: 7500
   recipeUnlocks:
-  - JetpackVoid
+  - JetpackBlue
+  - JetpackSecurity
+  - JetpackCaptain
+  - JetpackNfsd
   technologyPrerequisites:
   - NFAtmosphericTech
   position: 5, 3
@@ -297,6 +300,21 @@
   technologyPrerequisites:
   - NFAdvancedAtmospherics
   position: 6, 0
+
+- type: technology
+  id: NFAdvancedPersonalPropulsion
+  name: nf-research-technology-advanced-personal-propulsion
+  icon:
+    sprite: Objects/Tanks/Jetpacks/void.rsi
+    state: icon
+  discipline: NFSalvage
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - JetpackVoid
+  technologyPrerequisites:
+  - NFPersonalPropulsion
+  position: 6, 3
 
 # region Advanced Tools
 # note: depends on Engineering cluster

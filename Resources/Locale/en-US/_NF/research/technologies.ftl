@@ -97,6 +97,7 @@ nf-research-technology-mechanical-compression = Mechanical Compression
 nf-research-technology-mechanized-treatment = Mechanized Treatment
 nf-research-technology-nonlethal-ammunition = Nonlethal Ammunition
 nf-research-technology-particle-emission = Particle Emission
+nf-research-technology-personal-propulsion = Personal Propulsion
 nf-research-technology-personal-storage-solutions = Personal Storage Solutions
 nf-research-technology-pistol-ammo-improved = High Pressure Pistol Ammo
 nf-research-technology-portable-cleaning = Portable Fluid Pumps
