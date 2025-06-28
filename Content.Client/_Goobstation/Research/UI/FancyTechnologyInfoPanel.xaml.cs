@@ -30,7 +30,9 @@ public sealed partial class FancyTechnologyInfoPanel : Control
 {
     [Dependency] private readonly IEntityManager _ent = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly ILogManager _logManager = default!;
 
+    private ISawmill _sawmill = default!;
     public TechnologyPrototype Prototype;
     public Action<TechnologyPrototype>? BuyAction;
 
@@ -38,6 +40,8 @@ public sealed partial class FancyTechnologyInfoPanel : Control
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+
+        _sawmill = _logManager.GetSawmill("research");
 
         var lathe = _ent.System<LatheSystem>();
         var research = _ent.System<ResearchSystem>();
@@ -76,19 +80,19 @@ public sealed partial class FancyTechnologyInfoPanel : Control
         // Replace the event handling method to use a simpler approach
         ResearchButton.OnPressed += args =>
         {
-            Logger.Debug($"[Research] Research button pressed for {proto.ID}");
+            _sawmill.Debug($"Research button pressed for {proto.ID}");
             if (BuyAction != null)
             {
-                Logger.Debug($"[Research] Triggering BuyAction for {proto.ID}");
+                _sawmill.Debug($"Triggering BuyAction for {proto.ID}");
                 BuyAction.Invoke(proto);
             }
             else
             {
-                Logger.Error($"[Research] BuyAction is null for {proto.ID}");
+                _sawmill.Error($"BuyAction is null for {proto.ID}");
             }
         };
 
-        Logger.Debug($"[Research] Created tech panel: {proto.ID}, availability: {availability}, button disabled: {ResearchButton.Disabled}");
+        _sawmill.Debug($"Created tech panel: {proto.ID}, availability: {availability}, button disabled: {ResearchButton.Disabled}");
     }
 
     private void InitializePrerequisites(TechnologyPrototype proto, ResearchSystem research, SpriteSystem sprite)
