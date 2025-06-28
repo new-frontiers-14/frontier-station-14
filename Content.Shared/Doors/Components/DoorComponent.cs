@@ -296,6 +296,12 @@ public sealed partial class DoorComponent : Component
 
     [DataField(customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
     public int ClosedDrawDepth = (int) DrawDepth.DrawDepth.Doors;
+
+    /// <summary>
+    /// Frontier - Whether the door can be controlled by shipyard door remotes. Normal door remotes bypass this.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool RemoteCompatible = true;
 }
 
 [Serializable, NetSerializable]
@@ -317,7 +323,7 @@ public enum DoorVisuals : byte
     BoltLights,
     EmergencyLights,
     ClosedLights,
-    BaseRSI,
+    // BaseRSI, // Upstream#37341
 }
 
 public enum DoorVisualLayers : byte
