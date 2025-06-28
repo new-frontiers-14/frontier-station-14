@@ -1236,6 +1236,9 @@ namespace Content.Client.Lobby.UI
             // Frontier: In case there's species restrictions for traits
             RefreshTraits(); // Frontier
             UpdateSexControls(); // update sex for new species
+            var speciesPrototype = _prototypeManager.Index<SpeciesPrototype>(newSpecies);
+            SetAge((speciesPrototype.MinAge + speciesPrototype.YoungAge) / 2); //default age to the equivalent of 24 for this species
+            UpdateAgeEdit();
             UpdateSpeciesGuidebookIcon();
             ReloadPreview();
         }
