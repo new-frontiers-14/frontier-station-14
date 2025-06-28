@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client.Parallax;
 using Content.Client.Research;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Goobstation.Research;
@@ -90,6 +91,8 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
     private Box2i _bounds = new(DefaultPosition, DefaultPosition);
 
+    private ParallaxControl _parallaxControl; // Frontier: Parallax control for the background
+
     private float _verticalScrollSpeed = 50; // Frontier: Allow mouse scroll
 
     public FancyResearchConsoleMenu()
@@ -99,6 +102,28 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         _research = _entity.System<ResearchSystem>();
         _sprite = _entity.System<SpriteSystem>();
         _accessReader = _entity.System<AccessReaderSystem>();
+
+        // Frontier: Initialize parallax background
+        _parallaxControl = new ParallaxControl
+        {
+            ParallaxPrototype = "Default",
+            HorizontalExpand = true,
+            VerticalExpand = true,
+        };
+
+        // Add the parallax control to the ResearchesContainer at the beginning (bottom layer)
+        ResearchesContainer.AddChild(_parallaxControl);
+
+        // Set the proper rendering order by adjusting positions in the parent's child list
+        // Controls with a higher position value are drawn on top (foreground)
+        // Make sure the parallax is at the bottom of the z-order (drawn first)
+        _parallaxControl.SetPositionInParent(0);
+
+        // The drag container should be in the middle
+        DragContainer.SetPositionInParent(1);
+
+        // The recenter button should be at the top of the z-order (drawn last)
+        RecenterButton.SetPositionInParent(2);
 
         ServerButton.OnPressed += _ => OnServerButtonPressed?.Invoke();
         DragContainer.OnKeyBindDown += OnKeybindDown;
