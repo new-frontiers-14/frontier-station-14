@@ -3,6 +3,10 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
   sprites:
   - sprite: Mobs/Customization/Yinglet/yinglet_ears.rsi
     state: long
@@ -12,6 +16,10 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
   sprites:
   - sprite: Mobs/Customization/Yinglet/yinglet_ears.rsi
     state: short
@@ -26,26 +34,66 @@
   - sprite: Mobs/Customization/Yinglet/yinglet_tail.rsi
     state: hairless
 
-#- type: marking
-#  id: YingletTailPreener
-#  bodyPart: Tail
-#  markingCategory: Tail
-#  speciesRestriction: [Yinglet]
-#  sprites:
-#  - sprite: Mobs/Customization/Yinglet/yinglet_tail.rsi
-#    state: preener
-
 - type: marking
   id: YingletTailTailpoof
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Yinglet]
   sexRestriction: Female
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      tailpoof_secondary:
+        type:
+          !type:CategoryColoring
+            category: Hair
   sprites:
   - sprite: Mobs/Customization/Yinglet/yinglet_tail.rsi
     state: tailpoof_primary
   - sprite: Mobs/Customization/Yinglet/yinglet_tail.rsi
     state: tailpoof_secondary
+
+- type: marking
+  id: YingletTailPreener
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      preener_secondary:
+        type:
+          !type:CategoryColoring
+            category: Hair
+  sprites:
+  - sprite: Mobs/Customization/Yinglet/yinglet_tail.rsi
+    state: hairless
+  - sprite: Mobs/Customization/Yinglet/yinglet_tail.rsi
+    state: preener_secondary
+
+- type: marking
+  id: YingletTailBackHair
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      northern_secondary:
+        type:
+          !type:CategoryColoring
+            category: Hair
+  sprites:
+  - sprite: Mobs/Customization/Yinglet/yinglet_tail.rsi
+    state: hairless
+  - sprite: Mobs/Customization/Yinglet/yinglet_tail.rsi
+    state: northern_secondary
 
 - type: marking
   id: YingletShelltoothLong
