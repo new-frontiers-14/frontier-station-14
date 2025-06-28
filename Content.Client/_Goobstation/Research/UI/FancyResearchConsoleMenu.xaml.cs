@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Client.Parallax;
+using Content.Client.Parallax; // Frontier: Parallax control for the background
 using Content.Client.Research;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Goobstation.Research;
