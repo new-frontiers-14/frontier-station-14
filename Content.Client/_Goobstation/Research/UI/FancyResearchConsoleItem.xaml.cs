@@ -5,6 +5,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Utility; // Added for SpriteSpecifier
 
 namespace Content.Client._Goobstation.Research.UI;
 
@@ -33,7 +34,29 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         Availability = availability;
         Prototype = proto;
 
-        ResearchDisplay.Texture = sprite.Frame0(proto.Icon);
+        // Handle technology icon - prioritize EntityIcon for full sprite layers
+        if (proto.EntityIcon.HasValue)
+        {
+            // Use EntityPrototypeView to show all sprite layers
+            ResearchDisplay.SetPrototype(proto.EntityIcon.Value);
+        }
+        else if (proto.Icon != null)
+        {
+            // For legacy Icon support, we need to handle this differently since EntityPrototypeView
+            // expects entity prototypes. For now, we'll need a fallback approach.
+            // TODO: Consider deprecating the Icon field in favor of EntityIcon
+            
+            // We cannot directly set a SpriteSpecifier on EntityPrototypeView
+            // This is a limitation of the new approach - EntityIcon should be preferred
+            // For now, this will show no icon for legacy Icon-only technologies
+            ResearchDisplay.SetPrototype(null);
+        }
+        else
+        {
+            // No icon specified
+            ResearchDisplay.SetPrototype(null);
+        }
+
         Button.OnPressed += Selected;
         Button.OnDrawModeChanged += UpdateColor;
 

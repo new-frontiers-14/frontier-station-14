@@ -5,9 +5,7 @@
 - type: technology
   id: NFAdvancedParts
   name: nf-research-technology-advanced-parts
-  icon:
-    sprite: _NF/Objects/Misc/stock_parts.rsi
-    state: advanced_matter_bin
+  entityIcon: AdvancedMatterBinStockPart
   discipline: NFEngineering
   tier: 1
   cost: 1000
@@ -22,9 +20,7 @@
 - type: technology
   id: NFRapidPartExchange
   name: nf-research-technology-rped
-  icon:
-    sprite: _NF/Objects/Specific/Research/rped.rsi
-    state: icon
+  entityIcon: RPED
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -37,9 +33,7 @@
 - type: technology
   id: NFFauxAstroTiles
   name: nf-research-technology-faux-astro-tiles
-  icon:
-    sprite: Objects/Tiles/tile.rsi
-    state: astroice
+  entityIcon: FloorTileItemAstroIce
   discipline: NFService
   tier: 1
   cost: 1000
@@ -57,9 +51,7 @@
 - type: technology
   id: NFIndustrialEngineering
   name: nf-research-technology-industrial-engineering
-  icon:
-    sprite: Structures/Machines/protolathe_hypercon.rsi
-    state: building
+  entityIcon: ProtolatheHyperConvection
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -74,9 +66,7 @@
 - type: technology
   id: NFIndustrialSilo
   name: nf-research-technology-industrial-silo
-  icon:
-    sprite: Structures/Machines/silo.rsi
-    state: silo
+  entityIcon: MachineMaterialSilo
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -89,12 +79,10 @@
 - type: technology
   id: NFIndustrialSheetifier
   name: nf-research-technology-industrial-sheetifier
-  icon:
-    sprite: Structures/Machines/sheetifier.rsi
-    state: base_machine
+  entityIcon: Sheetifier
   discipline: NFEngineering
   tier: 1
-  cost: 2500
+  cost: 1000
   recipeUnlocks:
   - SheetifierMachineCircuitboard
   technologyPrerequisites:
@@ -107,9 +95,7 @@
 - type: technology
   id: NFMechanicalCompression
   name: nf-research-technology-mechanical-compression
-  icon:
-    sprite: Structures/Machines/flatpacker.rsi
-    state: base
+  entityIcon: MachineFlatpacker
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -122,9 +108,7 @@
 - type: technology
   id: NFMiscellaneousItemsOrganization
   name: nf-research-technology-personal-storage-solutions
-  icon:
-    sprite: _NF/Objects/Storage/Pouches/pouch.rsi
-    state: engineering-icon
+  entityIcon: NFPouchEngineering
   discipline: NFService
   tier: 1
   cost: 2500
@@ -154,9 +138,7 @@
 - type: technology
   id: NFRapidConstruction
   name: nf-research-technology-rapid-construction
-  icon:
-    sprite: _NF/Objects/Tools/rcd.rsi
-    state: icon-shipyard
+  entityIcon: ShipyardRCD
   discipline: NFEngineering
   tier: 1
   cost: 10000
@@ -170,9 +152,7 @@
 - type: technology
   id: NFBluespaceStorage
   name: nf-research-technology-bluespace-storage
-  icon:
-    sprite: Clothing/Back/Backpacks/holding.rsi
-    state: holding
+  entityIcon: ClothingBackpackHolding
   discipline: NFEngineering
   tier: 1
   cost: 20000
@@ -189,9 +169,7 @@
 - type: technology
   id: NFMatterEnergyConversion
   name: nf-research-technology-matter-energy-conversion
-  icon:
-    sprite: Objects/Tools/rcd.rsi
-    state: icon
+  entityIcon: RCDRecharging
   discipline: NFEngineering
   tier: 1
   cost: 15000
@@ -208,9 +186,7 @@
 - type: technology
   id: NFAtmosphericTech
   name: nf-research-technology-atmospheric-tech
-  icon:
-    sprite: Structures/Piping/Atmospherics/thermomachine.rsi
-    state: freezerOff
+  entityIcon: GasThermoMachineFreezer
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -224,9 +200,7 @@
 - type: technology
   id: NFAdvancedAtmospherics
   name: nf-research-technology-advanced-atmospherics
-  icon:
-    sprite: Structures/Piping/Atmospherics/hellfirethermomachine.rsi
-    state: freezerOff
+  entityIcon: GasThermoMachineHellfireFreezer
   discipline: NFEngineering
   tier: 1
   cost: 7500
@@ -239,9 +213,7 @@
 - type: technology
   id: NFAdvancedAtmosphericsPortable
   name: nf-research-technology-advanced-atmospherics-portable
-  icon:
-    sprite: Structures/Piping/Atmospherics/Portable/portable_scrubber.rsi
-    state: icon
+  entityIcon: PortableScrubber
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -254,9 +226,7 @@
 - type: technology
   id: NFAtmosphericDrilling
   name: nf-research-technology-atmospheric-drilling
-  icon:
-    sprite: _NF/Objects/Specific/Atmospherics/extractor.rsi
-    state: icon
+  entityIcon: GasMiningDrill
   discipline: NFEngineering
   tier: 1
   cost: 7500
@@ -270,9 +240,7 @@
 - type: technology
   id: NFPersonalPropulsion
   name: nf-research-technology-personal-propulsion
-  icon:
-    sprite: Objects/Tanks/Jetpacks/blue.rsi
-    state: icon
+  entityIcon: JetpackBlue
   discipline: NFSalvage
   tier: 1
   cost: 7500
@@ -288,9 +256,7 @@
 - type: technology
   id: NFAdvancedAtmosphericsTools
   name: nf-research-technology-advanced-atmospherics-tools
-  icon:
-    sprite: Objects/Devices/Holoprojectors/atmos.rsi
-    state: icon
+  entityIcon: HolofanProjector
   discipline: NFEngineering
   tier: 1
   cost: 7500
@@ -304,9 +270,7 @@
 - type: technology
   id: NFAdvancedPersonalPropulsion
   name: nf-research-technology-advanced-personal-propulsion
-  icon:
-    sprite: Objects/Tanks/Jetpacks/void.rsi
-    state: icon
+  entityIcon: JetpackVoid
   discipline: NFSalvage
   tier: 1
   cost: 7500
@@ -322,9 +286,7 @@
 - type: technology
   id: NFAdvancedWelderTechnology
   name: nf-research-technology-advanced-welder
-  icon:
-    sprite: Objects/Tools/welder_experimental.rsi
-    state: icon
+  entityIcon: WelderExperimental
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -338,9 +300,7 @@
 - type: technology
   id: NFAdvancedToolsTechnology
   name: nf-research-technology-advanced-tools
-  icon:
-    sprite: Objects/Tools/drill.rsi
-    state: drill_screw
+  entityIcon: PowerDrill
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -356,9 +316,7 @@
 - type: technology
   id: NFAdvancedBeltTechnology
   name: nf-research-technology-advanced-belt
-  icon:
-    sprite: Clothing/Belt/ce.rsi
-    state: icon
+  entityIcon: ClothingBeltChiefEngineer
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -373,9 +331,7 @@
 - type: technology
   id: NFBasicXenoArcheology
   name: nf-research-technology-basic-xenoarcheology
-  icon:
-    sprite: Structures/Machines/artifact_analyzer.rsi
-    state: display
+  entityIcon: MachineArtifactAnalyzer
   discipline: NFScience
   tier: 1
   cost: 2500
@@ -391,9 +347,7 @@
 - type: technology
   id: NFAbnormalArtifactManipulation
   name: nf-research-technology-abnormal-artifact-manipulation
-  icon:
-    sprite: Structures/Machines/artifact_crusher.rsi
-    state: icon
+  entityIcon: MachineArtifactCrusher
   discipline: NFScience
   tier: 1
   cost: 5000
@@ -406,9 +360,7 @@
 - type: technology
   id: NFBasicAnomalousResearch
   name: nf-research-technology-basic-anomalous-research
-  icon:
-    sprite: Objects/Specific/Research/anomalyscanner.rsi
-    state: icon
+  entityIcon: MachineAnomalyVessel
   discipline: NFScience
   tier: 1
   cost: 5000
@@ -425,12 +377,10 @@
 - type: technology
   id: NFAnomalyCoreHarnessing
   name: nf-research-technology-anomaly-harnessing
-  icon:
-    sprite: Objects/Weapons/Melee/gorilla.rsi
-    state: icon
+  entityIcon: WeaponGauntletGorilla
   discipline: NFScience
   tier: 1
-  cost: 10000
+  cost: 7500
   recipeUnlocks:
   - WeaponGauntletGorilla
   technologyPrerequisites:
@@ -440,9 +390,7 @@
 - type: technology
   id: NFAdvancedAnomalyResearch
   name: nf-research-technology-advanced-anomaly-research
-  icon:
-    sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
-    state: base
+  entityIcon: MachineAnomalyVesselExperimental
   discipline: NFScience
   tier: 1
   cost: 10000
@@ -456,9 +404,7 @@
 - type: technology
   id: NFBluespaceTimeManipulation
   name: nf-research-technology-bluespace-time-manipulation
-  icon:
-    sprite: Objects/Devices/desynchronizer.rsi
-    state: icon
+  entityIcon: DeviceDesynchronizer
   discipline: NFScience
   tier: 1
   cost: 10000
@@ -472,9 +418,7 @@
 - type: technology
   id: NFSuperParts
   name: nf-research-technology-super-parts
-  icon:
-    sprite: _NF/Objects/Misc/stock_parts.rsi
-    state: super_matter_bin
+  entityIcon: SuperMatterBinStockPart
   discipline: NFEngineering
   tier: 1
   cost: 15000
@@ -491,9 +435,7 @@
 - type: technology
   id: NFHardsuitsEntertainment
   name: nf-research-technology-hardsuits-entertainment
-  icon:
-    sprite: Clothing/OuterClothing/Hardsuits/clown.rsi
-    state: icon
+  entityIcon: ClothingOuterHardsuitClown
   discipline: NFService
   tier: 1
   cost: 2500
@@ -507,9 +449,7 @@
 - type: technology
   id: NFHardsuitsBasic
   name: nf-research-technology-hardsuits-basic
-  icon:
-    sprite: Clothing/OuterClothing/Hardsuits/basic.rsi
-    state: icon
+  entityIcon: ClothingOuterHardsuitBasic
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -522,9 +462,7 @@
 - type: technology
   id: NFHardsuitsField
   name: nf-research-technology-hardsuits-field
-  icon:
-    sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
-    state: icon
+  entityIcon: ClothingOuterHardsuitSalvage
   discipline: NFSalvage
   tier: 1
   cost: 5000
@@ -539,9 +477,7 @@
 - type: technology
   id: NFHardsuitsMedical
   name: nf-research-technology-hardsuits-medical
-  icon:
-    sprite: Clothing/OuterClothing/Hardsuits/medical.rsi
-    state: icon
+  entityIcon: ClothingOuterHardsuitMedical
   discipline: NFMedical
   tier: 1
   cost: 2500
@@ -555,9 +491,7 @@
 - type: technology
   id: NFHardsuitsEngineering
   name: nf-research-technology-hardsuits-engineering
-  icon:
-    sprite: Clothing/OuterClothing/Hardsuits/engineering.rsi
-    state: icon
+  entityIcon: ClothingOuterHardsuitEngineering
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -571,9 +505,7 @@
 - type: technology
   id: NFHardsuitsAdvanced
   name: nf-research-technology-hardsuits-advanced
-  icon:
-    sprite: Clothing/OuterClothing/Hardsuits/engineering-white.rsi
-    state: icon
+  entityIcon: ClothingOuterHardsuitEngineeringWhite
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -588,9 +520,7 @@
 - type: technology
   id: NFHardsuitsExperimentalRD
   name: nf-research-technology-hardsuits-experimental-rd
-  icon:
-    sprite: Clothing/OuterClothing/Hardsuits/rd.rsi
-    state: icon
+  entityIcon: ClothingOuterHardsuitRd
   discipline: NFScience
   tier: 1
   cost: 5000
@@ -604,9 +534,7 @@
 - type: technology
   id: NFHardsuitsArmored
   name: nf-research-technology-hardsuits-armored
-  icon:
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/mercenary.rsi
-    state: icon
+  entityIcon: ClothingOuterHardsuitMercenary
   discipline: NFArsenalMercenary
   tier: 1
   cost: 15000
@@ -620,9 +548,7 @@
 - type: technology
   id: NFHardsuitsExperimentalIndustrial
   name: nf-research-technology-hardsuits-experimental-industrial
-  icon:
-    sprite: Clothing/OuterClothing/Hardsuits/maxim.rsi
-    state: icon
+  entityIcon: ClothingOuterHardsuitMaximPrototype
   discipline: NFArsenalMercenary
   tier: 1
   cost: 15000
@@ -636,9 +562,7 @@
 - type: technology
   id: NFHardsuitsArmoredAdvanced
   name: nf-research-technology-hardsuits-armored-advanced
-  icon:
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/scaf.rsi
-    state: icon
+  entityIcon: ClothingOuterHardsuitScaf
   discipline: NFArsenalMercenary
   tier: 1
   cost: 20000
@@ -653,9 +577,7 @@
 - type: technology
   id: NFBiochemicalStasis
   name: nf-research-technology-biochemical-stasis
-  icon:
-    sprite: Objects/Specific/Chemistry/beaker_cryostasis.rsi
-    state: beakernoreact
+  entityIcon: CryostasisBeaker
   discipline: NFMedical
   tier: 1
   cost: 5000
@@ -669,9 +591,7 @@
 - type: technology
   id: NFReinforcedJug
   name: nf-research-technology-reinforced-jug
-  icon:
-    sprite: _NF/Objects/Specific/Chemistry/reinforced_jug.rsi
-    state: icon
+  entityIcon: ReinforcedJug
   discipline: NFMedical
   tier: 1
   cost: 2500
@@ -684,9 +604,7 @@
 - type: technology
   id: NFBasicMedicine
   name: nf-research-technology-basic-medicine
-  icon:
-    sprite: Structures/dispensers.rsi
-    state: industrial-working
+  entityIcon: ChemDispenserEmpty
   discipline: NFMedical
   tier: 1
   cost: 10000
@@ -700,9 +618,7 @@
 - type: technology
   id: NFBluespaceChemistry
   name: nf-research-technology-bluespace-chemistry
-  icon:
-    sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
-    state: beakerbluespace
+  entityIcon: BluespaceBeaker
   discipline: NFMedical
   tier: 1
   cost: 10000
@@ -719,9 +635,7 @@
 - type: technology
   id: NFEngineeringMedicine
   name: nf-research-technology-industrial-medicine
-  icon:
-    sprite: _NF/Structures/Machines/medical_assembler.rsi
-    state: icon
+  entityIcon: MedicalAssembler
   discipline: NFMedical
   tier: 1
   cost: 15000
@@ -735,9 +649,7 @@
 - type: technology
   id: NFAppliedBiochemicalStasis
   name: nf-research-technology-applied-biochemical-stasis
-  icon:
-    sprite: Structures/Machines/stasis_bed.rsi
-    state: icon
+  entityIcon: StasisBed
   discipline: NFMedical
   tier: 1
   cost: 7500
@@ -751,9 +663,7 @@
 - type: technology
   id: NFMechanizedTreatment
   name: nf-research-technology-mechanized-treatment
-  icon:
-    sprite: Mobs/Silicon/chassis.rsi
-    state: medical
+  entityIcon: BorgChassisMedical
   discipline: NFMedical
   tier: 1
   cost: 5000
@@ -767,9 +677,7 @@
 - type: technology
   id: NFSyringeGun
   name: nf-research-technology-syringe-gun
-  icon:
-    sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
-    state: syringe_gun
+  entityIcon: LauncherSyringe
   discipline: NFMedical
   tier: 1
   cost: 10000
@@ -785,9 +693,7 @@
 - type: technology
   id: NFBasicMagnetsTech
   name: nf-research-technology-basic-magnets-tech
-  icon:
-    sprite: Clothing/Shoes/Boots/magboots-science.rsi
-    state: icon
+  entityIcon: ClothingShoesBootsMagSci
   discipline: NFScience
   tier: 1
   cost: 1000
@@ -800,9 +706,7 @@
 - type: technology
   id: NFGravityResistantTech
   name: nf-research-technology-anti-gravitational-fields
-  icon:
-    sprite: _NF/Clothing/Shoes/Boots/moonboots.rsi
-    state: icon
+  entityIcon: NFClothingShoesBootsMoon
   discipline: NFScience
   tier: 1
   cost: 5000
@@ -815,9 +719,7 @@
 - type: technology
   id: NFMagnetsTech
   name: nf-research-technology-magnets-tech
-  icon:
-    sprite: Clothing/Shoes/Boots/magboots.rsi
-    state: icon
+  entityIcon: ClothingShoesBootsMag
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -830,9 +732,7 @@
 - type: technology
   id: NFMagnetsTechAdvanced
   name: nf-research-technology-magnets-tech-advanced
-  icon:
-    sprite: Clothing/Shoes/Boots/magboots-advanced.rsi
-    state: icon
+  entityIcon: ClothingShoesBootsMagAdv
   discipline: NFScience
   tier: 1
   cost: 7500
@@ -845,9 +745,7 @@
 - type: technology
   id: NFMagnetsTechCombat
   name: nf-research-technology-magnets-tech-combat
-  icon:
-    sprite: _NF/Clothing/Shoes/Boots/magboots-mercenary.rsi
-    state: icon
+  entityIcon: ClothingShoesBootsMagMercenary
   discipline: NFArsenalMercenary
   tier: 1
   cost: 5000
@@ -861,9 +759,7 @@
 - type: technology
   id: NFQuantumFiberWeaving
   name: nf-research-technology-quantum-fiber-weaving
-  icon:
-    sprite: Clothing/Shoes/Boots/speedboots.rsi
-    state: icon
+  entityIcon: ClothingShoesBootsSpeed
   discipline: NFService
   tier: 1
   cost: 10000
@@ -878,9 +774,7 @@
 - type: technology
   id: NFBasicRoboticsEquipment
   name: nf-research-technology-basic-robotics-equipment
-  icon:
-    sprite: _NF/Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_fork
+  entityIcon: MechEquipmentFork
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -893,9 +787,7 @@
 - type: technology
   id: NFBasicRobotics
   name: nf-research-technology-basic-robotics
-  icon:
-    sprite: Structures/Machines/exosuit_fabricator.rsi
-    state: fab-idle
+  entityIcon: ExosuitFabricator
   discipline: NFEngineering
   tier: 1
   cost: 1000
@@ -908,9 +800,7 @@
 - type: technology
   id: NFVim
   name: nf-research-technology-vim
-  icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
-    state: vim
+  entityIcon: MechVim
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -923,9 +813,7 @@
 - type: technology
   id: NFRoboticsEquipment
   name: nf-research-technology-robotics-equipment
-  icon:
-    sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_clamp_small
+  entityIcon: MechEquipmentGrabberSmall
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -938,9 +826,7 @@
 - type: technology
   id: NFRipleyAPLU
   name: nf-research-technology-ripley-aplu
-  icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
-    state: ripley
+  entityIcon: MechRipley
   discipline: NFEngineering
   tier: 1
   cost: 7500
@@ -959,9 +845,7 @@
 - type: technology
   id: NFCritterMechs
   name: nf-research-technology-critter-mechs
-  icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
-    state: hamtr
+  entityIcon: MechHamtr
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -980,9 +864,7 @@
 - type: technology
   id: NFAdvancedRoboticsEquipment
   name: nf-research-technology-advanced-robotics-equipment
-  icon:
-    sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_clamp
+  entityIcon: MechEquipmentGrabber
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -995,9 +877,7 @@
 - type: technology
   id: NFHONKMech
   name: nf-research-technology-honk-mech
-  icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
-    state: honker
+  entityIcon: MechHonker
   discipline: NFEngineering
   tier: 1
   cost: 7500
@@ -1017,9 +897,7 @@
 - type: technology
   id: NFHornRoboticsEquipment
   name: nf-research-technology-horn-robotics-equipment
-  icon:
-    sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_honker
+  entityIcon: MechEquipmentHorn
   discipline: NFEngineering
   tier: 1
   cost: 1000
@@ -1034,9 +912,7 @@
 - type: technology
   id: NFWirelessAudioVisualCommunication
   name: nf-research-technology-wireless-audio-visual-communication
-  icon:
-    sprite: Structures/Machines/telecomms.rsi
-    state: icon
+  entityIcon: TelecomServer
   discipline: NFService
   tier: 1
   cost: 1000
@@ -1049,9 +925,7 @@
 - type: technology
   id: NFAudioVisualCommunication
   name: nf-research-technology-audio-visual-communication
-  icon:
-    sprite: Structures/Machines/server.rsi
-    state: server
+  entityIcon: SurveillanceCameraRouterConstructed
   discipline: NFArsenalMercenary
   tier: 1
   cost: 1000
@@ -1065,9 +939,7 @@
 - type: technology
   id: NFHologramCommunication
   name: nf-research-technology-hologram-communication
-  icon:
-    sprite: Structures/Machines/holopad.rsi
-    state: base
+  entityIcon: NFHolopadShip
   discipline: NFService
   tier: 1
   cost: 2500
@@ -1080,9 +952,7 @@
 - type: technology
   id: NFAdvancedInstruments
   name: nf-research-technology-advanced-instruments
-  icon:
-    sprite: Structures/Machines/jukebox.rsi
-    state: on
+  entityIcon: DawInstrument
   discipline: NFService
   tier: 1
   cost: 5000
@@ -1097,9 +967,7 @@
 - type: technology
   id: NFAdvancedEntertainment
   name: nf-research-technology-advanced-entertainment
-  icon:
-    sprite: Structures/Machines/computers.rsi
-    state: television
+  entityIcon: ComputerTelevision
   discipline: NFService
   tier: 1
   cost: 2500
@@ -1114,9 +982,7 @@
 - type: technology
   id: NFJournalism
   name: nf-research-technology-journalism
-  icon:
-    sprite: Objects/Fun/Instruments/microphone.rsi
-    state: icon
+  entityIcon: ComputerMassMedia
   discipline: NFService
   tier: 1
   cost: 2500
@@ -1129,9 +995,7 @@
 - type: technology
   id: NFPushHorn
   name: nf-research-technology-clowning-utilities
-  icon:
-    sprite: Objects/Fun/push_horn.rsi
-    state: icon
+  entityIcon: PushHorn
   discipline: NFService
   tier: 1
   cost: 5000
@@ -1146,9 +1010,7 @@
 - type: technology
   id: NFBasicSpray
   name: nf-research-technology-basic-spray
-  icon:
-    sprite: Objects/Specific/Janitorial/janitorial.rsi
-    state: cleaner_large
+  entityIcon: MegaSprayBottle
   discipline: NFService
   tier: 1
   cost: 1000
@@ -1161,9 +1023,7 @@
 - type: technology
   id: NFJanicart
   name: nf-research-technology-janicart
-  icon:
-    sprite: Objects/Vehicles/janicart.rsi
-    state: keys
+  entityIcon: NFVehicleJanicart
   discipline: NFService
   tier: 1
   cost: 2500
@@ -1176,9 +1036,7 @@
 - type: technology
   id: NFAdvancedSpray
   name: nf-research-technology-advanced-spray
-  icon:
-    sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
-    state: icon
+  entityIcon: WeaponSprayNozzle
   discipline: NFService
   tier: 1
   cost: 7500
@@ -1192,9 +1050,7 @@
 - type: technology
   id: NFPortablePump
   name: nf-research-technology-portable-cleaning
-  icon:
-    sprite: _NF/Structures/Machines/portable_pump.rsi
-    state: base
+  entityIcon: PortablePump
   discipline: NFService
   tier: 1
   cost: 7500
@@ -1207,9 +1063,7 @@
 - type: technology
   id: NFAdvancedCleaning
   name: nf-research-technology-advanced-cleaning
-  icon:
-    sprite: Objects/Specific/Janitorial/advmop.rsi
-    state: advmop
+  entityIcon: AdvMopItem
   discipline: NFService
   tier: 1
   cost: 10000
@@ -1225,10 +1079,8 @@
 - type: technology
   id: NFSelectiveDropper
   name: nf-research-technology-food-filtration
-  icon:
-    sprite: _NF/Objects/Specific/Chemistry/dropper.rsi
-    state: dropper
-  discipline: NFService
+  entityIcon: AdvMopItem
+  discipline: ServiceSelectiveDropper
   tier: 1
   cost: 1000
   recipeUnlocks:
@@ -1240,9 +1092,7 @@
 - type: technology
   id: NFFoodService
   name: nf-research-technology-food-service
-  icon:
-    sprite: Structures/Machines/grinder.rsi
-    state: grinder_beaker_attached
+  entityIcon: KitchenMicrowave
   discipline: NFService
   tier: 1
   cost: 7500
@@ -1259,9 +1109,7 @@
 - type: technology
   id: NFHydroponics
   name: nf-research-technology-basic-hydroponics
-  icon:
-    sprite: Structures/Hydroponics/containers.rsi
-    state: hydrotray3
+  entityIcon: hydroponicsTray
   discipline: NFService
   tier: 1
   cost: 7500
@@ -1274,9 +1122,7 @@
 - type: technology
   id: NFDeepFryer
   name: nf-research-technology-deep-fryer
-  icon:
-    sprite: Nyanotrasen/Structures/Machines/deep_fryer.rsi
-    state: off-0
+  entityIcon: KitchenDeepFryer
   discipline: NFService
   tier: 1
   cost: 7500
@@ -1289,15 +1135,13 @@
 - type: technology
   id: NFAdvancedFoodService
   name: nf-research-technology-advanced-food-service
-  icon:
-    sprite: _NF/Structures/Machines/oven.rsi
-    state: composite_off
+  entityIcon: KitchenElectricRange
   discipline: NFService
   tier: 1
   cost: 7500
   recipeUnlocks:
-  - KitchenAssemblerMachineCircuitboard
   - ElectricRangeMachineCircuitboard
+  - KitchenAssemblerMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
   technologyPrerequisites:
   - NFFoodService
@@ -1306,9 +1150,7 @@
 - type: technology
   id: NFSeedExtractor
   name: nf-research-technology-seed-extractor
-  icon:
-    sprite: Structures/Machines/seed_extractor.rsi
-    state: seedextractor
+  entityIcon: SeedExtractor
   discipline: NFService
   tier: 1
   cost: 2500
@@ -1321,9 +1163,7 @@
 - type: technology
   id: NFAdvancedHydroponicsStorge
   name: nf-research-technology-advanced-botanical-storage
-  icon:
-    sprite: _DV/Objects/Specific/Hydroponics/plant_bag_holding.rsi
-    state: icon
+  entityIcon: PlantBagOfHolding
   discipline: NFService
   tier: 1
   cost: 2500
@@ -1336,9 +1176,7 @@
 - type: technology
   id: NFMeatManipulation
   name: nf-research-technology-meat-manipulation
-  icon:
-    sprite: Structures/Machines/fat_sucker.rsi
-    state: display
+  entityIcon: FatExtractor
   discipline: NFService
   tier: 1
   cost: 2500
@@ -1351,9 +1189,7 @@
 - type: technology
   id: NFBiogenerator
   name: nf-research-technology-biogenerator
-  icon:
-    sprite: _NF/Structures/Machines/biofabricator.rsi
-    state: icon
+  entityIcon: Biogenerator
   discipline: NFService
   tier: 1
   cost: 5000
@@ -1366,9 +1202,7 @@
 - type: technology
   id: NFBiomass
   name: nf-research-technology-biomass
-  icon:
-    sprite: Structures/Machines/Medical/biomass_reclaimer.rsi
-    state: icon
+  entityIcon: BiomassReclaimer
   discipline: NFService
   tier: 1
   cost: 2500
@@ -1381,9 +1215,7 @@
 - type: technology
   id: NFAdvancedHydroponicsEquipment
   name: nf-research-technology-advanced-botanical-equipment
-  icon:
-    sprite: _NF/Objects/Devices/plant_analyzer.rsi
-    state: plantanalyzer
+  entityIcon: PlantAnalyzer
   discipline: NFService
   tier: 1
   cost: 2500
@@ -1398,9 +1230,7 @@
 - type: technology
   id: NFAdvancedPowercells
   name: nf-research-technology-advanced-powercells
-  icon:
-    sprite: Objects/Power/power_cells.rsi
-    state: high
+  entityIcon: PowerCellHigh
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -1413,9 +1243,7 @@
 - type: technology
   id: NFAdvancedSMES
   name: nf-research-technology-advanced-smes
-  icon:
-    sprite: Structures/Power/smes.rsi
-    state: advancedsmes
+  entityIcon: SMESAdvancedEmpty
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -1428,9 +1256,7 @@
 - type: technology
   id: NFAdvancedCharging
   name: nf-research-technology-advanced-charging
-  icon:
-    sprite: Structures/Power/turbo_recharger.rsi
-    state: empty
+  entityIcon: TurboItemRecharger
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -1443,9 +1269,7 @@
 - type: technology
   id: NFTrashPowerGeneration
   name: nf-research-technology-trash-power-generators
-  icon:
-    sprite: Structures/Power/Generation/portable_generator.rsi
-    state: portgen3
+  entityIcon: PortableGeneratorJrPacman
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -1458,9 +1282,7 @@
 - type: technology
   id: NFPowerSolar
   name: nf-research-technology-power-solar
-  icon:
-    sprite: Structures/Power/Generation/solar_panel.rsi
-    state: solar_panel_glass
+  entityIcon: SolarPanel
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -1474,9 +1296,7 @@
 - type: technology
   id: NFEmitter
   name: nf-research-technology-particle-emission
-  icon:
-    sprite: Structures/Power/Generation/Singularity/emitter.rsi
-    state: emitter2
+  entityIcon: Emitter
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -1489,9 +1309,7 @@
 - type: technology
   id: NFFission
   name: nf-research-technology-fission-powercells
-  icon:
-    sprite: Objects/Power/power_cells.rsi
-    state: microreactor
+  entityIcon: Emitter
   discipline: NFEngineering
   tier: 1
   cost: 7500
@@ -1504,9 +1322,7 @@
 - type: technology
   id: NFPortableFission
   name: nf-research-technology-portable-fission
-  icon:
-    sprite: Objects/Power/portable_recharger.rsi
-    state: charging
+  entityIcon: PowerCellMicroreactor
   discipline: NFEngineering
   tier: 1
   cost: 10000
@@ -1519,9 +1335,7 @@
 - type: technology
   id: NFBasicPowerGeneration
   name: nf-research-technology-basic-power-generators
-  icon:
-    sprite: Structures/Power/Generation/portable_generator.rsi
-    state: portgen0
+  entityIcon: PortableGeneratorPacman
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -1550,9 +1364,7 @@
 - type: technology
   id: NFPowerGeneration
   name: nf-research-technology-power-generators
-  icon:
-    sprite: Structures/Power/Generation/portable_generator.rsi
-    state: portgen1
+  entityIcon: PortableGeneratorSuperPacman
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -1565,9 +1377,7 @@
 - type: technology
   id: NFAdvancedPowerGeneration
   name: nf-research-technology-fission-generators
-  icon:
-    sprite: Structures/Power/Generation/portable_generator.rsi
-    state: portgen2
+  entityIcon: PortableGeneratorDKJr
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -1582,9 +1392,7 @@
 - type: technology
   id: NFSpaceScanning
   name: nf-research-technology-space-scanning
-  icon:
-    sprite: Objects/Misc/module.rsi
-    state: cpu_supply
+  entityIcon: ComputerRadar
   discipline: NFEngineering
   tier: 1
   cost: 2500
@@ -1597,9 +1405,7 @@
 - type: technology
   id: NFSpaceHandHeldScanning
   name: nf-research-technology-space-handheld-scanning
-  icon:
-    sprite: Objects/Tools/handheld_mass_scanner.rsi
-    state: icon
+  entityIcon: HandHeldMassScanner
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -1612,9 +1418,7 @@
 - type: technology
   id: NFShuttlecraftThrust
   name: nf-research-technology-shuttlecraft-thrust
-  icon:
-    sprite: _NF/Structures/Shuttles/gyroscope.rsi
-    state: base
+  entityIcon: Thruster
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -1628,9 +1432,7 @@
 - type: technology
   id: NFShuttlecraftThrustSmall
   name: nf-research-technology-shuttlecraft-thrust-small
-  icon:
-    sprite: _NF/Structures/Shuttles/gyroscope.rsi
-    state: base_small
+  entityIcon: SmallThruster
   discipline: NFEngineering
   tier: 1
   cost: 1000
@@ -1644,9 +1446,7 @@
 - type: technology
   id: NFShuttlecraft
   name: nf-research-technology-shuttlecraft
-  icon:
-    sprite: Structures/Machines/gravity_generator_mini.rsi
-    state: on
+  entityIcon: ComputerShuttle
   discipline: NFEngineering
   tier: 1
   cost: 5000
@@ -1663,9 +1463,7 @@
 - type: technology
   id: NFIndustrialOreProcessor
   name: nf-research-technology-salvage-equipment
-  icon:
-    sprite: Structures/Machines/ore_processor_industrial.rsi
-    state: icon
+  entityIcon: OreProcessorIndustrial
   discipline: NFSalvage
   tier: 1
   cost: 2500
@@ -1678,12 +1476,10 @@
 - type: technology
   id: NFSalvageGrapplingEquipment
   name: nf-research-technology-salvage-grappling-equipment
-  icon:
-    sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
-    state: base
+  entityIcon: WeaponGrapplingGun
   discipline: NFSalvage
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - WeaponGrapplingGun
   technologyPrerequisites:
@@ -1693,12 +1489,10 @@
 - type: technology
   id: NFExcavation
   name: nf-research-technology-excavation
-  icon:
-    sprite: Objects/Tools/handdrill.rsi
-    state: handdrill
+  entityIcon: MiningDrill
   discipline: NFSalvage
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - MiningDrill
   - MineralScannerEmpty
@@ -1709,12 +1503,10 @@
 - type: technology
   id: NFSalvageWeapons
   name: nf-research-technology-salvage-weapons
-  icon:
-    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
-    state: icon
+  entityIcon: NFWeaponPka
   discipline: NFSalvage
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - NFWeaponPka
   - WeaponCrusher
@@ -1726,12 +1518,10 @@
 - type: technology
   id: NFMassExcavation
   name: nf-research-technology-mass-excavation
-  icon:
-    sprite: Objects/Tools/handdrilldiamond.rsi
-    state: handdrill
+  entityIcon: MiningDrillDiamond
   discipline: NFSalvage
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - MiningDrillDiamond
   - AdvancedMineralScannerEmpty
@@ -1742,12 +1532,10 @@
 - type: technology
   id: NFAdvancedSalvageWeapons
   name: nf-research-technology-advanced-salvage-weapons
-  icon:
-    sprite: Objects/Weapons/Melee/crusher_glaive.rsi
-    state: icon
+  entityIcon: WeaponCrusherGlaive
   discipline: NFSalvage
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - WeaponCrusherGlaive
   technologyPrerequisites:
@@ -1757,12 +1545,10 @@
 - type: technology
   id: NFBluespaceOreStorage
   name: nf-research-technology-excavation-storage
-  icon:
-    sprite: _NF/Objects/Specific/Mining/ore_bag_holding.rsi
-    state: icon
+  entityIcon: OreBagOfHolding
   discipline: NFSalvage
   tier: 1
-  cost: 7500
+  cost: 5000
   recipeUnlocks:
   - OreBagOfHolding
   - BorgModuleAdvancedMining
@@ -1773,12 +1559,10 @@
 - type: technology
   id: NFImprovedSalvageWeapons
   name: nf-research-technology-salvage-weapons-improved
-  icon:
-    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
-    state: icon
+  entityIcon: NFWeaponPkaCannon
   discipline: NFSalvage
   tier: 1
-  cost: 7500
+  cost: 5000
   recipeUnlocks:
   - NFWeaponPkaCannon
   technologyPrerequisites:
@@ -1790,9 +1574,7 @@
 - type: technology
   id: NFBasicAmmunitionProduction
   name: nf-research-technology-basic-ammunition
-  icon:
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
-    state: icon-45
+  entityIcon: NFAmmunitionBoxPistol45
   discipline: NFArsenalMercenary
   tier: 1
   cost: 1000
@@ -1813,9 +1595,7 @@
 - type: technology
   id: NFBountyHunting
   name: nf-research-technology-bounty-hunting
-  icon:
-    sprite: Objects/Misc/handcuffs.rsi
-    state: handcuff
+  entityIcon: Handcuffs
   discipline: NFArsenalMercenary
   tier: 1
   cost: 5000
@@ -1835,9 +1615,7 @@
 - type: technology
   id: NFArsenalStyle
   name: nf-research-technology-arsenal-style
-  icon:
-    sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_procedural.rsi
-    state: base_OuterClothing_armor_01
+  entityIcon: ClothingOuterArmorPunkOrange
   discipline: NFArsenalMercenary
   tier: 1
   cost: 2500
@@ -1866,9 +1644,7 @@
 - type: technology
   id: NFImprovedPistolAmmo
   name: nf-research-technology-pistol-ammo-improved
-  icon:
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
-    state: icon-35-overpressure
+  entityIcon: NFAmmunitionBoxPistol35Overpressure
   discipline: NFArsenalMercenary
   tier: 1
   cost: 2500
@@ -1886,9 +1662,7 @@
 - type: technology
   id: NFNonlethalAmmunition
   name: nf-research-technology-nonlethal-ammunition
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
-    state: beanbag
+  entityIcon: NFAmmunitionBoxShellShotgunBeanbag
   discipline: NFArsenalMercenary
   tier: 1
   cost: 2500
@@ -1906,9 +1680,7 @@
 - type: technology
   id: NFAdvancedRiotControl
   name: nf-research-technology-advanced-riot-control
-  icon:
-    sprite: Objects/Weapons/Melee/truncheon.rsi
-    state: icon
+  entityIcon: Truncheon
   discipline: NFArsenalMercenary
   tier: 1
   cost: 8000
@@ -1921,9 +1693,7 @@
 - type: technology
   id: NFImprovedRifleAmmo
   name: nf-research-technology-rifle-ammo-improved
-  icon:
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
-    state: icon-30-overpressure
+  entityIcon: NFAmmunitionBoxRifle30Overpressure
   discipline: NFArsenalMercenary
   tier: 1
   cost: 5000
@@ -1942,9 +1712,7 @@
 - type: technology
   id: NFExplosiveTechnology
   name: nf-research-technology-explosive-technology
-  icon:
-    sprite: Objects/Devices/payload.rsi
-    state: payload-chemical-armed
+  entityIcon: ChemicalPayload
   discipline: NFArsenalMercenary
   tier: 1
   cost: 10000
@@ -1961,9 +1729,7 @@
 - type: technology
   id: NFDeterrenceTechnologies
   name: nf-research-technology-deterrence
-  icon:
-    sprite: Objects/Devices/Holoprojectors/field.rsi
-    state: icon
+  entityIcon: HoloprojectorField
   discipline: NFArsenalMercenary
   tier: 1
   cost: 7500
@@ -1976,9 +1742,7 @@
 - type: technology
   id: NFSpecialMeans
   name: nf-research-technology-special-means
-  icon:
-    sprite: Clothing/Back/Backpacks/electropack.rsi
-    state: icon
+  entityIcon: ClothingBackpackElectropack
   discipline: NFArsenalNfsd
   tier: 1
   cost: 5000
@@ -1991,9 +1755,7 @@
 - type: technology
   id: NFBulkRifleAmmo
   name: nf-research-technology-rifle-ammo-bulk
-  icon:
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi
-    state: icon-20
+  entityIcon: NFAmmunitionBoxBigRifle20
   discipline: NFArsenalMercenary
   tier: 1
   cost: 10000
@@ -2009,9 +1771,7 @@
 - type: technology
   id: NFBasicShuttleArmament
   name: nf-research-technology-basic-shuttle-armament
-  icon:
-    sprite: Structures/Power/cage_recharger.rsi
-    state: full
+  entityIcon: PowerCageRecharger
   discipline: NFArsenalNfsd
   tier: 1
   cost: 10000
