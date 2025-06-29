@@ -7,7 +7,7 @@
     - type: Transform
       noRot: true
     - type: AccessReader
-#      access: [["Research"], ["Cargo"]]
+      access: [ ] # Frontier: Removed ["Research"], ["Cargo"]
     - type: Lock
     - type: ResistLocker
     - type: Sprite
@@ -124,7 +124,7 @@
     - 0,0,1,1
     whitelist:
       components:
-      - Artifact
+      - XenoArtifact # Frontier Artifact<XenoArtifact
   - type: Item
     sprite: Objects/Storage/artifact_container.rsi  
     size: Huge
@@ -136,7 +136,7 @@
       path: "/Audio/Weapons/smash.ogg"
   - type: Appearance
   - type: AccessReader
-    access: [["Research"], ["Cargo"]]
+    access: [ ] # Frontier: Removed ["Research"], ["Cargo"]
   - type: Lock
   - type: SuppressArtifactContainer
   - type: RadiationBlockingContainer
