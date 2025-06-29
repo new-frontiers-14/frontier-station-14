@@ -1,0 +1,56 @@
+- type: entity
+  parent: BaseItem
+  id: BaseExpeditionCoordinateDisk
+  abstract: true
+  name: expedition coordinate disk
+  description: An old data disk. Not encrypted, contains information that allows to triangulate points of interest to expedite.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    layers:
+    - state: datadisk_base
+      color: "#868686"
+    - state: datadisk_label
+    - state: datadisk_encrypted
+  - type: PointLight
+    radius: 1.5
+    energy: 0.5
+    castShadows: false
+    color: "#0000ff"
+  - type: StaticPrice
+    price: 500
+  - type: SalvageExpeditionCoordinates
+
+
+- type: entity
+  parent: BaseExpeditionCoordinateDisk
+  id: ExpeditionCoordinateDiskModerate
+  name: expedition coordinate disk [Moderate]
+  description: An old data disk. Not encrypted, contains information that allows to triangulate points of interest to expedite. This one allows for moderate difficulty expeditions.
+  components:
+  - type: StaticPrice
+    price: 2250
+  - type: SalvageExpeditionCoordinates
+    difficulty: "NFModerate"
+
+- type: entity
+  parent: BaseExpeditionCoordinateDisk
+  id: ExpeditionCoordinateDiskHazardous
+  name: expedition coordinate disk [Hazardous]
+  description: An old data disk. Not encrypted, contains information that allows to triangulate points of interest to expedite. This one allows for moderate difficulty expeditions.
+  components:
+  - type: StaticPrice
+    price: 4500
+  - type: SalvageExpeditionCoordinates
+    difficulty: "NFHazardous"
+
+- type: entity
+  parent: BaseExpeditionCoordinateDisk
+  id: ExpeditionCoordinateDiskExtreme
+  name: expedition coordinate disk [Extreme]
+  description: An old data disk. Not encrypted, contains information that allows to triangulate points of interest to expedite. This one allows for moderate difficulty expeditions.
+  components:
+  - type: StaticPrice
+    price: 9000
+  - type: SalvageExpeditionCoordinates
+    difficulty: "NFExtreme"
