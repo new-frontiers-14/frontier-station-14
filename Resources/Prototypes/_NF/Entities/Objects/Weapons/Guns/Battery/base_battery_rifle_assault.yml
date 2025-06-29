@@ -25,9 +25,9 @@
     maxAngle: -0
   - type: Gun
     projectileSpeed: 30
-    minAngle: 1.9
-    maxAngle: 3.8
-    angleIncrease: 1
+    minAngle: 1.5
+    maxAngle: 7.5
+    angleIncrease: 0.4
     angleDecay: 2
     fireRate: 3
     selectedMode: FullAuto
@@ -57,8 +57,11 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 2.1
-    maxAngle: 4
+    minAngle: 1.7
+    maxAngle: 8.5
+    angleIncrease: 0.6
+    angleDecay: 2.6
+    fireRate: 3
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
@@ -68,9 +71,9 @@
   abstract: true
   components:
   - type: Gun
-    angleIncrease: 1.2
-    angleDecay: 2
-    fireRate: 2.5
+    angleIncrease: 0.4
+    angleDecay: 2.8
+    fireRate: 2.4
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
     soundEmpty:
