@@ -430,7 +430,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             _shuttle.NfGetInertiaDampeningMode(entity), // Frontier
             _shuttle.NfGetServiceFlags(entity), // Frontier
             entity.Comp1.Target, // Frontier
-            entity.Comp1.TargetEntity, // Frontier
+            GetNetEntity(entity.Comp1.TargetEntity), // Frontier
             entity.Comp1.HideTarget); // Frontier
     }
 

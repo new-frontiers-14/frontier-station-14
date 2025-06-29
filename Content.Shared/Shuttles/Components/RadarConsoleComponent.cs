@@ -50,7 +50,7 @@ public sealed partial class RadarConsoleComponent : Component
     /// If not null, the target whose information will be displayed on the radar.
     /// </summary>
     [DataField]
-    public NetEntity TargetEntity = NetEntity.Invalid;
+    public EntityUid TargetEntity = EntityUid.Invalid;
 
     /// <summary>
     /// Whether or not to display the target IFF
