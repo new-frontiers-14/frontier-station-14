@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/29/2025 13:08:05
-  entityCount: 817
+  time: 06/29/2025 15:41:54
+  entityCount: 818
 maps: []
 grids:
 - 70
@@ -2702,6 +2702,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-8.5
       parent: 70
+  - uid: 367
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-5.5
+      parent: 70
   - uid: 447
     components:
     - type: Transform
@@ -2714,12 +2720,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-3.5
-      parent: 70
-  - uid: 42
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,-4.5
       parent: 70
   - uid: 99
     components:
@@ -2765,12 +2765,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-8.5
       parent: 70
-  - uid: 367
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-5.5
-      parent: 70
   - uid: 377
     components:
     - type: Transform
@@ -2810,6 +2804,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-8.5
       parent: 70
+  - uid: 392
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-4.5
+      parent: 70
   - uid: 396
     components:
     - type: Transform
@@ -2820,6 +2820,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-7.5
+      parent: 70
+  - uid: 818
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-5.5
       parent: 70
 - proto: DisposalTrunk
   entities:
@@ -2849,11 +2855,11 @@ entities:
       parent: 70
 - proto: DisposalYJunction
   entities:
-  - uid: 392
+  - uid: 42
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 2.5,-4.5
+      pos: 2.5,-5.5
       parent: 70
 - proto: DrinkGlass
   entities:
@@ -4199,6 +4205,8 @@ entities:
     - type: Transform
       pos: -1.5,-19.5
       parent: 70
+    - type: FuelGenerator
+      targetPower: 34000
 - proto: PosterLegitSafetyMothFires
   entities:
   - uid: 667
