@@ -1,0 +1,30 @@
+- type: job
+  id: PlantTechnician
+  name: job-name-plant-technician
+  description: job-description-plant-technician
+  playTimeTracker: JobPlantTechnician
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 43200 # Frontier - 12 hrs
+  startingGear: PlantTechnicianGear
+  alwaysUseSpawner: true
+  icon: "JobIconPlantTechnician"
+  supervisors: job-supervisors-plant-manager
+  weight: 80
+  displayWeight: 0
+  access:
+  - Engineering
+  - Atmospherics
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: PlantTechnicianGear
+  equipment:
+    pocket2: HolofanProjector

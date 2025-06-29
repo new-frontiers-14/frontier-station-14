@@ -55,12 +55,11 @@ public sealed partial class IdCardConsoleComponent : Component
         //"Cargo",
         //"Chapel",
         //"Chemistry",
-        //"ChiefEngineer",
         //"ChiefMedicalOfficer",
         "Command",
         //"Cryogenics",
         "Detective", // Frontier: moved into alphabetical order
-        //"Engineering",
+        "Engineering",
         "External",
         "Frontier", // Frontier
         //"Hydroponics",
@@ -71,6 +70,7 @@ public sealed partial class IdCardConsoleComponent : Component
         "Maintenance",
         "Medical",
         "Mercenary", // Frontier
+        "ChiefEngineer", // Frontier: moved down, alphabetic w.r.t. "Plant Manager"
         //"Quartermaster",
         //"Research",
         //"ResearchDirector",

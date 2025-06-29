@@ -216,3 +216,29 @@
   components:
   - type: SpawnPoint
     job_id: NFJanitor
+
+- type: entity
+  id: SpawnPointPlantManager
+  parent: SpawnPointJobBase
+  name: plant manager
+  components:
+  - type: SpawnPoint
+    job_id: PlantManager
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: plantmanager
+
+- type: entity
+  id: SpawnPointPlantTechnician
+  parent: SpawnPointJobBase
+  name: plant technician
+  components:
+  - type: SpawnPoint
+    job_id: PlantTechnician
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: planttechnician

@@ -1,0 +1,229 @@
+- type: loadoutGroup
+  id: PlantManagerJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  loadouts:
+  - PlantManagerClothingUniformJumpsuitChiefEngineer
+  - PlantManagerClothingUniformJumpskirtChiefEngineer
+  - PlantManagerClothingUniformJumpsuitChiefEngineerTurtle
+  - PlantManagerClothingUniformJumpskirtChiefEngineerTurtle
+  - PlantManagerClothingUniformJumpsuitMilitaryEngineeringChief
+  fallbacks:
+  - PlantManagerClothingUniformJumpsuitChiefEngineer
+  - PlantManagerClothingUniformJumpskirtChiefEngineer
+
+- type: loadoutGroup
+  id: EngineeringJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  loadouts:
+  - EngineeringClothingUniformJumpsuitEngineering
+  - EngineeringClothingUniformJumpskirtEngineering
+  - EngineeringClothingUniformJumpsuitEngineeringHazard
+  - EngineeringClothingUniformJumpsuitAtmos
+  - EngineeringClothingUniformJumpskirtAtmos
+  - EngineeringClothingUniformJumpsuitAtmosCasual
+  - EngineeringClothingUniformJumpsuitMilitaryEngineering
+  - EngineeringClothingUniformJumpsuitMilitaryAtmospherics
+  fallbacks:
+  - EngineeringClothingUniformJumpsuitEngineering
+  - EngineeringClothingUniformJumpskirtEngineering
+
+- type: loadoutGroup
+  id: PlantManagerBackpack
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - PlantManagerClothingBackpackMessengerChiefEngineer
+  - EngineeringClothingBackpackEngineering
+  - EngineeringClothingBackpackDuffelEngineering
+  - EngineeringClothingBackpackSatchelEngineering
+  - EngineeringClothingBackpackMessengerEngineering
+  - EngineeringClothingBackpackAtmospherics
+  - EngineeringClothingBackpackDuffelAtmospherics
+  - EngineeringClothingBackpackSatchelAtmospherics
+  - EngineeringClothingBackpackMessengerAtmospherics
+  subgroups:
+  - ContractorBackpack
+  fallbacks:
+  - EngineeringClothingBackpackEngineering
+
+- type: loadoutGroup
+  id: EngineeringBackpack
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - EngineeringClothingBackpackEngineering
+  - EngineeringClothingBackpackDuffelEngineering
+  - EngineeringClothingBackpackSatchelEngineering
+  - EngineeringClothingBackpackMessengerEngineering
+  - EngineeringClothingBackpackAtmospherics
+  - EngineeringClothingBackpackDuffelAtmospherics
+  - EngineeringClothingBackpackSatchelAtmospherics
+  - EngineeringClothingBackpackMessengerAtmospherics
+  subgroups:
+  - ContractorBackpack
+  fallbacks:
+  - EngineeringClothingBackpackEngineering
+
+- type: loadoutGroup
+  id: PlantManagerOuterClothing
+  name: loadout-group-contractor-outerclothing
+  minLimit: 0
+  loadouts:
+  - EngineeringClothingOuterVestHazard
+  - PlantManagerClothingOuterWinterCE
+
+- type: loadoutGroup
+  id: EngineeringOuterClothing
+  name: loadout-group-contractor-outerclothing
+  minLimit: 0
+  loadouts:
+  - EngineeringClothingOuterVestHazard
+
+- type: loadoutGroup
+  id: EngineeringForcedOuterClothing
+  name: loadout-group-contractor-outerclothing
+  hidden: true
+  loadouts:
+  - EngineeringClothingOuterEVASuitEngineer
+  fallbacks:
+  - EngineeringClothingOuterEVASuitEngineer
+
+- type: loadoutGroup
+  id: PlantManagerShoes
+  name: loadout-group-contractor-shoes
+  loadouts:
+  - PlantManagerClothingShoesColorWhite
+  - PlantManagerClothingShoesBootsLaceup
+  - EngineeringClothingShoesBootsWork
+  - PlantManagerClothingShoesBootsWinterChiefEngineer
+  fallbacks:
+  - PlantManagerClothingShoesColorWhite
+
+- type: loadoutGroup
+  id: EngineeringShoes
+  name: loadout-group-contractor-shoes
+  loadouts:
+  - EngineeringClothingShoesBootsWork
+  - EngineeringClothingShoesColorBlack
+  - EngineeringClothingShoesColorBrown
+  - EngineeringClothingShoesBootsWinterEngi
+  - EngineeringClothingShoesBootsWinterAtmos
+  fallbacks:
+  - EngineeringClothingShoesBootsWork
+
+- type: loadoutGroup
+  id: PlantManagerHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - PlantManagerClothingHeadHatHardhatWhite
+  - PlantManagerClothingHeadHatBeretEngineering
+  subgroups:
+  - EngineeringHead
+
+- type: loadoutGroup
+  id: EngineeringHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - EngineeringClothingHeadHatHardhatYellow
+  - EngineeringClothingHeadHatHardhatYellowDark
+  - EngineeringClothingHeadHatHardhatBlue
+  - EngineeringClothingHeadHatHardhatOrange
+  - EngineeringClothingHeadHatHardhatRed
+
+- type: loadoutGroup
+  id: PlantManagerEars
+  name: loadout-group-contractor-ears
+  hidden: true
+  loadouts:
+  - PlantManagerClothingHeadsetAltEngineeringPlantManager
+  fallbacks:
+  - PlantManagerClothingHeadsetAltEngineeringPlantManager
+
+- type: loadoutGroup
+  id: EngineeringEars
+  name: loadout-group-contractor-ears
+  hidden: true
+  loadouts:
+  - EngineeringClothingHeadsetEngineering
+  fallbacks:
+  - EngineeringClothingHeadsetEngineering
+
+- type: loadoutGroup
+  id: EngineeringGloves
+  name: loadout-group-contractor-gloves
+  hidden: true
+  loadouts:
+  - EngineeringClothingHandsGlovesColorYellow
+  fallbacks:
+  - EngineeringClothingHandsGlovesColorYellow
+
+- type: loadoutGroup
+  id: PlantManagerNeck
+  name: loadout-group-contractor-neck
+  minLimit: 0
+  loadouts:
+  - PlantManagerClothingNeckMantleCE
+  - PlantManagerClothingNeckCloakCe
+
+- type: loadoutGroup
+  id: PlantManagerPDA
+  name: loadout-group-contractor-pda
+  hidden: true
+  loadouts:
+  - PlantManagerPlantManagerPDA
+  fallbacks:
+  - PlantManagerPlantManagerPDA
+
+- type: loadoutGroup
+  id: PlantTechnicianPDA
+  name: loadout-group-contractor-pda
+  hidden: true
+  loadouts:
+  - PlantTechnicianPlantTechnicianPDA
+  fallbacks:
+  - PlantTechnicianPlantTechnicianPDA
+
+- type: loadoutGroup
+  id: PlantManagerGlasses
+  name: loadout-group-contractor-glasses
+  hidden: true
+  loadouts:
+  - PlantManagerClothingEyesGlassesMesonPlantManager
+  fallbacks:
+  - PlantManagerClothingEyesGlassesMesonPlantManager
+
+- type: loadoutGroup
+  id: EngineeringGlasses
+  name: loadout-group-contractor-glasses
+  hidden: true
+  loadouts:
+  - EngineeringClothingEyesGlassesMeson
+  fallbacks:
+  - EngineeringClothingEyesGlassesMeson
+
+- type: loadoutGroup
+  id: EngineeringFace
+  name: loadout-group-contractor-face
+  hidden: true
+  loadouts:
+  - EngineeringClothingMaskGasAtmos
+  fallbacks:
+  - EngineeringClothingMaskGasAtmos
+
+- type: loadoutGroup
+  id: PlantManagerBelt
+  name: loadout-group-contractor-belt
+  hidden: true
+  loadouts:
+  - PlantManagerClothingBeltChiefEngineerFilledBasic
+  fallbacks:
+  - PlantManagerClothingBeltChiefEngineerFilledBasic
+
+- type: loadoutGroup
+  id: EngineeringBelt
+  name: loadout-group-contractor-belt
+  hidden: true
+  loadouts:
+  - EngineeringClothingBeltUtilityEngineering
+  fallbacks:
+  - EngineeringClothingBeltUtilityEngineering

@@ -15,3 +15,66 @@
   - type: StorageFill
     contents:
       - id: SmallGyroscopeFlatpack
+
+# region Edison
+- type: entity
+  parent: CrateEngineeringSecureEngineering
+  id: CrateEngineeringEmitterBulk
+  name: bulk emitter crate
+  description: A collection of eight emitters for singularity or tesla containment.
+  components:
+  - type: StorageFill
+    contents:
+      - id: EmitterFlatpack
+        amount: 8
+  - type: BindFillToStation # FIXME - better storage/spawner init in variation pass
+
+- type: entity
+  parent: CrateEngineeringSecureEngineering
+  id: CrateEngineeringTeslaCoilBulk
+  name: bulk tesla coil crate
+  description: A collection of six tesla coils. Attracts lightning and generates energy from it.
+  components:
+  - type: StorageFill
+    contents:
+      - id: TeslaCoilFlatpack
+        amount: 6
+  - type: BindFillToStation # FIXME - better storage/spawner init in variation pass
+
+- type: entity
+  id: CrateEngineeringSingularityCollectorBulk
+  parent: CrateEngineeringSecureEngineering
+  name: bulk radiation collector crate
+  description: A collection of six radiation collectors, best used for singularity engines. Plasma is included.
+  components:
+  - type: StorageFill
+    contents:
+      - id: RadiationCollectorFlatpack
+        amount: 6
+      - id: PlasmaTankFilled
+        amount: 6
+  - type: BindFillToStation # FIXME - better storage/spawner init in variation pass
+
+- type: entity
+  id: CrateEngineeringSingularityContainmentBulk
+  parent: CrateEngineeringSecureEngineering
+  name: bulk containment field generator crate
+  description: A collection of eight containment field generators, helps keep a singulo or tesla in submission.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ContainmentFieldGeneratorFlatpack
+        amount: 8
+  - type: BindFillToStation # FIXME - better storage/spawner init in variation pass
+
+- type: entity
+  id: CrateEngineeringTeslaGroundingRodBulk
+  parent: CrateEngineeringSecureEngineering
+  name: bulk tesla grounding rod crate
+  description: A collection of four grounding rods, best for lightning protection.
+  components:
+  - type: StorageFill
+    contents:
+      - id: TeslaGroundingRodFlatpack
+        amount: 4
+  - type: BindFillToStation # FIXME - better storage/spawner init in variation pass
