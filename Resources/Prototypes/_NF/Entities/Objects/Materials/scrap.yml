@@ -1,0 +1,155 @@
+#region base
+- type: entity
+  id: NFBaseScrap
+  parent: BaseScrap
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Materials/Scrap/generic.rsi
+  - type: Item
+    sprite: _NF/Objects/Materials/Scrap/generic.rsi
+
+#region handportable bits
+- type: entity
+  id: NFScrapSilver
+  parent: NFBaseScrap
+  name: fried control panel
+  description: A control panel of sorts with fried circuitry. You could likely extract some materials out of this.
+  components:
+  - type: Sprite
+    layers:
+    - state: junk-apc-1
+      map: [ "base" ]
+  - type: Item
+    heldPrefix: "panel"
+    size: Large
+    shape:
+    - 0,0,2,2 # 3x3
+  - type: RandomSprite
+    available:
+    - base:
+        junk-airalarm-1: ""
+        junk-apc-1: ""
+        junk-panel-1: ""
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500 # 5 sheets
+      RawScrap: 1000 # 10 sheets
+      RawScrapTech: 200 # 2 sheets
+      Silver: 500 # 5 sheets
+
+- type: entity
+  id: NFScrapSolarGlass
+  parent: NFBaseScrap
+  name: ruined solar panel
+  description: An utterly ruined solar panel. You could likely extract some materials out of this.
+  components:
+  - type: MultiHandedItem
+  - type: Sprite
+    layers:
+    - state: junk-solar-1
+      map: [ "base" ]
+  - type: Item
+    heldPrefix: "solar"
+    size: Huge
+    shape:
+    - 0,0,4,4 # 5x5
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 2000 # 20 sheets
+      Steel: 500 # 5 sheets
+      RawScrap: 1000 # 10 sheets
+      Silver: 500 # 5 sheets
+
+#region broken machines
+- type: entity
+  id: ScrapGenericBrokenMachine
+  parent: BaseScrapLarge
+  name: ruined machine
+  description: This machine is beyond repair, but you could likely extract some materials out of it.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Materials/Scrap/broken_machines.rsi
+    layers:
+    - state: autolathe
+      map: [ "base" ]
+  - type: RandomSprite
+    available:
+    - base:
+        autolathe: ""
+        gyroscope: ""
+        imprinter: ""
+        protolathe: ""
+        smes: ""
+        substation: ""
+        thruster: ""
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 3000 # 30 sheets
+      Plasma: 1000 # 10 sheets
+      Plastic: 2000 # 20 sheets
+      Silver: 1000 # 10 sheets
+      RawScrap: 1500 # 15 sheets
+      RawScrapTech: 300 # 3 sheet
+
+#region broken ancient machines
+- type: entity
+  id: ScrapGenericBrokenMachineAncient
+  parent: BaseScrapLarge
+  name: ruined ancient machine
+  description: The machine is ancient and in very poor condition; you can't possibly restore it. You could likely extract some materials out of this, though.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Materials/Scrap/broken_ancient_machines.rsi
+    layers:
+    - state: ancientanalyzer
+      map: [ "base" ]
+  - type: RandomSprite
+    available:
+    - base:
+        ancientanalyzer: ""
+        ancientcomputer: ""
+        ancientimprinter: ""
+        ancientlathe: ""
+        ancientproto: ""
+        ancientserver: ""
+  - type: PhysicalComposition
+    materialComposition:
+      Plasteel: 2000 # 20 sheets
+      Uranium: 1000 # 10 sheets
+      Plastic: 2000 # 20 sheets
+      Gold: 1000 # 10 sheets
+      RawScrap: 1000 # 10 sheets
+      RawScrapTech: 300 # 3 sheet
+
+#region ancient machines
+- type: entity
+  id: ScrapGenericMachineAncient
+  parent: BaseScrapLarge
+  name: ancient machine
+  description: It belongs in a museum. Or material reclaimer.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Materials/Scrap/ancient_machines.rsi
+    layers:
+    - state: perservedanalyzer
+      map: [ "base" ]
+  - type: RandomSprite
+    available:
+    - base:
+        perservedanalyzer: ""
+        perservedcomputer: ""
+        perservedimprinter: ""
+        perservedlathe: ""
+        perservedproto: ""
+        perservedserver: ""
+        perservedserver-2: ""
+  - type: PhysicalComposition
+    materialComposition:
+      Plasteel: 2000 # 20 sheets
+      Plastic: 2000 # 20 sheets
+      Gold: 1000 # 10 sheets
+      RawScrap: 3000 # 30 sheets
+      RawScrapTech: 1000 # 10 sheet
+  - type: StaticPrice
+    price: 2000
