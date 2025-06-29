@@ -1,16 +1,21 @@
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
+using Content.Shared.SprayPainter.Prototypes; // Upstream#37341
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
-using Robust.Client.ResourceManagement;
-using Robust.Shared.Serialization.TypeSerializers.Implementations;
+// using Robust.Client.ResourceManagement; // Upstream#37341
+// using Robust.Shared.Serialization.TypeSerializers.Implementations; // Upstream#37341
+using Robust.Shared.Prototypes; // Upstream#37341
 
 namespace Content.Client.Doors;
 
 public sealed class DoorSystem : SharedDoorSystem
 {
     [Dependency] private readonly AnimationPlayerSystem _animationSystem = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    // [Dependency] private readonly IResourceCache _resourceCache = default!; // Upstream#37341
+    [Dependency] private readonly IComponentFactory _componentFactory = default!; // Upstream#37341
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Upstream#37341
+    [Dependency] private readonly SpriteSystem _sprite = default!; // Upstream#37341
 
     public override void Initialize()
     {
@@ -84,8 +89,10 @@ public sealed class DoorSystem : SharedDoorSystem
         if (!AppearanceSystem.TryGetData<DoorState>(entity, DoorVisuals.State, out var state, args.Component))
             state = DoorState.Closed;
 
-        if (AppearanceSystem.TryGetData<string>(entity, DoorVisuals.BaseRSI, out var baseRsi, args.Component))
-            UpdateSpriteLayers(args.Sprite, baseRsi);
+        // Upstream#37341
+        if (AppearanceSystem.TryGetData<string>(entity, PaintableVisuals.Prototype, out var prototype, args.Component))
+            UpdateSpriteLayers((entity.Owner, args.Sprite), prototype);
+        // End Upstream#37341
 
         if (_animationSystem.HasRunningAnimation(entity, DoorComponent.AnimationKey))
             _animationSystem.Stop(entity.Owner, DoorComponent.AnimationKey);
@@ -138,14 +145,16 @@ public sealed class DoorSystem : SharedDoorSystem
         }
     }
 
-    private void UpdateSpriteLayers(SpriteComponent sprite, string baseRsi)
+    // Upstream#37341
+    private void UpdateSpriteLayers(Entity<SpriteComponent> sprite, string targetProto)
     {
-        if (!_resourceCache.TryGetResource<RSIResource>(SpriteSpecifierSerializer.TextureRoot / baseRsi, out var res))
-        {
-            Log.Error("Unable to load RSI '{0}'. Trace:\n{1}", baseRsi, Environment.StackTrace);
+        if (!_prototypeManager.TryIndex(targetProto, out var target))
             return;
-        }
 
-        sprite.BaseRSI = res.RSI;
+        if (!target.TryGetComponent(out SpriteComponent? targetSprite, _componentFactory))
+            return;
+
+        sprite.Comp.BaseRSI = targetSprite.BaseRSI;
     }
+    // End Upstream#37341
 }
