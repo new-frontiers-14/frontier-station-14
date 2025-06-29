@@ -1,0 +1,51 @@
+- type: reagent
+  id: Respiron
+  name: reagent-name-respiron
+  desc: reagent-desc-respiron
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#fcc4ff"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Oxygenate
+        factor: 1.25
+    Gas:
+      effects:
+      - !type:Oxygenate
+        factor: 1.25
+      - !type:ModifyLungGas
+        conditions:
+        - !type:OrganType
+          type: Vox
+          shouldHave: false
+        - !type:OrganType
+          type: Sheleg
+          shouldHave: false
+        - !type:OrganType
+          type: Slime
+          shouldHave: false
+        ratios:
+          CarbonDioxide: 1.0
+          Respiron: -1.0
+      - !type:ModifyLungGas
+        conditions:
+        - !type:OrganType
+          type: Sheleg
+        ratios:
+          WaterVapor: 1.0
+          Respiron: -1.0
+      - !type:ModifyLungGas
+        conditions:
+        - !type:OrganType
+          type: Vox
+        ratios:
+          Ammonia: 1.0
+          Respiron: -1.0
+      - !type:ModifyLungGas
+        conditions:
+        - !type:OrganType
+          type: Slime
+        ratios:
+          NitrousOxide: 1.0
+          Respiron: -1.0
