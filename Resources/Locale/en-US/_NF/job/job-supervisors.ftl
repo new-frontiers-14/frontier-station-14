@@ -8,3 +8,6 @@ job-supervisors-nfsd = Deputies, the Bailiff, and the Sheriff
 job-supervisors-nf-pirate = the First Mate and Captain
 job-supervisors-nf-pirate-captain = the Captain
 job-supervisors-freebooters-union = the Freebooters' Union
+job-supervisors-syndicate = the Syndicate
+job-supervisors-foreign = the Lieutenants
+job-supervisors-foreign-lieutenant = yourself

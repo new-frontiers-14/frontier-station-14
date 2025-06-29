@@ -1,0 +1,30 @@
+- type: gameMap
+  id: Northway
+  mapName: 'Northway'
+  mapPath: /Maps/_NF/Admin/northwaymap.yml
+  minPlayers: 0
+  maxPlayers: 100
+  randomRotation: false
+  maxRandomOffset: 0
+  stations:
+    Northway:
+      stationProto: AdmemeFrontierSpaceship
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Northway {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '15'
+        - type: ExtraStationInformation
+          iconPath: /Textures/_NF/Logo/icon/icon-256x256.png # used the biggest one, looks better when downscaling than upscaling
+          stationSubtext: 'frontier-lobby-admeme-shuttle-subtext'
+          stationDescription: 'frontier-lobby-admeme-shuttle-description'
+          lobbySortOrder: 10
+        - type: StationJobs
+          availableJobs:
+            ForeignLieutenant: [ 1, 1 ]
+            ForeignEnsign: [ 2, 2 ]
+            ShuttleAiCivilian: [ 1, 1 ]
+          tags:
+          - HeadOfPersonnel
+          - HeadOfSecurity
