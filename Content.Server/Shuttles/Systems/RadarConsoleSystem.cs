@@ -92,7 +92,7 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem // Fro
         else
         {
             ent.Comp.Target = target;
-            ent.Comp.TargetEntity = EntityUid.Invalid;
+            ent.Comp.TargetEntity = null;
         }
         Dirty(ent);
     }

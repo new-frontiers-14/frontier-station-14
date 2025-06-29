@@ -54,7 +54,7 @@ public sealed class NavInterfaceState
     /// <summary>
     /// A settable target to show on radar
     /// </summary>
-    public NetEntity TargetEntity { get; set; }
+    public NetEntity? TargetEntity { get; set; }
 
     /// <summary>
     /// Frontier: whether or not to show the target coords
@@ -69,7 +69,7 @@ public sealed class NavInterfaceState
         InertiaDampeningMode dampeningMode, // Frontier
         ServiceFlags serviceFlags, // Frontier
         Vector2? target, // Frontier
-        NetEntity targetEntity, // Frontier
+        NetEntity? targetEntity, // Frontier
         bool hideTarget) // Frontier
     {
         MaxRange = maxRange;
