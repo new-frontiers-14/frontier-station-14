@@ -60,16 +60,19 @@
         ents: []
 
 - type: entity
-  parent: NFBaseItemWeaponGunMagazineFed
   id: NFBaseWeaponShotgunChamber50Magazine
   abstract: true
   components:
   - type: Sprite # janky here, but mag is optional and tied with chamber
     layers:
-    - state: icon
+    - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
   - type: Gun
     examineCaliber: gun-examine-caliber-50
     soundGunshot:

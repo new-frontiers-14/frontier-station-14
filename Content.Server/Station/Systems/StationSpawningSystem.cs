@@ -253,6 +253,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             {
                 _bank.TryBankWithdraw(session!, prefs!, profile!, initialBankBalance - bankBalance, out var newBalance);
             }
+
+            EquipRoleName(entity.Value, loadout, roleProto!);
             /// End Frontier: overwriting EquipRoleLoadout
         }
 
