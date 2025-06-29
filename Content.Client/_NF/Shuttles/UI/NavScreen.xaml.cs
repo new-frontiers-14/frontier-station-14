@@ -45,7 +45,7 @@ namespace Content.Client.Shuttles.UI
             TargetX.OnTextChanged += _ => _targetCoordsModified = true;
             TargetY.OnTextChanged += _ => _targetCoordsModified = true;
             TargetSet.OnPressed += _ => SetTargetCoords();
-            TargetHide.OnPressed += _ => SetHideTarget(TargetHide.Pressed);
+            TargetShow.OnPressed += _ => SetHideTarget(!TargetShow.Pressed);
         }
 
         private void SetDampenerMode(InertiaDampeningMode mode)
@@ -72,6 +72,7 @@ namespace Content.Client.Shuttles.UI
                 ToggleServiceFlags(NavRadar.ServiceFlags, updateButtonsOnly: true);
             }
 
+            TargetShow.Pressed = !state.HideTarget;
             if (!_targetCoordsModified)
             {
                 if (state.Target != null)
