@@ -21,7 +21,18 @@ public sealed partial class MiniTechnologyCardControl : Control
 
         var discipline = prototypeManager.Index(technology.Discipline);
         Background.ModulateSelfOverride = discipline.Color;
-        Texture.Texture = spriteSys.Frame0(technology.Icon);
+
+        // Frontier: Handle technology icon - prioritize EntityIcon, fall back to Icon
+        if (technology.EntityIcon.HasValue)
+        {
+            Texture.Texture = spriteSys.GetPrototypeIcon(technology.EntityIcon.Value).Default;
+        }
+        else if (technology.Icon != null)
+        {
+            Texture.Texture = spriteSys.Frame0(technology.Icon);
+        }
+        // End Frontier: If neither is available, the texture will remain null/empty
+
         NameLabel.SetMessage(Loc.GetString(technology.Name));
 
         var tooltip = new Tooltip();
