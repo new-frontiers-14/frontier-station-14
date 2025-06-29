@@ -202,6 +202,7 @@
     whitelist:
       tags:
         - Grenade
+        - NFCartridgeGrenade40mm #frontier
     capacity: 2
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
@@ -275,7 +276,7 @@
 
 - type: entity
   id: ShuttleGunPirateCannon
-  parent: [BaseStructureDisableToolUse, ShuttleGunBase] # Frontier: Added BaseStructureDisableToolUse
+  parent: [BaseStructureDisableToolUse, ShuttleGunBase, BaseC3PirateContrabandNoValue] # Frontier: Added BaseStructureDisableToolUse, BaseC3PirateContrabandNoValue
   name: pirate ship cannon
   description: Kaboom!
   components:

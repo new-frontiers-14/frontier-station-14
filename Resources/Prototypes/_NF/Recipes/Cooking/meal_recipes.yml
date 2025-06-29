@@ -216,6 +216,42 @@
   recipeType:
   - Assembler
 
+# Birb
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedWholeChicken
+  name: whole baked chicken
+  result: FoodMeatWholeChickenCooked
+  time: 20
+  group: Meats
+  solids:
+    FoodMeatWholeChicken: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedWholeDuck
+  name: whole baked duck
+  result: FoodMeatWholeDuckCooked
+  time: 20
+  group: Meats
+  solids:
+    FoodMeatWholeDuck: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedWholePenguin
+  name: whole baked penguin
+  result: FoodMeatWholePenguinCooked
+  time: 20
+  group: Meats
+  solids:
+    FoodMeatWholePenguin: 1
+  recipeType:
+  - Oven
+
+
 # Sushi
 
 - type: microwaveMealRecipe
@@ -990,9 +1026,9 @@
   - Oven
 
 - type: microwaveMealRecipe
-  id: RecipeTonkatsuNoodles
-  name: tonkatsu noodles
-  result: FoodMealTonkatsuNoodles
+  id: RecipeTonkotsuNoodles
+  name: tonkotsu noodles
+  result: FoodMealTonkotsuNoodles
   time: 20
   group: Pasta
   solids:
@@ -1004,6 +1040,42 @@
   reagents:
     Soysauce: 5
     Water: 15
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBunCotton
+  name: cotton bun recipe
+  result: FoodBunCotton
+  time: 5
+  group: Moth
+  solids:
+    FoodDoughCottonSlice: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerPlainCotton
+  name: plain cotton burger recipe
+  result: FoodBurgerCotton
+  time: 10
+  group: Moth
+  solids:
+    FoodBunCotton: 1
+    CottonBol: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerCottonCheese
+  name: cotton cheeseburger recipe
+  result: FoodBurgerCottonCheese
+  time: 10
+  group: Moth
+  solids:
+    FoodBunCotton: 1
+    CottonBol: 1
+    FoodCheeseSlice: 1
   recipeType:
   - Oven
 

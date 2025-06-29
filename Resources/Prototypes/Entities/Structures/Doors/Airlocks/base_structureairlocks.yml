@@ -161,9 +161,11 @@
   - type: IconSmooth
     key: walls
     mode: NoSprite
-  - type: PaintableAirlock
-    group: Standard
-    department: Civilian
+  # - type: PaintableAirlock # Upstream#37341
+  #   group: Standard # Upstream#37341
+  #   department: Civilian # Upstream#37341
+  - type: Paintable # Upstream#37341
+    group: AirlockStandard # Upstream#37341
   - type: StaticPrice
     price: 150
   - type: LightningTarget
@@ -189,6 +191,8 @@
   components:
   - type: RCDDeconstructable
     deconstructable: false
+  - type: Door # Frontier
+    remoteCompatible: false # Frontier
 
 - type: entity
   id: AirlockGlass
@@ -223,8 +227,10 @@
   - type: Construction
     graph: Airlock
     node: glassAirlock
-  - type: PaintableAirlock
-    group: Glass
+  # - type: PaintableAirlock # Upstream#37341
+  #   group: Glass # Upstream#37341
+  - type: Paintable # Upstream#37341
+    group: AirlockGlass # Upstream#37341
   - type: RadiationBlocker
     resistance: 2
   - type: Tag
