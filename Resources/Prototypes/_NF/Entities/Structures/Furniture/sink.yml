@@ -1,0 +1,21 @@
+- type: entity
+  name: scuttlebutt
+  id: NFEmergencySink
+  description: This little sink is drawing moisture from the environmental systems. Not responsible for nosebleeds.
+  parent: SinkStemless
+  suffix: Water
+  components:
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 0.25
+  - type: SolutionContainerManager
+    solutions:
+      drainBuffer:
+        maxVol: 200
+      tank:
+        reagents:
+        - ReagentId: Water
+          Quantity: 50
