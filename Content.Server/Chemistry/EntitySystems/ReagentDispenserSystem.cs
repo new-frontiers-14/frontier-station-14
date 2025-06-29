@@ -13,13 +13,11 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Content.Shared.Labels.Components;
-using Content.Shared.Chemistry.Components.SolutionManager; // Frontier
-using Content.Shared.Chemistry.Components; // Frontier
 using Content.Shared.Chemistry.Reagent; // Frontier
-using Content.Server.Labels; // Frontier
 using Content.Shared.Verbs; // Frontier
 using Content.Shared.Examine; // Frontier
 using Content.Server.Construction; // Frontier
+using Content.Shared.Labels.EntitySystems; // Frontier
 
 namespace Content.Server.Chemistry.EntitySystems
 {

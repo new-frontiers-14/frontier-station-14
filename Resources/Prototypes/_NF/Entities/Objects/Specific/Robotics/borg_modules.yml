@@ -1,32 +1,4 @@
 - type: entity
-  id: BorgModuleAdvancedMining
-  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
-  name: advanced mining cyborg module
-  components:
-  - type: Sprite
-    layers:
-    - state: cargo
-    - state: icon-advancedmining
-      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
-  - type: ItemBorgModule
-    moduleId: NFAdvancedMining
-    items:
-    - MiningDrillDiamond
-    - Shovel
-    - AdvancedMineralScannerUnpowered
-    - JawsOfLife
-    - RadioHandheldNF
-  - type: DroppableBorgModule
-    moduleId: NFAdvancedMining
-    items:
-    - id: OreBagOfHolding
-      whitelist:
-        components:
-        - NFOreBag
-  - type: BorgModuleIcon
-    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-drill-module }
-
-- type: entity
   id: BorgModuleAdvancedParamedic
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
   name: chemical recovery cyborg module
@@ -58,7 +30,7 @@
   - type: ItemBorgModule
     moduleId: NFJetpack
     items:
-    - HandheldGPSBasic
+    - BorgHandheldGPSBasic
     - HandHeldMassScannerBorg
     - BorgClock
   - type: DroppableBorgModule
@@ -85,15 +57,21 @@
 - type: entity
   id: BorgModuleRCDShipyard
   parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule ]
-  name: shipyard RCD cyborg module
+  name: engineering cyborg module
   components:
   - type: Sprite
     layers:
     - state: engineering
     - state: icon-rcd-shipyard
       sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    moduleId: ShipyardRCD
+    items:
+    - GasAnalyzer
+    - HolofanProjectorBorg
+    - GeigerCounter
   - type: DroppableBorgModule
-    moduleId: RCD
+    moduleId: ShipyardRCD
     items:
     - id: ShipyardRCD
       whitelist:
@@ -221,13 +199,26 @@
         tags:
         - GlassBeaker
         - DrinkGlass
-      displayName: borg-placeholder-display-name-glassware
+        components:
+        - Utensil
+        - NFCookware
+      displayName: borg-placeholder-display-name-cookware
+    - id: FoodPlateTin
+      whitelist:
+        tags:
+        - GlassBeaker
+        - DrinkGlass
+        components:
+        - Utensil
+        - NFCookware
+      displayName: borg-placeholder-display-name-cookware
     placeholders:
     - id: ReagentContainerFlour
       whitelist:
         components:
         - Food
         - Produce
+        - NFIngredient
         tags:
         - Ingredient
       displayName: borg-placeholder-display-name-food-or-ingredients
@@ -236,6 +227,7 @@
         components:
         - Food
         - Produce
+        - NFIngredient
         tags:
         - Ingredient
       displayName: borg-placeholder-display-name-food-or-ingredients

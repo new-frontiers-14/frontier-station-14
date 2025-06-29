@@ -17,7 +17,7 @@
   abstract: true
   components:
   - type: StationRenameFaxes
-  
+
 - type: entity
   id: BaseStationRenameHolopads
   abstract: true
@@ -55,7 +55,7 @@
   id: NFBaseStationCargo
   abstract: true
   components:
-    - type: StationCargoOrderDatabase
+    - type: NFStationCargoOrderDatabase
 
 - type: entity
   id: BaseStationCargoMarket
@@ -69,6 +69,7 @@
       - Metal
       - Ingot
       - RawMaterial
+      - ArtifactFragment
       - CrystalRed
       - CrystalGreen
       - CrystalPink
@@ -105,11 +106,11 @@
       - MindContainer # Positronic brains
       - Body # No corpses
       - MobPrice # Animals (live or dead) and the like
-      - Artifact # Unique, abusable for research points
+      - XenoArtifact # Unique, abusable for research points
       - RCD # Dup charges
       - Storage # Till fixed
       - StorageFill # Till fixed
-      - BindToStation # no laundering your rental ship machines
+      - StationBoundObject # no laundering your rental ship machines
     whitelistOverride:
       components:
       - UraniumMaterials # Counts as food

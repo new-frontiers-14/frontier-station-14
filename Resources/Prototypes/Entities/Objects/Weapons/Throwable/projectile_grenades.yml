@@ -25,6 +25,9 @@
         enum.ConstructionVisuals.Layer:
           Primed: { state: primed }
           Unprimed: { state: icon }
+  - type: Tag
+    tags:
+    - HandGrenade
 
 - type: entity
   parent: [ProjectileGrenadeBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
@@ -40,8 +43,6 @@
   - type: ProjectileGrenade
     fillPrototype: NFPelletClusterRubber # Frontier: use NF variant
     capacity: 30
-  - type: FlashOnTrigger
-    range: 7
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Effects/flash_bang.ogg"

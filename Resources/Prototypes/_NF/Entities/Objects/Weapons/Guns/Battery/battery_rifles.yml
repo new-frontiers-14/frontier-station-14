@@ -76,3 +76,42 @@
     range: 2
     energyConsumption: 2700000
     disableDuration: 30
+
+#region Thermal
+- type: entity
+  id: NFWeaponEnergyRifleTemperature
+  parent: [ NFBaseWeaponFrameEnergyRifleNanotrasen ] # chamber defined below, no huge value in a one-off
+  name: temperature gun
+  description: An advanced gun that shoots beams capable of heating or cooling their target.
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-1
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi
+  - type: Battery # 30 shots
+    maxCharge: 3000
+    startingCharge: 3000
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBoltTempgunCold # Frontier
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBoltTempgunCold 
+      fireCost: 100
+    - proto: NFBoltTempgunHot
+      fireCost: 100
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-custom-made

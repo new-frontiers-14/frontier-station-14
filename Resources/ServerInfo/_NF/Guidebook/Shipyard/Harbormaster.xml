@@ -1,92 +1,26 @@
 <Document>
   # HARBORMASTER-CLASS SERVICE SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="Thruster"/>
-  <GuideEntityEmbed Entity="Thruster"/>
-  <GuideEntityEmbed Entity="Thruster"/>
-  <GuideEntityEmbed Entity="Thruster"/>
-  <GuideEntityEmbed Entity="Thruster"/>
-  <GuideEntityEmbed Entity="Thruster"/>
+  <GuideEntityEmbed Entity="NFPosterContrabandLvhiLogo" Caption=""/>
   </Box>
   <Box>
   <GuideEntityEmbed Entity="ShuttleMapHarbormaster" Caption=""/>
   </Box>
-    [color=#a4885c]Ship Size:[/color] Small
-	
-	[color=#a4885c]Recommended Crew:[/color] 1
-	
-	[color=#a4885c]Power Gen Type:[/color] Plasma
-	
+  [color=#a4885c]Ship Size:[/color] Small
+
+	[color=#a4885c]Recommended Crew:[/color] 1+
+
+	[color=#a4885c]Power Gen Type:[/color] Bananium
+
 	[color=#a4885c]Expeditions:[/color] None
-	
+
 	[color=#a4885c]IFF Console:[/color] None
-	
+
   "An affordable shuttle for towing derelict ships to and from Frontier Station. Manufactured by Langstad-Voigt Heavy Industries."
-    
-  # PREFLIGHT CHECKLIST
-  
-  ## 1. Power supply
-  
-  ## 1.1. Battery units
-  <Box>
-  <GuideEntityEmbed Entity="SMESBasic"/>
-  <GuideEntityEmbed Entity="SubstationBasic"/>
-  <GuideEntityEmbed Entity="APCBasic"/>
-  </Box>
-  
-  - Check that the SMES unit is anchored to the floor.
-  - Check that the substation unit is anchored to the floor.
-  - Check that the APC unit's Main Breaker is toggled on.
-  - Check the APC unit's current Load* (W).
-  
-  ## 1.2. P.A.C.M.A.N. generator unit
-  <Box>
-  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
-  <GuideEntityEmbed Entity="SheetPlasma"/>
-  </Box>
-  
-  - Check that P.A.C.M.A.N. generator units are anchored to the floor.
-  - Check that P.A.C.M.A.N. generator units are fueled. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
-  - Check that P.A.C.M.A.N. generator units are set to HV output.
-  - Set Target Power to 15-16** [bold]kW[/bold] on each generator unit.
-  - Start P.A.C.M.A.N. generator units.
-  
-  ## 2. Atmospherics
-  
-  ## 2.1. Distribution Loop
-  <Box>
-  <GuideEntityEmbed Entity="AirCanister"/>
-  <GuideEntityEmbed Entity="GasPort"/>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  </Box>
-  
-  - Check that the air canister is anchored to connector port.
-  - Check that the distribution pump is set to 101kPa.
-  - Enable the distribution pump.
-  
-  ## 2.2. Waste Loop
-  <Box>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  <GuideEntityEmbed Entity="AirAlarm"/>
-  </Box>
-    
-  - Enable waste loop pump.
-  - Disable Auto Mode on the Air Alarm in the Engine Room.
-  - Set the Air Alarm in the Engine Room to Filtering (Wide).
-  
-  ## 3. Other checks
-  <Box>
-  <GuideEntityEmbed Entity="Gyroscope"/>
-  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  </Box>
-  
-  - Check that the gyroscope is anchored, powered, and enabled.
-  - Check that the mini gravity generator is anchored, powered, and enabled.
-  
-  ## Sidenotes
-  
-  * - Harbormaster-class tugboats are equipped with two APC units that can be used to appraise the ship's total power consumption. Unmodified Harbormaster-class tugboat requires 30 kW of power to remain operational.
-  
-  ** - Harbormaster-class tugboats have higher power demand than single standard P.A.C.M.A.N. generator unit can provide at optimal settings, however the ship comes equipped with two P.A.C.M.A.N. generator units, recommended target power output for each P.A.C.M.A.N. generator unit is 16 kW.
+
+  # Tips on running LVHI Harbormaster shuttles
+  - The total power load for the shuttle in standard complectation is 36 [bold]kW[/bold]. For more general info on the power grid, see the guidebook article [textlink="Power" link="Power"].
+  - Be warned that D-K Jr.-type portable generator is radioactive, wear radiation suit when working with the generator.
+  - For basics of shuttle piloting see [textlink="Piloting" link="Piloting"].
 
 </Document>

@@ -77,7 +77,6 @@
       Dead: 0
     baseDecayRate: 0.1
   - type: DamageStateVisuals
-    rotate: true
     states:
       Alive:
         Base: regalrat
@@ -118,9 +117,12 @@
     nameSegments:
     - NamesRegalratKingdom
     - NamesRegalratTitle
-  # - type: GuideHelp # Frontier: irrelevant
+    nameFormat: name-format-regal-rat
+  # Frontier: irrelevant
+  # - type: GuideHelp
   #   guides:
   #   - MinorAntagonists
+  # End Frontier
   - type: Grammar
     attributes:
       gender: male

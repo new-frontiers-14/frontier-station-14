@@ -14,6 +14,8 @@
 
   defaultModules:
   - BorgModuleTool
+  - BorgModuleArtifact
+  - BorgModuleAnomaly
   - BorgModuleJetpack # Frontier
 
   radioChannels:
@@ -83,8 +85,9 @@
     - BorgModuleCargo
 
   defaultModules:
-  - BorgModuleGrapplingGun
+  - BorgModuleTool
   - BorgModuleMining
+  - BorgModuleTraversal
   - BorgModuleAppraisal
   - BorgModuleJetpack # Frontier
 
@@ -120,8 +123,9 @@
     - BorgModuleJanitor
 
   defaultModules:
-  - BorgModuleLightReplacer
+  - BorgModuleTool
   - BorgModuleCleaning
+  - BorgModuleCustodial
   - BorgModuleJetpack # Frontier
 
   radioChannels:
@@ -156,9 +160,12 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModuleTreatment
-  - BorgModuleAdvancedTreatment # Frontier
-  - BorgModuleDefibrillator # Frontier
+  - BorgModuleTool
+  - BorgModuleChemical
+  - BorgModuleTopicals
+  - BorgModuleRescue
+  # - BorgModuleAdvancedTreatment # Frontier
+  # - BorgModuleDefibrillator # Frontier
   - BorgModuleJetpack # Frontier
 
   radioChannels:
@@ -206,11 +213,15 @@
     - BorgModuleService
 
   defaultModules:
+  - BorgModuleTool
   - BorgModuleMusique
   # - BorgModuleService # Frontier: deprecated, use NF variant
   - BorgModuleClowning
-  - BorgModuleBureaucracy # Frontier
+  - BorgModuleGardening
+  - BorgModuleHarvesting
+  - BorgModuleBureaucracy # Frontier: FIXME - stacked as hell
   - BorgModuleNFService # Frontier
+  - BorgModuleChef # Frontier
   - BorgModuleJetpack # Frontier
 
   radioChannels:

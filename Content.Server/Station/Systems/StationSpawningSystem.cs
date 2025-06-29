@@ -14,8 +14,6 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
-using Content.Shared.Random;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.Station;
 using JetBrains.Annotations;
@@ -23,14 +21,15 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.Spawners.Components;
 using Content.Shared._NF.Bank.Components; // DeltaV
 using Content.Server._NF.Bank; // Frontier
 using Content.Server.Preferences.Managers; // Frontier
-using System.Linq;
-using Content.Shared.NameIdentifier; // Frontier
+using System.Linq; // Frontier
+using Content.Server.CartridgeLoader; // Frontier
+using Content.Shared.CartridgeLoader; // Frontier
+using Robust.Server.GameObjects; // Frontier
 
 namespace Content.Server.Station.Systems;
 
@@ -50,19 +49,11 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IDependencyCollection _dependencyCollection = default!; // Frontier
     [Dependency] private readonly IServerPreferencesManager _preferences = default!; // Frontier
-
     [Dependency] private readonly BankSystem _bank = default!; // Frontier
-    private bool _randomizeCharacters;
-
-    /// <inheritdoc/>
-    public override void Initialize()
-    {
-        base.Initialize();
-        Subs.CVar(_configurationManager, CCVars.ICRandomCharacters, e => _randomizeCharacters = e, true);
-    }
+    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!; // Frontier
+    [Dependency] private readonly TransformSystem _xformSystem = default!; // Frontier
 
     /// <summary>
     /// Attempts to spawn a player character onto the given station.
@@ -157,30 +148,22 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             return jobEntity;
         }
 
-        string speciesId;
-        if (_randomizeCharacters)
-        {
-            var weightId = _configurationManager.GetCVar(CCVars.ICRandomSpeciesWeights);
-            var weights = _prototypeManager.Index<WeightedRandomSpeciesPrototype>(weightId);
-            speciesId = weights.Pick(_random);
-        }
-        else if (profile != null)
-        {
-            speciesId = profile.Species;
-        }
-        else
-        {
-            speciesId = SharedHumanoidAppearanceSystem.DefaultSpecies;
-        }
+        string speciesId = profile != null ? profile.Species : SharedHumanoidAppearanceSystem.DefaultSpecies;
 
         if (!_prototypeManager.TryIndex<SpeciesPrototype>(speciesId, out var species))
             throw new ArgumentException($"Invalid species prototype was used: {speciesId}");
 
         entity ??= Spawn(species.Prototype, coordinates);
 
-        if (_randomizeCharacters)
+        if (profile != null)
         {
-            profile = HumanoidCharacterProfile.RandomWithSpecies(speciesId);
+            _humanoidSystem.LoadProfile(entity.Value, profile);
+            _metaSystem.SetEntityName(entity.Value, profile.Name);
+
+            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
+            {
+                AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
+            }
         }
 
         if (loadout != null)
@@ -270,32 +253,17 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             {
                 _bank.TryBankWithdraw(session!, prefs!, profile!, initialBankBalance - bankBalance, out var newBalance);
             }
+
+            EquipRoleName(entity.Value, loadout, roleProto!);
             /// End Frontier: overwriting EquipRoleLoadout
         }
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
         RaiseLocalEvent(entity.Value, ref gearEquippedEv);
 
-        if (profile != null)
+        if (prototype != null && TryComp(entity.Value, out MetaDataComponent? metaData))
         {
-            // Frontier: allow pseudonyms
-            var name = loadout != null && !string.IsNullOrEmpty(loadout.EntityName) ? loadout.EntityName : profile.Name;
-            // Janky hack for borgs
-            if (TryComp<NameIdentifierComponent>(entity.Value, out var identifier))
-            {
-                // Append our name identifier (why have a pseudonym for a role that has a complete name identifier group?)
-                name = $"{name} {identifier.FullIdentifier}";
-            }
-            // End Frontier
-            if (prototype != null)
-                SetPdaAndIdCardData(entity.Value, name, prototype, station); // Frontier: profile.Name<name
-
-            _humanoidSystem.LoadProfile(entity.Value, profile);
-            _metaSystem.SetEntityName(entity.Value, name); // Frontier: profile.Name<name
-            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
-            {
-                AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
-            }
+            SetPdaAndIdCardData(entity.Value, metaData.EntityName, prototype, station);
         }
 
         DoJobSpecials(job, entity.Value);
@@ -354,6 +322,30 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
 
     #endregion Player spawning helpers
+    // Frontier: equip cartridges
+    protected override void EquipPdaCartridgesIfPossible(EntityUid entity, List<EntProtoId> pdaCartridges)
+    {
+        if (!InventorySystem.TryGetSlotEntity(entity, "id", out var slotEnt))
+        {
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty cartridge loadout, but doesn't have anything in their ID slot!");
+            return;
+        }
+        if (!TryComp<CartridgeLoaderComponent>(slotEnt, out var cartridgeLoader))
+        {
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty cartridge loadout, but the item in their ID slot isn't a cartridge loader!");
+            return;
+        }
+        var coords = _xformSystem.GetMapCoordinates(entity);
+        foreach (var entProto in pdaCartridges)
+        {
+            var spawnedEntity = Spawn(entProto, coords);
+            if (!_cartridgeLoader.InstallCartridge(slotEnt.Value, spawnedEntity, cartridgeLoader))
+                DebugTools.Assert(false, $"Entity {entity} could not install cartridge {entProto} into their PDA {slotEnt.Value}!");
+
+            QueueDel(spawnedEntity);
+        }
+    }
+    // End Frontier: equip cartridges
 }
 
 /// <summary>

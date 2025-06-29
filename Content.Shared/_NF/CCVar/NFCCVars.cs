@@ -260,4 +260,14 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<bool> AdminOverlayBalance =
         CVarDef.Create("nf14.ui.admin_overlay_balance", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /*
+     * Xenoarchaeology
+     */
+
+    /// <summary>
+    /// If true, the admin overlay will display the players starting position.
+    /// </summary>
+    public static readonly CVarDef<bool> XenoarchSingleUseNodes =
+        CVarDef.Create("nf14.xenoarch.single_use_nodes", true, CVar.REPLICATED);
 }

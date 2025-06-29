@@ -66,7 +66,7 @@
 - type: entity
   parent: [ NFBaseGrenade40mm, GrenadeBaton ]
   id: NFGrenadeBaton
-  name: baton grenade
+  name: baton grenade round
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeBaton
@@ -74,15 +74,23 @@
 - type: entity
   parent: [ NFBaseGrenade40mm, GrenadeBlast ]
   id: NFGrenadeBlast
-  name: blast grenade
+  name: blast grenade round
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeBlast
 
 - type: entity
+  parent: [ NFBaseGrenade40mm, GrenadeCleanade ]
+  id: NFGrenadeCleanade
+  name: cleanade grenade round
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletGrenadeCleanade
+
+- type: entity
   parent: [ NFBaseGrenade40mm, GrenadeFlash ]
   id: NFGrenadeFlash
-  name: flash grenade
+  name: flash grenade round
   components:
   - type: Tag
     tags:
@@ -94,7 +102,7 @@
 - type: entity
   parent: [ NFBaseGrenade40mm, GrenadeFrag ]
   id: NFGrenadeFrag
-  name: frag grenade
+  name: frag grenade round
   components:
   - type: CartridgeAmmo
     proto: NFBulletGrenadeFrag
@@ -102,7 +110,7 @@
 - type: entity
   parent: [ NFBaseGrenade40mm, GrenadeEMP ]
   id: NFGrenadeEMP
-  name: EMP grenade
+  name: EMP grenade round
   components:
   - type: Tag
     tags:

@@ -15,8 +15,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/engineering.rsi
-  - type: PaintableAirlock
-    department: Engineering
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Engineering # Upstream#37341
   - type: Wires
     layoutId: AirlockEngineering
 
@@ -35,8 +35,18 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/cargo.rsi
-  - type: PaintableAirlock
-    department: Cargo
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Cargo # Upstream#37341
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: Airlock
+  id: AirlockSalvage
+  suffix: Salvage
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/salvage.rsi
   - type: Wires
     layoutId: AirlockCargo
 
@@ -57,8 +67,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/medical.rsi
-  - type: PaintableAirlock
-    department: Medical
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Medical # Upstream#37341
   - type: Wires
     layoutId: AirlockMedical
 
@@ -85,8 +95,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/science.rsi
-  - type: PaintableAirlock
-    department: Science
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Science # Upstream#37341
   - type: Wires
     layoutId: AirlockScience
 
@@ -99,8 +109,8 @@
     sprite: Structures/Doors/Airlocks/Standard/command.rsi
   - type: WiresPanelSecurity
     securityLevel: medSecurity
-  - type: PaintableAirlock
-    department: Command
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Command # Upstream#37341
   - type: Wires
     layoutId: AirlockCommand
 
@@ -111,8 +121,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/security.rsi
-  - type: PaintableAirlock
-    department: Security
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Security # Upstream#37341
   - type: Wires
     layoutId: AirlockSecurity
 
@@ -141,6 +151,8 @@
     sprite: Structures/Doors/Airlocks/Standard/mining.rsi
   - type: Wires
     layoutId: AirlockCargo
+  - type: Paintable # Upstream#37341
+    group: null # Upstream#37341
 
 - type: entity
   parent: AirlockCommand # if you get centcom door somehow it counts as command, also inherit panel
@@ -157,6 +169,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch.rsi
+  - type: Paintable # Upstream#37341
+    group: null # Upstream#37341
 
 - type: entity
   parent: Airlock
@@ -165,6 +179,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
+  - type: Paintable # Upstream#37341
+    group: null # Upstream#37341
 
 # Glass
 - type: entity
@@ -174,8 +190,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/engineering.rsi
-  - type: PaintableAirlock
-    department: Engineering
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Engineering # Upstream#37341
   - type: Wires
     layoutId: AirlockEngineering
 
@@ -202,8 +218,18 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/cargo.rsi
-  - type: PaintableAirlock
-    department: Cargo
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Cargo # Upstream#37341
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockSalvageGlass
+  suffix: Salvage
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Glass/salvage.rsi
   - type: Wires
     layoutId: AirlockCargo
 
@@ -224,8 +250,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/medical.rsi
-  - type: PaintableAirlock
-    department: Medical
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Medical # Upstream#37341
   - type: Wires
     layoutId: AirlockMedical
 
@@ -252,8 +278,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/science.rsi
-  - type: PaintableAirlock
-    department: Science
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Science # Upstream#37341
   - type: Wires
     layoutId: AirlockScience
 
@@ -264,8 +290,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/command.rsi
-  - type: PaintableAirlock
-    department: Command
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Command # Upstream#37341
   - type: WiresPanelSecurity
     securityLevel: medSecurity
   - type: Wires
@@ -278,8 +304,8 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/security.rsi
-  - type: PaintableAirlock
-    department: Security
+  # - type: PaintableAirlock # Upstream#37341
+  #   department: Security # Upstream#37341
   - type: Wires
     layoutId: AirlockSecurity
 
