@@ -13,10 +13,10 @@
     maxAngle: -0
   - type: Gun
     projectileSpeed: 30
-    minAngle: 1.9
-    maxAngle: 5.7
-    angleIncrease: 5
-    angleDecay: 3
+    minAngle: 1.6
+    maxAngle: 8
+    angleIncrease: 0.4
+    angleDecay: 2
     fireRate: 1
     selectedMode: SemiAuto
     availableModes:
@@ -34,6 +34,10 @@
   parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleSniper ]
   abstract: true
   components:
+  - type: Gun
+    angleIncrease: 0.5
+    angleDecay: 3.5
+    fireRate: 0.8
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-cybersun-industries
 

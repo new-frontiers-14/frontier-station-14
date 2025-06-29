@@ -1,0 +1,44 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Pulsar
+  parent: BaseVessel
+  name: FSB Pulsar
+  description: The Pulsar offers two robust polar work sites built around object retrieval and research circling a command hub. With a focus on safety, know that any catastrophic failures are entirely the fault of the operator! Brought to you by the Far Star Biotech corporation.
+  price: 45000 # TODO: Get creggs at store - Dusty Lens
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/pulsar.yml
+  guidebookPage: ShipyardPulsar
+  class:
+  - Science
+  engine:
+  - Bananium
+
+- type: gameMap
+  id: Pulsar
+  mapName: 'FSB Pulsar'
+  mapPath: /Maps/_NF/Shuttles/pulsar.yml
+  minPlayers: 0
+  stations:
+    Pulsar:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Pulsar {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
