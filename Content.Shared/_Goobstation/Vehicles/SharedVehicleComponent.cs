@@ -66,6 +66,9 @@ public sealed partial class VehicleComponent : Component
     [DataField]
     public Vector2 WestOffset = Vector2.Zero;
 
+    [DataField, AutoNetworkedField]
+    public bool RadarBlip = true;
+
     /// <summary>
     /// The container name for the vehicle key.
     /// </summary>

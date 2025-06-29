@@ -80,6 +80,9 @@ public sealed class UnpoweredFlashlightSystem : EntitySystem
 
     private void OnGotEmagged(EntityUid uid, UnpoweredFlashlightComponent component, ref GotEmaggedEvent args)
     {
+        if (args.Handled) // Frontier
+            return; // Frontier
+
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
             return;
 

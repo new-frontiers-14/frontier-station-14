@@ -108,7 +108,7 @@ public sealed class EmagSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        if (!HasComp<EmaggedComponent>(target))
+        if (_tag.HasTag(target, ent.Comp.DemagImmuneTag))
             return false;
 
         if (_sharedCharges.IsEmpty(ent.Owner))

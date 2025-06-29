@@ -21,7 +21,9 @@ using Content.Shared.Movement.Pulling.Events; // Frontier
 using Content.Shared.Popups; // Frontier
 using Robust.Shared.Network; // Frontier
 using Robust.Shared.Prototypes; // Frontier
-using Robust.Shared.Timing; // Frontier
+using Robust.Shared.Timing;
+using Content.Shared.Emag.Systems;
+using Content.Shared._NF.Radar; // Frontier
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
@@ -35,12 +37,13 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
     [Dependency] private readonly INetManager _net = default!; // Frontier
-    [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
-    [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Frontier
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!; // Frontier
-    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
+    [Dependency] private readonly EmagSystem _emag = default!; // Frontier
+    [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
+    [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
@@ -55,6 +58,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<VehicleComponent, UnstrappedEvent>(OnUnstrapped);
         SubscribeLocalEvent<VehicleComponent, VirtualItemDeletedEvent>(OnDropped);
+        SubscribeLocalEvent<VehicleComponent, GotEmaggedEvent>(OnGotEmagged, before: [typeof(UnpoweredFlashlightSystem)]); // Frontier
+        SubscribeLocalEvent<VehicleComponent, GotUnEmaggedEvent>(OnGotUnemagged, before: [typeof(UnpoweredFlashlightSystem)]); // Frontier
 
         SubscribeLocalEvent<VehicleComponent, EntInsertedIntoContainerMessage>(OnInsert);
         SubscribeLocalEvent<VehicleComponent, EntRemovedFromContainerMessage>(OnEject);
@@ -318,12 +323,55 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             accessComp.Tags.Clear();
     }
 
-    // Frontier: prevent drivers from pulling things
+    // Frontier: prevent drivers from pulling things, emag handlers
     private void OnRiderPull(Entity<VehicleRiderComponent> ent, ref PullAttemptEvent args)
     {
         if (args.PullerUid == ent.Owner)
             args.Cancelled = true;
     }
+
+    private void OnGotEmagged(Entity<VehicleComponent> ent, ref GotEmaggedEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (ent.Comp.RadarBlip)
+        {
+            ent.Comp.RadarBlip = false;
+            Dirty(ent);
+
+            HandleEmag(ent);
+
+            // Hack: assuming the only other emaggable component on the vehicle is a flashlight
+            args.Repeatable = HasComp<UnpoweredFlashlightComponent>(ent);
+            args.Handled = true;
+        }
+    }
+
+    private void OnGotUnemagged(Entity<VehicleComponent> ent, ref GotUnEmaggedEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!ent.Comp.RadarBlip)
+        {
+            ent.Comp.RadarBlip = true;
+            Dirty(ent);
+
+            HandleUnemag(ent);
+
+            args.Handled = true;
+        }
+    }
+
+    protected abstract void HandleEmag(Entity<VehicleComponent> ent);
+    protected abstract void HandleUnemag(Entity<VehicleComponent> ent);
     // End Frontier
 }
 
