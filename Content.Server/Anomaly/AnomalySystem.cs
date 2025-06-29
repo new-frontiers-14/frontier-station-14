@@ -18,6 +18,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Server.Stack; // Frontier
 
 namespace Content.Server.Anomaly;
 
@@ -35,11 +36,12 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     [Dependency] private readonly MaterialStorageSystem _material = default!;
     [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
     // [Dependency] private readonly StationSystem _station = default!; // Frontier
-    [Dependency] private readonly RadioSystem _radio = default!;
+    // [Dependency] private readonly RadioSystem _radio = default!; // Frontier
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly RadiationSystem _radiation = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly StackSystem _stack = default!; // Frontier
 
     public const float MinParticleVariation = 0.8f;
     public const float MaxParticleVariation = 1.2f;
@@ -243,4 +245,16 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         EntityManager.RemoveComponents(anomaly, behavior.Components);
     }
     #endregion
+
+    // Frontier: crystal spawning
+    protected override void SpawnCrystals(Entity<AnomalyComponent> ent)
+    {
+        if (ent.Comp.CrystalPrototype == null || ent.Comp.PointsPerCrystalUnit <= 0)
+            return;
+
+        int numCrystals = int.Min(ent.Comp.PointsEarned / ent.Comp.PointsPerCrystalUnit, ent.Comp.MaxCrystals);
+        if (numCrystals > 0)
+            _stack.SpawnMultiple(ent.Comp.CrystalPrototype, numCrystals, ent);
+    }
+    // End Frontier: crystal spawning
 }

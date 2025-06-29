@@ -217,6 +217,7 @@
   components:
   - type: Sprite
     state: bird
+    color: "#BBBBFF" # Frontier
   - type: SolutionContainerManager
     solutions:
       food:
@@ -267,6 +268,7 @@
   components:
   - type: Sprite
     state: bird
+    color: "#FFBBBB" # Frontier
   - type: SolutionContainerManager
     solutions:
       food:
@@ -610,8 +612,8 @@
   - type: SliceableFood
     count: 3
     slice: FoodMeatTomatoCutlet
-  - type: StaticPrice
-    price: 100
+#  - type: StaticPrice # Frontier - remove value
+#    price: 100
 
 - type: entity
   name: salami
@@ -1239,8 +1241,8 @@
     node: cooked meat patty
   - type: FoodSequenceElement
     entries:
-      Burger: MeatSteak
-      Taco: MeatSteak
+      Burger: MeatPatty
+      Taco: MeatPattyTaco # Frontier: add Taco
 
 - type: entity
   name: boiled snail
@@ -1572,8 +1574,8 @@
   - type: Sprite
     state: salami-slice
     color: red
-  - type: StaticPrice
-    price: 30
+#  - type: StaticPrice # Frontier - remove value
+#    price: 30
 
 - type: entity
   name: salami slice

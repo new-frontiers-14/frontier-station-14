@@ -16,11 +16,13 @@
       path: /Audio/Machines/airlock_deny.ogg
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/external.rsi
-  - type: PaintableAirlock
-    group: External
-    department: null
+  # - type: PaintableAirlock # Upstream#37341
+  #   group: External # Upstream#37341
+  #   department: null # Upstream#37341
   - type: Wires
     layoutId: AirlockExternal
+  - type: Paintable # Upstream#37341
+    group: null # Upstream#37341
 
 - type: entity
   parent: AirlockExternal
@@ -33,8 +35,8 @@
     enabled: false
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/external.rsi
-  - type: PaintableAirlock
-    group: ExternalGlass
+  # - type: PaintableAirlock # Upstream#37341
+  #   group: ExternalGlass # Upstream#37341
   - type: Fixtures
     fixtures:
       fix1:

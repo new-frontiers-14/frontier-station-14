@@ -86,7 +86,7 @@
     board: GasMiningDrillMachineCircuitboard
   - type: GasDepositExtractor
     baseExtractionRate: 50 # 50 mol/s => 20 kmol in ~6.6 min
-    extractionRate: 50 
+    extractionRate: 50
     extractionRateMultiplier: 1.2 # max rate: 86.4 mol/s => 20 kmol in ~3.9 min
     port: outlet
   - type: Fixtures
@@ -101,7 +101,8 @@
         layer:
         - MidImpassable
         - LowImpassable
-  - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+  - type: BindToStation
+    enabled: false # should be draggable between stations
 
 - type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseMachinePowered ]

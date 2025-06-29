@@ -52,14 +52,16 @@
   - type: Tag
     tags:
       - ForceNoFixRotations
-  - type: PaintableAirlock
-    group: Shuttle
-    department: null
+  # - type: PaintableAirlock # Upstream#37341
+  #   group: Shuttle # Upstream#37341
+  #   department: null # Upstream#37341
   - type: Construction
     graph: AirlockShuttle
     node: airlock
   - type: StaticPrice
     price: 350
+  - type: Paintable # Upstream#37341
+    group: null # Upstream#37341
 
 - type: entity
   id: AirlockGlassShuttle
@@ -72,8 +74,8 @@
     sprite: Structures/Doors/Airlocks/Glass/shuttle.rsi
   - type: Occluder
     enabled: false
-  - type: PaintableAirlock
-    group: ShuttleGlass
+  # - type: PaintableAirlock # Upstream#37341
+  #   group: ShuttleGlass # Upstream#37341
   - type: Door
     occludes: false
   - type: Fixtures

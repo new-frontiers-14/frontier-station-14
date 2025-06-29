@@ -230,7 +230,7 @@
         Base: dead-0
   - type: Butcherable
     spawned:
-    - id: FoodMeatChicken
+    - id: FoodMeatWholeChicken #Frontier: Chicken<WholeChicken
       amount: 1
   - type: InteractionPopup
     successChance: 0.8
@@ -530,7 +530,7 @@
     baseSprintSpeed : 4
     weightlessAcceleration: 1.5
     weightlessFriction: 1
-    weightlessModifier: 1
+    baseWeightlessModifier: 1
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Moth
@@ -681,7 +681,7 @@
         Base: dead-0
   - type: Butcherable
     spawned:
-    - id: FoodMeatDuck
+    - id: FoodMeatWholeDuck #Frontier: Duck<WholeDuck
       amount: 1
   - type: InteractionPopup
     successChance: 0.9
@@ -1121,8 +1121,8 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatChicken
-      amount: 2
+    - id: FoodMeatWholeChicken #Frontier: Chicken<WholeChicken
+      amount: 1 # 2<1 Frontier
   - type: InteractionPopup # TODO: Make it so there's a separate chance to make certain animals outright hostile towards you.
     successChance: 0.1 # Yeah, good luck with that.
     interactSuccessString: petting-success-goose
@@ -2247,8 +2247,8 @@
         Base: penguin_dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatPenguin
-      amount: 3
+    - id: FoodMeatWholePenguin #Frontier: Penguin<WholePenguin
+      amount: 1 # 3<1 Frontier 
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-bird
