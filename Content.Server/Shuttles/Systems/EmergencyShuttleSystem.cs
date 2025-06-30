@@ -359,7 +359,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         var extendedText = extended ? Loc.GetString("emergency-shuttle-extended") : "";
         var locKey = result.ResultType == ShuttleDockResultType.NoDock
             ? "emergency-shuttle-nearby"
-            : "nf-emergency-shuttle-docked"; // frontier
+            : "nf-emergency-shuttle-docked"; // Frontier
 
         _chatSystem.DispatchStationAnnouncement(
             result.Station,

@@ -17,7 +17,7 @@ public sealed partial class PowerGridCheckRuleComponent : Component
     /// Sound of the announcement to play when power is back on.
     /// </summary>
     [DataField]
-    public SoundSpecifier PowerOnSound = new SoundCollectionSpecifier(DefaultPowerOn, AudioParams.Default.WithVolume(+0)); //frontier
+    public SoundSpecifier PowerOnSound = new SoundCollectionSpecifier(DefaultPowerOn, AudioParams.Default.WithVolume(+0)); // Frontier
 
     public CancellationTokenSource? AnnounceCancelToken;
 
