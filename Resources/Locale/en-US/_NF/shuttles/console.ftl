@@ -19,3 +19,11 @@ shuttle-console-service-flag-Social-shortform = ☺
 shuttle-console-service-flag-Services-description = Services (e.g. medical, dining, engineering) offered onboard.
 shuttle-console-service-flag-Trade-description = Goods sold onboard.
 shuttle-console-service-flag-Social-description = A social space to gather and hang out.
+
+shuttle-console-target = Radar Target
+shuttle-console-set-target = Set
+shuttle-console-set-target-description = Sets a target waypoint coordinate on the radar console.
+shuttle-console-hide-target = Show
+shuttle-console-hide-target-description = Toggles the visibility of the target waypoint on the radar console.
+shuttle-console-target-name = Target
+shuttle-console-map-track = ⌖
