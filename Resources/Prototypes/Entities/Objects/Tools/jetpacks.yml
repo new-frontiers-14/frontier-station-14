@@ -143,7 +143,7 @@
 - type: entity
   id: JetpackCaptain
   parent: BaseJetpack # Frontier: remove BaseGrandTheftContraband
-  name: captain's jetpack
+  name: gold jetpack # Frontier: "captain's"<"gold"
   suffix: Empty
   components:
   - type: Sprite
@@ -167,7 +167,7 @@
 - type: entity
   id: JetpackCaptainFilled
   parent: JetpackCaptain
-  name: captain's jetpack
+  # name: captain's jetpack # Frontier
   suffix: Filled
   components:
   - type: GasTank
@@ -225,8 +225,8 @@
 #Empty security
 - type: entity
   id: JetpackSecurity
-  parent: [BaseJetpack, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
-  name: security jetpack
+  parent: [BaseJetpack] # Frontier: removed BaseSecurityContraband
+  name: red jetpack # Frontier: "security"<"red"
   suffix: Empty
   components:
   - type: Item
@@ -244,7 +244,7 @@
 - type: entity
   id: JetpackSecurityFilled
   parent: JetpackSecurity
-  name: security jetpack
+  # name: security jetpack # Frontier
   suffix: Filled
   components:
   - type: GasTank
