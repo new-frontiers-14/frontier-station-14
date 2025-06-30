@@ -37,4 +37,4 @@ emergency-shuttle-ui-remaining = Remaining: {$remaining}
 
 # Map Misc.
 map-name-centcomm = Central Command
-map-name-terminal = Arrivals Terminal
+map-name-terminal = Arrivals Terminal 
