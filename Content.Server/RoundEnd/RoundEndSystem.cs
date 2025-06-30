@@ -306,8 +306,8 @@ namespace Content.Server.RoundEnd
         public void DoRoundEndBehavior(RoundEndBehavior behavior,
             TimeSpan time,
             string sender = "comms-console-announcement-title-centcom",
-            string textCall = "round-end-system-shuttle-called-announcement",
-            string textAnnounce = "round-end-system-shuttle-already-called-announcement")
+            string textCall = "nf-round-end-system-shuttle-called-announcement", // frontier 
+            string textAnnounce = "nf-round-end-system-shuttle-already-called-announcement") // frontier
         {
             switch (behavior)
             {
@@ -361,7 +361,7 @@ namespace Content.Server.RoundEnd
             {
                 if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
-                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
+                    RequestRoundEnd(null, false, "nf-round-end-system-shuttle-auto-called-announcement");// frontier
                     _autoCalledBefore = true;
                 }
 
