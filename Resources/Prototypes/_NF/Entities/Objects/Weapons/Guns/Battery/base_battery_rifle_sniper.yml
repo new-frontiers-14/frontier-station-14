@@ -20,10 +20,10 @@
     maxAngle: -0
   - type: Gun
     projectileSpeed: 30
-    minAngle: 1.2
-    maxAngle: 2.4
-    angleIncrease: 1
-    angleDecay: 2
+    minAngle: 1
+    maxAngle: 5
+    angleIncrease: 0.3
+    angleDecay: 1.5
     fireRate: 1.2
     selectedMode: SemiAuto
     availableModes:
@@ -56,10 +56,11 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 1.4
-    maxAngle: 2.8
-    angleIncrease: 2
-    angleDecay: 1.75
+    minAngle: 1.2
+    maxAngle: 6
+    angleIncrease: 0.4
+    angleDecay: 1.4
+    fireRate: 1
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
