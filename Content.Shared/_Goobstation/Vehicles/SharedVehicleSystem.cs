@@ -13,7 +13,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Content.Shared._NF.Vehicle.Components; // Frontier
 using Content.Shared.ActionBlocker; // Frontier
-using Content.Shared.Interaction; // Frontier
 using Content.Shared.Light.Components; // Frontier
 using Content.Shared.Light.EntitySystems; // Frontier
 using Content.Shared.Movement.Pulling.Components; // Frontier
@@ -22,6 +21,7 @@ using Content.Shared.Popups; // Frontier
 using Robust.Shared.Network; // Frontier
 using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Timing; // Frontier
+using Content.Shared.Weapons.Melee.Events; // Frontier
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
@@ -55,6 +55,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<VehicleComponent, UnstrappedEvent>(OnUnstrapped);
         SubscribeLocalEvent<VehicleComponent, VirtualItemDeletedEvent>(OnDropped);
+        SubscribeLocalEvent<VehicleComponent, MeleeHitEvent>(OnMeleeHit); // Frontier
 
         SubscribeLocalEvent<VehicleComponent, EntInsertedIntoContainerMessage>(OnInsert);
         SubscribeLocalEvent<VehicleComponent, EntRemovedFromContainerMessage>(OnEject);
@@ -255,6 +256,14 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         _appearance.SetData(uid, VehicleState.Animated, false); // Frontier
         RemComp<VehicleRiderComponent>(args.User); // Frontier
     }
+
+    // Frontier: do not hit your own vehicle
+    private void OnMeleeHit(Entity<VehicleComponent> ent, ref MeleeHitEvent args)
+    {
+        if (args.User == ent.Comp.Driver) // Don't hit your own vehicle
+            args.Handled = true;
+    }
+    // End Frontier: do not hit your own vehicle
 
     private void AddHorns(EntityUid driver, EntityUid vehicle)
     {
