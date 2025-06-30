@@ -39,7 +39,7 @@ public sealed partial class ShuttleNavControl
     private static Color _dockLabelColor = Color.White;
     public bool HideTarget { get; set; } = false;
     public Vector2? Target { get; set; } = null;
-    public NetEntity TargetEntity { get; set; } = NetEntity.Invalid;
+    public NetEntity? TargetEntity { get; set; } = null;
 
     public InertiaDampeningMode DampeningMode { get; set; }
     public ServiceFlags ServiceFlags { get; set; } = ServiceFlags.None;

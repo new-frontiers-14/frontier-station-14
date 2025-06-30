@@ -473,8 +473,9 @@ public sealed partial class MapScreen : BoxContainer
         {
             Text = mapObj.Name,
             HorizontalExpand = true,
-            SizeFlagsStretchRatio = 4, // Frontier
         };
+
+        gridButton.Label.ClipText = true; // Frontier
 
         var gridContainer = new BoxContainer()
         {
@@ -482,7 +483,7 @@ public sealed partial class MapScreen : BoxContainer
             {
                 new Control()
                 {
-                    MinWidth = 32f,
+                    MinWidth = 16f, // Frontier: 32<16
                 },
                 gridButton
             }
@@ -502,8 +503,8 @@ public sealed partial class MapScreen : BoxContainer
             var trackButton = new Button()
             {
                 Text = Loc.GetString("shuttle-console-map-track"),
-                HorizontalExpand = true,
-                SizeFlagsStretchRatio = 1,
+                MinWidth = 32,
+                MaxWidth = 32
             };
             trackButton.OnPressed += args =>
             {
