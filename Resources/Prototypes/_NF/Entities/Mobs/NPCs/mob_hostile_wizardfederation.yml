@@ -105,7 +105,7 @@
     count: 8
   - type: Gun
     showExamineText: false
-    fireRate: 6
+    fireRate: 3
     soundGunshot:
       path: /Audio/Magic/fireball.ogg
   - type: RechargeBasicEntityAmmo
@@ -133,6 +133,27 @@
     fireRate: 1
     soundGunshot:
       path: /Audio/Effects/teleport_arrival.ogg
+
+# Brick Wizard, shoots magic bricks that smack targets (12 blunt damage on hit)
+# Look for magic brick here:\Resources\Prototypes\_NF\Entities\Objects\Specific\Wizard\conjured_items.yml
+- type: entity
+  name: Brick Wizard
+  parent: MobWizFedlBase
+  id: MobWizFedWizardBrick
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardBrickGear
+  - type: BasicEntityAmmoProvider
+    proto: BrickConjured
+    capacity: 20
+    count: 20
+  - type: Gun
+    showExamineText: false
+    fireRate: 2
+    soundGunshot:
+        collection: Woosh
 
 # Wizards in hardsuits
 - type: entity
@@ -175,6 +196,17 @@
   - type: Loadout
     prototypes:
     - NPCWizardSoapHardsuitGear
+
+- type: entity
+  name: Brick Wizard
+  suffix: AI, Hardsuit
+  parent: MobWizFedWizardBrick
+  id: MobWizFedWizardBrickHardsuit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardBrickHardsuitGear
 
 # Conjured Creatures
 - type: entity

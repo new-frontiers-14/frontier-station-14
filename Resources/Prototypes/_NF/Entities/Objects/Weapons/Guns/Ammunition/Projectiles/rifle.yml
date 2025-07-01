@@ -9,7 +9,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
+        Piercing: 11
 
 - type: entity
   id: NFBulletRifle10Practice
@@ -20,7 +20,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 2
+        Piercing: 1
 
 - type: entity
   id: NFBulletRifle10Rubber
@@ -41,7 +41,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 12
+        Piercing: 13
 
 - type: entity
   id: NFBulletRifle20Overpressure
@@ -52,7 +52,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 13
+        Piercing: 14
 
 - type: entity
   id: NFBulletRifle20Incendiary
@@ -63,8 +63,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 6
-        Heat: 6
+        Piercing: 7.8 # 0.6 * base total dmg
+        Heat: 5.2 # 0.4 * base total dmg
 
 - type: entity
   id: NFBulletRifle20Uranium
@@ -75,8 +75,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8
-        Radiation: 8
+        Piercing: 10.8 # 0.6 * (1.4 * base total dmg)
+        Radiation: 7.2 # 0.4 * (1.4 * base total dmg)
 
 - type: entity
   id: NFBulletRifle20Practice
@@ -87,7 +87,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 4
+        Piercing: 2
 
 - type: entity
   id: NFBulletRifle20Rubber
@@ -108,7 +108,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 13
+        Piercing: 14
 
 - type: entity
   id: NFBulletRifle25Overpressure
@@ -119,7 +119,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 14
+        Piercing: 16
 
 - type: entity
   id: NFBulletRifle25Incendiary
@@ -130,8 +130,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 6.5
-        Heat: 6.5
+        Piercing: 8.4 # 0.6 * base total dmg
+        Heat: 5.6 # 0.4 * base total dmg
 
 - type: entity
   id: NFBulletRifle25Uranium
@@ -142,8 +142,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 9
-        Radiation: 9
+        Piercing: 11.4 # 0.6 * (1.4 * base total dmg)
+        Radiation: 7.6 # 0.4 * (1.4 * base total dmg)
 
 - type: entity
   id: NFBulletRifle25Practice
@@ -154,7 +154,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 4
+        Piercing: 2
 
 - type: entity
   id: NFBulletRifle25Rubber
@@ -175,7 +175,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 14
+        Piercing: 15
 
 - type: entity
   id: NFBulletRifle30Overpressure
@@ -186,7 +186,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 16
+        Piercing: 17
 
 - type: entity
   id: NFBulletRifle30Incendiary
@@ -197,8 +197,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 7
-        Heat: 7
+        Piercing: 9
+        Heat: 6
 
 - type: entity
   id: NFBulletRifle30Uranium
@@ -209,8 +209,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 9.5
-        Radiation: 9.5
+        Piercing: 12.6
+        Radiation: 8.4
 
 - type: entity
   id: NFBulletRifle30Practice
@@ -221,7 +221,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 4
+        Piercing: 2
 
 - type: entity
   id: NFBulletRifle30Rubber
@@ -242,7 +242,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 30
+        Piercing: 35
         Structural: 200
     penetrationThreshold: 360
     penetrationDamageTypeRequirement:
@@ -255,4 +255,4 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: StaminaDamageOnCollide
-    damage: 60
+    damage: 70
