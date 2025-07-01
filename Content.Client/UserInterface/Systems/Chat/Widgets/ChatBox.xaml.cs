@@ -142,11 +142,6 @@ public partial class ChatBox : UIWidget
         ChatInput.FilterButton.Popup.UpdateHighlights(highlights);
     }
 
-    private void OnHighlightsUpdated(string highlights)
-    {
-        ChatInput.FilterButton.Popup.UpdateHighlights(highlights);
-    }
-
     private void OnChannelSelect(ChatSelectChannel channel)
     {
         _controller.UpdateSelectedChannel(this);

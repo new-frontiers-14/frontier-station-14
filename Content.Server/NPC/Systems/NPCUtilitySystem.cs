@@ -377,14 +377,12 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                     return 0f;
                 }
-<<<<<<< HEAD
             // Frontier: stun conditions
             case TargetIsNotStunnedCon:
                 {
                     return HasComp<StunnedComponent>(targetUid) ? 0f : 1f;
                 }
             // End Frontier
-=======
             case TargetLowTempCon con:
                 {
                     if (!TryComp<TemperatureComponent>(targetUid, out var temperature))
@@ -392,7 +390,6 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                     return temperature.CurrentTemperature <= con.MinTemp ? 1f : 0f;
                 }
->>>>>>> a10fc8a7dfbbab1a4d697add8bc4f42cbc0a0916
             default:
                 throw new NotImplementedException();
         }
