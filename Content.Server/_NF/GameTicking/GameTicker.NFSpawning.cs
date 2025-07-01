@@ -7,7 +7,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.GameTicking; //
+namespace Content.Server.GameTicking; // Intentionally colliding namespaces to extend the class
 
 public sealed partial class GameTicker
 {
