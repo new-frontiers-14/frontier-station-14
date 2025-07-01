@@ -20,6 +20,15 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Yinglet
+  - type: Carriable
+    freehandsrequired: 1
+  - type: PseudoItem
+    size: Large
+#    shape: #this doesnt work, dunno if setting size is overriding it or i just set it up wrong
+#      - 0,0,0,1
+#      - 1,0,1,1
+#      - 2,0,2,1
+#      - 3,0,3,1
   - type: YingletAccent
 #  - type: Vocal
 #    sounds:
@@ -42,7 +51,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.35
+          radius: 0.25
         # about the same density as a fox
         density: 50
         restitution: 0.0
@@ -103,6 +112,7 @@
     basesprintspeed: 5.7
 #at some point maybe add body heat differences from humans but its fine for now
   - type: Sprite #some layers need reordering
+    size: 0.8, 0.8
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
