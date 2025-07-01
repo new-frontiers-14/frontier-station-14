@@ -1,1 +1,1 @@
-latejoin-arrival-new-player-announcement = Greenhorn {$character} arrived at {$station}! Stop by and say howdy.
+latejoin-arrival-new-player-announcement = {$character} arrived at {$station}! They're a greenhorn, why not show them around?
