@@ -1,3 +1,4 @@
+# region Civilian
 - type: jobIcon
   parent: JobIcon
   id: JobIconContractor
@@ -5,23 +6,6 @@
     sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
     state: contractor
   jobName: job-name-contractor
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconMailCarrier
-  icon:
-    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi # /Textures/DeltaV</Textures/_NF
-    state: mailcarrier # nyanoMailCarrier<mailcarrier
-  jobName: job-name-mail-carrier
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconDoc
-  icon:
-    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
-    state: nfmsdoc
-  jobName: job-name-doc
-  allowSelection: false # Frontier: no impersonating command staff, literally 1984
 
 - type: jobIcon
   parent: JobIcon
@@ -39,29 +23,15 @@
     state: pilot
   jobName: job-name-pilot
 
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconNFPirate
-  icon:
-    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
-    state: pirate
-  jobName: job-name-nf-pirate
+# region Frontier
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconNFPirateCaptain
+  id: JobIconMailCarrier
   icon:
-    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
-    state: piratecaptain
-  jobName: job-name-nf-pirate-captain
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconNFPirateFirstMate
-  icon:
-    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
-    state: piratefirstmate
-  jobName: job-name-nf-pirate-first-mate
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi # /Textures/DeltaV</Textures/_NF
+    state: mailcarrier # nyanoMailCarrier<mailcarrier
+  jobName: job-name-mail-carrier
 
 - type: jobIcon
   parent: JobIcon
@@ -94,7 +64,33 @@
     state: valet
   jobName: job-name-valet
 
-# NFSD positions
+# region Pirates
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconNFPirate
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
+    state: pirate
+  jobName: job-name-nf-pirate
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconNFPirateCaptain
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
+    state: piratecaptain
+  jobName: job-name-nf-pirate-captain
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconNFPirateFirstMate
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
+    state: piratefirstmate
+  jobName: job-name-nf-pirate-first-mate
+
+# region NFSD
 
 - type: jobIcon
   parent: JobIcon
@@ -169,3 +165,31 @@
     state: nyanoPrisonGuard
   jobName: job-name-guard
   allowSelection: false # Frontier: don't display, no job
+
+# region Misc
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconDoc
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
+    state: nfmsdoc
+  jobName: job-name-doc
+  allowSelection: false # Frontier: no impersonating command staff, literally 1984
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconPlantManager
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
+    state: plantmanager
+  jobName: job-name-plant-manager
+  allowSelection: false # Frontier: no impersonating command staff, literally 1984
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconPlantTechnician
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
+    state: planttechnician
+  jobName: job-name-plant-technician
