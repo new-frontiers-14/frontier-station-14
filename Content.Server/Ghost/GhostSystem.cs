@@ -11,6 +11,7 @@ using Content.Server.Mind;
 using Content.Server.Roles.Jobs;
 using Content.Server.Warps;
 using Content.Shared.Actions;
+using Content.Shared.Cargo;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
