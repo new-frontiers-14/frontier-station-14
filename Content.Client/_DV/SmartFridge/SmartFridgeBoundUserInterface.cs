@@ -19,6 +19,7 @@ public sealed class SmartFridgeBoundUserInterface : BoundUserInterface
 
         _menu = this.CreateWindow<SmartFridgeMenu>();
         _menu.OnItemSelected += OnItemSelected;
+        _menu.SetTitleFromEntity(EntMan, Owner); // Frontier
         Refresh();
     }
 
