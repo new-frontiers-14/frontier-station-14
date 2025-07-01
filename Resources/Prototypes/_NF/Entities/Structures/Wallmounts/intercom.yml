@@ -75,7 +75,7 @@
 - type: entity
   id: IntercomGreetingAlwaysOn
   parent: [BaseStructureIndestructible, Intercom]
-  suffix: Greeting
+  suffix: Greeting, Always On
   components:
   - type: ContainerFill
     containers:
@@ -85,6 +85,7 @@
       - EncryptionKeyGreeting
   - type: RadioSpeaker
     outputChatType: Speak
+  - type: RadioMicrophone
   - type: EncryptionKeyHolder
     keySlots: 1
   - type: Intercom
@@ -93,3 +94,5 @@
   - type: AccessReader
     access: [["NuclearOperative"]] # unchangeable, the trade crate gambit
   - type: ActivatableUIRequiresAccess
+  - type: ApcPowerReceiver
+    needsPower: false # magic - FIXME: radio microphone has order initialization issues
