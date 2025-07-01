@@ -25,8 +25,6 @@ namespace Content.Server.Research.Systems
 
         private readonly HashSet<Entity<ResearchServerComponent>> ClientLookup = new(); // Frontier: not static
 
-        private static readonly HashSet<Entity<ResearchServerComponent>> ClientLookup = new();
-
         public override void Initialize()
         {
             base.Initialize();
