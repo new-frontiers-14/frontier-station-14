@@ -66,6 +66,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_NF/Shuttles/Admin/fishbowl.yml", // Contains CentComm folder
             "/Maps/_NF/Shuttles/Nfsd/paladin.yml", // Contains EXP-2100g "Duster"
             "/Maps/_NF/Shuttles/Nfsd/rogue.yml", // Contains EXP-320g "Friendship"
+            "/Maps/_NF/Admin/northwaygrid.yml",
             // End Frontier
         };
 
