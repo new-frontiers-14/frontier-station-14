@@ -102,11 +102,17 @@
       types:
         Blunt: 2
   - type: Hands
-    handDisplacement:
-      sizeMaps:
-        32:
-          sprite: Mobs/Species/Yinglet/displacement.rsi
-          state: inhand
+    handDisplacements:
+      Right:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Yinglet/displacement.rsi
+            state: hand_r
+      Left:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Yinglet/displacement.rsi
+            state: hand_l
   - type: MovementSpeedModifier
     basewalkspeed: 3.5
     basesprintspeed: 5.7
