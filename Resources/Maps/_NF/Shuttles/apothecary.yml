@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/02/2025 23:00:35
-  entityCount: 433
+  time: 07/02/2025 23:13:12
+  entityCount: 438
 maps: []
 grids:
 - 1
@@ -713,19 +713,21 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 279
-      - 325
-      - 359
-      - 410
-      - 131
-      - 133
-      - 356
-      - 22
       - 38
-      - 369
-      - 129
+      - 133
+      - 131
+      - 22
+      - 356
       - 177
       - 134
+      - 123
+      - 410
+      - 359
+      - 369
+      - 361
+      - 129
+      - 279
+      - 325
     - type: DeviceLinkSource
       linkedPorts:
         75:
@@ -1161,7 +1163,7 @@ entities:
   - uid: 30
     components:
     - type: Transform
-      pos: -0.5,-1.5
+      pos: 0.5,-0.5
       parent: 1
   - uid: 32
     components:
@@ -1782,6 +1784,13 @@ entities:
       color: '#990000FF'
 - proto: GasPipeFourway
   entities:
+  - uid: 214
+    components:
+    - type: Transform
+      pos: -0.5,5.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 226
     components:
     - type: Transform
@@ -1842,7 +1851,8 @@ entities:
   - uid: 150
     components:
     - type: Transform
-      pos: -0.5,5.5
+      rot: 3.141592653589793 rad
+      pos: -0.5,6.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -2017,16 +2027,40 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-- proto: GasPipeTJunction
-  entities:
-  - uid: 214
+  - uid: 337
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,6.5
+      rot: 1.5707963267948966 rad
+      pos: 0.5,5.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 436
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,5.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 437
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,5.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 438
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,5.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+- proto: GasPipeTJunction
+  entities:
   - uid: 216
     components:
     - type: Transform
@@ -2166,6 +2200,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 34
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 177
@@ -2200,11 +2237,22 @@ entities:
       - 34
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 369
+  - uid: 361
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -1.5,6.5
+      pos: -1.5,5.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 34
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 369
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,5.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
