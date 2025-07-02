@@ -65,8 +65,8 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_NF/POI/lpbravo.yml", // Contains syndicate rubber stamp
             "/Maps/_NF/Shuttles/Admin/fishbowl.yml", // Contains CentComm folder
             "/Maps/_NF/Shuttles/Nfsd/paladin.yml", // Contains EXP-2100g "Duster"
-            "/Maps/_NF/Shuttles/Nfsd/rogue.yml", // Contains EXP-320g "Friendship"
-            "/Maps/_NF/Admin/northwaygrid.yml",
+            "/Maps/_NF/Shuttles/Nfsd/rogue.yml", // Contains EXP-320g "Friendship" 
+            "/Maps/_NF/Admin/northwaygrid.yml", // a admin ship
             // End Frontier
         };
 
