@@ -349,15 +349,12 @@ namespace Content.Client.Hands.Systems
                 sprite.LayerSetData(index, layerData);
 
                 // Add displacement maps
-                var displacement = hand.Location switch
+                if (handComp.HandDisplacements.TryGetValue(ev.Location, out var disp))
                 {
-                    HandLocation.Left => handComp.LeftHandDisplacement,
-                    HandLocation.Right => handComp.RightHandDisplacement,
-                    _ => handComp.HandDisplacement
-                };
-
-                if (displacement is not null && _displacement.TryAddDisplacement(displacement, sprite, index, key, out var displacementKey))
-                    revealedLayers.Add(displacementKey);
+                    if (_displacement.TryAddDisplacement(disp, sprite, index, key, out var displacementKey))
+                        revealedLayers.Add(displacementKey);
+                }
+                    
             }
 
             RaiseLocalEvent(held, new HeldVisualsUpdatedEvent(uid, revealedLayers), true);
