@@ -176,7 +176,7 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: combatcat
+        Base: crimecat
   - type: GhostRole
     name: ghost-role-information-elcapo-name
     description: ghost-role-information-elcapo-description
@@ -190,6 +190,53 @@
   - type: NpcFactionMember
     factions:
     - Cat
+
+- type: entity
+  id: MobCatChernobyl
+  parent: [NFMobPet, MobAdultSlimes, MobCatGhost]
+  name: Chernobyl
+  description: Slime? cat? what are you?
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: slimecat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slimecat
+  - type: GhostRole
+    name: ghost-role-information-chernobyl-name
+    description: ghost-role-information-chernobyl-description
+    rules: ghost-role-information-nonantagonist-rules
+    prototype: CatChernobyl
+    mindRoles: [ MindRoleGhostRoleNeutral ]
+  - type: Loadout
+    prototypes: [ MobChernobylGear ]
+  - type: RandomMetadata
+    nameSegments: null
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - MedicalTrackingImplant
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Engineering
+  - type: ActiveRadio
+    channels:
+    - Engineering
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
+  - type: AutoToggleableOuterClothing
+  - type: Vocal
+    sounds:
+      Male: Cat
+      Female: Cat
+      Unsexed: Cat
 
 - type: entity
   id: MobCatClugg
