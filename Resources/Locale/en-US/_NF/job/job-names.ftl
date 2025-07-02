@@ -18,6 +18,8 @@ job-name-pilot-interview = Pilot Applicant
 job-name-nf-pirate = Pirate
 job-name-nf-pirate-captain = Pirate Captain
 job-name-nf-pirate-first-mate = Pirate First Mate
+job-name-plant-manager = Plant Manager
+job-name-plant-technician = Plant Technician
 job-name-security-guard = Security Guard
 job-name-sheriff = Sheriff
 job-name-stc = Station Traffic Controller
@@ -36,7 +38,7 @@ job-name-foreign-lieutenant = Lieutenant
 # Job titles
 job-title-ert-mail-carrier = ERT Mail Carrier
 
-# Role timers - Make these alphabetical or I cut you
+# Role timers - Keep these alphabetical, please
 JobContractorInterview = Contractor Applicant
 JobERTMailCarrier = ERT Mail Carrier
 JobMercenary = Mercenary
@@ -46,15 +48,17 @@ JobPilotInterview = Pilot Applicant
 JobPirate = Pirate
 JobPirateCaptain = Pirate Captain
 JobPirateFirstMate = Pirate First Mate
+JobPlantManager = Plant Manager
+JobPlantTechnician = Plant Technician
 JobPublicAffairsLiaison = Public Affairs Liaison
 JobSecurityGuard = Security Guard
 JobSTC = Station Traffic Controller
 
 # Upstream Removed
 job-name-senior-engineer = Senior Engineer
-job-name-senior-researcher = Senior Researcher
-job-name-senior-physician = Senior Physician
 job-name-senior-officer = Sergeant
+job-name-senior-physician = Senior Physician
+job-name-senior-researcher = Senior Researcher
 
 JobSeniorEngineer = Senior Engineer
 JobSeniorOfficer = Sergeant

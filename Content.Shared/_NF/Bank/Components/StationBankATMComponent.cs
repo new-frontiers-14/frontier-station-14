@@ -36,5 +36,6 @@ public enum SectorBankAccount : byte
     Frontier,
     Nfsd,
     Medical,
+    Edison,
     Custom, // Admeme
 }

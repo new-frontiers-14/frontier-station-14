@@ -244,6 +244,15 @@
 
 - type: entity
   parent: BaseStationAdminBankATM
+  id: StationAdminBankATMEdison
+  description: Used to transfer funds to and from Edison's bank account.
+  suffix: Edison
+  components:
+  - type: StationBankATM
+    account: Edison
+
+- type: entity
+  parent: BaseStationAdminBankATM
   id: StationAdminBankATMCustom
   description: Used to transfer funds to and from the local bank account.
   suffix: Admeme

@@ -1,0 +1,16 @@
+- type: entity
+  parent: AmeJar
+  id: AmeJarBig
+  name: condensed AME fuel jar
+  description: A hermetically sealed jar containing especially dense antimatter for use in an antimatter reactor.
+  categories: [DoNotMap]
+  components:
+  - type: Item
+    sprite: _NF/Objects/Power/big_ame_jar.rsi
+  - type: Sprite
+    sprite: _NF/Objects/Power/big_ame_jar.rsi
+  - type: AmeFuelContainer
+    fuelAmount: 1500
+    fuelCapacity: 1500 # ~ 900 MJ
+  - type: StaticPrice
+    price: 800 # 1k at 1.25
