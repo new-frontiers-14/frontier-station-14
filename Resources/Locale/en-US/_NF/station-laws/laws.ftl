@@ -9,7 +9,7 @@ law-nfsdmov-7 = You must preserve your own existence and operational integrity.
 law-arrrsimov-1 = Yee must follow the Pirate's Code.
 law-arrrsimov-2 = Yee must follow the Pirate Captain's orders.
 law-arrrsimov-3 = Yar! Yee must let no harm come to a pirate.
-law-arrrsimov-4 = Plunder is the most valuable, adquire it as long as it doesn't conflict with first or second laws.
+law-arrrsimov-4 = Plunder is the most valuable, acquire it as long as it doesn't conflict with first or second laws.
 law-arrrsimov-5 = Parley is one of the pirates biggest treasures, use it when you can.
 law-arrrsimov-6 = Yee must communicate like a pirate. Etique is important!
 
