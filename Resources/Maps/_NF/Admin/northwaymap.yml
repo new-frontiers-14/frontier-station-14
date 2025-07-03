@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/17/2025 20:18:45
-  entityCount: 4732
+  time: 07/03/2025 12:16:21
+  entityCount: 4750
 maps:
 - 1604
 grids:
@@ -9214,11 +9214,21 @@ entities:
     - type: Transform
       pos: 1.5,1.5
       parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        1996:
+        - - OrderSender
+          - OrderReceiver
   - uid: 1990
     components:
     - type: Transform
       pos: 8.5,-11.5
       parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        1996:
+        - - OrderSender
+          - OrderReceiver
 - proto: ComputerCloningConsole
   entities:
   - uid: 1507
@@ -26243,6 +26253,100 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-0.5
+      parent: 2
+- proto: SpawnPointForeignEnsign
+  entities:
+  - uid: 4739
+    components:
+    - type: Transform
+      pos: 3.5,20.5
+      parent: 2
+  - uid: 4740
+    components:
+    - type: Transform
+      pos: 2.5,19.5
+      parent: 2
+  - uid: 4741
+    components:
+    - type: Transform
+      pos: 2.5,14.5
+      parent: 2
+  - uid: 4742
+    components:
+    - type: Transform
+      pos: 11.5,22.5
+      parent: 2
+  - uid: 4743
+    components:
+    - type: Transform
+      pos: -6.5,-7.5
+      parent: 2
+  - uid: 4744
+    components:
+    - type: Transform
+      pos: -8.5,-7.5
+      parent: 2
+  - uid: 4745
+    components:
+    - type: Transform
+      pos: 2.5,21.5
+      parent: 2
+  - uid: 4746
+    components:
+    - type: Transform
+      pos: 1.5,20.5
+      parent: 2
+  - uid: 4747
+    components:
+    - type: Transform
+      pos: 2.5,16.5
+      parent: 2
+  - uid: 4748
+    components:
+    - type: Transform
+      pos: 8.5,22.5
+      parent: 2
+  - uid: 4749
+    components:
+    - type: Transform
+      pos: -7.5,-8.5
+      parent: 2
+  - uid: 4750
+    components:
+    - type: Transform
+      pos: -7.5,-6.5
+      parent: 2
+- proto: SpawnPointForeignLieutenant
+  entities:
+  - uid: 2230
+    components:
+    - type: Transform
+      pos: -0.5,-4.5
+      parent: 2
+  - uid: 4734
+    components:
+    - type: Transform
+      pos: -0.5,-5.5
+      parent: 2
+  - uid: 4735
+    components:
+    - type: Transform
+      pos: 1.5,-4.5
+      parent: 2
+  - uid: 4736
+    components:
+    - type: Transform
+      pos: 1.5,-5.5
+      parent: 2
+  - uid: 4737
+    components:
+    - type: Transform
+      pos: 0.5,-6.5
+      parent: 2
+  - uid: 4738
+    components:
+    - type: Transform
+      pos: 0.5,-3.5
       parent: 2
 - proto: SpawnPointLatejoin
   entities:
