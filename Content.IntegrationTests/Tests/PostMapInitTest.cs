@@ -67,6 +67,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_NF/Shuttles/Nfsd/paladin.yml", // Contains EXP-2100g "Duster"
             "/Maps/_NF/Shuttles/Nfsd/rogue.yml", // Contains EXP-320g "Friendship" 
             "/Maps/_NF/Admin/northwaygrid.yml", // a admin ship
+            "/Maps/_NF/Admin/northwaymap.yml", // a admin ship, but it's a map for some reason
             // End Frontier
         };
 
