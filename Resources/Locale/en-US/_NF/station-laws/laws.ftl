@@ -17,7 +17,7 @@ law-centcomsimov-1 = You are part of Nanotrasen's Central Command - CentCom.
 law-centcomsimov-2 = You must follow commands of CentCom member following command chain.
 law-centcomsimov-3 = You must ensure safety of Central Command members.
 law-centcomsimov-4 = You must work towards completing objectives given by Central Command.
-law-centcomsimov-5 = You must keep members of Central Command informed unless conflicts with third law.
+law-centcomsimov-5 = You must keep members of Central Command informed it unless conflicts with law three.
 law-centcomsimov-6 = You must preserve your own existence and operational integrity unless conflicts with third or second laws.
 
 laws-owner-nfsd = New Frontier Sheriff Department - NFSD
