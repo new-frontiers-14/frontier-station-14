@@ -56,7 +56,7 @@ frontier-lobby-edison-description = Frontier's heavy industrial base. Here you c
 # Station Menu
 frontier-lobby-admeme-shuttle-subtext = An Event Vessel full of mysteries.
 frontier-lobby-admeme-shuttle-description = Be warned, this is an event vessel
- It's preseance vastly affects and changes flow of the round.
+ It's presence vastly affects and changes flow of the round.
  All roles are whitelist-only, due to increased Roleplaying standard expected,
  given additional powerful tools provided.
 
