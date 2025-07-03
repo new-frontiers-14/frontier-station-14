@@ -213,6 +213,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         markings.EnsureDefault(
             profile.Appearance.SkinColor,
             profile.Appearance.EyeColor,
+            profile.Sex, // Scav: added parameter
             _markingManager);
 
         DebugTools.Assert(IsClientSide(uid));

@@ -1,0 +1,48 @@
+- type: entity
+  id: OrganYingletStomach
+  parent: [OrganAnimalStomach, OrganHumanStomach]
+  name: yinglet stomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - Fruit
+      - ReptilianFood
+      - Meat
+      - Pill
+      - Crayon
+      - Paper
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 30
+      food:
+        maxVol: 3
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [ Yinglet ]
+    removeEmpty: true
+    groups:
+      - id: Food
+      - id: Drink
+
+- type: entity
+  id: OrganYingletLiver
+  parent: OrganAnimalLiver
+  name: yinglet liver
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Yinglet ]
+
+- type: entity
+  id: OrganYingletTongue
+  parent: OrganHumanTongue
+  name: yinglet tongue
+  description: "A fleshy muscle specialized for snapping up clam meat."
+#  components:   #eventually, this will have a custom sprite (probably same for brain?)
+#  - type: Sprite
+#    state: tongue

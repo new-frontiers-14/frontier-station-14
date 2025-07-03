@@ -189,7 +189,7 @@ public sealed partial class MarkingSet
             {
                 foreach (var marking in list)
                 {
-                    if (markingManager.TryGetMarking(marking, out var prototype)) // Frontier: modified this test to add forced marking test 
+                    if (markingManager.TryGetMarking(marking, out var prototype)) // Frontier: modified this test to add forced marking test
                     {
                         if (markingManager.MustMatchSkin(species, prototype.BodyPart, out var alpha, prototypeManager))
                             marking.SetColor(skinColor.Value.WithAlpha(alpha));
@@ -274,7 +274,7 @@ public sealed partial class MarkingSet
     /// <param name="eyeColor">Eye color for marking coloring.</param>
     /// <param name="hairColor">Hair color for marking coloring.</param>
     /// <param name="markingManager">Marking manager.</param>
-    public void EnsureDefault(Color? skinColor = null, Color? eyeColor = null, MarkingManager? markingManager = null)
+    public void EnsureDefault(Color? skinColor = null, Color? eyeColor = null, Sex? sex = null, MarkingManager? markingManager = null) // Scav: added Sex parameter
     {
         IoCManager.Resolve(ref markingManager);
 
@@ -286,7 +286,7 @@ public sealed partial class MarkingSet
             }
 
             var index = 0;
-            while (points.Points > 0 || index < points.DefaultMarkings.Count)
+            while (points.Points > 0 && index < points.DefaultMarkings.Count) //Scav: changed from || to &&
             {
                 if (markingManager.Markings.TryGetValue(points.DefaultMarkings[index], out var prototype))
                 {
@@ -298,7 +298,12 @@ public sealed partial class MarkingSet
                         );
                     var marking = new Marking(points.DefaultMarkings[index], colors);
 
-                    AddBack(category, marking);
+                    // Scav: check sex restrictions before applying
+                    if(sex == null || prototype.SexRestriction == null || sex == prototype.SexRestriction)
+                    {
+                        AddBack(category, marking);
+                    }
+                    // End Scav
                 }
 
                 index++;

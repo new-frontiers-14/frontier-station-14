@@ -1227,6 +1227,13 @@ namespace Content.Client.Lobby.UI
         private void SetSpecies(string newSpecies)
         {
             Profile = Profile?.WithSpecies(newSpecies);
+            var speciesPrototype = _prototypeManager.Index<SpeciesPrototype>(newSpecies); //Scav
+            // Scav: if the existing profile had a set sex that is invalid for the new species, set it to one that is valid.
+            if (Profile != null && !speciesPrototype.Sexes.Contains(Profile.Sex))
+            {
+                SetSex(speciesPrototype.Sexes[0]); //note that due to some weirdness, markings.SetSex will still think its the old species when SetSex is called from here. consider merging those two into a single function to avoid this?
+            }
+            // End Scav
             OnSkinColorOnValueChanged(); // Species may have special color prefs, make sure to update it.
             Markings.SetSpecies(newSpecies); // Repopulate the markings tab as well.
             // In case there's job restrictions for the species
@@ -1236,6 +1243,10 @@ namespace Content.Client.Lobby.UI
             // Frontier: In case there's species restrictions for traits
             RefreshTraits(); // Frontier
             UpdateSexControls(); // update sex for new species
+            // Scav: default age to the equivalent of 24 for this species
+            SetAge((speciesPrototype.MinAge + speciesPrototype.YoungAge) / 2);
+            UpdateAgeEdit();
+            // End Scav
             UpdateSpeciesGuidebookIcon();
             ReloadPreview();
         }

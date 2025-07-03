@@ -1,0 +1,124 @@
+- type: marking
+  id: YingletEarsLong
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_ears.rsi
+    state: long
+
+- type: marking
+  id: YingletEarsShort
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_ears.rsi
+    state: short
+
+- type: marking
+  id: YingletTailHairless
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Yinglet]
+  sexRestriction: Male #apparently, Vox has a mechanic that can enforce dimorphism without making it mandatory
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_tail.rsi
+    state: hairless
+
+- type: marking
+  id: YingletTailTailpoof
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Yinglet]
+  sexRestriction: Female
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      tailpoof_secondary:
+        type:
+          !type:CategoryColoring
+            category: Hair
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_tail.rsi
+    state: tailpoof_primary
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_tail.rsi
+    state: tailpoof_secondary
+
+- type: marking
+  id: YingletTailPreener
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      preener_secondary:
+        type:
+          !type:CategoryColoring
+            category: Hair
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_tail.rsi
+    state: hairless
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_tail.rsi
+    state: preener_secondary
+
+- type: marking
+  id: YingletTailBackHair
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      northern_secondary:
+        type:
+          !type:CategoryColoring
+            category: Hair
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_tail.rsi
+    state: hairless
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_tail.rsi
+    state: northern_secondary
+
+- type: marking
+  id: YingletShelltoothLong
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#FFFFFF"
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_shelltooth.rsi
+    state: long
+
+- type: marking
+  id: YingletShelltoothShort
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#FFFFFF"
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_shelltooth.rsi
+    state: short

@@ -79,22 +79,11 @@ public sealed partial class HandsComponent : Component
     public TimeSpan ThrowCooldown = TimeSpan.FromSeconds(0.5f);
 
     /// <summary>
-    ///     Fallback displacement map applied to all sprites in the hand, unless otherwise specified
+    ///     Displacement map applied to hands, sorted by hand location
+    ///     Scav: replaced HandDisplacement, LeftHandDisplacement, and RightHandDisplacement with this
     /// </summary>
     [DataField]
-    public DisplacementData? HandDisplacement;
-
-    /// <summary>
-    ///     If defined, applies to all sprites in the left hand, ignoring <see cref="HandDisplacement"/>
-    /// </summary>
-    [DataField]
-    public DisplacementData? LeftHandDisplacement;
-
-    /// <summary>
-    ///     If defined, applies to all sprites in the right hand, ignoring <see cref="HandDisplacement"/>
-    /// </summary>
-    [DataField]
-    public DisplacementData? RightHandDisplacement;
+    public Dictionary<HandLocation, DisplacementData> HandDisplacements = new();
 
     /// <summary>
     /// If false, hands cannot be stripped, and they do not show up in the stripping menu.

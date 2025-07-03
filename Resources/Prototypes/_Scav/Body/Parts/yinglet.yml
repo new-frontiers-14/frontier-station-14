@@ -1,0 +1,124 @@
+- type: entity
+  id: PartYinglet
+  parent: [BaseItem, BasePart]
+  name: "yinglet body part"
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Scav/Mobs/Species/Yinglet/parts.rsi
+#  - type: FlavorProfile #not currently consumable so no need, but here for later
+#    flavors:
+#      - terrible
+#      - fishy
+#      - weh
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 1
+      - ReagentId: Blood
+        Quantity: 2 #this is used for limbs, so very low values
+
+- type: entity
+  id: TorsoYinglet
+  name: "yinglet torso"
+  parent: [PartYinglet, BaseTorso]
+  components:
+  - type: Sprite
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 4
+      - ReagentId: Blood
+        Quantity: 15 #at present, this accounts for the tail as well, could drop down to 10 once they split
+
+- type: entity
+  id: HeadYinglet
+  name: "yinglet head"
+  parent: [PartYinglet, BaseHead]
+  components:
+  - type: Sprite
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 2
+      - ReagentId: Blood
+        Quantity: 5
+
+
+- type: entity
+  id: LeftArmYinglet
+  name: "left yinglet arm"
+  parent: [PartYinglet, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: _Scav/Mobs/Species/Yinglet/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmYinglet
+  name: "right yinglet arm"
+  parent: [PartYinglet, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _Scav/Mobs/Species/Yinglet/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandYinglet
+  name: "left yinglet hand"
+  parent: [PartYinglet, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: _Scav/Mobs/Species/Yinglet/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandYinglet
+  name: "right yinglet hand"
+  parent: [PartYinglet, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: _Scav/Mobs/Species/Yinglet/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegYinglet
+  name: "left yinglet leg"
+  parent: [PartYinglet, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: _Scav/Mobs/Species/Yinglet/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegYinglet
+  name: "right yinglet leg"
+  parent: [PartYinglet, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: _Scav/Mobs/Species/Yinglet/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootYinglet
+  name: "left yinglet foot"
+  parent: [PartYinglet, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: _Scav/Mobs/Species/Yinglet/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootYinglet
+  name: "right yinglet foot"
+  parent: [PartYinglet, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: _Scav/Mobs/Species/Yinglet/parts.rsi
+    state: "r_foot"
+

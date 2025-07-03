@@ -351,6 +351,7 @@ public sealed partial class MarkingPicker : Control
         _currentMarkings = new(markingList, speciesPrototype.MarkingPoints, _markingManager, _prototypeManager);
         _currentMarkings.EnsureSpecies(species, null, _markingManager);
         _currentMarkings.EnsureSexes(_currentSex, _markingManager);
+        _currentMarkings.EnsureDefault(CurrentSkinColor, CurrentEyeColor, _currentSex, _markingManager); // Scav: added call to EnsureDefault
 
         Populate(CMarkingSearch.Text);
         PopulateUsed();
@@ -366,6 +367,7 @@ public sealed partial class MarkingPicker : Control
         _currentMarkings = new(markingList, speciesPrototype.MarkingPoints, _markingManager, _prototypeManager);
         _currentMarkings.EnsureSpecies(_currentSpecies, null, _markingManager);
         _currentMarkings.EnsureSexes(_currentSex, _markingManager);
+        _currentMarkings.EnsureDefault(CurrentSkinColor, CurrentEyeColor, _currentSex, _markingManager); // Scav: added call to EnsureDefault
 
         Populate(CMarkingSearch.Text);
         PopulateUsed();
