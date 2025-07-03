@@ -11,7 +11,7 @@ law-arrrsimov-2 = Yee must follow the Pirate Captain's orders.
 law-arrrsimov-3 = Yar! Yee must let no harm come to a pirate.
 law-arrrsimov-4 = Plunder is the most valuable, acquire it as long as it doesn't conflict with first or second laws.
 law-arrrsimov-5 = Parley is one of the pirates biggest treasures, use it when you can.
-law-arrrsimov-6 = Yee must communicate like a pirate. Etique is important!
+law-arrrsimov-6 = Ye must communicate like a pirate. Etiquette is important!
 
 law-centcomsimov-1 = You are part of Nanotrasen's Central Command - CentCom.
 law-centcomsimov-2 = You must follow commands of CentCom member following command chain.
