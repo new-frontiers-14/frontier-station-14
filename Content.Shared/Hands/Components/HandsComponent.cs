@@ -80,6 +80,7 @@ public sealed partial class HandsComponent : Component
 
     /// <summary>
     ///     Displacement map applied to hands, sorted by hand location
+    ///     Scav: replaced HandDisplacement, LeftHandDisplacement, and RightHandDisplacement with this
     /// </summary>
     [DataField]
     public Dictionary<HandLocation, DisplacementData> HandDisplacements = new();

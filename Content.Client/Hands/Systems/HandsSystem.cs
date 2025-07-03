@@ -349,11 +349,13 @@ namespace Content.Client.Hands.Systems
                 sprite.LayerSetData(index, layerData);
 
                 // Add displacement maps
+                // Scav: changed to use dictionary-based hand displacements parameter
                 if (handComp.HandDisplacements.TryGetValue(ev.Location, out var disp))
                 {
                     if (_displacement.TryAddDisplacement(disp, sprite, index, key, out var displacementKey))
                         revealedLayers.Add(displacementKey);
                 }
+                // End Scav
                     
             }
 

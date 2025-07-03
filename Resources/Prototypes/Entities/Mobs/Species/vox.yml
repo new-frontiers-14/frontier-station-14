@@ -153,6 +153,7 @@
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
   - type: Hands
+  #Scav: replaced old hand displacement system with handDisplacements
     handDisplacements:
       Left:
         sizeMaps:
@@ -164,6 +165,7 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: hand_r
+  #End Scav
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -220,3 +222,4 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
+    #Scav: removed Hands component, its not needed for a dummy
