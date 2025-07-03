@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/03/2025 17:27:14
-  entityCount: 659
+  time: 07/03/2025 22:13:31
+  entityCount: 656
 maps: []
 grids:
 - 1
@@ -83,7 +83,6 @@ entities:
           decals:
             628: -5,-10
             665: -5,-9
-            666: -5,-8
             667: -4,-10
         - node:
             color: '#FFFFFFFF'
@@ -109,7 +108,6 @@ entities:
             color: '#FFFFFFFF'
             id: BoxGreyscale
           decals:
-            389: 1,-1
             615: 4,-1
             616: 4,0
             617: 4,1
@@ -239,7 +237,7 @@ entities:
             color: '#334E6DFF'
             id: BrickTileWhiteCornerSe
           decals:
-            209: 1,-1
+            668: 1,-1
         - node:
             color: '#E6E6E6FF'
             id: BrickTileWhiteCornerSe
@@ -1200,6 +1198,13 @@ entities:
     - type: Transform
       pos: 5.5,5.5
       parent: 1
+- proto: BannerFsb
+  entities:
+  - uid: 263
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 1
 - proto: BlastDoor
   entities:
   - uid: 616
@@ -1624,15 +1629,10 @@ entities:
     - type: Transform
       pos: -3.5,-7.5
       parent: 1
-  - uid: 301
-    components:
-    - type: Transform
-      pos: -3.5,-6.5
-      parent: 1
   - uid: 302
     components:
     - type: Transform
-      pos: -3.5,-6.5
+      pos: -2.5,-7.5
       parent: 1
   - uid: 303
     components:
@@ -1734,7 +1734,7 @@ entities:
   - uid: 7
     components:
     - type: Transform
-      pos: -3.5,-6.5
+      pos: -2.5,-7.5
       parent: 1
   - uid: 205
     components:
@@ -1820,16 +1820,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-5.5
-      parent: 1
-  - uid: 507
-    components:
-    - type: Transform
-      pos: -4.5,-7.5
-      parent: 1
-  - uid: 529
-    components:
-    - type: Transform
-      pos: -3.5,-7.5
       parent: 1
   - uid: 600
     components:
@@ -2330,13 +2320,7 @@ entities:
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
-  - uid: 593
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,2.5
-      parent: 1
-  - uid: 659
+  - uid: 529
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -3540,10 +3524,11 @@ entities:
       parent: 1
 - proto: Gyroscope
   entities:
-  - uid: 181
+  - uid: 497
     components:
     - type: Transform
-      pos: 1.5,-0.5
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-7.5
       parent: 1
 - proto: HandheldArtifactContainer
   entities:
@@ -3588,17 +3573,17 @@ entities:
       parent: 1
 - proto: LockerWallColorL2RadiationFilled
   entities:
+  - uid: 181
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-4.5
+      parent: 1
   - uid: 186
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,1.5
-      parent: 1
-  - uid: 531
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-7.5
       parent: 1
 - proto: LockerWallColorL4BombFilled
   entities:
@@ -3636,7 +3621,7 @@ entities:
       parent: 1
 - proto: LockerWallMaterialsFuelBananiumFilled
   entities:
-  - uid: 497
+  - uid: 507
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -4486,13 +4471,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: SubstationBasic
-  entities:
-  - uid: 263
-    components:
-    - type: Transform
-      pos: -4.5,-7.5
-      parent: 1
 - proto: SubstationWallBasic
   entities:
   - uid: 299
@@ -4500,6 +4478,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,2.5
+      parent: 1
+  - uid: 301
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-7.5
       parent: 1
 - proto: TableCounterMetal
   entities:
