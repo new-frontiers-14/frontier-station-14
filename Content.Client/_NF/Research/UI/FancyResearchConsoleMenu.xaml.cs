@@ -1,8 +1,8 @@
 using System.Numerics;
-using Content.Client.Parallax; // Frontier: Parallax control for the background
+using Content.Client.Parallax;
 using Content.Client.Research;
 using Content.Client.UserInterface.Controls;
-using Content.Shared._Goobstation.Research;
+using Content.Shared._NF.Research;
 using Content.Shared.Access.Systems;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
@@ -16,7 +16,7 @@ using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Goobstation.Research.UI;
+namespace Content.Client._NF.Research.UI;
 
 [GenerateTypedNameReferences]
 public sealed partial class FancyResearchConsoleMenu : FancyWindow
@@ -75,25 +75,25 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     private bool _firstInitialization = true;
 
     /// <summary>
-    /// Frontier: the distance between elements on the grid.
+    /// the distance between elements on the grid.
     /// </summary>
     private const int GridSize = 90;
 
     /// <summary>
-    /// Frontier: technology cards size.
+    /// technology cards size.
     /// </summary>
     private const int CardSize = 64;
 
     /// <summary>
-    /// Frontier: the distance between elements on the grid.
+    /// the distance between elements on the grid.
     /// </summary>
-    private static readonly Vector2i DefaultPosition = Vector2i.Zero; //Frontier: 45,250 < 0,0
+    private static readonly Vector2i DefaultPosition = Vector2i.Zero;
 
     private Box2i _bounds = new(DefaultPosition, DefaultPosition);
 
-    private ParallaxControl _parallaxControl; // Frontier: Parallax control for the background
+    private ParallaxControl _parallaxControl;
 
-    private float _verticalScrollSpeed = 50; // Frontier: Allow mouse scroll
+    private float _verticalScrollSpeed = 50;
 
     public FancyResearchConsoleMenu()
     {
@@ -103,7 +103,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         _sprite = _entity.System<SpriteSystem>();
         _accessReader = _entity.System<AccessReaderSystem>();
 
-        // Frontier: Initialize parallax background
+        // Initialize parallax background
         _parallaxControl = new ParallaxControl
         {
             ParallaxPrototype = "Default",
@@ -141,10 +141,10 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     {
         DragContainer.RemoveAllChildren();
         List = dict;
-        var bounds = new Box2i(); // Frontier
-        var boundsSet = false; // Frontier
+        var bounds = new Box2i();
+        var boundsSet = false;
 
-        // Frontier: generate bounding box, ensure position is within bounds
+        // generate bounding box, ensure position is within bounds
         foreach (var tech in List)
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
@@ -336,7 +336,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         public TechDisciplinePrototype Proto = proto;
     }
 
-    // Frontier: clamp view bounds
+    // clamp view bounds
     private void ClampPosition(ref Vector2 position)
     {
         var viewSize = DragContainer.Size;
@@ -375,5 +375,4 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
         args.Handle();
     }
-    // End Frontier: clamp view bounds
 }

@@ -2,10 +2,10 @@
                       xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls;assembly=Content.Client"
                       xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls;assembly=Content.Client"
-                      xmlns:goob="clr-namespace:Content.Client._Goobstation.Research.UI"
+                      xmlns:nf="clr-namespace:Content.Client._NF.Research.UI"
                       Title="{Loc 'research-console-menu-title'}"
                       SetSize="1260 850"
-                      MinSize="600 400"> <!-- Frontier: add MinSize-->
+                      MinSize="600 400">
     <BoxContainer Orientation="Vertical"
                   HorizontalExpand="True"
                   VerticalExpand="True">
@@ -36,14 +36,14 @@
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BackgroundColor="#222226FF" />
                     </PanelContainer.PanelOverride>
-                    <goob:ResearchesContainerPanel
+                    <nf:ResearchesContainerPanel
                         HorizontalExpand="True"
                         VerticalExpand="True"
                         Name="DragContainer"
                         MouseFilter="Pass"
                         RectClipContent="True">
                         <!-- There lives all of technologies -->
-                    </goob:ResearchesContainerPanel>
+                    </nf:ResearchesContainerPanel>
                     <Button Name="RecenterButton" Text="{Loc 'research-console-menu-recenter-button'}" MinHeight="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5 -5"/>
                 </PanelContainer>
             </BoxContainer>
@@ -57,7 +57,6 @@
                     HorizontalExpand="True"
                     SizeFlagsStretchRatio="1"
                     Margin="0">
-                    <!-- Frontier: add a placeholder so the scrollable interface doesn't immediately shrink, matches InfoPanel size -->
                     <Control
                         Margin="5"
                         MinWidth="450"
