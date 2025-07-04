@@ -192,8 +192,8 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             LayoutContainer.SetPosition(control, uiPosition);
             control.SelectAction += SelectTech;
 
-            if (tech.Key == CurrentTech)
-                SelectTech(proto, tech.Value);
+            // Set selection state based on CurrentTech
+            control.IsSelected = tech.Key == CurrentTech;
         }
     }
 
@@ -298,7 +298,19 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         if (!_player.LocalEntity.HasValue)
             return;
 
+        // Update current tech selection
+        var previousTech = CurrentTech;
         CurrentTech = proto.ID;
+
+        // Update selection state for all tech items
+        foreach (var child in DragContainer.Children)
+        {
+            if (child is FancyResearchConsoleItem techItem)
+            {
+                techItem.IsSelected = techItem.Prototype.ID == CurrentTech;
+            }
+        }
+
         var control = new FancyTechnologyInfoPanel(proto, _accessReader.IsAllowed(_player.LocalEntity.Value, Entity), availability, _sprite);
         control.BuyAction += args => OnTechnologyCardPressed?.Invoke(args.ID);
         InfoContainer.AddChild(control);
