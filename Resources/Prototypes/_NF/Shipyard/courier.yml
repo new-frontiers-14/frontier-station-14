@@ -1,39 +1,39 @@
 # Author Info
-# GitHub: SurfinNinja1
-# Discord: ???
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
 
 # Maintainer Info
-# GitHub: ???
-# Discord: ???
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
 
 # Shuttle Notes:
 #
 - type: vessel
-  id: Loader
+  id: Courier
   parent: BaseVessel
-  name: NC Loader
+  name: FSB Courier
   description: A compact cargo ship designed for hauling shipments.
-  price: 18500 # 16967 0.05 17815.35
+  price: 31000 # base 21000 + 10k EMU rental because Whatstone is a reasonable person who makes reasonable choices. 
   category: Small
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/loader.yml
-  guidebookPage: ShipyardLoader
+  shuttlePath: /Maps/_NF/Shuttles/courier.yml
+  # guidebookPage: 
   class:
   - Cargo
   engine:
   - Plasma
 
 - type: gameMap
-  id: Loader
-  mapName: 'NC Loader'
-  mapPath: /Maps/_NF/Shuttles/loader.yml
+  id: Courier
+  mapName: 'FSB Courier'
+  mapPath: /Maps/_NF/Shuttles/courier.yml
   minPlayers: 0
   stations:
-    Loader:
+    Courier:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Loader {1}'
+          mapNameTemplate: 'Courier {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
