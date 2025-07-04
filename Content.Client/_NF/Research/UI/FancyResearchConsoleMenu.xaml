@@ -36,14 +36,25 @@
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BackgroundColor="#222226FF" />
                     </PanelContainer.PanelOverride>
-                    <nf:ResearchesContainerPanel
-                        HorizontalExpand="True"
-                        VerticalExpand="True"
-                        Name="DragContainer"
-                        MouseFilter="Pass"
-                        RectClipContent="True">
-                        <!-- There lives all of technologies -->
-                    </nf:ResearchesContainerPanel>
+                    <!-- Add ScrollContainer with PDA-style scrollbars - vertical only -->
+                    <ScrollContainer 
+                        Name="TechScrollContainer"
+                        Access="Public"
+                        HorizontalExpand="True" 
+                        VerticalExpand="True" 
+                        HScrollEnabled="False"
+                        VScrollEnabled="True"
+                        ReserveScrollbarSpace="True"
+                        StyleClasses="PdaScrollContainer">
+                        <nf:ResearchesContainerPanel
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            Name="DragContainer"
+                            MouseFilter="Pass"
+                            RectClipContent="True">
+                            <!-- There lives all of technologies -->
+                        </nf:ResearchesContainerPanel>
+                    </ScrollContainer>
                     <Button Name="RecenterButton" Text="{Loc 'research-console-menu-recenter-button'}" MinHeight="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5 -5"/>
                 </PanelContainer>
             </BoxContainer>
