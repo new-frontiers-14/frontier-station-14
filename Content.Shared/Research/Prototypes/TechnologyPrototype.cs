@@ -1,4 +1,3 @@
-using Content.Shared._NF.Research.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
