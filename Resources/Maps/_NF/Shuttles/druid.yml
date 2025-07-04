@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/03/2025 00:55:40
-  entityCount: 708
+  time: 07/04/2025 04:01:05
+  entityCount: 707
 maps: []
 grids:
 - 1
@@ -1967,6 +1967,11 @@ entities:
     - type: Transform
       pos: -0.5,3.5
       parent: 1
+  - uid: 483
+    components:
+    - type: Transform
+      pos: -1.5,-0.5
+      parent: 1
 - proto: ChessBoard
   entities:
   - uid: 439
@@ -2072,15 +2077,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -6.5,0.5
       parent: 1
-- proto: DisposalJunctionFlipped
+- proto: DisposalPipe
   entities:
-  - uid: 54
+  - uid: 45
     components:
     - type: Transform
       pos: 0.5,-1.5
       parent: 1
-- proto: DisposalPipe
-  entities:
   - uid: 113
     components:
     - type: Transform
@@ -2170,12 +2173,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-2.5
       parent: 1
-  - uid: 436
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,-1.5
-      parent: 1
   - uid: 680
     components:
     - type: Transform
@@ -2229,19 +2226,8 @@ entities:
     - type: Transform
       pos: -6.5,2.5
       parent: 1
-  - uid: 483
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-1.5
-      parent: 1
 - proto: DisposalUnit
   entities:
-  - uid: 420
-    components:
-    - type: Transform
-      pos: 2.5,-1.5
-      parent: 1
   - uid: 678
     components:
     - type: Transform
@@ -3734,6 +3720,13 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
+- proto: PillCanister
+  entities:
+  - uid: 420
+    components:
+    - type: Transform
+      pos: -1.515625,0
+      parent: 1
 - proto: PlasmaChemistryVial
   entities:
   - uid: 432
@@ -3870,10 +3863,10 @@ entities:
       parent: 1
 - proto: SeedExtractor
   entities:
-  - uid: 45
+  - uid: 54
     components:
     - type: Transform
-      pos: 2.5,-0.5
+      pos: 2.5,-1.5
       parent: 1
 - proto: ServiceTechFab
   entities:
@@ -5318,10 +5311,10 @@ entities:
       parent: 1
 - proto: WaterTankHighCapacity
   entities:
-  - uid: 487
+  - uid: 436
     components:
     - type: Transform
-      pos: -1.5,-0.5
+      pos: 2.5,-0.5
       parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
