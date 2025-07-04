@@ -126,7 +126,7 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
                 panel.BackgroundColor = HoveredColor;
             else
                 panel.BackgroundColor = Color;
-            
+
             panel.BorderColor = BorderColor;
         }
     }

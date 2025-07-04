@@ -31,7 +31,7 @@ public sealed partial class TechnologyPrototype : IPrototype
     /// Frontier: An entity prototype whose sprite will be used as the technology icon.
     /// If specified, this takes precedence over Icon when Icon is not provided.
     /// </summary>
-    [DataField] 
+    [DataField]
     public EntProtoId? EntityIcon = null;
 
     /// <summary>
