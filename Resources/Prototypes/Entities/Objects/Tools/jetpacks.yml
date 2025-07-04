@@ -15,7 +15,7 @@
   - type: EffectVisuals
   - type: Tag
     tags:
-      - HideContextMenu
+      - HideContextMenu # Frontier - note, when updated, update NFSD jetpacks
   - type: AnimationPlayer
 
 - type: entity
@@ -121,6 +121,14 @@
     #slots:
     #  - Back
     # End DeltaV modifications
+  # Frontier: emaggable jetpacks
+  - type: Tag
+    tags:
+      - HideContextMenu
+      - DemagImmune
+  - type: Jetpack
+    radarBlip: false
+  # End Frontier: emaggable jetpacks
 
 # Filled black
 - type: entity
