@@ -1,0 +1,34 @@
+- type: vessel
+  id: Shard
+  parent: BaseVessel
+  name: NSF Shard
+  description: A large expedition oriented ship for holding prisoners and making them work in various .
+  price: 43000
+  category: Large
+  group: Security
+  access: Bailiff
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/shard.yml
+  guidebookPage: Null
+  class:
+  - Capital
+  - Detainment
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Shard
+  mapName: 'NSF Shard'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/shard.yml
+  minPlayers: 0
+  stations:
+    Shard:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Shard {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Prisoner: [ 0, 0 ]
