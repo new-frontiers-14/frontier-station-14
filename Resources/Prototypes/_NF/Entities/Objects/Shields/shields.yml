@@ -22,3 +22,50 @@
   - type: Item
     sprite: _NF/Objects/Weapons/Melee/shields.rsi
     heldPrefix: metal
+
+- type: entity
+  id: NFShieldReflective
+  parent: [ BaseC1Contraband, RiotLaserShield ]
+  name: reflective shield
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    state: reflective-icon
+  - type: Item
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    heldPrefix: reflective
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Heat: 0.4
+    activeBlockModifier:
+      coefficients:
+        Heat: 0.5
+      flatReductions:
+        Heat: 1
+  - type: Reflect
+    reflectProb: 0.1
+    reflects:
+      - Energy
+    reflectingInHands: true
+
+- type: entity
+  id: NFShieldBallistic
+  parent: [ BaseC1Contraband, RiotBulletShield ]
+  name: bullet resistant shield
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    state: bullet-icon
+  - type: Item
+    sprite: _NF/Objects/Weapons/Melee/shields.rsi
+    heldPrefix: bullet
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Piercing: 0.75
+    activeBlockModifier:
+      coefficients:
+        Piercing: 0.60
+      flatReductions:
+        Piercing: 1
