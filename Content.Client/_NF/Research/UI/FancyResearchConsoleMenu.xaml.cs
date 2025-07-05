@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Client.Parallax;
 using Content.Client.Research;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._NF.Research;
@@ -16,6 +15,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Collections.Generic;
 
 namespace Content.Client._NF.Research.UI;
 
@@ -81,10 +81,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
     private Box2i _bounds = new(DefaultPosition, DefaultPosition);
 
-    private ParallaxControl _parallaxControl;
-
-    private float _verticalScrollSpeed = 50;
-
     public FancyResearchConsoleMenu()
     {
         RobustXamlLoader.Load(this);
@@ -93,32 +89,22 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         _sprite = _entity.System<SpriteSystem>();
         _accessReader = _entity.System<AccessReaderSystem>();
 
-        // Initialize parallax background with dynamic sizing
-        _parallaxControl = new ParallaxControl
-        {
-            ParallaxPrototype = "Default",
-            HorizontalExpand = true,
-            VerticalExpand = true,
-            // Don't set fixed sizes - will be set dynamically based on tech tree bounds
-        };
-
-        // Add the parallax control to the DragContainer (now inside ScrollContainer)
-        DragContainer.AddChild(_parallaxControl);
-
-        // Set the proper rendering order by adjusting positions in the parent's child list
-        // Controls with a higher position value are drawn on top (foreground)
-        // Make sure the parallax is at the bottom of the z-order (drawn first)
-        _parallaxControl.SetPositionInParent(0);
-
-        // Set up scroll container properties - only vertical scrolling for tech tree
+        // Set up scroll container properties
         TechScrollContainer.ScrollSpeedX = 100;
         TechScrollContainer.ScrollSpeedY = 100;
-        TechScrollContainer.HScrollEnabled = false; // Disable horizontal scrolling
-        TechScrollContainer.VScrollEnabled = true;  // Keep only vertical scrolling
+        TechScrollContainer.HScrollEnabled = false;
+        TechScrollContainer.VScrollEnabled = true;
 
-        // Apply PDA-style scrollbar colors to match the style
+        // Set a dark background for better visibility of the tech tree lines
+        if (ResearchesContainer.PanelOverride is StyleBoxFlat container)
+        {
+            container.BackgroundColor = Color.FromHex("#101010"); // Dark background
+        }
+
+        // Apply scrollbar styling
         ApplyScrollbarStyling();
 
+        // Set up event handlers
         ServerButton.OnPressed += _ => OnServerButtonPressed?.Invoke();
         DragContainer.OnKeyBindDown += OnKeybindDown;
         DragContainer.OnKeyBindUp += OnKeybindUp;
@@ -129,7 +115,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     }
 
     /// <summary>
-    /// Apply scrollbar styling.
+    /// Apply scrollbar styling
     /// </summary>
     private void ApplyScrollbarStyling()
     {
@@ -151,7 +137,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         {
             BackgroundColor = Color.FromHex("#8C8C8C59"),
             ContentMarginLeftOverride = 10,
-            ContentMarginTopOverride = 10,
+            ContentMarginTopOverride = 10
         };
     }
 
@@ -160,21 +146,19 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
     public void UpdatePanels(Dictionary<string, ResearchAvailability> dict)
     {
+        // Clear existing items
         DragContainer.RemoveAllChildren();
+        
         List = dict;
         var bounds = new Box2i();
         var boundsSet = false;
 
-        // Re-add the parallax control first (it was removed with RemoveAllChildren)
-        DragContainer.AddChild(_parallaxControl);
-        _parallaxControl.SetPositionInParent(0);
-
-        // generate bounding box, ensure position is within bounds
+        // Calculate bounds
         foreach (var tech in List)
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
-            // Fix Y coordinate so position (0,0) is at the top
-            var position = DefaultPosition + (GridSize * proto.Position.X, GridSize * proto.Position.Y); // Normal Y: position (0,0) at top
+            var position = DefaultPosition + (GridSize * proto.Position.X, GridSize * proto.Position.Y);
+            
             if (!boundsSet)
             {
                 bounds.BottomLeft = position;
@@ -194,46 +178,35 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         {
             _bounds = bounds;
 
-            // Calculate the total size needed for all techs with proper padding
-            var padding = 200; // Increase padding to prevent edge clipping
+            // Set container size with padding
+            var padding = 200;
             var totalWidth = _bounds.Width + CardSize + padding;
             var totalHeight = _bounds.Height + CardSize + padding;
-
-            // Set the DragContainer to be large enough to contain all technologies
+            
             DragContainer.SetWidth = Math.Max(totalWidth, 1000);
             DragContainer.SetHeight = Math.Max(totalHeight, 1000);
 
-            // Update parallax size to match the tech tree bounds
-            _parallaxControl.SetWidth = DragContainer.SetWidth;
-            _parallaxControl.SetHeight = DragContainer.SetHeight;
-            // Position parallax to cover the entire tech area
-            LayoutContainer.SetPosition(_parallaxControl, new Vector2(0, 0));
-
-            // First-time initialization
-            if (_firstInitialization)
-            {
-                _firstInitialization = false;
-            }
+            _firstInitialization = false;
         }
-
+        
+        // Add tech items
         foreach (var tech in List)
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
-
             var control = new FancyResearchConsoleItem(proto, _sprite, tech.Value);
+            
             DragContainer.AddChild(control);
 
-            // Set position for all tech with better centering to prevent right edge overflow
-            var leftPadding = 100; // Add left padding to move tree away from left edge
-            var topPadding = 100;  // Add top padding to move tree away from top edge
+            // Position the tech item
+            var leftPadding = 100;
+            var topPadding = 100;
             var uiPosition = new Vector2(
-                proto.Position.X * GridSize - _bounds.Left + leftPadding, // Offset from bounds left + padding
-                proto.Position.Y * GridSize - _bounds.Bottom + topPadding // Offset from bounds bottom + padding (normal Y)
+                proto.Position.X * GridSize - _bounds.Left + leftPadding,
+                proto.Position.Y * GridSize - _bounds.Bottom + topPadding
             );
+            
             LayoutContainer.SetPosition(control, uiPosition);
             control.SelectAction += SelectTech;
-
-            // Set selection state based on CurrentTech
             control.IsSelected = tech.Key == CurrentTech;
         }
     }
@@ -256,7 +229,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             var discipline = _prototype.Index<TechDisciplinePrototype>(disciplineId);
             var tier = _research.GetTierCompletionPercentage(database, discipline, _prototype);
 
-            // i'm building the small-ass control here to spare me some mild annoyance in making a new file
             var texture = new TextureRect
             {
                 TextureScale = new Vector2(2, 2),
@@ -290,25 +262,17 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         if (!_draggin)
             return;
 
-        // Directly adjust scroll position instead of moving individual tech items
-        var scrollSpeed = 2.0f; // Adjust sensitivity
+        // Adjust scroll position with drag
+        var scrollSpeed = 2.0f;
         TechScrollContainer.VScrollTarget -= args.Relative.Y * scrollSpeed;
-
-        // The scroll container will automatically clamp the values
     }
 
-    /// <summary>
-    /// Raised when LMB is pressed at <see cref="DragContainer"/>
-    /// </summary>
     private void OnKeybindDown(GUIBoundKeyEventArgs args)
     {
         if (args.Function == EngineKeyFunctions.Use)
             _draggin = true;
     }
 
-    /// <summary>
-    /// Raised when LMB is unpressed at <see cref="DragContainer"/>
-    /// </summary>
     private void OnKeybindUp(GUIBoundKeyEventArgs args)
     {
         if (args.Function == EngineKeyFunctions.Use)
@@ -319,22 +283,16 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         => _draggin ? DragMode.None : base.GetDragModeFor(relativeMousePos);
     #endregion
 
-    /// <summary>
-    /// Selects a tech prototype and opens info panel
-    /// </summary>
-    /// <param name="proto">Tech proto</param>
-    /// <param name="availability">Tech availability</param>
     public void SelectTech(TechnologyPrototype proto, ResearchAvailability availability)
     {
         InfoContainer.RemoveAllChildren();
         if (!_player.LocalEntity.HasValue)
             return;
 
-        // Update current tech selection
-        var previousTech = CurrentTech;
+        // Update selection
         CurrentTech = proto.ID;
 
-        // Update selection state for all tech items
+        // Update visual selection state
         foreach (var child in DragContainer.Children)
         {
             if (child is FancyResearchConsoleItem techItem)
@@ -343,27 +301,21 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             }
         }
 
+        // Create and add info panel
         var control = new FancyTechnologyInfoPanel(proto, _accessReader.IsAllowed(_player.LocalEntity.Value, Entity), availability, _sprite);
         control.BuyAction += args => OnTechnologyCardPressed?.Invoke(args.ID);
         InfoContainer.AddChild(control);
     }
 
-    /// <summary>
-    /// Resets the view exactly to the initial position when the UI was first opened
-    /// </summary>
     public void Recenter()
     {
-        // Reset scroll container to top position (since we're using vertical-only scrolling)
+        // Reset scroll position
         TechScrollContainer.VScrollTarget = 0;
-
-        // No need to manually reposition tech items since they're now positioned absolutely
-        // within the properly-sized DragContainer
     }
 
     public override void Close()
     {
         base.Close();
-
         DragContainer.RemoveAllChildren();
         InfoContainer.RemoveAllChildren();
         _firstInitialization = true;
@@ -376,7 +328,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
     protected override void MouseWheel(GUIMouseWheelEventArgs args)
     {
-        // Let the scroll container handle mouse wheel naturally
         base.MouseWheel(args);
     }
 }
