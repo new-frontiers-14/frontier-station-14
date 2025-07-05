@@ -10,6 +10,7 @@ guide-entry-sector-topology = Sector Topology
 guide-entry-cargo-hauling = Cargo Hauling
 guide-entry-shipyard = Shipyard
 guide-entry-frontier-rules = Server Rules
+guide-entry-frontier-definitions = Definitions
 
 # Engineering entries
 guide-entry-offshore-gas-mining = Offshore Gas Mining
@@ -109,9 +110,10 @@ guide-entry-frontier-rule-3 = 3. Escalation
 guide-entry-frontier-rule-4 = 4. Chat
 guide-entry-frontier-rule-5 = 5. Roleplay
 guide-entry-frontier-rule-6 = 6. Safezone
-guide-entry-frontier-rule-7 = 7. Antag
-guide-entry-frontier-rule-8 = 8. Safe Zone
-guide-entry-frontier-rule-9 = 9. Security
-guide-entry-frontier-rule-10 = 10. Command
-guide-entry-frontier-rule-11 = 11. Escalation
-guide-entry-frontier-rule-12 = 12. PVP
+guide-entry-frontier-rule-7 = 7. Antagonism
+guide-entry-frontier-rule-8 = 8. PVP
+guide-entry-frontier-rule-9 = 9. Piracy
+guide-entry-frontier-rule-10 = 10. Crimes
+guide-entry-frontier-rule-11 = 11. Silicons
+guide-entry-frontier-rule-12 = 12. Security
+guide-entry-frontier-rule-13 = 13. Command
