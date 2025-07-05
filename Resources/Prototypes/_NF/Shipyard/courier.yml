@@ -9,31 +9,31 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Retort
+  id: Courier
   parent: BaseVessel
-  name: FSB Retort
-  description: A medium engineering vessel designed and deployed by the Far Star Biotech corporation to provide infrastructure support for deep space operations.
-  price: 59000 # 53331 0.1 58664.1
-  category: Medium
+  name: FSB Courier
+  description: A compact cargo ship designed for hauling shipments.
+  price: 31000 # base 21000 + 10k EMU rental because Whatstone is a reasonable person who makes reasonable choices. 
+  category: Small
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/retort.yml
-  guidebookPage: ShipyardRetort
+  shuttlePath: /Maps/_NF/Shuttles/courier.yml
+  # guidebookPage: 
   class:
-  - Atmospherics
+  - Cargo
   engine:
-  - Bananium
+  - Plasma
 
 - type: gameMap
-  id: Retort
-  mapName: 'FSB Retort'
-  mapPath: /Maps/_NF/Shuttles/retort.yml
+  id: Courier
+  mapName: 'FSB Courier'
+  mapPath: /Maps/_NF/Shuttles/courier.yml
   minPlayers: 0
   stations:
-    Retort:
+    Courier:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Retort {1}'
+          mapNameTemplate: 'Courier {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
