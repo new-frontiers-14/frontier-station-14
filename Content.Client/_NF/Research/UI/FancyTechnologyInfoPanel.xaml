@@ -53,7 +53,7 @@
                           Orientation="Vertical"
                           VerticalExpand="True"
                           Margin="5"
-                          SizeFlagsStretchRatio="1"> <!-- Frontier: remove Visible-->
+                          SizeFlagsStretchRatio="1">
                 <Label Text="{Loc 'research-console-required-text'}"
                         HorizontalAlignment="Center"/>
                 <customControls:HSeparator StyleClasses="LowDivider"
@@ -70,9 +70,7 @@
                             Name="RequiredTechContainer"
                             Orientation="Vertical"
                             VerticalExpand="True">
-                            <!-- Frontier: move NoPrereqLabel into RequiredTechContainer-->
                             <RichTextLabel Name="NoPrereqLabel" HorizontalAlignment="Center" Text="{Loc 'research-console-no-tech-requirements'}" Visible="True"/>
-                            <!-- End Frontier: move NoPrereqLabel into RequiredTechContainer-->
                         </BoxContainer>
                     </ScrollContainer>
                 </PanelContainer>

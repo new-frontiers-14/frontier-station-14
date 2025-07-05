@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Shared._Goobstation.Research;
+using Content.Shared._NF.Research;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
@@ -8,7 +8,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._Goobstation.Research.UI;
+namespace Content.Client._NF.Research.UI;
 
 // Frontier: renamed from FancyResearchConsoleBoundUserInterface to ResearchConsoleGoobBoundUserInterface to avoid collisions (see RT#5648)
 [UsedImplicitly]

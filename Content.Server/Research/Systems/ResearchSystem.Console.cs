@@ -7,7 +7,7 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
-using Content.Shared._Goobstation.Research; // Goobstation: R&D Console Rework
+using Content.Shared._NF.Research; // NF: R&D Console Rework
 using System.Linq; // R&D Console Rework
 
 namespace Content.Server.Research.Systems;
