@@ -1,4 +1,4 @@
-using System.Numerics;
+using Content.Client.Parallax;
 using Content.Client.Research;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._NF.Research;
@@ -15,6 +15,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Numerics;
 
 namespace Content.Client._NF.Research.UI;
 
@@ -31,6 +32,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     private readonly ResearchSystem _research;
     private readonly SpriteSystem _sprite;
     private readonly AccessReaderSystem _accessReader;
+    private ParallaxControl _parallaxControl;
 
     /// <summary>
     /// Console entity
@@ -94,11 +96,25 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         TechScrollContainer.HScrollEnabled = false;
         TechScrollContainer.VScrollEnabled = true;
 
-        // Set a dark background for better visibility of the tech tree lines
-        if (ResearchesContainer.PanelOverride is StyleBoxFlat container)
+        // Frontier: Initialize parallax background
+        _parallaxControl = new ParallaxControl
         {
-            container.BackgroundColor = Color.FromHex("#101010"); // Dark background
-        }
+            ParallaxPrototype = "Default",
+            HorizontalExpand = true,
+            VerticalExpand = true,
+        };
+
+
+        // Add the parallax control to the ResearchesContainer at the beginning (bottom layer)
+        ResearchesContainer.AddChild(_parallaxControl);
+
+        // Set the proper rendering order by adjusting positions in the parent's child list
+        // Controls with a higher position value are drawn on top (foreground)
+        // Make sure the parallax is at the bottom of the z-order (drawn first)
+        _parallaxControl.SetPositionInParent(0);
+
+        // The drag container should be in the middle
+        TechScrollContainer.SetPositionInParent(1);
 
         // Apply scrollbar styling
         ApplyScrollbarStyling();
