@@ -84,12 +84,6 @@ public sealed class NFCCVars
         CVarDef.Create("nf14.worldgen.distance_modifier", 1f, CVar.SERVERONLY);
 
     /// <summary>
-    /// The rough minimum distance between POIs in meters.
-    /// </summary>
-    public static readonly CVarDef<float> MinPOIDistance =
-        CVarDef.Create("nf14.worldgen.min_poi_distance", 400f, CVar.SERVERONLY);
-
-    /// <summary>
     /// The maximum number of times to retry POI placement during world generation.
     /// </summary>
     public static readonly CVarDef<int> POIPlacementRetries =
@@ -105,10 +99,10 @@ public sealed class NFCCVars
         CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
 
     /// <summary>
-    /// Base sell rate (multiplier: 0.75 = 75%)
+    /// Base sell rate (multiplier: 0.95 = 95%)
     /// </summary>
     public static readonly CVarDef<float> ShipyardSellRate =
-        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.75f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.95f, CVar.SERVERONLY);
 
     /*
      * Salvage
