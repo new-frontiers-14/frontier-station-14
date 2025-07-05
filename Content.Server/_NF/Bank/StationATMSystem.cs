@@ -3,16 +3,16 @@
  * Copyright (c) 2024 New Frontiers Contributors
  * See AGPLv3.txt for details.
  */
+using System.Linq;
 using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Bank.Events;
-using Content.Shared.Coordinates;
-using Content.Shared.Stacks;
-using Content.Shared._NF.Bank.BUI;
 using Content.Shared.Access.Systems;
+using Content.Shared.Coordinates;
 using Content.Shared.Database;
+using Content.Shared.Stacks;
 using Robust.Shared.Containers;
-using System.Linq;
 
 namespace Content.Server._NF.Bank;
 
@@ -93,8 +93,10 @@ public sealed partial class BankSystem
 
         _adminLogger.Add(LogType.ATMUsage, LogImpact.Low, $"{ToPrettyString(player):actor} withdrew {args.Amount} from {component.Account} station bank account. '{args.Reason}': {args.Description}");
         //spawn the cash stack of whatever cash type the ATM is configured to.
-        var stackPrototype = _prototypeManager.Index<StackPrototype>(component.CashType);
-        _stackSystem.Spawn(args.Amount, stackPrototype, uid.ToCoordinates());
+        var stackPrototype = _prototypeManager.Index(component.CashType);
+        var stackUid = _stackSystem.Spawn(args.Amount, stackPrototype, args.Actor.ToCoordinates());
+        if (!_hands.TryPickupAnyHand(args.Actor, stackUid))
+            _transform.SetLocalRotation(stackUid, Angle.Zero);
 
         _uiSystem.SetUiState(uid, args.UiKey,
             new StationBankATMMenuInterfaceState(stationBank - args.Amount, hasAccess, deposit));

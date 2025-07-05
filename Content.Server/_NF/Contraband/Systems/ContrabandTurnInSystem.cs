@@ -15,6 +15,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
 using Content.Server._NF.Cargo.Systems;
+using Content.Server.Hands.Systems;
 
 namespace Content.Server._NF.Contraband.Systems;
 
@@ -25,8 +26,10 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
 {
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
     private EntityQuery<MobStateComponent> _mobQuery;
@@ -201,7 +204,9 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
         SellPallets(gridUid, component, null, out var price);
 
         var stackPrototype = _protoMan.Index<StackPrototype>(component.RewardType);
-        _stack.Spawn(price, stackPrototype, uid.ToCoordinates());
+        var stackUid = _stack.Spawn(price, stackPrototype, args.Actor.ToCoordinates());
+        if (!_hands.TryPickupAnyHand(args.Actor, stackUid))
+            _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
         UpdatePalletConsoleInterface(uid, component);
     }
 }
