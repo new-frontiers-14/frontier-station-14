@@ -153,7 +153,7 @@
   name: stimulant auto-injector
   parent: NFChemicalMedipen
   id: StimulantAutoInjector
-  description: A rapid dose of potent stimulants and governing agents. Contains desoxyephedrine and dylovene. Use with extreme caution.
+  description: A rapid dose of potent stimulants to give you the edge over your foes.
   components:
   - type: Item
     inhandVisuals:
@@ -175,15 +175,13 @@
   - type: SolutionContainerVisuals
     emptySpriteName: stimulantpen_empty
   - type: Hypospray
-    transferAmount: 20
+    transferAmount: 10
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 20
+        maxVol: 10
         reagents:
-        - ReagentId: Desoxyephedrine
-          Quantity: 10
-        - ReagentId: Dylovene
+        - ReagentId: Ephedrine
           Quantity: 10
 
 - type: entity
