@@ -37,4 +37,5 @@ public enum SectorBankAccount : byte
     Nfsd,
     Medical,
     Edison,
+    Custom, // Admeme
 }
