@@ -264,4 +264,26 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<bool> XenoarchSingleUseNodes =
         CVarDef.Create("nf14.xenoarch.single_use_nodes", true, CVar.REPLICATED);
+
+    /*
+     * Greeting
+     */
+
+    /// <summary>
+    /// If true, enables a radio greeting whenever a new player spawns.
+    /// </summary>
+    public static readonly CVarDef<bool> NewPlayerRadioGreetingEnabled =
+        CVarDef.Create("nf14.greeting.enabled", true, CVar.REPLICATED);
+
+    /// <summary>
+    /// The maximum playtime, in minutes, for a new player radio message to be sent.
+    /// </summary>
+    public static readonly CVarDef<int> NewPlayerRadioGreetingMaxPlaytime =
+        CVarDef.Create("nf14.greeting.max_playtime", 180, CVar.REPLICATED); // Three hours
+
+    /// <summary>
+    /// The channel the radio message should be sent off on.
+    /// </summary>
+    public static readonly CVarDef<string> NewPlayerRadioGreetingChannel =
+        CVarDef.Create("nf14.greeting.channel", "Service", CVar.REPLICATED);
 }
