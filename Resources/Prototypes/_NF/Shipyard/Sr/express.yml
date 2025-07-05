@@ -1,40 +1,41 @@
 # Author Info
-# GitHub: ???
-# Discord: ???
+# GitHub: dustylens
+# Discord: dustylens
 
 # Maintainer Info
-# GitHub: ???
-# Discord: ???
+# GitHub: dustylens
+# Discord: dustylens
 
 # Shuttle Notes:
 #
 - type: vessel
-  id: MailPod
+  id: Express
   parent: BaseVessel
-  name: NC Mail Pod
-  description: A cramped yet reliable shuttle for delivering packages.
-  price: 12000 # 10826 0.05 11367.3
-  category: Micro
+  name: FSB Express
+  description: A small endurance shuttle for express logistics support in Frontier space.
+  price: 16500
+  category: Small
   group: Sr
   access: Mail
-  shuttlePath: /Maps/_NF/Shuttles/Sr/mailpod.yml
+  shuttlePath: /Maps/_NF/Shuttles/Sr/express.yml
   guidebookPage: Null
   class:
   - Cargo
   engine:
   - Plasma
+  - Solar
 
 - type: gameMap
-  id: MailPod
-  mapName: 'NC Mail Pod'
-  mapPath: /Maps/_NF/Shuttles/Sr/mailpod.yml
+  id: Express
+  mapName: 'FSB Express'
+  mapPath: /Maps/_NF/Shuttles/Sr/express.yml
   minPlayers: 0
   stations:
-    MailPod:
+    Express:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Mail Pod {1}'
+          mapNameTemplate: 'Express {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
