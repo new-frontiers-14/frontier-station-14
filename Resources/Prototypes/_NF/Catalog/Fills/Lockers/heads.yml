@@ -73,3 +73,16 @@
       amount: 1
     - id: NFMagazinePistol35
       amount: 2
+
+- type: entity
+  parent: GunSafe
+  id: GunSafePlantManager
+  name: plant manager's gun safe
+  suffix: Filled
+  components:
+  - type: AccessReader
+    access: [["ChiefEngineer"]]
+  - type: StorageFill
+    contents:
+    - id: NFWeaponParticleDecelerator
+      amount: 2
