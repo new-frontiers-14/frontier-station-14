@@ -5,6 +5,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
@@ -17,6 +18,7 @@ public sealed partial class PlayTimeEditorPanel : DefaultWindow
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
     private readonly SpriteSystem _spriteSystem;
 
@@ -38,6 +40,21 @@ public sealed partial class PlayTimeEditorPanel : DefaultWindow
         PopulateJobs();
         UpdateGroup();
         UpdateWarning(" ", Color.LightGreen);
+        
+        // Autofill the player field with the current logged user
+        AutofillCurrentUser();
+    }
+
+    private void AutofillCurrentUser()
+    {
+        if (_playerManager.LocalUser != null)
+        {
+            var playerData = _playerManager.GetPlayerData(_playerManager.LocalUser.Value);
+            if (playerData != null)
+            {
+                PlayerLine.Text = playerData.UserName;
+            }
+        }
     }
 
     public void PopulateJobs()
