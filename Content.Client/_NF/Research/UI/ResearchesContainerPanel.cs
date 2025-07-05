@@ -1,11 +1,8 @@
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.IoC;
-using Robust.Shared.Timing;
 using Content.Shared._NF.Research;
 using System.Linq;
 using System.Numerics;
-using System;
 
 namespace Content.Client._NF.Research.UI;
 

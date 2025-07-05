@@ -15,7 +15,6 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using System.Collections.Generic;
 
 namespace Content.Client._NF.Research.UI;
 
@@ -148,7 +147,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     {
         // Clear existing items
         DragContainer.RemoveAllChildren();
-        
+
         List = dict;
         var bounds = new Box2i();
         var boundsSet = false;
@@ -158,7 +157,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
             var position = DefaultPosition + (GridSize * proto.Position.X, GridSize * proto.Position.Y);
-            
+
             if (!boundsSet)
             {
                 bounds.BottomLeft = position;
@@ -182,19 +181,19 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             var padding = 200;
             var totalWidth = _bounds.Width + CardSize + padding;
             var totalHeight = _bounds.Height + CardSize + padding;
-            
+
             DragContainer.SetWidth = Math.Max(totalWidth, 1000);
             DragContainer.SetHeight = Math.Max(totalHeight, 1000);
 
             _firstInitialization = false;
         }
-        
+
         // Add tech items
         foreach (var tech in List)
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
             var control = new FancyResearchConsoleItem(proto, _sprite, tech.Value);
-            
+
             DragContainer.AddChild(control);
 
             // Position the tech item
@@ -204,7 +203,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
                 proto.Position.X * GridSize - _bounds.Left + leftPadding,
                 proto.Position.Y * GridSize - _bounds.Bottom + topPadding
             );
-            
+
             LayoutContainer.SetPosition(control, uiPosition);
             control.SelectAction += SelectTech;
             control.IsSelected = tech.Key == CurrentTech;
