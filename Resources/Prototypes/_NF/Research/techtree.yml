@@ -93,6 +93,19 @@
 # note: depends on Engineering cluster
 
 - type: technology
+  id: NFAdvancedBeltTechnology
+  name: nf-research-technology-advanced-belt
+  entityIcon: ClothingBeltChiefEngineer
+  discipline: NFEngineering
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - ClothingBeltChiefEngineer
+  technologyPrerequisites:
+  - NFMechanicalCompression
+  position: 4, 4
+
+- type: technology
   id: NFMechanicalCompression
   name: nf-research-technology-mechanical-compression
   entityIcon: MachineFlatpacker
@@ -132,7 +145,7 @@
   - NFPouchCaptain
   - NFPouchCargo
   technologyPrerequisites:
-  - NFMechanicalCompression
+  - NFAdvancedBeltTechnology
   position: 5, 4
 
 - type: technology
@@ -169,7 +182,7 @@
 - type: technology
   id: NFMatterEnergyConversion
   name: nf-research-technology-matter-energy-conversion
-  entityIcon: RCDRecharging
+  entityIcon: BorgModuleRCD
   discipline: NFEngineering
   tier: 1
   cost: 15000
@@ -314,14 +327,14 @@
   position: 4, 6
 
 - type: technology
-  id: NFAdvancedBeltTechnology
-  name: nf-research-technology-advanced-belt
-  entityIcon: ClothingBeltChiefEngineer
+  id: NFAdvancedCyborgToolsTechnology
+  name: nf-research-technology-advanced-cyborg-tools
+  entityIcon: BorgModuleAdvancedTool
   discipline: NFEngineering
   tier: 1
   cost: 2500
   recipeUnlocks:
-  - ClothingBeltChiefEngineer
+  - BorgModuleAdvancedTool
   technologyPrerequisites:
   - NFAdvancedToolsTechnology
   position: 5, 6
@@ -663,13 +676,13 @@
 - type: technology
   id: NFMechanizedTreatment
   name: nf-research-technology-mechanized-treatment
-  entityIcon: BorgChassisMedical
+  entityIcon: BorgModuleAdvancedParamedic
   discipline: NFMedical
   tier: 1
   cost: 5000
   recipeUnlocks:
-  - BorgModuleAdvancedChemical
   - BorgModuleAdvancedParamedic
+  - BorgModuleAdvancedChemical
   technologyPrerequisites:
   - NFEngineeringMedicine
   position: 4, 13
@@ -1066,13 +1079,25 @@
   entityIcon: AdvMopItem
   discipline: NFService
   tier: 1
-  cost: 10000
+  cost: 7500
   recipeUnlocks:
   - AdvMopItem
-  - BorgModuleAdvancedCleaning
   technologyPrerequisites:
   - NFAdvancedSpray
   position: 3, 23
+
+- type: technology
+  id: NFAdvancedCleaningCyborg
+  name: nf-research-technology-advanced-cleaning-cyborg
+  entityIcon: BorgModuleAdvancedCleaning
+  discipline: NFService
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - BorgModuleAdvancedCleaning
+  technologyPrerequisites:
+  - NFAdvancedCleaning
+  position: 4, 23
 
 # region Kitchen
 
@@ -1309,7 +1334,7 @@
 - type: technology
   id: NFFission
   name: nf-research-technology-fission-powercells
-  entityIcon: Emitter
+  entityIcon: PowerCellMicroreactor
   discipline: NFEngineering
   tier: 1
   cost: 7500
@@ -1322,7 +1347,7 @@
 - type: technology
   id: NFPortableFission
   name: nf-research-technology-portable-fission
-  entityIcon: PowerCellMicroreactor
+  entityIcon: PortableRecharger
   discipline: NFEngineering
   tier: 1
   cost: 10000
@@ -1568,6 +1593,19 @@
   technologyPrerequisites:
   - NFAdvancedSalvageWeapons
   position: 4, 36
+
+- type: technology
+  id: NFAdvancedSalvageCyborg
+  name: nf-research-technology-advanced-salvage-cyborg
+  entityIcon: BorgModuleAdvancedMining
+  discipline: NFSalvage
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - BorgModuleAdvancedMining
+  technologyPrerequisites:
+  - NFBluespaceOreStorage
+  position: 5, 35
 
 # region Munitions
 

@@ -1,7 +1,8 @@
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 using Content.Shared._NF.Shuttles.Events;
-using Content.Shared.Shuttles.Components; // Frontier - InertiaDampeningMode access
+using Content.Shared.Shuttles.Components; // Frontier
+using System.Numerics; // Frontier - InertiaDampeningMode access
 
 namespace Content.Shared.Shuttles.BUIStates;
 
@@ -43,7 +44,22 @@ public sealed class NavInterfaceState
     /// <summary>
     /// Service Flags
     /// </summary>
-    public ServiceFlags ServiceFlags { get; set; } // Frontier
+    public ServiceFlags ServiceFlags { get; set; }
+
+    /// <summary>
+    /// A settable target to show on radar
+    /// </summary>
+    public Vector2? Target { get; set; }
+
+    /// <summary>
+    /// A settable target to show on radar
+    /// </summary>
+    public NetEntity? TargetEntity { get; set; }
+
+    /// <summary>
+    /// Frontier: whether or not to show the target coords
+    /// </summary>
+    public bool HideTarget = true;
     // End Frontier fields
     public NavInterfaceState(
         float maxRange,
@@ -51,7 +67,10 @@ public sealed class NavInterfaceState
         Angle? angle,
         Dictionary<NetEntity, List<DockingPortState>> docks,
         InertiaDampeningMode dampeningMode, // Frontier
-        ServiceFlags serviceFlags) // Frontier
+        ServiceFlags serviceFlags, // Frontier
+        Vector2? target, // Frontier
+        NetEntity? targetEntity, // Frontier
+        bool hideTarget) // Frontier
     {
         MaxRange = maxRange;
         Coordinates = coordinates;
@@ -59,6 +78,9 @@ public sealed class NavInterfaceState
         Docks = docks;
         DampeningMode = dampeningMode; // Frontier
         ServiceFlags = serviceFlags; // Frontier
+        Target = target; // Frontier
+        TargetEntity = targetEntity; // Frontier
+        HideTarget = hideTarget; // Frontier
     }
 }
 
