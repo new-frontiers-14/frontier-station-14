@@ -11,6 +11,7 @@ using Content.Shared._NF.ShuttleRecords;
 using Content.Shared.Access.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
+using Robust.Server;
 
 
 namespace Content.Server._NF.ShuttleRecords;
@@ -25,6 +26,7 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly IBaseServer _baseServer = default!;
 
 
     public override void Initialize()
@@ -43,7 +45,6 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
             return;
 
         record.TimeOfPurchase = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-        record.OriginalName = record.Name;
         component.ShuttleRecords[record.EntityUid] = record;
         RefreshStateForAll();
     }
@@ -97,21 +98,21 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         }
 
         StringBuilder builder = new();
-        Dictionary<String, RecordSummary> shipTypes = new(); // committing crimes against structs here
+        Dictionary<string, RecordSummary> shipTypes = new(); // committing crimes against structs here
         var totalShips = 0;
         var totalAbandoned = 0;
         List<TimeSpan> totalLifetimes = new();
 
-        // sort through the records and use originalname to categorise ships
+        // sort through the records and use VesselPrototypeId to categorise ships
         foreach (var record in records.ShuttleRecords.Values)
         {
-            if (record.OriginalName is null)
+            if (record.VesselPrototypeId is null)
                 continue;
 
-            if (!shipTypes.ContainsKey(record.OriginalName))
-                shipTypes.Add(record.OriginalName, new RecordSummary());
+            if (!shipTypes.ContainsKey(record.VesselPrototypeId))
+                shipTypes.Add(record.VesselPrototypeId, new RecordSummary());
 
-            if (shipTypes.TryGetValue(record.OriginalName, out var value))
+            if (shipTypes.TryGetValue(record.VesselPrototypeId, out var value))
             {
                 value.Count += 1;
                 totalShips += 1;
@@ -135,7 +136,11 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
 
         // export raw data as a file for discord
 
-        var rawData = JsonSerializer.SerializeToUtf8Bytes(shipTypes, new JsonSerializerOptions { WriteIndented = true, IncludeFields = true });
+        var rawData = JsonSerializer.SerializeToUtf8Bytes(new ShuttleStatisticsFile(
+            serverName: _baseServer.ServerName,
+            roundId: _gameTicker.RoundId,
+            shuttles: shipTypes
+        ), new JsonSerializerOptions { WriteIndented = true, IncludeFields = true });
 
         /* eventual discord message should be of the format
         ```
@@ -162,7 +167,7 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
             }
 
             // pad data for formatting
-            builder.AppendLine($"{record.Value.Count,4} | {record.Value.AbandonedCount,4} |{averageLifetime,9} | {record.Key}");
+            builder.AppendLine($"{record.Value.Count,4} │ {record.Value.AbandonedCount,4} │{averageLifetime,9} │ {record.Key}");
         }
 
         builder.AppendLine("─────┼──────┼──────────┼───────────");
@@ -190,7 +195,22 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         return false;
     }
 
-    private class RecordSummary()
+    private sealed class ShuttleStatisticsFile(
+        string serverName,
+        int roundId,
+        Dictionary<string, RecordSummary> shuttles
+    )
+    {
+        /// <summary>
+        /// Hardcoded version. Bump it when we make changes.
+        /// </summary>
+        public readonly int Version = 1;
+        public string ServerName = serverName;
+        public int RoundId = roundId;
+        public Dictionary<string, RecordSummary> Shuttles = shuttles;
+    }
+
+    private sealed class RecordSummary()
     {
         public int Count = 0;
         public int AbandonedCount = 0;
