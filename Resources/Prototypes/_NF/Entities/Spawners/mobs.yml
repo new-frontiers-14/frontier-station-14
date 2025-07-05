@@ -12,6 +12,19 @@
       - MobCatClippy
 
 - type: entity
+  name: Chernobyl Spawner
+  id: SpawnMobCatChernobyl
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCatChernobyl
+
+- type: entity
   name: Clarpy Spawner
   id: SpawnMobCatClarpy
   parent: MarkerBase
