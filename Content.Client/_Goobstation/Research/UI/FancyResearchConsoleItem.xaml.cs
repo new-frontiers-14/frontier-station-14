@@ -45,7 +45,7 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
             // For legacy Icon support, we need to handle this differently since EntityPrototypeView
             // expects entity prototypes. For now, we'll need a fallback approach.
             // TODO: Consider deprecating the Icon field in favor of EntityIcon
-            
+
             // We cannot directly set a SpriteSpecifier on EntityPrototypeView
             // This is a limitation of the new approach - EntityIcon should be preferred
             // For now, this will show no icon for legacy Icon-only technologies
