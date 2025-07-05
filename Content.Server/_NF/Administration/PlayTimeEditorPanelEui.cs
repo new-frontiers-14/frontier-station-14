@@ -53,6 +53,7 @@ public sealed class PlayTimeEditorPanelEui : BaseEui
         if (!_adminMan.HasAdminFlag(Player, AdminFlags.Moderator))
         {
             _sawmill.Warning($"{Player.Name} ({Player.UserId} tried to add roles time without moderator flag)");
+            SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-no-perms"), Color.Red));
             return;
         }
 
@@ -70,50 +71,162 @@ public sealed class PlayTimeEditorPanelEui : BaseEui
             AddTime(playerData.UserId, timeData);
     }
 
-    public async void SetTime(NetUserId userId, List<PlayTimeEditorData> timeData)
+    private bool ValidateTimeData(List<PlayTimeEditorData> timeData)
     {
-        var updateList = new List<PlayTimeUpdate>();
-
         foreach (var data in timeData)
         {
-            var time = TimeSpan.FromMinutes(PlayTimeCommandUtilities.CountMinutes(data.TimeString));
-            updateList.Add(new PlayTimeUpdate(userId, data.PlaytimeTracker, time));
+            try
+            {
+                var minutes = PlayTimeCommandUtilities.CountMinutes(data.TimeString);
+                
+                // Check for invalid or overflow values
+                if (double.IsNaN(minutes) || double.IsInfinity(minutes))
+                {
+                    _sawmill.Warning($"{Player.Name} ({Player.UserId}) provided invalid time value: {data.TimeString}");
+                    SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-invalid-time"), Color.Red));
+                    return false;
+                }
+                
+                // Check for overflow before creating TimeSpan
+                if (minutes > TimeSpan.MaxValue.TotalMinutes || minutes < TimeSpan.MinValue.TotalMinutes)
+                {
+                    _sawmill.Warning($"{Player.Name} ({Player.UserId}) provided time value that would overflow: {data.TimeString} ({minutes} minutes)");
+                    SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-overflow"), Color.Red));
+                    return false;
+                }
+                
+                // Additional check for extremely large values that could cause issues
+                if (minutes > 525600 * 1000) // More than 1000 years
+                {
+                    _sawmill.Warning($"{Player.Name} ({Player.UserId}) provided unreasonably large time value: {data.TimeString} ({minutes} minutes)");
+                    SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-overflow"), Color.Red));
+                    return false;
+                }
+            }
+            catch (OverflowException ex)
+            {
+                _sawmill.Warning($"{Player.Name} ({Player.UserId}) provided time value that would overflow: {data.TimeString} - {ex.Message}");
+                SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-overflow"), Color.Red));
+                return false;
+            }
+            catch (ArgumentException ex)
+            {
+                _sawmill.Warning($"{Player.Name} ({Player.UserId}) provided invalid time format: {data.TimeString} - {ex.Message}");
+                SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-invalid-time"), Color.Red));
+                return false;
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Error($"{Player.Name} ({Player.UserId}) error parsing time string '{data.TimeString}': {ex}");
+                SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-invalid-time"), Color.Red));
+                return false;
+            }
         }
+        return true;
+    }
 
-        await _databaseMan.UpdatePlayTimes(updateList);
+    public async void SetTime(NetUserId userId, List<PlayTimeEditorData> timeData)
+    {
+        if (!ValidateTimeData(timeData))
+            return;
 
-        _sawmill.Info($"{Player.Name} ({Player.UserId} saved {updateList.Count} trackers for {userId})");
+        var updateList = new List<PlayTimeUpdate>();
 
-        SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-set-success"), Color.LightGreen));
+        try
+        {
+            foreach (var data in timeData)
+            {
+                var minutes = PlayTimeCommandUtilities.CountMinutes(data.TimeString);
+                var time = TimeSpan.FromMinutes(minutes);
+                updateList.Add(new PlayTimeUpdate(userId, data.PlaytimeTracker, time));
+            }
+
+            await _databaseMan.UpdatePlayTimes(updateList);
+
+            _sawmill.Info($"{Player.Name} ({Player.UserId}) saved {updateList.Count} trackers for {userId}");
+
+            SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-set-success"), Color.LightGreen));
+        }
+        catch (OverflowException ex)
+        {
+            _sawmill.Warning($"{Player.Name} ({Player.UserId}) attempted to set playtime with overflow values: {ex}");
+            SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-overflow"), Color.Red));
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"{Player.Name} ({Player.UserId}) encountered error setting playtime: {ex}");
+            SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-error"), Color.Red));
+        }
     }
 
     public async void AddTime(NetUserId userId, List<PlayTimeEditorData> timeData)
     {
-        var playTimeList = await _databaseMan.GetPlayTimes(userId);
+        if (!ValidateTimeData(timeData))
+            return;
 
-        Dictionary<string, TimeSpan> playTimeDict = new();
-
-        foreach (var playTime in playTimeList)
+        try
         {
-            playTimeDict.Add(playTime.Tracker, playTime.TimeSpent);
+            var playTimeList = await _databaseMan.GetPlayTimes(userId);
+
+            Dictionary<string, TimeSpan> playTimeDict = new();
+
+            foreach (var playTime in playTimeList)
+            {
+                playTimeDict.Add(playTime.Tracker, playTime.TimeSpent);
+            }
+
+            var updateList = new List<PlayTimeUpdate>();
+
+            foreach (var data in timeData)
+            {
+                var minutes = PlayTimeCommandUtilities.CountMinutes(data.TimeString);
+                var time = TimeSpan.FromMinutes(minutes);
+                
+                if (playTimeDict.TryGetValue(data.PlaytimeTracker, out var existingTime))
+                {
+                    // Check for overflow when adding existing time
+                    try
+                    {
+                        // Use checked context to catch arithmetic overflow
+                        var newTicks = checked(time.Ticks + existingTime.Ticks);
+                        
+                        // Additional safety check
+                        if (newTicks > TimeSpan.MaxValue.Ticks || newTicks < TimeSpan.MinValue.Ticks)
+                        {
+                            _sawmill.Warning($"{Player.Name} ({Player.UserId}) attempted to add time that would overflow for tracker {data.PlaytimeTracker}");
+                            SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-overflow"), Color.Red));
+                            return;
+                        }
+                        
+                        time = new TimeSpan(newTicks);
+                    }
+                    catch (OverflowException)
+                    {
+                        _sawmill.Warning($"{Player.Name} ({Player.UserId}) attempted to add time that would overflow for tracker {data.PlaytimeTracker}");
+                        SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-overflow"), Color.Red));
+                        return;
+                    }
+                }
+
+                updateList.Add(new PlayTimeUpdate(userId, data.PlaytimeTracker, time));
+            }
+
+            await _databaseMan.UpdatePlayTimes(updateList);
+
+            _sawmill.Info($"{Player.Name} ({Player.UserId}) saved {updateList.Count} trackers for {userId}");
+
+            SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-add-success"), Color.LightGreen));
         }
-
-        var updateList = new List<PlayTimeUpdate>();
-
-        foreach (var data in timeData)
+        catch (OverflowException ex)
         {
-            var time = TimeSpan.FromMinutes(PlayTimeCommandUtilities.CountMinutes(data.TimeString));
-            if (playTimeDict.TryGetValue(data.PlaytimeTracker, out var addTime))
-                time += addTime;
-
-            updateList.Add(new PlayTimeUpdate(userId, data.PlaytimeTracker, time));
+            _sawmill.Warning($"{Player.Name} ({Player.UserId}) attempted to add playtime with overflow values: {ex}");
+            SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-overflow"), Color.Red));
         }
-
-        await _databaseMan.UpdatePlayTimes(updateList);
-
-        _sawmill.Info($"{Player.Name} ({Player.UserId} saved {updateList.Count} trackers for {userId})");
-
-        SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-add-success"), Color.LightGreen));
+        catch (Exception ex)
+        {
+            _sawmill.Error($"{Player.Name} ({Player.UserId}) encountered error adding playtime: {ex}");
+            SendMessage(new PlayTimeEditorWarningEuiMessage(Loc.GetString("playtime-editor-panel-warning-error"), Color.Red));
+        }
     }
 
     public override async void Opened()

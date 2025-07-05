@@ -18,6 +18,8 @@ public static class PlayTimeCommandUtilities
     /// </summary>
     /// <param name="timeString">Time string in a format like "1d 2h 30m" or "90m" or "1.5h"</param>
     /// <returns>The total number of minutes represented by the string</returns>
+    /// <exception cref="OverflowException">Thrown when the time value would overflow</exception>
+    /// <exception cref="ArgumentException">Thrown when the time string format is invalid</exception>
     public static double CountMinutes(string timeString)
     {
         if (string.IsNullOrWhiteSpace(timeString))
@@ -32,21 +34,61 @@ public static class PlayTimeCommandUtilities
 
         // Parse days
         if (dayMatch.Success && double.TryParse(dayMatch.Groups[1].Value, out var days))
-            totalMinutes += days * 24 * 60;
+        {
+            // Check for overflow when converting days to minutes
+            var dayMinutes = days * 24 * 60;
+            if (double.IsInfinity(dayMinutes) || double.IsNaN(dayMinutes))
+                throw new OverflowException($"Day value {days} is too large");
+            
+            totalMinutes = SafeAdd(totalMinutes, dayMinutes);
+        }
 
         // Parse hours
         if (hourMatch.Success && double.TryParse(hourMatch.Groups[1].Value, out var hours))
-            totalMinutes += hours * 60;
+        {
+            var hourMinutes = hours * 60;
+            if (double.IsInfinity(hourMinutes) || double.IsNaN(hourMinutes))
+                throw new OverflowException($"Hour value {hours} is too large");
+            
+            totalMinutes = SafeAdd(totalMinutes, hourMinutes);
+        }
 
         // Parse minutes
         if (minuteMatch.Success && double.TryParse(minuteMatch.Groups[1].Value, out var minutes))
-            totalMinutes += minutes;
+        {
+            if (double.IsInfinity(minutes) || double.IsNaN(minutes))
+                throw new OverflowException($"Minute value {minutes} is invalid");
+            
+            totalMinutes = SafeAdd(totalMinutes, minutes);
+        }
 
         // If no specific unit is provided, assume it's minutes
         if (!dayMatch.Success && !hourMatch.Success && !minuteMatch.Success &&
             double.TryParse(timeString, out var plainMinutes))
+        {
+            if (double.IsInfinity(plainMinutes) || double.IsNaN(plainMinutes))
+                throw new OverflowException($"Minute value {plainMinutes} is invalid");
+            
             totalMinutes = plainMinutes;
+        }
+
+        // Final validation
+        if (double.IsInfinity(totalMinutes) || double.IsNaN(totalMinutes))
+            throw new OverflowException("Total time calculation resulted in invalid value");
 
         return totalMinutes;
+    }
+
+    /// <summary>
+    /// Safely adds two double values, checking for overflow
+    /// </summary>
+    private static double SafeAdd(double a, double b)
+    {
+        var result = a + b;
+        
+        if (double.IsInfinity(result) || double.IsNaN(result))
+            throw new OverflowException($"Addition of {a} + {b} resulted in overflow");
+        
+        return result;
     }
 }
