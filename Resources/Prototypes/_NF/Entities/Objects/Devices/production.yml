@@ -471,6 +471,23 @@
             defaultPrototype: Beaker
 
 - type: entity
+  id: ImpCoffeeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: spacepresso machine board
+  description: A machine printed circuit board for a spacepresso machine.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: ImpCoffeeMachineEmpty
+      stackRequirements:
+        Steel: 5
+      tagRequirements:
+          GlassBeaker:
+            amount: 1
+            defaultPrototype: Beaker
+
+- type: entity
   parent: StationAnchorCircuitboard
   id: MiniStationAnchorCircuitboard
   name: mini station anchor machine board
