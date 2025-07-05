@@ -28,6 +28,10 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 using Content.Shared.StepTrigger.Components; // Delta V-NoShoesSilentFootstepsComponent
+using Robust.Shared.Random; // Frontier
+using Content.Shared.Popups; // Frontier
+using Robust.Shared.Player; // Frontier
+using Content.Shared._NF.Movement.Components; // Frontier
 
 namespace Content.Shared.Movement.Systems;
 
@@ -50,6 +54,9 @@ public abstract partial class SharedMoverController : VirtualController
     [Dependency] private   readonly SharedGravitySystem _gravity = default!;
     [Dependency] private   readonly SharedTransformSystem _transform = default!;
     [Dependency] private   readonly TagSystem _tags = default!;
+    [Dependency] private   readonly IEntityManager _entities = default!; // Delta V-NoShoesSilentFootstepsComponent
+    [Dependency] private   readonly IRobustRandom _random = default!; // Frontier
+    [Dependency] private   readonly SharedPopupSystem _popup = default!; // Frontier
 
     protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery;
     protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery;
@@ -603,6 +610,17 @@ public abstract partial class SharedMoverController : VirtualController
                 return true;
             }
 
+            // Frontier: play rare sound
+            if (TryComp<RareFootstepModifierComponent>(uid, out var rarefootstep))
+            {
+                if (_random.Prob(rarefootstep.Probability))
+                {
+                    sound = rarefootstep.FootstepSoundCollection;
+                    return sound != null;
+                }
+            }
+            // End Frontier
+            
             if (_inventory.TryGetSlotEntity(uid, "shoes", out var shoes) &&
                 FootstepModifierQuery.TryComp(maybeFootstep, out var footstep))
             {
