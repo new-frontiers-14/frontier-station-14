@@ -23,7 +23,6 @@ using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Timing; // Frontier
 using Content.Shared.Weapons.Melee.Events; // Frontier
 using Content.Shared.Emag.Systems; // Frontier
-using Content.Shared._NF.Radar; // Frontier
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
@@ -58,9 +57,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<VehicleComponent, UnstrappedEvent>(OnUnstrapped);
         SubscribeLocalEvent<VehicleComponent, VirtualItemDeletedEvent>(OnDropped);
+        SubscribeLocalEvent<VehicleComponent, MeleeHitEvent>(OnMeleeHit); // Frontier
         SubscribeLocalEvent<VehicleComponent, GotEmaggedEvent>(OnGotEmagged, before: [typeof(UnpoweredFlashlightSystem)]); // Frontier
         SubscribeLocalEvent<VehicleComponent, GotUnEmaggedEvent>(OnGotUnemagged, before: [typeof(UnpoweredFlashlightSystem)]); // Frontier
-        SubscribeLocalEvent<VehicleComponent, MeleeHitEvent>(OnMeleeHit); // Frontier
 
         SubscribeLocalEvent<VehicleComponent, EntInsertedIntoContainerMessage>(OnInsert);
         SubscribeLocalEvent<VehicleComponent, EntRemovedFromContainerMessage>(OnEject);
