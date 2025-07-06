@@ -228,6 +228,7 @@ public sealed partial class AnomalySystem
             || !TryComp(anom, out TransformComponent? anomXform)
             || xform.GridUid != anomXform.GridUid)
         {
+            //_radiation.SetSourceEnabled(ent.Owner, false); // Moved vessel radiation handling to the AnomalyLinkExpiry system
             var expiryComp = EnsureComp<AnomalyLinkExpiryComponent>(ent);
             expiryComp.EndTime = _timing.CurTime + expiryComp.CheckFrequency;
         }

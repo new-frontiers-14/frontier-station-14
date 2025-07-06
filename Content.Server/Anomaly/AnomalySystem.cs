@@ -148,6 +148,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
             || !TryComp(vessel, out TransformComponent? vesselXform)
             || xform.GridUid != vesselXform.GridUid)
         {
+            //_radiation.SetSourceEnabled(ent.Owner, false); // Moved vessel radiation handling to the AnomalyLinkExpiry system
             var expiryComp = EnsureComp<AnomalyLinkExpiryComponent>(vessel);
             expiryComp.EndTime = _timing.CurTime + expiryComp.CheckFrequency;
         }
