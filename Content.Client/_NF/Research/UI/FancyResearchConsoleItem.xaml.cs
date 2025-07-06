@@ -50,7 +50,7 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         Availability = availability;
         Prototype = proto;
 
-        // Get the discipline for border color
+        // Get the discipline for background color
         var discipline = _prototype.Index<TechDisciplinePrototype>(proto.Discipline);
         var disciplineColor = discipline.Color;
 
