@@ -192,9 +192,9 @@
     - Cat
 
 - type: entity
-  id: MobCatChernobyl
+  id: MobCatCurie
   parent: [NFMobPet, MobAdultSlimes, MobCatGhost]
-  name: Chernobyl
+  name: Curie
   description: Slime? cat? what are you?
   components:
   - type: Sprite
@@ -208,13 +208,13 @@
       Alive:
         Base: slimecat
   - type: GhostRole
-    name: ghost-role-information-chernobyl-name
-    description: ghost-role-information-chernobyl-description
+    name: ghost-role-information-curie-name
+    description: ghost-role-information-curie-description
     rules: ghost-role-information-nonantagonist-rules
-    prototype: CatChernobyl
+    prototype: CatCurie
     mindRoles: [ MindRoleGhostRoleNeutral ]
   - type: Loadout
-    prototypes: [ MobChernobylGear ]
+    prototypes: [ MobCurieGear ]
   - type: RandomMetadata
     nameSegments: null
   - type: AutoImplant
