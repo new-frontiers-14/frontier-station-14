@@ -282,12 +282,18 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         TechScrollContainer.VScrollTarget -= args.Relative.Y * scrollSpeed;
     }
 
+    /// <summary>
+    /// Raised when LMB is pressed at <see cref="DragContainer"/>
+    /// </summary>
     private void OnKeybindDown(GUIBoundKeyEventArgs args)
     {
         if (args.Function == EngineKeyFunctions.Use)
             _draggin = true;
     }
 
+    /// <summary>
+    /// Raised when LMB is unpressed at <see cref="DragContainer"/>
+    /// </summary>
     private void OnKeybindUp(GUIBoundKeyEventArgs args)
     {
         if (args.Function == EngineKeyFunctions.Use)
@@ -298,6 +304,11 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         => _draggin ? DragMode.None : base.GetDragModeFor(relativeMousePos);
     #endregion
 
+    /// <summary>
+    /// Selects a tech prototype and opens info panel
+    /// </summary>
+    /// <param name="proto">Tech proto</param>
+    /// <param name="availability">Tech availability</param>
     public void SelectTech(TechnologyPrototype proto, ResearchAvailability availability)
     {
         InfoContainer.RemoveAllChildren();
