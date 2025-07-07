@@ -410,6 +410,19 @@
   recipeType:
   - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeFoodTofuSliceBattered
+  name: battered tofu slice recipe
+  result: FoodTofuSliceBattered
+  time: 2
+  reagents:
+    Flour: 1.5
+    Egg: 2
+  solids:
+    FoodTofuSlice: 1
+  recipeType:
+  - Assembler
+
 # Donuts (uncooked as well as glazed) - frying handled by DeepFrySpawnComponent per-entity
 
 - type: microwaveMealRecipe
@@ -1040,6 +1053,42 @@
   reagents:
     Soysauce: 5
     Water: 15
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBunCotton
+  name: cotton bun recipe
+  result: FoodBunCotton
+  time: 5
+  group: Moth
+  solids:
+    FoodDoughCottonSlice: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerPlainCotton
+  name: plain cotton burger recipe
+  result: FoodBurgerCotton
+  time: 10
+  group: Moth
+  solids:
+    FoodBunCotton: 1
+    CottonBol: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerCottonCheese
+  name: cotton cheeseburger recipe
+  result: FoodBurgerCottonCheese
+  time: 10
+  group: Moth
+  solids:
+    FoodBunCotton: 1
+    CottonBol: 1
+    FoodCheeseSlice: 1
   recipeType:
   - Oven
 

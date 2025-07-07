@@ -1,3 +1,4 @@
+# region FRONTIER - IGNORED
 # Tier 1
 
 - type: technology
@@ -8,13 +9,11 @@
     state: seedextractor
   discipline: CivilianServices
   tier: 1
-  cost: 7500 # Delta Price. 5000 is pre-adjustment.
+  cost: 5000
   recipeUnlocks:
-  - PlantBagOfHolding #DeltaV
   - SeedExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
-  - PlantAnalyzer # Frontier
 
 - type: technology
   id: CritterMechs
@@ -47,14 +46,13 @@
   cost: 5000
   recipeUnlocks:
   - SurveillanceCameraRouterCircuitboard
-#  - SurveillanceCameraWirelessRouterCircuitboard # Frontier - Removal of range limits made it useless to build
+  - SurveillanceCameraWirelessRouterCircuitboard
   - SurveillanceWirelessCameraMovableCircuitboard
   - SurveillanceWirelessCameraAnchoredCircuitboard
   - SurveillanceCameraMonitorCircuitboard
   - SurveillanceWirelessCameraMonitorCircuitboard
   - TelecomServerCircuitboard
-#  - HolopadMachineCircuitboard # Frontier: needs work before use
-  - NFHolopadShipMachineCircuitboard # Frontier
+  - HolopadMachineCircuitboard
 
 - type: technology
   id: AdvancedEntertainment
@@ -84,6 +82,7 @@
   recipeUnlocks:
   - FatExtractorMachineCircuitboard
   - BiogeneratorMachineCircuitboard # Frontier BiofabricatorMachineCircuitboard<BiogeneratorMachineCircuitboard
+  - BiofabricatorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
 
 # Tier 2
@@ -212,18 +211,6 @@
 
 # Tier 3
 
-# - type: technology # Frontier
-  # id: BluespaceCargoTransport
-  # name: research-technology-bluespace-cargo-transport
-  # icon:
-    # sprite: Structures/cargo_telepad.rsi
-    # state: display
-  # discipline: CivilianServices
-  # tier: 3
-  # cost: 15000
-  # recipeUnlocks:
-  # - CargoTelepadMachineCircuitboard
-
 - type: technology
   id: QuantumFiberWeaving
   name: research-technology-quantum-fiber-weaving
@@ -248,10 +235,8 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
-<<<<<<< HEAD
   - JugBluespace # Frontier
   - VialBluespace # Frontier
-=======
 
 - type: technology
   id: LauncherSyringe
@@ -265,4 +250,3 @@
   recipeUnlocks:
   - LauncherSyringe
   - MiniSyringe
->>>>>>> a10fc8a7dfbbab1a4d697add8bc4f42cbc0a0916

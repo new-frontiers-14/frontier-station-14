@@ -2,6 +2,7 @@ using Content.Shared.Construction;
 using Content.Shared.Construction.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
+using Content.Shared._NF.BindToStation; // Frontier
 
 namespace Content.Client.Construction;
 
@@ -46,4 +47,11 @@ public sealed class FlatpackSystem : SharedFlatpackSystem
         if (color != null)
             _sprite.LayerSetColor((ent.Owner, args.Sprite), FlatpackVisualLayers.Overlay, color.Value);
     }
+
+    // Frontier: station binding
+    // NOOP, all done server-side.
+    protected override void BindToStation(EntityUid toBind, StationBoundObjectComponent bindingParams)
+    {
+    }
+    // End Frontier: station binding
 }

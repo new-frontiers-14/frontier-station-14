@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared._EE.CCVar; // EE
+using Content.Shared._NF.Radar; // Frontier
 using Content.Shared.Gravity;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
@@ -13,7 +14,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Movement.Systems;
 
-public abstract class SharedJetpackSystem : EntitySystem
+public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: added partial
 {
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
@@ -37,6 +38,7 @@ public abstract class SharedJetpackSystem : EntitySystem
 
         SubscribeLocalEvent<GravityChangedEvent>(OnJetpackUserGravityChanged);
         SubscribeLocalEvent<JetpackComponent, MapInitEvent>(OnMapInit);
+        NfInitialize(); // Frontier
     }
 
     private void OnJetpackUserWeightlessMovement(Entity<JetpackUserComponent> ent, ref RefreshWeightlessModifiersEvent args)
@@ -114,6 +116,11 @@ public abstract class SharedJetpackSystem : EntitySystem
         if (TryComp<PhysicsComponent>(user, out var physics))
             _physics.SetBodyStatus(user, physics, BodyStatus.InAir);
 
+        // Frontier: fix magboots vs. jetpack quibbles
+        component.AddedCanMoveInAir = !HasComp<CanMoveInAirComponent>(user);
+        EnsureComp<CanMoveInAirComponent>(user);
+        // End Frontier
+
         userComp.Jetpack = jetpackUid;
         userComp.WeightlessAcceleration = component.Acceleration;
         userComp.WeightlessModifier = component.WeightlessModifier;
@@ -128,6 +135,11 @@ public abstract class SharedJetpackSystem : EntitySystem
             return;
 
         component.JetpackUser = null;
+
+        // Frontier: fix magboots vs. jetpack quibbles
+        if (component.AddedCanMoveInAir)
+            RemComp<CanMoveInAirComponent>(uid);
+        // End Frontier
 
         if (TryComp<PhysicsComponent>(uid, out var physics))
             _physics.SetBodyStatus(uid, physics, BodyStatus.OnGround);
@@ -194,11 +206,16 @@ public abstract class SharedJetpackSystem : EntitySystem
         {
             SetupUser(user.Value, uid, component);
             EnsureComp<ActiveJetpackComponent>(uid);
+            // Frontier
+            if (component.RadarBlip) // add radar blip when jetpack is activated
+                SetupRadarBlip(uid);
+            // End Frontier
         }
         else
         {
             RemoveUser(user.Value, component);
             RemComp<ActiveJetpackComponent>(uid);
+            RemComp<RadarBlipComponent>(uid); // Frontier: remove radar blip when jetpack is deactivated
         }
 
         Appearance.SetData(uid, JetpackVisuals.Enabled, enabled);

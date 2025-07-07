@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 255.0.0
+  engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 05/19/2025 04:12:22
-  entityCount: 285
+  time: 06/23/2025 17:36:54
+  entityCount: 286
 maps: []
 grids:
 - 2
@@ -55,6 +55,7 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
+      dampingModifier: 0.25
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -1367,6 +1368,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5,4.5
+      parent: 2
+- proto: Icebox
+  entities:
+  - uid: 286
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,4.5
       parent: 2
 - proto: JukeboxWallmountShip
   entities:
