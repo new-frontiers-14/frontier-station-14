@@ -272,6 +272,7 @@ namespace Content.Server.Chemistry.EntitySystems
         // FRONTIER MERGE - TODO: ADJUST STORAGE SIZE
         private void OnRefreshParts(EntityUid uid, ReagentDispenserComponent component, RefreshPartsEvent args)
         {
+            /*
             if (!args.PartRatings.TryGetValue(component.SlotUpgradeMachinePart, out float partRating))
                 partRating = 1.0f;
 
@@ -298,6 +299,7 @@ namespace Content.Server.Chemistry.EntitySystems
                 component.StorageSlotIds.RemoveAt(i);
                 component.StorageSlots.RemoveAt(i);
             }
+            */
         }
 
         private void OnUpgradeExamine(EntityUid uid, ReagentDispenserComponent component, UpgradeExamineEvent args)
