@@ -28,6 +28,9 @@ ghost-role-information-cappy-description = Stop resisting! Certified in lethal-f
 ghost-role-information-elcapo-name = El Capo
 ghost-role-information-elcapo-description = Found himself in jail after years of cat crimes.
 
+ghost-role-information-curie-name = Curie
+ghost-role-information-curie-description = Walking goo, in the shape of a cat.
+
 ghost-role-information-crispy-name = Crispy
 ghost-role-information-crispy-description = Mistakes were made.
 
