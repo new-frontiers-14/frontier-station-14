@@ -1,6 +1,6 @@
 # This is in one giant hellfile to better enable adjusting position.
 
-# region Common Prereqs
+# region Engineering
 
 - type: technology
   id: NFAdvancedParts
@@ -15,19 +15,19 @@
   - NanoManipulatorStockPart
   position: 0, 3
 
-# region Engineering
-
 - type: technology
-  id: NFRapidPartExchange
-  name: nf-research-technology-rped
-  entityIcon: RPED
+  id: NFIndustrialEngineering
+  name: nf-research-technology-industrial-engineering
+  entityIcon: ProtolatheHyperConvection
   discipline: NFEngineering
   tier: 1
-  cost: 2500
+  cost: 5000
   recipeUnlocks:
-  - RPED
+  - AutolatheHyperConvectionMachineCircuitboard
+  - ProtolatheHyperConvectionMachineCircuitboard
+  - CircuitImprinterHyperConvectionMachineCircuitboard
   technologyPrerequisites:
-  - NFAdvancedParts
+  - NFRapidPartExchange
   position: 1, 3
 
 - type: technology
@@ -46,22 +46,8 @@
   - FauxTileAstroAsteroidSand
   technologyPrerequisites:
   - NFIndustrialEngineering
-  position: 3, 1
+  position: 2, 1
 
-- type: technology
-  id: NFIndustrialEngineering
-  name: nf-research-technology-industrial-engineering
-  entityIcon: ProtolatheHyperConvection
-  discipline: NFEngineering
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - AutolatheHyperConvectionMachineCircuitboard
-  - ProtolatheHyperConvectionMachineCircuitboard
-  - CircuitImprinterHyperConvectionMachineCircuitboard
-  technologyPrerequisites:
-  - NFRapidPartExchange
-  position: 2, 3
 
 - type: technology
   id: NFIndustrialSilo
@@ -74,7 +60,20 @@
   - MaterialSiloMachineCircuitboard
   technologyPrerequisites:
   - NFIndustrialEngineering
-  position: 3, 3
+  position: 2, 3
+
+- type: technology
+  id: NFRapidPartExchange
+  name: nf-research-technology-rped
+  entityIcon: RPED
+  discipline: NFEngineering
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - RPED
+  technologyPrerequisites:
+  - NFIndustrialEngineering
+  position: 2, 4
 
 - type: technology
   id: NFIndustrialSheetifier
@@ -87,7 +86,7 @@
   - CutterMachineCircuitboard
   technologyPrerequisites:
   - NFIndustrialEngineering
-  position: 3, 2
+  position: 2, 2
 
 - type: technology
   id: NFAdvancedBeltTechnology
@@ -100,7 +99,7 @@
   - ClothingBeltChiefEngineer
   technologyPrerequisites:
   - NFIndustrialEngineering
-  position: 3, 5
+  position: 2, 5
 
 - type: technology
   id: NFMechanicalCompression
@@ -113,7 +112,7 @@
   - FlatpackerMachineCircuitboard
   technologyPrerequisites:
   - NFIndustrialSilo
-  position: 4, 3
+  position: 3, 3
 
 - type: technology
   id: NFMiscellaneousItemsOrganization
@@ -143,7 +142,7 @@
   - NFPouchCargo
   technologyPrerequisites:
   - NFAdvancedBeltTechnology
-  position: 4, 5
+  position: 3, 5
 
 - type: technology
   id: NFRapidConstruction
@@ -157,7 +156,7 @@
   - ShipyardRCDAmmo
   technologyPrerequisites:
   - NFMechanicalCompression
-  position: 5, 3
+  position: 4, 3
 
 - type: technology
   id: NFBluespaceStorage
@@ -174,7 +173,7 @@
   - ConstructionBagOfHolding
   technologyPrerequisites:
   - NFMiscellaneousItemsOrganization
-  position: 5, 5
+  position: 4, 5
 
 - type: technology
   id: NFMatterEnergyConversion
@@ -188,7 +187,7 @@
   technologyPrerequisites:
   - NFRapidConstruction
   - NFBluespaceStorage
-  position: 6, 4
+  position: 5, 4
 
 # region Atmospherics
 # note: depends on Engineering cluster
@@ -205,7 +204,7 @@
   - GasRecyclerMachineCircuitboard
   technologyPrerequisites:
   - NFIndustrialEngineering
-  position: 4, 0
+  position: 2, 0
 
 - type: technology
   id: NFAdvancedAtmospherics
@@ -218,7 +217,7 @@
   - HellfireFreezerMachineCircuitBoard
   technologyPrerequisites:
   - NFAtmosphericTech
-  position: 5, 0
+  position: 3, 0
 
 - type: technology
   id: NFAdvancedAtmosphericsPortable
@@ -231,7 +230,7 @@
   - PortableScrubberMachineCircuitBoard
   technologyPrerequisites:
   - NFAtmosphericTech
-  position: 5, 1
+  position: 3, 1
 
 - type: technology
   id: NFAdvancedAtmosphericsTools
@@ -245,7 +244,7 @@
 #  - FireExtinguisherBluespace # DeltaV
   technologyPrerequisites:
   - NFAdvancedAtmospherics
-  position: 6, 0
+  position: 4, 0
 
 - type: technology
   id: NFAtmosphericDrilling
@@ -259,7 +258,7 @@
   - GaslockFrameMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedAtmosphericsPortable
-  position: 6, 1
+  position: 4, 1
 
 # region Advanced Tools
 # note: depends on Engineering cluster
@@ -276,7 +275,7 @@
   - ClothingMaskWeldingGas
   technologyPrerequisites:
   - NFIndustrialEngineering
-  position: 3, 6
+  position: 2, 6
 
 - type: technology
   id: NFAdvancedToolsTechnology
@@ -291,7 +290,7 @@
   - SignallerAdvanced
   technologyPrerequisites:
   - NFAdvancedWelderTechnology
-  position: 4, 6
+  position: 3, 6
 
 - type: technology
   id: NFAdvancedCyborgToolsTechnology
@@ -304,7 +303,7 @@
   - BorgModuleAdvancedTool
   technologyPrerequisites:
   - NFAdvancedToolsTechnology
-  position: 5, 6
+  position: 4, 6
 
 # region Xenoarch
 
@@ -320,9 +319,7 @@
   - AnalysisComputerCircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ResearchComputerCircuitboard
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 8
+  position: 0, 8
 
 - type: technology
   id: NFAbnormalArtifactManipulation
@@ -335,7 +332,7 @@
   - ArtifactCrusherMachineCircuitboard
   technologyPrerequisites:
   - NFBasicXenoArcheology
-  position: 1, 7
+  position: 0, 7
 
 - type: technology
   id: NFBasicAnomalousResearch
@@ -352,7 +349,7 @@
   - AnomalyVesselCircuitboard
   technologyPrerequisites:
   - NFBasicXenoArcheology
-  position: 2, 8
+  position: 1, 8
 
 - type: technology
   id: NFAnomalyCoreHarnessing
@@ -365,7 +362,7 @@
   - WeaponGauntletGorilla
   technologyPrerequisites:
   - NFBasicAnomalousResearch
-  position: 2, 7
+  position: 1, 7
 
 - type: technology
   id: NFAdvancedAnomalyResearch
@@ -379,7 +376,7 @@
   - AnomalyVesselExperimentalCircuitboard
   technologyPrerequisites:
   - NFBasicAnomalousResearch
-  position: 4, 8
+  position: 3, 8
 
 - type: technology
   id: NFBluespaceTimeManipulation
@@ -393,7 +390,7 @@
   technologyPrerequisites:
   - NFAdvancedToolsTechnology
   - NFAdvancedAnomalyResearch
-  position: 5, 7
+  position: 4, 7
 
 - type: technology
   id: NFSuperParts
@@ -408,7 +405,7 @@
   - PicoManipulatorStockPart
   technologyPrerequisites:
   - NFAdvancedAnomalyResearch
-  position: 5, 8
+  position: 4, 8
 
 # region Hardsuits
 
@@ -424,7 +421,7 @@
   - ClothingOuterHardsuitMime
   technologyPrerequisites:
   - NFHardsuitsBasic
-  position: 1, 9
+  position: 0, 9
 
 - type: technology
   id: NFHardsuitsBasic
@@ -435,9 +432,7 @@
   cost: 2500
   recipeUnlocks:
   - ClothingOuterHardsuitBasic
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 10
+  position: 0, 10
 
 - type: technology
   id: NFHardsuitsField
@@ -452,7 +447,7 @@
   - ClothingOuterHardsuitPilot
   technologyPrerequisites:
   - NFHardsuitsBasic
-  position: 2, 10
+  position: 1, 10
 
 - type: technology
   id: NFHardsuitsMedical
@@ -466,7 +461,7 @@
   technologyPrerequisites:
   - NFHardsuitsBasic
   - NFBiochemicalStasis
-  position: 2, 11
+  position: 1, 11
 
 - type: technology
   id: NFHardsuitsEngineering
@@ -480,7 +475,7 @@
   - ClothingOuterHardsuitEngineering
   technologyPrerequisites:
   - NFHardsuitsField
-  position: 3, 10
+  position: 2, 10
 
 - type: technology
   id: NFHardsuitsAdvanced
@@ -495,7 +490,7 @@
   - ClothingOuterHardsuitLuxury
   technologyPrerequisites:
   - NFHardsuitsEngineering
-  position: 4, 10
+  position: 3, 10
 
 - type: technology
   id: NFHardsuitsExperimentalRD
@@ -509,7 +504,7 @@
   technologyPrerequisites:
   - NFAdvancedAnomalyResearch
   - NFHardsuitsAdvanced
-  position: 5, 9
+  position: 4, 9
 
 - type: technology
   id: NFHardsuitsArmored
@@ -523,7 +518,7 @@
   - ClothingOuterHardsuitPrivateSecurity
   technologyPrerequisites:
   - NFHardsuitsAdvanced
-  position: 5, 11
+  position: 4, 11
 
 - type: technology
   id: NFHardsuitsExperimentalIndustrial
@@ -537,7 +532,7 @@
   technologyPrerequisites:
   - NFHardsuitsExperimentalRD
   - NFHardsuitsArmored
-  position: 6, 10
+  position: 5, 10
 
 - type: technology
   id: NFHardsuitsArmoredAdvanced
@@ -550,7 +545,7 @@
   - ClothingOuterHardsuitScaf
   technologyPrerequisites:
   - NFHardsuitsArmored
-  position: 6, 11
+  position: 5, 11
 
 # region Medical
 
@@ -566,7 +561,7 @@
   - SyringeCryostasis
   technologyPrerequisites:
   - NFReinforcedJug
-  position: 1, 12
+  position: 0, 12
 
 - type: technology
   id: NFReinforcedJug
@@ -577,9 +572,7 @@
   cost: 2500
   recipeUnlocks:
   - ReinforcedJug
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 13
+  position: 0, 13
 
 - type: technology
   id: NFBasicMedicine
@@ -593,7 +586,7 @@
   - ChemDispenserMachineCircuitboard
   technologyPrerequisites:
   - NFReinforcedJug
-  position: 2, 13
+  position: 1, 13
 
 - type: technology
   id: NFBluespaceChemistry
@@ -609,7 +602,7 @@
   - VialBluespace
   technologyPrerequisites:
   - NFBasicMedicine
-  position: 2, 12
+  position: 1, 12
 
 - type: technology
   id: NFEngineeringMedicine
@@ -623,7 +616,7 @@
   - HotplateMachineCircuitboard
   technologyPrerequisites:
   - NFBasicMedicine
-  position: 3, 13
+  position: 2, 13
 
 - type: technology
   id: NFSyringeGun
@@ -637,7 +630,7 @@
   - MiniSyringe
   technologyPrerequisites:
   - NFEngineeringMedicine
-  position: 4, 12
+  position: 3, 12
 
 - type: technology
   id: NFAppliedBiochemicalStasis
@@ -651,7 +644,7 @@
   - CryoPodMachineCircuitboard
   technologyPrerequisites:
   - NFEngineeringMedicine
-  position: 4, 13
+  position: 3, 13
 
 - type: technology
   id: NFMechanizedTreatment
@@ -665,7 +658,7 @@
   - BorgModuleAdvancedChemical
   technologyPrerequisites:
   - NFEngineeringMedicine
-  position: 4, 14
+  position: 3, 14
 
 # region Magboots
 
@@ -678,9 +671,7 @@
   cost: 1000
   recipeUnlocks:
   - ClothingShoesBootsMagSci
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 15
+  position: 0, 15
 
 - type: technology
   id: NFGravityResistantTech
@@ -693,7 +684,7 @@
   - NFClothingShoesBootsMoon
   technologyPrerequisites:
   - NFBasicMagnetsTech
-  position: 1, 16
+  position: 0, 16
 
 - type: technology
   id: NFMagnetsTech
@@ -706,7 +697,7 @@
   - ClothingShoesBootsMag
   technologyPrerequisites:
   - NFBasicMagnetsTech
-  position: 2, 15
+  position: 1, 15
 
 - type: technology
   id: NFMagnetsTechAdvanced
@@ -719,7 +710,7 @@
   - ClothingShoesBootsMagAdv
   technologyPrerequisites:
   - NFMagnetsTech
-  position: 2, 16
+  position: 1, 16
 
 - type: technology
   id: NFMagnetsTechCombat
@@ -733,7 +724,7 @@
   - ClothingShoesBootsMagMercenary
   technologyPrerequisites:
   - NFMagnetsTech
-  position: 3, 15
+  position: 2, 15
 
 - type: technology
   id: NFQuantumFiberWeaving
@@ -746,7 +737,7 @@
   - ClothingShoesBootsSpeed
   technologyPrerequisites:
   - NFMagnetsTechAdvanced
-  position: 3, 16
+  position: 2, 16
 
 # region Robotics & Mechs
 
@@ -761,7 +752,7 @@
   - MechEquipmentFork
   technologyPrerequisites:
   - NFBasicRobotics
-  position: 1, 17
+  position: 0, 17
 
 - type: technology
   id: NFBasicRobotics
@@ -772,9 +763,7 @@
   cost: 1000
   recipeUnlocks:
   - ProximitySensor
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 18
+  position: 0, 18
 
 - type: technology
   id: NFVim
@@ -787,7 +776,7 @@
   - VimHarness
   technologyPrerequisites:
   - NFBasicRobotics
-  position: 1, 19
+  position: 0, 19
 
 - type: technology
   id: NFRoboticsEquipment
@@ -800,7 +789,7 @@
   - MechEquipmentGrabberSmall
   technologyPrerequisites:
   - NFBasicRoboticsEquipment
-  position: 2, 17
+  position: 1, 17
 
 - type: technology
   id: NFRipleyAPLU
@@ -819,7 +808,7 @@
   - RipleyPeripheralsElectronics
   technologyPrerequisites:
   - NFBasicRobotics
-  position: 2, 18
+  position: 1, 18
 
 - type: technology
   id: NFCritterMechs
@@ -838,7 +827,7 @@
   - HamtrPeripheralsElectronics
   technologyPrerequisites:
   - NFVim
-  position: 2, 19
+  position: 1, 19
 
 - type: technology
   id: NFAdvancedRoboticsEquipment
@@ -851,7 +840,7 @@
   - MechEquipmentGrabber
   technologyPrerequisites:
   - NFRoboticsEquipment
-  position: 3, 17
+  position: 2, 17
 
 - type: technology
   id: NFHONKMech
@@ -871,7 +860,7 @@
   - HonkerTargetingElectronics
   technologyPrerequisites:
   - NFRipleyAPLU
-  position: 3, 18
+  position: 2, 18
 
 - type: technology
   id: NFHornRoboticsEquipment
@@ -884,7 +873,7 @@
   - MechEquipmentHorn
   technologyPrerequisites:
   - NFHONKMech
-  position: 3, 19
+  position: 2, 19
 
 # region Entertainment & Comms
 
@@ -899,7 +888,7 @@
   - TelecomServerCircuitboard
   technologyPrerequisites:
   - NFAudioVisualCommunication
-  position: 1, 20
+  position: 0, 20
 
 - type: technology
   id: NFAudioVisualCommunication
@@ -911,9 +900,7 @@
   recipeUnlocks:
   - SurveillanceCameraRouterCircuitboard
   - SurveillanceCameraMonitorCircuitboard
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 21
+  position: 0, 21
 
 - type: technology
   id: NFHologramCommunication
@@ -926,7 +913,7 @@
   - NFHolopadShipMachineCircuitboard
   technologyPrerequisites:
   - NFAudioVisualCommunication
-  position: 1, 22
+  position: 0, 22
 
 - type: technology
   id: NFAdvancedInstruments
@@ -941,7 +928,7 @@
   - JukeboxCircuitBoard
   technologyPrerequisites:
   - NFAdvancedEntertainment
-  position: 2, 20
+  position: 1, 20
 
 - type: technology
   id: NFAdvancedEntertainment
@@ -956,7 +943,7 @@
   - SurveillanceWirelessCameraAnchoredCircuitboard
   technologyPrerequisites:
   - NFAudioVisualCommunication
-  position: 2, 21
+  position: 1, 21
 
 - type: technology
   id: NFJournalism
@@ -969,7 +956,7 @@
   - MassMediaCircuitboard
   technologyPrerequisites:
   - NFAdvancedEntertainment
-  position: 2, 22
+  position: 1, 22
 
 - type: technology
   id: NFPushHorn
@@ -982,7 +969,7 @@
   - PushHorn
   technologyPrerequisites:
   - NFAdvancedEntertainment
-  position: 3, 21
+  position: 2, 21
 
 # region Janitorial
 
@@ -995,9 +982,7 @@
   cost: 1000
   recipeUnlocks:
   - MegaSprayBottle
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 23
+  position: 0, 23
 
 - type: technology
   id: NFJanicart
@@ -1010,7 +995,7 @@
   - JanicartFlatpack
   technologyPrerequisites:
   - NFBasicSpray
-  position: 1, 24
+  position: 0, 24
 
 - type: technology
   id: NFAdvancedSpray
@@ -1024,7 +1009,7 @@
   - ClothingBackpackWaterTank
   technologyPrerequisites:
   - NFBasicSpray
-  position: 2, 23
+  position: 1, 23
 
 - type: technology
   id: NFPortablePump
@@ -1037,7 +1022,7 @@
   - PortablePumpMachineCircuitBoard
   technologyPrerequisites:
   - NFAdvancedSpray
-  position: 2, 24
+  position: 1, 24
 
 - type: technology
   id: NFAdvancedCleaning
@@ -1050,7 +1035,7 @@
   - AdvMopItem
   technologyPrerequisites:
   - NFAdvancedSpray
-  position: 3, 23
+  position: 2, 23
 
 - type: technology
   id: NFAdvancedCleaningCyborg
@@ -1063,7 +1048,7 @@
   - BorgModuleAdvancedCleaning
   technologyPrerequisites:
   - NFAdvancedCleaning
-  position: 4, 23
+  position: 3, 23
 
 # region Kitchen
 
@@ -1078,7 +1063,7 @@
   - ServiceSelectiveDropper
   technologyPrerequisites:
   - NFAdvancedHydroponicsEquipment
-  position: 1, 25
+  position: 0, 25
 
 - type: technology
   id: NFAdvancedHydroponicsEquipment
@@ -1089,9 +1074,7 @@
   cost: 2500
   recipeUnlocks:
   - PlantAnalyzer
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 26
+  position: 0, 26
 
 - type: technology
   id: NFHydroponics
@@ -1104,7 +1087,7 @@
   - HydroponicsTrayMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedHydroponicsEquipment
-  position: 1, 27
+  position: 0, 27
 
 - type: technology
   id: NFDeepFryer
@@ -1117,7 +1100,7 @@
   - DeepFryerMachineCircuitboard
   technologyPrerequisites:
   - NFFoodService
-  position: 2, 25
+  position: 1, 25
 
 - type: technology
   id: NFFoodService
@@ -1134,7 +1117,7 @@
   - SodaDispenserMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedHydroponicsEquipment
-  position: 2, 26
+  position: 1, 26
 
 - type: technology
   id: NFSeedExtractor
@@ -1147,7 +1130,7 @@
   - SeedExtractorMachineCircuitboard
   technologyPrerequisites:
   - NFHydroponics
-  position: 2, 27
+  position: 1, 27
 
 - type: technology
   id: NFAdvancedFoodService
@@ -1162,7 +1145,7 @@
   - ReagentGrinderIndustrialMachineCircuitboard
   technologyPrerequisites:
   - NFFoodService
-  position: 3, 26
+  position: 2, 26
 
 - type: technology
   id: NFAdvancedHydroponicsStorge
@@ -1175,7 +1158,7 @@
   - PlantBagOfHolding
   technologyPrerequisites:
   - NFSeedExtractor
-  position: 3, 27
+  position: 2, 27
 
 - type: technology
   id: NFMeatManipulation
@@ -1188,7 +1171,7 @@
   - FatExtractorMachineCircuitboard
   technologyPrerequisites:
   - NFDeepFryer
-  position: 3, 25
+  position: 2, 25
 
 - type: technology
   id: NFBiomass
@@ -1201,7 +1184,7 @@
   - BiomassReclaimerMachineCircuitboard
   technologyPrerequisites:
   - NFBiogenerator
-  position: 4, 25
+  position: 3, 25
 
 - type: technology
   id: NFBiogenerator
@@ -1214,7 +1197,7 @@
   - BiogeneratorMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedFoodService
-  position: 4, 26
+  position: 3, 26
 
 # region Power / Shuttle
 
@@ -1227,9 +1210,7 @@
   cost: 2500
   recipeUnlocks:
   - PowerCellHigh
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 30
+  position: 0, 30
 
 - type: technology
   id: NFAdvancedSMES
@@ -1242,7 +1223,7 @@
   - SMESAdvancedMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedPowercells
-  position: 2, 28
+  position: 1, 28
 
 - type: technology
   id: NFAdvancedCharging
@@ -1255,7 +1236,7 @@
   - TurboItemRechargerCircuitboard
   technologyPrerequisites:
   - NFAdvancedPowercells
-  position: 2, 29
+  position: 1, 29
 
 - type: technology
   id: NFTrashPowerGeneration
@@ -1268,7 +1249,7 @@
   - PortableGeneratorJrPacmanMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedPowercells
-  position: 2, 30
+  position: 1, 30
 
 - type: technology
   id: NFPowerSolar
@@ -1282,7 +1263,7 @@
   - SolarTrackerElectronics
   technologyPrerequisites:
   - NFAdvancedPowercells
-  position: 2, 31
+  position: 1, 31
 
 - type: technology
   id: NFEmitter
@@ -1295,7 +1276,7 @@
   - EmitterCircuitboard
   technologyPrerequisites:
   - NFAdvancedPowercells
-  position: 2, 32
+  position: 1, 32
 
 - type: technology
   id: NFFission
@@ -1308,7 +1289,7 @@
   - PowerCellMicroreactor
   technologyPrerequisites:
   - NFAdvancedSMES
-  position: 3, 28
+  position: 2, 28
 
 - type: technology
   id: NFPortableFission
@@ -1321,7 +1302,7 @@
   - NFPortableRecharger
   technologyPrerequisites:
   - NFAdvancedCharging
-  position: 3, 29
+  position: 2, 29
 
 - type: technology
   id: NFBasicPowerGeneration
@@ -1334,7 +1315,7 @@
   - PortableGeneratorPacmanMachineCircuitboard
   technologyPrerequisites:
   - NFTrashPowerGeneration
-  position: 3, 30
+  position: 2, 30
 
 # Placeholder for Edison
 # - type: technology
@@ -1350,7 +1331,7 @@
 #   - NFWeaponParticleDecelerator
 #   technologyPrerequisites:
 #   - NFEmitter
-#   position: 3, 32
+#   position: 2, 32
 
 - type: technology
   id: NFPowerGeneration
@@ -1363,7 +1344,7 @@
   - PortableGeneratorSuperPacmanMachineCircuitboard
   technologyPrerequisites:
   - NFBasicPowerGeneration
-  position: 4, 30
+  position: 3, 30
 
 - type: technology
   id: NFAdvancedPowerGeneration
@@ -1376,7 +1357,7 @@
   - PortableGeneratorDKJrMachineCircuitboard
   technologyPrerequisites:
   - NFPowerGeneration
-  position: 5, 30
+  position: 4, 30
 
 # region Space
 
@@ -1389,9 +1370,7 @@
   cost: 2500
   recipeUnlocks:
   - RadarConsoleCircuitboard
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 33
+  position: 0, 33
 
 - type: technology
   id: NFSpaceHandHeldScanning
@@ -1404,7 +1383,7 @@
   - HandHeldMassScanner
   technologyPrerequisites:
   - NFSpaceScanning
-  position: 1, 34
+  position: 0, 34
 
 - type: technology
   id: NFShuttlecraftThrust
@@ -1418,7 +1397,7 @@
   - GyroscopeMachineCircuitboard
   technologyPrerequisites:
   - NFSpaceScanning
-  position: 2, 33
+  position: 1, 33
 
 - type: technology
   id: NFShuttlecraftThrustSmall
@@ -1432,7 +1411,7 @@
   - SmallGyroscopeMachineCircuitboard
   technologyPrerequisites:
   - NFShuttlecraftThrust
-  position: 2, 34
+  position: 1, 34
 
 - type: technology
   id: NFShuttlecraft
@@ -1447,7 +1426,7 @@
   - MiniStationAnchorCircuitboard
   technologyPrerequisites:
   - NFShuttlecraftThrust
-  position: 3, 33
+  position: 2, 33
 
 # region Jetpack
 
@@ -1460,9 +1439,7 @@
   cost: 2500
   recipeUnlocks:
   - JetpackBlue
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 35
+  position: 0, 35
 
 - type: technology
   id: NFArsenalMercenaryPropulsion
@@ -1475,7 +1452,7 @@
   - JetpackSecurity
   technologyPrerequisites:
   - NFBasicPersonalPropulsion
-  position: 1, 36
+  position: 0, 36
 
 - type: technology
   id: NFPersonalPropulsion
@@ -1488,7 +1465,7 @@
   - JetpackCaptain
   technologyPrerequisites:
   - NFBasicPersonalPropulsion
-  position: 2, 35
+  position: 1, 35
 
 - type: technology
   id: NFArsenalNfsdPropulsion
@@ -1501,7 +1478,7 @@
   - JetpackNfsd
   technologyPrerequisites:
   - NFArsenalMercenaryPropulsion
-  position: 2, 36
+  position: 1, 36
 
 - type: technology
   id: NFAdvancedPersonalPropulsion
@@ -1514,7 +1491,7 @@
   - JetpackVoid
   technologyPrerequisites:
   - NFPersonalPropulsion
-  position: 3, 35
+  position: 2, 35
 
 # region Salvage
 
@@ -1527,9 +1504,7 @@
   cost: 2500
   recipeUnlocks:
   - OreProcessorIndustrialMachineCircuitboard
-  technologyPrerequisites:
-  - NFAdvancedParts
-  position: 1, 37
+  position: 0, 37
 
 - type: technology
   id: NFSalvageGrapplingEquipment
@@ -1542,7 +1517,7 @@
   - WeaponGrapplingGun
   technologyPrerequisites:
   - NFIndustrialOreProcessor
-  position: 1, 38
+  position: 0, 38
 
 - type: technology
   id: NFExcavation
@@ -1556,7 +1531,7 @@
   - MineralScannerEmpty
   technologyPrerequisites:
   - NFIndustrialOreProcessor
-  position: 2, 37
+  position: 1, 37
 
 - type: technology
   id: NFSalvageWeapons
@@ -1571,7 +1546,7 @@
   - WeaponCrusherDagger
   technologyPrerequisites:
   - NFSalvageGrapplingEquipment
-  position: 2, 38
+  position: 1, 38
 
 - type: technology
   id: NFMassExcavation
@@ -1585,7 +1560,7 @@
   - AdvancedMineralScannerEmpty
   technologyPrerequisites:
   - NFExcavation
-  position: 3, 37
+  position: 2, 37
 
 - type: technology
   id: NFAdvancedSalvageWeapons
@@ -1598,7 +1573,7 @@
   - WeaponCrusherGlaive
   technologyPrerequisites:
   - NFSalvageWeapons
-  position: 3, 38
+  position: 2, 38
 
 - type: technology
   id: NFBluespaceOreStorage
@@ -1612,7 +1587,7 @@
   - BorgModuleAdvancedMining
   technologyPrerequisites:
   - NFMassExcavation
-  position: 4, 37
+  position: 3, 37
 
 - type: technology
   id: NFImprovedSalvageWeapons
@@ -1625,7 +1600,7 @@
   - NFWeaponPkaCannon
   technologyPrerequisites:
   - NFAdvancedSalvageWeapons
-  position: 4, 38
+  position: 3, 38
 
 - type: technology
   id: NFAdvancedSalvageCyborg
@@ -1638,7 +1613,7 @@
   - BorgModuleAdvancedMining
   technologyPrerequisites:
   - NFBluespaceOreStorage
-  position: 5, 37
+  position: 4, 37
 
 # region Munitions
 
@@ -1795,7 +1770,7 @@
   - ChemicalPayload
   technologyPrerequisites:
   - NFAdvancedRiotControl
-  position: 2, 40
+  position: 3, 40
 
 - type: technology
   id: NFDeterrenceTechnologies
@@ -1855,6 +1830,6 @@
   - NFGrenadeFlash
   - NFGrenadeEMP
   technologyPrerequisites:
-  - NFSalvageWeapons
+  - NFImprovedSalvageWeapons
   - NFExplosiveTechnology
-  position: 3, 39
+  position: 4, 39
