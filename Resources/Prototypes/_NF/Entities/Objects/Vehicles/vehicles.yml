@@ -615,6 +615,10 @@
     energy: 3
     color: "#FF4020"
     mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: Tag
+    tags:
+      - DoorBumpOpener
+      - EmagImmune
 
 - type: entity
   parent: NFVehicleHoverbikeNfsd
@@ -695,6 +699,12 @@
             - Gun
     sprite: _NF/Objects/Vehicles/hoverbike.rsi
   - type: Appearance
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - DemagImmune
+  - type: Vehicle
+    radarBlip: false
 
 - type: entity
   parent: VehicleHoverbikePirate
@@ -779,6 +789,12 @@
     color: green
     radius: 6
     energy: 3
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - DemagImmune
+  - type: Vehicle
+    radarBlip: false
 
 - type: entity
   parent: VehicleHoverbikeSyndicate
