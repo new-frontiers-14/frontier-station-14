@@ -24,3 +24,15 @@ marking-YingletTailPreener = Tail (Small Tailpoof)
 marking-YingletTailBackHair-hairless = Tail
 marking-YingletTailBackHair-northern_secondary = Hair
 marking-YingletTailBackHair = Tail (Back Hair)
+
+marking-YingletRFoot-r_foot = Foot
+marking-YingletRFoot = Right Foot
+
+marking-YingletLFoot-l_foot = Foot
+marking-YingletLFoot = Left Foot
+
+marking-YingletRHand-r_hand = Hand
+marking-YingletRHand = Right Hand
+
+marking-YingletLHand-l_hand = Hand
+marking-YingletLHand = Left Hand

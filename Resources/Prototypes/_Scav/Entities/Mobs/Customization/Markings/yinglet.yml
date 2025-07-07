@@ -122,3 +122,69 @@
   sprites:
   - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_shelltooth.rsi
     state: short
+
+- type: marking
+  id: YingletRFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#3D342D"
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_limbs.rsi
+    state: r_foot
+
+- type: marking
+  id: YingletLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#3D342D"
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_limbs.rsi
+    state: l_foot
+
+- type: marking
+  id: YingletLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [Yinglet]
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_limbs.rsi
+    state: l_hand
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#3D342D"
+
+- type: marking
+  id: YingletRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Yinglet]
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_limbs.rsi
+    state: r_hand
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#3D342D"
+
+#Underfluffies dont work because layering means they'd have to be a tail marking, but allowing that would make multiple simultaneous tailpoofs possible
+#- type: marking
+#  id: YingletUnderfluffies
+#  bodyPart: Chest
+#  markingCategory: Chest
+#  speciesRestriction: [Yinglet]
+#  sprites:
+#  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_markings.rsi
+#    state: underfluffies
