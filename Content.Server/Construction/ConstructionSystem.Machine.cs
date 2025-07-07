@@ -67,7 +67,7 @@ public sealed partial class ConstructionSystem
         }
 
         // Frontier: Only bind the board if the machine itself has the BindToStationComponent and the board doesn't already have BindToStationComponent  
-        if (HasComp<BindToStationComponent>(uid) && board != null && !HasComp<BindToStationComponent>(board.Value))
+        if (HasComp<BindToStationComponent>(uid) && board != null)
         {
             var machineStation = _station.GetOwningStation(uid);
             if (machineStation != null)
