@@ -66,11 +66,11 @@ public sealed partial class ConstructionSystem
             throw new Exception($"Entity with prototype {component.Board} doesn't have a {nameof(MachineBoardComponent)}!");
         }
 
-        // Frontier: Only bind the board if the machine itself has the BindToStationComponent
-        if (HasComp<BindToStationComponent>(uid))
+        // Frontier: Only bind the board if the machine itself has the BindToStationComponent and the board doesn't already have BindToStationComponent  
+        if (HasComp<BindToStationComponent>(uid) && board != null && !HasComp<BindToStationComponent>(board.Value))
         {
             var machineStation = _station.GetOwningStation(uid);
-            if (machineStation != null && board != null)
+            if (machineStation != null)
             {
                 _bindToStation.BindToStation(board.Value, machineStation.Value);
             }

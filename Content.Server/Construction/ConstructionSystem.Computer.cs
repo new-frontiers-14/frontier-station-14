@@ -75,8 +75,8 @@ public sealed partial class ConstructionSystem
 
         var board = EntityManager.SpawnEntity(component.BoardPrototype, Transform(ent).Coordinates);
 
-        // Frontier: Only bind the board if the computer itself has the BindToStationComponent
-        if (HasComp<BindToStationComponent>(ent))
+        // Frontier: Only bind the board if the computer itself has the BindToStationComponent and the board doesn't already have BindToStationComponent
+        if (HasComp<BindToStationComponent>(ent) && !HasComp<BindToStationComponent>(board))
         {
             var computerStation = _station.GetOwningStation(ent);
             if (computerStation != null)
