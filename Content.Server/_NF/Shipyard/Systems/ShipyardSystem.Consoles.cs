@@ -64,6 +64,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     private static readonly Regex DeedRegex = new(@"\s*\([^()]*\)");
 
@@ -295,7 +296,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     ownerName: shuttleOwner,
                     entityUid: EntityManager.GetNetEntity(shuttleUid),
                     purchasedWithVoucher: voucherUsed,
-                    purchasePrice: (uint)vessel.Price
+                    purchasePrice: (uint)vessel.Price,
+                    vesselPrototypeId: vessel.ID
                 )
             );
         }
@@ -371,6 +373,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var shuttleName = ToPrettyString(shuttleUid); // Grab the name before it gets 1984'd
+        var shuttleNetEntity = _entityManager.GetNetEntity(shuttleUid); // same with the netEntity for shuttle records
 
         // Check for shipyard blacklisting components
         var disableSaleQuery = GetEntityQuery<ShipyardSellConditionComponent>();
@@ -404,6 +407,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             PlayDenySound(player, uid, component);
             return;
         }
+
+        // Update shuttle records
+        _shuttleRecordsSystem.TrySetSaleTime(shuttleNetEntity);
 
         RemComp<ShuttleDeedComponent>(targetId);
 
