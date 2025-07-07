@@ -4,123 +4,72 @@
 - type: latheRecipePack
   id: NFNfsdTechfabDeprecatedStatic
   recipes:
-  - BoxLethalshot
-  - BoxShotgunPractice
-  - BoxShotgunSlug
+  # Stuff
   - ClothingEyesHudNfsd
-  - CombatKnife
-  - Flash
-  - ForensicPad
-  - Handcuffs
-  - MagazineBoxLightRifle
-  - MagazineBoxLightRiflePractice
-  - MagazineBoxMagnum
-  - MagazineBoxMagnumPractice
-  - MagazineBoxPistol
-  - MagazineBoxPistolPractice
-  - MagazineBoxRifle
-  - MagazineBoxRiflePractice
-  - MagazineLightRifle
-  - MagazineLightRifleEmpty
-  - MagazinePistol
-  - MagazinePistolEmpty
-  - MagazinePistolSubMachineGun
-  - MagazinePistolSubMachineGunEmpty
-  - MagazinePistolSubMachineGunTopMounted
-  - MagazinePistolSubMachineGunTopMountedEmpty
-  - MagazineRifle
-  - MagazineRifleEmpty
-  - MagazineShotgun
-  - MagazineShotgunEmpty
-  - MagazineShotgunSlug
-  - RiotShield
-  - SpeedLoaderMagnum
-  - SpeedLoaderMagnumEmpty
-  - SpeedLoaderRifleHeavy
-  - SpeedLoaderRifleHeavyEmpty
-  - Stunbaton
-  - TargetClown
-  - TargetHuman
-  - TargetSyndicate
-  - WeaponDisablerPractice
-  - SpeedLoaderRifleHeavyRubber
-  - SpeedLoaderMagnumRubber
-  - MagazineRifleRubber
-  - MagazineShotgunBeanbag
-  - MagazineShotgunSlug
-  - MagazinePistolRubber
-  - MagazinePistolSubMachineGunRubber
-  - MagazineLightRifleRubber
-#      - WeaponFlareGunSecurity
-  - WeaponLaserCarbinePractice
-  - Zipties
+  - NFCombatKnife
+  - NFFlash
+  - NFForensicPad
+  - NFHandcuffs
+  - NFRiotShield
+  - NFStunbaton
+  - NFTargetClown
+  - NFTargetHuman
+  - NFTargetSyndicate
+  - NFZipties
   - ThrusterNfsdMachineCircuitboard
   - SmallThrusterMachineCircuitboard
   - GyroscopeNfsdMachineCircuitboard
   - SmallGyroscopeNfsdMachineCircuitboard
-  - ClothingOuterHardsuitEVAPrisoner
-  - BoxBeanbag
-  - MagazineBoxLightRifleRubber
-  - MagazineBoxMagnumRubber
-  - MagazineBoxPistolRubber
-  - MagazineBoxRifleRubber
-  - MagazineShotgunBeanbag
-  - WeaponDisabler
+  - ClothingOuterEVASuitPrisoner
+  - NFWeaponEnergyPistolDisabler
   - ContrabandAppraisalTool
   - HoloprojectorNfsd
-  - ClothingBackpackElectropack
+  - NFClothingBackpackElectropack
   - PowerCageRechargerCircuitboard
   - PowerCageHigh
   - PowerCageMedium
   - PowerCageSmall
   - Signaller
-  - MagazineNovaliteC1Empty
-  - MagazineNovaliteC1
-  - MagazineNovaliteC1Rubber
 
+# Practice ammo/mags and practice weapons
 - type: latheRecipePack
-  id: NFNfsdTechfabDeprecated
+  id: NfsdPracticeStatic
   recipes:
-  - BoxShellTranquilizer
-  - ExplosivePayload
-  - FlashPayload
-  - GrenadeBlast
-  - GrenadeEMP
-  - GrenadeFlash
-  - PortableRecharger
-  - SignalTrigger
-  - TelescopicShield
-  - TimerTrigger
-  - Truncheon
-  - VoiceTrigger
-  - WeaponAdvancedLaser
-  - WeaponDisablerSMG
-  - WeaponLaserCannon
-  - WeaponLaserCarbine
-  - WeaponXrayCannon
+  - NFAmmunitionBoxPistol35Practice
+  - NFAmmunitionBoxPistol45Practice
+  - NFAmmunitionBoxRifle20Practice
+  - NFAmmunitionBoxRifle30Practice
+  - NFAmmunitionBoxShellShotgunPractice
+  - NFWeaponEnergyPistolDisablerPractice
+  - NFWeaponEnergyRifleCarbinePractice
 
+# Shared between secfab and emagged autolathe
 - type: latheRecipePack
-  id: NFNfsdTechfabDeprecatedEmag
+  id: NfsdAmmoStatic
   recipes:
-  - BoxShotgunIncendiary
-  - BoxShotgunUranium
-  - MagazineBoxLightRifleIncendiary
-  - MagazineBoxLightRifleUranium
-  - MagazineBoxMagnumIncendiary
-  - MagazineBoxMagnumUranium
-  - MagazineBoxPistolIncendiary
-  - MagazineBoxPistolUranium
-  - MagazineBoxRifleIncendiary
-  - MagazineBoxRifleUranium
-  - MagazineGrenadeEmpty
-  - MagazineLightRifleIncendiary
-  - MagazineLightRifleUranium
-  - MagazinePistolIncendiary
-  - MagazinePistolUranium
-  - MagazineRifleIncendiary
-  - MagazineRifleUranium
-  - MagazineShotgunIncendiary
-  - SpeedLoaderMagnumIncendiary
-  - SpeedLoaderMagnumUranium
-  - SpeedLoaderRifleHeavyIncendiary
-  - SpeedLoaderRifleHeavyUranium
+  # Ammo boxes
+  - NFAmmunitionBoxShellShotgunOverpressure
+  - NFAmmunitionBoxShellShotgunSlug
+  - NFAmmunitionBoxShellShotgunBeanbag
+  - NFAmmunitionBoxRifle20
+  - NFAmmunitionBoxRifle20Overpressure
+  - NFAmmunitionBoxRifle20Rubber
+  - NFAmmunitionBoxRifle30
+  - NFAmmunitionBoxRifle30Overpressure
+  - NFAmmunitionBoxRifle30Rubber
+  - NFAmmunitionBoxPistol35
+  - NFAmmunitionBoxPistol35Overpressure
+  - NFAmmunitionBoxPistol35Rubber
+  - NFAmmunitionBoxPistol45
+  - NFAmmunitionBoxPistol45Overpressure
+  - NFAmmunitionBoxPistol45Rubber
+  # Magazines (Empty)
+  - NFMagazineHighCapacityPistol35Empty
+  - NFMagazinePistol45Empty
+  - NFMagazineSubMachineGun35Empty
+  - NFMagazineSubMachineGunTopMounted35Empty
+  - NFMagazineRifle20Empty
+  - NFMagazineRifle30Empty
+  - NFSpeedLoaderPistol35Empty
+  - NFSpeedLoaderPistol45Empty
+  - MagazineAsmgtUniversalEmpty

@@ -1,0 +1,185 @@
+#region frame
+- type: entity
+  id: NFBaseWeaponFramePistol
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGunMagazineFed ]
+  name: pistol
+  abstract: true
+  components:
+  - type: Gun
+    projectileSpeed: 22.5
+    minAngle: 3.1
+    maxAngle: 15.5
+    angleIncrease: 0.8
+    angleDecay: 4
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: StaticPrice
+    price: 250
+  - type: NFWeaponDetails
+    class: weapon-details-class-pistol
+  - type: FireOnLand # DeltaV - gun safety
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFramePistolNanotrasen
+  parent: NFBaseWeaponFramePistol
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 3.6
+    maxAngle: 18
+    angleIncrease: 1.1
+    angleDecay: 3.7
+    fireRate: 3.4
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  id: NFBaseWeaponFramePistolCybersun
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFramePistol ]
+  abstract: true
+  components:
+  - type: Gun
+    angleIncrease: 0.9
+    angleDecay: 6.3
+    fireRate: 3.2
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-cybersun-industries
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponPistolChamber
+  abstract: true
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  id: NFBaseWeaponPistolChamber35
+  parent: NFBaseWeaponPistolChamber
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-35
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazinePistol35
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist: &whitelist35
+          tags:
+            - NFMagazinePistol35
+            - NFMagazineHighCapacityPistol35
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: &chamber35Standard
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgePistol35
+
+- type: entity
+  id: NFBaseWeaponPistolChamber35HighCapacity
+  parent: NFBaseWeaponPistolChamber35
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineHighCapacityPistol35
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist: *whitelist35
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: *chamber35Standard
+
+- type: entity
+  id: NFBaseWeaponPistolChamber35HighCapacityOverpressure
+  parent: NFBaseWeaponPistolChamber35
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineHighCapacityPistol35Overpressure
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist: *whitelist35
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35Overpressure
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgePistol35
+
+- type: entity
+  id: NFBaseWeaponPistolChamber35HighCapacityRubber
+  parent: NFBaseWeaponPistolChamber35
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineHighCapacityPistol35Rubber
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist: *whitelist35
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35Rubber
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgePistol35
+
+- type: entity
+  id: NFBaseWeaponPistolChamber45
+  parent: NFBaseWeaponPistolChamber
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-45
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazinePistol45
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - NFMagazinePistol45
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol45
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgePistol45

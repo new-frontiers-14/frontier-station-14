@@ -1,0 +1,254 @@
+#region Pellets
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgun
+  name: pellet (.50)
+  parent: NFBasePellet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunOverpressure
+  name: pellet (.50 overpressure)
+  parent: NFBasePelletOverpressure
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 5
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunIncendiary
+  name: pellet (.50 incendiary)
+  parent: NFBasePelletIncendiary
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 2.4
+        Heat: 1.6
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunPractice
+  name: pellet (.50 practice)
+  parent: NFBasePelletPractice
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0.1
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunUranium
+  name: pellet (.50 uranium)
+  parent: NFBasePelletUranium
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 3.5
+        Radiation: 3.5
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunImprovised
+  name: pellet (.50 improvised)
+  parent: NFBasePelletPractice
+  components:
+  - type: Sprite
+    layers:
+    - state: pellet
+      color: "#00aeffc8"
+      shader: unshaded
+    - state: pellet-trace
+      color: "#aaaaaaBB"
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 2
+        Slash: 2
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunGlass
+  name: pellet (.50 glass)
+  parent: NFPelletShotgunImprovised
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 3.5
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunGrapeshot
+  name: pellet (.50 grapeshot)
+  parent: NFBasePellet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 4
+        Structural: 5
+
+#region PelletsSpread
+- type: entity
+  id: NFBasePelletShotgunSpread
+  abstract: true
+  components:
+  - type: ProjectileSpread
+    count: 7 # eight(?) total, includes the spread as a bullet
+    spread: 10
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgun]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletShotgun
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunOverpressureSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunOverpressure]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletShotgunOverpressure
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunIncendiarySpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunIncendiary]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletShotgunIncendiary
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunPracticeSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunPractice]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletShotgunPractice
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunUraniumSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunUranium]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletShotgunUranium
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunImprovisedSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunImprovised]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletShotgunImprovised
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunGlassSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunGlass]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletShotgunGlass
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFPelletShotgunGrapeshotSpread
+  parent: [NFBasePelletShotgunSpread, NFPelletShotgunGrapeshot]
+  components:
+  - type: ProjectileSpread
+    proto: NFPelletShotgunGrapeshot
+
+#region Slugs
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFShotgunSlug
+  parent: NFBaseBullet
+  name: slug (.50)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+        Blunt: 5
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFShotgunSlugBeanbag
+  parent: NFBaseBulletRubber
+  name: beanbag (.50)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 10
+  - type: StaminaDamageOnCollide
+    damage: 30 # 4 hits to stun
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFShotgunSlugFlare
+  parent: NFPelletShotgunFlare
+  name: flare (.50)
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/bullets.rsi
+    layers:
+    - state: pellet
+      color: "#ff0000FF"
+      shader: unshaded
+    - state: pellet-trace
+      color: "#FF8080BB"
+      shader: unshaded
+  - type: Tracer
+    color: "#ff0000FF"
+    length: 2
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: NFShotgunSlugTranquilizer
+  parent: NFBaseBullet
+  name: slug (.50 tranquilizer)
+  components:
+  - type: Sprite
+    layers:
+    - state: pellet
+      color: "#00ffffFF"
+      shader: unshaded
+    - state: pellet-trace
+      color: "#00ffffBB"
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 15
+  - type: RefillableSolution
+    solution: ammo
+  - type: DrainableSolution
+    solution: ammo
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 15
+    solution: ammo
+  - type: InjectableSolution
+    solution: ammo
+  - type: Tracer
+    color: "#00ffffFF"
+    length: 2

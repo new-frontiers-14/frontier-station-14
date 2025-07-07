@@ -1,0 +1,39 @@
+- type: entity
+  id: NFXenoArtifactEffectSpawnGrimforgedConstruct
+  parent: BaseXenoArtifactEffect
+  description: Create grimforged construct
+  categories: [ HideSpawnMenu ] # Frontier
+  components:
+  - type: XenoArtifactNode
+    maxDurability: 1
+    maxDurabilityCanDecreaseBy:
+      min: 0
+      max: 0
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: MobGrimForged
+          weight: 1.0
+
+- type: entity
+  id: NFXenoArtifactEffectAnomaliteSpawn
+  parent: BaseXenoArtifactEffect
+  description: Create anomalite
+  categories: [ HideSpawnMenu ] # Frontier
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 1, 3
+        children:
+        - id: MaterialAnomalite1

@@ -1,5 +1,5 @@
 # BASE
-## AI packages
+#region AI packages
 - type: entity
   id: MobRogueSiliconAISimpleMelee
   abstract: true
@@ -38,11 +38,14 @@
       SoundTargetInLOS: !type:SoundPathSpecifier
         path: /Audio/Effects/double_beep.ogg
 
-## Mob base
+#region Mob base
 - type: entity
   name: hivemind unit
   abstract: true
   parent:
+  - NFMobNoEquipmentOnGib
+  - MobMovementSpeedModifierRanged
+  - MobStaminaBoss # No stunning bots
   - BaseC3MobConstruct
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
@@ -70,8 +73,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      140: Dead
+      64: Critical
+      110: Dead
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -80,8 +83,8 @@
     allowRevives: true
   - type: SlowOnDamage
     speedModifierThresholds:
-      48: 0.7
-      64: 0.5
+      40: 0.7
+      52: 0.5
   - type: HealthExaminable
     examinableTypes:
       - Blunt
@@ -90,8 +93,6 @@
       - Heat
       - Shock
     locPrefix: silicon
-  - type: Stamina
-    critThreshold: 100
   - type: Repairable
     doAfterDelay: 10
     allowSelfRepair: true
@@ -125,13 +126,19 @@
   - type: AutoWakeUp
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: FootstepBorg
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
+      collection: NFScrapbotFootstep
+  - type: SpamEmitSound
+    minInterval: 10
+    maxInterval: 60
+    sound:
+      collection: NFScrapbotChatter
+      params:
+        variation: 0.125
+  - type: SoundWhileAlive
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   id: MobRogueSiliconScrapBase
   name: scrap unit
@@ -169,28 +176,25 @@
       map: [ "overlayUnshaded" ]
       shader: unshaded
   - type: DamageStateVisuals
-    rotate: true
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
   - type: MobThresholds
     thresholds:
       0: Alive
-      60: Critical
-      120: Dead
+      48: Critical
+      100: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      36: 0.7
-      48: 0.5
-  - type: Stamina
-    critThreshold: 600
+      30: 0.7
+      40: 0.5
 
 - type: entity
   id: MobRogueSiliconProjectileBatteryAmmo
   abstract: true
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletEnergyGunLaser
+    proto: NFBulletLaserLow
     fireCost: 100
 
 - type: entity
@@ -198,7 +202,7 @@
   abstract: true
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: NFRedLightLaser
     fireCost: 100
 
 - type: entity
@@ -225,7 +229,6 @@
         layer:
           - FlyingMobLayer
   - type: DamageStateVisuals
-    rotate: true
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
@@ -235,19 +238,19 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      30: Critical
-      90: Dead
+      24: Critical
+      72: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      18: 0.7
-      24: 0.5
-  - type: Stamina
-    critThreshold: 600
+      14: 0.7
+      20: 0.5
   - type: Gun
     showExamineText: false
     fireRate: 0.75
-    minAngle: 0
+    minAngle: 5
     maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 3
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
   - type: FootstepModifier
@@ -255,14 +258,15 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: SoundWhileAlive
   - type: AmbientSound
-    volume: -9
+    volume: -6
     range: 5
-    sound: /Audio/Effects/shuttle_thruster.ogg
+    sound: /Audio/_NF/Effects/Scrapbots/thruster-droning.ogg
 
 # VARIATIONS
-## Tier 1
+#region Tier 1
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -326,6 +330,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -376,6 +381,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -444,9 +450,9 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: SoundWhileAlive
   - type: AmbientSound
-    volume: -9
+    volume: -6
     range: 5
-    sound: /Audio/Effects/shuttle_thruster.ogg
+    sound: /Audio/_NF/Effects/Scrapbots/thruster-droning.ogg
 
 - type: entity
   parent:
@@ -455,13 +461,15 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: NFRedLightLaser
     fireCost: 100
   - type: Gun
     showExamineText: false
     fireRate: 0.7
     minAngle: 5
-    maxAngle: 10
+    maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -472,6 +480,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconScrapBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -485,7 +494,7 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 15
+        Slash: 12
         Structural: 20
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
@@ -578,7 +587,7 @@
       shader: unshaded
       color: "#0055cc"
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletDisabler
+    proto: NFBulletDisablerLow
     fireCost: 100
 
 - type: entity
@@ -604,11 +613,12 @@
       shader: unshaded
       color: "#ffff00"
   - type: ProjectileBatteryAmmoProvider
-    proto: AnomalousParticleSigmaStrong
+    proto: NFBulletKineticLowPower
     fireCost: 100
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierSpecial
   - MobRogueSiliconDroneBase
   id: MobRogueSiliconViscerator
   name: viscerator unit
@@ -644,9 +654,6 @@
     speedModifierThresholds:
       7: 0.7
       10: 0.5
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 5
-    baseWalkSpeed: 5
   - type: MeleeWeapon
     attackRate: 1.0
     animation: WeaponArcClaw
@@ -659,9 +666,10 @@
       params:
         variation: 0.250
 
-## Tier 2
+#region Tier 2
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -693,13 +701,13 @@
     - sprite: _NF/Mobs/RogueSilicons/robots.rsi
       state: r_leg_servo
   - type: DamageStateVisuals
-    rotate: true
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -737,7 +745,6 @@
     - sprite: Objects/Weapons/Melee/stunprod.rsi
       state: on-inhand-right
   - type: DamageStateVisuals
-    rotate: true
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
@@ -802,8 +809,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.8
-    minAngle: 0
-    maxAngle: 5
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -814,6 +823,7 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   id: MobRogueSiliconCatcher
@@ -849,7 +859,6 @@
     - sprite: _NF/Mobs/RogueSilicons/robots.rsi
       state: overlay_r_arm_claws
   - type: DamageStateVisuals
-    rotate: true
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
@@ -860,6 +869,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.075
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -874,9 +887,10 @@
     autoRecharge: true
     autoRechargeRate: 5
 
-## Tier 3
+#region Tier 3
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
   - MobRogueSiliconBase
   - MobPassiveRegen
   - MobRogueSiliconAISimpleMelee
@@ -904,23 +918,20 @@
     - sprite: Objects/Weapons/Guns/Battery/tesla_gun.rsi
       state: inhand-right
   - type: DamageStateVisuals
-    rotate: true
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
   - type: MobThresholds
     thresholds:
       0: Alive
-      110: Critical
-      160: Dead
+      88: Critical
+      130: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      66: 0.7
-      88: 0.5
-  - type: Stamina
-    critThreshold: 600
+      54: 0.7
+      70: 0.5
   - type: ProjectileBatteryAmmoProvider
-    proto: TeslaGunBullet
+    proto: NFTeslaGunBullet
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -932,8 +943,10 @@
     projectileSpeed: 10
     showExamineText: false
     fireRate: 0.75
-    minAngle: 0
+    minAngle: 5
     maxAngle: 15
+    angleIncrease: 2
+    angleDecay: 3
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
@@ -943,13 +956,13 @@
     energy: 1.5
     color: "#47f8ff"
 
-## Tier 4 Boss
+#region Tier 4 Boss
 - type: entity
   parent:
   - MobRogueSiliconDroneBase
   - MobPassiveRegen
   - MobRogueSiliconHitscanBatteryAmmo
-  - NFMobBossRestrictions
+  - NFMobBossRestrictions # Cannot use HostileBossBase, conflicts with silicon definitions
   id: MobRogueSiliconGuardian
   name: guardian unit
   description: An advanced security silicon, typically used to safeguard high-security areas such as vaults and server rooms. After being hacked, this unit carries out the AI's will.
@@ -987,22 +1000,22 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Critical
-      400: Dead
+      160: Critical
+      320: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      120: 0.7
-      160: 0.5
-  - type: Stamina
-    critThreshold: 600
+      96: 0.7
+      130: 0.5
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaserPractice # RedLaser
+    proto: NFRedLaserPractice
     fireCost: 10
   - type: Gun
     showExamineText: false
     fireRate: 8
     minAngle: 1
     maxAngle: 10
+    angleIncrease: 1
+    angleDecay: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -1014,11 +1027,37 @@
     radius: 2
     energy: 2.5
     color: "#47f8ff"
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-guardian-unit-dungeon-name
+    description: ghost-role-information-one-star-unit-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  # Radar
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar
+  - type: RadarConsole
+    followEntity: true
+    maxIffRange: 256
+    hideCoords: true
+  - type: ComplexInteraction # Needed to interact with innate radar console
 
 - type: entity
   parent:
   - MobRogueSiliconBase
   - MobPassiveRegen
+  - NFMobBossRestrictions # Cannot use HostileBossBase, conflicts with silicon definitions
   id: MobRogueSiliconBoss
   name: one star unit
   description: An autonomous combat-grade mech, typically used for offensive operations. Now a rogue AI's elite guard. Equipped with missile launchers, exercise extreme caution.
@@ -1036,23 +1075,20 @@
       state: onestar_boss_screen
       shader: unshaded
   - type: DamageStateVisuals
-    rotate: true
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Critical
-      400: Dead
+      240: Critical
+      360: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      200: 0.7
-      260: 0.5
-  - type: Stamina
-    critThreshold: 600
+      144: 0.7
+      192: 0.5
   - type: BasicEntityAmmoProvider
-    proto: CartridgeRocketMiniNF
+    proto: NFBulletRocketMini # NFCartridgeRocketMini
     capacity: 10
     count: 10
   - type: Gun
@@ -1068,9 +1104,33 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-one-star-unit-dungeon-name
+    description: ghost-role-information-one-star-unit-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  # Radar
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar
+  - type: RadarConsole
+    followEntity: true
+    maxIffRange: 256
+    hideCoords: true
+  - type: ComplexInteraction # Needed to interact with innate radar console
 
-
-### Asteroid scrap bots: no regen
+#region Asteroid
 ## Tier 1
 - type: entity
   parent:
@@ -1081,9 +1141,6 @@
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.6 # -20% from normal speed
-    baseSprintSpeed : 3.6 # -20% from normal speed
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootT0
@@ -1150,9 +1207,6 @@
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.6 # -20% from normal speed
-    baseSprintSpeed : 3.6 # -20% from normal speed
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootT0
@@ -1206,9 +1260,6 @@
   name: malfunctioning scrap unit
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.6 # -20% from normal speed
-    baseSprintSpeed : 3.6 # -20% from normal speed
   - type: Loadout
     prototypes:
     - MobRogueSiliconLootT0
@@ -1273,9 +1324,9 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: SoundWhileAlive
   - type: AmbientSound
-    volume: -9
+    volume: -6
     range: 5
-    sound: /Audio/Effects/shuttle_thruster.ogg
+    sound: /Audio/_NF/Effects/Scrapbots/thruster-droning.ogg
 
 - type: entity
   parent:
@@ -1290,7 +1341,7 @@
     prototypes:
     - MobRogueSiliconLootT1
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: NFRedLightLaser
     fireCost: 100
   - type: Gun
     showExamineText: false

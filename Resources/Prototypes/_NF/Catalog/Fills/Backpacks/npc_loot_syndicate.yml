@@ -1,4 +1,4 @@
-# BASE
+#region BASE
 - type: entity
   parent: BaseItem
   id: SyndieDuffelGiftBox
@@ -65,7 +65,7 @@
         color: "#7f0101"
 
 # SYNDICATE NPC LOOT
-## Captain
+#region Captain
 - type: entity
   parent: SyndieMessengerGiftBox
   id: ClothingBackpackSyndicateCaptainLootA
@@ -73,9 +73,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponRevolverPythonAP
-      - id: SpeedLoaderMagnumAP
-      - id: SpeedLoaderMagnumAP
+      - id: NFWeaponRevolverRitland45Expedition
+      - id: NFSpeedLoaderPistol45Uranium
+      - id: NFSpeedLoaderPistol45Uranium
       - id: SpaceCash5000
       # Bonus Loot T3
       - id: SpaceCash1000
@@ -103,9 +103,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponRevolverPython
-      - id: SpeedLoaderMagnum
-      - id: SpeedLoaderMagnum
+      - id: NFWeaponRevolverRitland45Expedition
+      - id: NFSpeedLoaderPistol45Incendiary
+      - id: NFSpeedLoaderPistol45Incendiary
       - id: SpaceCash2500
       # Bonus Loot T3
       - id: SpaceCash1000
@@ -133,7 +133,8 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: SpeedLoaderMagnum
+      - id: NFSpeedLoaderPistol45
+      - id: NFSpeedLoaderPistol45Overpressure
       - id: SpaceCash2500
       # Bonus Loot T3
       - id: SpaceCash1000
@@ -181,7 +182,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## Second Officer
+#region Second Officer
 - type: entity
   parent: ClothingBackpackSyndicateCaptainLootA
   id: ClothingBackpackSyndicateSecondOfficerLootA
@@ -189,9 +190,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponLaserSvalinnExpedition
-      - id: PowerCellHyperPrinted
-      - id: PowerCellHyperPrinted
+      - id: NFWeaponEnergyPistolLaserAdvancedExpedition
       - id: SpaceCash2500
       # Bonus Loot T3
       - id: SpaceCash1000
@@ -219,8 +218,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponDisabler
-      - id: PowerCellHighPrinted
+      - id: NFWeaponEnergyPistolLaserExpedition
       - id: SpaceCash2500
       # Bonus Loot T3
       - id: SpaceCash1000
@@ -297,7 +295,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## Commander
+#region Commander
 - type: entity
   parent: SyndieMessengerGiftBox
   id: ClothingBackpackSyndicateCommanderLootA
@@ -305,9 +303,10 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponRifleAk
-      - id: MagazineLightRifle
-      - id: MagazineLightRifle
+      - id: NFWeaponRifleAssaultSmExpedition
+      - id: NFMagazineRifle30Uranium
+      - id: NFMagazineRifle30Uranium
+        prob: 0.2
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
       # Bonus Loot T4
@@ -334,9 +333,10 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponRifleLecter
-      - id: MagazineRifle
-      - id: MagazineRifle
+      - id: NFWeaponRifleAssaultM90GrenadeLauncherExpedition
+      - id: NFMagazineRifle20Incendiary
+      - id: NFMagazineRifle20Incendiary
+        prob: 0.2
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
       # Bonus Loot T4
@@ -363,8 +363,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: MagazineLightRifle
-      - id: MagazineLightRifle
+      - id: NFMagazineRifle30Overpressure
+      - id: NFMagazineRifle30Overpressure
+        prob: 0.2
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
       # Bonus Loot T4
@@ -409,7 +410,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## Operative
+#region Operative
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateOperativeLootA
@@ -417,9 +418,10 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponSubMachineGunAtreidesExpedition
-      - id: MagazinePistolSubMachineGun
-      - id: MagazinePistolSubMachineGun
+      - id: NFWeaponSubMachineGunC20rExpedition
+      - id: NFMagazineSubMachineGun35Uranium
+      - id: NFMagazineSubMachineGun35Uranium
+        prob: 0.2
       - id: SpaceCash1000
       - id: SpaceCash1000
       # Bonus Loot T3
@@ -448,8 +450,8 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponSubMachineGunWt550Expedition
-      - id: MagazinePistolSubMachineGunTopMounted
+      - id: NFWeaponSubMachineGunWt550Expedition
+      - id: NFMagazineSubMachineGunTopMounted35Uranium
       - id: SpaceCash1000
       - id: SpaceCash500
       # Bonus Loot T3
@@ -478,8 +480,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: MagazineBoxPistol
-      - id: MagazineBoxPistol
+      - id: NFAmmunitionBoxPistol35Overpressure
+      - id: NFAmmunitionBoxPistol35Uranium
+        prob: 0.2
       - id: SpaceCash1000
       - id: SpaceCash500
       # Bonus Loot T3
@@ -529,7 +532,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## Deckhand
+#region Deckhand
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateDeckhandLootA
@@ -537,9 +540,10 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponPistolViper
-      - id: MagazinePistol
-      - id: MagazinePistol
+      - id: NFWeaponPistolViperExpedition
+      - id: NFMagazineHighCapacityPistol35Uranium
+      - id: NFMagazineHighCapacityPistol35Uranium
+        prob: 0.2
       - id: SpaceCash1000
       # Bonus Loot T1
       - id: SpaceCash500
@@ -558,8 +562,10 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponPistolMk58Expedition
-      - id: MagazinePistol
+      - id: NFWeaponPistolMk58Expedition
+      - id: NFMagazineHighCapacityPistol35Incendiary
+      - id: NFMagazineHighCapacityPistol35Incendiary
+        prob: 0.2
       - id: SpaceCash1000
       # Bonus Loot T1
       - id: SpaceCash500
@@ -578,8 +584,8 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: MagazinePistol
-      - id: MagazinePistol
+      - id: NFMagazineHighCapacityPistol35Overpressure
+      - id: NFMagazineHighCapacityPistol35Overpressure
       - id: SpaceCash1000
       # Bonus Loot T1
       - id: SpaceCash500
@@ -609,7 +615,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## Saboteur
+#region Saboteur
 - type: entity
   parent: ClothingBackpackSyndicateDeckhandLootA
   id: ClothingBackpackSyndicateSaboteurLootA
@@ -630,7 +636,7 @@
   id: ClothingBackpackSyndicateSaboteurLootD
   categories: [ HideSpawnMenu ]
 
-## Medic
+#region Medic
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateMedicLootA
@@ -720,7 +726,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## Engineer
+#region Engineer
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateEngineerLootA
@@ -731,9 +737,9 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponShotgunKammererExpedition
+      - id: NFWeaponShotgunKammererExpedition
       - id: SyndicateJawsOfLife
-      - id: BoxShotgunSlug
+      - id: NFAmmunitionBoxShellShotgunUranium
       - id: SpaceCash1000
       - id: SpaceCash1000
       # Bonus Loot T2
@@ -760,7 +766,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponShotgunKammererExpedition
+      - id: NFAmmunitionBoxShellShotgunIncendiary
       - id: JawsOfLife
       - id: SpaceCash1000
       # Bonus Loot T2
@@ -831,7 +837,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## Chemwarrior
+#region Chemwarrior
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateChemwarriorLootA
@@ -942,7 +948,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## Grenadier
+#region Grenadier
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateGrenadierLootA

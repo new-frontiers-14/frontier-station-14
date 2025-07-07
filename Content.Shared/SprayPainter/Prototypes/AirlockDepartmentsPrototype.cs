@@ -1,21 +1,23 @@
-using Content.Shared.Roles;
-using Robust.Shared.Prototypes;
+// Deleted in Upstream#37341
 
-namespace Content.Shared.SprayPainter.Prototypes;
+// using Content.Shared.Roles;
+// using Robust.Shared.Prototypes;
 
-/// <summary>
-/// Maps airlock style names to department ids.
-/// </summary>
-[Prototype]
-public sealed partial class AirlockDepartmentsPrototype : IPrototype
-{
-    [IdDataField]
-    public string ID { get; private set; } = default!;
+// namespace Content.Shared.SprayPainter.Prototypes;
 
-    /// <summary>
-    /// Dictionary of style names to department ids.
-    /// If a style does not have a department (e.g. external) it is set to null.
-    /// </summary>
-    [DataField(required: true)]
-    public Dictionary<string, ProtoId<DepartmentPrototype>> Departments = new();
-}
+// /// <summary>
+// /// Maps airlock style names to department ids.
+// /// </summary>
+// [Prototype]
+// public sealed partial class AirlockDepartmentsPrototype : IPrototype
+// {
+//     [IdDataField]
+//     public string ID { get; private set; } = default!;
+
+//     /// <summary>
+//     /// Dictionary of style names to department ids.
+//     /// If a style does not have a department (e.g. external) it is set to null.
+//     /// </summary>
+//     [DataField(required: true)]
+//     public Dictionary<string, ProtoId<DepartmentPrototype>> Departments = new();
+// }

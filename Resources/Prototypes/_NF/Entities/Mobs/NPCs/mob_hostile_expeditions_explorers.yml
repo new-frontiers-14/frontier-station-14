@@ -1,11 +1,13 @@
-# Base
+#region Base
 - type: entity
   name: explorer
   abstract: true
   parent:
+  - NFMobNoEquipmentOnGib
+  - MobStaminaFodder
+  - MobMovementSpeedModifierMelee
   - MobNonHumanHostileBase
   - MobHumanoidInvetory
-  - NFMobRestrictions
   id: MobExplorerBase
   components:
   - type: NpcFactionMember
@@ -14,14 +16,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      130: Dead
+      80: Critical
+      105: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+      48: 0.7
+      64: 0.5
   - type: DamageStateVisuals
-    rotate: true
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
@@ -59,12 +60,9 @@
     energy: 1
     mask: /Textures/Effects/LightMasks/cone.png
     color: "#47f8ff"
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 # Variations
-## Tier 1
+#region Tier 1
 - type: entity
   name: looter
   parent:
@@ -133,15 +131,13 @@
 - type: entity
   name: scrapper
   parent:
+  - MobMovementSpeedModifierRanged
   - MobExplorerBase
   - MobHumanoidHostileAISimpleRanged
   id: MobExplorerRangedT1
   description: Proto-kinetic accelerator in one hand, flashlight in the other, beer in the belly. That's how you explore.
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearRangedT1
@@ -196,20 +192,22 @@
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKineticLowPower
+    proto: NFBulletKineticLowPower
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
     fireRate: 0.5
-    minAngle: 31
-    maxAngle: 45
+    minAngle: 10
+    maxAngle: 40
+    angleIncrease: 5
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
 
-## Tier 2
+#region Tier 2
 - type: entity
   name: scavenger
   parent:
@@ -260,15 +258,13 @@
 - type: entity
   name: salvager
   parent:
+  - MobMovementSpeedModifierRanged
   - MobExplorerBase
   - MobHumanoidHostileAISimpleRanged
   id: MobExplorerRangedT2
   description: Sawn-off proto-kinetic accelerator in one hand, crusher dagger in the other, magm-ale both in the belly and in the hardsuit's boots.
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearRangedT2
@@ -291,7 +287,7 @@
     - sprite: Clothing/OuterClothing/Hardsuits/spatio.rsi
       state: equipped-OUTERCLOTHING
     # Weapons
-    - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+    - sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_sawn.rsi
       state: inhand-right
     - sprite: Objects/Weapons/Melee/crusher_dagger.rsi
       state: inhand-left
@@ -301,20 +297,22 @@
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKineticLowPower
+    proto: NFBulletKineticLowPower
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
     fireRate: 0.75
     selectedMode: FullAuto
-    minAngle: 31
-    maxAngle: 45
+    minAngle: 15
+    maxAngle: 40
+    angleIncrease: 5
+    angleDecay: 3
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
 
-# Tier 3
+#region Tier 3
 - type: entity
   name: miner
   parent:
@@ -371,15 +369,13 @@
 - type: entity
   name: explorer
   parent:
+  - MobMovementSpeedModifierRanged
   - MobExplorerBase
   - MobHumanoidHostileAISimpleRanged
   id: MobExplorerRangedT3
   description: Veteran scrappers, these salvagers are wealthy enough to explore abandoned ruins for the adrenaline rush and adventure alone.
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearRangedT3
@@ -410,14 +406,16 @@
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKineticMediumPower
+    proto: NFBulletKineticMediumPower
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
     fireRate: 0.75
-    minAngle: 1
-    maxAngle: 5
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -430,6 +428,7 @@
   name: hauler
   categories: [ HideSpawnMenu ]
   parent:
+  - MobStaminaSpecial
   - MobExplorerBase
   - MobHumanoidHostileAISimpleMelee
   #- MobLaserReflect # Added to prevent laser abuse from players
@@ -462,18 +461,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      120: 0.7
-      160: 0.5
-  - type: Stamina
-    critThreshold: 600
+      160: Dead
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 195
+        damage: 155
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -510,14 +503,13 @@
     radius: 5
     energy: 2
 
-# Tier 4 - Boss
+#region Tier 4 - Boss
 - type: entity
   name: explorer captain
   parent:
   - MobHostileBossBase
   - MobExplorerBase
   - MobHumanoidHostileAISimpleMelee
-  - NFMobBossRestrictions
   id: MobExplorerBoss
   description: Fearless and battle-hardened salvage team leaders, it takes years picking through the darkest corners of space and navigating the galaxy's criminal underbelly of the galaxy before you can become a captain. Not to be underestimated.
   categories: [ HideSpawnMenu ]
@@ -558,8 +550,8 @@
     energy: 3
   - type: MobThresholds
     thresholds:
-      120: Critical
-      150: Dead
+      100: Critical
+      130: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       60: 0.7
@@ -607,8 +599,10 @@
     capacity: 1
     count: 1
   - type: Gun
-    minAngle: 1
-    maxAngle: 5
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 5
+    angleDecay: 3
     fireRate: 1
     selectedMode: FullAuto
     availableModes:
@@ -635,3 +629,78 @@
     itemIconStyle: BigAction
   - type: UseDelay
     delay: 50
+
+#region space, t1
+- type: entity
+  id: MobExplorerMeleeEVAT1
+  parent:
+  - MobMovementSpeedModifierEVAMelee
+  - MobExplorerMeleeT1
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobExplorerRangedEVAT1
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobExplorerRangedT1
+  categories: [ HideSpawnMenu ]
+
+#region space, t2
+- type: entity
+  id: MobExplorerMeleeEVAT2
+  parent:
+  - MobMovementSpeedModifierEVAMelee
+  - MobExplorerMeleeT2
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobExplorerRangedEVAT2
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobExplorerRangedT2
+  categories: [ HideSpawnMenu ]
+
+#region space, t3
+- type: entity
+  id: MobExplorerMeleeEVAT3
+  parent:
+  - MobMovementSpeedModifierEVAMelee
+  - MobExplorerMeleeT3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobExplorerRangedEVAT3
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobExplorerRangedT3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobExplorerHaulerEVA
+  parent: MobExplorerHauler
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 155
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpawnMobExplorerEVAT2:
+            min: 1
+            max: 1
+          RipleyChassis:
+            min: 1
+            max: 1
+          RipleyCentralElectronics:
+            min: 1
+            max: 1
+          RipleyPeripheralsElectronics:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

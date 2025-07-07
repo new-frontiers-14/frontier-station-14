@@ -8,6 +8,7 @@
     isShipyardRCD: true
   - type: Sprite
     state: icon-shipyard
+  - type: GridAccess
 
 - type: entity
   id: ShipyardRCDEmpty
@@ -15,7 +16,7 @@
   suffix: Empty
   components:
     - type: LimitedCharges
-      charges: 0
+      lastCharges: -1
 
 - type: entity
   name: shipyard compressed matter
@@ -152,7 +153,7 @@
           path: /Audio/Items/ratchet.ogg
         changeSound:
           path: /Audio/Items/shovel_dig.ogg
-      - behavior: 
+      - behavior:
         - Prying
         - Axing
         sprite:
@@ -162,7 +163,7 @@
           path: /Audio/Items/crowbar.ogg
         changeSound:
           path: /Audio/Items/shovel_dig.ogg
-      - behavior: 
+      - behavior:
         - Cutting
         - Slicing
         - Sawing

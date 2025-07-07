@@ -56,7 +56,7 @@
     name: ghost-role-information-crispy-name
     allowMovement: true
     description: ghost-role-information-crispy-description
-    rules: ghost-role-information-Cak-rules
+    rules: ghost-role-information-nonantagonist-rules
   - type: GhostTakeoverAvailable
   - type: OwOAccent
   - type: Speech
@@ -537,9 +537,9 @@
     - Vegetable
 
 - type: entity
-  name: tonkatsu noodles
+  name: tonkotsu noodles
   parent: FoodBowlBase
-  id: FoodMealTonkatsuNoodles
+  id: FoodMealTonkotsuNoodles
   description: Pork bone broth with garlic and pork. Rich!
   components:
   - type: FlavorProfile
@@ -551,7 +551,7 @@
     sprite: _NF/Objects/Consumable/Food/bowl.rsi
     layers:
     - state: bowl
-    - state: tonkatsu-noodles
+    - state: tonkotsu-noodles
   - type: SolutionContainerManager
     solutions:
       food:
@@ -568,3 +568,47 @@
   - type: Tag
     tags:
     - Meat
+
+- type: entity
+  name: battered tofu slice
+  parent: FoodTofuSlice
+  id: FoodTofuSliceBattered
+  description: A slice of tofu, dredged in a gloopy flour and egg mixture. Arguably better in this form.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: tofu-slice-battered
+  - type: FlavorProfile
+    flavors:
+      - tofu
+      - raw-egg
+      - chalky
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodSlicedTofuFried
+
+- type: entity
+  name: fried tofu
+  parent: FoodTofuSlice
+  id: FoodSlicedTofuFried
+  description: This once healthy slice of tofu has been fried to cispy perfection.
+  components:
+  - type: Tag
+    tags:
+    - Cooked
+  - type: FlavorProfile
+    flavors:
+      - oily
+      - tofu
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: tofu-slice-fried
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Nutriment
+          Quantity: 2

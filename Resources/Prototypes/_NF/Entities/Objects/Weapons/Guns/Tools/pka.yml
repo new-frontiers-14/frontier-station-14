@@ -1,0 +1,175 @@
+#region base
+- type: entity
+  id: NFBaseWeaponFramePka
+  parent: [ NFBaseWeaponEncumbranceSubMachineGun, NFBaseItemWeaponGun ]
+  name: proto-kinetic accelerator
+  description: Fires low-damage kinetic bolts at a short range.
+  abstract: true
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: animation-icon
+      visible: false
+      shader: unshaded
+      map: [ "empty-icon" ]
+  - type: Gun
+    projectileSpeed: 20
+    minAngle: 33.1
+    maxAngle: 45.5
+    angleIncrease: 7
+    angleDecay: 5
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+  - type: UseDelay
+    delay: 1
+  - type: StaticPrice
+    price: 0 # WizDen price
+  - type: NFWeaponDetails
+    class: weapon-details-class-tool
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFramePkaNanotrasen
+  parent: [ NFBaseWeaponFramePka ]
+  abstract: true
+  components:
+  # Effective range ~12 tiles on wield
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -30
+    maxAngle: -30
+  - type: Gun
+    fireRate: 0.5
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  id: NFBaseWeaponFramePkaCustomMod
+  parent: [ NFBaseWeaponFramePka ]
+  abstract: true
+  components:
+  - type: Gun
+    fireRate: 0.9
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-custom-made
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponPkaChamberKineticHigh
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-kinetic-high
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletKineticHighPower
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: NFBaseWeaponPkaChamberKineticMedium
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-kinetic-medium
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.85
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletKineticMediumPower
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: NFBaseWeaponPkaChamberKineticLow
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-kinetic-low
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.95
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletKineticLowPower
+    capacity: 1
+    count: 1
+
+#region WizDen
+- type: entity
+  id: NFWeaponPkaCannon
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseWeaponFramePkaNanotrasen, NFBaseWeaponPkaChamberKineticHigh ]
+  name: proto-kinetic accelerator cannon
+  description: Fires high-damage kinetic bolts at a short range, strong enough to destroy hard rocks.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
+
+#region Frontier
+- type: entity
+  id: NFWeaponPka
+  parent: [ NFBaseWeaponFramePkaNanotrasen, NFBaseWeaponPkaChamberKineticMedium ]
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    storedSprite:
+      sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+      state: storage
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+  - type: Construction
+    graph: PKASawn
+    node: start
+    deconstructionTarget: null
+
+- type: entity
+  id: NFWeaponPkaSawn
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseWeaponFramePkaCustomMod, NFBaseWeaponPkaChamberKineticLow ]
+  name: sawn-off proto-kinetic accelerator
+  description: Boundaries and rules are meant to be broken; otherwise, there will be no progress, but this thing here is a good argument against that statement.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_sawn.rsi
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_sawn.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_sawn.rsi
+  - type: Construction
+    graph: PKASawn
+    node: pkasawn
+    deconstructionTarget: null

@@ -195,7 +195,7 @@
     proto: ContractorT2
   price: 3000
   inhand:
-    - WeaponProtoKineticAccelerator
+    - NFWeaponPka
 
 - type: loadout
   id: ContractorPinpointerUniversal
@@ -214,6 +214,15 @@
   price: 5000
   inhand:
     - ShipyardRCD
+
+- type: loadout
+  id: ContractorShipyardDoorRemote
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 2000
+  inhand:
+    - DoorRemoteShipyard
 
 - type: loadout
   id: ContractorHandheldCrewMonitor

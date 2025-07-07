@@ -1,9 +1,10 @@
-# BASE
+#region BASE
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobNonHumanHostileBase
   - MobHumanoidHostileAISimpleMelee
-  - NFMobRestrictions
   id: BaseMobFleshExpeditions
   name: aberrant flesh
   description: A shambling mass of flesh, animated through anomalous energy.
@@ -22,13 +23,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      70: Dead
+      56: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      42: 0.7
-      56: 0.5
-  - type: Stamina
-    critThreshold: 80
+      34: 0.7
+      45: 0.5
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -47,11 +46,8 @@
         Structural: 20
   - type: ReplacementAccent
     accent: genericAggressive
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
-# MOBS
+#region MOBS
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshJaredExpeditions
@@ -73,11 +69,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
+      40: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      30: 0.7
-      40: 0.5
+      24: 0.7
+      32: 0.5
 
 - type: entity
   parent: MobFleshJaredExpeditions
@@ -173,14 +169,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      140: Dead
+      80: Critical
+      110: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
-  - type: Stamina
-    critThreshold: 100
+      48: 0.7
+      64: 0.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -195,15 +189,13 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierRanged
   - BaseMobFleshExpeditions
   - MobHumanoidHostileAISimpleRanged
   id: MobFleshClampExpeditions
   description: A flying flesh monster that can shoot spikes or toothy creatures that can latch on.
   #categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: CanMoveInAir
   - type: Fixtures
     fixtures:
@@ -234,11 +226,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      40: Dead
+      32: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      24: 0.7
-      32: 0.5
+      20: 0.7
+      26: 0.5
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 4
     rechargeSound:
@@ -250,6 +242,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.75
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -278,6 +274,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.5
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -285,14 +285,13 @@
       collection: BulletMiss
 
 - type: entity
-  parent: BaseMobFleshExpeditions
+  parent:
+  - MobMovementSpeedModifierSpecial
+  - BaseMobFleshExpeditions
   id: MobFleshLoverExpeditions
   description: The Lover's light frame makes it fragile, but capable of flight.
   #categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 5
-    baseSprintSpeed : 5
   - type: CanMoveInAir
   - type: Fixtures
     fixtures:
@@ -323,11 +322,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      30: Dead
+      24: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      18: 0.7
-      24: 0.5
+      15: 0.7
+      20: 0.5
   - type: MeleeWeapon
     attackRate: 1.5
     soundHit:
@@ -336,19 +335,18 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Blunt: 5
+        Blunt: 4
 
-# EXPEDITION BOSS
+#region BOSS
 - type: entity
-  parent: [ BaseMobFleshExpeditions, MobHostileBossBase, NFMobBossRestrictions ]
+  parent:
+  - MobHostileBossBase
+  - BaseMobFleshExpeditions
   id: MobHorrorExpeditions
   name: aberrant flesh horror
   description: Tougher and more resilient than most aberrant flesh monsters. Has sharp, bony protrusions and highly developed musculature.
   #categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.6
-    baseSprintSpeed : 4.6
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -366,11 +364,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Dead
+      160: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      120: 0.7
-      160: 0.5
+      96: 0.7
+      128: 0.5
   - type: MeleeWeapon
     autoAttack: true
     attackRate: 1.5
@@ -437,7 +435,7 @@
     range: 0
     itemIconStyle: BigAction
 
-# FUNNY LITTLE GUY
+#region FUNNY LITTLE GUY
 # embedable projectile that bites you until you either kill it or detach it or die (or it despawns)
 - type: entity
   parent: [ BaseMobFleshExpeditions, NFMobTimedDespawn60 ]
@@ -452,7 +450,7 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 4
+        Blunt: 3
   - type: Ammo
     muzzleFlash: null
   - type: EmbeddableProjectile
@@ -475,7 +473,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      8: Dead
+      6: Dead
   - type: MeleeWeapon
     attackRate: 0.3
     soundHit:
@@ -484,9 +482,10 @@
     animation: WeaponArcBite
     damage:
       types:
-        Slash: 4
+        Slash: 3
 
-# Newborns (spawned from assimilation sack)
+#region Newborns
+# spawned from assimilation sack
 - type: entity
   id: BaseMobFleshExpeditionsNewborn
   parent: BaseMobFleshExpeditions
@@ -502,7 +501,7 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Blunt: 7
+        Blunt: 6
         Structural: 20
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.8

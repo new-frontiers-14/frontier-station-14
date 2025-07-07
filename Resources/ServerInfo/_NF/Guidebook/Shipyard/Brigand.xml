@@ -1,91 +1,26 @@
 <Document>
   # BRIGAND-CLASS EXPEDITION SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="ClothingMaskGasMercenary"/>
-  <GuideEntityEmbed Entity="WeaponRifleAk"/>
-  <GuideEntityEmbed Entity="IngotGold"/>
-  <GuideEntityEmbed Entity="MobRandomSecurityCorpse"/>
+  <GuideEntityEmbed Entity="NFPosterContrabandLvhiPlanetCore" Caption=""/>
   </Box>
   <Box>
   <GuideEntityEmbed Entity="ShuttleMapBrigand" Caption=""/>
   </Box>
-    [color=#a4885c]Ship Size:[/color] Medium
-	
+  [color=#a4885c]Ship Size:[/color] Medium
+
 	[color=#a4885c]Recommended Crew:[/color] 3-6
-	
+
 	[color=#a4885c]Power Gen Type:[/color] AME
-	
+
 	[color=#a4885c]Expeditions:[/color] Yes
-	
+
 	[color=#a4885c]IFF Console:[/color] None
-	
+
   "Civilian conversion of an old military light frigate from the early days of humanity's expansion to the stars. The original light frigate design was made in pre-FTL era of technology. Manufactured by Langstad-Voigt Heavy Industries."
-    
-  # PREFLIGHT CHECKLIST
-  
-  ## 1. Power supply
-  
-  ## 1.1. Battery units
-  <Box>
-  <GuideEntityEmbed Entity="SMESBasic"/>
-  <GuideEntityEmbed Entity="SubstationBasic"/>
-  <GuideEntityEmbed Entity="APCBasic"/>
-  </Box>
-  
-  - Check that the SMES unit is anchored to the floor.
-  - Check that the substation unit is anchored to the floor.
-  - Check that the APC unit's Main Breaker is toggled on.
-  - Check the APC unit's current Load* (W).
-  
-  ## 1.2. AME generator unit.
-  <Box>
-  <GuideEntityEmbed Entity="AmeController"/>
-  <GuideEntityEmbed Entity="AmeJar"/>
-  </Box>
-  
-  - Check that the AME core is properly shielded.
-  - Check that the AME controller unit is anchored to the floor.
-  - Check the AME controller unit Fuel Status.
-  - Check the AME controller unit Injection Amount.
-  - Toggle Injection.
-  
-  ## 2. Atmospherics
-  
-  ## 2.1. Distribution Loop
-  <Box>
-  <GuideEntityEmbed Entity="OxygenCanister"/>
-  <GuideEntityEmbed Entity="NitrogenCanister"/>
-  <GuideEntityEmbed Entity="GasPort"/>
-  <GuideEntityEmbed Entity="GasMixer"/>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  </Box>
-  
-  - Check that the O2 canister is anchored to connector port.
-  - Check that the N2 canister is anchored to connector port.
-  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
-  - Check that the gas mixer is set to 101kPa.
-  - Enable gas mixer.
-  
-  ## 2.2. Waste Loop
-  <Box>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  </Box>
-    
-  - Enable waste loop pump (located at Cargo Bay).
-  
-  ## 3. Other checks
-  <Box>
-  <GuideEntityEmbed Entity="Gyroscope"/>
-  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  <GuideEntityEmbed Entity="BlastDoor"/>
-  </Box>
-  
-  - Check that the gyroscope is anchored, powered, and enabled.
-  - Check that the mini gravity generator is anchored, powered, and enabled.
-  - Check that the blast doors are closed.
-  
-  ## Sidenotes
-  
-  * - Brigand-class expedition shuttles are equipped with three APC units that can be used to appraise the ship's total power consumption. Unmodified Brigand-class ship requires 27.1 kW of power to remain operational.
+
+  # Tips on running LVHI Brigand shuttles
+  - Unmodified Brigand-class shuttle requires 28 [bold]kW[/bold] of power to remain operational. If you've added additional machines, check APC unit to see shuttle's power draw and adjust generator Target Power accordingly. For more general info on power grid see guidebook article [textlink="Power" link="Power"].
+  - For basic information about Planetary Expeditions see [textlink="Expeditions" link="Expeditions"].
+  - For basics of shuttle piloting see [textlink="Piloting" link="Piloting"].
 
 </Document>

@@ -1,5 +1,4 @@
 - type: entity
-  save: false
   id: NFMobAtmos
   abstract: true
   components:
@@ -26,7 +25,16 @@
   - type: Insulated
 
 - type: entity
-  save: false
+  id: MobLaserReflect
+  abstract: true
+  components:
+  - type: Reflect
+    reflectProb: 0.8
+    reflects:
+      - Energy
+
+# region Regeneration
+- type: entity
   id: MobPassiveRegenWeak
   abstract: true
   components:
@@ -41,7 +49,6 @@
         Airloss: -1
 
 - type: entity
-  save: false
   id: MobPassiveRegen
   abstract: true
   components:
@@ -57,7 +64,6 @@
         Airloss: -1
 
 - type: entity
-  save: false
   id: MobPassiveRegenStrong
   abstract: true
   components:
@@ -72,20 +78,17 @@
         Brute: -0.5
         Burn: -0.5
         Airloss: -1
+#endregion
 
-- type: entity
-  save: false
-  id: MobLaserReflect
-  abstract: true
-  components:
-  - type: Reflect
-    reflectProb: 0.8
-    reflects:
-      - Energy
+#region Restrictions
 
+# A base restriction set.
+# Should be applied on any mob base with MobEnhancedMovement,
+# or on upstream definitions.
+# This should not be used on non-abstract Frontier mobs.
 - type: entity
   abstract: true
-  id: NFMobRestrictions
+  id: NFBaseMobRestrictions
   components:
   - type: NFSalvageMobRestrictions
     addComponentsOnDeath:
@@ -108,6 +111,8 @@
     - type: TimedSpawner
     - type: Jittering
 
+# Restriction modifiers.
+# Will be applied on top of NFBaseMobRestrictions.
 - type: entity
   abstract: true
   id: NFMobBossRestrictions
@@ -163,7 +168,9 @@
     removeComponentsOnRevival:
     - type: Strippable
     - type: UserInterface
+#endregion
 
+#region Despawn timers
 - type: entity
   abstract: true
   id: NFMobTimedDespawn30
@@ -219,9 +226,10 @@
   components:
   - type: TimedDespawn
     lifetime: 3000
+#endregion
 
+#region Movement
 - type: entity
-  save: false
   id: MobEnhancedMovement
   abstract: true
   components:
@@ -241,18 +249,93 @@
     speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
-#  - type: Access
-#    groups:
-#    - AllAccess
+  - type: Access
+    groups:
+    - AllAccess
 
-# Dungeon boss
+- type: entity # For reference 4.5 is the speed of unencumbered humans
+  id: MobMovementSpeedModifierMelee
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.2 # ~10% slowdown
+    baseSprintSpeed : 4.2 # ~10% slowdown
+
+- type: entity
+  id: MobMovementSpeedModifierEVAMelee
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.8 # ~15% slowdown
+    baseSprintSpeed : 3.8 # ~15% slowdown
+
+- type: entity
+  id: MobMovementSpeedModifierRanged
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 3.5
+
+- type: entity
+  id: MobMovementSpeedModifierEVARanged
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3 # ~15% slowdown
+    baseSprintSpeed : 3 # ~15% slowdown
+
+- type: entity
+  id: MobMovementSpeedModifierSpecial
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
+
+- type: entity
+  id: MobMovementSpeedModifierBoss
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+#endregion
+
+#region Stamina
+- type: entity
+  id: MobStaminaFodder
+  abstract: true
+  components:
+  - type: Stamina
+    critThreshold: 80
+
+- type: entity
+  id: MobStaminaSpecial
+  abstract: true
+  components:
+  - type: Stamina
+    critThreshold: 200
+
+- type: entity
+  id: MobStaminaBoss
+  abstract: true
+  components:
+  - type: Stamina
+    critThreshold: 500
+#endregion
+
+#region Dungeon boss
 - type: entity
   id: MobHostileBossBase
   abstract: true
   parent:
   - MobEnhancedMovement
+  - MobStaminaBoss
+  - MobMovementSpeedModifierBoss
   - MobPassiveRegenWeak
-  - NFMobRestrictions
+  - NFBaseMobRestrictions
+  - NFMobBossRestrictions
   components:
   - type: Hands
   - type: Puller
@@ -265,10 +348,10 @@
     - DoorBumpOpener
     - CannotSuicide
   - type: FTLKnockdownImmune
+#endregion
 
-# Inventories
+#region Inventories
 - type: entity # All slots are fillable, most of them are "hidden"
-  save: false
   id: MobHumanoidInvetory
   abstract: true
   components:
@@ -277,15 +360,15 @@
   - type: InventorySlots
 
 - type: entity # Slots for loot containers: pockets, belt, back
-  save: false
   id: MobHumanoidInvetorySimplified
   abstract: true
   components:
   - type: Inventory
     templateId: hostilehumanoidsimplified # Does not support loadouts
   - type: InventorySlots
+#endregion
 
-# AI packages
+#region AI packages
 - type: entity
   id: MobHumanoidHostileAISimpleMelee
   abstract: true
@@ -336,19 +419,25 @@
         true
 #      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
 #        true
+#endregion
 
+#region NPC types
 # Human NPC, uses equipment, immune to vacuum/low pressure
 - type: entity
+  save: false
   suffix: AI, Hostile
   abstract: true
   parent:
   - NFMobAtmos
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobBloodstream
   - MobFlammable
   - MobEnhancedMovement
   - BaseMobSpecies
   - MobHumanoidHostileAIComplex
   - BaseC3MobHuman
+  - NFBaseMobRestrictions
   id: MobHumanoidHostileBase
   components:
   - type: NPCRetaliation
@@ -360,14 +449,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      140: Dead
-  - type: Stamina
-    critThreshold: 100
+      80: Critical
+      120: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+      40: 0.7
+      60: 0.5
   - type: Blindable
   - type: Butcherable
     butcheringType: Spike
@@ -394,10 +481,13 @@
 
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
+  save: false
   suffix: AI, Hostile
   abstract: true
   parent:
   - BaseMob
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobDamageable
   - MobCombat
   - NFMobAtmos
@@ -406,6 +496,7 @@
   - MobEnhancedMovement
   - MobHumanoidHostileAIComplex
   - BaseC3MobCreature
+  - NFBaseMobRestrictions
   id: MobNonHumanHostileBase
   components:
   - type: NPCRetaliation
@@ -436,8 +527,8 @@
     group: GenericNumber
   - type: SlowOnDamage
     speedModifierThresholds:
-      60: 0.7
-      80: 0.5
+      30: 0.7
+      50: 0.5
   - type: MobState
     allowedStates:
     - Alive
@@ -446,10 +537,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      120: Dead
-  - type: Stamina
-    critThreshold: 100
+      65: Critical
+      100: Dead
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -464,13 +553,17 @@
 
 # A simpler base for extending existing mobs (e.g. carp, kangaroos, snakes, xenos)
 - type: entity
+  save: false
   suffix: Frontier, Hostile
   abstract: true
   parent:
   - MobFlammable
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobEnhancedMovement
   - MobHumanoidHostileAISimpleMelee
   - BaseC3MobCreature
+  - NFBaseMobRestrictions
   id: NFMobSimpleHostileBase
   components:
   - type: NPCRetaliation
@@ -498,7 +591,9 @@
     - SimpleHostile
   - type: Carriable # Kept for consistency with other mobs
   - type: FTLKnockdownImmune
+#endregion
 
+#region Roadkill
 # Parent for consistent roadkill settings
 - type: entity
   abstract: true
@@ -509,3 +604,16 @@
     destroySpeed: 40 # yeehaw
     destroySound:
       collection: gib
+#endregion
+
+#region Gibb
+- type: entity
+  abstract: true
+  id: NFMobNoEquipmentOnGib
+  components:
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true

@@ -101,7 +101,8 @@
         Manipulator: 3
       stackRequirements:
         Steel: 10
-    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+    - type: BindToStation
+      enabled: false # should be draggable between stations
 
 - type: entity
   id: GaslockFrameMachineCircuitboard
@@ -115,7 +116,8 @@
       prototype: GaslockFrame
       stackRequirements:
         Steel: 10
-    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+    - type: BindToStation
+      enabled: false # should be draggable between stations
 
 # TechFab
 - type: entity
@@ -283,7 +285,7 @@
 - type: entity
   id: PortableGeneratorDKMachineCircuitboard
   parent: [ BaseMachineCircuitboard, BaseC2ContrabandUnredeemable ]
-  name: D-K-type portable generator machine board
+  name: D-K portable generator machine board
   description: A machine printed circuit board for a D-K-type portable generator.
   components:
     - type: Sprite
@@ -305,7 +307,7 @@
 - type: entity
   id: PortableGeneratorDKJrMachineCircuitboard
   parent: [ BaseMachineCircuitboard, BaseC1Contraband ]
-  name: D-K Jr.-type portable generator machine board
+  name: D-K Jr. portable generator machine board
   description: A machine printed circuit board for a D-K Jr.-type portable generator.
   components:
     - type: Sprite
@@ -409,6 +411,29 @@
         Glass: 2
         Cable: 4
 
+- type: entity
+  id: UniformPrinterStaffMachineCircuitboard
+  parent: UniformPrinterMachineCircuitboard
+  name: staff uniform printer machine board
+  description: A machine printed circuit board for a staff uniform printer.
+  components:
+  - type: Sprite
+    state: command
+  - type: MachineBoard
+    prototype: UniformPrinterStaff
+
+- type: entity
+  id: PirateStitcherCircuitboard
+  parent: [UniformPrinterMachineCircuitboard, BaseC3PirateContrabandNoValue]
+  name: pirate stitcher machine board
+  description: Clearly brand new.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: pirate_stitcher
+  - type: MachineBoard
+    prototype: PirateStitcher
+
 # Removed from upstream definitions
 - type: entity
   id: MaterialReclaimerMachineCircuitboard
@@ -471,3 +496,24 @@
       GlassBeaker:
         amount: 2
         defaultPrototype: Beaker
+
+- type: entity
+  id: SkrunglerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: skrungler machine board
+  description: A machine printed circuit board for a skrungler.
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: Skrungler
+    requirements:
+      MatterBin: 2
+      Manipulator: 1
+    stackRequirements:
+      Steel: 5
+    tagRequirements:
+      Knife:
+        amount: 2
+        defaultPrototype: KitchenKnife
+        examineName: construction-insert-info-examine-name-knife

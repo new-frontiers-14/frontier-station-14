@@ -24,6 +24,7 @@ using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
+using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
@@ -50,6 +51,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
 
     private readonly Dictionary<NetUserId, StoredBody?> _storedBodies = new();
     private EntityUid? _storageMap;
@@ -230,45 +232,41 @@ public sealed partial class CryoSleepSystem : EntitySystem
         }
 
         // If the inserted player has disconnected, it will be stored immediately.
-        if (_mind.TryGetMind(toInsert.Value, out var mind, out var mindComp))
+        _player.TryGetSessionByEntity(toInsert.Value, out var session);
+        if (session?.Status == SessionStatus.Disconnected)
         {
-            var session = mindComp.Session;
-            if (session is not null && session.Status == SessionStatus.Disconnected)
-            {
-                CryoStoreBody(toInsert.Value, cryopod);
-                return true;
-            }
+            CryoStoreBody(toInsert.Value, cryopod);
+            return true;
         }
 
-        var success = _container.Insert(toInsert.Value, cryopod.Comp.BodyContainer);
+        if (!_container.Insert(toInsert.Value, cryopod.Comp.BodyContainer))
+            return false;
 
-        if (success && mindComp?.Session != null)
-            _euiManager.OpenEui(new CryoSleepEui(toInsert.Value, cryopod, this), mindComp.Session);
+        if (session != null)
+            _euiManager.OpenEui(new CryoSleepEui(toInsert.Value, cryopod, this), session);
 
-        if (success)
+        // Start a do-after event - if the inserted body is still inside and has not decided to sleep/leave, it will be stored.
+        // It does not matter whether the entity has a mind or not.
+        var ev = new CryoStoreDoAfterEvent();
+        var args = new DoAfterArgs(
+            _entityManager,
+            toInsert.Value,
+            TimeSpan.FromSeconds(30),
+            ev,
+            cryopod,
+            toInsert,
+            cryopod
+        )
         {
-            // Start a do-after event - if the inserted body is still inside and has not decided to sleep/leave, it will be stored.
-            // It does not matter whether the entity has a mind or not.
-            var ev = new CryoStoreDoAfterEvent();
-            var args = new DoAfterArgs(
-                _entityManager,
-                toInsert.Value,
-                TimeSpan.FromSeconds(30),
-                ev,
-                cryopod,
-                toInsert,
-                cryopod
-            )
-            {
-                BreakOnMove = true,
-                BreakOnWeightlessMove = true
-            };
+            BreakOnMove = true,
+            BreakOnWeightlessMove = true,
+            RequireCanInteract = false
+        };
 
-            if (_doAfter.TryStartDoAfter(args))
-                cryopod.Comp.CryosleepDoAfter = ev.DoAfter.Id;
-        }
+        if (_doAfter.TryStartDoAfter(args))
+            cryopod.Comp.CryosleepDoAfter = ev.DoAfter.Id;
 
-        return success;
+        return true;
     }
 
     public void CryoStoreBody(EntityUid bodyId, EntityUid cryopod)

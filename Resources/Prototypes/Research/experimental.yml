@@ -1,3 +1,4 @@
+# region FRONTIER - IGNORED
 # Tier 1
 
 - type: technology
@@ -25,7 +26,6 @@
   - AnomalyScanner
   - AnomalyLocator
   - AnomalyLocatorWide
-  - BorgModuleAnomaly
   - APECircuitboard
   - AnomalyVesselCircuitboard
 
@@ -40,23 +40,20 @@
   cost: 5000
   recipeUnlocks:
   - NodeScanner
-  - BorgModuleArtifact
   - AnalysisComputerCircuitboard
   - ArtifactAnalyzerMachineCircuitboard
 
-# Frontier: no tech disks
-# - type: technology
-#   id: AlternativeResearch
-#   name: research-technology-alternative-research
-#   icon:
-#     sprite: Structures/Machines/tech_disk_printer.rsi
-#     state: display
-#   discipline: Experimental
-#   tier: 1
-#   cost: 5000
-#   recipeUnlocks:
-#   - TechDiskComputerCircuitboard
-# End Frontier: no tech disks
+- type: technology
+  id: AlternativeResearch
+  name: research-technology-alternative-research
+  icon:
+    sprite: Structures/Machines/tech_disk_printer.rsi
+    state: display
+  discipline: Experimental
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - TechDiskComputerCircuitboard
 
 - type: technology
   id: MagnetsTech
@@ -69,7 +66,7 @@
   cost: 7500
   recipeUnlocks:
   - ClothingShoesBootsMagSci
-  - NFClothingShoesBootsMoon # Frontier ClothingShoesBootsMoon<NFClothingShoesBootsMoon
+  - ClothingShoesBootsMoon
 
 - type: technology
   id: AnomalyCoreHarnessing
@@ -84,20 +81,6 @@
   - WeaponGauntletGorilla
 
 # Tier 2
-
-- type: technology
-  id: AdvancedParts
-  name: research-technology-advanced-parts
-  icon:
-    sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
-    state: advanced_matter_bin
-  discipline: Experimental
-  tier: 2
-  cost: 10000
-  recipeUnlocks:
-  - AdvancedCapacitorStockPart
-  - AdvancedMatterBinStockPart
-  - NanoManipulatorStockPart
 
 - type: technology
   id: AbnormalArtifactManipulation
@@ -115,14 +98,14 @@
   id: AdvancedAnomalyResearch
   name: research-technology-advanced-anomaly-research
   icon:
-    sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
+    sprite: Structures/Machines/anomaly_sync.rsi
     state: base
   discipline: Experimental
   tier: 2
   cost: 10000
   recipeUnlocks:
-  - WeaponPistolCHIMP
-  # - AnomalySynchronizerCircuitboard # Frontier: doesn't make sense for Frontier
+  # - WeaponPistolCHIMP # Frontier: moved to NFWeaponPistolCHIMP
+  - AnomalySynchronizerCircuitboard
   - AnomalyVesselExperimentalCircuitboard
   technologyPrerequisites:
   - BasicAnomalousResearch
@@ -131,38 +114,50 @@
   id: DeterrenceTechnologies
   name: research-technology-deterrence
   icon:
-    sprite: Objects/Devices/Holoprojectors/field.rsi # Frontier particle_decelerator.rsi<field.rsi
-    state: icon # Frontier base<icon
+    sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
+    state: base
   discipline: Experimental
   tier: 2
   cost: 7500
   recipeUnlocks:
-  # - WeaponParticleDecelerator # Frontier - Cancer gun that skip walls
+  - WeaponParticleDecelerator
   - HoloprojectorField
+
+- type: technology
+  id: GravityManipulation
+  name: research-technology-gravity-manipulation
+  icon:
+    sprite: Objects/Weapons/Guns/Launchers/tether_gun.rsi
+    state: base
+  discipline: Experimental
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+    - WeaponForceGun
+    - WeaponTetherGun
 
 # Tier 3
 
-# - type: technology # Frontier - too many physics issues, bugs and exploits, the less we look like gmod the better.
-  # id: GravityManipulation
-  # name: research-technology-gravity-manipulation
-  # icon:
-    # sprite: Objects/Weapons/Guns/Launchers/tether_gun.rsi
-    # state: base
-  # discipline: Experimental
-  # tier: 3
-  # cost: 10000
-  # recipeUnlocks:
-  # - WeaponForceGun
-  # - WeaponTetherGun
+- type: technology
+  id: QuantumLeaping
+  name: research-technology-quantum-leaping
+  icon:
+    sprite: Objects/Devices/swapper.rsi
+    state: icon
+  discipline: Experimental
+  tier: 3
+  cost: 10000
+  recipeUnlocks:
+  - DeviceQuantumSpinInverter
 
-# - type: technology # Frontier - disabled because why the fuck are we adding a god damned FOURTH exploit to the game intentionally holy shit
-  # id: QuantumLeaping
-  # name: research-technology-quantum-leaping
-  # icon:
-    # sprite: Objects/Devices/swapper.rsi
-    # state: icon
-  # discipline: Experimental
-  # tier: 3
-  # cost: 10000
-  # recipeUnlocks:
-  # - DeviceQuantumSpinInverter
+- type: technology
+  id: BluespaceTimeManipulation
+  name: research-technology-bluespace-time-manipulation
+  icon:
+    sprite: Objects/Devices/desynchronizer.rsi
+    state: icon
+  discipline: Experimental
+  tier: 3
+  cost: 10000
+  recipeUnlocks:
+  - DeviceDesynchronizer

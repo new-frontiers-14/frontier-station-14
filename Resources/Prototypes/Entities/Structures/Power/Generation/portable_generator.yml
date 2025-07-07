@@ -128,7 +128,7 @@
         enabled: false
 
 - type: entity
-  name: P.A.C.M.A.N.-type portable generator
+  name: P.A.C.M.A.N. portable generator # Frontier: no -type
   description: |-
     A flexible backup generator for powering a variety of equipment.
     Runs off solid plasma sheets and is rated for up to 25 kW.
@@ -170,7 +170,7 @@
       multiplier: 0.01
     - type: MaterialStorage
       storageLimit: 3000
-      materialWhiteList: [Plasma, FuelGradePlasma, RawPlasma] # Frontier: add FuelGradePlasma, RawPlasma
+      materialWhiteList: [Plasma, FuelGradePlasma, RawPlasma, Skrungle] # Frontier: add FuelGradePlasma, RawPlasma, Scrungle
     - type: PortableGenerator
       startChance: 0.8
     - type: UpgradePowerSupplier
@@ -201,10 +201,13 @@
       - input: RawPlasma
         output: FuelGradePlasma
         rate: 0.5
+      - input: Skrungle
+        output: FuelGradePlasma
+        rate: 1
     # End Frontier: magnet pickup, fuel adapter
 
 - type: entity
-  name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator
+  name: S.U.P.E.R.P.A.C.M.A.N. portable generator # Frontier: no -type
   description: |-
     An advanced generator for powering departments.
     Runs off uranium sheets and is rated for up to 50 kW.
@@ -246,7 +249,7 @@
       multiplier: 0.01
     - type: MaterialStorage
       storageLimit: 3000
-      materialWhiteList: [Uranium, FuelGradeUranium, RawUranium] # Frontier: add FuelGradeUranium, RawUranium
+      materialWhiteList: [Uranium, FuelGradeUranium, RawUranium, Skrungle] # Frontier: add FuelGradeUranium, RawUranium, Skrungle
     - type: PortableGenerator
     - type: UpgradePowerSupplier
       powerSupplyMultiplier: 1.25
@@ -272,10 +275,13 @@
       - input: RawUranium
         output: FuelGradeUranium
         rate: 0.5
+      - input: Skrungle
+        output: FuelGradeUranium
+        rate: 0.5
     # End Frontier: magnet pickup, fuel adapter
 
 - type: entity
-  name: J.R.P.A.C.M.A.N.-type portable generator
+  name: J.R.P.A.C.M.A.N. portable generator # Frontier: no -type
   description: |-
     A small generator capable of powering individual rooms, in case of emergencies.
     Runs off welding fuel and is rated for up to 15 kW.
@@ -392,4 +398,5 @@
           behaviors:
             - !type:SolutionExplosionBehavior
               solution: tank
-    - type: BindToStationExemption # Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+    - type: BindToStation # Frontier
+      enabled: false # Frontier - should be draggable between stations

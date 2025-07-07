@@ -100,7 +100,7 @@
     drawdepth: Mobs
   - type: SpriteFade
   - type: AnomalyVessel
-    pointMultiplier: 2
+    pointMultiplier: 1.25 # Frontier: 2<1.25
   - type: RadiationSource
     intensity: 0.75
     slope: 0.1
@@ -163,18 +163,20 @@
   - type: Emitter
     onState: firing
     powerUseActive: 100
-    boltType: AnomalousParticleDelta
+    # Frontier: use NF prefixes
+    boltType: NFAnomalousParticleDelta
     underpoweredState: underpowered
     selectableTypes:
-    - AnomalousParticleDelta
-    - AnomalousParticleEpsilon
-    - AnomalousParticleZeta
-    - AnomalousParticleSigma
+    - NFAnomalousParticleDelta
+    - NFAnomalousParticleEpsilon
+    - NFAnomalousParticleZeta
+    - NFAnomalousParticleSigma
     setTypePorts:
-      SetParticleDelta: AnomalousParticleDelta
-      SetParticleEpsilon: AnomalousParticleEpsilon
-      SetParticleZeta: AnomalousParticleZeta
-      SetParticleSigma: AnomalousParticleSigma
+      SetParticleDelta: NFAnomalousParticleDelta
+      SetParticleEpsilon: NFAnomalousParticleEpsilon
+      SetParticleZeta: NFAnomalousParticleZeta
+      SetParticleSigma: NFAnomalousParticleSigma
+    # End Frontier: use NF prefixes
     fireBurstSize: 1
     baseFireBurstDelayMin: 2
     baseFireBurstDelayMax: 6
@@ -217,11 +219,12 @@
       - SetParticleEpsilon
       - SetParticleZeta
       - SetParticleSigma
-  - type: BindToStationExemption #Frontier - we exempt this machine from binding to grids because the intention is for it to have that ability
+  - type: BindToStation # Frontier
+    enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: MachineAnomalyGenerator
-  parent: [BaseStructureDisableToolUse, BaseMachinePowered] # Frontier - BaseStructureDisableToolUse
+  parent: [BaseMachinePowered]
   name: anomaly generator
   description: The peak of pseudoscientific technology.
   placement:
@@ -272,7 +275,11 @@
         - RawMaterial # Frontier
     materialWhiteList:
 #    - Plasma # Frontier
-    - Bananium # Frontier
+    - Anomalite # Frontier
+    storage: # Frontier
+      Anomalite: 300 # Frontier: one free charge
+    storageLimit: 300 # Frontier: one charge
+  # - type: OreSiloClient # Frontier
   - type: Fixtures
     fixtures:
       fix1:
@@ -331,3 +338,16 @@
   - type: GuideHelp
     guides:
     - AnomalousResearch
+  # Frontier: extra anomaly generator fields
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: SpookySpeaker
+    messageSet: SpookySpeakerMessagesAnomalyGenerator
+    speakChance: 0.25
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-mechanical
+    weight: 0.2 # 5 anomaly generators = 1 animal
+  # End Frontier: extra anomaly generator fields

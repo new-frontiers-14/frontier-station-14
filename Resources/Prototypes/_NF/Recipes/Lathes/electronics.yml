@@ -1,6 +1,7 @@
+# region Machines
 - type: latheRecipe
   id: SalvageTechFabCircuitboardNF
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory]
   result: SalvageTechFabCircuitboardNF
   materials:
     Steel: 800
@@ -8,15 +9,23 @@
 
 - type: latheRecipe
   id: BlueprintLithographMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory]
   result: BlueprintLithographMachineCircuitboard
   materials:
     Steel: 800
     Glass: 900
 
 - type: latheRecipe
+  id: MaterialSiloMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory]
+  result: MaterialSiloMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 900
+
+- type: latheRecipe
   id: ElectricRangeMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory]
   result: ElectricRangeMachineCircuitboard
   materials:
     Steel: 800
@@ -24,7 +33,7 @@
 
 - type: latheRecipe
   id: KitchenAssemblerMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory]
   result: KitchenAssemblerMachineCircuitboard
   materials:
     Steel: 600
@@ -32,7 +41,7 @@
 
 - type: latheRecipe
   id: MedicalAssemblerMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseMedicalMachineRecipeCategory]
   result: MedicalAssemblerMachineCircuitboard
   materials:
     Steel: 800
@@ -40,14 +49,22 @@
 
 - type: latheRecipe
   id: NFScrapProcessorCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory]
   result: NFScrapProcessorCircuitboard
   materials:
     Steel: 800
     Glass: 900
 
 - type: latheRecipe
+  id: MaterialReclaimerMachineCircuitboard
   parent: BaseCircuitboardRecipe
+  result: MaterialReclaimerMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 900
+
+- type: latheRecipe
+  parent: [BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory]
   id: CondimentDispenserCircuitboard
   result: CondimentDispenserCircuitboard
   materials:
@@ -55,13 +72,13 @@
     Glass: 500
 
 - type: latheRecipe
-  parent: BaseGoldCircuitboardRecipe
+  parent: [BaseGoldCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   id: MiniStationAnchorCircuitboard
   result: MiniStationAnchorCircuitboard
   completetime: 8
 
 - type: latheRecipe
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   id: PortablePumpMachineCircuitBoard
   result: PortablePumpMachineCircuitBoard
   materials:
@@ -69,7 +86,7 @@
     Glass: 500
 
 - type: latheRecipe
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   id: GasMiningDrillMachineCircuitboard
   result: GasMiningDrillMachineCircuitboard
   materials:
@@ -78,17 +95,33 @@
     Gold: 100
 
 - type: latheRecipe
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   id: GaslockFrameMachineCircuitboard
   result: GaslockFrameMachineCircuitboard
   materials:
     Steel: 800
     Glass: 900
 
-# Thrusters
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
+  id: NFHolopadShipMachineCircuitboard
+  result: NFHolopadShipMachineCircuitboard
+
+- type: latheRecipe
+  id: DeepFryerMachineCircuitboard
+  parent: [ BaseSilverCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  result: DeepFryerMachineCircuitboard
+
+# region Consoles
+- type: latheRecipe
+  id: ResearchComputerCircuitboard
+  parent: [BaseGoldCircuitboardRecipe, BaseResearchComputerRecipeCategory]
+  result: ResearchComputerCircuitboard
+
+# region Thrusters
 - type: latheRecipe
   id: ThrusterSecurityMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: ThrusterSecurityMachineCircuitboard
   materials:
     Steel: 400
@@ -96,7 +129,7 @@
 
 - type: latheRecipe
   id: ThrusterNfsdMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: ThrusterNfsdMachineCircuitboard
   materials:
     Steel: 400
@@ -104,52 +137,46 @@
 
 - type: latheRecipe
   id: SmallThrusterMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: SmallThrusterMachineCircuitboard
   applyMaterialDiscount: false
   materials:
     Steel: 140
     Glass: 300
 
-# Gyroscope
+# region Gyroscopes
 - type: latheRecipe
   id: GyroscopeSecurityMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: GyroscopeSecurityMachineCircuitboard
 
 - type: latheRecipe
   id: SmallGyroscopeSecurityMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: SmallGyroscopeSecurityMachineCircuitboard
 
 - type: latheRecipe
   id: GyroscopeNfsdMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: GyroscopeNfsdMachineCircuitboard
 
 - type: latheRecipe
   id: SmallGyroscopeNfsdMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: SmallGyroscopeNfsdMachineCircuitboard
 
 - type: latheRecipe
   id: SmallGyroscopeMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: SmallGyroscopeMachineCircuitboard
 
-# Generators
+# region Generators
 - type: latheRecipe
   id: PortableGeneratorDKMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
   result: PortableGeneratorDKMachineCircuitboard
-  materials:
-     Steel: 350
-     Glass: 350
 
 - type: latheRecipe
   id: PortableGeneratorDKJrMachineCircuitboard
-  parent: BaseCircuitboardRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
   result: PortableGeneratorDKJrMachineCircuitboard
-  materials:
-     Steel: 350
-     Glass: 350

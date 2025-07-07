@@ -1,0 +1,151 @@
+# WizDen
+#region Laser
+- type: entity
+  id: NFWeaponEnergyRifleCarbine
+  parent: [ NFBaseWeaponEnergyRifleFireModes, NFBaseWeaponFrameEnergyRifleNanotrasen ]
+  name: laser carbine
+  suffix: Frontier
+  description: |-
+    A simple civilian grade laser carbine, the workhorse of many private security organizations.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+
+- type: entity
+  id: NFWeaponEnergyRifleCarbinePractice
+  parent: [ NFBaseWeaponEnergyGunPractice, NFBaseWeaponFrameEnergyRifleNanotrasen ]
+  name: practice laser carbine
+  suffix: Frontier
+  description: |-
+    This modified laser rifle fires nearly harmless beams in the 40-watt range, for target practice.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/practice_laser_gun.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/practice_laser_gun.rsi
+
+#region Pulse
+- type: entity
+  id: NFWeaponEnergyRiflePulse
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleHitScanPulse, NFBaseWeaponFrameEnergyRifleNanotrasen ]
+  name: pulse rifle
+  description: |-
+    A weapon that is almost as infamous as its users. On the handle is a label that says 'for authorized use only.'
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
+  - type: Battery # 30 shots
+    maxCharge: 3000
+    startingCharge: 3000
+
+#region Other
+- type: entity
+  name: emp emitter
+  parent: [BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleEmp, NFBaseWeaponFrameEnergyRifleNanotrasen ]
+  id: WeaponEmpEmitter
+  description: |-
+    Releases electromagnetic pulses that disrupt or damage many electronic devices or drain power cells, has a slow self charging nuclear powered battery.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/emp.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/emp.rsi
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5
+  - type: Appearance
+  - type: EmpDescription
+    range: 2
+    energyConsumption: 2700000
+    disableDuration: 30
+
+- type: entity
+  name: portable particle decelerator
+  parent: [BaseC2ContrabandEngineeringUnredeemable, NFBaseWeaponEnergyRifleParticle, BaseWeaponBattery ]
+  id: NFWeaponParticleDecelerator
+  description: A portable particle decelerator capable of decomposing a tesla or singularity.
+  components:
+    - type: Item
+      size: Ginormous # No launcher encumbrance, this thing's an oddball.
+    - type: MultiHandedItem
+    - type: ClothingSpeedModifier
+      walkModifier: 0.6
+      sprintModifier: 0.6
+    - type: HeldSpeedModifier
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+    - type: Gun
+      fireRate: 0.5
+      soundGunshot:
+        path: /Audio/Weapons/emitter.ogg
+        params:
+          pitch: 2
+    - type: NFWeaponDetails
+      manufacturer: weapon-details-manufacturer-nanotrasen-technologies # one-off, no parent
+    # Taken from energy rifle definition
+    - type: Battery
+      maxCharge: 2400
+      startingCharge: 2400
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 4
+
+#region Thermal
+- type: entity
+  id: NFWeaponEnergyRifleTemperature
+  parent: [ NFBaseWeaponFrameEnergyRifleNanotrasen ] # chamber defined below, no huge value in a one-off
+  name: temperature gun
+  description: An advanced gun that shoots beams capable of heating or cooling their target.
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-1
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi
+  - type: Battery # 30 shots
+    maxCharge: 3000
+    startingCharge: 3000
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBoltTempgunCold # Frontier
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBoltTempgunCold
+      fireCost: 100
+    - proto: NFBoltTempgunHot
+      fireCost: 100
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-custom-made

@@ -1,6 +1,36 @@
+#region base
+- type: entity
+  id: NFMobCarpBase
+  abstract: true
+  parent:
+  - MobStaminaFodder
+  - MobMovementSpeedModifierMelee
+  - NFMobSimpleHostileBase
+  - NFMobRoadkillable
+
+#region Carps
 - type: entity
   id: NFMobCarp
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarp, NFMobRoadkillable]
+  parent:
+  - NFMobCarpBase
+  - MobCarp
+  suffix: "Frontier"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      32: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      19: 0.7
+      26: 0.5
+
+- type: entity
+  id: NFMobCarpMagic
+  parent:
+  - NFMobCarpBase
+  - MobCarpMagic
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
@@ -12,26 +42,6 @@
     speedModifierThresholds:
       24: 0.7
       32: 0.5
-  - type: Stamina
-    critThreshold: 50
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
-
-- type: entity
-  id: NFMobCarpMagic
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobCarp, MobCarpMagic]
-  suffix: "Frontier"
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      50: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      30: 0.7
-      40: 0.5
   - type: Sprite
     sprite: _NF/Mobs/Aliens/Carps/magic.rsi
     layers:
@@ -43,18 +53,20 @@
 
 - type: entity
   id: NFMobCarpHolo
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarpHolo, NFMobRoadkillable]
+  parent:
+  - NFMobCarpBase
+  - MobCarpHolo
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
+      40: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      30: 0.7
-      40: 0.5
+      24: 0.7
+      32: 0.5
   - type: Sprite
     sprite: _NF/Mobs/Aliens/Carps/holo.rsi
     layers:
@@ -63,52 +75,52 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: mouth
       shader: unshaded
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 - type: entity
   id: NFMobCarpRainbow
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobCarp, MobCarpRainbow]
+  parent:
+  - NFMobCarpBase
+  - MobCarpRainbow
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
   - type: MobThresholds
     thresholds:
       0: Alive
-      60: Dead
+      48: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      36: 0.7
-      48: 0.5
+      28: 0.7
+      38: 0.5
 
 - type: entity
   id: NFMobShark
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobShark, NFMobRoadkillable]
+  parent:
+  - NFMobCarpBase
+  - MobShark
   suffix: "Frontier"
 #  categories: [ HideSpawnMenu ] # No spawner
   components:
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Dead
+      64: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      48: 0.7
-      64: 0.5
-  - type: Stamina
-    critThreshold: 80
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
+      38: 0.7
+      52: 0.5
   - type: MeleeWeapon
     damage:
       types:
         Slash: 7
         Bloodloss: 7
 
+#region Snakes
 - type: entity
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobSmallPurpleSnake, NFMobRoadkillable]
+  parent:
+  - NFMobCarpBase
+  - NFMobRoadkillable
+  - MobPurpleSnake
   id: NFMobSmallRainbowSnake
   suffix: Frontier, Rainbow
   #categories: [ HideSpawnMenu ] # No spawner
@@ -119,11 +131,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
+      40: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      30: 0.7
-      40: 0.5
+      24: 0.7
+      32: 0.5
   - type: Fixtures
     fixtures:
       fix1:
@@ -167,8 +179,12 @@
         Slash: 3
         Structural: 20
 
+#region Wyverns
 - type: entity
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarp, NFMobRoadkillable]
+  parent:
+  - MobMovementSpeedModifierRanged
+  - NFMobCarpBase
+  - MobCarp
   id: NFMobRainbowWyvernIce
   name: wyvern
   description: A smaller relative of a space dragon known for its hunting provess and ability to conjure magical progectiles.
@@ -188,7 +204,7 @@
         mask:
         - FlyingMobMask
         layer:
-        - FlyingMobMask
+        - FlyingMobLayer
   - type: Sprite
     drawdepth: SmallMobs
     sprite: _NF/Mobs/Aliens/Carps/wyvern.rsi
@@ -233,8 +249,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 0.5
-    minAngle: 31
-    maxAngle: 45
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -308,12 +326,16 @@
         Base: dead
         BaseUnshaded: dead-unshaded
   - type: BasicEntityAmmoProvider
-    proto: BulletAcid
+    proto: NFBulletAcid
     capacity: 1
     count: 1
 
+#region boss
 - type: entity
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobDragonDungeon, NFMobBossRestrictions ]
+  parent:
+  - MobHostileBossBase
+  - NFMobSimpleHostileBase
+  - MobDragonDungeon
   id: NFMobDragonDungeon
   suffix: Dungeon, Frontier
   components:

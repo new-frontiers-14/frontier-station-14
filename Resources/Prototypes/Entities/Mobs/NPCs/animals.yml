@@ -230,7 +230,7 @@
         Base: dead-0
   - type: Butcherable
     spawned:
-    - id: FoodMeatChicken
+    - id: FoodMeatWholeChicken #Frontier: Chicken<WholeChicken
       amount: 1
   - type: InteractionPopup
     successChance: 0.8
@@ -339,6 +339,7 @@
   - type: Item
     size: Tiny
   - type: HTN
+    constantlyReplan: false
     rootTask:
       task: MouseCompound
   - type: Physics
@@ -443,7 +444,7 @@
       - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
+    proto: NFCartridgeRifle25 # Frontier: CartridgeCaselessRifle<NFCartridgeRifle25 (still caseless)
     capacity: 500
   - type: CombatMode
   - type: HTN
@@ -485,7 +486,7 @@
   - type: GhostTakeoverAvailable
   - type: Speech
     speechVerb: Moth
-    speechSounds: Squeak
+    speechSounds: Moth # Frontier: Squeak<Moth (upstream#37297)
     allowedEmotes: ['Chitter', 'Squeak']
   - type: FaxableObject
     insertingState: inserting_mothroach
@@ -529,7 +530,7 @@
     baseSprintSpeed : 4
     weightlessAcceleration: 1.5
     weightlessFriction: 1
-    weightlessModifier: 1
+    baseWeightlessModifier: 1
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Moth
@@ -680,7 +681,7 @@
         Base: dead-0
   - type: Butcherable
     spawned:
-    - id: FoodMeatDuck
+    - id: FoodMeatWholeDuck #Frontier: Duck<WholeDuck
       amount: 1
   - type: InteractionPopup
     successChance: 0.9
@@ -1120,8 +1121,8 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatChicken
-      amount: 2
+    - id: FoodMeatWholeChicken #Frontier: Chicken<WholeChicken
+      amount: 1 # 2<1 Frontier
   - type: InteractionPopup # TODO: Make it so there's a separate chance to make certain animals outright hostile towards you.
     successChance: 0.1 # Yeah, good luck with that.
     interactSuccessString: petting-success-goose
@@ -1709,6 +1710,7 @@
     factions:
       - Mouse
   - type: HTN
+    constantlyReplan: false
     rootTask:
       task: MouseCompound
   - type: Physics
@@ -2245,8 +2247,8 @@
         Base: penguin_dead
   - type: Butcherable
     spawned:
-    - id: FoodMeatPenguin
-      amount: 3
+    - id: FoodMeatWholePenguin #Frontier: Penguin<WholePenguin
+      amount: 1 # 3<1 Frontier 
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-bird
@@ -3036,12 +3038,17 @@
   - type: Tag
     tags:
     - VimPilot
-  - type: HTN # DeltaV - make all cats eat mice
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 4
+  # DeltaV: get cats to fight with mice
+  - type: HTN
     rootTask:
       task: SimpleHostileCompound
-  - type: NpcFactionMember # DeltaV - give cats faction so they fight mice
+  - type: NpcFactionMember
     factions:
     - Cat
+  # End DeltaV
 
 - type: entity
   name: calico cat

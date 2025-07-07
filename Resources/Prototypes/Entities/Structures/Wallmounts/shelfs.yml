@@ -12,7 +12,7 @@
   - type: Clickable
   - type: Tag
     tags:
-      - Structure
+    - Structure
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: Structures/Storage/Shelfs/wood.rsi
@@ -74,7 +74,6 @@
   - type: EntityStorageVisuals
     stateDoorOpen: open
     stateDoorClosed: closed
-
   - type: AccessReader
 
 # Normal
@@ -136,9 +135,6 @@
             max: 4
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: Tag
-    tags:
-    - Structure
   - type: Construction
     graph: Shelf
     node: ShelfMetal
@@ -171,9 +167,6 @@
             max: 2
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: Tag
-    tags:
-    - Structure
   - type: Construction
     graph: Shelf
     node: ShelfGlass
@@ -322,13 +315,6 @@
     grid:
     - 0,0,5,1
     - 0,3,5,4
-    maxItemSize: Normal
-    # whitelist: # Frontier
-    #   tags: # Frontier
-    #     - DrinkGlass # Frontier
-    #     - DrinkBottle # Frontier
-    #     - DrinkCan # Frontier
-    #     - Beer # Frontier
   - type: Construction
     graph: Shelf
     node: ShelfBar
@@ -376,25 +362,6 @@
     grid:
     - 0,0,5,1
     - 0,3,5,4
-    maxItemSize: Normal
-    # whitelist: # Frontier
-    #   tags: # Frontier
-    #     - DrinkBottle # Frontier
-    #     - DrinkCan # Frontier
-    #     - DrinkCup # Frontier
-    #     - DrinkGlass # Frontier
-    #     - BoxCardboard # Frontier
-    #     - MonkeyCube # Frontier
-    #     - Enzyme # Frontier
-    #     - Mayo # Frontier
-    #     - Packet # Frontier
-    #     - Cleaver # Frontier
-    #     - Knife # Frontier
-    #     - KitchenKnife # Frontier
-    #     - RollingPin # Frontier
-    #     - Ingredient # Frontier
-    #     - Trash # Frontier
-    #     - Plastic # Frontier
   - type: Construction
     graph: Shelf
     node: ShelfKitchen
@@ -448,17 +415,9 @@
     grid:
     - 0,0,5,1
     - 0,3,5,4
-    maxItemSize: Normal
-    # whitelist: # Frontier
-    #   tags: # Frontier
-    #     - ChemDispensable # Frontier
-    #     - GlassBeaker # Frontier
-    #     - Bottle # Frontier
   - type: Construction
     graph: Shelf
     node: ShelfChemistry
-
-
 
 # Access presets
 # Try to keep alphabetical sorting if adding more

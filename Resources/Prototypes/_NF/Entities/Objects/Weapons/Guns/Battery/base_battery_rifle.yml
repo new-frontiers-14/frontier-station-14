@@ -1,0 +1,135 @@
+#region frame
+- type: entity
+  id: NFBaseWeaponFrameEnergyRifle
+  parent: [ NFBaseWeaponEncumbranceRifle, BaseWeaponBattery ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
+  - type: Gun
+    projectileSpeed: 30
+    minAngle: 1.2
+    maxAngle: 6
+    angleIncrease: 0.3
+    angleDecay: 1.5
+    fireRate: 2.25
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  # - type: CursorOffsetRequiresWield
+  # - type: EyeCursorOffset
+    # maxOffset: 5
+    # pvsIncrease: 0.5
+  - type: Battery # Default: 30 shots with 80 fireCost
+    maxCharge: 2400
+    startingCharge: 2400
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 4 # Default recharge rate: 1 shot per 20 seconds with 80 fireCost
+  - type: StaticPrice
+    price: 400
+  - type: NFWeaponDetails
+    class: weapon-details-class-rifle
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameEnergyRifleNanotrasen
+  parent: NFBaseWeaponFrameEnergyRifle
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 1.4
+    maxAngle: 7
+    angleIncrease: 0.5
+    angleDecay: 1.7
+    fireRate: 1.9
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponEnergyRifleFireModes
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-high
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserHeavy
+    fireCost: 80
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBulletLaserHeavy
+      fireCost: 80
+    - proto: NFBulletDisabler
+      fireCost: 80
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleHitScan
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-hitscan-high
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedHeavyLaser
+    fireCost: 80
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleHitScanPulse
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-pulse-low
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: NFPulse
+    fireCost: 100
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleEmp
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-emp
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: ProjectileEmp
+    fireCost: 500
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleParticle
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-particle-stream
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFAntiParticlesProjectile
+    fireCost: 120 # 20 shots

@@ -18,6 +18,8 @@
   - type: AccessReader
     access: [ [ "HeadOfSecurity" ] ]
   - type: PowerSwitch
+  - type: Machine
+    board: NFHolopadShipMachineCircuitboard
 
 - type: entity
   parent: NFHolopadShip
@@ -54,6 +56,14 @@
   components:
   - type: Label
     currentLabel: nf-holopad-general-bahama
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadBarrier
+  suffix: Barrier Gate, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-barrier-gate
 
 - type: entity
   parent: NFHolopadPoiBase

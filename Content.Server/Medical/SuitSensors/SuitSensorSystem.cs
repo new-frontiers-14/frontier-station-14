@@ -1,12 +1,10 @@
 using System.Numerics;
 using Content.Server.Access.Systems;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Emp;
 using Content.Server.Medical.CrewMonitoring;
 using Content.Server.Popups;
-//using Content.Server.Station.Systems; //Frontier Modification
+using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Clothing;
 using Content.Shared.Damage;
@@ -26,6 +24,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.DeviceNetwork.Components;
 using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Server._NF.Medical.SuitSensors; // Frontier
 using Content.Shared.Emp; // Frontier
@@ -42,7 +41,6 @@ public sealed class SuitSensorSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     // [Dependency] private readonly StationSystem _stationSystem = default!; // Frontier
-    [Dependency] private readonly MetaDataSystem _metaData = default!; // Frontier
     [Dependency] private readonly SingletonDeviceNetServerSystem _singletonServerSystem = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
@@ -189,8 +187,10 @@ public sealed class SuitSensorSystem : EntitySystem
 
     private void OnEquipped(EntityUid uid, SuitSensorComponent component, ref ClothingGotEquippedEvent args)
     {
-        if (HasComp<DisableSuitSensorsComponent>(args.Wearer)) // Frontier: entities with disabled suit sensors must never be set as a valid user.
-            return; // Frontier
+        // Frontier: opt out of suit sensor registration
+        if (TryComp<DisableSuitSensorsComponent>(args.Wearer, out var disableSuitSensor) && disableSuitSensor.RemoveRegistration)
+            return;
+        // End Frontier
 
         component.User = args.Wearer;
     }
@@ -258,8 +258,10 @@ public sealed class SuitSensorSystem : EntitySystem
         if (args.Container.ID != component.ActivationContainer)
             return;
 
-        if (HasComp<DisableSuitSensorsComponent>(args.Container.Owner)) // Frontier: entities with disabled suit sensors must never be set as a valid user.
-            return; // Frontier
+        // Frontier: opt out of suit sensor registration
+        if (TryComp<DisableSuitSensorsComponent>(args.Container.Owner, out var disableSuitSensor) && disableSuitSensor.RemoveRegistration)
+            return;
+        // End Frontier
 
         component.User = args.Container.Owner;
     }
@@ -277,7 +279,7 @@ public sealed class SuitSensorSystem : EntitySystem
         args.Affected = true;
         args.Disabled = true;
 
-        if (HasComp<EmpDisabledComponent>(uid)) // Frontier: don't double count 
+        if (HasComp<EmpDisabledComponent>(uid)) // Frontier: don't double disable sensors
             return; // Frontier
 
         component.PreviousMode = component.Mode;
@@ -392,16 +394,17 @@ public sealed class SuitSensorSystem : EntitySystem
             return null;
 
         // check if sensor is enabled and worn by user
-        // Frontier modification, made sensor work with grid being null
-        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || !HasComp<MobStateComponent>(sensor.User) ) // || transform.GridUid == null
+        // Frontier: sensors work off grids
+        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || !HasComp<MobStateComponent>(sensor.User)) // || transform.GridUid == null
             return null;
+        // End Frontier
 
         // try to get mobs id from ID slot
         var userName = Loc.GetString("suit-sensor-component-unknown-name");
         var userJob = Loc.GetString("suit-sensor-component-unknown-job");
         var userJobIcon = "JobIconNoId";
         var userJobDepartments = new List<string>();
-        var userLocationName = Loc.GetString("suit-sensor-location-unknown"); // Frontier modification
+        var userLocationName = Loc.GetString("suit-sensor-location-unknown"); // Frontier
 
         if (_idCardSystem.TryFindIdCard(sensor.User.Value, out var card))
         {
@@ -431,8 +434,7 @@ public sealed class SuitSensorSystem : EntitySystem
             totalDamageThreshold = critThreshold.Value.Int();
 
         // finally, form suit sensor status
-        // will additonally check the grid and name if it exists, as well if its expedition
-        var status = new SuitSensorStatus(GetNetEntity(uid), userName, userJob, userJobIcon, userJobDepartments, userLocationName);
+        var status = new SuitSensorStatus(GetNetEntity(sensor.User.Value), GetNetEntity(uid), userName, userJob, userJobIcon, userJobDepartments, userLocationName); // Frontier: add userLocationName
         switch (sensor.Mode)
         {
             case SuitSensorMode.SensorBinary:
@@ -458,36 +460,32 @@ public sealed class SuitSensorSystem : EntitySystem
                         Vector2.Transform(_transform.GetWorldPosition(transform, xformQuery),
                             _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery)));
 
-                    // Frontier modification
-                    /// Checks if sensor is present on expedition grid
-                    if(TryComp<SalvageExpeditionComponent>(transform.GridUid.Value, out var salvageComp))
-                    {
+                    // Frontier: check if sensor is on expedition
+                    if (TryComp<SalvageExpeditionComponent>(transform.MapUid, out var salvageComp))
                         locationName = Loc.GetString("suit-sensor-location-expedition");
-                    }
-                    else
-                    {
-                        var meta = MetaData(transform.GridUid.Value);
-
+                    else if (TryComp(transform.GridUid, out MetaDataComponent? meta))
                         locationName = meta.EntityName;
-                    }
+                    else
+                        locationName = Loc.GetString("suit-sensor-location-unknown"); // Frontier
+                    // End Frontier
                 }
                 else if (transform.MapUid != null)
                 {
 
                     coordinates = new EntityCoordinates(transform.MapUid.Value,
-                        _transform.GetWorldPosition(transform, xformQuery)); //Frontier modification
+                        _transform.GetWorldPosition(transform, xformQuery)); // Frontier
 
-                    locationName = Loc.GetString("suit-sensor-location-space"); // Frontier modification
+                    locationName = Loc.GetString("suit-sensor-location-space"); // Frontier
                 }
                 else
                 {
                     coordinates = EntityCoordinates.Invalid;
 
-                    locationName = Loc.GetString("suit-sensor-location-unknown"); // Frontier modification
+                    locationName = Loc.GetString("suit-sensor-location-unknown"); // Frontier
                 }
 
                 status.Coordinates = GetNetCoordinates(coordinates);
-                status.LocationName = locationName; //Frontier modification
+                status.LocationName = locationName; // Frontier
                 break;
         }
 
@@ -508,6 +506,7 @@ public sealed class SuitSensorSystem : EntitySystem
             [SuitSensorConstants.NET_JOB_DEPARTMENTS] = status.JobDepartments,
             [SuitSensorConstants.NET_IS_ALIVE] = status.IsAlive,
             [SuitSensorConstants.NET_SUIT_SENSOR_UID] = status.SuitSensorUid,
+            [SuitSensorConstants.NET_OWNER_UID] = status.OwnerUid,
         };
 
         if (status.TotalDamage != null)
@@ -516,8 +515,8 @@ public sealed class SuitSensorSystem : EntitySystem
             payload.Add(SuitSensorConstants.NET_TOTAL_DAMAGE_THRESHOLD, status.TotalDamageThreshold);
         if (status.Coordinates != null)
             payload.Add(SuitSensorConstants.NET_COORDINATES, status.Coordinates);
-        if (status.LocationName != null) //Frontier modification
-            payload.Add(SuitSensorConstants.NET_LOCATION_NAME, status.LocationName); //Frontier modification
+        if (status.LocationName != null) // Frontier
+            payload.Add(SuitSensorConstants.NET_LOCATION_NAME, status.LocationName); // Frontier
 
         return payload;
     }
@@ -540,14 +539,15 @@ public sealed class SuitSensorSystem : EntitySystem
         if (!payload.TryGetValue(SuitSensorConstants.NET_JOB_DEPARTMENTS, out List<string>? jobDepartments)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_IS_ALIVE, out bool? isAlive)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_SUIT_SENSOR_UID, out NetEntity suitSensorUid)) return null;
-        if (!payload.TryGetValue(SuitSensorConstants.NET_LOCATION_NAME, out string? location)) return null; // Frontier modification
+        if (!payload.TryGetValue(SuitSensorConstants.NET_OWNER_UID, out NetEntity ownerUid)) return null;
+        if (!payload.TryGetValue(SuitSensorConstants.NET_LOCATION_NAME, out string? location)) return null; // Frontier
 
         // try get total damage and cords and location name (optionals)
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE, out int? totalDamage);
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE_THRESHOLD, out int? totalDamageThreshold);
         payload.TryGetValue(SuitSensorConstants.NET_COORDINATES, out NetCoordinates? coords);
 
-        var status = new SuitSensorStatus(suitSensorUid, name, job, jobIcon, jobDepartments, location)
+        var status = new SuitSensorStatus(ownerUid, suitSensorUid, name, job, jobIcon, jobDepartments, location) // Frontier: add location
         {
             IsAlive = isAlive.Value,
             TotalDamage = totalDamage,

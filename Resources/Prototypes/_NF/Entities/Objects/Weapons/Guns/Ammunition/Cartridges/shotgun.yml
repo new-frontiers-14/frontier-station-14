@@ -1,0 +1,175 @@
+#region Base
+- type: entity
+  id: NFBaseShellShotgun
+  name: shell (.50)
+  parent: [ BaseC1Contraband, BaseShellShotgun ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShellShotgun
+
+- type: entity
+  id: NFBaseShellShotgunLight
+  parent: NFBaseShellShotgun
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShellShotgun
+    - ShellShotgunLight
+
+#region Pellets
+- type: entity
+  id: NFShellShotgunBuckshot
+  name: shell (.50 buckshot)
+  parent: NFBaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFPelletShotgunSpread
+
+- type: entity
+  id: NFShellShotgunBuckshotOverpressure
+  name: shell (.50 overpressure)
+  parent: NFBaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+        state: overpressure
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFPelletShotgunOverpressureSpread
+  - type: SpentAmmoVisuals
+    state: "overpressure"
+
+- type: entity
+  id: NFShellShotgunIncendiary
+  name: shell (.50 incendiary)
+  parent: NFBaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - state: incendiary
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFPelletShotgunIncendiarySpread
+  - type: SpentAmmoVisuals
+    state: "incendiary"
+
+- type: entity
+  id: NFShellShotgunPractice
+  name: shell (.50 practice)
+  parent: NFBaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - state: practice
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFPelletShotgunPracticeSpread
+  - type: SpentAmmoVisuals
+    state: "practice"
+
+- type: entity
+  id: NFShellShotgunUranium
+  name: shell (.50 uranium)
+  parent: NFBaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - state: depleted-uranium
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFPelletShotgunUraniumSpread
+  - type: SpentAmmoVisuals
+    state: "depleted-uranium"
+
+- type: entity
+  id: NFShellShotgunImprovised
+  name: shell (.50 improvised)
+  parent: NFBaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - state: improvised
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFPelletShotgunImprovisedSpread
+  - type: SpentAmmoVisuals
+    state: "improvised"
+  - type: Construction
+    graph: ImprovisedShotgunShellGraph
+    node: shell
+
+#region Slugs
+- type: entity
+  id: NFShellShotgunSlug
+  name: shell (.50 slug)
+  parent: NFBaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - state: slug
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFShotgunSlug
+  - type: SpentAmmoVisuals
+    state: "slug"
+
+- type: entity
+  id: NFShellShotgunBeanbag
+  name: shell (.50 beanbag)
+  parent: NFBaseShellShotgunLight
+  components:
+  - type: Sprite
+    layers:
+      - state: beanbag
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFShotgunSlugBeanbag
+  - type: SpentAmmoVisuals
+    state: "beanbag"
+
+- type: entity
+  id: NFShellShotgunFlare
+  name: shell (.50 flare)
+  parent: NFBaseShellShotgunLight
+  components:
+  - type: Sprite
+    layers:
+      - state: flare
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFShotgunSlugFlare
+  - type: SpentAmmoVisuals
+    state: "flare"
+
+- type: entity
+  id: NFShellShotgunTranquilizer
+  name: shell (.50 tranquilizer)
+  parent: NFBaseShellShotgunLight
+  components:
+  - type: Sprite
+    layers:
+      - state: tranquilizer
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFShotgunSlugTranquilizer
+  - type: SpentAmmoVisuals
+    state: "tranquilizer"
+  - type: ChemicalAmmo
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 4
+  - type: SolutionTransfer
+    maxTransferAmount: 4

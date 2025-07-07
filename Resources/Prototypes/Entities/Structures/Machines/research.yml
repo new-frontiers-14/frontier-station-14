@@ -2,10 +2,13 @@
   id: ResearchAndDevelopmentServer
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: R&D server
-  description: Contains the collective knowledge of the station's scientists. Destroying it would send them back to the stone age. You don't want that do you?
+  description: Contains the extent of somebody's hard-earned knowledge. Handle with care. # Frontier: separate description
   components:
+  - type: BindToStation # Frontier
+    enabled: false # Frontier - should be draggable between stations
   - type: Sprite
     sprite: Structures/Machines/server.rsi
+    snapCardinals: true # Frontier
     layers:
       - state: server
       - state: variant-research
@@ -14,10 +17,19 @@
   - type: ResearchServer
   - type: TechnologyDatabase
     supportedDisciplines:
-    - Industrial
-    - Arsenal
-    - Experimental
-    - CivilianServices
+     # Start Frontier: Tech Tree
+#    - Industrial
+#    - Arsenal
+#    - Experimental
+#    - CivilianServices
+     - NFEngineering
+     - NFMedical
+     - NFArsenalMercenary
+     - NFArsenalNfsd
+     - NFSalvage
+     - NFScience
+     - NFService
+     # End Frontier: Tech Tree
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver

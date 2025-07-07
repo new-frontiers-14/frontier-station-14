@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 247.2.0
+  engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 03/21/2025 23:32:41
+  time: 06/16/2025 14:38:02
   entityCount: 3224
 maps: []
 grids:
@@ -145,9 +145,10 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
+      dampingModifier: 0.25
     - type: GridPathfinding
     - type: BecomesStation
-      id: Arena
+      id: ThePit
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
@@ -3383,20 +3384,6 @@ entities:
     components:
     - type: Transform
       pos: 13.376327,-0.31619385
-      parent: 2
-- proto: BoxCartridgeCap
-  entities:
-  - uid: 2538
-    components:
-    - type: Transform
-      pos: 12.466988,1.5918111
-      parent: 2
-- proto: BoxDonkSoftBox
-  entities:
-  - uid: 2547
-    components:
-    - type: Transform
-      pos: 13.612432,0.70118606
       parent: 2
 - proto: BoxFolderBase
   entities:
@@ -15631,6 +15618,32 @@ entities:
     - type: Transform
       pos: 4.433182,-7.4173126
       parent: 2
+- proto: NFBoxCartridgeCap
+  entities:
+  - uid: 2538
+    components:
+    - type: Transform
+      pos: 12.466988,1.5918111
+      parent: 2
+- proto: NFBoxDonkSoftBox
+  entities:
+  - uid: 2547
+    components:
+    - type: Transform
+      pos: 13.612432,0.70118606
+      parent: 2
+- proto: NFRevolverCapGun
+  entities:
+  - uid: 2536
+    components:
+    - type: Transform
+      pos: 12.451363,1.7636861
+      parent: 2
+  - uid: 2537
+    components:
+    - type: Transform
+      pos: 12.732613,1.5605611
+      parent: 2
 - proto: NFSignDock
   entities:
   - uid: 2976
@@ -15672,6 +15685,30 @@ entities:
     components:
     - type: Transform
       pos: 23.5,-9.5
+      parent: 2
+- proto: NFWeaponEnergyPistolDisablerPractice
+  entities:
+  - uid: 1772
+    components:
+    - type: Transform
+      pos: -3.6084044,-17.465199
+      parent: 2
+  - uid: 1773
+    components:
+    - type: Transform
+      pos: 5.636983,17.50431
+      parent: 2
+- proto: NFWeaponEnergyRifleCarbinePractice
+  entities:
+  - uid: 1770
+    components:
+    - type: Transform
+      pos: -3.5485957,-17.358849
+      parent: 2
+  - uid: 1771
+    components:
+    - type: Transform
+      pos: 5.5573263,17.669575
       parent: 2
 - proto: NitrogenCanister
   entities:
@@ -15791,31 +15828,6 @@ entities:
     - type: Transform
       pos: -9.287977,2.5883613
       parent: 2
-- proto: PowerCellRecharger
-  entities:
-  - uid: 2265
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-11.5
-      parent: 2
-    - type: DisableToolUse
-      anchoring: True
-  - uid: 2268
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,11.5
-      parent: 2
-    - type: DisableToolUse
-      anchoring: True
-  - uid: 2476
-    components:
-    - type: Transform
-      pos: -8.5,2.5
-      parent: 2
-    - type: DisableToolUse
-      anchoring: True
 - proto: Poweredlight
   entities:
   - uid: 1614
@@ -17855,18 +17867,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,19.5
-      parent: 2
-- proto: RevolverCapGun
-  entities:
-  - uid: 2536
-    components:
-    - type: Transform
-      pos: 12.451363,1.7636861
-      parent: 2
-  - uid: 2537
-    components:
-    - type: Transform
-      pos: 12.732613,1.5605611
       parent: 2
 - proto: RollerBed
   entities:
@@ -20700,6 +20700,14 @@ entities:
       parent: 2
 - proto: WeaponCapacitorRecharger
   entities:
+  - uid: 2265
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-11.5
+      parent: 2
+    - type: DisableToolUse
+      anchoring: True
   - uid: 2266
     components:
     - type: Transform
@@ -20716,30 +20724,21 @@ entities:
       parent: 2
     - type: DisableToolUse
       anchoring: True
-- proto: WeaponDisablerPractice
-  entities:
-  - uid: 1772
+  - uid: 2268
     components:
     - type: Transform
-      pos: -3.6084044,-17.465199
+      rot: -1.5707963267948966 rad
+      pos: 2.5,11.5
       parent: 2
-  - uid: 1773
+    - type: DisableToolUse
+      anchoring: True
+  - uid: 2476
     components:
     - type: Transform
-      pos: 5.636983,17.50431
+      pos: -8.5,2.5
       parent: 2
-- proto: WeaponLaserCarbinePractice
-  entities:
-  - uid: 1770
-    components:
-    - type: Transform
-      pos: -3.5485957,-17.358849
-      parent: 2
-  - uid: 1771
-    components:
-    - type: Transform
-      pos: 5.5573263,17.669575
-      parent: 2
+    - type: DisableToolUse
+      anchoring: True
 - proto: WeaponRifleBB
   entities:
   - uid: 2312

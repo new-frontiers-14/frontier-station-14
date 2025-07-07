@@ -48,7 +48,7 @@
             Quantity: 70 # Frontier - 35<70
 
 - type: entity
-  name: D-K-type portable generator
+  name: D-K portable generator
   description: |-
     A prototype Dunn-Kikko fission reactor. Use with caution.
     Runs off bananium and is rated for up to 120 kW.
@@ -92,17 +92,12 @@
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: FuelGradeBananium
     - type: MaterialStorage
-      materialWhiteList: [Bananium, FuelGradeBananium, RawBananium]
+      materialWhiteList: [Bananium, FuelGradeBananium, RawBananium, Skrungle]
     - type: PowerMonitoringDevice
       sprite: _NF/Structures/Power/Generation/portable_generator.rsi
       state: portgen1
     - type: RadiationSource
       enabled: false
-    - type: AmbientSound
-      volume: 1
-      enabled: false
-      sound:
-        path: /Audio/Items/Geiger/ext.ogg
     - type: PowerSupplier
       supplyRampRate: 10000
       supplyRampTolerance: 3000
@@ -114,6 +109,15 @@
       - input: RawBananium
         output: FuelGradeBananium
         rate: 0.5
+      - input: Skrungle
+        output: FuelGradeBananium
+        rate: 0.25
+    - type: Geiger
+      showExamine: true
+      broadcastAudio: true
+      isEnabled: true
+      attachedToSuit: true # Prevents the counter from being disabled.
+    - type: RadiationReceiver # For the geiger counter
 
 - type: entity
   parent:
@@ -128,7 +132,7 @@
         FuelGradeBananium: 1000
 
 - type: entity
-  name: D-K Jr.-type portable generator
+  name: D-K Jr. portable generator
   description: |-
     A miniaturized Dunn-Kikko fission reactor. Use with caution.
     Runs off bananium and is rated for up to 100 kW.
@@ -167,9 +171,6 @@
     - type: PowerMonitoringDevice
       sprite: Structures/Power/Generation/portable_generator.rsi
       state: portgen2
-    - type: AmbientSound
-      sound:
-        path: /Audio/Items/Geiger/high.ogg
 
 - type: entity
   parent:

@@ -46,7 +46,7 @@
   - type: Singularity
     energy: 180
     level: 1
-    radsPerLevel: 2
+    radsPerLevel: 4 # Frontier: 2<4
     energyLoss: 1
   - type: RandomWalk # To make the singularity move around.
     maxSpeed: 2.5
@@ -56,7 +56,7 @@
     intensity: 3645
   - type: RadiationSource
     slope: 0.2 # its emit really far away
-    intensity: 2
+    intensity: 4 # Frontier: 2<4
   - type: PointLight
     enabled: true
     radius: 10
@@ -66,15 +66,21 @@
     - SingularityEngine
     - SingularityTeslaEngine
     - Power
+  - type: Tag
+    tags:
+    - GhostOnlyWarp
   - type: WarpPoint
     follow: true
     location: singularity
+    blacklist:
+      tags:
+      - GhostOnlyWarp
   - type: Sprite
     sprite: Structures/Power/Generation/Singularity/singularity_1.rsi
-    shader: unshaded
     layers:
     - map: [ "VisualLevel" ]
       state: singularity_1
+      shader: unshaded # Wizden#37444
   - type: GenericVisualizer
     visuals:
       enum.SingularityAppearanceKeys.Singularity:
@@ -103,3 +109,10 @@
             sprite: Structures/Power/Generation/Singularity/singularity_6.rsi
             state: singularity_6
             scale: .9,.9
+  # Frontier: tethered danger balls with radar blips
+  - type: DangerTethered
+  - type: RadarBlip
+    scale: 4
+    shape: Star
+    visibleFromOtherGrids: true
+  # End Frontier

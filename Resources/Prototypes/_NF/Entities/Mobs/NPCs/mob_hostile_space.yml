@@ -1,31 +1,45 @@
+#region base
+- type: entity
+  id: NFMobSpaceBase
+  parent: [ MobMovementSpeedModifierMelee, MobStaminaFodder, NFBaseMobRestrictions, NFMobSimpleHostileBase, NFMobRoadkillable ]
+  suffix: Frontier
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      50: 0.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+
+#region mobs
 - type: entity
   id: NFMobBearSpace
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobBearSpace, NFMobRoadkillable]
-  suffix: Frontier
+  parent: [ NFMobSpaceBase, MobBearSpace]
   # categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFMobKangarooSpace
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobKangarooSpace, NFMobRoadkillable]
-  suffix: Frontier
+  parent: [ NFMobSpaceBase, MobKangarooSpace ]
   # categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFMobSpiderSpace
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobSpiderSpace, NFMobRoadkillable]
-  suffix: Frontier
+  parent: [ NFMobSpaceBase, MobSpiderSpace ]
   # categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFMobCobraSpace
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCobraSpace, NFMobRoadkillable]
-  suffix: Frontier
+  parent: [ NFMobSpaceBase, MobCobraSpace ]
   # categories: [ HideSpawnMenu ]
 
 - type: entity
   id: NFMobTick
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobTick, NFMobRoadkillable]
-  suffix: Frontier
+  parent: [ NFMobSpaceBase, MobTick ]
+  # categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: SmallMobs
@@ -44,3 +58,11 @@
       Dead:
         Base: dead
         BaseUnshaded: mask_null
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      3: 0.7
+      5: 0.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      12: Dead

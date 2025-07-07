@@ -1,7 +1,19 @@
 # Base prototypes can be found in \Resources\Prototypes\Recipes\Lathes\security.yml
+#region Base
+- type: latheRecipe
+  id: BaseEmptyMagazineRecipe
+  abstract: true
+  categories:
+  - NFMagazines
+  completetime: 1
 
-# Recipes
+- type: latheRecipe
+  id: BaseFilledMagazineRecipe
+  parent: BaseEmptyMagazineRecipe
+  abstract: true
+  completetime: 2.5
 
+#region Xbow Bolts
 - type: latheRecipe # crossbow bolt
   id: CrossbowBolt
   parent: BaseAmmoRecipe
@@ -16,189 +28,606 @@
   materials:
     Steel: 25
 
-- type: latheRecipe # novalite mag empty
-  id: MagazineNovaliteC1Empty
-  parent: BaseEmptyAmmoRecipe
-  result: MagazineNovaliteC1Empty
-  materials:
-    Steel: 20
-
-- type: latheRecipe # novalite mag
-  id: MagazineNovaliteC1
+# Ammo Boxes
+#region .35 Ammo Box
+- type: latheRecipe
   parent: BaseAmmoRecipe
-  result: MagazineNovaliteC1
+  id: NFAmmunitionBoxPistol35
+  result: NFAmmunitionBoxPistol35
   materials:
-    Steel: 245 # 20 [Steel per empty mag] + 15 [bullets] * 15 [Steel per bullet]
-
-- type: latheRecipe # novalite rubber mag
-  id: MagazineNovaliteC1Rubber
-  parent: BaseAmmoRecipe
-  result: MagazineNovaliteC1Rubber
-  materials:
-    Steel: 82 #33% of 245 in steel
-    Plastic: 163 #66% of 245
-
-- type: latheRecipe # gestio mag empty
-  id: MagazineLightRifleLowCapacityEmpty
-  parent: BaseEmptyAmmoRecipe
-  result: MagazineLightRifleLowCapacityEmpty
-  materials:
-    Steel: 20
-- type: latheRecipe # Gestio small rubber mag
-  id: MagazineLightRifleLowCapacityRubber
-  parent: BaseAmmoRecipe
-  result: MagazineLightRifleLowCapacityRubber
-  materials:
-    Steel: 82 #33% of cost in steel
-    Plastic: 163 #66% of 245
-
-- type: latheRecipe # gestio mag
-  id: MagazineLightRifleLowCapacity
-  parent: BaseAmmoRecipe
-  result: MagazineLightRifleLowCapacity
-  materials:
-    Steel: 245 # 20 [Steel per empty mag] + 15 [bullets] * 15 [Steel per bullet]
+    Steel: 1200 # box - free, 80 [bullets] * 15 [Steel per bullet]
 
 - type: latheRecipe
-  id: SpeedLoaderRifleHeavyEmpty
-  parent: BaseEmptyAmmoRecipe
-  result: SpeedLoaderRifleHeavyEmpty
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol35Overpressure
+  result: NFAmmunitionBoxPistol35Overpressure
+  materials:
+    Steel: 1800 # box - free, 80 [bullets] * 22.5 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol35Practice
+  result: NFAmmunitionBoxPistol35Practice
+  materials:
+    Steel: 640 # box - free, 80 [bullets] * 8 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol35Incendiary
+  result: NFAmmunitionBoxPistol35Incendiary
+  materials:
+    Plastic: 1200 # box - free, 80 [bullets] * 15 [Plastic per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol35Uranium
+  result: NFAmmunitionBoxPistol35Uranium
+  materials:
+    Plastic: 600 # box - free, 80 [bullets] * 7.5 [Plastic per bullet]
+    Uranium: 600 # box - free, 80 [bullets] * 7.5 [Uranium per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol35Rubber
+  result: NFAmmunitionBoxPistol35Rubber
+  materials:
+    Plastic: 600 # box - free, 80 [bullets] * 7.5 [Plastic per bullet]
+    Steel: 600 # box - free, 80 [bullets] * 7.5 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol35Emp
+  result: NFAmmunitionBoxPistol35Emp
+  materials:
+    Plasma: 800 # box - free, 80 [bullets] * 10 [Plasma per bullet]
+    Silver: 400 # box - free, 80 [bullets] * 5 [Silver per bullet]
+
+#region .45 Ammo Box
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol45
+  result: NFAmmunitionBoxPistol45
+  materials:
+    Steel: 1200 # box - free, 80 [bullets] * 15 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol45Overpressure
+  result: NFAmmunitionBoxPistol45Overpressure
+  materials:
+    Steel: 1800 # box - free, 80 [bullets] * 22.5 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol45Practice
+  result: NFAmmunitionBoxPistol45Practice
+  materials:
+    Steel: 640 # box - free, 80 [bullets] * 8 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol45Incendiary
+  result: NFAmmunitionBoxPistol45Incendiary
+  materials:
+    Plastic: 1200 # box - free, 80 [bullets] * 15 [Plastic per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol45Uranium
+  result: NFAmmunitionBoxPistol45Uranium
+  materials:
+    Plastic: 600 # box - free, 80 [bullets] * 7.5 [Plastic per bullet]
+    Uranium: 600 # box - free, 80 [bullets] * 7.5 [Uranium per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol45Rubber
+  result: NFAmmunitionBoxPistol45Rubber
+  materials:
+    Plastic: 600 # box - free, 80 [bullets] * 7.5 [Plastic per bullet]
+    Steel: 600 # box - free, 80 [bullets] * 7.5 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxPistol45Emp
+  result: NFAmmunitionBoxPistol45Emp
+  materials:
+    Plasma: 800 # box - free, 80 [bullets] * 10 [Plasma per bullet]
+    Silver: 400 # box - free, 80 [bullets] * 5 [Silver per bullet]
+
+#region .20 Ammo Box
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle20
+  result: NFAmmunitionBoxRifle20
+  materials:
+    Steel: 1200 # box - free, 60 [bullets] * 20 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle20Overpressure
+  result: NFAmmunitionBoxRifle20Overpressure
+  materials:
+    Steel: 1800 # box - free, 60 [bullets] * 30 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle20Practice
+  result: NFAmmunitionBoxRifle20Practice
+  materials:
+    Steel: 600 # box - free, 60 [bullets] * 10 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle20Incendiary
+  result: NFAmmunitionBoxRifle20Incendiary
+  materials:
+    Plastic: 1200 # box - free, 60 [bullets] * 20 [Plastic per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle20Uranium
+  result: NFAmmunitionBoxRifle20Uranium
+  materials:
+    Plastic: 600 # box - free, 60 [bullets] * 10 [Plastic per bullet]
+    Uranium: 600 # box - free, 60 [bullets] * 10 [Uranium per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle20Rubber
+  result: NFAmmunitionBoxRifle20Rubber
+  materials:
+    Plastic: 600 # box - free, 60 [bullets] * 10 [Plastic per bullet]
+    Steel: 600 # box - free, 60 [bullets] * 10 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle20
+  result: NFAmmunitionBoxBigRifle20
+  materials:
+    Steel: 4000 # box - free, 200 [bullets] * 20 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle20Overpressure
+  result: NFAmmunitionBoxBigRifle20Overpressure
+  materials:
+    Steel: 6000 # box - free, 200 [bullets] * 30 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle20Practice
+  result: NFAmmunitionBoxBigRifle20Practice
+  materials:
+    Steel: 2000 # box - free, 200 [bullets] * 10 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle20Incendiary
+  result: NFAmmunitionBoxBigRifle20Incendiary
+  materials:
+    Plastic: 4000 # box - free, 200 [bullets] * 20 [Plastic per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle20Uranium
+  result: NFAmmunitionBoxBigRifle20Uranium
+  materials:
+    Plastic: 2000 # box - free, 60 [bullets] * 10 [Plastic per bullet]
+    Uranium: 2000 # box - free, 60 [bullets] * 10 [Uranium per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle20Rubber
+  result: NFAmmunitionBoxBigRifle20Rubber
+  materials:
+    Plastic: 2000 # box - free, 60 [bullets] * 10 [Plastic per bullet]
+    Steel: 2000 # box - free, 60 [bullets] * 10 [Steel per bullet]
+
+#region .30 Ammo Box
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle30
+  result: NFAmmunitionBoxRifle30
+  materials:
+    Steel: 1200 # box - free, 60 [bullets] * 20 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle30Overpressure
+  result: NFAmmunitionBoxRifle30Overpressure
+  materials:
+    Steel: 1800 # box - free, 60 [bullets] * 30 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle30Practice
+  result: NFAmmunitionBoxRifle30Practice
+  materials:
+    Steel: 600 # box - free, 60 [bullets] * 10 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle30Incendiary
+  result: NFAmmunitionBoxRifle30Incendiary
+  materials:
+    Plastic: 1200 # box - free, 60 [bullets] * 20 [Plastic per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle30Uranium
+  result: NFAmmunitionBoxRifle30Uranium
+  materials:
+    Plastic: 600 # box - free, 60 [bullets] * 10 [Plastic per bullet]
+    Uranium: 600 # box - free, 60 [bullets] * 10 [Uranium per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxRifle30Rubber
+  result: NFAmmunitionBoxRifle30Rubber
+  materials:
+    Plastic: 600 # box - free, 60 [bullets] * 10 [Plastic per bullet]
+    Steel: 600 # box - free, 60 [bullets] * 10 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle30
+  result: NFAmmunitionBoxBigRifle30
+  materials:
+    Steel: 4000 # box - free, 200 [bullets] * 20 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle30Overpressure
+  result: NFAmmunitionBoxBigRifle30Overpressure
+  materials:
+    Steel: 6000 # box - free, 200 [bullets] * 30 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle30Practice
+  result: NFAmmunitionBoxBigRifle30Practice
+  materials:
+    Steel: 2000 # box - free, 200 [bullets] * 10 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle30Incendiary
+  result: NFAmmunitionBoxBigRifle30Incendiary
+  materials:
+    Plastic: 4000 # box - free, 200 [bullets] * 20 [Plastic per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle30Uranium
+  result: NFAmmunitionBoxBigRifle30Uranium
+  materials:
+    Plastic: 2000 # box - free, 60 [bullets] * 10 [Plastic per bullet]
+    Uranium: 2000 # box - free, 60 [bullets] * 10 [Uranium per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxBigRifle30Rubber
+  result: NFAmmunitionBoxBigRifle30Rubber
+  materials:
+    Plastic: 2000 # box - free, 60 [bullets] * 10 [Plastic per bullet]
+    Steel: 2000 # box - free, 60 [bullets] * 10 [Steel per bullet]
+
+#region .50 Ammo Box
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxShellShotgunBuckshot
+  result: NFAmmunitionBoxShellShotgunBuckshot
+  materials:
+    Steel: 400 # box - free, 20 [bullets] * 20 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxShellShotgunOverpressure
+  result: NFAmmunitionBoxShellShotgunOverpressure
+  materials:
+    Steel: 600 # box - free, 20 [bullets] * 30 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxShellShotgunIncendiary
+  result: NFAmmunitionBoxShellShotgunIncendiary
+  materials:
+    Plastic: 400 # box - free, 20 [bullets] * 20 [Plastic per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxShellShotgunPractice
+  result: NFAmmunitionBoxShellShotgunPractice
+  materials:
+    Steel: 260 # box - free, 20 [bullets] * 13 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxShellShotgunUranium
+  result: NFAmmunitionBoxShellShotgunUranium
+  materials:
+    Plastic: 250 # box - free, 20 [bullets] * 12.5 [Plastic per bullet]
+    Uranium: 250 # box - free, 20 [bullets] * 12.5 [Uranium per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxShellShotgunSlug
+  result: NFAmmunitionBoxShellShotgunSlug
+  materials:
+    Steel: 400 # box - free, 20 [bullets] * 20 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxShellShotgunBeanbag
+  result: NFAmmunitionBoxShellShotgunBeanbag
+  materials:
+    Steel: 200 # box - free, 20 [bullets] * 20 [Steel per bullet]
+    Plastic: 200 # box - free, 20 [bullets] * 20 [Plastic per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxShellShotgunFlare
+  result: NFAmmunitionBoxShellShotgunFlare
+  materials:
+    Plastic: 300 # box - free, 20 [bullets] * 20 [Plastic per bullet]
+    Steel: 100 # box - free, 20 [bullets] * 20 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxShellShotgunTranquilizer
+  result: NFAmmunitionBoxShellShotgunTranquilizer
+  materials:
+    Plastic: 300
+    Steel: 200
+    Glass: 100
+    Plasma: 200
+    Silver: 100
+
+#region Empty Mags
+- type: latheRecipe # novalite mag empty
+  parent: BaseEmptyMagazineRecipe
+  id: NFMagazineClipRifle20Empty
+  result: NFMagazineClipRifle20Empty
+  materials:
+    Steel: 20
+
+- type: latheRecipe # gestio mag empty
+  parent: BaseEmptyMagazineRecipe
+  id: MagazineLightRifleLowCapacityEmpty
+  result: NFMagazineLowCapacityRifle30Empty
+  materials:
+    Steel: 20
+
+- type: latheRecipe
+  parent: BaseEmptyMagazineRecipe
+  id: NFSpeedLoaderPistol35Empty
+  result: NFSpeedLoaderPistol35Empty
+  materials:
+    Steel: 20
+
+- type: latheRecipe
+  parent: BaseEmptyMagazineRecipe
+  id: NFSpeedLoaderPistol45Empty
+  result: NFSpeedLoaderPistol45Empty
+  materials:
+    Steel: 20
+
+- type: latheRecipe
+  parent: BaseEmptyMagazineRecipe
+  id: NFMagazinePistol35Empty
+  result: NFMagazinePistol35Empty
+  materials:
+    Steel: 20
+
+- type: latheRecipe
+  parent: BaseEmptyMagazineRecipe
+  id: NFMagazineHighCapacityPistol35Empty
+  result: NFMagazineHighCapacityPistol35Empty
   materials:
     Steel: 25
 
 - type: latheRecipe
-  id: SpeedLoaderRifleHeavy
-  parent: BaseAmmoRecipe
-  result: SpeedLoaderRifleHeavy
+  parent: BaseEmptyMagazineRecipe
+  id: NFMagazineSubMachineGun35Empty
+  result: NFMagazineSubMachineGun35Empty
   materials:
-    Steel: 140 # 25 [Steel per empty mag] + 8 [bullets] * 15 [Steel per bullet]
+    Steel: 30
 
 - type: latheRecipe
-  id: SpeedLoaderRifleHeavyRubber #Argenti rubber loader
-  parent: BaseAmmoRecipe
-  result: SpeedLoaderRifleHeavyRubber
+  parent: BaseEmptyMagazineRecipe
+  id: NFMagazineSubMachineGunTopMounted35Empty
+  result: NFMagazineSubMachineGunTopMounted35Empty
   materials:
-    Steel: 47 #33% of cost in Steel
-    Plastic: 93 #66% of cost in Plastic
+    Steel: 30
 
 - type: latheRecipe
-  id: SpeedLoaderRifleHeavyPractice
-  parent: BaseAmmoRecipe
-  result: SpeedLoaderRifleHeavyPractice
+  parent: BaseEmptyMagazineRecipe
+  id: NFMagazinePistol45Empty
+  result: NFMagazinePistol45Empty
   materials:
-    Steel: 65 # 25 [Steel per empty mag] + 8 [bullets] * 5 [Steel per practice bullet]
+    Steel: 20
 
 - type: latheRecipe
-  id: SpeedLoaderRifleHeavyUranium
-  parent: BaseAmmoRecipe
-  result: SpeedLoaderRifleHeavyUranium
+  parent: BaseEmptyMagazineRecipe
+  id: NFMagazineRifle20Empty
+  result: NFMagazineRifle20Empty
   materials:
-    Steel: 25 # 25 [Steel per empty mag]
-    Plastic: 80 # 8 [bullets] * 10 [Plastic per bullet]
-    Uranium: 80 # 8 [bullets] * 10 [Uranium per bullet]
+    Steel: 30
 
 - type: latheRecipe
-  id: SpeedLoaderRifleHeavyIncendiary
-  parent: BaseAmmoRecipe
-  result: SpeedLoaderRifleHeavyIncendiary
+  parent: BaseEmptyMagazineRecipe
+  id: NFMagazineRifle30Empty
+  result: NFMagazineRifle30Empty
   materials:
-    Steel: 25 # 25 [Steel per empty mag]
-    Plastic: 120 # 8 [bullets] * 15 [Plastic per bullet]
+    Steel: 30
 
 - type: latheRecipe
-  id: MagazinePistolRubber
-  parent: BaseAmmoRecipe
-  result: MagazinePistolRubber
+  parent: BaseEmptyMagazineRecipe
+  id: MagazineAsmgtUniversalEmpty
+  result: MagazineAsmgtUniversalEmpty
   materials:
-    Steel: 100 #50% of box cost
-    Plastic: 200 #50% of box cost
+    Steel: 40
 
 - type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolSubMachineGunRubber
-  result: MagazinePistolSubMachineGunRubber
+  parent: BaseEmptyMagazineRecipe
+  id: NFMagazineDrumRifle20Empty
+  result: NFMagazineDrumRifle20Empty
   materials:
-    Steel: 150 #75% of box cost
-    Plastic: 300 #75% of box cost
+    Steel: 40
 
+#region Weapons
 - type: latheRecipe
-  id: MagazineBoxLightRifleRubber
-  parent: BaseAmmoRecipe
-  result: MagazineBoxLightRifleRubber
-  materials:
-    Steel: 300
-    Plastic: 600
-
-- type: latheRecipe
-  id: MagazineLightRifleRubber
-  parent: BaseAmmoRecipe
-  result: MagazineLightRifleRubber
-  materials:
-    Steel: 150 #50% of ammo box
-    Plastic: 300 #50% of ammo box
-
-- type: latheRecipe
-  id: MagazineBoxMagnumRubber
-  parent: BaseAmmoRecipe
-  result: MagazineBoxMagnumRubber
-  materials:
-    Steel: 80
-    Plastic: 160
-
-- type: latheRecipe
-  id: SpeedLoaderMagnumRubber
-  parent: BaseAmmoRecipe
-  result: SpeedLoaderMagnumRubber
-  materials:
-    Steel: 40 #50% of ammo box
-    Plastic: 80 #50% of ammo box
-
-- type: latheRecipe
-  id: MagazineBoxPistolRubber
-  parent: BaseAmmoRecipe
-  result: MagazineBoxPistolRubber
-  materials:
-    Steel: 200
-    Plastic: 400
-
-- type: latheRecipe
-  id: MagazineBoxRifleRubber
-  parent: BaseAmmoRecipe
-  result: MagazineBoxRifleRubber
-  materials:
-    Steel: 250
-    Plastic: 500
-
-- type: latheRecipe
-  id: MagazineRifleRubber
-  parent: BaseAmmoRecipe
-  result: MagazineRifleRubber
-  materials:
-    Steel: 125 #50% of ammo box
-    Plastic: 250 #50% of ammo box
-
-- type: latheRecipe
-  id: ShellTranquilizer # Removed upstream
-  parent: BaseAmmoRecipe
-  result: ShellTranquilizer
-  materials:
-    Plastic: 15
-    Steel: 10
-    Glass: 5
-    Plasma: 10
-    Silver: 5
-
-- type: latheRecipe
+  parent: BaseWeaponRecipe
   id: WeaponPistolPollock
-  result: WeaponPistolPollock
-  categories:
-  - Weapons
+  result: NFWeaponPistolPollock
   completetime: 3
   materials:
     Steel: 1000
     Plastic: 1200
     Plasteel: 1200
 
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: NFWeaponEnergyRifleCarbinePractice
+  result: NFWeaponEnergyRifleCarbinePractice
+  completetime: 6
+  materials:
+    Steel: 1800
+    Glass: 400
+    Plastic: 250
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: NFWeaponEnergyRifleCarbine
+  result: NFWeaponEnergyRifleCarbine
+  completetime: 6
+  materials:
+    Steel: 2000
+    Glass: 800
+    Plastic: 500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: NFWeaponEnergyPistolDisablerPractice
+  result: NFWeaponEnergyPistolDisablerPractice
+  completetime: 4
+  materials:
+    Steel: 500
+    Glass: 100
+    Plastic: 200
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: NFWeaponEnergyPistolDisabler
+  result: NFWeaponEnergyPistolDisabler
+  completetime: 6
+  materials:
+    Steel: 500
+    Glass: 200
+    Plastic: 400
+
+- type: latheRecipe
+  parent: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+  id: NFWeaponEnergySubMachineGunDisabler # Frontier: WeaponDisablerSMG<NFWeaponEnergySubMachineGunDisabler
+  result: NFWeaponEnergySubMachineGunDisabler # Frontier: WeaponDisablerSMG<NFWeaponEnergySubMachineGunDisabler
+  materials:
+    Steel: 1000
+    Glass: 500
+    Plastic: 500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: NFWeaponEnergyPistolLaserAdvanced
+  result: NFWeaponEnergyPistolLaserAdvanced
+  materials:
+    Steel: 1500
+    Glass: 1000
+    Gold: 850
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: NFWeaponEnergyRifleSniperCannon
+  result: NFWeaponEnergyRifleSniperCannon
+  materials:
+    Steel: 1250
+    Plastic: 750
+    Gold: 500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: NFWeaponEnergyPistolLaserSvalinn
+  result: NFWeaponEnergyPistolLaserSvalinn
+  materials:
+    Steel: 2000
+    Gold: 500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: NFWeaponEnergyRifleSniperXrayCannon
+  result: NFWeaponEnergyRifleSniperXrayCannon
+  materials:
+    Steel: 1500
+    Glass: 500
+    Plastic: 250
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: NFWeaponEnergyRifleTemperature
+  result: NFWeaponEnergyRifleTemperature
+  materials:
+    Steel: 2000
+    Glass: 500
+    Plastic: 500
+    Gold: 500
+
+# region Grenades
+- type: latheRecipe
+  id: NFMagazineGrenadeEmpty # Frontier: add NF prefix
+  result: NFMagazineGrenadeEmpty # Frontier: add NF prefix
+  completetime: 3
+  materials:
+    Steel: 150
+    Plastic: 50
+
+- type: latheRecipe
+  id: NFGrenadeEMP # Frontier: add NF prefix
+  result: NFGrenadeEMP # Frontier: add NF prefix
+  completetime: 3
+  materials:
+    Steel: 150
+    Plastic: 100
+    Glass: 20
+
+- type: latheRecipe
+  id: NFGrenadeBlast # Frontier: add NF prefix
+  result: NFGrenadeBlast # Frontier: add NF prefix
+  completetime: 3
+  materials:
+    Steel: 450
+    Plastic: 300
+    Gold: 150
+
+- type: latheRecipe
+  id: NFGrenadeFlash
+  result: NFGrenadeFlash
+  completetime: 3
+  materials:
+    Steel: 150
+    Plastic: 100
+    Glass: 20
+
+#region Shields
+- type: latheRecipe
+  parent: BaseShieldRecipe
+  id: NFMetalShield
+  result: NFMetalShield
+  materials:
+    Steel: 600
+    Glass: 200
+
+# region Misc
 - type: latheRecipe
   id: ClothingEyesHudNfsd
   parent: ClothingEyesHudSecurity
@@ -208,3 +637,68 @@
   id: HoloprojectorNfsd
   parent: ClothingEyesHudSecurity
   result: HoloprojectorNfsdEmpty
+
+# region Upstream Removed
+- type: latheRecipe
+  parent: Handcuffs
+  id: NFHandcuffs
+
+- type: latheRecipe
+  parent: Zipties
+  id: NFZipties
+
+- type: latheRecipe
+  parent: Stunbaton
+  id: NFStunbaton
+
+- type: latheRecipe
+  parent: Truncheon
+  id: NFTruncheon
+
+- type: latheRecipe
+  parent: CombatKnife
+  id: NFCombatKnife
+
+- type: latheRecipe
+  parent: ClothingBackpackElectropack
+  id: NFClothingBackpackElectropack
+
+- type: latheRecipe
+  parent: ForensicPad
+  id: NFForensicPad
+
+- type: latheRecipe
+  parent: ClothingEyesHudSecurity
+  id: NFClothingEyesHudSecurity
+
+- type: latheRecipe
+  parent: HoloprojectorSecurity
+  id: NFHoloprojectorSecurityEmpty
+
+- type: latheRecipe
+  parent: RiotShield
+  id: NFRiotShield
+
+- type: latheRecipe
+  parent: TelescopicShield
+  id: NFTelescopicShield
+
+- type: latheRecipe
+  parent: Flash
+  id: NFFlash
+
+- type: latheRecipe
+  parent: TargetHuman
+  id: NFTargetHuman
+
+- type: latheRecipe
+  parent: TargetClown
+  id: NFTargetClown
+
+- type: latheRecipe
+  parent: TargetSyndicate
+  id: NFTargetSyndicate
+
+- type: latheRecipe
+  parent: PortableRecharger
+  id: NFPortableRecharger

@@ -100,7 +100,7 @@
     grindableSolutionName: food
     juiceSolution:
       reagents:
-      - ReagentId: OilVegetable
+      - ReagentId: Cornoil
         Quantity: 5
   - type: Tag
     tags:
@@ -130,12 +130,16 @@
     grindableSolutionName: food
     juiceSolution:
       reagents:
-      - ReagentId: OilVegetable
+      - ReagentId: Cornoil
         Quantity: 2.5
   - type: Tag
     tags:
       - Fruit
       - Slice
+  - type: FoodSequenceElement
+    entries:
+      Taco: Avocado
+      Burger: Avocado
 
 - type: entity
   name: cucumber
@@ -204,6 +208,10 @@
     tags:
       - Vegetable
       - Slice
+  - type: FoodSequenceElement
+    entries:
+      Taco: Cucumber
+      Burger: Cucumber
 
 - type: entity
   name: pickle
@@ -276,6 +284,10 @@
     tags:
       - Vegetable
       - Slice
+  - type: FoodSequenceElement
+    entries:
+      Taco: Pickle
+      Burger: Pickle
 
 - type: entity
   name: honeycomb
@@ -305,6 +317,10 @@
       reagents:
       - ReagentId: Honey
         Quantity: 5
+  - type: FoodSequenceElement
+    entries:
+      Burger: Honeycomb
+      Taco: Honeycomb
 
 - type: entity
   name: sliced potato
@@ -387,6 +403,11 @@
   - type: Construction
     graph: Everyspice
     node: FoodEveryspiceRoasted
+  - type: FoodSequenceElement
+    entries:
+      Burger: Everyspice
+      Skewer: Everyspice
+      Taco: Everyspice
 
 - type: entity
   name: battered onion rings
@@ -439,8 +460,12 @@
       food:
         maxVol: 25
         reagents:
-        - ReagentId: Ook
+        - ReagentId: Primatine
           Quantity: 10
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 1
   - type: Sprite
     sprite: _NF/Objects/Specific/Hydroponics/monkanana.rsi
   - type: Produce
@@ -450,3 +475,8 @@
   - type: Tag
     tags:
       - Fruit
+  - type: FoodSequenceElement
+    entries:
+      Burger: Monkanana
+      Skewer: Monkanana
+      Taco: Monkanana

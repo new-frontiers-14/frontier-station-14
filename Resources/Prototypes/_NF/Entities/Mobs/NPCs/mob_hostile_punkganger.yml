@@ -1,3 +1,4 @@
+#region base
 - type: entity # Spawns random graffiti (even if the mob is dead)
   id: MobVandalizer
   abstract: true
@@ -16,10 +17,12 @@
   name: punk
   abstract: true
   parent:
+  - NFMobNoEquipmentOnGib
+  - MobStaminaFodder
+  - MobMovementSpeedModifierMelee
   - MobHumanoidHostileBase
   - MobVandalizer
   - MobHumanoidInvetory
-  - NFMobRestrictions
   description: |-
    "Criminally-inclined individuals", as NT Security documents call them, these are armed with a variety of weapons. These weapons range from makeshift shivs and machined truncheons to rusty pistols and shotguns. Some may be armored, so plan appropriately.
   components:
@@ -54,12 +57,9 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 # Humans
-## Tier 1
+#region Tier 1
 - type: entity
   id: MobPunkGangerMeleeT1
   parent:
@@ -74,6 +74,7 @@
 - type: entity
   id: MobPunkGangerPistol
   parent:
+  - MobMovementSpeedModifierRanged
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
   categories: [ HideSpawnMenu ]
@@ -85,18 +86,22 @@
     prototypes:
     - PunkGangerGearPistol
   - type: BasicEntityAmmoProvider
-    proto: BulletPistol
+    proto: NFCartridgePistol35
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
     fireRate: 0.5
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
-## Tier 2
+#region Tier 2
 - type: entity
   id: MobPunkGangerMeleeT2
   parent:
@@ -116,29 +121,31 @@
 - type: entity
   id: MobPunkGangerShotgun
   parent:
+  - MobMovementSpeedModifierRanged
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - PunkGangerGearShotgun
   - type: BasicEntityAmmoProvider
-    proto: ShellShotgun
+    proto: NFShellShotgunBuckshot
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
     fireRate: 0.5
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 5
+    angleDecay: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
-## Tier 3
+#region Tier 3
 - type: entity
   id: MobPunkGangerMeleeT3
   parent:
@@ -157,19 +164,17 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierRanged
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
   id: MobPunkGangerSmg
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - PunkGangerGearSmg
   - type: BasicEntityAmmoProvider
-    proto: BulletPistol
+    proto: NFCartridgePistol35
     capacity: 6
     count: 6
   - type: Gun
@@ -184,26 +189,22 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
 
-## Tier 4 - Dungeon boss
+#region Tier 4 - Dungeon boss
 - type: entity
   id: MobPunkGangerLeader
   parent:
   - MobHostileBossBase
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
-  - NFMobBossRestrictions
   name: punk gang leader
   description: It takes a formidable figure to lead a pack of street trash. These leaders usually wield scavenged SMGs and wear armor taken from unfortunate security forces. Usually high on meth and booze.
   categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - PunkGangerGearLaser
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserLow
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -214,8 +215,10 @@
   - type: Gun
     showExamineText: false
     fireRate: 1
-    minAngle: 5
-    maxAngle: 10
+    minAngle: 10
+    maxAngle: 20
+    angleIncrease: 5
+    angleDecay: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -251,8 +254,8 @@
     capacity: 1
     count: 1
   - type: Gun
-    minAngle: 1
-    maxAngle: 5
+    minAngle: 5
+    maxAngle: 15
     fireRate: 1
     selectedMode: FullAuto
     availableModes:

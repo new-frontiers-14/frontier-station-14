@@ -65,6 +65,8 @@
       weight: 0.05
     - id: SheetPlasteel10
       weight: 0.05
+    - id: NFScrapSilver # Frontier
+      weight: 2 # Frontier
 
 - type: entityTable
   id: SalvageScrapLarge
@@ -81,6 +83,13 @@
       weight: 0.5
     - id: ScrapMopBucket
       weight: 0.5
+    - id: NFScrapSolarGlass # Frontier
+    - id: ScrapGenericBrokenMachine # Frontier
+      weight: 0.5 # Frontier
+    - id: ScrapGenericBrokenMachineAncient # Frontier
+      weight: 0.25 # Frontier
+    - id: ScrapGenericMachineAncient # Frontier
+      weight: 0.1 # Frontier
 
 # Treasure: High-value scatterables that don't do a ton.
 
@@ -164,6 +173,12 @@
       weight: 0.005 # Frontier
     - !type:NestedSelector # Frontier
       tableId: TableStashVariety # Frontier
+    - id: ScrapGenericBrokenMachine # Frontier
+      weight: 0.5 # Frontier
+    - id: ScrapGenericBrokenMachineAncient # Frontier
+      weight: 0.25 # Frontier
+    - id: ScrapGenericMachineAncient # Frontier
+      weight: 0.1 # Frontier
 
 - type: entityTable
   id: SalvageTreasureLegendary
@@ -223,7 +238,7 @@
     - id: RadioHandheldNF # Frontier RadioHandheld<RadioHandheldNF
     - id: ClothingBeltUtility
     - id: Floodlight
-    - id: WeaponProtoKineticAccelerator
+    - id: NFWeaponPka # Frontier: WeaponProtoKineticAccelerator<NFWeaponPka
       weight: 0.5
     - id: OxygenTankFilled
     - id: WelderIndustrial
@@ -280,6 +295,11 @@
       children:
       - id: JetpackBlueFilled
       - id: JetpackMiniFilled # Frontier JetpackBlackFilled<JetpackMiniFilled
+    # - !type:GroupSelector # Frontier
+    #   children: # Frontier
+    #   - id: PKAUpgradeDamage # Frontier
+    #   - id: PKAUpgradeRange # Frontier
+    #   - id: PKAUpgradeFireRate # Frontier
     - id: PowerCellAntiqueProto # Frontier
     - id: NFShovel # Frontier
 

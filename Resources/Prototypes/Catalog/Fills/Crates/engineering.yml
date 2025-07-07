@@ -196,15 +196,16 @@
     - id: RCD
 
 - type: entity
+  abstract: true # Frontier
   id: CrateParticleDecelerators
   parent: CrateEngineeringSecure
   name: particle decelerators crate
   description: A crate containing 3 Particle Decelerators.
   components:
   - type: StorageFill
-    contents:
-    - id: WeaponParticleDecelerator
-      amount: 3
+    contents: [] # Frontier
+    # - id: WeaponParticleDecelerator # Frontier
+    #   amount: 3 # Frontier
 
 - type: entity
   id: CrateEngineeringSpaceHeater
@@ -228,6 +229,8 @@
     - id: SignalTimerElectronics
     - id: SMESMachineCircuitboard
     - id: SubstationMachineCircuitboard
+    - id: BorgChargerCircuitboard
+    - id: WeaponCapacitorRechargerCircuitboard # Frontier: CellRechargerCircuitboard<WeaponCapacitorRechargerCircuitboard
     - id: SpaceVillainArcadeComputerCircuitboard
     - id: BlockGameArcadeComputerCircuitboard
 
@@ -242,4 +245,4 @@
       entity_storage: !type:NestedSelector
         tableId: RandomTechBoardTable
         rolls: !type:RangeNumberSelector
-          range: 3, 7
+          range: 6, 8

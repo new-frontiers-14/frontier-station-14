@@ -1,4 +1,4 @@
-# Base prototypes
+# region Base
 
 - type: latheRecipe
   abstract: true
@@ -25,6 +25,14 @@
 
 - type: latheRecipe
   abstract: true
+  id: NFBaseCardboardRecipe
+  parent: NFBaseJumpsuitRecipe
+  materials:
+    Cardboard: 100
+  completetime: 1
+
+- type: latheRecipe
+  abstract: true
   id: NFBaseBootRecipe # And gloves and wallets
   parent: NFBaseJumpsuitRecipe
   materials:
@@ -42,7 +50,118 @@
 
 # Recipes
 
-# Jumpsuits
+# region Hats
+- type: latheRecipe
+  id: ClothingHeadHatMcCrown
+  parent: NFBaseCardboardRecipe
+  result: ClothingHeadHatMcCrown
+  categories:
+  - Brand
+  - ClothesNF
+
+- type: latheRecipe
+  id: ClothingHeadHatSrCap
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatSrCap
+
+- type: latheRecipe
+  id: ClothingHeadHatSrBeret
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatSrBeret
+
+- type: latheRecipe
+  id: ClothingHeadHatNfsdSmallCampaign
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatNfsdSmallCampaign
+
+- type: latheRecipe
+  id: ClothingHeadHatNfsdCampaign
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatNfsdCampaign
+
+- type: latheRecipe
+  id: ClothingHeadHatNfsdBeretGreen
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatNfsdBeretGreen
+
+- type: latheRecipe
+  id: ClothingHeadHatNfsdBeretBrown
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatNfsdBeretBrown
+
+- type: latheRecipe
+  id: ClothingHeadHatNfsdBeretCream
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatNfsdBeretCream
+
+- type: latheRecipe
+  id: ClothingHeadHatStcCap
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatStcCap
+
+- type: latheRecipe
+  id: ClothingHeadHatPirate
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatPirate
+
+- type: latheRecipe
+  id: ClothingHeadHatPirateTricord
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatPirateTricord
+
+- type: latheRecipe
+  id: ClothingHeadHatPirateLuffy
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatPirateLuffy
+
+- type: latheRecipe
+  id: ClothingHeadHatPirates
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadHatPirates
+
+- type: latheRecipe
+  id: ClothingHeadBandSkull
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadBandSkull
+
+- type: latheRecipe
+  id: ClothingHeadBandBlack
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadBandBlack
+
+- type: latheRecipe
+  id: ClothingHeadBandRed
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadBandRed
+
+- type: latheRecipe
+  id: ClothingHeadBandBrown
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadBandBrown
+
+- type: latheRecipe
+  id: ClothingHeadBandGold
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadBandGold
+
+- type: latheRecipe
+  id: ClothingHeadBandGrey
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadBandGrey
+
+- type: latheRecipe
+  id: ClothingHeadBandBlue
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadBandBlue
+
+- type: latheRecipe
+  id: ClothingHeadBandGreen
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingHeadBandGreen
+
+
+
+# region Jumpsuits
 - type: latheRecipe
   id: ClothingUniformRandomPunkTanktop
   parent: NFBaseJumpsuitRecipe
@@ -413,7 +532,72 @@
   parent: NFBaseJumpsuitRecipe
   result: ClothingUniformJumpsuitMilitaryColorYellow
 
-# Jumpskirts
+- type: latheRecipe
+  id: ClothingUniformJumpsuitPrivateSec
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitPrivateSec
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitSr
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitSr
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitMilitarySr
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitMilitarySr
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitMailCarrier
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitMailCarrier
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitNfsd
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitNfsd
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitNfsdShort
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitNfsdShort
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitNfsdTacBlack
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitNfsdTacBlack
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitNfsdTacGray
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitNfsdTacGray
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitNfsdTacCamo
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitNfsdTacCamo
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitNfsdTacCream
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitNfsdTacCream
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitPirate
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitPirate
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitPirateLuffy
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitPirateLuffy
+
+- type: latheRecipe
+  id: ClothingUniformJumpsuitPirateSlops
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpsuitPirateSlops
+
+# region Jumpskirts
 
 - type: latheRecipe
   id: ClothingUniformJumpskirtBlackElegantDress
@@ -606,31 +790,98 @@
   result: ClothingUniformJumpskirtPrivateSec
 
 - type: latheRecipe
-  id: ClothingUniformJumpsuitPrivateSec
+  id: ClothingUniformJumpskirtSr
   parent: NFBaseJumpsuitRecipe
-  result: ClothingUniformJumpsuitPrivateSec
+  result: ClothingUniformJumpskirtSr
+
+- type: latheRecipe
+  id: ClothingUniformJumpskirtMailCarrier
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpskirtMailCarrier
+
+- type: latheRecipe
+  id: ClothingUniformJumpskirtNfsd
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpskirtNfsd
+
+- type: latheRecipe
+  id: ClothingUniformJumpskirtNfsdShort
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformJumpskirtNfsdShort
+
+# region Outer
+
+- type: latheRecipe
+  id: ClothingOuterCoatBomberRandomized
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatBomberRandomized
+
+- type: latheRecipe
+  id: ClothingOuterCoatLettermanRandomized
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatLettermanRandomized
+
+- type: latheRecipe
+  id: ClothingOuterCoatNfsdFormalSheriff
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatNfsdFormalSheriff
+
+- type: latheRecipe
+  id: ClothingOuterCoatNfsdBomber
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatNfsdBomber
+
+- type: latheRecipe
+  id: ClothingOuterCoatNfsdFormal
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatNfsdFormal
 
 - type: latheRecipe
   id: ClothingOuterFlannelRed
-  parent: NFBaseJumpsuitRecipe
+  parent: NFBaseCoatRecipe
   result: ClothingOuterFlannelRed
 
 - type: latheRecipe
   id: ClothingOuterFlannelBlue
-  parent: NFBaseJumpsuitRecipe
+  parent: NFBaseCoatRecipe
   result: ClothingOuterFlannelBlue
 
 - type: latheRecipe
   id: ClothingOuterFlannelGreen
-  parent: NFBaseJumpsuitRecipe
+  parent: NFBaseCoatRecipe
   result: ClothingOuterFlannelGreen
 
 - type: latheRecipe
   id: ClothingOuterHospitalGown
-  parent: NFBaseJumpsuitRecipe
+  parent: NFBaseJumpsuitRecipe # very thin, not a coat
   result: ClothingOuterHospitalGown
 
-# Cloaks
+- type: latheRecipe
+  id: ClothingOuterJacketSr
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterJacketSr
+
+- type: latheRecipe
+  id: ClothingOuterWinterCoatMail
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterWinterCoatMail
+
+- type: latheRecipe
+  id: ClothingOuterCoatPirate
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatPirate
+
+- type: latheRecipe
+  id: ClothingOuterCoatGentle
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatGentle
+
+- type: latheRecipe
+  id: ClothingOuterCoatPirateCaptain
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatPirateCaptain
+
+# region Cloaks
 
 - type: latheRecipe
   id: ClothingNeckCloakAroace
@@ -723,9 +974,19 @@
   result: ClothingNeckCloakSheriff
 
 - type: latheRecipe
+  id: ClothingNeckMantleSheriff
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingNeckMantleSheriff
+
+- type: latheRecipe
   id: ClothingNeckCloakSr
   parent: NFBaseJumpsuitRecipe
   result: ClothingNeckCloakSr
+
+- type: latheRecipe
+  id: ClothingNeckMantleSr
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingNeckMantleSr
 
 - type: latheRecipe
   id: ClothingNeckCloakEnby
@@ -737,7 +998,12 @@
   parent: NFBaseJumpsuitRecipe
   result: ClothingNeckCloakAro
 
-# Syndicate
+- type: latheRecipe
+  id: ClothingNeckCloakPirateCap
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingNeckCloakPirateCap
+
+# region Syndicate
 
 - type: latheRecipe
   id: ClothingUniformJumpsuitParamedicSyndieNF
@@ -759,18 +1025,7 @@
   parent: NFBaseJumpsuitRecipe
   result: ClothingShoesBootsWinterSyndicate
 
-# Coats
-- type: latheRecipe
-  id: ClothingOuterCoatBomberRandomized
-  parent: NFBaseCoatRecipe
-  result: ClothingOuterCoatBomberRandomized
-
-- type: latheRecipe
-  id: ClothingOuterCoatLettermanRandomized
-  parent: NFBaseCoatRecipe
-  result: ClothingOuterCoatLettermanRandomized
-
-# Belts / Webbings
+# region Belts / Webbings
 - type: latheRecipe
   id: ClothingBeltSalvageWebbing
   parent: NFBaseBeltRecipe
@@ -796,7 +1051,16 @@
   parent: NFBaseBeltRecipe
   result: ClothingBeltPunkRandomized
 
-# Pouches
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: ClothingBeltChiefEngineer
+  result: ClothingBeltChiefEngineer
+  completetime: 6
+  materials:
+    Silver: 400
+    Gold: 100
+
+# region Pouches
 - type: latheRecipe
   id: NFPouchUtility
   parent: NFBaseBeltRecipe
@@ -893,15 +1157,11 @@
   result: NFPouchCargo
 
 - type: latheRecipe
-  parent: BaseToolRecipe
-  id: UtilityBeltChiefEngineer
-  result: ClothingBeltChiefEngineer
-  completetime: 6
-  materials:
-    Silver: 400
-    Gold: 100
+  id: NFPouchSr
+  parent: NFBaseBeltRecipe
+  result: NFPouchSr
 
-# Gloves
+# region Gloves
 - type: latheRecipe
   id: ClothingHandsMercenaryGlovesCombat
   parent: NFBaseBootRecipe
@@ -912,7 +1172,22 @@
   parent: NFBaseBootRecipe
   result: ClothingHandsGlovesCombat
 
-# Boots
+- type: latheRecipe
+  id: ClothingHandsGlovesSr
+  parent: NFBaseBootRecipe
+  result: ClothingHandsGlovesSr
+
+- type: latheRecipe
+  id: ClothingHandsGlovesCombatNfsdBrown
+  parent: NFBaseBootRecipe
+  result: ClothingHandsGlovesCombatNfsdBrown
+
+- type: latheRecipe
+  id: ClothingHandsGlovesCombatNfsdCream
+  parent: NFBaseBootRecipe
+  result: ClothingHandsGlovesCombatNfsdCream
+
+# region Boots
 - type: latheRecipe
   id: ClothingShoesBootsMercenary
   parent: NFBaseBootRecipe
@@ -933,7 +1208,42 @@
   parent: NFBaseBootRecipe
   result: ClothingShoesBootsPunkRandomized
 
-# Glasses
+- type: latheRecipe
+  id: ClothingShoesBootsNfsdBrown
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsNfsdBrown
+
+- type: latheRecipe
+  id: ClothingShoesBootsNfsdCream
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsNfsdCream
+
+- type: latheRecipe
+  id: ClothingShoesBootsLaceup
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsLaceup
+
+- type: latheRecipe
+  id: ClothingShoesBootsPirateLuffy
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsPirateLuffy
+
+- type: latheRecipe
+  id: ClothingShoesBootsPirate
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsPirate
+
+- type: latheRecipe
+  id: ClothingShoesBootsCowboyBrown
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsCowboyBrown
+
+- type: latheRecipe
+  id: ClothingShoesBootsCowboyBlack
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsCowboyBlack
+
+# region Glasses
 - type: latheRecipe
   id: ClothingEyesGlassesMercenary
   parent: NFBaseWearableDeviceRecipe
@@ -959,7 +1269,12 @@
   parent: NFBaseWearableDeviceRecipe
   result: ClothingEyesPunkInfoShades
 
-# Wallets
+- type: latheRecipe
+  id: ClothingEyesEyepatch
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingEyesEyepatch
+
+# region Wallets
 - type: latheRecipe
   id: ClothingWalletLeatherBrown
   parent: NFBaseBootRecipe
@@ -969,3 +1284,21 @@
   id: ClothingWalletLeatherBlack
   parent: NFBaseBootRecipe
   result: ClothingWalletLeatherBlack
+
+- type: latheRecipe
+  id: ClothingWalletLeatherMail
+  parent: NFBaseBootRecipe
+  result: ClothingWalletLeatherMail
+
+- type: latheRecipe
+  id: ClothingWalletLeatherPirate
+  parent: NFBaseBootRecipe
+  result: ClothingWalletLeatherPirate
+
+# region Backpacks
+- type: latheRecipe
+  id: ClothingBackpackSatchelLeather
+  parent: NFBaseArmorRecipe
+  result: ClothingBackpackSatchelLeather
+  materials:
+    Cloth: 400

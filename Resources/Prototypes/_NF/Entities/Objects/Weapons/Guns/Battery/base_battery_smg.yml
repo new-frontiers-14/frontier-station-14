@@ -1,0 +1,110 @@
+#region base
+- type: entity
+  id: NFBaseWeaponFrameEnergySubMachineGun
+  parent: [ NFBaseWeaponEncumbranceSubMachineGun, BaseWeaponBatterySmall ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -0.6
+    maxAngle: -2.2
+  - type: Gun
+    projectileSpeed: 30
+    minAngle: 2.5
+    maxAngle: 12.5
+    angleIncrease: 0.7
+    angleDecay: 3.5
+    fireRate: 4.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: Battery # Default: 40 shots with 60 fireCost
+    maxCharge: 2400
+    startingCharge: 2400
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 3 # Default recharge rate: 1 shot per 20 seconds with 60 fireCost
+  - type: StaticPrice
+    price: 350
+  - type: NFWeaponDetails
+    class: weapon-details-class-submachine-gun
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameEnergySubMachineGunNanotrasen
+  parent: NFBaseWeaponFrameEnergySubMachineGun
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 2.9
+    maxAngle: 14.5
+    angleIncrease: 1
+    angleDecay: 3.4
+    fireRate: 3.8
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponEnergySubMachineGunFireModes
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mode-lethal
+      map: ["Firemode"]
+      shader: unshaded
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-low-disabler-pistol
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserLow
+    fireCost: 60
+  - type: EnergyGun
+    fireModes:
+    - proto: NFBulletDisabler
+      fireCost: 60
+      name: disable
+      state: disabler
+    - proto: NFBulletLaserLow
+      fireCost: 60
+      name: harm
+      state: lethal
+  - type: GenericVisualizer
+    visuals:
+      enum.EnergyGunFireModeVisuals.State:
+        Firemode:
+          Disabler: { state: mode-disabler }
+          Lethal: { state: mode-lethal }
+
+- type: entity
+  id: NFBaseWeaponEnergySubMachineGunDisabler
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-disabler-pistol
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletDisabler
+    fireCost: 60

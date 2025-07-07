@@ -1,0 +1,90 @@
+#region frame
+- type: entity
+  id: NFBaseWeaponFrameEnergyRifleSniper
+  parent: [ NFBaseWeaponEncumbranceLauncher, BaseWeaponBattery ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
+  - type: Gun
+    projectileSpeed: 30
+    minAngle: 1
+    maxAngle: 5
+    angleIncrease: 0.3
+    angleDecay: 1.5
+    fireRate: 1.2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.1
+    sprintModifier: 0.1
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 10
+    pvsIncrease: 1
+  - type: Battery # 20 shots
+    maxCharge: 2400
+    startingCharge: 2400
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 6 # 1 shot per 20 seconds
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: NFWeaponDetails
+    class: weapon-details-class-sniper
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameEnergyRifleSniperNanotrasen
+  parent: NFBaseWeaponFrameEnergyRifleSniper
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 1.2
+    maxAngle: 6
+    angleIncrease: 0.4
+    angleDecay: 1.4
+    fireRate: 1
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponEnergyRifleSniperHitScan
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-hitscan-high-p
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedSpecialLaser
+    fireCost: 120
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleSniperHitScanXray
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-hitscan-xray
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: NFXrayLaser
+    fireCost: 120

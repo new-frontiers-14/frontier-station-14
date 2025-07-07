@@ -1,0 +1,133 @@
+#region frame
+- type: entity
+  id: NFBaseWeaponFrameRifle
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseItemWeaponGun ]
+  abstract: true
+  components:
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
+  - type: Gun
+    projectileSpeed: 30
+    minAngle: 1.8
+    maxAngle: 9
+    angleIncrease: 0.5
+    angleDecay: 2.5
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  # - type: CursorOffsetRequiresWield
+  # - type: EyeCursorOffset
+    # maxOffset: 5
+    # pvsIncrease: 0.5
+  - type: StaticPrice
+    price: 400
+  - type: NFWeaponDetails
+    class: weapon-details-class-rifle
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameRifleFrontierGunsmith
+  parent: NFBaseWeaponFrameRifle
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 2.2
+    maxAngle: 11
+    angleIncrease: 1.1
+    angleDecay: 3.5
+    fireRate: 2.4
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
+
+- type: entity
+  id: NFBaseWeaponFrameRifleSteelbolt
+  parent: [ BaseC3PirateContraband, NFBaseWeaponFrameRifle ]
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 2
+    maxAngle: 10
+    angleIncrease: 0.9
+    angleDecay: 3.2
+    fireRate: 2.7
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-steelbolt-tool-forge
+
+- type: entity
+  id: NFBaseWeaponFrameRifleFoamForce
+  parent: NFBaseWeaponFrameRifleFrontierGunsmith
+  abstract: true
+  components:
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-foam-force-llc
+  # - type: EyeCursorOffset
+    # maxOffset: 0
+    # pvsIncrease: 0
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponRifleChamber
+  abstract: true
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: BallisticAmmoProvider
+    capacity: 10
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  id: NFBaseWeaponRifleChamber20
+  parent: NFBaseWeaponRifleChamber
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-20
+  - type: BallisticAmmoProvider
+    capacity: 15
+    proto: NFCartridgeRifle20
+    whitelist:
+      tags:
+      - NFCartridgeRifle20
+
+- type: entity
+  id: NFBaseWeaponRifleChamber30
+  parent: NFBaseWeaponRifleChamber
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-30
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle30
+    whitelist:
+      tags:
+      - NFCartridgeRifle30
+
+- type: entity
+  id: NFBaseWeaponRifleChamberDartFoam
+  parent: NFBaseWeaponRifleChamber
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-foam
+    clumsyProof: true
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticAmmoProvider
+    proto: NFBulletFoam
+    whitelist:
+      tags:
+      - BulletFoam
+  - type: PacifismAllowedGun

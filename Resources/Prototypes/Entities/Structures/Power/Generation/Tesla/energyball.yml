@@ -89,15 +89,21 @@
   - type: ChaoticJump
     jumpMinInterval: 8
     jumpMaxInterval: 15
+  - type: Tag
+    tags:
+    - GhostOnlyWarp
   - type: WarpPoint
     follow: true
     location: tesla ball
+    blacklist:
+      tags:
+      - GhostOnlyWarp
   - type: Sprite
     drawdepth: Effects
     sprite: Structures/Power/Generation/Tesla/energy_ball.rsi
-    shader: unshaded
     layers:
     - state: energy_ball
+      shader: unshaded # Wizden#37444
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/tesla_collapse.ogg
@@ -113,6 +119,13 @@
     - TeslaEngine
     - SingularityTeslaEngine
     - Power
+  # Frontier: tethered danger balls & radar blips
+  - type: DangerTethered
+  - type: RadarBlip
+    scale: 4
+    shape: Star
+    visibleFromOtherGrids: true
+  # End Frontier: tethered danger balls & radar blips
 
 - type: entity
   id: TeslaMiniEnergyBall
@@ -143,8 +156,15 @@
   - type: Sprite
     drawdepth: Effects
     sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
-    shader: unshaded
     layers:
     - state: tesla_projectile
+      shader: unshaded # Wizden#37444
   - type: Electrified
     requirePower: false
+  # Frontier: tethered danger balls & radar blips
+  - type: DangerTethered
+  - type: RadarBlip
+    scale: 2
+    shape: Square # Too small for fine detail
+    visibleFromOtherGrids: true
+  # End Frontier: tethered danger balls & radar blips

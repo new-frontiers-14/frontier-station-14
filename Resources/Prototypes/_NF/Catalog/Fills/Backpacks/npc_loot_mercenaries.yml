@@ -1,9 +1,9 @@
-# BASE
+#region BASE
 ## BACK - for gear and cash
 - type: entity
   parent: BaseItem
   id: MercenaryDuffelGiftBox
-  name: mercanary gear bundle
+  name: mercenary gear bundle
   description: Loot boxes? Here?
   abstract: true
   categories: [ HideSpawnMenu ]
@@ -84,7 +84,7 @@
     - belt
 
 # MERCENARY NPC LOOT
-## TIER 1
+#region TIER 1
 - type: entity
   parent: MercenaryDuffelGiftBox
   id: ClothingBackpackDuffelMecranaryTier1Pistol
@@ -100,7 +100,7 @@
     - id: SpaceCash500
       prob: 0.45
     # Weapons
-    - id: WeaponPistolMk58Expedition
+    - id: NFWeaponPistolMk58Expedition
       prob: 0.9
     # Armor
     - id: ClothingOuterVestWebMercenary
@@ -125,17 +125,17 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: MagazinePistol
+    - id: NFMagazinePistol35Overpressure
       prob: 0.9
-    - id: MagazinePistolEmpty
+    - id: NFMagazinePistol35Empty
       prob: 0.9
-    - id: MagazinePistolEmpty
+    - id: NFMagazinePistol35Empty
       prob: 0.8
-    - id: MagazinePistolEmpty
+    - id: NFMagazinePistol35Empty
       amount: 2
       prob: 0.4
-    - id: MagazineBoxPistol
-      prob: 0.4
+    - id: NFAmmunitionBoxPistol35Overpressure
+      prob: 0.3
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -154,7 +154,7 @@
     - id: SpaceCash500
       prob: 0.45
     # Weapons
-    - id: WeaponRifleNovaliteC1
+    - id: NFWeaponRifleAssaultNovaliteC1Expedition
       prob: 0.9
     # Armor
     - id: ClothingOuterVestWebMercenary
@@ -186,20 +186,20 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: MagazineBoxRifle
+    - id: NFAmmunitionBoxRifle20Overpressure
+      prob: 0.4
+    - id: NFMagazineClipRifle20
       prob: 0.9
-    - id: MagazineNovaliteC1Empty
+    - id: NFMagazineClipRifle20Empty
       prob: 0.9
-    - id: MagazineNovaliteC1Empty
-      prob: 0.9
-    - id: MagazineNovaliteC1
+    - id: NFMagazineClipRifle20Empty
       prob: 0.2
-    - id: MagazineBoxRifleBig
-      prob: 0.2
+    - id: NFAmmunitionBoxBigRifle20Overpressure
+      prob: 0.1
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## TIER 2
+#region TIER 2
 - type: entity
   parent: MercenaryDuffelGiftBox
   id: ClothingBackpackDuffelMecranaryTier2Shotgun
@@ -215,8 +215,8 @@
     - id: SpaceCash500
       prob: 0.45
     # Weapons
-    - id: WeaponShotgunDoubleBarreled
-      prob: 0.9
+    - id: NFWeaponShotgunKammererExpedition
+      prob: 0.6
     # Armor
     - id: ClothingOuterArmorBasicSlim
       prob: 0.4
@@ -247,9 +247,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: BoxLethalshot
-      prob: 0.9
-    - id: BoxLethalshot
+    - id: NFAmmunitionBoxShellShotgunOverpressure
+      prob: 0.4
+    - id: NFAmmunitionBoxShellShotgunOverpressure
       prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -269,9 +269,9 @@
     - id: SpaceCash500
       prob: 0.45
     # Weapons
-    - id: WeaponRevolverArgenti
+    - id: NFWeaponRevolverArgentiExpedition
       prob: 0.9
-    - id: WeaponRevolverArgenti
+    - id: NFWeaponRevolverArgentiExpedition
       prob: 0.3
     # Armor
     - id: ClothingOuterCoatBHTrench
@@ -308,20 +308,20 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-    - id: SpeedLoaderRifleHeavy
+    - id: NFSpeedLoaderPistol35Empty
       prob: 0.9
-    - id: SpeedLoaderRifleHeavy
+    - id: NFSpeedLoaderPistol35Empty
       prob: 0.6
-    - id: SpeedLoaderRifleHeavy
+    - id: NFSpeedLoaderPistol35Empty
       prob: 0.1
-    - id: MagazineBoxRifle
+    - id: NFAmmunitionBoxPistol35Overpressure
       prob: 0.9
-    - id: MagazineBoxRifleBig
+    - id: NFAmmunitionBoxPistol35Overpressure
       prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## TIER 3
+#region TIER 3
 - type: entity
   parent: MercenaryDuffelGiftBox
   id: ClothingBackpackDuffelMecranaryTier3Medic
@@ -337,7 +337,7 @@
     - id: SpaceCash1000
       prob: 0.2
     # Weapons
-    - id: WeaponNFLaserPistol
+    - id: NFWeaponEnergyPistolLaserExpedition
       prob: 0.9
     - id: SawElectric
       prob: 0.7
@@ -409,7 +409,7 @@
     - id: SpaceCash1000
       prob: 0.2
     # Weapons
-    - id: WeaponRifleGestio
+    - id: NFWeaponRifleAssaultGestioExpedition
       prob: 0.9
     # Armor
     # Items
@@ -446,20 +446,20 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-    - id: MagazineLightRifleLowCapacity
-      prob: 0.6
-    - id: MagazineLightRifleLowCapacity
-      prob: 0.6
-    - id: MagazineBoxLightRifle
-      prob: 0.7
+    - id: NFMagazineRifle30Overpressure
+      prob: 0.4
+    - id: NFMagazineRifle30Overpressure
+      prob: 0.2
+    - id: NFAmmunitionBoxRifle30Overpressure
+      prob: 0.3
     - id: Tourniquet
       prob: 0.4
-    - id: MagazineBoxLightRifleBig
-      prob: 0.2
+    - id: NFAmmunitionBoxBigRifle30Overpressure
+      prob: 0.1
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-## TIER 4
+#region TIER 4
 - type: entity
   parent: MercenaryDuffelGiftBox
   id: ClothingBackpackDuffelMecranaryTier4Captain
@@ -508,20 +508,20 @@
     - id: SpaceCash2500
       prob: 0.1
     # Weapons
-    - id: WeaponSniperRepeaterExpedition
+    - id: NFWeaponRifleRepeaterExpedition
       prob: 0.9
     # Armor
     - id: ClothingOuterArmorBulletproof
       prob: 0.4
     # Items
-    - id: MagazineBoxMagnum
-      prob: 0.9
-    - id: MagazineBoxMagnum
-      prob: 0.4
+    - id: NFAmmunitionBoxBigRifle30Overpressure
+      prob: 0.7
+    - id: NFAmmunitionBoxBigRifle30Overpressure
+      prob: 0.3
     - id: ClothingNeckIFFNeutral
       prob: 0.2
-    - id: MagazineBoxMagnum
-      prob: 0.2
+    - id: NFAmmunitionBoxBigRifle30Overpressure
+      prob: 0.1
     - id: AmmoTechFabCircuitboard
       prob: 0.1
     # Bonus Loot T4
@@ -537,6 +537,6 @@
       amount: 3
       prob: 0.7
     - id: SpawnDungeonLootVaultGuns
-      prob: 0.4
+      prob: 0.3
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg

@@ -1,0 +1,45 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+
+- type: vessel
+  id: Caladrius
+  parent: BaseVessel
+  name: FSB Caladrius
+  description: A medical carrier produced by the Far Star Biotech corporation. Designed for large scale colonization support, humanitarian relief and post-disaster investigation and recovery operations.
+  price: 200000 # 133217 0.5 199825.5
+  category: Large
+  group: Medical
+  shuttlePath: /Maps/_NF/Shuttles/caladrius.yml
+  guidebookPage: ShipyardCaladrius
+  class:
+  - Medical
+  engine:
+  - Bananium
+
+- type: gameMap
+  id: Caladrius
+  mapName: 'FSB Caladrius'
+  mapPath: /Maps/_NF/Shuttles/caladrius.yml
+  minPlayers: 0
+  stations:
+    Caladrius:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Caladrius {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]

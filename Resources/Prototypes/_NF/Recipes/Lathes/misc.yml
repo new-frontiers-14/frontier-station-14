@@ -133,7 +133,12 @@
   result: ClothingNeckIFFPurple
   parent: NFWearableIFFRecipe
 
-- type: latheRecipe # Remove this ones we have a black crystal
+- type: latheRecipe
+  id: ClothingShoesBootsMag
+  result: ClothingShoesBootsMag
+  parent: ClothingShoesBootsMagSci
+
+- type: latheRecipe
   id: LightTubeUltraviolet
   result: LightTubeUltraviolet
   parent: NFBaseLightTubeRecipe
@@ -153,3 +158,43 @@
   completetime: 2
   materials:
     Steel: 600
+
+# Toys
+- type: latheRecipe
+  id: MysteryFigureBox
+  result: MysteryFigureBox
+  completetime: 2
+  applyMaterialDiscount: false
+  categories:
+  - Brand
+  - General
+  materials:
+    Plastic: 200
+    Cardboard: 100
+
+- type: latheRecipe
+  id: SpaceBladeMc
+  result: SpaceBladeMc
+  completetime: 2
+  applyMaterialDiscount: false
+  categories:
+  - Brand
+  - General
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  id: FoamCutlass
+  result: FoamCutlass
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    Plastic: 300
+
+- type: latheRecipe
+  id: PirateHandyFlag
+  result: PirateHandyFlag
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    Cloth: 300

@@ -1,4 +1,4 @@
-# Contractor
+# region Civilian
 - type: roleLoadout
   id: JobContractor
   groups:
@@ -24,7 +24,6 @@
   - ContractorHandItems
   - NFSpeciesSpecific
 
-# Pilot
 - type: roleLoadout
   id: JobPilot
   groups:
@@ -50,7 +49,6 @@
   - ContractorHandItems
   - NFSpeciesSpecific
 
-# Mercenary
 - type: roleLoadout
   id: JobMercenary
   groups:
@@ -76,7 +74,7 @@
   - ContractorHandItems
   - NFSpeciesSpecific
 
-# Frontier
+# region Frontier
 - type: roleLoadout
   id: JobValet
   groups:
@@ -211,6 +209,7 @@
   - ContractorHandItems
   - NFSpeciesSpecific
 
+# region Misc
 - type: roleLoadout
   id: JobDirectorOfCare
   groups:
@@ -236,7 +235,56 @@
   - ContractorHandItems
   - NFSpeciesSpecific
 
-# Nfsd
+- type: roleLoadout
+  id: JobPlantManager
+  groups:
+  - PlantManagerHead
+  - PlantManagerNeck
+  - PlantManagerJumpsuit
+  - EngineeringGloves
+  - PlantManagerBackpack
+  - PlantManagerOuterClothing
+  - EngineeringForcedOuterClothing
+  - PlantManagerShoes
+  - EngineeringFace
+  - PlantManagerGlasses
+  - PlantManagerBelt
+  - PlantManagerEars
+  - ContractorBoxSurvival
+  - PlantManagerPDA
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorEncryptionKey
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific
+
+- type: roleLoadout
+  id: JobPlantTechnician
+  groups:
+  - EngineeringHead
+  - EngineeringJumpsuit
+  - EngineeringGloves
+  - EngineeringBackpack
+  - EngineeringOuterClothing
+  - EngineeringForcedOuterClothing
+  - EngineeringShoes
+  - EngineeringFace
+  - EngineeringGlasses
+  - EngineeringBelt
+  - EngineeringEars
+  - ContractorBoxSurvival
+  - PlantTechnicianPDA
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorEncryptionKey
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific
+
+# region NFSD
 - type: roleLoadout
   id: JobCadet
   groups:
@@ -460,7 +508,7 @@
   - ContractorHandItems
   - NfsdSpeciesSpecific
 
-# NFPirate
+# region NFPirate
 
 - type: roleLoadout
   id: JobNFPirate
@@ -473,6 +521,7 @@
   - NFPirateForcedOuterClothing
   - NFPirateShoes
   - NFPirateFace
+  - NFPirateEars
   - ContractorBoxSurvival
   - NFPiratePDA
   - ContractorWallet
@@ -493,6 +542,7 @@
   - NFPirateForcedOuterClothing
   - NFPirateShoes
   - NFPirateFace
+  - NFPirateEars
   - ContractorBoxSurvival
   - NFPirateFirstMatePDA
   - ContractorWallet
@@ -513,6 +563,7 @@
   - NFPirateForcedOuterClothing
   - NFPirateShoes
   - NFPirateFace
+  - NFPirateCaptainEars
   - ContractorBoxSurvival
   - NFPirateCaptainPDA
   - PirateCaptainWallet
@@ -521,7 +572,7 @@
   - NFSpeciesSpecific
   canCustomizeName: true # pseudonym?
 
-# Prisoner
+# region Prisoner
 
 - type: roleLoadout
   id: JobPrisoner
@@ -536,4 +587,5 @@
   - PrisonerFace
   - PrisonerSurvival
   - PrisonerPDA
+  - PrisonerWallet
   - NFSpeciesSpecific

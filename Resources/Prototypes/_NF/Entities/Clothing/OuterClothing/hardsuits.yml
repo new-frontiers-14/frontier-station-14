@@ -380,7 +380,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitTacticalMaid
 
 - type: entity
-  parent: [BaseC3PirateContraband, ClothingOuterHardsuitBaseNF]
+  parent: [BaseC3PirateContraband, ClothingOuterHardsuitBaseNF, ContrabandClothing]
   id: ClothingOuterHardsuitPirateElite
   name: elite pirate hardsuit
   description: An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
@@ -405,3 +405,35 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.75
+
+#Wizard Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: BaseMagicalContraband<BaseC3WizardContraband, ContrabandClothing as parent
+  id: ClothingOuterHardsuitWizardBrick
+  name: brick wizard hardsuit
+  description: A weird hardsuit with ornaments made of baked clay and magical gemstones.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/brickwizard.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/brickwizard.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Radiation: 0.5
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitWizardBrick
