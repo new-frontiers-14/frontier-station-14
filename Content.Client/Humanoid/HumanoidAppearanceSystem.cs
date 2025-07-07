@@ -389,7 +389,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 			if (markingPrototype.Shader != null)
 			{
 			// use spriteComponent's layersetshader function to set the layer's shader to that which is specified.
-				_sprite.LayerSetShader(layerId, markingPrototype.Shader);
+                //TODO: Frontier: re-implement layersetshader
+				//_sprite.LayerSetShader(layerId, markingPrototype.Shader);
 			}
             // impstation edit end
 
