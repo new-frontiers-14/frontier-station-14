@@ -18,7 +18,7 @@ public sealed partial class CCVars
     ///     Guide Entry Prototype ID to be displayed as the server rules.
     /// </summary>
     public static readonly CVarDef<string> RulesFile =
-        CVarDef.Create("server.rules_file", "FrontierRuleset", CVar.REPLICATED | CVar.SERVER); // Frontier: Rules
+        CVarDef.Create("server.rules_file", "ScavstationRuleset", CVar.REPLICATED | CVar.SERVER); // Scavstation: Rules
 
     /// <summary>
     ///     Guide entry that is displayed by default when a guide is opened.
