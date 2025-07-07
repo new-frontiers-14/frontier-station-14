@@ -31,8 +31,12 @@
         !type:SectorBankAccountInfo
         balance: 8000
         increasePerSecond: 6 # 21.6K per hour, a bit over for the DOC MOM's wage.
+      Edison:
+        !type:SectorBankAccountInfo
+        balance: 8000
+        increasePerSecond: 1 # A trickle - generate your own power to sell for stuff.
 
- # A global source of character records (DNA, fingerprints, criminal records, etc.)
+# A global source of character records (DNA, fingerprints, criminal records, etc.)
 - type: sectorService
   id: SectorRecords
   components:

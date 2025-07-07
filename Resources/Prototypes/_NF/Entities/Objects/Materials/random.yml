@@ -1,0 +1,397 @@
+#region Base
+# All bases must not be map savable
+- type: entity
+  save: false
+  id: BaseStackRandom
+  abstract: true
+  suffix: Random
+  components:
+  - type: RandomStackCount # Avg: 17.5<20
+    min: 10 # 5<10
+    max: 30
+
+- type: entity
+  save: false
+  id: BaseStackRandomReduced
+  abstract: true
+  suffix: Random, Reduced
+  components:
+  - type: RandomStackCount # Avg: 9<15
+    min: 6 # 3<6
+    max: 24 # 15<24
+
+- type: entity
+  save: false
+  id: BaseStackRandomLow
+  abstract: true
+  suffix: Random, Low
+  components:
+  - type: RandomStackCount # Avg: 5<10
+    min: 4 # 2<4
+    max: 16 # 8<16
+
+- type: entity
+  save: false
+  id: BaseStackRandomVeryLow
+  abstract: true
+  suffix: Random, Very Low
+  components:
+  - type: RandomStackCount # Avg: 3
+    min: 1
+    max: 5
+
+#region Normal
+- type: entity
+  parent: [BaseStackRandom, PartRodMetal1]
+  id: PartRodMetalRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetSteel1]
+  id: SheetSteelRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetGlass1]
+  id: SheetGlassRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetBrass1]
+  id: SheetBrassRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetRGlass1]
+  id: SheetRGlassRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetPlasteel1]
+  id: SheetPlasteelRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetPlastic1]
+  id: SheetPlasticRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetPlasma1]
+  id: SheetPlasmaRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetUranium1]
+  id: SheetUraniumRandom
+
+- type: entity
+  parent: [BaseStackRandom, IngotSilver1]
+  id: IngotSilverRandom
+
+- type: entity
+  parent: [BaseStackRandom, IngotGold1]
+  id: IngotGoldRandom
+
+- type: entity
+  parent: [BaseStackRandom, MaterialBananium1]
+  id: MaterialBananiumRandom
+
+- type: entity
+  parent: [BaseStackRandom, MaterialCloth1]
+  id: MaterialClothRandom
+
+- type: entity
+  parent: [BaseStackRandom, MaterialDurathread1]
+  id: MaterialDurathreadRandom
+
+- type: entity
+  parent: [BaseStackRandom, MaterialWoodPlank1]
+  id: MaterialWoodPlankRandom
+
+- type: entity
+  parent: [BaseStackRandom, MaterialCardboard1]
+  id: MaterialCardboardRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetUGlass1]
+  id: SheetUGlassRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetPGlass1]
+  id: SheetPGlassRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetRUGlass1]
+  id: SheetRUGlassRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetRPGlass1]
+  id: SheetRPGlassRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetClockworkGlass1]
+  id: SheetClockworkGlassRandom
+
+- type: entity
+  parent: [BaseStackRandom, SheetPaper1]
+  id: SheetPaperRandom
+
+- type: entity
+  parent: [BaseStackRandom, CableHVStack1]
+  id: CableHVStackRandom
+
+- type: entity
+  parent: [BaseStackRandom, CableMVStack1]
+  id: CableMVStackRandom
+
+- type: entity
+  parent: [BaseStackRandom, CableApcStack1]
+  id: CableApcStackRandom
+
+#region Reduced
+- type: entity
+  parent: [BaseStackRandomReduced, PartRodMetal1]
+  id: PartRodMetalRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetSteel1]
+  id: SheetSteelRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetGlass1]
+  id: SheetGlassRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetBrass1]
+  id: SheetBrassRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetRGlass1]
+  id: SheetRGlassRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetPlasteel1]
+  id: SheetPlasteelRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetPlastic1]
+  id: SheetPlasticRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetPlasma1]
+  id: SheetPlasmaRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetUranium1]
+  id: SheetUraniumRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, IngotSilver1]
+  id: IngotSilverRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, IngotGold1]
+  id: IngotGoldRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, MaterialBananium1]
+  id: MaterialBananiumRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, MaterialCloth1]
+  id: MaterialClothRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, MaterialDurathread1]
+  id: MaterialDurathreadRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, MaterialWoodPlank1]
+  id: MaterialWoodPlankRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, MaterialCardboard1]
+  id: MaterialCardboardRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetUGlass1]
+  id: SheetUGlassRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetPGlass1]
+  id: SheetPGlassRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetRUGlass1]
+  id: SheetRUGlassRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetRPGlass1]
+  id: SheetRPGlassRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetClockworkGlass1]
+  id: SheetClockworkGlassRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, SheetPaper1]
+  id: SheetPaperRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, CableHVStack1]
+  id: CableHVStackRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, CableMVStack1]
+  id: CableMVStackRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, CableApcStack1]
+  id: CableApcStackRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, MaterialBluespace1]
+  id: MaterialBluespaceRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, MaterialDiamond1]
+  id: MaterialDiamondRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, MaterialBones1]
+  id: MaterialBonesRandomReduced
+
+- type: entity
+  parent: [BaseStackRandomReduced, ArtifactFragment]
+  id: ArtifactFragmentRandomReduced
+
+#region Low
+- type: entity
+  parent: [BaseStackRandomLow, PartRodMetal1]
+  id: PartRodMetalRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetSteel1]
+  id: SheetSteelRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetGlass1]
+  id: SheetGlassRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetBrass1]
+  id: SheetBrassRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetRGlass1]
+  id: SheetRGlassRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetPlasteel1]
+  id: SheetPlasteelRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetPlastic1]
+  id: SheetPlasticRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetPlasma1]
+  id: SheetPlasmaRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetUranium1]
+  id: SheetUraniumRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, IngotSilver1]
+  id: IngotSilverRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, IngotGold1]
+  id: IngotGoldRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, MaterialBananium1]
+  id: MaterialBananiumRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, MaterialCloth1]
+  id: MaterialClothRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, MaterialDurathread1]
+  id: MaterialDurathreadRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, MaterialWoodPlank1]
+  id: MaterialWoodPlankRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, MaterialCardboard1]
+  id: MaterialCardboardRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetUGlass1]
+  id: SheetUGlassRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetPGlass1]
+  id: SheetPGlassRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetRUGlass1]
+  id: SheetRUGlassRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetRPGlass1]
+  id: SheetRPGlassRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetClockworkGlass1]
+  id: SheetClockworkGlassRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, SheetPaper1]
+  id: SheetPaperRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, CableHVStack1]
+  id: CableHVStackRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, CableMVStack1]
+  id: CableMVStackRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, CableApcStack1]
+  id: CableApcStackRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, MaterialBluespace1]
+  id: MaterialBluespaceRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, MaterialDiamond1]
+  id: MaterialDiamondRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, MaterialBones1]
+  id: MaterialBonesRandomLow
+
+- type: entity
+  parent: [BaseStackRandomLow, ArtifactFragment]
+  id: ArtifactFragmentRandomLow
+
+#region Very Low
+- type: entity
+  parent: [BaseStackRandomVeryLow, MaterialBananium1]
+  id: MaterialBananiumRandomVeryLow
+
+- type: entity
+  parent: [BaseStackRandomVeryLow, MaterialBluespace1]
+  id: MaterialBluespaceRandomVeryLow
+
+- type: entity
+  parent: [BaseStackRandomVeryLow, MaterialDiamond1]
+  id: MaterialDiamondRandomVeryLow
+
+- type: entity
+  parent: [BaseStackRandomVeryLow, MaterialBones1]
+  id: MaterialBonesRandomVeryLow
+
+- type: entity
+  parent: [BaseStackRandomVeryLow, ArtifactFragment]
+  id: ArtifactFragmentRandomVeryLow
