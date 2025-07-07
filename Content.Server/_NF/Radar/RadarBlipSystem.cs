@@ -15,7 +15,7 @@ namespace Content.Server._NF.Radar;
 /// <remarks>
 /// Ported from Monolith's RadarBlipsSystem.
 /// </remarks>
-public sealed partial class RadarBlipSystem : EntitySystem
+public sealed partial class RadarBlipSystem : SharedRadarBlipSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
@@ -33,8 +33,6 @@ public sealed partial class RadarBlipSystem : EntitySystem
         SubscribeNetworkEvent<RequestBlipsEvent>(OnBlipsRequested);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
-        SubscribeLocalEvent<ActiveJetpackComponent, ComponentStartup>(OnJetpackActivated);
-        SubscribeLocalEvent<ActiveJetpackComponent, ComponentShutdown>(OnJetpackDeactivated);
     }
 
     /// <summary>
@@ -145,22 +143,6 @@ public sealed partial class RadarBlipSystem : EntitySystem
         blip.Scale = scale;
         blip.VisibleFromOtherGrids = visibleFromOtherGrids;
         blip.RequireNoGrid = requireNoGrid;
-    }
-
-    /// <summary>
-    /// Adds radar blip to jetpacks when they are activated.
-    /// </summary>
-    private void OnJetpackActivated(EntityUid uid, ActiveJetpackComponent component, ComponentStartup args)
-    {
-        SetupRadarBlip(uid, Color.Cyan, 1f, true, true);
-    }
-
-    /// <summary>
-    /// Removes radar blip from jetpacks when they are deactivated.
-    /// </summary>
-    private void OnJetpackDeactivated(EntityUid uid, ActiveJetpackComponent component, ComponentShutdown args)
-    {
-        RemComp<RadarBlipComponent>(uid);
     }
 
     /// <summary>

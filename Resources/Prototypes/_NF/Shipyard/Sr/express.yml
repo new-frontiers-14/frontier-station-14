@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: dustylens
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Express
+  parent: BaseVessel
+  name: FSB Express
+  description: A small endurance shuttle for express logistics support in Frontier space.
+  price: 16500
+  category: Small
+  group: Sr
+  access: Mail
+  shuttlePath: /Maps/_NF/Shuttles/Sr/express.yml
+  guidebookPage: Null
+  class:
+  - Cargo
+  engine:
+  - Plasma
+  - Solar
+
+- type: gameMap
+  id: Express
+  mapName: 'FSB Express'
+  mapPath: /Maps/_NF/Shuttles/Sr/express.yml
+  minPlayers: 0
+  stations:
+    Express:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Express {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
