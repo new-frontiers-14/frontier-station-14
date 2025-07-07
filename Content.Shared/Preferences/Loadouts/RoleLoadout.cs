@@ -378,12 +378,10 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             return true;
         }
 
-        // Frontier: add hide effects
         foreach (var effect in loadoutProto.HideEffects)
         {
-            if (!effect.Validate(profile, this, session, collection, out var _)) {
+            if (!effect.Validate(profile, this, session, collection, out var _))
                 return true;
-            }
         }
 
         return false;
