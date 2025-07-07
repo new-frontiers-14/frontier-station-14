@@ -22,7 +22,7 @@ public sealed partial class MainMenuControl : Control
         LayoutContainer.SetMarginTop(VBox, 30);
         LayoutContainer.SetGrowHorizontal(VBox, LayoutContainer.GrowDirection.Begin);
 
-        var logoTexture = resCache.GetResource<TextureResource>("/Textures/_NF/Logo/logo.png"); // Frontier: add _NF
+        var logoTexture = resCache.GetResource<TextureResource>("/Textures/_Scav/Logo/logo.png"); // Scav: add _Scav
         Logo.Texture = logoTexture;
 
         var currentUserName = configMan.GetCVar(CVars.PlayerName);
