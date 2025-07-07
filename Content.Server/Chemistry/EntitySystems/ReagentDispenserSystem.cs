@@ -304,7 +304,9 @@ namespace Content.Server.Chemistry.EntitySystems
 
         private void OnUpgradeExamine(EntityUid uid, ReagentDispenserComponent component, UpgradeExamineEvent args)
         {
+            /*
             args.AddNumberUpgrade("reagent-dispenser-component-examine-extra-slots", component.NumSlots - component.BaseNumStorageSlots);
+            */
         }
         // End Frontier
     }
