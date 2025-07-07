@@ -23,7 +23,7 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
     public static readonly Color DefaultBorderColor = Color.FromHex("#4972A1");
     public static readonly Color DefaultHoveredColor = Color.FromHex("#4972A1");
 
-    public Color Color = DefaultColor;
+    public Color BackgroundColor = DefaultColor;
     public Color BorderColor = DefaultBorderColor;
     public Color HoveredColor = DefaultHoveredColor;
     public Color SelectedColor = DefaultHoveredColor;
@@ -80,32 +80,29 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         Button.OnPressed += Selected;
         Button.OnDrawModeChanged += UpdateColor;
 
-        // Set colors - use discipline color for background, availability state colors for borders
-        Color availabilityBackgroundColor;
-        Color availabilityHoveredColor;
-        Color availabilityBorderColor;
-
-        (availabilityBackgroundColor, availabilityHoveredColor, availabilityBorderColor) = availability switch
+        // Set colors - only border color varies by availability state
+        var availabilityBorderColor = availability switch
         {
-            ResearchAvailability.Researched => (Color.DarkOliveGreen, Color.PaleGreen, Color.LimeGreen),
-            ResearchAvailability.Available => (Color.FromHex("#7c7d2a"), Color.FromHex("#ecfa52"), Color.FromHex("#e8fa25")),
-            ResearchAvailability.PrereqsMet => (Color.FromHex("#6b572f"), Color.FromHex("#fad398"), Color.FromHex("#cca031")),
-            ResearchAvailability.Unavailable => (Color.DarkRed, Color.PaleVioletRed, Color.Crimson),
-            _ => (Color.DarkRed, Color.PaleVioletRed, Color.Crimson)
+            ResearchAvailability.Researched => Color.LimeGreen,
+            ResearchAvailability.Available => Color.FromHex("#e8fa25"),
+            ResearchAvailability.PrereqsMet => Color.FromHex("#cca031"),
+            ResearchAvailability.Unavailable => Color.Crimson,
+            _ => Color.Crimson
         };
 
-        // Background uses discipline color, Border uses availability state color
-        Color = disciplineColor;
+        // Background always uses discipline color
+        BackgroundColor = disciplineColor;
         // Create a brighter version of the discipline color for hover by interpolating with white
         HoveredColor = Color.InterpolateBetween(disciplineColor, Color.White, 0.3f);
         // Create an even brighter version for selection (persistent bright highlight)
         SelectedColor = Color.InterpolateBetween(disciplineColor, Color.White, 0.5f);
+        // Only border color varies by availability
         BorderColor = availabilityBorderColor;
 
         // Create rounded style box with 8px corner radius and thick border
         var roundedStyle = new RoundedStyleBoxFlat
         {
-            BackgroundColor = Color,
+            BackgroundColor = BackgroundColor,
             BorderColor = BorderColor,
             BorderThickness = new Thickness(2.5f),
             CornerRadius = 8f
@@ -125,7 +122,7 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
             else if (Button.IsHovered)
                 panel.BackgroundColor = HoveredColor;
             else
-                panel.BackgroundColor = Color;
+                panel.BackgroundColor = BackgroundColor;
 
             panel.BorderColor = BorderColor;
         }
