@@ -30,12 +30,12 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 5; // Frontier: 3<5
+    private const int MissionLimit = 6; // Frontier: 3<6
 
     private readonly JobQueue _salvageQueue = new();
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
     private const double SalvageJobTime = 0.002;
-    private readonly List<(ProtoId<SalvageDifficultyPrototype> id, int value)> _missionDifficulties = [("NFModerate", 0), ("NFHazardous", 1), ("NFExtreme", 2)]; // Frontier: mission difficulties with order
+    private readonly List<(ProtoId<SalvageDifficultyPrototype> id, int value)> _missionDifficulties = [("NFModerate", 0), ("NFHazardous", 1), ("NFExtreme", 2), ("NFImpossible", 3)]; // Frontier: mission difficulties with order
 
     [Dependency] private readonly IConfigurationManager _cfgManager = default!; // Frontier
 
