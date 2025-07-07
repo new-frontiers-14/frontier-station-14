@@ -109,11 +109,15 @@ namespace Content.Client.IconSmoothing
         // Frontier: set layer function to remove redundancy
         private void SetCornerLayerState(Entity<SpriteComponent?> sprite, CornerLayers corner, DirectionOffset offset, string state)
         {
+            //TODO: Frontier: restore this
+
+            /*
             if (_sprite.LayerMapTryGet(corner, out var layer))
                 _sprite.LayerSetState(sprite, layer, state);
             else
                 _sprite.LayerMapSet(corner, _sprite.AddRsiLayer(sprite, state));
             _sprite.LayerSetDirOffset(sprite, corner, offset);
+            */
         }
         // End Frontier: set layer function to remove redundancy
 
