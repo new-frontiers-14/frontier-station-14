@@ -1,5 +1,6 @@
 <PanelContainer xmlns="https://spacestation14.io"
                 xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                 HorizontalExpand="True">
     <BoxContainer Orientation="Horizontal"
                   HorizontalExpand="True">
@@ -12,7 +13,7 @@
             Align="Right"
             Margin="0 0 5 0"
             HorizontalAlignment="Right" /> <!-- Right margin to account for scroll bar -->
-        <Button Name="Purchase"
+        <controls:ConfirmButton Name="Purchase"
             Access="Public"
             ToolTip=""
             Text="{Loc 'shipyard-console-purchase-available'}"
@@ -21,7 +22,7 @@
             HorizontalAlignment="Right" /> <!-- 130 px: approximate width of "Purchase"-->
         <Button Name="Guidebook"
             Access="Public"
-            Text="{Loc 'shipyard-console-guidebook'}" 
+            Text="{Loc 'shipyard-console-guidebook'}"
             StyleClasses="LabelSubText"
             Margin="0 0 12 0"
             HorizontalAlignment="Right" /> <!-- Left margin only -->
