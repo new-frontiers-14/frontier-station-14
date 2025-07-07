@@ -31,7 +31,6 @@ using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared.StatusEffect; // Frontier
 
 namespace Content.Server.NPC.Systems;
 
@@ -377,12 +376,6 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                     return 0f;
                 }
-            // Frontier: stun conditions
-            case TargetIsNotStunnedCon:
-                {
-                    return HasComp<StunnedComponent>(targetUid) ? 0f : 1f;
-                }
-            // End Frontier
             default:
                 throw new NotImplementedException();
         }
