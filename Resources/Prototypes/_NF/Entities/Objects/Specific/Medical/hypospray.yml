@@ -153,7 +153,7 @@
   name: stimulant auto-injector
   parent: NFChemicalMedipen
   id: StimulantAutoInjector
-  description: A rapid dose of potent stimulants to give you the edge over your foes.
+  description: A rapid dose of potent stimulants and governing agents. Contains desoxyephedrine and dylovene. Use with extreme caution.
   components:
   - type: Item
     inhandVisuals:
@@ -175,13 +175,15 @@
   - type: SolutionContainerVisuals
     emptySpriteName: stimulantpen_empty
   - type: Hypospray
-    transferAmount: 10
+    transferAmount: 20
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 10
+        maxVol: 20
         reagents:
-        - ReagentId: Ephedrine
+        - ReagentId: Desoxyephedrine
+          Quantity: 10
+        - ReagentId: Dylovene
           Quantity: 10
 
 - type: entity
@@ -220,6 +222,42 @@
           Quantity: 10
         - ReagentId: DexalinPlus
           Quantity: 10
+
+- type: entity
+  name: ephedrine auto-injector
+  parent: NFChemicalMedipen
+  id: EphedrineAutoInjector
+  description: A measured dose of legal stimulants to give you the edge in any confrontration.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#5ac8d1"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#5ac8d1"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: ephedrinepen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: ephedrinepen_empty
+  - type: Hypospray
+    transferAmount: 10
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 10
+        reagents:
+        - ReagentId: Ephedrine
+          Quantity: 10
+
 
 - type: entity
   name: lacerinol auto-injector
