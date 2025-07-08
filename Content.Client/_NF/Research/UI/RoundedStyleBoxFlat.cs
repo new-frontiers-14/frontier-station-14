@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Numerics;
 using Robust.Client.Graphics;
-using Robust.Shared.Maths;
 
-namespace Content.Client._Goobstation.Research.UI;
+namespace Content.Client._NF.Research.UI;
 
 /// <summary>
 /// A StyleBoxFlat with rounded corners support
