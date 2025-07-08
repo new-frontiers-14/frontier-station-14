@@ -1,0 +1,28 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      SetSize="400 120">
+    <BoxContainer Orientation="Vertical" Margin="10" HorizontalExpand="True">
+        <!-- Load controls -->
+        <BoxContainer Orientation="Horizontal">
+            <Label Name="Text" Text="{Loc 'adjustable-power-set-load'}" StyleClasses="LabelKeyText"/>
+            <LineEdit Name="Load" HorizontalExpand="True" MinSize="70 0" Margin="5 0 5 0"/>
+            <OptionButton Name="PowerDropDown"/>
+            <Button Name="SubmitButton" Text="{Loc 'adjustable-power-submit'}" Margin="5 0 0 0"/>
+        </BoxContainer>
+        <!-- Power enable, unsaved change warning -->
+        <BoxContainer Orientation="Horizontal" Margin="0 5 0 5" HorizontalExpand="True">
+            <Label Name="UnsavedChanges"
+                    Text="{Loc 'adjustable-power-unsaved-changes'}"
+                    Visible="False"
+                    HorizontalAlignment="Right"
+                    FontColorOverride="yellow"
+                    Margin="0 0 5 0"/>
+            <Label Text="{Loc 'adjustable-power-status-label'}" StyleClasses="LabelKeyText" Margin="0 0 5 0" HorizontalAlignment="Right" HorizontalExpand="True"/>
+            <Button Name="TogglePowerButton" Text="{Loc 'adjustable-power-status-enabled'}" HorizontalAlignment="Right"/>
+        </BoxContainer>
+        <!-- Arbitrary BUI text -->
+        <BoxContainer Orientation="Horizontal">
+            <RichTextLabel Name="ArbitraryText" Visible="False"/>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>
