@@ -62,7 +62,7 @@ accent-scandinavian-words-20 = lemons
 accent-scandinavian-words-replace-20 = citroner
 
 accent-scandinavian-words-21 = oh my god
-accent-scandinavian-words-21-b = oh my lord
+accent-scandinavian-words-21-2 = oh my lord
 accent-scandinavian-words-replace-21 = herregud
 
 accent-scandinavian-words-22 = fish
@@ -110,7 +110,7 @@ accent-scandinavian-words-34 = fucking
 accent-scandinavian-words-replace-34 = borking
 
 accent-scandinavian-words-35 = pig
-accent-scandinavian-words-35-b = pigs
+accent-scandinavian-words-35-2 = pigs
 accent-scandinavian-words-replace-35 = svin
 
 accent-scandinavian-words-36 = snake
