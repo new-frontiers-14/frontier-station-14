@@ -176,7 +176,7 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: combatcat
+        Base: crimecat
   - type: GhostRole
     name: ghost-role-information-elcapo-name
     description: ghost-role-information-elcapo-description
@@ -190,6 +190,54 @@
   - type: NpcFactionMember
     factions:
     - Cat
+
+- type: entity
+  id: MobCatCurie
+  parent: [NFMobPet, MobAdultSlimes, MobCatGhost]
+  name: Curie
+  description: Slime? Cat? What are you?
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: slimecat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slimecat
+  - type: GhostRole
+    name: ghost-role-information-curie-name
+    description: ghost-role-information-curie-description
+    rules: ghost-role-information-nonantagonist-rules
+    prototype: CatCurie
+    mindRoles: [ MindRoleGhostRoleNeutral ]
+  - type: Loadout
+    prototypes: [ MobCurieGear ]
+  - type: RandomMetadata
+    nameSegments: null
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - MedicalTrackingImplant
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Engineering
+  - type: ActiveRadio
+    channels:
+    - Engineering
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
+  - type: AutoToggleableOuterClothing
+  - type: Vocal
+    sounds:
+      Male: Cat
+      Female: Cat
+      Unsexed: Cat
+  - type: RussianAccent
 
 - type: entity
   id: MobCatClugg
