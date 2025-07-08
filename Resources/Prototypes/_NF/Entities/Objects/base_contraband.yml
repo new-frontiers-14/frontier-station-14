@@ -21,7 +21,7 @@
 # endregion Class 1
 
 # region Class 2
-# Class 2 contraband: explosives, unregistered firearms, 
+# Class 2 contraband: explosives, unregistered firearms,
 
 # Specific parent for sensitive items (e.g. command headset, secway, secway keys) that should not be redeemed for FUCs
 - type: entity
@@ -32,6 +32,15 @@
     severity: Class2
     # Security and heads only (finally, shotgun traffic controller)
     allowedDepartments: [ Security, Command ]
+
+# Engineering equipment that's potentially hazardous in use
+- type: entity
+  parent: BaseC2ContrabandUnredeemable
+  id: BaseC2ContrabandEngineeringUnredeemable
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Engineering ]
 
 - type: entity
   parent: BaseC2ContrabandUnredeemable
