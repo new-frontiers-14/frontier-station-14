@@ -15,7 +15,7 @@ accent-scandinavian-words-5 = damn
 accent-scandinavian-words-replace-5 = jävla
 
 accent-scandinavian-words-6 = hello
-accent-scandinavian-words-6-1 = hi
+accent-scandinavian-words-6-2 = hi
 accent-scandinavian-words-replace-6 = hej
 
 accent-scandinavian-words-7 = goodbye
