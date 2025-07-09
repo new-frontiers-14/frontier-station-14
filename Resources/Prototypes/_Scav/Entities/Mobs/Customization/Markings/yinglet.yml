@@ -7,9 +7,20 @@
     default:
       type:
         !type:SkinColoring
+       layers:
+        long_tip:
+         type:
+          !type:SkinColoring
+        long_inner:
+         type:
+          !type:SkinColoring
   sprites:
   - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_ears.rsi
     state: long
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_ears.rsi
+    state: long_tip
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_ears.rsi
+    state: long_inner
 
 - type: marking
   id: YingletEarsShort
@@ -20,9 +31,60 @@
     default:
       type:
         !type:SkinColoring
+      layers:
+        short_tip:
+         type:
+          !type:SkinColoring
+        short_inner:
+         type:
+          !type:SkinColoring
   sprites:
   - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_ears.rsi
     state: short
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_ears.rsi
+    state: short_tip
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_ears.rsi
+    state: short_inner
+
+- type: marking
+  id: YingletEyeR
+  bodyPart: Eyes
+  markingCategory: Head
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      eye_R_Iris:
+        type:
+         !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_eyes.rsi
+    state: eye_R
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_eyes.rsi
+    state: eye_R_Iris
+
+- type: marking
+  id: YingletEyeL
+  bodyPart: Eyes
+  markingCategory: Head
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      eye_L_Iris:
+        type:
+         !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_eyes.rsi
+    state: eye_L
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_eyes.rsi
+    state: eye_L_Iris
 
 - type: marking
   id: YingletTailHairless
@@ -49,6 +111,8 @@
         type:
           !type:CategoryColoring
             category: Hair
+        fallbackTypes:
+        - !type:SkinColoring
   sprites:
   - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_tail.rsi
     state: tailpoof_primary
@@ -69,6 +133,8 @@
         type:
           !type:CategoryColoring
             category: Hair
+        fallbackTypes:
+        - !type:SkinColoring
   sprites:
   - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_tail.rsi
     state: hairless
@@ -89,11 +155,27 @@
         type:
           !type:CategoryColoring
             category: Hair
+        fallbackTypes:
+        - !type:SkinColoring
   sprites:
   - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_tail.rsi
     state: hairless
   - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_tail.rsi
     state: northern_secondary
+
+- type: marking
+  id: YingletShelltoothNone
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#FFFFFF"
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_shelltooth.rsi
+    state: none
 
 - type: marking
   id: YingletShelltoothLong
@@ -150,6 +232,47 @@
   sprites:
   - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_limbs.rsi
     state: l_foot
+
+- type: marking
+  id: YingletLFootBig
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      r_foot_big_spots:
+        type:
+         !type:SimpleColoring
+          color: "#3D342D"
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_limbs.rsi
+    state: r_foot_big
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_limbs.rsi
+    state: r_foot_big_spots
+
+- type: marking
+  id: YingletRFootBig
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [Yinglet]
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+    layers:
+      l_foot_big_spots:
+        type:
+         !type:SimpleColoring
+          color: "#3D342D"
+  sprites:
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_limbs.rsi
+    state: l_foot_big
+  - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_limbs.rsi
+    state: l_foot_big_spots
+
 
 - type: marking
   id: YingletLHand
