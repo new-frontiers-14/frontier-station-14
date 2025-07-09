@@ -18,7 +18,9 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing; // Frontier
 using Content.Server.Stack; // Frontier
+using Content.Shared._NF.Anomaly; // Frontier
 
 namespace Content.Server.Anomaly;
 
@@ -42,6 +44,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly StackSystem _stack = default!; // Frontier
+    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
 
     public const float MinParticleVariation = 0.8f;
     public const float MaxParticleVariation = 1.2f;
@@ -145,14 +148,9 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
             || !TryComp(vessel, out TransformComponent? vesselXform)
             || xform.GridUid != vesselXform.GridUid)
         {
-            ent.Comp.ConnectedVessel = null;
-            _radiation.SetSourceEnabled(vessel, false);
-            if (TryComp(vessel, out AnomalyVesselComponent? vesselComp))
-            {
-                vesselComp.Anomaly = null;
-                UpdateVesselAppearance(vessel, vesselComp);
-            }
-            Popup.PopupEntity(Loc.GetString("anomaly-vessel-component-anomaly-cleared"), vessel);
+            //_radiation.SetSourceEnabled(ent.Owner, false); // Moved vessel radiation handling to the AnomalyLinkExpiry system
+            var expiryComp = EnsureComp<AnomalyLinkExpiryComponent>(vessel);
+            expiryComp.EndTime = _timing.CurTime + expiryComp.CheckFrequency;
         }
     }
     // End Frontier: disable anomaly if it goes off-grid
@@ -210,6 +208,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
 
         UpdateGenerator();
         UpdateVessels();
+        UpdateLinkExpiry(); // Frontier
     }
 
     #region Behavior

@@ -123,6 +123,8 @@ Currently, all changelogs go to the Frontier changelog. The ADMIN: prefix does n
 If you are new to contributing to SS14 in general, have a look at the [SS14 docs](https://docs.spacestation14.io/) or ask for help in `#dev-help` on [Discord](https://discord.gg/tpuAT7d3zm/)!
 
 ## AI-Generated Content
-Code, sprites and any other AI-generated content is not allowed to be submitted to the repository.
+You may use AI tools to assist with code, but any AI-generated code must be thoroughly tested and audited before submission. Submitting untested or unaudited AI-generated code is not allowed.
 
-Trying to PR AI-generated content may result in you being banned from contributing.
+AI-generated sprites and art are not allowed to be submitted to the repository.
+
+Trying to PR untested/unaudited AI-generated code or any AI-generated art may result in you being banned from contributing.
