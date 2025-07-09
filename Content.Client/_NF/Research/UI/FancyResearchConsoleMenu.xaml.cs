@@ -76,7 +76,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     private const int CardSize = 64;
 
     /// <summary>
-    /// the distance between elements on the grid.
+    /// the origin point of the grid.
     /// </summary>
     private static readonly Vector2i DefaultPosition = Vector2i.Zero;
 
@@ -213,8 +213,8 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             DragContainer.AddChild(control);
 
             // Position the tech item
-            var leftPadding = 100;
-            var topPadding = 100;
+            var leftPadding = 20;
+            var topPadding = 20;
             var uiPosition = new Vector2(
                 proto.Position.X * GridSize - _bounds.Left + leftPadding,
                 proto.Position.Y * GridSize - _bounds.Bottom + topPadding

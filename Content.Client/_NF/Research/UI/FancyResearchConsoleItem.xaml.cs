@@ -80,24 +80,39 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         Button.OnPressed += Selected;
         Button.OnDrawModeChanged += UpdateColor;
 
-        // Set colors - only border color varies by availability state
-        var availabilityBorderColor = availability switch
+        // Set colors - border & background color varies by availability state
+        switch (availability)
         {
-            ResearchAvailability.Researched => Color.LimeGreen,
-            ResearchAvailability.Available => Color.FromHex("#e8fa25"),
-            ResearchAvailability.PrereqsMet => Color.FromHex("#cca031"),
-            ResearchAvailability.Unavailable => Color.Crimson,
-            _ => Color.Crimson
-        };
+            case ResearchAvailability.Researched:
+                BackgroundColor = Color.InterpolateBetween(disciplineColor, Color.Black, 0.2f); // slightly darker, to emphasise available techs
+                BorderColor = Color.LimeGreen;
+                break;
 
-        // Background always uses discipline color
-        BackgroundColor = disciplineColor;
+            case ResearchAvailability.Available:
+                BackgroundColor = disciplineColor;
+                BorderColor = Color.FromHex("#e8fa25");
+                break;
+
+            case ResearchAvailability.PrereqsMet:
+                BackgroundColor = disciplineColor;
+                BorderColor = Color.FromHex("#cca031");
+                break;
+
+            case ResearchAvailability.Unavailable:
+                BackgroundColor = Color.InterpolateBetween(disciplineColor, Color.Black, 0.5f); // much darker, to emphasise available & researched techs
+                BorderColor = Color.Crimson;
+                break;
+
+            default:
+                BackgroundColor = Color.InterpolateBetween(disciplineColor, Color.Black, 0.5f); // much darker, to emphasise available & researched techs
+                BorderColor = Color.Crimson;
+                break;
+        }
+
         // Create a brighter version of the discipline color for hover by interpolating with white
         HoveredColor = Color.InterpolateBetween(disciplineColor, Color.White, 0.3f);
         // Create an even brighter version for selection (persistent bright highlight)
         SelectedColor = Color.InterpolateBetween(disciplineColor, Color.White, 0.5f);
-        // Only border color varies by availability
-        BorderColor = availabilityBorderColor;
 
         // Create rounded style box with 8px corner radius and thick border
         var roundedStyle = new RoundedStyleBoxFlat
