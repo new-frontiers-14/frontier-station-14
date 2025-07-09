@@ -44,6 +44,7 @@
   - FauxTileAstroIce
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
+  prerequisiteLineType: Spread
   technologyPrerequisites:
   - NFIndustrialEngineering
   position: 2, 1
@@ -70,6 +71,7 @@
   cost: 2500
   recipeUnlocks:
   - RPED
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFIndustrialEngineering
   position: 2, 4
@@ -83,6 +85,7 @@
   cost: 1000
   recipeUnlocks:
   - CutterMachineCircuitboard
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFIndustrialEngineering
   position: 2, 2
@@ -96,6 +99,7 @@
   cost: 2500
   recipeUnlocks:
   - ClothingBeltChiefEngineer
+  prerequisiteLineType: Spread
   technologyPrerequisites:
   - NFIndustrialEngineering
   position: 2, 5
@@ -649,6 +653,7 @@
   recipeUnlocks:
   - LauncherSyringe
   - MiniSyringe
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBasicMedicine
   position: 2, 14
@@ -1102,16 +1107,16 @@
   position: 0, 27
 
 - type: technology
-  id: NFDeepFryer
-  name: nf-research-technology-deep-fryer
-  entityIcon: KitchenDeepFryer
+  id: NFAdvancedHydroponicsStorge
+  name: nf-research-technology-advanced-botanical-storage
+  entityIcon: PlantBagOfHolding
   discipline: NFService
   tier: 1
-  cost: 7500
+  cost: 2500
   recipeUnlocks:
-  - DeepFryerMachineCircuitboard
+  - PlantBagOfHolding
   technologyPrerequisites:
-  - NFFoodService
+  - NFAdvancedHydroponicsEquipment
   position: 1, 25
 
 - type: technology
@@ -1140,9 +1145,24 @@
   cost: 2500
   recipeUnlocks:
   - SeedExtractorMachineCircuitboard
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFHydroponics
+  - NFAdvancedHydroponicsEquipment
   position: 1, 27
+
+- type: technology
+  id: NFDeepFryer
+  name: nf-research-technology-deep-fryer
+  entityIcon: KitchenDeepFryer
+  discipline: NFService
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - DeepFryerMachineCircuitboard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFFoodService
+  position: 2, 25
 
 - type: technology
   id: NFAdvancedFoodService
@@ -1160,16 +1180,17 @@
   position: 2, 26
 
 - type: technology
-  id: NFAdvancedHydroponicsStorge
-  name: nf-research-technology-advanced-botanical-storage
-  entityIcon: PlantBagOfHolding
+  id: NFBiogenerator
+  name: nf-research-technology-biogenerator
+  entityIcon: Biogenerator
   discipline: NFService
   tier: 1
-  cost: 2500
+  cost: 5000
   recipeUnlocks:
-  - PlantBagOfHolding
+  - BiogeneratorMachineCircuitboard
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFSeedExtractor
+  - NFFoodService
   position: 2, 27
 
 - type: technology
@@ -1183,7 +1204,7 @@
   - FatExtractorMachineCircuitboard
   technologyPrerequisites:
   - NFDeepFryer
-  position: 2, 25
+  position: 3, 25
 
 - type: technology
   id: NFBiomass
@@ -1196,20 +1217,7 @@
   - BiomassReclaimerMachineCircuitboard
   technologyPrerequisites:
   - NFBiogenerator
-  position: 3, 25
-
-- type: technology
-  id: NFBiogenerator
-  name: nf-research-technology-biogenerator
-  entityIcon: Biogenerator
-  discipline: NFService
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - BiogeneratorMachineCircuitboard
-  technologyPrerequisites:
-  - NFAdvancedFoodService
-  position: 3, 26
+  position: 3, 27
 
 # region Power
 
@@ -1246,6 +1254,7 @@
   cost: 5000
   recipeUnlocks:
   - TurboItemRechargerCircuitboard
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedPowercells
   position: 1, 29
@@ -1273,6 +1282,7 @@
   recipeUnlocks:
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedPowercells
   position: 1, 31
@@ -1557,8 +1567,9 @@
   - NFWeaponPka
   - WeaponCrusher
   - WeaponCrusherDagger
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFSalvageGrapplingEquipment
+  - NFIndustrialOreProcessor
   position: 1, 38
 
 - type: technology
@@ -1672,35 +1683,6 @@
   position: 1, 41
 
 - type: technology
-  id: NFArsenalStyle
-  name: nf-research-technology-arsenal-style
-  entityIcon: ClothingOuterArmorPunkOrange
-  discipline: NFArsenalMercenary
-  tier: 1
-  cost: 2500
-  recipeUnlocks:
-  - ClothingEyesPunkInfoShades
-  - ClothingOuterArmorPunkRandomized
-  - ClothingOuterArmorPunkRed
-  - ClothingOuterArmorPunkGreen
-  - ClothingOuterArmorPunkOrange
-  - ClothingOuterArmorElitePunkRandomized
-  - ClothingBeltPunkRandomized
-  - ClothingShoesBootsPunkRandomized
-  - ClothingEyesPunkGoggles
-  - ClothingEyesPunkInfoShades
-  - ClothingMaskPunkHalf
-  - ClothingUniformRandomPunkTanktop
-  - ClothingUniformRandomPunkTanktopShorts
-  - ClothingUniformRandomPunkCroptop
-  - ClothingUniformRandomPunkCroptopShorts
-  - ClothingOuterCoatLettermanRandomized
-  - ClothingOuterCoatBomberRandomized
-  technologyPrerequisites:
-  - NFBountyHunting
-  position: 1, 42
-
-- type: technology
   id: NFImprovedPistolAmmo
   name: nf-research-technology-pistol-ammo-improved
   entityIcon: NFAmmunitionBoxPistol35Overpressure
@@ -1714,6 +1696,7 @@
   - NFMagazineSubMachineGun35Empty
   - NFMagazineSubMachineGunTopMounted35Empty
   - NFMagazinePistol45Empty
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBasicAmmunitionProduction
   position: 1, 43
@@ -1748,6 +1731,36 @@
   technologyPrerequisites:
   - NFBountyHunting
   position: 2, 41
+
+- type: technology
+  id: NFArsenalStyle
+  name: nf-research-technology-arsenal-style
+  entityIcon: ClothingOuterArmorPunkOrange
+  discipline: NFArsenalMercenary
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - ClothingEyesPunkInfoShades
+  - ClothingOuterArmorPunkRandomized
+  - ClothingOuterArmorPunkRed
+  - ClothingOuterArmorPunkGreen
+  - ClothingOuterArmorPunkOrange
+  - ClothingOuterArmorElitePunkRandomized
+  - ClothingBeltPunkRandomized
+  - ClothingShoesBootsPunkRandomized
+  - ClothingEyesPunkGoggles
+  - ClothingEyesPunkInfoShades
+  - ClothingMaskPunkHalf
+  - ClothingUniformRandomPunkTanktop
+  - ClothingUniformRandomPunkTanktopShorts
+  - ClothingUniformRandomPunkCroptop
+  - ClothingUniformRandomPunkCroptopShorts
+  - ClothingOuterCoatLettermanRandomized
+  - ClothingOuterCoatBomberRandomized
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFBountyHunting
+  position: 2, 42
 
 - type: technology
   id: NFImprovedRifleAmmo
@@ -1807,6 +1820,7 @@
   cost: 5000
   recipeUnlocks:
   - NFClothingBackpackElectropack
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedRiotControl
   position: 3, 42

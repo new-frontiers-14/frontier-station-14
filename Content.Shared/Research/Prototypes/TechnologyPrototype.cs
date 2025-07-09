@@ -131,6 +131,11 @@ public enum PrerequisiteLineType : byte
     /// <summary>
     /// Tree-like branching connections with structured hierarchy
     /// </summary>
-    Tree = 2
+    Tree = 2,
+
+    /// <summary>
+    /// Spread connections that avoid overlaps by using offset routing paths
+    /// </summary>
+    Spread = 3
 }
 // End Frontier

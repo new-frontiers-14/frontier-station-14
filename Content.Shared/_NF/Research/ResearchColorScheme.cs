@@ -27,6 +27,8 @@ namespace Content.Shared._NF.Research;
 /// // Customize info panel text colors
 /// ResearchColorScheme.InfoPanelColors.Researched = Color.LightGreen;
 /// </code>
+/// 
+/// Supports all PrerequisiteLineType values: LShape, Diagonal, Tree, and Spread.
 /// </remarks>
 public static class ResearchColorScheme
 {

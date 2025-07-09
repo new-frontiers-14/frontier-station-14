@@ -47,14 +47,31 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
                 var lineColor = GetRefinedConnectionColor(prerequisiteItems.First(), dependentItem);
                 DrawTreeConnections(handle, prerequisiteItems, dependentItem, lineColor);
             }
+            // Special handling for Spread line type - draw with anti-overlap logic
+            else if (dependentItem.Prototype.PrerequisiteLineType == PrerequisiteLineType.Spread && prerequisiteItems.Count > 1)
+            {
+                var lineColor = GetRefinedConnectionColor(prerequisiteItems.First(), dependentItem);
+                DrawSpreadConnections(handle, prerequisiteItems, dependentItem, lineColor);
+            }
             else
             {
                 // Regular individual connections for all other line types
                 foreach (var prerequisiteItem in prerequisiteItems)
                 {
-                    // Calculate connection points
-                    var startCoords = GetTechCenter(prerequisiteItem);
-                    var endCoords = GetTechCenter(dependentItem);
+                    // Calculate connection points - use side connections for Spread type, center for others
+                    Vector2 startCoords, endCoords;
+                    
+                    if (dependentItem.Prototype.PrerequisiteLineType == PrerequisiteLineType.Spread)
+                    {
+                        // For now, let's try using the same direction for both to see if that fixes the visual issue
+                        startCoords = GetTechSideConnection(prerequisiteItem, dependentItem);  // Exit point from prerequisite
+                        endCoords = GetTechSideConnection(dependentItem, prerequisiteItem);    // Entry point to dependent
+                    }
+                    else
+                    {
+                        startCoords = GetTechCenter(prerequisiteItem);
+                        endCoords = GetTechCenter(dependentItem);
+                    }
 
                     // Determine line color based on dependent tech's availability
                     var lineColor = GetRefinedConnectionColor(prerequisiteItem, dependentItem);
@@ -118,6 +135,80 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
     }
 
     /// <summary>
+    /// Draw spread connections for multiple prerequisites with intelligent anti-overlap routing
+    /// </summary>
+    private void DrawSpreadConnections(DrawingHandleScreen handle, List<FancyResearchConsoleItem> prerequisites, FancyResearchConsoleItem dependent, Color color)
+    {
+        if (prerequisites.Count == 0)
+            return;
+
+        if (prerequisites.Count == 1)
+        {
+            // Single prerequisite - use regular spread connection with side connections
+            var startCoords = GetTechSideConnection(prerequisites[0], dependent);
+            var endCoords = GetTechSideConnection(dependent, prerequisites[0]);
+            DrawSpreadConnection(handle, startCoords, endCoords, endCoords - startCoords, color);
+            return;
+        }
+
+        // Multiple prerequisites - spread them out intelligently to avoid overlaps
+        var prerequisiteConnections = prerequisites.Select(prereq => new
+        {
+            Item = prereq,
+            StartCoord = GetTechSideConnection(prereq, dependent),      // Exit from prerequisite
+            EndCoord = GetTechSideConnection(dependent, prereq)         // Entry to dependent
+        }).ToList();
+
+        // Sort prerequisites by angle relative to the dependent tech
+        var sortedPrereqs = prerequisiteConnections
+            .Select((conn, index) => new
+            {
+                StartCoord = conn.StartCoord,
+                EndCoord = conn.EndCoord,
+                Item = conn.Item,
+                Angle = Math.Atan2(conn.StartCoord.Y - conn.EndCoord.Y, conn.StartCoord.X - conn.EndCoord.X)
+            })
+            .OrderBy(p => p.Angle)
+            .ToList();
+
+        // Create spread connections with increasing angular offsets
+        for (int i = 0; i < sortedPrereqs.Count; i++)
+        {
+            var prereq = sortedPrereqs[i];
+            var spreadIndex = i - (sortedPrereqs.Count - 1) / 2.0f; // Center the spread around 0
+
+            DrawSpreadConnectionWithIndex(handle, prereq.StartCoord, prereq.EndCoord, color, spreadIndex, sortedPrereqs.Count);
+        }
+    }
+
+    /// <summary>
+    /// Draw an individual spread connection with angled routing at midpoint for anti-overlap
+    /// </summary>
+    private void DrawSpreadConnectionWithIndex(DrawingHandleScreen handle, Vector2 start, Vector2 end, Color color, float spreadIndex, int totalConnections)
+    {
+        const float baseOffset = 20f; // Base offset for separation
+        const float indexMultiplier = 10f; // Additional offset per connection index
+
+        var delta = end - start;
+
+        // Create perpendicular offset direction for each connection to avoid overlaps
+        var mainAngle = Math.Atan2(delta.Y, delta.X);
+        var offsetAngle = mainAngle + Math.PI / 2;
+        var offsetDirection = new Vector2((float)Math.Cos(offsetAngle), (float)Math.Sin(offsetAngle));
+        
+        // Calculate unique offset for this connection based on its index
+        var totalOffset = baseOffset + (Math.Abs(spreadIndex) * indexMultiplier);
+        var indexOffset = offsetDirection * (totalOffset * Math.Sign(spreadIndex));
+
+        // Create angled routing with bend exactly at midpoint
+        var midPoint = Vector2.Lerp(start, end, 0.5f) + indexOffset;
+
+        // Draw two-segment angled line: start -> midpoint -> end
+        DrawCleanLine(handle, start, midPoint, color);
+        DrawCleanLine(handle, midPoint, end, color);
+    }
+
+    /// <summary>
     /// Draw a clean tree branch from prerequisite to trunk junction
     /// </summary>
     private void DrawCleanTreeBranch(DrawingHandleScreen handle, Vector2 start, Vector2 trunkPoint, Color color)
@@ -149,6 +240,40 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
         // Draw the two-segment branch
         DrawCleanLine(handle, start, intermediatePoint, color);
         DrawCleanLine(handle, intermediatePoint, trunkPoint, color);
+    }
+
+    /// <summary>
+    /// Draw a clean spread branch from prerequisite to spread junction
+    /// </summary>
+    private void DrawCleanSpreadBranch(DrawingHandleScreen handle, Vector2 start, Vector2 spreadPoint, Color color)
+    {
+        var delta = spreadPoint - start;
+        var distance = delta.Length();
+
+        // Avoid very short or overlapping connections
+        if (distance < 10f)
+            return;
+
+        // Use a simple two-segment path for clean appearance
+        Vector2 intermediatePoint;
+
+        // Determine the best routing based on the spatial relationship
+        if (Math.Abs(delta.X) > Math.Abs(delta.Y))
+        {
+            // Horizontal-dominant: go horizontal first, then vertical
+            var horizontalDistance = delta.X * 0.7f; // Don't go all the way
+            intermediatePoint = new Vector2(start.X + horizontalDistance, start.Y);
+        }
+        else
+        {
+            // Vertical-dominant: go vertical first, then horizontal  
+            var verticalDistance = delta.Y * 0.7f; // Don't go all the way
+            intermediatePoint = new Vector2(start.X, start.Y + verticalDistance);
+        }
+
+        // Draw the two-segment branch
+        DrawCleanLine(handle, start, intermediatePoint, color);
+        DrawCleanLine(handle, intermediatePoint, spreadPoint, color);
     }
 
     /// <summary>
@@ -212,6 +337,40 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
     }
 
     /// <summary>
+    /// Get connection point on the side-middle of a tech item facing toward another tech
+    /// </summary>
+    private Vector2 GetTechSideConnection(FancyResearchConsoleItem fromTech, FancyResearchConsoleItem toTech)
+    {
+        var fromRect = GetTechRect(fromTech);
+        var toRect = GetTechRect(toTech);
+        
+        var fromCenter = fromRect.Center;
+        var toCenter = toRect.Center;
+        var direction = (toCenter - fromCenter).Normalized();
+        
+        // Calculate which side of the FROM tech box to exit from (toward the TO tech)
+        var absX = Math.Abs(direction.X);
+        var absY = Math.Abs(direction.Y);
+        
+        if (absX > absY)
+        {
+            // Horizontal-dominant connection - exit from the side facing the target
+            if (direction.X > 0)
+                return new Vector2(fromRect.Right, fromCenter.Y); // Exit right side to go right
+            else
+                return new Vector2(fromRect.Left, fromCenter.Y); // Exit left side to go left
+        }
+        else
+        {
+            // Vertical-dominant connection - exit from the side facing the target
+            if (direction.Y > 0)
+                return new Vector2(fromCenter.X, fromRect.Bottom); // Exit bottom side to go down
+            else
+                return new Vector2(fromCenter.X, fromRect.Top); // Exit top side to go up
+        }
+    }
+
+    /// <summary>
     /// Draw connection based on the configured line type
     /// </summary>
     private void DrawConfigurableConnection(DrawingHandleScreen handle, Vector2 start, Vector2 end, Color color, PrerequisiteLineType lineType)
@@ -235,6 +394,10 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
 
             case PrerequisiteLineType.Tree:
                 DrawTreeConnection(handle, start, end, delta, color);
+                break;
+
+            case PrerequisiteLineType.Spread:
+                DrawSpreadConnection(handle, start, end, delta, color);
                 break;
 
             default:
@@ -298,6 +461,41 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
     private void DrawDiagonalConnection(DrawingHandleScreen handle, Vector2 start, Vector2 end, Color color)
     {
         DrawCleanLine(handle, start, end, color);
+    }
+
+    /// <summary>
+    /// Draw spread connection that uses angled routing at midpoint to avoid tech boxes
+    /// </summary>
+    private void DrawSpreadConnection(DrawingHandleScreen handle, Vector2 start, Vector2 end, Vector2 delta, Color color)
+    {
+        const float straightLineThreshold = 15f;
+
+        // For very aligned connections, just draw straight
+        if (Math.Abs(delta.X) < straightLineThreshold || Math.Abs(delta.Y) < straightLineThreshold)
+        {
+            DrawCleanLine(handle, start, end, color);
+            return;
+        }
+
+        // Create angled routing with the bend exactly at the midpoint
+        const float avoidanceDistance = 30f; // Distance to offset the midpoint for collision avoidance
+        
+        // Calculate perpendicular direction for avoidance at midpoint
+        var mainAngle = Math.Atan2(delta.Y, delta.X);
+        var avoidanceAngle = mainAngle + Math.PI / 2;
+        var avoidanceDirection = new Vector2((float)Math.Cos(avoidanceAngle), (float)Math.Sin(avoidanceAngle));
+        
+        // Determine avoidance direction based on position to ensure consistent routing
+        var hashValue = (start.X * 17 + start.Y * 31 + end.X * 13 + end.Y * 23) % 100;
+        var avoidanceMultiplier = (hashValue > 50) ? 1f : -1f;
+        var avoidanceOffset = avoidanceDirection * avoidanceDistance * avoidanceMultiplier;
+
+        // Create angled path with bend exactly at midpoint: start -> midpoint+offset -> end
+        var midPoint = Vector2.Lerp(start, end, 0.5f) + avoidanceOffset;
+
+        // Draw two-segment angled line: start -> midpoint -> end
+        DrawCleanLine(handle, start, midPoint, color);
+        DrawCleanLine(handle, midPoint, end, color);
     }
 
     /// <summary>
