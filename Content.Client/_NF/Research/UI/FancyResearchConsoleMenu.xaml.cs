@@ -61,11 +61,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     private bool _draggin;
 
     /// <summary>
-    /// Tracks if first initialization has happened
-    /// </summary>
-    private bool _firstInitialization = true;
-
-    /// <summary>
     /// the distance between elements on the grid.
     /// </summary>
     private const int GridSize = 90;
@@ -200,8 +195,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
             DragContainer.SetWidth = Math.Max(totalWidth, 1000);
             DragContainer.SetHeight = Math.Max(totalHeight, 1000);
-
-            _firstInitialization = false;
         }
 
         // Add tech items
@@ -344,7 +337,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         base.Close();
         DragContainer.RemoveAllChildren();
         InfoContainer.RemoveAllChildren();
-        _firstInitialization = true;
     }
 
     private sealed partial class DisciplineButton(TechDisciplinePrototype proto) : Button

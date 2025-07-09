@@ -1,19 +1,21 @@
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Content.Shared._NF.Research;
+using Content.Shared.Research.Prototypes;
+using Robust.Shared.Prototypes;
 using System.Linq;
 using System.Numerics;
 
 namespace Content.Client._NF.Research.UI;
 
 /// <summary>
-/// UI element for visualizing technologies prerequisites with simple L-shaped connections
+/// UI element for visualizing technologies prerequisites with configurable connection types
 /// </summary>
 public sealed partial class ResearchesContainerPanel : LayoutContainer
 {
-
     public ResearchesContainerPanel()
     {
+
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -21,11 +23,11 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
         // First draw all children (tech items)
         base.Draw(handle);
 
-        // Then draw simple prerequisite lines
-        DrawSimplePrerequisiteLines(handle);
+        // Then draw prerequisite lines
+        DrawPrerequisiteLines(handle);
     }
 
-    private void DrawSimplePrerequisiteLines(DrawingHandleScreen handle)
+    private void DrawPrerequisiteLines(DrawingHandleScreen handle)
     {
         foreach (var child in Children)
         {
@@ -39,83 +41,305 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
                 dependentItem.Prototype.TechnologyPrerequisites.Contains(second.Prototype.ID))
                 .Cast<FancyResearchConsoleItem>().ToList();
 
-            foreach (var prerequisiteItem in prerequisiteItems)
+            // Special handling for Tree line type - draw all prerequisites as a unified tree
+            if (dependentItem.Prototype.PrerequisiteLineType == PrerequisiteLineType.Tree && prerequisiteItems.Count > 1)
             {
-                // Calculate simple connection points
-                var startCoords = GetSimpleConnectionPoint(prerequisiteItem, dependentItem, true);
-                var endCoords = GetSimpleConnectionPoint(dependentItem, prerequisiteItem, false);
+                var lineColor = GetRefinedConnectionColor(prerequisiteItems.First(), dependentItem);
+                DrawTreeConnections(handle, prerequisiteItems, dependentItem, lineColor);
+            }
+            else
+            {
+                // Regular individual connections for all other line types
+                foreach (var prerequisiteItem in prerequisiteItems)
+                {
+                    // Calculate connection points
+                    var startCoords = GetTechCenter(prerequisiteItem);
+                    var endCoords = GetTechCenter(dependentItem);
 
-                // Determine line color based on dependent tech's availability
-                var lineColor = GetRefinedConnectionColor(prerequisiteItem, dependentItem);
+                    // Determine line color based on dependent tech's availability
+                    var lineColor = GetRefinedConnectionColor(prerequisiteItem, dependentItem);
 
-                // Draw simple L-shaped connection
-                DrawSimpleLShapeConnection(handle, startCoords, endCoords, lineColor);
+                    // Draw connection based on the dependent tech's line type configuration
+                    DrawConfigurableConnection(handle, startCoords, endCoords, lineColor, dependentItem.Prototype.PrerequisiteLineType);
+                }
             }
         }
     }
 
     /// <summary>
-    /// Get simple connection point on tech edge - centered approach
+    /// Draw tree-style connections where multiple prerequisites branch into a single trunk
     /// </summary>
-    private Vector2 GetSimpleConnectionPoint(FancyResearchConsoleItem tech, FancyResearchConsoleItem otherTech, bool isStart)
+    private void DrawTreeConnections(DrawingHandleScreen handle, List<FancyResearchConsoleItem> prerequisites, FancyResearchConsoleItem dependent, Color color)
     {
-        var techRect = GetTechRect(tech);
-        var techCenter = techRect.Center;
+        if (prerequisites.Count == 0)
+            return;
 
-        // Always connect from the center of the tech box
-        return techCenter;
+        var endCoords = GetTechCenter(dependent);
+
+        if (prerequisites.Count == 1)
+        {
+            // Single prerequisite - draw as simple connection
+            var startCoords = GetTechCenter(prerequisites[0]);
+            DrawTreeConnection(handle, startCoords, endCoords, endCoords - startCoords, color);
+            return;
+        }
+
+        // Multiple prerequisites - create clean tree structure
+        var prerequisiteCoords = prerequisites.Select(GetTechCenter).ToList();
+
+        // Sort prerequisites by their position for consistent branching
+        var sortedPrereqs = prerequisiteCoords
+            .Select((coord, index) => new { Coord = coord, Item = prerequisites[index] })
+            .OrderBy(p => p.Coord.Y)
+            .ThenBy(p => p.Coord.X)
+            .ToList();
+
+        // Calculate a clean trunk position
+        var avgX = sortedPrereqs.Average(p => p.Coord.X);
+        var avgY = sortedPrereqs.Average(p => p.Coord.Y);
+        var avgPos = new Vector2(avgX, avgY);
+
+        // Position trunk junction at a reasonable distance from dependent
+        var toDependent = (endCoords - avgPos).Normalized();
+        var trunkDistance = Math.Min(80f, (endCoords - avgPos).Length() * 0.6f);
+        var trunkPoint = endCoords - toDependent * trunkDistance;
+
+        // Draw clean trunk line from junction to dependent
+        DrawCleanLine(handle, trunkPoint, endCoords, color);
+        DrawSimpleArrowHead(handle, Vector2.Lerp(trunkPoint, endCoords, 0.9f), toDependent, color);
+
+        // Draw clean branches from each prerequisite to the trunk junction
+        foreach (var prereq in sortedPrereqs)
+        {
+            DrawCleanTreeBranch(handle, prereq.Coord, trunkPoint, color);
+        }
+
+        // Draw a small, clean junction indicator
+        DrawCleanJunctionIndicator(handle, trunkPoint, color);
     }
 
     /// <summary>
-    /// Draw a simple L-shaped connection between two points
+    /// Draw a clean tree branch from prerequisite to trunk junction
     /// </summary>
-    private void DrawSimpleLShapeConnection(DrawingHandleScreen handle, Vector2 start, Vector2 end, Color color)
+    private void DrawCleanTreeBranch(DrawingHandleScreen handle, Vector2 start, Vector2 trunkPoint, Color color)
     {
-        var deltaX = end.X - start.X;
-        var deltaY = end.Y - start.Y;
+        var delta = trunkPoint - start;
+        var distance = delta.Length();
 
-        // Check if it's a direct line (same row or column)
-        if (Math.Abs(deltaX) < 10) // Same column - direct vertical
+        // Avoid very short or overlapping connections
+        if (distance < 10f)
+            return;
+
+        // Use a simple two-segment path for clean appearance
+        Vector2 intermediatePoint;
+
+        // Determine the best routing based on the spatial relationship
+        if (Math.Abs(delta.X) > Math.Abs(delta.Y))
         {
+            // Horizontal-dominant: go horizontal first, then vertical
+            var horizontalDistance = delta.X * 0.7f; // Don't go all the way
+            intermediatePoint = new Vector2(start.X + horizontalDistance, start.Y);
+        }
+        else
+        {
+            // Vertical-dominant: go vertical first, then horizontal  
+            var verticalDistance = delta.Y * 0.7f; // Don't go all the way
+            intermediatePoint = new Vector2(start.X, start.Y + verticalDistance);
+        }
+
+        // Draw the two-segment branch
+        DrawCleanLine(handle, start, intermediatePoint, color);
+        DrawCleanLine(handle, intermediatePoint, trunkPoint, color);
+    }
+
+    /// <summary>
+    /// Draw a small, clean junction indicator at the trunk point
+    /// </summary>
+    private void DrawCleanJunctionIndicator(DrawingHandleScreen handle, Vector2 position, Color color)
+    {
+        const float size = 2.5f;
+
+        // Draw a simple small square instead of complex shapes
+        var rect = new UIBox2(
+            position.X - size,
+            position.Y - size,
+            position.X + size,
+            position.Y + size
+        );
+
+        handle.DrawRect(rect, color);
+    }
+
+    /// <summary>
+    /// Draw tree-style connection for single prerequisite (fallback)
+    /// </summary>
+    private void DrawTreeConnection(DrawingHandleScreen handle, Vector2 start, Vector2 end, Vector2 delta, Color color)
+    {
+        // For single connections, tree style behaves like a clean L-shape
+        const float straightLineThreshold = 15f;
+
+        if (Math.Abs(delta.X) < straightLineThreshold || Math.Abs(delta.Y) < straightLineThreshold)
+        {
+            // Direct line for aligned connections
             DrawCleanLine(handle, start, end, color);
             var arrowPos = Vector2.Lerp(start, end, 0.85f);
-            DrawArrowHead(handle, arrowPos, (end - start).Normalized(), color);
+            DrawSimpleArrowHead(handle, arrowPos, delta.Normalized(), color);
         }
-        else if (Math.Abs(deltaY) < 10) // Same row - direct horizontal
+        else
         {
-            DrawCleanLine(handle, start, end, color);
-            var arrowPos = Vector2.Lerp(start, end, 0.85f);
-            DrawArrowHead(handle, arrowPos, (end - start).Normalized(), color);
-        }
-        else // Different row and column - L-shaped
-        {
-            // Create simple L-shape with a corner
+            // Create a clean right-angle path
             Vector2 corner;
 
-            // Choose corner based on which direction is predominant
-            if (Math.Abs(deltaX) > Math.Abs(deltaY))
+            // Always prefer the longer axis for the first segment
+            if (Math.Abs(delta.X) > Math.Abs(delta.Y))
             {
-                // Horizontal-first L-shape
                 corner = new Vector2(end.X, start.Y);
             }
             else
             {
-                // Vertical-first L-shape
                 corner = new Vector2(start.X, end.Y);
             }
 
-            // Draw the L-shaped path
             DrawCleanLine(handle, start, corner, color);
             DrawCleanLine(handle, corner, end, color);
 
-            // Draw arrow at the end
             var finalDirection = (end - corner).Normalized();
             if (finalDirection.LengthSquared() > 0.1f)
             {
                 var arrowPos = end - finalDirection * 4f;
-                DrawArrowHead(handle, arrowPos, finalDirection, color);
+                DrawSimpleArrowHead(handle, arrowPos, finalDirection, color);
             }
         }
+    }
+
+    /// <summary>
+    /// Get the center point of a tech item
+    /// </summary>
+    private Vector2 GetTechCenter(FancyResearchConsoleItem tech)
+    {
+        var techRect = GetTechRect(tech);
+        return techRect.Center;
+    }
+
+    /// <summary>
+    /// Draw connection based on the configured line type
+    /// </summary>
+    private void DrawConfigurableConnection(DrawingHandleScreen handle, Vector2 start, Vector2 end, Color color, PrerequisiteLineType lineType)
+    {
+        var delta = end - start;
+        var distance = delta.Length();
+
+        // Early exit for very short connections
+        if (distance < 1f)
+            return;
+
+        switch (lineType)
+        {
+            case PrerequisiteLineType.LShape:
+                DrawLShapeConnection(handle, start, end, delta, color);
+                break;
+
+            case PrerequisiteLineType.Diagonal:
+                DrawDiagonalConnection(handle, start, end, color);
+                break;
+
+            case PrerequisiteLineType.Tree:
+                DrawTreeConnection(handle, start, end, delta, color);
+                break;
+
+            default:
+                // Fallback to L-shape
+                DrawLShapeConnection(handle, start, end, delta, color);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Draw L-shaped connection (default clean style)
+    /// </summary>
+    private void DrawLShapeConnection(DrawingHandleScreen handle, Vector2 start, Vector2 end, Vector2 delta, Color color)
+    {
+        const float straightLineThreshold = 15f;
+        const float directDiagonalThreshold = 120f;
+
+        // Check if it's a direct line (same row or column)
+        if (Math.Abs(delta.X) < straightLineThreshold) // Same column - direct vertical
+        {
+            DrawCleanLine(handle, start, end, color);
+            var arrowPos = Vector2.Lerp(start, end, 0.85f);
+            DrawSimpleArrowHead(handle, arrowPos, delta.Normalized(), color);
+        }
+        else if (Math.Abs(delta.Y) < straightLineThreshold) // Same row - direct horizontal
+        {
+            DrawCleanLine(handle, start, end, color);
+            var arrowPos = Vector2.Lerp(start, end, 0.85f);
+            DrawSimpleArrowHead(handle, arrowPos, delta.Normalized(), color);
+        }
+        else if (delta.Length() < directDiagonalThreshold) // Close diagonal - use direct line
+        {
+            DrawCleanLine(handle, start, end, color);
+            var arrowPos = Vector2.Lerp(start, end, 0.85f);
+            DrawSimpleArrowHead(handle, arrowPos, delta.Normalized(), color);
+        }
+        else // Longer distance - use L-shape
+        {
+            DrawSimpleLShape(handle, start, end, delta, color);
+        }
+    }
+
+    /// <summary>
+    /// Draw simple L-shaped path
+    /// </summary>
+    private void DrawSimpleLShape(DrawingHandleScreen handle, Vector2 start, Vector2 end, Vector2 delta, Color color)
+    {
+        Vector2 corner;
+
+        // Simple corner selection - prefer horizontal-first for better readability
+        if (Math.Abs(delta.X) > Math.Abs(delta.Y))
+        {
+            corner = new Vector2(end.X, start.Y);
+        }
+        else
+        {
+            corner = new Vector2(start.X, end.Y);
+        }
+
+        DrawCleanLine(handle, start, corner, color);
+        DrawCleanLine(handle, corner, end, color);
+
+        var finalDirection = (end - corner).Normalized();
+        if (finalDirection.LengthSquared() > 0.1f)
+        {
+            var arrowPos = end - finalDirection * 4f;
+            DrawSimpleArrowHead(handle, arrowPos, finalDirection, color);
+        }
+    }
+
+    /// <summary>
+    /// Draw direct diagonal connection
+    /// </summary>
+    private void DrawDiagonalConnection(DrawingHandleScreen handle, Vector2 start, Vector2 end, Color color)
+    {
+        DrawCleanLine(handle, start, end, color);
+        var arrowPos = Vector2.Lerp(start, end, 0.85f);
+        DrawSimpleArrowHead(handle, arrowPos, (end - start).Normalized(), color);
+    }
+
+    /// <summary>
+    /// Draw simple, clean arrow head
+    /// </summary>
+    private void DrawSimpleArrowHead(DrawingHandleScreen handle, Vector2 position, Vector2 direction, Color color)
+    {
+        if (direction.LengthSquared() < 0.1f) return;
+
+        var arrowSize = 5f;
+        var arrowAngle = MathF.PI / 4; // 45 degrees
+
+        var arrowLeft = position - Vector2.Transform(direction, Matrix3x2.CreateRotation(arrowAngle)) * arrowSize;
+        var arrowRight = position - Vector2.Transform(direction, Matrix3x2.CreateRotation(-arrowAngle)) * arrowSize;
+
+        DrawCleanLine(handle, position, arrowLeft, color);
+        DrawCleanLine(handle, position, arrowRight, color);
     }
 
     /// <summary>
@@ -173,22 +397,5 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
         var thicknessColor = new Color(color.R, color.G, color.B, color.A * 0.6f);
         handle.DrawLine(start + perpendicular, end + perpendicular, thicknessColor);
         handle.DrawLine(start - perpendicular, end - perpendicular, thicknessColor);
-    }
-
-    /// <summary>
-    /// Draw a directional arrow
-    /// </summary>
-    private void DrawArrowHead(DrawingHandleScreen handle, Vector2 position, Vector2 direction, Color color)
-    {
-        if (direction.LengthSquared() < 0.1f) return;
-
-        var arrowSize = 5f;
-        var arrowAngle = MathF.PI / 4; // 45 degrees
-
-        var arrowLeft = position - Vector2.Transform(direction, Matrix3x2.CreateRotation(arrowAngle)) * arrowSize;
-        var arrowRight = position - Vector2.Transform(direction, Matrix3x2.CreateRotation(-arrowAngle)) * arrowSize;
-
-        handle.DrawLine(position, arrowLeft, color);
-        handle.DrawLine(position, arrowRight, color);
     }
 }

@@ -48,7 +48,6 @@
   - NFIndustrialEngineering
   position: 2, 1
 
-
 - type: technology
   id: NFIndustrialSilo
   name: nf-research-technology-industrial-silo
@@ -184,6 +183,7 @@
   cost: 15000
   recipeUnlocks:
   - BorgModuleRCD
+  prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFRapidConstruction
   - NFBluespaceStorage
@@ -228,8 +228,9 @@
   cost: 2500
   recipeUnlocks:
   - PortableScrubberMachineCircuitBoard
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFAdvancedAtmospherics
+  - NFAtmosphericTech
   position: 3, 1
 
 - type: technology
@@ -387,6 +388,7 @@
   cost: 10000
   recipeUnlocks:
   - DeviceDesynchronizer
+  prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFAdvancedToolsTechnology
   - NFAdvancedAnomalyResearch
@@ -458,6 +460,7 @@
   cost: 2500
   recipeUnlocks:
   - ClothingOuterHardsuitMedical
+  prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFHardsuitsBasic
   - NFBiochemicalStasis
@@ -501,6 +504,7 @@
   cost: 5000
   recipeUnlocks:
   - ClothingOuterHardsuitRd
+  prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFAdvancedAnomalyResearch
   - NFHardsuitsAdvanced
@@ -516,6 +520,7 @@
   recipeUnlocks:
   - ClothingOuterHardsuitMercenary
   - ClothingOuterHardsuitPrivateSecurity
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFHardsuitsAdvanced
   position: 4, 11
@@ -529,6 +534,7 @@
   cost: 15000
   recipeUnlocks:
   - ClothingOuterHardsuitMaximPrototype
+  prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFHardsuitsExperimentalRD
   - NFHardsuitsArmored
@@ -600,9 +606,24 @@
   - SyringeBluespace
   - JugBluespace
   - VialBluespace
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFBasicMedicine
+  - NFReinforcedJug
   position: 1, 12
+
+- type: technology
+  id: NFMechanizedTreatment
+  name: nf-research-technology-mechanized-treatment
+  entityIcon: BorgModuleAdvancedParamedic
+  discipline: NFMedical
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - BorgModuleAdvancedParamedic
+  - BorgModuleAdvancedChemical
+  technologyPrerequisites:
+  - NFBluespaceChemistry
+  position: 2, 12
 
 - type: technology
   id: NFEngineeringMedicine
@@ -629,8 +650,8 @@
   - LauncherSyringe
   - MiniSyringe
   technologyPrerequisites:
-  - NFEngineeringMedicine
-  position: 3, 12
+  - NFBasicMedicine
+  position: 2, 14
 
 - type: technology
   id: NFAppliedBiochemicalStasis
@@ -645,20 +666,6 @@
   technologyPrerequisites:
   - NFEngineeringMedicine
   position: 3, 13
-
-- type: technology
-  id: NFMechanizedTreatment
-  name: nf-research-technology-mechanized-treatment
-  entityIcon: BorgModuleAdvancedParamedic
-  discipline: NFMedical
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - BorgModuleAdvancedParamedic
-  - BorgModuleAdvancedChemical
-  technologyPrerequisites:
-  - NFEngineeringMedicine
-  position: 3, 14
 
 # region Magboots
 
@@ -700,16 +707,17 @@
   position: 1, 15
 
 - type: technology
-  id: NFMagnetsTechAdvanced
-  name: nf-research-technology-magnets-tech-advanced
-  entityIcon: ClothingShoesBootsMagAdv
-  discipline: NFScience
+  id: NFQuantumFiberWeaving
+  name: nf-research-technology-quantum-fiber-weaving
+  entityIcon: ClothingShoesBootsSpeed
+  discipline: NFService
   tier: 1
-  cost: 7500
+  cost: 15000
   recipeUnlocks:
-  - ClothingShoesBootsMagAdv
+  - ClothingShoesBootsSpeed
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFMagnetsTech
+  - NFBasicMagnetsTech
   position: 1, 16
 
 - type: technology
@@ -727,16 +735,17 @@
   position: 2, 15
 
 - type: technology
-  id: NFQuantumFiberWeaving
-  name: nf-research-technology-quantum-fiber-weaving
-  entityIcon: ClothingShoesBootsSpeed
-  discipline: NFService
+  id: NFMagnetsTechAdvanced
+  name: nf-research-technology-magnets-tech-advanced
+  entityIcon: ClothingShoesBootsMagAdv
+  discipline: NFScience
   tier: 1
-  cost: 10000
+  cost: 7500
   recipeUnlocks:
-  - ClothingShoesBootsSpeed
+  - ClothingShoesBootsMagAdv
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFMagnetsTechAdvanced
+  - NFMagnetsTech
   position: 2, 16
 
 # region Robotics & Mechs
@@ -787,8 +796,9 @@
   cost: 2500
   recipeUnlocks:
   - MechEquipmentGrabberSmall
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFBasicRoboticsEquipment
+  - NFBasicRobotics
   position: 1, 17
 
 - type: technology
@@ -825,8 +835,9 @@
   - HamtrRLeg
   - HamtrCentralElectronics
   - HamtrPeripheralsElectronics
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFVim
+  - NFBasicRobotics
   position: 1, 19
 
 - type: technology
@@ -1020,8 +1031,9 @@
   cost: 7500
   recipeUnlocks:
   - PortablePumpMachineCircuitBoard
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFAdvancedSpray
+  - NFBasicSpray
   position: 1, 24
 
 - type: technology
@@ -1199,7 +1211,7 @@
   - NFAdvancedFoodService
   position: 3, 26
 
-# region Power / Shuttle
+# region Power
 
 - type: technology
   id: NFAdvancedPowercells
@@ -1386,6 +1398,21 @@
   position: 0, 34
 
 - type: technology
+  id: NFShuttlecraft
+  name: nf-research-technology-shuttlecraft
+  entityIcon: ComputerShuttle
+  discipline: NFEngineering
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ShuttleConsoleCircuitboard
+  - MiniGravityGeneratorCircuitboard
+  - MiniStationAnchorCircuitboard
+  technologyPrerequisites:
+  - NFSpaceScanning
+  position: 1, 33
+
+- type: technology
   id: NFShuttlecraftThrust
   name: nf-research-technology-shuttlecraft-thrust
   entityIcon: Thruster
@@ -1395,9 +1422,10 @@
   recipeUnlocks:
   - ThrusterMachineCircuitboard
   - GyroscopeMachineCircuitboard
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFSpaceScanning
-  position: 1, 33
+  position: 1, 34
 
 - type: technology
   id: NFShuttlecraftThrustSmall
@@ -1411,22 +1439,7 @@
   - SmallGyroscopeMachineCircuitboard
   technologyPrerequisites:
   - NFShuttlecraftThrust
-  position: 1, 34
-
-- type: technology
-  id: NFShuttlecraft
-  name: nf-research-technology-shuttlecraft
-  entityIcon: ComputerShuttle
-  discipline: NFEngineering
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - ShuttleConsoleCircuitboard
-  - MiniGravityGeneratorCircuitboard
-  - MiniStationAnchorCircuitboard
-  technologyPrerequisites:
-  - NFShuttlecraftThrust
-  position: 2, 33
+  position: 2, 34
 
 # region Jetpack
 
@@ -1829,6 +1842,7 @@
   - NFMagazineGrenadeEmpty
   - NFGrenadeFlash
   - NFGrenadeEMP
+  prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFImprovedSalvageWeapons
   - NFExplosiveTechnology
