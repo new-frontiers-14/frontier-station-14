@@ -106,7 +106,6 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
 
         // Draw clean trunk line from junction to dependent
         DrawCleanLine(handle, trunkPoint, endCoords, color);
-        DrawSimpleArrowHead(handle, Vector2.Lerp(trunkPoint, endCoords, 0.9f), toDependent, color);
 
         // Draw clean branches from each prerequisite to the trunk junction
         foreach (var prereq in sortedPrereqs)
@@ -182,8 +181,6 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
         {
             // Direct line for aligned connections
             DrawCleanLine(handle, start, end, color);
-            var arrowPos = Vector2.Lerp(start, end, 0.85f);
-            DrawSimpleArrowHead(handle, arrowPos, delta.Normalized(), color);
         }
         else
         {
@@ -202,13 +199,6 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
 
             DrawCleanLine(handle, start, corner, color);
             DrawCleanLine(handle, corner, end, color);
-
-            var finalDirection = (end - corner).Normalized();
-            if (finalDirection.LengthSquared() > 0.1f)
-            {
-                var arrowPos = end - finalDirection * 4f;
-                DrawSimpleArrowHead(handle, arrowPos, finalDirection, color);
-            }
         }
     }
 
@@ -266,20 +256,14 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
         if (Math.Abs(delta.X) < straightLineThreshold) // Same column - direct vertical
         {
             DrawCleanLine(handle, start, end, color);
-            var arrowPos = Vector2.Lerp(start, end, 0.85f);
-            DrawSimpleArrowHead(handle, arrowPos, delta.Normalized(), color);
         }
         else if (Math.Abs(delta.Y) < straightLineThreshold) // Same row - direct horizontal
         {
             DrawCleanLine(handle, start, end, color);
-            var arrowPos = Vector2.Lerp(start, end, 0.85f);
-            DrawSimpleArrowHead(handle, arrowPos, delta.Normalized(), color);
         }
         else if (delta.Length() < directDiagonalThreshold) // Close diagonal - use direct line
         {
             DrawCleanLine(handle, start, end, color);
-            var arrowPos = Vector2.Lerp(start, end, 0.85f);
-            DrawSimpleArrowHead(handle, arrowPos, delta.Normalized(), color);
         }
         else // Longer distance - use L-shape
         {
@@ -306,13 +290,6 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
 
         DrawCleanLine(handle, start, corner, color);
         DrawCleanLine(handle, corner, end, color);
-
-        var finalDirection = (end - corner).Normalized();
-        if (finalDirection.LengthSquared() > 0.1f)
-        {
-            var arrowPos = end - finalDirection * 4f;
-            DrawSimpleArrowHead(handle, arrowPos, finalDirection, color);
-        }
     }
 
     /// <summary>
@@ -321,25 +298,6 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
     private void DrawDiagonalConnection(DrawingHandleScreen handle, Vector2 start, Vector2 end, Color color)
     {
         DrawCleanLine(handle, start, end, color);
-        var arrowPos = Vector2.Lerp(start, end, 0.85f);
-        DrawSimpleArrowHead(handle, arrowPos, (end - start).Normalized(), color);
-    }
-
-    /// <summary>
-    /// Draw simple, clean arrow head
-    /// </summary>
-    private void DrawSimpleArrowHead(DrawingHandleScreen handle, Vector2 position, Vector2 direction, Color color)
-    {
-        if (direction.LengthSquared() < 0.1f) return;
-
-        var arrowSize = 5f;
-        var arrowAngle = MathF.PI / 4; // 45 degrees
-
-        var arrowLeft = position - Vector2.Transform(direction, Matrix3x2.CreateRotation(arrowAngle)) * arrowSize;
-        var arrowRight = position - Vector2.Transform(direction, Matrix3x2.CreateRotation(-arrowAngle)) * arrowSize;
-
-        DrawCleanLine(handle, position, arrowLeft, color);
-        DrawCleanLine(handle, position, arrowRight, color);
     }
 
     /// <summary>
