@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/09/2025 00:06:26
+  time: 07/09/2025 00:11:23
   entityCount: 315
 maps: []
 grids:
@@ -253,6 +253,22 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: Express
+- proto: AirAlarm
+  entities:
+  - uid: 79
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-0.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 191
+      - 192
+      - 153
+      - 152
+      - 154
+      - 151
 - proto: AirlockEngineering
   entities:
   - uid: 183
@@ -1300,6 +1316,9 @@ entities:
     - type: Transform
       pos: 2.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 79
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 154
@@ -1307,6 +1326,9 @@ entities:
     - type: Transform
       pos: -1.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 79
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 191
@@ -1315,6 +1337,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 79
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -1324,6 +1349,9 @@ entities:
     - type: Transform
       pos: -0.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 79
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 152
@@ -1331,6 +1359,9 @@ entities:
     - type: Transform
       pos: 1.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 79
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 192
@@ -1339,6 +1370,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 79
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -1589,12 +1623,6 @@ entities:
       parent: 1
 - proto: ShelfRMetal
   entities:
-  - uid: 79
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-0.5
-      parent: 1
   - uid: 214
     components:
     - type: Transform
