@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/30/2025 21:06:52
-  entityCount: 314
+  time: 07/08/2025 23:55:21
+  entityCount: 315
 maps: []
 grids:
 - 1
@@ -994,14 +994,6 @@ entities:
     - type: Transform
       pos: -1.5,3.5
       parent: 1
-- proto: ComputerWallmountBankATM
-  entities:
-  - uid: 25
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,4.5
-      parent: 1
 - proto: ComputerWallmountStationRecords
   entities:
   - uid: 148
@@ -1010,13 +1002,21 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,3.5
       parent: 1
+- proto: ComputerWallmountWithdrawBankATM
+  entities:
+  - uid: 65
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,4.5
+      parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 185
+  - uid: 146
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 3.5,0.5
+      pos: 3.5,1.5
       parent: 1
 - proto: EmergencyLight
   entities:
@@ -1407,7 +1407,7 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        65:
+        185:
         - - Pressed
           - Toggle
 - proto: LockerWallColorGeneric
@@ -1611,12 +1611,6 @@ entities:
       parent: 1
 - proto: ShuttersNormalOpen
   entities:
-  - uid: 65
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,4.5
-      parent: 1
   - uid: 67
     components:
     - type: Transform
@@ -1640,6 +1634,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,2.5
+      parent: 1
+  - uid: 185
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,4.5
       parent: 1
   - uid: 318
     components:
@@ -1746,18 +1746,24 @@ entities:
         90:
         - - Pressed
           - DoorBolt
+        2:
+        - - Pressed
+          - DoorBolt
+        286:
+        - - Pressed
+          - DoorBolt
 - proto: SignMail
   entities:
+  - uid: 25
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,4.5
+      parent: 1
   - uid: 41
     components:
     - type: Transform
       pos: -3.5,0.5
-      parent: 1
-  - uid: 146
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,4.5
       parent: 1
   - uid: 199
     components:
@@ -2218,13 +2224,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-1.5
       parent: 1
-- proto: WallWeaponCapacitorRechargerOmnidirectional
+- proto: WallWeaponCapacitorRecharger
   entities:
   - uid: 27
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 3.5,1.5
+      pos: 3.5,0.5
       parent: 1
 - proto: WarpPoint
   entities:
@@ -2233,5 +2239,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,3.5
+      parent: 1
+- proto: WindoorSecureMailLocked
+  entities:
+  - uid: 286
+    components:
+    - type: Transform
+      pos: 2.5,4.5
       parent: 1
 ...
