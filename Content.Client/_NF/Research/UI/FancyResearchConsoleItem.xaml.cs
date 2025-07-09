@@ -85,27 +85,27 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         {
             case ResearchAvailability.Researched:
                 BackgroundColor = Color.InterpolateBetween(disciplineColor, Color.Black, 0.2f); // slightly darker, to emphasise available techs
-                BorderColor = Color.LimeGreen;
+                BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
                 break;
 
             case ResearchAvailability.Available:
                 BackgroundColor = disciplineColor;
-                BorderColor = Color.FromHex("#e8fa25");
+                BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
                 break;
 
             case ResearchAvailability.PrereqsMet:
                 BackgroundColor = disciplineColor;
-                BorderColor = Color.FromHex("#cca031");
+                BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
                 break;
 
             case ResearchAvailability.Unavailable:
                 BackgroundColor = Color.InterpolateBetween(disciplineColor, Color.Black, 0.5f); // much darker, to emphasise available & researched techs
-                BorderColor = Color.Crimson;
+                BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
                 break;
 
             default:
                 BackgroundColor = Color.InterpolateBetween(disciplineColor, Color.Black, 0.5f); // much darker, to emphasise available & researched techs
-                BorderColor = Color.Crimson;
+                BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
                 break;
         }
 

@@ -322,23 +322,7 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
     /// </summary>
     private Color GetRefinedConnectionColor(FancyResearchConsoleItem prerequisite, FancyResearchConsoleItem dependent)
     {
-        return dependent.Availability switch
-        {
-            // Researched - bright green
-            ResearchAvailability.Researched => Color.FromHex("#32CD32"),
-
-            // Available to research - bright yellow
-            ResearchAvailability.Available => Color.FromHex("#FFD700"),
-
-            // Prerequisites met but not available - orange
-            ResearchAvailability.PrereqsMet => Color.FromHex("#FFA500"),
-
-            // Unavailable - muted red
-            ResearchAvailability.Unavailable => Color.FromHex("#CD5C5C"),
-
-            // Default fallback - neutral gray
-            _ => Color.FromHex("#808080")
-        };
+        return ResearchColorScheme.GetConnectionColor(dependent.Availability);
     }
 
     /// <summary>
