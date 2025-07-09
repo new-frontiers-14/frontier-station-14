@@ -2,10 +2,10 @@
                       xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls;assembly=Content.Client"
                       xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls;assembly=Content.Client"
-                      xmlns:goob="clr-namespace:Content.Client._Goobstation.Research.UI"
+                      xmlns:nf="clr-namespace:Content.Client._NF.Research.UI"
                       Title="{Loc 'research-console-menu-title'}"
-                      SetSize="1260 850"
-                      MinSize="600 400"> <!-- Frontier: add MinSize-->
+                      SetSize="1300 850"
+                      MinSize="1300 400">
     <BoxContainer Orientation="Vertical"
                   HorizontalExpand="True"
                   VerticalExpand="True">
@@ -34,16 +34,27 @@
                           Margin="0 0 0 10">
                 <PanelContainer Name="ResearchesContainer" VerticalExpand="True" HorizontalExpand="True">
                     <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="#222226FF" />
+                        <gfx:StyleBoxFlat BackgroundColor="#0F1419" />
                     </PanelContainer.PanelOverride>
-                    <goob:ResearchesContainerPanel
-                        HorizontalExpand="True"
-                        VerticalExpand="True"
-                        Name="DragContainer"
-                        MouseFilter="Pass"
-                        RectClipContent="True">
-                        <!-- There lives all of technologies -->
-                    </goob:ResearchesContainerPanel>
+                    <!-- Add ScrollContainer - vertical only -->
+                    <ScrollContainer 
+                        Name="TechScrollContainer"
+                        Access="Public"
+                        HorizontalExpand="True" 
+                        VerticalExpand="True" 
+                        HScrollEnabled="False"
+                        VScrollEnabled="True"
+                        ReserveScrollbarSpace="True"
+                        StyleClasses="PdaScrollContainer">
+                        <nf:ResearchesContainerPanel
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            Name="DragContainer"
+                            MouseFilter="Pass"
+                            RectClipContent="True">
+                            <!-- There lives all of technologies -->
+                        </nf:ResearchesContainerPanel>
+                    </ScrollContainer>
                     <Button Name="RecenterButton" Text="{Loc 'research-console-menu-recenter-button'}" MinHeight="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5 -5"/>
                 </PanelContainer>
             </BoxContainer>
@@ -57,7 +68,6 @@
                     HorizontalExpand="True"
                     SizeFlagsStretchRatio="1"
                     Margin="0">
-                    <!-- Frontier: add a placeholder so the scrollable interface doesn't immediately shrink, matches InfoPanel size -->
                     <Control
                         Margin="5"
                         MinWidth="450"

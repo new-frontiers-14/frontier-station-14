@@ -6,6 +6,7 @@ using Content.Shared.Anomaly.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Research.Components;
+using Content.Shared._NF.Anomaly; // Frontier
 
 namespace Content.Server.Anomaly;
 
@@ -227,14 +228,9 @@ public sealed partial class AnomalySystem
             || !TryComp(anom, out TransformComponent? anomXform)
             || xform.GridUid != anomXform.GridUid)
         {
-            ent.Comp.Anomaly = null;
-            _radiation.SetSourceEnabled(ent.Owner, false);
-            if (TryComp(anom, out AnomalyComponent? anomComp))
-            {
-                anomComp.ConnectedVessel = null;
-            }
-            UpdateVesselAppearance(ent, ent.Comp);
-            Popup.PopupEntity(Loc.GetString("anomaly-vessel-component-anomaly-cleared"), ent);
+            //_radiation.SetSourceEnabled(ent.Owner, false); // Moved vessel radiation handling to the AnomalyLinkExpiry system
+            var expiryComp = EnsureComp<AnomalyLinkExpiryComponent>(ent);
+            expiryComp.EndTime = _timing.CurTime + expiryComp.CheckFrequency;
         }
     }
     // End Frontier: disable anomaly if it goes off-grid
