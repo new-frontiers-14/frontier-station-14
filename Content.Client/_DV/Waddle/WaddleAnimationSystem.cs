@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared._DV.Waddle;
 using Content.Shared.Movement.Components;
+using Content.Shared.Standing; //imp edit
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
@@ -10,6 +11,7 @@ namespace Content.Client._DV.Waddle;
 public sealed class WaddleAnimationSystem : SharedWaddleAnimationSystem
 {
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!; //imp edit
 
     public override void Initialize()
     {
@@ -55,7 +57,10 @@ public sealed class WaddleAnimationSystem : SharedWaddleAnimationSystem
         if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
             return;
 
-        // FIXME: this interferes with laying down and stuff since it just bulldozes the rotation
+        // Imp edit: exit the method if the entity is already down
+        if (_standing.IsDown(ent))
+            return;
+
         sprite.Offset = new Vector2();
         sprite.Rotation = Angle.FromDegrees(0);
     }
@@ -69,7 +74,7 @@ public sealed class WaddleAnimationSystem : SharedWaddleAnimationSystem
         );
     }
 
-    private float CalculateTumbleIntensity(WaddleAnimationComponent comp)
+    private static float CalculateTumbleIntensity(WaddleAnimationComponent comp) //imp edit, made static
     {
         return comp.LastStep ? 360 - comp.TumbleIntensity : comp.TumbleIntensity;
     }
@@ -88,7 +93,7 @@ public sealed class WaddleAnimationSystem : SharedWaddleAnimationSystem
         ent.Comp.LastStep = !ent.Comp.LastStep;
 
         // jump peaks halfway through the animation
-        var peak = (float) len.TotalSeconds * 0.5f;
+        var peak = (float)len.TotalSeconds * 0.5f;
         var anim = new Animation()
         {
             Length = len,

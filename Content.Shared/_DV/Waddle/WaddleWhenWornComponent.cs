@@ -1,5 +1,7 @@
 using System.Numerics;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes; // imp edit
+using Content.Shared.Alert; // imp edit
 
 namespace Content.Shared._DV.Waddle;
 
@@ -40,4 +42,10 @@ public sealed partial class WaddleWhenWornComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool AddedWaddle;
+
+    /// <summary>
+    /// Alert displayed while waddling is on. Imp addition
+    /// </summary>
+    [DataField]
+    public ProtoId<AlertPrototype>? WaddlingAlert;
 }

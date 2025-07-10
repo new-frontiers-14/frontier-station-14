@@ -80,9 +80,9 @@ public abstract class SharedWaddleAnimationSystem : EntitySystem
 
     /// <summary>
     /// Enables or disables waddling for a entity, including the animation.
-    /// Unless force is true, prevents dead people etc from waddling using <see cref="CanWaddle">.
+    /// Unless force is true, prevents dead people etc from waddling using <see cref="CanWaddle"/>.
     /// </summary>
-    public void SetWaddling(Entity<WaddleAnimationComponent> ent, bool waddling, bool force = false)
+    private void SetWaddling(Entity<WaddleAnimationComponent> ent, bool waddling, bool force = false) // imp edit, made private
     {
         // it makes your sprite rotation stutter when moving, bad
         if (!_timing.IsFirstTimePredicted)
@@ -102,7 +102,7 @@ public abstract class SharedWaddleAnimationSystem : EntitySystem
     /// <summary>
     /// Returns true if an entity is allowed to waddle at all.
     /// </summary>
-    public bool CanWaddle(EntityUid uid)
+    private bool CanWaddle(EntityUid uid) // imp edit, made private
     {
         // can't waddle when dead
         return _mob.IsAlive(uid) &&
