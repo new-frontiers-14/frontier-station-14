@@ -10,6 +10,7 @@ public sealed class TypingIndicatorVisualizerSystem : VisualizerSystem<TypingInd
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!; // Frontier
 
 
     protected override void OnAppearanceChange(EntityUid uid, TypingIndicatorComponent component, ref AppearanceChangeEvent args)
@@ -29,6 +30,13 @@ public sealed class TypingIndicatorVisualizerSystem : VisualizerSystem<TypingInd
         if (overrideIndicator != null)
             currentTypingIndicator = overrideIndicator.Value;
 
+        // Begin DeltaV Additions - AAC TypingIndicator Override
+        if (component.TypingIndicatorOverridePrototype != null)
+        {
+            currentTypingIndicator = component.TypingIndicatorOverridePrototype.Value;
+        }
+        // End DeltaV Additions
+
         if (!_prototypeManager.TryIndex(currentTypingIndicator, out var proto))
         {
             Log.Error($"Unknown typing indicator id: {component.TypingIndicatorPrototype}");
@@ -39,8 +47,9 @@ public sealed class TypingIndicatorVisualizerSystem : VisualizerSystem<TypingInd
         if (!layerExists)
             layer = args.Sprite.LayerMapReserveBlank(TypingIndicatorLayers.Base);
 
-        args.Sprite.LayerSetRSI(layer, proto.SpritePath);
-        args.Sprite.LayerSetState(layer, proto.TypingState);
+        //args.Sprite.LayerSetRSI(layer, proto.SpritePath); // Frontier
+        //args.Sprite.LayerSetState(layer, proto.TypingState); // Frontier
+        args.Sprite.LayerSetState(layer, proto.TypingState, proto.SpritePath); // Frontier: combination RSI/state function
         args.Sprite.LayerSetShader(layer, proto.Shader);
         args.Sprite.LayerSetOffset(layer, proto.Offset);
 
