@@ -46,35 +46,36 @@ public sealed class RandomBlueprintSystem : EntitySystem
             totalRecipes += packProto.Recipes.Count;
         }
 
+        // Early exit if no recipes available
+        if (totalRecipes == 0)
+            return;
+
         // Select random recipes from cached blueprints
         // Doing this naively - if you reroll the same recipe, tough luck.
         for (int i = 0; i < rolls; i++)
         {
             var recipeIndex = _random.Next(totalRecipes);
 
-            var curIndex = 0;
+            var packStartIndex = 0;
             foreach (var packTuple in _packs)
             {
-                if (packTuple.count >= recipeIndex)
+                if (recipeIndex < packTuple.count)
                 {
-                    // Find relative index in pack hashset
-                    curIndex = recipeIndex - curIndex;
-                    recipeIndex = 0;
+                    // Find relative index in pack
+                    var relativeIndex = recipeIndex - packStartIndex;
+                    var currentIndex = 0;
                     foreach (var recipe in packTuple.pack.Recipes)
                     {
-                        if (recipeIndex == curIndex)
+                        if (currentIndex == relativeIndex)
                         {
                             _blueprintLathe.AddBlueprintRecipe((ent, blueprintComp), recipe, false);
                             break;
                         }
-                        recipeIndex++;
+                        currentIndex++;
                     }
                     break;
                 }
-                else
-                {
-                    curIndex = packTuple.count;
-                }
+                packStartIndex = packTuple.count;
             }
         }
         Dirty(ent, blueprintComp);
