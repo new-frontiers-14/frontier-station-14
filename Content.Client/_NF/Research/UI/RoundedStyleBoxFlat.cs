@@ -210,10 +210,10 @@ public sealed class RoundedDualColorStyleBoxFlat : StyleBox
     private void DrawRegularDualColorRect(DrawingHandleScreen handle, UIBox2 box, Thickness thickness)
     {
         var contentBox = thickness.Deflate(box);
-        
+
         // Draw diagonal split background
         DrawDiagonalSplit(handle, contentBox);
-        
+
         // Draw borders
         var (btl, btt, btr, btb) = thickness;
         if (btl > 0)
@@ -276,16 +276,16 @@ public sealed class RoundedDualColorStyleBoxFlat : StyleBox
     {
         var vertices = CreateRoundedRectVertices(box, radius);
         var center = box.Center;
-        
+
         // Create triangles for dual color rendering
         for (var i = 0; i < vertices.Count; i++)
         {
             var vertex1 = vertices[i];
             var vertex2 = vertices[(i + 1) % vertices.Count];
-            
+
             // Determine which color to use based on position relative to the diagonal
             var color = IsAboveDiagonal(vertex1, box) ? PrimaryColor : SecondaryColor;
-            
+
             // Draw triangle from center to edge
             var triangle = new[] { center, vertex1, vertex2 };
             handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, triangle, color);
