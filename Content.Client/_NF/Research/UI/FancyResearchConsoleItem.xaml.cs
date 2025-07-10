@@ -18,10 +18,10 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
     public Action<TechnologyPrototype, ResearchAvailability>? SelectAction;
     public ResearchAvailability Availability;
 
-    // Some visuals
-    public static readonly Color DefaultColor = Color.FromHex("#141F2F");
-    public static readonly Color DefaultBorderColor = Color.FromHex("#4972A1");
-    public static readonly Color DefaultHoveredColor = Color.FromHex("#4972A1");
+    // Some visuals - now using centralized color scheme
+    public static readonly Color DefaultColor = ResearchColorScheme.UIColors.DefaultTechBackground;
+    public static readonly Color DefaultBorderColor = ResearchColorScheme.UIColors.DefaultTechBorder;
+    public static readonly Color DefaultHoveredColor = ResearchColorScheme.UIColors.DefaultTechHover;
 
     public Color BackgroundColor = DefaultColor;
     public Color SecondaryBackgroundColor = DefaultColor;
@@ -93,53 +93,26 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         Button.OnDrawModeChanged += UpdateColor;
 
         // Set colors - border & background color varies by availability state
-        switch (availability)
-        {
-            case ResearchAvailability.Researched:
-                BackgroundColor = Color.InterpolateBetween(primaryColor, Color.Black, 0.2f); // slightly darker, to emphasise available techs
-                if (secondaryColor.HasValue)
-                    SecondaryBackgroundColor = Color.InterpolateBetween(secondaryColor.Value, Color.Black, 0.2f);
-                BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
-                break;
+        BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
 
-            case ResearchAvailability.Available:
-                BackgroundColor = primaryColor;
-                if (secondaryColor.HasValue)
-                    SecondaryBackgroundColor = secondaryColor.Value;
-                BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
-                break;
+        // Calculate background colors based on availability using centralized factors
+        var darkenFactor = ResearchColorScheme.GetBackgroundInterpolationFactor(availability);
 
-            case ResearchAvailability.PrereqsMet:
-                BackgroundColor = primaryColor;
-                if (secondaryColor.HasValue)
-                    SecondaryBackgroundColor = secondaryColor.Value;
-                BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
-                break;
-
-            case ResearchAvailability.Unavailable:
-                BackgroundColor = Color.InterpolateBetween(primaryColor, Color.Black, 0.5f); // much darker, to emphasise available & researched techs
-                if (secondaryColor.HasValue)
-                    SecondaryBackgroundColor = Color.InterpolateBetween(secondaryColor.Value, Color.Black, 0.5f);
-                BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
-                break;
-
-            default:
-                BackgroundColor = Color.InterpolateBetween(primaryColor, Color.Black, 0.5f); // much darker, to emphasise available & researched techs
-                if (secondaryColor.HasValue)
-                    SecondaryBackgroundColor = Color.InterpolateBetween(secondaryColor.Value, Color.Black, 0.5f);
-                BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
-                break;
-        }
+        BackgroundColor = Color.InterpolateBetween(primaryColor, Color.Black, darkenFactor);
+        if (secondaryColor.HasValue)
+            SecondaryBackgroundColor = Color.InterpolateBetween(secondaryColor.Value, Color.Black, darkenFactor);
 
         // Create brighter versions of the discipline colors for hover by interpolating with white
-        HoveredColor = Color.InterpolateBetween(primaryColor, Color.White, 0.3f);
+        var hoverFactor = ResearchColorScheme.GetHoverMixingFactor();
+        HoveredColor = Color.InterpolateBetween(primaryColor, Color.White, hoverFactor);
         if (secondaryColor.HasValue)
-            SecondaryHoveredColor = Color.InterpolateBetween(secondaryColor.Value, Color.White, 0.3f);
+            SecondaryHoveredColor = Color.InterpolateBetween(secondaryColor.Value, Color.White, hoverFactor);
 
         // Create even brighter versions for selection (persistent bright highlight)
-        SelectedColor = Color.InterpolateBetween(primaryColor, Color.White, 0.5f);
+        var selectionFactor = ResearchColorScheme.GetSelectionMixingFactor();
+        SelectedColor = Color.InterpolateBetween(primaryColor, Color.White, selectionFactor);
         if (secondaryColor.HasValue)
-            SecondarySelectedColor = Color.InterpolateBetween(secondaryColor.Value, Color.White, 0.5f);
+            SecondarySelectedColor = Color.InterpolateBetween(secondaryColor.Value, Color.White, selectionFactor);
 
         // Create appropriate style box based on whether we have dual disciplines
         if (secondaryDiscipline != null)

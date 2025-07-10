@@ -142,30 +142,13 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     }
 
     /// <summary>
-    /// Apply scrollbar styling
+    /// Apply scrollbar styling using centralized colors and utilities
     /// </summary>
     private void ApplyScrollbarStyling()
     {
-        var scrollBarNormal = new StyleBoxFlat
-        {
-            BackgroundColor = Color.FromHex("#80808059"),
-            ContentMarginLeftOverride = 10,
-            ContentMarginTopOverride = 10
-        };
-
-        var scrollBarHovered = new StyleBoxFlat
-        {
-            BackgroundColor = Color.FromHex("#8C8C8C59"),
-            ContentMarginLeftOverride = 10,
-            ContentMarginTopOverride = 10
-        };
-
-        var scrollBarGrabbed = new StyleBoxFlat
-        {
-            BackgroundColor = Color.FromHex("#8C8C8C59"),
-            ContentMarginLeftOverride = 10,
-            ContentMarginTopOverride = 10
-        };
+        var scrollBarNormal = ResearchUIHelpers.CreateScrollbarStyleBox("normal");
+        var scrollBarHovered = ResearchUIHelpers.CreateScrollbarStyleBox("hovered");
+        var scrollBarGrabbed = ResearchUIHelpers.CreateScrollbarStyleBox("grabbed");
     }
 
     public void SetEntity(EntityUid entity)
