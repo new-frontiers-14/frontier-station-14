@@ -35,6 +35,24 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     private ParallaxControl _parallaxControl;
 
     /// <summary>
+    /// The parallax prototype to use for the background. Configurable.
+    /// </summary>
+    public string ParallaxPrototype { get; set; } = "Default";
+
+    /// <summary>
+    /// Updates the parallax background to use a different prototype
+    /// </summary>
+    /// <param name="parallaxPrototype">The new parallax prototype to use</param>
+    public void SetParallaxPrototype(string parallaxPrototype)
+    {
+        ParallaxPrototype = parallaxPrototype;
+        if (_parallaxControl != null)
+        {
+            _parallaxControl.ParallaxPrototype = parallaxPrototype;
+        }
+    }
+
+    /// <summary>
     /// Console entity
     /// </summary>
     public EntityUid Entity;
@@ -94,11 +112,10 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         // Frontier: Initialize parallax background
         _parallaxControl = new ParallaxControl
         {
-            ParallaxPrototype = "Default",
+            ParallaxPrototype = ParallaxPrototype,
             HorizontalExpand = true,
             VerticalExpand = true,
         };
-
 
         // Add the parallax control to the ResearchesContainer at the beginning (bottom layer)
         ResearchesContainer.AddChild(_parallaxControl);
