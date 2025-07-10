@@ -1,45 +1,11 @@
 # base actions
 
-# base prototype for all action entities
 - type: entity
-  abstract: true
-  id: BaseAction
-  components:
-  - type: Action
-
-# an action that is done all in le head and cant be prevented by any means
-- type: entity
-  abstract: true
-  parent: BaseAction
-  id: BaseMentalAction
-  components:
-  - type: Action
-    checkCanInteract: false
-    checkConsciousness: false
-
-- type: entity
-  abstract: true
-  parent: BaseMentalAction
   id: BaseSuicideAction
+  abstract: true
   components:
   - type: ConfirmableAction
     popup: suicide-action-popup
-
-- type: entity
-  abstract: true
-  parent: BaseAction
-  id: BaseImplantAction
-  components:
-  - type: InstantAction
-    event: !type:ActivateImplantEvent
-
-- type: entity
-  abstract: true
-  parent: BaseAction
-  id: BaseToggleAction
-  components:
-  - type: InstantAction
-    event: !type:ToggleActionEvent
 
 # actions
 
