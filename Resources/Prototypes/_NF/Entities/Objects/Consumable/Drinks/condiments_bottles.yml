@@ -187,3 +187,21 @@
   - type: Drink
   - type: Label
     currentLabel: reagent-name-cocoapowder
+
+- type: entity
+  parent: DrinkBottlePlasticBaseFull
+  id: JugWater
+  name: water powder jug
+  suffix: For Drinks, Full
+  description: A jug of water. Also probably microplastics. 
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 300
+        reagents:
+        - ReagentId: Water
+          Quantity: 300
+  - type: Drink
+  - type: Label
+    currentLabel: reagent-name-water
