@@ -60,7 +60,7 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
                 {
                     // Calculate connection points - use side connections for Spread type, center for others
                     Vector2 startCoords, endCoords;
-                    
+
                     if (dependentItem.Prototype.PrerequisiteLineType == PrerequisiteLineType.Spread)
                     {
                         // For now, let's try using the same direction for both to see if that fixes the visual issue
@@ -195,7 +195,7 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
         var mainAngle = Math.Atan2(delta.Y, delta.X);
         var offsetAngle = mainAngle + Math.PI / 2;
         var offsetDirection = new Vector2((float)Math.Cos(offsetAngle), (float)Math.Sin(offsetAngle));
-        
+
         // Calculate unique offset for this connection based on its index
         var totalOffset = baseOffset + (Math.Abs(spreadIndex) * indexMultiplier);
         var indexOffset = offsetDirection * (totalOffset * Math.Sign(spreadIndex));
@@ -240,40 +240,6 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
         // Draw the two-segment branch
         DrawCleanLine(handle, start, intermediatePoint, color);
         DrawCleanLine(handle, intermediatePoint, trunkPoint, color);
-    }
-
-    /// <summary>
-    /// Draw a clean spread branch from prerequisite to spread junction
-    /// </summary>
-    private void DrawCleanSpreadBranch(DrawingHandleScreen handle, Vector2 start, Vector2 spreadPoint, Color color)
-    {
-        var delta = spreadPoint - start;
-        var distance = delta.Length();
-
-        // Avoid very short or overlapping connections
-        if (distance < 10f)
-            return;
-
-        // Use a simple two-segment path for clean appearance
-        Vector2 intermediatePoint;
-
-        // Determine the best routing based on the spatial relationship
-        if (Math.Abs(delta.X) > Math.Abs(delta.Y))
-        {
-            // Horizontal-dominant: go horizontal first, then vertical
-            var horizontalDistance = delta.X * 0.7f; // Don't go all the way
-            intermediatePoint = new Vector2(start.X + horizontalDistance, start.Y);
-        }
-        else
-        {
-            // Vertical-dominant: go vertical first, then horizontal  
-            var verticalDistance = delta.Y * 0.7f; // Don't go all the way
-            intermediatePoint = new Vector2(start.X, start.Y + verticalDistance);
-        }
-
-        // Draw the two-segment branch
-        DrawCleanLine(handle, start, intermediatePoint, color);
-        DrawCleanLine(handle, intermediatePoint, spreadPoint, color);
     }
 
     /// <summary>
@@ -343,15 +309,15 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
     {
         var fromRect = GetTechRect(fromTech);
         var toRect = GetTechRect(toTech);
-        
+
         var fromCenter = fromRect.Center;
         var toCenter = toRect.Center;
         var direction = (toCenter - fromCenter).Normalized();
-        
+
         // Calculate which side of the FROM tech box to exit from (toward the TO tech)
         var absX = Math.Abs(direction.X);
         var absY = Math.Abs(direction.Y);
-        
+
         if (absX > absY)
         {
             // Horizontal-dominant connection - exit from the side facing the target
@@ -479,15 +445,16 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
 
         // Create angled routing with the bend exactly at the midpoint
         const float avoidanceDistance = 30f; // Distance to offset the midpoint for collision avoidance
-        
+
         // Calculate perpendicular direction for avoidance at midpoint
         var mainAngle = Math.Atan2(delta.Y, delta.X);
-        var avoidanceAngle = mainAngle + Math.PI / 2;
-        var avoidanceDirection = new Vector2((float)Math.Cos(avoidanceAngle), (float)Math.Sin(avoidanceAngle));
-        
-        // Determine avoidance direction based on position to ensure consistent routing
-        var hashValue = (start.X * 17 + start.Y * 31 + end.X * 13 + end.Y * 23) % 100;
-        var avoidanceMultiplier = (hashValue > 50) ? 1f : -1f;
+        var offsetAngle = mainAngle + Math.PI / 2;
+        var avoidanceDirection = new Vector2((float)Math.Cos(offsetAngle), (float)Math.Sin(offsetAngle));
+
+        // Determine avoidance direction based on connection direction for consistency
+        // Use the direction of the connection to determine which side to offset
+        // This ensures connections going in opposite directions offset to opposite sides
+        var avoidanceMultiplier = delta.Y >= 0 ? 1f : -1f; // Consistent direction based on Y-direction
         var avoidanceOffset = avoidanceDirection * avoidanceDistance * avoidanceMultiplier;
 
         // Create angled path with bend exactly at midpoint: start -> midpoint+offset -> end

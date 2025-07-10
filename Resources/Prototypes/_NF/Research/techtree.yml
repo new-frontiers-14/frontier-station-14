@@ -1033,7 +1033,7 @@
   entityIcon: PortablePump
   discipline: NFService
   tier: 1
-  cost: 7500
+  cost: 5000
   recipeUnlocks:
   - PortablePumpMachineCircuitBoard
   prerequisiteLineType: Diagonal
@@ -1099,7 +1099,7 @@
   entityIcon: hydroponicsTray
   discipline: NFService
   tier: 1
-  cost: 7500
+  cost: 10000
   recipeUnlocks:
   - HydroponicsTrayMachineCircuitboard
   technologyPrerequisites:
@@ -1115,6 +1115,7 @@
   cost: 2500
   recipeUnlocks:
   - PlantBagOfHolding
+  prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedHydroponicsEquipment
   position: 1, 25
@@ -1156,7 +1157,7 @@
   entityIcon: KitchenDeepFryer
   discipline: NFService
   tier: 1
-  cost: 7500
+  cost: 5000
   recipeUnlocks:
   - DeepFryerMachineCircuitboard
   prerequisiteLineType: Diagonal
@@ -1293,7 +1294,7 @@
   entityIcon: Emitter
   discipline: NFEngineering
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
   - EmitterCircuitboard
   technologyPrerequisites:
@@ -1339,21 +1340,18 @@
   - NFTrashPowerGeneration
   position: 2, 30
 
-# Placeholder for Edison
-# - type: technology
-#   id: NFParticleDecelerator
-#   name: nf-research-technology-portable-particle-emission
-#   icon:
-#     sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
-#     state: base
-#   discipline: NFEngineering
-#   tier: 1
-#   cost: 10000
-#   recipeUnlocks:
-#   - NFWeaponParticleDecelerator
-#   technologyPrerequisites:
-#   - NFEmitter
-#   position: 2, 32
+- type: technology
+  id: NFParticleDecelerator
+  name: nf-research-technology-portable-particle-emission
+  entityIcon: NFWeaponParticleDecelerator
+  discipline: NFEngineering
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - NFWeaponParticleDecelerator
+  technologyPrerequisites:
+  - NFEmitter
+  position: 2, 32
 
 - type: technology
   id: NFPowerGeneration
