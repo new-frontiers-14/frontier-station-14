@@ -24,9 +24,12 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
     public static readonly Color DefaultHoveredColor = Color.FromHex("#4972A1");
 
     public Color BackgroundColor = DefaultColor;
+    public Color SecondaryBackgroundColor = DefaultColor;
     public Color BorderColor = DefaultBorderColor;
     public Color HoveredColor = DefaultHoveredColor;
+    public Color SecondaryHoveredColor = DefaultHoveredColor;
     public Color SelectedColor = DefaultHoveredColor;
+    public Color SecondarySelectedColor = DefaultHoveredColor;
 
     // Selection state
     private bool _isSelected = false;
@@ -50,9 +53,18 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         Availability = availability;
         Prototype = proto;
 
-        // Get the discipline for background color
-        var discipline = _prototype.Index<TechDisciplinePrototype>(proto.Discipline);
-        var disciplineColor = discipline.Color;
+        // Get the primary discipline for background color
+        var primaryDiscipline = _prototype.Index<TechDisciplinePrototype>(proto.Discipline);
+        var primaryColor = primaryDiscipline.Color;
+
+        // Check if there's a secondary discipline
+        TechDisciplinePrototype? secondaryDiscipline = null;
+        Color? secondaryColor = null;
+        if (proto.SecondaryDiscipline.HasValue)
+        {
+            secondaryDiscipline = _prototype.Index<TechDisciplinePrototype>(proto.SecondaryDiscipline.Value);
+            secondaryColor = secondaryDiscipline.Color;
+        }
 
         // Handle technology icon - prioritize EntityIcon for full sprite layers
         if (proto.EntityIcon.HasValue)
@@ -84,62 +96,114 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         switch (availability)
         {
             case ResearchAvailability.Researched:
-                BackgroundColor = Color.InterpolateBetween(disciplineColor, Color.Black, 0.2f); // slightly darker, to emphasise available techs
+                BackgroundColor = Color.InterpolateBetween(primaryColor, Color.Black, 0.2f); // slightly darker, to emphasise available techs
+                if (secondaryColor.HasValue)
+                    SecondaryBackgroundColor = Color.InterpolateBetween(secondaryColor.Value, Color.Black, 0.2f);
                 BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
                 break;
 
             case ResearchAvailability.Available:
-                BackgroundColor = disciplineColor;
+                BackgroundColor = primaryColor;
+                if (secondaryColor.HasValue)
+                    SecondaryBackgroundColor = secondaryColor.Value;
                 BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
                 break;
 
             case ResearchAvailability.PrereqsMet:
-                BackgroundColor = disciplineColor;
+                BackgroundColor = primaryColor;
+                if (secondaryColor.HasValue)
+                    SecondaryBackgroundColor = secondaryColor.Value;
                 BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
                 break;
 
             case ResearchAvailability.Unavailable:
-                BackgroundColor = Color.InterpolateBetween(disciplineColor, Color.Black, 0.5f); // much darker, to emphasise available & researched techs
+                BackgroundColor = Color.InterpolateBetween(primaryColor, Color.Black, 0.5f); // much darker, to emphasise available & researched techs
+                if (secondaryColor.HasValue)
+                    SecondaryBackgroundColor = Color.InterpolateBetween(secondaryColor.Value, Color.Black, 0.5f);
                 BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
                 break;
 
             default:
-                BackgroundColor = Color.InterpolateBetween(disciplineColor, Color.Black, 0.5f); // much darker, to emphasise available & researched techs
+                BackgroundColor = Color.InterpolateBetween(primaryColor, Color.Black, 0.5f); // much darker, to emphasise available & researched techs
+                if (secondaryColor.HasValue)
+                    SecondaryBackgroundColor = Color.InterpolateBetween(secondaryColor.Value, Color.Black, 0.5f);
                 BorderColor = ResearchColorScheme.GetTechBorderColor(availability);
                 break;
         }
 
-        // Create a brighter version of the discipline color for hover by interpolating with white
-        HoveredColor = Color.InterpolateBetween(disciplineColor, Color.White, 0.3f);
-        // Create an even brighter version for selection (persistent bright highlight)
-        SelectedColor = Color.InterpolateBetween(disciplineColor, Color.White, 0.5f);
+        // Create brighter versions of the discipline colors for hover by interpolating with white
+        HoveredColor = Color.InterpolateBetween(primaryColor, Color.White, 0.3f);
+        if (secondaryColor.HasValue)
+            SecondaryHoveredColor = Color.InterpolateBetween(secondaryColor.Value, Color.White, 0.3f);
 
-        // Create rounded style box with 8px corner radius and thick border
-        var roundedStyle = new RoundedStyleBoxFlat
+        // Create even brighter versions for selection (persistent bright highlight)
+        SelectedColor = Color.InterpolateBetween(primaryColor, Color.White, 0.5f);
+        if (secondaryColor.HasValue)
+            SecondarySelectedColor = Color.InterpolateBetween(secondaryColor.Value, Color.White, 0.5f);
+
+        // Create appropriate style box based on whether we have dual disciplines
+        if (secondaryDiscipline != null)
         {
-            BackgroundColor = BackgroundColor,
-            BorderColor = BorderColor,
-            BorderThickness = new Thickness(2.5f),
-            CornerRadius = 8f
-        };
+            // Create dual-color rounded style box with diagonal split
+            var dualColorStyle = new RoundedDualColorStyleBoxFlat
+            {
+                PrimaryColor = BackgroundColor,
+                SecondaryColor = SecondaryBackgroundColor,
+                BorderColor = BorderColor,
+                BorderThickness = new Thickness(2.5f),
+                CornerRadius = 8f
+            };
+            Panel.PanelOverride = dualColorStyle;
+        }
+        else
+        {
+            // Create regular single-color rounded style box
+            var roundedStyle = new RoundedStyleBoxFlat
+            {
+                BackgroundColor = BackgroundColor,
+                BorderColor = BorderColor,
+                BorderThickness = new Thickness(2.5f),
+                CornerRadius = 8f
+            };
+            Panel.PanelOverride = roundedStyle;
+        }
 
-        Panel.PanelOverride = roundedStyle;
         UpdateColor();
     }
 
     private void UpdateColor()
     {
-        if (Panel.PanelOverride is RoundedStyleBoxFlat panel)
+        if (Panel.PanelOverride is RoundedDualColorStyleBoxFlat dualColorPanel)
         {
             // Priority: Selected > Hovered > Normal
             if (IsSelected)
-                panel.BackgroundColor = SelectedColor;
+            {
+                dualColorPanel.PrimaryColor = SelectedColor;
+                dualColorPanel.SecondaryColor = SecondarySelectedColor;
+            }
             else if (Button.IsHovered)
-                panel.BackgroundColor = HoveredColor;
+            {
+                dualColorPanel.PrimaryColor = HoveredColor;
+                dualColorPanel.SecondaryColor = SecondaryHoveredColor;
+            }
             else
-                panel.BackgroundColor = BackgroundColor;
+            {
+                dualColorPanel.PrimaryColor = BackgroundColor;
+                dualColorPanel.SecondaryColor = SecondaryBackgroundColor;
+            }
+            dualColorPanel.BorderColor = BorderColor;
+        }
+        else if (Panel.PanelOverride is RoundedStyleBoxFlat singleColorPanel)
+        {
+            // Priority: Selected > Hovered > Normal
+            if (IsSelected)
+                singleColorPanel.BackgroundColor = SelectedColor;
+            else if (Button.IsHovered)
+                singleColorPanel.BackgroundColor = HoveredColor;
+            else
+                singleColorPanel.BackgroundColor = BackgroundColor;
 
-            panel.BorderColor = BorderColor;
+            singleColorPanel.BorderColor = BorderColor;
         }
     }
 

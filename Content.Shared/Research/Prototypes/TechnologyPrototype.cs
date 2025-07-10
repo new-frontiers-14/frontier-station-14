@@ -91,6 +91,34 @@ public sealed partial class TechnologyPrototype : IPrototype
     /// </summary>
     [DataField]
     public PrerequisiteLineType PrerequisiteLineType { get; private set; } = PrerequisiteLineType.LShape;
+
+    /// <summary>
+    /// Additional disciplines this technology belongs to.
+    /// When specified, the technology will show a split color display.
+    /// Limited to one additional discipline (total of 2 disciplines).
+    /// </summary>
+    [DataField]
+    public ProtoId<TechDisciplinePrototype>? SecondaryDiscipline = null;
+
+    /// <summary>
+    /// Get all disciplines this technology belongs to.
+    /// Returns primary discipline and secondary discipline if present.
+    /// </summary>
+    public List<ProtoId<TechDisciplinePrototype>> GetAllDisciplines()
+    {
+        var disciplines = new List<ProtoId<TechDisciplinePrototype>> { Discipline };
+        if (SecondaryDiscipline.HasValue)
+            disciplines.Add(SecondaryDiscipline.Value);
+        return disciplines;
+    }
+
+    /// <summary>
+    /// Check if this technology belongs to a specific discipline.
+    /// </summary>
+    public bool HasDiscipline(ProtoId<TechDisciplinePrototype> disciplineId)
+    {
+        return Discipline == disciplineId || (SecondaryDiscipline.HasValue && SecondaryDiscipline.Value == disciplineId);
+    }
     /// End Frontier: R&D console rework
 }
 
