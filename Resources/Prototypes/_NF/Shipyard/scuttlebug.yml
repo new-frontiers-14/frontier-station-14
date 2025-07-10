@@ -1,0 +1,46 @@
+# Author Info
+# GitHub: NaoY42
+# Discord: Kiki★Stardew
+
+# Maintainer Info
+# GitHub: NaoY42
+# Discord: Kiki★Stardew
+# Special thanks to: Alexant who helped me when I had no idea what I was doing.
+
+# Shuttle Notes:
+# Tier 2 Full salvage with some Medical support for medical bounties designed for a group of 2-3.
+#
+- type: vessel
+  id: Scuttlebug
+  parent: BaseVessel
+  name: ICR Scuttlebug
+  description: A small salvage vessel with a small medical wing for first aid and medical bounties.
+  price: 37,500 # 28,907 +30% markup 37,579 rounded to 37,500 
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/scuttlebug.yml
+  guidebookPage: null
+  class:
+  - salvage
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Scuttlebug
+  mapName: 'KS Scuttlebug'
+  mapPath:  /Maps/_NF/Shuttles/scuttlebug.yml
+  minPlayers: 0
+  stations:
+    Scuttlebug:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Scuttlebug {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
