@@ -143,7 +143,7 @@
     - !type:OreDunGen
       tileMask:
       - FloorBasalt
-      entity: SpawnMobMercenaryT3
+      entity: SpawnMobMercenaryEVAT3
       count: 5
       minGroupSize: 1
       maxGroupSize: 1
@@ -237,22 +237,28 @@
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerValuable
   - !type:MobsDunGen
+    minCount: 3
+    maxCount: 6
+    groups:
+    - id: SpawnMobMercenaryEVAT1
+      amount: 2
+  - !type:MobsDunGen
     minCount: 8
     maxCount: 15
     groups:
-    - id: SpawnMobMercenaryT2
+    - id: SpawnMobMercenaryEVAT2
       amount: 1
   - !type:MobsDunGen
     minCount: 1
     maxCount: 3
     groups:
-    - id: SpawnMobMercenaryT3
+    - id: SpawnMobMercenaryEVAT3
       amount: 1
   - !type:MobsDunGen
     minCount: 0
     maxCount: 1
     groups:
-    - id: SpawnMobMercenaryCaptain
+    - id: SpawnMobMercenaryCaptainEVA
       amount: 1
 
 #- type: dungeonConfig
