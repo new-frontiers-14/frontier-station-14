@@ -44,7 +44,8 @@ public sealed class RandomBlueprintSystem : EntitySystem
         }
 
         var recipeList = recipes.ToList();
-        if (recipeList.Count < rolls){
+        if (recipeList.Count < rolls)
+        {
             rolls = recipeList.Count;
         }
 
