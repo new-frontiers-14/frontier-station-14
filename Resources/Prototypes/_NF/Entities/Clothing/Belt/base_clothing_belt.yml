@@ -28,6 +28,29 @@
     size: Ginormous
     shape:
     - 0,0,3,2
+  - type: NFMagnetPickup
+    magnetEnabled: false
+    range: 2
+    autoDisableTime: 10
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onUse: false # Frontier
+    onAltUse: true # Frontier
+    onActivate: false # Frontier
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: True }
+          False: { visible: False }
 
 - type: entity
   abstract: true

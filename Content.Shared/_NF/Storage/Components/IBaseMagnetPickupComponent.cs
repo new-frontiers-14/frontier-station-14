@@ -8,6 +8,13 @@ public interface IBaseMagnetPickupComponent
     TimeSpan NextScan { get; set; }
     float Range { get; set; }
     bool MagnetEnabled { get; set; }
-    bool MagnetCanBeEnabled { get; set; }
     int MagnetTogglePriority { get; set; }
+
+    // Auto-disable functionality
+    bool AutoDisableEnabled { get; set; }
+    TimeSpan AutoDisableTime { get; set; }
+    TimeSpan LastSuccessfulPickup { get; set; }
+    
+    // Never disable option - when true, magnet runs indefinitely without auto-disable or manual toggle capability
+    bool AlwaysOn { get; set; }
 }

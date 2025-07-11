@@ -33,9 +33,6 @@
         - Gauze
         - Bottle
   - type: Dumpable
-  - type: NFMagnetPickup
-    magnetEnabled: false
-    magnetCanBeEnabled: false
   # Frontier: toggle magnet from White Dream (keeping this in case it's useful as a future note)
   - type: ItemToggle
     soundActivate: &soundActivate
@@ -46,9 +43,6 @@
     onUse: false
     onAltUse: true
     onActivate: false
-  - type: ItemToggleExamine
-    on: item-toggle-examine-magnet-on
-    off: item-toggle-examine-magnet-off
   - type: Appearance
   - type: GenericVisualizer
     visuals:

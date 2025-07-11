@@ -39,9 +39,24 @@
     sprite: Objects/Specific/Janitorial/trashbag.rsi
   - type: Item
     size: Normal
-  - type: NFMagnetPickup # Frontier
-    magnetEnabled: false # Frontier
-  - type: GoblinPreciousTrashBag # Frontier
+    # Begin Frontier Additions: toggle magnet from White Dream
+  - type: GoblinPreciousTrashBag
+  - type: NFMagnetPickup
+    magnetEnabled: false
+    range: 2
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onUse: false
+    onAltUse: true
+    onActivate: false
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+    # End Frontier Additions
 
 - type: entity
   name: trash bag

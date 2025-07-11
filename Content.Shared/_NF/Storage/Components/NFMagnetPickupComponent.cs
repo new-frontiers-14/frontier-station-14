@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._NF.Storage.Components;
 
@@ -9,49 +10,85 @@ namespace Content.Shared._NF.Storage.Components;
 [NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class NFMagnetPickupComponent : Component, IBaseMagnetPickupComponent
 {
-    [AutoPausedField, ViewVariables, DataField]
+    // Default constants
+    public const int DefaultVerbPriority = 3;
+
+    [AutoPausedField, ViewVariables(VVAccess.ReadOnly), DataField]
     public TimeSpan NextScan { get; set; } = TimeSpan.Zero;
 
     // Timing constants
-    [ViewVariables, DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public static TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
 
-    [ViewVariables, DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public static TimeSpan FastScanDelay = TimeSpan.FromSeconds(0.5);
 
-    [ViewVariables, DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public static TimeSpan SlowScanDelay = TimeSpan.FromSeconds(2);
 
     /// <summary>
     /// Is the magnet currently enabled?
     /// </summary>
-    [AutoNetworkedField, ViewVariables, DataField]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
     public bool MagnetEnabled { get; set; } = true;
 
-    /// <summary>
-    /// Can the magnet be toggled by the user?
-    /// </summary>
-    [ViewVariables, DataField]
-    public bool MagnetCanBeEnabled { get; set; } = true;
-
     // Processing limits
-    [ViewVariables, DataField]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public const int MaxEntitiesPerScan = 20;
 
-    [ViewVariables, DataField]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public const int MaxPickupsPerScan = 5;
 
-    [ViewVariables, DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public float Range { get; set; } = 1f;
 
     /// <summary>
     /// Priority for the toggle magnet verb.
     /// </summary>
-    [ViewVariables, DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public int MagnetTogglePriority { get; set; } = DefaultVerbPriority;
 
-    // Default constants
-    public const int DefaultVerbPriority = 3;
+    /// <summary>
+    /// Whether auto-disable is enabled. When true, magnet will automatically disable after AutoDisableTime without successful pickups.
+    /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool AutoDisableEnabled { get; set; } = false;
+
+    /// <summary>
+    /// Time to wait before auto-disabling the magnet if no successful pickups occur.
+    /// </summary>
+    [AutoPausedField, ViewVariables(VVAccess.ReadWrite), DataField]
+    public TimeSpan AutoDisableTime { get; set; } = TimeSpan.FromSeconds(30); // 30 seconds for easier testing
+
+    /// <summary>
+    /// Time when the last successful pickup occurred.
+    /// </summary>
+    [AutoPausedField, ViewVariables(VVAccess.ReadOnly), DataField]
+    public TimeSpan LastSuccessfulPickup { get; set; } = TimeSpan.Zero;
+
+    /// <summary>
+    /// When true, the magnet runs indefinitely without auto-disable or manual toggle capability.
+    /// Useful for permanent magnet installations or special magnet types.
+    /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool AlwaysOn { get; set; } = false;
+
+    /// <summary>
+    /// Time remaining until auto-disable (for debugging purposes)
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan TimeUntilAutoDisable
+    {
+        get
+        {
+            if (!AutoDisableEnabled || LastSuccessfulPickup == TimeSpan.Zero || AlwaysOn)
+                return TimeSpan.Zero;
+
+            var elapsed = IoCManager.Resolve<IGameTiming>().CurTime - LastSuccessfulPickup;
+            var remaining = AutoDisableTime - elapsed;
+            return remaining > TimeSpan.Zero ? remaining : TimeSpan.Zero;
+        }
+    }
 
     // Texture paths
     [DataField]

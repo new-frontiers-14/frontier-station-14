@@ -6,6 +6,9 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 using Content.Shared._NF.Storage.Components;
+using Content.Shared.Item.ItemToggle;
+using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Storage.Components; // Added for StorageFillVisuals
 
 namespace Content.Shared._NF.Storage.EntitySystems;
 
@@ -23,6 +26,7 @@ public sealed class NFMaterialReclaimerMagnetPickupSystem : BaseMagnetPickupSyst
         SubscribeLocalEvent<NFMaterialReclaimerMagnetPickupComponent, EntityUnpausedEvent>(OnMagnetUnpaused);
         SubscribeLocalEvent<NFMaterialReclaimerMagnetPickupComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<NFMaterialReclaimerMagnetPickupComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleMagnetVerb);
+        SubscribeLocalEvent<NFMaterialReclaimerMagnetPickupComponent, ItemToggledEvent>(OnItemToggled);
     }
 
     private void OnMagnetUnpaused(EntityUid uid, NFMaterialReclaimerMagnetPickupComponent component, ref EntityUnpausedEvent args)
@@ -45,6 +49,12 @@ public sealed class NFMaterialReclaimerMagnetPickupSystem : BaseMagnetPickupSyst
         HandleExamined(uid, component, args);
     }
 
+    private void OnItemToggled(EntityUid uid, NFMaterialReclaimerMagnetPickupComponent component, ref ItemToggledEvent args)
+    {
+        HandleItemToggled(uid, component, ref args);
+        Dirty(uid, component);
+    }
+
     public bool ToggleMagnet(EntityUid uid, NFMaterialReclaimerMagnetPickupComponent comp)
     {
         var result = ToggleMagnet<NFMaterialReclaimerMagnetPickupComponent>(uid, comp);
@@ -62,6 +72,14 @@ public sealed class NFMaterialReclaimerMagnetPickupSystem : BaseMagnetPickupSyst
         {
             if (comp.NextScan > currentTime)
                 continue;
+
+            // Check auto-disable before processing
+            if (CheckAutoDisable(uid, comp))
+            {
+                Dirty(uid, comp); // Mark as dirty if auto-disabled
+                comp.NextScan = currentTime + NFMagnetPickupComponent.SlowScanDelay;
+                continue;
+            }
 
             if (!comp.MagnetEnabled)
             {
@@ -94,6 +112,9 @@ public sealed class NFMaterialReclaimerMagnetPickupSystem : BaseMagnetPickupSyst
                         break;
                 }
             }
+
+            // Handle successful pickup tracking for auto-disable
+            HandleSuccessfulPickup(uid, comp, successfulPickups);
 
             comp.NextScan = currentTime + CalculateNextScanDelay(successfulPickups, foundTargets);
         }

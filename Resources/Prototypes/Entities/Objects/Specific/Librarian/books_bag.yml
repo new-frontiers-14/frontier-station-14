@@ -1,7 +1,7 @@
 - type: entity
   name: book bag # Frontier: books bag<book bag
   id: BooksBag
-  parent: BaseStorageItem
+  parent: NFBaseClothingBeltStorageBag # Frontier: BaseStorageItem<NFBaseClothingBeltStorageBag
   description: A refined bag to carry your own library.
   components:
     - type: Sprite
@@ -34,28 +34,4 @@
           - TabletopBoard
           - Write
     - type: Dumpable
-    - type: NFMagnetPickup # Frontier
-      magnetEnabled: false # Frontier
-      magnetCanBeEnabled: false # Frontier
     - type: NFBookBag # Frontier
-    # Begin Frontier Additions: toggle magnet from White Dream
-    - type: ItemToggle
-      soundActivate: &soundActivate
-        collection: sparks
-        params:
-          variation: 0.25
-      soundDeactivate: *soundActivate
-      onUse: false
-      onAltUse: true
-      onActivate: false
-    - type: ItemToggleExamine
-      on: item-toggle-examine-magnet-on
-      off: item-toggle-examine-magnet-off
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.ToggleVisuals.Toggled:
-          enum.ToggleVisuals.Layer:
-            True: { visible: True }
-            False: { visible: False }
-    # End Frontier Additions
