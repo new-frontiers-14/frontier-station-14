@@ -53,14 +53,20 @@ public abstract class BaseMagnetPickupSystem : EntitySystem
     /// <summary>
     /// Common logic for adding toggle magnet verbs
     /// </summary>
-    protected void HandleAddToggleMagnetVerb<T>(EntityUid uid, T component, GetVerbsEvent<AlternativeVerb> args, int priority = NFMagnetPickupComponent.DefaultVerbPriority)
+    protected void HandleAddToggleMagnetVerb<T>(EntityUid uid, T component, GetVerbsEvent<AlternativeVerb> args, int? priority = null)
         where T : IBaseMagnetPickupComponent
     {
+        // Magnet run by other means (e.g. toggles)
+        if (!component.MagnetCanBeEnabled)
+            return;
+
         if (!args.CanAccess || !args.CanInteract)
             return;
 
         if (!HasComp<HandsComponent>(args.User))
             return;
+
+        var verbPriority = priority ?? component.MagnetTogglePriority;
 
         AlternativeVerb verb = new()
         {
@@ -70,7 +76,7 @@ public abstract class BaseMagnetPickupSystem : EntitySystem
             },
             Icon = new SpriteSpecifier.Texture(new(NFMagnetPickupComponent.PowerToggleIconPath)),
             Text = Loc.GetString(NFMagnetPickupComponent.VerbToggleText),
-            Priority = priority
+            Priority = verbPriority
         };
 
         args.Verbs.Add(verb);
@@ -82,6 +88,10 @@ public abstract class BaseMagnetPickupSystem : EntitySystem
     protected void HandleExamined<T>(EntityUid uid, T component, ExaminedEvent args)
         where T : IBaseMagnetPickupComponent
     {
+        // Magnet run by other means (e.g. toggles)
+        if (!component.MagnetCanBeEnabled)
+            return;
+
         var stateKey = component.MagnetEnabled
             ? NFMagnetPickupComponent.ExamineStateEnabled
             : NFMagnetPickupComponent.ExamineStateDisabled;

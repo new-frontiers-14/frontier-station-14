@@ -13,7 +13,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Server.Cargo.Systems; // Frontier
-using Content.Shared._NF.Storage.Components; // Frontier
+using Content.Shared._NF.Storage.Components; // Frontier - Added for NFMaterialStorageMagnetPickupComponent
 
 namespace Content.Server.Materials;
 

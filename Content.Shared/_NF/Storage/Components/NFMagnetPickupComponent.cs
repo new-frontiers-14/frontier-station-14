@@ -32,7 +32,7 @@ public sealed partial class NFMagnetPickupComponent : Component, IBaseMagnetPick
     /// Can the magnet be toggled by the user?
     /// </summary>
     [ViewVariables, DataField]
-    public bool MagnetCanBeEnabled = true;
+    public bool MagnetCanBeEnabled { get; set; } = true;
 
     // Processing limits
     [ViewVariables, DataField]
@@ -48,7 +48,7 @@ public sealed partial class NFMagnetPickupComponent : Component, IBaseMagnetPick
     /// Priority for the toggle magnet verb.
     /// </summary>
     [ViewVariables, DataField]
-    public int MagnetTogglePriority = DefaultVerbPriority;
+    public int MagnetTogglePriority { get; set; } = DefaultVerbPriority;
 
     // Default constants
     public const int DefaultVerbPriority = 3;

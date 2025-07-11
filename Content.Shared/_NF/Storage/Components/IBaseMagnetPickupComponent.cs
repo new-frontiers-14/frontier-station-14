@@ -6,6 +6,8 @@ namespace Content.Shared._NF.Storage.Components;
 public interface IBaseMagnetPickupComponent
 {
     TimeSpan NextScan { get; set; }
-    float Range { get; }
+    float Range { get; set; }
     bool MagnetEnabled { get; set; }
+    bool MagnetCanBeEnabled { get; set; }
+    int MagnetTogglePriority { get; set; }
 }

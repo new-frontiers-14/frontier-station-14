@@ -52,7 +52,9 @@ public sealed class NFMaterialStorageMagnetPickupSystem : BaseMagnetPickupSystem
 
     public bool ToggleMagnet(EntityUid uid, NFMaterialStorageMagnetPickupComponent comp)
     {
-        return ToggleMagnet<NFMaterialStorageMagnetPickupComponent>(uid, comp);
+        var result = ToggleMagnet<NFMaterialStorageMagnetPickupComponent>(uid, comp);
+        Dirty(uid, comp);
+        return result;
     }
 
     public override void Update(float frameTime)
