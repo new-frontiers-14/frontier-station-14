@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Server._NF.Lathe;
 using Content.Server._NF.Stacks.Components;
-using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
@@ -15,9 +14,6 @@ public sealed class RandomBlueprintSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BlueprintLatheSystem _blueprintLathe = default!;
-
-    private readonly List<(int count, LatheRecipePackPrototype pack)> _packs = new();
-
     public override void Initialize()
     {
         base.Initialize();
@@ -36,9 +32,6 @@ public sealed class RandomBlueprintSystem : EntitySystem
         var rolls = _random.Next(ent.Comp.MinRolls, ent.Comp.MaxRolls + 1);
         if (rolls <= 0)
             return;
-
-        var totalRecipes = 0;
-        _packs.Clear();
 
         HashSet<ProtoId<LatheRecipePrototype>> recipes = new();
 
