@@ -11,80 +11,71 @@ using Content.Shared.Item;
 using Content.Shared.Verbs;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Storage;
-using Content.Shared.Storage.Components; // Added for StorageFillVisuals
+using Content.Shared.Storage.Components;
+using Content.Shared.Materials;
 using Robust.Shared.GameObjects;
 
 namespace Content.Shared._NF.Storage.EntitySystems;
 
 /// <summary>
-/// Base system for all magnet pickup functionality.
-/// Provides common functionality for regular, material storage, and material reclaimer magnets.
+/// Unified magnet pickup system that handles all magnet types.
+/// Replaces the separate systems for regular storage, material storage, and material reclaimer magnets.
 /// </summary>
-public abstract class BaseMagnetPickupSystem : EntitySystem
+public sealed class NFMagnetPickupSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly EntityLookupSystem Lookup = default!;
-    [Dependency] protected readonly new SharedTransformSystem Transform = default!;
-    [Dependency] protected readonly ItemToggleSystem ItemToggleSystem = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!; // Added for visual updates
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly ItemToggleSystem _itemToggleSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedStorageSystem _storage = default!;
+    [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
+    [Dependency] private readonly SharedMaterialReclaimerSystem _materialReclaimer = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly SharedItemSystem _item = default!;
 
-    protected EntityQuery<PhysicsComponent> PhysicsQuery;
+    private EntityQuery<PhysicsComponent> _physicsQuery;
+    private EntityQuery<MaterialComponent> _materialQuery;
+    private EntityQuery<MaterialStorageComponent> _materialStorageQuery;
+
+    private const int MaxEntitiesToInsert = 15;
 
     public override void Initialize()
     {
         base.Initialize();
-        PhysicsQuery = GetEntityQuery<PhysicsComponent>();
+        _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _materialQuery = GetEntityQuery<MaterialComponent>();
+        _materialStorageQuery = GetEntityQuery<MaterialStorageComponent>();
+
+        SubscribeLocalEvent<NFMagnetPickupComponent, MapInitEvent>(OnMagnetMapInit);
+        SubscribeLocalEvent<NFMagnetPickupComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<NFMagnetPickupComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleMagnetVerb);
+        SubscribeLocalEvent<NFMagnetPickupComponent, ItemToggledEvent>(OnItemToggled);
     }
 
-    /// <summary>
-    /// Common logic for handling magnet map initialization
-    /// </summary>
-    protected void HandleMagnetMapInit<T>(EntityUid uid, T component, MapInitEvent args)
-        where T : IBaseMagnetPickupComponent
+    private void OnMagnetMapInit(EntityUid uid, NFMagnetPickupComponent component, MapInitEvent args)
     {
-        component.NextScan = Timing.CurTime + TimeSpan.FromSeconds(1);
-        // Always initialize LastSuccessfulPickup to current time to prevent immediate auto-disable
-        component.LastSuccessfulPickup = Timing.CurTime;
-        
+        component.NextScan = _timing.CurTime + TimeSpan.FromSeconds(1);
+        component.LastSuccessfulPickup = _timing.CurTime;
+
         // Always-on magnets should be enabled and cannot be turned off
         if (component.AlwaysOn)
         {
             component.MagnetEnabled = true;
-            // Disable auto-disable for always-on magnets
             component.AutoDisableEnabled = false;
         }
-        
+
         // Sync initial state with ItemToggleComponent if present
         if (TryComp<ItemToggleComponent>(uid, out var itemToggle))
         {
-            ItemToggleSystem.TrySetActive((uid, itemToggle), component.MagnetEnabled);
+            _itemToggleSystem.TrySetActive((uid, itemToggle), component.MagnetEnabled);
         }
-        
+
         // Update initial appearance
         UpdateMagnetAppearance(uid, component);
-        
-        Log.Debug($"Magnet {uid} initialized with state: MagnetEnabled={component.MagnetEnabled}, AutoDisable={component.AutoDisableEnabled}, AlwaysOn={component.AlwaysOn}");
     }
 
-    /// <summary>
-    /// Common logic for handling entity unpaused events
-    /// </summary>
-    protected void HandleMagnetUnpaused<T>(EntityUid uid, T component, ref EntityUnpausedEvent args)
-        where T : IBaseMagnetPickupComponent
-    {
-        component.NextScan += args.PausedTime;
-        // Adjust auto-disable timing for pause only if it's been initialized
-        if (component.AutoDisableEnabled && component.LastSuccessfulPickup != TimeSpan.Zero)
-        {
-            component.LastSuccessfulPickup += args.PausedTime;
-        }
-    }
-
-    /// <summary>
-    /// Common logic for adding toggle magnet verbs
-    /// </summary>
-    protected void HandleAddToggleMagnetVerb<T>(EntityUid uid, T component, GetVerbsEvent<AlternativeVerb> args, int? priority = null)
-        where T : IBaseMagnetPickupComponent
+    private void AddToggleMagnetVerb(EntityUid uid, NFMagnetPickupComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
@@ -97,13 +88,10 @@ public abstract class BaseMagnetPickupSystem : EntitySystem
             return;
 
         // If the entity has ItemToggleComponent with alt use enabled, don't add our verb
-        // The ItemToggleComponent will handle the verb and we'll sync via events
         if (TryComp<ItemToggleComponent>(uid, out var toggleComp) && toggleComp.OnAltUse)
         {
-            return; // Let ItemToggleComponent handle the verb
+            return;
         }
-
-        var verbPriority = priority ?? component.MagnetTogglePriority;
 
         AlternativeVerb verb = new()
         {
@@ -113,17 +101,13 @@ public abstract class BaseMagnetPickupSystem : EntitySystem
             },
             Icon = new SpriteSpecifier.Texture(new(NFMagnetPickupComponent.PowerToggleIconPath)),
             Text = Loc.GetString(NFMagnetPickupComponent.VerbToggleText),
-            Priority = verbPriority
+            Priority = component.MagnetTogglePriority
         };
 
         args.Verbs.Add(verb);
     }
 
-    /// <summary>
-    /// Common logic for examination events
-    /// </summary>
-    protected void HandleExamined<T>(EntityUid uid, T component, ExaminedEvent args)
-        where T : IBaseMagnetPickupComponent
+    private void OnExamined(EntityUid uid, NFMagnetPickupComponent component, ExaminedEvent args)
     {
         var stateKey = component.MagnetEnabled
             ? NFMagnetPickupComponent.ExamineStateEnabled
@@ -139,86 +123,85 @@ public abstract class BaseMagnetPickupSystem : EntitySystem
         }
     }
 
+    private void OnItemToggled(EntityUid uid, NFMagnetPickupComponent component, ref ItemToggledEvent args)
+    {
+        // Don't process if this is an always-on magnet
+        if (component.AlwaysOn)
+            return;
+
+        // Update magnet state to match ItemToggle state
+        component.MagnetEnabled = args.Activated;
+
+        // Reset auto-disable timer when manually toggling the magnet on (only if auto-disable is enabled)
+        if (component.MagnetEnabled && component.AutoDisableEnabled)
+        {
+            component.LastSuccessfulPickup = _timing.CurTime;
+        }
+
+        // Update visual appearance
+        UpdateMagnetAppearance(uid, component);
+        Dirty(uid, component);
+    }
+
     /// <summary>
-    /// Common logic for toggling magnets
+    /// Toggles the magnet on the entity
     /// </summary>
-    protected bool ToggleMagnet<T>(EntityUid uid, T comp)
-        where T : IBaseMagnetPickupComponent
+    public void ToggleMagnet(EntityUid uid, NFMagnetPickupComponent comp)
     {
         // Always-on magnets cannot be toggled
         if (comp.AlwaysOn)
         {
-            Log.Warning($"Attempted to toggle always-on magnet {uid}, ignoring");
-            return comp.MagnetEnabled;
+            return;
         }
 
         var newState = !comp.MagnetEnabled;
-        Log.Debug($"Magnet {uid} toggle: {comp.MagnetEnabled} -> {newState}");
-        
         comp.MagnetEnabled = newState;
 
         // Reset auto-disable timer when manually toggling the magnet on (only if auto-disable is enabled)
         if (comp.MagnetEnabled && comp.AutoDisableEnabled)
         {
-            comp.LastSuccessfulPickup = Timing.CurTime;
+            comp.LastSuccessfulPickup = _timing.CurTime;
         }
 
-        // Sync with ItemToggleComponent if present - but don't let it override our state
+        // Sync with ItemToggleComponent if present
         if (TryComp<ItemToggleComponent>(uid, out var itemToggle))
         {
             // Only sync if the ItemToggle state doesn't match our desired state
             if (itemToggle.Activated != comp.MagnetEnabled)
             {
-                var result = ItemToggleSystem.TrySetActive((uid, itemToggle), comp.MagnetEnabled);
-                if (!result)
-                {
-                    Log.Warning($"Failed to sync ItemToggleComponent state for magnet {uid}. Magnet: {comp.MagnetEnabled}, ItemToggle: {itemToggle.Activated}");
-                }
+                _itemToggleSystem.TrySetActive((uid, itemToggle), comp.MagnetEnabled);
             }
         }
 
         // Update visual appearance
         UpdateMagnetAppearance(uid, comp);
-
-        Log.Debug($"Magnet {uid} state after toggle: {comp.MagnetEnabled}");
-        return comp.MagnetEnabled;
+        Dirty(uid, comp);
     }
 
     /// <summary>
     /// Updates the magnet's visual appearance based on its current state
     /// </summary>
-    protected void UpdateMagnetAppearance<T>(EntityUid uid, T component)
-        where T : IBaseMagnetPickupComponent
+    private void UpdateMagnetAppearance(EntityUid uid, NFMagnetPickupComponent component)
     {
-        // Use the magnet enabled state as the fill level for visual consistency
-        // 0 = disabled/off, 1 = enabled/on
         var fillLevel = component.MagnetEnabled ? 1 : 0;
-        Appearance.SetData(uid, StorageFillVisuals.FillLevel, fillLevel);
+        _appearance.SetData(uid, StorageFillVisuals.FillLevel, fillLevel);
     }
 
     /// <summary>
     /// Updates the last successful pickup time and handles auto-disable logic
     /// </summary>
-    protected void HandleSuccessfulPickup<T>(EntityUid uid, T component, int successfulPickups)
-        where T : IBaseMagnetPickupComponent
+    private void HandleSuccessfulPickup(EntityUid uid, NFMagnetPickupComponent component, int successfulPickups)
     {
-        // Always update LastSuccessfulPickup when there are successful pickups,
-        // regardless of AutoDisableEnabled state, so the timer is ready if auto-disable gets enabled later
         if (successfulPickups > 0)
         {
-            component.LastSuccessfulPickup = Timing.CurTime;
-            if (component.AutoDisableEnabled)
-            {
-                Log.Debug($"Magnet {uid} auto-disable timer reset due to {successfulPickups} successful pickups");
-            }
+            component.LastSuccessfulPickup = _timing.CurTime;
         }
     }
 
     /// <summary>
     /// Checks if the magnet should be auto-disabled and disables it if necessary
     /// </summary>
-    protected bool CheckAutoDisable<T>(EntityUid uid, T component)
-        where T : IBaseMagnetPickupComponent
+    private bool CheckAutoDisable(EntityUid uid, NFMagnetPickupComponent component)
     {
         // Always-on magnets never auto-disable
         if (component.AlwaysOn)
@@ -234,74 +217,58 @@ public abstract class BaseMagnetPickupSystem : EntitySystem
 
         if (!component.MagnetEnabled)
         {
-            // Magnet is already disabled
             return false;
         }
 
-        var currentTime = Timing.CurTime;
+        var currentTime = _timing.CurTime;
 
-        // If LastSuccessfulPickup is zero, it means no pickups have occurred since initialization
-        // Initialize it to current time ONLY if this is the first time auto-disable is being checked
+        // Initialize LastSuccessfulPickup if this is the first auto-disable check
         if (component.LastSuccessfulPickup == TimeSpan.Zero)
         {
             component.LastSuccessfulPickup = currentTime;
-            Log.Debug($"Magnet {uid} auto-disable timer initialized");
-            return false; // Don't auto-disable on first check, give it a chance
+            return false;
         }
 
-        // If LastSuccessfulPickup is in the future (shouldn't happen), reset it
+        // Reset if LastSuccessfulPickup is in the future (shouldn't happen)
         if (component.LastSuccessfulPickup > currentTime)
         {
-            Log.Warning($"Magnet {uid} LastSuccessfulPickup is in the future, resetting");
             component.LastSuccessfulPickup = currentTime;
             return false;
         }
 
         var timeSinceLastPickup = currentTime - component.LastSuccessfulPickup;
 
-        // Debug: Log when we're close to auto-disable (for testing purposes)
-        if (timeSinceLastPickup >= component.AutoDisableTime * 0.9)
-        {
-            var remaining = component.AutoDisableTime - timeSinceLastPickup;
-            Log.Debug($"Magnet {uid} auto-disable in {remaining.TotalSeconds:F1} seconds");
-        }
-
         if (timeSinceLastPickup >= component.AutoDisableTime)
         {
-            Log.Info($"Magnet {uid} auto-disabled after {timeSinceLastPickup.TotalSeconds:F1} seconds of inactivity");
             component.MagnetEnabled = false;
-            
+
             // Sync with ItemToggleComponent if present
             if (TryComp<ItemToggleComponent>(uid, out var itemToggle))
             {
-                var result = ItemToggleSystem.TrySetActive((uid, itemToggle), false);
-                if (!result)
-                {
-                    Log.Warning($"Failed to sync ItemToggleComponent state for auto-disabled magnet {uid}");
-                }
+                _itemToggleSystem.TrySetActive((uid, itemToggle), false);
             }
-            
+
             // Update visual appearance when auto-disabled
             UpdateMagnetAppearance(uid, component);
-            
-            return true; // Magnet was auto-disabled
+
+            return true;
         }
 
-        return false; // Magnet remains enabled
+        return false;
     }
 
     /// <summary>
     /// Common logic for checking if an entity should be processed
     /// </summary>
-    protected bool ShouldProcessEntity(EntityUid near, EntityUid parentUid, PhysicsComponent? physics = null)
+    private bool ShouldProcessEntity(EntityUid near, EntityUid parentUid, PhysicsComponent? physics = null)
     {
         if (near == parentUid)
             return false;
 
-        // More permissive physics check - allow entities that are on ground or don't have physics
-        if (PhysicsQuery.TryGetComponent(near, out physics))
+        // Allow entities that are on ground or don't have physics
+        if (_physicsQuery.TryGetComponent(near, out physics))
         {
-            // Only exclude entities that are explicitly in the air or have other incompatible status
+            // Only exclude entities that are explicitly in the air
             if (physics.BodyStatus == BodyStatus.InAir)
                 return false;
         }
@@ -312,7 +279,7 @@ public abstract class BaseMagnetPickupSystem : EntitySystem
     /// <summary>
     /// Calculate the next scan delay based on activity
     /// </summary>
-    protected TimeSpan CalculateNextScanDelay(int successfulPickups, bool foundTargets)
+    private TimeSpan CalculateNextScanDelay(int successfulPickups, bool foundTargets)
     {
         return successfulPickups > 0 ? NFMagnetPickupComponent.FastScanDelay :
                foundTargets ? NFMagnetPickupComponent.ScanDelay :
@@ -320,93 +287,150 @@ public abstract class BaseMagnetPickupSystem : EntitySystem
     }
 
     /// <summary>
-    /// Common logic for handling ItemToggle state changes
+    /// Processes regular storage magnet pickup
     /// </summary>
-    protected void HandleItemToggled<T>(EntityUid uid, T component, ref ItemToggledEvent args)
-        where T : IBaseMagnetPickupComponent
+    private (int successfulPickups, bool foundTargets) ProcessStorageMagnet(EntityUid uid, NFMagnetPickupComponent comp, StorageComponent storage, TransformComponent xform, MetaDataComponent meta)
     {
-        // Don't process if this is an always-on magnet
-        if (component.AlwaysOn)
-            return;
+        var slotCount = _storage.GetCumulativeItemAreas((uid, storage));
+        var totalSlots = storage.Grid.GetArea();
+        if (slotCount >= totalSlots)
+            return (0, false);
 
-        var newState = args.Activated;
-        Log.Debug($"Magnet {uid} ItemToggle changed: {component.MagnetEnabled} -> {newState}");
-        
-        // Update magnet state to match ItemToggle state
-        component.MagnetEnabled = newState;
+        var parentUid = xform.ParentUid;
+        var finalCoords = xform.Coordinates;
+        var moverCoords = _transform.GetMoverCoordinates(uid, xform);
+        var count = 0;
+        var successfulPickups = 0;
+        var foundTargets = false;
 
-        // Reset auto-disable timer when manually toggling the magnet on (only if auto-disable is enabled)
-        if (component.MagnetEnabled && component.AutoDisableEnabled)
+        foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
         {
-            component.LastSuccessfulPickup = Timing.CurTime;
+            if (count >= MaxEntitiesToInsert)
+                break;
+
+            if (!ShouldProcessEntity(near, parentUid))
+                continue;
+
+            foundTargets = true;
+
+            if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, near))
+                continue;
+
+            if (!TryComp<ItemComponent>(near, out var item))
+                continue;
+
+            var itemSize = _item.GetItemShape((near, item)).GetArea();
+            if (itemSize > totalSlots - slotCount)
+                break;
+
+            // Count only objects we _could_ insert.
+            count++;
+
+            if (!_storage.Insert(uid, near, out var stacked, storageComp: storage, playSound: false))
+                break;
+
+            successfulPickups++;
+            slotCount += itemSize;
         }
 
-        // Update visual appearance
-        UpdateMagnetAppearance(uid, component);
-
-        Log.Debug($"Magnet {uid} state synchronized from ItemToggle: {component.MagnetEnabled}");
-    }
-}
-
-/// <summary>
-/// <see cref="NFMagnetPickupComponent"/>
-/// </summary>
-public sealed class NFMagnetPickupSystem : BaseMagnetPickupSystem
-{
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
-
-    private const int MaxEntitiesToInsert = 15;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<NFMagnetPickupComponent, MapInitEvent>(OnMagnetMapInit);
-        SubscribeLocalEvent<NFMagnetPickupComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<NFMagnetPickupComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleMagnetVerb);
-        SubscribeLocalEvent<NFMagnetPickupComponent, ItemToggledEvent>(OnItemToggled);
-    }
-
-    private void OnMagnetMapInit(EntityUid uid, NFMagnetPickupComponent component, MapInitEvent args)
-    {
-        HandleMagnetMapInit(uid, component, args);
-    }
-
-    private void AddToggleMagnetVerb(EntityUid uid, NFMagnetPickupComponent component, GetVerbsEvent<AlternativeVerb> args)
-    {
-        HandleAddToggleMagnetVerb(uid, component, args, component.MagnetTogglePriority);
-    }
-
-    // Show the magnet state on examination
-    private void OnExamined(EntityUid uid, NFMagnetPickupComponent component, ExaminedEvent args)
-    {
-        HandleExamined(uid, component, args);
-    }
-
-    private void OnItemToggled(EntityUid uid, NFMagnetPickupComponent component, ref ItemToggledEvent args)
-    {
-        HandleItemToggled(uid, component, ref args);
-        Dirty(uid, component);
+        return (successfulPickups, foundTargets);
     }
 
     /// <summary>
-    /// Toggles the magnet on the ore bag/box
+    /// Processes material storage magnet pickup
     /// </summary>
-    public void ToggleMagnet(EntityUid uid, NFMagnetPickupComponent comp)
+    private (int successfulPickups, bool foundTargets) ProcessMaterialStorageMagnet(EntityUid uid, NFMagnetPickupComponent comp, MaterialStorageComponent storage, TransformComponent xform)
     {
-        ToggleMagnet<NFMagnetPickupComponent>(uid, comp);
-        Dirty(uid, comp);
+        // Early termination: Skip if storage is at capacity
+        if (storage.MaterialWhiteList != null && storage.MaterialWhiteList.Count > 0)
+        {
+            bool hasSpace = false;
+            foreach (var material in storage.MaterialWhiteList)
+            {
+                if (_materialStorage.CanChangeMaterialAmount(uid, material, 1, storage))
+                {
+                    hasSpace = true;
+                    break;
+                }
+            }
+
+            if (!hasSpace)
+                return (0, false);
+        }
+
+        var parentUid = xform.ParentUid;
+        var entitiesProcessed = 0;
+        var successfulPickups = 0;
+        var foundMaterials = false;
+
+        foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
+        {
+            if (entitiesProcessed >= NFMagnetPickupComponent.MaxEntitiesPerScan)
+                break;
+
+            entitiesProcessed++;
+
+            if (!ShouldProcessEntity(near, parentUid))
+                continue;
+
+            if (!_materialQuery.HasComponent(near))
+                continue;
+
+            foundMaterials = true;
+
+            if (_materialStorage.TryInsertMaterialEntity(uid, near, uid, storage))
+            {
+                successfulPickups++;
+
+                if (successfulPickups >= NFMagnetPickupComponent.MaxPickupsPerScan)
+                    break;
+            }
+        }
+
+        return (successfulPickups, foundMaterials);
+    }
+
+    /// <summary>
+    /// Processes material reclaimer magnet pickup
+    /// </summary>
+    private (int successfulPickups, bool foundTargets) ProcessMaterialReclaimerMagnet(EntityUid uid, NFMagnetPickupComponent comp, MaterialReclaimerComponent storage, TransformComponent xform)
+    {
+        var parentUid = xform.ParentUid;
+        var entitiesProcessed = 0;
+        var successfulPickups = 0;
+        var foundTargets = false;
+
+        foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
+        {
+            if (entitiesProcessed >= NFMagnetPickupComponent.MaxEntitiesPerScan)
+                break;
+
+            entitiesProcessed++;
+
+            if (!ShouldProcessEntity(near, parentUid))
+                continue;
+
+            foundTargets = true;
+
+            if (_materialReclaimer.TryStartProcessItem(uid, near))
+            {
+                successfulPickups++;
+
+                if (successfulPickups >= NFMagnetPickupComponent.MaxPickupsPerScan)
+                    break;
+            }
+        }
+
+        return (successfulPickups, foundTargets);
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var query = EntityQueryEnumerator<NFMagnetPickupComponent, StorageComponent, TransformComponent, MetaDataComponent>();
-        var currentTime = Timing.CurTime;
+        var query = EntityQueryEnumerator<NFMagnetPickupComponent, TransformComponent>();
+        var currentTime = _timing.CurTime;
 
-        while (query.MoveNext(out var uid, out var comp, out var storage, out var xform, out var meta))
+        while (query.MoveNext(out var uid, out var comp, out var xform))
         {
             if (comp.NextScan > currentTime)
                 continue;
@@ -425,65 +449,37 @@ public sealed class NFMagnetPickupSystem : BaseMagnetPickupSystem
                 continue;
             }
 
-            var slotCount = _storage.GetCumulativeItemAreas((uid, storage));
-            var totalSlots = storage.Grid.GetArea();
-            if (slotCount >= totalSlots)
-                continue;
-
-            var parentUid = xform.ParentUid;
-            var playedSound = false;
-            var finalCoords = xform.Coordinates;
-            var moverCoords = Transform.GetMoverCoordinates(uid, xform);
-            var count = 0;
             var successfulPickups = 0;
             var foundTargets = false;
 
-            foreach (var near in Lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
+            // Process based on magnet type
+            switch (comp.PickupType)
             {
-                if (count >= MaxEntitiesToInsert)
+                case MagnetPickupType.Storage:
+                    if (TryComp<StorageComponent>(uid, out var storage) && TryComp<MetaDataComponent>(uid, out var meta))
+                    {
+                        (successfulPickups, foundTargets) = ProcessStorageMagnet(uid, comp, storage, xform, meta);
+                    }
                     break;
 
-                if (!ShouldProcessEntity(near, parentUid))
-                    continue;
-
-                foundTargets = true;
-
-                if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, near))
-                    continue;
-
-                if (!TryComp<ItemComponent>(near, out var item))
-                    continue;
-
-                var itemSize = _item.GetItemShape((near, item)).GetArea();
-                if (itemSize > totalSlots - slotCount)
+                case MagnetPickupType.MaterialStorage:
+                    if (TryComp<MaterialStorageComponent>(uid, out var materialStorage))
+                    {
+                        (successfulPickups, foundTargets) = ProcessMaterialStorageMagnet(uid, comp, materialStorage, xform);
+                    }
                     break;
 
-                // Count only objects we _could_ insert.
-                count++;
-
-                var nearXform = base.Transform(near); // Use base.Transform method to get TransformComponent
-                var nearMap = Transform.GetMapCoordinates(near, xform: nearXform);
-                var nearCoords = Transform.ToCoordinates(moverCoords.EntityId, nearMap);
-
-                if (!_storage.Insert(uid, near, out var stacked, storageComp: storage, playSound: !playedSound))
+                case MagnetPickupType.MaterialReclaimer:
+                    if (TryComp<MaterialReclaimerComponent>(uid, out var materialReclaimer))
+                    {
+                        (successfulPickups, foundTargets) = ProcessMaterialReclaimerMagnet(uid, comp, materialReclaimer, xform);
+                    }
                     break;
-
-                slotCount += itemSize; // adjust size (assume it's in a new slot)
-                successfulPickups++;
-
-                // Play pickup animation for either the stack entity or the original entity.
-                if (stacked != null)
-                    _storage.PlayPickupAnimation(stacked.Value, nearCoords, finalCoords, nearXform.LocalRotation);
-                else
-                    _storage.PlayPickupAnimation(near, nearCoords, finalCoords, nearXform.LocalRotation);
-
-                playedSound = true;
             }
 
             // Handle successful pickup tracking for auto-disable
             HandleSuccessfulPickup(uid, comp, successfulPickups);
 
-            // Use dynamic scan delay based on activity
             comp.NextScan = currentTime + CalculateNextScanDelay(successfulPickups, foundTargets);
         }
     }

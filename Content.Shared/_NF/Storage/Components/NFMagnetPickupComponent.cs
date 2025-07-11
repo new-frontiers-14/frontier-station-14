@@ -4,11 +4,32 @@ using Robust.Shared.Timing;
 namespace Content.Shared._NF.Storage.Components;
 
 /// <summary>
+/// Magnet pickup behavior types
+/// </summary>
+public enum MagnetPickupType
+{
+    /// <summary>
+    /// Regular storage magnet - picks up items into storage containers
+    /// </summary>
+    Storage,
+
+    /// <summary>
+    /// Material storage magnet - picks up material entities into material storage
+    /// </summary>
+    MaterialStorage,
+
+    /// <summary>
+    /// Material reclaimer magnet - picks up items to process in material reclaimer
+    /// </summary>
+    MaterialReclaimer
+}
+
+/// <summary>
 /// Applies an ongoing pickup area around the attached entity.
 /// </summary>
 [RegisterComponent, AutoGenerateComponentPause]
 [NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class NFMagnetPickupComponent : Component, IBaseMagnetPickupComponent
+public sealed partial class NFMagnetPickupComponent : Component
 {
     // Default constants
     public const int DefaultVerbPriority = 3;
@@ -25,6 +46,12 @@ public sealed partial class NFMagnetPickupComponent : Component, IBaseMagnetPick
 
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public static TimeSpan SlowScanDelay = TimeSpan.FromSeconds(2);
+
+    /// <summary>
+    /// Type of magnet pickup behavior
+    /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
+    public MagnetPickupType PickupType { get; set; } = MagnetPickupType.Storage;
 
     /// <summary>
     /// Is the magnet currently enabled?
@@ -58,7 +85,7 @@ public sealed partial class NFMagnetPickupComponent : Component, IBaseMagnetPick
     /// Time to wait before auto-disabling the magnet if no successful pickups occur.
     /// </summary>
     [AutoPausedField, ViewVariables(VVAccess.ReadWrite), DataField]
-    public TimeSpan AutoDisableTime { get; set; } = TimeSpan.FromSeconds(30); // 30 seconds for easier testing
+    public TimeSpan AutoDisableTime { get; set; } = TimeSpan.FromSeconds(600);
 
     /// <summary>
     /// Time when the last successful pickup occurred.
@@ -74,7 +101,7 @@ public sealed partial class NFMagnetPickupComponent : Component, IBaseMagnetPick
     public bool AlwaysOn { get; set; } = false;
 
     /// <summary>
-    /// Time remaining until auto-disable (for debugging purposes)
+    /// Time remaining until auto-disable
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public TimeSpan TimeUntilAutoDisable

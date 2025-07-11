@@ -13,7 +13,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Server.Cargo.Systems; // Frontier
-using Content.Shared._NF.Storage.Components; // Frontier - Added for NFMaterialStorageMagnetPickupComponent
+using Content.Shared._NF.Storage.Components; // Frontier - Added for NFMagnetPickupComponent
 
 namespace Content.Server.Materials;
 
@@ -101,7 +101,7 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
 
         // Frontier
         // If we made it this far, turn off the magnet before spawning materials
-        if (TryComp<NFMaterialStorageMagnetPickupComponent>(uid, out var magnet))
+        if (TryComp<NFMagnetPickupComponent>(uid, out var magnet))
         {
             magnet.MagnetEnabled = false;
         }

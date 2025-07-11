@@ -60,9 +60,6 @@
       storagebase: !type:Container
         ents: [ ]
   - type: Dumpable
-  - type: NFMagnetPickup
-    range: 2
-    magnetEnabled: false
   - type: Fixtures
     fixtures:
       fix1:
@@ -74,6 +71,10 @@
         - SmallMobMask
         layer:
         - MachineLayer
+  - type: NFMagnetPickup
+    range: 2
+    magnetEnabled: false
+    autoDisableEnabled: true
   - type: ItemToggle
     soundActivate: &soundActivate
       collection: sparks
