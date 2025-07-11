@@ -1,6 +1,7 @@
 using Content.Server.Salvage.Magnet;
 using Content.Server.Solar.Components;
 using Content.Shared.Prototypes;
+using Content.Shared.Storage.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests._NF;
@@ -13,6 +14,7 @@ public sealed class IllegalComponentTest
     {
         typeof(SolarPanelComponent), // Frontier: use NF variant
         typeof(SalvageMobRestrictionsComponent), // Frontier: use NF variant
+        typeof(MagnetPickupComponent), // Frontier: use NF variant
     };
 
     [Test]

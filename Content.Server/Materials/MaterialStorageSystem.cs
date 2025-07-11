@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Shared.Materials;
 using Content.Shared.Popups;
@@ -12,8 +12,8 @@ using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Content.Server.Storage.Components; // Frontier
 using Content.Server.Cargo.Systems; // Frontier
+using Content.Shared._NF.Storage.Components; // Frontier
 
 namespace Content.Server.Materials;
 
@@ -101,11 +101,11 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
 
         // Frontier
         // If we made it this far, turn off the magnet before spawning materials
-        if (TryComp<MaterialStorageMagnetPickupComponent>(uid, out var magnet))
+        if (TryComp<NFMaterialStorageMagnetPickupComponent>(uid, out var magnet))
         {
             magnet.MagnetEnabled = false;
         }
-        // end Frontier
+        // End Frontier
 
         var mats = SpawnMultipleFromMaterial(volume, material, Transform(uid).Coordinates, out _);
         foreach (var mat in mats.Where(mat => !TerminatingOrDeleted(mat)))
