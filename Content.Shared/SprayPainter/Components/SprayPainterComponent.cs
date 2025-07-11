@@ -1,4 +1,3 @@
-// Rewritten in Upstream#37341
 
 using Content.Shared.Decals;
 using Robust.Shared.Audio;
@@ -126,5 +125,3 @@ public enum DecalPaintMode : byte
     /// </summary>
     Remove = 2,
 }
-
-// End Rewritten in Upstream#37341
