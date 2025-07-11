@@ -106,6 +106,35 @@
                                          Margin="0"/>
                     </controls:BoxContainer>
                     <!-- End Frontier - Inertia dampener controls-->
+
+                    <!-- Frontier - settable target -->
+                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="TargetCoordsBox">
+                        <controls:Label Text="{controls:Loc 'shuttle-console-target'}"/>
+                        <controls:BoxContainer Orientation="Horizontal"
+                                               HorizontalExpand="True"
+                                               Align="Center"
+                                               Margin="0 0 0 3">
+                            <controls:LineEdit Name="TargetX" Access="Public" HorizontalExpand="True"/>
+                            <controls:LineEdit Name="TargetY" Access="Public" HorizontalExpand="True"/>
+                            <controls:Button Name="TargetSet"
+                                             Text="{controls:Loc 'shuttle-console-set-target'}"
+                                             TextAlign="Center"
+                                             MinWidth="20"
+                                             ToolTip="{controls:Loc 'shuttle-console-set-target-description'}"
+                                             StyleClasses="OpenRight"
+                                             Margin="0"/>
+                            <controls:Button Name="TargetShow"
+                                             Text="{controls:Loc 'shuttle-console-hide-target'}"
+                                             TextAlign="Center"
+                                             ToggleMode="True"
+                                             MinWidth="20"
+                                             ToolTip="{controls:Loc 'shuttle-console-hide-target-description'}"
+                                             StyleClasses="OpenLeft"
+                                             Margin="0"/>
+                        </controls:BoxContainer>
+                    </controls:BoxContainer>
+                    <!-- End Frontier - settable target -->
+
                     <!-- Frontier - IFF search -->
                     <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="IffSearchBox">
                         <controls:Label Text="{controls:Loc 'shuttle-console-iff-search'}"/>
