@@ -39,19 +39,23 @@ public sealed partial class NFMagnetPickupComponent : Component
     /// </summary>
     public const int DefaultVerbPriority = 3;
 
+    #endregion
+
+    #region Performance Configuration
+
     /// <summary>
     /// Maximum entities to process per scan cycle (performance limit)
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
-    public const int MaxEntitiesPerScan = 20;
+    public int MaxEntitiesPerScan { get; set; } = 20;
 
     /// <summary>
     /// Maximum successful pickups per scan cycle (performance limit)
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
-    public const int MaxPickupsPerScan = 10;
+    public int MaxPickupsPerScan { get; set; } = 10;
 
     #endregion
 

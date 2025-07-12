@@ -403,7 +403,7 @@ public sealed class NFSharedMagnetPickupSystem : EntitySystem
 
         foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
         {
-            if (entitiesProcessed >= NFMagnetPickupComponent.MaxEntitiesPerScan)
+            if (entitiesProcessed >= comp.MaxEntitiesPerScan)
                 break;
 
             entitiesProcessed++;
@@ -420,7 +420,7 @@ public sealed class NFSharedMagnetPickupSystem : EntitySystem
             {
                 successfulPickups++;
 
-                if (successfulPickups >= NFMagnetPickupComponent.MaxPickupsPerScan)
+                if (successfulPickups >= comp.MaxPickupsPerScan)
                     break;
             }
         }
@@ -448,7 +448,7 @@ public sealed class NFSharedMagnetPickupSystem : EntitySystem
 
         foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
         {
-            if (entitiesProcessed >= NFMagnetPickupComponent.MaxEntitiesPerScan)
+            if (entitiesProcessed >= comp.MaxEntitiesPerScan)
                 break;
 
             entitiesProcessed++;
@@ -462,7 +462,7 @@ public sealed class NFSharedMagnetPickupSystem : EntitySystem
             {
                 successfulPickups++;
 
-                if (successfulPickups >= NFMagnetPickupComponent.MaxPickupsPerScan)
+                if (successfulPickups >= comp.MaxPickupsPerScan)
                     break;
             }
         }
