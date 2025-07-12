@@ -311,11 +311,6 @@ public sealed class NFSharedMagnetPickupSystem : EntitySystem
         var count = 0;
         var successfulPickups = 0;
         var foundTargets = false;
-
-        // Track items for animation
-        var successfullyInserted = new List<EntityUid>();
-        var successfullyInsertedPositions = new List<EntityCoordinates>();
-        var successfullyInsertedAngles = new List<Angle>();
         var playedSound = false;
 
         foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
@@ -349,27 +344,16 @@ public sealed class NFSharedMagnetPickupSystem : EntitySystem
             if (!_storage.Insert(uid, near, out var stacked, storageComp: storage, playSound: !playedSound))
                 break;
 
-            // Track for animation - use the stacked entity if available, otherwise the original
-            var animatedEntity = stacked ?? near;
-            successfullyInserted.Add(animatedEntity);
-            successfullyInsertedPositions.Add(nearCoords);
-            successfullyInsertedAngles.Add(nearXform.LocalRotation);
+            // Play pickup animation for either the stack entity or the original entity.
+            // This follows the exact same pattern as the original MagnetPickupSystem
+            if (stacked != null)
+                _storage.PlayPickupAnimation(stacked.Value, nearCoords, finalCoords, nearXform.LocalRotation);
+            else
+                _storage.PlayPickupAnimation(near, nearCoords, finalCoords, nearXform.LocalRotation);
 
             successfulPickups++;
             slotCount += itemSize;
             playedSound = true;
-        }
-
-        // Trigger animation for all successfully inserted items
-        if (successfullyInserted.Count > 0)
-        {
-            // Use the AnimateInsertingEntitiesEvent to trigger animations following the exact pattern from SharedStorageSystem
-            // For magnet pickups we pass null user since it's automatic
-            EntityManager.RaiseSharedEvent(new AnimateInsertingEntitiesEvent(
-                GetNetEntity(uid),
-                GetNetEntityList(successfullyInserted),
-                GetNetCoordinatesList(successfullyInsertedPositions),
-                successfullyInsertedAngles), (EntityUid?)null);
         }
 
         return (successfulPickups, foundTargets);
