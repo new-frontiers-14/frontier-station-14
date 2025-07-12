@@ -123,14 +123,17 @@ public sealed partial class NFMagnetPickupComponent : Component
 
     // Localization keys
     [DataField]
-    public const string VerbToggleText = "magnet-pickup-toggle-verb";
+    public const string VerbToggleText = "magnet-pickup-component-toggle-verb";
 
     [DataField]
-    public const string ExamineText = "magnet-pickup-examine";
+    public const string ExamineText = "magnet-pickup-component-on-examine-main";
 
     [DataField]
-    public const string ExamineStateEnabled = "magnet-pickup-state-enabled";
+    public const string ExamineTextOn = "magnet-pickup-component-magnet-on";
 
     [DataField]
-    public const string ExamineStateDisabled = "magnet-pickup-state-disabled";
+    public const string ExamineTextOff = "magnet-pickup-component-magnet-off";
+
+    [DataField]
+    public const string ExamineTextAlwaysOnText = "magnet-pickup-component-examine-always-on";
 }

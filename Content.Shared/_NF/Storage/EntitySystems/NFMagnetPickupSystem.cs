@@ -13,6 +13,8 @@ using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Materials;
+using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
 using Robust.Shared.GameObjects;
 
 namespace Content.Shared._NF.Storage.EntitySystems;
@@ -33,6 +35,7 @@ public sealed class NFMagnetPickupSystem : EntitySystem
     [Dependency] private readonly SharedMaterialReclaimerSystem _materialReclaimer = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
+    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<MaterialComponent> _materialQuery;
@@ -109,17 +112,21 @@ public sealed class NFMagnetPickupSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, NFMagnetPickupComponent component, ExaminedEvent args)
     {
-        var stateKey = component.MagnetEnabled
-            ? NFMagnetPickupComponent.ExamineStateEnabled
-            : NFMagnetPickupComponent.ExamineStateDisabled;
+        // Only show examination text for non-Storage magnet types
+        if (component.PickupType == MagnetPickupType.Storage)
+            return;
 
-        args.PushMarkup(Loc.GetString(NFMagnetPickupComponent.ExamineText,
-            ("state", Loc.GetString(stateKey))));
-
-        // Add additional info for always-on magnets
-        if (component.AlwaysOn)
+        if (!component.AlwaysOn)
         {
-            args.PushMarkup(Loc.GetString("magnet-pickup-examine-always-on"));
+            // Show magnet status - use power-like text that already exists
+            args.PushMarkup(Loc.GetString(NFMagnetPickupComponent.ExamineText,
+                            ("stateText", Loc.GetString(component.MagnetEnabled
+                            ? NFMagnetPickupComponent.ExamineTextOn
+                            : NFMagnetPickupComponent.ExamineTextOff))));
+        }
+        else
+        {
+            args.PushMarkup(Loc.GetString(NFMagnetPickupComponent.ExamineTextAlwaysOnText));
         }
     }
 
@@ -341,6 +348,10 @@ public sealed class NFMagnetPickupSystem : EntitySystem
     /// </summary>
     private (int successfulPickups, bool foundTargets) ProcessMaterialStorageMagnet(EntityUid uid, NFMagnetPickupComponent comp, MaterialStorageComponent storage, TransformComponent xform)
     {
+        // Check if powered - material storage typically requires power
+        if (!_powerReceiver.IsPowered((uid, null)))
+            return (0, false);
+
         // Early termination: Skip if storage is at capacity
         if (storage.MaterialWhiteList != null && storage.MaterialWhiteList.Count > 0)
         {
@@ -378,7 +389,7 @@ public sealed class NFMagnetPickupSystem : EntitySystem
 
             foundMaterials = true;
 
-            if (_materialStorage.TryInsertMaterialEntity(uid, near, uid, storage))
+            if (_materialStorage.TryInsertMaterialEntity(EntityUid.Invalid, near, uid, storage))
             {
                 successfulPickups++;
 
@@ -395,6 +406,14 @@ public sealed class NFMagnetPickupSystem : EntitySystem
     /// </summary>
     private (int successfulPickups, bool foundTargets) ProcessMaterialReclaimerMagnet(EntityUid uid, NFMagnetPickupComponent comp, MaterialReclaimerComponent storage, TransformComponent xform)
     {
+        // Check if powered - material reclaimer typically requires power
+        if (!_powerReceiver.IsPowered((uid, null)))
+            return (0, false);
+
+        // Check if the reclaimer can start processing - this handles enabled state, broken state, etc.
+        if (!_materialReclaimer.CanStart(uid, storage))
+            return (0, false);
+
         var parentUid = xform.ParentUid;
         var entitiesProcessed = 0;
         var successfulPickups = 0;
