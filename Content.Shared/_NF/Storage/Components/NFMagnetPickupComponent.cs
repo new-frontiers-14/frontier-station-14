@@ -42,11 +42,13 @@ public sealed partial class NFMagnetPickupComponent : Component
     /// <summary>
     /// Maximum entities to process per scan cycle (performance limit)
     /// </summary>
+    [DataField]
     public const int MaxEntitiesPerScan = 20;
 
     /// <summary>
     /// Maximum successful pickups per scan cycle (performance limit)
     /// </summary>
+    [DataField]
     public const int MaxPickupsPerScan = 10;
 
     #endregion
