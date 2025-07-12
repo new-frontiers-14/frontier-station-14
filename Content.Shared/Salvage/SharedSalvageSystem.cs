@@ -37,6 +37,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         // This is on shared to ensure the client display for missions and what the server generates are consistent
         var modifierBudget = difficulty.ModifierBudget;
         var rand = new System.Random(seed);
+        var durationModifier = difficulty.DurationModifier; // Frontier
 
         // Run budget in order of priority
         // - Biome
@@ -79,7 +80,9 @@ public abstract partial class SharedSalvageSystem : EntitySystem
             mods.Add(Loc.GetString(light.Description));
         }
 
-        var duration = TimeSpan.FromSeconds(CfgManager.GetCVar(CCVars.SalvageExpeditionDuration));
+        // Frontier
+        // Added modification to mission duration (durationModifier) based on expedition difficulty
+        var duration = TimeSpan.FromSeconds(CfgManager.GetCVar(CCVars.SalvageExpeditionDuration) * durationModifier);
 
         return new SalvageMission(seed, dungeon.ID, faction.ID, biome.ID, air.ID, temp.Temperature, light.Color, duration, mods, difficulty.ID, config); // Frontier: add difficulty.ID, config
     }
