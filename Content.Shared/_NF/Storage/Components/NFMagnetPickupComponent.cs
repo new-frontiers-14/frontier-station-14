@@ -64,7 +64,7 @@ public sealed partial class NFMagnetPickupComponent : Component
     public const int MaxEntitiesPerScan = 20;
 
     [ViewVariables(VVAccess.ReadOnly), DataField]
-    public const int MaxPickupsPerScan = 5;
+    public const int MaxPickupsPerScan = 10;
 
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public float Range { get; set; } = 1f;
