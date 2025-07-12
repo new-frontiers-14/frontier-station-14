@@ -4,7 +4,8 @@
   name: R&D server
   description: Contains the extent of somebody's hard-earned knowledge. Handle with care. # Frontier: separate description
   components:
-  - type: BindToStationExemption # Frontier
+  - type: BindToStation # Frontier
+    enabled: false # Frontier - should be draggable between stations
   - type: Sprite
     sprite: Structures/Machines/server.rsi
     snapCardinals: true # Frontier
@@ -16,10 +17,19 @@
   - type: ResearchServer
   - type: TechnologyDatabase
     supportedDisciplines:
-    - Industrial
-    - Arsenal
-    - Experimental
-    - CivilianServices
+     # Start Frontier: Tech Tree
+#    - Industrial
+#    - Arsenal
+#    - Experimental
+#    - CivilianServices
+     - NFEngineering
+     - NFMedical
+     - NFArsenalMercenary
+     - NFArsenalNfsd
+     - NFSalvage
+     - NFScience
+     - NFService
+     # End Frontier: Tech Tree
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver

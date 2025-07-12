@@ -1,0 +1,108 @@
+- type: entity
+  parent: BaseMachinePowered
+  id: ParcelDropoff
+  name: parcel dropoff box
+  description: Stores parcels and envelopes to be picked up by the mail carrier. Remember to write down who it's addressed to!
+  components:
+  - type: StationAiWhitelist
+  - type: Sprite
+    sprite: _NF/Structures/Machines/parcel_dropoff.rsi
+    snapCardinals: true
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: fill-unlit-0
+      map: ["enum.PowerDeviceVisualLayers.Powered", "enum.StorageFillLayers.Fill"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    energy: 1.6
+    color: "#9dc5c9"
+  - type: ContainerContainer
+    containers:
+      smart_fridge_inventory: !type:Container
+      smart_fridge_insertion: !type:ContainerSlot
+  - type: LitOnPowered
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: SmartFridge
+    whitelist:
+      components:
+      - WrappedParcel
+      - Envelope
+    checkAccessOnInsert: false # access only needed for withdrawal
+    insertSound:
+      path: /Audio/_NF/Effects/mail-slot.ogg
+      params:
+        volume: -2
+  - type: ActivatableUI
+    key: enum.SmartFridgeUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [["Mail"]]
+  - type: UserInterface
+    interfaces:
+      enum.SmartFridgeUiKey.Key:
+        type: SmartFridgeBoundUserInterface
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200
+  - type: Anchorable
+    delay: 2
+  - type: InteractionOutline
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Dumpable
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: ContainerCountVisualizer
+    maxFillLevels: 2
+    containerName: smart_fridge_inventory
+    maxCount: 1
+    fillBaseName: fill-unlit
+
+- type: entity
+  parent: [BaseStructureIndestructible, BaseStructureDisableAnchoring, BaseStructureDisableToolUse, ParcelDropoff]
+  id: ParcelDropoffPOI
+  suffix: POI
+  components:
+  - type: Tag
+    tags:
+    - Structure
+    - EmagImmune

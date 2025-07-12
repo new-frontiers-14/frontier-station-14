@@ -89,7 +89,6 @@
   - type: Blueprint
     providedRecipes: []
 
-# region Generic
 - type: entity
   parent: NFBaseBlueprint
   id: NFBaseBlueprintFaxable
@@ -319,7 +318,7 @@
 # region Arsenal
 - type: entity
   parent: NFBaseBlueprintFaxable
-  id: NFBlueprintArsenal
+  id: NFBlueprintArsenalMercenary
   name: combat blueprint
   description: A blueprint with combat schematics on it. It can be inserted into an NFSD or mercenary techfab or sent via fax.
   categories: [HideSpawnMenu, DoNotMap]
@@ -477,3 +476,9 @@
         color: "#d21a1a"
       - state: inhand-right-text
         color: "#db7372"
+  - type: Tag
+    tags:
+    - NFBlueprintMercenaryTechfab
+    - NFBlueprintNfsdTechfab
+    - Document
+    - Paper

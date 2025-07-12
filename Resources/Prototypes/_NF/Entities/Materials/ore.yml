@@ -1,14 +1,14 @@
-
+#region Scrap ore
 - type: entity
   parent: OreBase
-  id: ScrapOre
-  name: scrap chunks
-  description: Various bits of previously used machinery. Needs to be sorted or processed to use.
+  id: ScrapOreTech
+  name: tech scrap chunks
+  description: Various bits of previously used machinery, now all non-functional. Needs to be processed to use.
   suffix: Full
   components:
   - type: GoblinPreciousTrash # Frontier
   - type: Stack
-    stackType: ScrapOre
+    stackType: ScrapOreTech
   - type: Sprite
     layers:
     - sprite: _NF/Objects/Materials/ore.rsi
@@ -16,19 +16,69 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
+      RawScrapTech: 100
+
+- type: entity
+  parent: OreBase
+  id: ScrapOre
+  name: scrap chunks
+  description: Smashed together pieces of spacecraft, all reduced to junk. Needs to be processed to use.
+  suffix: Full
+  components:
+  - type: GoblinPreciousTrash
+  - type: Stack
+    stackType: ScrapOre
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Materials/ore.rsi
+      state: scrapmaterials
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
       RawScrap: 100
 
-# Ore vein
+#region Ore vein
 - type: ore
   id: NFOreScrap
-  oreEntity: ScrapOre3
+  oreEntity: ScrapOreRandom3
   minOreYield: 1
   maxOreYield: 5
 
-# Stacks
+#region Stacks
+- type: stack
+  id: ScrapOreTech
+  name: stack-tech-scrap-chunk
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
+  spawn: ScrapOreTech1
+  maxCount: 100
+
+- type: entity
+  parent: ScrapOreTech
+  id: ScrapOreTech1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: ScrapOreTech
+  id: ScrapOreTech3
+  suffix: 3
+  components:
+  - type: Stack
+    count: 3
+
+- type: entity
+  parent: ScrapOreTech
+  id: ScrapOreTech20
+  suffix: 20
+  components:
+  - type: Stack
+    count: 20
+
 - type: stack
   id: ScrapOre
-  name: scrap ore
+  name: stack-scrap-chunk
   icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
   spawn: ScrapOre1
   maxCount: 100
@@ -57,21 +107,65 @@
   - type: Stack
     count: 20
 
+- type: entity
+  id: ScrapOre20RandomLowTech
+  categories: [HideSpawnMenu]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ScrapOre20
+    rarePrototypes:
+    - ScrapOreTech20
+    rareChance: 0.3
+
+- type: entity
+  id: ScrapOre20RandomHighTech
+  categories: [HideSpawnMenu]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ScrapOre20
+    rarePrototypes:
+    - ScrapOreTech20
+    rareChance: 0.6
+
+# region Materials
 - type: material
   id: RawScrap
   stackEntity: ScrapOre1
   name: materials-raw-scrap
   unit: materials-unit-chunk
-  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapmaterials }
   color: "#FFD700"
   price: 0.02
 
+- type: material
+  id: RawScrapTech
+  stackEntity: ScrapOreTech1
+  name: materials-raw-scrap-tech
+  unit: materials-unit-chunk
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
+  color: "#478200" # circuitboard green
+  price: 0.02
+
+#region Random spawners
+# Ore spawner (random between material and tech scrap)
+- type: entity
+  id: ScrapOreRandom3
+  categories: [HideSpawnMenu]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - ScrapOre3
+    rarePrototypes:
+    - ScrapOreTech3
+    rareChance: 0.1
+
 # Spawner for lathe: yield random mats if processed in ore processor
 - type: entity
-  name: refined scrap
-  id: SpawnRandomRefinedScrap
   parent: MarkerBasePlaceFree
-  categories: [ HideSpawnMenu ]
+  id: SpawnRandomScrapTech
+  name: scavenged technology
   components:
   - type: Sprite
     layers:
@@ -81,20 +175,245 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
-  - type: RandomSpawner
-    prototypes:
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootMaterialsBasicSingle
-    - SpawnDungeonLootOresSingle
-    - SpawnDungeonLootToolsBasicEngineering
-    chance: 1.0
-    offset: 0.0
-    rarePrototypes:
-    - MaterialBananium1
-    - MaterialBones1
-    - SpawnDungeonLootMaterialsValuableSingle
-    - SpawnDungeonLootPartsEngi
-    - SpawnDungeonLootCircuitBoard
-    rareChance: 0.005
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: TableScrapProcessorRandomTech
+
+# Spawner for scrap processor: spawns random machine board / blueprint / tool / machine part, occasionally a useful one
+- type: entityTable
+  id: TableScrapProcessorRandomTech
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: TableScrapProcessorRandomBoard
+      weight: 0.6
+    - !type:NestedSelector
+      tableId: TableRandomBlueprint # random blueprints with 1-2 (or 3) recipes on them
+      weight: 0.25
+    - !type:NestedSelector
+      tableId: TableScrapProcessorRandomToolsParts
+      weight: 0.15
+
+- type: entityTable
+  id: TableScrapProcessorRandomBoard
+  table: !type:GroupSelector
+    children:
+    # T1: Common machine boards (available from circuit imprinter or flatpack vendor)
+    - !type:GroupSelector
+      weight: 80
+      children:
+      - id: AutolatheMachineCircuitboard
+      - id: CutterMachineCircuitboard
+      - id: SpaceHeaterMachineCircuitBoard
+      - id: PortableGeneratorJrPacmanMachineCircuitboard
+      - id: PortableGeneratorPacmanMachineCircuitboard
+      - id: PortableGeneratorSuperPacmanMachineCircuitboard
+      - id: CellRechargerCircuitboard
+      - id: BorgChargerCircuitboard
+      - id: WeaponCapacitorRechargerCircuitboard
+      - id: ExosuitFabricatorMachineCircuitboard
+      - id: UniformPrinterMachineCircuitboard
+      - id: OreProcessorMachineCircuitboard
+      - id: FlatpackerMachineCircuitboard
+      - id: MiniGravityGeneratorCircuitboard
+      - id: ThrusterMachineCircuitboard
+      - id: GyroscopeMachineCircuitboard
+      - id: JukeboxCircuitBoard
+      - id: MaterialSiloMachineCircuitboard
+      - id: SurveillanceWirelessCameraMovableCircuitboard
+      - id: ComputerTelevisionCircuitboard
+      - id: PortableScrubberMachineCircuitBoard
+      - id: ShredderMachineCircuitboard
+      - id: StationMapCircuitboard
+      - id: SMESMachineCircuitboard
+      - id: SubstationMachineCircuitboard
+      - id: ChemDispenserMachineCircuitboard
+      - id: SodaDispenserMachineCircuitboard
+      - id: BoozeDispenserMachineCircuitboard
+      - id: MiniGravityGeneratorCircuitboard
+      - id: MiniStationAnchorCircuitboard
+    # T2: specialised machine boards (techfabs)
+    - !type:GroupSelector
+      weight: 18
+      children:
+      - id: SpaceVillainArcadeComputerCircuitboard
+      - id: BlockGameArcadeComputerCircuitboard
+      - id: MiniStationAnchorCircuitboard
+      - id: CircuitImprinterMachineCircuitboard
+      - id: EngineeringTechFabCircuitboard
+      - id: SalvageTechFabCircuitboardNF
+      - id: ServiceTechFabCircuitboard
+      - id: MaterialReclaimerMachineCircuitboard
+      - id: SpaceHeaterMachineCircuitBoard
+      - id: ReagentGrinderMachineCircuitboard
+      - id: PortableGeneratorDKJrMachineCircuitboard
+      - id: BoozeDispenserMachineCircuitboard
+      - id: DawInstrumentMachineCircuitboard
+      - id: GasRecyclerMachineCircuitboard
+      - id: FlatpackerMachineCircuitboard
+      - id: SolarControlComputerCircuitboard
+      - id: ThermomachineHeaterMachineCircuitBoard
+      - id: ThermomachineFreezerMachineCircuitBoard
+      - id: SeedExtractorMachineCircuitboard
+      - id: DeepFryerMachineCircuitboard
+      - id: PortableScrubberMachineCircuitBoard
+      - id: GaslockFrameMachineCircuitboard
+      - id: ResearchAndDevelopmentServerMachineCircuitboard
+    # T3: cool machine boards
+    - !type:GroupSelector
+      weight: 1.5
+      children:
+      - id: HellfireHeaterMachineCircuitBoard
+      - id: HellfireFreezerMachineCircuitBoard
+      - id: EmitterCircuitboard
+      - id: CondenserMachineCircuitBoard
+      - id: AutolatheHyperConvectionMachineCircuitboard
+      - id: CircuitImprinterHyperConvectionMachineCircuitboard
+      - id: TurboItemRechargerCircuitboard
+      - id: ShuttleGunKineticCircuitboard
+      - id: OreProcessorIndustrialMachineCircuitboard
+      - id: AmmoTechFabCircuitboard
+      - id: PortablePumpMachineCircuitBoard
+      - id: HotplateMachineCircuitboard
+    # T4: core department tech boards
+    - !type:GroupSelector
+      weight: 0.5
+      children:
+      - id: ReagentGrinderIndustrialMachineCircuitboard
+      - id: ChemMasterMachineCircuitboard
+      - id: ElectrolysisUnitMachineCircuitboard
+      - id: StasisBedMachineCircuitboard
+      - id: ResearchComputerCircuitboard
+      - id: MercenaryTechFabCircuitboardNF
+      - id: MercenaryTechFabCircuitboardHackedNF
+      - id: PortableGeneratorDKMachineCircuitboard
+      - id: MedicalTechFabCircuitboard
+      - id: MedicalAssemblerMachineCircuitboard
+      - id: McServiceTechFabCircuitboard
+
+- type: entityTable
+  id: TableScrapProcessorRandomToolsParts
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      # T1: advanced tools and parts
+      weight: 80
+      children:
+      - id: SpectralLocatorEmpty
+      - id: HandheldHealthAnalyzerEmpty
+      - id: MineralScannerEmpty
+      - id: GasDepositLocatorEmpty
+      - id: HoloGraffitiProjectorEmpty
+      - id: HolofanProjectorEmpty
+      - id: MiningDrill
+      - id: PowerDrill
+      - id: JawsOfLife
+      - id: PlantAnalyzerEmpty
+      - id: ShipyardRCDAmmo
+      - id: AdvancedCapacitorStockPart
+      - id: NanoManipulatorStockPart
+      - id: AdvancedMatterBinStockPart
+      - id: PowerCellHighPrinted
+    - !type:GroupSelector
+      # T2: more advanced tools and parts
+      weight: 18
+      children:
+      - id: RPED
+      - id: ShipyardRCD
+      - id: ShipyardRCDAmmo
+      - id: AdvancedMineralScannerEmpty
+      - id: SuperCapacitorStockPart
+      - id: PicoManipulatorStockPart
+      - id: SuperMatterBinStockPart
+      - id: PowerCellHyperPrinted
+    - !type:GroupSelector
+      # T3: cool tools and parts
+      weight: 2
+      children:
+      - id: WelderExperimental
+      - id: MiningDrillDiamond
+      - id: HoloprojectorFieldEmpty
+
+- type: entity
+  name: reprocessed scrap materials
+  id: SpawnRandomScrapMaterial
+  parent: MarkerBasePlaceFree
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Materials/ore.rsi
+        state: scrapmaterials
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: TableScrapProcessorRandomMaterial
+
+- type: entityTable
+  id: TableScrapProcessorRandomMaterial
+  table: !type:GroupSelector
+    children:
+    # Normal yield (Avg: 20/stack)
+    - id: SheetSteelRandom
+      weight: 2.25
+    - id: PartRodMetalRandom
+      weight: 0.75
+    - id: SheetGlassRandom
+      weight: 1
+    - id: SheetRGlassRandom
+      weight: 0.5
+    - id: SheetBrassRandom
+      weight: 0.5
+    - id: SheetPlasteelRandom
+      weight: 0.3
+    - id: SheetPlasticRandom
+      weight: 1
+    - id: SheetPaperRandom
+      weight: 0.1
+    - id: MaterialCardboardRandom
+      weight: 0.1
+    - id: MaterialWoodPlankRandom
+      weight: 0.2
+    - id: SheetPlasmaRandom
+      weight: 0.4
+    - id: SheetUraniumRandom
+      weight: 0.3
+    - id: IngotSilverRandom
+      weight: 0.3
+    - id: IngotGoldRandom
+      weight: 0.2
+    - id: MaterialBananiumRandom
+      weight: 0.2
+    - id: MaterialClothRandom
+      weight: 0.2
+    - id: MaterialDurathreadRandom
+      weight: 0.2
+    - id: SheetUGlassRandom
+      weight: 0.15
+    - id: SheetPGlassRandom
+      weight: 0.175
+    - id: SheetRUGlassRandom
+      weight: 0.1
+    - id: SheetRPGlassRandom
+      weight: 0.125
+    - id: SheetClockworkGlassRandom
+      weight: 0.1
+    - id: CableHVStackRandom
+      weight: 0.2
+    - id: CableMVStackRandom
+      weight: 0.2
+    - id: CableApcStackRandom
+      weight: 0.2
+    # Reduced yield (Avg: 15/stack)
+    - id: MaterialBonesRandomReduced
+      weight: 0.1
+    - id: ArtifactFragmentRandomReduced
+      weight: 0.025
+    # Low yield (Avg: 10/stack)
+    - id: MaterialDiamondRandomLow
+      weight: 0.01
+    - id: MaterialBluespaceRandomLow
+      weight: 0.015

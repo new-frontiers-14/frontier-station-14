@@ -1,3 +1,4 @@
+# region FRONTIER - IGNORED
 # Tier 1
 
 - type: technology
@@ -8,15 +9,11 @@
     state: seedextractor
   discipline: CivilianServices
   tier: 1
-  cost: 7500 # Delta Price. 5000 is pre-adjustment.
+  cost: 5000
   recipeUnlocks:
-  - BorgModuleGardening
-  - BorgModuleHarvesting
-  - PlantBagOfHolding #DeltaV
   - SeedExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
-  - PlantAnalyzer # Frontier
 
 - type: technology
   id: CritterMechs
@@ -49,14 +46,13 @@
   cost: 5000
   recipeUnlocks:
   - SurveillanceCameraRouterCircuitboard
-#  - SurveillanceCameraWirelessRouterCircuitboard # Frontier - Removal of range limits made it useless to build
+  - SurveillanceCameraWirelessRouterCircuitboard
   - SurveillanceWirelessCameraMovableCircuitboard
   - SurveillanceWirelessCameraAnchoredCircuitboard
   - SurveillanceCameraMonitorCircuitboard
   - SurveillanceWirelessCameraMonitorCircuitboard
   - TelecomServerCircuitboard
-#  - HolopadMachineCircuitboard # Frontier: needs work before use
-  - NFHolopadShipMachineCircuitboard # Frontier
+  - HolopadMachineCircuitboard
 
 - type: technology
   id: AdvancedEntertainment
@@ -75,19 +71,6 @@
     - JukeboxCircuitBoard
 
 - type: technology
-  id: RoboticCleanliness
-  name: research-technology-robotic-cleanliness
-  icon:
-    sprite: Mobs/Silicon/chassis.rsi
-    state: janitor
-  discipline: CivilianServices
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - BorgModuleAdvancedCleaning
-  - PortablePumpMachineCircuitBoard # Frontier
-
-- type: technology
   id: MeatManipulation
   name: research-technology-meat-manipulation
   icon:
@@ -98,7 +81,7 @@
   cost: 7500
   recipeUnlocks:
   - FatExtractorMachineCircuitboard
-  - BiogeneratorMachineCircuitboard # Frontier BiofabricatorMachineCircuitboard<BiogeneratorMachineCircuitboard
+  - BiofabricatorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
 
 # Tier 2
@@ -135,7 +118,7 @@
   - CryostasisBeaker
   - SyringeCryostasis
 
-- type: technology
+- type: technology # Merge with other T2 medical research if possible!
   id: MechanizedTreatment
   name: research-technology-mechanized-treatment
   icon:
@@ -145,9 +128,7 @@
   tier: 2
   cost: 5000
   recipeUnlocks:
-  # - BorgModuleAdvancedTreatment # Frontier
-  # - BorgModuleDefibrillator # Frontier
-  - BorgModuleAdvancedParamedic # Frontier
+  - BorgModuleAdvancedChemical
 
 - type: technology
   id: AdvancedCleaning
@@ -161,7 +142,7 @@
   recipeUnlocks:
   - AdvMopItem
   - MegaSprayBottle
-  - ReinforcedJug # Frontier
+  - BorgModuleAdvancedCleaning
 
 - type: technology
   id: HONKMech
@@ -196,19 +177,31 @@
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
 
-# Tier 3
+- type: technology
+  id: BluespaceCargoTransport
+  name: research-technology-bluespace-cargo-transport
+  icon:
+    sprite: Structures/cargo_telepad.rsi
+    state: display
+  discipline: CivilianServices
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - CargoTelepadMachineCircuitboard
 
-# - type: technology # Frontier
-  # id: BluespaceCargoTransport
-  # name: research-technology-bluespace-cargo-transport
-  # icon:
-    # sprite: Structures/cargo_telepad.rsi
-    # state: display
-  # discipline: CivilianServices
-  # tier: 3
-  # cost: 15000
-  # recipeUnlocks:
-  # - CargoTelepadMachineCircuitboard
+- type: technology
+  id: PushHorn
+  name: research-technology-clowning-utilities
+  icon:
+    sprite: Objects/Fun/push_horn.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 2
+  cost: 4000
+  recipeUnlocks:
+  - PushHorn
+
+# Tier 3
 
 - type: technology
   id: QuantumFiberWeaving
@@ -218,7 +211,7 @@
     state: icon
   discipline: CivilianServices
   tier: 3
-  cost: 15000 # Frontier - 10000<15000
+  cost: 10000
   recipeUnlocks:
   - ClothingShoesBootsSpeed
 
@@ -234,5 +227,16 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
-  - JugBluespace # Frontier
-  - VialBluespace # Frontier
+
+- type: technology
+  id: LauncherSyringe
+  name: research-technology-launcher-syringe
+  icon:
+    sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
+    state: syringe_gun
+  discipline: CivilianServices
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - LauncherSyringe
+  - MiniSyringe

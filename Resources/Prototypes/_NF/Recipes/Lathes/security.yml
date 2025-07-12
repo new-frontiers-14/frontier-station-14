@@ -323,6 +323,13 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: NFAmmunitionBoxShellShotgunOverpressure
+  result: NFAmmunitionBoxShellShotgunOverpressure
+  materials:
+    Steel: 600 # box - free, 20 [bullets] * 30 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: NFAmmunitionBoxShellShotgunIncendiary
   result: NFAmmunitionBoxShellShotgunIncendiary
   materials:
@@ -611,6 +618,15 @@
     Plastic: 100
     Glass: 20
 
+#region Shields
+- type: latheRecipe
+  parent: BaseShieldRecipe
+  id: NFMetalShield
+  result: NFMetalShield
+  materials:
+    Steel: 600
+    Glass: 200
+
 # region Misc
 - type: latheRecipe
   id: ClothingEyesHudNfsd
@@ -672,8 +688,8 @@
   id: NFFlash
 
 - type: latheRecipe
+  parent: TargetHuman
   id: NFTargetHuman
-  result: TargetHuman
 
 - type: latheRecipe
   parent: TargetClown
@@ -684,5 +700,5 @@
   id: NFTargetSyndicate
 
 - type: latheRecipe
-  id: NFPortableRecharger
   parent: PortableRecharger
+  id: NFPortableRecharger

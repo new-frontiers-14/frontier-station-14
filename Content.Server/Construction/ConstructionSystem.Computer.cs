@@ -1,5 +1,7 @@
+using Content.Server._NF.BindToStation; // Frontier
 using Content.Server.Construction.Components;
 using Content.Server.Power.Components;
+using Content.Server.Station.Systems; // Frontier
 using Content.Shared._NF.BindToStation; // Frontier
 using Content.Shared.Computer;
 using Content.Shared.Power;
@@ -10,6 +12,8 @@ namespace Content.Server.Construction;
 public sealed partial class ConstructionSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly StationSystem _station = default!; // Frontier
+    [Dependency] private readonly BindToStationSystem _bindToStation = default!; // Frontier
 
     private void InitializeComputer()
     {
@@ -36,7 +40,7 @@ public sealed partial class ConstructionSystem
         var boardContainer = _container.EnsureContainer<Container>(component.Owner, "board");
         foreach (var board in boardContainer.ContainedEntities)
         {
-            if (TryComp<BindToStationComponent>(board, out var binding))
+            if (TryComp<StationBoundObjectComponent>(board, out var binding))
                 _bindToStation.BindToStation(component.Owner, binding.BoundStation, binding.Enabled);
         }
         // End Frontier
@@ -70,6 +74,17 @@ public sealed partial class ConstructionSystem
             return;
 
         var board = EntityManager.SpawnEntity(component.BoardPrototype, Transform(ent).Coordinates);
+
+        // Frontier: Only bind the board if the computer itself has the BindToStationComponent and the board doesn't already have BindToStationComponent
+        if (HasComp<BindToStationComponent>(ent))
+        {
+            var computerStation = _station.GetOwningStation(ent);
+            if (computerStation != null)
+            {
+                _bindToStation.BindToStation(board, computerStation);
+            }
+        }
+        // End Frontier
 
         if (!_container.Insert(board, container))
             Log.Warning($"Couldn't insert board {board} to computer {ent}!");

@@ -74,6 +74,16 @@
     name: "Omnichurch Beacon"
 
 - type: entity
+  parent: [BaseStructureDisableToolUse, FaxMachineBase]
+  id: FaxMachineNFBarrierGate
+  suffix: POI, Barrier Gate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FaxMachine
+    name: "Barrier Gate"
+  - type: ApcPowerReceiver
+
+- type: entity
   parent: [BaseStructureDisableToolUse, FaxMachineSyndie, FaxMachineShipAntag]
   id: FaxMachineNFLPBravo
   suffix: POI, LP Bravo

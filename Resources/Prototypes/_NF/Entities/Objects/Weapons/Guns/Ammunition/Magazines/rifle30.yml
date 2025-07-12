@@ -27,6 +27,13 @@
     magState: mag
     steps: 8
     zeroVisible: false
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle30_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
 
 - type: entity
   id: NFBaseMagazineLowCapacityRifle30
@@ -39,6 +46,12 @@
       - NFMagazineLowCapacityRifle30
   - type: Item
     size: Tiny
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle30_low_cap_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
   - type: BallisticAmmoProvider
     capacity: 15
   - type: Sprite
@@ -84,6 +97,16 @@
       color: "#ff8d00"
     - state: mag-7
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff8d00"
 
 - type: entity
   id: NFMagazineRifle30Incendiary
@@ -100,6 +123,16 @@
       color: "#ff0000"
     - state: mag-7
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"
 
 - type: entity
   id: NFMagazineRifle30Uranium
@@ -116,6 +149,16 @@
       color: "#00ff00"
     - state: mag-7
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ff00"
 
 - type: entity
   id: NFMagazineRifle30Practice
@@ -132,6 +175,16 @@
       color: "#dddddd"
     - state: mag-7
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#dddddd"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#dddddd"
 
 - type: entity
   id: NFMagazineRifle30Rubber # MagazineLightRifleRubber
@@ -148,6 +201,16 @@
       color: "#00b0ff"
     - state: mag-7
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"
 
 #region .30 low cap
 - type: entity
@@ -182,6 +245,16 @@
       color: "#ff8d00"
     - state: mag-6
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff8d00"
 
 - type: entity
   id: NFMagazineLowCapacityRifle30Incendiary
@@ -198,6 +271,16 @@
       color: "#ff0000"
     - state: mag-6
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"
 
 - type: entity
   id: NFMagazineLowCapacityRifle30Uranium
@@ -214,6 +297,16 @@
       color: "#00ff00"
     - state: mag-6
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ff00"
 
 - type: entity
   id: NFMagazineLowCapacityRifle30Practice
@@ -230,6 +323,16 @@
       color: "#dddddd"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#dddddd"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#dddddd"
 
 - type: entity
   id: NFMagazineLowCapacityRifle30Rubber
@@ -246,3 +349,13 @@
       color: "#00b0ff"
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"

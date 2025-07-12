@@ -1,6 +1,7 @@
 using System.Linq; // Frontier
 using Content.Server._NF.BindToStation; // Frontier
 using Content.Server.Construction.Components;
+using Content.Server.Station.Systems; // Frontier
 using Content.Shared._NF.BindToStation; // Frontier
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.Prototypes;
@@ -14,7 +15,7 @@ namespace Content.Server.Construction;
 public sealed partial class ConstructionSystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Frontier
-    [Dependency] private readonly BindToStationSystem _bindToStation = default!; // Frontier
+
     private void InitializeMachines()
     {
         SubscribeLocalEvent<MachineComponent, ComponentInit>(OnMachineInit);
@@ -29,7 +30,7 @@ public sealed partial class ConstructionSystem
         // Frontier - we mirror the bind to grid component from any existing machine board onto the resultant machine to prevent high-grading
         foreach (var board in component.BoardContainer.ContainedEntities)
         {
-            if (TryComp<BindToStationComponent>(board, out var binding))
+            if (TryComp<StationBoundObjectComponent>(board, out var binding))
                 _bindToStation.BindToStation(uid, binding.BoundStation, binding.Enabled);
         }
         // End Frontier
@@ -64,6 +65,17 @@ public sealed partial class ConstructionSystem
         {
             throw new Exception($"Entity with prototype {component.Board} doesn't have a {nameof(MachineBoardComponent)}!");
         }
+
+        // Frontier: Only bind the board if the machine itself has the BindToStationComponent and the board doesn't already have BindToStationComponent  
+        if (HasComp<BindToStationComponent>(uid) && board != null)
+        {
+            var machineStation = _station.GetOwningStation(uid);
+            if (machineStation != null)
+            {
+                _bindToStation.BindToStation(board.Value, machineStation.Value);
+            }
+        }
+        // End Frontier
 
         foreach (var (stackType, amount) in machineBoard.StackRequirements)
         {
