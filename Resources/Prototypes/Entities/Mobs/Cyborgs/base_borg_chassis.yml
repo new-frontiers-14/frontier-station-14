@@ -294,7 +294,8 @@
   - type: Access
     enabled: false
     groups:
-    - AllAccess
+    #- AllAccess # Frontier
+    - GeneralAccess # Frontier
     tags:
     - Borg
 #  - type: AccessReader
@@ -351,7 +352,8 @@
   - type: Access
     enabled: false
     groups:
-    - AllAccess #Randomized access would be fun. AllAccess is the best i can think of right now that does make it too hard for it to enter the station or navigate it..
+  #  - AllAccess #Randomized access would be fun. AllAccess is the best i can think of right now that does make it too hard for it to enter the station or navigate it.. # Frontier
+    - GeneralAccess # Frontier
   # - type: AccessReader # Frontier
   #   access: [["Command"], ["Research"]] # Frontier
   - type: StartIonStormed
