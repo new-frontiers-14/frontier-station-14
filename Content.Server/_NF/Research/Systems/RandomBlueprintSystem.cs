@@ -1,7 +1,9 @@
+using System.Linq;
 using Content.Server._NF.Lathe;
 using Content.Server._NF.Stacks.Components;
-using Content.Shared.Lathe.Prototypes;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Research.Components;
+using Content.Shared.Research.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -12,9 +14,6 @@ public sealed class RandomBlueprintSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BlueprintLatheSystem _blueprintLathe = default!;
-
-    private readonly List<(int count, LatheRecipePackPrototype pack)> _packs = new();
-
     public override void Initialize()
     {
         base.Initialize();
@@ -34,48 +33,29 @@ public sealed class RandomBlueprintSystem : EntitySystem
         if (rolls <= 0)
             return;
 
-        var totalRecipes = 0;
-        _packs.Clear();
+        HashSet<ProtoId<LatheRecipePrototype>> recipes = new();
 
         foreach (var pack in blueprintProto.Packs)
         {
             if (!_proto.TryIndex(pack, out var packProto))
                 continue;
 
-            _packs.Add((totalRecipes + packProto.Recipes.Count, packProto));
-            totalRecipes += packProto.Recipes.Count;
+            recipes.UnionWith(packProto.Recipes);
         }
 
-        // Select random recipes from cached blueprints
-        // Doing this naively - if you reroll the same recipe, tough luck.
+        var recipeList = recipes.ToList();
+        if (recipeList.Count < rolls)
+        {
+            rolls = recipeList.Count;
+        }
+
+        if (rolls == 0)
+            return;
+
+        // Select random recipes from recipe list
         for (int i = 0; i < rolls; i++)
         {
-            var recipeIndex = _random.Next(totalRecipes);
-
-            var curIndex = 0;
-            foreach (var packTuple in _packs)
-            {
-                if (packTuple.count >= recipeIndex)
-                {
-                    // Find relative index in pack hashset
-                    curIndex = recipeIndex - curIndex;
-                    recipeIndex = 0;
-                    foreach (var recipe in packTuple.pack.Recipes)
-                    {
-                        if (recipeIndex == curIndex)
-                        {
-                            _blueprintLathe.AddBlueprintRecipe((ent, blueprintComp), recipe, false);
-                            break;
-                        }
-                        recipeIndex++;
-                    }
-                    break;
-                }
-                else
-                {
-                    curIndex = packTuple.count;
-                }
-            }
+            _blueprintLathe.AddBlueprintRecipe((ent, blueprintComp), _random.PickAndTake(recipeList), false);
         }
         Dirty(ent, blueprintComp);
     }
