@@ -1,13 +1,9 @@
+# Frontier update after wizden merge to match #imp https://github.com/impstation/imp-station-14/blob/6a23eb3eb1b7d441a1d6252ba98073a241e6b412/Resources/Prototypes/_Impstation/Entities/Clothing/Shoes/specific.yml
 - type: entity
-#  parent: BaseToggleAction # Frontier update aftrer wizden merge
   id: ActionToggleWaddling
   name: Toggle Waddling
   description: Toggles your mirthful gait.
   components:
-#  - type: Action # Frontier update after wizden merge
-#    itemIconStyle: BigItem
-#    useDelay: 2.5
   - type: InstantAction
+    itemIconStyle: BigItem
     event: !type:ToggleActionEvent
-    itemIconStyle: BigItem # Frontier update after wizden merge
-    useDelay: 2.5 # Frontier update after wizden merge
