@@ -25,19 +25,13 @@ public sealed class ProximityBeeperSystem : EntitySystem
     {
         if (!TryComp<BeeperComponent>(owner, out var beeper))
             return;
-        if (args.Target == null)
-        {
-            _beeper.SetMute(owner, true, beeper);
-            return;
-        }
 
         // Frontier: minimum range for beeper
         if (args.Distance <= proxBeeper.MinRange)
             _beeper.SetIntervalScaling(owner, 0, beeper);
         else
-            _beeper.SetIntervalScaling(owner, (args.Distance - proxBeeper.MinRange) / (args.Detector.Range - proxBeeper.MinRange), beeper);
+            _beeper.SetIntervalScaling(owner, (args.Distance - proxBeeper.MinRange) / (args.Detector.Comp.Range - proxBeeper.MinRange), beeper);
         // End Frontier
-        _beeper.SetMute(owner, false, beeper);
     }
 
     private void OnNewProximityTarget(EntityUid owner, ProximityBeeperComponent proxBeeper, ref NewProximityTargetEvent args)
