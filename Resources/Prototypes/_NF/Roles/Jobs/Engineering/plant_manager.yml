@@ -1,0 +1,35 @@
+- type: job
+  id: PlantManager
+  name: job-name-plant-manager
+  description: job-description-plant-manager
+  playTimeTracker: JobPlantManager
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 # Frontier - 20 hrs (the real condition here is the whitelist)
+  whitelisted: true
+  startingGear: PlantManagerGear
+  alwaysUseSpawner: true
+  icon: "JobIconPlantManager"
+  requireAdminNotify: true
+  supervisors: job-supervisors-centcom
+  weight: 160
+  displayWeight: 10
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: PlantManagerGear
+  equipment:
+    pocket1: NFWeaponEnergyPistolDisabler # for the riff-raff
+    pocket2: HolofanProjector
+  storage:
+    back:
+    - RubberStampPlantManager
+    - HandheldSecurityMonitor

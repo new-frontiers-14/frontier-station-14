@@ -1,0 +1,138 @@
+- type: entity
+  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine ]
+  id: AntiMatterFabricator
+  name: anti-matter fabricator
+  description: A colossal machine that converts plasteel and power into antimatter and stores it in AME fuel jars in a slot.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Anchorable
+    flags: None
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,1.45,1.45"
+        density: 500
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+        enabled: false
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: _NF/Structures/Machines/AMEFab/32x32.rsi # needed for item mapper
+    layers:
+    - sprite: _NF/Structures/Machines/AMEFab/base.rsi
+      state: base
+    - state: dial
+      offset: -0.5, 0.5
+      map: [ dial ]
+    - sprite: _NF/Structures/Machines/AMEFab/64x32.rsi
+      state: flywheel
+      offset: 0.5, 0.5
+      map: [ flywheel ]
+    - sprite: _NF/Structures/Machines/AMEFab/64x32.rsi
+      state: press
+      offset: -0.5, 0
+      map: [ press ]
+    - state: slot-full
+      offset: 1, 0
+      map: [ slot-full ]
+      visible: false
+    - state: slot-unlit
+      map: [ slot-unlit ]
+      shader: unshaded
+      visible: false
+    - state: material-good
+      map: [ material ]
+      shader: unshaded
+      visible: false
+    - state: panel-unlit
+      offset: 1, -1
+      map: [ panel ]
+      shader: unshaded
+      visible: false
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      offset: 1, -0.5
+      visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        dial:
+          True: { state: dial-animated }
+          False: { state: dial }
+        flywheel:
+          True: { state: flywheel-animated }
+          False: { state: flywheel }
+        press:
+          True: { state: press-animated }
+          False: { state: press }
+        panel:
+          True: { visible: true }
+          False: { visible: false }
+        material:
+          True: { visible: true }
+          False: { visible: false }
+      enum.EntitySpawnMaterialVisuals.SufficientMaterial:
+        material:
+          True: { state: material-good }
+          False: { state: material-low }
+  - type: ItemMapper
+    containerWhitelist:
+    - output
+    mapLayers:
+      slot-full:
+        whitelist:
+          components:
+          - NFFuel
+      slot-unlit:
+        whitelist:
+          components:
+          - NFFuel
+  - type: PowerConsumer
+    drawRate: 100000
+  - type: PowerMonitoringDevice
+    group: Consumer
+    loadNode: input
+    collectionName: transmissionpoint
+    sprite: _NF/Structures/Power/transmission_point_icon.rsi
+    state: icon
+  - type: WiredNetworkConnection
+  - type: UserInterface
+    interfaces:
+      enum.AdjustablePowerDrawUiKey.Key:
+        type: AdjustablePowerDrawBoundUserInterface
+  - type: ActivatableUI
+    key: enum.AdjustablePowerDrawUiKey.Key
+  - type: EntitySpawnPowerConsumer
+    spawn: AmeJarBig
+    energyPerSpawn: 1200000000 # 1.2 GJ (75% base eff.)
+    material: Plasteel
+    materialAmount: 500
+  - type: ItemSlots
+    slots:
+      output:
+        swap: false
+        insertOnInteract: false
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - NFFuel
+  - type: ContainerContainer
+    containers:
+      output: !type:ContainerSlot {}
+  - type: MaterialStorage
+    materialWhiteList:
+    - Plasteel
+    storageLimit: 15000
