@@ -14,6 +14,7 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Materials;
 using Content.Shared.Power.EntitySystems;
+using Robust.Shared.Map;
 
 namespace Content.Shared._NF.Storage.EntitySystems;
 
@@ -311,6 +312,12 @@ public sealed class NFSharedMagnetPickupSystem : EntitySystem
         var successfulPickups = 0;
         var foundTargets = false;
 
+        // Track items for animation
+        var successfullyInserted = new List<EntityUid>();
+        var successfullyInsertedPositions = new List<EntityCoordinates>();
+        var successfullyInsertedAngles = new List<Angle>();
+        var playedSound = false;
+
         foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
         {
             if (count >= MaxEntitiesToInsert)
@@ -334,11 +341,35 @@ public sealed class NFSharedMagnetPickupSystem : EntitySystem
             // Count only objects we _could_ insert.
             count++;
 
-            if (!_storage.Insert(uid, near, out var stacked, storageComp: storage, playSound: false))
+            // Capture position and rotation before insertion for animation
+            var nearXform = Transform(near);
+            var nearMap = _transform.GetMapCoordinates(near, xform: nearXform);
+            var nearCoords = _transform.ToCoordinates(moverCoords.EntityId, nearMap);
+
+            if (!_storage.Insert(uid, near, out var stacked, storageComp: storage, playSound: !playedSound))
                 break;
+
+            // Track for animation - use the stacked entity if available, otherwise the original
+            var animatedEntity = stacked ?? near;
+            successfullyInserted.Add(animatedEntity);
+            successfullyInsertedPositions.Add(nearCoords);
+            successfullyInsertedAngles.Add(nearXform.LocalRotation);
 
             successfulPickups++;
             slotCount += itemSize;
+            playedSound = true;
+        }
+
+        // Trigger animation for all successfully inserted items
+        if (successfullyInserted.Count > 0)
+        {
+            // Use the AnimateInsertingEntitiesEvent to trigger animations following the exact pattern from SharedStorageSystem
+            // For magnet pickups we pass null user since it's automatic
+            EntityManager.RaiseSharedEvent(new AnimateInsertingEntitiesEvent(
+                GetNetEntity(uid),
+                GetNetEntityList(successfullyInserted),
+                GetNetCoordinatesList(successfullyInsertedPositions),
+                successfullyInsertedAngles), (EntityUid?)null);
         }
 
         return (successfulPickups, foundTargets);
