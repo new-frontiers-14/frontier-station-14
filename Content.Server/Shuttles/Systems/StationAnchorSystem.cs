@@ -4,7 +4,6 @@ using Content.Server.Shuttles.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Components; // Frontier
-using Content.Server.DeviceLinking.Events; // Frontier
 using Content.Server.DeviceLinking.Systems; // Frontier
 using Content.Server.Power.Components; // Frontier
 using Content.Shared.DeviceNetwork; // Frontier
