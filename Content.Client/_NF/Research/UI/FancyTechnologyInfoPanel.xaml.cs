@@ -78,13 +78,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
             ? Loc.GetString("research-console-menu-server-researched-button")
             : ResearchButton.Text;
 
-        Color? color = availability switch
-        {
-            ResearchAvailability.Researched => Color.LimeGreen,
-            ResearchAvailability.PrereqsMet => Color.Crimson,
-            ResearchAvailability.Unavailable => Color.Crimson,
-            _ => null
-        };
+        Color? color = ResearchColorScheme.GetInfoPanelColor(availability);
         TechnologyCostLabel.SetMessage(
             Loc.GetString("research-console-tech-cost-label", ("cost", proto.Cost)),
             defaultColor: color
