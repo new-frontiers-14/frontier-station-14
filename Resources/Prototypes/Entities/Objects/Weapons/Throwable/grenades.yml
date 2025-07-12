@@ -465,7 +465,7 @@
     price: 350
 
 - type: entity
-  parent: [ BaseEngineeringContraband, GrenadeBase ] # Prevent inheriting DeleteOnTrigger from SmokeGrenade
+  parent: GrenadeBase # Prevent inheriting DeleteOnTrigger from SmokeGrenade # Frontier: removed BaseEngineeringContraband
   id: AirGrenade
   name: air grenade
   description: A special solid state chemical grenade used for quickly releasing standard air into a spaced area. Fills up to 30 tiles!
