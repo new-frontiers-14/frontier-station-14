@@ -13,9 +13,7 @@ using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Materials;
-using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
-using Robust.Shared.GameObjects;
 
 namespace Content.Shared._NF.Storage.EntitySystems;
 
@@ -392,7 +390,7 @@ public sealed class NFMagnetPickupSystem : EntitySystem
 
             foundMaterials = true;
 
-            if (_materialStorage.TryInsertMaterialEntity(EntityUid.Invalid, near, uid, storage))
+            if (_materialStorage.TryInsertMaterialEntity(uid, near, uid, storage))
             {
                 successfulPickups++;
 
