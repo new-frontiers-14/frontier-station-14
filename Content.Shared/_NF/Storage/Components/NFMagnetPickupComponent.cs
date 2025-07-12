@@ -57,7 +57,7 @@ public sealed partial class NFMagnetPickupComponent : Component
     /// Is the magnet currently enabled?
     /// </summary>
     [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
-    public bool MagnetEnabled { get; set; } = true;
+    public bool MagnetEnabled { get; set; } = false;
 
     // Processing limits
     [ViewVariables(VVAccess.ReadOnly), DataField]

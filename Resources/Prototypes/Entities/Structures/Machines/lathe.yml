@@ -57,18 +57,6 @@
     # Begin Frontier Additions: toggle magnet from White Dream
   - type: NFMagnetPickup
     range: 0.30
-  - type: ItemToggle
-    soundActivate: &soundActivate
-      collection: sparks
-      params:
-        variation: 0.25
-    soundDeactivate: *soundActivate
-    onUse: false
-    onAltUse: true
-    onActivate: false
-  - type: ItemToggleExamine
-    on: item-toggle-examine-magnet-on
-    off: item-toggle-examine-magnet-off
     # End Frontier Additions
 
 # a lathe that can be sped up with space lube / slowed down with glue
