@@ -35,6 +35,24 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     private ParallaxControl _parallaxControl;
 
     /// <summary>
+    /// The parallax prototype to use for the background. Configurable.
+    /// </summary>
+    public string ParallaxPrototype { get; set; } = "Default";
+
+    /// <summary>
+    /// Updates the parallax background to use a different prototype
+    /// </summary>
+    /// <param name="parallaxPrototype">The new parallax prototype to use</param>
+    public void SetParallaxPrototype(string parallaxPrototype)
+    {
+        ParallaxPrototype = parallaxPrototype;
+        if (_parallaxControl != null)
+        {
+            _parallaxControl.ParallaxPrototype = parallaxPrototype;
+        }
+    }
+
+    /// <summary>
     /// Console entity
     /// </summary>
     public EntityUid Entity;
@@ -59,11 +77,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// Is tech currently being dragged
     /// </summary>
     private bool _draggin;
-
-    /// <summary>
-    /// Tracks if first initialization has happened
-    /// </summary>
-    private bool _firstInitialization = true;
 
     /// <summary>
     /// the distance between elements on the grid.
@@ -99,11 +112,10 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         // Frontier: Initialize parallax background
         _parallaxControl = new ParallaxControl
         {
-            ParallaxPrototype = "Default",
+            ParallaxPrototype = ParallaxPrototype,
             HorizontalExpand = true,
             VerticalExpand = true,
         };
-
 
         // Add the parallax control to the ResearchesContainer at the beginning (bottom layer)
         ResearchesContainer.AddChild(_parallaxControl);
@@ -130,30 +142,13 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     }
 
     /// <summary>
-    /// Apply scrollbar styling
+    /// Apply scrollbar styling using centralized colors and utilities
     /// </summary>
     private void ApplyScrollbarStyling()
     {
-        var scrollBarNormal = new StyleBoxFlat
-        {
-            BackgroundColor = Color.FromHex("#80808059"),
-            ContentMarginLeftOverride = 10,
-            ContentMarginTopOverride = 10
-        };
-
-        var scrollBarHovered = new StyleBoxFlat
-        {
-            BackgroundColor = Color.FromHex("#8C8C8C59"),
-            ContentMarginLeftOverride = 10,
-            ContentMarginTopOverride = 10
-        };
-
-        var scrollBarGrabbed = new StyleBoxFlat
-        {
-            BackgroundColor = Color.FromHex("#8C8C8C59"),
-            ContentMarginLeftOverride = 10,
-            ContentMarginTopOverride = 10
-        };
+        var scrollBarNormal = ResearchUIHelpers.CreateScrollbarStyleBox("normal");
+        var scrollBarHovered = ResearchUIHelpers.CreateScrollbarStyleBox("hovered");
+        var scrollBarGrabbed = ResearchUIHelpers.CreateScrollbarStyleBox("grabbed");
     }
 
     public void SetEntity(EntityUid entity)
@@ -200,8 +195,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
             DragContainer.SetWidth = Math.Max(totalWidth, 1000);
             DragContainer.SetHeight = Math.Max(totalHeight, 1000);
-
-            _firstInitialization = false;
         }
 
         // Add tech items
@@ -344,7 +337,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         base.Close();
         DragContainer.RemoveAllChildren();
         InfoContainer.RemoveAllChildren();
-        _firstInitialization = true;
     }
 
     private sealed partial class DisciplineButton(TechDisciplinePrototype proto) : Button
