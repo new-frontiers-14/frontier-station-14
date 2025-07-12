@@ -1,4 +1,3 @@
-using Content.Server.Emp; // Frontier: Upstream - #28984
 using Content.Server.Popups; // Frontier
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
