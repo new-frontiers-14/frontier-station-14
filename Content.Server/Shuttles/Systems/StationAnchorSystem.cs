@@ -1,8 +1,10 @@
-﻿using Content.Server.Popups;
+using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Popups;
+using Content.Shared.Tools.Components; // Frontier
+using Content.Server.DeviceLinking.Events; // Frontier
 using Content.Server.DeviceLinking.Systems; // Frontier
 using Content.Server.Power.Components; // Frontier
 using Content.Shared.DeviceNetwork; // Frontier
@@ -29,6 +31,7 @@ public sealed class StationAnchorSystem : EntitySystem
 
         SubscribeLocalEvent<StationAnchorComponent, MapInitEvent>(OnMapInit);
 
+        SubscribeLocalEvent<StationAnchorComponent, ToolUseAttemptEvent>(OnToolUseAttempt); // Frontier
         SubscribeLocalEvent<StationAnchorComponent, ComponentInit>(OnInit); // Frontier
         SubscribeLocalEvent<StationAnchorComponent, SignalReceivedEvent>(OnSignalReceived); // Frontier
         SubscribeLocalEvent<StationAnchorComponent, DeviceNetworkPacketEvent>(OnPacketReceived); // Frontier
@@ -67,6 +70,31 @@ public sealed class StationAnchorSystem : EntitySystem
             PopupType.Medium);
 
         args.Cancel();
+    }
+
+    /// <summary>
+    /// Frontier: Prevent disassembly when anchor is active
+    /// </summary>
+    private void OnToolUseAttempt(Entity<StationAnchorComponent> ent, ref ToolUseAttemptEvent args)
+    {
+        if (!ent.Comp.SwitchedOn)
+            return;
+
+        foreach (var quality in args.Qualities)
+        {
+            // prevent reconstruct
+            if (quality == "Prying")
+            {
+                _popupSystem.PopupEntity(
+                    Loc.GetString("station-anchor-teardown-failed"),
+                     ent,
+                     args.User,
+                     PopupType.Medium);
+
+                args.Cancel();
+                return;
+            }
+        }
     }
 
     private void OnAnchorStationChange(Entity<StationAnchorComponent> ent, ref AnchorStateChangedEvent args)
