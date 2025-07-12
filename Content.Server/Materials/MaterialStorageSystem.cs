@@ -13,7 +13,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Server.Cargo.Systems; // Frontier
-using Content.Shared._NF.Storage.Components; // Frontier - Added for NFMagnetPickupComponent
+using Content.Shared._NF.Storage.Components; // Frontier: Added for NFMagnetPickupComponent
+using Content.Shared._NF.Storage.EntitySystems; // Frontier: Added for NFMagnetPickupSystem
 
 namespace Content.Server.Materials;
 
@@ -28,6 +29,7 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StackSystem _stackSystem = default!;
+    [Dependency] private readonly NFMagnetPickupSystem _magnetPickupSystem = default!; // Frontier: Added for proper magnet synchronization
 
     public override void Initialize()
     {
@@ -101,9 +103,10 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
 
         // Frontier
         // If we made it this far, turn off the magnet before spawning materials
-        if (TryComp<NFMagnetPickupComponent>(uid, out var magnet))
+        // Use the proper ToggleMagnet method to ensure synchronization with ItemToggleComponent
+        if (TryComp<NFMagnetPickupComponent>(uid, out var magnet) && magnet.MagnetEnabled)
         {
-            magnet.MagnetEnabled = false;
+            _magnetPickupSystem.ToggleMagnet(uid, magnet);
         }
         // End Frontier
 
