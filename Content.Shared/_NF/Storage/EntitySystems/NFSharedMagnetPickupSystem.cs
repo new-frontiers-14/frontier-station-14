@@ -21,7 +21,7 @@ namespace Content.Shared._NF.Storage.EntitySystems;
 /// Unified magnet pickup system that handles all magnet types.
 /// Replaces the separate systems for regular storage, material storage, and material reclaimer magnets.
 /// </summary>
-public sealed class NFMagnetPickupSystem : EntitySystem
+public sealed class NFSharedMagnetPickupSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -476,7 +476,7 @@ public sealed class NFMagnetPickupSystem : EntitySystem
             switch (comp.PickupType)
             {
                 case MagnetPickupType.Storage:
-                    if (TryComp<StorageComponent>(uid, out var storage) && TryComp<MetaDataComponent>(uid, out var meta))
+                    if (TryComp<StorageComponent>(uid, out var storage) && TryComp(uid, out MetaDataComponent? meta))
                     {
                         (successfulPickups, foundTargets) = ProcessStorageMagnet(uid, comp, storage, xform, meta);
                     }

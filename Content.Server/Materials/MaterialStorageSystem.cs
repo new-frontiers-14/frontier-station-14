@@ -29,7 +29,7 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StackSystem _stackSystem = default!;
-    [Dependency] private readonly NFMagnetPickupSystem _magnetPickupSystem = default!; // Frontier: Added for proper magnet synchronization
+    [Dependency] private readonly NFSharedMagnetPickupSystem _magnetPickupSystem = default!; // Frontier: Added for proper magnet synchronization
 
     public override void Initialize()
     {
