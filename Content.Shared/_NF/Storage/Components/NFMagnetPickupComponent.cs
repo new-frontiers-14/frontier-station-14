@@ -135,5 +135,8 @@ public sealed partial class NFMagnetPickupComponent : Component
     public const string ExamineTextOff = "magnet-pickup-component-magnet-off";
 
     [DataField]
-    public const string ExamineTextAlwaysOnText = "magnet-pickup-component-examine-always-on";
+    public const string ExamineTextAlwaysOn = "magnet-pickup-component-magnet-always-on";
+
+    [DataField]
+    public const string ExamineTextAlwaysOff = "magnet-pickup-component-magnet-always-off";
 }

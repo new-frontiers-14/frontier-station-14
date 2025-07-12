@@ -126,7 +126,10 @@ public sealed class NFMagnetPickupSystem : EntitySystem
         }
         else
         {
-            args.PushMarkup(Loc.GetString(NFMagnetPickupComponent.ExamineTextAlwaysOnText));
+            args.PushMarkup(Loc.GetString(NFMagnetPickupComponent.ExamineText,
+                            ("stateText", Loc.GetString(component.MagnetEnabled
+                            ? NFMagnetPickupComponent.ExamineTextAlwaysOn
+                            : NFMagnetPickupComponent.ExamineTextAlwaysOff))));
         }
     }
 
