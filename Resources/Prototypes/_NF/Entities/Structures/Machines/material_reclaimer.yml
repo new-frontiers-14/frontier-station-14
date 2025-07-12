@@ -111,9 +111,12 @@
     price: 500
   - type: ApcPowerReceiver
     powerLoad: 500 # Allows us to not use the 1000 baseline
-  - type: MaterialReclaimerMagnetPickup
-    range: 0.50 # 0.3<0.50
+  - type: NFMagnetPickup
+    pickupType: MaterialReclaimer
+    range: 0.5
     magnetEnabled: true
+    maxEntitiesPerScan: 1
+    maxPickupsPerScan: 1
   - type: SpookySpeaker
     speakChance: 0.1
     cooldown: 120

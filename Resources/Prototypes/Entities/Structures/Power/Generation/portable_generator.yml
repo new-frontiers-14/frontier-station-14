@@ -191,8 +191,11 @@
       supplyRampRate: 5000
       supplyRampTolerance: 1500
     # Frontier: magnet pickup, fuel adapter
-    - type: MaterialStorageMagnetPickup
+    - type: NFMagnetPickup
+      pickupType: MaterialStorage
       range: 0.30
+      maxEntitiesPerScan: 1
+      maxPickupsPerScan: 1
     - type: FuelGradeAdapter
       conversions:
       - input: Plasma
@@ -265,8 +268,11 @@
       supplyRampRate: 7500
       supplyRampTolerance: 2500
     # Frontier: magnet pickup, fuel adapter
-    - type: MaterialStorageMagnetPickup
+    - type: NFMagnetPickup
+      pickupType: MaterialStorage
       range: 0.30
+      maxEntitiesPerScan: 1
+      maxPickupsPerScan: 1
     - type: FuelGradeAdapter
       conversions:
       - input: Uranium
