@@ -30,6 +30,19 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
             return;
 
         /* ORIGINAL UPSTREAM CODE
+        if (!TryComp<ProduceComponent>(args.Used, out var produce))
+            return;
+
+        if (!_solutionContainer.TryGetSolution(args.Used, produce.SolutionName, out var solution))
+            return;
+
+        // Can produce even have fractional amounts? Does it matter if they do?
+        // Questions man was never meant to answer.
+        var matAmount = solution.Value.Comp.Solution.Contents
+            .Where(r => ent.Comp.ExtractionReagents.Contains(r.Reagent.Prototype))
+            .Sum(r => r.Quantity.Float());
+        _materialStorage.TryChangeMaterialAmount(ent, ent.Comp.ExtractedMaterial, (int) matAmount);
+
         _audio.PlayPvs(ent.Comp.ExtractSound, ent);
         QueueDel(args.Used);
         args.Handled = true;
