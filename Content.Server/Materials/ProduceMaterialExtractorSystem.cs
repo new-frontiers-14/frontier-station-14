@@ -29,6 +29,7 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         if (!this.IsPowered(ent, EntityManager))
             return;
 
+        // Frontier - port plant bag dumping (Wizden #32663)
         // ORIGINAL UPSTREAM CODE
         // if (!TryComp<ProduceComponent>(args.Used, out var produce))
         //     return;
@@ -46,7 +47,6 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         // _audio.PlayPvs(ent.Comp.ExtractSound, ent);
         // QueueDel(args.Used);
         // args.Handled = true;
-        // Frontier - port plant bag dumping (Wizden #32663)
         var success = false;
 
         // Handle using bags (mainly plant bags)
