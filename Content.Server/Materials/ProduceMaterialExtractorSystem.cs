@@ -85,9 +85,7 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
 
         return true;
     }
-    // End Frontier
 
-    // Frontier - plant bag dumping
     private bool ExtractFromStorage(Entity<ProduceMaterialExtractorComponent> ent, EntityUid used, out bool bagEmpty)
     {
         bagEmpty = true;
