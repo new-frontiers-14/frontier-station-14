@@ -4,7 +4,7 @@ using Content.Server.Materials.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Storage; // Frontier - port plant bag dumping
+using Content.Shared.Storage; // Frontier - port plant bag dumping (Wizden #32663)
 using Robust.Server.Audio;
 
 namespace Content.Server.Materials;
@@ -29,9 +29,14 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         if (!this.IsPowered(ent, EntityManager))
             return;
 
+        /* ORIGINAL UPSTREAM CODE
+        _audio.PlayPvs(ent.Comp.ExtractSound, ent);
+        QueueDel(args.Used);
+        args.Handled = true;
+        */
+        // Frontier - port plant bag dumping (Wizden #32663)
         var success = false;
 
-        // Frontier - plant bag dumping
         // Handle using bags (mainly plant bags)
         if (ExtractFromStorage(ent, args.Used, out var bagEmpty))
             success = true;
