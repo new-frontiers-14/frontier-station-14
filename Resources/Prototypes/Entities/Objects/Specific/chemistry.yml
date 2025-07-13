@@ -481,12 +481,6 @@
     minimumSpeed: 3
     removalTime: 0.25
     embedOnThrow: false
-  # DeltaV - Nerfs the max volume to 5 (was 15)
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 5
-  # End DeltaV
   - type: SolutionInjectWhileEmbedded
     transferAmount: 0.5 # Frontier: 1 < 0.5
     solution: injector
@@ -523,9 +517,6 @@
     - Syringe
     - Trash
     - SyringeGunAmmo
-  - type: Injector # Frontier
-    maxTransferAmount: 5 # Frontier
-    transferAmount: 5 # Frontier
 
 - type: entity
   parent: BaseSyringe
