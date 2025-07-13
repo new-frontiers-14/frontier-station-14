@@ -489,9 +489,8 @@
   - type: ProximityBeeper
   - type: ProximityDetector
     range: 20
-    criteria:
-      components:
-      - GasDeposit
+    components:
+    - type: GasDeposit
   - type: Beeper
     isMuted: true
     minBeepInterval: 0.15
