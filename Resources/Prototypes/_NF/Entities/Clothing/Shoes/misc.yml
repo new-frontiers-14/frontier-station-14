@@ -8,7 +8,7 @@
     sprite: _NF/Clothing/Shoes/Boots/moonboots.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ] # Frontier: Enum changes from Wizden#35341
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/moonboots.rsi
   - type: NFMoonBoots
@@ -21,8 +21,8 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: icon-on}
           False: {state: icon}
 
