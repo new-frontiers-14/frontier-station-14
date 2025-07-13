@@ -42,6 +42,11 @@
   components:
   - type: Sprite
     state: blank_flag
+    # Begin Frontier additions
+  - type: Construction
+    graph: NF_Flags
+    node: BlankFlag
+    # End Frontier additions
 
 - type: entity
   parent: BaseFlag
@@ -51,6 +56,11 @@
   components:
   - type: Sprite
     state: NT_flag
+    # Begin Frontier additions
+  - type: Construction
+    graph: NF_Flags
+    node: NTFlag
+    # End Frontier additions
 
 - type: entity
   parent: BaseFlag
@@ -60,7 +70,12 @@
   components:
   - type: Sprite
     state: syndie_flag
-    
+    # Begin Frontier additions
+  - type: Construction
+    graph: NF_Flags
+    node: SyndieFlag
+    # End Frontier additions
+
 - type: entity
   parent: BaseFlag
   id: LGBTQFlag
@@ -80,4 +95,10 @@
   description: Raise the jolly roger, scallywags!
   components:
   - type: Sprite
+    # Begin Frontier additions
     state: pirate_flag
+  - type: Construction
+    graph: NF_Flags
+    node: PirateFlag
+    # End Frontier additions
+
