@@ -86,7 +86,7 @@ public sealed partial class GuideTechnologyEmbed : BoxContainer, IDocumentTag, I
 
         NameLabel.SetMarkup($"[bold]{Loc.GetString(technology.Name)}[/bold]");
         DescriptionLabel.SetMessage(_research.GetTechnologyDescription(technology, includePrereqs: true, disciplinePrototype: discipline));
-        
+
         // Frontier: Handle technology icon - prioritize EntityIcon, fall back to Icon
         if (technology.EntityIcon.HasValue)
         {

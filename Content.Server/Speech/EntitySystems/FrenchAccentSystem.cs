@@ -32,7 +32,7 @@ public sealed class FrenchAccentSystem : EntitySystem
 
         // spaces out ! ? : and ;.
         msg = RegexSpacePunctuation.Replace(msg, " $&");
-        
+
         // replaces th with 'z or 's depending on the case
         foreach (Match match in RegexTh.Matches(msg))
         {

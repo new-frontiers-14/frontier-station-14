@@ -1038,7 +1038,7 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.RemoveJobWhitelist(player, job));
         }
-        
+
         // Frontier: ghost role DB ops
         public Task AddGhostRoleWhitelist(Guid player, ProtoId<GhostRolePrototype> ghostRole)
         {
