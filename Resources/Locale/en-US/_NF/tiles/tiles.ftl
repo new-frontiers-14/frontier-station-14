@@ -15,6 +15,10 @@ tiles-wood-light-mosaic-floor = light mosaic wood floor
 tiles-wood-fancy-floor = fancy wood floor
 tiles-wood-versailles-floor = versailles wood floor
 tiles-cheese-floor = cheese floor
+tiles-plasma-glass-floor = plasma glass floor
+tiles-reinforced-plasma-glass-floor = reinforced plasma glass floor
+tiles-uranium-glass-floor = uranium floor
+tiles-reinforced-uranium-glass-floor = reinforced uranium floor
 
 # Upstream renames
 tiles-dirt-floor-undiggable = dirt floor (undiggable)
