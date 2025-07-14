@@ -15,25 +15,45 @@
 
   - !type:DungeonEntranceDunGen
     count: 2
+    tile: FloorSteel
+    contents: BaseAirlock
 
   - !type:RoomEntranceDunGen
+    tile: FloorSteel
+    contents: BaseAirlock
 
   - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: BaseWindow
 
   - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: BaseWindow
 
   - !type:WallMountDunGen
+    contents: ScienceLabsWalls
+    tile: FloorSteel
 
   - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
 
   - !type:JunctionDunGen
     width: 1
+    tile: FloorSteel
+    contents: BaseAirlock
 
   - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: BaseAirlock
 
   - !type:AutoCablingDunGen
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
+    contents: BaseClutter
 
   - !type:CorridorDecalSkirtingDunGen
     cardinalDecals:
@@ -103,8 +123,7 @@
     tile: FloorCaveDrought
 
   - !type:CorridorClutterDunGen
-    contents:
-    - id: FloraStalagmite
+    contents: HauntedClutter
 
   - !type:BoundaryWallDunGen
     tile: FloorCaveDrought
