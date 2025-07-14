@@ -235,14 +235,6 @@
     maxCount: 2
     contents: SpawnMobRogueScapT1Table
   - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    contents: SpawnMobRogueScapT1Table
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    contents: SpawnMobRogueSiliconsT2Table
-  - !type:MobsDunGen
     minCount: 0
     maxCount: 1
     contents: SpawnMobRogueSiliconBossRandomTable
@@ -266,20 +258,6 @@
   table: !type:GroupSelector
     children:
     - id: SpawnMobRogueScapT1
-      amount: 1
-
-- type: entityTable
-  id: SpawnMobRogueScapT1Table
-  table: !type:GroupSelector
-    children:
-    - id: SpawnMobRogueScapT1
-      amount: 1
-
-- type: entityTable
-  id: SpawnMobRogueSiliconsT2Table
-  table: !type:GroupSelector
-    children:
-    - id: SpawnMobRogueSiliconsT2
       amount: 1
 
 - type: entityTable
