@@ -5,7 +5,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Localizations;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._NF.EntityEffects.Effect;
+namespace Content.Shared._NF.EntityEffects.Effect;
 
 /// <summary>
 /// Requires that the metabolizing body is a humanoid, with an optional whitelist/blacklist.
