@@ -49,8 +49,8 @@
   suffix: Empty
   parent: CondimentDispenser
   components:
-  - type: ReagentDispenser
-    storageWhitelist:
+  - type: Storage
+    openOnActivate: false
+    whitelist:
       tags:
       - DrinkBottle
-    pack: EmptyInventory
