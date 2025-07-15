@@ -1,19 +1,23 @@
 - type: entity
   id: ActionHorn
+  parent: BaseAction # Frontier, Wizden#27422 compliance
   name: Honk!
   description: Honk the horn! # Frontier: no fun allowed
   components:
-  - type: InstantAction
+  - type: Action # Frontier, Wizden#27422 compliance, InstantAction<Action
     useDelay: 3.4 # Frontier: keep the old value
     icon: { sprite: Objects/Fun/bikehorn.rsi, state: icon }
+  - type: InstantAction # Frontier, Wizden#27422 compliance
     event: !type:HornActionEvent
 
 - type: entity
   id: ActionSiren
+  parent: BaseAction # Frontier, Wizden#27422 compliance
   name: Siren
   description: Alert everyone around to your presence. # Frontier: no fun allowed
   components:
-  - type: InstantAction
+  - type: Action # Frontier, Wizden#27422 compliance, InstantAction<Action
     useDelay: 3.4 # Frontier: keep the old value
     icon: { sprite: Objects/Fun/bikehorn.rsi, state: icon }
+  - type: InstantAction # Frontier, Wizden#27422 compliance
     event: !type:SirenActionEvent

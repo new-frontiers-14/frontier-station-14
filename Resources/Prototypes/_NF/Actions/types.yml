@@ -1,9 +1,11 @@
 - type: entity
   id: ActionActivateDissonantWhispersImplant
+  parent: BaseAction
   name: Dissonant Whispers
   description: Utter unharmonious and disquieting whispers giving form to eldritch horrors.
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Objects/Fun/bikehorn.rsi, state: icon }
-    event: !type:ActivateImplantEvent
     useDelay: 5
+  - type: InstantAction
+    event: !type:ActivateImplantEvent

@@ -284,12 +284,11 @@
     icon: { sprite : Objects/Weapons/Guns/Projectiles/magic.rsi, state: fireball }
     itemIconStyle: BigAction
     priority: 2
-  - type: TargetAction
-    checkCanAccess: false
-    range: 0
-    itemIconStyle: BigAction
     useDelay: 5 # Frontier
     sound: # Frontier
       path: /Audio/Animals/space_dragon_roar.ogg # Frontier
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
   - type: WorldTargetAction
     event: !type:ActionGunShootEvent
