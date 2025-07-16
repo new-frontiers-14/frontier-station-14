@@ -175,14 +175,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorScrap
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorTechMaint3
-      WidenTile: Lattice # Plating
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsScrap
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorTechMaint3
+    widenTile: Lattice # Plating
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsScrap

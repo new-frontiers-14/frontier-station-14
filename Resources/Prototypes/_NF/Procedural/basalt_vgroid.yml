@@ -189,14 +189,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorBasalt
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorGrayConcreteMono
-      WidenTile: FloorBasalt
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsBasalt
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorGrayConcreteMono
+    widenTile: FloorBasalt
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsBasalt

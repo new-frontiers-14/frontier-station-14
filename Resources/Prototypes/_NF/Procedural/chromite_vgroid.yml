@@ -189,14 +189,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorChromite
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorDarkHerringbone
-      WidenTile: FloorChromite
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsChromite
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorDarkHerringbone
+    widenTile: FloorChromite
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsChromite

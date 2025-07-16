@@ -189,14 +189,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorCave
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: PlatingAsteroid
-      WidenTile: FloorCaveDrought
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsCave
   - !type:SplineDungeonConnectorDunGen
+    tile: PlatingAsteroid
+    widenTile: FloorCaveDrought
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsCave
