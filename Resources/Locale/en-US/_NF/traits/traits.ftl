@@ -37,7 +37,5 @@ trait-dwarf-accent-desc = Ye sound like ye've spent tae long wi ae pickaxe in yo
 trait-tall-name = Tall
 trait-short-name = Short
 
-# Frontier region begin
 trait-fluffy-name = Fluffy (Moth only)
 trait-fluffy-desc = You look more fluffy than other moths.
-# Frontier region end
