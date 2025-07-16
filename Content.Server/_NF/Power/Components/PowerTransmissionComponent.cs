@@ -50,7 +50,7 @@ public sealed partial class PowerTransmissionComponent : Component
     /// The rate per joule to credit the account while in the linear mode.
     ///</summary>
     [DataField]
-    public float LinearRate = 0.00001f; // $1/100 kJ
+    public float LinearRate = 0.00003f; // $1/100 kJ
 
     ///<summary>
     /// The maximum value (inclusive) of the linear mode per deposit, in watts
@@ -73,7 +73,7 @@ public sealed partial class PowerTransmissionComponent : Component
     /// Note: should be set to LinearRate*LinearMaxValue for a continuous function.
     ///</summary>
     [DataField]
-    public float LogarithmCoefficient = 10f;
+    public float LogarithmCoefficient = 30f;
 
     ///<summary>
     /// The exponential subtrahend of the logarithmic mode: R in Tk*a^(log10(x/T)-R)
