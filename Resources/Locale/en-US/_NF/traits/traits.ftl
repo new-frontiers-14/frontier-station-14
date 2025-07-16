@@ -36,3 +36,6 @@ trait-dwarf-accent-desc = Ye sound like ye've spent tae long wi ae pickaxe in yo
 # These traits are bound to be replaced with a slider, but they live here for now.
 trait-tall-name = Tall
 trait-short-name = Short
+
+trait-fluffy-name = Fluffy (Moth only)
+trait-fluffy-desc = You look more fluffy than other moths.
