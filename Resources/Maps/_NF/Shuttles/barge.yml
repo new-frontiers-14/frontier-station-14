@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/29/2025 15:41:54
-  entityCount: 818
+  time: 07/13/2025 17:32:55
+  entityCount: 820
 maps: []
 grids:
 - 70
@@ -1356,6 +1356,14 @@ entities:
     - type: Transform
       pos: -3.5,-4.5
       parent: 70
+- proto: BarSpoon
+  entities:
+  - uid: 674
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.503344,-5.858896
+      parent: 70
 - proto: Bed
   entities:
   - uid: 486
@@ -2693,6 +2701,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,0.5
+      parent: 70
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 819
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-12.5
       parent: 70
 - proto: DisposalBend
   entities:
@@ -4083,7 +4099,15 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,-9.5
       parent: 70
-- proto: JukeboxShip
+- proto: ImpCoffeeMachine
+  entities:
+  - uid: 820
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-7.5
+      parent: 70
+- proto: Jukebox
   entities:
   - uid: 159
     components:
@@ -5197,14 +5221,6 @@ entities:
     - type: Transform
       pos: -2.5,-17.5
       parent: 70
-- proto: SodaDispenser
-  entities:
-  - uid: 674
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,-7.5
-      parent: 70
 - proto: SolarPanel
   entities:
   - uid: 397
@@ -5513,6 +5529,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-7.5
       parent: 70
+  - uid: 49
+    components:
+    - type: Transform
+      pos: -5.5,-5.5
+      parent: 70
   - uid: 139
     components:
     - type: Transform
@@ -5724,13 +5745,6 @@ entities:
           - Reverse
         - - Middle
           - Off
-- proto: VendingMachineBooze
-  entities:
-  - uid: 49
-    components:
-    - type: Transform
-      pos: -5.5,-5.5
-      parent: 70
 - proto: WallmountTelevision
   entities:
   - uid: 516
