@@ -56,7 +56,7 @@ public sealed partial class PowerTransmissionComponent : Component
     /// The maximum value (inclusive) of the linear mode per deposit, in watts
     ///</summary>
     [DataField]
-    public float LinearMaxValue = 1_000_000; // 1 MW ($10/s)
+    public float LinearMaxValue = 1_000_000; // 1 MW ($30/s)
     #endregion Linear Rates
 
     // Logarithmic fields: at very high levels of power generation, incremental gains decrease logarithmically to prevent runaway cash generation
@@ -86,7 +86,7 @@ public sealed partial class PowerTransmissionComponent : Component
     ///<summary>
     ///</summary>
     [DataField]
-    public float MaxValuePerSecond = 150.0f; // ~902 MW, ~$540k/h
+    public float MaxValuePerSecond = 150.0f; // ~57 MW, ~$540k/h
 
     ///<summary>
     /// True if the entity was powered last tick.
