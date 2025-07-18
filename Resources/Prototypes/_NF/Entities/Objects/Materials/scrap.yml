@@ -61,6 +61,33 @@
       RawScrap: 1000 # 10 sheets
       Silver: 500 # 5 sheets
 
+- type: entity
+  parent: NFBaseScrap
+  id: ScrapPlastic
+  name: blasted plastic pile
+  description: An pile of plastic welded together in extreme heat. It's of a decent size overall; you could probably get a fair amount of sheets out of it.
+  components:
+  - type: Sprite
+    layers:
+      - state: plastic-1
+        map: [ "base" ]
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,4 # 5x5
+    heldPrefix: plastic
+  - type: MultiHandedItem
+  - type: RandomSprite
+    available:
+    - base:
+        plastic-1: ""
+        plastic-2: ""
+        plastic-3: ""
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 3000 # 30 sheets
+      RawScrap: 1000 # Frontier: 10 sheets
+
 #region broken machines
 - type: entity
   id: ScrapGenericBrokenMachine
