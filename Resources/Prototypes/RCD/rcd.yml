@@ -273,10 +273,13 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
+
+# Frontier
 # Piping
 - type: rcd
-  id: GasPipeStraight
-  category: Electrical
+  id: PipeStraight
+  category: Piping
+  sprite: /Textures/Interface/Radial/RCD/pipeStraight.png
   mode: ConstructObject
   prototype: GasPipeStraight
   cost: 1
@@ -285,8 +288,9 @@
   fx: EffectRCDConstruct0
 
 - type: rcd
-  id: GasPipeBend
-  category: Electrical
+  id: PipeBend
+  category: Piping
+  sprite: /Textures/Interface/Radial/RCD/pipeBend.png
   mode: ConstructObject
   prototype: GasPipeBend
   cost: 1
@@ -295,8 +299,9 @@
   fx: EffectRCDConstruct0
 
 - type: rcd
-  id: GasPipeTJunction
-  category: Electrical
+  id: PipeTJunction
+  category: Piping
+  sprite: /Textures/Interface/Radial/RCD/pipeTJunction.png
   mode: ConstructObject
   prototype: GasPipeTJunction
   cost: 1
@@ -305,10 +310,122 @@
   fx: EffectRCDConstruct0
 
 - type: rcd
-  id: GasPipeFourway
-  category: Electrical
+  id: PipeFourway
+  category: Piping
+  sprite: /Textures/Interface/Radial/RCD/pipeFourway.png
   mode: ConstructObject
   prototype: GasPipeFourway
+  cost: 1
+  delay: 0
+  rotation: Fixed
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PipeHalf
+  category: Piping
+  sprite: /Textures/Interface/Radial/RCD/pipeHalf.png
+  mode: ConstructObject
+  prototype: GasPipeHalf
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: SignalPipe
+  category: Piping
+  sprite: /Textures/Interface/Radial/RCD/pipeSignal.png
+  mode: ConstructObject
+  prototype: GasPipeSensor
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+# Pumps
+- type: rcd
+  id: VolumePump
+  category: Pumps
+  sprite: /Textures/Interface/Radial/RCD/pumpVolume.png
+  mode: ConstructObject
+  prototype: GasVolumePump
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PressurePump
+  category: Pumps
+  sprite: /Textures/Interface/Radial/RCD/pumpPressure.png
+  mode: ConstructObject
+  prototype: GasPressurePump
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: ManualValve
+  category: Pumps
+  sprite: /Textures/Interface/Radial/RCD/pumpManualValve.png
+  mode: ConstructObject
+  prototype: GasValve
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: GasPassiveGate
+  category: Pumps
+  sprite: /Textures/Interface/Radial/RCD/pumpPassiveGate.png
+  mode: ConstructObject
+  prototype: PassiveGate
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: Filter
+  category: Pumps
+  sprite: /Textures/Interface/Radial/RCD/gasFilter.png
+  mode: ConstructObject
+  prototype: GasFilter
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: Mixer
+  category: Pumps
+  sprite: /Textures/Interface/Radial/RCD/gasMixer.png
+  mode: ConstructObject
+  prototype: GasMixer
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PassiveGate
+  category: Pumps
+  sprite: /Textures/Interface/Radial/RCD/pumpPassiveGate.png
+  mode: ConstructObject
+  prototype: GasPassiveGate
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: SignalValve
+  category: Pumps
+  sprite: /Textures/Interface/Radial/RCD/pumpSignalValve.png
+  mode: ConstructObject
+  prototype: SignalControlledValve
   cost: 1
   delay: 0
   rotation: User
