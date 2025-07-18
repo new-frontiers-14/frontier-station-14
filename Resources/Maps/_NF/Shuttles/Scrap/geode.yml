@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/14/2025 06:15:03
+  time: 07/18/2025 05:32:36
   entityCount: 745
 maps: []
 grids:
@@ -1255,6 +1255,14 @@ entities:
     - type: Transform
       pos: 0.5,2.5
       parent: 1
+- proto: BarSpoon
+  entities:
+  - uid: 85
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.6286895,-12.574975
+      parent: 1
 - proto: Bed
   entities:
   - uid: 561
@@ -1281,6 +1289,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,2.5
       parent: 1
+- proto: BoozeDispenser
+  entities:
+  - uid: 352
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-10.5
+      parent: 1
 - proto: ButtonFrameCaution
   entities:
   - uid: 266
@@ -1298,7 +1314,7 @@ entities:
   - uid: 648
     components:
     - type: Transform
-      pos: 0.5,-9.5
+      pos: -2.5,-9.5
       parent: 1
   - uid: 650
     components:
@@ -2096,31 +2112,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 9.5,3.5
       parent: 1
-- proto: CrateFreezer
-  entities:
-  - uid: 585
-    components:
-    - type: Transform
-      pos: 0.5,-10.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: d6Dice
   entities:
   - uid: 395
@@ -2174,13 +2165,6 @@ entities:
     components:
     - type: Transform
       pos: 1.2107253,-1.3751576
-      parent: 1
-- proto: DrinkDisposableCup
-  entities:
-  - uid: 125
-    components:
-    - type: Transform
-      pos: 1.8594495,-12.363336
       parent: 1
 - proto: DrinkGlass
   entities:
@@ -3625,14 +3609,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,1.5
       parent: 1
-- proto: ImpCoffeeMachine
-  entities:
-  - uid: 85
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-10.5
-      parent: 1
 - proto: Jukebox
   entities:
   - uid: 666
@@ -4151,6 +4127,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-12.5
       parent: 1
+- proto: ShelfWallFreezerDark
+  entities:
+  - uid: 125
+    components:
+    - type: Transform
+      pos: 0.5,-9.5
+      parent: 1
 - proto: ShuttersNormalOpen
   entities:
   - uid: 20
@@ -4385,35 +4368,35 @@ entities:
         658:
         - - Pressed
           - Toggle
-  - uid: 352
+  - uid: 585
     components:
     - type: Transform
-      pos: 0.5,-9.5
+      pos: -2.5,-9.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        647:
-        - - Pressed
-          - Toggle
-        645:
-        - - Pressed
-          - Toggle
-        646:
+        294:
         - - Pressed
           - Toggle
         293:
         - - Pressed
           - Toggle
-        294:
+        646:
         - - Pressed
           - Toggle
-        392:
+        645:
+        - - Pressed
+          - Toggle
+        647:
         - - Pressed
           - Toggle
         644:
         - - Pressed
           - Toggle
         449:
+        - - Pressed
+          - Toggle
+        392:
         - - Pressed
           - Toggle
   - uid: 649
