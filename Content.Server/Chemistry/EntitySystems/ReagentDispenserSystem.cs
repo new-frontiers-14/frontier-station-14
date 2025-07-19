@@ -48,14 +48,13 @@ namespace Content.Server.Chemistry.EntitySystems
 
             SubscribeLocalEvent<ReagentDispenserComponent, ComponentStartup>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ReagentDispenserComponent, SolutionContainerChangedEvent>(SubscribeUpdateUiState);
-            SubscribeLocalEvent<ReagentDispenserComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState, after: [typeof(SharedStorageSystem)]);
+            // SubscribeLocalEvent<ReagentDispenserComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState, after: [typeof(SharedStorageSystem)]); // Frontier
+            SubscribeLocalEvent<ReagentDispenserComponent, EntInsertedIntoContainerMessage>(OnEntInserted, after: [typeof(SharedStorageSystem)]); // Frontier: Auto label on insert
             SubscribeLocalEvent<ReagentDispenserComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState, after: [typeof(SharedStorageSystem)]);
             SubscribeLocalEvent<ReagentDispenserComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
 
             SubscribeLocalEvent<ReagentDispenserComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternateVerb); // Frontier
             SubscribeLocalEvent<ReagentDispenserComponent, ExaminedEvent>(OnExamined); // Frontier
-            SubscribeLocalEvent<ReagentDispenserComponent, RefreshPartsEvent>(OnRefreshParts); // Frontier
-            SubscribeLocalEvent<ReagentDispenserComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier
 
             SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserSetDispenseAmountMessage>(OnSetDispenseAmountMessage);
             SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserDispenseReagentMessage>(OnDispenseReagentMessage);
@@ -75,7 +74,7 @@ namespace Content.Server.Chemistry.EntitySystems
         {
             if (ent.Comp.AutoLabel && _solutionContainerSystem.TryGetDrainableSolution(ev.Entity, out _, out var sol))
             {
-                ReagentId? reagentId = sol.GetPrimaryReagentId();
+                var reagentId = sol.GetPrimaryReagentId();
                 if (reagentId != null && _prototypeManager.TryIndex<ReagentPrototype>(reagentId.Value.Prototype, out var reagent))
                 {
                     var reagentQuantity = sol.GetReagentQuantity(reagentId.Value);
@@ -267,47 +266,5 @@ namespace Content.Server.Chemistry.EntitySystems
 
             _itemSlotsSystem.AddItemSlot(ent.Owner, SharedReagentDispenser.OutputSlotName, ent.Comp.BeakerSlot);
         }
-
-        // Frontier: upgradable parts
-        // FRONTIER MERGE - TODO: ADJUST STORAGE SIZE
-        private void OnRefreshParts(EntityUid uid, ReagentDispenserComponent component, RefreshPartsEvent args)
-        {
-            /*
-            if (!args.PartRatings.TryGetValue(component.SlotUpgradeMachinePart, out float partRating))
-                partRating = 1.0f;
-
-            component.NumSlots = component.BaseNumStorageSlots + (int)(component.ExtraSlotsPerTier * (partRating - 1.0f));
-            // Not enough?
-            for (int i = component.StorageSlots.Count; i < component.NumSlots; i++)
-            {
-                var storageSlotId = ReagentDispenserComponent.BaseStorageSlotId + i;
-
-                ItemSlot storageComponent = new();
-                storageComponent.Whitelist = component.StorageWhitelist;
-                storageComponent.Swap = false;
-                storageComponent.EjectOnBreak = true;
-
-                component.StorageSlotIds.Add(storageSlotId);
-                component.StorageSlots.Add(storageComponent);
-                component.StorageSlots[i].Name = "Storage Slot " + (i + 1);
-                _itemSlotsSystem.AddItemSlot(uid, component.StorageSlotIds[i], component.StorageSlots[i]);
-            }
-            // Too many?
-            for (int i = component.StorageSlots.Count - 1; i >= component.NumSlots; i--)
-            {
-                _itemSlotsSystem.RemoveItemSlot(uid, component.StorageSlots[i]);
-                component.StorageSlotIds.RemoveAt(i);
-                component.StorageSlots.RemoveAt(i);
-            }
-            */
-        }
-
-        private void OnUpgradeExamine(EntityUid uid, ReagentDispenserComponent component, UpgradeExamineEvent args)
-        {
-            /*
-            args.AddNumberUpgrade("reagent-dispenser-component-examine-extra-slots", component.NumSlots - component.BaseNumStorageSlots);
-            */
-        }
-        // End Frontier
     }
 }
