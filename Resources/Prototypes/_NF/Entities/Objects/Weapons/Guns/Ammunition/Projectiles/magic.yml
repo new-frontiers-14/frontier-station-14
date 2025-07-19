@@ -92,6 +92,31 @@
   - type: Ammo
     muzzleFlash: null
 
+- type: entity # For t-rex
+  parent: BaseBullet
+  id: BulletTRexRoar
+  name: t-rex roar
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StaminaDamageOnCollide
+    damage: 100
+  - type: Projectile
+    damage:
+      types:
+        Asphyxiation: 0
+    angle: 180
+    impactEffect: null
+    soundHit: null
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Effects/sonic_wave.rsi
+    layers:
+    - state: icon
+      color: "#0099ff"
+      shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+
 - type: entity
   id: ProjectileIcicleLowDamage
   parent: ProjectileIcicle

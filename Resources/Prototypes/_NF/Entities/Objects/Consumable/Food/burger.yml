@@ -124,3 +124,98 @@
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/burger.rsi
     state: plainwhite
+
+- type: entity
+  name: cotton cheeseburger
+  parent: FoodBurgerPlain
+  id: FoodBurgerCottonCheese
+  description: Cheese and cotton between two buns, a simple moth delight!
+  components:
+  - type: FlavorProfile
+    flavors:
+    - cotton
+    - bread
+    - cheesy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/burger.rsi
+    state: cheesecotton
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Fiber
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 3
+  - type: MothFood
+
+- type: entity
+  name: cotton burger
+  parent: FoodBurgerPlain
+  id: FoodBurgerCotton
+  description: Why can't moths enjoy a good burger too?
+  components:
+  - type: FlavorProfile
+    flavors:
+    - cotton
+    - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/burger.rsi
+    state: plaincotton
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Fiber
+          Quantity: 6
+  - type: MothFood
+
+- type: entity
+  name: cotton bun
+  parent: FoodBreadBase
+  id: FoodBunCotton
+  description: A burger bun made of fibrous cotton.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cotton
+      - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/burger.rsi
+    state: buncotton
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+    - Bread
+    - ClothMade
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 9
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Fiber
+          Quantity: 2
+  - type: MothFood
