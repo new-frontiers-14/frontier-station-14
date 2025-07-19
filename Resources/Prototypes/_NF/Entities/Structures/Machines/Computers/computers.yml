@@ -580,3 +580,25 @@
   components:
   - type: NFDroneConsole
     id: Trade
+
+#Mercenary
+- type: entity
+  parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]
+  id: BountyHunterConsole
+  name: Bounty Console
+  description: Look and acquire bounties for you to hunt down and claim.
+  suffix: Normal
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_merc
+    - map: ["computerLayerKeyboard"]
+      state: merc_keyboard
+    - map: ["computerLayerScreen"]
+      state: merc_screen
+    - map: ["computerLayerKeys"]
+      state: merc_keys
+  - type: Computer
+    board: Null # FIXME
