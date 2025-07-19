@@ -49,3 +49,44 @@
         ratios:
           NitrousOxide: 1.0
           Respiron: -1.0
+
+- type: reagent
+  id: Helium
+  name: reagent-name-helium
+  desc: reagent-desc-helium
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: bitter
+  color: "#D8D9C8"
+  tileReactions:
+  - !type:FlammableTileReaction
+    temperatureMultiplier: 2.0
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:FlammableReaction
+        multiplier: 0.8
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 3
+    Gas:
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        ignoreResistances: true
+        damage:
+          types:
+            Radiation:
+              1
+      # We need a metabolism effect on reagent removal
+      - !type:AdjustAlert
+        alertType: Toxins
+        conditions:
+          - !type:ReagentThreshold
+            min: 1.5
+        clear: True
+        time: 5
