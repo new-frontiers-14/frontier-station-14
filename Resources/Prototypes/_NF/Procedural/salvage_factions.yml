@@ -334,3 +334,71 @@
     DefenseStructure: BloodCollector
     Megafauna: MobBloodCultistAscended
     Difficulties: NFExtreme
+
+# region Impossible
+
+- type: salvageFaction
+  id: NFSyndicateImpossible
+  desc: nf-salvage-faction-syndicate
+  entries:
+    - proto: SpawnMobSyndicateNavalDeckhand
+      cost: 3
+    - proto: SpawnMobSyndicateNavalEngineer
+      cost: 6
+    - proto: SpawnMobSyndicateNavalSaboteur
+      cost: 5
+      prob: 0.15
+    - proto: SpawnMobSyndicateNavalMedic
+      cost: 2
+      prob: 0.2
+    - proto: WeaponTurretSyndicate
+      cost: 4
+      prob: 0.1
+    - proto: SpawnMobSyndicateNavalOperator
+      cost: 5
+      prob: 0.2
+    - proto: SpawnMobSyndicateNavalCaptain
+      cost: 5
+      prob: 0.1
+    - proto: MobSyndicateNavalCommanderA
+      cost: 7
+      prob: 0.1
+    - proto: SpawnMobSyndicateNavalHorror
+      cost: 5
+      prob: 0.1
+  configs:
+    DefenseStructure: CybersunDataMiner
+    Megafauna: MobSyndicateNavalCommanderA
+    Difficulties: NFImpossible
+
+- type: salvageFaction
+  id: NFSiliconsImpossible
+  desc: nf-salvage-faction-silicons
+  entries:
+    #- proto: MobRogueSiliconScrap
+    #  cost: 2
+    #- proto: SpawnMobRogueDronesT1
+    #  cost: 3
+    #  prob: 0.2
+    - proto: MobRogueSiliconHerder
+      cost: 3
+    - proto: MobRogueSiliconHunter
+      cost: 4
+    - proto: MobRogueSiliconCatcher
+      cost: 3
+      prob: 0.1
+    - proto: MobRogueSiliconTesla
+      cost: 4
+    - proto: MobRogueSiliconScrapFlayer
+      cost: 2
+      prob: 0.1
+    - proto: MobRogueSiliconBoss
+      cost: 4
+      prob: 0.4
+    - proto: MobRogueSiliconGuardian
+      cost: 8
+      prob: 0.4
+  configs:
+    DefenseStructure: RogueAiNode
+    Megafauna: MobRogueSiliconBoss
+    Difficulties: NFImpossible
