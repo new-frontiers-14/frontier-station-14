@@ -151,7 +151,7 @@
 
 - type: entity
   name: stimulant auto-injector
-  parent: NFChemicalMedipen
+  parent: [ BaseC2ContrabandUnredeemable, NFChemicalMedipen ]
   id: StimulantAutoInjector
   description: A rapid dose of potent stimulants and governing agents. Contains desoxyephedrine and dylovene. Use with extreme caution.
   components:
@@ -221,6 +221,41 @@
         - ReagentId: Inaprovaline
           Quantity: 10
         - ReagentId: DexalinPlus
+          Quantity: 10
+
+- type: entity
+  name: ephedrine auto-injector
+  parent:  [ BaseC1Contraband, NFChemicalMedipen ]
+  id: EphedrineAutoInjector
+  description: A rapid dose of stimulants to increase agility and motor response.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#5ac8d1"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#5ac8d1"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: ephedrinepen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    emptySpriteName: ephedrinepen_empty
+  - type: Hypospray
+    transferAmount: 10
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 10
+        reagents:
+        - ReagentId: Ephedrine
           Quantity: 10
 
 - type: entity
