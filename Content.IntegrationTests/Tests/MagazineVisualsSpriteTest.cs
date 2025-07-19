@@ -50,38 +50,30 @@ public sealed class MagazineVisualsSpriteTest
                     foreach (var (id, midfix) in toTest)
                     {
                         // Frontier: exception safety
-                        // TODO: Frontier: Re-enable
-                        /*
                         try
                         {
                             Assert.That(spriteSys.TryGetLayer((uid, sprite), id, out var layer, false));
                             var rsi = layer.ActualRsi;
                             for (var i = start; i < visuals.MagSteps; i++)
                             {
-                                Assert.That(sprite.TryGetLayer(id, out var layer));
-                                var rsi = layer.ActualRsi;
-                                for (var i = start; i < visuals.MagSteps; i++)
-                                {
-                                    var state = $"{visuals.MagState}{midfix}-{i}";
-                                    Assert.That(rsi.TryGetState(state, out _),
-                                        @$"{proto.ID} has MagazineVisualsComponent with MagSteps = {visuals.MagSteps}, but {rsi.Path} doesn't have state {state}!");
-                                }
-
-                                // MagSteps includes the 0th step, so sometimes people are off by one.
-                                var extraState = $"{visuals.MagState}{midfix}-{visuals.MagSteps}";
-                                Assert.That(rsi.TryGetState(extraState, out _),
-                                    Is.False,
-                                    @$"{proto.ID} has MagazineVisualsComponent with MagSteps = {visuals.MagSteps}, but more states exist!");
-
-                                client.EntMan.DeleteEntity(uid);
+                                var state = $"{visuals.MagState}{midfix}-{i}";
+                                Assert.That(rsi.TryGetState(state, out _),
+                                    @$"{proto.ID} has MagazineVisualsComponent with MagSteps = {visuals.MagSteps}, but {rsi.Path} doesn't have state {state}!");
                             }
+
+                            // MagSteps includes the 0th step, so sometimes people are off by one.
+                            var extraState = $"{visuals.MagState}{midfix}-{visuals.MagSteps}";
+                            Assert.That(rsi.TryGetState(extraState, out _),
+                                Is.False,
+                                @$"{proto.ID} has MagazineVisualsComponent with MagSteps = {visuals.MagSteps}, but more states exist!");
+
+                            client.EntMan.DeleteEntity(uid);
                         }
                         catch (Exception e)
                         {
                             Assert.Fail(@$"Exception thrown for {proto.ID} when getting layer {id}: {e}!");
                             break;
                         }
-                        */
                         // End Frontier: exception safety
                     }
                 }
