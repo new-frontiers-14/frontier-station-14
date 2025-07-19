@@ -20,6 +20,7 @@
   name: percentile die
   description: A die with ten sides. Works better for d100 rolls than a golf ball.
   components:
+  - type: PercentileDie #Frontier: Added component for die type
   - type: Dice
     sides: 10
     multiplier: 10
@@ -34,6 +35,7 @@
   name: d20
   description: A die with twenty sides. The preferred die to throw at the GM.
   components:
+  - type: D20Die #Frontier: Added component for die type
   - type: Dice
     sides: 20
     currentValue: 20
@@ -46,6 +48,7 @@
   name: d12
   description: A die with twelve sides. There's an air of neglect about it.
   components:
+  - type: D12Die #Frontier: Added component for die type
   - type: Dice
     sides: 12
     currentValue: 12
@@ -58,6 +61,7 @@
   name: d10
   description: A die with ten sides. Useful for percentages.
   components:
+  - type: D10Die #Frontier: Added component for die type
   - type: Dice
     sides: 10
     offset: 1
@@ -71,6 +75,7 @@
   name: d8
   description: A die with eight sides. It feels... lucky.
   components:
+  - type: D8Die #Frontier: Added component for die type
   - type: Dice
     sides: 8
     currentValue: 8
@@ -83,6 +88,7 @@
   name: d6
   description: A die with six sides. Basic and serviceable.
   components:
+  - type: D6Die #Frontier: Added component for die type
   - type: Dice
     sides: 6
     currentValue: 6
@@ -95,6 +101,7 @@
   name: d4
   description: A die with four sides. The nerd's caltrop.
   components:
+  - type: D4Die #Frontier: Added component for die type
   - type: Dice
     sides: 4
     currentValue: 4
