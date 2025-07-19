@@ -2,6 +2,7 @@
   id: ClothingBeltUtilityFilled
   parent: ClothingBeltUtility
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: StorageFill
     contents:
@@ -16,6 +17,7 @@
   id: ClothingBeltUtilityEngineering
   parent: ClothingBeltUtility
   suffix: Engineering
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: StorageFill
     contents:
@@ -30,6 +32,7 @@
   id: ClothingBeltChiefEngineerFilled
   parent: ClothingBeltChiefEngineer
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: StorageFill
     contents:
@@ -48,14 +51,14 @@
     - id: Stunbaton
     - id: Handcuffs
     - id: Handcuffs
-    # - id: HoloprojectorSecurity # Frontier
-    # - id: RadioHandheldSecurity # Frontier
-    - id: ContrabandAppraisalTool # Frontier
+    - id: HoloprojectorSecurity
+    - id: RadioHandheldSecurity
 
 - type: entity
   id: ClothingBeltSecurityFilled
   parent: ClothingBeltSecurity
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: EntityTableContainerFill
     containers:
@@ -66,6 +69,7 @@
   id: ClothingBeltSecurityWebbingFilled
   parent: ClothingBeltSecurityWebbing
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: EntityTableContainerFill
     containers:
@@ -76,6 +80,7 @@
   id: ClothingBeltJanitorFilled
   parent: ClothingBeltJanitor
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: StorageFill
     contents:
@@ -84,14 +89,14 @@
       - id: CleanerGrenade
         amount: 2
       - id: FlashlightLantern
-#      - id: TrashBag # Frontier - Not used, too large.
-      - id: Holoprojector # Frontier
       - id: LightReplacer
+      - id: WireBrush
 
 - type: entity
   id: ClothingBeltMedicalFilled
   parent: ClothingBeltMedical
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: StorageFill
     contents:
@@ -108,6 +113,7 @@
   id: ClothingBeltMedicalEMTFilled
   parent: ClothingBeltMedicalEMT
   suffix: Paramedic,Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: StorageFill
     contents:
@@ -122,6 +128,7 @@
   id: ClothingBeltPlantFilled
   parent: ClothingBeltPlant
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: StorageFill
     contents:
@@ -129,12 +136,12 @@
     - id: HydroponicsToolSpade
     - id: HydroponicsToolClippers
     - id: ChemistryBottleRobustHarvest
-    - id: ChemistryBottleEZNutrient # Frontier
 
 - type: entity
   id: ClothingBeltSheathFilled
   parent: ClothingBeltSheath
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: ContainerFill
     containers:
@@ -146,6 +153,7 @@
   parent: ClothingBeltMilitaryWebbing
   name: grenadier chest rig
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Item
     size: Ginormous
@@ -166,6 +174,7 @@
   id: ClothingBeltMilitaryWebbingMedFilled
   parent: ClothingBeltMilitaryWebbingMed
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: StorageFill
     contents:
@@ -180,6 +189,7 @@
   parent: ClothingBeltWand
   id: ClothingBeltWandFilled
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: StorageFill
     contents:
@@ -192,16 +202,18 @@
   id: ClothingBeltHolsterFilled
   parent: ClothingBeltHolster
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: StorageFill
     contents:
-        - id: NFWeaponRevolverInspector # Frontier: add NF prefix
-        - id: NFSpeedLoaderPistol45 # Frontier: SpeedLoaderMagnum<NFSpeedLoaderPistol45
+        - id: WeaponRevolverInspector
+        - id: SpeedLoaderMagnum
 
 - type: entity
   id: ClothingBeltChefFilled
   parent: ClothingBeltChef
   suffix: Filled
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: StorageFill
     contents:

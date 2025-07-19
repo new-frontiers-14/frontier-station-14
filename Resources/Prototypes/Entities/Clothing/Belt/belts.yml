@@ -1,50 +1,50 @@
 # Belts that need/have visualizers
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: ClothingBeltStorageBase
   id: ClothingBeltUtility
   name: utility belt
   description: Can hold various things.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/utility.rsi
   - type: Clothing
     sprite: Clothing/Belt/utility.rsi
   - type: Storage
-    #maxItemSize: Normal# Frontier
+    maxItemSize: Normal
     # TODO: Fill this out more.
-    # whitelist: # Frontier: commented out whitelist
-      # tags:
-      #   - Powerdrill
-      #   - Wirecutter
-      #   - Crowbar
-      #   - Screwdriver
-      #   - Flashlight
-      #   - Wrench
-      #   - GeigerCounter
-      #   - Flare
-      #   - CableCoil
-      #   - CigPack
-      #   - Radio
-      #   - HolofanProjector
-      #   - Multitool
-      #   - AppraisalTool
-      #   - JawsOfLife
-      #   - GPS
-      #   - WeldingMask
-      # components:
-      #   - StationMap
-      #   - SprayPainter
-      #   - SprayPainterAmmo # upstream#37341
-      #   - NetworkConfigurator
-      #   - RCD
-      #   - RCDAmmo
-      #   - Welder
-      #   - PowerCell
-      #   - Geiger
-      #   - TrayScanner
-      #   - GasAnalyzer
-      #   - HandLabeler
+    whitelist:
+      tags:
+        - Powerdrill
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - CigPack
+        - Radio
+        - HolofanProjector
+        - Multitool
+        - AppraisalTool
+        - JawsOfLife
+        - GPS
+        - WeldingMask
+      components:
+        - StationMap
+        - SprayPainter
+        - NetworkConfigurator
+        - RCD
+        - RCDAmmo
+        - Welder
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
+        - HandLabeler
   - type: ItemMapper
     mapLayers:
       drill:
@@ -83,50 +83,50 @@
   - type: Appearance
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: ClothingBeltStorageBase
   id: ClothingBeltChiefEngineer
   name: chief engineer's toolbelt
   description: Holds tools, looks snazzy.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/ce.rsi
   - type: Clothing
     sprite: Clothing/Belt/ce.rsi
-  #- type: Storage # Frontier
-    #grid: # Frontier
-    #- 0,0,9,1 # Frontier
+  - type: Storage
+    grid:
+    - 0,0,9,1
     # TODO: Fill this out more.
-    # whitelist: # Frontier: commented out whitelist
-    #   tags:
-    #     - Wirecutter
-    #     - Crowbar
-    #     - Screwdriver
-    #     - Flashlight
-    #     - Wrench
-    #     - GeigerCounter
-    #     - Flare
-    #     - CableCoil
-    #     - Powerdrill
-    #     - JawsOfLife
-    #     - CigPack
-    #     - Radio
-    #     - HolofanProjector
-    #     - Multitool
-    #     - AppraisalTool
-    #   components:
-    #     - StationMap
-    #     - SprayPainter
-    #   - SprayPainterAmmo # upstream#37341
-    #     - NetworkConfigurator
-    #     - RCD
-    #     - RCDAmmo
-    #     - Welder
-    #     - Flash
-    #     - Handcuff
-    #     - PowerCell
-    #     - Geiger
-    #     - TrayScanner
-    #     - GasAnalyzer
+    whitelist:
+      tags:
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - Powerdrill
+        - JawsOfLife
+        - CigPack
+        - Radio
+        - HolofanProjector
+        - Multitool
+        - AppraisalTool
+      components:
+        - StationMap
+        - SprayPainter
+        - NetworkConfigurator
+        - RCD
+        - RCDAmmo
+        - Welder
+        - Flash
+        - Handcuff
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
   - type: ItemMapper
     mapLayers:
       drill:
@@ -165,28 +165,29 @@
   - type: Appearance
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: ClothingBeltStorageBase
   id: ClothingBeltAssault
   name: assault belt
   description: A tactical assault belt.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/assault.rsi
   - type: Clothing
     sprite: Clothing/Belt/assault.rsi
-  # - type: Storage # Frontier: commented out whitelist
-    # whitelist:
-      # tags:
-        # - CigPack
-        # - Taser
-      # components:
-        # - Stunbaton
-        # - FlashOnTrigger
-        # - SmokeOnTrigger
-        # - Flash
-        # - Handcuff
-        # - BallisticAmmoProvider
-        # - Ammo
+  - type: Storage
+    whitelist:
+      tags:
+        - CigPack
+        - Taser
+      components:
+        - Stunbaton
+        - FlashOnTrigger
+        - SmokeOnTrigger
+        - Flash
+        - Handcuff
+        - BallisticAmmoProvider
+        - Ammo
   - type: ItemMapper
     mapLayers:
       flashbang:
@@ -205,34 +206,33 @@
   - type: Appearance
 
 - type: entity
-  parent: NFClothingBeltStorageBase
+  parent: ClothingBeltStorageBase
   id: ClothingBeltJanitor
   name: janibelt
   description: A belt used to hold most janitorial supplies.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/janitor.rsi
   - type: Clothing
     sprite: Clothing/Belt/janitor.rsi
-  #- type: Storage # Frontier
-    # whitelist: # Frontier: commented out whitelist
-      # tags:
-        # - Wrench
-        # - Bottle
-        # - Spray
-        # - Soap
-        # - Flashlight
-        # - CigPack
-        # - TrashBag
-        # - WetFloorSign
-        # - HolosignProjector
-        # - Plunger
-        # - LightReplacer
-        # - JanicartKeys
-      # components:
-        # - LightReplacer
-        # - SmokeOnTrigger
-    #maxItemSize: Large # Frontier
+  - type: Storage
+    whitelist:
+      tags:
+        - Wrench
+        - Bottle
+        - Spray
+        - Soap
+        - Flashlight
+        - CigPack
+        - TrashBag
+        - WetFloorSign
+        - HolosignProjector
+        - Plunger
+      components:
+        - LightReplacer
+        - SmokeOnTrigger
+    maxItemSize: Large
   - type: ItemMapper
     mapLayers:
       bottle:
@@ -251,36 +251,37 @@
   - type: Appearance
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: ClothingBeltStorageBase
   id: ClothingBeltMedical
   name: medical belt
   description: Can hold various medical equipment.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/medical.rsi
   - type: Clothing
     sprite: Clothing/Belt/medical.rsi
-  # - type: Storage # Frontier: commented out whitelist
-  #   whitelist:
-  #     tags:
-  #       - Wrench
-  #       - Bottle
-  #       - Spray
-  #       - Brutepack
-  #       - Bloodpack
-  #       - Gauze
-  #       - Ointment
-  #       - CigPack
-  #       - PillCanister
-  #       - Radio
-  #       - DiscreteHealthAnalyzer
-  #       - SurgeryTool
-  #       - Dropper
-  #     components:
-  #       - Hypospray
-  #       - Injector
-  #       - Pill
-  #       - HandLabeler
+  - type: Storage
+    whitelist:
+      tags:
+        - Wrench
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+        - SurgeryTool
+        - Dropper
+      components:
+        - Hypospray
+        - Injector
+        - Pill
+        - HandLabeler
   - type: ItemMapper
     mapLayers:
       bottle:
@@ -321,6 +322,7 @@
   id: ClothingBeltMedicalEMT
   name: EMT belt
   description: Perfect for holding various equipment for medical emergencies.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/emt.rsi
@@ -328,33 +330,34 @@
     sprite: Clothing/Belt/emt.rsi
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: ClothingBeltStorageBase
   id: ClothingBeltPlant
   name: botanical belt
   description: A belt used to hold most hydroponics supplies. Suprisingly, not green.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/plant.rsi
   - type: Clothing
     sprite: Clothing/Belt/plant.rsi
-  # - type: Storage # Frontier: commented out whitelist
-  #   whitelist:
-  #     tags:
-  #       # - PlantAnalyzer
-  #       - PlantSampleTaker
-  #       - BotanyShovel
-  #       - BotanyHoe
-  #       - BotanyHatchet
-  #       - PlantSampleTaker
-  #       - PlantBGone
-  #       - Bottle
-  #       - Syringe
-  #       - CigPack
-  #       - Dropper
-  #     components:
-  #       - Seed
-  #       - Smokable
-  #       - HandLabeler
+  - type: Storage
+    whitelist:
+      tags:
+        # - PlantAnalyzer
+        - PlantSampleTaker
+        - BotanyShovel
+        - BotanyHoe
+        - BotanyHatchet
+        - PlantSampleTaker
+        - PlantBGone
+        - Bottle
+        - Syringe
+        - CigPack
+        - Dropper
+      components:
+        - Seed
+        - Smokable
+        - HandLabeler
   - type: ItemMapper
     mapLayers:
       hatchet:
@@ -385,37 +388,38 @@
   - type: Appearance
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: ClothingBeltStorageBase
   id: ClothingBeltChef
   name: chef belt
   description: A belt used to hold kitchen knives and condiments for quick access.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/chef.rsi
   - type: Clothing
     sprite: Clothing/Belt/chef.rsi
-  # - type: Storage # Frontier: commented out whitelist
-    # whitelist:
-      # tags:
-        # - KitchenKnife
-        # - Cleaver
-        # - RollingPin
-        # - Coldsauce
-        # - Enzyme
-        # - Hotsauce
-        # - Ketchup
-        # - BBQsauce
-        # - SaltShaker
-        # - PepperShaker
-        # - CigPack
-        # - Packet
-        # - Skewer
-        # - MonkeyCube
-        # - Mayo
-      # components:
-        # - Mousetrap
-        # - Smokable
-        # - Utensil
+  - type: Storage
+    whitelist:
+      tags:
+        - KitchenKnife
+        - Cleaver
+        - RollingPin
+        - Coldsauce
+        - Enzyme
+        - Hotsauce
+        - Ketchup
+        - BBQsauce
+        - SaltShaker
+        - PepperShaker
+        - CigPack
+        - Packet
+        - Skewer
+        - MonkeyCube
+        - Mayo
+      components:
+        - Mousetrap
+        - Smokable
+        - Utensil
   - type: ItemMapper
     mapLayers:
       kitchenknife:
@@ -462,10 +466,11 @@
   - type: Appearance
 
 - type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseSecurityContraband]
   id: ClothingBeltSecurity
   name: security belt
   description: Can hold security gear like handcuffs and flashes.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/security.rsi
@@ -473,32 +478,30 @@
     sprite: Clothing/Belt/security.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  # Frontier: commented out whitelist
-  # - type: Storage
-  #   whitelist:
-  #     tags:
-  #       - CigPack
-  #       - Taser
-  #       - SecBeltEquip
-  #       - Radio
-  #       - Sidearm
-  #       - MagazinePistol
-  #       - MagazineMagnum
-  #       - CombatKnife
-  #       - Truncheon
-  #       - HandGrenade
-  #     components:
-  #       - Stunbaton
-  #       - FlashOnTrigger
-  #       - SmokeOnTrigger
-  #       - Flash
-  #       - Handcuff
-  #       - BallisticAmmoProvider
-  #       - CartridgeAmmo
-  #       - DoorRemote
-  #       - Whistle
-  #       - BalloonPopper
-  # End Frontier: commented out whitelist
+  - type: Storage
+    whitelist:
+      tags:
+        - CigPack
+        - Taser
+        - SecBeltEquip
+        - Radio
+        - Sidearm
+        - MagazinePistol
+        - MagazineMagnum
+        - CombatKnife
+        - Truncheon
+        - HandGrenade
+      components:
+        - Stunbaton
+        - FlashOnTrigger
+        - SmokeOnTrigger
+        - Flash
+        - Handcuff
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+        - DoorRemote
+        - Whistle
+        - BalloonPopper
   - type: ItemMapper
     mapLayers:
       flashbang:
@@ -517,18 +520,19 @@
   - type: Appearance
 
 - type: entity
-  parent: [ClothingBeltBase, ClothingSlotBase, BaseC1Contraband] # Frontier: BaseCommandContraband<BaseC1Contraband
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband]
   id: ClothingBeltSheath
   name: sabre sheath
   description: An ornate sheath designed to hold an officer's blade.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/sheath.rsi
     state: sheath
   - type: Clothing
     sprite: Clothing/Belt/sheath.rsi
-  #- type: Item # Frontier
-    #size: Ginormous # Frontier
+  - type: Item
+    size: Ginormous
   - type: ItemSlots
     slots:
       item:
@@ -551,17 +555,18 @@
 # Belts without visualizers
 
 - type: entity
-  parent: [ClothingBeltAmmoProviderBase, BaseC1Contraband] # Frontier: BaseSecurityBartenderContraband<BaseC1Contraband
+  parent: [ClothingBeltAmmoProviderBase, BaseSecurityBartenderContraband]
   id: ClothingBeltBandolier
   name: bandolier
   description: A bandolier for holding shotgun ammunition.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/bandolier.rsi
   - type: Clothing
     sprite: Clothing/Belt/bandolier.rsi
-  #- type: Item # Frontier
-    #size: Huge # Frontier
+  - type: Item
+    size: Huge
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -584,46 +589,51 @@
     - Kangaroo
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: ClothingBeltStorageBase
   id: ClothingBeltHolster
   name: shoulder holster
   description: 'A holster to carry a handgun and ammo. WARNING: Badasses only.'
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/holster.rsi
   - type: Clothing
     sprite: Clothing/Belt/holster.rsi
-  # - type: Storage # Frontier: commented out
-    # grid: # Frontier: commented out
-    # - 0,0,3,1 # Frontier: commented out
+  - type: Storage
+    grid:
+    - 0,0,3,1
 
 - type: entity
-  parent: [NFClothingBeltStorageBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [ClothingBeltStorageBase, BaseSyndicateContraband]
   id: ClothingBeltSyndieHolster
   name: syndicate shoulder holster
   description: A deep shoulder holster capable of holding many types of ballistics.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/syndieholster.rsi
   - type: Clothing
     sprite: Clothing/Belt/syndieholster.rsi
-  #- type: Item # Frontier
-    #size: Ginormous # Frontier
-  # - type: Storage # Frontier: commented out
-    # maxItemSize: Huge # Frontier: commented out
-    # grid: # Frontier: commented out
-    # - 0,0,3,3 # Frontier: commented out
-    # whitelist: # Frontier: commented out whitelist
-      # components:
-        # - Gun
-        # - BallisticAmmoProvider
-        # - CartridgeAmmo
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,3,3
+    whitelist:
+      components:
+        - Gun
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+  - type: StaticPrice
+    price: 500
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: ClothingBeltSecurity
   id: ClothingBeltSecurityWebbing
   name: security carrier
   description: Unique and versatile chest rig, can hold security gear.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/securitywebbing.rsi
@@ -631,10 +641,11 @@
     sprite: Clothing/Belt/securitywebbing.rsi
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, remove BaseSecurityCargoContraband
-  id: ClothingBeltMercenaryWebbing # Frontier: Merc to Mercenary
+  parent: [ ClothingBeltStorageBase, BaseSecurityCargoContraband ]
+  id: ClothingBeltMercWebbing
   name: mercenary webbing
   description: Ideal for storing everything from ammo to weapons and combat essentials.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/mercwebbing.rsi
@@ -642,10 +653,11 @@
     sprite: Clothing/Belt/mercwebbing.rsi
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: ClothingBeltStorageBase
   id: ClothingBeltSalvageWebbing
   name: salvage rig
   description: Universal unloading system for work in space.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/salvagewebbing.rsi
@@ -653,10 +665,11 @@
     sprite: Clothing/Belt/salvagewebbing.rsi
 
 - type: entity
-  parent: [NFClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC1Contraband] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseSyndicateContraband<BaseC1Contraband
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseSyndicateContraband]
   id: ClothingBeltMilitaryWebbing
   name: chest rig
-  description: A set of tactical webbing worn by boarding parties. # Frontier
+  description: A set of tactical webbing worn by Syndicate boarding parties.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/militarywebbing.rsi
@@ -664,27 +677,31 @@
     sprite: Clothing/Belt/militarywebbing.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.1
+#  - type: StaticPrice # Frontier
+#    price: 500 # Frontier
 
 - type: entity
   parent: ClothingBeltMilitaryWebbing
   id: ClothingBeltMilitaryWebbingMed
   name: medical chest rig
-  description: A set of tactical webbing worn by medic operatives. # Frontier
+  description: A set of tactical webbing worn by Gorlex Marauder medic operatives.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/militarywebbingmed.rsi
   - type: Clothing
     sprite: Clothing/Belt/militarywebbingmed.rsi
-  #- type: Item # Frontier
-    #size: Huge # Frontier
+  - type: Item
+    size: Huge
   - type: ExplosionResistance
     damageCoefficient: 0.1
 
 - type: entity
-  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  parent: ClothingBeltBase
   id: ClothingBeltSuspendersRed
   name: red suspenders
   description: For holding your pants up.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Tag
     tags:
@@ -700,6 +717,7 @@
   parent: ClothingBeltSuspendersRed
   id: ClothingBeltSuspendersBlack
   name: black suspenders
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/suspenders_black.rsi
@@ -707,18 +725,19 @@
     sprite: Clothing/Belt/suspenders_black.rsi
 
 - type: entity
-  parent: [NFClothingBeltStorageBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseMagicalContraband<BaseC3WizardContraband, ContrabandClothing as parent
+  parent: [ ClothingBeltStorageBase, BaseMagicalContraband ]
   id: ClothingBeltWand
-  name: wizard belt # Frontier: changed the name from 'wand belt' -> 'wizard belt'
+  name: wand belt
   description: A belt designed to hold various rods of power. A veritable fanny pack of exotic magic.
+  abstract: true # Frontier: Replaced with NF version.
   components:
   - type: Sprite
     sprite: Clothing/Belt/wand.rsi
   - type: Clothing
     sprite: Clothing/Belt/wand.rsi
-  # - type: Storage # Frontier: commented out
-    # grid: # Frontier: commented out
-    # - 0,0,15,1 # Frontier: commented out
-    # whitelist: # Frontier: commented out whitelist
-      # tags:
-      # - WizardWand
+  - type: Storage
+    grid:
+    - 0,0,15,1
+    whitelist:
+      tags:
+      - WizardWand

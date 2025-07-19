@@ -1,4 +1,3 @@
-
 - type: entity
   abstract: true
   parent: ClothingBeltStorageBase
@@ -9,10 +8,29 @@
     defaultStorageOrientation: Vertical
     grid:
     - 0,0,7,1
+    whitelist:
+      tags:
+      components:
+        - Item
   - type: Item
     size: Large
     shape:
     - 0,0,3,3
+
+- type: entity
+  abstract: true
+  parent: ClothingBeltStorageBase
+  id: NFClothingBeltStorageLarge
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,9,1
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,4,3
 
 - type: entity
   abstract: true

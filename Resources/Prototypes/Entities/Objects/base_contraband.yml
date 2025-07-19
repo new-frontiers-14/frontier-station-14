@@ -9,9 +9,9 @@
 #     severity: Major # placeholder until they make a better severity
 
 # any type of magical items used by wizards and similiar
-# - type: entity
-#   id: BaseMagicalContraband
-#   abstract: true
+- type: entity
+  id: BaseMagicalContraband
+  abstract: true
 #   components:
 #   - type: Contraband
 #     severity: Magical
@@ -24,10 +24,10 @@
 #   - type: Contraband
 #     severity: Magical
 
-# # non-stealth syndicate stuff
-# - type: entity
-#   id: BaseSyndicateContraband
-#   abstract: true
+ # non-stealth syndicate stuff
+- type: entity
+  id: BaseSyndicateContraband
+  abstract: true
 #   components:
 #   - type: Contraband
 #     severity: Syndicate
@@ -49,15 +49,15 @@
 #   - type: Contraband
 #     severity: Major
 
-# # base department restricted contraband, this should only be used as a parent for other contraband prototypes, not the restricted items themselves.
-# - type: entity
-#   id: BaseRestrictedContraband
-#   abstract: true
-#   components:
-#   - type: Contraband
-#     severity: Restricted
-#     allowedDepartments: [  ]
-#     allowedJobs: [  ]
+# base department restricted contraband, this should only be used as a parent for other contraband prototypes, not the restricted items themselves.
+- type: entity
+  id: BaseRestrictedContraband
+  abstract: true
+#  components:
+#  - type: Contraband
+#    severity: Restricted
+#    allowedDepartments: [  ]
+#    allowedJobs: [  ]
 
 # one department restricted contraband
 - type: entity
@@ -76,10 +76,10 @@
   - type: Contraband
     allowedDepartments: [ Command ]
 
-# - type: entity
-#   id: BaseSecurityContraband
-#   parent: BaseRestrictedContraband
-#   abstract: true
+- type: entity
+  id: BaseSecurityContraband
+  parent: BaseRestrictedContraband
+  abstract: true
 #   components:
 #   - type: Contraband
 #     allowedDepartments: [ Security ]
@@ -165,6 +165,14 @@
 #   - type: Contraband
 #     allowedDepartments: [ Science, Silicon ]
 
+- type: entity
+  id: BaseSecurityCargoContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+#  components:
+#  - type: Contraband
+#    allowedDepartments: [ Security, Cargo ]
+
 # - type: entity
 #   id: BaseScienceContraband
 #   parent: BaseRestrictedContraband
@@ -182,10 +190,10 @@
 #     allowedDepartments: [ Medical, Science ]
 
 # contraband restricted by job by some degree
-# - type: entity
-#   id: BaseSecurityBartenderContraband
-#   parent: BaseRestrictedContraband
-#   abstract: true
+- type: entity
+  id: BaseSecurityBartenderContraband
+  parent: BaseRestrictedContraband
+  abstract: true
 #   components:
 #   - type: Contraband
 #     allowedDepartments: [ Security ]

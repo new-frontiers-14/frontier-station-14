@@ -1,7 +1,136 @@
+# Upstream
+# Belts that need/have visualizers
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltUtility]
+  id: NFClothingBeltUtility
+  name: utility belt
+  description: Can hold various things.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltChiefEngineer]
+  id: NFClothingBeltChiefEngineer
+  name: chief engineer's toolbelt
+  description: Holds tools, looks snazzy.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltAssault]
+  id: NFClothingBeltAssault
+  name: assault belt
+  description: A tactical assault belt.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltJanitor]
+  id: NFClothingBeltJanitor
+  name: janibelt
+  description: A belt used to hold most janitorial supplies.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltMedical]
+  id: NFClothingBeltMedical
+  name: medical belt
+  description: Can hold various medical equipment.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltMedicalEMT]
+  id: NFClothingBeltMedicalEMT
+  name: EMT belt
+  description: Perfect for holding various equipment for medical emergencies.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltPlant]
+  id: NFClothingBeltPlant
+  name: botanical belt
+  description: A belt used to hold most hydroponics supplies. Suprisingly, not green.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltChef]
+  id: NFClothingBeltChef
+  name: chef belt
+  description: A belt used to hold kitchen knives and condiments for quick access.
+
+- type: entity
+  parent: [BaseC1Contraband, NFClothingBeltStorageBase, ClothingBeltSecurity]
+  id: NFClothingBeltSecurity
+  name: security belt
+  description: Can hold security gear like handcuffs and flashes.
+
+- type: entity
+  parent: [BaseC1Contraband, ClothingBeltSheath, ClothingBeltBase, ClothingSlotBase]
+  id: NFClothingBeltSheath
+  name: sabre sheath
+  description: An ornate sheath designed to hold an officer's blade.
+
+# Belts without visualizers
+- type: entity
+  parent: [BaseC1Contraband, ClothingBeltAmmoProviderBase, ClothingBeltBandolier]
+  id: NFClothingBeltBandolier
+  name: bandolier
+  description: A bandolier for holding shotgun ammunition.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltHolster]
+  id: NFClothingBeltHolster
+  name: shoulder holster
+  description: 'A holster to carry a handgun and ammo. WARNING: Badasses only.'
+
+- type: entity
+  parent: [BaseC3SyndicateContraband, ContrabandClothing, NFClothingBeltStorageBase, ClothingBeltSyndieHolster]
+  id: NFClothingBeltSyndieHolster
+  name: syndicate shoulder holster
+  description: A deep shoulder holster capable of holding many types of ballistics.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltSecurityWebbing]
+  id: NFClothingBeltSecurityWebbing
+  name: security carrier
+  description: Unique and versatile chest rig, can hold security gear.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltMercWebbing]
+  id: NFClothingBeltMercenaryWebbing
+  name: mercenary webbing
+  description: Ideal for storing everything from ammo to weapons and combat essentials.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltSalvageWebbing]
+  id: NFClothingBeltSalvageWebbing
+  name: salvage rig
+  description: Universal unloading system for work in space.
+
+- type: entity
+  parent: [BaseC1Contraband, NFClothingBeltStorageBase, ClothingBeltMilitaryWebbing]
+  id: NFClothingBeltMilitaryWebbing
+  name: chest rig
+  description: A set of tactical webbing worn by boarding parties.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltMilitaryWebbingMed]
+  id: NFClothingBeltMilitaryWebbingMed
+  name: medical chest rig
+  description: A set of tactical webbing worn by medic operatives.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltSuspendersRed]
+  id: NFClothingBeltSuspendersRed
+  name: red suspenders
+  description: For holding your pants up.
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, ClothingBeltSuspendersBlack]
+  id: NFClothingBeltSuspendersBlack
+  name: black suspenders
+
+- type: entity
+  parent: [BaseC3WizardContraband, ContrabandClothing, NFClothingBeltStorageBase, ClothingBeltWand]
+  id: NFClothingBeltWand
+  name: wizard belt
+  description: A belt designed to hold various rods of power. A veritable fanny pack of exotic magic.
+
 - type: entity
   id: ClothingBeltArcadia
+  parent: [BaseC3ContrabandNoValue, ContrabandClothing, NFClothingBeltStorageBase]
   name: arcadia webbing
-  parent: [ NFClothingBeltStorageBase, BaseC3ContrabandNoValue, ContrabandClothing ]
   description: A webbing created by Arcadia Industries. Seems very capable of fitting many items.
   components:
   - type: Sprite
@@ -63,7 +192,7 @@
     sprite: _NF/Clothing/Belt/pilot.rsi
 
 - type: entity
-  parent: [ BaseC2ContrabandUnredeemable, ClothingBeltAssault ]
+  parent: [BaseC2ContrabandUnredeemable, ClothingBeltAssault]
   id: ClothingBeltNfsd
   name: NFSD belt
   description: A tactical assault belt.
@@ -74,7 +203,7 @@
     sprite: _NF/Clothing/Belt/nfsd_belt.rsi
 
 - type: entity
-  parent: [ BaseC2ContrabandUnredeemable, ClothingBeltSecurityWebbing ]
+  parent: [BaseC2ContrabandUnredeemable, ClothingBeltSecurityWebbing]
   id: ClothingBeltNfsdWebbing
   name: NFSD webbing
   description: A tactical assault webbing.

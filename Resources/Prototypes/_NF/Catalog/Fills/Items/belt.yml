@@ -1,3 +1,198 @@
+# Upstream
+- type: entity
+  id: NFClothingBeltUtilityFilled
+  parent: NFClothingBeltUtility
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Crowbar
+      - id: Wrench
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: Multitool
+
+- type: entity
+  id: NFClothingBeltChiefEngineerFilled
+  parent: NFClothingBeltChiefEngineer
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: PowerDrill
+      - id: JawsOfLife
+      - id: WelderExperimental
+      - id: Multitool
+      - id: HolofanProjector
+      - id: GasAnalyzer
+      - id: trayScanner
+
+- type: entityTable
+  id: NFBeltSecurityEntityTable
+  table: !type:AllSelector
+    children:
+    - id: Stunbaton
+    - id: Handcuffs
+    - id: Handcuffs
+    - id: ContrabandAppraisalTool
+
+- type: entity
+  id: NFClothingBeltSecurityFilled
+  parent: NFClothingBeltSecurity
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltSecurityEntityTable
+
+- type: entity
+  id: NFClothingBeltSecurityWebbingFilled
+  parent: NFClothingBeltSecurityWebbing
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltSecurityEntityTable
+
+- type: entity
+  id: NFClothingBeltJanitorFilled
+  parent: NFClothingBeltJanitor
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Soap
+      - id: SprayBottleSpaceCleaner
+      - id: CleanerGrenade
+        amount: 2
+      - id: FlashlightLantern
+      - id: Holoprojector
+      - id: LightReplacer
+
+- type: entity
+  id: NFClothingBeltMedicalFilled
+  parent: NFClothingBeltMedical
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Brutepack
+        amount: 2
+      - id: Ointment
+        amount: 1
+      - id: Bloodpack
+        amount: 1
+      - id: Gauze
+      - id: EmergencyMedipen #You never know what people are going to latejoin into
+
+- type: entity
+  id: NFClothingBeltMedicalEMTFilled
+  parent: NFClothingBeltMedicalEMT
+  suffix: Paramedic,Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Brutepack
+      - id: Ointment
+      - id: Bloodpack
+      - id: Gauze
+      - id: EmergencyMedipen #You never know what people are going to latejoin into
+        amount: 3
+
+- type: entity
+  id: NFClothingBeltPlantFilled
+  parent: NFClothingBeltPlant
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: HydroponicsToolMiniHoe
+    - id: HydroponicsToolSpade
+    - id: HydroponicsToolClippers
+    - id: ChemistryBottleRobustHarvest
+    - id: ChemistryBottleEZNutrient
+
+- type: entity
+  id: NFClothingBeltSheathFilled
+  parent: NFClothingBeltSheath
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - CaptainSabre
+
+- type: entity
+  id: NFClothingBeltMilitaryWebbingMedFilled
+  parent: NFClothingBeltMilitaryWebbingMed
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: ChemistryBottleEpinephrine
+        amount: 2
+      - id: ChemistryBottleEphedrine
+        amount: 2
+      - id: ChemistryBottleOmnizine
+      - id: MedkitCombatFilled
+
+- type: entity
+  parent: NFClothingBeltWand
+  id: NFClothingBeltWandFilled
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponWandPolymorphCarp
+    - id: WeaponWandFireball
+    - id: WeaponWandDeath
+    - id: WeaponWandPolymorphDoor
+
+- type: entity
+  id: NFClothingBeltHolsterFilled
+  parent: NFClothingBeltHolster
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+        - id: NFWeaponRevolverInspector
+        - id: NFSpeedLoaderPistol45
+
+- type: entity
+  id: NFClothingBeltChefFilled
+  parent: NFClothingBeltChef
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: FoodShakerSalt
+    - id: FoodShakerPepper
+
+# Frontier
+- type: entity
+  id: NFClothingBeltMilitaryWebbingGrenadeFilled
+  parent: NFClothingBeltMilitaryWebbing
+  name: grenadier chest rig
+  suffix: Filled
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,7,1
+  - type: StorageFill
+    contents:
+      - id: ExGrenade
+        amount: 4
+      - id: SyndieMiniBomb
+        amount: 2
+      - id: EmpGrenade
+        amount: 2
+
 - type: entity
   id: ClothingBeltPilotFilled
   parent: ClothingBeltPilot
@@ -16,7 +211,7 @@
 
 - type: entity
   id: ClothingBeltNfsdFilled
-  parent: [ClothingBeltNfsd, ClothingBeltSecurityFilled]
+  parent: [ClothingBeltNfsd, NFClothingBeltSecurityFilled]
 
 - type: entity
   id: ClothingBeltNfsdWebbingFilledBrigmedic
