@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 255.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 07/13/2025 17:26:21
+  entityCount: 931
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   14: FloorBar
@@ -75,6 +86,7 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
+      dampingModifier: 0.25
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -711,7 +723,7 @@ entities:
       pos: -5.5,14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -489.1448
+      secondsUntilStateChange: -529.6075
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -938,13 +950,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,26.5
-      parent: 1
-- proto: BoozeDispenser
-  entities:
-  - uid: 527
-    components:
-    - type: Transform
-      pos: -2.5,10.5
       parent: 1
 - proto: BoxFolderClipboard
   entities:
@@ -3944,6 +3949,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,21.5
       parent: 1
+- proto: ImpCoffeeMachine
+  entities:
+  - uid: 150
+    components:
+    - type: Transform
+      pos: -2.5,10.5
+      parent: 1
 - proto: Lighter
   entities:
   - uid: 892
@@ -4035,6 +4047,14 @@ entities:
     - type: Transform
       pos: 0.5,28.5
       parent: 1
+- proto: NFMagnetBoxOre
+  entities:
+  - uid: 159
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,15.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 214
@@ -4045,14 +4065,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: OreBox
-  entities:
-  - uid: 159
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -4.5,15.5
-      parent: 1
 - proto: OreProcessor
   entities:
   - uid: 507
@@ -4178,13 +4190,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,3.5
-      parent: 1
-- proto: PowerCellRecharger
-  entities:
-  - uid: 783
-    components:
-    - type: Transform
-      pos: 2.5,17.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -4852,11 +4857,14 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         844:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         666:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         503:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 875
     components:
     - type: Transform
@@ -4866,63 +4874,92 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         727:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         872:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         667:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         338:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         664:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         663:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         528:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         651:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         650:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         552:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         870:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         865:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         825:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         750:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         352:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         729:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         362:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         671:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         478:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         653:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         363:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         655:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         670:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         728:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         436:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         699:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         715:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         672:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         652:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 878
     components:
     - type: Transform
@@ -4932,7 +4969,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         333:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 901
     components:
     - type: Transform
@@ -4942,9 +4980,11 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         234:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         224:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: SignBridge
   entities:
   - uid: 648
@@ -5022,14 +5062,6 @@ entities:
     components:
     - type: Transform
       pos: 3.4578516,21.501606
-      parent: 1
-- proto: SodaDispenser
-  entities:
-  - uid: 150
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,7.5
       parent: 1
 - proto: SpawnPointLatejoin
   entities:
@@ -5341,25 +5373,40 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         328:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         208:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         501:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         383:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         475:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
   - uid: 473
     components:
     - type: Transform
@@ -5368,37 +5415,61 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         12:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         137:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         138:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         153:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         133:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         124:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         219:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         606:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
   - uid: 812
     components:
     - type: Transform
@@ -5407,24 +5478,26 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         505:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         200:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
         777:
-        - Left: Forward
-        - Right: Reverse
-        - Middle: Off
-- proto: VendingMachineBooze
-  entities:
-  - uid: 155
-    components:
-    - type: Transform
-      pos: -4.5,9.5
-      parent: 1
+        - - Left
+          - Forward
+        - - Right
+          - Reverse
+        - - Middle
+          - Off
 - proto: VendingMachineCargoDrobe
   entities:
   - uid: 213
@@ -6373,6 +6446,13 @@ entities:
     components:
     - type: Transform
       pos: 5.5,26.5
+      parent: 1
+- proto: WeaponCapacitorRecharger
+  entities:
+  - uid: 783
+    components:
+    - type: Transform
+      pos: 2.5,17.5
       parent: 1
 - proto: WeaponGrapplingGun
   entities:
