@@ -18,6 +18,7 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
 using Robust.Shared.Utility;
 using static Robust.Client.GameObjects.SpriteComponent;
+using Content.Shared._NF.DisplacementMap.Components; // Frontier
 
 namespace Content.Client.Clothing;
 
@@ -346,7 +347,7 @@ public sealed class ClientClothingSystem : ClothingSystem
                 //Checking that the state is not tied to the current race. In this case we don't need to use the displacement maps.
                 //if (layerData.State is not null && inventory.SpeciesId is not null && layerData.State.EndsWith(inventory.SpeciesId))
                 //    continue;
-                if (layer.State.Name is not null && inventory.SpeciesId is not null && layer.State.Name.EndsWith(inventory.SpeciesId))
+                if (layer.State.Name is not null && inventory.SpeciesId is not null && layer.State.Name.EndsWith(inventory.SpeciesId) || HasComp<DisableDisplacementsComponent>(equipee))
                     continue;
                 // End Frontier: revise race check
 
