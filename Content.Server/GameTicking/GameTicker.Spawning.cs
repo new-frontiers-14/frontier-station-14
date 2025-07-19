@@ -321,6 +321,13 @@ namespace Content.Server.GameTicking
                         Loc.GetString("latejoin-arrival-sender"),
                         playDefaultSound: false);
                 }
+
+                // Frontier: send new player message if the player is new.
+                if (jobPrototype.NewPlayerMessage)
+                {
+                    HandleGreetingMessage(player, mob, station);
+                }
+                // End Frontier
             }
 
             // who tf is perma oWo
