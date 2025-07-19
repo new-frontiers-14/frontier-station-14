@@ -58,7 +58,7 @@
   - type: Sprite
     scale: 1.2, 1.2
 # endregion Base Deposits
-  
+
 # region Standard Deposits
 - type: entity
   parent: BaseGasDeposit
@@ -473,25 +473,24 @@
       - state: screen
         shader: unshaded
         visible: false
-        map: ["enum.ToggleVisuals.Layer"]
+        map: ["enum.ToggleableVisuals.Layer"]
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: { visible: true }
           False: { visible: false }
       enum.GasDepositScannerVisuals.Enabled:
-        enum.ToggleVisuals.Layer:
+        enum.ToggleableVisuals.Layer:
           True: { state: data, visible: true }
           False: { state: screen }
   - type: ItemToggle
   - type: ProximityBeeper
   - type: ProximityDetector
     range: 20
-    criteria:
-      components:
-      - GasDeposit
+    components:
+    - type: GasDeposit
   - type: Beeper
     isMuted: true
     minBeepInterval: 0.15

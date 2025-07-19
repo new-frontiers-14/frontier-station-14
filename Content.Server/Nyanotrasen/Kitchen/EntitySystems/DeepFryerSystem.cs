@@ -54,7 +54,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared._NF.Kitchen.Components; // Frontier
-using Content.Server._NF.Kitchen.Components; // Frontier
+using Content.Server._NF.Kitchen.Components;
+using Content.Shared.Cargo; // Frontier
 using Content.Shared.NameModifier.EntitySystems; // Frontier
 
 namespace Content.Server.Nyanotrasen.Kitchen.EntitySystems;

@@ -423,14 +423,14 @@
     - state: welder_flame
       visible: false
       shader: unshaded
-      map: ["enum.ToggleVisuals.Layer"]
+      map: ["enum.ToggleableVisuals.Layer"]
     - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
       state: overlay-icon
       shader: unshaded
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: { visible: true }
           False: { visible: false }
   - type: Item

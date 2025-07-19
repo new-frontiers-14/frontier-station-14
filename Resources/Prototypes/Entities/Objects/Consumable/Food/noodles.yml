@@ -20,10 +20,7 @@
           Quantity: 15 # Frontier: 20<15
         - ReagentId: Flavorol # Frontier
           Quantity: 10 # Frontier
-  - type: Tag
-    tags:
-    - VoxFood
-    
+
 # Noodles
 
 - type: entity
@@ -51,6 +48,15 @@
       - tomato
   - type: Sprite
     state: tomato
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15 # Frontier: 35<15
+        - ReagentId: Flavorol # Frontier
+          Quantity: 15 # Frontier
   - type: Tag
     tags:
     - Fruit
@@ -74,14 +80,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 80
         reagents:
         - ReagentId: Nutriment
-          Quantity: 7
-        - ReagentId: Vitamin
-          Quantity: 8
-        - ReagentId: Flavorol
-          Quantity: 10
+          Quantity: 30 # Frontier: 70<30
+        - ReagentId: Flavorol # Frontier
+          Quantity: 30 # Frontier
 # Tastes like pasta, bad humor.
 
 - type: entity
@@ -99,14 +103,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 45 # Frontier: 35<45
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8
-        - ReagentId: Vitamin
-          Quantity: 4
-        - ReagentId: Flavorol
-          Quantity: 5
+          Quantity: 15
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Flavorol # Frontier
+          Quantity: 15 # Frontier
   - type: Tag
     tags:
     - Meat
@@ -154,14 +158,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 26
+        maxVol: 56 # Frontier: 51<56
         reagents:
         - ReagentId: Nutriment
-          Quantity: 7
-        - ReagentId: Vitamin
+          Quantity: 15 # Frontier: 20<15
+        - ReagentId: Protein
           Quantity: 6
-        - ReagentId: Flavorol
-          Quantity: 11
+        - ReagentId: Vitamin
+          Quantity: 15 # Frontier: 20<15
+        - ReagentId: Flavorol # Frontier
+          Quantity: 15 # Frontier
 # Tastes like pasta, tomato.
 
 - type: entity
@@ -179,10 +185,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 30 # Frontier: 25<30
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8
-        - ReagentId: Vitamin
-          Quantity: 1
+          Quantity: 15 # Frontier: 23<15
+        - ReagentId: Flavorol # Frontier
+          Quantity: 12 # Frontier
 # Tastes like pasta, butter.

@@ -189,14 +189,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorBasalt
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorGrayConcreteMono
-      WidenTile: FloorBasalt
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsBasalt
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorGrayConcreteMono
+    widenTile: FloorBasalt
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsBasalt
@@ -239,25 +237,46 @@
   - !type:MobsDunGen
     minCount: 3
     maxCount: 6
-    groups:
-    - id: SpawnMobMercenaryEVAT1
-      amount: 2
+    contents: SpawnMobMercenaryEVAT1Table
   - !type:MobsDunGen
     minCount: 8
     maxCount: 15
-    groups:
-    - id: SpawnMobMercenaryEVAT2
-      amount: 1
+    contents: SpawnMobMercenaryEVAT2Table
   - !type:MobsDunGen
     minCount: 1
     maxCount: 3
-    groups:
-    - id: SpawnMobMercenaryEVAT3
-      amount: 1
+    contents: SpawnMobMercenaryEVAT3Table
   - !type:MobsDunGen
     minCount: 0
     maxCount: 1
-    groups:
+    contents: SpawnMobMercenaryCaptainEVATable
+
+
+- type: entityTable
+  id: SpawnMobMercenaryEVAT1Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobMercenaryEVAT1
+      amount: 2
+
+- type: entityTable
+  id: SpawnMobMercenaryEVAT2Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobMercenaryEVAT2
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobMercenaryEVAT3Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobMercenaryEVAT3
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobMercenaryCaptainEVATable
+  table: !type:GroupSelector
+    children:
     - id: SpawnMobMercenaryCaptainEVA
       amount: 1
 
