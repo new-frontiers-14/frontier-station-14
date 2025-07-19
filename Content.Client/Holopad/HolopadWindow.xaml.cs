@@ -155,6 +155,7 @@ public sealed partial class HolopadWindow : FancyWindow
             case HolopadUiKey.InteractionWindowForAi:
                 ActivateProjectorContainer.Visible = true;
                 StartBroadcastContainer.Visible = true;
+                HolopadContactListContainer.Visible = true; // Frontier, lets AI call other holopads
                 break;
 
             case HolopadUiKey.AiActionWindow:
