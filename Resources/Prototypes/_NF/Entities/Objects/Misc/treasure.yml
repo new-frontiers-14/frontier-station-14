@@ -159,7 +159,23 @@
 
 - type: stack
   id: GoldLeaf
-  name: stack-gold-leaf
-  spawn: GoldLeaf
+  name: stack-goldleaf
+  spawn: GoldLeaf1
   maxCount: 30
 
+- type: entity  
+  id: GoldLeaf1
+  parent: GoldLeaf  
+  suffix: Single
+  abstract: true
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity  
+  id: GoldLeaf30
+  parent: GoldLeaf  
+  suffix: Full
+  components:
+  - type: Stack
+    count: 30
