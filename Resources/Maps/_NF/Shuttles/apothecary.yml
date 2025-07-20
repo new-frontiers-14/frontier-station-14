@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/02/2025 23:13:12
-  entityCount: 438
+  time: 07/13/2025 20:53:31
+  entityCount: 443
 maps: []
 grids:
 - 1
@@ -815,11 +815,11 @@ entities:
       parent: 1
 - proto: APCBasic
   entities:
-  - uid: 224
+  - uid: 200
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -1.5,-0.5
+      pos: -1.5,-2.5
       parent: 1
 - proto: AtmosDeviceFanDirectional
   entities:
@@ -1160,10 +1160,10 @@ entities:
     - type: Transform
       pos: -1.5,-1.5
       parent: 1
-  - uid: 30
+  - uid: 21
     components:
     - type: Transform
-      pos: 0.5,-0.5
+      pos: -0.5,-1.5
       parent: 1
   - uid: 32
     components:
@@ -1198,7 +1198,7 @@ entities:
   - uid: 124
     components:
     - type: Transform
-      pos: -1.5,-0.5
+      pos: -1.5,-2.5
       parent: 1
   - uid: 126
     components:
@@ -1362,10 +1362,10 @@ entities:
     - type: Transform
       pos: -2.5,-0.5
       parent: 1
-  - uid: 13
+  - uid: 224
     components:
     - type: Transform
-      pos: -2.5,0.5
+      pos: -1.5,-0.5
       parent: 1
   - uid: 240
     components:
@@ -1374,20 +1374,20 @@ entities:
       parent: 1
 - proto: CableMV
   entities:
-  - uid: 7
-    components:
-    - type: Transform
-      pos: -2.5,-0.5
-      parent: 1
   - uid: 180
     components:
     - type: Transform
       pos: -1.5,-0.5
       parent: 1
-  - uid: 200
+  - uid: 305
     components:
     - type: Transform
-      pos: -2.5,0.5
+      pos: -1.5,-1.5
+      parent: 1
+  - uid: 439
+    components:
+    - type: Transform
+      pos: -1.5,-2.5
       parent: 1
 - proto: CableTerminal
   entities:
@@ -1586,10 +1586,10 @@ entities:
       parent: 1
 - proto: CrateFreezer
   entities:
-  - uid: 254
+  - uid: 443
     components:
     - type: Transform
-      pos: 2.5,3.5
+      pos: 5.5,-1.5
       parent: 1
 - proto: CrateHydroponicsSeedsMedicinal
   entities:
@@ -1654,10 +1654,11 @@ entities:
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
-  - uid: 190
+  - uid: 30
     components:
     - type: Transform
-      pos: -1.5,0.5
+      rot: 3.141592653589793 rad
+      pos: 2.5,-3.5
       parent: 1
 - proto: FaxMachineShip
   entities:
@@ -2415,6 +2416,22 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-2.5
       parent: 1
+- proto: ImpCoffeeMachine
+  entities:
+  - uid: 257
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,2.5
+      parent: 1
+- proto: JukeboxWallmountShip
+  entities:
+  - uid: 254
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,0.5
+      parent: 1
 - proto: KitchenReagentGrinder
   entities:
   - uid: 120
@@ -2451,6 +2468,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-3.5
       parent: 1
+- proto: LockerWallColorMedicalDoctorFilled
+  entities:
+  - uid: 13
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,2.5
+      parent: 1
 - proto: LockerWallColorParamedicFilled
   entities:
   - uid: 345
@@ -2475,11 +2500,11 @@ entities:
       parent: 1
 - proto: LockerWallMaterialsFuelUraniumFilled
   entities:
-  - uid: 160
+  - uid: 218
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,-2.5
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-0.5
       parent: 1
 - proto: LuxuryPen
   entities:
@@ -2602,10 +2627,10 @@ entities:
       parent: 1
 - proto: PaperBin20
   entities:
-  - uid: 218
+  - uid: 442
     components:
     - type: Transform
-      pos: 0.5,1.5
+      pos: 0.108778834,1.4473202
       parent: 1
 - proto: Pen
   entities:
@@ -3142,12 +3167,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,-0.5
       parent: 1
-  - uid: 257
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,-0.5
-      parent: 1
 - proto: SinkWide
   entities:
   - uid: 319
@@ -3188,6 +3207,18 @@ entities:
     - type: Transform
       pos: -2.5,4.5
       parent: 1
+- proto: SpawnRandomDrinkMug
+  entities:
+  - uid: 190
+    components:
+    - type: Transform
+      pos: -1.3106997,2.0851383
+      parent: 1
+  - uid: 440
+    components:
+    - type: Transform
+      pos: -1.6700747,2.1632633
+      parent: 1
 - proto: StasisBed
   entities:
   - uid: 237
@@ -3197,10 +3228,11 @@ entities:
       parent: 1
 - proto: SubstationWallBasic
   entities:
-  - uid: 21
+  - uid: 7
     components:
     - type: Transform
-      pos: -2.5,0.5
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-0.5
       parent: 1
 - proto: TableCounterMetal
   entities:
@@ -3694,6 +3726,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,0.5
       parent: 1
+- proto: WallWeaponCapacitorRechargerOmnidirectional
+  entities:
+  - uid: 160
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,7.5
+      parent: 1
 - proto: WarpPoint
   entities:
   - uid: 191
@@ -3704,11 +3744,10 @@ entities:
       parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
-  - uid: 305
+  - uid: 441
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,2.5
+      pos: 0.5,1.5
       parent: 1
 - proto: WindowDirectional
   entities:
