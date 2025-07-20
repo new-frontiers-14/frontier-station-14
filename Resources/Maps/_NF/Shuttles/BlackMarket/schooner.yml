@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/20/2025 10:06:48
+  time: 07/20/2025 15:38:26
   entityCount: 506
 maps: []
 grids:
@@ -2598,6 +2598,20 @@ entities:
     - type: Transform
       pos: 0.5,-9.5
       parent: 1
+- proto: PoweredDimSmallLight
+  entities:
+  - uid: 169
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-0.5
+      parent: 1
+  - uid: 210
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-0.5
+      parent: 1
 - proto: PoweredLightPostSmallRed
   entities:
   - uid: 305
@@ -2616,18 +2630,6 @@ entities:
       parent: 1
 - proto: PoweredWarmSmallLight
   entities:
-  - uid: 169
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-0.5
-      parent: 1
-  - uid: 210
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,-0.5
-      parent: 1
   - uid: 226
     components:
     - type: Transform
@@ -3096,40 +3098,40 @@ entities:
       linkedPorts:
         311:
         - - Pressed
-          - Toggle
+          - Close
         312:
         - - Pressed
-          - Toggle
+          - Close
         355:
         - - Pressed
-          - Toggle
+          - Close
         310:
         - - Pressed
-          - Toggle
+          - Close
         287:
         - - Pressed
-          - Toggle
+          - Close
         230:
         - - Pressed
-          - Toggle
+          - Close
         313:
         - - Pressed
-          - Toggle
+          - Close
         229:
         - - Pressed
-          - Toggle
+          - Close
         231:
         - - Pressed
-          - Toggle
+          - Close
         354:
         - - Pressed
-          - Toggle
+          - Close
         315:
         - - Pressed
-          - Toggle
+          - Close
         314:
         - - Pressed
-          - Toggle
+          - Close
 - proto: SignalButtonDirectional
   entities:
   - uid: 374
