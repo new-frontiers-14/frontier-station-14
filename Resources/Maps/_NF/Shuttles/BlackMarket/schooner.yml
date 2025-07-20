@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/13/2025 19:58:24
-  entityCount: 501
+  time: 07/20/2025 10:06:48
+  entityCount: 506
 maps: []
 grids:
 - 1
@@ -1575,11 +1575,6 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
-  - uid: 154
-    components:
-    - type: Transform
-      pos: 2.5,3.5
-      parent: 1
   - uid: 155
     components:
     - type: Transform
@@ -1650,15 +1645,20 @@ entities:
     - type: Transform
       pos: 1.5,2.5
       parent: 1
-  - uid: 169
-    components:
-    - type: Transform
-      pos: -1.5,3.5
-      parent: 1
   - uid: 189
     components:
     - type: Transform
       pos: 2.5,-5.5
+      parent: 1
+  - uid: 225
+    components:
+    - type: Transform
+      pos: -2.5,3.5
+      parent: 1
+  - uid: 506
+    components:
+    - type: Transform
+      pos: 3.5,3.5
       parent: 1
 - proto: CableHV
   entities:
@@ -2083,7 +2083,7 @@ entities:
   - uid: 241
     components:
     - type: Transform
-      pos: 3.3043556,-0.4325233
+      pos: 3.6383839,-0.61595345
       parent: 1
 - proto: ComputerIFF
   entities:
@@ -2208,7 +2208,7 @@ entities:
   - uid: 256
     components:
     - type: Transform
-      pos: 3.7111378,-0.38465244
+      pos: 3.2448654,-0.35361338
       parent: 1
 - proto: DrinkShotGlass
   entities:
@@ -2344,13 +2344,13 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        225:
+        310:
         - - Pressed
           - Toggle
-        227:
+        287:
         - - Pressed
           - Toggle
-        228:
+        230:
         - - Pressed
           - Toggle
   - uid: 265
@@ -2364,10 +2364,10 @@ entities:
         354:
         - - Pressed
           - Toggle
-        355:
+        315:
         - - Pressed
           - Toggle
-        356:
+        314:
         - - Pressed
           - Toggle
   - uid: 318
@@ -2378,13 +2378,13 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        501:
-        - - Pressed
-          - Toggle
-        230:
+        313:
         - - Pressed
           - Toggle
         229:
+        - - Pressed
+          - Toggle
+        231:
         - - Pressed
           - Toggle
   - uid: 494
@@ -2394,13 +2394,13 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        231:
+        355:
         - - Pressed
           - Toggle
-        210:
+        312:
         - - Pressed
           - Toggle
-        226:
+        311:
         - - Pressed
           - Toggle
 - proto: LockerWallColorL1FireFilled
@@ -2420,10 +2420,10 @@ entities:
       parent: 1
 - proto: LockerWallMaterialsFuelUraniumFilled
   entities:
-  - uid: 287
+  - uid: 154
     components:
     - type: Transform
-      pos: -2.5,9.5
+      pos: -0.5,9.5
       parent: 1
 - proto: LockerWoodenGeneric
   entities:
@@ -2561,7 +2561,7 @@ entities:
   - uid: 242
     components:
     - type: Transform
-      pos: 3.630745,-0.3700233
+      pos: 3.6615322,-0.3304652
       parent: 1
 - proto: PortableGeneratorSuperPacmanShuttle
   entities:
@@ -2598,20 +2598,6 @@ entities:
     - type: Transform
       pos: 0.5,-9.5
       parent: 1
-- proto: PoweredDimSmallLight
-  entities:
-  - uid: 312
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,-0.5
-      parent: 1
-  - uid: 313
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-0.5
-      parent: 1
 - proto: PoweredLightPostSmallRed
   entities:
   - uid: 305
@@ -2630,6 +2616,35 @@ entities:
       parent: 1
 - proto: PoweredWarmSmallLight
   entities:
+  - uid: 169
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-0.5
+      parent: 1
+  - uid: 210
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-0.5
+      parent: 1
+  - uid: 226
+    components:
+    - type: Transform
+      pos: 0.5,5.5
+      parent: 1
+  - uid: 227
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-4.5
+      parent: 1
+  - uid: 228
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,6.5
+      parent: 1
   - uid: 306
     components:
     - type: Transform
@@ -2652,28 +2667,40 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-4.5
       parent: 1
-  - uid: 310
+  - uid: 380
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 0.5,-8.5
+      pos: 0.5,10.5
       parent: 1
-  - uid: 311
+  - uid: 501
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-4.5
+      parent: 1
+  - uid: 502
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 1
+  - uid: 503
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-8.5
+      parent: 1
+  - uid: 504
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,2.5
       parent: 1
-  - uid: 314
+  - uid: 505
     components:
     - type: Transform
-      pos: 0.5,-2.5
-      parent: 1
-  - uid: 315
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,8.5
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-8.5
       parent: 1
 - proto: Rack
   entities:
@@ -2934,65 +2961,77 @@ entities:
       parent: 1
 - proto: ShuttersNormal
   entities:
-  - uid: 210
-    components:
-    - type: Transform
-      pos: -3.5,-3.5
-      parent: 1
-  - uid: 225
-    components:
-    - type: Transform
-      pos: 4.5,-2.5
-      parent: 1
-  - uid: 226
-    components:
-    - type: Transform
-      pos: -3.5,-4.5
-      parent: 1
-  - uid: 227
-    components:
-    - type: Transform
-      pos: 4.5,-3.5
-      parent: 1
-  - uid: 228
-    components:
-    - type: Transform
-      pos: 4.5,-4.5
-      parent: 1
   - uid: 229
     components:
     - type: Transform
-      pos: 4.5,2.5
+      rot: 1.5707963267948966 rad
+      pos: 4.5,3.5
       parent: 1
   - uid: 230
     components:
     - type: Transform
-      pos: 4.5,3.5
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-2.5
       parent: 1
   - uid: 231
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,2.5
+      parent: 1
+  - uid: 287
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-3.5
+      parent: 1
+  - uid: 310
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-4.5
+      parent: 1
+  - uid: 311
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -3.5,-2.5
+      parent: 1
+  - uid: 312
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-3.5
+      parent: 1
+  - uid: 313
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,4.5
+      parent: 1
+  - uid: 314
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,4.5
+      parent: 1
+  - uid: 315
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,3.5
       parent: 1
   - uid: 354
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -3.5,2.5
       parent: 1
   - uid: 355
     components:
     - type: Transform
-      pos: -3.5,3.5
-      parent: 1
-  - uid: 356
-    components:
-    - type: Transform
-      pos: -3.5,4.5
-      parent: 1
-  - uid: 501
-    components:
-    - type: Transform
-      pos: 4.5,4.5
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-4.5
       parent: 1
 - proto: ShuttersRadiation
   entities:
@@ -3055,42 +3094,42 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        226:
+        311:
         - - Pressed
-          - Close
-        210:
+          - Toggle
+        312:
         - - Pressed
-          - Close
-        231:
-        - - Pressed
-          - Close
-        354:
-        - - Pressed
-          - Close
+          - Toggle
         355:
         - - Pressed
-          - Close
-        356:
+          - Toggle
+        310:
         - - Pressed
-          - Close
-        501:
+          - Toggle
+        287:
         - - Pressed
-          - Close
+          - Toggle
         230:
         - - Pressed
-          - Close
+          - Toggle
+        313:
+        - - Pressed
+          - Toggle
         229:
         - - Pressed
-          - Close
-        225:
+          - Toggle
+        231:
         - - Pressed
-          - Close
-        227:
+          - Toggle
+        354:
         - - Pressed
-          - Close
-        228:
+          - Toggle
+        315:
         - - Pressed
-          - Close
+          - Toggle
+        314:
+        - - Pressed
+          - Toggle
 - proto: SignalButtonDirectional
   entities:
   - uid: 374
@@ -3124,10 +3163,10 @@ entities:
         354:
         - - Pressed
           - Toggle
-        355:
+        315:
         - - Pressed
           - Toggle
-        356:
+        314:
         - - Pressed
           - Toggle
   - uid: 376
@@ -3138,13 +3177,13 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
+        231:
+        - - Pressed
+          - Toggle
         229:
         - - Pressed
           - Toggle
-        230:
-        - - Pressed
-          - Toggle
-        501:
+        313:
         - - Pressed
           - Toggle
   - uid: 377
@@ -3154,13 +3193,13 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        231:
+        355:
         - - Pressed
           - Toggle
-        210:
+        312:
         - - Pressed
           - Toggle
-        226:
+        311:
         - - Pressed
           - Toggle
   - uid: 378
@@ -3170,21 +3209,21 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        228:
+        230:
         - - Pressed
           - Toggle
-        227:
+        287:
         - - Pressed
           - Toggle
-        225:
+        310:
         - - Pressed
           - Toggle
-- proto: SignDangerMed
+- proto: SignRadiationMed
   entities:
-  - uid: 380
+  - uid: 356
     components:
     - type: Transform
-      pos: -0.5,9.5
+      pos: -2.5,9.5
       parent: 1
 - proto: SignSecureSmallRed
   entities:
