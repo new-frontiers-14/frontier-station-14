@@ -377,7 +377,7 @@ namespace Content.Shared.Atmos
         Ammonia = 6,
         NitrousOxide = 7,
         Frezon = 8,
-        Respiron = 9 // Frontier
-		Helium = 10 // Frontier
+        Respiron = 9, // Frontier
+        Helium = 10 // Frontier
     }
 }
