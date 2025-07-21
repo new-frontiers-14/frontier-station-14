@@ -157,6 +157,16 @@
     depositPrototype: MuddlePlasma
   - type: Sprite
     color: "#F0DDF0"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositHelium
+  suffix: Helium
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyHelium
+  - type: Sprite
+    color: "#fab87e"
 # endregion Standard Deposits
 
 # region Very Small Deposits
@@ -445,6 +455,13 @@
   - GasDepositMuddlePlasma
   id: GasDepositMuddlePlasmaVeryLarge
   suffix: Muddled P+, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - GasDepositHelium
+  id: GasDepositHeliumVeryLarge
+  suffix: Helium, Very Large
 # endregion Very Large Deposits
 
 # Debug item for detecting gas deposits
