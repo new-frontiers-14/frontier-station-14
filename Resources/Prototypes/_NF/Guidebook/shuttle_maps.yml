@@ -180,6 +180,18 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapCourier
+  name: "FSB Courier"
+  description: "Detailed map of a Courier shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: courier
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapDruid
   name: "FSB Druid"
   description: "Detailed map of a Druid shuttle."
@@ -404,6 +416,18 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: prospector
+    scale: 1.2, 1.2    
+ 
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapPulsar
+  name: "FSB Pulsar"
+  description: "Detailed map of a Pulsar shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: pulsar
     scale: 1.2, 1.2
 
 - type: entity
@@ -428,18 +452,6 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: searchlight
-    scale: 1.2, 1.2
-
-- type: entity
-  parent: PosterBase
-  id: ShuttleMapSparrow
-  name: "NR Sparrow"
-  description: "Detailed map of a Sparrow shuttle."
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
-    state: sparrow
     scale: 1.2, 1.2
 
 - type: entity
