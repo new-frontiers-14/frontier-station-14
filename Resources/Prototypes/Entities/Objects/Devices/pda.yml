@@ -134,17 +134,20 @@
     proto: robot
   - type: Speech
     speechVerb: Robotic
-  - type: StaticPrice # Frontier
-    price: 20 # Frontier: The card need to cost less then the PDA that comes with a card and a pen in it.
-  - type: CargoSellBlacklist # Frontier: Liltenhead moment
+  # Frontier: extra components
+  - type: StaticPrice
+    price: 20
+  - type: CargoSellBlacklist
   - type: PirateBountyItem
     id: Pda
-  - type: ToggleableGhostRole # Frontier: Literally only for the wipe verb and nothing else.
-    wipeVerbText: pda-wipe-device-verb-text # Frontier
-    wipeVerbPopup: pda-wiped-device # Frontier
-    mindRoles: [] # Frontier: no default value here
-  - type: ShipyardSellCondition # Frontier: Teleport to shipyard console on sale
+  - type: ToggleableGhostRole
+    wipeVerbText: pda-wipe-device-verb-text
+    wipeVerbPopup: pda-wiped-device
+    mindRoles: []
+  - type: ShipyardSellCondition
     preserveOnSale: true
+  - type: DeletionCensusExempt
+  # End Frontier: extra components
 
 - type: entity
   parent: BasePDA
