@@ -223,14 +223,14 @@ public sealed partial class CCVars
     /// </summary>
     [CVarControl(AdminFlags.VarEdit)]
     public static readonly CVarDef<float> TileBreakEnergyMultiplier =
-        CVarDef.Create("shuttle.impact.tile_break_energy", 3000f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.impact.tile_break_energy", 45000f, CVar.SERVERONLY);
 
     /// <summary>
     /// Multiplier of damage done to entities on colliding areas
     /// </summary>
     [CVarControl(AdminFlags.VarEdit)]
     public static readonly CVarDef<float> ImpactDamageMultiplier =
-        CVarDef.Create("shuttle.impact.damage_multiplier", 0.00005f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.impact.damage_multiplier", 0.000004f, CVar.SERVERONLY);
 
     /// <summary>
     /// Multiplier of additional structural damage to do
@@ -244,7 +244,7 @@ public sealed partial class CCVars
     /// </summary>
     [CVarControl(AdminFlags.VarEdit)]
     public static readonly CVarDef<float> SparkEnergy =
-        CVarDef.Create("shuttle.impact.spark_energy", 2000000f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.impact.spark_energy", 250f, CVar.SERVERONLY);
 
     /// <summary>
     /// Area to consider for impact calculations
@@ -258,14 +258,14 @@ public sealed partial class CCVars
     /// </summary>
     [CVarControl(AdminFlags.VarEdit)]
     public static readonly CVarDef<float> ImpactSlowdown =
-        CVarDef.Create("shuttle.impact.slowdown", 8f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.impact.slowdown", 10f, CVar.SERVERONLY);
 
     /// <summary>
     /// Minimum velocity change from impact for special throw effects (e.g. stuns, beakers breaking) to occur
     /// </summary>
     [CVarControl(AdminFlags.VarEdit)]
     public static readonly CVarDef<float> ImpactMinThrowVelocity =
-        CVarDef.Create("shuttle.impact.min_throw_velocity", 1f, CVar.SERVERONLY); // due to how it works this is about 16 m/s for cargo shuttle
+        CVarDef.Create("shuttle.impact.min_throw_velocity", 1.75f, CVar.SERVERONLY); // due to how it works this is about 16 m/s for cargo shuttle
 
     /// <summary>
     /// Affects how much damage reduction to give to grids with higher mass
@@ -279,7 +279,7 @@ public sealed partial class CCVars
     /// </summary>
     [CVarControl(AdminFlags.VarEdit)]
     public static readonly CVarDef<float> ImpactInertiaScaling =
-        CVarDef.Create("shuttle.impact.inertia_scaling", 0.5f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.impact.inertia_scaling", 0.025f, CVar.SERVERONLY);
 
     #endregion
 }
