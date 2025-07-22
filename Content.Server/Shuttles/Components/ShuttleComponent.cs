@@ -20,7 +20,7 @@ namespace Content.Server.Shuttles.Components
         /// Maximum velocity.
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        public float BaseMaxLinearVelocity = 60f;
+        public float BaseMaxLinearVelocity = 30f;  //Frontier 60 - 30. Upstream has it set to 60 to test and for collisions currently.
 
         public const float MaxAngularVelocity = 4f;
 
