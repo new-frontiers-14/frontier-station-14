@@ -1,0 +1,83 @@
+- type: entity
+  id: EmbrasureBase
+  parent: BaseStructure
+  name: embrasure
+  description: A wall with small hole. Letting projectiles pass through. But not your hips.
+  abstract: true
+  components:
+  - type: Animateable
+  - type: Airtight
+  - type: RadiationBlocker
+  - type: BlockWeather
+  - type: IsRoof
+  - type: Occluder
+  - type: SunShadowCast
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: PlaceableSurface
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask: # tables should collide with other tables
+        - TableMask
+        layer:
+        - TableLayer
+  - type: SpriteFade
+  - type: Sprite
+  - type: Icon
+    state: full
+  - type: IconSmooth
+    key: state
+    base: state_
+  - type: Clickable
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHull
+  - type: Tag
+    tags:
+    - ForceFixRotations
+
+- type: entity
+  id: Embrasure
+  parent: EmbrasureBase
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Walls/embrasure.rsi
+  - type: Icon
+    sprite: _NF/Structures/Walls/embrasure.rsi
+    state: full
+  - type: IconSmooth
+    key: walls
+    base: state
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 100 # Frontier: 250<150 - makes some shuttles way more expensive otherwise
