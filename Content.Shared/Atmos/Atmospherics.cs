@@ -178,6 +178,7 @@ namespace Content.Shared.Atmos
             [Gas.Tritium] = Loc.GetString("gas-tritium-abbreviation"),
             [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
             [Gas.Respiron] = Loc.GetString("gas-respiron-abbreviation"), // Frontier
+            [Gas.Helium] = Loc.GetString("gas-helium-abbreviation"), // Frontier
         };
 
         #region Excited Groups
@@ -207,7 +208,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 10; // Frontier: 9<10
+        public const int TotalNumberOfGases = 11; // Frontier: 9<11
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -376,6 +377,7 @@ namespace Content.Shared.Atmos
         Ammonia = 6,
         NitrousOxide = 7,
         Frezon = 8,
-        Respiron = 9 // Frontier
+        Respiron = 9, // Frontier
+        Helium = 10 // Frontier
     }
 }
