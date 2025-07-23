@@ -1292,6 +1292,22 @@
 #      access: [["Salvage"]]
     - type: StealTarget
       stealGroup: SalvageExpeditionsComputerCircuitboard
+    - type: ItemSlots #Frontier, allows for expedition disks
+      slots:
+        disk_slot:
+          name: Disk
+          insertSound:
+            path: /Audio/Machines/terminal_insert_disc.ogg
+          ejectSound:
+            path: /Audio/Machines/terminal_insert_disc.ogg
+          whitelist:
+            components:
+            - SalvageExpeditionCoordinates
+    - type: ContainerContainer #Frontier, allows for expedition disks
+      containers:
+        board: !type:Container
+          ents: []
+        disk_slot: !type:ContainerSlot {}
 
 - type: entity
   parent: BaseComputer
