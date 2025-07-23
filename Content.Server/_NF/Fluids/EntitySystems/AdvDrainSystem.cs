@@ -14,7 +14,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Shared.Power;
 
 
 namespace Content.Server._NF.Fluids.EntitySystems;
@@ -39,20 +38,12 @@ public sealed class AdvDrainSystem : SharedDrainSystem
         SubscribeLocalEvent<AdvDrainComponent, MapInitEvent>(OnDrainMapInit);
         SubscribeLocalEvent<AdvDrainComponent, GetVerbsEvent<Verb>>(AddEmptyVerb);
         SubscribeLocalEvent<AdvDrainComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<AdvDrainComponent, PowerChangedEvent>(OnPowerChanged);
-        //SubscribeLocalEvent<AdvDrainComponent, AfterInteractUsingEvent>(OnInteract);
-        //SubscribeLocalEvent<AdvDrainComponent, DrainDoAfterEvent>(OnDoAfter);
     }
 
     private void OnDrainMapInit(Entity<AdvDrainComponent> ent, ref MapInitEvent args)
     {
         // Randomise puddle drains so roundstart ones don't all dump at the same time.
         ent.Comp.Accumulator = _random.NextFloat(ent.Comp.DrainFrequency);
-    }
-
-    private void OnPowerChanged(EntityUid uid, AdvDrainComponent component, ref PowerChangedEvent args)
-    {
-        component.gridPowered = args.Powered;
     }
 
     private void AddEmptyVerb(Entity<AdvDrainComponent> entity, ref GetVerbsEvent<Verb> args)
@@ -142,7 +133,7 @@ public sealed class AdvDrainSystem : SharedDrainSystem
             }
 
             // not powered
-            if (!_powerCell.HasCharge(uid, drain.Wattage) && !drain.gridPowered)
+            if (!_powerCell.HasCharge(uid, drain.Wattage))
             {
                 _ambientSoundSystem.SetAmbience(uid, false);
                 _appearanceSystem.SetData(uid, AdvDrainVisualState.IsRunning, false);
@@ -206,10 +197,7 @@ public sealed class AdvDrainSystem : SharedDrainSystem
             _ambientSoundSystem.SetAmbience(uid, true);
 
             // only use power if it's actively draining puddles and isn't powered from an APC
-            if (!drain.gridPowered)
-            {
-                _powerCell.TryUseCharge(uid, drain.Wattage * drain.DrainFrequency);
-            }
+            _powerCell.TryUseCharge(uid, drain.Wattage * drain.DrainFrequency);
 
             _appearanceSystem.SetData(uid, AdvDrainVisualState.IsDraining, true);
             amount /= _puddles.Count;

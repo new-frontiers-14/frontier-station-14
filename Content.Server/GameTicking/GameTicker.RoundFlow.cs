@@ -440,6 +440,7 @@ namespace Content.Server.GameTicking
             UpdateLateJoinStatus();
             AnnounceRound();
             UpdateInfoText();
+            NFRoundStarted(); // Frontier
             RaiseLocalEvent(new RoundStartedEvent(RoundId)); // Frontier
             SendRoundStartedDiscordMessage();
 
@@ -729,6 +730,8 @@ namespace Content.Server.GameTicking
 
             // So clients' entity systems can clean up too...
             RaiseNetworkEvent(ev);
+
+            NFRoundRestartCleanup(); // Frontier
 
             EntityManager.FlushEntities();
 
