@@ -54,8 +54,13 @@
     price: 800
   - type: ResearchClient
   - type: TechnologyDatabase
-  - type: MaterialStorageMagnetPickup # Frontier
-    range: 0.30 # Frontier
+    # Begin Frontier Additions
+  - type: NFMagnetPickup
+    pickupType: MaterialStorage
+    range: 0.30
+    maxEntitiesPerScan: 5
+    maxPickupsPerScan: 3
+    # End Frontier Additions
 
 # a lathe that can be sped up with space lube / slowed down with glue
 - type: entity
