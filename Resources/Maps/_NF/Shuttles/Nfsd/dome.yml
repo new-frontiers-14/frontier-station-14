@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/25/2025 09:55:43
-  entityCount: 972
+  time: 07/25/2025 10:41:27
+  entityCount: 979
 maps: []
 grids:
 - 1
@@ -947,6 +947,18 @@ entities:
       parent: 1
 - proto: AirlockNfsdGlass
   entities:
+  - uid: 206
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-0.5
+      parent: 1
+  - uid: 207
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -6.5,-0.5
+      parent: 1
   - uid: 208
     components:
     - type: Transform
@@ -965,22 +977,6 @@ entities:
       parent: 1
 - proto: AirlockNfsdGlassLocked
   entities:
-  - uid: 206
-    components:
-    - type: Transform
-      pos: -4.5,-0.5
-      parent: 1
-  - uid: 207
-    components:
-    - type: Transform
-      pos: -6.5,-0.5
-      parent: 1
-    - type: Door
-      secondsUntilStateChange: -9217.607
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
   - uid: 334
     components:
     - type: Transform
@@ -1021,7 +1017,7 @@ entities:
       pos: 2.5,3.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8184.1416
+      secondsUntilStateChange: -8365.138
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1088,6 +1084,18 @@ entities:
     components:
     - type: Transform
       pos: -4.5,-9.5
+      parent: 1
+  - uid: 973
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 11.5,4.5
+      parent: 1
+  - uid: 974
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 11.5,6.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -1648,11 +1656,6 @@ entities:
           - Close
         - - Timer
           - Open
-        206:
-        - - Start
-          - DoorBolt
-        - - Timer
-          - DoorBolt
   - uid: 202
     components:
     - type: Transform
@@ -1687,11 +1690,6 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        207:
-        - - Start
-          - DoorBolt
-        - - Timer
-          - DoorBolt
         102:
         - - Start
           - Close
@@ -2629,6 +2627,38 @@ entities:
     - type: Transform
       pos: -2.5,5.5
       parent: 1
+- proto: CurtainsBlackOpen
+  entities:
+  - uid: 975
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-5.5
+      parent: 1
+  - uid: 976
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-4.5
+      parent: 1
+  - uid: 977
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-3.5
+      parent: 1
+  - uid: 978
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-2.5
+      parent: 1
+  - uid: 979
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-1.5
+      parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 275
@@ -3072,7 +3102,6 @@ entities:
       pos: -4.5,-0.5
       parent: 1
     - type: DeviceNetwork
-
       deviceLists:
       - 390
       - 393
