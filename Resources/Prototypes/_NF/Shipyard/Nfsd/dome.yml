@@ -1,0 +1,34 @@
+- type: vessel
+  id: Dome
+  parent: BaseVessel
+  name: NSF Dome
+  description: A medium brig ship for holding prisoners and making them work in salvage and janitorial work.
+  price: 70000
+  category: Large
+  group: Security
+  access: Sergeant
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/dome.yml
+  guidebookPage: Null
+  class:
+  - Capital
+  - Detainment
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Dome
+  mapName: 'NSF Dome'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/dome.yml
+  minPlayers: 0
+  stations:
+    Dome:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Dome {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Prisoner: [ 0, 0 ]
