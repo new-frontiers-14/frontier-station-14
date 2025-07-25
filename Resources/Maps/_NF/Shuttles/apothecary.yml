@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/17/2025 20:32:58
+  time: 07/25/2025 20:38:28
   entityCount: 441
 maps: []
 grids:
@@ -1558,7 +1558,7 @@ entities:
       pos: -1.5,5.5
       parent: 1
     - type: ItemPlacer
-      lastPlaceable: True
+      lastPlaceable: False
       placedEntities:
       - 415
     - type: PlaceableSurface
@@ -2639,15 +2639,21 @@ entities:
   - uid: 64
     components:
     - type: Transform
+      anchored: True
       pos: -4.5,-2.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: OxygenCanister
   entities:
   - uid: 157
     components:
     - type: Transform
+      anchored: True
       pos: -3.5,-2.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: PaperBin20
   entities:
   - uid: 442
