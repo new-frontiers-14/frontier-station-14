@@ -6,7 +6,7 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed class AddAccentClothingSystem : EntitySystem
 {
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!; // Frontier
 
     public override void Initialize()
     {
