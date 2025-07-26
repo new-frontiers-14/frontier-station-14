@@ -26,6 +26,7 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+      - type: PreventShipyardTitleOverwrite
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -39,4 +40,5 @@
     - Flash
     - RubberStampSr
     - DoorRemoteCommand
-    - EncryptionKeyStationMaster
+  encryptionKeys:
+  - EncryptionKeyStationMaster
