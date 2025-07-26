@@ -22,10 +22,7 @@ public sealed class GasCanisterAppearanceSystem : VisualizerSystem<GasCanisterCo
 
         // Create the given prototype and get its first layer.
         var tempUid = Spawn(protoName);
-        // Frontier: older sprite functions
-        if (TryComp<SpriteComponent>(tempUid, out var sprite))
-            old.LayerSetState(0, sprite.LayerGetState(0));
-        // End Frontier: older sprite functions
+        SpriteSystem.LayerSetRsiState(uid, 0, SpriteSystem.LayerGetRsiState(tempUid, 0));
         QueueDel(tempUid);
     }
 }
