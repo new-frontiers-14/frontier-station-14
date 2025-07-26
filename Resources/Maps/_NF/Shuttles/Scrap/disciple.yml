@@ -225,10 +225,12 @@ entities:
 - proto: ActionToggleLight
   entities:
   - uid: 112
+    mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 156
-    - type: InstantAction
+    - type: Action
       container: 156
 - proto: AirAlarm
   entities:

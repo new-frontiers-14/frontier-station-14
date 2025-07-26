@@ -158,14 +158,11 @@
     - board
   - type: PlacementReplacement
     key: walls
-  - type: IconSmooth
-    key: walls
-    mode: NoSprite
-  # - type: PaintableAirlock # Upstream#37341
-  #   group: Standard # Upstream#37341
-  #   department: Civilian # Upstream#37341
-  - type: Paintable # Upstream#37341
-    group: AirlockStandard # Upstream#37341
+  - type: IconSmooth # Frontier
+    key: walls # Frontier
+    mode: NoSprite # Frontier
+  - type: Paintable
+    group: AirlockStandard
   - type: StaticPrice
     price: 150
   - type: LightningTarget
@@ -227,10 +224,8 @@
   - type: Construction
     graph: Airlock
     node: glassAirlock
-  # - type: PaintableAirlock # Upstream#37341
-  #   group: Glass # Upstream#37341
-  - type: Paintable # Upstream#37341
-    group: AirlockGlass # Upstream#37341
+  - type: Paintable
+    group: AirlockGlass
   - type: RadiationBlocker
     resistance: 2
   - type: Tag

@@ -16,14 +16,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 31
+        maxVol: 50
         reagents: #Most of these are this with slight variations, not worth changing until we have the rest of the reagents
         - ReagentId: Nutriment
-          Quantity: 11
+          Quantity: 20 # Frontier: 30<20
         - ReagentId: Vitamin
+          Quantity: 10 # Frontier: 14<10
+        - ReagentId: Sugar
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 11
+        - ReagentId: Flavorol # Frontier
+          Quantity: 15 # Frontier
   - type: Food #All pies here made with a pie tin; unless you're some kind of savage, you're probably not destroying this when you eat or slice the pie!
     trash:
     - FoodPlateTin
@@ -32,7 +34,6 @@
   - type: Tag
     tags:
     - Pie
-    - VoxFood
 
 - type: entity
   parent: FoodInjectableBase # Not sliceable
@@ -50,14 +51,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 8
+        maxVol: 12.5 # Frontier: 7<12.5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2.5
+          Quantity: 5 # Frontier: 7.5<5
         - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 2
+          Quantity: 2.5 # Frontier: 3.5<2.5
+        - ReagentId: Sugar
+          Quantity: 1.25
+        - ReagentId: Flavorol # Frontier
+          Quantity: 2.75 # Frontier
   - type: Tag
     tags:
     - Pie
@@ -516,6 +519,17 @@
       - sweet
   - type: Sprite
     state: grape
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 5
   - type: Tag
     tags:
     - Fruit
@@ -553,12 +567,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 41
+        maxVol: 50 # Frontier: 35<50
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 25
         - ReagentId: Theobromine
           Quantity: 2
+        - ReagentId: Sugar # Frontier
+          Quantity: 13 # Frontier
         - ReagentId: Flavorol
           Quantity: 15
 # Tastes like tart, dark chocolate.

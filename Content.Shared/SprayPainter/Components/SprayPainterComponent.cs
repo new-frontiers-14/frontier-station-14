@@ -1,9 +1,9 @@
-// Rewritten in Upstream#37341
 
 using Content.Shared.Decals;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.SprayPainter.Components;
 
@@ -111,6 +111,7 @@ public sealed partial class SprayPainterComponent : Component
 /// <summary>
 /// A set of operating modes for decal painting.
 /// </summary>
+[Serializable, NetSerializable]
 public enum DecalPaintMode : byte
 {
     /// <summary>
@@ -126,5 +127,3 @@ public enum DecalPaintMode : byte
     /// </summary>
     Remove = 2,
 }
-
-// End Rewritten in Upstream#37341

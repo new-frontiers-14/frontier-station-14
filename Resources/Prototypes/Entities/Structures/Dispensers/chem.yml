@@ -1,7 +1,7 @@
 - type: entity
-  id: ChemDispenser
+  id: ChemDispenserEmpty
   name: chemical dispenser
-  suffix: Filled
+  suffix: Empty
   parent: ReagentDispenserBase
   description: An industrial grade chemical dispenser.
   components:
@@ -9,11 +9,15 @@
     sprite: Structures/dispensers.rsi
     state: industrial-working
     snapCardinals: true
-  - type: ReagentDispenser
-    storageWhitelist:
+  - type: Storage
+    openOnActivate: false
+    whitelist:
       tags:
       - ChemDispensable
-    pack: ChemDispenserStandardInventory
+    maxItemSize: Large # Frontier
+    grid: # Frontier
+    - 0,0,20,8 # Frontier
+  - type: ReagentDispenser # Frontier
     canAutoLabel: true # Frontier
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
@@ -51,10 +55,31 @@
         - MachineLayer
 
 - type: entity
-  id: ChemDispenserEmpty
+  id: ChemDispenser
   name: chemical dispenser
-  suffix: Empty
-  parent: ChemDispenser
+  suffix: Filled
+  parent: ChemDispenserEmpty
   components:
   - type: ReagentDispenser
-    pack: EmptyInventory
+  - type: StorageFill
+    contents:
+      - id: JugAluminium
+      - id: ReinforcedJugCarbon # Frontier
+      - id: ReinforcedJugChlorine # Frontier
+      - id: JugCopper
+      - id: ReinforcedJugEthanol # Frontier
+      - id: JugFluorine
+      - id: ReinforcedJugSugar # Frontier
+      - id: ReinforcedJugHydrogen # Frontier
+      - id: JugIodine
+      - id: JugIron
+      - id: ReinforcedJugLithium # Frontier
+      - id: JugMercury
+      - id: ReinforcedJugNitrogen # Frontier
+      - id: ReinforcedJugOxygen # Frontier
+      - id: ReinforcedJugPhosphorus # Frontie
+      - id: ReinforcedJugPotassium # Frontier
+      - id: JugRadium
+      - id: ReinforcedJugSilicon # Frontier
+      - id: JugSodium
+      - id: JugSulfur

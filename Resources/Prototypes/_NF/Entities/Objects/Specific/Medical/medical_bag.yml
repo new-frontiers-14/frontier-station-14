@@ -10,7 +10,7 @@
     - state: icon
     - state: icon-on
       visible: false
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: _NF/Objects/Specific/Medical/medical_bag.rsi
     quickEquip: false
@@ -52,8 +52,8 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: { visible: True }
           False: { visible: False }
   # End Frontier

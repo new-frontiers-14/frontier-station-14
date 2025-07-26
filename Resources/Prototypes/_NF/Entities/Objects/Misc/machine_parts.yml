@@ -1,5 +1,37 @@
 # Frontier: old versions of upgraded components, made stackable.
 
+# Rating 1
+
+- type: entity
+  id: CapacitorStockPart
+  name: capacitor
+  parent: BaseStockPart
+  description: A basic capacitor used in the construction of a variety of devices.
+  suffix: Rating 1
+  components:
+    - type: Sprite
+      state: capacitor
+    - type: MachinePart
+      part: Capacitor
+      rating: 1
+    - type: Stack
+      stackType: Capacitor
+
+- type: entity
+  id: MatterBinStockPart
+  name: matter bin
+  parent: BaseStockPart
+  description: A basic matter bin used in the construction of a variety of devices.
+  suffix: Rating 1
+  components:
+    - type: Sprite
+      state: matter_bin
+    - type: MachinePart
+      part: MatterBin
+      rating: 1
+    - type: Stack
+      stackType: MatterBin
+
 # Rating 2
 
 - type: entity

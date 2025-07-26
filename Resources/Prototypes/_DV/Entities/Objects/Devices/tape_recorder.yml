@@ -73,7 +73,7 @@
     - state: tape_greyscale
       map: [ "enum.DamageStateVisualLayers.Base" ]
     - state: tape_ribbonoverlay
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ] # Frontier: Enum changes from Wizden#35341
       visible: false
   - type: Item
     size: Tiny
@@ -88,8 +88,8 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled: # Frontier: Enum changes from Wizden#35341
+        enum.ToggleableVisuals.Layer: # Frontier: Enum changes from Wizden#35341
           True: { visible: true }
           False: { visible: false }
   - type: RandomSprite

@@ -24,9 +24,6 @@
           Quantity: 15 # Frontier: 20<15
         - ReagentId: Flavorol # Frontier
           Quantity: 10 # Frontier
-  - type: Tag
-    tags:
-    - VoxFood
 
 # Meals
 
@@ -114,14 +111,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 11
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Vitamin
-          Quantity: 1
+          Quantity: 15
         - ReagentId: TableSalt
-          Quantity: 1
+          Quantity: 2
 # Tastes like nachos.
 
 - type: entity
@@ -142,16 +137,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 30 # Frontier: 25<30
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 3
+          Quantity: 20
         - ReagentId: TableSalt
-          Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 5
+          Quantity: 2
+        - ReagentId: Flavorol # Frontier
+          Quantity: 5 # Frontier
 # Tastes like nachos, cheese.
 
 - type: entity
@@ -173,16 +166,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30 # Frontier: 25<30
+        maxVol: 40
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8
+          Quantity: 20 # Frontier: 25<20
         - ReagentId: CapsaicinOil
           Quantity: 7
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 5
+        - ReagentId: Flavorol # Frontier
+          Quantity: 10 # Frontier
 # Tastes like nachos, hot pepper.
 
 - type: entity
@@ -264,14 +257,18 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 55
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 20 # Frontier: 40<20
         - ReagentId: CarpoToxin
           Quantity: 3
-        - ReagentId: Flavorol
+        - ReagentId: Vitamin
           Quantity: 5
+        - ReagentId: CapsaicinOil
+          Quantity: 4
+        - ReagentId: Flavorol # Frontier
+          Quantity: 15 # Frontier
   - type: Tag
     tags:
     - CubanCarp
@@ -367,7 +364,7 @@
   description: BBQ ribs, slathered in a healthy coating of BBQ sauce. The least vegan thing to ever exist.
   components:
   - type: Food
-    trash: 
+    trash:
     - FoodKebabSkewer
   - type: FlavorProfile
     flavors:
@@ -378,16 +375,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 45 # Frontier: 35<45
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
         - ReagentId: Protein
-          Quantity: 10
+          Quantity: 15 # Frontier: 20<15
         - ReagentId: BbqSauce
-          Quantity: 10
-        - ReagentId: Flavorol
-          Quantity: 5
+          Quantity: 7 # Frontier: 10<7
+        - ReagentId: Flavorol # Frontier
+          Quantity: 15 # Frontier
   - type: Tag
     tags:
     - Meat
@@ -588,14 +585,18 @@
     - type: SolutionContainerManager
       solutions:
         food:
-          maxVol: 15
+          maxVol: 35
           reagents:
           - ReagentId: Nutriment
-            Quantity: 8
+            Quantity: 20 # Frontier: 25<20
+          - ReagentId: Protein
+            Quantity: 5
           - ReagentId: CapsaicinOil
             Quantity: 6
-          - ReagentId: Flavorol
-            Quantity: 5
+          - ReagentId: Vitamin
+            Quantity: 6
+          - ReagentId: Flavorol # Frontier
+            Quantity: 10 # Frontier
     - type: Tag
       tags:
       - Meat
@@ -619,7 +620,7 @@
         maxVol: 65
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 25 # Frontier: 30<25
         - ReagentId: Vitamin
           Quantity: 15
         - ReagentId: Water
@@ -628,6 +629,8 @@
           Quantity: 5
         - ReagentId: Kelotane
           Quantity: 5
+        - ReagentId: Flavorol # Frontier
+          Quantity: 10 # Frontier
   - type: Tag
     tags:
     - Fruit
@@ -639,7 +642,7 @@
   description: Buttery.
   components:
   - type: Food
-    trash: 
+    trash:
     - FoodPlate
   - type: FlavorProfile
     flavors:
@@ -650,9 +653,11 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 17 # Frontier: 10<17
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 4
+        - ReagentId: Flavorol # Frontier
+          Quantity: 4 # Frontier
