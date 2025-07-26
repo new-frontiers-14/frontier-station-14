@@ -20,7 +20,7 @@ using System.Linq;
 using Content.Shared.Research.Prototypes;
 using Content.Server._NF.Cargo.Components; // Frontier
 using Content.Server.Materials.Components; // Frontier
-using Content.Shared.Cargo.Components; // Frontier (FRONTIER MERGE: NEEDED?)
+using Content.Shared.Cargo.Components; // Frontier
 
 namespace Content.Server.Cargo.Systems;
 
@@ -31,7 +31,7 @@ public sealed class PricingSystem : EntitySystem
 {
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
+    [Dependency] private readonly IComponentFactory _factory = default!; // Frontier
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
