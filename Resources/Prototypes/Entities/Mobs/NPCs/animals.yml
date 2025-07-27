@@ -528,8 +528,8 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
     baseSprintSpeed : 4
-    weightlessAcceleration: 1.5
-    weightlessFriction: 1
+    baseWeightlessAcceleration: 1.5
+    baseWeightlessFriction: 1
     baseWeightlessModifier: 1
   - type: Damageable
     damageContainer: Biological
@@ -2248,7 +2248,7 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatWholePenguin #Frontier: Penguin<WholePenguin
-      amount: 1 # 3<1 Frontier 
+      amount: 1 # 3<1 Frontier
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-bird
