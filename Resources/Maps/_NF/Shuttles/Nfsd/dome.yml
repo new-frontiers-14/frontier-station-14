@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/27/2025 15:04:02
-  entityCount: 1144
+  time: 07/27/2025 15:38:53
+  entityCount: 1151
 maps: []
 grids:
 - 1
@@ -120,6 +120,21 @@ entities:
           decals:
             883: -5,-6
             884: -5,-8
+        - node:
+            color: '#49392696'
+            id: Box
+          decals:
+            898: 1,9
+            899: 1,9
+            900: 2,9
+            901: 2,9
+            902: 3,9
+            903: 3,9
+        - node:
+            color: '#F1B223FF'
+            id: Box
+          decals:
+            897: 0,9
         - node:
             angle: 3.141592653589793 rad
             color: '#49392696'
@@ -495,6 +510,17 @@ entities:
           decals:
             554: -6,-3
             555: -6,-3
+        - node:
+            color: '#169C9CFF'
+            id: Delivery
+          decals:
+            906: 1,5
+        - node:
+            color: '#B02E26FF'
+            id: Delivery
+          decals:
+            904: -1,5
+            905: 0,5
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -960,7 +986,7 @@ entities:
       pos: 2.5,3.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -17124.32
+      secondsUntilStateChange: -17759.047
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2549,6 +2575,11 @@ entities:
     - type: Transform
       pos: -3.5,5.5
       parent: 1
+  - uid: 1151
+    components:
+    - type: Transform
+      pos: -5.5,7.5
+      parent: 1
 - proto: CableMV
   entities:
   - uid: 706
@@ -2830,10 +2861,10 @@ entities:
       parent: 1
 - proto: CrateFoodDinnerware
   entities:
-  - uid: 463
+  - uid: 1149
     components:
     - type: Transform
-      pos: 8.5,-10.5
+      pos: 7.5,-8.5
       parent: 1
 - proto: CrateFreezer
   entities:
@@ -2841,6 +2872,13 @@ entities:
     components:
     - type: Transform
       pos: 0.5,13.5
+      parent: 1
+- proto: CrateFunInstrumentsVariety
+  entities:
+  - uid: 1150
+    components:
+    - type: Transform
+      pos: 7.5,-7.5
       parent: 1
 - proto: CrateHydroponicsSeeds
   entities:
@@ -2991,62 +3029,6 @@ entities:
     - type: Transform
       pos: -1.5,13.5
       parent: 1
-- proto: FireAlarm
-  entities:
-  - uid: 393
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,1.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 274
-      - 253
-      - 863
-      - 864
-      - 246
-      - 571
-      - 1042
-      - 423
-      - 876
-      - 877
-      - 258
-      - 628
-      - 643
-      - 640
-      - 629
-      - 639
-      - 627
-      - 636
-      - 624
-      - 625
-      - 637
-      - 886
-      - 185
-      - 150
-      - 148
-      - 1043
-      - 1044
-      - 1045
-  - uid: 1052
-    components:
-    - type: Transform
-      pos: 1.5,14.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 649
-      - 617
-      - 156
-      - 155
-      - 620
-      - 618
-      - 856
-      - 1051
-      - 1050
-      - 853
-      - 854
 - proto: Firelock
   entities:
   - uid: 856
@@ -3058,7 +3040,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 392
-      - 1052
       - 391
   - uid: 857
     components:
@@ -3104,7 +3085,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 393
       - 390
   - uid: 1048
     components:
@@ -3133,7 +3113,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 392
-      - 1052
   - uid: 1051
     components:
     - type: Transform
@@ -3143,7 +3122,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 392
-      - 1052
 - proto: FirelockEdge
   entities:
   - uid: 185
@@ -3154,7 +3132,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 393
       - 390
       - 391
   - uid: 246
@@ -3165,7 +3142,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 393
       - 390
   - uid: 886
     components:
@@ -3175,7 +3151,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 393
       - 390
       - 391
   - uid: 1042
@@ -3185,7 +3160,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 393
       - 390
   - uid: 1045
     components:
@@ -3195,7 +3169,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 393
       - 390
   - uid: 1046
     components:
@@ -3226,7 +3199,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 392
-      - 1052
   - uid: 854
     components:
     - type: Transform
@@ -3236,7 +3208,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 392
-      - 1052
   - uid: 860
     components:
     - type: Transform
@@ -3258,7 +3229,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
   - uid: 864
     components:
     - type: Transform
@@ -3268,7 +3238,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
   - uid: 872
     components:
     - type: Transform
@@ -3285,7 +3254,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
   - uid: 877
     components:
     - type: Transform
@@ -3294,7 +3262,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
   - uid: 1043
     components:
     - type: Transform
@@ -3302,7 +3269,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 393
       - 390
 - proto: FloorDrain
   entities:
@@ -4818,7 +4784,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 150
@@ -4830,7 +4795,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 156
@@ -4841,7 +4805,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 392
-      - 1052
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 258
@@ -4853,7 +4816,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 414
@@ -4876,7 +4838,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 392
-      - 1052
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 636
@@ -4887,7 +4848,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 393
       - 390
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -4899,7 +4859,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 393
       - 390
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -4923,7 +4882,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 640
@@ -4935,7 +4893,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 643
@@ -4947,7 +4904,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 644
@@ -4979,7 +4935,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 392
-      - 1052
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 650
@@ -5012,7 +4967,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 392
-      - 1052
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 253
@@ -5024,7 +4978,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 274
@@ -5036,7 +4989,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 354
@@ -5059,7 +5011,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 571
@@ -5071,7 +5022,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 617
@@ -5082,7 +5032,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 392
-      - 1052
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 618
@@ -5094,7 +5043,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 392
-      - 1052
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 619
@@ -5148,7 +5096,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 393
       - 390
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -5160,7 +5107,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 393
       - 390
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -5184,7 +5130,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 628
@@ -5196,7 +5141,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 629
@@ -5208,7 +5152,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 390
-      - 393
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -5659,14 +5602,14 @@ entities:
       pos: 5.5,-6.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3782.7878
+      secondsUntilStateChange: -4417.5146
       state: Opening
 - proto: HydroponicsToolHatchet
   entities:
   - uid: 174
     components:
     - type: Transform
-      pos: 7.4514503,-10.438212
+      pos: 7.596858,-10.47631
       parent: 1
 - proto: HydroponicsToolSpade
   entities:
@@ -5699,6 +5642,13 @@ entities:
     components:
     - type: Transform
       pos: 4.429517,12.515968
+      parent: 1
+- proto: KitchenReagentGrinder
+  entities:
+  - uid: 463
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
       parent: 1
 - proto: Lantern
   entities:
@@ -5855,18 +5805,17 @@ entities:
       parent: 1
 - proto: MicrowaveMachineCircuitboard
   entities:
-  - uid: 663
+  - uid: 429
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.9797392,2.4821465
+      pos: 7.315608,-10.148185
       parent: 1
 - proto: MiningDrill
   entities:
   - uid: 77
     components:
     - type: Transform
-      pos: -8.57395,-7.6289988
+      pos: -8.701912,-7.5617313
       parent: 1
   - uid: 954
     components:
@@ -5923,12 +5872,12 @@ entities:
   - uid: 67
     components:
     - type: Transform
-      pos: -6.3395743,-7.3633738
+      pos: -7.264426,-7.4054813
       parent: 1
   - uid: 858
     components:
     - type: Transform
-      pos: -6.7926993,-7.3477488
+      pos: -7.670676,-7.4054813
       parent: 1
 - proto: OxygenCanister
   entities:
@@ -5953,12 +5902,34 @@ entities:
   - uid: 68
     components:
     - type: Transform
-      pos: -7.777075,-7.4258738
+      pos: -8.201926,-7.4679813
       parent: 1
   - uid: 848
     components:
     - type: Transform
-      pos: -7.4958243,-7.4883738
+      pos: -7.967551,-7.5148563
+      parent: 1
+- proto: PinpointerUniversal
+  entities:
+  - uid: 1145
+    components:
+    - type: Transform
+      pos: 8.161059,-10.245617
+      parent: 1
+  - uid: 1146
+    components:
+    - type: Transform
+      pos: 8.692309,-10.276867
+      parent: 1
+  - uid: 1147
+    components:
+    - type: Transform
+      pos: 8.645434,-10.526867
+      parent: 1
+  - uid: 1148
+    components:
+    - type: Transform
+      pos: 8.254809,-10.558117
       parent: 1
 - proto: PlastitaniumWindow
   entities:
@@ -6752,14 +6723,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.5,8.5
       parent: 1
-- proto: ReagentGrinderMachineCircuitboard
-  entities:
-  - uid: 892
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.2219965,2.460114
-      parent: 1
 - proto: RemoteSignaller
   entities:
   - uid: 1144
@@ -7038,6 +7001,13 @@ entities:
     - type: Transform
       pos: 1.5,9.5
       parent: 1
+- proto: SuitStorageEVAPrisoner
+  entities:
+  - uid: 663
+    components:
+    - type: Transform
+      pos: -6.5,-7.5
+      parent: 1
 - proto: SuitStorageWallmountEVAPrisoner
   entities:
   - uid: 673
@@ -7308,6 +7278,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,2.5
       parent: 1
+  - uid: 393
+    components:
+    - type: Transform
+      pos: 8.5,-10.5
+      parent: 1
   - uid: 402
     components:
     - type: Transform
@@ -7325,12 +7300,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,0.5
-      parent: 1
-  - uid: 429
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.5,-7.5
       parent: 1
   - uid: 444
     components:
@@ -7549,6 +7518,20 @@ entities:
     components:
     - type: Transform
       pos: -3.5,0.5
+      parent: 1
+- proto: ToolboxElectricalFilled
+  entities:
+  - uid: 892
+    components:
+    - type: Transform
+      pos: -2.65625,5.7006555
+      parent: 1
+- proto: ToolboxMechanicalFilled
+  entities:
+  - uid: 1052
+    components:
+    - type: Transform
+      pos: -2.6875,5.2631555
       parent: 1
 - proto: Turnstile
   entities:
