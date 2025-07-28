@@ -1,0 +1,29 @@
+# hotdogs
+- type: constructionGraph
+  id: hotdiggity
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: hotteddog
+      steps:
+      - tag: NFHotdog
+
+  - node: hotteddog
+    entity: FoodMealHotdog
+
+- type: constructionGraph
+  id: hotdogstove
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: cookeddog
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 335
+
+  - node: cookeddog
+    entity: FoodMeatSausage

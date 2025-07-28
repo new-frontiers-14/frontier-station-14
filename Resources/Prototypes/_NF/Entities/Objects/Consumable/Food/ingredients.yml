@@ -306,3 +306,36 @@
           Quantity: 3
         - ReagentId: Cornoil
           Quantity: 3
+
+- type: entity
+  parent: FoodMeatBase
+  id: FoodSausageRaw
+  name: raw sausage
+  description: A simple sausage. Who knows what's in this thing?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: sausageraw
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Construction
+    graph: hotdogstove
+    node: start
+
+- type: entity
+  parent: BaseItem
+  id: FoodSausageCasing
+  name: sausage casing
+  description: The intestine or some equivalent of some poor creature out there..
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: sausagecasing
+  - type: Construction
+    graph: Cutlet
+    node: casing
