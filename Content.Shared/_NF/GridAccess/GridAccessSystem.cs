@@ -18,10 +18,10 @@ public sealed class GridAccessSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<IdCardComponent, AfterInteractEvent>(OnIdCardSwipeHappened);
+        SubscribeLocalEvent<ShuttleDeedComponent, AfterInteractEvent>(OnDeedSwipeHappened);
     }
 
-    private void OnIdCardSwipeHappened(EntityUid uid, IdCardComponent comp, ref AfterInteractEvent args)
+    private void OnDeedSwipeHappened(EntityUid uid, ShuttleDeedComponent comp, ref AfterInteractEvent args)
     {
         if (args.Handled)
             return;
@@ -39,6 +39,9 @@ public sealed class GridAccessSystem : EntitySystem
         args.Handled = true;
 
         // If the id card has no registered ship we cant continue.
+        // TODO: ShuttleDeedComponent only gets added when an actual deed is attached
+        // The missing deed code will therefore never trigger. Find a way to make it happen!
+        /*
         if (!TryComp<ShuttleDeedComponent>(uid, out var shuttleDeedComponent))
         {
             _popup.PopupClient(Loc.GetString("grid-access-missing-id-deed"),
@@ -46,21 +49,22 @@ public sealed class GridAccessSystem : EntitySystem
             _audio.PlayLocal(comp.ErrorSound, rcdEntityUid, args.User);
             return;
         }
+        */
 
         // Swiping it again removes the authorization on it.
-        if (gridAccessComponent.LinkedShuttleUid == shuttleDeedComponent.ShuttleUid)
+        if (gridAccessComponent.LinkedShuttleUid == comp.ShuttleUid)
         {
             _popup.PopupClient(Loc.GetString("grid-access-id-card-removed"),
                 uid, args.User, PopupType.Medium);
-            _audio.PlayLocal(comp.SwipeSound, rcdEntityUid, args.User);
+            _audio.PlayLocal(gridAccessComponent.SwipeSound, rcdEntityUid, args.User);
             gridAccessComponent.LinkedShuttleUid = null;
         }
         else // Transfering or setting a new ID card
         {
             _popup.PopupClient(Loc.GetString("grid-access-id-card-accepted"),
                 uid, args.User, PopupType.Medium);
-            _audio.PlayLocal(comp.InsertSound, rcdEntityUid, args.User);
-            gridAccessComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
+            _audio.PlayLocal(gridAccessComponent.InsertSound, rcdEntityUid, args.User);
+            gridAccessComponent.LinkedShuttleUid = comp.ShuttleUid;
         }
 
         Dirty(rcdEntityUid, gridAccessComponent);
