@@ -60,10 +60,6 @@
       storagebase: !type:Container
         ents: [ ]
   - type: Dumpable
-  - type: MagnetPickup
-    range: 1.5 # Ore bag has a range of 1.0
-    magnetEnabled: false
-    magnetCanBeEnabled: false
   - type: Fixtures
     fixtures:
       fix1:
@@ -75,6 +71,9 @@
         - SmallMobMask
         layer:
         - MachineLayer
+  - type: NFMagnetPickup
+    range: 2
+    autoDisableEnabled: true
   - type: ItemToggle
     soundActivate: &soundActivate
       collection: sparks
