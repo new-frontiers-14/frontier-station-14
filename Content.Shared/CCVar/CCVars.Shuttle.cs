@@ -223,14 +223,14 @@ public sealed partial class CCVars
     /// </summary>
     [CVarControl(AdminFlags.VarEdit)]
     public static readonly CVarDef<float> TileBreakEnergyMultiplier =
-        CVarDef.Create("shuttle.impact.tile_break_energy", 45000f, CVar.SERVERONLY); // Frontier 3000f>45000f
+        CVarDef.Create("shuttle.impact.tile_break_energy", 30000f, CVar.SERVERONLY); // Frontier 3000f>35000f
 
     /// <summary>
     /// Multiplier of damage done to entities on colliding areas
     /// </summary>
     [CVarControl(AdminFlags.VarEdit)]
     public static readonly CVarDef<float> ImpactDamageMultiplier =
-        CVarDef.Create("shuttle.impact.damage_multiplier", 0.000004f, CVar.SERVERONLY); // Frontier 0.00005f>0.000004f
+        CVarDef.Create("shuttle.impact.damage_multiplier", 0.00001f, CVar.SERVERONLY); // Frontier 0.00005f>0.00001f
 
     /// <summary>
     /// Multiplier of additional structural damage to do
@@ -265,7 +265,7 @@ public sealed partial class CCVars
     /// </summary>
     [CVarControl(AdminFlags.VarEdit)]
     public static readonly CVarDef<float> ImpactMinThrowVelocity =
-        CVarDef.Create("shuttle.impact.min_throw_velocity", 1.75f, CVar.SERVERONLY); // due to how it works this is about 16 m/s for cargo shuttle // Frontier 1f>1.75f
+        CVarDef.Create("shuttle.impact.min_throw_velocity", 50f, CVar.SERVERONLY); // due to how it works this is about 16 m/s for cargo shuttle // Frontier 1f>50f
 
     /// <summary>
     /// Affects how much damage reduction to give to grids with higher mass
