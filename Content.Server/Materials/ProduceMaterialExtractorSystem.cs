@@ -22,6 +22,7 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         SubscribeLocalEvent<ProduceMaterialExtractorComponent, AfterInteractUsingEvent>(OnInteractUsing);
     }
 
+    // BEGIN Frontier - Cherry pick wizden#32633
     private void OnInteractUsing(Entity<ProduceMaterialExtractorComponent> ent, ref AfterInteractUsingEvent args)
     {
         if (args.Handled)
@@ -82,4 +83,5 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
 
         return success;
     }
+    // END Frontier
 }
