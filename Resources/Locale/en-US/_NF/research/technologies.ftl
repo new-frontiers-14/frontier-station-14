@@ -75,6 +75,7 @@ nf-research-technology-food-filtration = Food Filtration
 nf-research-technology-food-service = Culinary Automation
 nf-research-technology-hardsuits-advanced = Advanced Hardsuits
 nf-research-technology-hardsuits-armored = Armored Hardsuits
+nf-research-technology-hardsuits-old-war = Old War Hardsuits
 nf-research-technology-hardsuits-armored-advanced = Advanced Armored Hardsuits
 nf-research-technology-hardsuits-basic = Basic Hardsuits
 nf-research-technology-hardsuits-engineering = Engineering Hardsuits

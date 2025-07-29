@@ -437,3 +437,98 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWizardBrick
+
+#Hostile Environment Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitBaseNF
+  id: ClothingOuterHardsuitHostileEnvironment
+  name: hostile environment hardsuit
+  description: No matter where you are sent to operate, the hostile enviroment hardsuit ensures you will more or less make it out in one piece!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/hostile_environment.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/hostile_environment.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: FireProtection
+    reduction: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.5
+        Radiation: 0.15
+        Caustic: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitHostileEnvironment
+
+#Surplus Combat Suit
+- type: entity
+  parent: ClothingOuterHardsuitBaseNF
+  id: ClothingOuterHardsuitSurplus
+  name: surplus combat suit
+  description: What was once a mainstay combat suit, its now nothing more then outdated gear from wars long past. Still can stop a bullet though!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/surplus.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/surplus.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.7
+        Piercing: 0.5
+        Heat: 0.85
+        Radiation: 0.5
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitSurplus
+
+#Noble combat suit
+- type: entity
+  parent: ClothingOuterHardsuitBaseNF
+  id: ClothingOuterHardsuitNoble
+  name: noble combat suit
+  description: What is your quarrel today oh brave hero? Do you seek a dragon? Maybe you pursue an ascended cultist? Or do you plan to put an end to the syndicates machinations? Whatever the job, the Noble has you.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/noble.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/noble.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.4
+        Caustic: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitNoble
