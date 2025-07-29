@@ -189,14 +189,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorChromite
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorDarkHerringbone
-      WidenTile: FloorChromite
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsChromite
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorDarkHerringbone
+    widenTile: FloorChromite
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsChromite
@@ -239,45 +237,81 @@
   - !type:MobsDunGen
     minCount: 1
     maxCount: 2
-    groups:
-    - id: SpawnMobBloodCultistPriest
-      amount: 1
+    contents: SpawnMobBloodCultistPriestTable
   - !type:MobsDunGen
     minCount: 1
     maxCount: 2
-    groups:
-    - id: SpawnMobBloodCultistAcolyte
-      amount: 1
+    contents: SpawnMobBloodCultistAcolyteTable
   - !type:MobsDunGen
     minCount: 1
     maxCount: 2
-    groups:
-    - id: SpawnMobBloodCultistZealotMelee
-      amount: 1
+    contents: SpawnMobBloodCultistZealotMeleeTable
   - !type:MobsDunGen
     minCount: 1
     maxCount: 2
-    groups:
-    - id: SpawnMobBloodCultistZealotRanged
-      amount: 1
+    contents: SpawnMobBloodCultistZealotRangedTable
   - !type:MobsDunGen
     minCount: 1
     maxCount: 2
-    groups:
-    - id: SpawnMobBloodCultistCaster
-      amount: 1
+    contents: SpawnMobBloodCultistCasterTable
   - !type:MobsDunGen
     minCount: 0
     maxCount: 1
-    groups:
-    - id: SpawnMobBloodCultistAscended # Boss
-      amount: 1
+    contents: SpawnMobBloodCultistAscendedTable # Boss
   # - !type:MobsDunGen # Dies to barotrauma - equip it for space if you want this restored
   #   minCount: 1
   #   maxCount: 1
-  #   groups:
-  #   - id: SpawnMobCatBloodCultLowChance
-  #     amount: 1
+  #   contents:SpawnMobCatBloodCultLowChanceTable
+
+- type: entityTable
+  id: SpawnMobBloodCultistPriestTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobBloodCultistPriest
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobBloodCultistAcolyteTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobBloodCultistAcolyte
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobBloodCultistZealotMeleeTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobBloodCultistZealotMelee
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobBloodCultistZealotRangedTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobBloodCultistZealotRanged
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobBloodCultistCasterTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobBloodCultistCaster
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobBloodCultistAscendedTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobBloodCultistAscended
+      amount: 1
+
+# Dies to barotrauma - equip it for space if you want this restored
+#- type: entityTable
+#  id: SpawnMobCatBloodCultLowChanceTable
+#  table: !type:GroupSelector
+#    children:
+#    - id: SpawnMobCatBloodCultLowChance
+#      amount: 1
 
 #- type: dungeonConfig
 #  id: NFVGRoidInteriorDungeonsChromite
