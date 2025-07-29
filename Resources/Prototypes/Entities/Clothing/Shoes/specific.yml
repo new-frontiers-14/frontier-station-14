@@ -26,6 +26,22 @@
         blacklist:
           components:
           - Sharp
+  #begin imp edit
+  - type: ItemToggle
+    activated: true
+    onUse: false
+    onActivate: false
+    soundActivate:
+      collection: BikeHorn
+    soundDeactivate:
+      collection: BikeHorn
+      params:
+        pitch: .8
+  - type: ToggleClothing
+    action: ActionToggleWaddling
+  - type: WaddleWhenWorn
+    waddlingAlert: Waddling
+  #end imp edit
 
 - type: entity
   parent: ClothingShoesClownBase
@@ -227,6 +243,13 @@
         collection: FootstepJester
         params:
           variation: 0.07
+    #start imp edit
+    - type: ItemToggle
+      soundActivate:
+        path: /Audio/Effects/Footsteps/jesterstep1.ogg
+      soundDeactivate:
+        path: /Audio/Effects/Footsteps/jesterstep2.ogg
+    #end imp edit
 
 - type: entity
   parent: ClothingShoesClown

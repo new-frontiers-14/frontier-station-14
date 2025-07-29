@@ -70,26 +70,28 @@
   <GuideEntityEmbed Entity="SubstationBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
-  
+
   - Check that the SMES units are anchored to the floor.
   - Check that the substation unit is anchored to the floor.
   - Check that the APC unit's Main Breaker is toggled on.
   - Check the APC unit's current Load* (W).
-  
-  ## 1.3. AME generator unit.
+
+  ## 1.3. D-K Jr. generator unit
   <Box>
-  <GuideEntityEmbed Entity="AmeController"/>
-  <GuideEntityEmbed Entity="AmeJar"/>
+    <GuideEntityEmbed Entity="PortableGeneratorDKJr"/>
+    <GuideEntityEmbed Entity="FuelBananium"/>
+    <GuideEntityEmbed Entity="SignRadiation"/>
   </Box>
-  
-  - Check that the AME core is properly shielded.
-  - Check that the AME controller unit is anchored to the floor.
-  - Check the AME controller unit Fuel Status.
-  - Check the AME controller unit Injection Amount.
-  - Toggle Injection.
-  
+
+  - Check if the D-K Jr. generator unit is anchored to the floor.
+  - Check if the D-K Jr. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check if the D-K Jr. generator unit is set to HV output.
+  - Set Target Power for 45 [bold]k[/bold]W.
+  - Start the D-K Jr. generator unit.
+  - Close radiation shielding.
+
   ## 2. Atmospherics
-  
+
   ## 2.1. Distribution Loop
   <Box>
   <GuideEntityEmbed Entity="OxygenCanister"/>
