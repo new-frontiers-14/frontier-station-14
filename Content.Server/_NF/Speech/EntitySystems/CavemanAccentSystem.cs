@@ -49,7 +49,7 @@ public sealed class CavemanAccentSystem : EntitySystem
 
             var modifiedWord = word;
 
-            if (actualLength > CavemanAccentComponent.MaxWordLength)
+            if (actualLength > component.MaxWordLength)
             {
                 modifiedWord = GetGrunt();
                 CapitalizeReplacement(word, ref modifiedWord);

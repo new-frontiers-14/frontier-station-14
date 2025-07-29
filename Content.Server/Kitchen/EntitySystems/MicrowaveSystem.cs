@@ -576,6 +576,10 @@ namespace Content.Server.Kitchen.EntitySystems
                 var ev = new BeingMicrowavedEvent(uid, user, component.CanHeat, component.CanIrradiate); // Frontier: add CanHeat, CanIrradiate
                 RaiseLocalEvent(item, ev);
 
+                // TODO MICROWAVE SPARKS & EFFECTS
+                // Various microwaveable entities should probably spawn a spark, play a sound, and generate a pop=up.
+                // This should probably be handled by the microwave system, with fields in BeingMicrowavedEvent.
+
                 if (ev.Handled)
                 {
                     UpdateUserInterfaceState(uid, component);

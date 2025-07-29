@@ -32,7 +32,7 @@ construction-graph-tag-sun-glasses = sun glasses
 construction-graph-tag-security-helmet = security helmet
 
 # materials
-construction-graph-tag-capacitor = capacitor
+construction-graph-tag-manipulator = modular machine part
 construction-graph-tag-voice-trigger = a voice trigger
 construction-graph-tag-signal-trigger = a signal trigger
 construction-graph-tag-proximity-sensor = proximity sensor
@@ -56,7 +56,7 @@ construction-graph-tag-super-compact-ai-chip = a super-compact AI chip
 construction-graph-tag-light-bulb = light bulb
 # Frontier: radio<handicomms
 construction-graph-tag-radio = handicomms
-construction-graph-tag-pipe = pipe
+construction-graph-tag-pipe = gas pipe
 construction-graph-tag-human-head = human head
 construction-graph-tag-bucket = bucket
 construction-graph-tag-borg-arm = borg arm
@@ -69,6 +69,7 @@ construction-graph-tag-match-stick = match stick
 construction-graph-tag-potato = a potato
 construction-graph-tag-wheat-bushel = wheat bushel
 construction-graph-tag-corgi-hide = corgi hide
+soil-construction-graph-any-mushroom = any mushroom
 
 # toys
 construction-graph-tag-rubber-ducky = a rubber ducky
