@@ -4031,9 +4031,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: Parallax
       parallax: FrontierStation
@@ -4041,10 +4039,12 @@ entities:
 - proto: ActionToggleLight
   entities:
   - uid: 2428
+    mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1474
-    - type: InstantAction
+    - type: Action
       container: 1474
 - proto: AirAlarm
   entities:
@@ -28301,6 +28301,13 @@ entities:
     components:
     - type: Transform
       pos: 43.550877,10.587616
+      parent: 2173
+- proto: ParcelDropoffPOI
+  entities:
+  - uid: 5794
+    components:
+    - type: Transform
+      pos: 30.5,20.5
       parent: 2173
 - proto: PillCanister
   entities:

@@ -210,14 +210,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorSnow
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorSnowDug
-      WidenTile: FloorSnow
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsSnow
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorSnowDug
+    widenTile: FloorSnow
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsSnow
@@ -260,13 +258,23 @@
   - !type:MobsDunGen
     minCount: 8
     maxCount: 15
-    groups:
-    - id: NFSpawnMobXenoT2
-      amount: 1
+    contents: NFSpawnMobXenoT2Table
   - !type:MobsDunGen
     minCount: 0
     maxCount: 1
-    groups:
+    contents: NFSpawnMobXenoQueenTable
+
+- type: entityTable
+  id: NFSpawnMobXenoT2Table
+  table: !type:GroupSelector
+    children:
+    - id: NFSpawnMobXenoT2
+      amount: 1
+
+- type: entityTable
+  id: NFSpawnMobXenoQueenTable
+  table: !type:GroupSelector
+    children:
     - id: NFSpawnMobXenoQueen
       amount: 1
 

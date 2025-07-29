@@ -410,6 +410,19 @@
   recipeType:
   - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeFoodTofuSliceBattered
+  name: battered tofu slice recipe
+  result: FoodTofuSliceBattered
+  time: 2
+  reagents:
+    Flour: 1.5
+    Egg: 2
+  solids:
+    FoodTofuSlice: 1
+  recipeType:
+  - Assembler
+
 # Donuts (uncooked as well as glazed) - frying handled by DeepFrySpawnComponent per-entity
 
 - type: microwaveMealRecipe
@@ -944,6 +957,18 @@
 # Pasta and Noodles
 
 - type: microwaveMealRecipe
+  id: RecipeRiceNoodleSheet
+  name: raw rice noodle sheet
+  result: FoodRiceNoodlesSheet
+  time: 15
+  group: Pasta
+  reagents:
+    Rice: 45
+    TableSalt: 10
+    Cornoil: 10
+  recipeType: Assembler
+
+- type: microwaveMealRecipe
   id: RecipeBasicNoodles
   name: basic noodles
   result: FoodMealBasicNoodles
@@ -951,7 +976,7 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
   reagents:
     Soysauce: 5
     Water: 15
@@ -966,11 +991,11 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodSoybeans: 1
-    FoodButterSlice: 1
   reagents:
-    Water: 20
+    Soysauce: 5
+    Water: 15
     Egg: 6
   recipeType:
   - Oven
@@ -983,10 +1008,11 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodCorn: 1
   reagents:
-    Water: 20
+    Soysauce: 5
+    Water: 15
   recipeType:
   - Oven
 
@@ -998,12 +1024,12 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodCorn: 1
     FoodMeatBacon: 1
   reagents:
-    Soysauce: 10
-    Water: 10
+    Soysauce: 5
+    Water: 15
     Egg: 6
   recipeType:
   - Oven
@@ -1016,7 +1042,7 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodTofuSlice: 1
     FoodChiliPepper: 1
   reagents:
@@ -1033,13 +1059,48 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodSoybeans: 1
-    FoodGarlic: 1
     FoodMeatBacon: 1
   reagents:
     Soysauce: 5
     Water: 15
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBunCotton
+  name: cotton bun recipe
+  result: FoodBunCotton
+  time: 5
+  group: Moth
+  solids:
+    FoodDoughCottonSlice: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerPlainCotton
+  name: plain cotton burger recipe
+  result: FoodBurgerCotton
+  time: 10
+  group: Moth
+  solids:
+    FoodBunCotton: 1
+    CottonBol: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerCottonCheese
+  name: cotton cheeseburger recipe
+  result: FoodBurgerCottonCheese
+  time: 10
+  group: Moth
+  solids:
+    FoodBunCotton: 1
+    CottonBol: 1
+    FoodCheeseSlice: 1
   recipeType:
   - Oven
 
@@ -1267,6 +1328,20 @@
     FoodSnackChocolateBar: 1
   reagents:
     IceCream: 8
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeChickenParmesan
+  name: Chicken Parmesan
+  result: FoodMealChickenParmesan
+  time: 5
+  group: Savory
+  solids:
+    FoodMeatChickenFried: 1
+    FoodNoodlesBoiled: 1
+    FoodTomato: 1
+    FoodCheeseSlice: 1
   recipeType:
   - Assembler
 

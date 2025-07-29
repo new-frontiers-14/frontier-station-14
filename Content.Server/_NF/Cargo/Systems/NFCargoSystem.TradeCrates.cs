@@ -3,6 +3,7 @@ using Content.Server._NF.Trade;
 using Content.Server.Cargo.Systems;
 using Content.Server.GameTicking;
 using Content.Shared._NF.Trade;
+using Content.Shared.Cargo;
 using Content.Shared.Examine;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Throwing;
@@ -12,7 +13,6 @@ namespace Content.Server._NF.Cargo.Systems;
 
 public sealed partial class NFCargoSystem
 {
-    [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private LabelSystem _label = default!;
     private readonly List<EntityUid> _destinations = new();
 
@@ -87,17 +87,26 @@ public sealed partial class NFCargoSystem
         if (!TryComp(ent.Comp.DestinationStation, out MetaDataComponent? metadata))
             return;
 
-        ev.PushMarkup(Loc.GetString("trade-crate-destination-station", ("destination", metadata.EntityName)));
+        using (ev.PushGroup(nameof(TradeCrateComponent)))
+        {
+            ev.PushMarkup(Loc.GetString("trade-crate-destination-station", ("destination", metadata.EntityName)));
 
-        if (ent.Comp.ExpressDeliveryTime == null)
-            return;
+            if (ent.Comp.ExpressDeliveryTime == null)
+                return;
 
-        ev.PushMarkup(ent.Comp.ExpressDeliveryTime >= _timing.CurTime ?
-            Loc.GetString("trade-crate-priority-active") :
-            Loc.GetString("trade-crate-priority-inactive"));
+            ev.PushMarkup(ent.Comp.ExpressDeliveryTime >= _timing.CurTime ?
+                Loc.GetString("trade-crate-priority-active") :
+                Loc.GetString("trade-crate-priority-inactive"));
 
-        var shiftTime = ent.Comp.ExpressDeliveryTime - _gameTicker.RoundStartTimeSpan;
-        ev.PushMarkup(Loc.GetString("trade-crate-priority-time", ("time", shiftTime.Value.ToString(@"hh\:mm\:ss"))));
+            var timeLeft = ent.Comp.ExpressDeliveryTime.Value - _timing.CurTime;
+            var timeLeftSeconds = timeLeft.TotalSeconds;
+            if (timeLeftSeconds > 1)
+                ev.PushMarkup(Loc.GetString("trade-crate-priority-time", ("time", timeLeft.ToString(@"hh\:mm\:ss"))));
+            else if (timeLeftSeconds >= 0)
+                ev.PushMarkup(Loc.GetString("trade-crate-priority-time-now"));
+            else
+                ev.PushMarkup(Loc.GetString("trade-crate-priority-past-due", ("time", timeLeft.ToString(@"hh\:mm\:ss"))));
+        }
     }
 
     private void OnTradeCrateThrow(Entity<TradeCrateComponent> ent, ref ThrowItemAttemptEvent ev)

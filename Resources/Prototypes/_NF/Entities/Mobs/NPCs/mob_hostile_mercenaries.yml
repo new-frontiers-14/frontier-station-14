@@ -1,16 +1,20 @@
-# Base
+#region Base
 - type: entity
   name: mercenary
   abstract: true
   parent:
+  - NFMobNoEquipmentOnGib
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - BaseC3MobHuman
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
   - MobHumanoidHostileAISimpleRanged
-  - NFMobRestrictions
   id: MobMercenaryBase
   description: A mercenary, merc, soldier of fortune, hired gun, dog of war.
   components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
   - type: Damageable
     damageModifierSet: MobMercenaryDamageModifierSet
   - type: NpcFactionMember
@@ -25,8 +29,6 @@
     speedModifierThresholds:
       48: 0.7
       64: 0.5
-  - type: Stamina
-    critThreshold: 80
   - type: DamageStateVisuals
   - type: RotationVisuals
     defaultRotation: 90
@@ -59,12 +61,9 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 # Variations
-## Tier 1
+#region Tier 1
 - type: entity
   name: mercenary soldier
   parent:
@@ -112,7 +111,9 @@
 
 - type: entity
   name: mercenary soldier
-  parent: MobMercenaryBase
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobMercenaryBase
   id: MobMercenarySoldierPistol
   description: Low-ranking soldiers armed with a variety of surplus weapons.
   categories: [ HideSpawnMenu ]
@@ -141,7 +142,7 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgePistol35
+    proto: NFCartridgePistol35Overpressure
     capacity: 4
     count: 4
   - type: Gun
@@ -187,7 +188,7 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgeRifle20
+    proto: NFCartridgeRifle20Overpressure
     capacity: 10
     count: 10
   - type: Gun
@@ -202,7 +203,7 @@
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
 
-## Tier 2
+#region Tier 2
 - type: entity
   name: mercenary breacher
   parent:
@@ -251,7 +252,9 @@
 
 - type: entity
   name: mercenary breacher
-  parent: MobMercenaryBase
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobMercenaryBase
   id: MobMercenarySoldierRevolver
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
   categories: [ HideSpawnMenu ]
@@ -282,7 +285,7 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgePistol35
+    proto: NFCartridgePistol35Overpressure
     capacity: 6
     count: 6
   - type: Gun
@@ -299,7 +302,9 @@
 
 - type: entity
   name: mercenary breacher
-  parent: MobMercenaryBase
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobMercenaryBase
   id: MobMercenaryBreacherShotgun
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
   categories: [ HideSpawnMenu ]
@@ -332,7 +337,7 @@
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
-    proto: NFShellShotgunBuckshot
+    proto: NFShellShotgunBuckshotOverpressure
     capacity: 1
     count: 1
   - type: Gun
@@ -347,10 +352,12 @@
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
 
-## Tier 3
+#region Tier 3
 - type: entity
   name: mercenary paramedic
-  parent: MobMercenaryBase
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobMercenaryBase
   id: MobMercenarySpecialistMedic
   description: Experienced mercenaries, specialists are practised and proficient in combat or support roles, possibly both.
   categories: [ HideSpawnMenu ]
@@ -414,7 +421,9 @@
 
 - type: entity
   name: mercenary ranger
-  parent: MobMercenaryBase
+  parent:
+  - MobMovementSpeedModifierRanged
+  - MobMercenaryBase
   id: MobMercenarySpecialistAssault
   categories: [ HideSpawnMenu ]
   components:
@@ -445,7 +454,7 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgeRifle25
+    proto: NFCartridgeRifle25Overpressure
     capacity: 2
     count: 2
   - type: RechargeBasicEntityAmmo
@@ -464,10 +473,12 @@
     - Burst
     soundGunshot: /Audio/_NF/Weapons/Guns/Gunshots/rifle.ogg
 
-## Tier 4 - Boss
+#region Tier 4 - Boss
 - type: entity
   name: mercenary captain
-  parent: [ MobMercenaryBase, NFMobBossRestrictions ]
+  parent:
+   - MobHostileBossBase
+   - MobMercenaryBase
   id: MobMercenaryCaptain
   description: The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
   categories: [ HideSpawnMenu ]
@@ -500,7 +511,7 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgeRifle30
+    proto: NFCartridgeRifle30Overpressure
     capacity: 10
     count: 10
   - type: Gun
@@ -514,3 +525,282 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: EyeCursorOffset
+    maxOffset: 10
+    pvsIncrease: 1
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-mercenary-captain-dungeon-name
+    description: ghost-role-information-mercenary-captain-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+  - type: ActionGun
+    action: ActionSideArmFan
+    gunProto: GunSideArmFan
+
+- type: entity
+  id: GunSideArmFan
+  name: trusty Lucky 45
+  description: Shoots bullets.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFCartridgePistol45Incendiary
+    capacity: 6
+    count: 6
+  - type: Gun
+    minAngle: 2
+    maxAngle: 8
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+    soundEmpty: null
+    projectileSpeed: 30
+
+- type: entity
+  id: ActionSideArmFan
+  parent: BaseAction
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Lucky 45[/color]"
+  description: "Luck always beats skill, ya weasel. [color=yellow]5 second between ammo recharges.[/color]"
+  components:
+  - type: Action
+    icon: { sprite : _DV/Objects/Weapons/Guns/Revolvers/lucky.rsi, state: icon }
+    priority: 2
+    itemIconStyle: BigAction
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+#region Space, Tier 1
+- type: entity
+  id: MobMercenaryEVAKitTier1
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-base
+      color: "#7b7b3f"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-decals-01
+      color: "#b8b873"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-reinforced-points
+      color: "#3e3e48"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-breathing-gear
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-unshaded
+      shader: unshaded
+    # Gas tank
+    - sprite: _NF/Objects/Tanks/o2n2equal.rsi
+      state: equipped-SUITSTORAGE
+    # Helmet
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-base
+      color: "#7b7b3f"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-reinforced-points
+      color: "#27272e"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-visor
+      color: "#f5fc95"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-light
+      shader: unshaded
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+  - type: PointLight
+    color: "#7b7b3f"
+    enabled: true
+    radius: 3
+    energy: 1
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
+- type: entity
+  id: MobMercenarySoldierEVAKnife
+  parent:
+  - MobMovementSpeedModifierEVAMelee
+  - MobMercenaryEVAKitTier1
+  - MobMercenarySoldierKnife
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobMercenarySoldierEVAPistol
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier1
+  - MobMercenarySoldierPistol
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobMercenarySoldierEVANovalite
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier1
+  - MobMercenarySoldierNovalite
+  categories: [ HideSpawnMenu ]
+
+#region Space, Tier 2
+- type: entity
+  id: MobMercenaryEVAKitTier2
+  parent: MobMercenaryEVAKitTier1
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _NF/Clothing/OuterClothing/Hardsuits/mercenary.rsi
+      state: equipped-OUTERCLOTHING
+    # Gas tank
+    - sprite: _NF/Objects/Tanks/o2n2equal.rsi
+      state: equipped-SUITSTORAGE
+    # Helmet
+    - sprite: _NF/Clothing/Head/Hardsuits/mercenary.rsi
+      state: on-equipped-HELMET
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+
+- type: entity
+  id: MobMercenaryBreacherEVAMachete
+  parent:
+  - MobMovementSpeedModifierEVAMelee
+  - MobMercenaryEVAKitTier2
+  - MobMercenaryBreacherMachete
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobMercenaryBreacherEVARevolver
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier2
+  - MobMercenarySoldierRevolver
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobMercenaryBreacherEVAShotgun
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier2
+  - MobMercenaryBreacherShotgun
+  categories: [ HideSpawnMenu ]
+
+#region Space, Tier 3
+- type: entity
+  id: MobMercenaryEVAKitTier3
+  parent: MobMercenaryEVAKitTier1
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _NF/Clothing/OuterClothing/Hardsuits/private_security.rsi
+      state: equipped-OUTERCLOTHING
+    # Gas tank
+    - sprite: _NF/Objects/Tanks/o2n2equal.rsi
+      state: equipped-SUITSTORAGE
+    # Helmet
+    - sprite: _NF/Clothing/Head/Hardsuits/private_security.rsi
+      state: on-equipped-HELMET
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+
+- type: entity
+  id: MobMercenarySpecialistEVAMedic
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier3
+  - MobMercenarySpecialistMedic
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: MobMercenarySpecialistEVAAssault
+  parent:
+  - MobMovementSpeedModifierEVARanged
+  - MobMercenaryEVAKitTier3
+  - MobMercenarySpecialistAssault
+  categories: [ HideSpawnMenu ]
+
+#region Space, Tier 4 - Boss
+- type: entity
+  id: MobMercenaryEVAKitTier4
+  parent: MobMercenaryEVAKitTier1
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _NF/Clothing/OuterClothing/Hardsuits/scaf.rsi
+      state: equipped-OUTERCLOTHING
+    # Gas tank
+    - sprite: _NF/Objects/Tanks/o2n2equal.rsi
+      state: equipped-SUITSTORAGE
+    # Helmet
+    - sprite: _NF/Clothing/Head/Hardsuits/scaf.rsi
+      state: off-equipped-HELMET
+    # Mantle
+    - sprite: Clothing/Neck/mantles/qmmantle.rsi
+      state: equipped-NECK
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+
+- type: entity
+  id: MobMercenaryCaptainEVA
+  parent:
+  - MobMercenaryEVAKitTier4
+  - MobMercenaryCaptain
+  categories: [ HideSpawnMenu ]
