@@ -64,7 +64,10 @@ namespace Content.Server.Connection
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly IHttpClientHolder _http = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly MiniAuthManager _authManager = default!; //Frontier
+
+        private GameTicker? _ticker;
 
         private ISawmill _sawmill = default!;
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
@@ -245,8 +248,9 @@ namespace Content.Server.Connection
             var adminData = await _db.GetAdminDataForAsync(e.UserId);
             // New Frontiers - Session Respector - Checks that a player was connected before applying panic bunker/baby jail/no whitelist on low pop checks
             // This code is licensed under AGPLv3. See AGPLv3.txt
-            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
-                            ticker.PlayerGameStatuses.ContainsKey(userId); // Frontier: remove status.JoinedGame check, TryGetValue<ContainsKey
+            _ticker ??= _entityManager.SystemOrNull<GameTicker>();
+            var wasInGame = _ticker != null &&
+                            _ticker.PlayerGameStatuses.ContainsKey(userId); // Frontier: remove status.JoinedGame check, TryGetValue<ContainsKey
 
             if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
             {
@@ -321,8 +325,9 @@ namespace Content.Server.Connection
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
 
+            // Frontier: allow users who joined before panic bunker was enforced to reconnect
             // Checks for whitelist IF it's enabled AND the user isn't an admin. Admins are always allowed.
-            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && !wasInGame && adminData is null) // Frontier: allow users who joined before panic bunker was enforced to reconnect
+            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && !wasInGame && adminData is null)
             {
                 if (_whitelists is null)
                 {
@@ -350,7 +355,7 @@ namespace Content.Server.Connection
                     break;
                 }
             }
-            // End of modified code
+            // End Frontier
 
             // ALWAYS keep this at the end, to preserve the API limit.
             if (_cfg.GetCVar(CCVars.GameIPIntelEnabled) && adminData == null)

@@ -99,6 +99,7 @@
     - type: GasCanister
       gasTankSlot:
         name: comp-gas-canister-slot-name-gas-tank
+        ejectOnBreak: true
         whitelist:
           components:
             - GasTank
@@ -114,8 +115,8 @@
     - type: GuideHelp
       guides:
       - GasCanisters
-    - type: Paintable # Upstream#37341
-      group: Canisters # Upstream#37341
+    - type: Paintable
+      group: Canisters
 
 - type: entity
   parent: GasCanister
@@ -127,7 +128,7 @@
         - state: storage # Frontier
     - type: GasCanister
       gasMixture:
-        volume: 1000
+        volume: 1500
         moles: # List of gasses for easy reference
           - 0 # oxygen
           - 0 # nitrogen
@@ -176,10 +177,10 @@
       - state: air # Frontier
   - type: GasCanister
     gasMixture:
-      volume: 1000
+      volume: 1500
       moles:
-        - 393.0592071 # oxygen 21%
-        - 1478.6513029 # nitrogen 79%
+      - 581.56 # oxygen 21%
+      - 2187.79 # nitrogen 79%
       temperature: 293.15
   - type: Destructible
     thresholds:
@@ -216,9 +217,9 @@
       - state: oxygen # Frontier
   - type: GasCanister
     gasMixture:
-      volume: 1000
+      volume: 1500
       moles:
-        - 1871.71051 # oxygen
+      - 2769.36 # oxygen
       temperature: 293.15
   - type: Destructible
     thresholds:
@@ -255,7 +256,7 @@
       - state: oxygen_liquid # Frontier
   - type: GasCanister
     gasMixture:
-      volume: 1000
+      volume: 1500
       moles:
         - 18710.71051 # oxygen
       temperature: 72
@@ -296,10 +297,10 @@
         - state: nitrogen # Frontier
     - type: GasCanister
       gasMixture:
-        volume: 1000
+        volume: 1500
         moles:
           - 0 # oxygen
-          - 1871.71051 # nitrogen
+          - 2769.36 # nitrogen
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -336,7 +337,7 @@
       - state: nitrogen_liquid # Frontier
   - type: GasCanister
     gasMixture:
-      volume: 1000
+      volume: 1500
       moles:
         - 0 # oxygen
         - 18710.71051 # nitrogen
@@ -378,11 +379,11 @@
         - state: carbon # Frontier
     - type: GasCanister
       gasMixture:
-        volume: 1000
+        volume: 1500
         moles:
           - 0 # oxygen
           - 0 # nitrogen
-          - 1871.71051 # CO2
+          - 2769.36 # CO2
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -421,7 +422,7 @@
       - state: carbon_liquid # Frontier
   - type: GasCanister
     gasMixture:
-      volume: 1000
+      volume: 1500
       moles:
         - 0 # oxygen
         - 0 # nitrogen
@@ -464,12 +465,12 @@
         - state: plasma # Frontier
     - type: GasCanister
       gasMixture:
-        volume: 1000
+        volume: 1500
         moles:
           - 0 # oxygen
           - 0 # nitrogen
           - 0 # carbon dioxide
-          - 1871.71051 # plasma
+          - 2769.36 # plasma
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -510,13 +511,13 @@
         - state: tritium # Frontier
     - type: GasCanister
       gasMixture:
-        volume: 1000
+        volume: 1500
         moles:
           - 0 # oxygen
           - 0 # nitrogen
           - 0 # CO2
           - 0 # Plasma
-          - 1871.71051 # Tritium
+          - 2769.36 # Tritium
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -555,14 +556,14 @@
         - state: water_vapor
     - type: GasCanister
       gasMixture:
-        volume: 1000
+        volume: 1500
         moles:
           - 0 # oxygen
           - 0 # nitrogen
           - 0 # CO2
           - 0 # Plasma
           - 0 # Tritium
-          - 1871.71051 # Water vapor
+          - 2769.36 # Water vapor
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -599,7 +600,7 @@
         - state: ammonia # Frontier
     - type: GasCanister
       gasMixture:
-        volume: 1000
+        volume: 1500
         moles:
           - 0 # oxygen
           - 0 # nitrogen
@@ -607,7 +608,7 @@
           - 0 # Plasma
           - 0 # Tritium
           - 0 #  Water vapor
-          - 1871.71051 # Ammonia
+          - 2769.36 # Ammonia
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -646,7 +647,7 @@
         - state: nitrous_oxide # Frontier
     - type: GasCanister
       gasMixture:
-        volume: 1000
+        volume: 1500
         moles:
           - 0 # oxygen
           - 0 # nitrogen
@@ -655,7 +656,7 @@
           - 0 # Tritium
           - 0 #  Water vapor
           - 0 # Ammonia
-          - 1871.71051 # N2O
+          - 2769.36 # N2O
         temperature: 293.15
     - type: Destructible
       thresholds:
@@ -694,7 +695,7 @@
     - state: frezon
   - type: GasCanister
     gasMixture:
-      volume: 1000
+      volume: 1500
       moles:
       - 0 # oxygen
       - 0 # nitrogen
@@ -704,7 +705,7 @@
       - 0 # Water vapor
       - 0 # Ammonia
       - 0 # N2O
-      - 1871.71051 # Frezon
+      - 2769.36 # Frezon
       temperature: 293.15
   - type: Destructible
     thresholds:
