@@ -175,14 +175,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorScrap
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorTechMaint3
-      WidenTile: Lattice # Plating
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsScrap
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorTechMaint3
+    widenTile: Lattice # Plating
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsScrap
@@ -225,37 +223,45 @@
   - !type:MobsDunGen
     minCount: 1
     maxCount: 2
-    groups:
-    - id: SpawnMobRogueSiliconsT3
-      amount: 1
+    contents: SpawnMobRogueSiliconsT3Table
   - !type:MobsDunGen
     minCount: 1
     maxCount: 2
-    groups:
-    - id: SpawnMobRogueSiliconsT2
-      amount: 1
+    contents: SpawnMobRogueSiliconsT2Table
   - !type:MobsDunGen
     minCount: 1
     maxCount: 2
-    groups:
-    - id: SpawnMobRogueScapT1
-      amount: 1
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    groups:
-    - id: SpawnMobRogueScapT1
-      amount: 1
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 2
-    groups:
-    - id: SpawnMobRogueSiliconsT2
-      amount: 1
+    contents: SpawnMobRogueScapT1Table
   - !type:MobsDunGen
     minCount: 0
     maxCount: 1
-    groups:
+    contents: SpawnMobRogueSiliconBossRandomTable
+
+- type: entityTable
+  id: SpawnMobRogueSiliconsT3Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobRogueSiliconsT3
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobRogueSiliconsT2Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobRogueSiliconsT2
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobRogueScapT1Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobRogueScapT1
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobRogueSiliconBossRandomTable
+  table: !type:GroupSelector
+    children:
     - id: SpawnMobRogueSiliconBossRandom
       amount: 1
 

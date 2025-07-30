@@ -189,14 +189,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorCave
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: PlatingAsteroid
-      WidenTile: FloorCaveDrought
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsCave
   - !type:SplineDungeonConnectorDunGen
+    tile: PlatingAsteroid
+    widenTile: FloorCaveDrought
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsCave
@@ -239,14 +237,24 @@
   - !type:MobsDunGen
     minCount: 8
     maxCount: 15
-    groups:
-    - id: SpawnMobExplorerEVAT2
-      amount: 1
+    contents: SpawnMobExplorerEVAT2Table
   - !type:MobsDunGen
     minCount: 0
     maxCount: 1
-    groups:
-    - id: SpawnMobExplorerBoss # Boss
+    contents: SpawnMobExplorerBossTable # Boss
+
+- type: entityTable
+  id: SpawnMobExplorerEVAT2Table
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobExplorerEVAT2
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobExplorerBossTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobExplorerBoss
       amount: 1
 
 #- type: dungeonConfig

@@ -90,6 +90,15 @@
       weight: 0.25 # Frontier
     - id: ScrapGenericMachineAncient # Frontier
       weight: 0.1 # Frontier
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - !type:NestedSelector
+        weight: 3
+        tableId: RandomChemicalBarrel
+      - !type:NestedSelector
+        weight: 1
+        tableId: RandomChemicalBarrelRadioactive
 
 # Treasure: High-value scatterables that don't do a ton.
 
