@@ -537,6 +537,7 @@ public sealed class ThrusterSystem : EntitySystem
             foreach (var uid in comp.Colliding.ToArray())
             {
                 // Frontier: make sure they're still in danger
+                // Frontier TODO: Actually fix the cause of this bug (EndCollideEvent not firing on buckled entities)
                 if (!_transform.InRange(ent, uid, 2f))
                 {
                     comp.Colliding.Remove(uid);
