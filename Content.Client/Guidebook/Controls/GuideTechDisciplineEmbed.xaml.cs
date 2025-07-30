@@ -29,7 +29,7 @@ public sealed partial class GuideTechDisciplineEmbed : BoxContainer, IDocumentTa
     public GuideTechDisciplineEmbed(string group) : this()
     {
         var prototypes = _prototype.EnumeratePrototypes<TechnologyPrototype>()
-            .Where(p => p.Discipline.Equals(group)).OrderBy(p => p.Tier).ThenBy(p => Loc.GetString(p.Name));
+            .Where(p => p.HasDiscipline(group)).OrderBy(p => p.Tier).ThenBy(p => Loc.GetString(p.Name)); // Frontier: Updated to support dual-discipline technologies
         foreach (var tech in prototypes)
         {
             var embed = new GuideTechnologyEmbed(tech);
@@ -47,7 +47,7 @@ public sealed partial class GuideTechDisciplineEmbed : BoxContainer, IDocumentTa
         }
 
         var prototypes = _prototype.EnumeratePrototypes<TechnologyPrototype>()
-            .Where(p => p.Discipline.Equals(group)).OrderBy(p => p.Tier).ThenBy(p => Loc.GetString(p.Name));
+            .Where(p => p.HasDiscipline(group)).OrderBy(p => p.Tier).ThenBy(p => Loc.GetString(p.Name)); // Frontier: Updated to support dual-discipline technologies
         foreach (var tech in prototypes)
         {
             var embed = new GuideTechnologyEmbed(tech);

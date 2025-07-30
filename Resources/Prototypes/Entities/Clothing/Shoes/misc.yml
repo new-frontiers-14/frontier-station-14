@@ -50,6 +50,15 @@
   - type: Construction
     graph: ClothingShoeSlippersDuck
     node: shoes
+  - type: WaddleWhenWorn # DeltaV - upstream removed waddling
+    tumbleIntensity: 10 # DeltaV - smaller than clown shoes
+  #start imp edit
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Items/Toys/quack.ogg
+    soundDeactivate:
+      path: /Audio/Items/Toys/quack.ogg
+  #end imp edit
 
 - type: entity
   parent: ClothingShoesBaseButcherable
