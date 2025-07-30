@@ -13,7 +13,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Server.Storage.Components; // Frontier
-using Content.Server.Cargo.Systems; // Frontier
+using Content.Shared.Cargo; // Frontier
 
 namespace Content.Server.Materials;
 
