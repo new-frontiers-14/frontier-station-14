@@ -269,16 +269,18 @@
 
 - type: entity
   id: ActionThrowPartyNade
+  parent: BaseAction
   categories: [ HideSpawnMenu ]
   name: "[color=yellow]Throw a party 'nade[/color]"
   description: "Hurls activated party 'nade filled with party chems, explodes on contact. [color=yellow]20 second cooldown.[/color]"
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite : Objects/Weapons/Grenades/metalfoam.rsi, state: primed }
-    event: !type:ActionGunShootEvent
     priority: 2
+    itemIconStyle: BigAction
+    useDelay: 20
+  - type: TargetAction
     checkCanAccess: false
     range: 0
-    itemIconStyle: BigAction
-  - type: UseDelay
-    delay: 20
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent

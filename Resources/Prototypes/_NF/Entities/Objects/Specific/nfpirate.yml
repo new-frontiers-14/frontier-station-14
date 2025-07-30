@@ -152,7 +152,7 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
+      enum.ToggleableVisuals.Enabled:
         on:
           True: { visible: true }
           False: { visible: false }
@@ -167,9 +167,8 @@
     minRange: 3
   - type: ProximityDetector
     range: 10
-    criteria:
-      components:
-      - PinpointerTarget
+    components:
+    - type: PinpointerTarget
   - type: Beeper
     isMuted: true
     minBeepInterval: 0.25
