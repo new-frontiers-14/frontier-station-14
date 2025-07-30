@@ -174,16 +174,19 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   id: ActionDragonsBreathBaby
+  parent: BaseAction
   name: "[color=orange]Hatchling's Breath[/color]"
   description: Spew out tiny flames at anyone foolish enough to attack you! Adorable.
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite : Objects/Weapons/Guns/Projectiles/magic.rsi, state: fireball }
-    event: !type:ActionGunShootEvent
     priority: 2
-    checkCanAccess: false
-    range: 0
     itemIconStyle: BigAction
     useDelay: 120
     sound:
       path: /Audio/Animals/space_dragon_roar.ogg
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
