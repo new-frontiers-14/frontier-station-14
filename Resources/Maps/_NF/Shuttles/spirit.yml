@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/02/2025 15:16:30
+  time: 07/25/2025 20:38:03
   entityCount: 193
 maps: []
 grids:
@@ -1136,15 +1136,21 @@ entities:
   - uid: 117
     components:
     - type: Transform
+      anchored: True
       pos: 2.5,-3.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: OxygenCanister
   entities:
   - uid: 139
     components:
     - type: Transform
+      anchored: True
       pos: -0.5,-3.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: PortableGeneratorPacmanShuttle
   entities:
   - uid: 56
@@ -1154,14 +1160,6 @@ entities:
       parent: 1
     - type: FuelGenerator
       targetPower: 11000
-- proto: PoweredLEDSmallLight
-  entities:
-  - uid: 156
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-3.5
-      parent: 1
 - proto: PoweredlightExterior
   entities:
   - uid: 2
@@ -1183,6 +1181,12 @@ entities:
       parent: 1
 - proto: PoweredlightLED
   entities:
+  - uid: 26
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-3.5
+      parent: 1
   - uid: 197
     components:
     - type: Transform
