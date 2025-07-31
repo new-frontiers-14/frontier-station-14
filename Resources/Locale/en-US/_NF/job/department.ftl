@@ -3,3 +3,4 @@ department-Antag = Criminals
 department-Command = Frontier Command
 department-Frontier = Frontier
 department-Security = New Frontier Sheriff's Department
+department-EventRoles = Event Roles
