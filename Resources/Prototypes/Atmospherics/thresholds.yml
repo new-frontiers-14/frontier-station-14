@@ -70,6 +70,13 @@
   upperWarnAround: !type:AlarmThresholdSetting
     threshold: 0.5
 
+- type: alarmThreshold #Frontier
+  id: stationHe #Frontier
+  upperBound: !type:AlarmThresholdSetting #Frontier
+    threshold: 0.006 #Frontier
+  upperWarnAround: !type:AlarmThresholdSetting #Frontier
+    threshold: 0.5 # minor gasping and airloss at 0.3% #Frontier
+
 # this is a hack, but 150% means never danger on water, but warn at 75%
 - type: alarmThreshold
   id: stationWaterVapor
