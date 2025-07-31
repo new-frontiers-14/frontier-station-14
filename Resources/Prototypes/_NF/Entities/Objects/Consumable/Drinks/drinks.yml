@@ -15,6 +15,22 @@
     sprite: _NF/Objects/Consumable/Drinks/pumpkinspicelatte.rsi
     state: icon
 
+- type: entity
+  parent: DrinkGlass
+  id: TheMadgob
+  suffix: the madgob
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: TheMadgob
+          Quantity: 30
+  - type: Icon
+    sprite: _NF/Objects/Consumable/Drinks/themadgob.rsi
+    state: icon
+
 # Alcohol drinks
 - type: entity
   parent: DrinkGlass

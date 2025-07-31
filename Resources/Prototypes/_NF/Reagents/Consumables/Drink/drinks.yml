@@ -1,3 +1,4 @@
+# Drinks
 - type: reagent
   id: PumpkinSpiceLatte
   name: reagent-name-pumpkin-spice-latte
@@ -45,6 +46,83 @@
   metamorphicChangeColor: false
 
 - type: reagent
+  id: HoneyIcedTea
+  name: reagent-name-honey-iced-tea
+  parent: BaseDrink
+  desc: reagent-desc-honey-iced-tea
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: honey
+  color: "#E79A3F"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.6
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/honeyicedtea.rsi
+    state: icon
+
+- type: reagent
+  id: WassailMulledAle
+  name: reagent-name-wassail
+  parent: BaseAlcohol
+  desc: reagent-desc-wassail
+  physicalDesc: reagent-physical-desc-spicy
+  flavor: wassail
+  color: "#AD2D00"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:PopupMessage # a nice warm soothing drink
+        type: Local
+        visualType: Medium
+        messages:
+        - "drinks-effect-nf-wassail"
+        probability: 0.1
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/wassail.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+- type: reagent
+  id: TheMadgob
+  name: reagent-name-the-madgob
+  parent: BaseDrink
+  desc: reagent-desc-the-madgob
+  physicalDesc: reagent-physical-desc-thick
+  flavor: creative
+  color: "#81b42f"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: PumpkinFlesh
+        amount: 1
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1
+            Brute: -1
+            Airloss: -1
+            Toxin: -1
+      - !type:Emote
+          emote: Belch
+          showInChat: true
+          force: true
+          probability: 0.25
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/themadgob.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 3
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+# Alcoholic Drinks
+- type: reagent
   id: GinAndSonic
   name: reagent-name-gin-and-sonic
   parent: BaseAlcohol
@@ -85,7 +163,7 @@
         factor: 0.2
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.15
+        amount: 0.25
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/goldencat.rsi
     state: icon_empty
@@ -108,11 +186,11 @@
         factor: 1
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.15
+        amount: 0.25
       - !type:ExplosionReactionEffect
         explosionType: Default
         maxIntensity: 0.1
-        intensityPerUnit: 0.05
+        intensityPerUnit: 0.025
         intensitySlope: 1
         maxTotalIntensity: 0.1
         probability: 0.1
@@ -138,7 +216,7 @@
         factor: 0.8
       - !type:AdjustReagent
         reagent: Ethanol
-        amount: 0.25
+        amount: 0.3
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/torpedojuice.rsi
     state: icon_empty
@@ -177,47 +255,6 @@
         amount: 0.2
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/beesknees.rsi
-    state: icon_empty
-  metamorphicMaxFillLevels: 4
-  metamorphicFillBaseName: fill-
-  metamorphicChangeColor: false
-
-- type: reagent
-  id: HoneyIcedTea
-  name: reagent-name-honey-iced-tea
-  parent: BaseDrink
-  desc: reagent-desc-honey-iced-tea
-  physicalDesc: reagent-physical-desc-aromatic
-  flavor: honey
-  color: "#E79A3F"
-  metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateThirst
-        factor: 0.6
-  metamorphicSprite:
-    sprite: _NF/Objects/Consumable/Drinks/honeyicedtea.rsi
-    state: icon
-
-- type: reagent
-  id: WassailMulledAle
-  name: reagent-name-wassail
-  parent: BaseAlcohol
-  desc: reagent-desc-wassail
-  physicalDesc: reagent-physical-desc-spicy
-  flavor: wassail
-  color: "#AD2D00"
-  metabolisms:
-    Drink:
-      effects:
-      - !type:PopupMessage # a nice warm soothing drink
-        type: Local
-        visualType: Medium
-        messages:
-        - "drinks-effect-nf-wassail"
-        probability: 0.1
-  metamorphicSprite:
-    sprite: _NF/Objects/Consumable/Drinks/wassail.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 4
   metamorphicFillBaseName: fill-
