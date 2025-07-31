@@ -55,3 +55,22 @@
     layers:
     - state: crypt_silver
     - state: cmo_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyGreeting
+  name: greeting encryption key
+  categories: [ DoNotMap ]
+  description: An encryption key for the Frontier Outpost intercom.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Greeting
+    defaultChannel: Greeting
+  - type: Item
+    sprite: _NF/Objects/Devices/encryption_keys.rsi
+  - type: Sprite
+    sprite: _NF/Objects/Devices/encryption_keys.rsi
+    layers:
+    - state: crypt_gray
+    - state: greeting_label

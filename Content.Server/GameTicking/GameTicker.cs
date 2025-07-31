@@ -97,6 +97,7 @@ namespace Content.Server.GameTicking
                 "Overflow role does not have the correct name!");
             InitializeGameRules();
             InitializeReplays();
+            NFInitialize(); // Frontier
             _initialized = true;
         }
 
