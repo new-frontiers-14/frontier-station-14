@@ -171,3 +171,13 @@
   - type: RadioImplant
     radioChannels:
     - Freelance
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: InsulatedTissueImplant
+  name: insulated tissue implant
+  description: This implant protects the user from electric shocks.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: InsulatedImplant
