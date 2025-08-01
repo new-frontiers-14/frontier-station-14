@@ -37,6 +37,7 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly ConstructionSystem _construction = default!; // Frontier
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier
 
     // Essentially whenever thruster enables we update the shuttle's available impulses which are used for movement.
     // This is done for each direction available.
@@ -523,7 +524,7 @@ public sealed class ThrusterSystem : EntitySystem
         var query = EntityQueryEnumerator<ThrusterComponent>();
         var curTime = _timing.CurTime;
 
-        while (query.MoveNext(out var comp))
+        while (query.MoveNext(out var ent, out var comp)) // Frontier: add out var ent
         {
             if (comp.NextFire > curTime)
                 continue;
@@ -535,6 +536,15 @@ public sealed class ThrusterSystem : EntitySystem
 
             foreach (var uid in comp.Colliding.ToArray())
             {
+                // Frontier: make sure they're still in danger
+                // Frontier TODO: Actually fix the cause of this bug (EndCollideEvent not firing on buckled entities)
+                if (!_transform.InRange(ent, uid, 2f))
+                {
+                    comp.Colliding.Remove(uid);
+                    continue;
+                }
+                // End Frontier
+
                 _damageable.TryChangeDamage(uid, comp.Damage);
             }
         }

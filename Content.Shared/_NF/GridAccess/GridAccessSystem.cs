@@ -3,6 +3,7 @@ using Content.Shared.Interaction;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Access.Components;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.StationRecords;
 
 namespace Content.Shared._NF.GridAccess;
 
@@ -18,10 +19,10 @@ public sealed class GridAccessSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<IdCardComponent, AfterInteractEvent>(OnIdCardSwipeHappened);
+        SubscribeLocalEvent<StationRecordKeyStorageComponent, AfterInteractEvent>(OnDeedSwipeHappened);
     }
 
-    private void OnIdCardSwipeHappened(EntityUid uid, IdCardComponent comp, ref AfterInteractEvent args)
+    private void OnDeedSwipeHappened(EntityUid uid, StationRecordKeyStorageComponent _, ref AfterInteractEvent args)
     {
         if (args.Handled)
             return;
@@ -43,7 +44,7 @@ public sealed class GridAccessSystem : EntitySystem
         {
             _popup.PopupClient(Loc.GetString("grid-access-missing-id-deed"),
                 uid, args.User, PopupType.Medium);
-            _audio.PlayLocal(comp.ErrorSound, rcdEntityUid, args.User);
+            _audio.PlayLocal(gridAccessComponent.ErrorSound, rcdEntityUid, args.User);
             return;
         }
 
@@ -52,14 +53,14 @@ public sealed class GridAccessSystem : EntitySystem
         {
             _popup.PopupClient(Loc.GetString("grid-access-id-card-removed"),
                 uid, args.User, PopupType.Medium);
-            _audio.PlayLocal(comp.SwipeSound, rcdEntityUid, args.User);
+            _audio.PlayLocal(gridAccessComponent.SwipeSound, rcdEntityUid, args.User);
             gridAccessComponent.LinkedShuttleUid = null;
         }
         else // Transfering or setting a new ID card
         {
             _popup.PopupClient(Loc.GetString("grid-access-id-card-accepted"),
                 uid, args.User, PopupType.Medium);
-            _audio.PlayLocal(comp.InsertSound, rcdEntityUid, args.User);
+            _audio.PlayLocal(gridAccessComponent.InsertSound, rcdEntityUid, args.User);
             gridAccessComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
         }
 
