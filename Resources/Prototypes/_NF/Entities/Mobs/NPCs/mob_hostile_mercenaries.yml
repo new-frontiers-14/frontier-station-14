@@ -571,17 +571,20 @@
 
 - type: entity
   id: ActionSideArmFan
+  parent: BaseAction
   categories: [ HideSpawnMenu ]
   name: "[color=yellow]Lucky 45[/color]"
   description: "Luck always beats skill, ya weasel. [color=yellow]5 second between ammo recharges.[/color]"
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite : _DV/Objects/Weapons/Guns/Revolvers/lucky.rsi, state: icon }
-    event: !type:ActionGunShootEvent
     priority: 2
+    itemIconStyle: BigAction
+  - type: TargetAction
     checkCanAccess: false
     range: 0
-    itemIconStyle: BigAction
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
 
 #region Space, Tier 1
 - type: entity
