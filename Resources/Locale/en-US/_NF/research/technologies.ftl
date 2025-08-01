@@ -59,6 +59,7 @@ nf-research-technology-bluespace-cargo-transport = Bluespace Cargo Transport
 nf-research-technology-bluespace-chemistry = Bluespace Chemistry
 nf-research-technology-bluespace-storage = Bluespace Storage
 nf-research-technology-bluespace-time-manipulation = Bluespace Time Manipulation
+nf-research-technology-bluespace-gas-tanks = Bluespace Gas Tanks
 nf-research-technology-bounty-hunting = Peacekeeping Basics
 nf-research-technology-clowning-utilities = Clowning Utilities
 nf-research-technology-combat-propulsion = Combat Personal Propulsion
