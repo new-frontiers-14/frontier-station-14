@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2025 18:46:42
-  entityCount: 311
+  time: 07/18/2025 20:20:40
+  entityCount: 309
 maps: []
 grids:
 - 1
@@ -1213,20 +1213,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-7.5
       parent: 1
-- proto: DrinkMugBlack
-  entities:
-  - uid: 200
-    components:
-    - type: Transform
-      pos: 3.3121927,-5.3306637
-      parent: 1
-- proto: DrinkMugGreen
-  entities:
-  - uid: 201
-    components:
-    - type: Transform
-      pos: 3.5778177,-5.5181637
-      parent: 1
 - proto: EmergencyLight
   entities:
   - uid: 301
@@ -1739,6 +1725,14 @@ entities:
     - type: Transform
       pos: 1.5,-8.5
       parent: 1
+- proto: ImpCoffeeMachine
+  entities:
+  - uid: 56
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-5.5
+      parent: 1
 - proto: JukeboxWallmountShip
   entities:
   - uid: 235
@@ -1828,18 +1822,10 @@ entities:
       parent: 1
 - proto: PosterLegitSafetyMothHardhat
   entities:
-  - uid: 152
+  - uid: 149
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 4.5,2.5
-      parent: 1
-- proto: PowerCellMedium
-  entities:
-  - uid: 225
-    components:
-    - type: Transform
-      pos: -1.1360754,-2.1566796
       parent: 1
 - proto: Poweredlight
   entities:
@@ -2129,14 +2115,6 @@ entities:
     - type: Transform
       pos: -1.5,4.5
       parent: 1
-- proto: SinkStemlessWater
-  entities:
-  - uid: 56
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-5.5
-      parent: 1
 - proto: SpawnMechEMU
   entities:
   - uid: 94
@@ -2155,6 +2133,23 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-6.5
+      parent: 1
+- proto: SpawnRandomDrinkMug
+  entities:
+  - uid: 200
+    components:
+    - type: Transform
+      pos: 3.2704604,-5.2178526
+      parent: 1
+  - uid: 201
+    components:
+    - type: Transform
+      pos: 1.2499048,-4.259519
+      parent: 1
+  - uid: 312
+    components:
+    - type: Transform
+      pos: -2.2244174,-4.1761856
       parent: 1
 - proto: SteelBench
   entities:
@@ -2610,20 +2605,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-3.5
-      parent: 1
-- proto: WarningN2
-  entities:
-  - uid: 150
-    components:
-    - type: Transform
-      pos: -1.5,-9.5
-      parent: 1
-- proto: WarningO2
-  entities:
-  - uid: 149
-    components:
-    - type: Transform
-      pos: -1.5,-8.5
       parent: 1
 - proto: WarpPoint
   entities:

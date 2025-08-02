@@ -45,7 +45,9 @@
     radius: 3
     energy: 2
     netsync: false
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
   - type: Appearance
   - type: Physics
     canCollide: false
@@ -98,11 +100,13 @@
 - type: entity
   name: desk lamp
   id: LampGold
-  parent: BaseLamp
+  parent: [BaseLamp, MixedPowerMachine] # Frontier: Add MixedPowerMachine
   description: A light emitting device that would look great on a desk.
   components:
+  - type: Anchorable # Frontier: Add Anchorable
   - type: Sprite
     sprite: Objects/Misc/Lights/lampgreen.rsi
+    offset: "0.0,0.4" # Frontier: Add sprite offset so it anchors somewhere sensible
     layers:
       - state: lampgreen
         map: [ "base" ]
@@ -184,7 +188,7 @@
 - type: entity
   name: floodlight
   id: Floodlight
-  parent: BaseLamp
+  parent: [BaseLamp, MixedPowerMachine] # Frontier: Add MixedPowerMachine
   description: A pole with powerful mounted lights on it.
   components:
   - type: Item

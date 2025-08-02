@@ -291,7 +291,7 @@ flavor-complex-thesunalsorises = like an absinthe daiquiri
 # Frontier: egg<lemon
 flavor-complex-whiskeysour = like sweetened whiskey and lemon
 flavor-complex-zombiecocktail = like eating brains
-flavor-complex-absinthe = like anise
+flavor-complex-absinthe = like bitter anise
 flavor-complex-blue-curacao = like orange flowers
 flavor-complex-acidspit = like French battery acid
 flavor-complex-allies-cocktail = like medicinal tincture

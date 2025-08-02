@@ -29,6 +29,9 @@
     layers:
     - state: crypt_gray
     - state: common_label
+  - type: Tag
+    tags:
+    - EncryptionCommon
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseCargoContraband
@@ -45,6 +48,9 @@
     layers:
     - state: crypt_gray
     - state: cargo_label
+  - type: Tag
+    tags:
+    - EncryptionCargo
 
 - type: entity
   parent: [EncryptionKey, BaseCentcommCommandContraband] # Frontier: Added BaseCentcommCommandContraband, removed BaseCentcommContraband.
@@ -81,6 +87,7 @@
     - Service
     - Supply
     - Traffic # Frontier
+    - Greeting # Frontier
     defaultChannel: Command
   - type: Sprite
     layers:
@@ -102,6 +109,9 @@
     layers:
     - state: crypt_silver
     - state: com_label
+  - type: Tag
+    tags:
+    - EncryptionCommand
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseEngineeringContraband
@@ -118,6 +128,9 @@
     layers:
     - state: crypt_gray
     - state: eng_label
+  - type: Tag
+    tags:
+    - EncryptionEngineering
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseMedicalContraband
@@ -133,6 +146,9 @@
     layers:
     - state: crypt_gray
     - state: med_label
+  - type: Tag
+    tags:
+    - EncryptionMedical
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseMedicalScienceContraband
@@ -166,6 +182,9 @@
     layers:
     - state: crypt_gray
     - state: sci_label
+  - type: Tag
+    tags:
+    - EncryptionScience
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseScienceContraband
@@ -198,6 +217,9 @@
     layers:
     - state: crypt_gray
     - state: sec_label
+  - type: Tag
+    tags:
+    - EncryptionSecurity
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseCivilianContraband
@@ -214,6 +236,9 @@
     layers:
     - state: crypt_gray
     - state: service_label
+  - type: Tag
+    tags:
+    - EncryptionService
 
 - type: entity
   parent: [EncryptionKey, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
