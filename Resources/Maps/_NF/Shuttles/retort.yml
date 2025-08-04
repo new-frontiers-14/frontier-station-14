@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 08/04/2025 05:10:14
+  time: 08/04/2025 22:27:01
   entityCount: 745
 maps: []
 grids:
@@ -140,7 +140,9 @@ entities:
             1241: 6,-5
             1343: 1,-15
             1344: 1,-16
-            1384: 0,-18
+            1613: -1,-18
+            1614: 0,-19
+            1615: 1,-18
         - node:
             color: '#FFFFFFFF'
             id: BotGreyscale
@@ -512,6 +514,33 @@ entities:
             1454: -4,-3
             1455: -2,-5
             1456: -6,-5
+            1617: 6,-9
+            1618: 5,-9
+            1619: 3,-10
+            1620: 3,-9
+            1621: 3,-11
+            1622: 4,-11
+            1623: 8,-9
+            1624: 9,-10
+            1625: 9,-11
+            1626: 8,-10
+            1627: 8,-7
+            1628: -2,-6
+            1629: -2,-7
+            1630: -1,-6
+            1631: -1,-7
+            1632: 0,-7
+            1633: 1,-7
+            1634: -3,-6
+            1635: -3,-7
+            1636: -3,-7
+            1637: -6,-9
+            1638: -7,-8
+            1639: -6,-7
+            1640: -8,-7
+            1641: -8,-9
+            1642: -9,-9
+            1643: -8,-7
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -695,6 +724,11 @@ entities:
             1414: -1,3
             1415: 0,3
             1416: 1,3
+        - node:
+            color: '#96DAFFFF'
+            id: corgi
+          decals:
+            1644: -8,-6
     - type: GridAtmosphere
       version: 2
       data:
@@ -2202,17 +2236,17 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-9.5
       parent: 1
+  - uid: 701
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,-6.5
+      parent: 1
   - uid: 702
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 8.5,-5.5
-      parent: 1
-  - uid: 703
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 9.5,-6.5
       parent: 1
 - proto: ChairOfficeDark
   entities:
@@ -2259,7 +2293,7 @@ entities:
   - uid: 354
     components:
     - type: Transform
-      pos: -3.0521252,-10.429842
+      pos: -3.058423,-10.489303
       parent: 1
 - proto: ComfyChair
   entities:
@@ -2319,7 +2353,7 @@ entities:
   - uid: 434
     components:
     - type: Transform
-      pos: -3.660799,-5.36049
+      pos: -3.641756,-5.7574644
       parent: 1
   - uid: 597
     components:
@@ -2654,12 +2688,12 @@ entities:
   - uid: 415
     components:
     - type: Transform
-      pos: -3.343792,-9.478454
+      pos: -7.4789705,-7.5329485
       parent: 1
   - uid: 514
     components:
     - type: Transform
-      pos: -3.6701808,-9.471509
+      pos: -3.69384,-9.666386
       parent: 1
 - proto: GasFilter
   entities:
@@ -4107,7 +4141,7 @@ entities:
   - uid: 293
     components:
     - type: Transform
-      pos: -3.119398,-10.39228
+      pos: -2.4994054,-3.2111561
       parent: 1
 - proto: JukeboxWallmountShip
   entities:
@@ -4161,7 +4195,7 @@ entities:
         40:
         - - Pressed
           - Toggle
-- proto: LockerAtmosphericsFilled
+- proto: LockerAtmosphericsFilledHardsuit
   entities:
   - uid: 188
     components:
@@ -4217,6 +4251,14 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-12.5
+      parent: 1
+- proto: MaterialReclaimerMachineCircuitboard
+  entities:
+  - uid: 703
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.3500896,-9.510136
       parent: 1
 - proto: NFHolopadShip
   entities:
@@ -4983,11 +5025,6 @@ entities:
     - type: Transform
       pos: -6.1454263,-9.207412
       parent: 1
-  - uid: 709
-    components:
-    - type: Transform
-      pos: -3.736103,-10.528054
-      parent: 1
 - proto: StairDark
   entities:
   - uid: 424
@@ -5237,7 +5274,7 @@ entities:
   - uid: 722
     components:
     - type: Transform
-      pos: -7.4475737,-7.481372
+      pos: -7.9832,-7.4565597
       parent: 1
 - proto: trayScanner
   entities:
