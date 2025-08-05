@@ -31,7 +31,7 @@ public sealed class MobCollisionSystem : SharedMobCollisionSystem
 
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (_actorQuery.HasComp(uid) || !PhysicsQuery.TryComp(uid, out var physics))
+            if (_actorQuery.HasComp(uid) || !PhysicsQuery.TryComp(uid, out var physics) || IsPaused(uid))
                 continue;
 
             HandleCollisions((uid, comp, physics), frameTime);
