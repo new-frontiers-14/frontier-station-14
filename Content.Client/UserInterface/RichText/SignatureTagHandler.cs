@@ -1,4 +1,4 @@
-// RMC: Entire File Ported from RMC
+// RMC14: Entire File Ported from RMC
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Robust.Client.UserInterface.RichText;
@@ -7,6 +7,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Utility;
 using Robust.Shared.IoC;
 using Content.Client.Paper.UI;
+using Robust.Client.Graphics;
 
 namespace Content.Client.UserInterface.RichText;
 
@@ -17,6 +18,11 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
 {
     public string Name => "signature";
     private static int _signatureCounter = 0;
+
+    /// <summary>
+    /// Font line height set by PaperWindow to ensure buttons match text height
+    /// </summary>
+    public static float FontLineHeight { get; set; } = 16.0f; // Default fallback
 
     private static int GetSignatureIndex(MarkupNode node)
     {
@@ -86,10 +92,12 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
     {
         var btn = new Button
         {
-            Text = Loc.GetString("paper-signature-sign-button"),
-            MinSize = new Vector2(60, 28),
-            MaxSize = new Vector2(60, 28),
-            Margin = new Thickness(4, 2, 4, 2)
+            Text = "Sign",
+            MinSize = new Vector2(48, FontLineHeight + 4),
+            MaxSize = new Vector2(48, FontLineHeight + 4),
+            Margin = new Thickness(1, 2, 1, 2),
+            StyleClasses = { "ButtonSquare" },
+            TextAlign = Label.AlignMode.Center
         };
 
         var signatureIndex = GetSignatureIndex(node);

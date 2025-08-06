@@ -16,10 +16,10 @@ using Content.Shared.Timing; // Frontier
 using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Verbs; // Frontier
 using Content.Shared.Ghost; // Frontier
-using Content.Shared.IdentityManagement; // RMC
-using Content.Shared.IdentityManagement.Components; // RMC
-using Content.Shared.Mind.Components; // RMC
-using Content.Shared.Roles; // RMC
+using Content.Shared.IdentityManagement; // RMC14
+using Content.Shared.IdentityManagement.Components; // RMC14
+using Content.Shared.Mind.Components; // RMC14
+using Content.Shared.Roles; // RMC14
 
 namespace Content.Shared.Paper;
 
@@ -41,7 +41,7 @@ public sealed class PaperSystem : EntitySystem
     private const int StampLimit = 100; // Frontier: limits on total stamps on a page (should be able to get a signature from everybody on the server on a page)
     private static readonly ProtoId<TagPrototype> NFPaperStampProtectedTag = "NFPaperStampProtected"; // Frontier
     private static readonly ProtoId<TagPrototype> NFWriteIgnoreUnprotectedStampsTag = "NFWriteIgnoreUnprotectedStamps"; // Frontier
-    [Dependency] private readonly SharedIdentitySystem _identitySystem = default!; // RMC
+    [Dependency] private readonly SharedIdentitySystem _identitySystem = default!; // RMC14
 
     private static readonly ProtoId<TagPrototype> WriteIgnoreStampsTag = "WriteIgnoreStamps";
     private static readonly ProtoId<TagPrototype> WriteTag = "Write";
@@ -63,7 +63,7 @@ public sealed class PaperSystem : EntitySystem
         SubscribeLocalEvent<RandomPaperContentComponent, MapInitEvent>(OnRandomPaperContentMapInit);
 
         SubscribeLocalEvent<ActivateOnPaperOpenedComponent, PaperWriteEvent>(OnPaperWrite);
-        SubscribeLocalEvent<PaperComponent, PaperSignatureRequestMessage>(OnSignatureRequest); // RMC
+        SubscribeLocalEvent<PaperComponent, PaperSignatureRequestMessage>(OnSignatureRequest); // RMC14
 
         _paperQuery = GetEntityQuery<PaperComponent>();
     }
@@ -319,6 +319,14 @@ public sealed class PaperSystem : EntitySystem
         if (CanStamp(stampInfo, entity.Comp)) // Frontier: !entity.Comp.StampedBy.Contains(stampInfo) < CanStamp(stampInfo, entity.Comp)
         {
             entity.Comp.StampedBy.Add(stampInfo);
+            // Begin RMC
+            // Clean unfilled form and signature tags when stamping to finalize the document
+            var cleanedContent = CleanUnfilledTags(entity.Comp.Content);
+            if (cleanedContent != entity.Comp.Content)
+            {
+                SetContent(entity, cleanedContent);
+            }
+            // End RMC
             Dirty(entity);
             if (entity.Comp.StampState == null && TryComp<AppearanceComponent>(entity, out var appearance))
             {
@@ -508,7 +516,7 @@ public sealed class PaperSystem : EntitySystem
         var name = string.Empty;
         var rank = string.Empty;
         var role = string.Empty;
-        
+
         // Get the identity entity (ID card, etc.)
         var identityEntity = player;
         if (TryComp<IdentityComponent>(player, out var identity) &&
@@ -516,10 +524,10 @@ public sealed class PaperSystem : EntitySystem
         {
             identityEntity = idEntity;
         }
-        
+
         // Get name from identity or fallback to entity name
         name = MetaData(identityEntity).EntityName;
-        
+
         // Get role from mind system
         if (TryComp<MindContainerComponent>(player, out var mindContainer) &&
             mindContainer.Mind != null)
@@ -531,7 +539,7 @@ public sealed class PaperSystem : EntitySystem
                 role = Loc.GetString(roleInfo[0].Name);
             }
         }
-        
+
         // Format: "Rank Name, Role" or fallback combinations
         var signature = string.Empty;
         if (!string.IsNullOrEmpty(rank) && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(role))
@@ -550,7 +558,7 @@ public sealed class PaperSystem : EntitySystem
         {
             signature = name;
         }
-        
+
         return signature;
     }
 
@@ -578,6 +586,18 @@ public sealed class PaperSystem : EntitySystem
         }
 
         return text;
+    }
+    /// <summary>
+    /// Removes any unfilled [form] and [signature] tags, and converts [check] tags to ☐.
+    /// Called when the paper is stamped to finalize the document.
+    /// </summary>
+    /// <param name="text">The paper text to clean</param>
+    /// <returns>Text with unfilled tags cleaned</returns>
+    private static string CleanUnfilledTags(string text)
+    {
+        return text.Replace("[form]", string.Empty)
+                  .Replace("[signature]", string.Empty)
+                  .Replace("[check]", "☐");
     }
     // End RMC
 }

@@ -26,7 +26,7 @@ public sealed partial class PaperBoundUserInterface : BoundUserInterface // Delt
         _window.Typing += OnTyping; // DeltaV
         _window.SubmitPressed += OnSubmit; // DeltaV
         _window.OnClose += OnSubmit; // DeltaV
-        _window.OnSignatureRequested += OnSignatureRequested; // RMC
+        _window.OnSignatureRequested += OnSignatureRequested; // RMC14
 
         if (EntMan.TryGetComponent<PaperComponent>(Owner, out var paper))
         {
@@ -41,7 +41,7 @@ public sealed partial class PaperBoundUserInterface : BoundUserInterface // Delt
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-        _window?.Populate((PaperBoundUserInterfaceState) state);
+        _window?.Populate((PaperBoundUserInterfaceState)state);
     }
 
     private void InputOnTextEntered(string text)
