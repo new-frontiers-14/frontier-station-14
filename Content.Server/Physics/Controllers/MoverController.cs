@@ -89,6 +89,9 @@ public sealed class MoverController : SharedMoverController
         // Need to order mob movement so that movers don't run before their relays.
         while (inputQueryEnumerator.MoveNext(out var uid, out var mover))
         {
+            if (IsPaused(uid)) // Frontier: Skip processing paused entities
+                continue; // Frontier
+
             InsertMover((uid, mover));
         }
 
