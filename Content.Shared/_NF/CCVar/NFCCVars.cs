@@ -38,6 +38,13 @@ public sealed class NFCCVars
     public static readonly CVarDef<float> CryoExpirationTime =
         CVarDef.Create("nf14.uncryo.maxtime", 180 * 60f, CVar.SERVER | CVar.REPLICATED);
 
+    /// <summary>
+    /// The path to the map that holds cryo space. This map is expected to contain a grid at 0,0 that players are stored at,
+    /// for physics-related performance reasons. You should not normally change this CVar.
+    /// </summary>
+    public static readonly CVarDef<string> CryoMap =
+        CVarDef.Create("nf14.uncryo.map", "/Maps/_NF/Misc/cryospace.yml", CVar.SERVERONLY);
+
     /*
      *  Game
      */

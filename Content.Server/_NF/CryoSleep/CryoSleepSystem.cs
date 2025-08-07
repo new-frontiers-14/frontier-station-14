@@ -27,10 +27,13 @@ using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.EntitySerialization;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server._NF.CryoSleep;
 
@@ -49,6 +52,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
     [Dependency] private readonly ShipyardSystem _shipyard = default!; // For the FoundOrganics method
     [Dependency] private readonly GhostSystem _ghost = default!;
     [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
@@ -78,8 +82,22 @@ public sealed partial class CryoSleepSystem : EntitySystem
     {
         if (Deleted(_storageMap))
         {
-            _storageMap = _map.CreateMap(out var map);
-            _map.SetPaused(map, true);
+            var path = new ResPath(_configurationManager.GetCVar(NFCCVars.CryoMap));
+            var options = new DeserializationOptions
+            {
+                InitializeMaps = true,
+                PauseMaps = true,
+            };
+            if (_mapLoader.TryLoadMap(path, out var mapEntity, out var _, options))
+            {
+                _storageMap = mapEntity;
+            }
+            else
+            {
+                // Fall back to empty map. Not very pretty, but works.
+                _storageMap = _map.CreateMap(out var map);
+                _map.SetPaused(map, true);
+            }
         }
 
         return _storageMap.Value;
