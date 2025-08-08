@@ -547,10 +547,12 @@
   id: WallPlastitaniumDiagonalIndestructible
   name: plastitanium wall
   suffix: diagonal, indestructible
+  description: Skub knows this wall is too hard to destroy. # Frontier
   components:
   - type: Sprite
     drawdepth: Walls
     sprite: Structures/Walls/plastitanium_diagonal.rsi
+    color: "#cdf3cd" # Frontier
     state: state0
   - type: Icon
     sprite: Structures/Walls/plastitanium_diagonal.rsi
@@ -566,13 +568,13 @@
   id: WallPlastitaniumDiagonal
   name: plastitanium wall
   suffix: diagonal
-  description: Skub knows this wall is too hard to destroy. # Frontier
+  description: Keeps the air in and the greytide out. # Frontier: restore base value
   components:
   - type: Sprite
     drawdepth: Walls
     sprite: Structures/Walls/plastitanium_diagonal.rsi
+    color: "#ffffff" # Frontier
     state: state0
-    color: "#cdf3cd" # Frontier
   - type: Icon
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
