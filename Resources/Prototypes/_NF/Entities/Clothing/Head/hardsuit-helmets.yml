@@ -325,3 +325,89 @@
         Slash: 0.8
         Piercing: 0.8
         Heat: 0.8
+
+#Hostile enviroment hardsuit
+- type: entity
+  parent: NFClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHardsuitHostileEnvironment
+  categories: [ HideSpawnMenu ]
+  name: hostile environment hardsuit helmet
+  description: Thermally sealed helmet with 360 degree lighting to get you and your crew through the darkest and most deadly of places.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/hostile_environment.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/hostile_environment.rsi
+  - type: PointLight
+    enabled: true
+    radius: 3.5
+    energy: 5
+    color: "#ffeead"
+    soft: true
+    castShadows: false
+    offset: "0, 0.65"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.9
+
+#Surplus combat suit
+- type: entity
+  parent: NFClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHardsuitSurplus
+  categories: [ HideSpawnMenu ]
+  name: surplus combat suit helmet
+  description: Not stopping a bullet, but better then nothing!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/surplus.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/surplus.rsi
+  - type: PointLight
+    enabled: true
+    color: "#A60000"
+    soft: true
+    castShadows: false
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.9
+        Heat: 0.95
+
+#Noble combat suit helmet
+- type: entity
+  parent: NFClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHardsuitNoble
+  categories: [ HideSpawnMenu ]
+  name: noble combat suit helmet
+  description: The noble eye watches not in anger, but in vigilance. Let no shadow pass unseen and no evil go unchallenged.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/noble.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/noble.rsi
+  - type: PointLight
+    enabled: true
+    color: "#3BFF1B"
+    soft: true
+    castShadows: false
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
