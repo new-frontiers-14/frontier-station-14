@@ -52,6 +52,19 @@ frontier-lobby-edison-description = Frontier's heavy industrial base. Here you c
    - Socialize with other engineers
  {"["}color=gray]Some of the roles on this station are [color=lightblue]whitelist-only[/color] and require an application in the Discord to be accepted.[/color]
 
+# Admeme Event ship
+# Station Menu
+frontier-lobby-admeme-shuttle-subtext = An Event Vessel full of mysteries.
+frontier-lobby-admeme-shuttle-description = Be warned, this is an event vessel
+ It's presence vastly affects and changes flow of the round.
+ All roles are whitelist-only, due to increased Roleplaying standard expected,
+ given additional powerful tools provided.
+
+ You will be informed on the event theme and what things to keep in mind,
+ once you join.
+
+ If you are new, it is recommended to visit Frontier Outpost first
+
 # Crew Menu
 frontier-lobby-crew-vessel = [bold][color=#A88B5E]Vessel:[/color][/bold] {$name}
 frontier-lobby-crew-class-prefix = [bold][color=#A88B5E]Classes:[/color][/bold]{" "}
