@@ -62,15 +62,5 @@ namespace Content.Shared.Speech
         /// </summary>
         [DataField]
         public float SpeechBubbleOffset = 0f;
-
-        // New Frontiers - Harpy Mimicry - 
-        // This code is licensed under AGPLv3. See AGPLv3.txt
-        /// <summary>
-        ///     When true, the owner of this component can mimic sounds made by other objects/animals.
-        /// </summary>
-        [ViewVariables]
-        [DataField]
-        public bool MimicEmotes = false;
-        // End of modified code
     }
 }

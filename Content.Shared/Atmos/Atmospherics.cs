@@ -41,6 +41,12 @@ namespace Content.Shared.Atmos
         public const float T20C = 293.15f;
 
         /// <summary>
+        ///     -38.15ºC in K.
+        ///     This is used to initialize roundstart freezer rooms.
+        /// </summary>
+        public const float FreezerTemp = 235f;
+
+        /// <summary>
         ///     Do not allow any gas mixture temperatures to exceed this number. It is occasionally possible
         ///     to have very small heat capacity (e.g. room that was just unspaced) and for large amounts of
         ///     energy to be transferred to it, even for a brief moment. However, this messes up subsequent
@@ -66,6 +72,12 @@ namespace Content.Shared.Atmos
         public const float MolesCellStandard = (OneAtmosphere * CellVolume / (T20C * R));
 
         /// <summary>
+        ///     Moles in a 2.5 m^3 cell at 101.325 kPa and -38.15ºC.
+        ///     This is used in fix atmos freezer markers to ensure the air is at the correct atmospheric pressure while still being cold.
+        /// </summary>
+        public const float MolesCellFreezer = (OneAtmosphere * CellVolume / (FreezerTemp * R));
+
+        /// <summary>
         ///     Moles in a 2.5 m^3 cell at GasMinerDefaultMaxExternalPressure kPa and 20ºC
         /// </summary>
         public const float MolesCellGasMiner = (GasMinerDefaultMaxExternalPressure * CellVolume / (T20C * R));
@@ -80,6 +92,12 @@ namespace Content.Shared.Atmos
 
         public const float OxygenMolesStandard = MolesCellStandard * OxygenStandard;
         public const float NitrogenMolesStandard = MolesCellStandard * NitrogenStandard;
+
+        public const float OxygenMolesFreezer = MolesCellFreezer * OxygenStandard;
+        public const float NitrogenMolesFreezer = MolesCellFreezer * NitrogenStandard;
+
+        public const float OxygenMolesGasMiner = MolesCellGasMiner * OxygenStandard;
+        public const float NitrogenMolesGasMiner = MolesCellGasMiner * NitrogenStandard;
 
         #endregion
 
@@ -159,6 +177,7 @@ namespace Content.Shared.Atmos
             [Gas.Plasma] = Loc.GetString("gas-plasma-abbreviation"),
             [Gas.Tritium] = Loc.GetString("gas-tritium-abbreviation"),
             [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
+            [Gas.Respiron] = Loc.GetString("gas-respiron-abbreviation"), // Frontier
         };
 
         #region Excited Groups
@@ -188,7 +207,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 9;
+        public const int TotalNumberOfGases = 10; // Frontier: 9<10
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -206,12 +225,12 @@ namespace Content.Shared.Atmos
         public const float FirePlasmaEnergyReleased = 160e3f; // methane is 16 kJ/mol, plus plasma's spark of magic
         public const float FireGrowthRate = 40000f;
 
-        public const float SuperSaturationThreshold = 96f;
-        public const float SuperSaturationEnds = SuperSaturationThreshold / 3;
+        public const float SuperSaturationThreshold = 30f; // Frontier: 96f<30
+        public const float SuperSaturationEnds = 10f; // Frontier: SuperSaturationThreshold / 3 < 10
 
         public const float OxygenBurnRateBase = 1.4f;
         public const float PlasmaMinimumBurnTemperature = (100f+T0C);
-        public const float PlasmaUpperTemperature = (1370f+T0C);
+        public const float PlasmaUpperTemperature = 700; // Frontier: (1370f+T0C)<700
         public const float PlasmaOxygenFullburn = 10f;
         public const float PlasmaBurnRateDelta = 9f;
 
@@ -356,6 +375,7 @@ namespace Content.Shared.Atmos
         WaterVapor = 5,
         Ammonia = 6,
         NitrousOxide = 7,
-        Frezon = 8
+        Frezon = 8,
+        Respiron = 9 // Frontier
     }
 }

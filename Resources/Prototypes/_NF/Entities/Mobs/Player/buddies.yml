@@ -1,0 +1,48 @@
+- type: entity
+  id: NFBuddyBase
+  abstract: true
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: nf-ghost-role-information-buddy-name
+    description: nf-ghost-role-information-buddy-description
+    rules: ghost-role-information-nonantagonist-rules
+    prototype: NFBuddy
+  - type: ActiveListener
+  - type: ParrotSpeech
+    maximumPhraseLength: 40
+    minimumWait: 30
+    maximumWait: 120
+    learnChance: 0.8
+
+- type: entity
+  id: NFMobHumanBuddy
+  parent: [MobHuman, NFBuddyBase]
+  suffix: Build-A-Buddy
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobGoblinBuddy
+  parent: [MobGoblin, NFBuddyBase]
+  suffix: Build-A-Buddy
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobReptilianBuddy
+  parent: [MobReptilian, NFBuddyBase]
+  suffix: Build-A-Buddy
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobSlimePersonBuddy
+  parent: [MobSlimePerson, NFBuddyBase]
+  suffix: Build-A-Buddy
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobVulpkaninBuddy
+  parent: [MobVulpkanin, NFBuddyBase]
+  suffix: Build-A-Buddy
+  categories: [ HideSpawnMenu ]

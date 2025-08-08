@@ -4,11 +4,11 @@ reagent-desc-astrotame = The sweetness of a thousand sugars but none of the calo
 reagent-name-bbq-sauce = BBQ sauce
 reagent-desc-bbq-sauce = Hand wipes not included.
 
-reagent-name-cornoil = corn oil
-reagent-desc-cornoil = Corn oil, A delicious oil used in cooking. Made from corn.
+reagent-name-cornoil = vegetable oil
+reagent-desc-cornoil = Vegetable oil, A delicious oil used in cooking. Made from corn.
 
-reagent-name-frostoil = frostoil
-reagent-desc-frostoil = Leaves the tongue numb in its passage.
+reagent-name-coldsauce = coldsauce
+reagent-desc-coldsauce = Leaves the tongue numb in its passage.
 
 reagent-name-horseradish-sauce = horseradish sauce
 reagent-desc-horseradish-sauce = Smelly horseradish sauce.

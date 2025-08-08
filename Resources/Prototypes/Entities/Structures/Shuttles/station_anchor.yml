@@ -45,6 +45,18 @@
         - LargeMobMask
         layer:
         - WallLayer
+  # Frontier: linkable station anchors
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
+  # End Frontier: linkable station anchors
 
 - type: entity
   id: StationAnchorIndestructible
@@ -62,6 +74,7 @@
       windowTitle: station-anchor-window-title
       idlePower: 50
       activePower: 2500
+      activeChargingPower: 2500 # Frontier
       chargeRate: 0.5
     - type: ActivatableUI
       key: enum.PowerChargeUiKey.Key
@@ -117,3 +130,5 @@
   components:
   - type: StationAnchor
     switchedOn: false
+  - type: PowerCharge # Frontier
+    switchedOn: false # Frontier

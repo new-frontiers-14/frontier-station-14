@@ -1,4 +1,5 @@
 using Robust.Shared.Serialization;
+using Content.Shared._NF.Research; // Frontier
 
 namespace Content.Shared.Research.Components
 {
@@ -29,9 +30,16 @@ namespace Content.Shared.Research.Components
     public sealed class ResearchConsoleBoundInterfaceState : BoundUserInterfaceState
     {
         public int Points;
-        public ResearchConsoleBoundInterfaceState(int points)
+
+        /// <summary>
+        /// Frontier field - all researches and their availablities
+        /// </summary>
+        public Dictionary<string, ResearchAvailability> Researches;
+
+        public ResearchConsoleBoundInterfaceState(int points, Dictionary<string, ResearchAvailability> researches) // Frontier R&D console rework = researches field
         {
             Points = points;
+            Researches = researches; // Frontier R&D console rework
         }
     }
 }

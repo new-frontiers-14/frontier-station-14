@@ -143,21 +143,28 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         if (!pinpointer.IsActive)
             return;
 
+        var oldDist = pinpointer.DistanceToTarget; // Frontier: moved up
+
         var target = pinpointer.Target;
         if (target == null || !EntityManager.EntityExists(target.Value))
         {
             SetDistance(uid, Distance.Unknown, pinpointer);
+            TrySetArrowAngle(uid, Angle.Zero, pinpointer); // Frontier
+            if (oldDist != pinpointer.DistanceToTarget) // Frontier
+                UpdateAppearance(uid, pinpointer); // Frontier
             return;
         }
 
         var dirVec = CalculateDirection(uid, target.Value);
-        var oldDist = pinpointer.DistanceToTarget;
+        // var oldDist = pinpointer.DistanceToTarget; // Frontier: moved up
 
         // Frontier: if the pinpointer has a max range and the distance to target is greater than the max range, set the distance to unknown
         if (pinpointer.MaxRange > 0 && dirVec != null && dirVec.Value.LengthSquared() > pinpointer.MaxRange * pinpointer.MaxRange)
         {
             SetDistance(uid, Distance.Unknown, pinpointer);
             TrySetArrowAngle(uid, Angle.Zero, pinpointer);
+            if (oldDist != pinpointer.DistanceToTarget) // Frontier
+                UpdateAppearance(uid, pinpointer); // Frontier
             return;
         }
 
@@ -171,6 +178,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         else
         {
             SetDistance(uid, Distance.Unknown, pinpointer);
+            TrySetArrowAngle(uid, Angle.Zero, pinpointer); // Frontier
         }
         if (oldDist != pinpointer.DistanceToTarget)
             UpdateAppearance(uid, pinpointer);
@@ -211,4 +219,16 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         else
             return Distance.Far;
     }
+
+    // Frontier: clear function
+    public void ClearPinpointer(EntityUid uid, PinpointerComponent? pinpointer = null)
+    {
+        if (!Resolve(uid, ref pinpointer))
+            return;
+
+        pinpointer.Target = null;
+        UpdateDirectionToTarget(uid, pinpointer);
+        UpdateAppearance(uid, pinpointer);
+    }
+    // End Frontier: clear function
 }

@@ -19,9 +19,17 @@
     sound:
       path: /Audio/Items/Toys/hew.ogg
   - type: MeleeWeapon
+    wideAnimationRotation: 180
     soundHit:
       path: /Audio/Items/Toys/hew.ogg
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/hew.ogg
   - type: StinkyTrait
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: JesterPlushie
 
 - type: entity
   parent: PlushieLizard
@@ -32,6 +40,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_botanist
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieBotanist
 
 - type: entity
   parent: PlushieLizard
@@ -42,16 +53,22 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_engineer
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieEngineer
 
 - type: entity
   parent: PlushieLizard
   id: NFPlushieConstruction #Weh!
-  name: construction plushie
-  description: A work in progress. A shame it had to end this way.
+  name: ripped plushie
+  description: Oh no, its neck is torn. A shame it had to end this way.
   components:
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_construction
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieConstruction
 
 - type: entity
   parent: PlushieLizard
@@ -62,6 +79,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_cmo
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieCmo
 
 - type: entity
   parent: PlushieCarp
@@ -79,6 +99,9 @@
       - state: inhand-left
       right:
       - state: inhand-right
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieSharkMinnow
 
 - type: entity
   parent: BasePlushie
@@ -99,14 +122,20 @@
     sound:
       path: /Audio/_NF/Effects/silence.ogg
   - type: MeleeWeapon
+    wideAnimationRotation: 180
     soundHit:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
       path: /Audio/_NF/Effects/silence.ogg
   - type: Tag
     tags:
     - Soap
   - type: Slippery
-    paralyzeTime: 0.7
-    launchForwardsMultiplier: 0.5
+    slipData:
+      paralyzeTime: 0.7
+      launchForwardsMultiplier: 0.5
   - type: StepTrigger
     intersectRatio: 0.2
   - type: CollisionWake
@@ -129,6 +158,9 @@
         density: 10
         mask:
         - ItemMask
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieJanitor
 
 - type: entity
   id: PetRockCarrier
@@ -236,11 +268,14 @@
   parent: BasePlushie
   id: PlushieGnome
   name: gnome plushie
-  description: A stuffed toy that resembles a gnome! or a drawf...
+  description: A stuffed toy that resembles a gnome!
   components:
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: gnome
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieGnome
 
 - type: entity
   parent: BasePlushie
@@ -251,6 +286,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: loveable
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: NFPlushieLoveable
 
 - type: entity
   parent: BasePlushie
@@ -261,16 +299,22 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: deer
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieDeer
 
 - type: entity
   parent: BasePlushie
   id: PlushieIpc
   name: ipc plushie
-  description: A stuffed toy that resembles a ipc!
+  description: A stuffed toy that resembles an IPC!
   components:
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: ipc
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieIpc
 
 - type: entity
   parent: BasePlushie
@@ -281,6 +325,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: grey
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieGrey
 
 - type: entity
   parent: BasePlushie
@@ -291,6 +338,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: abductor
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieAbductor
 
 - type: entity
   parent: BasePlushie
@@ -301,6 +351,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: abductor_agent
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieAbductorAgent
 
 - type: entity
   parent: BasePlushie
@@ -311,6 +364,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/foxplushie.rsi
     state: red
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieRedFox
 
 - type: entity
   parent: BasePlushie
@@ -321,6 +377,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/foxplushie.rsi
     state: purple
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushiePurpleFox
 
 - type: entity
   parent: BasePlushie
@@ -331,6 +390,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/foxplushie.rsi
     state: pink
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushiePinkFox
 
 - type: entity
   parent: BasePlushie
@@ -341,6 +403,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/foxplushie.rsi
     state: orange
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieOrangeFox
 
 - type: entity
   parent: BasePlushie
@@ -351,6 +416,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/foxplushie.rsi
     state: marble
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMarbleFox
 
 - type: entity
   parent: BasePlushie
@@ -361,6 +429,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/foxplushie.rsi
     state: crimson
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCrimsonFox
 
 - type: entity
   parent: BasePlushie
@@ -371,6 +442,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/foxplushie.rsi
     state: coffee
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCoffeeFox
 
 - type: entity
   parent: BasePlushie
@@ -381,6 +455,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/foxplushie.rsi
     state: blue
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieBlueFox
 
 - type: entity
   parent: BasePlushie
@@ -391,6 +468,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/foxplushie.rsi
     state: black
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieBlackFox
 
 - type: entity
   parent: BasePlushie
@@ -409,7 +489,12 @@
     sound:
       path: /Audio/_DV/Voice/Vulpkanin/dog_bark1.ogg
   - type: MeleeWeapon
+    wideAnimationRotation: 180
     soundHit:
+      path: /Audio/_DV/Voice/Vulpkanin/dog_bark1.ogg
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
       path: /Audio/_DV/Voice/Vulpkanin/dog_bark1.ogg
 
 - type: entity
@@ -419,6 +504,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_vulp
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieVulp
 
 - type: entity
   parent: BasePlushieVulp
@@ -429,9 +517,12 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_mailvulp
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMailVulp
 
 - type: entity
-  parent: BasePlushieMoff
+  parent: PlushieMoth
   id: PlushieYarrMoth
   name: yarr moth plushie
   description: It's dastardly and has a dashing cloak. It chitters when you squeeze it!
@@ -439,6 +530,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_yarrmoth
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieYarrMoth
 
 - type: entity
   parent: BasePlushieVulp
@@ -449,6 +543,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: corgi
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCorgi
 
 - type: entity
   parent: BasePlushieVulp
@@ -458,6 +555,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: girlycorgi
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieGirlyCorgi
 
 - type: entity
   parent: BasePlushieVulp
@@ -467,6 +567,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/corgiplushie.rsi
     state: robotcorgi
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieRobotCorgi
 
 - type: entity
   parent: BasePlushie
@@ -483,7 +586,12 @@
     sound:
       path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
   - type: MeleeWeapon
+    wideAnimationRotation: 180
     soundHit:
+      path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
       path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
 
 - type: entity
@@ -495,6 +603,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/catplushie.rsi
     state: black
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCatBlack
 
 - type: entity
   parent: BasePlushieCat
@@ -504,6 +615,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/catplushie.rsi
     state: grey
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCatGrey
 
 - type: entity
   parent: BasePlushieCat
@@ -513,15 +627,21 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/catplushie.rsi
     state: orange
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCatOrange
 
 - type: entity
   parent: BasePlushieCat
   id: PlushieCatSiames
-  name: siames cat plushie
+  name: siamese cat plushie
   components:
   - type: Sprite
     sprite: _NF/Objects/Fun/catplushie.rsi
     state: siames
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCatSiamese
 
 - type: entity
   parent: BasePlushieCat
@@ -531,6 +651,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/catplushie.rsi
     state: tabby
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCatTabby
 
 - type: entity
   parent: BasePlushieCat
@@ -540,6 +663,9 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/catplushie.rsi
     state: tuxedo
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCatTuxedo
 
 - type: entity
   parent: BasePlushieCat
@@ -549,10 +675,240 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/catplushie.rsi
     state: white
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCatWhite
 
 - type: entity
-  name: toy RPG
-  parent: [BaseClearContraband, WeaponLauncherRocket]
+  parent: PlushieMoth
+  id: PlushieMoth1
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff1
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth1
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth2
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff2
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth2
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth3
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff3
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth3
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth4
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff4
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth4
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth5
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff5
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth5
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth6
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff6
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth6
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth7
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff7
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth7
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth8
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff8
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth8
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth9
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff9
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth9
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth10
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff10
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth10
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth11
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff11
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth11
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth12
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff12
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth12
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth13
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff13
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth13
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoth14
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    layers:
+      - state: moff14
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoth14
+
+- type: entity
+  parent: MarkerBasePlaceFree
+  id: PlushieMoffRandom
+  name: moth plushie
+  suffix: Random
+  categories:
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+      state: moff1
+  - type: RandomSpawner
+    prototypes:
+    - PlushieMoth
+    - PlushieMoth1
+    - PlushieMoth2
+    - PlushieMoth3
+    - PlushieMoth4
+    - PlushieMoth5
+    - PlushieMoth6
+    - PlushieMoth7
+    - PlushieMoth8
+    - PlushieMoth9
+    - PlushieMoth10
+    - PlushieMoth11
+    - PlushieMoth12
+    - PlushieMoth13
+    - PlushieMoth14
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoffsician
+  name: moth musician plushie
+  description: A plushie depicting an adorable mothperson with a tiny synthesizer and tiny glasses.
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moffsician
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoffsician
+
+- type: entity
+  parent: PlushieMoth
+  id: PlushieMoffbar
+  name: moth bartender plushie
+  description: A plushie depicting an adorable mothperson with a tiny tophat and tiny kevlar vest.
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Fun/Toys/moff.rsi
+    state: moffbar
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Voice/Moth/laugh_moth.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMoffbar
+
+- type: entity
+  name: toy rocket launcher
+  parent: [BaseClearContraband, BasePlushie, NFWeaponLauncherRocket]
   id: WeaponLauncherRocketToy
   suffix: Toy
   description: A plush toy, this launches foam "grenades". There are stitches on the side that spell out "SAM".
@@ -581,6 +937,16 @@
   - type: EmitSoundOnCollide
     sound:
       collection: ToySqueak
+  # - type: EyeCursorOffset # clear the offset
+    # maxOffset: 0
+    # pvsIncrease: 0
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: WeaponLauncherRocketToy
+  - type: ContainerContainer
+    containers:
+      stash: !type:ContainerSlot {}
+      ballistic-ammo: !type:Container {}
 
 - type: entity
   id: BulletFoamRPG
@@ -592,6 +958,7 @@
       tags:
         - NFFoamRPG
         - Trash
+        - ClothMade
     - type: Ammo
     - type: Sprite
       sprite: _NF/Objects/Fun/emotional_support_rocket.rsi
@@ -602,12 +969,52 @@
     - type: StaminaDamageOnCollide
       damage: 20
 
+- type: entity
+  parent: [BaseClearContraband, NFBaseWeaponFrameRevolverFoamForce, NFBaseWeaponRevolverChamberCap]
+  id: NFRevolverCapGun
+  suffix: Frontier
+  name: cap gun
+  description: Looks almost like the real thing! Ages 8 and up.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/toys.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+    clumsyProof: true
+
+- type: entity
+  parent: [BaseC3SyndicateContraband, NFBaseWeaponFrameRevolverFoamForce, NFBaseWeaponRevolverChamber45Cap]
+  id: NFRevolverCapGunFake
+  suffix: Fake, Frontier
+  name: cap gun
+  description: Looks almost like the real thing! Ages 8 and up.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/toys.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: Objects/Fun/toys.rsi
+    heldPrefix: capgun
+  - type: Contraband
+    hideValues: true
+
 # Grown cap gun, in toys.yml for consistency with fake parent
 - type: entity
-  parent: [BaseC3SyndicateContrabandNoValue, RevolverCapGunFake] # Frontier: added BaseC3SyndicateContraband
-  id: RevolverCapGunFakeGrown
+  parent: [BaseC3SyndicateContrabandNoValue, NFRevolverCapGunFake] # Frontier: added BaseC3SyndicateContraband
+  id: NFRevolverCapGunFakeGrown
   categories: [ HideSpawnMenu ]
   suffix: Fake, Grown
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieDave
+  name: dave plushie
+  description: A well regarded individual!
   components:
-  - type: RevolverAmmoProvider
-    proto: CartridgeMagnum # Base has AP rounds
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_dave

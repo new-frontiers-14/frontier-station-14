@@ -4,7 +4,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared.Corvax.Respawn; // Frontier
+using Content.Shared._Corvax.Respawn; // Frontier
 
 namespace Content.Shared.Mind;
 
@@ -110,10 +110,8 @@ public sealed partial class MindComponent : Component
     public ProtoId<RoleTypePrototype> RoleType = "Neutral";
 
     /// <summary>
-    ///     The session of the player owning this mind.
-    ///     Can be null, in which case the player is currently not logged in.
+    ///     The role's subtype, shown only to admins to help with antag categorization
     /// </summary>
-    [ViewVariables, Access(typeof(SharedMindSystem), typeof(SharedGameTicker))]
-    // TODO remove this after moving IPlayerManager functions to shared
-    public ICommonSession? Session { get; set; }
+    [DataField]
+    public LocId? Subtype;
 }

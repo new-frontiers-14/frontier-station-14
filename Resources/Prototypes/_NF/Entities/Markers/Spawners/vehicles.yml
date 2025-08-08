@@ -1,6 +1,62 @@
 - type: entity
+  name: Secway Spawner
+  id: SpawnVehicleSecway
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Vehicles/secway.rsi
+        state: keys
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleSecway
+
+- type: entity
+  name: Janicart Spawner
+  id: SpawnVehicleJanicart
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Vehicles/janicart.rsi
+        state: keys
+  - type: ConditionalSpawner
+    prototypes:
+      - NFVehicleJanicart # Frontier: add NF prefix
+
+- type: entity
+  name: ATV Spawner
+  id: SpawnVehicleATV
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Vehicles/atv.rsi
+        state: keys
+  - type: ConditionalSpawner
+    prototypes:
+      - NFVehicleATV # Frontier: add NF suffix
+
+- type: entity
+  name: Skeleton Motorcycle Spawner
+  id: SpawnVehicleMotobike
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Vehicles/motorbike.rsi
+        state: keys
+  - type: ConditionalSpawner
+    prototypes:
+      - NFVehicleSkeletonMotorcycle # Frontier: add NF suffix
+
+- type: entity
   name: hoverbike spawner
-  id: SpawnVehicleHoverbikeNF
+  id: NFSpawnVehicleHoverbike
   parent: MarkerBase
   components:
   - type: Sprite
@@ -10,4 +66,4 @@
       state: vehicle
   - type: ConditionalSpawner
     prototypes:
-    - VehicleHoverbikeNF
+    - NFVehicleHoverbike

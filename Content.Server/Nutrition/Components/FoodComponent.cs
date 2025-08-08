@@ -74,25 +74,4 @@ public sealed partial class FoodComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool RequireDead = true;
-
-    [DataField]
-    public LocId VerbEat = "food-system-verb-eat"; // Frontier
-
-    [DataField]
-    public LocId UtensilMessage = "food-you-need-to-hold-utensil"; // Frontier
-
-    [DataField]
-    public LocId ForceFeedMessage = "food-system-force-feed"; // Frontier
-
-    [DataField]
-    public LocId ForceFeedSuccessMessage = "food-system-force-feed-success"; // Frontier
-
-    [DataField]
-    public LocId ForceFeedSuccessUserMessage = "food-system-force-feed-success-user"; // Frontier
-
-    [DataField]
-    public LocId CannotEatAnyMoreMessage = "food-system-you-cannot-eat-any-more"; // Frontier
-
-    [DataField]
-    public LocId CannotEatAnyMoreOtherMessage = "food-system-you-cannot-eat-any-more-other"; // Frontier
 }

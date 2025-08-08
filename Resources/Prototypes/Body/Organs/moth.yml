@@ -5,11 +5,15 @@
   components:
   - type: Stomach
     specialDigestible:
-      # tags: # Frontier
-      # - ClothMade # Frontier
-      # - Paper # Frontier
-      components: # Frontier
-      - MothFood # Frontier
+      # Frontier: general moth digestion
+      # tags:
+      # - ClothMade
+      # - Paper
+      # - Pill
+      components:
+      - MothFood
+      # End Frontier: general moth digestion
+    isSpecialDigestibleExclusive: false # Frontier
   - type: SolutionContainerManager
     solutions:
       stomach:

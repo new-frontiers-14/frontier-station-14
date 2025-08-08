@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Shuttles.Components;
 using JetBrains.Annotations;
 
@@ -40,7 +41,10 @@ public abstract partial class SharedShuttleSystem
             return null;
         }
 
-        return string.IsNullOrEmpty(entName) ? Loc.GetString("shuttle-console-unknown") : entName;
+        // Frontier
+        var suffix = component != null ? GetServiceFlagsSuffix(component.ServiceFlags) : string.Empty;
+
+        return string.IsNullOrEmpty(entName) ? Loc.GetString("shuttle-console-unknown") : entName + suffix;
     }
 
     /// <summary>
@@ -76,6 +80,54 @@ public abstract partial class SharedShuttleSystem
         component.Flags |= flags;
         Dirty(gridUid, component);
         UpdateIFFInterfaces(gridUid, component);
+    }
+
+    /// <summary>
+    /// Frontier: Service flags
+    /// Sets the service flags for this grid to appear as on radar.
+    /// </summary>
+    /// <param name="gridUid">The grid to set the flags for.</param>
+    /// <param name="flags">The flags to set.</param>
+    /// <param name="component">The IFF component to set the flags for.</param>
+    public void SetServiceFlags(EntityUid gridUid, ServiceFlags flags, IFFComponent? component = null)
+    {
+        component ??= EnsureComp<IFFComponent>(gridUid);
+
+        if (component.ReadOnly) // Frontier: POI IFF protection
+            return; // Frontier: POI IFF protection
+
+        if (component.ServiceFlags == flags)
+            return;
+
+        component.ServiceFlags = flags;
+        Dirty(gridUid, component);
+        UpdateIFFInterfaces(gridUid, component);
+    }
+
+    /// <summary>
+    /// Turns the service flags into a string for display.
+    /// IE. [M] for Medical, [R] for Research, etc.
+    /// This function also handles duplicate first characters by using the first two characters of the flag name.
+    /// </summary>
+    /// <param name="flags">The IFF flags to get the suffix for</param>
+    /// <returns>The string to display.</returns>
+    public string GetServiceFlagsSuffix(ServiceFlags flags)
+    {
+        if (flags == ServiceFlags.None)
+            return string.Empty;
+
+        string outputString = "";
+        foreach (var flag in Enum.GetValues<ServiceFlags>())
+        {
+            if (flag == ServiceFlags.None || !flags.HasFlag(flag))
+                continue;
+
+            if (Loc.TryGetString($"shuttle-console-service-flag-{flag}-shortform", out var flagString))
+                outputString = string.Concat(outputString, flagString);
+            else
+                outputString = string.Concat(outputString, flag.ToString()[0]); // Fallback: use first character of string
+        }
+        return $"[{outputString}]";
     }
 
     [PublicAPI]

@@ -6,15 +6,15 @@ namespace Content.Client._DV.Administration.UI;
 
 public sealed class JobWhitelistsEui : BaseEui
 {
-    private JobWhitelistsWindow Window;
+    private readonly JobWhitelistsWindow _window;
 
     public JobWhitelistsEui()
     {
-        Window = new JobWhitelistsWindow();
-        Window.OnClose += () => SendMessage(new CloseEuiMessage());
-        Window.OnSetJob += (id, whitelisted) => SendMessage(new SetJobWhitelistedMessage(id, whitelisted));
-        Window.OnSetGhostRole += (id, whitelisted) => SendMessage(new SetGhostRoleWhitelistedMessage(id, whitelisted)); // Frontier
-        Window.OnSetGlobal += (whitelisted) => SendMessage(new SetGlobalWhitelistMessage(whitelisted)); // Frontier
+        _window = new JobWhitelistsWindow();
+        _window.OnClose += () => SendMessage(new CloseEuiMessage());
+        _window.OnSetJob += (id, whitelisted) => SendMessage(new SetJobWhitelistedMessage(id, whitelisted));
+        _window.OnSetGhostRole += (id, whitelisted) => SendMessage(new SetGhostRoleWhitelistedMessage(id, whitelisted)); // Frontier
+        _window.OnSetGlobal += (whitelisted) => SendMessage(new SetGlobalWhitelistMessage(whitelisted)); // Frontier
     }
 
     public override void HandleState(EuiStateBase state)
@@ -22,21 +22,20 @@ public sealed class JobWhitelistsEui : BaseEui
         if (state is not JobWhitelistsEuiState cast)
             return;
 
-        Window.HandleState(cast);
+        _window.HandleState(cast);
     }
 
     public override void Opened()
     {
         base.Opened();
 
-        Window.OpenCentered();
+        _window.OpenCentered();
     }
 
     public override void Closed()
     {
         base.Closed();
 
-        Window.Close();
-        Window.Dispose();
+        _window.Close();
     }
 }

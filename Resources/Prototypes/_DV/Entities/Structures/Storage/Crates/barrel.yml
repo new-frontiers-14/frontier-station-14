@@ -11,6 +11,9 @@
       map: ["enum.StorageVisualLayers.Base"]
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
+    - state: paper # Frontier
+      map: ["enum.PaperLabelVisuals.Layer"] # Frontier
+      visible: false # Frontier
   - type: Icon
     sprite: _DV/Objects/Storage/barrel.rsi
     state: base
@@ -52,6 +55,20 @@
         layer:
         - MachineLayer
   - type: Climbable
+  # Frontier: visualizer
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: paper }
+          CaptainsPaper: { state: paper }
+          Invoice: { state: paper }
+  # End Frontier
 
 - type: entity
   parent: StorageTank

@@ -40,7 +40,7 @@ public sealed class PlungerSystem : EntitySystem
         if (!TryComp<PlungerUseComponent>(args.Target, out var plunger))
             return;
 
-        if (plunger.NeedsPlunger)
+        if (!plunger.NeedsPlunger) // Frontier: inverted condition
             return;
 
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.PlungeDuration, new PlungerDoAfterEvent(), uid, target, uid)
@@ -64,12 +64,19 @@ public sealed class PlungerSystem : EntitySystem
             return;
 
         _popup.PopupClient(Loc.GetString("plunger-unblock", ("target", target)), args.User, args.User, PopupType.Medium);
-        plunge.Plunged = true;
 
-        var spawn = _proto.Index<WeightedRandomEntityPrototype>(plunge.PlungerLoot).Pick(_random);
+        // Frontier: spawn stuff only on the first plunge
+        if (!plunge.Plunged)
+        {
+            plunge.Plunged = true;
+
+            var spawn = _proto.Index<WeightedRandomEntityPrototype>(plunge.PlungerLoot).Pick(_random);
+            Spawn(spawn, Transform(target).Coordinates);
+        }
+        // End Frontier
 
         _audio.PlayPredicted(plunge.Sound, uid, uid);
-        Spawn(spawn, Transform(target).Coordinates);
+        //Spawn(spawn, Transform(target).Coordinates);
         RemComp<PlungerUseComponent>(target);
         Dirty(target, plunge);
 

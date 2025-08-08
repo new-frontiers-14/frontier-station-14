@@ -84,3 +84,26 @@
     sprite: _NF/Clothing/OuterClothing/Vests/mercenary_webvest_black.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Vests/mercenary_webvest_black.rsi
+
+- type: entity
+  parent: ClothingOuterArmorReflective
+  id: NFClothingOuterArmorReflective
+  name: basic reflective vest
+  description: A vest with moderate protection against energy weapons.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Armor/basic_reflective_vest.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Armor/basic_reflective_vest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.7 # Normal reflective vest has 0.4
+  - type: Reflect
+    reflectProb: 0.05 # Normal reflective vest has 0.7
+    reflects:
+      - Energy
+    reflectingInHands: false

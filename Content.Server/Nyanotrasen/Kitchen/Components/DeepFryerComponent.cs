@@ -17,7 +17,7 @@ using Content.Shared.Nyanotrasen.Kitchen.Prototypes;
 
 namespace Content.Server.Nyanotrasen.Kitchen.Components
 {
-    [RegisterComponent]
+    [RegisterComponent, AutoGenerateComponentPause]
     [Access(typeof(SharedDeepfryerSystem))]
     // This line appears to be depracted: [ComponentReference(typeof(SharedDeepFryerComponent))]
     public sealed partial class DeepFryerComponent : SharedDeepFryerComponent
@@ -38,33 +38,32 @@ namespace Content.Server.Nyanotrasen.Kitchen.Components
         /// <summary>
         /// When will the deep fryer layer on the next stage of crispiness?
         /// </summary>
-        [DataField("nextFryTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
+        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+        [AutoPausedField]
         public TimeSpan NextFryTime { get; set; }
 
         /// <summary>
         /// How much waste needs to be added at the next update interval?
         /// </summary>
+        [ViewVariables(VVAccess.ReadOnly)]
         public FixedPoint2 WasteToAdd { get; set; } = FixedPoint2.Zero;
 
         /// <summary>
         /// How often are items in the deep fryer fried?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("fryInterval")]
+        [DataField]
         public TimeSpan FryInterval { get; set; } = TimeSpan.FromSeconds(5);
 
         /// <summary>
         /// What entities cannot be deep-fried no matter what?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("blacklist")]
+        [DataField]
         public EntityWhitelist? Blacklist { get; set; }
 
         /// <summary>
         /// What entities can be deep-fried into being edible?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("whitelist")]
+        [DataField]
         public EntityWhitelist? Whitelist { get; set; }
 
         /// <summary>
@@ -74,73 +73,63 @@ namespace Content.Server.Nyanotrasen.Kitchen.Components
         /// To prevent unwanted destruction of items, only food can be turned
         /// into this.
         /// </remarks>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("charredPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string? CharredPrototype { get; set; }
+        [DataField]
+        public EntProtoId? CharredPrototype { get; set; }
 
         /// <summary>
         /// What reagents are considered valid cooking oils?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("fryingOils", customTypeSerializer: typeof(PrototypeIdHashSetSerializer<ReagentPrototype>))]
-        public HashSet<string> FryingOils { get; set; } = new();
+        [DataField]
+        public HashSet<ProtoId<ReagentPrototype>> FryingOils { get; set; } = new();
 
         /// <summary>
         /// What reagents are added to tasty deep-fried food?
         /// JJ Comment: I removed Solution from this. Unsure if I need to replace it with something.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("goodReagents")]
+        [DataField]
         public List<ReagentQuantity> GoodReagents { get; set; } = new();
 
         /// <summary>
         /// What reagents are added to terrible deep-fried food?
         /// JJ Comment: I removed Solution from this. Unsure if I need to replace it with something.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("badReagents")]
+        [DataField]
         public List<ReagentQuantity> BadReagents { get; set; } = new();
 
         /// <summary>
         /// What reagents replace every 1 unit of oil spent on frying?
         /// JJ Comment: I removed Solution from this. Unsure if I need to replace it with something.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("wasteReagents")]
+        [DataField]
         public List<ReagentQuantity> WasteReagents { get; set; } = new();
 
         /// <summary>
         /// What flavors go well with deep frying?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("goodFlavors", customTypeSerializer: typeof(PrototypeIdHashSetSerializer<FlavorPrototype>))]
+        [DataField(customTypeSerializer: typeof(PrototypeIdHashSetSerializer<FlavorPrototype>))]
         public HashSet<string> GoodFlavors { get; set; } = new();
 
         /// <summary>
         /// What flavors don't go well with deep frying?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("badFlavors", customTypeSerializer: typeof(PrototypeIdHashSetSerializer<FlavorPrototype>))]
+        [DataField(customTypeSerializer: typeof(PrototypeIdHashSetSerializer<FlavorPrototype>))]
         public HashSet<string> BadFlavors { get; set; } = new();
 
         /// <summary>
         /// How much is the price coefficiency of a food changed for each good flavor?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("goodFlavorPriceBonus")]
+        [DataField]
         public float GoodFlavorPriceBonus { get; set; } = 0.2f;
 
         /// <summary>
         /// How much is the price coefficiency of a food changed for each bad flavor?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("badFlavorPriceMalus")]
+        [DataField]
         public float BadFlavorPriceMalus { get; set; } = -0.3f;
 
         /// <summary>
         /// What is the name of the solution container for the fryer's oil?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
         [DataField("solution")]
         public string SolutionName { get; set; } = "vat_oil";
 
@@ -157,15 +146,13 @@ namespace Content.Server.Nyanotrasen.Kitchen.Components
         /// <summary>
         /// How much solution should be imparted based on an item's size?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("solutionSizeCoefficient")]
+        [DataField]
         public FixedPoint2 SolutionSizeCoefficient { get; set; } = 1f;
 
         /// <summary>
         /// What's the maximum amount of solution that should ever be imparted?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("solutionSplitMax")]
+        [DataField]
         public FixedPoint2 SolutionSplitMax { get; set; } = 10f;
 
         /// <summary>
@@ -175,74 +162,64 @@ namespace Content.Server.Nyanotrasen.Kitchen.Components
         /// The chef will have to clean it out occasionally, and if too much
         /// non-oil reagents are added, the vat will have to be drained.
         /// </remarks>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("fryingOilThreshold")]
+        [DataField]
         public FixedPoint2 FryingOilThreshold { get; set; } = 0.5f;
 
         /// <summary>
         /// What is the bare minimum number of oil units to prevent the fryer
         /// from unsafe operation?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("safeOilVolume")]
+        [DataField]
         public FixedPoint2 SafeOilVolume { get; set; } = 10f;
 
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("unsafeOilVolumeEffects")]
+        [DataField]
         public List<EntityEffect> UnsafeOilVolumeEffects = new(); // Frontier: ReagentEffect<EntityEffect
 
         /// <summary>
         /// What is the temperature of the vat when the deep fryer is powered?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("poweredTemperature")]
+        [DataField]
         public float PoweredTemperature = 550.0f;
 
         /// <summary>
         /// How many entities can this deep fryer hold?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
+        [ViewVariables]
         public int StorageMaxEntities = 4;
 
         /// <summary>
         /// How many entities can be held, at a minimum?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("baseStorageMaxEntities")]
+        [DataField]
         public int BaseStorageMaxEntities = 4;
 
         /// <summary>
         /// What upgradeable machine part dictates the quality of the storage size?
         /// </summary>
-        [DataField("machinePartStorageMax", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-        public string MachinePartStorageMax = "MatterBin";
+        public ProtoId<MachinePartPrototype> MachinePartStorageMax = "MatterBin";
 
         /// <summary>
         /// How much extra storage is added per part rating?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("storagePerPartRating")]
+        [DataField]
         public int StoragePerPartRating = 4;
 
         /// <summary>
         /// What sound is played when an item is inserted into hot oil?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("soundInsertItem")]
+        [DataField]
         public SoundSpecifier SoundInsertItem = new SoundPathSpecifier("/Audio/Nyanotrasen/Machines/deepfryer_basket_add_item.ogg");
 
         /// <summary>
         /// What sound is played when an item is removed?
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("soundRemoveItem")]
+        [DataField]
         public SoundSpecifier SoundRemoveItem = new SoundPathSpecifier("/Audio/Nyanotrasen/Machines/deepfryer_basket_remove_item.ogg");
 
         /// <summary>
         /// Frontier: crispiness level set to use for examination and shaders
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<CrispinessLevelSetPrototype>))]
-        public string CrispinessLevelSet = "Crispy";
+        [DataField]
+        public ProtoId<CrispinessLevelSetPrototype> CrispinessLevelSet = "Crispy";
     }
 }

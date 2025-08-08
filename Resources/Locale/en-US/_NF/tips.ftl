@@ -121,3 +121,5 @@ nf-tips-dataset-119 = Trust is something that takes ages to build, and seconds t
 nf-tips-dataset-120 = There are multiple ways to earn money. Why not get a job on Frontier Outpost, join NFSD, go salvaging, do science, or do something totally illegal? Other players can teach you each one of them!
 nf-tips-dataset-121 = As a pirate, you can get bounties to earn doubloons! Think of which ship would be most likely to have the items you need.
 nf-tips-dataset-122 = As a pirate, remember your code! Keep your crews at 4 max, look after Clarrrpy, and pillage with dignity.
+nf-tips-dataset-123 = If you want to stop somebody from escaping after uncuffing them, turn on combat mode while uncuffing - this will shove them down.
+nf-tips-dataset-124 = Make sure to clean your illegal implanters with soap or a damp rag after you use them! Detectives can scan used implanters for incriminating DNA evidence, but not if they've been wiped clean.

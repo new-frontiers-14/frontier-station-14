@@ -18,3 +18,57 @@
     table: !type:NestedSelector
       tableId: SalvageScrapSpawnerBrass
       prob: 0.75
+
+- type: entity
+  parent: SalvageSpawnerScrapBrass75
+  id: SalvageSpawnerScrapBrass100
+  suffix: Brass, 100%
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SalvageScrapSpawnerBrass
+
+- type: entity
+  parent: SalvageSpawnerScrapValuable75
+  id: SalvageSpawnerScrapValuable100
+  suffix: Valuable, 100%
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SalvageScrapSpawnerValuable
+
+- type: entity
+  parent: SalvageSpawnerTreasure
+  id: SalvageSpawnerTreasure100
+  suffix: Common, 100%
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SalvageTreasureSpawnerCommon
+
+- type: entity
+  parent: SalvageSpawnerTreasureValuable
+  id: SalvageSpawnerTreasureValuable100
+  suffix: Valuable, 100%
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SalvageTreasureSpawnerValuable
+
+- type: entity
+  parent: SalvageSpawnerEquipment
+  id: SalvageSpawnerEquipment100
+  suffix: Common, 100%
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SalvageEquipmentSpawnerCommon
+
+- type: entity
+  parent: SalvageSpawnerEquipmentValuable
+  id: SalvageSpawnerEquipmentValuable100
+  suffix: Valuable, 100%
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SalvageEquipmentSpawnerValuable

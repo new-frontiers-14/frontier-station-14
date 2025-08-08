@@ -88,3 +88,29 @@
       - id: Wirecutter
       - id: Welder
       - id: Multitool
+
+- type: entity
+  id: ClothingBeltSheathFilledHilt
+  parent: ClothingBeltSheath
+  suffix: Filled, Hilt
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - CaptainSabreHilt
+
+- type: entity
+  id: ClothingBeltChiefEngineerFilledBasic
+  parent: ClothingBeltChiefEngineer
+  suffix: Filled, Basic
+  components:
+  - type: StorageFill
+    contents:
+    - id: CrowbarYellow
+    - id: Wrench
+    - id: Screwdriver
+    - id: Wirecutter
+    - id: Welder
+    - id: Multitool
+    - id: GasAnalyzer
+    - id: trayScanner

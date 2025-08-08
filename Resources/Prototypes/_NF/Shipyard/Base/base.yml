@@ -16,6 +16,30 @@
   id: BaseVesselAntag
   abstract: true
   parent: BaseVessel
+  group: BlackMarket
   addComponents:
   - type: IFF
     flags: [IsPlayerShuttle, HideLabel]
+
+# Note: we keep the IsPlayerShuttle flag to hide consistently with other shuttles.
+- type: vessel
+  id: BaseVesselNonPlayer
+  abstract: true
+  parent: BaseVessel
+  group: Custom # Should not be available in any shipyard
+
+- type: vessel
+  id: BaseVesselBus
+  abstract: true
+  parent: BaseVesselNonPlayer
+  addComponents:
+  - type: PreventPilot
+  - type: ProtectedGrid
+    preventArtifactTriggers: true
+    preventEmpEvents: true
+    preventExplosions: true
+    preventFloorPlacement: true
+    preventFloorRemoval: true
+    preventRCDUse: true
+    killHostileMobs: true
+  - type: LinkedLifecycleGridParent

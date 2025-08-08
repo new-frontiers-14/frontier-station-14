@@ -14,3 +14,14 @@
         variation: 0.65
         volume: 10
         loop: true
+
+- type: entity
+  parent: EffectFlashBluespace
+  id: EffectFlashBluespaceQuiet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/Lightning/lightningbolt.ogg
+      params:
+        volume: -6

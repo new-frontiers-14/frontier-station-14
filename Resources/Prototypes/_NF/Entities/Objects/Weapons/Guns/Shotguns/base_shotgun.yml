@@ -1,0 +1,96 @@
+#region frame
+- type: entity
+  id: NFBaseWeaponFrameShotgun
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGun ]
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Gun
+    projectileSpeed: 20
+    minAngle: 4.1
+    maxAngle: 20.5
+    angleIncrease: 2
+    angleDecay: 4
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: StaticPrice
+    price: 400
+  - type: NFWeaponDetails
+    class: weapon-details-class-shotgun
+
+- type: entity
+  id: NFBaseWeaponFrameShotgunWieldable
+  parent: [ NFBaseWeaponEncumbranceRifle, NFBaseWeaponFrameShotgun ]
+  abstract: true
+  components:
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -1
+    maxAngle: -4
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponShotgunChamber50
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-50
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+  - type: BallisticAmmoProvider
+    capacity: 7
+    proto: NFShellShotgunBuckshot
+    whitelist:
+      tags:
+      - ShellShotgun
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  id: NFBaseWeaponShotgunChamber50Magazine
+  abstract: true
+  components:
+  - type: Sprite # janky here, but mag is optional and tied with chamber
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Gun
+    examineCaliber: gun-examine-caliber-50
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineShotgunDrum
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot

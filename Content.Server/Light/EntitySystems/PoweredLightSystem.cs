@@ -1,5 +1,3 @@
-using Content.Server.Administration.Logs;
-using Content.Server.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
@@ -9,22 +7,20 @@ using Content.Server.Light.Components;
 using Content.Server.Power.Components;
 using Content.Shared.Audio;
 using Content.Shared.Damage;
-using Content.Shared.Database;
+using Content.Shared.DeviceLinking.Events;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Inventory;
 using Content.Shared.Light;
 using Content.Shared.Light.Components;
-using Content.Shared.Popups;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
 using Robust.Shared.Containers;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
+using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Power;
 using Robust.Shared.Random; // Frontier
 
@@ -47,7 +43,7 @@ namespace Content.Server.Light.EntitySystems
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly DamageOnInteractSystem _damageOnInteractSystem = default!;
 
-        [Dependency] protected readonly IRobustRandom RobustRandom = default!; // Frontier
+        [Dependency] private readonly IRobustRandom _random = default!; // Frontier
 
         private static readonly TimeSpan ThunkDelay = TimeSpan.FromSeconds(2);
         public const string LightBulbContainer = "light_bulb";
@@ -440,11 +436,13 @@ namespace Content.Server.Light.EntitySystems
 
         private void OnEmpPulse(EntityUid uid, PoweredLightComponent component, ref EmpPulseEvent args)
         {
-            if (RobustRandom.Prob(component.LightBreakChance))
+            // Frontier: break lights probabilistically
+            if (_random.Prob(component.LightBreakChance))
             {
                 if (TryDestroyBulb(uid, component))
                     args.Affected = true;
             }
+            // End Frontier: break lights probabilistically
         }
     }
 }

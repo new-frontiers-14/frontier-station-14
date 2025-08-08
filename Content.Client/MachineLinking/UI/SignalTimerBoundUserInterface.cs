@@ -21,6 +21,7 @@ public sealed class SignalTimerBoundUserInterface : BoundUserInterface
         _window = this.CreateWindow<SignalTimerWindow>();
         _window.OnStartTimer += StartTimer;
         _window.OnCurrentTextChanged += OnTextChanged;
+        _window.OnCurrentRepeatChanged += OnRepeatChanged; // Frontier
         _window.OnCurrentDelayMinutesChanged += OnDelayChanged;
         _window.OnCurrentDelaySecondsChanged += OnDelayChanged;
     }
@@ -34,6 +35,13 @@ public sealed class SignalTimerBoundUserInterface : BoundUserInterface
     {
         SendMessage(new SignalTimerTextChangedMessage(newText));
     }
+
+    // Frontier: Handle Repeat changed
+    private void OnRepeatChanged(bool newRepeat)
+    {
+        SendMessage(new SignalTimerRepeatToggled(newRepeat));
+    }
+    //End Frontier
 
     private void OnDelayChanged(string newDelay)
     {
@@ -56,6 +64,7 @@ public sealed class SignalTimerBoundUserInterface : BoundUserInterface
         _window.SetCurrentText(cast.CurrentText);
         _window.SetCurrentDelayMinutes(cast.CurrentDelayMinutes);
         _window.SetCurrentDelaySeconds(cast.CurrentDelaySeconds);
+        _window.SetCurrentRepeat(cast.CurrentRepeat); // Frontier
         _window.SetShowText(cast.ShowText);
         _window.SetTriggerTime(cast.TriggerTime);
         _window.SetTimerStarted(cast.TimerStarted);

@@ -1,96 +1,28 @@
 <Document>
-  # SEARCHLIGHT-CLASS MEDICAL SHUTTLE
+  # SEARCHLIGHT-CLASS EMS SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="ComputerCrewMonitoring"/>
-  <GuideEntityEmbed Entity="HandheldHealthAnalyzer"/>
-  <GuideEntityEmbed Entity="RollerBed"/>
-  </Box>  
-  <Box>
-  <GuideEntityEmbed Entity="StasisBed"/>
-  <GuideEntityEmbed Entity="Morgue"/>
+  <GuideEntityEmbed Entity="NFPosterContrabandLvhiSpace" Caption=""/>
   </Box>
   <Box>
   <GuideEntityEmbed Entity="ShuttleMapSearchlight" Caption=""/>
   </Box>
 
-    [color=#a4885c]Ship Size:[/color] Small
-	
-	[color=#a4885c]Recommended Crew:[/color] 2-3
-	
-	[color=#a4885c]Power Gen Type:[/color] Plasma
-	
+  [color=#a4885c]Ship Size:[/color] Small
+
+	[color=#a4885c]Recommended Crew:[/color] 2+
+
+	[color=#a4885c]Power Gen Type:[/color] Uranium
+
 	[color=#a4885c]Expeditions:[/color] None
-	
+
 	[color=#a4885c]IFF Console:[/color] None
-	
+
   "A good small size shuttle to provide medical care throughout the sector. Manufactured by Langstad-Voigt Heavy Industries."
-    
-  # PREFLIGHT CHECKLIST
-  
-  ## 1. Power supply
-  
-  ## 1.1. Battery units
-  <Box>
-  <GuideEntityEmbed Entity="SMESBasic"/>
-  <GuideEntityEmbed Entity="SubstationWallBasic"/>
-  <GuideEntityEmbed Entity="APCBasic"/>
-  </Box>
-  
-  - Check that the SMES unit is anchored to the floor.
-  - Check the substation unit.
-  - Check that the APC unit's Main Breaker is toggled on.
-  - Check the APC unit's current Load* (W).
-  
-  ## 1.2. P.A.C.M.A.N. generator unit
-  <Box>
-  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
-  <GuideEntityEmbed Entity="SheetPlasma"/>
-  </Box>
-  
-  - Check that the P.A.C.M.A.N. generator unit is anchored to the floor.
-  - Check that the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
-  - Check that the P.A.C.M.A.N. generator unit is set to HV output.
-  - Set Target Power for 15-16** [bold]kW[/bold].
-  - Start the P.A.C.M.A.N. generator unit.
-  
-  ## 2. Atmospherics
-  
-  ## 2.1. Distribution Loop
-  <Box>
-  <GuideEntityEmbed Entity="AirCanister"/>
-  <GuideEntityEmbed Entity="GasPort"/>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  </Box>
-  
-  - Check that the air canister is anchored to connector port.
-  - Check that the distribution pump is set to 101kPa.
-  - Enable the distribution pump.
-  
-  ## 2.2. Waste Loop
-  <Box>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
-  <GuideEntityEmbed Entity="AirAlarm"/>
-  </Box>
-    
-  - Enable waste loop pump.
-  - Disable Auto Mode on the Air Alarm in the Engine Room.
-  - Set the Air Alarm in the Engine Room to Filtering (Wide).
-  
-  ## 3. Other checks
-  <Box>
-  <GuideEntityEmbed Entity="Gyroscope"/>
-  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  <GuideEntityEmbed Entity="BlastDoor"/>
-  </Box>
-  
-  - Check that the gyroscope is anchored, powered, and enabled.
-  - Check that the mini gravity generator is anchored, powered, and enabled.
-  - Check that blast doors are closed.
-  
-  ## Sidenotes
-  
-  * - Searchlight-class medical ship are equipped with a single APC unit that can be used to appraise the ship's total power consumption (which for the unmodified ship is 14.7 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
-  
-  ** - Searchlight-class medical ship have average power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be put at 15 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 16 kW.
+
+  # Tips on running LVHI Searchlight shuttles
+  - The total power load for the shuttle in standard complectation is 24 [bold]kW[/bold]. Consider switching off the stasis beds when they aren't needed to conserve power. For more general info on the power grid, see the guidebook article [textlink="Power" link="Power"].
+  - For basics of medical care see [textlink="Medical Doctor" link="Medical Doctor"].
+  - For basics of chemical mixing see [textlink="Chemist" link="Chemist"] and [textlink="List of Chemicals" link="Chemicals"].
+  - For basics of shuttle piloting see [textlink="Piloting" link="Piloting"].
 
 </Document>

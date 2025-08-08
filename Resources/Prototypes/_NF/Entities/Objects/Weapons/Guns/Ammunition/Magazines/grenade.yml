@@ -1,0 +1,39 @@
+# Upstream definitions redefined
+- type: entity
+  parent: MagazineGrenadeEmpty
+  id: NFMagazineGrenadeEmpty
+
+- type: entity
+  parent: MagazineGrenadeFrag
+  id: NFMagazineGrenadeFrag
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFGrenadeFrag
+
+- type: entity
+  parent: MagazineGrenadeEMP
+  id: NFMagazineGrenadeEMP
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFGrenadeEMP
+
+- type: entity
+  parent: MagazineGrenadeFlash
+  id: NFMagazineGrenadeFlash
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFGrenadeFlash
+
+- type: entity
+  parent: MagazineGrenadeBlast
+  id: NFMagazineGrenadeBlast
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFGrenadeBlast
+
+- type: entity
+  parent: MagazineGrenadeBaton
+  id: NFMagazineGrenadeBaton
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFGrenadeBaton

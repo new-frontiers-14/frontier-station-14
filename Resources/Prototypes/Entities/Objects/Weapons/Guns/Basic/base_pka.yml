@@ -7,11 +7,13 @@
     sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
   - type: Item
     sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
-    size: Normal
+    size: Large
+    shape:
+    - 0,0,2,1
   - type: GunWieldBonus
     minAngle: -43
     maxAngle: -43
-#  - type: Wieldable # Frontier
+  - type: Wieldable
   - type: Gun
     fireRate: 0.5
     selectedMode: SemiAuto
@@ -36,7 +38,7 @@
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKinetic
+    proto: NFBulletKinetic # Frontier: use NF prefix
     capacity: 1
     count: 1
   - type: Clothing

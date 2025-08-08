@@ -1,0 +1,59 @@
+- type: entity
+  name: medical bag
+  id: MedicalBag
+  parent: NFBaseClothingBeltStorageBag
+  description: A medical bag designed to hold topicals and small reagent containers. For the medic on the go.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medical_bag.rsi
+    layers:
+    - state: icon
+    - state: icon-on
+      visible: false
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Clothing
+    sprite: _NF/Objects/Specific/Medical/medical_bag.rsi
+    quickEquip: false
+    slots:
+    - belt
+  - type: Storage
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      components:
+        - Pill
+        - Hypospray
+      tags:
+        - PillCanister
+        - CentrifugeCompatible
+        - Syringe
+        - Ointment
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Bottle
+  - type: Dumpable
+  - type: MagnetPickup
+    magnetEnabled: false
+    magnetCanBeEnabled: false
+  # Frontier: toggle magnet from White Dream (keeping this in case it's useful as a future note)
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onUse: false
+    onAltUse: true
+    onActivate: false
+  - type: ItemToggleExamine
+    on: item-toggle-examine-magnet-on
+    off: item-toggle-examine-magnet-off
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { visible: True }
+          False: { visible: False }
+  # End Frontier

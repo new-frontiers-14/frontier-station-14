@@ -89,6 +89,10 @@
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
       state: computer_tabletop
+    - map: ["computerBodyDecal"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop_decal
+      color: "#5a1613"
     - map: ["computerLayerKeyboard"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
       state: generic_keyboard_tabletop
@@ -109,15 +113,23 @@
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
       state: computer_tabletop
+    - map: ["computerBodyDecal"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop_decal
+      color: "#bd4bff"
+    - map: ["computerBodyDecalAccent"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop_decal_accent
+      color: "#c08f45"
     - map: ["computerLayerKeyboard"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
       state: generic_keyboard_tabletop
     - map: ["computerLayerScreen"]
       sprite: _NF/Structures/Machines/computers.rsi
-      state: shipyard_blackmarket
+      state: shipyard
     - map: ["computerLayerKeys"]
       sprite: _NF/Structures/Machines/computers.rsi
-      state: blackmarket_key
+      state: telesci_key
 
 - type: entity
   parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardScrap]
@@ -128,13 +140,13 @@
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
+      state: computer_tabletop_scrap
     - map: ["computerLayerKeyboard"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
+      state: scrap_keyboard_tabletop
     - map: ["computerLayerScreen"]
       sprite: _NF/Structures/Machines/computers.rsi
-      state: shipyard_blackmarket
+      state: shipyard_scrap
     - map: ["computerLayerKeys"]
       sprite: _NF/Structures/Machines/computers.rsi
-      state: blackmarket_key
+      state: scrap_key

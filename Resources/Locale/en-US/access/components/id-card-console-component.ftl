@@ -12,3 +12,4 @@ id-card-console-window-shuttle-placeholder = No owned shuttle
 access-id-card-console-component-no-hands-error = You have no hands.
 id-card-console-privileged-id = Privileged ID
 id-card-console-target-id = Target ID
+id-card-console-damaged = Structural integrity compromised, ejecting contents.

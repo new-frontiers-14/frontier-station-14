@@ -1,3 +1,4 @@
+# Station/Crew Selection
 frontier-lobby-station-title = Station
 frontier-lobby-available-jobs = Available Jobs
 frontier-lobby-no-stations-available = There are no stations available at this time.
@@ -6,13 +7,14 @@ frontier-lobby-station-subtext = Wake up from cryosleep to become captain, find 
 frontier-lobby-crew-title = Crew
 frontier-lobby-crew-subtext = Start your round aboard a ship amongst a crew that is looking for new crewmembers to give them a helping hand, whether you are a new or seasoned pilot!
 
+# Station Menu
 frontier-lobby-frontier-subtext = Main hub for many space pioneers.
 frontier-lobby-frontier-description = Awaken from cryosleep here to:
    - Start your own crew and become captain
    - Find a crew to join
    - Purchase ships
    - Socialize with other pioneers
- Some of the roles on this station are whitelist-only and require an application in the discord to be accepted.
+ {"["}color=gray]Some of the roles on this station are [color=lightblue]whitelist-only[/color] and require an application in the Discord to be accepted.[/color]
 
 frontier-lobby-exped-subtext = Where seasoned mercenaries gather.
 frontier-lobby-exped-description = This is base camp for mercenaries and alike. Here you can:
@@ -27,12 +29,12 @@ frontier-lobby-medical-description = Frontier's medical dispatch hub. Here you c
    - Start or find a medical response crew
    - Socialize with other medics
    - Purchase medical specialist ships
-   - Drop off medical bounties  
- Some of the roles on this station are whitelist-only and require an application in the discord to be accepted.
+   - Drop off medical bounties
+ {"["}color=gray]Some of the roles on this station are [color=lightblue]whitelist-only[/color] and require an application in the Discord to be accepted.[/color]
 
-frontier-lobby-nfsd-subtext = The center of operations for the Sheriffs department.
-frontier-lobby-nfsd-description = The New Frontier Sheriff's Department is the center of operations for the Sheriffs department. Here you can:
-   - Join the Sheriffs department
+frontier-lobby-nfsd-subtext = The center of operations for the Sheriff's department.
+frontier-lobby-nfsd-description = The New Frontier Sheriff's Department is the center of operations for the Sheriff's department. Here you can:
+   - Join the Sheriff's department
    - Apply for a bounty hunting license
    - Report crimes
 
@@ -41,4 +43,18 @@ frontier-lobby-pirate-description = This is the ultimate hideout where scallywag
    - Start a pirate crew
    - Find a crew to join
    - Socialize with other pirates
- The roles on this station are whitelist-only and require an application in the discord to be accepted.
+ {"["}color=gray]Some of the roles on this station are [color=lightblue]whitelist-only[/color] and require an application in the Discord to be accepted.[/color]
+
+frontier-lobby-edison-subtext = Where the mechanically-minded mingle.
+frontier-lobby-edison-description = Frontier's heavy industrial base. Here you can:
+   - Work on engineering and atmospheric projects
+   - Generate, use, and sell massive amounts of power
+   - Socialize with other engineers
+ {"["}color=gray]Some of the roles on this station are [color=lightblue]whitelist-only[/color] and require an application in the Discord to be accepted.[/color]
+
+# Crew Menu
+frontier-lobby-crew-vessel = [bold][color=#A88B5E]Vessel:[/color][/bold] {$name}
+frontier-lobby-crew-class-prefix = [bold][color=#A88B5E]Classes:[/color][/bold]{" "}
+frontier-lobby-crew-size = [bold][color=#A88B5E]Size:[/color][/bold] {$size}
+frontier-lobby-crew-class-advertisement = [bold][color=#A88B5E]Advertisement:[/color][/bold]
+frontier-lobby-crew-only-hide-jobless = Hide jobless ships

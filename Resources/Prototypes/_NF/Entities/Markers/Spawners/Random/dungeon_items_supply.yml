@@ -51,8 +51,8 @@
     - WeaponCrusherDagger
     - WeaponCrusher
     - WeaponCrusherGlaive
-    - WeaponProtoKineticAccelerator
-    - WeaponProtoKineticAcceleratorSawn
+    - NFWeaponPka
+    - NFWeaponPkaSawn
     - OreBag
     - RadioHandheldNF
     - HandheldGPSBasic
@@ -64,6 +64,7 @@
     chance: 0.9
     offset: 0.0
     rarePrototypes:
+    - NFWeaponPkaCannon
     - OreBagOfHolding
     - HandHeldMassScanner
     - SpawnDungeonLootHardsuitsSalvage
@@ -180,7 +181,6 @@
   - type: RandomSpawner
     prototypes:
     - SuitStorageBase
-    - SuitStorageBasic
     - SuitStorageSalv
     - SuitStorageEVACargo
     - SuitStorageEVASalvage
@@ -249,7 +249,7 @@
     offset: 0.0
     rarePrototypes:
     - VendingMachineSyndieContraband
-    - VendingMachineSyndieDrobe
+    # - VendingMachineSyndieDrobe # A bit less Syndicate loot
     - VendingMachineArcadia
     rareChance: 0.01
 
@@ -317,7 +317,6 @@
     - ProtolatheFlatpack
     - OreProcessorIndustrialFlatpack
     - MaterialReclaimerFlatpack
-    - PowerCellRechargerFlatpack
     - WeaponCapacitorRechargerFlatpack
     chance: 0.95
     offset: 0.0

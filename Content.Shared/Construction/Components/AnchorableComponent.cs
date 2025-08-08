@@ -25,6 +25,13 @@ namespace Content.Shared.Construction.Components
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField]
         public float Delay = 1f;
+
+        /// <summary>
+        /// Frontier: actual delay to use for anchoring.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
+        public float CurrentDelay = 1f;
     }
 
     [Flags]

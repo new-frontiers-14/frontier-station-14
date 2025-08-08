@@ -1,0 +1,351 @@
+# WizDen
+#region base .20
+- type: entity
+  id: NFBaseMagazineRifle20
+  name: magazine (.20 rifle)
+  parent: [ BaseC1Contraband, RecyclableItemSteelTiny, BaseMagazineRifle ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFMagazineRifle20
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - NFCartridgeRifle20
+    proto: NFCartridgeRifle20
+    capacity: 25
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+    zeroVisible: false
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: NFBaseMagazineDrumRifle20
+  name: drum magazine (.20 rifle)
+  parent: [ BaseC1Contraband, RecyclableItemSteelTiny, BaseMagazineRifle ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFMagazineDrumRifle20
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - NFCartridgeRifle20
+    proto: NFCartridgeRifle20
+    capacity: 60
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_drum.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+      scale: 0.8, 0.8
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+      scale: 0.8, 0.8
+  - type: MagazineVisuals
+    magState: mag
+    steps: 10
+    zeroVisible: false
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_drum.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: NFBaseMagazineBoxRifle20
+  name: box magazine (.20 rifle)
+  parent: NFBaseMagazineRifle20
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - NFMagazineBoxRifle20
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20
+    capacity: 100
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Item
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+#region .20 magazines
+- type: entity
+  id: NFMagazineRifle20Empty
+  name: magazine (.20 rifle, any)
+  parent: NFBaseMagazineRifle20
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFMagazineRifle20
+  name: magazine (.20 rifle)
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20
+
+- type: entity
+  id: NFMagazineRifle20Overpressure
+  name: magazine (.20 rifle, overpressure)
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Overpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff8d00"
+
+- type: entity
+  id: NFMagazineRifle20Incendiary
+  name: magazine (.20 rifle, incendiary)
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"
+
+- type: entity
+  id: NFMagazineRifle20Uranium
+  name: magazine (.20 rifle, uranium)
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ff00"
+
+- type: entity
+  id: NFMagazineRifle20Practice
+  name: magazine (.20 rifle, practice)
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#dddddd"
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#dddddd"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#dddddd"
+
+- type: entity
+  id: NFMagazineRifle20Rubber # MagazineRifleRubber
+  name: "magazine (.20 rifle, rubber)"
+  parent: NFBaseMagazineRifle20
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"
+
+#region .20 drum mags
+- type: entity
+  id: NFMagazineDrumRifle20Empty
+  name: drum magazine (.20 rifle, any)
+  parent: NFBaseMagazineDrumRifle20
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFMagazineDrumRifle20
+  name: drum magazine (.20 rifle)
+  parent: NFBaseMagazineDrumRifle20
+
+#region .20 box mags
+- type: entity
+  id: NFMagazineBoxRifle20
+  name: box magazine (.20 rifle)
+  parent: NFBaseMagazineBoxRifle20
+
+# Frontier
+#region .20 Novalite
+- type: entity
+  parent: BaseMagazineRifle
+  id: NFMagazineClipRifle20Empty
+  name: clip (.20 rifle, any)
+  suffix: empty
+  components:
+  - type: Tag
+    tags:
+      - NFMagazineClipRifle20
+  - type: Item
+    size: Small
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_novalite_clip.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - NFCartridgeRifle20
+    capacity: 15
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_novalite_clip.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-15
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 16
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: NFMagazineClipRifle20Empty
+  id: NFMagazineClipRifle20
+  name: clip (.20 rifle)
+  suffix: full
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-15
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: NFMagazineClipRifle20Empty
+  id: NFMagazineClipRifle20Rubber
+  name: clip (.20 rifle, rubber)
+  suffix: full
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFCartridgeRifle20Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-15
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"

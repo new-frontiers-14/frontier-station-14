@@ -1,9 +1,8 @@
 # Harpy
 - type: emote
-  id: Ring
-  name: Ring
+  id: HarpyHonk
+  name: delta-chat-emote-name-honk
   category: Vocal
-  icon: Interface/Actions/scream.png
   available: false
   whitelist:
     components:
@@ -11,18 +10,36 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["rings."]
+  chatMessages: [honks.]
+  chatTriggers:
+    - honk
+    - honks
+    - honking
+    - honked
+
+- type: emote
+  id: HarpyRing
+  name: delta-chat-emote-name-ring
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: [rings.]
   chatTriggers:
     - ring
     - rings
     - ringing
     - ringed
+    - rang
 
 - type: emote
-  id: Pew
-  name: Pew
+  id: HarpyPew
+  name: delta-chat-emote-name-pew
   category: Vocal
-  icon: Interface/Actions/scream.png
   available: false
   whitelist:
     components:
@@ -30,18 +47,16 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["pews."]
+  chatMessages: [pews.]
   chatTriggers:
     - pew
     - pews
-    - pewing # Frontier: consistency, I suppose
-    - pewed # Frontier
+    - pewpew
 
 - type: emote
-  id: Bang
-  name: Bang
+  id: HarpyBang
+  name: delta-chat-emote-name-bang
   category: Vocal
-  icon: Interface/Actions/scream.png
   available: false
   whitelist:
     components:
@@ -49,7 +64,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["bangs."]
+  chatMessages: [bangs.]
   chatTriggers:
     - bang
     - bangs
@@ -57,10 +72,9 @@
     - banged
 
 - type: emote
-  id: Rev
-  name: Rev
+  id: HarpyBeep
+  name: delta-chat-emote-name-beep
   category: Vocal
-  icon: Interface/Actions/scream.png
   available: false
   whitelist:
     components:
@@ -68,18 +82,35 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["revs."]
+  chatMessages: [beeps.]
   chatTriggers:
-    - revs
+    - beep
+    - beeps
+    - beeping
+    - beeped
+
+- type: emote
+  id: HarpyRev
+  name: delta-chat-emote-name-rev
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: [revs.]
+  chatTriggers:
     - rev
+    - revs
     - revving
     - revved
 
 - type: emote
-  id: Caw
-  name: Caw
+  id: HarpyCaw
+  name: delta-chat-emote-name-caw
   category: Vocal
-  icon: Interface/Actions/scream.png
   available: false
   whitelist:
     components:
@@ -87,19 +118,18 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["caws."]
+  chatMessages: [caws.]
   chatTriggers:
-    - caws
     - caw
+    - caws
     - cawing
     - cawed
 
 #Vulpkanin
 - type: emote
   id: Bark
-  name: Bark
+  name: delta-chat-emote-name-bark
   category: Vocal
-  icon: Interface/Actions/scream.png
   available: false
   whitelist:
     components:
@@ -107,7 +137,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["barks."]
+  chatMessages: [barks.]
   chatTriggers:
     - bark
     - barks
@@ -116,9 +146,8 @@
 
 - type: emote
   id: Snarl
-  name: Snarl
+  name: delta-chat-emote-name-snarl
   category: Vocal
-  icon: Interface/Actions/scream.png
   available: false
   whitelist:
     components:
@@ -126,7 +155,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["snarls."]
+  chatMessages: [snarls.]
   chatTriggers:
     - snarl
     - snarls
@@ -135,9 +164,8 @@
 
 - type: emote
   id: Whine
-  name: Whine
+  name: delta-chat-emote-name-whine
   category: Vocal
-  icon: Interface/Actions/scream.png
   available: false
   whitelist:
     components:
@@ -145,7 +173,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["whines."]
+  chatMessages: [whines.]
   chatTriggers:
     - whine
     - whines
@@ -154,9 +182,8 @@
 
 - type: emote
   id: Howl
-  name: Howl
+  name: delta-chat-emote-name-howl
   category: Vocal
-  icon: Interface/Actions/scream.png
   available: false
   whitelist:
     components:
@@ -164,7 +191,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["howls."]
+  chatMessages: [howls.]
   chatTriggers:
     - howl
     - howls
@@ -173,9 +200,8 @@
 
 - type: emote
   id: Awoo
-  name: Awoo
+  name: delta-chat-emote-name-awoo
   category: Vocal
-  icon: Interface/Actions/scream.png
   available: false
   whitelist:
     components:
@@ -183,7 +209,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["awoos."]
+  chatMessages: [awoos.]
   chatTriggers:
     - awoo
     - awoos

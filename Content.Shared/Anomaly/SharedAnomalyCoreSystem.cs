@@ -39,9 +39,9 @@ public sealed class SharedAnomalyCoreSystem : EntitySystem
         var (uid, comp) = ent;
 
         // don't waste charges on non-anchorable non-anomalous static bodies.
-        if (!HasComp<AnomalyComponent>(args.Hit)
-            && !HasComp<AnchorableComponent>(args.Hit)
-            && TryComp<PhysicsComponent>(args.Hit, out var body)
+        if (!HasComp<AnomalyComponent>(args.Target)
+            && !HasComp<AnchorableComponent>(args.Target)
+            && TryComp<PhysicsComponent>(args.Target, out var body)
             && body.BodyType == BodyType.Static)
             return;
 
@@ -126,7 +126,7 @@ public sealed class SharedAnomalyCoreSystem : EntitySystem
         if (!_net.IsServer)
             return;
 
-        int price = (int)double.Clamp((pointsEarned * component.PointPriceCoefficient), component.MinimumPrice, component.MaximumPrice);
+        int price = (int)Math.Clamp(pointsEarned * component.PointPriceCoefficient, component.MinimumPrice, component.MaximumPrice);
 
         component.StartPrice = price;
         component.EndPrice = price;

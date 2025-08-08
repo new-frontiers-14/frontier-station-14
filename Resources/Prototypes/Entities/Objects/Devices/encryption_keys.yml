@@ -29,12 +29,15 @@
     layers:
     - state: crypt_gray
     - state: common_label
+  - type: Tag
+    tags:
+    - EncryptionCommon
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseCargoContraband
   id: EncryptionKeyCargo
   name: cargo encryption key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key used by supply employees.
   components:
   - type: EncryptionKey
@@ -45,12 +48,15 @@
     layers:
     - state: crypt_gray
     - state: cargo_label
+  - type: Tag
+    tags:
+    - EncryptionCargo
 
 - type: entity
-  parent: [EncryptionKey, BaseCentcommContraband]
+  parent: [EncryptionKey, BaseCentcommCommandContraband] # Frontier: Added BaseCentcommCommandContraband, removed BaseCentcommContraband.
   id: EncryptionKeyCentCom
   name: central command encryption key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key used by captain's bosses.
   components:
   - type: EncryptionKey
@@ -66,7 +72,7 @@
   parent: [EncryptionKey, BaseC2ContrabandUnredeemable] # Frontier: BaseCentcommCommandContraband<BaseC2ContrabandUnredeemable
   id: EncryptionKeyStationMaster
   name: station master encryption key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key used by station's bosses.
   components:
   - type: EncryptionKey
@@ -81,6 +87,7 @@
     - Service
     - Supply
     - Traffic # Frontier
+    - Greeting # Frontier
     defaultChannel: Command
   - type: Sprite
     layers:
@@ -91,7 +98,7 @@
   parent: [EncryptionKey, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
   id: EncryptionKeyCommand
   name: command encryption key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key used by crew's bosses.
   components:
   - type: EncryptionKey
@@ -102,12 +109,15 @@
     layers:
     - state: crypt_silver
     - state: com_label
+  - type: Tag
+    tags:
+    - EncryptionCommand
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseEngineeringContraband
   id: EncryptionKeyEngineering
   name: engineering encryption key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key used by the engineers.
   components:
   - type: EncryptionKey
@@ -118,6 +128,9 @@
     layers:
     - state: crypt_gray
     - state: eng_label
+  - type: Tag
+    tags:
+    - EncryptionEngineering
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseMedicalContraband
@@ -133,12 +146,15 @@
     layers:
     - state: crypt_gray
     - state: med_label
+  - type: Tag
+    tags:
+    - EncryptionMedical
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseMedicalScienceContraband
   id: EncryptionKeyMedicalScience
   name: med-sci encryption key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key used by someone who hasn't decided which side to take.
   components:
   - type: EncryptionKey
@@ -155,7 +171,7 @@
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseScienceContraband
   id: EncryptionKeyScience
   name: science encryption key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key used by scientists. Maybe it is plasmaproof?
   components:
   - type: EncryptionKey
@@ -166,12 +182,15 @@
     layers:
     - state: crypt_gray
     - state: sci_label
+  - type: Tag
+    tags:
+    - EncryptionScience
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseScienceContraband
   id: EncryptionKeyRobo
   name: robotech encryption key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key used by robototech engineers. Maybe it has a LAH-6000 on it?
   components:
   - type: EncryptionKey
@@ -184,10 +203,10 @@
     - state: robotics_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [ EncryptionKey, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityLawyerContraband<BaseC2ContrabandUnredeemable
   id: EncryptionKeySecurity
   name: security encryption key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key used by Frontier security forces. # Frontier
   components:
   - type: EncryptionKey
@@ -198,12 +217,15 @@
     layers:
     - state: crypt_gray
     - state: sec_label
+  - type: Tag
+    tags:
+    - EncryptionSecurity
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseCivilianContraband
   id: EncryptionKeyService
   name: service encryption key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key used by the service staff, tasked with keeping the station full, happy and clean.
   components:
   - type: EncryptionKey
@@ -214,12 +236,15 @@
     layers:
     - state: crypt_gray
     - state: service_label
+  - type: Tag
+    tags:
+    - EncryptionService
 
 - type: entity
   parent: [EncryptionKey, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: EncryptionKeySyndie
   name: blood-red encryption key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key used by... wait... Who is owner of this chip?
   components:
   - type: EncryptionKey
@@ -235,7 +260,7 @@
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseSiliconScienceContraband
   id: EncryptionKeyBinary
   name: binary translator key
-  suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
+  categories: [ DoNotMap ] # Frontier
   description: An encryption key that translates binary signals used by silicons.
   components:
   - type: EncryptionKey

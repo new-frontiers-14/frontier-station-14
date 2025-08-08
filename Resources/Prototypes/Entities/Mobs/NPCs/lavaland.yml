@@ -43,11 +43,15 @@
     thresholds:
       0: Alive
       50: Dead
+  - type: Butcherable
+    spawned:
+    - id: DiamondOre1
+      amount: 1
   - type: MovementSpeedModifier
     baseWalkSpeed: 5
     baseSprintSpeed: 7
   - type: ProjectileBatteryAmmoProvider
-    proto: WatcherBolt
+    proto: NFWatcherBolt # Frontier: use NF variant
     fireCost: 50
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -123,7 +127,7 @@
     energy: 1
     color: orangered
   - type: ProjectileBatteryAmmoProvider
-    proto: WatcherBoltMagmawing
+    proto: NFWatcherBoltMagmawing # Frontier: use NF variant
     fireCost: 50
 
 - type: entity

@@ -10,10 +10,7 @@ namespace Content.Client._EstacaoPirata.Cards;
 public sealed class CardSpriteSystem : EntitySystem
 {
     /// <inheritdoc/>
-    public override void Initialize()
-    {
-
-    }
+    public override void Initialize() { }
 
     public bool TryAdjustLayerQuantity(Entity<SpriteComponent, CardStackComponent> uid, int? cardLimit = null)
     {
@@ -23,7 +20,8 @@ public sealed class CardSpriteSystem : EntitySystem
 
         var layerCount = 0;
         //Gets the quantity of layers
-        foreach (var card in stack.Cards.TakeLast(cardCount))
+        var relevantCards = stack.Cards.TakeLast(cardCount).ToList();
+        foreach (var card in relevantCards)
         {
             if (!TryComp(card, out SpriteComponent? cardSprite))
                 return false;
@@ -33,21 +31,13 @@ public sealed class CardSpriteSystem : EntitySystem
         layerCount = int.Max(1, layerCount); // Frontier: you need one layer.
         //inserts Missing Layers
         if (sprite.AllLayers.Count() < layerCount)
-        {
             for (var i = sprite.AllLayers.Count(); i < layerCount; i++)
-            {
                 sprite.AddBlankLayer(i);
-            }
-        }
+
         //Removes extra layers
         else if (sprite.AllLayers.Count() > layerCount)
-        {
             for (var i = sprite.AllLayers.Count() - 1; i >= layerCount; i--)
-            {
                 sprite.RemoveLayer(i);
-            }
-        }
-
 
         return true;
     }
@@ -61,7 +51,8 @@ public sealed class CardSpriteSystem : EntitySystem
         List<(int, ISpriteLayer)> layers = [];
 
         var i = 0;
-        foreach (var card in stack.Cards.TakeLast(cardCount))
+        var cards = stack.Cards.TakeLast(cardCount).ToList();
+        foreach (var card in cards)
         {
             if (!TryComp(card, out SpriteComponent? cardSprite))
                 return false;

@@ -1,0 +1,167 @@
+#region frame
+- type: entity
+  id: NFBaseWeaponFrameLauncher
+  parent: [ NFBaseWeaponEncumbranceLauncher, NFBaseItemWeaponGun ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
+  - type: Gun
+    minAngle: 1.6
+    maxAngle: 8
+    angleIncrease: 5
+    angleDecay: 2
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  # - type: CursorOffsetRequiresWield
+  # - type: EyeCursorOffset
+    # maxOffset: 10
+    # pvsIncrease: 1
+  - type: StaticPrice
+    price: 1500
+  - type: NFWeaponDetails
+    class: weapon-details-class-launcher
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameLauncherNanotrasen
+  parent: NFBaseWeaponFrameLauncher
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 1.8
+    maxAngle: 9
+    angleIncrease: 5.5
+    angleDecay: 2
+    fireRate: 0.7
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  id: NFBaseWeaponFrameLauncherGorlex
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameLauncher ]
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 1.8
+    maxAngle: 9
+    angleIncrease: 6
+    angleDecay: 2
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works
+
+- type: entity
+  id: NFBaseWeaponFrameLauncherSteelbolt
+  parent: [ BaseC3PirateContraband, NFBaseWeaponFrameLauncher ]
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 1.8
+    maxAngle: 9
+    angleIncrease: 7
+    angleDecay: 3
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-steelbolt-tool-forge
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponLauncherChamber
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+    capacity: 1
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  id: NFBaseWeaponLauncherChamber40mmGrenades
+  parent: NFBaseWeaponLauncherChamber
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-40mm-grenade
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - Grenade
+    capacity: 3
+    proto: NFGrenadeFrag
+
+- type: entity
+  id: NFBaseWeaponLauncherChamber40mmGrenadesNfsdSingleShot
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-40mm-grenade
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+            - NFTrackingDart
+            - NFCartridgeGrenade40mmEmp
+            - NFCartridgeGrenade40mmFlash
+  - type: ChamberMagazineAmmoProvider
+    autoCycle: false
+    boltClosed: false
+    canRack: false
+    soundBoltClosed: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+    soundBoltOpened: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+    soundRack: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ContainerContainer
+    containers:
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  id: NFBaseWeaponLauncherChamberRockets
+  parent: NFBaseWeaponLauncherChamber
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-rocket
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeRocket
+    proto: NFCartridgeRocket
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: NFBaseWeaponLauncherChamberCannonBalls
+  parent: NFBaseWeaponLauncherChamber
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-cannon-ball
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CannonBall
+    proto: CannonBall
+    soundInsert:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg

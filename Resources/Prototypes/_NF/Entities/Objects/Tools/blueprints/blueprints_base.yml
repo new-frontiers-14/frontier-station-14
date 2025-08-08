@@ -1,15 +1,15 @@
+# region Base
 - type: entity
   parent: BaseBlueprint
   id: NFBaseBlueprint
   abstract: true
   components:
   - type: Sprite
+    sprite: _NF/Objects/Tools/blueprints.rsi
     layers:
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-base
+      - state: icon-base
         color: "#7da0ba"
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-text
+      - state: icon-text
       - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_stamp-generic
         offset: 0.15,-0.1
@@ -31,7 +31,7 @@
       - state: inhand-right-base
         color: "#7da0ba"
       - state: inhand-right-text
-  - type: Tag
+  - type: Tag # defaults to autolathe-insertable
     tags:
     - BlueprintAutolathe
     - Document
@@ -48,7 +48,7 @@
     fireSpread: true
     canResistFire: false
     alwaysCombustible: true
-    canExtinguish: false
+    canExtinguish: true
     damage:
       types:
         Heat: 1
@@ -86,42 +86,68 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 0.1
+  - type: Blueprint
+    providedRecipes: []
 
 - type: entity
   parent: NFBaseBlueprint
-  id: BaseBlueprintFaxable
+  id: NFBaseBlueprintFaxable
+  name: blueprint
+  description: A blueprint with schematics on it. It can be inserted into an autolathe or sent via fax.
   abstract: true
   components:
-  - type: FaxableObject # Not sure about it, but why not? If someone wants to waste their time printing free copies of blueprints for cash they can have their spesos
+  - type: FaxableObject
   - type: Paper
     destroyOnFax: true
     destroyMessage: fax-delete-paper-intellectual-property
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#636363"
+      - state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#636363"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#636363"
+      - state: inhand-right-text
 
-# Faxable variants (obtainable from research)
-
-- type: entity # Engineering
-  parent: BaseBlueprintFaxable
-  id: NFBaseBlueprintEngineering
-  abstract: true
+# region Engineering
+- type: entity
+  parent: NFBaseBlueprintFaxable
+  id: NFBlueprintEngineering
+  name: engineering blueprint
+  description: A blueprint with engineering schematics on it. It can be inserted into an engineering techfab or sent via fax.
+  categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
     layers:
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-base
+      - state: icon-base
         color: "#fff87c"
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-text
+      - state: icon-text
       - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_stamp-generic
         offset: 0.15,-0.1
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
-      - sprite: Objects/Misc/bureaucracy.rsi # Need for PaperVisuals otherwise it wont stop complaining
+      - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_words
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
   - type: Item
-    size: Normal
     inhandVisuals:
       left:
       - state: inhand-left-base
@@ -131,30 +157,35 @@
       - state: inhand-right-base
         color: "#fff87c"
       - state: inhand-right-text
+  - type: Tag
+    tags:
+    - NFBlueprintEngineeringTechfab
+    - Document
+    - Paper
 
-- type: entity # Salvage / Cargo
-  parent: BaseBlueprintFaxable
-  id: NFBaseBlueprintSalvage
-  abstract: true
+# region Salvage
+- type: entity
+  parent: NFBaseBlueprintFaxable
+  id: NFBlueprintSalvage
+  name: salvage blueprint
+  description: A blueprint with salvage schematics on it. It can be inserted into a salvage techfab or sent via fax.
+  categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
     layers:
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-base
+      - state: icon-base
         color: "#e1ba8b"
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-text
+      - state: icon-text
       - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_stamp-generic
         offset: 0.15,-0.1
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
-      - sprite: Objects/Misc/bureaucracy.rsi # Need for PaperVisuals otherwise it wont stop complaining
+      - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_words
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
   - type: Item
-    size: Normal
     inhandVisuals:
       left:
       - state: inhand-left-base
@@ -164,30 +195,35 @@
       - state: inhand-right-base
         color: "#e1ba8b"
       - state: inhand-right-text
+  - type: Tag
+    tags:
+    - NFBlueprintSalvageTechfab
+    - Document
+    - Paper
 
-- type: entity # Science
-  parent: BaseBlueprintFaxable
-  id: NFBaseBlueprintScience
-  abstract: true
+# region Science
+- type: entity
+  parent: NFBaseBlueprintFaxable
+  id: NFBlueprintScience
+  name: science blueprint
+  description: A blueprint with science schematics on it. It can be inserted into a protolathe or sent via fax.
+  categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
     layers:
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-base
+      - state: icon-base
         color: "#e18bd5"
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-text
+      - state: icon-text
       - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_stamp-generic
         offset: 0.15,-0.1
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
-      - sprite: Objects/Misc/bureaucracy.rsi # Need for PaperVisuals otherwise it wont stop complaining
+      - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_words
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
   - type: Item
-    size: Normal
     inhandVisuals:
       left:
       - state: inhand-left-base
@@ -197,30 +233,35 @@
       - state: inhand-right-base
         color: "#e18bd5"
       - state: inhand-right-text
+  - type: Tag
+    tags:
+    - NFBlueprintProtolathe
+    - Document
+    - Paper
 
-- type: entity # Service
-  parent: BaseBlueprintFaxable
-  id: NFBaseBlueprintService
-  abstract: true
+# region Service
+- type: entity
+  parent: NFBaseBlueprintFaxable
+  id: NFBlueprintService
+  name: service blueprint
+  description: A blueprint with service schematics on it. It can be inserted into a service techfab or sent via fax.
+  categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
     layers:
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-base
+      - state: icon-base
         color: "#94e18b"
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-text
+      - state: icon-text
       - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_stamp-generic
         offset: 0.15,-0.1
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
-      - sprite: Objects/Misc/bureaucracy.rsi # Need for PaperVisuals otherwise it wont stop complaining
+      - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_words
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
   - type: Item
-    size: Normal
     inhandVisuals:
       left:
       - state: inhand-left-base
@@ -230,30 +271,35 @@
       - state: inhand-right-base
         color: "#94e18b"
       - state: inhand-right-text
+  - type: Tag
+    tags:
+    - NFBlueprintServiceTechfab
+    - Document
+    - Paper
 
-- type: entity # Medical
-  parent: BaseBlueprintFaxable
-  id: NFBaseBlueprintMedical
-  abstract: true
+# region Medical
+- type: entity
+  parent: NFBaseBlueprintFaxable
+  id: NFBlueprintMedical
+  name: medical blueprint
+  description: A blueprint with medical schematics on it. It can be inserted into a medical techfab or sent via fax.
+  categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
     layers:
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-base
+      - state: icon-base
         color: "#97cae1"
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-text
+      - state: icon-text
       - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_stamp-generic
         offset: 0.15,-0.1
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
-      - sprite: Objects/Misc/bureaucracy.rsi # Need for PaperVisuals otherwise it wont stop complaining
+      - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_words
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
   - type: Item
-    size: Normal
     inhandVisuals:
       left:
       - state: inhand-left-base
@@ -263,30 +309,35 @@
       - state: inhand-right-base
         color: "#97cae1"
       - state: inhand-right-text
+  - type: Tag
+    tags:
+    - NFBlueprintMedicalTechfab
+    - Document
+    - Paper
 
-- type: entity # Armory
-  parent: BaseBlueprintFaxable
-  id: NFBaseBlueprintArmory
-  abstract: true
+# region Arsenal
+- type: entity
+  parent: NFBaseBlueprintFaxable
+  id: NFBlueprintArsenalMercenary
+  name: combat blueprint
+  description: A blueprint with combat schematics on it. It can be inserted into an NFSD or mercenary techfab or sent via fax.
+  categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
     layers:
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-base
+      - state: icon-base
         color: "#e18b8b"
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-text
+      - state: icon-text
       - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_stamp-generic
         offset: 0.15,-0.1
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
-      - sprite: Objects/Misc/bureaucracy.rsi # Need for PaperVisuals otherwise it wont stop complaining
+      - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_words
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
   - type: Item
-    size: Normal
     inhandVisuals:
       left:
       - state: inhand-left-base
@@ -296,83 +347,138 @@
       - state: inhand-right-base
         color: "#e18b8b"
       - state: inhand-right-text
+  - type: Tag
+    tags:
+    - NFBlueprintMercenaryTechfab
+    - Document
+    - Paper
 
-- type: entity # Church
-  parent: BaseBlueprintFaxable
-  id: NFBaseBlueprintChurch
-  abstract: true
+- type: entity
+  parent: NFBaseBlueprintFaxable
+  id: NFBlueprintArsenalNfsd
+  name: restricted combat blueprint
+  description: A blueprint with combat schematics on it. It can be inserted into an NFSD techfab or sent via fax.
+  categories: [HideSpawnMenu, DoNotMap]
   components:
   - type: Sprite
     layers:
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-base
-        color: "#525252"
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-text
-        color: "#cbab00"
+      - state: icon-base
+        color: "#729769"
+      - state: icon-text
       - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_stamp-generic
         offset: 0.15,-0.1
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
-      - sprite: Objects/Misc/bureaucracy.rsi # Need for PaperVisuals otherwise it wont stop complaining
+      - sprite: Objects/Misc/bureaucracy.rsi
         state: paper_words
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
   - type: Item
-    size: Normal
     inhandVisuals:
       left:
       - state: inhand-left-base
-        color: "#525252"
+        color: "#729769"
       - state: inhand-left-text
-        color: "#cbab00"
       right:
       - state: inhand-right-base
-        color: "#525252"
+        color: "#729769"
       - state: inhand-right-text
-        color: "#cbab00"
+  - type: Tag
+    tags:
+    - NFBlueprintNfsdTechfab
+    - Document
+    - Paper
 
-# Non-faxable variants (obtainable from expeditions)
-
-- type: entity # Armory
+# region Expedition
+- type: entity
   parent: [ BaseC3Contraband, NFBaseBlueprint ]
-  id: BaseBlueprintExpedition
+  id: NFBaseBlueprintExpedition
   abstract: true
   components:
-  - type: Sprite
-    layers:
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-base
-        color: "#d70601"
-      - sprite: _NF/Objects/Tools/blueprints.rsi
-        state: icon-text
-      - sprite: Objects/Misc/bureaucracy.rsi
-        state: paper_stamp-generic
-        offset: 0.15,-0.1
-        map: ["enum.PaperVisualLayers.Stamp"]
-        visible: false
-      - sprite: Objects/Misc/bureaucracy.rsi # Need for PaperVisuals otherwise it wont stop complaining
-        state: paper_words
-        map: ["enum.PaperVisualLayers.Writing"]
-        visible: false
-  - type: Item
-    size: Normal
-    inhandVisuals:
-      left:
-      - state: inhand-left-base
-        color: "#d70601"
-      - state: inhand-left-text
-      right:
-      - state: inhand-right-base
-        color: "#d70601"
-      - state: inhand-right-text
   - type: Paper
     stampState: paper_stamp-rd
     stampedBy:
-    - reapply: False
+    - reapply: false
       stampType: RubberStamp
       stampedColor: '#1F66A0FF'
-      stampedName: stamp-component-stamped-name-rd
+      stampedName: stamp-component-stamped-name-confidential
   - type: StaticPrice
     price: 1000
+
+- type: entity
+  parent: NFBaseBlueprintExpedition
+  id: NFBaseBlueprintExpeditionSalvage
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#a6671a"
+      - state: icon-text
+        color: "#db7372"
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#a6671a"
+      - state: inhand-left-text
+        color: "#db7372"
+      right:
+      - state: inhand-right-base
+        color: "#a6671a"
+      - state: inhand-right-text
+        color: "#db7372"
+  - type: Tag
+    tags:
+    - NFBlueprintSalvageTechfab
+    - Document
+    - Paper
+
+- type: entity
+  parent: NFBaseBlueprintExpedition
+  id: NFBaseBlueprintExpeditionArmory
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#d21a1a"
+      - state: icon-text
+        color: "#db7372"
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#d21a1a"
+      - state: inhand-left-text
+        color: "#db7372"
+      right:
+      - state: inhand-right-base
+        color: "#d21a1a"
+      - state: inhand-right-text
+        color: "#db7372"
+  - type: Tag
+    tags:
+    - NFBlueprintMercenaryTechfab
+    - NFBlueprintNfsdTechfab
+    - Document
+    - Paper

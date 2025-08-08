@@ -34,5 +34,18 @@
     sprite: _NF/Structures/Decoration/banner.rsi
     state: banner_goblin
   - type: Construction
-    graph: BannersGraph
+    graph: NFGoblinMadeBanner
     node: BannerGoblin01
+
+- type: entity
+  id: BannerFsb
+  parent: BannerBase
+  name: FSB banner
+  description: A banner displaying the sigil of the Far Star Biotech corporation.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: banner-fsb
+  - type: Construction
+    graph: BannersGraph
+    node: BannerFsb

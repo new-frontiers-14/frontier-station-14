@@ -11,9 +11,9 @@
 - type: entityTable
   id: SpicyPestEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children: [] # Frontier
-    # - id: KingRatMigration # Frontier
-    # - id: SnailMigration # Frontier
+    children:
+    - id: KingRatMigration
+    - id: SnailMigration
 
 # events
 
@@ -81,9 +81,7 @@
     - id: MobCockroach
       prob: 0.03
     - id: MobMothroach
-      prob: 0.006 # Frontier: 0.008<0.006
-    - id: MobRosyMothroach # Frontier
-      prob: 0.002 # Frontier
+      prob: 0.008
 
 - type: entity
   id: SnailMigrationLowPop

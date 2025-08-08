@@ -4,7 +4,6 @@ using Content.Shared.Construction;
 using Content.Shared.DoAfter;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
 
@@ -33,6 +32,7 @@ namespace Content.Server.Construction
             InitializeInitial();
             InitializeMachines();
             InitializeMachineUpgrades(); // Frontier
+            InitializeComputerBoards(); // Frontier
 
             SubscribeLocalEvent<ConstructionComponent, ComponentInit>(OnConstructionInit);
             SubscribeLocalEvent<ConstructionComponent, ComponentStartup>(OnConstructionStartup);

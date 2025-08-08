@@ -27,10 +27,8 @@
       drawdepth: SmallObjects
       layers:
         - map: [ "computerLayerBody" ]
-          sprite: _NF/Structures/Machines/computer_tabletop.rsi
           state: computer_tabletop
         - map: [ "computerLayerKeyboard" ]
-          sprite: _NF/Structures/Machines/computer_tabletop.rsi
           state: generic_keyboard_tabletop
         - map: [ "computerLayerScreen" ]
           sprite: Structures/Machines/computers.rsi
@@ -38,6 +36,9 @@
         - map: [ "computerLayerKeys" ]
           sprite: Structures/Machines/computers.rsi
           state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          sprite: Structures/Machines/computers.rsi
+          state: generic_panel_open
     - type: Damageable
       damageContainer: Inorganic
       damageModifierSet: Electronic
@@ -59,8 +60,9 @@
 
 - type: entity
   parent: BaseStructureComputerTabletop
-  name: computer
   id: ComputerTabletopFrame
+  name: computer frame
+  description: A computer under construction.
   components:
   - type: Construction
     graph: ComputerTabletop
@@ -113,3 +115,9 @@
         mask:
         - Impassable
         - LowImpassable
+
+- type: entity
+  parent: BaseStructureComputerTabletop
+  id: ComputerTabletop
+  name: tabletop computer
+  description: This is a computer that could go on a table. It's a tabletop computer. Not for use on other surfaces.

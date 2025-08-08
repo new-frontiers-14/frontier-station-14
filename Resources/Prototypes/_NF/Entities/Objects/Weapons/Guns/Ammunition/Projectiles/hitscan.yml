@@ -1,0 +1,127 @@
+# Pistols / SMGs
+- type: hitscan
+  id: NFRedLightLaser
+  damage:
+    types:
+      Heat: 8
+  muzzleFlash: &lightMuzzleFlash
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_laser
+  travelFlash: &lightTravelFlash
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam
+  impactFlash: &lightImpactFlash
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_laser
+  maxLength: 21
+
+# Assault Rifles / Carbines
+- type: hitscan
+  id: NFRedMediumLaser
+  damage:
+    types:
+      Heat: 12
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_beam_heavy
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_heavy
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_beam_heavy
+  maxLength: 21
+
+# Rifles
+- type: hitscan
+  id: NFRedHeavyLaser
+  damage:
+    types:
+      Heat: 14
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_beam_heavy
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_heavy
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_beam_heavy
+  maxLength: 21
+
+# Sniper Rifles
+- type: hitscan
+  id: NFRedSpecialLaser
+  damage:
+    types:
+      Heat: 20
+  muzzleFlash: &specialMuzzleFlash
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_beam_heavy2
+  travelFlash: &specialTravelFlash
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_heavy2
+  impactFlash: &specialImpactFlash
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_beam_heavy2
+  maxLength: 21
+
+# XRay
+- type: hitscan
+  id: NFXrayLaser
+  damage:
+    types:
+      Heat: 10
+      Radiation: 10
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_xray
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: xray
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_xray
+  maxLength: 21
+
+# Pulse
+- type: hitscan
+  id: NFPulse
+  damage:
+    types:
+      Heat: 18
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_blue
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_blue
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_blue
+  maxLength: 21
+
+# Mobs
+- type: hitscan
+  id: NFRedLaserPractice
+  damage:
+    types:
+      Heat: 1
+  muzzleFlash: *lightMuzzleFlash
+  travelFlash: *lightTravelFlash
+  impactFlash: *lightImpactFlash
+  maxLength: 21
+
+# Shuttle guns
+
+# Whatstone - got a rough value based on 
+- type: hitscan
+  id: NFRedShuttleLaser
+  maxLength: 60
+  damage:
+    types:
+      Heat: 30
+      Structural: 10
+  muzzleFlash: *specialMuzzleFlash
+  travelFlash: *specialTravelFlash
+  impactFlash: *specialImpactFlash

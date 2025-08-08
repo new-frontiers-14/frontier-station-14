@@ -18,9 +18,19 @@
     containers:
       cluster-payload: !type:Container
   - type: ProjectileGrenade
+  - type: AnimationPlayer
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: primed }
+          Unprimed: { state: icon }
+  - type: Tag
+    tags:
+    - HandGrenade
 
 - type: entity
-  parent: [ProjectileGrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSecurityContraband<BaseC3SyndicateContraband
+  parent: [ProjectileGrenadeBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: GrenadeStinger
   name: stinger grenade
   description: Nothing to see here, please disperse.
@@ -31,20 +41,14 @@
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ProjectileGrenade
-    fillPrototype: PelletClusterRubber
+    fillPrototype: NFPelletClusterRubber # Frontier: use NF variant
     capacity: 30
-  - type: FlashOnTrigger
-    range: 7
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Effects/flash_bang.ogg"
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
   - type: OnUseTimerTrigger
-    beepSound:
-      path: "/Audio/Effects/beep1.ogg"
-      params:
-        volume: 5
     initialBeepDelay: 0
     beepInterval: 2
     delay: 3.5
@@ -64,7 +68,7 @@
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ProjectileGrenade
-    fillPrototype: PelletClusterIncendiary
+    fillPrototype: NFPelletClusterIncendiary # Frontier: use NF variant
     capacity: 30
   - type: OnUseTimerTrigger
     beepSound:
@@ -90,7 +94,7 @@
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ProjectileGrenade
-    fillPrototype: PelletClusterLethal
+    fillPrototype: NFPelletClusterLethal # Frontier: use NF variant
     capacity: 30
   - type: OnUseTimerTrigger
     beepSound:

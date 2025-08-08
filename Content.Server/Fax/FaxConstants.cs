@@ -31,4 +31,5 @@ public static class FaxConstants
     public const string FaxSyndicateData = "fax_data_i_am_syndicate";
     public const string FaxPaperLockedData = "fax_data_locked";
     public const string FaxPaperStampProtectedData = "fax_data_stamp_protected"; // Frontier: stamp protection
+    public const string FaxBlueprintRecipes = "fax_blueprint_recipes"; // Frontier: faxable blueprints
 }

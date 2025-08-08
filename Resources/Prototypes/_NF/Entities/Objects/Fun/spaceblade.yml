@@ -2,7 +2,7 @@
   id: SpaceBlade
   parent: BaseItem
   name: space blade
-  description: Let it drip
+  description: Let it drip.
   abstract: true
   components:
   - type: Sprite
@@ -106,7 +106,7 @@
 - type: entity
   id: SpaceBladeRune
   parent: SpaceBlade
-  description: Birthday parties are yearly reminders that as soon as you're born you start dying, unless you let it rip
+  description: Birthday parties are yearly reminders that as soon as you're born you start dying, unless you let it rip.
   components:
   - type: Sprite
     state: rune
@@ -114,7 +114,7 @@
 - type: entity
   id: SpaceBladeMc
   parent: SpaceBlade
-  description: Let it McDrip
+  description: Let it McDrip™.
   components:
   - type: Sprite
     state: mcblade
@@ -148,7 +148,7 @@
   parent:
   - SpaceBlade
   - BaseC3SyndicateContraband
-  description: Let it reap
+  description: Let it reap.
   components:
   - type: Sprite
     state: contraband
@@ -223,7 +223,7 @@
   id: SpaceBladePizza
   parent: [SpaceBlade, PlasticBanana]
   name: space blade
-  description: Let it mama mia, not safe for ages under 3
+  description: Let it mama mia, not safe for ages under 3.
   components:
   - type: Sprite
     state: pizza
@@ -232,7 +232,7 @@
   id: SpaceBladeSingularity
   parent: [BaseC3Contraband, SpaceBlade]
   name: space blade
-  description: Let it consume
+  description: Let it consume.
   components:
   - type: Sprite
     state: singularity
@@ -248,13 +248,14 @@
   id: SpaceBladeClown
   parent: SpaceBlade
   name: space blade
-  description: Let it honk
+  description: Let it honk.
   components:
   - type: Sprite
     state: clown
   - type: Slippery
-    paralyzeTime: 0.5
-    launchForwardsMultiplier: 0.5
+    slipData:
+      paralyzeTime: 0.5
+      launchForwardsMultiplier: 0.5
   - type: StepTrigger
     intersectRatio: 0.2
   - type: CollisionWake

@@ -1,0 +1,153 @@
+#region tables
+- type: entityTable
+  id: TableRandomPosterContrabandLvhi
+  table: !type:GroupSelector
+    children:
+    - id: NFPosterContrabandLvhiStation
+    - id: NFPosterContrabandLvhiShuttle
+    - id: NFPosterContrabandLvhiSpace
+    - id: NFPosterContrabandLvhiMountains
+    - id: NFPosterContrabandLvhiPlanetCore
+    - id: NFPosterContrabandLvhiLogo
+
+- type: entityTable
+  id: TableRandomPosterContrabandFsb
+  table: !type:GroupSelector
+    children:
+    - id: NFPosterContrabandFsbLogo
+    - id: NFPosterContrabandFsbStasis
+    - id: NFPosterContrabandFsbApothecary
+    - id: NFPosterContrabandFsbRubicon
+    - id: NFPosterContrabandFsbNightlight
+    - id: NFPosterContrabandFsbRetort
+
+- type: entityTable
+  id: TableRandomPosterContrabandMisc
+  table: !type:GroupSelector
+    children:
+    - id: NFPosterContrabandEatShrooms
+    - id: NFPosterContrabandKillerFashion
+    - id: NFPosterContrabandGoblinFront
+    - id: NFPosterContrabandGoblinate
+    - id: NFPosterContrabandWyvernShipyards
+    - id: NFPosterContrabandRatvarLives
+
+- type: entityTable
+  id: TableRandomPosterGoblin
+  table: !type:GroupSelector
+    children:
+    - id: NFPosterLegitGoblinTinkerer
+    - id: NFPosterContrabandEatShrooms
+    - id: NFPosterContrabandKillerFashion
+    - id: NFPosterContrabandGoblinFront
+    - id: NFPosterContrabandGoblinate
+
+- type: entityTable
+  id: TableRandomPosterLegit
+  table: !type:GroupSelector
+    children:
+    - id: NFPosterLegitMagnusWatching
+    - id: NFPosterLegitGoblinTinkerer
+    - id: NFPosterLegitBahamaMama
+    - id: NFPosterLegitWinnerWinner
+    - id: NFPosterLegitWantedClarpy
+    - id: NFPosterLegitMothPlease
+    - id: NFPosterLegitHaveYouSeenThisEgg
+    - id: NFPosterLegitGunTurnIn
+# endregion tables
+
+#region spawners
+- type: entity
+  id: NFSpawnerRandomPosterFrontier
+  parent: MarkerBase
+  name: random poster spawner
+  suffix: Frontier only posters
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Wallmounts/posters.rsi
+      state: random_anything
+    - sprite: Effects/crayondecals.rsi
+      state: n
+      offset: -0.2,0
+    - sprite: Effects/crayondecals.rsi
+      state: f
+      offset: 0.2,0
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+    table: !type:GroupSelector
+      children:
+      - !type:NestedSelector
+        tableId: TableRandomPosterContrabandLvhi
+      - !type:NestedSelector
+        tableId: TableRandomPosterContrabandFsb
+      - !type:NestedSelector
+        tableId: TableRandomPosterContrabandMisc
+      - !type:NestedSelector
+        tableId: TableRandomPosterLegit
+
+- type: entity
+  id: NFSpawnerRandomPosterLvhi
+  parent: NFSpawnerRandomPosterFrontier
+  suffix: Frontier, LVHI
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Wallmounts/posters.rsi
+      state: random_anything
+    - sprite: Effects/crayondecals.rsi
+      state: l
+      offset: -0.2,0
+    - sprite: Effects/crayondecals.rsi
+      state: v
+      offset: 0.2,0
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+    table: !type:NestedSelector
+        tableId: TableRandomPosterContrabandLvhi
+
+- type: entity
+  id: NFSpawnerRandomPosterGoblin
+  parent: NFSpawnerRandomPosterFrontier
+  suffix: Frontier, Goblin
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Wallmounts/posters.rsi
+      state: random_anything
+    - sprite: Effects/crayondecals.rsi
+      state: g
+      color: "#00ff00"
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+    table: !type:NestedSelector
+        tableId: TableRandomPosterGoblin
+
+- type: entity
+  id: NFSpawnerRandomPosterFsb
+  parent: NFSpawnerRandomPosterFrontier
+  suffix: Frontier, FSB
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Wallmounts/posters.rsi
+      state: random_anything
+    - sprite: Effects/crayondecals.rsi
+      state: f
+      offset: -0.2,0
+    - sprite: Effects/crayondecals.rsi
+      state: s
+      offset: 0.2,0
+  - type: EntityTableSpawner
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+    table: !type:NestedSelector
+        tableId: TableRandomPosterContrabandFsb
+# endregion spawners

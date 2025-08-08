@@ -4,7 +4,6 @@
   name: job-name-ertleader
   description: job-description-ertleader
   playTimeTracker: JobERTLeader
-  whitelisted: false
   setPreference: false
   startingGear: ERTLeaderGearEVA
   icon: "JobIconNanotrasen"
@@ -14,6 +13,10 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTLeaderGear
@@ -28,16 +31,16 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolN1984
+    pocket1: NFWeaponPistolN1984 # Frontier
     pocket2: FlashlightSeclite
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazineMagnum
+    - NFMagazinePistol45 # Frontier: MagazineMagnum<NFMagazinePistol45
 
 - type: startingGear
   id: ERTLeaderGearEVA
@@ -52,16 +55,16 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolN1984
+    pocket1: NFWeaponPistolN1984 # Frontier
     pocket2: FlashlightSeclite
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazineMagnum
+    - NFMagazinePistol45 # Frontier: MagazineMagnum<NFMagazinePistol45
 
 - type: startingGear
   id: ERTLeaderGearEVALecter
@@ -76,18 +79,26 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: MagazineRifle
-    pocket2: MagazineRifle
+    pocket1: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
+    pocket2: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
   inhand:
-  - WeaponRifleLecter
+  - NFWeaponRifleAssaultLecter # Frontier: WeaponRifleLecter<NFWeaponRifleAssaultLecter
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazineMagnum
+    - NFMagazinePistol45 # Frontier: MagazineMagnum<NFMagazinePistol45
+
+- type: chameleonOutfit
+  id: ERTLeaderChameleonOutfit
+  job: ERTLeader
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTLeader
+    neck: ClothingNeckBronzeheart
 
 # Chaplain
 - type: job
@@ -108,6 +119,9 @@
   - !type:AddComponentSpecial
     components:
     - type: BibleUser #Lets them heal with bibles
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTChaplainGear
@@ -171,13 +185,22 @@
     - FoodBakedBunHotX
     - Lighter
 
+- type: chameleonOutfit
+  id: ERTChaplainChameleonOutfit
+  job: ERTChaplain
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTChaplain
+    mask: ClothingMaskGasERT
+    outerClothing: ClothingOuterHardsuitERTChaplain
+    shoes: ClothingShoesBootsMagAdv
+
 # Engineer
 - type: job
   id: ERTEngineer
   name: job-name-ertengineer
   description: job-description-ertengineer
   playTimeTracker: JobERTEngineer
-  whitelisted: true
   setPreference: false
   startingGear: ERTEngineerGearEVA
   icon: "JobIconNanotrasen"
@@ -187,6 +210,10 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTEngineerGear
@@ -244,15 +271,22 @@
     - SheetSteel
     - SheetGlass
 
+- type: chameleonOutfit
+  id: ERTEngineerChameleonOutfit
+  job: ERTEngineer
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTEngineer
+    neck: ClothingNeckEngineermedal
+
 # Security
 - type: job
   id: ERTSecurity
   name: job-name-ertsecurity
   description: job-description-ertsecurity
   playTimeTracker: JobERTSecurity
-  whitelisted: true
   setPreference: false
-  startingGear: ERTEngineerGearEVA
+  startingGear: ERTSecurityGearEVA
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -260,6 +294,10 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTSecurityGear
@@ -274,16 +312,16 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
+    pocket1: NFWeaponPistolMk58 # Frontier
     pocket2: FlashlightSeclite
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazinePistol
+    - NFMagazinePistol35 # Frontier: MagazinePistol<NFMagazinePistol35
 
 - type: startingGear
   id: ERTSecurityGearEVA
@@ -298,16 +336,16 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
+    pocket1: NFWeaponPistolMk58 # Frontier: use NF variant
     pocket2: FlashlightSeclite
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazinePistol
+    - NFMagazinePistol35 # Frontier: MagazinePistol<NFMagazinePistol35
 
 - type: startingGear
   id: ERTSecurityGearEVALecter
@@ -322,18 +360,26 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: MagazineRifle
-    pocket2: MagazineRifle
+    pocket1: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
+    pocket2: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
   inhand:
-    - WeaponRifleLecter
+    - NFWeaponRifleAssaultLecter # Frontier: WeaponRifleLecter<NFWeaponRifleAssaultLecter
   storage:
     back:
-    - WeaponDisabler
+    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazinePistol
+    - NFMagazinePistol35 # Frontier: MagazinePistol<NFMagazinePistol35
+
+- type: chameleonOutfit
+  id: ERTSecurityChameleonOutfit
+  job: ERTSecurity
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTSecurity
+    neck: ClothingNeckSecuritymedal
 
 # Medical
 - type: job
@@ -341,7 +387,6 @@
   name: job-name-ertmedic
   description: job-description-ertmedic
   playTimeTracker: JobERTMedical
-  whitelisted: true
   setPreference: false
   startingGear: ERTMedicalGearEVA
   icon: "JobIconNanotrasen"
@@ -351,6 +396,10 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTMedicalGear
@@ -372,9 +421,9 @@
     - MedkitCombatFilled
     - MedkitCombatFilled
     - CrowbarRed
-    - OmnizineChemistryBottle
-    - EpinephrineChemistryBottle
-    - EpinephrineChemistryBottle
+    - ChemistryBottleOmnizine
+    - ChemistryBottleEpinephrine
+    - ChemistryBottleEpinephrine
 
 - type: startingGear
   id: ERTMedicalGearEVA
@@ -396,9 +445,17 @@
     - MedkitCombatFilled
     - MedkitCombatFilled
     - CrowbarRed
-    - OmnizineChemistryBottle
-    - EpinephrineChemistryBottle
-    - EpinephrineChemistryBottle
+    - ChemistryBottleOmnizine
+    - ChemistryBottleEpinephrine
+    - ChemistryBottleEpinephrine
+
+- type: chameleonOutfit
+  id: ERTMedicalChameleonOutfit
+  job: ERTMedical
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTMedical
+    neck: ClothingNeckStethoscope
 
 # Janitor
 - type: job
@@ -406,7 +463,6 @@
   name: job-name-ertjanitor
   description: job-description-ertjanitor
   playTimeTracker: JobERTJanitor
-  whitelisted: true
   setPreference: false
   startingGear: ERTJanitorGearEVA
   icon: "JobIconNanotrasen"
@@ -416,6 +472,10 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  whitelisted: true # Frontier
 
 - type: startingGear
   id: ERTJanitorGear
@@ -443,7 +503,7 @@
   id: ERTJanitorGearEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTJanitor
-    back: ClothingBackpackERTJanitor # Frontier: ClothingBackpackERTJanitorFille<ClothingBackpackERTJanitor
+    back: ClothingBackpackERTJanitor
     shoes: ClothingShoesBootsMagGaloshes # Frontier
     mask: ClothingMaskGasERT
     gloves: ClothingHandsGlovesColorPurple
@@ -460,3 +520,12 @@
     - Soap
     - CrowbarRed
     - AdvMopItem
+
+- type: chameleonOutfit
+  id: ERTJanitorChameleonOutfit
+  job: ERTJanitor
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHelmetHardsuitERTJanitor
+    neck: ClothingNeckScarfStripedPurple
+    eyes: ClothingEyesGlassesSunglasses

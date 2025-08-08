@@ -1,0 +1,113 @@
+#region frame
+- type: entity
+  id: NFBaseWeaponFrameEnergyRifleAssault
+  parent: [ NFBaseWeaponEncumbranceRifleAssault, BaseWeaponBattery ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
+  - type: Gun
+    projectileSpeed: 30
+    minAngle: 1.5
+    maxAngle: 7.5
+    angleIncrease: 0.4
+    angleDecay: 2
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  # - type: CursorOffsetRequiresWield
+  # - type: EyeCursorOffset
+    # maxOffset: 2.5
+    # pvsIncrease: 0.25
+  - type: Battery # Default: 30 shots with 80 fireCost
+    maxCharge: 2400
+    startingCharge: 2400
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 4 # Default recharge rate: 1 shot per 20 seconds with 80 fireCost
+  - type: NFWeaponDetails
+    class: weapon-details-class-assault-rifle
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameEnergyRifleAssaultNanotrasen
+  parent: NFBaseWeaponFrameEnergyRifleAssault
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 1.7
+    maxAngle: 8.5
+    angleIncrease: 0.6
+    angleDecay: 2.6
+    fireRate: 3
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  id: NFBaseWeaponFrameEnergyRifleAssaultCybersun
+  parent: [ BaseC3Contraband, NFBaseWeaponFrameEnergyRifleAssault ]
+  abstract: true
+  components:
+  - type: Gun
+    angleIncrease: 0.4
+    angleDecay: 2.8
+    fireRate: 2.4
+    soundGunshot:
+      path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
+    soundEmpty:
+      path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-cybersun-industries
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponEnergyRifleAssaultFireModes
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-medium
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserMedium
+    fireCost: 80
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: NFBulletLaserMedium
+      fireCost: 80
+    - proto: NFBulletDisabler
+      fireCost: 80
+
+- type: entity
+  id: NFBaseWeaponEnergyRifleAssaultHitScanPulse
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-pulse-low
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: NFPulse
+    fireCost: 80

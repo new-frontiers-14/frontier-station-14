@@ -1,0 +1,155 @@
+#region frame
+- type: entity
+  id: NFBaseWeaponFrameEnergyPistol
+  parent: [ NFBaseWeaponEncumbrancePistol, BaseWeaponBatterySmall ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Gun
+    projectileSpeed: 30
+    minAngle: 2.1
+    maxAngle: 10.5
+    angleIncrease: 0.6
+    angleDecay: 3
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: Battery # Default: 16 shots with 60 fireCost
+    maxCharge: 960
+    startingCharge: 960
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 3 # Default recharge rate: 1 shot per 20 seconds with 60 fireCost
+  - type: StaticPrice
+    price: 250
+  - type: NFWeaponDetails
+    class: weapon-details-class-pistol
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameEnergyPistolNanotrasen
+  parent: NFBaseWeaponFrameEnergyPistol
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 2.4
+    maxAngle: 12
+    angleIncrease: 0.8
+    angleDecay: 2.7
+    fireRate: 2.6
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  id: NFBaseWeaponFrameEnergyPistolFrontierGunsmith
+  parent: NFBaseWeaponFrameEnergyPistol
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 3
+    maxAngle: 15
+    angleIncrease: 1.2
+    angleDecay: 3.8
+    fireRate: 2
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-frontier-gunsmith-consortium
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponEnergyPistolFireModes
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mode-lethal
+      map: ["Firemode"]
+      shader: unshaded
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-low-disabler-pistol
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserLow
+    fireCost: 60
+  - type: EnergyGun
+    fireModes:
+    - proto: NFBulletDisabler
+      fireCost: 60
+      name: disable
+      state: disabler
+    - proto: NFBulletLaserLow
+      fireCost: 60
+      name: kill
+      state: lethal
+  - type: GenericVisualizer
+    visuals:
+      enum.EnergyGunFireModeVisuals.State:
+        Firemode:
+          Disabler: { state: mode-disabler }
+          Lethal: { state: mode-lethal }
+
+- type: entity
+  id: NFBaseWeaponEnergyPistolDisabler
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-disabler-pistol
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletDisabler
+    fireCost: 60
+
+- type: entity
+  id: NFBaseWeaponEnergyGunPractice
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-energybolt-disabler-practice
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: NFBulletLaserPractice
+    fireCost: 30
+
+- type: entity
+  id: NFBaseWeaponEnergyPistolHitScan
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-hitscan-low
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedLightLaser
+    fireCost: 60
+
+- type: entity
+  id: NFBaseWeaponEnergyPistolHitScanPulse
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-pulse-low
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: NFPulse
+    fireCost: 60

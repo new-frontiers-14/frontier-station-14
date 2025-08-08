@@ -1,0 +1,68 @@
+#region base
+- type: entity
+  id: NFMobSpaceBase
+  parent: [ MobMovementSpeedModifierMelee, MobStaminaFodder, NFBaseMobRestrictions, NFMobSimpleHostileBase, NFMobRoadkillable ]
+  suffix: Frontier
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      50: 0.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+
+#region mobs
+- type: entity
+  id: NFMobBearSpace
+  parent: [ NFMobSpaceBase, MobBearSpace]
+  # categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobKangarooSpace
+  parent: [ NFMobSpaceBase, MobKangarooSpace ]
+  # categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobSpiderSpace
+  parent: [ NFMobSpaceBase, MobSpiderSpace ]
+  # categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobCobraSpace
+  parent: [ NFMobSpaceBase, MobCobraSpace ]
+  # categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFMobTick
+  parent: [ NFMobSpaceBase, MobTick ]
+  # categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _NF/Mobs/Aliens/spacetick.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: glow
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: glow
+      Dead:
+        Base: dead
+        BaseUnshaded: mask_null
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      3: 0.7
+      5: 0.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      12: Dead

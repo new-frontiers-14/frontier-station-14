@@ -1,0 +1,158 @@
+#region base
+- type: entity
+  id: NFBaseMagazineShotgunDrum
+  name: ammo drum (.50 shells)
+  parent: [ BaseItem, BaseC1Contraband, RecyclableItemSteelTiny ] # Frontier: BaseSecurityContraband<BaseC1Contraband, added RecyclableItemSteelTiny
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - MagazineShotgun
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBuckshot
+    mayTransfer: true
+    whitelist:
+      tags:
+        - ShellShotgun
+    capacity: 8
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+  - type: Item
+    size: Small
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/drum.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/drum.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 9
+    zeroVisible: false
+  - type: Appearance
+
+#region fills
+- type: entity
+  id: NFMagazineShotgunDrumEmpty
+  name: ammo drum (.50 shells, any)
+  parent: NFBaseMagazineShotgunDrum
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFMagazineShotgunDrum
+  name: ammo drum (.50 shells, buckshot)
+  parent: NFBaseMagazineShotgunDrum
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBuckshot
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#333333"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#333333"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#333333"
+
+- type: entity
+  id: NFMagazineShotgunDrumBeanbag
+  name: ammo drum (.50 shells, beanbags)
+  parent: NFBaseMagazineShotgunDrum
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunBeanbag
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"
+
+- type: entity
+  id: NFMagazineShotgunDrumSlug
+  name: ammo drum (.50 shells, slugs)
+  parent: NFBaseMagazineShotgunDrum
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunSlug
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#333333"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#333333"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#333333"
+
+- type: entity
+  id: NFMagazineShotgunDrumIncendiary
+  name: ammo drum (.50 shells, incendiary)
+  parent: NFBaseMagazineShotgunDrum
+  components:
+  - type: BallisticAmmoProvider
+    proto: NFShellShotgunIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"

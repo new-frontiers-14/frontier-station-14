@@ -24,7 +24,7 @@
           steps:
             - component: ComputerTabletopBoard
               store: board
-              name: any tabletop computer circuit board
+              name: construction-graph-component-computer-tabletop-board
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "id_mod"
@@ -117,6 +117,7 @@
               amount: 2
           steps:
             - tool: Prying
+              doAfter: 1
 
     - node: tabletop computer
       entity: !type:BoardNodeEntity
@@ -124,10 +125,12 @@
         computer: Tabletop
       edges:
         - to: monitorUnsecured
-          conditions:
-            - !type:AllWiresCut {}
+          completed:
+            - !type:RaiseEvent
+                event: !type:MachineDeconstructedEvent
           steps:
-            - tool: Screwing
+            - tool: Prying
+              doAfter: 1
 
     - node: monitorBroken
       entity: ComputerTabletopBroken

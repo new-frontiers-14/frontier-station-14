@@ -6,6 +6,7 @@
   description: Worthless junk. You could probably get some materials out of it though.
   suffix: Scrap
   components:
+  - type: GoblinPreciousTrash # Frontier
   - type: Sprite
     sprite: Objects/Materials/Scrap/generic.rsi
   - type: Item
@@ -25,6 +26,7 @@
   - type: Tag
     tags:
     - Recyclable
+    - SalvageScrap
 
 - type: entity
   parent: BaseStructure
@@ -62,7 +64,7 @@
           bounds: "-0.40,-0.40,0.40,0.40"
         density: 200
         mask:
-          - MachineMask
+          - SmallMobMask # Frontier: MachineMask<SmallMobMask so the machines could go under plastic flaps
         layer:
           - MachineLayer
 
@@ -77,7 +79,9 @@
       - state: metal-1
         map: [ "base" ]
   - type: Item
-    size: Ginormous
+    size: Large
+    shape:
+    - 0,0,4,4 # 5x5
     heldPrefix: metal
   - type: MultiHandedItem
   - type: RandomSprite
@@ -89,6 +93,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 3000 # 30 sheets
+      RawScrap: 1000 # Frontier: 10 sheets
 
 - type: entity
   parent: BaseScrap
@@ -118,6 +123,8 @@
     materialComposition:
       Glass: 1500 # 15 sheets
       Steel: 500 # 5 sheets
+      RawScrapTech: 300 # Frontier: 3 sheets
+      Gold: 300 # Frontier: 3 sheets
 
 - type: entity
   parent: BaseScrap
@@ -135,12 +142,15 @@
         junk-airlock-1: ""
         junk-airlock-2: ""
   - type: Item
-    size: Ginormous
+    size: Large
+    shape:
+    - 0,0,4,4 # 5x5
     heldPrefix: "airlock"
   - type: MultiHandedItem
   - type: PhysicalComposition
     materialComposition:
       Steel: 1500 # 15 sheets
+      RawScrap: 1000 # Frontier: 10 sheets
 
 - type: entity
   parent: BaseScrap
@@ -159,6 +169,7 @@
     materialComposition:
       Steel: 200 # 2 sheets
       Glass: 500 # 5 sheets
+      RawScrap: 500 # Frontier: 5 sheets
 
 - type: entity
   parent: BaseScrap
@@ -186,6 +197,8 @@
     materialComposition:
       Steel: 500 # 5 sheets
       Glass: 100 # 1 sheet
+      RawScrapTech: 100 # Frontier: 1 sheet
+      Silver: 100 # Frontier: 1 sheet
 
 - type: entity
   parent: BaseScrap
@@ -233,6 +246,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 1500 # 15 sheets
+      RawScrap: 1000 # Frontier: 10 sheets
 
 - type: entity
   parent: BaseScrap
@@ -249,6 +263,8 @@
     materialComposition:
       Plastic: 800 # 8 sheets
       Steel: 200 # 2 sheets
+      RawScrap: 500 # Frontier: 5 sheets
+      RawScrapTech: 100 # Frontier: 1 sheet
 
 - type: entity
   parent: BaseScrap
@@ -273,12 +289,15 @@
     layers:
     - state: junk-firelock-1
   - type: Item
-    size: Ginormous
+    size: Large
+    shape:
+    - 0,0,4,4 # 5x5
     heldPrefix: firelock-1
   - type: MultiHandedItem
   - type: PhysicalComposition
     materialComposition:
       Steel: 2000 # 20 sheets
+      RawScrap: 1000 # Frontier: 10 sheets
 
 - type: entity
   parent: BaseScrap
@@ -290,12 +309,15 @@
     layers:
     - state: junk-firelock-2
   - type: Item
-    size: Ginormous
+    size: Large
+    shape:
+    - 0,0,4,4 # 5x5
     heldPrefix: firelock-2
   - type: MultiHandedItem
   - type: PhysicalComposition
     materialComposition:
       Steel: 2000 # 20 sheets
+      RawScrap: 1000 # Frontier: 10 sheets
 
 - type: entity
   parent: BaseScrap
@@ -310,6 +332,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 700 # 7 sheets
+      RawScrap: 500 # Frontier: 5 sheets
 
 - type: entity
   parent: BaseScrap
@@ -332,6 +355,8 @@
     materialComposition:
       Steel: 400 # 4 sheets
       Plastic: 300 # 3 sheets
+      RawScrap: 100 # Frontier: 1 sheet
+      RawScrapTech: 100 # Frontier: 1 sheet
 
 - type: entity
   parent: BaseScrap
@@ -401,6 +426,8 @@
     materialComposition:
       Steel: 300 # 3 sheets
       Plastic: 200 # 2 sheets
+      RawScrapTech: 300 # Frontier: 3 sheet
+      Silver: 100 # Frontier: 3 sheets
 
 - type: entity
   parent: BaseScrap
@@ -417,6 +444,7 @@
     materialComposition:
       Gold: 100 # 1 sheet
       Plastic: 400 # 4 sheets
+      RawScrapTech: 500 # Frontier: 5 sheet
 
 - type: entity
   parent: BaseScrap
@@ -461,6 +489,8 @@
       Steel: 4000 # 40 sheets
       FuelGradePlasma: 2500 # 25 sheets # Frontier: Plasma<FuelGradePlasma
       Plastic: 500 # 5 sheets
+      RawScrap: 1000 # Frontier: 10 sheets
+      RawScrapTech: 300 # Frontier: 3 sheet
 
 - type: entity
   parent: BaseScrapLarge
@@ -477,6 +507,7 @@
       Steel: 4000 # 40 sheets
       FuelGradePlasma: 1000 # 10 sheets # Frontier: Plasma<FuelGradePlasma
       Plastic: 500 # 5 sheets
+      RawScrap: 1000 # Frontier: 10 sheets
 
 - type: entity
   parent: BaseScrapLarge
@@ -504,6 +535,8 @@
       Steel: 4000 # 40 sheets
       FuelGradeUranium: 2500 # 25 sheets # Frontier: Uranium<FuelGradeUranium
       Plastic: 500 # 5 sheets
+      RawScrap: 1500 # Frontier: 15 sheets
+      RawScrapTech: 300 # Frontier: 3 sheet
   - type: RadiationSource
     intensity: 1.0
 
@@ -528,6 +561,8 @@
       Steel: 4000 # 40 sheets
       FuelGradeUranium: 1000 # 10 sheets # Frontier: Uranium<FuelGradeUranium
       Plastic: 500 # 5 sheets
+      RawScrap: 1500 # Frontier: 15 sheets
+      RawScrapTech: 100 # Frontier: 1 sheet
   - type: RadiationSource
     intensity: 0.5
 
@@ -544,6 +579,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 1500 # 15 sheets
+      RawScrap: 1500 # Frontier: 15 sheets
 
 - type: entity
   parent: BaseScrap

@@ -11,6 +11,9 @@ public abstract partial class InteractionTest
     protected const string Plating = "Plating";
     protected const string Lattice = "Lattice";
 
+    // Structures
+    protected const string Airlock = "Airlock";
+
     // Tools/steps
     protected const string Wrench = "Wrench";
     protected const string Screw = "Screwdriver";
@@ -27,13 +30,16 @@ public abstract partial class InteractionTest
     protected const string Rod = "MetalRod";
 
     // Parts
-    protected const string Bin1 = "MatterBinStockPart";
-    protected const string Bin4 = "BluespaceMatterBinStockPart";
-    protected const string Cap1 = "CapacitorStockPart";
-    protected const string Cap4 = "QuadraticCapacitorStockPart";
     protected const string Manipulator1 = "MicroManipulatorStockPart";
     protected const string Manipulator4 = "FemtoManipulatorStockPart";
     protected const string Battery1 = "PowerCellSmall";
     protected const string Battery4 = "PowerCellHyper";
+
+    // Frontier: maintaining removed parts
+    protected const string Bin1 = "MatterBinStockPart";
+    protected const string Bin4 = "BluespaceMatterBinStockPart";
+    protected const string Cap1 = "CapacitorStockPart";
+    protected const string Cap4 = "QuadraticCapacitorStockPart";
+    // End Frontier: maintaining removed parts
 }
 

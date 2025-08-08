@@ -1,0 +1,62 @@
+#region frame
+- type: entity
+  id: NFBaseWeaponFrameRifleSniper
+  parent: [ BaseC1Contraband, NFBaseWeaponEncumbranceSniper, NFBaseItemWeaponGun ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
+  - type: Gun
+    projectileSpeed: 30
+    minAngle: 1.6
+    maxAngle: 8
+    angleIncrease: 0.4
+    angleDecay: 2
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 10
+    pvsIncrease: 1
+  - type: NFWeaponDetails
+    class: weapon-details-class-sniper
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameRifleSniperCybersun
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleSniper ]
+  abstract: true
+  components:
+  - type: Gun
+    angleIncrease: 0.5
+    angleDecay: 3.5
+    fireRate: 0.8
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-cybersun-industries
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponRifleChamber60
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-60
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: BallisticAmmoProvider
+    capacity: 5
+    proto: NFCartridgeRifle60
+    whitelist:
+      tags:
+      - NFCartridgeRifle60
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []

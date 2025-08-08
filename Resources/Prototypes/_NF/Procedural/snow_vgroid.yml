@@ -42,7 +42,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockSnow
-      entity: SnowElementalSpawner
+      entity: NFSnowElementalSpawner
       count: 100
       minGroupSize: 1
       maxGroupSize: 1
@@ -127,7 +127,7 @@
     - !type:OreDunGen
       entityMask:
       - WallRockSnow
-      entity: WallRockSnowBluespace
+      entity: NFWallRockSnowBluespace
       count: 10
       minGroupSize: 1
       maxGroupSize: 1
@@ -210,14 +210,12 @@
 - type: dungeonConfig
   id: NFVGRoidExteriorSnow
   reserveTiles: true
-  data:
-    tiles:
-      FallbackTile: FloorSnowDug
-      WidenTile: FloorSnow
   layers:
   - !type:PrototypeDunGen
     proto: NFVGRoidExteriorDungeonsSnow
   - !type:SplineDungeonConnectorDunGen
+    tile: FloorSnowDug
+    widenTile: FloorSnow
 
 - type: dungeonConfig
   id: NFVGRoidExteriorDungeonsSnow
@@ -260,14 +258,24 @@
   - !type:MobsDunGen
     minCount: 8
     maxCount: 15
-    groups:
-    - id: SpawnMobXenoT2
-      amount: 1
+    contents: NFSpawnMobXenoT2Table
   - !type:MobsDunGen
     minCount: 0
     maxCount: 1
-    groups:
-    - id: SpawnMobXenoQueenDungeon
+    contents: NFSpawnMobXenoQueenTable
+
+- type: entityTable
+  id: NFSpawnMobXenoT2Table
+  table: !type:GroupSelector
+    children:
+    - id: NFSpawnMobXenoT2
+      amount: 1
+
+- type: entityTable
+  id: NFSpawnMobXenoQueenTable
+  table: !type:GroupSelector
+    children:
+    - id: NFSpawnMobXenoQueen
       amount: 1
 
 #- type: dungeonConfig

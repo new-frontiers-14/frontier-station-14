@@ -18,6 +18,7 @@ public sealed class EvacShuttleTest
     /// Ensure that the emergency shuttle can be called, and that it will travel to centcomm
     /// </summary>
     [Test]
+    [Ignore("We don't need emergency shuttles.")] // Frontier
     public async Task EmergencyEvacTest()
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings { DummyTicker = true, Dirty = true });

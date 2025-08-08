@@ -1,4 +1,3 @@
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -50,7 +49,7 @@ public sealed class MiniAuthManager
                 }
             }
         }
-        catch (Exception e)
+        catch (Exception)
         {
         }
         return connected;

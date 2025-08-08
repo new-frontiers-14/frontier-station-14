@@ -23,7 +23,6 @@ public sealed class LoadoutSystem : EntitySystem
     [Dependency] private readonly SharedStationSpawningSystem _station = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IDependencyCollection _dependencies = default!; // Frontier
 
     public override void Initialize()
     {
@@ -62,7 +61,8 @@ public sealed class LoadoutSystem : EntitySystem
         if (gear == null)
             return null;
 
-        var count = gear.Equipment.Count + gear.Inhand.Count + gear.Storage.Values.Sum(x => x.Count);
+        var count = gear.Equipment.Count + gear.Inhand.Count + gear.Storage.Values.Sum(x => x.Count)
+            + gear.EncryptionKeys.Count + gear.Implants.Count + gear.Cartridges.Count; // Frontier
 
         if (count == 1)
         {
@@ -84,6 +84,23 @@ public sealed class LoadoutSystem : EntitySystem
                     return ent;
                 }
             }
+
+            // Frontier: extra fields
+            if (gear.EncryptionKeys.Count == 1 && _protoMan.TryIndex<EntityPrototype>(gear.EncryptionKeys[0], out proto))
+            {
+                return proto.ID;
+            }
+
+            if (gear.Implants.Count == 1 && _protoMan.TryIndex<EntityPrototype>(gear.Implants[0], out proto))
+            {
+                return proto.ID;
+            }
+
+            if (gear.Cartridges.Count == 1 && _protoMan.TryIndex<EntityPrototype>(gear.Cartridges[0], out proto))
+            {
+                return proto.ID;
+            }
+            // End Frontier: extra fields
         }
 
         return null;
@@ -110,7 +127,8 @@ public sealed class LoadoutSystem : EntitySystem
         if (gear == null)
             return string.Empty;
 
-        var count = gear.Equipment.Count + gear.Storage.Values.Sum(o => o.Count) + gear.Inhand.Count;
+        var count = gear.Equipment.Count + gear.Storage.Values.Sum(o => o.Count) + gear.Inhand.Count
+            + gear.EncryptionKeys.Count + gear.Implants.Count + gear.Cartridges.Count; // Frontier
 
         if (count == 1)
         {
@@ -136,6 +154,23 @@ public sealed class LoadoutSystem : EntitySystem
 
                 break;
             }
+
+            // Frontier: extra fields
+            if (gear.EncryptionKeys.Count == 1 && _protoMan.TryIndex<EntityPrototype>(gear.EncryptionKeys[0], out proto))
+            {
+                return proto.Name;
+            }
+
+            if (gear.Implants.Count == 1 && _protoMan.TryIndex<EntityPrototype>(gear.Implants[0], out proto))
+            {
+                return proto.Name;
+            }
+
+            if (gear.Cartridges.Count == 1 && _protoMan.TryIndex<EntityPrototype>(gear.Cartridges[0], out proto))
+            {
+                return proto.Name;
+            }
+            // End Frontier: extra fields
         }
 
         return Loc.GetString($"unknown");
@@ -164,12 +199,7 @@ public sealed class LoadoutSystem : EntitySystem
         var id = _random.Pick(loadoutGroups);
         var proto = _protoMan.Index(id);
         var loadout = new RoleLoadout(id);
-        // Frontier: cache, ensure valid loadouts.
-        var profile = GetProfile(uid);
-        var session = _actors.GetSession(uid);
-        loadout.SetDefault(profile, session, _protoMan, true);
-        loadout.EnsureValid(profile, session, _dependencies);
-        // End Frontier
+        loadout.SetDefault(GetProfile(uid), _actors.GetSession(uid), _protoMan, true);
         _station.EquipRoleLoadout(uid, loadout, proto);
 
         GearEquipped(uid);

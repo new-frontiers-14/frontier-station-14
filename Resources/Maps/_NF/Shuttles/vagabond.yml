@@ -925,8 +925,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,6.5
       parent: 1
-    - type: Apc
-      hasAccess: True
   - uid: 164
     components:
     - type: MetaData
@@ -1280,7 +1278,6 @@ entities:
       parent: 1
     - type: Physics
       canCollide: False
-      bodyType: Static
     - type: Fixtures
       fixtures: {}
 - proto: BenchSofaLeft
@@ -1291,8 +1288,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -11.5,1.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaMiddle
   entities:
   - uid: 227
@@ -1301,8 +1296,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -11.5,0.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaRight
   entities:
   - uid: 656
@@ -1311,8 +1304,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -10.5,-0.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoor
   entities:
   - uid: 176
@@ -4339,6 +4330,13 @@ entities:
     - type: Transform
       pos: -10.5,0.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 823
+    components:
+    - type: Transform
+      pos: -4.5,17.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 795
@@ -4446,19 +4444,11 @@ entities:
     - type: Transform
       pos: 0.5,10.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
   - uid: 571
     components:
     - type: Transform
       pos: 1.5,10.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandHighEffectEngineering
   entities:
   - uid: 695
@@ -4511,7 +4501,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -9.5,-0.5
       parent: 1
-- proto: PoweredlightColoredFrostyBlue
+- proto: PoweredlightCyan
   entities:
   - uid: 678
     components:
@@ -4519,7 +4509,21 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,17.5
       parent: 1
-- proto: PoweredlightColoredRed
+- proto: PoweredlightLED
+  entities:
+  - uid: 677
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,18.5
+      parent: 1
+  - uid: 684
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,6.5
+      parent: 1
+- proto: PoweredlightRed
   entities:
   - uid: 680
     components:
@@ -4555,20 +4559,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-9.5
-      parent: 1
-- proto: PoweredlightLED
-  entities:
-  - uid: 677
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,18.5
-      parent: 1
-  - uid: 684
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -4.5,6.5
       parent: 1
 - proto: PoweredlightSodium
   entities:
@@ -5121,68 +5111,68 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         210:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         211:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         212:
-        - Left: Reverse
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
-        - Right: Forward
         196:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         195:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         194:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         193:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         205:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         206:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         207:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         208:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         209:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         564:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         593:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         764:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         763:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
   - uid: 595
     components:
@@ -5192,32 +5182,32 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         204:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         203:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         202:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         201:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         200:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         199:
-        - Right: Forward
-        - Left: Reverse
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
         197:
-        - Left: Reverse
-        - Right: Forward
+        - Left: Forward
+        - Right: Reverse
         - Middle: Off
 - proto: VendingMachineCargoDrobe
   entities:
@@ -6041,7 +6031,7 @@ entities:
     - type: Transform
       pos: -4.5,16.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 713
     components:

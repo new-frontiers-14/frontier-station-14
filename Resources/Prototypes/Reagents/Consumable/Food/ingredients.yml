@@ -104,6 +104,25 @@
   flavor: peppery
   color: black
   recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:Emote
+        emote: Cough
+        showInChat: true
+        showInGuidebook: true
+        probability: 0.05
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:Emote
+        emote: Cough
+        showInGuidebook: true
+        conditions:
+        - !type:Breathing
+        - !type:Internals
+          usingInternals: false
 
 - type: reagent
   id: Vinegar
@@ -120,15 +139,17 @@
       - !type:AdjustReagent
         reagent: Water
         amount: 0.4
-#      - !type:AdjustReagent # Frontier
-#        reagent: Vitamin # Frontier
-#        amount: 0.1 # Frontier
-      - !type:SatiateHunger # Frontier
-        conditions: # Frontier
-        - !type:ReagentThreshold # Frontier
-          reagent: Nutriment # Frontier
-          min: 0.1 # Frontier
+      # Frontier: no extra vitamin, but satiation instead
+#      - !type:AdjustReagent
+#        reagent: Vitamin
+#        amount: 0.1
+      - !type:SatiateHunger
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Nutriment
+          min: 0.1
         factor: 0.2
+      # End Frontier: no extra nutriment, but satiation instead
       - !type:ChemVomit
         probability: 0.1
         conditions:
@@ -163,21 +184,23 @@
   flavor: oily
   flavorMinimum: 0.05
   color: olive
-  meltingPoint: -6.0 #Nyano - Summary: Add melting point for fryer. 
-  boilingPoint: 299.0 #Nyano - Summary: Add boiling point for fryer. 
+  meltingPoint: -6.0 #Nyano - Summary: Add melting point for fryer.
+  boilingPoint: 299.0 #Nyano - Summary: Add boiling point for fryer.
   recognizable: true
   metabolisms:
     Food:
       effects:
-#      - !type:AdjustReagent # Frontier
-#        reagent: Nutriment # Frontier
-#        amount: 0.75 # Frontier
-      - !type:SatiateHunger # Frontier
-        conditions: # Frontier
-        - !type:ReagentThreshold # Frontier
-          reagent: Nutriment # Frontier
-          min: 0.1 # Frontier
-        factor: 1 # Frontier
+      # Frontier: no extra nutriment, but satiation instead
+#      - !type:AdjustReagent
+#        reagent: Nutriment
+#        amount: 0.75
+      - !type:SatiateHunger
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Nutriment
+          min: 0.1
+        factor: 1
+      # End Frontier: no extra nutriment, but satiation instead
 
 - type: reagent
   id: Oil
@@ -209,15 +232,17 @@
   metabolisms:
     Food:
       effects:
-#      - !type:AdjustReagent # Frontier
-#        reagent: Nutriment # Frontier
-#        amount: 0.75 # Frontier
-      - !type:SatiateHunger # Frontier
-        conditions: # Frontier
-        - !type:ReagentThreshold # Frontier
-          reagent: Nutriment # Frontier
-          min: 0.1 # Frontier
-        factor: 1 # Frontier
+      # Frontier: no extra nutriment, but satiation instead
+#      - !type:AdjustReagent
+#        reagent: Nutriment
+#        amount: 0.75
+      - !type:SatiateHunger
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Nutriment
+          min: 0.1
+        factor: 1
+      # End Frontier: no extra nutriment, but satiation instead
     Poison:
       effects:
         - !type:AdjustTemperature
@@ -274,15 +299,17 @@
   metabolisms:
     Food:
       effects:
-#      - !type:AdjustReagent # Frontier
-#        reagent: Nutriment # Frontier
-#        amount: 0.75 # Frontier
-      - !type:SatiateHunger # Frontier
-        conditions: # Frontier
-        - !type:ReagentThreshold # Frontier
-          reagent: Nutriment # Frontier
-          min: 0.1 # Frontier
-        factor: 1 # Frontier
+      # Frontier: no extra nutriment, but satiation instead
+#      - !type:AdjustReagent
+#        reagent: Nutriment
+#        amount: 0.75
+      - !type:SatiateHunger
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Nutriment
+          min: 0.1
+        factor: 1
+      # End Frontier: no extra nutriment, but satiation instead
 
 - type: reagent
   id: TeaPowder
@@ -300,3 +327,41 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
+
+- type: reagent
+  id: FrostOil
+  name: reagent-name-frost-oil
+  group: Foods
+  desc: reagent-desc-frost-oil
+  physicalDesc: reagent-physical-desc-oily
+  flavor: cold
+  color: skyblue
+  metabolisms:
+    Food:
+      effects:
+      # Frontier: no extra nutriment, but satiation instead
+      # - !type:AdjustReagent
+      #   reagent: Nutriment #Oils enhance nutrition
+      #   amount: 0.75
+      - !type:SatiateHunger
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Nutriment
+          min: 0.1
+        factor: 1
+      # End Frontier
+    Poison:
+      effects:
+      - !type:AdjustTemperature
+        amount: -250 # thermal energy, not temp
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+        damage:
+          types:
+            Cold: 1
+      - !type:PopupMessage
+        type: Local
+        messages: [ "frost-oil-effect-light-cold" ]
+        probability: 0.2

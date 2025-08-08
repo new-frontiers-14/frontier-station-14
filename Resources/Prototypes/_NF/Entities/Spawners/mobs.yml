@@ -12,6 +12,19 @@
       - MobCatClippy
 
 - type: entity
+  name: Curie Spawner
+  id: SpawnMobCatCurie
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCatCurie
+
+- type: entity
   name: Clarpy Spawner
   id: SpawnMobCatClarpy
   parent: MarkerBase

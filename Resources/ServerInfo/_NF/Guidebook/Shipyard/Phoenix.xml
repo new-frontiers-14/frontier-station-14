@@ -1,7 +1,7 @@
 <Document>
     # PHOENIX-CLASS RESEARCH SHUTTLE
     <Box>
-      <GuideEntityEmbed Entity="VariedXenoArtifactItem"/>
+      <GuideEntityEmbed Entity="ComplexXenoArtifactItem"/>
       <GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
       <GuideEntityEmbed Entity="ComputerTabletopAnalysisConsole"/>
       <GuideEntityEmbed Entity="ExosuitFabricator"/>
@@ -14,7 +14,7 @@
 	
     [color=#a4885c]Recommended Crew:[/color] 2-3
     
-    [color=#a4885c]Power Gen Type:[/color] Solar/Plasma
+    [color=#a4885c]Power Gen Type:[/color] Uranium
     
     [color=#a4885c]Expeditions:[/color] None
     
@@ -38,27 +38,17 @@
     - Check that the APC unit's Main Breaker is toggled on.
     - Check the APC unit's current Load* (W).
     
-    ## 1.2. P.A.C.M.A.N. generator units
+    ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator units
     <Box>
-      <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
-      <GuideEntityEmbed Entity="SheetPlasma"/>
+      <GuideEntityEmbed Entity="PortableGeneratorSuperPacman"/>
+      <GuideEntityEmbed Entity="SheetUranium"/>
     </Box>
     
-    - Check that the P.A.C.M.A.N. generator units are anchored to the floor.
-    - Check that the P.A.C.M.A.N. generator units have fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
-    - Check that the P.A.C.M.A.N. generator units are set to HV output.
-    - Set Target Power for 9-12** [bold]kW[/bold].
-    - Ensure that P.A.C.M.A.N. generator units are enabled.
-    
-    ## 1.3. Solar panels
-    <Box>
-      <GuideEntityEmbed Entity="ComputerSolarControl"/>
-      <GuideEntityEmbed Entity="SolarTracker"/>
-      <GuideEntityEmbed Entity="SolarPanel"/>
-    </Box>
-    - Inspect solar control computer (located at shuttle cockpit).
-    - Adjust panel angular velocity.
-    - Adjust panel angle.
+    - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units are anchored to the floor.
+    - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units have fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+    - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units are set to HV output.
+    - Check that the power is set to at least 20** on each generator [bold]kW[/bold].
+    - Ensure that the S.U.P.E.R.P.A.C.M.A.N. generator units are enabled.
     
     ## 2. Atmospherics
     
@@ -83,7 +73,7 @@
       <GuideEntityEmbed Entity="AirAlarm"/>
     </Box>
       
-    - Ensure that the waste loop pump is enabled.
+    - Ensure that the waste loop pump is enabled, it is located within the salvage area.
     - Disable Auto Mode on any Air Alarms.
     - Set Air Alarms to Filtering (Wide).
     
@@ -98,8 +88,9 @@
     
     ## Sidenotes
     
-    * - Phoenix-class research ships are equipped a power monitoring console that be used to appraise the ship's total power consumption. An unmodified Phoenix-class ship requires 24.5 kW of power to remain operational.
+    * - Phoenix-class research ships are equipped a power monitoring console that be used to appraise the ship's total power consumption. An unmodified Phoenix-class ship requires 30 kW of power to remain operational.
+	
+	** - Phoenix-class research ships may spike in power usage up to 40 kW due to operation and use of the artifact analyzer.
     
-    ** - Phoenix-class research ships come equipped with additional solar panels that can provide up to 17.5 kW of power under ideal circumstances. Assuming that the solar array will provide a third of its maximum output power, recommended target power output for each P.A.C.M.A.N. generator unit is 12 kW.
 
   </Document>

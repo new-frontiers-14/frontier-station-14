@@ -1,7 +1,8 @@
 using System.Linq;
 using Content.Server.Cargo.Systems;
-using Content.Shared.Shipyard.Prototypes;
+using Content.Shared._NF.Shipyard.Prototypes;
 using Robust.Server.GameObjects;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -21,7 +22,7 @@ public sealed class ShipyardTest
         var entManager = server.ResolveDependency<IEntityManager>();
         var protoManager = server.ResolveDependency<IPrototypeManager>();
         var mapLoader = entManager.System<MapLoaderSystem>();
-        var mapManager = server.ResolveDependency<IMapManager>();
+        var map = entManager.System<MapSystem>();
 
         await server.WaitPost(() =>
         {
@@ -29,25 +30,32 @@ public sealed class ShipyardTest
             {
                 foreach (var vessel in protoManager.EnumeratePrototypes<VesselPrototype>())
                 {
-                    var mapId = mapManager.CreateMap();
+                    map.CreateMap(out var mapId);
 
+                    bool mapLoaded = false;
+                    Entity<MapGridComponent>? shuttle = null;
                     try
                     {
-                        Assert.That(mapLoader.TryLoad(mapId, vessel.ShuttlePath.ToString(), out var roots));
-                        Assert.That(roots.Where(uid => entManager.HasComponent<MapGridComponent>(uid)), Is.Not.Empty);
+                        mapLoaded = mapLoader.TryLoadGrid(mapId, vessel.ShuttlePath, out shuttle);
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception($"Failed to load shuttle {vessel.ShuttlePath}", ex);
+                        Assert.Fail($"Failed to load shuttle {vessel} ({vessel.ShuttlePath}): TryLoadGrid threw exception {ex}");
+                        map.DeleteMap(mapId);
+                        continue;
                     }
+
+                    Assert.That(mapLoaded, Is.True, $"Failed to load shuttle {vessel} ({vessel.ShuttlePath}): TryLoadGrid returned false.");
+                    Assert.That(shuttle.HasValue, Is.True);
+                    Assert.That(entManager.HasComponent<MapGridComponent>(shuttle.Value), Is.True);
 
                     try
                     {
-                        mapManager.DeleteMap(mapId);
+                        map.DeleteMap(mapId);
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception($"Failed to delete map {vessel.ShuttlePath}", ex);
+                        Assert.Fail($"Failed to delete map for {vessel} ({vessel.ShuttlePath}): {ex}");
                     }
                 }
             });
@@ -64,7 +72,7 @@ public sealed class ShipyardTest
 
         var entManager = server.ResolveDependency<IEntityManager>();
         var mapLoader = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<MapLoaderSystem>();
-        var mapManager = server.ResolveDependency<IMapManager>();
+        var map = entManager.System<MapSystem>();
         var protoManager = server.ResolveDependency<IPrototypeManager>();
         var pricing = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<PricingSystem>();
 
@@ -74,13 +82,29 @@ public sealed class ShipyardTest
             {
                 foreach (var vessel in protoManager.EnumeratePrototypes<VesselPrototype>())
                 {
-                    var mapId = mapManager.CreateMap();
+                    map.CreateMap(out var mapId);
                     double appraisePrice = 0;
 
-                    Assert.That(mapLoader.TryLoad(mapId, vessel.ShuttlePath.ToString(), out var roots));
-                    var shuttle = roots.FirstOrDefault(uid => entManager.HasComponent<MapGridComponent>(uid));
+                    bool mapLoaded = false;
+                    Entity<MapGridComponent>? shuttle = null;
+                    try
+                    {
+                        mapLoaded = mapLoader.TryLoadGrid(mapId, vessel.ShuttlePath, out shuttle);
+                    }
+                    catch (Exception ex)
+                    {
+                        Assert.Fail($"Failed to load shuttle {vessel} ({vessel.ShuttlePath}): TryLoadGrid threw exception {ex}");
+                        map.DeleteMap(mapId);
+                        continue;
+                    }
+                    Assert.That(mapLoaded, Is.True, $"Failed to load shuttle {vessel} ({vessel.ShuttlePath}): TryLoadGrid returned false.");
+                    Assert.That(entManager.HasComponent<MapGridComponent>(shuttle.Value), Is.True);
 
-                    pricing.AppraiseGrid(shuttle, null, (uid, price) =>
+                    // Grid failed to load, continue to the next map.
+                    if (!mapLoaded)
+                        continue;
+
+                    pricing.AppraiseGrid(shuttle.Value, null, (uid, price) =>
                     {
                         appraisePrice += price;
                     });
@@ -90,7 +114,7 @@ public sealed class ShipyardTest
                     Assert.That(vessel.Price, Is.AtLeast(idealMinPrice),
                         $"Arbitrage possible on {vessel.ID}. Minimal price should be {idealMinPrice}, {(vessel.MinPriceMarkup - 1.0f) * 100}% over the appraise price ({appraisePrice}).");
 
-                    mapManager.DeleteMap(mapId);
+                    map.DeleteMap(mapId);
                 }
             });
         });

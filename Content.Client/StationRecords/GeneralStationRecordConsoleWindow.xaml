@@ -1,6 +1,7 @@
 <DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                Title="{Loc 'general-station-record-console-window-title'}"
-               MinSize="750 500">
+               MinSize="800 500"> <!-- Frontier: width 750<800, add graphics namespace -->
     <BoxContainer Orientation="Vertical">
         <BoxContainer Margin="5 5 5 10" HorizontalExpand="True">
             <OptionButton Name="StationRecordsFilterType" MinWidth="200" Margin="0 0 10 0"/>
@@ -24,9 +25,35 @@
                     </BoxContainer>
                 </ScrollContainer>
             </BoxContainer>
-            <BoxContainer Orientation="Vertical" Margin="5">
-                <Label Name="RecordContainerStatus" Visible="False" Text="{Loc 'general-station-record-console-select-record-info'}"/>
-                <Control Name="RecordContainer" Visible="False"/>
+            <BoxContainer Orientation="Vertical" Margin="5" HorizontalExpand="True"> <!-- Frontier: add HorizontalExpand-->
+                <ScrollContainer VerticalExpand="True"> <!-- Frontier: put record info in a scroll box -->
+                    <Label Name="RecordContainerStatus" Visible="False" Text="{Loc 'general-station-record-console-select-record-info'}"/>
+                    <Control Name="RecordContainer" Visible="False"/>
+                </ScrollContainer> <!-- Frontier: put record info in a scroll box -->
+                <!-- Frontier: ship bio -->
+                <BoxContainer Name="AdContainer" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Visible="False">
+                    <Label Name="AdTitle" Text="{Loc 'general-station-record-console-ad-label'}" StyleClasses="LabelKeyText"/>
+                    <PanelContainer VerticalExpand="True" HorizontalExpand="True">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#777777"/>
+                        </PanelContainer.PanelOverride>
+                        <TextEdit Name="AdTextBox" MinHeight="100" VerticalExpand="True" HorizontalExpand="True"/>
+                    </PanelContainer>
+                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                        <Label Name="AdUnsavedChanges"
+                               Text="{Loc 'general-station-record-console-ad-unsaved-changes'}"
+                               Visible="False"
+                               HorizontalAlignment="Right"
+                               FontColorOverride="yellow"
+                               Margin="0 0 5 0"/>
+                        <Button Name="AdSubmitButton"
+                                Text="{Loc 'general-station-record-console-ad-submit'}"
+                                Disabled="True"
+                                SetSize="100 30"
+                                HorizontalAlignment="Right"/>
+                    </BoxContainer>
+                </BoxContainer>
+                <!-- Frontier: end ship bio -->
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

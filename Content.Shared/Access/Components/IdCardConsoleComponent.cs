@@ -3,8 +3,7 @@ using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
-using Robust.Shared.Prototypes;
+using Content.Shared.Roles; // Frontier
 
 namespace Content.Shared.Access.Components;
 
@@ -12,9 +11,6 @@ namespace Content.Shared.Access.Components;
 [Access(typeof(SharedIdCardConsoleSystem))]
 public sealed partial class IdCardConsoleComponent : Component
 {
-    public const int MaxFullNameLength = 30;
-    public const int MaxJobTitleLength = 30;
-
     public static string PrivilegedIdCardSlotId = "IdCardConsole-privilegedId";
     public static string TargetIdCardSlotId = "IdCardConsole-targetId";
 
@@ -30,9 +26,9 @@ public sealed partial class IdCardConsoleComponent : Component
         public readonly string FullName;
         public readonly string JobTitle;
         public readonly List<ProtoId<AccessLevelPrototype>> AccessList;
-        public readonly ProtoId<AccessLevelPrototype> JobPrototype;
+        public readonly ProtoId<JobPrototype> JobPrototype; // Frontier: AccessPrototype<JobPrototype
 
-        public WriteToTargetIdMessage(string fullName, string jobTitle, List<ProtoId<AccessLevelPrototype>> accessList, ProtoId<AccessLevelPrototype> jobPrototype)
+        public WriteToTargetIdMessage(string fullName, string jobTitle, List<ProtoId<AccessLevelPrototype>> accessList, ProtoId<JobPrototype> jobPrototype) // Frontier: jobProtoype - AccessPrototype<JobPrototype
         {
             FullName = fullName;
             JobTitle = jobTitle;
@@ -51,28 +47,27 @@ public sealed partial class IdCardConsoleComponent : Component
         "Bailiff", // Frontier
         //"Bar",
         "Brig",
-        "Detective",
+        "Brigmedic", // Frontier
         "Captain",
         //"Cargo",
         //"Chapel",
         //"Chemistry",
-        //"ChiefEngineer",
         //"ChiefMedicalOfficer",
         "Command",
         //"Cryogenics",
-        //"Engineering",
+        "Detective", // Frontier: moved into alphabetical order
+        "Engineering",
         "External",
         "Frontier", // Frontier
-        "HeadOfPersonnel",
-        "HeadOfSecurity",
         //"Hydroponics",
         "Janitor",
         //"Kitchen",
-        "Lawyer",
+        //"Lawyer",
         "Mail", // Frontier
         "Maintenance",
         "Medical",
         "Mercenary", // Frontier
+        "ChiefEngineer", // Frontier: moved down, alphabetic w.r.t. "Plant Manager"
         //"Quartermaster",
         //"Research",
         //"ResearchDirector",
@@ -80,6 +75,8 @@ public sealed partial class IdCardConsoleComponent : Component
         "Security",
         "Sergeant", // Frontier
         "Service",
+        "HeadOfSecurity", // Frontier: moved down, alphabetic w.r.t. "Sheriff"
+        "HeadOfPersonnel", // Frontier: moved down, alphabetic w.r.t. "Station Representative"
         "StationTrafficController", // Frontier
         //"Theatre",
     };
@@ -98,7 +95,7 @@ public sealed partial class IdCardConsoleComponent : Component
         public readonly string?[]? TargetShuttleNameParts; // Frontier
         public readonly List<ProtoId<AccessLevelPrototype>>? TargetIdAccessList;
         public readonly List<ProtoId<AccessLevelPrototype>>? AllowedModifyAccessList;
-        public readonly ProtoId<AccessLevelPrototype> TargetIdJobPrototype;
+        public readonly ProtoId<JobPrototype> TargetIdJobPrototype; // Frontier: AccessLevelPrototype<JobPrototype
 
         public IdCardConsoleBoundUserInterfaceState(bool isPrivilegedIdPresent,
             bool isPrivilegedIdAuthorized,
@@ -109,7 +106,7 @@ public sealed partial class IdCardConsoleComponent : Component
             string?[]? targetShuttleNameParts,
             List<ProtoId<AccessLevelPrototype>>? targetIdAccessList,
             List<ProtoId<AccessLevelPrototype>>? allowedModifyAccessList,
-            ProtoId<AccessLevelPrototype> targetIdJobPrototype,
+            ProtoId<JobPrototype> targetIdJobPrototype, // Frontier: AccessLevelPrototype<JobPrototype
             string privilegedIdName,
             string targetIdName)
         {

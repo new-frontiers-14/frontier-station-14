@@ -4,7 +4,8 @@
             ToolTip=""
             Access="Public"
             HorizontalExpand="True"
-            VerticalExpand="True" />
+            VerticalExpand="True"
+            StyleClasses="OpenBoth"/>
     <BoxContainer Orientation="Horizontal"
                   HorizontalExpand="True">
         <TextureRect Name="Icon"
@@ -17,8 +18,9 @@
         <PanelContainer StyleClasses="BackgroundDark">
             <Label Name="PointCost"
                    Access="Public"
-                   MinSize="52 32"
-                   Align="Right" />
+                   MinSize="72 32"
+                   Align="Right"
+                   Margin="0 0 5 0"/> <!-- Frontier: MinSize width 52<72-->
         </PanelContainer>
     </BoxContainer>
 </PanelContainer>

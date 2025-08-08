@@ -1,0 +1,49 @@
+﻿- type: body
+  id: Sheleg
+  name: "sheleg"
+  root: torso
+  slots:
+    head:
+      part: HeadSheleg
+      connections:
+      - torso
+      organs:
+        brain: OrganShelegBrain
+        eyes: OrganShelegEyes
+    torso:
+      part: TorsoSheleg
+      connections:
+      - right_arm
+      - left_arm
+      - right_leg
+      - left_leg
+      organs:
+        heart: OrganShelegHeart
+        lungs: OrganShelegLungs
+        stomach: OrganShelegStomach
+        liver: OrganShelegLiver
+        kidneys: OrganShelegKidneys
+    right_arm:
+      part: RightArmSheleg
+      connections:
+      - right_hand
+    left_arm:
+      part: LeftArmSheleg
+      connections:
+      - left_hand
+    right_hand:
+      part: RightHandSheleg
+    left_hand:
+      part: LeftHandSheleg
+    right_leg:
+      part: RightLegSheleg
+      connections:
+      - right_foot
+    left_leg:
+      part: LeftLegSheleg
+      connections:
+      - left_foot
+    right_foot:
+      part: RightFootSheleg
+    left_foot:
+      part: LeftFootSheleg

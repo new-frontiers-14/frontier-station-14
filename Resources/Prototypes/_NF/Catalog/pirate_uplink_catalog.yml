@@ -2,7 +2,7 @@
   id: UplinkPirateHardsuit
   name:  uplink-pirate-hardsuit-name
   description: uplink-pirate-hardsuit-desc
-  productEntity: ClothingOuterHardsuitPirateEVA
+  productEntity: ClothingOuterEVASuitPirate
   icon: { sprite: Clothing/OuterClothing/Hardsuits/pirateeva.rsi, state: icon }
   cost:
     Doubloon: 2
@@ -31,7 +31,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateHardsuitElite
@@ -50,7 +50,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateCaptainCrateFilled
@@ -69,7 +69,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateCrateFilled
@@ -136,13 +136,13 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateBlunderbuss
   name:  uplink-pirate-blunderbuss-name
   description: uplink-pirate-blunderbuss-desc
-  productEntity: WeaponShotgunBlunderbuss
+  productEntity: NFWeaponShotgunBlunderbuss
   icon: { sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi, state: icon }
   cost:
     Doubloon: 2
@@ -158,7 +158,7 @@
   id: UplinkPirateRevolver
   name:  uplink-pirate-revolver-name
   description: uplink-pirate-revolver-desc
-  productEntity: WeaponRevolverPirate
+  productEntity: NFWeaponRevolverPirate
   icon: { sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi, state: icon }
   cost:
     Doubloon: 1
@@ -174,7 +174,7 @@
   id: UplinkPirateCannon
   name:  uplink-pirate-cannon-name
   description: uplink-pirate-cannon-desc
-  productEntity: WeaponLauncherPirateCannon
+  productEntity: NFWeaponLauncherPirateCannon
   icon: { sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi, state: icon }
   cost:
     Doubloon: 6
@@ -190,7 +190,7 @@
   id: UplinkFlintlock
   name:  uplink-pirate-flintlock-name
   description: uplink-pirate-flintlock-desc
-  productEntity: WeaponPistolFlintlock
+  productEntity: NFWeaponPistolFlintlock
   icon: { sprite: Objects/Weapons/Guns/Snipers/flintlock.rsi, state: base }
   cost:
     Doubloon: 2
@@ -203,7 +203,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkEnergyCutlass
@@ -222,7 +222,7 @@
           - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
-        - PirateCaptain
+        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateAnchor
@@ -292,8 +292,8 @@
   id: UplinkPirateShotgunAmmo
   name:  uplink-pirate-shotgunammo-name
   description: uplink-pirate-shotgunammo-desc
-  productEntity: BoxLethalshot
-  icon: { sprite: Objects/Storage/boxes.rsi, state: shelllethal }
+  productEntity: NFAmmunitionBoxShellShotgunBuckshot
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-buckshot }
   cost:
     Doubloon: 2
   categories:
@@ -308,8 +308,8 @@
   id: UplinkPirateRevolverAmmo
   name:  uplink-pirate-revolverammo-name
   description: uplink-pirate-revolverammo-desc
-  productEntity: MagazineBoxMagnum
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi, state: base }
+  productEntity: NFAmmunitionBoxPistol45
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: icon-45 }
   cost:
     Doubloon: 2
   categories:
@@ -324,8 +324,8 @@
   id: UplinkPirateFlintlockAmmo
   name:  uplink-pirate-flintlockammo-name
   description: uplink-pirate-flintlockammo-desc
-  productEntity: MagazineBoxAntiMateriel
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi, state: base }
+  productEntity: NFAmmunitionBoxRifle60
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60 }
   cost:
     Doubloon: 2
   categories:
@@ -353,10 +353,10 @@
           - PirateUplink
 
 - type: listing
-  id: UplinkPirateCannonballEmp
+  id: UplinkPirateNFCannonBallEmp
   name:  uplink-pirate-cannonball-emp-name
   description: uplink-pirate-cannonball-emp-desc
-  productEntity: CratePirateChestCannonBallEmp
+  productEntity: CratePirateChestNFCannonBallEmp
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: ball-emp }
   cost:
     Doubloon: 2
@@ -399,3 +399,144 @@
       whitelist:
         tags:
           - PirateUplink
+
+- type: listing
+  id: UplinkPirateAccessConfigurator
+  name:  uplink-pirate-accessconfigurator-captain-name
+  description: uplink-pirate-accessconfigurator-captain-desc
+  productEntity: AccessConfiguratorAntag
+  icon: { sprite: _NF/Objects/Tools/antag_access_configurator.rsi, state: icon }
+  cost:
+    Doubloon: 3
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+
+- type: listing
+  id: UplinkRadioImplanterFreelance
+  name: uplink-pirate-radio-implanter-name
+  description: uplink-pirate-radio-implanter-desc
+  productEntity: RadioImplanterFreelance
+  icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: pirate_label }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateRepairKit
+  name: uplink-pirate-repair-kit-name
+  description: uplink-pirate-repair-kit-desc
+  productEntity: PirateRepairKit
+  icon: { sprite: _NF/Objects/Tools/Toolboxes/toolbox_pirate.rsi, state: icon }
+  cost:
+    Doubloon: 3
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPirateIonizedBluespaceDustBag
+  name: uplink-pirate-ionized-dust-bag-name
+  description: uplink-pirate-ionized-dust-bag-desc
+  productEntity: IonizedBluespaceDustBag
+  icon: { sprite: _NF/Objects/Specific/Pirate/bluespace_dust.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPiratePinpointerScanner
+  name: uplink-pirate-pinpointer-target-scanner-name
+  description: uplink-pirate-pinpointer-target-scanner-desc
+  productEntity: PinpointerScanner
+  icon: { sprite: _NF/Objects/Specific/Pirate/pinpointer_scanner.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkPiratePirateStitcher
+  name: uplink-pirate-pirate-stitcher-name
+  description: uplink-pirate-pirate-stitcher-desc
+  productEntity: PirateStitcherCircuitboard
+  icon: { sprite: _NF/Objects/Misc/module.rsi, state: pirate_stitcher }
+  cost:
+    Doubloon: 4
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+        - NFPirateFirstMate
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkNFPouchPirateCaptain
+  name: uplink-pirate-pouch-captain-name
+  description: uplink-pirate-pouch-captain-desc
+  productEntity: NFPouchPirateCaptain
+  icon: { sprite: _NF/Objects/Storage/Pouches/pouch.rsi, state: pirate-captain-icon }
+  cost:
+    Doubloon: 1
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - NFPirateCaptain
+  categories:
+  - UplinkPirateUtility
+
+- type: listing
+  id: UplinkNFPouchPirate
+  name: uplink-pirate-pouch-name
+  description: uplink-pirate-pouch-desc
+  productEntity: NFPouchPirate
+  icon: { sprite: _NF/Objects/Storage/Pouches/pouch.rsi, state: pirate-icon }
+  cost:
+    Doubloon: 1
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+  categories:
+  - UplinkPirateUtility

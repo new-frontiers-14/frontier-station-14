@@ -1,8 +1,8 @@
-using Content.Server.Labels;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared.Holopad;
+using Content.Shared.Labels.EntitySystems;
 
 namespace Content.Server._NF.Station.Systems;
 

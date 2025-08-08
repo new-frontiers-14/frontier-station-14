@@ -189,8 +189,9 @@
       - id: FoodCondimentPacketKetchup
   - type: Sprite
     layers:
-      - state: box_olive
+      - state: box
       - state: writing
+  - type: NFIngredient # Frontier: I suppose
 
 - type: entity
   parent: BoxHug
@@ -230,6 +231,7 @@
     contents:
       - id: ClothingShoesBootsPerformer
       - id: ClothingUniformJumpskirtPerformer
+      - id: ClothingHeadPerformerWig
       - id: FoodMealMemoryleek
         amount: 2
 
@@ -477,3 +479,20 @@
     contents:
       - id: Envelope
         amount: 9
+
+- type: entity
+  name: utensil box
+  parent: BoxCardboard
+  id: BoxUtensil
+  description: A box filled with forks and spoons.
+  components:
+  - type: Sprite
+    layers:
+      - state: box
+      - state: utensils
+  - type: StorageFill
+    contents:
+      - id: Fork
+        amount: 2
+      - id: Spoon
+        amount: 2

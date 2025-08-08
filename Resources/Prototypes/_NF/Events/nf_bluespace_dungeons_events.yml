@@ -35,13 +35,15 @@
           enabled: true
           inherent: true
         - type: IFF
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
         - type: LinkedLifecycleGridParent
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
+        # FIXME: the dungeon dosen't pass FTL events even though it should FTL in
+        #        and we don't get a MapInitEvent, so this just forces static physics
+        - type: Physics
+          bodyType: Static
+          bodyStatus: OnGround
         protos:
         - NFVGRoidBasalt
 

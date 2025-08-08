@@ -1,11 +1,26 @@
 - type: loadout
+  id: StationRepForcedClothingOuterEVASuitSr
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NFOuterSuitRequired
+  price: 0
+  equipment:
+    outerClothing: ClothingOuterEVASuitSr
+
+- type: loadout
   id: StationRepClothingOuterArmorSrCarapace
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
   price: 1800
   equipment:
     outerClothing: ClothingOuterArmorSrCarapace
 
 - type: loadout
   id: StationRepClothingOuterJacketSr
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFCoatCapable
   price: 800
   equipment:
     outerClothing: ClothingOuterJacketSr

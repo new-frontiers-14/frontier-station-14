@@ -2,7 +2,7 @@
   parent: DoubleEmergencyOxygenTank
   id: DoubleEmergencyAirTank
   name: double emergency air tank
-  description: A high-grade dual-tank emergency life support container. It holds a decent amount of air for it's small size.
+  description: A high-grade dual-tank emergency life support container. It holds a decent amount of air for its small size. It can hold 2.5 L of gas.
   components:
   - type: Sprite
     sprite: _NF/Objects/Tanks/emergency_double_air.rsi
@@ -10,5 +10,30 @@
     sprite: _NF/Objects/Tanks/emergency_double_air.rsi
   - type: Clothing
     sprite: _NF/Objects/Tanks/emergency_double_air.rsi
-  - type: StaticPrice # To keep with upstream on it
-    price: 32.5
+
+- type: entity
+  id: NFTankO2N2Equal
+  parent: GasTankRoundBase
+  name: O2/N2 tank
+  description: Contains O2 and N2 mixed in equal proportions. It can hold 5 L of gas.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tanks/o2n2equal.rsi
+  - type: Item
+    sprite: _NF/Objects/Tanks/o2n2equal.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tanks/o2n2equal.rsi
+
+- type: entity
+  parent: DoubleEmergencyAirTank
+  id: DoubleEmergencyTankO2N2Equal
+  name: double emergency O2/N2 tank
+  description: |-
+   A high-grade dual-tank emergency life support container: one tank contains N2, the other, O2. It holds a decent amount of gas for its small size. It can hold 2.5 L of gas.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tanks/emergency_double_o2n2equal.rsi
+  - type: Item
+    sprite: _NF/Objects/Tanks/emergency_double_o2n2equal.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Tanks/emergency_double_o2n2equal.rsi

@@ -1,6 +1,8 @@
 - type: entity
   parent: HolopadLongRange
   id: NFHolopadShip
+  name: bluespace holopad
+  description: "A floor-mounted device for projecting holographic images to enable ship to ship communication."
   suffix: Ship
   components:
   - type: Telephone
@@ -15,6 +17,19 @@
     useStationName: true
   - type: AccessReader
     access: [ [ "HeadOfSecurity" ] ]
+  - type: PowerSwitch
+  - type: Machine
+    board: NFHolopadShipMachineCircuitboard
+
+- type: entity
+  parent: NFHolopadShip
+  id: NFHolopadShipAntag
+  suffix: Ship, Antag
+  components:
+  - type: Holopad
+    useStationName: false
+  - type: ApcPowerReceiver
+    powerDisabled: true #starts off
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, NFHolopadShip]
@@ -41,6 +56,14 @@
   components:
   - type: Label
     currentLabel: nf-holopad-general-bahama
+
+- type: entity
+  parent: NFHolopadPoiBase
+  id: NFHolopadBarrier
+  suffix: Barrier Gate, POI
+  components:
+  - type: Label
+    currentLabel: nf-holopad-general-barrier-gate
 
 - type: entity
   parent: NFHolopadPoiBase

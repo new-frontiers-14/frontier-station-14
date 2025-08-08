@@ -33,6 +33,7 @@
   - Contractor # Frontier
   - Mercenary # Frontier
   - Pilot # Frontier
+  - Borg # Frontier
 
 - type: department
   id: CentralCommand
@@ -76,10 +77,12 @@
   # - ERTEngineer # Frontier
   # - DeathSquad # Frontier
   - StationRepresentative # Frontier
-  - Sheriff  # Frontier
+  - Sheriff # Frontier
+  - PlantManager # Frontier
   - StationTrafficController # Frontier
   primary: false
   weight: 100
+  editorHidden: true # Frontier
 
 - type: department
   id: Engineering
@@ -88,7 +91,13 @@
   color: "#EFB341"
   weight: -94
   primary: false
-  editorHidden: true # Frontier
+  roles:
+  # - AtmosphericTechnician # Frontier
+  # - ChiefEngineer # Frontier
+  # - StationEngineer # Frontier
+  # - TechnicalAssistant # Frontier
+  - PlantManager # Frontier
+  - PlantTechnician # Frontier
 
 - type: department
   id: Medical
@@ -140,6 +149,7 @@
   - Borg
   - StationAi
   editorHidden: true # Frontier
+  primary: false # Frontier
 
 - type: department
   id: Specific

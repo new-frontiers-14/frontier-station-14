@@ -111,6 +111,7 @@
     - type: Tag
       tags:
         - CannotSuicide
+    - type: AnimatedEmotes # goob edit - animated emotes
 
 # From the uplink injector
 - type: entity
@@ -255,22 +256,24 @@
       prototypes: [ HoloClownGear ]
     - type: RandomMetadata
       nameSegments:
-      - names_clown
+      - NamesClown
+    # Frontier: no faction/NPC behaviour
     # - type: NpcFactionMember
-      # factions:
-        # - Syndicate
-    # - type: HTN # Frontier
-      # rootTask:
-        # task: SimpleHumanoidHostileCompound
+    #   factions:
+    #     - Syndicate
+    # - type: HTN
+    #   rootTask:
+    #     task: SimpleHumanoidHostileCompound
+    # End Frontier
 
 - type: entity
+  parent: BaseMentalAction
   id: ActionToggleGuardian
   name: Toggle Guardian
   description: Either manifests the guardian or recalls it back into your body
   components:
-  - type: InstantAction
+  - type: Action
     icon: Interface/Actions/manifest.png
-    event: !type:GuardianToggleActionEvent
     useDelay: 2
-    checkCanInteract: false
-    checkConsciousness: false
+  - type: InstantAction
+    event: !type:GuardianToggleActionEvent

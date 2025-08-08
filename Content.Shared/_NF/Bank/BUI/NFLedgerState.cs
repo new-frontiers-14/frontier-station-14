@@ -1,4 +1,4 @@
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Components;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.Bank.BUI;
@@ -33,6 +33,7 @@ public enum LedgerEntryType : byte
     BluespaceReward,
     AntiSmugglingBonus,
     MedicalBountyTax,
+    PowerTransmission,
     StationDepositFines,
     StationDepositDonation,
     StationDepositAssetsSold,

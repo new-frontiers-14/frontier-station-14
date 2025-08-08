@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
+namespace Content.Server._NF.Cargo.Systems;
 
 // Component to identify an item as matching a pirate bounty.
 // Each item can match at most one bounty type.

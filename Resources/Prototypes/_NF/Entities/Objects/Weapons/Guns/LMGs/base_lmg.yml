@@ -1,0 +1,80 @@
+#region base
+- type: entity
+  id: NFBaseWeaponFrameLightMachineGun
+  parent: [ NFBaseWeaponEncumbranceSniper, NFBaseItemWeaponGunMagazineFed ]
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
+  - type: Gun
+    projectileSpeed: 30
+    minAngle: 3.1
+    maxAngle: 15.5
+    angleIncrease: 0.8
+    angleDecay: 4
+    fireRate: 4
+    burstFireRate: 5
+    shotsPerBurst: 5
+    burstCooldown: 1
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - Burst
+  - type: NFWeaponDetails
+    class: weapon-details-class-light-machine-gun
+
+#region manufacturer
+- type: entity
+  id: NFBaseWeaponFrameLightMachineGunGorlex
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameLightMachineGun ]
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 3.4
+    maxAngle: 17
+    angleIncrease: 1.5
+    angleDecay: 5.4
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works
+
+#region chamber
+- type: entity
+  id: NFBaseWeaponLightMachineGunChamber20
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-20
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineBoxRifle20
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - NFMagazineBoxRifle20
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgeRifle20
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgeRifle20
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot

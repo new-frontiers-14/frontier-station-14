@@ -21,7 +21,9 @@ ion-storm-x-and-y = {$x} AND {$y}
 # thing is specified above it
 # Frontier: "on the station" < "in the sector"
 ion-storm-law-on-station = THERE ARE {$joined} {$subjects} IN THE SECTOR
-ion-storm-law-no-shuttle = THE SHIFT END CANNOT BE CALLED BECAUSE OF {$joined} {$subjects} ON FRONTIER
+# ion-storm-law-call-shuttle = THE SHUTTLE MUST BE CALLED BECAUSE OF {$joined} {$subjects} ON THE STATION
+# Frontier
+ion-storm-law-nf-needs-help = {$joined} {$subjects} NEED YOUR HELP
 ion-storm-law-crew-are = THE {$who} ARE NOW {$joined} {$subjects}
 
 ion-storm-law-subjects-harmful = {$adjective} {$subjects} ARE HARMFUL TO THE CREW
@@ -36,21 +38,21 @@ ion-storm-law-not-having-harmful = NOT HAVING {$adjective} {$thing} IS HARMFUL T
 
 # thing is a concept or require
 ion-storm-law-requires = {$who} {$plural ->
-    [true] REQUIRES
-    *[false] REQUIRE
+    [true] REQUIRE
+    *[false] REQUIRES
 } {$thing}
 ion-storm-law-requires-subjects = {$who} {$plural ->
-    [true] REQUIRES
-    *[false] REQUIRE
+    [true] REQUIRE
+    *[false] REQUIRES
 } {$joined} {$subjects}
 
 ion-storm-law-allergic = {$who} {$plural ->
-    [true] IS
-    *[false] ARE
+    [true] ARE
+    *[false] IS
 } {$severity} ALLERGIC TO {$allergy}
 ion-storm-law-allergic-subjects = {$who} {$plural ->
-    [true] IS
-    *[false] ARE
+    [true] ARE
+    *[false] IS
 } {$severity} ALLERGIC TO {$adjective} {$subjects}
 
 ion-storm-law-feeling = {$who} {$feeling} {$concept}

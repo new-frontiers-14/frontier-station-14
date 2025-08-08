@@ -11,11 +11,11 @@ namespace Content.Server._DV.Mail.Components
     {
 
         // Not starting accumulator at 0 so mail carriers have some deliveries to make shortly after roundstart.
-        [DataField]
-        public float Accumulator = 1995f; // Frontier 285<1995 (285*7)
+        // [DataField]
+        // public float Accumulator = 285f;
 
-        [DataField]
-        public TimeSpan TeleportInterval = TimeSpan.FromMinutes(35); // Frontier: 5<35 (5*7)
+        // [DataField]
+        // public TimeSpan TeleportInterval = TimeSpan.FromMinutes(5);
 
         /// <summary>
         /// The sound that's played when new mail arrives.
@@ -23,24 +23,24 @@ namespace Content.Server._DV.Mail.Components
         [DataField]
         public SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/Effects/teleport_arrival.ogg");
 
-        /// <summary>
-        /// The MailDeliveryPoolPrototype that's used to select what mail this
-        /// teleporter can deliver.
-        /// </summary>
-        [DataField("mailPool")]
-        public string MailPool = "RandomNFMailDeliveryPool"; // Frontier: use our own mail pool (TODO: migrate to frontier.yml instance?)
+        // /// <summary>
+        // /// The MailDeliveryPoolPrototype that's used to select what mail this
+        // /// teleporter can deliver.
+        // /// </summary>
+        // [DataField]
+        // public string MailPool = "RandomNFMailDeliveryPool";
 
-        /// <summary>
-        /// How many mail candidates do we need per actual delivery sent when
-        /// the mail goes out? The number of candidates is divided by this number
-        /// to determine how many deliveries will be teleported in.
-        /// It does not determine unique recipients. That is random.
-        /// </summary>
-        [DataField]
-        public int CandidatesPerDelivery = 4; // Frontier: 8<4
+        // /// <summary>
+        // /// How many mail candidates do we need per actual delivery sent when
+        // /// the mail goes out? The number of candidates is divided by this number
+        // /// to determine how many deliveries will be teleported in.
+        // /// It does not determine unique recipients. That is random.
+        // /// </summary>
+        // [DataField]
+        // public int CandidatesPerDelivery = 8;
 
-        [DataField]
-        public int MinimumDeliveriesPerTeleport = 1;
+        // [DataField]
+        // public int MinimumDeliveriesPerTeleport = 1;
 
         /// <summary>
         /// Do not teleport any more mail in, if there are at least this many
@@ -61,62 +61,48 @@ namespace Content.Server._DV.Mail.Components
         [DataField]
         public int MaximumUndeliveredParcels = 5;
 
-        /// <summary>
-        /// Any item that breaks or is destroyed in less than this amount of
-        /// damage is one of the types of items considered fragile.
-        /// </summary>
-        [DataField]
-        public int FragileDamageThreshold = 10;
+        // /// <summary>
+        // /// Any item that breaks or is destroyed in less than this amount of
+        // /// damage is one of the types of items considered fragile.
+        // /// </summary>
+        // [DataField]
+        // public int FragileDamageThreshold = 10;
 
-        /// <summary>
-        /// What's the bonus for delivering a fragile package intact?
-        /// </summary>
-        [DataField]
-        public int FragileBonus = 2000; // Frontier 100<2000
+        // /// <summary>
+        // /// What's the bonus for delivering a fragile package intact?
+        // /// </summary>
+        // [DataField]
+        // public int FragileBonus = 100;
 
-        /// <summary>
-        /// What's the malus for failing to deliver a fragile package?
-        /// </summary>
-        [DataField]
-        public int FragileMalus = -100;
+        // /// <summary>
+        // /// What's the malus for failing to deliver a fragile package?
+        // /// </summary>
+        // [DataField]
+        // public int FragileMalus = -100;
 
-        /// <summary>
-        /// What's the chance for any one delivery to be marked as priority mail?
-        /// </summary>
-        [DataField]
-        public float PriorityChance = 0.07f; // Frontier: 0.1f<0.07f
+        // /// <summary>
+        // /// What's the chance for any one delivery to be marked as priority mail?
+        // /// </summary>
+        // [DataField]
+        // public float PriorityChance = 0.1f;
 
-        /// <summary>
-        /// How long until a priority delivery is considered as having failed
-        /// if not delivered?
-        /// </summary>
-        [DataField]
-        public TimeSpan PriorityDuration = TimeSpan.FromMinutes(45); // Frontier 5<45
+        // /// <summary>
+        // /// How long until a priority delivery is considered as having failed
+        // /// if not delivered?
+        // /// </summary>
+        // [DataField]
+        // public TimeSpan PriorityDuration = TimeSpan.FromMinutes(5);
 
-        /// <summary>
-        /// What's the bonus for delivering a priority package on time?
-        /// </summary>
-        [DataField]
-        public int PriorityBonus = 5000; // Frontier 250<5000
+        // /// <summary>
+        // /// What's the bonus for delivering a priority package on time?
+        // /// </summary>
+        // [DataField]
+        // public int PriorityBonus = 250;
 
-        /// <summary>
-        /// What's the malus for failing to deliver a priority package?
-        /// </summary>
-        [DataField]
-        public int PriorityMalus = -250;
-
-        // Frontier: Large mail
-        /// <summary>
-        /// What's the bonus for delivering a large package intact?
-        /// </summary>
-        [DataField]
-        public int LargeBonus = 5000; // Frontier: 1500<5000
-
-        /// <summary>
-        /// What's the malus for failing to deliver a large package?
-        /// </summary>
-        [DataField]
-        public int LargeMalus = -500;
-        // End Frontier: Large mail
+        // /// <summary>
+        // /// What's the malus for failing to deliver a priority package?
+        // /// </summary>
+        // [DataField]
+        // public int PriorityMalus = -250;
     }
 }

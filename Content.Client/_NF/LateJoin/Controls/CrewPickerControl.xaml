@@ -20,9 +20,12 @@
                     <BoxContainer Name="StationItemList"
                                   Orientation="Vertical"
                                   HorizontalExpand="True"
-                                  MinSize="50 50">
-                    </BoxContainer>
+                                  MinSize="50 50"/>
                 </ScrollContainer>
+
+                <CheckBox Name="HideJoblessShipsCheckbox"
+                          Text="{Loc 'frontier-lobby-crew-only-hide-jobless'}"
+                          Margin="10 5 0 5"/>
             </BoxContainer>
         </PanelContainer>
 
@@ -36,29 +39,34 @@
                 <BoxContainer Orientation="Vertical"
                               VerticalExpand="True"
                               HorizontalExpand="True"
-                              Margin="20">
+                              Margin="20"
+                              SizeFlagsStretchRatio="2">
                     <Label Name="StationName"
                            HorizontalExpand="True"
                            StyleClasses="FancyWindowTitle" />
 
-                    <RichTextLabel Name="StationDescription" />
+                    <ScrollContainer VerticalExpand="True"
+                                     HorizontalExpand="True"
+                                     VScrollEnabled="True"
+                                     HScrollEnabled="False">
+                        <RichTextLabel Name="StationDescription" />
+                    </ScrollContainer>
                 </BoxContainer>
 
                 <Label Text="{Loc 'frontier-lobby-available-jobs'}"
-                       Margin="20 4 0 4"
+                       Margin="20 0 0 4"
                        StyleClasses="FancyWindowTitle" />
-                <ScrollContainer HorizontalExpand="True"
-                                 VerticalExpand="True"
-                                 VScrollEnabled="True">
 
-
+                <ScrollContainer VerticalExpand="True"
+                                 HorizontalExpand="True"
+                                 VScrollEnabled="True"
+                                 SizeFlagsStretchRatio="1">
                     <BoxContainer Name="StationJobItemList"
                                   Orientation="Vertical"
                                   HorizontalExpand="True"
                                   VerticalExpand="True"
                                   MinSize="50 50"
-                                  Margin="4">
-                    </BoxContainer>
+                                  Margin="4"/>
                 </ScrollContainer>
             </BoxContainer>
         </PanelContainer>

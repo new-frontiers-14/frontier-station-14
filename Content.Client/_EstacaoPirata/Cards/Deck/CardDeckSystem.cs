@@ -63,10 +63,8 @@ public sealed class CardDeckSystem : EntitySystem
     private bool TryGetCardLayer(EntityUid card, out SpriteComponent.Layer? layer)
     {
         layer = null;
-        if (!TryComp(card, out SpriteComponent? cardSprite))
-            return false;
-
-        if (!cardSprite.TryGetLayer(0, out var l))
+        if (!TryComp(card, out SpriteComponent? cardSprite)
+            || !cardSprite.TryGetLayer(0, out var l))
             return false;
 
         layer = l;
@@ -75,12 +73,9 @@ public sealed class CardDeckSystem : EntitySystem
 
     private void UpdateSprite(EntityUid uid, CardDeckComponent comp)
     {
-        if (!TryComp(uid, out SpriteComponent? sprite))
+        if (!TryComp(uid, out SpriteComponent? sprite)
+            || !TryComp(uid, out CardStackComponent? cardStack))
             return;
-
-        if (!TryComp(uid, out CardStackComponent? cardStack))
-            return;
-
 
         // Prevents error appearing at spawnMenu
         if (cardStack.Cards.Count <= 0 || !TryGetCardLayer(cardStack.Cards.Last(), out var cardlayer) ||
@@ -132,7 +127,14 @@ public sealed class CardDeckSystem : EntitySystem
     }
     private void OnComponentStartupEvent(EntityUid uid, CardDeckComponent comp, ComponentStartup args)
     {
+        if (!TryComp(uid, out CardStackComponent? stack))
+        {
+            _notInitialized[(uid, comp)] = 0;
+            return;
+        }
 
+        if (stack.Cards.Count <= 0)
+            _notInitialized[(uid, comp)] = 0;
         UpdateSprite(uid, comp);
     }
 

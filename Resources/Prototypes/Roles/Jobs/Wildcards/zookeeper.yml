@@ -12,6 +12,10 @@
   supervisors: job-supervisors-hire # Frontier
   accessGroups: # Frontier
   - GeneralAccess # Frontier
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: MonkeyDay
+    prototype: MonkeyCubeBox
 
 - type: startingGear
   id: ZookeeperGear
@@ -24,3 +28,15 @@
   #storage:
     #back:
     #- Stuff
+
+- type: chameleonOutfit
+  id: ZookeeperChameleonOutfit
+  job: Zookeeper
+  equipment:
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterWinterColorLightBrown
+    neck: ClothingNeckScarfStripedBrown
+    belt: ClothingBeltStorageWaistbag
+    gloves: ClothingHandsGlovesColorBrown
+

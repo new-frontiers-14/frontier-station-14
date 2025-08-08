@@ -1,5 +1,6 @@
 using Content.Client.Clothing;
 using Content.Shared.Clothing.Components;
+using Content.Shared.Item; // Frontier
 using Content.Shared.Sprite;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameStates;
@@ -11,6 +12,7 @@ public sealed class RandomSpriteSystem : SharedRandomSpriteSystem
 {
     [Dependency] private readonly IReflectionManager _reflection = default!;
     [Dependency] private readonly ClientClothingSystem _clothing = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -36,6 +38,7 @@ public sealed class RandomSpriteSystem : SharedRandomSpriteSystem
 
         UpdateSpriteComponentAppearance(uid, component);
         UpdateClothingComponentAppearance(uid, component);
+        UpdateItemComponentAppearance(uid, component); // Frontier
     }
 
     private void UpdateClothingComponentAppearance(EntityUid uid, RandomSpriteComponent component, ClothingComponent? clothing = null)
@@ -63,19 +66,45 @@ public sealed class RandomSpriteSystem : SharedRandomSpriteSystem
             int index;
             if (_reflection.TryParseEnumReference(layer.Key, out var @enum))
             {
-                if (!sprite.LayerMapTryGet(@enum, out index, logError: true))
+                if (!_sprite.LayerMapTryGet((uid, sprite), @enum, out index, logMissing: true))
                     continue;
             }
-            else if (!sprite.LayerMapTryGet(layer.Key, out index))
+            else if (!_sprite.LayerMapTryGet((uid, sprite), layer.Key, out index, false))
             {
                 if (layer.Key is not { } strKey || !int.TryParse(strKey, out index))
                 {
-                    Log.Error($"Invalid key `{layer.Key}` for entity with random sprite {ToPrettyString(uid)}");
+                    // Log.Error($"Invalid key `{layer.Key}` for entity with random sprite {ToPrettyString(uid)}"); // Frontier: spammy
                     continue;
                 }
             }
-            sprite.LayerSetState(index, layer.Value.State);
-            sprite.LayerSetColor(index, layer.Value.Color ?? Color.White);
+            _sprite.LayerSetRsiState((uid, sprite), index, layer.Value.State);
+            _sprite.LayerSetColor((uid, sprite), index, layer.Value.Color ?? Color.White);
         }
     }
+
+    // Frontier: edit inhand visuals
+    private void UpdateItemComponentAppearance(EntityUid uid, RandomSpriteComponent component, ItemComponent? sprite = null)
+    {
+        if (!Resolve(uid, ref sprite, false))
+            return;
+
+        var itemLayers = sprite.InhandVisuals;
+        foreach (var keyColorPair in component.Selected)
+        {
+            // Update each hand's layers
+            foreach (var layerList in itemLayers.Values)
+            {
+                // Iterate over list of layers, look for our mappings
+                foreach (var layer in layerList)
+                {
+                    if (layer.MapKeys != null && layer.MapKeys.Contains(keyColorPair.Key))
+                    {
+                        layer.State = keyColorPair.Value.State;
+                        layer.Color = keyColorPair.Value.Color;
+                    }
+                }
+            }
+        }
+    }
+    // End Frontier: edit inhand visuals
 }
