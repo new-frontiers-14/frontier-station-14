@@ -65,7 +65,7 @@ public sealed class ProtectedGridSystem : EntitySystem
             return;
         }
 
-        if (!SharedMapSystem.FromBitmask(args.GridIndices, data)) // Frontier, inverted the conditional
+        if (!SharedMapSystem.FromBitmask(args.GridIndices, data))
         {
             args.Cancelled = true;
         }

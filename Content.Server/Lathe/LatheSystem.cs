@@ -204,6 +204,7 @@ namespace Content.Server.Lathe
 
                 _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
             }
+<<<<<<< HEAD
 
             // Frontier: queue up a batch
             if (component.Queue.Count > 0 && component.Queue[^1].Recipe.ID == recipe.ID)
@@ -212,6 +213,9 @@ namespace Content.Server.Lathe
                 component.Queue.Add(new LatheRecipeBatch(recipe, 0, quantity));
             // End Frontier
             // component.Queue.Add(recipe); // Frontier
+=======
+            component.Queue.Enqueue(recipe);
+>>>>>>> wizden/stable
 
             return true;
         }
@@ -223,6 +227,7 @@ namespace Content.Server.Lathe
             if (component.CurrentRecipe != null || component.Queue.Count <= 0 || !this.IsPowered(uid, EntityManager))
                 return false;
 
+<<<<<<< HEAD
             // Frontier: handle batches
             var batch = component.Queue.First();
             batch.ItemsPrinted++;
@@ -230,6 +235,10 @@ namespace Content.Server.Lathe
                 component.Queue.RemoveAt(0);
             var recipe = batch.Recipe;
             // End Frontier
+=======
+            var recipeProto = component.Queue.Dequeue();
+            var recipe = _proto.Index(recipeProto);
+>>>>>>> wizden/stable
 
             var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
 
@@ -259,7 +268,8 @@ namespace Content.Server.Lathe
 
             if (comp.CurrentRecipe != null)
             {
-                if (comp.CurrentRecipe.Result is { } resultProto)
+                var currentRecipe = _proto.Index(comp.CurrentRecipe.Value);
+                if (currentRecipe.Result is { } resultProto)
                 {
                     var result = Spawn(resultProto, Transform(uid).Coordinates);
 
@@ -275,7 +285,7 @@ namespace Content.Server.Lathe
                     _stack.TryMergeToContacts(result);
                 }
 
-                if (comp.CurrentRecipe.ResultReagents is { } resultReagents &&
+                if (currentRecipe.ResultReagents is { } resultReagents &&
                     comp.ReagentOutputSlotId is { } slotId)
                 {
                     var toAdd = new Solution(
@@ -312,9 +322,15 @@ namespace Content.Server.Lathe
             if (!Resolve(uid, ref component))
                 return;
 
+<<<<<<< HEAD
             var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault()?.Recipe; // Frontier: add ?.Recipe
+=======
+            var producing = component.CurrentRecipe;
+            if (producing == null && component.Queue.TryPeek(out var next))
+                producing = next;
+>>>>>>> wizden/stable
 
-            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing);
+            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue.ToArray(), producing);
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 

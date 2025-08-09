@@ -23,8 +23,12 @@ public abstract partial class SharedSalvageSystem : EntitySystem
     /// <summary>
     /// Main loot table for salvage expeditions.
     /// </summary>
+<<<<<<< HEAD
     [ValidatePrototypeId<SalvageLootPrototype>]
     public const string ExpeditionsLootProto = "NFSalvageLootModerate"; // Frontier: SalvageLoot<NFSalvageLootModerate
+=======
+    public static readonly ProtoId<SalvageLootPrototype> ExpeditionsLootProto = "SalvageLoot";
+>>>>>>> wizden/stable
 
     public string GetFTLName(LocalizedDatasetPrototype dataset, int seed)
     {

@@ -4,6 +4,7 @@
   parent: LockerWarden
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
       - id: FlashlightSeclite
@@ -24,6 +25,16 @@
         amount: 2
       - id: RemoteSignaller
         amount: 2
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: FillLockerWarden
+        - !type:NestedSelector
+          tableId: FillLockerWardenHarduit
+>>>>>>> wizden/stable
 
 - type: entity
   id: LockerWardenFilled
@@ -31,6 +42,7 @@
   parent: LockerWarden
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
       - id: FlashlightSeclite
@@ -52,6 +64,44 @@
       - id: RemoteSignaller
         amount: 2
       - id: Binoculars
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerWarden
+
+- type: entityTable
+  id: FillLockerWarden
+  table: !type:AllSelector
+    children:
+    - id: FlashlightSeclite
+    - id: WeaponDisabler
+    - id: ClothingBeltSecurityFilled
+    - id: Flash
+    - id: ClothingEyesGlassesSecurity
+    - id: ClothingHandsGlovesCombat
+    - id: ClothingShoesBootsJack
+    - id: ClothingOuterCoatWarden
+    - id: ClothingOuterWinterWarden
+    - id: RubberStampWarden
+    - id: DoorRemoteArmory
+    - id: HoloprojectorSecurity
+    - id: BookSpaceLaw
+    - id: ClothingBackpackElectropack
+      amount: 2
+    - id: RemoteSignaller
+      amount: 2
+    - id: NetworkConfigurator
+    - id: Binoculars
+
+- type: entityTable
+  id: FillLockerWardenHarduit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitWarden
+    - id: OxygenTankFilled
+    - id: ClothingMaskBreath
+>>>>>>> wizden/stable
 
 - type: entity
   id: LockerSecurityFilled
@@ -59,6 +109,7 @@
   parent: LockerSecurity
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
       - id: FlashlightSeclite
@@ -82,6 +133,37 @@
         prob: 0.6
       - id: BookSpaceLaw
         prob: 0.5
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerSecurity
+
+- type: entityTable
+  id: FillLockerSecurity
+  table: !type:AllSelector
+    children:
+    - id: FlashlightSeclite
+      prob: 0.8
+    - id: WeaponDisabler
+    - id: ClothingUniformJumpsuitSecGrey
+      prob: 0.3
+    - id: ClothingHeadHelmetBasic
+    - id: ClothingOuterArmorBasic
+    - id: ClothingBeltSecurityFilled
+    - id: Flash
+      prob: 0.5
+    - id: ClothingEyesGlassesSecurity
+    - id: ClothingHeadsetSecurity
+    - id: ClothingHandsGlovesColorBlack
+    - id: ClothingShoesBootsJack
+    - id: WeaponMeleeNeedle
+      prob: 0.1
+    - id: HoloprojectorSecurity
+      prob: 0.6
+    - id: BookSpaceLaw
+      prob: 0.5
+>>>>>>> wizden/stable
 
 - type: entity
   id: LockerBrigmedicFilled
@@ -89,6 +171,7 @@
   parent: LockerBrigmedic
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
       - id: ClothingEyesGlassesSecurity
@@ -105,20 +188,46 @@
       - id: ClothingUniformJumpskirtOfLife
         prob: 0.1
       - id: MedkitFilled
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerBrigmedic
+
+- type: entityTable
+  id: FillLockerBrigmedic
+  table: !type:AllSelector
+    children:
+    - id: ClothingEyesGlassesSecurity
+    - id: WeaponDisabler
+    - id: TrackingImplanter
+      amount: 2
+    - id: ClothingOuterHardsuitBrigmedic
+    - id: BoxSterileMask
+    - id: ClothingHeadHatBeretBrigmedic
+    - id: ClothingOuterCoatAMG
+    - id: ClothingUniformJumpsuitBrigmedic
+    - id: ClothingUniformJumpskirtBrigmedic
+    - id: ClothingUniformJumpskirtOfLife
+      prob: 0.1
+    - id: MedkitFilled
+    - !type:GroupSelector
+      prob: 0.7
+      children:
+>>>>>>> wizden/stable
       - id: MedkitCombatFilled
-        prob: 0.6
+        weight: 1.6
       - id: MedkitAdvancedFilled
-        prob: 0.4
       - id: MedkitOxygenFilled
-        prob: 0.3
+        weight: 0.8
       - id: MedkitBruteFilled
-        prob: 0.3
+        weight: 0.8
       - id: MedkitToxinFilled
-        prob: 0.3
+        weight: 0.8
       - id: MedkitBurnFilled
-        prob: 0.7
-      - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
-        prob: 0.15
+        weight: 1.8
+    - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
+      prob: 0.15
 
 - type: entity
   id: LockerDetectiveFilled
@@ -126,6 +235,7 @@
   parent: LockerDetective
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
       - id: ClothingEyesGlassesNoir
@@ -146,6 +256,33 @@
       - id: HandLabeler
       - id: BoxTapeRecorder # DeltaV
         prob: 0.3
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerDetective
+
+- type: entityTable
+  id: FillLockerDetective
+  table: !type:AllSelector
+    children:
+    - id: ClothingEyesGlassesNoir
+    - id: ClothingHeadHatDetGadget
+    - id: ClothingNeckTieDet
+    - id: ClothingOuterVestDetective
+    - id: ClothingOuterCoatDetectiveLoadout
+    - id: FlippoEngravedLighter
+    - id: FlashlightSeclite
+    - id: ForensicScanner
+    - id: LogProbeCartridge
+    - id: BoxForensicPad
+    - id: DrinkDetFlask
+    - id: ClothingHandsGlovesForensic
+    - id: RubberStampDetective
+    - id: HoloprojectorSecurity
+    - id: BoxEvidenceMarkers
+    - id: HandLabeler
+>>>>>>> wizden/stable
 
 - type: entity
   id: ClosetBombFilled
@@ -153,14 +290,21 @@
   suffix: Filled
   categories: [ HideSpawnMenu ] # Frontier
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingHeadHelmetBombSuit
-      - id: ClothingOuterSuitBomb
-      - id: Wirecutter
-      - id: Screwdriver
-      - id: Multitool
-        prob: 0.5
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillClosetBomb
+
+- type: entityTable
+  id: FillClosetBomb
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadHelmetBombSuit
+    - id: ClothingOuterSuitBomb
+    - id: Wirecutter
+    - id: Screwdriver
+    - id: Multitool
+      prob: 0.5
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband
@@ -168,10 +312,24 @@
   name: disabler safe
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
     - id: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
       amount: 5 # Frontier
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeDisabler
+
+- type: entityTable
+  id: FillGunSafeDisabler
+  table: !type:AllSelector
+    children:
+    - id: WeaponDisabler
+      amount: 5
+>>>>>>> wizden/stable
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
@@ -179,9 +337,22 @@
   name: mk58 safe
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
     - id: NFWeaponPistolMk58 # Frontier: WeaponPistolMk58<NFWeaponPistolMk58
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafePistolMk58
+
+- type: entityTable
+  id: FillGunSafePistolMk58
+  table: !type:AllSelector
+    children:
+    - id: WeaponPistolMk58
+>>>>>>> wizden/stable
       amount: 4
     - id: NFMagazinePistol35 # Frontier: MagazinePistol<NFMagazinePistol35
       amount: 8
@@ -192,9 +363,22 @@
   name: Lecter safe # Frontier: caps
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
     - id: NFWeaponRifleAssaultLecter # Frontier: WeaponRifleLecter<NFWeaponRifleAssaultLecter
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeRifleLecter
+
+- type: entityTable
+  id: FillGunSafeRifleLecter
+  table: !type:AllSelector
+    children:
+    - id: WeaponRifleLecter
+>>>>>>> wizden/stable
       amount: 2
     - id: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
       amount: 4
@@ -205,9 +389,22 @@
   name: Drozd safe # Frontier: caps
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
     - id: NFWeaponSubMachineGunDrozd # Frontier: WeaponSubMachineGunDrozd<NFWeaponSubMachineGunDrozd
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeSubMachineGunDrozd
+
+- type: entityTable
+  id: FillGunSafeSubMachineGunDrozd
+  table: !type:AllSelector
+    children:
+    - id: WeaponSubMachineGunDrozd
+>>>>>>> wizden/stable
       amount: 2
     - id: NFMagazineSubMachineGun35 # Frontier: MagazinePistolSubMachineGun<NFMagazineSubMachineGun35
       amount: 4
@@ -218,9 +415,22 @@
   name: Enforcer safe # Frontier: caps
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
     - id: NFWeaponShotgunEnforcer # Frontier: WeaponShotgunEnforcer<NFWeaponShotgunEnforcer
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeShotgunEnforcer
+
+- type: entityTable
+  id: FillGunSafeShotgunEnforcer
+  table: !type:AllSelector
+    children:
+    - id: WeaponShotgunEnforcer
+>>>>>>> wizden/stable
       amount: 2
     - id: NFAmmunitionBoxShellShotgunBuckshot # Frontier: BoxLethalshot<NFAmmunitionBoxShellShotgunBuckshot
       amount: 4
@@ -231,12 +441,28 @@
   name: Kammerer safe # Frontier: caps
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
     - id: NFWeaponShotgunKammerer # Frontier: WeaponShotgunKammerer<NFWeaponShotgunKammerer
       amount: 2
     - id: NFAmmunitionBoxShellShotgunBuckshot # Frontier: BoxLethalshot<NFAmmunitionBoxShellShotgunBuckshot
       amount: 2
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeShotgunKammerer
+
+- type: entityTable
+  id: FillGunSafeShotgunKammerer
+  table: !type:AllSelector
+    children:
+    - id: WeaponShotgunKammerer
+      amount: 2
+    - id: BoxLethalshot
+      amount: 4
+>>>>>>> wizden/stable
 
 - type: entity
   id: GunSafeSubMachineGunWt550
@@ -245,9 +471,22 @@
   name: WT-550 safe # Frontier: caps
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
     - id: NFWeaponSubMachineGunWt550 # Frontier: WeaponSubMachineGunWt550<NFWeaponSubMachineGunWt550
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeSubMachineGunWt550
+
+- type: entityTable
+  id: FillGunSafeSubMachineGunWt550
+  table: !type:AllSelector
+    children:
+    - id: WeaponSubMachineGunWt550
+>>>>>>> wizden/stable
       amount: 2
     - id: NFMagazineSubMachineGunTopMounted35 # Frontier: MagazinePistolSubMachineGunTopMounted<NFMagazineSubmachineGunTopMounted35
       amount: 4
@@ -258,7 +497,20 @@
   name: laser safe
   categories: [ HideSpawnMenu ] # Frontier
   components:
+<<<<<<< HEAD
   - type: StorageFill
     contents:
     - id: NFWeaponEnergyRifleCarbine # Frontier: WeaponLaserCarbine<NFWeaponEnergyRifleCarbine
+=======
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGunSafeLaserCarbine
+
+- type: entityTable
+  id: FillGunSafeLaserCarbine
+  table: !type:AllSelector
+    children:
+    - id: WeaponLaserCarbine
+>>>>>>> wizden/stable
       amount: 3

@@ -11,6 +11,7 @@
   - type: Clothing
     sprite: Clothing/Belt/utility.rsi
   - type: Storage
+<<<<<<< HEAD
     #maxItemSize: Normal# Frontier
     # TODO: Fill this out more.
     # whitelist: # Frontier: commented out whitelist
@@ -45,6 +46,45 @@
       #   - TrayScanner
       #   - GasAnalyzer
       #   - HandLabeler
+=======
+    maxItemSize: Normal
+    # Don't add more than absolutely needed to this whitelist!
+    # Utility belts shouldn't just be free extra storage.
+    # This is only intended for basic engineering equipment.
+    whitelist:
+      tags:
+        - Powerdrill
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - CigPack
+        - Radio
+        - HolofanProjector
+        - Multitool
+        - AppraisalTool
+        - JawsOfLife
+        - GPS
+        - WeldingMask
+        - RemoteSignaller
+      components:
+        - StationMap
+        - SprayPainter
+        - SprayPainterAmmo
+        - NetworkConfigurator
+        - RCD
+        - RCDAmmo
+        - Welder
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
+        - HandLabeler
+>>>>>>> wizden/stable
   - type: ItemMapper
     mapLayers:
       drill:
@@ -81,6 +121,10 @@
             - Multitool
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
+  - type: Tag
+    tags:
+    - UtilityBelt
+    - WhitelistChameleon
 
 - type: entity
   parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
@@ -96,6 +140,7 @@
     #grid: # Frontier
     #- 0,0,9,1 # Frontier
     # TODO: Fill this out more.
+<<<<<<< HEAD
     #whitelist: # Frontier: commented out whitelist
     #  tags:
     #    - Wirecutter
@@ -126,6 +171,39 @@
     #    - Geiger
     #    - TrayScanner
     #    - GasAnalyzer
+=======
+    whitelist:
+      tags:
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - Powerdrill
+        - JawsOfLife
+        - CigPack
+        - Radio
+        - HolofanProjector
+        - Multitool
+        - AppraisalTool
+      components:
+        - StationMap
+        - SprayPainter
+        - SprayPainterAmmo
+        - NetworkConfigurator
+        - RCD
+        - RCDAmmo
+        - Welder
+        - Flash
+        - Handcuff
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
+>>>>>>> wizden/stable
   - type: ItemMapper
     mapLayers:
       drill:
@@ -213,6 +291,7 @@
     sprite: Clothing/Belt/janitor.rsi
   - type: Clothing
     sprite: Clothing/Belt/janitor.rsi
+<<<<<<< HEAD
   #- type: Storage # Frontier
     # whitelist: # Frontier: commented out whitelist
       # tags:
@@ -232,6 +311,27 @@
         # - LightReplacer
         # - SmokeOnTrigger
     #maxItemSize: Large # Frontier
+=======
+  - type: Storage
+    whitelist:
+      tags:
+        - Wrench
+        - Bottle
+        - Spray
+        - Soap
+        - Flashlight
+        - CigPack
+        - TrashBag
+        - WetFloorSign
+        - HolosignProjector
+        - Plunger
+        - GoldenPlunger
+        - WireBrush
+      components:
+        - LightReplacer
+        - SmokeOnTrigger
+    maxItemSize: Large
+>>>>>>> wizden/stable
   - type: ItemMapper
     mapLayers:
       bottle:
@@ -606,6 +706,7 @@
     sprite: Clothing/Belt/syndieholster.rsi
   - type: Clothing
     sprite: Clothing/Belt/syndieholster.rsi
+<<<<<<< HEAD
   #- type: Item # Frontier
     #size: Ginormous # Frontier
   # - type: Storage # Frontier: commented out
@@ -617,6 +718,21 @@
         # - Gun
         # - BallisticAmmoProvider
         # - CartridgeAmmo
+=======
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,3,3
+    whitelist:
+      components:
+        - Gun
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+  - type: StaticPrice
+    price: 500
+>>>>>>> wizden/stable
 
 - type: entity
   parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
@@ -663,6 +779,8 @@
     sprite: Clothing/Belt/militarywebbing.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.1
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   parent: ClothingBeltMilitaryWebbing

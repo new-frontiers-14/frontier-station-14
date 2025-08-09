@@ -15,7 +15,11 @@
     doctor: LockerMedical
     electrical: LockerElectricalSupplies
     engineer: LockerEngineer
+<<<<<<< HEAD
     # evac: LockerEvacRepair # Frontier: not yet in, pending upstream merge
+=======
+    evac: LockerEvacRepair
+>>>>>>> wizden/stable
     hop: LockerHeadOfPersonnel
     hos: LockerHeadOfSecurity
     mime: LockerMime
@@ -28,6 +32,7 @@
     scientist: LockerScientist
     security: LockerSecurity
     welding: LockerWeldingSupplies
+<<<<<<< HEAD
     mail: LockerMailCarrier # Frontier
     mercenary: LockerMercenary # Frontier
     janitor: LockerJanitor # Frontier
@@ -40,6 +45,8 @@
     nfsd-sheriff: LockerNfsdSheriff # Frontier
     station-representative: LockerStationRepresentative # Frontier
     fsb: ClosetFsbEva # Frontier
+=======
+>>>>>>> wizden/stable
 
 - type: paintableGroup
   id: Closet
@@ -62,7 +69,10 @@
     oxygen: ClosetEmergency
     radiation: ClosetRadiationSuit
     tool: ClosetTool
+<<<<<<< HEAD
     internals: ClosetO2N2 # Frontier
+=======
+>>>>>>> wizden/stable
 
 - type: paintableGroup
   id: WallCloset
@@ -77,12 +87,17 @@
     green: ClosetWallGreen
     grey: ClosetWallGrey
     mixed: ClosetWallMixed
+<<<<<<< HEAD
     nitrogen: ClosetWallN2 # Frontier: EmergencyN2<N2
+=======
+    nitrogen: ClosetWallEmergencyN2
+>>>>>>> wizden/stable
     orange: ClosetWallOrange
     oxygen: ClosetWallEmergency
     pink: ClosetWallPink
     white: ClosetWallWhite
     yellow: ClosetWallYellow
+<<<<<<< HEAD
     internals: ClosetWallO2N2 # Frontier
     # TODO: add in erhard's "color" locker styles
 
@@ -95,3 +110,13 @@
 #     # evac: LockerWallEvacRepair # Frontier: not yet in, pending upstream merge
 #     medical: LockerWallMedical
 #     # TODO: add in erhard's "color" locker styles
+=======
+
+- type: paintableGroup
+  id: WallLocker
+  cost: 2
+  defaultStyle: medical
+  styles:
+    evac: LockerWallEvacRepair
+    medical: LockerWallMedical
+>>>>>>> wizden/stable
