@@ -15,6 +15,7 @@
     capacity: 7
 
 - type: entity
+<<<<<<< HEAD
   id: BaseMagazineMagnumSubMachineGun
   name: SMG magazine (.45 magnum)
   parent: [BaseItem, RecyclableItemSteelTiny] # Frontier: added RecyclableItemSteelTiny
@@ -49,6 +50,8 @@
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
+=======
+>>>>>>> wizden/stable
   id: MagazineMagnumEmpty
   name: pistol magazine (.45 magnum any)
   suffix: empty
@@ -81,7 +84,7 @@
     # proto: CartridgeMagnum # Frontier
   - type: Sprite
     layers:
-    - state: red
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -89,12 +92,8 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#9b0000"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#9b0000"
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
@@ -107,20 +106,22 @@
     # proto: CartridgeMagnumPractice # Frontier
   - type: Sprite
     layers:
-    - state: practice
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#dbdbdb"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-mag
       - state: inhand-left-stripe
-        color: "#ea5800"
+        color: "#dbdbdb"
       right:
       - state: inhand-right-mag
       - state: inhand-right-stripe
-        color: "#ea5800"
+        color: "#dbdbdb"
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
@@ -133,10 +134,12 @@
     # proto: CartridgeMagnumUranium # Frontier
   - type: Sprite
     layers:
-    - state: uranium
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#00cd42"
   - type: Item
     inhandVisuals:
       left:
@@ -159,6 +162,7 @@
     # proto: CartridgeMagnumAP # Frontier
   - type: Sprite
     layers:
+<<<<<<< HEAD
     - state: piercing
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
@@ -185,10 +189,13 @@
     proto: null
   - type: Sprite
     layers:
+=======
+>>>>>>> wizden/stable
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+<<<<<<< HEAD
   - type: Item
     inhandVisuals:
       left:
@@ -285,6 +292,10 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+=======
+    - state: stripe
+      color: "#540000"
+>>>>>>> wizden/stable
   - type: Item
     inhandVisuals:
       left:

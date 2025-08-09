@@ -15,9 +15,13 @@ namespace Content.Shared.Maps
     [Prototype("tile")]
     public sealed partial class ContentTileDefinition : IPrototype, IInheritingPrototype, ITileDefinition
     {
+<<<<<<< HEAD
         [ValidatePrototypeId<ToolQualityPrototype>]
         public const string PryingToolQuality = "Prying";
         public const string DiggingToolQuality = "Digging"; // Frontier
+=======
+        public static readonly ProtoId<ToolQualityPrototype> PryingToolQuality = "Prying";
+>>>>>>> wizden/stable
 
         public const string SpaceID = "Space";
 

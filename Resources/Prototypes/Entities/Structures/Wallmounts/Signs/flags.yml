@@ -3,10 +3,7 @@
   id: BaseFlag
   abstract: true
   components:
-  - type: WallMount
-    arc: 360
   - type: Sprite
-    drawdepth: WallMountedItems
     sprite: Structures/Wallmounts/flags.rsi
     # Begin DeltaV additions - Craftable Pride Flags
   - type: StaticPrice
@@ -70,11 +67,14 @@
   components:
   - type: Sprite
     state: syndie_flag
+<<<<<<< HEAD
     # Begin Frontier additions
   - type: Construction
     graph: NF_Flags
     node: SyndieFlag
     # End Frontier additions
+=======
+>>>>>>> wizden/stable
 
 - type: entity
   parent: BaseFlag
@@ -84,9 +84,12 @@
   components:
   - type: Sprite
     state: lgbtq_flag
+<<<<<<< HEAD
   - type: Construction # DeltaV - Craftable Pride Flags
     graph: Flags
     node: LGBTQFlag
+=======
+>>>>>>> wizden/stable
 
 - type: entity
   parent: BaseFlag
@@ -95,6 +98,7 @@
   description: Raise the jolly roger, scallywags!
   components:
   - type: Sprite
+<<<<<<< HEAD
     # Begin Frontier additions
     state: pirate_flag
   - type: Construction
@@ -102,3 +106,6 @@
     node: PirateFlag
     # End Frontier additions
 
+=======
+    state: pirate_flag
+>>>>>>> wizden/stable

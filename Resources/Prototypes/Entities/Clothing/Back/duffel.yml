@@ -115,13 +115,13 @@
   name: mime duffel bag
   description: A large duffel bag for holding... mime... stuff.
   components:
-    - type: Sprite
-      sprite: Clothing/Back/Duffels/mime.rsi
-    - type: Storage # Wizden#37444
-      storageOpenSound:
-        collection: null
-      storageInsertSound:
-        collection: null
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/mime.rsi
+  - type: Storage
+    storageOpenSound:
+      collection: null
+    storageInsertSound:
+      collection: null
 
 - type: entity
   parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
@@ -174,7 +174,11 @@
     - 0,0,8,4
 
 - type: entity
+<<<<<<< HEAD
   parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicate
+=======
+  parent: [ ClothingBackpackDuffelSyndicate, BaseSyndicateContraband ]
+>>>>>>> wizden/stable
   id: ClothingBackpackDuffelSyndicateBundle
   abstract: true
   components:
@@ -182,7 +186,19 @@
       tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
+<<<<<<< HEAD
   parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicate
+=======
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelBundle
+  abstract: true
+  components:
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+>>>>>>> wizden/stable
   id: ClothingBackpackDuffelSyndicateAmmo
   components:
     - type: Sprite

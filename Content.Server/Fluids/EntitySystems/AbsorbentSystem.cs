@@ -1,23 +1,18 @@
+<<<<<<< HEAD
 using System.Numerics;
 using Content.Server.Popups;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent; // Frontier
 using Content.Shared.FixedPoint;
+=======
+>>>>>>> wizden/stable
 using Content.Shared.Fluids;
-using Content.Shared.Fluids.Components;
-using Content.Shared.Interaction;
-using Content.Shared.Timing;
-using Content.Shared.Weapons.Melee;
-using Robust.Server.Audio;
-using Robust.Server.GameObjects;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Fluids.EntitySystems;
 
 /// <inheritdoc/>
+<<<<<<< HEAD
 public sealed class AbsorbentSystem : SharedAbsorbentSystem
 {
     private static readonly EntProtoId Sparkles = "PuddleSparkle";
@@ -362,3 +357,6 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
     }
     // End Frontier
 }
+=======
+public sealed class AbsorbentSystem : SharedAbsorbentSystem;
+>>>>>>> wizden/stable
