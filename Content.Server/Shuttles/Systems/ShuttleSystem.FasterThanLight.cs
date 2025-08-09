@@ -242,7 +242,7 @@ public sealed partial class ShuttleSystem
         {
 
             // Too large to FTL
-            if (FTLMassLimit > 0 &&  shuttlePhysics.Mass > FTLMassLimit)
+            if (FTLMassLimit > 0 && shuttlePhysics.Mass > FTLMassLimit)
             {
                 reason = Loc.GetString("shuttle-console-mass");
                 return false;
@@ -634,15 +634,8 @@ public sealed partial class ShuttleSystem
         {
             foreach (var child in toKnock)
             {
-<<<<<<< HEAD
-                if (!_statusQuery.TryGetComponent(child, out var status))
-                    continue;
-
                 if (!HasComp<FTLKnockdownImmuneComponent>(child)) // Frontier: FTL knockdown immunity
-                    _stuns.TryParalyze(child, _hyperspaceKnockdownTime, true, status);
-=======
-                _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
->>>>>>> wizden/stable
+                    _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
 
                 // If the guy we knocked down is on a spaced tile, throw them too
                 if (grid != null)

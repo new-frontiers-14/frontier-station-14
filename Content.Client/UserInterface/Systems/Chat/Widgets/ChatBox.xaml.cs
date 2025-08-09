@@ -25,12 +25,8 @@ public partial class ChatBox : UIWidget
 
     private readonly ISawmill _sawmill;
     private readonly ChatUIController _controller;
-<<<<<<< HEAD
-    private readonly IEntityManager _entManager;
     [Dependency] private readonly IConfigurationManager _cfg = default!; // EE - Chat stacking
     [Dependency] private readonly ILocalizationManager _loc = default!; // EE - Chat stacking
-=======
->>>>>>> wizden/stable
 
     public bool Main { get; set; }
 
@@ -45,12 +41,7 @@ public partial class ChatBox : UIWidget
     public ChatBox()
     {
         RobustXamlLoader.Load(this);
-<<<<<<< HEAD
-        IoCManager.InjectDependencies(this);
-        _entManager = IoCManager.Resolve<IEntityManager>();
-=======
         _sawmill = _log.GetSawmill("chat");
->>>>>>> wizden/stable
 
         ChatInput.Input.OnTextEntered += OnTextEntered;
         ChatInput.Input.OnKeyBindDown += OnInputKeyBindDown;

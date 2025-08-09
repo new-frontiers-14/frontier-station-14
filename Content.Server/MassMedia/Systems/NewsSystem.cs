@@ -179,15 +179,6 @@ public sealed class NewsSystem : SharedNewsSystem
         if (!ent.Comp.PublishEnabled)
             return;
 
-<<<<<<< HEAD
-        if (!TryGetArticles(ent, out var articles))
-        {
-            Log.Error("OnWriteUiPublishMessage: no articles!");
-            return;
-        }
-
-=======
->>>>>>> wizden/stable
         if (!CanUse(msg.Actor, ent.Owner))
             return;
 

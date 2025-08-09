@@ -12,29 +12,22 @@ namespace Content.Server.AlertLevel.Commands
     {
         [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
+        [Dependency] private readonly IEntitySystemManager _entitySystems = default!; // Frontier
 
         public override string Command => "setalertlevel";
 
         public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
         {
-            var levelNames = new string[] {};
+            var levelNames = new string[] { };
             var player = shell.Player;
             if (player?.AttachedEntity != null)
             {
-<<<<<<< HEAD
                 // Frontier: sector-wide alerts
                 levelNames = GetSectorLevelNames();
-                // var stationUid = _entitySystems.GetEntitySystem<StationSystem>().GetOwningStation(player.AttachedEntity.Value);
+                // var stationUid = _stationSystem.GetOwningStation(player.AttachedEntity.Value);
                 // if (stationUid != null)
-                // {
                 //     levelNames = GetStationLevelNames(stationUid.Value);
-                // }
                 // End Frontier
-=======
-                var stationUid = _stationSystem.GetOwningStation(player.AttachedEntity.Value);
-                if (stationUid != null)
-                    levelNames = GetStationLevelNames(stationUid.Value);
->>>>>>> wizden/stable
             }
 
             return args.Length switch
@@ -90,17 +83,13 @@ namespace Content.Server.AlertLevel.Commands
         // Frontier: sector-wide alert level names
         private string[] GetSectorLevelNames()
         {
-<<<<<<< HEAD
             var sectorServiceUid = _entitySystems.GetEntitySystem<SectorServiceSystem>().GetServiceEntity();
             var entityManager = IoCManager.Resolve<IEntityManager>();
             if (!entityManager.TryGetComponent<AlertLevelComponent>(sectorServiceUid, out var alertLevelComp))
-=======
-            if (!EntityManager.TryGetComponent<AlertLevelComponent>(station, out var alertLevelComp))
->>>>>>> wizden/stable
-                return new string[]{};
+                return new string[] { };
 
             if (alertLevelComp.AlertLevels == null)
-                return new string[]{};
+                return new string[] { };
 
             return alertLevelComp.AlertLevels.Levels.Keys.ToArray();
         }

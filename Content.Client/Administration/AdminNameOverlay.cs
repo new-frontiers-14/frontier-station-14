@@ -41,14 +41,9 @@ internal sealed class AdminNameOverlay : Overlay
     private float _overlayMergeDistance;
 
     //TODO make this adjustable via GUI?
-<<<<<<< HEAD
-    private readonly ProtoId<RoleTypePrototype>[] _filter =
-        ["SoloAntagonist", "TeamAntagonist", "SiliconAntagonist", "FreeAgent", "NFPirate"]; // Frontier: add NFPirate
-=======
     private static readonly FrozenSet<ProtoId<RoleTypePrototype>> Filter =
-        new ProtoId<RoleTypePrototype>[] {"SoloAntagonist", "TeamAntagonist", "SiliconAntagonist", "FreeAgent"}
+        new ProtoId<RoleTypePrototype>[] {"SoloAntagonist", "TeamAntagonist", "SiliconAntagonist", "FreeAgent", "NFPirate"} // Frontier: add NFPirate
         .ToFrozenSet();
->>>>>>> wizden/stable
 
     private readonly string _antagLabelClassic = Loc.GetString("admin-overlay-antag-classic");
 

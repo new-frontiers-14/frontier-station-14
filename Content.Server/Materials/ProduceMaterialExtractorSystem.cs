@@ -4,12 +4,9 @@ using Content.Server.Materials.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Interaction;
-<<<<<<< HEAD
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
-=======
 using Content.Shared.Popups;
->>>>>>> wizden/stable
 using Robust.Server.Audio;
 
 namespace Content.Server.Materials;
@@ -39,11 +36,11 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         bool success = false;
 
         // Handle using bags (mainly plant bags)
-        if (ExtractFromStorage(ent, args.Used))
+        if (ExtractFromStorage(ent, args.Used, ref args))
             success = true;
 
         // Handle using produce directly
-        if (ExtractFromProduce(ent, args.Used))
+        if (ExtractFromProduce(ent, args.Used, ref args))
             success = true;
 
         // TODO: What if a bag is also a plant?
@@ -55,7 +52,7 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         }
     }
 
-    private bool ExtractFromProduce(Entity<ProduceMaterialExtractorComponent> ent, EntityUid used)
+    private bool ExtractFromProduce(Entity<ProduceMaterialExtractorComponent> ent, EntityUid used, ref AfterInteractUsingEvent args)
     {
         if (!TryComp<ProduceComponent>(used, out var produce))
             return false;
@@ -74,7 +71,7 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         if (changed == 0)
         {
             _popup.PopupEntity(Loc.GetString("material-extractor-comp-wrongreagent", ("used", args.Used)), args.User, args.User);
-            return;
+            return false; // Frontier TODO: Nuke this file and replace with upstream one once Wizden#32633 gets merged
         }
 
         _materialStorage.TryChangeMaterialAmount(ent, ent.Comp.ExtractedMaterial, changed);
@@ -84,7 +81,7 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         return true;
     }
 
-    private bool ExtractFromStorage(Entity<ProduceMaterialExtractorComponent> ent, EntityUid used)
+    private bool ExtractFromStorage(Entity<ProduceMaterialExtractorComponent> ent, EntityUid used, ref AfterInteractUsingEvent args)
     {
         if (!TryComp<StorageComponent>(used, out var storage))
             return false;
@@ -92,7 +89,7 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         bool success = false;
 
         foreach (var (item, _location) in storage.StoredItems)
-            if (ExtractFromProduce(ent, item))
+            if (ExtractFromProduce(ent, item, ref args))
                 success = true;
 
         return success;

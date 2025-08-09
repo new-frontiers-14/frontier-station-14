@@ -16,15 +16,11 @@ namespace Content.Server.Mapping
     [AdminCommand(AdminFlags.Server | AdminFlags.Mapping)]
     public sealed class MappingCommand : LocalizedEntityCommands
     {
-<<<<<<< HEAD
-        [Dependency] private readonly IEntityManager _entities = default!;
-        [Dependency] private readonly ISharedAdminManager _admin = default!; // Frontier
-=======
         [Dependency] private readonly IResourceManager _resourceMgr = default!;
         [Dependency] private readonly SharedMapSystem _mapSystem = default!;
         [Dependency] private readonly MappingSystem _mappingSystem = default!;
         [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
->>>>>>> wizden/stable
+        [Dependency] private readonly ISharedAdminManager _admin = default!; // Frontier
 
         public override string Command => "mapping";
 
