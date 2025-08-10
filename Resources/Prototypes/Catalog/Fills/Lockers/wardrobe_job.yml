@@ -1,26 +1,9 @@
-<<<<<<< HEAD
- - type: entity
-   id: WardrobePrisonFilled
-   suffix: Filled
-   parent: WardrobePrison
-   description: "Contains a selection of nice orange clothes for people enjoying their stay in the brig."
-   categories: [ HideSpawnMenu ] # Frontier
-   components:
-   - type: StorageFill
-     contents:
-       - id: ClothingUniformJumpsuitPrisoner
-         amount: 2
-       - id: ClothingUniformJumpskirtPrisoner
-         amount: 2
-       - id: ClothingShoesColorBlack
-         amount: 2
-       - id: ClothingMaskMuzzle
-=======
 - type: entity
   id: WardrobePrisonFilled
   suffix: Filled
   parent: WardrobePrison
   description: "Contains a selection of nice orange clothes for people enjoying their stay in the brig."
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: EntityTableContainerFill
     containers:
@@ -96,7 +79,6 @@
       - id: GroundCannabis
         amount: !type:RangeNumberSelector
           range: 1, 6
->>>>>>> wizden/stable
 
 #- type: entity
 #  id: WardrobePajamaFilled

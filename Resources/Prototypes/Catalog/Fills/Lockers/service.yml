@@ -3,24 +3,6 @@
   suffix: Filled
   parent: LockerBooze
   components:
-<<<<<<< HEAD
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterArmorBasicSlim
-#      - id: WeaponShotgunDoubleBarreledRubber # Frontier
-      - id: DrinkShaker
-      - id: ClothingEyesHudBeer
-      - id: HandLabeler
-        amount: 1
-      - id: DrinkBottleBeer
-        prob: 0.5
-      - id: DrinkBottleBeer
-        prob: 0.5
-      - id: DrinkBottleBeer
-        prob: 0.5
-#      - id: BoxBeanbag # Frontier
-#        amount: 2  # Frontier
-=======
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -31,7 +13,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingOuterArmorBasicSlim
-    - id: WeaponShotgunDoubleBarreledRubber
+#    - id: WeaponShotgunDoubleBarreledRubber # Frontier
     - id: DrinkShaker
     - id: ClothingEyesHudBeer
     - id: HandLabeler
@@ -41,8 +23,7 @@
     - !type:AllSelector
       rolls: 2
       children:
-      - id: BoxBeanbag
->>>>>>> wizden/stable
+#      - id: BoxBeanbag # Frontier
       - id: RagItem
 
 #- type: entity
@@ -55,24 +36,6 @@
   suffix: Filled
   parent: ClosetChef
   components:
-<<<<<<< HEAD
-  - type: StorageFill
-    contents:
-      - id: VariantCubeBox
-      - id: BoxMousetrap
-        amount: 2
-      - id: SprayBottleWater
-      - id: ReagentContainerFlour
-        amount: 2
-      # - id: FoodBoxCloth # Frontier
-      #   amount: 1 # Frontier
-      - id: ReagentContainerSugar
-      - id: FoodCondimentPacketSalt
-        amount: 3
-      - id: FoodCondimentPacketPepper
-        amount: 3
-      - id: FoodCondimentBottleEnzyme
-=======
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -84,7 +47,7 @@
     children:
     - id: VariantCubeBox
     - id: SprayBottleWater
-    - id: FoodBoxCloth
+#    - id: FoodBoxCloth # Frontier
     - id: ReagentContainerSugar
     - id: FoodCondimentBottleEnzyme
     - id: DrinkSoyMilkCarton
@@ -92,7 +55,6 @@
       rolls: 2
       children:
       - id: DrinkMilkCarton
->>>>>>> wizden/stable
       # really, milk should go in the fridge. Unfortunately saltern only has freezers.
       # yes, I'm using this as an excuse to not have to do extra work.
       - id: ReagentContainerFlour
@@ -138,12 +100,6 @@
   suffix: Filled
   parent: ClosetLegal
   components:
-<<<<<<< HEAD
-  - type: StorageFill
-    contents:
-      - id: BriefcaseBrownFilled
-      - id: ClothingOuterRobesJudge
-=======
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -156,31 +112,12 @@
     - id: BriefcaseBrownFilled
       prob: 0.80
     - id: ClothingOuterRobesJudge
->>>>>>> wizden/stable
 
 - type: entity
   id: LockerBotanistFilled
   suffix: Filled
   parent: LockerBotanist
   components:
-<<<<<<< HEAD
-  - type: StorageFill
-    contents:
-      # - id: ClothingHandsGlovesLeather
-      # - id: ClothingOuterApronBotanist
-      # - id: ClothingHeadBandBotany
-      # - id: ChemistryBottleRobustHarvest
-      #   prob: 0.3
-      # - id: ClothingBeltPlant
-      - id: ClothingBeltPlantFilled # Frontier
-      - id: PlantBag ##Some maps don't have nutrivend
-      - id: BoxMouthSwab
-      - id: Dropper
-#      - id: HandLabeler
-#      - id: ClothingUniformOveralls # Frontier
-#      - id: ClothingHeadHatTrucker # Frontier
-#        prob: 0.1
-=======
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -190,20 +127,19 @@
   id: FillLockerBotanist
   table: !type:AllSelector
     children:
-    - id: ClothingHandsGlovesLeather
-    - id: ClothingOuterApronBotanist
-    - id: ClothingHeadBandBotany
-    - id: ChemistryBottleRobustHarvest
-      prob: 0.3
-    - id: ClothingBeltPlant
+#    - id: ClothingHandsGlovesLeather # Frontier
+#    - id: ClothingOuterApronBotanist # Frontier
+#    - id: ClothingHeadBandBotany # Frontier
+#    - id: ChemistryBottleRobustHarvest # Frontier
+#      prob: 0.3 # Frontier
+    - id: ClothingBeltPlantFilled # Frontier: ClothingBeltPlant>ClothingBeltPlantFilled
     - id: PlantBag ##Some maps don't have nutrivend
     - id: BoxMouthSwab
     - id: Dropper
-    - id: HandLabeler
-    - id: ClothingUniformOveralls
-    - id: ClothingHeadHatTrucker
-      prob: 0.1
->>>>>>> wizden/stable
+#    - id: HandLabeler
+#    - id: ClothingUniformOveralls
+#    - id: ClothingHeadHatTrucker
+#      prob: 0.1
 
 - type: entity
   id: LockerBotanistLoot

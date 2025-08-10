@@ -2222,14 +2222,9 @@
 # Would be cool to have some functionality for the parrot to be able to sit on stuff
 - type: entity
   parent: [ SimpleMobBase, FlyingMobBase ]
-<<<<<<< HEAD
-  id: MobParrot
-  categories: [ HideSpawnMenu ] # Frontier
-=======
   id: MobParrotBase
   name: parrot
   abstract: true
->>>>>>> wizden/stable
   description: Infiltrates your domain, spies on you, and somehow still a cool pet.
   components:
   - type: MovementSpeedModifier
@@ -2240,13 +2235,9 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: parrot
-<<<<<<< HEAD
-      sprite: Mobs/Animals/parrot.rsi
+      sprite: Mobs/Animals/parrot/parrot.rsi
   - type: Carriable #DeltaV
     freeHandsRequired: 1
-=======
-      sprite: Mobs/Animals/parrot/parrot.rsi
->>>>>>> wizden/stable
   - type: Fixtures
     fixtures:
       fix1:

@@ -40,14 +40,15 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 5 # Frontier: 10<5
         reagents:
         - ReagentId: Fiber
-          Quantity: 10
+          Quantity: 5 # Frontier: 10<5
   - type: Tag
     tags:
     - Payload
     - ClothMade
+  - type: MothFood # Frontier
 
 - type: entity
   parent: BasePlushie
