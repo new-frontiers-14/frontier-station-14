@@ -37,6 +37,7 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly ConstructionSystem _construction = default!; // Frontier
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier
 
     // Essentially whenever thruster enables we update the shuttle's available impulses which are used for movement.
     // This is done for each direction available.
@@ -129,41 +130,45 @@ public sealed class ThrusterSystem : EntitySystem
 
     private void OnShuttleTileChange(EntityUid uid, ShuttleComponent component, ref TileChangedEvent args)
     {
-        // If the old tile was space but the new one isn't then disable all adjacent thrusters
-        if (args.NewTile.IsSpace(_tileDefManager) || !args.OldTile.IsSpace(_tileDefManager))
-            return;
-
-        var tilePos = args.NewTile.GridIndices;
-        var grid = Comp<MapGridComponent>(uid);
-        var xformQuery = GetEntityQuery<TransformComponent>();
-        var thrusterQuery = GetEntityQuery<ThrusterComponent>();
-
-        for (var x = -1; x <= 1; x++)
+        foreach (var change in args.Changes)
         {
-            for (var y = -1; y <= 1; y++)
+            // If the old tile was space but the new one isn't then disable all adjacent thrusters
+            if (change.NewTile.IsSpace(_tileDefManager) || !change.OldTile.IsSpace(_tileDefManager))
+                continue;
+
+            var tilePos = change.GridIndices;
+            var grid = Comp<MapGridComponent>(uid);
+            var xformQuery = GetEntityQuery<TransformComponent>();
+            var thrusterQuery = GetEntityQuery<ThrusterComponent>();
+
+            for (var x = -1; x <= 1; x++)
             {
-                if (x != 0 && y != 0)
-                    continue;
-
-                var checkPos = tilePos + new Vector2i(x, y);
-                var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, grid, checkPos);
-
-                while (enumerator.MoveNext(out var ent))
+                for (var y = -1; y <= 1; y++)
                 {
-                    if (!thrusterQuery.TryGetComponent(ent.Value, out var thruster) || !thruster.RequireSpace)
+                    if (x != 0 && y != 0)
                         continue;
 
-                    // Work out if the thruster is facing this direction
-                    var xform = xformQuery.GetComponent(ent.Value);
-                    var direction = xform.LocalRotation.ToWorldVec();
+                    var checkPos = tilePos + new Vector2i(x, y);
+                    var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, grid, checkPos);
 
-                    if (new Vector2i((int)direction.X, (int)direction.Y) != new Vector2i(x, y))
-                        continue;
+                    while (enumerator.MoveNext(out var ent))
+                    {
+                        if (!thrusterQuery.TryGetComponent(ent.Value, out var thruster) || !thruster.RequireSpace)
+                            continue;
 
-                    DisableThruster(ent.Value, thruster, xform.GridUid);
+                        // Work out if the thruster is facing this direction
+                        var xform = xformQuery.GetComponent(ent.Value);
+                        var direction = xform.LocalRotation.ToWorldVec();
+
+                        if (new Vector2i((int)direction.X, (int)direction.Y) != new Vector2i(x, y))
+                            continue;
+
+                        DisableThruster(ent.Value, thruster, xform.GridUid);
+                    }
                 }
             }
         }
+
     }
 
     private void OnActivateThruster(EntityUid uid, ThrusterComponent component, ActivateInWorldEvent args)
@@ -519,7 +524,7 @@ public sealed class ThrusterSystem : EntitySystem
         var query = EntityQueryEnumerator<ThrusterComponent>();
         var curTime = _timing.CurTime;
 
-        while (query.MoveNext(out var comp))
+        while (query.MoveNext(out var ent, out var comp)) // Frontier: add out var ent
         {
             if (comp.NextFire > curTime)
                 continue;
@@ -531,6 +536,15 @@ public sealed class ThrusterSystem : EntitySystem
 
             foreach (var uid in comp.Colliding.ToArray())
             {
+                // Frontier: make sure they're still in danger
+                // Frontier TODO: Actually fix the cause of this bug (EndCollideEvent not firing on buckled entities)
+                if (!_transform.InRange(ent, uid, 2f))
+                {
+                    comp.Colliding.Remove(uid);
+                    continue;
+                }
+                // End Frontier
+
                 _damageable.TryChangeDamage(uid, comp.Damage);
             }
         }

@@ -216,6 +216,42 @@
   recipeType:
   - Assembler
 
+# Birb
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedWholeChicken
+  name: whole baked chicken
+  result: FoodMeatWholeChickenCooked
+  time: 20
+  group: Meats
+  solids:
+    FoodMeatWholeChicken: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedWholeDuck
+  name: whole baked duck
+  result: FoodMeatWholeDuckCooked
+  time: 20
+  group: Meats
+  solids:
+    FoodMeatWholeDuck: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedWholePenguin
+  name: whole baked penguin
+  result: FoodMeatWholePenguinCooked
+  time: 20
+  group: Meats
+  solids:
+    FoodMeatWholePenguin: 1
+  recipeType:
+  - Oven
+
+
 # Sushi
 
 - type: microwaveMealRecipe
@@ -371,6 +407,19 @@
     Egg: 2 # 1/3 of an egg
   solids:
     FoodOnionSlice: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeFoodTofuSliceBattered
+  name: battered tofu slice recipe
+  result: FoodTofuSliceBattered
+  time: 2
+  reagents:
+    Flour: 1.5
+    Egg: 2
+  solids:
+    FoodTofuSlice: 1
   recipeType:
   - Assembler
 
@@ -908,6 +957,18 @@
 # Pasta and Noodles
 
 - type: microwaveMealRecipe
+  id: RecipeRiceNoodleSheet
+  name: raw rice noodle sheet
+  result: FoodRiceNoodlesSheet
+  time: 15
+  group: Pasta
+  reagents:
+    Rice: 45
+    TableSalt: 10
+    Cornoil: 10
+  recipeType: Assembler
+
+- type: microwaveMealRecipe
   id: RecipeBasicNoodles
   name: basic noodles
   result: FoodMealBasicNoodles
@@ -915,7 +976,7 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
   reagents:
     Soysauce: 5
     Water: 15
@@ -930,11 +991,11 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodSoybeans: 1
-    FoodButterSlice: 1
   reagents:
-    Water: 20
+    Soysauce: 5
+    Water: 15
     Egg: 6
   recipeType:
   - Oven
@@ -947,10 +1008,11 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodCorn: 1
   reagents:
-    Water: 20
+    Soysauce: 5
+    Water: 15
   recipeType:
   - Oven
 
@@ -962,12 +1024,12 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodCorn: 1
     FoodMeatBacon: 1
   reagents:
-    Soysauce: 10
-    Water: 10
+    Soysauce: 5
+    Water: 15
     Egg: 6
   recipeType:
   - Oven
@@ -980,7 +1042,7 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodTofuSlice: 1
     FoodChiliPepper: 1
   reagents:
@@ -990,20 +1052,55 @@
   - Oven
 
 - type: microwaveMealRecipe
-  id: RecipeTonkatsuNoodles
-  name: tonkatsu noodles
-  result: FoodMealTonkatsuNoodles
+  id: RecipeTonkotsuNoodles
+  name: tonkotsu noodles
+  result: FoodMealTonkotsuNoodles
   time: 20
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodSoybeans: 1
-    FoodGarlic: 1
     FoodMeatBacon: 1
   reagents:
     Soysauce: 5
     Water: 15
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBunCotton
+  name: cotton bun recipe
+  result: FoodBunCotton
+  time: 5
+  group: Moth
+  solids:
+    FoodDoughCottonSlice: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerPlainCotton
+  name: plain cotton burger recipe
+  result: FoodBurgerCotton
+  time: 10
+  group: Moth
+  solids:
+    FoodBunCotton: 1
+    CottonBol: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBurgerCottonCheese
+  name: cotton cheeseburger recipe
+  result: FoodBurgerCottonCheese
+  time: 10
+  group: Moth
+  solids:
+    FoodBunCotton: 1
+    CottonBol: 1
+    FoodCheeseSlice: 1
   recipeType:
   - Oven
 
@@ -1231,6 +1328,20 @@
     FoodSnackChocolateBar: 1
   reagents:
     IceCream: 8
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeChickenParmesan
+  name: Chicken Parmesan
+  result: FoodMealChickenParmesan
+  time: 5
+  group: Savory
+  solids:
+    FoodMeatChickenFried: 1
+    FoodNoodlesBoiled: 1
+    FoodTomato: 1
+    FoodCheeseSlice: 1
   recipeType:
   - Assembler
 

@@ -9,6 +9,7 @@ using Robust.Shared.Collections;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Tiles; // Frontier
 
 namespace Content.Server.Xenoarchaeology.Artifact.XAE;
 
@@ -39,10 +40,13 @@ public sealed class XAEPortalSystem : BaseXAESystem<XAEPortalComponent>
             // check if the MindContainer has a Mind and if the entity is not in a container (this also auto excludes AI) and if they are on the same map
             if (mc.HasMind && !_container.IsEntityOrParentInContainer(uid, meta: meta, xform: xform) && xform.MapID == map)
             {
-                // Frontier: ensure range check (don't teleport people from across the map)
+                // Frontier: ensure range check (don't teleport people from across the map or off of protected grids)
+                if (TryComp(xform.GridUid, out ProtectedGridComponent? grid) && grid.PreventArtifactTriggers)
+                    continue;
+
                 if (Vector2.Distance(_transform.GetMapCoordinates(uid, xform).Position, entPosition) > ent.Comp.MaxRange)
                     continue;
-                // End Frontier: ensure range check (don't teleport people from across the map)
+                // End Frontier: ensure range check (don't teleport people from across the map or off of protected grids)
 
                 validMinds.Add(uid);
             }

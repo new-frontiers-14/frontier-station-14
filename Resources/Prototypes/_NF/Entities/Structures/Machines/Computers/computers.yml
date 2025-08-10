@@ -20,6 +20,8 @@
       state: eris_control
     - map: ["computerLayerKeys"]
       state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
 
 #region Cargo Sale
 - type: entity
@@ -40,6 +42,8 @@
       state: transfer
     - map: ["computerLayerKeys"]
       state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -115,6 +119,8 @@
       state: contraband
     - map: ["computerLayerKeys"]
       state: telesci_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
   - type: ContrabandPalletConsole
   - type: ActivatableUI
     key: enum.ContrabandPalletConsoleUiKey.Contraband
@@ -142,6 +148,8 @@
       state: syndishuttle
     - map: ["computerLayerKeys"]
       state: syndie_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -190,6 +198,8 @@
       state: cargo_market
     - map: ["computerLayerKeys"]
       state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
   - type: MarketConsole
   - type: ActivatableUI
     key: enum.MarketConsoleUiKey.Default
@@ -249,6 +259,8 @@
       state: piratebounty
     - map: ["computerLayerKeys"]
       state: blackmarket_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
   - type: PirateBountyConsole
     spawnChestSound:
       path: /Audio/Effects/Lightning/lightningbolt.ogg
@@ -316,6 +328,8 @@
       state: contraband # TODO: replace this
     - map: ["computerLayerKeys"]
       state: blackmarket_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
   - type: Computer
     board: Null # Really shouldn't spawn anything on destruction
   - type: ContrabandPalletConsole
@@ -366,6 +380,8 @@
       state: piratebounty_pad
     - map: ["computerLayerKeys"]
       state: blackmarket_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
   - type: PirateBountyRedemptionConsole
   - type: ActivatableUI
     key: enum.PirateConsoleUiKey.BountyRedemption
@@ -435,6 +451,8 @@
       state: gas_sale_point
     - map: ["computerLayerKeys"]
       state: atmos_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
   - type: GasSaleConsole
   - type: ActivatableUI
     key: enum.GasSaleConsoleUiKey.Key
@@ -504,6 +522,8 @@
     - map: ["computerLayerKeys"]
       sprite: Structures/Machines/computers.rsi
       state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
   - type: AccessReader
     access: [["StationTrafficController"]]
   - type: ActivatableUIRequiresAccess

@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: dustylens
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens
+# Discord: dustylens
+
+# Notes:
+# Deep player interest point POI.
+- type: pointOfInterest
+  id: BarrierGate
+  parent: BasePOI
+  name: 'Barrier Gate'
+  minimumDistance: 11000
+  maximumDistance: 12000
+  # minimumClearance: 8000 # To make sure it doesn't pop in next to the Cove. Offline for now.
+  spawnGroup: Required
+  gridPath: /Maps/_NF/POI/barriergate.yml
+  addComponents:
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
+
+- type: gameMap
+  id: BarrierGate
+  mapName: 'Barrier Gate'
+  mapPath: /Maps/_NF/POI/barriergate.yml
+  minPlayers: 0
+  stations:
+    BarrierGate:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Barrier Gate'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt

@@ -9,6 +9,7 @@ using Content.Shared.Mobs;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using System.Numerics;
+using Content.Shared.Coordinates;
 
 namespace Content.Server._NF.Cargo.Systems;
 
@@ -249,8 +250,9 @@ public sealed partial class NFCargoSystem
         price += noMultiplierPrice;
 
         var stackPrototype = _proto.Index(ent.Comp.CashType);
-        var stackUid = _stack.Spawn((int)price, stackPrototype, xform.Coordinates);
-        _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
+        var stackUid = _stack.Spawn((int)price, stackPrototype, args.Actor.ToCoordinates());
+        if (!_hands.TryPickupAnyHand(args.Actor, stackUid))
+            _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
         _audio.PlayPvs(ApproveSound, ent);
         UpdatePalletConsoleInterface(ent);
     }

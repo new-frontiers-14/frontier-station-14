@@ -48,8 +48,8 @@
       weight: 2
     - id: ScrapGlass
       weight: 2
-    # - id: ScrapPlastic TODO: high-value plastic scrap.
-    #  weight: 2
+    - id: ScrapPlastic #Frontier
+      weight: 2 #Frontier
     - id: SheetSteel10
     - id: SheetGlass10
     - id: SheetPlastic10
@@ -65,6 +65,8 @@
       weight: 0.05
     - id: SheetPlasteel10
       weight: 0.05
+    - id: NFScrapSilver # Frontier
+      weight: 2 # Frontier
 
 - type: entityTable
   id: SalvageScrapLarge
@@ -81,6 +83,22 @@
       weight: 0.5
     - id: ScrapMopBucket
       weight: 0.5
+    - id: NFScrapSolarGlass # Frontier
+    - id: ScrapGenericBrokenMachine # Frontier
+      weight: 0.5 # Frontier
+    - id: ScrapGenericBrokenMachineAncient # Frontier
+      weight: 0.25 # Frontier
+    - id: ScrapGenericMachineAncient # Frontier
+      weight: 0.1 # Frontier
+    - !type:GroupSelector
+      weight: 2
+      children:
+      - !type:NestedSelector
+        weight: 3
+        tableId: RandomChemicalBarrel
+      - !type:NestedSelector
+        weight: 1
+        tableId: RandomChemicalBarrelRadioactive
 
 # Treasure: High-value scatterables that don't do a ton.
 
@@ -164,6 +182,12 @@
       weight: 0.005 # Frontier
     - !type:NestedSelector # Frontier
       tableId: TableStashVariety # Frontier
+    - id: ScrapGenericBrokenMachine # Frontier
+      weight: 0.5 # Frontier
+    - id: ScrapGenericBrokenMachineAncient # Frontier
+      weight: 0.25 # Frontier
+    - id: ScrapGenericMachineAncient # Frontier
+      weight: 0.1 # Frontier
 
 - type: entityTable
   id: SalvageTreasureLegendary
@@ -174,6 +198,7 @@
     - id: GoldenBikeHorn
     - id: ClothingHeadHatCatEars
       weight: 0.001 # Frontier - 1 in 1000
+    - id: GoldenPersonalAI
     - id: TreasureCoinDiamond
       amount: !type:RangeNumberSelector
         range: 2, 5

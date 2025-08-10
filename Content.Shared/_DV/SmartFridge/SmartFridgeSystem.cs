@@ -44,7 +44,7 @@ public sealed class SmartFridgeSystem : EntitySystem
         if (_whitelist.IsWhitelistFail(ent.Comp.Whitelist, args.Used) || _whitelist.IsBlacklistPass(ent.Comp.Blacklist, args.Used))
             return;
 
-        if (!Allowed(ent, args.User))
+        if (ent.Comp.CheckAccessOnInsert && !Allowed(ent, args.User)) // Frontier: add CheckAccessOnInsert
             return;
 
         if (container.Count >= ent.Comp.MaxContainedCount) // Frontier
@@ -140,7 +140,7 @@ public sealed class SmartFridgeSystem : EntitySystem
         if (_whitelist.IsWhitelistFail(ent.Comp.Whitelist, item) || _whitelist.IsBlacklistPass(ent.Comp.Blacklist, item))
             return false;
 
-        if (user is { Valid: true } userUid && !Allowed(ent, userUid))
+        if (user is { Valid: true } userUid && ent.Comp.CheckAccessOnInsert && !Allowed(ent, userUid)) // Frontier: add CheckAccessOnInsert
             return false;
 
         if (container.Count >= ent.Comp.MaxContainedCount)

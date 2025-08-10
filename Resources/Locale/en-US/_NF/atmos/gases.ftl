@@ -1,0 +1,1 @@
+gas-respiron-abbreviation = R

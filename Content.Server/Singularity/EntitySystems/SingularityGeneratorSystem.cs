@@ -7,6 +7,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
+using Content.Server._NF.DangerTether; // Frontier
 
 namespace Content.Server.Singularity.EntitySystems;
 
@@ -18,6 +19,7 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
     [Dependency] private readonly PhysicsSystem _physics = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
+    [Dependency] private readonly DangerTetherSystem _dangerTether = default!; // Frontier
     #endregion Dependencies
 
     public override void Initialize()
@@ -117,6 +119,15 @@ public sealed class SingularityGeneratorSystem : SharedSingularityGeneratorSyste
             EntityManager.QueueDeleteEntity(uid);
             return;
         }
+
+        // Frontier: check tether
+        if (generatorComp.RequiresTether && !_dangerTether.AnyTetherInRange(args.OtherEntity))
+        {
+            EntityManager.QueueDeleteEntity(uid);
+            PopupSystem.PopupEntity(Loc.GetString("comp-generator-tether", ("target", args.OtherEntity)), args.OtherEntity, PopupType.LargeCaution);
+            return;
+        }
+        // End Frontier
 
         var contained = true;
         if (!generatorComp.FailsafeDisabled)

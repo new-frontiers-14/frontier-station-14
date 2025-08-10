@@ -19,6 +19,7 @@
   weight: 30
   displayWeight: 30
   setPreference: true
+  newPlayerMessage: false
   access:
   - Pirate
   accessGroups:
@@ -39,9 +40,12 @@
 - type: startingGear
   id: NFPirateFirstMateGear
   equipment:
-    ears: ClothingHeadsetAltFreelancer
     belt: ClothingBeltUtility
     pocket1: BasePirateUplinkPirateCrew
   storage:
     back:
     - AppraisalTool
+
+- type: chameleonOutfit
+  id: NFPirateFirstMateChameleonOutfit
+  job: NFPirateFirstMate

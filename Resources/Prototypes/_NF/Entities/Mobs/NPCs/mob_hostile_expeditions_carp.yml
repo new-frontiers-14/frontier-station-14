@@ -1,6 +1,19 @@
+#region base
+- type: entity
+  id: NFMobCarpBase
+  abstract: true
+  parent:
+  - MobStaminaFodder
+  - MobMovementSpeedModifierMelee
+  - NFMobSimpleHostileBase
+  - NFMobRoadkillable
+
+#region Carps
 - type: entity
   id: NFMobCarp
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarp, NFMobRoadkillable]
+  parent:
+  - NFMobCarpBase
+  - MobCarp
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
@@ -12,15 +25,12 @@
     speedModifierThresholds:
       19: 0.7
       26: 0.5
-  - type: Stamina
-    critThreshold: 50
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 - type: entity
   id: NFMobCarpMagic
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobCarp, MobCarpMagic]
+  parent:
+  - NFMobCarpBase
+  - MobCarpMagic
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
@@ -43,7 +53,9 @@
 
 - type: entity
   id: NFMobCarpHolo
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarpHolo, NFMobRoadkillable]
+  parent:
+  - NFMobCarpBase
+  - MobCarpHolo
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
@@ -63,13 +75,12 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: mouth
       shader: unshaded
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
 - type: entity
   id: NFMobCarpRainbow
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, NFMobCarp, MobCarpRainbow]
+  parent:
+  - NFMobCarpBase
+  - MobCarpRainbow
   suffix: "Frontier"
   categories: [ HideSpawnMenu ]
   components:
@@ -84,7 +95,9 @@
 
 - type: entity
   id: NFMobShark
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobShark, NFMobRoadkillable]
+  parent:
+  - NFMobCarpBase
+  - MobShark
   suffix: "Frontier"
 #  categories: [ HideSpawnMenu ] # No spawner
   components:
@@ -96,19 +109,18 @@
     speedModifierThresholds:
       38: 0.7
       52: 0.5
-  - type: Stamina
-    critThreshold: 80
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
   - type: MeleeWeapon
     damage:
       types:
         Slash: 7
         Bloodloss: 7
 
+#region Snakes
 - type: entity
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobSmallPurpleSnake, NFMobRoadkillable]
+  parent:
+  - NFMobCarpBase
+  - NFMobRoadkillable
+  - MobPurpleSnake
   id: NFMobSmallRainbowSnake
   suffix: Frontier, Rainbow
   #categories: [ HideSpawnMenu ] # No spawner
@@ -167,8 +179,12 @@
         Slash: 3
         Structural: 20
 
+#region Wyverns
 - type: entity
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobCarp, NFMobRoadkillable]
+  parent:
+  - MobMovementSpeedModifierRanged
+  - NFMobCarpBase
+  - MobCarp
   id: NFMobRainbowWyvernIce
   name: wyvern
   description: A smaller relative of a space dragon known for its hunting provess and ability to conjure magical progectiles.
@@ -314,8 +330,12 @@
     capacity: 1
     count: 1
 
+#region boss
 - type: entity
-  parent: [NFMobRestrictions, NFMobSimpleHostileBase, MobDragonDungeon, NFMobBossRestrictions ]
+  parent:
+  - MobHostileBossBase
+  - NFMobSimpleHostileBase
+  - MobDragonDungeon
   id: NFMobDragonDungeon
   suffix: Dungeon, Frontier
   components:

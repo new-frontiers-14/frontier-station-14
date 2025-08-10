@@ -3,7 +3,7 @@
   <Box>
   <GuideEntityEmbed Entity="ChemMaster"/>
   <GuideEntityEmbed Entity="SeedExtractor"/>
-  <GuideEntityEmbed Entity="hydroponicsTray"/>
+  <GuideEntityEmbed Entity="hydroponicsSoil"/>
   </Box>
   <Box>
   <GuideEntityEmbed Entity="ChemistryBottleUnstableMutagen"/>
@@ -51,7 +51,7 @@
   - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit is anchored to the floor.
   - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
   - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit is set to HV output.
-  - Set Target Power for 29 [bold]k[/bold]W.
+  - Set Target Power for 30 [bold]k[/bold]W.
   - Start the S.U.P.E.R.P.A.C.M.A.N. generator unit.
 
   ## 2. Atmospherics
@@ -66,7 +66,6 @@
   </Box>
 
   - Check if the O2 canister and N2 canister are anchored to their connector ports.
-  - Check the air canister connection port, if required.**
   - Check if the gas mixer has its mixing ratio and output pressure set correctly.
   - Find the filter leading into the nitrogen canister and set it to filter nitrogen.
   - Find the filter leading into the oxygen canister and set it to filter oxygen.
@@ -81,7 +80,7 @@
   <GuideEntityEmbed Entity="StorageCanister"/>
   </Box>
 
-  The Akupara does not feature a standard waste loop: it is also capable of storing valuable waste gases, and correcting O2-N2 cabin overpressure. Waste pipes are denoted with an orange color.
+  The Akupara does not feature a standard waste loop: it is also capable of storing valuable waste gases, and correcting O2-N2 cabin overpressure. This auxiliary loop is designated with a purple color.
 
   - Ensure you have enabled the distribution loop, as it is an integral part of the waste loop.***
   - Set all Air Alarms to Filtering (Wide).
@@ -112,10 +111,8 @@
 
   ## Sidenotes
 
-  * - Akupara-class vessels are equipped with three APC units that can be used to appraise the ship's total power consumption. Unmodified Akupara-class vessels require 28 kW of power to remain operational.
+  * - Akupara-class vessels are equipped with three APC units that can be used to appraise the ship's total power consumption. Unmodified Akupara-class vessels require 30 kW of power to remain operational.
 
-  ** - Since the Akupara's distribution loop uses a gas mixer, it does not need pre-mixed air for optimal atmospherics. However, it features a port to accept pre-mixed air.
-
-  *** - The oxygen and nitrogen filters are critical in the event mutagenic experiments create plants that produce oxygen or nitrogen. Turning them on enables waste to pass through and enables configurating the scrubbers to handle unwanted overpressure.
+  ** - The oxygen and nitrogen filters are critical in the event mutagenic experiments create plants that produce oxygen or nitrogen. Turning them on enables waste to pass through and enables configurating the scrubbers to handle unwanted overpressure.
 
 </Document>
