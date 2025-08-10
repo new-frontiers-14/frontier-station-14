@@ -19,9 +19,9 @@
   - type: EmitSoundOnTrigger
     sound: *BasePlushieSound
   - type: UseDelay
-    delay: 3.0
+    delay: 1.0 # Frontier 3.0>1.0
   - type: MeleeWeapon
-    attackRate: 0.333
+    # attackRate: 0.333 # Frontier
     wideAnimationRotation: 180
     soundHit: *BasePlushieSound
     damage:
@@ -355,8 +355,8 @@
   - type: EmitSoundOnUse
     sound: &PlushieLizardSound
       path: /Audio/Items/Toys/weh.ogg
-      params:
-        volume: -5
+  #    params: # Frontier
+  #      volume: -5 # Frontier
   - type: EmitSoundOnLand
     sound: *PlushieLizardSound
   - type: EmitSoundOnActivate
@@ -422,8 +422,8 @@
   - type: EmitSoundOnUse
     sound: &PlushieExperimentSound
       path: /Audio/Items/Toys/arf.ogg
-      params:
-        volume: -5
+  #    params: # Frontier
+  #      volume: -5 # Frontier
   - type: EmitSoundOnLand
     sound: *PlushieExperimentSound
   - type: EmitSoundOnActivate
@@ -506,8 +506,8 @@
   - type: EmitSoundOnUse
     sound: &PlushieSpaceLizardSound
       path: /Audio/Items/Toys/muffled_weh.ogg
-      params:
-        volume: -5
+  #    params: # Frontier
+  #      volume: -5 # Frontier
   - type: EmitSoundOnLand
     sound: *PlushieSpaceLizardSound
   - type: EmitSoundOnActivate
@@ -548,8 +548,8 @@
   - type: EmitSoundOnUse
     sound: &PlushieLizardInversedSound
       path: /Audio/Items/Toys/hew.ogg
-      params:
-        volume: -5
+  #    params: # Frontier
+  #      volume: -5 # Frontier
   - type: EmitSoundOnLand
     sound: *PlushieLizardInversedSound
   - type: EmitSoundOnActivate
