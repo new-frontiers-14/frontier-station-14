@@ -57,7 +57,8 @@ anomaly-sync-connect-verb-text = Attach anomaly
 anomaly-sync-connect-verb-message = Attach a nearby anomaly to {THE($machine)}.
 
 anomaly-generator-ui-title = Anomaly Generator
-anomaly-generator-fuel-display = Bananium:
+# Frontier: Plasma<Anomalite
+anomaly-generator-fuel-display = Anomalite:
 anomaly-generator-cooldown = Cooldown: [color=gray]{$time}[/color]
 anomaly-generator-no-cooldown = Cooldown: [color=gray]Complete[/color]
 anomaly-generator-yes-fire = Status: [color=forestgreen]Ready[/color]
@@ -78,8 +79,9 @@ anomaly-generator-flavor-right = v1.1
 
 anomaly-behavior-unknown = [color=red]ERROR. Cannot be read.[/color]
 
-anomaly-behavior-title = behavior deviation analysis:
-anomaly-behavior-point =[color=gold]Anomaly produces {$mod}% of the points[/color] 
+# Frontier: caps
+anomaly-behavior-title = Behavior Deviation Analysis:
+anomaly-behavior-point =[color=gold]Anomaly produces {$mod}% of the points[/color]
 
 anomaly-behavior-safe = [color=forestgreen]The anomaly is extremely stable. Extremely rare pulsations.[/color]
 anomaly-behavior-slow = [color=forestgreen]The frequency of pulsations is much less frequent.[/color]

@@ -259,7 +259,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
         )
         {
             BreakOnMove = true,
-            BreakOnWeightlessMove = true
+            BreakOnWeightlessMove = true,
+            RequireCanInteract = false
         };
 
         if (_doAfter.TryStartDoAfter(args))

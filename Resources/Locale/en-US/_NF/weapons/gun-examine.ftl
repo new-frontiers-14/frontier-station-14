@@ -32,6 +32,7 @@ gun-examine-energybolt-disabler-pistol = 750J disabler bolt
 gun-examine-energybolt-disabler-practice = 25J disabler bolt
 gun-examine-energybolt-holoflare = holoflare
 gun-examine-pulse-low = 1750J energy pulse
+gun-examine-particle-stream = high-energy particle stream
 gun-examine-energybolt-emp = EMP bolt
 gun-examine-energybolt-kinetic-high = 1600J kinetic bolt
 gun-examine-energybolt-kinetic-medium = 1100J kinetic bolt
@@ -49,6 +50,7 @@ weapon-details-manufacturer-foam-force-llc = Foam Force LLC
 weapon-details-manufacturer-frontier-gunsmith-consortium = Frontier Gunsmith Consortium
 weapon-details-manufacturer-gorlex-steel-works = Gorlex Steel Works
 weapon-details-manufacturer-nanotrasen-munitions = NanoTrasen Munitions
+weapon-details-manufacturer-nanotrasen-technologies = NanoTrasen Technologies
 weapon-details-manufacturer-steelbolt-tool-forge = Steelbolt Tool Forge
 
 # Classes (alphabetical please)

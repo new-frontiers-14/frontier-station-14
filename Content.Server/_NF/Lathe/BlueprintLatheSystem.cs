@@ -521,4 +521,24 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         ent.Comp.ProvidedRecipes = recipes;
         Dirty(ent, ent.Comp);
     }
+
+    /// <summary>
+    /// Adds a given recipe to a blueprint.
+    /// </remarks>
+    public void AddBlueprintRecipe(Entity<BlueprintComponent> ent, ProtoId<LatheRecipePrototype> recipe, bool dirty = true)
+    {
+        var inserted = ent.Comp.ProvidedRecipes.Add(recipe);
+        if (inserted && dirty)
+            Dirty(ent, ent.Comp);
+    }
+
+    /// <summary>
+    /// Removes a given recipe from a blueprint.
+    /// </remarks>
+    public void RemoveBlueprintRecipe(Entity<BlueprintComponent> ent, ProtoId<LatheRecipePrototype> recipe, bool dirty = true)
+    {
+        var removed = ent.Comp.ProvidedRecipes.Remove(recipe);
+        if (removed && dirty)
+            Dirty(ent, ent.Comp);
+    }
 }

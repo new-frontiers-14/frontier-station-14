@@ -8,6 +8,44 @@
   - type: TimedDespawn
     lifetime: 10
 
+# From BBBullet
+- type: entity
+  id: BluntObject
+  name: BluntObject
+  description: If you can see this you're probably dead!
+  abstract: true
+  parent: BaseItem
+  components:
+  - type: Item
+  - type: Reflective
+  - type: Clickable
+  - type: Sprite
+    noRot: false
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 0
+    angularDamping: 0
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: true
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Piercing: 14
+  - type: TimedDespawn
+    lifetime: 10
+  - type: SpaceGarbage
+
+
+
 # Conjured objects
 - type: entity
   name: soap
@@ -189,3 +227,26 @@
     proto: SoapletBloodCult
     count: 35
     spread: 40
+
+- type: entity
+  name: brick
+  id: BrickConjured
+  parent:
+  - BluntObject
+  - ConjuredObject10
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 10
+        Structural: 10
+  - type: StaminaDamageOnCollide
+    damage: 15
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Objects/Specific/Wizard/conjuredbrick.rsi
+    layers:
+    - state: brick
+  - type: Ammo
+    muzzleFlash: null

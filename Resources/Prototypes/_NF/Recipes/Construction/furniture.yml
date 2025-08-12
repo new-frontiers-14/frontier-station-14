@@ -808,3 +808,44 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# Flags
+- type: construction
+  id: BlankFlag
+  graph: NF_Flags
+  startNode: start
+  targetNode: BlankFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: NTFlag
+  graph: NF_Flags
+  startNode: start
+  targetNode: NTFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: SyndieFlag
+  graph: NF_Flags
+  startNode: start
+  targetNode: SyndieFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: PirateFlag
+  graph: NF_Flags
+  startNode: start
+  targetNode: PirateFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true

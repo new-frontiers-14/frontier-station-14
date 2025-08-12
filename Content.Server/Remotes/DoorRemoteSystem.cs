@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Doors.Systems;
 using Content.Server.Power.EntitySystems;
+using Content.Shared._NF.GridAccess; // Frontier
 using Content.Shared.Access.Components;
 using Content.Shared.Database;
 using Content.Shared.Doors.Components;
@@ -17,6 +18,7 @@ namespace Content.Shared.Remotes
         [Dependency] private readonly AirlockSystem _airlock = default!;
         [Dependency] private readonly DoorSystem _doorSystem = default!;
         [Dependency] private readonly ExamineSystemShared _examine = default!;
+        [Dependency] private readonly GridAccessSystem _gridAccessSystem = default!; // Frontier
 
         public override void Initialize()
         {
@@ -44,6 +46,29 @@ namespace Content.Shared.Remotes
             }
 
             args.Handled = true;
+
+            // Frontier: Grid access restriction
+            if (TryComp<GridAccessComponent>(entity.Owner, out var gridAccessComponent))
+            {
+                string? popupMessage = null;
+                if (!TryComp(args.Target.Value, out TransformComponent? xform)
+                    || xform.GridUid == null
+                    || !GridAccessSystem.IsAuthorized(xform.GridUid, gridAccessComponent, out popupMessage))
+                {
+                    if (popupMessage != null)
+                    {
+                        Popup.PopupEntity(Loc.GetString("door-remote-" + popupMessage), args.Used, args.User);
+                    }
+                    return;
+                }
+
+                if (!doorComp.RemoteCompatible)
+                {
+                    Popup.PopupEntity(Loc.GetString("door-remote-use-blocked"), args.Used, args.User);
+                    return;
+                }
+            }
+            // End Frontier: Grid access restriction
 
             if (!this.IsPowered(args.Target.Value, EntityManager))
             {

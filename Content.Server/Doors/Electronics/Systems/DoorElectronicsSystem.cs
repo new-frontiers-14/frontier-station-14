@@ -20,7 +20,7 @@ public sealed class DoorElectronicsSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<DoorElectronicsComponent, DoorElectronicsUpdateConfigurationMessage>(OnChangeConfiguration);
+        // SubscribeLocalEvent<DoorElectronicsComponent, DoorElectronicsUpdateConfigurationMessage>(OnChangeConfiguration); // Frontier: no message handler
         SubscribeLocalEvent<DoorElectronicsComponent, AccessReaderConfigurationChangedEvent>(OnAccessReaderChanged);
         SubscribeLocalEvent<DoorElectronicsComponent, BoundUIOpenedEvent>(OnBoundUIOpened);
     }
@@ -42,6 +42,8 @@ public sealed class DoorElectronicsSystem : EntitySystem
         _uiSystem.SetUiState(uid, DoorElectronicsConfigurationUiKey.Key, state);
     }
 
+    // Frontier: no door electronics message handler
+    /*
     private void OnChangeConfiguration(
         EntityUid uid,
         DoorElectronicsComponent component,
@@ -50,6 +52,8 @@ public sealed class DoorElectronicsSystem : EntitySystem
         var accessReader = EnsureComp<AccessReaderComponent>(uid);
         _accessReader.SetAccesses(uid, accessReader, args.AccessList);
     }
+    */
+    // End Frontier: no door electronics message handler
 
     private void OnAccessReaderChanged(
         EntityUid uid,

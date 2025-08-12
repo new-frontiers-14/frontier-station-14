@@ -308,7 +308,7 @@ public sealed class PartExchangerSystem : EntitySystem
             foreach (var partState in partSet)
             {
                 if (!partState.state.InContainer)
-                    _storage.Insert(uid, partState.part, out _, playSound: false);
+                    _storage.Insert(storageEnt, partState.part, out _, playSound: false);
             }
         }
     }
