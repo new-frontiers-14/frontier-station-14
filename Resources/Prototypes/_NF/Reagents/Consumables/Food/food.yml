@@ -51,3 +51,19 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
+
+- type: reagent
+  id: TenderFiber
+  name: Tender Fiber
+  desc: softened fiber that moths persons like
+  physicalDesc: reagent-physical-desc-fibrous
+  flavor: fiber
+  color: "#7f7464"
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+        factor: 3
+        conditions:
+        - !type:OrganType
+          type: Moth
