@@ -39,7 +39,8 @@
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Misc/duck-slippers.rsi
-  - type: Clothing
+  - type: ToggleClothing
+    action: ActionToggleWaddling
     sprite: Clothing/Shoes/Misc/duck-slippers.rsi
   - type: FootstepModifier
     footstepSoundCollection:
@@ -53,6 +54,9 @@
     tumbleIntensity: 10 # DeltaV - smaller than clown shoes
   #start imp edit
   - type: ItemToggle
+    activated: true
+    onUse: false
+    onActivate: false
     soundActivate:
       path: /Audio/Items/Toys/quack.ogg
     soundDeactivate:
