@@ -11,8 +11,8 @@ namespace Content.Server.StationEvents.Events;
 
 public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRuleComponent>
 {
-    private static readonly ProtoId<LocalizedDatasetPrototype> DataSourceNames = "RandomSentienceEventData";
-    private static readonly ProtoId<LocalizedDatasetPrototype> IntelligenceLevelNames = "RandomSentienceEventStrength";
+    private static readonly ProtoId<LocalizedDatasetPrototype> DataSourceNames = "NFRandomSentienceEventData"; // Frontier: add NF prefix
+    private static readonly ProtoId<LocalizedDatasetPrototype> IntelligenceLevelNames = "NFRandomSentienceEventStrength"; // Frontier: add NF prefix
 
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -75,13 +75,8 @@ public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRule
             station.Value,
             Loc.GetString("station-event-random-sentience-announcement",
                 ("kind1", kind1), ("kind2", kind2), ("kind3", kind3), ("amount", groupList.Count),
-<<<<<<< HEAD
-                ("data", _random.Pick(_prototype.Index<LocalizedDatasetPrototype>("NFRandomSentienceEventData"))), // Frontier: add NF prefix
-                ("strength", _random.Pick(_prototype.Index<LocalizedDatasetPrototype>("NFRandomSentienceEventStrength"))) // Frontier: add NF prefix
-=======
                 ("data", _random.Pick(_prototype.Index(DataSourceNames))),
                 ("strength", _random.Pick(_prototype.Index(IntelligenceLevelNames)))
->>>>>>> wizden/stable
             ),
             playDefaultSound: false,
             colorOverride: Color.Gold

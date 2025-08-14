@@ -31,27 +31,8 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultThiefRule = "Thief";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
 
-<<<<<<< HEAD
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string DefaultInitialInfectedRule = "Zombie";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string DefaultNukeOpRule = "LoneOpsSpawn";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string DefaultRevsRule = "Revolutionary";
-
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string DefaultThiefRule = "Thief";
-
-    [ValidatePrototypeId<StartingGearPrototype>]
-    private const string PirateGearId = "PirateGear";
-
-    private readonly EntProtoId _paradoxCloneRuleId = "ParadoxCloneSpawn";
-    private readonly EntProtoId _pirateRuleId = "NFPirate"; // Frontier
-=======
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
->>>>>>> wizden/stable
+    private static readonly EntProtoId PirateRuleId = "NFPirate"; // Frontier
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -80,7 +61,7 @@ public sealed partial class AdminVerbSystem
                 _antag.ForceMakeAntag<TraitorRuleComponent>(targetPlayer, DefaultTraitorRule);
             },
             Impact = LogImpact.High,
-            Message = string.Join(": ", traitorName,  Loc.GetString("admin-verb-make-traitor")),
+            Message = string.Join(": ", traitorName, Loc.GetString("admin-verb-make-traitor")),
         };
         args.Verbs.Add(traitor);
 
@@ -138,13 +119,11 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new("/Textures/_NF/Interface/Misc/job_icons.rsi"), "pirate"),
             Act = () =>
             {
-<<<<<<< HEAD
                 EnsureComp<AutoPirateComponent>(args.User); // Frontier: needed to pass the pirate whitelist
-                _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, _pirateRuleId);
-=======
+                _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, PirateRuleId); // Frontier
+
                 // pirates just get an outfit because they don't really have logic associated with them
-                _outfit.SetOutfit(args.Target, PirateGearId);
->>>>>>> wizden/stable
+                // _outfit.SetOutfit(args.Target, PirateGearId); // Frontier
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", pirateName, Loc.GetString("admin-verb-make-nf-pirate")),
@@ -160,7 +139,7 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 EnsureComp<AutoPirateFirstMateComponent>(args.User); // Frontier: needed to pass the pirate whitelist
-                _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, _pirateRuleId);
+                _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, PirateRuleId);
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", pirateFirstMateName, Loc.GetString("admin-verb-make-nf-pirate-first-mate")),
@@ -176,7 +155,7 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 EnsureComp<AutoPirateCaptainComponent>(args.User); // Pass the pirate captain whitelist
-                _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, _pirateRuleId);
+                _antag.ForceMakeAntag<NFPirateRuleComponent>(targetPlayer, PirateRuleId);
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", pirateCaptainName, Loc.GetString("admin-verb-make-nf-pirate-captain")),

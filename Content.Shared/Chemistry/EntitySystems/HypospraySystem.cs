@@ -15,31 +15,21 @@ using Content.Shared.Popups;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee.Events;
-<<<<<<< HEAD:Content.Server/Chemistry/EntitySystems/HypospraySystem.cs
-using Content.Server.Body.Components;
-using System.Linq;
-using Robust.Server.Audio;
 using Content.Shared.DoAfter; // Frontier
 using Content.Shared._DV.Chemistry.Components; // Frontier
-=======
 using Robust.Shared.Audio.Systems;
->>>>>>> wizden/stable:Content.Shared/Chemistry/EntitySystems/HypospraySystem.cs
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
 public sealed class HypospraySystem : EntitySystem
 {
-<<<<<<< HEAD:Content.Server/Chemistry/EntitySystems/HypospraySystem.cs
-    [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!; // Frontier - Upstream: #30704 - MIT
-=======
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainers = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
->>>>>>> wizden/stable:Content.Shared/Chemistry/EntitySystems/HypospraySystem.cs
 
     public override void Initialize()
     {
@@ -48,8 +38,8 @@ public sealed class HypospraySystem : EntitySystem
         SubscribeLocalEvent<HyposprayComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<HyposprayComponent, MeleeHitEvent>(OnAttack);
         SubscribeLocalEvent<HyposprayComponent, UseInHandEvent>(OnUseInHand);
-<<<<<<< HEAD:Content.Server/Chemistry/EntitySystems/HypospraySystem.cs
         SubscribeLocalEvent<HyposprayComponent, HyposprayDoAfterEvent>(OnDoAfter); // Frontier - Upstream: #30704 - MIT
+        SubscribeLocalEvent<HyposprayComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleModeVerb);
     }
 
     // Frontier - Upstream: #30704 - MIT
@@ -62,15 +52,47 @@ public sealed class HypospraySystem : EntitySystem
     }
     // End Frontier
 
+    #region Ref events
+    private void OnUseInHand(Entity<HyposprayComponent> entity, ref UseInHandEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.Handled = TryDoInject(entity, args.User, args.User);
+    }
+
+    private void OnAfterInteract(Entity<HyposprayComponent> entity, ref AfterInteractEvent args)
+    {
+        if (args.Handled || !args.CanReach || args.Target == null)
+            return;
+
+        args.Handled = TryUseHypospray(entity, args.Target.Value, args.User);
+    }
+
+    private void OnAttack(Entity<HyposprayComponent> entity, ref MeleeHitEvent args)
+    {
+        if (args.HitEntities is [])
+            return;
+
+        if (entity.Comp.PreventCombatInjection) // Frontier
+            return; // Frontier
+
+        TryDoInject(entity, args.HitEntities[0], args.User);
+    }
+
+    #endregion
+
+    #region Draw/Inject
     private bool TryUseHypospray(Entity<HyposprayComponent> entity, EntityUid target, EntityUid user)
     {
         // if target is ineligible but is a container, try to draw from the container if allowed
         if (entity.Comp.CanContainerDraw
-            && !EligibleEntity(target, EntityManager, entity)
+            && !EligibleEntity(target, entity)
             && _solutionContainers.TryGetDrawableSolution(target, out var drawableSolution, out _))
         {
             return TryDraw(entity, target, drawableSolution.Value, user);
         }
+
 
         // Frontier - Upstream: #30704 - MIT
         if (entity.Comp.DoAfterTime > 0 && target != user)
@@ -97,59 +119,6 @@ public sealed class HypospraySystem : EntitySystem
         // End Frontier
 
         return TryDoInject(entity, target, user);
-    }
-
-=======
-        SubscribeLocalEvent<HyposprayComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleModeVerb);
-    }
-
-    #region Ref events
->>>>>>> wizden/stable:Content.Shared/Chemistry/EntitySystems/HypospraySystem.cs
-    private void OnUseInHand(Entity<HyposprayComponent> entity, ref UseInHandEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        args.Handled = TryDoInject(entity, args.User, args.User);
-    }
-
-    private void OnAfterInteract(Entity<HyposprayComponent> entity, ref AfterInteractEvent args)
-    {
-        if (args.Handled || !args.CanReach || args.Target == null)
-            return;
-
-        args.Handled = TryUseHypospray(entity, args.Target.Value, args.User);
-    }
-
-    private void OnAttack(Entity<HyposprayComponent> entity, ref MeleeHitEvent args)
-    {
-        if (args.HitEntities is [])
-            return;
-
-<<<<<<< HEAD:Content.Server/Chemistry/EntitySystems/HypospraySystem.cs
-        if (entity.Comp.PreventCombatInjection) // Frontier
-            return; // Frontier
-
-        TryDoInject(entity, args.HitEntities.First(), args.User);
-=======
-        TryDoInject(entity, args.HitEntities[0], args.User);
-    }
-
-    #endregion
-
-    #region Draw/Inject
-    private bool TryUseHypospray(Entity<HyposprayComponent> entity, EntityUid target, EntityUid user)
-    {
-        // if target is ineligible but is a container, try to draw from the container if allowed
-        if (entity.Comp.CanContainerDraw
-            && !EligibleEntity(target, entity)
-            && _solutionContainers.TryGetDrawableSolution(target, out var drawableSolution, out _))
-        {
-            return TryDraw(entity, target, drawableSolution.Value, user);
-        }
-
-        return TryDoInject(entity, target, user);
->>>>>>> wizden/stable:Content.Shared/Chemistry/EntitySystems/HypospraySystem.cs
     }
 
     public bool TryDoInject(Entity<HyposprayComponent> entity, EntityUid target, EntityUid user)
@@ -213,7 +182,6 @@ public sealed class HypospraySystem : EntitySystem
         else if (target == user)
             msgFormat = "hypospray-component-inject-self-message";
 
-<<<<<<< HEAD:Content.Server/Chemistry/EntitySystems/HypospraySystem.cs
         // Frontier - Upstream: #30704 - MIT
         // if (!_solutionContainers.TryGetSolution(uid, component.SolutionName, out var hypoSpraySoln, out var hypoSpraySolution) || hypoSpraySolution.Volume == 0)
         // {
@@ -233,19 +201,6 @@ public sealed class HypospraySystem : EntitySystem
             || targetSolution == null)
             return returnValue;
         // End Frontier
-=======
-        if (!_solutionContainers.TryGetSolution(uid, component.SolutionName, out var hypoSpraySoln, out var hypoSpraySolution) || hypoSpraySolution.Volume == 0)
-        {
-            _popup.PopupClient(Loc.GetString("hypospray-component-empty-message"), target, user);
-            return true;
-        }
-
-        if (!_solutionContainers.TryGetInjectableSolution(target, out var targetSoln, out var targetSolution))
-        {
-            _popup.PopupClient(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
-            return false;
-        }
->>>>>>> wizden/stable:Content.Shared/Chemistry/EntitySystems/HypospraySystem.cs
 
         _popup.PopupClient(Loc.GetString(msgFormat ?? "hypospray-component-inject-other-message", ("other", target)), target, user);
 
@@ -334,7 +289,6 @@ public sealed class HypospraySystem : EntitySystem
             : HasComp<SolutionContainerManagerComponent>(entity);
     }
 
-<<<<<<< HEAD:Content.Server/Chemistry/EntitySystems/HypospraySystem.cs
     // Frontier: Upstream: #30704 - MIT
     private bool InjectionFailureCheck(Entity<HyposprayComponent> entity, EntityUid target, EntityUid user, out Entity<SolutionComponent>? hypoSpraySoln, out Entity<SolutionComponent>? targetSoln, out Solution? targetSolution, out bool returnValue)
     {
@@ -360,7 +314,6 @@ public sealed class HypospraySystem : EntitySystem
         return true;
     }
     // End Frontier
-=======
     #endregion
 
     #region Verbs
@@ -404,5 +357,4 @@ public sealed class HypospraySystem : EntitySystem
     }
 
     #endregion
->>>>>>> wizden/stable:Content.Shared/Chemistry/EntitySystems/HypospraySystem.cs
 }

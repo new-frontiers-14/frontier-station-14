@@ -1,6 +1,5 @@
 using Content.Server.Administration;
 using Content.Server.Database;
-using Content.Server.Players.JobWhitelist; // Frontier
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Robust.Server.Player;
@@ -13,12 +12,8 @@ namespace Content.Server.Whitelist;
 [AdminCommand(AdminFlags.Whitelist)] // DeltaV - Custom permission for whitelist
 public sealed class AddWhitelistCommand : LocalizedCommands
 {
-<<<<<<< HEAD
-    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!; // Frontier
-=======
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
->>>>>>> wizden/stable
     public override string Command => "whitelistadd";
 
     public override async void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -43,14 +38,8 @@ public sealed class AddWhitelistCommand : LocalizedCommands
                 return;
             }
 
-<<<<<<< HEAD
-            _jobWhitelist.AddGlobalWhitelist(guid);
-
-            shell.WriteLine(Loc.GetString("command-whitelistadd-added", ("username", data.Username)));
-=======
             await _dbManager.AddToWhitelistAsync(guid);
             shell.WriteLine(Loc.GetString("cmd-whitelistadd-added", ("username", data.Username)));
->>>>>>> wizden/stable
             return;
         }
 
@@ -71,13 +60,9 @@ public sealed class AddWhitelistCommand : LocalizedCommands
 [AdminCommand(AdminFlags.Ban)]
 public sealed class RemoveWhitelistCommand : LocalizedCommands
 {
-<<<<<<< HEAD
-    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!; // Frontier
-=======
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
 
->>>>>>> wizden/stable
     public override string Command => "whitelistremove";
 
     public override async void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -102,14 +87,8 @@ public sealed class RemoveWhitelistCommand : LocalizedCommands
                 return;
             }
 
-<<<<<<< HEAD
-            _jobWhitelist.RemoveGlobalWhitelist(guid);
-
-            shell.WriteLine(Loc.GetString("command-whitelistremove-removed", ("username", data.Username)));
-=======
             await _dbManager.RemoveFromWhitelistAsync(guid);
             shell.WriteLine(Loc.GetString("cmd-whitelistremove-removed", ("username", data.Username)));
->>>>>>> wizden/stable
             return;
         }
 
@@ -130,15 +109,11 @@ public sealed class RemoveWhitelistCommand : LocalizedCommands
 [AdminCommand(AdminFlags.Ban)]
 public sealed class KickNonWhitelistedCommand : LocalizedCommands
 {
-<<<<<<< HEAD
-    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!; // Frontier
-=======
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
 
->>>>>>> wizden/stable
     public override string Command => "kicknonwhitelisted";
 
     public override async void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -158,15 +133,8 @@ public sealed class KickNonWhitelistedCommand : LocalizedCommands
             if (await _dbManager.GetAdminDataForAsync(session.UserId) is not null)
                 continue;
 
-<<<<<<< HEAD
-            if (!_jobWhitelist.IsGloballyWhitelisted(session.UserId)) // Frontier: use JobWhitelistManager as a wrapper.
-            {
-                net.DisconnectChannel(session.Channel, Loc.GetString("whitelist-not-whitelisted"));
-            }
-=======
             if (!await _dbManager.GetWhitelistStatusAsync(session.UserId))
                 _netManager.DisconnectChannel(session.Channel, Loc.GetString("whitelist-not-whitelisted"));
->>>>>>> wizden/stable
         }
     }
 }

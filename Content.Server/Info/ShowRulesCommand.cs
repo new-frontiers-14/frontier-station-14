@@ -46,35 +46,10 @@ public sealed class ShowRulesCommand : LocalizedCommands
         _net.ServerSendMessage(message, player.Channel);
     }
 
-<<<<<<< HEAD
-    public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
-    {
-        if (args.Length == 1)
-        {
-            return CompletionResult.FromHintOptions(
-                CompletionHelper.SessionNames(players: _player),
-                Loc.GetString("<username>"));
-        }
-
-        if (args.Length == 2)
-        {
-            var durations = new CompletionOption[]
-            {
-                new("300", Loc.GetString("5 minutes")),
-                new("600", Loc.GetString("10 minutes")),
-                new("1200", Loc.GetString("20 minutes")),
-            };
-
-            return CompletionResult.FromHintOptions(durations, Loc.GetString("[seconds]"));
-        }
-
-        return CompletionResult.Empty;
-=======
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
         return args.Length == 1
             ? CompletionResult.FromOptions(CompletionHelper.SessionNames(players: _player))
             : CompletionResult.Empty;
->>>>>>> wizden/stable
     }
 }

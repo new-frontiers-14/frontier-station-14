@@ -18,12 +18,12 @@ namespace Content.Shared.Physics.Controllers;
 public abstract class SharedConveyorController : VirtualController
 {
     [Dependency] protected readonly IMapManager MapManager = default!;
-    [Dependency] private   readonly IParallelManager _parallel = default!;
-    [Dependency] private   readonly CollisionWakeSystem _wake = default!;
+    [Dependency] private readonly IParallelManager _parallel = default!;
+    [Dependency] private readonly CollisionWakeSystem _wake = default!;
     [Dependency] protected readonly EntityLookupSystem Lookup = default!;
-    [Dependency] private   readonly FixtureSystem _fixtures = default!;
-    [Dependency] private   readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private   readonly SharedMoverController _mover = default!;
+    [Dependency] private readonly FixtureSystem _fixtures = default!;
+    [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private readonly SharedMoverController _mover = default!;
 
     protected const string ConveyorFixture = "conveyor";
 
@@ -59,10 +59,10 @@ public abstract class SharedConveyorController : VirtualController
     private void OnConveyedFriction(Entity<ConveyedComponent> ent, ref TileFrictionEvent args)
     {
         // Wizden#37468: Conveyors spin fix
-        if(!TryComp<FixturesComponent>(ent, out var fixture) || !IsConveyed((ent, fixture)))
+        if (!TryComp<FixturesComponent>(ent, out var fixture) || !IsConveyed((ent, fixture)))
             return;
 
-        if(!PhysicsQuery.TryComp(ent, out var body) || body.BodyStatus != BodyStatus.OnGround)
+        if (!PhysicsQuery.TryComp(ent, out var body) || body.BodyStatus != BodyStatus.OnGround)
             return;
         // End Wizden#37468: Conveyors spin fix
 
@@ -173,14 +173,10 @@ public abstract class SharedConveyorController : VirtualController
                 // they'll go too slow.
                 if (!_mover.UsedMobMovement.TryGetValue(ent.Entity.Owner, out var usedMob) || !usedMob)
                 {
-<<<<<<< HEAD
-                    _mover.Friction(0f, frameTime: frameTime, friction: 5f, ref velocity);
-                    _mover.Friction(0f, frameTime: frameTime, friction: 5f, ref angularVelocity); // Wizden#37468
-=======
                     // We provide a small minimum friction speed as well for those times where the friction would stop large objects
                     // snagged on corners from sliding into the centerline.
                     _mover.Friction(0.2f, frameTime: frameTime, friction: 5f, ref velocity);
->>>>>>> wizden/stable
+                    _mover.Friction(0.2f, frameTime: frameTime, friction: 5f, ref angularVelocity); // Wizden#37468
                 }
 
                 SharedMoverController.Accelerate(ref velocity, targetDir, 20f, frameTime);

@@ -184,11 +184,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
         var dungeonRotation = _dungeon.GetDungeonRotation(seed);
         var dungeonPosition = (origin + dungeonRotation.RotateVec(new Vector2i(0, dungeonDistance))).Floored();
 
-<<<<<<< HEAD
-        _dungeon.GenerateDungeon(_protoManager.Index<DungeonConfigPrototype>("Experiment"), "Experiment", args.MapUid, grid, dungeonPosition, seed); // Frontier: add "Experiment" arg
-=======
-        _dungeon.GenerateDungeon(_protoManager.Index(DungeonConfig), args.MapUid, grid, dungeonPosition, seed);
->>>>>>> wizden/stable
+        _dungeon.GenerateDungeon(_protoManager.Index(DungeonConfig), "Experiment", args.MapUid, grid, dungeonPosition, seed); // Frontier: add "Experiment" arg
 
         // TODO: Dungeon mobs + loot.
 
