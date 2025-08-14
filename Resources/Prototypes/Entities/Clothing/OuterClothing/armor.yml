@@ -4,10 +4,10 @@
 
 #Basic armor vest for inheritance
 - type: entity
-  parent: [RecyclableItemClothArmor, ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband, added RecyclableItemClothArmor
+  abstract: true
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseC1Contraband, RecyclableItemClothArmor] # Frontier: BaseSecurityContraband<BaseC1Contraband, added RecyclableItemClothArmor
   id: ClothingOuterArmorBase
   name: armor vest
-  abstract: true
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
@@ -29,6 +29,11 @@
 - type: entity
   parent: ClothingOuterArmorBase # Frontier: removed BaseSecurityBartenderContraband
   id: ClothingOuterArmorBasic
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -129,6 +134,10 @@
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingOuterArmorBaseCarapace, BaseCentcommContraband]
@@ -161,6 +170,8 @@
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.9
+  - type: StaticPrice
+    price: 1500
 
 #Elite web vest
 - type: entity
@@ -189,6 +200,8 @@
     damageCoefficient: 0.5
   - type: FireProtection
     reduction: 0.85
+  - type: StaticPrice
+    price: 2500
 
 #Mercenary web vest
 - type: entity
@@ -239,8 +252,8 @@
         Caustic: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.35
-  #- type: StaminaResistance
-  #  damageCoefficient: 0.45
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.45
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -282,8 +295,8 @@
         id: blinking
         interpolate: Nearest
         maxDuration: 1.0
-        startValue: 0.1 # Wizden#37444
-        endValue: 2.0 # Wizden#37444
+        startValue: 0.1
+        endValue: 2.0
         isLooped: true
   - type: Battery
     maxCharge: 600
@@ -331,7 +344,7 @@
       coefficients:
         Blunt: 0.5
         Slash: 0.5
-        Piercing: 0.6
+        Piercing: 0.5
         Heat: 0.5
   - type: GroupExamine
 
@@ -422,7 +435,7 @@
         Heat: 0.9
         Radiation: 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
+    walkModifier: 0.65
     sprintModifier: 0.65
   - type: HeldSpeedModifier
   - type: ExplosionResistance
@@ -449,6 +462,7 @@
         Piercing: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.8
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ExplosionResistance
     damageCoefficient: 0.4

@@ -80,11 +80,13 @@
   - type: HolidayRsiSwap
     sprite:
       festive: Objects/Weapons/Bombs/c4gift.rsi
+  - type: StaticPrice
+    price: 625 # 5000 for a bundle of 8
 
 - type: entity
   name: seismic charge
   description: Concussion based explosive designed to destroy large amounts of rock.
-  parent: [BasePlasticExplosive, BaseC2ContrabandUnredeemable] # Frontier: Added BaseC2ContrabandUnredeemable
+  parent: [ BasePlasticExplosive, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityCargoContraband>BaseC2ContrabandUnredeemable
   id: SeismicCharge
   components:
   - type: Sprite
