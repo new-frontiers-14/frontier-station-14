@@ -174,11 +174,7 @@
     - 0,0,8,4
 
 - type: entity
-<<<<<<< HEAD
-  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicate
-=======
-  parent: [ ClothingBackpackDuffelSyndicate, BaseSyndicateContraband ]
->>>>>>> wizden/stable
+  parent: [ NFClothingDuffel, BaseC3Contraband ] # Frontier: ClothingBackpackDuffelSyndicate>NFClothingDuffel, BaseSyndicateContraband>BaseC3Contraband
   id: ClothingBackpackDuffelSyndicateBundle
   abstract: true
   components:
@@ -186,10 +182,7 @@
       tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
-<<<<<<< HEAD
-  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicate
-=======
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffel>NFClothingDuffel
   id: ClothingBackpackDuffelBundle
   abstract: true
   components:
@@ -198,7 +191,6 @@
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
->>>>>>> wizden/stable
   id: ClothingBackpackDuffelSyndicateAmmo
   components:
     - type: Sprite
@@ -210,7 +202,7 @@
       equippedPrefix: ammo
 
 - type: entity
-  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicateAmmo
+  parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateAmmoBundle
   abstract: true
   components:
@@ -218,7 +210,7 @@
       tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
-  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicate
+  parent: ClothingBackpackDuffelSyndicate
   id: ClothingBackpackDuffelSyndicateMedical
   components:
     - type: Sprite
@@ -230,7 +222,7 @@
       equippedPrefix: med
 
 - type: entity
-  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicateMedical
+  parent: ClothingBackpackDuffelSyndicateMedical
   id: ClothingBackpackDuffelSyndicateMedicalBundle
   abstract: true
   components:

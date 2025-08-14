@@ -165,45 +165,7 @@
   description: Curved 30-round double stack magazine for combat rifles. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
-<<<<<<< HEAD
     # proto: CartridgeLightRifleIncendiary # Frontier
-
-- type: entity
-  categories: [ HideSpawnMenu ] # Frontier
-  id: MagazineLightRifleMaxim
-  name: "pan magazine (.30 rifle)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: Tag
-    tags:
-      - MagazineLightRiflePan
-  - type: BallisticAmmoProvider
-    # proto: CartridgeLightRifle # Frontier
-    capacity: 96
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/maxim.rsi
-
-- type: entity
-  categories: [ HideSpawnMenu ] # Frontier
-  id: MagazineLightRiflePkBox
-  name: "PK munitions box (.30 rifle)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: Tag
-    tags:
-      - MagazineLightRifleBox
-  - type: BallisticAmmoProvider
-    # proto: CartridgeLightRifle # Frontier
-    capacity: 80
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/pk_box.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: Appearance
-=======
-    proto: CartridgeLightRifleIncendiary
   - type: Sprite
     layers:
     - state: base
@@ -222,4 +184,3 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#ff6e52"
->>>>>>> wizden/stable

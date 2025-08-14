@@ -540,7 +540,10 @@
           steps:
             - tool: Welding
               doAfter: 5
-<<<<<<< HEAD
+        - to: reinforcedWall
+          steps:
+            - tool: Brushing
+              doAfter: 12
 
     # Frontier: interior shuttle walls
     - node: shuttleInteriorWall
@@ -560,9 +563,3 @@
             - tool: Screwing
               doAfter: 1
     # End Frontier: interior shuttle walls
-=======
-        - to: reinforcedWall
-          steps:
-            - tool: Brushing
-              doAfter: 12
->>>>>>> wizden/stable
