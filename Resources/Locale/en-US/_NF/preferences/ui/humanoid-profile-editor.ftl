@@ -1,3 +1,3 @@
 humanoid-profile-editor-preference-messenger = Messenger
 
-trait-category-height = Height
+trait-category-height = Body

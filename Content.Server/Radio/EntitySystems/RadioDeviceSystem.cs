@@ -141,12 +141,12 @@ public sealed class RadioDeviceSystem : EntitySystem
         SetMicrophoneEnabled(uid, null, false, true, component);
     }
 
-    public void SetMicrophoneEnabled(EntityUid uid, EntityUid? user, bool enabled, bool quiet = false, RadioMicrophoneComponent? component = null)
+    public void SetMicrophoneEnabled(EntityUid uid, EntityUid? user, bool enabled, bool quiet = false, RadioMicrophoneComponent? component = null, bool force = false) // Frontier: add force
     {
         if (!Resolve(uid, ref component, false))
             return;
 
-        if (component.PowerRequired && !this.IsPowered(uid, EntityManager))
+        if (!force && component.PowerRequired && !this.IsPowered(uid, EntityManager)) // Frontier: add force
             return;
 
         component.Enabled = enabled;
@@ -434,7 +434,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         }
         if (ent.StartMicrophoneOnMapInit)
         {
-            SetMicrophoneEnabled(uid, null, true);
+            SetMicrophoneEnabled(uid, null, true, force: true);
             ent.MicrophoneEnabled = true;
             _appearance.SetData(uid, RadioDeviceVisuals.Broadcasting, true);
         }

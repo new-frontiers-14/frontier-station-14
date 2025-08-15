@@ -3,6 +3,7 @@ using Content.Server._NF.Trade;
 using Content.Server.Cargo.Systems;
 using Content.Server.GameTicking;
 using Content.Shared._NF.Trade;
+using Content.Shared.Cargo;
 using Content.Shared.Examine;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Throwing;
