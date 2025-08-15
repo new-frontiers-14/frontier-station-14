@@ -1,16 +1,15 @@
-<Control xmlns="https://spacestation14.io"
-         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-         xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-         xmlns:parallax="clr-namespace:Content.Client.Parallax;assembly=Content.Client"
-         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls;assembly=Content.Client">
-    <parallax:ParallaxControl />
-    <Control HorizontalAlignment="Center" VerticalAlignment="Center">
+<queue:QueueGui xmlns="https://spacestation14.io"
+         xmlns:parallax="clr-namespace:Content.Client.Parallax"
+         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+         xmlns:queue="clr-namespace:Content.Client._Harmony.JoinQueue">
+    <parallax:ParallaxControl Name="Background" />
+    <Control HorizontalAlignment="Center" VerticalAlignment="Center" Name="MainContainer">
         <PanelContainer StyleClasses="AngleRect" />
         <BoxContainer Orientation="Vertical" MinSize="200 200">
             <BoxContainer Orientation="Horizontal">
                 <Label Margin="8 0 0 0" Text="{Loc 'queue-title'}"
                        StyleClasses="LabelHeading" VAlign="Center" />
-                <Button Name="QuitButton" Text="{Loc 'queue-quit'}"
+                <Button Name="QuitButton" Text="{Loc 'queue-quit'}" Access="Public"
                         HorizontalAlignment="Right" HorizontalExpand="True" />
             </BoxContainer>
             <controls:HighDivider />
@@ -28,4 +27,4 @@
             </BoxContainer>
         </BoxContainer>
     </Control>
-</Control>
+</queue:QueueGui>

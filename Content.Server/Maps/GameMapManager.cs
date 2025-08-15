@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.GameTicking;
-using Content.Shared._Harmony.Common.JoinQueue;
+using Content.Shared._Harmony.JoinQueue;
 using Content.Shared.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -35,8 +35,6 @@ public sealed class GameMapManager : IGameMapManager
     private int _mapQueueDepth = 1;
 
     private ISawmill _log = default!;
-
-    private int CurrentPlayerCount => _playerManager.PlayerCount - _joinQueueManager.PlayerInQueueCount; // Harmony Queue
 
     public void Initialize()
     {
@@ -194,17 +192,10 @@ public sealed class GameMapManager : IGameMapManager
 
     private bool IsMapEligible(GameMapPrototype map)
     {
-        // return map.MaxPlayers >= _playerManager.PlayerCount &&
-        //        map.MinPlayers <= _playerManager.PlayerCount &&
-        //        map.Conditions.All(x => x.Check(map)) &&
-        //        _entityManager.System<GameTicker>().IsMapEligible(map);
-        // Harmony Queue Start
-        // Modified to make merging easier
-        return map.MaxPlayers >= CurrentPlayerCount &&
-               map.MinPlayers <= CurrentPlayerCount &&
+        return map.MaxPlayers >= _joinQueueManager.ActualPlayersCount && // Harmony
+               map.MinPlayers <= _joinQueueManager.ActualPlayersCount && // Harmony
                map.Conditions.All(x => x.Check(map)) &&
                _entityManager.System<GameTicker>().IsMapEligible(map);
-        // Harmony Queue End
     }
 
     private bool TryLookupMap(string gameMap, [NotNullWhen(true)] out GameMapPrototype? map)

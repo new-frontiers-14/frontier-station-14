@@ -1,4 +1,4 @@
-namespace Content.Shared._Harmony.Common.JoinQueue;
+namespace Content.Shared._Harmony.JoinQueue;
 
 /// <summary>
 /// Defines the public contract for managing the player join queue.
