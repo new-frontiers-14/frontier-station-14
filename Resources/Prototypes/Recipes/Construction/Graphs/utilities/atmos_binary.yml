@@ -1,3 +1,14 @@
+# SPDX-FileCopyrightText: 2022 Jack Fox
+# SPDX-FileCopyrightText: 2022 Peptide90
+# SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto
+# SPDX-FileCopyrightText: 2023 Kevin Zheng
+# SPDX-FileCopyrightText: 2023 deltanedas
+# SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
+# SPDX-FileCopyrightText: 2025 Ilya246
+# SPDX-FileCopyrightText: 2025 justdie12
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: constructionGraph
   id: GasBinary
   start: start
@@ -135,6 +146,20 @@
       - material: Steel
         amount: 2
         doAfter: 1
+
+    # <Goobstation>
+    - to: inlineradiator
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: bendinlineradiator
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    # </Goobstation>
 
   - node: pressurepump
     entity: GasPressurePump
@@ -493,3 +518,41 @@
         doAfter: 1
       - tool: Welding
         doAfter: 1
+
+  # <Goobstation>
+  - node: inlineradiator
+    entity: HeatExchangerInline
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      - tool: Welding
+        doAfter: 1
+
+  - node: bendinlineradiator
+    entity: HeatExchangerInlineBend
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      - tool: Welding
+        doAfter: 1
+  # </Goobstation>

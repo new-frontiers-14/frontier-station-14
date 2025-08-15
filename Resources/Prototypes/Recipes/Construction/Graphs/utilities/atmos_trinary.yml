@@ -1,3 +1,12 @@
+# SPDX-FileCopyrightText: 2022 Jack Fox
+# SPDX-FileCopyrightText: 2022 Kevin Zheng
+# SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto
+# SPDX-FileCopyrightText: 2023 08A
+# SPDX-FileCopyrightText: 2023 metalgearsloth
+# SPDX-FileCopyrightText: 2025 Ilya246
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: constructionGraph
   id: GasTrinary
   start: start
@@ -12,6 +21,13 @@
         doAfter: 1
 
     - to: filterflipped
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    # Goobstation
+    - to: inline_filter
       steps:
       - material: Steel
         amount: 2
@@ -55,6 +71,23 @@
 
   - node: filterflipped
     entity: GasFilterFlipped
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  # Goobstation - inline filter
+  - node: inline_filter
+    entity: GasFilterInline
     edges:
     - to: start
       conditions:

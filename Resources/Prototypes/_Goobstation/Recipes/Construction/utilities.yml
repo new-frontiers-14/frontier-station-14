@@ -1,0 +1,47 @@
+# SPDX-FileCopyrightText: 2025 Ilya246
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: construction
+  id: GasFilterInline
+  name: inline gas filter
+  description: Filters gases from a pipenet without splitting it in two.
+  graph: GasTrinary
+  startNode: start
+  targetNode: inline_filter
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: _Goobstation/Structures/Piping/inlinegasfilter.rsi
+    state: gasFilter
+  conditions:
+  - !type:NoUnstackableInTile
+
+- type: construction
+  id: HeatExchangerInline
+  name: inline radiator
+  description: Transfers heat between the pipe and its surroundings. Doesn't need gas flow.
+  graph: GasBinary
+  startNode: start
+  targetNode: inlineradiator
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: _Goobstation/Structures/Piping/inlineradiator.rsi
+    state: heInlineStraight
+
+- type: construction
+  id: HeatExchangerInlineBend
+  name: inline radiator bend
+  description: Transfers heat between the pipe and its surroundings. Doesn't need gas flow.
+  graph: GasBinary
+  startNode: start
+  targetNode: bendinlineradiator
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: _Goobstation/Structures/Piping/inlineradiator.rsi
+    state: heInlineBend
