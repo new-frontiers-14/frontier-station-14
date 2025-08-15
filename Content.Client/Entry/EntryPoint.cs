@@ -1,4 +1,3 @@
-using Content.Client._Harmony.JoinQueue;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -23,7 +22,7 @@ using Content.Client.Stylesheets;
 using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
-using Content.Shared._Harmony.Common.JoinQueue;
+using Content.Shared._Harmony.JoinQueue;
 using Content.Shared.Ame.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Localizations;
@@ -77,10 +76,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly DebugMonitorManager _debugMonitorManager = default!;
         [Dependency] private readonly TitleWindowManager _titleWindowManager = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
-
-        // Harmony Queue Start
-        [Dependency] private readonly JoinQueueManager _joinQueue = default!;
-        // Harmony Queue End
+        [Dependency] private readonly IJoinQueueManager _joinQueue = default!; // Harmony
 
         public override void Init()
         {

@@ -49,7 +49,7 @@ namespace Content.Server.GameTicking
                 return string.Empty;
             }
 
-            var playerCount = $"{_playerManager.PlayerCount - (_cfg.GetCVar(HCCVars.EnableQueue) ? _joinQueue.PlayerInQueueCount : 0)}"; // Harmony Queue Start
+            var playerCount = $"{_joinQueue.ActualPlayersCount}"; // Harmony - remove queue members from player count
             var readyCount = _playerGameStatuses.Values.Count(x => x == PlayerGameStatus.ReadyToPlay);
 
             var stationNames = new StringBuilder();

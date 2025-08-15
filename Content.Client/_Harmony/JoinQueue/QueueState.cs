@@ -1,55 +1,56 @@
-using Content.Shared._Harmony.Common.JoinQueue;
 using Robust.Client.Audio;
-using Robust.Client.Console;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Audio;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 
 namespace Content.Client._Harmony.JoinQueue;
 
 public sealed class QueueState : State
 {
-    [Dependency] private readonly IUserInterfaceManager _userInterface = default!;
-    [Dependency] private readonly IClientConsoleHost _console = default!;
+    [Dependency] private readonly IClientJoinQueueManager _joinQueueManager = default!;
+    [Dependency] private readonly IClientNetManager _netManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
 
+    protected override Type? LinkedScreenType { get; } = typeof(QueueGui);
+    public QueueGui? Queue;
 
     private static readonly SoundSpecifier JoinSoundPath = new SoundPathSpecifier("/Audio/Effects/newplayerping.ogg");
 
-    private QueueGui? _gui;
-
-
     protected override void Startup()
     {
-        _gui = new QueueGui();
-        _userInterface.StateRoot.AddChild(_gui);
+        if (_userInterfaceManager.ActiveScreen == null)
+        {
+            return;
+        }
 
-        _gui.QuitPressed += OnQuitPressed;
+        Queue = (QueueGui) _userInterfaceManager.ActiveScreen;
+
+        Queue.QuitButton.OnPressed += OnQuitButtonPressed;
+
+        _joinQueueManager.QueueStateUpdated += OnQueueStateUpdated;
+        OnQueueStateUpdated(); // Update the current state, even if it might be incorrect.
     }
 
     protected override void Shutdown()
     {
-        _gui!.QuitPressed -= OnQuitPressed;
-        _userInterface.StateRoot.RemoveChild(_gui);
+        _joinQueueManager.QueueStateUpdated -= OnQueueStateUpdated;
 
-        Ding();
-    }
-
-
-    public void OnQueueUpdate(QueueUpdateMessage msg)
-    {
-        _gui?.UpdateInfo(msg.Total, msg.Position);
-    }
-
-    private void OnQuitPressed()
-    {
-        _console.ExecuteCommand("disconnect");
-    }
-
-
-    private void Ding()
-    {
-        if (IoCManager.Resolve<IEntityManager>().TrySystem<AudioSystem>(out var audio))
+        if (_entityManager.TrySystem<AudioSystem>(out var audio))
             audio.PlayGlobal(JoinSoundPath, Filter.Local(), false);
+    }
+
+    private void OnQuitButtonPressed(BaseButton.ButtonEventArgs args)
+    {
+        _netManager.ClientDisconnect(_loc.GetString("queue-disconnect-reason"));
+    }
+
+    private void OnQueueStateUpdated()
+    {
+        Queue?.UpdateInfo(_joinQueueManager.PlayerInQueueCount, _joinQueueManager.CurrentPosition);
     }
 }

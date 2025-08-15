@@ -6,20 +6,15 @@ using Robust.Client.UserInterface.XAML;
 namespace Content.Client._Harmony.JoinQueue;
 
 [GenerateTypedNameReferences]
-public sealed partial class QueueGui : Control
+public sealed partial class QueueGui : UIScreen
 {
-    public event Action? QuitPressed;
-
-
     public QueueGui()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        LayoutContainer.SetAnchorPreset(this, LayoutContainer.LayoutPreset.Wide);
-
-        QuitButton.OnPressed += (_) => QuitPressed?.Invoke();
+        SetAnchorPreset(Background, LayoutPreset.Wide);
+        SetAnchorPreset(MainContainer, LayoutPreset.Wide);
     }
-
 
     public void UpdateInfo(int total, int position)
     {
