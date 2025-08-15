@@ -43,6 +43,8 @@ deep-fried-fried-item-examine = It's covered in a thick, crispy layer.
 deep-fried-burned-item = burned {$entity}
 deep-fried-burned-item-examine = It's blackened with char.
 
+deep-fryier-component-upgrade-storage = Storage
+
 # Frontier: cauldron definitions
 deep-fried-spooky-item = spooky {$entity}
 deep-fried-spooky-item-examine = It's slick with oil and translucent.
