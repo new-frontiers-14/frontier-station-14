@@ -122,6 +122,7 @@
     sprite: Objects/Consumable/Drinks/pitcher.rsi
     layers:
       - state: icon
+        map: ["enum.SolutionContainerLayers.Base"]
       - state: fill-6
         map: ["enum.SolutionContainerLayers.Fill"]
         visible: false
@@ -129,3 +130,5 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: fill-
+    inHandsMaxFillLevels: 2
+    inHandsFillBaseName: -fill-

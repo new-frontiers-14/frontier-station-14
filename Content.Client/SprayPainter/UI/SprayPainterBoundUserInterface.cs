@@ -1,11 +1,9 @@
-// Rewritten in Upstream#37341
-
 using Content.Shared.Decals;
 using Content.Shared.SprayPainter;
 using Content.Shared.SprayPainter.Components;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Prototypes; // Upstream#37341
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.SprayPainter.UI;
 
@@ -17,7 +15,6 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
     [ViewVariables]
     private SprayPainterWindow? _window;
 
-    // Upstream#37341
     protected override void Open()
     {
         base.Open();
@@ -97,5 +94,3 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
         SendPredictedMessage(new SprayPainterSetPipeColorMessage(key));
     }
 }
-
-// End Rewritten in Upstream#37341
