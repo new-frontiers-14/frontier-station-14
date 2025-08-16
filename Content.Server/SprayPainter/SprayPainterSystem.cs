@@ -1,5 +1,3 @@
-// Rewritten in Upstream#37341
-
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.EntitySystems;
 using Content.Server.Charges;
@@ -192,5 +190,3 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
         args.Handled = DoAfter.TryStartDoAfter(doAfterEventArgs);
     }
 }
-
-// End Rewritten in Upstream#37341
