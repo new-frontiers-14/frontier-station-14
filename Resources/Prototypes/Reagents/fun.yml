@@ -38,10 +38,13 @@
     Food:
       effects:
       - !type:SatiateHunger
-        factor: 1 # Frontier
+        factor: 4
         conditions:
         - !type:OrganType
           type: Moth
+        - !type:ReagentThreshold #Only satiates when eaten with nutriment, Frontier
+          reagent: Nutriment
+          min: 0.1
 
 - type: reagent
   id: BuzzochloricBees
