@@ -12,8 +12,8 @@
     - Energy
     reflectProb: 0.2
     spread: 90
-  - type: Paintable # Upstream#37341
-    group: CrateSteel # Upstream#37341
+  - type: Paintable
+    group: CrateSteel
   - type: RadiationBlockingContainer
     resistance: 2.5
 
@@ -33,8 +33,8 @@
     - entity_storage
   - type: StaticPrice
     price: 80 # Frontier: 100<80 - TODO: material value rework
-  - type: Paintable # Upstream#37341
-    group: CratePlastic # Upstream#37341
+  - type: Paintable
+    group: CratePlastic
 
 - type: entity
   parent: CratePlastic
@@ -53,8 +53,8 @@
     node: done
     containers:
     - entity_storage
-  - type: Paintable # Upstream#37341
-    group: null # Upstream#37341
+  - type: Paintable
+    group: null
 
 - type: entity
   parent: CratePlastic
@@ -161,6 +161,15 @@
     damageModifierSet: Web
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 50
@@ -399,6 +408,15 @@
     sprite: Structures/Storage/Crates/cage.rsi
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 15
@@ -695,6 +713,15 @@
     state: base
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 15
@@ -737,6 +764,15 @@
     state: base
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 200 # discourage just beating the grave to break it open
@@ -815,8 +851,8 @@
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "0.0,0.03125"
       map: ["enum.PaperLabelVisuals.Layer"]
-  - type: Paintable # Upstream#37341
-    group: null # Upstream#37341
+  - type: Paintable
+    group: null
 
 - type: entity
   parent: CrateBaseSecure
@@ -843,8 +879,8 @@
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: AccessReader
 #    access: [["Janitor"]]
-  - type: Paintable # Upstream#37341
-    group: null # Upstream#37341
+  - type: Paintable
+    group: null
 
 - type: entity
   parent: CrateBaseWeldable
