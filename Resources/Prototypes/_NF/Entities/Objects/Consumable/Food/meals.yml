@@ -612,3 +612,33 @@
           Quantity: 3
         - ReagentId: Nutriment
           Quantity: 2
+
+- type: entity
+  name: chicken parmesan
+  parent: FoodMealBase
+  id: FoodMealChickenParmesan
+  description: The highest-rated method to taming an Australian. Just be sure to call it "chicken parm"...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - savory
+      - tomato
+      - chicken
+      - pasta
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meals.rsi
+    state: chickenparm
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 12
+  - type: Tag
+    tags:
+    - Meat

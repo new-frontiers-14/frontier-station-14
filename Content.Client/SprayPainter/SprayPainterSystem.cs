@@ -1,4 +1,3 @@
-// Rewritten in Upstream#37341
 using System.Linq;
 using Content.Client.Items;
 using Content.Client.Message;
@@ -128,5 +127,3 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
 /// A spray paintable decal, mapped by ID.
 /// </summary>
 public sealed record SprayPainterDecalEntry(string Name, SpriteSpecifier Sprite);
-
-// Rewritten in Upstream#37341

@@ -110,7 +110,7 @@
   - type: Speech
     speechSounds: Harpy
     speechVerb: Harpy
-    allowedEmotes: ['Meow', 'Hiss', 'Mew', 'Purr', 'Growl', 'Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'HarpyHonk', 'HarpyRing', 'HarpyPew', 'HarpyBang', 'HarpyBeep', 'HarpyRev', 'HarpyCaw', 'Squish', 'Chitter', 'Squeak', 'Click', 'Belch', 'Squish'] # Frontier: add Belch, Squish
+    allowedEmotes: ['Meow', 'Hiss', 'Mew', 'Purr', 'Growl', 'Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'HarpyHonk', 'HarpyRing', 'HarpyPew', 'HarpyBang', 'HarpyBeep', 'HarpyRev', 'HarpyCaw', 'Squish', 'Chitter', 'Squeak', 'Click', 'Belch', 'Squish', 'Bubble', 'Pop'] # Frontier: add Belch, Squish, Bubble, Pop
   - type: Vocal
     sounds:
       Male: SoundsHarpy
@@ -127,7 +127,7 @@
 #    baseWalkSpeed: 2.5 # Frontier
 #    baseSprintSpeed: 5.0 # Frontier
     weightlessAcceleration: 2.5
-  - type: Inventory 
+  - type: Inventory
     speciesId: harpy
     displacements:
       jumpsuit:
@@ -154,7 +154,7 @@
   components:
   - type: HumanoidAppearance
     species: Harpy
-  - type: Inventory 
+  - type: Inventory
     speciesId: harpy
     displacements:
       jumpsuit:
@@ -208,21 +208,25 @@
 
 - type: entity
   id: ActionHarpyPlayMidi
+  parent: BaseAction # Frontier, Wizden#27422 compliance
   name: Play MIDI
   description: Sing your heart out! Right click yourself to set an instrument.
   components:
-  - type: InstantAction
+  - type: Action # Frontier, Wizden#27422 compliance, InstantAction<Action
     checkCanInteract: false
     icon: _DV/Interface/Actions/harpy_sing.png
+  - type: InstantAction # Frontier, Wizden#27422 compliance
     event: !type:OpenUiActionEvent
       key: enum.InstrumentUiKey.Key
 
 - type: entity
   id: ActionSyrinxChangeVoiceMask
+  parent: BaseAction # Frontier, Wizden#27422 compliance
   name: Set name
   description: Change the name others hear to something else.
   components:
-  - type: InstantAction
+  - type: Action # Frontier, Wizden#27422 compliance, InstantAction<Action
     icon: _DV/Interface/Actions/harpy_syrinx.png
     itemIconStyle: BigAction
+  - type: InstantAction # Frontier, Wizden#27422 compliance
     event: !type:VoiceMaskSetNameEvent

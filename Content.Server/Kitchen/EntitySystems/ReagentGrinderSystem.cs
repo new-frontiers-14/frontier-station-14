@@ -22,6 +22,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using System.Linq;
+using Content.Server.Construction.Completions;
 using Content.Server.Jittering;
 using Content.Shared.Jittering;
 using Content.Shared.Power;
@@ -40,6 +41,7 @@ namespace Content.Server.Kitchen.EntitySystems
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+        [Dependency] private readonly SharedDestructibleSystem _destructible = default!;
         [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
         [Dependency] private readonly JitteringSystem _jitter = default!;
 
@@ -127,10 +129,7 @@ namespace Content.Server.Kitchen.EntitySystems
                         if (solution.Volume > containerSolution.AvailableVolume)
                             continue;
 
-                        var dev = new DestructionEventArgs();
-                        RaiseLocalEvent(item, dev);
-
-                        QueueDel(item);
+                        _destructible.DestroyEntity(item);
                     }
 
                     _solutionContainersSystem.TryAddSolution(containerSoln.Value, solution);

@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 255.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 07/17/2025 21:09:14
+  entityCount: 104
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   37: FloorDarkMini
@@ -49,6 +60,7 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
+      dampingModifier: 0.25
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -194,6 +206,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-1.5
       parent: 1
+    - type: DeviceList
+      devices:
+      - 41
+      - 62
 - proto: AirlockGlassShuttle
   entities:
   - uid: 27
@@ -402,6 +418,13 @@ entities:
     - type: Transform
       pos: -0.27797323,3.1280715
       parent: 1
+- proto: FuelPlasma
+  entities:
+  - uid: 36
+    components:
+    - type: Transform
+      pos: -0.5,-0.52195466
+      parent: 1
 - proto: GasMixerOn
   entities:
   - uid: 37
@@ -497,6 +520,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 56
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -506,6 +532,9 @@ entities:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 56
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -611,6 +640,8 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 1
+    - type: FuelGenerator
+      targetPower: 8000
 - proto: PoweredlightLED
   entities:
   - uid: 53
@@ -670,13 +701,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-0.5
-      parent: 1
-- proto: SheetPlasma
-  entities:
-  - uid: 36
-    components:
-    - type: Transform
-      pos: -0.515625,-0.453125
       parent: 1
 - proto: SignJanitor
   entities:
