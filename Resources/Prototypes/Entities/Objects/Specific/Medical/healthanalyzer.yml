@@ -2,6 +2,7 @@
   id: HandheldHealthAnalyzerUnpowered
   parent: [BaseItem, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   name: health analyzer
+  suffix: Always Powered
   description: A hand-held body scanner capable of distinguishing vital signs of the subject.
   components:
   - type: Sprite
@@ -46,7 +47,7 @@
 - type: entity
   id: HandheldHealthAnalyzer
   parent: [ HandheldHealthAnalyzerUnpowered, PowerCellSlotSmallItem]
-  suffix: Powered
+  suffix: ""
   components:
   - type: PowerCellDraw
     drawRate: 1.2 #Calculated for 5 minutes on a small cell
