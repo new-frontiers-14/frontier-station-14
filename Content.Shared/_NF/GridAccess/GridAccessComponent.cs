@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Audio;
 
 namespace Content.Shared._NF.GridAccess;
 
@@ -11,4 +12,16 @@ public sealed partial class GridAccessComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? LinkedShuttleUid = null;
+
+    [DataField]
+    public SoundSpecifier ErrorSound =
+        new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
+
+    [DataField]
+    public SoundSpecifier SwipeSound =
+        new SoundPathSpecifier("/Audio/Machines/id_swipe.ogg");
+
+    [DataField]
+    public SoundSpecifier InsertSound =
+        new SoundPathSpecifier("/Audio/Machines/id_insert.ogg");
 }
