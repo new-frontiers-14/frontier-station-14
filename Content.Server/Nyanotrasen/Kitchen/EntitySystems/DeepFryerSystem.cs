@@ -54,9 +54,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared._NF.Kitchen.Components; // Frontier
-using Content.Server._NF.Kitchen.Components; // Frontier
 using Content.Shared.Cargo; // Frontier
 using Content.Shared.NameModifier.EntitySystems; // Frontier
+using Content.Shared.Construction.Components; // Frontier
+using Content.Shared.Nutrition.Components; // Frontier
 
 namespace Content.Server.Nyanotrasen.Kitchen.EntitySystems;
 
@@ -622,10 +623,10 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         solution = null;
         transferAmount = FixedPoint2.Zero;
 
-        if (!TryComp<HandsComponent>(user, out var handsComponent))
+        if (!TryComp<HandsComponent>(user, out var handsComponent) || _handsSystem.TryGetActiveItem(user, out heldItem)) // Frontier: reformat to use the hand system
             return false;
 
-        heldItem = handsComponent.ActiveHandEntity;
+        // heldItem = handsComponent.ActiveHandEntity;
 
         if (heldItem == null ||
             !TryComp<SolutionTransferComponent>(heldItem, out var solutionTransferComponent) ||

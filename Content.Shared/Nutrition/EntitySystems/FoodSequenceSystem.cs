@@ -10,7 +10,7 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Server._NF.Kitchen.Components; // Frontier
+using Content.Shared._NF.Kitchen.Components; // Frontier
 
 namespace Content.Shared.Nutrition.EntitySystems;
 

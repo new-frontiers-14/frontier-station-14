@@ -1,4 +1,4 @@
-namespace Content.Server._NF.Kitchen.Components;
+namespace Content.Shared._NF.Kitchen.Components;
 
 // Denotes that an item cannot become crispy in the deep fryer, but should burn normally.
 [RegisterComponent]

@@ -1,8 +1,7 @@
-using Content.Shared.Construction.Components;
 using Content.Shared.Stacks;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Construction;
+namespace Content.Shared.Construction.Components;
 
 public struct MachinePartState
 {
