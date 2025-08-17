@@ -19,6 +19,8 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_breaker_flip.ogg
     weight: 7
     earliestStart: 15 # Frontier
     duration: 1
@@ -30,14 +32,18 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    weight: 5
     earliestStart: 15 # Frontier
     startAnnouncement: station-event-power-grid-check-nf-start-announcement # Frontier: add nf-
     endAnnouncement: station-event-power-grid-check-nf-end-announcement # Frontier: add nf-
     startAudio:
-      path: /Audio/Announcements/power_off.ogg
       params:
-        volume: -4
+        volume: -0
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_power_offnf.ogg
+  #  endAudio:
+  #    path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_power_onnf.ogg  ##PowerGridCheckRule handles end audio, leaving this incase that breaks
+  #    params:
+  #     volume: -4
+    weight: 5
     duration: 60
     maxDuration: 120
   - type: PowerGridCheckRule
@@ -47,13 +53,15 @@
   id: NFSolarFlare
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_solar_flare_start.ogg
     weight: 4
     earliestStart: 15
     reoccurrenceDelay: 45
     startAnnouncement: station-event-solar-flare-nf-start-announcement
     endAnnouncement: station-event-solar-flare-nf-end-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_solar_flare_end.ogg
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
@@ -68,7 +76,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-nf-start-announcement # Frontier: add nf-
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_vent_clog.ogg
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
