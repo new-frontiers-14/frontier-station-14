@@ -1,9 +1,6 @@
 using System.Collections.Frozen;
-<<<<<<< HEAD
-using System.Collections.Immutable;
-=======
+using System.Collections.Immutable; // DeltaV
 using Content.Server.Popups;
->>>>>>> wizden/stable
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Emoting;
 using Content.Shared.Speech;
@@ -16,13 +13,8 @@ namespace Content.Server.Chat.Systems;
 // emotes using emote prototype
 public partial class ChatSystem
 {
-<<<<<<< HEAD
-    private FrozenDictionary<string, ImmutableList<EmotePrototype>> _wordEmoteDict = FrozenDictionary<string, ImmutableList<EmotePrototype>>.Empty; // DeltaV - Multiple emotes
-=======
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-
-    private FrozenDictionary<string, EmotePrototype> _wordEmoteDict = FrozenDictionary<string, EmotePrototype>.Empty;
->>>>>>> wizden/stable
+    private FrozenDictionary<string, ImmutableList<EmotePrototype>> _wordEmoteDict = FrozenDictionary<string, ImmutableList<EmotePrototype>>.Empty; // DeltaV - Multiple emotes
 
     protected override void OnPrototypeReload(PrototypesReloadedEventArgs obj)
     {
@@ -181,56 +173,46 @@ public partial class ChatSystem
     /// </summary>
     /// <param name="uid"></param>
     /// <param name="textInput"></param>
-<<<<<<< HEAD
-    private bool TryEmoteChatInput(EntityUid uid, string textInput) // Frontier: void<bool
+    /// <returns>True if the chat message should be displayed (because the emote was explicitly cancelled), false if it should not be.</returns>
+    private bool TryEmoteChatInput(EntityUid uid, string textInput)
     {
         var actionTrimmedLower = TrimPunctuation(textInput.ToLower());
         if (!_wordEmoteDict.TryGetValue(actionTrimmedLower, out var emotes)) // DeltaV, renames to emotes
-            return false; // Frontier: add false
+            return true;
 
-        bool validEmote = false; // DeltaV - Multiple emotes for the same trigger
+        var validEmote = false; // DeltaV - Multiple emotes for the same trigger
         foreach (var emote in emotes)
         {
             if (!AllowedToUseEmote(uid, emote))
                 continue;
 
-            InvokeEmoteEvent(uid, emote);
-            validEmote = true; // DeltaV
-            break; // Frontier: break on first emote (avoid playing multiple sounds at once)
+            if (TryInvokeEmoteEvent(uid, emote))
+            {
+                validEmote = true; // DeltaV
+                break; // Frontier: break on first emote (avoid playing multiple sounds at once)
+            }
         }
 
-        return validEmote; // Frontier
-=======
-    /// <returns>True if the chat message should be displayed (because the emote was explicitly cancelled), false if it should not be.</returns>
-    private bool TryEmoteChatInput(EntityUid uid, string textInput)
-    {
-        var actionTrimmedLower = TrimPunctuation(textInput.ToLower());
-        if (!_wordEmoteDict.TryGetValue(actionTrimmedLower, out var emote))
-            return true;
-
-        if (!AllowedToUseEmote(uid, emote))
-            return true;
-
-        return TryInvokeEmoteEvent(uid, emote);
->>>>>>> wizden/stable
-
-        static string TrimPunctuation(string textInput)
-        {
-            var trimEnd = textInput.Length;
-            while (trimEnd > 0 && char.IsPunctuation(textInput[trimEnd - 1]))
-            {
-                trimEnd--;
-            }
-
-            var trimStart = 0;
-            while (trimStart < trimEnd && char.IsPunctuation(textInput[trimStart]))
-            {
-                trimStart++;
-            }
-
-            return textInput[trimStart..trimEnd];
-        }
+        return validEmote;
     }
+
+    static string TrimPunctuation(string textInput)
+    {
+        var trimEnd = textInput.Length;
+        while (trimEnd > 0 && char.IsPunctuation(textInput[trimEnd - 1]))
+        {
+            trimEnd--;
+        }
+
+        var trimStart = 0;
+        while (trimStart < trimEnd && char.IsPunctuation(textInput[trimStart]))
+        {
+            trimStart++;
+        }
+
+        return textInput[trimStart..trimEnd];
+    }
+
     /// <summary>
     /// Checks if we can use this emote based on the emotes whitelist, blacklist, and availibility to the entity.
     /// </summary>

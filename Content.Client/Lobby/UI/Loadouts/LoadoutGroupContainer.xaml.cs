@@ -95,24 +95,14 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
         {
             var protos = kvp.Value;
 
-<<<<<<< HEAD
+            // Frontier Upstream merge TODO: Fix this
             // Frontier: hide loadout effects
             if (loadout.IsHidden(profile, session, loadoutProto, collection))
                 continue;
             // End Frontier: hide loadout effects
-
-            var matchingLoadout = selected.FirstOrDefault(e => e.Prototype == loadoutProto);
-            var pressed = matchingLoadout != null;
-
-            var enabled = loadout.IsValid(profile, session, loadoutProto, collection, out var reason);
-            var loadoutContainer = new LoadoutContainer(loadoutProto, !enabled, reason);
-            loadoutContainer.Select.Pressed = pressed;
             loadoutContainer.Text = string.IsNullOrEmpty(loadProto.Name) ? loadoutSystem.GetName(loadProto) : loadProto.Name; // Frontier: allow overriding loadout names
 
-            loadoutContainer.Select.OnPressed += args =>
-=======
             if (protos.Count > 1)
->>>>>>> wizden/stable
             {
                 /*
                  * Build the list of UI elements for each loadout prototype:
@@ -129,14 +119,14 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
                     })
                     .ToList();
 
-                /* 
-                * Determine which element should be displayed first: 
-                * - If any element is currently selected (its button is pressed), use it. 
-                * - Otherwise, fallback to the first element in the list. 
-                * 
-                * This moves the selected item outside of the sublist for better usability, 
-                * making it easier for players to quickly toggle loadout options (e.g. clothing, accessories) 
-                * without having to search inside expanded subgroups. 
+                /*
+                * Determine which element should be displayed first:
+                * - If any element is currently selected (its button is pressed), use it.
+                * - Otherwise, fallback to the first element in the list.
+                *
+                * This moves the selected item outside of the sublist for better usability,
+                * making it easier for players to quickly toggle loadout options (e.g. clothing, accessories)
+                * without having to search inside expanded subgroups.
                 */
                 var firstElement = uiElements.FirstOrDefault(e => e.Select.Pressed) ?? uiElements[0];
 
@@ -247,8 +237,8 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
     /// <summary>
     /// Creates a UI container for a single Loadout item.
     ///
-    /// This method was extracted from RefreshLoadouts because the logic for creating 
-    /// individual loadout items is used multiple times inside that method, and duplicating 
+    /// This method was extracted from RefreshLoadouts because the logic for creating
+    /// individual loadout items is used multiple times inside that method, and duplicating
     /// the code made it harder to maintain.
     ///
     /// Logic:

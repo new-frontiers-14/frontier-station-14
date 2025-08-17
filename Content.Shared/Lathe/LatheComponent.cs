@@ -29,11 +29,7 @@ namespace Content.Shared.Lathe
         /// The lathe's construction queue
         /// </summary>
         [DataField]
-<<<<<<< HEAD
-        public List<LatheRecipeBatch> Queue = new(); // Frontier: LatheRecipePrototype<LatheRecipeBatch
-=======
-        public Queue<ProtoId<LatheRecipePrototype>> Queue = new();
->>>>>>> wizden/stable
+        public List<LatheRecipeBatch> Queue = new(); // Frontier: Queue<ProtoId<LatheRecipePrototype>> < List<LatheRecipeBatch>
 
         /// <summary>
         /// The sound that plays when the lathe is producing an item, if any

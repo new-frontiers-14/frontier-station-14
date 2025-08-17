@@ -592,23 +592,14 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entity", ent),
             ("message", FormattedMessage.RemoveMarkupOrThrow(action)));
 
-<<<<<<< HEAD
-        bool soundEmoteSent = true; // Frontier: if check emote is false, assume somebody's sending an emote
-        if (checkEmote)
-            soundEmoteSent = TryEmoteChatInput(source, action); // Frontier: assign value to soundEmoteSent
-
-        // Frontier: send emote message
-        if (!soundEmoteSent)
-        {
-            var ev = new NFEntityEmotedEvent(source, action);
-            RaiseLocalEvent(source, ev, true);
-        }
-        // End Frontier
-=======
         if (checkEmote &&
             !TryEmoteChatInput(source, action))
+        {
+            var ev = new NFEntityEmotedEvent(source, action); // Frontier
+            RaiseLocalEvent(source, ev, true); // Frontier
             return;
->>>>>>> wizden/stable
+        }
+
 
         SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, author);
         if (!hideLog)
@@ -709,7 +700,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             case ChatTransmitRange.GhostRangeLimitNoAdminCheck:
                 initialResult = (data.Observer && data.Range < 0) ? MessageRangeCheckResult.HideChat : MessageRangeCheckResult.Full;
                 break;
-            // End Frontier
+                // End Frontier
         }
         var insistHideChat = data.HideChatOverride ?? false;
         var insistNoHideChat = !(data.HideChatOverride ?? true);

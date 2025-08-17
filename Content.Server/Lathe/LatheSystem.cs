@@ -204,7 +204,6 @@ namespace Content.Server.Lathe
 
                 _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
             }
-<<<<<<< HEAD
 
             // Frontier: queue up a batch
             if (component.Queue.Count > 0 && component.Queue[^1].Recipe.ID == recipe.ID)
@@ -212,10 +211,7 @@ namespace Content.Server.Lathe
             else
                 component.Queue.Add(new LatheRecipeBatch(recipe, 0, quantity));
             // End Frontier
-            // component.Queue.Add(recipe); // Frontier
-=======
-            component.Queue.Enqueue(recipe);
->>>>>>> wizden/stable
+            // component.Queue.Enqueue(recipe); // Frontier
 
             return true;
         }
@@ -227,7 +223,6 @@ namespace Content.Server.Lathe
             if (component.CurrentRecipe != null || component.Queue.Count <= 0 || !this.IsPowered(uid, EntityManager))
                 return false;
 
-<<<<<<< HEAD
             // Frontier: handle batches
             var batch = component.Queue.First();
             batch.ItemsPrinted++;
@@ -235,10 +230,9 @@ namespace Content.Server.Lathe
                 component.Queue.RemoveAt(0);
             var recipe = batch.Recipe;
             // End Frontier
-=======
-            var recipeProto = component.Queue.Dequeue();
-            var recipe = _proto.Index(recipeProto);
->>>>>>> wizden/stable
+
+            // var recipeProto = component.Queue.Dequeue();
+            // var recipe = _proto.Index(recipeProto);
 
             var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
 
@@ -322,15 +316,11 @@ namespace Content.Server.Lathe
             if (!Resolve(uid, ref component))
                 return;
 
-<<<<<<< HEAD
             var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault()?.Recipe; // Frontier: add ?.Recipe
-=======
-            var producing = component.CurrentRecipe;
-            if (producing == null && component.Queue.TryPeek(out var next))
-                producing = next;
->>>>>>> wizden/stable
+            //if (producing == null && component.Queue.TryPeek(out var next))
+            //    producing = next;
 
-            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue.ToArray(), producing);
+            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing);
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 
@@ -568,7 +558,7 @@ namespace Content.Server.Lathe
                     var batch = component.Queue.First();
                     if (batch.Recipe != component.CurrentRecipe)
                     {
-                        var newBatch = new LatheRecipeBatch(component.CurrentRecipe, 0, 1);
+                        var newBatch = new LatheRecipeBatch(_proto.Index(component.CurrentRecipe.GetValueOrDefault()), 0, 1);
                         component.Queue.Insert(0, newBatch);
                     }
                     else if (batch.ItemsPrinted > 0)
@@ -620,7 +610,7 @@ namespace Content.Server.Lathe
 
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(args.Actor):player} aborted printing {GetRecipeName(component.CurrentRecipe)} at {ToPrettyString(uid):lathe}");
+                $"{ToPrettyString(args.Actor):player} aborted printing {GetRecipeName(_proto.Index(component.CurrentRecipe.GetValueOrDefault()))} at {ToPrettyString(uid):lathe}");
 
             component.CurrentRecipe = null;
             FinishProducing(uid, component);

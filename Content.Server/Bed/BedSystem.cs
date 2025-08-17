@@ -3,15 +3,7 @@ using Content.Shared.Bed.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
-<<<<<<< HEAD
-using Content.Shared.Emag.Components;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Power;
-using Content.Server.Construction; // Frontier
-=======
-using Content.Shared.Mobs.Systems;
->>>>>>> wizden/stable
 
 namespace Content.Server.Bed
 {
@@ -27,17 +19,6 @@ namespace Content.Server.Bed
             base.Initialize();
 
             _sleepingQuery = GetEntityQuery<SleepingComponent>();
-<<<<<<< HEAD
-
-            SubscribeLocalEvent<StasisBedComponent, StrappedEvent>(OnStasisStrapped);
-            SubscribeLocalEvent<StasisBedComponent, UnstrappedEvent>(OnStasisUnstrapped);
-            SubscribeLocalEvent<StasisBedComponent, PowerChangedEvent>(OnPowerChanged);
-            SubscribeLocalEvent<StasisBedComponent, GotEmaggedEvent>(OnEmagged);
-            SubscribeLocalEvent<StasisBedComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
-            SubscribeLocalEvent<StasisBedComponent, RefreshPartsEvent>(OnRefreshParts); // Frontier
-            SubscribeLocalEvent<StasisBedComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier
-=======
->>>>>>> wizden/stable
         }
 
         public override void Update(float frameTime)
@@ -69,96 +50,5 @@ namespace Content.Server.Bed
                 }
             }
         }
-<<<<<<< HEAD
-
-        private void UpdateAppearance(EntityUid uid, bool isOn)
-        {
-            _appearance.SetData(uid, StasisBedVisuals.IsOn, isOn);
-        }
-
-        private void OnStasisStrapped(Entity<StasisBedComponent> bed, ref StrappedEvent args)
-        {
-            if (!HasComp<BodyComponent>(args.Buckle) || !this.IsPowered(bed, EntityManager))
-                return;
-
-            var metabolicEvent = new ApplyMetabolicMultiplierEvent(args.Buckle, bed.Comp.Multiplier, true);
-            RaiseLocalEvent(args.Buckle, ref metabolicEvent);
-        }
-
-        private void OnStasisUnstrapped(Entity<StasisBedComponent> bed, ref UnstrappedEvent args)
-        {
-            if (!HasComp<BodyComponent>(args.Buckle) || !this.IsPowered(bed, EntityManager))
-                return;
-
-            var metabolicEvent = new ApplyMetabolicMultiplierEvent(args.Buckle, bed.Comp.Multiplier, false);
-            RaiseLocalEvent(args.Buckle, ref metabolicEvent);
-        }
-
-        private void OnPowerChanged(EntityUid uid, StasisBedComponent component, ref PowerChangedEvent args)
-        {
-            UpdateAppearance(uid, args.Powered);
-            UpdateMetabolisms(uid, component, args.Powered);
-        }
-
-        private void OnEmagged(EntityUid uid, StasisBedComponent component, ref GotEmaggedEvent args)
-        {
-            if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-                return;
-
-            if (_emag.CheckFlag(uid, EmagType.Interaction))
-                return;
-
-            // Reset any metabolisms first so they receive the multiplier correctly
-            UpdateMetabolisms(uid, component, false);
-            component.Multiplier = 1 / component.Multiplier;
-            UpdateMetabolisms(uid, component, true);
-            args.Handled = true;
-        }
-
-        // Frontier: demag
-        private void OnUnemagged(EntityUid uid, StasisBedComponent component, ref GotUnEmaggedEvent args)
-        {
-            if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-                return;
-
-            if (!_emag.CheckFlag(uid, EmagType.Interaction))
-                return;
-
-            // Reset any metabolisms first so they receive the multiplier correctly
-            UpdateMetabolisms(uid, component, false);
-            component.Multiplier = 1 / component.Multiplier; // Reciprocal of reciprocal
-            UpdateMetabolisms(uid, component, true);
-            args.Handled = true;
-        }
-        // End Frontier: demag
-
-        private void UpdateMetabolisms(EntityUid uid, StasisBedComponent component, bool shouldApply)
-        {
-            if (!TryComp<StrapComponent>(uid, out var strap) || strap.BuckledEntities.Count == 0)
-                return;
-
-            foreach (var buckledEntity in strap.BuckledEntities)
-            {
-                var metabolicEvent = new ApplyMetabolicMultiplierEvent(buckledEntity, component.Multiplier, shouldApply);
-                RaiseLocalEvent(buckledEntity, ref metabolicEvent);
-            }
-        }
-
-        // Frontier: upgradeable parts
-        private void OnRefreshParts(EntityUid uid, StasisBedComponent component, RefreshPartsEvent args)
-        {
-            var metabolismRating = args.PartRatings[component.MachinePartMetabolismModifier];
-            component.Multiplier = component.BaseMultiplier * metabolismRating; //linear scaling so it's not OP
-            if (_emag.CheckFlag(uid, EmagType.Interaction))
-                component.Multiplier = 1f / component.Multiplier;
-        }
-
-        private void OnUpgradeExamine(EntityUid uid, StasisBedComponent component, UpgradeExamineEvent args)
-        {
-            args.AddPercentageUpgrade("stasis-bed-component-upgrade-stasis", component.Multiplier / component.BaseMultiplier);
-        }
-        // End Frontier: upgradeable parts
-=======
->>>>>>> wizden/stable
     }
 }

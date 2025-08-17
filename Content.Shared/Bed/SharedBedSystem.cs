@@ -7,6 +7,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.Construction; // Frontier
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -35,6 +36,10 @@ public abstract class SharedBedSystem : EntitySystem
         SubscribeLocalEvent<StasisBedComponent, GotEmaggedEvent>(OnStasisEmagged);
         SubscribeLocalEvent<StasisBedComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<StasisBedBuckledComponent, GetMetabolicMultiplierEvent>(OnStasisGetMetabolicMultiplier);
+
+        SubscribeLocalEvent<StasisBedComponent, GotUnEmaggedEvent>(OnUnemagged); // Frontier
+        SubscribeLocalEvent<StasisBedComponent, RefreshPartsEvent>(OnRefreshParts); // Frontier
+        SubscribeLocalEvent<StasisBedComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier
     }
 
     private void OnHealMapInit(Entity<HealOnBuckleComponent> ent, ref MapInitEvent args)
@@ -88,6 +93,22 @@ public abstract class SharedBedSystem : EntitySystem
         args.Handled = true;
     }
 
+    // Frontier: demag
+    private void OnUnemagged(Entity<StasisBedComponent> ent, ref GotUnEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!_emag.CheckFlag(ent, EmagType.Interaction))
+            return;
+
+        ent.Comp.Multiplier = 1f / ent.Comp.Multiplier; // Reciprocal of reciprocal
+        UpdateMetabolisms(ent.Owner);
+        Dirty(ent);
+        args.Handled = true;
+    }
+    // End Frontier: demag
+
     private void OnPowerChanged(Entity<StasisBedComponent> ent, ref PowerChangedEvent args)
     {
         UpdateMetabolisms(ent.Owner);
@@ -117,4 +138,19 @@ public abstract class SharedBedSystem : EntitySystem
             _metabolizer.UpdateMetabolicMultiplier(buckledEntity);
         }
     }
+
+    // Frontier: upgradeable parts
+    private void OnRefreshParts(EntityUid uid, StasisBedComponent component, RefreshPartsEvent args)
+    {
+        var metabolismRating = args.PartRatings[component.MachinePartMetabolismModifier];
+        component.Multiplier = component.BaseMultiplier * metabolismRating; //linear scaling so it's not OP
+        if (_emag.CheckFlag(uid, EmagType.Interaction))
+            component.Multiplier = 1f / component.Multiplier;
+    }
+
+    private void OnUpgradeExamine(EntityUid uid, StasisBedComponent component, UpgradeExamineEvent args)
+    {
+        args.AddPercentageUpgrade("stasis-bed-component-upgrade-stasis", component.Multiplier / component.BaseMultiplier);
+    }
+    // End Frontier: upgradeable parts
 }
