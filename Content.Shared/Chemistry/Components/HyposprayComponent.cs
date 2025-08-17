@@ -2,6 +2,7 @@ using Content.Shared.DoAfter; // Frontier: Upstream, #30704 - MIT
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Audio;
+using Robust.Shared.Serialization; // Frontier
 
 namespace Content.Shared.Chemistry.Components;
 

@@ -7,7 +7,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
-using Content.Shared.Construction; // Frontier
+using Content.Shared.Construction.Components; // Frontier
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
