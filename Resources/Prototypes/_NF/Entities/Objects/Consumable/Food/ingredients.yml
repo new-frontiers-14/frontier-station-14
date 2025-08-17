@@ -256,3 +256,53 @@
           Quantity: 2
         - ReagentId: Sugar
           Quantity: 1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodRiceNoodlesSheet
+  name: rice noodles sheet
+  description: A sheet of rice, ready to be chopped into noodles. Probably better cooked.
+  components:
+  - type: Item
+    storedRotation: -90
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: rice-noodle-sheet
+  - type: SliceableFood
+    count: 3
+    slice: FoodRiceNoodles
+  - type: Tag
+    tags:
+    - Raw
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 65 # it's a bunch of raw rice. How sad to eat this.
+        reagents:
+        - ReagentId: Rice
+          Quantity: 45
+        - ReagentId: TableSalt
+          Quantity: 10
+        - ReagentId: Cornoil
+          Quantity: 10
+
+- type: entity
+  parent: FoodNoodlesBase
+  id: FoodRiceNoodles
+  name: rice noodles
+  description: A nest of delicate rice noodles. Probably better cooked.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: rice-noodle
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 21
+        reagents:
+        - ReagentId: Rice
+          Quantity: 15
+        - ReagentId: TableSalt
+          Quantity: 3
+        - ReagentId: Cornoil
+          Quantity: 3

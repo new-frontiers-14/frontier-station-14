@@ -358,12 +358,13 @@
 - type: technology
   id: NFHardsuitsBasic
   name: nf-research-technology-hardsuits-basic
-  entityIcon: ClothingOuterHardsuitBasic
+  entityIcon: ClothingOuterHardsuitSpatio
   discipline: NFEngineering
   tier: 1
   cost: 2500
   recipeUnlocks:
-  - ClothingOuterHardsuitBasic
+  - ClothingOuterHardsuitSpatio
+  - ClothingOuterHardsuitPilot
   position: 0, 8
 
 - type: technology
@@ -375,8 +376,6 @@
   cost: 5000
   recipeUnlocks:
   - ClothingOuterHardsuitSalvage
-  - ClothingOuterHardsuitSpatio
-  - ClothingOuterHardsuitPilot
   technologyPrerequisites:
   - NFHardsuitsBasic
   position: 1, 8
@@ -1641,6 +1640,18 @@
   - NFBluespaceOreStorage
   position: 4, 38
 
+- type: technology
+  id: NFBluespaceGasTanks
+  name: nf-research-technology-bluespace-gas-tanks
+  entityIcon: BluespaceAirTank
+  discipline: NFSalvage
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - BluespaceAirTank
+  technologyPrerequisites:
+  - NFAdvancedPersonalPropulsion
+  position: 4, 3
 # region Munitions
 
 - type: technology
