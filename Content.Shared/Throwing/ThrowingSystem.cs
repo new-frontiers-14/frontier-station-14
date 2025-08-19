@@ -237,7 +237,7 @@ public sealed class ThrowingSystem : EntitySystem
         RaiseLocalEvent(user.Value, ref pushEv);
         const float massLimit = 5f;
 
-        if (pushEv.Push || _gravity.IsWeightless(user.Value))
+        if (pushEv.Push)
         {
             // Frontier: apply impulse to buckled object if buckled
             if (TryComp<BuckleComponent>(user, out var buckle) && buckle.BuckledTo is not null)
