@@ -8,11 +8,13 @@ using Content.Shared.Item;
 using Content.Shared.Nyanotrasen.Kitchen.UI;
 using Content.Shared.Storage;
 using Content.Shared.Tools.Components;
+using Content.Shared.Hands.EntitySystems; // Frontier
 
 namespace Content.Server.Nyanotrasen.Kitchen.EntitySystems;
 
 public sealed partial class DeepFryerSystem
 {
+    [Dependency] private readonly SharedHandsSystem _hands = default!; // Frontier
     public bool CanInsertItem(EntityUid uid, DeepFryerComponent component, EntityUid item)
     {
         // Keep this consistent with the checks in TryInsertItem.
@@ -80,11 +82,11 @@ public sealed partial class DeepFryerSystem
 
     private void OnInsertItem(EntityUid uid, DeepFryerComponent component, DeepFryerInsertItemMessage args)
     {
-        if (!TryComp<HandsComponent>(args.Actor, out var handsComponent) ||
-            handsComponent.ActiveHandEntity == null)
+        // Frontier: Rewrite for hand refactor compliance (wizden #38438)
+        if (!_hands.TryGetActiveItem(uid, out var item))
             return;
 
-        if (handsComponent.ActiveHandEntity != null)
-            TryInsertItem(uid, component, args.Actor, handsComponent.ActiveHandEntity.Value);
+        TryInsertItem(uid, component, args.Actor, item.Value);
+        // End Frontier
     }
 }

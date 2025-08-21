@@ -117,13 +117,13 @@ public abstract partial class SharedHandsSystem : EntitySystem
         if (!_actionBlocker.CanInteract(session.AttachedEntity.Value, null))
             return;
 
-        if (component.ActiveHand == null || component.Hands.Count < 2)
+        if (component.ActiveHandId == null || component.Hands.Count < 2)
             return;
 
-        var newActiveIndex = component.SortedHands.IndexOf(component.ActiveHand.Name) + component.Hands.Count - 1; // Ensure no negatives
+        var newActiveIndex = component.SortedHands.IndexOf(component.ActiveHandId) + component.Hands.Count - 1; // Ensure no negatives
         var nextHand = component.SortedHands[newActiveIndex % component.Hands.Count];
 
-        TrySetActiveHand(session.AttachedEntity.Value, nextHand, component);
+        TrySetActiveHand((session.AttachedEntity.Value, component), nextHand);
     }
     // End Frontier: swap hands
 
