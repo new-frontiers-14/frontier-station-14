@@ -1,7 +1,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Binary.Components;
 using Content.Server.Atmos.Piping.Components;
-using Content.Server.Construction;
 using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
@@ -12,6 +11,7 @@ using Content.Shared.Audio;
 using Content.Shared.Examine;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
+using Content.Shared.Construction.Components; // Frontier
 
 namespace Content.Server.Atmos.Piping.Binary.EntitySystems
 {

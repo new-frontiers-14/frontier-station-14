@@ -28,7 +28,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Server.Construction; // Frontier
+using Content.Shared.Construction.Components; // Frontier
 
 namespace Content.Server.Cloning;
 

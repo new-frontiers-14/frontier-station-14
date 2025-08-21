@@ -1,5 +1,5 @@
 using Content.Server.Body.Components;
-using Content.Server.Construction;
+using Content.Shared.Construction.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Ghost;
 using Content.Server.Stack;
