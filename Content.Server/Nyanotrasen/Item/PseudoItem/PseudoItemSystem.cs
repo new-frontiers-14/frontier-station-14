@@ -44,7 +44,7 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
         {
             Act = () =>
             {
-                StartInsertDoAfter(args.User, uid, item, component); // Frontier - hand refactor compliance (wizden #38438)
+                StartInsertDoAfter(args.User, uid, item.Value, component); // Frontier - hand refactor compliance (wizden #38438)
             },
             Text = Loc.GetString("action-name-insert-other", ("target", Identity.Entity(args.Target, EntityManager))),
             Priority = 2

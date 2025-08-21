@@ -1,4 +1,4 @@
-namespace Content.Server.Body.Components;
+namespace Content.Shared.Body.Components;
 
 /// <summary>
 /// Raised before a body gets gibbed, before it is deleted.
