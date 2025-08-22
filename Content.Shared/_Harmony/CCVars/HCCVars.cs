@@ -11,9 +11,10 @@ public sealed class HCCVars
     /// <summary>
     /// Modifies suicide command to ghost without killing the entity.
     /// </summary>
-    public static readonly CVarDef<bool> DisableSuicide =
-        CVarDef.Create("ic.disable_suicide", false, CVar.SERVER);
-
+    /// Frontier: Disabled the anti suicide code pending discussion about wanting it
+   /// public static readonly CVarDef<bool> DisableSuicide =
+   ///     CVarDef.Create("ic.disable_suicide", false, CVar.SERVER);
+   /// end Frontier
     /// <summary>
     /// Allows server hosters to turn the queue on and off
     /// </summary>
