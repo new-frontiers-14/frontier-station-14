@@ -416,8 +416,8 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: prospector
-    scale: 1.2, 1.2    
- 
+    scale: 1.2, 1.2
+
 - type: entity
   parent: PosterBase
   id: ShuttleMapPulsar
@@ -453,6 +453,17 @@
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: searchlight
     scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapSiphon
+  name: "NC Siphon"
+  description: "Detailed map of a Siphon shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: siphon
 
 - type: entity
   parent: PosterBase
