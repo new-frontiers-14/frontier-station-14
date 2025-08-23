@@ -1,3 +1,10 @@
+// SPDX-FileCopyrightText: 2025 Dvir
+// SPDX-FileCopyrightText: 2025 Ilya246
+// SPDX-FileCopyrightText: 2025 Milon
+// SPDX-FileCopyrightText: 2025 Whatstone
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Numerics;
 using Content.Server._NF.Atmos.Components;
 using Content.Server.Administration.Logs;
@@ -108,17 +115,27 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
             depositPrototype = (GasDepositPrototype)randomPrototype;
         }
 
+        // Mono
+        var mix = new GasMixture();
+
         for (var i = 0; i < depositPrototype.Gases.Length && i < Atmospherics.TotalNumberOfGases; i++)
         {
             var gasRange = depositPrototype.Gases[i];
             var gasAmount = gasRange[0] + _random.NextFloat() * (gasRange[1] - gasRange[0]);
-            gasAmount *= ent.Comp.Scale;
-            deposit.Deposit.SetMoles(i, gasAmount);
+            mix.SetMoles(i, gasAmount);
         }
 
-        deposit.LowMoles = deposit.Deposit.TotalMoles * LowMoleCoefficient;
+        // Mono
+        var moleCount = mix.TotalMoles;
+        deposit.Composition = mix;
+        deposit.Composition.Multiply(1f / moleCount);
+        deposit.Yield = ent.Comp.Scale;
+        deposit.MinYield *= MathF.Sqrt(ent.Comp.Scale);
+        deposit.GasLeft = moleCount * ent.Comp.Scale;
+        deposit.LowMoles = moleCount * LowMoleCoefficient;
     }
 
+    // Mono - changes throughout the method
     private void OnExtractorUpdate(Entity<GasDepositExtractorComponent> ent, ref AtmosDeviceUpdateEvent args)
     {
         if (!ent.Comp.Enabled
@@ -131,7 +148,7 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
             return;
         }
 
-        if (depositComp.Deposit.TotalMoles < Atmospherics.GasMinMoles)
+        if (!depositComp.YieldBased && depositComp.GasLeft < Atmospherics.GasMinMoles)
         {
             _ambientSound.SetAmbience(ent, false);
             SetDepositState(ent, GasDepositExtractorState.Empty);
@@ -146,12 +163,16 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
             return;
         }
 
+        var extractionRate = ent.Comp.ExtractionRate;
+        if (depositComp.YieldBased)
+            extractionRate *= depositComp.Yield;
+
         var targetPressure = float.Clamp(ent.Comp.TargetPressure, 0, ent.Comp.MaxTargetPressure);
 
         // How many moles could we theoretically spawn. Cap by pressure, amount, and extractor limit.
         var allowableMoles = (targetPressure - net.Air.Pressure) * net.Air.Volume /
-                             (ent.Comp.OutputTemperature * Atmospherics.R);
-        allowableMoles = float.Min(allowableMoles, ent.Comp.ExtractionRate * args.dt);
+                             (depositComp.OutputTemperature * Atmospherics.R);
+        allowableMoles = float.Min(allowableMoles, extractionRate * args.dt);
 
         if (allowableMoles < Atmospherics.GasMinMoles)
         {
@@ -160,12 +181,21 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
             return;
         }
 
-        var removed = depositComp.Deposit.Remove(allowableMoles);
-        removed.Temperature = ent.Comp.OutputTemperature;
-        _atmosphere.Merge(net.Air, removed);
+        var extracted = depositComp.Composition.Clone();
+        extracted.Multiply(allowableMoles);
+        extracted.Temperature = depositComp.OutputTemperature;
+
+        if (!depositComp.YieldBased)
+            depositComp.GasLeft -= allowableMoles;
+        else
+            depositComp.Yield = MathF.Max(depositComp.MinYield, depositComp.Yield - depositComp.YieldDrop * ent.Comp.ExtractionRate * args.dt);
+
+        _atmosphere.Merge(net.Air, extracted);
 
         _ambientSound.SetAmbience(ent, true);
-        if (depositComp.Deposit.TotalMoles <= depositComp.LowMoles)
+
+        var isLow = depositComp.YieldBased ? depositComp.Yield == depositComp.MinYield : depositComp.GasLeft <= depositComp.LowMoles;
+        if (isLow)
             SetDepositState(ent, GasDepositExtractorState.Low);
         else
             SetDepositState(ent, GasDepositExtractorState.On);

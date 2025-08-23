@@ -1,0 +1,123 @@
+# SPDX-FileCopyrightText: 2025 Ilya246
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entityTable
+  id: VgroidGasDepositTable
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: DeepGasDepositVerySmall
+      weight: 0.1
+    - !type:NestedSelector
+      tableId: DeepGasDepositSmall
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: DeepGasDeposit
+      weight: 0.4
+    - !type:NestedSelector
+      tableId: DeepGasDepositLarge
+      weight: 0.2
+    - !type:NestedSelector
+      tableId: DeepGasDepositVeryLarge
+      weight: 0.1
+
+- type: entityTable
+  id: DeepGasDepositVerySmall
+  table: !type:GroupSelector
+    children:
+    - id: DeepGasDepositOxygenVerySmall
+    - id: DeepGasDepositNitrogenVerySmall
+    - id: DeepGasDepositCarbonDioxideVerySmall
+    - id: DeepGasDepositPlasmaVerySmall
+    - id: DeepGasDepositAmmoniaVerySmall
+    - id: DeepGasDepositWaterVaporVerySmall
+    - id: DeepGasDepositNitrousOxideVerySmall
+    - id: DeepGasDepositAirVerySmall
+    - id: DeepGasDepositMuddleEvenVerySmall
+    - id: DeepGasDepositMuddlePlasmaVerySmall
+    - id: DeepGasDepositFrezonVerySmall
+      weight: 0.5 # rare
+
+- type: entityTable
+  id: DeepGasDepositSmall
+  table: !type:GroupSelector
+    children:
+    - id: DeepGasDepositOxygenSmall
+    - id: DeepGasDepositNitrogenSmall
+    - id: DeepGasDepositCarbonDioxideSmall
+    - id: DeepGasDepositPlasmaSmall
+    - id: DeepGasDepositAmmoniaSmall
+    - id: DeepGasDepositWaterVaporSmall
+    - id: DeepGasDepositNitrousOxideSmall
+    - id: DeepGasDepositAirSmall
+    - id: DeepGasDepositMuddleEvenSmall
+    - id: DeepGasDepositMuddlePlasmaSmall
+    - id: DeepGasDepositFrezonSmall
+      weight: 0.5 # rare
+
+- type: entityTable
+  id: DeepGasDeposit
+  table: !type:GroupSelector
+    children:
+    - id: DeepGasDepositOxygen
+    - id: DeepGasDepositNitrogen
+    - id: DeepGasDepositCarbonDioxide
+    - id: DeepGasDepositPlasma
+    - id: DeepGasDepositAmmonia
+    - id: DeepGasDepositWaterVapor
+    - id: DeepGasDepositNitrousOxide
+    - id: DeepGasDepositAir
+    - id: DeepGasDepositMuddleEven
+    - id: DeepGasDepositMuddlePlasma
+    - id: DeepGasDepositFrezon
+      weight: 0.5 # rare
+
+- type: entityTable
+  id: DeepGasDepositLarge
+  table: !type:GroupSelector
+    children:
+    - id: DeepGasDepositOxygenLarge
+    - id: DeepGasDepositNitrogenLarge
+    - id: DeepGasDepositCarbonDioxideLarge
+    - id: DeepGasDepositPlasmaLarge
+    - id: DeepGasDepositAmmoniaLarge
+    - id: DeepGasDepositWaterVaporLarge
+    - id: DeepGasDepositNitrousOxideLarge
+    - id: DeepGasDepositAirLarge
+    - id: DeepGasDepositMuddleEvenLarge
+    - id: DeepGasDepositMuddlePlasmaLarge
+    - id: DeepGasDepositFrezonLarge
+      weight: 0.5 # rare
+
+- type: entityTable
+  id: DeepGasDepositVeryLarge
+  table: !type:GroupSelector
+    children:
+    - id: DeepGasDepositOxygenVeryLarge
+    - id: DeepGasDepositNitrogenVeryLarge
+    - id: DeepGasDepositCarbonDioxideVeryLarge
+    - id: DeepGasDepositPlasmaVeryLarge
+    - id: DeepGasDepositAmmoniaVeryLarge
+    - id: DeepGasDepositWaterVaporVeryLarge
+    - id: DeepGasDepositNitrousOxideVeryLarge
+    - id: DeepGasDepositAirVeryLarge
+    - id: DeepGasDepositMuddleEvenVeryLarge
+    - id: DeepGasDepositMuddlePlasmaVeryLarge
+    - id: DeepGasDepositFrezonVeryLarge
+      weight: 0.5 # rare
+
+- type: entityTable
+  id: DeepGasDepositFrezon
+  table: !type:GroupSelector
+    children:
+    - id: DeepGasDepositFrezonVerySmall
+      weight: 0.1
+    - id: DeepGasDepositFrezonSmall
+      weight: 0.2
+    - id: DeepGasDepositFrezon
+      weight: 0.4
+    - id: DeepGasDepositFrezonLarge
+      weight: 0.2
+    - id: DeepGasDepositFrezonVeryLarge
+      weight: 0.1

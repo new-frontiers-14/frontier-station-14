@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2025 Ilya246
+// SPDX-FileCopyrightText: 2025 Whatstone
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Linq;
 using Content.Server._NF.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -163,7 +168,7 @@ public sealed class GasDepositScannerSystem : EntitySystem
                 return false;
             }
 
-            gasMixList = GenerateGasEntryArray(gasDeposit.Deposit);
+            gasMixList = GenerateGasEntryArray(gasDeposit.Composition, gasDeposit.GasLeft); // Mono
         }
 
         // Don't bother sending a UI message with no content, and stop updating I guess?
@@ -179,7 +184,8 @@ public sealed class GasDepositScannerSystem : EntitySystem
     /// <summary>
     /// Generates a GasEntry array for a given GasMixture.
     /// </summary>
-    private GasEntry[] GenerateGasEntryArray(GasMixture? mixture)
+    private GasEntry[] GenerateGasEntryArray(GasMixture? mixture,
+                                             float scale) // Mono
     {
         if (mixture == null)
             return [];
@@ -195,13 +201,15 @@ public sealed class GasDepositScannerSystem : EntitySystem
 
             var gasName = Loc.GetString(gas.Name);
             ApproximateGasDepositSize depositSize;
-            if (mixture[i] < 500.0)
+            // Mono
+            var gasCount = mixture[i] * scale;
+            if (gasCount < 500.0)
                 depositSize = ApproximateGasDepositSize.Trace;
-            else if (mixture[i] < 3000.0)
+            else if (gasCount < 3000.0)
                 depositSize = ApproximateGasDepositSize.Small;
-            else if (mixture[i] < 10000.0)
+            else if (gasCount < 10000.0)
                 depositSize = ApproximateGasDepositSize.Medium;
-            else if (mixture[i] < 30000.0)
+            else if (gasCount < 30000.0)
                 depositSize = ApproximateGasDepositSize.Large;
             else
                 depositSize = ApproximateGasDepositSize.Enormous;

@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2025 Ilya246
+// SPDX-FileCopyrightText: 2025 Milon
+// SPDX-FileCopyrightText: 2025 Whatstone
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Server._NF.Atmos.Systems;
 using Content.Shared._NF.Atmos.Prototypes;
 using Robust.Shared.Prototypes;
@@ -17,6 +23,7 @@ public sealed partial class RandomGasDepositComponent : Component
     /// <summary>
     /// A scale factor on the deposit's size.
     /// After each gas is chosen from the deposit prototype, the scale factor is multiplied into the deposit size.
+    /// Mono - Is used as yield for deep deposits. Minimum yield is also multiplied by the square root of this.
     /// </summary>
     [DataField]
     public float Scale = 1.0f;

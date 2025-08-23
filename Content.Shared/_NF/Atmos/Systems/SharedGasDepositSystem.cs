@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2025 Ilya246
+// SPDX-FileCopyrightText: 2025 Milon
+// SPDX-FileCopyrightText: 2025 Whatstone
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Shared._NF.Atmos.Components;
 using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.Construction.Components;
@@ -41,10 +47,22 @@ public abstract class SharedGasDepositSystem : EntitySystem
 
         if (_net.IsServer && TryComp(ent.Comp.DepositEntity, out GasDepositComponent? deposit))
         {
-            float estimatedAmount = MathF.Round(deposit.Deposit.TotalMoles / DrillExamineAmountRound) * DrillExamineAmountRound;
-            args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined-amount",
-                ("statusColor", "lightblue"),
-                ("value", estimatedAmount)));
+            // Mono
+            if (deposit.YieldBased)
+            {
+                var hitMinimum = deposit.Yield == deposit.MinYield;
+                args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined-yield",
+                    ("statusColor", "lightblue"),
+                    ("yield", deposit.Yield * 100f),
+                    ("hitMinimum", hitMinimum)));
+            }
+            else
+            {
+                float estimatedAmount = MathF.Round(deposit.GasLeft / DrillExamineAmountRound) * DrillExamineAmountRound;
+                args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined-amount",
+                    ("statusColor", "lightblue"),
+                    ("value", estimatedAmount)));
+            }
         }
     }
 
