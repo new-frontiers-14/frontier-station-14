@@ -58,7 +58,7 @@
   - type: Sprite
     scale: 1.2, 1.2
 # endregion Base Deposits
-  
+
 # region Standard Deposits
 - type: entity
   parent: BaseGasDeposit
@@ -157,6 +157,16 @@
     depositPrototype: MuddlePlasma
   - type: Sprite
     color: "#F0DDF0"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositHelium
+  suffix: Helium
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyHelium
+  - type: Sprite
+    color: "#fab87e"
 # endregion Standard Deposits
 
 # region Very Small Deposits
@@ -229,6 +239,13 @@
   - GasDepositMuddlePlasma
   id: GasDepositMuddlePlasmaVerySmall
   suffix: Muddled P+, Very Small
+
+- type: entity
+  parent:
+  - BaseGasDepositVerySmall
+  - GasDepositHelium
+  id: GasDepositHeliumVerySmall
+  suffix: Helium, Very Small
 # endregion Very Small Deposits
 
 # region Small Deposits
@@ -301,6 +318,13 @@
   - GasDepositMuddlePlasma
   id: GasDepositMuddlePlasmaSmall
   suffix: Muddled P+, Small
+
+- type: entity
+  parent:
+  - BaseGasDepositSmall
+  - GasDepositHelium
+  id: GasDepositHeliumSmall
+  suffix: Helium, Small
 # endregion Small Deposits
 
 # region Large Deposits
@@ -373,6 +397,13 @@
   - GasDepositMuddlePlasma
   id: GasDepositMuddlePlasmaLarge
   suffix: Muddled P+, Large
+
+- type: entity
+  parent:
+  - BaseGasDepositLarge
+  - GasDepositHelium
+  id: GasDepositHeliumLarge
+  suffix: Helium, Large
 # endregion Large Deposits
 
 # region Very Large Deposits
@@ -445,6 +476,13 @@
   - GasDepositMuddlePlasma
   id: GasDepositMuddlePlasmaVeryLarge
   suffix: Muddled P+, Very Large
+
+- type: entity
+  parent:
+  - BaseGasDepositVeryLarge
+  - GasDepositHelium
+  id: GasDepositHeliumVeryLarge
+  suffix: Helium, Very Large
 # endregion Very Large Deposits
 
 # Debug item for detecting gas deposits
@@ -473,25 +511,24 @@
       - state: screen
         shader: unshaded
         visible: false
-        map: ["enum.ToggleVisuals.Layer"]
+        map: ["enum.ToggleableVisuals.Layer"]
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: { visible: true }
           False: { visible: false }
       enum.GasDepositScannerVisuals.Enabled:
-        enum.ToggleVisuals.Layer:
+        enum.ToggleableVisuals.Layer:
           True: { state: data, visible: true }
           False: { state: screen }
   - type: ItemToggle
   - type: ProximityBeeper
   - type: ProximityDetector
     range: 20
-    criteria:
-      components:
-      - GasDeposit
+    components:
+    - type: GasDeposit
   - type: Beeper
     isMuted: true
     minBeepInterval: 0.15

@@ -28,7 +28,7 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
     [Dependency] private readonly SharedAppearanceSystem _sharedAppearanceSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly RiggableSystem _riggableSystem = default!;
-    [Dependency] private readonly PowerReceiverSystem _powerSystem = default!;
+    [Dependency] private readonly PowerReceiverSystem _powerSystem = default!; // Frontier
 
     public override void Initialize()
     {
