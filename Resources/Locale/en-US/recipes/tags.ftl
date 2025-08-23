@@ -70,8 +70,6 @@ construction-graph-tag-potato = a potato
 construction-graph-tag-wheat-bushel = wheat bushel
 construction-graph-tag-corgi-hide = corgi hide
 soil-construction-graph-any-mushroom = any mushroom
-# Frontier: hotdog
-construction-graph-tag-hotdog = hotdog
 
 # toys
 construction-graph-tag-rubber-ducky = a rubber ducky
