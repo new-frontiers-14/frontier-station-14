@@ -19,6 +19,7 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly EntityStorageSystem _storage = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     /// <summary>
     /// Checks if there is a crate on the crate machine.
@@ -31,7 +32,7 @@ public sealed partial class CrateMachineSystem : SharedCrateMachineSystem
     {
         if (!TryComp(crateMachineUid, out TransformComponent? crateMachineTransform))
             return true;
-        var tileRef = crateMachineTransform.Coordinates.GetTileRef(EntityManager, _mapManager);
+        var tileRef = _turf.GetTileRef(crateMachineTransform.Coordinates);
         if (tileRef == null)
             return true;
 
