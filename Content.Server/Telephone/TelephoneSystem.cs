@@ -78,8 +78,15 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
 
     private void OnListen(Entity<TelephoneComponent> entity, ref ListenEvent args)
     {
+        //Frontier added check for AllowSourceTransmit
         if (args.Source == entity.Owner)
-            return;
+        {
+            if (entity.Comp.AllowSourceTransmit == false || entity.Comp.BlockNextMessage == true)
+            {
+                entity.Comp.BlockNextMessage = false;
+                return;
+            }
+        }
 
         // Ignore background chatter from non-player entities
         if (!HasComp<MindContainerComponent>(args.Source))
@@ -88,6 +95,8 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         // Simple check to make sure that we haven't sent this message already this frame
         if (!_recentChatMessages.Add((args.Source, args.Message, entity)))
             return;
+
+        entity.Comp.BlockNextMessage = false; //Frontier
 
         SendTelephoneMessage(args.Source, args.Message, entity);
     }
@@ -114,6 +123,8 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
 
         var range = args.TelephoneSource.Comp.LinkedTelephones.Count > 1 ? ChatTransmitRange.HideChat : ChatTransmitRange.GhostRangeLimitNoAdminCheck; // Frontier: GhostRangeLimit<GhostRangeLimitNoAdminCheck
         var volume = entity.Comp.SpeakerVolume == TelephoneVolume.Speak ? InGameICChatType.Speak : InGameICChatType.Whisper;
+
+        entity.Comp.BlockNextMessage = true; // Frontier
 
         _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false);
     }

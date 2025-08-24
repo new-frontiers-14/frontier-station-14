@@ -242,3 +242,29 @@
     layers:
       - state: green
       - state: planttechnician
+
+- type: entity
+  id: SpawnPointForeignLieutenant
+  parent: SpawnPointPassenger
+  name: foreign lieutenant
+  components:
+  - type: SpawnPoint
+    job_id: ForeignLieutenant
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: mercenary
+
+- type: entity
+  id: SpawnPointForeignEnsign
+  parent: SpawnPointPassenger
+  name: foreign ensign
+  components:
+  - type: SpawnPoint
+    job_id: ForeignEnsign
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: mercenary

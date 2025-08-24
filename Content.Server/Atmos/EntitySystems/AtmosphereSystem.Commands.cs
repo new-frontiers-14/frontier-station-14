@@ -36,7 +36,7 @@ public sealed partial class AtmosphereSystem
            return;
        }
 
-       var mixtures = new GasMixture[13]; // Add one per added array. // Frontier:9<13
+       var mixtures = new GasMixture[22]; // Add one per added array. // Frontier:9<13 // Added nine // Frontier:9<21
        for (var i = 0; i < mixtures.Length; i++)
            mixtures[i] = new GasMixture(Atmospherics.CellVolume) { Temperature = Atmospherics.T20C };
 
@@ -86,6 +86,33 @@ public sealed partial class AtmosphereSystem
        mixtures[12].AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesStandard);
        mixtures[12].AdjustMoles(Gas.WaterVapor, Atmospherics.NitrogenMolesStandard);
        mixtures[12].Temperature = 340f; // Sauna
+
+       // Frontier - 13: Oxygen Spaceship (Admeme)
+       mixtures[13].AdjustMoles(Gas.Oxygen, Atmospherics.MolesCellSpaceship);
+
+       // Frontier - 14: Nitrogen Spaceship (Admeme)
+       mixtures[14].AdjustMoles(Gas.Nitrogen, Atmospherics.MolesCellSpaceship);
+
+       // Frontier - 15: CarbonDioxide Spaceship (Admeme)
+       mixtures[15].AdjustMoles(Gas.CarbonDioxide, Atmospherics.MolesCellSpaceship);
+
+       // Frontier - 16: Plasma Spaceship (Admeme)
+       mixtures[16].AdjustMoles(Gas.Plasma, Atmospherics.MolesCellSpaceship);
+
+       // Frontier - 17: Tritium Spaceship (Admeme)
+       mixtures[17].AdjustMoles(Gas.Tritium, Atmospherics.MolesCellSpaceship);
+
+       // Frontier - 18: WaterVapor Spaceship (Admeme)
+       mixtures[18].AdjustMoles(Gas.WaterVapor, Atmospherics.MolesCellSpaceship);
+
+       // Frontier - 19: Ammonia Spaceship (Admeme)
+       mixtures[19].AdjustMoles(Gas.Ammonia, Atmospherics.MolesCellSpaceship);
+
+       // Frontier - 20: NitrousOxide Spaceship (Admeme)
+       mixtures[20].AdjustMoles(Gas.NitrousOxide, Atmospherics.MolesCellSpaceship);
+
+       // Frontier - 21: Frezon Spaceship (Admeme)
+       mixtures[21].AdjustMoles(Gas.Frezon, Atmospherics.MolesCellSpaceship);
 
        foreach (var arg in args)
        {

@@ -1,0 +1,38 @@
+- type: entity
+  id: NFSDLawCircuitBoard
+  parent: BaseElectronics
+  name: law board (NFSDmov)
+  suffix: Admeme
+  description: An electronics board containing the NFSD lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: NFSDmov
+
+- type: entity
+  id: PirateLawCircuitBoard
+  parent: BaseElectronics
+  name: law board (Arrrsimov)
+  suffix: Admeme
+  description: An electronics board containing pirated asimov lawset and removed DRM. Cracked by the Freebooter's Union. Definitely would steal a hoverbike. Yar!
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Arrrsimov
+
+- type: entity
+  id: CentComLawCircuitBoard
+  parent: BaseElectronics
+  name: law board (CentComsimov)
+  suffix: Admeme
+  description: An electronics board containing the Central Command lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: CentComsimov
