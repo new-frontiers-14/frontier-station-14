@@ -1,0 +1,19 @@
+- type: entity
+  id: BookGasMiningHandbook
+  parent: BaseGuidebook
+  name: gas miner's handbook
+  description: Asteroid gas mining for fun, profit, and corporate glory.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_base
+      color: "#3EB388"
+    - state: decor_wingette
+      color: "#F2C46F"
+    - state: icon_atmos
+    - state: detail_rivets
+      color: "#F2C46F"
+  - type: GuideHelp
+    guides:
+    - OffshoreGasMining
