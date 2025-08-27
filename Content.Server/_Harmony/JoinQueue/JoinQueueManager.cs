@@ -53,7 +53,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
     public void Initialize()
     {
         _net.RegisterNetMessage<QueueUpdateMessage>();
-
+        _isEnabled == HCCVars.EnableQueue;
         _configuration.OnValueChanged(HCCVars.EnableQueue, OnQueueCVarChanged, true);
         _player.PlayerStatusChanged += OnPlayerStatusChanged;
     }
