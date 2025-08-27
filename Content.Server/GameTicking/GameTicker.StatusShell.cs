@@ -4,8 +4,8 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
-using Content.Shared._Harmony.CCVars;
-using Content.Shared._Harmony.JoinQueue; // Harmony Queue
+using Content.Shared._Harmony.Common.JoinQueue; // Harmony Queue
+using Content.Shared._Harmony.CCVars; // Harmony Queue
 
 namespace Content.Server.GameTicking
 {
@@ -41,12 +41,6 @@ namespace Content.Server.GameTicking
         private void GetStatusResponse(JsonNode jObject)
         {
             var preset = CurrentPreset ?? Preset;
-            // Harmony start
-            var playerCountAdminAdjustment = _cfg.GetCVar(CCVars.AdminsCountInReportedPlayerCount)
-                ? 0
-                : _adminManager.ActiveAdmins.Count();
-            var playerCount = _joinQueue.ActualPlayersCount - playerCountAdminAdjustment;
-            // Harmony end
 
             // This method is raised from another thread, so this better be thread safe!
             lock (_statusShellLock)
@@ -54,12 +48,11 @@ namespace Content.Server.GameTicking
                 jObject["name"] = _baseServer.ServerName;
                 jObject["map"] = _gameMapManager.GetSelectedMap()?.MapName;
                 jObject["round_id"] = _gameTicker.RoundId;
-                // Harmony start - remove queue members from the reported player count
-                // jObject["players"] = _cfg.GetCVar(CCVars.AdminsCountInReportedPlayerCount)
-                //     ? _playerManager.PlayerCount
-                //     : _playerManager.PlayerCount - _adminManager.ActiveAdmins.Count();
-                jObject["players"] = playerCount;
-                // Harmony end
+                jObject["players"] = _cfg.GetCVar(CCVars.AdminsCountInReportedPlayerCount)
+                    ? _playerManager.PlayerCount
+                    : _playerManager.PlayerCount - _adminManager.ActiveAdmins.Count()
+                    // Only adjust the play count if the Harmony Queue is enabled, this is to minimize the changes to the shell status code
+                    - (_cfg.GetCVar(HCCVars.EnableQueue) ? _joinQueue.PlayerInQueueCount : 0); // Harmony Queue
                 jObject["soft_max_players"] = _cfg.GetCVar(CCVars.SoftMaxPlayers);
                 jObject["panic_bunker"] = _cfg.GetCVar(CCVars.PanicBunkerEnabled);
                 jObject["run_level"] = (int) _runLevel;
