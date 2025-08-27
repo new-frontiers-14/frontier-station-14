@@ -18,7 +18,7 @@ public sealed class HCCVars
     /// Allows server hosters to turn the queue on and off
     /// </summary>
     public static readonly CVarDef<bool> EnableQueue =
-        CVarDef.Create("queue.enable", true, CVar.server);
+        CVarDef.Create("queue.enable", true, CVar.SERVER);
 
   /// <summary>
     /// The maximum number of people that can be in the queue at a time.
