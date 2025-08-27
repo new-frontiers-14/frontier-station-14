@@ -211,10 +211,10 @@ namespace Content.Server.Lathe
             }
 
             // Frontier: queue up a batch
-            if (component.Queue.Count > 0 && component.Queue[^1].Recipe.ID == recipe.ID)
+            if (component.Queue.Count > 0 && component.Queue[^1].Recipe == recipe.ID)
                 component.Queue[^1].ItemsRequested += quantity;
             else
-                component.Queue.Add(new LatheRecipeBatch(recipe, 0, quantity));
+                component.Queue.Add(new LatheRecipeBatch(recipe.ID, 0, quantity));
             // End Frontier
             // component.Queue.Enqueue(recipe); // Frontier
 
@@ -239,7 +239,7 @@ namespace Content.Server.Lathe
             // var recipeProto = component.Queue.Dequeue();
             // var recipe = _proto.Index(recipeProto);
 
-            var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
+            var time = _reagentSpeed.ApplySpeed(uid, _proto.Index(recipe).CompleteTime) * component.TimeMultiplier;
 
             var lathe = EnsureComp<LatheProducingComponent>(uid);
             lathe.StartTime = _timing.CurTime;

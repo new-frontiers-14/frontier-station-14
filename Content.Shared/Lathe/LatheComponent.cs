@@ -150,11 +150,11 @@ namespace Content.Shared.Lathe
     [Serializable]
     public sealed partial class LatheRecipeBatch : EntityEventArgs
     {
-        public LatheRecipePrototype Recipe;
+        public ProtoId<LatheRecipePrototype> Recipe;
         public int ItemsPrinted;
         public int ItemsRequested;
 
-        public LatheRecipeBatch(LatheRecipePrototype recipe, int itemsPrinted, int itemsRequested)
+        public LatheRecipeBatch(ProtoId<LatheRecipePrototype> recipe, int itemsPrinted, int itemsRequested)
         {
             Recipe = recipe;
             ItemsPrinted = itemsPrinted;
@@ -167,5 +167,5 @@ namespace Content.Shared.Lathe
     /// Event raised on a lathe when it starts producing a recipe.
     /// </summary>
     [ByRefEvent]
-    public readonly record struct LatheStartPrintingEvent(LatheRecipePrototype Recipe);
+    public readonly record struct LatheStartPrintingEvent(ProtoId<LatheRecipePrototype> Recipe);
 }

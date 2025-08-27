@@ -95,13 +95,6 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
         {
             var protos = kvp.Value;
 
-            // Frontier Upstream merge TODO: Fix this
-            // Frontier: hide loadout effects
-            if (loadout.IsHidden(profile, session, loadoutProto, collection))
-                continue;
-            // End Frontier: hide loadout effects
-            loadoutContainer.Text = string.IsNullOrEmpty(loadProto.Name) ? loadoutSystem.GetName(loadProto) : loadProto.Name; // Frontier: allow overriding loadout names
-
             if (protos.Count > 1)
             {
                 /*
@@ -161,41 +154,6 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
                 );
             }
         }
-
-        // Frontier: loadoutGroup subgroups
-        foreach (var subgroupProto in _groupProto.Subgroups)
-        {
-            if (!protoMan.TryIndex(subgroupProto, out var loadoutGroupProto))
-                continue;
-
-            foreach (var loadoutProto in loadoutGroupProto.Loadouts)
-            {
-                if (!protoMan.TryIndex(loadoutProto, out var loadProto))
-                    continue;
-
-                if (loadout.IsHidden(profile, session, loadoutProto, collection))
-                    continue;
-
-                var matchingLoadout = selected.FirstOrDefault(e => e.Prototype == loadoutProto);
-                var pressed = matchingLoadout != null;
-
-                var enabled = loadout.IsValid(profile, session, loadoutProto, collection, out var reason);
-                var loadoutContainer = new LoadoutContainer(loadoutProto, !enabled, reason);
-                loadoutContainer.Select.Pressed = pressed;
-                loadoutContainer.Text = string.IsNullOrEmpty(loadProto.Name) ? loadoutSystem.GetName(loadProto) : loadProto.Name; // Frontier: allow overriding loadout names
-
-                loadoutContainer.Select.OnPressed += args =>
-                {
-                    if (args.Button.Pressed)
-                        OnLoadoutPressed?.Invoke(loadoutProto);
-                    else
-                        OnLoadoutUnpressed?.Invoke(loadoutProto);
-                };
-
-                LoadoutsContainer.AddChild(loadoutContainer);
-            }
-        }
-        // End Frontier
     }
 
     private ToggleLoadoutButton CreateToggleButton(KeyValuePair<string, List<LoadoutPrototype>> kvp, LoadoutContainer firstElement, SubLoadoutContainer subContainer)
