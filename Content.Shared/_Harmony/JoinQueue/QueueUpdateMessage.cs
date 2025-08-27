@@ -2,25 +2,25 @@ using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Harmony.JoinQueue;
+namespace Content.Shared._Harmony.Common.JoinQueue;
 
 /// <summary>
-///     Sent from server to client to update the queue information.
+///     Sent from server to client with queue state for player
+///     Also initiates queue state on client
 /// </summary>
-public sealed class MsgQueueUpdate : NetMessage
+public sealed class QueueUpdateMessage : NetMessage
 {
     public override MsgGroups MsgGroup => MsgGroups.Command;
-    public override NetDeliveryMethod DeliveryMethod => NetDeliveryMethod.ReliableSequenced; // Make sure the message gets in, but if it's late we don't care about it.
 
     /// <summary>
     ///     Total players in queue
     /// </summary>
-    public int Total;
+    public int Total { get; set; }
 
     /// <summary>
     ///     Player current position in queue (starts from 1)
     /// </summary>
-    public int Position;
+    public int Position { get; set; }
 
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {

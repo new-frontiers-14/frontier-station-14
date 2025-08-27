@@ -21,7 +21,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Server._NF.Auth; // Frontier
 using Content.Shared._Harmony.CCVars;
-using Content.Shared._Harmony.JoinQueue;
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -424,12 +423,10 @@ namespace Content.Server.Connection
         public async Task<bool> HasPrivilegedJoin(NetUserId userId)
         {
             var isAdmin = await _db.GetAdminDataForAsync(userId) != null;
-            var hasBypass = isAdmin && _cfg.GetCVar(CCVars.AdminBypassMaxPlayers);
-            _ticker ??= _entityManager.SystemOrNull<GameTicker>();
-            var wasInGame = _ticker != null &&
-                            _ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
+            var ticker = IoCManager.Resolve<IEntityManager>().System<GameTicker>();
+            var wasInGame = ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
-            return hasBypass || wasInGame;
+            return isAdmin || wasInGame;
         }
         // Harmony Queue End
     }

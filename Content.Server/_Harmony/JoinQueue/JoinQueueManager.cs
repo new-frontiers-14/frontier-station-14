@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Connection;
 using Content.Shared.CCVar;
+using Content.Shared._Harmony.Common.JoinQueue;
 using Prometheus;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -10,7 +11,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Shared._Harmony.CCVars;
 using Content.Server.Administration.Managers;
-using Content.Shared._Harmony.JoinQueue;
 
 namespace Content.Server._Harmony.JoinQueue;
 
@@ -32,12 +32,12 @@ public sealed class JoinQueueManager : IJoinQueueManager
             Buckets = Histogram.ExponentialBuckets(1, 2, 14),
         });
 
+
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IConfigurationManager _configuration = default!;
+    [Dependency] private readonly IServerNetManager _net = default!;
+    [Dependency] private readonly IConnectionManager _connection = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IConnectionManager _connectionManager = default!;
-    [Dependency] private readonly ILocalizationManager _loc= default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IServerNetManager _netManager = default!;
 
     /// <summary>
     /// Queue of active player sessions
@@ -45,56 +45,50 @@ public sealed class JoinQueueManager : IJoinQueueManager
     private readonly List<ICommonSession> _queue = new();
 
     private bool _isEnabled;
-    private int _maxPlayers;
-    private bool _adminsCountForMaxPlayers;
 
     public int PlayerInQueueCount => _queue.Count;
-    public int ActualPlayersCount => _playerManager.PlayerCount - PlayerInQueueCount;
+    public int ActualPlayersCount => _player.PlayerCount - PlayerInQueueCount - GetAdminAdjustment();
+
 
     public void Initialize()
     {
-        _netManager.RegisterNetMessage<MsgQueueJoin>();
-        _netManager.RegisterNetMessage<MsgQueueUpdate>();
+        _net.RegisterNetMessage<QueueUpdateMessage>();
 
-        _cfg.OnValueChanged(HCCVars.EnableQueue, OnQueueCVarChanged, true);
-        _cfg.OnValueChanged(CCVars.SoftMaxPlayers, maxPlayers => _maxPlayers = maxPlayers, true);
-        _cfg.OnValueChanged(CCVars.AdminsCountForMaxPlayers, adminsCountForMaxPlayers => _adminsCountForMaxPlayers = adminsCountForMaxPlayers, true);
-        _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
+        _configuration.OnValueChanged(HCCVars.EnableQueue, OnQueueCVarChanged, true);
+        _player.PlayerStatusChanged += OnPlayerStatusChanged;
     }
+
 
     private void OnQueueCVarChanged(bool value)
     {
         _isEnabled = value;
 
-        if (value)
-            return;
-
-        foreach (var session in _queue)
+        if (!value)
         {
-            session.Channel.Disconnect(_loc.GetString("queue-kick-disabled"));
+            foreach (var session in _queue)
+                session.Channel.Disconnect("Queue was disabled");
         }
     }
+
 
     private async void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
     {
-        switch (e.NewStatus)
+        if (e.NewStatus == SessionStatus.Disconnected)
         {
-            case SessionStatus.Disconnected:
-                var wasInQueue = _queue.Remove(e.Session);
-                ProcessQueue(true);
+            var wasInQueue = _queue.Remove(e.Session);
+            // Process the queue if user was in queue, or if they were in the game
+            if (wasInQueue || e.OldStatus == SessionStatus.InGame)
+                ProcessQueue(true, e.Session.ConnectedTime);
 
-                if (wasInQueue)
-                {
-                    QueueTimings.WithLabels("Unwaited")
-                        .Observe((DateTime.UtcNow - e.Session.ConnectedTime).TotalSeconds);
-                }
-                break;
-
-            case SessionStatus.Connected:
-                OnPlayerConnected(e.Session);
-                break;
+            if (wasInQueue)
+                QueueTimings.WithLabels("Unwaited").Observe((DateTime.UtcNow - e.Session.ConnectedTime).TotalSeconds);
+        }
+        else if (e.NewStatus == SessionStatus.Connected)
+        {
+            OnPlayerConnected(e.Session);
         }
     }
+
 
     private async void OnPlayerConnected(ICommonSession session)
     {
@@ -104,51 +98,40 @@ public sealed class JoinQueueManager : IJoinQueueManager
             return;
         }
 
-        var isPrivileged = await _connectionManager.HasPrivilegedJoin(session.UserId);
-        var currentOnline = _playerManager.PlayerCount - GetAdminAdjustment() - 1;
-        var haveFreeSlot = currentOnline < _cfg.GetCVar(CCVars.SoftMaxPlayers);
+        var isPrivileged = await _connection.HasPrivilegedJoin(session.UserId);
+        var currentOnline = _player.PlayerCount - GetAdminAdjustment() - 1;
+        var haveFreeSlot = currentOnline < _configuration.GetCVar(CCVars.SoftMaxPlayers);
         if (isPrivileged || haveFreeSlot)
         {
             SendToGame(session);
-            ProcessQueue(false);
-            return;
+        }
+        else
+        {
+            _queue.Add(session);
         }
 
-        _chatManager.SendAdminAnnouncement(
-            Loc.GetString(
-                "player-join-queue-message",
-                ("name", session.Name),
-                ("queueCount", PlayerInQueueCount + 1)));
-
-        _queue.Add(session);
-        session.Channel.SendMessage(new MsgQueueJoin());
-
-        ProcessQueue(false);
+        ProcessQueue(false, session.ConnectedTime);
     }
 
     /// <summary>
-    /// Make sure that all players that could be sent into the game, are sent into the game.
-    /// This ensures that the queue will always allow all needed players in, even if the count was changed by
-    /// unforeseen circumstances like a CVar changing.
+    /// If possible, takes the first player in the queue and sends him into the game
     /// </summary>
     /// <param name="isDisconnect">Is method called on disconnect event</param>
-    private void ProcessQueue(bool isDisconnect)
+    /// <param name="connectedTime">Session connected time for histogram metrics</param>
+    private void ProcessQueue(bool isDisconnect, DateTime connectedTime)
     {
-        var players = ActualPlayersCount - GetAdminAdjustment();
+        var players = ActualPlayersCount;
         if (isDisconnect)
             players--; // Decrease currently disconnected session but that has not yet been deleted
 
-        while (players < _maxPlayers)
-        {
-            if (PlayerInQueueCount == 0)
-                break; // queue empty, stop iterating.
+        var haveFreeSlot = players < _configuration.GetCVar(CCVars.SoftMaxPlayers);
+        var regularQueueContains = _queue.Count > 0;
 
+        if (haveFreeSlot && regularQueueContains)
+        {
             var session = _queue.First();
             SendToGame(session);
-            QueueTimings.WithLabels("Waited")
-                .Observe((DateTime.UtcNow - session.ConnectedTime).TotalSeconds);
-
-            players++;
+            QueueTimings.WithLabels("Waited").Observe((DateTime.UtcNow - connectedTime).TotalSeconds);
         }
 
         SendUpdateMessages();
@@ -160,17 +143,17 @@ public sealed class JoinQueueManager : IJoinQueueManager
     /// </summary>
     private void SendUpdateMessages()
     {
-        var position = 1;
+        var totalInQueue = _queue.Count;
+        var currentPosition = 1;
 
-        foreach (var session in _queue)
+        for (var i = 0; i < _queue.Count; i++, currentPosition++)
         {
-            session.Channel.SendMessage(new MsgQueueUpdate
-            {
-                Total = PlayerInQueueCount,
-                Position = position,
-            });
-
-            position++;
+            _queue[i]
+                .Channel.SendMessage(new QueueUpdateMessage
+                {
+                    Total = totalInQueue,
+                    Position = currentPosition,
+                });
         }
     }
 
@@ -181,7 +164,7 @@ public sealed class JoinQueueManager : IJoinQueueManager
     private void SendToGame(ICommonSession session)
     {
         _queue.Remove(session);
-        Timer.Spawn(0, () => _playerManager.JoinGame(session));
+        Timer.Spawn(0, () => _player.JoinGame(session));
     }
 
     /// <summary>
@@ -190,6 +173,6 @@ public sealed class JoinQueueManager : IJoinQueueManager
     /// <returns></returns>
     private int GetAdminAdjustment()
     {
-        return _adminsCountForMaxPlayers ? 0 : _adminManager.ActiveAdmins.Count();
+        return _configuration.GetCVar(CCVars.AdminsCountForMaxPlayers) ? 0 : _adminManager.ActiveAdmins.Count();
     }
 }
