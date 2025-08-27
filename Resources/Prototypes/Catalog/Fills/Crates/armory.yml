@@ -91,13 +91,13 @@
 
 - type: entity
   id: CrateArmoryRifle
-  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  parent: [ CrateWeaponSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   name: rifle crate
   description: Contains two high-powered assault rifles with four mags. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
-    - id: WeaponRifleLecter
+    - id: NFWeaponRifleAssaultLecter
       amount: 2
-    - id: MagazineRifle
+    - id: NFMagazineRifle20
       amount: 4
