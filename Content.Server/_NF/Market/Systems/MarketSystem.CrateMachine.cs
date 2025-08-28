@@ -69,6 +69,7 @@ public sealed partial class MarketSystem
             return;
 
         var cartBalance = Math.Max(0, MarketDataExtensions.GetMarketValue(consoleComponent.CartDataList, marketMod));
+        cartBalance += consoleComponent.TransactionCost;
         if (playerBank.Balance < cartBalance)
             return;
 
