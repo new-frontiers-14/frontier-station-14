@@ -25,7 +25,6 @@ using Content.Server.Preferences.Managers;
 using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Voting.Managers;
-using Content.Shared._Harmony.Common.JoinQueue;
 using Content.Shared.CCVar;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
@@ -122,9 +121,6 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<JobWhitelistManager>().Initialize();
                 IoCManager.Resolve<PlayerRateLimitManager>().Initialize();
             }
-            // Harmony Queue Start
-            IoCManager.Resolve<IJoinQueueManager>().Initialize();
-            // Harmony Queue End
         }
 
         public override void PostInit()

@@ -20,7 +20,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Server._NF.Auth; // Frontier
-using Content.Shared._Harmony.CCVars;
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -32,10 +31,6 @@ namespace Content.Server.Connection
     {
         void Initialize();
         void PostInit();
-
-        // Harmony Queue Start
-        Task<bool> HasPrivilegedJoin(NetUserId userId);
-        // Harmony Queue End
 
         /// <summary>
         /// Temporarily allow a user to bypass regular connection requirements.
@@ -318,10 +313,6 @@ namespace Content.Server.Connection
 
             // Frontier: wasInGame previously calculated here.
             var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
-            // Harmony Queue Start
-            var isQueueEnabled = _cfg.GetCVar(HCCVars.EnableQueue);
-            // Harmony Queue End
-
             var softPlayerCount = _plyMgr.PlayerCount;
 
             if (!_cfg.GetCVar(CCVars.AdminsCountForMaxPlayers))
@@ -329,11 +320,8 @@ namespace Content.Server.Connection
                 softPlayerCount -= _adminManager.ActiveAdmins.Count();
             }
 
-            // Harmony Queue Start
-            // Harmony Note: I could have cleaned up this boolean check but I dont want to modify the wizden code more than just adding one more boolean
-            if ((softPlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame && !isQueueEnabled)
+            if ((softPlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame)
             {
-            // Harmony Queue End
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
 
@@ -418,16 +406,5 @@ namespace Content.Server.Connection
             await _db.AssignUserIdAsync(name, assigned);
             return assigned;
         }
-
-        // Harmony Queue Start
-        public async Task<bool> HasPrivilegedJoin(NetUserId userId)
-        {
-            var isAdmin = await _db.GetAdminDataForAsync(userId) != null;
-            var ticker = IoCManager.Resolve<IEntityManager>().System<GameTicker>();
-            var wasInGame = ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
-                            status == PlayerGameStatus.JoinedGame;
-            return isAdmin || wasInGame;
-        }
-        // Harmony Queue End
     }
 }
