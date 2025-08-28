@@ -174,9 +174,7 @@ public sealed partial class ParticleAcceleratorSystem
             };
 
             _adminLogger.Add(LogType.Action, impact, $"{ToPrettyString(player):player} has set the strength of {ToPrettyString(uid)} to {strength}");
-
-            // Frontier: Admins do not need to be extra alerted for high PA levels and alarms startle them easily.
-            /*
+            
             var alertMinPowerState = (ParticleAcceleratorPowerState)_cfg.GetCVar(CCVars.AdminAlertParticleAcceleratorMinPowerState);
             if (strength >= alertMinPowerState)
             {
@@ -195,8 +193,6 @@ public sealed partial class ParticleAcceleratorSystem
                     comp.EffectCooldown = _gameTiming.CurTime + comp.CooldownDuration;
                 }
             }
-            */
-            // End Frontier: Admins do not need to be extra alerted for high PA levels and alarms startle them easily.
         }
 
         comp.SelectedStrength = strength;
