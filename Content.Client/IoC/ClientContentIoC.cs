@@ -24,7 +24,6 @@ using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
-using Content.Client._Harmony.JoinQueue;
 
 namespace Content.Client.IoC
 {
@@ -61,9 +60,6 @@ namespace Content.Client.IoC
             collection.Register<PlayerRateLimitManager>();
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             collection.Register<TitleWindowManager>();
-            // Harmony Queue Start
-            collection.Register<JoinQueueManager>();
-            // Harmony Queue End
         }
     }
 }
