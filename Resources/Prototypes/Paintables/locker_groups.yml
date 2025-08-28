@@ -15,7 +15,7 @@
     doctor: LockerMedical
     electrical: LockerElectricalSupplies
     engineer: LockerEngineer
-    # evac: LockerEvacRepair # Frontier: not yet in, pending upstream merge
+    evac: LockerEvacRepair
     hop: LockerHeadOfPersonnel
     hos: LockerHeadOfSecurity
     mime: LockerMime
@@ -86,12 +86,11 @@
     internals: ClosetWallO2N2 # Frontier
     # TODO: add in erhard's "color" locker styles
 
-# Frontier: return this once there are more than one (if that) style in this group
-# - type: paintableGroup
-#   id: WallLocker
-#   cost: 2
-#   defaultStyle: medical
-#   styles:
-#     # evac: LockerWallEvacRepair # Frontier: not yet in, pending upstream merge
-#     medical: LockerWallMedical
+- type: paintableGroup
+  id: WallLocker
+  cost: 2
+  defaultStyle: medical
+  styles:
+    evac: LockerWallEvacRepair
+    medical: LockerWallMedical
 #     # TODO: add in erhard's "color" locker styles

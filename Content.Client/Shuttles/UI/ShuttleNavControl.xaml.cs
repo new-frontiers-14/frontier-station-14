@@ -257,8 +257,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
             if (shouldDrawIFF)
             {
-                //var gridCentre = Vector2.Transform(gridBody.LocalCenter, curGridToView);
-                //gridCentre.Y = -gridCentre.Y;
+                // var gridDistance = (gridBody.LocalCenter - xform.LocalPosition).Length(); // Frontier
+                //var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName), // Frontier
+                //    ("distance", $"{gridDistance:0.0}")); // Frontier
 
                 // Frontier: IFF drawing functions
                 // The actual position in the UI. We offset the matrix position to render it off by half its width

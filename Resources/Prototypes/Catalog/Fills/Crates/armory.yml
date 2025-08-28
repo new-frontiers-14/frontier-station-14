@@ -2,7 +2,7 @@
   id: CrateArmorySMG
   parent: [ CrateWeaponSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   name: SMG crate
-  description: Contains two high-powered, semiautomatic rifles with four mags. Requires Armory access to open.
+  description: Contains two SMGs with four mags. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
@@ -88,3 +88,16 @@
       amount: 2
     - id: RiotShield
       amount: 2
+
+- type: entity
+  id: CrateArmoryRifle
+  parent: [ CrateWeaponSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  name: rifle crate
+  description: Contains two high-powered assault rifles with four mags. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponRifleAssaultLecter
+      amount: 2
+    - id: NFMagazineRifle20
+      amount: 4

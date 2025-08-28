@@ -465,11 +465,11 @@
     factions:
     - SimpleHostile
   - type: Carriable # Carrying system from nyanotrasen.
-  - type: Advertise
-    pack: syndicatehumanoidchatter
-    minimumWait: 120
-    maximumWait: 240
-    nextAdvertisementTime: 0
+  - type: Vocalizer
+    minVocalizeInterval: 120
+    maxVocalizeInterval: 240
+  - type: DatasetVocalizer
+    dataset: syndicatehumanoidchatter
   - type: FTLKnockdownImmune
   - type: Respirator
     updateInterval: 99999 # Shouldn't run often, if ever.

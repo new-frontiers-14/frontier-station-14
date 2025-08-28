@@ -230,7 +230,7 @@ public sealed partial class LatheMenu : DefaultWindow
     /// Populates the build queue list with all queued items
     /// </summary>
     /// <param name="queue"></param>
-    public void PopulateQueueList(List<LatheRecipeBatch> queue) // Frontier: LatheRecipePrototype<LatheRecipeBatch
+    public void PopulateQueueList(List<LatheRecipeBatch> queue) // Frontier: IReadOnlyCollection<ProtoId<LatheRecipePrototype>> < List<LatheRecipeBatch>
     {
         QueueList.DisposeAllChildren();
 
@@ -238,6 +238,7 @@ public sealed partial class LatheMenu : DefaultWindow
         foreach (var batch in queue) // Frontier: recipe<batch
         {
             // Frontier: custom boxes
+            // var recipe = _prototypeManager.Index(recipeProto);
             // var queuedRecipeBox = new BoxContainer();
             // queuedRecipeBox.Orientation = BoxContainer.LayoutOrientation.Horizontal;
 
@@ -258,7 +259,7 @@ public sealed partial class LatheMenu : DefaultWindow
                 displayText = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
             else
                 displayText = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
-            var queuedRecipeBox = new QueuedRecipeControl(displayText, idx - 1, GetRecipeDisplayControl(batch.Recipe));
+            var queuedRecipeBox = new QueuedRecipeControl(displayText, idx - 1, GetRecipeDisplayControl(_prototypeManager.Index(batch.Recipe)));
             queuedRecipeBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
             queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
             queuedRecipeBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
@@ -268,11 +269,13 @@ public sealed partial class LatheMenu : DefaultWindow
         }
     }
 
-    public void SetQueueInfo(LatheRecipePrototype? recipe)
+    public void SetQueueInfo(ProtoId<LatheRecipePrototype>? recipeProto)
     {
-        FabricatingContainer.Visible = recipe != null;
-        if (recipe == null)
+        FabricatingContainer.Visible = recipeProto != null;
+        if (recipeProto == null)
             return;
+
+        var recipe = _prototypeManager.Index(recipeProto.Value);
 
         FabricatingDisplayContainer.Children.Clear();
         FabricatingDisplayContainer.AddChild(GetRecipeDisplayControl(recipe));
