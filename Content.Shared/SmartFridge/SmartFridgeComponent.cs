@@ -73,6 +73,20 @@ public sealed partial class SmartFridgeComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier SoundDeny = new SoundCollectionSpecifier("VendingDeny");
+
+    // Frontier: extra fields
+    /// <summary>
+    /// The maximum number of entities that can be stored in the fridge
+    /// </summary>
+    [DataField]
+    public int MaxContainedCount = 300;
+
+    /// <summary>
+    /// If true, insertion requires access
+    /// </summary>
+    [DataField]
+    public bool CheckAccessOnInsert = true;
+    // End Frontier
 }
 
 [Serializable, NetSerializable, DataRecord]

@@ -45,8 +45,11 @@ public sealed class SmartFridgeSystem : EntitySystem
         if (!_container.TryGetContainer(ent, ent.Comp.Container, out var container))
             return false;
 
-        if (!Allowed(ent, user))
+        if (ent.Comp.CheckAccessOnInsert && !Allowed(ent, user)) // Frontier: add CheckAccessOnInsert
             return true;
+
+        if (ent.Comp.ContainedEntries.Count >= ent.Comp.MaxContainedCount) // Frontier
+            return true; // Frontier
 
         bool anyInserted = false;
         foreach (var used in usedItems)
