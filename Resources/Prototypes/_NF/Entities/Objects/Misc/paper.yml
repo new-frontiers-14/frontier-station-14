@@ -114,3 +114,13 @@
   components:
   - type: Paper
     stampState: paper_stamp-syndicate
+
+# Meant to allow generation of only station entity nuke codes
+# Looks like in recent changes on upstream, mapinit with it completely broke
+- type: entity
+  parent: NukeCodePaper
+  id: NukeCodePaperShuttle
+  suffix: Shuttle Only
+  components:
+  - type: NukeCodePaper
+    allNukesAvailable: false
