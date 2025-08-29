@@ -1,0 +1,41 @@
+- type: loadoutGroup
+  id: DrillSergeantJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  loadouts:
+  - DrillSergeantClothingUniformJumpsuitDrillSergeant
+  - DrillSergeantClothingUniformJumpskirtDrillSergeant
+  fallbacks:
+  - DrillSergeantClothingUniformJumpsuitDrillSergeant
+  - DrillSergeantClothingUniformJumpskirtDrillSergeant
+  
+- type: loadoutGroup
+  id: DrillSergeantOuterClothing
+  name: loadout-group-contractor-outerclothing
+  minLimit: 0
+  loadouts:
+  - DrillSergeantOuterClothing
+
+- type: loadoutGroup
+  id: DrillSergeantHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - DrillSergeantClothingHeadHatDrillSergeant
+
+- type: loadoutGroup
+  id: DrillSergeantNeck
+  name: loadout-group-contractor-neck
+  hidden: true
+  loadouts:
+  - DrillSergeantClothingNeckBadgeDrillSergeant
+  fallbacks:
+  - DrillSergeantClothingNeckBadgeDrillSergeant
+
+- type: loadoutGroup
+  id: DrillSergeantPDA
+  name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - DrillSergeantDrillSergeantPDA
+  fallbacks:
+  - DrillSergeantDrillSergeantPDA
