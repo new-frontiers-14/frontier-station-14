@@ -175,7 +175,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 3
+        Blunt: 0
     soundHit:
       path: /Audio/Weapons/Guns/Hits/snap.ogg
   - type: StaminaDamageOnCollide
@@ -258,10 +258,6 @@
   parent: NFBaseBulletRubber
   abstract: true
   components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 10
   - type: StaminaDamageOnCollide
     damage: 60
   - type: Tracer
