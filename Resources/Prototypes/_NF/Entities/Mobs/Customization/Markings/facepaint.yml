@@ -5,7 +5,9 @@
 ##initial testing success, need strings/localization and to trim the list a bit##
 ##Newlist = [Arachnid, Dwarf, Felinid, Goblin, Harpy, Human, Moth, Oni, Sheleg, SlimePerson]##
 ##may need to make facepaint variants for goblins, moths, and non-standard nosed species##
+##BACK AGAIN, now this time with a ton of extra stuff for vulps and reptiles##
 
+##Human Headed Species##
 - type: marking
   id: FacepaintClown
   bodyPart: Head
@@ -18,7 +20,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _NF/Mobs/Customization/facepaints.rsi
+  - sprite: _NF/Mobs/Customization/facepaints/human.rsi
     state: facepaint_clown
 
 - type: marking
@@ -33,7 +35,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _NF/Mobs/Customization/facepaints.rsi
+  - sprite: _NF/Mobs/Customization/facepaints/human.rsi
     state: facepaint_clown_minimal
 
 - type: marking
@@ -48,7 +50,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _NF/Mobs/Customization/facepaints.rsi
+  - sprite: _NF/Mobs/Customization/facepaints/human.rsi
     state: facepaint_clown_sad
 
 - type: marking
@@ -63,7 +65,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _NF/Mobs/Customization/facepaints.rsi
+  - sprite: _NF/Mobs/Customization/facepaints/human.rsi
     state: facepaint_clown_serious
 
 - type: marking
@@ -78,7 +80,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _NF/Mobs/Customization/facepaints.rsi
+  - sprite: _NF/Mobs/Customization/facepaints/human.rsi
     state: facepaint_clown_smug
 
 - type: marking
@@ -93,7 +95,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _NF/Mobs/Customization/facepaints.rsi
+  - sprite: _NF/Mobs/Customization/facepaints/human.rsi
     state: facepaint_mime
 
 - type: marking
@@ -108,7 +110,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _NF/Mobs/Customization/facepaints.rsi
+  - sprite: _NF/Mobs/Customization/facepaints/human.rsi
     state: facepaint_mime_blush
 
 - type: marking
@@ -123,7 +125,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _NF/Mobs/Customization/facepaints.rsi
+  - sprite: _NF/Mobs/Customization/facepaints/human.rsi
     state: facepaint_mime_odd
 
 - type: marking
@@ -138,7 +140,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _NF/Mobs/Customization/facepaints.rsi
+  - sprite: _NF/Mobs/Customization/facepaints/human.rsi
     state: facepaint_mime_sad
 
 - type: marking
@@ -153,7 +155,7 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _NF/Mobs/Customization/facepaints.rsi
+  - sprite: _NF/Mobs/Customization/facepaints/human.rsi
     state: facepaint_mime_serious
 
 - type: marking
@@ -168,6 +170,324 @@
         !type:SimpleColoring
         color: "#FFFFFF"
   sprites:
-  - sprite: _NF/Mobs/Customization/facepaints.rsi
+  - sprite: _NF/Mobs/Customization/facepaints/human.rsi
+    state: facepaint_white
+
+##Reptilians, use [Reptilian] for restriction##
+- type: marking
+  id: FacepaintClownReptilian
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/reptilian.rsi
+    state: facepaint_clown
+
+- type: marking
+  id: FacepaintClownMinimalReptilian
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/reptilian.rsi
+    state: facepaint_clown_minimal
+
+- type: marking
+  id: FacepaintClownSadReptilian
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/reptilian.rsi
+    state: facepaint_clown_sad
+
+- type: marking
+  id: FacepaintClownSeriousReptilian
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/reptilian.rsi
+    state: facepaint_clown_serious
+
+- type: marking
+  id: FacepaintClownSmugReptilian
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/reptilian.rsi
+    state: facepaint_clown_smug
+
+- type: marking
+  id: FacepaintMimeReptilian
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/reptilian.rsi
+    state: facepaint_mime
+
+- type: marking
+  id: FacepaintMimeBlushReptilian
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/reptilian.rsi
+    state: facepaint_mime_blush
+
+- type: marking
+  id: FacepaintMimeOddReptilian
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/reptilian.rsi
+    state: facepaint_mime_odd
+
+- type: marking
+  id: FacepaintMimeSadReptilian
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/reptilian.rsi
+    state: facepaint_mime_sad
+
+- type: marking
+  id: FacepaintWhiteReptilian
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Reptilian]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/reptilian.rsi
+    state: facepaint_white
+
+##vulpkanins, use [Vulpkanin] for restrict##
+
+- type: marking
+  id: FacepaintClownVulpkanin
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/vulpkanin.rsi
+    state: facepaint_clown
+
+- type: marking
+  id: FacepaintClownMinimalVulpkanin
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/vulpkanin.rsi
+    state: facepaint_clown_minimal
+
+- type: marking
+  id: FacepaintClownSadVulpkanin
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/vulpkanin.rsi
+    state: facepaint_clown_sad
+
+- type: marking
+  id: FacepaintClownSeriousVulpkanin
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/vulpkanin.rsi
+    state: facepaint_clown_serious    
+
+- type: marking
+  id: FacepaintClownSmugVulpkanin
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/vulpkanin.rsi
+    state: facepaint_clown_smug
+
+- type: marking
+  id: FacepaintMimeVulpkanin
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/vulpkanin.rsi
+    state: facepaint_mime
+
+- type: marking
+  id: FacepaintMimeBlushVulpkanin
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/vulpkanin.rsi
+    state: facepaint_mime_blush
+
+- type: marking
+  id: FacepaintMimeOddVulpkanin
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/vulpkanin.rsi
+    state: facepaint_mime_odd
+
+- type: marking
+  id: FacepaintMimeSadVulpkanin
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/vulpkanin.rsi
+    state: facepaint_mime_sad
+
+- type: marking
+  id: FacepaintMimeSeriousVulpkanin
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/vulpkanin.rsi
+    state: facepaint_mime_serious
+
+- type: marking
+  id: FacepaintWhiteVulpkanin
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/facepaints/vulpkanin.rsi
     state: facepaint_white
 
