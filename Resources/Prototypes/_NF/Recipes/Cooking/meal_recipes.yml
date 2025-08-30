@@ -251,6 +251,19 @@
   recipeType:
   - Oven
 
+- type: microwaveMealRecipe
+  id: RecipeChickenParmesan
+  name: Chicken Parmesan
+  result: FoodMealChickenParmesan
+  time: 5
+  group: Savory
+  solids:
+    FoodMeatChickenFried: 1
+    FoodNoodlesBoiled: 1
+    FoodTomato: 1
+    FoodCheeseSlice: 1
+  recipeType:
+  - Assembler
 
 # Sushi
 
@@ -962,8 +975,9 @@
   result: FoodRiceNoodlesSheet
   time: 15
   group: Pasta
-  reagents:
-    Rice: 45
+  solids:
+    FoodRiceDough: 1
+  reagents: 
     TableSalt: 10
     Cornoil: 10
   recipeType: Assembler
@@ -1332,19 +1346,121 @@
   - Assembler
 
 - type: microwaveMealRecipe
-  id: RecipeChickenParmesan
-  name: Chicken Parmesan
-  result: FoodMealChickenParmesan
+  id: RecipeMochi
+  name: mochi
+  result: FoodFrozenMochi
   time: 5
-  group: Savory
+  group: Dessert
   solids:
-    FoodMeatChickenFried: 1
-    FoodNoodlesBoiled: 1
-    FoodTomato: 1
-    FoodCheeseSlice: 1
+    FoodRiceDoughSlice: 1
+  reagents:
+    IceCream: 5
   recipeType:
   - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeMochiCherry
+  name: cherry mochi
+  result: FoodFrozenMochiCherry
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    JuiceCherry: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiBungo
+  name: bungo mochi
+  result: FoodFrozenMochiBungo
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    JuiceBungo: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiChocolate
+  name: chocolate mochi
+  result: FoodFrozenMochiChocolate
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    CocoaPowder: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiFiber
+  name: fiber mochi
+  result: FoodFrozenMochiFiber
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    Fiber: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiMoth
+  name: rosy mochi
+  result: FoodFrozenMochiMoth
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    PinkDrink: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiSpice
+  name: spice mochi
+  result: FoodFrozenMochiSpice
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    Everyspice: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiTea
+  name: tea mochi
+  result: FoodFrozenMochiTea
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    Tea: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiUbe
+  name: ube mochi
+  result: FoodFrozenMochiUbe
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    PolypyryliumOligomers: 2
+  recipeType:
+  - Assembler
 # NOT ACTUAL FOOD
 
 - type: microwaveMealRecipe
