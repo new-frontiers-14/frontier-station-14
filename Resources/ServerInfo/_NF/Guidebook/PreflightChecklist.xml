@@ -16,8 +16,8 @@ For additional information consult [textlink="Powerstorage" link="PowerStorage"/
 
 ## 1.2. Generator
 <Box>
-<GuideEntityEmbed Entity="AmeController"/>
-<GuideEntityEmbed Entity="PortableGeneratorJrPacman"/>
+<GuideEntityEmbed Entity="AmeController" Caption=""/>
+<GuideEntityEmbed Entity="PortableGeneratorJrPacman" Caption=""/>
 </Box>
 
 - Check if the generator is anchored to the floor.
@@ -25,6 +25,7 @@ For additional information consult [textlink="Powerstorage" link="PowerStorage"/
 - Check if the generator is set to HV output.
 - Start the generator unit.
 - Set Target Power for the through power amount indicated by your substation.
+- Power draw may seem excessively high while power storage systems recharge.
 
 ## 1.3. Solar panels
 <Box>
@@ -32,9 +33,11 @@ For additional information consult [textlink="Powerstorage" link="PowerStorage"/
   <GuideEntityEmbed Entity="SolarTracker"/>
   <GuideEntityEmbed Entity="SolarPanel"/>
 </Box>
+
 - Inspect solar control computer.
 - Adjust panel angular velocity.
 - Adjust panel angle.
+- There may be a slight lag period before power generation is reported.
 
 ## 2. Atmospherics
 
@@ -49,6 +52,7 @@ For additional information consult [textlink="Powerstorage" link="PowerStorage"/
 - Check that the oxygen and nitrogen canisters are anchored to the connector port.
 - Check that the distribution mixer is set to 101kPa.
 - Enable the distribution mixer.
+- A standard gas mix is 79% nitrogen, 21% oxygen. Adjust for crew need.
 
 ## 3. Other checks
 <Box>
@@ -57,6 +61,7 @@ For additional information consult [textlink="Powerstorage" link="PowerStorage"/
 </Box>
 
 - Check that the gyroscope is anchored, powered, and enabled.
+- Gyroscopes can be powered down. If your gyroscope appears non functional ensure it has not been deactivated.
 - Check that the mini gravity generator is anchored, powered, and enabled.
 
 </Document>
