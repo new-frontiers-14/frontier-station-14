@@ -551,12 +551,21 @@ public sealed partial class MapScreen : BoxContainer
 
         var curTime = _timing.CurTime;
 
+        // This is responsible for how fast grids appear after clicking Scan
         if (_nextMapDequeue < curTime && _pendingMapObjects.Count > 0)
         {
-            var mapObj = _pendingMapObjects[^1];
-            _pendingMapObjects.RemoveAt(_pendingMapObjects.Count - 1);
-            AddMapObject(mapObj.mapId, mapObj.mapobj);
+            // Frontier: Added how many grids appear per loop
+            // Frontier: This is slightly modified, if you think this code is shit, please rewrite it
+            const int grid = 3; // Grid amount
+
+            for (int i = 0; i < grid && _pendingMapObjects.Count > 0; i++)
+            {
+                var mapObj = _pendingMapObjects[^1];
+                _pendingMapObjects.RemoveAt(_pendingMapObjects.Count - 1);
+                AddMapObject(mapObj.mapId, mapObj.mapobj);
+            }
             BumpMapDequeue();
+            // Frontier End
         }
 
         if (!IsFTLBlocked() && _nextPing < curTime)
