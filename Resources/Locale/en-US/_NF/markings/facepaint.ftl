@@ -1,0 +1,23 @@
+marking-FacepaintClown = Clown Facepaint
+marking-FacepaintClownMinimal = Minimalist Clown Facepaint
+marking-FacepaintClownSad = Sad Clown Facepaint
+marking-FacepaintClownSerious = Serious Clown Facepaint
+marking-FacepaintClownSmug = Smug Clown Facepaint
+marking-FacepaintMime = Mime Facepaint
+marking-FacepaintMimeBlush = Blushing Mime Facepaint
+marking-FacepaintMimeOdd = Odd Mime Facepaint
+marking-FacepaintMimeSad = Sad Mime Facepaint
+marking-FacepaintMimeSerious = Serious Mime Facepaint
+marking-FacepaintWhite = White Facepaint
+<#--Reptile facepaints are not hard to remake, just slap Reptilian on to the end of the normal markings-->
+marking-FacepaintClownVulpkanin = Clown Facepaint
+marking-FacepaintClownMinimalVulpkanin = Minimalist Clown Facepaint
+marking-FacepaintClownSadVulpkanin = Sad Clown Facepaint
+marking-FacepaintClownSeriousVulpkanin = Serious Clown Facepaint
+marking-FacepaintClownSmugVulpkanin = Smug Clown Facepaint
+marking-FacepaintMimeVulpkanin = Mime Facepaint
+marking-FacepaintMimeBlushVulpkanin = Blushing Mime Facepaint
+marking-FacepaintMimeOddVulpkanin = Odd Mime Facepaint
+marking-FacepaintMimeSadVulpkanin = Sad Mime Facepaint
+marking-FacepaintMimeSeriousVulpkanin = Serious Mime Facepaint
+marking-FacepaintWhiteVulpkanin = White Facepaint
