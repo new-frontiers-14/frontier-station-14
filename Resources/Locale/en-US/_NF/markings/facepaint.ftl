@@ -1,0 +1,11 @@
+marking-FacepaintClown = Clown Facepaint
+marking-FacepaintClownMinimal = Minimalist Clown Facepaint
+marking-FacepaintClownSad = Sad Clown Facepaint
+marking-FacepaintClownSerious = Serious Clown Facepaint
+marking-FacepaintClownSmug = Smug Clown Facepaint
+marking-FacepaintMime = Mime Facepaint
+marking-FacepaintMimeBlush = Blushing Mime Facepaint
+marking-FacepaintMimeOdd = Odd Mime Facepaint
+marking-FacepaintMimeSad = Sad Mime Facepaint
+marking-FacepaintMimeSerious = Serious Mime Facepaint
+marking-FacepaintWhite = White Facepaint
