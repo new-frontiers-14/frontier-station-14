@@ -2,16 +2,8 @@
   parent: BaseSMES
   id: PortableSMESEmpty
   suffix: Empty
-  components:
-  - type: Battery
-    startingCharge: 0
-
-- type: entity
-  parent: PortableSMESEmpty
-  id: PortableSMES
-  suffix: Portable, 8MJ
   name: portable SMES
-  description: A "portable" SMES.  Charges through HV cable, steps down to LV cable.
+  description: A "portable" SMES. Charges through HV cable, steps down to LV cable.
   components:
   - type: AmbientSound
     volume: -9
@@ -37,7 +29,7 @@
         state: psmes-open
   - type: Battery
     maxCharge: 8000000
-    startingCharge: 8000000
+    startingCharge: 0
   - type: PowerNetworkBattery
     maxSupply: 15000
     maxChargeRate: 40000 #about a 4 minute recharge time. 
@@ -76,3 +68,11 @@
           - MachineLayer
   - type: UpgradeBattery
     maxChargeMultiplier: 1.5
+
+- type: entity
+  parent: PortableSMESEmpty
+  id: PortableSMES
+  suffix: Portable, 8MJ
+  components:
+  - type: Battery
+    startingCharge: 8000000
