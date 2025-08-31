@@ -49,3 +49,91 @@
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
     state: challahslice
+
+#Garlic Bread, Garlic Bread Slice, and Texas Toast
+- type: entity
+  name: french garlic bread
+  parent: FoodBreadBase
+  id: FoodBreadGarlicBaguette
+  description: Garlic? Melted cheese on a baguette!? The only thing missing here is more even garlic. 
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - garlic
+      - cheesy
+  - type: SliceableFood
+    count: 4
+    slice: FoodBreadGarlicBaguetteSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 5
+        - ReagentId: Allicin
+          Quantity: 2
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: garlicbread
+
+- type: entity
+  name: french garlic bread slice
+  parent: FoodBreadSliceBase
+  id: FoodBreadGarlicBaguetteSlice
+  description: A slice of french garlic bread, loaded with shredded cheese and not nearly enough garlic.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - garlic
+      - cheesy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1.25
+        - ReagentId: Flavorol
+          Quantity: 1.25
+        - ReagentId: Allicin
+          Quantity: 0.5
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: garlicbreadslice
+
+- type: entity
+  name: texas toast
+  parent: FoodBreadSliceBase
+  id: FoodBreadTexasToast
+  description: A thick slab of toast covered in garlic and butter. And if that don't work - use more garlic.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - garlic
+      - texas
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 5
+        - ReagentId: Allicin
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: texastoast
