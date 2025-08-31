@@ -46,6 +46,23 @@ public sealed partial class LoadoutPrototype : IPrototype, IEquipmentLoadout
     [DataField]
     public Dictionary<string, List<EntProtoId>> Storage { get; set; } = new();
 
+    // Frontier: extra fields
+    /// <inheritdoc />
+    [DataField]
+    [AlwaysPushInheritance]
+    public List<EntProtoId> EncryptionKeys { get; set; } = new();
+
+    /// <inheritdoc />
+    [DataField]
+    [AlwaysPushInheritance]
+    public List<EntProtoId> Implants { get; set; } = new();
+
+    /// <inheritdoc />
+    [DataField]
+    [AlwaysPushInheritance]
+    public List<EntProtoId> Cartridges { get; set; } = new();
+    // End Frontier: extra fields
+
     /// <summary>
     /// Frontier - the cost of the item simple as
     /// </summary>

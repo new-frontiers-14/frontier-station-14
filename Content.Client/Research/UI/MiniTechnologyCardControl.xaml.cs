@@ -21,7 +21,33 @@ public sealed partial class MiniTechnologyCardControl : Control
 
         var discipline = prototypeManager.Index(technology.Discipline);
         Background.ModulateSelfOverride = discipline.Color;
-        Texture.Texture = spriteSys.Frame0(technology.Icon);
+
+        // Frontier: Handle technology icon - prioritize EntityIcon for full sprite layers, matching technology squares
+        if (technology.EntityIcon.HasValue)
+        {
+            TechnologyDisplay.SetPrototype(technology.EntityIcon.Value); // Feontier: Use EntityPrototypeView to show all sprite layers, same as technology squares
+        }
+        else if (technology.Icon != null)
+        {
+            // For legacy Icon support with EntityPrototypeView
+            if (technology.Icon is SpriteSpecifier.EntityPrototype entityProtoSpec)
+            {
+                TechnologyDisplay.SetPrototype(entityProtoSpec.EntityPrototypeId);
+            }
+            else
+            {
+                // For other SpriteSpecifier types, we can't use EntityPrototypeView
+                // This maintains consistency with technology squares behavior
+                TechnologyDisplay.SetPrototype(null);
+            }
+        }
+        else
+        {
+            // No icon specified
+            TechnologyDisplay.SetPrototype(null);
+        }
+        // End Frontier: If neither is available, the texture will remain null/empty
+
         NameLabel.SetMessage(Loc.GetString(technology.Name));
 
         var tooltip = new Tooltip();

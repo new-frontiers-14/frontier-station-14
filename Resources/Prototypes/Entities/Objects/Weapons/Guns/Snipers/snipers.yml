@@ -47,6 +47,7 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+  - type: GunRequiresWield
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
@@ -84,7 +85,7 @@
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
   name: musket
-  parent: [ BaseWeaponSniper, BaseGunWieldable, BaseGunMelee, BaseC2Contraband ] # Frontier: BaseMajorContraband<BaseC2Contraband, add BaseGunMelee
+  parent: [ BaseWeaponSniper, BaseGunWieldable, BaseGunMelee, BaseC2ContrabandUnredeemable ] # Frontier: BaseMajorContraband<BaseC2ContrabandUnredeemable, add BaseGunMelee
   id: Musket
   description: This should've been in a museum long before you were born. Uses .60 anti-materiel ammo.
   components:
@@ -119,6 +120,7 @@
     animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+  - type: GunRequiresWield
   - type: AltFireMelee # Frontier
     attackType: Light # Frontier
 

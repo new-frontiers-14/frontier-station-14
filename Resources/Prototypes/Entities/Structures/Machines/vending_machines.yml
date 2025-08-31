@@ -36,6 +36,15 @@
         density: 200
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't do anything
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
         damage: 100
@@ -43,20 +52,6 @@
       - !type:DoActsBehavior
         acts: ["Breakage"]
       - !type:EjectVendorItems
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          SheetSteel1:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalGlassBreak
   - type: Repairable
     doAfterDelay: 8
   - type: ActivatableUI
@@ -126,7 +121,6 @@
   - type: ContainerContainer
     containers:
       cash_slot: !type:ContainerSlot
-  - type: BindToStation # Frontier
   # End Frontier
 
 - type: entity
@@ -878,6 +872,8 @@
   components:
   - type: VendingMachine
     pack: NanoMedPlusInventory
+    taxAccounts: # Frontier
+      Medical: 0.4 # Frontier
     offState: off
     brokenState: broken
     normalState: normal-unshaded
@@ -1317,7 +1313,7 @@
   description: "A vending machine containing standard tools. A label reads: Tools for tools."
   components:
   - type: VendingMachine
-    pack: YouToolInventory
+    pack: NFYouToolInventory # Frontier: use NF variant
     offState: off
     brokenState: broken
     normalState: normal-unshaded
@@ -1501,6 +1497,8 @@
   components:
   - type: VendingMachine
     pack: NanoMedInventory
+    taxAccounts: # Frontier
+      Medical: 0.4 # Frontier
     offState: off
     brokenState: broken
     normalState: normal-unshaded
@@ -1711,6 +1709,8 @@
   components:
   - type: VendingMachine
     pack: MediDrobeInventory
+    taxAccounts: # Frontier
+      Medical: 0.4 # Frontier
     offState: off
     brokenState: broken
     normalState: normal-unshaded
@@ -2208,6 +2208,8 @@
   components:
   - type: VendingMachine
     pack: ChemVendInventory
+    taxAccounts: # Frontier
+      Medical: 0.4 # Frontier
     offState: off
     brokenState: broken
     normalState: normal

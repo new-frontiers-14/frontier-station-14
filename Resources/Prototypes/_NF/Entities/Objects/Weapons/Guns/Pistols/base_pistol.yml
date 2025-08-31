@@ -7,10 +7,10 @@
   components:
   - type: Gun
     projectileSpeed: 22.5
-    minAngle: 4.7
-    maxAngle: 14.1
-    angleIncrease: 1
-    angleDecay: 0.5
+    minAngle: 3.1
+    maxAngle: 15.5
+    angleIncrease: 0.8
+    angleDecay: 4
     fireRate: 4
     selectedMode: SemiAuto
     availableModes:
@@ -19,6 +19,7 @@
     price: 250
   - type: NFWeaponDetails
     class: weapon-details-class-pistol
+  - type: FireOnLand # DeltaV - gun safety
 
 #region manufacturer
 - type: entity
@@ -27,11 +28,11 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 6
+    minAngle: 3.6
     maxAngle: 18
-    angleIncrease: 1.25
-    angleDecay: 0.5
-    fireRate: 3.5
+    angleIncrease: 1.1
+    angleDecay: 3.7
+    fireRate: 3.4
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
@@ -41,9 +42,9 @@
   abstract: true
   components:
   - type: Gun
-    angleIncrease: 1
-    angleDecay: 1
-    fireRate: 3
+    angleIncrease: 0.9
+    angleDecay: 6.3
+    fireRate: 3.2
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-cybersun-industries
 

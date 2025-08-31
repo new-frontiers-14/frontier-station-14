@@ -424,6 +424,47 @@
         pda-pirate
 
 - type: entity
+  parent: PiratePDA
+  id: NFShantymanPDA
+  name: shantyman PDA
+  description: It's pirate party time!
+  suffix: Frontier
+  components:
+  - type: Pda
+    id: NFPirateIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-shantyman
+  - type: Instrument
+    allowPercussion: false
+    handheld: true
+    bank: 1
+    program: 2
+  - type: SwappableInstrument
+    instrumentList:
+      "Default": {2: 1}
+      "Accordion": {21: 0}
+      "Fiddle": {110: 0}
+      "Guitar": {24: 0}
+      "Lyre": {46: 0}
+
+- type: entity
+  parent: NFShantymanPDA
+  id: NFCaptainShantymanPDA
+  components:
+  - type: Pda
+    id: NFPirateCaptainIDCard
+
+- type: entity
+  parent: NFShantymanPDA
+  id: NFFirstMateShantymanPDA
+  components:
+  - type: Pda
+    id: NFPirateFirstMateIDCard
+
+- type: entity
   parent: PassengerPDA
   id: ContractorPDA
   name: contractor PDA
@@ -494,4 +535,50 @@
     - BountyContractsCartridge
     - AstroNavCartridge
     - LedgerCartridge
-    - MedTekCartridge #medtek preloaded. Should be ok.
+    - MedTekCartridge
+
+- type: entity
+  parent: BasePDA
+  id: PlantTechnicianPDA
+  name: plant technician PDA
+  description: Last shift must've bent the antenna somehow.
+  components:
+  - type: Pda
+    id: PlantTechnicianIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-planttechnician
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentVColor: "#A32D26"
+  - type: Icon
+    state: pda-planttechnician
+
+- type: entity
+  parent: BasePDA
+  id: PlantManagerPDA
+  name: plant manager PDA
+  description: Pristine, but smells strongly of ozone.
+  components:
+  - type: Pda
+    id: PlantManagerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-plantmanager
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentVColor: "#A32D26"
+    accentHColor: "#447987"
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - BountyContractsCartridge
+    - AstroNavCartridge
+    - LedgerCartridge

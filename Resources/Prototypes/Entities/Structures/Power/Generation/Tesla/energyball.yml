@@ -119,6 +119,13 @@
     - TeslaEngine
     - SingularityTeslaEngine
     - Power
+  # Frontier: tethered danger balls & radar blips
+  - type: DangerTethered
+  - type: RadarBlip
+    scale: 4
+    shape: Star
+    visibleFromOtherGrids: true
+  # End Frontier: tethered danger balls & radar blips
 
 - type: entity
   id: TeslaMiniEnergyBall
@@ -154,3 +161,10 @@
       shader: unshaded # Wizden#37444
   - type: Electrified
     requirePower: false
+  # Frontier: tethered danger balls & radar blips
+  - type: DangerTethered
+  - type: RadarBlip
+    scale: 2
+    shape: Square # Too small for fine detail
+    visibleFromOtherGrids: true
+  # End Frontier: tethered danger balls & radar blips

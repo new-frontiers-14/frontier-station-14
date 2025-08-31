@@ -99,6 +99,8 @@
   description: An early design of the proto-kinetic accelerator.
   components:
   - type: Sharp
+  - type: Execution
+    doAfterDuration: 4.0
   - type: UnpoweredFlashlight
   - type: PointLight
     color: "#ffeead"
@@ -136,6 +138,7 @@
     soundGunshot: /Audio/Weapons/plasma_cutter.ogg
     fireRate: 1
     useKey: false
+  - type: NFOniFriendlyGun # Frontier: Oni friendly crushers
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 0.5
     rechargeSound:
