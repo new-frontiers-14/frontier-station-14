@@ -1,5 +1,13 @@
 - type: entity
   parent: BaseSMES
+  id: PortableSMESEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  parent: PortableSMESEmpty
   id: PortableSMES
   suffix: Portable, 8MJ
   name: portable SMES
@@ -52,13 +60,6 @@
   - type: Apc
     voltage: Apc
   - type: ExtensionCableProvider
-  # - type: UserInterface # TODO: differentiate this thing
-  #   interfaces:
-  #     enum.ApcUiKey.Key:
-  #       type: ApcBoundUserInterface
-  # - type: ActivatableUI
-  #   inHandsOnly: false
-  #   key: enum.ApcUiKey.Key
   - type: Machine
     board: PortableSMESMachineCircuitboard
   - type: Fixtures
@@ -75,11 +76,3 @@
           - MachineLayer
   - type: UpgradeBattery
     maxChargeMultiplier: 1.5
-
-- type: entity
-  parent: PortableSMES
-  id: PortableSMESEmpty
-  suffix: Empty
-  components:
-  - type: Battery
-    startingCharge: 0
