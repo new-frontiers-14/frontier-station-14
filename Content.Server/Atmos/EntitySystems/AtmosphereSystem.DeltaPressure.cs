@@ -230,8 +230,7 @@ public sealed partial class AtmosphereSystem
     private void PerformDamage(Entity<DeltaPressureComponent> ent, float pressure, float deltaPressure)
     {
         var maxPressure = Math.Max(pressure - ent.Comp.MinPressure, deltaPressure - ent.Comp.MinPressureDelta);
-        var maxPressureCapped = Math.Min(maxPressure, ent.Comp.MaxEffectivePressure);
-        var appliedDamage = ScaleDamage(ent, ent.Comp.BaseDamage, maxPressureCapped);
+        var appliedDamage = ScaleDamage(ent, ent.Comp.BaseDamage, maxPressure);
 
         _damage.TryChangeDamage(ent, appliedDamage, ignoreResistances: true, interruptsDoAfters: false);
         ent.Comp.IsTakingDamage = true;
