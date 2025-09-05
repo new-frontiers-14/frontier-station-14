@@ -520,7 +520,7 @@ namespace Content.Shared.Interaction
             // Frontier modification: adds extra things to the log
             var extraLogs = LoggingExtensions.GetExtraLogs(EntityManager, target);
 
-            _adminLogger.Add(LogType.InteractHand, LogImpact.Low, $"{ToPrettyString(user):user} interacted with {ToPrettyString(target):target}{extraLogs}");
+            _adminLogger.Add(LogType.InteractHand, LogImpact.Low, $"{user} interacted with {target}{extraLogs}");
             DoContactInteraction(user, target, message);
             if (message.Handled)
                 return;
