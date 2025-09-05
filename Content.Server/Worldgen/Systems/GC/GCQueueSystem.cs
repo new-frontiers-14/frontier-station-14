@@ -48,7 +48,15 @@ public sealed class GCQueueSystem : EntitySystem
                 continue;
 
             queueWatch.Restart();
-            while (queueWatch.Elapsed < proto.MaximumTickTime && queue.Count >= proto.MinDepthToProcess &&
+
+            // Mono Begin - Dynamic Queue Times (Like League of Legends)
+            var entsOverDepth = Math.Abs(queue.Count - proto.MinDepthToProcess);
+            // We get a constant associated with the prototype, and multiply it by the count of objects in that prototype. Dynamic scaling, instead of static constants.
+            TimeSpan maxQueueTickTime = TimeSpan.FromMilliseconds(entsOverDepth * proto.TimeDeletePerObject);
+
+            // Mono End
+
+            while (queueWatch.Elapsed < maxQueueTickTime && queue.Count >= proto.MinDepthToProcess &&
                    overallWatch.Elapsed < _maximumProcessTime)
             {
                 var e = queue.Dequeue();
