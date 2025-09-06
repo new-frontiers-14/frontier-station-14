@@ -39,11 +39,11 @@
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Misc/duck-slippers.rsi
-  - type: Clothing
-    sprite: Clothing/Shoes/Misc/duck-slippers.rsi
+  - type: ToggleClothing #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
+    action: ActionToggleWaddling #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: FootstepCarpet
+      collection: FootstepDuck # Frontier: Upstream removed Quack!
       params:
         variation: 0.07
   - type: Construction
@@ -51,8 +51,12 @@
     node: shoes
   - type: WaddleWhenWorn # DeltaV - upstream removed waddling
     tumbleIntensity: 10 # DeltaV - smaller than clown shoes
+    waddlingAlert: Waddling #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
   #start imp edit
   - type: ItemToggle
+    activated: true #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
+    onUse: false #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
+    onActivate: false #Frontier: Fixes Ducky Slippers to prevent waddling without wearing.
     soundActivate:
       path: /Audio/Items/Toys/quack.ogg
     soundDeactivate:
