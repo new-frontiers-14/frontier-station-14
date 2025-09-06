@@ -201,6 +201,33 @@
   - Oven
   - Microwave
 
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedGarlicBreadBaguette
+  name: french garlic bread recipe
+  result: FoodBreadGarlicBaguette
+  resultCount: 2 #food reagents are cut in half, this yields two french garlic bread halves 
+  time: 20
+  group: Breads
+  solids:
+    FoodBreadBaguette: 1
+    FoodCheeseSlice: 2
+    FoodGarlic: 4
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeFoodBakedTexasToast
+  name: texas toast recipe
+  result: FoodBreadTexasToast
+  time: 10
+  group: Breads
+  solids:
+    FoodBreadBaguetteSlice: 2
+    FoodButterSlice: 1
+    FoodGarlic: 1
+  recipeType:
+  - Oven
+
 # Cured Meat - Future category for sausages/transformative meat and now consumption friendly.
 
 - type: microwaveMealRecipe

@@ -1,0 +1,20 @@
+- type: reagent
+  id: Stellanara
+  name: reagent-name-stellanara
+  group: Foods
+  desc: reagent-desc-stellanara
+  physicalDesc: reagent-physical-desc-starry
+  flavor: tomato
+  color: "#bd088f"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.25 #probably not needed, works as failsafe if you only have equal units stellanara to allicin
+      effects:
+      - !type:AdjustReagent
+        reagent: Allicin
+        amount: -0.25
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -1
+  recognizable: true
