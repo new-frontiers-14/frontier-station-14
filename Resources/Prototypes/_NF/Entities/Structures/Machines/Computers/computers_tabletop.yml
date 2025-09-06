@@ -537,16 +537,16 @@
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
+      state: computer_tabletop_merc
     - map: ["computerLayerKeyboard"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
+      state: merc_keyboard_tabletop
     - map: ["computerLayerScreen"]
-      sprite: Structures/Machines/computers.rsi
-      state: mining
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: expedition_screen
     - map: ["computerLayerKeys"]
-      sprite: Structures/Machines/computers.rsi
-      state: tech_key
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: tech_key_merc
 
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerSurveillanceCameraMonitor]
