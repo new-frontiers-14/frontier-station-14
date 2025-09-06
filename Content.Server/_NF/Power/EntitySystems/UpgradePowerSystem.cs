@@ -1,4 +1,4 @@
-using Content.Server.Construction;
+using Content.Shared.Construction.Components;
 using Content.Server.Construction.Components;
 using Content.Server.Power.Components;
 using Content.Server._NF.Power.Components;
