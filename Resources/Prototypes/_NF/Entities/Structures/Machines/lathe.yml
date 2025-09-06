@@ -187,8 +187,8 @@
   - type: OreSiloClient
 
 - type: entity
-  id: MercenaryTechFab
   parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
+  id: MercenaryTechFab
   name: mercenary techfab
   description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
   components:
@@ -214,8 +214,7 @@
     staticPacks:
     - NFMercenaryTechfabDeprecatedStatic
     - NfsdPracticeStatic
-    dynamicPacks:
-    - NFMercenaryBoards
+    #- NFMercenaryBoards # leaving commented out for ease of replacement if we shift our thoughts here. This is for -you- future person.
     - NFMercenaryGear
   - type: BlueprintReceiver
     whitelist:
