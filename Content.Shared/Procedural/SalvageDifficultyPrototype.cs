@@ -44,6 +44,13 @@ public sealed partial class SalvageDifficultyPrototype : IPrototype
     [DataField("recommendedPlayers", required: true)]
     public int RecommendedPlayers;
 
+    // Frontier
+    /// <summary>
+    /// Determines salvage duration modifier
+    /// </summary>
+    [DataField("durationModifier")]
+    public float DurationModifier = 1;
+
     // Frontier: mission types
     /// <summary>
     /// The number of structures to spawn on a destruction mission.
