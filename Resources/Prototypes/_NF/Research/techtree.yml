@@ -1520,30 +1520,6 @@
 # region Salvage
 
 - type: technology
-  id: NFIndustrialOreProcessor
-  name: nf-research-technology-salvage-equipment
-  entityIcon: OreProcessorIndustrial
-  discipline: NFSalvage
-  tier: 1
-  cost: 2500
-  recipeUnlocks:
-  - OreProcessorIndustrialMachineCircuitboard
-  position: 0, 38
-
-- type: technology
-  id: NFSalvageGrapplingEquipment
-  name: nf-research-technology-salvage-grappling-equipment
-  entityIcon: WeaponGrapplingGun
-  discipline: NFSalvage
-  tier: 1
-  cost: 2500
-  recipeUnlocks:
-  - WeaponGrapplingGun
-  technologyPrerequisites:
-  - NFIndustrialOreProcessor
-  position: 0, 39
-
-- type: technology
   id: NFExcavation
   name: nf-research-technology-excavation
   entityIcon: MiningDrill
@@ -1553,24 +1529,34 @@
   recipeUnlocks:
   - MiningDrill
   - MineralScannerEmpty
+  position: 0, 38
+
+- type: technology
+  id: NFSalvageGrapplingEquipment
+  name: nf-research-technology-salvage-grappling-equipment
+  entityIcon: WeaponGrapplingGun
+  discipline: NFSalvage
+  tier: 1
+  cost: 2500
+  recipeUnlocks:  
+  - WeaponGrapplingGun
   technologyPrerequisites:
-  - NFIndustrialOreProcessor
-  position: 1, 38
+  - NFExcavation
+  position: 0, 39
 
 - type: technology
   id: NFSalvageWeapons
   name: nf-research-technology-salvage-weapons
-  entityIcon: NFWeaponPka
+  entityIcon: NFWeaponPkaCannon
   discipline: NFSalvage
   tier: 1
   cost: 2500
   recipeUnlocks:
   - NFWeaponPka
-  - WeaponCrusher
-  - WeaponCrusherDagger
+  - NFWeaponPkaCannon
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFIndustrialOreProcessor
+  - NFSalvageGrapplingEquipment
   position: 1, 39
 
 - type: technology
@@ -1579,13 +1565,27 @@
   entityIcon: MiningDrillDiamond
   discipline: NFSalvage
   tier: 1
-  cost: 2500
+  cost: 5000
   recipeUnlocks:
   - MiningDrillDiamond
   - AdvancedMineralScannerEmpty
   technologyPrerequisites:
   - NFExcavation
-  position: 2, 38
+  position: 1, 38
+
+- type: technology
+  id: NFOreProcessor
+  name: nf-research-technology-salvage-equipment
+  entityIcon: OreProcessor
+  discipline: NFSalvage
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - OreProcessorMachineCircuitboard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFMassExcavation
+  position: 2, 37
 
 - type: technology
   id: NFAdvancedSalvageWeapons
@@ -1593,12 +1593,27 @@
   entityIcon: WeaponCrusherGlaive
   discipline: NFSalvage
   tier: 1
-  cost: 2500
+  cost: 5000
   recipeUnlocks:
   - WeaponCrusherGlaive
+  - WeaponCrusher
+  - WeaponCrusherDagger
   technologyPrerequisites:
   - NFSalvageWeapons
   position: 2, 39
+
+- type: technology
+  id: NFIndustrialOreProcessor
+  name: nf-research-technology-salvage-equipment
+  entityIcon: OreProcessorIndustrial
+  discipline: NFSalvage
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - OreProcessorIndustrialMachineCircuitboard
+  technologyPrerequisites:
+  - NFOreProcessor
+  position: 3, 37
 
 - type: technology
   id: NFBluespaceOreStorage
@@ -1612,17 +1627,17 @@
   - BorgModuleAdvancedMining
   technologyPrerequisites:
   - NFMassExcavation
-  position: 3, 38
+  position: 2, 38
 
 - type: technology
-  id: NFImprovedSalvageWeapons
-  name: nf-research-technology-salvage-weapons-improved
-  entityIcon: NFWeaponPkaCannon
+  id: NFSalvageTechfab
+  name: nf-research-technology-salvage-techfab
+  entityIcon: SalvageTechfabNF
   discipline: NFSalvage
   tier: 1
   cost: 5000
   recipeUnlocks:
-  - NFWeaponPkaCannon
+  - SalvageTechFabCircuitboardNF
   technologyPrerequisites:
   - NFAdvancedSalvageWeapons
   position: 3, 39
@@ -1638,7 +1653,7 @@
   - BorgModuleAdvancedMining
   technologyPrerequisites:
   - NFBluespaceOreStorage
-  position: 4, 38
+  position: 3, 38
 
 - type: technology
   id: NFBluespaceGasTanks
@@ -1653,6 +1668,24 @@
   - NFBluespaceStorage
   position: 4, 3
 # region Munitions
+
+- type: technology
+  id: NFBountyHunting
+  name: nf-research-technology-bounty-hunting
+  entityIcon: Handcuffs
+  discipline: NFArsenalMercenary
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - BolaNF
+  - NFHandcuffs
+  - ClothingOuterArmorBulletproofNF
+  - ClothingOuterCoatBHTrench
+  - PinpointerUniversalNF
+  - ClothingEyesHudBountyHunter
+  - NFForensicPad
+  - FlashlightSecliteNF
+  position: 0, 42
 
 - type: technology
   id: NFBasicAmmunitionProduction
@@ -1673,27 +1706,9 @@
   - NFMagazineClipRifle20Empty
   - MagazineLightRifleLowCapacityEmpty
   - NFMagazinePistol35Empty
-  position: 0, 43
-
-- type: technology
-  id: NFBountyHunting
-  name: nf-research-technology-bounty-hunting
-  entityIcon: Handcuffs
-  discipline: NFArsenalMercenary
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - BolaNF
-  - NFHandcuffs
-  - ClothingOuterArmorBulletproofNF
-  - ClothingOuterCoatBHTrench
-  - PinpointerUniversalNF
-  - ClothingEyesHudBountyHunter
-  - NFForensicPad
-  - FlashlightSecliteNF
   technologyPrerequisites:
-  - NFBasicAmmunitionProduction
-  position: 1, 42
+  - NFBountyHunting
+  position: 1, 43
 
 - type: technology
   id: NFImprovedPistolAmmo
@@ -1735,15 +1750,30 @@
 - type: technology
   id: NFAdvancedRiotControl
   name: nf-research-technology-advanced-riot-control
-  entityIcon: Truncheon
+  entityIcon: ClothingHeadHelmetRiot
   discipline: NFArsenalMercenary
   tier: 1
-  cost: 8000
+  cost: 5000
   recipeUnlocks:
   - NFTelescopicShield
+  - ClothingHeadHelmetRiot
+  - ClothingOuterArmorRiot
   technologyPrerequisites:
   - NFBountyHunting
   position: 2, 42
+
+- type: technology
+  id: NFMercenaryTechfab
+  name: nf-research-technology-mercenary-techfab
+  entityIcon: MercenaryTechFab
+  discipline: NFArsenalMercenary
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - MercenaryTechFabCircuitboardNF
+  technologyPrerequisites:
+  - NFAdvancedRiotControl
+  position: 2, 43
 
 - type: technology
   id: NFArsenalStyle
@@ -1751,7 +1781,7 @@
   entityIcon: ClothingOuterArmorPunkOrange
   discipline: NFArsenalMercenary
   tier: 1
-  cost: 2500
+  cost: 5000
   recipeUnlocks:
   - ClothingEyesPunkInfoShades
   - ClothingOuterArmorPunkRandomized
@@ -1773,7 +1803,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBountyHunting
-  position: 2, 43
+  position: 1, 41
 
 - type: technology
   id: NFImprovedRifleAmmo
@@ -1871,6 +1901,6 @@
   - NFGrenadeEMP
   prerequisiteLineType: Tree
   technologyPrerequisites:
-  - NFImprovedSalvageWeapons
+  - NFSalvageTechfab
   - NFExplosiveTechnology
   position: 4, 40

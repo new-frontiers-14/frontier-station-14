@@ -9,8 +9,9 @@
 - type: latheRecipePack
   id: CargoBoardsStatic
   recipes:
-  - OreProcessorMachineCircuitboard
+  #- OreProcessorMachineCircuitboard # Frontier: moved to dynamic
   # - SalvageMagnetMachineCircuitboard # Frontier: no point
+  - MaterialReclaimerMachineCircuitboard # Frontier
 
 ## Dynamic
 
@@ -22,10 +23,15 @@
   - MineralScannerEmpty
   - AdvancedMineralScannerEmpty
   - OreBagOfHolding
+  - WeaponCrusher
+  - WeaponCrusherDagger
+  - WeaponCrusherGlaive
 
 - type: latheRecipePack
   id: CargoBoards
   recipes:
+  - OreProcessorMachineCircuitboard # Frontier
   - OreProcessorIndustrialMachineCircuitboard
   # - CargoTelepadMachineCircuitboard # Frontier
   # - ShuttleGunKineticCircuitboard # Frontier
+  - SalvageTechFabCircuitboardNF # Frontier
