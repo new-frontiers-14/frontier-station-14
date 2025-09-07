@@ -32,7 +32,6 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IFileDialogManager _dialogManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
@@ -271,7 +270,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _configurationManager,
             EntityManager,
             _dialogManager,
-            _logManager,
+            LogManager,
             _playerManager,
             _prototypeManager,
             _resourceCache,
@@ -368,9 +367,12 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         if (roleLoadout == null)
             return;
 
-        foreach (var group in roleLoadout.SelectedLoadouts.Values)
+        if (!_prototypeManager.TryIndex(roleLoadout.Role, out RoleLoadoutPrototype? roleProto)) // Frontier
+            return; // Frontier
+
+        foreach (var group in roleLoadout.SelectedLoadouts.OrderBy(x => roleProto!.Groups.FindIndex(e => e == x.Key)))
         {
-            foreach (var loadout in group)
+            foreach (var loadout in group.Value) // Frontier: add .Value
             {
                 if (!_prototypeManager.TryIndex(loadout.Prototype, out var loadoutProto))
                     continue;
@@ -391,9 +393,12 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         // Apply loadout
         if (profile.Loadouts.TryGetValue(job.ID, out var jobLoadout))
         {
-            foreach (var loadouts in jobLoadout.SelectedLoadouts.Values)
+            if (!_prototypeManager.TryIndex(jobLoadout.Role, out RoleLoadoutPrototype? roleProto)) // Frontier
+                return; // Frontier
+
+            foreach (var loadouts in jobLoadout.SelectedLoadouts.OrderBy(x => roleProto!.Groups.FindIndex(e => e == x.Key))) // Frontier
             {
-                foreach (var loadout in loadouts)
+                foreach (var loadout in loadouts.Value) // Frontier: add .Value
                 {
                     if (!_prototypeManager.TryIndex(loadout.Prototype, out var loadoutProto))
                         continue;

@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: Mace70903
+# Discord: mace_70903
+
+# Maintainer Info
+# GitHub: Mace70903
+# Discord: mace_70903
+
+# Shuttle Notes:
+- type: vessel
+  id: Turncoat
+  parent: BaseVesselAntag
+  name: Turncoat
+  description: A mercenaries pride and joy, repurposed at illicit shipyards for nefarious ends. Suited to a crew of 4.
+  price: 85000
+  category: Medium
+  group: BlackMarket
+  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/turncoat.yml
+  guidebookPage: Null
+  class:
+  - Pirate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Turncoat
+  mapName: 'Turncoat'
+  mapPath: /Maps/_NF/Shuttles/BlackMarket/turncoat.yml
+  minPlayers: 0
+  stations:
+    Turncoat:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Brigand {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            NFPirate: [ 0, 0 ]

@@ -641,6 +641,11 @@
       targets:
         - Lattice
         - Plating
+        # Frontier : Allow catwalks on top of lava, plasma and water
+        - FloorBasalt
+        - FloorSnow
+        - FloorPlanetDirt
+        # End Frontier
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1247,6 +1252,18 @@
   graph: SecretDoor
   startNode: start
   targetNode: solidSecretDoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: FungalSoil
+  graph: Soil
+  startNode: start
+  targetNode: fungalSoil
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter

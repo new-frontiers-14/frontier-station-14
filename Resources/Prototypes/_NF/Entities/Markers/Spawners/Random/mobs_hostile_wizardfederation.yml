@@ -14,6 +14,7 @@
     - MobWizFedWizardBlue
     - MobWizFedWizardRed
     - MobWizFedWizardViolet
+    - MobWizFedWizardBrick
     rarePrototypes:
     - MobWizFedWizardSoap
     rareChance: 0.1
@@ -33,6 +34,7 @@
     - MobWizFedWizardBlueHardsuit
     - MobWizFedWizardRedHardsuit
     - MobWizFedWizardVioletHardsuit
+    - MobWizFedWizardBrickHardsuit
     rarePrototypes:
     - MobWizFedWizardSoapHardsuit
     rareChance: 0.1
@@ -94,6 +96,20 @@
     prototypes:
       - MobWizFedWizardSoap
 
+- type: entity
+  name: Brick Wizard Spawner
+  id: SpawnMobWizFedWizardBrick
+  suffix: AI
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardBrick
+
 # Hardsuits
 - type: entity
   name: Blue Wizard Spawner
@@ -150,3 +166,17 @@
   - type: ConditionalSpawner
     prototypes:
       - MobWizFedWizardSoapHardsuit
+
+- type: entity
+  name: Brick Wizard Spawner
+  suffix: AI, Hardsuit
+  id: SpawnMobWizFedWizardBrickHardsuit
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardBrickHardsuit

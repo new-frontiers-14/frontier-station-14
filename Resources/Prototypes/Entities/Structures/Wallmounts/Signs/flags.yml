@@ -8,6 +8,31 @@
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: Structures/Wallmounts/flags.rsi
+    # Begin DeltaV additions - Craftable Pride Flags
+  - type: StaticPrice
+    price: 25
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger: !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/poster_broken.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialCloth:
+            min: 5
+            max: 5
+        offset: 0
+    # End DeltaV additions
 
 - type: entity
   parent: BaseFlag
@@ -17,6 +42,11 @@
   components:
   - type: Sprite
     state: blank_flag
+    # Begin Frontier additions
+  - type: Construction
+    graph: NF_Flags
+    node: BlankFlag
+    # End Frontier additions
 
 - type: entity
   parent: BaseFlag
@@ -26,6 +56,11 @@
   components:
   - type: Sprite
     state: NT_flag
+    # Begin Frontier additions
+  - type: Construction
+    graph: NF_Flags
+    node: NTFlag
+    # End Frontier additions
 
 - type: entity
   parent: BaseFlag
@@ -35,7 +70,12 @@
   components:
   - type: Sprite
     state: syndie_flag
-    
+    # Begin Frontier additions
+  - type: Construction
+    graph: NF_Flags
+    node: SyndieFlag
+    # End Frontier additions
+
 - type: entity
   parent: BaseFlag
   id: LGBTQFlag
@@ -44,7 +84,10 @@
   components:
   - type: Sprite
     state: lgbtq_flag
-    
+  - type: Construction # DeltaV - Craftable Pride Flags
+    graph: Flags
+    node: LGBTQFlag
+
 - type: entity
   parent: BaseFlag
   id: PirateFlag
@@ -52,4 +95,10 @@
   description: Raise the jolly roger, scallywags!
   components:
   - type: Sprite
+    # Begin Frontier additions
     state: pirate_flag
+  - type: Construction
+    graph: NF_Flags
+    node: PirateFlag
+    # End Frontier additions
+

@@ -212,11 +212,13 @@ public abstract class SharedAnomalySystem : EntitySystem
             var core = Spawn(supercritical ? component.CorePrototype : component.CoreInertPrototype, Transform(uid).Coordinates);
             _transform.PlaceNextTo(core, uid);
 
-            // Frontier: set value to points retrieved
+            // Frontier: set value to points retrieved, spawn crystals
             if (TryComp<AnomalyCoreComponent>(core, out var coreComp))
             {
                 _anomalyCore.SetValueFromPointsEarned(core, coreComp, component.PointsEarned);
             }
+
+            SpawnCrystals((uid, component));
             // End Frontier
         }
 
@@ -449,10 +451,12 @@ public abstract class SharedAnomalySystem : EntitySystem
         }
         return resultList;
     }
+
+    protected abstract void SpawnCrystals(Entity<AnomalyComponent> ent); // Frontier
 }
 
 [DataRecord]
-public record struct AnomalySpawnSettings()
+public partial record struct AnomalySpawnSettings()
 {
     /// <summary>
     /// should entities block spawning?

@@ -11,9 +11,6 @@ namespace Content.Shared.Access.Components;
 [Access(typeof(SharedIdCardConsoleSystem))]
 public sealed partial class IdCardConsoleComponent : Component
 {
-    public const int MaxFullNameLength = 30;
-    public const int MaxJobTitleLength = 30;
-
     public static string PrivilegedIdCardSlotId = "IdCardConsole-privilegedId";
     public static string TargetIdCardSlotId = "IdCardConsole-targetId";
 
@@ -55,12 +52,11 @@ public sealed partial class IdCardConsoleComponent : Component
         //"Cargo",
         //"Chapel",
         //"Chemistry",
-        //"ChiefEngineer",
         //"ChiefMedicalOfficer",
         "Command",
         //"Cryogenics",
         "Detective", // Frontier: moved into alphabetical order
-        //"Engineering",
+        "Engineering",
         "External",
         "Frontier", // Frontier
         //"Hydroponics",
@@ -71,6 +67,7 @@ public sealed partial class IdCardConsoleComponent : Component
         "Maintenance",
         "Medical",
         "Mercenary", // Frontier
+        "ChiefEngineer", // Frontier: moved down, alphabetic w.r.t. "Plant Manager"
         //"Quartermaster",
         //"Research",
         //"ResearchDirector",

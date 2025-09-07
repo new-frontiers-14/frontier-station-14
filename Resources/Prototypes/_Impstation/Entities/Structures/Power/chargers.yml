@@ -1,0 +1,30 @@
+- type: entity
+  id: WallWeaponCapacitorRechargerAssembly
+  name: wall recharger assembly
+  description: An incomplete wall recharger that will fit both power cells and small electronic devices. # Frontier
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
+  components:
+  - type: WallMount
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: _NF/Structures/Power/wall_recharger.rsi # Frontier: use _NF sprite
+    layers:
+    - state: assembly
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          assembly: { state: assembly }
+          wires: { state: wires }
+          electronics: { state: electronics }
+  - type: Construction
+    graph: WallWeaponCapacitorRecharger
+    node: assembly
+  - type: Transform
+    anchored: true

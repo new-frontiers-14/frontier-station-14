@@ -8,14 +8,14 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -2.1
-    maxAngle: -6.3
+    minAngle: -0.8
+    maxAngle: -4
   - type: Gun
     projectileSpeed: 22.5
-    minAngle: 6.2
-    maxAngle: 18.6
+    minAngle: 3.7
+    maxAngle: 18.5
     angleIncrease: 1
-    angleDecay: 2
+    angleDecay: 5
     fireRate: 6
     selectedMode: FullAuto
     availableModes:
@@ -32,15 +32,12 @@
   parent: NFBaseWeaponFrameSubMachineGun
   abstract: true
   components:
-  - type: GunWieldBonus
-    minAngle: -1.7
-    maxAngle: -7.5
   - type: Gun
-    minAngle: 6.7
-    maxAngle: 21
-    angleIncrease: 1
-    angleDecay: 2
-    fireRate: 4
+    minAngle: 4.3
+    maxAngle: 21.5
+    angleIncrease: 1.4
+    angleDecay: 4.8
+    fireRate: 5.1
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
@@ -50,9 +47,9 @@
   abstract: true
   components:
   - type: Gun
-    angleIncrease: 0.5
-    angleDecay: 2
-    fireRate: 3.5
+    angleIncrease: 1.1
+    angleDecay: 7.7
+    fireRate: 4.8
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-cybersun-industries
 
@@ -61,15 +58,11 @@
   parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameSubMachineGun ]
   abstract: true
   components:
-  - type: GunWieldBonus
-    minAngle: -1
-    maxAngle: -7.5
   - type: Gun
-    minAngle: 6.7
-    maxAngle: 21
-    angleIncrease: 1
-    angleDecay: 2
-    fireRate: 5
+    minAngle: 4.1
+    maxAngle: 20.5
+    angleIncrease: 1.8
+    angleDecay: 6.5
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-gorlex-steel-works
 
@@ -78,15 +71,12 @@
   parent: [ NFBaseWeaponFrameSubMachineGun ]
   abstract: true
   components:
-  - type: GunWieldBonus
-    minAngle: -1.8
-    maxAngle: -6.5
   - type: Gun
-    minAngle: 6.7
-    maxAngle: 21
-    angleIncrease: 1
-    angleDecay: 2
-    fireRate: 4
+    minAngle: 4.4
+    maxAngle: 22
+    angleIncrease: 2.1
+    angleDecay: 6.7
+    fireRate: 4.8
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
 

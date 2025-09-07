@@ -1,3 +1,4 @@
+#region planet
 - type: entity
   name: explorer spawner
   id: SpawnMobExplorerT1
@@ -85,4 +86,49 @@
     offset: 0.0
     rarePrototypes:
     - MobExplorerHauler
+    rareChance: 0.1
+#region space
+- type: entity
+  id: SpawnMobExplorerEVAT1
+  parent: SpawnMobExplorerT1
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobExplorerMeleeEVAT1
+    - MobExplorerMeleeEVAT1
+    - MobExplorerRangedEVAT1
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnMobExplorerEVAT2
+    rareChance: 0.05
+
+- type: entity
+  id: SpawnMobExplorerEVAT2
+  parent: SpawnMobExplorerT2
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobExplorerMeleeEVAT2
+    - MobExplorerMeleeEVAT2
+    - MobExplorerRangedEVAT2
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnMobExplorerEVAT3
+    rareChance: 0.05
+
+- type: entity
+  id: SpawnMobExplorerEVAT3
+  parent: SpawnMobExplorerT3
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobExplorerMeleeEVAT3
+    - MobExplorerMeleeEVAT3
+    - MobExplorerRangedEVAT3
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MobExplorerHaulerEVA
     rareChance: 0.1

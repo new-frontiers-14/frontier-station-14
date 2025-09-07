@@ -30,7 +30,7 @@
   result: HydroponicsSoilNutritionFlatpack
   categories:
   - Tools
-  completetime: 200
+  completetime: 60
   applyMaterialDiscount: false
   materials:
     Biomass: 1600
@@ -46,7 +46,7 @@
   id: NFBioGenSheetPlastic
   result: SheetPlastic1
   parent: BaseMaterialsNoDiscountRecipe
-  completetime: 10
+  completetime: 5
   materials:
     Biomass: 40
 
@@ -62,45 +62,45 @@
   result: FoodMeat
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 5
   materials:
     Biomass: 35
 
 #region Meat
 
 - type: latheRecipe
-  id: NFBioGenFoodMeatChicken
-  result: FoodMeatChicken
+  id: NFBioGenFoodMeatWholeChicken
+  result: FoodMeatWholeChicken
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 15
   materials:
-    Biomass: 35
-    
+    Biomass: 70
+
 - type: latheRecipe
-  id: NFBioGenFoodMeatPenguin
-  result: FoodMeatPenguin
+  id: NFBioGenFoodMeatWholePenguin
+  result: FoodMeatWholePenguin
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 20
   materials:
-    Biomass: 35
-    
+    Biomass: 105
+
 - type: latheRecipe
-  id: NFBioGenFoodMeatDuck
-  result: FoodMeatDuck
+  id: NFBioGenFoodMeatWholeDuck
+  result: FoodMeatWholeDuck
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 15
   materials:
-    Biomass: 35
+    Biomass: 70
 
 - type: latheRecipe
   id: NFBioGenFoodMeatCrab
   result: FoodMeatCrab
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 5
   materials:
     Biomass: 25 #Crab is a more specific recipe, also crabs are smaller so I pressume the cut of crab meat is easier to make than a full steak
     
@@ -109,7 +109,7 @@
   result: FoodMeatBacon
   parent: BioGenFoodRecipe
   applyMaterialDiscount: false
-  completetime: 10
+  completetime: 5
   materials:
     Biomass: 35 
 

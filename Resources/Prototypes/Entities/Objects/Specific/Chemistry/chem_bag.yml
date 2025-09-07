@@ -11,7 +11,7 @@
     - state: icon
     - state: icon-on
       visible: false
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   # End Frontier: layered sprite
   - type: Clothing
     sprite: Objects/Specific/Chemistry/chem_bag.rsi
@@ -56,8 +56,8 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: { visible: True }
           False: { visible: False }
   # End Frontier

@@ -56,20 +56,6 @@
 
 - type: entity
   parent: BaseNFFlatpack
-  id: PowerCellRechargerFlatpack
-  name: cell charger flatpack
-  description: A flatpack used for constructing a cell charger.
-  components:
-  - type: Flatpack
-    entity: PowerCellRecharger
-  - type: StaticPrice
-    price: 15
-  - type: Sprite
-    layers:
-    - state: power_charger
-
-- type: entity
-  parent: PowerCellRechargerFlatpack
   id: WeaponCapacitorRechargerFlatpack
   name: recharger flatpack
   description: A flatpack used for constructing a recharger.
@@ -78,6 +64,9 @@
     entity: WeaponCapacitorRecharger
   - type: StaticPrice
     price: 55
+  - type: Sprite
+    layers:
+    - state: power_charger
 
 - type: entity
   parent: BaseNFFlatpack
@@ -131,16 +120,6 @@
   components:
   - type: Flatpack
     entity: GeneratorRTG
-
-- type: entity
-  parent: PortableGeneratorJrPacmanFlatpack
-  id: GeneratorRTGDamagedFlatpack
-  name: RTG generator flatpack
-  description: A flatpack used for constructing a Radioisotope Thermoelectric Generator. The packaging seems to be somewhat damaged.
-  suffix: Damaged
-  components:
-  - type: Flatpack
-    entity: GeneratorRTGDamaged
 
 - type: entity
   parent: BaseNFFlatpack
@@ -302,6 +281,17 @@
   components:
   - type: Flatpack
     entity: BlueprintLithograph
+
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: MaterialSiloFlatpack
+  name: material silo flatpack
+  description: A flatpack used for constructing a material silo.
+  components:
+  - type: Flatpack
+    entity: MachineMaterialSilo
+  - type: StaticPrice
+    price: 250
 
 #region Service
 - type: entity

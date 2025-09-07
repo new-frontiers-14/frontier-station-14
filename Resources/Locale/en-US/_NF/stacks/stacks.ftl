@@ -2,6 +2,10 @@ stack-scrap-chunk = scrap {$amount ->
     [1] chunk
     *[other] chunks
 }
+stack-tech-scrap-chunk = tech scrap {$amount ->
+    [1] chunk
+    *[other] chunks
+}
 stack-iron-coin = iron {$amount ->
     [1] coin
     *[other] coins
@@ -83,6 +87,7 @@ stack-doubloon = {$amount ->
     [8] pieces of eight
     *[other] doubloons
 }
+stack-anomalite = anomalite
 stack-fuel-grade-plasma = fuel-grade plasma
 stack-fuel-grade-uranium = fuel-grade uranium
 stack-fuel-grade-bananium = fuel-grade bananium

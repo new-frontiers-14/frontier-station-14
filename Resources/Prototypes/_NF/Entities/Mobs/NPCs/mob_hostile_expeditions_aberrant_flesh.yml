@@ -1,9 +1,10 @@
-# BASE
+#region BASE
 - type: entity
   parent:
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
   - MobNonHumanHostileBase
   - MobHumanoidHostileAISimpleMelee
-  - NFMobRestrictions
   id: BaseMobFleshExpeditions
   name: aberrant flesh
   description: A shambling mass of flesh, animated through anomalous energy.
@@ -27,8 +28,6 @@
     speedModifierThresholds:
       34: 0.7
       45: 0.5
-  - type: Stamina
-    critThreshold: 64
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -47,11 +46,8 @@
         Structural: 20
   - type: ReplacementAccent
     accent: genericAggressive
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
 
-# MOBS
+#region MOBS
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshJaredExpeditions
@@ -179,8 +175,6 @@
     speedModifierThresholds:
       48: 0.7
       64: 0.5
-  - type: Stamina
-    critThreshold: 100
   - type: DamageStateVisuals
     states:
       Alive:
@@ -195,15 +189,13 @@
 
 - type: entity
   parent:
+  - MobMovementSpeedModifierRanged
   - BaseMobFleshExpeditions
   - MobHumanoidHostileAISimpleRanged
   id: MobFleshClampExpeditions
   description: A flying flesh monster that can shoot spikes or toothy creatures that can latch on.
   #categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: CanMoveInAir
   - type: Fixtures
     fixtures:
@@ -293,14 +285,13 @@
       collection: BulletMiss
 
 - type: entity
-  parent: BaseMobFleshExpeditions
+  parent:
+  - MobMovementSpeedModifierSpecial
+  - BaseMobFleshExpeditions
   id: MobFleshLoverExpeditions
   description: The Lover's light frame makes it fragile, but capable of flight.
   #categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 5
-    baseSprintSpeed : 5
   - type: CanMoveInAir
   - type: Fixtures
     fixtures:
@@ -346,17 +337,16 @@
       types:
         Blunt: 4
 
-# EXPEDITION BOSS
+#region BOSS
 - type: entity
-  parent: [ BaseMobFleshExpeditions, MobHostileBossBase, NFMobBossRestrictions ]
+  parent:
+  - MobHostileBossBase
+  - BaseMobFleshExpeditions
   id: MobHorrorExpeditions
   name: aberrant flesh horror
   description: Tougher and more resilient than most aberrant flesh monsters. Has sharp, bony protrusions and highly developed musculature.
   #categories: [ HideSpawnMenu ]
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4.6
-    baseSprintSpeed : 4.6
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -433,19 +423,22 @@
 
 - type: entity
   id: ActionBoneSpike
+  parent: BaseAction
   categories: [ HideSpawnMenu ]
   name: "[color=yellow]Bone Spike[/color]"
   description: "Shoot a short salvo of bone spikes laced with toxins. [color=yellow]5 second cooldown.[/color]"
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite : _NF/Mobs/Aliens/flesh.rsi, state: spike }
-    event: !type:ActionGunShootEvent
     priority: 2
+    itemIconStyle: BigAction
+  - type: TargetAction
     checkCanAccess: false
     range: 0
-    itemIconStyle: BigAction
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
 
-# FUNNY LITTLE GUY
+#region FUNNY LITTLE GUY
 # embedable projectile that bites you until you either kill it or detach it or die (or it despawns)
 - type: entity
   parent: [ BaseMobFleshExpeditions, NFMobTimedDespawn60 ]
@@ -494,7 +487,8 @@
       types:
         Slash: 3
 
-# Newborns (spawned from assimilation sack)
+#region Newborns
+# spawned from assimilation sack
 - type: entity
   id: BaseMobFleshExpeditionsNewborn
   parent: BaseMobFleshExpeditions
