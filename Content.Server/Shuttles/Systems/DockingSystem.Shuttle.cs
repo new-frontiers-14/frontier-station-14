@@ -197,7 +197,7 @@ public sealed partial class DockingSystem
                     var gridXform = _xformQuery.GetComponent(gridDockUid);
 
                     // Frontier: skip docks that don't match type
-                    if ((gridDock.DockType & dockType) == DockType.None)
+                    if ((gridDock.DockType & shuttleDock.DockType) == DockType.None)
                         continue;
                     // End Frontier
 
@@ -259,7 +259,7 @@ public sealed partial class DockingSystem
                                 continue;
 
                             // Frontier: skip docks that don't match type
-                            if ((otherGrid.DockType & dockType) == DockType.None)
+                            if ((otherGrid.DockType & other.DockType) == DockType.None)
                                 continue;
                             // End Frontier
 
