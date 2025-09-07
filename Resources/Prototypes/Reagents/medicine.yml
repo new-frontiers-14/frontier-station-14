@@ -320,6 +320,13 @@
   metabolisms:
     Medicine:
       effects:
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Histamine
+          min: 45
+        reagent: Histamine
+        amount: -5
       - !type:HealthChange
         conditions:
           # they gotta be in crit first
@@ -826,13 +833,12 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Burn: -2
-            Toxin: -2
-            Airloss: -2
-            Brute: -2
+          Burn: -2
+          Toxin: -2
+          Airloss: -2
+          Brute: -2
 
 - type: reagent
   id: Ultravasculine
@@ -1093,6 +1099,7 @@
   name: reagent-name-holywater
   group: Medicine
   desc: reagent-desc-holywater
+  evaporationSpeed: 0.3
   physicalDesc: reagent-physical-desc-holy
   flavor: holy
   color: "#91C3F7"
@@ -1281,10 +1288,10 @@
           max: 213.0
         damage:
           types:
-            Heat: -3.0
-            Shock: -3.0
-            Cold: -3.0 # Frontier
-            Caustic: -3.0 # Frontier
+            Cold: -4.0
+            Heat: -4.0
+            Shock: -4.0
+            Caustic: -1.5
 
 - type: reagent
   id : Mannitol # currently this is just a way to create psicodine
