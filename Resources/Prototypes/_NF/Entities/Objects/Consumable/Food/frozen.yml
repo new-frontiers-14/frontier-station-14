@@ -23,3 +23,241 @@
     - sweet
     - icecream
     - licorice
+
+- type: entity
+  name: mochi
+  parent: FoodFrozenBase
+  id: FoodFrozenMochi
+  description: A delicious blorb of chewey sticky rice encapsulating a core of ice cream. Tasty!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    layers:
+    - state: mochi
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - icecream
+    - sweet
+
+- type: entity
+  name: bungo mochi
+  parent: FoodFrozenBase
+  id: FoodFrozenMochiBungo
+  description: A delicious blorb of chewey sticky rice encapsulating a core of ice cream. It's bungo flavored!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    layers:
+    - state: bungomochi
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - icecream
+    - bungo
+
+- type: entity
+  name: cherry mochi
+  parent: FoodFrozenBase
+  id: FoodFrozenMochiCherry
+  description: A delicious blorb of chewey sticky rice encapsulating a core of ice cream. It's cherry flavored!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    layers:
+    - state: cherrymochi
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - icecream
+    - cherry
+
+- type: entity
+  name: chocolate mochi
+  parent: FoodFrozenBase
+  id: FoodFrozenMochiChocolate
+  description: A delicious blorb of chewey sticky rice encapsulating a core of ice cream. It's chocolate flavored!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    layers:
+    - state: chocomochi
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - icecream
+    - chocolate
+
+- type: entity
+  name: fiber mochi
+  parent: FoodFrozenBase
+  id: FoodFrozenMochiFiber
+  description: A delicious blorb of chewey sticky rice encapsulating a core of ice cream. It's woven with fiber!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    layers:
+    - state: fibermochi
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 4
+        - ReagentId: Fiber
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - icecream
+    - fiber
+
+- type: entity
+  name: rosy mochi
+  parent: FoodFrozenBase
+  id: FoodFrozenMochiMoth
+  description: A delicious blorb of chewey sticky rice encapsulating a core of ice cream. It's almost too cute to eat! Almost.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    layers:
+    - state: mothmochi
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - icecream
+    - pink
+
+- type: entity
+  name: cinnamon mochi
+  parent: FoodFrozenBase
+  id: FoodFrozenMochiSpice
+  description: A delicious blorb of chewey sticky rice encapsulating a core of ice cream. It's spicy! Is that cinnamon?
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    layers:
+    - state: spicemochi
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - icecream
+    - cinnamon
+
+- type: entity
+  name: tea mochi
+  parent: FoodFrozenBase
+  id: FoodFrozenMochiTea
+  description: A delicious blorb of chewey sticky rice encapsulating a core of ice cream. It's infused with tea!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    layers:
+    - state: teamochi
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Sugar
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - icecream
+    - tea
+
+- type: entity
+  name: ube mochi
+  parent: FoodFrozenBase
+  id: FoodFrozenMochiUbe
+  description: A delicious blorb of chewey sticky rice encapsulating a core of ice cream. You're not sure if it's really ube.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/frozen.rsi
+    layers:
+    - state: ubemochi
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 4
+        - ReagentId: PolypyryliumOligomers
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - icecream
+    - antiseptic

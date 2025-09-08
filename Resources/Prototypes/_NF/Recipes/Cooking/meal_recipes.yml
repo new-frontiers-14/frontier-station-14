@@ -251,6 +251,19 @@
   recipeType:
   - Oven
 
+- type: microwaveMealRecipe
+  id: RecipeChickenParmesan
+  name: Chicken Parmesan
+  result: FoodMealChickenParmesan
+  time: 5
+  group: Savory
+  solids:
+    FoodMeatChickenFried: 1
+    FoodNoodlesBoiled: 1
+    FoodTomato: 1
+    FoodCheeseSlice: 1
+  recipeType:
+  - Assembler
 
 # Sushi
 
@@ -957,6 +970,19 @@
 # Pasta and Noodles
 
 - type: microwaveMealRecipe
+  id: RecipeRiceNoodleSheet
+  name: raw rice noodle sheet
+  result: FoodRiceNoodlesSheet
+  time: 15
+  group: Pasta
+  solids:
+    FoodRiceDough: 1
+  reagents: 
+    TableSalt: 10
+    Cornoil: 10
+  recipeType: Assembler
+
+- type: microwaveMealRecipe
   id: RecipeBasicNoodles
   name: basic noodles
   result: FoodMealBasicNoodles
@@ -964,7 +990,7 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
   reagents:
     Soysauce: 5
     Water: 15
@@ -979,11 +1005,11 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodSoybeans: 1
-    FoodButterSlice: 1
   reagents:
-    Water: 20
+    Soysauce: 5
+    Water: 15
     Egg: 6
   recipeType:
   - Oven
@@ -996,10 +1022,11 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodCorn: 1
   reagents:
-    Water: 20
+    Soysauce: 5
+    Water: 15
   recipeType:
   - Oven
 
@@ -1011,12 +1038,12 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodCorn: 1
     FoodMeatBacon: 1
   reagents:
-    Soysauce: 10
-    Water: 10
+    Soysauce: 5
+    Water: 15
     Egg: 6
   recipeType:
   - Oven
@@ -1029,7 +1056,7 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodTofuSlice: 1
     FoodChiliPepper: 1
   reagents:
@@ -1046,24 +1073,12 @@
   group: Pasta
   solids:
     FoodBowlBig: 1
-    FoodNoodlesBoiled: 1
+    FoodRiceNoodles: 1
     FoodSoybeans: 1
-    FoodGarlic: 1
     FoodMeatBacon: 1
   reagents:
     Soysauce: 5
     Water: 15
-  recipeType:
-  - Oven
-
-- type: microwaveMealRecipe
-  id: RecipeBunCotton
-  name: cotton bun recipe
-  result: FoodBunCotton
-  time: 5
-  group: Moth
-  solids:
-    FoodDoughCottonSlice: 1
   recipeType:
   - Oven
 
@@ -1074,7 +1089,7 @@
   time: 10
   group: Moth
   solids:
-    FoodBunCotton: 1
+    FoodCottonBun: 1
     CottonBol: 1
   recipeType:
   - Oven
@@ -1086,7 +1101,7 @@
   time: 10
   group: Moth
   solids:
-    FoodBunCotton: 1
+    FoodCottonBun: 1
     CottonBol: 1
     FoodCheeseSlice: 1
   recipeType:
@@ -1319,6 +1334,122 @@
   recipeType:
   - Assembler
 
+- type: microwaveMealRecipe
+  id: RecipeMochi
+  name: mochi
+  result: FoodFrozenMochi
+  time: 5
+  group: Dessert
+  solids:
+    FoodRiceDoughSlice: 1
+  reagents:
+    IceCream: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiCherry
+  name: cherry mochi
+  result: FoodFrozenMochiCherry
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    JuiceCherry: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiBungo
+  name: bungo mochi
+  result: FoodFrozenMochiBungo
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    JuiceBungo: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiChocolate
+  name: chocolate mochi
+  result: FoodFrozenMochiChocolate
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    CocoaPowder: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiFiber
+  name: fiber mochi
+  result: FoodFrozenMochiFiber
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    Fiber: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiMoth
+  name: rosy mochi
+  result: FoodFrozenMochiMoth
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    PinkDrink: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiSpice
+  name: spice mochi
+  result: FoodFrozenMochiSpice
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    Everyspice: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiTea
+  name: tea mochi
+  result: FoodFrozenMochiTea
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    Tea: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeMochiUbe
+  name: ube mochi
+  result: FoodFrozenMochiUbe
+  time: 5
+  group: Dessert
+  solids:
+    FoodFrozenMochi: 1
+  reagents:
+    PolypyryliumOligomers: 2
+  recipeType:
+  - Assembler
 # NOT ACTUAL FOOD
 
 - type: microwaveMealRecipe
