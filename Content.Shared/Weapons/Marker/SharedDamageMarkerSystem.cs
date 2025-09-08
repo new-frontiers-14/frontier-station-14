@@ -7,8 +7,10 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
+using Content.Shared.Mobs; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
 using Content.Shared.Mobs.Systems; // Frontier
+using Content.Shared._NF.Weapons.Components; // Frontier
 
 namespace Content.Shared.Weapons.Marker;
 
@@ -26,6 +28,8 @@ public abstract class SharedDamageMarkerSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<DamageMarkerOnCollideComponent, StartCollideEvent>(OnMarkerCollide);
         SubscribeLocalEvent<DamageMarkerComponent, AttackedEvent>(OnMarkerAttacked);
+
+        SubscribeLocalEvent<NFMarkerCounterComponent, MobStateChangedEvent>(OnMobStateChange); // Frontier - remove marker counter on revive
     }
 
     private void OnMarkerAttacked(EntityUid uid, DamageMarkerComponent component, AttackedEvent args)
@@ -37,11 +41,33 @@ public abstract class SharedDamageMarkerSystem : EntitySystem
         RemCompDeferred<DamageMarkerComponent>(uid);
         _audio.PlayPredicted(component.Sound, uid, args.User);
 
-        if (TryComp<LeechOnMarkerComponent>(args.Used, out var leech)
-            && TryComp<MobStateComponent>(uid, out var state) // Frontier
-            && !_mobStateSystem.IsDead(uid, state)) // Frontier
+        if (TryComp<LeechOnMarkerComponent>(args.Used, out var leech))
         {
-            _damageable.TryChangeDamage(args.User, leech.Leech, true, false, origin: args.Used);
+            // Frontier - limit crusher whacks on dead mobs
+            // Always leech on living targets
+            // You're guaranteed a number of leech hits dead or alive
+            // Can be tuned for balancing purposes
+            // Only stick a marker counter onto living mobs, so you can't leech from a corpse you never leeched from while alive
+            var isAlive = TryComp<MobStateComponent>(uid, out var state) && !_mobStateSystem.IsDead(uid, state);
+            // Can always leech from living mobs
+            var weCanLeech = isAlive;
+            // We give the marker counter to living mobs only
+            if (!TryComp<NFMarkerCounterComponent>(uid, out var markerCounter) && isAlive)
+            {
+                EnsureComp<NFMarkerCounterComponent>(uid, out markerCounter);
+                markerCounter.WhacksRemaining = leech.NumGuaranteedLeechHits;
+            }
+
+            // If the mob has a marker counter with remaining charges, we can leech even if dead
+            // Deduct a leech charge in either case
+            if (markerCounter != null && markerCounter.WhacksRemaining > 0)
+            {
+                markerCounter.WhacksRemaining = Math.Max(markerCounter.WhacksRemaining - 1, 0);
+                weCanLeech = true;
+            }
+            if (weCanLeech)
+                _damageable.TryChangeDamage(args.User, leech.Leech, true, false, origin: args.Used);
+            // End Frontier
         }
     }
 
@@ -92,4 +118,15 @@ public abstract class SharedDamageMarkerSystem : EntitySystem
             }
         }
     }
+
+    // Frontier - remove the marker counter if mob is revived
+    private void OnMobStateChange(EntityUid uid, NFMarkerCounterComponent component, ref MobStateChangedEvent args)
+    {
+        // Revival (FROM Dead TO anywhere else)
+        if (args.OldMobState == MobState.Dead)
+        {
+            RemCompDeferred<NFMarkerCounterComponent>(uid);
+        }
+    }
+    // End Frontier
 }
