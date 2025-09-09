@@ -28,6 +28,34 @@
     class: weapon-details-class-shotgun
 
 - type: entity
+  id: NFBaseWeaponFrameSmallShotgun
+  parent: [ NFBaseWeaponEncumbrancePistol, NFBaseItemWeaponGun ]
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Gun
+    projectileSpeed: 20
+    minAngle: 4.1
+    maxAngle: 23
+    angleIncrease: 2
+    angleDecay: 4
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: StaticPrice
+    price: 400
+  - type: NFWeaponDetails
+    class: weapon-details-class-shotgun
+
+- type: entity
   id: NFBaseWeaponFrameShotgunWieldable
   parent: [ NFBaseWeaponEncumbranceRifle, NFBaseWeaponFrameShotgun ]
   abstract: true
