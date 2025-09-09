@@ -190,19 +190,20 @@
   categories:
   - UplinkWeaponry
 
-- type: listing
-  id: UplinkEstocBundle
-  name: uplink-estoc-bundle-name
-  description: uplink-estoc-bundle-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/estoc.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledRifle
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 11
-  cost:
-    Telecrystal: 18
-  categories:
-  - UplinkWeaponry
+# Frontier TODO: Balance this and readd
+#- type: listing
+#  id: UplinkEstocBundle
+#  name: uplink-estoc-bundle-name
+#  description: uplink-estoc-bundle-desc
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/estoc.rsi, state: icon }
+#  productEntity: ClothingBackpackDuffelSyndicateFilledRifle
+#  discountCategory: veryRareDiscounts
+#  discountDownTo:
+#    Telecrystal: 11
+#  cost:
+#    Telecrystal: 18
+#  categories:
+#  - UplinkWeaponry
 
 - type: listing
   id: UplinkBulldogBundle
@@ -521,6 +522,7 @@
 
 # For the Bulldog
 - type: listing
+  abstract: true # Frontier: moved to _NF uplink catalog
   id: UplinkMagazineShotgunPellet
   name: uplink-magazine-bulldog-pellet-name
   description: uplink-magazine-bulldog-pellet-desc
@@ -532,6 +534,7 @@
   - UplinkAmmo
 
 - type: listing
+  abstract: true # Frontier: moved to _NF uplink catalog
   id: UplinkMagazineShotgunSlug
   name: uplink-magazine-bulldog-slug-name
   description: uplink-magazine-bulldog-slug-desc
