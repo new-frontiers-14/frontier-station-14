@@ -11,19 +11,15 @@ using Content.Server.Vocalization.Systems;
 using Content.Shared.Cargo;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
-using Content.Shared.DoAfter;
 using Content.Shared.Emp;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Throwing;
 using Content.Shared.UserInterface;
 using Content.Shared.VendingMachines;
 using Content.Shared.Wall;
-using Robust.Shared.Audio;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+<<<<<<< HEAD
 using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Content.Server.Administration.Logs; // Frontier
@@ -34,6 +30,8 @@ using Content.Shared.Stacks; // Frontier
 using Content.Server.Stack; // Frontier
 using Robust.Shared.Containers; // Frontier
 using Content.Shared._NF.Bank.Components; // Frontier
+=======
+>>>>>>> fbf65b7f74 (Make vending machine restocks predicted (and its sound not spammable) (#38609))
 
 namespace Content.Server.VendingMachines
 {
@@ -42,7 +40,6 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly PricingSystem _pricing = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
 
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Frontier
         [Dependency] private readonly BankSystem _bankSystem = default!; // Frontier
@@ -65,10 +62,7 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, TryVocalizeEvent>(OnTryVocalize);
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
-
             SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
-
-            SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnDoAfter);
 
             SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
         }
@@ -150,30 +144,6 @@ namespace Content.Server.VendingMachines
 
             args.Handled = true;
             EjectRandom(uid, throwItem: true, forceEject: false, component);
-        }
-
-        private void OnDoAfter(EntityUid uid, VendingMachineComponent component, DoAfterEvent args)
-        {
-            if (args.Handled || args.Cancelled || args.Args.Used == null)
-                return;
-
-            if (!TryComp<VendingMachineRestockComponent>(args.Args.Used, out var restockComponent))
-            {
-                Log.Error($"{ToPrettyString(args.Args.User)} tried to restock {ToPrettyString(uid)} with {ToPrettyString(args.Args.Used.Value)} which did not have a VendingMachineRestockComponent.");
-                return;
-            }
-
-            TryRestockInventory(uid, component);
-
-            Popup.PopupEntity(Loc.GetString("vending-machine-restock-done-self", ("target", uid)), args.Args.User, args.Args.User, PopupType.Medium);
-            var othersFilter = Filter.PvsExcept(args.Args.User);
-            Popup.PopupEntity(Loc.GetString("vending-machine-restock-done-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", uid)), args.Args.User, othersFilter, true, PopupType.Medium);
-
-            Audio.PlayPvs(restockComponent.SoundRestockDone, uid, AudioParams.Default.WithVolume(-2f).WithVariation(0.2f));
-
-            Del(args.Args.Used.Value);
-
-            args.Handled = true;
         }
 
         /// <summary>
@@ -320,23 +290,12 @@ namespace Content.Server.VendingMachines
             var disabled = EntityQueryEnumerator<EmpDisabledComponent, VendingMachineComponent>();
             while (disabled.MoveNext(out var uid, out _, out var comp))
             {
-                if (comp.NextEmpEject < _timing.CurTime)
+                if (comp.NextEmpEject < Timing.CurTime)
                 {
                     EjectRandom(uid, true, false, comp);
                     comp.NextEmpEject += (5 * comp.EjectDelay);
                 }
             }
-        }
-
-        public void TryRestockInventory(EntityUid uid, VendingMachineComponent? vendComponent = null)
-        {
-            if (!Resolve(uid, ref vendComponent))
-                return;
-
-            RestockInventoryFromPrototype(uid, vendComponent);
-
-            Dirty(uid, vendComponent);
-            TryUpdateVisualState((uid, vendComponent));
         }
 
         private void OnPriceCalculation(EntityUid uid, VendingMachineRestockComponent component, ref PriceCalculationEvent args)
@@ -411,6 +370,7 @@ namespace Content.Server.VendingMachines
 
             if (IsAuthorized(uid, sender, component))
             {
+<<<<<<< HEAD
                 int bankBalance = 0;
                 if (TryComp<BankAccountComponent>(sender, out var bank))
                     bankBalance = bank.Balance;
@@ -467,6 +427,11 @@ namespace Content.Server.VendingMachines
                     _adminLogger.Add(LogType.Action, LogImpact.Low,
                         $"{ToPrettyString(sender):user} bought from [vendingMachine:{ToPrettyString(uid)}, product:{proto.Name}, cost:{totalPrice},  with ${cashSlotBalance} in the cash slot and ${bankBalance} in the bank.");
                 }
+=======
+                args.Affected = true;
+                args.Disabled = true;
+                component.NextEmpEject = Timing.CurTime;
+>>>>>>> fbf65b7f74 (Make vending machine restocks predicted (and its sound not spammable) (#38609))
             }
         }
         // End Frontier: cash slot logic, custom vending check
