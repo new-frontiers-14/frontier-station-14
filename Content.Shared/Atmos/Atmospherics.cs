@@ -359,6 +359,8 @@ namespace Content.Shared.Atmos
 
         #region Frontier Shuttles
         public const float MolesCellShuttle = 2500f;
+
+        public const float MolesCellSpaceship = 25000f;
         #endregion
     }
 
