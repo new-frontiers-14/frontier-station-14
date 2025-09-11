@@ -13,6 +13,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components; // Frontier - Crew monitor map check
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -101,6 +102,12 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
         var orderedSensors = uniqueSensors.OrderBy(n => n.Name).OrderBy(j => j.Job);
         var assignedSensors = new HashSet<SuitSensorStatus>();
         var departments = uniqueSensors.SelectMany(d => d.JobDepartments).Distinct().OrderBy(n => n);
+        // Frontier - Crew monitor map check
+        var monitorMapHash = (int?)null;
+        if (_entManager.TryGetComponent<TransformComponent>(monitor, out var monitorXform) &&
+            _entManager.TryGetComponent<MapComponent>(monitorXform.MapUid, out var monitorMap))
+            monitorMapHash = monitorMap.MapId.GetHashCode();
+        // End Frontier
 
         // Create department labels and populate lists
         foreach (var department in departments)
@@ -134,7 +141,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
 
             SensorsTable.AddChild(deparmentLabel);
 
-            PopulateDepartmentList(departmentSensors);
+            PopulateDepartmentList(departmentSensors, monitorMapHash); // Frontier - Crew monitor map check
         }
 
         // Account for any non-station users
@@ -160,7 +167,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
 
             SensorsTable.AddChild(deparmentLabel);
 
-            PopulateDepartmentList(remainingSensors);
+            PopulateDepartmentList(remainingSensors, monitorMapHash); // Frontier - Crew monitor map check
         }
 
         // Show monitor on nav map
@@ -170,7 +177,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
         }
     }
 
-    private void PopulateDepartmentList(IEnumerable<SuitSensorStatus> departmentSensors)
+    private void PopulateDepartmentList(IEnumerable<SuitSensorStatus> departmentSensors, int? monitorMapHash) // Frontier
     {
         // Populate departments
         foreach (var sensor in departmentSensors)
@@ -181,6 +188,8 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
                 continue;
 
             var coordinates = _entManager.GetCoordinates(sensor.Coordinates);
+            var mapHash = sensor.MapHash; // Frontier - Crew monitor map check
+            bool coordinatesValid = (coordinates != null) && (mapHash == monitorMapHash); // Frontier - Crew monitor map check
 
             // Add a button that will hold a username and other details
             NavMap.LocalizedNames.TryAdd(sensor.SuitSensorUid, sensor.Name + ", " + sensor.Job);
@@ -189,7 +198,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             {
                 SuitSensorUid = sensor.SuitSensorUid,
                 Coordinates = coordinates,
-                Disabled = (coordinates == null),
+                Disabled = !coordinatesValid, // Frontier - Crew monitor map check
                 HorizontalExpand = true,
             };
 
@@ -306,7 +315,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             // End Frontier
 
             // Add user coordinates to the navmap
-            if (coordinates != null && NavMap.Visible && _blipTexture != null)
+            if (coordinates != null && NavMap.Visible && _blipTexture != null && mapHash == monitorMapHash) //  Frontier - Crew monitor map check
             {
                 NavMap.TrackedEntities.TryAdd(sensor.SuitSensorUid,
                     new NavMapBlip
@@ -424,7 +433,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
 
     // Frontier: all crew monitoring happens in map coords.
     /// <summary>
-    /// report all 
+    /// report all
     /// </summary>
     private EntityCoordinates CoordinatesToMap(EntityCoordinates refCoords)
     {
