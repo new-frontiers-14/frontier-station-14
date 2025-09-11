@@ -19,6 +19,7 @@ using Content.Shared.VendingMachines;
 using Content.Shared.Wall;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+<<<<<<< HEAD
 using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Content.Server.Administration.Logs; // Frontier
@@ -29,6 +30,8 @@ using Content.Shared.Stacks; // Frontier
 using Content.Server.Stack; // Frontier
 using Robust.Shared.Containers; // Frontier
 using Content.Shared._NF.Bank.Components; // Frontier
+=======
+>>>>>>> fbf65b7f74 (Make vending machine restocks predicted (and its sound not spammable) (#38609))
 
 namespace Content.Server.VendingMachines
 {
