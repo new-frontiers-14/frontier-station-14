@@ -1,10 +1,12 @@
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Station.Systems;
+using Content.Server.Construction.Components;
 using Content.Shared._NF.BindToStation;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
+using Robust.Server.Containers;
 
 namespace Content.Server._NF.BindToStation;
 
@@ -12,6 +14,7 @@ public sealed class BindToStationSystem : EntitySystem
 {
     [Dependency] private readonly ExtensionCableSystem _extensionCable = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -104,6 +107,23 @@ public sealed class BindToStationSystem : EntitySystem
             else
             {
                 _extensionCable.Disconnect((target, receiver));
+            }
+        }
+
+        // If this is a machine with a board, also make sure the binding is applied to the contained board too
+        if (HasComp<MachineComponent>(target) && _container.TryGetContainer(target, MachineFrameComponent.BoardContainerName, out var mboardContainer))
+        {
+            foreach (var board in mboardContainer.ContainedEntities)
+            {
+                BindToStation(board, binding.BoundStation, binding.Enabled);
+            }
+        }
+        // Repeat for computers and their boards
+        if (HasComp<ComputerComponent>(target) && _container.TryGetContainer(target, "board", out var cboardContainer))
+        {
+            foreach (var board in cboardContainer.ContainedEntities)
+            {
+                BindToStation(board, binding.BoundStation, binding.Enabled);
             }
         }
     }
