@@ -90,15 +90,17 @@
       weight: 0.25 # Frontier
     - id: ScrapGenericMachineAncient # Frontier
       weight: 0.1 # Frontier
-    - !type:GroupSelector # Frontier: Remove duplicate upstream chem barrels
-      weight: 2 # Frontier
-      children: # Frontier
-      - !type:NestedSelector # Frontier
-        weight: 3 # Frontier
-        tableId: RandomChemicalBarrel # Frontier
-      - !type:NestedSelector # Frontier
-        weight: 1 # Frontier
-        tableId: RandomChemicalBarrelRadioactive # Frontier
+# Frontier: Remove duplicate upstream chem barrels
+#    - !type:GroupSelector 
+#      weight: 2 
+#      children: 
+#      - !type:NestedSelector 
+#        weight: 3 
+#        tableId: RandomChemicalBarrel 
+#      - !type:NestedSelector 
+#        weight: 1 
+#        tableId: RandomChemicalBarrelRadioactive 
+# End Frontier: Remove duplicate upstream chem barrels
 
 # Treasure: High-value scatterables that don't do a ton.
 
