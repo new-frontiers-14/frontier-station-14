@@ -5,15 +5,20 @@
   parent: SuitStorageBase
   suffix: EVA
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: NFTankO2N2EqualFilled # Frontier
-        - id: ClothingOuterHardsuitEVA
-        - id: ClothingHeadHelmetEVA
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageEVA
+
+- type: entityTable
+  id: FillSuitStorageEVA
+  table: !type:AllSelector
+    children:
+    - id: NFTankO2N2EqualFilled # Frontier OxygenTankFilled>NFTankO2N2EqualFilled
+    - id: ClothingOuterHardsuitEVA
+    - id: ClothingHeadHelmetEVA
+    - id: ClothingMaskBreath
+    - id: JetpackMiniFilled # Frontier
 
 #Basic EVA (Big Ass Helmet)
 - type: entity
@@ -21,15 +26,20 @@
   parent: SuitStorageBase
   suffix: EVA, Large Helmet
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: NFTankO2N2EqualFilled # Frontier
-        - id: ClothingOuterHardsuitEVA
-        - id: ClothingHeadHelmetEVALarge
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageEVAAlternate
+
+- type: entityTable
+  id: FillSuitStorageEVAAlternate
+  table: !type:AllSelector
+    children:
+    - id: NFTankO2N2EqualFilled # Frontier OxygenTankFilled>NFTankO2N2EqualFilled
+    - id: ClothingOuterHardsuitEVA
+    - id: ClothingHeadHelmetEVALarge
+    - id: ClothingMaskBreath
+    - id: JetpackMiniFilled # Frontier
 
 #Emergency EVA
 - type: entity
@@ -37,14 +47,19 @@
   parent: SuitStorageBase
   suffix: Emergency EVA
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: NFTankO2N2EqualFilled # Frontier
-        - id: ClothingOuterSuitEmergency
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageEVAEmergency
+
+- type: entityTable
+  id: FillSuitStorageEVAEmergency
+  table: !type:AllSelector
+    children:
+    - id: NFTankO2N2EqualFilled # Frontier OxygenTankFilled>NFTankO2N2EqualFilled
+    - id: ClothingOuterSuitEmergency
+    - id: ClothingMaskBreath
+    - id: JetpackMiniFilled # Frontier
 
 #Prisoner EVA
 - type: entity
@@ -52,13 +67,19 @@
   parent: SuitStorageBase
   suffix: Prisoner EVA
   components:
-  - type: StorageFill
-    contents:
-#        - id: OxygenTankFilled # Frontier
-        - id: NFTankO2N2EqualFilled # Frontier
-        - id: ClothingOuterEVASuitPrisoner # Frontier ClothingOuterHardsuitEVAPrisoner<ClothingOuterEVASuitPrisoner
-        - id: ClothingHeadHelmetEVALarge
-        - id: ClothingMaskBreath
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageEVAPrisoner
+
+- type: entityTable
+  id: FillSuitStorageEVAPrisoner
+  table: !type:AllSelector
+    children:
+    - id: NFTankO2N2EqualFilled # Frontier OxygenTankFilled>NFTankO2N2EqualFilled
+    - id: ClothingOuterEVASuitPrisoner # Frontier ClothingOuterHardsuitEVAPrisoner<ClothingOuterEVASuitPrisoner
+    - id: ClothingHeadHelmetEVALarge
+    - id: ClothingMaskBreath
 
 #Syndicate EVA
 - type: entity
@@ -66,14 +87,20 @@
   parent: SuitStorageBase
   suffix: Syndicate EVA
   components:
-  - type: StorageFill
-    contents:
-        # - id: OxygenTankFilled # Frontier
-        - id: NFTankO2N2EqualFilled # Frontier
-        - id: ClothingOuterEVASuitSyndicate
-        - id: ClothingHeadHelmetSyndicate
-        - id: ClothingMaskGasSyndicate
-        - id: JetpackBlackFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageEVASyndicate
+
+- type: entityTable
+  id: FillSuitStorageEVASyndicate
+  table: !type:AllSelector
+    children:
+    - id: NFTankO2N2EqualFilled # Frontier OxygenTankFilled>NFTankO2N2EqualFilled
+    - id: ClothingOuterEVASuitSyndicate
+    - id: ClothingHeadHelmetSyndicate
+    - id: ClothingMaskGasSyndicate
+    - id: JetpackBlackFilled # Frontier
 
 #Pirate EVA
 - type: entity
@@ -81,15 +108,20 @@
   parent: SuitStorageBase
   suffix: Pirate EVA
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: NFTankO2N2EqualFilled # Frontier
-        - id: ClothingOuterEVASuitPirate # Frontier ClothingOuterHardsuitPirateEVA<ClothingOuterEVASuitPirate
-        - id: ClothingMaskGas
-        - id: JetpackPirateFilled # Frontier
-        - id: ClothingShoesBootsMagPirateFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageEVAPirate
+
+- type: entityTable
+  id: FillSuitStorageEVAPirate
+  table: !type:AllSelector
+    children:
+    - id: NFTankO2N2EqualFilled # Frontier OxygenTankFilled>NFTankO2N2EqualFilled
+    - id: ClothingOuterEVASuitPirate # Frontier ClothingOuterHardsuitPirateEVA<ClothingOuterEVASuitPirate
+    - id: ClothingMaskGas
+    - id: JetpackPirateFilled # Frontier
+    - id: ClothingShoesBootsMagPirateFilled # Frontier
 
 #NTSRA Voidsuit
 - type: entity
@@ -97,16 +129,21 @@
   parent: SuitStorageBase
   suffix: Ancient EVA
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: NFTankO2N2EqualFilled # Frontier
-#        - id: JetpackVoidFilled # Frontier
-        - id: ClothingOuterHardsuitAncientEVA
-        - id: ClothingHeadHelmetAncient
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageEVANTSRA
+
+- type: entityTable
+  id: FillSuitStorageEVANTSRA
+  table: !type:AllSelector
+    children:
+#     - id: JetpackVoidFilled # Frontier
+    - id: ClothingOuterHardsuitAncientEVA
+    - id: ClothingHeadHelmetAncient
+    - id: ClothingMaskBreath
+    - id: NFTankO2N2EqualFilled # Frontier
+    - id: JetpackMiniFilled # Frontier
 
 #HARDSUITS
 #Engineering hardsuit
@@ -141,17 +178,22 @@
   parent: SuitStorageBase
   suffix: Security
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: NFTankO2N2EqualFilled # Frontier
-        - id: ClothingOuterHardsuitSecurity
-        - id: ClothingMaskBreath
-        - id: JetpackSecurityFilled # Frontier
-        - id: ClothingShoesBootsMagSecurityFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageSecurity
   - type: AccessReader
     access: [["Security"]]
+
+- type: entityTable
+  id: FillSuitStorageSecurity
+  table: !type:AllSelector
+    children:
+    - id: NFTankO2N2EqualFilled # Frontier OxygenTankFilled>NFTankO2N2EqualFilled
+    - id: ClothingOuterHardsuitSecurity
+    - id: ClothingMaskBreath
+    - id: JetpackSecurityFilled # Frontier
+    - id: ClothingShoesBootsMagSecurityFilled # Frontier
 
 #CE's hardsuit
 - type: entity
@@ -211,15 +253,10 @@
   parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, SuitStorageBase] # Frontier: added BaseStructureDisableToolUse
   suffix: Warden
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: NFTankO2N2EqualFilled # Frontier
-        - id: ClothingOuterHardsuitWarden
-        - id: ClothingMaskBreath
-        - id: JetpackSecurityFilled # Frontier
-        - id: ClothingShoesBootsMagSecurityFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerWardenHarduit
   - type: AccessReader
     access: [["Armory"]]
 
@@ -255,15 +292,20 @@
   parent: SuitStorageBase
   suffix: Syndicate Hardsuit
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: NFTankO2N2EqualFilled # Frontier
-        - id: ClothingOuterHardsuitSyndie
-        - id: ClothingShoesBootsMagSyndie
-        - id: ClothingMaskGasSyndicate
-        - id: JetpackBlackFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageSyndie
+
+- type: entityTable
+  id: FillSuitStorageSyndie
+  table: !type:AllSelector
+    children:
+    - id: NFTankO2N2EqualFilled # Frontier OxygenTankFilled>NFTankO2N2EqualFilled
+    - id: ClothingOuterHardsuitSyndie
+    - id: ClothingShoesBootsMagSyndie
+    - id: ClothingMaskGasSyndicate
+    - id: JetpackBlackFilled # Frontier
 
 #Pirate Captain's hardsuit
 - type: entity
@@ -271,16 +313,21 @@
   parent: SuitStorageBase
   suffix: Pirate Captain
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: NFTankO2N2EqualFilled # Frontier
-        - id: ClothingOuterHardsuitPirateCap
-        - id: ClothingMaskGas
-        - id: ClothingNeckCloakPirateCap # Frontier
-        - id: JetpackPirateFilled # Frontier
-        - id: ClothingShoesBootsMagPirateFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStoragePirateCap
+
+- type: entityTable
+  id: FillSuitStoragePirateCap
+  table: !type:AllSelector
+    children:
+    - id: NFTankO2N2EqualFilled # Frontier OxygenTankFilled>NFTankO2N2EqualFilled
+    - id: ClothingOuterHardsuitPirateCap
+    - id: ClothingMaskGas
+    - id: ClothingNeckCloakPirateCap # Frontier
+    - id: JetpackPirateFilled # Frontier
+    - id: ClothingShoesBootsMagPirateFilled # Frontier
 
 #Wizard
 - type: entity
@@ -288,11 +335,17 @@
   parent: SuitStorageBase
   suffix: Wizard
   components:
-  - type: StorageFill
-    contents:
-#        - id: OxygenTankFilled
-        - id: NFTankO2N2EqualFilled # Frontier
-        # TODO: Gone until reworked to have no space protection
-        #- id: ClothingOuterHardsuitWizard
-        - id: ClothingMaskBreath
-        - id: JetpackBlackFilled # Frontier: JetpackVoidFilled<JetpackBlackFilled
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageWizard
+
+- type: entityTable
+  id: FillSuitStorageWizard
+  table: !type:AllSelector
+    children:
+    - id: NFTankO2N2EqualFilled # Frontier OxygenTankFilled>NFTankO2N2EqualFilled
+    - id: ClothingMaskBreath
+    # TODO: Gone until reworked to have no space protection
+    #- id: ClothingOuterHardsuitWizard
+    #- id: JetpackVoidFilled

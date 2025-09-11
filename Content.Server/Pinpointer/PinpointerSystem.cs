@@ -146,7 +146,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         var oldDist = pinpointer.DistanceToTarget; // Frontier: moved up
 
         var target = pinpointer.Target;
-        if (target == null || !EntityManager.EntityExists(target.Value))
+        if (target == null || !Exists(target.Value))
         {
             SetDistance(uid, Distance.Unknown, pinpointer);
             TrySetArrowAngle(uid, Angle.Zero, pinpointer); // Frontier
