@@ -68,16 +68,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 32
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
+        - ReagentId: Alliflavocin
           Quantity: 5
-        - ReagentId: Allicin
-          Quantity: 2
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
     state: garlicbread
@@ -86,7 +84,7 @@
   name: french garlic bread slice
   parent: FoodBreadSliceBase
   id: FoodBreadGarlicBaguetteSlice
-  description: A slice of french garlic bread, loaded with shredded cheese and not nearly enough garlic.
+  description: A slice of french garlic bread, loaded with toasted cheese and not nearly enough garlic.
   components:
   - type: FlavorProfile
     flavors:
@@ -96,16 +94,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 8
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2
+          Quantity: 2.5
         - ReagentId: Vitamin
           Quantity: 1.25
-        - ReagentId: Flavorol
+        - ReagentId: Alliflavocin
           Quantity: 1.25
-        - ReagentId: Allicin
-          Quantity: 0.5
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
     state: garlicbreadslice
@@ -124,16 +120,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
+        - ReagentId: Alliflavocin
           Quantity: 5
-        - ReagentId: Allicin
-          Quantity: 1
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
     state: texastoast

@@ -8,13 +8,13 @@
   color: "#bd088f"
   metabolisms:
     Medicine:
-      metabolismRate: 0.25 #probably not needed, works as failsafe if you only have equal units stellanara to allicin
+      metabolismRate: 0.05 #Cutting metabolism rate to better work with alliflavocin
       effects:
       - !type:AdjustReagent
         reagent: Allicin
-        amount: -0.25
+        amount: -0.05
       - !type:HealthChange
         damage:
           types:
-            Poison: -1
+            Poison: -0.25
   recognizable: true
