@@ -903,6 +903,7 @@
     containers:
       cluster-payload: !type:Container
   - type: ProjectileGrenade
+    triggerKey: trigger
     fillPrototype: NFPelletClusterLessLethal # Frontier: use NF variant
     capacity: 30
 
@@ -1006,7 +1007,7 @@
     soundHit: null
   - type: TimedDespawn
     lifetime: 10
-    
+
 
 - type: entity
   id: BulletAcid
