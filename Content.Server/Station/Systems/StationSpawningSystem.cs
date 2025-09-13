@@ -184,6 +184,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                 hasBalance = true;
             }
 
+            // Arrays to store all keys and cartridges
+            EntProtoId[] encryptionKeys = Array.Empty<EntProtoId>();
+            EntProtoId[] pdaCartridges = Array.Empty<EntProtoId>();
+
             // Order loadout selections by the order they appear on the prototype.
             foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto!.Groups.FindIndex(e => e == x.Key)))
             {
@@ -205,6 +209,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     {
                         bankBalance -= int.Max(0, loadoutProto.Price); // Treat negatives as zero.
                         EquipStartingGear(entity.Value, loadoutProto, raiseEvent: false);
+                        StoreKeysAndCartridges(loadoutProto, ref encryptionKeys, ref pdaCartridges);
                         equippedItems.Add(loadoutProto.ID);
                     }
                 }
@@ -234,6 +239,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                         }
 
                         EquipStartingGear(entity.Value, loadoutProto, raiseEvent: false);
+                        StoreKeysAndCartridges(loadoutProto, ref encryptionKeys, ref pdaCartridges);
                         equippedItems.Add(fallback);
                         // Minimum number of items equipped, no need to load more prototypes.
                         if (equippedItems.Count >= groupPrototype.MinLimit)
@@ -244,8 +250,19 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
             // Frontier: do not re-equip roleLoadout, make sure we equip job startingGear,
             // and deduct loadout costs from a bank account if we have one.
-            if (prototype?.StartingGear is not null)
-                EquipStartingGear(entity.Value, prototype.StartingGear, raiseEvent: false);
+            PrototypeManager.TryIndex(prototype?.StartingGear, out var startingGear);
+
+            if (startingGear is not null)
+            {
+                EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                StoreKeysAndCartridges(startingGear, ref encryptionKeys, ref pdaCartridges);
+            }
+
+            StartingGearPrototype loadablesGear = new();
+            loadablesGear.EncryptionKeys = encryptionKeys.ToList();
+            loadablesGear.Cartridges = pdaCartridges.ToList();
+
+            TryEquipKeysAndCartridges(entity.Value, loadablesGear);
 
             var bankComp = EnsureComp<BankAccountComponent>(entity.Value);
 
@@ -322,7 +339,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
 
     #endregion Player spawning helpers
-    // Frontier: equip cartridges
+    // Frontier: store and equip encryption keys and cartridges
     protected override void EquipPdaCartridgesIfPossible(EntityUid entity, List<EntProtoId> pdaCartridges)
     {
         if (!InventorySystem.TryGetSlotEntity(entity, "id", out var slotEnt))
@@ -338,6 +355,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         var coords = _xformSystem.GetMapCoordinates(entity);
         foreach (var entProto in pdaCartridges)
         {
+            Log.Debug($"Entity {entity} auto-installing cartridge {entProto} into PDA {slotEnt.Value}.");
             var spawnedEntity = Spawn(entProto, coords);
             if (!_cartridgeLoader.InstallCartridge(slotEnt.Value, spawnedEntity, cartridgeLoader))
                 DebugTools.Assert(false, $"Entity {entity} could not install cartridge {entProto} into their PDA {slotEnt.Value}!");
@@ -345,7 +363,33 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             QueueDel(spawnedEntity);
         }
     }
-    // End Frontier: equip cartridges
+    private void StoreKeysAndCartridges(IEquipmentLoadout? loadoutProto, ref EntProtoId[] encryptionKeys, ref EntProtoId[] pdaCartridges)
+    {
+        if (loadoutProto == null)
+            return;
+        int keysCount = encryptionKeys.Count();
+        int cartsCount = pdaCartridges.Count();
+        Array.Resize(ref encryptionKeys, keysCount + loadoutProto.EncryptionKeys.Count());
+        Array.Resize(ref pdaCartridges, cartsCount + loadoutProto.Cartridges.Count());
+        loadoutProto.EncryptionKeys.CopyTo(encryptionKeys, keysCount);
+        loadoutProto.Cartridges.CopyTo(pdaCartridges, cartsCount);
+    }
+    private void TryEquipKeysAndCartridges(EntityUid entity, IEquipmentLoadout? loadoutProto)
+    {
+        if (loadoutProto == null)
+            return;
+
+        if (loadoutProto.EncryptionKeys.Count > 0)
+        {
+            EquipEncryptionKeysIfPossible(entity, loadoutProto.EncryptionKeys);
+        }
+
+        if (loadoutProto.Cartridges.Count > 0)
+        {
+            EquipPdaCartridgesIfPossible(entity, loadoutProto.Cartridges);
+        }
+    }
+    // End Frontier: store and equip encryption keys and cartridges
 }
 
 /// <summary>
