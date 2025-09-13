@@ -230,17 +230,6 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                 QueueDel(spawnedEntity);
             }
         }
-
-        if (startingGear.EncryptionKeys.Count > 0)
-        {
-            EquipEncryptionKeysIfPossible(entity, startingGear.EncryptionKeys);
-        }
-
-        // PDA cartridges must run on server, installation logic exists server-side.
-        if (_net.IsServer && startingGear.Cartridges.Count > 0)
-        {
-            EquipPdaCartridgesIfPossible(entity, startingGear.Cartridges);
-        }
         // End Frontier
 
         if (raiseEvent)
@@ -302,6 +291,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
         var coords = _xformSystem.GetMapCoordinates(entity);
         foreach (var entProto in encryptionKeys)
         {
+            Log.Debug($"Entity {entity} auto-inserting loadout encryption key {entProto} into headset {keyContainer}.");
             var spawnedEntity = Spawn(entProto, coords);
             if (!_container.Insert(spawnedEntity, keyContainer))
             {
