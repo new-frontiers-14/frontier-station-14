@@ -257,9 +257,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
             // Frontier: do not re-equip roleLoadout, make sure we equip job startingGear,
             // and deduct loadout costs from a bank account if we have one.
-            PrototypeManager.TryIndex(prototype?.StartingGear, out var startingGear);
-
-            if (startingGear is not null)
+            if (_prototypeManager.TryIndex(prototype?.StartingGear, out var startingGear))
             {
                 EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
                 CollectLoadout(startingGear, ref loadoutLast);
