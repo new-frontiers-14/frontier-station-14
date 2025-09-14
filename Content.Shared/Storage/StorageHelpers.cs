@@ -73,4 +73,20 @@ public static class StorageHelper
 
         return false;
     }
+
+    //TODO: Annotate this as needed, add documentation
+    //TODO: Maybe add a variant that accepts a starting item instead of specifically needing a storage component?
+    public static void ScanStorageForCondition(StorageComponent storage, Predicate<EntityUid> condition, ref List<EntityUid> items)
+    {
+        var entityManager = IoCManager.Resolve<IEntityManager>();
+
+        foreach (var ent in storage.StoredItems.Keys)
+        {
+            if (condition.Invoke(ent))
+                items.Add(ent);
+
+            if (entityManager.TryGetComponent<StorageComponent>(ent, out var storeComp))
+                ScanStorageForCondition(storeComp, condition, ref items);
+        }
+    }
 }
