@@ -193,7 +193,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // Frontier: A final loadout applied at the end of everything else.
             // Right now it's just being used for special auto-equips,
             // but maybe it could be used in the future to equip all loadouts in a single pass?
-            StartingGearPrototype loadoutLast = new();
+            LoadoutPrototype loadoutLast = new();
 
             // Order loadout selections by the order they appear on the prototype.
             foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto!.Groups.FindIndex(e => e == x.Key)))
@@ -264,14 +264,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             }
 
             // Frontier: Attempt auto-equip for implants, encryption keys, and PDA cartridges
-            if (loadoutLast.Implants.Count > 0)
-                EquipImplantsIfPossible(entity.Value, loadoutLast.Implants);
-
-            if (loadoutLast.EncryptionKeys.Count > 0)
-                EquipEncryptionKeysIfPossible(entity.Value, loadoutLast.EncryptionKeys);
-
-            if (loadoutLast.Cartridges.Count > 0)
-                EquipPdaCartridgesIfPossible(entity.Value, loadoutLast.Cartridges);
+            TryAutoEquipMisc(entity.Value, loadoutLast);
 
             var bankComp = EnsureComp<BankAccountComponent>(entity.Value);
 
@@ -430,13 +423,25 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         }
     }
 
+    public void TryAutoEquipMisc(EntityUid entity, LoadoutPrototype loadout)
+    {
+        if (loadout.Implants.Count > 0)
+            EquipImplantsIfPossible(entity, loadout.Implants);
+
+        if (loadout.EncryptionKeys.Count > 0)
+            EquipEncryptionKeysIfPossible(entity, loadout.EncryptionKeys);
+
+        if (loadout.Cartridges.Count > 0)
+            EquipPdaCartridgesIfPossible(entity, loadout.Cartridges);
+    }
+
     /// <summary>
     /// Function to collect and store encryption keys and cartridges.
     /// Does not handle any equip logic.
     /// </summary>
     /// <param name="loadoutProto">The loadout prototype to collect from.</param>
     /// <param name="collectorLoadout">Reference to the loadout to collect to.</param>
-    private void CollectLoadout(IEquipmentLoadout loadoutProto, ref StartingGearPrototype collectorLoadout)
+    private void CollectLoadout(IEquipmentLoadout loadoutProto, ref LoadoutPrototype collectorLoadout)
     {
         collectorLoadout.EncryptionKeys.AddRange(loadoutProto.EncryptionKeys);
         collectorLoadout.Cartridges.AddRange(loadoutProto.Cartridges);
