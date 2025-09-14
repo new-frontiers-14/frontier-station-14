@@ -30,6 +30,10 @@ using System.Linq; // Frontier
 using Content.Server.CartridgeLoader; // Frontier
 using Content.Shared.CartridgeLoader; // Frontier
 using Robust.Server.GameObjects; // Frontier
+using Robust.Shared.Containers; // Frontier
+using Content.Shared.Radio.Components; // Frontier
+using Content.Shared.Implants; // Frontier
+using Content.Shared.Implants.Components; // Frontier
 
 namespace Content.Server.Station.Systems;
 
@@ -54,6 +58,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly BankSystem _bank = default!; // Frontier
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!; // Frontier
     [Dependency] private readonly TransformSystem _xformSystem = default!; // Frontier
+    [Dependency] private readonly SharedContainerSystem _container = default!; // Frontier
+    [Dependency] private readonly SharedImplanterSystem _implanter = default!; // Frontier
 
     /// <summary>
     /// Attempts to spawn a player character onto the given station.
@@ -184,9 +190,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                 hasBalance = true;
             }
 
-            // Arrays to store all keys and cartridges
-            EntProtoId[] encryptionKeys = Array.Empty<EntProtoId>();
-            EntProtoId[] pdaCartridges = Array.Empty<EntProtoId>();
+            // Frontier: A final loadout applied at the end of everything else.
+            // Right now it's just being used for special auto-equips,
+            // but maybe it could be used in the future to equip all loadouts in a single pass?
+            StartingGearPrototype loadoutLast = new();
 
             // Order loadout selections by the order they appear on the prototype.
             foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto!.Groups.FindIndex(e => e == x.Key)))
@@ -209,7 +216,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     {
                         bankBalance -= int.Max(0, loadoutProto.Price); // Treat negatives as zero.
                         EquipStartingGear(entity.Value, loadoutProto, raiseEvent: false);
-                        StoreKeysAndCartridges(loadoutProto, ref encryptionKeys, ref pdaCartridges);
+                        CollectLoadout(loadoutProto, ref loadoutLast);
                         equippedItems.Add(loadoutProto.ID);
                     }
                 }
@@ -239,7 +246,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                         }
 
                         EquipStartingGear(entity.Value, loadoutProto, raiseEvent: false);
-                        StoreKeysAndCartridges(loadoutProto, ref encryptionKeys, ref pdaCartridges);
+                        CollectLoadout(loadoutProto, ref loadoutLast);
                         equippedItems.Add(fallback);
                         // Minimum number of items equipped, no need to load more prototypes.
                         if (equippedItems.Count >= groupPrototype.MinLimit)
@@ -255,14 +262,18 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             if (startingGear is not null)
             {
                 EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
-                StoreKeysAndCartridges(startingGear, ref encryptionKeys, ref pdaCartridges);
+                CollectLoadout(startingGear, ref loadoutLast);
             }
 
-            StartingGearPrototype loadablesGear = new();
-            loadablesGear.EncryptionKeys = encryptionKeys.ToList();
-            loadablesGear.Cartridges = pdaCartridges.ToList();
+            // Frontier: Attempt auto-equip for implants, encryption keys, and PDA cartridges
+            if (loadoutLast.Implants.Count > 0)
+                EquipImplantsIfPossible(entity.Value, loadoutLast.Implants);
 
-            TryEquipKeysAndCartridges(entity.Value, loadablesGear);
+            if (loadoutLast.EncryptionKeys.Count > 0)
+                EquipEncryptionKeysIfPossible(entity.Value, loadoutLast.EncryptionKeys);
+
+            if (loadoutLast.Cartridges.Count > 0)
+                EquipPdaCartridgesIfPossible(entity.Value, loadoutLast.Cartridges);
 
             var bankComp = EnsureComp<BankAccountComponent>(entity.Value);
 
@@ -339,8 +350,45 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
 
     #endregion Player spawning helpers
-    // Frontier: store and equip encryption keys and cartridges
-    protected override void EquipPdaCartridgesIfPossible(EntityUid entity, List<EntProtoId> pdaCartridges)
+    // Frontier: extra loadout fields
+    /// <summary>
+    /// Function to equip an entity with encryption keys.
+    /// If not possible, will delete them.
+    /// </summary>
+    /// <param name="entity">The entity to receive equipment.</param>
+    /// <param name="encryptionKeys">The encryption key prototype IDs to equip.</param>
+    private void EquipEncryptionKeysIfPossible(EntityUid entity, List<EntProtoId> encryptionKeys)
+    {
+        if (!InventorySystem.TryGetSlotEntity(entity, "ears", out var slotEnt))
+        {
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty encryption key loadout, but doesn't have a headset!");
+            return;
+        }
+        if (!_container.TryGetContainer(slotEnt.Value, EncryptionKeyHolderComponent.KeyContainerName, out var keyContainer))
+        {
+            DebugTools.Assert(false, $"Entity {entity} has a non-empty encryption key loadout, but their headset doesn't have an encryption key container!");
+            return;
+        }
+        var coords = _xformSystem.GetMapCoordinates(entity);
+        foreach (var entProto in encryptionKeys)
+        {
+            Log.Debug($"Entity {entity} auto-inserting loadout encryption key {entProto} into headset {keyContainer}.");
+            var spawnedEntity = Spawn(entProto, coords);
+            if (!_container.Insert(spawnedEntity, keyContainer))
+            {
+                QueueDel(spawnedEntity);
+                DebugTools.Assert(false, $"Entity {entity} could not insert their loadout encryption key {entProto} into their headset!");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Function to equip an entity with PDA cartridges.
+    /// If not possible, will delete them.
+    /// </summary>
+    /// <param name="entity">The entity to receive equipment.</param>
+    /// <param name="pdaCartridges">The PDA cartridge prototype IDs to equip.</param>
+    private void EquipPdaCartridgesIfPossible(EntityUid entity, List<EntProtoId> pdaCartridges)
     {
         if (!InventorySystem.TryGetSlotEntity(entity, "id", out var slotEnt))
         {
@@ -363,33 +411,40 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             QueueDel(spawnedEntity);
         }
     }
-    private void StoreKeysAndCartridges(IEquipmentLoadout? loadoutProto, ref EntProtoId[] encryptionKeys, ref EntProtoId[] pdaCartridges)
-    {
-        if (loadoutProto == null)
-            return;
-        int keysCount = encryptionKeys.Count();
-        int cartsCount = pdaCartridges.Count();
-        Array.Resize(ref encryptionKeys, keysCount + loadoutProto.EncryptionKeys.Count());
-        Array.Resize(ref pdaCartridges, cartsCount + loadoutProto.Cartridges.Count());
-        loadoutProto.EncryptionKeys.CopyTo(encryptionKeys, keysCount);
-        loadoutProto.Cartridges.CopyTo(pdaCartridges, cartsCount);
-    }
-    private void TryEquipKeysAndCartridges(EntityUid entity, IEquipmentLoadout? loadoutProto)
-    {
-        if (loadoutProto == null)
-            return;
 
-        if (loadoutProto.EncryptionKeys.Count > 0)
+    /// <summary>
+    /// Function to equip an entity with implants.
+    /// If not possible, will delete them.
+    /// </summary>
+    /// <param name="entity">The entity to receive equipment.</param>
+    /// <param name="implants">The implant prototype IDs to equip.</param>
+    private void EquipImplantsIfPossible(EntityUid entity, List<EntProtoId> implants)
+    {
+        var coords = _xformSystem.GetMapCoordinates(entity);
+        foreach (var entProto in implants)
         {
-            EquipEncryptionKeysIfPossible(entity, loadoutProto.EncryptionKeys);
-        }
-
-        if (loadoutProto.Cartridges.Count > 0)
-        {
-            EquipPdaCartridgesIfPossible(entity, loadoutProto.Cartridges);
+            var spawnedEntity = Spawn(entProto, coords);
+            if (TryComp<ImplanterComponent>(spawnedEntity, out var implanter))
+                _implanter.Implant(entity, entity, spawnedEntity, implanter);
+            else
+                DebugTools.Assert(false, $"Entity has an implant for {entProto}, which doesn't have an implanter component!");
+            QueueDel(spawnedEntity);
         }
     }
-    // End Frontier: store and equip encryption keys and cartridges
+
+    /// <summary>
+    /// Function to collect and store encryption keys and cartridges.
+    /// Does not handle any equip logic.
+    /// </summary>
+    /// <param name="loadoutProto">The loadout prototype to collect from.</param>
+    /// <param name="collectorLoadout">Reference to the loadout to collect to.</param>
+    private void CollectLoadout(IEquipmentLoadout loadoutProto, ref StartingGearPrototype collectorLoadout)
+    {
+        collectorLoadout.EncryptionKeys.AddRange(loadoutProto.EncryptionKeys);
+        collectorLoadout.Cartridges.AddRange(loadoutProto.Cartridges);
+        collectorLoadout.Implants.AddRange(loadoutProto.Implants);
+    }
+    // End Frontier: extra loadout fields
 }
 
 /// <summary>
