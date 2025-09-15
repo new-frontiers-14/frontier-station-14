@@ -5,6 +5,7 @@ using Content.Shared._NF.CryoSleep;
 using Content.Shared._NF.Roles.Components;
 using Content.Shared._NF.Roles.Systems;
 using Content.Shared._NF.Shipyard.Components;
+using Content.Shared.IdentityManagement;
 using Content.Shared.PDA;
 using Content.Shared.Storage;
 using JetBrains.Annotations;
@@ -49,14 +50,14 @@ public sealed class CryoSleepEui : BaseEui
         //Scan the player's inventory slots
         if (entityManager.TryGetComponent<InventorySlotsComponent>(playerEntity, out var slots))
         {
-            var warningItemsList = new List<EntityUid>();
+            var warningItemsList = new List<StorageHelper.FoundItem>();
             foreach (string slot in slotsToCheck)
             {
                 var item = slots.SlotData[slot].HeldEntity;
                 if (!item.HasValue)
                     continue;
                 if (entityManager.TryGetComponent<StorageComponent>(item, out var storageComp))
-                    StorageHelper.ScanStorageForCondition(storageComp, ShouldItemWarnOnCryo, ref warningItemsList);
+                    StorageHelper.ScanStorageForCondition(item.Value, ShouldItemWarnOnCryo, ref warningItemsList);
             }
             //Separately check their PDA slot
             var pda = slots.SlotData["id"].HeldEntity;
@@ -66,9 +67,35 @@ public sealed class CryoSleepEui : BaseEui
                 var idCard = pdaComp.IdSlot.Item;
                 if (idCard != null
                     && entityManager.HasComponent<ShuttleDeedComponent>(idCard))
-                    _window.ShuttleWarningText.SetMessage(Loc.GetString("accept-cryo-window-prompt-shuttle-warning"), null, Color.PaleVioletRed);
+                    _window.ShuttleWarningText.SetMessage(Loc.GetString("accept-cryo-window-prompt-shuttle-warning"), null, warningColor);
             }
             //TODO: Check their bag for ID's with shuttle deeds and add them as well
+            //TODO: Ask other people if there is a better way of doing this
+            if (warningItemsList.Count == 1)
+            {
+                var foundItem = warningItemsList[0];
+                _window.ItemWarningText.SetMessage(Loc.GetString("accept-cryo-window-prompt-one-item-warning",
+                    ("item", Identity.Name(foundItem.Item, entityManager)),
+                    ("storage", Identity.Name(foundItem.Container, entityManager))));
+            }
+            else if (warningItemsList.Count >= 2)
+            {
+                string locKey;
+                if (warningItemsList.Count == 2)
+                    locKey = "accept-cryo-window-prompt-two-items-warning";
+                else
+                    locKey = "accept-cryo-window-prompt-many-items-warning";
+                var foundItem = warningItemsList[0];
+                var foundItem2 = warningItemsList[1];
+                _window.ItemWarningText.SetMessage(Loc.GetString(locKey,
+                    ("item1", Identity.Name(foundItem.Item, entityManager)),
+                    ("storage1", Identity.Name(foundItem.Container, entityManager)),
+                    ("item2", Identity.Name(foundItem2.Item, entityManager)),
+                    ("storage2", Identity.Name(foundItem2.Container, entityManager)),
+                    //This key is not always needed, but put here to save a lot of copy pasting
+                    ("num-extra-items", warningItemsList.Count - 2)));
+            }
+
 
         }
 
@@ -84,18 +111,15 @@ public sealed class CryoSleepEui : BaseEui
             _window.Close();
         };
     }
-    //TODO: De-hardcode this, maybe turn it into a component check?
+
     private bool ShouldItemWarnOnCryo(EntityUid ent)
     {
         var entityManager = IoCManager.Resolve<IEntityManager>();
 
-        //TODO: Check if its a money
-
-
-        if (entityManager.HasComponent<ShuttleDeedComponent>(ent))
+        if (entityManager.HasComponent<ShuttleDeedComponent>(ent) || entityManager.HasComponent<WarnOnCryoSleepComponent>(ent))
             return true;
-
-        return false;
+        else
+            return false;
     }
 
     public override void Opened()

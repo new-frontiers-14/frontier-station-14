@@ -9,8 +9,9 @@ accept-cryo-window-prompt-stored = Your body will be stored for {PLAYTIME($time)
 accept-cryo-window-prompt-not-stored = Your body will not be stored, but your job slot will be reopened if you haven't done it yourself.
 accept-cryo-window-prompt-shuttle-warning = You currently own a unsold ship!
 accept-cryo-window-prompt-shuttle-bag-warning = You have active ship deeds in your {$storage}!
-accept-cryo-window-prompt-item-warning = You have {$item}!
-accept-cryo-window-prompt-many-items-warning = You have {$item-display}, and {$extra-items} important item(s) elsewhere!
+accept-cryo-window-prompt-one-item-warning = You have {$item} in your {$storage}!
+accept-cryo-window-prompt-two-items-warning = You have {$item1} in your {$storage1} and {$item2} in your {$storage2}!
+accept-cryo-window-prompt-many-items-warning = You have {$item1} in your {$storage1}, {$item2} in your {$storage2}, and {$num-extra-items} important items elsewhere!
 accept-cryo-window-title = Cryo Sleep Chamber
 
 cryo-wakeup-window-title = Waking Up

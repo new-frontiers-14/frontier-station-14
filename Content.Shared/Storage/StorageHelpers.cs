@@ -74,19 +74,39 @@ public static class StorageHelper
         return false;
     }
 
-    //TODO: Annotate this as needed, add documentation
-    //TODO: Maybe add a variant that accepts a starting item instead of specifically needing a storage component?
-    public static void ScanStorageForCondition(StorageComponent storage, Predicate<EntityUid> condition, ref List<EntityUid> items)
+    //TODO: Standardize both of these methods to take either a StorageComp or EntityUid
+
+    //TODO: Document
+    //TODO: Figure out how to deal with someone passing a bad input
+    //Scans a storage and all nested storages for items matching the condition.
+    //Outputs a dictionary of <FoundItems, ContainingStorages>
+    public static void ScanStorageForCondition(EntityUid storageItem,
+        Predicate<EntityUid> condition,
+        ref List<FoundItem> foundItemsAndContainers)
     {
         var entityManager = IoCManager.Resolve<IEntityManager>();
-
-        foreach (var ent in storage.StoredItems.Keys)
+        entityManager.TryGetComponent<StorageComponent>(storageItem, out var storageComp);
+        //Only way I know how to get this to compile
+        if (storageComp == null)
         {
-            if (condition.Invoke(ent))
-                items.Add(ent);
-
-            if (entityManager.TryGetComponent<StorageComponent>(ent, out var storeComp))
-                ScanStorageForCondition(storeComp, condition, ref items);
+            //You done goofed up
+            throw new ArgumentException("An object was passed to ScanStorageForCondition that did not have a storage component.");
         }
+
+        foreach (var item in storageComp.StoredItems.Keys)
+        {
+            if (condition.Invoke(item))
+                foundItemsAndContainers.Add(new FoundItem(item, storageItem));
+
+            if (entityManager.TryGetComponent<StorageComponent>(item, out var storeComp))
+                ScanStorageForCondition(item, condition, ref foundItemsAndContainers);
+        }
+    }
+
+    //For use with ScanStorageForCondition()
+    public struct FoundItem(EntityUid item, EntityUid container)
+    {
+        public EntityUid Item = item;
+        public EntityUid Container = container;
     }
 }
