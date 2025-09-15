@@ -29,7 +29,6 @@
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
   
-  - Check that the substation unit is anchored to the floor.
   - Check that the APC unit's Main Breaker is toggled on.
   - Check the APC unit's current Load* (W).
   
@@ -51,33 +50,27 @@
   <Box>
   <GuideEntityEmbed Entity="AirCanister"/>
   <GuideEntityEmbed Entity="GasPort"/>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
   
   - Check that the air canister is anchored to connector port.
   - Check that the distribution pump is set to 101kPa.
-  - Enable the distribution pump.
   
   ## 2.2. Waste Loop
   <Box>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
   <GuideEntityEmbed Entity="AirAlarm"/>
   </Box>
-    
-  - Enable waste loop pump.
+  
   - Disable Auto Mode on the Air Alarm in the Engine Room.
   - Set the Air Alarm in the Engine Room to Filtering (Wide).
   
   ## 3. Other checks
   <Box>
-  <GuideEntityEmbed Entity="SmallGyroscope"/>
+  <GuideEntityEmbed Entity="Gyroscope"/>
   <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  <GuideEntityEmbed Entity="ShuttersWindow"/>
   </Box>
   
   - Check that the gyroscope is anchored, powered, and enabled.
   - Check that the mini gravity generator is anchored, powered, and enabled.
-  - Check that the bow window shutters are closed.
   
   ## Sidenotes
   
