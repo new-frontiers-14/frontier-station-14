@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Client.Eui;
 using Content.Client.Inventory;
 using Content.Shared._NF.CCVar;
@@ -22,18 +23,20 @@ namespace Content.Client._NF.CryoSleep;
 [UsedImplicitly]
 public sealed class CryoSleepEui : BaseEui
 {
+    //Broken :(
+    //TODO: Find a replacement for the broken _inventorySystem
+    //[Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
     private readonly AcceptCryoWindow _window;
-
 
     public CryoSleepEui()
     {
-        var entityManager = IoCManager.Resolve<IEntityManager>();
         var playerEntity = IoCManager.Resolve<ISharedPlayerManager>().LocalEntity;
 
         _window = new AcceptCryoWindow();
 
         // Try to get the player's mind.
-        if (!entityManager.TryGetComponent(playerEntity, out JobTrackingComponent? jobTracking)
+        if (!_entityManager.TryGetComponent(playerEntity, out JobTrackingComponent? jobTracking)
             || jobTracking.Job == null
             || !SharedJobTrackingSystem.JobShouldBeReopened(jobTracking.Job.Value))
         {
@@ -55,7 +58,7 @@ public sealed class CryoSleepEui : BaseEui
         //Scan the player's inventory slots
         //TODO: Refactor this with InventorySystem.TryGetSlotEntity
         //I spent so much time on this I am NOT rewriting this now
-        if (entityManager.TryGetComponent<InventorySlotsComponent>(playerEntity, out var slots))
+        if (_entityManager.TryGetComponent<InventorySlotsComponent>(playerEntity, out var slots))
         {
             var warningItemsList = new List<StorageHelper.FoundItem>();
             foreach (string slot in slotsToCheck)
@@ -63,7 +66,7 @@ public sealed class CryoSleepEui : BaseEui
                 var item = slots.SlotData[slot].HeldEntity;
                 if (!item.HasValue)
                     continue;
-                if (entityManager.TryGetComponent<StorageComponent>(item, out var storageComp))
+                if (_entityManager.TryGetComponent<StorageComponent>(item, out var storageComp))
                     StorageHelper.ScanStorageForCondition(item.Value, ShouldItemWarnOnCryo, ref warningItemsList);
             }
 
@@ -71,59 +74,46 @@ public sealed class CryoSleepEui : BaseEui
             var foundMoreShuttles = false;
             StorageHelper.FoundItem? foundUplink = null;
             //Shuttle and uplink check
-            //TODO: Refactor to use something else so I can mark objects for removal withouth concurrent modification (java iterator equivalent?)
-            foreach (var foundItem in warningItemsList)
+            //Reverse for loop to allow for modification of the list while looping through it
+            for (var i = warningItemsList.Count - 1; i >= 0 ; i--)
             {
-                if (entityManager.HasComponent<ShuttleDeedComponent>(foundItem.Item))
+                var foundItem = warningItemsList[i];
+                if (_entityManager.HasComponent<ShuttleDeedComponent>(foundItem.Item))
                 {
                     if (foundShuttleDeed.HasValue)
                         foundMoreShuttles = true;
                     else
                         foundShuttleDeed = foundItem;
+                    //The item will be handled by a separate message, it shouldn't get lumped in with the other items
+                    warningItemsList.RemoveAt(i);
                 }
-                else if (entityManager.HasComponent<StoreComponent>(foundItem.Item))
+                else if (_entityManager.HasComponent<StoreComponent>(foundItem.Item))
                 {
                     foundUplink = foundItem;
+                    //See above
+                    warningItemsList.RemoveAt(i);
                 }
             }
+            //At this point, the only items left in this list are things flagged with "WarnOnCryoSleep"
 
             //Check their ID card for any shuttle deeds, and update the warning as needed
             //The message chosser is in a different method to make the code easier to read
-            var idCard = GetIDCardFromPDASlot(playerEntity.Value, entityManager);
-            var hasShuttleOnPDA = (idCard.HasValue
-                                   && entityManager.HasComponent<ShuttleDeedComponent>(idCard));
-            string? localizedShuttleWarning = GetShuttleLocMessage(hasShuttleOnPDA, foundMoreShuttles, foundShuttleDeed, entityManager);
+            //This is broken for the moment :(
+            //var idCard = GetIDCardFromPDASlot(playerEntity.Value, _entityManager);
+            var hasShuttleOnPDA = true;
+                //(idCard.HasValue && _entityManager.HasComponent<ShuttleDeedComponent>(idCard));
+            string? localizedShuttleWarning = GetShuttleWarningLocMessage(hasShuttleOnPDA, foundMoreShuttles, foundShuttleDeed, _entityManager);
             if (localizedShuttleWarning != null)
                 _window.ShuttleWarningText.SetMessage(localizedShuttleWarning, null, warningColor);
-
-            //Now we check for and change items
-            //TODO: Refactor this to use a better localization key chooser (Missing replacement keys don't matter!)
-            if (warningItemsList.Count == 1)
+            string? localizedItemWarningMessage = GetImportantItemWarningLocMessage(warningItemsList, _entityManager);
+            if (localizedItemWarningMessage != null)
+                _window.ItemWarningText.SetMessage(localizedItemWarningMessage, null, warningColor);
+            if (foundUplink.HasValue)
             {
-                var foundItem = warningItemsList[0];
-                _window.ItemWarningText.SetMessage(Loc.GetString("accept-cryo-window-prompt-one-item-warning",
-                    ("item", Identity.Name(foundItem.Item, entityManager)),
-                    ("storage", Identity.Name(foundItem.Container, entityManager))),
-                    null,
-                    warningColor);
+                string? localizedUplinkWarningMessage = GetUplinkWarningLocMessage(foundUplink.Value, _entityManager);
+                if (localizedUplinkWarningMessage != null)
+                    _window.UplinkWarningText.SetMessage(localizedUplinkWarningMessage, null, warningColor);
             }
-            else if (warningItemsList.Count >= 2)
-            {
-                string locKey;
-                locKey = warningItemsList.Count == 2 ? "accept-cryo-window-prompt-two-items-warning" : "accept-cryo-window-prompt-many-items-warning";
-                var foundItem = warningItemsList[0];
-                var foundItem2 = warningItemsList[1];
-                _window.ItemWarningText.SetMessage(Loc.GetString(locKey,
-                    ("item1", Identity.Name(foundItem.Item, entityManager)),
-                    ("storage1", Identity.Name(foundItem.Container, entityManager)),
-                    ("item2", Identity.Name(foundItem2.Item, entityManager)),
-                    ("storage2", Identity.Name(foundItem2.Container, entityManager)),
-                    //This key is not always needed, but put here to save a lot of copy pasting, and doesn't break the code, so :P
-                    ("num-extra-items", warningItemsList.Count - 2)));
-            }
-            //TODO: Uplink checking when I am not hungry as hell
-
-
         }
 
         _window.OnAccept += () =>
@@ -143,15 +133,17 @@ public sealed class CryoSleepEui : BaseEui
     {
         var entityManager = IoCManager.Resolve<IEntityManager>();
 
-        if (entityManager.HasComponent<ShuttleDeedComponent>(ent) || entityManager.HasComponent<WarnOnCryoSleepComponent>(ent))
+        if (entityManager.HasComponent<ShuttleDeedComponent>(ent)
+            || entityManager.HasComponent<WarnOnCryoSleepComponent>(ent)
+            || entityManager.HasComponent<StoreComponent>(ent))
             return true;
         else
             return false;
     }
 
     //The if statement was too hard to read, so I moved it to its own method where I can just return the string
-    //This returns an emtpy string if no warning is needed
-    private string? GetShuttleLocMessage(bool hasShuttleOnPDA,
+    //This returns null if no warning is needed
+    private string? GetShuttleWarningLocMessage(bool hasShuttleOnPDA,
         bool foundMoreShuttles,
         StorageHelper.FoundItem? foundShuttleDeed,
         IEntityManager entityManager)
@@ -183,12 +175,59 @@ public sealed class CryoSleepEui : BaseEui
         return null;
     }
 
+    //Extracting to a separate method to make the code easier on me!
+    //This returns null if no warning is needed
+    private string? GetImportantItemWarningLocMessage(List<StorageHelper.FoundItem> warningItemsList, IEntityManager manager)
+    {
+        if (warningItemsList.Count == 0)
+            return null;
+        //At this point in the code, none of these values should be null. If it is, something went *very* wrong in the code about
+        var item1 = warningItemsList[0];
+        if (warningItemsList.Count == 1)
+            return Loc.GetString("accept-cryo-window-prompt-one-item-warning",
+                ("item", item1.Item),
+                ("storage", item1.Container));
+        //We know there are at least 2 items now
+        var item2 = warningItemsList[1];
+        var key = warningItemsList.Count > 2 ? "accept-cryo-window-prompt-many-items-warning" : "accept-cryo-window-prompt-two-items-warning";
+        return Loc.GetString(key,
+            ("item1", Identity.Name(item1.Item, manager)),
+            ("storage1", Identity.Name(item1.Container, manager)),
+            ("item2", Identity.Name(item2.Item, manager)),
+            ("storage2", Identity.Name(item2.Container, manager)),
+            //This key is not always needed, but put here to save a lot of copy pasting, and doesn't break the code, so :P
+            ("num-extra-items", warningItemsList.Count - 2));
+
+    }
+
+    //Returns null if no warning is needed
+    private string? GetUplinkWarningLocMessage(StorageHelper.FoundItem foundUplink, IEntityManager manager)
+    {
+        if (manager.TryGetComponent<StoreComponent>(foundUplink.Item, out var store))
+        {
+            var currencyPrototype = store.Balance.Keys.First();
+            var amount = store.Balance[currencyPrototype];
+            if (amount == 0)
+                return "";
+            return Loc.GetString("accept-cryo-window-prompt-uplink-warning",
+                ("uplink", Identity.Name(foundUplink.Item, manager)),
+                ("storage", Identity.Name(foundUplink.Container, manager)),
+                ("amount", amount),
+                //TODO: Properly localize the currency name
+                ("currency", currencyPrototype));
+        }
+
+        return null;
+    }
+
+    //Broken :(
+    /*
     //Turned this into a method to avoid headaches as well
     //TODO: Possibly move this to a more central place
     EntityUid? GetIDCardFromPDASlot(EntityUid entity, IEntityManager manager)
     {
-        var inventorySystem = IoCManager.Resolve<InventorySystem>();
-        if (inventorySystem.TryGetSlotEntity(entity, "id", out var thingInIdSlot))
+
+        if (_inventorySystem.TryGetSlotEntity(entity, "id", out var thingInIdSlot))
         {
             if (manager.HasComponent<IdCardComponent>(thingInIdSlot))
                 return entity;
@@ -199,6 +238,7 @@ public sealed class CryoSleepEui : BaseEui
 
         return null;
     }
+    */
 
     public override void Opened()
     {
