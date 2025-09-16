@@ -16,11 +16,13 @@ using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
+using Content.Shared.Storage;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -52,6 +54,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!; //For cryosleep warnings
 
     private readonly Dictionary<NetUserId, StoredBody?> _storedBodies = new();
     private EntityUid? _storageMap;
@@ -242,6 +245,9 @@ public sealed partial class CryoSleepSystem : EntitySystem
         if (!_container.Insert(toInsert.Value, cryopod.Comp.BodyContainer))
             return false;
 
+        //TODO: Warning logic should go here
+
+
         if (session != null)
             _euiManager.OpenEui(new CryoSleepEui(toInsert.Value, cryopod, this), session);
 
@@ -268,6 +274,31 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
         return true;
     }
+
+    //TODO: Document this with whatever the javadoc equivilant is
+    private void GetWarningMessages(EntityUid? entity)
+    {
+        if (!entity.HasValue)
+            return;
+        //Items check
+        //TODO: Full body scan
+        string[] slotsToCheck = ["back", "wallet"];
+        List<StorageHelper.FoundItem> warningItemsList = [];
+        foreach (var slotId in slotsToCheck)
+        {
+            if (_inventory.TryGetSlotEntity(entity.Value, slotId, out var foundItem))
+            {
+
+            }
+        }
+    }
+
+    private struct FoundSlotItem
+    {
+
+    }
+
+
 
     public void CryoStoreBody(EntityUid bodyId, EntityUid cryopod)
     {

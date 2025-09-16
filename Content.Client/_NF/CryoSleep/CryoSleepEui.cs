@@ -52,7 +52,7 @@ public sealed class CryoSleepEui : BaseEui
 
         //TODO: Find a good balance between checking everything and performance
         //TODO: Replace this with a full inventory scan, maybe write a helper method in another class?
-        string[] slotsToCheck = ["back", "wallet"];
+
         var warningColor = Color.Yellow;
 
         //Scan the player's inventory slots
