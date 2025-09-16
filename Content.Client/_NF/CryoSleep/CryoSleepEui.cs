@@ -131,14 +131,9 @@ public sealed class CryoSleepEui : BaseEui
 
     private bool ShouldItemWarnOnCryo(EntityUid ent)
     {
-        var entityManager = IoCManager.Resolve<IEntityManager>();
-
-        if (entityManager.HasComponent<ShuttleDeedComponent>(ent)
-            || entityManager.HasComponent<WarnOnCryoSleepComponent>(ent)
-            || entityManager.HasComponent<StoreComponent>(ent))
-            return true;
-        else
-            return false;
+        return _entityManager.HasComponent<ShuttleDeedComponent>(ent)
+               || _entityManager.HasComponent<WarnOnCryoSleepComponent>(ent)
+               || _entityManager.HasComponent<StoreComponent>(ent);
     }
 
     //The if statement was too hard to read, so I moved it to its own method where I can just return the string
