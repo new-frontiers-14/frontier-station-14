@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseControllable, BaseStructure ]
+  parent: [ BaseControllable, BaseMachinePowered ]
   id: MothershipCore
   name: mothership core
   description: A sentient machine that can produce Xenoborgs. Without this the Xenoborgs are doomed.
@@ -170,8 +170,6 @@
   - type: NpcFactionMember
     factions:
     - Xenoborg
-  - type: Body
-    prototype: MothershipCoreBody
   - type: Hands
     showInHands: false
     disableExplosionRecursion: true
