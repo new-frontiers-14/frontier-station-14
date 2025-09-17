@@ -1,0 +1,126 @@
+- type: loadoutGroup
+  id: ForeignEnsignJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  loadouts: #First Section: Role specific freebies/discounts/rewards
+  - MercenaryClothingUniformJumpsuitMercenary
+  subgroups:
+  - MercenaryJumpsuit
+  - PilotJumpsuit
+  - ContractorJumpsuit
+  fallbacks:
+  - MercenaryClothingUniformJumpsuitMercenary
+  - MercenaryClothingUniformJumpskirtMercenary
+
+- type: loadoutGroup
+  id: ForeignEnsignBackpack
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - MercenaryClothingBackpackMercenary
+  subgroups:
+  - MercenaryBackpack
+  - PilotBackpack
+  - ContractorBackpack
+  fallbacks:
+  - MercenaryClothingBackpackMercenary
+
+- type: loadoutGroup
+  id: ForeignEnsignOuterClothing
+  name: loadout-group-contractor-outerclothing
+  minLimit: 0
+  loadouts:
+  - MercenaryClothingOuterVestWebMercenary
+  subgroups:
+  - MercenaryOuterClothing
+  - PilotOuterClothing
+  - ContractorOuterClothing
+
+- type: loadoutGroup
+  id: ForeignEnsignShoes
+  name: loadout-group-contractor-shoes
+  loadouts:
+  - MercenaryClothingShoesBootsMercenary
+  subgroups:
+  - MercenaryShoes
+  - PilotShoes
+  - ContractorShoes
+  fallbacks:
+  - MercenaryClothingShoesBootsMercenary
+
+- type: loadoutGroup
+  id: ForeignEnsignHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - MercenaryClothingHeadHelmetMercenary
+  subgroups:
+  - MercenaryHead
+  - PilotHead
+  - ContractorHead
+
+- type: loadoutGroup
+  id: ForeignEnsignEars
+  name: loadout-group-contractor-ears
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - MercenaryClothingHeadsetAltMercenaryCommon
+  subgroups:
+  - MercenaryEars
+  - PilotEars
+  - ContractorEars
+
+- type: loadoutGroup
+  id: ForeignEnsignGloves
+  name: loadout-group-contractor-gloves
+  minLimit: 0
+  loadouts:
+  - MercenaryClothingHandsMercenaryGlovesCombat
+  subgroups:
+  - MercenaryGloves
+  - PilotGloves
+  - ContractorGloves
+
+- type: loadoutGroup
+  id: ForeignEnsignPDA
+  name: loadout-group-contractor-pda
+  loadouts:
+  - MercenaryMercenaryPDA
+  subgroups:
+  - MercenaryPDA
+  - PilotPDA
+  - ContractorPDA
+  fallbacks:
+  - MercenaryMercenaryPDA
+
+- type: loadoutGroup
+  id: ForeignEnsignGlasses
+  name: loadout-group-contractor-glasses
+  minLimit: 0
+  loadouts:
+  - MercenaryClothingEyesGlassesMercenary
+  subgroups:
+  - MercenaryGlasses
+  - PilotGlasses
+  - ContractorGlasses
+
+- type: loadoutGroup
+  id: ForeignEnsignFace
+  name: loadout-group-contractor-face
+  loadouts:
+  - MercenaryClothingMaskGasSecurity
+  subgroups:
+  - MercenaryFace
+  - PilotFace
+  - ContractorFace
+  fallbacks:
+  - MercenaryClothingMaskGasMercenary
+
+- type: loadoutGroup
+  id: ForeignEnsignBelt
+  name: loadout-group-contractor-belt
+  minLimit: 0
+  loadouts:
+  - MercenaryClothingBeltMilitaryWebbing
+  subgroups:
+  - MercenaryBelt
+  - ContractorBelt
