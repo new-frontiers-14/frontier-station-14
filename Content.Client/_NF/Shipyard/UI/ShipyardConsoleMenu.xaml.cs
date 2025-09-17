@@ -301,6 +301,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         TargetIdButton.Text = state.IsTargetIdPresent
             ? Loc.GetString("id-card-console-window-eject-button")
             : Loc.GetString("id-card-console-window-insert-button");
+        NoDeedHelperContainer.Visible = !state.IsTargetIdPresent;
+        DeedContainer.Visible = state.IsTargetIdPresent;
         if (state.ShipDeedTitle != null)
         {
             DeedTitle.Text = state.ShipDeedTitle;
